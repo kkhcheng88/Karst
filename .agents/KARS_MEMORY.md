@@ -75,5 +75,5 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 - Karst spec 完成(Layer-1/2 + invariants + lenses 規劃);git 多個 commit on main。
 - reorg 完成:Quant→Reference、books→ebooks、.agents→Karst。
 - **backtest harness 已建**(`backtest/`,純 pandas,**不用 vectorbt**;data = defeatbeta≥0.0.60 + yfinance fallback,banner 已在 loader 吞掉)。
-- **首個回測結論(✅ 自驗,已解 200SMA 未決項):** 指數上 RSI-2/200SMA **贏不了 B&H 報酬**,只能砍回撤 → **標的層 TA timing = 回撤 overlay,非 alpha;真 edge 在期權結構(VRP)**。重現不了 distillation §11.5。見 `backtest/results/2026-06-30_rsi2_200sma.md`。
+- **回測結論(✅ 自驗,已解 200SMA 未決項):** 200SMA 濾網不穩健;RSI-2 raw CAGR 贏不了 B&H,**但 Jensen alpha 顯著正**(QQQ 6.5%/yr t2.9、SPY 4.3% t2.4,集中在 entry<5–10 / exit>70,拉長出場殺死 alpha;AvgDD 僅 ~−2~4%)→ **RSI-2 = modest 低容量進場 alpha,可疊加 VRP(賣 CSP / 進 LEAP 的超賣時機)**,不是純回撤 overlay。LEAP 需右側閘防破產(provisional)。見 `backtest/results/`。
 - 下一步候選:Phase-2 option overlay(BSM + VIX/VXN,測 CSP/PMCC/LEAP P&L 含 vega)、或 Dorsey/Minervini 蒸餾、或定義 INV 數值。

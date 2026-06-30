@@ -48,6 +48,11 @@ Tag:✅ verified / 📄 distilled / ⚠️ open
 在 SPY/SPMO **贏不了 B&H 的報酬**(只 ~12% exposure),但把 MaxDD 從 −57%/−83% 砍到
 −17%/−22%。**結論:這層 timing 是「回撤控制」,不是 alpha;重現不了 §11.5 的 +258%。**
 
+🔄 **修正(加測 Jensen alpha 後,`exp_rsi2_alpha.py`):** RSI-2 其實**有顯著正 alpha**
+(QQQ `<5 >70` 6.5%/yr t2.9、SPY `<10 >80` 4.3% t2.4),只是低容量、藏在「快進快出」區
+(拉長出場會殺死 alpha)。AvgDD 僅 ~−2~4%(很好扛)。→ **RSI-2 = modest 進場 alpha,
+可疊加 VRP**(用超賣回調時機賣 CSP / 進 LEAP),不是純回撤 overlay。
+
 > §20.9 說「trend > 反轉」,§21 說「反轉 > trend」——表面衝突,實則互補:
 > RSI-2(反轉進場)**在** EMA200(趨勢濾網)**之內**,兩者疊起來就是上面那條,不是對立。
 
