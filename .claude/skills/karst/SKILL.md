@@ -26,13 +26,17 @@ python backtest/scorecard.py --json     # machine-readable (parse this)
 Output per underlying: 0-100 for LEAP / PMCC / CSP / CASH + a `drivers` line
 (200SMA position, ADX, IV-rank, RSI-2, 50/200). Present it, then interpret.
 
-## How to interpret (validated logic — see `params/`, `backtest/results/`)
-| Tool | High score means | Why (backtested) |
+## How to interpret (v3 rules — validated, see `backtest/results/2026-06-30_scorecard_validation.md`)
+| Tool | High score = | Notes |
 |---|---|---|
-| **LEAP** | uptrend (>200SMA) + LOW IV + RSI-2 dip | uncapped leverage; edge = timing; **needs right-side (ruin avoidance)** |
-| **PMCC** | uptrend + ELEVATED IV | leveraged long + sell rich calls; rare (uptrend+high-IV uncommon) |
-| **CSP** | calm/sideways + LOW IV + dip | short-vol income; thin edge; on indices assignment is recoverable |
-| **CASH** | below 200SMA + falling + high IV | all long-delta tools lose in downtrends |
+| **LEAP** | `>200SMA AND RSI-2 dip` | pure gate×dip = the validated entry edge (dip days +0.85% vs +0.16% fwd-5d). Edge is short-horizon + low-capacity |
+| **PMCC** | `>200SMA AND high IV rank` | uptrend + rich calls to sell; rare. Treat as overlay on an existing long |
+| **CSP** | IV-rank **U-shape** | low-IV end = calm income (SAFE default); high-IV end = **capitulation (RISKY, same regime as CASH)** — check `csp_mode` |
+| **CASH** | `<200SMA AND high IV` | defend/reduce; note downturns bounce (flags risk, not guaranteed loss) |
+
+Scores are RAW 0-100 (no return forecast — they read REGIME/RISK suitability). **Low scores across
+the board = "no strong signal, wait for a trigger" (a dip, or an IV extreme).** The entry trigger is
+the RSI-2 dip itself (drivers show `RSI2 (DIP)` when <10). Always read `csp_mode` before any CSP.
 
 ## Guardrails (apply every time)
 - **Invariants** (`invariants/systematic_rules.md`): single CSP ≤20% / total ≤50% capital;

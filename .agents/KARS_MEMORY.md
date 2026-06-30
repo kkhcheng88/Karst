@@ -80,4 +80,5 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 - **Scorecard + skill 已建**(`backtest/scorecard.py` + `.claude/skills/karst/`):每日 0–100 per-tool 適合度,agent 可 `/karst` 呼叫。
 - **Scorecard 驗證(✅ `results/2026-06-30_scorecard_validation.md`):** 分數**不預測報酬**(LEAP/PMCC 高分均值回歸=反指標),但**預測風險/regime**(高分→回撤小);**CSP 那格如設計運作**(高分→未來回撤小,boundary ~25)。→ scorecard 是風險儀表板,非 alpha 神諭。
 - **Scorecard v2 已建 + 驗(`results/2026-06-30_scorecard_validation.md`):** 百分位尺度修好範圍(0–100);CSP/CASH 驗證有效。**但 LEAP 仍不預測報酬——因為把 RSI-2 dip 混進分數會稀釋 edge(dip alpha 只在隔離時顯現)。架構結論:scorecard = regime/風險適合度(非報酬預測);RSI-2 dip = 分開的純進場 trigger,別混進分數。** PMCC degenerate(百分位灌水、假霸榜),待重做或拿掉。
-- **下一步(v3):** 把 dip trigger 從分數抽出來分開;重做/拿掉 PMCC;保留百分位 + CSP/CASH。其他:CSP cost-sweep、harden LEAP magnitudes、Dorsey 蒸餾(衛星)、定義 INV 數值。
+- **Scorecard v3 已建 + 驗(定稿):** 用戶的乾淨規則模型——`LEAP = >200SMA × RSI-2 dip`(純 gate×dip);`PMCC = >200SMA × 高IV`;`CSP = IV-rank U 型`(低IV=平靜收租安全 / 高IV=capitulation 危險,看 csp_mode);`CASH = <200SMA × 高IV`。raw 0–100(丟掉 v2 百分位,稀疏訊號會壞)。**驗證:LEAP gate×dip 在 5d 重現 dip alpha(dip +0.85% vs 無dip +0.16%);CSP U 型有效(高IV端較險);PMCC 不再 degenerate;CASH 危險旗標有效。** scorecard = regime/風險適合度 + RSI-2 dip 是分開的進場 trigger。
+- **下一步(可選):** CSP cost-sweep、harden LEAP magnitudes、wheel 變體、Dorsey 蒸餾(衛星層)、定義 INV 數值、macro regime_matrix(殖利率/信用)接 CASH。核心 timing+scorecard 線已收尾。
