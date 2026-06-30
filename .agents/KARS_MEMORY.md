@@ -77,4 +77,6 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 - **backtest harness 已建**(`backtest/`,純 pandas,**不用 vectorbt**;data = defeatbeta≥0.0.60 + yfinance fallback,banner 已在 loader 吞掉)。
 - **回測結論(✅ 自驗,已解 200SMA 未決項):** 200SMA 濾網不穩健;RSI-2 raw CAGR 贏不了 B&H,**但 Jensen alpha 顯著正**(QQQ 6.5%/yr t2.9、SPY 4.3% t2.4,集中在 entry<5–10 / exit>70,拉長出場殺死 alpha;AvgDD 僅 ~−2~4%)→ **RSI-2 = modest 低容量進場 alpha,可疊加 VRP(賣 CSP / 進 LEAP 的超賣時機)**,不是純回撤 overlay。LEAP 需右側閘防破產(provisional)。見 `backtest/results/`。
 - **CSP 自驗(provisional):** 引擎重現 94–97% WR,**但 alpha 不顯著——CSP 利潤大半是 beta(短 put ≈ +0.2 delta),不是免費 VRP alpha**(且對成本假設敏感);唯一亮點 = RSI-2<10 dip 進場(PF↑、AvgDD↓、可疊進場 alpha)。見 `backtest/results/2026-06-30_csp.md`。
-- 下一步候選:CSP **cost-sensitivity sweep**(定 VRP alpha 真假,最關鍵)、wheel 變體、harden LEAP、Dorsey/Minervini 蒸餾、定義 INV 數值。
+- **Scorecard + skill 已建**(`backtest/scorecard.py` + `.claude/skills/karst/`):每日 0–100 per-tool 適合度,agent 可 `/karst` 呼叫。
+- **Scorecard 驗證(✅ `results/2026-06-30_scorecard_validation.md`):** 分數**不預測報酬**(LEAP/PMCC 高分均值回歸=反指標),但**預測風險/regime**(高分→回撤小);**CSP 那格如設計運作**(高分→未來回撤小,boundary ~25)。→ scorecard 是風險儀表板,非 alpha 神諭。
+- **下一步:scorecard v2 重調**——LEAP/PMCC 改成「regime 閘 + RSI-2 dip」(別把強度當報酬訊號)、改 per-tool 百分位尺度、重跑驗證。其他:CSP cost-sweep、harden LEAP/PMCC magnitudes、Dorsey 蒸餾(衛星)、定義 INV 數值。
