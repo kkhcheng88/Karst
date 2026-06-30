@@ -1,0 +1,32 @@
+# Karst universe — top-down scan watchlist (human/LLM-editable).
+#
+# tier:
+#   options = SPY/QQQ/SPMO -> the validated options toolkit (LEAP/SHORT_CALL/CSP/CASH).
+#   long    = every other name -> Long Position ONLY (no options on single names — INV-8/9).
+# sector:
+#   MARKET  = the index ETFs; they DEFINE the market gate (Stage 0). No sector layer.
+#   <key>   = a sector/subsector key, resolved against `sectors:` below.
+#
+# Phase 0: sector temperature is STUBBED (warm=1). The Memory subsector layer (RS vs
+# parent SEMI / vs market, cap-weighted basket, breadth/coherence) arrives in Phase 1.
+# Note: SPMO is a tier-1 options ticker AND a momentum-FACTOR signal in the gate
+# (RS(SPMO/SPY)); it is NOT a sector to scan.
+
+sectors:
+  MEMORY:
+    parent: SEMI                 # subsector hierarchy — Phase 1 computes RS vs parent & vs market
+    parent_proxy: [SOXX, SMH]    # SEMI parent proxy (cap-weighted semis)
+    basket: [MU, WDC, STX]       # aggregate temperature proxy (long history; SNDK seasons in later)
+    weight: market_cap           # market-practice for sector indices; see results note on MU dominance
+    eventual_etf: DRAM           # Roundhill Memory ETF — swap in when it has ~200d (listed 2026-04)
+
+tickers:
+  # tier-1 — options toolkit (validated 3 ETFs).
+  - {ticker: SPY,  tier: options, sector: MARKET, iv_proxy: "^VIX"}
+  - {ticker: QQQ,  tier: options, sector: MARKET, iv_proxy: "^VXN"}
+  - {ticker: SPMO, tier: options, sector: MARKET, iv_proxy: "^VIX"}
+  # tier-2 — Long only (Memory subsector). sector temp = STUB in Phase 0.
+  - {ticker: MU,   tier: long, sector: MEMORY}
+  - {ticker: SNDK, tier: long, sector: MEMORY}
+  - {ticker: WDC,  tier: long, sector: MEMORY}
+  - {ticker: STX,  tier: long, sector: MEMORY}

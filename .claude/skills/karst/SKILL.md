@@ -15,10 +15,29 @@ quantified regime features. Tools are NOT mutually exclusive; scores can co-exis
 **This is decision support, not autopilot — present scores + drivers, the human allocates
 within the invariants. Always surface the honest caveats.**
 
-Run everything from the Karst repo root. Data is fetched live (defeatbeta + yfinance,
-network required); the data layer self-handles the console banner.
+Run everything from the Karst repo root. Data is fetched live (yfinance-first for fresh
+prices, defeatbeta fallback + fundamentals; network required); the data layer self-handles
+the console banner.
 
-## Quick win — the daily scorecard
+## The full system is two-tier (scope)
+Karst scores **all** names; only **SPY/QQQ/SPMO** get the options toolkit
+(LEAP / Covered Call→PMCC / CSP). **Every other name is Long-only.** The top-down scan
+below is the spine that delivers this; the scorecard (further down) is the tier-1 options
+quick-read it wraps.
+
+## Daily top-down scan (Phase 0 — the front door)
+```
+python backtest/scan.py            # human-readable
+python backtest/scan.py --json     # machine-readable (parse this)
+```
+Runs the funnel: **market gate** (risk_on/neutral/defend from SPY 200SMA + VIX + IWM
+breadth + VIX/VIX3M term + SPMO-RS) → **two-tier router** → one Card per ticker.
+tier-1 cards = the options scorecard; tier-2 cards = Long-only **structural eligibility**.
+**Phase 0 carries NO entry timing** (RSI-2 is Phase 4) and **sector temp is STUB** — so a
+tier-2 `ELIGIBLE` means "structurally allowed," NOT "buy now." Present the market gate
+first (+ its `caveats`), then the two tiers. See `backtest/results/2026-07-01_spine_phase0.md`.
+
+## Quick win — the tier-1 options scorecard
 ```
 python backtest/scorecard.py            # human-readable
 python backtest/scorecard.py --json     # machine-readable (parse this)

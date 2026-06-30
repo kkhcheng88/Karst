@@ -1,10 +1,11 @@
 """Karst backtest — data layer.
 
-Primary source : defeatbeta-api (Yahoo-backed, reliable; also exposes fundamentals
-                 / earnings transcripts / news for later Tree + LLM layers).
-                 Requires defeatbeta-api >= 0.0.60 (native Windows support).
-Fallback       : yfinance (esp. for indices like ^VIX / ^VXN that defeatbeta's
-                 equity dataset may not cover).
+Price source   : yfinance FIRST (Yahoo direct -- freshest close). defeatbeta's price
+                 pipeline lags ~1 trading day, which matters for a daily decision tool,
+                 so it is only the FALLBACK when yfinance has no data for a symbol.
+Fundamentals   : defeatbeta-api (>= 0.0.60) exposes financial statements / earnings
+                 transcripts / news for the Tree + LLM layers -- via SEPARATE code
+                 paths, not this price loader.
 
 Note: defeatbeta prints an emoji banner on import that crashes cp950 (zh-TW)
 consoles. We swallow stdout during import so the module is console-safe without
@@ -63,18 +64,20 @@ def _from_yfinance(symbol: str) -> pd.DataFrame | None:
 def load(symbol: str, source: str = "auto", min_rows: int = 100) -> pd.DataFrame:
     """Load standardized daily OHLCV for `symbol`.
 
-    source: "auto" (defeatbeta then yfinance), "defeatbeta", or "yfinance".
+    source: "auto" (yfinance FIRST for freshness, then defeatbeta fallback),
+            "yfinance", or "defeatbeta" (pin a single vendor, e.g. to reproduce a
+            backtest on the exact data it was validated on).
     """
-    if source in ("auto", "defeatbeta"):
-        df = _from_defeatbeta(symbol)
+    if source in ("auto", "yfinance"):
+        df = _from_yfinance(symbol)
         if df is not None and len(df) >= min_rows:
-            df.attrs["source"] = "defeatbeta"
+            df.attrs["source"] = "yfinance"
             return df
-        if source == "defeatbeta":
-            raise RuntimeError(f"defeatbeta returned no usable data for {symbol!r}")
-    df = _from_yfinance(symbol)
+        if source == "yfinance":
+            raise RuntimeError(f"yfinance returned no usable data for {symbol!r}")
+    df = _from_defeatbeta(symbol)
     if df is not None and len(df) >= min_rows:
-        df.attrs["source"] = "yfinance"
+        df.attrs["source"] = "defeatbeta"
         return df
     raise RuntimeError(f"no data source returned usable data for {symbol!r}")
 
