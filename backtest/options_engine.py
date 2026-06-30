@@ -129,3 +129,78 @@ def simulate_csp(close, vol, gate=None, target_delta=0.20, dte_init=21, pt=0.50,
         nav[i] = capital + realized + unreal
 
     return nav, np.array(trades)
+
+
+def simulate_pmcc(close, vol, gate=None, long_delta=0.80, long_dte=TD, long_roll=63,
+                  short_delta=0.30, short_dte=21, short_pt=0.50,
+                  r=0.03, q=0.013, cost_bps=7.0, capital=10000.0):
+    """PMCC: deep-ITM long LEAP (long_delta, roll at long_roll) + 1:1 short OTM call
+    (short_delta, short_dte, 50% PT). `gate` controls the long leg (whole position).
+    Short strike > long strike (covered). Returns NAV array.
+    """
+    close = np.asarray(close, float)
+    vol = np.asarray(vol, float)
+    n = len(close)
+    nav = np.full(n, np.nan)
+    cost = cost_bps / 1e4
+    cash = capital
+    lin = sin = False
+    lK = sK = sprem = 0.0
+    ldte = sdte = 0
+    lc = sc = 0.0
+
+    for i in range(n):
+        if lin and i > 0:
+            ldte -= 1
+        if sin and i > 0:
+            sdte -= 1
+        S = close[i]
+        sig = max(vol[i] / 100.0, 1e-4)
+        cash *= (1 + r / TD)
+        allowed = True if gate is None else bool(gate[i])
+
+        # long-leg exit (gated out or roll) -> also close the short
+        if lin and ((not allowed) or ldte <= long_roll):
+            lv = bsm.call_price(S, lK, max(ldte / TD, 1e-6), r, q, sig)
+            cash += lc * lv * 100 * (1 - cost)
+            if sin:
+                sv = bsm.call_price(S, sK, max(sdte / TD, 1e-6), r, q, sig)
+                cash -= sc * sv * 100 * (1 + cost)
+                sin, sc = False, 0.0
+            lin, lc = False, 0.0
+
+        # long entry
+        if (not lin) and allowed and cash > 0:
+            T = long_dte / TD
+            lK = bsm.strike_for_call_delta(S, T, r, q, sig, long_delta)
+            lp = bsm.call_price(S, lK, T, r, q, sig)
+            if lp > 0:
+                lc = cash / (lp * 100 * (1 + cost))
+                cash = 0.0
+                ldte = long_dte
+                lin = True
+
+        # short leg (only while long is on)
+        if lin and allowed:
+            if sin:
+                sv = bsm.call_price(S, sK, max(sdte / TD, 1e-6), r, q, sig)
+                if sdte <= 0 or sv <= short_pt * sprem:
+                    cash -= sc * sv * 100 * (1 + cost)
+                    sin, sc = False, 0.0
+            if not sin:
+                T = short_dte / TD
+                sK = bsm.strike_for_call_delta(S, T, r, q, sig, short_delta)
+                sp = bsm.call_price(S, sK, T, r, q, sig)
+                if sp > 0:
+                    sc = lc
+                    cash += sc * sp * 100 * (1 - cost)
+                    sprem, sdte, sin = sp, short_dte, True
+
+        v = cash
+        if lin:
+            v += lc * bsm.call_price(S, lK, max(ldte / TD, 1e-6), r, q, sig) * 100
+        if sin:
+            v -= sc * bsm.call_price(S, sK, max(sdte / TD, 1e-6), r, q, sig) * 100
+        nav[i] = v
+
+    return nav
