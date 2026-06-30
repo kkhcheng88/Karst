@@ -132,6 +132,63 @@ def simulate_csp(close, vol, gate=None, target_delta=0.20, dte_init=21, pt=0.50,
     return nav, trades
 
 
+def simulate_short_call(close, vol, gate=None, target_delta=0.30, dte_init=21, pt=0.50,
+                        r=0.03, q=0.013, cost_pct=0.015, capital=50000.0):
+    """The SHORT-CALL overlay leg in isolation (covered by a long you already hold).
+
+    Sell a ~target_delta OTM call, dte_init td, 50% PT or expiry. Profits if the underlying
+    stays below strike; loses (premium - (S-K)) if it rips up. Contracts = capital/(S*100)
+    (1 call per 100 shares of notional). gate = when allowed to sell. Returns (nav, trades).
+    This is the only NEW thing vs LEAP — the PMCC long leg == LEAP.
+    """
+    close = np.asarray(close, float)
+    vol = np.asarray(vol, float)
+    n = len(close)
+    nav = np.full(n, np.nan)
+    trades = []
+    realized = 0.0
+    in_pos = False
+    K = prem = 0.0
+    dte = entry_i = 0
+    contracts = 0.0
+    cp = cost_pct
+
+    for i in range(n):
+        if in_pos and i > 0:
+            dte -= 1
+        S = close[i]
+        sig = max(vol[i] / 100.0, 1e-4)
+        allowed = True if gate is None else bool(gate[i])
+
+        if in_pos:
+            V = max(S - K, 0.0) if dte <= 0 else bsm.call_price(S, K, max(dte / 252, 1e-9), r, q, sig)
+            if dte <= 0 or (pt is not None and V <= pt * prem):
+                pnl = contracts * (prem - V) * 100 - contracts * 100 * (prem + V) * cp
+                realized += pnl
+                trades.append((entry_i, pnl))
+                in_pos = False
+                contracts = 0.0
+
+        if (not in_pos) and allowed and S > 0:
+            T = dte_init / 252
+            K = bsm.strike_for_call_delta(S, T, r, q, sig, target_delta)
+            prem = bsm.call_price(S, K, T, r, q, sig)
+            if prem > 0 and K > 0:
+                contracts = capital / (S * 100)
+                dte = dte_init
+                in_pos = True
+                entry_i = i
+
+        if in_pos:
+            V = bsm.call_price(S, K, max(dte / 252, 1e-9), r, q, sig)
+            unreal = contracts * (prem - V) * 100
+        else:
+            unreal = 0.0
+        nav[i] = capital + realized + unreal
+
+    return nav, trades
+
+
 def simulate_pmcc(close, vol, gate=None, long_delta=0.80, long_dte=TD, long_roll=63,
                   short_delta=0.30, short_dte=21, short_pt=0.50,
                   r=0.03, q=0.013, cost_bps=7.0, capital=10000.0):

@@ -30,7 +30,7 @@ Output per underlying: 0-100 for LEAP / PMCC / CSP / CASH + a `drivers` line
 | Tool | High score = | Notes |
 |---|---|---|
 | **LEAP** | `>200SMA AND RSI-2 dip` | pure gate×dip = the validated entry edge (dip days +0.85% vs +0.16% fwd-5d). Edge is short-horizon + low-capacity |
-| **PMCC** | `>200SMA AND high IV rank` | uptrend + rich calls to sell; rare. Treat as overlay on an existing long |
+| **SHORT_CALL** | `>200SMA AND RSI-2 overbought` | sell a call vs your held long on a PEAK (validated: SPY short-call PF 1.53→2.26 at RSI2>90). The only new leg vs LEAP (PMCC long==LEAP). ⚠️ momentum names (QQQ) keep ripping at extreme overbought — don't oversize |
 | **CSP** | IV-rank **U-shape** | low-IV end = calm income (SAFE default); high-IV end = **capitulation (RISKY, same regime as CASH)** — check `csp_mode` |
 | **CASH** | `<200SMA AND high IV` | defend/reduce; note downturns bounce (flags risk, not guaranteed loss) |
 

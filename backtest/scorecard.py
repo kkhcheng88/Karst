@@ -1,15 +1,18 @@
-"""Karst scorecard v3 — daily 0-100 suitability per tool (decision support, NOT autopilot).
+"""Karst scorecard v3.1 — daily 0-100 suitability per tool (decision support, NOT autopilot).
 
-v3 = the user's clean rule-based model (simpler + better than v2's blended/percentile version):
-  LEAP = >200SMA  AND  RSI-2 dip            (pure gate x dip = the validated entry setup)
-  PMCC = >200SMA  AND  high IV rank          (uptrend + rich calls to sell; rare/honest)
-  CSP  = IV-rank U-SHAPE (low OR very-high)   (56/57); low end = calm income (safe default),
-         high end = capitulation contrarian (RISKY, same regime as CASH)
-  CASH = <200SMA  AND  high IV rank           (defend/reduce; note downturns bounce)
+Clean rule-based model. PMCC dropped (its long leg == LEAP); the only NEW leg vs LEAP is the
+SHORT CALL overlay, and its validated timing is RSI-2 OVERBOUGHT (mirror of the LEAP dip):
 
-Raw scores span 0-100 by construction (no percentile — that broke on sparse signals in v2).
-Tools are NOT mutually exclusive. Scorecard = regime/RISK suitability; the entry trigger is the
-RSI-2 dip itself (shown in drivers). Human reads scores + drivers and allocates within invariants.
+  LEAP       = >200SMA  AND  RSI-2 DIP            (buy the oversold dip in an uptrend)
+  SHORT_CALL = >200SMA  AND  RSI-2 OVERBOUGHT     (sell a call vs your long on a peak;
+               validated: SPY short-call PF 1.53->2.26 at RSI2>90. NOTE: momentum names like
+               QQQ can keep ripping when extremely overbought — don't oversize.)
+  CSP        = IV-rank U-SHAPE                    (low=calm income SAFE; high=capitulation RISKY)
+  CASH       = <200SMA  AND  high IV rank         (defend/reduce)
+
+Raw scores span 0-100 by construction. Scorecard = regime/RISK suitability; entry/overlay timing
+is the RSI-2 extreme itself (shown in drivers). Human reads scores + drivers, allocates within
+invariants. LEAP & SHORT_CALL are two legs of one position you can hold together.
 """
 from __future__ import annotations
 
@@ -41,15 +44,17 @@ def features(df, vix):
 
 def scores(f):
     above = f["above"]
-    dip = clamp01((10 - f["rsi2"]) / 10)            # RSI-2 < 10 (deeper = higher)
-    iv_low = clamp01((0.30 - f["ivr"]) / 0.30)      # IV rank < 30%
-    iv_high = clamp01((f["ivr"] - 0.70) / 0.30)     # IV rank > 70%
+    dip = clamp01((10 - f["rsi2"]) / 10)            # RSI-2 < 10 oversold
+    overbought = clamp01((f["rsi2"] - 70) / 30)     # RSI-2 > 70 overbought
+    iv_low = clamp01((0.30 - f["ivr"]) / 0.30)
+    iv_high = clamp01((f["ivr"] - 0.70) / 0.30)
 
     leap = 100 * above * dip
-    pmcc = 100 * above * iv_high
+    short_call = 100 * above * overbought           # overlay on a held long, sell on a peak
     csp = 100 * np.maximum(iv_low, iv_high)         # U-shape (both ends)
     cash = 100 * (1 - above) * (0.5 + 0.5 * iv_high)
-    return pd.DataFrame({"LEAP": leap, "PMCC": pmcc, "CSP": csp, "CASH": cash}).clip(0, 100)
+    return pd.DataFrame({"LEAP": leap, "SHORT_CALL": short_call,
+                         "CSP": csp, "CASH": cash}).clip(0, 100)
 
 
 def csp_mode(row):
@@ -62,9 +67,10 @@ def csp_mode(row):
 
 def driver_str(row):
     abv = "above" if row["above"] > 0.5 else "below"
+    r2 = row["rsi2"]
+    tag = "(DIP)" if r2 < 10 else "(OB)" if r2 > 70 else ""
     return (f"{abv} 200SMA ({row['dist']*100:+.1f}%) | IV-rank {row['ivr']*100:.0f}% | "
-            f"RSI2 {row['rsi2']:.0f} {'(DIP)' if row['rsi2'] < 10 else ''} | "
-            f"ADX {row['adx']:.0f}")
+            f"RSI2 {r2:.0f} {tag} | ADX {row['adx']:.0f}")
 
 
 if __name__ == "__main__":
@@ -89,10 +95,9 @@ if __name__ == "__main__":
     if as_json:
         print(json.dumps(recs, indent=2))
     else:
-        print("=== KARST SCORECARD v3 (latest) — 0-100 suitability, decision support ===")
+        print("=== KARST SCORECARD v3.1 (latest) — 0-100 suitability, decision support ===")
         for r in recs:
             ranked = sorted(r["scores"].items(), key=lambda kv: -kv[1])
             print(f"\n### {r['underlying']}  {r['date']}")
             print("  " + "  ".join(f"{k} {int(x):3d}" for k, x in ranked))
-            print(f"  drivers: {r['drivers']}")
-            print(f"  CSP mode: {r['csp_mode']}")
+            print(f"  drivers: {r['drivers']}  | CSP: {r['csp_mode']}")
