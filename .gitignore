@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# agent runtime output (非記憶,不版控)
+.karsai_out/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
