@@ -59,6 +59,13 @@ CSP 是 directional(用 IV rank),結論相反。不同 metric、不同結構。
 ⚠️ 影片測的是 bull put **spread**;CSP(naked secured)同族,合理外推,但 tail 無下方保護。
 ⚠️ 殘留尾部:low IV rank 偶爾出現在 crash 前(2020 初)→ 靠 sizing(INV-1/2)兜底。
 
+🟡 **2026-06-30 自驗(`backtest/results/2026-06-30_csp.md`,provisional/cost-sensitive):**
+引擎重現 94–97% WR(對齊 distillation)。**但 CSP 的 alpha 不顯著(t<1.8)——94% WR 與
+$76k 利潤大半是 beta(短 put ≈ +0.2 delta),不是免費 VRP alpha**;net of cost 的 VRP 很薄。
+**唯一亮點:RSI-2<10 dip 進場**(PF 2.9–3.4、AvgDD −0.8%、SPY alpha t1.8)→ **在超賣 dip 賣
+CSP**,進場 alpha 可疊。⚠️ low-IV-rank(56/57)在裸 CSP 沒穩定重現(幫 QQQ、傷 SPY),
+且結論對成本假設(1.5%/側)敏感——待 cost sweep。
+
 ---
 
 ## 2. PMCC(Poor Man's Covered Call)— SPY only
