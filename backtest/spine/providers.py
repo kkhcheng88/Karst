@@ -10,7 +10,8 @@ from __future__ import annotations
 
 from .schemas import ThesisVerdict
 
-# Phase 0 sector stub: every sector is "warm" so tier-2 names flow through the router.
+# Sector fallback (used only when a sector context can't be built — Stage 1 lives in
+# sector.py now). Neutral = warm, so a name isn't penalized for missing sector data.
 SECTOR_STUB_TEMP = "STUB"
 SECTOR_STUB_WARM = 1
 

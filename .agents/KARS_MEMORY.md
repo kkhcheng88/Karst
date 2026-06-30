@@ -100,4 +100,9 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 6. **Flow 訊號隔離**:gamma wall/GEX、CTA、Fear&Greed = 付費/不可免費回測 → overlay 層、標未驗證、永不進核心。免費可回測的正交維度只有 **breadth + VIX term**(後者已進閘)。
 7. **資料新鮮度修正**:defeatbeta 價格**慢 ~1 交易日** → `data.py` `load()` 翻成 **yfinance 優先、defeatbeta fallback**(價格);defeatbeta 專供 fundamentals/transcripts/news(Phase 3)。`source=` 可 pin 回供應商重現 backtest。
 
-**狀態:** Phase 0 完成、跑通、JSON 驗過(`as of 2026-06-30`,RISK_ON)。**下一步 = Phase 1 板塊層**(Memory 籃 + 兩層 RS + breadth/coherence + INV-5,換掉 STUB)→ Phase 2 Compass overlay → 3 thesis seam(alpha 進場)→ 4 timing。
+**MVP1 = Phase 0 + 1 + 4**(v2 = Phase 2 overlay + Phase 3 thesis seam)。用戶定:Phase 1 是 key,先做。
+
+**狀態:**
+- **Phase 0 完成**(market gate + 兩層 router)。順手修資料新鮮度:`data.py` yfinance 優先(defeatbeta 慢 1 天)。commit `afc1c8b`。
+- **Phase 1 完成**(`results/2026-07-01_spine_phase1.md`):板塊溫度從 **ETF 真實持股(option B)** 算。關鍵發現:DRAM(Roundhill Memory)持股是**全球**的——SK Hynix 24.7% / Samsung 16.3% / Kioxia / + 現金 sleeve 14.9%(濾掉);US 三名只佔 ~14%,WDC 不在內。決策:溫度用全持股(幣別在 RS/ROC 比值中自動消掉,只剩時段差,微小);ETF 權重加權;tier-2 可下單 = US 持股自動衍生(SNDK/MU/STX)+ DRAM 本身當板塊級 long;外國名 = context。兩層 RS(vs SPY / vs SEMI=SOXX)+ breadth/coherence + INV-5(laggard 只在 US 可交易成員裡判)。驗證讀數有洞見:Memory Hot 但 vs SEMI 0.99(半導體在熱、記憶體只跟上),US RS 龍頭 SNDK,STX 落後。
+- **下一步 = Phase 4(TA 擇时)**:RSI-2 dip 進場 / overbought 賣 call,獨立 card 欄位、兩 tier 共用;把 tier-1 scorecard 烘進去的 RSI-2 抽出來。做完 MVP1 收口。之後 v2:Phase 2 Compass overlay → Phase 3 thesis seam(alpha 進場)。

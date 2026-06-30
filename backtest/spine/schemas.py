@@ -26,6 +26,35 @@ class MarketContext:
 
 
 @dataclass(frozen=True)
+class SectorContext:
+    """Stage 1 output — sector/subsector temperature (computed Layer-1 price metrics).
+
+    Hierarchy: the basket (e.g. Memory) is measured BOTH vs its parent (SEMI) — intra-sector
+    leader/laggard, feeds INV-5 — AND vs the market (SPY). Coherence/breadth catches a Warm
+    reading that is really one name carrying the basket.
+    """
+    sector: str
+    parent: str | None
+    members: list               # tickers actually used in the basket
+    weight_mode: str            # "market_cap" | "equal"
+    rs_vs_market: float         # basket vs SPY over 20d (>1 = outperforming)
+    rs_vs_parent: float         # basket vs parent (SEMI) — intra-sector rotation
+    parent_rs_vs_market: float  # parent vs SPY (sector rotation)
+    roc20: float                # cap-weighted basket 20d return
+    layer1_score: int           # 0-3 (RS / breadth / ROC points)
+    temperature: str            # Cold / Warm / Hot
+    warm: int                   # 0/1 — eligible (Warm or Hot)
+    breadth_above50: float      # fraction of members above own 50DMA
+    roc_dispersion: float       # stdev of member 20d returns
+    leader: str                 # member contributing most to basket momentum
+    leader_share: float         # leader's share of cap-weighted positive momentum (NaN if basket down)
+    coherence: str              # broad / mixed / leader-carried
+    member_rank: dict           # ticker -> {rank, rs_vs_parent, is_laggard}  (INV-5)
+    drivers: str
+    caveats: list
+
+
+@dataclass(frozen=True)
 class ThesisVerdict:
     """Stage 2 alpha SEAM. Phase 0 stub = NEUTRAL (unit 1.0, multiplicative identity).
     Real verdicts arrive in Phase 3 from Tree/LLM. FAIL (unit 0) = a kill condition fired."""

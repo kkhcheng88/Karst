@@ -28,3 +28,27 @@ def load_universe(path: str = DEFAULT_PATH):
             sector=t.get("sector", "MARKET"), iv_proxy=t.get("iv_proxy"),
         ))
     return sectors, entries
+
+
+def expand_with_sectors(sectors_cfg: dict, entries: list):
+    """Append tier-2 Long entries derived from each sector's holdings ETF:
+       - the ETF itself (a sector-level Long expressing the WHOLE sector, incl. foreign leaders)
+       - each US-listed holding (the actionable single-name longs).
+    Foreign holdings stay context-only (used in the sector temperature, not scanned as rows).
+    """
+    from .holdings import holdings as _holdings
+
+    have = {e.ticker for e in entries}
+    out = list(entries)
+    for key, cfg in (sectors_cfg or {}).items():
+        etf = cfg.get("holdings_etf")
+        if not etf:
+            continue
+        if etf not in have:
+            out.append(UniverseEntry(ticker=etf, tier="long", sector=key))
+            have.add(etf)
+        for m in _holdings(etf):
+            if m["is_us"] and m["ticker"] not in have:
+                out.append(UniverseEntry(ticker=m["ticker"], tier="long", sector=key))
+                have.add(m["ticker"])
+    return out

@@ -37,34 +37,58 @@ def express_options(entry, df):
     return scores, expr
 
 
-def express_long(entry, df, mc, thesis, sector_warm: int):
-    """Long-only structural eligibility. NO timing (Phase 4)."""
-    close = df["close"]
-    sma200 = sma(close, 200)
-    above200 = bool(close.iloc[-1] > sma200.iloc[-1]) if len(close) >= 200 else False
-    dist = float(close.iloc[-1] / sma200.iloc[-1] - 1) if above200 or len(close) >= 200 else float("nan")
+def express_long(entry, df, mc, thesis, sector_ctx):
+    """Long-only structural eligibility. NO timing (Phase 4).
 
-    # eligibility = market gate (Stage 0) x name's own trend gate (INV-6 / layer2 family #1)
-    #               x sector warm (STUB=1 in Phase 0) x thesis (NEUTRAL stub passes)
-    eligible = bool(mc.gate and above200 and sector_warm and thesis.unit > 0)
-    score = 100.0 * mc.gate * (1 if above200 else 0) * sector_warm * thesis.unit if eligible else 0.0
+    eligibility = market gate (Stage 0) x name trend gate (INV-6) x sector warm (Stage 1)
+                  x thesis (NEUTRAL stub passes). Young names (e.g. the sector ETF, <200d)
+                  fall back to a 50SMA trend gate with a caveat.
+    """
+    close = df["close"]
+    n = len(close)
+    if n >= 200:
+        ma, gate_name = sma(close, 200), "200SMA"
+    elif n >= 50:
+        ma, gate_name = sma(close, 50), "50SMA(<200d hist)"
+    else:
+        ma, gate_name = None, "n/a"
+    above = bool(close.iloc[-1] > ma.iloc[-1]) if ma is not None else False
+    dist = float(close.iloc[-1] / ma.iloc[-1] - 1) if ma is not None else float("nan")
+
+    warm = sector_ctx.warm if sector_ctx else 1
+    temp = sector_ctx.temperature if sector_ctx else "STUB"
+    rankinfo = (sector_ctx.member_rank.get(entry.ticker) if sector_ctx else None) or {}
+    is_laggard = bool(rankinfo.get("is_laggard"))
+
+    eligible = bool(mc.gate and above and warm and thesis.unit > 0)
+    score = 100.0 * mc.gate * (1 if above else 0) * warm * thesis.unit if eligible else 0.0
 
     reasons = []
     if not mc.gate:
-        reasons.append(f"market gate closed ({mc.gate_label})")
-    if not above200:
-        reasons.append("below own 200SMA")
+        reasons.append(f"market gate ({mc.gate_label})")
+    if not above:
+        reasons.append(f"below {gate_name}")
+    if not warm:
+        reasons.append(f"sector {temp}")
     if thesis.unit <= 0:
         reasons.append("thesis kill")
 
+    notes = []
+    if is_laggard and warm:
+        notes.append(f"INV-5 laggard (US RS rank {rankinfo.get('us_rank')}/{rankinfo.get('n_us')}) -- prefer the RS top-2")
+
+    base = (f"{'above' if above else 'below'} {gate_name} ({dist * 100:+.1f}%)"
+            if dist == dist else "insufficient history")
     expr = {
         "type": "LONG",
         "action": "ELIGIBLE" if eligible else "NOT_ELIGIBLE",
-        "above_200sma": above200,
+        "above_trend": above,
+        "trend_gate": gate_name,
+        "sector_temp": temp,
+        "is_laggard": is_laggard,
         "blocked_by": reasons,
         "stop": "wide / none (layer2 §6)",
-        "note": "structural eligibility only — entry timing (RSI-2 dip) is Phase 4",
-        "drivers": (f"{'above' if above200 else 'below'} 200SMA "
-                    f"({dist * 100:+.1f}%)" if dist == dist else "insufficient history for 200SMA"),
+        "note": "structural eligibility only -- entry timing (RSI-2 dip) is Phase 4",
+        "drivers": base + ("; " + "; ".join(notes) if notes else ""),
     }
     return score, expr

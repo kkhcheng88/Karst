@@ -7,26 +7,23 @@
 #   MARKET  = the index ETFs; they DEFINE the market gate (Stage 0). No sector layer.
 #   <key>   = a sector/subsector key, resolved against `sectors:` below.
 #
-# Phase 0: sector temperature is STUBBED (warm=1). The Memory subsector layer (RS vs
-# parent SEMI / vs market, cap-weighted basket, breadth/coherence) arrives in Phase 1.
+# Phase 1: sector temperature is computed from the ETF's REAL holdings (option B) —
+# faithful to the global sector (Memory is led by SK Hynix/Samsung, not the US trio).
+# tier-2 actionable longs = the US-listed holdings (auto-derived) + the ETF itself.
 # Note: SPMO is a tier-1 options ticker AND a momentum-FACTOR signal in the gate
 # (RS(SPMO/SPY)); it is NOT a sector to scan.
 
 sectors:
   MEMORY:
-    parent: SEMI                 # subsector hierarchy — Phase 1 computes RS vs parent & vs market
-    parent_proxy: [SOXX, SMH]    # SEMI parent proxy (cap-weighted semis)
-    basket: [MU, WDC, STX]       # aggregate temperature proxy (long history; SNDK seasons in later)
-    weight: market_cap           # market-practice for sector indices; see results note on MU dominance
-    eventual_etf: DRAM           # Roundhill Memory ETF — swap in when it has ~200d (listed 2026-04)
+    parent: SEMI                 # subsector hierarchy: Memory vs SEMI (parent) vs market
+    parent_proxy: [SOXX, SMH]    # SEMI parent proxy (broad semis)
+    holdings_etf: DRAM           # pull members + weights from this ETF (Roundhill Memory);
+                                 # cash sleeve filtered, weights renormalized over equities.
+    weight: etf                  # use the ETF's own holding weights (most faithful)
 
 tickers:
-  # tier-1 — options toolkit (validated 3 ETFs).
+  # tier-1 — options toolkit (validated 3 ETFs). tier-2 Memory longs are auto-derived
+  # from DRAM holdings (US-listed) + DRAM itself; see universe.expand_with_sectors.
   - {ticker: SPY,  tier: options, sector: MARKET, iv_proxy: "^VIX"}
   - {ticker: QQQ,  tier: options, sector: MARKET, iv_proxy: "^VXN"}
   - {ticker: SPMO, tier: options, sector: MARKET, iv_proxy: "^VIX"}
-  # tier-2 — Long only (Memory subsector). sector temp = STUB in Phase 0.
-  - {ticker: MU,   tier: long, sector: MEMORY}
-  - {ticker: SNDK, tier: long, sector: MEMORY}
-  - {ticker: WDC,  tier: long, sector: MEMORY}
-  - {ticker: STX,  tier: long, sector: MEMORY}
