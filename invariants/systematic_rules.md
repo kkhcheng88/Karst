@@ -44,7 +44,7 @@
 | 觸發 | 動作 | 來源 |
 |---|---|---|
 | **VIX > 30 / GEX 翻負** | 減倉 PMCC、暫停 CSP(vega 風險最大化) | idea-06 GEX |
-| FOMC 週 | 賣方暫停 / 減倉(⚠️ open,待複核) | idea-07 §6.2 |
+| **FOMC 會議** | 賣方暫停(short straddle −$3,337);可選 tactical:會前買 16Δ strangle(PF 3.96,全系列最佳風險調整) | §16.1 `qTs0smZwDWY` |
 | 宏觀 regime ≤ 防守級 | 依 Compass `regime_matrix` 降 beta 暴露 | Compass |
 
 ---

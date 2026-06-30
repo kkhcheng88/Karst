@@ -46,4 +46,4 @@
 | 新影片 56/57 `AJ3hFgKUptE`/`FO2Yq7to0lc`(IV rank U-shape) | ✅ verified,已併入 layer1 §1 + INV-4b;distillation(僅 1–55)待補 |
 | 新影片 58 `lgPf3-okyTY` | = dist §5.2 重傳(bear call theta wheel),無新資訊 |
 | 其餘 transcripts | 📄 待複核(隨參數使用逐一回查)|
-| distillation 853–1693 行 | ⏳ 未讀(建 Layer-2 完整版時讀)|
+| distillation 全文(1–1693 行)| ✅ 已讀(2026-06-30);Layer-2 完整版已建 |
