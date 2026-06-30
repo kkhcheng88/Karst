@@ -41,6 +41,10 @@ Output per underlying: 0-100 for LEAP / PMCC / CSP / CASH + a `drivers` line
 - **Honest caveats**: LEAP/PMCC backtest magnitudes are PROVISIONAL (VIX-as-1yr-IV, low cost,
   single path). CSP's VRP alpha is thin (mostly beta); it loses to pure holding in a bull.
   "High IV" ≈ downtrend = caution, not a free premium harvest.
+- **Read the score as REGIME/RISK suitability, NOT a return forecast** (validated: CSP=calm detector,
+  CASH=danger flag, LEAP=right-side gate). The ENTRY trigger is separate: RSI-2 dip (drivers show
+  RSI2; dip = <10). **PMCC scores are currently degenerate/inflated — treat PMCC manually, don't
+  rank by its score.**
 - **Judgment not outsourced**: recommend, show drivers + caveats; the user makes the call.
 
 ## Other actions

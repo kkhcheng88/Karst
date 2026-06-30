@@ -22,7 +22,7 @@ import pandas as pd  # noqa: E402
 import scorecard  # noqa: E402
 from data import load  # noqa: E402
 
-N = 21
+N = next((int(a) for a in sys.argv[1:] if a.isdigit()), 21)
 BINS = [(0, 25), (25, 50), (50, 75), (75, 101)]
 TOOLS = ["LEAP", "PMCC", "CSP", "CASH"]
 

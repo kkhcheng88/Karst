@@ -79,4 +79,5 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 - **CSP 自驗(provisional):** 引擎重現 94–97% WR,**但 alpha 不顯著——CSP 利潤大半是 beta(短 put ≈ +0.2 delta),不是免費 VRP alpha**(且對成本假設敏感);唯一亮點 = RSI-2<10 dip 進場(PF↑、AvgDD↓、可疊進場 alpha)。見 `backtest/results/2026-06-30_csp.md`。
 - **Scorecard + skill 已建**(`backtest/scorecard.py` + `.claude/skills/karst/`):每日 0–100 per-tool 適合度,agent 可 `/karst` 呼叫。
 - **Scorecard 驗證(✅ `results/2026-06-30_scorecard_validation.md`):** 分數**不預測報酬**(LEAP/PMCC 高分均值回歸=反指標),但**預測風險/regime**(高分→回撤小);**CSP 那格如設計運作**(高分→未來回撤小,boundary ~25)。→ scorecard 是風險儀表板,非 alpha 神諭。
-- **下一步:scorecard v2 重調**——LEAP/PMCC 改成「regime 閘 + RSI-2 dip」(別把強度當報酬訊號)、改 per-tool 百分位尺度、重跑驗證。其他:CSP cost-sweep、harden LEAP/PMCC magnitudes、Dorsey 蒸餾(衛星)、定義 INV 數值。
+- **Scorecard v2 已建 + 驗(`results/2026-06-30_scorecard_validation.md`):** 百分位尺度修好範圍(0–100);CSP/CASH 驗證有效。**但 LEAP 仍不預測報酬——因為把 RSI-2 dip 混進分數會稀釋 edge(dip alpha 只在隔離時顯現)。架構結論:scorecard = regime/風險適合度(非報酬預測);RSI-2 dip = 分開的純進場 trigger,別混進分數。** PMCC degenerate(百分位灌水、假霸榜),待重做或拿掉。
+- **下一步(v3):** 把 dip trigger 從分數抽出來分開;重做/拿掉 PMCC;保留百分位 + CSP/CASH。其他:CSP cost-sweep、harden LEAP magnitudes、Dorsey 蒸餾(衛星)、定義 INV 數值。

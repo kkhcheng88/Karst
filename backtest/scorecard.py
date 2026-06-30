@@ -1,18 +1,15 @@
-"""Karst scorecard — daily 0-100 suitability per tool (decision support, NOT autopilot).
+"""Karst scorecard v2 — daily 0-100 suitability per tool (decision support, NOT autopilot).
 
-Transparent, weighted from this session's validated findings. The human reads the
-scores + drivers and allocates within the invariants (sizing, ETF-only, etc.).
+v2 changes (from the v1 validation, see results/2026-06-30_scorecard_validation.md):
+- Scores predict RISK/REGIME, not return. LEAP/PMCC are reframed around the validated
+  entry edge (RSI-2 dip) + the regime GATE (>200SMA) + cheap IV — strength/extension is
+  demoted (it mean-reverts, so it was a backwards return signal in v1).
+- Scores are reported as PER-TOOL EXPANDING PERCENTILE (no look-ahead): "more favorable
+  for this tool than X% of past days" — so the scale truly spans 0-100 and boundaries mean
+  something.
+- CSP / CASH kept (v1 validated: CSP score -> lower forward drawdown; CASH flags fragility).
 
-  LEAP : uncapped leveraged long. HARD GATE price>200SMA (else 0; ruin avoidance / INV-6).
-         Wants strong uptrend + LOW IV (cheap) + RSI-2 dip.
-  PMCC : leveraged long + short-call income. Gate price>200SMA. Wants uptrend + ELEVATED IV
-         (rich calls to sell). [Note: uptrend+high-IV is empirically rare -> PMCC rarely peaks.]
-  CSP  : capped income / short vol, recoverable on index. Wants calm/sideways + LOW IV + dip;
-         downtrend penalized (assignment risk, recoverable but path-risky).
-  CASH : downtrend / fragility (below 200SMA + falling + high IV).
-
-Weights are v1 (judgment grounded in backtests) — tunable. Scores can co-exist (tools are
-NOT mutually exclusive); the score = "how favorable is this tool right now".
+Tools are NOT mutually exclusive. Human reads scores + drivers and allocates within invariants.
 """
 from __future__ import annotations
 
@@ -42,22 +39,41 @@ def features(df, vix):
     })
 
 
-def scores(f):
-    adx_trend = clamp01((f["adx"] - 15) / 20)          # ADX 15->0, 35->1
+def raw_scores(f):
+    """Raw weighted scores (0-100). v2: LEAP/PMCC = gate + RSI-2 dip + IV, not strength."""
+    adx_trend = clamp01((f["adx"] - 15) / 20)
     adx_range = 1 - adx_trend
-    iv_low = clamp01((0.5 - f["ivr"]) / 0.5)           # IV rank 0->1, 0.5->0
+    iv_low = clamp01((0.5 - f["ivr"]) / 0.5)
     iv_high = clamp01((f["ivr"] - 0.5) / 0.5)
-    dip = clamp01((10 - f["rsi2"]) / 10)               # RSI-2 < 10 oversold bonus
+    dip = clamp01((10 - f["rsi2"]) / 10)        # RSI-2 < 10 oversold = the validated entry edge
     above = f["above"]
     falling = (f["slope"] < 0).astype(float)
 
-    leap = above * (40 * adx_trend + 25 * iv_low + 20 * dip + 15 * f["ma50_200"])
-    pmcc = above * (30 * iv_high + 25 * adx_trend + 20 * dip + 25 * f["ma50_200"])
+    # LEAP/PMCC: hard gate (>200SMA), then dip-entry + cheapness; strength only as confirmation.
+    leap = above * (40 * dip + 30 * iv_low + 30 * f["ma50_200"])
+    pmcc = above * (40 * iv_high + 30 * f["ma50_200"] + 30 * dip)
+    # CSP: calm (low ADX) + low IV + dip; downtrend penalized. (v1 validated.)
     csp = 35 * adx_range + 30 * iv_low + 20 * dip + 15 * above
     csp = csp * np.where((above < 0.5) & (falling > 0.5), 0.5, 1.0)
+    # CASH: fragility flag.
     cash = 50 * (1 - above) + 30 * iv_high + 20 * falling * (1 - above)
-
     return pd.DataFrame({"LEAP": leap, "PMCC": pmcc, "CSP": csp, "CASH": cash}).clip(0, 100)
+
+
+def pct_rank(s):
+    """Expanding percentile (0-100), no look-ahead: rank of value[i] within values[:i]."""
+    a = np.asarray(s, dtype="float64")
+    out = np.full(len(a), 50.0)
+    for i in range(1, len(a)):
+        past = a[:i]
+        out[i] = np.count_nonzero(past <= a[i]) / i * 100.0
+    return pd.Series(out, index=s.index)
+
+
+def scores(f):
+    """Per-tool expanding-percentile scores (what the human reads)."""
+    raw = raw_scores(f)
+    return pd.DataFrame({c: pct_rank(raw[c]) for c in raw.columns})
 
 
 def driver_str(row):
@@ -89,7 +105,7 @@ if __name__ == "__main__":
     if as_json:
         print(json.dumps(recs, indent=2))
     else:
-        print("=== KARST SCORECARD (latest) — 0-100 suitability, decision support ===")
+        print("=== KARST SCORECARD v2 (latest) — per-tool percentile (0-100), decision support ===")
         for r in recs:
             ranked = sorted(r["scores"].items(), key=lambda kv: -kv[1])
             print(f"\n### {r['underlying']}  {r['date']}")

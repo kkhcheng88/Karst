@@ -38,3 +38,23 @@ return + drawdown (OHLCV only — no provisional option magnitudes). Full histor
 
 **Takeaway:** the scorecard is a risk/regime dashboard, not an alpha oracle. Backtesting it before
 trusting it caught that LEAP/PMCC's return-weighting was backwards.
+
+## v2 (percentile scale + dip/gate-weighted LEAP/PMCC) — re-validated
+- ✅ **Percentile scaling fixed the range** — scores now span 0-100 (p99=100). "Reaches both ends" yes.
+- ✅ **CSP still validated** (high score -> lower fwd drawdown); **CASH improved** (high score ->
+  worse fwd return AND bigger drawdown = clean danger flag).
+- 🔴 **LEAP still doesn't predict return (5d or 21d).** Reason: BLENDING the RSI-2 dip edge into the
+  score (with IV/trend) + percentile-ranking DILUTES it. The dip alpha only shows ISOLATED
+  (exp_rsi2_alpha: RSI2<5/<10 entry, t~2-3).
+- 🔴 **PMCC degenerate** — raw clusters -> percentile inflates -> PMCC falsely dominates the live
+  board (89-97). Needs rework or drop.
+
+## Architectural conclusion (the real lesson)
+**Do NOT blend the entry edge into the suitability score — blending destroys the one real edge.**
+Two layers instead:
+- **Scorecard = regime/RISK suitability** (which tool's risk profile fits now). Validated: CSP=calm,
+  CASH=danger, LEAP=right-side gate/risk-reducer. NOT a return predictor.
+- **Entry trigger = RSI-2 dip**, kept PURE and separate (the validated short-horizon entry alpha),
+  applied as the trigger within the chosen tool. (Already visible as RSI2 in the scorecard drivers.)
+
+**v3:** separate the dip trigger out of the score; rework or drop PMCC; keep percentile + CSP/CASH.
