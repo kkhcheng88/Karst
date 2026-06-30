@@ -115,5 +115,6 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
   - **板塊性格藏在趨勢尺度(%>200),不在日線(Hurst/ADX 全部 ~隨機)**;且全在 bull 上 fit → 2b 要跨多 regime 量測 + 對標 B&H + 過 deflated-Sharpe/walk-forward 閘 + total-return。
   - **bottleneck = 讓 value-chain 廣度不變 FOMO 的紀律**(無替代品+定價權+可證偽 kill);最深 bottleneck 常不可交易(InP/SK Hynix)→ 用下游/ETF 表達,別獵奇找 ticker。
   - **順序:把 Phase 3 以外的先收齊**(A)——2a 完成 → 2b 性格 → 2c 輪動動態 → **最後 Phase 3(thesis = value-chain + bottleneck = alpha)**。
+- **Phase 2b 完成——紀律性負面結果**(`results/2026-07-01_sector_character_2b.md`,`exp_sector_character.py`):量測(非硬編)板塊性格。結論:**假設大致不成立**。TE 全部 0.21–0.24(板塊分不出趨勢性);只 3/11 tag 跨 IS/OOS 穩定;CAGR 上幾乎所有主動變體輸 B&H **但 MaxDD 砍半** → **dip 進場 = 風控,非報酬(再次印證地基鐵律)**。唯一可信差異:**Fin(弱 Health)偏 mean-revert(MR 贏 B&H Sharpe+CAGR、IS/OOS 穩),但 DSR 0.71<0.95 未過多重檢定閘 → suggestive 未確認**。**決策:不建 11 板塊 trend/chop EXIT 地圖(過擬合);改用一條通用 EXIT「dip 進場 + 跌破 200SMA 出場」當風控覆蓋餵 Phase 4;Fin/Health 只當低信心提示。** 驗證閘擋下一個會過擬合的功能 = 高價值。data.py 加 `adjusted=` total-return(只給 backtest)。
 - **agent 對用戶的提醒(Charter 角色)**:持續加結構層可能是「方法論救贖」的高級拖延;edge 在 Phase 3,別無限延後;每個 sleeve 要對標「無腦抱 QQQ」淨成本/稅後。
 - **v2 其他**:Phase 2 Compass overlay(資金流/敘事/macro)、flow 訊號(gamma/CTA/F&G)當未驗證 overlay;選做:RSI-2 從 tier-1 scorecard 真拆出、issuer-CSV 完整持股、marketcap.py 現為 dead fallback。

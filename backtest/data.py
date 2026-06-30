@@ -45,10 +45,10 @@ def _from_defeatbeta(symbol: str) -> pd.DataFrame | None:
         return None
 
 
-def _from_yfinance(symbol: str) -> pd.DataFrame | None:
+def _from_yfinance(symbol: str, adjusted: bool = False) -> pd.DataFrame | None:
     try:
         with contextlib.redirect_stdout(io.StringIO()):
-            df = yf.download(symbol, period="max", auto_adjust=False, progress=False)
+            df = yf.download(symbol, period="max", auto_adjust=adjusted, progress=False)
         if df is None or len(df) == 0:
             return None
         if isinstance(df.columns, pd.MultiIndex):
@@ -61,13 +61,23 @@ def _from_yfinance(symbol: str) -> pd.DataFrame | None:
         return None
 
 
-def load(symbol: str, source: str = "auto", min_rows: int = 100) -> pd.DataFrame:
+def load(symbol: str, source: str = "auto", min_rows: int = 100,
+         adjusted: bool = False) -> pd.DataFrame:
     """Load standardized daily OHLCV for `symbol`.
 
     source: "auto" (yfinance FIRST for freshness, then defeatbeta fallback),
             "yfinance", or "defeatbeta" (pin a single vendor, e.g. to reproduce a
             backtest on the exact data it was validated on).
+    adjusted: total-return (dividend+split adjusted) closes via yfinance auto_adjust.
+            REQUIRED for multi-month / cross-sector backtests (high-yield sectors are
+            otherwise understated). The live spine uses raw (adjusted=False).
     """
+    if adjusted:
+        df = _from_yfinance(symbol, adjusted=True)
+        if df is not None and len(df) >= min_rows:
+            df.attrs["source"] = "yfinance(adj)"
+            return df
+        raise RuntimeError(f"yfinance returned no usable adjusted data for {symbol!r}")
     if source in ("auto", "yfinance"):
         df = _from_yfinance(symbol)
         if df is not None and len(df) >= min_rows:
