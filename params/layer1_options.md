@@ -19,7 +19,7 @@ Tag:✅ verified(對過 transcript) / 📄 distilled(待複核) / ⚠️ open(�
 | 10Δ > 16Δ > 20Δ(賣方) | IC 差距 $17,000 | 📄 | dist §4.2 `ozPuGv0IkWI` |
 | 50% profit target | IC beat hold ~$4K | 📄 | dist §4.5 `w8VcWe6cG80` |
 | **stop loss 傷害賣方策略** | 移除 0DTE SL:−$6K → +$14K | 📄 | dist §9.1 `FvWWkKuSyps` |
-| 只在 medium VIX(15–25)賣 | low VIX −$6,396(陷阱) | 📄 | dist §4.3 `DJyMPW2tQc0` |
+| 賣方擇時**分結構**(別一概而論) | IC → medium VIX(§4);CSP/bull put → **low IV rank**(§1) | ✅/📄 | 56/57 + dist §4.3 |
 | ticker 選擇 > 策略選擇 | 同策略 NVDA 賺 / TSLA 虧 | 📄 | dist §4.7 |
 
 ---
@@ -39,6 +39,25 @@ Tag:✅ verified(對過 transcript) / 📄 distilled(待複核) / ⚠️ open(�
 
 ⚠️ **尾部:** 單筆 COVID(2020-03)虧 ~$8,000 = 吃掉整年保費。Position sizing 必須
 熬過單筆災難 → 見 `invariants`(單筆 CSP ≤ 20%、總 assignment ≤ 50%)。
+
+✅ **擇時(IV rank)— video 56/57 `AJ3hFgKUptE`/`FO2Yq7to0lc`,2,865 trades:**
+
+| IV rank | 結果 |
+|---|---|
+| **Low(0–25%)** | **91.2% WR,+$24,556,PF 1.58** — 最佳 |
+| Medium(25–50)| −$8,885 ❌ |
+| High(50–75)| −$7,986 ❌ |
+| Very high(75–100)| +$4,720,PF 1.69(樣本僅 193,小)|
+
+U 型,low IV rank 大幅最佳。原因:CSP/bull put 是**方向性看多**,在平靜上升趨勢(low IV)
+最賺,不是靠高 IV 收大保費。**規則:在 low IV rank 賣,避開 25–75 死區(INV-4b)。**
+
+🔴 **推翻**:(a) guru「只在高 IV 賣」;(b) 本助手早期口頭講的「CSP 在 high IV rank 賣」——
+backtest 證明相反。
+⚠️ **別與 §4 IC 的「medium VIX」混淆**:IC 是 short-vol/range(用 absolute VIX level);
+CSP 是 directional(用 IV rank),結論相反。不同 metric、不同結構。
+⚠️ 影片測的是 bull put **spread**;CSP(naked secured)同族,合理外推,但 tail 無下方保護。
+⚠️ 殘留尾部:low IV rank 偶爾出現在 crash 前(2020 初)→ 靠 sizing(INV-1/2)兜底。
 
 ---
 

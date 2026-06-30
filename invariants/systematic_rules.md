@@ -29,7 +29,8 @@
 | **INV-1** | 單筆 CSP assignment 風險 ≤ 可投入資金 **20%** | idea-07 §6.2 |
 | **INV-2** | 總 CSP assignment 風險 ≤ **50%**(確保 crash 時不被迫平倉) | idea-07 §5 |
 | **INV-3** | 禁止 averaging down(martingale 防呆);單名上限固定 | TTD 教訓 |
-| **INV-4** | premium 賣方只在 **medium VIX(15–25)** | dist §4.3 |
+| **INV-4a** | **IC / short-vol** 賣方:只在 **medium VIX(15–25)** | dist §4.3 |
+| **INV-4b** | **CSP / bull put**(directional):在 **low IV rank(0–25%)** 賣;避開 IV rank 25–75 死區 | 56/57 `AJ3hFgKUptE` |
 | **INV-5** | Warm sector 內按 RS 排名,只取 **top-2**,永不 laggard | POET 教訓 + sector_filter |
 | **INV-6** | LEAP 只在 **price > 200 SMA(右側)** + hold-to-expiration | POET 教訓 + dist §1.5 |
 | **INV-7** | 上市 **< N 天**(待定)的標的不進場 | FIGMA 教訓 |
