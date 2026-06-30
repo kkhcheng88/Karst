@@ -61,9 +61,10 @@ def main():
                                    dte_init=DTE, pt=PT, q=q, capital=CAP)
             ret = np.concatenate([[0.0], nav[1:] / nav[:-1] - 1])
             cg, a, ta, sh, mdd, add = navmetrics(nav, ret, bh_ret)
-            win = float((tr > 0).mean()) if len(tr) else float("nan")
-            pf = (tr[tr > 0].sum() / abs(tr[tr < 0].sum())) if (len(tr) and tr[tr < 0].sum() != 0) else float("inf")
-            print(f"  {name:18} | {len(tr):6d} {tr.sum():9,.0f} {win*100:5.0f}% {pf:5.2f} | "
+            pnls = np.array([p for _, p in tr]) if tr else np.array([])
+            win = float((pnls > 0).mean()) if len(pnls) else float("nan")
+            pf = (pnls[pnls > 0].sum() / abs(pnls[pnls < 0].sum())) if (len(pnls) and pnls[pnls < 0].sum() != 0) else float("inf")
+            print(f"  {name:18} | {len(pnls):6d} {pnls.sum():9,.0f} {win*100:5.0f}% {pf:5.2f} | "
                   f"{cg*100:5.2f}% {a*100:5.2f}% {ta:5.1f} {sh:5.2f} | {mdd*100:5.1f}% {add*100:5.1f}%")
         # pure holding benchmark
         cg, _, _, sh, mdd, add = navmetrics(bh_nav, bh_ret, bh_ret)

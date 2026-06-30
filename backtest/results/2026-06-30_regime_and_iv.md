@@ -48,6 +48,26 @@ not naked CSP.** Very-high-IV bucket = downtrend/capitulation (advanced contrari
 3. PMCC sim numbers (this session) are garbage-magnitude (VIX-as-1yr-IV, low cost, single path);
    only qualitative read: the short call cushioned MaxDD vs naked LEAP (−36/−42% vs −51/−52%).
 
+## Addendum — naked CSP by IV rank (hold-to-expiry, full history) — `exp_csp_ivrank.py`
+Does naked CSP show the 56/57 spread pattern? **No — it's more forgiving.**
+
+| IV rank | QQQ P&L / PF / avg | SPY P&L / PF / avg |
+|---|---|---|
+| low 0–25 | $26,395 / 2.24 / $175 | $25,935 / 2.13 / $134 |
+| mid 25–50 | $12,734 / 1.53 / $131 | $8,212 / 1.40 / $91 |
+| high 50–75 | $10,481 / 4.38 / $361 | $18,158 / 5.14 / $363 |
+| vhigh 75–100 | $4,094 / 1.92 / $273 | $970 / 1.14 / $54 |
+
+- **All buckets POSITIVE** (vs 56/57 spread's negative mid/high). Naked index CSP held-to-expiry
+  benefits from index recovery + no long-put cost drag → **supports CSP-over-spread for indices**.
+- "Middle weakest" direction survives (mid 25–50 lowest PF/avg) but not negative.
+- high 50–75 surprisingly best per-trade (sell fat premium into a recovering dip) — but SMALL
+  sample (29–50 trades) and depends on recovery.
+- 🔴 **Caveat:** this is realized expiry P&L; it HIDES mid-trade drawdown. "All positive" assumes
+  you can hold through (2008/2020 puts were deeply underwater before recovering) and that the
+  index recovers (not Japan-style). The "recoverable" property converts realized loss into
+  hold-through risk — governed by sizing (INV-1/2). high/vhigh PFs are sample-thin; don't over-trust.
+
 ## Next
-- Build `simulate_put_spread` (defined-risk bull put), test low-IV reproduction of 56/57 vs naked CSP.
-- Test standalone LEAP delta (0.3 vs 0.5 vs 0.8) via BSM (separate from PMCC long leg 0.8).
+- Standalone LEAP delta (0.3 vs 0.5 vs 0.8) via BSM (separate from PMCC long leg 0.8).
+- (optional) wheel overlay to model CSP recovery path explicitly.
