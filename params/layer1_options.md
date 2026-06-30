@@ -120,6 +120,12 @@ CSP 是 directional(用 IV rank),結論相反。不同 metric、不同結構。
 > **決策:** (a) vs (b) 是自覺的「報酬 vs 勝率 vs 抗回撤」取捨。Karson 現用 (a)。
 > Karst 兩者都記錄,依 use case 選。
 
+🟡 **2026-06-30 自驗(`backtest/results/2026-06-30_leap_timing.md`,provisional):**
+LEAP **需要擇時**,但只需「右側閘」:`price > 200SMA` 才開槓桿(= INV-6)。always-in
+LEAP = **破產(MaxDD −99.9%)**;加 200SMA 閘把 MaxDD 拉回 ~−70% 且報酬 ~翻倍。
+**機制確認(槓桿部位的擇時 = 防破產);但 CAGR 數字是樂觀 artifact(VIX 當 1yr IV、
+成本過低、單一路徑),且即使有閘 MaxDD 仍 ~−70% → 小倉位。** 待 harden 後才釘死數字。
+
 ---
 
 ## 4. Iron Condor(可選補充 — regime 互補)
