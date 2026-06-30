@@ -55,6 +55,27 @@ class SectorContext:
 
 
 @dataclass(frozen=True)
+class SectorRotation:
+    """Stage-1 TOP level — the GICS sector-rotation map (the DEFENSE / regime lens).
+
+    11 SPDR sectors ranked by RS vs SPY. Distinct from a value-chain (which cuts ACROSS
+    GICS): this is the broad rotation/regime read, ETF-only. Surfaces leadership breadth
+    (narrow = fragile/late-cycle), the cyclical-vs-defensive tilt (risk-on/off), and
+    whether tech is confirming leadership.
+    """
+    asof: str
+    rows: list                  # ranked: [{etf, name, rs63, rs21, above200, temp, group}]
+    n_beating: int              # how many of 11 beat SPY (RS63 > 1)
+    breadth: str                # narrow / mixed / broad
+    tilt: str                   # "risk-on (cyclicals lead)" / "risk-off (defensives lead)"
+    cyc_rs: float               # mean RS63 of cyclicals
+    def_rs: float               # mean RS63 of defensives
+    tech_leading: bool          # XLK beating SPY
+    drivers: str
+    caveats: list
+
+
+@dataclass(frozen=True)
 class ThesisVerdict:
     """Stage 2 alpha SEAM. Phase 0 stub = NEUTRAL (unit 1.0, multiplicative identity).
     Real verdicts arrive in Phase 3 from Tree/LLM. FAIL (unit 0) = a kill condition fired."""

@@ -107,4 +107,13 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 - **Phase 1 完成**(`results/2026-07-01_spine_phase1.md`):板塊溫度從 **ETF 真實持股(option B)** 算。關鍵發現:DRAM(Roundhill Memory)持股是**全球**的——SK Hynix 24.7% / Samsung 16.3% / Kioxia / + 現金 sleeve 14.9%(濾掉);US 三名只佔 ~14%,WDC 不在內。決策:溫度用全持股(幣別在 RS/ROC 比值中自動消掉,只剩時段差,微小);ETF 權重加權;tier-2 可下單 = US 持股自動衍生(SNDK/MU/STX)+ DRAM 本身當板塊級 long;外國名 = context。兩層 RS(vs SPY / vs SEMI=SOXX)+ breadth/coherence + INV-5(laggard 只在 US 可交易成員裡判)。驗證讀數有洞見:Memory Hot 但 vs SEMI 0.99(半導體在熱、記憶體只跟上),US RS 龍頭 SNDK,STX 落後。
 - **Phase 4 完成 → MVP1 收口**(`results/2026-07-01_spine_phase4_mvp1.md`):RSI-2 擇时做成**獨立 card 欄位**(DIP<10 / overbought>90 / elevated / neutral),**不乘進結構分**。tier-2 long 的 `action` = 結構資格 × 擇时 → **BUY_DIP / WATCH / AVOID**。tier-1 保留已驗證 scorecard(擇时已烘在內),RSI-2 只 surface 不 decompose。驗證讀數:記憶體名字全 WATCH(合格但無 dip、極度延伸 → 等回調,不喊買)——正是設計要的兩層誠實輸出。
 - **MVP1 = Phase 0+1+4 完成**:可用的每日 top-down 掃描(market gate → sector temp[ETF 持股] → 兩層表達 → RSI-2 action)。入口 `python backtest/scan.py [--json]` / `/karst` skill。
-- **v2 待辦**:Phase 2 Compass overlay(資金流/敘事/macro)→ **Phase 3 thesis seam(Tree/LLM + defeatbeta fundamentals/news = alpha 真正進場;在此之前 tier-2 分數只是 0/100 資格,thesis 是 NEUTRAL stub)**;flow 訊號(gamma/CTA/F&G)當未驗證 overlay;選做:把 RSI-2 從 tier-1 scorecard 真拆出、issuer-CSV 完整持股。
+- **Phase 2a 完成**(`results/2026-07-01_spine_phase2a_rotation.md`):GICS 板塊輪動地圖(`rotation.py`,11 SPDR,RS vs SPY 63/21d,ETF-only)= **防禦/regime 鏡片**。讀數:tilt risk-on(勉強)、**breadth narrow(2/11 贏 SPY → fragile/late-cycle 警示)**、tech leading 但 RS21 在退、Indus/Health/Fin RS21 加速(輪動跡象)。
+- **關鍵策略決策(用戶定,2026-07-01):**
+  - **進攻 = tech value-chain(跨 GICS:Tech→Energy→Materials/InP→Indus),個股深做 + bottleneck 過濾(Serenity/Dorsey/Porter)= Phase 3**;**防禦 = 非 tech GICS 板塊,ETF-only、mean-revert/分散**(非對稱深度 = 控 overfitting)。
+  - **value-chain ≠ GICS 板塊**:兩個鏡片分開拿(GICS=防禦/輪動;value-chain=進攻)。別把鏈塞進板塊盒。
+  - **「tech 才有 true bull」要可證偽**:給機器可檢查的「tech 領導已壞」條件(XLK RS<1 持續 → 轉防禦),別變成不可證偽信仰(POET 死法)。
+  - **板塊性格藏在趨勢尺度(%>200),不在日線(Hurst/ADX 全部 ~隨機)**;且全在 bull 上 fit → 2b 要跨多 regime 量測 + 對標 B&H + 過 deflated-Sharpe/walk-forward 閘 + total-return。
+  - **bottleneck = 讓 value-chain 廣度不變 FOMO 的紀律**(無替代品+定價權+可證偽 kill);最深 bottleneck 常不可交易(InP/SK Hynix)→ 用下游/ETF 表達,別獵奇找 ticker。
+  - **順序:把 Phase 3 以外的先收齊**(A)——2a 完成 → 2b 性格 → 2c 輪動動態 → **最後 Phase 3(thesis = value-chain + bottleneck = alpha)**。
+- **agent 對用戶的提醒(Charter 角色)**:持續加結構層可能是「方法論救贖」的高級拖延;edge 在 Phase 3,別無限延後;每個 sleeve 要對標「無腦抱 QQQ」淨成本/稅後。
+- **v2 其他**:Phase 2 Compass overlay(資金流/敘事/macro)、flow 訊號(gamma/CTA/F&G)當未驗證 overlay;選做:RSI-2 從 tier-1 scorecard 真拆出、issuer-CSV 完整持股、marketcap.py 現為 dead fallback。

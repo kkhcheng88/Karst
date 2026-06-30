@@ -13,7 +13,7 @@ import json
 from dataclasses import asdict
 
 from . import card as card_mod
-from . import context, expression, providers, sector, timing
+from . import context, expression, providers, rotation, sector, timing
 from . import universe as universe_mod
 from .dataio import load
 
@@ -22,6 +22,7 @@ def run_daily(path: str | None = None):
     sectors_cfg, entries = universe_mod.load_universe(path or universe_mod.DEFAULT_PATH)
     entries = universe_mod.expand_with_sectors(sectors_cfg, entries)
     mc = context.build_market_context()
+    rot = rotation.build_rotation()
     sec_ctx = sector.build_all(sectors_cfg)
     cards = []
     for e in entries:
@@ -44,16 +45,26 @@ def run_daily(path: str | None = None):
             cards.append(card_mod.build_card(e, mc, score, expr, th, temp, warm, tm))
         except Exception as ex:  # isolate per-ticker failures
             cards.append(card_mod.error_card(e, mc, ex))
-    return mc, sec_ctx, cards
+    return mc, rot, sec_ctx, cards
 
 
-def _print_human(mc, sec_ctx, cards):
-    print("=== KARST SCAN -- MVP1 (market gate + sector temp + two-tier + RSI-2 timing) ===")
+def _print_human(mc, rot, sec_ctx, cards):
+    print("=== KARST SCAN -- MVP1 + sector rotation (2a) ===")
     print(f"as of {mc.asof}")
     print(f"\nMARKET: {mc.gate_label.upper()}  (gate={mc.gate})")
     print(f"  {mc.drivers}")
     for c in mc.caveats:
         print(f"  ! {c}")
+
+    if rot:
+        print("\n--- SECTOR ROTATION (11 SPDR vs SPY -- the DEFENSE/regime lens) ---")
+        print(f"  {rot.drivers}")
+        for r in rot.rows:
+            beat = "+" if r["rs63"] > 1 else " "
+            print(f"    {beat} {r['etf']:5}{r['name']:9} RS63 {r['rs63']:.2f}  RS21 {r['rs21']}  "
+                  f"{'>200' if r['above200'] else '<200':5} {r['temp']:5} [{r['group']}]")
+        for cav in rot.caveats:
+            print(f"  ! {cav}")
 
     if sec_ctx:
         print("\n--- SECTORS (Stage 1: temperature from ETF holdings) ---")
@@ -103,14 +114,15 @@ def main(argv=None):
     ap.add_argument("--universe", default=None, help="path to universe.yaml")
     args = ap.parse_args(argv)
 
-    mc, sec_ctx, cards = run_daily(args.universe)
+    mc, rot, sec_ctx, cards = run_daily(args.universe)
     if args.json:
         out = {"market": asdict(mc),
+               "rotation": asdict(rot) if rot else None,
                "sectors": {k: asdict(v) for k, v in sec_ctx.items()},
                "cards": [card_mod.to_dict(c) for c in cards]}
         print(json.dumps(out, indent=2, default=str))
     else:
-        _print_human(mc, sec_ctx, cards)
+        _print_human(mc, rot, sec_ctx, cards)
 
 
 if __name__ == "__main__":

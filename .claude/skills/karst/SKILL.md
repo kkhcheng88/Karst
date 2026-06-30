@@ -31,7 +31,11 @@ python backtest/scan.py            # human-readable
 python backtest/scan.py --json     # machine-readable (parse this)
 ```
 Runs the funnel: **market gate** (risk_on/neutral/defend from SPY 200SMA + VIX + IWM breadth +
-VIX/VIX3M term + SPMO-RS) → **sector temp** → **two-tier router** → **RSI-2 timing** → one Card/ticker.
+VIX/VIX3M term + SPMO-RS) → **GICS rotation map** → **sector temp** → **two-tier router** →
+**RSI-2 timing** → one Card/ticker.
+- **GICS rotation (Phase 2a)** ranks the 11 SPDR sectors by RS vs SPY = the DEFENSE/regime lens:
+  leadership breadth (narrow = fragile/late-cycle), cyclical-vs-defensive tilt, tech-leading flag
+  (offense thesis confirmation). ETF-only. A value-chain (offense) cuts ACROSS GICS → that's Phase 3.
 - **Sector temp (LIVE)** from the ETF's REAL holdings (MEMORY ← DRAM: global, SK Hynix/Samsung-led;
   cash filtered; foreign included — RS/ROC currency-cancels). Two-level RS (vs market / vs parent
   SEMI), breadth/coherence, INV-5 laggard (US-tradeable only).
