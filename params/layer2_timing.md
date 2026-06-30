@@ -43,8 +43,10 @@ Tag:✅ verified / 📄 distilled / ⚠️ open
 | ⚠️ 反例(stress test) | 同濾網 **−84%**(QQQ 196%→71.8%) | 📄 §11.6 `kkWmw1s1u1c` |
 
 **用途:上升趨勢內買回調**(改善 LEAP 進場時點 / CSP 在 dip 賣)。
-⚠️ **open:** 那個讓 RSI-2 贏 B&H 的 200SMA 濾網,在另一 test 反而傷 84%。
-**濾網 regime-dependent——連最佳 edge 都脆弱。不釘死,待 walk-forward。**
+✅ **2026-06-30 自驗(`backtest/results/2026-06-30_rsi2_200sma.md`):** 200SMA 濾網
+**不穩健**——SPY 微幅 +,QQQ/SPMO −,逐段翻轉(印證 §11.6 > §11.5)。更關鍵:RSI-2
+在 SPY/SPMO **贏不了 B&H 的報酬**(只 ~12% exposure),但把 MaxDD 從 −57%/−83% 砍到
+−17%/−22%。**結論:這層 timing 是「回撤控制」,不是 alpha;重現不了 §11.5 的 +258%。**
 
 > §20.9 說「trend > 反轉」,§21 說「反轉 > trend」——表面衝突,實則互補:
 > RSI-2(反轉進場)**在** EMA200(趨勢濾網)**之內**,兩者疊起來就是上面那條,不是對立。
@@ -73,10 +75,18 @@ LEAP 買方 → 低 IV**。
 
 ---
 
-## 5. Flow(家族 #5,idea-06)
+## 5. Flow(家族 #5,idea-06)— 唯一正交於 price 的維度
 
-- **SPY/QQQ GEX** = regime fragility(非方向);GEX < 0 → 高波動 → 減倉(餵 `invariants`)。
+- **SPY/QQQ GEX 正負號** = regime fragility(**非方向**):long gamma → 釘住/低波;
+  short gamma → 放大/高波。GEX < 0 → 減 PMCC(餵 `invariants`)。
+- **Gamma walls(call/put wall)** = 短期 pin / 支撐阻力,**月度 OPEX 前最明顯** →
+  CSP 履約價擺位(賣在 put wall 之下)+ OPEX 週進出 timing。
 - **Insider cluster buying** = 衛星選股訊號(非指數層)。
+- ⚠️ **證據層不同**:歷史 dealer gamma 是付費數據(SpotGamma / Tier1Alpha),
+  **免費難回測**。GEX 當 regime / 履約價 overlay 用,**不假裝它跟 price 規則一樣
+  backtest-validated**。
+- 🟡 若要再加「可免費回測」的正交維度,只有兩個站得住:**market breadth(% 成分股 >
+  200MA)** 和 **VIX term structure(VIX/VIX3M)**。其餘 price TA 不加(§20.8 鐵律)。
 
 ---
 
@@ -124,7 +134,7 @@ Minervini Trend Template(8 條 MA/價格條件)= 家族 #1 + #4 的**現成可�
 
 ## Open Items
 
-- [ ] 200 SMA 濾網 regime 依賴(§11.5 +258% vs §11.6 −84%)——walk-forward 解,**這是核心未決項**
+- [x] ✅ 200 SMA 濾網——已自驗(2026-06-30):不穩健,timing = 回撤控制非 alpha。見 `backtest/results/2026-06-30_rsi2_200sma.md`
 - [ ] SPMO 無 distillation 數據,需獨立驗證
 - [ ] Minervini Trend Template 蒸餾 → 編碼
 - [ ] ADX regime 切換的具體閾值/實作

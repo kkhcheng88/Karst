@@ -72,7 +72,8 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 
 ## 7. 當前狀態(2026-06-30)
 
-- Karst workspace 已建(6 spec 檔 + .agents memory),git init(main)完成,**尚未 commit**。
-- reorg 完成:Quant→Reference、books→ebooks、.agents→Karst;Karst 內路徑已全部更新。
-- 下一步(建議):蒸餾 Dorsey 護城河 criteria(`../ebooks/Fundamental Value & Growth/Pat Dorsey/`)。
-- 其他待辦:Layer-2 完整版(讀 distillation 853-1693)、定義 open 數值(INV 閾值)。
+- Karst spec 完成(Layer-1/2 + invariants + lenses 規劃);git 多個 commit on main。
+- reorg 完成:Quant→Reference、books→ebooks、.agents→Karst。
+- **backtest harness 已建**(`backtest/`,純 pandas,**不用 vectorbt**;data = defeatbeta≥0.0.60 + yfinance fallback,banner 已在 loader 吞掉)。
+- **首個回測結論(✅ 自驗,已解 200SMA 未決項):** 指數上 RSI-2/200SMA **贏不了 B&H 報酬**,只能砍回撤 → **標的層 TA timing = 回撤 overlay,非 alpha;真 edge 在期權結構(VRP)**。重現不了 distillation §11.5。見 `backtest/results/2026-06-30_rsi2_200sma.md`。
+- 下一步候選:Phase-2 option overlay(BSM + VIX/VXN,測 CSP/PMCC/LEAP P&L 含 vega)、或 Dorsey/Minervini 蒸餾、或定義 INV 數值。
