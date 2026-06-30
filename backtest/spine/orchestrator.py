@@ -13,7 +13,7 @@ import json
 from dataclasses import asdict
 
 from . import card as card_mod
-from . import context, expression, providers, sector
+from . import context, expression, providers, sector, timing
 from . import universe as universe_mod
 from .dataio import load
 
@@ -31,22 +31,24 @@ def run_daily(path: str | None = None):
                 d = load(e.ticker)[["high", "low", "close"]]
                 v = load(e.iv_proxy, min_rows=50)["close"]
                 df = d.join(v.rename("vix"), how="inner").dropna()
+                tm = timing.entry_timing(df["close"])
                 score, expr = expression.express_options(e, df)
                 temp, warm = "N/A", 1
             else:
                 df = load(e.ticker, min_rows=30)  # young names/ETFs (e.g. DRAM 61d) still load
+                tm = timing.entry_timing(df["close"])
                 sc = sec_ctx.get(e.sector)
-                score, expr = expression.express_long(e, df, mc, th, sc)
+                score, expr = expression.express_long(e, df, mc, th, sc, tm)
                 temp = sc.temperature if sc else providers.SECTOR_STUB_TEMP
                 warm = sc.warm if sc else providers.SECTOR_STUB_WARM
-            cards.append(card_mod.build_card(e, mc, score, expr, th, temp, warm))
+            cards.append(card_mod.build_card(e, mc, score, expr, th, temp, warm, tm))
         except Exception as ex:  # isolate per-ticker failures
             cards.append(card_mod.error_card(e, mc, ex))
     return mc, sec_ctx, cards
 
 
 def _print_human(mc, sec_ctx, cards):
-    print("=== KARST SCAN -- Phase 1 (market gate + sector temp + two-tier router) ===")
+    print("=== KARST SCAN -- MVP1 (market gate + sector temp + two-tier + RSI-2 timing) ===")
     print(f"as of {mc.asof}")
     print(f"\nMARKET: {mc.gate_label.upper()}  (gate={mc.gate})")
     print(f"  {mc.drivers}")
@@ -81,15 +83,17 @@ def _print_human(mc, sec_ctx, cards):
               + f"   (rec: {c.expression['recommended']})")
         print(f"  {c.expression['drivers']}  | CSP: {c.expression['csp_mode']}")
 
-    print("\n--- tier-2 LONG (sector temp LIVE; NO entry timing -- that's Phase 4) ---")
+    print("\n--- tier-2 LONG (action = structural eligibility x RSI-2 timing) ---")
     for c in longs:
         if c.expression.get("type") == "ERROR":
             print(f"### {c.ticker:5}  ERROR: {c.expression['error']}")
             continue
         blk = c.expression.get("blocked_by") or []
         tail = f"  blocked: {', '.join(blk)}" if blk else ""
-        print(f"### {c.ticker:5}  {c.asof}  sector={c.sector} temp={c.sector_temp}")
-        print(f"  score {c.score:>5.0f}  {c.expression['action']}  | {c.expression['drivers']}{tail}")
+        et = c.entry_timing or {}
+        tcol = f"RSI2 {et.get('rsi2')} {et.get('label')}"
+        print(f"### {c.ticker:5}  {c.asof}  {c.sector} temp={c.sector_temp}")
+        print(f"  {c.expression['action']:8} score {c.score:>3.0f}  | {tcol:18} | {c.expression['drivers']}{tail}")
         print(f"  thesis: {c.thesis.get('verdict')} ({c.thesis.get('source')})")
 
 

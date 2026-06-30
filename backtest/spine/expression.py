@@ -37,12 +37,14 @@ def express_options(entry, df):
     return scores, expr
 
 
-def express_long(entry, df, mc, thesis, sector_ctx):
-    """Long-only structural eligibility. NO timing (Phase 4).
-
-    eligibility = market gate (Stage 0) x name trend gate (INV-6) x sector warm (Stage 1)
-                  x thesis (NEUTRAL stub passes). Young names (e.g. the sector ETF, <200d)
-                  fall back to a 50SMA trend gate with a caveat.
+def express_long(entry, df, mc, thesis, sector_ctx, timing):
+    """Long-only. Structural eligibility (gate x trend x sector x thesis) and the entry
+    TIMING (RSI-2, Phase 4) are kept SEPARATE: the 0/100 `score` stays structural; `timing`
+    is its own field. The human-facing `action` is the COMBINATION of the two:
+        eligible + DIP        -> BUY_DIP   (structurally allowed AND at the validated trigger)
+        eligible + not DIP    -> WATCH     (allowed but extended/neutral -- wait for a dip)
+        not eligible          -> AVOID
+    Young names (e.g. the sector ETF, <200d) fall back to a 50SMA trend gate with a caveat.
     """
     close = df["close"]
     n = len(close)
@@ -73,22 +75,30 @@ def express_long(entry, df, mc, thesis, sector_ctx):
     if thesis.unit <= 0:
         reasons.append("thesis kill")
 
+    if not eligible:
+        action = "AVOID"
+    elif timing.label == "DIP":
+        action = "BUY_DIP"
+    else:
+        action = "WATCH"  # eligible but no dip trigger (extended / neutral)
+
     notes = []
     if is_laggard and warm:
         notes.append(f"INV-5 laggard (US RS rank {rankinfo.get('us_rank')}/{rankinfo.get('n_us')}) -- prefer the RS top-2")
+    if action == "WATCH":
+        notes.append(f"wait for a dip (RSI2 {timing.rsi2}, {timing.label})")
 
     base = (f"{'above' if above else 'below'} {gate_name} ({dist * 100:+.1f}%)"
             if dist == dist else "insufficient history")
     expr = {
         "type": "LONG",
-        "action": "ELIGIBLE" if eligible else "NOT_ELIGIBLE",
+        "action": action,
         "above_trend": above,
         "trend_gate": gate_name,
         "sector_temp": temp,
         "is_laggard": is_laggard,
         "blocked_by": reasons,
         "stop": "wide / none (layer2 §6)",
-        "note": "structural eligibility only -- entry timing (RSI-2 dip) is Phase 4",
         "drivers": base + ("; " + "; ".join(notes) if notes else ""),
     }
     return score, expr

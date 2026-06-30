@@ -25,21 +25,23 @@ Karst scores **all** names; only **SPY/QQQ/SPMO** get the options toolkit
 below is the spine that delivers this; the scorecard (further down) is the tier-1 options
 quick-read it wraps.
 
-## Daily top-down scan (the front door — MVP1 = Phase 0+1, timing Phase 4 pending)
+## Daily top-down scan (the front door — MVP1 complete: Phase 0+1+4)
 ```
 python backtest/scan.py            # human-readable
 python backtest/scan.py --json     # machine-readable (parse this)
 ```
-Runs the funnel: **market gate** (risk_on/neutral/defend from SPY 200SMA + VIX + IWM
-breadth + VIX/VIX3M term + SPMO-RS) → **sector temp** → **two-tier router** → one Card/ticker.
-- **Sector temp (Phase 1, LIVE)** is computed from the ETF's REAL holdings (e.g. MEMORY ← DRAM:
-  global, SK Hynix/Samsung-led; cash filtered; foreign included since RS/ROC currency-cancels).
-  Two-level RS (vs market / vs parent SEMI), breadth/coherence, INV-5 laggard (US-tradeable only).
-- tier-1 cards = options scorecard; tier-2 cards = Long-only **structural eligibility** + the
-  sector ETF itself as a sector-level long.
-- **NO entry timing yet** (RSI-2 = Phase 4): a Hot sector + `ELIGIBLE` name means "structurally
-  allowed," NOT "buy now" (memory names are hugely extended). Present market gate + caveats, then
-  sectors, then the two tiers. See `backtest/results/2026-07-01_spine_phase1.md`.
+Runs the funnel: **market gate** (risk_on/neutral/defend from SPY 200SMA + VIX + IWM breadth +
+VIX/VIX3M term + SPMO-RS) → **sector temp** → **two-tier router** → **RSI-2 timing** → one Card/ticker.
+- **Sector temp (LIVE)** from the ETF's REAL holdings (MEMORY ← DRAM: global, SK Hynix/Samsung-led;
+  cash filtered; foreign included — RS/ROC currency-cancels). Two-level RS (vs market / vs parent
+  SEMI), breadth/coherence, INV-5 laggard (US-tradeable only).
+- tier-1 cards = options scorecard; tier-2 cards = Long-only with `action` = **BUY_DIP / WATCH /
+  AVOID** (= structural eligibility × RSI-2 timing), plus the sector ETF as a sector-level long.
+- **Timing is a SEPARATE field** (`entry_timing`), never folded into the score: a Hot sector +
+  eligible name with no dip = `WATCH` ("allowed, wait for a pullback"), NOT buy. Present market
+  gate + caveats → sectors → two tiers. See `backtest/results/2026-07-01_spine_phase4_mvp1.md`.
+- **v2 pending**: thesis seam (Phase 3) is where ALPHA enters — until then tier-2 score is 0/100
+  eligibility and thesis is a NEUTRAL stub; don't read tier-2 score as conviction.
 
 ## Quick win — the tier-1 options scorecard
 ```

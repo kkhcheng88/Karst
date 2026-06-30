@@ -65,6 +65,16 @@ class ThesisVerdict:
 
 
 @dataclass(frozen=True)
+class EntryTiming:
+    """Phase 4 — the TA timing layer. A SEPARATE field, NEVER multiplied into the structural
+    score (validated lesson: regime/eligibility != entry trigger). RSI-2 dip = the validated
+    long entry; overbought = the short-call peak."""
+    rsi2: float
+    label: str                  # DIP / neutral / elevated / overbought / n/a
+    note: str
+
+
+@dataclass(frozen=True)
 class UniverseEntry:
     ticker: str
     tier: str                   # "options" (SPY/QQQ/SPMO) | "long" (everything else)
@@ -84,6 +94,7 @@ class TickerCard:
     sector_temp: str            # "N/A" (MARKET) | "STUB" (Phase 0 sector) | a temp later
     sector_warm: int
     thesis: dict                # {verdict, unit, source, kill_condition}
+    entry_timing: dict          # {rsi2, label, note} — Phase 4, separate from score
     score: object               # dict (options: per-tool) | float (long: 0/100 eligibility)
     expression: dict            # tier-aware payload
     drivers: str
