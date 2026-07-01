@@ -23,14 +23,18 @@ workbench structure、incremental merge —— 全部沿用,本檔只定義 fina
    對「**它賺錢**」是意見(作者戰績多半是倖存者偏誤)。→ **多一個 stage:方法在 backtest 通過前,
    status 不能是 `validated`。**
 
-因此 finance state machine 在 VLOS 的 `raw→verified→tagged→synthesized→reviewed→published` 之間插入:
+**清楚的分工(重要):蒸餾 skill 只負責到「產出 spec」,回測是 Karst 另一步(不在 skill 內)。**
 
 ```
-... → synthesized → backtested → (validated | killed | partial) → published
+[蒸餾 skill = Maker]                      [Karst 回測 = Checker,分開做]
+raw → verified → tagged → synthesized  ─交棒→  backtested → (validated | killed | partial)
 ```
 
-**未回測的方法,只能標 `synthesized`,不得當「可用/有效」使用。** 這是金融版的核心紀律,對應本專案
-已建立的 CIO-Phase-0 原則(`ARCHITECTURE.md §5`:勝率是騙子、發表即衰減、long-only ≠ long-short 鏡子)。
+- **skill 擁有 `raw → synthesized`**:產出一個乾淨、引用完整、參數化(帶 test_range)、**ready-to-
+  backtest** 的 spec,`claim_status: unverified`,**到此結束、交棒**。
+- **Karst(我)擁有 `synthesized → validated`**:拿 spec 去回測(§7 是交棒說明,非 skill 的 stage)。
+- **未回測的方法,永遠只是 `synthesized`,不得當「有效」使用。** 這對應 `ARCHITECTURE.md §5`
+  (勝率是騙子、發表即衰減、long-only ≠ long-short 鏡子)。這是 VLOS Maker/Checker 分離的金融版。
 
 ---
 
@@ -206,33 +210,35 @@ DS4 用**獨立 context**(不與 DS3 共享對話),產出 `runs/{date}/review.md
 
 ---
 
-## 7. DS-BT — Backtest & Validate(★ 金融版新增 stage,法律版沒有)
+## 7. 交棒:回測(★ 不在 skill 內 —— 由 Karst 做)
 
-**spec 通過 DS4 後,不直接 publish,先回測。** 這對應 Karst 既有工具:
+**skill 到 §6 就結束(產出 `synthesized` 的 spec)。回測是分開的一步,由 Karst(主系統)執行**,
+用既有工具,不用 worker agent 重造:
 
 1. 從 `{method}.spec.yaml` 編碼偵測器(filter/entry/exit predicate)。
-2. 事件研究鏡子(像 `backtest/exp_insider_validate.py`)+ **long-only 頂層 vs 指數鏡子**
-   (像 `exp_family_validate.py` —— 記住 IC/long-short 對 long-only 方法是錯鏡子)。
-3. **掃 `test_range`(非作者單值)+ walk-forward + deflated Sharpe**(`backtest/metrics.py`),
-   look-ahead-safe(進場用可得時點,如突破當日收盤/次日開盤)。
-4. 誠實 caveat:成本/換手/survivorship。
-5. 產出 `{method}.backtest.md` + 判決:
+2. 事件研究鏡子(`backtest/exp_insider_validate.py`)+ **long-only 頂層 vs 指數鏡子**
+   (`exp_family_validate.py` —— IC/long-short 對 long-only 方法是錯鏡子)。
+3. 掃 `test_range`(非作者單值)+ walk-forward + deflated Sharpe(`backtest/metrics.py`),look-ahead-safe。
+4. 誠實 caveat(成本/換手/survivorship),判決 validated / partial / killed,寫回 spec 的 `claim_status`。
 
-| 判決 | 條件 | status |
-|---|---|---|
-| **validated** | 過 deflated Sharpe(或 long-only 顯著贏指數,穩健於 test_range + 期間)| `validated` |
-| **partial** | 某些參數/期間有、某些沒 | `partial`(標明條件)|
-| **killed** | 掃遍 range 仍無 edge | `killed`(記錄,別再用)|
-
-> **這一步把「Minervini 說 VCP 賺錢」變成「VCP 在 X 參數、Y 期間、Z 成本下,edge 是/不是真的」。**
+> skill 交出的 spec **已經是 ready-to-backtest**(參數帶 range、規則已 predicate 化),所以這步是 Karst
+> 直接接手,不需要 worker agent 參與。
 
 ---
 
-## 8. DS5 — Storage & Publish
+## 8. Skill 收尾 —— 存檔就好(**沒有 VLOS 那套 publish 機制**)
 
-沿用 core-spec §8。finance 加:**publish 前 status 必須反映回測**(`validated`/`partial`/`killed`);
-`killed` 的方法**保留作 audit**(記錄「測過、沒 edge」比刪掉有價值 —— 防未來重複踩)。
-三件產物齊(散文 / spec / backtest)才算 `published`。
+我們**沒有** domain-master 再生、HITL-2 approval、agent 消費規則那套(VLOS 專屬 infra)。所以 skill 的
+收尾很簡單:**把三個 working 產物存好、標 status,結束**:
+
+| 產物 | 路徑 | status |
+|---|---|---|
+| tagged excerpts | `excerpts/{source_slug}_excerpts.md` | — |
+| 機器 spec | `{method}.spec.yaml` | `synthesized`(claim_status: unverified)|
+| 散文 | `{method}.md` | — |
+
+`runs/{date}/` 保留 DS3/DS4 記錄作 audit。**就這樣** —— 不 publish、不 regenerate master、不 HITL。
+回測後 Karst 才把 `claim_status` 改成 validated/killed(那不是 skill 的事)。
 
 ---
 
@@ -240,31 +246,31 @@ DS4 用**獨立 context**(不與 DS3 共享對話),產出 `runs/{date}/review.md
 
 做一個 Claude Code / Roo skill(`.claude/skills/finance-distill/SKILL.md`),內容 =:
 
-1. **description**:蒸餾任何金融/投資**方法或概念**成「引用散文 + 機器 spec + 回測判決」。觸發:
+1. **description**:蒸餾任何金融/投資**方法或概念**成「引用散文 + ready-to-backtest 機器 spec」。觸發:
    「distill this trading method / book / strategy」「把 X 方法變成可回測 spec」。
-2. **procedure** = 本檔 DS0 → DS1 → DS2(finance tag set)→ DS3(維度合併 → spec + 散文)→ DS4
-   (可證偽/參數化/Tier 分離檢查)→ **DS-BT(回測 test_range + walk-forward + deflated Sharpe)** →
-   DS5(依判決 publish)。
+2. **procedure(就這 4 步,不含回測/publish)** = 本檔 **DS0 → DS1 → DS2(finance tag set)→ DS3
+   (維度合併 → spec + 散文)→ DS4(可證偽/參數化/Tier 分離自檢)→ 存檔(§8)**。**結束。**
+   回測與 validated 判定**不是這個 skill 的事**(見 §7,Karst 做)。
 3. **鐵律(寫進 skill 頂端)**:
-   - 未 tagged 不得 synthesis;未 backtest 不得標 validated。
+   - 未 tagged 不得 synthesis。
    - `[量化參數]` → 一律「參數 + 待測範圍」,不硬寫作者單值。
-   - 作者宣稱績效 = Tier-2 假設,永不進 rule、永不當證據。
-   - long-only 方法用 long-only 鏡子(hold 頂層 vs 指數),不要用 long-short IC 誤判。
-   - 勝率是騙子;看期望值 + 尾部 + deflated Sharpe;誠實標 survivorship/成本 caveat。
-4. **references**:本檔 + VLOS core-spec(工作流)+ Karst `ARCHITECTURE.md §5`(家族評分/鏡子教訓)+
-   `backtest/exp_insider_validate.py`、`exp_family_validate.py`、`metrics.py`(回測工具)。
+   - 作者宣稱績效 = Tier-2 假設,永不進 rule、永不當證據;spec 一律 `claim_status: unverified`。
+   - spec 交出去時就是 ready-to-backtest(規則已 predicate 化、參數帶 range);**不預設方法有效。**
+4. **references**:本檔 + VLOS core-spec(通用 DS0-DS5 工作流,直接沿用)。
 5. **產物路徑**:`thesis/.raw/`、`thesis/specs/`、`thesis/wiki/`(或 skill 自定 workbench)。
+
+> **範圍界線:skill = 純蒸餾(Maker)。它交出乾淨、量化、可回測的 spec 就完成任務,不證明它有效。**
 
 ---
 
 ## 10. 第一個任務(worker agent 的 Minervini kickoff)
 
 > Domain=`method`,method_slug=`minervini_sepa_vcp`。來源 = Minervini《Trade Like a Stock Market
-> Wizard》+《Think & Trade Like a Champion》的 **Trend Template 章 + VCP 章**。走 DS0→DS5:
+> Wizard》+《Think & Trade Like a Champion》的 **Trend Template 章 + VCP 章**。走 **DS0→DS4 + 存檔**:
 > 逐條 tagged excerpt(用 §4 的 8 tag)→ 按維度合併成 `minervini_sepa_vcp.spec.yaml`(entry/exit/
-> filter/sizing/regime/params/claims/anti,參數帶 test_range)+ 散文 → DS4 檢查 → **DS-BT 用
-> Karst 回測(掃 test_range + walk-forward + deflated Sharpe,long-only 鏡子)** → 依判決 publish。
-> **不預設 VCP 有效;spec 存在的目的就是誠實地測它到底有沒有 edge。**
+> filter/sizing/regime/params/claims/anti,**參數帶 test_range**)+ 散文 → DS4 自檢 → 存檔,
+> status=`synthesized`。**交棒。** 回測由 Karst 另跑(§7)。
+> **不預設 VCP 有效;你的任務是交出一個乾淨、可回測的 spec,不是證明它賺錢。**
 
 ---
 
@@ -272,9 +278,10 @@ DS4 用**獨立 context**(不與 DS3 共享對話),產出 `runs/{date}/review.md
 
 | VLOS 原則 | finance 體現 |
 |---|---|
-| P7 Generic Core | 沿用 VLOS DS0-DS5;本檔只加 finance tag/spec/DS-BT |
-| P8 Define Before Execute | DS2 gate → spec → DS4 → **DS-BT** → DS5 |
+| P7 Generic Core | 沿用 VLOS DS0-DS5;本檔只加 finance tag set + 機器 spec 產物 |
+| P8 Define Before Execute | DS2 tagged gate → DS3 spec → DS4 自檢 → 存檔(skill 到此) |
+| P9 Maker/Checker 分離 | **distiller skill = Maker(產 spec);Karst 回測 = Checker(驗 edge)** |
 | P12 Grounded | 每條 rule 連 excerpt ID;每個 param 連來源 + test_range |
-| Karst CIO Phase-0 | 方法未過 deflated Sharpe = 未 validated;鏡子要選對(long-only) |
+| Karst CIO Phase-0 | spec 交出=`synthesized`;過 deflated Sharpe 才 `validated`(Karst 判,鏡子選對)|
 | Karst NHITL | 「有效」由回測數據判,不由作者名氣或人的信念判 |
 ```
