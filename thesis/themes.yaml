@@ -1,0 +1,18 @@
+# Karst thesis registry — the machine-readable bridge spine/providers.thesis_quality reads.
+# Maps tickers -> their theme verdict. Each theme has a wiki page (thesis/wiki/<slug>.md) holding
+# the 4-KPI evidence + citations. confidence is an INITIAL, UNCALIBRATED estimate (cold start; no
+# track record yet) -> it becomes a real probability only after track_record calibration (DESIGN §6).
+# Do NOT read confidence as precise; read it as disciplined relative strength x cycle temperature.
+
+themes:
+  memory-supercycle:
+    wiki: thesis/wiki/memory-supercycle.md
+    type: B                    # B = thematic supercycle (supply-constrained + demand + pricing power)
+    cycle_stage: late          # extended valuation + DRAM ETF just launched (crowding) + HBM capacity responding
+    confidence: 0.35           # real bottleneck+demand BUT late/crowded -> tempered. INITIAL, uncalibrated.
+    verdict: real-but-late
+    kill_condition: >-
+      HBM / advanced-packaging (CoWoS) capacity ramps AHEAD of AI demand (glut) OR the 3-maker
+      (SK Hynix / Samsung / Micron) pricing discipline breaks.
+    tickers: [MU, SNDK, STX, DRAM]
+    note: "late-cycle: do NOT chase; watch for the top (valuation extreme + capex boom + crowding)."

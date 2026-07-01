@@ -103,9 +103,12 @@ def _print_human(mc, rot, sec_ctx, cards):
         tail = f"  blocked: {', '.join(blk)}" if blk else ""
         et = c.entry_timing or {}
         tcol = f"RSI2 {et.get('rsi2')} {et.get('label')}"
+        th = c.thesis
         print(f"### {c.ticker:5}  {c.asof}  {c.sector} temp={c.sector_temp}")
         print(f"  {c.expression['action']:8} score {c.score:>3.0f}  | {tcol:18} | {c.expression['drivers']}{tail}")
-        print(f"  thesis: {c.thesis.get('verdict')} ({c.thesis.get('source')})")
+        conf = th.get("confidence")
+        print(f"  thesis: {th.get('verdict')} | conf {conf if conf is None else round(conf, 2)}"
+              f" | cycle {th.get('cycle_stage')} | {th.get('source')}")
 
 
 def main(argv=None):

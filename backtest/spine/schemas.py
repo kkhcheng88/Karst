@@ -77,12 +77,15 @@ class SectorRotation:
 
 @dataclass(frozen=True)
 class ThesisVerdict:
-    """Stage 2 alpha SEAM. Phase 0 stub = NEUTRAL (unit 1.0, multiplicative identity).
-    Real verdicts arrive in Phase 3 from Tree/LLM. FAIL (unit 0) = a kill condition fired."""
-    verdict: str                # fail/weak/neutral/pass/strong
-    unit: float                 # 0..1 multiplier; NEUTRAL=1.0 -> score collapses to eligibility
-    source: str                 # "stub" until Phase 3
+    """Stage 2 alpha SEAM. NEUTRAL stub = unit 1.0 (pass-through) until a thesis exists.
+    Phase 3 fills it from thesis/themes.yaml. `unit` IS the CONFIDENCE (0..1, evidence-derived +
+    calibrated; NOT human 'belief') -> it multiplies the tier-2 eligibility into sizing. FAIL/kill
+    -> unit 0. cycle_stage (early/mid/late) tempers confidence (late = don't chase)."""
+    verdict: str                # real-but-late / pass / weak / fail / neutral ...
+    unit: float                 # = confidence 0..1 (the sizing multiplier); NEUTRAL=1.0
+    source: str                 # "thesis:<slug>" | "no-thesis"
     kill_condition: str | None = None
+    cycle_stage: str | None = None   # early / mid / late / None
 
 
 @dataclass(frozen=True)

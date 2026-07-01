@@ -5,7 +5,7 @@ from .schemas import TickerCard
 
 
 def _thesis_dict(thesis):
-    return {"verdict": thesis.verdict, "unit": thesis.unit,
+    return {"verdict": thesis.verdict, "confidence": thesis.unit, "cycle_stage": thesis.cycle_stage,
             "source": thesis.source, "kill_condition": thesis.kill_condition}
 
 
