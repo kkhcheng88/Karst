@@ -25,40 +25,41 @@ sectors:
   # --- cross-sectional value chains: no single ETF represents them (they cut across GICS), so the
   # thesis names ARE the basket. Temperature = MARKET-CAP weighted (the heat); a cap-vs-equal
   # DIVERGENCE is emitted as a breadth/crowding read (megacap-led=narrow/late; small-cap-led=froth).
-  # tickers here mirror thesis/themes.yaml; keep them in sync when a thesis's tickers change.
+  # `thesis:` -> the loader pulls the basket tickers from thesis/themes.yaml (SINGLE source of truth;
+  # no drift). Only sector metadata (parent/proxy/benchmark) lives here.
   PHOTONICS:
     parent: SEMI
     parent_proxy: [SOXX, SMH]
-    tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
+    thesis: photonics-optical
   AI_POWER:
     parent: INDUSTRIALS
     parent_proxy: [XLI]
-    tickers: [GEV, BE, VRT, ETN, PWR, MPWR, VICR, NVTS, WOLF, 'ON']  # 'ON' quoted: bare ON = YAML bool
+    thesis: ai-power-grid
   ADV_PACKAGING:
     parent: SEMI
     parent_proxy: [SOXX, SMH]
-    tickers: [AMKR, ASX, TTMI, INTC, MKSI, KLAC, STX, WDC]
+    thesis: advanced-packaging
   SPACE:
     parent: AERO_DEF
     parent_proxy: [ITA]
-    tickers: [RKLB, ASTS, KTOS, HEI, LOAR, RDW, LUNR, BKSY, PL, GSAT]
+    thesis: space-satellite
   RARE_EARTH:
     parent: MATERIALS
     parent_proxy: [XLB]
-    tickers: [MP, USAR]
+    thesis: rare-earth-materials
   TPU_SILICON:
     parent: SEMI
     parent_proxy: [SOXX, SMH]
-    tickers: [AVGO, TSM, CLS]
+    thesis: tpu-custom-silicon
   OIL_GAS:
     parent: ENERGY
     parent_proxy: [XLE]
-    benchmark_etf: XLE           # a clean matching ETF exists -> kept as a cross-check long
-    tickers: [XOM, CVX, COP, EQT, LNG, SEI]
+    benchmark_etf: XLE           # a clean matching ETF exists -> kept as a cross-check long + excluded from basket
+    thesis: oil-gas-energy
   SEMICAP:
     parent: SEMI
     parent_proxy: [SOXX, SMH]
-    tickers: [AEHR]              # thin (single name) -> temperature ~ that name; watch, don't lean
+    thesis: semicap-equipment    # thin (single name) -> temperature ~ that name; watch, don't lean
 
 tickers:
   # tier-1 — options toolkit (validated 3 ETFs). tier-2 Memory longs are auto-derived

@@ -5,7 +5,10 @@ a fresh session (any agent) knows how to operate and MAINTAIN it. Communicate wi
 Traditional Chinese (technical identifiers/tickers/code in English).
 
 ## Read first (project state + design)
-- `.agents/KARS_MEMORY.md` — long-term project memory (system map, decisions, current status).
+- `ARCHITECTURE.md` — **the cross-phase system map (single source of truth)**: the top-down funnel,
+  the signal-family → Phase placement + the "in-price vs not-in-price" firewall, built/stub/deferred
+  status, and the honest signal-family assessment. Read this to understand the whole system.
+- `.agents/KARS_MEMORY.md` — long-term project memory (decisions, current status).
 - `.agents/USER.md` — who the user is + work preferences (adversarial thinking, evidence-first, NHITL).
 - `README.md` — repo定位.
 

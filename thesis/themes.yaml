@@ -177,15 +177,13 @@ themes:
       capex stalls (hyperscaler cuts) -> the bull leg (#058) goes to zero. Either track firing zeros that
       track''s confidence; if both lose edge (oil ranges quietly, gas-power crowding deflates with no new
       catalyst) energy degrades to pure beta -> de-list, no thesis.'
-    tickers:
+    tickers:                     # single-name expressions only; XLE/XOP live as benchmark_etf in universe.yaml
     - XOM
     - CVX
     - COP
     - EQT
     - LNG
     - SEI
-    - XLE
-    - XOP
     note: 'THIN (2 reports) + heterogeneous: oil macro (#116 neutral, Brent crashed 100->78, OPEC+ breakup
       = near-term oversupply/bearish) glued to gas->power (#058 bull, SEI 3.1 GW BTM buildout). Not one
       thesis -> WATCH split by track. Only playable edge = EQT (cheap pe 10/35th + disciplined capex + AI
