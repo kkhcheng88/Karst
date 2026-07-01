@@ -8,11 +8,12 @@ themes:
   memory-supercycle:
     wiki: thesis/wiki/memory-supercycle.md
     type: B                    # B = thematic supercycle (supply-constrained + demand + pricing power)
-    cycle_stage: late          # extended valuation + DRAM ETF just launched (crowding) + HBM capacity responding
-    confidence: 0.35           # real bottleneck+demand BUT late/crowded -> tempered. INITIAL, uncalibrated.
-    verdict: real-but-late
+    cycle_stage: late          # MU capex 2.66x (supply-response top signal) + SK Hynix 2034 3x + peak-earnings
+    confidence: 0.38           # LATE (capex top signal) BUT LTA de-cyclicalisation cushions the floor. INITIAL.
+    verdict: real-but-late-cushioned
     kill_condition: >-
-      HBM / advanced-packaging (CoWoS) capacity ramps AHEAD of AI demand (glut) OR the 3-maker
-      (SK Hynix / Samsung / Micron) pricing discipline breaks.
-    tickers: [MU, SNDK, STX, DRAM]
-    note: "late-cycle: do NOT chase; watch for the top (valuation extreme + capex boom + crowding)."
+      LTA/SCA scorecard stalls or reverses (contract prices roll over OR net-new LTA signings stall,
+      i.e. de-cyclicalisation stops being confirmed by financials) OR HBM / advanced-packaging capacity
+      ramps AHEAD of AI-inference demand (glut). Trigger -> confidence to zero, back to classic cyclical top.
+    tickers: [MU, SNDK, WDC, DRAM]
+    note: "late (capex 2.66x top signal) but LTA take-or-pay/RPO cushions downside; small size + watch LTA scorecard, don't chase."
