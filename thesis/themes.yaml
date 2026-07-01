@@ -17,3 +17,17 @@ themes:
       ramps AHEAD of AI-inference demand (glut). Trigger -> confidence to zero, back to classic cyclical top.
     tickers: [MU, SNDK, WDC, DRAM]
     note: "late (capex 2.66x top signal) but LTA take-or-pay/RPO cushions downside; small size + watch LTA scorecard, don't chase."
+
+  photonics-optical:
+    wiki: thesis/wiki/photonics-optical.md
+    type: B                    # optical interconnect = AI scale-up physical-layer bottleneck
+    cycle_stage: late          # MOST crowded cluster (58% bull); moat names ttm_pe 75-98th pctile
+    confidence: 0.30           # real InP/laser-IDM bottleneck BUT most crowded/priced-in -> < memory 0.38. INITIAL.
+    verdict: real-bottleneck-but-crowded
+    kill_condition: >-
+      InP substrate shortage resolves (32-month laser lead-times compress / China fully releases / new
+      capacity online) OR CPO adoption slips (pluggable+LPO stays good-enough) OR laser-IDM (COHR/LITE)
+      order-book-to-2028 / pricing breaks. Crowding-unwind: no-earnings names (SIVE/LWLG) + 75-98th-pctile
+      moat names de-rate hard on any AI-capex hiccup. Trigger -> confidence to zero.
+    tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
+    note: "real bottleneck but MOST crowded; pick quality (COHR/LITE/GLW), avoid froth (SIVE/LWLG); wait for crowding to deflate."
