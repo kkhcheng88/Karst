@@ -147,4 +147,8 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 **選型**:知識層採 **claude-obsidian 架構/慣例(不綁其 skills)** + 借 llm_wiki 圖相關性;拒絕 WeKnora/PandaWiki(向量/server 重,違確定性哲學)。**agent 可攜靠 MCP server(照 VR pattern),不綁 Claude Code。**
 
 **建造順序**:精簡先行(4-KPI 清單 + 一個 `[[]]` thesis 頁 + web 研究 + 風控四件套 + 戰績簿,現在就紙上下注)→ pilot 端到端 → 薄版事件引擎 → 重基建只在需求拉時才建、且時間盒。
+
+**Phase 3 pilot 已建(2026-07-01,可跑):** `thesis/` 骨架 + memory-supercycle thesis(4-KPI cited、真 capex/PE 證據、cycle=late、confidence 0.35)→ `spine/providers.thesis_quality` 讀 `thesis/themes.yaml` → tier-2 分數 = 資格 × confidence(memory 100→35)。`thesis/log_predictions.py` 系統自動寫 track_record;`backtest/exp_memory_cycle.py` 價量版事件 base rate(極端延伸中位 -6.1%=別追)。
+
+**維護/延續層(讓「下一個 session / 任何 agent」都會維護):** **不裝 claude-obsidian**(綁 Claude Code + 外部依賴);改**原生**:`thesis` skill(`.claude/skills/thesis/SKILL.md`,可被自動發現;借 claude-obsidian 的 `/wiki`·`/autoresearch`·`/think` pattern,但**拿掉 `/think` 的「FEEL」**——違反 NHITL,換成 NHITL 紀律迴圈)+ `AGENTS.md`(repo 根,給 Roo/Codex 跨 agent)+ `thesis/lint.py`(斷連結/孤兒/pending)+ `thesis/.raw/`(餵進的原文,可溯源)。**Obsidian(app)可直接開 `thesis/` 看 `[[]]` 圖,零安裝那 repo。**
 - **v2 其他**:Phase 2 Compass overlay(資金流/敘事/macro)、flow 訊號(gamma/CTA/F&G)當未驗證 overlay;選做:RSI-2 從 tier-1 scorecard 真拆出、issuer-CSV 完整持股、marketcap.py 現為 dead fallback。
