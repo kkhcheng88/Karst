@@ -22,7 +22,6 @@ import re
 import sys
 import time
 import urllib.request
-from functools import lru_cache
 
 # reuse the v1 dataclass shape so this is a drop-in
 from insider import InsiderSignal, _CSUITE, _SCALE, _clip
@@ -41,10 +40,18 @@ def _get(url):
     raise RuntimeError(f"fetch failed: {url}")
 
 
-@lru_cache(maxsize=1)
-def _ticker_map():
-    return {r["ticker"].upper(): str(r["cik_str"]).zfill(10)
-            for r in json.loads(_get("https://www.sec.gov/files/company_tickers.json")).values()}
+def _form4_bases(ticker, since):
+    """Discover Form 4 filings via defeatbeta's cached SEC index (fast, no rate limit, FULL history)
+    instead of the EDGAR CIK-lookup + submissions API. Returns base folder URLs for Form 4 in-window."""
+    import pandas as pd
+    from defeatbeta_api.data.ticker import Ticker
+    f = Ticker(ticker).sec_filing()
+    if hasattr(f, "data"):
+        f = f.data
+    f = f[f["form_type"].isin(["4", "4/A"])].copy()
+    f["fd"] = pd.to_datetime(f["filing_date"], errors="coerce")
+    f = f[f["fd"] >= pd.Timestamp(since)]
+    return [u for u in f["filing_url"].tolist() if isinstance(u, str) and u.startswith("http")]
 
 
 def _find(tag, s, sub="value"):
@@ -52,9 +59,7 @@ def _find(tag, s, sub="value"):
     return m.group(1).strip() if m else None
 
 
-def _parse_form4(cik, accession):
-    acc = accession.replace("-", "")
-    base = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}"
+def _parse_form4(base):
     fi = json.loads(_get(base + "/index.json")); time.sleep(_PAUSE)
     names = [it["name"] for it in fi["directory"]["item"]]
     raw = [n for n in names if n.endswith(".xml") and "xsl" not in n.lower()]
@@ -82,17 +87,16 @@ def _parse_form4(cik, accession):
 
 
 def insider_signal_edgar(ticker: str, window_days: int = _WINDOW, drop_10b51: bool = True) -> InsiderSignal:
-    cik = _ticker_map().get(ticker.upper())
-    if not cik:
-        return InsiderSignal(0.0, "no-data", False, 0, 0.0, "", "no CIK", "SEC EDGAR Form 4")
-    sub = json.loads(_get(f"https://data.sec.gov/submissions/CIK{cik}.json")); time.sleep(_PAUSE)
-    rec = sub["filings"]["recent"]
     since = (dt.date.today() - dt.timedelta(days=window_days)).isoformat()
-    idx = [i for i, f in enumerate(rec["form"]) if f == "4" and rec["filingDate"][i] >= since]
+    try:
+        bases = _form4_bases(ticker, since)
+    except Exception as e:
+        return InsiderSignal(0.0, "no-data", False, 0, 0.0, "", f"defeatbeta index err: {str(e)[:40]}",
+                             "SEC EDGAR Form 4")
     txs = []
-    for j in idx:
+    for base in bases:
         try:
-            txs += _parse_form4(cik, rec["accessionNumber"][j])
+            txs += _parse_form4(base)
         except Exception:
             continue
     # keep only genuine open-market P (buy) / S (sale); drop A/M/F/G/... ; optionally drop 10b5-1
@@ -126,7 +130,7 @@ def insider_signal_edgar(ticker: str, window_days: int = _WINDOW, drop_10b51: bo
             + ("; C-suite" if csuite_buy else "")
             + f"; dropped {dropped} mechanical (A/M/F/G/10b5-1) tx")
     return InsiderSignal(round(score, 2), label, cluster, buyers, round(buy_val - sell_val, 0),
-                         top_buy, note, "SEC EDGAR Form 4")
+                         top_buy, note, "SEC EDGAR Form 4 (defeatbeta index)")
 
 
 import os
