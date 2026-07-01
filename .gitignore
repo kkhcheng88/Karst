@@ -29,3 +29,6 @@ thesis/ic_report.md
 
 # insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
 thesis/insider_cache.json
+
+# SEC bulk Form345 zips for insider backtest (regenerable download)
+backtest/.insider_data/
