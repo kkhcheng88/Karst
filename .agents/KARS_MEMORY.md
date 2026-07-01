@@ -125,4 +125,26 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
   - **但量化排序技巧 ≈ 0**:28 個 Alpha158 家族因子 forward IC sweep(+ Bonferroni + composite + SVD)= **0/28 過關**,最強 mom52 IC 0.033(過不了)。**Qlib=更多同源 price/volume,SVD 找變異非預測(PC1 IC≈0)。price/volume 這扇門關死。**
   - **🎯 整個系統重構成一個可證偽靶**:**找一個 forward IC ≥ 0.05 的排序訊號**;唯一未測、合理可能有增量的來源 = **質性資訊(新聞/催化劑/財報/bottleneck)= Phase 3**。**Phase 3 的成功標準 = thesis 排序的 forward IC ≥ 0.05(可前瞻量測、可證偽)。** breadth 小、IC 0.05–0.1 是硬門檻(專業量化才 0.02–0.05),零證據任何可及訊號能過,但報酬凸性 justifies 去找。
 - **agent 對用戶的提醒(Charter 角色)**:持續加結構層可能是「方法論救贖」的高級拖延;edge 在 Phase 3,別無限延後;每個 sleeve 要對標「無腦抱 QQQ」淨成本/稅後。
+
+---
+
+## 9. Phase 3 設計定稿(2026-07-01 session,詳見 `thesis/DESIGN.md`)
+
+**edge 實證定位**:20+ backtest 證 price/volume 量化 = 風控非 alpha;逆向工程 oracle → **可捕捉 edge = 讀 regime + 催化劑 + 供需**(top-20 事件週全對得上有名有姓的宏觀事件;yearly-hold oracle ≈2×SPY;skill-curve:forward IC 0.05 就贏 SPY)。**「價格圖裡沒有 OPEC 減產/疫苗成功/underinvestment 這些資訊」→ 質性 = Phase 3。**
+
+**NHITL 對齊(關鍵)**:原始目標「執行層全自動、拿掉人的情緒」。四元素**全可量化**:分類(regime/板塊/cycle/event/A型危機)、夠早(估值分位+供給回應+擁擠=priced-in 閘)、風控(invariants+kill+sizing)、**confidence(不是「信念」!)= f(4-KPI, 佐證數, 距kill, payoff, regime契合)→ 對戰績校準成真機率 → sizing**。**「信念」是系統要消滅的 FOMO,換成可算+可校準的 confidence。** 唯一人/嚴格閘 = 採納「新 thesis 類型」的驗證閘(原始設計已有)。**基建(FTS 語料+wiki+MCP+LLM 抽 KPI)= NHITL 的實現機制,不是分心。**
+
+**兩型 offense**:B 主題超級週期(供給受限+需求+定價權+催化劑;能源2021/Memory2026/GLP-1/AI-電力-銅-鈾;讀供需);A 危機救援(VIX>40+最慘系統板塊+政策;讀恐懼,VIX+回撤可算,已驗 COVID/GFC)。
+
+**知識層(規模分層)**:原料語料→**SQLite FTS**(百萬級,法律 MCP 16萬判例已證);綜合→**markdown+`[[]]`+git wiki**(幾千頁,引用進語料不複製);介面→**MCP server(agent-agnostic:Claude Code/Roo/Codex)**。檢索照法律 MCP `search.py` 的 `research_cases`(**df 收割=anti-noise + concept-coverage=regime-conditioning + good-law=判類比對現在 regime 算不算數**,確定性非向量)。原料分級:逐字稿/財報/價量=一手 Tier1;分析報告=待驗意見 Tier2;新聞=事件訊號 Tier3。
+
+**事件引擎(唯一值得早做的重基建)**:歷史類比 → regime-conditioned base rate,解「新事件 n=1 驗證太慢」。語料 = **FNSPID(1999-2023、15.7M 新聞+價格、已對齊、已釋商用)**——補 defeatbeta 新聞只 15 個月的死點。**做薄版先驗。**
+
+**驗證(非 backtest)**:新事件當下用「事前框架+kill 護欄」(非數字);流程層 forward-IC(1-2年,背景健檢非閘);賭注層期望值/命中率/CAR/kill 紀律(凸 payoff,~20-30 個才有話說);confidence 對這些校準。
+
+**護欄(重新校準)**:陷阱不是「建系統」(那是 NHITL 目標),是「無限完美化、永不部署」。**做到能自動跑就上線→部署→迭代→校準。**
+
+**選型**:知識層採 **claude-obsidian 架構/慣例(不綁其 skills)** + 借 llm_wiki 圖相關性;拒絕 WeKnora/PandaWiki(向量/server 重,違確定性哲學)。**agent 可攜靠 MCP server(照 VR pattern),不綁 Claude Code。**
+
+**建造順序**:精簡先行(4-KPI 清單 + 一個 `[[]]` thesis 頁 + web 研究 + 風控四件套 + 戰績簿,現在就紙上下注)→ pilot 端到端 → 薄版事件引擎 → 重基建只在需求拉時才建、且時間盒。
 - **v2 其他**:Phase 2 Compass overlay(資金流/敘事/macro)、flow 訊號(gamma/CTA/F&G)當未驗證 overlay;選做:RSI-2 從 tier-1 scorecard 真拆出、issuer-CSV 完整持股、marketcap.py 現為 dead fallback。
