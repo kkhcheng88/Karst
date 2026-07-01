@@ -123,14 +123,27 @@ confidence = f( 4-KPI 各分數, 佐證獨立來源數, 距 kill condition 多�
 
 ---
 
-## 6. 驗證(不是 backtest)
-- **單一新事件當下沒有 IC 可算(n=1)** → 用**事前框架 + kill 護欄**驗(供需真嗎?priced-in?kill 設了?
-  Bull/Base/Bear?),不是數字。
-- **流程層**:連續排序的 forward IC(長期累積,≥0.05 靶,1–2 年)= **背景健檢,不是下注閘**。
-- **賭注層**:逐 thesis 的**期望值 / 命中率 / event-study CAR / kill 紀律**(B 型 payoff 凸:對=大贏、
-  錯守 kill=小虧 → 命中率 40% 也能大賺;~20–30 個才有話說)。
-- confidence **對這些實際結果校準**成真機率。
-- **矛盾 lint**(wiki 層):新 claim 跟舊的矛盾 → 偽證/一致性紀律。
+## 6. 驗證(不是 backtest)—— 戰績簿 = agent 的自我監控 log,不是人的日記
+
+**戰績簿是 agent 自己的、機器可讀、append-only 的「預測-結果」log,全自動(NHITL);人不用它做日常
+決策。** 若人來讀來判「最近做得好不好」= 人回到迴圈 + recency/ego 偏誤 = 違反 NHITL。結構:
+```
+每個 thesis append:{時間, ticker/theme, thesis_id, confidence, cycle_stage, prediction(方向/幅度),
+  kill_condition, entry 脈絡} → 之後自動掛 {實際 forward 報酬, kill 有無觸發, 實際 vs 預測}
+```
+系統自動從它算:
+- **校準 confidence**:「說 0.7 是否真 ~70% 命中」→ 自動調 confidence 函數/校準映射。
+- **流程層 forward IC**:連續排序 IC(長期累積,≥0.05 靶,1–2 年)= **背景健檢,不是下注閘**。
+- **賭注層期望值 / 命中率 / CAR / kill 紀律**(B 型 payoff 凸:對=大贏、錯守 kill=小虧 → 命中率 40%
+  也能大賺;~20–30 個才有話說)。
+- **decay 偵測(自我修復)**:live vs 期望 rolling 背離超閾值 → circuit-breaker / 停 sleeve。
+  **戰績簿就是 `invariants/systematic_rules.md` §自我修復 那層的實現**(機器檢查,非人)。
+- **餵「新 thesis 類型」驗證閘**:新玩法的 track-record 過閘才准上 live-sizing。
+
+**單一新事件當下沒有 IC 可算(n=1)** → 用事前框架 + kill 護欄驗(供需真嗎?priced-in?kill 設了?
+Bull/Base/Bear?),不是數字;數字之後從戰績簿累積。**人唯一碰戰績簿的地方 = 「採納新 thesis 類型」
+驗證閘上的一份衍生摘要(且該閘也可嚴格自動化)。** 另:**矛盾 lint**(wiki 層)= 新 claim 跟舊的矛盾
+→ 偽證/一致性紀律。
 
 ---
 
