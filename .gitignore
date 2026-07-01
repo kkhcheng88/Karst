@@ -12,3 +12,10 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# raw ingested corpora (local reference only; not version-controlled -- can be re-downloaded)
+thesis/.raw/gooptions/
+thesis/.raw/**/*.jsonl
+
+# Obsidian local workspace state (vault is viewable; per-user config not version-controlled)
+thesis/.obsidian/
