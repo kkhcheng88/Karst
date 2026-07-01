@@ -108,9 +108,13 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
 3. **per-family 正式驗證(CIO Phase 0)—— 第一輪已跑**(`backtest/exp_insider_validate.py` +
    `exp_family_validate.py`,SEC bulk Form345 + defeatbeta 價格,look-ahead-safe,forward IC + deflated
    Sharpe)。發現:**Insider 有真「21d」edge(t=5.12)但 63d 歸零/126d 轉負 → 短期催化非長期**(⚠️ 與
-   現在的長期 ±30% overlay 接線 **horizon 不符,待改成短期 tilt**);**RSI-2 mean-rev 最強**(IC t=11.58,
-   驗證 Phase-4);**Relative Strength ≈0(不獨立=動能)**;momentum/low-vol IC 正但可交易 LS 負。
-   **caveat:宇宙小型股偏斜;待用乾淨流動宇宙(S&P)重跑定論。**
+   現在的長期 ±30% overlay 接線 **horizon 不符,待改成短期 tilt**);**RSI-2 mean-rev 最強**(IC t=6-12
+   兩宇宙皆穩、DSR 0.91,驗證 Phase-4)。
+   **⚠️ 方法學修正:IC/long-short 對 long-only 系統是錯的鏡子。** 用「long-only 持有頂五分位 vs SPY
+   買入持有」(S&P 1995-2026)測:**momentum +9.9% / RS-126d +10.2% / RS-63d +8.6% / RSI-2 +12.5%
+   CAGR 超額**(low-vol 輸)。→ **RS/動能「持有領頭羊」強勝指數;先前用 IC/LS 判它們無 edge 是測錯了
+   (空方弱股反彈拖垮 LS)。Karst tier-2 是 long-only → 這才是對的鏡子。** caveat:現 S&P 成員 =
+   survivorship,超額被高估;+成本/換手打折。`exp_family_validate.py` 兩種鏡子都有。
 4. 背離 → confidence 自動 temper;個股 >200SMA 才認 RSI-2 dip。
 5. **Phase 2(資金流/敘事)**、**A 型危機 tail** —— 較大,待決策。
 6. 14 篇未歸類分流(軟體/網通種子);各 thesis 頁 `待補`(LTA 記分卡追蹤/逐字稿/FNSPID)。
