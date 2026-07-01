@@ -54,10 +54,16 @@ def _load_quarter(qtr):
 
     def tsv(name, cols):
         with z.open(name) as fh:
+            txt = io.TextIOWrapper(fh, encoding="utf-8", errors="replace")
+            have = pd.read_csv(io.StringIO(txt.readline()), sep="\t", nrows=0).columns
+        with z.open(name) as fh:
+            use = [c for c in cols if c in have]           # AFF10B5ONE absent in pre-2023 quarters
             return pd.read_csv(io.TextIOWrapper(fh, encoding="utf-8", errors="replace"),
-                               sep="\t", usecols=cols, dtype=str, low_memory=False)
+                               sep="\t", usecols=use, dtype=str, low_memory=False)
     sub = tsv("SUBMISSION.tsv", ["ACCESSION_NUMBER", "FILING_DATE", "DOCUMENT_TYPE",
                                  "ISSUERTRADINGSYMBOL", "AFF10B5ONE"])
+    if "AFF10B5ONE" not in sub.columns:
+        sub["AFF10B5ONE"] = "0"                             # unknown pre-2023 -> keep (can't filter)
     tr = tsv("NONDERIV_TRANS.tsv", ["ACCESSION_NUMBER", "TRANS_CODE", "TRANS_SHARES",
                                     "TRANS_PRICEPERSHARE", "TRANS_ACQUIRED_DISP_CD"])
     own = tsv("REPORTINGOWNER.tsv", ["ACCESSION_NUMBER", "RPTOWNERCIK", "RPTOWNER_RELATIONSHIP"])
@@ -98,22 +104,54 @@ def build_events(qtrs):
 
 
 _PX = {}
-def _batch_prices(tickers, start):
-    """One batched yf.download for ALL event tickers -> {ticker: adjusted close series}. Single call
-    is far more stable than a per-ticker loop (which crashed the GIL under mass delisted-name failures)."""
+def _dl(syms, start):
     import contextlib
     import yfinance as yf
-    syms = sorted(set(tickers) | {"SPY"})
+    syms = list(syms)
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         px = yf.download(syms, start=start, auto_adjust=True, progress=False, threads=True)
-    close = px["Close"] if "Close" in px.columns.get_level_values(0) else px
+    if px is None or len(px) == 0:
+        return {}
+    if isinstance(px.columns, pd.MultiIndex):
+        close = px["Close"] if "Close" in px.columns.get_level_values(0) else px
+    else:                                    # single-ticker -> flat columns
+        close = px[["Close"]].rename(columns={"Close": syms[0]})
+    out = {}
     for tk in syms:
         try:
-            s = close[tk].dropna() if tk in getattr(close, "columns", []) else None
-            _PX[tk] = s if (s is not None and len(s) > 60) else None
+            s = close[tk].dropna()
+            out[tk] = s.sort_index() if len(s) > 60 else None
         except Exception:
-            _PX[tk] = None
-    print(f"[insider-validate] priced {sum(v is not None for v in _PX.values())}/{len(syms)} tickers")
+            out[tk] = None
+    return out
+
+
+def _batch_prices(tickers, start):
+    """Chunked yf.download for event tickers (a single ~1700-name call is unreliable). SPY via the
+    proven data.load (yf.download single-ticker was flaky post rate-limit). Disk-cache the series so
+    re-runs are instant."""
+    import pickle
+    try:
+        s = load("SPY", adjusted=True, min_rows=100)["close"]; s.index = pd.to_datetime(s.index)
+        _PX["SPY"] = s.sort_index()
+    except Exception:
+        _PX["SPY"] = None
+    pxc = os.path.join(_DATA, "px_cache.pkl")
+    cache = {}
+    if os.path.exists(pxc):
+        try:
+            cache = pickle.load(open(pxc, "rb"))
+        except Exception:
+            cache = {}
+    uniq = sorted(set(tickers) - {"SPY"})
+    need = [t for t in uniq if t not in cache]
+    for i in range(0, len(need), 150):
+        cache.update(_dl(need[i:i + 150], start))
+        pickle.dump(cache, open(pxc, "wb"))
+    for tk in uniq:
+        _PX[tk] = cache.get(tk)
+    print(f"[insider-validate] priced {sum(_PX.get(t) is not None for t in uniq)}/{len(uniq)} event "
+          f"tickers (SPY {'ok' if _PX.get('SPY') is not None else 'MISSING'})")
 
 
 def _px(tk):
