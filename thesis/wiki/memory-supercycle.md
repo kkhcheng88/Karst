@@ -16,8 +16,10 @@ sources: [defeatbeta:ttm_pe, defeatbeta:holdings(DRAM), price:MU/SNDK/STX, web:H
 > 週期溫度」讀,別當精確機率。
 
 ## 一句話
-記憶體(DRAM/HBM/NAND)是**真的供給受限 + AI 需求爆發 + 三寡頭定價權**的 B 型超級週期——**但已晚期**
-(估值極度延伸 + DRAM ETF 剛上市=擁擠 + HBM 產能開始回應)→ **不追高,盯頂訊號。**
+記憶體(DRAM / [[HBM]] / NAND)是**真的 [[underinvestment]] 供給受限 + [[AI-demand]] 需求爆發 +
+三寡頭 [[pricing-power]] 定價權**的 B 型超級週期——**但已晚期**(估值極度延伸 + [[DRAM-ETF]] 剛上市
+=擁擠 + [[HBM]] / [[advanced-packaging]] 產能開始回應)→ **不追高,盯頂訊號。** 相關個股:[[MU]]、
+[[SNDK]]、[[STX]];板塊級 [[DRAM-ETF]]。
 
 ## 4-KPI(每條 cited)
 
