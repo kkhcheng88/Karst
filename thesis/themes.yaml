@@ -31,3 +31,184 @@ themes:
       moat names de-rate hard on any AI-capex hiccup. Trigger -> confidence to zero.
     tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
     note: "real bottleneck but MOST crowded; pick quality (COHR/LITE/GLW), avoid froth (SIVE/LWLG); wait for crowding to deflate."
+
+
+  ai-power-grid:
+    wiki: thesis/wiki/ai-power-grid.md
+    type: B
+    cycle_stage: late
+    confidence: 0.33
+    verdict: real-demand-but-priced-ahead-of-ramp
+    kill_condition: 'AI-capex demand anchor breaks (hyperscaler / data-center capex guidance rolls over
+      off the $1T->$1.7T path) OR 800V/HVDC native mass-production (SemiAnalysis stages 3-4) slips again
+      / 48V+pluggable stays good-enough (onsemi''s ~10x rack-content fails to materialise, #114/#125) OR
+      turbine majors'' orders confirm a 2026 peak (GEV CEO order-pace cracks #086, #134) OR the Infineon
+      price-hike cycle reverses (power-semi shortage ends). Trigger -> confidence to zero; 90th-pctile quality
+      names (ETN 99% / ON 90% / MPWR 89%) mean-revert, pre-earnings names (BE/NVTS/WOLF) crash.'
+    tickers:
+    - GEV
+    - BE
+    - VRT
+    - ETN
+    - PWR
+    - MPWR
+    - VICR
+    - NVTS
+    - WOLF
+    - 'ON'
+    note: 'Real demand bottleneck (near-unambiguous: Friedberg ''100% power constrained'', $700B hyperscaler
+      capex, EQT CEO''s 8 Homer City inquiries, onsemi 10x rack content) but priced AHEAD of the 2027 volume
+      ramp. Report-crowding LOW (29% bull < photonics 58%) yet quality names at valuation extremes (ETN
+      99th / ON 90th / MPWR 89th / BE 91st ttm_pe pctile) + insider selling + analyst PTs below price (NVTS
+      $13.59 vs $28.51). Moat diluted by commodity gas/utility segments. Don''t chase; cleanest cheap expression
+      = EQT (35th pctile, capex flat); deepest moat = MPWR/VICR POL duopoly but wait for valuation to deflate;
+      BE/NVTS/WOLF pre-earnings -> option/event framing. NVDA/CRWV/NBIS = downstream demand, excluded.'
+
+  advanced-packaging:
+    wiki: thesis/wiki/advanced-packaging.md
+    type: B
+    cycle_stage: late
+    confidence: 0.32
+    verdict: real-chokepoint-but-proxies-priced
+    kill_condition: 'Upstream material bottleneck loosens — Nittobo T-glass / Mitsui HVLP copper-foil 2027-28
+      new capacity arrives early, or Q-glass/next-gen de-monopolises T-glass (#106/#117); OR the packaging
+      format war resolves to a single winner, draining the AMKR/ASX ''whoever-wins-gets-paid'' arms-dealer
+      premium (#131); OR CoWoS/EMIB capacity ramps ahead of AI-accelerator demand (chokepoint -> glut, #100);
+      OR tradeable proxies (AMKR/TTMI/MKSI) de-rate from their 90-100th ttm_pe percentiles. Trigger -> confidence
+      to zero.'
+    tickers:
+    - AMKR
+    - ASX
+    - TTMI
+    - INTC
+    - MKSI
+    - KLAC
+    - GLW
+    - STX
+    - WDC
+    note: real physical chokepoint (packaging + T-glass ~90% Nittobo / HVLP-copper quota material double-lock)
+      but the real bottleneck owners (Nittobo/Mitsui/Hoya) are NON-US; every tradeable US proxy sits at
+      90-100th ttm_pe pctile (TTMI 96/MKSI 94/KLAC 94/AMKR 91/ASX 90), INTC PE meaningless->option. Narrative
+      only 1/9=11% bull (less crowded than memory) but valuation + expression-gap dominate. Prefer arms-dealers
+      AMKR/ASX (whoever wins gets paid) > priciest toll-booth TTMI; INTC event/option framing; TSM is the
+      eroded incumbent (not a long). Don't chase; wait for proxy valuations to deflate.
+
+  space-satellite:
+    wiki: thesis/wiki/space-satellite.md
+    type: B
+    cycle_stage: early
+    confidence: 0.28
+    verdict: real-early-but-froth-priced
+    kill_condition: Starship 快速重複使用長期延宕(成本停在 Falcon 量級、軌道運算 $28.5T AI TAM 敘事延後)或 Golden Dome 遭砍/推遲($1.2T
+      僅 CBO 願景、已到位僅 $250B)或純玩家獲利遲不轉正;個股定日 kill:RKLB Neutron 2026Q4 再延、ASTS 2026H2 衛星未準時足量上天、GSAT Amazon
+      併購 FCC 破局。觸發→confidence 歸零、mean-revert。
+    tickers:
+    - RKLB
+    - ASTS
+    - KTOS
+    - HEI
+    - LOAR
+    - RDW
+    - LUNR
+    - BKSY
+    - PL
+    - GSAT
+    note: Type-B 太空 capex 早週期主題(發射成本 -95%、Starlink 已證 $11.387B/63% EBITDA、VC $36B/季、Golden Dome $1.2T)。語料自律(6
+      篇僅 1 bull=17%)但可交易表達重度 priced-in:ASTS 377x/RKLB 94x P/S 夢想定價、HEI ttm_pe 87 分位/MP 92 分位站頂、多檔 pre-revenue(RKLB/ASTS/RDW/PL/BKSY
+      會計虧損)、最深護城河 SpaceX 不可乾淨買。唯一 bull(LOAR)空曝險最薄=航太 roll-up 非太空表達。base 4.5/8=0.5625 × cycle/crowding penalty
+      ~0.50 → 0.28,略低於 photonics 0.30(太空缺可乾淨買的硬瓶頸深護城河)。表達用選項/事件框架、小注、嚴守 kill。INITIAL/uncalibrated。
+
+  rare-earth-materials:
+    wiki: thesis/wiki/rare-earth-materials.md
+    type: B
+    cycle_stage: event-driven
+    confidence: 0.28
+    verdict: real-chokepoint-thin-evidence-event-binary
+    kill_condition: 2026-11 US-China formal deal fully lifts indium/gallium/heavy-REE export controls (White
+      House 'will address' upgrades to a legally binding removal) -> chokepoint thesis base collapses; OR
+      China domestic vertical integration lands on time (Shaanxi Yinjie 250t InP yields / Chinese magnet
+      supply ramps) -> scarcity eroded at the source; OR MP's DoD $110/kg floor / Project Vault funding
+      changes (policy premium gone); OR the truce is extended indefinitely and the market fully prices out
+      the cut-off risk (event catalyst disappears). Any trigger -> confidence to zero, back to commodity-cycle
+      mean-revert.
+    tickers:
+    - MP
+    - USAR
+    note: REAL geopolitical chokepoint (USGS indium 70% / gallium 98-99%; heavy-REE to US ~5%; MP DoD-backed
+      $110/kg floor) but THIN evidence (only 2 reports) + binary 2026-11 truce-expiry x US-midterms event
+      + MP priced-in (ttm_pe 119.6 = 92nd pctile). Prefer cheap AXTI (16.2 = 26th pctile, only clean value;
+      overlaps photonics), don't chase MP; USAR/NVTS pre-earnings -> option/event framing. cycle=event-driven,
+      confidence 0.28 INITIAL/uncalibrated -> lowest of the batch.
+
+  tpu-custom-silicon:
+    wiki: thesis/wiki/tpu-custom-silicon.md
+    type: B
+    cycle_stage: mid
+    confidence: 0.25
+    verdict: real-share-shift-but-thin-and-consensus
+    kill_condition: 'TPU escaping Google stalls (no new hyperscaler/enterprise adoption beyond Anthropic/Meta
+      -> third-party leasing stays a few-giants niche) OR AVGO AI/custom-ASIC order-book & revenue stops
+      beating (toll-booth not confirmed by financials) OR New-Street-tracked NVDA inference share fails
+      to loosen (diffusion slower than bull case) OR CUDA/software keeps SMB TPU deployments off. Crowding-unwind:
+      whole chain 75-87th ttm_pe pctile + most-consensus design-side names de-rate hard on any AI-capex
+      hiccup. Trigger -> confidence to zero.'
+    tickers:
+    - AVGO
+    - TSM
+    - CLS
+    note: 'real inference cost-economics share-shift (ASIC 20-50% cheaper/effective-compute; inference >
+      training by 2030), but THIN evidence (single Tier-2 report #129, 100% bull) + AVGO custom-silicon
+      design-side is one of the most consensus AI trades; chain 75-87th ttm_pe pctile + capex rising. AVGO
+      = purest toll-booth (designs TPU + Tomahawk switching = wins twice); TSM = only intersection of both
+      chains (wins either way). Small size, don''t chase; watch TPU-out-of-Google diffusion + AVGO custom-ASIC
+      orders. NVDA/GOOGL/SMCI excluded (incumbent bet-against / diluted owner / NVIDIA-chain).'
+
+  oil-gas-energy:
+    wiki: thesis/wiki/oil-gas-energy.md
+    type: B
+    cycle_stage: late
+    confidence: 0.25
+    verdict: thin-split-watch
+    kill_condition: 'THIN 2-report WATCH, not a directional call. Oil leg: Brent decisively reclaims >$90
+      (Hormuz dark-voyage tankers attacked -> insurance spike -> real disruption, OR OPEC+ re-imposes discipline)
+      invalidates the ''oversupply/near-term-bearish'' framing; conversely <$60 on China demand collapse
+      breaks the long-energy-equity leg. Gas-power leg: SEI governance binary worsens (Morpheus short-report
+      allegations confirmed / KTR keeps dumping / a major long-term contract cancelled, #049) OR AI behind-the-meter
+      capex stalls (hyperscaler cuts) -> the bull leg (#058) goes to zero. Either track firing zeros that
+      track''s confidence; if both lose edge (oil ranges quietly, gas-power crowding deflates with no new
+      catalyst) energy degrades to pure beta -> de-list, no thesis.'
+    tickers:
+    - XOM
+    - CVX
+    - COP
+    - EQT
+    - LNG
+    - SEI
+    - XLE
+    - XOP
+    note: 'THIN (2 reports) + heterogeneous: oil macro (#116 neutral, Brent crashed 100->78, OPEC+ breakup
+      = near-term oversupply/bearish) glued to gas->power (#058 bull, SEI 3.1 GW BTM buildout). Not one
+      thesis -> WATCH split by track. Only playable edge = EQT (cheap pe 10/35th + disciplined capex + AI
+      behind-the-meter pull); or XLE/XOP to diversify the Iran-binary macro. SEI is the lone bull name but
+      most expensive (pe 97th) + carries a governance/short-report binary (#049) -> event/option framing,
+      tiny. Exclude NVDA/AVGO (AI demand) and VST/CEG/TLN (nuclear SALP already cut).'
+
+  semicap-equipment:
+    wiki: thesis/wiki/semicap-equipment.md
+    type: B
+    cycle_stage: late
+    confidence: 0.2
+    verdict: real-tollgate-but-froth-thin
+    kill_condition: 'Insider open-market selling continues (CEO keeps selling / no buys resume, reverse
+      smart-money signal persists) OR the $41M / $50.9M backlog fails FY2027 revenue recognition (deferral
+      / hyperscaler cuts Sonoma / single-customer shock) OR a named ATE peer (Advantest / Teradyne / Cohu
+      / inTEST) enters package-level burn-in at scale, dissolving the unverified ''only at scale'' moat.
+      Froth-unwind: fwd PE ~615x + price above ALL sell-side targets + beta 3.27 amplifies any AI-capex
+      hiccup. Trigger -> confidence to zero.'
+    tickers:
+    - AEHR
+    note: THIN evidence (1 neutral report, 0% bull). Real cross-cutting burn-in tollgate + hard one-first
+      $41M hyperscaler Sonoma order, BUT the only tradeable expression AEHR is extreme single-name froth
+      (TTM EPS negative -> PE undefined; report fwd PE ~615x, +856% 1yr, price above ALL sell-side targets
+      $56-68, insider $44M open-market sells, no 10b5-1). Capex light + declining (no supply-response boom).
+      Watch-only, don't chase; wait for pullback or FY2027 recognition.
