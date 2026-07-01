@@ -67,7 +67,8 @@ def _article_markdown(page_html):
 
 
 def _yaml_list(xs):
-    return "[" + ", ".join(str(x) for x in (xs or [])) + "]"
+    # quote each item -> YAML-safe (tickers like ON/NO/YES would else coerce to bool)
+    return "[" + ", ".join(f"'{x}'" for x in (xs or [])) + "]"
 
 
 def download_research():
@@ -106,7 +107,7 @@ def download_research():
             f"publishedAt: {it.get('publishedAt','')}",
             f"readMinutes: {it.get('readMinutes','')}",
             f"thesisType: {it.get('thesisType','')}",
-            f"primary_ticker: {it.get('primary_ticker','')}",
+            f"primary_ticker: '{it.get('primary_ticker','') or ''}'",
             f"tickers: {_yaml_list(it.get('tickers'))}",
             "source: gooptions.cc/trend-core-research",
             "tier: 2",

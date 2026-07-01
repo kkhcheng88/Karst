@@ -19,3 +19,7 @@ thesis/.raw/**/*.jsonl
 
 # Obsidian local workspace state (vault is viewable; per-user config not version-controlled)
 thesis/.obsidian/
+
+# SQLite FTS corpus (regenerable from .raw via corpus.py build)
+thesis/corpus.db
+*.db

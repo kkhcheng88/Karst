@@ -22,9 +22,18 @@ first** (the full blueprint) — this skill is the operating procedure.
   theme -> {confidence, cycle_stage, verdict, kill_condition, tickers, wiki}.
 - `thesis/wiki/<slug>.md` — the synthesis page: 4-KPI evidence (cited) + confidence derivation +
   cycle_stage + kill + `[[wiki-links]]`.
-- `thesis/.raw/` — raw fed reports/posts (immutable, for citation/audit). Distil FROM here INTO wiki.
 - `thesis/track_record.jsonl` — the AGENT's self-monitoring log (`thesis/log_predictions.py` writes it).
-- Raw corpora at scale (news/transcripts) live in DBs/APIs (defeatbeta, later FNSPID+FTS), NOT the vault.
+
+### The 3-layer knowledge store (raw != vault; scales to millions)
+① **full text** — `thesis/.raw/<source>/…` (immutable, gitignored) + **`thesis/corpus.db`** (SQLite
+   FTS5 trigram; gitignored/regenerable). `thesis/corpus.py {build|search|ticker|get|verify}`.
+② **source nodes** — `thesis/wiki/sources/<issue>-<slug>.md`: THIN stubs (metadata + card + inline
+   `[[cluster]] [[ticker]]` links; body stays in ①). `thesis/build_source_nodes.py` generates them.
+   These are the graph nodes; at scale stub-on-cite, not stub-all.
+③ **synthesis** — `thesis/wiki/<thesis>.md` (the distilled 4-KPI thesis; `[[]]`-links to ② + concepts).
+- Ingesting a NEW batch: download -> `python thesis/corpus.py build` (re-index) -> `python
+  thesis/build_source_nodes.py` (refresh nodes) -> distil ③. Raw corpora at scale (news/transcripts:
+  gooptions, later FNSPID) live in ①, never as full-body pages in the vault.
 
 **Wiki page format (MUST):** frontmatter = valid-YAML SCALARS only (slug, type, cycle_stage,
 confidence, verdict, updated, tickers). **NEVER put `[[wiki-links]]` in YAML frontmatter** — `[[` is
@@ -91,6 +100,10 @@ pattern (concept -> search -> harvest -> synthesise). The user feeds a report (p
 
 ## Tools
 - Scan: `python backtest/scan.py [--json]` (the front door; tier-2 shows thesis confidence + cycle).
+- Corpus (layer ①): `python thesis/corpus.py build|search "<q>"|ticker <SYM>|get <slug>|verify <slug> "<quote>"`.
+  Deterministic FTS retrieval (search -> get -> verify_quote) for grounding claims in fed reports.
+- Ingest gooptions: `python thesis/download_gooptions.py research` (manifest-driven, resumable — re-run
+  to pull only NEW reports) then `corpus.py build` + `build_source_nodes.py`.
 - Log: `python thesis/log_predictions.py` (agent appends predictions to track_record.jsonl).
 - Lint: `python thesis/lint.py`.
 - Data: defeatbeta via `backtest/data.py` + direct `Ticker(sym).<method>()` (fundamentals/transcripts/
