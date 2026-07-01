@@ -26,3 +26,6 @@ thesis/corpus.db
 
 # forward-IC snapshot (regenerable)
 thesis/ic_report.md
+
+# insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
+thesis/insider_cache.json

@@ -20,12 +20,17 @@ from __future__ import annotations
 import contextlib
 import datetime as dt
 import io
+import json
+import os
 import sys
 from dataclasses import dataclass
 from functools import lru_cache
 
 import pandas as pd
 import yfinance as yf
+
+_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "insider_cache.json")
+_EDGAR = None
 
 _WINDOW = 180                     # look-back (days) for "recent" insider activity
 _SCALE = 500_000                  # $0.5M open-market buying ~ a meaningful signal
@@ -48,8 +53,24 @@ def _clip(x, lo, hi):
     return max(lo, min(hi, x))
 
 
+def _edgar_cache():
+    """Research-grade EDGAR signals precomputed offline by insider_edgar.build (SLOW to fetch live)."""
+    global _EDGAR
+    if _EDGAR is None:
+        try:
+            _EDGAR = json.load(open(_CACHE, encoding="utf-8")) if os.path.exists(_CACHE) else {}
+        except Exception:
+            _EDGAR = {}
+    return _EDGAR
+
+
 @lru_cache(maxsize=256)
 def insider_signal(ticker: str, window_days: int = _WINDOW) -> InsiderSignal:
+    # Prefer the EDGAR cache (true P/S codes, mechanical A/M/F/G/10b5-1 stripped); yfinance is the fallback.
+    c = _edgar_cache().get(ticker.upper())
+    if c:
+        return InsiderSignal(c["score"], c["label"], c["cluster"], c["buyers"], c["net_value"],
+                             c.get("top_buy", ""), c["note"], c["source"] + " (cached)")
     try:
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             df = yf.Ticker(ticker).insider_transactions
