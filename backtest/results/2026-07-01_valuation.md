@@ -50,5 +50,31 @@ relative via `industry_ttm_pe`) as a CONTEXT dimension in the Phase-3 thesis lay
 "valuation/expectations" KPI — used STYLE-DEPENDENTLY (offense: watch growth-durability not
 cheapness; defense: cheapness is a tilt). Not a standalone signal.
 
+## Broad-universe update — the U-shape was a TECH artifact (`exp_valuation_broad.py`)
+The 18-name study was ~half tech giants, which over-stated "expensive wins". Re-ran on a broad,
+non-hand-picked universe = top-10 US holdings of ALL 11 SPDR sectors (110 names), broken down
+BY SECTOR:
+
+```
+sector    spread %pos   Q0   Q1   Q2   Q3   Q4   shape
+Tech       -7.9%  20%  10.5 11.8 13.0 11.3 15.7  GROWTH (value trap)
+Materials +11.3%  90%  12.2  6.7  7.2  5.7  4.4  VALUE (strongest)
+Utilities  +6.6%  60%   4.7  4.9  4.5  4.2  3.8  VALUE
+Comm       +5.8%  89%  11.0  8.6  8.0  4.4  3.5  VALUE
+Discr      +2.5%  50%  10.8 11.3  7.8  6.1  8.3  VALUE
+Fin/Energy/Health/Staples/Indus/RealEst ~+1%  ~flat
+ALL (107)          58%   7.9  7.4  6.7  5.8  6.9   mostly monotone-declining (value-ish)
+```
+- **The U-shape (Q4 highest) is essentially TECH-ONLY.** In the broad pool, Q4 is NOT the peak;
+  the pattern is roughly monotone-declining Q0>Q1>Q2>Q3 (cheap beats fair), with only a small
+  Q4 uptick that Tech alone produces.
+- **Value is sector-dependent:** a TRAP in Tech (the lone GROWTH sector), a real positive tilt in
+  Materials/Comm/Discr/Utilities (cyclical/mature), ~flat elsewhere. 58% of names cheap>expensive.
+- **This confirms the offense/defense-by-valuation split on a broad universe:** don't apply
+  valuation cheapness to growth/offense (Tech); it's a legit tilt for mature/cyclical/defense.
+- Discipline unchanged: even where the tilt exists, mechanical harvesting still loses to B&H
+  (Test 2) -> valuation is a style-dependent CONTEXT tilt, not a mechanical strategy.
+
 ## Files
-New: `backtest/exp_valuation.py` (uses defeatbeta ttm_pe direct; engine/metrics reused).
+New: `backtest/exp_valuation.py` (18 hand-picked, ttm_pe), `backtest/exp_valuation_broad.py`
+(110 SPDR-top-10 names, by-sector, fast rolling-rank percentile).
