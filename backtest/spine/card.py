@@ -15,7 +15,15 @@ def _timing_dict(timing):
     return {"rsi2": timing.rsi2, "label": timing.label, "note": timing.note}
 
 
-def build_card(entry, mc, score, expr, thesis, sector_temp, sector_warm, timing=None) -> TickerCard:
+def _insider_dict(ins, conf_eff=None):
+    if ins is None:
+        return None
+    return {"label": ins.label, "score": ins.score, "cluster": ins.cluster,
+            "net_value": ins.net_value, "conf_eff": conf_eff, "note": ins.note, "source": ins.source}
+
+
+def build_card(entry, mc, score, expr, thesis, sector_temp, sector_warm, timing=None,
+               insider=None, conf_eff=None) -> TickerCard:
     return TickerCard(
         ticker=entry.ticker, asof=mc.asof, tier=entry.tier, sector=entry.sector,
         market_gate=mc.gate, market_gate_label=mc.gate_label,
@@ -23,6 +31,7 @@ def build_card(entry, mc, score, expr, thesis, sector_temp, sector_warm, timing=
         thesis=_thesis_dict(thesis), entry_timing=_timing_dict(timing),
         score=score, expression=expr,
         drivers=expr.get("drivers", "") or "", caveats=list(mc.caveats),
+        insider=_insider_dict(insider, conf_eff),
     )
 
 
@@ -43,5 +52,5 @@ def to_dict(card: TickerCard) -> dict:
         "sector_temp": card.sector_temp, "sector_warm": card.sector_warm,
         "thesis": card.thesis, "entry_timing": card.entry_timing,
         "score": card.score, "expression": card.expression,
-        "drivers": card.drivers, "caveats": card.caveats,
+        "drivers": card.drivers, "caveats": card.caveats, "insider": card.insider,
     }

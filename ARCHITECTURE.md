@@ -56,7 +56,7 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 | **Mean Reversion(RSI-2)** | **Phase 4** | ✅ 純價格股權進場(不拿去買選擇權)|
 | **Volatility / VRP** | Phase 0 / 選擇權側(IV-rank)| ✅ tier-1 CSP/SHORT_CALL |
 | **Relative Strength** | **Phase 1**(Sector RS + Stock-RS-in-sector,**兩層都在此**)| ✅ `rs_vs_market` + `member_rank.rs_vs_parent` |
-| **Flow: Insider** | **Phase 3**(非價格、知情人行為)| 🔴 **未建 —— 最高價值缺口**;種子已在語料(#96/#93)|
+| **Flow: Insider** | **Phase 3**(非價格、知情人行為)| ✅ **已建** `thesis/insider.py` — 開市買/cluster/C-suite 過濾、賣出低權重、bounded ±30% conf 修正 |
 | **Flow: GEX** | **Phase 0**(SPY/QQQ fragility)| 🔴 未建 |
 | **Flow: Dark-pool/UOA** | (存疑,暫不排)| 🔴 我判定多為噪音,先不做 |
 
@@ -100,16 +100,16 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
 
 ## 6. 已建 / stub / 延後 + open items
 
-**✅ 已建:** Phase 0/1/4 spine · Phase 3(9 Type-B thesis)· 知識層(FTS+源節點+wiki)· forward-IC + 每日排程 · scan 全 9 叢覆蓋(市值加權 + 背離)。
+**✅ 已建:** Phase 0/1/4 spine · Phase 3(9 Type-B thesis **+ Insider 家族**)· 知識層(FTS+源節點+wiki)· forward-IC + 每日排程 · scan 全 9 叢覆蓋(市值加權 + 背離)。
 
 **🔴 未建 / 缺口(依價值):**
-1. **Insider 家族 → Phase 3**(最高價值;種子在語料)。
-2. **突破觸發 → Phase 4**(補 RSI-2 覆蓋盲區,帶量確認)。
-3. **GEX → Phase 0**(SPY/QQQ fragility)。
-4. **per-family 正式驗證**(deflated Sharpe;補上跳過的 CIO Phase 0 嚴謹度)。
-5. 背離 → confidence 自動 temper;個股 >200SMA 才認 RSI-2 dip。
-6. **Phase 2(資金流/敘事)**、**A 型危機 tail** —— 較大,待決策。
-7. 14 篇未歸類分流(內含 Insider/軟體/網通種子);各 thesis 頁 `待補`(LTA 記分卡追蹤/逐字稿/FNSPID)。
+1. **突破觸發 → Phase 4**(補 RSI-2 覆蓋盲區,帶量確認)。
+2. **GEX → Phase 0**(SPY/QQQ fragility)。
+3. **per-family 正式驗證**(deflated Sharpe;補上跳過的 CIO Phase 0 嚴謹度)。
+4. 背離 → confidence 自動 temper;個股 >200SMA 才認 RSI-2 dip。
+5. **Phase 2(資金流/敘事)**、**A 型危機 tail** —— 較大,待決策。
+6. 14 篇未歸類分流(軟體/網通種子);各 thesis 頁 `待補`(LTA 記分卡追蹤/逐字稿/FNSPID)。
+   內部人 cluster-buy(USAR/LOAR/TSM)可反饋強化對應 thesis 的 confidence(手動或自動)。
 
 **紀律不變量(INV-*):** 見 spine 程式碼註解;INV-5(板塊內落後者只在 US 名判)、INV-8/9(個股不做選擇權)等。
 

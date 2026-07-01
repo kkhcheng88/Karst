@@ -35,6 +35,7 @@ def run_daily(path: str | None = None):
                 tm = timing.entry_timing(df["close"])
                 score, expr = expression.express_options(e, df)
                 temp, warm = "N/A", 1
+                ins, conf_eff = None, None
             else:
                 df = load(e.ticker, min_rows=30)  # young names/ETFs (e.g. DRAM 61d) still load
                 tm = timing.entry_timing(df["close"])
@@ -42,7 +43,11 @@ def run_daily(path: str | None = None):
                 score, expr = expression.express_long(e, df, mc, th, sc, tm)
                 temp = sc.temperature if sc else providers.SECTOR_STUB_TEMP
                 warm = sc.warm if sc else providers.SECTOR_STUB_WARM
-            cards.append(card_mod.build_card(e, mc, score, expr, th, temp, warm, tm))
+                # Phase-3 corroboration: insider buying (bounded nudge on the thesis confidence)
+                ins = providers.insider(e.ticker)
+                conf_eff = (providers.corroborated_confidence(th.unit, ins)
+                            if th.source.startswith("thesis:") else None)
+            cards.append(card_mod.build_card(e, mc, score, expr, th, temp, warm, tm, ins, conf_eff))
         except Exception as ex:  # isolate per-ticker failures
             cards.append(card_mod.error_card(e, mc, ex))
     return mc, rot, sec_ctx, cards
@@ -109,6 +114,12 @@ def _print_human(mc, rot, sec_ctx, cards):
         conf = th.get("confidence")
         print(f"  thesis: {th.get('verdict')} | conf {conf if conf is None else round(conf, 2)}"
               f" | cycle {th.get('cycle_stage')} | {th.get('source')}")
+        ins = c.insider
+        if ins and ins.get("label") not in (None, "no-data"):
+            ce = ins.get("conf_eff")
+            adj = f" -> conf {ce}" if ce is not None and conf is not None else ""
+            print(f"  insider: {ins['label']} (score {ins['score']}"
+                  f"{', CLUSTER' if ins.get('cluster') else ''}){adj}  | {ins.get('note', '')[:88]}")
 
 
 def main(argv=None):

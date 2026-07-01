@@ -10,7 +10,9 @@ uncalibrated until track_record accumulates (DESIGN §6).
 """
 from __future__ import annotations
 
+import importlib.util
 import os
+import sys
 
 import yaml
 
@@ -47,3 +49,41 @@ def thesis_quality(ticker: str) -> ThesisVerdict:
                 cycle_stage=t.get("cycle_stage"),
             )
     return ThesisVerdict(verdict="neutral", unit=1.0, source="no-thesis")
+
+
+# --- Phase 3 corroboration: insider buying (the one durable Flow family; NOT in the price chart) ---
+_INSIDER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "thesis", "insider.py")
+_INSIDER_MOD = None
+
+
+def _insider_mod():
+    global _INSIDER_MOD
+    if _INSIDER_MOD is None:
+        try:
+            spec = importlib.util.spec_from_file_location("karst_insider", _INSIDER_PATH)
+            mod = importlib.util.module_from_spec(spec)
+            sys.modules["karst_insider"] = mod          # register so @dataclass finds its module
+            spec.loader.exec_module(mod)
+            _INSIDER_MOD = mod
+        except Exception:
+            _INSIDER_MOD = False
+    return _INSIDER_MOD
+
+
+def insider(ticker: str):
+    """Insider-buying corroboration (thesis/insider.py). Returns an InsiderSignal or None on failure.
+    A BOUNDED Phase-3 nudge: buying (esp. cluster/C-suite) corroborates; net selling gently tempers."""
+    mod = _insider_mod()
+    if not mod:
+        return None
+    try:
+        return mod.insider_signal(ticker)
+    except Exception:
+        return None
+
+
+def corroborated_confidence(base_conf: float, ins) -> float:
+    """Nudge a thesis confidence by the insider score, bounded to +/-30%. Corroboration, not driver."""
+    if ins is None or base_conf is None:
+        return base_conf
+    return round(max(0.0, min(1.0, base_conf * (1.0 + 0.30 * ins.score))), 3)

@@ -126,3 +126,4 @@ class TickerCard:
     expression: dict            # tier-aware payload
     drivers: str
     caveats: list
+    insider: dict = None        # Phase-3 corroboration: {label, score, cluster, conf_eff, note, source}
