@@ -105,7 +105,12 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
 **🔴 未建 / 缺口(依價值):**
 1. **突破觸發 → Phase 4**(補 RSI-2 覆蓋盲區,帶量確認)。
 2. **GEX → Phase 0**(SPY/QQQ fragility)。
-3. **per-family 正式驗證**(deflated Sharpe;補上跳過的 CIO Phase 0 嚴謹度)。
+3. **per-family 正式驗證(CIO Phase 0)—— 第一輪已跑**(`backtest/exp_insider_validate.py` +
+   `exp_family_validate.py`,SEC bulk Form345 + defeatbeta 價格,look-ahead-safe,forward IC + deflated
+   Sharpe)。發現:**Insider 有真「21d」edge(t=5.12)但 63d 歸零/126d 轉負 → 短期催化非長期**(⚠️ 與
+   現在的長期 ±30% overlay 接線 **horizon 不符,待改成短期 tilt**);**RSI-2 mean-rev 最強**(IC t=11.58,
+   驗證 Phase-4);**Relative Strength ≈0(不獨立=動能)**;momentum/low-vol IC 正但可交易 LS 負。
+   **caveat:宇宙小型股偏斜;待用乾淨流動宇宙(S&P)重跑定論。**
 4. 背離 → confidence 自動 temper;個股 >200SMA 才認 RSI-2 dip。
 5. **Phase 2(資金流/敘事)**、**A 型危機 tail** —— 較大,待決策。
 6. 14 篇未歸類分流(軟體/網通種子);各 thesis 頁 `待補`(LTA 記分卡追蹤/逐字稿/FNSPID)。

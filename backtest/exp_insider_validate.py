@@ -104,54 +104,42 @@ def build_events(qtrs):
 
 
 _PX = {}
-def _dl(syms, start):
-    import contextlib
-    import yfinance as yf
-    syms = list(syms)
-    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-        px = yf.download(syms, start=start, auto_adjust=True, progress=False, threads=True)
-    if px is None or len(px) == 0:
-        return {}
-    if isinstance(px.columns, pd.MultiIndex):
-        close = px["Close"] if "Close" in px.columns.get_level_values(0) else px
-    else:                                    # single-ticker -> flat columns
-        close = px[["Close"]].rename(columns={"Close": syms[0]})
-    out = {}
-    for tk in syms:
-        try:
-            s = close[tk].dropna()
-            out[tk] = s.sort_index() if len(s) > 60 else None
-        except Exception:
-            out[tk] = None
-    return out
-
-
-def _batch_prices(tickers, start):
-    """Chunked yf.download for event tickers (a single ~1700-name call is unreliable). SPY via the
-    proven data.load (yf.download single-ticker was flaky post rate-limit). Disk-cache the series so
-    re-runs are instant."""
-    import pickle
+def _px_series(tk):
+    """Prices from defeatbeta (DuckDB-cached, NO rate limit, and it RETAINS delisted names' history ->
+    less survivorship bias than yfinance, which failed on delisted event names)."""
     try:
-        s = load("SPY", adjusted=True, min_rows=100)["close"]; s.index = pd.to_datetime(s.index)
-        _PX["SPY"] = s.sort_index()
+        from defeatbeta_api.data.ticker import Ticker
+        d = Ticker(tk).price()
+        d = d.data if hasattr(d, "data") else d
+        s = pd.Series(pd.to_numeric(d["close"], errors="coerce").values,
+                      index=pd.to_datetime(d["report_date"], errors="coerce")).dropna().sort_index()
+        return s if len(s) > 60 else None
     except Exception:
-        _PX["SPY"] = None
-    pxc = os.path.join(_DATA, "px_cache.pkl")
+        return None
+
+
+def _batch_prices(tickers, start=None):
+    """Price all event tickers + SPY via defeatbeta; disk-cache so re-runs are instant. (start ignored;
+    defeatbeta returns full history.)"""
+    import pickle
+    pxc = os.path.join(_DATA, "px_defeatbeta.pkl")
     cache = {}
     if os.path.exists(pxc):
         try:
             cache = pickle.load(open(pxc, "rb"))
         except Exception:
             cache = {}
-    uniq = sorted(set(tickers) - {"SPY"})
-    need = [t for t in uniq if t not in cache]
-    for i in range(0, len(need), 150):
-        cache.update(_dl(need[i:i + 150], start))
-        pickle.dump(cache, open(pxc, "wb"))
-    for tk in uniq:
-        _PX[tk] = cache.get(tk)
-    print(f"[insider-validate] priced {sum(_PX.get(t) is not None for t in uniq)}/{len(uniq)} event "
-          f"tickers (SPY {'ok' if _PX.get('SPY') is not None else 'MISSING'})")
+    syms = sorted(set(tickers) | {"SPY"})
+    need = [t for t in syms if t not in cache]
+    for i, t in enumerate(need):
+        cache[t] = _px_series(t)
+        if i % 250 == 249:
+            pickle.dump(cache, open(pxc, "wb"))
+    pickle.dump(cache, open(pxc, "wb"))
+    for t in syms:
+        _PX[t] = cache.get(t)
+    print(f"[insider-validate] priced {sum(_PX.get(t) is not None for t in syms)}/{len(syms)} via "
+          f"defeatbeta (SPY {'ok' if _PX.get('SPY') is not None else 'MISSING'})")
 
 
 def _px(tk):
