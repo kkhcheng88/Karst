@@ -104,8 +104,13 @@ pattern (concept -> search -> harvest -> synthesise). The user feeds a report (p
   Deterministic FTS retrieval (search -> get -> verify_quote) for grounding claims in fed reports.
 - Ingest gooptions: `python thesis/download_gooptions.py research` (manifest-driven, resumable — re-run
   to pull only NEW reports) then `corpus.py build` + `build_source_nodes.py`.
-- Log: `python thesis/log_predictions.py` (agent appends predictions to track_record.jsonl).
-- Lint: `python thesis/lint.py`.
+- Forward IC (the Phase-3 JUDGE): `python thesis/forward_ic.py log|ic|report`. **Run `log` DAILY** to
+  accumulate the point-in-time thesis cross-section (confidence x ticker) into track_record.jsonl; `ic`
+  computes cross-sectional Spearman(confidence, forward 21/63/126d return, raw + excess-vs-SPY) over
+  MATURED predictions. NOT backfillable (theses did not exist historically -> backdating = look-ahead;
+  a backdated self-test only validates the math, its number is meaningless). First honest read ~1mo
+  (21d); significant mean IC / IR needs ~3-6 months of daily logs. Target excess IC >= 0.05 (DESIGN §8).
+- Log (scan-gated actionable subset): `python thesis/log_predictions.py`. Lint: `python thesis/lint.py`.
 - Data: defeatbeta via `backtest/data.py` + direct `Ticker(sym).<method>()` (fundamentals/transcripts/
   news/ttm_pe/capex). Web: WebSearch / WebFetch. Retrieval (later): the VR-style FTS engine.
 

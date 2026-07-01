@@ -23,3 +23,6 @@ thesis/.obsidian/
 # SQLite FTS corpus (regenerable from .raw via corpus.py build)
 thesis/corpus.db
 *.db
+
+# forward-IC snapshot (regenerable)
+thesis/ic_report.md
