@@ -31,17 +31,32 @@ def load_universe(path: str = DEFAULT_PATH):
 
 
 def expand_with_sectors(sectors_cfg: dict, entries: list):
-    """Append tier-2 Long entries derived from each sector's holdings ETF:
-       - the ETF itself (a sector-level Long expressing the WHOLE sector, incl. foreign leaders)
-       - each US-listed holding (the actionable single-name longs).
-    Foreign holdings stay context-only (used in the sector temperature, not scanned as rows).
+    """Append tier-2 Long entries for each sector. Two kinds:
+
+    A) EXPLICIT ticker list (`tickers:`) -- a cross-sectional value chain that no single ETF
+       represents (photonics, AI-power, ...). Each named US stock is an actionable long; an
+       optional `benchmark_etf` is added as a sector-level long for cross-check only.
+    B) HOLDINGS ETF (`holdings_etf:`) -- a GICS-representable sector (e.g. Memory/DRAM). The ETF
+       itself + its US-listed holdings become longs; foreign holdings stay context (temperature only).
+
+    First-seen wins (a ticker shared by two chains lands in the sector listed first).
     """
     from .holdings import holdings as _holdings
 
     have = {e.ticker for e in entries}
     out = list(entries)
     for key, cfg in (sectors_cfg or {}).items():
-        etf = cfg.get("holdings_etf")
+        if cfg.get("tickers"):                                   # A) explicit chain
+            bench = cfg.get("benchmark_etf")
+            if bench and bench not in have:
+                out.append(UniverseEntry(ticker=bench, tier="long", sector=key))
+                have.add(bench)
+            for tk in cfg["tickers"]:
+                if tk not in have:
+                    out.append(UniverseEntry(ticker=tk, tier="long", sector=key))
+                    have.add(tk)
+            continue
+        etf = cfg.get("holdings_etf")                            # B) holdings ETF
         if not etf:
             continue
         if etf not in have:

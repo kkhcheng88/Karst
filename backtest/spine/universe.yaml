@@ -14,12 +14,51 @@
 # (RS(SPMO/SPY)); it is NOT a sector to scan.
 
 sectors:
+  # --- ETF-representable sector: pull members + weights from a real ETF (foreign leaders kept) ---
   MEMORY:
     parent: SEMI                 # subsector hierarchy: Memory vs SEMI (parent) vs market
     parent_proxy: [SOXX, SMH]    # SEMI parent proxy (broad semis)
     holdings_etf: DRAM           # pull members + weights from this ETF (Roundhill Memory);
                                  # cash sleeve filtered, weights renormalized over equities.
     weight: etf                  # use the ETF's own holding weights (most faithful)
+
+  # --- cross-sectional value chains: no single ETF represents them (they cut across GICS), so the
+  # thesis names ARE the basket. Temperature = MARKET-CAP weighted (the heat); a cap-vs-equal
+  # DIVERGENCE is emitted as a breadth/crowding read (megacap-led=narrow/late; small-cap-led=froth).
+  # tickers here mirror thesis/themes.yaml; keep them in sync when a thesis's tickers change.
+  PHOTONICS:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
+  AI_POWER:
+    parent: INDUSTRIALS
+    parent_proxy: [XLI]
+    tickers: [GEV, BE, VRT, ETN, PWR, MPWR, VICR, NVTS, WOLF, 'ON']  # 'ON' quoted: bare ON = YAML bool
+  ADV_PACKAGING:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    tickers: [AMKR, ASX, TTMI, INTC, MKSI, KLAC, STX, WDC]
+  SPACE:
+    parent: AERO_DEF
+    parent_proxy: [ITA]
+    tickers: [RKLB, ASTS, KTOS, HEI, LOAR, RDW, LUNR, BKSY, PL, GSAT]
+  RARE_EARTH:
+    parent: MATERIALS
+    parent_proxy: [XLB]
+    tickers: [MP, USAR]
+  TPU_SILICON:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    tickers: [AVGO, TSM, CLS]
+  OIL_GAS:
+    parent: ENERGY
+    parent_proxy: [XLE]
+    benchmark_etf: XLE           # a clean matching ETF exists -> kept as a cross-check long
+    tickers: [XOM, CVX, COP, EQT, LNG, SEI]
+  SEMICAP:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    tickers: [AEHR]              # thin (single name) -> temperature ~ that name; watch, don't lean
 
 tickers:
   # tier-1 — options toolkit (validated 3 ETFs). tier-2 Memory longs are auto-derived

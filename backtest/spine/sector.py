@@ -16,9 +16,27 @@ from signals import sma
 
 from .dataio import load
 from .holdings import holdings
+from .marketcap import market_cap
 from .schemas import SectorContext
 
 _WIN = 20  # RS / ROC window
+_DIV_FLAG = 0.03  # |cap-equal| 20d gap that flags narrow/froth divergence (late/fragile)
+
+
+def _explicit_members(tickers):
+    """Build a basket from an explicit US-ticker list, weighted by MARKET CAP.
+
+    Cross-sectional value chains (photonics, AI-power, ...) cut across GICS -> no single ETF
+    represents them, so the thesis names ARE the basket. Cap-weight = the 'official' heat (where the
+    money sits); the equal-weight comparison (divergence) is the breadth/crowding read. Missing caps
+    fall back to the basket min so a name is never dropped for a flaky mcap fetch.
+    """
+    out = [{"ticker": t, "weight": market_cap(t), "name": t, "is_us": True} for t in tickers]
+    caps = [m["weight"] for m in out if m["weight"]]
+    fill = min(caps) if caps else 1.0
+    for m in out:
+        m["weight"] = m["weight"] or fill      # raw mcap; sector.py renormalizes over loaded rows
+    return out
 
 
 def _ratio(s, win=_WIN):
@@ -40,8 +58,15 @@ def _parent_ratio(proxies):
 
 
 def build_sector_context(key: str, cfg: dict):
+    # Two basket sources: an explicit US-ticker list (cross-sectional chain, cap-weighted) OR an
+    # ETF's real holdings (a GICS-representable sector, foreign leaders included, ETF-weighted).
     etf = cfg.get("holdings_etf")
-    members = holdings(etf) if etf else []
+    if cfg.get("tickers"):
+        members = _explicit_members(cfg["tickers"])
+        weight_mode = "market_cap"
+    else:
+        members = holdings(etf) if etf else []
+        weight_mode = "etf"
     if not members:
         return None
 
@@ -67,8 +92,11 @@ def build_sector_context(key: str, cfg: dict):
     for r in rows:
         r["w"] = r["weight"] / tot
 
-    basket_ratio = sum(r["w"] * r["ratio20"] for r in rows)
+    basket_ratio = sum(r["w"] * r["ratio20"] for r in rows)      # cap/ETF-weighted = the heat
     roc20 = basket_ratio - 1
+    equal_ratio = float(np.mean([r["ratio20"] for r in rows]))   # equal-weighted = the breadth view
+    equal_roc20 = equal_ratio - 1
+    divergence = basket_ratio - equal_ratio                      # cap_roc - equal_roc (breadth/crowding)
     rs_vs_market = basket_ratio / spy_r if spy_r == spy_r else float("nan")
     rs_vs_parent = basket_ratio / parent_r if parent_r == parent_r else float("nan")
     parent_rs_vs_market = parent_r / spy_r if (parent_r == parent_r and spy_r == spy_r) else float("nan")
@@ -124,26 +152,36 @@ def build_sector_context(key: str, cfg: dict):
     if coherence == "leader-carried":
         tail = f" ({leader_share:.0%})" if leader_share == leader_share else ""
         caveats.append(f"narrow strength: {leader} carrying the sector{tail} -- chase leader only (INV-5)")
+    if divergence == divergence and abs(divergence) >= _DIV_FLAG:
+        if divergence > 0:
+            caveats.append(f"megacap-led (cap>>equal by {divergence * 100:+.1f}pp): narrow, big-name-carried "
+                           f"-- late/crowded, breadth thin")
+        else:
+            caveats.append(f"small-cap-led (equal>>cap by {-divergence * 100:.1f}pp): froth/speculative names "
+                           f"leading -- late-stage retail, fragile")
     if not leader_is_us:
-        caveats.append(f"sector leader {leader} is not US-listed -- express via {etf} ETF, or the strongest US name")
+        ref = etf or cfg.get("benchmark_etf") or "the sector ETF"
+        caveats.append(f"sector leader {leader} is not US-listed -- express via {ref}, or the strongest US name")
     if any(not r["is_us"] for r in rows):
         caveats.append("foreign holdings (KR/JP) measured on their own sessions; currency cancels in RS/ROC, offset minor")
 
     pn = parent or "parent"
-    drivers = (f"{temperature} (L1 {layer1}/3) | RS vs mkt {rs_vs_market:.2f}, vs {pn} {rs_vs_parent:.2f} | "
-               f"{pn} vs mkt {parent_rs_vs_market:.2f} | ROC20 {roc20 * 100:+.1f}% | "
-               f"breadth {breadth * 100:.0f}%>50DMA | coherence {coherence} (leader {leader})")
+    wl = "capW" if weight_mode == "market_cap" else "etfW"
+    drivers = (f"{temperature} (L1 {layer1}/3, {wl}) | RS vs mkt {rs_vs_market:.2f}, vs {pn} {rs_vs_parent:.2f} | "
+               f"{pn} vs mkt {parent_rs_vs_market:.2f} | ROC20 {roc20 * 100:+.1f}% (eq {equal_roc20 * 100:+.1f}%, "
+               f"div {divergence * 100:+.1f}pp) | breadth {breadth * 100:.0f}%>50DMA | coherence {coherence} (leader {leader})")
 
     def _r(x):
         return round(x, 3) if x == x else float("nan")
 
     return SectorContext(
-        sector=key, parent=parent, members=[r["ticker"] for r in rows], weight_mode="etf",
+        sector=key, parent=parent, members=[r["ticker"] for r in rows], weight_mode=weight_mode,
         rs_vs_market=_r(rs_vs_market), rs_vs_parent=_r(rs_vs_parent), parent_rs_vs_market=_r(parent_rs_vs_market),
         roc20=round(roc20, 4), layer1_score=layer1, temperature=temperature, warm=warm,
         breadth_above50=_r(breadth), roc_dispersion=round(disp, 4), leader=leader,
         leader_share=_r(leader_share), coherence=coherence, member_rank=member_rank,
         drivers=drivers, caveats=caveats,
+        equal_roc20=round(equal_roc20, 4), cap_equal_divergence=round(divergence, 4),
     )
 
 

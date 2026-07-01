@@ -52,6 +52,9 @@ class SectorContext:
     member_rank: dict           # ticker -> {rank, rs_vs_parent, is_laggard}  (INV-5)
     drivers: str
     caveats: list
+    equal_roc20: float = float("nan")           # EQUAL-weighted basket 20d return (breadth view)
+    cap_equal_divergence: float = float("nan")  # cap_roc - equal_roc: >0 megacap-led (narrow) /
+    #                                             <0 small-cap-led (froth); |large| = late/fragile
 
 
 @dataclass(frozen=True)
