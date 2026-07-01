@@ -6,9 +6,10 @@ confidence: 0.35
 verdict: real-but-late
 updated: 2026-07-01
 tickers: [MU, SNDK, STX, DRAM]
-links: [[AI-demand]] [[HBM]] [[advanced-packaging]] [[pricing-power]] [[underinvestment]]
-sources: [defeatbeta:ttm_pe, defeatbeta:holdings(DRAM), price:MU/SNDK/STX, web:HBM-demand]
 ---
+
+<!-- frontmatter = valid-YAML scalars only. Put wiki-links INLINE in the body (below); cite sources
+     inline per claim. Never put double-bracket links in YAML frontmatter (it breaks the parser). -->
 
 # Memory 超級週期(B 型)— real but LATE
 

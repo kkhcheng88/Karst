@@ -26,6 +26,11 @@ first** (the full blueprint) — this skill is the operating procedure.
 - `thesis/track_record.jsonl` — the AGENT's self-monitoring log (`thesis/log_predictions.py` writes it).
 - Raw corpora at scale (news/transcripts) live in DBs/APIs (defeatbeta, later FNSPID+FTS), NOT the vault.
 
+**Wiki page format (MUST):** frontmatter = valid-YAML SCALARS only (slug, type, cycle_stage,
+confidence, verdict, updated, tickers). **NEVER put `[[wiki-links]]` in YAML frontmatter** — `[[` is
+a flow-seq start and breaks the parser. Put `[[links]]` INLINE in the body (Obsidian graphs those);
+cite sources inline per claim. `python thesis/lint.py` flags invalid frontmatter.
+
 ## Non-negotiable discipline (why this isn't FOMO)
 1. **Confidence, NOT belief.** `confidence = f(4-KPI scores, #independent sources, distance-to-kill,
    payoff-asymmetry, regime-fit)` — every input traceable to cited evidence. Never a gut number.

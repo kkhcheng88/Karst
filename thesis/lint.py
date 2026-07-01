@@ -24,12 +24,31 @@ def _slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.strip().lower()).strip("-")
 
 
+def _frontmatter_error(text):
+    """Return an error string if the YAML frontmatter fails to parse, else None.
+    Common bug: bare [[wiki-links]] in frontmatter -> invalid YAML (they belong in the body)."""
+    if not text.startswith("---"):
+        return None
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return "frontmatter not closed with ---"
+    try:
+        yaml.safe_load(parts[1])
+        return None
+    except Exception as e:
+        return f"invalid YAML frontmatter: {str(e).splitlines()[0]}"
+
+
 def run():
     pages = {}
+    fm_errors = {}
     for p in glob.glob(os.path.join(WIKI, "*.md")):
         name = os.path.splitext(os.path.basename(p))[0]
-        pages[_slug(name)] = {"path": p, "name": name,
-                              "text": open(p, encoding="utf-8", errors="replace").read()}
+        text = open(p, encoding="utf-8", errors="replace").read()
+        pages[_slug(name)] = {"path": p, "name": name, "text": text}
+        err = _frontmatter_error(text)
+        if err:
+            fm_errors[name] = err
     slugs = set(pages)
 
     links_out = {}          # page -> set(target slugs)
@@ -72,6 +91,9 @@ def run():
 
     print("\n=== thesis lint ===")
     print(f"pages: {len(pages)} | registered themes: {len(theme_slugs)}")
+    print(f"\nERRORS -- invalid frontmatter (MUST fix): {len(fm_errors)}")
+    for name, err in fm_errors.items():
+        print(f"  {name}: {err}  [put [[wiki-links]] in the BODY, not YAML frontmatter]")
     print(f"\nPENDING evidence ([ ] items to fill): {sum(len(v) for v in pending.values())}")
     for name, items in pending.items():
         print(f"  {name}: {len(items)} open")
