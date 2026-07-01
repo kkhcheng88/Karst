@@ -124,6 +124,8 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
 | Phase 3 設計 / 操作 | `thesis/DESIGN.md` · `.claude/skills/thesis/SKILL.md` |
 | thesis 登記(機器可讀)| `thesis/themes.yaml` ← **ticker 的單一真相**;`universe.yaml` 用 `thesis:` 自動拉,不重抄 |
 | 知識層 | `thesis/corpus.py`(FTS)· `wiki/`(源節點+綜合頁)· `.raw/`(原文,gitignore)|
-| forward-IC 裁判 | `thesis/forward_ic.py` + `daily_ic.cmd`(Windows 排程每日 log)|
+| forward-IC 裁判 | `thesis/forward_ic.py` + `daily_ic.cmd`(Windows 排程 **每日** log)|
+| insider 快取 | `thesis/insider_edgar.py build` + `weekly_insider.cmd`(Windows 排程 **每週日** 重建 EDGAR 快取)|
+| Windows 排程任務 | `Karst-forward-IC-daily`(平日 09:00)· `Karst-insider-weekly`(週日 08:00)—— `schtasks /Query` 查 |
 | 外部 idea 索引 | `../Reference/CIO_IDEAS.md`(注意編號與本檔不同,見 §4)|
 | agent 續傳入口 | `AGENTS.md` · `.agents/KARS_MEMORY.md` |
