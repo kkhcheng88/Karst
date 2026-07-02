@@ -24,9 +24,9 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 _DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".insider_data")
-_PIVOT, _BASE_WIN, _FWD = 30, 65, 63
-_ZZ = 0.03          # zigzag reversal threshold -> smaller so it catches TIGHT late contractions
-                    # (a 5% filter ironically misses the tightest VCP pullbacks)
+_PIVOT, _BASE_WIN = 30, 65
+_HORS = [5, 10, 21, 42, 63]     # VCP is a SWING breakout method -> the edge (if any) is SHORT-horizon;
+                                # a monthly / 63d window is misleading. Test the breakout follow-through.
 
 
 def _universe():
@@ -122,45 +122,47 @@ def run():
             bv = vol.iloc[i - _BASE_WIN:i] if vol is not None else None
             is_vcp, score, ncon, _ = _vcp(bc, bv)
             ei = i + 1
-            if ei + _FWD >= len(s):
+            if ei + _HORS[0] >= len(s):
                 continue
-            fwd = s.iloc[ei + _FWD] / s.iloc[ei] - 1
-            b0, b1 = spy.asof(idx[ei]), spy.asof(idx[ei + _FWD])
-            exc = fwd - (b1 / b0 - 1) if (b0 == b0 and b1 == b1 and b0 > 0) else np.nan
-            recs.append({"tk": tk, "date": idx[i], "is_vcp": is_vcp, "score": score,
-                         "ncon": ncon, "fwd": fwd, "excess": exc})
-            last = i + _FWD // 2
-    df = pd.DataFrame(recs).dropna(subset=["excess"])
-    print(f"[vcp] scanned {n_stocks} stocks | breakout candidates with fwd data: {len(df)}")
-    print(f"[vcp] contractions detected: {df['ncon'].value_counts().sort_index().to_dict()} | "
-          f"is_vcp: {int(df['is_vcp'].sum())} ({df['is_vcp'].mean()*100:.0f}%) | "
-          f"score>0: {int((df['score']>0).sum())}\n")
+            rec = {"tk": tk, "date": idx[i], "is_vcp": is_vcp, "score": score, "ncon": ncon}
+            for h in _HORS:
+                if ei + h < len(s):
+                    fwd = s.iloc[ei + h] / s.iloc[ei] - 1
+                    b0, b1 = spy.asof(idx[ei]), spy.asof(idx[ei + h])
+                    rec[f"exc{h}"] = fwd - (b1 / b0 - 1) if (b0 == b0 and b1 == b1 and b0 > 0) else np.nan
+                else:
+                    rec[f"exc{h}"] = np.nan
+            recs.append(rec)
+            last = i + _HORS[1] // 2
+    df = pd.DataFrame(recs)
+    print(f"[vcp] scanned {n_stocks} stocks | breakout candidates: {len(df)}")
+    print(f"[vcp] contractions: {df['ncon'].value_counts().sort_index().to_dict()} | "
+          f"is_vcp: {int(df['is_vcp'].sum())} ({df['is_vcp'].mean()*100:.0f}%)\n")
 
-    # A/B: plain breakout (A) vs VCP-structure breakout (B)
-    print("=== A/B: does the VCP STRUCTURE beat a plain breakout? (same trend+breakout candidates) ===")
-    print(f"{'set':>22} {'n':>6} {'mean fwd%':>9} {'excess%':>8} {'win%':>5} {'exc t':>6}")
-    for name, sub in [("A: all breakouts", df), ("B: VCP-structure only", df[df.is_vcp]),
-                      ("(not-VCP breakouts)", df[~df.is_vcp])]:
-        if len(sub) < 20:
-            print(f"{name:>22} {len(sub):>6}  (insufficient)"); continue
-        e = sub["excess"]
-        t = e.mean() / (e.std() / np.sqrt(len(e))) if e.std() else np.nan
-        print(f"{name:>22} {len(sub):>6} {sub['fwd'].mean()*100:>8.2f} {e.mean()*100:>7.2f} "
-              f"{(sub['fwd']>0).mean()*100:>4.0f} {t:>6.2f}")
+    # A SWING method -> test the breakout follow-through at SHORT horizons (monthly/63d is misleading)
+    print("=== A/B by HORIZON: VCP-structure breakout vs plain breakout, SWING follow-through (excess vs SPY) ===")
+    print(f"{'hor':>4} | {'A all breakout':>16} | {'B VCP breakout':>16} | {'not-VCP breakout':>16} | {'IC(score)':>9}")
+    print(f"{'':>4} | {'excess% (t) n':>16} | {'excess% (t) n':>16} | {'excess% (t) n':>16} |")
 
-    # forward IC of the continuous VCP-similarity score
-    print("\n=== forward IC: does MORE VCP-ness -> higher forward excess? (score is graded 0..1) ===")
-    d = df[df["score"] > 0]
-    ic = d["score"].corr(d["excess"], method="spearman") if len(d) > 50 else np.nan
-    print(f"  Spearman IC(score, fwd excess): {ic:+.3f}  over {len(d)} candidates")
-    print("  score quintile mean excess%:")
-    d = d.copy(); d["q"] = pd.qcut(d["score"], 5, labels=False, duplicates="drop")
-    for q, g in d.groupby("q"):
-        print(f"    Q{int(q)+1}: score~{g['score'].mean():.2f}  excess {g['excess'].mean()*100:+.2f}%  (n={len(g)})")
+    def stat(sub, col):
+        e = sub[col].dropna()
+        if len(e) < 20:
+            return f"{'n/a':>16}"
+        t = e.mean() / (e.std() / np.sqrt(len(e))) if e.std() else float("nan")
+        return f"{e.mean()*100:>+5.2f} ({t:>4.1f}) {len(e):>5}"
 
-    print("\nREAD: if B ~ A and IC ~ 0 -> the VCP shape adds nothing over a momentum breakout (dressing). "
-          "if B > A and IC > 0 -> the contraction structure is a real, gradable edge. "
-          "CAVEATS: costless; survivorship; zigzag 5% + base=65d are choices; no fundamentals.")
+    for h in _HORS:
+        col = f"exc{h}"
+        d = df.dropna(subset=[col])
+        A, B, N = stat(d, col), stat(d[d.is_vcp], col), stat(d[~d.is_vcp], col)
+        dd = d[d.score > 0]
+        ic = dd["score"].corr(dd[col], method="spearman") if len(dd) > 50 else float("nan")
+        print(f"{h:>3}d | {A} | {B} | {N} | {ic:>+9.3f}")
+
+    print("\nREAD: VCP is a SWING breakout method -> its edge (if any) should show at SHORT horizons (5-21d),"
+          " NOT a monthly/63d hold. If B (VCP breakout) > A / not-VCP at 5-21d -> the contraction structure"
+          " improves the breakout swing. If B ~ others at every horizon -> the shape adds nothing even for"
+          " the swing. CAVEATS: costless; survivorship; base=65d, swings w=3/2% are choices; no fundamentals.")
 
 
 if __name__ == "__main__":
