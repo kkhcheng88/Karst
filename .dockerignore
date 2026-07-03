@@ -1,0 +1,21 @@
+# Keep the dashboard image lean — the live scan needs code + small state files only.
+.git
+.gitignore
+**/__pycache__
+**/*.pyc
+
+# 353MB of backtest price caches — NOT used by the live scan (data.load hits network).
+backtest/.insider_data/
+
+# research corpus full text + FTS db — read by research tools, not the daily scan
+thesis/.raw/
+thesis/corpus.db
+.raw/
+
+# generated artifacts (regenerated on the VPS by run_scan.py)
+web/data/
+
+# scratch / local
+*.log
+.claude/
+docs/

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import contextlib
 import io
+import os
 
 import pandas as pd
 
@@ -29,6 +30,13 @@ with contextlib.redirect_stdout(io.StringIO()):
 import yfinance as yf
 
 STD_COLS = ["open", "high", "low", "close", "volume"]
+
+# Headless/VPS deploys (e.g. Zeabur) get throttled by Yahoo from datacenter IPs, so
+# yfinance-first fails there. Set KARST_DATA_SOURCE=defeatbeta to make "auto" try
+# defeatbeta FIRST (yfinance stays the fallback). Unset -> yfinance-first (freshest
+# close) for local use. Trades ~1 trading day of lag for headless reliability.
+_DEFEAT_FIRST = os.getenv("KARST_DATA_SOURCE", "").strip().lower() in {
+    "defeatbeta", "defeatbeta_first", "db_first"}
 
 
 def _from_defeatbeta(symbol: str) -> pd.DataFrame | None:
@@ -78,6 +86,12 @@ def load(symbol: str, source: str = "auto", min_rows: int = 100,
             df.attrs["source"] = "yfinance(adj)"
             return df
         raise RuntimeError(f"yfinance returned no usable adjusted data for {symbol!r}")
+    if source == "auto" and _DEFEAT_FIRST:
+        df = _from_defeatbeta(symbol)
+        if df is not None and len(df) >= min_rows:
+            df.attrs["source"] = "defeatbeta"
+            return df
+        # defeatbeta miss -> fall through to yfinance (still the fallback)
     if source in ("auto", "yfinance"):
         df = _from_yfinance(symbol)
         if df is not None and len(df) >= min_rows:
