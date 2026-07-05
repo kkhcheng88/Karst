@@ -50,6 +50,92 @@ Question: is "risk regime" the same as bull/bear (200SMA)? Can fear/greed time m
    systematic alpha engine. (Consistent with keeping RSI-2 timing as a *separate field*.)
    Lesson: a positive conditional forward return ≠ a strategy that beats B&H.
 
+## Addendum (2026-07-03, same day) — top-10-days coverage + exposure-normalized alpha
+User asked two follow-ups on finding #8: (1) does the overlay fall into the classic
+"miss the market's top 10 days, miss your year" trap? (2) does alpha survive once you
+correct for average exposure (relever to match B&H's beta)? Reconstructed the overlay
+(capstone run was inline/unsaved) as a saved, re-runnable experiment:
+`backtest/experiments/exp_topdays_exposure.py` → `backtest/results/2026-07-03_topdays_exposure.md`.
+Also pulled real CNN Fear&Greed history to `reference/fear_greed/` (gitignored,
+regenerable via `github.com/whit3rabbit/fear-greed-data`).
+
+9. **Does NOT miss the top-10 days — structurally the opposite.** 9–10/10 of each asset's
+   best single days (2011–2026) are violent rallies INSIDE crashes (2020-03 COVID,
+   2018-12-26, 2011-08 debt-ceiling, 2025-04-09 tariff shock) — exactly when VIX-fear
+   triggers fire. An overweight-on-fear (1.3x) variant captures 125–128% of B&H's
+   top-10-day return sum; a no-leverage variant still captures ~97–100%.
+10. **Relevering to B&H's average exposure does NOT unlock hidden alpha.** Scaling the
+    SAME signal timing to avg exposure=1.0: alpha stays negative everywhere, never flips
+    positive. For a flat-baseline MR variant (avg exposure ~0.14), relevering implies
+    ~7x leverage in fear windows → alpha gets MASSIVELY worse (−17% to −19%/yr) via
+    vol drag, not better. **Mechanism: relevering rescales the same timing decisions by
+    a constant — it amplifies whatever's already there, it can't create skill that isn't
+    in the entry/exit timing.** Sharpens (doesn't overturn) finding #8's do-not-deploy call.
+    **Refined same day** (`exp_mr_roundtrip.py`, `exp_exposure_sweep.py` — user's
+    methodological correction: B&H exposure=1.0 is trivial/by-construction; ours must be
+    CALCULATED from real entry+exit rules, not assumed/targeted): entry=findings #5
+    (VIX>30 or RSI2<10&VIX>25), exit=findings #6/#7 (RSI2>90 or F&G>80) → **calculated**
+    avg exposure converges to **~14%** on all 3 assets regardless of exit rule (entry
+    rarity dominates). Cross-checked relevering across every exposure level actually
+    tested today (0.12→1.00, 3 independent constructions): **alpha never flips positive
+    at any level** — robust to the exposure-assumption question. Open gap: none of these
+    reconstructions reproduce finding #8's stated beta≈0.7 (rebuilds land at ~0.14 or
+    ~1.0, not in between) — the original capstone's exact blend is unrecoverable
+    (unsaved); doesn't change the Q2 conclusion, but the literal 0.7 figure is unverified.
+    **Refined again same day** (`exp_mr_split_rules.py` — split combined entry/exit into
+    2 independent rules): **RSI2 alone is the workhorse** (85-120 trades, ~39% calculated
+    exposure, the most-powered cut tested today) — alpha still negative but weak/
+    insignificant (t=-0.6 to -1.1). **VIX+F&G alone is rare/fragile** (only 4-6 trades in
+    15yr — its more-negative, more-"significant" alpha (t to -2.1) is likely 1-2 episodes
+    dominating, not trustworthy). Combining doesn't cancel/dilute here (unlike finding #3's
+    VIX/F&G blend pattern) — sits between or even beats either alone on 2/3 assets, but
+    never positive. Best-powered cut (RSI2 alone) still shows no alpha.
+11. **CAPITAL-EFFICIENCY lens — user was right, per-exposure it IS efficient**
+    (`exp_capital_efficiency.py`). User's objection: comparing a mostly-flat strategy's
+    calendar CAGR vs always-up B&H is unfair; correct measure = PnL% / exposure (return on
+    DEPLOYED capital), a CAPITAL-adjusted question distinct from Jensen α's RISK/beta one.
+    Result (robust, both rules, all 3 assets): the timing deploys into **above-average days**
+    (mean-daily-invested 1.3–3.1x B&H) at a **conditional Sharpe that BEATS B&H** (1.0–1.7 vs
+    0.86–0.99); PnL/Exp 20–55%, deployed-capital-annualized 24–74% vs B&H 14–20%. Jensen α
+    stays ~0/slightly-neg (insignificant) ONLY because β (0.45–0.67) >> exposure (0.14–0.39)
+    — it enters high-vol days, so CAPM charges a high beta. **Per-time-capital = efficient;
+    per-systematic-risk = neutral; both true.** The earlier relevered-CAGR framing (finding
+    #10) was a MISLEADING way to show per-exposure perf — geometric releverage applies ~7x
+    leverage to 33–37%-vol windows, so its −12% is vol-drag, not skill. **Revised takeaway:**
+    NOT a SPY-replacement (flat 86% in an uptrend → wealth lags; can't naively lever — drag),
+    but a genuinely useful **dry-powder DEPLOYMENT timer** (deploy idle cash into fear, earn a
+    high rate on deployed capital). Strengthens finding #8's "risk knob" read: the beta it
+    keeps is concentrated into the market's best-paid windows, not just reduced.
+12. **WHY it can't be index alpha — exact decomposition** (`exp_alpha_decomp.py`). User:
+    "good timing → +alpha only works for SPY if exposure high enough / leveraged / traded
+    instrument ≠ SPY." Confirmed via exact identity for long/flat strat=pos·mkt vs same mkt:
+    **α = Cov(pos,mkt) [T1 timing] + (exposure−β)·mean_mkt [T2 structural drag]**. Result
+    (all 6 cuts): **T1 is POSITIVE (+2.2% to +6.2%/yr)** — timing genuinely anticipates
+    above-avg days; **T2 is negative (−4% to −6.6%/yr)** because β (0.45–0.67) ≫ exposure
+    (0.14–0.39) — buy-the-dip forces entry into high-VARIANCE days, inflating β while you sit
+    flat through the up-drift. T1+T2 = the small negative α. **Remedies (verified): higher
+    exposure via SPY baseline = zero-α dilution (fixes wealth-lag not α); leverage = α→L·α
+    sign-preserving (no) + vol-drag; ONLY "traded instrument ≠ benchmark" structurally
+    converts +T1 into outperformance.** This is exactly why Karst runs RSI-2/fear timing as an
+    entry-timing field on individual names + option structures (VRP), NOT SPY-in/out —
+    `exp_family_validate.py` already showed RSI-2 long-only top-quintile of broad universe
+    beats SPY +12.5% CAGR (same T1, right instrument). User re-derived the architecture's
+    rationale from the alpha algebra alone.
+
+## Addendum 2 (2026-07-03) — 全系統審查 + roadmap(三份文件)
+應用戶要求做了投資框架/方法論全審查(3 個唯讀 agent 抽取 spine/web/thesis 實作事實
++ 獨立驗收 agent 抽查 10 條 file:line 主張全 PASS):
+- `docs/2026-07-03_strategy_methodology_review.md` — P0 級發現:**insider conf_eff
+  算了但從未接回分數**(expression.py:66 用原始 th.unit)、**credit 軸/兩軸背離
+  已驗證卻完全缺席**、**校準迴路是斷的**(log_predictions 從未寫入、outcome 回填
+  程式碼不存在)、IC≥0.05 只是文字非程式。+ 反建議清單(別再挖的坑)。
+- `docs/2026-07-03_dashboard_decision_experience.md` — 決策條/翻轉警示/兩軸主視覺/
+  乾火藥計時器/證據連結;含逐面板實作錨點(file:line)。
+- `docs/ROADMAP_AGENTIC.md` — Phase A(修接線)→ B(閉迴路:價格庫+paper ledger)
+  → C(agent 運維)→ D(校準+IC 裁決=分水嶺)。「全自動」邊界釘死:決策管線
+  自動,下單/新 thesis 採納/制度變更留人工。最先動手:A1(校準資料流,每天不修
+  就流失資料)+ B1(價格庫)可並行。
+
 ## Open decisions / next steps
 - [ ] (optional) Leveraged-on-fearful-dips variant (RSI2<10 & VIX>25 → 1.3–1.5×) — the only
       untested path that MIGHT beat B&H, at higher tail risk.

@@ -43,4 +43,4 @@ measured ceiling (annual regime ~2x SPY). The arc's value isn't "quant is useles
 LOCATED the edge: not in prices, in the ability to read events and regimes.
 
 ## Files
-New: `backtest/exp_gap_forensics.py`.
+New: `backtest/experiments/exp_gap_forensics.py`.

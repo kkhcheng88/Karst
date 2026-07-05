@@ -1,6 +1,6 @@
 # Weekly sector-rotation CEILING (oracle) — huge, but a noise mirage
 
-2026-07-01. `backtest/exp_portfolio_oracle.py`. Corrects the single-asset framing error (a
+2026-07-01. `backtest/experiments/exp_portfolio_oracle.py`. Corrects the single-asset framing error (a
 signal need not beat B&H-this-asset; the question is COMPOSITION — where a finite pool goes).
 Bounds the opportunity with a perfect-foresight oracle: each week allocate by that week's
 realized sector returns. Gap(oracle − SPY) = the MOST weekly sector rotation could add.
@@ -45,4 +45,4 @@ Build the causal weekly rotation (real signals, look-ahead-safe) and measure its
 through-regime result vs SPY / EW — the actual test of "does composition beat buy-and-hold".
 
 ## Files
-New: `backtest/exp_portfolio_oracle.py`.
+New: `backtest/experiments/exp_portfolio_oracle.py`.

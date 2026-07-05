@@ -5,6 +5,12 @@
 
 Tag:✅ verified(對過 transcript) / 📄 distilled(待複核) / ⚠️ open(待解決)
 
+> ⚠️ **架構更新(2026-06-30 scorecard v3.1,本檔未全面改寫)**:**PMCC 已從 tier-1
+> 工具箱移除**(long leg ≡ LEAP,兩腿拆開:LEAP 買在 RSI-2 dip / SHORT_CALL 賣在
+> RSI-2 超買)。本檔的 PMCC 章節保留為歷史推導與參數出處;現行工具 =
+> LEAP / SHORT_CALL / CSP / CASH,見 `backtest/scorecard.py` docstring 與
+> `backtest/results/2026-06-30_shortcall_timing.md`。
+
 數據源根目錄:`../../Reference/raw_data/backtest_everything_transcripts/`
 蒸餾:`../../Reference/distillations/2026-06-24_backtest-everything-distillation.md`
 

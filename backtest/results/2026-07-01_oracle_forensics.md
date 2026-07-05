@@ -38,4 +38,4 @@ Test an ANNUAL/quarterly REGIME TILT: with IMPERFECT (not hindsight) regime call
 ~12pp/yr annual-regime ceiling is captured? First empirical hook for Compass regime_matrix -> sectors.
 
 ## Files
-New: `backtest/exp_oracle_forensics.py`.
+New: `backtest/experiments/exp_oracle_forensics.py`.

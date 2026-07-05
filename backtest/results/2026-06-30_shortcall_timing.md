@@ -1,6 +1,6 @@
 # Result — short-call overlay timing (PMCC's only new leg vs LEAP)
 
-**Date:** 2026-06-30  **Script:** `backtest/exp_shortcall.py`  **Tag:** ✅ verified
+**Date:** 2026-06-30  **Script:** `backtest/experiments/exp_shortcall.py`  **Tag:** ✅ verified
 Insight (user): PMCC long leg == LEAP, so "PMCC" is not a separate tool. The only new thing is
 the SHORT CALL leg, and the question is WHEN to sell it. Hypothesis: sell when underlying is high
 (overbought). Short call 0.30D, 30 DTE (~21td), 50% PT, cost 1.5%/side.

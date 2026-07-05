@@ -33,7 +33,7 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 |---|---|---|---|
 | **0 市場閘** | 指數 regime + fragility → gate(能不能開新倉)| ✅ live | `spine/context.py` |
 | **1 板塊 + RS** | 板塊溫度(市值加權 + cap-equal 背離)+ 兩層 RS + GICS 11 輪動 | ✅ live | `spine/sector.py`, `rotation.py` |
-| **2 資金流/敘事** | Compass capital-flow / narrative overlays | 🔴 **未建(刻意延後)** | — |
+| **2 資金流/敘事** | 資金流 / 敘事 / macro overlays(自建;可參考外部素材) | 🔴 **未建(刻意延後)** | — |
 | **3 質性 thesis** | 價值鏈→ticker→一手驗證→crowding→confidence(0..1 sizing 乘數)| ✅ live(9 個 Type-B)| `thesis/`, `spine/providers.py` |
 | **3e A 型危機 tail** | VIX>40 + 被打爛系統板塊救援 sleeve | 🔴 未建 | — |
 | **4 擇時** | 對已通過結構的名字,何時扣扳機(獨立欄,**絕不乘進結構分**)| ✅ live(RSI-2)| `spine/timing.py` |
@@ -52,7 +52,7 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 
 | 家族 | 歸屬 Phase | 現況 |
 |---|---|---|
-| **Trend/Momentum** | Phase 1(VCP 趨勢模板=選股)+ **Phase 4(突破觸發)** | 🟡 SPMO 動能在閘;VCP/突破**未建** |
+| **Trend/Momentum** | Phase 1(VCP 趨勢模板=選股)+ **Phase 4(突破觸發)** | 🟡 SPMO 動能在閘;**突破已回測(2026-07-05:20日高突破>TSMOM>SMA,兩半贏B&H、修H1)未接線**;VCP 型態未測;動能=downside protection 非 alpha(見 `results/2026-07-05_breakout_momentum.md`)|
 | **Mean Reversion(RSI-2)** | **Phase 4** | ✅ 純價格股權進場(不拿去買選擇權)|
 | **Volatility / VRP** | Phase 0 / 選擇權側(IV-rank)| ✅ tier-1 CSP/SHORT_CALL |
 | **Relative Strength** | **Phase 1**(Sector RS + Stock-RS-in-sector,**兩層都在此**)| ✅ `rs_vs_market` + `member_rank.rs_vs_parent` |
@@ -105,7 +105,7 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
 **🔴 未建 / 缺口(依價值):**
 1. **突破觸發 → Phase 4**(補 RSI-2 覆蓋盲區,帶量確認)。
 2. **GEX → Phase 0**(SPY/QQQ fragility)。
-3. **per-family 正式驗證(CIO Phase 0)—— 第一輪已跑**(`backtest/exp_insider_validate.py` +
+3. **per-family 正式驗證(CIO Phase 0)—— 第一輪已跑**(`backtest/experiments/exp_insider_validate.py` +
    `exp_family_validate.py`,SEC bulk Form345 + defeatbeta 價格,look-ahead-safe,forward IC + deflated
    Sharpe)。發現:**Insider 有真「21d」edge(t=5.12)但 63d 歸零/126d 轉負 → 短期催化非長期**(⚠️ 與
    現在的長期 ±30% overlay 接線 **horizon 不符,待改成短期 tilt**);**RSI-2 mean-rev 最強**(IC t=6-12

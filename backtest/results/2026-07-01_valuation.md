@@ -1,6 +1,6 @@
 # Valuation (own-history PE percentile) — a context gauge, NOT a mechanical alpha
 
-2026-07-01. `backtest/exp_valuation.py`. Karst had ZERO valuation dimension (all price/
+2026-07-01. `backtest/experiments/exp_valuation.py`. Karst had ZERO valuation dimension (all price/
 momentum/regime). Tested whether buying a name CHEAP vs its OWN PE history has a return edge
 (the value premium) — using defeatbeta `ttm_pe` (the one valuation series with long daily
 history, back to the 90s; PS/EV-EBITDA/ROIC are only ~2022+). Universe = 18 large caps across
@@ -76,5 +76,5 @@ ALL (107)          58%   7.9  7.4  6.7  5.8  6.9   mostly monotone-declining (va
   (Test 2) -> valuation is a style-dependent CONTEXT tilt, not a mechanical strategy.
 
 ## Files
-New: `backtest/exp_valuation.py` (18 hand-picked, ttm_pe), `backtest/exp_valuation_broad.py`
+New: `backtest/experiments/exp_valuation.py` (18 hand-picked, ttm_pe), `backtest/experiments/exp_valuation_broad.py`
 (110 SPDR-top-10 names, by-sector, fast rolling-rank percentile).

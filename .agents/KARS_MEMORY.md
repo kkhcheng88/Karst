@@ -3,22 +3,26 @@
 > 本檔是 Karst 的長期記憶。每次啟動先讀此檔 + `USER.md` + 最新 session,
 > 不要再從 conversation summary 重建。
 
-最後更新:2026-07-01
+最後更新:2026-07-03(§10)。**入口已改:新 session 先讀 repo 根的 `STATUS.md`,再讀本檔。**
 
 ---
 
-## 1. 系統地圖(同層 `C:/projects/Investment/`)
+## 1. 系統定位 + 外部參考(同層 `C:/projects/Investment/`)
 
-| repo | 角色 | 一句話 |
-|---|---|---|
-| **Compass** | WHY | 質性大腦 + 紀律 + Charter + regime_matrix + sector 溫度 + lenses |
-| **Tree**(drawtree) | WHAT | 可證偽假設樹 + risk/reward(Bull/Base/Bear),跑在 MCP。github.com/Draw-Tree/drawtree-protocol |
-| **Karst** | WHEN / HOW | 釘死的參數 + timing + 系統性風控(本 repo,cwd)|
-| **Reference**(原 Quant)| 原料倉 | backtest distillation + transcripts + 抓取 script + ideas |
-| **ebooks**(原 Investors)| 書庫 | 蒸餾原料(Dorsey/Porter/Minervini/Lynch/O'Neil…) |
-| **Indicators** | 指標數據 | Python crawler(用途待評估) |
+**Karst = 獨立、自足的全自動 agentic 投資決策系統。自己找 edge(自建 Phase 3 質性層)、
+自己跑決策管線。edge 就在 Karst。**
+(2026-07-04 更正:舊版把 Karst 寫成 Compass+Tree 的「執行臂 / WHEN-HOW」、edge 在
+Compass+Tree——那是錯的 framing,已廢除。)
 
-**edge 不在 Karst**。Karst 是執行臂。edge 在 Compass + Tree 的「假設選擇 + 殘酷證偽」。
+同層 repo 一律**只是外部參考素材,非功能依賴**:
+
+| repo | 一句話 |
+|---|---|
+| **Compass** | 舊質性/紀律筆記(部分由較弱 agent 建、可能有錯;只當素材) |
+| **Tree**(drawtree) | 可證偽假設樹協定 github.com/Draw-Tree/drawtree-protocol(參考) |
+| **Reference**(原 Quant)| 原料倉:distillation + transcripts + 抓取 script + ideas |
+| **ebooks**(原 Investors)| 書庫:蒸餾原料(Dorsey/Porter/Minervini/Lynch/O'Neil…) |
+| **Indicators** | 指標數據 Python crawler(用途待評估) |
 
 > **2026-06-30 reorg:** Quant→`Reference`;書→`ebooks`;`.agents`(session memory)→已移入 Karst。
 
@@ -148,7 +152,37 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 
 **建造順序**:精簡先行(4-KPI 清單 + 一個 `[[]]` thesis 頁 + web 研究 + 風控四件套 + 戰績簿,現在就紙上下注)→ pilot 端到端 → 薄版事件引擎 → 重基建只在需求拉時才建、且時間盒。
 
-**Phase 3 pilot 已建(2026-07-01,可跑):** `thesis/` 骨架 + memory-supercycle thesis(4-KPI cited、真 capex/PE 證據、cycle=late、confidence 0.35)→ `spine/providers.thesis_quality` 讀 `thesis/themes.yaml` → tier-2 分數 = 資格 × confidence(memory 100→35)。`thesis/log_predictions.py` 系統自動寫 track_record;`backtest/exp_memory_cycle.py` 價量版事件 base rate(極端延伸中位 -6.1%=別追)。
+**Phase 3 pilot 已建(2026-07-01,可跑):** `thesis/` 骨架 + memory-supercycle thesis(4-KPI cited、真 capex/PE 證據、cycle=late、confidence 0.35)→ `spine/providers.thesis_quality` 讀 `thesis/themes.yaml` → tier-2 分數 = 資格 × confidence(memory 100→35)。`thesis/log_predictions.py` 系統自動寫 track_record;`backtest/experiments/exp_memory_cycle.py` 價量版事件 base rate(極端延伸中位 -6.1%=別追)。
 
 **維護/延續層(讓「下一個 session / 任何 agent」都會維護):** **不裝 claude-obsidian**(綁 Claude Code + 外部依賴);改**原生**:`thesis` skill(`.claude/skills/thesis/SKILL.md`,可被自動發現;借 claude-obsidian 的 `/wiki`·`/autoresearch`·`/think` pattern,但**拿掉 `/think` 的「FEEL」**——違反 NHITL,換成 NHITL 紀律迴圈)+ `AGENTS.md`(repo 根,給 Roo/Codex 跨 agent)+ `thesis/lint.py`(斷連結/孤兒/pending)+ `thesis/.raw/`(餵進的原文,可溯源)。**Obsidian(app)可直接開 `thesis/` 看 `[[]]` 圖,零安裝那 repo。**
 - **v2 其他**:Phase 2 Compass overlay(資金流/敘事/macro)、flow 訊號(gamma/CTA/F&G)當未驗證 overlay;選做:RSI-2 從 tier-1 scorecard 真拆出、issuer-CSV 完整持股、marketcap.py 現為 dead fallback。
+
+---
+
+## 10. 2026-07-01 晚 ~ 2026-07-03(本節補上 §7-9 之後的全部進度)
+
+**07-01 晚 → 07-02:**
+- **Insider 家族已建**(SEC EDGAR Form 4,`thesis/insider_edgar.py` + 每週日排程重建快取);驗證:**21d 真 edge(t=5.12),63d 歸零/126d 轉負 → 短期催化,非長期**。
+- **thesis 擴到 9 個 Type-B 主題**(`thesis/themes.yaml`);forward-IC 每日排程上線(`Karst-forward-IC-daily`,平日 09:00)。
+- **Family validation 方法學修正**:IC/long-short 對 long-only 系統是錯的鏡子;long-only「持頂五分位 vs SPY」下 momentum/RS/RSI-2 全部顯著贏(RSI-2 +12.5% CAGR 超額)→ 反轉舊判決。⚠️ 現任成員 = survivorship,超額被高估。
+- **VCP 三輪回測 = 無增量 edge**(pattern/sharpely/SEPA;A/B + swing horizon)→ 不編碼進 Layer-2(negative,結論在 ARCHITECTURE §3 與 git log;⚠️ verdict 未存 results 檔)。
+- `docs/finance-method-distillation-spec.md`(蒸餾 skill 規格)。
+
+**07-03:**
+- **Web dashboard 上線**(`web/`,compute/serve 分離,Zeabur/Docker headless 路徑;`KARST_DATA_SOURCE=defeatbeta` toggle)。
+- **Regime/fear-greed 研究(12 findings,詳 `HANDOFF.md`)**:牛熊≠風險 regime(兩軸,背離=頂/底標記)、credit>VIX、VIX=恐懼進場計/F&G=貪婪出場計(別平均)、triple-confirmation 失敗、fear/greed MR ≈ B&H(α≈0)→ **資本效率視角反轉詮釋**:部署期 conditional Sharpe 1.0-1.7 > B&H → 乾火藥部署計時器,非 SPY 替代;**alpha = T1 擇時技巧(全正)+ T2 結構拖累(指數自我擇時必負)** → tier-1 評估不用 Jensen alpha(用 IC/資本效率/PnL÷曝險/conditional Sharpe/DD/正交性)。
+- **全系統審查(3 份 `docs/2026-07-03_*.md`)→ P0 級接線問題,未修**:① insider `conf_eff` 算了從未接回分數(`expression.py:66` 用原始 `th.unit`);② credit 軸/兩軸背離缺席;③ 校準迴路斷(log_predictions 從未寫入、outcome 回填程式不存在);④ IC≥0.05 只是文字。**`docs/ROADMAP_AGENTIC.md` 用戶已全部核准**,下一步 = A1(校準資料流)+ B1(價格庫)並行。
+- **用戶確認:香港稅務居民**(無 CGT、美股股息 30% 預扣)→ 稅後比較用 HK 參數。
+- **Workspace 重組**:37 個 exp_*.py → `backtest/experiments/`(含索引 README);**`STATUS.md` 成為唯一入口**;`.agents/sessions/` 日誌正式停用(由 KARS_MEMORY §8-10 + STATUS.md 取代);params/lenses 的過時內容已加更正註記(PMCC 移除、VCP 否定)。
+- Agent 工作制度立檔:`~/.claude/playbooks/`(調度/判斷/模板/維護)+ 重寫的全域 CLAUDE.md。
+
+---
+
+## 11. 2026-07-04(Vanessa session)—— 詳見 `docs/2026-07-04_progress_and_next.md`
+
+- **定位更正(用戶明示):** Karst = **獨立、自足系統,自己找 edge(自建 Phase 3)**。廢除「三大腦 / Karst=執行臂 / edge 不在 Karst」framing(已清 `README`/`ARCHITECTURE`/§1/`AGENTS`)。Compass/Tree 只是外部參考。舊 `.agents/USER.md`(個人被動收入目標)**已刪**——與專案目的無關、會誤導。
+- **「未證明」精確界線:** 已證=市場擇時(資本效率)+ 輪動獎品事件驅動;**未證=前瞻捕捉那獎品(Phase 3,IC≥0.05,0 戰績)**。Phase 3 前瞻本質**不可能等統計驗證才用**(後追=edge 已消失);forward-IC 是健檢非部署閘。
+- **Backtest 全盤點完成** + **off-book 重跑存檔**(`results/2026-07-04_insider_family_revalidate.md`,S&P500 離線版):insider 大型股 21d t2.30/63d t2.91;四大家族 RSI-2 long-only **+12.5% 重現**(momentum +9.9%/RS +8.6~10.2%/low-vol −1.5%)。兩者**未到「高」**(insider 只大型股;family survivorship)。
+- **Bug 修正(實驗檔):** `exp_insider_validate`/`exp_family_validate` 的 `_DATA` 路徑(reorg 後指錯)+ 死快取 None 永不重抓(改 `cache.get(t) is None`)。**weekly cron 冇壞**(`thesis/insider_edgar.py` 未搬)。`px_defeatbeta.pkl` 全 None,需本機 defeatbeta 重抓(bug 已修,一 run 即補全宇宙 → 預期 insider 21d t≈5.12)。
+- **升級到「高」的做法(通用):** 分設計/考試期(walk-forward)+ 真實成本 + 除 survivorship(point-in-time 成員)+ 多重檢定校正;期權類只能 Black-Scholes 理論定價(無真實期權鏈)→ 上限「中高」。
+- **用戶溝通偏好:** 香港白話中文、少術語/縮寫、個人投資者(不提「容量」caveat)。「乾火藥部署計時器」改叫「**入市時機訊號**」。

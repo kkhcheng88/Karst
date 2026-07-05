@@ -1,6 +1,6 @@
 # Result — Scorecard validation (does the score reach both ends + predict?)
 
-**Date:** 2026-06-30  **Script:** `backtest/exp_scorecard_validation.py`  **Tag:** ✅ verified
+**Date:** 2026-06-30  **Script:** `backtest/experiments/exp_scorecard_validation.py`  **Tag:** ✅ verified
 Method: bucket each day by a tool's score, measure realized forward 21d underlying
 return + drawdown (OHLCV only — no provisional option magnitudes). Full history.
 

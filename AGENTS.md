@@ -1,13 +1,19 @@
 # AGENTS.md — for any coding agent (Claude Code / Roo Code / Codex)
 
-Karst = the WHEN/HOW execution + params of an investment system. Agent-agnostic entry points so
+Karst = an independent, self-contained fully-automated agentic investment decision system — it finds
+its OWN edge (Phase 3 built in-house) and runs the full decision pipeline; Compass/Tree/Reference are
+external reference material only, not dependencies. Agent-agnostic entry points so
 a fresh session (any agent) knows how to operate and MAINTAIN it. Communicate with the user in
 Traditional Chinese (technical identifiers/tickers/code in English).
 
 ## Read first (project state + design)
+- **`STATUS.md` — START HERE.** 單一入口:現在在哪、下一步、東西在哪、閱讀順序。
+  (2026-07-03 起取代散落交接;session 結束要更新它。)
 - `ARCHITECTURE.md` — **the cross-phase system map (single source of truth)**: the top-down funnel,
   the signal-family → Phase placement + the "in-price vs not-in-price" firewall, built/stub/deferred
   status, and the honest signal-family assessment. Read this to understand the whole system.
+- `docs/ROADMAP_AGENTIC.md` — 已核准的實施計畫(Phase A-D);`docs/2026-07-03_*` — 全系統審查
+  (P0 接線問題清單,**未修**,動 spine/thesis 前先看)。
 - `.agents/KARS_MEMORY.md` — long-term project memory (decisions, current status).
 - `.agents/USER.md` — who the user is + work preferences (adversarial thinking, evidence-first, NHITL).
 - `README.md` — repo定位.

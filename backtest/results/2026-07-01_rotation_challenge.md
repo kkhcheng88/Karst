@@ -1,6 +1,6 @@
 # Rotation challenge — the 7%→155%→327% gap is a frequency mirage, not a missed factor
 
-2026-07-01. `backtest/exp_rotation_challenge.py`. User's challenge: such a huge gap between
+2026-07-01. `backtest/experiments/exp_rotation_challenge.py`. User's challenge: such a huge gap between
 causal (~7%) and oracle (155-327%) must hide a missed KEY FACTOR (even at overfitting risk).
 Answered with two tests. Window 2002-2026 (IEF starts 2002), total-return, 5bp/unit turnover.
 
@@ -45,6 +45,6 @@ fallback cut MaxDD from −55% to −34%). So in the composition engine: quant =
 control, thesis = return generation.
 
 ## Files
-New: `backtest/exp_rotation_challenge.py`. Closes the sector-rotation / composition arc
+New: `backtest/experiments/exp_rotation_challenge.py`. Closes the sector-rotation / composition arc
 (oracle ceiling → causal capture → this decomposition). 7 studies now converge: every quant
 layer is risk control; the return edge, if any, is qualitative → Phase 3.

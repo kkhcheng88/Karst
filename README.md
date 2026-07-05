@@ -7,20 +7,19 @@
 
 ## 定位
 
-Karst 是整套投資系統的 **執行 + 參數核(WHEN / HOW)**,以實證為唯一地基。
+Karst 是一套**獨立、自足的全自動 agentic 投資決策系統**,以實證為唯一地基。
+目標:依系統策略,全自動產出**最佳投資決策**(NHITL — 無人介入是達成手段,不是目的)。
 
-| 系統 | 角色 | 回答的問題 | 位置 |
-|---|---|---|---|
-| **Compass** | WHY | 質性大腦 + 紀律(該不該動、動哪個板塊) | `../Compass` |
-| **Tree**(drawtree) | WHAT | 可證偽假設 + risk/reward(Bull/Base/Bear) | github.com/Draw-Tree/drawtree-protocol |
-| **Karst** | WHEN / HOW | 釘死的參數 + timing + 系統性風控 | 本 repo |
+Karst **自己找 edge、也自己跑決策管線**:由上而下的每日掃描(市場閘 → 板塊/RS →
+個股 → 質性 thesis → 擇時 → sizing),**自建 Phase 3 質性層,edge 不外包**。系統回答:
+**現在該不該有 exposure、多少信念、什麼結構、什麼時機、承擔多少風險。**
 
-**Karst 不負責找 edge**——那是 Compass + Tree 的事。Karst 是執行臂:拿一個
-已通過驗證的標的,決定 **何時進出、用什麼結構表達、承擔多少風險**。
+同層外部 repo(`../Compass`、drawtree、`../Reference`、`../ebooks`)**只是參考素材,
+不是功能依賴**;Karst 不依賴它們運作。
 
-一個 commoditized 的策略(PMCC / CSP),只要 **只用在通過 Tree kill condition
-的 thesis + Compass 判 Warm 的 sector + 對的 regime + 對的參數** 上,它就不再
-commoditized。edge 是這個組合,不是任何單一零件。
+一個 commoditized 的策略(CSP / covered call),只要**只用在通過可證偽 kill condition
+的 thesis + 對的 sector + 對的 regime + 對的參數**上,它就不再 commoditized。
+edge 是這個組合,不是任何單一零件。
 
 ---
 
@@ -40,20 +39,25 @@ Karst 不信任二手蒸餾。每一條參數都帶 tag:
 
 ---
 
-## 結構
+## 結構(2026-07-03 更新;**新 session 從 `STATUS.md` 開始**)
 
 ```
 Karst/
-├── README.md                    ← 本檔
-├── params/
-│   ├── layer1_options.md        ← 期權結構參數(PMCC / 方向性 LEAP / CSP / IC)
-│   └── layer2_timing.md         ← 標的層 timing(4 訊號家族 + flow)
-├── invariants/
-│   └── systematic_rules.md      ← 系統性風控(Charter「堆 B」蒸餾,無人味)
-├── lenses/                      ← 基本面/護城河鏡片(照 Mark Douglas pipeline 蒸餾)
-│   └── README.md
-└── reference/                   ← 只放指標,不複製內容
-    └── README.md
+├── STATUS.md                    ← 單一入口:現在在哪/下一步/東西在哪
+├── ARCHITECTURE.md              ← 跨 Phase 系統地圖(single source of truth)
+├── AGENTS.md / HANDOFF.md       ← agent 入口 / 最近 session 詳細交接
+├── docs/                        ← 審查文件 + ROADMAP_AGENTIC.md(已核准實施計畫)
+├── backtest/
+│   ├── (核心庫: data/engine/metrics/signals/regime/scorecard/options_engine/bsm)
+│   ├── scan.py                  ← 每日掃描前門
+│   ├── spine/                   ← Phase 0/1/4 掃描引擎
+│   ├── experiments/             ← 37 個回測實驗(見其 README.md 索引)
+│   └── results/                 ← 回測結論(dated .md)
+├── thesis/                      ← Phase 3 質性層(9 主題 + forward-IC)
+├── web/                         ← 唯讀 dashboard(compute/serve 分離)
+├── params/                      ← 期權/timing 參數(帶 tag;PMCC 已於 v3.1 移除)
+├── invariants/ lenses/ reference/  ← 風控鐵律 / 鏡片 / 外部原料指標
+└── .agents/                     ← KARS_MEMORY(長期記憶)+ USER
 ```
 
 ---

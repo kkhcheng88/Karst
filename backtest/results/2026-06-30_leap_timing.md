@@ -1,6 +1,6 @@
 # Result — Does a deep-ITM LEAP need timing? (PROVISIONAL — magnitudes not bankable)
 
-**Date:** 2026-06-30  **Script:** `backtest/exp_leap_timing.py`  **Tag:** 🟡 provisional
+**Date:** 2026-06-30  **Script:** `backtest/experiments/exp_leap_timing.py`  **Tag:** 🟡 provisional
 
 ## Question
 RSI-2 showed underlying TA timing = drawdown control, not alpha — and on SHARES that

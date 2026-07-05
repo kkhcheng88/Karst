@@ -82,7 +82,7 @@ the RSI-2 dip itself (drivers show `RSI2 (DIP)` when <10). Always read `csp_mode
 
 ## Other actions
 - Regime snapshot: `python backtest/regime.py`
-- Re-run a study: `python backtest/exp_*.py` (rsi2_filter / rsi2_exit / rsi2_alpha /
+- Re-run a study: `python backtest/experiments/exp_*.py` (rsi2_filter / rsi2_exit / rsi2_alpha /
   leap_timing / csp / csp_ivrank / pmcc). Results logged in `backtest/results/`.
 - Project memory / state: `.agents/KARS_MEMORY.md`, `.agents/USER.md`.
 

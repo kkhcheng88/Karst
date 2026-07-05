@@ -82,6 +82,6 @@ falsifiable target: find a signal with forward IC ≥ ~0.05. The only untested s
 (news/catalysts/fundamentals/bottleneck) = Phase 3 — now with a measurable, forward-trackable bar.
 
 ## Files
-New: `backtest/exp_weekly_trigger.py` (cross-sectional IC of candidate factors + causal reversal),
-`backtest/exp_skill_curve.py` (payoff-by-rank + reward-vs-skill curve),
-`backtest/exp_factor_sweep.py` (28-factor Alpha158-style sweep + Bonferroni + composite/SVD).
+New: `backtest/experiments/exp_weekly_trigger.py` (cross-sectional IC of candidate factors + causal reversal),
+`backtest/experiments/exp_skill_curve.py` (payoff-by-rank + reward-vs-skill curve),
+`backtest/experiments/exp_factor_sweep.py` (28-factor Alpha158-style sweep + Bonferroni + composite/SVD).

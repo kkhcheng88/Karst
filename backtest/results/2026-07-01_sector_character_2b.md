@@ -1,6 +1,6 @@
 # 2b — sector character: hypothesis largely NOT validated (a disciplined negative result)
 
-2026-07-01. `backtest/exp_sector_character.py`. Tested the user's hypothesis — "some sectors
+2026-07-01. `backtest/experiments/exp_sector_character.py`. Tested the user's hypothesis — "some sectors
 (tech-linked) are persistent uptrends → ride the dip; others (consumer/health/...) are
 range-bound → mean-revert" — by MEASURING it (not hardcoding), on total-return prices, full
 multi-regime history, with an IS/OOS split and deflated Sharpe over all 33 variants.
@@ -49,4 +49,4 @@ Per SPDR sector, total-return (adjusted) closes, cost 2bp, look-ahead-safe (`eng
   the live spine stays raw).
 
 ## Files
-New: `backtest/exp_sector_character.py`. Changed: `data.py` (`adjusted=` total-return load).
+New: `backtest/experiments/exp_sector_character.py`. Changed: `data.py` (`adjusted=` total-return load).

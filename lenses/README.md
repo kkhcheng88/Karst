@@ -63,6 +63,9 @@ Compass 封存的 8 個 value agents(Buffett / Graham / Klarman / Greenblatt …
 ## Open Items
 
 - [ ] 蒸餾 Dorsey → moat criteria(最高槓桿,先做)
-- [ ] 蒸餾 Minervini Trend Template → Layer-2 編碼規則
+- [x] ~~蒸餾 Minervini Trend Template → Layer-2 編碼規則~~ **已完成+回測否定(2026-07-02)**:
+      VCP 收縮結構對純突破**無增量 edge**(`backtest/experiments/exp_minervini_validate.py`
+      / `exp_vcp_pattern.py` / `exp_vcp_sharpely.py`;A/B + swing horizon 全測)→
+      **不編碼進 Layer-2**。⚠️ 蒸餾產物與 verdict 未存檔(孤兒),引用前先重跑補檔。
 - [ ] 蒸餾 Lynch → 衛星成長分類
 - [ ] 升級 Compass `lenses/`(Lynch/Marks/Munger)或遷移到此
