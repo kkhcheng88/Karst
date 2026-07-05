@@ -136,8 +136,9 @@ themes:
     - USAR
     note: REAL geopolitical chokepoint (USGS indium 70% / gallium 98-99%; heavy-REE to US ~5%; MP DoD-backed
       $110/kg floor) but THIN evidence (only 2 reports) + binary 2026-11 truce-expiry x US-midterms event
-      + MP priced-in (ttm_pe 119.6 = 92nd pctile). Prefer cheap AXTI (16.2 = 26th pctile, only clean value;
-      overlaps photonics), don't chase MP; USAR/NVTS pre-earnings -> option/event framing. cycle=event-driven,
+      + MP priced-in (ttm_pe 119.6 = 92nd pctile). AXTI trailing ttm_pe 16.2 (26th pctile) is a PEAK-EARNINGS
+      ARTIFACT, NOT clean value (#141 loss-making -14.7%, fwd PE 72.8x, P/S 61x->38.6x, -41% vs 50-day) -> no
+      longer a cheap anchor; overlaps photonics. don't chase MP; USAR/NVTS pre-earnings -> option/event framing. cycle=event-driven,
       confidence 0.28 INITIAL/uncalibrated -> lowest of the batch.
 
   tpu-custom-silicon:
@@ -149,7 +150,9 @@ themes:
     kill_condition: 'TPU escaping Google stalls (no new hyperscaler/enterprise adoption beyond Anthropic/Meta
       -> third-party leasing stays a few-giants niche) OR AVGO AI/custom-ASIC order-book & revenue stops
       beating (toll-booth not confirmed by financials) OR New-Street-tracked NVDA inference share fails
-      to loosen (diffusion slower than bull case) OR CUDA/software keeps SMB TPU deployments off. Crowding-unwind:
+      to loosen (diffusion slower than bull case) OR the real moat -- open models are GPU-shaped (China open
+      models ~40% of HF downloads, all NVIDIA-co-designed) holds while Google Gemma fails to breed strong
+      TPU-shaped open models (#146). Crowding-unwind:
       whole chain 75-87th ttm_pe pctile + most-consensus design-side names de-rate hard on any AI-capex
       hiccup. Trigger -> confidence to zero.'
     tickers:

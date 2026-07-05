@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.32
 verdict: real-chokepoint-but-proxies-priced
-updated: 2026-07-01
+updated: 2026-07-05
 tickers: [AMKR, ASX, TTMI, INTC, MKSI, KLAC, GLW, STX, WDC]
 ---
 
@@ -13,7 +13,7 @@ tickers: [AMKR, ASX, TTMI, INTC, MKSI, KLAC, GLW, STX, WDC]
 
 # 先進封裝 / AI 基板材料(B 型)— 真咽喉,但真瓶頸非美股、可交易代理已 90-100 分位
 
-> 綜合頁。蒸餾自 9 篇 Tier-2 報告([[advanced-packaging]] 叢,gooptions)+ 一手驗證(defeatbeta
+> 綜合頁。蒸餾自 12 篇 Tier-2 報告([[advanced-packaging]] 叢,gooptions;含 ECTC 2026 三部曲 #140/#142/#144)+ 一手驗證(defeatbeta
 > ttm_pe/capex,2026-07-01)。**這叢敘事僅 1/9 bull(11%,比記憶體 14% 還不擠),照 bull% 該接近
 > 0.38;但一手估值把全部可交易美股代理釘在 90-100 分位、且真瓶頸擁有者(日東紡/三井/Hoya)是非
 > 美股 → 壓到 0.32。示範:priced-in 閘 + 表達缺口壓 confidence。INITIAL/uncalibrated。**
@@ -46,6 +46,8 @@ flowchart TD
   GLASS["玻璃基板接棒(2027 拐點)<br/>GLW 康寧 ✅美股 · Hoya · AGC ✗非美股"] -->|"有機 ABF 撞牆→玻璃"| SUBS
   HOYA["Hoya ✗非美股(OTC:HOCPY)雙壟斷<br/>EUV 光罩基板 70-80% + HDD 玻璃碟 100%"] -->|"EUV 光罩基板"| PKG
   HOYA -->|"HDD 玻璃 100%"| STOR["儲存 / HDD(Hoya 下游)<br/>STX ✅美股 · WDC ✅美股 · 完售 + 漲價~50%"]
+  HBMBASE["HBM 基底晶粒代工(#142·新節點)<br/>HBM4E:SK海力士/美光→台積 N3 · 三星自製 · Marvell 定介面"] -->|"客製 base die 走邏輯製程"| TSM
+  COOL["冷卻內化進封裝(#140·新·2027+前沿)<br/>台積微柱 5.3kW · 微軟微流道 −50% 熱阻 · TIM1=結構輸家"] -.->|"晶圓代工往上吃冷卻"| PKG
 ```
 
 ## ticker 層(Karst 端產品 = 這張表)
@@ -60,7 +62,8 @@ flowchart TD
 | [[KLAC]] | 零容錯**光學檢測**(層數 18→32→報廢率↑,#121) | ✅ US | ttm_pe **85(94%)** | 檢測鏟子、大型、亦已貴 |
 | [[GLW]] | 玻璃基板接棒(2027 拐點,有機 ABF 撞牆,#117) | ✅ US | 大型多元(亦見 [[photonics-optical]]) | 玻璃地基、防守、慢變數 |
 | [[STX]] / [[WDC]] | Hoya HDD 玻璃碟(100%)下游、硬碟完售 + 漲價~50%(#083/#085) | ✅ US | — | **儲存半支(Hoya 下游),WDC 亦見記憶體叢** |
-| TSM | CoWoS/COUPE 封裝**領跑**,但稀缺溢價被格式戰侵蝕(#131) | ✅ US ADR | — | **被競爭的現任,非本 thesis 多方表達→不列多方** |
+| TSM | CoWoS/COUPE 封裝**領跑** + 新增 **HBM 基底晶粒代工線**(#142)+ 冷卻內化(微柱,#140);稀缺溢價被格式戰侵蝕(#131) | ✅ US ADR | — | **被競爭的現任但多吃兩條線(base die+冷卻);非本 thesis 多方→不列多方** |
+| MRVL(跨鏈) | 客製 HBM **介面定義者**(−60% 加速器面積 / −70% 功耗,#142);主表達見 [[tpu-custom-silicon]] / [[photonics-optical]] | ✅ | — | 敘事受惠、非本叢核心表達 |
 | 日東紡 / 三井金屬 / Hoya / AGC | T-glass~90% / HVLP 銅箔 / 雙壟斷 / 光罩基板 #2 | ✗ 非美股 | Hoya IT 分部 ROIC 21.1%(#083,Tier-2) | **真瓶頸擁有者,買不到→用 AMKR/TTMI/GLW 二手表達** |
 | 台光電 EMC / 台燿 TUC / 巨石 | CCL M9(一度唯一過認證) / E-glass | ✗ 非美股 | — | thesis 輸入,不可交易 |
 | NVDA / AVGO / GOOGL / AMD | 需求錨(Rubin CCL $275M→$2B,#106) | ✅ | — | **下游需求、非封裝表達,排除** |
@@ -76,6 +79,13 @@ flowchart TD
   良率而非稀缺原料,比資源壟斷更難追平(Tier-2 #083)。
 - **軍火商結構**:封裝格式戰(CoWoS-L vs EMIB-T)無論誰贏,封測這道工序都得有人做 → [[AMKR]]/[[ASX]]
   兩邊通吃、誰贏都收錢(Tier-2 #131)。這是本叢最乾淨的可交易護城河邏輯。
+- **ECTC 2026 三部曲深化(#140/#142/#144)= 封裝成新戰場、且晶圓代工往上吃**:(a) **冷卻內化**——台積微柱
+  8L/min 散 5.3kW、微軟真 GH200 微流道封裝熱阻 −50%、物理移除 TIM1(結構輸家),2027+ 標準化(#140);
+  (b) **HBM 基底晶粒代工**——HBM4E 三家有兩家(SK海力士/美光)把 base die 交台積 N3、台積 ECTC 展示 N3P 客製
+  C-HBM4E,Marvell 定介面(−60% 加速器面積 / −67% 灘頭 / −70% 功耗)(#142);(c) **中介層三重牆**——I/O 翻倍、
+  功耗 +86%、層數 2×(Samsung 外推)同撞繞線/供電/散熱,EMIB-T 橋上電容把供電網路阻抗改善 **>82%**、TSV 壓降
+  −68~80%,但 CoWoS 是量產在位者、EMIB-T 仍在追、封測廠兩邊通吃(#144)。**注:base die 那塊矽很小、對台積是
+  「配額仲裁者」再加一條線,非新成長引擎(#142)。**
 
 ### 2. 資本配置 / ROIC — 中偏弱(1/2)
 - **供給回應中但溫和**:[[AMKR]] capex 一年 ~1.5x(0.29→0.43B 後回 0.23B)、[[ASX]] capex TWD
@@ -86,7 +96,8 @@ flowchart TD
 
 ### 3. 估值 / priced-in — 弱(0.5/2)⚠️ 最大拖累
 - **全部可交易美股代理 90-100 分位**(一手,2026-07-01):[[TTMI]] **96%**、[[MKSI]] 94%、[[KLAC]] 94%、
-  [[AMKR]] 91%、[[ASX]] 90%;**全叢無一個便宜入口**(對比 [[photonics-optical]] 還有 AXTI 26% 錨)。
+  [[AMKR]] 91%、[[ASX]] 90%;**全叢無一個便宜入口**(過去對比 [[photonics-optical]] 的「AXTI 26% 錨」**已下修**——
+  #141:AXTI 當季轉虧、預估 PE 72.8×、P/S 61×→38.6×,尾隨 ttm_pe 16 是盈利觸頂假象、不再是乾淨便宜入口)。
 - **[[INTC]] PE 無意義**:近零盈利、外部代工營收僅 $174M(約總營收 1%)、同部門季虧 $2.4B(Tier-2 #119)
   → 6/18 單日 +10.64% 買的是政治選擇權溢價,不是可用現金流估的成熟平台 → **用事件/選擇權框架、非 PE**。
 - **市場慢一層 ≠ 便宜**:報告框架說「市場只定價了中游、沒追到上游材料」(#106),但那句話講的是**非美股**
@@ -97,6 +108,9 @@ flowchart TD
   2 年 18→32 層、鑽針消耗 4-5x(Tier-2 #117/#121)。
 - **平台級升級**:CCL 沿 M4→M9 隨 [[NVDA]] 平台一代代爬;Rubin 平台 CCL 市場 $275M→$2B(高盛估,#106);
   玻璃基板量產拐點 2027、有機 ABF 撞物理牆後由玻璃接棒(#117)= 真、additive、若 AI capex 續則耐久。
+- **玻璃基板 caveat(#138)**:2027 拐點 + [[GLW]] 領跑確認,但**韓廠 KCC / LX Glass / SKC 亦入局**(競爭、非
+  獨家);且瘋傳嘅「巨型玻璃基板 TAM」其實係 **CPO TAM 誤植**——真實約 **$31B advanced-IC-substrate by 2030
+  (Yole)**,遠細過病毒推文所稱 → 玻璃係真接棒,但唔好用誤植 TAM 撐估值。
 
 ## cycle_stage = LATE(可交易端已定價)+ 物理瓶頸仍中段
 | 訊號 | 現況 |
@@ -141,6 +155,10 @@ cycle/crowding penalty:敘事 11% bull(低擁擠,offset↑)× 估值 90-100 分�
   [[INTC]])**全部估值 90-100 分位**。方向:**不追高**;偏好軍火商 **AMKR/ASX(誰贏都收錢)> 最貴收費站
   TTMI(96%)**;INTC 用事件/選擇權框架(PE 無意義);TSM 是被侵蝕的現任、不列多方。追蹤變數 =
   T-glass/HVLP 新產能時程 + 代理名估值分位 + bull 佔比;kill = 材料瓶頸鬆動 / 格式戰收斂。
+- **2026-07-05**(ingest ECTC 三部曲 #140/#142/#144):咽喉/格式戰/軍火商 thesis **獲深度佐證**(EMIB-T 橋上
+  電容 −82% 阻抗、CoWoS 在位、封測兩邊通吃),並新增兩個結構節點(**冷卻內化 + HBM 基底晶粒代工往台積移**)。
+  無估值紓解(代理名仍 90-100 分位)→ confidence 維持 **0.32**、cycle 維持 LATE;新增追蹤 = base die 台積佔比、
+  EMIB-T 客戶落地、冷卻第三層 2027 標準化時程。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
 ## 待補(降「未確認」扣分)
@@ -150,9 +168,13 @@ cycle/crowding penalty:敘事 11% bull(低擁擠,offset↑)× 估值 90-100 分�
 - [ ] universe.yaml 加先進封裝 grouping(AMKR/ASX/TTMI/MKSI/KLAC/GLW/STX),讓 scan 覆蓋。
 - [ ] STX/WDC HDD 完售 + 漲價~50% 一手查證(Hoya 玻璃碟時序限速,#085 的 07-31 讀數關鍵日)。
 - [ ] INTC 用選擇權/事件框架(非 PE)另評:外部代工營收 $174M→$1B+ 兌現曲線(#119/#131)。
+- [ ] 追 HBM base die 台積 N3 佔比兌現(#142)+ 冷卻第三層(直接對矽微流體)2027 標準化落地(#140)。
+- [ ] 冷卻「帶走熱」段的美股表達 VRT/ETN 見 [[ai-power-grid]](Eaton 收 Boyd Thermal $9.5B,#140)。
 
 ## 來源
-Tier-2(advanced-packaging 叢 9 篇,`thesis/wiki/sources/`,全文 `corpus.db`):#100(EMIB-T 為真、
+Tier-2(advanced-packaging 叢 12 篇,`thesis/wiki/sources/`,全文 `corpus.db`);**新增 ECTC 2026 三部曲:
+#140(冷卻推進矽、三層真相、TIM1 輸家、Eaton 收 Boyd $9.5B)、#142(客製 HBM 基底晶粒代工移向台積、Marvell
+定介面 −60% 面積)、#144(HBM4E 封裝三重牆、EMIB-T 供電 −82%、CoWoS 在位)**;既有:#100(EMIB-T 為真、
 結構贏家台積電、CoWoS 咽喉)、#131(格式戰、AMKR/ASX 軍火商、面板 75% vs 圓晶圓 51%、Intel 封裝 $1B+)、
 #106(CCL 上游雙鎖喉、T-glass 日東紡 90%、HVLP 配額制、Rubin CCL $275M→$2B)、#117(材料成本 80%、
 玻璃基板 2027 拐點)、#112(日東紡腰斬仍 90%、TTMI 反向受益)、#083/#085(Hoya 雙壟斷 EUV+HDD、STX/WDC

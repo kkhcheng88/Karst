@@ -4,7 +4,7 @@ type: B
 cycle_stage: mid
 confidence: 0.28
 verdict: real-share-shift-but-thin-and-consensus
-updated: 2026-07-01
+updated: 2026-07-05
 tickers: ['AVGO', 'MRVL', 'TSM', 'CLS']
 ---
 
@@ -13,9 +13,10 @@ tickers: ['AVGO', 'MRVL', 'TSM', 'CLS']
 
 # TPU / 自研晶片(B 型)— 真·推理份額轉移,但單篇薄證據 + 設計端最共識
 
-> 綜合頁。蒸餾自 **僅 1 篇** Tier-2 報告([[tpu-custom-silicon]] 叢,gooptions #129,100% bull)
-> + 一手驗證(defeatbeta ttm_pe/capex,2026-07-01)。**證據薄:單一來源、無跨源佐證 → 這是一張
-> 「薄證據 watch」頁,confidence 壓低。** INITIAL/uncalibrated;當「有紀律的相對強弱 × 週期溫度」讀。
+> 綜合頁。蒸餾自 **3 篇** Tier-2 報告(#129 核心 + #145/#146 跨源佐證,[[tpu-custom-silicon]] 叢,gooptions)
+> + 一手驗證(defeatbeta ttm_pe/capex,2026-07-01)。**證據由 1→3 篇,但 #145/#146 同出一場 SemiAnalysis /
+> Dylan Patel(Sequoia)訪問 → voice 仍 ~1、非完全獨立;confidence 暫維持 0.28,獨立第二把聲仍係上調門檻。**
+> INITIAL/uncalibrated;當「有紀律的相對強弱 × 週期溫度」讀。
 
 ## 一句話(核心張力 = thesis 本身)
 算力重心從**訓練**移到**推理**(2030 推理用量超訓練),而推理比的是「服務一個 token 要花多少錢」。
@@ -30,6 +31,8 @@ token 價壓到 $1.74(對手 $4+)、讓 Anthropic/Meta 願意外用 → **結構
 ```mermaid
 flowchart TD
   DEM["推理 &gt; 訓練 by 2030<br/>McKinsey 用電 31→93GW(推理) vs 31→62GW(訓練)"] -->|"成本說話"| GOOGL
+  DEM -->|"吞吐-互動曲線(#145):interactive 端每 token ~4×、等質成本 ~60%/年跌"| SPLIT
+  SPLIT["算力三分(#145·新節點)<br/>batch=TPU/Trainium/AVGO · interactive=Cerebras/Groq · general=NVDA 兩端通吃"] --> CBRS["CBRS ✅美股 · Cerebras 互動端純玩家<br/>(結構風險:最強模型變大、SRAM 裝唔落)"]
   ANTH["需求外溢:Anthropic $2,000億 · Meta 首購 · Apollo/Blackstone $350億 外租"] -->|"TPU 走出 Google"| GOOGL
   GOOGL["GOOGL TPU 擁有者/自研(下游需求·被搜尋雲廣告稀釋 → 非純表達)"] -->|"繞不開設計端"| DESIGN
   DESIGN["① 設計端(收費站)"] --> AVGO["AVGO ✅美股 · TPU 客製 ASIC 設計 + Tomahawk 交換晶片(贏兩次)★核心"]
@@ -68,6 +71,12 @@ flowchart TD
   晶片都繞不開的設計端」= 收費站(Tier-2 #129)。
 - **TSM 兩鏈唯一交集**:代工 + CoWoS 先進封裝(N3P→N2),TPU 鏈與 NVIDIA 鏈都得走它 = 硬瓶頸(#129)。
 - **扣分**:設計端有聯發科競爭、hyperscaler 自研內化的長期風險;是「設計服務」而非鎖死 IP 壟斷 → 1.5 非 2。
+- **#146 護城河再定義**:Dylan Patel 指「99% 客製 ASIC 失敗,因 AI 晶片本質是軟體」→ 佐證 [[AVGO]]「贏兩次」
+  (設計 + 軟體整合);但**真 NVDA 護城河唔係 CUDA,而係「開源模型都長成 GPU 嘅形狀」**(中國開源佔 Hugging
+  Face 下載 ~40%、累計 >10B、全部為 NVIDIA 而設)→ TPU 上位嘅真領先指標 = Google Gemma 有冇養出強嘅
+  TPU-shaped 開源模型(Gemma >400M 下載、Gemma 4 top-3 開源),唔係「模型自己寫 kernel」。
+- **AVGO 長期壓力(#146)**:Google 同時跑 **3 條 TPU 設計線**(Broadcom + 聯發科 + 1 未公開)→ 對 AVGO 設計端
+  收費站係長期稀釋風險,要盯。
 
 ### 2. 資本配置 / ROIC — 中(1/2)+ 供給回應形成中
 - **全鏈 capex 上行(一手,2026-07-01)**:AVGO 0.10→0.25B(~2.4x)、MRVL 0.07→0.16B(~2.2x)、
@@ -116,7 +125,8 @@ penalty = 薄證據(單一 Tier-2 報告 n=1,無跨源佐證) × 共識(AVGO 客
 ## kill_condition(可證偽)
 > **「TPU 走出 Google 的速度」停滯** —— Anthropic/Meta 之後**無新雲端/企業採用**(外租平台仍卡在少數
 > 巨頭)**或** [[AVGO]] AI / 客製 ASIC 拿單與營收上修**停止**(收費站未被財報確認)**或** New Street 追蹤的
-> **NVDA 推理份額不見鬆動**(擴散慢於樂觀情境)**或** CUDA / 軟體生態讓中小型 TPU 部署起不來。
+> **NVDA 推理份額不見鬆動**(擴散慢於樂觀情境)**或** 真護城河「開源模型都長成 GPU 形狀」未破——Google
+> Gemma 一直養唔出強嘅 TPU-shaped 開源模型(中國開源仍 ~40% HF 下載、全為 NVIDIA 而設,#146)。
 > **反面風險(crowding-unwind):** 全鏈 75–87 分位 + 最共識設計端,任何 AI-capex 打嗝即重挫。
 > 觸發 → confidence 歸零,回歸「買 AI 就是買 NVDA」的思考慣性。
 
@@ -125,6 +135,9 @@ penalty = 薄證據(單一 Tier-2 報告 n=1,無跨源佐證) × 共識(AVGO 客
   [[AVGO]](設計端收費站、核心)+ [[TSM]](兩鏈唯一交集、鏟子)+ [[MRVL]]/[[CLS]](次要)。方向:**不追高**;
   小注;**追蹤變數 = TPU 外部採用擴散數 + AVGO 客製 ASIC 訂單/AI 營收上修 + Gemini-對手 token 價差 +
   NVDA 推理份額**;kill = 外溢停滯 / 份額不鬆動 / CUDA 擋住中小型部署。
+- **2026-07-05**(ingest #145/#146):跨源佐證使薄證據 1→3 篇(但同一 SemiAnalysis/Dylan 訪問→非完全獨立,
+  confidence 暫維持 0.28);護城河再定義——真 NVDA 壁壘 =「開源模型都長成 GPU 形狀」非 CUDA,領先指標改追
+  Google Gemma 養唔養到強 TPU-shaped 開源模型(#146);新增互動端節點 CBRS/Groq(#145)。kill 相應更新。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
 ## 待補(降「未確認」扣分 + 加厚薄證據)
@@ -136,7 +149,10 @@ penalty = 薄證據(單一 Tier-2 報告 n=1,無跨源佐證) × 共識(AVGO 客
 - [ ] universe.yaml 加 TPU/custom-silicon grouping,讓 scan 覆蓋(目前 thesis 層有、scan 未覆蓋)。
 
 ## 來源
-Tier-2(TPU 叢 **僅 1 篇**,`thesis/wiki/sources/`,全文 `corpus.db`):**#129**(TPU 逆襲:推理時代成本
+Tier-2(TPU 叢 **3 篇**,`thesis/wiki/sources/`,全文 `corpus.db`):**#129**(TPU 逆襲:推理時代成本
 說話,`corpus.py get 129-trend-core-research-tpu-inference-cost-insurgency`)——內含 SemiAnalysis 成本、
 McKinsey 用電、New Street 份額、Artificial Analysis token 價、AVGO「贏兩次」、TSM 兩鏈交集、OCS 命脈等
-二手引用。Tier-1:defeatbeta `ttm_pe` / `quarterly_cash_flow`(capex)(2026-07-01)。
+二手引用;**新增(2026-07-05):#145(AI 推理經濟曲線:batch/interactive/general 三分、每 token ~4×、
+~60%/年成本跌、Cerebras/Groq 互動端)、#146(CUDA 護城河再定義:真壁壘=開源模型 GPU-shaped、中國佔 HF
+~40%、Google Gemma 為 TPU 上位領先指標、Google 3 條 TPU 設計線壓 AVGO)——但兩篇同出 SemiAnalysis/Dylan
+Patel 訪問、非獨立第二把聲**。Tier-1:defeatbeta `ttm_pe` / `quarterly_cash_flow`(capex)(2026-07-01)。

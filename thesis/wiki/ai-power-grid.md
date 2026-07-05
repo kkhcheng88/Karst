@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.33
 verdict: real-demand-but-priced-ahead-of-ramp
-updated: 2026-07-01
+updated: 2026-07-05
 tickers: [EQT, GEV, BE, VRT, ETN, PWR, MPWR, VICR, NVTS, WOLF, ON]
 ---
 
@@ -51,8 +51,8 @@ flowchart TD
 | [[EQT]] | ① 上游天然氣、AI 表後發電燃料;三線交匯(#044/#045) | ✅ US | **ttm_pe 10.1(35 分位,n=5531 唯一便宜且史長可靠)**;capex 平 ~0.5–0.6B(無供給回應) | **最乾淨便宜表達**、商品股但估值不貴 |
 | [[GEV]] | ② 大型渦輪發電設備 | ✅ US | ttm_pe 34(**12% 但 n=501 史短、spin-off 後大重估、不可靠**);capex lumpy 0.17→0.67 | 質優但 CEO 自曝訂單節奏裂縫(#086)、渦輪訂單或 2026 見頂(#134) |
 | [[BE]] | ② 燃料電池、Aschenbrenner 大贏家(+1,680%) | ✅ US | **ttm_pe 無意義(近零盈利,15,659)→ 事件/選擇權框架**;capex 微升 0.01→0.03 | **已飛、pre-earnings**、非 PE 可評 |
-| [[VRT]] | ④ 機櫃供電/散熱、beta 最高 | ✅ US | ttm_pe 84(68%);capex 0.04→0.11(**2.5x 供給回應形成中**) | 熱門高 beta、供給在回應 |
-| [[ETN]] | ④ 『grid-to-chip』電氣平台、DC orders +240% | ✅ US | **ttm_pe 41.7(99 分位!n=7106 史長最可靠)**;capex 平;180 天 0 insider buy(#051) | **質優但估值極端 priced-in**、對稱不偏 |
+| [[VRT]] | ④ 機櫃供電/**散熱**、beta 最高;防守段「**take-heat-away**」(CDU/quick-disconnect/二次熱交換,代工唔內化)vs 會被 direct-to-silicon 微流道內化嘅裸晶冷板(2027+,#140) | ✅ US | ttm_pe 84(68%);capex 0.04→0.11(**2.5x**);Q1'26 營收 ~$2.65B **+30% YoY**、backlog >$15B、全年上調 $13.5–14B(#140) | 熱門高 beta、供給在回應;護城河偏「帶走熱」防守段 |
+| [[ETN]] | ④ 『grid-to-chip』電氣平台、DC orders +240%;**收購 Boyd Thermal ~$9.5B 伸入液冷**(#140) | ✅ US | **ttm_pe 41.7(99 分位!n=7106 史長最可靠)**;capex 平;180 天 0 insider buy(#051) | **質優但估值極端 priced-in**、對稱不偏 |
 | [[PWR]] | ③ 電網 EPC / 輸電工程 | ✅ US | —(未拉,鏟子股) | 鏟子、間接受惠 |
 | [[MPWR]] | ⑥ POL 最後一吋寡佔(僅 MPWR+Vicor 兩家)、賭 Vera Rubin 70% 份額 | ✅ US | **ttm_pe 99.6(89 分位)**;capex 輕資產 ~0.04–0.07;5 位內部人高點集體賣(#082) | **最深護城河但滿水位 + 二元事件** |
 | [[VICR]] | ⑥ POL/PMIC 另一半、IP 授權 | ✅ US | —(未拉) | 雙寡佔另一腳 |
@@ -72,6 +72,10 @@ flowchart TD
   要好幾季(#091)。**定價權外部驗證**:Infineon 3 個月連兩輪漲價 = 功率半導體結構性緊縮(#080/#091/#125)。
 - **但瓶頸不均**:上游氣源(商品)、發電渦輪(已知寡佔但訂單節奏鬆動 #086)、公用事業(受管制)這幾段
   **商品化/週期性**,不像 HBM/InP 單一乾淨咽喉 → 護城河極度集中在下游那兩三層,整叢平均被稀釋。
+- **散熱/液冷成新一層(#140)**:AI 機櫃功率密度逼出液冷——[[VRT]]「帶走熱」防守段(CDU/quick-disconnect)代工
+  唔內化、裸晶冷板(direct-to-silicon 微流道)2027+ 會被晶圓代工內化(見 [[advanced-packaging]]);併購潮確認:
+  Eaton→Boyd Thermal $9.5B、Ecolab→CoolIT $4.75B、Trane→LiquidStack、Flex→JetCool;Dell'Oro 估 2026 DC 液冷
+  製造商營收 ~$6B。
 
 ### 2. 資本配置 / ROIC — 中偏弱(1/2)
 - **無廣泛供給回應過熱**(反而是 cycle 未過熱的正面):[[EQT]] capex 平(~0.5–0.6B)、**[[ON]] capex 反而
@@ -152,6 +156,7 @@ Tier-2(ai-power-grid 叢 21 篇,`thesis/wiki/sources/`,全文 `corpus.db`):需�
 EQT CEO)、價值鏈 #110(7 層 + FERC 定價權)、800V 供電 #091(POL 雙寡佔)、含量 10x #125(onsemi CEO)、
 三線交匯 #044/#045(EQT + Aschenbrenner)、電氣平台 #051(ETN)、BTM #049(SEI)、功率半導體梯度
 #080/#081/#082(ON/NVTS/MPWR)、SiC #073/#094(WOLF/COHR)、時序 #114(800V 四階段)、發電 #086/#134
-(GEV/渦輪見頂)、需求端 #137(NVDA 配額)。Tier-1:defeatbeta `ttm_pe`/`quarterly_cash_flow`(2026-07-01)。
+(GEV/渦輪見頂)、需求端 #137(NVDA 配額);**新增(2026-07-05):散熱/液冷 #140(VRT「帶走熱」防守段 vs
+裸晶冷板被 direct-to-silicon 內化、ETN 收 Boyd Thermal $9.5B)**。Tier-1:defeatbeta `ttm_pe`/`quarterly_cash_flow`(2026-07-01)。
 </content>
 </invoke>

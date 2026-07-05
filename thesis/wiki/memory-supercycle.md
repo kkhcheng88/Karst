@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.38
 verdict: real-but-late-cushioned
-updated: 2026-07-01
+updated: 2026-07-05
 tickers: [MU, SNDK, WDC, DRAM]
 ---
 
@@ -67,6 +67,9 @@ flowchart TD
 - **上游材料咽喉 [[WF6]]**:中國掐鎢、日本約 25% WF6 產能 7 月起減、2026 合約 +70–90%、現貨 +200%
   → 全體記憶體成本上升、韓國 Foosung 相對得利(Tier-2 #110,`corpus.py get wf6-tungsten-memory-chokepoint`)。
 - **定價權**:短缺 + LTA 硬約束 → 定價權從週期性往結構性移(Tier-2 #128)。
+- **HBM4E 補充(#142/#144)**:HBM base die 邏輯層於 HBM4E 由記憶體廠遷向 TSMC(SK海力士/美光→台積 N3),但
+  「切落嚟嗰嚿肉唔大」、三寡頭 DRAM 堆疊主體價值不變;HBM4 記憶體價格溢價 **40–50%** 佐證定價權;且 HBM4E
+  封裝三重牆係**封裝廠在解、非記憶體廠**(#144)→ 強化 [[advanced-packaging]]→HBM 產能閘、對 glut-kill 屬輕微 relief。
 
 ### 2. 資本配置 / ROIC — 中偏弱(1/2)+ 頂訊號 ✅
 - **MU capex 一年 2.66x**:$2.94B(2025-05)→ 7.83B(2026-05)(Tier-1 defeatbeta `quarterly_cash_flow`,
@@ -126,4 +129,5 @@ cycle penalty (LATE, capex 頂訊號確認,但 LTA 去週期化墊地板 → 罰
 ## 來源
 Tier-2(gooptions 記憶體叢 22 篇,見 `thesis/wiki/sources/`,全文在 `corpus.db`):關鍵 #128(MU LTA
 證明)、#135([[NAND-CMX]])、#110([[WF6]])、#104/#068/#069(LTA 記分卡)、#133(2028 錨)、#103(融資
-第二棒)。Tier-1:defeatbeta `quarterly_cash_flow`(capex)、`ttm_pe`(2026-07-01)。
+第二棒);**新增(2026-07-05):#142(HBM 客製 base die 邏輯層遷向台積、切下的肉不大)、#144(HBM4E 封裝
+三重牆由封裝廠解、HBM4 溢價 40–50%)**。Tier-1:defeatbeta `quarterly_cash_flow`(capex)、`ttm_pe`(2026-07-01)。
