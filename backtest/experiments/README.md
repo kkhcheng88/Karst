@@ -86,6 +86,7 @@
 | exp_breakout_timer.py | SPEC D Donchian 新N日高突破 timer,4類+市值層+two-halves | 2026-07-05_breakout_momentum.md | active ✅(20日高突破>TSMOM>SMA,修H1) |
 | exp_minervini_breakout.py | SPEC A/B Minervini 範本+突破個股 + RISK/FIXED overlay | 同上 | active(selection無alpha/risk-layer傷回報) |
 | exp_gex_test.py | GEX(免費 SqueezeMetrics CSV)vs VIX 增量 + DIX flow | 2026-07-05_gex_test.md | active(negative:GEX對VIX無增量,唔建) |
+| exp_gamma_walls.py | live 逐 strike gamma 牆:支持/阻力區+強度+企穩線(SPY/QQQ 0DTE/1W/1M) | docs/2026-07-05_gamma_walls.md | active(live 工具,無回測,forward-log 驗證) |
 
 ## 孤兒處理原則
 
