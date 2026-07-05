@@ -32,6 +32,21 @@ Purpose(講清楚今輪要證/要砌乜)
 
 ---
 
+## 0.5 現況快照(開場前要知,唔使自己重建)
+
+- **系統定位**:每日 top-down 決策支援(NHITL,**人執行下單**)。two-tier:SPY/QQQ/SPMO 用期權
+  (LEAP / SHORT_CALL / CSP),其餘個股只做多。
+- **已建 + live**:spine **Phase 0**(市場閘 = VIX×趨勢 2D)/ **1**(板塊溫度 + 兩層 RS + GICS 11 輪動)/
+  **4**(RSI-2 擇時,獨立欄、**絕不乘進結構分**),`python backtest/scan.py`;**web dashboard**(`web/`);
+  **Phase-3 pilot**(9 個 Type-B 主題 + forward-IC 每日排程);insider EDGAR 家族;20+ 回測結論。
+- **已收官**:風控/擇時層(Phase 0/1/4)特徵徹底釘死;**Phase-2 大市層 flow**(DIX 慢 tilt + breadth 洗盤短線執底;其餘 VIX 冗餘)。
+- **未建 / 未證**:**Phase-3 前瞻 alpha**(thesis 排序 forward IC ≥ 0.05,**0 戰績、本質要數月累積**);
+  **A 型危機 tail** sleeve;**core portfolio 策略本身(= 你任務 3)**。
+- **已知 P0 接線 gap**(2026-07-03 審查,部分未修):insider `conf_eff` 算咗但**從未接回分數**;
+  **校準迴路斷**(track_record outcome 回填程式未寫)。詳 `docs/ROADMAP_AGENTIC.md`。
+
+---
+
 ## 1. 鐵律(不可違反)
 
 1. **證據優先、adversarial**:測咗先講;每個 claim 試去**反駁**佢。過度自信要**如實收回**。
@@ -73,10 +88,11 @@ Purpose(講清楚今輪要證/要砌乜)
 
 ## 3. 先讀(context)
 
-`STATUS.md`(入口)· `docs/KARST_WIKI.md`(**任務 1 目標:外行 wiki**)· `ARCHITECTURE.md` · `.agents/KARS_MEMORY.md` ·
-`HANDOFF.md` · `backtest/results/*.md`(全部已定結論)· `backtest/experiments/README.md`(腳本索引)·
-`backtest/spine/`(掃描引擎)· `thesis/`(Phase 3:`DESIGN.md`、`themes.yaml`、`wiki/`、`forward_ic.py`)·
-`params/`(期權工具參數)。
+- **入口**:`STATUS.md` → `docs/KARST_WIKI.md`(**任務 1 目標:外行 wiki**)→ `ARCHITECTURE.md`(技術真相,single source)→ `.agents/KARS_MEMORY.md`(歷史決策/坑,§1-12)。
+- **結論庫**:`backtest/results/*.md`(全部已定結論)· `backtest/experiments/README.md`(腳本索引 + 回測標準)· `docs/2026-07-05_risk_control_layer_report.md`(風控層結算)。
+- **接線 / roadmap**:`docs/2026-07-03_strategy_methodology_review.md`(P0-P3 接線 gap + 反建議)· `docs/ROADMAP_AGENTIC.md`(A1-D6)· `docs/2026-07-03_dashboard_decision_experience.md`(dashboard 逐面板規格 → **任務 6 用**)。
+- **程式**:`backtest/spine/`(掃描引擎)· `params/`(期權工具參數)· `web/`(dashboard)。
+- **Phase 3**:`thesis/DESIGN.md` + `thesis/themes.yaml` + `thesis/wiki/` + `thesis/forward_ic.py`;**完整 Phase-3 方法論 spec = plan 檔 `~/.claude/plans/valiant-questing-horizon.md`(任務 7 就係審呢個)**。
 
 ---
 
@@ -104,9 +120,20 @@ Purpose(講清楚今輪要證/要砌乜)
 
 **6. Dashboard 設計** — 設計 `web/`(只讀網頁 dashboard)點樣**每日呈現 findings/圖**畀用戶執行:用戶朝早見到乜、代表要做乜 action。
 
-**7. Phase 3 方法論審查(鑽深之前)** — adversarial 審 Phase-3(thesis)機制:`DESIGN.md`、`themes.yaml`、confidence 推導、
-   forward-IC harness、value-chain 建構。方法論夠唔夠好去開始?畀一個**具體改進 + 達成計畫**。
-   (**用戶 framing:Phase 3 = 大機會可能係衛星(高風險高回報),唔係 core;大盤 + 板塊 ETF core 應佔大部分資金。**)
+**7. Phase 3 方法論審查(鑽深之前)** — adversarial 審 Phase-3(thesis)機制夠唔夠好去開始。**要審嘅方法論**
+   (全 spec = plan 檔 `valiant-questing-horizon.md` + `thesis/DESIGN.md`):
+   - **生命週期**:發現 → 假設(**4-KPI**:供需/bottleneck、資本配置/ROIC、估值/期望值、成長耐久)→ 偽證(kill
+     condition)→ **priced-in 閘** → **週期位置**(早/中/頂 = 估值極端 + 供給回應 + 擁擠/新 thematic ETF)→
+     表達(`ThesisVerdict` 餵 `thesis_quality`)→ 追蹤(forward IC ≥ 0.05)。
+   - **兩型 offense**:**B 主題超級週期**(供給受限+需求+定價權+催化劑)= 主力;**A 危機救援**(VIX 極端 +
+     被打爛系統板塊 + 政策)= 尾部 sleeve。
+   - **value-chain 建構**:A 人工 seed + B 揭露抽取(每邊 cited);**拒絕 C 價格共動**(FOMO);節點分 tradeable
+     vs bottleneck-input(不可交易 → 下游/ETF 表達)。
+   - **誠實邊界**:ideas = 共識/公開、**唔係 novel foresight** → priced-in + 週期閘防「追已爆共識」;
+     confidence = **證據推導 + 校準**(唔係人類「信念」);前瞻驗證慢(數月)。
+   - **重點審**:9 個 confidence 全部 cold-start / 手 set → 點校準?forward-IC harness 有冇真接通(校準迴路 gap)?
+     priced-in / 週期閘可唔可量測(`thesis_valuation.py` 未建)?→ 畀**具體改進 + 達成計畫**。
+   - **用戶 framing**:Phase 3 = 大機會但**多數會係衛星(高風險高回報)**,唔係 core;大盤 + 板塊 ETF core 佔大部分資金。
 
 **8. Emerging bottleneck 研究** — 開始掃新興供需瓶頸 / underinvestment 主題(Type-B 進攻發現)。
 
@@ -128,7 +155,7 @@ Purpose(講清楚今輪要證/要砌乜)
 
 1. 驗證 / 修正後嘅 wiki(或 change-list)。
 2. gap / 衝突登記 + 解決(已回測)。
-3. **core portfolio 策略檔**:~3 approach + transition 規則 + 對 SPY B&H 嘅 backtest(Jensen alpha,誠實)+ scenario 執行計畫。
+3. **core portfolio 策略檔**:**策略樹(regime/scenario 分枝)+ transition 機制** + 對 SPY B&H 嘅 backtest(Jensen alpha,誠實)+ scenario 執行計畫。
 4. dashboard 設計檔。
 5. Phase-3 方法論審查 + 改進計畫。
 6. (quota 有餘)emerging bottleneck 候選清單。
