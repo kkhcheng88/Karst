@@ -90,7 +90,8 @@
 | exp_credit_axis.py | credit(HYG/LQD)做風險軸 × VIX 四象限 | 2026-07-05_market_regime_2d.md | active(negative:regime反覆、對VIX無增量) |
 | exp_trend_vix_axis.py | 趨勢(200SMA)× VIX 2D 四象限(替代 credit) | 同上 | active ✅(②牛市+恐懼兩半最好+最安全) |
 | exp_dix_ic.py | DIX(暗池)forward IC(週度/smoothed/2-4週) | 2026-07-05_phase2_flow.md | active ✅(真.modest,IC 0.11-0.14 兩半) |
-| exp_breadth_flow.py · _deep · _rsi2 · _timeframe · _real | Phase-2 breadth(多量度/多 timeframe/RSI-2 modifier/真漲跌線) | 同上 | active(negative:breadth 弱/逆向/VIX 冗餘) |
+| exp_breadth_flow.py · _deep · _rsi2 · _timeframe · _real | Phase-2 breadth(多量度/多 timeframe/RSI-2 modifier/真漲跌線) | 同上 | active(negative:breadth LEVEL 弱/逆向/VIX 冗餘) |
+| exp_breadth_reversion.py · _verify | breadth 洗盤 reversion(decile 條件報酬/washout×VIX/thrust/背離/板塊參與度 + 日期核實/excess 單邊驗) | 2026-07-05_breadth_reversion.md | active ✅(修正:洗盤反彈真、短線 over VIX、單邊 U 形) |
 
 ## 孤兒處理原則
 

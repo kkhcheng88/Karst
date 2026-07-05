@@ -33,7 +33,7 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 |---|---|---|---|
 | **0 市場閘** | 指數 regime + fragility → gate(能不能開新倉);**2D = VIX(恐懼)× 趨勢(200SMA):買恐懼優先牛市(② 最安全);credit 測完剔除**(`results/2026-07-05_market_regime_2d.md`)| ✅ live | `spine/context.py` |
 | **1 板塊 + RS** | 板塊溫度(市值加權 + cap-equal 背離)+ 兩層 RS + GICS 11 輪動 | ✅ live | `spine/sector.py`, `rotation.py` |
-| **2 資金流/敘事** | 資金流 / 敘事 / macro overlays;**大市層已測(2026-07-05):DIX 接=慢 tilt(配 GEX)、breadth 弱/VIX 冗餘唔接**(`results/2026-07-05_phase2_flow.md`);真正價值喺板塊/子板塊 breadth+背離(群體行為)+ insider,待 value-chain 基建 | 🔴 **未建(刻意延後)** | — |
+| **2 資金流/敘事** | 資金流 / 敘事 / macro overlays;**大市層已測、收工(2026-07-05/06):DIX=慢 tilt(配 GEX)、breadth 淨睇高低弱/VIX 冗餘、但洗盤 reversion 真(短線 over VIX、單邊、對股災底核實)**(`results/2026-07-05_phase2_flow.md` + `_breadth_reversion.md`);餘下價值 = 板塊/子板塊 breadth+背離(群體行為)+ insider,待 value-chain 基建 → Phase 3 rider | 🟡 **大市層收工** | — |
 | **3 質性 thesis** | 價值鏈→ticker→一手驗證→crowding→confidence(0..1 sizing 乘數)| ✅ live(9 個 Type-B)| `thesis/`, `spine/providers.py` |
 | **3e A 型危機 tail** | VIX>40 + 被打爛系統板塊救援 sleeve | 🔴 未建 | — |
 | **4 擇時** | 對已通過結構的名字,何時扣扳機(獨立欄,**絕不乘進結構分**)| ✅ live(RSI-2)| `spine/timing.py` |

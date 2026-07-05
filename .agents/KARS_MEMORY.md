@@ -3,7 +3,7 @@
 > 本檔是 Karst 的長期記憶。每次啟動先讀此檔 + `USER.md` + 最新 session,
 > 不要再從 conversation summary 重建。
 
-最後更新:2026-07-03(§10)。**入口已改:新 session 先讀 repo 根的 `STATUS.md`,再讀本檔。**
+最後更新:2026-07-06(§12)。**入口已改:新 session 先讀 repo 根的 `STATUS.md`,再讀本檔。**
 
 ---
 
@@ -186,3 +186,26 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
 - **Bug 修正(實驗檔):** `exp_insider_validate`/`exp_family_validate` 的 `_DATA` 路徑(reorg 後指錯)+ 死快取 None 永不重抓(改 `cache.get(t) is None`)。**weekly cron 冇壞**(`thesis/insider_edgar.py` 未搬)。`px_defeatbeta.pkl` 全 None,需本機 defeatbeta 重抓(bug 已修,一 run 即補全宇宙 → 預期 insider 21d t≈5.12)。
 - **升級到「高」的做法(通用):** 分設計/考試期(walk-forward)+ 真實成本 + 除 survivorship(point-in-time 成員)+ 多重檢定校正;期權類只能 Black-Scholes 理論定價(無真實期權鏈)→ 上限「中高」。
 - **用戶溝通偏好:** 香港白話中文、少術語/縮寫、個人投資者(不提「容量」caveat)。「乾火藥部署計時器」改叫「**入市時機訊號**」。
+
+---
+
+## 12. 2026-07-05/06(Vanessa session)—— Phase-2 收官 + Trend-Core value-chain 更新 + Fable 交棒
+
+- **Trend-Core(gooptions)re-scrape = Phase-3「3b 發現」loop**:`thesis/download_gooptions.py` 抓新 9 篇(#138-146)→
+  更新 5 個 value-chain wiki(commit `50bcb2e`)。**AXTI「唯一便宜錨」糾正(3 處)**:#141 顯示 AXTI 蝕錢 / fwd PE 72.8× /
+  峰值盈利假象,唔再係乾淨便宜入口。新結構節點:photonics 光纖↔PIC 耦合(#138)、adv-pkg 冷卻內化+HBM base-die 代工
+  (#140/#142)、tpu interactive 端(#145)。tpu 護城河再定義 =「開源模型 GPU-shaped」非 CUDA(#146),領先指標 = Gemma。
+  **9 個 confidence 全部不變**(佐證/糾正,非 re-score)。
+- **Phase-2 市場層 flow 收官**(`results/2026-07-05_phase2_flow.md` + `_breadth_reversion.md`):
+  - **breadth 洗盤 reversion 真**(修正舊「breadth 冇用」——嗰個只對 LEVEL 線性成立):底 decile / ≤27% above50 →
+    21d +2.58%(≈3× baseline)、**短線(21d)喺 VIX 之上加 +2pp**、**單邊**(頂唔會插、做空頂實證冇值、減 drift 後仍然)、
+    真形狀 = U 形(中間 ~50% breadth 最差)。對實際股災底核實無誤(GFC VIX80/breadth1.6%、COVID VIX82/2.5%、2011/2022/2025)。
+    但短命(63d 被 VIX 吸)、同 VIX/RSI-2「買恐慌」重疊 → 確認尺、非新獨立 alpha。
+  - **淨結論**:大市層 flow ≈ VIX 冗餘,只有 DIX(慢 tilt)+ breadth-washout(短線執底)兩個小 tilt 加值 → **收官**。
+    餘下價值(板塊/子板塊 breadth + 背離 + 群體行為;大市層背離已證冇用)= **Phase-3 rider**,需 value-chain 成份定義。
+- **下一步 = Fable 5 交棒(用戶定,2026-07-06)**:Fable 做 adversarial reviewer + orchestrator(大腦、rate-limited →
+  spawn 平價 sub-agent 做 backtest/research);brief 見 `docs/2026-07-06_fable_brief.md`。任務 1-5 優先(驗 wiki/找 gap →
+  砌 core 投資策略 = SPY/QQQ/SPMO 期權 + Sector ETF 擇時/現金,portfolio concept,**誠實用 Jensen alpha 對 SPY B&H**、
+  ~3 approach + 明確 transition、scenario 執行計畫 + backtest),6 dashboard 設計、7 Phase-3 方法論審查、8 emerging bottleneck。
+  **用戶關鍵 framing:core(大盤+板塊 ETF)= 大部分資金;Phase 3 = 衛星(高風險高回報)。core 唔使做英雄,要有效率 +
+  期權 overlay 加少少真 alpha。**
