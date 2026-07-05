@@ -69,7 +69,7 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 **★ 主線 = Fable 5 交棒**(`docs/2026-07-06_fable_brief.md`):Fable 做 **adversarial reviewer + 策略主腦**(loop
 engineering、自主、每 ~5 loop 報進度、用量有限、spawn 平價 sub-agent 做手腳)。任務 1-5 優先:① 驗 wiki + 底層邏輯;
 ② 找 gap / 衝突 → 補跑;③ 砌 **core portfolio 策略**(SPY/QQQ/SPMO 期權 + Sector ETF 擇時/現金,**誠實用 Jensen alpha
-對 SPY B&H**、~3 approach + 明確 transition + scenario 執行 + backtest);④ loop 迭代;⑤ 唔使太複雜。之後:⑥ dashboard
+對 SPY B&H**、scenario 執行 + backtest);④ **LOOP 只喺任務 3**(其餘一次過交付);⑤ 結果可係**策略樹(多策略)+ 明確 transition 機制**(唔一定單一策略)。之後:⑥ dashboard
 設計、⑦ Phase-3 方法論審查、⑧ emerging bottleneck。**framing:core(大盤+板塊 ETF)= 大部分資金;Phase 3 = 衛星
 (高風險高回報);core 真.alpha = LEAP 擇時 + 賣保費 + 資本效率,唔係 SPY 現貨入出。**
 

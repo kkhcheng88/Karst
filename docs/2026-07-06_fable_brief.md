@@ -14,7 +14,9 @@
 
 ## 0. 運作模式(關鍵:唔係 one-shot)
 
-呢個係 **loop engineering,唔係 harness engineering**。每個任務行多輪:
+呢個係 **loop engineering,唔係 harness engineering**。**個 loop 主要係任務 3(砌 core 策略)**——嗰度要行多輪逼出
+最佳策略;其餘任務(驗 wiki / 找 gap / dashboard / Phase-3 審 / bottleneck)係 adversarial **一次過交付**(可以修,但唔係
+呢個多輪 strategy-search loop)。任務 3 嘅 loop:
 
 ```
 Purpose(講清楚今輪要證/要砌乜)
@@ -86,15 +88,19 @@ Purpose(講清楚今輪要證/要砌乜)
 **2. 搵衝突 / gap** — 邊度啲 docs 互相矛盾、邊度有 claim 但冇回測、邊度覆蓋有洞。每項 → 派 sub-agent 補跑 / 驗證 / 糾正。
    出一份「gap/衝突登記 + 解決(附回測)」。
 
-**3. 砌 core 投資策略(portfolio concept)** — 用手上所有嘢,砌**大盤 + 板塊 ETF** 嘅核心組合:
+**3. 砌 core 投資策略(portfolio concept)—— ★ 呢個係唯一嘅 LOOP 任務** — 用 **loop engineering**(Purpose→Test→
+   Enhancement→Self-Review,多輪、自主迭代到收貨)逼出最佳 core 策略。用手上所有嘢,砌**大盤 + 板塊 ETF** 核心組合:
    - **大盤 SPY/QQQ/SPMO** → LEAP Call / CSP / PMCC(期權工具)。
    - **板塊 ETF(11 SPDR)** → 擇時 rebalance,或 **現金**。
    - 目標:**贏 SPY B&H,誠實用 Jensen alpha 量度(扣真成本 + HK 稅)。** 若 core 做唔到真 Jensen alpha,**照直講 + 報最佳可達**
-     (風險調整後)。**係 portfolio 層(sleeve 之間點分配資本),唔係單一標的。**
+     (風險調整後)。**係 portfolio 層(sleeve 之間點分配資本),唔係單一標的。** 交 **scenario-based 執行計畫 + backtest**。
 
-**4. Loop、唔好 one-shot** — Purpose→Test→Enhancement→Self-Review 行多輪。交**scenario-based 執行計畫**(唔同市況點做)+ backtest。
+**4. LOOP 只喺任務 3** — 只有「砌策略」要行多輪 Purpose→Test→Enhancement→Self-Review、自主迭代到收貨;
+   **其餘任務(1/2/6/7/8)係 adversarial 一次過交付**(可以修,但唔係呢個 strategy-search loop)。
 
-**5. 唔使搞得太複雜** — **~3 個策略/approach** 就夠,但要**清楚寫明 transition**(幾時/點樣由一個切去另一個 —— 通常按 regime)。
+**5. 結果可以係一「棵策略樹」,唔一定得一個** — 最終**唔使係單一策略**;可以係**多個策略嘅 tree**(例如按 regime /
+   scenario 分枝:牛市+低波用 A、恐懼/洗盤用 B、熊市用 C…)。**關鍵 = 必須有清楚嘅 transition 機制**:幾時、點樣、
+   憑咩訊號由一枝轉去另一枝(通常掛住 VIX×趨勢 2D + 擇時訊號)。**重點係 transition 邏輯,唔係「簡單」。**
 
 **6. Dashboard 設計** — 設計 `web/`(只讀網頁 dashboard)點樣**每日呈現 findings/圖**畀用戶執行:用戶朝早見到乜、代表要做乜 action。
 
