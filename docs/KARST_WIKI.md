@@ -103,12 +103,15 @@ Phase 3 係質性 thesis,冇乾淨 Sharpe。量度 = **forward IC ≥ 0.05**(信
 **Edge 喺邊?** oracle 研究(§8)證咗:**真正跑贏嘅空間喺「板塊(年度 regime)+ 個股/主題」,唔喺大市
 週度擇時。** 所以**大市層 = 唔好爆煲(風控);板塊 + 個股層 = 搵嗰一擊(alpha)。**
 
-### 4.2 資金流(Phase 2)點樣貼落三層
+### 4.2 資金流(Phase 2)點樣貼落三層(已測,見 `results/2026-07-05_phase2_flow.md`)
 insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,係貼喺每層做「第二意見」**:
-- **大市 flow**(DIX / 情緒 / 市場 breadth)→ 確認大市 risk-on/off(多數同 VIX/F&G 冗餘)。
-- **板塊 flow**(板塊資金流 / breadth)→ 確認買邊個板塊。
-- **個股 flow**(insider 逐公司)→ 確認個股 thesis;**一批同行業 insider 一齊買 = 板塊訊號**。
-- **∴ Phase 2 最有價值嗰忽 = 板塊 + 個股 level 嘅 flow 確認 thesis**(edge 喺嗰度),唔係大市 flow。
+- **大市 flow(已測)**:**DIX(暗池)= 真.modest tilt**(smoothed level、1 月-1 季、IC 0.11-0.14 兩半、對 VIX
+  有 +0.05-0.07 增量)→ **接做慢 risk-on/off tilt**(最好配 GEX:高DIX+負GEX=超賣買);**市場 breadth = 弱/逆向/
+  VIX 冗餘**(高 breadth→回落,partial|VIX≈−0.02)→ **唔當獨立訊號**。
+- **板塊 flow(未測,對嘅 frame)**:板塊/子板塊 breadth(成班由弱側一齊轉向 = 群體行為 = 新升浪起點)
+  + **RSI/MACD 背離(2-3 峰)**;需板塊成份 / value-chain 定義 → **Phase 2/3,待 Phase 3 基建**。
+- **個股 flow**:insider 逐公司(已測 MED)→ 確認個股 thesis;**一批同行業 insider 一齊買 = 板塊訊號**。
+- **∴ 市場層 flow 只得 DIX 有少少料(breadth 弱);真正價值喺板塊 + 個股 level**(edge 喺嗰度,同 oracle 一致)。
 
 ### 4.3 五個 Phase(每層由上而下嘅處理次序)
 每層標準化寫:**做乜 / 點運作 / 驗證咗乜 / 狀態 / 點用**。
@@ -428,7 +431,7 @@ IC 0.05-0.10 係 **HARD bar**——專業 quant 有龐大 breadth + infra 都得
 | | 內容 | 狀態 |
 |---|---|---|
 | **Phase 3 質性 thesis(主線)** | pilot 端到端行一個主題 → forward IC 累積(數月) | ✅ 建 / ⏳ 未證 → **下一步** |
-| **Phase 2 資金流/敘事**(flow overlay,貼三層) | **重點做板塊+個股 level flow 確認 thesis**(insider 已測=MED、DIX 已測)+ **測 breadth 背離見頂**;大市 flow 多數冗餘 | 🔴 未建(平嘢:A 搬 insider 歸類 / B 接 DIX / C 測 breadth) |
+| **Phase 2 資金流/敘事**(flow overlay,貼三層) | 大市層**已測**:**DIX 接(慢 tilt,配 GEX)· 市場 breadth 弱/冗餘唔接**;真正價值 = **板塊/子板塊 breadth+RSI/MACD 背離(群體行為)+ insider 腳印**,需 value-chain 基建 | 🔴 未建(接 DIX;板塊層 flow 待 Phase 3 基建) |
 | **Phase 3e 危機 tail** | VIX>40 + 被打爛系統板塊救援 sleeve | 🔴 未建 |
 | **接線** | 20日突破 timer + RSI-2×RS-leader + gamma 牆 入 spine | 已測未接 |
 | **細 gap** | 突破 + 成交量確認;gamma 牆 forward-log 驗證 | 可選 |
