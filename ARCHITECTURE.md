@@ -52,12 +52,12 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 
 | 家族 | 歸屬 Phase | 現況 |
 |---|---|---|
-| **Trend/Momentum** | Phase 1(VCP 趨勢模板=選股)+ **Phase 4(突破觸發)** | 🟡 SPMO 動能在閘;**突破已回測(2026-07-05:20日高突破>TSMOM>SMA,兩半贏B&H、修H1)未接線**;VCP 型態未測;動能=downside protection 非 alpha(見 `results/2026-07-05_breakout_momentum.md`)|
+| **Trend/Momentum** | Phase 1(VCP 趨勢模板=選股)+ **Phase 4(突破觸發)** | 🟡 SPMO 動能在閘;**突破已回測(2026-07-05:20日高突破>TSMOM>SMA,兩半贏B&H、修H1)未接線**;**VCP 型態已測=無增量/輕微傷**(3次一致,`results/2026-07-05_vcp_pattern.md`);動能=downside protection 非 alpha(`results/2026-07-05_breakout_momentum.md`)|
 | **Mean Reversion(RSI-2)** | **Phase 4** | ✅ 純價格股權進場(不拿去買選擇權)|
 | **Volatility / VRP** | Phase 0 / 選擇權側(IV-rank)| ✅ tier-1 CSP/SHORT_CALL |
 | **Relative Strength** | **Phase 1**(Sector RS + Stock-RS-in-sector,**兩層都在此**)| ✅ `rs_vs_market` + `member_rank.rs_vs_parent` |
 | **Flow: Insider** | **Phase 3**(非價格、知情人行為)| ✅ **已建** — v2 **SEC EDGAR Form 4**(`insider_edgar.py`,真交易碼:只留 P 買/S 賣、剔除 A/M/F/G/10b5-1 機械交易;離線快取 `insider_cache.json`)+ yfinance fallback(`insider.py`)。bounded ±30% conf 修正。**v3 待補:routine/opportunistic 分類(Cohen 2012,需多年逐人歷史)** |
-| **Flow: GEX** | **Phase 0**(SPY/QQQ fragility)| 🔴 未建 |
+| **Flow: GEX** | **Phase 0**(SPY/QQQ fragility)| ⚫ **測完唔建**(2026-07-05:免費 SqueezeMetrics GEX 對 VIX partial≈−0.08 無增量,`results/2026-07-05_gex_test.md`);VIX/credit/RV 已 subsume;DIX 免費細 flow 訊號可選 |
 | **Flow: Dark-pool/UOA** | (存疑,暫不排)| 🔴 我判定多為噪音,先不做 |
 
 ---

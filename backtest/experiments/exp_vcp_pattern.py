@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-_DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".insider_data")
+_DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".insider_data")
 _PIVOT, _BASE_WIN = 30, 65
 _HORS = [5, 10, 21, 42, 63]     # VCP is a SWING breakout method -> the edge (if any) is SHORT-horizon;
                                 # a monthly / 63d window is misleading. Test the breakout follow-through.

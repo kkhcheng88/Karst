@@ -80,6 +80,7 @@ python backtest\experiments\exp_family_validate.py
 | 要做什麼 | 去哪 |
 |---|---|
 | 懂整個系統 | `ARCHITECTURE.md`(跨 Phase 地圖,single source of truth) |
+| 風控/擇時層結算(標準化量度+逐訊號+決策矩陣) | `docs/2026-07-05_risk_control_layer_report.md` |
 | 開工 roadmap | `docs/ROADMAP_AGENTIC.md`(A1-D6,含驗收條件) |
 | 懂「為什麼要修/為什麼不做」 | `docs/2026-07-03_strategy_methodology_review.md`(P0-P3 + 反建議) |
 | 改 dashboard | `docs/2026-07-03_dashboard_decision_experience.md`(逐面板規格+錨點) |

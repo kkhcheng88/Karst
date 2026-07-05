@@ -63,8 +63,8 @@
 | exp_insider_validate.py | insider Form4 訊號驗證(21d edge) | —(結論在 ARCHITECTURE/docs 審查) | active(準孤兒) |
 | exp_memory_cycle.py | 記憶體股極端乖離事件 base rate | —(結論在 KARS_MEMORY,餵 thesis) | active(準孤兒) |
 | exp_minervini_validate.py | Minervini SEPA/VCP 蒸餾規格回測 | — | **孤兒**(verdict 只印 console) |
-| exp_vcp_pattern.py | VCP 收縮結構 vs 純突破(A/B) | — | **孤兒**(結論=無增量,在 git log/ARCH) |
-| exp_vcp_sharpely.py | sharpely VCP tightness 規則 A/B | — | **孤兒**(同上) |
+| exp_vcp_pattern.py | VCP 收縮結構 vs 純突破(A/B + IC,5-63d swing) | 2026-07-05_vcp_pattern.md | active(negative:VCP 唔加值/輕微傷) |
+| exp_vcp_sharpely.py | sharpely VCP tightness 規則 A/B | 同上(佐證段) | active(negative,同 pattern 一致) |
 | exp_topdays_exposure.py | fear/greed overlay 會錯過 top-10 日? | 2026-07-03_topdays_exposure.md | active(Cluster A 基底) |
 | exp_exposure_sweep.py | 持有天數掃曝險 0.12-0.48 relever | 同上(Refinement 1) | superseded → mr_roundtrip |
 | exp_mr_roundtrip.py | findings 原味進出場,曝險用算的 | 同上(Refinement 1) | active/negative(無 alpha) |
@@ -85,6 +85,7 @@
 | exp_momentum_proper.py | 正版 TSMOM(trailing-月報酬>0)取代 SMA,4類+市值層+two-halves | 同上(RE-VALIDATION 段) | active ✅(修正:動能=側避跌浪非處處贏) |
 | exp_breakout_timer.py | SPEC D Donchian 新N日高突破 timer,4類+市值層+two-halves | 2026-07-05_breakout_momentum.md | active ✅(20日高突破>TSMOM>SMA,修H1) |
 | exp_minervini_breakout.py | SPEC A/B Minervini 範本+突破個股 + RISK/FIXED overlay | 同上 | active(selection無alpha/risk-layer傷回報) |
+| exp_gex_test.py | GEX(免費 SqueezeMetrics CSV)vs VIX 增量 + DIX flow | 2026-07-05_gex_test.md | active(negative:GEX對VIX無增量,唔建) |
 
 ## 孤兒處理原則
 
