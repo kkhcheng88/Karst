@@ -4,6 +4,11 @@
 > 自己諗方向同審結論,**backtest / research / coding 派俾平價 sub-agent(sonnet 做分析回測、haiku 做機械/抓數)**,
 > 你只 review + analyze + synthesize + decide。唔好燒自己 token 去親手跑 code。
 > **溝通用香港白話中文**(ticker / 程式 / 技術名詞用英文),少術語、講到外行商業人都明。
+>
+> **雙重身份**:既係 **adversarial reviewer**(拆穿問題 / gap / 衝突),又係**形成最佳策略嘅關鍵大腦**——用
+> loop engineering 砌出最好、最**現實**嘅 alpha。**Fable 用量非常有限(可能得呢一次)** → 開頭可以問用戶幾條
+> 關鍵問題;**之後就自主行 loop、原則上唔需要人插手**,每 ~5 個 loop 報一次進度就得。目標 = **best realistic
+> alphas**,唔係花巧。
 
 ---
 
@@ -19,7 +24,9 @@ Purpose(講清楚今輪要證/要砌乜)
   → 決定:再迭代 / 收貨 / 轉方向
 ```
 
-每個結論**必須落檔**(script + `backtest/results/YYYY-MM-DD_*.md`);只在對話裡 = 未完成。
+**問題前置、之後自主**:開頭可問用戶幾條關鍵取態問題(sizing 上限、可接受回撤、可否用槓桿 / 期權比例、
+衛星佔比…),**之後自主行多輪 loop、無需人插手**,每 ~5 loop 報進度。每個結論**必須落檔**(script +
+`backtest/results/YYYY-MM-DD_*.md`);只在對話裡 = 未完成。
 
 ---
 
@@ -41,9 +48,14 @@ Purpose(講清楚今輪要證/要砌乜)
 呢啲係本專案 20+ backtest 釘死嘅嘢。你可以質疑,但要用證據,唔好白行冤枉路:
 
 - **價量量化排序 ≈ forward IC 0**(28 因子 0/28 過 Bonferroni;Alpha158/360 + GBDT OOS ≈ 0)→ **係風控,唔係 alpha**。
-- **指數自我擇時(SPY 入/出)贏唔到 B&H 嘅 Jensen alpha** —— 因為結構拖累(exposure < beta,放棄咗大市漂移)。
-  呢個就係點解我哋由 Jensen alpha 轉去用「資本效率」量度指數擇時。**∴ core 嘅真.alpha 來源最可能係:
-  (a) 期權結構(賣保費 VRP / RSI-2 低位進 LEAP);(b) 資本效率(更佳 Sharpe/回撤、把乾火藥部署落洗盤);(c) regime 閘。**
+- **指數擇時要分兩種(關鍵,別混淆):**
+  - **SPY 現貨 1:1 入/出 → 贏唔到 Jensen alpha**:結構拖累(exposure < β)精確中和 +T1 擇時技巧
+    (`exp_alpha_decomp`:α = Cov(pos,mkt) 正 + (exposure−β)·mean_mkt 負)。
+  - **但 LEAP call(槓桿 + 非 benchmark 工具)= 唯一結構解**:finding #12 證「**只有 traded instrument ≠ benchmark,
+    先把真 +T1 轉成 outperformance**」。LEAP = 深 ITM 槓桿 → **擇時有價值、曝險可低、槓桿放大真嘅 +T1 技巧**
+    (用戶 2026-07-06 點明:正因為期權有槓桿,擇時先重要、曝險反而可以細)。**代價** = 槓桿放大尾部風險 + vol-drag
+    → **必須閘**(>200SMA + RSI-2 dip + 恐懼;scorecard v3.1 `LEAP = >200SMA × RSI-2 dip` 已編碼)。
+  - **∴ core 真.alpha = 期權結構(LEAP 擇時 + 賣保費 VRP)+ 資本效率(把乾火藥部署落洗盤/恐懼)+ regime 閘;唔係 SPY 現貨入出。**
 - **資本效率 = 真.但細嘅 T1 擇時 alpha(+2-6%/年),靠 portfolio(個股/多 sleeve)實現,唔係靠指數入/出。**
 - **訊號層已定**:兩引擎 = 動能(側避跌浪)+ RSI-2(regime 閘超賣反彈);波動/VIX 閘;RS 濾網;唯一乾淨價格升級 = 20 日突破。
 - **Regime 2D**:X = VIX(恐懼,contrarian「幾時買」);Y = 趨勢(200SMA 牛熊「安全/深度」);② 牛市+恐懼最好;credit 剔除。

@@ -1,7 +1,7 @@
 # STATUS — Karst 現況(新 session 從這裡開始)
 
 > **單一入口檔**。每個 session 結束時更新「現在在哪/下一步」兩節(取代散落交接)。
-> 最後更新:2026-07-04。歷史細節不放這裡——放指針。
+> 最後更新:2026-07-06。歷史細節不放這裡——放指針。
 
 ## 30 秒版:這是什麼
 
@@ -10,7 +10,21 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 實證定位(20+ 回測):**價量訊號 = 風控,不是 alpha;alpha 唯一可能的門 = Phase 3
 質性 thesis**。全系統的可證偽靶心:**thesis 排序 forward IC ≥ 0.05**。
 
-## 現在在哪(2026-07-05)
+## 現在在哪(2026-07-06)
+
+**2026-07-06(Vanessa session)—— Phase-2 收官 + Trend-Core value-chain 更新 + Fable 交棒:**
+- **Phase-2 大市層 flow 收官**(`results/2026-07-05_phase2_flow.md` + `_breadth_reversion.md`):DIX(慢 tilt,配 GEX)
+  + **breadth 洗盤 reversion**(底 decile / ≤27% above50 → 21d +2.58% ≈3× baseline、短線 over VIX +2pp、**單邊**——
+  洗盤會彈 / 見頂唔會即插、做空頂實證冇值、減 drift 後仍然;對實際股災底 GFC/COVID/2011/2022/2025 核實)。**修正**舊
+  「breadth 冇用」(嗰個只對 LEVEL 線性成立)。淨結論:大市層 flow ≈ VIX 冗餘,只 DIX + 洗盤兩個小 tilt 加值 → 收官。
+  餘下(板塊/子板塊 breadth + 背離 + 群體行為;大市層背離已證冇用)= Phase-3 rider,需 value-chain 成份定義。
+- **Trend-Core(gooptions)re-scrape = Phase-3「3b 發現」loop**(commit `50bcb2e`):抓新 9 篇 #138-146 → 更新 5 個
+  value-chain wiki。**AXTI「唯一便宜錨」糾正 3 處**(#141 蝕錢 / fwd PE 72.8× / 峰值盈利假象);新節點:光纖耦合、
+  冷卻內化、HBM base-die 代工、tpu interactive;tpu 護城河再定義=「開源模型 GPU-shaped」非 CUDA。9 個 confidence 全部不變。
+- **LEAP 擇時 = alpha 機制釐清(用戶點明)**:指數擇時分兩種——SPY 現貨 1:1 入出贏唔到 Jensen alpha(結構拖累中和 T1);
+  **但 LEAP call(槓桿 + 非 benchmark 工具)= 唯一結構解**(finding #12),擇時有價值、曝險可低、槓桿放大真 +T1;
+  代價 = 尾部風險,必須閘(>200SMA × RSI-2 dip × 恐懼)。→ core 期權層真.alpha 機制。
+- **★ 下一步 = Fable 5 交棒**(見「下一步」+ `docs/2026-07-06_fable_brief.md`)。
 
 **2026-07-05(Vanessa session)—— 風控/擇時層全面回測 + ebooks 蒸餾。4 份新結果檔 `results/2026-07-05_*.md`:**
 - `fg_timed_capital_efficiency` · `meanrev_family` · `factor_families_momentum_lowvol_rs` · `breakout_momentum`
@@ -50,9 +64,16 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 - **workspace 已重組**(2026-07-03):37 個實驗檔移入 `backtest/experiments/`
   (含索引),本檔成為唯一入口。
 
-## 下一步(2026-07-05 更新)
+## 下一步(2026-07-06 更新)
 
-**策略主線**:風控/擇時層特徵已徹底釘死(見上)→ **重心轉 Phase 3 thesis + forward-IC**(唯一 alpha 門)。
+**★ 主線 = Fable 5 交棒**(`docs/2026-07-06_fable_brief.md`):Fable 做 **adversarial reviewer + 策略主腦**(loop
+engineering、自主、每 ~5 loop 報進度、用量有限、spawn 平價 sub-agent 做手腳)。任務 1-5 優先:① 驗 wiki + 底層邏輯;
+② 找 gap / 衝突 → 補跑;③ 砌 **core portfolio 策略**(SPY/QQQ/SPMO 期權 + Sector ETF 擇時/現金,**誠實用 Jensen alpha
+對 SPY B&H**、~3 approach + 明確 transition + scenario 執行 + backtest);④ loop 迭代;⑤ 唔使太複雜。之後:⑥ dashboard
+設計、⑦ Phase-3 方法論審查、⑧ emerging bottleneck。**framing:core(大盤+板塊 ETF)= 大部分資金;Phase 3 = 衛星
+(高風險高回報);core 真.alpha = LEAP 擇時 + 賣保費 + 資本效率,唔係 SPY 現貨入出。**
+
+**策略主線(研究層,仍有效)**:風控/擇時層特徵已徹底釘死(見上)→ **重心轉 Phase 3 thesis + forward-IC**(唯一 alpha 門)。
 **可選接線**(風控層):① 20日高突破 timer 入 `spine/timing.py`;② RSI-2 × RS-leader gating;③ vol/VIX regime 開關。
 **可選補測**:突破 + 成交量確認(唯一未閉 gap);VCP 數值代理;GEX(Phase 0)。
 
@@ -85,6 +106,7 @@ python backtest\experiments\exp_family_validate.py
 | 要做什麼 | 去哪 |
 |---|---|
 | **懂整個系統(layman 全貌 wiki,由此入)** | **`docs/KARST_WIKI.md`** |
+| **★ Fable 交棒任務書(adversarial review + 砌 core 策略)** | **`docs/2026-07-06_fable_brief.md`** |
 | 懂整個系統(技術版真相) | `ARCHITECTURE.md`(跨 Phase 地圖,single source of truth) |
 | 風控/擇時層結算(標準化量度+逐訊號+決策矩陣) | `docs/2026-07-05_risk_control_layer_report.md` |
 | 開工 roadmap | `docs/ROADMAP_AGENTIC.md`(A1-D6,含驗收條件) |

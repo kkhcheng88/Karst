@@ -1,5 +1,10 @@
 # Karst — Session Handoff (2026-07-03)
 
+> ⚠️ **已被 `STATUS.md` 取代為入口(2026-07-06)。** 本檔僅保留為 2026-07-03 當日詳細記錄。
+> **注意:finding #2「Credit (HYG/LQD) > VIX」已於 2026-07-05 被推翻** —— credit 做風險軸失敗、剔除,改用
+> 「VIX × 趨勢(200SMA)」2D(見 `results/2026-07-05_market_regime_2d.md`)。其餘 findings(資本效率 / alpha=T1+T2
+> 拆解等)仍有效,已濃縮入 `.agents/KARS_MEMORY.md` §10。現行入口 = `STATUS.md`;交棒 = `docs/2026-07-06_fable_brief.md`。
+
 ## What this commit adds
 A thin, **read-only web dashboard** for the daily top-down scan (Traditional-Chinese,
 multi-panel Eikon/terminal style) + a headless deploy path (Zeabur/Docker).
