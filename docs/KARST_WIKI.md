@@ -87,9 +87,31 @@ Phase 3 係質性 thesis,冇乾淨 Sharpe。量度 = **forward IC ≥ 0.05**(信
 
 ---
 
-## 四、五個 Phase(系統骨架)
+## 四、系統骨架:先分「三個層面」,再行「五個 Phase」
 
-Karst 分 **Phase 0 至 4** 五層,由上而下。每層標準化寫:**做乜 / 點運作 / 驗證咗乜 / 狀態 / 點用**。
+**呢兩樣係唔同維度,唔好撈埋:**
+- **層面** = 睇邊個尺度(大市 / 板塊 / 個股)。
+- **Phase** = 喺嗰個尺度入面,由上而下嘅處理次序(0→4)。
+
+### 4.1 三個層面(由大到細)—— 好似「先睇天氣、再揀區、最後揀舖」
+| 層面 | 問嘅問題 | 用嘅嘢 | 角色 |
+|---|---|---|---|
+| **① 大市**(SPY/QQQ) | 而家應唔應該落場?(risk-on / off) | VIX×趨勢 2D · 市場 breadth · DIX/情緒 | **主要風控** |
+| **② 板塊**(11 大行業) | 落場買邊個行業? | 板塊相對強度 · 輪動 · 年度宏觀敘事(能源2022/AI2024) | **搵 alpha** |
+| **③ 個股/主題** | 揀邊隻、幾時入? | 個股 thesis(故事)· insider 腳印 · RSI-2/突破擇時 | **搵 alpha** |
+
+**Edge 喺邊?** oracle 研究(§8)證咗:**真正跑贏嘅空間喺「板塊(年度 regime)+ 個股/主題」,唔喺大市
+週度擇時。** 所以**大市層 = 唔好爆煲(風控);板塊 + 個股層 = 搵嗰一擊(alpha)。**
+
+### 4.2 資金流(Phase 2)點樣貼落三層
+insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,係貼喺每層做「第二意見」**:
+- **大市 flow**(DIX / 情緒 / 市場 breadth)→ 確認大市 risk-on/off(多數同 VIX/F&G 冗餘)。
+- **板塊 flow**(板塊資金流 / breadth)→ 確認買邊個板塊。
+- **個股 flow**(insider 逐公司)→ 確認個股 thesis;**一批同行業 insider 一齊買 = 板塊訊號**。
+- **∴ Phase 2 最有價值嗰忽 = 板塊 + 個股 level 嘅 flow 確認 thesis**(edge 喺嗰度),唔係大市 flow。
+
+### 4.3 五個 Phase(每層由上而下嘅處理次序)
+每層標準化寫:**做乜 / 點運作 / 驗證咗乜 / 狀態 / 點用**。
 
 ### Phase 0 — 市場閘(能唔能夠開新倉)
 - **做乜**:睇大市 regime + 脆弱度,決定「而家使唔使避險」。
@@ -406,7 +428,7 @@ IC 0.05-0.10 係 **HARD bar**——專業 quant 有龐大 breadth + infra 都得
 | | 內容 | 狀態 |
 |---|---|---|
 | **Phase 3 質性 thesis(主線)** | pilot 端到端行一個主題 → forward IC 累積(數月) | ✅ 建 / ⏳ 未證 → **下一步** |
-| **Phase 2 資金流/敘事** | flow/narrative;insider + DIX 可餵 | 🔴 未建 |
+| **Phase 2 資金流/敘事**(flow overlay,貼三層) | **重點做板塊+個股 level flow 確認 thesis**(insider 已測=MED、DIX 已測)+ **測 breadth 背離見頂**;大市 flow 多數冗餘 | 🔴 未建(平嘢:A 搬 insider 歸類 / B 接 DIX / C 測 breadth) |
 | **Phase 3e 危機 tail** | VIX>40 + 被打爛系統板塊救援 sleeve | 🔴 未建 |
 | **接線** | 20日突破 timer + RSI-2×RS-leader + gamma 牆 入 spine | 已測未接 |
 | **細 gap** | 突破 + 成交量確認;gamma 牆 forward-log 驗證 | 可選 |
