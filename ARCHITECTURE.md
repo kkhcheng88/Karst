@@ -31,7 +31,7 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 
 | Phase | 做什麼 | 狀態 | 程式 |
 |---|---|---|---|
-| **0 市場閘** | 指數 regime + fragility → gate(能不能開新倉)| ✅ live | `spine/context.py` |
+| **0 市場閘** | 指數 regime + fragility → gate(能不能開新倉);**2D = VIX(恐懼)× 趨勢(200SMA):買恐懼優先牛市(② 最安全);credit 測完剔除**(`results/2026-07-05_market_regime_2d.md`)| ✅ live | `spine/context.py` |
 | **1 板塊 + RS** | 板塊溫度(市值加權 + cap-equal 背離)+ 兩層 RS + GICS 11 輪動 | ✅ live | `spine/sector.py`, `rotation.py` |
 | **2 資金流/敘事** | 資金流 / 敘事 / macro overlays(自建;可參考外部素材) | 🔴 **未建(刻意延後)** | — |
 | **3 質性 thesis** | 價值鏈→ticker→一手驗證→crowding→confidence(0..1 sizing 乘數)| ✅ live(9 個 Type-B)| `thesis/`, `spine/providers.py` |

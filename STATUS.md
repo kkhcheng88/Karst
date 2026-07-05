@@ -24,7 +24,12 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
   - **Low-vol/Vol**:低波選股非 alpha(防守);vol = **regime gate** 唔係引擎。
   - **突破 SELECTION(Minervini)/ risk-layer**:price-only 版無 alpha;**止蝕/trail 斬贏家傷回報 → 封尾部生存唔係 alpha**(caveat:無成交量確認未測)。
 - **ebooks 蒸餾**:`ebooks/Discretionary Momentum/DISTILLATION-backtestable-rules.md`(O'Neil/Darvas/Livermore/Minervini common core + SPEC A-D;**在 Karst repo 外**)。
-- **未閉 gap**:突破加成交量確認(救 Minervini selection?);VCP 型態本身未測;GEX(Phase 0 fragility)未建。
+- **大市 2D regime 定案**(`results/2026-07-05_market_regime_2d.md`):**credit(HYG/LQD)做風險軸 = 失敗**
+  (regime 反覆、對 VIX 無增量);**改用「VIX × 趨勢(200SMA)」2D = 成立**——② 牛市+高VIX 兩半前望最好
+  (+5%)+ 回撤最淺,∴ **買恐懼優先喺上升趨勢做**;熊市買恐懼細注(方向 regime-dependent)。VIX 主軸、
+  趨勢做安全度修正器。
+- **未閉 gap**:突破加成交量確認(救 Minervini selection?);VCP 型態本身未測;GEX(Phase 0 fragility)未建;
+  gamma 牆 + BofA Bull&Bear + trend×VIX 大市閘 forward-log。
 
 **2026-07-04(Vanessa session,於 Claude Code 續)—— 詳見 `docs/2026-07-04_progress_and_next.md`:**
 - **定位更正**:Karst = 獨立、自足系統(非三大腦執行臂、edge 不外包);`README`/`ARCHITECTURE`/`KARS_MEMORY`/`AGENTS` 已清 framing。

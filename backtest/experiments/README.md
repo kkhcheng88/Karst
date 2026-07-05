@@ -87,6 +87,8 @@
 | exp_minervini_breakout.py | SPEC A/B Minervini 範本+突破個股 + RISK/FIXED overlay | 同上 | active(selection無alpha/risk-layer傷回報) |
 | exp_gex_test.py | GEX(免費 SqueezeMetrics CSV)vs VIX 增量 + DIX flow | 2026-07-05_gex_test.md | active(negative:GEX對VIX無增量,唔建) |
 | exp_gamma_walls.py | live 逐 strike gamma 牆:支持/阻力區+強度+企穩線(SPY/QQQ 0DTE/1W/1M) | docs/2026-07-05_gamma_walls.md | active(live 工具,無回測,forward-log 驗證) |
+| exp_credit_axis.py | credit(HYG/LQD)做風險軸 × VIX 四象限 | 2026-07-05_market_regime_2d.md | active(negative:regime反覆、對VIX無增量) |
+| exp_trend_vix_axis.py | 趨勢(200SMA)× VIX 2D 四象限(替代 credit) | 同上 | active ✅(②牛市+恐懼兩半最好+最安全) |
 
 ## 孤兒處理原則
 
