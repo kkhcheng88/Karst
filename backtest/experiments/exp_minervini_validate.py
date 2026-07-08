@@ -28,7 +28,7 @@ try:
 except Exception:
     _dsr = None
 
-_DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".insider_data")
+_DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".insider_data")  # backtest/.insider_data (experiments/ is one level down after the 2026-07-03 reorg)
 _PIVOT, _BASE, _MAXHOLD = 30, 40, 126
 _RISE, _ABOVE_LOW, _BELOW_HIGH, _CHASE = 21, 0.30, 0.25, 0.05     # fixed template params
 

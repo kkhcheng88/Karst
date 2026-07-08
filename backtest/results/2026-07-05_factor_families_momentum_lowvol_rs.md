@@ -143,3 +143,55 @@ vol-scaling 未加=portfolio 階段)。條件Sharpe(composite)vs B&H:
 - **唔使做**:低波選股(非 alpha)、vol-timer 當 alpha、RS-timer、細價/板塊 趨勢。
 - **接線**:RS 做 tier-2 個股 selection(揸 leaders)+ gate RSI-2 入場;vol/VIX regime 餵 [[regime-and-fear-greed-findings]]
   嘅開關;動能趨勢做 tier-1 曝險/低回撤層。財富貢獻待 portfolio 階段。
+
+---
+
+## Addendum(2026-07-06 補存):vol-timer 全 4 類數字(細價/板塊此前從未落檔)
+
+**背景**:`docs/2026-07-06_wiki_verification.md` 核實發現,原文只講咗大盤/Mag7 嘅 vol-timer 數
+(「表面 Sharpe 1.4-1.7」),KARST_WIKI §5.6 嗰行「細價 —·板塊 —」明文標「呢兩類數未落檔」。本補存
+用真數據(yfinance,`backtest/data.py`)重跑 `exp_lowvol_family.py` 嘅 **TIMER 部分**(SELECTION 鏡
+已喺上面存過,無變,冇再跑),補齊 4 類全部格。
+
+**Method 冇變**:vol-pct(63d realized vol 嘅 2 年滾動百分位)<entry 揸、>exit 走現金,entry∈{40,30,
+20,10}×exit∈{60,70,80,90},2016+,10bps/turnover,報**條件 CAGR(部署年化)/條件 Sharpe/曝險%**,
+FULL + H1(2016-20)+ H2(2021+)。**資料**:yfinance 即日拉取(SPY/QQQ/SPMO/IWM/IJR/11 SPDR/Mag7 共 23
+個 symbol),non-cache,live。
+
+### 大盤指數(SPY/QQQ/SPMO)—— B&H FULL +17.3%/0.92/−31%,H1 +17.2%/0.91/−31%,H2 +17.3%/0.93/−27%
+最佳格:FULL `<30進/>60出` +20%/**1.49**/40%曝險;H1 `<10進/>70出` +22%/**2.01**/31%;H2 `<30進/>80出`
++23%/**1.40**/59%。**FULL/H1 大部分格(15/16、12/16)贏 B&H Sharpe**,只係鬆出場(>90)格穩定輸;H2
+較弱(6/16 格輸)。
+
+### Mag7 —— B&H FULL +34.4%/1.17/−49%,H1 +44.8%/1.48/−33%,H2 +25.5%/0.91/−49%
+最佳格:FULL `<30進/>70出` +42%/**1.68**/55%;H1 `<10進/>70出` +49%/**2.07**/43%;H2 `<30進/>70出`
++39%/**1.51**/66%。**兩半大部分格贏 B&H**(FULL 16/16、H2 16/16 全贏;H1 得緊出場>60 一欄 4 格輸,
+其餘 12 格贏)——4 類入面**最穩健**。
+
+### 板塊ETF(11 SPDR)—— B&H FULL +10.4%/0.67/−37%,H1 +9.6%/0.58/−37%,H2 +11.1%/0.80/−20% 🟡 唔穩健
+最佳格:FULL `<40進/>60出` +10%/**0.90**/50%;H1 `<10進/>90出` +9%/**0.80**/31%;H2 `<40進/>70出`
++13%/**1.14**/69%。**FULL 大致貼近/微贏(11/16 格贏),但兩半唔一致**:**H1 幾乎全輸**(15/16 格低過
+0.58,得鬆出場單一角落例外)、**H2 幾乎全贏**(15/16 格高過 0.80)。→ regime-dependent,唔算穩健
+timer(fail 咗兩半robustness 門檻)。
+
+### 細價股(IWM/IJR)—— B&H FULL +9.8%/0.53/−44%,H1 +11.3%/0.57/−44%,H2 +8.6%/0.48/−30% ❌ 明確唔work
+最佳格都輸或勉強打平:FULL 最高得 `<10進/>70出` +6%/**0.42**/32%(仍低過 B&H 0.53);H1 全數 16 格
+**全部低過** B&H 0.57(最高得 0.36)。H2 48 格入面得 **2 格**貼近/高過 0.48(`<10進/>70出` 0.88、
+`<10進/>80出` 0.80,兩格都喺曝險最低〔28-29%〕嘅角落,樣本細、疑 artifact)。**FULL+H1+H2 三期合共
+48 格,46 格輸、2 格贏且喺低樣本角落**——4 類入面**最差**,同「edge 常喺細價股」嘅一般印象相反
+(呢度反而係細價股令個 timer 明確唔 work)。
+
+### 補充判定(完成 4 類覆蓋,呼應 backtest-testing-standard)
+1. **原結論不變但要加「唔係全宇宙一致」嘅 caveat**:「vol-timer 頂多溫和風控,唔係 alpha」依然成立,
+   但依家可以講得更準——**只喺大盤指數/Mag7 兩半都有(粗略)穩健**;**板塊 ETF regime-dependent**
+   (H1 死、H2 生);**細價股decisively 唔 work**(近乎全格輸)。
+2. **同「edge 喺細價股」教訓唔一致,值得記低**:呢個特定 vol-timer 機制**唯獨喺細價股表現最差**,同
+   insider/RS 家族「edge 喺細價」嘅方向相反——提醒:唔係所有訊號都喺細價股有 edge,方向要逐個訊號驗
+   唔可以套用一般印象。
+3. **維持原判**:即使大盤/Mag7 格數靚,原文already 指出呢個係「條件Sharpe 天生偏袒平靜日嘅半
+   artifact + 走漏 capitulation 反彈」(跟 top-days/VIX 逆向發現一致)——呢次補測只補齊覆蓋,冇推翻
+   呢個機制疑慮,淨值判斷不變:**vol = regime gate,唔係獨立 timer/alpha**。
+
+**Provenance**:yfinance via `backtest/data.py`,2026-07-06 即日拉取,23 symbols(SPY/QQQ/SPMO;
+IWM/IJR;XLK/XLF/XLE/XLV/XLP/XLU/XLI/XLB/XLY/XLC/XLRE;AAPL/MSFT/NVDA/AMZN/GOOGL/META/TSLA),
+2016-01-01 起,10bps/turnover,signal shift(next-bar)。SELECTION 鏡冇再跑(數字同上文,未變)。

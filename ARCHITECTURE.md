@@ -105,15 +105,18 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
 
 **🔴 未建 / 缺口(依價值):**
 1. **突破觸發 → Phase 4**(補 RSI-2 覆蓋盲區,帶量確認)。
-2. **GEX → Phase 0**(SPY/QQQ fragility)。
+2. ~~**GEX → Phase 0**(SPY/QQQ fragility)~~ **已測唔建**(07-05 `gex_test`:對 VIX partial≈−0.08 無增量,見 §3)。
 3. **per-family 正式驗證(CIO Phase 0)—— 第一輪已跑**(`backtest/experiments/exp_insider_validate.py` +
    `exp_family_validate.py`,SEC bulk Form345 + defeatbeta 價格,look-ahead-safe,forward IC + deflated
-   Sharpe)。發現:**Insider 有真「21d」edge(t=5.12)但 63d 歸零/126d 轉負 → 短期催化非長期**(⚠️ 與
-   現在的長期 ±30% overlay 接線 **horizon 不符,待改成短期 tilt**);**RSI-2 mean-rev 最強**(IC t=6-12
+   Sharpe)。發現:**Insider「21d」edge(t=5.12)= 全宇宙數,micro-cap tail 帶動**(07-05 `insider_rigor`
+   R8:大型股拉長到 2006 冧到 t1.1;可靠 claim = 細價 12月 portfolio vs IWM);63d 歸零/126d 轉負(⚠️ 與
+   現在的長期 ±30% overlay 接線 **horizon 不符 → 修法 = 改接細價 12月 portfolio tilt(literature-aligned;
+   大型 21d 短線唔採,regime-fragile)**);**RSI-2 mean-rev 最強**(IC t=6-12
    兩宇宙皆穩、DSR 0.91,驗證 Phase-4)。
    **⚠️ 方法學修正:IC/long-short 對 long-only 系統是錯的鏡子。** 用「long-only 持有頂五分位 vs SPY
    買入持有」(S&P 1995-2026)測:**momentum +9.9% / RS-126d +10.2% / RS-63d +8.6% / RSI-2 +12.5%
-   CAGR 超額**(low-vol 輸)。→ **RS/動能「持有領頭羊」強勝指數;先前用 IC/LS 判它們無 edge 是測錯了
+   CAGR 超額**(low-vol 輸;⚠️ costless + 現任成份 survivorship,且 **DSR 0.908 < 0.95 未過多重檢定**
+   —— 方向可信、幅度打折)。→ **RS/動能「持有領頭羊」強勝指數;先前用 IC/LS 判它們無 edge 是測錯了
    (空方弱股反彈拖垮 LS)。Karst tier-2 是 long-only → 這才是對的鏡子。** caveat:現 S&P 成員 =
    survivorship,超額被高估;+成本/換手打折。`exp_family_validate.py` 兩種鏡子都有。
 4. 背離 → confidence 自動 temper;個股 >200SMA 才認 RSI-2 dip。

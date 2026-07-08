@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.20
 verdict: real-tollgate-but-froth-thin
-updated: 2026-07-01
+updated: 2026-07-08
 tickers: ['AEHR']
 ---
 
@@ -121,6 +121,15 @@ FY2027 認列,不追高。**
   50/200 日線之間;kill = 內部人續賣 / 認列破功 / 競品切入。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
+## 2026-07-08 update:#150 獨立佐證(同一批事實,非新 kill 觸發;confidence 0.20 維持)
+
+- **#150(HBM 製程系列)獨立提及 [[AEHR]] froth 框架,佐證而非新訊號**:一年 **+8x**、forward PE **~615x**,
+  內部人(#150 用詞「公司內部人」)自 $30 漲到 $100 過程中**幾乎只賣不買**、累計賣出約 **$4,400 萬**,
+  執行長**賣在 $4,100 萬訂單公告前六天**——與本頁既有 #087 內部人賣超紅旗**同一批事實**,非獨立第二
+  來源的新爆料。**新增細節(#150)**:該訂單為**主力雲端業者(hyperscaler)對自研晶片老化測試的追加訂單**
+  金額 $4,100 萬,與本頁 Sonoma $41M 一手單為同一筆交易的另一敘述角度。本更新**不構成新 kill 觸發**,
+  僅是第二個 Tier-2 來源獨立確認同一組事實(整叢仍實質是同一批公開資訊的重複引用,證據薄的定性不變)。
+
 ## 待補(降「未確認」扣分 + 加厚薄證據)
 - [ ] **證據薄**:整叢僅 #087 一篇 → 待新 gooptions 批次補入(Advantest/Teradyne/Cohu 定價權、OSAT 老化測試
       產能翻 4x 的第二來源),才可能把 confidence 從 watch 往上調。
@@ -131,9 +140,10 @@ FY2027 認列,不追高。**
 - [x] ✅ AEHR ttm_pe(現為負、無定義)+ capex(TTM $4.75M 且下降)一手 — 2026-07-01。
 
 ## 來源
-Tier-2(semicap-equipment 叢僅 1 篇,`thesis/wiki/sources/`,全文 `corpus.db`):**#087**(AEHR 老化測試橫切
+Tier-2(semicap-equipment 叢原僅 1 篇,`thesis/wiki/sources/`,全文 `corpus.db`):**#087**(AEHR 老化測試橫切
 收費站、$41M 一手單、內部人 $44M 賣超、forward 615x、賣方目標價 $56–68,對到 IR/SEC EDGAR CIK 0001040470
-Form 4)。Tier-1:defeatbeta `ttm_pe`(TTM EPS -0.38、PE 無定義)、`quarterly_cash_flow`(capex TTM $4.75M
-且季度下降)(2026-07-01)。
+Form 4);**新增(2026-07-08):#150**(HBM 製程系列,獨立提及 AEHR froth 框架 + 主力雲端業者自研晶片老化
+測試追加訂單細節,同一批事實非新 kill 觸發)。Tier-1:defeatbeta `ttm_pe`(TTM EPS -0.38、PE 無定義)、
+`quarterly_cash_flow`(capex TTM $4.75M 且季度下降)(2026-07-01)。
 </content>
 </invoke>

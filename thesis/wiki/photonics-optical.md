@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.30
 verdict: real-bottleneck-but-crowded
-updated: 2026-07-05
+updated: 2026-07-08
 tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
 ---
 
@@ -124,6 +124,21 @@ crowding/cycle penalty (LATE + 58% bull 最擁擠 + 護城河名 75-98 分位 + 
   cycle 維持 LATE;修正:AXTI「唯一便宜」下修為盈利觸頂假象;新增 ④.5 耦合節點 + ALAB/CRDO 銅對沖。
 - forward-IC 評估器(待建)N 天後回填 → 裁判。
 
+## 2026-07-08 update:#149(free preview)新證據 —— 層輪動,非板塊看空(confidence/cycle_stage 維持)
+
+- **網路扁平化 = 層輪動,不是整個光通訊看空(#149)**:OpenAI **MRC**(兩層交換即可連 **10 萬+ GPU**,
+  背書名單 AMD/AVGO/INTC/MSFT/NVDA)+ Amazon **RNG**(用被動光學取代主動網路設備,**−60%+**)一起把
+  「交換機對交換機」(switch-to-switch)這一層壓平,直接砍掉這層最密集的收發器需求。
+- **第一次具名券商行動**:B. Riley 以「網路扁平化」為由把 [[AAOI]] 降評至中性、目標價 **$129**——
+  理由不是缺貨/CPO 延後,而是拓撲壓縮本身,這與過去(系列 21/#107)「CPO 取代 DSP、光學含量不變」的
+  元件換代邏輯是**不同機制**(前者砍模組數量、後者只換模組內部元件)。[[AAOI]] 反向對賭需求持續:
+  官宣德州擴產至約 **70 萬顆/月**、雷射磊晶擴增約 **350%**。
+- **TAM 總量仍增,價值往上游遷移**:光學 TAM $15B→$154B(仍是 10x 級成長),但收發器層承壓、價值往
+  上游光源/CPO/矽光/InP 遷移 → **強化本頁既有立場(挑質 [[COHR]]/[[LITE]]/[[GLW]]、避收發器層/froth)**,
+  不改變 confidence 0.30 / cycle LATE(這是分層訊號,非新增瓶頸或新增擁擠證據)。
+- [[ai-capex-macro-risk]]:收發器層壓力若擴散成整條光鏈需求下修(而非純架構層輪動),要對照該頁「承諾
+  −run-rate 缺口」與「四大 FCF 軌跡」兩盞燈,分辨是架構重組還是 AI-capex 打嗝的前兆。
+
 ## 待補
 - [ ] 接「crowding 溫度」自動量測(bull 佔比 + 估值分位 → 動態 cycle/confidence)。
 - [ ] 逐字稿抽 COHR/LITE 管理層產能/交期/定價語言(moat + 32 月交期證據補強)。
@@ -138,5 +153,6 @@ Tier-2(photonics 叢 24 篇,`thesis/wiki/sources/`,全文 `corpus.db`):#092(雷�
 (6 層架構)、#055(InP 集體訊號週)、#059(AXTI InP 純玩家)、#063(SIVE CPO 純玩家)、#070(GLW 康寧)、
 #107(CPO 取代 DSP 非模組廠)、#115(中國批次放行 InP);**新增批次(2026-07-05):#138(GLW 玻璃橋≠玻璃基板、
 新增耦合節點、三雲、46× PE)、#139(多頭長推體檢、COHR 預付 $22.28M 鎖 6 吋 InP)、#141(AXTI 殺盤=去估值溢價、
-分階段爬坡、雷射仍 3 吋)、#143(CPO 延後三排受害地圖、龍頭不痛、ALAB 銅窗口)**。Tier-1:defeatbeta
-`ttm_pe`/`quarterly_cash_flow`(2026-07-01)。
+分階段爬坡、雷射仍 3 吋)、#143(CPO 延後三排受害地圖、龍頭不痛、ALAB 銅窗口)**;**新增(2026-07-08):
+#149(free preview,網路扁平化 OpenAI MRC/Amazon RNG 壓收發器層、B. Riley 具名降評 AAOI、層輪動非板塊看空)**。
+Tier-1:defeatbeta `ttm_pe`/`quarterly_cash_flow`(2026-07-01)。

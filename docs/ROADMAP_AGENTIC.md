@@ -26,8 +26,8 @@ forward IC ≥ 0.05,其他一切是管線。每個 Phase 都有時間盒。
 | # | 任務 | 對應 | 驗收條件 |
 |---|---|---|---|
 | A1 | 統一 track_record schema、`log_predictions` 併入每日排程、實作 outcome 回填 job | P0-3 | jsonl 每日以完整 schema 增長;+21d 首批到期自動回填實現報酬 |
-| A2 | credit 軸(HYG/LQD)+ `trend_risk_divergence` 進 `context.py`/`schemas.py`;與 `fragile` 整併 | P0-2 | 回放 2018-Q4/2020-02/2022-10,背離旗標全部亮起;先探測 HYG/LQD 資料覆蓋 |
-| A3 | insider 改接 21d 戰術 tilt(擇時側,帶衰減);廢除或明文降級 `conf_eff`;修 docstring | P0-1 | A/B 增量回測(long-only mirror、21d horizon)過 DSR 後才接線;不過就 display-only |
+| A2 | ~~credit 軸(HYG/LQD)進 context.py~~ **OBSOLETE(2026-07-06 撤銷)**:credit 軸 07-05 `market_regime_2d` 測完剔除(H1/H2 反符號、對 VIX 無增量)→ **唔好建**;改為接 VIX×趨勢 2D quadrant 邏輯入 spine(而家兩個 input 分開存在、無 interaction gate) | P0-2 | 2D quadrant 欄位喺 MarketContext 出現,② 牛+恐懼可被 scan.py 標出 |
+| A3 | insider 改接**細價股(<$2B)12 個月 portfolio tilt(vs IWM,bounded overlay)**——07-05 `insider_literature`/`insider_rigor` 定案;~~21d 戰術 tilt~~ **唔採**(大型股 21d 只 2022+ 成立、全樣本 t1.1 regime-fragile);廢除或明文降級 `conf_eff`;修 docstring | P0-1 | A/B 增量回測(long-only mirror、**12 個月 horizon、size-matched vs IWM**)過 DSR 後才接線;不過就 display-only |
 | A4 | `forward_ic.report()` 程式化判定(PRELIMINARY/PASS/FAIL + JSON 輸出) | P0-4 | auditor agent 可機讀 |
 | A5 | 衛生:`spine/__init__` docstring、`lint.py` 進每日排程、殭屍欄位渲染或刪 | P3 | lint 每日自動跑;殭屍欄位清單歸零 |
 

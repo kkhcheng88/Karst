@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.32
 verdict: real-chokepoint-but-proxies-priced
-updated: 2026-07-05
+updated: 2026-07-08
 tickers: [AMKR, ASX, TTMI, INTC, MKSI, KLAC, GLW, STX, WDC]
 ---
 
@@ -161,6 +161,25 @@ cycle/crowding penalty:敘事 11% bull(低擁擠,offset↑)× 估值 90-100 分�
   EMIB-T 客戶落地、冷卻第三層 2027 標準化時程。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
+## 2026-07-08 update:#150(全文)新證據 —— HBM 製程六收費站,全鏈瓶頸確認(confidence/cycle_stage 維持)
+
+- **CoWoS 2026 售罄、全鏈瓶頸再確認**:台積電 CoWoS 約六成產能給 [[NVDA]],月產能自 2024 年底約 3.5 萬片
+  估衝到 **2026 年底 12–15 萬片**,即便如此 2026 產線已預訂一空(#150)。
+- **矽通孔/堆疊設備分純度**:**TCB(熱壓鍵合)**——ASMPT(港股,非美股)營收 **+146%**;美股可交易的
+  [[KLIC]](K&S)同做熱壓鍵合、目標把這條線做到年營收 **$4 億**。**混合鍵合(下一代)**——[[BESI]](非
+  美股)訂單 **+104.5%**、客戶擴至 20 家、已向**第二家記憶體客戶交付 HBM 應用評估機**(#150 明確提醒:
+  **混合鍵合用在 HBM 仍是早期驗證階段,近期營收含量低**,非本季就能兌現的獲利)。**測試層**——愛德萬
+  (日股,非美股)年營收 **¥1.13 兆創新高**;美股 [[TER]](Teradyne)記憶體測試(含 HBM/DRAM)明確受惠。
+- **⚠ 題材已 re-rate**:出稿當日(#150 完稿當天)美光、台積電、日月光與多家設備股**盤中同步回檔約
+  6–10%**——設備股 2026 上半已先反映一段,前瞻世代(混合鍵合、次世代 HBM)近期營收含量低與股價漲幅
+  之間有時間差。
+- **universe 擴充**:新增 [[KLIC]](TCB 直接受惠)、[[TER]](記憶體測試)、[[FORM]](FormFactor,探針卡/
+  測試)、[[LRCX]](矽通孔蝕刻/電鍍,先進封裝 2026 估成長逾 50%)四檔美股可交易代理,補進 4-KPI 表的
+  「設備/測試」環節(見 `thesis/themes.yaml` tickers)。ASMPT/Besi/愛德萬非美股,僅記錄於本頁,不入
+  tickers/universe。
+- [[ai-capex-macro-risk]]:CoWoS/HBM 全鏈供給回應若在 AI-capex 打嗝下超前需求(五盞燈轉偏空),本頁
+  「真咽喉但已定價」判斷要重新檢視。
+
 ## 待補(降「未確認」扣分)
 - [x] ✅ AMKR/TTMI/INTC/MKSI/KLAC/ASX ttm_pe + capex(一手)— 2026-07-01。
 - [ ] 接「表達缺口」量測:真瓶頸非美股 vs 代理名估值分位 → 動態 cycle/confidence。
@@ -172,8 +191,9 @@ cycle/crowding penalty:敘事 11% bull(低擁擠,offset↑)× 估值 90-100 分�
 - [ ] 冷卻「帶走熱」段的美股表達 VRT/ETN 見 [[ai-power-grid]](Eaton 收 Boyd Thermal $9.5B,#140)。
 
 ## 來源
-Tier-2(advanced-packaging 叢 12 篇,`thesis/wiki/sources/`,全文 `corpus.db`);**新增 ECTC 2026 三部曲:
-#140(冷卻推進矽、三層真相、TIM1 輸家、Eaton 收 Boyd $9.5B)、#142(客製 HBM 基底晶粒代工移向台積、Marvell
+Tier-2(advanced-packaging 叢 12 篇,`thesis/wiki/sources/`,全文 `corpus.db`);**新增(2026-07-08):#150
+(全文,HBM 六收費站/CoWoS 售罄六成給 NVDA/TCB+混合鍵合+測試設備分純度/題材已 re-rate)**;**新增 ECTC 2026
+三部曲:#140(冷卻推進矽、三層真相、TIM1 輸家、Eaton 收 Boyd $9.5B)、#142(客製 HBM 基底晶粒代工移向台積、Marvell
 定介面 −60% 面積)、#144(HBM4E 封裝三重牆、EMIB-T 供電 −82%、CoWoS 在位)**;既有:#100(EMIB-T 為真、
 結構贏家台積電、CoWoS 咽喉)、#131(格式戰、AMKR/ASX 軍火商、面板 75% vs 圓晶圓 51%、Intel 封裝 $1B+)、
 #106(CCL 上游雙鎖喉、T-glass 日東紡 90%、HVLP 配額制、Rubin CCL $275M→$2B)、#117(材料成本 80%、

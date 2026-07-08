@@ -42,13 +42,13 @@
 | **VCP 收縮型態** | 3次一致:無增量、輕微傷;IC≈0 | HIGH(negative) | **唔建** | vcp_pattern |
 | **突破 SELECTION(Minervini)** | ≈/低過 B&H;risk-layer 斬贏家傷回報 | HIGH(negative) | 唔當 alpha;risk-layer=封尾部 | breakout_momentum |
 | **GEX** | 對 VIX partial≈−0.08 無增量 | HIGH(negative) | **唔建**;VIX 已 subsume | gex_test |
-| **Insider(Phase 3)** | 大型股 21d/63d 顯著;survivorship 打折 | MED | 已建,v3 待補分類 | insider_rigor/literature |
+| **Insider(Phase 3)** | 細價 12月 portfolio vs IWM = 主 claim(+10-12% net,survivorship 灌大);大型 21d 只 2022+(2006 拉長 t1.1)、63d 唔顯著(t0.95) | MED | 已建,v3 待補分類 | insider_rigor/literature |
 
 ## 4. 決策矩陣 — 接乜入 spine(風控層)
 1. **Phase 4 擇時**:加 **20日高突破 timer**(取代/補 SMA;比 TSMOM 快、修 H1)——當**風控/timing 欄**,絕不乘結構分。
 2. **Phase 4 mean-rev**:RSI-2 **× RS-leader filter × 高波 regime gate**(裸奔 RSI-2 H1 流血)。
 3. **Phase 1 選股**:RS-leader tilt(揸 leaders)。
-4. **Phase 0 gate**:VIX/credit/RV(已有)= 開關;**唔加 GEX**;DIX 免費 flow context 可選。
+4. **Phase 0 gate**:VIX×趨勢 2D + RV = 開關(**credit 07-05 測完剔除**,見 `market_regime_2d`);**唔加 GEX**;DIX 免費 flow context 可選。
 5. **唔做**:低波選股當 alpha、vol-timer 當 alpha、VCP、Minervini 全套選股、GEX、細價/板塊 ETF 趨勢。
 
 ## 5. Sections 狀態

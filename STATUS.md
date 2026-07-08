@@ -10,7 +10,60 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 實證定位(20+ 回測):**價量訊號 = 風控,不是 alpha;alpha 唯一可能的門 = Phase 3
 質性 thesis**。全系統的可證偽靶心:**thesis 排序 forward IC ≥ 0.05**。
 
+## 每日自動化(schtasks;部機開住先跑;新 session 開波先掃一眼呢張表嘅「要做乜」欄)
+
+> 2026-07-08 起全批搬到 **05:30 HKT 檔**(美股收市後、用戶瞓緊、rate limit 閒置;05:30 係為冬令
+> DST 留 buffer —— 冬令美股收市 = HKT 05:00 正)。週任務用 TUE-SAT(對應美股 MON-FRI 收市)。
+
+| 時間(HKT)| 任務 | 產物 / session 要做乜 |
+|---|---|---|
+| 05:30 二至六 | Karst-forward-IC-daily | `thesis/track_record.jsonl` 自動 commit(唔使理)|
+| 05:35 每日 | Karst-gooptions-daily | 抓 gooptions.cc 新研究 + wiki stubs 自動 commit |
+| 05:40 二至六 | Karst-playbook-daily | `playbook_log.txt`(core v2 每日判定表,用戶觀察用)|
+| 05:45 每日 | Karst-transcripts-daily | 新 Backtest-Everything transcript 排入 `../Reference/raw_data/backtest_everything_transcripts/_PENDING_ANALYSIS.md` |
+| 05:55 每日 | Karst-nightly-analysis(**待用戶授權,未註冊**)| Python guard:冇新料 = 零 quota;有新料 → headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions,詳 `thesis/nightly_analysis_prompt.md` |
+| — | **人手 fallback(而家生效)** | 日間 session 見 `_PENDING_ANALYSIS.md` 有未剔 `[ ]` 或 gooptions 有新文 → 蒸餾/INGEST(判「採納/佐證/唔採納」)|
+
 ## 現在在哪(2026-07-06)
+
+**2026-07-06(Fable 重做 session,真數據)—— 任務 1-3 獨立重做完成;core 策略 v2 定稿:**
+- 背景:用戶發現 sandbox Fable run 斷網(proxy-IV/SPY-only)→ 下令棄用其產出、由任務 1 重做。本機
+  已證 yfinance 全通(SPY/QQQ/SPMO/^VIX/^VXN)。
+- **任務 1**(`docs/2026-07-06_wiki_verification_v2.md`):4 個獨立驗證員追溯 ~124 claim + code 級核對;
+  修 18 處(Mag7 誤降級、符號灌水、spine RSI-2「裸奔」披露、insider P0-1 披露、幽靈引用等);驗收 PASS。
+- **任務 2**(`docs/2026-07-06_gap_conflict_register_v2.md`):20 項;P0 修咗 3(**ROADMAP A3 insider
+  修法方向寫錯 21d→已更正做細價 12月 portfolio**、STATUS 殘留 credit 待辦、ARCHITECTURE 內部矛盾);
+  3 個孤兒補跑落檔(rotation 非 duplicate + bonds>cash 發現;minervini PARTIAL 弱;vol-timer 細價 ❌);
+  code P0(conf_eff 未接分、校準迴路斷)登記排期 = ROADMAP A1/A3。
+- **★ 任務 3 core 策略 v2**(`docs/2026-07-06_core_strategy_v2.md`;證據:`results/2026-07-06_
+  leap_real_sweep / core_assembly_real / core_topup / sector_capeff.md`):**底倉 SPY + LEAP 引擎
+  (SPY+QQQ 對半、純 200SMA 閘、b15% premium、月度 top-up)+ 現金 ^IRX**。真數據 α:**保守 model
+  +6.5pp/yr(t3.1)/ base +12.4pp(t5.4)**,MaxDD ≈ SPY。推翻 v1:0.80Δ 全格贏(RV-proxy artifact)、
+  dip 閘(miss V 反彈)、遲滯(無淨值);**月度 top-up 係機制核心**(修 40-60% cash-starved)。
+  板塊三假設真數據 control-leg 全滅(恐慌買殘板塊顯著負 t−2.52)。Bonferroni×42:base 過(2.4e-6)、
+  保守 model p=0.095(過 0.10 唔過 0.05,如實記)。全部經 adversarial 覆核(opus)+ 獨立重跑驗證 PASS。
+- **Phase-3 設計 session 已完成(2026-07-08,Fable)**:五份 WS 規格 + 全局架構 + 執行 backlog 全部落檔
+  —— 入口 = `docs/2026-07-08_phase3_architecture.md`(→ ws1 裁判/ws3 生命週期/ws4 早期偵測+儀錶盤/
+  ws2 危機sleeve/ws5 表達注碼)。四個實證探測:constraint-language ✅(早敘事17個月)/insider-cluster ❌
+  /crisis event-study(右側 ARM→ENTER,n細誠實標)/80 源 altdata 普查(top-5 probe)。
+- 下一步:**執行 Batch 1(WS1+WS3 地基)** → Batch 2(儀錶化)→ Batch 3(probes/接線)→ dashboard
+  (任務 6,WS5 §5 需求)→ 任務 8 sweep(≥50% 非 AI)。Core 接線 to-do 見策略檔 §7。
+  夜班分析任務等用戶授權(見上表)。
+
+**2026-07-06(Fable 5 sandbox session)【產出已全部 SUPERSEDED,留檔可溯】—— 舊記錄:**
+- **任務 1 wiki 驗證**(`docs/2026-07-06_wiki_verification.md`):34 份 results 全數追溯;wiki 修 13 處
+  (§5.2 誤植 F&G 數、credit 新舊結論並存、VIX>30 untraceable、+12.5% 補 DSR caveat、insider 大型股 2022+-only)。
+- **任務 2 gap/衝突**(`docs/2026-07-06_gap_conflict_register.md`):6 份 doc 修 10 處;code 審計 12 條
+  (vol-switch「已 live」係假、2D 閘只有 input 無 quadrant 邏輯、雙 logger 寫同一 track_record、params↔code 唔對辦);
+  **補跑 LEAP delta sweep**(`results/2026-07-06_leap_delta_sweep.md`):**0.80Δ deep-ITM 全面贏 0.3/0.5/0.7**
+  (theta ×8 冚死槓桿 ×2.4;「0.3 最好」記憶 = short-call 條腿)。
+- **★ 任務 3 core 策略 v1**(`docs/2026-07-06_core_strategy.md` + `results/2026-07-06_core_portfolio_loops.md`,
+  4 輪 loop、30 trials、fresh-eyes 驗證通過):**底倉 70-75% SPY(永不趨勢沽)+ 遲滯閘 LEAP 10-15%(0.80Δ,
+  >200SMA×RSI-2 dip 入、<0.98×200SMA 五日出)+ 現金 15% + covered-call skim**;2D 象限 transition 表 +
+  每日 playbook。**對 SPY B&H(TR、HK 稅後):α +3.4~5.9pp/yr(E1 t3.7 過 Bonferroni+DSR 0.983;E2 邊緣)、
+  β≈1.0、MaxDD −44~45%**。板塊輪動唔入 core(0/28/TAA 輸);washout = 確認尺唔係分枝;
+  幅度 MEDIUM(RV-proxy IV、SPY-only)→ 本機真 VIX 重跑清單喺策略檔 §7。
+- **任務 5 驗證**:獨立 agent 重跑逐位吻合、look-ahead 全過、benchmark 公平;4 個表述修正已落實。
 
 **2026-07-06(Vanessa session)—— Phase-2 收官 + Trend-Core value-chain 更新 + Fable 交棒:**
 - **Phase-2 大市層 flow 收官**(`results/2026-07-05_phase2_flow.md` + `_breadth_reversion.md`):DIX(慢 tilt,配 GEX)
@@ -64,14 +117,20 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 - **workspace 已重組**(2026-07-03):37 個實驗檔移入 `backtest/experiments/`
   (含索引),本檔成為唯一入口。
 
-## 下一步(2026-07-06 更新)
+## 下一步(2026-07-06 Fable 完成後更新)
 
-**★ 主線 = Fable 5 交棒**(`docs/2026-07-06_fable_brief.md`):Fable 做 **adversarial reviewer + 策略主腦**(loop
-engineering、自主、每 ~5 loop 報進度、用量有限、spawn 平價 sub-agent 做手腳)。任務 1-5 優先:① 驗 wiki + 底層邏輯;
-② 找 gap / 衝突 → 補跑;③ 砌 **core portfolio 策略**(SPY/QQQ/SPMO 期權 + Sector ETF 擇時/現金,**誠實用 Jensen alpha
-對 SPY B&H**、scenario 執行 + backtest);④ **LOOP 只喺任務 3**(其餘一次過交付);⑤ 結果可係**策略樹(多策略)+ 明確 transition 機制**(唔一定單一策略)。之後:⑥ dashboard
-設計、⑦ Phase-3 方法論審查、⑧ emerging bottleneck。**framing:core(大盤+板塊 ETF)= 大部分資金;Phase 3 = 衛星
-(高風險高回報);core 真.alpha = LEAP 擇時 + 賣保費 + 資本效率,唔係 SPY 現貨入出。**
+**Fable 交棒任務 1-8 全部完成**(交付檔見「現在在哪」)。下一步按優先:
+
+1. **本機重跑(升 core 策略幅度 MEDIUM→HIGH)**:真 ^VIX + QQQ 重跑 delta sweep + loop3/4 headline
+   (command 喺 `results/2026-07-06_leap_delta_sweep.md` 檔尾);之後先郁真錢。
+2. **Phase-3 開錶前 5 修**(`docs/2026-07-06_phase3_methodology_review.md` §3):#1 統一雙 logger +
+   outcome 回填(M)→ #2 PASS/FAIL 程式化(S)→ #3 裁判 reframe(hit-rate@20-30 outcomes 做近期主裁判,S)
+   → #4 conf_eff 接或刪(S)→ #5 thesis_valuation.py 起碼版(M)。**未修 #1/#2 前,錶行極都冇數**。
+3. **接線(策略樹要用)**:2D quadrant + 遲滯閘入 spine(gap register C5)→ dashboard P0 面板
+   (`docs/2026-07-06_dashboard_design.md`;注意新發現:repo 冇 position tracker,要起 positions.json)。
+4. **Phase-3 闊度 pipeline**:由 `docs/2026-07-06_bottleneck_candidates.md` 頭三名(SRM 彈藥/LNG 船/航空 MRO
+   ——揀佢哋因為去相關)起 value-chain wiki;目標 ~30 個去相關主題。
+5. 衛星紀律:校準迴路未通之前,Phase-3 注碼 ≤20%、confidence 上限 ≤0.40。
 
 **策略主線(研究層,仍有效)**:風控/擇時層特徵已徹底釘死(見上)→ **重心轉 Phase 3 thesis + forward-IC**(唯一 alpha 門)。
 **可選接線**(風控層):① 20日高突破 timer 入 `spine/timing.py`;② RSI-2 × RS-leader gating;③ vol/VIX regime 開關。
@@ -94,12 +153,14 @@ python backtest\experiments\exp_family_validate.py
 
 ---
 
-### (前 ROADMAP Phase A/B 次序,仍有效)
+### (前 ROADMAP Phase A/B 次序 —— **部分已過時**,以 `docs/ROADMAP_AGENTIC.md` 為準)
 
 1. **A1 校準資料流**(統一 track_record schema + `log_predictions` 進排程 +
-   outcome 回填)——每天不修就流失一天不可補的資料
-2. **B1 持久化價格庫**(parquet + as-of manifest)——與 A1 並行
-3. A2 credit 軸+兩軸背離 → A3 insider 改接 21d tilt → B2 paper ledger(詳 ROADMAP)
+   outcome 回填)——每天不修就流失一天不可補的資料【仍有效】
+2. **B1 持久化價格庫**(parquet + as-of manifest)——與 A1 並行【仍有效】
+3. ~~A2 credit 軸+兩軸背離~~(**已作廢** 2026-07-06:credit 07-05 測完剔除,A2 改為 2D quadrant 接線)
+   → A3 insider 接線方向**已更正做細價 12 月 portfolio tilt**(舊「21d 戰術 tilt」regime-fragile,唔採)
+   → B2 paper ledger(詳 ROADMAP)
 
 ## 東西在哪
 

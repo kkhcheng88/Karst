@@ -1,6 +1,10 @@
 @echo off
 REM Karst Phase-3 forward-IC daily accumulation (run by Windows Task Scheduler on trading days).
-REM Logs today's point-in-time thesis cross-section, refreshes the report, commits the log.
+REM Chain (WS1 D1/D2/D3 -- single writer, then backfill, then the judged report):
+REM   1) log_predictions.py   -- the ONE writer: appends today's real spine thesis predictions
+REM   2) backfill_outcomes.py -- fills outcome{} for any row whose horizon has matured
+REM   3) forward_ic.py report -- judged state machine (PRELIMINARY/PASS/FAIL) -> ic_report.json/.md
+REM   4) commit the log
 REM US market holidays are safe: the as-of date dedups to 0 new predictions -> nothing to commit.
 REM
 REM Registered as a Windows scheduled task (weekdays 09:00 local, captures the prior US close):
@@ -10,7 +14,8 @@ REM   (query: schtasks /Query /TN "Karst-forward-IC-daily" /FO LIST ; delete: sc
 REM Caveat: the machine must be ON at run time; enable "run task ASAP after a missed start" in Task
 REM Scheduler if the box is often off. Timing is flexible -- it just logs the latest available US close.
 cd /d "%~dp0.."
-python thesis\forward_ic.py log
+python thesis\log_predictions.py
+python thesis\backfill_outcomes.py
 python thesis\forward_ic.py report
 git add thesis/track_record.jsonl
 git commit -m "chore: daily forward-IC log" >nul 2>&1

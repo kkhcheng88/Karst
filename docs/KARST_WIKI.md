@@ -4,7 +4,8 @@
 > 回測驗證咗乜、而家去到邊、下一步做乜。串連晒所有策略發現,砌成 5 個 Phase。
 > **技術版真相**見 `ARCHITECTURE.md`;**每個回測明細**見 `backtest/results/*.md`;**風控層結算**見
 > `docs/2026-07-05_risk_control_layer_report.md`。呢份 = 單一入口、全貌、layman。
-> **更新**:2026-07-05(風控層全部回測完之後嘅收官版)。
+> **更新**:2026-07-06 v2(獨立重驗修正版 —— 4 個獨立驗證員逐條追溯 ~124 claim,含 code-level 接線核對;
+> 修正清單 + 判定依據見 `docs/2026-07-06_wiki_verification_v2.md`,**取代**同日早前 sandbox 版 `_wiki_verification.md`)。
 
 ---
 
@@ -36,8 +37,9 @@ Karst 係一個**每日運作嘅美股投資決策支援系統**。目標係 **N
   機器學習 / 板塊輪動,全部過多重檢定 + 時間外驗證)。
 - **擇時面 = 有真但細嘅 alpha**:佢真係捉到「高於平均」嘅日子(**T1 擇時技巧,量度到 +2-6%/年**,見 §3.2)。
 - **但天真咁用會被打回「風控」**:例如成個指數「入/出」(SPY 揸/走),T1 會被結構拖累(T2)食走 → 淨返
-  只降回撤 = 風控。**要換個表達先兌現到財富:個股 long-only(實證 RSI-2 top-quintile 贏 SPY +12.5%),
-  或多條唔相關 sleeve 一齊部署閒錢 = portfolio。**
+  只降回撤 = 風控。**要換個表達先兌現到財富:個股 long-only(RSI-2 top-quintile 贏 SPY +12.5pp——注意:
+  costless、現任 S&P 成份 survivorship、DSR 0.908 未過 0.95 閘 → 方向可信、幅度打折),
+  或多條唔相關 sleeve 一齊部署閒錢 = portfolio,或期權工具(見 §6 表達)。**
 - **大 alpha 靠 Phase 3**:真正可能大幅跑贏,靠質性 thesis(基本面/供需/催化劑)。
 
 **一句比喻**:**「因子家族防你爆煲(兼一個細馬達),thesis 畀你嗰一擊。」**
@@ -71,8 +73,10 @@ Karst 係一個**每日運作嘅美股投資決策支援系統**。目標係 **N
 - **T1(正,+2-6%/年)**:擇時真係捉到「高於平均」嘅日子 = **真技巧 = capital efficiency 嘅來源**。
 - **T2(負)**:買跌踩高波動日,推高 β,一邊揸現金一邊畀大市升走。
 - **結論**:**capital efficiency = 真但細嘅 alpha**;**指數自己入出(SPY 揸/走)會被 T2 食晒 → 淨返係
-  風控**;但**換個表達(個股 long-only / 多 sleeve 組合)T2 唔適用 → T1 兌現到**(實證:RSI-2 個股
-  top-quintile 贏 SPY +12.5%)。
+  風控**;但**換個表達(個股 long-only / 多 sleeve 組合 / 期權工具)T2 唔適用 → T1 兌現到**(RSI-2 個股
+  top-quintile 贏 SPY +12.5pp,惟 costless + survivorship + DSR 0.908 未過閘〔註:0.908 係 21d long-short
+  mirror 嘅 DSR,非 long-only headline 直接檢定〕→ 幅度打折;較乾淨嘅兌現
+  證據 = 期權層 RSI-2 低位進場嘅 Jensen alpha,QQQ 6.53%/yr t2.9)。
 
 ### 3.3 覆蓋要求(唔准漏)
 - **4 個股種**:大盤指數(SPY/QQQ/SPMO)、細價股(IWM/IJR)、板塊 ETF(11 隻 SPDR)、Mag7。
@@ -110,7 +114,8 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
     → 放入系統當「**慢慢調校應唔應該進取**」嘅參考,唔係即買即賣訊號(最好配 GEX:高 DIX + 負 GEX = 超賣買點)。
   - **市場廣度(有幾多股票一齊升跌)**:淨睇佢一時高一時低 = **冇用**(同恐慌指數 VIX 講緊同一件事);**但大多數股票
     一齊插到殘(洗盤)之後,未來約一個月特別容易反彈** —— 呢個係真、比淨睇 VIX 叻少少 → 有用,係短線「**執底**」參考
-    (**單邊**:洗盤會彈、見頂唔會即插;已對實際股災底 GFC/COVID/2011/2022/2025 核實,見 `2026-07-05_breadth_reversion.md`)。
+    (**單邊**:洗盤會彈、見頂唔會即插;已對實際股災底 GFC/COVID/2011/2022/2025 核實;惟獨立事件只
+    ~8-12 個 → 方向穩、唔好當 t-stat 級證據,見 `2026-07-05_breadth_reversion.md`)。
 - **細板塊層面(未測,但係啱嘅方向)**:一個細板塊 / 價值鏈嘅股票**成班一齊由弱轉強(群體行為)= 新升浪起點**,
   再配**走勢背離(RSI/MACD 2-3 個頂/底)**;要**先定義邊幾隻股屬同一組(價值鏈成份)**先做到 → **跟 Phase 3 一齊做**
   (大市層面試過背離冇用,正正證明要落到細組)。
@@ -123,15 +128,17 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 
 ### Phase 0 — 市場閘(能唔能夠開新倉)
 - **做乜**:睇大市 regime + 脆弱度,決定「而家使唔使避險」。
-- **點運作**:VIX(恐慌)+ credit(信用息差)+ 實現波動;高風險就收緊。
+- **點運作**:VIX(恐慌)× 趨勢(200SMA)2D + 實現波動;高風險就收緊。(credit 息差 07-05 測完剔除)
 - **驗證咗**:
-  - **VIX = 恐懼/入場計**:VIX>30 → 未來 63 日 +5-6%(跨所有時期穩);VIX 係**逆向**(高 VIX 喺熊市 →
-    反彈)。VIX 係「均值回歸」嘅開關。
-  - **credit > VIX** 做 regime(同 KC Fed RORO 研究一致);混合相反極性嘅計(F&G 式)會**互相抵消**。
+  - **VIX = 恐懼/入場計**:VIX>28 → 未來 63 日牛市 +9.0%/熊市 +5.9%(兩半穩,`market_regime_2d`);
+    VIX 係**逆向**(高 VIX → 反彈),亦係「均值回歸引擎」嘅開關。(舊句「VIX>30 → +5-6% 跨所有時期穩」
+    出自不可重現嘅舊 capstone,已換可追溯數。)
+  - **credit(HYG/LQD)做 regime 軸 = 已剔除**(07-05 測完:H1/H2 反符號、對 VIX 無穩定增量;舊結論
+    「credit > VIX」已被推翻)→ 風險軸用 VIX、趨勢做安全度修正;混合相反極性嘅計(F&G 式)會**互相抵消**。
   - **GEX(莊家 gamma 曝險)測完唔建**:免費 aggregate GEX 對 VIX 控制後**幾乎零增量**(partial ≈ −0.08)——
     VIX 已經 subsume 咗。DIX(暗池)有輕微 flow 訊號可選。
   - **Gamma 牆(strike-level)= live 工具建咗**:tier-1 期權側嘅**支持/阻力區 + 強度 + 企穩線**(見 §5)。
-- **狀態**:✅ 已 live(VIX/regime)。GEX 唔建;gamma 牆工具建咗當 context。
+- **狀態**:🟡 input 已 live(VIX/趨勢分開存在;「RV」實為 VIX iv-rank,無獨立實現波動口徑);**2D quadrant 閘 + vol regime 開關未接線**(研究版 only;`context.py` gate=1 牛市時唔理 VIX,無「牛+恐懼」interaction)。GEX 唔建;gamma 牆工具建咗當 context。
 - **點用**:大市脆弱 → 唔開新倉 / 減曝險;VIX 極端恐懼 → 反而係入場窗。
 
 ### Phase 1 — 板塊 + 相對強度(RS)
@@ -143,13 +150,15 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
   - **RS 係 selection/filter,唔係 timer**(用戶更正):佢揀「邊隻」，唔係「幾時」。
   - **RS 嘅 LEVEL(強唔強)先係 edge;TREND(加速定褪色)幾乎無用**——「褪色 leader 係陷阱」個假設**證實
     錯咗**(褪色 leader 一樣贏)。
-- **狀態**:✅ 已 live。
+- **狀態**:✅ RS 機制已 live —— 但 live 版係 **20 日 advisory tilt**(`sector.py _WIN=20`,落 notes
+  唔入 score),唔係回測驗證嗰個 126 日 Q5 硬閘;規格差異要知。
 - **點用**:tier-2 選股偏向領先股;RS 亦用嚟 gate 入場時機(見 Phase 4)。
 
 ### Phase 2 — 資金流 / 敘事
 - **做乜**:讀「因子湯裡冇嘅資訊」嘅資金流同市場敘事。
-- **狀態**:🔴 **未建。**
-- **點用(將來)**:insider(而家喺 Phase 3)、DIX(免費暗池)可以餵入;同 Phase 3 嘅擁擠度/催化劑扣。
+- **狀態**:🟡 **大市層已測收官**(DIX 慢 tilt + 洗盤執底兩個細訊號,其餘 ≈ VIX 冗餘,見 §4.2);
+  **overlay 接線未做**;細板塊/價值鏈層要 value-chain 成份定義 → 跟 Phase 3。
+- **點用**:DIX 慢慢調應唔應該進取;洗盤短線執底;insider(而家喺 Phase 3);細板塊 breadth/背離跟 Phase 3。
 
 ### Phase 3 — 質性 thesis(★ 唯一 alpha 門)
 - **做乜**:讀價格圖裡冇嘅嘢——**供需失衡、underinvestment、產能瓶頸、定價權、催化劑**——形成投資
@@ -157,7 +166,10 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 - **點運作**:價值鏈 → ticker → 一手驗證(逐字稿/披露)→ 擁擠度(crowding)→ 信念分(0..1)。
   裁判 = forward IC。
 - **驗證咗**:9 個 Type-B thesis 已建;**但未證**(forward IC 要累積幾個月)。insider 家族(SEC Form 4
-  群買)喺呢層:大型股 21/63 日顯著,但 survivorship 打折 → 中信心。
+  群買)喺呢層:**大型股 21 日 edge 只喺 2022+ 成立(拉長到 2006 全樣本 t 1.1;63 日 t 0.95 唔顯著)
+  + DSR 0.79 未過閘 + survivorship** → 中信心偏弱(同 §5.7 修正版一致)。
+  ⚠ **P0-1 接線 gap(code 自認)**:insider `conf_eff` 計咗但從未回饋落 score(`spine/__init__.py:13`;
+  score 公式只用 `thesis.unit`)—— 即 insider 而家 display-only。
 - **狀態**:✅ 已建 / ⏳ **未證**(全系統嘅賭注)。
 - **點用**:tier-2 個股分數 = 結構資格 × thesis 信念;tier-1 主題 sleeve。
 
@@ -170,7 +182,9 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
   - **RS-leader filter 救返 RSI-2**:買「回調緊嘅領先股」(RS 高但短期回調),兩半都 work,補返 regime 脆弱。
   - **最佳 momentum timer = 20 日高突破 > TSMOM > SMA**:兩半贏 B&H、修返 H1 弱點(用戶「月 lookback 對
     日 K 太慢」直覺獲證)。
-- **狀態**:✅ RSI-2 live;20 日突破 timer **已測未接線**。
+- **狀態**:✅ RSI-2 live —— **但現行 spine 係「裸奔」版**(`timing.py` 只有 RSI-2;RS-leader filter 同
+  高波 gate 都未接,`is_laggard` 只落 notes 唔影響 action)= §5.2 caveat 講明 H1 會流血嗰個組態;
+  20 日突破 timer **已測未接線**。
 - **點用**:結構過關後,RSI-2 × RS-leader × 高波 gate 揀時機;絕不乘結構分。
 
 ### Phase 編號對照(避免混淆)
@@ -190,17 +204,18 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 ### 5.1 動能 / 趨勢(Momentum)— HIGH
 - **係咩**:買強勢揸趨勢 = 側避跌浪;唔係處處贏,但**冇一個 regime 大輸**(20日突破 > TSMOM > 單一 SMA)。
 - **結果**:條件Sharpe(20日突破 FULL/H1/H2):大盤 **1.51/1.64/1.41** vs B&H 0.91;Mag7 **1.74/1.73/1.75** vs 1.17。
-- **股種**:大盤 ✅ · 細價 ❌ · 板塊 ❌ · Mag7 ✅
-- **市值**:micro ✅(最強 1.32/1.66/1.03 vs 0.78/1.40/0.27) · small ✅ · mid ✅ · large ✅
-- **Regime**:H1 平穩牛 ≈ B&H(冇跌浪好避) · H2 跌浪先顯優勢(突破兩半都贏、修 H1)。
+- **股種**:大盤 ✅ · 細價 🟡(H1 贏 H2 冧)· 板塊 🟡(≈ B&H)· Mag7 ✅(注:Mag7 B&H 兩半 1.48/0.91,H1 margin 細)
+- **市值**:micro ✅(最強;TSMOM 1.32/1.66/1.03、20日突破 2.31/3.34/1.29 vs B&H 0.78/1.40/0.27) · small 🟡(TSMOM 兩半贏;20日突破 H2 0.33<0.69 輸) · mid ⚠(混合:TSMOM H2 0.83<0.86、突破 H2 0.37<0.86 皆輸) · large ✅(H2 邊際)
+- **Regime**:H1 平穩牛 ≈ B&H(冇跌浪好避) · H2 跌浪先顯優勢(「兩半都贏」**只限大盤/Mag7/large/micro**;mid/small/板塊/細價 H2 轉弱 —— 同 §5.8 一致)。
 - **Caveat**:資本效率≠財富(靠 portfolio);市值層 survivorship;20日突破**已測未接線**。
 - **用法**:Phase 4 timer(20日突破) + Phase 1 選股偏強勢。
 
 ### 5.2 均值回歸 RSI-2(Mean Reversion)— HIGH
 - **係咩**:2 日超賣搏反彈;**regime-gated + cap-gated**,唔係隨時 work。
-- **結果**:部署CAGR/條件Sharpe(<5/>75):大盤 32/1.21 · 細價 24/0.94 · 板塊 24/0.98 · Mag7 48/1.30。
-- **股種**:大盤 ✅ · 細價 ✅ · 板塊 ✅ · Mag7 🟡(只極端 <5,動能相沖)
-- **市值**:micro ❌(落刀,兩半負) · small 🟡 · mid ✅(高波怪獸 +101%/2.61) · large ✅(+73%/2.55)
+- **結果**:部署CAGR/條件Sharpe(entry<10/exit>80):大盤 32/1.16 · 細價 21/0.83 · 板塊 14/0.63 ·
+  Mag7 46/1.09(`rsi2_capital_efficiency` R1;舊版此行誤植咗 §5.4 F&G 嘅數,已正)。
+- **股種**:大盤 ✅ · 細價 ✅ · 板塊 ✅ · Mag7 ✅(entry<10 已 46/1.09 贏 B&H 30.9/0.88;來源判「most regime-robust / all-weather」;H1 因自身動能強 dip-buy 跑輸 B&H 但仍正)
+- **市值**:micro ❌(落刀,兩半負) · small 🟡 · mid ⚠(**H2** 高波怪獸 +101/2.61;**H1 <5 = −43 大地雷**) · large ⚠(H2 +73/2.55;H1 緊入場負)—— 來源檔標 ⚠,H1 地雷唔可以當乾淨 edge
 - **Regime**:H1 低波裸奔蝕(大盤 <5 = −17%/−0.32,緊入場地雷) · H2 高波先 work。
 - **Caveat**:micro 永不 dip-buy;H1 緊入場地雷;要 RS-leader + 高波 gate 先穩。
 - **用法**:Phase 4 —— RSI-2 × RS-leader × 高波 gate;鬆入場(<10-20)做主、<5 極端加碼。
@@ -214,18 +229,21 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 - **Caveat**:**LEVEL(強唔強)係 edge、TREND(加速/褪色)對選股無用**;個股 survivorship。
 - **用法**:Phase 1 選股 tilt + Phase 4 入場 filter(買回調中領先股)。
 
-### 5.4 恐懼貪婪 F&G(Fear & Greed)— HIGH(風控)
-- **係咩**:買恐懼(<20/15/10/5)賣貪婪(>75/80/85/90);資本有效嘅**逆向部署計時器**。
-- **結果**:部署CAGR/條件Sharpe(<5/>75):大盤 32/1.21 · 細價 24/0.94 · 板塊 24/0.98 · Mag7 48/1.30。
+### 5.4 恐懼貪婪 F&G(Fear & Greed)— HIGH(風控;**收官角色 = 貪婪/出場側**)
+- **係咩**:逆向計時器;**但恐懼/入場側 head-to-head 輸畀 VIX**(VIX>28 每筆 +1.0~+5.2% vs F&G<25
+  +0.1~+2.4%,且 F&G 恐懼側 H1 2016-20 係負)→ **收官分工:VIX = 恐懼/入場計,F&G = 貪婪/出場計**
+  (>75 後 63 日回報單調衰減至負,VIX 低位冇呢個訊號;`fg_vs_vix`)。
+- **結果**:部署CAGR/條件Sharpe(<5/>75):大盤 32/1.21 · 細價 24/0.94 · 板塊 24/0.98 · Mag7 48/1.30
+  (**<5 係上限格:得 7 次入場、2020 主導;落地以 <10 做主**〔大盤 21/0.94,10 次入場、38% 曝險〕,<5 當極端加碼)。
 - **股種**:大盤 ✅ · 細價 ✅ · 板塊 ✅ · Mag7 🟡(只極端,動能相沖)
 - **市值**:micro —(壞數) · small 🟡 · mid 🟡 · large ✅(37/1.29;細/中 survivorship)
 - **Regime**:甜區極端 <5;活躍 1/3-1/2 時間(唔罕見)。
 - **Caveat**:<5 只 7 次入場、靠 2020;資本效率≠財富。
-- **用法**:Phase 0 —— 恐懼加曝險 / tier-1 賣 put(CSP)窗。
+- **用法**:Phase 0 —— **貪婪/出場側減風險**(>75 收油、>80 減曝險);恐懼/入場側用 VIX(F&G 只作旁證)。
 
 ### 5.5 VIX × 趨勢 2D(恐懼 × 牛熊)— HIGH(Phase 0 主軸)
 - **係咩**:恐懼 / 入場計,**逆向**(高 VIX → 反彈);配趨勢(200SMA)成 **2D 大市閘**(見 §6 XY 圖)。
-- **結果**:VIX>30 → 未來 63 日 +5-6%(兩半穩);**牛市+高VIX 前望 +5.1%/回撤淺 −4%(兩半最好+最安全)**;
+- **結果**:VIX>28 → 63 日牛市 +9.0%/熊市 +5.9%(兩半穩);**牛市+高VIX 前望 +5.1%/回撤淺 −4%(兩半最好+最安全)**;
   熊市+高VIX +1.7%/回撤深 −8.7%(可能落刀)。VIX 對趨勢有獨立增量(partial 兩半 +0.1~0.22)。
 - **股種**:— 市場層(SPY),套落全部
 - **市值**:— 市場層,不分市值
@@ -236,17 +254,19 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 ### 5.6 低波 / Vol(Low-Volatility)— HIGH(非 alpha)
 - **係咩**:低波股 / 低波時 = 防守,唔係 return。
 - **結果**:低波籃 CAGR 7.1 / Sharpe 0.56 / 回撤 **−29%** vs 高波 14.5/0.62/**−58%**(高波 raw 贏係 survivorship)。
-- **股種**:大盤 🟡 · 細價 🟡 · 板塊 🟡 · Mag7 🟡(vol-timer 測 4 類,≈/低過 B&H)
+- **股種**:大盤 🟡 · Mag7 🟡(vol-timer 大部分格 Sharpe 1.0-2.1 **贏** B&H,兩半都算穩健,但半 artifact + 走漏 capitulation → 淨值中性)· 板塊 🟡(regime-dependent:H1 幾乎全輸 B&H、H2 幾乎全贏,唔穩健)· **細價 ❌**(48 格 46 輸,FULL+H1 全輸,同「edge 喺細價」一般印象相反,見 `2026-07-05_factor_families_momentum_lowvol_rs.md` Addendum 2026-07-06)
 - **市值**:低波籃 vs 高波籃(個股);低波 = 低回撤
 - **Regime**:低波 H2 逆市企穩(+5.5% vs 高波 −1.0%)。
-- **Caveat**:選股非 alpha(survivorship);vol-timer 半 artifact + 走漏 capitulation。
-- **用法**:防守 tilt;**Vol 真正角色 = regime 開關,唔係引擎**。
+- **Caveat**:選股非 alpha(survivorship);vol-timer 半 artifact + 走漏 capitulation;**唔係全宇宙一致**——細價股明確唔 work、板塊 ETF 兩半唔穩健。
+- **用法**:防守 tilt(僅大盤/Mag7 有意義);**Vol 真正角色 = regime 開關,唔係引擎**。
 
 ### 5.7 Insider(SEC Form 4 群買)— MED
 - **係咩**:公司內部人集體買入(知情人行為),非價格訊號。
-- **結果**:大型股 21/63 日顯著(t≈2.3/2.9,DSR 0.79);細價文獻 edge(Lakonishok-Lee ~7-12%/12 月)。
+- **結果**:**主 claim = 細價 12 個月 portfolio vs IWM**(own data +10-12% net;文獻 L&L ~7.4% →
+  我哋數 survivorship 灌大)。大型股 21/63 日 t≈2.3/2.9(DSR 0.79)**只喺 2022+ 成立**——拉長到 2006
+  樣本後 21d 冧到 t 1.1,edge 只現於 2009/2022/2024/2025(regime-fragile,`insider_rigor` R8)。
 - **股種**:— 個股(唔按 4 類分)
-- **市值**:large ✅(短期) · mid — · small 🟡(文獻 +12%/12月,survivorship) · micro —
+- **市值**:large ⚠(短期,2022+ 先有) · mid — · small ✅(12月 portfolio vs IWM,幅度打折) · micro 🟡(+20%/12月,灌大最勁)
 - **Regime**:大型短期有、長期反轉;符號隨市值變。
 - **Caveat**:survivorship 嚴重灌大;打折。
 - **用法**:Phase 3(資金流/知情人)。
@@ -255,7 +275,7 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 - **係咩**:新高突破入場(timer)+ Minervini 趨勢範本選股 + 止蝕/trail 風控層。
 - **結果**:20日突破 timer = 最佳(見 5.1);Minervini 選股部署效率 ≈ B&H(large +16/mid +20 vs 18.9/19.8)。
 - **股種**:timer 大盤/Mag7 ✅ · 細價/板塊 🟡;selection 全部 🟡(≈ B&H)
-- **市值**:timer micro ✅ · small/mid/large ✅;selection micro ❌(+6 << 14.4)其餘 ≈ B&H
+- **市值**:timer micro ✅ · large ✅ · small/mid ⚠(H1 贏 H2 輸 B&H);selection micro ❌(+6 << 14.4)其餘 ≈ B&H
 - **Regime**:突破 timer 兩半(mid/small H2 弱);selection H1 ≫ H2。
 - **Caveat**:選股冇 alpha;**止蝕/50MA trail = 限住最大單筆損失(封極端虧損),唔係谷回報**(RISK 斬贏家輸 FIXED);price-only 無量確認。
 - **用法**:Phase 4 timer(接 5.1);選股同 risk-layer **唔當 alpha**。
@@ -276,7 +296,7 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 - **市值**:— 市場層
 - **Regime**:兩半一致無增量。
 - **Caveat**:0DTE 令 EOD-OI 失真;免費版只 aggregate(無 gamma flip)。
-- **用法**:**唔建**;VIX/credit/RV 已夠(DIX 免費 flow 可選)。
+- **用法**:**唔建**;VIX/趨勢/RV 已夠(credit 已測完剔除,見 §5.5;DIX 免費 flow 可選)。
 
 ### 5.11 Gamma 牆 strike-level(支持/阻力)— 工具(理論撐,未回測)
 - **係咩**:逐 strike 支持/阻力**區** + **強度** + 企穩線(gamma flip)。
@@ -292,6 +312,7 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 ## 六、決策樹 —— 每日、每個候選點行(兩引擎 + 開關 + filter)
 
 **骨架:大市閘 → vol 開關揀引擎 → 選股 → 擇時 → 表達 → 風控 overlay。**
+(呢棵樹係**驗證咗嘅目標邏輯**,唔係全部已接線 ——【2】vol 開關、【4】突破觸發等實際接線狀態見 §7.1。)
 
 ```
 【1. Phase 0 大市閘 — 2D:恐懼(VIX)× 趨勢(200SMA)】(實證版;credit 測完剔除,見 `results/2026-07-05_market_regime_2d.md`)
@@ -314,10 +335,13 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 【4. Phase 4 擇時】揀「幾時入」(獨立欄,絕不乘結構分)
    ├─ 動能 regime …… 20 日高突破觸發
    ├─ 均值回歸 regime … RSI-2 < 門檻(鬆<10-20 做主/<5 加碼)【× RS-leader filter:只買回調中領先股】
-   └─ 恐懼窗 ………… F&G/VIX 逆向加碼
+   └─ 恐懼窗 ………… VIX 逆向加碼(F&G 只用喺貪婪/出場側)
 
 【5. 表達】點落
-   ├─ tier-1(SPY/QQQ/SPMO)… 期權(gamma 牆揀 strike / 恐懼窗賣 put / 趨勢用 LEAP)
+   ├─ tier-1(SPY/QQQ/SPMO)… 期權 = **core 真.alpha 所在**:LEAP = 唯一結構解(槓桿+非 benchmark
+   工具先兌現 T1 擇時,必須右側閘 >200SMA×RSI-2 dip)/ 恐懼窗賣 put / RSI-2 超買賣 call / gamma 牆揀
+   strike。(注:LEAP 回測全部 0.80Δ deep-ITM、magnitude 未 bankable;delta sweep 有 sandbox draft
+   〔proxy-IV、SPY-only,0.80Δ 全格贏〕但**真數據重跑未做**,已排隊)
    └─ tier-2 個股 ……………… long-only(結構分 × thesis 信念,擇時用 RSI-2/突破)
 
 【6. 風控 overlay(硬規則)】
@@ -341,7 +365,8 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 **★ ② 牛市+恐懼 = 甜區**(兩半實證最好 + 回撤最淺)。**credit 測完剔除**(regime 反覆、對 VIX 無增量)。
 
 **深層原因(點解兩引擎互補)**:動能同均值回歸唔係對立學派,係**同一個「報酬自相關」喺唔同時間長短、
-相反符號**——短(日-週)= 反轉(RSI-2)、中(3-12 月)= 動能(趨勢/RS)、長(3-5 年)= 反轉(= 價值股)。
+相反符號**——短(日-週)= 反轉(RSI-2)、中(3-12 月)= 動能(趨勢/RS)、長(3-5 年)= 反轉(= 價值股;
+**長呢橛係學術文獻框架,本 repo 未回測**)。
 所以「RS 揀領先股(中期動能)× RSI-2 揀回調入場(短期反轉)」係**用唔同 horizon,唔衝突,仲互相加強**。
 
 ---
@@ -352,12 +377,12 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 | 項目 | Phase | 點做 / 參數 | 信心 | Caveat |
 |---|---|---|---|---|
 | **20 日高突破 timer** | 4 | 收市新 20 日高入、新 10-20 日低出;獨立 timing 欄 | HIGH | 已測**未接線**;資本效率非財富 |
-| **RSI-2 × RS-leader × 高波 gate** | 4 | RSI-2<10-20(<5 加碼)只喺 RS-Q5 領先股 + 高波 regime | HIGH | micro 排除;裸奔低波流血 |
-| **RS 領先股選股** | 1 | 126 日 RS 排 Q5;LEVEL 為主(TREND 唔使) | HIGH | 選股面;個股 survivorship |
-| **VIX × 趨勢 2D 大市閘** | 0 | 買恐懼(VIX/F&G 高)**優先喺上升趨勢**(② 牛市+高VIX 最安全);熊市買恐懼細注 | HIGH | credit 剔除;熊市方向 regime-dependent |
-| **vol regime 開關** | 0 | 高波開均值回歸引擎、低波開動能引擎 | HIGH | 已 live |
+| **RSI-2 × RS-leader × 高波 gate** | 4 | RSI-2<10-20(<5 加碼)只喺 RS-Q5 領先股 + 高波 regime | HIGH | micro 排除;裸奔低波流血;**現行 spine 正正係裸 RSI-2(兩個 gate 未接)** |
+| **RS 領先股選股** | 1 | 126 日 RS 排 Q5;LEVEL 為主(TREND 唔使) | HIGH | 選股面;個股 survivorship;live 版只係 20 日 advisory tilt,非 126 日 Q5 |
+| **VIX × 趨勢 2D 大市閘** | 0 | 買恐懼(VIX 高)**優先喺上升趨勢**(② 牛市+高VIX 最安全);熊市買恐懼細注 | HIGH | credit 剔除;熊市方向 regime-dependent;**quadrant 邏輯未入 spine**(兩個 input 分開存在,無 2D interaction gate)|
+| **vol regime 開關** | 0 | 高波開均值回歸引擎、低波開動能引擎 | HIGH | **未接線**(舊版誤寫「已 live」;code 得研究版 `exp_rsi2_vix_regime`,spine 冇 switch,timing.py 只有 RSI-2)|
 | **Gamma 牆 context** | 0/tier-1 | live 支持/阻力區 + 強度 + 企穩線,揀期權 strike | 理論撐 | 無回測→forward-log;個股 sign 易破 |
-| **低波 defensive tilt** | 1 | 脆弱期偏低波(降回撤) | HIGH | 防守用,非 return |
+| **低波 defensive tilt** | 1 | 脆弱期偏低波(降回撤) | HIGH | 防守用,非 return;**未接線**(spine 無低波 tilt code)|
 | **DIX flow(可選)** | 0/2 | 免費暗池,高 DIX 偏好 | 低 | 細訊號 |
 
 ### 7.2 ❌ 唔做(已證無用 / redundant | 點解)
@@ -377,7 +402,8 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 ### 7.3 硬規則 / 覆蓋規則
 1. **擇時分永不乘入結構分**(獨立欄)——避免用時機呃自己個資格分。
 2. **tier-2 個股只 long-only**;期權只喺 tier-1(SPY/QQQ/SPMO)。
-3. **micro 永不 dip-buy;個股/Mag7 避開業績公布前後幾日(業績跳空破壞訊號)。**
+3. **micro 永不 dip-buy;個股/Mag7 避開業績公布前後幾日(業績跳空破壞訊號)。**(未自動化 ——
+   spine 無 market-cap filter / earnings calendar check,靠人手守)
 4. **capital-efficiency 靠 portfolio 兌現**(部署閒錢入唔相關 sleeve),唔好裸 lever(vol drag)。
 5. **細價股用 size-matched benchmark**(vs IWM 唔係 SPY);任何新訊號要過 4 股種 + 兩半 + 對文獻。
 6. **價量層當風控(+ 細 T1 馬達);alpha 靠 Phase 3。**
@@ -389,7 +415,7 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 > **Phase 3 唔係憑空覺得「基本面重要」,係由一連串板塊輪動回測「逆向工程」出嚟嘅結論。** 呢節解釋點解
 > alpha 一定喺 Phase 3、點解個靶係 forward IC ≥ 0.05、同 Phase 3 應該長咩樣。
 > (明細:`results/2026-07-01_portfolio_oracle / rotation_challenge / oracle_forensics / skill_curve /
-> gap_forensics / factor_sweep.md`。)
+> gap_forensics / alpha360_ml.md`;factor-sweep 數據併喺 skill_curve.md 入面,無獨立檔。)
 
 **問題重新框**:唔係「一個訊號贏唔贏自己」,係 **composition**——9-11 個板塊嘅錢點分配。
 
@@ -402,8 +428,9 @@ insider、DIX、breadth 呢啲「資金流腳印」**唔係一個獨立層面,�
 3. **獎勵曲線陡凸(唔使揀第一)**:第 2 名 = 16× SPY、第 3 名 = 9× SPY;degrade 到目標 IC 揀 top-3 →
    **IC 0.05 → 10.3%(贏 SPY)、IC 0.10 → 15.6%(~2× SPY)**。排名技巧回報巨大而凸。
 4. **但所有量化因子 forward IC ≈ 0**:28 個 Alpha158 因子掃描 + Bonferroni → **0/28 過關**(最強 12 月動能
-   IC 0.033、sub-threshold;composite/SVD 都 ~0)。→ **量化門 definitively 關咗:唔係因子唔夠多,係源頭
-   一樣(全部價量)。**
+   IC 0.033、sub-threshold;composite/SVD 都 ~0)。→ **板塊層量化門 definitively 關咗:唔係因子唔夠多,
+   係源頭一樣(全部價量)。**(誠實邊界:個股層有一條 IC 0.017/t 3.5 嘅真.弱訊號,<0.05 兼
+   survivorship-suspect,point-in-time 重測未做——唔改變結論,記低。)
 5. **★ Oracle 逆向工程 → 兩層 alpha**:
    - **週頻切換 = 不可預測 noise**(散喺所有年份,IC~0,捉唔到)。
    - **年度板塊 regime = 認得出嘅宏觀敘事**:1999-03 科技(dotcom)、2004-07 能源(油超級週期到 $147)、

@@ -11,6 +11,11 @@ Tag:✅ verified(對過 transcript) / 📄 distilled(待複核) / ⚠️ open(�
 > LEAP / SHORT_CALL / CSP / CASH,見 `backtest/scorecard.py` docstring 與
 > `backtest/results/2026-06-30_shortcall_timing.md`。
 
+> ⚠️ **參數勘誤(2026-07-06,gap register #15)**:本檔部分數值同實際回測引擎
+> `backtest/options_engine.py` **對唔上,以 code 為準**:CSP DTE 本檔寫 30、code 用
+> `dte_init=21`;LEAP/PMCC long-leg roll 本檔寫 90 DTE、code 用 `long_roll=63`。
+> 舊值係早期蒸餾殘留;引用參數前一律查 `options_engine.py` 現值。
+
 數據源根目錄:`../../Reference/raw_data/backtest_everything_transcripts/`
 蒸餾:`../../Reference/distillations/2026-06-24_backtest-everything-distillation.md`
 

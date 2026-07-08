@@ -4,7 +4,7 @@ type: B
 cycle_stage: late
 confidence: 0.38
 verdict: real-but-late-cushioned
-updated: 2026-07-05
+updated: 2026-07-08
 tickers: [MU, SNDK, WDC, DRAM]
 ---
 
@@ -119,6 +119,28 @@ cycle penalty (LATE, capex 頂訊號確認,但 LTA 去週期化墊地板 → 罰
   方向:**不追高**(晚期);相對強弱小注;**追蹤變數 = LTA 記分卡 + 合約價**;kill = LTA 轉跌。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
+## 2026-07-08 update:#150(全文)+ #148(free preview)新證據(confidence/cycle_stage 維持)
+
+- **LTA 去週期化 kill-watch 本季「確認中」(#150 全文)**:美光帳上剩餘履約義務(RPO)約 **$1,000 億**,
+  已簽 **16 份 take-or-pay 策略客戶協議**、照付不議、約涵蓋兩成 DRAM 出貨——這是 [[LTA]] 記分卡本季
+  的直接財報佐證,強化「不是單純週期反彈」的判斷;同時美光 **FY26 HBM 供給連價帶量全部售罄**、capex
+  上修至 **超過 $250 億**(供給回應仍在加碼)。HBM TAM 從 2025 年約 $350 億估上修到 **2028 年約 $1,000
+  億**(美光估)。上游 HBM 護城河再獲細節佐證:**SK 海力士 MR-MUF 一次灌注良率 75–80%**(填充散熱良率
+  分水嶺,龍頭護城河根源)、HBM4 份額 **60–70%**;三星堆疊良率與 HBM4 認證落後約 **一年**(#150)。
+  ⚠ **裂縫觀察**:已有外資將 2026 年 HBM TAM 預估**下修約 13%**(第一條裂縫、待續追);報告自身提醒
+  **2017 年也曾有鎖量長約,結果被打回現貨**(多年約讓這輪比過去硬,但**沒有讓週期消失**)。
+- **NAND/DRAM 短缺廣度佐證(#148 free preview)**:2026 Q2 **NAND 季漲約 53%(首次超過 DRAM)**、花旗估
+  DRAM 季漲約 44%;高盛稱這是 **15 年來最嚴重短缺**,2026 供需缺口估 DRAM 4.9%/NAND 4.2%/HBM 5.1%;
+  美光執行長稱短缺延續到 **2027 年**;雲端大廠 2026 資本支出約三成投入記憶體(2024 年僅 8%)。**但
+  三星 Q2 營業利益 89.4 兆韓元(+19 倍創天量)當天股價卻跌 6–9%**——peak-earnings 行為,支持本頁「late」
+  判定而非否定它;SK 海力士 / 美光目前預估 PE 約 **6.2–7 倍**,報告明確提醒這是 **peak-earnings 倍數,
+  不是便宜錨**。**SK 海力士 ADR(代號 SKHY)約 $294 億史上最大外企美股上市案,暫定 2026-07-10 那斯達克
+  掛牌**——雙面讀法:一是首次可乾淨買到 HBM4 龍頭(60–70% 份額)的純美股表達;二是「破紀錄規模上市」本身
+  與 DRAM-ETF 上市訊號同款讀法(擁擠/晚期確認)。SKHY **掛牌後才有數據,現階段不入 [[universe.yaml]]**
+  (見 `thesis/themes.yaml` note)。
+- [[ai-capex-macro-risk]]:這頁的 LTA/capex 頂訊號判斷,應對照該頁五盞燈(尤其「四大 FCF 軌跡」與
+  「2028 折舊海嘯」)——若那五盞燈轉偏空,本頁的「LTA 墊高地板」假設要重新檢視是否仍站得住。
+
 ## 待補(降「未確認」扣分)
 - [ ] 接 LTA 記分卡的前瞻追蹤(每季 RPO / 新 LTA 簽署數 → 自動更新 cycle/confidence)。
 - [ ] 逐字稿抽 MU/SNDK 管理層 HBM 受限 / 定價 / LTA 語言(moat + 去週期化證據補強)。
@@ -130,4 +152,6 @@ cycle penalty (LATE, capex 頂訊號確認,但 LTA 去週期化墊地板 → 罰
 Tier-2(gooptions 記憶體叢 22 篇,見 `thesis/wiki/sources/`,全文在 `corpus.db`):關鍵 #128(MU LTA
 證明)、#135([[NAND-CMX]])、#110([[WF6]])、#104/#068/#069(LTA 記分卡)、#133(2028 錨)、#103(融資
 第二棒);**新增(2026-07-05):#142(HBM 客製 base die 邏輯層遷向台積、切下的肉不大)、#144(HBM4E 封裝
-三重牆由封裝廠解、HBM4 溢價 40–50%)**。Tier-1:defeatbeta `quarterly_cash_flow`(capex)、`ttm_pe`(2026-07-01)。
+三重牆由封裝廠解、HBM4 溢價 40–50%)**;**新增(2026-07-08):#150(全文,MU RPO ~$1,000億/16份 take-or-pay/
+HBM TAM 上修/SK海力士 MR-MUF 良率/三星落後一年)、#148(free preview,NAND 超車 DRAM/15年最嚴重短缺/
+SK海力士 ADR SKHY 史上最大上市案)**。Tier-1:defeatbeta `quarterly_cash_flow`(capex)、`ttm_pe`(2026-07-01)。

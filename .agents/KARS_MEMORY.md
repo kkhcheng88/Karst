@@ -209,3 +209,45 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
   ~3 approach + 明確 transition、scenario 執行計畫 + backtest),6 dashboard 設計、7 Phase-3 方法論審查、8 emerging bottleneck。
   **用戶關鍵 framing:core(大盤+板塊 ETF)= 大部分資金;Phase 3 = 衛星(高風險高回報)。core 唔使做英雄,要有效率 +
   期權 overlay 加少少真 alpha。**
+
+---
+
+## 13. 2026-07-06(Fable 任務 1-2:全庫 adversarial 驗證修正)
+
+- **舊結論正式撤銷/降級(檔已修,詳 `docs/2026-07-06_wiki_verification.md` + `_gap_conflict_register.md`)**:
+  ① 「credit>VIX」(§10)已被 07-05 `market_regime_2d` 推翻——credit 剔除,ROADMAP A2 作廢;
+  ② insider「t=5.12」= 全宇宙 micro-cap tail;大型股 21d 拉長到 2006 得 t1.1(只 2022+ 有);可靠版 = 細價 12月 portfolio vs IWM;
+  ③ RSI-2 top-quintile「+12.5%」補 DSR 0.908<0.95 caveat(方向可信、幅度打折);
+  ④ wiki §5.2 曾誤植 F&G 數做 RSI-2 數(已正);「VIX>30→+5-6%」untraceable,換 VIX>28 牛+9.0%/熊+5.9%;
+  ⑤ **code 真相**:vol regime 開關「已 live」係假(spine 冇,研究版 only);VIX×趨勢 2D 閘只有 input、無 quadrant 邏輯;
+  DIX/washout 未接;RSI-2 裸奔(無 RS-leader/vol gate);conf_eff 仍 display-only;outcome 回填仍不存在;
+  **兩個唔一致 logger 寫同一個 track_record.jsonl**(forward_ic.py log_predictions vs log_predictions.py run);
+  params 文檔 vs code:CSP DTE 30↔21、LEAP roll 90↔63。
+- **新回測(補 gap)**:`results/2026-07-06_leap_delta_sweep.md`(DRAFT,SPY 1996-2026,RV-proxy IV):
+  **LEAP delta 0.80 深 ITM 全面贏 0.3/0.5/0.7**(每 gate/每半/每敏感度 Sharpe 第一;0.3Δ 槓桿×2.4 但 theta ×8,
+  sleeve 級爆倉)→ 用戶「0.3 最好」記憶 = short-call 條腿(0.30Δ 21DTE),唔係 LEAP。真 VIX/QQQ 本機重跑先 bankable。
+
+## §14 2026-07-07/08 — 真數據重做定案(sandbox 產出全部 superseded)+ 營運新件
+
+- **上面 §13 引用嘅三份 07-06 檔已全部【SUPERSEDED】**:wiki 驗證 / gap 登記 / core 策略一律睇 **v2**
+  (`docs/2026-07-06_wiki_verification_v2.md`、`_gap_conflict_register_v2.md`、`_core_strategy_v2.md`)。
+  Draft delta sweep 嘅「0.80Δ 全格贏」**喺真 ^VIX 數據唔成立**(RV-proxy 冇 crash-vega);但 0.30Δ 嘅
+  +15.7pp headline 一半以上又係 constant-m 誤映射 artifact(兩個 model 錯法相反)——終審:hostable =
+  0.70-0.80Δ,勝出格 = **C-monthly top-up / b15 / Δ0.50 / SPY+QQQ mix**(保守 α +6.5pp t3.1 / base +12.4 t5.4),
+  詳 `results/2026-07-06_leap_real_sweep.md`(+終審 Addendum)/ `_core_assembly_real.md` / `_core_topup.md`。
+- **Core v2 鐵律**:引用 α 必 base/damped 並列;純 200SMA GATED(RSI-2 dip 閘已降級——miss V 反彈);
+  月度 top-up 係 alpha 命脈(cash-starved 53%→10%);板塊三假設 + crash-switch 換底倉全部真數據判死
+  (`_sector_capeff.md`、`2026-07-08_crash_switch.md`);底倉標的 A/B:QQQ 底倉=beta 賭注,SPMO watchlist
+  (`2026-07-07_base_mix.md`);操作手冊 `docs/2026-07-07_core_playbook.md`。
+- **YAML 坑(themes.yaml)**:`note:` plain scalar 含「空格+#」(如引用 #150)會被當 YAML comment 截斷
+  → **note 一律雙引號包住**。lint.py 會爆 parser error 提示。
+- **新排程**:`Karst-gooptions-daily`(schtasks,每日 09:10)行 `thesis/daily_gooptions.cmd`:抓 gooptions.cc
+  新報告(resumable)→ 重建 source stubs(覆寫式=設計內,stubs 必須薄)→ 自動 commit。log:
+  `thesis/.raw/gooptions/cron.log`。首跑抓咗 #147-150 並已 ingest(macro-risk 頁 + 4 主題 evidence 更新,
+  confidence 全部維持;SKHY 掛牌後先入 universe)。
+- **再加兩個排程(07-08)**:`Karst-playbook-daily`(平日 09:15,core v2 判定表 → `playbook_log.txt`)、
+  `Karst-transcripts-daily`(每日 09:20,Backtest-Everything 增量抓 → 新片排入 Reference
+  `_PENDING_ANALYSIS.md` 等 session 蒸餾;首批 59-62 已蒸餾:married-put 佐證 core v2「底倉唔買保護」、
+  0DTE「100% win」判唔採納 multiple-testing)。四個排程總表喺 STATUS.md「每日自動化」節。
+- **cmd 檔坑**:`.cmd` 註解一律 ASCII——cmd.exe 用 cp950 讀 UTF-8 中文字節,撞正 0x26(&)字節會
+  把 REM 行斬開當指令執行(daily_transcripts.cmd 首版中招,已修)。中文註解放 .py docstring。

@@ -34,16 +34,22 @@
   126d 轉負)✅,但現在的接法是 180 天回看窗(`thesis/insider.py:35`)、無衰減、
   掛在長期 confidence 上——即使接回去,horizon 也是錯的。
 - `providers.py:7-9` docstring 聲稱 confidence 會 multiply into sizing——與程式碼矛盾。📄
-- **修法**:把 insider 從 confidence 修正改成**擇時側的 21d 戰術 tilt 欄位**
-  (與 RSI-2 並列在 entry_timing 區,帶 21d 半衰期),`conf_eff` 廢除或明文降級為
-  顯示註記 + 修正 docstring。驗收:tier-2 long-only mirror、21d horizon 的 A/B
-  增量回測(有 tilt vs 無 tilt),過 DSR。工作量:M。
+- ~~**修法**:把 insider 從 confidence 修正改成**擇時側的 21d 戰術 tilt 欄位**~~
+  **【修法已更正 2026-07-06(gap register #2):** 21d 版係 regime artifact(07-05
+  `insider_rigor` R8:大型股拉長到 2006,21d t1.1 唔顯著)。**正確修法 = 接細價股
+  (<$2B)12 個月 portfolio tilt(vs IWM,bounded overlay)**,見 `insider_literature`
+  FINAL。`conf_eff` 廢除或明文降級為顯示註記 + 修正 docstring 照舊。驗收:tier-2
+  long-only mirror、**12 個月 horizon、size-matched vs IWM** 嘅 A/B 增量回測,過 DSR。
+  工作量:M。】
 
 **P0-2|Credit 風險軸與兩軸背離:已驗證卻完全缺席,單一 market_score 主動掩蓋它**
 - 事實:Phase 0 閘只有 trend/VIX/term/IWM-breadth/SPMO-RS(`context.py:54-115`),
   **無 credit(HYG/LQD)、無兩軸概念**;全 repo 只有 `regime.py:8` 一行註解承認
   「later add」。📄
-- 但已驗證:credit > VIX 作為 risk regime 指標(KC Fed RORO 相符);趨勢軸與風險軸
+- ~~但已驗證:credit > VIX 作為 risk regime 指標~~ **[2026-07-06 更正:此結論已被 07-05
+  `results/2026-07-05_market_regime_2d.md` 推翻——credit 軸 H1/H2 反符號、對 VIX 無穩定增量,
+  已剔除;風險軸 = VIX,趨勢 = 安全度修正。本 P0-2 修法(加 _credit_stress)作廢。]**
+  (原文保留:credit > VIX 作為 risk regime 指標(KC Fed RORO 相符);趨勢軸與風險軸
   corr 僅 0.64,**背離**(bull+risk-off / bear+risk-on)標記 2018/2020 頂、2022 底 ✅
   (memory `regime-and-fear-greed-findings`)。web 的 market_score 把 5 因子壓成單一
   0-100(`market_score.py:20,120`)——正是 finding #1 說「會掩蓋兩軸結構」的做法。
@@ -142,7 +148,7 @@ sleeve registry + 正交性矩陣 + 乾火藥政策);指標按 memory `tier1-met
 |---|---|---|---|
 | 1 | P0-3 校準迴路(schema 統一+排程+回填) | 每天不修就流失一天不可補的校準資料 | M |
 | 2 | P0-2 credit 軸+兩軸背離(compute 端) | 已驗證訊號,閘與面板都在等它 | M |
-| 3 | P0-1 insider 改接 21d 戰術 tilt | 已驗證 edge 正在閒置;含 A/B 驗收 | M |
+| 3 | P0-1 insider 改接細價 12月 portfolio tilt(~~21d~~ 已更正,見上) | 已驗證 edge 正在閒置;含 A/B 驗收 | M |
 | 4 | P0-4 IC 判定程式化 | S 工作量,auditor agent 的前置 | S |
 | 5 | P1-7 價格庫 | 一切回測重現性的地基 | M |
 | 6 | P2-10 組合層 v0(ledger+乾火藥) | 兩 sleeve 已備,edge 表達在此 | L |
