@@ -12,7 +12,7 @@ source: gooptions.cc/trend-core-research
 tier: 2
 ---
 
-# 記憶體漲價只是表面：HBM 六個收費站的影子贏家
+# 為什麼 AI 的記憶體要疊起來？拆解 HBM 原理，認識這六層的影子贏家們
 
 > **thesisType:** neutral · **published:** 2026-07-07 · **read:** 13min  
 > **thesis:** HBM 製程六個收費站，真正受惠在把記憶體疊成一棟樓的設備、材料與測試，不在漲價本身  
