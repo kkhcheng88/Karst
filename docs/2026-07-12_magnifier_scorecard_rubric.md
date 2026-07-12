@@ -13,7 +13,7 @@
 | 2 | 定價權捱唔捱得過供需擺動(2026-07-12 擴闊定義,見 §6)| **兩條路徑任一條**:(a)產業結構係咪少數紀律玩家控制供給,佢哋而家係咪展示緊克制;**或**(b)結構性成本/合約優勢令定價權唔靠持有稀缺供給本身(FSLR 型:唔使該樣稀缺輸入 + 長約鎖定)。原定義淨係(a),FSLR case 顯示(b)一樣有效 | (a)路徑:寡頭數目、對手 capex 軌跡、電話會 constraint-language(`thesis/constraint_scan.py`);(b)路徑:成本結構文件(S-1/招股書)、長約/PPA 比例 | 低/中/高,**用電話會語言做確認(a路徑)嘅話,呢個 feature 天生落後於財務底——見下 §3 發現** |
 | 3 | 距底部幾遠 | 唔用 trailing PE(蝕錢時冇意義),用 normalized/mid-cycle 盈利力做基準,睇現在距離幾遠 | 多年收入/毛利率歷史定「正常」盈利力基準,現在數字對比 | 近底(<20%落差)/中(20-50%)/遠底(>50%,**遠 = 好,呢個 feature 反轉讀**)|
 | 4 | 樽頸位置 | 公司係咪真.持有結構性咽喉(唔易複製),定係普通商品價格接受者 | 資本密度做進入門檻、市佔、技術壁壘、質性產業結構分析 | arms-dealer(高)/中間玩家(中)/commodity(低)|
-| 5 | 情緒/擁擠 | 幾多睇好共識已經存在?低=早=好;高=晚=差 | 分析員情緒、「死週期股」敘事普遍程度、增長型資金係咪主動迴避 | 低擁擠(好)/中/高擁擠(差)——**呢個 feature 最難精確量度,見下誠實 caveat** |
+| 5 | 情緒/擁擠 | 幾多睇好共識已經存在?低=早=好;高=晚=差 | 分析員情緒、「死週期股」敘事普遍程度、增長型資金係咪主動迴避 | **維持質性判斷,冇量化 proxy(2026-07-12 已查證、非未做——見 §10)**|
 
 ## 2. Cross-cycle patterns(§3c,2 條)
 
@@ -160,9 +160,39 @@ MU 自己講。**呼應 §4 結論**:唔靠管理層口徑嘅訊號源(財務/�
 feature 4 + Pattern 1 將四隻拉開咗層次**——KALU/MCHP/AVT 三隻結構性測試都失敗(更似輸家 profile),
 PTEN 係唯一喺結構測試上有條件過關嘅,值得優先排喺下季覆核。
 
-## 9. 未做(仲open)
+## 10. Feature 5 量化代理——已查證,結論:搵唔到,維持質性(2026-07-12 收尾)
 
-- [ ] Feature 5(情緒/擁擠)搵量化 ex-ante 代理(analyst rating distribution 歷史/13F 持倉集中度)
-- [ ] Rubric 呢輪淨係人手逐case套用;下一步要決定係咪值得寫成 `thesis/magnifier_score.py`
-  結構化工具(讀 corpus.db + defeatbeta,自動算 feature 1/3),或者維持人手判斷(NHITL 原則,
-  同 theme_signal.py 一樣淨係輔助唔取代判斷)——呢個係設計決定,未拍板
+**唔係未做,係查過、有結論嘅 negative finding**。`backtest/results/2026-07-11_
+institutional_ownership_crowding_axis.md`(觸發自 Lynch 蒸餾,同一輪磁化研究做嘅獨立
+backtest,唔係今日先做)已經完整查證呢條問題:
+
+1. **真.構念(機構持股率/analyst追蹤人數)測唔到**——yfinance `heldPercentInstitutions`/
+   `numberOfAnalystOpinions` 兩個都證實淨係 snapshot(冇日期參數,原始碼追查證實);
+   defeatbeta 完全冇呢類欄位;SEC 13F bulk data 技術上得,但 CUSIP↔ticker 冇免費權威
+   對照表,重建需要獨立多日工程項目。
+2. **唯一測到嘅鄰近 proxy(成交額/市值 turnover)冇 edge**——300隻股(2016-2026,micro/
+   small/mid/large四級,size-matched)嚴謹backtest:3個horizon(63/126/252日)p值全部
+   >0.3,分tier拆解嘅單一「顯著」結果喺raw vs winsorized前處理之間會轉軚,判定係
+   multiple-testing雜訊。**明確建議:暫時擱置,唔好整合入Phase-3 priced-in閘。**
+
+**結論(落實入呢份rubric)**:Feature 5 **正式維持質性判斷**,唔係「未做」而係「做過、
+搵唔到可靠proxy」。**明確唔用turnover做替代**(已測冇edge,用嚟會混入雜訊)。日後如果
+想真正驗證,路徑已經寫喺嗰份backtest文件(SEC 13F CUSIP解析,獨立立項),唔喺magnifier
+rubric嘅scope內順手做。
+
+## 11. Magnifier 打分機制——正式拍板:維持人手判斷,唔起結構化工具
+
+**設計決定(2026-07-12,用戶確認)**:Rubric 淨係人手/agent逐case套用(今日MU/FSLR/STP/
+4隻WATCH票嘅做法),**唔會寫成`thesis/magnifier_score.py`呢類自動輸出分數嘅結構化工具**。
+已經落實嘅機制係「機械化幾時check + agent draft點睇 + 人手confirm」三層(見
+`docs/2026-07-08_phase3_ws3_lifecycle.md` §1a-node、`thesis/nightly_analysis_prompt.md`
+職責3):
+- **機械化**:`thesis/magnifier_staleness.py`(幾時要重新睇)+ 夜班headless Claude(跟
+  rubric寫**草稿**判斷)
+- **唔機械化**:草稿啱唔啱、分數/magnitude_tier使唔使變、要唔要落實入`themes.yaml`——
+  永遠人手confirm,同`theme_signal.py`嘅NHITL原則一致
+
+**唔起獨立scoring script嘅原因**:今日示範嘅判斷(FSLR vs STP點分野、KALU嘅2022受害者
+episode點解係死亡訊號)本質係讀商業敘事、財報上文下理、行業結構——呢類判斷寫成公式會
+流失價值,同§4/§6/§7/§8全部案例證明嘅嘢一致:**rubric嘅價值嚟自讀證據嘅判斷,唔係一條
+可以打死嘅公式**。呢個決定已經**落實**,唔再係open item。
