@@ -40,7 +40,7 @@ ex-ante 可偵測 features(要 encode 成 scorecard,取代 naive PE):
 | B | **學術論文**:回報偏態(Bessembinder)/資本週期/營運槓桿/週期估值/彩票警告 | ✅ 完成(21篇已核實,`docs/2026-07-09_magnifier_literature.md`)|
 | C | **書**(用戶任務,返屋企 gather → ingest):Capital Returns(Chancellor)★ / Expectations Investing(Mauboussin)/ One Up on Wall Street(Lynch)| ✅ 完成 2026-07-11(`docs/2026-07-11_magnifier_book_*.md` 三份)|
 | D | **逆向工程 case study**:由 A 抽共通 ex-ante features(MU 先行,最乾淨)| ✅ 大致完成(§3c,9 週期抽出兩個強 pattern + SMCI/WOLF ex-ante 驗證)|
-| E | **magnifier scorecard**:encode features,replace theme_signal 對超級週期名嘅 PE 邏輯 | 🔜 **下一步**(2026-07-12 已起前置基建:per-node schema + staleness偵測,見 `docs/2026-07-08_phase3_ws3_lifecycle.md` §1a-node;rubric 本身未寫)|
+| E | **magnifier scorecard**:encode features,replace theme_signal 對超級週期名嘅 PE 邏輯 | ⏳ **進行中**(2026-07-12:per-node schema + staleness偵測已起,`docs/2026-07-08_phase3_ws3_lifecycle.md` §1a-node;rubric 正式化 + MU 2023 ex-ante 校準完成一輪,`docs/2026-07-12_magnifier_scorecard_rubric.md`——**重要發現:股價彈咗 38-60% 先過 constraint-language 訊號轉正,4/5 features 唔靠管理層口徑都可以更早打高分**;未做:cross-validate 落 FSLR/WATCH四隻票)|
 | F | **constraint scanner 生產化**(discovery層,全市場搵新主題):defeatbeta 電話會 constraint-language 每季掃全宇宙 → 早期訊號隊列 | 待 E(先定模型,自動搵料先唔白做)。**注意唔好同 monitoring 層嘅 `thesis/constraint_scan.py`(2026-07-12 已生產化,WS4 backlog#1)搞混**——嗰個掃緊 themes.yaml 已知 ticker,呢度 F 講嘅係全市場 discovery,仲未做 |
 
 ## 3. Constraint scanner 現狀(誠實)
