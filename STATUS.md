@@ -39,6 +39,7 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 | SUN 08:30 | Karst-corpus-weekly(**已註冊 2026-07-12**)| 全 universe(~9.9k ticker)transcript 增量抓取 + `corpus.db` incremental build;~1-2h 跑完(機器要開住)。log 落 `thesis/.raw/transcripts/cron.log`(gitignored)|
 | SUN 08:45 | Karst-insider-tilt-weekly(**已註冊 2026-07-12**)| ROADMAP A3/P0-c:`backtest/results/<date>_insider_tilt_live.md` = 細價股(<$2B)12個月insider群買tilt live snapshot,display-only,未接sizing.py |
 | SUN 08:50 | Karst-altdata-twse-weekly(**已註冊 2026-07-12**)| altdata top-5 probe #5/ROADMAP Batch-3 #8:TWSE月度營收(免key)v1 淨追蹤 ASE(3711,advanced-packaging chain confirmation),存 `thesis/.raw/altdata_twse_history.jsonl`(gitignored,dedup)|
+| SUN 08:55 | Karst-altdata-eia-grid-weekly(**已註冊 2026-07-12**;用戶自攞免費 EIA key,存 `~/.config/eia/api_key`)| altdata top-5 probe #2:EIA-930 PJM 電網逐時需求,配 ai-power-grid(全系統最大注 ai-capex 嘅一份子)。**純data-collection,未定閾值**——首讀 YoY −0.94%,未過歷史校準前唔可以讀做「AI電力需求加速」定「唔加速」。|
 | SUN 10:30 | Karst-constraint-scan-weekly(**已註冊 2026-07-12**;排喺 corpus-weekly 之後留 2h buffer)| WS4 backlog #1:`backtest/results/<date>_constraint_scan_production.md`(theme×季度熱力表)+ `thesis/.raw/constraint_scan_queue.md`(雙向新警報,持久 checklist,**有追蹤**,唔係gitignored)|
 
 ## 人手週度任務(IMA;2026-07-12 新增 —— agent 做唔到,一定要用戶自己開 IMA)
