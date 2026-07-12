@@ -9,4 +9,10 @@ REM   (query: schtasks /Query /TN "Karst-playbook-daily" /FO LIST ; delete: scht
 cd /d "%~dp0.."
 set PYTHONUTF8=1
 python backtest\playbook_readout.py >> playbook_log.txt 2>&1
+REM Daily theme entry read (thesis satellite sleeve): buy-zone/wait/accumulate/kill-watch
+REM per active theme + hard(200SMA)/soft(valuation pctile) targets. Read-only, no orders.
+python thesis\theme_signal.py >> playbook_log.txt 2>&1
+REM Daily basket temperature (Phase-3 WS4 spine): cap-weighted heat/cashflow vs equal-weighted
+REM breadth vs dispersion(variance), per thesis basket. Read-only, no orders.
+python backtest\basket_temp.py >> playbook_log.txt 2>&1
 exit /b 0

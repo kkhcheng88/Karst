@@ -1,7 +1,12 @@
 # STATUS — Karst 現況(新 session 從這裡開始)
 
 > **單一入口檔**。每個 session 結束時更新「現在在哪/下一步」兩節(取代散落交接)。
-> 最後更新:2026-07-06。歷史細節不放這裡——放指針。
+> 最後更新:2026-07-12。歷史細節不放這裡——放指針。
+>
+> **★ 全 workspace 導航地圖 = `docs/INDEX.md`**(邊份 doc live/design/superseded/personal、去邊搵嘢)。
+> 見同名 v1/v2 一律用 v2;本檔下方「下一步」部分段落係 2026-07-06 sandbox 時代殘留(引用已
+> SUPERSEDED 檔如 phase3_methodology_review/dashboard_design/bottleneck_candidates)——**以 INDEX.md
+> §3 Phase-3 + `docs/2026-07-08_phase3_architecture.md` 為準**。
 
 ## 30 秒版:這是什麼
 
@@ -21,8 +26,39 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 | 05:35 每日 | Karst-gooptions-daily | 抓 gooptions.cc 新研究 + wiki stubs 自動 commit |
 | 05:40 二至六 | Karst-playbook-daily | `playbook_log.txt`(core v2 每日判定表,用戶觀察用)|
 | 05:45 每日 | Karst-transcripts-daily | 新 Backtest-Everything transcript 排入 `../Reference/raw_data/backtest_everything_transcripts/_PENDING_ANALYSIS.md` |
-| 05:55 每日 | Karst-nightly-analysis(**待用戶授權,未註冊**)| Python guard:冇新料 = 零 quota;有新料 → headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions,詳 `thesis/nightly_analysis_prompt.md` |
+| 05:55 每日 | Karst-nightly-analysis(**已註冊 2026-07-09**)| Python guard:冇新料 = 零 quota;有新料 → headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions,詳 `thesis/nightly_analysis_prompt.md` |
 | — | **人手 fallback(而家生效)** | 日間 session 見 `_PENDING_ANALYSIS.md` 有未剔 `[ ]` 或 gooptions 有新文 → 蒸餾/INGEST(判「採納/佐證/唔採納」)|
+
+## 人手週度任務(IMA;2026-07-12 新增 —— agent 做唔到,一定要用戶自己開 IMA)
+
+> **點解要人手**:IMA 官方 wiki OpenAPI(daymade `ima-skill` 用緊嗰個)實測攞唔到全文,得 IMA 自己
+> 個消費端 chat 介面先做到真.RAG——嗰個要用戶自己 login IMA 手動問,agent 冇辦法自動化。**新
+> session 開波、或者每逢週一,check 呢張表有冇漏做**。細節/完整 prompt 見
+> `docs/2026-07-09_ima_extraction_prompts.md`。
+
+| 頻率 | Prompt | 用戶要做乜 | 落邊 |
+|---|---|---|---|
+| **每週** | ①資金流/持倉 | IMA 開 **DeepSeek**(2026-07-12 四model對打確認主力),貼 Prompt①,匯出.md,貼返 Karst | `backtest/results/` 或對應 thesis note |
+| 主題變動時 | ②記憶體供需(可複製做其他主題) | 有主題新進展先跑,唔定期 | 對應 thesis wiki |
+| 每週(可選) | ③供給約束語言全市場掃描 | Karst 最核心嗰條,但耗用大,睇量力而為 | discovery radar 候選池 |
+| 每週 | ④板塊 house view/共識 | priced-in 參照,唔係買入訊號 | `backtest/results/2026-07-09_priced_in_gate.md` 類似檔 |
+
+**貼返嚟嗰陣,Karst 會用 `docs/2026-07-09_ima_extraction_prompts.md`「貼返嚟時的驗證清單」逐項核實
+先落檔**(單一孤證數字唔會盲信,即使有citation格式)。
+
+## 現在在哪(2026-07-12)
+
+**2026-07-09~07-12(連續多 session)—— Objective A 收檔;Discovery Radar 全審完 + China 披露;4 條 backtest 驗證;magnifier 書蒸餾;IMA automation 解決。90 檔案 backlog 今日理清 commit:**
+- **Objective A(宏觀恐慌板塊輪動)正式收檔,結論負面**:category-2(恐慌後板塊反轉)擴到 6 個歷史案例(XLK/XLC 2022-23、XLY/XLK GFC)後 pattern 不穩定 → 呢條線關咗(`results/2026-07-11_category2_sentiment_reversal_v3.md`);「復甦語言」實驗一開始睇似有訊號,spot-check 揭發係「trough」呢隻字污染(`_category2_recovery_language.md` 已明確 retract)。GFC 案例入面 financials(coincident/ground-zero)vs consumer-discretionary/tech(trough 落後數月)嘅時序差異留低做殘餘發現,唔再追。
+- **★ Discovery Radar(Objective B 主力)全數 39-40 candidate 審完**:4 組 subagent verbatim 覆核(`results/2026-07-11_discovery_radar_review_group{A,B,C,D}.md`)→ `thesis/themes.yaml` 新增 6 個 theme(aerospace-specialty-alloys / euv-lithography-monopoly / us-solar-manufacturing / gas-compression-equipment / specialty-siding-pricing-power / glp1-biologics-packaging,連 `thesis/wiki/*.md`),KALU/MCHP/AVT/PTEN 4 隻列 WATCH 排下季 re-check。
+- **China dependency 全市場 audit**(`results/2026-07-11_china_dependency_audit.md`,68 隻票):訂立 Type A(公司本身中資/國企關聯,capital-cycle 機制失效)/ B(美資但供應鏈/收入依賴中國)/ C(政策反向限制)分類;15 個 theme 入面 12 個補咗呢個披露(memory-supercycle、ai-power-grid、rare-earth-materials 等)。
+- **4 條 backtest 驗證跑完並審**:sizing formula(margin-of-safety × convergence-speed)、institutional ownership crowding axis、buyback capital allocation signal、insider breadth/market ratio——結論落 `results/2026-07-11_*.md`,含 look-ahead 檢查 + market-cap tier breakdown。
+- **Magnifier model**:`docs/2026-07-09_magnifier_model_plan.md`(supercycle-magnifier 特徵框架:operating leverage/supply discipline/distance-from-trough/moat durability/crowding)+ 3 本書蒸餾(Capital Returns、Expectations Investing、One Up on Wall Street,`docs/2026-07-11_magnifier_book_*.md`)。**scorecard 設計(D/E步)擺低等用戶面談**,唔自己砌。
+- **IMA automation 解決**:daymade `ima-copilot` skill 裝咗(官方 wiki OpenAPI 實測攞唔到全文,淨係 IMA 自己個 chat 介面先做到真 RAG,人手操作);2026-07-12 四 model 對打(DeepSeek vs MiniMax-M3×2 vs mimo-v2.5-pro)確認 **DeepSeek 做主力**;4 條 weekly extraction prompt 定咗(`docs/2026-07-09_ima_extraction_prompts.md`,v3,加咗 folder citation + 匯出.md 要求);人手週度任務落咗 STATUS.md 上表,新 session 開波會見到。
+- **WS4 基建接線**:`thesis/theme_signal.py`(每主題 buy-zone/wait/kill-watch)+ `backtest/basket_temp.py`(cap-weighted heat vs equal-weighted breadth vs dispersion)兩者已入 `daily_playbook.cmd` 排程。`thesis/prefetch_transcripts.py` resumability 由「檔案存在」改埋「corpus.db 已 index」雙重判斷(避免刪 raw cache 之後重複下載)。
+- **夜班 permission boundary 問題浮出並修好一單**:headless run 寫唔到工作目錄外(`../Reference/`)→ 07-11 iron-butterfly 63/64 addendum stage 咗喺 `.agents/nightshift_pending_writes.md`,今日日間 session 過檔完(`Reference/distillations/2026-06-24_backtest-everything-distillation.md` + `_PENDING_ANALYSIS.md` 已更新),stage 檔已刪。
+- **90 個檔案 backlog 今日 commit**:scratch/intermediate(`_scratch_group*/`、`_groupA_context_quotes.txt`、`exp_groupC_radar_pull_output.txt`、sizing validation 中間 csv、nightly log、ticker cache)已收入 `.gitignore`,唔再係 untracked noise。
+- 未閉:corpus 一個 data-hygiene bug(`transcript-WST-2023-11-10` 錯標做 Westrock Coffee,未重抓/重標);`exp_insider_validate.py` 舊 script 嘅 fat-finger price bug fix 未搬(新 `exp_insider_breadth.py`/`exp_insider_market_ratio.py` 已修);dashboard + magnifier scorecard 繼續擺低等用戶。
 
 ## 現在在哪(2026-07-06)
 
@@ -117,7 +153,20 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 - **workspace 已重組**(2026-07-03):37 個實驗檔移入 `backtest/experiments/`
   (含索引),本檔成為唯一入口。
 
-## 下一步(2026-07-06 Fable 完成後更新)
+## 下一步(2026-07-12 更新)
+
+Discovery Radar + China audit + 4 條 backtest 驗證 + IMA automation 已完成收尾(見上「現在在哪」)。
+按優先:
+
+1. **等用戶面談**:magnifier scorecard(D/E步設計)、dashboard 接線——用戶已明確話擺低,唔自己砌。
+2. **小額 backlog**(低優先,得閒先做):WATCH 4 隻票(KALU/MCHP/AVT/PTEN)下季 re-check;WST transcript
+   錯標修正;`exp_insider_validate.py` fat-finger bug port 返(新 script 已修,舊嗰個未跟)。
+3. **未驗證嘅 Phase-3 地基狀態**:07-06 交棒定嘅 Batch 1(WS1 裁判狀態機 + WS3 生命週期接線)有冇做完
+   未喺呢輪 session 確認過——下個 session 開工前應該先查 `docs/2026-07-08_phase3_architecture.md`
+   執行 backlog 對返實際 code,唔好假設已完成。
+4. 人手週度 IMA 任務(見上表)持續行。
+
+### (2026-07-06 Fable 完成後更新,部分已執行)
 
 **Fable 交棒任務 1-8 全部完成**(交付檔見「現在在哪」)。下一步按優先:
 

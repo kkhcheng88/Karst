@@ -3,6 +3,19 @@
 # the 4-KPI evidence + citations. confidence is an INITIAL, UNCALIBRATED estimate (cold start; no
 # track record yet) -> it becomes a real probability only after track_record calibration (DESIGN §6).
 # Do NOT read confidence as precise; read it as disciplined relative strength x cycle temperature.
+#
+# 2026-07-11 CHINA CAVEAT (user-confirmed, from Chancellor "Capital Returns" ch.6 distillation,
+# docs/2026-07-11_magnifier_book_capital_returns.md §2.4): any candidate ticker that IS ITSELF a
+# China-domiciled / China-state-linked entity (NOT merely "sells into China" or "benefits from
+# China policy" — e.g. FSLR/rare-earth-materials tickers here are fine, they are US-based) needs
+# elevated skepticism before admission at normal confidence: China's domestic bank-debt-forgiveness
+# mechanism disables the normal "capacity exit -> supply discipline restored" signal our
+# constraint-language methodology assumes; apparent margin/discipline inflections can be
+# IPO-window/carve-out/government-pricing artifacts that mimic a real kill-feature reversal without
+# being economically real (Chancellor's own bearish call on PICC was wrong, +637%, precisely because
+# a red flag != a sell signal for these names). Applies to NONE of the 15 tickers below as of
+# 2026-07-11 (none are China-domiciled/state-linked) -- this is a standing admission principle for
+# FUTURE candidates (discovery radar / magnifier), not a retroactive edit.
 
 themes:
   memory-supercycle:
@@ -15,7 +28,15 @@ themes:
       LTA/SCA scorecard stalls or reverses (contract prices roll over OR net-new LTA signings stall,
       i.e. de-cyclicalisation stops being confirmed by financials) OR HBM / advanced-packaging capacity
       ramps AHEAD of AI-inference demand (glut). Trigger -> confidence to zero, back to classic cyclical top.
-    tickers: [MU, SNDK, WDC, DRAM, SKHY]
+    tickers: [MU, SNDK, WDC, SKHY]        # DRAM lives as thesis_etf below (2026-07-10 unification;
+                                           # was in this list under the old holdings_etf mechanism)
+    thesis_etf:
+    - etf: DRAM
+      purity: 0.35              # Samsung+SK Hynix+Kioxia in disclosed top-holdings(真.全球記憶體寡頭本身)
+      remark: "Roundhill Memory ETF;purity 假設只計 yfinance 公開嘅 top-holdings(非全倉)。HBMX(Tuttle
+        Concentrated Memory Stack)2026-07-10 評估後剔除——用戶判斷 DRAM 已夠好,唔使第二隻疊加。"
+      liquidity: "3-mo均量~38.9M股/日,充足;AUM讀數$25.9bn可疑(疑似yfinance欄位錯配,待外部核實),
+        不影響流動性結論"
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -23,7 +44,12 @@ themes:
     admitted: 2026-07-01
     last_evidence: 2026-07-08
     status: active
-    note: "late (capex 2.66x top signal) but LTA take-or-pay/RPO cushions downside; small size + watch LTA scorecard, don't chase. SKHY = SK 海力士 ADR(2026-07-10 掛牌,HBM4 份額 60-70%龍頭)——破紀錄 $294 億上市本身係晚期擁擠訊號;confidence/cycle 維持。掛牌後先入 universe(現時未有數據會整跛 scan)。"
+    note: "late (capex 2.66x top signal) but LTA take-or-pay/RPO cushions downside; small size + watch LTA scorecard, don't chase. SKHY = SK 海力士 ADR(2026-07-10 掛牌,HBM4 份額 60-70%龍頭)——破紀錄 $294 億上市本身係晚期擁擠訊號;confidence/cycle 維持。掛牌後先入 universe(現時未有數據會整跛 scan)。
+      2026-07-11 中國依賴audit(68 ticker全審查,results/2026-07-11_china_dependency_audit.md):MU/SNDK/
+      WDC/SKHY全部有實質Type B曝險——製造(Xi'an/Shenzhen/Wuxi/Dalian/Chongqing)+營收(中國佔比10-45%
+      不等)。SKHY最嚴重(無錫廠約全球40% DRAM產能,已受美國出口管制設備升級上限)。MU仲有政策反向風險
+      (2023年中國網信辦關鍵基建禁售令)。呢個係疊加喺現有週期頂kill condition之上嘅相關性尾部風險——
+      一次中國政策衝擊可以同時打晒4隻名,削弱「分散喺4隻ticker」嘅印象,唔係退出理由但值得留意。"
 
   photonics-optical:
     wiki: thesis/wiki/photonics-optical.md
@@ -37,6 +63,16 @@ themes:
       order-book-to-2028 / pricing breaks. Crowding-unwind: no-earnings names (SIVE/LWLG) + 75-98th-pctile
       moat names de-rate hard on any AI-capex hiccup. Trigger -> confidence to zero.
     tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
+    thesis_etf:
+    - etf: FOTO
+      purity: 0.347              # COHR+LITE+AAOI+FN = 34.7% of disclosed top-holdings
+      remark: "Tuttle Capital Pure Play Photonics ETF(2026-05上市);≥50%營收來自photonics嘅篩選法。
+        殘留名 IPGP/LASR/CIEN/VIAV/NOVT 已評估,全部未納入basket——用戶2026-07-10方法論修正:入
+        basket 須有具體證據(研報引句/一手研究)證明個名自己有供需瓶頸,唔可以淨係「喺主題ETF出現+估值
+        合理」。CIEN 一度試加,查證#127(Nokia/InP封測回流報告)後發現通篇冇提CIEN半句(淨係metadata
+        tag,主角係Nokia/Coherent),且CIEN係系統整合商(用光學組件)非組件擁有者(唔似COHR/LITE自己
+        揸緊InP/雷射瓶頸)→ 剔除。"
+      liquidity: "$25.5M/日,AUM $167M,新基金但夠$10-15k衛星倉位"
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -44,7 +80,13 @@ themes:
     admitted: 2026-07-01
     last_evidence: 2026-07-08
     status: active
-    note: "real bottleneck but MOST crowded; pick quality (COHR/LITE/GLW), avoid froth (SIVE/LWLG); wait for crowding to deflate. #149:網路扁平化壓收發器層(AAOI 具名降評);上游 InP/光源腿強化;confidence 維持"
+    note: "real bottleneck but MOST crowded; pick quality (COHR/LITE/GLW), avoid froth (SIVE/LWLG); wait for crowding to deflate. #149:網路扁平化壓收發器層(AAOI 具名降評);上游 InP/光源腿強化;confidence 維持
+      2026-07-11 中國依賴audit:AXTI係全審查最高危一隻——10-K逐字「全部substrate產品喺中國生產」
+      (北京Tongmei廠,1049/1075員工喺中國),已經俾中國出口許可證直接掐停收入兩次(2023鎵鍺、2025
+      磷化銦)。即係話AXTI唔止有現有kill_condition講嘅InP供給樽頸曝險,仲有生產地本身喺中國嘅雙重
+      曝險——中國進一步收緊InP出口,可以同時打生產同批次放行兩條線。AAOI(Ningbo廠,2881/4691員工
+      喺中國,正做$300M Sugar Land TX回流)、GLW(上海光纖廠+多個顯示玻璃廠)都有實質中國製造。
+      SIVE/LWLG/FN乾淨。"
 
 
   ai-power-grid:
@@ -57,8 +99,11 @@ themes:
       off the $1T->$1.7T path) OR 800V/HVDC native mass-production (SemiAnalysis stages 3-4) slips again
       / 48V+pluggable stays good-enough (onsemi''s ~10x rack-content fails to materialise, #114/#125) OR
       turbine majors'' orders confirm a 2026 peak (GEV CEO order-pace cracks #086, #134) OR the Infineon
-      price-hike cycle reverses (power-semi shortage ends). Trigger -> confidence to zero; 90th-pctile quality
-      names (ETN 99% / ON 90% / MPWR 89%) mean-revert, pre-earnings names (BE/NVTS/WOLF) crash.'
+      price-hike cycle reverses (power-semi shortage ends) OR China tightens rare-earth/yttrium export
+      controls further, hitting GEV turbine-coating supply directly or MPWR/NVTS/TXN China revenue
+      concentration (55%/47-62%/21-50% respectively, 2026-07-11 china_dependency_audit). Trigger ->
+      confidence to zero; 90th-pctile quality names (ETN 99% / ON 90% / MPWR 89%) mean-revert,
+      pre-earnings names (BE/NVTS/WOLF) crash.'
     tickers:
     - GEV
     - BE
@@ -70,6 +115,27 @@ themes:
     - NVTS
     - WOLF
     - 'ON'
+    - TXN
+    - GNRC
+    - SPXC
+    - CAT
+    thesis_etf:
+    - etf: URA
+      leg: 鈾燃料/核組件
+      remark: "top-10對thesis自身ticker重疊0%(表達價值鏈另一條腿,非持股重疊);用戶已持40股。
+        同URNM/NLR相關性0.90-0.96,唔好同時揸多過一隻鈾ETF。"
+      liquidity: "$164M/日,好流動"
+    - etf: GRID
+      leg: 電網設備
+      purity: 0.167              # ETN+PWR = 16.7%
+      remark: "直接持ETN(99th分位)+PWR;對大市beta/corr全宇宙最高(0.82),加大系統性風險。"
+      liquidity: "$152M/日,好流動"
+    - etf: UTES
+      leg: AI-power IPP發電
+      remark: "IPP濃度~37%(TLN/VST/CEG)vs XLU~13%;2026-07-08研究Combo A推薦,3y跑贏XLU+8.5pp/年。
+        同XLU重疊0.257,唔好同時揸。"
+      liquidity: "$14.4M/日,薄但07-08研究已預先批准$10-15k倉位"
+    # 完整相關矩陣/CAGR/MaxDD/費率表:results/2026-07-08_power_etf_basket.md(Combo A推薦)
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -90,7 +156,26 @@ themes:
       theme co-movement, kill fires -> all three fall). Defensive swap = XLU (corr 0.397 but AI leg
       diluted). Do NOT stack URA+URNM+NLR (corr 0.90-0.96) nor UTES+XLU (corr 0.83, same leg); gas leg
       has no clean ETF (FCG only 4% EQT) -> single name or skip; UTES liquidity thin (~$11M/day, fine
-      at $10-15k, not $100k+); basket cap ~$10-15k per satellite sizing (confidence 0.33 / late).'
+      at $10-15k, not $100k+); basket cap ~$10-15k per satellite sizing (confidence 0.33 / late).
+      2026-07-10 新增 TXN(IMA 約束 register #178 逐字引句"Texas Instruments | PMICs and MOSFETs"直接
+      點名,BofA 2026-06-30 功率半導體漲價清單;連紀律最強嘅TI都加價=擁擠印證強)。ADI 覆核後剔除
+      (只喺自建summary表「涉及公司」欄出現,原始逐字引句冇點名,同CIEN一樣係推論非證據)。同批候選
+      銅(FCX,唯2篇證據太薄)、鈾(CCJ/UEC/UUUU)、鋁(AA)查證後發現原文點名嘅係CGN Mining/中鋁/俄鋁
+      (非美股),冇撐,已剔除,唔升做新thesis。
+      2026-07-11 discovery radar 全市場逐隻人手驗證後新增 GNRC/SPXC/CAT(三個獨立公司自己 transcript
+      證據,唔係第三方報告):GNRC(2026Q1 data-center genset backlog $700M,單季+$300M)、SPXC(HVAC/
+      冷卻塔,data-center營收guidance 50%→70%,Olathe/Tennessee廠2027前全負荷)、CAT(Power & Energy
+      segment「capacity constrained時可以加多啲價」,factory output 2x→3x,+15GW/年,管理層明確
+      掛鈎data-center)——三個都係同一條「AI data-center 需要嘅備援電力/散熱產能建唔切」故事嘅唔同
+      表達(GEV渦輪機/BE燃料電池嘅同類產品線),故直接併入本thesis而非開新thesis。
+      2026-07-11 中國依賴audit(results/2026-07-11_china_dependency_audit.md,全thesis最大宗發現):
+      GEV唔係營收故事,係CEO Strazik(Reuters 2025-12)親口確認嘅供應鏈斷點——中國釔出口管制直接威脅
+      GEV全球H-class燃氣渦輪機隊(葉片熱塗層),仲有Haliade-X風機嘅稀土磁鐵依賴(已簽Arafura MoU
+      想解套)。MPWR係全審查68隻ticker入面依賴度最高——成都廠+測試、10-K自己列明中國供應商集中做
+      top risk、中國營收佔比55.3%仲升緊。NVTS中國營收佔比曾達62%(現47%,全審查最大營收集中度)。
+      TXN成都廠+被中國商務部反傾銷調查中。CAT係全審查製造足跡最深(6個中國城市、4個業務線、30年
+      歷史)。BE有一單未解決嘅scandium供應爭議(調查媒體指控vs公司8-K否認,未有定論)。PWR查證乾淨
+      (全篇10-K零中國提及)。'
 
   advanced-packaging:
     wiki: thesis/wiki/advanced-packaging.md
@@ -118,12 +203,16 @@ themes:
     - TER
     - FORM
     - LRCX
+    # thesis_etf: 未搵到窄 ETF(2026-07-10 已搜)。HBMX(Tuttle Concentrated Memory Stack)候選評估後
+    # 判定佢本質偏 memory(自身定位"Memory Stack",MU+SNDK權重13.6% vs LRCX+AMKR+KLAC 16.2%,兩者相近但
+    # 基金自我定位係memory生態,packaging只係HBM封裝支線)——用戶2026-07-10確認唔要,已剔除。想表達
+    # 只可買個股。
     sources:
     - id: gooptions-trend-core
       tier: 2
     meta_factors: [ai-capex]
     admitted: 2026-07-01
-    last_evidence: 2026-07-08
+    last_evidence: 2026-07-10
     status: active
     note: "real physical chokepoint (packaging + T-glass ~90% Nittobo / HVLP-copper quota material double-lock)
       but the real bottleneck owners (Nittobo/Mitsui/Hoya) are NON-US; every tradeable US proxy sits at
@@ -133,7 +222,24 @@ themes:
       eroded incumbent (not a long). Don't chase; wait for proxy valuations to deflate. (#150 新增
       KLIC(TCB 熱壓鍵合直接受惠)、TER(記憶體/HBM 測試)、FORM(FormFactor,探針卡/測試)、LRCX(矽通孔
       蝕刻/電鍍,先進封裝 2026 估 +50%)——美股可交易站位補進設備/測試環節;ASMPT/Besi/愛德萬非美股,
-      wiki 有記錄唔入 tickers。)"
+      wiki 有記錄唔入 tickers。)
+      2026-07-10 update(gooptions #152,TPU/EMIB 需求傳導鏈,Tier-2,neutral,付費牆截斷但免費部分
+      有硬數):TrendForce 資料中心 ASIC 市場 2028 預測上修 $50B→$70B;Google 2028 向 INTC 下單封裝
+      AI 晶片 >300萬顆(約當其 TPU 產出一半),坐實 CoWoS 溢出 EMIB 呢條線(NVDA 佔 TSMC CoWoS 約
+      6成配額,TSMC 擴產4倍都未必追得上 Rubin 世代大晶片胃口)。Intel EMIB-T 規格(ECTC 揭露):
+      >10,000mm²矽、>21,000mm²封裝體、38+矽橋、支援 HBM4,仍 R&D 階段。四層受惠鏈:設計(AVGO/
+      Google)→製造(TSM/CoWoS)→封裝鏟子層(矽電容/ABF載板/封測,非美股為主)→封裝第二供應(INTC
+      EMIB,最間接,需另用 CPU 論點;SK Hynix 測緊 EMIB 整合)。呼應 INTC 喺 tickers 已有嘅
+      「EMIB-T event/option framing」判斷,新增具體訂單量級(>300萬顆)佐證。confidence/cycle
+      維持,加強現有論點,唔係新訊號。
+      2026-07-11 中國依賴audit:呢個thesis有兩種唔同性質嘅中國曝險,要分開睇。(a) 製造/供給側曝險
+      (中國出事會直接打呢邊):ASX(Kunshan/Shanghai/Weihai廠)、AMKR(上海廠)、TTMI(4間PCB廠,
+      ~9900中國員工)、STX(無錫廠係僅存兩個Seagate全球廠之一)、KLIC(蘇州廠,10-K逐字「約53.5%
+      FY2025營收嚟自中國總部客戶」,全審查最清晰嘅中國營收披露)。(b) 營收側曝險但正被美國出口
+      管制主動削減(美國政策風險,唔係中國供給風險,反而某程度削減緊呢啲名對中國嘅曝險):KLAC
+      (41%→33%)、TER(13%)、FORM(14%→7%,全審查跌幅最急)、LRCX(42%→34%,仍係最大單一國家)、
+      MKSI(22-24%)。兩組風險方向唔同,(a)組china政策收緊會直接傷害,(b)組已經喺美國政策下收縮
+      緊,某程度係de-risk緊而唔係加risk。"
 
   space-satellite:
     wiki: thesis/wiki/space-satellite.md
@@ -155,6 +261,13 @@ themes:
     - BKSY
     - PL
     - GSAT
+    thesis_etf:
+    - etf: NASA
+      purity: 0.186              # RKLB+ASTS+LUNR = 18.6%
+      remark: "Tema Space Exploration ETF。殘留名 ECHO(9.0%,重過部分basket名)/VSAT/FLY 已評估但唔
+        納入basket(用戶2026-07-10:唔想aggressive加,靠雷達INGEST自然flag)——ECHO/VSAT pe讀數stale
+        (2.5/4.3年)不可信,FLY冇pe數據。"
+      liquidity: "$170M/日,AUM $1.59bn,好流動"
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -183,6 +296,13 @@ themes:
     tickers:
     - MP
     - USAR
+    thesis_etf:
+    - etf: REMX
+      leg: 全球稀土/戰略金屬礦業(非美股名為主,同memory「外國龍頭」邏輯一致)
+      purity: 0.059              # 得 MP;USAR 缺席
+      remark: "VanEck Rare Earth/Strategic Metals ETF;top-10以中/澳礦業股為主(廈門鎢業/中國北方稀土/
+        Lynas/PLS)。ALB(雅保,鋰非稀土/銦鎵)契合度牽強,未納入basket。"
+      liquidity: "$82.5M/日,好流動"
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -196,6 +316,15 @@ themes:
       ARTIFACT, NOT clean value (#141 loss-making -14.7%, fwd PE 72.8x, P/S 61x->38.6x, -41% vs 50-day) -> no
       longer a cheap anchor; overlaps photonics. don't chase MP; USAR/NVTS pre-earnings -> option/event framing. cycle=event-driven,
       confidence 0.28 INITIAL/uncalibrated -> lowest of the batch.
+      2026-07-11 中國依賴audit(highest-priority update, see results/2026-07-11_china_dependency_audit.md) --
+      MP係全審查嘅教材級Type B案例,原有note完全未提呢個歷史依賴。歷史上MP超過90%營收嚟自賣稀土精礦
+      俾Shenghe Resources(MP嘅少數股東)喺中國做分離提煉,因為MP自己冇分離產能。呢個依賴由2025年7月
+      起靠DoD/DoW $400M夥伴關係迅速切到零,但MP依然做唔到重稀土(鏑/鋱)本土分離,要等新產線2026年
+      中先投產——即係話MP擺脫咗「營收關係」但未完全擺脫「產能依賴」,呢個係一個過渡期風險窗口。中國
+      仲反過嚟將MP列入設備/技術進口黑名單(新增反向風險)。DoD $400M夥伴關係本身正正係為咗解決呢個
+      結構性依賴,唔係錦上添花——kill_condition入面「MP's DoD $110/kg floor」呢句應該連埋呢段歷史
+      背景一齊讀,先明白條deal點解結構上必要。USAR維持乾淨(刻意去中國化設計),同樣有輕微設備進口
+      黑名單反向風險。
 
   tpu-custom-silicon:
     wiki: thesis/wiki/tpu-custom-silicon.md
@@ -215,19 +344,44 @@ themes:
     - AVGO
     - TSM
     - CLS
+    thesis_etf:
+    - etf: CHPX
+      purity: 0.186              # AVGO+TSM = 18.6%
+      remark: "Global X AI Semiconductor & Quantum ETF;仍被MU/NVDA/SK海力士/AMD等廣義AI半導體稀釋。
+        NVDA/AMD喺top-10出現但唔應加入basket——thesis自身note已明確排除呢兩隻incumbent。ARM 一度試加,
+        查證#072(ARM CPU超週期 bull report)後發現:(1)篇文thesis係「CPU復興」(agentic AI推CPU:GPU
+        配比),同tpu-custom-silicon講嘅ASIC取代GPU推理係唔同敘事;(2)篇文自己結論將ARM排喺持股順序
+        最尾(INTC>Dell>AMD>ARM),因220x P/E已要求5-10年完美執行、抽成遠低於市場想像。IMA約束register
+        全無提及ARM → 剔除。方法論修正(用戶2026-07-10):入basket須有具體證據證明個名自己有供需瓶頸,
+        唔可以淨係「業務概念相關+ETF持倉出現」。"
+      liquidity: "$11.4M/日,合格"
     sources:
     - id: gooptions-trend-core
       tier: 2
     meta_factors: [ai-capex]
     admitted: 2026-07-01
-    last_evidence: 2026-07-08
+    last_evidence: 2026-07-10
     status: active
     note: 'real inference cost-economics share-shift (ASIC 20-50% cheaper/effective-compute; inference >
       training by 2030), but THIN evidence (single Tier-2 report #129, 100% bull) + AVGO custom-silicon
       design-side is one of the most consensus AI trades; chain 75-87th ttm_pe pctile + capex rising. AVGO
       = purest toll-booth (designs TPU + Tomahawk switching = wins twice); TSM = only intersection of both
       chains (wins either way). Small size, don''t chase; watch TPU-out-of-Google diffusion + AVGO custom-ASIC
-      orders. NVDA/GOOGL/SMCI excluded (incumbent bet-against / diluted owner / NVIDIA-chain).'
+      orders. NVDA/GOOGL/SMCI excluded (incumbent bet-against / diluted owner / NVIDIA-chain).
+      2026-07-10 update(gooptions #152,Meta-Broadcom Iris ASIC,Tier-2):Reuters獨家披露Meta內部
+      備忘錄,自研Iris晶片9月量產,算力目標由7GW翻倍到14GW(2027)——需求上修非放緩,反駁上週「Meta
+      出租閒置算力」嘅算力過剩敘事。AVGO角色坐實:Meta自研ASIC(博通共同開發+先進封裝+網路)同租用
+      Google TPU(共同設計商都係博通)兩條路線都繞回AVGO,「賣鏟人」邏輯被財報硬數據印證——AVGO
+      Q2FY26 AI半導體單季$10.8B(+143% YoY),下季指引$16B(+200%+),在手訂單>$30B、能見度到2028。
+      Caveat(報告自己都提):出貨量超車(JPM估2027 ASIC 53%)≠營收超車(Citi估2028 GPU仍占75%營收);
+      備忘錄係Meta自述非審計指引;99%自研ASIC會失敗(SemiAnalysis)。confidence/cycle維持,呢個係
+      加強現有 toll-booth 論點嘅新證據,唔係新訊號。
+      2026-07-11 中國依賴audit:TSM嘅中國故事同thesis入面其他名唔同類,唔應該混為一談——佢喺南京/
+      上海嘅細廠+萎縮緊嘅中國大陸營收佔比(得約9%)係次要嘢;TSM真正嘅「中國」風險係台灣海峽(中國
+      攻台/封鎖情境威脅緊TSM自己喺台灣嘅本土產能,佔全球最先進晶片90%),呢個同「TSM依賴中國大陸」
+      係完全唔同類別嘅風險,唔應該用同一把尺量。AVGO嘅中國營收(17-20%)係fabless/ship-to,10-K自己
+      都話好大部分實際流向美歐終端產品,實際曝險冇表面數字咁大。CLS確認有蘇州/東莞/上海製造,營收
+      佔比未查到。'
 
   oil-gas-energy:
     wiki: thesis/wiki/oil-gas-energy.md
@@ -250,6 +404,13 @@ themes:
     - EQT
     - LNG
     - SEI
+    - KMI
+    thesis_etf:
+    - etf: XLE
+      remark: "例外(用戶2026-07-10確認):廣板塊ETF一般只做parent_proxy,唔做thesis_etf,但Energy母板塊
+        ≈oil-gas-energy thesis範圍(XOM/CVX/COP本身就係XLE最大持股),同時掛parent_proxy(universe.yaml)
+        同thesis_etf。"
+      liquidity: "極流動"
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -262,7 +423,17 @@ themes:
       thesis -> WATCH split by track. Only playable edge = EQT (cheap pe 10/35th + disciplined capex + AI
       behind-the-meter pull); or XLE/XOP to diversify the Iran-binary macro. SEI is the lone bull name but
       most expensive (pe 97th) + carries a governance/short-report binary (#049) -> event/option framing,
-      tiny. Exclude NVDA/AVGO (AI demand) and VST/CEG/TLN (nuclear SALP already cut).'
+      tiny. Exclude NVDA/AVGO (AI demand) and VST/CEG/TLN (nuclear SALP already cut).
+      2026-07-11 新增 KMI(discovery radar 逐隻驗證):自己transcript一個具體datapoint(2023-10-18,
+      Bakken/Eagle Ford/Haynesville gathering system到capacity,管理層明講"opportunities to charge
+      incremental rate")——證據薄過EQT但方向一致(LNG外銷帶動gas gathering/processing產能緊),
+      屬gas leg自然延伸,唔升做獨立thesis。
+      2026-07-11 中國依賴audit:呢個thesis大部分乾淨(EQT/KMI/SEI純美國本土,CVX/COP查唔到但信心低
+      非確認乾淨,XOM得福建一個細舊JV唔算數)。真.要留意嘅係LNG(Cheniere)——有實質長期合約曝險
+      喺中國買家(PetroChina+Sinochem SPA,行業層面約25 mmtpa中國關聯美國LNG合約),但2026年2月
+      報導話中國而家實際上冇提取緊美國LNG貨(轉賣去第三方,受關稅緊張影響)——即係話合約曝險真實
+      存在,但實際物理交付關係已經俾貿易緊張打斷咗,值得留意中國會唔會恢復提貨定係合約長遠被重新
+      談判/轉向。'
 
   semicap-equipment:
     wiki: thesis/wiki/semicap-equipment.md
@@ -278,6 +449,9 @@ themes:
       hiccup. Trigger -> confidence to zero.'
     tickers:
     - AEHR
+    # thesis_etf: 未搵到窄 ETF(2026-07-10 已搜)。HBMX殘留名ONTO/ATEYY業務較廣(泛半導體檢測/測試設備,
+    # 非AEHR講嘅burn-in-at-scale窄利基)且已貴/ADR流動性存疑,未納入。thesis本身淨得AEHR單一投機名,
+    # ETF化意義不大。
     sources:
     - id: gooptions-trend-core
       tier: 2
@@ -290,3 +464,220 @@ themes:
       (TTM EPS negative -> PE undefined; report fwd PE ~615x, +856% 1yr, price above ALL sell-side targets
       $56-68, insider $44M open-market sells, no 10b5-1). Capex light + declining (no supply-response boom).
       Watch-only, don't chase; wait for pullback or FY2027 recognition.
+      2026-07-11 中國依賴audit:未證實/可能有間接曝險。AEHR自己10-K搵唔到直接中國營收數字,但AEHR
+      營收極度客戶集中(67-88%單一客戶,理解為onsemi),而onsemi自己有中國JV(樂山)。AEHR FY2025
+      亞洲營收下滑,官方歸因EV/功率半導體需求轉弱——同中國關聯嘅SiC-EV終端需求曝險吻合但未證實。
+      標記做「未證實/可能透過客戶集中度有間接曝險」,唔當已確認嘅依賴,需要後續直接查AEHR 10-K
+      地理營收附注先可以落實。
+
+  # ============================================================================
+  # 2026-07-11 新增 6 個 thesis(discovery radar 全市場 40 candidate 逐隻人手驗證,operational decision,
+  # 詳細 verbatim 證據見 backtest/results/2026-07-11_discovery_radar_review_group{A,B,C,D}.md)。
+  # 呢批同上面 9 個原有 thesis 嘅來源結構唔同:純transcript一手逐字引句(唔係gooptions/IMA第三方報告),
+  # 已加 defeatbeta ttm_pe 3年滾動分位驗證(2026-07-11)但未做原有批次嗰種完整 capital-allocation/ROIC/
+  # TAM sizing 深度研究 —— confidence 相應保守,wiki 頁面亦標明呢個限制。
+  # ============================================================================
+
+  aerospace-specialty-alloys:
+    wiki: thesis/wiki/aerospace-specialty-alloys.md
+    type: B
+    cycle_stage: late          # 19年(ATI)/15年(CRS)一致故事 + ttm_pe 98th pctile = 已被發現、已貴
+    confidence: 0.24           # 真結構性(LTA鎖客+具名產品護城河)但極度priced-in,類近photonics/advanced-packaging嗰檔。INITIAL,transcript-only源,未做ROIC/TAM深度研究。
+    verdict: real-moat-but-fully-priced
+    kill_condition: >-
+      噴射引擎OEM(Boeing/Airbus/GE/RTX/Safran)build-rate guidance回落或LTA新簽/backlog成長停滯(ATI
+      2023年$1.2bn新承諾嗰類數字唔再出現) OR 有競爭者(PCC/Special Metals/VDM Metals/Aperam)帶新產能
+      上線,削弱「6/7most advanced jet engine nickel alloys」嘅稀缺性 OR 估值喺基本因素冇進一步確認下
+      持續擴張(純multiple驅動,非盈利/backlog驅動)。觸發 -> confidence歸零。
+    tickers: [ATI, CRS]
+    sources:
+    - id: transcript-discovery-radar
+      tier: 3
+    meta_factors: [aerospace-capex]
+    admitted: 2026-07-11
+    last_evidence: 2026-07-11
+    status: active
+    note: "discovery radar逐隻人手驗證(backtest/results/2026-07-11_discovery_radar_review_groupA.md):
+      ATI 19年、CRS 15年一致第一人稱LTA/capacity-constrained語言,具名產品護城河(ATI「供應6/7款最先進
+      噴射引擎鎳合金」;CRS客戶要re-qualify先可轉供應商=switching cost鎖客),2026年最新一季雙雙確認故事
+      仲live(ATI'lead times extending for our most differentiated products'、CRS'24/7 full out')。
+      **但ttm_pe 3年滾動分位ATI/CRS均98th(2026-07-11量度,ttm_pe約61-62x)——同批discovery radar 40候選
+      入面估值最貴嘅兩隻之一,結構真但已經被市場發現/priced-in**,類近photonics-optical/advanced-packaging
+      嘅「真瓶頸但擠」處境。ATI+CRS合併做一個thesis(同一個航太特種合金LTA鎖客護城河,唔係兩個獨立故事)。
+      未搵窄ETF(未搜),未做capital-allocation/ROIC/TAM深度研究——呢批係discovery radar發現嘅第一手,
+      比原有9個thesis嘅gooptions/IMA源證據類型唔同,confidence相應保守。
+      2026-07-11 中國依賴audit:ATI/CRS兩隻中國曝險唔對稱,合併thesis時要留意。ATI證據更強——上海
+      60%控股嘅STAL合資廠,仲有10-K明文列鋯/鉿/鉬部分來源中國並明確標中國出口管制風險,直接掛鈎
+      thesis自己講嘅供應鏈輸入故事。CRS喺自己10-K Item 2確認有中國製造/分銷據點,但特別留意——佢嘅
+      原材料風險披露**冇**點名中國(雖然用緊同ATI類似嘅鎳/鈷/鈦輸入)。即係話ATI有已披露、具名嘅
+      關鍵原料中國依賴,CRS嘅中國曝險止於製造/分銷層面,冇披露原料端連結。"
+
+  euv-lithography-monopoly:
+    wiki: thesis/wiki/euv-lithography-monopoly.md
+    type: B
+    cycle_stage: late          # 16年故事橫跨4個週期 + ttm_pe 98th pctile = 全市場最人盡皆知嘅半導體壟斷故事之一
+    confidence: 0.22           # 全批最乾淨嘅結構性故事(全球唯一EUV供應商)但極度priced-in(98th),同aerospace-specialty-alloys同級但更冇「未被發現」加分(全世界都知ASML)
+    verdict: real-monopoly-but-most-priced-in
+    kill_condition: >-
+      有可行EUV/High-NA EUV競爭者出現(中國本土EUV突破如SMEE、或Canon/Nikon重返High-NA)打破唯一供應商
+      結構 OR AI驅動先進製程資本開支增長停滯/逆轉(TSMC/三星/Intel capex guidance回落) OR 訂單backlog/
+      lead time回復返2019年前水平(12-24個月縮到<6個月),代表供給追返需求。觸發 -> confidence歸零。
+    tickers: [ASML]
+    sources:
+    - id: transcript-discovery-radar
+      tier: 3
+    meta_factors: [ai-capex]
+    admitted: 2026-07-11
+    last_evidence: 2026-07-11
+    status: active
+    note: "discovery radar逐隻人手驗證(backtest/results/2026-07-11_discovery_radar_review_groupB.md):
+      全批40候選入面最長、最一致嘅第一人稱結構性瓶頸故事——16年橫跨4個景氣週期(2010 DRAM榮景/2017記憶體
+      上升期/2021晶片荒/2026 AI驅動記憶體+邏輯建設),CEO/CFO反覆用「we are always constraining the
+      business」「12-24個月訂單lead time」「customers...sold out for 2026」呢類第一人稱語言。全球唯一
+      EUV微影供應商,零替代品。**但ttm_pe 3年滾動分位98th(2026-07-11量度,ttm_pe約60x)——同ATI/CRS
+      同級最貴,而且ASML係全市場最多人討論嘅半導體壟斷故事之一,「未被發現」呢個溢價完全唔存在**,
+      confidence因此定得同aerospace-specialty-alloys相近但略低(冇未被發現嘅加分)。ASMLF(OTC ADR)
+      同ASML(Nasdaq)係同一間公司,thesis只用ASML一個ticker。未搵窄ETF,未做capital-allocation/ROIC/
+      TAM深度研究。
+      2026-07-11 中國依賴audit:ASML冇喺中國設廠(總部Veldhoven荷蘭),但中國曾經係ASML最大單一市場
+      (2025年系統銷售33%,Q3一度衝到42%因為客戶趕喺新規之前囤貨),而家俾政策guide落到2026年約
+      20%,美國仲有一條在審嘅法案(MATCH Act)想全面禁DUV賣去中國。呢個係反向嘅Type C風險——收入
+      逆風嚟自政策主動削減中國銷售,唔係營運依賴,同現有kill_condition聚焦嘅競爭/資本開支週期風險
+      係唔同嘅維度,值得補充做近期收入風險嘅一部分。"
+
+  us-solar-manufacturing:
+    wiki: thesis/wiki/us-solar-manufacturing.md
+    type: B
+    cycle_stage: mid           # 結構故事實(2019年至今7年連續sold-out)但ttm_pe僅22nd pctile=市場未完全重估,估值同故事有落差
+    confidence: 0.32           # 真結構(7年連續sold-out+關稅/IRA政策護城河)+估值仲平(22nd pctile)= discovery radar呢批入面priced-in狀態最好嘅一個,但政策binary風險要扣返少少
+    verdict: real-policy-moat-and-still-cheap
+    kill_condition: >-
+      Section 201/232/301太陽能關稅或IRA本土成分規定被撤銷/豁免,重開美國市場俾中國/東南亞競爭者 OR
+      「sold out」backlog落空(大額訂單取消) OR 美國太陽能需求增長停滯(聯邦可再生能源政策逆轉) OR
+      中國進一步收緊碲/CdTe出口管制,打斷FSLR核心原料供應(中國控制全球約75-76%碲產量,2025年2月
+      已對碲/CdTe實施出口許可管制)。任何一項觸發 -> confidence歸零(2016年FSLR自己講過「我哋冇
+      pricing power」,證明依家嘅定價權唔係常態,政策逆轉風險係真實嘅)。
+    tickers: [FSLR]
+    sources:
+    - id: transcript-discovery-radar
+      tier: 3
+    meta_factors: [trade-policy, energy-macro]
+    admitted: 2026-07-11
+    last_evidence: 2026-07-11
+    status: active
+    note: "discovery radar逐隻人手驗證(backtest/results/2026-07-11_discovery_radar_review_groupB.md):
+      全批最長、最量化、持續確認嘅結構性瓶頸——連續7年一路向後年份延伸嘅sold-out/fully-allocated語言
+      (2019年賣晒到2020 -> 2021年賣晒到2022+訂單到2024 -> 2023年賣晒到2026+backlog到2030 -> 2026年
+      確認'fully allocated position for our U.S. production',同2年前嘅預告吻合)。護城河由美國貿易
+      政策(232/301關稅+IRA本土成分獎勵)撐住,唔係純週期性半導體荒。2016年FSLR自己講過「唔係pricing
+      power」證明依家唔係管理層慣性吹噓,係真.regime change。**ttm_pe 3年滾動分位22nd(2026-07-11量度,
+      ttm_pe約14.7x)——discovery radar呢批入面priced-in狀態最好嘅一個:結構故事真但市場仲未完全重估,
+      confidence相應係6個新thesis入面較高嗰個**,但政策binary風險(關稅/IRA可被下屆政府撤銷)係主要
+      kill risk,唔係零風險嘅便宜。未搵窄ETF,未做capital-allocation/ROIC/TAM深度研究。
+      2026-07-11 中國依賴audit(修正「零中國依賴」嘅原有假設):FSLR「反中國」定位喺製造地同避開
+      中國主導嘅多晶矽供應鏈(CdTe技術路線)兩方面都啱,但唔完全等於零依賴——CdTe技術嘅核心原料
+      碲,中國控制全球約75-76%產量,2025年2月已經對碲/CdTe實施出口許可管制。FSLR自己10-K披露緊
+      主動應對(替代供應商、申請許可證、回收率最多95%)——呢種語言本身就顯示公司當呢個係真實而非
+      假設性嘅風險。FSLR嘅「反中國」定位喺製造/最終組裝同多晶矽鏈度成立,但核心原料(碲)有獨立、
+      唔同源嘅中國出口管制風險,已經寫入kill_condition。"
+
+  gas-compression-equipment:
+    wiki: thesis/wiki/gas-compression-equipment.md
+    type: B
+    cycle_stage: early         # 13年單向惡化(4-6個月→150週)但ttm_pe僅2nd pctile=市場幾乎完全未發現/未reprice
+    confidence: 0.33           # discovery radar呢批入面故事最乾淨(明確非商品價掛鈎)+估值最平(2nd pctile,全批最極端嘅「未被發現」)= 6個新thesis入面confidence最高
+    verdict: real-structural-bottleneck-deeply-unloved
+    kill_condition: >-
+      引擎/壓縮機lead time開始壓縮返歷史常態(150週 -> 少於52週) OR 主要OEM(Caterpillar/Ariel)新產能
+      上線紓緩樽頸 OR 需求驅動力(LNG出口+Permian associated gas+AI天然氣發電拉動)增長停滯/逆轉。
+      觸發 -> confidence歸零。
+    tickers: [USAC]
+    sources:
+    - id: transcript-discovery-radar
+      tier: 3
+    meta_factors: [energy-macro]
+    admitted: 2026-07-11
+    last_evidence: 2026-07-11
+    status: active
+    note: "discovery radar逐隻人手驗證(backtest/results/2026-07-11_discovery_radar_review_groupC.md):
+      40候選入面證據最乾淨嘅一個——lead time喺整個商品週期入面單向惡化(2013年4-6個月 -> 2018年約1年
+      -> 2026年150週/約3年),管理層明確講'our compression services business does not have direct
+      commodity price exposure'(即係話唔跟油氣價格周期升跌,同HAL/PTEN/NOV嗰種喺上升週期先講'sold
+      out'、落週期就冇聲嘅oilfield-services週期性完全唔同)。USAC自己定位為受益者(自家existing fleet
+      因新設備供給緊而升值),2026年J-W Power併購令佢有in-house製造能力可以打尖。**ttm_pe 3年滾動分位
+      2nd(2026-07-11量度,ttm_pe約27.1x)——全批40候選入面估值最平嗰個,幾乎完全未被市場發現/reprice,
+      同priced_in_gate框架講嘅「supply-tight × unloved」最理想象限吻合,confidence係6個新thesis入面
+      最高。**單一ticker(冇分散),留意集中風險。未搵窄ETF,未做capital-allocation/ROIC/TAM深度研究。"
+
+  specialty-siding-pricing-power:
+    wiki: thesis/wiki/specialty-siding-pricing-power.md
+    type: B
+    cycle_stage: mid           # 2024年至今持續故事,但ttm_pe 95th pctile係whole-company估值(混住弱OSB business),要小心解讀
+    confidence: 0.20           # 真但薄:只係公司一個segment(SmartSide/ExpertFinish),whole-company ttm_pe已經貴,segment故事點轉化做股價回報有唔確定性,6個新thesis入面最保守
+    verdict: real-segment-mix-shift-but-diluted-and-priced
+    kill_condition: >-
+      SmartSide/ExpertFinish「pricing power」語言喺未來某季transcript消失 OR ExpertFinish allocation
+      狀態喺下個上升週期冇再出現(即係話2026年呢次係一次性,唔係結構性) OR OSB商品業務疲弱拖累到成間
+      公司盈利,令Siding segment嘅強度冇辦法喺股價層面反映出嚟 OR vinyl siding競爭者收窄價格/性能差距,
+      侵蝕share-gain敘事。觸發 -> confidence歸零。
+    tickers: [LPX]
+    sources:
+    - id: transcript-discovery-radar
+      tier: 3
+    meta_factors: [building-products]
+    admitted: 2026-07-11
+    last_evidence: 2026-07-11
+    status: active
+    note: "discovery radar逐隻人手驗證(backtest/results/2026-07-11_discovery_radar_review_groupD.md):
+      LPX有兩盤生意方向相反——commodity OSB而家疲弱(2026年最新季度EBITDA蝕錢),但SmartSide/ExpertFinish
+      特種護牆板持續講pricing power(近9季有7季提及,2024年開始),而且2026-05-06嗰季確認ExpertFinish
+      實際喺managed-allocation order file到2026年2月先落單(真.實質allocation事件,唔係得個講字)。
+      **但ttm_pe係whole-company分位(3年滾動95th,2026-07-11量度,ttm_pe約62.5x)——只反映咗混合咗弱OSB
+      同強Siding兩盤生意嘅blended估值,而唔係specialty-siding segment本身嘅估值,解讀要格外小心**:
+      有可能market已經為咗Siding呢條線俾咗溢價(貴有貴嘅道理),亦有可能貴淨係因為OSB歷史高峰殘留嘅
+      multiple,兩者分唔開。呢個不確定性 + thesis只覆蓋公司一部分業務(唔係成間公司)令confidence係
+      6個新thesis入面最保守。未搵窄ETF,未做capital-allocation/ROIC/TAM深度研究。"
+
+  glp1-biologics-packaging:
+    wiki: thesis/wiki/glp1-biologics-packaging.md
+    type: B
+    cycle_stage: mid           # 4季連續確認,ttm_pe 71st pctile適中(唔算平但都未到ATI/CRS/ASML嗰種98th極端)
+    confidence: 0.27           # 現時最短track record(得4季)但故事乾淨(regulatory-lock moat唔係純物理稀缺)+估值適中,6個新thesis中游
+    verdict: real-regulatory-moat-but-young
+    kill_condition: >-
+      「demand outstripping supply」語言喺未來一季消失(管理層自己講緊ramping capacity,一旦追上就完)
+      OR Annex-1升級項目數(370個,較上季340上升)停滯/回落 OR GLP-1/生物製劑藥物量增長大幅減速(例如
+      GLP-1藥物面對定價/報銷壓力打擊銷量) OR 有競爭者(Datwyler/Aptar)喺HVP同級元件搶到份額。觸發 ->
+      confidence歸零。
+    tickers: [WST]
+    sources:
+    - id: transcript-discovery-radar
+      tier: 3
+    meta_factors: [pharma-manufacturing]
+    admitted: 2026-07-11
+    last_evidence: 2026-07-11
+    status: active
+    note: "discovery radar逐隻人手驗證(backtest/results/2026-07-11_discovery_radar_review_groupD.md):
+      Group D全批最乾淨嘅一擊——West Pharma嘅HVP(高值產品)segment(佔全公司銷售48%),用喺GLP-1同其他
+      注射生物製劑嘅彈性體膠塞/密封系統,CEO/CFO連續4季(2025Q2-2026Q1)一致講'demand outstripping
+      supply'/'constraint'/'ramping capacity',而且結構驅動有兩條(唔止週期性需求):(1)GLP-1/生物製劑
+      long-term量增,(2)Annex-1(歐盟法規更新)強制客戶由Standard元件升級去HVP元件做污染管控合規,370個
+      升級項目進行中(較上季340上升)。HVP毛利率60%+ vs Standard 20-30%,超過一半HVP元件已經spec-ed入
+      藥廠嘅FDA/監管filing——換供應商要重新報批,係真.regulatory-lock鎖客,唔係純物理產能稀缺。
+      **ttm_pe 3年滾動分位71st(2026-07-11量度,ttm_pe約47.3x)——適中,唔算平但都遠冇ATI/CRS/ASML
+      98th咁極端priced-in。**故事track record最短(得4季,vs USAC 13年/ATI 19年),confidence因此定喺
+      6個新thesis中游。corpus data-hygiene:一份`transcript-WST-2023-11-10`實為Westrock Coffee內容
+      被錯標成WST,已排除喺證據外,建議之後重新爬取/改標籤(未執行,留待下次corpus維護)。未搵窄ETF,
+      未做capital-allocation/ROIC/TAM深度研究。
+      2026-07-11 中國依賴audit:WST喺上海青浦有兩間確認嘅生產廠(注塑成型2009年起、壓縮成型2013年
+      起,約250名員工)——呢個係真.中國製造,唔係估計。但睇落係服務APAC藥廠市場嘅區域自足廠房,
+      唔似係thesis核心故事(HVP/GLP-1包裝嘅全球產能樽頸,呢個thesis真正嘅kill_condition掛鈎緊
+      demand-outstripping-supply語言同Annex-1升級數,唔係呢間廠)嘅單點故障。中國營收佔比未查到。
+      標記做「事實存在但對thesis核心故事重要性可能低」,除非後續研究話俾第二個睇法。"
+
+  # ============================================================================
+  # 2026-07-11 discovery radar 40候選:WATCH-only(未成thesis,唔入universe/theme_signal,純記錄留待
+  # 下季覆核)—— KALU(鋁,證據參差)、MCHP(analog/MCU,得2季太新)、AVT(分銷商,得2季+經濟模式波動大)、
+  # PTEN(dual-fuel fleet結構論點,但要捱過一次落週期先信得過)。詳細理由見對應 group 報告。
+  # ============================================================================
+

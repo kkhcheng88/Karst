@@ -27,6 +27,23 @@ sources ≥1;meta_factors ≥1;admitted/last_evidence 日期合法。
 4-KPI 逐項 cited 打分;priced-in/週期閘(估值分位 + 供給回應 + 擁擠);可交易表達草案
 (ETF 優先,見 WS5)。
 
+**2026-07-11 新增兩項 checklist(嚟自 Mauboussin/Chancellor 書蒸餾 + backtest 驗證,詳見
+docs/2026-07-11_magnifier_book_expectations_investing.md、backtest/results/2026-07-11_
+sizing_formula_validation.md、backtest/results/2026-07-11_buyback_capital_allocation_signal.md)——
+兩項都係 checklist 提示,唔係機械硬閘,唔改 lint.py**:
+
+- **Solvency gate(margin-of-safety 前置檢查)**:對任何「估值睇落好平/跌得好殘」嘅週期股候選,
+  入場前必須先過一個基本財務健康篩(利息覆蓋率/淨負債佔EBITDA/流動性跑道),先好將個「平」讀成
+  「機會」。理由:backtest 用案例庫驗證「折讓越大回報越好」呢個方向有一定支持(2年期 partial
+  correlation p=0.0029),但 WOLF(Wolfspeed)案例證明純折讓%完全分唔開「平常被低估」同「即將
+  破產」——WOLF 2021年高位跌70-80%,睇落極吸引,2025年6月申請Chapter 11,舊股東實質全損。
+  折讓本身唔係買入理由,一定要先confirm間公司捱得過落去。
+- **Buyback/net issuance 訊號要分市值層讀,唔可以直覺套用**:回購多/發股少嘅公司通常表現較好,
+  但呢個訊號**喺Phase-3典型嘅細/中價股候選(Materials/Energy板塊)方向可能反晒**——大價股(>$10B)
+  訊號方向啱且顯著,但細/中價股($300M-10B)喺126日/252日horizon顯著反方向(t值1.7-3.5),
+  Financials嘅回購反映監管資本強度而非供給紀律。**唔好將呢個當通用正面訊號用**,尤其評估
+  Materials/Energy嘅細中價股thesis嗰陣。
+
 **硬規則**:
 - **單源封頂**:`len(sources)<2` → confidence 上限 **0.30**(早期捕獲天生單源 —— 冇問題,
   細注入場,加源解鎖)。

@@ -63,10 +63,19 @@ Backtest Everything 頻道 married-put 掃描 —— SPY/QQQ 保護性認沽 **0
 | MaxDD | −53.5~53.9% | −54.5~55.6% |
 | 最差滾動月 | −37.5~38.1% | −39.8~41.6% |
 | Delta-notional 中位/p90 | 86-90% / 118-144% | ~120% / 172-216% |
-| 邊個揀 | 想 model 風險細(deep-ITM vega 細,IV 假設影響低)| 用戶 profile(MaxDD 貼 SPY、槓桿無上限)嘅 risk/reward 最優 |
+| 邊個揀 | 低 vega(對 IV *變化*免疫)——但 ⚠ 見下:入場 skew 令佢實際貴過 model | 用戶 profile(MaxDD 貼 SPY、槓桿無上限)嘅 risk/reward 最優 **+ model 定價最準** |
 
 再保守:b10 版(Δ0.70:damp +3.2pp t3.0 / Δ0.50:damp +4.4pp t3.0)—— 全部 C-monthly 格喺保守
 model 都顯著(t2.8-3.1),**引擎唔靠 model 假設食糊,靠嘅係注碼同補彈藥機制**。
+
+**⚠ 真期權鏈 spot-check 修正(2026-07-09,`results/2026-07-09_options_chain_spotcheck.md`)**:原本
+講「0.70Δ = model 風險細」**唔完整**。深 ITM 對 IV *變化*的確低敏感(低 vega),但真鏈顯示佢揹住
+**equity put-skew premium**(SPY 0.70Δ 真 IV 27.5% / 0.80Δ 33.5%,vs 0.50Δ 20.6%;implied m 去到
+1.3-2.0,遠超 grid 1.15)—— flat-vol model **睇唔到**,即回測嘅 0.70/0.80Δ α **高估咗入場成本**。
+綜合:0.30Δ(crash-vega 谷大)同 0.70-0.80Δ(skew 低估成本)兩頭都俾 model 拍靚;**0.50Δ 係 skew
+最細、model 定價最準嗰點** → 揀 0.50Δ 旗艦多咗一個獨立理由。base m=0.85 亦偏低估真 IV(今日真
+≈VIX×1.0-1.2)→ **operative 估計用保守版(+6.5pp),唔用 base(+12.4)**。crash-time term structure
+仍未驗(免費數據冇歷史 vol surface),留 forward-log。
 
 ## 4. 統計紀律(唔准吹嘅位)
 

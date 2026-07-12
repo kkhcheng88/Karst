@@ -14,19 +14,27 @@
 # (RS(SPMO/SPY)); it is NOT a sector to scan.
 
 sectors:
-  # --- ETF-representable sector: pull members + weights from a real ETF (foreign leaders kept) ---
-  MEMORY:
-    parent: SEMI                 # subsector hierarchy: Memory vs SEMI (parent) vs market
-    parent_proxy: [SOXX, SMH]    # SEMI parent proxy (broad semis)
-    holdings_etf: DRAM           # pull members + weights from this ETF (Roundhill Memory);
-                                 # cash sleeve filtered, weights renormalized over equities.
-    weight: etf                  # use the ETF's own holding weights (most faithful)
-
   # --- cross-sectional value chains: no single ETF represents them (they cut across GICS), so the
   # thesis names ARE the basket. Temperature = MARKET-CAP weighted (the heat); a cap-vs-equal
   # DIVERGENCE is emitted as a breadth/crowding read (megacap-led=narrow/late; small-cap-led=froth).
   # `thesis:` -> the loader pulls the basket tickers from thesis/themes.yaml (SINGLE source of truth;
   # no drift). Only sector metadata (parent/proxy/benchmark) lives here.
+  # `benchmark_etf:` (optional) -> a clean matching ETF exists for this thesis (see thesis_etf in
+  # themes.yaml); kept as a cross-check LONG but EXCLUDED from the temperature-driving basket
+  # (avoids the circularity of using the ETF's own price to judge whether "the ETF expresses the
+  # thesis" -- see thesis/themes.yaml module docstring + 2026-07-10 holdings_etf->thesis_etf unification).
+  MEMORY:
+    parent: SEMI                 # subsector hierarchy: Memory vs SEMI (parent) vs market
+    parent_proxy: [SOXX, SMH]    # SEMI parent proxy (broad semis)
+    thesis: memory-supercycle
+    benchmark_etf: DRAM          # 2026-07-10: unified off the old holdings_etf mechanism (which pulled
+                                 # DRAM's live ETF holdings incl. foreign leaders SK Hynix/Samsung/Kioxia
+                                 # as temperature-only context). Trade-off accepted: Stage-1 temperature
+                                 # here is now market-cap-weighted over the US-tradeable basket only
+                                 # (MU/SNDK/WDC/SKHY) -- the foreign-oligopoly price signal is no longer
+                                 # fed into RS/ROC/breadth. DRAM itself is still a tradeable long (via
+                                 # benchmark_etf) and is the designated thesis_etf (themes.yaml).
+
   PHOTONICS:
     parent: SEMI
     parent_proxy: [SOXX, SMH]

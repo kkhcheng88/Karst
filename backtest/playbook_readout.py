@@ -63,6 +63,55 @@ def crisis_sleeve_line(spy_index):
         return f"CRISIS SLEEVE: DISARMED (status calc failed: {type(e).__name__} -- treat as disarmed pending investigation)"
 
 
+def trigger_nums(sym):
+    """Raw closed-form trigger NUMBERS (same math as trigger_levels, but returns a dict for the
+    premarket overlay in premarket_check.py). last=last close; dip=RSI-2<10 next-close level;
+    sell=RSI-2>90 next-close level; cross=pure-200SMA single-close flip level; gate ON/OFF."""
+    try:
+        c = load(sym)["close"]
+        last = float(c.iloc[-1])
+        d = c.diff()
+        au = float(d.clip(lower=0).ewm(alpha=0.5, adjust=False).mean().iloc[-1])
+        ad = float((-d).clip(lower=0).ewm(alpha=0.5, adjust=False).mean().iloc[-1])
+        rsi = 100 - 100 / (1 + au / ad) if ad > 0 else 100.0
+        cross = float(c.tail(199).sum() / 199)
+        gate = "ON" if last > float(c.rolling(200).mean().iloc[-1]) else "OFF"
+        dn10, up90 = 9 * au - ad, 9 * ad - au
+        return dict(sym=sym, last=last, rsi=rsi, cross=cross, gate=gate,
+                    dip=(last - dn10) if dn10 > 0 else None,
+                    sell=(last + up90) if up90 > 0 else None,
+                    asof=c.index[-1].date())
+    except Exception:
+        return None
+
+
+def trigger_levels(sym):
+    """Closed-form next-close TRIGGER PRICES from data up to last close only (no premarket data
+    needed). RSI-2 (Wilder n=2) and the 200SMA are close-based, so tomorrow's trigger price is
+    exactly solvable: you can set limit orders / know your levels before the open. A 1y LEAP is
+    ~insensitive to one day's open-vs-close, so acting anytime next session ~= backtest's T+1-close."""
+    try:
+        c = load(sym)["close"]
+        last = float(c.iloc[-1])
+        d = c.diff()
+        au = float(d.clip(lower=0).ewm(alpha=0.5, adjust=False).mean().iloc[-1])
+        ad = float((-d).clip(lower=0).ewm(alpha=0.5, adjust=False).mean().iloc[-1])
+        rsi = 100 - 100 / (1 + au / ad) if ad > 0 else 100.0
+        cross = float(c.tail(199).sum() / 199)  # pure-200SMA single-close flip level for next day
+        gate = "ON" if last > float(c.rolling(200).mean().iloc[-1]) else "OFF"
+        dn10 = 9 * au - ad          # down-move that would drive RSI-2 to 10
+        up90 = 9 * ad - au          # up-move that would drive RSI-2 to 90
+        lines = [f"{sym} triggers (from {c.index[-1].date()} close, RSI-2={rsi:.0f}):",
+                 f"    LEAP gate {gate} -> flips if close crosses 200SMA {cross:.2f} ({(cross/last-1)*100:+.1f}%)"]
+        lines.append(f"    RSI-2<10 (dip/accumulate): close <= {last-dn10:.2f} ({(-dn10/last)*100:+.1f}%)"
+                     if dn10 > 0 else f"    RSI-2<10: already <=10 / n/a (RSI-2={rsi:.0f})")
+        lines.append(f"    RSI-2>90 (sell covered call): close >= {last+up90:.2f} ({(up90/last)*100:+.1f}%)"
+                     if up90 > 0 else f"    RSI-2>90: already >=90 / n/a (RSI-2={rsi:.0f})")
+        return "\n".join(lines)
+    except Exception as e:
+        return f"{sym} triggers: unavailable ({type(e).__name__})"
+
+
 def main():
     from datetime import datetime
     print(f"==== {datetime.now():%Y-%m-%d %H:%M} ====")
@@ -86,6 +135,9 @@ def main():
     m3 = "TRIGGER(RSI-2>90)" if rsi2 > 90 else "off"
     print(f"VIX={vix:.2f} (M1 panic window: {m1})  SPY RSI-2={rsi2:.1f} (M3 sell-call: {m3})  ^IRX={irx:.2f}%")
     print(crisis_sleeve_line(spy.index))
+    print("--- today's trigger prices (computed from last close; set orders pre-open) ---")
+    print(trigger_levels("SPY"))
+    print(trigger_levels("QQQ"))
 
     # Optional: current delta-0.50 1y LEAP quote per leg (graceful if chain unreachable)
     try:

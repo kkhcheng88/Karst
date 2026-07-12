@@ -4,6 +4,21 @@
 > 用戶取態:衛星 = 組合 30%(起步 ~$41k,crypto 階梯觸發會增大);偏好 ETF 表達;
 > 10x 願望由「主題內細價純 play + A 型期權表達」承載,唔係 registry 撒網。
 
+## 0. 入場紀律(用戶 2026-07-09 追問「late 主題要唔要擇時」定案)
+
+**兩個極端都錯:TA 擇時(已殺,無 alpha)/ 不惜代價買晒(late 主題 = 買喺 priced-in 頂)。**
+正確 = **基本面 cycle_stage + sizing 做「timing」,唔用 TA:**
+
+| cycle_stage | 入場方式 |
+|---|---|
+| **early**(constraint-language 早捉、未 priced-in)| 可爽快建倉(edge 在於早)|
+| **mid** | 分段建倉,趁弱加 |
+| **late / priced-ahead**(現時 9 主題全部)| **細注 + 分段 + 唔追高 + 等擁擠/估值消散**(主題 note 明寫「don't chase」嗰啲照跟)|
+
+即:satellite 入場 = fundamental-cycle 驅動,唔係 RSI 驅動;early 主題先「買得爽」,late 主題「買得慢」。
+呢個係 WS4 早期偵測嘅回報所在 —— 捉得早 = 可以喺 priced-in 前用細擇時代價建倉。**現時全 late →
+全部細注耐性入,冇一個「今日買晒」。**
+
 ## 1. 冷啟動注碼規則(裁判 = PRELIMINARY 期間;而家至 ~10 月)
 
 1. **單主題上限** = min(confidence × $20k, $15k)。例:AI-電力 0.33 → $6.6k;記憶體 0.38 → $7.6k。

@@ -76,16 +76,23 @@
 1. ~~Crypto:方案 A 定 B?~~ **已答(2026-07-08):唔賣 → 方案 B**。Crypto 當獨立倉;
    計畫套落證券部分 $136k(core $95k + 衛星 $41k)。相關性/組合增量實測派咗
    (→ `results/2026-07-08_crypto_decorr.md`),等數返嚟俾用戶做知情決定。
-2. AXTI / URA / RGTI / QBTS / BTC:邊個提名做衛星(要肯寫 kill 條件),其餘賣?
+2. ~~AXTI / URA / RGTI / QBTS / BTC 邊個做衛星?~~ **已答(2026-07-09,Karst 俾判斷):**
+   - **AXTI**:真 InP 樽頸名(photonics 主題內),但蝕錢 + fwd PE 72x + 喺最擠主題最 froth 端;
+     現 $60(-57% from $140 blow-off,+40% 高於 200SMA)。用戶揸 140 股(~$8.4k)= 單一 spec 股
+     超配 ~2.5×(衛星單名上限 ~$3.3k)。**Karst call:trim 返落上限(~50-60 股),保留做 photonics
+     spec 刺刀 + 掛主題 kill;唔好用 $93.6 成本/$140 頂做目標(跌咗 ≠ 平)。**
+   - **URA**:入 ai-power-grid 衛星(ETF 籃 URA+GRID+UTES,見 themes.yaml)。
+   - **RGTI / QBTS**:**用戶決定自己揸等返成本 = 系統外個人 bet**(量子唔喺任何 thesis,
+     Karst 無 backtested 依據 → 唔提供 signal,ring-fence,唔計衛星紀律)。
+   - **BTC**:crypto 戶,用戶自決。
+   - **TTD/INTU/ORCL/港股**:無 thesis → 賣入 core(冇急就唔使,見 item 4)。
 3. ~~$500k-1M 以外仲有冇資產?~~ **已答:$500k-1M 係假設 crypto 返家鄉(ETH +151%/SOL +200%)後嘅數
    (~HKD 5M)。真實今日 NAV ≈ $346k → 計畫一律以今日值做地基,recovery 係 upside 唔係地基。**
-4. ~~嗰 9 張未完成訂單係乜?~~ **已答(2026-07-08 截圖)**:8 張證券 + 1 張 crypto —
-   AXTI 全倉分四級賣 @97/116/128/139(現 56.4,+72~146% 先成交)、RGTI 全倉 @27(+69%)、
-   QBTS 全倉 @30(+47%)、ORCL 全倉 @185(+33%)—— **七張全部係成本錨「返家鄉賣單」**;
-   02802 @7.30 貼市真賣單(啱計畫);BTC 買 0.03 @56k 溝貨單(用埋 crypto 戶最後現金)。
-   **解讀:用戶已決定退出呢啲名(全倉賣單=非 conviction),分歧只係價位。**
-   TTD/INTU(最傷兩隻)反而冇任何 exit 單。
-   建議:取消 7 張希望價單 → 改貼市賣(連 TTD/INTU),所得 ~$27k 入 core;URA 待答;BTC 單用戶自決。
+4. ~~嗰 9 張未完成訂單係乜?~~ **已答(2026-07-08 截圖)**:8 張證券 + 1 張 crypto。
+   **訂單處置修正(2026-07-09,用戶 push 後):唔需要 cancel,留喺度冇害**(高價 limit sell
+   不會成交 = 繼續揸,無成本)。真問題唔係取唔取消,係「今日呢個價會唔會用新錢買」——
+   AXTI/RGTI/QBTS 判斷見 item 2。TTD/INTU/ORCL 無 thesis → 唔急錢就留張單,要起 core 資本先貼市賣。
+   02802 @7.30 貼市單啱計畫。BTC 溝貨單用戶自決。
 
 ## 7. Crypto recovery ladder(建議,等用戶定實數 —— 事先承諾,防 get-even-itis)
 
@@ -104,8 +111,9 @@ URA 歸入 **ai-power-grid 衛星**,表達方式 = ETF 籃(用戶偏好 ETF 多�
 
 ## 8. 分段入場模式(用戶 2026-07-08 揀:觀察一排、慢慢入)
 
-- **Dip-or-deadline 規則**:每月一注 $15-20k 買 SPY 底倉 —— 該月首個 SPY RSI-2<10 日入;
-  整月冇 → 月底最後交易日照入(底線防「成年等回調」)。
+- **Dip-or-deadline 規則(2026-07-09 更新:deadline 拉長到 6 個月)**:分 ~6 期建 SPY 底倉,
+  每期該月首個 SPY RSI-2<10 日入;整月冇 dip → 月底照入(底線防「成年等回調」/「坐現金等冧市」)。
+  拉長 = 減入場運氣嘅風險管理,唔係擇時;底倉係 B&H,唔靠等 dip 保護(跌穿 200SMA 係 LEAP 熄火,底倉照揸)。
 - **LEAP 逐張加 = playbook R3 月度 top-up 本身**;現有 550C 已 cover 現時 core 規模嘅整個期權
   預算($22.6k > $14.3k),初期分段錢**先起 SPY 底倉**($67k 目標),QQQ LEAP 等 core NAV 增長先輪到。
 - **觀察基建**:schtask `Karst-playbook-daily`(週一至五 09:15)→ `playbook_log.txt`
