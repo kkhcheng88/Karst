@@ -37,9 +37,11 @@
 |---|---|
 | `docs/2026-07-08_phase3_architecture.md` | 📘 **Phase-3 入口**:數據流圖 + 部件清單 + 執行 backlog + 系統 top-3 缺陷 |
 | `docs/2026-07-08_phase3_ws{1..5}_*.md` | 📘 五 WS 規格:ws1 裁判 / ws2 危機 / ws3 生命週期 / ws4 早期偵測+儀錶盤 / ws5 表達注碼 |
-| `docs/2026-07-09_magnifier_model_plan.md` | 📘 **★ supercycle magnifier 模型**(用戶最新方向;含 case 庫 patterns + discovery reframe;**model 設計待用戶深談**)|
+| `docs/2026-07-09_magnifier_model_plan.md` | 📘 **★ supercycle magnifier 模型**(含 case 庫 patterns + discovery reframe;**2026-07-12 rubric 定案,見下**)|
+| `docs/2026-07-12_magnifier_scorecard_rubric.md` | 🟢 **magnifier 5-feature + 2-pattern rubric 定案**:MU(2023+2016)+FSLR-vs-STP 三輪ex-ante校準、套用WATCH四票、per-node schema |
 | `docs/2026-07-09_magnifier_literature.md` | 🟢 21 篇學術地基(回報偏態/資本週期/營運槓桿/彩票)|
 | `docs/2026-07-09_text_and_smartmoney_methodology.md` | 🟢 11 篇:文本訊號方法論(Lazy Prices/LM 詞典/Theile 供應鏈 NLP)+ 13F smart-money probe 評估 |
+| `docs/2026-07-12_fable_investment_strategy_brief.md` | 📘 **交俾 Fable 5 獨立 session:投資邏輯總審查**(非技術審查;Core/Phase-3邏輯+KPI+具體改進+dashboard設計)|
 | 已 LIVE 部件 | `thesis/{forward_ic,log_predictions,backfill_outcomes,migrate_track_record}.py`(裁判)、`{sizing,concentration,beta_check,lint}.py`(生命週期/注碼)、`themes.yaml`(registry)|
 | Phase-3 研究 | `results/2026-07-08_{constraint_language_probe,altdata_census,insider_cluster_probe,crisis_rescue,power_etf_basket}.md`、`2026-07-09_magnifier_case_library.md` |
 
