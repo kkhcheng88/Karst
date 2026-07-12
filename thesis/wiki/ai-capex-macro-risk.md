@@ -10,8 +10,9 @@ updated: 2026-07-08
 # AI 資本支出宏觀風險(跨主題)— BIS:怕的不是 AI 失敗,是 AI 成功
 
 > 概念頁,跨 [[memory-supercycle]] / [[photonics-optical]] / [[ai-power-grid]] / [[advanced-packaging]]
-> / [[tpu-custom-silicon]] / [[semicap-equipment]] 全部 AI 主題共用。蒸餾自 BIS《Annual Economic
-> Report 2026》(2026-06,經 Tier-2 #147,2026-07-06)。這頁不是某個 ticker 的 thesis,是所有 AI 主題
+> / [[tpu-custom-silicon]] / [[semicap-equipment]] / [[euv-lithography-monopoly]](2026-07-12 補接,
+> 07-11 discovery radar 新增時遺漏)全部 AI 主題共用。蒸餾自 BIS《Annual Economic Report 2026》
+> (2026-06,經 Tier-2 #147,2026-07-06)。這頁不是某個 ticker 的 thesis,是所有 AI 主題
 > kill_condition 裡「AI-capex hiccup」那一腳的具體監察儀表 —— 任何一個 AI 主題的 confidence 判斷,
 > 都應先看這頁的五盞燈。
 
@@ -56,9 +57,11 @@ updated: 2026-07-08
 ## 對 Karst AI 主題的用法
 這頁**不進 themes.yaml、不接 thesis_quality**(它是宏觀背景,不是某 ticker 的表達);它是**跨主題的
 校準輸入**:任一 AI 主題([[memory-supercycle]]、[[photonics-optical]]、[[ai-power-grid]]、
-[[advanced-packaging]]、[[tpu-custom-silicon]]、[[semicap-equipment]])的 kill_condition 若寫「AI-capex
-打嗝/hiccup」,具體監察就是這五盞燈,不是憑感覺判斷「AI capex 有沒有變差」。任何一盞轉偏空且持續兩季以上
-→ 對應主題的 confidence 應重新評估(降),而非等單一主題自己的證據補齊。
+[[advanced-packaging]]、[[tpu-custom-silicon]]、[[semicap-equipment]]、[[euv-lithography-monopoly]])
+的 kill_condition 若寫「AI-capex 打嗝/hiccup」,具體監察就是這五盞燈,不是憑感覺判斷「AI capex 有沒有
+變差」。任何一盞轉偏空且持續兩季以上 → 對應主題的 confidence 應重新評估(降),而非等單一主題自己的證據
+補齊。**新增 AI-capex 相關 theme 時,記得同步接返呢頁**(2026-07-12 教訓:euv-lithography-monopoly
+07-11 新增時漏咗接,隔咗一日先補)。
 
 ## 來源
 Tier-2 #147(BIS Annual Economic Report 2026,經 gooptions.cc,2026-07-06;`thesis/wiki/sources/147-*`);

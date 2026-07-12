@@ -52,6 +52,13 @@ tickers: ['ASML']
 > 結構 **或** AI驅動先進製程資本開支增長停滯/逆轉(TSMC/三星/Intel capex guidance回落) **或** 訂單
 > backlog/lead time 回復返 2019 年前水平(12-24個月縮到 <6個月)。觸發 -> confidence 歸零。
 
+## 2026-07-12 update:補接 [[ai-capex-macro-risk]] cross-link(原文遺漏)
+- [[ai-capex-macro-risk]]:本頁 kill_condition 第二腳「AI驅動先進製程資本開支增長停滯/逆轉」應對照該頁
+  五盞燈——ASML 客戶係 TSMC/三星/Intel 等晶圓廠,唔係雲端四大本身,故傳導有一層延遲:雲端 capex 打嗝要
+  先傳到晶圓代工 capex guidance,先輪到 ASML 訂單。最直接相關嘅兩盞燈係「四大 FCF 軌跡」(領先指標)
+  同「承諾-run-rate 缺口」(擴散速度);若兩盞燈持續轉偏空兩季以上,應提前重新評估本頁 confidence,
+  唔使等 TSMC/三星自己 capex guidance 落實先反應。
+
 ## 待補
 - [ ] Capital-allocation/ROIC 分析
 - [ ] TAM sizing(先進製程 capex 未來5年展望)
