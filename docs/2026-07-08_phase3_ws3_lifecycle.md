@@ -91,6 +91,39 @@ retag 之後實跑 = **54.9%,正式過咗 spec §4 嘅 50% 上限,`concentration
 **已經違反設計硬性上限**嘅集中度風險讀數——舊標籤將真正嘅 ai-capex 曝險攤薄埋喺 energy-macro
 入面,睇落安全,實情已經爆錶。
 
+## 1b. Per-node schema(2026-07-12,magnifier model plan 步驟E前置)
+
+**動機**(用戶 2026-07-12):同一個 theme 入面,唔同 ticker 可以身處完全唔同嘅週期階段同放大倍數——
+`docs/2026-07-09_magnifier_model_plan.md` §3b 已經用 AI 電力鏈舉例:電網設備(late/已priced)vs
+IPP(mid)vs 鈾燃料(mid但耐久)vs SMR次世代核(early/pre-revenue/10x option但binary)。現行
+theme-level 單一 `cycle_stage`/`confidence` 標籤會將呢種差異壓平。
+
+**Schema(加法,唔改現有機制)**:`themes.yaml` 每個 theme 可以加一個可選 `nodes:` 塊,每個 node 有
+`name`/`tickers`/`cycle_stage`/`magnitude_tier`/`last_scored`/`last_evidence`。**Theme-level 嘅
+`tickers:`/`cycle_stage:`/`confidence:` 保持不變、繼續做 rollup**——`lint.py`/`concentration.py`/
+`beta_check.py`/`theme_signal.py`/`sizing.py` 全部零改動,依然讀 theme-level。冇 `nodes:` 塊嘅
+theme(現時14/15個)行為完全不變。`magnitude_tier` 係質性分級(唔係正式 scorecard 輸出——嗰個係
+magnifier 步驟E,未起),`confidence` 刻意喺 node 層面留空,避免喺 rubric 未起之前假裝有精確數字。
+
+**首個 worked example**:`ai-power-grid`(5 nodes:grid-hardware/power-semis-mature/
+pre-earnings-optionality/uranium-fuel/ipp-utilities),node 分野直接由現有 note 入面已經寫低嘅
+判斷抽出嚟(唔係憑空新分類)——例如 pre-earnings-optionality(BE/NVTS/WOLF)標「binary」,
+WOLF 已經實際破產,係活生生嘅事後印證。
+
+**重新審視機制(用戶要求:文章更新 OR 業績/transcript 發佈 就要 re-examine)**:
+`thesis/magnifier_staleness.py` 兩條觸發:
+1. node 任一 ticker 有新 transcript(`corpus.db`,同 `constraint_scan.py` 讀同一份數據)
+2. node 任一 ticker 有新 gooptions 文章(`thesis/.raw/gooptions/research-manifest.json` 嘅
+   `byTicker` 索引,已經結構化)
+
+兩者任一日期新過個 node 嘅 `last_scored`,就寫入 `thesis/.raw/magnifier_review_queue.md`(持久
+human-triage checklist,同 `constraint_scan_queue.md` 一樣有 track,唔係 gitignored)。**呢個唔會
+自動重新打分**——分數要變係 session 判斷,唔係公式靜靜雞覆蓋(同 `theme_signal.py` 一樣嘅 NHITL
+原則)。排咗 `Karst-magnifier-staleness-weekly`(SUN 10:45,喺 corpus-weekly 之後留 buffer)。
+
+**已知 v1 缺口**:ETF-only leg(uranium-fuel/ipp-utilities,`tickers: []`)冇個股 transcript/文章
+可以監察,依家冇觸發機制,要人手決定重檢週期——冇假裝解決,如實記低。
+
 ## 2. Admission 閘(新主題入 registry 嘅唯一通道)
 
 **機器 lint(`thesis/lint.py` 擴充,缺一 = 入唔到)**:

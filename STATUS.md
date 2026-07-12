@@ -47,6 +47,7 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 > Cass Freight/AAR 呢幾條本身都未做,連同呢個一齊確認**唔再追**——altdata top-5 probe 淨係留返
 > TWSE 一條。
 | SUN 10:30 | Karst-constraint-scan-weekly(**已註冊 2026-07-12**;排喺 corpus-weekly 之後留 2h buffer)| WS4 backlog #1:`backtest/results/<date>_constraint_scan_production.md`(theme×季度熱力表)+ `thesis/.raw/constraint_scan_queue.md`(雙向新警報,持久 checklist,**有追蹤**,唔係gitignored)|
+| SUN 10:45 | Karst-magnifier-staleness-weekly(**已註冊 2026-07-12**)| Magnifier per-node schema(`docs/2026-07-08_phase3_ws3_lifecycle.md` §1a-node):node有新transcript或新gooptions文章就寫入 `thesis/.raw/magnifier_review_queue.md`(持久checklist,**有追蹤**)。首個worked example = ai-power-grid 5 nodes。|
 
 ## 人手週度任務(IMA;2026-07-12 新增 —— agent 做唔到,一定要用戶自己開 IMA)
 

@@ -164,6 +164,54 @@ themes:
     - GNRC
     - SPXC
     - CAT
+    # 2026-07-12 PER-NODE SCHEMA (magnifier model plan step E prep, docs/2026-07-08_
+    # phase3_ws3_lifecycle.md Sec1a-node): ADDITIVE, does not replace tickers:/cycle_stage:/
+    # confidence: above (those stay as the theme-level ROLLUP every existing script reads --
+    # lint.py/concentration.py/beta_check.py/theme_signal.py/sizing.py are UNCHANGED, still
+    # theme-granular). nodes: exists so a future scorecard (5 ex-ante features, docs/2026-07-09_
+    # magnifier_model_plan.md Sec1) can be recorded per sub-basket instead of flattened to one
+    # theme-level number -- ai-power-grid is the worked example because its own note already
+    # documents 3 distinct maturity clusters (grid hardware = late/priced, power-semis =
+    # mid-late, BE/NVTS/WOLF = pre-earnings/event-binary) plus 2 ETF-only legs with their own
+    # stage (uranium/IPP). magnitude_tier is QUALITATIVE (not yet the formal rubric output --
+    # that's magnifier step E, not built yet) and confidence is intentionally OMITTED per node
+    # (assigning a precise number ahead of the actual scorecard would be false precision).
+    # last_scored/last_evidence drive staleness detection (thesis/magnifier_staleness.py,
+    # triggered by a new transcript OR a new gooptions article touching a node's tickers) --
+    # see thesis/.raw/magnifier_review_queue.md for the human-triage queue this feeds.
+    nodes:
+    - name: grid-hardware
+      tickers: [GEV, ETN, PWR, VRT, GNRC, SPXC, CAT]
+      cycle_stage: late
+      magnitude_tier: 2-3x                 # 大部分已priced-ahead-of-ramp(ETN 99th/GNRC+SPXC+CAT
+                                            # 07-11新增稍後,但同一產品類別)
+      last_scored: 2026-07-12
+      last_evidence: 2026-07-12
+    - name: power-semis-mature
+      tickers: [MPWR, VICR, 'ON', TXN]
+      cycle_stage: mid-late
+      magnitude_tier: 2-3x                 # POL duopoly護城河深,但ON 90th/MPWR 89th已估值極端
+      last_scored: 2026-07-12
+      last_evidence: 2026-07-12
+    - name: pre-earnings-optionality
+      tickers: [BE, NVTS, WOLF]
+      cycle_stage: early                   # event-driven,note原文:「pre-earnings -> option/event framing」
+      magnitude_tier: 5-10x-binary          # 高magnitude但binary——WOLF已實現破產,活生生ex-post驗證
+                                            # 呢個node嘅「binary」標籤啱(唔係得個講字)
+      last_scored: 2026-07-12
+      last_evidence: 2026-07-12
+    - name: uranium-fuel
+      tickers: []                          # ETF-only leg(URA,見下thesis_etf),Karst冇直接持個股
+      cycle_stage: mid
+      magnitude_tier: 3-5x-durable         # §3b:「鈾/核燃料 MID 但耐久(礦幾年)」
+      last_scored: 2026-07-12
+      last_evidence: 2026-07-12
+    - name: ipp-utilities
+      tickers: []                          # ETF-only leg(UTES,見下thesis_etf)
+      cycle_stage: mid
+      magnitude_tier: 2x
+      last_scored: 2026-07-12
+      last_evidence: 2026-07-12
     thesis_etf:
     - etf: URA
       leg: 鈾燃料/核組件

@@ -69,6 +69,12 @@ thesis/.raw/constraint_scan_state.json
 thesis/.raw/constraint_scan_cron.log
 thesis/.raw/insider_tilt_cron.log
 thesis/.raw/altdata_twse_cron.log
+
+# magnifier_staleness.py dedup-state + cron log -- thesis/.raw/magnifier_review_queue.md is
+# deliberately NOT listed here, same persistent-checklist convention as constraint_scan_queue.md.
+thesis/.raw/magnifier_staleness_state.json
+thesis/.raw/magnifier_staleness_cron.log
+
 backtest/results/*_data.json
 
 # insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
