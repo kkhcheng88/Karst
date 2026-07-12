@@ -117,9 +117,15 @@ WOLF 已經實際破產,係活生生嘅事後印證。
    `byTicker` 索引,已經結構化)
 
 兩者任一日期新過個 node 嘅 `last_scored`,就寫入 `thesis/.raw/magnifier_review_queue.md`(持久
-human-triage checklist,同 `constraint_scan_queue.md` 一樣有 track,唔係 gitignored)。**呢個唔會
-自動重新打分**——分數要變係 session 判斷,唔係公式靜靜雞覆蓋(同 `theme_signal.py` 一樣嘅 NHITL
-原則)。排咗 `Karst-magnifier-staleness-weekly`(SUN 10:45,喺 corpus-weekly 之後留 buffer)。
+human-triage checklist,同 `constraint_scan_queue.md` 一樣有 track,唔係 gitignored)。
+
+**2026-07-12 再進一步:摺入每日 nightly-analysis,而唔係獨立週度 job**——原本排咗獨立嘅
+`Karst-magnifier-staleness-weekly`,但用戶指出文章日日ingest,週度check會慢成7日先追到,已刪咗
+呢個獨立task,改為摺入 05:55 嘅 `Karst-nightly-analysis` 做第3項guard(`thesis/nightly_analysis.py`
+嘅 `pending_magnifier()`)。**兩層NHITL紀律不變**:(a)夜班guard淨係偵測邊個node stale,唔自己
+打分;(b)有stale就觸發headless Claude跟`thesis/nightly_analysis_prompt.md`職責3寫**草稿**判斷落
+queue,**唔准直接改themes.yaml嘅nodes:塊**——分數/magnitude_tier/last_scored要日間session人手
+confirm先落實,唔係公式或夜班agent靜靜雞話事。
 
 **已知 v1 缺口**:ETF-only leg(uranium-fuel/ipp-utilities,`tickers: []`)冇個股 transcript/文章
 可以監察,依家冇觸發機制,要人手決定重檢週期——冇假裝解決,如實記低。

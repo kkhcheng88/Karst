@@ -15,4 +15,11 @@
 - 更新對應 theme wiki 頁(cited,issue# + 日期)+ 有需要先動 themes.yaml note;**confidence/cycle_stage 一律預設「維持」**,冇 Tier-1 財報級新事實唔准郁;kill condition 觸發就照直寫低(都唔好自行清零,標「待日間 session 確認」)。
 - 跑 `python thesis/corpus.py build` 同 `python thesis/lint.py`(要 0 errors);完成後把新 items 數寫入 `.last_ingested_count`。
 
+**職責 3|Magnifier node 重新評分(2026-07-12 新增)**
+開 `thesis\.raw\magnifier_review_queue.md`,搵今晚 `magnifier_staleness.py` 新加嘅未剔 `- [ ]` 項(格式:`**{theme}/{node}** stale -- new evidence: ...`)。對每一項:
+1. 讀嗰個 node 嘅新證據(constraint_scan.py/corpus.db 嘅新 transcript,或 gooptions manifest 嘅新文章——原文已喺 `thesis\.raw\gooptions\research\`)。
+2. 跟 `docs\2026-07-12_magnifier_scorecard_rubric.md` §1 嘅 5-feature rubric + §2 兩個 cross-cycle pattern,寫低**初稿判斷**(邊個 feature 分數有冇因為新證據而變、magnitude_tier 使唔使跟住郁)——**淨係寫草稿,唔准直接改 `themes.yaml` 嘅 `nodes:` 塊**(node 嘅 `last_scored`/`magnitude_tier`/`cycle_stage` 呢啲要日間 session 人手確認先落實,同 confidence 一樣嘅 NHITL 紀律)。
+3. 草稿寫喺同一個 `- [ ]` 項底下(縮排 sub-bullet),**唔好剔做 `[x]`**——剔咗代表「人已經睇過確認咗」,夜班冇資格剔,淨係俾草稿。
+4. 如果證據薄/唔夠判斷,就寫低「證據唔夠,維持現狀,待日間覆核」,唔好夾硬打分。
+
 **收尾**:純文字報告 —— 分析咗乜、每條 verdict、改咗邊啲檔;有 permission 阻擋就記低照繼續其他部分。唔好 commit git。

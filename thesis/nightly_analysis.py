@@ -1,10 +1,17 @@
 """Nightly analysis guard + headless-Claude dispatcher (runs after the 05:30 HKT fetch batch).
 
-Checks whether there is anything NEW to analyse (unticked transcripts inbox items, or
-gooptions manifest count > last-ingested count). If nothing: exits without spending any
-model quota. If something: invokes headless Claude (all-opus — the material is short, a
-delegation layer is not worth its overhead) with edit-only permissions + python-only
-bash, per thesis/nightly_analysis_prompt.md.
+Checks whether there is anything NEW to analyse (unticked transcripts inbox items, gooptions
+manifest count > last-ingested count, OR a magnifier node newly flagged stale). If nothing:
+exits without spending any model quota. If something: invokes headless Claude (all-opus — the
+material is short, a delegation layer is not worth its overhead) with edit-only permissions +
+python-only bash, per thesis/nightly_analysis_prompt.md.
+
+Magnifier check (added 2026-07-12): runs thesis/magnifier_staleness.py's own dedup'd check
+daily (cheap -- DB/JSON reads only) rather than on a separate weekly schedule, so a same-day
+article or transcript touching a magnifier node's tickers gets queued for rescoring same-day,
+not up to a week later. It writes any new flags to thesis/.raw/magnifier_review_queue.md itself
+(see that module) -- this guard only reads back how many it wrote to decide whether to spend
+headless-Claude quota this run.
 
     python thesis/nightly_analysis.py [--dry-run]
 """
@@ -22,6 +29,8 @@ MANIFEST = os.path.join(KARST, "thesis", ".raw", "gooptions", "research-manifest
 STATE = os.path.join(KARST, "thesis", ".raw", "gooptions", ".last_ingested_count")
 PROMPT = os.path.join(KARST, "thesis", "nightly_analysis_prompt.md")
 LOG = os.path.join(KARST, "thesis", ".raw", "nightly_analysis.log")
+
+sys.path.insert(0, os.path.join(KARST, "thesis"))
 
 
 def pending_transcripts() -> int:
@@ -51,14 +60,26 @@ def pending_gooptions() -> int:
     return max(0, n - last)
 
 
+def pending_magnifier() -> int:
+    """Runs magnifier_staleness's own dedup'd check (cheap -- corpus.db + manifest reads only).
+    Any newly-stale node is written to thesis/.raw/magnifier_review_queue.md as a side effect;
+    this just returns how many so main() can decide whether to spend headless-Claude quota."""
+    try:
+        import magnifier_staleness
+        return len(magnifier_staleness.run() or [])
+    except Exception as e:
+        print(f"[nightly_analysis] magnifier_staleness check failed (non-fatal): {e}")
+        return 0
+
+
 def main():
     stamp = f"{datetime.now():%Y-%m-%d %H:%M}"
-    nt, ng = pending_transcripts(), pending_gooptions()
-    line = f"==== {stamp} ==== pending: transcripts={nt} gooptions={ng}"
+    nt, ng, nm = pending_transcripts(), pending_gooptions(), pending_magnifier()
+    line = f"==== {stamp} ==== pending: transcripts={nt} gooptions={ng} magnifier={nm}"
     print(line)
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(line + "\n")
-    if nt == 0 and ng == 0:
+    if nt == 0 and ng == 0 and nm == 0:
         print("nothing to analyse -> no model spend")
         return
     if "--dry-run" in sys.argv:

@@ -26,7 +26,7 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 | 05:35 每日 | Karst-gooptions-daily | 抓 gooptions.cc 新研究 + wiki stubs 自動 commit |
 | 05:40 二至六 | Karst-playbook-daily | `playbook_log.txt`(core v2 每日判定表,用戶觀察用)|
 | 05:45 每日 | Karst-transcripts-daily | 新 Backtest-Everything transcript 排入 `../Reference/raw_data/backtest_everything_transcripts/_PENDING_ANALYSIS.md` |
-| 05:55 每日 | Karst-nightly-analysis(**已註冊 2026-07-09**)| Python guard:冇新料 = 零 quota;有新料 → headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions,詳 `thesis/nightly_analysis_prompt.md` |
+| 05:55 每日 | Karst-nightly-analysis(**已註冊 2026-07-09**;**2026-07-12 加咗第3項 guard**)| Python guard 三選一(transcripts inbox / gooptions manifest delta / **magnifier node 新stale**):全部零就零 quota;有一樣就 headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions + **magnifier重新評分草稿**(寫入queue,唔自動落實),詳 `thesis/nightly_analysis_prompt.md` |
 | 20:30 一至五 | Karst-premarket-daily(**已註冊,補記 2026-07-12**)| `premarket_log.txt`:開市前 ~1h live premarket 價疊加返 05:xx post-close 觸發表(dip/covered-call/200SMA),read-only |
 | — | **人手 fallback(而家生效)** | 日間 session 見 `_PENDING_ANALYSIS.md` 有未剔 `[ ]` 或 gooptions 有新文 → 蒸餾/INGEST(判「採納/佐證/唔採納」)|
 
@@ -47,7 +47,13 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 > Cass Freight/AAR 呢幾條本身都未做,連同呢個一齊確認**唔再追**——altdata top-5 probe 淨係留返
 > TWSE 一條。
 | SUN 10:30 | Karst-constraint-scan-weekly(**已註冊 2026-07-12**;排喺 corpus-weekly 之後留 2h buffer)| WS4 backlog #1:`backtest/results/<date>_constraint_scan_production.md`(theme×季度熱力表)+ `thesis/.raw/constraint_scan_queue.md`(雙向新警報,持久 checklist,**有追蹤**,唔係gitignored)|
-| SUN 10:45 | Karst-magnifier-staleness-weekly(**已註冊 2026-07-12**)| Magnifier per-node schema(`docs/2026-07-08_phase3_ws3_lifecycle.md` §1a-node):node有新transcript或新gooptions文章就寫入 `thesis/.raw/magnifier_review_queue.md`(持久checklist,**有追蹤**)。首個worked example = ai-power-grid 5 nodes。|
+
+> **Magnifier staleness 已改做每日**(2026-07-12,原本獨立嘅 `Karst-magnifier-staleness-weekly`
+> 已刪):理由——文章日日ingest,週度先check會慢成7日先追到。已摺入 05:55 嘅
+> `Karst-nightly-analysis`(見上,第3項guard),同一日偵測、同一日 headless Claude 出草稿。
+> Magnifier per-node schema 本身見 `docs/2026-07-08_phase3_ws3_lifecycle.md` §1a-node;首個
+> worked example = ai-power-grid 5 nodes;草稿queue = `thesis/.raw/magnifier_review_queue.md`
+> (持久checklist,**有追蹤**,人手confirm先落實,唔係夜班自動生效)。
 
 ## 人手週度任務(IMA;2026-07-12 新增 —— agent 做唔到,一定要用戶自己開 IMA)
 

@@ -93,7 +93,7 @@ def run():
     node_map = _load_nodes()
     if not node_map:
         print("[magnifier_staleness] no theme has a nodes: block yet -- nothing to check")
-        return
+        return []
     transcript_dates = _latest_transcript_by_ticker()
     article_dates = _latest_article_by_ticker()
     state = _load_state()
@@ -128,7 +128,7 @@ def run():
     _save_state(state)
     if not new_flags:
         print("[magnifier_staleness] no new stale nodes this run")
-        return
+        return new_flags
 
     os.makedirs(os.path.dirname(QUEUE_PATH), exist_ok=True)
     with open(QUEUE_PATH, "a", encoding="utf-8") as f:
@@ -138,6 +138,7 @@ def run():
     print(f"[magnifier_staleness] {len(new_flags)} node(s) newly stale -> {QUEUE_PATH}")
     for slug, name, reasons in new_flags:
         print(f"  {slug}/{name}: {'; '.join(reasons)}")
+    return new_flags
 
 
 if __name__ == "__main__":
