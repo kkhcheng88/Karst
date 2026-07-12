@@ -30,7 +30,7 @@ import pandas as pd
 from scipy import stats as sps
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import exp_insider_breadth as B  # noqa: E402  (reuses B.build(): same data + data-quality monkeypatch)
+import exp_insider_breadth as B  # noqa: E402  (reuses B.build(): same data + data-quality guard)
 
 HORS = B.HORS
 stat = B.stat

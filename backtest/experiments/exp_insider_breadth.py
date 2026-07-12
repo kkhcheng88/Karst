@@ -28,28 +28,9 @@ import exp_insider_mktcap as MC         # noqa: E402
 
 HORS = [21, 63, 126]
 
-# DATA-QUALITY GUARD (same issue diagnosed in exp_insider_market_ratio.py, 2026-07-11): SEC bulk
-# Form345 has rare fat-finger filings (e.g. a mis-keyed TRANS_PRICEPERSHARE) that turn a single row
-# into a multi-TRILLION "purchase" -- IV.build_events()'s per-event `value` is a SUM over a trailing
-# window, so one bad row poisons that whole event's $value (149/9997 events here have value>$10B,
-# max $34.6 QUADRILLION for one AGO 2008-04 event -- not real). This matters for THIS script because
-# 3b/3c below use $value directly (log10(value) in an OLS has real leverage from such outliers,
-# unlike a median). Monkeypatch the transaction-level loader with a sanity cap before aggregating --
-# no single open-market Form-4 PURCHASE row is genuinely >$1B.
-_orig_load_quarter = IV._load_quarter
-
-
-def _clean_load_quarter(qtr):
-    df = _orig_load_quarter(qtr)
-    before = len(df)
-    df = df[df["value"] <= 1_000_000_000]
-    dropped = before - len(df)
-    if dropped:
-        print(f"[breadth][{qtr}] data-quality filter dropped {dropped} fat-finger row(s)")
-    return df
-
-
-IV._load_quarter = _clean_load_quarter
+# DATA-QUALITY GUARD: fat-finger Form345 filings (mis-keyed TRANS_PRICEPERSHARE) are now filtered
+# directly in IV._load_quarter (ported back 2026-07-12, see exp_insider_validate.py) -- no monkeypatch
+# needed here anymore.
 
 
 def stat(x):

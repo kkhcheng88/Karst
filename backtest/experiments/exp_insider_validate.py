@@ -72,6 +72,20 @@ def _load_quarter(qtr):
     tr["price"] = pd.to_numeric(tr["TRANS_PRICEPERSHARE"], errors="coerce")
     tr["value"] = tr["shares"] * tr["price"]
     tr = tr[tr["value"] > 0]
+    # DATA-QUALITY GUARD (ported from exp_insider_market_ratio.py, 2026-07-12): SEC bulk Form345 has
+    # rare fat-finger filings -- e.g. ACCESSION 0001125282-06-002179 (ticker LCC, filed 2006-04-11) has
+    # TRANS_PRICEPERSHARE = $67,550,000/share, turning ONE row into a $118 TRILLION "purchase" that
+    # alone swamps a whole quarter's event $value (build_events() SUMs value over a trailing window --
+    # one bad row poisons the entire cluster event, not just that one filing). Filter implausible
+    # per-share prices (ceiling well above BRK.A, the highest-priced legitimately-traded common stock)
+    # and implausible single-transaction dollar values (no genuine open-market Form-4 trade in
+    # 2006-2025 approaches $10B).
+    _PRICE_CAP, _TXN_CAP = 2_000_000, 10_000_000_000
+    _before_n, _before_val = len(tr), tr["value"].sum()
+    tr = tr[(tr["price"] <= _PRICE_CAP) & (tr["value"] <= _TXN_CAP)]
+    if _before_n != len(tr):
+        print(f"[validate][{qtr}] data-quality filter dropped {_before_n - len(tr)} row(s), "
+              f"${(_before_val - tr['value'].sum())/1e9:,.1f}B of the ${_before_val/1e9:,.1f}B raw sum")
     df = tr.merge(sub, on="ACCESSION_NUMBER").merge(own, on="ACCESSION_NUMBER")
     df = df[(df["DOCUMENT_TYPE"] == "4") & (df["AFF10B5ONE"] != "1")]                   # exclude 10b5-1
     df["ticker"] = df["ISSUERTRADINGSYMBOL"].str.upper().str.strip()

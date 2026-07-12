@@ -666,8 +666,10 @@ themes:
       藥廠嘅FDA/監管filing——換供應商要重新報批,係真.regulatory-lock鎖客,唔係純物理產能稀缺。
       **ttm_pe 3年滾動分位71st(2026-07-11量度,ttm_pe約47.3x)——適中,唔算平但都遠冇ATI/CRS/ASML
       98th咁極端priced-in。**故事track record最短(得4季,vs USAC 13年/ATI 19年),confidence因此定喺
-      6個新thesis中游。corpus data-hygiene:一份`transcript-WST-2023-11-10`實為Westrock Coffee內容
-      被錯標成WST,已排除喺證據外,建議之後重新爬取/改標籤(未執行,留待下次corpus維護)。未搵窄ETF,
+      6個新thesis中游。corpus data-hygiene(2026-07-12已修):`transcript-WST-2023-11-10`實為Westrock
+      Coffee內容被錯標成WST,已由corpus.db刪除(連同同批發現嘅第二個錯標`transcript-WST-2023-07-27`,
+      實為DTE Energy內容);兩者喺corpus底下本身各自已有正確標籤嘅同期transcript
+      (`transcript-WEST-2023-11-09`、`transcript-DTE-2023-07-27`),故毋須重新爬取。未搵窄ETF,
       未做capital-allocation/ROIC/TAM深度研究。
       2026-07-11 中國依賴audit:WST喺上海青浦有兩間確認嘅生產廠(注塑成型2009年起、壓縮成型2013年
       起,約250名員工)——呢個係真.中國製造,唔係估計。但睇落係服務APAC藥廠市場嘅區域自足廠房,
