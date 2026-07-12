@@ -251,3 +251,22 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
   0DTE「100% win」判唔採納 multiple-testing)。四個排程總表喺 STATUS.md「每日自動化」節。
 - **cmd 檔坑**:`.cmd` 註解一律 ASCII——cmd.exe 用 cp950 讀 UTF-8 中文字節,撞正 0x26(&)字節會
   把 REM 行斬開當指令執行(daily_transcripts.cmd 首版中招,已修)。中文註解放 .py docstring。
+
+## §15 2026-07-13 —— 「Karst should be user agnostic」原則確立(crypto governance 撤回事件)
+
+- **事發**:Fable review(P0-3)寫「crypto 治理缺口」係系統缺陷,建議加 ETH/SOL 監察 ladder +
+  下行/時間出口。Karst 照做咗一個 `thesis/crypto_governance.py`(硬編碼用戶個人 ETH/SOL 成本價,
+  排入 05:43 daily automation),**用戶即日撤回**:①「唔賣就唔算realise loss」係經過深思嘅立場
+  (`docs/2026-07-08_transition_plan.md` §8 已記低 2026-07-08 知情拒絕下行/時間出口,「唔再重提」)——
+  加監察/alert 本質上都係推佢去諗「幾時應該賣」,同呢個立場方向相反,唔止係「加咗個功能」咁簡單;
+  ②**用戶明確原則**:「Karst should be user agnostic」——**個人持倉/成本價/具體資產呢類數字,
+  唔應該硬編碼落 Karst 系統層嘅自動化 pipeline**。
+- **確立嘅通用原則**:Karst 嘅「大腦」(spine/scan、Phase-3 thesis 邏輯、sizing 公式、dashboard)
+  要**邊個攞去跑都出到同一個建議**,唔應該綁死某一個用戶嘅具體持倉/成本/現金流狀況。個人化嘅嘢
+  (crypto 持倉、稅務身份之外嘅個人現金流、具體訂單簿)住喺 `docs/2026-07-08_transition_plan.md`
+  呢類 **🔒PERSONAL** 文件層,**唔進系統自動化 code**。呢個同 `docs/2026-07-12_all_active_design_
+  response.md` 已經確立嘅「sizing 一律 %NAV,唔係 $」原則同一脈——兩者都係「系統邏輯同個人現況
+  分層」嘅具體案例。
+- **執行**:script/cmd/schtask 已刪、`.gitignore`/`STATUS.md`/architecture doc §5 已改返映呢個判定
+  (由「已修缺陷」改做「非缺陷,已撤回」)。**下次 Fable/agent 建議「加個人化監察」呢類功能之前,
+  應該先問:呢個屬於系統層(user-agnostic)定係個人層(PERSONAL doc)?**

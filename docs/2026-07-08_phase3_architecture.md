@@ -71,7 +71,7 @@ kill 事實判定);③右側入場係全系統風格(core 買企返 200SMA 上�
 
 | # | 缺陷 | 金額邏輯 | 修法(全部平)|
 |---|---|---|---|
-| 1 | ~~治理覆蓋率~~(**2026-07-13 已修,`thesis/crypto_governance.py`**):紀律只管 39% 資金(crypto 61% 無 kill 無階梯實數)| core α +$9k/年 vs ETH 一個 −30% 月 = −$62k | 已做:ETH 上行 ladder 落實數(用戶原有數字,$2,600/$3,500/$4,338)+ SOL 同款推導(標明「DERIVED」)+ ETH/BTC 比率裝錶。**刻意冇做**:下行/時間出口——`docs/2026-07-08_transition_plan.md` §8 已記低用戶 2026-07-08 知情後拒絕呢個(「唔再重提」),本次修法尊重呢個決定,唔重提 |
+| 1 | **治理覆蓋率**(**2026-07-13 判定:非缺陷,已撤回**):紀律只管 39% 資金(crypto 61% 無 kill 無階梯實數)| core α +$9k/年 vs ETH 一個 −30% 月 = −$62k | 2026-07-13 一度實作(`thesis/crypto_governance.py`,ETH/SOL ladder monitor)但即日撤回——用戶明確覆核:「唔賣就唔算realise loss」係經過深思嘅立場(§8 已記低,2026-07-08 知情拒絕下行/時間出口),**加埋監察/alert 本身都同呢個立場方向相反**,而且**呢類個人持倉硬編碼數字唔應該入 Karst 系統自動化 pipeline**(用戶原話:「Karst should be user agnostic」)。crypto 治理維持人手、維持喺 `docs/2026-07-08_transition_plan.md`(🔒PERSONAL)呢層,唔進系統層。呢個判定同時確立一條通用原則:見 `.agents/KARS_MEMORY.md` |
 | 2 | **LEAP 定價模型風險**:α 估計 +6.5~+12.4 嘅 2 倍寬幅純因 30d→1y IV 映射未驗 | 直接影響 delta 檔位/premium 預算決策 | `playbook_readout` 已拉真鏈 → 加每日快照存盤(~20 行)+ 現價 spot-check model(策略檔 §7 原 to-do)|
 | 3 | **數據單點 + 冇對數迴路**:yfinance 靜默腐爛風險(SIVE/停市後垃圾 IV 已見);冇 trade ledger = 執行漂移隱形、core 冇自己嘅裁判 | 一個 miss 咗嘅 200SMA cross = 該 cycle 全部 core edge | 05:30 批次加數據哨兵(新鮮度/跨源抽查/log 頂行警報);極簡 CSV 台帳 + 月度「實際 vs 保守α預期」對數 job |
 

@@ -26,7 +26,6 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 | 05:35 每日 | Karst-gooptions-daily | 抓 gooptions.cc 新研究 + wiki stubs 自動 commit |
 | 05:40 二至六 | Karst-playbook-daily | `playbook_log.txt`(core v2 每日判定表,用戶觀察用)|
 | 05:42 每日 | Karst-aa-paper-daily(**已註冊 2026-07-13**)| **AA-strict 紙上並行追蹤**(唔郁真錢):`thesis/aa_strict_paper_tracker.py`,同 core v2 寫落同一個 `playbook_log.txt` 方便並排睇。用戶 2026-07-13 明確要求「並行跑一段時間先知邊個贏」先起。regime(200SMA兩腿)→band→ballast(XLP/XLU/XLV)+T(QQQ代理25%)+LEAP delta 收斂公式,detail見script docstring。**LEAP腳只modelled delta-notional,冇模擬theta decay**——結構性比較用,唔係精確$數。|
-| 05:43 每日 | Karst-crypto-governance-daily(**已註冊 2026-07-13**)| Phase-3 architecture 缺陷#1修法:`thesis/crypto_governance.py`——ETH上行ladder(用戶原數字$2,600/$3,500/$4,338)+SOL derived版(標明推導唔係用戶原話)監察,crossed就alert(**純read-only,唔落單**);ETH/BTC比率裝錶。**刻意冇加下行/時間出口**——用戶2026-07-08已知情拒絕,唔重提。|
 | 05:45 每日 | Karst-transcripts-daily | 新 Backtest-Everything transcript 排入 `../Reference/raw_data/backtest_everything_transcripts/_PENDING_ANALYSIS.md` |
 | 05:55 每日 | Karst-nightly-analysis(**已註冊 2026-07-09**;**2026-07-12 加咗第3項 guard**)| Python guard 三選一(transcripts inbox / gooptions manifest delta / **magnifier node 新stale**):全部零就零 quota;有一樣就 headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions + **magnifier重新評分草稿**(寫入queue,唔自動落實),詳 `thesis/nightly_analysis_prompt.md` |
 | 20:30 一至五 | Karst-premarket-daily(**已註冊,補記 2026-07-12**)| `premarket_log.txt`:開市前 ~1h live premarket 價疊加返 05:xx post-close 觸發表(dip/covered-call/200SMA),read-only |

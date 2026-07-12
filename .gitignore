@@ -80,10 +80,6 @@ thesis/.raw/magnifier_staleness_state.json
 # log is already covered by the thesis/.raw/**/*.jsonl rule above)
 thesis/.raw/aa_strict_paper_state.json
 
-# crypto_governance.py fired-rung state (regenerable -- worst case, re-alerts an already-known
-# rung once; not sensitive, just disposable)
-thesis/.raw/crypto_governance_state.json
-
 backtest/results/*_data.json
 
 # insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
