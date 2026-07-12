@@ -21,7 +21,7 @@
 |---|---|
 | `docs/2026-07-06_core_strategy_v2.md` | 🟢 **定稿**:SPY 底倉 + SPY/QQQ LEAP(純200SMA閘+月度top-up,Δ0.50)+ 現金。保守 α +6.5pp t3.1 |
 | `docs/2026-07-07_core_playbook.md` | 🟢 獨立操作手冊(每日判定/開倉SOP/邊界情況)|
-| `docs/2026-07-06_core_strategy.md` | ⛔ v1(sandbox proxy),SUPERSEDED |
+| `docs/_archive/2026-07-06_core_strategy.md` | ⛔ v1(sandbox proxy),SUPERSEDED,2026-07-12 移入 `_archive/` |
 | 證據 | `results/2026-07-06_{leap_real_sweep,core_assembly_real,core_topup}.md`、`2026-07-07_{base_mix,topup_timing_ab}.md`、`2026-07-09_options_chain_spotcheck.md` |
 | 已判死(留證) | `results/2026-07-06_sector_capeff.md`(板塊三假設)、`2026-07-08_{crash_switch,crypto_decorr}.md`、`2026-07-06_portfolio_rotation.md` |
 
@@ -65,8 +65,8 @@
 |---|---|
 | `docs/2026-07-08_transition_plan.md` | 🔒 過渡計畫 + 實際持倉 + recovery ladder + AXTI/量子/crypto 決定 |
 
-## 7. ⛔ SUPERSEDED(留檔勿引)
-`docs/2026-07-06_{core_strategy,wiki_verification,gap_conflict_register,phase3_methodology_review,dashboard_design,bottleneck_candidates}.md`(sandbox Fable 產出)· `results/2026-07-06_{leap_delta_sweep,core_portfolio_loops}.md`(proxy draft)· `docs/2026-07-06_fable_brief.md`(交棒書,任務已重做)
+## 7. ⛔ SUPERSEDED(留檔勿引;2026-07-12 全批移入 `_archive/` 子目錄,清理主目錄)
+`docs/_archive/2026-07-06_{core_strategy,wiki_verification,gap_conflict_register,phase3_methodology_review,dashboard_design,bottleneck_candidates}.md`(sandbox Fable 產出)· `backtest/results/_archive/2026-07-06_{leap_delta_sweep,core_portfolio_loops}.md`(proxy draft)· `docs/_archive/2026-07-06_fable_brief.md`(交棒書,任務已重做)· `docs/_archive/2026-07-08_phase3_brief.md`(Phase-3 設計前置brief,產出已被 `2026-07-08_phase3_architecture.md` 取代)
 
 ## 8. 較早期參考(pre-session,仍有效)
 `docs/2026-07-05_{risk_control_layer_report,gamma_walls}.md`、`2026-07-03_strategy_methodology_review.md`、`backtest/results/2026-06-30~07-05_*.md`(訊號家族結算)、`backtest/experiments/README.md`(實驗腳本索引)

@@ -247,7 +247,7 @@ python backtest\experiments\exp_family_validate.py
 | 要做什麼 | 去哪 |
 |---|---|
 | **懂整個系統(layman 全貌 wiki,由此入)** | **`docs/KARST_WIKI.md`** |
-| **★ Fable 交棒任務書(adversarial review + 砌 core 策略)** | **`docs/2026-07-06_fable_brief.md`** |
+| ~~★ Fable 交棒任務書~~(已完成、已存檔)| `docs/_archive/2026-07-06_fable_brief.md` |
 | 懂整個系統(技術版真相) | `ARCHITECTURE.md`(跨 Phase 地圖,single source of truth) |
 | 風控/擇時層結算(標準化量度+逐訊號+決策矩陣) | `docs/2026-07-05_risk_control_layer_report.md` |
 | 開工 roadmap | `docs/ROADMAP_AGENTIC.md`(A1-D6,含驗收條件) |
