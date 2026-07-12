@@ -78,6 +78,23 @@ insider `conf_eff`(P0-c)修法:按已定案方向(細價 12 月 portfolio tilt)�
 
 ## 8. 已知 refinement(2026-07-08 實作後驗證發現,非阻塞)
 
-- **meta-factor 上限口徑**:現行 sizing.py 用「50% × budget」;PRELIMINARY 期同「總部署 ≤50%」撞
-  同一數字 → ai-capex 實際佔部署 ~56%(略過 50% 意圖)。至 PASS(全額)閘正確咬到。修法:
-  meta-factor 上限改用「50% × 實際總部署上限」而非 budget。低優先(冷啟動注碼細,6 主題已攤開)。
+- **meta-factor 上限口徑(2026-07-13 已修)**:舊版 sizing.py 用「50% × budget」;PRELIMINARY 期同
+  「總部署 ≤50%」撞同一數字 → ai-capex 實際佔部署 ~56%(略過 50% 意圖)。**已修**:新增
+  `total_cap_for_status()` 做單一事實來源,`apply_meta_factor_cut()` 嘅 cap 基準改用呢個(PRELIMINARY
+  期即 25% of budget,唔係 50%)。實跑驗證:ai-capex cap 由 $20,500 收緊到 $10,250。
+
+## 9. Sizing v2 shadow(2026-07-13,`docs/2026-07-12_fable_investment_logic_review.md` P0-1)
+
+**唔取代 v1**——`python thesis/sizing.py --v2-shadow` 喺 v1 表之後多印一個 conf×magnitude
+兩軸表做並排比較,兩者都落 log 做 shadow A/B(兩季後先決定用邊個)。規格:
+`score = conf × log₂(magnitude_mid)`,`conf<0.25` 唔食 magnitude 加成;top-6、每注 ≥$4,000
+floor(唔夠就$0,唔重新分配俾其他候選);event-binary(`cycle_stage=event-driven`)固定
+$1,000 微注、唔入排名;集中度 cut 喺**選倉之後**先套用(修 v1 嘅反排序:mf-cap-basis fix
+單靠自己修唔到跨組排名倒轉,呢個先係真.修法)。
+
+**magnitude 輸入現況(2026-07-13 實跑)**:15 個主題入面得 `ai-power-grid` 有真.per-node
+magnifier rubric 數據(5 nodes),其餘 14 個用 `V2_DEFAULT_MAGNITUDE_MID=2.0` 佔位——
+**呢個直接令 v2 依家淨部署到 $6,443(cap 嘅 31%)**,因為大部分主題共用同一個 placeholder
+magnitude,score 太接近,冚喺 ai-power-grid 後面冇一個夠得着 $4,000 floor。呢個唔係 bug,係
+per-node schema 推廣未做(P2 #12:photonics→advanced-packaging→memory→space)嘅直接後果——
+推廣落去先會令 v2 嘅部署額同分辨力反映真實。
