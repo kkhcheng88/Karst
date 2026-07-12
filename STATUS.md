@@ -74,6 +74,25 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 
 ## 現在在哪(2026-07-12)
 
+**2026-07-12(Fable 5 獨立 session)—— 投資邏輯總審查完成(任務書 `docs/2026-07-12_fable_investment_strategy_brief.md`):**
+- **★ 總審查報告 = `docs/2026-07-12_fable_investment_logic_review.md`**(§5-A/B 答案 + P0-P2 改進清單 + 創新層);
+  **dashboard 設計書 = `docs/2026-07-13_dashboard_v4_portable.md`**(交付版,取代 07-03/07-06 舊檔;
+  v3`docs/2026-07-12_dashboard_design_v3.md`留做版面骨架底稿,四行版面/五條原則仍生效)。
+- 核心發現:①sizing 三重 cap 令注碼排名同信念排名**倒轉**(conf 第1嘅 memory 注碼排第7,$1,184;sizing.py 07-12 實跑),
+  MC 四方案對比現行 E[PnL]≈$234 貼零(`results/2026-07-12_sizing_two_axis_decision_analysis.md`);②裁判有效橫截面闊度=主題數唔係 ticker 數
+  + 63d IC 判 1-3y thesis 錯配 → 建議加 milestone-Brier 第二把尺;③估值/expectations-gap 全系統缺席(thesis_valuation.py 未起);
+  ④「ai-capex 54.9%>50%」係 belief-weight 讀數,實際部署只 39.2%,錢冇爆錶——建議換做 kill-scenario VaR 做決策語言。
+- 4 個新探測落檔(全部有 script 可重跑):sizing 兩軸 MC / capex-D&A 供給紀律雷達(**新警號:MP 兩軸齊響 2.19x/2.54x,排人手覆核**)/
+  analyst 出席數擁擠 proxy(MU 谷底 20 年最低、USAC 全場最低,方向成立)/ 衛星期權表達(MU 一張最平 $9.1k,集中化係前提)。
+- P0 三項:sizing v2(magnitude 軸+top-K 集中,shadow A/B 先行)、milestone-Brier 裁判、crypto 治理(排最先)。
+- **第二波(同日,用戶三指令:估值可實施方案 / sizing 改 % NAV 制(系統自己係 portfolio manager,唔鏡射用戶)/ 「全風險組合」挑戰)**:
+  ①**估值模組已實跑 v0**:`docs/2026-07-12_valuation_expectations_gap_spec.md` + `results/2026-07-12_expectations_gap_v0.md`(28/28 隻;15 主題 8 個「大部分係希望」、FSLR 唯一 0.83x「白送」;USAC 個平一半係債務槓桿假象;GEV 隱含 155.8%/年×5年)——production 化三步 + BT-5 判別力測試(案例庫六案全中先接 sizing 閘);
+  ②**Karst-AA 全風險設計** = `docs/2026-07-12_all_active_design_response.md`(portable-alpha 結構:ballast 防守籃+LEAP 0.50Δ 填 delta+T sleeve 15-30%、delta 總帳做單一控制、% NAV 制);兩條新負重數:LEAP 115% delta 只使 9.55% NAV premium(`results/2026-07-12_leap_rent_delta_ledger.md`)、**防守板塊做偽現金實測輸現金 −1.51%/熊市episode、MaxDD 深 14pp**(`results/2026-07-12_ballast_parking_ab.md`)→ 推薦 AA-pragmatic(策略層零死資本,現金只做閘嘅停車場),strict/pragmatic 雙變體入 BT-2 對照;
+  ③**BT-2 已跑完**(`results/2026-07-12_bt2_aa_vs_core.md`,step-0 重現 core v2 過閘、307k 條會計 assert 全過):AA 結構成立——MaxDD 淺 11pp(−44% vs core v2 −54.5%)、保守 α +5.0pp(t3.4)vs core v2 +6.4pp(差距=留俾 T sleeve 真 alpha 填);**AA-strict 反超 AA-pragmatic**(base +15.4%/+7.5pp t5.0,孤立 ballast 測試嗰筆 14pp 稅喺全結構唔成立)→ 推薦改口 strict 行先;AA-strict 係唯一 damp model 都過 Bonferroni×48 嘅格。
+  ④**BT-7 ballast 定義測試已跑**(`results/2026-07-13_bt7_ballast_definition.md`):B1 現行 trio 三個 league 職責排名全勝留任;用戶候選 DIA 假設證偽(downside capture 92-98% 近乎 1:1 跟跌 + QQQ 相關全場最高);Mag7 反面對照確認(熊市 delta 地台 109%,冇得減磅);稅漏實測 trio +0.86pp/yr vs USMV +0.63pp(真但非決定性)。ballast 機制 = 季度職責體檢(設計檔 §8c)。
+  ⑤**B 測試已跑**(`results/2026-07-13_bt_b_washout_expression.md`):washout 訊號期權 vs 現貨表達——同曝險口徑期權只贏 2-4/9(IV 貴+theta 食突),「期權本質更優」唔成立;定案 B 預設表達 = SPY 現貨細注,期權僅槓桿工具選項(機會階梯已更新)。**Dashboard v4 設計已定**(`docs/2026-07-13_dashboard_v4_portable.md`:DASHBOARD.md auto-commit 上 private GitHub + Telegram 門鐘,唔起雲 app)。**★ 全 session 交接書(俾 Opus 接手)= `docs/2026-07-13_fable_session_handover.md`**(D1-D10 決策 + P0-P2 backlog + 唔准重推名單)。
+  ⑥第三輪(用戶追問):新 sleeve 候選 A-D + 機會階梯落檔(`docs/2026-07-12_new_sleeve_candidates.md`、`docs/2026-07-12_opportunity_ladder.md`;C 經用戶修正拆做 C-core=SPY/QQQ LEAP 主力 + C-list=P_base>1 極端錯價配角);實施閘:雷達層四個即裝、A 要完整 backtest、B 要表達層細測、C 冇得測改用簽名紀律、D 逐序列 spot-check。下一步:B 表達層測試 → dashboard v4(摺入 delta 總帳/估值欄/AA sleeve/機會階梯雷達)。
+
 **2026-07-09~07-12(連續多 session)—— Objective A 收檔;Discovery Radar 全審完 + China 披露;4 條 backtest 驗證;magnifier 書蒸餾;IMA automation 解決。90 檔案 backlog 今日理清 commit:**
 - **Objective A(宏觀恐慌板塊輪動)正式收檔,結論負面**:category-2(恐慌後板塊反轉)擴到 6 個歷史案例(XLK/XLC 2022-23、XLY/XLK GFC)後 pattern 不穩定 → 呢條線關咗(`results/2026-07-11_category2_sentiment_reversal_v3.md`);「復甦語言」實驗一開始睇似有訊號,spot-check 揭發係「trough」呢隻字污染(`_category2_recovery_language.md` 已明確 retract)。GFC 案例入面 financials(coincident/ground-zero)vs consumer-discretionary/tech(trough 落後數月)嘅時序差異留低做殘餘發現,唔再追。
 - **★ Discovery Radar(Objective B 主力)全數 39-40 candidate 審完**:4 組 subagent verbatim 覆核(`results/2026-07-11_discovery_radar_review_group{A,B,C,D}.md`)→ `thesis/themes.yaml` 新增 6 個 theme(aerospace-specialty-alloys / euv-lithography-monopoly / us-solar-manufacturing / gas-compression-equipment / specialty-siding-pricing-power / glp1-biologics-packaging,連 `thesis/wiki/*.md`),KALU/MCHP/AVT/PTEN 4 隻列 WATCH 排下季 re-check。
