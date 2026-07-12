@@ -28,15 +28,35 @@
 # SAME edit, no silent free-typing (this list drifting out of sync with themes.yaml is exactly the
 # bug this registry exists to prevent -- see the 2026-07-11 euv-lithography-monopoly incident,
 # fixed 2026-07-12, where a new theme was tagged ai-capex but never cross-linked into the hub page).
-#   ai-capex             (7 themes, hub: thesis/wiki/ai-capex-macro-risk.md)
-#   energy-macro         (3 themes, hub: MISSING -- 17.7% concentration, no cross-link page yet;
-#                          flagged 2026-07-12, backlog)
+# EVERY value below must pass the "one-sentence causal test" (WS3 §1a rule 0): can you write "if
+# [specific macro event X] happens, every theme tagged this factor fails for THE SAME reason"? If
+# not, the tag is too broad and must be split -- see the 2026-07-12 energy-macro incident below,
+# where a naive sector-label tag (three unrelated death-causes: oil price / US tariffs / LNG
+# buildout) was caught and split by this exact test after a user challenge.
+#   ai-capex             (9 themes, 54.9% confidence-weight, hub: thesis/wiki/ai-capex-macro-risk.md)
+#                          -- grew from 7/48.0% on 2026-07-12 after oil-gas-energy's AND
+#                          gas-compression-equipment's AI-gas-power leg each passed the causal test
+#                          and got a 2nd tag added (energy-macro kept alongside, NOT replaced --
+#                          both themes have genuinely distinct real drivers, see energy-macro below).
+#                          **54.9% > the spec Sec4 50% cap -- concentration.py now emits an EXCESS
+#                          WARNING that did NOT fire before the retag (48% looked fine; it wasn't).**
+#   china-supply         (2 themes, hub: MISSING -- rare-earth-materials + us-solar-manufacturing,
+#                          added 2026-07-12 after us-solar-manufacturing's tellurium-export-control
+#                          leg passed the causal test better than its old energy-macro tag; flagged
+#                          backlog, needs fresh domain research to write)
+#   energy-macro         (2 themes, hub: MISSING -- oil-gas-energy(oil-price leg only after the
+#                          2026-07-12 split) + gas-compression-equipment(LNG-export/Permian-gas legs,
+#                          AI-gas-power leg moved to ai-capex above); STILL at the >=2 hub-page
+#                          threshold post-split -- flagged backlog. NOTE: this 2-member cluster is a
+#                          borderline causal-test case (oil price vs. LNG-export volume are related
+#                          but not obviously the SAME single trigger) -- weaker than ai-capex's
+#                          clean pass, worth re-examining when the hub page eventually gets written)
 #   policy-defense       (1 theme -- no hub required yet, single-theme)
-#   china-supply         (1 theme -- no hub required yet, single-theme)
-#   pharma-manufacturing (1 theme -- no hub required yet, single-theme)
+#   pharma-manufacturing (1 theme -- no hub required yet, single-theme; label is broad, re-test
+#                          with rule 0 if a 2nd theme is ever proposed for it)
 #   aerospace-capex      (1 theme -- no hub required yet, single-theme)
 #   building-products    (1 theme -- no hub required yet, single-theme)
-#   trade-policy         (1 theme, combined w/ energy-macro on us-solar-manufacturing)
+#   trade-policy         (1 theme -- us-solar-manufacturing, US tariff/IRA policy specifically)
 #   rates-duration       (RESERVED, unused -- pre-registered in original 2026-07-08 spec for a
 #                          future duration/REIT-sensitive thesis; do not repurpose this name)
 #   consumer             (RESERVED, unused -- pre-registered in original 2026-07-08 spec for a
@@ -439,7 +459,10 @@ themes:
     sources:
     - id: gooptions-trend-core
       tier: 2
-    meta_factors: [energy-macro]
+    meta_factors: [energy-macro, ai-capex]  # 2026-07-12 補標 ai-capex: kill_condition 自己嘅
+                                            # "gas-power leg" 觸發器 = AI behind-the-meter capex
+                                            # 抽起,通過因果句測試(WS3 §1a 規則0);原本淨標
+                                            # energy-macro 令呢部分風險對 concentration.py 隱形
     admitted: 2026-07-01
     last_evidence: 2026-07-08
     status: active
@@ -586,7 +609,10 @@ themes:
     sources:
     - id: transcript-discovery-radar
       tier: 3
-    meta_factors: [trade-policy, energy-macro]
+    meta_factors: [trade-policy, china-supply]  # 2026-07-12 改:energy-macro 通唔過因果句測試
+                                                # (呢隻嘢盈利唔跟油氣商品價格擺動);真正結構風險
+                                                # 係中國碲/CdTe出口管制,同 rare-earth-materials
+                                                # 一樣機制(中國用關鍵原料出口牌照做地緣槓桿)
     admitted: 2026-07-11
     last_evidence: 2026-07-11
     status: active
@@ -620,7 +646,10 @@ themes:
     sources:
     - id: transcript-discovery-radar
       tier: 3
-    meta_factors: [energy-macro]
+    meta_factors: [energy-macro, ai-capex]  # 2026-07-12 補標 ai-capex: kill_condition 三大需求
+                                            # 驅動力(LNG出口/Permian associated gas/AI天然氣發電)
+                                            # 入面「AI天然氣發電拉動」通過因果句測試,原本淨標
+                                            # energy-macro 令呢部分風險隱形
     admitted: 2026-07-11
     last_evidence: 2026-07-11
     status: active

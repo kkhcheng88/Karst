@@ -31,22 +31,65 @@ monopoly` 標咗 `ai-capex` 但冇人記得接返 `ai-capex-macro-risk.md` 呢�
 **canonical 註冊表**:見 `thesis/themes.yaml` 檔頭「META_FACTOR TAXONOMY REGISTRY」——單一事實
 來源,唔喺呢份 spec 度重複維護(避免兩處各自過時、對唔上)。
 
-**三條硬規則**:
+**四條硬規則(規則 0 係 2026-07-12 補寫,權重高過其餘三條——冇過規則 0,標籤本身就唔應該存在)**:
+
+0. **一句因果句測試(呢個 tag 值唔值得存在,先睇呢條)**:一個 meta_factor 得唔得,睇你可唔可以
+   寫得出一句因果句——「如果 [某個具體宏觀事件 X] 發生,所有掛住呢個標籤嘅 theme 會**因為同一個
+   原因**一齊出事」。寫唔出嚟(即係話個標籤其實冚咗兩個以上唔同嘅驅動力)= 呢個標籤本身有問題,
+   要拆,唔係將就用。呢條測試比命名/hub page 呢啲機制性規則更重要:一個通唔過測試嘅標籤,即使
+   命名正確、hub page 起齊,個 `concentration.py` 輸出嘅 % 數字都係**假精確**——好過冇,但可能
+   誤導(俾你錯誤嘅安全感,或者將真正嘅集中度分散喺唔同標籤度而睇唔出嚟)。**用嚟判斷標籤,唔係
+   用嚟判斷 sector**——唔好見到「太陽能=能源業」就打 energy-macro,要睇 kill_condition 實際寫嘅
+   觸發器係乜。
 1. **命名**:kebab-case,新值一定要喺 admission 嗰一個 commit 同步加入 `themes.yaml` 嘅註冊表,
    唔准自由打字(`thesis/lint.py` 會 warn 唔喺註冊表入面嘅值)。
-2. **Hub page 規則**:一個 meta_factor 一旦有 **≥2 個 theme** 掛住,就必須有一頁跨主題 concept
-   wiki page(格式跟 `thesis/wiki/ai-capex-macro-risk.md`:唔入 themes.yaml/thesis_quality、
-   用 wiki-link 交叉連結所有掛住嘅 theme、列共同監察指標),並且每個成員 theme 嘅 kill_condition
-   附近要有一句反向連結。單一 theme 掛住嘅 meta_factor 未需要(冇「偽分散」風險)。
+2. **Hub page 規則**:一個 meta_factor 一旦有 **≥2 個 theme** 掛住(前提:已經過咗規則 0 測試),
+   就必須有一頁跨主題 concept wiki page(格式跟 `thesis/wiki/ai-capex-macro-risk.md`:唔入
+   themes.yaml/thesis_quality、用 wiki-link 交叉連結所有掛住嘅 theme、列共同監察指標),並且每個
+   成員 theme 嘅 kill_condition 附近要有一句反向連結。單一 theme 掛住嘅 meta_factor 未需要
+   (冇「偽分散」風險)。
 3. **新增 theme 時嘅義務**:如果新 theme 標咗一個已有 ≥1 theme 掛住嘅 meta_factor,同一個
-   session 就要檢查/更新對應 hub page(如果存在)嘅交叉連結;如果因為呢個新 theme 令個
-   meta_factor 首次達到 ≥2,就要開新 hub page(可以排入 backlog,但要喺註冊表註明「hub:
-   MISSING」,唔准靜默漏咗)。
+   session 就要(a)用規則 0 測試呢個組合仲通唔通過,(b)檢查/更新對應 hub page(如果存在)嘅
+   交叉連結;如果因為呢個新 theme 令個 meta_factor 首次達到 ≥2,就要開新 hub page(可以排入
+   backlog,但要喺註冊表註明「hub: MISSING」,唔准靜默漏咗)。
 
-**2026-07-12 掃描發現(已落 `thesis/themes.yaml` 註冊表)**:`energy-macro`(oil-gas-energy /
-us-solar-manufacturing / gas-compression-equipment,共 3 個 theme、17.7% 集中度)符合規則 2
-嘅門檻,但**冇 hub page**——`ai-capex` 係目前唯一有 hub page 嘅 meta_factor。列為 backlog,唔喺
-呢次順手整理範圍內(需要新嘅 domain 研究去寫呢頁,唔係淨係接連結)。
+**2026-07-12 全批掃描 + 規則 0 覆核(用戶提出質疑後執行)**:逐個 meta_factor 用一句因果句測試,
+結果:
+
+| meta_factor | 成員數 | 一句因果句測試 |
+|---|---|---|
+| ai-capex | 7 | **PASS**——全部 kill_condition 明文提「AI-inference demand」/「AI-capex hiccup」/「hyperscaler capex guidance」/「AI-accelerator demand」,同一觸發器 |
+| energy-macro(舊) | 3 | **FAIL**——oil-gas-energy(油價週期)、us-solar-manufacturing(美國關稅政策)、gas-compression-equipment(LNG出口+AI天然氣發電)三個死因完全唔同,寫唔出一句共同因果句 |
+| policy-defense | 1 | PASS(單一成員;標籤本身準確對應 Golden Dome 國防預算,唔係表面「航天業」)|
+| china-supply | 1 | PASS(準確對應「中國用關鍵原料出口牌照做地緣槓桿」呢個機制)|
+| aerospace-capex / building-products / trade-policy / pharma-manufacturing | 各 1 | PASS(單一成員暫時冇合併風險;`pharma-manufacturing` 標籤字面較闊,標記留待第二個成員加入時要重新測試)|
+
+**FAIL 修正(已執行)**:
+- `us-solar-manufacturing`:`[trade-policy, energy-macro]` → `[trade-policy, china-supply]`
+  ——碲/CdTe 出口管制同 rare-earth-materials 嘅 REE 出口管制係**同一機制**(中國用關鍵原料出口
+  牌照做地緣槓桿),寫得出一句共同因果句,啱 china-supply,唔啱 energy-macro(呢隻嘢盈利根本
+  唔跟油氣商品價格擺動)。
+- `gas-compression-equipment`:`[energy-macro]` → `[energy-macro, ai-capex]`——自己 kill_condition
+  三個需求驅動力入面,「AI天然氣發電拉動」通過 ai-capex 測試,原本淨標 energy-macro 令呢部分
+  風險對 concentration.py 隱形。
+- `oil-gas-energy`:`[energy-macro]` → `[energy-macro, ai-capex]`——kill_condition 自己都寫明分
+  「Oil leg」(真.energy-macro)同「Gas-power leg:AI behind-the-meter capex 抽起」(ai-capex)
+  兩腿,一個 tag 蓋唔晒。**遺留觀察**:呢個 thesis 本身喺 ticker-basket 層面已經係兩截嘢黐埋
+  (verdict = thin-split-watch),長遠應該考慮拆做兩個獨立 thesis,但呢個係更大改動,呢次淨係
+  修 meta_factor 標籤,冇拆 thesis。
+
+**改後狀態(2026-07-12 實跑 `concentration.py`/`lint.py` 核實,見下)**:`energy-macro` 保持 2 成員
+(oil-gas-energy 剩返 oil leg + gas-compression-equipment 剩返 LNG/Permian leg——AI leg 已各自
+加埋 ai-capex,唔係取代;**仍然跨過規則 2 門檻,hub page 仍然缺**);`china-supply` 由 1 升到 2 成員
+(rare-earth-materials + us-solar-manufacturing),**新增一個 hub page 缺口**;`ai-capex` 由 7 升到 9
+成員。兩個 hub page 缺口(china-supply、energy-macro)已同步落 `thesis/themes.yaml` 註冊表,`lint.py`
+實跑亦確認兩條 warning 都跳出嚟(不再係得個講字)。
+
+**最重要發現**:`concentration.py` 改前實跑 `ai-capex` = 48.0%(貼近但未過 50% cap,睇落安全);
+retag 之後實跑 = **54.9%,正式過咗 spec §4 嘅 50% 上限,`concentration.py` 跳出 EXCESS WARNING**。
+即係話用戶質疑「energy-macro 呢個標籤係咪太闊」呢條問題,唔止揪出咗標籤命名問題,直接改變咗一個
+**已經違反設計硬性上限**嘅集中度風險讀數——舊標籤將真正嘅 ai-capex 曝險攤薄埋喺 energy-macro
+入面,睇落安全,實情已經爆錶。
 
 ## 2. Admission 閘(新主題入 registry 嘅唯一通道)
 
