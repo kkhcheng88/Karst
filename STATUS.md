@@ -36,6 +36,9 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 |---|---|---|
 | SUN 08:00 | Karst-insider-weekly | 重建 `thesis/insider_cache.json`(SEC EDGAR Form 4,gitignored)|
 | SUN 08:15 | Karst-risk-check-weekly(**已註冊 2026-07-12**)| WS3 backlog #3-4:`weekly_risk_log.txt` = concentration.py(meta_factor 集中度,cap 50%)+ beta_check.py(逐 theme vs 板塊 ETF beta 化偵測)|
+| SUN 08:30 | Karst-corpus-weekly(**已註冊 2026-07-12**)| 全 universe(~9.9k ticker)transcript 增量抓取 + `corpus.db` incremental build;~1-2h 跑完(機器要開住)。log 落 `thesis/.raw/transcripts/cron.log`(gitignored)|
+| SUN 08:45 | Karst-insider-tilt-weekly(**已註冊 2026-07-12**)| ROADMAP A3/P0-c:`backtest/results/<date>_insider_tilt_live.md` = 細價股(<$2B)12個月insider群買tilt live snapshot,display-only,未接sizing.py |
+| SUN 10:30 | Karst-constraint-scan-weekly(**已註冊 2026-07-12**;排喺 corpus-weekly 之後留 2h buffer)| WS4 backlog #1:`backtest/results/<date>_constraint_scan_production.md`(theme×季度熱力表)+ `thesis/.raw/constraint_scan_queue.md`(雙向新警報,持久 checklist,**有追蹤**,唔係gitignored)|
 
 ## 人手週度任務(IMA;2026-07-12 新增 —— agent 做唔到,一定要用戶自己開 IMA)
 

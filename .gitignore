@@ -60,6 +60,14 @@ backtest/results/_scratch_*/
 # nightly-analysis runtime log + regenerable sector-lookup cache
 thesis/.raw/nightly_analysis.log
 thesis/.raw/ticker_sector_cache.json
+
+# constraint_scan.py dedup-state (internal, regenerable from corpus.db re-scan) + cron logs --
+# NOTE: thesis/.raw/constraint_scan_queue.md is deliberately NOT listed here -- it's a persistent
+# human-triage checklist (same convention as ../Reference's _PENDING_ANALYSIS.md), meant to be
+# tracked and survive across sessions.
+thesis/.raw/constraint_scan_state.json
+thesis/.raw/constraint_scan_cron.log
+thesis/.raw/insider_tilt_cron.log
 backtest/results/*_data.json
 
 # insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
