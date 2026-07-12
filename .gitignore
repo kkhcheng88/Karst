@@ -69,7 +69,6 @@ thesis/.raw/constraint_scan_state.json
 thesis/.raw/constraint_scan_cron.log
 thesis/.raw/insider_tilt_cron.log
 thesis/.raw/altdata_twse_cron.log
-thesis/.raw/altdata_eia_grid_cron.log
 backtest/results/*_data.json
 
 # insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
