@@ -72,14 +72,23 @@ def pending_magnifier() -> int:
         return 0
 
 
+# 2026-07-12 (user call): magnifier staleness check still runs nightly (free -- corpus.db/
+# manifest reads only, no model spend) and still queues findings for whenever a session picks
+# them up, but does NOT by itself wake up headless Claude overnight (unsupervised token spend
+# while asleep). Flip to True once comfortable with the queue's signal/noise.
+MAGNIFIER_TRIGGERS_HEADLESS_RUN = False
+
+
 def main():
     stamp = f"{datetime.now():%Y-%m-%d %H:%M}"
     nt, ng, nm = pending_transcripts(), pending_gooptions(), pending_magnifier()
-    line = f"==== {stamp} ==== pending: transcripts={nt} gooptions={ng} magnifier={nm}"
+    line = f"==== {stamp} ==== pending: transcripts={nt} gooptions={ng} magnifier={nm}" \
+           f"{'' if MAGNIFIER_TRIGGERS_HEADLESS_RUN else ' (magnifier logged only, not triggering)'}"
     print(line)
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(line + "\n")
-    if nt == 0 and ng == 0 and nm == 0:
+    nm_trigger = nm if MAGNIFIER_TRIGGERS_HEADLESS_RUN else 0
+    if nt == 0 and ng == 0 and nm_trigger == 0:
         print("nothing to analyse -> no model spend")
         return
     if "--dry-run" in sys.argv:
