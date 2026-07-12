@@ -76,6 +76,10 @@ thesis/.raw/altdata_twse_cron.log
 # convention as constraint_scan_queue.md.
 thesis/.raw/magnifier_staleness_state.json
 
+# aa_strict_paper_tracker.py state (regenerable by replaying from the start date; the .jsonl
+# log is already covered by the thesis/.raw/**/*.jsonl rule above)
+thesis/.raw/aa_strict_paper_state.json
+
 backtest/results/*_data.json
 
 # insider EDGAR cache (regenerable via insider_edgar.py build; slow to fetch)
