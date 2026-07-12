@@ -27,7 +27,15 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 | 05:40 二至六 | Karst-playbook-daily | `playbook_log.txt`(core v2 每日判定表,用戶觀察用)|
 | 05:45 每日 | Karst-transcripts-daily | 新 Backtest-Everything transcript 排入 `../Reference/raw_data/backtest_everything_transcripts/_PENDING_ANALYSIS.md` |
 | 05:55 每日 | Karst-nightly-analysis(**已註冊 2026-07-09**)| Python guard:冇新料 = 零 quota;有新料 → headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions,詳 `thesis/nightly_analysis_prompt.md` |
+| 20:30 一至五 | Karst-premarket-daily(**已註冊,補記 2026-07-12**)| `premarket_log.txt`:開市前 ~1h live premarket 價疊加返 05:xx post-close 觸發表(dip/covered-call/200SMA),read-only |
 | — | **人手 fallback(而家生效)** | 日間 session 見 `_PENDING_ANALYSIS.md` 有未剔 `[ ]` 或 gooptions 有新文 → 蒸餾/INGEST(判「採納/佐證/唔採納」)|
+
+## 每週自動化(schtasks;唔係人手 fallback,係真.排程跑)
+
+| 時間(HKT)| 任務 | 產物 |
+|---|---|---|
+| SUN 08:00 | Karst-insider-weekly | 重建 `thesis/insider_cache.json`(SEC EDGAR Form 4,gitignored)|
+| SUN 08:15 | Karst-risk-check-weekly(**已註冊 2026-07-12**)| WS3 backlog #3-4:`weekly_risk_log.txt` = concentration.py(meta_factor 集中度,cap 50%)+ beta_check.py(逐 theme vs 板塊 ETF beta 化偵測)|
 
 ## 人手週度任務(IMA;2026-07-12 新增 —— agent 做唔到,一定要用戶自己開 IMA)
 
@@ -156,15 +164,20 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 ## 下一步(2026-07-12 更新)
 
 Discovery Radar + China audit + 4 條 backtest 驗證 + IMA automation 已完成收尾(見上「現在在哪」)。
+2026-07-12 已查證:WST transcript 錯標 + insider fat-finger bug port-back 已修(commit `242f74b`);
+**Batch 1(WS1 裁判狀態機 + WS3 生命週期)實測已全套跑緊 live**(`forward_ic.py` judge() 出
+PRELIMINARY、`lint.py` admission gate 0 error、`thesis/migrate_track_record.py` 已 run 過)——
+07-06 嗰個「未驗證」擔心係多慮,程式碼早已到位,唔止係 design doc。
 按優先:
 
 1. **等用戶面談**:magnifier scorecard(D/E步設計)、dashboard 接線——用戶已明確話擺低,唔自己砌。
-2. **小額 backlog**(低優先,得閒先做):WATCH 4 隻票(KALU/MCHP/AVT/PTEN)下季 re-check;WST transcript
-   錯標修正;`exp_insider_validate.py` fat-finger bug port 返(新 script 已修,舊嗰個未跟)。
-3. **未驗證嘅 Phase-3 地基狀態**:07-06 交棒定嘅 Batch 1(WS1 裁判狀態機 + WS3 生命週期接線)有冇做完
-   未喺呢輪 session 確認過——下個 session 開工前應該先查 `docs/2026-07-08_phase3_architecture.md`
-   執行 backlog 對返實際 code,唔好假設已完成。
-4. 人手週度 IMA 任務(見上表)持續行。
+2. **Batch 2 剩餘缺口(2026-07-12 查到嘅唯一真.gap)**:WS3 #3-4「集中度報表 + beta 化月檢」
+   (`thesis/concentration.py`、`thesis/beta_check.py`)兩個工具**已寫好、可以跑**,但**未排入任何
+   排程**(唔喺 daily/weekly .cmd 入面,亦冇喺 STATUS.md 自動化表出現)——形同得個藥冇食。建議下一步
+   將呢兩個工具接入月度排程(或至少人手每月跑一次 + 落紀錄)。
+3. WATCH 4 隻票(KALU/MCHP/AVT/PTEN)——已排低,下季 review。
+4. Batch 3(altdata probe/TWSE job/insider P0-c 接線/dashboard)——未動工,排喺 Batch 2 缺口之後。
+5. 人手週度 IMA 任務(見上表)持續行。
 
 ### (2026-07-06 Fable 完成後更新,部分已執行)
 
