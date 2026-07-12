@@ -17,6 +17,31 @@
 # 2026-07-11 (none are China-domiciled/state-linked) -- this is a standing admission principle for
 # FUTURE candidates (discovery radar / magnifier), not a retroactive edit.
 
+# META_FACTOR TAXONOMY REGISTRY (formalized 2026-07-12; see docs/2026-07-08_phase3_ws3_lifecycle.md
+# §1a for the full concept doc). A meta_factor tags the underlying MACRO DRIVER a theme's thesis
+# depends on -- NOT its sector/ticker. Purpose: themes that look diversified by ticker/sector can
+# still be the SAME bet if they share a meta_factor (concentration.py measures this; a shared
+# meta_factor with >=2 themes SHOULD have a cross-theme concept wiki page, e.g. ai-capex ->
+# thesis/wiki/ai-capex-macro-risk.md, cross-linked from every member theme's kill_condition).
+# Naming: kebab-case, must match a value below EXACTLY (thesis/lint.py warns on unrecognized
+# values) -- new values may be coined at admission time but MUST be added to this registry in the
+# SAME edit, no silent free-typing (this list drifting out of sync with themes.yaml is exactly the
+# bug this registry exists to prevent -- see the 2026-07-11 euv-lithography-monopoly incident,
+# fixed 2026-07-12, where a new theme was tagged ai-capex but never cross-linked into the hub page).
+#   ai-capex             (7 themes, hub: thesis/wiki/ai-capex-macro-risk.md)
+#   energy-macro         (3 themes, hub: MISSING -- 17.7% concentration, no cross-link page yet;
+#                          flagged 2026-07-12, backlog)
+#   policy-defense       (1 theme -- no hub required yet, single-theme)
+#   china-supply         (1 theme -- no hub required yet, single-theme)
+#   pharma-manufacturing (1 theme -- no hub required yet, single-theme)
+#   aerospace-capex      (1 theme -- no hub required yet, single-theme)
+#   building-products    (1 theme -- no hub required yet, single-theme)
+#   trade-policy         (1 theme, combined w/ energy-macro on us-solar-manufacturing)
+#   rates-duration       (RESERVED, unused -- pre-registered in original 2026-07-08 spec for a
+#                          future duration/REIT-sensitive thesis; do not repurpose this name)
+#   consumer             (RESERVED, unused -- pre-registered in original 2026-07-08 spec for a
+#                          future discretionary-spending thesis; do not repurpose this name)
+
 themes:
   memory-supercycle:
     wiki: thesis/wiki/memory-supercycle.md

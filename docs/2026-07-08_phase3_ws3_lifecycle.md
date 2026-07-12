@@ -7,14 +7,46 @@
 
 ```yaml
 sources: [{id: gooptions-trend-core, tier: 2}, ...]   # 獨立來源清單(同一間舖 N 篇 = 1 個來源)
-meta_factors: [ai-capex]                               # 共同因子標籤(≥1 必填;清單:ai-capex/
-                                                       #  china-supply/rates-duration/energy-macro/
-                                                       #  policy-defense/consumer/其他按需擴)
+meta_factors: [ai-capex]                               # 共同因子標籤(≥1 必填;canonical 清單見
+                                                       #  thesis/themes.yaml 檔頭註冊表,§1a 詳述)
 admitted: 2026-07-01                                   # 收編日
 last_evidence: 2026-07-08                              # 最後一次有 cited 新證據
 status: active                                         # active | watch | delisted
 ```
 `single_source` 唔另設欄 —— lint 由 `len(sources)<2` 推導。
+
+## 1a. meta_factor 概念正式化(2026-07-12 補寫;原文只係一句話帶過,未成形)
+
+**係咩**:`meta_factor` 標籤嘅唔係 theme 嘅 sector/ticker,而係支撐佢 thesis 嘅**底層宏觀驅動力**。
+兩個 sector 唔同、ticker 唔同嘅 theme,可以係同一注宏觀注碼(例如 memory-supercycle 同
+ai-power-grid 睇落唔同行業,但兩者都係「AI capex 持續」呢個假設嘅表達)——`meta_factor` 存在
+就係要捉呢種**偽分散**,`concentration.py` 讀呢個標籤計集中度。
+
+**點解需要正式化**:原設計(§1 上面)得一句「清單:ai-capex/china-supply/rates-duration/
+energy-macro/policy-defense/consumer/其他按需擴」,冇註冊表、冇命名規則、冇「幾時要開 hub
+concept page」嘅規則。結果 07-11 discovery radar 一次過加 6 個新 theme 時,`euv-lithography-
+monopoly` 標咗 `ai-capex` 但冇人記得接返 `ai-capex-macro-risk.md` 呢頁(隔咗一日,07-12 先由
+用戶提出先發現、先補)。正式化嘅目的就係防止呢類遺漏再發生。
+
+**canonical 註冊表**:見 `thesis/themes.yaml` 檔頭「META_FACTOR TAXONOMY REGISTRY」——單一事實
+來源,唔喺呢份 spec 度重複維護(避免兩處各自過時、對唔上)。
+
+**三條硬規則**:
+1. **命名**:kebab-case,新值一定要喺 admission 嗰一個 commit 同步加入 `themes.yaml` 嘅註冊表,
+   唔准自由打字(`thesis/lint.py` 會 warn 唔喺註冊表入面嘅值)。
+2. **Hub page 規則**:一個 meta_factor 一旦有 **≥2 個 theme** 掛住,就必須有一頁跨主題 concept
+   wiki page(格式跟 `thesis/wiki/ai-capex-macro-risk.md`:唔入 themes.yaml/thesis_quality、
+   用 wiki-link 交叉連結所有掛住嘅 theme、列共同監察指標),並且每個成員 theme 嘅 kill_condition
+   附近要有一句反向連結。單一 theme 掛住嘅 meta_factor 未需要(冇「偽分散」風險)。
+3. **新增 theme 時嘅義務**:如果新 theme 標咗一個已有 ≥1 theme 掛住嘅 meta_factor,同一個
+   session 就要檢查/更新對應 hub page(如果存在)嘅交叉連結;如果因為呢個新 theme 令個
+   meta_factor 首次達到 ≥2,就要開新 hub page(可以排入 backlog,但要喺註冊表註明「hub:
+   MISSING」,唔准靜默漏咗)。
+
+**2026-07-12 掃描發現(已落 `thesis/themes.yaml` 註冊表)**:`energy-macro`(oil-gas-energy /
+us-solar-manufacturing / gas-compression-equipment,共 3 個 theme、17.7% 集中度)符合規則 2
+嘅門檻,但**冇 hub page**——`ai-capex` 係目前唯一有 hub page 嘅 meta_factor。列為 backlog,唔喺
+呢次順手整理範圍內(需要新嘅 domain 研究去寫呢頁,唔係淨係接連結)。
 
 ## 2. Admission 閘(新主題入 registry 嘅唯一通道)
 

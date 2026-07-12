@@ -37,6 +37,14 @@ WIKI = os.path.join(ROOT, "wiki")
 LINK_RE = re.compile(r"\[\[([^\]|]+)")
 PENDING_RE = re.compile(r"^\s*[-*]?\s*\[ \]\s+(.*)$", re.M)
 VALID_CYCLE_STAGES = {"early", "mid", "late", "event-driven"}
+# meta_factor canonical registry (formalized 2026-07-12) -- keep in sync with the
+# "META_FACTOR TAXONOMY REGISTRY" comment block at the top of thesis/themes.yaml (that's the
+# documented/human-readable copy; this is the enforcement copy, same split as VALID_CYCLE_STAGES).
+VALID_META_FACTORS = {
+    "ai-capex", "energy-macro", "policy-defense", "china-supply", "pharma-manufacturing",
+    "aerospace-capex", "building-products", "trade-policy",
+    "rates-duration", "consumer",  # reserved, not yet used by any theme
+}
 TRIGGER_RE = re.compile(r"Trigger|觸發|to zero|de-?list|歸零|mean-revert", re.I)
 PRELISTING_RE = re.compile(r"掛牌後補|未上市|未有數據|pre-listing")
 
@@ -129,6 +137,7 @@ def run(no_ticker_check=False):
     admission_errors = {}    # slug -> [errors]  (Phase-3 WS3 admission gate)
     admission_warnings = {}  # slug -> [warnings] (single-source cap etc.)
     ticker_data_issues = {}  # slug -> [ticker unloadable]  (data/ops health, non-blocking)
+    meta_factor_themes = {}  # meta_factor -> [slug, ...]  (WS3 §1a hub-page-coverage check)
     try:
         themes = (yaml.safe_load(open(themes_path, encoding="utf-8")) or {}).get("themes", {}) or {}
         for slug, t in themes.items():
@@ -174,6 +183,16 @@ def run(no_ticker_check=False):
             meta_factors = t.get("meta_factors") or []
             if len(meta_factors) < 1:
                 errs.append("meta_factors empty (need >= 1)")
+            unknown_mf = [mf for mf in meta_factors if mf not in VALID_META_FACTORS]
+            if unknown_mf:
+                admission_warnings.setdefault(slug, []).append(
+                    f"meta_factors {unknown_mf} not in canonical registry (thesis/themes.yaml "
+                    f"header / WS3 lifecycle doc §1a) -- typo, or a genuinely new factor that "
+                    f"needs registering in BOTH themes.yaml's header comment AND lint.py's "
+                    f"VALID_META_FACTORS in the same commit"
+                )
+            for mf in meta_factors:
+                meta_factor_themes.setdefault(mf, []).append(slug)
 
             if not _valid_date(t.get("admitted")):
                 errs.append(f"admitted {t.get('admitted')!r} not a valid ISO date")
@@ -192,6 +211,21 @@ def run(no_ticker_check=False):
                         )
                 except (TypeError, ValueError):
                     pass
+
+        # WS3 §1a hub-page-coverage check: any meta_factor shared by >=2 themes must have a
+        # cross-theme concept page at thesis/wiki/<meta_factor>-macro-risk.md (the naming
+        # convention set by the existing ai-capex-macro-risk.md). This is a WARNING (not an
+        # admission error) because it's a backlog-able gap, not a per-theme defect -- but it's
+        # exactly the kind of thing that silently drifted before (see energy-macro, flagged
+        # 2026-07-12, still missing as of this writing).
+        for mf, mf_slugs in meta_factor_themes.items():
+            if len(mf_slugs) >= 2:
+                hub_path = os.path.join(WIKI, f"{mf}-macro-risk.md")
+                if not os.path.exists(hub_path):
+                    admission_warnings.setdefault("(cross-theme)", []).append(
+                        f"meta_factor '{mf}' has {len(mf_slugs)} themes ({', '.join(sorted(mf_slugs))}) "
+                        f"but no hub page at thesis/wiki/{mf}-macro-risk.md (WS3 §1a rule 2)"
+                    )
     except Exception as e:
         theme_issues.append(f"themes.yaml unreadable: {e}")
 
