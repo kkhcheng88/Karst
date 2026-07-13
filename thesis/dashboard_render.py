@@ -455,6 +455,50 @@ def expgap_zh(classification):
     return EXPGAP_ZH.get(classification, classification)
 
 
+def crowding_read(pctile, is_buy):
+    """Plain-language crowding interpretation -- a raw percentile means nothing to a reader, so
+    every card gets the ACTION-APPROPRIATE read: on a buy, high crowding = don't chase; on a
+    sell/watch, high crowding = the crowded trade unwinds hard, so an exit is better supported.
+    Returns (text, is_warning)."""
+    if pctile is None:
+        return "未評估", False
+    p = round(pctile)
+    if p >= 90:
+        return (f"{p}分,市場好逼——追入風險高,寧可等" if is_buy
+                else f"{p}分,擁擠盤——散起上嚟快,減持更有理由"), True
+    if p >= 70:
+        return (f"{p}分,偏逼——入場唔急" if is_buy else f"{p}分,偏擁擠"), False
+    if p <= 30:
+        return (f"{p}分,未算逼——入場相對舒服" if is_buy else f"{p}分,唔算擁擠"), False
+    return f"{p}分,中等", False
+
+
+def trend_read(vs200sma, triggered):
+    """Plain-language trend read vs the 200-day line (the action trigger). vs200sma is a signed
+    percent string like '+43.9%' / '-4.5%' from the per-ticker table; triggered means the theme
+    basket has already broken below its 200-day line."""
+    if triggered:
+        return "已跌穿200日均線 🔴(趨勢已破)"
+    if vs200sma is None:
+        return "未評估"
+    return f"在200日均線之上 {vs200sma}(趨勢未破)" if not str(vs200sma).startswith("-") \
+        else f"已在200日均線之下 {vs200sma}(趨勢轉弱)"
+
+
+def _current_price(sma_price, vs200sma):
+    """Derive a ticker's current price from its 200SMA price ('$557.35') and its signed % gap
+    to that line ('+43.9%') -- the per-ticker table carries those two but not the absolute
+    current price. Returns a float, or None if either input is missing/unparseable."""
+    if not sma_price or vs200sma is None:
+        return None
+    try:
+        sma = float(str(sma_price).replace("$", "").replace(",", ""))
+        pct = float(str(vs200sma).replace("%", ""))
+    except (TypeError, ValueError):
+        return None
+    return sma * (1 + pct / 100.0)
+
+
 def classify_action(verdict, triggered):
     """Translate an internal verdict into a plain-language urgency + label. Deliberately
     distinguishes an ACTUAL trend break (price already below 200SMA -- real action signal) from
@@ -563,8 +607,12 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
             item["weak_tickers"] = weak
         elif act["urgency"] == "watch":
             # expensive-but-not-broken: pure monitoring, no action today, so no position % and no
-            # "buy this" pick -- just the valuation context.
-            pass
+            # "buy this" pick -- just the valuation context. Trend is definitionally intact (a
+            # broken one would be "high"/kill), so surface how far above the 200-day line it is
+            # from the target's pullback gap rather than leaving trend "未評估".
+            gap = targets.get(slug, {}).get("gap_pct")
+            if gap:
+                item["ticker_vs200sma"] = f"+{gap}%"
         else:  # opportunity -- the only case where a buy is actually being suggested
             node_map = ticker_node_map(sizing_info["themes"].get(slug, {}))
             picked, node = pick_ticker(verdict, theme_tickers, node_map)
@@ -578,9 +626,35 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
                     "ticker": picked["symbol"], "ticker_verdict": picked["verdict"],
                     "ticker_vs200sma": picked["vs200sma"], "ticker_sma_price": picked["sma_price"],
                     "node_magnitude": node.get("magnitude_tier") if node else None})
+        # theme-level trend read (for the consistent 3-read block on every card): use the picked
+        # ticker's vs200sma if we have one, else the theme target's basket read.
+        tgt = targets.get(slug, {})
+        item["vs200sma_read"] = item.get("ticker_vs200sma") or (
+            tgt.get("now_level") and f"基準 {tgt.get('now_level')} vs 均線 {tgt.get('sma_level')}")
+        item["triggered"] = triggered
         action_items.append(item)
     urgency_rank = {"high": 0, "watch": 1, "opportunity": 2}
     action_items.sort(key=lambda a: (urgency_rank[a["urgency"]], -a.get("pct", 0.0)))
+
+    # full board -- every active theme with its confidence / stage / verdict / crowding / nodes,
+    # for the end-of-report appendix (the reader asked to see the whole picture, not just the
+    # themes that surfaced as action items today).
+    all_themes = []
+    for r in rows:
+        slug = r["slug"]
+        t = sizing_info["themes"].get(slug, {})
+        theme_row = core.get("theme_rows", {}).get(slug)
+        verdict = theme_row["verdict"] if theme_row else "—"
+        eg = exp_gap.get(slug)
+        nodes = [{"name": n.get("name"), "tier": n.get("magnitude_tier")}
+                  for n in (t.get("nodes") or [])]
+        all_themes.append({
+            "slug": slug, "name": theme_zh(slug),
+            "confidence": r["confidence"], "cycle_stage": t.get("cycle_stage", "—"),
+            "verdict": verdict,
+            "valuation": expgap_zh(eg["classification"]) if eg else None,
+            "nodes": nodes, "target_pct": (r["final"] / budget * 100.0) if budget else 0.0,
+        })
 
     market = {"rows": [], "vix": None, "vix_desc": None,
               "crisis_armed": False, "crisis_raw": None, "leap_quotes": []}
@@ -664,16 +738,17 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
     crowding = load_crowding()
     due_ms, upcoming_ms = load_due_milestones()
 
-    # weave crowding percentile into action items (top-decile crowding on a buy candidate is
-    # exactly the "crowded trade" caution feature-5 exists for)
+    # weave crowding percentile into action items AND the full-board appendix (top-decile
+    # crowding on a buy candidate is exactly the "crowded trade" caution feature-5 exists for)
     if crowding and isinstance(crowding.get("themes"), dict):
-        zh_to_slug = {v: k for k, v in THEME_ZH.items()}
         for a in action_items:
-            slug = a.get("slug") or zh_to_slug.get(a["name"])
-            c = crowding["themes"].get(slug or "", {})
+            c = crowding["themes"].get(a.get("slug") or "", {})
             pct = c.get("composite_pctile")
             if pct is not None:
                 a["crowding_pctile"] = pct
+        for t in all_themes:
+            c = crowding["themes"].get(t["slug"], {})
+            t["crowding_pctile"] = c.get("composite_pctile")
 
     # ledger enrichment: VaR + actionable gaps + roll countdown
     ledger_view = None
@@ -713,7 +788,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
         "core_date": core_date, "premkt_date": premkt_date,
         "sentinel": sentinel, "sentinel_red": sentinel_red, "ladder": ladder,
         "ledger": ledger_view, "due_milestones": due_ms or [],
-        "upcoming_milestones": upcoming_ms or [],
+        "upcoming_milestones": upcoming_ms or [], "all_themes": all_themes,
     }
 
 
@@ -739,39 +814,35 @@ def render_telegram_messages(briefing):
         issue_lines = [f"• {i.get('detail', i.get('check', '?'))}" for i in (s.get("issues") or [])[:6]]
         msgs.append("⚠️ 數據哨兵紅燈——今日部分數據未更新,以下讀數請當存疑:\n" + "\n".join(issue_lines))
 
-    def _crowding_bit(a):
-        cp = a.get("crowding_pctile")
-        if cp is None:
-            return ""
-        if cp >= 90:
-            return f"\n• 擁擠度:{cp:.0f} percentile ⚠(市場好逼,追入風險高)"
-        if cp <= 25:
-            return f"\n• 擁擠度:{cp:.0f} percentile(市場未逼,較舒服)"
-        return f"\n• 擁擠度:{cp:.0f} percentile"
-
     if briefing["action_items"]:
-        lines = ["要留意嘅事:"]
+        # every card has the SAME skeleton so the reader isn't confused by shifting columns:
+        #   點做 (what to do) -> 股票 (which names) -> 三個參考讀數 (trend / valuation / crowding),
+        # each read always present, "未評估" where data is missing. Node-level potential-multiple
+        # lives ONLY in the appendix (it exists for 5/15 themes, so showing it per-card looks
+        # like a bug when it's absent).
+        lines = ["【要留意嘅事】"]
         for a in briefing["action_items"]:
             lines.append(f"\n{a['icon']} {a['name']} — {a['label']}")
+            # 1) what to do + which names
             if a["urgency"] == "high":
-                lines.append("• 整個主題趨勢已破位(綜合基準跌穿200日均線),建議檢視並考慮減持整個主題")
+                lines.append("• 點做:整個主題趨勢已破位,建議檢視並考慮減持")
                 if a.get("weak_tickers"):
-                    lines.append(f"• 當中個別破位嘅股票:{'、'.join(a['weak_tickers'])}")
+                    lines.append(f"• 當中已破位嘅股票:{'、'.join(a['weak_tickers'])}")
             elif a["urgency"] == "watch":
-                lines.append("• 估值偏高但趨勢未破位,暫時毋須行動,持續觀察")
-                if a.get("valuation"):
-                    lines.append(f"• 市場預期:{a['valuation']}")
+                lines.append("• 點做:估值偏貴但未破位,今日毋須行動,繼續觀察")
             else:  # opportunity
-                lines.append(f"• 建議配置:佔衛星倉位 {a.get('pct', 0):.0f}%")
+                lines.append(f"• 點做:可分批吸納,建議佔衛星倉位 {a.get('pct', 0):.0f}%")
                 if a.get("ticker"):
-                    mag_bit = f",潛在倍數評估{a['node_magnitude']}" if a.get("node_magnitude") else ""
-                    lines.append(f"• 首選標的:{a['ticker']}(單股 {a['ticker_verdict']})"
-                                 f",距200日均線{a['ticker_vs200sma']}(200SMA {a['ticker_sma_price']}){mag_bit}")
-                if a.get("valuation"):
-                    lines.append(f"• 市場預期:{a['valuation']}")
-            cb = _crowding_bit(a)
-            if cb:
-                lines.append(cb.strip("\n"))
+                    cur = _current_price(a.get("ticker_sma_price"), a.get("ticker_vs200sma"))
+                    cur_s = f"現價約 ${cur:,.0f}," if cur else ""
+                    lines.append(f"• 首選標的:{a['ticker']}({cur_s}距200日均線 {a['ticker_vs200sma']})")
+                    lines.append(f"• 入場參考:現價細注分批;回落至200日均線 {a['ticker_sma_price']} 可加大注碼")
+            # 2) the consistent 3-read block
+            is_buy = a["urgency"] == "opportunity"
+            lines.append(f"• 趨勢:{trend_read(a.get('ticker_vs200sma'), a.get('triggered'))}")
+            lines.append(f"• 市場預期:{a.get('valuation') or '未評估'}")
+            ctext, _warn = crowding_read(a.get("crowding_pctile"), is_buy)
+            lines.append(f"• 擁擠度:{ctext}")
         msgs.append("\n".join(lines))
 
     m = briefing["market"]
@@ -853,6 +924,47 @@ def render_telegram_messages(briefing):
         lines.append(f"• {briefing['aa_note']}")
     msgs.append("\n".join(lines))
 
+    # full-board appendix -- every theme, its verdict/confidence/stage/crowding, and its nodes
+    # (or an explicit "per-node 評估未做" so the reader knows WHY some themes show a potential
+    # multiple and others don't). Split into 2 messages if long, to respect Telegram's limit.
+    msgs.extend(_render_appendix(briefing.get("all_themes") or []))
+    return msgs
+
+
+_VERDICT_ZH = {"KILL-WATCH": "止蝕觀察", "ACCUMULATE": "可吸納", "BUY-ZONE": "早期買入",
+               "WAIT": "等待", "—": "—"}
+
+
+def _render_appendix(all_themes):
+    if not all_themes:
+        return []
+    header = ("【全部主題一覽】(信心/週期/裁決/擁擠;潛在倍數見各主題 node)\n"
+              "註:潛在倍數係 magnifier 框架人手評估,15 個主題暫時做咗 5 個,"
+              "其餘標「per-node 評估未做」。")
+    blocks = []
+    for t in all_themes:
+        cp = t.get("crowding_pctile")
+        crowd = f"擁擠 {round(cp)}分" if cp is not None else "擁擠 未評估"
+        val = t.get("valuation") or "估值未評估"
+        head = (f"\n▸ {t['name']}｜信心 {t['confidence']:.2f}｜{t['cycle_stage']}｜"
+                f"{_VERDICT_ZH.get(t['verdict'], t['verdict'])}｜{crowd}")
+        sub = [f"  估值:{val}｜目標配置 {t['target_pct']:.0f}%"]
+        if t.get("nodes"):
+            for n in t["nodes"]:
+                sub.append(f"  · {n['name']}:潛在倍數 {n['tier']}")
+        else:
+            sub.append("  · per-node 評估未做(潛在倍數待評)")
+        blocks.append(head + "\n" + "\n".join(sub))
+    # pack blocks into <=3800-char messages (Telegram hard limit 4096)
+    msgs, cur = [], header
+    for b in blocks:
+        if len(cur) + len(b) + 1 > 3800:
+            msgs.append(cur)
+            cur = b
+        else:
+            cur += "\n" + b
+    if cur:
+        msgs.append(cur)
     return msgs
 
 
