@@ -268,7 +268,23 @@ themes:
       top risk、中國營收佔比55.3%仲升緊。NVTS中國營收佔比曾達62%(現47%,全審查最大營收集中度)。
       TXN成都廠+被中國商務部反傾銷調查中。CAT係全審查製造足跡最深(6個中國城市、4個業務線、30年
       歷史)。BE有一單未解決嘅scandium供應爭議(調查媒體指控vs公司8-K否認,未有定論)。PWR查證乾淨
-      (全篇10-K零中國提及)。'
+      (全篇10-K零中國提及)。
+      2026-07-10 update(gooptions #156「電力缺口戰對帳:發電鏈vs器件鏈輪動」,Tier-2,neutral,付費牆截斷、
+      只引免費前段):免費段核心=美銀證券估美國2026-2030發電缺口逾100GW(容量需求230GW+但公用事業可恃供給
+      得93GW,「市場已受電力能否送達約束、非需求約束」);雲端資本支出上修2026約$8,510億(+78% YoY)/2027上看
+      $1.15兆(SemiAnalysis 2024-29累計約$11.1兆屬社群轉述、未一手查證)。框架=資金與敘事呢輪先押「發電鏈」
+      (渦輪/變壓器/公用事業——因為佢嘅緊可被定價:缺口公式+交期(變壓器128週、燃氣複循環新建交期+23%)+可
+      直接買標的),功率半導體器件鏈定價權「才剛點著、輪動訊號未亮」。器件鏈三證(全部已喺本thesis既有note/
+      kill_condition,今篇係對帳再述、非新事實):(1)漲價—Infineon三個月連兩次功率半導體漲價(2026-04-01+07-01),
+      連兩季漲下游接受=結構性緊縮;(2)含量—onsemi每櫃120kW約$9,500→800V約$115,000(近10x),AI資料中心營收
+      2026Q1環比+30%、全年self-guide翻倍、毛利率連三季擴到38.5%;(3)架構—摩根士丹利拆NVDA下一代Feynman機櫃
+      功率半導體用料約$19.1萬=Blackwell世代17x,Infineon三段合計約51%。對本thesis:全部佐證現有「真需求但
+      priced-ahead-of-ramp」+節點成熟度分歧(grid-hardware late/priced vs power-semis-mature mid-late,呼應
+      nodes:塊)。空方對照:社群轉述伯恩斯坦稱在建/規劃338GW、現速要約12年消化、昂貴GPU/記憶體恐成「閒置擺設」
+      ——報告自己標為「未證實嘅空方情緒訊號、單一社群來源、公開檢索搵唔到原報告」,方向同kill「800V放量時程滑」
+      一致但當情緒訊號睇。⚠️付費牆後嘅逐檔位置(含Navitas/MPWR/Vicor/台股強茂/環球晶)+6條輪動追蹤軸未能引。
+      ⚠️原文內文header誤植「ISSUE #153」,但frontmatter/manifest係#156,以#156為準。confidence/cycle維持
+      (Tier-2 neutral、重述已知器件鏈事實+補美銀100GW缺口量化,無財報級新事實)。'
 
   advanced-packaging:
     wiki: thesis/wiki/advanced-packaging.md
@@ -474,7 +490,22 @@ themes:
       攻台/封鎖情境威脅緊TSM自己喺台灣嘅本土產能,佔全球最先進晶片90%),呢個同「TSM依賴中國大陸」
       係完全唔同類別嘅風險,唔應該用同一把尺量。AVGO嘅中國營收(17-20%)係fabless/ship-to,10-K自己
       都話好大部分實際流向美歐終端產品,實際曝險冇表面數字咁大。CLS確認有蘇州/東莞/上海製造,營收
-      佔比未查到。'
+      佔比未查到。
+      2026-07-11 update(gooptions #155,NVDA 200億美元收編 Groq LPU + AFD 異構推理,Tier-2,neutral):
+      交易結構=非獨家IP授權+挖角(Groq創辦人/總裁/核心工程師入NVDA、公司獨立續存保有IP),媒體稱「名義外
+      皆為併購」、刻意包裝規避HSR併購申報(參院Warren/Blumenthal已去函質疑,FTC曾以同結構查微軟-Inflection);
+      200億約當Groq 2025-09 估值69億的2.9倍。技術:LPU用SRAM當主記憶體+編譯器靜態調度換低延遲/確定性,代價
+      係容量細、單機裝唔落最強模型;NVDA用AFD(注意力-前向傳播解耦)把prefill+全上下文attention留GPU、只把
+      decode迴圈嘅稀疏MoE前向傳播交LPU協處理器 → 核心仍係GPU,係「多賣NVDA content」唔係替代,順手繞過
+      純SRAM路線「裝唔落最強模型」嘅容量天花板。對本thesis:呢個係NVDA對inference-ASIC威脅嘅防守反制,兩面
+      讀法都佐證現有張力——(a)強化kill嗰邊「NVDA推理份額不見鬆動」(NVDA主動用異構分工強化推理側鎖定、擴大
+      每部署NVDA content);(b)但報告自陳非排他授權、擋唔住hyperscaler自研晶片分流,冇解決自研ASIC結構侵蝕,
+      對「切蛋糕」論點中性。AVGO toll-booth側面再佐證:報告把OpenAI-Broadcom自研推理晶片(9個月投片)列做平替
+      路線代表 → AVGO兩邊(Google TPU共同設計+OpenAI ASIC)都收費。⚠️所有效能數字(35×每MW吞吐、10×營收機會、
+      「150 vs 22」頻寬)全係NVDA官方口徑、無第三方基準驗證,一律當廠商宣稱;「150 vs 22」係片上SRAM對HBM、
+      非同類比較。⚠️另據供應鏈爆料NVDA早前推理專用GPU「Rubin CPX」因攞唔到記憶體/基板訂單被撤(NVDA未正式
+      說明),顯示推理側產品路徑仍在調整。confidence/cycle維持(Tier-2 neutral、無財報級新事實;強化現有兩面
+      張力而非新訊號)。待日間session覆核:是否值得把「NVDA用AFD守推理側」明確寫入kill追蹤軸。'
 
   oil-gas-energy:
     wiki: thesis/wiki/oil-gas-energy.md

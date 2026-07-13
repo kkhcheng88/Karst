@@ -138,6 +138,12 @@ penalty = 薄證據(單一 Tier-2 報告 n=1,無跨源佐證) × 共識(AVGO 客
 - **2026-07-05**(ingest #145/#146):跨源佐證使薄證據 1→3 篇(但同一 SemiAnalysis/Dylan 訪問→非完全獨立,
   confidence 暫維持 0.28);護城河再定義——真 NVDA 壁壘 =「開源模型都長成 GPU 形狀」非 CUDA,領先指標改追
   Google Gemma 養唔養到強 TPU-shaped 開源模型(#146);新增互動端節點 CBRS/Groq(#145)。kill 相應更新。
+- **2026-07-11**(ingest #155,gooptions,Tier-2 neutral):NVDA $20B acqui-hire Groq LPU + 用 AFD(注意力-
+  前向傳播解耦)守推理側——把 prefill/attention 留 GPU、只把 decode FFN 卸去 LPU 協處理器 = 多賣 NVDA
+  content,核心仍係 GPU。兩面佐證現有張力:強化 kill「NVDA 推理份額不見鬆動」一邊,但非排他授權、擋唔住
+  hyperscaler 自研 ASIC 分流 → 對「切蛋糕」中性。AVGO toll-booth 再佐證(OpenAI-Broadcom 平替路線亦繞回
+  AVGO)。⚠️效能倍數(35×/MW、10× 營收、150 vs 22)全 NVDA 官方口徑、無第三方基準。confidence/cycle 維持
+  0.28。詳 themes.yaml note。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
 ## 待補(降「未確認」扣分 + 加厚薄證據)
@@ -156,3 +162,6 @@ McKinsey 用電、New Street 份額、Artificial Analysis token 價、AVGO「贏
 ~60%/年成本跌、Cerebras/Groq 互動端)、#146(CUDA 護城河再定義:真壁壘=開源模型 GPU-shaped、中國佔 HF
 ~40%、Google Gemma 為 TPU 上位領先指標、Google 3 條 TPU 設計線壓 AVGO)——但兩篇同出 SemiAnalysis/Dylan
 Patel 訪問、非獨立第二把聲**。Tier-1:defeatbeta `ttm_pe` / `quarterly_cash_flow`(capex)(2026-07-01)。
+**新增(2026-07-11):#155**(NVDA 200億收編 Groq LPU + AFD 異構推理,Tier-2 neutral)——NVDA 對 inference-ASIC
+威脅嘅防守反制(AFD 把 decode FFN 卸去 LPU 協處理器、核心仍 GPU = 多賣 content),兩面佐證現有張力;
+交易結構規避 HSR、效能數字全官方口徑未經第三方驗證。詳 themes.yaml note。

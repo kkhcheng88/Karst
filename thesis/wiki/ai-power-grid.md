@@ -140,6 +140,10 @@ cycle/crowding penalty: 股價晚期已 priced-in(quality 名 90%+ 分位 + 內�
   方向:**不追已飛 quality 名**;要碰上游氣源或等 POL 估值消風;pre-earnings 用選擇權小注。
   追蹤變數 = 800V 放量時程 + hyperscaler capex 指引 + quality 名估值分位 + Infineon 漲價循環;
   kill = 需求錨破裂 / 800V 再延 / 渦輪訂單見頂。
+- **2026-07-10**(ingest #156,gooptions,Tier-2 neutral,付費牆):資金先押發電鏈、功率半導體器件鏈定價權
+  「才剛點著」→ 佐證現有「真需求 priced-ahead-of-ramp」+節點成熟度分歧(grid-hardware late vs power-semis
+  mid-late)。美銀 US 發電缺口 100GW 量化 = 新增硬數;器件鏈三證(Infineon / onsemi / Feynman 17x)屬已知
+  再述;伯恩斯坦 338GW 空方 = 未證實情緒訊號。confidence/cycle 維持 0.33。詳 themes.yaml note。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
 ## 待補(降「未確認」扣分)
@@ -158,5 +162,7 @@ EQT CEO)、價值鏈 #110(7 層 + FERC 定價權)、800V 供電 #091(POL 雙寡�
 #080/#081/#082(ON/NVTS/MPWR)、SiC #073/#094(WOLF/COHR)、時序 #114(800V 四階段)、發電 #086/#134
 (GEV/渦輪見頂)、需求端 #137(NVDA 配額);**新增(2026-07-05):散熱/液冷 #140(VRT「帶走熱」防守段 vs
 裸晶冷板被 direct-to-silicon 內化、ETN 收 Boyd Thermal $9.5B)**。Tier-1:defeatbeta `ttm_pe`/`quarterly_cash_flow`(2026-07-01)。
-</content>
-</invoke>
+**新增(2026-07-10):#156**(電力缺口戰對帳:發電鏈 vs 器件鏈輪動,Tier-2 neutral,付費牆截斷、只引免費段)——
+美銀美國 2026-30 發電缺口 >100GW / 可恃供給 93GW、雲端 capex 上修 2026 $851B / 2027 $1.15兆;器件鏈三證
+(Infineon 連兩漲 / onsemi 每櫃含量 10x / 摩根士丹利 Feynman 功率半導體 17x Blackwell)對帳再述,佐證
+「發電鏈先押、器件鏈定價權才剛點著」嘅成熟度分歧。詳 themes.yaml note。
