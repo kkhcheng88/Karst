@@ -1,0 +1,228 @@
+# thesis/news_watch_keywords.yaml -- news_watch.py 窄頻 kill 軸關鍵詞配置(人手可改)。
+#
+# 設計原則(用戶定調,2026-07-13):新聞係 context 唔係訊號;通用新聞 feed 係噪音製造機,唔准做。
+# 淨監聽以下每個 active theme 嘅 kill_condition 蒸餾出嚟嘅特定關鍵詞軸 -- 唔係「呢隻股/呢個主題
+# 嘅任何新聞」,係「會唔會觸發/紓緩 kill_condition 嘅嗰幾條窄軸」。
+#
+# 起草方法:逐條讀晒 thesis/themes.yaml 15 個 status:active theme 嘅 kill_condition,人手蒸餾做
+# 3-6 條英文 query。每條 query 標 theme(屬邊個主題)+ direction:
+#   kill-confirming -- 呢條 query 命中嘅新聞,如果內容屬實,會令 thesis 轉弱/更接近 kill_condition
+#                       觸發(例:HBM ASP 跌、關稅撤銷、發射延誤)
+#   kill-relieving  -- 呢條 query 命中嘅新聞,如果內容屬實,會確認現狀延續/thesis 仍然 intact
+#                       (例:短缺持續、backlog 增長、pricing power 語言持續)
+# 呢個只係 query 起草時嘅「意圖」靜態標籤 -- 唔係自動判定結果,實際新聞內容仍需人腦/下游簡報判斷。
+#
+# 動機案例(2026-07-13):SK 海力士「HBM ASP 低過預期」單日冧 15%,呢個 memory-supercycle 主題嘅
+# kill_condition 核心軸(HBM/advanced-packaging capacity 追過 demand = glut)命中 -- 但呢單嘢對高
+# 波動股嚟講 5% 盤前跌都可以係「正常日」,價格感應器捉唔到,只有知道「HBM ASP」係呢個主題嘅 kill
+# 軸關鍵詞先捉得到。第一次真跑(python thesis/news_watch.py --verbose)已驗證捉到呢單新聞。
+#
+# 維護:themes.yaml 有新 theme admit / kill_condition 改寫時,呢度要同步蒸餾新 query(人手,唔自動)。
+
+themes:
+  memory-supercycle:
+    # kill: LTA/SCA scorecard 停/反轉(contract price roll over)OR HBM/advanced-packaging 產能追過
+    # AI-inference 需求(glut)
+    queries:
+      - query: "HBM price cut"
+        direction: kill-confirming
+      - query: "DRAM contract price decline"
+        direction: kill-confirming
+      - query: "SK Hynix HBM"
+        direction: kill-confirming
+      - query: "memory chip capacity expansion"
+        direction: kill-confirming
+      - query: "NAND flash shortage"
+        direction: kill-relieving
+      - query: "DRAM shortage extends"
+        direction: kill-relieving
+
+  photonics-optical:
+    # kill: InP substrate shortage 解除 OR CPO adoption 滑(pluggable/LPO 夠好)OR laser-IDM
+    # (COHR/LITE)order-book/pricing 破
+    queries:
+      - query: "InP substrate capacity expansion"
+        direction: kill-confirming
+      - query: "CPO adoption pluggable optics"
+        direction: kill-confirming
+      - query: "Coherent Lumentum order cut"
+        direction: kill-confirming
+      - query: "InP substrate shortage laser lead time"
+        direction: kill-relieving
+      - query: "optical transceiver shortage"
+        direction: kill-relieving
+
+  ai-power-grid:
+    # kill: AI-capex demand anchor 破 OR 800V/HVDC 再滑 OR turbine 訂單確認 2026 頂 OR Infineon
+    # 加價週期逆轉 OR 中國進一步收緊 yttrium/稀土出口管制
+    queries:
+      - query: "hyperscaler data center capex cut"
+        direction: kill-confirming
+      - query: "800V HVDC data center delay"
+        direction: kill-confirming
+      - query: "Infineon power semiconductor price cut"
+        direction: kill-confirming
+      - query: "China yttrium rare earth export control"
+        direction: kill-confirming
+      - query: "gas turbine order backlog data center"
+        direction: kill-relieving
+
+  advanced-packaging:
+    # kill: Nittobo T-glass / Mitsui HVLP copper-foil 新產能提早到 OR 封裝格式戰收斂單一贏家 OR
+    # CoWoS/EMIB 產能追過 AI-accelerator 需求(chokepoint -> glut)
+    queries:
+      - query: "Nittobo T-glass capacity"
+        direction: kill-confirming
+      - query: "copper foil substrate capacity expansion"
+        direction: kill-confirming
+      - query: "CoWoS packaging capacity expansion"
+        direction: kill-confirming
+      - query: "advanced packaging shortage CoWoS"
+        direction: kill-relieving
+      - query: "chip packaging bottleneck"
+        direction: kill-relieving
+
+  space-satellite:
+    # kill: Starship 快速重複使用延宕 OR Golden Dome 遭砍/推遲 OR RKLB Neutron 再延 OR ASTS 衛星
+    # 未準時上天 OR GSAT Amazon 併購 FCC 破局
+    queries:
+      - query: "Starship launch delay"
+        direction: kill-confirming
+      - query: "Golden Dome funding cut"
+        direction: kill-confirming
+      - query: "Rocket Lab Neutron delay"
+        direction: kill-confirming
+      - query: "AST SpaceMobile satellite delay"
+        direction: kill-confirming
+      - query: "Globalstar Amazon FCC"
+        direction: kill-confirming
+      - query: "Rocket Lab Neutron launch"
+        direction: kill-relieving
+
+  rare-earth-materials:
+    # kill: 2026-11 US-China 正式協議完全解除 indium/gallium/heavy-REE 出口管制 OR 中國本土垂直
+    # 整合按時投產 OR MP 嘅 DoD $110/kg 保底/Project Vault 資金生變 OR 休戰無限期延長
+    queries:
+      - query: "US China rare earth export deal"
+        direction: kill-confirming
+      - query: "China rare earth export control lifted"
+        direction: kill-confirming
+      - query: "gallium indium export restriction"
+        direction: kill-relieving
+      - query: "China rare earth export control"
+        direction: kill-relieving
+
+  tpu-custom-silicon:
+    # kill: TPU escaping Google 停滯(冇新客戶)OR AVGO AI/custom-ASIC 訂單/營收唔再 beat OR NVDA
+    # inference share 唔鬆動
+    queries:
+      - query: "Broadcom custom AI chip orders"
+        direction: kill-relieving
+      - query: "Google TPU customer"
+        direction: kill-relieving
+      - query: "Nvidia inference market share"
+        direction: kill-confirming
+
+  oil-gas-energy:
+    # kill(THIN watch,非方向性判斷): oil leg -- Brent 重返 >$90(Hormuz 油輪遇襲/OPEC+ 重掌紀律)
+    # 或 <$60(需求崩);gas-power leg -- SEI 管治 binary 惡化 OR AI behind-the-meter capex 停
+    queries:
+      - query: "Brent crude oil price surge"
+        direction: kill-confirming
+      - query: "Hormuz tanker attack"
+        direction: kill-confirming
+      - query: "SEI Morpheus short report"
+        direction: kill-confirming
+      - query: "data center natural gas power demand"
+        direction: kill-relieving
+      - query: "EQT natural gas capex"
+        direction: kill-relieving
+
+  semicap-equipment:
+    # kill: 內部人持續公開市場沽貨 OR $41M/$50.9M backlog FY2027 認列失敗 OR 具名 ATE 同業
+    # (Advantest/Teradyne/Cohu/inTEST)大規模進入 package-level burn-in
+    queries:
+      - query: "AEHR insider selling"
+        direction: kill-confirming
+      - query: "Advantest Teradyne burn-in test"
+        direction: kill-confirming
+      - query: "wafer level burn-in shortage"
+        direction: kill-relieving
+      - query: "AEHR Sonoma order backlog"
+        direction: kill-relieving
+
+  aerospace-specialty-alloys:
+    # kill: 噴射引擎 OEM(Boeing/Airbus/GE/RTX/Safran)build-rate guidance 回落或 LTA/backlog
+    # 增長停滯 OR 競爭者(PCC/Special Metals/VDM/Aperam)帶新產能上線
+    queries:
+      - query: "Boeing Airbus build rate cut"
+        direction: kill-confirming
+      - query: "Carpenter Technology alloy capacity"
+        direction: kill-confirming
+      - query: "jet engine nickel alloy shortage"
+        direction: kill-relieving
+      - query: "ATI aerospace backlog"
+        direction: kill-relieving
+
+  euv-lithography-monopoly:
+    # kill: 可行 EUV/High-NA 競爭者出現(SMEE/Canon/Nikon)OR AI 先進製程 capex guidance
+    # 停滯/逆轉 OR backlog/lead time 回復 2019 前水平(<6 個月)
+    queries:
+      - query: "ASML EUV competitor China"
+        direction: kill-confirming
+      - query: "TSMC Samsung Intel capex cut"
+        direction: kill-confirming
+      - query: "EUV lithography lead time"
+        direction: kill-relieving
+      - query: "ASML order backlog"
+        direction: kill-relieving
+
+  us-solar-manufacturing:
+    # kill: Section 201/232/301 太陽能關稅或 IRA 本土成分規定被撤銷/豁免 OR sold-out backlog
+    # 落空 OR 美國太陽能需求停滯 OR 中國進一步收緊碲/CdTe 出口管制
+    queries:
+      - query: "solar tariff Section 201 232 removal"
+        direction: kill-confirming
+      - query: "IRA solar tax credit repeal"
+        direction: kill-confirming
+      - query: "China tellurium export control"
+        direction: kill-confirming
+      - query: "First Solar order backlog"
+        direction: kill-relieving
+
+  gas-compression-equipment:
+    # kill: 引擎/壓縮機 lead time 壓縮返歷史常態(150 週 -> <52 週)OR 主要 OEM(Caterpillar/Ariel)
+    # 新產能上線 OR 需求驅動力(LNG 出口+Permian associated gas+AI 天然氣發電)增長停滯/逆轉
+    queries:
+      - query: "Caterpillar Ariel compressor new capacity"
+        direction: kill-confirming
+      - query: "compressor lead time shortage"
+        direction: kill-relieving
+      - query: "natural gas compression shortage"
+        direction: kill-relieving
+      - query: "LNG export Permian gas demand"
+        direction: kill-relieving
+
+  specialty-siding-pricing-power:
+    # kill: SmartSide/ExpertFinish「pricing power」語言消失 OR ExpertFinish allocation 下個上升
+    # 週期冇再現 OR OSB 商品業務拖累成間公司 OR vinyl siding 競爭者收窄差距
+    queries:
+      - query: "LP Building Solutions OSB weak"
+        direction: kill-confirming
+      - query: "vinyl siding market share"
+        direction: kill-confirming
+      - query: "Louisiana-Pacific siding pricing power"
+        direction: kill-relieving
+
+  glp1-biologics-packaging:
+    # kill:「demand outstripping supply」語言下一季消失 OR Annex-1 升級項目數停滯/回落 OR
+    # GLP-1/生物製劑用藥量大幅減速 OR 競爭者(Datwyler/Aptar)喺 HVP 同級元件搶份額
+    queries:
+      - query: "Datwyler Aptar market share vial"
+        direction: kill-confirming
+      - query: "West Pharmaceutical Services demand"
+        direction: kill-relieving
+      - query: "GLP-1 drug packaging demand"
+        direction: kill-relieving
+      - query: "Annex-1 EU pharmaceutical packaging"
+        direction: kill-relieving

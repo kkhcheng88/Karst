@@ -274,6 +274,16 @@ def load_crowding():
     return _load_json(os.path.join(ROOT, ".raw", "crowding_composite.json"))
 
 
+def load_news():
+    """news_watch.py's kill-axis headlines (context, not signal -- max 8/day by design)."""
+    return _load_json(os.path.join(ROOT, ".raw", "news_watch.json"))
+
+
+def load_league():
+    """paper_league.py's multi-strategy NAV comparison (core/AA/sizing-v1/v2 paper race)."""
+    return _load_json(os.path.join(ROOT, ".raw", "paper_league_report.json"))
+
+
 def load_due_milestones():
     """Count milestone predictions past deadline but still unresolved (milestones.yaml).
     Surfacing this count in the daily briefing IS the resolver reminder mechanism -- a due
@@ -856,6 +866,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
         "sentinel": sentinel, "sentinel_red": sentinel_red, "ladder": ladder,
         "ledger": ledger_view, "due_milestones": due_ms or [],
         "upcoming_milestones": upcoming_ms or [], "all_themes": all_themes,
+        "news": load_news(), "league": load_league(),
     }
 
 
@@ -976,9 +987,30 @@ def render_telegram_messages(briefing):
             lines.append(f"• {r.get('ticker')} LEAP 距到期 {r.get('days')} 日{warn}")
     msgs.append("\n".join(lines))
 
+    # kill-axis news (context, not signal): its own short message so the reader sees WHY
+    # something is moving before the stats. Direction labels are heuristic -- human judges.
+    news = briefing.get("news") or {}
+    items = (news.get("items") or [])[:5]
+    if items:
+        nlines = ["📰 Kill 軸新聞(context,唔係買賣訊號):"]
+        for it in items:
+            nlines.append(f"• [{theme_zh(it.get('theme'))}] {it.get('title','')[:90]}"
+                          f"({it.get('source','?')})")
+        msgs.append("\n".join(nlines))
+
     lines = []
     if briefing["quiet_count"]:
         lines.append(f"• 其餘 {briefing['quiet_count']} 個主題觀望中,暫時毋須理會。")
+    lg2 = briefing.get("league") or {}
+    strategies = lg2.get("strategies") or lg2.get("rows") or []
+    if strategies:
+        parts = []
+        for s in strategies:
+            nm = s.get("name") or s.get("strategy")
+            parts.append(f"{nm} {s.get('return_pct', 0):+.1f}%")
+        lines.append("• 紙上擂台(各策略自開賽起):" + " | ".join(parts))
+    elif briefing["aa_note"]:
+        lines.append(f"• {briefing['aa_note']}")
     due = briefing.get("due_milestones") or []
     upcoming = briefing.get("upcoming_milestones") or []
     if due:
@@ -987,8 +1019,6 @@ def render_telegram_messages(briefing):
     elif upcoming:
         lines.append(f"• 未來45日內有 {len(upcoming)} 條系統預測到期,到時要對答案。")
     lines.append(f"• {briefing['trust_note']}")
-    if briefing["aa_note"]:
-        lines.append(f"• {briefing['aa_note']}")
     msgs.append("\n".join(lines))
 
     # full-board appendix -- every theme, its verdict/confidence/stage/crowding, and its nodes

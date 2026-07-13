@@ -110,3 +110,12 @@ theme 級 cycle_stage(space="early"≠"event-driven"),theme 級 binary 微注處
 前要考慮:(i) binary node 佔比高嘅 theme 用 damped 混合,或 (ii) v2 疊 trend gate。而家
 唔改 formula(shadow 嘅意義就係唔郁住,睇佢自己表現)。oil-gas-energy 按 Fable 指示唔
 node 化,拆分方案 = `docs/2026-07-13_oilgas_split_proposal.md`(待用戶拍板)。
+
+**【2026-07-13 batch 3 之後第二個 shadow artifact:地板 × 平分數 → 零部署】** per-node
+推廣到 14/15 後,scores 反而變得好平均(0.20-0.68 窄帶),top-6 每份按比例攤 ~$3.4k,
+**全部低過 $4,000 地板 → 除 event-binary micro 外零部署($1,000/$20,500)**。用真
+magnitude 數據示範咗 Fable spec「top-K + 不重分配地板」喺平分數 regime 下嘅結構缺陷:
+分數愈平均,部署愈接近零——同「集中化」嘅設計原意相反。修法候選(shadow 完先郁):
+(i) 地板改「取唔夠就縮 K」(top-6 → top-3 直到每份過地板);(ii) 地板後重新歸一化
+(違反而家嘅不重分配原則,要 Fable 級覆核);(iii) 接受零部署做「冇夠說服力嘅集中機會
+= 唔部署」嘅 feature。紙上擂台(paper_league.py)會令呢個 regime 嘅代價透明。
