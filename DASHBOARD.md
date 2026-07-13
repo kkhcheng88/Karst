@@ -1,16 +1,16 @@
 # Karst Dashboard
 
-_render: 2026-07-13 05:35 UTC | mode: morning | [source](https://github.com/kkhcheng88/Karst)_
+_render: 2026-07-13 05:36 UTC | mode: evening | [source](https://github.com/kkhcheng88/Karst)_
 
 
 ## ROW 0 — 今日行動條
 
-_核心閘讀數截至:2026-07-11 05:40_
+> ⚠ **PREMARKET 預覽,收市判定為準**(price triggers 用 premarket 價,非收市價;確定行動請等收市版)
 
-- **SPY** vs 200SMA: 🟢 ABOVE (+8.7%) — no-change (close 754.95 @ 2026-07-10)
-- **QQQ** vs 200SMA: 🟢 ABOVE (+13.7%) — no-change (close 725.51 @ 2026-07-10)
-- VIX=15.03 (M1 恐慌窗: closed) | SPY RSI-2=86.4 (M3 sell-call: off) | ^IRX=3.70%
-- 危機 sleeve: ⚪ DISARMED
+- **SPY** premarket 754.89 (-0.0%, close 754.95) | 200SMA=694.64 gate ON | in range -- no trigger (hold / scale on weakness)
+- **QQQ** premarket 726.41 (+0.1%, close 725.51) | 200SMA=638.20 gate ON | in range -- no trigger (hold / scale on weakness)
+
+_premarket 讀數時間:2026-07-13 13:36_
 - Roll 倒數(LEAP到期): —(需台帳:未有實際持倉到期日記錄,見 footer backlog)
 - Top-up 倒數:下個月首個交易日 ≈ 2026-08-03 (近似,未計市場假期)
 - **AA-strict 並行(紙上,不郁真錢)** — regime: 0 leg(s) off 200SMA, band=1.15, 目標delta=69.8% | NAV: AA 100.00 vs SPY B&H 100.00 (as of 2026-07-10)
