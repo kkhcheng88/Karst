@@ -83,7 +83,18 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 - **beta_check.py 加咗持久化**:原本 stdout-only,而家額外寫 `thesis/.raw/beta_check_report.json`(gitignored,SUN 08:15 週跑一次,dashboard 每日 2 次讀 cache 唔重複跑貴嘅 rolling-correlation compute)。
 - **排程已接**:`Karst-dashboard-daily`(新註冊,06:00 二至六,晨版)+ `backtest/daily_premarket.cmd` 尾段鏈 `dashboard_render.py --mode evening`(20:30,premarket 疊加版,標「PREMARKET預覽」)。Telegram bot 已配置(`~/.config/karst/telegram`)並實測收到訊息。全鏈(.cmd → render → git commit+push → Telegram)已跑過幾次確認 end-to-end 冇錯。
 - **未做**(見 dashboard footer backlog,唔係 bug,係下一階段):PNG 圖表、位置台帳(ledger,ROW1 VaR/ROW2 current-vs-target 嘅前置)、milestone-Brier、數據哨兵、機會階梯/雷達實作、IMA 週任務機讀化。
-- 下一步:視乎用戶想點——起 position ledger(解鎖 ROW1/2 最肥嗰兩塊)定係其他 Fable 交接書 P1/P2 backlog(見 `docs/2026-07-13_fable_session_handover.md`)。
+
+**2026-07-13(第二波,用戶指令「implement all of Fable's suggestions」,大腦+Opus/Sonnet 派工制)—— P0-P2 backlog 一日清 13 項:**
+- **Per-node magnifier 推廣 5/15**:photonics(6)/advanced-packaging(6)/memory(4)/space(6)nodes 落 themes.yaml(理據檔 `results/2026-07-13_pernode_batch{1,2}_draft.md`);oil-gas 按 Fable 指示唔 node 化,拆分方案 = `docs/2026-07-13_oilgas_split_proposal.md`(**待用戶拍板**)。v2 影子有咗真 magnitude 開始有分辨力,但暴露「space 趨勢破位但排名第一」artifact(已記 WS5 §9,shadow 兩季要盯)。
+- **紙上台帳 `thesis/paper_ledger.py`**:策略自己嘅 % 持倉(user-agnostic,唔係用戶 broker),kill-VaR 27.15%(binary 類食 0.80 downside——大腦修正咗原規格漏洞)、LEAP roll 倒數、target-vs-current 差距。state 檔 committed,report 檔 .raw。
+- **數據哨兵 / 機會階梯+雷達 / milestone-Brier(51 條有期限預測+brier.py)/ 擁擠複合(feature-5,NVDA parser 修咗)** 全部落地接入 dashboard。
+- **valuation.py v1 生產化**(週期頂 bias 修正,SUN 09:15 週更已註冊)+ **BT-5 判別力 6/6 全中(判官預先寫死)→ 過閘**;dashboard/ledger glob 已擴到 v*。**接 sizing 閘嘅執行語意待用戶揀**(task #30)。
+- **C-list v1** = `docs/2026-07-13_clist_v1.md`(20 隻複利機器兩帶+觸發價,KLAC/ACN 現價已過折讓線,執行受階梯檔位閘)。
+- **研究判定**:A 閃縮 backtest **FAIL**(雷達 A 維持唔接;transcript 過濾層未測係 caveat);DRAM 序列 **PARTIAL**(只做 confirm layer,監控 job = task #29);MP capex 警號**雙重駁回**(對抗覆核+自身歷史 55.6%/16.7% 分位=build-out 假象,`results/2026-07-13_mp_capex_da_{review,history}.md`,**trim 與否用戶拍板**——理據係估值/事件唔係 capex);需求端反向掃描(買家側:memory 90 條最強;EUV/siding/glp1 賣家講買家靜要小心)。
+- **china-supply hub** = `thesis/wiki/china-supply-macro-risk.md`(lint 缺口閂咗;發現標籤缺口:AXTI/GEV 等中國曝險票所屬 theme 冇標 china-supply,**待用戶覆核要唔要重標**)。
+- **Dashboard/Telegram 總整合**:哨兵紅燈 banner、市況檔位 header、逐項擁擠度、VaR 人話版、倉位對齊建議、roll 倒數、預測到期提示全部入咗簡報;晨晚 .cmd 鏈已駁刷新步驟。
+- **未完(session 限額中斷,重派中)**:BT-3/BT-4 增量測試、trim 規則 paper 驗證(半成品 compile 到,執手尾)。
+- 下一步:視乎用戶——AA 遷移(#25 blocked)、valuation 閘語意(#30)、oil-gas 拆分、MP trim、china-supply 重標籤,五項全部等用戶拍板。
 
 ## 現在在哪(2026-07-12)
 
