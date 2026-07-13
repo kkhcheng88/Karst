@@ -435,6 +435,72 @@ META_FACTOR_ZH = {
     "trade-policy": "貿易政策",
 }
 
+# node slug -> layman business-Chinese name (display only; the slug stays the canonical key in
+# themes.yaml). Kept here in the display layer so batch rollouts of nodes don't each have to
+# carry a translation. A node not in this map falls back to its raw slug (visible = go add it).
+NODE_ZH = {
+    "dram-hbm-integrated-leader": "DRAM/HBM 整合龍頭",
+    "nand-flash-shortage": "NAND 快閃記憶體缺貨",
+    "hdd-nearline-storage": "硬碟近線儲存",
+    "hbm4-oligopoly-leader-unbuyable": "HBM4 寡頭(難買入)",
+    "inp-substrate-chokehold": "磷化銦基板咽喉",
+    "laser-idm-moat": "雷射自產護城河",
+    "silicon-photonics-dsp": "矽光子/DSP 晶片",
+    "modules-transceivers": "光模組/收發器",
+    "cpo-speculative-preprofit": "光引擎投機(未盈利)",
+    "glass-fiber-coupling": "玻璃光纖耦合",
+    "grid-hardware": "電網硬件",
+    "power-semis-mature": "成熟電源半導體",
+    "pre-earnings-optionality": "業績前選擇權(高風險)",
+    "uranium-fuel": "鈾燃料",
+    "ipp-utilities": "獨立發電/公用事業",
+    "osat-arms-dealers": "封測軍火商",
+    "pcb-substrate-tollbooth": "PCB/載板收費站",
+    "process-equipment-test": "製程設備/測試",
+    "emib-optionality": "EMIB 封裝選擇權",
+    "glass-substrate-nextgen": "玻璃基板(下世代)",
+    "hdd-storage-hoya-downstream": "硬碟儲存(Hoya 下游)",
+    "profitable-aero-space-diluted": "成熟航太(倍數被稀釋)",
+    "launch-execution-bet": "火箭發射執行賭注",
+    "d2d-spectrum-optionality": "衛星直連手機頻譜",
+    "preprofit-smallcap-lottery": "未盈利細價股彩票",
+    "golden-dome-policy-option": "金穹國防政策選擇權",
+    "merger-arb-special-sit": "併購套利特殊情況",
+    "custom-asic-tollbooth": "客製晶片收費站",
+    "foundry-both-chains": "晶圓代工(兩邊通吃)",
+    "odm-system-assembly": "系統組裝代工",
+    "rare-earth-separation-chokehold": "稀土分離咽喉",
+    "de-china-magnet-preprofit": "去中國化磁材(未盈利)",
+    "named-alloy-breadth-moat": "特種合金產品廣度",
+    "requalification-switching-lock": "換供應商認證鎖",
+    "burn-in-tollgate-froth": "老化測試收費閘(炒風)",
+    "sole-euv-supplier-monopoly": "EUV 唯一供應商",
+    "cdte-policy-moat-cheap": "碲化鎘政策護城河(平)",
+    "compression-shortage-unloved": "壓縮設備缺貨(被冷落)",
+    "siding-segment-diluted": "外牆板業務(被稀釋)",
+    "hvp-regulatory-lock": "高價值包裝監管鎖",
+}
+
+CYCLE_ZH = {"early": "早期", "mid": "中段", "mid-late": "中後段", "late": "後段",
+            "event-driven": "事件驅動", "—": "—"}
+
+# tier -> a one-glyph marker so the reader can scan the RISK SHAPE of a node at a glance:
+# 🔹 modest, 🔷 solid mid, 💎 durable (structurally slow supply = lasting), ⚡ high-but-binary
+# (pre-profit / event / lottery -- big multiple IF it works, zero if not).
+def tier_glyph(tier):
+    t = str(tier or "")
+    if "binary" in t:
+        return "⚡"
+    if "durable" in t:
+        return "💎"
+    if t.startswith("2x") or t == "2x":
+        return "🔹"
+    return "🔷"
+
+
+def node_zh(slug):
+    return NODE_ZH.get(slug, slug)
+
 # These describe how much future optimism is embedded in the current price (Mauboussin
 # expectations lens) -- a DIFFERENT axis from theme_signal's "cheap/expensive vs own history",
 # so they're labelled "市場預期" in the output, not "估值", to avoid reading as a contradiction
@@ -646,7 +712,8 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
         theme_row = core.get("theme_rows", {}).get(slug)
         verdict = theme_row["verdict"] if theme_row else "—"
         eg = exp_gap.get(slug)
-        nodes = [{"name": n.get("name"), "tier": n.get("magnitude_tier")}
+        nodes = [{"name": n.get("name"), "tier": n.get("magnitude_tier"),
+                   "tickers": n.get("tickers") or []}
                   for n in (t.get("nodes") or [])]
         all_themes.append({
             "slug": slug, "name": theme_zh(slug),
@@ -931,29 +998,35 @@ def render_telegram_messages(briefing):
     return msgs
 
 
+_VERDICT_ICON = {"KILL-WATCH": "🔴", "ACCUMULATE": "🟢", "BUY-ZONE": "🟢",
+                 "WAIT": "⚪", "—": "⚪"}
 _VERDICT_ZH = {"KILL-WATCH": "止蝕觀察", "ACCUMULATE": "可吸納", "BUY-ZONE": "早期買入",
-               "WAIT": "等待", "—": "—"}
+               "WAIT": "等待", "—": "觀望"}
 
 
 def _render_appendix(all_themes):
     if not all_themes:
         return []
-    header = ("【全部主題一覽】(信心/週期/裁決/擁擠;潛在倍數見各主題 node)\n"
-              "註:潛在倍數係 magnifier 框架人手評估,15 個主題暫時做咗 5 個,"
-              "其餘標「per-node 評估未做」。")
+    header = ("📋 全部主題一覽（按配置由大到細）\n"
+              "潛在倍數符號:🔹≈2倍 🔷≈2-3倍 💎耐久型 ⚡高但博彩(未盈利/事件)\n"
+              "括號內係該分支嘅代表股票。潛在倍數 = magnifier 框架人手評估。")
     blocks = []
     for t in all_themes:
         cp = t.get("crowding_pctile")
-        crowd = f"擁擠 {round(cp)}分" if cp is not None else "擁擠 未評估"
-        val = t.get("valuation") or "估值未評估"
-        head = (f"\n▸ {t['name']}｜信心 {t['confidence']:.2f}｜{t['cycle_stage']}｜"
-                f"{_VERDICT_ZH.get(t['verdict'], t['verdict'])}｜{crowd}")
-        sub = [f"  估值:{val}｜目標配置 {t['target_pct']:.0f}%"]
+        crowd = f"擁擠{round(cp)}" if cp is not None else "擁擠—"
+        vicon = _VERDICT_ICON.get(t["verdict"], "⚪")
+        cyc = CYCLE_ZH.get(t["cycle_stage"], t["cycle_stage"])
+        # line 1: name + verdict emoji;  line 2: compact one-line stat strip
+        head = (f"\n{vicon} {t['name']}　{_VERDICT_ZH.get(t['verdict'], t['verdict'])}\n"
+                f"   信心{t['confidence']:.2f}｜{cyc}｜{crowd}｜目標{t['target_pct']:.0f}%")
+        sub = [f"   估值:{t.get('valuation') or '未評估'}"]
         if t.get("nodes"):
             for n in t["nodes"]:
-                sub.append(f"  · {n['name']}:潛在倍數 {n['tier']}")
+                tk = "/".join(n.get("tickers") or []) or "ETF"
+                g = tier_glyph(n["tier"])
+                sub.append(f"   {g} {node_zh(n['name'])}({tk})— {n['tier']}")
         else:
-            sub.append("  · per-node 評估未做(潛在倍數待評)")
+            sub.append("   ·(此主題 per-node 評估未做)")
         blocks.append(head + "\n" + "\n".join(sub))
     # pack blocks into <=3800-char messages (Telegram hard limit 4096)
     msgs, cur = [], header

@@ -82,6 +82,40 @@ def load_judge():
         return json.load(fh)
 
 
+# --- valuation gate (2026-07-13) ---------------------------------------------------------
+# BT-5 discrimination test (backtest/results/2026-07-13_bt5_valuation_discrimination.md)
+# passed 6/6 with pre-registered judges, so per the Fable review P1-6 plan the expectations-gap
+# module is now allowed to gate sizing. Gate semantics (brain ruling, 2026-07-13, user delegated):
+# themes whose v1 P_base < 0.20 OR classification is N/A-binary get their final $ HALVED --
+# 0.20 is the empirically validated danger zone (BT-5's three known-top cases all sat at
+# P_base <= 0.183: WOLF -0.14 pre-bankruptcy, SMCI 0.04, NVO 0.18), and halving (not zeroing)
+# keeps the theme investable on its OWN-history-cheap timing signal while respecting that most
+# of its EV is still unearned hope. Freed capital is NOT redistributed (same conservative
+# no-redistribution stance as the v2 floor). Disable with --no-valuation-gate.
+VAL_GATE_PBASE_MAX = 0.20
+VAL_GATE_FACTOR = 0.50
+VAL_GATE_BINARY_LABEL = "N/A-binary (option framing)"
+VALUATION_REPORT_PATH = os.path.join(ROOT, ".raw", "valuation_report.json")
+
+
+def load_valuation_gate():
+    """slug -> True for themes the valuation gate halves. Returns (gated_set, meta_note).
+    Missing/unparseable report -> empty set + an honest note (gate silently off is worse than
+    loudly off)."""
+    try:
+        with open(VALUATION_REPORT_PATH, encoding="utf-8") as fh:
+            rep = json.load(fh)
+    except (OSError, json.JSONDecodeError):
+        return set(), "valuation_report.json 讀唔到 -- 閘未生效(跑 thesis/valuation.py --run 先)"
+    themes = rep.get("theme_rollup") or rep.get("themes") or {}
+    gated = set()
+    for slug, v in themes.items():
+        p = v.get("p_base")
+        if v.get("classification") == VAL_GATE_BINARY_LABEL or (p is not None and p < VAL_GATE_PBASE_MAX):
+            gated.add(slug)
+    return gated, f"as_of {rep.get('as_of', '?')}"
+
+
 def raw_cap(status, conf, budget, sum_conf_pass):
     """Per-theme raw cap before any concentration cut, per judge status."""
     if status == "PRELIMINARY":
@@ -149,7 +183,7 @@ def apply_total_cap(values, budget, status):
     return {k: v * factor for k, v in values.items()}, total_cap, factor
 
 
-def build_table(themes, judge_status, circuit_breaker, budget):
+def build_table(themes, judge_status, circuit_breaker, budget, valuation_gate=True):
     active = {slug: t for slug, t in themes.items() if t.get("status", "active") == "active"}
 
     sum_conf_pass = sum(float(t.get("confidence") or 0.0) for t in active.values())
@@ -163,6 +197,13 @@ def build_table(themes, judge_status, circuit_breaker, budget):
     conc_reduced, cut_log = apply_meta_factor_cut(active, raw, total_cap)
     final, total_cap, total_factor = apply_total_cap(conc_reduced, budget, judge_status)
 
+    # valuation gate LAST (after all caps): halve, don't redistribute -- see the VAL_GATE_*
+    # constants' comment block for the BT-5 basis and the exact rule.
+    gated, gate_note = (load_valuation_gate() if valuation_gate else (set(), "閘已停用(--no-valuation-gate)"))
+    for slug in gated:
+        if slug in final:
+            final[slug] *= VAL_GATE_FACTOR
+
     rows = []
     for slug, t in sorted(active.items(), key=lambda kv: -float(kv[1].get("confidence") or 0.0)):
         conf = float(t.get("confidence") or 0.0)
@@ -174,7 +215,11 @@ def build_table(themes, judge_status, circuit_breaker, budget):
             "raw_cap": raw[slug],
             "conc_reduced": conc_reduced[slug],
             "final": final[slug],
+            "val_gated": slug in gated,
         })
+    # NOTE: return signature deliberately unchanged (4-tuple) -- dashboard_render.py,
+    # paper_ledger.py and paper_league.py all unpack it positionally. Gate info travels in
+    # each row's "val_gated"; the human-readable note is re-derivable via load_valuation_gate().
     return rows, cut_log, total_cap, total_factor
 
 
@@ -298,6 +343,8 @@ def run():
     ap.add_argument("--v2-shadow", action="store_true",
                      help="also print the v2 shadow sizing (conf x magnitude, P0-1) side by "
                           "side with the operative v1 table -- v1 remains the real output")
+    ap.add_argument("--no-valuation-gate", action="store_true",
+                     help="disable the BT-5-validated expectations-gap halving gate")
     args = ap.parse_args()
 
     themes = load_themes()
@@ -309,7 +356,8 @@ def run():
         circuit_breaker = True
 
     budget = args.budget
-    rows, cut_log, total_cap, total_factor = build_table(themes, status, circuit_breaker, budget)
+    rows, cut_log, total_cap, total_factor = build_table(
+        themes, status, circuit_breaker, budget, valuation_gate=not args.no_valuation_gate)
 
     print("\n=== thesis sizing report (WS5) ===")
     print(f"judge status: {status}"
@@ -321,12 +369,14 @@ def run():
               "holdings -- this script cannot see current holdings, so treat 'final' below "
               "as an UPPER BOUND, not a target to size UP to. Wait for session review. ***")
 
-    header = f"{'theme':<24}{'conf':>7}{'meta_factor':>14}{'raw_cap':>12}{'conc_reduced':>14}{'final_$':>12}"
+    header = (f"{'theme':<24}{'conf':>7}{'meta_factor':>14}{'raw_cap':>12}{'conc_reduced':>14}"
+              f"{'final_$':>12}{'閘':>4}")
     print("\n" + header)
     print("-" * len(header))
     for r in rows:
+        gate_mark = "½" if r.get("val_gated") else ""
         print(f"{r['slug']:<24}{r['confidence']:>7.2f}{r['meta_factors']:>14}"
-              f"{r['raw_cap']:>12,.0f}{r['conc_reduced']:>14,.0f}{r['final']:>12,.0f}")
+              f"{r['raw_cap']:>12,.0f}{r['conc_reduced']:>14,.0f}{r['final']:>12,.0f}{gate_mark:>4}")
 
     total_raw = sum(r["raw_cap"] for r in rows)
     total_conc = sum(r["conc_reduced"] for r in rows)
@@ -340,6 +390,18 @@ def run():
               f"(conc-reduced total ${total_conc:,.0f} > cap ${total_cap:,.0f})")
     else:
         print("no final total-cap scale-down needed (conc-reduced total already within cap)")
+
+    gated_slugs = [r["slug"] for r in rows if r.get("val_gated")]
+    if args.no_valuation_gate:
+        print("\nvaluation gate: 已停用(--no-valuation-gate)")
+    elif gated_slugs:
+        _, gate_note = load_valuation_gate()
+        print(f"\nvaluation gate(BT-5 過閘,P_base<{VAL_GATE_PBASE_MAX} 或 N/A-binary → "
+              f"final ×{VAL_GATE_FACTOR};{gate_note}):{len(gated_slugs)} 個主題入閘(表內標「½」)"
+              f" -- 騰出資本唔重新分配")
+    else:
+        _, gate_note = load_valuation_gate()
+        print(f"\nvaluation gate:{gate_note};今日無主題入閘")
 
     print("\nmeta_factor concentration cuts (WS3 Sec4, cap "
           f"{MF_CAP_PCT * 100:.0f}% of the ${total_cap:,.0f} actual deployment cap = "
