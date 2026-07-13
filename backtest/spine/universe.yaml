@@ -1,0 +1,77 @@
+# Karst universe — top-down scan watchlist (human/LLM-editable).
+#
+# tier:
+#   options = SPY/QQQ/SPMO -> the validated options toolkit (LEAP/SHORT_CALL/CSP/CASH).
+#   long    = every other name -> Long Position ONLY (no options on single names — INV-8/9).
+# sector:
+#   MARKET  = the index ETFs; they DEFINE the market gate (Stage 0). No sector layer.
+#   <key>   = a sector/subsector key, resolved against `sectors:` below.
+#
+# Phase 1: sector temperature is computed from the ETF's REAL holdings (option B) —
+# faithful to the global sector (Memory is led by SK Hynix/Samsung, not the US trio).
+# tier-2 actionable longs = the US-listed holdings (auto-derived) + the ETF itself.
+# Note: SPMO is a tier-1 options ticker AND a momentum-FACTOR signal in the gate
+# (RS(SPMO/SPY)); it is NOT a sector to scan.
+
+sectors:
+  # --- cross-sectional value chains: no single ETF represents them (they cut across GICS), so the
+  # thesis names ARE the basket. Temperature = MARKET-CAP weighted (the heat); a cap-vs-equal
+  # DIVERGENCE is emitted as a breadth/crowding read (megacap-led=narrow/late; small-cap-led=froth).
+  # `thesis:` -> the loader pulls the basket tickers from thesis/themes.yaml (SINGLE source of truth;
+  # no drift). Only sector metadata (parent/proxy/benchmark) lives here.
+  # `benchmark_etf:` (optional) -> a clean matching ETF exists for this thesis (see thesis_etf in
+  # themes.yaml); kept as a cross-check LONG but EXCLUDED from the temperature-driving basket
+  # (avoids the circularity of using the ETF's own price to judge whether "the ETF expresses the
+  # thesis" -- see thesis/themes.yaml module docstring + 2026-07-10 holdings_etf->thesis_etf unification).
+  MEMORY:
+    parent: SEMI                 # subsector hierarchy: Memory vs SEMI (parent) vs market
+    parent_proxy: [SOXX, SMH]    # SEMI parent proxy (broad semis)
+    thesis: memory-supercycle
+    benchmark_etf: DRAM          # 2026-07-10: unified off the old holdings_etf mechanism (which pulled
+                                 # DRAM's live ETF holdings incl. foreign leaders SK Hynix/Samsung/Kioxia
+                                 # as temperature-only context). Trade-off accepted: Stage-1 temperature
+                                 # here is now market-cap-weighted over the US-tradeable basket only
+                                 # (MU/SNDK/WDC/SKHY) -- the foreign-oligopoly price signal is no longer
+                                 # fed into RS/ROC/breadth. DRAM itself is still a tradeable long (via
+                                 # benchmark_etf) and is the designated thesis_etf (themes.yaml).
+
+  PHOTONICS:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    thesis: photonics-optical
+  AI_POWER:
+    parent: INDUSTRIALS
+    parent_proxy: [XLI]
+    thesis: ai-power-grid
+  ADV_PACKAGING:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    thesis: advanced-packaging
+  SPACE:
+    parent: AERO_DEF
+    parent_proxy: [ITA]
+    thesis: space-satellite
+  RARE_EARTH:
+    parent: MATERIALS
+    parent_proxy: [XLB]
+    thesis: rare-earth-materials
+  TPU_SILICON:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    thesis: tpu-custom-silicon
+  OIL_GAS:
+    parent: ENERGY
+    parent_proxy: [XLE]
+    benchmark_etf: XLE           # a clean matching ETF exists -> kept as a cross-check long + excluded from basket
+    thesis: oil-gas-energy
+  SEMICAP:
+    parent: SEMI
+    parent_proxy: [SOXX, SMH]
+    thesis: semicap-equipment    # thin (single name) -> temperature ~ that name; watch, don't lean
+
+tickers:
+  # tier-1 — options toolkit (validated 3 ETFs). tier-2 Memory longs are auto-derived
+  # from DRAM holdings (US-listed) + DRAM itself; see universe.expand_with_sectors.
+  - {ticker: SPY,  tier: options, sector: MARKET, iv_proxy: "^VIX"}
+  - {ticker: QQQ,  tier: options, sector: MARKET, iv_proxy: "^VXN"}
+  - {ticker: SPMO, tier: options, sector: MARKET, iv_proxy: "^VIX"}
