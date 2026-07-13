@@ -69,6 +69,7 @@ thesis/.raw/constraint_scan_state.json
 thesis/.raw/constraint_scan_cron.log
 thesis/.raw/insider_tilt_cron.log
 thesis/.raw/altdata_twse_cron.log
+thesis/.raw/dashboard_render.log
 
 # magnifier_staleness.py dedup-state (2026-07-12: folded into the daily Karst-nightly-analysis
 # guard, no separate cron log -- see thesis/nightly_analysis.log instead). thesis/.raw/
@@ -93,3 +94,12 @@ web/data/
 
 # CNN Fear & Greed history (regenerable download, github.com/whit3rabbit/fear-greed-data)
 reference/fear_greed/
+
+# git worktree tracking origin/main (the curated public-mirror repo) -- dashboard_render.py
+# writes/commits/pushes DASHBOARD.md from inside here so the research branch's real history
+# never touches the mirror's separate, unrelated history (see thesis/dashboard_render.py docstring)
+.dashboard_mirror/
+
+# beta_check.py's cached JSON result (regenerable by re-running beta_check.py; used only so
+# dashboard_render.py doesn't have to re-run the (slow) rolling-correlation compute on every render)
+thesis/.raw/beta_check_report.json

@@ -11,4 +11,8 @@ REM   (query: schtasks /Query /TN "Karst-premarket-daily" /FO LIST ; delete: sch
 cd /d "%~dp0.."
 set PYTHONUTF8=1
 python backtest\premarket_check.py >> premarket_log.txt 2>&1
+REM Dashboard evening refresh (2026-07-13): re-renders DASHBOARD.md with the premarket overlay
+REM just written above, commits+pushes to the GitHub mirror, pushes Telegram. Chained here
+REM (not a separate schtask) so it's guaranteed to run AFTER premarket_check.py's fresh write.
+python thesis\dashboard_render.py --mode evening >> thesis\.raw\dashboard_render.log 2>&1
 exit /b 0

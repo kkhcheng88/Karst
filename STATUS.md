@@ -1,7 +1,7 @@
 # STATUS — Karst 現況(新 session 從這裡開始)
 
 > **單一入口檔**。每個 session 結束時更新「現在在哪/下一步」兩節(取代散落交接)。
-> 最後更新:2026-07-12。歷史細節不放這裡——放指針。
+> 最後更新:2026-07-13。歷史細節不放這裡——放指針。
 >
 > **★ 全 workspace 導航地圖 = `docs/INDEX.md`**(邊份 doc live/design/superseded/personal、去邊搵嘢)。
 > 見同名 v1/v2 一律用 v2;本檔下方「下一步」部分段落係 2026-07-06 sandbox 時代殘留(引用已
@@ -28,7 +28,8 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 | 05:42 每日 | Karst-aa-paper-daily(**已註冊 2026-07-13**)| **AA-strict 紙上並行追蹤**(唔郁真錢):`thesis/aa_strict_paper_tracker.py`,同 core v2 寫落同一個 `playbook_log.txt` 方便並排睇。用戶 2026-07-13 明確要求「並行跑一段時間先知邊個贏」先起。regime(200SMA兩腿)→band→ballast(XLP/XLU/XLV)+T(QQQ代理25%)+LEAP delta 收斂公式,detail見script docstring。**LEAP腳只modelled delta-notional,冇模擬theta decay**——結構性比較用,唔係精確$數。|
 | 05:45 每日 | Karst-transcripts-daily | 新 Backtest-Everything transcript 排入 `../Reference/raw_data/backtest_everything_transcripts/_PENDING_ANALYSIS.md` |
 | 05:55 每日 | Karst-nightly-analysis(**已註冊 2026-07-09**;**2026-07-12 加咗第3項 guard**)| Python guard 三選一(transcripts inbox / gooptions manifest delta / **magnifier node 新stale**):全部零就零 quota;有一樣就 headless Claude(全 opus,acceptEdits + python-only bash)蒸餾 transcripts + ingest gooptions + **magnifier重新評分草稿**(寫入queue,唔自動落實),詳 `thesis/nightly_analysis_prompt.md` |
-| 20:30 一至五 | Karst-premarket-daily(**已註冊,補記 2026-07-12**)| `premarket_log.txt`:開市前 ~1h live premarket 價疊加返 05:xx post-close 觸發表(dip/covered-call/200SMA),read-only |
+| 06:00 二至六 | Karst-dashboard-daily(**已註冊 2026-07-13**)| Dashboard v4 晨版:`thesis/dashboard_render.py --mode morning`,純聚合現有輸出(playbook_log/AA-paper log/ic_report.json/sizing.py/beta_check cache/queue檔)→ `.dashboard_mirror/DASHBOARD.md`,git commit+push 落 GitHub 私有 mirror(`origin/main`,同呢個 research branch 歷史唔相關,見 script docstring)+ Telegram 推送。詳 `docs/2026-07-13_dashboard_v4_portable.md` |
+| 20:30 一至五 | Karst-premarket-daily(**已註冊,補記 2026-07-12**;**2026-07-13 加咗 dashboard 晚版鏈**)| `premarket_log.txt`:開市前 ~1h live premarket 價疊加返 05:xx post-close 觸發表(dip/covered-call/200SMA),read-only;跟手鏈 `dashboard_render.py --mode evening`(同一 DASHBOARD.md,ROW0 換 premarket 讀數,標「PREMARKET預覽」)|
 | — | **人手 fallback(而家生效)** | 日間 session 見 `_PENDING_ANALYSIS.md` 有未剔 `[ ]` 或 gooptions 有新文 → 蒸餾/INGEST(判「採納/佐證/唔採納」)|
 
 ## 每週自動化(schtasks;唔係人手 fallback,係真.排程跑)
@@ -72,6 +73,17 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 
 **貼返嚟嗰陣,Karst 會用 `docs/2026-07-09_ima_extraction_prompts.md`「貼返嚟時的驗證清單」逐項核實
 先落檔**(單一孤證數字唔會盲信,即使有citation格式)。
+
+## 現在在哪(2026-07-13)
+
+**2026-07-13(Opus 接手 Fable 交接書,`docs/2026-07-13_fable_session_handover.md`)—— GitHub 交付管道 + Dashboard v4 落地:**
+- **GitHub 私有 repo 建成**(`https://github.com/kkhcheng88/Karst`,私有):經多輪同用戶對齊範圍(最終 = 「只係 dashboard、排程、同埋 update 佢哋嘅 script」,唔要 research/backtest/`themes.yaml`/DB/PERSONAL doc),用「掃晒所有 `.cmd` 嘅 `python` 呼叫 + 追蹤 import closure」客觀劃線,57 檔一個 squash commit push 上 `origin/main`(同呢個 research branch 歷史**完全唔相關**——`origin/main` 淨係嗰個 orphan commit,冇 research 歷史)。
+- **Dashboard v4 已落地**:`thesis/dashboard_render.py`(**純聚合現有輸出,冇新計算**——見 script 自己 docstring)讀 playbook_log/premarket_log/AA-paper jsonl/ic_report.json/sizing.py(import)/beta_check cache/themes.yaml/queue 檔/expectations-gap 歷史快照,砌 `DASHBOARD.md`。**誠實原則**:v4 設計入面冇真.script 支撐嘅元素(機會階梯橫額、ROW0.5雷達A-D、數據哨兵、kill-VaR、ROW2 current$/Δ 需要嘅 position ledger)一律顯示「未接線」,唔砌假數字(NHITL「唔扮有」)——footer 有齊份 backlog 清單。
+- **Publish 機制**:因為 `origin/main` 歷史同 research branch 唔相關,DASHBOARD.md **唔可以**喺呢個 branch commit 再 push(會拖成個 research history 返去)。改用**獨立 git worktree** `.dashboard_mirror/`(checkout `github-main` branch,tracks `origin/main`)——render script 寫入嗰度、喺嗰度 commit+push,兩條歷史完全隔離。已 gitignore。
+- **beta_check.py 加咗持久化**:原本 stdout-only,而家額外寫 `thesis/.raw/beta_check_report.json`(gitignored,SUN 08:15 週跑一次,dashboard 每日 2 次讀 cache 唔重複跑貴嘅 rolling-correlation compute)。
+- **排程已接**:`Karst-dashboard-daily`(新註冊,06:00 二至六,晨版)+ `backtest/daily_premarket.cmd` 尾段鏈 `dashboard_render.py --mode evening`(20:30,premarket 疊加版,標「PREMARKET預覽」)。Telegram bot 已配置(`~/.config/karst/telegram`)並實測收到訊息。全鏈(.cmd → render → git commit+push → Telegram)已跑過幾次確認 end-to-end 冇錯。
+- **未做**(見 dashboard footer backlog,唔係 bug,係下一階段):PNG 圖表、位置台帳(ledger,ROW1 VaR/ROW2 current-vs-target 嘅前置)、milestone-Brier、數據哨兵、機會階梯/雷達實作、IMA 週任務機讀化。
+- 下一步:視乎用戶想點——起 position ledger(解鎖 ROW1/2 最肥嗰兩塊)定係其他 Fable 交接書 P1/P2 backlog(見 `docs/2026-07-13_fable_session_handover.md`)。
 
 ## 現在在哪(2026-07-12)
 

@@ -24,8 +24,10 @@ Run: python thesis/beta_check.py
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
+from datetime import datetime, timezone
 
 import pandas as pd
 import yaml
@@ -188,6 +190,23 @@ def run():
             print(f"  {slug}: {reason}")
 
     print()
+
+    # persist for dashboard_render.py (2026-07-13): the dashboard renders 2x/day and must not
+    # re-run this rolling-correlation compute each time -- it reads this cached snapshot from
+    # whenever this script last actually ran (weekly, Karst-risk-check-weekly).
+    report = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "flagged": flagged,
+        "skipped": [{"slug": s, "reason": r} for s, r in skipped],
+        "results": [{k: v for k, v in r.items()} for r in results if not r.get("skipped")],
+    }
+    out_path = os.path.join(ROOT, ".raw", "beta_check_report.json")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as fh:
+        # default=str: pandas/numpy scalars (numpy.float64, numpy.bool_) aren't natively
+        # JSON-serializable; str() is a safe fallback since this cache is display-only, not
+        # re-parsed for numeric comparisons anywhere.
+        json.dump(report, fh, indent=2, ensure_ascii=False, default=str)
 
 
 if __name__ == "__main__":
