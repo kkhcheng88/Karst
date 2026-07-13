@@ -581,6 +581,28 @@ themes:
     tickers:
     - MP
     - USAR
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「多股票真 node 拆解」#2)。ADDITIVE:上面
+    # theme-level 一隻字都無郁。magnitude_tier 質性(五特徵人手判);confidence 逐 node 故意 OMIT。
+    # 理據:backtest/results/2026-07-13_pernode_batch3_draft.md。2 隻全覆蓋(MP 已建置 chokehold /
+    # USAR pre-profit 執行賭注)。★ theme 級 event-driven → 兩 node 一律 5-10x-binary(binary 理由唔同:
+    #   MP=priced-chokehold-on-2026-11-event、USAR=pre-profit-execution),冇 durable/2-3x 腿——同 memory
+    #   全 2-3x 一致係「主題本質」(event-binary theme),唔係打分懶。
+    # ★ MP capex 兩軸警號已覆核駁回(results/2026-07-13_mp_capex_da_{review,history}.md):2.192x 係 MP
+    #   自身 55.6/16.7 百分位(RKLB 型 build-out 假象,非 MU 型週期頂),P2「供給紀律逆轉」判定誤報;
+    #   真風險 = 2026-11 二元事件 + 92 分位估值 + 純 play 集中,唔係 capex「死亡前兆」。
+    nodes:
+    - name: rare-earth-separation-chokehold
+      tickers: [MP]                         # DoD $110/kg NdPr 保底(比 LTA 更硬,解耦商品價)+Apple $72M 預付+Project Vault $12B;USGS 鎵 98-99%/重稀土對美~5% 咽喉
+      cycle_stage: event-driven             # ttm_pe 119.6(92 分位,政策溢價 priced);capex 2.192x=自身中位 build-out(非 P2 死亡,已覆核)
+      magnitude_tier: 5-10x-binary          # 真咽喉+2026-11 二元(管制解除→崩;延續→REE 擠壓放大)=結構同 AXTI;但 92 分位入場(非 trough),DoD floor 護 downside 不加 upside(MU-today 教材)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-13
+    - name: de-china-magnet-preprofit
+      tickers: [USAR]                       # USA Rare Earth,刻意去中國化磁材鏈設計、DoW/政策順風;pre-revenue、護城河未 at-scale 證
+      cycle_stage: event-driven             # pre-profit → option/event framing(theme note 逐字);同撞 2026-11 政策事件
+      magnitude_tier: 5-10x-binary          # pre-profit 執行 binary(建磁材產能)+ 政策事件;同 pre-earnings-optionality/preprofit-lottery,magnitude 潛在高但未證=極細注
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     thesis_etf:
     - etf: REMX
       leg: 全球稀土/戰略金屬礦業(非美股名為主,同memory「外國龍頭」邏輯一致)
@@ -629,6 +651,32 @@ themes:
     - AVGO
     - TSM
     - CLS
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「多股票真 node 拆解」#1;照 ai-power-grid/
+    # photonics/advanced-packaging/memory/space 現有 nodes schema,一個欄位都無少)。ADDITIVE:上面
+    # theme-level tickers:/cycle_stage:/confidence: 一隻字都無郁。magnitude_tier 質性(五特徵人手判);
+    # confidence 逐 node 故意 OMIT。理據:backtest/results/2026-07-13_pernode_batch3_draft.md。
+    # 價值鏈三層拆解:設計 toll-booth(AVGO)→ foundry(TSM)→ 系統組裝(CLS)。3 隻全覆蓋,無遺漏。
+    # ★ 全鏈 75-87 分位 priced + most-consensus AI trade(theme note 逐字)→ 冇乾淨 trough magnifier;
+    #   AVGO/TSM 深護城河但 priced-ahead(2-3x,同 laser-idm/osat 語意),CLS 純組裝無咽喉(2x,F4 低)。
+    nodes:
+    - name: custom-asic-tollbooth
+      tickers: [AVGO]                       # 設計 toll-booth:共同設計 Google TPU+OpenAI ASIC+Meta Iris,"wins twice"(設計+Tomahawk 交換);AI 半導體單季 $10.8B(+143%)、在手>$30B
+      cycle_stage: late                     # 75-87 分位、capex rising、most-consensus AI trade
+      magnitude_tier: 2-3x                  # 最乾淨 path-a toll-booth(誰贏都收費)但已 priced-ahead+最擠 → 同 laser-idm-moat/MU-today 語意
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-10
+    - name: foundry-both-chains
+      tickers: [TSM]                        # 唯一 GPU/ASIC 兩鏈交集(wins either way),終極封裝軍火商;真.先進製程樽頸(所有 AI 晶片都喺 TSMC 造)
+      cycle_stage: late                     # AI foundry 共識、已 run;⚠風險係台海(非中國大陸依賴,~9%),同 thesis 其他名唔同類尺度
+      magnitude_tier: 2-3x                  # F4 全 theme 最高(唯一交集)但 mega-cap $1T+ 基數稀釋 magnitude(band 底);reviewer 可判 2x
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: odm-system-assembly
+      tickers: [CLS]                        # 系統組裝 ODM(鏟子型);案例庫 40.96x realized(2022-09→2025-10,谷底計、已兌現)
+      cycle_stage: late                     # 已 run hard、post-amplification;AI 伺服器 ODM re-rated
+      magnitude_tier: 2x                    # ⚠全 theme 最弱護城河:純組裝、無咽喉、F4 低(FSLR/STP 分野罰呢類);40.96x 已谷底計兌現、forward 封頂 → 2x
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     thesis_etf:
     - etf: CHPX
       purity: 0.186              # AVGO+TSM = 18.6%
@@ -752,6 +800,16 @@ themes:
       hiccup. Trigger -> confidence to zero.'
     tickers:
     - AEHR
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」)。ADDITIVE:上面 theme-level
+    # 一隻字都無郁。★ 單一表達,一個 node = 成個主題(name 用主題核心驅動,tickers = 嗰一隻,
+    # magnitude_tier 就係主題層評估;唔砌假 node 拆解)。理據:backtest/results/2026-07-13_pernode_batch3_draft.md。
+    nodes:
+    - name: burn-in-tollgate-froth
+      tickers: [AEHR]                       # 真跨切 burn-in tollgate + one-first $41M Sonoma 超大客訂單;但 TTM EPS 負(等同 pre-profit)、單客集中 67-88%
+      cycle_stage: late                     # froth:fwd PE ~615x、+856%/1yr、價高於所有賣方目標($56-68);capex 輕且降(無供給回應 boom)
+      magnitude_tier: 5-10x-binary          # pre-profit+froth+「only at scale」護城河未證+內部人 $44M open-market 賣(反 smart-money)=高潛力但 binary,且偏 downside;notional/彩票端、極細注 watch-only、非 trough magnifier
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     # thesis_etf: 未搵到窄 ETF(2026-07-10 已搜)。HBMX殘留名ONTO/ATEYY業務較廣(泛半導體檢測/測試設備,
     # 非AEHR講嘅burn-in-at-scale窄利基)且已貴/ADR流動性存疑,未納入。thesis本身淨得AEHR單一投機名,
     # ETF化意義不大。
@@ -793,6 +851,26 @@ themes:
       上線,削弱「6/7most advanced jet engine nickel alloys」嘅稀缺性 OR 估值喺基本因素冇進一步確認下
       持續擴張(純multiple驅動,非盈利/backlog驅動)。觸發 -> confidence歸零。
     tickers: [ATI, CRS]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「多股票真 node 拆解」#3)。ADDITIVE:上面
+    # theme-level 一隻字都無郁。magnitude_tier 質性(五特徵人手判);confidence 逐 node 故意 OMIT。理據:
+    # backtest/results/2026-07-13_pernode_batch3_draft.md。2 隻全覆蓋。★ 兩 node 唔係價值鏈上下游,而係
+    #   同一航太特種合金鏈嘅兩種護城河機制(ATI=具名 6/7 引擎合金產品廣度;CRS=re-qualification 換供應
+    #   鎖客)+ 不對稱中國曝險(ATI 有已披露具名原料中國依賴 Zr/Hf/Mo+STAL 60% JV;CRS 止於製造/分銷、
+    #   原料端無中國披露)——按機制/風險拆,唔係按 tier 拆。★ 兩 node 一律 2-3x=uniform late/98 分位
+    #   fully-priced(同 memory 全 2-3x 一致係主題本質:成鏈已被發現/已貴,冇 dispersion 唔係打分懶)。
+    nodes:
+    - name: named-alloy-breadth-moat
+      tickers: [ATI]                        # 供應 6/7 款最先進噴射引擎鎳合金(具名產品廣度)、19 年 LTA/capacity-constrained、2023 $1.2bn 新承諾;垂直整合
+      cycle_stage: late                     # ttm_pe 98 分位(~61-62x),discovery-radar-40 最貴之一;⚠已披露具名原料中國依賴(Zr/Hf/Mo)+STAL 60% JV
+      magnitude_tier: 2-3x                  # 深具名產品護城河但 98 分位 fully-priced → priced-ahead,同 laser-idm/osat-arms-dealers 語意
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: requalification-switching-lock
+      tickers: [CRS]                        # Carpenter,客戶要 re-qualify 先可轉供應商=switching-cost 鎖客、15 年一致、2026「24/7 full out」;premium 合金
+      cycle_stage: late                     # ttm_pe 98 分位 fully-priced;中國曝險止於製造/分銷(較 ATI 乾淨、無原料端中國披露)
+      magnitude_tier: 2-3x                  # 深換供應-成本護城河但 98 分位 → priced-ahead,同 ATI node 一致(uniform late,拆機制唔拆 tier)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     sources:
     - id: transcript-discovery-radar
       tier: 3
@@ -826,6 +904,19 @@ themes:
       結構 OR AI驅動先進製程資本開支增長停滯/逆轉(TSMC/三星/Intel capex guidance回落) OR 訂單backlog/
       lead time回復返2019年前水平(12-24個月縮到<6個月),代表供給追返需求。觸發 -> confidence歸零。
     tickers: [ASML]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」)。ADDITIVE:上面 theme-level
+    # 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/results/
+    # 2026-07-13_pernode_batch3_draft.md。★ 校準關鍵:ASML 壟斷耐久度可能係全 3 批單股最強護城河
+    #   (F4/F2 高過 uranium-fuel),結構上係 3-5x-durable 候選;但 late+98 分位+most-consensus(F3/F5 皆差)
+    #   釘死 2-3x=MU-2023-vs-today 教材(同一深護城河,谷底 5-10x / 頂 2-3x);耐久護 downside 不加 forward
+    #   upside。對比下面 FSLR/USAC(3-5x-durable)——佢哋耐久 AND 仲平,ASML 耐久但已貴。
+    nodes:
+    - name: sole-euv-supplier-monopoly
+      tickers: [ASML]                       # 全球唯一 EUV/High-NA 微影供應商、零替代;16 年橫跨 4 週期「always constraining the business」「12-24 月 lead time」「sold out for 2026」
+      cycle_stage: late                     # ttm_pe 98 分位(~60x)fully-priced;全市場最多人講嘅半導體壟斷=「未被發現」溢價完全不存在;⚠中國銷售政策 guide 落(33%→~20%)
+      magnitude_tier: 2-3x                  # F4/F2 全批單股最高(耐久壟斷,3-5x-durable 候選)但 98 分位+most-consensus 釘死 2-3x band 頂(MU-today 教材);reviewer 若重耐久可辯 3-5x
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     sources:
     - id: transcript-discovery-radar
       tier: 3
@@ -861,6 +952,20 @@ themes:
       已對碲/CdTe實施出口許可管制)。任何一項觸發 -> confidence歸零(2016年FSLR自己講過「我哋冇
       pricing power」,證明依家嘅定價權唔係常態,政策逆轉風險係真實嘅)。
     tickers: [FSLR]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」)。ADDITIVE:上面 theme-level
+    # 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/results/
+    # 2026-07-13_pernode_batch3_draft.md。★★ 全 3 批第一個乾淨可交易 3-5x-durable:FSLR 係案例庫贏家本尊
+    #   (results/2026-07-09_magnifier_case_library.md 週期 8:26.44x realized,CdTe 護城河捱過殺死 STP/YGE/
+    #   Q-Cells/LDK 嘅多晶矽爆煲=最乾淨單一分野實驗,Pattern-1「護城河獨立於商品價」教科書 PASS)。批 1/2
+    #   全部 durable 咽喉唔係非美股(InP/T-glass/Hoya/SpaceX/SKHY)就係已 fully-priced;FSLR 例外=美股可買
+    #   耐久咽喉 + 22 分位仲平(F4 高+F3 遠底+F5 低擁擠=magnifier-genuine setup)。
+    nodes:
+    - name: cdte-policy-moat-cheap
+      tickers: [FSLR]                       # CdTe 唔使多晶矽(結構性成本護城河,path-b)+長期 PPA+232/301 關稅+IRA 本土成分;連續 7 年 sold-out(fully-allocated 到 2030 backlog);2016 自認「無 pricing power」→今日係真 regime change
+      cycle_stage: mid                      # ttm_pe 22 分位(~14.7x)=discovery-radar 批 priced-in 狀態最好、市場未完全重估、undiscovered
+      magnitude_tier: 3-5x-durable          # 案例庫贏家(26.44x realized)、Pattern-1 PASS、F4 高+遠底+低擁擠;耐久同 uranium-fuel 但更平更少人;⚠政策 binary(關稅/IRA 可撤)+碲出口管制=downside kill,非彩票理由(FSLR 有盈利、7 年 sold-out);reviewer 若重政策 binary 可判 2-3x
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     sources:
     - id: transcript-discovery-radar
       tier: 3
@@ -898,6 +1003,18 @@ themes:
       上線紓緩樽頸 OR 需求驅動力(LNG出口+Permian associated gas+AI天然氣發電拉動)增長停滯/逆轉。
       觸發 -> confidence歸零。
     tickers: [USAC]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」)。ADDITIVE:上面 theme-level
+    # 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/results/
+    # 2026-07-13_pernode_batch3_draft.md。★ 全 3 批第二個乾淨 3-5x-durable(同 FSLR):OEM(Caterpillar/
+    #   Ariel)150 週交期=結構性慢供給(同 uranium「礦要幾年」嘅定義性質),13 年單向惡化、非商品價掛鈎、
+    #   2nd 分位=全 40 候選最平最 unloved(「supply-tight × unloved」最理想象限)。
+    nodes:
+    - name: compression-shortage-unloved
+      tickers: [USAC]                       # 管理層逐字「does not have direct commodity price exposure」(解耦油氣週期,path-b);自家 fleet 因新機供給緊而升值;J-W Power 併購=in-house 製造打尖
+      cycle_stage: early                    # ttm_pe 2 分位(自身史)=幾乎完全未被市場發現/reprice、最 unloved
+      magnitude_tier: 3-5x-durable          # 供給結構性慢(150 週)+非商品定價+最平最 undiscovered=durable magnifier 定義特徵;⚠(a)MLP 結構封 equity 上檔(分派重),(b)受益者非咽喉持有人(咽喉喺 CAT/Ariel)→ reviewer 若重 MLP-cap 可判 2-3x;單 ticker 集中風險
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     sources:
     - id: transcript-discovery-radar
       tier: 3
@@ -930,6 +1047,17 @@ themes:
       公司盈利,令Siding segment嘅強度冇辦法喺股價層面反映出嚟 OR vinyl siding競爭者收窄價格/性能差距,
       侵蝕share-gain敘事。觸發 -> confidence歸零。
     tickers: [LPX]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」)。ADDITIVE:上面 theme-level
+    # 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/results/
+    # 2026-07-13_pernode_batch3_draft.md。⚠本批最薄之一:證據 transcript-only、故事只覆蓋公司一個 segment、
+    #   whole-company 估值分唔開弱 OSB 同強 Siding(confidence 0.20=6 新 thesis 最保守)。
+    nodes:
+    - name: siding-segment-diluted
+      tickers: [LPX]                        # SmartSide/ExpertFinish 特種護牆板近 9 季 7 季講 pricing power(2024 起)、2026-05 ExpertFinish 真 managed-allocation 到 2026-02;但只係公司一個 segment、commodity OSB 另一盤而家蝕錢
+      cycle_stage: mid                      # ttm_pe 95 分位係 whole-company blended(弱 OSB+強 Siding 混一齊,分唔開 segment 本身估值)=解讀含糊
+      magnitude_tier: 2x                    # 真 segment 定價權但被 OSB 拖累+blended 估值稀釋、非線性放大轉唔到乾淨股價 magnitude → 封頂,同 GLW/HEI-LOAR 稀釋-防守腿 2x 語意(cap 理由=segment 稀釋非大基數,同 bucket)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     sources:
     - id: transcript-discovery-radar
       tier: 3
@@ -959,6 +1087,18 @@ themes:
       GLP-1藥物面對定價/報銷壓力打擊銷量) OR 有競爭者(Datwyler/Aptar)喺HVP同級元件搶到份額。觸發 ->
       confidence歸零。
     tickers: [WST]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」,最後一個)。ADDITIVE:上面
+    # theme-level 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/
+    # results/2026-07-13_pernode_batch3_draft.md。★ 校準對照:耐久護城河 ≠ 耐久短缺——WST 有耐久
+    #   regulatory-lock 護城河,但短缺唔耐久(管理層自己 ramping capacity,kill 就係「追上就完」),
+    #   對比 FSLR/USAC(供給結構性慢:7 年 sold-out/150 週)→ WST 判 2-3x 而非 3-5x-durable。
+    nodes:
+    - name: hvp-regulatory-lock
+      tickers: [WST]                        # HVP 高值元件(佔銷售 48%),>一半已 spec-ed 入藥廠 FDA filing=換供應要重新報批(regulatory-lock 換供應鎖客,非純物理稀缺);4 季一致 demand-outstripping-supply;雙驅動(GLP-1 量+Annex-1 強制升級 370 項)
+      cycle_stage: mid                      # ttm_pe 71 分位(~47x)適中,遠冇 ATI/CRS/ASML 98 分位極端;track record 最短(得 4 季)
+      magnitude_tier: 2-3x                  # 耐久 regulatory-lock 護城河+HVP 60% 毛利 mix-shift,但短缺唔耐久(產能 ramping、kill=追上就完)+只佔公司 48%+史短 → 2-3x 非 3-5x-durable(短缺非結構性慢,同 FSLR/USAC 分野)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     sources:
     - id: transcript-discovery-radar
       tier: 3
