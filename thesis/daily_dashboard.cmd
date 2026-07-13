@@ -11,5 +11,12 @@ REM   schtasks /Create /TN "Karst-dashboard-daily" /TR "C:\projects\Investment\K
 REM   (query: schtasks /Query /TN "Karst-dashboard-daily" /FO LIST ; delete: schtasks /Delete /TN "Karst-dashboard-daily" /F)
 cd /d "%~dp0.."
 set PYTHONUTF8=1
+REM Refresh the render's upstream signal files first (2026-07-13 finale integration):
+REM sentinel (freshness verdict), opportunity ladder (tier + radar), paper ledger (mark
+REM positions + kill-VaR + roll countdown). Each is cheap; failures still leave the previous
+REM json on disk, and the sentinel itself is what tells the reader when something is stale.
+python thesis\data_sentinel.py >> thesis\.raw\dashboard_render.log 2>&1
+python thesis\opportunity_ladder.py >> thesis\.raw\dashboard_render.log 2>&1
+python thesis\paper_ledger.py --update >> thesis\.raw\dashboard_render.log 2>&1
 python thesis\dashboard_render.py --mode morning >> thesis\.raw\dashboard_render.log 2>&1
 exit /b 0

@@ -44,6 +44,7 @@ thesis/track_record.jsonl.pre-*.bak
 playbook_log.txt
 premarket_log.txt
 weekly_risk_log.txt
+weekly_valuation_log.txt
 */cron.log
 err.log
 done
@@ -103,3 +104,32 @@ reference/fear_greed/
 # beta_check.py's cached JSON result (regenerable by re-running beta_check.py; used only so
 # dashboard_render.py doesn't have to re-run the (slow) rolling-correlation compute on every render)
 thesis/.raw/beta_check_report.json
+
+# paper_ledger.py's regenerable report (target-vs-current gap / kill-VaR / LEAP roll countdown --
+# recomputed from thesis/paper_ledger.json + current sizing.py/themes.yaml reads on every
+# --update/--report run). NOTE: thesis/paper_ledger.json itself (the ledger's own accumulated
+# state) is deliberately NOT listed here -- same "commit the ledger, gitignore the derived report"
+# convention as track_record.jsonl vs ic_report.json.
+thesis/.raw/paper_ledger_report.json
+
+# data_sentinel.py's freshness-check verdict (regenerable by re-running data_sentinel.py;
+# report-only artifact, not a source-of-truth registry -- thesis/.raw/**/*.jsonl above covers
+# .jsonl only, this .json needs its own line)
+thesis/.raw/data_sentinel.json
+
+# opportunity_ladder.py's regenerable tier + A/B/C/D radar snapshot (report-only, recomputed
+# from backtest/data.py VIX/SPY reads on every run -- same "own line per .json" convention as
+# beta_check_report.json / data_sentinel.json above)
+thesis/.raw/opportunity_ladder.json
+
+# valuation.py's (thesis/valuation.py, v1 production expectations-gap) machine-readable output --
+# regenerable by re-running `python thesis/valuation.py --run`; the human-readable deliverable is
+# backtest/results/<date>_expectations_gap_v1.md (committed, same convention as v0's .md), same
+# "own line per .json" pattern as data_sentinel.json/opportunity_ladder.json above.
+thesis/.raw/valuation_report.json
+
+# crowding_composite.py's (thesis/crowding_composite.py, feature-5 magnifier crowding proxy)
+# machine-readable output -- regenerable by re-running `python thesis/crowding_composite.py`; the
+# human-readable deliverable is backtest/results/<date>_crowding_composite.md (committed), same
+# "own line per .json" convention as valuation_report.json/opportunity_ladder.json above.
+thesis/.raw/crowding_composite.json

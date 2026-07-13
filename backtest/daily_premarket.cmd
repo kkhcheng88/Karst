@@ -14,5 +14,8 @@ python backtest\premarket_check.py >> premarket_log.txt 2>&1
 REM Dashboard evening refresh (2026-07-13): re-renders DASHBOARD.md with the premarket overlay
 REM just written above, commits+pushes to the GitHub mirror, pushes Telegram. Chained here
 REM (not a separate schtask) so it's guaranteed to run AFTER premarket_check.py's fresh write.
+REM Sentinel + ladder refreshed too (cheap; ledger is a morning-only mark, skipped here).
+python thesis\data_sentinel.py >> thesis\.raw\dashboard_render.log 2>&1
+python thesis\opportunity_ladder.py >> thesis\.raw\dashboard_render.log 2>&1
 python thesis\dashboard_render.py --mode evening >> thesis\.raw\dashboard_render.log 2>&1
 exit /b 0

@@ -40,10 +40,14 @@
 #                          both themes have genuinely distinct real drivers, see energy-macro below).
 #                          **54.9% > the spec Sec4 50% cap -- concentration.py now emits an EXCESS
 #                          WARNING that did NOT fire before the retag (48% looked fine; it wasn't).**
-#   china-supply         (2 themes, hub: MISSING -- rare-earth-materials + us-solar-manufacturing,
+#   china-supply         (2 themes, hub: thesis/wiki/china-supply-macro-risk.md (written 2026-07-13,
+#                          Fable 交接書 P2-13) -- rare-earth-materials + us-solar-manufacturing,
 #                          added 2026-07-12 after us-solar-manufacturing's tellurium-export-control
-#                          leg passed the causal test better than its old energy-macro tag; flagged
-#                          backlog, needs fresh domain research to write)
+#                          leg passed the causal test better than its old energy-macro tag; hub also
+#                          aggregates the MP capex/D&A warning (2026-07-13, rebutted as a P2 signal --
+#                          see results/2026-07-13_mp_capex_da_review.md) and AXTI's China-manufacturing
+#                          dual-exposure (photonics-optical, tagged ai-capex not china-supply -- a
+#                          labeling gap the hub flags, does not silently fix)
 #   energy-macro         (2 themes, hub: MISSING -- oil-gas-energy(oil-price leg only after the
 #                          2026-07-12 split) + gas-compression-equipment(LNG-export/Permian-gas legs,
 #                          AI-gas-power leg moved to ai-capex above); STILL at the >=2 hub-page
@@ -75,6 +79,42 @@ themes:
       ramps AHEAD of AI-inference demand (glut). Trigger -> confidence to zero, back to classic cyclical top.
     tickers: [MU, SNDK, WDC, SKHY]        # DRAM lives as thesis_etf below (2026-07-10 unification;
                                            # was in this list under the old holdings_etf mechanism)
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 2, Fable 交接 P2-12 推廣次序 #3;照 ai-power-grid/
+    # photonics-optical/advanced-packaging 現有 nodes schema,一個欄位都無少)。ADDITIVE:上面
+    # theme-level tickers:/cycle_stage:/confidence: 一隻字都無郁(仍係每個現有 script 讀嘅 ROLLUP)。
+    # magnitude_tier 質性(magnifier 五特徵人手判,非自動 rubric 輸出——rubric §11 拍板);confidence
+    # 逐 node 故意 OMIT。理據逐 node:backtest/results/2026-07-13_pernode_batch2_draft.md。
+    # ★ 晚週期折扣(本 theme 最關鍵):theme 級 late + MU capex/D&A 兩軸 2.803x/2.664x = 教科書「供給
+    #   回應頂」訊號(results/2026-07-12_capex_da_supply_response_probe.md)。案例庫 realized 倍數
+    #   (MU 23.1x / SNDK 78.8x 本庫最極端 / WDC 26.78x)全部係 2022-12 trough→2026-06 top 兌現咗嘅
+    #   「由谷底計」放大——證明框架 work,但而家喺「頂」入 = 冇咗嗰段 upside,forward 檔一律壓返 2-3x
+    #   (同一隻 MU:2023 谷底會係 5-10x,今日頂 = 2-3x → magnifier 模型核心教材,買 trough 唔買 top)。
+    #   故本 theme node 冇 tier dispersion(唔似 ai-power-grid early→late 跨 2x~5-10x);全條鏈一致 late。
+    nodes:
+    - name: dram-hbm-integrated-leader
+      tickers: [MU]                        # DRAM+HBM+NAND 三線一體、LTA #1(16 SCA、RPO $100B);案例庫 23.1x realized(谷底計)
+      cycle_stage: late                    # capex/D&A 2.803x、單季 3.310x = 供給回應頂;ttm_pe 26(67%,peak-earnings 偽裝)
+      magnitude_tier: 2-3x                 # 全 thesis 最深整合護城河+anchor case,但晚期折扣:2023 谷底會 5-10x,今日頂 2-3x(band 頂)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-12
+    - name: nand-flash-shortage
+      tickers: [SNDK]                      # NAND-CMX 純押、RPO $41.6B;NAND 2Q +53~60% QoQ(首超 DRAM、高盛稱 15 年最嚴重短缺)
+      cycle_stage: late                    # ttm_pe 79(97%,n=94 史短不可靠);案例庫 78.8x 生涯=本庫單一最極端(但係谷底計)
+      magnitude_tier: 2-3x                 # 眼前真短缺定價權,但輕資產(capex 0.04B、護城河較淺)+更商品化+晚期 → 2-3x 非 5-10x
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-09
+    - name: hdd-nearline-storage
+      tickers: [WDC]                       # HDD nearline 完售+Hoya 100% 玻璃碟鎖+寡頭;案例庫 26.78x realized(谷底計)
+      cycle_stage: mid-late                # ttm_pe 38(82%),capex 平;NAND/HDD 鄰接、次於 MU
+      magnitude_tier: 2-3x                 # 同 advanced-packaging hdd-storage-hoya node 一致(WDC 兩 theme 同檔);Tier-2 未一手驗+晚期
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: hbm4-oligopoly-leader-unbuyable
+      tickers: [SKHY]                      # ⚠SK 海力士 ADR:HBM4 60-70% 份額+MR-MUF 良率 75-80% 咽喉=全鏈最深護城河(記憶體版 SpaceX)
+      cycle_stage: late                    # 破紀錄 ~$294 億 IPO(2026-07-10,史上最大外企美股上市)本身 = 教科書頂部擁擠訊號
+      magnitude_tier: 2-3x                 # notional:2026-07-13 已無價格數據(可能退市/feed 未 populate)→ 不可乾淨買/唔入 scan;檔位僅記錄用,詳理據檔
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-10
     thesis_etf:
     - etf: DRAM
       purity: 0.35              # Samsung+SK Hynix+Kioxia in disclosed top-holdings(真.全球記憶體寡頭本身)
@@ -108,6 +148,50 @@ themes:
       order-book-to-2028 / pricing breaks. Crowding-unwind: no-earnings names (SIVE/LWLG) + 75-98th-pctile
       moat names de-rate hard on any AI-capex hiccup. Trigger -> confidence to zero.
     tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 1, Fable 交接 P2-12 推廣次序 #1;照 ai-power-grid
+    # nodes schema,一個欄位都無少)。ADDITIVE:上面 theme-level tickers:/cycle_stage:/confidence:
+    # 一隻字都無郁(仍係每個現有 script 讀嘅 ROLLUP)。magnitude_tier 質性(magnifier 五特徵人手判,
+    # 非自動 rubric 輸出——rubric §11 拍板維持人手/agent 判斷);confidence 逐 node 故意 OMIT。判斷
+    # 理據逐 node:backtest/results/2026-07-13_pernode_batch1_draft.md。§3b「10x 住上游樽頸/供給最慢
+    # 端」——但呢個 theme 嘅耐久上游咽喉(InP)本體喺中國製造(AXTI),tradeable proxy 全部帶 China/
+    # CPO binary 或已 priced,故冇乾淨 3-5x-durable node(見理據檔「跨 theme 結構發現」)。
+    nodes:
+    - name: inp-substrate-chokehold
+      tickers: [AXTI]                      # ① InP 基板咽喉,唯一美股純玩家;51.84x realized(案例庫)
+      cycle_stage: event-driven            # 但生產喺中國(Tongmei)+CPO 時程 → 雙 binary,非 durable
+      magnitude_tier: 5-10x-binary         # 上游樽頸 magnitude 高但 China 出口/CPO 時程 binary
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: laser-idm-moat
+      tickers: [COHR, LITE]                # ② 無代工 EML/CW 雷射 IDM,最深護城河,32 月交期
+      cycle_stage: late                    # 已 run(COHR 98%/LITE 75% ttm_pe)、最擠 58% bull
+      magnitude_tier: 2-3x                 # 深護城河但估值極端+高擁擠→剩餘 upside 有限
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-05
+    - name: silicon-photonics-dsp
+      tickers: [MRVL]                      # ⑤ DSP/架構定義者,跨鏈;⚠薄 magnifier 證據(偏 secular-growth)
+      cycle_stage: late                    # 86 分位,DSP 層被 CPO/LPO 替代(headwind 非樽頸)
+      magnitude_tier: 2-3x                 # 建議大腦當 WATCH 級覆核(見理據檔)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-08
+    - name: modules-transceivers
+      tickers: [AAOI, FN]                  # ④ 模組/組裝;#149 網路扁平化壓收發器層,AAOI 具名降評
+      cycle_stage: late
+      magnitude_tier: 2-3x                 # 層被結構性壓縮封 magnitude 上限;FN 組裝軍火商
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: cpo-speculative-preprofit
+      tickers: [SIVE, LWLG]                # ③ CPO 純玩家/調變器材料,無盈利;wiki 逐字「純選擇權/純投機」
+      cycle_stage: early                   # pre-revenue,押 CPO 未來,P/S ~190×
+      magnitude_tier: 5-10x-binary         # option 性質明確;magnitude 本質不可量→極細注/事件框架
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-05
+    - name: glass-fiber-coupling
+      tickers: [GLW]                       # ⑥+④.5 光纖/玻璃橋耦合;大型多元化,慢 2027 變數
+      cycle_stage: mid-late                # 46× FY27 PE 已 priced,發表≠量產
+      magnitude_tier: 2x                   # 大型稀釋封 magnitude,耐久-但-被稀釋防守腿
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     thesis_etf:
     - etf: FOTO
       purity: 0.347              # COHR+LITE+AAOI+FN = 34.7% of disclosed top-holdings
@@ -312,6 +396,49 @@ themes:
     - TER
     - FORM
     - LRCX
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 1, Fable 交接 P2-12 推廣次序 #2;照 ai-power-grid
+    # nodes schema)。ADDITIVE:上面 theme-level tickers:/cycle_stage:/confidence: 一隻字都無郁。
+    # magnitude_tier 質性(五特徵人手判);confidence 逐 node 故意 OMIT。理據:backtest/results/
+    # 2026-07-13_pernode_batch1_draft.md。呢個 theme 耐久上游咽喉(T-glass 日東紡/HVLP 三井/Hoya)
+    # 全非美股,可交易美股全部係中游 proxy 已 90-100 分位 priced,故 magnitude 偏 2-3x、冇乾淨
+    # 3-5x-durable node(見理據檔「跨 theme 結構發現」)。
+    nodes:
+    - name: osat-arms-dealers
+      tickers: [AMKR, ASX]                 # 封測軍火商,格式戰誰贏都收封裝單(#131),叢中最乾淨護城河
+      cycle_stage: late                    # AMKR 91%/ASX 90% ttm_pe,供給回應形成中(~1.5x/+34%)
+      magnitude_tier: 2-3x                 # 深軍火商護城河但已 90-91 分位 priced-ahead
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: pcb-substrate-tollbooth
+      tickers: [TTMI]                      # PCB 美股收費站,中國配額轉移反向受益
+      cycle_stage: late                    # ttm_pe 96%!全 thesis 最貴、least preferred(vs AMKR/ASX)
+      magnitude_tier: 2-3x
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: process-equipment-test
+      tickers: [MKSI, KLAC, KLIC, TER, FORM, LRCX]  # 製程設備/測試鏟子(#150 補 KLIC/TER/FORM/LRCX)
+      cycle_stage: late                    # 已 re-rate,龍頭 KLAC/MKSI 94 分位,前瞻世代近期營收含量低
+      magnitude_tier: 2-3x                 # China 曝險兩組不同(KLIC 供給側 vs 其餘 de-risk 中)但同檔
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: emib-optionality
+      tickers: [INTC]                      # EMIB-T 第二封裝源;Google 2028 下單 >300 萬顆(#152)
+      cycle_stage: event-driven            # PE 無意義(近零盈利/代工季虧$2.4B),turnaround+政治選擇權
+      magnitude_tier: 5-10x-binary         # wiki 逐字「事件/選擇權框架、非 PE」;護城河未 at-scale 證明
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-10
+    - name: glass-substrate-nextgen
+      tickers: [GLW]                       # 玻璃基板 2027 接棒;韓廠 KCC/LX/SKC 入局(非獨家)
+      cycle_stage: mid-late                # 已 priced(46× FY27),TAM 其實 $31B by 2030 非病毒吹噓數
+      magnitude_tier: 2x                   # 大型稀釋+慢 2027 變數;同 photonics GLW node 一致
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
+    - name: hdd-storage-hoya-downstream
+      tickers: [STX, WDC]                  # Hoya HDD 玻璃碟 100% 下游;完售+漲價~50%(#083/#085)
+      cycle_stage: mid-late                # 叢中最 magnitude-genuine(近 memory 型)但儲存週期 late
+      magnitude_tier: 2-3x                 # ⚠Tier-2 未一手驗+大型稀釋→壓返 2-3x;驗證後可升 3-5x-durable
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-11
     # thesis_etf: 未搵到窄 ETF(2026-07-10 已搜)。HBMX(Tuttle Concentrated Memory Stack)候選評估後
     # 判定佢本質偏 memory(自身定位"Memory Stack",MU+SNDK權重13.6% vs LRCX+AMKR+KLAC 16.2%,兩者相近但
     # 基金自我定位係memory生態,packaging只係HBM封裝支線)——用戶2026-07-10確認唔要,已剔除。想表達
@@ -370,6 +497,55 @@ themes:
     - BKSY
     - PL
     - GSAT
+    # 2026-07-13 PER-NODE SCHEMA (magnifier batch 2, Fable 交接 P2-12 推廣次序 #4;照 ai-power-grid/
+    # photonics-optical/advanced-packaging 現有 nodes schema,一個欄位都無少)。ADDITIVE:上面
+    # theme-level tickers:/cycle_stage:/confidence: 一隻字都無郁。magnitude_tier 質性(五特徵人手判);
+    # confidence 逐 node 故意 OMIT。理據:backtest/results/2026-07-13_pernode_batch2_draft.md。
+    # ★ 兩層錯位 + KILL-WATCH(本 theme 最關鍵):theme 級 early(主題早週期)但股價 LATE-PRICED(夢想
+    #   定價,ASTS 377x/RKLB 94x P/S),且趨勢已跌穿 200SMA = KILL-WATCH(2026-07-13;theme-level 風險
+    #   疊加,唔改各 node 嘅 magnitude 性質但硬壓 sizing/urgency,理據檔詳)。
+    # ★ binary 檔紀律(任務明示):10 隻大部分 pre-profit,但唔係全部自動 5-10x-binary——按樽頸位置/
+    #   護城河分三層:(a)有真位置+定日催化(RKLB 發射#2+Neutron、ASTS FCC/頻譜咽喉+實測)= justified
+    #   event-binary;(b)無護城河純彩票(RDW/LUNR/PL/BKSY)= binary 但 magnitude 不可量(option 端);
+    #   (c)HEI/LOAR(profitable 但太空非主業)、KTOS(政策期權)、GSAT(併購套利)全部拉出 binary 檔——
+    #   唔可以因為「太空/投機/pre-profit」就一律 5-10x-binary。
+    nodes:
+    - name: profitable-aero-space-diluted
+      tickers: [HEI, LOAR]                 # ⑤ 唯二有盈利+真護城河:HEI 鏟子(不押單一衛星商)、LOAR 迷你 TransDigm 併購飛輪(唯一 bull)
+      cycle_stage: mid-late                # HEI ttm_pe 87 分位頂;LOAR 空曝險最薄(售後 50-55%、國防<25%)
+      magnitude_tier: 2x                   # 真護城河但太空非主業 → 太空超級週期非線性放大唔到佢;耐久-但-被稀釋防守腿(同 GLW 2x 語意)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-01
+    - name: launch-execution-bet
+      tickers: [RKLB]                      # ⑥ 發射純玩家、SpaceX 外最活躍;backlog $2.2B(+108%)、Neutron 2026Q4 首飛目標
+      cycle_stage: event-driven            # 會計仍虧損、94x P/S;催化 = Neutron 首飛(定日 binary)
+      magnitude_tier: 5-10x-binary         # 真發射#2位置+真 backlog(非純彩票)但 pre-profit+首飛執行 binary;發射瓶頸本身正崩(非耐久稀缺)
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-01
+    - name: d2d-spectrum-optionality
+      tickers: [ASTS]                      # ⑦ 手機直連 D2D;FCC 授權+頻譜+實測 98.9Mbps = 真監管咽喉;backlog $12B
+      cycle_stage: event-driven            # pre-revenue、377x P/S(全叢最高、夢想定價)、空單 18.4%;催化 = 2026H2 衛星足量上天
+      magnitude_tier: 5-10x-binary         # 有 FCC/頻譜護城河 → justified binary(非 blanket froth);但 pre-revenue+執行 binary = 極細注/option 框架
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-01
+    - name: preprofit-smallcap-lottery
+      tickers: [RDW, LUNR, PL, BKSY]       # ⑥⑦ 衛星製造/月球/對地觀測/訊號情報,全部虧損、無清晰咽喉
+      cycle_stage: early                   # RDW 8x/PL 33x/BKSY 12x P/S;LUNR 合約 lumpy;pre-revenue 執行賭注
+      magnitude_tier: 5-10x-binary         # magnitude 本質不可量(option/彩票端,MAX effect 平均輸)= 空間版 cpo-speculative;本 theme 最薄 magnifier 證據
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-01
+    - name: golden-dome-policy-option
+      tickers: [KTOS]                      # 國防太空、Golden Dome 相對衝擊最大(一張 $446.8M≈年營收 33%);2,400+ 家入池=門票非合約
+      cycle_stage: event-driven            # ttm_pe 294.9(Op 利潤率僅 2.9%→PE 失真);催化 = Golden Dome 撥款(CBO $1.2T 願景、已到位僅 $250B)
+      magnitude_tier: 2-3x                 # 已有營收(非 pre-profit)+相對 torque,但薄利潤率+無咽喉+門票非合約+溢價 → 政策期權封頂,唔升 binary 檔
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-01
+    - name: merger-arb-special-sit
+      tickers: [GSAT]                      # ⑦ Globalstar、Amazon $11.57B 收購中(S 波段頻譜、待 FCC、約 2027 關)
+      cycle_stage: event-driven            # ttm_pe 19.2(4 分位)但係併購套利估值、非營運;催化 = FCC 批 deal
+      magnitude_tier: 2x                   # ⚠框架最不適配:併購套利=上檔封頂(收購價)、binary on 過會,唔係供需 magnifier;檔位僅為 schema 完整+全 ticker 覆蓋
+      last_scored: 2026-07-13
+      last_evidence: 2026-07-01
     thesis_etf:
     - etf: NASA
       purity: 0.186              # RKLB+ASTS+LUNR = 18.6%

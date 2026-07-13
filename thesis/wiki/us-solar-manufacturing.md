@@ -50,6 +50,12 @@ U.S. production",同 2 年前預告吻合)。護城河由美國貿易政策(232/
 > 逆轉)。任何一項觸發 -> confidence 歸零。2016年 FSLR 自己講過「冇pricing power」,證明依家嘅定價權
 > 唔係常態,政策逆轉風險係真實嘅。
 
+## 跨主題連結
+**2026-07-13**:核心原料(碲)中國出口管制風險已抽到跨主題總覽 [[china-supply-macro-risk]](同
+[[rare-earth-materials]]、[[photonics-optical]] 嘅 [[AXTI]] 並列)——同一機制(中國用關鍵原料出口牌照
+做地緣槓桿),但唔綁定 rare-earth-materials 嗰個 2026-11 calendar 觸發點(碲管制係 2025-02 已生效嘅
+持續狀態,非等待中嘅二元事件),監察時唔應混為一談。
+
 ## 待補
 - [ ] Capital-allocation/ROIC 分析
 - [ ] TAM sizing(美國太陽能裝機未來5年展望 + 政策路徑情境分析)

@@ -98,3 +98,15 @@ magnifier rubric 數據(5 nodes),其餘 14 個用 `V2_DEFAULT_MAGNITUDE_MID=2.0`
 magnitude,score 太接近,冚喺 ai-power-grid 後面冇一個夠得着 $4,000 floor。呢個唔係 bug,係
 per-node schema 推廣未做(P2 #12:photonics→advanced-packaging→memory→space)嘅直接後果——
 推廣落去先會令 v2 嘅部署額同分辨力反映真實。
+
+**【2026-07-13 同日更新:P2 #12 已推廣到 5/15】** batch 1(photonics 6 nodes、advanced-
+packaging 6 nodes)+ batch 2(memory 4 nodes、space 6 nodes)已落 themes.yaml(理據檔
+`backtest/results/2026-07-13_pernode_batch{1,2}_draft.md`)。**Shadow A/B 觀察項(大腦審查
+記錄,兩季 shadow 期要盯)**:space-satellite 混合 magnitude = 5.35(6/10 隻 ticker 屬
+binary node,ticker-count 加權拉高)而 conf 0.28 啱啱過 V2 gate(0.25)→ v2 影子可能將
+space 排上高位;但 space 同時處 KILL-WATCH(趨勢已破 200SMA),且 `is_event_binary()` 讀
+theme 級 cycle_stage(space="early"≠"event-driven"),theme 級 binary 微注處理唔會觸發。
+「趨勢破位但 v2 排名高」呢個 artifact 正正係 shadow 期要驗嘅嘢——如果兩季後仍出現,v2 落地
+前要考慮:(i) binary node 佔比高嘅 theme 用 damped 混合,或 (ii) v2 疊 trend gate。而家
+唔改 formula(shadow 嘅意義就係唔郁住,睇佢自己表現)。oil-gas-energy 按 Fable 指示唔
+node 化,拆分方案 = `docs/2026-07-13_oilgas_split_proposal.md`(待用戶拍板)。

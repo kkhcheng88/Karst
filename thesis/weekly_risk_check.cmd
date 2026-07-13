@@ -20,4 +20,9 @@ set PYTHONUTF8=1
 echo ==== %date% %time% ==== >> weekly_risk_log.txt
 python thesis\concentration.py >> weekly_risk_log.txt 2>&1
 python thesis\beta_check.py >> weekly_risk_log.txt 2>&1
+REM 3) crowding_composite.py (2026-07-13, Fable P2-17) -- feature-5 crowding percentile per theme
+REM    (analyst attendance + bull-ratio; GS flow not available). Weekly is the right cadence:
+REM    attendance moves quarterly, bull-ratio with the gooptions feed. Writes
+REM    thesis\.raw\crowding_composite.json for the daily dashboard render to read.
+python thesis\crowding_composite.py >> weekly_risk_log.txt 2>&1
 exit /b 0

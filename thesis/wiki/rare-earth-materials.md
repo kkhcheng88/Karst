@@ -124,6 +124,10 @@ event/crowding penalty(2026-11 二元事件 + 薄證據僅 2 篇 + MP 92 分位�
   北京通美雙面刃)、[[USAR]]/[[NVTS]](pre-earnings,**選擇權 / 事件框架**)。方向:**不追 MP 高位**;偏好 AXTI
   便宜咽喉小注;追蹤變數 = **2026-11 休戰續約與否** + 陝西銦杰進度 + 北京通美出口許可 + MP capex/保底;
   kill = 管制正式解除 / 中國垂直整合落地。
+- **2026-07-13**:跨主題中國供應鏈曝險總覽 [[china-supply-macro-risk]] 新增(Fable 交接書 P2-13)——
+  聚合本 theme + [[us-solar-manufacturing]] 碲依賴 + [[MP]] capex/D&A 警號對抗式覆核(已裁決:駁回 P2
+  前兆說,見 `backtest/results/2026-07-13_mp_capex_da_review.md`)+ [[photonics-optical]] 嘅 [[AXTI]]
+  中國製造雙重曝險。2026-11 單點事件仍是本 theme 主追蹤變數。
 - forward-IC 評估器(待建)N 天後回填 → 這條預測的 forward IC 才是「thesis 有沒有 edge」的裁判。
 
 ## 待補(降「薄證據」扣分 = 本叢第一優先)
