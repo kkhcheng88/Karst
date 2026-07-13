@@ -969,6 +969,11 @@ def render_telegram_messages(briefing):
     p = briefing["portfolio"]
     lines.append(f"\n• 已運用衛星倉位額度:{p['deployed_pct']:.0f}%"
                  f"(本階段上限{p['cap_pct']:.0f}%,系統狀態:{p['judge_status']})")
+    top_alloc = sorted(briefing.get("all_themes") or [], key=lambda t: -t["target_pct"])[:3]
+    if top_alloc:
+        lines.append("• 組成(頭三大):" + "、".join(
+            f"{t['name']} {t['target_pct']:.0f}%" for t in top_alloc)
+            + "——15 個主題全表見文末一覽")
     if p["top_concentration"]:
         tc = p["top_concentration"]
         over = " ⚠️超過安全上限" if tc["over_cap"] else ""
@@ -978,24 +983,44 @@ def render_telegram_messages(briefing):
         if lg.get("kill_var_pct") is not None:
             lines.append(f"• 最壞情境估算:如果所有主題嘅止蝕劇本同時應驗,"
                          f"衛星倉位最多蝕約 {lg['kill_var_pct']:.0f}%(壓力測試數,唔係預測)")
+        if lg.get("gaps"):
+            lines.append("• 倉位對齊(「現時」= 策略自己嘅紙上累積倉,唔係閣下實倉;"
+                         "差距通常因為公式目標郁咗,例如估值閘生效):")
         for g in lg.get("gaps", []):
             act_zh = "加倉" if g.get("action") == "ADD" else "減倉"
-            lines.append(f"• 倉位對齊:{theme_zh(g.get('slug'))} 建議{act_zh}"
+            lines.append(f"  ↳ {theme_zh(g.get('slug'))} 建議{act_zh}"
                          f"(目標 {g.get('target_pct', 0):.1f}% vs 現時 {g.get('current_pct', 0):.1f}%)")
         for r in lg.get("roll", []):
             warn = " ⚠️ 換月警戒(剩不足90日)" if r.get("warn") else ""
             lines.append(f"• {r.get('ticker')} LEAP 距到期 {r.get('days')} 日{warn}")
     msgs.append("\n".join(lines))
 
-    # kill-axis news (context, not signal): its own short message so the reader sees WHY
-    # something is moving before the stats. Direction labels are heuristic -- human judges.
+    # 止蝕條件相關消息 (context, not signal): each item is annotated with WHICH kill axis its
+    # query belongs to and a MECHANICAL first-pass direction read -- the honest limit is that
+    # direction comes from the query's design (kill-confirming vs kill-relieving), not from
+    # reading the article, so the header says 初判 and the human/nightly layer judges.
     news = briefing.get("news") or {}
-    items = (news.get("items") or [])[:5]
+    items = (news.get("items") or [])[:8]
     if items:
-        nlines = ["📰 Kill 軸新聞(context,唔係買賣訊號):"]
+        nlines = ["📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):"]
         for it in items:
-            nlines.append(f"• [{theme_zh(it.get('theme'))}] {it.get('title','')[:90]}"
+            nlines.append(f"\n• {theme_zh(it.get('theme'))}|{it.get('title','')[:80]}"
                           f"({it.get('source','?')})")
+            if it.get("direction") == "kill-confirming":
+                dir_s = "⚠ 傾向止蝕劇本方向(要留意)"
+            elif it.get("direction") == "kill-relieving":
+                dir_s = "✅ 傾向約束仍然緊(對主題有利)"
+            else:
+                dir_s = "◻ 方向待判"
+            nlines.append(f"  ↳ 掛喺「{it.get('query','?')}」呢條監察軸|{dir_s}")
+        # accumulation cue: several confirming items on one theme in one day = review prompt
+        from collections import Counter
+        confirm_counts = Counter(it.get("theme") for it in items
+                                  if it.get("direction") == "kill-confirming")
+        heavy = [t for t, n in confirm_counts.items() if n >= 2]
+        if heavy:
+            nlines.append(f"\n⚠ 同日多條止蝕方向消息:{'、'.join(theme_zh(t) for t in heavy)}"
+                          f"——建議人手/夜班判一次「止蝕條件有冇實質靠近」")
         msgs.append("\n".join(nlines))
 
     lines = []

@@ -66,8 +66,11 @@ SEEN_PATH = os.path.join(ROOT, ".raw", "news_watch_seen.json")
 RSS_BASE = "https://news.google.com/rss/search"
 UA = "Mozilla/5.0 (compatible; Karst-research/1.0; private research; news_watch.py)"
 LOOKBACK_HOURS = 48
-PER_THEME_CAP = 3
-GLOBAL_CAP = 8
+# 2026-07-13 user ruling: news is COVERAGE/context, so err toward more false positives rather
+# than miss a kill-axis story -- caps loosened from 3/8. The briefing annotates each item with
+# which kill axis it touches, so extra items cost the reader little.
+PER_THEME_CAP = 5
+GLOBAL_CAP = 15
 SEEN_RETENTION_DAYS = 14
 DUP_SIMILARITY_THRESHOLD = 0.6
 PAUSE_MIN, PAUSE_MAX = 0.5, 1.0  # polite delay between query fetches, seconds
