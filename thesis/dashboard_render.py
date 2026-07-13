@@ -494,17 +494,20 @@ NODE_ZH = {
 CYCLE_ZH = {"early": "早期", "mid": "中段", "mid-late": "中後段", "late": "後段",
             "event-driven": "事件驅動", "—": "—"}
 
-# tier -> a one-glyph marker so the reader can scan the RISK SHAPE of a node at a glance:
-# 🔹 modest, 🔷 solid mid, 💎 durable (structurally slow supply = lasting), ⚡ high-but-binary
-# (pre-profit / event / lottery -- big multiple IF it works, zero if not).
+# tier -> a one-glyph marker for the PAYOFF SHAPE of a node. Design note (2026-07-13 user
+# review): magnitude and confidence are TWO INDEPENDENT dimensions -- "binary" describes a
+# bimodal payoff shape (works -> explosive, fails -> near zero), NOT a claim that high return
+# must mean low confidence. High-confidence + high-magnitude is the jackpot quadrant (MU-2023-
+# at-trough); rare, but it's what the magnifier framework exists to find. Hence 🎲 (shape) not
+# ⚡ (danger), and the legend says "形狀唔等於冇把握,把握睇信心".
 def tier_glyph(tier):
     t = str(tier or "")
     if "binary" in t:
-        return "⚡"
+        return "🎲"
     if "durable" in t:
         return "💎"
     if t.startswith("2x") or t == "2x":
-        return "🔹"
+        return "🔸"
     return "🔷"
 
 
@@ -1062,9 +1065,19 @@ _VERDICT_ZH = {"KILL-WATCH": "止蝕觀察", "ACCUMULATE": "可吸納", "BUY-ZON
 def _render_appendix(all_themes):
     if not all_themes:
         return []
-    header = ("📋 全部主題一覽（按配置由大到細）\n"
-              "潛在倍數符號:🔹≈2倍 🔷≈2-3倍 💎耐久型 ⚡高但博彩(未盈利/事件)\n"
-              "括號內係該分支嘅代表股票。潛在倍數 = magnifier 框架人手評估。")
+    header = ("📋 全部主題一覽(🟢可買入行先、🔴止蝕觀察次之、⚪觀望殿後;組內按配置由大到細)\n"
+              "\n"
+              "潛在倍數 = 如果個 thesis 應驗,呢個分支可以去到幾盡。佢同「信心」係兩個獨立維度\n"
+              "(信心 = 應驗嘅可能性,喺主題行顯示)——高信心+高倍數係罕有嘅頭獎象限,唔係矛盾。\n"
+              "🔸 約2倍:成熟/大公司攤薄,升幅有限\n"
+              "🔷 2-3倍:有真護城河,但市場已 price 咗一截\n"
+              "💎 3-5倍・耐久:供給結構性地慢(新產能要幾年),高回報可以維持好耐\n"
+              "🎲 5-10倍・二元:得則爆發、唔得近零嘅「形狀」(多數係未盈利/事件股)\n"
+              "   ——形狀唔等於冇把握,把握睇信心;細注/選擇權框架處理")
+    # sort: buys first (that's what the reader acts on), then kill-watch (risk), then quiet
+    _v_rank = {"ACCUMULATE": 0, "BUY-ZONE": 0, "KILL-WATCH": 1}
+    all_themes = sorted(all_themes,
+                        key=lambda t: (_v_rank.get(t["verdict"], 2), -t["target_pct"]))
     blocks = []
     for t in all_themes:
         cp = t.get("crowding_pctile")
@@ -1076,7 +1089,13 @@ def _render_appendix(all_themes):
                 f"   信心{t['confidence']:.2f}｜{cyc}｜{crowd}｜目標{t['target_pct']:.0f}%")
         sub = [f"   估值:{t.get('valuation') or '未評估'}"]
         if t.get("nodes"):
-            for n in t["nodes"]:
+            # nodes sorted by potential multiple, biggest story first (stable sort keeps the
+            # value-chain order for ties); the glyph carries the payoff SHAPE so a 🎲 ranking
+            # first reads as "biggest IF it works", not "safest".
+            nodes_sorted = sorted(
+                t["nodes"],
+                key=lambda n: -(sizing_mod.parse_magnitude_tier(n.get("tier")) or 0.0))
+            for n in nodes_sorted:
                 tk = "/".join(n.get("tickers") or []) or "ETF"
                 g = tier_glyph(n["tier"])
                 sub.append(f"   {g} {node_zh(n['name'])}({tk})— {n['tier']}")
