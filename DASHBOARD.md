@@ -1,6 +1,6 @@
 # Karst 投資簡報
 
-_2026-07-13 12:55 UTC | 晨早版_
+_2026-07-13 13:11 UTC | 晨早版_
 
 ---
 
@@ -68,21 +68,44 @@ LEAP參考報價:
 • QQQ 2027-06-30到期(剩354日) K780 Δ0.50 約$6,044/張
 
 • 已運用衛星倉位額度:40%(本階段上限50%,系統狀態:PRELIMINARY)
+• 組成(頭三大):美國太陽能製造 7%、減肥藥專用包裝 7%、航太特殊合金 6%——15 個主題全表見文末一覽
 • 最集中類別:「中國供應鏈相關」相關主題共佔19%額度
 • 最壞情境估算:如果所有主題嘅止蝕劇本同時應驗,衛星倉位最多蝕約 27%(壓力測試數,唔係預測)
-• 倉位對齊:太空衛星 建議減倉(目標 3.5% vs 現時 6.9%)
-• 倉位對齊:稀土礦產 建議減倉(目標 3.0% vs 現時 5.9%)
+• 倉位對齊(「現時」= 策略自己嘅紙上累積倉,唔係閣下實倉;差距通常因為公式目標郁咗,例如估值閘生效):
+  ↳ 太空衛星 建議減倉(目標 3.5% vs 現時 6.9%)
+  ↳ 稀土礦產 建議減倉(目標 3.0% vs 現時 5.9%)
 • SPY LEAP 距到期 352 日
 • QQQ LEAP 距到期 352 日
 
 ---
 
-📰 Kill 軸新聞(context,唔係買賣訊號):
-• [記憶體超級週期] US Pre-Market: Memory Chips Hit by Panic Selling, SK Hynix Falls Over 8%, Market Focuses o(TradingKey)
-• [記憶體超級週期] AI boom fuels massive capacity expansion by Samsung, SK hynix, Micron - Asianet Newsable(Asianet Newsable)
-• [記憶體超級週期] Business News | Samsung, SK Hynix, Micron Ramp Up Capacity as Demand for AI Infrastructure(LatestLY)
-• [光通訊/光學元件] [News] Sumitomo Electric to Raise InP Substrate Expansion Scale With JPY 18 Billion - Tren(TrendForce)
-• [光通訊/光學元件] InP supply crunch leaves South Korea exposed - digitimes(digitimes)
+📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
+
+• 記憶體超級週期|Apple's iPhone 18 Pro Prices Could Jump $200 as Memory Costs Surge in Tim Cook's(International Business Times Australia)
+  ↳ 掛喺「DRAM contract price decline」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 記憶體超級週期|Micron (MU) Stock Drops 5% on South Korean Rivals’ $536B Chip Expansion Plans - (Blockonomi)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 記憶體超級週期|Samsung Accelerates AI Chip Factory Plan - TradingView(TradingView)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 記憶體超級週期|SK Hynix shares plunge 15% in wake of Nasdaq debut - The Times(The Times)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 記憶體超級週期|SK Hynix's $26.5B Nasdaq Windfall Fails to Halt Seoul Sell-Off as Profit Worries(ad-hoc-news.de)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• AI電力與電網|Kevin O'Leary Is Betting on Data Center Jobs - But These 9 Job Markets Are Quiet(AOL.com)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+
+• AI電力與電網|Siemens Energy: A €150 Billion Backlog Meets a €150 Support Level - ad-hoc-news.(ad-hoc-news.de)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+
+• AI電力與電網|These 5 Optical Chip Stocks Are Cashing in on AI Data Center Bandwidth - 24/7 Wa(24/7 Wall St.)
+  ↳ 掛喺「hyperscaler data center capex cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+⚠ 同日多條止蝕方向消息:記憶體超級週期——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
 ---
 
