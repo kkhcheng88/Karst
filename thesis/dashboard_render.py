@@ -61,6 +61,11 @@ PENDING_ANALYSIS = os.path.join(REPO_ROOT, "..", "Reference", "raw_data",
 TELEGRAM_CRED = os.path.expanduser("~/.config/karst/telegram")
 TRIGGER_STATE_PATH = os.path.join(ROOT, ".raw", "entry_exit_trigger_state.json")
 
+# 2026-07-15 solvency 條件閘(backtest/results/2026-07-15_solvency_gate_probe.md 判決:
+# GO-as-gate 條件版)—— pe_pctile 用嘅係同一把 0-100 分位刻度(見 theme_signal.py ticker_metrics),
+# 20 = pe-cheap 嘅門檻,同回測 PE_LOW_PCTILE=0.20 對齊。
+SOLVENCY_PE_CHEAP_PCTILE = 20.0
+
 NOW = datetime.now(timezone.utc)
 
 # ============================================================================
@@ -282,6 +287,18 @@ def load_valuation_tickers():
     the composite score's expect dimension (per-ticker P_base, not the theme's best ticker)."""
     payload = _load_json(os.path.join(ROOT, ".raw", "valuation_report.json"))
     return (payload or {}).get("tickers") or {}
+
+
+def load_solvency_flags(val_tickers=None):
+    """valuation.py 每 ticker 嘅 solvency 閘讀數(net_debt_ebitda/interest_coverage/
+    solvency_flag)——同 load_valuation_tickers() 同一個源檔,獨立抽出嚟因為 pick_ticker 嘅
+    條件降級邏輯(2026-07-15 判決,見 backtest/results/2026-07-15_solvency_gate_probe.md)
+    淨係要呢三個欄位。傳入已讀好嘅 val_tickers 避免重讀 JSON;唔傳就自己讀一次。"""
+    val_tickers = load_valuation_tickers() if val_tickers is None else val_tickers
+    return {tk: {"net_debt_ebitda": v.get("net_debt_ebitda"),
+                 "interest_coverage": v.get("interest_coverage"),
+                 "solvency_flag": v.get("solvency_flag")}
+            for tk, v in val_tickers.items()}
 
 
 def load_news():
@@ -713,7 +730,18 @@ def ticker_node_map(theme):
     return m
 
 
-def pick_ticker(verdict, ticker_rows, node_map=None):
+def _solvency_desc(sv):
+    """人話講返個 solvency 讀數(業務語言,唔係 raw ratio 拋出嚟)——用喺日報警示行。"""
+    nde = sv.get("net_debt_ebitda")
+    cov = sv.get("interest_coverage")
+    if nde is not None:
+        return f"NetDebt {nde:.1f}x EBITDA"
+    if cov is not None:
+        return f"利息覆蓋 {cov:.1f}x"
+    return "槓桿/覆蓋讀數異常(EBITDA 或 EBIT ≤ 0)"
+
+
+def pick_ticker(verdict, ticker_rows, node_map=None, solvency=None):
     """Pick the single most representative/actionable ticker within a theme's basket -- the
     concrete answer to "which stock, not just which theme" (themes have 2-13 tickers each).
     For a KILL-WATCH theme, prefer a ticker that's ALSO individually KILL-WATCH (most
@@ -723,9 +751,19 @@ def pick_ticker(verdict, ticker_rows, node_map=None):
     row as `_composite` by build_briefing), falling back to the previous magnitude-then-
     cheapest-pe_pctile sort for rows without a score (pre-profit N/A lane) and as tiebreaker.
     KILL-WATCH picks keep the old logic unchanged -- the composite is a buy-quality score,
-    not a danger-representativeness score. Returns (picked_row, node_or_None)."""
+    not a danger-representativeness score.
+
+    2026-07-15 solvency 條件降級(backtest/results/2026-07-15_solvency_gate_probe.md 判決
+    GO-as-gate 條件版):BUY pool 入面,pe_pctile<=SOLVENCY_PE_CHEAP_PCTILE(「平」係買入理由)
+    且 solvency_flag=True 嘅候選排到池尾——**降級,唔係剔除**(回測:solvency 爆但唔平嘅名
+    forward excess 反而係正,無條件剔除會錯殺,USAC +67.6% 就係錯殺面證據)。如果成個 pool
+    都中招,照揀分數最高嗰個。
+
+    Returns (picked_row, node_or_None, solvency_warn) -- solvency_warn 係
+    [(ticker_row, solvency_dict, pe_pctile), ...] 列表,即係俾降級咗嘅候選(包括 picked 本身,
+    如果成池都中招嘅話);唔係 BUY 池或冇人中招就係 []。"""
     if not ticker_rows:
-        return None, None
+        return None, None, []
     if verdict == "KILL-WATCH":
         pool = [r for r in ticker_rows if r["verdict"] == "KILL-WATCH"] or ticker_rows
     elif verdict in ("ACCUMULATE", "BUY-ZONE"):
@@ -733,21 +771,40 @@ def pick_ticker(verdict, ticker_rows, node_map=None):
     else:
         pool = ticker_rows
     node_map = node_map or {}
+    solvency = solvency or {}
     is_buy = verdict in ("ACCUMULATE", "BUY-ZONE")
+
+    def _pe(r):
+        try:
+            return float(r["pe_pctile"])
+        except (TypeError, ValueError):
+            return None
+
+    def _downgrade_hit(r):
+        """None 除非:BUY 池 + pe-cheap + solvency_flag=True -- 正是 pick_ticker 要降級嗰批。"""
+        if not is_buy:
+            return None
+        pe = _pe(r)
+        if pe is None or pe > SOLVENCY_PE_CHEAP_PCTILE:
+            return None
+        sv = solvency.get(r["symbol"]) or {}
+        return (r, sv, pe) if sv.get("solvency_flag") is True else None
 
     def sort_key(r):
         node = node_map.get(r["symbol"])
         mag = sizing_mod.parse_magnitude_tier(node.get("magnitude_tier")) if node else None
-        try:
-            pe = float(r["pe_pctile"])
-        except (TypeError, ValueError):
-            pe = 999.0
+        pe = _pe(r)
+        pe_sort = pe if pe is not None else 999.0
         comp = (r.get("_composite") or {}).get("score")
         comp_rank = -(comp if (is_buy and comp is not None) else -1.0)
-        return (comp_rank, -(mag or 0.0), bool(r.get("stale")), pe)
+        downgrade = 1 if _downgrade_hit(r) is not None else 0
+        return (downgrade, comp_rank, -(mag or 0.0), bool(r.get("stale")), pe_sort)
 
     picked = sorted(pool, key=sort_key)[0]
-    return picked, node_map.get(picked["symbol"])
+    hits = [h for h in (_downgrade_hit(r) for r in pool) if h is not None]
+    picked_hit = next((h for h in hits if h[0]["symbol"] == picked["symbol"]), None)
+    solv_warn = [picked_hit] if picked_hit else hits
+    return picked, node_map.get(picked["symbol"]), solv_warn
 
 
 # ============================================================================
@@ -766,6 +823,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
     # crowding 因此提早喺呢度 load(原本喺 loop 之後先 load,weave 邏輯不變)。
     crowding = load_crowding()
     val_tickers = load_valuation_tickers()
+    solvency_flags = load_solvency_flags(val_tickers)
     composite_cfg = composite_mod.load_weights()
     composite_log_rows = []
     for slug2, t_rows in ticker_rows.items():
@@ -836,7 +894,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
                 item["ticker_vs200sma"] = f"+{gap}%"
         else:  # opportunity -- the only case where a buy is actually being suggested
             node_map = ticker_node_map(sizing_info["themes"].get(slug, {}))
-            picked, node = pick_ticker(verdict, theme_tickers, node_map)
+            picked, node, solv_warn = pick_ticker(verdict, theme_tickers, node_map, solvency_flags)
             # % of the satellite/thematic sleeve, NOT a $ amount -- Karst is user-agnostic
             # (doesn't know the reader's account size), so a raw $ against the internal
             # DEFAULT_BUDGET would be meaningless. % of the satellite allocation is meaningful
@@ -860,6 +918,19 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
                              if (tr.get("_composite") or {}).get("score") is None]
                 if na_names:
                     item["peer_na"] = na_names[:4]
+                # 2026-07-15 solvency 條件降級警示(backtest/results/2026-07-15_solvency_gate_
+                # probe.md 判決:GO-as-gate 條件版,只降級唔剔除——見 pick_ticker 嘅 docstring)。
+                if solv_warn:
+                    if solv_warn[0][0]["symbol"] == picked["symbol"]:
+                        _, sv, pe = solv_warn[0]
+                        item["solvency_warn"] = (
+                            f"⚠ 首選 {picked['symbol']} 本身槓桿都偏高({_solvency_desc(sv)})"
+                            "——呢個主題冇更乾淨嘅候選,已揀分數最高嗰個,但要留意平可能係槓桿假象")
+                    else:
+                        item["solvency_warn"] = "\n".join(
+                            f"⚠ {tr['symbol']} 睇落平(PE 分位 {pe:.0f})但槓桿高"
+                            f"({_solvency_desc(sv)}),暫剔出首選——平可能係槓桿假象"
+                            for tr, sv, pe in solv_warn[:3])
         # theme-level trend read (for the consistent 3-read block on every card): use the picked
         # ticker's vs200sma if we have one, else the theme target's basket read.
         tgt = targets.get(slug, {})
@@ -1078,6 +1149,8 @@ def render_telegram_messages(briefing):
                         na_tail = (f";{'/'.join(a['peer_na'])} 屬事件型,唔比分"
                                     if a.get("peer_na") else "")
                         lines.append(f"• 同主題比較(綜合分,高=較吸引):{peer_line}{na_tail}")
+                    if a.get("solvency_warn"):
+                        lines.append(a["solvency_warn"])
                     sma_s = a.get("ticker_sma_price")
                     has_sma = sma_s and sma_s != "n/a"
                     lines.append(f"• 入場:現價細注分批;回落至200日均線 {sma_s if has_sma else 'n/a'} 可加大注碼")

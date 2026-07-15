@@ -124,6 +124,15 @@ HORIZON = 5
 MIN_QUARTERS_OK = 12
 REV_WINDOW_Q = 12    # "3-year median revenue" window = 12 quarterly columns (v1's only new knob)
 
+# ---- solvency gate reading (2026-07-15) --------------------------------------------------
+# 判決:backtest/results/2026-07-15_solvency_gate_probe.md -- GO-as-gate(條件版:solvency 單獨
+# 冇跑輸料,但「pe 平 ∧ solvency 爆」126d excess -14.9% vs pe_low alone -2.9%;「solvency 爆但
+# 唔平」+3.9% = 無條件 gate 會錯殺,USAC 後來 +67.6% 就係錯殺面證據)。所以呢度只讀數 + 旗標,
+# 唔喺 valuation 呢層做否決——真正嘅「只對 pe-cheap 候選降級」邏輯喺
+# thesis/dashboard_render.py 嘅 pick_ticker(揀 ticker 嗰步)先做。
+LEV_BAD = 4.0   # NetDebt(手動重構) / EBITDA(TTM) > 4x -- 槓桿爆錶閾值
+COV_BAD = 2.0   # EBIT / 利息支出(TTM) < 2x -- 利息覆蓋唔夠閾值
+
 TOP_N_PER_THEME = 2  # v0's ticker-selection logic: first 1-2 tickers per theme's `tickers:` list
 WATCH = ["KALU", "MCHP", "AVT", "PTEN"]  # v0's 4 WATCH-only names -- see module docstring
 
@@ -330,6 +339,130 @@ def _from_yfinance(sym: str) -> dict:
     }
 
 
+# ============================================================================
+# solvency gate reading -- fetch logic ported from
+# backtest/experiments/exp_solvency_gate_probe.py (_quarterly_frame/_annual_frame), the probe
+# whose judgement this wiring implements (see LEV_BAD/COV_BAD comment above). Quarterly TTM
+# preferred; annual fiscal-year figures fill whatever quarterly leg is thin/unavailable. This
+# is a WEEKLY SNAPSHOT (latest reading only), not a backtest time series.
+# ============================================================================
+
+
+def _is_financial_sector(sym: str) -> bool:
+    """銀行/保險:NetDebt/EBITDA 同利息覆蓋對佢哋無意義(2026-07-15 探測 v1 run JPM/MTG 正正
+    咁樣炸,設計上剔除)。用 yfinance sector/industry 判斷,攞唔到就唔當金融股(fail-open,
+    唔靜默剔除非金融名)。"""
+    try:
+        info = yf.Ticker(sym).info
+    except Exception:
+        return False
+    sector = (info.get("sector") or "").lower()
+    industry = (info.get("industry") or "").lower()
+    return "financial" in sector or "bank" in industry or "insurance" in industry
+
+
+def _getdf(obj):
+    """`net_debt_ttm()`/`ttm_ebitda()`/`debt_to_equity()` 喺呢個 defeatbeta_api 版本已經直接
+    返回 DataFrame(冇 `.df()`),但 `quarterly_income_statement()`/`annual_*_statement()` 返回
+    有 `.df()` 嘅 Statement object——兩種都要頂到,唔可以假設淨係一種(同
+    exp_solvency_gate_probe.py 嘅 `_getdf` 一致)。"""
+    return obj.df() if hasattr(obj, "df") else obj
+
+
+def _wide_to_tidy(wide_df: pd.DataFrame, rows_wanted: list) -> pd.DataFrame:
+    """defeatbeta income/balance-sheet表係 WIDE 格式(Breakdown 欄 + 逐期末日期欄,損益表仲有個
+    TTM 欄)。跟 exp_solvency_gate_probe.py 原式照抄:tidy 成逐 period_end 一行、逐個要嘅
+    row 一個 float 欄;缺行 -> NaN 欄;masked '*' 格 -> NaN。"""
+    sub = wide_df[wide_df["Breakdown"].isin(rows_wanted)].drop_duplicates("Breakdown")
+    sub = sub.set_index("Breakdown").reindex(rows_wanted)
+    cols = [c for c in sub.columns if c != "TTM"]
+    out = sub[cols].T
+    out.index = pd.to_datetime(out.index)
+    out = out.sort_index()
+    for c in out.columns:
+        out[c] = pd.to_numeric(out[c], errors="coerce")
+    return out
+
+
+def _solvency_reading(sym: str) -> dict:
+    """NetDebt/EBITDA + 利息覆蓋嘅最新讀數(週更 snapshot,唔係回測時間序列)。
+    返回 net_debt_ebitda / interest_coverage / solvency_flag / solvency_reason 四個欄位;
+    攞唔到嘅數 = None,唔造假。金融股:flag=None + reason(跳過,唔評估)。"""
+    out = {"net_debt_ebitda": None, "interest_coverage": None,
+           "solvency_flag": None, "solvency_reason": None}
+    if _is_financial_sector(sym):
+        out["solvency_reason"] = "金融股(銀行/保險)跳過——NetDebt/EBITDA 同利息覆蓋對佢哋無意義"
+        return out
+
+    net_debt = ebitda = ebit = int_exp = None
+    with contextlib.redirect_stdout(io.StringIO()):
+        t = Ticker(sym)
+        # ---- quarterly TTM leg: net debt (手動重構) / EBITDA ----
+        try:
+            nd = _getdf(t.net_debt_ttm()).sort_values("report_date")
+            d2e = _getdf(t.debt_to_equity()).sort_values("report_date")
+            eb = _getdf(t.ttm_ebitda()).sort_values("report_date")
+            cash = _num(nd.iloc[-1].get("cash_and_short_term_investments")) if len(nd) else None
+            total_debt = _num(d2e.iloc[-1].get("total_debt")) if len(d2e) else None
+            if cash is not None and total_debt is not None:
+                net_debt = total_debt - cash
+            if len(eb):
+                ebitda = _num(eb.iloc[-1].get("ttm_ebitda_usd"))
+        except Exception:
+            pass
+        # ---- quarterly TTM leg: EBIT / 利息支出(季度滾存 4 季) ----
+        try:
+            inc = t.quarterly_income_statement().df()
+            tidy = _wide_to_tidy(inc, ["EBIT", "Interest Expense"])
+            ebit_ttm = tidy["EBIT"].rolling(4, min_periods=4).sum().dropna()
+            int_ttm = tidy["Interest Expense"].rolling(4, min_periods=4).sum().dropna()
+            if len(ebit_ttm):
+                ebit = float(ebit_ttm.iloc[-1])
+            if len(int_ttm):
+                int_exp = float(int_ttm.iloc[-1])
+        except Exception:
+            pass
+        # ---- annual fallback:補返季度攞唔到嘅任何一條腿(史淺名/季度表冧咗) ----
+        if net_debt is None or ebitda is None or ebit is None or int_exp is None:
+            try:
+                abs_ = t.annual_balance_sheet().df()
+                ais = t.annual_income_statement().df()
+                bs_t = _wide_to_tidy(abs_, ["Total Debt",
+                    "Cash, Cash Equivalents & Short Term Investments"])
+                is_t = _wide_to_tidy(ais, ["EBIT", "EBITDA", "Interest Expense"])
+                if net_debt is None and len(bs_t):
+                    last = bs_t.iloc[-1]
+                    td = _num(last.get("Total Debt"))
+                    csti = _num(last.get("Cash, Cash Equivalents & Short Term Investments"))
+                    if td is not None and csti is not None:
+                        net_debt = td - csti
+                if ebitda is None and len(is_t):
+                    ebitda = _num(is_t.iloc[-1].get("EBITDA"))
+                if ebit is None and len(is_t):
+                    ebit = _num(is_t.iloc[-1].get("EBIT"))
+                if int_exp is None and len(is_t):
+                    int_exp = _num(is_t.iloc[-1].get("Interest Expense"))
+            except Exception:
+                pass
+
+    if ebitda is not None and ebitda > 0 and net_debt is not None:
+        out["net_debt_ebitda"] = net_debt / ebitda
+    if int_exp is not None and int_exp > 0 and ebit is not None:
+        out["interest_coverage"] = ebit / int_exp
+
+    has_any = ebitda is not None or (ebit is not None and int_exp is not None)
+    if not has_any:
+        out["solvency_reason"] = "攞唔到 EBITDA/EBIT/利息支出數據,solvency 讀數缺席"
+        return out
+
+    lev_bad = (ebitda is not None and ebitda <= 0) or (
+        out["net_debt_ebitda"] is not None and out["net_debt_ebitda"] > LEV_BAD)
+    cov_bad = (int_exp is not None and int_exp > 0 and ebit is not None and ebit <= 0) or (
+        out["interest_coverage"] is not None and out["interest_coverage"] < COV_BAD)
+    out["solvency_flag"] = bool(lev_bad or cov_bad)
+    return out
+
+
 def compute(sym: str) -> dict:
     row = {"ticker": sym}
     try:
@@ -388,6 +521,15 @@ def compute(sym: str) -> dict:
         row["classification"] = "買緊部分希望"
     else:
         row["classification"] = "大部分係希望"
+
+    # ---- solvency gate reading (2026-07-15,見 LEV_BAD/COV_BAD 註解) ----
+    # 獨立於上面 valuation 嘅 try/except:一個 ticker 嘅 solvency 讀取失敗唔應該累到成個
+    # valuation row 都跟住報錯(兩者數據來源部分重疊但唔係同一條 fetch 路徑)。
+    try:
+        row.update(_solvency_reading(sym))
+    except Exception as e:
+        row.update({"net_debt_ebitda": None, "interest_coverage": None, "solvency_flag": None,
+                    "solvency_reason": f"solvency 讀取失敗: {str(e)[:90]}"})
     return row
 
 
@@ -558,6 +700,10 @@ def write_json(rows, ok_rows, fail_rows, theme_order, today):
             "p_18x": r.get("p_18x"),
             "g_implied": r.get("g_implied"),
             "classification": r.get("classification"),
+            "net_debt_ebitda": r.get("net_debt_ebitda"),
+            "interest_coverage": r.get("interest_coverage"),
+            "solvency_flag": r.get("solvency_flag"),
+            "solvency_reason": r.get("solvency_reason"),
             "n_quarters": r.get("n_quarters"),
             "fin_currency": r.get("fin_currency"),
             "bs_date": r.get("bs_date"),
@@ -706,6 +852,39 @@ def write_md(rows, ok_rows, fail_rows, theme_order, today, diffs, v0_file):
         lines.append("")
         for r in fail_rows:
             lines.append(f"- **{r['ticker']}** ({', '.join(r.get('themes', []))}) — {r['error']}")
+        lines.append("")
+
+    lines.append("## Solvency 閘讀數(槓桿/利息覆蓋)")
+    lines.append("")
+    lines.append("判決:`backtest/results/2026-07-15_solvency_gate_probe.md`(GO-as-gate 條件版)—— "
+                  "solvency 差單獨冇跑輸料,但「pe 平(自身歷史分位 ≤20)∧ solvency 爆」126d excess "
+                  "-14.9%(vs pe_low alone -2.9%);「solvency 爆但唔平」反而 +3.9%,證明無條件 gate "
+                  "會錯殺(USAC 動機案例:淨負債 \\$2.98B、睇落全場最平但槓桿股權切片)。所以呢度**只讀數"
+                  "同旗標**,唔喺 valuation 呢層做否決——真正「只對 pe-cheap 買入候選降級」嘅邏輯喺 "
+                  "`thesis/dashboard_render.py` 嘅 `pick_ticker`(揀 ticker 嗰步)先做。"
+                  f"閾值:NetDebt/EBITDA > {LEV_BAD:.0f}x 或 EBITDA≤0,OR EBIT/利息支出 < {COV_BAD:.0f}x。"
+                  "金融股(銀行/保險)跳過,對佢哋呢兩條比率無意義。")
+    lines.append("")
+    solv_flagged = [r for r in ok_rows if r.get("solvency_flag") is True]
+    solv_skipped = [r for r in ok_rows if r.get("solvency_flag") is None and r.get("solvency_reason")]
+    if solv_flagged:
+        lines.append(f"**{len(solv_flagged)} 隻名槓桿或利息覆蓋爆錶**(睇落平未必真係平,可能係"
+                      "槓桿假象——業務語言:「睇落平但槓桿爆錶」):")
+        lines.append("")
+        lines.append("| Ticker | 主題 | NetDebt/EBITDA | EBIT/利息覆蓋 |")
+        lines.append("|---|---|---:|---:|")
+        for r in sorted(solv_flagged, key=lambda r: r["ticker"]):
+            nde = r.get("net_debt_ebitda")
+            cov = r.get("interest_coverage")
+            nde_s = f"{nde:.2f}x" if nde is not None else "EBITDA≤0"
+            cov_s = f"{cov:.2f}x" if cov is not None else "n/a"
+            lines.append(f"| **{r['ticker']}** | {', '.join(r.get('themes', []))} | {nde_s} | {cov_s} |")
+    else:
+        lines.append("(本輪冇名觸發 solvency 旗標。)")
+    lines.append("")
+    if solv_skipped:
+        lines.append(f"{len(solv_skipped)} 隻名 solvency 讀數缺席或跳過:" +
+                      "; ".join(f"{r['ticker']}({r['solvency_reason']})" for r in solv_skipped) + "。")
         lines.append("")
 
     lines.append("## v0 -> v1 classification changes")
