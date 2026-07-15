@@ -101,6 +101,19 @@ source-cap 嘅設計意思:單一來源嘅 thesis,無論單一來源睇落幾好
 嘅 gatekeeper addendum:無 cap 七個 theme 齊升、最大 +0.25;有 cap 之後 delta
 壓縮到 ±0.08 內,而且 memory 呢類現正違規嘅會向下修返合規)。
 
+**「獨立來源」嘅定義(2026-07-15 用戶質疑後修訂——cap 係「數獨立證據鏈」,唔係「數訂閱源」):**
+cap 防嘅係**假說來源集中**(成本簿嘅敘事框架出自同一個腦 → 相關錯誤污染全簿),
+唔係懲罰驗證唔夠勤力——「框架內事實驗晒」≠「框架本身被獨立確認」(選擇性偏誤:
+單一敘事者冇展示嘅反面事實,幾勤力都驗唔到)。所以:
+- **算獨立第二源** ✅:系統自己嘅 Tier-1 渠道獨立擊中**承重 claim**(樽頸機制本身,
+  唔係周邊事實)——constraint-language scanner 喺 transcript 掃到管理層親口講約束語言、
+  insider cluster 買入、自己拉嘅財務數據直接證實核心機制(例:LTA/RPO 連續季度確認)。
+  擊中後喺 `sources:` 登記(id + tier1 + 邊條 claim),theme 即脫離 single-source cap。
+- **唔算** ❌:第二個 Tier-2 源如果只係轉述/呼應第一個(相關源只算一個);
+  一手驗證咗周邊事實(pe/capex 拉咗數)但未觸及承重 claim 本身。
+- 執行檢查:lint 對 `sources:` 有 ≥2 條時,要求至少一條標明 corroborates: <claim>,
+  防止「加個 newsletter 就解 cap」嘅假獨立。
+
 **4-KPI 判準(每格 0/1/2 錨點;0.5 步進插值):**
 
 | KPI | 2 分 | 1 分 | 0 分 |
