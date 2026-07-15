@@ -81,6 +81,49 @@ confidence = f( 4-KPI 各分數, 佐證獨立來源數, 距 kill condition 多�
    已驗 `results/2026-07-01_valuation.md`)。
 4. **成長耐久 / TAM**(additive-mechanism 閘:是否創造全新需求 vs 搶份額)。
 
+### 4a. 評分 rubric + confidence 公式(P2,2026-07-15 凍結;docs/2026-07-15_quantification_review.md)
+
+> 原則:**判斷放設計時,算術放執行時**。呢節嘅 rubric/公式/查表係設計時凍結嘅嘢——
+> 執行時(任何模型)做嘅係「證據對判準」嘅匹配 + 套公式;調整本節 = 季度設計審查,要記理由。
+
+**公式(凍結):**
+```
+confidence = (Σ 4-KPI subscores) / 8 × penalty(crowding_band, cycle_stage)
+subscore ∈ {0, 0.5, 1, 1.5, 2},半分要書面講理由;每格至少一條 cited 證據
+```
+
+**4-KPI 判準(每格 0/1/2 錨點;0.5 步進插值):**
+
+| KPI | 2 分 | 1 分 | 0 分 |
+|---|---|---|---|
+| **moat/樽頸** | 一手證據(transcript/filing 嘅約束語言、交期、sold-out、提價)顯示供給結構性受限,且有可交易名直接持有咽喉 | 樽頸真但護城河分散/被非核心業務稀釋/主要喺不可交易實體;或證據主要 Tier-2 | 冇可辨識樽頸,或樽頸正在解除(產能追上、交期縮短) |
+| **資本配置/ROIC** | 有盈利 + ROIC 高或改善 + capex 有紀律;或早週期「買建」capex 有一手訂單/backlog 支持 | 混合:核心業務 ROIC 好但被燒錢業務拖累;或 capex 放量但回報未證 | 純燒錢、ROIC 未證、FCF 負而無清晰兌現路徑 |
+| **估值/priced-in** | pe_pctile < 50(自身歷史)且 P_base ≥ 0.4 | pe_pctile 50-90;或 P_base < 0.4 但有資產/合約類估值緩衝 | pe_pctile ≥ 90;或夢想定價(pre-revenue 高 P/S) |
+| **成長耐久/TAM** | additive 機制已被財報兌現(非願景),且供給結構性慢(耐久) | 機制真但兌現中/部分靠未證嘅下一階段;或 TAM 真但公司只佔一角 | 搶份額型(非 additive);TAM 純願景無工程驗證 |
+
+註:估值格係四格入面最機械嘅——直接由 `pe_pctile`(theme_signal)+ `P_base`(valuation.py)
+映射,執行時零自由裁量;佢係 P1 綜合分 value/expect 兩維嘅 KPI 層鏡像,方向一致係特性唔係雙重計算
+(綜合分係**個股**排序,confidence 係 **theme** 層 thesis 機率)。
+
+**penalty 查表(crowding composite pctile × cycle_stage;凍結):**
+
+| crowding \ cycle | early | mid / event-driven | late / mid-late |
+|---|---|---|---|
+| < 40(冷) | 1.00 | 0.90 | 0.75 |
+| 40–60 | 0.95 | 0.85 | 0.65 |
+| 60–80 | 0.85 | 0.75 | 0.55 |
+| 80–90 | 0.75 | 0.65 | 0.45 |
+| ≥ 90(極擠) | 0.65 | 0.55 | 0.40 |
+
+**關鍵分工決定(遷移時會令部分 theme 嘅數郁,係特性唔係 bug):**
+confidence 量嘅係「**thesis 為真嘅機率**」;**表達層風險唔再折入 confidence**——
+pre-revenue binary/夢想定價嘅表達風險由 magnitude_tier(binary 檔→sizing v2 固定微注)
+同估值 KPI 承擔,唔准喺 penalty 度再折一次(舊手工推導有 bundle 呢啲折扣,
+例:space-satellite 0.28 入面有「最深護城河唔可以買」嘅酌情折)。遷移程序:
+用公式重算全部 theme → diff 表 → 大幅移動者逐個覆核 → 用戶過目先改 themes.yaml 數字。
+`thesis/lint.py` 負責機械檢查:themes.yaml 記錄嘅 confidence 必須等於
+wiki 推導段記錄嘅 subscores/crowding/cycle 套公式嘅輸出(誤差 ±0.01),對唔上 = lint error。
+
 ---
 
 ## 5. 知識層(NHITL 的實現機制)
