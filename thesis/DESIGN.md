@@ -86,11 +86,20 @@ confidence = f( 4-KPI 各分數, 佐證獨立來源數, 距 kill condition 多�
 > 原則:**判斷放設計時,算術放執行時**。呢節嘅 rubric/公式/查表係設計時凍結嘅嘢——
 > 執行時(任何模型)做嘅係「證據對判準」嘅匹配 + 套公式;調整本節 = 季度設計審查,要記理由。
 
-**公式(凍結):**
+**公式(凍結;2026-07-15 同日修訂:補返 source-cap——diff 表 agent 發現漏咗
+「佐證獨立來源數」呢個 §1 原有輸入,而 WS3 admission 規則本身已有 single-source
+cap 0.30(thesis/lint.py 一直 warn 緊、5 個 theme 現正違規),公式必須內建佢):**
 ```
-confidence = (Σ 4-KPI subscores) / 8 × penalty(crowding_band, cycle_stage)
+confidence_raw = (Σ 4-KPI subscores) / 8 × penalty(crowding_band, cycle_stage)
+confidence     = min(confidence_raw, 0.30)   if len(sources) == 1
+               = confidence_raw               otherwise
 subscore ∈ {0, 0.5, 1, 1.5, 2},半分要書面講理由;每格至少一條 cited 證據
 ```
+source-cap 嘅設計意思:單一來源嘅 thesis,無論單一來源睇落幾好,注碼上限都要被
+獨立佐證數綁住——公式嘅精細分辨力主要喺 cap 以下 / 多來源 theme 先發揮。
+呢個令遷移風險大幅下降(見 backtest/results/2026-07-15_confidence_formula_diff.md
+嘅 gatekeeper addendum:無 cap 七個 theme 齊升、最大 +0.25;有 cap 之後 delta
+壓縮到 ±0.08 內,而且 memory 呢類現正違規嘅會向下修返合規)。
 
 **4-KPI 判準(每格 0/1/2 錨點;0.5 步進插值):**
 
