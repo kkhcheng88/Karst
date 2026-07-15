@@ -160,3 +160,10 @@ thesis/.raw/entry_exit_trigger_state.json
 # above; themes.yaml's kill_metrics: field itself (the source data) IS tracked, only this derived
 # report is gitignored.
 thesis/.raw/kill_metrics_report.json
+
+# magnitude_features.py's (P3, docs/2026-07-15_quantification_review.md) regenerable report -- per
+# theme/node F2(valuation pctile)/F3(distance-from-5y-bottom)/F5(crowding pctile) + consistency
+# flags, recomputed from themes.yaml's nodes: field + thesis/.raw/crowding_composite.json on every
+# --report run. Same "own line per .json" convention as kill_metrics_report.json above; themes.yaml
+# itself (the source data) IS tracked, only this derived report is gitignored.
+thesis/.raw/magnitude_features_report.json
