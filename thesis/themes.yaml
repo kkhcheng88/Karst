@@ -215,7 +215,12 @@ themes:
       磷化銦)。即係話AXTI唔止有現有kill_condition講嘅InP供給樽頸曝險,仲有生產地本身喺中國嘅雙重
       曝險——中國進一步收緊InP出口,可以同時打生產同批次放行兩條線。AAOI(Ningbo廠,2881/4691員工
       喺中國,正做$300M Sugar Land TX回流)、GLW(上海光纖廠+多個顯示玻璃廠)都有實質中國製造。
-      SIVE/LWLG/FN乾淨。"
+      SIVE/LWLG/FN乾淨。
+      2026-07-14 夜班ingest(gooptions #159「Meta算力帝國」,Tier-2 bull,付費牆截斷):免費前段主打Meta需求anchor
+      (見ai-power-grid note),付費牆後嘅供應鏈分層表把CIEN/NOK/LITE/COHR列做長距/跨園區光通訊受惠層,但逐層
+      定位喺牆後、未能引;LITE/COHR係本thesis tickers。作者自標警告「Scale-Across唔好外推成長距光需求無限、
+      2,000km只對得上RL非同步階段、預訓練仍綁單址」——即係話呢條長距相干光需求係領先指標、要盯實際訂單有冇
+      跟上敘事,唔好把時程同量級一齊樂觀化。confidence/cycle維持(無財報級新事實、且核心內容付費牆截斷)。"
 
 
   ai-power-grid:
@@ -368,7 +373,34 @@ themes:
       ——報告自己標為「未證實嘅空方情緒訊號、單一社群來源、公開檢索搵唔到原報告」,方向同kill「800V放量時程滑」
       一致但當情緒訊號睇。⚠️付費牆後嘅逐檔位置(含Navitas/MPWR/Vicor/台股強茂/環球晶)+6條輪動追蹤軸未能引。
       ⚠️原文內文header誤植「ISSUE #153」,但frontmatter/manifest係#156,以#156為準。confidence/cycle維持
-      (Tier-2 neutral、重述已知器件鏈事實+補美銀100GW缺口量化,無財報級新事實)。'
+      (Tier-2 neutral、重述已知器件鏈事實+補美銀100GW缺口量化,無財報級新事實)。
+      2026-07-14 夜班ingest(2篇新文,全部confidence/cycle維持):
+      (a) gooptions #158「為何資料中心要拉到800VDC」(Tier-2 neutral,完整免費教育文、無付費牆):48V→800V
+      高壓直流係AI機櫃結構性升級(P=VI,600kW機櫃電流降16.7×、銅排148→12kg、供電效率82%→87%),NVIDIA 2025
+      下半年拉29家聯盟、2027次世代機櫃導入。逐層影子贏家對得上本thesis既有node:電源模組寡佔=MPWR(依
+      KeyBanc喺Vera Rubin約7成市佔、毛利55%)+VICR(唯一第二來源)→強化power-semis-mature node嘅POL寡頭
+      護城河;SiC=WOLF(唯一純SiC垂直整合、2026推全球首顆商用10kV,但偏電網側、唔喺NVIDIA 14家名單)+ON;
+      GaN=NVTS(美股唯一純GaN、NVIDIA具名,Kyber 98.5%,但估值已反映一大段)+POWI(1250V);系統整合=VRT/ETN
+      (NVIDIA具名、已部分定價)。全部佐證現有「真需求但priced-ahead」+成熟度分歧;誠實反方=時程可能先做半套
+      (2026早期小量、真放量看2027)、良率卡關、中國GaN平3-4成壓利潤——正正呼應kill_condition「800V/HVDC放量
+      時程滑」呢條軸。無財報級新事實(KeyBanc市佔係賣方推估、非公司揭露),confidence/cycle/magnitude全維持。
+      (b) gooptions #159「Meta超級智能算力帝國」(Tier-2 bull,付費牆截斷、只引免費前段):Meta 2026 capex上修
+      $125B–$145B(由$115-135B)、FCF願轉負、同時建5個1GW+「Titan clusters」(人類史上首次同時建多個1GW園區,
+      前業界最大單一AI建置=AWS Project Rainier 800MW)。對本thesis:係下游需求anchor強化證據(kill_condition #1
+      「hyperscaler capex由$1T→$1.7T路徑roll over」未觸、反向再確認),但META本身屬下游需求(同NVDA/CRWV一樣
+      excluded、唔入tickers)。付費牆後嘅電力/長距光通訊逐層受惠表(ETR/GEV/CIEN/NOK/LITE/COHR各在邊層)+4個
+      空方論點未能引。作者自標警告「Scale-Across唔好外推成長距光需求無限、2,000km只對得上RL非同步階段」——
+      當領先指標睇、唔外推。依SKILL紀律4,一篇bull報告本身=輕微crowding訊號(theme報告擁擠度由29%微升,
+      但仍遠低於photonics 58%)。confidence/cycle維持(無財報級新事實)。
+      2026-07-15 夜班ingest(gooptions #046「算力→記憶體→資金回電力基建輪動」,2026-05-04,Tier-2 bull,
+      完整免費文,confidence/cycle/magnitude維持):資金路徑框架GPU→Memory→Power→Grid→Network→Agent,
+      主張現處第3-4階段(電力/散熱)。三財報訊號(全部Q1 2026、已反映):PWR在手訂單$48.5B歷史新高+全年
+      指引上修$34.7-35.2B、MYRG EPS $2.99(+106%)季度淨利/EBITDA雙紀錄、ETN完成$9.5B收購Boyd Thermal
+      (液冷,整合命名「chip-to-grid」)。對本thesis:PWR/ETN/VRT已在tickers、直接佐證grid-hardware node
+      (late/priced-ahead-of-ramp);URG/CCJ核能延伸=既有URA leg(uranium-fuel node,URG已建倉/CCJ觀察);
+      NOK/EXTR/VISN(網通)+NET(Cloudflare,agent-infra控制層)屬電力鏈下游/軟體,NET出Karst範圍。⚠️時效
+      已過:本文2026-05-04,三檔Q1財報已於既有node last_evidence反映,係back-catalog佐證非新forward事實
+      (且較既有已ingest嘅#156/#158/#159更舊)。無財報級新事實,confidence 0.33/late、grid-hardware 2-3x維持。'
 
   advanced-packaging:
     wiki: thesis/wiki/advanced-packaging.md
@@ -475,7 +507,15 @@ themes:
       管制主動削減(美國政策風險,唔係中國供給風險,反而某程度削減緊呢啲名對中國嘅曝險):KLAC
       (41%→33%)、TER(13%)、FORM(14%→7%,全審查跌幅最急)、LRCX(42%→34%,仍係最大單一國家)、
       MKSI(22-24%)。兩組風險方向唔同,(a)組china政策收緊會直接傷害,(b)組已經喺美國政策下收縮
-      緊,某程度係de-risk緊而唔係加risk。"
+      緊,某程度係de-risk緊而唔係加risk。
+      2026-07-14 夜班ingest(gooptions #157「台積電點解要把晶圓化圓為方 CoPoS」,Tier-2 neutral,完整免費文,
+      confidence/cycle維持):CoWoS之後嘅下一個結構性拐點=把承載晶片嘅底座由圓晶圓換成方玻璃面板(CoPoS,
+      P=Panel vs CoWoS嘅W=Wafer),材料利用率約6成→9成、光罩上限約9.5×。真正卡點唔喺機台、喺良率(換掉矽底座、
+      翹曲+晶片偏移一串新物理問題),量產要到2028下半年、放量再2-3年。影子贏家=平台(TSM)+國際材料設備大廠
+      (GLW玻璃、Ibiden、AMAT、ONTO、Nikon);台股TGV一圈多數玻璃營收佔比極低甚至零=早期題材,「被點名」≠「已受惠」。
+      對本thesis:對得上現有glass-substrate-nextgen node(GLW,已priced 46× FY27、慢2027-28變數、2x magnitude)——
+      CoPoS坐實GLW玻璃基板呢條「2027-28接棒」線嘅結構性,但同時再確認「發表≠量產、兌現差2-3年」;ASX屬面板級
+      封裝OSAT受惠、佐證osat-arms-dealers node。無財報級新事實,magnitude/cycle維持。"
 
   space-satellite:
     wiki: thesis/wiki/space-satellite.md
@@ -485,7 +525,8 @@ themes:
     verdict: real-early-but-froth-priced
     kill_condition: Starship 快速重複使用長期延宕(成本停在 Falcon 量級、軌道運算 $28.5T AI TAM 敘事延後)或 Golden Dome 遭砍/推遲($1.2T
       僅 CBO 願景、已到位僅 $250B)或純玩家獲利遲不轉正;個股定日 kill:RKLB Neutron 2026Q4 再延、ASTS 2026H2 衛星未準時足量上天、GSAT Amazon
-      併購 FCC 破局。觸發→confidence 歸零、mean-revert。
+      併購 FCC 破局;SPCX Starlink 收入年增速跌穿 30%(2025 為 49.8%)或 Starship 燒錢(2025 約 $3B R&D)持續擴大而冇對應飛行里程碑。觸發→confidence
+      歸零、mean-revert。
     tickers:
     - RKLB
     - ASTS
@@ -497,6 +538,10 @@ themes:
     - BKSY
     - PL
     - GSAT
+    - SPCX                                  # 2026-07-14 新增:SpaceX 2026-06-12 IPO(史上最大,$1.77T),
+                                             # 本 theme 最深護城河終於可乾淨買——但併入 xAI/X(common-control
+                                             # accounting,2026-02 起)、估值史上最貴 IPO 之一,詳見下 node +
+                                             # note。
     # 2026-07-13 PER-NODE SCHEMA (magnifier batch 2, Fable 交接 P2-12 推廣次序 #4;照 ai-power-grid/
     # photonics-optical/advanced-packaging 現有 nodes schema,一個欄位都無少)。ADDITIVE:上面
     # theme-level tickers:/cycle_stage:/confidence: 一隻字都無郁。magnitude_tier 質性(五特徵人手判);
@@ -546,6 +591,21 @@ themes:
       magnitude_tier: 2x                   # ⚠框架最不適配:併購套利=上檔封頂(收購價)、binary on 過會,唔係供需 magnifier;檔位僅為 schema 完整+全 ticker 覆蓋
       last_scored: 2026-07-13
       last_evidence: 2026-07-01
+    - name: spacex-newly-public-dominant-moat
+      tickers: [SPCX]                       # 2026-06-12 IPO $1.77T(史上最大),首日市值曾見$2.1兆;本 theme
+                                             # 一直講嘅「最深護城河、但唔可以乾淨買」嗰個名,而家終於可以買
+      cycle_stage: late                     # IPO 本身已係全市場史上最多人討論嘅上市事件之一=極端擁擠訊號,
+                                             # 掛牌以嚟高位$170.86(06-30)跌到$139.14(07-13)、跌穿IPO價$135
+                                             # 附近、媒體標「歷史新低」——上市即見頂嘅早期跡象(僅約1個月數據,
+                                             # 未夠計200SMA,唔當趨勢確認)
+      magnitude_tier: 2-3x                  # 真.全鏈最深護城河(Starlink 2025營收$11.4B/61%佔比、營業利潤
+                                             # +120.4% YoY、EBITDA 63%)但magnitude封頂兩個原因:(a)估值史上
+                                             # 最貴IPO之一(consolidated P/S~95-100x、EV/EBITDA~270x、淨虧損
+                                             # -$4.9B);(b)2026-02起同xAI/X用common-control accounting併表,
+                                             # AI segment $3.2B營收拖累淨損,「太空」purity被稀釋(同GLW 2x
+                                             # 語意:真護城河但被非核心業務稀釋封頂,唔係3-5x-durable)
+      last_scored: 2026-07-14
+      last_evidence: 2026-07-14
     thesis_etf:
     - etf: NASA
       purity: 0.186              # RKLB+ASTS+LUNR = 18.6%
@@ -564,6 +624,25 @@ themes:
       篇僅 1 bull=17%)但可交易表達重度 priced-in:ASTS 377x/RKLB 94x P/S 夢想定價、HEI ttm_pe 87 分位/MP 92 分位站頂、多檔 pre-revenue(RKLB/ASTS/RDW/PL/BKSY
       會計虧損)、最深護城河 SpaceX 不可乾淨買。唯一 bull(LOAR)空曝險最薄=航太 roll-up 非太空表達。base 4.5/8=0.5625 × cycle/crowding penalty
       ~0.50 → 0.28,略低於 photonics 0.30(太空缺可乾淨買的硬瓶頸深護城河)。表達用選項/事件框架、小注、嚴守 kill。INITIAL/uncalibrated。
+      2026-07-14 重估(用戶追問「SpaceX 點算」觸發,一手查核 SEC S-1 + CNBC/CNN/Yahoo,非 gooptions 文):SpaceX
+      已於 2026-06-12 IPO(SPCX,Nasdaq),$1.77T 估值、首日市值曾見 $2.1 兆,史上最大 IPO。S-1 揭露 FY2025 合併
+      財務:總收入 $18B、淨損 -$4.9B、adj EBITDA $6.58B;Connectivity(Starlink)segment 收入 $11.4B(佔61%)、
+      營業利潤 $4.423B(+120.4% YoY)、adj EBITDA $7.168B(+86.2% YoY),用戶 2023年2.3M→2024年4.4M→2025年
+      8.9M→2026Q1 10.3M,呢segment真.獲利兼高速增長;Space segment(發射+NASA載人)收入$4B但Starship研發燒
+      咗~$3B,幾乎打平;AI segment(xAI,2026-02同SpaceX/X用common-control accounting併表)收入$3.2B,拖累
+      成埋間公司淨損。4-KPI重評:①moat——本 theme 一直講「最深護城河喺 SpaceX,但唔可以乾淨買」呢句而家錯
+      咗,SPCX可以直接買,moat讀數應該上調;②capital-allocation——Starlink segment本身資本效率靚(39%營業
+      利潤率、EBITDA仲升緊),但成盤嘢淨損主因Starship研發+xAI燒錢,呼應DESIGN.md自己嘅「Mag7 CAPEX恐慌」
+      警世例:要分清「創造價值」(Starlink)定「軍備競賽」(xAI/Starship);③valuation——史上最貴IPO之一(合併
+      P/S~95-100x、EV/EBITDA~270x、淨損),priced-in gate幾乎不可能過得更緊;掛牌以嚟高位$170.86跌到
+      07-13的$139.14(近「歷史新低」),早期擠泡跡象但僅1個月數據唔可信;④growth/TAM——Starlink部分已兌現
+      (durable、additive),但consolidated entity混入xAI(AI compute,同太空TAM無關嘅業務)= thesis purity
+      被稀釋,類似GLW「大型多元化封magnitude」嘅道理,仲要更明顯(唔止太空業務佔比細,係直接夾埋一個唔同
+      行業)。淨效果:「深護城河終於可買」(利好)同「呢個名本身係全市場歷史上估值最貴、關注度最高嘅IPO之一
+      +混業稀釋+零track record」(利淡)兩者大致互相抵消,theme confidence冇改(仍0.28)——呢個係考慮過嘅
+      不變,唔係漏更新。SPCX個股用新node(spacex-newly-public-dominant-moat)記錄,cycle_stage late(IPO本身
+      已係比thematic ETF上市更強嘅擁擠訊號)、magnitude 2-3x(真moat但估值+混業封頂)。theme-level
+      cycle_stage/confidence/verdict維持,待SPCX累積track record(至少一季財報+更長價格史)先再校準。
 
   rare-earth-materials:
     wiki: thesis/wiki/rare-earth-materials.md
@@ -729,7 +808,18 @@ themes:
       「150 vs 22」頻寬)全係NVDA官方口徑、無第三方基準驗證,一律當廠商宣稱;「150 vs 22」係片上SRAM對HBM、
       非同類比較。⚠️另據供應鏈爆料NVDA早前推理專用GPU「Rubin CPX」因攞唔到記憶體/基板訂單被撤(NVDA未正式
       說明),顯示推理側產品路徑仍在調整。confidence/cycle維持(Tier-2 neutral、無財報級新事實;強化現有兩面
-      張力而非新訊號)。待日間session覆核:是否值得把「NVDA用AFD守推理側」明確寫入kill追蹤軸。'
+      張力而非新訊號)。待日間session覆核:是否值得把「NVDA用AFD守推理側」明確寫入kill追蹤軸。
+      2026-07-14 夜班ingest(2篇新文,全部confidence/cycle維持):
+      (a) gooptions #160「Google算力套利:花最多錢卻把百萬TPU租俾對手」(Tier-2 neutral,付費牆截斷、只引免費前段):
+      Google 2026 capex $180B–$190B(比Meta仲高)、2026-06再發$85B股權增資(含Berkshire $10B),卻把多達100萬顆
+      TPU租俾直接對手Anthropic、自家DeepMind前沿訓練排後面;Gemini市佔28%(全球第二)。對本thesis:直接坐實現有
+      「watch TPU-out-of-Google diffusion」觀察軸——TPU外溢出Google(租100萬顆俾Anthropic)= AVGO toll-booth兩邊
+      收費(共同設計商都係AVGO)嘅活證,佐證AVGO「賣鏟人」角色;同時Google $180-190B capex = AI-capex需求anchor
+      非常intact(對ai-power-grid kill#1亦係反向確認)。付費牆後嘅逐層拆解未能引。confidence/cycle維持(Tier-2
+      neutral、無財報級新事實)。
+      (b) gooptions #159「為何AI需要CUDA」(Tier-2 neutral,NVDA/AVGO/GOOGL/AMD):CUDA生態鎖定=NVDA護城河、
+      亦係custom-silicon/TPU分流嘅結構性逆風(#160嘅另一面)。對本thesis中性——強化「NVDA推理份額不見鬆動」嗰邊
+      張力,唔改AVGO toll-booth論點。NVDA屬incumbent-bet-against、excluded。confidence/cycle維持。'
 
   oil-gas-energy:
     wiki: thesis/wiki/oil-gas-energy.md
@@ -784,7 +874,19 @@ themes:
       喺中國買家(PetroChina+Sinochem SPA,行業層面約25 mmtpa中國關聯美國LNG合約),但2026年2月
       報導話中國而家實際上冇提取緊美國LNG貨(轉賣去第三方,受關稅緊張影響)——即係話合約曝險真實
       存在,但實際物理交付關係已經俾貿易緊張打斷咗,值得留意中國會唔會恢復提貨定係合約長遠被重新
-      談判/轉向。'
+      談判/轉向。
+      2026-07-15 夜班ingest(gooptions #044「EQT三線交匯」,2026-05-04,Tier-2 bull,完整免費文,
+      confidence/cycle維持):三條獨立線指向EQT——(1)聰明錢:Aschenbrenner/SALP 13F連4季加碼EQT
+      至$171M(含Q4 2025 $38M Call),基金14個月AUM $2.5億→$55億、自稱多頭建倉5/5;(2)能源新秩序:
+      2026-02荷莫茲危機+卡達17% LNG force majeure(自稱3-5年修復);(3)AI電力:燃氣=5年內數據中心
+      唯一可規模化電源(IEA +130 TWh/年),EQT三供氣路徑(Homer City 4.4GW behind-the-meter 2027
+      啟動 / MVP Boost+Southgate管線擴容 / 退煤改氣「家門口」+6 Bcf/d by 2030)。對本thesis:佐證
+      既有「EQT=唯一playable edge(cheap pe 10/35th + disciplined capex + AI BTM pull)」判斷,並補
+      smart-money(SALP 13F)追蹤角度。⚠️時效已過 + 急性危機框架被後續數據推翻:本文(5/4)嘅結構性
+      $104 Brent敘事已被更新issue #116(Brent冧返$78、OPEC+破裂、near-term oversupply/bearish——即
+      現有note頂引嘅同一#116)取代,荷莫茲溢價已unwind → 勿以#044危機urgency加碼,佢係back-catalog
+      佐證非新forward訊號。Aschenbrenner持倉係第三方13F推論(非一手)、EQT「52w +9.6% vs SPY +28%
+      錯誤定價」係Tier-2敘事;Q1 2026 EPS已反映。confidence 0.25/late維持。'
 
   semicap-equipment:
     wiki: thesis/wiki/semicap-equipment.md
@@ -1130,5 +1232,15 @@ themes:
   # 2026-07-11 discovery radar 40候選:WATCH-only(未成thesis,唔入universe/theme_signal,純記錄留待
   # 下季覆核)—— KALU(鋁,證據參差)、MCHP(analog/MCU,得2季太新)、AVT(分銷商,得2季+經濟模式波動大)、
   # PTEN(dual-fuel fleet結構論點,但要捱過一次落週期先信得過)。詳細理由見對應 group 報告。
+  #
+  # 2026-07-14 ingest 審查後不 admit(gooptions #162「Ternus輕資產AI賭注」,即日 INGEST 流程):
+  # AAPL——唔係 Type B 供應鏈瓶頸 thesis(單一 megacap 自身裝置/晶片護城河故事,冇可交易嘅 supply-chain
+  # basket;文入面 GOOGL/QCOM/MSFT/AMZN/META/ORCL 純屬對照,非受惠鏈,唔似 photonics/ai-power-grid
+  # 嗰種一條 value-chain 拆幾隻表達)。priced-in gate 未過:現價 $317.31 貼 52 週高、預估 PE 33x、
+  # 42 位分析師共識目標 $316.76 幾乎貼現價——好消息已定價,文章自己都話「當下最大風險係估值過熱」。
+  # AAPL 屬同 NVDA/AVGO/META 一致嘅 demand-anchor megacap 類別(已有慣例排除,見 ai-power-grid/
+  # photonics-optical notes)。Tier-2 bull 報,覆蓋度全球最高嘅股票之一 = 純 crowding 訊號,唔係
+  # information-not-in-price 嘅早期 edge(SKILL 紀律 4)。唔升做 thesis,亦唔入 candidate WATCH
+  # (因為連「值得下季覆核」都未夠格,唔似 KALU/MCHP/AVT/PTEN 嗰種證據薄但方向可能有嘢)。
   # ============================================================================
 
