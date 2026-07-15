@@ -360,14 +360,23 @@ def _build_report(state):
             as_of = hist[-1]["date"]
         else:
             nav, return_pct, max_dd, as_of = None, 0.0, 0.0, None
-        rows.append({
+        row = {
             "name": name,
             "label": spec.get("label", name),
             "nav": round(nav, 4) if nav is not None else None,
             "return_pct": return_pct,
             "max_dd": max_dd,
             "as_of": as_of,
-        })
+        }
+        if strat["kind"] == "sizing":
+            # holdings detail (2026-07-14, reader asked for "more detail on holdings/performance"):
+            # only sizing-v1/v2 have a per-theme breakdown to show -- aa-strict/spy-bh are mirrored
+            # black-box NAV lines with no theme-level position data available to this file.
+            row["holdings"] = sorted(
+                ({"slug": slug, "pct": pos["pct"]} for slug, pos in strat["positions"].items()),
+                key=lambda h: -h["pct"])
+            row["cash_pct"] = strat["cash_pct"]
+        rows.append(row)
     rows.sort(key=lambda r: (r["nav"] is None, -r["return_pct"]))
 
     return {

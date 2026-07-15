@@ -148,3 +148,8 @@ thesis/.raw/crowding_composite.json
 # is the day-0 baseline + running positions/history; report is regenerable any time via --report).
 thesis/.raw/paper_league_state.json
 thesis/.raw/paper_league_report.json
+
+# dashboard_render.py's cross-day entry/exit trigger diff state (2026-07-14) -- carry-forward
+# working file (last trading day's per-ticker entry/exit state), same convention as the other
+# thesis/.raw/*_state.json files above; regenerated/updated automatically each trading day.
+thesis/.raw/entry_exit_trigger_state.json

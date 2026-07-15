@@ -58,6 +58,7 @@ MAGNIFIER_QUEUE = os.path.join(ROOT, ".raw", "magnifier_review_queue.md")
 PENDING_ANALYSIS = os.path.join(REPO_ROOT, "..", "Reference", "raw_data",
                                  "backtest_everything_transcripts", "_PENDING_ANALYSIS.md")
 TELEGRAM_CRED = os.path.expanduser("~/.config/karst/telegram")
+TRIGGER_STATE_PATH = os.path.join(ROOT, ".raw", "entry_exit_trigger_state.json")
 
 NOW = datetime.now(timezone.utc)
 
@@ -530,8 +531,52 @@ def theme_zh(slug):
     return THEME_ZH.get(slug, slug)
 
 
+def _format_holdings_line(strat, limit=6):
+    """paper_league.py's per-theme holdings (sizing-v1/v2 only -- aa-strict/spy-bh are mirrored
+    black-box NAV lines with no theme breakdown). Caps the list at `limit` names + a "仲有N個"
+    tail so a fully-deployed 15-theme sleeve doesn't blow out the Telegram message."""
+    holdings = strat.get("holdings") or []
+    if not holdings:
+        return None
+    parts = [f"{theme_zh(h['slug'])} {h['pct']:.0f}%" for h in holdings[:limit]]
+    more = len(holdings) - limit
+    if more > 0:
+        parts.append(f"…仲有{more}個")
+    cash = strat.get("cash_pct")
+    if cash is not None:
+        parts.append(f"現金 {cash:.0f}%")
+    return "｜".join(parts)
+
+
 def expgap_zh(classification):
     return EXPGAP_ZH.get(classification, classification)
+
+
+def expgap_detail(eg):
+    """Business-term expansion of the expectations-gap label. The label alone answers
+    "cheap or expensive vs the growth story"; readers asked (2026-07-14) for the "by how much"
+    behind it -- recast valuation.py's P_base@14x coverage ratio (NOPAT at a conservative,
+    no-supercycle-credit multiple, divided by today's enterprise value) as a plain percentage:
+    how much of today's price a boring/non-growing version of the business would already
+    justify, with the rest being the growth story the market is paying for. 14x itself is a
+    round-number assumption, not an empirically-derived discount rate (valuation.py's own spec
+    flags this) -- kept out of the reader-facing text for that reason; the percentage is still
+    directionally honest even though its anchor multiple is a judgment call, not a proven one."""
+    if not eg:
+        return None, None
+    label = expgap_zh(eg["classification"])
+    try:
+        p_base = float(eg["p_base"])
+    except (TypeError, ValueError):
+        return label, None
+    if p_base < 0:  # N/A-binary rows carry a negative placeholder, not a real coverage ratio
+        return label, None
+    pct = round(p_base * 100)
+    if pct >= 100:
+        detail = "保守估值下,現有正常盈利已足以支撐現價,增長故事屬額外 upside"
+    else:
+        detail = f"保守估值下,現有正常盈利可支撐現價 {pct}%,其餘 {100 - pct}% 靠未來增長預期能否兌現"
+    return label, detail
 
 
 def crowding_read(pctile, is_buy):
@@ -593,6 +638,58 @@ def classify_action(verdict, triggered):
     if verdict == "BUY-ZONE":
         return {"urgency": "opportunity", "icon": "🟢", "label": "早期主題,現價未算貴"}
     return {"urgency": "quiet", "icon": "⚪", "label": "觀望"}
+
+
+def _load_trigger_state():
+    return _load_json(TRIGGER_STATE_PATH) or {}
+
+
+def _save_trigger_state(state):
+    os.makedirs(os.path.dirname(TRIGGER_STATE_PATH), exist_ok=True)
+    with open(TRIGGER_STATE_PATH, "w", encoding="utf-8") as fh:
+        json.dump(state, fh, ensure_ascii=False, indent=2)
+
+
+def new_trigger_lines(action_items, as_of_date):
+    """Cross-day diff on top of already-computed action_items (2026-07-14, reader asked to be
+    told WHEN a specific ticker's entry/exit condition first fires, not just see it repeated in
+    every day's briefing while it stays true). Persists each trading day's per-ticker
+    entry/exit state to TRIGGER_STATE_PATH and reports only tickers whose state CHANGED since
+    the last recorded trading day -- idempotent within the same `as_of_date` (mirrors paper_
+    league.py's "already marked for today" convention) so a morning + evening run on the same
+    trading day doesn't fire the same notice twice.
+
+    Deliberately labelled "系統規則觸發" (this file's own rule fired), not "訊號"/"已驗證" --
+    the underlying 200SMA break rule is validated for the SPY/QQQ core sleeve (core-strategy-v2)
+    but NOT yet for individual satellite tickers at this granularity (backtest/results/
+    2026-07-13_trim_rule_validation.md's theme-composite version shows an inconsistent sign
+    pre/post-2021, n=8-10 declustered) -- honest framing over false confidence."""
+    if not as_of_date:
+        return []
+    state = _load_trigger_state()
+    if state.get("as_of") == as_of_date:
+        return []  # already diffed for this trading day
+
+    prev_tickers = state.get("tickers", {})
+    current = {}
+    for a in action_items:
+        if a["urgency"] == "opportunity" and a.get("ticker"):
+            current[a["ticker"]] = {"state": "entry", "theme": a["name"]}
+        elif a["urgency"] == "high":
+            for tk in (a.get("weak_tickers") or []):
+                current[tk] = {"state": "exit", "theme": a["name"]}
+
+    lines = []
+    for tk, info in sorted(current.items()):
+        prev_state = prev_tickers.get(tk, {}).get("state")
+        if prev_state == info["state"]:
+            continue
+        icon = "🟢" if info["state"] == "entry" else "🔴"
+        label = "入場" if info["state"] == "entry" else "離場"
+        lines.append(f"   {icon} {label}:{tk}({info['theme']})")
+
+    _save_trigger_state({"as_of": as_of_date, "tickers": current})
+    return lines
 
 
 def ticker_node_map(theme):
@@ -671,9 +768,10 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
             continue
         eg = exp_gap.get(slug)
         theme_tickers = ticker_rows.get(slug, [])
+        val_label, val_detail = expgap_detail(eg) if eg else (None, None)
         item = {"name": theme_zh(slug), "urgency": act["urgency"], "icon": act["icon"],
                 "label": act["label"], "slug": slug,
-                "valuation": expgap_zh(eg["classification"]) if eg else None}
+                "valuation": val_label, "valuation_detail": val_detail}
 
         if act["urgency"] == "high":
             # theme-level 200SMA break = the WHOLE theme's composite basket has broken trend, not
@@ -725,6 +823,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
         theme_row = core.get("theme_rows", {}).get(slug)
         verdict = theme_row["verdict"] if theme_row else "—"
         eg = exp_gap.get(slug)
+        val_label, val_detail = expgap_detail(eg) if eg else (None, None)
         nodes = [{"name": n.get("name"), "tier": n.get("magnitude_tier"),
                    "tickers": n.get("tickers") or []}
                   for n in (t.get("nodes") or [])]
@@ -732,7 +831,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
             "slug": slug, "name": theme_zh(slug),
             "confidence": r["confidence"], "cycle_stage": t.get("cycle_stage", "—"),
             "verdict": verdict,
-            "valuation": expgap_zh(eg["classification"]) if eg else None,
+            "valuation": val_label, "valuation_detail": val_detail,
             "nodes": nodes, "target_pct": (r["final"] / budget * 100.0) if budget else 0.0,
         })
 
@@ -922,9 +1021,21 @@ def render_telegram_messages(briefing):
             is_buy = a["urgency"] == "opportunity"
             lines.append(f"• 趨勢:{trend_read(a.get('ticker_vs200sma'), a.get('triggered'))}")
             lines.append(f"• 市場預期:{a.get('valuation') or '未評估'}")
+            if a.get("valuation_detail"):
+                lines.append(f"   ↳ {a['valuation_detail']}")
             ctext, _warn = crowding_read(a.get("crowding_pctile"), is_buy)
             lines.append(f"• 擁擠度:{ctext}")
         msgs.append("\n".join(lines))
+
+    trigger_lines = new_trigger_lines(briefing["action_items"], briefing.get("core_date"))
+    if trigger_lines:
+        tmsg = ["🆕 今日新觸發個股(系統規則今日先由「未觸發」轉「已觸發」,唔係每日重複嘅同一句):",
+                "",
+                "⚠️ 呢個係本系統嘅入場/離場規則自動判斷,並非已驗證嘅獲利訊號——",
+                "跟唔跟由你自己決定。"]
+        tmsg.append("")
+        tmsg.extend(trigger_lines)
+        msgs.append("\n".join(tmsg))
 
     m = briefing["market"]
     lines = ["大市同組合現況:"]
@@ -1032,11 +1143,22 @@ def render_telegram_messages(briefing):
     lg2 = briefing.get("league") or {}
     strategies = lg2.get("strategies") or lg2.get("rows") or []
     if strategies:
-        parts = []
+        lines.append("")
+        lines.append("• 紙上擂台(各策略自開賽起表現;回撤 = 期間最大帳面浮虧,非已實現虧損):")
         for s in strategies:
-            nm = s.get("name") or s.get("strategy")
-            parts.append(f"{nm} {s.get('return_pct', 0):+.1f}%")
-        lines.append("• 紙上擂台(各策略自開賽起):" + " | ".join(parts))
+            nm = s.get("label") or s.get("name") or s.get("strategy")
+            dd = s.get("max_dd")
+            dd_s = f"　回撤 {dd:.1f}%" if dd is not None else ""
+            lines.append(f"   {nm}　{s.get('return_pct', 0):+.1f}%{dd_s}")
+        holding_lines = []
+        for s in strategies:
+            hline = _format_holdings_line(s)
+            if hline:
+                nm = s.get("label") or s.get("name")
+                holding_lines.append(f"   ↳ {nm} 目前持倉:{hline}")
+        if holding_lines:
+            lines.append("")
+            lines.extend(holding_lines)
     elif briefing["aa_note"]:
         lines.append(f"• {briefing['aa_note']}")
     due = briefing.get("due_milestones") or []
@@ -1088,6 +1210,8 @@ def _render_appendix(all_themes):
         head = (f"\n{vicon} {t['name']}　{_VERDICT_ZH.get(t['verdict'], t['verdict'])}\n"
                 f"   信心{t['confidence']:.2f}｜{cyc}｜{crowd}｜目標{t['target_pct']:.0f}%")
         sub = [f"   估值:{t.get('valuation') or '未評估'}"]
+        if t.get("valuation_detail"):
+            sub.append(f"      ↳ {t['valuation_detail']}")
         if t.get("nodes"):
             # nodes sorted by potential multiple, biggest story first (stable sort keeps the
             # value-chain order for ties); the glyph carries the payoff SHAPE so a 🎲 ranking
