@@ -1078,7 +1078,14 @@ def render_telegram_messages(briefing):
                         na_tail = (f";{'/'.join(a['peer_na'])} 屬事件型,唔比分"
                                     if a.get("peer_na") else "")
                         lines.append(f"• 同主題比較(綜合分,高=較吸引):{peer_line}{na_tail}")
-                    lines.append(f"• 入場參考:現價細注分批;回落至200日均線 {a['ticker_sma_price']} 可加大注碼")
+                    sma_s = a.get("ticker_sma_price")
+                    has_sma = sma_s and sma_s != "n/a"
+                    lines.append(f"• 入場:現價細注分批;回落至200日均線 {sma_s if has_sma else 'n/a'} 可加大注碼")
+                    if has_sma:
+                        lines.append(f"• 離場:收市跌穿200日均線 {sma_s} = 趨勢破位,離場訊號")
+                    else:
+                        lines.append("• 離場:200日均線讀數未有,暫無機械離場位")
+                    lines.append("   ↳ 呢啲係系統機械規則(200日均線閘),並非保證獲利嘅訊號")
             # 2) the consistent 3-read block
             is_buy = a["urgency"] == "opportunity"
             lines.append(f"• 趨勢:{trend_read(a.get('ticker_vs200sma'), a.get('triggered'))}")
