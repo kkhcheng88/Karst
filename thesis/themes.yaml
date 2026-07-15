@@ -71,8 +71,13 @@ themes:
     wiki: thesis/wiki/memory-supercycle.md
     type: B                    # B = thematic supercycle (supply-constrained + demand + pricing power)
     cycle_stage: late          # MU capex 2.66x (supply-response top signal) + SK Hynix 2034 3x + peak-earnings
-    confidence: 0.38           # LATE (capex top signal) BUT LTA de-cyclicalisation cushions the floor. INITIAL.
-    verdict: real-but-late-cushioned
+    confidence: 0.30           # 2026-07-15 red-team 修正(0.38→0.30):「LTA 墊地板」部分中彈——RPO $100B
+                                # 係 ASC606 附註 backlog 唔係入帳緩衝(MU 入帳遞延收入僅 $10.2 億 vs 總負債
+                                # $334 億,gatekeeper 一手核實);管理層措辭「visibility/volume」保量唔保價;
+                                # take-or-pay glut reset 先例(GrafTech/Kyocera-Hemlock/2017 DRAM >40%)。
+                                # 同時觸 DESIGN §4a single-source cap 0.30(承重 claim 無獨立源)。
+                                # 詳:backtest/results/2026-07-15_redteam_memory_supercycle.md。INITIAL.
+    verdict: real-but-late-volume-floor-not-price-floor
     kill_condition: >-
       LTA/SCA scorecard stalls or reverses (contract prices roll over OR net-new LTA signings stall,
       i.e. de-cyclicalisation stops being confirmed by financials) OR HBM / advanced-packaging capacity

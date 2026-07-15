@@ -151,6 +151,14 @@ Level-2 red-team 且生還(wiki 有記錄);齋引用(未經抗辯)最高 1.5。
 3. **判決標準 = 承重 claim 面對「補全後嘅事實集」企唔企得住**,
    唔係「砌唔砌到聰明嘅反面故事」。
 
+**Pilot 教訓(memory-supercycle red-team,2026-07-15,詳 backtest/results/
+2026-07-15_redteam_memory_supercycle.md):**
+- 反面狩獵派工要明限「只收一手數據/日期/法律先例」——web bear-hunt 一半回返嚟係
+  意見/類比(淨係敘事風險),事實錨嘅先至斬到嘢。
+- **Level-2 強制 checklist 加一條:「Tier-1 佐證掂嘅係承重 claim 定周邊事實?」**
+  ——pilot 最鋒利一刀(RPO $100B 唔喺 balance sheet 上)正正出自呢個區分:
+  wiki 標咗「LTA/RPO ✅ 已驗」,但驗嘅係「有呢單嘢」,唔係「佢真係墊到價格地板」。
+
 **4-KPI 判準(每格 0/1/2 錨點;0.5 步進插值):**
 
 | KPI | 2 分 | 1 分 | 0 分 |

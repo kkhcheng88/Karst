@@ -2,8 +2,8 @@
 slug: memory-supercycle
 type: B
 cycle_stage: late
-confidence: 0.38
-verdict: real-but-late-cushioned
+confidence: 0.30
+verdict: real-but-late-volume-floor-not-price-floor
 updated: 2026-07-08
 tickers: [MU, SNDK, WDC, DRAM]
 ---
@@ -97,17 +97,30 @@ flowchart TD
 → **LATE 站得住(capex 頂訊號硬),但這輪有真結構 offset([[LTA]])→ 不是純追高、是 kill-bounded 的
 兩面小注。** 進場鏡像(便宜 + 供給緊 + 未共識)不成立;但下跌不像過去無底。
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-15 red-team 修訂)
 ```
-KPI: moat 2/2 · capital 1/2(capex 2.66x 頂訊號)· valuation 1/2(MU 67% + peak-earnings)
-     · growth 1.5/2(NAND-CMX 新 TAM,但 LTA-if)                      = 5.5/8 = 0.69 base
-cycle penalty (LATE, capex 頂訊號確認,但 LTA 去週期化墊地板 → 罰輕於純晚期): × ~0.55  → 0.38
-佐證: capex ✅ + ttm_pe ✅(Tier-1 已拉);LTA/RPO ✅(Tier-2 #128 財報入表,可信度高於一般 KOL)
-      逐字稿受限語言 + LTA 記分卡前瞻追蹤仍待接 → 不加分
-→ confidence ≈ 0.38  (INITIAL, uncalibrated)
+KPI: moat 1.5/2(HBM 封裝樽頸真;但「LTA 去週期化」承重 claim 經 red-team 部分中彈,
+       未經確認嘅 cushion 唔准當 2 分——見下 red_team 段)
+     · capital 1/2(capex 2.66x 頂訊號)· valuation 1/2(MU 67% + peak-earnings)
+     · growth 1.5/2(NAND-CMX 新 TAM,但 LTA-if)                      = 5/8 = 0.625 base
+penalty(DESIGN §4a 表:crowding 24.8 <40 帶 × late)                  × 0.75  → 0.469
+single-source cap(§4a:承重 claim 無獨立源掂——Tier-1 只掂咗周邊事實,
+  balance sheet 仲反向矛盾)                                            → min(0.469, 0.30)
+→ confidence = 0.30  (INITIAL, uncalibrated)
 ```
-**讀法:真主題 + 真結構 offset(LTA)但晚期已確認(capex 頂訊號)+ peak-earnings → 0.38。相對強弱有、
-別追高;要吃 [[MU]] 小注 + 盯 LTA 記分卡,或 [[DRAM-ETF]] 分散。**
+**讀法:真主題(HBM/先進封裝樽頸生還)+ 晚期已確認 + 「地板」係量地板唔係價/盈利地板 → 0.30。
+相對強弱有、別追高;細注 + 盯 LTA 記分卡嘅「價」嗰條腿(唔係淨睇簽約量),或 [[DRAM-ETF]] 分散。**
+
+## red_team(Level-2,2026-07-15;詳 backtest/results/2026-07-15_redteam_memory_supercycle.md)
+- **判決:承重 claim「LTA 去週期化=今次唔同」部分中彈**;「真超級週期+HBM 樽頸」生還。
+- 三刀(全部事實錨):①MU 一手 balance sheet——聲稱 RPO $1,000 億 vs 入帳遞延收入僅 $10.2 億
+  (總負債 $334 億,RPO 係 3 倍,數學上唔可能係入帳緩衝;RPO=ASC606 附註 backlog,gatekeeper
+  一手核實)。②管理層自框保量唔保價——MU FY26Q2 逐字稿 SCA 語言全係 visibility/volume,
+  無 fixed-price/price-floor。③take-or-pay 喺 glut 會 reset 嘅先例——GrafTech 五年長約破發、
+  Kyocera v. Hemlock 買方寧願蝕 $450M 和解都走數、2017 DRAM 長約打回現貨 >40%。
+- **誠實邊界**:去週期化 vs 普通週期頂喺 downturn 先分岔,claim 未證偽——判決係
+  「未經確認嘅 cushion 唔准當已確認入分」,唔係「證明佢假」。控方本身唔天真(已判 late、
+  已引 2017、已標 peak-earnings),呢次係收緊唔係推翻。
 
 ## kill_condition(LTA 中心,可證偽)
 > **[[LTA]] 記分卡停止前進或反轉** —— 合約(LTA/SCA)價格轉跌 **或** 淨新增 LTA 簽署停滯(去週期化敘事
