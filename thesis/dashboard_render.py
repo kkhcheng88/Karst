@@ -47,6 +47,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))          # thesis/
 REPO_ROOT = os.path.dirname(ROOT)                            # Karst/
 MIRROR_ROOT = os.path.join(REPO_ROOT, ".dashboard_mirror")
 sys.path.insert(0, ROOT)
+import composite_score as composite_mod  # noqa: E402 -- sibling module, P1 0-100 綜合分(純組合現有讀數)
 import sizing as sizing_mod  # noqa: E402 -- sibling module, reused pure functions, no new calc
 
 PLAYBOOK_LOG = os.path.join(REPO_ROOT, "playbook_log.txt")
@@ -273,6 +274,14 @@ def load_ledger_report():
 def load_crowding():
     """crowding_composite.py's per-theme crowding percentile (weekly refresh)."""
     return _load_json(os.path.join(ROOT, ".raw", "crowding_composite.json"))
+
+
+def load_valuation_tickers():
+    """valuation.py's PER-TICKER block (thesis/.raw/valuation_report.json 'tickers' section) --
+    finer-grained than the theme-rollup markdown table load_expectations_gap() parses; used by
+    the composite score's expect dimension (per-ticker P_base, not the theme's best ticker)."""
+    payload = _load_json(os.path.join(ROOT, ".raw", "valuation_report.json"))
+    return (payload or {}).get("tickers") or {}
 
 
 def load_news():
@@ -709,12 +718,12 @@ def pick_ticker(verdict, ticker_rows, node_map=None):
     concrete answer to "which stock, not just which theme" (themes have 2-13 tickers each).
     For a KILL-WATCH theme, prefer a ticker that's ALSO individually KILL-WATCH (most
     representative of the danger); for ACCUMULATE/BUY-ZONE, prefer a matching-verdict ticker.
-    When per-node magnifier data exists (node_map non-empty), rank by magnitude_tier FIRST
-    (the actual thesis-driven upside assessment) then by cheapest pe_pctile as tiebreaker --
-    this is deliberately NOT just "cheapest P/E wins": a bigger magnifier-assessed multiple is
-    the whole point of the thesis, valuation is only a secondary filter. Falls back to
-    pe_pctile-only ranking when no node data exists for this theme (14/15 as of 2026-07-13).
-    Returns (picked_row, node_or_None)."""
+    BUY pools rank by the 0-100 composite score FIRST when available (P1, docs/2026-07-15_
+    quantification_review.md -- pure composition of already-computed reads, attached to each
+    row as `_composite` by build_briefing), falling back to the previous magnitude-then-
+    cheapest-pe_pctile sort for rows without a score (pre-profit N/A lane) and as tiebreaker.
+    KILL-WATCH picks keep the old logic unchanged -- the composite is a buy-quality score,
+    not a danger-representativeness score. Returns (picked_row, node_or_None)."""
     if not ticker_rows:
         return None, None
     if verdict == "KILL-WATCH":
@@ -724,6 +733,7 @@ def pick_ticker(verdict, ticker_rows, node_map=None):
     else:
         pool = ticker_rows
     node_map = node_map or {}
+    is_buy = verdict in ("ACCUMULATE", "BUY-ZONE")
 
     def sort_key(r):
         node = node_map.get(r["symbol"])
@@ -732,7 +742,9 @@ def pick_ticker(verdict, ticker_rows, node_map=None):
             pe = float(r["pe_pctile"])
         except (TypeError, ValueError):
             pe = 999.0
-        return (-(mag or 0.0), bool(r.get("stale")), pe)
+        comp = (r.get("_composite") or {}).get("score")
+        comp_rank = -(comp if (is_buy and comp is not None) else -1.0)
+        return (comp_rank, -(mag or 0.0), bool(r.get("stale")), pe)
 
     picked = sorted(pool, key=sort_key)[0]
     return picked, node_map.get(picked["symbol"])
@@ -749,6 +761,38 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
     targets = core.get("targets", {})
     ticker_rows = core.get("ticker_rows", {})
     budget = sizing_info["budget"]
+
+    # --- P1 綜合分(docs/2026-07-15_quantification_review.md):組合現有讀數,唔計新訊號。
+    # crowding 因此提早喺呢度 load(原本喺 loop 之後先 load,weave 邏輯不變)。
+    crowding = load_crowding()
+    val_tickers = load_valuation_tickers()
+    composite_cfg = composite_mod.load_weights()
+    composite_log_rows = []
+    for slug2, t_rows in ticker_rows.items():
+        theme_meta = sizing_info["themes"].get(slug2, {})
+        sizing_row = next((sr for sr in sizing_info["rows"] if sr["slug"] == slug2), None)
+        crowd_pct = None
+        if crowding and isinstance(crowding.get("themes"), dict):
+            crowd_pct = (crowding["themes"].get(slug2) or {}).get("composite_pctile")
+        theme_ctx_base = {
+            "confidence": sizing_row["confidence"] if sizing_row else None,
+            "cycle_stage": theme_meta.get("cycle_stage"),
+            "crowding_pctile": crowd_pct,
+        }
+        for tr in t_rows:
+            ctx = dict(theme_ctx_base)
+            ctx["p_base"] = (val_tickers.get(tr["symbol"]) or {}).get("p_base")
+            tr["_composite"] = composite_mod.score_ticker(tr, ctx, composite_cfg)
+            if tr["_composite"]["score"] is not None:
+                composite_log_rows.append({"ticker": tr["symbol"], "theme": slug2,
+                                            "score": tr["_composite"]["score"],
+                                            "dims": tr["_composite"]["dims"]})
+    if core_date and composite_log_rows:
+        # committed forward log -- point-in-time composite 事後砌唔返(crowding/valuation
+        # 檔會被覆寫),要驗證權重就只能而家開始儲;idempotent per trading day([:10]
+        # 剪走 playbook 時間戳嘅 HH:MM,免同日重跑 playbook 造成重複記帳)。
+        composite_mod.append_log(composite_log_rows, str(core_date)[:10])
+
     action_items = []
     quiet_count = 0
     for r in rows:
@@ -802,7 +846,20 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
                 item.update({
                     "ticker": picked["symbol"], "ticker_verdict": picked["verdict"],
                     "ticker_vs200sma": picked["vs200sma"], "ticker_sma_price": picked["sma_price"],
-                    "node_magnitude": node.get("magnitude_tier") if node else None})
+                    "node_magnitude": node.get("magnitude_tier") if node else None,
+                    "composite": (picked.get("_composite") or {}).get("score")})
+                # 同主題 peer 對比(P1):有分嘅由高到低,N/A 車道名單獨列——回答
+                # 「點解揀呢隻唔揀嗰隻」,唔使讀者自己逐隻查。
+                scored = sorted((tr for tr in theme_tickers
+                                  if (tr.get("_composite") or {}).get("score") is not None),
+                                 key=lambda tr: -tr["_composite"]["score"])
+                if len(scored) >= 2:
+                    item["peer_scores"] = [f"{tr['symbol']} {tr['_composite']['score']:.0f}"
+                                            for tr in scored[:4]]
+                na_names = [tr["symbol"] for tr in theme_tickers
+                             if (tr.get("_composite") or {}).get("score") is None]
+                if na_names:
+                    item["peer_na"] = na_names[:4]
         # theme-level trend read (for the consistent 3-read block on every card): use the picked
         # ticker's vs200sma if we have one, else the theme target's basket read.
         tgt = targets.get(slug, {})
@@ -914,8 +971,7 @@ def build_briefing(mode, core, core_date, premkt, premkt_date, aa_latest, judge_
 
     ladder = load_ladder()
     ledger = load_ledger_report()
-    crowding = load_crowding()
-    due_ms, upcoming_ms = load_due_milestones()
+    due_ms, upcoming_ms = load_due_milestones()  # crowding already loaded above (composite step)
 
     # weave crowding percentile into action items AND the full-board appendix (top-decile
     # crowding on a buy candidate is exactly the "crowded trade" caution feature-5 exists for)
@@ -1015,7 +1071,13 @@ def render_telegram_messages(briefing):
                 if a.get("ticker"):
                     cur = _current_price(a.get("ticker_sma_price"), a.get("ticker_vs200sma"))
                     cur_s = f"現價約 ${cur:,.0f}," if cur else ""
-                    lines.append(f"• 首選標的:{a['ticker']}({cur_s}距200日均線 {a['ticker_vs200sma']})")
+                    comp_s = f"綜合分 {a['composite']:.0f}/100," if a.get("composite") is not None else ""
+                    lines.append(f"• 首選標的:{a['ticker']}({comp_s}{cur_s}距200日均線 {a['ticker_vs200sma']})")
+                    if a.get("peer_scores"):
+                        peer_line = "、".join(a["peer_scores"])
+                        na_tail = (f";{'/'.join(a['peer_na'])} 屬事件型,唔比分"
+                                    if a.get("peer_na") else "")
+                        lines.append(f"• 同主題比較(綜合分,高=較吸引):{peer_line}{na_tail}")
                     lines.append(f"• 入場參考:現價細注分批;回落至200日均線 {a['ticker_sma_price']} 可加大注碼")
             # 2) the consistent 3-read block
             is_buy = a["urgency"] == "opportunity"

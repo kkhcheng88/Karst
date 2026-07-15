@@ -1,0 +1,24 @@
+# thesis/composite_weights.yaml — tier-2 個股 0-100 綜合分權重(P1,docs/2026-07-15_quantification_review.md)
+#
+# 設計時凍結、執行時只讀:呢個檔係「判斷放設計時」嘅實體——夜班/平模型永遠唔改呢度,
+# 只有季度審查(貴模型+人)先可以調權重,而且調完要喺下面 changelog 記低理由。
+#
+# 起步 = 等權。誠實理由:目前冇任何 forward 證據支持任何一個維度應該重過另一個;
+# 未驗證嘅「聰明權重」只係假精確。等 thesis/composite_log.jsonl 累積 3-6 個月,
+# 先有得做「邊個維度 forward 預測力高」嘅校準——嗰陣先郁。
+#
+# 維度分數全部 0-100,composite = 可用維度嘅加權平均(權重喺可用維度上重新歸一,
+# 缺邊個維度唔扮有)。band 映射邏輯住喺 thesis/composite_score.py(佢係邏輯唔係旋鈕)。
+
+weights:
+  trend: 0.20      # vs 200SMA 帶狀(theme_signal 已驗證嘅趨勢閘,連續化呈現)
+  value: 0.20      # 100 − pe_pctile(自身歷史分位;平 = 高分)
+  expect: 0.20     # P_base@14x 帶狀(valuation.py 週報;悶生意 cover 幾多現價)
+  crowd: 0.20      # 100 − theme crowding pctile(買入視角:少人迫 = 高分)
+  thesis: 0.20     # theme confidence × 100,late/mid-late cycle 打 8 折
+
+# 最少要有幾多個維度先出分(少過呢個數 = N/A 車道,唔造假分)
+min_dims: 3
+
+# changelog(每次調整必記:日期/邊個維度/舊→新/證據)
+# 2026-07-15  初版,等權 0.20×5。無 forward 證據,拒絕假精確。
