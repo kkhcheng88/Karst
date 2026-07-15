@@ -527,6 +527,32 @@ themes:
       僅 CBO 願景、已到位僅 $250B)或純玩家獲利遲不轉正;個股定日 kill:RKLB Neutron 2026Q4 再延、ASTS 2026H2 衛星未準時足量上天、GSAT Amazon
       併購 FCC 破局;SPCX Starlink 收入年增速跌穿 30%(2025 為 49.8%)或 Starship 燒錢(2025 約 $3B R&D)持續擴大而冇對應飛行里程碑。觸發→confidence
       歸零、mean-revert。
+    kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4):kill_condition
+                                      # prose 入面已有數字/日期閾值嘅軸,機器可讀化(出處逐條喺 desc 註明)
+    - metric: starlink_rev_yoy
+      desc: "SPCX Starlink 收入年增速(kill_condition 逐字:「SPCX Starlink 收入年增速跌穿 30%(2025 為
+        49.8%)」)"
+      current: 0.498
+      current_as_of: "2026-07-14"    # SEC S-1 揭露 FY2025 數字,2026-07-14 一手查核(見上 note)
+      trigger: 0.30
+      direction: below
+      update_freq: quarterly
+    - metric: rklb_neutron_first_flight
+      desc: "RKLB Neutron 首飛目標(kill_condition 逐字:「個股定日 kill:RKLB Neutron 2026Q4 再延」)"
+      trigger: "2026-12-31"
+      direction: date
+      update_freq: quarterly
+    - metric: asts_satellite_deployment
+      desc: "ASTS 衛星足量上天窗口(kill_condition 逐字:「ASTS 2026H2 衛星未準時足量上天」)"
+      trigger: "2026-12-31"
+      direction: date
+      update_freq: quarterly
+    - metric: gsat_amazon_fcc_close
+      desc: "GSAT Amazon 併購 FCC 過會窗口(kill_condition 逐字:「GSAT Amazon 併購 FCC 破局」;node note
+        補充「約 2027 關」——約數,非精確日期,人手覆核用)"
+      trigger: "2027-12-31"
+      direction: date
+      update_freq: quarterly
     tickers:
     - RKLB
     - ASTS
@@ -657,6 +683,13 @@ themes:
       changes (policy premium gone); OR the truce is extended indefinitely and the market fully prices out
       the cut-off risk (event catalyst disappears). Any trigger -> confidence to zero, back to commodity-cycle
       mean-revert.
+    kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4)
+    - metric: us_china_ree_deal_deadline
+      desc: "美中稀土/鎵銦出口管制解除協議視窗(kill_condition 逐字:「2026-11 US-China formal deal fully
+        lifts indium/gallium/heavy-REE export controls」)"
+      trigger: "2026-11-30"
+      direction: date
+      update_freq: quarterly
     tickers:
     - MP
     - USAR
@@ -835,6 +868,23 @@ themes:
       capex stalls (hyperscaler cuts) -> the bull leg (#058) goes to zero. Either track firing zeros that
       track''s confidence; if both lose edge (oil ranges quietly, gas-power crowding deflates with no new
       catalyst) energy degrades to pure beta -> de-list, no thesis.'
+    kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4)
+    - metric: brent_upper_trigger
+      desc: "Brent 原油現貨價,升穿觸發(kill_condition 逐字:「Brent decisively reclaims >$90」→
+        oversupply/bearish framing 失效)"
+      current: 78
+      current_as_of: "2026-07-08"    # note 引#116:「Brent crashed 100->78」
+      trigger: 90
+      direction: above
+      update_freq: quarterly
+    - metric: brent_lower_trigger
+      desc: "Brent 原油現貨價,跌穿觸發(kill_condition 逐字:「<$60 on China demand collapse breaks the
+        long-energy-equity leg」)"
+      current: 78
+      current_as_of: "2026-07-08"
+      trigger: 60
+      direction: below
+      update_freq: quarterly
     tickers:                     # single-name expressions only; XLE/XOP live as benchmark_etf in universe.yaml
     - XOM
     - CVX
@@ -1104,6 +1154,15 @@ themes:
       引擎/壓縮機lead time開始壓縮返歷史常態(150週 -> 少於52週) OR 主要OEM(Caterpillar/Ariel)新產能
       上線紓緩樽頸 OR 需求驅動力(LNG出口+Permian associated gas+AI天然氣發電拉動)增長停滯/逆轉。
       觸發 -> confidence歸零。
+    kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4)
+    - metric: compressor_lead_time_weeks
+      desc: "壓縮機/引擎交期(週)(kill_condition 逐字:「引擎/壓縮機lead time開始壓縮返歷史常態(150週 ->
+        少於52週)」)"
+      current: 150
+      current_as_of: "2026-07-11"
+      trigger: 52
+      direction: below
+      update_freq: quarterly
     tickers: [USAC]
     # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」)。ADDITIVE:上面 theme-level
     # 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/results/
@@ -1188,6 +1247,15 @@ themes:
       OR Annex-1升級項目數(370個,較上季340上升)停滯/回落 OR GLP-1/生物製劑藥物量增長大幅減速(例如
       GLP-1藥物面對定價/報銷壓力打擊銷量) OR 有競爭者(Datwyler/Aptar)喺HVP同級元件搶到份額。觸發 ->
       confidence歸零。
+    kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4)
+    - metric: annex1_upgrade_count
+      desc: "Annex-1 升級項目數(kill_condition 逐字:「Annex-1升級項目數(370個,較上季340上升)停滯/回落」;
+        below 觸發 = 回落到上季水平或以下)"
+      current: 370
+      current_as_of: "2026-07-11"
+      trigger: 340
+      direction: below
+      update_freq: quarterly
     tickers: [WST]
     # 2026-07-13 PER-NODE SCHEMA (magnifier batch 3,收尾批「單一股票主題」,最後一個)。ADDITIVE:上面
     # theme-level 一隻字都無郁。★ 單一表達,一個 node = 成個主題(唔砌假 node 拆解)。理據:backtest/

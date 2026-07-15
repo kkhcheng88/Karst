@@ -153,3 +153,10 @@ thesis/.raw/paper_league_report.json
 # working file (last trading day's per-ticker entry/exit state), same convention as the other
 # thesis/.raw/*_state.json files above; regenerated/updated automatically each trading day.
 thesis/.raw/entry_exit_trigger_state.json
+
+# kill_metrics.py's (P4, docs/2026-07-15_quantification_review.md) regenerable report -- per-theme
+# kill-distance buffer / days-to-deadline, recomputed from themes.yaml's kill_metrics: field on every
+# --report run. Same "own line per .json" convention as valuation_report.json/crowding_composite.json
+# above; themes.yaml's kill_metrics: field itself (the source data) IS tracked, only this derived
+# report is gitignored.
+thesis/.raw/kill_metrics_report.json
