@@ -1,13 +1,18 @@
 # Karst 投資簡報
 
-_2026-07-14 22:01 UTC | 晨早版_
+_2026-07-15 12:31 UTC | 開市前瞻版_
 
 ---
 
-🔴 Karst 投資簡報 2026-07-14(晨早版)
-市況檔位:平靜市
+🔴 Karst 投資簡報 2026-07-15(開市前瞻版)
+市況檔位:調整市
 
-3個主題止蝕訊號已觸發、3個主題估值偏貴需要留意、3個主題可考慮吸納。
+⚠ 數據哨兵紅燈——以下所有讀數可能唔可信,先查數據、3個主題止蝕訊號已觸發、3個主題估值偏貴需要留意、3個主題可考慮吸納。
+
+---
+
+⚠️ 數據哨兵紅燈——今日部分數據未更新,以下讀數請當存疑:
+• aa_strict_paper_log.jsonl 最後一筆日期 2026-07-10,已相隔 5 日曆日(上限4日)
 
 ---
 
@@ -87,20 +92,8 @@ _2026-07-14 22:01 UTC | 晨早版_
 ---
 
 大市同組合現況:
-
-SPY 751.83
-• 200SMA 695.37(向上+8.1%) | RSI-2 58
-• 逢跌吸納 ≤733.68 | 賣call ≥763.86 | 破位價 695.55
-
-QQQ 719.69
-• 200SMA 639.19(向上+12.6%) | RSI-2 58
-• 逢跌吸納 ≤677.00 | 賣call ≥748.07 | 破位價 639.42
-
-• VIX恐慌指數:16.50(偏低,市場情緒平靜)
-
-LEAP參考報價:
-• SPY 2027-06-30到期(剩350日) K785 Δ0.50 約$4,700/張
-• QQQ 2027-06-30到期(剩350日) K770 Δ0.50 約$6,147/張
+(開市前預覽價,實際以收市判定為準)
+(未讀到開市前價格數據)
 
 • 已運用衛星倉位額度:40%(本階段上限50%,系統狀態:PRELIMINARY)
 • 組成(頭三大):美國太陽能製造 7%、減肥藥專用包裝 7%、航太特殊合金 6%——15 個主題全表見文末一覽
@@ -116,29 +109,29 @@ LEAP參考報價:
 
 📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
 
-• 記憶體超級週期|SLC NAND Prices Set To Surge - Businesskorea(Businesskorea)
-  ↳ 掛喺「NAND flash shortage」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
-
-• 記憶體超級週期|Retail traders pile into SK Hynix options as AI supply chain fever hits Nasdaq -(Crypto Briefing)
+• 記憶體超級週期|Nvidia’s Huang Hails SK Hynix Nasdaq ADR Listing as ‘Incredibly Successful’ - bl(bloomingbit)
   ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|AI Data Center Boom Hits Critical Chip and Memory Shortages - Design News(Design News)
-  ↳ 掛喺「NAND flash shortage」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+• 記憶體超級週期|SK Hynix rollercoaster sees stock surges at home and abroad - SDxCentral(SDxCentral)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|Due to shortages of DRAM and NAND, global smartphone shipments are projected to (GIGAZINE)
-  ↳ 掛喺「NAND flash shortage」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+• 記憶體超級週期|SK Hynix Controls More Than Half the HBM Market Nvidia Depends On - The Motley F(The Motley Fool)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|What You Need to Know About Memory Leader SK Hynix’s Violent Stock Price Fluctua(TradingKey)
-  ↳ 掛喺「HBM price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|Memory Shortage to Peak in 2027 — Why SK hynix's Production Increases Won't Take(XenoSpectrum)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 光通訊/光學元件|AXT (AXTI) Is Down 20.6% After Aggressive Indium Phosphide Expansion Plan - Has (simplywall.st)
+• 記憶體超級週期|Investors Play 'Hynix Bingo' as SK hynix Chases 3 Million Won Return - Seoul Eco(Seoul Economic Daily)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 光通訊/光學元件|Applied Optoelectronics Rallies 6%, Lumentum Climbs 5% as Texas Expansion Fuels (AOL.com)
+  ↳ 掛喺「Coherent Lumentum order cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 光通訊/光學元件|AI-Driven Demand and Capacity Expansion Support AXT's Long-Term Growth Outlook -(Kalkine)
   ↳ 掛喺「InP substrate capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 光通訊/光學元件|Germany Eml Electro Absorption Modulated Laser - Market Analysis, Forecast, Size(IndexBox)
-  ↳ 掛喺「InP substrate shortage laser lead time」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
-
-• 光通訊/光學元件|Goldman Sachs Says Optical Networking Is AI’s Next Trillion-Dollar Opportunity. (AOL.com)
-  ↳ 掛喺「Coherent Lumentum order cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 光通訊/光學元件|Tower Semiconductor to expand 300mm silicon photonics wafer capacity with a $3 b(富途牛牛)
+  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
 ⚠ 同日多條止蝕方向消息:記憶體超級週期、光通訊/光學元件——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
