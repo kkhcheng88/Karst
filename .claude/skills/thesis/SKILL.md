@@ -66,11 +66,24 @@ Use this NHITL loop instead when forming/updating a thesis:
 2. **CLASSIFY** — regime (VIX/rates/inflation cell), cycle_stage (early/mid/late), event-type,
    A(crisis) vs B(supercycle).
 3. **SCORE (4-KPI)** — moat/bottleneck, capital-allocation/ROIC (capex trend), valuation/priced-in
-   (`ttm_pe` percentile, own-history), growth-durability/TAM. Each 0-2, each cited.
-4. **FALSIFY** — write the kill_condition (Tree hypothesis).
+   (`ttm_pe` percentile, own-history), growth-durability/TAM. Each 0-2 per the DESIGN §4a rubric
+   anchors, each cited. A 2 on moat/growth REQUIRES the load-bearing claim to have survived
+   red-team (step 4) — citation alone caps at 1.5.
+4. **FALSIFY (red-team protocol, DESIGN §4b — a trial, not a filing)** — four moves, not just
+   writing the kill: (a) hunt OMITTED contrary facts (WebSearch the bear case; run the system's own
+   channels for CONTRADICTION — constraint-language scanner, insider, financials); (b) steelman the
+   counter-thesis: wiki must record ≥1 counter-argument NOT sourced from the article itself;
+   (c) mundane-explanation test (could a boring cyclical/base-effect story explain the same facts?);
+   (d) check current kill_metrics distance at ingest time (`python thesis/kill_metrics.py --report`).
+   Record a `red_team:` section in the wiki. COST TIERING: nightly ingest (cheap model) = Level-1
+   checklist only (touches a load-bearing claim? contradicts a kill axis? → review queue), and may
+   NEVER move confidence up; Level-2 full red-team (day session / expensive model) required for
+   new-theme admission or any confidence-raising update.
 5. **PRICE** — the priced-in / cycle gate (valuation extreme + supply response + crowding).
-6. **COMPUTE CONFIDENCE** — from the above; ACCEPT irreducible uncertainty (mark uncalibrated; size
-   small; the kill bounds the downside; payoff is convex). NOT a feeling.
+6. **COMPUTE CONFIDENCE** — via the frozen DESIGN §4a formula: (Σ 4-KPI)/8 × penalty(crowding_band,
+   cycle_stage), capped at 0.30 while single-source (see §4a's independent-source definition);
+   ACCEPT irreducible uncertainty (mark uncalibrated; size small; the kill bounds the downside;
+   payoff is convex). NOT a feeling, and NOT free-form arithmetic — the formula is frozen.
 7. **CONNECT** — write/update `thesis/wiki/<slug>.md` with `[[links]]` to concepts/companies/chains;
    run `thesis/lint.py`.
 8. **LOG** — register in `themes.yaml`; run `python thesis/log_predictions.py` (the agent logs itself).

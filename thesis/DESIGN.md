@@ -114,6 +114,31 @@ cap 防嘅係**假說來源集中**(成本簿嘅敘事框架出自同一個腦 �
 - 執行檢查:lint 對 `sources:` 有 ≥2 條時,要求至少一條標明 corroborates: <claim>,
   防止「加個 newsletter 就解 cap」嘅假獨立。
 
+### 4b. FALSIFY 升級:INGEST 係審判,唔係歸檔(2026-07-15,用戶定向)
+
+> 用戶指出嘅結構弱點:現行 INGEST 驗證「被展示嘅事實」,但冇系統步驟去搵
+> 「冇被展示嘅反面事實」——記錄嘅「誠實反方」絕大部分係文章自己提供嘅。
+> 修訂:控方(文章)陳詞、**辯方(red-team)抗辯**、法官(confidence 公式)先判。
+
+**Red-team 協議(NHITL 思考迴圈 step 4 FALSIFY 由「寫 kill」擴充為四個動作):**
+1. **反面事實狩獵**:WebSearch bear case/空方論述;用系統自己嘅獨立渠道**搵矛盾**
+   (constraint-language scanner:管理層語言有冇相反?insider:有冇淨賣?
+   財務:聲稱機制喺數字度現唔現形?)——目標係「文章冇展示嘅嘢」,唔係再驗展示咗嘅。
+2. **Steelman 反方**:wiki 必須記至少一條**非文章自供**嘅反方論點(獨立反方硬性要求)。
+3. **平庸解釋測試**:同一批事實,可唔可以用悶故事(普通週期反彈/低基數/一次性)解釋?
+   如果可以,結構性故事要俾出「點解悶故事唔成立」嘅額外證據。
+4. **當下狀態驗證**:ingest 嗰刻對 kill_metrics(§P4)——thesis 係咪已經行緊近 kill?
+
+**成本分層(執行時 vs 設計時,同 §4a 一致):**
+- **Level 1(每篇文,夜班/平模型)**:機械 checklist——掂唔掂承重 claim?同現有
+  kill 軸矛盾?有 → 入 review queue。**夜班永遠唔准向上郁 confidence**(硬規則)。
+- **Level 2(新 theme admission / 郁 confidence 嘅更新)**:全套 red-team,
+  日間/貴模型。wiki 記 `red_team:` 段(狩獵咗乜、反方係乜、平庸解釋點解唔成立、生還/中彈)。
+
+**Rubric 掛鈎(§4a 補充):**moat / growth 格攞 2 分嘅前提 = 該格承重 claim 經過
+Level-2 red-team 且生還(wiki 有記錄);齋引用(未經抗辯)最高 1.5。
+估值/資本配置格唔受此限(佢哋主要係機械讀數)。
+
 **4-KPI 判準(每格 0/1/2 錨點;0.5 步進插值):**
 
 | KPI | 2 分 | 1 分 | 0 分 |
