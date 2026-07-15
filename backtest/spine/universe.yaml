@@ -43,6 +43,12 @@ sectors:
     parent: INDUSTRIALS
     parent_proxy: [XLI]
     thesis: ai-power-grid
+    benchmark_etf: URA           # 2026-07-14: uranium-fuel node is ETF-only (themes.yaml thesis_etf,
+                                 # user already holds 40 shares) -- URA picked over NLR/URNM per
+                                 # themes.yaml:308's own note (0.90-0.96 corr, don't double up); a
+                                 # clean matching ETF exists -> same benchmark_etf pattern as
+                                 # MEMORY/DRAM + OIL_GAS/XLE, cross-check long excluded from the
+                                 # sector's temperature-driving basket.
   ADV_PACKAGING:
     parent: SEMI
     parent_proxy: [SOXX, SMH]
@@ -51,6 +57,12 @@ sectors:
     parent: AERO_DEF
     parent_proxy: [ITA]
     thesis: space-satellite
+    benchmark_etf: NASA          # 2026-07-14: Tema Space Exploration ETF, already themes.yaml's own
+                                 # designated thesis_etf (RKLB+ASTS+LUNR = 18.6% purity) -- same
+                                 # benchmark_etf pattern as MEMORY/DRAM, OIL_GAS/XLE, AI_POWER/URA;
+                                 # cross-check long excluded from the sector's temperature-driving
+                                 # basket (the theme's own tickers: RKLB/ASTS/KTOS/HEI/LOAR/RDW/LUNR
+                                 # already drive the basket unchanged).
   RARE_EARTH:
     parent: MATERIALS
     parent_proxy: [XLB]
