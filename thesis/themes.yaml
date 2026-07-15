@@ -145,13 +145,24 @@ themes:
     wiki: thesis/wiki/photonics-optical.md
     type: B                    # optical interconnect = AI scale-up physical-layer bottleneck
     cycle_stage: late          # MOST crowded cluster (58% bull); moat names ttm_pe 75-98th pctile
-    confidence: 0.30           # real InP/laser-IDM bottleneck BUT most crowded/priced-in -> < memory 0.38. INITIAL.
+    confidence: 0.30           # 2026-07-15 red-team 部分中彈後照舊 0.30:moat 2->1.5(duration 錨中彈)
+                                # 令 raw 0.406,但 single-source cap 照綁 0.30——凍結公式輸出,agent 建議
+                                # 嘅酌情 0.27 被 gatekeeper 否決(酌情走數正係 P2 要消滅嘅嘢)。INITIAL.
     verdict: real-bottleneck-but-crowded
     kill_condition: >-
-      InP substrate shortage resolves (32-month laser lead-times compress / China fully releases / new
-      capacity online) OR CPO adoption slips (pluggable+LPO stays good-enough) OR laser-IDM (COHR/LITE)
-      order-book-to-2028 / pricing breaks. Crowding-unwind: no-earnings names (SIVE/LWLG) + 75-98th-pctile
-      moat names de-rate hard on any AI-capex hiccup. Trigger -> confidence to zero.
+      InP substrate shortage resolves -- supply response is already DATED (red-team 2026-07-15):
+      AXT 2026 doubling ahead-of-schedule + Sumitomo 12x-by-2028 + TSMC COUPE 500->10,000 wpm +
+      LightCounting "shortage fades by end-2026" with double-ordering confirmed; NOTE the "32-month
+      lead-time" figure is Tier-2 self-reported with zero primary source. OR any PRIMARY evidence
+      that LPO/CPO routes reduce per-port InP laser content/value (axis rewritten 2026-07-15: CPO
+      timing itself only reshuffles winners within the cluster -- both routes still consume InP
+      lasers; the bypass half of the claim SURVIVED red-team). OR laser-IDM (COHR/LITE) order-book
+      pricing breaks -- visibility baseline = CEO's own "sold out to end-2027", NOT the "2028"
+      retelling (wrong baseline delays the break signal by a year). Early-warning markers (not
+      kill): COHR inventory days >170 with revenue decel; deferred revenue persistently ~0 (backlog
+      is NOT cash-backed: COHR ~$62M / LITE $7.3M booked); AXT 2026 doubling landing. Crowding-
+      unwind: no-earnings names (SIVE/LWLG) + 75-98th-pctile moat names de-rate hard on any
+      AI-capex hiccup. Trigger -> confidence to zero.
     tickers: [COHR, LITE, AXTI, MRVL, AAOI, SIVE, LWLG, GLW, FN]
     # 2026-07-13 PER-NODE SCHEMA (magnifier batch 1, Fable 交接 P2-12 推廣次序 #1;照 ai-power-grid
     # nodes schema,一個欄位都無少)。ADDITIVE:上面 theme-level tickers:/cycle_stage:/confidence:
@@ -237,12 +248,16 @@ themes:
     kill_condition: 'AI-capex demand anchor breaks (hyperscaler / data-center capex guidance rolls over
       off the $1T->$1.7T path) OR 800V/HVDC native mass-production (SemiAnalysis stages 3-4) slips again
       / 48V+pluggable stays good-enough (onsemi''s ~10x rack-content fails to materialise, #114/#125) OR
-      turbine majors'' orders confirm a 2026 peak (GEV CEO order-pace cracks #086, #134) OR the Infineon
-      price-hike cycle reverses (power-semi shortage ends) OR China tightens rare-earth/yttrium export
-      controls further, hitting GEV turbine-coating supply directly or MPWR/NVTS/TXN China revenue
-      concentration (55%/47-62%/21-50% respectively, 2026-07-11 china_dependency_audit). Trigger ->
-      confidence to zero; 90th-pctile quality names (ETN 99% / ON 90% / MPWR 89%) mean-revert,
-      pre-earnings names (BE/NVTS/WOLF) crash.'
+      turbine majors'' orders confirm a 2026 peak (GEV CEO order-pace cracks #086, #134; observable
+      proxy = GEV backlog GW stops growing -- 83GW->100GW as of 2026-07, red-team 2026-07-15) OR the
+      Infineon price-hike cycle reverses (power-semi shortage ends) OR unit-compute energy efficiency
+      improves FASTER than deployment growth (axis added 2026-07-15 red-team: Vera Rubin-class ~10x
+      per-token cost drops compounding into lower aggregate power-demand growth -- the Jevons
+      assumption inverting; watch aggregate DC power forecasts vs efficiency curves) OR China
+      tightens rare-earth/yttrium export controls further, hitting GEV turbine-coating supply
+      directly or MPWR/NVTS/TXN China revenue concentration (55%/47-62%/21-50% respectively,
+      2026-07-11 china_dependency_audit). Trigger -> confidence to zero; 90th-pctile quality names
+      (ETN 99% / ON 90% / MPWR 89%) mean-revert, pre-earnings names (BE/NVTS/WOLF) crash.'
     tickers:
     - GEV
     - BE
@@ -326,9 +341,16 @@ themes:
     sources:
     - id: gooptions-trend-core
       tier: 2
+    - id: gev-balance-sheet-cash-backed-backlog
+      tier: 1
+      corroborates: "承重 claim 供給半截——GEV Current Deferred Revenue(客戶現金預付)$18.7B(2025-03)
+        →$31.8B(2026-03),+70% YoY ≈年收入八成,多年訂單以真金白銀坐喺 balance sheet 上(defeatbeta
+        quarterly_balance_sheet,red-team 2026-07-15 發現、gatekeeper 一手核實)。同 memory 嘅 RPO
+        鏡像:嗰邊附註 backlog 唔喺表上(claim 中彈),呢邊現金預付喺表上(claim 補強)。
+        依 DESIGN §4a 定義,本 theme 甩 single-source cap——全簿第一個。"
     meta_factors: [ai-capex]
     admitted: 2026-07-01
-    last_evidence: 2026-07-08
+    last_evidence: 2026-07-15
     status: active
     note: 'Real demand bottleneck (near-unambiguous: Friedberg ''100% power constrained'', $700B hyperscaler
       capex, EQT CEO''s 8 Homer City inquiries, onsemi 10x rack content) but priced AHEAD of the 2027 volume

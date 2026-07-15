@@ -154,6 +154,26 @@ cycle/crowding penalty: 股價晚期已 priced-in(quality 名 90%+ 分位 + 內�
 - [ ] [[VICR]]/[[PWR]] ttm_pe/capex 補拉(POL 另一腳 + 電網 EPC)。
 - [ ] BE/NVTS/WOLF 無/近零盈利 → 用選擇權/事件框架(非 PE)另評。
 - [ ] universe.yaml 加「ai-power-grid」grouping(電力鏈兩子鏈),讓 scan 覆蓋。
+- [ ] kill_metrics 補兩條數值軸:GEV backlog GW(現 100GW,2026-07)+ hyperscaler capex YoY
+  (red-team 2026-07-15 建議;current/trigger 要下季讀數先定,唔臨時發明)。
+- [ ] GEV Q4 24GW 入面 21GW 係 slot reservation 非 firm order——敘事風險標記,盯取消數據
+  (現時零取消)。
+
+## red_team(Level-2,2026-07-15;詳 backtest/results/2026-07-15_redteam_ai_power_grid.md)
+- **判決:生還,兼獲一手補強。**承重 claim(AI 電力多年結構樽頸、$1T→$1.7T 路徑、非一次性脈衝)
+  企得住;供給半截(渦輪 sold-to-2030、SMR/氣新增慢)幾乎零反面事實。
+- **關鍵發現=memory 嘅鏡像**:GEV Current Deferred Revenue(客戶現金預付)$18.7B→$31.8B
+  (+70% YoY ≈年收入八成)——多年訂單以真金白銀坐喺 balance sheet 上(gatekeeper 一手核實)。
+  memory 嗰邊附註 RPO 唔喺表上(claim 中彈);呢邊預付喺表上(claim 補強)。**依 §4a 定義,
+  本 theme 甩 single-source cap——全簿第一個**(sources: 已登記 tier-1 條目)。
+- 真風險喺**需求側 rate-of-change**(red-team 指出 kill_condition 原本漏咗):①能效軸——
+  Vera Rubin 級每 token 成本 ~10x 下降,如果能效改善快過部署增長,Jevons 假設反轉(已加入
+  kill_condition);②Meta 逐字指引「capex 2026 peak / 2027 normalize」= 唯一需求側一手拐點訊號。
+- 平庸解釋測試**部分通過→收緊唔推翻**:GEV backlog ~80% 非 datacenter(更換週期+電氣化都真),
+  「最乾淨嘅樽頸最唔 AI、最 AI 段最貴」——強化現有「別追 quality 名」紀律。
+- **應用(2026-07-15):**confidence 0.33 維持、moat 1.5/growth 2 維持(agent 明確唔為交貨砌
+  downgrade——「對『負荷預測仍連年上修』製造反對」係反例示範);kill_condition 加能效軸+
+  backlog 可觀測代理;sources 加 tier-1 佐證條目(甩 cap)。
 
 ## 來源
 Tier-2(ai-power-grid 叢 21 篇,`thesis/wiki/sources/`,全文 `corpus.db`):需求錨 #052(All-In 4 主持人 +

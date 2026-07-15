@@ -147,6 +147,26 @@ crowding/cycle penalty (LATE + 58% bull 最擁擠 + 護城河名 75-98 分位 + 
 - [ ] SIVE/LWLG 無盈利 → 用選擇權/事件框架(非 PE)另評。
 - [ ] 拉 [[ALAB]]/CRDO ttm_pe/capex(一手),CPO-延後對沖曝險,再評是否納 universe.yaml。
 - [ ] 拉 GLW FY27/28 PE 一手核(#138 稱 46×/36×),校準「便宜防守」→「已反映」的定位。
+- [ ] 2026 年底–2027 上半天然實驗窗:AXT 翻倍落地 + LightCounting「短缺年底消退」預測——結構 vs 週期
+  故事嘅區分 checkpoint(red-team 2026-07-15)。
+- [ ] COHR WIP 暴脹(存貨 +65% 快過營收 +49%)雙義未決(InP pre-build vs 需求前置)——早期警戒標記。
+
+## red_team(Level-2,2026-07-15;詳 backtest/results/2026-07-15_redteam_photonics_optical.md)
+- **判決:部分中彈。**「唔會被繞過」半句**生還兼強化**(LPO 拆 DSP 但要更高質雷射;CPO ELS 要 6-11 倍
+  功率 CW——兩條繞過路徑照食 InP);但兩個量化承重錨中彈+duration 半句降級。
+- 三刀(事實錨):①「32 個月交期」係 Tier-2 自陳、零一手掛源;「order book 到 2028」係 CEO 一手
+  「售罄到 2027 年底」嘅放鬆轉述(#139 自己拆穿口徑鏈)。②COHR/LITE balance sheet 零 RPO、
+  deferred revenue 可忽略(COHR ~$62M/LITE $7.3M,gatekeeper 核實)——「披露 backlog ≠ 入帳緩衝」
+  同 memory 同型,第二次斬中。③供給回應已 dated:AXT $632.5M 融資+2026 產能翻倍 ahead-of-schedule
+  +2027 再翻倍(SEC 8-K)、住友 2028=2023 嘅 12 倍、TSMC COUPE 500→10,000 wpm、LightCounting 一手
+  證實 double-ordering + 短缺「2026 年底消退」——「解除」係 2027 定 2028 嘅時點問題,唔係如果。
+- 雙向誠實:毛利 9 季擴張(COHR 30.3→37.7%、LITE 16.2→44.2%)證定價權**而家**係真——但掂周邊
+  唔掂 duration;LITE 簽名反而乾淨(FG 反跌)。
+- **應用(2026-07-15):**moat 2→1.5(duration 錨降級);growth 2 維持(bypass 半句生還=需求機制
+  未動搖)。公式:base (1.5+1+0.5+2)/8=0.625 × penalty(crowding 57.1,late)0.65 = raw 0.406 →
+  single-source cap → **confidence 0.30 不變**(agent 酌情建議 0.27 被 gatekeeper 否決——凍結公式
+  輸出先算數,酌情走數正係 P2 消滅對象)。kill 軸 2 已改寫(CPO 時程→per-port InP 含量)、
+  能見度基準已校返「2027 年底」。Tier-1 毛利佐證只掂周邊,**唔解** single-source cap。
 
 ## 來源
 Tier-2(photonics 叢 24 篇,`thesis/wiki/sources/`,全文 `corpus.db`):#092(雷射 IDM 護城河)、#054
