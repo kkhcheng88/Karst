@@ -411,35 +411,37 @@
 
 **邊界確認**：捲動至 2026-04-30 23:34（kingsley 提問持倉價位帖）確認已早於 2026-05-01，依指示停止繼續向前抓取。
 
-## PDF 附件檔名清單（全部已知，未下載，僅記檔名+所屬帖）
-- 20260513 JPM Flows & Liquidity.pdf（05-14）
-- 20260514 US Equity Views - The rise and reach of retail trading in US equities.pdf（05-14）
-- 20260515 GS US Weekly Kickstart - AI, Momentum, and the One Big Trade.pdf（05-18）
-- 20260526 GS Futu Holdings Takeaways from group meeting.pdf（05-26）
-- 20260527 MS MSFT - Infrastructure Monetization - Still Early Days in the AI Cycle.pdf（05-27）
-- 20260527 Nomura Asia Insights China AI boom property bust and K-shapes.pdf（05-31）
-- 20260529 BofA The Flow Show.pdf（05-29）
-- 20260604 MS Broadcom - Expectations miss amid very strong demand.pdf（06-04）
-- 20260608 Bernstein U.S. IT Hardware and EU Semi - The Quantum Leap Winners and Losers in t...pdf（06-08，檔名截斷）
-- 20260611 BofA The Flow Show.pdf（06-12）
-- 20260616 J.P. Morgan Broadcom Inc - Ignore The Noise TPU v9 2nm ASIC Program On Track For...pdf（06-17，檔名截斷）
-- 20260630 Morgan Stanley Asia Summer School - Powering AI Asia Datacenters.pdf（07-02）
-- 20260629 Morgan Stanley China EVs - Weekly orders drifting on fading sentiment before summer...pdf（07-02，檔名截斷）
-- 20260630 J.P. Morgan Semiconductor Tech Materials - Feedback from meetings with European an...pdf（07-02，檔名截斷）
-- 20260709 BofA The Flow Show.pdf（07-10）
-- 20260710 Goldman Sachs US Equities Weekly Rundown - Positioning Flows and Observations Acr...pdf（07-10，檔名截斷）
-- 20260713 HSBC TSMC - Increasing capex pressure to drive long-term growth.pdf（07-15）
-- 20260713 JPM TSMC - 2Q26 sales reaching high-end of guidance GM likely to beat.pdf（07-15）
-- 20260713 MS Micro Meets Macro - 2Q Earnings Preview.pdf（07-15）
-- 20260713 MS Semiconductors North America Weekly - NVDA road show feedback.pdf（07-14）
-- 20260713 Nomura China Internet and New Media - Takeaways from an LLM expert call.pdf（07-14）
-- 20260714 Bernstein Korea Internet and Global AI Infrastructure - Naver What is 50bn between friends...pdf（07-14，檔名截斷未補完）
-- 20260714 MS Space Exploration Technologies Corp. - DVFS.pdf（07-16）
-- Seeking_Alpha_2026_H2_Top_Picks.pdf（07-15，Seeking Alpha 2026下半年Top Picks）
-- Global Semiconductors.pdf（05-29，VRT建仓帖）
-- Inside the 800VDC Revolution – Part 1.pdf（05-29）
-- 0522 Bofa The Flow Show.pdf（05-22）
+## PDF 附件檔名清單（2026-07-17 已全數下載，存於 `pdf/` 子資料夾，檔名沿用原始檔名）
+- 20260513 JPM Flows & Liquidity.pdf（05-14）→ 已下載（3.87MB）
+- 20260514 US Equity Views - The rise and reach of retail trading in US equities.pdf（05-14）→ 已下載（0.56MB）
+- 20260515 GS US Weekly Kickstart - AI, Momentum, and the One Big Trade.pdf（05-18）→ 已下載（0.80MB）
+- 20260526 GS Futu Holdings Takeaways from group meeting.pdf（05-26）→ 已下載（0.38MB）
+- 20260527 MS MSFT - Infrastructure Monetization - Still Early Days in the AI Cycle.pdf（05-27）→ 已下載（0.89MB）
+- 20260527 Nomura Asia Insights China AI boom property bust and K-shapes.pdf（05-31）→ 已下載（21.1MB）
+- 20260529 BofA The Flow Show.pdf（05-29）→ 已下載（0.75MB）
+- 20260604 MS Broadcom - Expectations miss amid very strong demand.pdf（06-04）→ 已下載（1.08MB）
+- 20260608 Bernstein U.S. IT Hardware and EU Semi - The Quantum Leap Winners and Losers in the Quantum future.pdf（06-08，全名已補完）→ 已下載（4.66MB）
+- 20260611 BofA The Flow Show.pdf（06-12）→ 已下載（1.04MB）
+- 20260616 J.P. Morgan Broadcom Inc - Ignore The Noise TPU v9 2nm ASIC Program On Track For CY28 Ramp No Delays.pdf（06-17，全名已補完）→ 已下載（0.42MB）
+- 20260630 Morgan Stanley Asia Summer School - Powering AI Asia Datacenters.pdf（07-02）→ 已下載（10.57MB）
+- 20260629 Morgan Stanley China EVs - Weekly orders drifting on fading sentiment before summer lull.pdf（07-02，全名已補完）→ 已下載（4.13MB）
+- 20260630 J.P. Morgan Semiconductor Tech Materials - Feedback from meetings with European and US investors.pdf（07-02，全名已補完）→ 已下載（0.45MB）
+- 20260709 BofA The Flow Show.pdf（07-10）→ 已下載（1.10MB）
+- 20260710 Goldman Sachs US Equities Weekly Rundown - Positioning Flows and Observations Across the Floor.pdf（07-10，全名已補完）→ 已下載（1.97MB）
+- 20260713 HSBC TSMC - Increasing capex pressure to drive long-term growth.pdf（07-15）→ 已下載（0.52MB）
+- 20260713 JPM TSMC - 2Q26 sales reaching high-end of guidance GM likely to beat.pdf（07-15）→ 已下載（6.85MB）
+- 20260713 MS Micro Meets Macro - 2Q Earnings Preview.pdf（07-15）→ 已下載（3.80MB）
+- 20260713 MS Semiconductors North America Weekly - NVDA road show feedback.pdf（07-14）→ 已下載（0.64MB）
+- 20260713 Nomura China Internet and New Media - Takeaways from an LLM expert call.pdf（07-14）→ 已下載（5.83MB）
+- 20260714 Bernstein Korea Internet and Global AI Infrastructure - Naver What is 50bn between friends Thoughts on neocloud funding strategy.pdf（07-14，全名已補完）→ 已下載（3.73MB）
+- 20260714 MS Space Exploration Technologies Corp. - DVFS.pdf（07-16）→ 已下載（0.39MB）
+- Seeking_Alpha_2026_H2_Top_Picks.pdf（07-15，Seeking Alpha 2026下半年Top Picks）→ 已下載（10.83MB）
+- Global Semiconductors.pdf（05-29，VRT建仓帖）→ 已下載（3.88MB）
+- Inside the 800VDC Revolution – Part 1.pdf（05-29）→ 已下載（28.96MB）
+- 0522 Bofa The Flow Show.pdf（05-22）→ 已下載（0.95MB）
 - 20260610 GS Futu... 等其餘見各週檔內文（部分報告只有標題無PDF檔名，因原帖僅轉述無附件）
+
+**下載方式**：透過群組頁「文件」tab（過濾出全部帶附件貼文的動態流）+ 頂部搜尋框（當前星球範圍搜檔名關鍵字，直接命中「星球的文件」區塊）兩種方式取得，比逐帖捲動比對日期快。全部 27 個 PDF（含 5 個原標記檔名截斷者已補完全名）均已驗證 `%PDF-` header + `%%EOF` trailer 正常，無零位元組或損毀檔案。
 
 ## 檔案清單（按日期範圍，新到舊）
 （另有 2026-07-16_manual_capture.md — 此為本次任務啟動前既存嘅手動首抓樣本檔，非本次產出，格式不同，供對照）
