@@ -53,6 +53,18 @@ FAIL_TOTAL_CAP_PCT = 0.25
 PRELIM_CONF_MULT = 20_000.0
 PRELIM_PER_THEME_CAP = 15_000.0
 
+# 裁決(2026-07-16,backtest/results/2026-07-16_governance_rules_audit.md R4):STATUS.md:261
+# 「Phase-3 注碼 <=20%」分母=成個組合(讀法B 會同上面 50% 衛星 cap 自相矛盾);70/30 core/衛星
+# 結構下 50%×30%=15% 合規。assert 將呢條關係變強制,日後升高其一常數呢度即刻爆,唔靠人記得。
+PHASE3_PORTFOLIO_CAP = 0.20              # STATUS.md:261
+SATELLITE_SHARE_OF_PORTFOLIO = 0.30      # 用戶 core/衛星 70/30(進取);user memory
+                                          # user-risk-appetite-2026-07.md
+assert PRELIM_TOTAL_CAP_PCT * SATELLITE_SHARE_OF_PORTFOLIO <= PHASE3_PORTFOLIO_CAP, (
+    f"PRELIM_TOTAL_CAP_PCT({PRELIM_TOTAL_CAP_PCT}) x SATELLITE_SHARE_OF_PORTFOLIO"
+    f"({SATELLITE_SHARE_OF_PORTFOLIO}) exceeds PHASE3_PORTFOLIO_CAP({PHASE3_PORTFOLIO_CAP}) -- "
+    f"STATUS.md:261 portfolio-level 20% cap breached"
+)
+
 # --- v2 shadow constants (P0-1 spec) ---
 V2_MAGNITUDE_CONF_GATE = 0.25   # below this, magnitude bonus suppressed (score = conf alone,
                                  # not conf * log2(magnitude)) -- a low-confidence thesis
@@ -92,6 +104,8 @@ def load_judge():
 # keeps the theme investable on its OWN-history-cheap timing signal while respecting that most
 # of its EV is still unearned hope. Freed capital is NOT redistributed (same conservative
 # no-redistribution stance as the v2 floor). Disable with --no-valuation-gate.
+# 出處:docs/2026-07-12_valuation_expectations_gap_spec.md §3b。2026-07-16 追認為現行規則
+# (方向保守;拆走=無證據加注)—— task #30 收檔(STATUS.md 同步更新)。
 VAL_GATE_PBASE_MAX = 0.20
 VAL_GATE_FACTOR = 0.50
 VAL_GATE_BINARY_LABEL = "N/A-binary (option framing)"
@@ -183,8 +197,20 @@ def apply_total_cap(values, budget, status):
     return {k: v * factor for k, v in values.items()}, total_cap, factor
 
 
+def _split_type_a(active):
+    """Type-A crisis sleeve (<=10% satellite budget, WS5 Sec1.5) has no B-type raw_cap() logic
+    here yet -- loudly excluding it beats silently letting it eat B-type budget. Governance
+    ruling 2026-07-16, backtest/results/2026-07-16_governance_rules_audit.md R12."""
+    type_a = [slug for slug, t in active.items() if t.get("type") == "A"]
+    if type_a:
+        print(f"*** WARNING: Type-A crisis sleeve (<=10% satellite budget, WS5 Sec1.5) 未實作 -- "
+              f"theme {', '.join(sorted(type_a))} 已剔出 B 型 sizing,唔會靜靜食 B 型額度 ***")
+    return {s: t for s, t in active.items() if s not in type_a}, type_a
+
+
 def build_table(themes, judge_status, circuit_breaker, budget, valuation_gate=True):
     active = {slug: t for slug, t in themes.items() if t.get("status", "active") == "active"}
+    active, _ = _split_type_a(active)
 
     sum_conf_pass = sum(float(t.get("confidence") or 0.0) for t in active.values())
 
@@ -313,6 +339,7 @@ def build_table_v2(themes, judge_status, budget):
 
     Returns (rows, binary_rows, cut_log, total_cap) -- rows sorted by final $ descending."""
     active = {slug: t for slug, t in themes.items() if t.get("status", "active") == "active"}
+    active, _ = _split_type_a(active)
     binary_slugs = {slug for slug, t in active.items() if is_event_binary(t)}
     scoreable = {slug: t for slug, t in active.items() if slug not in binary_slugs}
 
@@ -494,10 +521,13 @@ def run():
                   f"per-node magnifier rubric run yet for them, see magnifier P2 backlog #12)")
 
     print("\nfootnotes:")
-    print("  - Type-A crisis sleeve <=10% of satellite budget is a SEPARATE budget (WS5 Sec1.5),"
-          " not shown in this table (no Type-A themes currently in registry -- all 9 are Type B).")
+    print("  - Type-A crisis sleeve <=10% of satellite budget is a SEPARATE budget (WS5 Sec1.5); "
+          "the tripwire above already excludes any Type-A theme from this table loudly at "
+          "compute time (no Type-A themes in registry today) -- the separate A-sleeve engine "
+          "itself is still unbuilt.")
     print("  - Small-cap pure-play position inside a theme <= 1/3 of that theme's final $ "
-          "(WS5 Sec1.3), and must carry its own kill_condition. Not itemized per-ticker here.")
+          "(WS5 Sec1.3), and must carry its own kill_condition. Not itemized per-ticker here "
+          "(by design theme 層 sizing 冇 ticker 分配 -> 呢條係執行時人手規則,唔係機械閘).")
     print()
 
 

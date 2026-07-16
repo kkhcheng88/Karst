@@ -336,3 +336,20 @@ python -c "import json;print(json.load(open('thesis/ic_report.json'))['horizons'
 
 **本次審計狀態**:唯讀完成,冇改任何檔(本報告除外)。
 **時效**:2026-07-16 21:51 working tree(有未 commit 嘅併發修改,見 §1 併發警告)。
+
+---
+
+## 7. 解決狀態(2026-07-16,四條裁決已 encode)
+
+- **R4(Phase-3 注碼 ≤20%,STATUS.md:261 前半句)**:裁決 = 分母係成個組合(讀法A)。
+  `thesis/sizing.py` 加 `PHASE3_PORTFOLIO_CAP=0.20`/`SATELLITE_SHARE_OF_PORTFOLIO=0.30` +
+  module-level assert(0.50×0.30=0.15≤0.20),數字啱撞 → 強制關係。
+- **R20(估值閘 0.20/×0.5)**:追認現狀,理據已紮實(BT-5 6/6)。`sizing.py` VAL_GATE_* 常數旁補
+  出處(`docs/2026-07-12_valuation_expectations_gap_spec.md §3b`);`STATUS.md` task #30 兩處
+  由「待用戶揀」改「已追認,見 sizing.py 註解」。
+- **R13(細價純 play ≤1/3)**:正式定性為執行時人手規則(theme 層 sizing 冇 ticker 分配,非機械
+  可查)。`sizing.py` footnote 補一句講明呢個 by-design 邊界。
+- **R12(A 型 sleeve tripwire)**:`sizing.py` 新增 `_split_type_a()`,`build_table`/`build_table_v2`
+  遇到 `type: A` + `status: active` 即剔出 B 型 sizing 並大聲 print 警告;`thesis/lint.py` 加對應
+  admission WARNING。負面測試(in-memory 假 Type-A theme)確認剔出+警告皆生效;現行 registry
+  15/15 皆 Type B,sizing 輸出改前改後除新增 footnote 文字外數字不變(diff 已驗證)。

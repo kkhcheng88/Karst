@@ -239,6 +239,17 @@ def run(no_ticker_check=False):
             if cs not in VALID_CYCLE_STAGES:
                 errs.append(f"cycle_stage {cs!r} not in {sorted(VALID_CYCLE_STAGES)}")
 
+            # Type-A crisis-sleeve admission warning (WS5 Sec1.5; governance ruling 2026-07-16,
+            # backtest/results/2026-07-16_governance_rules_audit.md R12): sizing.py's B-type
+            # engine has no A-sleeve logic -- flag here too so it's caught before it's admitted.
+            if t.get("type") == "A" and t.get("status", "active") == "active":
+                admission_warnings.setdefault(slug, []).append(
+                    "type: A (WS5 Sec1.5 crisis sleeve, <=10% satellite budget separate pool) "
+                    "but sizing.py has no A-sleeve engine implemented yet -- sizing.py excludes "
+                    "this theme from B-type sizing (loud tripwire) instead of silently sizing "
+                    "it as Type B"
+                )
+
             # 兩條「校準前 confidence 上限」規則並存,互相冇引用(2026-07-16 治理盤點發現):
             #   ws3_lifecycle.md:137 (07-08) : confidence ∈ (0, 0.6]      <- 一直只有呢條被 encode
             #   STATUS.md:261        (07-06) : 「校準迴路未通之前…confidence 上限 ≤0.40」

@@ -243,11 +243,9 @@ themes:
     wiki: thesis/wiki/ai-power-grid.md
     type: B
     cycle_stage: late
-    confidence: 0.40             # 2026-07-16 修正:脫 single-source cap 成立(GEV Tier-1 現金背書擊中
-                                  # 承重,n_sources=2)→ raw=0.469;但 UNCALIBRATED_CAP 0.40 綁住
-                                  # (STATUS.md:256「校準迴路未通之前 confidence 上限 ≤0.40」;
-                                  # forward_ic 實測 matured=0 → 前提成立)。先前 0.47 係公式漏 encode
-                                  # 呢條規則所致嘅越界,已補入 confidence_formula.py。
+    confidence: 0.40             # 脫 single-source cap 成立(n_sources=2)→ raw=0.469,但
+                                  # UNCALIBRATED_CAP 0.40 綁住(校準迴路未通,STATUS.md:261)。
+                                  # 詳:backtest/results/2026-07-16_governance_rules_audit.md R3。
     verdict: real-demand-but-priced-ahead-of-ramp
     kill_condition: 'AI-capex demand anchor breaks (hyperscaler / data-center capex guidance rolls over
       off the $1T->$1.7T path) OR 800V/HVDC native mass-production (SemiAnalysis stages 3-4) slips again
@@ -1117,18 +1115,9 @@ themes:
     wiki: thesis/wiki/euv-lithography-monopoly.md
     type: B
     cycle_stage: late          # 16年故事橫跨4個週期 + ttm_pe 98th pctile = 全市場最人盡皆知嘅半導體壟斷故事之一
-    confidence: 0.40           # ⚠️ 呢個數暫時只係「上限」,唔係可信推導 —— 見下兩點。
-                                # subscore backfill(moat 2/capital 1.5/valuation 0/growth 1.5)+ 登記雙
-                                # Tier-1 source(ASML 現金背書 down-payment + 16 年約束語言 transcript
-                                # 獨立擊中承重)→ 脫 single-source cap(n=2)成立、**呢部分冇問題**。
-                                # 但 raw 0.469 有兩個獨立缺陷,而 UNCALIBRATED_CAP 0.40 剛好綁住:
-                                # ① crowding=2.8 係污染讀數(ASML 最後 3 份 corpus「法說會」實為記者會/
-                                #    宣傳片,defeatbeta feed 2025-07-16 後轉咗文件類型;最後一份可信法說會
-                                #    = 2025-07-16)。淨修呢個 → crowd 57.4 → raw 0.406。
-                                # ② crowding 軸本身建構效度存疑(D2,見 DESIGN §4a 註)。red-team 原本估
-                                #    crowding ≥90 → 0.25;**佢個直覺啱,係 gatekeeper 攞污染數推翻咗佢**。
-                                # 詳:backtest/results/2026-07-16_crowding_asml_contamination.md。
-                                # 真值待 D1 資料修好(重抓 ASML 真法說會)+ D2 拍板後重算。
+    confidence: 0.40           # ⚠️ 暫定上限,非可信推導:raw 0.469 受兩缺陷污染(D1 crowding=2.8
+                                # 讀數污染、D2 crowding 軸建構效度存疑),UNCALIBRATED_CAP 0.40 剛好綁住。
+                                # 詳細診斷 + 修復路徑:backtest/results/2026-07-16_crowding_asml_contamination.md。
     verdict: real-monopoly-but-most-priced-in
     kill_condition: >-
       有可行EUV/High-NA EUV競爭者出現(中國本土EUV突破如SMEE、或Canon/Nikon重返High-NA)打破唯一供應商
