@@ -191,6 +191,43 @@ pre-revenue binary/夢想定價嘅表達風險由 magnitude_tier(binary 檔→si
 `thesis/lint.py` 負責機械檢查:themes.yaml 記錄嘅 confidence 必須等於
 wiki 推導段記錄嘅 subscores/crowding/cycle 套公式嘅輸出(誤差 ±0.01),對唔上 = lint error。
 
+### 4c. Red-team 判決嘅標準化應用:三通道分流(2026-07-16,用戶定向)
+
+> 矛盾根源(tpu/space):red-team 判決「向下」(事實唔夠硬)同公式遷移「向上」
+> (舊手工估太保守、標準化拉返上 cap)係**唔同軸**,撞埋同一個 confidence 數字。
+> 標準化原則:**red-team 嘅殺傷力永遠唔准喺 confidence 數字度酌情調整**(酌情 = P2
+> 要消滅嘅嘢),而係機械咁分流入三個固定通道。confidence 數字永遠 = §4a 公式輸出。
+
+**四種 red-team 結果 → 三個機械通道:**
+
+| red-team 結果 | 通道 1<br>subscore(入公式) | 通道 2<br>cap 資格(binary) | 通道 3<br>magnitude 加成(sizing 層) |
+|---|---|---|---|
+| **生還** | 不變 | 不變 | 不變 |
+| **補強**(Tier-1 獨立擊中承重) | 可升(rubric 準) | **脫 single-source cap** | 不變 |
+| **中彈**(承重被事實推翻/收緊) | moat/growth 降格 | 不變 | 若 magnitude 腿中彈→收起 |
+| **分岔**(已-priced 部分證實 + 未證 magnitude 腿中彈) | 未證腿對應格降 | **唔脫 cap**(Tier-1 只證已-priced/周邊,唔算擊中承重) | **未證腿嘅 magnitude 加成收起** |
+
+**三通道定義:**
+- **通道 1(subscore)**:承重 claim 中彈 → moat/growth 格按 §4a rubric 降;入公式,
+  但可能被 single-source cap 吸收(raw 仍 > 0.30 時 confidence 不變)——呢個係特性:
+  cap 已把單源 thesis 壓到 0.30,額外中彈喺 cap 下未反映,**要脫 cap 先見真章**。
+- **通道 2(cap 資格,binary)**:只有「Tier-1 獨立擊中**承重** claim」先脫 cap(§4a 定義)。
+  **分岔情況唔脫 cap**——Tier-1 證實嘅係「已 priced / 市場已知」嗰部分(周邊),唔係 thesis
+  真正押注嘅未證 magnitude 腿。例:tpu AVGO 財報硬證 toll-booth(已 priced),但唔證
+  share-shift(承重 magnitude 腿)→ 唔脫 cap,confidence 受 cap 綁 0.30。
+- **通道 3(magnitude 加成,sizing 層)**:sizing v2 用 magnitude_tier 做注碼加成。當 red-team
+  判 magnitude 腿未證(tpu share-shift、space 超級週期三支柱),該 node 標
+  `magnitude_unconfirmed: true`,**sizing v2 對呢個 node 收起 magnitude 加成**(回落到
+  confidence-only 基準注碼)。呢個先係分岔 thesis 嘅 red-team 殺傷力真正落腳點——
+  唔喺 confidence 數字,喺「搏大升幅嗰部分未證 → 唔俾佢憑潛在倍數加碼」。
+
+**淨效果(解 tpu/space 矛盾,一致可審計):**
+- confidence 數字 = 公式(tpu 0.30、space 公式值)——標準化,唔酌情。
+- 但未證 magnitude 腿 → magnitude 加成收起 → **真金白銀注碼受控**,透過 sizing 層而非
+  confidence 酌情。即「信心可以標準,但賭注唔會因為標準化咗就自動放大」。
+- `thesis/lint.py` 檢查:標咗 `magnitude_unconfirmed` 嘅 node,wiki 必須有對應 red_team
+  段記錄邊條腿未證;sizing v2 必須對該 node 停加成(實作待接)。
+
 ---
 
 ## 5. 知識層(NHITL 的實現機制)
