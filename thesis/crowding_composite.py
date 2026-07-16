@@ -87,6 +87,18 @@ OUT_JSON = os.path.join(ROOT, ".raw", "crowding_composite.json")
 MIN_QUARTERS = 8     # >=2yr of quarterly transcripts before a ticker's attendance pctile counts
 MIN_REPORTS = 1       # >=1 matching gooptions report before a theme's bull_ratio counts (n always shown)
 
+# Docs that are NOT analyst earnings calls (they say so in their own opening line), so their
+# "analysts" are the company's own execs or journalists. Excluded, never counted as a low reading.
+# Evidence + why no general rule exists: backtest/results/2026-07-16_crowding_asml_contamination.md
+NON_ANALYST_CALL_DOCS = {
+    "transcript-ASML-2025-10-15",   # 3-speaker short doc -> "analyst" = Fouquet (CEO)
+    "transcript-ASML-2026-01-28",   # "...results press conference" -> Toby Sterling (Reuters)
+    "transcript-ASML-2026-04-15",   # "...Q1 2026 results video" -> Fouquet (CEO) + Dassen (CFO)
+    "transcript-ASMLF-2025-10-15",  # ASMLF = same company, OTC ADR; identical bodies
+    "transcript-ASMLF-2026-01-28",
+    "transcript-ASMLF-2026-04-15",
+}
+
 # ---------------------------------------------------------------------------------------------
 # Transcript analyst-attendance extractor -- adapted from backtest/experiments/
 # exp_analyst_attendance.py (NOT modified there; the operator-tag generalization fix below is
@@ -212,7 +224,10 @@ def get_transcripts(con: sqlite3.Connection, ticker: str) -> list[tuple[str, str
 def attendance_series(con: sqlite3.Connection, ticker: str) -> pd.DataFrame:
     rows = []
     for slug, pub, body in get_transcripts(con, ticker):
-        names, method = extract_analysts(body)
+        if slug in NON_ANALYST_CALL_DOCS:
+            names, method = set(), "failed_not_analyst_call"
+        else:
+            names, method = extract_analysts(body)
         rows.append({"ticker": ticker, "slug": slug, "published": pub,
                       "n_analysts": len(names), "method": method})
     df = pd.DataFrame(rows)
@@ -229,7 +244,7 @@ def ticker_attendance_pctile(con: sqlite3.Connection, ticker: str) -> dict:
     if df.empty:
         return {"status": "no_transcripts", "pctile": None, "n_quarters_ok": 0,
                 "latest_n_analysts": None, "latest_date": None}
-    ok = df[df["method"] != "failed"]
+    ok = df[~df["method"].str.startswith("failed")]
     n_ok = len(ok)
     if n_ok < MIN_QUARTERS:
         return {"status": "insufficient_history", "pctile": None, "n_quarters_ok": n_ok,
