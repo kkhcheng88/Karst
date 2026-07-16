@@ -1,6 +1,15 @@
 # 15-theme confidence 最終遷移 diff 表(P2 收尾 + red-team 判決 + §4c 三通道)
 
-> **狀態**:草稿,俾用戶/gatekeeper 最終批准。批准前**唔切任何數字**(themes.yaml / wiki 一律不動)。
+> **狀態(2026-07-16 更新):✅ 已批准並已全量落地**(commit `0ac6f3f` "thesis: apply approved
+> 15/15 confidence migration (P2 complete)")。本表由「提案」變成「已執行嘅決策記錄」——
+> themes.yaml / wiki 15 個 theme 嘅 confidence 全部已切成本表嘅「最終建議」欄,lint P2 formula
+> errors 7→0 機械驗收通過。
+>
+> ⚠️ **但 euv 一行事後被推翻**:`backtest/results/2026-07-16_crowding_asml_contamination.md`
+> 證實本表 euv 用嘅 crowding=2.8 係污染讀數(ASML 最後 3 份 corpus「法說會」實為記者會/宣傳片,
+> defeatbeta feed 2025-07-16 後轉咗文件類型)。euv 0.47 因此係假讀數;正確值視乎兩個未決:
+> D1 淨修 → 0.406,紅隊判斷 → 0.250,而 D2(crowding 軸 temporal vs cross-sectional 建構效度)
+> 係 DESIGN 層變更,等用戶拍板。**本表其餘 14 行不受影響。**
 > **產出日期**:2026-07-16。**唯一新增檔**:本檔。
 > **一句總結**:全部 confidence = `thesis/confidence_formula.py`(§4a 凍結公式)輸出,冇任何心算、冇任何酌情。
 > red-team 殺傷力照 §4c 三通道機械分流(subscore / cap 資格 / magnitude 加成),**永不喺 confidence 數字度酌情郁**。

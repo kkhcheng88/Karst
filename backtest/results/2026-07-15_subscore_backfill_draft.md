@@ -1,6 +1,10 @@
 # 4-KPI subscore 補寫草稿 — discovery-radar 6 theme(P2 收尾第一步)
 
-> **狀態:草稿,待 gatekeeper 覆核先落筆。** 本檔**唔改**任何現有檔(themes.yaml / wiki 一字未動)。
+> **狀態(2026-07-16 更新):✅ 已覆核並已落地。** 本檔由「草稿」變成「已執行嘅決策記錄」——
+> gatekeeper 裁決見 §6(gas moat 1.5→1.0、gas capital 保持 1.0 因 solvency 已有獨立閘唔雙重罰、
+> siding 估值 0.5 定性為 blended-PE 數據質量降級);6 個 theme 嘅 subscores + confidence 已經連同
+> 其餘 9 個一齊喺 commit `0ac6f3f` 全量切入 themes.yaml / wiki,lint 機械驗收通過。
+> 最終整合表見 `backtest/results/2026-07-16_final_confidence_diff.md`。
 > 目的:6 個 discovery-radar theme 現行 confidence 係純敘事推導(冇 4-KPI 逐格分數),套唔到
 > `thesis/DESIGN.md` §4a 凍結公式。呢度按 §4a 錨點逐格補分,供遷移用。gatekeeper 覆核後,把
 > 「建議 wiki 推導 block」(§4)貼入各 wiki、把 capped 值寫入 themes.yaml,再跑 `thesis/lint.py`
