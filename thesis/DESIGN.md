@@ -1,7 +1,13 @@
 # Phase 3 — Thesis 層設計(質性 offense,NHITL)
 
 > 本檔是 2026-07-01 一整晚設計 session 的收斂記錄(20+ backtest commit 的實證 + 逐步壓力測試 +
-> 知識層/NHITL 架構討論)。Phase 3 尚未實作;這是定案的設計藍圖。技術識別碼/ticker/檔名/函式名保留英文。
+> 知識層/NHITL 架構討論)。技術識別碼/ticker/檔名/函式名保留英文。
+>
+> **狀態(2026-07-16 更新):Phase 3 已實作並運行中。** 本檔開頭幾節係 2026-07-01 嘅原始設計藍圖
+> (當時確係「尚未實作」,呢句已過時、故刪);**§4a/§4b/§4c 係現行、已凍結、已接線嘅規則**,由
+> `thesis/lint.py` 機械強制。已落地:15/15 theme confidence = §4a 凍結公式輸出(`confidence_formula.py`)、
+> 15/15 已完成 §4b Level-2 red-team、§4c 三通道全部接線(通道 3 喺 `sizing.py` 嘅
+> `theme_magnitude_mid()`)。**衝突時以 §4a-§4c 為準,唔係前面幾節嘅原始藍圖。**
 
 ---
 

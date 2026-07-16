@@ -1,5 +1,23 @@
 # Karst-AA 全風險組合設計【Fable 5 應戰書,2026-07-12】
 
+> ## 🛑 提案,唔係指令 — 唔准照本檔行動(2026-07-16 加註)
+>
+> **本檔用祈使語氣寫(例 §8「即刻 → 賣 SPY 底倉,砌 AA-strict 殼」),但佢係一份未獲批准嘅設計提案。
+> 照字面執行會用真錢做一個從未拍板嘅遷移。**
+>
+> 逐條核實(2026-07-16):
+> - **AA-strict 遷移未批准,而且係 blocked。** `thesis/aa_strict_paper_tracker.py:1-3` 明文
+>   「daily **PAPER (no real capital)** … before any real-money migration decision」,並引用用戶
+>   2026-07-13 嘅明確指示;`STATUS.md:97` 記住「AA 遷移(**#25 blocked**)…等用戶拍板」。
+>   → **「賣 SPY 底倉」係提案內容,唔係已批准嘅行動。**
+> - **本檔聲稱 `sizing.py` 已行 `--nav-pct` % NAV 制 — 實測唔存在**(`grep nav-pct thesis/sizing.py`
+>   = 0 命中)。sizing 現行仍係 $ 制 + `paper_ledger.py` 層做 %-of-sleeve 轉換。
+> - 本檔嘅 magnifier「永久人手判斷」立場亦已被 `thesis/magnitude_features.py`(P3,F2/F3/F5 已機械化)
+>   部分推翻。
+>
+> **保留理由**:呢份係「全風險組合」設計探索嘅完整論證同真數,有參考價值。
+> **但任何 agent/讀者:本檔嘅祈使句一律當「提案」讀,唔係當「待辦」讀。真錢動作一律要用戶明確拍板。**
+
 > **背景**:用戶挑戰——移除「持有 SPY 現貨 / 任何零 beta 資產」嘅選項,只准用五類非零 beta 工具
 > (①SPY/QQQ LEAP call 或 PMCC ②11 GICS 板塊輪動 ③thesis ETF ④thesis 個股長倉 ⑤magnifiers),
 > 問:點樣做到最佳 risk/reward?timing 點調整?
