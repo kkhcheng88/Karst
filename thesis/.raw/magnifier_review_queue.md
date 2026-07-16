@@ -48,3 +48,37 @@
   - 逐 feature:**F4 樽頸位置**=**再確認**——TSM 係全 theme 最高(所有 AI 晶片喺 TSMC 造、CoWoS/SoIC 咽喉),#159「通吃」直接佐證。**F3 距底部**=已 late/priced、mega-cap $1T+ 基數稀釋 magnitude,無變。**F1/F2**=無新財務料。**F5**=AI foundry most-consensus,無變。
   - **Cross-cycle**:P1(先進製程樽頸獨立商品價)=PASS;P2(供給紀律逆轉)=CoWoS 4x 擴產係需求驅動樽頸回應、非頂部槓桿併購,未觸。
   - **初稿判斷:magnitude_tier 維持 2-3x(reviewer 可判 2x,同既有 note 一致)、cycle_stage 維持 late。** #159 佐證 F4 但唔改 priced/mega-cap 稀釋,係佐證非新訊號。**待日間 session 覆核**:無特別新增追蹤點。
+
+## 2026-07-16 magnifier staleness check
+
+> **共同觸發源(以下 5 個 node)**:全部由**同一篇** gooptions #168「Musk 買下 Mesh Optical」(publishedAt 2026-07-15、
+> Tier-2 **neutral**、**paywall 只引 free preview**)觸發 —— #168 tag 咗 SPCX/SIVE/COHR/LITE/MTSI/AVGO/MRVL 七隻,
+> 故連帶 flag 呢 5 個 node。付費段(散戶可交易上游雷射鏈、四反方、六軸框架)未見。已同步 ingest 落
+> `thesis/wiki/photonics-optical.md`（2026-07-16 update 區塊,confidence/cycle 維持)。
+
+- [ ] **photonics-optical/laser-idm-moat** stale -- new evidence: COHR article 2026-07-15; LITE article 2026-07-15
+  - 夜班草稿(2026-07-16,未經人手確認):現況 magnitude_tier=2-3x、cycle_stage=late、last_scored 2026-07-13。觸發 = #168 free preview。#168 一句話結論=「Musk 買到 Mesh 嘅模組設計+封裝組裝端,買唔到卡喉嗰顆雷射晶粒同 InP 晶圓;CW 雷射仍外購,點名 Coherent/Lumentum/住友握上游」。
+  - 逐 feature 對照 rubric §1:**F4 樽頸位置**=**強化(佐證非新事實)**——垂直整合案例第三方確認「雷射 IDM = 買唔到嘅咽喉」,正正係本 node arms-dealer 論點;另 Alpha C1 走 **LPO** 但 free preview 明言「每顆仍要一顆雷射在發光」→ 雷射 moat **生還於 LPO**,呼應 07-15 Level-2 red_team「bypass 半句生還」。**F1 營運槓桿**=無新毛利/稼動,無變。**F2 定價權**=無 COHR/LITE 電話會 constraint-language,無變。**F3 距底部**=已 late(COHR 98%/LITE 75% ttm_pe)priced-ahead,無變。**F5 擁擠**=又一 neutral/偏多報告聚焦上游雷射鏈 → 輕微擁擠(晚),非 step-change。
+  - Cross-cycle:P1(護城河獨立於商品價)=雷射 IDM 結構咽喉、PASS;P2(供給紀律逆轉)=無槓桿擴產訊號,未觸。
+  - **初稿判斷:magnitude_tier 維持 2-3x、cycle_stage 維持 late。** F4 獲第三方佐證但 F3 priced-ahead 封頂 magnitude;neutral paywall 文、對 COHR/LITE 無財報級新事實 → 唔郁。**待日間 session 覆核。**
+- [ ] **photonics-optical/silicon-photonics-dsp** stale -- new evidence: MRVL article 2026-07-15
+  - 夜班草稿(2026-07-16,未經人手確認):現況 magnitude_tier=2-3x、cycle_stage=late、last_scored 2026-07-13。觸發 = #168,MRVL 僅 mentioned(受惠 ticker 清單之一),免費段無 MRVL 專屬新事實。
+  - 逐 feature:#168 唯一相關硬料 = Alpha C1 走 **LPO 路線、砍走 DSP retimer** → **F4/本 node 定位再確認**:本 node note 已記「DSP 層被 CPO/LPO 替代(headwind 非樽頸)」,#168 係又一 LPO-取代-DSP 嘅 datapoint,方向一致、**強化 headwind 而非改樽頸性質**。**F1/F2/F3** 對 MRVL 無新財務料(已 86 分位 priced)。**F5** 輕微擁擠。
+  - Cross-cycle:P1 DSP 層本身非獨立咽喉(被替代中)、本就弱;P2 未觸。
+  - **初稿判斷:magnitude_tier 維持 2-3x、cycle_stage 維持 late。** LPO datapoint 佐證既有「DSP 被替代 headwind」讀法,無新事實改檔位;MRVL mentioned-only。**待日間 session 覆核**(node note 已建議當 WATCH 級)。
+- [ ] **photonics-optical/cpo-speculative-preprofit** stale -- new evidence: SIVE article 2026-07-15
+  - 夜班草稿(2026-07-16,未經人手確認):現況 magnitude_tier=5-10x-binary、cycle_stage=early、last_scored 2026-07-13。觸發 = #168。**注意 carryover**:同一 node 上一晚(07-15)已由 #163 flag 過(見上 §2026-07-15,判維持)、今晚 #168 再 flag。
+  - #168 相關:報告(Serenity 轉述)點名 **SIVE(Sivers)為上游 CW 雷射首選候選** —— 屬 mentioned-only 嘅**偏多提名**,SIVE/LWLG 本體無新財報級料、無 CPO 收入里程碑。
+  - 逐 feature:**F5 擁擠**=froth 名被再點名 → 輕微擁擠上升(晚),與本 node「純投機/最曝險」定位一致。**F3/F4** 對 SIVE 本體無新證據;option 仍 pre-revenue、未 in-the-money。
+  - Cross-cycle:P1/P2 對 pre-profit option 檔不適用。
+  - **初稿判斷:magnitude_tier 維持 5-10x-binary、cycle_stage 維持 early。** 一篇 neutral 文點名 SIVE 唔改 option 性質、無催化令其提前兌現;呢隻 pre-profit 尤其唔應憑 mentioned-only 提名郁檔。**待日間 session 覆核**(SIVE/LWLG 下次財報 CPO 出貨/收入里程碑)。
+- [ ] **space-satellite/spacex-newly-public-dominant-moat** stale -- new evidence: SPCX article 2026-07-15
+  - 夜班草稿(2026-07-16,未經人手確認):現況 magnitude_tier=2-3x、cycle_stage=late、last_scored 2026-07-14。觸發 = #168(primary_ticker SPCX)。**關鍵定性**:#168 講嘅收購方係 **Musk 個人名義(申報明列非 SpaceX、非 xAI)**收 Mesh Optical,標的服務 **xAI Colossus** 叢集 —— 與 SpaceX 本體僅**間接關聯**(創辦人為前 Starlink 雷射工程師;文中提及 Starlink 已自製太空雷射終端、2024-09 在軌逾 13,000 個)。
+  - 逐 feature:對 SPCX 本 node 而言 = **旁證/tangential**,無 SpaceX 本體財報級新事實。唯一輕微相關 = Musk「第三次垂直整合」模式(Tesla 晶片→SpaceX 雷射→xAI Mesh)輕微佐證「Musk 生態最深護城河 + 慣性內化第三方」敘事;但同時 Musk 個人/xAI/X common-control 交錯,**輕微加強本 node 既有 caveat「太空 purity 被非核心(AI segment)稀釋、治理複雜」**,方向上非利多。**F1-F4** 無 SpaceX 本體新料;**F5** IPO 本身已極端擁擠,#168 不改。
+  - Cross-cycle:P1(Starlink 全鏈護城河)結構未變、PASS;P2 未觸。
+  - **初稿判斷:magnitude_tier 維持 2-3x、cycle_stage 維持 late。** 觸發文對 SPCX 屬 mentioned/tangential(收購方係 Musk 個人非 SpaceX)、無財報級新事實;若有影響反而係輕微加強「purity 稀釋/治理複雜」封頂理由,非上調。**待日間 session 覆核**(SpaceX 下次揭露 Starlink 營收/利潤;Musk-entity 併表對 SPCX 估值影響)。
+- [ ] **tpu-custom-silicon/custom-asic-tollbooth** stale -- new evidence: AVGO article 2026-07-15
+  - 夜班草稿(2026-07-16,未經人手確認):現況 magnitude_tier=2-3x、cycle_stage=late、last_scored 2026-07-13。觸發 = #168,AVGO 僅 mentioned。**關鍵定性**:#168 唯一涉 AVGO 嘅句 = 「xAI 收 Mesh,把先前**外包給 Broadcom、Coherent 的光通訊改成自己做**、去第三方化」—— 係**光模組/光通訊側**嘅單一客戶(xAI)內包,**唔係本 node 承載嘅 custom-ASIC(XPU / toll-booth)業務**。
+  - 逐 feature:對本 node「誰贏都收 ASIC 過路費」論點 = **實質無關**(內包發生喺光互連側、非 AVGO 定義嘅客製 ASIC 設計服務;且 xAI 非 AVGO 公開主要 ASIC 客戶)。**F4** ASIC toll-booth 咽喉未受此 datapoint 動搖;**F1-F3** 無新財務料(已 75-87 分位 priced-ahead)。**F5** most-consensus AI trade,#168 不改。**⚠長線 watch(非本 node)**:「hyperscaler 光互連垂直內包」係一個獨立主題訊號,若擴散至客製 ASIC 側(hyperscaler 自研取代 Broadcom XPU)才觸及本 node,現階段證據 = 淨光模組側、單一客戶。
+  - Cross-cycle:P1(ASIC 設計服務咽喉獨立商品價)未變、PASS;P2 未觸。
+  - **初稿判斷:magnitude_tier 維持 2-3x、cycle_stage 維持 late。** AVGO mentioned-only 且內包發生喺光通訊側(非 ASIC toll-booth),對本 node 無實質新證據 → 唔郁。**待日間 session 覆核**(留意 hyperscaler 是否由光互連內包擴散至客製 ASIC 內包 = 才是本 node 真 kill 軸)。

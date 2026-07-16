@@ -139,6 +139,32 @@ crowding/cycle penalty (LATE + 58% bull 最擁擠 + 護城河名 75-98 分位 + 
 - [[ai-capex-macro-risk]]:收發器層壓力若擴散成整條光鏈需求下修(而非純架構層輪動),要對照該頁「承諾
   −run-rate 缺口」與「四大 FCF 軌跡」兩盞燈,分辨是架構重組還是 AI-capex 打嗝的前兆。
 
+## 2026-07-16 update:#168(free preview / paywall)Musk 收 Mesh Optical —— 垂直整合佐證「moat 在上游雷射」(confidence/cycle_stage 維持)
+
+- **來源限制**:#168 為 **paywall 文,只引 free preview**;付費段(散戶可交易上游雷射受惠鏈、四條反方逐條、
+  六軸 if-then 框架)未見,以下僅 free-preview 可驗證內容,thesisType = **neutral**(報告自陳刻意不選邊)。
+- **事件(Tier-3 signal)**:Musk **個人名義**(非 SpaceX/非 xAI)收購前 Starlink 雷射工程師創辦嘅光模組新創
+  **Mesh Optical**,FTC 四天火速批准、金額未揭露。Mesh 產品 Alpha C1 走 **[[LPO]] 路線**(砍 DSP retimer)、
+  1.6T/800G、功耗壓 <10W、倒裝晶片黏晶封裝主打可製造性(創辦人來自 Starlink 太空雷射量產)。
+- **佐證本頁承重錨(moat = 雷射 IDM / [[InP]] 咽喉),非新事實、不改分數**:報告 free-preview 自己嘅一句話結論=
+  「Musk 買到嘅係**模組設計 + 封裝組裝端**,買唔到卡喉嗰顆雷射晶粒同 InP 晶圓;真正可交易鏡頭 = 資金往上游雷射流」——
+  與本頁「最深護城河 = 無代工雷射 IDM [[COHR]]/[[LITE]];上游咽喉 = [[InP]] [[AXTI]]」**同一結論、不同路徑**
+  (垂直整合案例 vs 6 層毛利分解)。CW 雷射仍外購、點名 Coherent/Lumentum/住友電工握上游。
+- **對 kill 軸 = 逼近但未觸(反而加固)**:kill 其一 =「[[LPO]]/可插拔續當 good-enough」。#168 顯示 Mesh 行 LPO,
+  但 free preview 明言「LPO 拆走 DSP,但光冇消失,**每顆 Alpha C1 仍要一顆雷射在發光**」→ LPO 減 DSP 唔減雷射需求,
+  **雷射 moat 生還於 LPO**,呼應 2026-07-15 Level-2 red_team「bypass 半句生還(LPO 拆 DSP 但要更高質雷射)」。
+  非 kill 觸發,係對「moat 唔會被 LPO 繞過」嘅第三方佐證。
+- **crowding:輕微加溫,不改 band**:報告(Serenity 轉述)點名 **[[SIVE]]** 為上游首選候選 —— SIVE 正是本頁列
+  「純投機 / CPO 延後最曝險、避」嘅 froth 名。又一 neutral/偏多報告聚焦上游雷射鏈 = 擁擠端再添一筆,方向與
+  「58% bull、避 froth」一致,不構成新增瓶頸或估值一手證據 → **confidence 0.30 / cycle LATE 維持**(夜班紀律:
+  無 Tier-1 財報級新事實不郁分)。
+- **需求錨旁證(標注,待日間覆核)**:xAI Colossus 555,000 顆 GPU / 2GW(2026-01)、長期目標 100 萬顆 —— 若屬實,
+  與 [[ai-power-grid]]/[[ai-capex-macro-risk]] 嘅下游需求錨同向,但 GPU 叢集規模係 free-preview 轉述、**未一手核**,
+  標「待日間 session 覆核」,不入承重證據。
+- **資料/可交易性注記**:primary_ticker `SPCX`、Mesh、SpaceX、xAI 均**私有 / 非可交易** → 不加 universe.yaml;
+  可交易表達仍是本頁既有 COHR/LITE/SIVE 等。raw 內文一處自稱「ISSUE #164」與 frontmatter `#168` 不一致(頻道
+  編號瑕疵,已見 gooptions 慣例),以 manifest/frontmatter `#168` 為準。
+
 ## 待補
 - [ ] 接「crowding 溫度」自動量測(bull 佔比 + 估值分位 → 動態 cycle/confidence)。
 - [ ] 逐字稿抽 COHR/LITE 管理層產能/交期/定價語言(moat + 32 月交期證據補強)。
@@ -174,5 +200,7 @@ Tier-2(photonics 叢 24 篇,`thesis/wiki/sources/`,全文 `corpus.db`):#092(雷�
 #107(CPO 取代 DSP 非模組廠)、#115(中國批次放行 InP);**新增批次(2026-07-05):#138(GLW 玻璃橋≠玻璃基板、
 新增耦合節點、三雲、46× PE)、#139(多頭長推體檢、COHR 預付 $22.28M 鎖 6 吋 InP)、#141(AXTI 殺盤=去估值溢價、
 分階段爬坡、雷射仍 3 吋)、#143(CPO 延後三排受害地圖、龍頭不痛、ALAB 銅窗口)**;**新增(2026-07-08):
-#149(free preview,網路扁平化 OpenAI MRC/Amazon RNG 壓收發器層、B. Riley 具名降評 AAOI、層輪動非板塊看空)**。
+#149(free preview,網路扁平化 OpenAI MRC/Amazon RNG 壓收發器層、B. Riley 具名降評 AAOI、層輪動非板塊看空)**;
+**新增(2026-07-16):#168(free preview/paywall,neutral,Musk 個人收 Mesh Optical=垂直整合入場券非終局、
+買到組裝封裝端買唔到上游雷射/InP、Alpha C1 走 LPO 但仍需雷射→moat 生還於 LPO、點名 SIVE 上游候選)**。
 Tier-1:defeatbeta `ttm_pe`/`quarterly_cash_flow`(2026-07-01)。
