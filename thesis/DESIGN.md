@@ -135,7 +135,33 @@ cap 防嘅係**假說來源集中**(成本簿嘅敘事框架出自同一個腦 �
 - **唔算** ❌:第二個 Tier-2 源如果只係轉述/呼應第一個(相關源只算一個);
   一手驗證咗周邊事實(pe/capex 拉咗數)但未觸及承重 claim 本身。
 - 執行檢查:lint 對 `sources:` 有 ≥2 條時,要求至少一條標明 corroborates: <claim>,
-  防止「加個 newsletter 就解 cap」嘅假獨立。
+  防止「加個 newsletter 就解 cap」嘅假獨立。**(2026-07-16 補實作 —— 之前呢句點名咗 lint
+  做執行者,但 lint 零實作,即係最高槓桿嗰個閘一直冇上鎖:13/15 theme 俾 single-source cap
+  釘死喺 ≤0.30,而脫 cap 係 binary 開關,confidence 一跳就 +56%;公式條件係 `n_sources <= 1`,
+  加任何一個 source entry 就即刻脫 cap。今日合規純靠自律。)**
+  **誠實界線**:lint 只驗「有冇標 corroborates」,**判唔到佢係咪真係擊中承重 claim**——
+  嗰個要 red-team/人判。即係呢個閘擋「懶惰嘅假獨立」,擋唔到「有心嘅錯判」。
+
+### 4a-bis. 治理紀律:規則必須 encode(2026-07-16,三次同類 bug 之後)
+
+**同一類 bug 今日出現三次**,全部係「規則寫咗喺 doc,但公式/lint 冇 encode → 可以靜靜越界」:
+1. **single-source cap 0.30**(WS3 admission)—— 07-15 由 P2 diff agent 捉返
+2. **uncalibrated ceiling 0.40**(STATUS.md:261)—— 07-16 cleanup 捉返;後果:兩個 theme
+   越界並落咗地 10 日
+3. **corroborates 執行檢查**(§4a:137 本節)—— 07-16 治理盤點捉返;最高槓桿嗰個閘冇鎖
+
+**兩條規則矛盾點算(唔准揀 doc)**:`STATUS.md:261`(≤0.40,07-06)vs `ws3_lifecycle.md:137`
+((0, 0.6],07-08)兩條都講「校準前」、互相冇引用,而 **lint 一直只 encode 咗鬆嗰條 0.6** ——
+呢個就係 0.47 可以零報錯活 10 日嘅機制。**解法 = 兩條並存、取最緊**(同兩個 cap 同一 pattern):
+0.40 governing,0.6 降為結構性絕對上限。**揀邊份 doc 贏係酌情;取最緊係規則。**
+
+**硬紀律(往後任何人/任何模型都要跟):**
+- 公式/sizing 入面每個 cap/閘/magic number,**必須有 doc 出處(檔:行)**寫喺 code 旁邊 ——
+  無主數字 = 將來冇人知點解、唔敢郁。
+- 反過來:**doc 寫低嘅每條硬規則,必須 encode 喺公式,或者 lint 機械檢查** —— 唔可以靠人記得。
+  「用戶批准過」唔係規則被 encode 嘅替代品(0.47 就係用戶批准過,但兩邊都唔知有條線)。
+- **規則登記冊**:`backtest/results/2026-07-16_governance_rules_audit.md`(21 條規則 × 出處 ×
+  encode 位置 × lint 覆蓋 × 實測越界)。加新規則要同步更新佢。
 
 ### 4b. FALSIFY 升級:INGEST 係審判,唔係歸檔(2026-07-15,用戶定向)
 

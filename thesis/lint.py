@@ -239,13 +239,47 @@ def run(no_ticker_check=False):
             if cs not in VALID_CYCLE_STAGES:
                 errs.append(f"cycle_stage {cs!r} not in {sorted(VALID_CYCLE_STAGES)}")
 
+            # 兩條「校準前 confidence 上限」規則並存,互相冇引用(2026-07-16 治理盤點發現):
+            #   ws3_lifecycle.md:137 (07-08) : confidence ∈ (0, 0.6]      <- 一直只有呢條被 encode
+            #   STATUS.md:261        (07-06) : 「校準迴路未通之前…confidence 上限 ≤0.40」
+            # 後果:lint 一直合法放行 0.47 兩個(zero error),越界活咗 10 日至今日 cleanup 先捉到。
+            # 解法 = **兩條並存、取最緊**(同 confidence_formula 兩個 cap 同一 pattern),
+            # 唔係「揀邊條 doc 贏」—— 揀 doc 係酌情,取最緊係規則。0.40 < 0.6 故 0.40 governing。
+            # 實際 cap 邏輯住喺 confidence_formula.UNCALIBRATED_CAP(單一實作,呢度唔複製常數);
+            # 呢個 (0, 0.6] 範圍檢查降級做「結構健全性」檢查(0.6 = WS3 絕對上限,校準後都唔可以過),
+            # 真正嘅 ≤0.40 由下面 P2 formula check 逐 theme 對公式輸出強制。
             conf = t.get("confidence")
             if conf is None or not (0 < float(conf) <= 0.6):
-                errs.append(f"confidence {conf!r} not in (0, 0.6]")
+                errs.append(f"confidence {conf!r} not in (0, 0.6] (ws3_lifecycle.md:137 absolute "
+                            f"bound; note the tighter uncalibrated ceiling "
+                            f"{cf.UNCALIBRATED_CAP} from STATUS.md:261 is enforced per-theme by "
+                            f"the P2 formula check below)")
 
             sources = t.get("sources") or []
             if len(sources) < 1:
                 errs.append("sources empty (need >= 1)")
+
+            # DESIGN §4a:137 執行檢查(2026-07-16 補實作 —— 之前 DESIGN 點名 lint 做執行者,
+            # 但 lint 零實作,即係「加個 newsletter 就解 cap」呢個原文明講要防嘅漏洞一直冇上鎖)。
+            #
+            # 點解呢個係全系統最高槓桿嘅閘:single-source cap 釘死 13/15 theme 喺 <=0.30,
+            # 係實際綁緊嘢嘅主要約束;而脫 cap 係 binary 開關 —— confidence 由 0.30 跳到 raw
+            # (實測 0.469 = +56%)。confidence_formula 嘅條件係 n_sources <= 1,即係**加任何
+            # 一個 source entry 就即刻脫 cap**,唔理嗰個 source 有冇真係佐證過承重 claim。
+            #
+            # 呢度只能機械檢查「有冇標 corroborates」,**判唔到佢係咪真係掂承重 claim**
+            # (§4a 定義要求 Tier-1 獨立擊中承重,唔係周邊事實)—— 嗰個判斷要 red-team/人判。
+            # 即係話:呢個閘擋嘅係「懶惰嘅假獨立」,唔係「有心嘅錯判」。誠實講明呢個界線。
+            if len(sources) >= 2 and not any(s.get("corroborates") for s in sources
+                                              if isinstance(s, dict)):
+                errs.append(
+                    f"sources has {len(sources)} entries (escapes the single-source cap 0.30 -> "
+                    f"confidence can jump to raw) but NONE carries a `corroborates:` tag. "
+                    f"DESIGN §4a requires >=1 source to state which load-bearing claim it "
+                    f"independently corroborates -- a second Tier-2 source that merely restates "
+                    f"the first does NOT qualify as independent. Add corroborates: <claim> to the "
+                    f"qualifying source, or drop it back to single-source."
+                )
 
             meta_factors = t.get("meta_factors") or []
             if len(meta_factors) < 1:
