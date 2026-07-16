@@ -1567,6 +1567,148 @@ themes:
       **crowding 唔豁免**:Mag7 係公認最擁擠交易,crowding 分照計、confidence 食 penalty 係預期結果,
       冇夾數(見 wiki confidence 推導)。kill_metrics(本 theme 主要交付物)見上 kill_metrics 欄。"
 
+  semiconductor-cycle:
+    wiki: thesis/wiki/semiconductor-cycle.md
+    type: B                    # 半導體板塊週期監察鏡(AI-capex 受惠鏈)。★ ROLE = core-monitor
+                                # (同 mag7-hyperscaler 一樣,唔係衛星進攻籃)——半導體端係 QQQ/科技軸嘅
+                                # 高 beta 末端(SMH 對 QQQ beta ~1.4),佢嘅週期轉向係核心倉嘅早期警號。
+                                # 個股只做監察指標,載具 ETF-only(SMH,見 thesis_etf)。
+    cycle_stage: late          # 同 ai-capex 同儕全 late;半導體 = 公認最擁擠 AI 交易、估值抬高
+                                # (SOXX/SMH trailing ~76x/forward ~42x)、2026-07 正回調中(自峰值 ~-15%)。
+    confidence: 0.30           # PLACEHOLDER——crowding 重算後套 §4a 公式定稿(見 wiki 推導段);lint 對數。
+    verdict: real-ai-semi-cycle-but-durability-unproven-monitor-only
+    kill_condition: >-
+      (core-monitor theme:主要交付 = 幫 tier-1/2 核心(QQQ ~半波動由半導體端驅動,SMH 對 QQQ beta ~1.4)
+      裝早期警號,唔係衛星注碼。)任一觸發 -> confidence 歸零 + 向 tier-1 core 發「半導體週期見頂」早期
+      減曝險訊號:(1) WSTS/SIA 全球半導體銷售 3 個月移動平均 YoY 轉負(半導體週期經典見頂確認,2019/2023
+      皆此訊號);(2) TSM(台積電,foundry bellwether)月度營收 YoY 大幅減速跌穿 +10%(轉負 = 確認);
+      (3) 龍頭(TSM/NVDA)存貨天數 DIO 結構性上升 —— TSM DIO 現已 76->80->87 逐季升,若持續突破 100 天
+      且脫離 N2(2nm)爬坡敘事 = 需求-庫存錯位確認;(4) SMH 相對強弱結構性跌穿 —— SMH/QQQ 63 日相對回報
+      由領先轉持續負值(半導體 leadership 見頂 = capex-beneficiary 見頂;呢條同 mag7-hyperscaler kill 軸 5
+      「SOXX/SMH 相對 IGV」係同一條 leadership 軸嘅兩面,一個正本喺此、mag7 側 prose 互指唔重複);
+      (5) memory 週期 rollover —— DRAM/HBM 合約價由升轉跌(canonical 讀數喺 memory-supercycle kill_metrics,
+      本 theme 只互指唔重複;NAND 現貨已現早冷苗頭)。觸發任一 -> confidence 歸零、cycle 標 late-to-topping。
+    kill_metrics:                    # P4:kill_condition prose 入面有數字閾值嘅軸,機器可讀化。current
+                                      # 讀數 2026-07-17 由 subagent 逐條核實(來源/日期/HARD-ESTIMATE 標記見
+                                      # 各 desc)。memory 軸(kill 5)canonical 讀數喺 memory-supercycle,此處
+                                      # 唔重複(一個正本);SMH/QQQ RS 軸(kill 4)canonical 喺此、mag7 側互指。
+    - metric: sia_semi_sales_yoy
+      desc: "WSTS/SIA 全球半導體月度銷售 YoY(kill 軸1:半導體週期見頂;YoY 轉負係 2019/2023 每次下行嘅確認
+        訊號)。current 2026-05 全球銷售 $120.6B、YoY +104.1%、MoM +9.2%、連 15 個月創月度新高 = HARD(SIA
+        官方 press release 2026-07-06,基於 WSTS 三月移動平均)。⚠ +104% 含 2025 低基數效應,絕對值 $120.6B
+        動能仍向上先係關鍵;早期訊號 = 3 個月 MA YoY 減速趨向持平 + MoM 轉負。trigger:3mMA YoY 轉負。"
+      current: 104
+      current_as_of: "2026-05-31"
+      trigger: 0
+      direction: below
+      update_freq: monthly
+    - metric: tsm_monthly_rev_yoy
+      desc: "TSM(台積電)月度營收 YoY(kill 軸2:foundry bellwether;台積電每月頭公佈上月營收,係全球晶片
+        需求最及時嘅一手讀數)。current 2026-06 營收 NT$442.68B(~US$14.6B)、YoY +67.9%、MoM +6.2%、打破
+        過去四年 6 月季節性回落 = HARD(TSMC 官方月報 / SEC 6-K,2026-07-13)。trigger:YoY 減速跌穿 +10%
+        (明顯冷卻;轉負 = 確認收縮)。"
+      current: 68
+      current_as_of: "2026-06-30"
+      trigger: 10
+      direction: below
+      update_freq: monthly
+    - metric: tsm_inventory_days_dio
+      desc: "TSM 存貨周轉天數 DIO(kill 軸3:龍頭庫存;上升 = 需求-庫存錯位早警,係本 theme 5 軸中唯一
+        現時轉壞方向嗰條)。current Q2 2026 = 87 天(存貨 NT$385.53B),趨勢 Q2'25 76 -> Q1'26 80 -> Q2'26 87
+        逐季升(+11 天 YoY)= HARD(TSMC Q2 2026 財報 / SEC 6-K,2026-07-16)。管理層(C.C. Wei)歸因 N2(2nm)
+        量產前置庫存、非需求疲弱;故現屬『留意』非『觸發』。trigger:DIO 持續突破 100 天(連兩季)且脫離
+        N2 爬坡敘事 = 需求-庫存錯位確認。⚠ 87 vs 80/76 係第三方由財報存貨/COGS 計算,正式覆核見 SEC 6-K 原表。"
+      current: 87
+      current_as_of: "2026-06-30"
+      trigger: 100
+      direction: above
+      update_freq: quarterly
+    - metric: smh_qqq_rs_63d
+      desc: "SMH 相對 QQQ 63 日相對回報(kill 軸4:半導體 leadership;半導體端係 QQQ 高 beta 末端,佢由
+        領先轉持續落後 = capex-beneficiary 見頂訊號)。current +13.6%(2026-07-16 讀數,SMH/QQQ 過去 63 日
+        相對回報,見 backtest/results/2026-07-16_sector_flow_claims.md)= yfinance 日線衍生(非官方,標
+        ESTIMATE)。⚠ 近 21 日 SMH/QQQ 已 -7.2%(短期回吐)但 63 日仍領先 = 尚未 roll over。呢條係本 theme
+        canonical RS 讀數;mag7-hyperscaler kill 軸 5(SOXX/SMH 相對 IGV,軟件側鏡像)prose 互指、唔重複。
+        trigger:63 日相對回報轉持續負值(leadership 結構性喪失)。"
+      current: 13.6
+      current_as_of: "2026-07-16"
+      trigger: 0
+      direction: below
+      update_freq: weekly
+    tickers: [TSM, AVGO, MU]                # ★ 監察指標,唔係買入對象。可交易表達 = SMH(thesis_etf)。
+                                            # NVDA 唔入 tickers list:(a)保留 crowding_composite.py 記錄嘅
+                                            # 「NVDA feeds no active theme」既定不變量(module docstring),
+                                            # (b)避開永遠滿覆蓋 megacap 嘅 own-history-pctile crowding 盲點
+                                            # (同 mag7 機械 crowding 讀低嘅成因),NVDA 仍作 kill 軸3 龍頭
+                                            # DIO 監察(見 kill_metrics tsm_inventory_days_dio desc)。MU =
+                                            # 乾淨週期訊號(其 attendance 喺 2023 價格底部見底,係 crowding
+                                            # 模組自己嘅驗證案例);TSM/AVGO = bellwether。
+    # 單一監察鏡,一個 node = 成個 theme(跟 mag7-hyperscaler/specialty-siding 單一表達先例)。
+    nodes:
+    - name: ai-semiconductor-cycle-durability
+      tickers: [TSM, AVGO, MU]              # 半導體超級週期(AI capex 受惠鏈)嘅庫存/訂單/價格週期位置能否
+                                            # 耐久兌現——監察緊嘅承重問題本身
+      cycle_stage: late                     # 估值抬高(76x/42x)+ 擁擠極端 + 正回調中 = 股價晚期
+      magnitude_tier: 2x                    # 用戶指定 magnitude <2x:core-monitor,無 magnitude uplift
+                                            # (mega-cap 端冇 10 倍故仔,SMH 成份已係贏家;2x = sizing v2
+                                            # 中性 floor,log2(2)=1 → score=confidence-only)
+      magnitude_unconfirmed: true            # §4c:承重「AI-capex 半導體超級週期耐久兌現」腿未證(耐久性
+                                            # 係 kill 軸本身——經典 capex 超級週期會過度建設;DIO 已現上升)
+                                            # → 標未證;sizing v2 damp 到 2.0x,但 tier 已 2x → damp 唔 bind
+                                            # (同 mag7/specialty-siding:flag 但 damped=0,唔假報)。
+                                            # red-team 判決記錄見 wiki red_team 段(§4c/lint 硬性要求)。
+      last_scored: 2026-07-17
+      last_evidence: 2026-07-17
+    thesis_etf:
+    - etf: SMH
+      purity: 0.99             # VanEck Semiconductor ETF —— 基本上 = 半導體板塊本身(NVDA/TSM/AVGO 佔大頭)
+      remark: "core-monitor theme 嘅主要可交易表達(用戶指定 SMH:同 SOXX 相關 0.99、歷史略優 +2.3pp CAGR、
+        有 TSM;差別非關鍵,見 backtest/results/2026-07-17_qqq_two_factor.md C 節)。集中度賞金(NVDA+TSM
+        佔三成幾)= 高 beta。crowding 唔豁免:半導體 = 公認最擁擠 AI 交易,penalty 照食。"
+      liquidity: "全宇宙最流動板塊 ETF 之一,無流動性顧慮;歷史返到 2000 年(SMH),回測樣本充足。"
+    - etf: QQQ
+      leg: tier-1 核心本體嘅高 beta 末端(SMH 對 QQQ beta ~1.4;QQQ 94% 日波動由 Mag7 端 + 半導體端解釋)
+      remark: "本 theme 唔係叫你另買 SMH/QQQ,而係為既有 tier-1 核心(QQQ)裝半導體週期早期警號 —— 半導體端
+        係科技軸嘅高 beta 末端,週期先於大盤轉向,confidence 轉壞 = 對 tier-1 QQQ sleeve 嘅減曝險/收 LEAP
+        提示。同 mag7-hyperscaler(Mag7 端)合埋 = tier-1/2 核心倉嘅完整煙霧感應網(見 2026-07-17_qqq_two_factor:
+        MAGS + SMH 兩端解釋 QQQ 94% 日波動)。"
+      liquidity: "全宇宙最流動 ETF 之一,無流動性顧慮。"
+    sources:
+    - id: semiconductor-cycle-empirical-2026-07-17
+      tier: 1                  # 內部一手量化分析:(a)exp_qqq_two_factor(2026-07-17)—— MAGS+SMH 兩端解釋
+                                # QQQ 日波動 94%、SMH 係半導體端載具;(b)exp_sector_flow_claims(2026-07-16)
+                                # —— SOXX 回調 case study(8 案例 63d 平均 +21.4% 但左尾 2022 -45.8%)+ 半導體/
+                                # 軟件輪動軸。單一獨立證據鏈 -> single-source cap 0.30 適用(唔豁免)。呢批實驗
+                                # 係謹慎/證偽性質(RS 輪動長期規律弱、SOXX 回調左尾風險大),支持 monitor 定位、
+                                # 唔算獨立擊中「承重 bull claim(超級週期耐久)」,故唔脫 cap(§4a 定義)。
+    meta_factors: [ai-capex]
+    admitted: 2026-07-17
+    last_evidence: 2026-07-17
+    status: active
+    note: "★ ROLE = core-monitor(用戶已定案定位,唔准偏離)。主要價值 = 幫 tier-1/2 核心(QQQ 高 beta 末端
+      係半導體)裝早期警號,唔係衛星進攻注碼。thesis 陳述圍繞:半導體超級週期(AI capex 受惠鏈)嘅庫存/
+      訂單/價格週期位置能否耐久兌現。載具 SMH(ETF-only,用戶指定);個股(TSM/AVGO/MU/NVDA)只做監察指標,
+      唔落個股 ticker 做買入對象、亦唔加入 backtest/spine/universe.yaml 嘅可交易候選(刻意——ETF-only 定位)。
+      **同 mag7-hyperscaler 嘅關係(科技軸兩端)**:mag7-hyperscaler 係 Mag7 端(需求/capex 掃貨方),本
+      theme 係半導體端(capex 受惠/供給方);兩端合埋解釋 QQQ 94% 日波動(2026-07-17_qqq_two_factor),兩個
+      theme 嘅 kill metrics 合埋 = tier-1/2 核心倉嘅完整煙霧感應網。兩者皆 core-monitor、皆 magnitude<2x、
+      crowding 皆照食,係鏡像端唔互相取代。
+      **同上游 semis satellite themes 嘅邊界(唔重疊、唔取代)**:euv-lithography-monopoly(ASML)、
+      memory-supercycle(MU/HBM)、advanced-packaging、tpu-custom-silicon、semicap-equipment 係『上游瓶頸
+      攻擊 thesis』——各自持有一條 value-chain 咽喉、衛星進攻注碼、magnitude 可達 3-5x/binary。本 theme
+      係『成個半導體板塊嘅週期監察鏡』——core-monitor、ETF-only、magnitude<2x、監察軸落喺整體板塊嘅
+      銷售/庫存/價格/leadership 週期位置,唔係任何單一咽喉。兩類唔重疊:上游 themes 答『邊條供給樽頸值得
+      進攻』,本 theme 答『成個板塊週期而家喺邊、幾時該對核心減曝險』。kill 軸有互指(memory rollover ->
+      canonical 喺 memory-supercycle;SMH/IGV leadership -> 同 mag7 kill 軸 5 兩面),寫明一個正本、唔重複。
+      **實證地基(內部一手,已釘死本 theme 唔係 alpha 而係 monitor)**:(a)exp_qqq_two_factor(2026-07-17):
+      MAGS+SOXX 兩端解釋 QQQ 日波動 94%(R² 0.94)、SMH 係半導體端載具(同 SOXX 相關 0.99、歷史略優);
+      但『直接揸兩端代 QQQ』= 加 beta 非中性替代(樣本內 +30pp 係牛市放大),核心倉繼續用 QQQ、兩端做監察。
+      (b)exp_sector_flow_claims(2026-07-16):SOXX 由高位跌 15% 之後 8 案例 63d 平均 +21.4%(6/7 正)但左尾
+      3 次(2020/2022/2024-07)先深跌 20-46% 先見底(2022 -45.8%)-> 『調整差不多』低估左尾;半導體/軟件輪動
+      長期規律弱。兩者一致:板塊/RS 訊號唔係可接入 sizing 嘅 alpha,只可做 monitor -> 印證 core-monitor 定位。
+      **crowding 唔豁免**:半導體 = 公認最擁擠 AI 交易,crowding 分照計、confidence 食 penalty 係預期結果,
+      冇夾數(見 wiki confidence 推導)。kill_metrics(本 theme 主要交付物)見上 kill_metrics 欄。"
+
   # ============================================================================
   # 2026-07-11 discovery radar 40候選:WATCH-only(未成thesis,唔入universe/theme_signal,純記錄留待
   # 下季覆核)—— KALU(鋁,證據參差)、MCHP(analog/MCU,得2季太新)、AVT(分銷商,得2季+經濟模式波動大)、
