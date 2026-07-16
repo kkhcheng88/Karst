@@ -1,0 +1,41 @@
+# thesis/paper/narrative_flow.yaml -- 「narrative-flow」紙上選手嘅配置日誌(composition journal)
+#
+# 目的(2026-07-17 起好):前向驗證「narrative/flow 驅動嘅目標配置」(模仿一個 zsxq KOL 嘅做法)
+# 有冇 alpha。呢個檔係「賭注」嘅正本紀錄 -- composition 層(目標配置點揀)先係賭注本身,執行
+# 刻意最笨(生效日翌日收市價直入,冇 dip 揀價技巧),等笨執行同 composition 判斷嘅純 alpha
+# 分開睇。冇 dip 技巧嘅理由: backtest/results/2026-07-16_leader_dip_reversion.md 已證
+# leader-dip 執行本身冇超額報酬 -- 呢個選手故意唔用嗰套,淨係測 composition 揀得啱唔啱。
+#
+# 執行:thesis/narrative_flow_tracker.py 讀呢個檔 + 每個 ticker 嘅收市價,重算全段 NAV
+# (thesis/.raw/narrative_flow_paper_log.jsonl,gitignored、可重算),再由 thesis/paper_league.py
+# mirror 呢條 log 嘅 narrative_flow_nav / qqq_bh_nav 兩欄,同其他紙上選手一齊上擂台。
+#
+# 加新版本時,喺 journal 尾加一條新 entry(effective_date 要新過上一條;weights 要加齊
+# CASH,全部)。歷史版本唔好刪 -- NAV 曲線係逐版鏈接落嚟,執行價亦逐版鎖死喺嗰次生效日
+# 翌日收市價。
+
+strategy: narrative-flow
+label: "Narrative Flow (KOL 目標配置, 紙上)"
+benchmark: QQQ  # 對照:同期 QQQ buy&hold(見 tracker 輸出嘅 qqq_bh_nav 欄)
+initial_nav: 100  # 跟現有 paper league 選手慣例(aa-strict/spy-bh/sizing-v1/v2 都係 NAV=100 起跳)
+execution_rule: >
+  每條 journal entry 記錄「生效日」;執行價 = 生效日之後第一個交易日嘅收市價(笨執行,
+  冇 dip 揀價;調整之間唔郁,直至下一條 entry 生效)。
+
+journal:
+  - version: 1
+    effective_date: "2026-07-16"
+    rationale: >
+      依據 zsxq KOL 2026-07-16 手動首抓(thesis/.raw/zsxq/2026-07-16_manual_capture.md):
+      (1) semis 資金流出、錢轉大科技/軟件("硬件流出但錢冇離開科技") -> MAGS/IGV 接 flow;
+      (2) SMH 減持但唔清倉 -- 跟 KOL 均衡配置紀律,唔係清倉半導體;
+      (3) BofA Bull & Bear Indicator 9.5(非常擁擠反向賣出區間,2026-07-03 post)-> 現金
+          墊高做風險緩衝;
+      (4) QQQ 10% 做軸中性墊底部位。
+      來源: thesis/.raw/zsxq/2026-07-16_manual_capture.md
+    weights:
+      MAGS: 35
+      IGV: 15
+      SMH: 10
+      QQQ: 10
+      CASH: 30

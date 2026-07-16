@@ -61,6 +61,7 @@ import sys
 from datetime import datetime, timezone
 
 import pandas as pd
+import yaml
 
 ROOT = os.path.dirname(os.path.abspath(__file__))            # thesis/
 REPO_ROOT = os.path.dirname(ROOT)                             # Karst/
@@ -73,10 +74,15 @@ from backtest import data as data_mod  # noqa: E402 -- SPY close, used only for 
 STATE_PATH = os.path.join(ROOT, ".raw", "paper_league_state.json")
 REPORT_PATH = os.path.join(ROOT, ".raw", "paper_league_report.json")
 AA_LOG_PATH = os.path.join(ROOT, ".raw", "aa_strict_paper_log.jsonl")
+# thesis/narrative_flow_tracker.py's own log (2026-07-17: "narrative-flow" paper player --
+# composition-driven target allocation, mirrored here the same way aa-strict/spy-bh are: this
+# file never recomputes the NAV math, only reads the latest row).
+NARRATIVE_FLOW_LOG_PATH = os.path.join(ROOT, ".raw", "narrative_flow_paper_log.jsonl")
+NARRATIVE_FLOW_JOURNAL_PATH = os.path.join(ROOT, "paper", "narrative_flow.yaml")
 
 # ============================================================================
 # strategy registry -- add a new paper strategy here, nowhere else in this file.
-#   kind="mirror": read `source_field` verbatim from AA_LOG_PATH's latest row.
+#   kind="mirror": read `source_field` verbatim from `log_path`'s (default AA_LOG_PATH) latest row.
 #   kind="sizing": build+mark an equal-weight theme-basket NAV from sizing.py's `table`
 #                  ("v1" -> build_table(), "v2" -> build_table_v2()).
 # ============================================================================
@@ -89,6 +95,13 @@ STRATEGIES = {
                   "label": "Sizing v1 (confidence-only)"},
     "sizing-v2": {"kind": "sizing", "table": "v2",
                   "label": "Sizing v2 (confidence x magnitude)"},
+    "narrative-flow": {"kind": "mirror", "source_field": "narrative_flow_nav",
+                        "log_path": NARRATIVE_FLOW_LOG_PATH,
+                        "holdings_from_journal": NARRATIVE_FLOW_JOURNAL_PATH,
+                        "label": "Narrative Flow (KOL 目標配置, 紙上)"},
+    "qqq-bh-nf": {"kind": "mirror", "source_field": "qqq_bh_nav",
+                  "log_path": NARRATIVE_FLOW_LOG_PATH,
+                  "label": "QQQ B&H (narrative-flow 對照, mirrored)"},
 }
 
 
@@ -189,9 +202,10 @@ def _mark_all(state, today_trading_str):
             continue  # idempotent -- already marked for today's trading day
 
         if strat["kind"] == "mirror":
-            rows = _read_jsonl(AA_LOG_PATH)
+            log_path = spec.get("log_path", AA_LOG_PATH)
+            rows = _read_jsonl(log_path)
             if not rows:
-                notes.append(f"{name}: source log {AA_LOG_PATH} missing/empty -- left unmarked")
+                notes.append(f"{name}: source log {log_path} missing/empty -- left unmarked")
                 continue
             latest = rows[-1]
             nav = latest.get(spec["source_field"])
@@ -265,6 +279,37 @@ def _mark_all(state, today_trading_str):
 # ============================================================================
 
 
+def _fresh_strategy_state(spec, today_trading_str):
+    """A brand-new strategy's day-0 state -- shared by cmd_init (every strategy) and cmd_update's
+    late-registration path (2026-07-17, added for narrative-flow: a strategy added to STRATEGIES
+    AFTER the league state file already exists must not KeyError in _mark_all, and must start its
+    own history from today rather than being backfilled)."""
+    if spec["kind"] == "mirror":
+        return {"kind": "mirror", "history": []}
+    _themes, pct_by_slug = _sizing_pct_by_slug(spec["table"])
+    positions = {slug: {"pct": round(pct, 4), "entry_date": today_trading_str,
+                         "last_marked": today_trading_str}
+                 for slug, pct in pct_by_slug.items() if pct > 0}
+    deployed = sum(p["pct"] for p in positions.values())
+    return {
+        "kind": "sizing", "positions": positions,
+        "cash_pct": round(max(0.0, 100.0 - deployed), 4), "history": [],
+    }
+
+
+def _register_new_strategies(state, today_trading_str):
+    """Any name in STRATEGIES not yet present in a pre-existing state file gets a fresh day-0
+    entry, dated today (not backfilled) -- same "league started_on stays honest" convention the
+    module docstring describes for the league as a whole."""
+    notes = []
+    for name, spec in STRATEGIES.items():
+        if name not in state["strategies"]:
+            state["strategies"][name] = _fresh_strategy_state(spec, today_trading_str)
+            notes.append(f"{name}: newly registered strategy -- day-0 baseline as of "
+                         f"{today_trading_str}, no history backfilled")
+    return notes
+
+
 def cmd_init():
     if os.path.exists(STATE_PATH):
         print(f"state already exists at {STATE_PATH} -- --init only runs when the state file is "
@@ -275,18 +320,7 @@ def cmd_init():
     state = {"meta": {"started_on": today_trading_str}, "strategies": {}}
 
     for name, spec in STRATEGIES.items():
-        if spec["kind"] == "mirror":
-            state["strategies"][name] = {"kind": "mirror", "history": []}
-        else:
-            _themes, pct_by_slug = _sizing_pct_by_slug(spec["table"])
-            positions = {slug: {"pct": round(pct, 4), "entry_date": today_trading_str,
-                                 "last_marked": today_trading_str}
-                         for slug, pct in pct_by_slug.items() if pct > 0}
-            deployed = sum(p["pct"] for p in positions.values())
-            state["strategies"][name] = {
-                "kind": "sizing", "positions": positions,
-                "cash_pct": round(max(0.0, 100.0 - deployed), 4), "history": [],
-            }
+        state["strategies"][name] = _fresh_strategy_state(spec, today_trading_str)
 
     notes, _changed = _mark_all(state, today_trading_str)
     _save_state(state)
@@ -301,8 +335,8 @@ def cmd_init():
                   f"deployed={100 - strat['cash_pct']:.2f}%  cash={strat['cash_pct']:.2f}%  "
                   f"day-0 nav={nav_s}")
         else:
-            print(f"  {name}: mirrors '{STRATEGIES[name]['source_field']}' from {AA_LOG_PATH}  "
-                  f"day-0 nav={nav_s}")
+            print(f"  {name}: mirrors '{STRATEGIES[name]['source_field']}' from "
+                  f"{STRATEGIES[name].get('log_path', AA_LOG_PATH)}  day-0 nav={nav_s}")
     for n in notes:
         print(f"  note: {n}")
 
@@ -319,7 +353,10 @@ def cmd_update():
         return
 
     today_trading_str = _today_trading_str()
+    reg_notes = _register_new_strategies(state, today_trading_str)
     notes, changed = _mark_all(state, today_trading_str)
+    changed = changed or bool(reg_notes)
+    notes = reg_notes + notes
     _save_state(state)
 
     print(f"update complete ({'state changed' if changed else 'idempotent -- no change'}).")
@@ -330,6 +367,28 @@ def cmd_update():
 # ============================================================================
 # --report
 # ============================================================================
+
+
+def _narrative_flow_holdings(journal_path):
+    """Latest (max effective_date <= today) journal version's target weights, in the same
+    {"slug"/"pct"} + cash_pct shape _format_holdings_line() (dashboard_render.py) already expects
+    from sizing-v1/v2 rows -- "slug" here is a ticker, not a theme, since dashboard_render.py's
+    theme_zh() falls back to the raw string for any name it doesn't recognise (tickers included)."""
+    try:
+        with open(journal_path, encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+    except OSError:
+        return None, None
+    versions = sorted(data.get("journal") or [], key=lambda v: v["effective_date"])
+    today_str = datetime.now().date().isoformat()
+    applicable = [v for v in versions if str(v["effective_date"]) <= today_str]
+    latest = (applicable or versions or [None])[-1]
+    if latest is None:
+        return None, None
+    weights = {tk: float(w) for tk, w in latest["weights"].items()}
+    cash_pct = weights.pop("CASH", 0.0)
+    holdings = sorted(({"slug": tk, "pct": w} for tk, w in weights.items()), key=lambda h: -h["pct"])
+    return holdings, cash_pct
 
 
 def _max_dd(history):
@@ -376,6 +435,16 @@ def _build_report(state):
                 ({"slug": slug, "pct": pos["pct"]} for slug, pos in strat["positions"].items()),
                 key=lambda h: -h["pct"])
             row["cash_pct"] = strat["cash_pct"]
+        journal_path = spec.get("holdings_from_journal")
+        if journal_path:
+            # narrative-flow (2026-07-17): unlike sizing-v1/v2, this strategy's current weights
+            # live in its own composition journal, not in this file's state -- read the LATEST
+            # applicable version's weights straight from there for the same holdings display
+            # sizing rows get. Read-only; the journal itself is never written by this file.
+            holdings, cash_pct = _narrative_flow_holdings(journal_path)
+            if holdings is not None:
+                row["holdings"] = holdings
+                row["cash_pct"] = cash_pct
         rows.append(row)
     rows.sort(key=lambda r: (r["nav"] is None, -r["return_pct"]))
 

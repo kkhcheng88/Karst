@@ -14,5 +14,9 @@ REM   schtasks /Create /TN "Karst-paper-league-daily" /TR "C:\projects\Investmen
 REM   (query: schtasks /Query /TN "Karst-paper-league-daily" /FO LIST ; delete: schtasks /Delete /TN "Karst-paper-league-daily" /F)
 cd /d "%~dp0.."
 set PYTHONUTF8=1
+REM narrative-flow (2026-07-17): its own tracker recomputes the whole NAV history from
+REM thesis/paper/narrative_flow.yaml + price data each run (stateless) -- run it first so
+REM paper_league.py's mirror of narrative_flow_nav/qqq_bh_nav has a fresh log to read.
+python thesis\narrative_flow_tracker.py >> playbook_log.txt 2>&1
 python thesis\paper_league.py --update >> playbook_log.txt 2>&1
 exit /b 0
