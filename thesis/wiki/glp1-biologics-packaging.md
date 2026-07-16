@@ -2,7 +2,7 @@
 slug: glp1-biologics-packaging
 type: B
 cycle_stage: mid
-confidence: 0.27
+confidence: 0.3
 verdict: real-regulatory-moat-but-young
 updated: 2026-07-11
 tickers: ['WST']
@@ -43,12 +43,21 @@ priced-in。故事 track record 最短(得4季,vs USAC 13年/ATI 19年),Group D 
   year."*
 - Annex-1 升級項目:370個進行中(較上季340上升,2025年中數字)。
 
-## confidence 推導
+## confidence 推導(可追溯;2026-07-16 P2 遷移 + red-team 判決)
 ```
-乾淨、量化、regulatory-lock護城河(唔係純物理稀缺) + ttm_pe 71st pctile(適中,唔算便宜但都
-遠冇ATI/CRS/ASML咁極端) 但 track record 最短(4季,vs 其他新thesis動輒13-19年)
-= 6個新thesis入面中游 -> confidence ≈ 0.27
+KPI: moat 1.5/2(HVP >一半元件已 spec-ed 入藥廠 FDA filing=換供應要重新報批 regulatory-lock、
+       4季一致 demand-outstripping-supply、雙驅動[GLP-1量+Annex-1強制升級370項];耐久護城河但
+       史短+未經Level-2 red-team → 封頂 1.5)
+     · capital 1.5/2(EBIT margin 0.222/coverage 336/net cash + HVP 60%毛利mix-shift改善;
+       formal ROIC 未計故未到 2)
+     · valuation 1/2(pe_pctile 71st 50-90 + p_base 0.293 <0.4,機械格,適中)
+     · growth 1.5/2(Annex-1 additive已兌現;但短缺非結構性慢[ramping]+史短 → 封頂 1.5)
+                                                                          = 5.5/8 = 0.6875 base
+penalty(§4a 表:crowding 95.3 → ≥90 帶 × mid)                          × 0.55  → 0.413
+single-source cap(sources len=1)                                        → min(0.413, 0.30)
+→ confidence = 0.30  (生還,cap 綁住。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_glp1_packaging.md`。
 
 ## kill_condition(可證偽)
 > 「demand outstripping supply」語言喺未來一季消失(管理層自己講緊ramping capacity,一旦追上就完)

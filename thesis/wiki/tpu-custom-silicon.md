@@ -2,7 +2,7 @@
 slug: tpu-custom-silicon
 type: B
 cycle_stage: mid
-confidence: 0.28
+confidence: 0.3
 verdict: real-share-shift-but-thin-and-consensus
 updated: 2026-07-05
 tickers: ['AVGO', 'MRVL', 'TSM', 'CLS']
@@ -108,19 +108,38 @@ flowchart TD
 → **主題本身早(TPU 剛外溢),但最純的表達(AVGO 設計端)已被市場搶先定價、且是共識。** 這正是「主題
 早、expression 晚」的張力 → 定為 **MID**。不是純追高,但也不是便宜未共識的乾淨進場。
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-16 red-team 修訂)
 ```
-KPI: moat 1.5/2(AVGO 贏兩次 + TSM 瓶頸,但設計端可競爭) · capital 1/2(全鏈 capex 上行) 
-     · valuation 0.5/2(75–87 分位 + AVGO 最共識) · growth 1.5/2(推理超訓練,但切蛋糕有界)
-     = 4.5/8 = 0.56 base
-penalty = 薄證據(單一 Tier-2 報告 n=1,無跨源佐證) × 共識(AVGO 客製 ASIC 全市場最擁擠交易之一)
-         × mid-late(全鏈 75–87 分位 + capex 上行 + 上檔切蛋糕有界): × ~0.50  → 0.28
-一手已拉: AVGO/MRVL/TSM/CLS ttm_pe + capex(Tier-1, 2026-07-01) ✅
-→ confidence ≈ 0.28  (INITIAL, uncalibrated)
+KPI: moat 1.5/2(AVGO 贏兩次 + TSM 瓶頸,但設計端可競爭;Hock Tan 親認非自身樽頸)
+     · capital 1/2(全鏈 capex 上行;AVGO capex~1%營收+FCF 46%輕資產高ROIC)
+     · valuation 0.5/2(75–87 分位 + AVGO 最共識)
+     · growth 1.5/2(red-team 2026-07-16 中彈:「結構性份額轉移」承重腿——Google TPU仍佔AVGO AI
+       營收~2/3(MS估)、量產客戶得Google/Meta、9年外部採用集中Anthropic anchor,已證嘅係
+       toll-booth營收唔係share-shift → 由 2 降至 1.5)
+     = 4.5/8 = 0.5625 base
+penalty(DESIGN §4a 表:crowding 46.5 → 40-60 帶 × mid)                    × 0.85  → 0.478
+single-source cap(sources len=1)                                            → min(0.478, 0.30)
+→ confidence = 0.30  (penalty 標準化拉上 cap;red-team 殺傷力唔喺 confidence 數字——落 magnitude
+   通道,見 custom-asic-tollbooth(AVGO)node 之 magnitude_unconfirmed。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-15_redteam_tpu_custom_silicon.md`(2026-07-16 狩獵執行)。
 **讀法:主題真(推理成本經濟學 + AVGO 收費站),但 confidence < photonics 0.30——主因「證據薄(1 篇 vs
 24)+ AVGO 設計端最共識」,不是瓶頸更弱。相對強弱有、別追高;要吃 [[AVGO]] 小注 + 盯 TPU 外溢速度與
 設計端訂單,[[TSM]] 是「誰贏都吃到」的分散鏟子。**
+
+## red_team(Level-2,2026-07-16;詳 backtest/results/2026-07-15_redteam_tpu_custom_silicon.md)
+- **判決:部分中彈**——承重 claim 一分為二:(b)收費站被財報確認,生還兼被 Tier-1 硬確認;
+  (a)結構性份額轉移,中彈。
+- **(b) 生還兼加固**:AVGO AI 半導體單季 $10.8B(+143% YoY)、逐季 beat、$73B backlog(管理層一手)、
+  capex ~1%營收+FCF 46% = 高ROIC toll-booth真材,Tier-1 逐字稿直擊承重(同 photonics 相反)。
+- **(a) 中彈(最鋒利一刀)**:Hock Tan 親口自認「it's not because of shortage of our components」;
+  Morgan Stanley 估 Google TPU 現佔 AVGO AI 營收約 2/3;量產客戶僅 Google+Meta;9 年外部採用仍集中
+  Anthropic anchor。「share-shift」呢個字 over-claim——已證嘅係 toll-booth 收費真,未證嘅係行業級
+  份額由 NVDA 結構轉走。
+- **balance-sheet 檢查**:$73B/$30B backlog 零現金背書(deferred revenue係VMware軟體、flat/declining);
+  receivables +205%、DSO 53→69日 = 客戶收賒帳唔預付,AVGO反而融資客戶。
+- **已 flag `magnitude_unconfirmed: true`**(custom-asic-tollbooth/AVGO node),sizing v2 對此 node
+  收起 magnitude 加成——加成應掛喺已證嘅 toll-booth 營收,唔應掛喺未證嘅結構份額轉移。
 
 ## kill_condition(可證偽)
 > **「TPU 走出 Google 的速度」停滯** —— Anthropic/Meta 之後**無新雲端/企業採用**(外租平台仍卡在少數

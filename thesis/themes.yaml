@@ -243,7 +243,8 @@ themes:
     wiki: thesis/wiki/ai-power-grid.md
     type: B
     cycle_stage: late
-    confidence: 0.33
+    confidence: 0.47             # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:脫 single-source cap
+                                  # (GEV Tier-1 現金背書擊中承重,n_sources=2),confidence=raw=0.469,四捨0.47。
     verdict: real-demand-but-priced-ahead-of-ramp
     kill_condition: 'AI-capex demand anchor breaks (hyperscaler / data-center capex guidance rolls over
       off the $1T->$1.7T path) OR 800V/HVDC native mass-production (SemiAnalysis stages 3-4) slips again
@@ -433,7 +434,9 @@ themes:
     wiki: thesis/wiki/advanced-packaging.md
     type: B
     cycle_stage: late
-    confidence: 0.32
+    confidence: 0.30             # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:moat 2→1(OSAT 交易
+                                  # proxy 唔捕捉真正租金,中彈),raw 0.366,single-source cap 綁 0.30
+                                  # (現行 0.32 已違反 cap,屬修正)。
     verdict: real-chokepoint-but-proxies-priced
     kill_condition: 'Upstream material bottleneck loosens — Nittobo T-glass / Mitsui HVLP copper-foil 2027-28
       new capacity arrives early, or Q-glass/next-gen de-monopolises T-glass (#106/#117); OR the packaging
@@ -548,7 +551,10 @@ themes:
     wiki: thesis/wiki/space-satellite.md
     type: B
     cycle_stage: early
-    confidence: 0.28
+    confidence: 0.30             # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:growth 2→1.5(超級週期
+                                  # 三支柱——backlog/Golden Dome/VC——降級為敘事,分岔),penalty 標準化,
+                                  # raw 0.475,cap 綁 0.30;殺傷力落 magnitude 通道,見 golden-dome-policy-option
+                                  # + d2d-spectrum-optionality nodes。
     verdict: real-early-but-froth-priced
     kill_condition: Starship 快速重複使用長期延宕(成本停在 Falcon 量級、軌道運算 $28.5T AI TAM 敘事延後)或 Golden Dome 遭砍/推遲($1.2T
       僅 CBO 願景、已授權約 $38B[OBBBA $25B+FY2026 $13.4B,red-team 2026-07-16 一手撥款文件核實;舊記「$250B」高估約 7 倍])或純玩家獲利遲不轉正;個股定日 kill:RKLB Neutron 2026Q4 再延、ASTS 2026H2 衛星未準時足量上天、GSAT Amazon
@@ -624,6 +630,9 @@ themes:
       tickers: [ASTS]                      # ⑦ 手機直連 D2D;FCC 授權+頻譜+實測 98.9Mbps = 真監管咽喉;backlog $12B
       cycle_stage: event-driven            # pre-revenue、377x P/S(全叢最高、夢想定價)、空單 18.4%;催化 = 2026H2 衛星足量上天
       magnitude_tier: 5-10x-binary         # 有 FCC/頻譜護城河 → justified binary(非 blanket froth);但 pre-revenue+執行 binary = 極細注/option 框架
+      magnitude_unconfirmed: true          # red-team 2026-07-16:「backlog $12B」≈98%非cash-backed
+                                            # (balance sheet deferred revenue僅~$233M≈1.9%);TAM式
+                                            # MOU非RPO式合約義務,承重超級週期magnitude腿未證
       last_scored: 2026-07-13
       last_evidence: 2026-07-01
     - name: preprofit-smallcap-lottery
@@ -636,6 +645,9 @@ themes:
       tickers: [KTOS]                      # 國防太空、Golden Dome 相對衝擊最大(一張 $446.8M≈年營收 33%);2,400+ 家入池=門票非合約
       cycle_stage: event-driven            # ttm_pe 294.9(Op 利潤率僅 2.9%→PE 失真);催化 = Golden Dome 撥款(CBO $1.2T 願景、已授權約 $38B,舊記 $250B 高估 7 倍,red-team 2026-07-16 核實)
       magnitude_tier: 2-3x                 # 已有營收(非 pre-profit)+相對 torque,但薄利潤率+無咽喉+門票非合約+溢價 → 政策期權封頂,唔升 binary 檔
+      magnitude_unconfirmed: true           # red-team 2026-07-16:CBO $1.2T 願景 vs 真實已授權
+                                             # 約 $38B(OBBBA $25B+FY2026 $13.4B)——連 wiki 自己
+                                             # 「$250B已到位」都高估約7倍,超級週期量級腿未證
       last_scored: 2026-07-13
       last_evidence: 2026-07-01
     - name: merger-arb-special-sit
@@ -701,7 +713,9 @@ themes:
     wiki: thesis/wiki/rare-earth-materials.md
     type: B
     cycle_stage: event-driven
-    confidence: 0.28
+    confidence: 0.30             # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:growth 1.5→1(分岔:
+                                  # 兌現未到,2026-11 事件未至),penalty 標準化,raw 0.309,cap 綁 0.30;
+                                  # magnitude_tier 5-10x-binary 已承擔事件二元風險,不喺 penalty 再折一次。
     verdict: real-chokepoint-thin-evidence-event-binary
     kill_condition: 2026-11 US-China formal deal fully lifts indium/gallium/heavy-REE export controls (White
       House 'will address' upgrades to a legally binding removal) -> chokepoint thesis base collapses; OR
@@ -776,7 +790,9 @@ themes:
     wiki: thesis/wiki/tpu-custom-silicon.md
     type: B
     cycle_stage: mid
-    confidence: 0.25
+    confidence: 0.30             # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:growth 2→1.5(結構份額
+                                  # 轉移未證,中彈),penalty 標準化拉上 cap,raw 0.478,cap 綁 0.30;殺傷力落
+                                  # magnitude 通道,見 custom-asic-tollbooth(AVGO)node。
     verdict: real-share-shift-but-thin-and-consensus
     kill_condition: 'TPU escaping Google stalls (no new hyperscaler/enterprise adoption beyond Anthropic/Meta
       -> third-party leasing stays a few-giants niche) OR AVGO AI/custom-ASIC order-book & revenue stops
@@ -802,6 +818,10 @@ themes:
       tickers: [AVGO]                       # 設計 toll-booth:共同設計 Google TPU+OpenAI ASIC+Meta Iris,"wins twice"(設計+Tomahawk 交換);AI 半導體單季 $10.8B(+143%)、在手>$30B
       cycle_stage: late                     # 75-87 分位、capex rising、most-consensus AI trade
       magnitude_tier: 2-3x                  # 最乾淨 path-a toll-booth(誰贏都收費)但已 priced-ahead+最擠 → 同 laser-idm-moat/MU-today 語意
+      magnitude_unconfirmed: true            # red-team 2026-07-16:「結構性份額轉移」承重腿中彈——
+                                              # Google TPU仍佔AVGO AI營收~2/3(MS估),Hock Tan親口
+                                              # 自認「not because of shortage of our components」,
+                                              # 結構份額轉移未證(已證嘅係toll-booth營收,非share-shift)
       last_scored: 2026-07-13
       last_evidence: 2026-07-10
     - name: foundry-both-chains
@@ -885,7 +905,9 @@ themes:
     wiki: thesis/wiki/oil-gas-energy.md
     type: B
     cycle_stage: late
-    confidence: 0.25
+    confidence: 0.275            # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:subscores 1/1/1/1 不變
+                                  # (承重機制生還),raw=confidence=0.275,不綁 cap;SEI $1B EBITDA 腿
+                                  # magnitude_unconfirmed(theme 冇 nodes 結構,喺下面 note 記錄)。
     verdict: thin-split-watch
     kill_condition: 'THIN 2-report WATCH, not a directional call. Oil leg: Brent decisively reclaims >$90
       (Hormuz dark-voyage tankers attacked -> insurance spike -> real disruption, OR OPEC+ re-imposes discipline)
@@ -963,13 +985,22 @@ themes:
       $104 Brent敘事已被更新issue #116(Brent冧返$78、OPEC+破裂、near-term oversupply/bearish——即
       現有note頂引嘅同一#116)取代,荷莫茲溢價已unwind → 勿以#044危機urgency加碼,佢係back-catalog
       佐證非新forward訊號。Aschenbrenner持倉係第三方13F推論(非一手)、EQT「52w +9.6% vs SPY +28%
-      錯誤定價」係Tier-2敘事;Q1 2026 EPS已反映。confidence 0.25/late維持。'
+      錯誤定價」係Tier-2敘事;Q1 2026 EPS已反映。confidence 0.25/late維持。
+      2026-07-16 red-team判決(backtest/results/2026-07-16_redteam_oil_gas_energy.md):MAGNITUDE_UNCONFIRMED
+      (theme 現為flat ticker list、無nodes結構,故喺此theme層記錄——SEI「$1B EBITDA中期框架/3.1 GW
+      →結構主導」呢條magnitude腿未證:當下run-rate僅$340-370M、$1B係~2028 full-deployment stretch、
+      3.1 GW buildout主要靠槓桿(net debt一年4x爆$300M→$1,252M)而非客戶現金、客戶集中(3家、歷史xAI
+      重)未解。sizing v2對SEI應收起magnitude加成,回落confidence-only基準注碼。confidence本身不郁
+      (公式raw=confidence=0.275,不綁cap,red-team唔准酌情調)。'
 
   semicap-equipment:
     wiki: thesis/wiki/semicap-equipment.md
     type: B
     cycle_stage: late
-    confidence: 0.2
+    confidence: 0.20             # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:growth 1.5→1(FY26 營收
+                                  # 實跌、兌現全靠 FY27 前瞻指引,中彈),raw 0.203,不綁 cap;唯一 red-team
+                                  # subscore 通道實質壓低 confidence 嘅 theme;耐久 toll 腿標
+                                  # magnitude_unconfirmed,見 burn-in-tollgate-froth(AEHR)node。
     verdict: real-tollgate-but-froth-thin
     kill_condition: 'Insider open-market selling continues (CEO keeps selling / no buys resume, reverse
       smart-money signal persists) OR the $41M / $50.9M backlog fails FY2027 revenue recognition (deferral
@@ -987,6 +1018,10 @@ themes:
       tickers: [AEHR]                       # 真跨切 burn-in tollgate + one-first $41M Sonoma 超大客訂單;但 TTM EPS 負(等同 pre-profit)、單客集中 67-88%
       cycle_stage: late                     # froth:fwd PE ~615x、+856%/1yr、價高於所有賣方目標($56-68);capex 輕且降(無供給回應 boom)
       magnitude_tier: 5-10x-binary          # pre-profit+froth+「only at scale」護城河未證+內部人 $44M open-market 賣(反 smart-money)=高潛力但 binary,且偏 downside;notional/彩票端、極細注 watch-only、非 trough magnifier
+      magnitude_unconfirmed: true            # red-team 2026-07-16:耐久橫切 toll compound 到
+                                              # $130-150M+ FY27 指引全靠前瞻(contingent),FY26 營收
+                                              # 實跌 -15%、deferred revenue僅backlog的2.4%且停滯,
+                                              # 耐久 magnitude 腿未入 P&L
       last_scored: 2026-07-13
       last_evidence: 2026-07-11
     # thesis_etf: 未搵到窄 ETF(2026-07-10 已搜)。HBMX殘留名ONTO/ATEYY業務較廣(泛半導體檢測/測試設備,
@@ -1022,7 +1057,10 @@ themes:
     wiki: thesis/wiki/aerospace-specialty-alloys.md
     type: B
     cycle_stage: late          # 19年(ATI)/15年(CRS)一致故事 + ttm_pe 98th pctile = 已被發現、已貴
-    confidence: 0.24           # 真結構性(LTA鎖客+具名產品護城河)但極度priced-in,類近photonics/advanced-packaging嗰檔。INITIAL,transcript-only源,未做ROIC/TAM深度研究。
+    confidence: 0.24           # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:核對現值不郁,subscores
+                                # 1.5/1/0/1 確認,raw 0.241,cap 不綁;真結構性(LTA鎖客+具名產品護城河)但
+                                # 極度priced-in,類近photonics/advanced-packaging嗰檔。INITIAL,
+                                # transcript-only源,未做ROIC/TAM深度研究。
     verdict: real-moat-but-fully-priced
     kill_condition: >-
       噴射引擎OEM(Boeing/Airbus/GE/RTX/Safran)build-rate guidance回落或LTA新簽/backlog成長停滯(ATI
@@ -1076,7 +1114,12 @@ themes:
     wiki: thesis/wiki/euv-lithography-monopoly.md
     type: B
     cycle_stage: late          # 16年故事橫跨4個週期 + ttm_pe 98th pctile = 全市場最人盡皆知嘅半導體壟斷故事之一
-    confidence: 0.22           # 全批最乾淨嘅結構性故事(全球唯一EUV供應商)但極度priced-in(98th),同aerospace-specialty-alloys同級但更冇「未被發現」加分(全世界都知ASML)
+    confidence: 0.47           # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:subscore backfill(moat
+                                # 2/capital 1.5/valuation 0/growth 1.5)+ 登記雙 Tier-1 source(ASML 現金
+                                # 背書 down-payment + 16 年約束語言 transcript 獨立擊中承重)→ 脫
+                                # single-source cap(n=2),confidence=raw=0.469,四捨0.47;red-team 報告
+                                # 原判「null-op」係誤判(用錯 crowding pctile,真 composite_pctile=2.8
+                                # 非 ≥90),用戶已核實更正。
     verdict: real-monopoly-but-most-priced-in
     kill_condition: >-
       有可行EUV/High-NA EUV競爭者出現(中國本土EUV突破如SMEE、或Canon/Nikon重返High-NA)打破唯一供應商
@@ -1099,6 +1142,19 @@ themes:
     sources:
     - id: transcript-discovery-radar
       tier: 3
+    - id: asml-cash-backed-downpayments
+      tier: 1
+      corroborates: "承重 claim 供給半截——ASML 客戶就未交付 EUV 系統嘅現金訂金(down payments):
+        合約負債(Current Deferred Revenue $12.48B[2022-12]→$16.01B[2025-12,+27% YoY]+
+        Non-Current $3.57B[2026-06])≈ $19.4B、佔 FY2025 營收 $32.7B 嘅 59.3%;ASML 一手歸因
+        2025 年增長「mainly driven by an increase in down payments for goods and services
+        which will be delivered in the future」,CFO Dassen(2024-01-24 transcript)印證訂金
+        隨 order intake 升跌(GEV 型現金背書簽名);疊加 16 年橫跨 4 個景氣週期第一人稱約束語言
+        (「we are always constraining the business」「12-24 個月 lead time」「sold out for
+        2026」)。依 DESIGN §4a 定義,本 theme 脫 single-source cap——euv 全批第二個(繼
+        ai-power-grid 後)。(red-team 2026-07-16 發現、gatekeeper 一手核實;報告自身「脫 cap
+        但 null-op」結論係誤判——用錯 crowding pctile 假設 ≥90,真 composite_pctile=2.8,故本次
+        登記後脫 cap 有效拉升 confidence 至 raw=0.469。)"
     meta_factors: [ai-capex]
     admitted: 2026-07-11
     last_evidence: 2026-07-11
@@ -1122,7 +1178,10 @@ themes:
     wiki: thesis/wiki/us-solar-manufacturing.md
     type: B
     cycle_stage: mid           # 結構故事實(2019年至今7年連續sold-out)但ttm_pe僅22nd pctile=市場未完全重估,估值同故事有落差
-    confidence: 0.32           # 真結構(7年連續sold-out+關稅/IRA政策護城河)+估值仲平(22nd pctile)= discovery radar呢批入面priced-in狀態最好嘅一個,但政策binary風險要扣返少少
+    confidence: 0.30           # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:moat 2→1.5(CdTe「結構性
+                                # 成本護城河」被多晶矽崩盤蝕穿,一手價格證偽,中彈),raw 0.609,
+                                # single-source cap 綁 0.30(現行 0.32 已違反 cap,屬修正);durability 腿
+                                # (45X 補貼存亡曝險)標 magnitude_unconfirmed,見 cdte-policy-moat-cheap node。
     verdict: real-policy-moat-and-still-cheap
     kill_condition: >-
       Section 201/232/301太陽能關稅或IRA本土成分規定被撤銷/豁免,重開美國市場俾中國/東南亞競爭者 OR
@@ -1143,6 +1202,11 @@ themes:
       tickers: [FSLR]                       # CdTe 唔使多晶矽(結構性成本護城河,path-b)+長期 PPA+232/301 關稅+IRA 本土成分;連續 7 年 sold-out(fully-allocated 到 2030 backlog);2016 自認「無 pricing power」→今日係真 regime change
       cycle_stage: mid                      # ttm_pe 22 分位(~14.7x)=discovery-radar 批 priced-in 狀態最好、市場未完全重估、undiscovered
       magnitude_tier: 3-5x-durable          # 案例庫贏家(26.44x realized)、Pattern-1 PASS、F4 高+遠底+低擁擠;耐久同 uranium-fuel 但更平更少人;⚠政策 binary(關稅/IRA 可撤)+碲出口管制=downside kill,非彩票理由(FSLR 有盈利、7 年 sold-out);reviewer 若重政策 binary 可判 2-3x
+      magnitude_unconfirmed: true            # red-team 2026-07-16:durability 腿未證——45X 補貼
+                                              # ~$1.6B(FY2025)>全年淨利$1.53B(盈利=補貼);CdTe
+                                              # 「結構性成本護城河」被多晶矽崩盤蝕穿(FSLR $0.35/W
+                                              # vs 中國c-Si $0.09-0.13/W ex-tariff),撐住嘅係政策
+                                              # 唔係成本,一個立法週期可抹走
       last_scored: 2026-07-13
       last_evidence: 2026-07-11
     sources:
@@ -1175,7 +1239,11 @@ themes:
     wiki: thesis/wiki/gas-compression-equipment.md
     type: B
     cycle_stage: early         # 13年單向惡化(4-6個月→150週)但ttm_pe僅2nd pctile=市場幾乎完全未發現/未reprice
-    confidence: 0.33           # discovery radar呢批入面故事最乾淨(明確非商品價掛鈎)+估值最平(2nd pctile,全批最極端嘅「未被發現」)= 6個新thesis入面confidence最高
+    confidence: 0.30           # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:subscores 1/1/2/1
+                                # (moat 1.5→1 因咽喉喺 OEM 非 USAC 本身、growth 1.5→1 因 AI-gas
+                                # magnitude 腿傳導未證,§6 gatekeeper 裁決 + red-team 判決),raw 0.469,
+                                # cap 綁 0.30(現行 0.33 已違反 cap,屬修正);AI-gas magnitude 腿標
+                                # magnitude_unconfirmed,見 compression-shortage-unloved node。
     verdict: real-structural-bottleneck-deeply-unloved
     kill_condition: >-
       引擎/壓縮機lead time開始壓縮返歷史常態(150週 -> 少於52週) OR 主要OEM(Caterpillar/Ariel)新產能
@@ -1201,6 +1269,11 @@ themes:
       tickers: [USAC]                       # 管理層逐字「does not have direct commodity price exposure」(解耦油氣週期,path-b);自家 fleet 因新機供給緊而升值;J-W Power 併購=in-house 製造打尖
       cycle_stage: early                    # ttm_pe 2 分位(自身史)=幾乎完全未被市場發現/reprice、最 unloved
       magnitude_tier: 3-5x-durable          # 供給結構性慢(150 週)+非商品定價+最平最 undiscovered=durable magnifier 定義特徵;⚠(a)MLP 結構封 equity 上檔(分派重),(b)受益者非咽喉持有人(咽喉喺 CAT/Ariel)→ reviewer 若重 MLP-cap 可判 2-3x;單 ticker 集中風險
+      magnitude_unconfirmed: true            # red-team 2026-07-16:AI-gas magnitude 腿傳導一手零
+                                              # 落數(GEV turbine backlog屬發電非壓縮);USAC係被動
+                                              # 受益者非主動定價權持有人(毛利兩年橫行冇擴張、利用率
+                                              # 94.4%→91.9%倒跌,同業KGS/AROC有主動pricing power而
+                                              # USAC冇)
       last_scored: 2026-07-13
       last_evidence: 2026-07-11
     sources:
@@ -1227,7 +1300,10 @@ themes:
     wiki: thesis/wiki/specialty-siding-pricing-power.md
     type: B
     cycle_stage: mid           # 2024年至今持續故事,但ttm_pe 95th pctile係whole-company估值(混住弱OSB business),要小心解讀
-    confidence: 0.20           # 真但薄:只係公司一個segment(SmartSide/ExpertFinish),whole-company ttm_pe已經貴,segment故事點轉化做股價回報有唔確定性,6個新thesis入面最保守
+    confidence: 0.24           # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:subscores 1/1/0.5/1
+                                # (backfill,估值格因 whole-company blended PE 數據質量降級),raw 0.241,
+                                # 不綁 cap;2x share-shift 腿(volume/份額耐久性未證)標
+                                # magnitude_unconfirmed,見 siding-segment-diluted node。
     verdict: real-segment-mix-shift-but-diluted-and-priced
     kill_condition: >-
       SmartSide/ExpertFinish「pricing power」語言喺未來某季transcript消失 OR ExpertFinish allocation
@@ -1244,6 +1320,11 @@ themes:
       tickers: [LPX]                        # SmartSide/ExpertFinish 特種護牆板近 9 季 7 季講 pricing power(2024 起)、2026-05 ExpertFinish 真 managed-allocation 到 2026-02;但只係公司一個 segment、commodity OSB 另一盤而家蝕錢
       cycle_stage: mid                      # ttm_pe 95 分位係 whole-company blended(弱 OSB+強 Siding 混一齊,分唔開 segment 本身估值)=解讀含糊
       magnitude_tier: 2x                    # 真 segment 定價權但被 OSB 拖累+blended 估值稀釋、非線性放大轉唔到乾淨股價 magnitude → 封頂,同 GLW/HEI-LOAR 稀釋-防守腿 2x 語意(cap 理由=segment 稀釋非大基數,同 bucket)
+      magnitude_unconfirmed: true            # red-team 2026-07-16:2x share-shift 腿未證——
+                                              # 2026-05「managed-allocation緊缺事件」方向掉轉(實為
+                                              # 2026-02供給鬆綁 came off allocation,因Green Bay
+                                              # +25%新產能);Q1'26 Siding volume -18%、JHX(fiber
+                                              # cement)反搶wood份額,volume/份額耐久性未證
       last_scored: 2026-07-13
       last_evidence: 2026-07-11
     sources:
@@ -1267,7 +1348,8 @@ themes:
     wiki: thesis/wiki/glp1-biologics-packaging.md
     type: B
     cycle_stage: mid           # 4季連續確認,ttm_pe 71st pctile適中(唔算平但都未到ATI/CRS/ASML嗰種98th極端)
-    confidence: 0.27           # 現時最短track record(得4季)但故事乾淨(regulatory-lock moat唔係純物理稀缺)+估值適中,6個新thesis中游
+    confidence: 0.30           # 2026-07-16 P2 遷移(用戶批准)+ red-team 判決:subscores 1.5/1.5/1/2
+                                # (backfill,生還),raw 0.413,cap 綁 0.30。
     verdict: real-regulatory-moat-but-young
     kill_condition: >-
       「demand outstripping supply」語言喺未來一季消失(管理層自己講緊ramping capacity,一旦追上就完)

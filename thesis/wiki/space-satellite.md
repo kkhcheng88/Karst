@@ -2,7 +2,7 @@
 slug: space-satellite
 type: B
 cycle_stage: early
-confidence: 0.28
+confidence: 0.3
 verdict: real-early-but-froth-priced
 updated: 2026-07-14
 tickers: [RKLB, ASTS, KTOS, HEI, LOAR, RDW, LUNR, BKSY, PL, GSAT, MP, SPCX]
@@ -147,21 +147,22 @@ flowchart TD
 (便宜 + 未共識)在**敘事上成立(早)、在可交易標的上不成立(貴/燒錢)**。這不是純追高,但邊際上更像
 「選項式參與早週期 + 嚴守 kill」,不是「便宜買深護城河」。
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-16 red-team 修訂)
 ```
 KPI: moat 1/2(最深護城河 SpaceX 不可乾淨買;鏟子護城河不均、operator 是執行賭注、發射瓶頸正崩)
      · capital 1/2(capex 真放量=早週期建置訊號:ASTS $82M→$424M、RKLB Neutron;但純玩家燒錢、ROIC 未證)
      · valuation 0.5/2(ASTS 377x/RKLB 94x P/S 夢想定價;HEI 87%、MP 92% ttm_pe 分位頂;多檔 pre-revenue)
-     · growth 2/2(相變已證:Starlink $11.387B/63% EBITDA;VC $36B/季;Golden Dome $1.2T;多十年基建早期)
-                                                                          = 4.5/8 = 0.5625 base
-cycle/crowding penalty:
-  (+) bull 僅 1/6=17%(語料自律、5/6 neutral)+ 主題早週期(VC 剛放量、Golden Dome 未撥款) → 罰輕
-  (−) 可交易表達重度 priced-in(ASTS/RKLB 夢想定價、多檔 pre-revenue 二元)+ 最深護城河 SpaceX 不可乾淨買
-      + 唯一 bull(LOAR)其實空曝險最薄 → 罰重
-  兩力相抵、淨中度罰 × ~0.50                                              → 0.28
-佐證: capex ✅ + ttm_pe/分位 ✅(Tier-1 已拉,2026-07-01);報告自帶 priced-in 閘(可信度高於單向 KOL)
-→ confidence ≈ 0.28  (INITIAL, uncalibrated)
+     · growth 1.5/2(red-team 2026-07-16 分岔:相變一「發射成本-95%」已證生還,但超級週期三支柱——
+       backlog(ASTS $12B僅~1.9%現金背書)/Golden Dome($1.2T願景 vs 真實~$38B撥款)/VC($36B寬口徑、
+       窄義僅$7.9-9.4B)——全部降級為敘事,耐久半截未過 Level-2 → 由 2 降至 1.5)
+                                                                          = 4.0/8 = 0.50 base
+penalty(DESIGN §4a 表:crowding 59.9 → 40-60 帶 × early)                  × 0.95  → 0.475
+single-source cap(sources len=1)                                            → min(0.475, 0.30)
+→ confidence = 0.30  (penalty 標準化;red-team 殺傷力唔喺 confidence 數字——落 magnitude 通道,見
+   golden-dome-policy-option + d2d-spectrum-optionality nodes 之 magnitude_unconfirmed。
+   INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-15_redteam_space_satellite.md`(2026-07-16 對象執行)。
 **讀法:真主題 + 真早週期,但「可乾淨買的表達」品質稀薄——0.28 略低於光通訊 0.30。理由:光通訊尚有可乾淨買、
 擁一硬瓶頸([[InP]]/雷射 IDM)的深護城河 [[COHR]]/[[LITE]];太空最深護城河(SpaceX)幾乎不可買,可交易多為
 pre-revenue 執行賭注或站頂鏟子。要參與 → 小注、選項/事件框架([[RKLB]] Neutron、[[ASTS]] 上天、[[KTOS]]
@@ -181,6 +182,18 @@ Golden Dome 相對衝擊),盯 kill;避 377x/94x P/S 追高。**
 更長價格史,方可信200SMA讀數)先再校準。SPCX個股本身喺node層面已用cycle_stage=late、magnitude_tier
 2-3x記錄(見themes.yaml),反映「真moat但priced+impure」嘅讀法,唔會漏咗呢層資訊落sizing/scan。
 ```
+
+## red_team(Level-2,2026-07-16;詳 backtest/results/2026-07-15_redteam_space_satellite.md)
+- **判決:部分中彈**——承重相變(發射成本-95%、Starlink 已兌現)生還且係全 corpus 唯一真.掂到承重
+  claim 嘅一手佐證;「相變開啟多十年超級週期」嘅三條量級支柱全部降級為敘事。
+- **balance-sheet 三度落刀,斬中全叢最貴嗰隻**:ASTS「backlog $12B」≈98%非cash-backed(deferred
+  revenue僅~$233M≈1.9%),係TAM式MOU非RPO式合約義務;RKLB backlog $2.2B僅~11%現金背書(較乾淨)。
+- **Golden Dome 撥款落差**:CBO $1.2T願景 vs 真實已授權約$38B(OBBBA $25B+FY2026 $13.4B)——連
+  wiki自己「$250B已到位」都高估約7倍。VC $36B係最寬口徑(含GPS/Applications),窄義純太空僅
+  $7.9-9.4B、與SpaceX IPO buzz綁定。
+- **已 flag `magnitude_unconfirmed: true`**(golden-dome-policy-option + d2d-spectrum-optionality
+  nodes),sizing v2 對呢兩個 node 收起 magnitude 加成。confidence 淨效果 = 向下但唔郁動(0.28
+  維持;遷移後公式標準化拉到 0.30,red-team 唔准酌情抵消呢個標準化)。
 
 ## kill_condition(可證偽)
 > **相變二不來或第一引擎熄火** —— [[Starship]] 快速重複使用長期延宕(成本停在 Falcon 量級 → 軌道運算等

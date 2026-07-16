@@ -2,7 +2,7 @@
 slug: rare-earth-materials
 type: B
 cycle_stage: event-driven
-confidence: 0.28
+confidence: 0.3
 verdict: real-chokepoint-thin-evidence-event-binary
 updated: 2026-07-01
 tickers: ["MP", "USAR", "AXTI", "NVTS"]
@@ -97,18 +97,19 @@ flowchart TD
 → **真咽喉、真政策後盾,但這輪是二元事件驅動 + 證據薄 + [[MP]] 已入政策溢價。** 不是進場鏡像(便宜 +
 未共識),是 **event-bounded 的分層小注**:偏好便宜咽喉 [[AXTI]],[[MP]] 別追高,[[USAR]]/[[NVTS]] 選擇權押。
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-16 red-team 修訂)
 ```
 KPI: moat 1.5/2(USGS 官方咽喉 + MP 準國有;但政策非技術護城河、雙面刃)
      · capital 1/2(MP capex 2.66x + AXTI $550M 增發,但前期/稀釋/ROIC 弱)
      · valuation 1/2(MP 92 分位政策溢價 vs AXTI 26 分位便宜;USAR/NVTS pre-earnings)
-     · growth 1.5/2(國防+AI+EV 結構需求,但事件二元、可投資成長靠執行)   = 5/8 = 0.625 base
-event/crowding penalty(2026-11 二元事件 + 薄證據僅 2 篇 + MP 92 分位已入價 + 叢 100% bull;
-     部分抵消:USGS 硬數據 + DoD $110/kg 保底 + AXTI 便宜): × ~0.45  → 0.28
-校準對照: 記憶體 14% bull / 22 篇 → 0.38;光通訊 58% bull / 24 篇 → 0.30;
-     本叢 100% bull 但**僅 2 篇薄證據 + 二元事件** → **0.28 < 0.30**(比光通訊更薄,但咽喉是官方硬數據)
-→ confidence ≈ 0.28  (INITIAL, uncalibrated;薄證據本身即上限,可隨新報告修正)
+     · growth 1/2(red-team 2026-07-16 分岔:兌現未到——2026-11 事件未至,可投資成長靠執行 →
+       由 1.5 降至 1)                                                    = 4/8 = 0.50 base
+penalty(DESIGN §4a 表:crowding 97.8 → ≥90 帶 × event-driven)              × 0.55  → 0.309
+single-source cap(sources len=1)                                            → min(0.309, 0.30)
+→ confidence = 0.30  (penalty 標準化;magnitude_tier 5-10x-binary 已承擔 2026-11 事件二元風險,
+   §4a 明令不喺 penalty 再折一次。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-15_redteam_rare_earth_materials.md`。
 **讀法:真地緣咽喉 + 真政策後盾,但薄證據(2 篇)+ 二元事件 + MP 已入政策溢價 → 0.28,全批最低。分層:
 [[AXTI]] 便宜咽喉小注、[[MP]] 別追高、[[USAR]]/[[NVTS]] 選擇權框架;主追蹤 = 2026-11。**
 

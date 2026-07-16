@@ -2,7 +2,7 @@
 slug: oil-gas-energy
 type: B
 cycle_stage: late
-confidence: 0.25
+confidence: 0.275
 verdict: thin-split-watch
 updated: 2026-07-01
 tickers: ['XOM', 'CVX', 'COP', 'EQT', 'LNG', 'SEI', 'XLE', 'XOP']
@@ -103,20 +103,36 @@ flowchart TD
 方向 → 這不是一個可以「進場」的 thesis,是一張需要分軌盯的 WATCH。** 進場鏡像(便宜 + 供給緊 + 未共識)
 只有 [[EQT]](便宜 + 氣緊 + AI 拉動)勉強成立,其餘皆不成立。
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-16 red-team 修訂)
 ```
-KPI: moat 1/2(油無定價權/OPEC+瓦解;僅氣電有瓶頸)· capital 1/2(油商紀律佳但供給回應在體制外;SEI 成長capex)
-     · valuation 1/2(EQT 便宜 35% vs 油商谷底盈利兩義 vs SEI 97% 極端)· growth 1/2(油需求衰退 vs 氣電新TAM,淨中性)
+KPI: moat 1/2(油無定價權/OPEC+瓦解;僅氣電有瓶頸,red-team 生還不變)
+     · capital 1/2(油商紀律佳但供給回應在體制外;SEI 成長capex靠槓桿)
+     · valuation 1/2(EQT 便宜 35% vs 油商谷底盈利兩義 vs SEI 97% 極端,機械讀數不覆核)
+     · growth 1/2(油需求衰退 vs 氣電新TAM,淨中性;red-team 2026-07-16:承重機制生還,無格降)
                                                                         = 4/8 = 0.50 base
-cycle/crowding/thin penalty:
-  近端油空(布蘭特破80、Pies 已兌現)+ 總經二元(6/19 Iran)+ 薄證據(僅2篇)+ 叢異質(油×氣電)
-  + 單一 bull 名擁擠(SEI 97 分位)+ 治理二元(#049)+ 50% bull 中度擁擠     × ~0.50  → 0.25
-佐證: ttm_pe/capex ✅(Tier-1 已拉);#116 neutral 框架 + #058 bull 個股(2 篇,證據薄,不加分)
-→ confidence ≈ 0.25  (INITIAL, uncalibrated)
+penalty(DESIGN §4a 表:crowding 67.8 → 60-80 帶 × late)                  × 0.55  → 0.275
+不綁 cap(raw < 0.30)                                                    → confidence = raw = 0.275
+→ confidence = 0.275  (red-team 冇搵到令 subscore 移動嘅硬事實,殺傷力全落 magnitude 通道 +
+   kill_metrics 時效修正,唔喺 confidence 數字。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_oil_gas_energy.md`。
 **讀法:confidence 0.25 < 記憶體 0.38、< 光通訊 0.30 —— 不是因為主題假,是因為(a)證據薄(2 篇)、
 (b)叢異質沒有統一方向、(c)最大子腿(原油)報告自身就是 neutral/近端偏空。當「薄證據觀察 + 分軌盯」讀,
 別當一個方向 thesis 下注。要碰:氣端 [[EQT]] 小注(唯一便宜+紀律+AI 拉),或 [[XLE]]/[[XOP]] 分散避單名雷。**
+
+## red_team(Level-2,2026-07-16;詳 backtest/results/2026-07-16_redteam_oil_gas_energy.md)
+- **判決:部分中彈 + 結構判決「唔應該當一個方向 thesis」**。gas→AI-power 需求機制生還,但現金合約
+  背書中彈;macro 前提(油腿)stale/inverted;SEI 名 mis-specified(其實屬 ai-power-grid cluster)。
+- **balance-sheet 三度落刀**:EQT deferred revenue ≈零、KMI 零、SEI 僅 $76M——「多年鎖單=現金地板」
+  冇任何入帳印證,Homer City 4.4 GW 係披露式 agreement-in-principle backlog,唔係入帳合約負債。
+- **⚠️ kill_metrics 已 stale**:`brent_upper_trigger` 記錄 current=78/as-of 2026-07-08,但 Brent
+  已重上 ~$85 逼近 $90(MOU 已崩、荷莫茲 2026-07-14 復封)——theme 行緊近自己 bullish kill 一個星期
+  而 metric 未捉到,建議更新 current/as-of。
+- **SEI $1B EBITDA magnitude 腿未證**:已 flag `magnitude_unconfirmed`(theme 層記錄,見
+  themes.yaml note)——當下 run-rate 僅 $340-370M、3.1 GW buildout 主要靠槓桿(net debt 一年
+  4x 爆)而非客戶現金。
+- **結構建議(留用戶決策)**:gas-power 腿(SEI)本屬 ai-power-grid cluster,建議 oil-gas-energy
+  收窄成「油-macro WATCH(neutral β)+ EQT 單名」。
 
 ## kill_condition(分軌、可證偽)
 > **這是 WATCH,不是方向單。升級/降級的可證偽條件:**

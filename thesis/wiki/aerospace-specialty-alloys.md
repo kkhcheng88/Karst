@@ -40,13 +40,19 @@ tickers: ['ATI', 'CRS']
   pricing that reflects the value we deliver"* / *"you guys are kind of 24/7 full out."*
 - CRS 2018-10-24:*"Our customers recognize the urgency to qualify additional capacity..."*(認證鎖客)。
 
-## confidence 推導
+## confidence 推導(可追溯;2026-07-16 P2 遷移,機讀 4-KPI 補寫)
 ```
-真結構性樽頸(LTA鎖客+具名產品護城河,19/15年一致) 但 ttm_pe 98th pctile(全批最貴之二)
-= 類近 photonics-optical(0.30,真瓶頸但最擠)/ advanced-packaging(0.32) 嘅處境,
-  但呢批係 transcript-only 一手源、未做 capital-allocation/ROIC/TAM 深度研究 -> 額外保守
--> confidence ≈ 0.24
+KPI: moat 1.5/2(ATI「供應 6/7 款最先進噴射引擎鎳合金」19年一致 + CRS re-qualification 換供應鎖客
+       15年一致、2023 $1.2bn 新承諾;一手約束語言但未經 Level-2 red-team → 封頂 1.5)
+     · capital 1/2(EBIT margin 0.132/coverage 5.82,有盈利;ROIC/capex 未研究,證據缺失)
+     · valuation 0/2(pe_pctile 98th ≥90 + p_base 0.237 <0.4,機械格)
+     · growth 1/2(build-rate 掛鈎、非 additive;TAM 未 sizing)          = 3.5/8 = 0.4375 base
+penalty(§4a 表:crowding 78.6 → 60–80 帶 × late)                        × 0.55  → 0.241
+single-source cap(sources len=1,transcript-discovery-radar)             → min(0.241, 0.30)
+→ confidence = 0.24  (cap 不綁,raw<cap;真結構性(LTA鎖客+具名產品護城河)但極度priced-in,類近
+   photonics/advanced-packaging嗰檔。INITIAL,transcript-only源,未做ROIC/TAM深度研究。)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_aerospace_alloys.md`。
 
 ## kill_condition(可證偽)
 > 噴射引擎 OEM(Boeing/Airbus/GE/RTX/Safran)build-rate guidance 回落,或 LTA 新簽/backlog 成長停滯

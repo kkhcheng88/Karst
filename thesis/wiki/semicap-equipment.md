@@ -91,17 +91,20 @@ flowchart TD
 → **主題早(5% 滲透)、但唯一可交易表達 [[AEHR]] 的價格極晚(froth + 內部人紅旗)。** 進場鏡像(便宜 + 供給
 緊 + 未共識)在「便宜」這格完全不成立;kill-bounded 也難,因 615x 下跌空間大。**看懂 ≠ 買 → watch。**
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-16 red-team 修訂)
 ```
 KPI: moat 1/2(真收費站+鎖定,但「唯一」未驗證、滲透 5% 利基)
      · capital 0.5/2(輕資產 capex 下降=無 boom,但當期 ROIC 負、谷底)
      · valuation 0/2(PE 無定義/盈利負;forward 615x+P/S64x+站在所有目標價之上+內部人賣 $44M)
-     · growth 1.5/2($41M 一手單 + 5% 滲透長跑道,但小基期/單客戶/FY27 遞延)   = 3.0/8 = 0.375 base
-cycle/crowding penalty (單名 froth 極端:615x + 856% + 內部人紅旗;薄證據 1 篇;但叢內 0% bull 無共識搶跑→略減罰): × ~0.55  → 0.20
-佐證: capex ✅ + ttm_pe(現為負)✅ 已一手拉;$41M 單/內部人賣超對到 IR+SEC(#087 可信度高於一般 KOL)
-      但整叢僅 1 篇 neutral、無獨立第二來源交叉、主題早但無法在此價格 kill-bound → 不加分
-→ confidence ≈ 0.20  (< photonics 0.30 < memory 0.38。INITIAL, uncalibrated)
+     · growth 1/2(red-team 2026-07-16 中彈:FY26 營收實跌 -15%、$41M 單未認列、FY27 +160-200%
+       指引全靠 contingent 前瞻、耐久 magnitude 腿未入 P&L → 由 1.5 降至 1)   = 2.5/8 = 0.3125 base
+penalty(DESIGN §4a 表:crowding 40.7 → 40-60 帶 × late)                    × 0.65  → 0.2031
+single-source cap(sources len=1)                                            → min(0.2031, 0.30)
+→ confidence = 0.20  (< photonics 0.30 < memory 0.38。唯一 red-team subscore 通道實質壓低
+   confidence 嘅 theme——formula 遷移原本會上拉到 0.24,red-team growth 中彈抵銷咗上拉。
+   INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_semicap.md`。
 **讀法(對齊錨點):photonics 58% bull → 0.30、memory 14% bull → 0.38。本叢雖 0% bull(共識不擁擠),但
 (a) 證據薄(1 篇 vs 24)(b) 單名估值比 photonics 護城河名更極端(forward 615x vs 75–98 分位)(c) 內部人賣超
 紅旗(d) 護城河未驗證 → 壓到 0.20 < 0.30。真收費站 + 一手 $41M 單撐住不歸零。要碰只放 watch、等回檔或
@@ -113,6 +116,17 @@ FY2027 認列,不追高。**
 > (Advantest/Teradyne/Cohu/inTEST 切入封裝級量產老化測試,稀釋 moat)。
 > **froth-unwind:** forward 615x + 站在所有目標價之上 + β3.27,任何 AI-capex 打嗝即被放大重挫。
 > 觸發 → confidence 歸零,回歸「谷底重估已 priced-in 的高波動小型設備股」。
+
+## red_team(Level-2,2026-07-16;詳 backtest/results/2026-07-16_redteam_semicap.md)
+- **判決:分岔**——已-priced 收費站(技術/競爭半句)生還兼加固,未證嘅耐久 magnitude 腿中彈。
+- **balance-sheet 三度命中**:deferred revenue 僅 $1.91M = backlog($80.6M)嘅 2.4% 且停滯萎縮——
+  「創紀錄 backlog = 耐久能見度」呢個承重 claim 一手證偽,同 pilot MU RPO / photonics COHR-LITE
+  同一形態。**毛利反證定價權**:51%→26–33% 隨量壓縮,同真收費站應守毛利嘅形態相反。
+- **耐久 magnitude 腿(FY27 +160-200% 指引)未入 P&L**:FY26 營收實跌 -15%、$41M 單未認列(推
+  Q2 FY27)、CEO 親口「always lumpy… cyclical」。**已 flag `magnitude_unconfirmed: true`
+  (burn-in-tollgate-froth node),sizing v2 對此 node 收起 magnitude 加成。**
+- **兩面誠實**:競爭者(Advantest/TER/COHU/INTT)狩獵兩手空空(未切入,幫控方);內部人 2026-07-15
+  動作實為例行 RSU 代扣稅、非公開市場拋售(較舊敘事淡),但 5 年 0 買 13 賣紅旗仍在。
 
 ## Agent 追蹤(定日可證偽預測 → track_record)
 - **2026-07-01**:半導體後段老化測試 = 真橫切收費站,但**薄證據(1 篇 neutral)+ 唯一表達 [[AEHR]] 極端

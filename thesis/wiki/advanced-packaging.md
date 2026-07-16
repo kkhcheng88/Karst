@@ -2,7 +2,7 @@
 slug: advanced-packaging
 type: B
 cycle_stage: late
-confidence: 0.32
+confidence: 0.3
 verdict: real-chokepoint-but-proxies-priced
 updated: 2026-07-08
 tickers: [AMKR, ASX, TTMI, INTC, MKSI, KLAC, GLW, STX, WDC]
@@ -126,19 +126,18 @@ flowchart TD
 → confidence 落在 memory 0.38 與 photonics 0.30 **之間偏低**。**挑軍火商(AMKR/ASX,誰贏都收錢)> 避最貴
 收費站(TTMI 96%);INTC 走選擇權;要進場等代理名估值分位消風。**
 
-## confidence 推導(可追溯)
+## confidence 推導(可追溯;2026-07-16 red-team 修訂)
 ```
-KPI: moat 2/2(T-glass 90% / HVLP 配額 / Hoya 雙壟斷 / CoWoS 咽喉 硬瓶頸)
+KPI: moat 1/2(red-team 2026-07-16 中彈:OSAT 可交易 proxy(AMKR/ASX)唔捕捉真正租金——真瓶頸擁有者
+   T-glass 日東紡90%/HVLP三井/Hoya雙壟斷全部非美股,美股代理係二手、非咽喉本體 → 由 2 降至 1)
    · capital 1/2(AMKR ~1.5x·ASX +34%,但材料層 2027-28 才放量=供給無彈性、代理二手)
    · valuation 0.5/2(可交易名全 90-100 分位:TTMI96/MKSI94/KLAC94/AMKR91/ASX90;INTC 無盈利)
-   · growth 2/2(Rubin CCL 7x·CoWoS 缺口 3x·玻璃基板 2027 拐點)              = 5.5/8 = 0.69 base
-cycle/crowding penalty:敘事 11% bull(低擁擠,offset↑)× 估值 90-100 分位(最極端,罰↓)
-   × 表達缺口(真瓶頸非美股、代理二手,罰↓)                              = × ~0.46  → 0.32
-佐證: ttm_pe/capex ✅(一手已拉);瓶頸數字 T-glass 90%/HVLP 配額/CoWoS 3x 缺口(#106/#100 交叉)
-      Hoya ROIC 21.1% 為 Tier-2(未一手驗,非美股無法拉)→ 不加分
-→ confidence ≈ 0.32  (介於 photonics 0.30 與 memory 0.38;敘事比 memory 不擠、但估值更極端 + 表達
-   缺口壓過 → 中間偏低。INITIAL, uncalibrated)
+   · growth 2/2(Rubin CCL 7x·CoWoS 缺口 3x·玻璃基板 2027 拐點)              = 4.5/8 = 0.5625 base
+penalty(DESIGN §4a 表:crowding 48.1 → 40-60 帶 × late)                    × 0.65  → 0.366
+single-source cap(sources len=1)                                            → min(0.366, 0.30)
+→ confidence = 0.30  (現行 0.32 已違反 cap,屬修正。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-15_redteam_advanced_packaging.md`。
 **讀法:真咽喉 + 敘事還不擠,但可交易表達已貴(90-100 分位)且是二手(真瓶頸非美股)→ 0.32。相對強弱
 有、別追高;要吃軍火商 [[AMKR]]/[[ASX]] 小注(誰贏都收錢)、盯代理名估值分位;[[INTC]] 選擇權框架。**
 

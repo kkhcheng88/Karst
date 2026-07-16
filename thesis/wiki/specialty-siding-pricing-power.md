@@ -2,7 +2,7 @@
 slug: specialty-siding-pricing-power
 type: B
 cycle_stage: mid
-confidence: 0.20
+confidence: 0.24
 verdict: real-segment-mix-shift-but-diluted-and-priced
 updated: 2026-07-11
 tickers: ['LPX']
@@ -41,12 +41,35 @@ ExpertFinish 實際喺 managed-allocation order file 到 2026年2月先落單(�
 - 對照(commodity OSB,唔屬於呢個thesis):2026年最新季度 *"OSB price softness accounted for a $66
   million reduction in net sales and EBITDA...fell below EBITDA break even."*
 
-## confidence 推導
+## confidence 推導(可追溯;2026-07-16 P2 遷移 + red-team 判決)
 ```
-Segment層面真訊號(7/9季pricing power語言 + 實質allocation事件) 但 whole-company ttm_pe 95th
-(blended估值,分唔清邊部分反映Siding邊部分係OSB歷史殘留) + thesis只覆蓋部分業務
-= 6個新thesis入面最保守 -> confidence ≈ 0.20
+KPI: moat 1/2(SmartSide/ExpertFinish 近9季7季講pricing power[2024起]+ 2026-05真
+       managed-allocation事件;但只係公司一個segment、被虧損OSB稀釋 → 1分,非封頂;red-team
+       2026-07-16 生還兼強化:FY2025 +4%加價發生喺OSB/木材20年最低價通縮期=cost-decoupled,
+       悶故事解釋唔到,但§4a 1分錨「護城河被非核心業務稀釋」結構性綁定,唔因生還而放大)
+     · capital 1/2(EBIT margin 0.141/coverage 8.67尚健康 但OSB segment現跌破EBITDA損益兩平拖累)
+     · valuation 0.5/2(⚠機械格衝突:pe_pctile 95th≥90指0,但p_base 0.729≥0.4+wiki明標pe係blended
+       不可靠有緩衝 → documented數據質量降級插值0.5,非自由酌情)
+     · growth 1/2(轉換/share-gain機制真 但公司只佔一角、TAM未sizing;red-team中彈:2026-05
+       「managed-allocation緊缺事件」方向掉轉[實為2026-02供給鬆綁came off allocation]、JHX反搶
+       wood份額、volume/份額耐久性未證)                                  = 3.5/8 = 0.4375 base
+penalty(§4a 表:crowding 97.2 → ≥90 帶 × mid)                          × 0.55  → 0.241
+single-source cap(sources len=1)                                        → min(0.241, 0.30)
+→ confidence = 0.24  (cap不綁,raw<cap;2x share-shift腿[volume/份額耐久性未證]已flag
+   magnitude_unconfirmed,見 siding-segment-diluted node。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_specialty_siding.md`。
+
+## red_team(Level-2,2026-07-16;詳 backtest/results/2026-07-16_redteam_specialty_siding.md)
+- **判決:核心生還(且強化)+ 一條佐證支柱證偽 + magnitude(volume)腿未證 = 分岔**。
+- **(i)定價權結構性——生還且被cost-decoupled硬證強化**:FY2025 +4%加價發生喺OSB/木材20年最低價
+  通縮期(量價齊升,cost-decoupled),悶故事(通脹傳遞)解釋唔到,係全claim最硬部分。
+- **(iii)「2026-05 managed-allocation緊缺事件」——中彈/證偽(最鋒利一刀)**:一手證據方向掉轉——
+  LPX 2026-02-01 came off allocation(因Green Bay+25%新產能上線),控方把「供給追上需求」錯讀成
+  「緊缺」。balance-sheet零deferred revenue佐證order file無現金背書(pilot MU/photonics同型)。
+- **(ii)vinyl→EW轉換——半生還**:JHX(fiber cement)一手明言反搶wood份額,「LP專屬紅利」有敘事風險。
+- **已 flag `magnitude_unconfirmed: true`**(siding-segment-diluted node)——volume/share-gain
+  magnitude腿未證(Q1'26 volume -18%、JHX競爭、housing starts最低),sizing v2對此node收起加成。
 
 ## kill_condition(可證偽)
 > SmartSide/ExpertFinish「pricing power」語言喺未來一季transcript消失 **或** ExpertFinish allocation

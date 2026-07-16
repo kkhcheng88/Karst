@@ -2,7 +2,7 @@
 slug: ai-power-grid
 type: B
 cycle_stage: late
-confidence: 0.33
+confidence: 0.47
 verdict: real-demand-but-priced-ahead-of-ramp
 updated: 2026-07-05
 tickers: [EQT, GEV, BE, VRT, ETN, PWR, MPWR, VICR, NVTS, WOLF, ON]
@@ -117,12 +117,14 @@ KPI: moat 1.5/2(POL/PMIC 雙寡佔 + SiC/GaN 0→64% BOM 真瓶頸,但氣/電網
      · valuation 0.5/2(ETN 99%!/ON 90%/MPWR 89%/BE 91% 極端 + 內部人賣 + 分析師目標<現價;僅 EQT 35%)
      · growth 2/2(資料中心 capex $1T→$1.7T、onsemi 每櫃含量 10x、SiC/GaN 0→64% BOM、物理必需)
      = 5.0/8 = 0.625 base
-cycle/crowding penalty: 股價晚期已 priced-in(quality 名 90%+ 分位 + 內部人賣 + 「非買點、放量 2027 後」)
-     但報告擁擠低(29% bull < photonics 58%)+ 有便宜表達(EQT 35%)+ 需求多層耐久 → × ~0.53 → 0.33
-佐證: ttm_pe/capex ✅(Tier-1 已拉);需求錨 ✅(#052 一手引述 + EQT CEO 詢價);放量 2027 後 ✅(#125)
-      前瞻追蹤器(800V 放量 / capex 指引 / 分位)尚待接 → 不加分
-→ confidence ≈ 0.33  (介於 memory 0.38 與 photonics 0.30:報告擁擠低於光通訊、但估值分位更極端、
-   護城河更分散。INITIAL, uncalibrated)
+penalty(DESIGN §4a 表:crowding 34.3 → <40 帶 × late)                    × 0.75  → 0.469
+single-source cap:唔適用——n_sources=2(GEV 現金背書 Tier-1 條目,red-team 2026-07-15
+     擊中承重 claim 供給半截,全簿第一個合法脫 cap;見 themes.yaml sources)
+→ confidence = 0.47  (2026-07-16 P2 遷移,用戶批准;INITIAL, uncalibrated)
+佐證: ttm_pe/capex ✅(Tier-1 已拉);需求錨 ✅(#052 一手引述 + EQT CEO 詢價);GEV 合約負債
+      $18.7B→$31.8B(+70% YoY)✅ gatekeeper 一手核實;放量 2027 後 ✅(#125)
+(舊手工推導 × ~0.53 → 0.33 已由凍結公式取代——舊 penalty bundle 咗「估值極端」判斷,
+ 而估值已喺 valuation KPI 格計過,雙重計算係公式化要消滅嘅嘢。)
 ```
 **讀法:真主題(需求面近乎無歧義)但股價提前 priced-in 到 2027 放量 + 護城河分散 → 0.33。方向 = 別追高;
 乾淨便宜表達 [[EQT]];最硬瓶頸 [[MPWR]]/[[VICR]] 等估值消風;pre-earnings 的 [[BE]]/[[NVTS]]/[[WOLF]]

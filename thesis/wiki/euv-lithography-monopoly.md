@@ -2,7 +2,7 @@
 slug: euv-lithography-monopoly
 type: B
 cycle_stage: late
-confidence: 0.22
+confidence: 0.47
 verdict: real-monopoly-but-most-priced-in
 updated: 2026-07-11
 tickers: ['ASML']
@@ -39,13 +39,21 @@ tickers: ['ASML']
 - 2026-04-15(最新):*"what our customers tell us is that they are sold out for 2026 and their supply
   constraint will last beyond 2026."*
 
-## confidence 推導
+## confidence 推導(可追溯;2026-07-16 P2 遷移 + red-team 判決)
 ```
-全批最長最一致嘅結構故事(16年、4個週期、零替代品) 但 ttm_pe 98th pctile + 全市場最人盡皆知嘅
-半導體壟斷故事之一(「未被發現」溢價完全唔存在)
-= 同 aerospace-specialty-alloys 近似級別,但少咗「相對冷門利基」嘅加分 -> 略低
--> confidence ≈ 0.22
+KPI: moat 2/2(全球唯一 EUV/High-NA 微影供應商、16 年橫跨 4 週期第一人稱約束語言;red-team
+       2026-07-16 判「生還+補強」——雙 Tier-1 獨立擊中承重:現金背書 down-payment[合約負債
+       ≈$19.4B≈FY2025營收59.3%] + 16年約束語言 transcript → 生還升格 2/2)
+     · capital 1.5/2(EBIT margin 0.328/coverage 104/net cash 極穩;現金背書佐證資本配置紀律)
+     · valuation 0/2(pe_pctile 98th ≥90 + p_base 0.184 <0.4,機械格;全市場最人盡皆知嘅壟斷)
+     · growth 1.5/2(AI 驅動先進製程 capex 拉動,兌現中;TAM 未 sizing)   = 5.0/8 = 0.625 base
+penalty(§4a 表:crowding 2.8 → <40 帶 × late)                            × 0.75  → 0.469
+登記雙 Tier-1 source(asml-cash-backed-downpayments,corroborates 供給半截)→ n_sources=2
+→ 脫 single-source cap                                                   → confidence = raw = 0.469
+→ confidence = 0.47  (脫cap非null-op:red-team報告原判「脫cap但null-op」用錯crowding pctile假設
+   ≥90,真composite_pctile=2.8,band<40,故脫cap有效拉升confidence,非零數值效果。INITIAL,uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_euv_lithography.md`。
 
 ## kill_condition(可證偽)
 > 有可行 EUV/High-NA EUV 競爭者出現(中國本土突破如 SMEE、或 Canon/Nikon 重返 High-NA)打破唯一供應商

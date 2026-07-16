@@ -2,7 +2,7 @@
 slug: us-solar-manufacturing
 type: B
 cycle_stage: mid
-confidence: 0.32
+confidence: 0.3
 verdict: real-policy-moat-and-still-cheap
 updated: 2026-07-11
 tickers: ['FSLR']
@@ -37,12 +37,33 @@ U.S. production",同 2 年前預告吻合)。護城河由美國貿易政策(232/
 - 2026-02-24:*"We entered 2026 with a fully allocated position for our U.S. production."*
 - 2026-04-30(最新):美國本土產能維持全負荷,只有海外(馬來西亞/越南)產能因關稅政策 demand-side 受限。
 
-## confidence 推導
+## confidence 推導(可追溯;2026-07-16 P2 遷移 + red-team 判決)
 ```
-7年連續、量化、持續確認嘅結構故事 + 政策護城河(非純週期性) + ttm_pe 22nd pctile(discovery radar
-呢批入面priced-in狀態最好)= 6個新thesis入面confidence較高嗰個
-但政策binary風險(關稅/IRA可撤銷)非零,要扣返少少 -> confidence ≈ 0.32
+KPI: moat 1.5/2(red-team 2026-07-16 中彈:CdTe「結構性成本護城河」被多晶矽崩盤蝕穿——多晶矽崩盤
+       令 c-Si 變低成本方,FSLR $0.35/W vs 中國c-Si $0.09-0.13/W ex-tariff,成本護城河已冇,撐住嘅係
+       政策[關稅+45X]唔係成本 → 由 2 降至 1.5;但關稅牆生還兼方向逆:AD-CVD/301/232 反而收緊)
+     · capital 1.5/2(EBIT margin 0.315/coverage 41.7/net cash + backlog 到 2030 支持產能建設;
+       但 45X 補貼~$1.6B(FY2025)>全年淨利$1.53B,盈利=補貼,formal ROIC 未計故未到 2)
+     · valuation 2/2(pe_pctile 22nd <50 且 p_base 0.655 ≥0.4,機械格,批內 priced-in 最好)
+     · growth 1.5/2(reshoring additive 已兌現、供給政策性慢;TAM 未 sizing、政策 binary → 封頂 1.5)
+                                                                          = 6.5/8 = 0.8125 base
+penalty(§4a 表:crowding 76.0 → 60–80 帶 × mid)                         × 0.75  → 0.609
+single-source cap(sources len=1)                                        → min(0.609, 0.30)
+→ confidence = 0.30  (現行 0.32 已違反 cap,屬修正;durability 腿[45X 補貼存亡曝險]已 flag
+   magnitude_unconfirmed,見 cdte-policy-moat-cheap node。INITIAL, uncalibrated)
 ```
+red-team 詳見 `backtest/results/2026-07-16_redteam_us_solar.md`。
+
+## red_team(Level-2,2026-07-16;詳 backtest/results/2026-07-16_redteam_us_solar.md)
+- **判決:分岔**——承重 (iv)「backlog/sold-out」被現金背書補強($1.8B deferred revenue,pilot「披露
+  backlog≠入帳緩衝」嘅刀喺 FSLR 斬唔落);(ii)關稅護城河生還兼方向逆(收緊);(i)「CdTe 結構性成本
+  護城河」中彈(一手價格證偽:多晶矽崩盤令 c-Si 反超,FSLR $0.35/W vs 中國$0.09-0.13/W);(iii)45X
+  補貼腿生還到2030但揭出存亡級曝險(45X ~$1.6B > FY2025淨利$1.53B,盈利本身就係補貼)。
+- **「有盈利所以唔係彩票」係循環論證**:剝走45X後~10% GM(帳面41%)、淨利大約breakeven。
+- **backlog 動能敘事中彈**:81.8GW(2023)→47.9GW(2026Q1)峰後腰斬,FY2025 8.3GW客戶違約
+  debooking(含BP系),wiki「連續7年逐年延伸」實為「峰後下坡、~3年能見度」。
+- **已 flag `magnitude_unconfirmed: true`**(cdte-policy-moat-cheap node)——durability 腿(政策
+  依賴+已失成本競爭力)未過 Level-2,sizing v2 對此 node 收起 3-5x-durable 加成。
 
 ## kill_condition(可證偽)
 > Section 201/232/301 太陽能關稅或 IRA 本土成分規定被撤銷/豁免,重開美國市場俾中國/東南亞競爭者
