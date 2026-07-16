@@ -249,24 +249,42 @@ def parse_magnitude_tier(tier_str):
 
 def theme_magnitude_mid(theme):
     """Ticker-count-weighted blend of node-level magnitude_tier (same method the 2026-07-12
-    decision analysis used for ai-power-grid). Returns (mid, source): source='nodes' if real
-    per-node magnifier data exists, 'default' if this theme hasn't had the per-node rubric run
-    yet (as of 2026-07-13, that's 14/15 themes -- P2 backlog item to extend it) and we fall
-    back to V2_DEFAULT_MAGNITUDE_MID. Never silently invents a number attributed to real data."""
+    decision analysis used for ai-power-grid). Returns (mid, source, n_damped): source='nodes'
+    if real per-node magnifier data exists, 'default' if this theme hasn't had the per-node
+    rubric run yet and we fall back to V2_DEFAULT_MAGNITUDE_MID. Never silently invents a
+    number attributed to real data.
+
+    DESIGN 4c channel 3 (wired 2026-07-16): a node carrying `magnitude_unconfirmed: true` --
+    i.e. a Level-2 red-team judged THAT leg's magnitude claim unproven -- may not lend its
+    claimed tier to the blend. Its tier is damped to the neutral placeholder, so a fully-
+    unconfirmed theme lands at V2_DEFAULT_MAGNITUDE_MID -> log2(2.0)=1.0 -> score = confidence
+    alone, exactly the "回落到 confidence-only 基準注碼" the standard calls for. Mixed themes
+    (some legs proven, some not) blend proportionally, which is the honest reading.
+
+    min() rather than assignment: damping must never RAISE a node's magnitude. Every tier in
+    the current schema parses >= 2.0 so this cannot bind today, but the guarantee is mechanical
+    rather than incidental -- same monotonically-conservative principle as valuation.py v1's
+    min(TTM, 3yr median). n_damped counts only nodes where the damp actually BOUND (lowered the
+    tier); a leg flagged at 2x had no uplift to withhold and is not counted as damped."""
     nodes = theme.get("nodes")
     if not nodes:
-        return V2_DEFAULT_MAGNITUDE_MID, "default"
-    total_w, total = 0, 0.0
+        return V2_DEFAULT_MAGNITUDE_MID, "default", 0
+    total_w, total, n_damped = 0, 0.0, 0
     for n in nodes:
         mid = parse_magnitude_tier(n.get("magnitude_tier"))
         if mid is None:
             continue
+        if n.get("magnitude_unconfirmed"):
+            damped = min(mid, V2_DEFAULT_MAGNITUDE_MID)
+            if damped < mid:
+                n_damped += 1
+            mid = damped
         w = max(len(n.get("tickers") or []), 1)  # ETF-only legs (tickers: []) still weight 1
         total += mid * w
         total_w += w
     if total_w == 0:
-        return V2_DEFAULT_MAGNITUDE_MID, "default"
-    return total / total_w, "nodes"
+        return V2_DEFAULT_MAGNITUDE_MID, "default", 0
+    return total / total_w, "nodes", n_damped
 
 
 def is_event_binary(theme):
@@ -281,7 +299,13 @@ def is_event_binary(theme):
 def build_table_v2(themes, judge_status, budget):
     """Shadow v2 sizing: score = conf * log2(magnitude_mid), with the magnitude bonus
     suppressed (score = conf alone) below V2_MAGNITUDE_CONF_GATE so an unverified large
-    magnitude assumption can't rank up a low-confidence thesis. Deploy only the top V2_TOP_K by
+    magnitude assumption can't rank up a low-confidence thesis. TWO independent guards now sit
+    on the magnitude bonus: this confidence gate (blunt -- keyed on the theme's confidence), and
+    DESIGN 4c channel 3's per-node `magnitude_unconfirmed` damping inside theme_magnitude_mid
+    (surgical -- keyed on which LEG a red-team actually judged unproven). A theme can clear the
+    conf gate yet still get no uplift because every leg's magnitude is unproven; that is the
+    intended behaviour, and it is where a split red-team verdict's damage lands (confidence
+    itself stays on the frozen 4a formula -- see DESIGN 4c). Deploy only the top V2_TOP_K by
     score, each position floored at V2_MIN_POSITION (else $0, stays watch -- not redistributed
     to neighbors). Event-binary themes get a fixed V2_BINARY_MICRO_POSITION, excluded from
     ranking entirely. Concentration cut applied AFTER selection (the v1 reversal-bug fix,
@@ -295,13 +319,14 @@ def build_table_v2(themes, judge_status, budget):
     scored = []
     for slug, t in scoreable.items():
         conf = float(t.get("confidence") or 0.0)
-        mag_mid, mag_source = theme_magnitude_mid(t)
+        mag_mid, mag_source, mag_damped = theme_magnitude_mid(t)
         if conf >= V2_MAGNITUDE_CONF_GATE:
             score = conf * math.log2(mag_mid)
         else:
             score = conf  # magnitude bonus suppressed -- score = confidence alone
         scored.append({"slug": slug, "confidence": conf, "magnitude_mid": mag_mid,
-                        "magnitude_source": mag_source, "score": score})
+                        "magnitude_source": mag_source, "magnitude_damped": mag_damped,
+                        "score": score})
     scored.sort(key=lambda r: -r["score"])
     top_k = [r for r in scored[:V2_TOP_K] if r["score"] > 0]
 
@@ -430,8 +455,14 @@ def run():
         for r in v2_rows:
             v1_final = v1_final_by_slug.get(r["slug"], 0.0)
             delta = v1_rank_by_slug.get(r["slug"], len(rows)) - v2_rank_by_slug[r["slug"]]
+            # mag_src suffix marks DESIGN 4c channel-3 damping: 'nodes*2' = 2 of this theme's
+            # legs had their claimed magnitude withheld (red-team judged them unproven), so the
+            # blend -- and any uplift it would have bought -- is correspondingly reduced.
+            src = r["magnitude_source"]
+            if r.get("magnitude_damped"):
+                src = f"{src}*{r['magnitude_damped']}"
             print(f"{r['slug']:<24}{r['confidence']:>7.2f}{r['magnitude_mid']:>9.2f}"
-                  f"{r['magnitude_source']:>9}{r['score']:>8.3f}"
+                  f"{src:>9}{r['score']:>8.3f}"
                   f"{'Y' if r['selected'] else '-':>5}{r['final']:>10,.0f}"
                   f"{v1_final:>12,.0f}{delta:>+14d}")
         if v2_binary:
@@ -441,12 +472,16 @@ def run():
         v2_total = sum(r["final"] for r in v2_rows) + sum(r["final"] for r in v2_binary)
         print(f"\nv2 total deployed: ${v2_total:,.0f}  (v1 total: ${total_final:,.0f})")
         if v2_total < 0.6 * v2_total_cap:
-            print(f"  (v2 under-deploys its own cap here NOT from a bug: with most themes "
-                  f"sharing the same default magnitude, their scores bunch too close together "
-                  f"for any one of them to individually clear the ${V2_MIN_POSITION:,.0f} "
-                  f"floor once a real-magnitude theme (ai-power-grid) pulls ahead in the same "
-                  f"top-K -- extending the per-node magnifier rubric to more themes (magnifier "
-                  f"backlog P2 #12) would differentiate scores enough to change this)")
+            n_damped_themes = sum(1 for r in v2_rows if r.get("magnitude_damped"))
+            print(f"  (v2 under-deploys its own cap here NOT from a bug: most themes sit at the "
+                  f"neutral ${V2_DEFAULT_MAGNITUDE_MID}x magnitude -- either the DEFAULT "
+                  f"placeholder (no per-node rubric run yet) or DESIGN 4c damping "
+                  f"({n_damped_themes} theme(s) with a red-team-unproven magnitude leg) -- so "
+                  f"their scores bunch too close together for any one to individually clear the "
+                  f"${V2_MIN_POSITION:,.0f} floor once a proven-magnitude theme pulls ahead in "
+                  f"the same top-K. Extending the per-node magnifier rubric (magnifier backlog "
+                  f"P2 #12) differentiates the FIRST group; only new evidence promoting an "
+                  f"unproven leg differentiates the SECOND -- that is intended, not a gap)")
         if v2_cut_log:
             print("v2 meta_factor cuts:")
             for mf, slugs, group_sum, cap, factor in v2_cut_log:

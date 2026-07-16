@@ -220,13 +220,27 @@ wiki 推導段記錄嘅 subscores/crowding/cycle 套公式嘅輸出(誤差 ±0.0
   `magnitude_unconfirmed: true`,**sizing v2 對呢個 node 收起 magnitude 加成**(回落到
   confidence-only 基準注碼)。呢個先係分岔 thesis 嘅 red-team 殺傷力真正落腳點——
   唔喺 confidence 數字,喺「搏大升幅嗰部分未證 → 唔俾佢憑潛在倍數加碼」。
+  **實作(2026-07-16 已接線):**`thesis/sizing.py` 嘅 `theme_magnitude_mid()` 對標咗
+  flag 嘅 node 用 `min(tier, V2_DEFAULT_MAGNITUDE_MID)` damp 到中性 2.0x
+  (log2(2.0)=1.0 → score = conf,即 confidence-only);混合 theme(部分腿已證)按
+  ticker 權重比例 blend,誠實反映。用 `min()` 唔用直接賦值:damping 永不可以*提升*
+  一個 node 嘅 magnitude(現有 tier 全部 ≥2.0 所以今日 bind 唔到,但保證係機械而非偶然
+  ——同 valuation.py v1 `min(TTM, 3年中位)` 同一 monotonically-conservative 原則)。
+  v2 表 `mag_src` 欄以 `nodes*N` 標示 N 條腿被 damp。注意呢個同既有嘅
+  `V2_MAGNITUDE_CONF_GATE`(conf<0.25 抑制加成)係**兩個獨立 guard**:前者 blunt(睇 theme
+  confidence)、後者 surgical(睇邊條腿被判未證);一個 theme 可以過咗 conf gate 但因為
+  每條腿都未證而攞唔到加成,呢個係設計意圖。實測(2026-07-16):us-solar/gas-compression
+  由 mag 4.00→2.00(score 0.600→0.300,回落 confidence-only)、space 5.09→4.55(兩腿 damp,
+  混合比例)、tpu 2.33→2.17;specialty-siding 標咗 flag 但 tier 本身 2x → damp 冇 bind、
+  `damped=0`(冇 uplift 可收,唔假報)。
 
 **淨效果(解 tpu/space 矛盾,一致可審計):**
 - confidence 數字 = 公式(tpu 0.30、space 公式值)——標準化,唔酌情。
 - 但未證 magnitude 腿 → magnitude 加成收起 → **真金白銀注碼受控**,透過 sizing 層而非
   confidence 酌情。即「信心可以標準,但賭注唔會因為標準化咗就自動放大」。
 - `thesis/lint.py` 檢查:標咗 `magnitude_unconfirmed` 嘅 node,wiki 必須有對應 red_team
-  段記錄邊條腿未證;sizing v2 必須對該 node 停加成(實作待接)。
+  段記錄邊條腿未證(已實作);sizing v2 對該 node 停加成(**2026-07-16 已接線**,見上
+  通道 3 實作段)。§4c 三通道至此全部落地。
 
 ---
 
