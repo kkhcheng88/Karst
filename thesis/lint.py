@@ -21,16 +21,32 @@ theme; reported here so an existing registry entry that regresses is caught too)
 WARNINGS (not blocking): single-source cap — len(sources) < 2 AND confidence > 0.30 (spec §2 hard
 rule: single-source theses should be capped at 0.30; a small early/thin-evidence bet, not a big one).
 
+P2 formula lint (docs/2026-07-15_quantification_review.md 提案2 + DESIGN §4a/§4c, added 2026-07-16):
+  - ERROR: if a theme's wiki has a "## confidence 推導" section with machine-readable 4-KPI
+    subscores (moat/capital/valuation/growth, format "KPI X/2"), recompute confidence via
+    thesis/confidence_formula.py (crowding from thesis/.raw/crowding_composite.json, cycle_stage
+    + sources count from themes.yaml) and compare to the recorded themes.yaml confidence; diff
+    > 0.01 -> error listing wiki subscores, crowding, cycle, formula output, themes.yaml value.
+  - WARNING: subscores section present but not machine-readable (couldn't extract all 4 KPIs), or
+    crowding_composite.json unreadable/missing the theme (falls back to a conservative 40-60 band
+    assumption and warns).
+  - WARNING (§4c): any node tagged `magnitude_unconfirmed: true` but the wiki has no `red_team`
+    section -- the red-team verdict that justifies flagging the leg must be recorded.
+
 Run: python thesis/lint.py [--no-ticker-check]  (ticker loadability hits data.py / network; skip
 with --no-ticker-check for a fast offline pass)
 """
 import datetime
 import glob
+import json
 import os
 import re
 import sys
 
 import yaml
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import confidence_formula as cf  # noqa: E402  (純函數模組,見 thesis/confidence_formula.py)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 WIKI = os.path.join(ROOT, "wiki")
@@ -47,6 +63,54 @@ VALID_META_FACTORS = {
 }
 TRIGGER_RE = re.compile(r"Trigger|觸發|to zero|de-?list|歸零|mean-revert", re.I)
 PRELISTING_RE = re.compile(r"掛牌後補|未上市|未有數據|pre-listing")
+
+# --- P2 formula lint (docs/2026-07-15_quantification_review.md 提案2 + DESIGN §4a/§4c) ---
+# 「## confidence 推導」段(第一個出現,到下一個 "## " 級標題為止)—— 有意窄範圍,
+# 唔會誤食上面 "### 4-KPI" 證據段(三個 # 唔會撞到 "\n## " 邊界)或下面 red_team 段。
+FORMULA_SECTION_RE = re.compile(r"##\s*confidence\s*推導.*?(?=\n##\s|\Z)", re.S)
+# 每個 KPI 關鍵字後、30 字內出現嘅第一個 "X/2"(X 可以係半分,如 1.5)當該格 subscore。
+FORMULA_KPI_RE = {
+    "moat": re.compile(r"moat\D{0,30}?(\d+(?:\.\d+)?)\s*/\s*2"),
+    "capital": re.compile(r"capital\D{0,30}?(\d+(?:\.\d+)?)\s*/\s*2"),
+    "valuation": re.compile(r"valuation\D{0,30}?(\d+(?:\.\d+)?)\s*/\s*2"),
+    "growth": re.compile(r"growth\D{0,30}?(\d+(?:\.\d+)?)\s*/\s*2"),
+}
+RED_TEAM_RE = re.compile(r"red_team|##\s*red.?team", re.I)
+
+
+def _extract_wiki_subscores(wiki_text):
+    """喺 wiki 第一個「## confidence 推導」段機讀抽 4-KPI subscores(moat/capital/
+    valuation/growth,格式 `KPI X/2`)。
+
+    回傳 (subscores_dict_or_None, section_found_bool):
+      - section 唔存在 -> (None, False)         # 呢個 theme 未寫機讀推導段,靜默 skip
+      - section 存在但抽唔齊 4 個 -> (None, True) # caller 要 warn「無機讀 subscores」
+      - 抽齊 4 個 -> (dict, True)
+    """
+    m = FORMULA_SECTION_RE.search(wiki_text)
+    if not m:
+        return None, False
+    section = m.group(0)
+    out = {}
+    for kpi, rx in FORMULA_KPI_RE.items():
+        mm = rx.search(section)
+        if mm:
+            out[kpi] = float(mm.group(1))
+    if len(out) < len(FORMULA_KPI_RE):
+        return None, True
+    return out, True
+
+
+def _load_crowding_composite():
+    """讀 thesis/.raw/crowding_composite.json(§4a 一致的擁擠複合分位來源)。
+    讀唔到就回空 dict + 錯誤字串(caller 對每個 theme 保守假設 40-60 帶並 warn)。"""
+    path = os.path.join(ROOT, ".raw", "crowding_composite.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f) or {}
+        return (data.get("themes") or {}), None
+    except Exception as e:
+        return {}, str(e)
 
 
 def _valid_date(v):
@@ -138,6 +202,9 @@ def run(no_ticker_check=False):
     admission_warnings = {}  # slug -> [warnings] (single-source cap etc.)
     ticker_data_issues = {}  # slug -> [ticker unloadable]  (data/ops health, non-blocking)
     meta_factor_themes = {}  # meta_factor -> [slug, ...]  (WS3 §1a hub-page-coverage check)
+    formula_errors = {}      # slug -> [errors]    (P2 formula lint, DESIGN §4a)
+    formula_warnings = {}    # slug -> [warnings]  (extraction failure / crowding fallback / §4c)
+    crowding_data, crowding_read_err = _load_crowding_composite()
     try:
         themes = (yaml.safe_load(open(themes_path, encoding="utf-8")) or {}).get("themes", {}) or {}
         for slug, t in themes.items():
@@ -212,6 +279,56 @@ def run(no_ticker_check=False):
                 except (TypeError, ValueError):
                     pass
 
+            # --- P2 formula lint (docs/2026-07-15_quantification_review.md 提案2 + DESIGN §4a) ---
+            # 只喺 wiki 有機讀「## confidence 推導」段先做;冇段 = 呢個 theme 未遷移,靜默 skip
+            # (唔係全部 theme 而家都要有 -- 見 DESIGN §4a 尾段「遷移程序」,逐個覆核後先落 wiki)。
+            wiki_slug = _slug(slug)
+            wiki_text = pages.get(wiki_slug, {}).get("text", "")
+            if wiki_text:
+                wiki_subscores, section_found = _extract_wiki_subscores(wiki_text)
+                if section_found and wiki_subscores is None:
+                    formula_warnings.setdefault(slug, []).append(
+                        "wiki 有「## confidence 推導」段但機讀唔到齊 4 個 subscores(要 "
+                        "moat/capital/valuation/growth 四個都以 `KPI X/2` 格式出現)-- "
+                        "無機讀 subscores,formula lint 略過呢個 theme"
+                    )
+                elif wiki_subscores is not None:
+                    cr = crowding_data.get(slug) or crowding_data.get(wiki_slug) or {}
+                    if cr.get("composite_status") == "ok" and cr.get("composite_pctile") is not None:
+                        crowding_pctile = float(cr["composite_pctile"])
+                    else:
+                        crowding_pctile = 50.0  # 讀唔到 -> 保守假設落喺 40-60 帶中點
+                        reason = crowding_read_err or cr.get("composite_status") or "missing from json"
+                        formula_warnings.setdefault(slug, []).append(
+                            f"crowding_composite.json 讀唔到呢個 theme 嘅 composite_pctile "
+                            f"({reason}) -- formula lint 保守假設 crowding 落喺 40-60 帶"
+                        )
+                    try:
+                        result = cf.confidence(wiki_subscores, crowding_pctile, cs, len(sources))
+                        recorded = float(conf) if conf is not None else None
+                        diff = None if recorded is None else abs(result["capped"] - recorded)
+                        if recorded is None or diff > 0.01:
+                            formula_errors.setdefault(slug, []).append(
+                                f"wiki subscores={wiki_subscores}, crowding_pctile={crowding_pctile}, "
+                                f"cycle_stage={cs!r}, n_sources={len(sources)} -> formula confidence="
+                                f"{result['capped']:.4f} (raw={result['raw']:.4f}, "
+                                f"cap_applied={result['cap_applied']}) but themes.yaml confidence="
+                                f"{conf!r} (diff={diff if diff is not None else 'n/a'})"
+                            )
+                    except Exception as e:
+                        formula_warnings.setdefault(slug, []).append(
+                            f"formula lint could not compute confidence for this theme: {e}"
+                        )
+
+            # --- §4c: magnitude_unconfirmed node must have a corresponding red_team section ---
+            nodes = t.get("nodes") or []
+            if any(isinstance(n, dict) and n.get("magnitude_unconfirmed") for n in nodes) \
+                    and not RED_TEAM_RE.search(wiki_text or ""):
+                formula_warnings.setdefault(slug, []).append(
+                    "theme 有 node 標 magnitude_unconfirmed: true,但 wiki 搵唔到 red_team 段 "
+                    "(DESIGN §4c 要求:未證 magnitude 腿要有 red_team 判決記錄邊條腿未證)"
+                )
+
         # WS3 §1a hub-page-coverage check: any meta_factor shared by >=2 themes must have a
         # cross-theme concept page at thesis/wiki/<meta_factor>-macro-risk.md (the naming
         # convention set by the existing ai-capex-macro-risk.md). This is a WARNING (not an
@@ -272,8 +389,23 @@ def run(no_ticker_check=False):
         for i in issues:
             print(f"  {slug}: {i}")
 
+    n_formula_errs = sum(len(v) for v in formula_errors.values())
+    print(f"\nP2 formula lint ERRORS (DESIGN §4a, wiki subscores vs themes.yaml confidence, "
+          f"MUST fix): {n_formula_errs}")
+    for slug, errs in formula_errors.items():
+        print(f"  {slug}:")
+        for e in errs:
+            print(f"    - {e}")
+
+    n_formula_warn = sum(len(v) for v in formula_warnings.values())
+    print(f"\nP2 formula lint warnings (extraction failure / crowding fallback / §4c "
+          f"magnitude_unconfirmed missing red_team, not blocking): {n_formula_warn}")
+    for slug, warns in formula_warnings.items():
+        for w in warns:
+            print(f"  {slug}: {w}")
+
     print("\n(Unresolved links are OK -- they mark concept pages worth writing next, not errors.)")
-    return n_admission_errs + len(fm_errors)
+    return n_admission_errs + len(fm_errors) + n_formula_errs
 
 
 if __name__ == "__main__":
