@@ -62,12 +62,14 @@ penalty(§4a 表:crowding 57.4 → 40-60 帶 × late)                          �
 >   A/B 驗證(同日同 DB,只差修正):**只有 euv 郁(2.8 → 57.4),其餘 16 個 theme 全部 +0.0**
 >   —— 外科手術式,無旁及損害。crowding 由假讀數 2.8 還原至 **57.4**;raw 0.469 → **0.406**;
 >   confidence 維持 0.40(uncalibrated cap 仍然綁住)。⚠️ 57.4 距 60 帶界只差 2.6 分,一過界 → 0.34。
-> - **D2 建構效度 — 未決(用戶拍板)**:crowding 軸量緊 **temporal 自身歷史分位**,但 penalty 表要嘅係
->   **cross-sectional priced-in 折扣**。證據 = 全書排名反轉(ASML 98 分位 PE、全市場最多人講 → 讀成
->   「唔擠」;冷門包裝/護牆板 → 讀成「最擠 95-97」)。**呢個影響全部 17 個 theme 嘅 penalty,唔止 euv。**
->   若改 cross-sectional,ASML 應 ≥90 → euv confidence 0.25(= 紅隊原本估值)。
-> - **紅隊原本估 crowding ≥90 → 0.25。佢個直覺啱**,係 gatekeeper 攞污染數推翻咗佢(已認)。
->   D1 修完得 57.4,仍未到紅隊估嘅 ≥90 —— 差距正正就係 D2 嗰個 temporal-vs-cross-sectional 問題。
+> - **D2 — 已結案(2026-07-17):唔存在嘅缺陷**。07-16 判「軸量 temporal 但 penalty 表要
+>   cross-sectional」係**讀錯規格**:DESIGN §1 表明寫「擁擠(新 thematic ETF 上市/資金流)」= 資金流
+>   事件,唔係名氣水平;而「貴+人盡皆知」由**估值 KPI 擔**(euv 正正就係 valuation 0/2,pe 98 分位)。
+>   改 cross-sectional = 同一件事罰兩次,違反 §4a「唔准喺 penalty 度再折一次」。詳:
+>   `backtest/results/2026-07-17_crowding_d1_fix_verification.md` §D2(DESIGN §4a 已寫死防再誤修)。
+> - **紅隊估 ≥90 講嘅係「名氣」** —— 名氣已由估值軸罰咗(0/2),唔應該喺擁擠軸再罰。
+>   gatekeeper 用污染數推翻紅隊 = 過程錯(已修);但「ASML 唔食擁擠罰」呢個結論喺乾淨數
+>   (57.4)+ 正確軸定義下企得住。**錯喺過程,唔錯喺結論。**
 
 red-team 詳見 `backtest/results/2026-07-16_redteam_euv_lithography.md`。
 

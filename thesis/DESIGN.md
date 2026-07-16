@@ -221,6 +221,16 @@ Level-2 red-team 且生還(wiki 有記錄);齋引用(未經抗辯)最高 1.5。
 映射,執行時零自由裁量;佢係 P1 綜合分 value/expect 兩維嘅 KPI 層鏡像,方向一致係特性唔係雙重計算
 (綜合分係**個股**排序,confidence 係 **theme** 層 thesis 機率)。
 
+**crowding 軸量緊乜(2026-07-17 D2 裁決;寫死,防止未來再「修」錯):**
+呢條軸係 **temporal —— 同標的自身歷史比嘅關注度分位**,答「**錢係咪正在湧過嚟**」(§1 表:
+「擁擠(新 thematic ETF 上市/資金流)」= 事件/流向,唔係名氣水平)。**唔係 cross-sectional
+「有幾出名」**,呢個係刻意決定,三條理由(正本:`backtest/results/2026-07-17_crowding_d1_fix_verification.md` §D2):
+(1) §1 表已將 priced-in 拆三份:**估值分位**擔「貴/人盡皆知」、供給回應擔 capex 轉向、擁擠擔資金流;
+(2) 改 cross-sectional = 同一件事(名氣)喺估值 KPI 同 penalty 罰兩次,違反下面「唔准再折一次」;
+(3) 唯一實證支持嘅係 temporal(MU 20 年最低出席季 = 股價底部;probe 見模組 docstring)。
+→ 推論:一隻永遠出名但關注度平穩嘅股(如 ASML)**唔會**食擁擠罰,佢嘅 priced-in 由估值 KPI 罰
+(euv valuation 0/2,PE 98 分位)。呢個係設計,唔係漏洞。
+
 **penalty 查表(crowding composite pctile × cycle_stage;凍結):**
 
 | crowding \ cycle | early | mid / event-driven | late / mid-late |
