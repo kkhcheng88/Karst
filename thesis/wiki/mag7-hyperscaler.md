@@ -188,6 +188,13 @@ thesis 真正押注嘅**承重「capex→盈利複合」magnitude 腿未證**(AI
 - [ ] 接前瞻追蹤:hyperscaler 逐季 capex guidance + cloud 增速 + RPO 自動更新 cycle/confidence。
 - [ ] 抽 [[MSFT]]/[[GOOGL]]/[[AMZN]]/[[META]] transcript 管理層「AI 收入 / capex 紀律 / 折舊年限」語言。
 
+## 2026-07-17 zsxq-pdf ingest:MS「MSFT — Infrastructure Monetization」(判決 NEUTRAL/monitor-feed,confidence 0.30 維持)
+- **來源**:zsxq-pdf「20260527 MS MSFT - Infrastructure Monetization - Still Early Days in the AI Cycle」,MS Keith Weiss,**Tier-2**(**93% OW 共識、極擠**;MS 對 MSFT 有 IB 補償利益衝突)。文件基準日 2026-05-27,**早過**現 kill_metrics current 讀數(2026-04-29 財報實績)→ **唔覆寫 kill_metrics**,只補監察角度。
+- **硬數據(MS 模型估算,容量數 MSFT 未核實)**:裝機容量 FY24 **5GW**→FY25 7.5→FY26e 10.25→FY27e 14.5→FY28e **20.25GW**;blended 每 MW 營收 **$27.5→$22.5→$20.9→$18.8→$17.2mn**(逐年跌);Total capex FY25 $88.2B→FY28e $312.6B;AI-only implied $/MW ~$7.6–8.6mn(vs neocloud CRWV ~$10)。**管理層一手**(FY26Q3 call):「added another gigawatt of capacity this quarter」「increase total AI capacity by over 80% this year, roughly double total datacenter footprint over the next two years」。PT $650(30x CY27e EPS $21.76);Bull $860 / Bear $310。
+- **對監察軸意義(補「容量 vs 貨幣化」獨立角度)**:核心事實 = **產能擴張快過每 MW 變現**(rev/MW 結構性下降 $27.5→$17.2),兌現全係 **conditional**(AI 採用加速 + Azure AI GM > 15–20% + software attach);@20% GM 上望即翻負;折舊 FY25 $4.4B→FY27 $28.9B 爬升。直接餵 kill 軸(3)/(4)監察紋理——「capex→盈利複合」腿目前讀數 = **未兌現/落後**,但 kill **未觸**(capex 仍增、Azure AI robust、AI run-rate +123%)。
+- **Level-1 red-team**:管理層「+80% AI 容量 / 2 年翻倍 footprint」= 需求-intact 一手佐證(對 kill 軸 1 反向確認),但屬 demand-intact 側、**非獨立擊中「盈利複合」承重 bull claim** → 唔脫 cap。報告 bull 但共識內(93% OW = 擁擠,bull 本身係 crowding 訊號)。
+- **判決:NEUTRAL(monitor-feed)**;無新財報級一手兌現證據,只補 MS 模型「容量 vs rev/MW」監察角度。**confidence 0.30 = §4a 公式輸出(single-source cap)**,core-monitor / magnitude 2x-unconfirmed 全維持。
+
 ## 來源
 Tier-1(內部一手量化):`exp_mag7_valuation_throttle` / `exp_sector_flow_claims` / `exp_residual_seesaw`
 (全部 2026-07-16,backtest/results/)—— 單一獨立證據鏈(謹慎/證偽性質,支持 monitor 定位,唔脫

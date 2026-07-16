@@ -173,6 +173,13 @@ red-team 詳見 `backtest/results/2026-07-15_redteam_tpu_custom_silicon.md`(2026
 - [x] ✅ AVGO/MRVL/TSM/CLS ttm_pe 分位 + capex(一手)— 2026-07-01。
 - [ ] universe.yaml 加 TPU/custom-silicon grouping,讓 scan 覆蓋(目前 thesis 層有、scan 未覆蓋)。
 
+## 2026-07-17 zsxq-pdf ingest:JPM「Broadcom — Ignore The Noise, TPU v9 2nm CY28 No Delays」(判決 NEUTRAL,confidence 0.30 維持)
+- **來源**:zsxq-pdf「20260616 J.P. Morgan Broadcom Inc - Ignore The Noise TPU v9 2nm ASIC Program On Track For CY28 Ramp No Delays」,JPM Harlan Sur,**Tier-2**(同 house 觀點、非獨立第二來源;JPM 對 AVGO 係 market maker + IB client)。
+- **硬數據 vs 觀點(關鍵條款幾乎全部 "we believe" 措辭)**:5年 GOOG/AVGO 協議(3月簽)**存在 = 事實**,但「鎖 v8–v11 四代 / 逐年營收承諾遞增至 2031」係 JPM **詮釋**(原文 "we believe includes")非披露條款;**2027 AI 營收 +2–2.5x YoY、2028 再 +2x = JPM 估算**非管理層 guidance;新加坡先進 substrate 廠 8 月投產、2.5D/3.5D 封裝支援 15x reticle die area CY28、Broadcom 領先 Google COT 團隊 18mos+ = JPM primary-research 判斷;TPU v9 2nm CY28 量產如期、駁斥延誤傳聞。評級 OW,PT **$475→$500→$580**(三個月追價,23x FY27 exit EPS $25.35)。
+- **Level-1 red-team(夜班級,唔升 confidence)**:(a)承重腿 =「**結構性份額轉移**」,本報告**零觸及** ASIC-vs-GPU 成本經濟學/份額轉移,敘事全係「AVGO 喺 Google 單客關係內營收遞增」→ **佐證**現有 red-team「share-shift 未證、Google TPU 仍佔 AVGO AI 營收 ~2/3」+ `custom-asic-tollbooth`(AVGO)node `magnitude_unconfirmed`;(b)文內自帶反面錨:延誤傳聞來源多元(賣方+亞洲供應鏈+新聞)、Google COT+Mediatek 自研 "Zebrafish" v8t 3nm、COT v9 用 EMIB 封裝「mid-term uncertainty」、正式 Risks 段極空泛(只列宏觀衝擊)= bullish-skew。
+- **判決:NEUTRAL**(reiterate;駁斥延誤傳聞屬**執行時程**佐證,非新獨立承重證據)。§4c 分岔:Tier-2 只掂已-priced toll-booth / 周邊,唔掂未證 share-shift 承重腿 → **唔脫 single-source cap**、magnitude_unconfirmed 維持、**confidence 0.30(§4a 公式輸出)不變**。
+- 另:同批 HSBC TSMC(07-13)2nm/3nm 產能 **+78%/+41% YoY 2027**(HSBC 估算)佐證 `foundry-both-chains`(TSM)node 供給擴張;一個正本記喺 [[semiconductor-cycle]] 07-17 段。
+
 ## 來源
 Tier-2(TPU 叢 **3 篇**,`thesis/wiki/sources/`,全文 `corpus.db`):**#129**(TPU 逆襲:推理時代成本
 說話,`corpus.py get 129-trend-core-research-tpu-inference-cost-insurgency`)——內含 SemiAnalysis 成本、

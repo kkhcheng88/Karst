@@ -206,6 +206,13 @@ booming)**證實**;但 thesis 真正押注嘅**承重「超級週期耐久兌現
 - [ ] 取得 SOXX/SMH 乾淨 own-history 估值分位,確認 valuation 格係 1/2 定應降 0.5(≥90)。
 - [ ] 接前瞻追蹤:SIA/TSM 月度數自動更新 cycle/confidence;DIO 續升是否脫離 N2 敘事逐季覆核。
 
+## 2026-07-17 zsxq-pdf ingest:HSBC「TSMC — Increasing capex pressure」(判決 NEUTRAL,confidence 0.30 維持)
+- **來源**:zsxq-pdf「20260713 HSBC TSMC - Increasing capex pressure to drive long-term growth」,HSBC Frank Lee,**Tier-2**(**全部 HSBC 遠期估算、非 TSMC 官方實績**;Maintain Buy)。發表 2026-07-13,**早 TSMC 7/16 正式 2Q26 業績 3 日** → 可 A/B 覆核 HSBC 準繩。
+- **硬數據(HSBC 估算)**:2Q26e GM **68%** vs 官方指引 65.5–67.5%;FY27 capex 上修至 **$80.2B**(由 $70.6B,vs 共識 $65.2B);2026 capex $56.5B(指引高端);2027 營收 **+36% YoY**(vs 管理層指引 30%);2024–28 營收 CAGR 34% USD(vs 官方 2024–29 25%);2027 產能 **2nm +78% / 3nm +41% YoY**;TP **TWD3,350**(25x PE,由 27x 降,因預期 Intel 中期競爭);ADR TP $622.89;2029 營收敏感度 **+4–19%**(FY27 capex $85–100B 情境)。
+- **對 kill_metrics 意義**:報告**零提供 DIO / 月度營收數據**,無法覆寫 `tsm_monthly_rev_yoy`(current 68)/ `tsm_inventory_days_dio`(current 87)——全篇係 up-cycle / 產能緊張敘事,方向與「庫存過剩→DIO 破 100」**相反**,kill 軸未觸。
+- **Level-1 red-team**:文內自帶反面錨——2H26 GM 壓力(海外廠 + 2nm ramp,3Q GM 估 68→67)、capex 對長期 GM 稀釋(HSBC 自認)、折舊上升列 downside risk、HSBC 主動降 PE 27x→25x 因 Intel 競爭、FCF yield 僅 2.4%;18 個月連環追價(TWD1,280→3,350)= crowding 風險。反共識偏鷹:capex 估算($80.2B)顯著高於共識($65.2B)。
+- **判決:NEUTRAL**(reiterate;Tier-2 遠期估算、無 Tier-1 週期數據、kill 軸未觸)。**confidence 0.30 = 公式輸出(single-source cap)**,core-monitor / magnitude 2x-unconfirmed 維持。另:2nm/3nm 產能增速佐證 [[tpu-custom-silicon]] `foundry-both-chains`(TSM)node 供給擴張(該處 07-17 段互指)。
+
 ## 來源
 Tier-1(內部一手量化):`exp_qqq_two_factor`(2026-07-17)/ `exp_sector_flow_claims`(2026-07-16),
 backtest/results/ —— 單一獨立證據鏈(謹慎/證偽性質,支持 monitor 定位,唔脫 single_source cap)。

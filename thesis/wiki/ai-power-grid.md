@@ -179,6 +179,18 @@ UNCALIBRATED_CAP 0.40:**適用、綁住**(STATUS.md:256「校準迴路未通之�
   downgrade——「對『負荷預測仍連年上修』製造反對」係反例示範);kill_condition 加能效軸+
   backlog 可觀測代理;sources 加 tier-1 佐證條目(甩 cap)。
 
+## 2026-07-17 zsxq-pdf ingest:BofA「Global Semiconductors」800VDC TAM + SemiAnalysis「800VDC Revolution Part 1」(判決 NEUTRAL,補 magnitude 量化;confidence 0.40 維持)
+
+**(A) BofA「Global Semiconductors: Watts to Tokens」**(zsxq-pdf「Global Semiconductors」,2026-05-25,Vivek Arya,**Tier-2 行業 TAM 模型,無個股評級/PT**;全部數字 = BofA 自下而上估算)
+- **硬數據**:AI 類比電源 TAM **$7.9bn(CY25)→$27bn(CY30)28% CAGR**;每機櫃 analog 含量 $17.3K(<100kW)→**$36.3K(160kW,今日)→$291K(600kW)→$917K(1MW)**(160kW→600kW 約 8x、→1MW 約 25x;報告摘要「25x」口徑對 1MW 級);GW 部署 CY25–30 累計 233GW、年增 15–17GW→**60GW(4x)**;Device TAM SiC $183mn→$2,098mn(63% CAGR)、**GaN $118mn→$1,612mn(69% CAGR,最快)**。
+- **份額(BofA 模型,DC+infra $mn CY25→CY30)**:[[TXN]] $1,547→$5,658(19.7%→21.1%,**全程第一**)、Infineon $904→$4,630(份額升最大)、ADI、[[ON]] $295→$2,298(升幅最大 4%→9%)、**[[MPWR]] $710→$2,176 但份額 9%→8% 反跌**。[[NVTS]]/[[WOLF]] 只**質化**(GaN/SiC key vendor,無 TAM/份額數)、**[[VICR]] 全篇零提及**。
+- **意義**:呢個係 theme 自認缺席嘅 **magnitude 證據(TAM 量化)**——但只錨到大盤龍頭(TXN/ON/Infineon),**錨唔到 theme 內 3 隻純 play**(NVTS/WOLF 質化、VICR 缺席、MPWR 份額反跌);與現有「priced ahead of ramp」承重一致。**反面錨**:high-power TAM CY25 實為 **$0**、CY27 先 inflection(+667%)= magnitude 高度 **back-end-loaded**;48V 生態近端未死(IBC option B 保留 50/54V bridge);SST 未成熟;1MW $917K 含量建基於 Nvidia **無官方規格**嘅推測;中國低價 GaN(Innoscience 列名但**零 margin 討論**)= 報告盲點。
+
+**(B) SemiAnalysis「Inside the 800VDC Revolution – Part 1」**(zsxq-pdf 同名,2026-05-26,**Tier-2 深度研究,kill_condition 引用嘅階段論一手來源**)
+- **四階段時程(SemiAnalysis Industrials Model 自算)**:Phase 1 White-Space Retrofit(late-2026/2027,**自願** future-proofing)→ Phase 2 Turning Point(2027/2028,800VDC-native compute **物理強制**)→ Phase 3 灰空間集中式整流(late-2028/2029)→ Phase 4 SST 終局(**唔預期 at-scale 直到 early-2029**)。1GW IT 負載 ~5% facility 電力節省 = ~50MW 連續(Nvidia,與 Phase 4 效率 87.4% 對得上);600kW rack 電流 54V→800V 降 ~14.8–16.7x、I²R 損耗 ~219–278x;HVDC power rack ASP **$400–500K/unit**(標準 AC rack 的 10x);sidecar TAM 峰 ~$11B(2028)、SST TAM ~$13B(2030,$1.25M/MW)。
+- **對 kill_condition 意義(sharpens「stages 3-4 slips / 48V good-enough」軸)**:真需求硬——**600kW+ 密度物理淘汰 48V**（48V「good-enough」只喺 ≤220kW 世代成立,Vera Rubin NVL72 180–220kW 仍 AC 夠);stages 3-4 slip 有**硬觀測錨**——**冇 vendor 完成 datacenter SST 嘅 UL 認證(as of 2026-05)**、NEC full 800VDC code 目標 2029(報告判可能 2032/2035)、3,300V+ SiC 仍 limited production、**ETH Zurich 發現 line-frequency transformer + SiC rectifier 可 match SST**(SST 終局未必必要);灰空間 incumbent ABB 明言 800VDC 係「post-2028 opportunity」、現 backlog 無 800VDC ramp。
+- **判決(兩篇合):NEUTRAL**（BofA 補 magnitude 量化 + SemiAnalysis 深化 kill 階段論觀測錨;兩篇皆 **Tier-2、zsxq 單一策展渠道**,無 Tier-1 獨立擊中承重)。**confidence 0.40 = §4a raw 0.469 被 UNCALIBRATED_CAP 綁**（校準迴路未通,STATUS.md:261),兩篇 Tier-2 唔改公式輸入 → **0.40 維持**。magnitude 量化強化「真需求但 priced-ahead + back-loaded ramp」現有判斷;kill 軸新增可觀測代理:**SST UL 認證、NEC 2029 code、Phase 3/4 時程(early-2029 SST 錨)**。
+
 ## 來源
 Tier-2(ai-power-grid 叢 21 篇,`thesis/wiki/sources/`,全文 `corpus.db`):需求錨 #052(All-In 4 主持人 +
 EQT CEO)、價值鏈 #110(7 層 + FERC 定價權)、800V 供電 #091(POL 雙寡佔)、含量 10x #125(onsemi CEO)、

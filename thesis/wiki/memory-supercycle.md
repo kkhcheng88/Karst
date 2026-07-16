@@ -161,6 +161,17 @@ single-source cap(§4a:承重 claim 無獨立源掂——Tier-1 只掂咗周邊�
 - [x] ✅ MU/SNDK/WDC ttm_pe 分位(一手)— 2026-07-01。
 - [ ] FNSPID 撈過去記憶體週期頂同期新聞,做乾淨 base rate(深化)。
 
+## 2026-07-17 zsxq-pdf ingest:JPM「Semiconductor Tech Materials — Feedback from meetings」(判決 NEUTRAL,佐證 red-team「LTA 保量唔保價」;confidence 0.30 維持)
+- **來源**:zsxq-pdf「20260630 J.P. Morgan Semiconductor Tech Materials - Feedback from meetings with European and US investors」,JPM(投資者會議回饋),**Tier-2**。
+- **硬數據 vs 觀點**:
+  - **Micron 5年不可撤銷 take-or-pay LTA = 管理層口徑**(JPM 引 MU 6/25 業績)——但 take-or-pay 本質係**保量(volume commitment)**,報告**冇講鎖定 ASP 價格地板**。⚠ 直接佐證 2026-07-15 red-team 承重判決:「[[LTA]] 墊價格地板」中彈——已證嘅係「有呢單嘢(保量)」,唔係「墊到價格地板(保價)」。
+  - **Kioxia LTA = JPM 情緒/推測**(「效法 Micron 嘅可能性」,原以為只 2–3 年),**未簽約** → kill 軸(LTA scorecard)Kioxia 一側**未確認**,續盯是否真簽 5 年 LTA。
+  - NAND ASP QoQ:JPM 自估 Apr–Jun **+69%** / Jul–Sep **+20%** / Oct–Dec **+8%**(投資者情緒區間更高 +70–90%/+20–35%/+10–30%)= 動能季度內**快速收斂**;JPM 料 consumer NAND **2027 起跌價**、漲勢集中 eSSD。
+  - crowding 自認:開篇「some were wary of high valuations」、Kioxia「focus of discussion in most meetings」= 注意力集中(擁擠訊號,SKILL 紀律 4)。
+- **WFE 宏觀背景(非 memory-specific,一個正本記此)**:JPM WFE 上修 CY26 **$159B(+28%)** / CY27 **$205B** / CY28 **$237B**、Terafab **$55–119B**(Grimes County 6/3 公聽會揭露)、投資者情緒 WFE CY28 **>$250B**。呢個係半導體 capex 宏觀順風,對 [[advanced-packaging]] `process-equipment-test` node(LRCX/KLAC/TER)有**間接**佐證,**非本 theme 承重、亦非 [[semicap-equipment]] AEHR-burn-in specific**(故該兩 theme 唔因此篇更新)。
+- **Level-1 red-team**:反面事實充足——LTA=保量非保價(承重中彈佐證)、Kioxia 未簽、NAND QoQ 動能遞減、consumer 2027 跌價、估值戒心;全部同現有「late / 去週期化-但-地板係量非價」判斷一致。
+- **判決:NEUTRAL**(reiterate,且**佐證** red-team 對承重 claim 嘅收緊)。無新獨立 Tier-1 擊中「價格地板」承重 → **唔脫 single-source cap**、**confidence 0.30 維持**。kill 軸續盯:Kioxia 是否真簽 LTA、合約 ASP 有無轉跌。
+
 ## 來源
 Tier-2(gooptions 記憶體叢 22 篇,見 `thesis/wiki/sources/`,全文在 `corpus.db`):關鍵 #128(MU LTA
 證明)、#135([[NAND-CMX]])、#110([[WF6]])、#104/#068/#069(LTA 記分卡)、#133(2028 錨)、#103(融資
