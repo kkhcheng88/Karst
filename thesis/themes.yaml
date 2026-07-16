@@ -551,7 +551,7 @@ themes:
     confidence: 0.28
     verdict: real-early-but-froth-priced
     kill_condition: Starship 快速重複使用長期延宕(成本停在 Falcon 量級、軌道運算 $28.5T AI TAM 敘事延後)或 Golden Dome 遭砍/推遲($1.2T
-      僅 CBO 願景、已到位僅 $250B)或純玩家獲利遲不轉正;個股定日 kill:RKLB Neutron 2026Q4 再延、ASTS 2026H2 衛星未準時足量上天、GSAT Amazon
+      僅 CBO 願景、已授權約 $38B[OBBBA $25B+FY2026 $13.4B,red-team 2026-07-16 一手撥款文件核實;舊記「$250B」高估約 7 倍])或純玩家獲利遲不轉正;個股定日 kill:RKLB Neutron 2026Q4 再延、ASTS 2026H2 衛星未準時足量上天、GSAT Amazon
       併購 FCC 破局;SPCX Starlink 收入年增速跌穿 30%(2025 為 49.8%)或 Starship 燒錢(2025 約 $3B R&D)持續擴大而冇對應飛行里程碑。觸發→confidence
       歸零、mean-revert。
     kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4):kill_condition
@@ -634,7 +634,7 @@ themes:
       last_evidence: 2026-07-01
     - name: golden-dome-policy-option
       tickers: [KTOS]                      # 國防太空、Golden Dome 相對衝擊最大(一張 $446.8M≈年營收 33%);2,400+ 家入池=門票非合約
-      cycle_stage: event-driven            # ttm_pe 294.9(Op 利潤率僅 2.9%→PE 失真);催化 = Golden Dome 撥款(CBO $1.2T 願景、已到位僅 $250B)
+      cycle_stage: event-driven            # ttm_pe 294.9(Op 利潤率僅 2.9%→PE 失真);催化 = Golden Dome 撥款(CBO $1.2T 願景、已授權約 $38B,舊記 $250B 高估 7 倍,red-team 2026-07-16 核實)
       magnitude_tier: 2-3x                 # 已有營收(非 pre-profit)+相對 torque,但薄利潤率+無咽喉+門票非合約+溢價 → 政策期權封頂,唔升 binary 檔
       last_scored: 2026-07-13
       last_evidence: 2026-07-01
