@@ -168,3 +168,11 @@ thesis/.raw/kill_metrics_report.json
 # itself (the source data) IS tracked, only this derived report is gitignored.
 thesis/.raw/magnitude_features_report.json
 thesis/.raw/zsxq/pdf/
+
+# KOL Discord ledger (backtest/experiments/exp_kol_shunge_ledger.py) -- raw DiscordChatExporter
+# extraction, the Nasdaq Trader symbol-universe download, the per-ticker price cache and the
+# machine-readable report. ALL regenerable by re-running the exp_ (source JSON lives outside the
+# repo at C:\TradingView\Discord\). The committed deliverable is
+# backtest/results/2026-07-17_kol_shunge_scorecard.md -- same "intermediates stay in .raw/, the
+# .md is the product" convention as the other experiments above.
+thesis/.raw/discord/
