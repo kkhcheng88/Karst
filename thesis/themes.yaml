@@ -1403,6 +1403,170 @@ themes:
       demand-outstripping-supply語言同Annex-1升級數,唔係呢間廠)嘅單點故障。中國營收佔比未查到。
       標記做「事實存在但對thesis核心故事重要性可能低」,除非後續研究話俾第二個睇法。"
 
+  mag7-hyperscaler:
+    wiki: thesis/wiki/mag7-hyperscaler.md
+    type: B                    # AI-capex 超級週期監察鏡。★ ROLE = core-monitor(唔係衛星進攻籃)——
+                                # 主要價值係幫 tier-1 核心(QQQ ~半係 Mag7)裝早期警號,唔係注碼進攻。
+                                # 個股只做監察指標,載具 ETF-only(MAGS/QQQ,見 thesis_etf)。
+    cycle_stage: late          # ai-capex 同儕(ai-power-grid/photonics/advanced-packaging)全 late;
+                                # Mag7 = 公認最擁擠交易、估值抬高、股價 priced ahead of ROI 兌現。
+    confidence: 0.30           # §4a 凍結公式:subscores 1/1/1/1(Σ4.0)× penalty(crowding 23.9 <40 帶,
+                                # late)0.75 = raw 0.375,single_source cap 0.30 綁住(n_sources=1;
+                                # uncalibrated 0.40 亦適用但唔係最緊)。⚠ 機械 crowding 讀 23.9(低)係
+                                # own-history-percentile proxy 對永遠滿覆蓋 mega-cap 嘅已知盲點,非「Mag7
+                                # 唔擠」——但 confidence 數字 = 公式輸出,唔酌情上調(§4c);qualitative
+                                # crowding 現實記喺 wiki narrative-risk。詳 wiki confidence 推導段。INITIAL.
+    verdict: real-capex-cycle-but-earnings-compounding-unproven-monitor-only
+    kill_condition: >-
+      (core-monitor theme:主要交付 = 幫 tier-1 核心 QQQ/MAGS 裝早期警號,唔係衛星注碼。)
+      任一觸發 -> confidence 歸零 + 向 tier-1 core 發「AI-capex 週期轉壞」早期減曝險訊號:
+      (1) 四大 hyperscaler(MSFT/GOOGL/AMZN/META)合計 capex guidance YoY 轉負(capex 週期見頂回落,
+      軍備競賽退潮);(2) 三大雲(Azure/AWS/GCP)任一 YoY 增長失速跌穿 15% 門檻(cloud 增長引擎熄火);
+      (3) cash-backed backlog 刀法 —— MSFT commercial RPO 增長停滯,或 RPO 當中已收現金(current
+      deferred revenue)佔比持續萎縮(宣稱 AI backlog 唔係真金白銀坐喺表上,memory RPO 中彈嘅鏡像);
+      (4) AI 收入兌現失速:MSFT AI business run-rate YoY 增速大幅減速,或 META AI 對廣告改善嘅可歸屬
+      證據轉弱;(5) 半導體->軟件資金流結構性逆轉(SOXX/SMH 相對 IGV 由領先轉為持續落後 = capex-
+      beneficiary 見頂訊號,2026-07-16 residual_seesaw/sector_flow 建立嘅追蹤軸)。觸發任一 -> confidence
+      歸零、cycle 標 late-to-topping。
+    kill_metrics:                    # P4(docs/2026-07-15_quantification_review.md 提案4):kill_condition
+                                      # prose 入面已有數字閾值嘅軸,機器可讀化。current 讀數 2026-07-16 由
+                                      # subagent 逐條核實(全部 HARD filing/管理層逐字,除 capex 合計標 ESTIMATE);
+                                      # 全部季結 2026-03-31、財報日 2026-04-29(MSFT=FY26Q3,其餘=CY26Q1)。
+                                      # 半導體->軟件資金流(kill 軸 5)係相對強弱、無單一門檻,保留 prose(見
+                                      # kill_condition),用 yfinance SOXX/SMH/IGV 日線持續追蹤,唔硬塞數。
+    - metric: hyperscaler_capex_yoy
+      desc: "四大 hyperscaler(MSFT/GOOGL/AMZN/META)合計 2026E capex YoY 增速(kill 軸1:capex 週期見頂)。
+        current ~+77%(合計 ~$700-725B vs 2025 ~$410B)= ESTIMATE(媒體加總、基數口徑混雜);各家 guidance
+        = HARD 且全部上修/首給:MSFT CY26 ~$190B、GOOGL FY26 $180-190B、AMZN 2026 ~$200B、META 2026
+        $125-145B(全部 2026-04-29 earnings call)。輔助質性 trigger:任一季 >=2 家下修全年 capex guidance。
+        下修係雙面刃(紀律恢復 vs 需求轉弱)-> 須同 cloud 增速軸聯動判。"
+      current: 77
+      current_as_of: "2026-04-29"
+      trigger: 15                      # 2027E 合計 YoY 跌穿 +15% = 急煞車
+      direction: below
+      update_freq: quarterly
+    - metric: aws_revenue_yoy
+      desc: "AWS 季度營收 YoY(kill 軸2:cloud 引擎失速;AWS = 最大最慢、cloud bellwether)。current $37.6B
+        +28%(15 季最快)= HARD(Amazon Q1 2026 earnings release segment 表)。單季單家減速唔算(基數效應),
+        須連續兩季 + >=2 家同時。"
+      current: 28
+      current_as_of: "2026-04-29"
+      trigger: 20
+      direction: below
+      update_freq: quarterly
+    - metric: azure_revenue_yoy
+      desc: "Azure 營收 YoY(kill 軸2)。current +40%(cc +39%)= HARD(MSFT FY26 Q3 call;MSFT 只披露 %、
+        無絕對額)。"
+      current: 40
+      current_as_of: "2026-04-29"
+      trigger: 30
+      direction: below
+      update_freq: quarterly
+    - metric: gcp_revenue_yoy
+      desc: "Google Cloud 分部營收 YoY(kill 軸2;口徑係整個分部含 Workspace、非純 GCP)。current $20.0B
+        +63%(分部營業利益 $2.2B->$6.6B)= HARD(Alphabet Q1 2026 earnings release)。"
+      current: 63
+      current_as_of: "2026-04-29"
+      trigger: 40
+      direction: below
+      update_freq: quarterly
+    - metric: msft_commercial_rpo_12mo_pct
+      desc: "MSFT commercial RPO 當中 12 個月內確認嘅比例(kill 軸3:backlog 轉近期收入嘅速度)。current
+        ~25%(commercial RPO $627B、YoY +99%、加權年期 ~2.5 年)= HARD(FY26 Q3 10-Q)。★ 承重發現:
+        RPO 當中 unearned revenue(已開票/cash-backed)僅 $53.7B ≈ total RPO 嘅 8.5% —— 即宣稱 AI backlog
+        絕大部分係純合約承諾、唔係真金白銀坐喺表上(memory-supercycle RPO 中彈嘅鏡像;對照 ai-power-grid
+        GEV 現金預付 cash-backed 補強嗰邊)。+99% 主要由 OpenAI 重談承諾灌大、ex-OpenAI 約 +26%
+        (ESTIMATE,轉述)。輔助 trigger:任一大客(OpenAI/Anthropic 類)取消/重談縮減合約承諾;
+        cash-backed 比率(unearned/RPO,現 ~8.5%)持續惡化。"
+      current: 25
+      current_as_of: "2026-04-29"
+      trigger: 20
+      direction: below
+      update_freq: quarterly
+    - metric: msft_ai_runrate_yoy
+      desc: "MSFT AI business 年化 run-rate YoY(kill 軸4:AI 收入兌現)。current run-rate >$37B、+123% YoY
+        = HARD(FY26 Q3 release/call;上一披露 2025-01 係 $13B)。輔助 trigger:披露本身消失(連續兩季唔
+        再報 run-rate)= 訊號。"
+      current: 123
+      current_as_of: "2026-04-29"
+      trigger: 50
+      direction: below
+      update_freq: quarterly
+    - metric: meta_ad_price_yoy
+      desc: "META 每則廣告均價 YoY(kill 軸4:AI 對廣告改善嘅可歸屬證據)。current +12%(曝光 +19%、
+        AI 廣告 Value Optimization 年化 run-rate >$20B、Q1 廣告收入 $55.0B +33%)= HARD(Q1 2026 call,
+        Susan Li 逐字)。trigger:均價 YoY 減速跌穿 +3%(近失速;轉負 = 確認熄火),尤其若曝光同步減速。"
+      current: 12
+      current_as_of: "2026-04-29"
+      trigger: 3                       # +3% 近失速門檻(避開 trigger=0 除零;轉負係確認)
+      direction: below
+      update_freq: quarterly
+    tickers: [MSFT, GOOGL, AMZN, META]     # ★ 監察指標,唔係買入對象。可交易表達 = MAGS/QQQ(thesis_etf)。
+                                            # NVDA/AAPL/TSLA 唔入:NVDA=供應側(慣例排除,見 ai-power-grid
+                                            # note)、AAPL=非 hyperscaler 已於 2026-07-14 評估後不 admit
+                                            # (見本檔尾 not-admit 紀錄)、TSLA=非 hyperscaler。
+    # 單一監察鏡,一個 node = 成個 theme(跟 specialty-siding/glp1 單一表達先例,唔砌假 node 拆解)。
+    nodes:
+    - name: hyperscaler-capex-earnings-compounding
+      tickers: [MSFT, GOOGL, AMZN, META]   # 四大 hyperscaler 資本開支能否兌現為盈利複合(AI 收入歸屬、
+                                            # cloud 增長、capex ROI)——監察緊嘅承重問題本身
+      cycle_stage: late                     # 估值抬高 + 擁擠極端 + ROI 未兌現 = 股價晚期
+      magnitude_tier: 2x                    # 用戶指定 magnitude <2x:core-monitor,無 magnitude uplift
+                                            # (2x = sizing v2 中性 floor,log2(2)=1 → score=confidence-only)
+      magnitude_unconfirmed: true            # §4c:承重「capex→盈利複合」腿未證(AI 收入兌現係 kill 軸本身,
+                                            # 未喺財報清晰兌現)→ 標未證;sizing v2 damp 到 2.0x,但 tier 已
+                                            # 2x → damp 唔 bind(同 specialty-siding:flag 但 damped=0,唔假報)。
+                                            # red-team 判決記錄見 wiki red_team 段(§4c/lint 硬性要求)。
+      last_scored: 2026-07-16
+      last_evidence: 2026-07-16
+    thesis_etf:
+    - etf: MAGS
+      purity: 0.99             # Roundhill Magnificent Seven ETF —— 等權七大,基本上 = Mag7 本身
+      remark: "core-monitor theme 嘅主要可交易表達(用戶 ETF-only 原則)。等權七大(含 NVDA/AAPL/TSLA,
+        比本 theme 監察嘅四大 hyperscaler 廣)——即係話 MAGS 表達嘅係『整個 Mag7 籃』,監察軸集中喺
+        hyperscaler 四大嘅 capex/cloud/AI-run-rate。crowding 唔豁免:Mag7 = 公認最擁擠交易,penalty 照食。"
+      liquidity: "上市 2023-04,~3 年歷史;流動性充足,但歷史短(涉及 MAGS 嘅任何回測樣本偏細,見
+        backtest/results/2026-07-16_sector_flow_claims.md 已知限制)。"
+    - etf: QQQ
+      leg: tier-1 核心本體(~半係 Mag7)
+      remark: "QQQ 本身就係 Karst tier-1 核心持倉(SPY 底倉 + QQQ/SPY LEAP,core strategy v2)。本 theme
+        唔係叫你另買 QQQ,而係為呢個既有核心裝 AI-capex 早期警號 —— confidence 轉壞 = 對 tier-1 QQQ
+        sleeve 嘅減曝險/收 LEAP 提示。呢個先係 core-monitor 定位嘅實際用途。"
+      liquidity: "全宇宙最流動 ETF 之一,無流動性顧慮。"
+    sources:
+    - id: mag7-hyperscaler-empirical-2026-07-16
+      tier: 1                  # 內部一手量化分析(2026-07-16 三個實驗,見 note/wiki);單一獨立證據鏈 ->
+                                # single-source cap 0.30 適用(唔豁免——見 wiki 推導)。呢批實驗係謹慎/
+                                # 證偽性質(估值 timing 冇用、輪動弱、蹺蹺板係記帳假象),支持 monitor 定位、
+                                # 唔算獨立擊中「承重 bull claim」,故唔脫 cap(§4a 定義)。
+    meta_factors: [ai-capex]
+    admitted: 2026-07-16
+    last_evidence: 2026-07-16
+    status: active
+    note: "★ ROLE = core-monitor(用戶已定案定位,唔准偏離)。主要價值 = 幫 tier-1 核心(QQQ ~半係
+      Mag7)裝早期警號,唔係衛星進攻注碼。thesis 陳述圍繞:hyperscaler AI capex 週期能否兌現為盈利複合
+      (AI 收入歸屬、cloud 增長、capex ROI)。載具 MAGS/QQQ(ETF-only,用戶原則);個股(MSFT/GOOGL/
+      AMZN/META)只做監察指標,唔落個股 ticker 做買入對象、亦唔加入 backtest/spine/universe.yaml 嘅可
+      交易候選(刻意——ETF-only 定位)。
+      **同 2026-07-14 not-admit 紀錄(見本檔尾)嘅關係**:嗰日評估 AAPL/Mag7 做 Type-B 進攻供應鏈籃 ->
+      不 admit(單一 megacap、無可交易供應鏈籃、megacap 屬 demand-anchor 慣例排除、最高覆蓋 = 純
+      crowding 訊號)。本 theme **唔係推翻嗰個判斷**,而係一個結構上唔同嘅角色:唔係『買 Mag7 攻擊』,
+      而係『為既有 tier-1 核心裝 AI-capex 週期監察鏡』。正因為 megacap = 最擁擠 + 資訊已 priced,佢做
+      『進攻 edge』唔得(嗰日判斷成立),但做『核心風險早警』啱——監察軸落喺 capex/cloud/RPO/AI-run-
+      rate 呢啲 forward 兌現訊號,唔係買平嘅估值 edge。
+      **實證地基(2026-07-16 三個實驗,已釘死本 theme 唔係 alpha 而係 monitor)**:
+      (a) exp_mag7_valuation_throttle:QQQ 估值月度 timing(節流/加速)無增量(門檻幾乎從未觸發);S&P100
+      全宇宙『巨頭平咗買』3y 命中率 49%/median -0.34% = 打和,Mag7 六隻 54%/+3.14% 主要係事後贏家
+      survivorship(+5pp 唔夠推翻全宇宙打和)-> 估值 timing 唔夠格接入 sizing。
+      (b) exp_sector_flow_claims:半導體 vs 軟件/大科技輪動長期規律弱(接近零),現時負相關讀數主要係
+      短期現象;XLF 業績週修復不成立。
+      (c) exp_residual_seesaw:硬件 vs 軟件『殘差蹺蹺板』完全喺記帳恆等式(兩者同屬 QQQ 成份)範圍內,
+      甚至比純算術更溫和 -> 唔支持當獨立資金輪動訊號;真蹺蹺板證據反而喺能源 vs 科技(XLE-XLK)。
+      三者一致結論:呢啲板塊/估值訊號唔係可接入 sizing 嘅 alpha,只可做 dashboard/monitor 參考 ->
+      印證 core-monitor 定位(唔係衛星攻擊)。
+      **crowding 唔豁免**:Mag7 係公認最擁擠交易,crowding 分照計、confidence 食 penalty 係預期結果,
+      冇夾數(見 wiki confidence 推導)。kill_metrics(本 theme 主要交付物)見上 kill_metrics 欄。"
+
   # ============================================================================
   # 2026-07-11 discovery radar 40候選:WATCH-only(未成thesis,唔入universe/theme_signal,純記錄留待
   # 下季覆核)—— KALU(鋁,證據參差)、MCHP(analog/MCU,得2季太新)、AVT(分銷商,得2季+經濟模式波動大)、
