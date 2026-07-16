@@ -36,6 +36,8 @@ Question: is "risk regime" the same as bull/bear (200SMA)? Can fear/greed time m
    2022 bottom). Dashboard *should* show TWO axes + divergence, not one blended number.
 2. **Credit (HYG/LQD) > VIX** for risk regime (matches KC Fed RORO research). Credit was
    the only risk gauge with a positive reversion edge.
+   **⚠️ 已作廢 2026-07-05,見 STATUS.md:199-201** — credit 測完剔除(regime 反覆、對 VIX 無增量),
+   改用「VIX × 趨勢(200SMA)」2D regime(`results/2026-07-05_market_regime_2d.md`,已 live)。
 3. **VIX is CONTRARIAN** (high VIX in a bear → bounce); F&G-style blending CANCELS the
    signal (opposite polarities) → use confirmation, NOT averaging.
 4. **The "triple confirmation" bottom signal FAILED** rigorous test — not significant on
@@ -144,9 +146,11 @@ regenerable via `github.com/whit3rabbit/fear-greed-data`).
 ## Open decisions / next steps
 - [ ] (optional) Leveraged-on-fearful-dips variant (RSI2<10 & VIX>25 → 1.3–1.5×) — the only
       untested path that MIGHT beat B&H, at higher tail risk.
-- [ ] (design) If wanted: rebuild the 大盤 panel as TWO axes (趨勢 gate / 風險情緒) + a
+- [x] ~~(design) If wanted: rebuild the 大盤 panel as TWO axes (趨勢 gate / 風險情緒) + a
       divergence read (finding #1). Risk axis = credit + VIX + safe-haven + true-breadth
-      (% S&P >200MA) — built ourselves, NOT scraping CNN.
+      (% S&P >200MA) — built ourselves, NOT scraping CNN.~~
+      **⚠️ 已作廢 2026-07-05,見 STATUS.md:199-201** — credit 剔除;2D regime(VIX × 200SMA)已 live
+      (`spine/context.py`),唔再需要 credit/safe-haven/true-breadth 呢條 TODO。
 - [ ] Keep the dashboard; do NOT productionize a regime-timing alpha signal (finding #8).
 
 ## Where to pick up

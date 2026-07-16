@@ -15,6 +15,11 @@ two-tier 輸出:SPY/QQQ/SPMO 用期權工具(LEAP/SHORT_CALL/CSP),其他個股�
 實證定位(20+ 回測):**價量訊號 = 風控,不是 alpha;alpha 唯一可能的門 = Phase 3
 質性 thesis**。全系統的可證偽靶心:**thesis 排序 forward IC ≥ 0.05**。
 
+> **Phase-3 現行規則(2026-07-15/16 凍結,見 `thesis/DESIGN.md` §4a-§4c)**:confidence = §4a 凍結公式
+> 輸出(4-KPI rubric + penalty 表 + single-source cap 0.30),唔准手工推導,`thesis/lint.py` 機械把關;
+> §4b red-team 協議(INGEST=審判,夜班永唔准向上郁 confidence)—— **15/15 active theme 已完成
+> Level-2 red-team**;§4c 三通道分流(red-team 判決只准入 subscore/cap 資格/magnitude 加成,唔准酌情)。
+
 ## 每日自動化(schtasks;部機開住先跑;新 session 開波先掃一眼呢張表嘅「要做乜」欄)
 
 > 2026-07-08 起全批搬到 **05:30 HKT 檔**(美股收市後、用戶瞓緊、rate limit 閒置;05:30 係為冬令

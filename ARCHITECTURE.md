@@ -56,7 +56,7 @@ Phase 0 市場閘 ── Phase 1 板塊+RS ── Phase 2 資金流/敘事(未�
 | **Mean Reversion(RSI-2)** | **Phase 4** | ✅ 純價格股權進場(不拿去買選擇權)|
 | **Volatility / VRP** | Phase 0 / 選擇權側(IV-rank)| ✅ tier-1 CSP/SHORT_CALL |
 | **Relative Strength** | **Phase 1**(Sector RS + Stock-RS-in-sector,**兩層都在此**)| ✅ `rs_vs_market` + `member_rank.rs_vs_parent` |
-| **Flow: Insider** | **Phase 3**(非價格、知情人行為)| ✅ **已建** — v2 **SEC EDGAR Form 4**(`insider_edgar.py`,真交易碼:只留 P 買/S 賣、剔除 A/M/F/G/10b5-1 機械交易;離線快取 `insider_cache.json`)+ yfinance fallback(`insider.py`)。bounded ±30% conf 修正。**v3 待補:routine/opportunistic 分類(Cohen 2012,需多年逐人歷史)** |
+| **Flow: Insider** | **Phase 3**(非價格、知情人行為)| ✅ **資料管道已建** — v2 **SEC EDGAR Form 4**(`insider_edgar.py`,真交易碼:只留 P 買/S 賣、剔除 A/M/F/G/10b5-1 機械交易;離線快取 `insider_cache.json`)+ yfinance fallback(`insider.py`)。conf_eff(bounded ±30%)已計算(`orchestrator.py:48`)但 **⚠️ 未接回分數,仍係真.P0(P0-1 未修)**:`spine/__init__.py:13` 明寫 "Known gap: insider conf_eff computed but NOT fed to score"、`expression.py:66` 用 `thesis.unit` 唔係 `conf_eff`;現況 display-only(`card.py:22` 只擺入 card dict)。**v3 待補:routine/opportunistic 分類(Cohen 2012,需多年逐人歷史)** |
 | **Flow: GEX(aggregate)** | **Phase 0**(SPY/QQQ fragility)| ⚫ **測完唔建**(2026-07-05:免費 SqueezeMetrics GEX 對 VIX partial≈−0.08 無增量,`results/2026-07-05_gex_test.md`);VIX/credit/RV 已 subsume;DIX 免費細 flow 訊號可選 |
 | **Gamma Walls(strike-level)** | tier-1 期權側 level/zone context | 🟢 **live 工具建咗**(`exp_gamma_walls.py`:SPY/QQQ/板塊/Mag7 支持/阻力區+強度+企穩線,0DTE/1W/1M;yfinance 免費 live,無歷史→forward-log 驗證;`docs/2026-07-05_gamma_walls.md`)。當 zone/regime context 唔當 alpha |
 | **Flow: Dark-pool/UOA** | (存疑,暫不排)| 🔴 我判定多為噪音,先不做 |
@@ -110,7 +110,8 @@ deflated Sharpe。這是已知的嚴謹度缺口(見 §6)。
    `exp_family_validate.py`,SEC bulk Form345 + defeatbeta 價格,look-ahead-safe,forward IC + deflated
    Sharpe)。發現:**Insider「21d」edge(t=5.12)= 全宇宙數,micro-cap tail 帶動**(07-05 `insider_rigor`
    R8:大型股拉長到 2006 冧到 t1.1;可靠 claim = 細價 12月 portfolio vs IWM);63d 歸零/126d 轉負(⚠️ 與
-   現在的長期 ±30% overlay 接線 **horizon 不符 → 修法 = 改接細價 12月 portfolio tilt(literature-aligned;
+   **擬接嘅**長期 ±30% overlay(**現況未接線,見上 §3「Flow: Insider」/ P0-1**)**horizon 不符 →
+   修法 = 一旦接線,改接細價 12月 portfolio tilt(literature-aligned;
    大型 21d 短線唔採,regime-fragile)**);**RSI-2 mean-rev 最強**(IC t=6-12
    兩宇宙皆穩、DSR 0.91,驗證 Phase-4)。
    **⚠️ 方法學修正:IC/long-short 對 long-only 系統是錯的鏡子。** 用「long-only 持有頂五分位 vs SPY

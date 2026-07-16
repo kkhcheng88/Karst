@@ -6,14 +6,35 @@
 照 DESIGN.md §4a 抄,唔准呢個模組自己發明或調整數字(改表 = 季度設計審查,唔係
 改呢份 code)。
 
-公式(DESIGN §4a,凍結;2026-07-15 同日修訂補返 source-cap):
+公式(DESIGN §4a,凍結;2026-07-15 補 source-cap;2026-07-16 補 uncalibrated ceiling):
     confidence_raw = (Σ 4-KPI subscores) / 8 × penalty(crowding_band, cycle_stage)
-    confidence     = min(confidence_raw, 0.30)   if len(sources) == 1
-                   = confidence_raw               otherwise
+    confidence     = min(confidence_raw, *適用嘅 cap)
     subscore ∈ {0, 0.5, 1, 1.5, 2}(每格 0-2,半分步進)
+
+兩個 cap,**同時適用取最緊**(唔係二選一):
+    SINGLE_SOURCE_CAP = 0.30   當 len(sources) == 1(§4a「獨立來源」定義)
+    UNCALIBRATED_CAP  = 0.40   當校準迴路未通(STATUS.md:256 衛星紀律)
+
+**UNCALIBRATED_CAP 嘅由來(2026-07-16,誠實記低點解會漏)**:§4a 公式當初由零寫起,冇審計
+散落喺其他檔嘅既有治理規則,結果漏規則兩次——
+  1. single-source cap 0.30(WS3 admission,lint 一直 warn 緊)→ 2026-07-15 補
+  2. **≤0.40 未校準上限**(STATUS.md:256「衛星紀律:校準迴路未通之前,Phase-3 注碼 ≤20%、
+     confidence 上限 ≤0.40」)→ 2026-07-16 補。漏咗嘅後果:ai-power-grid / euv 合法脫咗
+     single-source cap 之後,公式輸出 0.469,**冇任何嘢攔住**,兩個都越咗界。
+兩次都係同一類 bug:**規則寫咗喺 doc,但公式冇 encode → 可以靜靜越界**。
+教訓 = 公式必須 encode 晒所有已寫低嘅硬規則,唔可以靠人記得。
+
+**呢個 cap 唔係酌情,係規則**:cap 嘅前提「校準迴路未通」有客觀判準——
+`thesis/forward_ic.py ic` 嘅 matured predictions 數。2026-07-16 實測 matured=0
+(pending=613),即係裁判一個讀數都未出過 → 前提成立 → cap 生效。
+機器起咗 ≠ 迴路通咗;要 forward IC 真係出到讀數先算。
 
 純函數、無 IO、無副作用 —— 可獨立 import 測試。
 """
+
+# --- caps(DESIGN §4a;每個 cap 都要有 doc 出處,唔准無主 magic number)---
+SINGLE_SOURCE_CAP = 0.30   # §4a「獨立來源」定義:單一來源 thesis 嘅注碼上限
+UNCALIBRATED_CAP = 0.40    # STATUS.md:256 衛星紀律:校準迴路未通之前 confidence 上限
 
 # penalty 查表(DESIGN.md §4a「penalty 查表」,5×3,凍結,逐格照抄):
 #   crowding \ cycle | early | mid / event-driven | late / mid-late
@@ -83,21 +104,31 @@ def penalty(crowding_pctile, cycle_stage):
     return _PENALTY_TABLE[band][col]
 
 
-def confidence(subscores, crowding_pctile, cycle_stage, n_sources):
-    """DESIGN §4a 凍結公式的完整計算(含 single-source cap)。
+def confidence(subscores, crowding_pctile, cycle_stage, n_sources, calibrated=False):
+    """DESIGN §4a 凍結公式的完整計算(含兩個 cap)。
 
     subscores: dict,必須含 {moat, capital, valuation, growth} 四鍵,各 0-2
         (半分步進,例如 1.5)。
     crowding_pctile: 0-100(見 penalty() 的說明)。
     cycle_stage: 見 penalty() 的說明。
     n_sources: len(themes.yaml 該 theme 的 `sources:` list)。
+    calibrated: 校準迴路通咗未(預設 False = 現況)。判準唔係「機器起咗未」,
+        而係 `thesis/forward_ic.py ic` 有冇 matured predictions —— 2026-07-16
+        實測 matured=0,所以現行全系統一律 False。**唔准淨係因為 code 存在
+        就傳 True**;要 forward IC 真係出到讀數先算通(見模組 docstring)。
 
-    回傳 {"raw": confidence_raw, "capped": 最終 confidence, "cap_applied": bool}。
+    回傳 {"raw", "capped", "cap_applied", "caps_binding"}:
+        caps_binding = 實際綁住嗰(啲)cap 嘅名,方便 lint / 報告講清楚
+        邊條規則喺度發功(空 list = 冇 cap 綁,capped == raw)。
+        cap_applied 保留做向後兼容(= 有冇任何 cap 綁住)。
 
-    cap 觸發條件依 DESIGN §4a 原文字面(`len(sources) == 1`)。呢度用 `<= 1`
+    single-source cap 觸發條件依 §4a 原文字面(`len(sources) == 1`)。呢度用 `<= 1`
     (保守擴展,涵蓋 0-source 嘅退化情況;0-source theme 本身已被 lint.py 嘅
     admission gate("sources empty")擋,實務唔會出現,呢度純粹防禦性寫法,
     唔改變任何現行合規 theme 的計算結果)。
+
+    **兩個 cap 同時適用時取最緊**(min),唔係二選一 —— 例:單一來源 + 未校準
+    → min(raw, 0.30, 0.40) = min(raw, 0.30)。
     """
     missing = [k for k in REQUIRED_KPIS if k not in subscores]
     if missing:
@@ -106,10 +137,23 @@ def confidence(subscores, crowding_pctile, cycle_stage, n_sources):
     total = sum(float(subscores[k]) for k in REQUIRED_KPIS)
     raw = total / 8.0 * penalty(crowding_pctile, cycle_stage)
 
-    cap_applied = int(n_sources) <= 1
-    capped = min(raw, 0.30) if cap_applied else raw
+    caps = []
+    if int(n_sources) <= 1:
+        caps.append(("single_source", SINGLE_SOURCE_CAP))
+    if not calibrated:
+        caps.append(("uncalibrated", UNCALIBRATED_CAP))
 
-    return {"raw": raw, "capped": capped, "cap_applied": cap_applied}
+    capped = raw
+    caps_binding = []
+    for name, cap_value in caps:
+        if cap_value < capped:
+            capped = cap_value
+    # 邊條 cap 真係綁住(= 佢個值等於最終 capped 而且低過 raw)—— 可能兩條同時等值
+    caps_binding = [name for name, cap_value in caps
+                    if capped < raw and cap_value == capped]
+
+    return {"raw": raw, "capped": capped,
+            "cap_applied": bool(caps_binding), "caps_binding": caps_binding}
 
 
 if __name__ == "__main__":

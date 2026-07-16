@@ -2,7 +2,7 @@
 slug: ai-power-grid
 type: B
 cycle_stage: late
-confidence: 0.47
+confidence: 0.40
 verdict: real-demand-but-priced-ahead-of-ramp
 updated: 2026-07-05
 tickers: [EQT, GEV, BE, VRT, ETN, PWR, MPWR, VICR, NVTS, WOLF, ON]
@@ -117,10 +117,12 @@ KPI: moat 1.5/2(POL/PMIC 雙寡佔 + SiC/GaN 0→64% BOM 真瓶頸,但氣/電網
      · valuation 0.5/2(ETN 99%!/ON 90%/MPWR 89%/BE 91% 極端 + 內部人賣 + 分析師目標<現價;僅 EQT 35%)
      · growth 2/2(資料中心 capex $1T→$1.7T、onsemi 每櫃含量 10x、SiC/GaN 0→64% BOM、物理必需)
      = 5.0/8 = 0.625 base
-penalty(DESIGN §4a 表:crowding 34.3 → <40 帶 × late)                    × 0.75  → 0.469
-single-source cap:唔適用——n_sources=2(GEV 現金背書 Tier-1 條目,red-team 2026-07-15
+penalty(DESIGN §4a 表:crowding 34.3 → <40 帶 × late)                    × 0.75  → raw 0.469
+single-source cap 0.30:唔適用——n_sources=2(GEV 現金背書 Tier-1 條目,red-team 2026-07-15
      擊中承重 claim 供給半截,全簿第一個合法脫 cap;見 themes.yaml sources)
-→ confidence = 0.47  (2026-07-16 P2 遷移,用戶批准;INITIAL, uncalibrated)
+UNCALIBRATED_CAP 0.40:**適用、綁住**(STATUS.md:256「校準迴路未通之前 confidence 上限 ≤0.40」;
+     判準 = forward_ic matured predictions,2026-07-16 實測 matured=0 → 前提成立)
+→ confidence = min(0.469, 0.40) = **0.40**  (INITIAL, uncalibrated)
 佐證: ttm_pe/capex ✅(Tier-1 已拉);需求錨 ✅(#052 一手引述 + EQT CEO 詢價);GEV 合約負債
       $18.7B→$31.8B(+70% YoY)✅ gatekeeper 一手核實;放量 2027 後 ✅(#125)
 (舊手工推導 × ~0.53 → 0.33 已由凍結公式取代——舊 penalty bundle 咗「估值極端」判斷,

@@ -2,7 +2,7 @@
 slug: euv-lithography-monopoly
 type: B
 cycle_stage: late
-confidence: 0.47
+confidence: 0.40
 verdict: real-monopoly-but-most-priced-in
 updated: 2026-07-11
 tickers: ['ASML']
@@ -47,12 +47,27 @@ KPI: moat 2/2(全球唯一 EUV/High-NA 微影供應商、16 年橫跨 4 週期�
      · capital 1.5/2(EBIT margin 0.328/coverage 104/net cash 極穩;現金背書佐證資本配置紀律)
      · valuation 0/2(pe_pctile 98th ≥90 + p_base 0.184 <0.4,機械格;全市場最人盡皆知嘅壟斷)
      · growth 1.5/2(AI 驅動先進製程 capex 拉動,兌現中;TAM 未 sizing)   = 5.0/8 = 0.625 base
-penalty(§4a 表:crowding 2.8 → <40 帶 × late)                            × 0.75  → 0.469
+penalty(§4a 表:crowding 2.8 → <40 帶 × late)                            × 0.75  → raw 0.469
+   ⚠️ 呢個 crowding=2.8 係**污染讀數**(見下),penalty 因此唔可信 → raw 亦唔可信
 登記雙 Tier-1 source(asml-cash-backed-downpayments,corroborates 供給半截)→ n_sources=2
-→ 脫 single-source cap                                                   → confidence = raw = 0.469
-→ confidence = 0.47  (脫cap非null-op:red-team報告原判「脫cap但null-op」用錯crowding pctile假設
-   ≥90,真composite_pctile=2.8,band<40,故脫cap有效拉升confidence,非零數值效果。INITIAL,uncalibrated)
+→ 脫 single-source cap 0.30:成立(現金背書證據紮實,呢部分冇問題)
+→ UNCALIBRATED_CAP 0.40:**適用、綁住**(STATUS.md:256;forward_ic matured=0)
+→ confidence = min(0.469, 0.40) = **0.40**  (INITIAL, uncalibrated)
 ```
+
+> ## ⚠️ 呢個 0.40 只係「上限」,唔係可信推導(2026-07-16)
+> 上面條式嘅 crowding input **係壞嘅**,只不過 UNCALIBRATED_CAP 剛好綁喺 0.40,遮住咗個問題。
+> 兩個獨立缺陷(詳:`backtest/results/2026-07-16_crowding_asml_contamination.md`):
+> - **D1 資料污染**:ASML 最後 3 份 corpus「法說會」實為**記者會 / 宣傳片**(operator = ASML 傳媒關係
+>   主管,「分析員」= 路透社記者 / CEO 自己;9k 字 vs 正常 51k)。defeatbeta feed 喺 **2025-07-16 之後
+>   轉咗文件類型**;最後一份可信法說會 = 2025-07-16(3 季前)。對比 71 季穩定 9-20 個分析員。
+>   euv 爆煲係因為佢係**單一 ticker theme**,冇嘢溝淡 ASML 呢個 artifact。淨修呢個 → crowd 57.4 → raw 0.406。
+> - **D2 建構效度**:crowding 軸量緊 **temporal 自身歷史分位**,但 penalty 表要嘅係 **cross-sectional
+>   priced-in 折扣**。證據 = 全書排名反轉(ASML 98 分位 PE、全市場最多人講 → 讀成「最唔擠 2.8」;
+>   冷門包裝/護牆板 → 讀成「最擠 95-97」)。**呢個影響全部 15 個 theme 嘅 penalty,唔止 euv。**
+> - **紅隊原本估 crowding ≥90 → 0.25。佢個直覺啱**,係 gatekeeper 攞污染數推翻咗佢(已認)。
+> - **真值待 D1 修好(重抓 ASML 真法說會)+ D2 拍板後重算。** 現金背書登記本身冇問題,唔好順手撤。
+
 red-team 詳見 `backtest/results/2026-07-16_redteam_euv_lithography.md`。
 
 ## kill_condition(可證偽)

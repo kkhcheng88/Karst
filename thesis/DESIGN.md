@@ -97,10 +97,27 @@ confidence = f( 4-KPI 各分數, 佐證獨立來源數, 距 kill condition 多�
 cap 0.30(thesis/lint.py 一直 warn 緊、5 個 theme 現正違規),公式必須內建佢):**
 ```
 confidence_raw = (Σ 4-KPI subscores) / 8 × penalty(crowding_band, cycle_stage)
-confidence     = min(confidence_raw, 0.30)   if len(sources) == 1
-               = confidence_raw               otherwise
+confidence     = min(confidence_raw, *適用嘅 cap)   # 兩個 cap 同時適用時取最緊
 subscore ∈ {0, 0.5, 1, 1.5, 2},半分要書面講理由;每格至少一條 cited 證據
+
+兩個 cap:
+  SINGLE_SOURCE_CAP = 0.30   當 len(sources) == 1(見下「獨立來源」定義)
+  UNCALIBRATED_CAP  = 0.40   當校準迴路未通(STATUS.md:256 衛星紀律)
 ```
+
+**UNCALIBRATED_CAP(2026-07-16 補;第二次「規則寫咗但公式冇 encode」)**
+`STATUS.md:256` 衛星紀律原文:「校準迴路**未通之前**,Phase-3 注碼 ≤20%、**confidence 上限 ≤0.40**」。
+- **前提有客觀判準,唔靠人判**:`thesis/forward_ic.py ic` 嘅 matured predictions 數。
+  2026-07-16 實測 **matured=0 / pending=613** → 裁判一個讀數都未出過 → 前提成立 → cap 生效。
+  **機器起咗 ≠ 迴路通咗**(`backfill_outcomes.py` / `forward_ic.py` 存在,但要真係出到 IC 讀數先算通)。
+- **漏咗嘅後果(已發生)**:ai-power-grid / euv 合法脫咗 single-source cap 之後,公式輸出 0.469,
+  **冇任何嘢攔住**,兩個都越過 0.40 並且落咗地(commit `0ac6f3f`,用戶批准時雙方都冇留意有呢條線)。
+  2026-07-16 cleanup 捉返,已補入 `confidence_formula.py` 並重跑。
+- **⚠️ 呢個係第二次同類 bug**(第一次:single-source cap 0.30,2026-07-15 由 P2 diff agent 捉返)。
+  **根因:§4a 由零寫起,冇審計散落喺 STATUS.md / WS3 / invariants 嘅既有治理規則。**
+  **紀律:任何新加入公式嘅 cap/閘,必須有 doc 出處(檔:行),唔准無主 magic number;
+  反過來,任何 doc 寫低嘅硬規則,必須喺公式 encode 或者喺 lint 機械檢查 —— 唔可以靠人記得。**
+  (盤點見 `backtest/results/2026-07-16_governance_rules_audit.md`。)
 source-cap 嘅設計意思:單一來源嘅 thesis,無論單一來源睇落幾好,注碼上限都要被
 獨立佐證數綁住——公式嘅精細分辨力主要喺 cap 以下 / 多來源 theme 先發揮。
 呢個令遷移風險大幅下降(見 backtest/results/2026-07-15_confidence_formula_diff.md
