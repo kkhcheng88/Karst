@@ -105,6 +105,18 @@ subscore ∈ {0, 0.5, 1, 1.5, 2},半分要書面講理由;每格至少一條 cit
   UNCALIBRATED_CAP  = 0.40   當校準迴路未通(STATUS.md:256 衛星紀律)
 ```
 
+**⚠ 獨立來源嘅陷阱:策展源之間嘅一致 = 同源,唔係印證(2026-07-17,實例)**
+`n_sources ≥ 2` 要求嘅係**獨立**證據鏈。**兩個策展源(KOL / newsletter / 轉述式 substack)講同一件事,
+唔算兩個來源** —— 佢哋好可能係轉述緊同一份一手報告。
+**實例(差啲中招)**:FOMO 研究院 #50(800V HVDC)同我哋一手持有嘅 SemiAnalysis 報告
+(`thesis/.raw/zsxq/pdf/Inside the 800VDC Revolution – Part 1.pdf`)高度一致 → 自然結論係
+「兩個獨立來源印證 → n_sources 1→2 → 脫 single-source cap 0.30 → confidence 可升」。
+**但 FOMO #50 開篇自認「本篇在撰寫時參考 SemiAnalysis 報告」** —— 佢就係嗰份報告嘅二次轉述。
+**冇讀到嗰句,個錯誤結論會睇落完全合理。**
+→ **規則**:升 n_sources 之前必須問「呢兩條鏈追返上去,係咪同一個源頭?」;策展源預設**唔獨立**,
+除非佢自己有一手材料(訪談 / 實地 / 獨家數據)。引用一律引一手,唔引轉述。
+詳:`backtest/results/2026-07-17_fomosoc_ingest.md`。
+
 **UNCALIBRATED_CAP(2026-07-16 補;第二次「規則寫咗但公式冇 encode」)**
 `STATUS.md:256` 衛星紀律原文:「校準迴路**未通之前**,Phase-3 注碼 ≤20%、**confidence 上限 ≤0.40**」。
 - **前提有客觀判準,唔靠人判**:`thesis/forward_ic.py ic` 嘅 matured predictions 數。
