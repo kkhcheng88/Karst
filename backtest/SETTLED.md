@@ -49,7 +49,9 @@
 | 13a | RSI2 邊個 regime 先有用? | **震盪市有、平靜牛市冇**:2016-20 = 58分位(隨機);2021-26 = 98.6分位 | 資本效率 | 同上 + `2026-07-05_rsi2_capital_efficiency.md` R3 | settled |
 | 13b | RSI2 做功嘅係深dip定快出? | **快出**;深dip喺入場軸打和(67.2 vs 67.4)—— 07-05「深dip高效率」係比率人工品 | MC百分位 | `2026-07-17_rsi2_connors_settle.md` | settled |
 | 13c | 200SMA 濾網要唔要?(**用戶 2026-07-17 裁決**) | **唔要** —— 用戶接受尾部風險(押「唔會再有 2000 式崩法」) | 資本效率+MaxDD | 本檔 §8-A | **用戶決定** |
-| 13d | RSI2 實際擺喺邊? | **揀日器已測、已否決**(2026-07-18 覆核點):入市價執平 +37.6bp/年係真,但遲入市嘅代價更大——絕對PnL 跌 12%($28.6M→$24.7M base)、alpha 跌(+9.0→+8.4pp)、資金斷糧惡化(QQQ 7.6%→18.4%;2016-20 高達 37.8%)。「零成本席位」證偽:個成本係「等」。**維持月初 top-up。** RSI2 喺 core 機制內已無席位;剩餘唯一活問題 = 現貨↔LEAP 切換觸發器(測緊)+ 賣方 >90(已驗) | CE+絕對PnL | `2026-07-18_topup_daypicker.md` | settled |
+| 13d | RSI2 實際擺喺邊? | **買方全部席位已測晒、全部否決**(2026-07-18 覆核點):獨立策略死(錢細)、揀日器死(等嘅代價 > 執平嘅著數)、**現貨↔LEAP 切換觸發器死**(MC 百分位 0-7,連隨機擺同樣槓桿都輸;三個 Δ、兩個 regime 全輸純現貨)。**RSI2 最終席位 = 只剩賣方**:>90 賣 covered call(已驗 PF 1.5-2.3) | CE+絕對PnL+MC | `2026-07-18_topup_daypicker.md` + `2026-07-17_rsi2_leap_entry.md` | settled |
+| 13e | 「現貨↔LEAP」框架本身(用戶設計)? | **證實可載**:估錯代價塌 **8-12 倍**(每次 0.4-0.9% 租金 vs 揸現金踏空 3.7-5.7%)——**個底盤啱,欠嘅係一個真有 edge 嘅fear端訊號**(RSI2 唔係;200SMA 做 overlay 觸發贏隨機但 CE 仍輸純現貨)。現行 core v2(月曆+閘)維持做槓桿程式 | CE+絕對PnL | `2026-07-17_rsi2_leap_entry.md` | settled |
+| 13f | ⚠ 生產 code 有未驗證假設 | scorecard v3.1 嘅「LEAP entry = RSI-2 DIP」**從未回測**就落咗 `scorecard.py`/`spine/timing.py`;13d 而家證咗佢反向。**要改/標示,待用戶過目** | — | `2026-07-17_rsi2_leap_entry.md` §登記冊發現 | **open** |
 | 14 | RSI2(**賣方**)>90 賣 call? | **有料**:PF 1.53→2.26 —— 同買方符號相反,唔可一條線管兩邊 | PnL÷曝險 | `2026-06-30_shortcall_timing.md` | settled |
 | 15 | RSI2 以外仲有均值回歸增量? | 冇增量;而且要 regime 閘先得 | 資本效率 | `2026-07-05_meanrev_family.md` | settled |
 | 16 | 大市層廣度/資金流有用嗎? | 廣度洗盤 21d 喺 VIX 之上 +2pp(單邊);DIX 細、GEX≈0 | 事件研究 | `2026-07-05_breadth_reversion.md` +`gex_test`/`phase2_flow` | settled |
