@@ -1,5 +1,23 @@
 # RSI2 dip 買入:用資本效率(PnL ÷ 曝險)重審 — 2026-07-17
 
+> # 🛑 結論暫停 —— 配置係錯嘅,而且本檔一開始就唔應該存在
+> **本檔同 `2026-07-16_leader_dip_reversion.md` 用嘅配置,喺三處都同已確立嘅做法相反,而每一處都揀咗最差嗰個:**
+>
+> | | 已確立(BE §11.1-11.2 + **本 repo 自己 2026-07-05**) | 本檔用咗 |
+> |---|---|---|
+> | 趨勢濾網 | **無** —— BE 實測「加 200SMA 減 12% 回報」 | **加咗 close>200SMA** |
+> | 出場 | **鬆**(RSI2>90/95)—— 07-05 Result 2:「鬆出場捕捉更多回歸」 | **RSI2>70(緊)** |
+> | 持有 | **2-3 星期**(07-05 Result 4:極端 VIX + 鬆出場 = +4-5%/筆、88% 命中) | **10 日封頂** ← 斬走 jackpot |
+>
+> **更嚴重:`backtest/results/2026-07-05_rsi2_capital_efficiency.md` 十二日前已經用資本效率測過同一件事,
+> 標籤 `active — mechanism HIGH confidence`,結論係「capital efficient across the board」**
+> (大盤部署回報 **32% vs B&H 17.1%**、條件 Sharpe 1.16 vs 0.88;Mag7 46% vs 30.9%)。
+> **我冇睇過佢就用錯配置重測一次,然後判佢死。** 呢個唔係方法論分歧,係冇做功課。
+>
+> **本檔唯一可能有價值嘅部分**:加咗「隨機同曝險同交易次數」對照(07-05 冇)——問「CapEff 係嚟自
+> RSI2 定係嚟自短促曝險嘅結構」。**但個對照用咗錯配置嘅持倉長度,所以佢都要重跑。**
+> → 重跑中:`exp_rsi2_be_replication.py`(BE 原配置 + 五臂 A/B + 隨機對照)。**結果出咗先決定本檔撤回定保留。**
+
 **產物**:`backtest/experiments/exp_dip_capital_efficiency.py`(可重跑)
 **前作**:`backtest/results/2026-07-16_leader_dip_reversion.md`(用 B&H / 同長度隨機入場做基準,結論「超額 ≈ 0」)
 

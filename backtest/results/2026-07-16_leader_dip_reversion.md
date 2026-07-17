@@ -1,5 +1,14 @@
 # 龍頭股「單邊回歸」(RSI2 撈底)測試:分散保費有幾大?
 
+> # 🛑 結論暫停 —— 配置錯,而且同 repo 既有已確立結論相反
+> 本檔用 `RSI2<10 且 收>200SMA` 買、`RSI2>70 或 10 日` 賣,**三處都同已確立做法相反**:
+> BE §11.1 逐字「加 200SMA 濾網減 12% 回報」;本 repo `2026-07-05_rsi2_capital_efficiency.md`
+> (標籤 `active — mechanism HIGH confidence`)Result 2「鬆出場捕捉更多回歸」、Result 4「極端 VIX +
+> **鬆出場(>90/95)** = **+4-5%/筆、88% 命中、2-3 星期持有**」——**本檔嘅 10 日封頂正好斬走呢個 jackpot。**
+> 而 07-05 早已用資本效率量過同一件事:大盤**部署回報 32% vs B&H 17.1%**,結論「capital efficient
+> across the board」。**本檔冇睇過佢就重測並判死。**
+> → 重跑中:`exp_rsi2_be_replication.py`。詳:`2026-07-17_dip_capital_efficiency.md` 頂部同一橫額。
+
 - 日期:2026-07-16
 - 用途:用戶假說——成熟優質龍頭短線超賣(RSI2 極低)後應該有高勝率反彈,而且呢個效應喺集中型
   ETF(MAGS/QQQ/SOXX/XLK)層面應該仲喺,只係被分散攤薄。用嚟決定「ETF-only」原則值唔值得為
