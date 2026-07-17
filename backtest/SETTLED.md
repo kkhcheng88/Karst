@@ -44,7 +44,11 @@
 
 | # | 問題 | 答案(≤25字) | 尺 | 正本 | 狀態 |
 |---|---|---|---|---|---|
-| 13 | RSI2 撈底(**買方**)有冇用? | 驗唔出:CapEff 229 vs 隨機同曝險 219,p=0.69;方向正但細 | 資本效率 | `2026-07-17_rsi2_be_replication.md` | settled ⚡§8-A |
+| 13 | RSI2 撈底(**買方**)有冇用? | **有料但托唔起注碼**:贏隨機(SPY p≈0.001);SPY 33年 $10,851 vs B&H $293,980 | 資本效率+絕對PnL | `2026-07-17_rsi2_connors_settle.md` | settled |
+| 13a | RSI2 邊個 regime 先有用? | **震盪市有、平靜牛市冇**:2016-20 = 58分位(隨機);2021-26 = 98.6分位 | 資本效率 | 同上 + `2026-07-05_rsi2_capital_efficiency.md` R3 | settled |
+| 13b | RSI2 做功嘅係深dip定快出? | **快出**;深dip喺入場軸打和(67.2 vs 67.4)—— 07-05「深dip高效率」係比率人工品 | MC百分位 | `2026-07-17_rsi2_connors_settle.md` | settled |
+| 13c | 200SMA 濾網要唔要?(**用戶 2026-07-17 裁決**) | **唔要** —— 用戶接受尾部風險(押「唔會再有 2000 式崩法」) | 資本效率+MaxDD | 本檔 §8-A | **用戶決定** |
+| 13d | RSI2 實際擺喺邊? | **月度 top-up 揀日器**(零額外資本/曝險);**唔做獨立 sleeve** | — | `2026-07-17_rsi2_connors_settle.md` | settled |
 | 14 | RSI2(**賣方**)>90 賣 call? | **有料**:PF 1.53→2.26 —— 同買方符號相反,唔可一條線管兩邊 | PnL÷曝險 | `2026-06-30_shortcall_timing.md` | settled |
 | 15 | RSI2 以外仲有均值回歸增量? | 冇增量;而且要 regime 閘先得 | 資本效率 | `2026-07-05_meanrev_family.md` | settled |
 | 16 | 大市層廣度/資金流有用嗎? | 廣度洗盤 21d 喺 VIX 之上 +2pp(單邊);DIX 細、GEX≈0 | 事件研究 | `2026-07-05_breadth_reversion.md` +`gex_test`/`phase2_flow` | settled |
@@ -110,22 +114,25 @@
 
 ## §8 未和解嘅矛盾(**唔准當冇事**)
 
-### A. RSI2 撈底 —— 兩個相反結論,兩把唔同嘅尺,冇人和解過 【live】
+### A. RSI2 撈底 —— **已和解(2026-07-17 深夜)**
 
-| 檔 | 講咩 | 尺 | 標籤(今日) |
-|---|---|---|---|
-| `2026-07-05_rsi2_capital_efficiency.md` | 「capital efficient across the board」大盤部署回報 32% vs B&H 17.1% | 資本效率 **vs B&H** | **仍然 `active — mechanism HIGH confidence`** |
-| `2026-07-16_leader_dip_reversion.md` | RSI2 撈底冇料 | 事件研究 | 🛑 suspended(配置錯) |
-| `2026-07-17_dip_capital_efficiency.md` | +550% 係 10 日封頂人工品 | 資本效率 | 🛑 suspended(配置錯) |
-| `2026-07-17_rsi2_be_replication.md` | CapEff 229 vs **隨機同曝險** 219,p=0.69 → 分唔開 | 資本效率 **vs 隨機同曝險** | settled(**本檔判為正本**) |
+**正本 = `2026-07-17_rsi2_connors_settle.md`**(Connors 原配置 + 隨機同曝險對照 + 乾淨 2×2)。
 
-**點解正本 = replication 而唔係 07-05**:
-- replication **已經跑完**(77 隻、5 臂、1000 次 MC/隻/臂),唔係「重跑中」——兩份 🛑 橫額寫住「重跑中」係 **stale**,冇人返去更新。
-- 兩者唔係同一把尺:07-05 用 **B&H** 做判官,replication 明文話 B&H 係錯判官,要用**隨機同曝險同交易次數**對照。換咗啱嘅判官,edge 驗唔出。
-- replication 明文撤回 07-16/07-17 兩份嘅數字,但 **由頭到尾冇提過 07-05**(grep `07-05`/`rsi2_capital_efficiency` = **0 次**)。佢被 charter 去閂呢個矛盾,結果冇閂。
-- 同 memory `metric-and-direction-discipline`(用戶 2026-07-17 明文裁「RSI2 買方死」)一致。
+| 檔 | 講咩 | 標籤 |
+|---|---|---|
+| `2026-07-17_rsi2_connors_settle.md` | **贏隨機同曝險**(SPY p≈0.001、全宇宙 p=0.022,六臂全贏) | **正本** |
+| `2026-07-05_rsi2_capital_efficiency.md` | 「capital efficient across the board」 | 方向啱,**但用 B&H 做判官**;R2「深dip高效率」係比率人工品(見 #13b)→ 部分 superseded |
+| `2026-07-17_rsi2_be_replication.md` | p=0.69 分唔開 | **假陰性** —— n_eff 代理估 3.1、實測 **7.2**(低估一倍) |
+| `2026-07-16_leader_dip_reversion.md` / `2026-07-17_dip_capital_efficiency.md` | RSI2 冇料 | 🛑 撤回(配置錯) |
 
-**未做嘅動作**(本檔唔改任何現有檔):① 撤 07-05 個 `active` 標籤,改指向 replication;② 更新兩份 🛑 橫額「重跑中」→「已跑完,判詞見 replication」。
+**四次驗唔出,同一個原因:窗口 2016+ 跨住 2010s 死區(Z=0.24, p=0.53)+ n_eff 高估咗把尺嘅鬆緊。唔係配置、唔係執行(已逐個排除)。**
+**訊號真**(六臂全贏隨機 = 機制性質,唔係揀臂好彩)、**錢細**(SPY 33年 $10,851 vs B&H $293,980)、**regime 相依**。
+
+**⚡ 用戶 2026-07-17 裁決:唔要 200SMA 濾網。**
+- 數據(2016+):濾網**冇一格**幫到手;**2022 年仲要害咗**(SPY 冇濾網 +8.2%/92.9分位 vs 有濾網 -3.9%/40.1分位 —— 2022 係「一路跌一路彈」,有得撈;濾網叫你企埋一邊)。
+- 濾網唯一派上用場 = **2000-2002**(QQQ 冇濾網 MDD **-140%** = 爆倉;2022 型跌法救唔到你,亦唔需要救)。
+- **用戶明文接受**:「past 10 years we still have bubble but just not as 2000-2002, which I don't as the 悲觀 I accept the risk」。
+- **性質:呢個係押注,唔係回測結論** —— 押「最壞 -33% 唔係 -140%」。同胃納一致(`user-risk-appetite-2026-07` MaxDD 貼 SPY;2016+ 冇濾網 MDD SPY -33%/QQQ -25%,而 SPY 自己 2020 都 -34%)。
 **方向陷阱**:以上全部只講 **買方**。**賣方**(RSI2>90 賣 call)已驗證有料(#14)——唔好用一句「RSI2 冇用」蓋兩邊。
 
 ### B. 期權成本假設 —— m=0.85 【live,冇人提過】
