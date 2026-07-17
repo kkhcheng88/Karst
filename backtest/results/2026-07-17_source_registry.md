@@ -38,7 +38,8 @@ mentioned as observation to the market as Thesis part?」——正確,篩要按*
 | **gooptions** | thesis 文章 | 1✗ 2✓ 3◐ | **ingest 管道**(theme 發現) | `thesis/.raw/gooptions/` |
 | **zsxq「社会观察从业者」** | dated calls + 投行 PDF 策展 | 1✓ 2◐ 3✓(PDF) | **PDF 已 ingest**(6 份,全 NEUTRAL);calls 記帳中(3 條待判) | `thesis/.raw/zsxq/INDEX.md`、`PDF_TRIAGE.md` |
 | **Discord 順哥(皇者顺)** | dated calls | 1✓ 2✗ 3✗ | **已評分 → 唔接**(round trip 對 SPY 打和;自稱 75% 否證) | `2026-07-17_kol_shunge_roundtrip.md` |
-| **substack 美股送分題**<br>(openbookandeasypoint) | 論述/教育 | **1✗** 2✗ 3✗ | **讀物,唔入管道**(見 §3) | 本檔 §3 |
+| **substack 美股送分題**<br>(openbookandeasypoint) | 論述/教育 | 2✗ 3✗ | **讀物,唔入管道**(見 §3) | 本檔 §3 |
+| **substack FOMO 研究院**<br>(fomosoc.com,KP@FOMOSoc,5萬訂閱) | 論述(供應鏈深度) | 2**◐-✓** 3**◐** | **候選——待實測**(見 §3b) | 本檔 §3b |
 | substack acidinvestments | 論述 | 1✗ 2◐ 3◐ | 一次性引用過(memory 長約 red-team) | `2026-07-15_redteam_memory_supercycle.md` |
 
 ## §3 substack 美股送分題(openbookandeasypoint)— 2026-07-17 評估
@@ -85,6 +86,43 @@ Anthropic 值 1 兆美元?」、加一批方法論教育文(持有贏家 vs 賣�
 **教育文嘅價值**:方法論參考(唔係數據來源)。同 Karst 已驗證嘅嘢對得上先信——
 例:「持有贏家 vs 賣出贏家」呢個題目,我哋自己嘅數據已經有答案(順哥切走右尾:
 avg_win +18.4% / avg_loss -15.3%,資本效率排第 1 百分位)。
+
+## §3b substack FOMO 研究院(fomosoc.com)— 2026-07-17 初評:**候選,待實測**
+
+**基本**:KP@FOMSoc,**5 萬訂閱**,兩條線——「**KP 思考筆記**」(週更,**免費**,mega-cap 新聞綜合)
++「**深入分析**」(週更,**收費**,供應鏈深度)。評估依據:1 篇免費全文(#50)+ 20 篇 API 預覽
+(`/api/v1/archive?sort=new&limit=30`)。**收費層零覆蓋——最有價值嗰半我讀唔到,呢個係本評估最大限制。**
+
+### 同 openbookandeasypoint 嘅決定性分別:出處密度
+
+| | 美股送分題 | **FOMO 研究院(免費層)** |
+|---|---|---|
+| 數字有名有姓出處 | **0%**(「資深機構專家」「高盛個模型」) | **~45%** —— **Micron capex guidance / Meta 官方公告 / SEMI 預測 / Jefferies 6-22 報告 / SemiAnalysis / Reuters** |
+| 可證偽預測 | 一句,冇門檻 | Kyber 延至 2028、SEMI 設備 $520B(2026)/$570B(2027)、Meta 14GW(2027) —— **有日期有數,驗得到** |
+
+45% vs 0% 唔係程度差,係**種類**差。附加價值:**佢點名具體報告(SemiAnalysis / Jefferies)= 一張通往真報告嘅地圖。**
+弱點:**冇 hyperlink**;關鍵技術規格(Kyber 78 層 midplane)同 SKHY ADR 溢價敘事仍然 unattributed(~55%)。
+
+### 收費層先係 gooptions-like 嗰半(題目 × 現有 theme 直接對撞)
+
+| 期 | 題目 | 二階名 | 對應 theme |
+|---|---|---|---|
+| #55 | 3D 封裝 / 混合鍵合 | **BESI、ASMPT** | advanced-packaging |
+| #54 | 玻璃基板(CoPoS、TGV) | 材料/載板鏈 | advanced-packaging |
+| #53 | NAND Flash 控制器 | **慧榮 SIMO、群聯** | memory-supercycle |
+| #52 | 功率半導體(SiC/GaN/800V) | 供應鏈贏家 | ai-power-grid |
+| #50 | HVDC 與台達電 | **台達電**、重電/散熱 | ai-power-grid(**同 2026-07-17 ingest 嘅「Inside the 800VDC Revolution」PDF 同一條軸 = 獨立覆蓋**) |
+| #48 | 資料中心互連 DCI | Nokia、Cisco | photonics-optical |
+
+**呢啲正正係 gooptions 交付嗰種標的**(二階、供應鏈、瓶頸層,冇一個 mega-cap)。
+
+### 實測方案(唔好靠感覺,亦唔好靠標題)
+**如果用戶訂閱:攞 #55(混合鍵合 BESI/ASMPT,直接對 advanced-packaging)行一次完整 INGEST 流程。**
+- 出到 STRENGTHEN,或者餵到 kill_metric / magnitude 推導 → **gooptions 級,入管道**
+- 同 2026-07-17 六份投行 PDF 一樣全 NEUTRAL → 好睇嘅嘢,唔係來源
+
+⚠️ **本評估限制**:1 篇免費全文 + 20 預覽;收費層(即高價值層)未讀。「45% 有出處」係**免費層**嘅數,
+收費層可能更高(深度分析通常出處更密)亦可能更低。**唔由一篇推及全刊**(同日已犯三次同類錯,見 §3 尾)。
 
 ## §4 未評估 / 待辦
 
