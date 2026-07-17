@@ -68,6 +68,7 @@
 | # | 問題 | 答案(≤25字) | 尺 | 正本 | 狀態 |
 |---|---|---|---|---|---|
 | 24 | 板塊輪動捕唔捕捉到? | 唔得:全部變體輸 SPY/EW;殘差 XLK 主導唔獨立;上限係噪音幻象 | Sharpe | `2026-07-06_portfolio_rotation.md` +`gics_residual`/`residual_seesaw`/`xle_xlk` | settled |
+| 24a | **板塊輪動最終清盤(2026-07-18 覆核點)** | **機械+外生驅動全路徑閂檔**:oracle +127%/年係「每月完美選擇複利」,最佳實測訊號(53.2% 月命中)只捕捉 6.3% 差距 ≈ SPY+0.2pp;三對機制驅動(油→XLE/利率→XLF/利率→XLU)+ 科技二元軸,**8/8 主測試全部過唔到 Bonferroni**(最細 p=0.137)。**僅剩三條前向計分管道**(narrative-flow 紙上/zsxq 判斷帳/斷頭軸 IC,6 個月鐘)。⚠ 腳註:利率→XLF 喺 2001+ 敏感度窗 raw p=0.009——**唔採納**(非預先登記主家族,過唔到任何家族修正);如有人日後想追,要全新預先登記 + 樣本外,唔准引呢格 | CE+絕對PnL+MC | `2026-07-18_sector_final.md` | **settled(閂檔)** |
 | 25 | 板塊做部署載體好過 SPY? | 唔得:四個假設全不過關,H2 顯著負;性格分唔到趨勢/震盪 | 資本效率 | `2026-07-06_sector_capeff.md` +`07-01_sector_character_2b` | settled |
 | 26 | 板塊約束語言密度預測跑贏? | **未有定論**:相關近零,方向不一,未跑 placebo/LM 對照 | 描述性 | `2026-07-10_sector_constraint_language.md` | **open** |
 | 27 | 主題用 ETF 定個股表達? | 記憶體/油氣有純 ETF,其餘只能個股;掃過冇 ETF 盲點 | 描述性 | `2026-07-10_theme_proxy_etf_purity.md` +`etf_turnover_scan`/`qqq_two_factor` | settled |
