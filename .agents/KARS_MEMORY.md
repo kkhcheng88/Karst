@@ -251,6 +251,12 @@ top-down(SPY/SPMO/QQQ 市場 → 價值鏈輪動 → 個股);最終可為網站/
   0DTE「100% win」判唔採納 multiple-testing)。四個排程總表喺 STATUS.md「每日自動化」節。
 - **cmd 檔坑**:`.cmd` 註解一律 ASCII——cmd.exe 用 cp950 讀 UTF-8 中文字節,撞正 0x26(&)字節會
   把 REM 行斬開當指令執行(daily_transcripts.cmd 首版中招,已修)。中文註解放 .py docstring。
+- **⚠ transcript 重蒸餾 bug + 修法(07-17)**:`Karst-transcripts-daily` 個 cron **寫得到** Reference,
+  但**夜班嘅 Claude run 寫唔到**(權限邊界)→ 蒸餾完剔唔到 `_PENDING_ANALYSIS.md` → 下一晚又見 `- [ ]`
+  再蒸餾一次。65/66 就咁被做咗兩次(07-15、07-17),兩晚各燒一次 run,兩版判讀仲唔一致。
+  **修法(夜班自己提議、07-17 落實)**:`.agents/staging/.processed_transcripts` = Karst 側已處理清單。
+  **夜班協議**:run 開頭讀本檔 → 已列編號跳過 → 蒸餾完喺本檔加一行(夜班寫得到)+ 照舊出 staging 檔。
+  **日間協議**:過檔完清 staging,並確認 `.processed_transcripts` 同 Reference 側 `_PENDING_ANALYSIS.md` 一致。
 
 ## §15 2026-07-13 —— 「Karst should be user agnostic」原則確立(crypto governance 撤回事件)
 

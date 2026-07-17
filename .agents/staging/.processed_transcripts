@@ -1,0 +1,22 @@
+# Backtest-Everything transcripts 夜班已蒸餾清單
+#
+# 點解有呢個檔:夜班 headless run 寫唔到 Reference tree(權限邊界,見 memory
+# nightshift-permission-boundary),所以剔唔到 Reference 側嘅 _PENDING_ANALYSIS.md。
+# 結果:staging 檔一日冇人過檔,夜班一日都會見到 `- [ ]` 再蒸餾多次(65/66 就被做咗兩次,
+# 07-15 同 07-17,兩晚各燒一次 run,而且兩版判讀唔一致)。
+#
+# 協議(2026-07-17 定,夜班自己提議嘅「選項 1」):
+#   1. 夜班 run 開頭先讀本檔;
+#   2. _PENDING_ANALYSIS.md 入面已經喺本檔出現嘅編號 -> 跳過,唔好重新蒸餾;
+#   3. 蒸餾完新 transcript -> 喺本檔加一行(夜班寫得到 Karst 側),同時照舊出 staging 檔;
+#   4. 日間 session 過檔之後,順手確認本檔同 Reference 側 _PENDING_ANALYSIS.md 一致。
+#
+# 格式:<編號>_<videoId>  # <過檔日期> <一句 verdict>
+59_  # 2026-07-08 過檔 -- married-put:佐證 core v2「底倉唔買保護」
+60_  # 2026-07-08 過檔 -- 同上(重複上載)
+61_  # 2026-07-08 過檔
+62_  # 2026-07-08 過檔 -- 0DTE「100% win」:唔採納(multiple-testing)
+63_A1NLhb3nRII  # 2026-07-12 過檔 -- iron butterfly 128 配置全蝕:佐證,不納入工具箱
+64_rL1ysLSK_4A  # 2026-07-12 過檔 -- 同上(重複上載)
+65_xE90se6PRRw  # 2026-07-17 過檔 -- credit spread vs IC「10,000 trades」:唔採納(recap 片、零新數據)
+66_1TiYPwEG1IQ  # 2026-07-17 過檔 -- 同上(重複上載)
