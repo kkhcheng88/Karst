@@ -6,6 +6,18 @@ external reference material only, not dependencies. Agent-agnostic entry points 
 a fresh session (any agent) knows how to operate and MAINTAIN it. Communicate with the user in
 Traditional Chinese (technical identifiers/tickers/code in English).
 
+## ⚖️ 三份治理文件(2026-07-17 定,凌駕本檔其餘內容;衝突以呢三份為準)
+1. **`backtest/ASSUMPTIONS.md`** — 用戶假設憲章(A1-A7:永遠喺市、無2000式尾部、資本效率+絕對PnL
+   並列、2016+前後半、m=1.15 真價、週月節奏、ETF-only)。**實驗唔引用 = 唔准跑;改憲章 = 用戶決定。**
+2. **`backtest/SETTLED.md`** — 信念登記冊。**開任何新實驗前必查**;查到 = 你係喺重複,除非明文寫低
+   改咗邊個配置。新結論落地 = 更新對應行,唔係加行。
+3. **`docs/2026-07-17_fund_blueprint.md`** — 基金藍圖(四 sleeve + 每個 sleeve 嘅 entry/exit +
+   建造次序)。呢個係「做乜」嘅正本;STATUS.md 係「去到邊」。
+
+**判詞紀律**:subagent 只准報數,唔准落判詞;判詞只可以喺覆核點對照憲章落,寫入 SETTLED 先算數。
+措辭分級:「呢個配置下驗唔出」≠「死」;負面判詞冇對照臂 = 無效(`backtest/lint_results.py` 機械把關)。
+**語言**:同用戶溝通 = 業務語言(報結果唔報過程;內部術語唔准出現,除非用戶問)。
+
 ## Read first (project state + design)
 - **`STATUS.md` — START HERE.** 單一入口:現在在哪、下一步、東西在哪、閱讀順序。
   (2026-07-03 起取代散落交接;session 結束要更新它。)
