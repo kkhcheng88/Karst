@@ -23,7 +23,8 @@
 | # | 問題 | 答案(≤25字) | 尺 | 正本 | 狀態 |
 |---|---|---|---|---|---|
 | 1 | 底倉揀邊隻?大冧後換唔換? | SPY;QQQ/50-50 淨係加 beta;大冧後換 = 冇α兼 MaxDD 更差 | alpha(全組合) | `2026-07-07_base_mix.md` +`07-08_crash_switch` | settled |
-| 2 | Core v2 最終配置? | SPY 底倉+SPY/QQQ LEAP、預算 15-20%、Δ0.50 | alpha(全組合) | `2026-07-06_core_assembly_real.md` | settled |
+| 2 | Core v2 最終配置? | **維持 b15/Δ0.50/50-50** —— 真價 48 格重掃,冇一格喺誠實深-ITM 成本下同時贏 CE 同絕對回報(2026-07-18 覆核點裁決) | CE+絕對PnL(sleeve)/ alpha(全組合) | `2026-07-18_grid_realcost.md` | settled |
+| 2a | 真價下嘅誠實數? | 保守 **+3.0pp/年**(t2.04,CI 0.1-5.9)、基準 +9.0pp;m=1.15 仍可能偏樂觀(skew 未解) | alpha(全組合) | `2026-07-17_core_topup_realcost.md` | settled |
 | 3 | 現金乾涸點救? | 月度 floor 補水;RSI 擇時補水 α 打和但乾涸更差 | alpha(全組合) | `2026-07-06_core_topup.md` +`07-07_topup_timing_ab` | settled |
 | 4 | 防守板塊做偽現金? | 唔得:熊市每次輸現金 1.51%;B1 籃子唔使換 | alpha(全組合) | `2026-07-12_ballast_parking_ab.md` +`07-13_bt7` | settled |
 | 5 | core-v2 三個改良(AA/regime band/washout)? | AA 唔輸但回報低;另兩個噪音級≈0,未過 Bonferroni | alpha(全組合) | `2026-07-12_bt2_aa_vs_core.md` +`07-13_bt3_bt4` | settled |
