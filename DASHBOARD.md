@@ -1,10 +1,10 @@
 # Karst 投資簡報
 
-_2026-07-20 22:01 UTC | 晨早版_
+_2026-07-21 12:31 UTC | 開市前瞻版_
 
 ---
 
-🔴 Karst 投資簡報 2026-07-20(晨早版)
+🔴 Karst 投資簡報 2026-07-21(開市前瞻版)
 市況檔位:平靜市
 
 3個主題止蝕訊號已觸發、2個主題估值偏貴需要留意、5個主題可考慮吸納。
@@ -112,29 +112,14 @@ _2026-07-20 22:01 UTC | 晨早版_
 
 ---
 
-🆕 今日新觸發個股(系統規則今日先由「未觸發」轉「已觸發」,唔係每日重複嘅同一句):
-
-⚠️ 呢個係本系統嘅入場/離場規則自動判斷,並非已驗證嘅獲利訊號——
-跟唔跟由你自己決定。
-
-   🟢 入場:TSM(客製化AI晶片)
-
----
-
 大市同組合現況:
+(開市前預覽價,實際以收市判定為準)
 
-SPY 742.09
-• 200SMA 697.07(向上+6.5%)
+SPY 開市前 744.87(較前收市+0.4%),前收市 742.09
+• 賣call ≥769.37 | 200SMA閘 697.21(ON)
 
-QQQ 696.06
-• 200SMA 641.32(向上+8.5%) | RSI-2 13
-• 逢跌吸納 ≤694.36 | 賣call ≥735.71 | 破位價 641.51
-
-• VIX恐慌指數:18.65(偏低,市場情緒平靜)
-
-LEAP參考報價:
-• SPY 2027-06-30到期(剩344日) K775 Δ0.49 約$4,604/張
-• QQQ 2027-06-30到期(剩344日) K745 Δ0.50 約$5,876/張
+QQQ 開市前 704.48(較前收市+1.2%),前收市 696.06
+• 逢跌吸納 ≤694.36 | 賣call ≥735.71 | 200SMA閘 641.51(ON)
 
 • 已運用衛星倉位額度:41%(本階段上限50%,系統狀態:PRELIMINARY)
 • 組成(頭三大):減肥藥專用包裝 7%、美國太陽能製造 6%、航太特殊合金 6%——15 個主題全表見文末一覽
@@ -150,31 +135,31 @@ LEAP參考報價:
 
 📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
 
-• 記憶體超級週期|Global Chip Equipment Spending Surges, Creating New Opportunities for India's Se(SMEStreet)
+• 記憶體超級週期|Korean, US And Japanese Suppliers Race To Upgrade Fabs, Ending The NAND Flash Sh(Wccftech)
+  ↳ 掛喺「NAND flash shortage」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+
+• 記憶體超級週期|Micron Technology: Record DRAM Pricing Meets A Stock In Retreat - AOL.com(AOL.com)
+  ↳ 掛喺「DRAM contract price decline」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 記憶體超級週期|Report: NAND Flash Shortages to Finally End in 2027 - TechPowerUp(TechPowerUp)
+  ↳ 掛喺「NAND flash shortage」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+
+• 記憶體超級週期|Chip Substrate Makers Abandon Debt-Free Rule in AI-Fueled Bet - Seoul Economic D(Seoul Economic Daily)
   ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|What’s causing ASML’s Europe-leading success in the chip market? - capacitygloba(capacityglobal.com)
+• 記憶體超級週期|Costly 3GB GDDR7 Chips Put Nvidia’s RTX 5000 Super Launch on Hold - Qoo Media(Qoo Media)
   ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|AI Memory Shortage: Could This Trigger A Global Geopolitical Crisis? Here's What(LatestLY)
-  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• AI電力與電網|5 Data Center Stocks Bought by FIIs in June 2026 - Equitymaster(Equitymaster)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
 
-• 記憶體超級週期|Analysts Still See Massive Upside for SK Hynix — The AI Cycle Isn’t Done But Que(AOL.com)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• AI電力與電網|Earnings call transcript: Wärtsilä posts record Q2 2026 orders as shares fall - (Investing.com Canada)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
 
-• 記憶體超級週期|KOSPI Stock Bear Market: What It Means for Samsung, SK Hynix and Korean Chip Sto(WEEX)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• AI電力與電網|Infineon Snaps a Sell-Off with an Analyst Nudge and a String of Strategic Wins, (Ad-hoc-news.de)
+  ↳ 掛喺「Infineon power semiconductor price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 光通訊/光學元件|AI Computing Power Enters Its Next Battleground! Is Scale-Up the New Bottleneck?(Moomoo)
-  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• AI電力與電網|China halts rare earth exports, pressure on Japan's industry rises - IDNFinancia(IDNFinancials.com)
-  ↳ 掛喺「China yttrium rare earth export control」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• AI電力與電網|Price Prediction: Qualcomm Has Over 50% Upside as AI Data Center Push Accelerate(AOL.com)
-  ↳ 掛喺「hyperscaler data center capex cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-⚠ 同日多條止蝕方向消息:記憶體超級週期、AI電力與電網——建議人手/夜班判一次「止蝕條件有冇實質靠近」
+⚠ 同日多條止蝕方向消息:記憶體超級週期——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
 ---
 
