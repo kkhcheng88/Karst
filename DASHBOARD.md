@@ -1,10 +1,10 @@
 # Karst 投資簡報
 
-_2026-07-23 22:01 UTC | 晨早版_
+_2026-07-24 12:32 UTC | 開市前瞻版_
 
 ---
 
-🔴 Karst 投資簡報 2026-07-23(晨早版)
+🔴 Karst 投資簡報 2026-07-24(開市前瞻版)
 市況檔位:平靜市
 
 ⚠ 數據哨兵紅燈——以下所有讀數可能唔可信,先查數據、4個主題止蝕訊號已觸發、3個主題估值偏貴需要留意、4個主題可考慮吸納。
@@ -12,7 +12,7 @@ _2026-07-23 22:01 UTC | 晨早版_
 ---
 
 ⚠️ 數據哨兵紅燈——今日部分數據未更新,以下讀數請當存疑:
-• aa_strict_paper_log.jsonl 最後一筆日期 2026-07-17,已相隔 6 日曆日(上限4日)
+• aa_strict_paper_log.jsonl 最後一筆日期 2026-07-17,已相隔 7 日曆日(上限4日)
 
 ---
 
@@ -120,31 +120,14 @@ _2026-07-23 22:01 UTC | 晨早版_
 
 ---
 
-🆕 今日新觸發個股(系統規則今日先由「未觸發」轉「已觸發」,唔係每日重複嘅同一句):
-
-⚠️ 呢個係本系統嘅入場/離場規則自動判斷,並非已驗證嘅獲利訊號——
-跟唔跟由你自己決定。
-
-   🔴 離場:AMZN(mag7-hyperscaler)
-   🔴 離場:GOOGL(mag7-hyperscaler)
-
----
-
 大市同組合現況:
+(開市前預覽價,實際以收市判定為準)
 
-SPY 738.18
-• 200SMA 698.21(向上+5.7%) | RSI-2 14
-• 逢跌吸納 ≤736.07 | 賣call ≥784.31 | 破位價 698.34
+SPY 開市前 740.55(較前收市+0.3%),前收市 738.18
+• 逢跌吸納 ≤736.07 | 賣call ≥784.31 | 200SMA閘 698.34(ON)
 
-QQQ 691.96
-• 200SMA 642.79(向上+7.6%) | RSI-2 17
-• 逢跌吸納 ≤684.82 | 賣call ≥763.70 | 破位價 642.97
-
-• VIX恐慌指數:18.70(偏低,市場情緒平靜)
-
-LEAP參考報價:
-• SPY 2027-06-30到期(剩341日) K770 Δ0.50 約$4,714/張
-• QQQ 2027-06-30到期(剩341日) K745 Δ0.50 約$5,784/張
+QQQ 開市前 693.71(較前收市+0.3%),前收市 691.96
+• 逢跌吸納 ≤684.82 | 賣call ≥763.70 | 200SMA閘 642.97(ON)
 
 • 已運用衛星倉位額度:41%(本階段上限50%,系統狀態:PRELIMINARY)
 • 組成(頭三大):減肥藥專用包裝 7%、美國太陽能製造 6%、航太特殊合金 6%——15 個主題全表見文末一覽
@@ -161,29 +144,29 @@ LEAP參考報價:
 
 📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
 
-• 記憶體超級週期|Samsung and SK Hynix Surge as AI Chip Demand Accelerates - iNews Zoombangla(iNews Zoombangla)
+• 記憶體超級週期|CXMT’s 64GB Server DDR5 Memory Chip Is Now Pricier Than Samsung’s, As It Races T(Wccftech)
   ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|HBM’s & DRAM’s Importance Is Waning; Here’s The Silent Upgrade AI Giants Are Rac(Wccftech)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• 記憶體超級週期|How Much Could $5,000 Invested in SK Hynix Be Worth in 5 Years? - AOL.com(AOL.com)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• 記憶體超級週期|TSMC accelerates Arizona expansion to ride AI chip megatrend - Memeburn(Memeburn)
+• 記憶體超級週期|CXMT, YMTC Face US Ban as AI Drives Memory Boom - International Business Times, (International Business Times, Singapore Edition)
   ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|SK Hynix Races to Expand Chip Packaging Capacity as Earnings Test Looms - Ad-hoc(Ad-hoc-news.de)
+• 記憶體超級週期|AMD Teams with Samsung, Loads 50% More Memory Per Chip, Fueling HBM Shortage - S(Seoul Economic Daily)
   ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 光通訊/光學元件|[News] GaAs and InP Substrate Project Approved in Chinese Zhejiang Province - Tr(TrendForce)
-  ↳ 掛喺「InP substrate capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|China’s Chip Makers Expand Rapidly As AI Demand Fuels Growth, US Scrutiny Intens(BW Businessworld)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|Amazon and Microsoft are cutting deals with small towns to keep their data cente(Crypto Briefing)
-  ↳ 掛喺「hyperscaler data center capex cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|On-Device AI In Smartphones Is A Blatant Lie Due To Packaging & DRAM Limitations(Wccftech)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|Idaho Strategic Resources Reports Significant Concentrations of Heavy Rare Earth(bastillepost.com)
-  ↳ 掛喺「China yttrium rare earth export control」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 光通訊/光學元件|Beyond HBM: Samsung Targets the Next AI Battleground with Advanced Packaging and(semivision)
+  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• AI電力與電網|Infineon Faces a Delicate Balancing Act as Patent Dispute and Sector Jitters Clo(Ad-hoc-news.de)
+  ↳ 掛喺「Infineon power semiconductor price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• AI電力與電網|The CoolGaN GIT HEMT 650 V - Infineon bets on efficient home energy - Ad-hoc-new(Ad-hoc-news.de)
+  ↳ 掛喺「Infineon power semiconductor price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
 ⚠ 同日多條止蝕方向消息:記憶體超級週期、AI電力與電網——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
