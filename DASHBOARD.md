@@ -1,10 +1,10 @@
 # Karst 投資簡報
 
-_2026-07-26 22:01 UTC | 晨早版_
+_2026-07-27 12:33 UTC | 開市前瞻版_
 
 ---
 
-🔴 Karst 投資簡報 2026-07-26(晨早版)
+🔴 Karst 投資簡報 2026-07-27(開市前瞻版)
 市況檔位:平靜市
 
 4個主題止蝕訊號已觸發、3個主題估值偏貴需要留意、4個主題可考慮吸納。
@@ -115,29 +115,14 @@ _2026-07-26 22:01 UTC | 晨早版_
 
 ---
 
-🆕 今日新觸發個股(系統規則今日先由「未觸發」轉「已觸發」,唔係每日重複嘅同一句):
-
-⚠️ 呢個係本系統嘅入場/離場規則自動判斷,並非已驗證嘅獲利訊號——
-跟唔跟由你自己決定。
-
-   🟢 入場:AVGO(客製化AI晶片)
-
----
-
 大市同組合現況:
+(開市前預覽價,實際以收市判定為準)
 
-SPY 738.93
-• 200SMA 698.54(向上+5.8%) | RSI-2 23
-• 逢跌吸納 ≤734.50 | 賣call ≥761.62 | 破位價 698.69
+SPY 開市前 744.83(較前收市+0.8%),前收市 738.93
+• 逢跌吸納 ≤734.50 | 賣call ≥761.62 | 200SMA閘 698.69(ON)
 
-QQQ 684.23
-• 200SMA 643.17(向上+6.4%)
-
-• VIX恐慌指數:18.58(偏低,市場情緒平靜)
-
-LEAP參考報價:
-• SPY 2027-06-30到期(剩340日) K770 Δ0.50 約$4,637/張
-• QQQ 2027-06-30到期(剩340日) K735 Δ0.50 約$5,678/張
+QQQ 開市前 692.85(較前收市+1.3%),前收市 684.23
+• 賣call ≥754.89 | 200SMA閘 643.37(ON)
 
 • 已運用衛星倉位額度:41%(本階段上限50%,系統狀態:PRELIMINARY)
 • 組成(頭三大):減肥藥專用包裝 7%、美國太陽能製造 6%、航太特殊合金 6%——15 個主題全表見文末一覽
@@ -154,31 +139,31 @@ LEAP參考報價:
 
 📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
 
-• 記憶體超級週期|Samsung Strikes $200 Billion AI Chip Deal; SK Extends HBM4 Supply to Microsoft -(Seoul Economic Daily)
+• 記憶體超級週期|SK Hynix’s Jekyll-and-Hyde Week: Record Profit Forecast Meets a 41% Slide From P(Ad-hoc-news.de)
   ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|In the stock market these days, stock prices have plummeted one after another ev(매일경제)
-  ↳ 掛喺「HBM price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• 記憶體超級週期|SK Hynix Faces a Defining Moment as Retail Panic Meets Institutional Calm Ahead (AD HOC NEWS)
+• 記憶體超級週期|CXMT Debuts at $489B: DoD Ban and Three-Year HBM Deficit Trail the Pop - Tech Ti(Tech Times)
   ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|SK Hynix’s 118% Volatility Index Tells the Real Story Ahead of a Pivotal Earning(AD HOC NEWS)
+• 記憶體超級週期|SK Hynix’s 179% Year-to-Date Rally Masks a Turbulent Week as $500 Billion Nvidia(Ad-hoc-news.de)
   ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|SK Hynix’s HBM Dominance Faces Its Sternest Test Yet as Earnings, ADR Arbitrage (AD HOC NEWS)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|CXMT IPO: An Undervalued China Memory Chip Stock - Morningstar(Morningstar)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|Infineon Faces a Gauntlet of Big Tech Earnings and German Data as Shares Test Cr(AD HOC NEWS)
-  ↳ 掛喺「Infineon power semiconductor price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|Fivefold increase for Chinese chip maker CXMT in Shanghai debut - MarketWatch(MarketWatch)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|GE Vernova stock drops despite surging AI-driven orders as wind segment drags - (AOL.com)
+• AI電力與電網|Baker Hughes Reports $10.5 Billion in Orders for Q2 2026 - energynews.pro(energynews.pro)
   ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
 
-• AI電力與電網|IREN Soars 17%; Applied Digital, TeraWulf, Core Scientific Surge in a Data Cente(AOL.com)
-  ↳ 掛喺「hyperscaler data center capex cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• AI電力與電網|The grid cannot cope with the rise in data centers - The Spectator(The Spectator)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
 
-⚠ 同日多條止蝕方向消息:記憶體超級週期、AI電力與電網——建議人手/夜班判一次「止蝕條件有冇實質靠近」
+• AI電力與電網|Baker Hughes Reports Strong Q2 Results Despite Lower YoY Revenue - Egypt Oil & G(Egypt Oil & Gas)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+
+⚠ 同日多條止蝕方向消息:記憶體超級週期——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
 ---
 
