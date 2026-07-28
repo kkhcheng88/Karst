@@ -1,10 +1,10 @@
 # Karst 投資簡報
 
-_2026-07-27 22:01 UTC | 晨早版_
+_2026-07-28 12:32 UTC | 開市前瞻版_
 
 ---
 
-🔴 Karst 投資簡報 2026-07-27(晨早版)
+🔴 Karst 投資簡報 2026-07-28(開市前瞻版)
 市況檔位:平靜市
 
 4個主題止蝕訊號已觸發、1個主題估值偏貴需要留意、4個主題可考慮吸納。
@@ -102,19 +102,13 @@ _2026-07-27 22:01 UTC | 晨早版_
 ---
 
 大市同組合現況:
+(開市前預覽價,實際以收市判定為準)
 
-SPY 739.09
-• 200SMA 698.89(向上+5.8%) | RSI-2 27
-• 逢跌吸納 ≤736.15 | 賣call ≥750.35 | 破位價 699.02
+SPY 開市前 739.90(較前收市+0.1%),前收市 739.09
+• 逢跌吸納 ≤736.15 | 賣call ≥750.35 | 200SMA閘 699.02(ON)
 
-QQQ 682.12
-• 200SMA 643.56(向上+6.0%)
-
-• VIX恐慌指數:18.67(偏低,市場情緒平靜)
-
-LEAP參考報價:
-• SPY 2027-06-30到期(剩337日) K770 Δ0.50 約$4,583/張
-• QQQ 2027-06-30到期(剩337日) K730 Δ0.50 約$5,626/張
+QQQ 開市前 677.62(較前收市-0.7%),前收市 682.12
+• 賣call ≥726.94 | 200SMA閘 643.72(ON)
 
 • 已運用衛星倉位額度:41%(本階段上限50%,系統狀態:PRELIMINARY)
 • 組成(頭三大):減肥藥專用包裝 7%、美國太陽能製造 6%、航太特殊合金 6%——15 個主題全表見文末一覽
@@ -130,31 +124,31 @@ LEAP參考報價:
 
 📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
 
-• 記憶體超級週期|SK Hynix’s Jekyll-and-Hyde Week: Record Profit Forecast Meets a 41% Slide From P(Ad-hoc-news.de)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• 記憶體超級週期|CXMT Debuts at $489B: DoD Ban and Three-Year HBM Deficit Trail the Pop - Tech Ti(Tech Times)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• 記憶體超級週期|SK Hynix’s 179% Year-to-Date Rally Masks a Turbulent Week as $500 Billion Nvidia(Ad-hoc-news.de)
-  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
-
-• 記憶體超級週期|CXMT IPO: An Undervalued China Memory Chip Stock - Morningstar(Morningstar)
+• 記憶體超級週期|AI memory, chip stocks fall after Korea's Kospi, Japan's Nikkei slump - Seeking (Seeking Alpha)
   ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|Fivefold increase for Chinese chip maker CXMT in Shanghai debut - MarketWatch(MarketWatch)
+• 記憶體超級週期|AI sell-off intensifies as investors ditch chip stocks - AOL.co.uk(AOL.co.uk)
   ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|Baker Hughes Reports $10.5 Billion in Orders for Q2 2026 - energynews.pro(energynews.pro)
-  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+• 記憶體超級週期|US Chip Stocks Slump Pre-Market: Micron Falls Over 5%, AMD and Intel Drop More T(TradingKey)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|The grid cannot cope with the rise in data centers - The Spectator(The Spectator)
-  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+• 記憶體超級週期|Chip stocks are getting hammered — but China's hottest new listing is holding up(Business Insider)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• AI電力與電網|Baker Hughes Reports Strong Q2 Results Despite Lower YoY Revenue - Egypt Oil & G(Egypt Oil & Gas)
-  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
+• 記憶體超級週期|Taiwan’s Sigurd adds NT$2 billion investment to boost chip testing capacity - Ta(Taiwan News)
+  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-⚠ 同日多條止蝕方向消息:記憶體超級週期——建議人手/夜班判一次「止蝕條件有冇實質靠近」
+• 光通訊/光學元件|TrendForce: NVIDIA and Broadcom Begin Volume Ramp of CPO Switches - EE Times Asi(EE Times Asia)
+  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• 光通訊/光學元件|NVIDIA's CPO Ships in Limited Volumes: Optical Engine Yield and Advanced Packagi(XenoSpectrum)
+  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+• AI電力與電網|Hyperscalers: A 'Toxic Waste' Investment - Seeking Alpha(Seeking Alpha)
+  ↳ 掛喺「hyperscaler data center capex cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+
+⚠ 同日多條止蝕方向消息:記憶體超級週期、光通訊/光學元件——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
 ---
 
