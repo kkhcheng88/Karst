@@ -1,13 +1,18 @@
 # Karst 投資簡報
 
-_2026-07-28 22:01 UTC | 晨早版_
+_2026-07-29 12:32 UTC | 開市前瞻版_
 
 ---
 
-🔴 Karst 投資簡報 2026-07-28(晨早版)
+🔴 Karst 投資簡報 2026-07-29(開市前瞻版)
 市況檔位:平靜市
 
-6個主題止蝕訊號已觸發、1個主題估值偏貴需要留意、4個主題可考慮吸納。
+⚠ 數據哨兵紅燈——以下所有讀數可能唔可信,先查數據、6個主題止蝕訊號已觸發、1個主題估值偏貴需要留意、4個主題可考慮吸納。
+
+---
+
+⚠️ 數據哨兵紅燈——今日部分數據未更新,以下讀數請當存疑:
+• aa_strict_paper_log.jsonl 最後一筆日期 2026-07-24,已相隔 5 日曆日(上限4日)
 
 ---
 
@@ -117,40 +122,14 @@ _2026-07-28 22:01 UTC | 晨早版_
 
 ---
 
-🆕 今日新觸發個股(系統規則今日先由「未觸發」轉「已觸發」,唔係每日重複嘅同一句):
-
-⚠️ 呢個係本系統嘅入場/離場規則自動判斷,並非已驗證嘅獲利訊號——
-跟唔跟由你自己決定。
-
-   🔴 離場:AAOI(光通訊/光學元件)
-   🔴 離場:AXTI(光通訊/光學元件)
-   🟢 入場:CLS(客製化AI晶片)
-   🔴 離場:COHR(光通訊/光學元件)
-   🔴 離場:CVX(油氣能源)
-   🔴 離場:EQT(油氣能源)
-   🔴 離場:FN(光通訊/光學元件)
-   🔴 離場:GLW(光通訊/光學元件)
-   🔴 離場:LWLG(光通訊/光學元件)
-   🟢 入場:MU(記憶體超級週期)
-   🔴 離場:SEI(油氣能源)
-   🔴 離場:XOM(油氣能源)
-
----
-
 大市同組合現況:
+(開市前預覽價,實際以收市判定為準)
 
-SPY 740.86
-• 200SMA 699.23(向上+6.0%) | RSI-2 63
-• 逢跌吸納 ≤731.43 | 賣call ≥745.61 | 破位價 699.37
+SPY 開市前 740.18(較前收市-0.1%),前收市 740.86
+• 逢跌吸納 ≤731.43 | 賣call ≥745.61 | 200SMA閘 699.37(ON)
 
-QQQ 675.49
-• 200SMA 643.88(向上+4.9%)
-
-• VIX恐慌指數:18.21(偏低,市場情緒平靜)
-
-LEAP參考報價:
-• SPY 2027-06-30到期(剩336日) K770 Δ0.50 約$4,638/張
-• QQQ 2027-06-30到期(剩336日) K725 Δ0.50 約$5,498/張
+QQQ 開市前 674.20(較前收市-0.2%),前收市 675.49
+• 賣call ≥727.74 | 200SMA閘 644.05(ON)
 
 • 已運用衛星倉位額度:41%(本階段上限50%,系統狀態:PRELIMINARY)
 • 組成(頭三大):減肥藥專用包裝 7%、美國太陽能製造 6%、航太特殊合金 6%——15 個主題全表見文末一覽
@@ -166,31 +145,31 @@ LEAP參考報價:
 
 📰 主題消息(同止蝕條件相關;方向係機械初判,以人判為準):
 
-• 記憶體超級週期|AI memory, chip stocks fall after Korea's Kospi, Japan's Nikkei slump - Seeking (Seeking Alpha)
-  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|SK Hynix: The Market Missed The Best Part Of Q2 (Rating Upgrade) (NASDAQ:SKHY) -(Seeking Alpha)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|AI sell-off intensifies as investors ditch chip stocks - AOL.co.uk(AOL.co.uk)
-  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|SK hynix Locks in Long-Term Deals With 10 Clients, Ramps Up HBM - Seoul Economic(Seoul Economic Daily)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|US Chip Stocks Slump Pre-Market: Micron Falls Over 5%, AMD and Intel Drop More T(TradingKey)
-  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|SK Hynix is the latest chip giant to discover that a 557% profit boost isn't goo(Business Insider Africa)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|Chip stocks are getting hammered — but China's hottest new listing is holding up(Business Insider)
-  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|SK Hynix Posts Q2 Operating Profit of approximately $41.8 Billion, Directly Refu(finance.biggo.com)
+  ↳ 掛喺「SK Hynix HBM」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 記憶體超級週期|Taiwan’s Sigurd adds NT$2 billion investment to boost chip testing capacity - Ta(Taiwan News)
-  ↳ 掛喺「memory chip capacity expansion」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 記憶體超級週期|Micron Stock Price Forecast: Shares Down More Than 30%, Will the Decline Continu(TradingKey)
+  ↳ 掛喺「HBM price cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 光通訊/光學元件|TrendForce: NVIDIA and Broadcom Begin Volume Ramp of CPO Switches - EE Times Asi(EE Times Asia)
-  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 光通訊/光學元件|Coherent Sinks 11%, Applied Optoelectronics Falls 10%, Lumentum Drops 9% as Trad(24/7 Wall St.)
+  ↳ 掛喺「Coherent Lumentum order cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
 
-• 光通訊/光學元件|NVIDIA's CPO Ships in Limited Volumes: Optical Engine Yield and Advanced Packagi(XenoSpectrum)
-  ↳ 掛喺「CPO adoption pluggable optics」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• 光通訊/光學元件|A New AI Shortage Is Coming. One CEO Just Predicted it Will Be "Bigger Than Memo(24/7 Wall St.)
+  ↳ 掛喺「optical transceiver shortage」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
 
-• AI電力與電網|Hyperscalers: A 'Toxic Waste' Investment - Seeking Alpha(Seeking Alpha)
-  ↳ 掛喺「hyperscaler data center capex cut」呢條監察軸|⚠ 傾向止蝕劇本方向(要留意)
+• AI電力與電網|AI Data Center Turbines, Backlogged For Years, Are Suffering Early Deaths. Here'(Investor's Business Daily)
+  ↳ 掛喺「gas turbine order backlog data center」呢條監察軸|✅ 傾向約束仍然緊(對主題有利)
 
-⚠ 同日多條止蝕方向消息:記憶體超級週期、光通訊/光學元件——建議人手/夜班判一次「止蝕條件有冇實質靠近」
+⚠ 同日多條止蝕方向消息:記憶體超級週期——建議人手/夜班判一次「止蝕條件有冇實質靠近」
 
 ---
 
