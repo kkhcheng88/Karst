@@ -1,0 +1,20 @@
+{
+  "engine": "vectorbt",
+  "version": "1.1.0",
+  "load_sec": 0.3211280000396073,
+  "single_cold_sec": 0.8265637999866158,
+  "single_warm_sec_median": 0.3324959999881685,
+  "single_warm_runs": [
+    0.3324959999881685,
+    0.3300417000427842,
+    0.33711129997391254
+  ],
+  "total_return": 5.564863303630591,
+  "final_value": 6564863.30363059,
+  "orders": 2245,
+  "params": {
+    "top_n": 10,
+    "interval": 1,
+    "smooth": 1
+  }
+}

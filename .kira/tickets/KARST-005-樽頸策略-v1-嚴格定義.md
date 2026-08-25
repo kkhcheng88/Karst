@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-004]
-claimedBy: null
+claimedBy: fable-main
 epic: V1 藍圖
 deliverable: KARST-D01
 ---
