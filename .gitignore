@@ -1,5 +1,7 @@
 # 可由固定種子重生的實驗數據,不入 git
 experiments/*/data/
+# 插件工作目錄,不屬項目內容
+.skill-compass/
 experiments/*/.venv/
 .venv/
 __pycache__/
