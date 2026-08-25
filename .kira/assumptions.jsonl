@@ -2,3 +2,4 @@
 {"id":"A-002","text":"以 LLM 讀歷史材料產出的非結構化因子,其回測結果可信(訓練截止日污染不成立或可控)——此條若假,樽頸策略在該模型截止日之前的全部歷史回測不足以支撐任何決策,歷史驗證工作會白做。","status":"unverified","createdAt":"2026-08-25","source":"KARST-002"}
 {"id":"A-003","text":"Vibe-Trading 的逐根 Python 引擎在數百股乘十年日線規模上慢到不可用——此條若假,「引擎必須借向量化框架」的前提鬆動,KARST-009 應加它做第三條對照,基於 vectorbt/PyBroker 的適配層工作量估算要重做。","status":"unverified","createdAt":"2026-08-25","source":"KARST-010"}
 {"id":"A-004","text":"tradingview-screener 依賴的 TradingView /screener 端點長期可用——此條若假,接它做選股宇宙來源那一格會斷,須另備數據源。","status":"unverified","createdAt":"2026-08-25","source":"KARST-010"}
+{"id":"A-005","text":"vectorbt 能不扭曲地表達進出場規則合約與共用風控層的三件套:按止蝕距離反推注碼的風險定額 sizing、每筆的止蝕/目標價(sl/tp)、以及組合層的月度虧損熔斷——此條若假,趨勢波段與錯殺兩套策略的適配層要改用自寫循環(from_order_func 或引擎外後處理),D-011 的引擎工作量估算要上調。","status":"unverified","createdAt":"2026-08-26","source":"KARST-006"}
