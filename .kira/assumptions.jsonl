@@ -1,0 +1,2 @@
+{"id":"A-001","text":"vectorbt 的 group_by 加 cash_sharing 配 from_order_func 足以流暢表達「每月按因子排名選 N 隻股票再平衡」,並在數百股乘十年日線維持秒級——此條若假,基於 vectorbt 的所有適配層工作會白做。","status":"unverified","createdAt":"2026-08-25","source":"KARST-001"}
+{"id":"A-002","text":"以 LLM 讀歷史材料產出的非結構化因子,其回測結果可信(訓練截止日污染不成立或可控)——此條若假,樽頸策略在該模型截止日之前的全部歷史回測不足以支撐任何決策,歷史驗證工作會白做。","status":"unverified","createdAt":"2026-08-25","source":"KARST-002"}

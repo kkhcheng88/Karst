@@ -8,9 +8,10 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: []
-claimedBy: null
+claimedBy: KARST-001-researcher
 epic: V1 藍圖
 deliverable: KARST-D01
+closed: 2026-08-25
 ---
 
 ## 工作內容
@@ -19,11 +20,15 @@ deliverable: KARST-D01
 
 ## 驗收條件
 
-- [ ] 每個候選方案有逐項對照上述七項需求的評估表,附 repo 連結與文件出處
-- [ ] 維護活躍度(近一年 commit、star、issue 回應)有記錄
-- [ ] 有明確建議(借用/自建/混合)連理由與風險,但明寫最終由用戶裁決
-- [ ] 報告落檔於倉內 research/ 目錄並在票的結果引用路徑
+- [x] 每個候選方案有逐項對照上述七項需求的評估表,附 repo 連結與文件出處
+- [x] 維護活躍度(近一年 commit、star、issue 回應)有記錄
+- [x] 有明確建議(借用/自建/混合)連理由與風險,但明寫最終由用戶裁決
+- [x] 報告落檔於倉內 research/ 目錄並在票的結果引用路徑
 
 ## 結果
+
+調研 21 個開源方案後,建議走**混合**路線:引擎借用、語意層與介面自建。首選以 vectorbt 或 PyBroker 作向量化組合模擬核心(兩者需先短期併行試跑再定案),組合層優化借 Riskfolio-Lib、因子檢定借 alphalens-reloaded、蠟燭圖借 TradingView lightweight-charts;因子合約與單一定義資料層、非結構化轉因子管線、策略註冊、應用介面則必須自建。沒有任何現成方案可以整套搬過來:帶完整 UI 的開源平台幾乎全部是加密貨幣機器人,而 zipline-reloaded(近一年僅 4 次 dependabot commit)與 backtrader(2024-08 後零 commit)已不宜作地基。最重要的一項發現是授權:vectorbt 與 PyBroker 兩個性能最合用的候選都帶 Commons Clause,不容許售賣主要價值源自它的產品或服務——因此「Karst 將來會否商品化」這個商業問題,決定了引擎選型是走 vectorbt/PyBroker 抑或改投 qlib(MIT)/ Lean(Apache-2.0)。**最終由用戶裁決。**
+
+報告:`research/2026-08-25-backtest-frameworks.md`
 
 ## 留言
