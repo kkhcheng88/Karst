@@ -151,3 +151,22 @@
   > 自用 first as we can freely use what we can use. First Priority is to support my own trader. But I am interest to form SaaS if the product is mature
 
 - 影響：試跑對決票(KARST-009)按此開;規格匯整票(KARST-008)必須載明引擎隔離原則。
+
+## D-008 策略討論的定位:只為摸清策略性質以支撐架構,不是替用戶分析策略
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-25
+
+- 出處：用戶 2026-08-25 原話(見引文)
+
+- 決策：
+  1. 與用戶談策略的目的是抽取策略的性質(落注單位、因子形態、材料、節奏、組合操作),據此推導平台要支援的能力。
+  2. 策略本身的內容與參數取值是用戶的領域;agent 不裁定、不優化策略內部數值。
+  3. 平台對策略內部數值(門檻、閘值一類)的責任形態是:做成可掃描的參數,支援用戶自己實驗。
+  4. 開源參考調研收口:引擎與因子層已飽和,不再加;應用外殼/圖表、材料取得管線兩張研究票分別等 KARST-007 與材料範圍定案後才開。
+
+- **用戶原話（原文照錄）**
+
+  > For strategy, my intention is that only for our to know more about the naturee of strategy I would like to play. As such the technical architecture can be supported. It is not really for you to analysis the strategy itself
+
+- 影響：KARST-005 的談法照此收窄:八條問題的答案只用於推導平台能力,策略數值一律參數化。
