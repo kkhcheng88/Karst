@@ -292,6 +292,32 @@
 ## 九、建議向用戶補充的資料
 
 1. **十套策略的清單**——這是最大的缺口(C2)。要不要繼續抽第四、第五條片,或改為抽他的文字內容(Facebook / IG 長文),取決於用戶。
-2. **他公開的 10 本書單**——片 C 說書單在他的 IG。書單本身就是這套系統的原理來源,對 B1/B2 的定義補全有直接幫助。
+2. **他公開的 10 本書單**——片 C 說書單在他的 IG。書單本身就是這套系統的原理來源,對 B1/B2 的定義補全有直接幫助。**→ 已收到,見第十節(用戶 2026-08-26 補件)。**
 3. **比賽成績的原始出處**——他說 YouTube 上仍可看到當年比賽的完整過程。「5 戰 5 冠」「連續 36 個月正回報」若要在 Karst 的任何文檔中使用,需要有可指的出處,否則一律維持「自述,未核實」。
-4. **用戶是否接受把 A1–A6 這批風控規則抽離出來,做成所有策略共用的合約層**——這超出單一策略的範圍,屬於引擎設計決策。
+4. **用戶是否接受把 A1–A6 這批風控規則抽離出來,做成所有策略共用的合約層**——這超出單一策略的範圍,屬於引擎設計決策。**→ 已裁:抽成共用風控層(D-013)。**
+
+---
+
+## 十、Eric 公開書單(用戶 2026-08-26 補件)
+
+用戶轉貼「十本 Eric 認為不能錯過的投資書籍」。原文屬截圖辨識,有殘渣(「AXPORT SYMBO」「VIEWE」兩行無法還原,照錄存真);英文書名九個、中文書名九個,與「十本」有出入,缺的一對待用戶補。配對按出版書目推斷,信心逐本標明:
+
+| # | 英文書名(照錄) | 中文書名(照錄) | 推斷原書/作者 | 配對信心 |
+|---|---|---|---|---|
+| 1 | A Complete Guide to The Future Market | 《期貨市場全書》 | Jack D. Schwager, *A Complete Guide to the Futures Market* | 高 |
+| 2 | The Art & Science of Technical Analysis (by Adam Grimes) | 《關鍵買賣點》 | Adam Grimes | 高 |
+| 3 | Secrets For Profiting in Bull and Bear Markets | 《多空操作秘笈》 | Stan Weinstein | 高 |
+| 4 | New Concepts in Technical Trading Systems | 《技術交易系統原理》 | J. Welles Wilder | 高 |
+| 5 | Trade Like a Casino | 《用賭場思維交易就對了》 | Richard L. Weissman | 高 |
+| 6 | Best Loser Wins | 《操盤手的秘訣》? | Tom Hougaard | 中(中文譯名配對未核實) |
+| 7 | The Art of Execution | 《股票買賣準則》? | Lee Freeman-Shor | 中(中文譯名配對未核實) |
+| 8 | The Way to Trade | (配對未定) | John Piper | 中 |
+| 9 | Enhancing Trader Performance | 《頂尖操盤手的養成計畫》 | Brett N. Steenbarger | 高 |
+| 10 | (英文原名缺) | 《交易者的超級心流訓練》 | 未能確定 | 低——待用戶補英文原名 |
+
+**與抽取缺口的對應(只記關聯,不評內容):**
+
+- 第 3 本(Weinstein)正是**階段分析**的原典——直接對應 B2「週期階段定位」的定義缺口,亦即片 A「股票四階段」的出處所在。
+- 第 2 本(Grimes)講趨勢確認與回調結構,對應五步法第 1–3 步與 B1 的均線/轉角定義。
+- 第 4 本(Wilder)是 RSI、ATR 等指標的原典,對應 3.1 所述「0–100 指標」一類。
+- 第 5–9 本屬風控、執行與交易者心理,對應 A1–A6 共用風控層與 C5。
