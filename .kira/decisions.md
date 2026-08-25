@@ -384,3 +384,21 @@
   > This is usually about the stock which the fundmental is good but the market still oversold. Especially when the uncertainty is clear but still oversold (e.g. Very good result just released but still dropping a lot. like recently for BE)
 
 - 影響：v1 正式策略共五套;數據面需要業績/事件日曆與基本面數據(用戶提過基本面有外部參考材料,後補討論);事件錨定義歸因子合約的事件時間/知情時間體系;KARST-008 規格照五套匯整。
+
+## D-019 圖表庫選型:lightweight-charts(用戶拍板)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-26
+
+- 出處：用戶 2026-08-26 於原生選項介面揀選「lightweight-charts (Recommended)」
+
+- 決策：
+  1. 應用圖表層採用 TradingView lightweight-charts(Apache-2.0):蠟燭圖+進出場標記+多面板原生支援,虛擬籃子合成序列照畫;授權自用與日後 SaaS 皆無障礙(D-007)。依據 KARST-014 調研(research/2026-08-26-charting-ui-references.md)。
+  2. 閉源 TradingView Charting Library 因授權明文禁止私人/內部用途,永久出局;Plotly/Dash(MIT)列為求快後備。
+  3. 原型(KARST-015)以 lightweight-charts 為基砌。
+
+- **用戶原話（原文照錄）**
+
+  > lightweight-charts (Recommended)
+
+- 影響：KARST-015 原型技術基座已定;KARST-007 討論應用載體時前端已有錨點;設計系統的圖表元件一格由此起。

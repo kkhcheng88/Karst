@@ -26,3 +26,5 @@ deliverable: KARST-D01
 ## 結果
 
 ## 留言
+
+· 2026-08-26 03:05 fable-main 圖表庫已定:用戶拍板 lightweight-charts(D-019),本票原型以此為基砌;Plotly/Dash 只作後備。留言完放回未認領。
