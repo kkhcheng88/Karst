@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: []
-claimedBy: null
+claimedBy: KARST-009-bakeoff
 epic: V1 藍圖
 deliverable: KARST-D01
 ---
