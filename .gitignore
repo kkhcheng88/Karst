@@ -1,0 +1,6 @@
+# 可由固定種子重生的實驗數據,不入 git
+experiments/*/data/
+experiments/*/.venv/
+.venv/
+__pycache__/
+*.pyc
