@@ -170,3 +170,58 @@
   > For strategy, my intention is that only for our to know more about the naturee of strategy I would like to play. As such the technical architecture can be supported. It is not really for you to analysis the strategy itself
 
 - 影響：KARST-005 的談法照此收窄:八條問題的答案只用於推導平台能力,策略數值一律參數化。
+
+## D-009 樽頸策略 v1 性質裁決(KARST-005 兩輪追問所得)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-25
+
+- 出處：用戶 2026-08-25 於 KARST-005 追問兩輪的回答(原話見引文)
+
+- 決策：
+  1. 「閘中藏 alpha、過閘全買」只當起點不當教條:用戶視舊測試為初步結論,基本面上有些股應優於其他;現實中一個鏈位成員可遠多於兩三隻,不可能隨機揀亦不可能全買。v1 先以鏈位(板塊)層證明 alpha,選股因子日後可加。
+  2. 落注單位兩層都要:鏈位與個股同入資料模型;v1 以鏈位先行。
+  3. 鏈位登記表重建、不遷移:舊項目資料仍可取用,但登記表按因子合約式規範重寫,以求更可治理、更可擴展。
+  4. 因子形態以「連續分數+參數閘」為目標;用戶警示非結構化材料未必可線性刻度,故因子值的語意(序數還是基數)須在因子合約(KARST-003)正式裁決。
+  5. 非結構化材料以逐字稿先行,其他材料(分析員報告、agent 研究)後補。
+  6. 樽頸強度一旦成為量化因子,即可與其他因子組合使用——平台必須支援多因子組合。
+  7. 換倉節奏:一旦逐字稿可量化成因子,頻率是選擇不是設計——日度亦應行得通,現實月度合理,回測可用季度做更嚴苛考驗。引擎必須節奏無關;不設任何預設值,每次執行由用戶指定(用戶反問「Why we need a default?」)。
+
+- **用戶原話（原文照錄）**
+
+  > But start with sector make us easier to proof the alpha on this strategy
+
+  > if we can explore a better way - especially to normalizing it like a quant factor contract as you mentioned - could make the engine this time more scalable and govenedd
+
+  > unstructured data could be hard to linear scaling the effect
+
+  > if the bottleneck strength become a quant factor. Then it can be be fixing with other factor to use?
+
+  > rebalance frequency is a choice but not an design as daily should workable as well
+
+  > Why we need a default?
+
+- 影響：KARST-003 須裁因子值語意(序數/基數);KARST-004 材料範圍以逐字稿先行;引擎與資料模型不得寫死節奏或內置預設節奏;組合構成走通用多因子組合路線。
+
+## D-010 平台原語:虛擬籃子第一等公民、SA 入選可為 0/1 因子、v1 仍要第二個正式策略
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-25
+
+- 出處：用戶 2026-08-25 於 KARST-005 追問第二、三輪的回答(原話見引文)
+
+- 決策：
+  1. 虛擬籃子升格為第一等公民:平台可定義「籃子」(一組成員+權重規則,成員名單有版本、有生效期),引擎把它當一個可投資對象——有自己合成的價格/淨值序列,畫得出自己的蠟燭圖,回測與紙上交易直接落注到它。概念類同 Futu 一類券商的虛擬產品(virtual ETF)。鏈位籃子、SA 組合都是它的實例。
+  2. SA 入選本身可建模為一個 0/1 量化因子,供任何策略取用;「跟隨 SA」不必是獨立策略形態的唯一寫法。
+  3. v1 仍需第二個正式策略上紙上交易長期跟蹤,以證明多策略——單靠架構與測試案例不足夠。第二個策略選哪個,留待策略與基準概念模型(KARST-006)裁決。
+  4. QQQ 與 SPY 同類,皆為基準。
+
+- **用戶原話（原文照錄）**
+
+  > We can form a virtual product in which FUTU or else usually does. It is just a sort of virtual ETF concept.
+
+  > Or you can event say SA selection can become a quant factor of itself? (1 or 0)?
+
+  > QQQ is benchmark like SPY
+
+- 影響：資料模型加「籃子」實體(成員版本化、權重規則、合成淨值);圖表層支援籃子蠟燭圖;引擎落注對象由「股票」推廣為「可投資對象」;KARST-006 承接「第二個正式策略選哪個」;策略/基準/因子三分法照 D-003 但補上「成員名單可降維為 0/1 因子」一途。
