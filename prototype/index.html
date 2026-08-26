@@ -19,43 +19,52 @@
           <h1>策略總覽</h1>
           <span class="proto-badge">原型・假數據</span>
         </div>
-        <p class="page-sub">左邊是全部策略,按性質分組。點任何一行,右邊即出該策略的詳情卡。策略由幾套加到幾百套,這個看法都不用改。</p>
+        <p class="page-sub">一張平表,可跨全表排序。上面按類型篩選、按名稱搜尋。策略由二十套加到幾百套,這個看法都不用改。</p>
       </div>
     </div>
   </header>
 
-  <div class="master-detail fit-main">
+  <!-- ============ 篩選列:類型晶片(可多選)+ 名稱搜尋 ============ -->
+  <div class="filter-bar">
+    <div class="chip-row" id="type-chips" role="group" aria-label="按策略類型篩選"></div>
+    <div class="chip-sep" aria-hidden="true"></div>
+    <input class="search-box" id="q" type="search" placeholder="搜尋策略名稱" aria-label="按名稱搜尋策略" autocomplete="off">
+    <span class="filter-count" id="filter-count"></span>
+  </div>
 
-    <!-- ============ 左欄:全量策略列表 ============ -->
-    <section class="md-list" aria-labelledby="h-all">
-      <div class="section-head">
-        <h2 id="h-all">全部策略</h2>
-        <span class="section-note" id="all-note"></span>
-      </div>
-      <div class="table-scroll">
-        <table class="kt" id="grp-table" style="min-width:760px">
+  <div class="fit-main" style="grid-template-columns:minmax(0,62fr) minmax(0,38fr)">
+
+    <!-- ============ 左欄:全量策略平表 ============ -->
+    <section class="fit-panel" aria-labelledby="h-all">
+      <h2 id="h-all" class="sr-only">全部策略</h2>
+      <div class="fit-panel-body" id="table-wrap">
+        <table class="kt flat" id="grp-table">
           <thead>
             <tr>
-              <th class="sortable" data-key="name" style="width:180px">名稱</th>
-              <th class="sortable num" data-key="vsBench" style="width:118px">對基準</th>
-              <th class="sortable num" data-key="cagr" style="width:72px">年化</th>
-              <th class="sortable num" data-key="maxDD" style="width:86px">最大回撤</th>
-              <th class="sortable num" data-key="winRate" style="width:112px">勝率 ／ 盈虧比</th>
+              <th class="sortable" data-key="name" style="width:168px">名稱</th>
+              <th class="sortable" data-key="type" style="width:104px">類型</th>
+              <th class="sortable num" data-key="vsBench" style="width:104px">對基準</th>
+              <th class="sortable num" data-key="cagr" style="width:70px">年化</th>
+              <th class="sortable num" data-key="maxDD" style="width:84px">最大回撤</th>
+              <th class="sortable num" data-key="winRate" style="width:110px">勝率 ／ 盈虧比</th>
               <th style="width:92px">迷你走勢</th>
-              <th style="width:44px"><span class="dim" title="開啟策略頁">開啟</span></th>
+              <th style="width:40px"><span class="dim" title="開啟策略頁">開啟</span></th>
             </tr>
           </thead>
           <tbody id="grp-body"></tbody>
         </table>
       </div>
       <div class="table-foot">
-        <span id="all-foot"></span>
+        <span id="page-foot"></span>
         <span>實線本策略、虛線 QQQ,同基期 100</span>
       </div>
     </section>
 
-    <!-- ============ 右欄:選中策略詳情卡 ============ -->
-    <aside class="md-detail" id="detail" aria-live="polite" aria-label="策略詳情"></aside>
+    <!-- ============ 右欄:緊湊詳情卡 + 最近運行 ============ -->
+    <div class="fit-col">
+      <aside class="dcard" id="detail" aria-live="polite" aria-label="策略詳情"></aside>
+      <div class="lastrun" id="lastrun"></div>
+    </div>
 
   </div>
 
@@ -73,15 +82,9 @@
   KV.mountFoot();
 
   var qqq = K.benchmarks.QQQ, spy = K.benchmarks.SPY;
-
   var ALL = K.allStrategies;
   var byId = {};
   ALL.forEach(function (s) { byId[s.id] = s; });
-
-  document.getElementById('all-note').textContent =
-    K.meta.periodFrom + ' 至 ' + K.meta.periodTo + '(' + K.meta.years + ' 年)・對比 QQQ・排序在每組之內生效';
-  document.getElementById('all-foot').textContent =
-    '共 ' + ALL.length + ' 套,分 ' + K.groups.length + ' 組・截至 ' + K.meta.asOf;
 
   function vsBench(s) { return Math.round((s.metrics.cumReturn - qqq.metrics.cumReturn) * 10) / 10; }
 
@@ -89,15 +92,75 @@
   var STRATEGY_HREF = 'strategy.html';
 
   /* ============================================================
-     右欄詳情卡
+     篩選狀態:類型多選 + 名稱搜尋
      ============================================================ */
+  var picked = {};          /* 空 = 全部 */
+  var query = '';
   var selectedId = null;
 
+  function pickedCount() { return Object.keys(picked).length; }
+
+  function visibleRows() {
+    var q = query.trim().toLowerCase();
+    return ALL.filter(function (s) {
+      if (pickedCount() && !picked[s.type]) return false;
+      if (!q) return true;
+      return s.name.toLowerCase().indexOf(q) >= 0 ||
+             (s.en || '').toLowerCase().indexOf(q) >= 0;
+    });
+  }
+
+  /* ---- 類型晶片 ---- */
+  function mountChips() {
+    var counts = {};
+    ALL.forEach(function (s) { counts[s.type] = (counts[s.type] || 0) + 1; });
+
+    var html =
+      '<button type="button" class="fchip" data-t="" aria-pressed="true">全部' +
+        '<span class="fchip-n">' + ALL.length + '</span></button>';
+    html += K.strategyTypes.map(function (t) {
+      return '<button type="button" class="fchip" data-t="' + t.id + '" aria-pressed="false">' +
+        KV.esc(t.name) + '<span class="fchip-n">' + (counts[t.id] || 0) + '</span></button>';
+    }).join('');
+    document.getElementById('type-chips').innerHTML = html;
+
+    document.getElementById('type-chips').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-t]');
+      if (!b) return;
+      var t = b.getAttribute('data-t');
+      if (!t) picked = {};                                   /* 按「全部」= 清空篩選 */
+      else if (picked[t]) delete picked[t];
+      else picked[t] = true;
+      paintChips();
+      renderTable();
+    });
+  }
+
+  function paintChips() {
+    var none = pickedCount() === 0;
+    document.querySelectorAll('#type-chips .fchip').forEach(function (b) {
+      var t = b.getAttribute('data-t');
+      var on = t ? !!picked[t] : none;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  document.getElementById('q').addEventListener('input', function () {
+    query = this.value;
+    renderTable();
+  });
+
+  /* ============================================================
+     右欄:緊湊詳情卡
+     ============================================================ */
   function renderDetail(id) {
     var host = document.getElementById('detail');
+    var lr = document.getElementById('lastrun');
     var s = byId[id];
+
     if (!s) {
       host.innerHTML = '<div class="detail-empty">在左邊點一行,這裡出該策略的詳情。</div>';
+      lr.innerHTML = '';
       return;
     }
 
@@ -105,58 +168,43 @@
     var vb = vsBench(s);
     var vc = Math.round((m.cagr - qqq.metrics.cagr) * 10) / 10;
     var ddBetter = m.maxDD > qqq.metrics.maxDD;   /* 回撤是負數,數值大即是回撤淺 */
-    var grp = K.groups.filter(function (g) { return g.id === s.group; })[0];
 
     host.innerHTML =
-      '<div class="detail-head">' +
-        '<span class="detail-name">' + KV.esc(s.name) + '</span>' +
-        '<span class="detail-en">' + KV.esc(s.en) + '</span>' +
-        '<span class="tag ' + (s.kind === '策略' ? 'tag-strategy' : 'tag-follow') + '">' + s.kind + '</span>' +
-        (s.id === 'trend-swing' ? '<span class="tag tag-live">紙上交易運行中</span>' : '') +
+      '<div class="dc-top">' +
+        '<span class="dc-name">' + KV.esc(s.name) + '</span>' +
+        '<span class="dc-en">' + KV.esc(s.en) + '</span>' +
+        '<span class="tag tag-type">' + KV.esc(s.typeName) + '</span>' +
+        '<span class="dc-sum" title="' + KV.esc(s.ver + '・' + s.paramSummary) + '">' +
+          KV.esc(s.ver) + '・' + KV.esc(s.paramSummary) + '</span>' +
       '</div>' +
-      '<div class="detail-sub">' + KV.esc(s.tagline) +
-        '<br><span class="dim">分組:' + KV.esc(grp ? grp.name : '—') + '</span></div>' +
 
-      '<div class="detail-block">' +
-        '<div class="detail-block-title">現役設定</div>' +
-        '<div class="config-chips">' +
-          '<span class="chip"><span class="chip-k">版本</span><span class="chip-v">' + KV.esc(s.ver) + '</span></span>' +
+      '<div class="dc-metrics">' +
+        '<div class="dc-m">' +
+          '<div class="dc-l">累計 對基準</div>' +
+          '<div class="dc-v ' + KV.cls(vb) + '">' + KV.pp(vb) + '</div>' +
+          '<div class="dc-b">本策略 ' + KV.pct(m.cumReturn) + '</div>' +
         '</div>' +
-        '<div class="detail-sub" style="margin:var(--s-2) 0 0;font-family:var(--font-mono);font-size:var(--fs-sm)">' +
-          KV.esc(s.paramSummary) + '</div>' +
-      '</div>' +
-
-      '<div class="detail-block">' +
-        '<div class="detail-block-title">四項指標</div>' +
-        '<div class="metric-grid" style="margin-bottom:0">' +
-          '<div>' +
-            '<div class="metric-label">累計回報 對基準</div>' +
-            '<div class="metric-value ' + KV.cls(vb) + '">' + KV.pp(vb) + '</div>' +
-            '<div class="metric-vs">本策略 ' + KV.pct(m.cumReturn) + '・QQQ ' + KV.pct(qqq.metrics.cumReturn) + '</div>' +
-          '</div>' +
-          '<div>' +
-            '<div class="metric-label">年化回報</div>' +
-            '<div class="metric-value ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</div>' +
-            '<div class="metric-vs">對 QQQ ' + KV.pp(vc) + '</div>' +
-          '</div>' +
-          '<div>' +
-            '<div class="metric-label">最大回撤</div>' +
-            '<div class="metric-value down">' + KV.pctPlain(m.maxDD) + '</div>' +
-            '<div class="metric-vs">QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + '・' +
-              (ddBetter ? '較淺' : '較深') + '</div>' +
-          '</div>' +
-          '<div>' +
-            '<div class="metric-label">勝率 ／ 盈虧比</div>' +
-            '<div class="metric-value">' + m.winRate + '%<span class="dim" style="font-weight:400"> ／ </span>' +
-              m.plRatio.toFixed(1) + '</div>' +
-            '<div class="metric-vs">共 ' + m.trades + ' 筆交易</div>' +
-          '</div>' +
+        '<div class="dc-m">' +
+          '<div class="dc-l">年化回報</div>' +
+          '<div class="dc-v ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</div>' +
+          '<div class="dc-b">對 QQQ ' + KV.pp(vc) + '</div>' +
+        '</div>' +
+        '<div class="dc-m">' +
+          '<div class="dc-l">最大回撤</div>' +
+          '<div class="dc-v down">' + KV.pctPlain(m.maxDD) + '</div>' +
+          '<div class="dc-b">QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + '・' +
+            (ddBetter ? '較淺' : '較深') + '</div>' +
+        '</div>' +
+        '<div class="dc-m">' +
+          '<div class="dc-l">勝率 ／ 盈虧比</div>' +
+          '<div class="dc-v sm">' + m.winRate + '<span class="dim" style="font-weight:400"> ／ </span>' +
+            m.plRatio.toFixed(1) + '</div>' +
+          '<div class="dc-b">共 ' + m.trades + ' 筆交易</div>' +
         '</div>' +
       '</div>' +
 
-      '<div class="detail-block">' +
-        '<div class="detail-block-title">淨值走勢</div>' +
-        '<div class="spark-wrap" style="height:84px" id="detail-spark"></div>' +
+      '<div>' +
+        '<div class="dc-chart" id="detail-spark"></div>' +
         '<div class="bench-line" style="margin-top:var(--s-2)">' +
           '<span><i style="background:' + (m.cumReturn >= 0 ? 'var(--up)' : 'var(--down)') + '"></i>' +
             KV.esc(s.name) + ' <b class="' + KV.cls(m.cumReturn) + '">' + KV.pct(m.cumReturn) +
@@ -169,28 +217,31 @@
         '</div>' +
       '</div>' +
 
-      '<div class="detail-block">' +
-        '<div class="detail-block-title">最近一次運行</div>' +
-        '<div class="mono">' + KV.esc(s.lastRun) + '</div>' +
-      '</div>' +
-
-      '<a class="btn btn-primary detail-cta" href="' + STRATEGY_HREF + '">開啟策略頁 →</a>' +
-      (s.id === 'trend-swing' ? '' :
-        '<p class="section-note" style="margin:var(--s-2) 0 0;text-align:center">' +
-          '原型只做了趨勢波段一頁,其餘策略暫時都指去同一頁示意</p>');
+      '<a class="btn btn-primary dc-cta" href="' + STRATEGY_HREF + '">開啟策略頁 →</a>';
 
     KV.sparkline(document.getElementById('detail-spark'), s.equity, qqq.equity);
+
+    var runCell = (s.id === 'trend-swing')
+      ? '<a href="run.html">' + KV.esc(s.lastRunId) + '</a>'
+      : KV.esc(s.lastRunId);
+
+    lr.innerHTML =
+      '<div class="lr-title">最近運行' +
+        (s.id === 'trend-swing' ? '　<span class="tag tag-live">紙上交易運行中</span>' : '') +
+        '<span style="float:right">累積 ' + s.runCount + ' 次運行</span></div>' +
+      '<div class="lr-row"><span>日期</span><span>' + KV.esc(s.lastRun) + '</span></div>' +
+      '<div class="lr-row"><span>運行編號</span><span>' + runCell + '</span></div>' +
+      '<div class="lr-row"><span>數據快照</span><span>' + KV.esc(s.lastRunSnap) + '</span></div>';
   }
 
   /* ============================================================
-     左欄分組表
+     左欄:平表,跨全表排序
      ============================================================ */
   var sortKey = 'vsBench', sortDir = 'desc';
-  var openState = {};
-  K.groups.forEach(function (g) { openState[g.id] = true; });
 
   var GETTERS = {
     name: function (s) { return s.name; },
+    type: function (s) { return s.typeName; },
     vsBench: vsBench,
     cagr: function (s) { return s.metrics.cagr; },
     maxDD: function (s) { return s.metrics.maxDD; },
@@ -198,73 +249,44 @@
   };
 
   function renderTable() {
-    var sparkJobs = [];
-    var html = '';
-    var firstId = null;
-
-    K.groups.forEach(function (g) {
-      var rows = ALL.filter(function (s) { return s.group === g.id; });
-      var get = GETTERS[sortKey];
-      rows = rows.slice().sort(function (a, b) {
-        var x = get(a), y = get(b);
-        if (typeof x === 'string') return sortDir === 'asc' ? x.localeCompare(y) : y.localeCompare(x);
-        return sortDir === 'asc' ? x - y : y - x;
-      });
-
-      var open = openState[g.id];
-      html +=
-        '<tr class="grp-row">' +
-          '<td colspan="7">' +
-            '<button class="grp-head" data-group="' + g.id + '" aria-expanded="' + (open ? 'true' : 'false') + '">' +
-              '<span class="grp-caret">▼</span>' +
-              '<span class="grp-name">' + KV.esc(g.name) + '</span>' +
-              '<span class="grp-count">' + rows.length + ' 套</span>' +
-              '<span class="grp-note">' + KV.esc(g.note) + '</span>' +
-            '</button>' +
-          '</td>' +
-        '</tr>';
-
-      rows.forEach(function (s) {
-        if (!firstId && open) firstId = s.id;
-        var m = s.metrics;
-        var vb = vsBench(s);
-        var sparkId = 'sp-' + s.id;
-        sparkJobs.push([sparkId, s]);
-
-        html +=
-          '<tr data-g="' + g.id + '" data-id="' + KV.esc(s.id) + '" tabindex="0" role="button" ' +
-            'class="row-clickable' + (s.id === selectedId ? ' is-picked' : '') + '" ' +
-            'aria-pressed="' + (s.id === selectedId ? 'true' : 'false') + '"' + (open ? '' : ' hidden') + '>' +
-            '<td title="' + KV.esc(s.name) + '">' + KV.esc(s.name) +
-              (s.demo ? '<span class="demo-mark">示意</span>' : '') + '</td>' +
-            '<td class="num ' + KV.cls(vb) + '">' + KV.pp(vb) + '</td>' +
-            '<td class="num ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</td>' +
-            '<td class="num down">' + KV.pctPlain(m.maxDD) + '</td>' +
-            '<td class="num">' + m.winRate + '%<span class="dim"> ／ </span>' + m.plRatio.toFixed(1) + '</td>' +
-            '<td><span class="row-spark" id="' + sparkId + '"></span></td>' +
-            '<td><a class="row-go" href="' + STRATEGY_HREF + '" data-go="1" ' +
-              'aria-label="開啟 ' + KV.esc(s.name) + ' 策略頁" title="開啟策略頁">→</a></td>' +
-          '</tr>';
-      });
+    var rows = visibleRows();
+    var get = GETTERS[sortKey];
+    rows = rows.slice().sort(function (a, b) {
+      var x = get(a), y = get(b);
+      if (typeof x === 'string') return sortDir === 'asc' ? x.localeCompare(y) : y.localeCompare(x);
+      return sortDir === 'asc' ? x - y : y - x;
     });
 
-    document.getElementById('grp-body').innerHTML = html;
+    var sparkJobs = [];
+    var html = rows.map(function (s) {
+      var m = s.metrics;
+      var vb = vsBench(s);
+      var sparkId = 'sp-' + s.id;
+      sparkJobs.push([sparkId, s]);
+
+      return '<tr data-id="' + KV.esc(s.id) + '" tabindex="0" role="button" ' +
+          'class="row-clickable' + (s.id === selectedId ? ' is-picked' : '') + '" ' +
+          'aria-pressed="' + (s.id === selectedId ? 'true' : 'false') + '">' +
+        '<td title="' + KV.esc(s.name) + '">' + KV.esc(s.name) +
+          (s.demo ? '<span class="demo-mark">示意</span>' : '') + '</td>' +
+        '<td><span class="tag tag-type">' + KV.esc(s.typeName) + '</span></td>' +
+        '<td class="num ' + KV.cls(vb) + '">' + KV.pp(vb) + '</td>' +
+        '<td class="num ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</td>' +
+        '<td class="num down">' + KV.pctPlain(m.maxDD) + '</td>' +
+        '<td class="num">' + m.winRate + '%<span class="dim"> ／ </span>' + m.plRatio.toFixed(1) + '</td>' +
+        '<td><span class="row-spark" id="' + sparkId + '"></span></td>' +
+        '<td><a class="row-go" href="' + STRATEGY_HREF + '" data-go="1" ' +
+          'aria-label="開啟 ' + KV.esc(s.name) + ' 策略頁" title="開啟策略頁">→</a></td>' +
+      '</tr>';
+    }).join('');
+
+    document.getElementById('grp-body').innerHTML = html ||
+      '<tr><td colspan="8" class="dim" style="text-align:center;padding:var(--s-6) 0">' +
+      '沒有符合的策略。清一清類型或搜尋字。</td></tr>';
 
     sparkJobs.forEach(function (j) {
       var el = document.getElementById(j[0]);
       if (el) KV.sparkline(el, j[1].equity, qqq.equity);
-    });
-
-    /* 摺疊 */
-    document.querySelectorAll('.grp-head').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var id = b.getAttribute('data-group');
-        openState[id] = !openState[id];
-        b.setAttribute('aria-expanded', openState[id] ? 'true' : 'false');
-        document.querySelectorAll('tr[data-g="' + id + '"]').forEach(function (tr) {
-          tr.hidden = !openState[id];
-        });
-      });
     });
 
     /* 點行選中。箭嘴是快捷入口,點它直接開頁,不當作選中 */
@@ -279,7 +301,30 @@
       });
     });
 
-    return firstId;
+    /* 分頁腳:現時二十套一屏放得下,所以一頁到底;數目再大就在這裡分頁 */
+    document.getElementById('page-foot').textContent = rows.length
+      ? ('顯示 1–' + rows.length + ' / 共 ' + rows.length + ' 套' +
+         (rows.length < ALL.length ? '(由 ' + ALL.length + ' 套篩出)' : ''))
+      : '沒有符合的策略';
+
+    var parts = [];
+    if (pickedCount()) {
+      parts.push(K.strategyTypes.filter(function (t) { return picked[t.id]; })
+        .map(function (t) { return t.name; }).join('、'));
+    } else {
+      parts.push('全部類型');
+    }
+    if (query.trim()) parts.push('名稱含「' + query.trim() + '」');
+    document.getElementById('filter-count').textContent =
+      parts.join('・') + '　' + rows.length + ' / ' + ALL.length + ' 套';
+
+    /* 選中那套被篩走的話,改為選第一行 */
+    if (rows.length && !rows.some(function (s) { return s.id === selectedId; })) {
+      select(rows[0].id);
+    } else if (!rows.length) {
+      selectedId = null;
+      renderDetail(null);
+    }
   }
 
   function select(id) {
@@ -292,7 +337,7 @@
     renderDetail(id);
   }
 
-  /* 表頭排序 */
+  /* 表頭排序:跨全表 */
   function paintHeads() {
     document.querySelectorAll('#grp-table th.sortable').forEach(function (th) {
       var k = th.getAttribute('data-key');
@@ -305,7 +350,7 @@
     function go() {
       var k = th.getAttribute('data-key');
       if (k === sortKey) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-      else { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; }
+      else { sortKey = k; sortDir = (k === 'name' || k === 'type') ? 'asc' : 'desc'; }
       paintHeads();
       renderTable();
     }
@@ -315,9 +360,10 @@
     });
   });
 
+  mountChips();
+  paintChips();
   paintHeads();
-  var first = renderTable();
-  select(first);            /* 預設選中第一行 */
+  renderTable();            /* 內部會預設選中第一行 */
 })();
 </script>
 </body>

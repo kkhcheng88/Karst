@@ -200,7 +200,10 @@
       { width: el.clientWidth, height: height }
     ));
     var ro = new ResizeObserver(function () {
-      chart.applyOptions({ width: el.clientWidth });
+      /* 圖已經拆走(例如換成另一張圖)之後,這裡會再響一次;響到就自己收手 */
+      if (!el.isConnected) { ro.disconnect(); return; }
+      try { chart.applyOptions({ width: el.clientWidth }); }
+      catch (e) { ro.disconnect(); }
     });
     ro.observe(el);
     return chart;

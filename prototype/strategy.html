@@ -57,7 +57,7 @@
           <span class="section-note" id="funnel-note"></span>
         </div>
         <div class="fit-panel-body" style="overflow:hidden">
-          <div class="funnel" id="funnel" style="background:transparent;padding:var(--s-3) var(--s-4)"></div>
+          <div class="funnel-line" id="funnel"></div>
         </div>
       </div>
 
@@ -292,21 +292,20 @@
     document.getElementById('funnel-note').textContent =
       curDate + '・' + V.id + ' 門檻 質素 ≥ ' + V.gates.quality + '、動量 ≥ ' + V.gates.momentum;
 
+    /* 一行四格:數字大字、標籤細字,格與格之間用細箭嘴寫明剩幾多 */
     document.getElementById('funnel').innerHTML = snap.funnel.map(function (f, i) {
-      var ratio = f.count / scope;
-      var w = Math.max(5, Math.pow(ratio, 0.5) * 100);
-      return '<div class="funnel-row">' +
-        '<div class="funnel-label">' + KV.esc(f.label) +
-          '<span class="hint" title="' + KV.esc(f.hint) + '">?</span></div>' +
-        '<div class="funnel-track">' +
-          '<div class="funnel-fill" style="width:' + w.toFixed(1) + '%;background:' + FUNNEL_COLOR[i] + '">' +
-            (i ? Math.round(ratio * 1000) / 10 + '%' : '') +
-          '</div>' +
-        '</div>' +
-        '<div class="funnel-num">' + f.count + ' 隻' +
-          '<small>' + (i ? '較上一層 −' + (snap.funnel[i - 1].count - f.count) : '全部可交易標的') + '</small>' +
-        '</div>' +
-      '</div>';
+      var prev = i ? snap.funnel[i - 1].count : 0;
+      var keep = i ? Math.round(f.count / prev * 1000) / 10 : 0;
+      var arrow = i
+        ? '<div class="fl-arrow" aria-hidden="true">→<small>剩 ' + keep + '%</small></div>'
+        : '';
+      return arrow +
+        '<div class="fl-step">' +
+          '<div class="fl-num" style="color:' + FUNNEL_COLOR[i] + '">' + f.count +
+            '<small>隻</small></div>' +
+          '<div class="fl-lab" title="' + KV.esc(f.hint) + '">' + KV.esc(f.label) +
+            (i ? '<span class="dim">・−' + (prev - f.count) + '</span>' : '') + '</div>' +
+        '</div>';
     }).join('');
 
     var rows = snap.rows;

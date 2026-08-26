@@ -740,4 +740,140 @@
     }
   });
 
+  /* ============================================================
+     九、策略類型(總覽頁的篩選維度)
+     舊的「分組」只有四類、名字綁死了這七套真策略的做法;
+     類型改用通用名,策略由二十套加到幾百套都不用改這張表。
+     一套策略只屬一個類型。
+     ============================================================ */
+  K.strategyTypes = [
+    { id: 'fundamental', name: '基本面選股' },
+    { id: 'technical',   name: '技術趨勢' },
+    { id: 'multifactor', name: '多因子' },
+    { id: 'event',       name: '事件驅動' },
+    { id: 'meanrev',     name: '均值回歸' },
+    { id: 'follow',      name: '組合跟隨' },
+    { id: 'macro',       name: '宏觀配置' },
+    { id: 'options',     name: '期權策略' },
+  ];
+
+  var TYPE_OF = {
+    bottleneck: 'fundamental', 'demo-01': 'fundamental', 'demo-02': 'fundamental',
+    minervini: 'technical', 'trend-swing': 'technical', 'demo-04': 'technical', 'demo-05': 'technical',
+    'factor-mix': 'multifactor', 'demo-03': 'multifactor', 'demo-07': 'multifactor',
+    'demo-10': 'event', 'demo-11': 'event',
+    oversold: 'meanrev', 'demo-06': 'meanrev',
+    sa: 'follow', pelosi: 'follow', 'demo-08': 'follow', 'demo-09': 'follow',
+    'demo-12': 'macro',
+    'demo-13': 'options',
+  };
+
+  var TYPE_NAME = {};
+  K.strategyTypes.forEach(function (t) { TYPE_NAME[t.id] = t.name; });
+
+  K.allStrategies.forEach(function (s) {
+    s.type = TYPE_OF[s.id] || 'fundamental';
+    s.typeName = TYPE_NAME[s.type];
+
+    /* 詳情卡底部「最近運行」三行要用 */
+    if (s.id === 'trend-swing') {
+      s.lastRunId = K.run.id;
+      s.lastRunSnap = K.run.snapshot;
+      s.runCount = K.trendSwing.runs.length;
+    } else {
+      var rr = rng('runmeta-' + s.id);
+      var mm = s.lastRun.slice(5, 7), dd = s.lastRun.slice(8, 10);
+      s.lastRunId = 'RUN-2026-' + mm + dd + '-' + String(Math.floor(between(rr, 1, 20))).padStart(2, '0');
+      s.lastRunSnap = 'DS-' + s.lastRun + '-' + 'abc'.charAt(Math.floor(rr() * 3));
+      s.runCount = Math.floor(between(rr, 1, 24));
+    }
+  });
+
+  /* ============================================================
+     十、持倉帶與交易日標記(運行頁左欄圖區)
+     兩者都由同一批逐筆交易推出來,所以帶上的色塊、曲線上的標記、
+     右欄表格那一行,講的一定是同一件事。
+     ============================================================ */
+  var BAND_COLORS = [
+    '#4a9eff', '#26a69a', '#f0a83c', '#b07de0', '#ef5350',
+    '#7fc8a9', '#e08a5d', '#6fa8dc', '#c9b458', '#8f9bb3',
+  ];
+
+  /* 淨值序列是週線,交易日多數落在兩點之間;一律對到最接近的一個序列日子,
+     持倉帶同標記才會與曲線對得準(否則圖表庫會答不出座標,那一段就不見了) */
+  var SNAP_DATES = K.run.series.dates;
+  var SNAP_TS = SNAP_DATES.map(function (d) { return Date.parse(d); });
+  function snapToSeries(d) {
+    var x = Date.parse(d), best = 0, bd = Infinity;
+    for (var i = 0; i < SNAP_TS.length; i++) {
+      var g = Math.abs(SNAP_TS[i] - x);
+      if (g < bd) { bd = g; best = i; }
+    }
+    return SNAP_DATES[best];
+  }
+
+  (function buildBand() {
+    var trades = K.run.trades;
+    var bySym = {};
+    trades.forEach(function (t) {
+      if (!bySym[t.sym]) bySym[t.sym] = { sym: t.sym, name: t.name, spells: [] };
+      bySym[t.sym].spells.push(t);
+    });
+
+    var syms = Object.keys(bySym).sort(function (a, b) {
+      var d = bySym[b].spells.length - bySym[a].spells.length;
+      if (d) return d;
+      return a.localeCompare(b);
+    });
+
+    var top = syms.slice(0, 10);
+    var lanes = top.map(function (sym, i) {
+      var g = bySym[sym];
+      var lr = rng('band-' + sym);
+      return {
+        sym: sym,
+        name: g.name,
+        color: BAND_COLORS[i % BAND_COLORS.length],
+        spells: g.spells.map(function (t) {
+          return {
+            from: snapToSeries(t.entryDate),
+            to: snapToSeries(t.exitDate),
+            /* 佔組合的比重:原型用種子亂數,但同一筆交易每次都是同一個數 */
+            weight: round(between(lr, 4, 14), 1),
+            tradeId: t.id,
+          };
+        }).sort(function (a, b) { return a.from < b.from ? -1 : 1; }),
+      };
+    });
+
+    K.holdingsBand = {
+      from: K.run.series.dates[0],
+      to: K.run.series.dates[K.run.series.dates.length - 1],
+      maxWeight: 14,
+      lanes: lanes,
+      shownOf: syms.length,
+      coveredTrades: lanes.reduce(function (a, l) { return a + l.spells.length; }, 0),
+    };
+  })();
+
+  /* 把交易日對到淨值序列最接近的一個日子,標記才落得準 */
+  (function buildMarks() {
+    var snap = snapToSeries;
+    var byDate = {};
+    K.run.trades.forEach(function (t) {
+      var a = snap(t.entryDate), b = snap(t.exitDate);
+      (byDate[a] = byDate[a] || { date: a, buys: [], sells: [] }).buys.push(t);
+      (byDate[b] = byDate[b] || { date: b, buys: [], sells: [] }).sells.push(t);
+    });
+
+    K.tradeMarks = Object.keys(byDate).sort().map(function (d) {
+      var m = byDate[d];
+      var nb = m.buys.length, ns = m.sells.length;
+      m.side = nb && ns ? 'both' : (nb ? 'buy' : 'sell');
+      m.label = (nb ? '買' + nb : '') + (nb && ns ? '／' : '') + (ns ? '沽' + ns : '');
+      return m;
+    });
+    K.tradeMarkByDate = byDate;
+  })();
+
 })(window);
