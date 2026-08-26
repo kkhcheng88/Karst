@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>運行詳情 RUN-2026-0812-07 — Karst 原型</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav-host"></div>
+
+<main class="wrap">
+
+  <nav class="breadcrumb" aria-label="麵包屑">
+    <a href="index.html">策略總覽</a><span>／</span>
+    <a href="strategy.html">趨勢波段</a><span>／</span>
+    <span id="bc-run"></span>
+  </nav>
+
+  <header class="page-head">
+    <div class="page-head-row">
+      <div>
+        <div class="page-title-group">
+          <h1>運行詳情</h1>
+          <span class="proto-badge">原型・假數據</span>
+        </div>
+        <p class="page-sub">一次回測運行的完整留痕:同樣的版本、參數與數據快照,重跑一次要得出同樣的數字。</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ 頁頂一行留痕摘要 ============ -->
+  <div class="trace-bar" id="trace" aria-label="留痕摘要"></div>
+
+  <!-- ============ 詳情指標 ============ -->
+  <section class="section" aria-labelledby="h-metrics">
+    <div class="section-head">
+      <h2 id="h-metrics">詳情指標</h2>
+      <span class="section-note" id="metrics-note"></span>
+    </div>
+    <div class="kpi-row" id="kpis-main"></div>
+    <div class="kpi-row" id="kpis-sub" style="margin-top:var(--s-3)"></div>
+  </section>
+
+  <!-- ============ 淨值對比 ============ -->
+  <section class="section" aria-labelledby="h-equity">
+    <div class="chart-panel">
+      <div class="chart-head">
+        <div>
+          <h2 id="h-equity">組合淨值 對 QQQ／SPY</h2>
+          <div class="section-note" id="equity-note"></div>
+        </div>
+        <div class="chart-legend" id="equity-legend"></div>
+      </div>
+      <div class="chart-box" id="equity-chart"></div>
+    </div>
+  </section>
+
+  <!-- ============ 持倉變化 ============ -->
+  <section class="section" aria-labelledby="h-changes">
+    <div class="section-head">
+      <h2 id="h-changes">持倉變化</h2>
+      <span class="section-note">運行期間最後一段的倉位調整,每一筆都寫得出原因。</span>
+    </div>
+    <div class="table-scroll">
+      <table class="kt" style="min-width:860px">
+        <thead>
+          <tr>
+            <th style="width:108px">日期</th>
+            <th style="width:74px">動作</th>
+            <th style="width:76px">代號</th>
+            <th style="width:132px">名稱</th>
+            <th class="num" style="width:86px">調整前</th>
+            <th class="num" style="width:86px">調整後</th>
+            <th class="num" style="width:78px">變動</th>
+            <th style="width:280px">原因</th>
+          </tr>
+        </thead>
+        <tbody id="changes-body"></tbody>
+      </table>
+    </div>
+    <div class="table-foot">
+      <span id="changes-foot"></span>
+      <span>權重為佔組合總值百分比</span>
+    </div>
+  </section>
+
+  <!-- ============ 逐筆交易 ============ -->
+  <section class="section" aria-labelledby="h-trades">
+    <div class="section-head">
+      <h2 id="h-trades">逐筆交易</h2>
+      <span class="section-note">點擊表頭排序,排序狀態會寫入網址,重新載入不丟失。</span>
+    </div>
+    <div id="trades-table"></div>
+  </section>
+
+  <div id="foot-host"></div>
+</main>
+
+<script src="vendor/lightweight-charts.standalone.production.js"></script>
+<script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/app.js" charset="utf-8"></script>
+<script>
+(function () {
+  var K = window.KARST;
+  KV.mountNav('run.html');
+  KV.mountFoot();
+
+  var r = K.run, d = r.derived, st = r.stats;
+  document.getElementById('bc-run').textContent = r.id;
+
+  /* ---- 留痕摘要:一行講齊「這個數字從哪裡來」 ---- */
+  var traceItems = [
+    ['運行編號', r.id],
+    ['策略', r.strategyName],
+    ['版本', r.version],
+    ['參數', r.params],
+    ['期間', r.periodFrom + ' → ' + r.periodTo],
+    ['數據快照', r.snapshot],
+    ['引擎', r.engine],
+    ['運行時間', r.ranAt],
+  ];
+  document.getElementById('trace').innerHTML = traceItems.map(function (t, i) {
+    return (i ? '<span class="trace-sep">│</span>' : '') +
+      '<span class="trace-item"><span class="trace-key">' + t[0] + '</span>' +
+      '<span class="trace-val">' + KV.esc(t[1]) + '</span></span>';
+  }).join('');
+
+  document.getElementById('metrics-note').textContent =
+    '全部指標由 ' + r.periodFrom + ' 至 ' + r.periodTo + ' 這段期間計出・對比基準 QQQ';
+
+  /* ---- 票面指定的四個詳情指標 ---- */
+  var main = [
+    { label: '年化超額', hint: '策略年化回報減去 QQQ 年化回報',
+      value: KV.pp(d.excessCagr), cls: KV.cls(d.excessCagr),
+      basis: '策略 ' + KV.pctPlain(d.cagr) + '・QQQ ' + KV.pctPlain(d.qqqCagr) },
+    { label: 'Sortino', hint: '只罰下行波動的風險調整回報',
+      value: d.sortino.toFixed(2), cls: '',
+      basis: 'QQQ ' + K.benchmarks.QQQ.metrics.sortino.toFixed(2) + '・年化波動 ' + KV.pctPlain(d.vol) },
+    { label: '平均持倉日數', hint: '每筆交易由進場到出場的日曆日數平均',
+      value: st.avgHold + ' 日', cls: '',
+      basis: '共 ' + st.tradeCount + ' 筆交易' },
+    { label: '換手率', hint: '一年內組合被換掉多少次,按年化計',
+      value: d.turnover + '%', cls: '',
+      basis: '約每 ' + Math.round(365 / (d.turnover / 100)) + ' 日換足一轉' },
+  ];
+  document.getElementById('kpis-main').innerHTML = main.map(function (k) {
+    return '<div class="kpi">' +
+      '<div class="kpi-label">' + k.label +
+        '<span class="hint" title="' + KV.esc(k.hint) + '">?</span></div>' +
+      '<div class="kpi-value ' + k.cls + '">' + k.value + '</div>' +
+      '<div class="kpi-basis">' + k.basis + '</div>' +
+    '</div>';
+  }).join('');
+
+  /* ---- 支撐指標 ---- */
+  var sub = [
+    { label: '累計回報', value: KV.pct(d.cumReturn), cls: KV.cls(d.cumReturn),
+      basis: 'QQQ ' + KV.pct(d.qqqCumReturn) + '・SPY ' + KV.pct(d.spyCumReturn) },
+    { label: '年化回報', value: KV.pctPlain(d.cagr), cls: KV.cls(d.cagr),
+      basis: 'QQQ ' + KV.pctPlain(d.qqqCagr) },
+    { label: '最大回撤', value: KV.pctPlain(d.maxDD), cls: 'down',
+      basis: 'QQQ ' + KV.pctPlain(d.qqqMaxDD) + '・較淺' },
+    { label: '勝率 ／ 盈虧比', value: st.winRate.toFixed(0) + '% ／ ' + st.plRatio.toFixed(2), cls: '',
+      basis: '贏面細但賺得大' },
+    { label: '最佳 ／ 最差單筆', value: KV.pct(st.bestTrade) + ' ／ ' + KV.pct(st.worstTrade), cls: '',
+      basis: '止蝕設 8%,最差略為穿位' },
+  ];
+  document.getElementById('kpis-sub').innerHTML = sub.map(function (k) {
+    return '<div class="kpi">' +
+      '<div class="kpi-label">' + k.label + '</div>' +
+      '<div class="kpi-value sm ' + k.cls + '">' + k.value + '</div>' +
+      '<div class="kpi-basis">' + k.basis + '</div>' +
+    '</div>';
+  }).join('');
+
+  /* ---- 三線淨值圖 ---- */
+  document.getElementById('equity-note').textContent =
+    '三條線同以 ' + r.series.dates[0] + ' 為基期 100,直接可比。';
+  document.getElementById('equity-legend').innerHTML =
+    '<span class="legend-item"><i class="legend-swatch" style="background:#26a69a"></i>趨勢波段 ' +
+      '<b class="legend-val up">' + KV.pct(d.cumReturn) + '</b></span>' +
+    '<span class="legend-item"><i class="legend-swatch" style="background:#b07de0"></i>QQQ ' +
+      '<b class="legend-val up">' + KV.pct(d.qqqCumReturn) + '</b></span>' +
+    '<span class="legend-item"><i class="legend-swatch" style="background:#7d869c"></i>SPY ' +
+      '<b class="legend-val up">' + KV.pct(d.spyCumReturn) + '</b></span>';
+
+  var chart = KV.makeChart(document.getElementById('equity-chart'), 380);
+  var sSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
+  sSpy.setData(KV.zip(r.series.dates, r.series.spy));
+  var sQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
+  sQqq.setData(KV.zip(r.series.dates, r.series.qqq));
+  var sStr = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
+  sStr.setData(KV.zip(r.series.dates, r.series.strategy));
+  chart.timeScale().fitContent();
+
+  /* ---- 持倉變化 ---- */
+  var ACT_CLS = { '新增': 'act-add', '加倉': 'act-add', '減倉': 'act-reduce', '清倉': 'act-exit' };
+  document.getElementById('changes-body').innerHTML = r.holdingChanges.map(function (c) {
+    var delta = Math.round((c.after - c.before) * 10) / 10;
+    return '<tr>' +
+      '<td class="mono dim">' + c.date + '</td>' +
+      '<td><span class="badge-act ' + ACT_CLS[c.action] + '">' + c.action + '</span></td>' +
+      '<td class="mono">' + KV.esc(c.sym) + '</td>' +
+      '<td title="' + KV.esc(c.name) + '">' + KV.esc(c.name) + '</td>' +
+      '<td class="num dim">' + (c.before ? KV.pctPlain(c.before) : '—') + '</td>' +
+      '<td class="num">' + (c.after ? KV.pctPlain(c.after) : '—') + '</td>' +
+      '<td class="num ' + KV.cls(delta) + '">' + KV.pp(delta) + '</td>' +
+      '<td class="dim" title="' + KV.esc(c.reason) + '">' + KV.esc(c.reason) + '</td>' +
+    '</tr>';
+  }).join('');
+  document.getElementById('changes-foot').textContent =
+    '顯示最後 ' + r.holdingChanges.length + ' 筆調整・最新在上';
+
+  /* ---- 逐筆交易(可排序,狀態入網址) ---- */
+  KV.sortableTable({
+    mount: '#trades-table',
+    minWidth: '1240px',
+    maxHeight: '520px',
+    defaultSort: 'entryDate',
+    defaultDir: 'desc',
+    rows: r.trades,
+    cols: [
+      { key: 'id', label: '編號', width: '68px', get: function (t) { return t.id; },
+        render: function (t) { return '<span class="mono dim">' + t.id + '</span>'; } },
+      { key: 'sym', label: '代號', width: '74px', get: function (t) { return t.sym; },
+        render: function (t) { return '<span class="mono">' + KV.esc(t.sym) + '</span>'; } },
+      { key: 'name', label: '名稱', width: '128px', get: function (t) { return t.name; },
+        render: function (t) { return '<span title="' + KV.esc(t.name) + '">' + KV.esc(t.name) + '</span>'; } },
+      { key: 'entryDate', label: '進場日', width: '104px', get: function (t) { return Date.parse(t.entryDate); },
+        render: function (t) { return '<span class="mono dim">' + t.entryDate + '</span>'; } },
+      { key: 'entryPx', label: '進場價', width: '84px', cls: 'num', get: function (t) { return t.entryPx; },
+        render: function (t) { return t.entryPx.toFixed(2); } },
+      { key: 'exitDate', label: '出場日', width: '104px', get: function (t) { return Date.parse(t.exitDate); },
+        render: function (t) { return '<span class="mono dim">' + t.exitDate + '</span>'; } },
+      { key: 'exitPx', label: '出場價', width: '84px', cls: 'num', get: function (t) { return t.exitPx; },
+        render: function (t) { return t.exitPx.toFixed(2); } },
+      { key: 'shares', label: '股數', width: '78px', cls: 'num', get: function (t) { return t.shares; },
+        render: function (t) { return t.shares.toLocaleString('en-US'); } },
+      { key: 'holdDays', label: '持倉日', width: '76px', cls: 'num', get: function (t) { return t.holdDays; },
+        render: function (t) { return t.holdDays; } },
+      { key: 'pnl', label: '損益', width: '98px', cls: 'num', get: function (t) { return t.pnl; },
+        render: function (t) {
+          return '<span class="' + KV.cls(t.pnl) + '">' + (t.pnl > 0 ? '+' : '') + KV.money(t.pnl) + '</span>';
+        } },
+      { key: 'retPct', label: '報酬率', width: '86px', cls: 'num', get: function (t) { return t.retPct; },
+        render: function (t) {
+          return '<span class="' + KV.cls(t.retPct) + '">' + KV.pct(t.retPct) + '</span>';
+        } },
+      { key: 'reason', label: '出場原因', width: '150px', get: function (t) { return t.reason; },
+        render: function (t) { return '<span class="dim">' + KV.esc(t.reason) + '</span>'; } },
+    ],
+    foot: function (rows) {
+      return '<span>顯示 1–' + rows.length + ' 筆抽樣,整體共 ' + st.tradeCount + ' 筆' +
+        '(抽樣勝率 ' + KV.pctPlain(st.sampleWinRate) + ',整體 ' + KV.pctPlain(st.winRate) + ')</span>' +
+        '<span>原型只載入其中一段,完整清單留待實作</span>';
+    },
+  });
+})();
+</script>
+</body>
+</html>

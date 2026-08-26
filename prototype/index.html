@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>策略總覽 — Karst 原型</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav-host"></div>
+
+<main class="wrap">
+
+  <header class="page-head">
+    <div class="page-head-row">
+      <div>
+        <div class="page-title-group">
+          <h1>策略總覽</h1>
+          <span class="proto-badge">原型・假數據</span>
+        </div>
+        <p class="page-sub">五套策略與兩個跟隨組合的長期表現。點擊任何一張卡進入策略詳情。</p>
+      </div>
+      <div class="kpi-row" style="grid-template-columns:repeat(2,minmax(150px,1fr));min-width:320px">
+        <div class="kpi">
+          <div class="kpi-label">基準 QQQ</div>
+          <div class="kpi-value sm" id="qqq-cum"></div>
+          <div class="kpi-basis" id="qqq-basis"></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">基準 SPY</div>
+          <div class="kpi-value sm" id="spy-cum"></div>
+          <div class="kpi-basis" id="spy-basis"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" style="margin-top:var(--s-5)" aria-labelledby="h-cards">
+    <div class="section-head">
+      <h2 id="h-cards">策略與組合</h2>
+      <span class="section-note" id="cards-note"></span>
+    </div>
+    <div class="card-grid" id="cards"></div>
+  </section>
+
+  <div id="foot-host"></div>
+</main>
+
+<script src="vendor/lightweight-charts.standalone.production.js"></script>
+<script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/app.js" charset="utf-8"></script>
+<script>
+(function () {
+  var K = window.KARST;
+  KV.mountNav('index.html');
+  KV.mountFoot();
+
+  var qqq = K.benchmarks.QQQ, spy = K.benchmarks.SPY;
+
+  document.getElementById('qqq-cum').innerHTML =
+    '<span class="' + KV.cls(qqq.metrics.cumReturn) + '">' + KV.pct(qqq.metrics.cumReturn) + '</span>';
+  document.getElementById('qqq-basis').textContent =
+    '年化 ' + KV.pctPlain(qqq.metrics.cagr) + '・最大回撤 ' + KV.pctPlain(qqq.metrics.maxDD);
+
+  document.getElementById('spy-cum').innerHTML =
+    '<span class="' + KV.cls(spy.metrics.cumReturn) + '">' + KV.pct(spy.metrics.cumReturn) + '</span>';
+  document.getElementById('spy-basis').textContent =
+    '年化 ' + KV.pctPlain(spy.metrics.cagr) + '・最大回撤 ' + KV.pctPlain(spy.metrics.maxDD);
+
+  document.getElementById('cards-note').textContent =
+    '期間 ' + K.meta.periodFrom + ' 至 ' + K.meta.periodTo + '(' + K.meta.years + ' 年)・全部對比 QQQ';
+
+  var html = K.strategies.map(function (s, i) {
+    var m = s.metrics;
+    var vsBench = Math.round((m.cumReturn - qqq.metrics.cumReturn) * 10) / 10;
+    var vsCagr = Math.round((m.cagr - qqq.metrics.cagr) * 10) / 10;
+    var ddBetter = m.maxDD > qqq.metrics.maxDD;   /* 回撤是負數,數值大即是回撤淺 */
+
+    return '' +
+    '<a class="strat-card" href="strategy.html" aria-label="' + KV.esc(s.name) + ' 策略詳情">' +
+      '<div class="card-head">' +
+        '<div>' +
+          '<div class="card-name">' + KV.esc(s.name) + '</div>' +
+          '<div class="card-en">' + KV.esc(s.en) + '</div>' +
+        '</div>' +
+        '<span class="tag ' + (s.kind === '策略' ? 'tag-strategy' : 'tag-follow') + '">' + s.kind + '</span>' +
+      '</div>' +
+      '<div class="card-tagline">' + KV.esc(s.tagline) + '</div>' +
+
+      '<div class="metric-grid">' +
+        '<div>' +
+          '<div class="metric-label">累計回報 對基準</div>' +
+          '<div class="metric-value ' + KV.cls(vsBench) + '">' + KV.pp(vsBench) + '</div>' +
+          '<div class="metric-vs">本策略 ' + KV.pct(m.cumReturn) + '・QQQ ' + KV.pct(qqq.metrics.cumReturn) + '</div>' +
+        '</div>' +
+        '<div>' +
+          '<div class="metric-label">年化回報</div>' +
+          '<div class="metric-value ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</div>' +
+          '<div class="metric-vs">對 QQQ ' + KV.pp(vsCagr) + '</div>' +
+        '</div>' +
+        '<div>' +
+          '<div class="metric-label">最大回撤</div>' +
+          '<div class="metric-value down">' + KV.pctPlain(m.maxDD) + '</div>' +
+          '<div class="metric-vs">QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + '・' +
+            (ddBetter ? '較淺' : '較深') + '</div>' +
+        '</div>' +
+        '<div>' +
+          '<div class="metric-label">勝率 ／ 盈虧比</div>' +
+          '<div class="metric-value">' + m.winRate + '%<span class="dim" style="font-weight:400"> ／ </span>' +
+            m.plRatio.toFixed(1) + '</div>' +
+          '<div class="metric-vs">共 ' + m.trades + ' 筆交易</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="spark-wrap" id="spark-' + i + '"></div>' +
+      '<div class="spark-legend">' +
+        '<span><i style="background:' + (m.cumReturn >= 0 ? 'var(--up)' : 'var(--down)') + '"></i>' + KV.esc(s.name) + '</span>' +
+        '<span><i style="background:var(--bench-spy)"></i>QQQ</span>' +
+      '</div>' +
+    '</a>';
+  }).join('');
+
+  document.getElementById('cards').innerHTML = html;
+
+  /* 迷你走勢:主線 + QQQ 虛線。兩者同基期 100,直接可比。 */
+  K.strategies.forEach(function (s, i) {
+    KV.sparkline(document.getElementById('spark-' + i), s.equity, qqq.equity);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>參數掃描 — Karst 原型</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav-host"></div>
+
+<main class="wrap">
+
+  <nav class="breadcrumb" aria-label="麵包屑">
+    <a href="index.html">策略總覽</a><span>／</span>
+    <a href="strategy.html">趨勢波段</a><span>／</span>
+    <span>參數掃描</span>
+  </nav>
+
+  <header class="page-head">
+    <div class="page-head-row">
+      <div>
+        <div class="page-title-group">
+          <h1>參數掃描</h1>
+          <span class="proto-badge">原型・假數據</span>
+        </div>
+        <p class="page-sub">趨勢波段 v2.3.0・突破日數 N × 止蝕幅度・每格是一次完整回測的年化回報。</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- 全頁最重要那句:最高分那格不是最應該選那格 -->
+  <div class="callout" id="verdict" style="margin-bottom:var(--s-5)"></div>
+
+  <div class="sweep-layout">
+
+    <!-- ============ 熱力圖 ============ -->
+    <div class="panel panel-pad">
+      <div class="section-head">
+        <h2>年化回報熱力圖</h2>
+        <span class="section-note">橫軸 止蝕幅度　縱軸 突破日數 N　點擊任何一格查看該組參數的詳情</span>
+      </div>
+      <div class="heat-scroll">
+        <div class="heat" id="heat"></div>
+      </div>
+
+      <!-- 圖例 -->
+      <div style="margin-top:var(--s-5);max-width:520px">
+        <div class="scale-bar" id="scale-bar"></div>
+        <div class="scale-ends"><span id="scale-min"></span><span id="scale-max"></span></div>
+
+        <div class="legend-key">
+          <span class="legend-chip plateau" aria-hidden="true"></span>
+          <span><b>穩健平原</b>(白框):一整片鄰居一起好。參數偏離少許一樣賺錢,即是優勢來自策略本身,實盤可行。</span>
+        </div>
+        <div class="legend-key">
+          <span class="legend-chip spike" aria-hidden="true"></span>
+          <span><b>孤峰</b>(黃框):自己一格特別好,四周全部差。多數是擬合噪音——那組參數只是剛好撞中歷史上幾筆交易,換一段時間就消失。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 選中格詳情 ============ -->
+    <aside>
+      <div class="panel panel-pad" style="position:sticky;top:calc(var(--nav-h) + var(--s-4))">
+        <div class="section-head">
+          <h2 style="font-size:var(--fs-md)">參數組詳情</h2>
+          <span class="tag" id="cell-tag"></span>
+        </div>
+        <div id="cell-detail"></div>
+
+        <div style="margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--line)">
+          <h3 style="font-size:var(--fs-base);margin-bottom:var(--s-2)">鄰域穩健度</h3>
+          <p class="section-note" style="margin:0 0 var(--s-3)">看四周八格的表現。鄰居一起好 = 平原;自己好、鄰居差 = 孤峰。</p>
+          <div id="nbhd"></div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <div id="foot-host"></div>
+</main>
+
+<script src="vendor/lightweight-charts.standalone.production.js"></script>
+<script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/app.js" charset="utf-8"></script>
+<script>
+(function () {
+  var K = window.KARST;
+  KV.mountNav('sweep.html');
+  KV.mountFoot();
+
+  var W = K.sweep;
+  var flat = [];
+  W.grid.forEach(function (row) { row.forEach(function (c) { flat.push(c.cagr); }); });
+  var MIN = Math.min.apply(null, flat), MAX = Math.max.apply(null, flat);
+  var norm = function (v) { return (v - MIN) / (MAX - MIN); };
+
+  var plateauSet = {};
+  W.plateauCells.forEach(function (p) { plateauSet[p[0] + ',' + p[1]] = true; });
+
+  /* ---------- 鄰域統計 ---------- */
+  function neighbours(ri, ci) {
+    var out = [];
+    for (var dr = -1; dr <= 1; dr++) {
+      for (var dc = -1; dc <= 1; dc++) {
+        if (!dr && !dc) continue;
+        var r = ri + dr, c = ci + dc;
+        if (r < 0 || c < 0 || r >= W.rows.length || c >= W.cols.length) continue;
+        out.push(W.grid[r][c]);
+      }
+    }
+    return out;
+  }
+  function nbhdStats(ri, ci) {
+    var ns = neighbours(ri, ci).map(function (c) { return c.cagr; });
+    var mean = ns.reduce(function (a, b) { return a + b; }, 0) / ns.length;
+    var sd = Math.sqrt(ns.reduce(function (a, b) { return a + (b - mean) * (b - mean); }, 0) / ns.length);
+    var self = W.grid[ri][ci].cagr;
+    return { mean: mean, sd: sd, min: Math.min.apply(null, ns), max: Math.max.apply(null, ns), gap: self - mean, n: ns.length };
+  }
+
+  /* ---------- 頂部裁決 ---------- */
+  var best = null, bestPos = null;
+  W.grid.forEach(function (row, ri) {
+    row.forEach(function (c, ci) { if (!best || c.cagr > best.cagr) { best = c; bestPos = [ri, ci]; } });
+  });
+  var pc = W.plateauCenter;
+  var plateauCell = W.grid[pc[0]][pc[1]];
+  var bestN = nbhdStats(bestPos[0], bestPos[1]);
+  var plateauN = nbhdStats(pc[0], pc[1]);
+
+  document.getElementById('verdict').innerHTML =
+    '<b>全格最高分那格,不是最應該選那格。</b><br>' +
+    '最高分是 <b>N=' + best.n + '、止蝕 ' + best.s + '%</b>,年化 <b class="up">' + KV.pctPlain(best.cagr) + '</b>' +
+    ',但它八個鄰居平均只有 <b class="down">' + KV.pctPlain(bestN.mean) + '</b>——參數偏離一格就跌 ' +
+    KV.pctPlain(bestN.gap) + ',這是孤峰。<br>' +
+    '平原中心 <b>N=' + plateauCell.n + '、止蝕 ' + plateauCell.s + '%</b> 年化 <b class="up">' + KV.pctPlain(plateauCell.cagr) + '</b>' +
+    ',低過孤峰 ' + KV.pctPlain(best.cagr - plateauCell.cagr) + ',但八個鄰居平均有 <b class="up">' + KV.pctPlain(plateauN.mean) + '</b>' +
+    ',整片一起好。<b>實盤要選的是平原,不是孤峰。</b>';
+
+  /* ---------- 熱力圖 ---------- */
+  var heat = document.getElementById('heat');
+  heat.style.gridTemplateColumns = '64px repeat(' + W.cols.length + ', minmax(54px, 1fr))';
+
+  var html = '<div class="heat-corner" style="display:flex;align-items:center;justify-content:center">N ＼ 止蝕</div>';
+  W.cols.forEach(function (c) {
+    html += '<div class="heat-axis-label">' + c + '%</div>';
+  });
+
+  W.grid.forEach(function (row, ri) {
+    html += '<div class="heat-axis-label row-label">' + W.rows[ri] + '</div>';
+    row.forEach(function (cell, ci) {
+      var t = norm(cell.cagr);
+      var klass = 'heat-cell';
+      if (cell.spike) klass += ' is-spike';
+      else if (plateauSet[ri + ',' + ci]) klass += ' in-plateau';
+      html += '<button class="' + klass + '" data-r="' + ri + '" data-c="' + ci + '" ' +
+        'aria-pressed="false" ' +
+        'aria-label="突破日數 ' + cell.n + '、止蝕 ' + cell.s + '%,年化回報 ' + cell.cagr + '%' +
+          (cell.spike ? ',孤峰' : (plateauSet[ri + ',' + ci] ? ',穩健平原' : '')) + '" ' +
+        'style="background:' + KV.heatColor(t) + ';color:' + KV.heatTextColor(t) + '">' +
+        cell.cagr.toFixed(1) + '</button>';
+    });
+  });
+  heat.innerHTML = html;
+
+  /* 色階條 */
+  var bar = '';
+  for (var i = 0; i < 40; i++) bar += '<i style="background:' + KV.heatColor(i / 39) + '"></i>';
+  document.getElementById('scale-bar').innerHTML = bar;
+  document.getElementById('scale-min').textContent = '年化 ' + MIN.toFixed(1) + '%';
+  document.getElementById('scale-max').textContent = MAX.toFixed(1) + '%';
+
+  /* ---------- 選中格 ---------- */
+  function select(ri, ci) {
+    heat.querySelectorAll('.heat-cell').forEach(function (b) {
+      b.setAttribute('aria-pressed',
+        (+b.dataset.r === ri && +b.dataset.c === ci) ? 'true' : 'false');
+    });
+
+    var cell = W.grid[ri][ci];
+    var st = nbhdStats(ri, ci);
+    var isPlateau = !!plateauSet[ri + ',' + ci];
+
+    document.getElementById('cell-tag').textContent =
+      cell.spike ? '孤峰' : (isPlateau ? '穩健平原' : '一般');
+    document.getElementById('cell-tag').className =
+      'tag ' + (cell.spike ? 'tag-current' : (isPlateau ? 'tag-live' : ''));
+
+    document.getElementById('cell-detail').innerHTML =
+      '<div style="font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--text-2);margin-bottom:var(--s-4)">' +
+        'N=' + cell.n + '　止蝕 ' + cell.s + '%' +
+      '</div>' +
+      '<dl class="def-list">' +
+        '<dt>年化回報</dt><dd class="' + KV.cls(cell.cagr) + '">' + KV.pctPlain(cell.cagr) + '</dd>' +
+        '<dt>最大回撤</dt><dd class="down">' + KV.pctPlain(cell.mdd) + '</dd>' +
+        '<dt>Sortino</dt><dd>' + cell.sortino.toFixed(2) + '</dd>' +
+        '<dt>交易數</dt><dd>' + cell.trades + '</dd>' +
+      '</dl>';
+
+    var verdict, vcls;
+    if (st.gap >= 5.5) { verdict = '孤峰嫌疑:自己高出鄰域 ' + KV.pctPlain(st.gap) + ',換一段時間好可能消失。'; vcls = 'down'; }
+    else if (st.mean >= 15) { verdict = '穩健:鄰域平均都有 ' + KV.pctPlain(st.mean) + ',參數偏離一兩格照樣賺錢。'; vcls = 'up'; }
+    else { verdict = '平平:鄰域平均只有 ' + KV.pctPlain(st.mean) + ',這一區整體不理想。'; vcls = 'dim'; }
+
+    document.getElementById('nbhd').innerHTML =
+      '<dl class="def-list">' +
+        '<dt>本格</dt><dd>' + KV.pctPlain(cell.cagr) + '</dd>' +
+        '<dt>鄰域平均</dt><dd>' + KV.pctPlain(st.mean) + '(' + st.n + ' 格)</dd>' +
+        '<dt>鄰域範圍</dt><dd>' + KV.pctPlain(st.min) + ' — ' + KV.pctPlain(st.max) + '</dd>' +
+        '<dt>鄰域離散</dt><dd>' + st.sd.toFixed(1) + '</dd>' +
+        '<dt>本格 減 鄰域</dt><dd class="' + KV.cls(st.gap) + '">' + KV.pp(st.gap) + '</dd>' +
+      '</dl>' +
+      '<p class="section-note ' + vcls + '" style="margin:var(--s-3) 0 0;line-height:1.7">' + verdict + '</p>';
+  }
+
+  heat.addEventListener('click', function (e) {
+    var b = e.target.closest('.heat-cell');
+    if (b) select(+b.dataset.r, +b.dataset.c);
+  });
+
+  select(pc[0], pc[1]);
+})();
+</script>
+</body>
+</html>
