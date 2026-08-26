@@ -38,65 +38,47 @@
     <!-- ============ 頭條數字(按檢視視窗重算) ============ -->
     <div class="kpi-row" id="kpis"></div>
 
-    <!-- ============ 淨值走勢 ============ -->
-    <section class="sp-panel">
-      <div class="sp-head">
-        <div class="sp-side">
-          <h2>淨值走勢</h2>
-          <div class="bench-line" id="equity-bench"></div>
-        </div>
-        <div class="winpick">
-          <label for="win-date">檢視視窗</label>
-          <div class="date-switch" id="win-pick" role="group" aria-label="檢視視窗起始"></div>
-          <input class="sp-date" type="date" id="win-date" aria-label="自訂起始日">
-        </div>
-      </div>
-      <div class="sp-sub" id="chart-sub"></div>
-      <div class="sp-body">
-        <div class="sp-chartwrap">
-          <div class="sp-chart" id="equity-chart"></div>
-          <div class="hovcard" id="hovcard" hidden aria-hidden="true"></div>
-        </div>
-      </div>
-    </section>
+    <!-- ============ 左圖右名單:點圖上一日,右邊即時換 ============ -->
+    <div class="sp-split">
 
-    <!-- ============ 選股快照:逐層收窄可點篩選 + 兩欄名單 ============ -->
-    <section class="sp-panel">
-      <div class="sp-head">
-        <div class="sp-side">
-          <h2>選股快照</h2>
-          <span class="at-point" id="at-point"></span>
+      <section class="sp-panel sp-sticky">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2>淨值走勢</h2>
+            <div class="bench-line" id="equity-bench"></div>
+          </div>
+          <div class="winpick">
+            <label for="win-date">檢視視窗</label>
+            <div class="date-switch" id="win-pick" role="group" aria-label="檢視視窗起始"></div>
+            <input class="sp-date" type="date" id="win-date" aria-label="自訂起始日">
+          </div>
         </div>
-        <div class="sp-side" id="picks-filter"></div>
-      </div>
-      <div class="sp-sub" id="picks-basis"></div>
-      <div class="sp-funnel">
-        <div class="sp-funnel-cap">逐層收窄</div>
-        <div class="funnel-bar" id="funnel" role="group" aria-label="按層篩選名單"></div>
-      </div>
-      <div class="sp-two" id="picks-two">
-        <div id="picks-left"></div>
-        <div id="picks-right"></div>
-      </div>
-    </section>
+        <div class="sp-sub" id="chart-sub"></div>
+        <div class="sp-body">
+          <div class="sp-chartwrap">
+            <div class="sp-chart" id="equity-chart"></div>
+            <div class="hovcard" id="hovcard" hidden aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
 
-    <!-- ============ 版本沿革 ============ -->
-    <section class="sp-panel">
-      <div class="sp-head">
-        <h2>版本沿革</h2>
-        <span class="section-note">最新在上</span>
-      </div>
-      <div class="sp-hist">
-        <div>
-          <div class="sp-hist-t">策略版本</div>
-          <div class="timeline" id="timeline"></div>
+      <section class="sp-panel">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2>選股快照</h2>
+            <span class="at-point" id="at-point"></span>
+          </div>
+          <div class="sp-side" id="picks-filter"></div>
         </div>
-        <div>
-          <div class="sp-hist-t">因子版本</div>
-          <div class="factor-hist" id="factor-hist"></div>
+        <div class="sp-sub" id="picks-basis"></div>
+        <div class="sp-funnel">
+          <div class="sp-funnel-cap">逐層收窄</div>
+          <div class="funnel-bar" id="funnel" role="group" aria-label="按層篩選名單"></div>
         </div>
-      </div>
-    </section>
+        <div id="picks-table"></div>
+      </section>
+
+    </div>
 
     <!-- ============ 歷次運行:點一行 = 換上面整頁 ============ -->
     <section class="sp-panel">
@@ -120,6 +102,24 @@
           </thead>
           <tbody id="runs-body"></tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- ============ 版本沿革 ============ -->
+    <section class="sp-panel">
+      <div class="sp-head">
+        <h2>版本沿革</h2>
+        <span class="section-note">最新在上</span>
+      </div>
+      <div class="sp-hist">
+        <div>
+          <div class="sp-hist-t">策略版本</div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <div>
+          <div class="sp-hist-t">因子版本</div>
+          <div class="factor-hist" id="factor-hist"></div>
+        </div>
       </div>
     </section>
 
@@ -162,8 +162,7 @@
     filter: document.getElementById('picks-filter'),
     basis: document.getElementById('picks-basis'),
     funnel: document.getElementById('funnel'),
-    left: document.getElementById('picks-left'),
-    right: document.getElementById('picks-right'),
+    picks: document.getElementById('picks-table'),
     runsBody: document.getElementById('runs-body'),
   };
 
@@ -385,6 +384,11 @@
     }));
 
     chart.timeScale().fitContent();
+    // 欄位窄了,fitContent 會把第一點貼死左邊,年份標籤被切成「9年」;兩邊各留一格。
+    var padBars = W.dates.length * 0.045;
+    chart.timeScale().setVisibleLogicalRange({
+      from: -padBars, to: (W.dates.length - 1) + padBars * 0.5,
+    });
 
     chart.subscribeCrosshairMove(function (p) {
       var iso = isoOf(p.time);
@@ -393,12 +397,16 @@
       showHover(p.point, m);
     });
 
-    /* 點日期 = 換選股快照的時點,圖本身不重畫 */
+    /* 點日期 = 換右邊選股快照的時點,圖本身不重畫;
+       右邊標題閃一下,好等「左邊點、右邊換」這個關係一眼看得出 */
     chart.subscribeClick(function (p) {
       var iso = isoOf(p.time);
       if (!iso) return;
       S.date = iso;
       renderPicks();
+      el.atPoint.classList.remove('is-flash');
+      void el.atPoint.offsetWidth;
+      el.atPoint.classList.add('is-flash');
     });
   }
 
@@ -411,16 +419,16 @@
 
   var PICK_HEAD =
     '<thead><tr>' +
-      '<th style="width:60px">代號</th>' +
+      '<th style="width:58px">代號</th>' +
       '<th>名稱</th>' +
-      '<th style="width:88px">行業</th>' +
+      '<th style="width:86px">行業</th>' +
       '<th class="num" style="width:46px">質素</th>' +
       '<th class="num" style="width:46px">動量</th>' +
       '<th class="num" style="width:46px">超賣</th>' +
-      '<th class="num" style="width:52px">綜合</th>' +
+      '<th class="num" style="width:50px">綜合</th>' +
       '<th style="width:58px">基本面</th>' +
-      '<th style="width:50px">技術</th>' +
-      '<th style="width:68px">狀態</th>' +
+      '<th style="width:48px">技術</th>' +
+      '<th style="width:66px">狀態</th>' +
     '</tr></thead>';
 
   function gateCell(pass, shown) {
@@ -464,7 +472,7 @@
     var V = verOf(run);
     var snap = P.snapshot(V.id, S.date);
 
-    el.atPoint.textContent = '時點 ' + S.date;
+    el.atPoint.textContent = '快照・' + S.date;
 
     el.basis.innerHTML =
       '<span class="mono">' + KV.esc(V.id) + '</span>' +
@@ -499,14 +507,9 @@
     var cf = document.getElementById('clear-filter');
     if (cf) cf.addEventListener('click', function () { S.layer = 0; renderPicks(); });
 
-    if (!rows.length) {
-      el.left.innerHTML = '<div class="sp-empty">這一層在本日沒有股票。</div>';
-      el.right.innerHTML = '';
-      return;
-    }
-    var half = Math.ceil(rows.length / 2);
-    el.left.innerHTML = picksTable(rows.slice(0, half));
-    el.right.innerHTML = rows.length > half ? picksTable(rows.slice(half)) : '';
+    el.picks.innerHTML = rows.length
+      ? picksTable(rows)
+      : '<div class="sp-empty">這一層在本日沒有股票。</div>';
   }
 
   el.funnel.addEventListener('click', function (e) {

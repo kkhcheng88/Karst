@@ -1659,11 +1659,6 @@ body.sp .kpi-basis { white-space: nowrap; overflow: hidden; text-overflow: ellip
 .sp-funnel .funnel-bar { flex: 1 1 auto; min-width: 0; }
 body.sp .funnel-bar { height: 72px; padding: var(--s-3) var(--s-4) var(--s-3) var(--s-2); }
 
-/* 選股快照:左右兩欄,各自一半名單 */
-.sp-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-.sp-two > div { min-width: 0; }
-.sp-two > div + div { border-left: 1px solid var(--line); }
-
 /* 版本沿革:策略版本 | 因子版本 */
 .sp-hist { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
 .sp-hist > div { min-width: 0; padding: var(--s-2) var(--s-4) var(--s-4); }
@@ -1689,10 +1684,8 @@ body.sp .fh-name { margin-top: 0; }
 
 @media (max-width: 1180px) {
   body.sp .kpi-row { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-  .sp-two, .sp-hist { grid-template-columns: minmax(0, 1fr); }
-  .sp-two > div + div, .sp-hist > div + div {
-    border-left: 0; border-top: 1px solid var(--line);
-  }
+  .sp-hist { grid-template-columns: minmax(0, 1fr); }
+  .sp-hist > div + div { border-left: 0; border-top: 1px solid var(--line); }
 }
 
 /* ============================================================
@@ -1775,3 +1768,42 @@ body.sp .fh-row { grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1.15fr);
   margin-left: var(--s-2); white-space: nowrap;
 }
 .fh-idle { color: var(--text-3); font-weight: 400; }
+
+/* ============================================================
+   第十版:左圖右名單、名單併回一張表
+   ============================================================ */
+
+/* 頁面會向下捲,導航列要真的釘得住:mount 容器只有 55px 高,
+   sticky 會困在裡面即刻捲走,連帶表頭停在 52px 卻沒有東西擋住。
+   display:contents 把容器抽走,導航列改以 body 為界就釘得住。 */
+body.sp #nav-host { display: contents; }
+
+/* 淨值圖與選股快照併成一組:左邊點一日,右邊即時換 */
+.sp-split {
+  display: grid;
+  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+  gap: var(--s-3);
+  align-items: start;          /* 兩欄各自量高,右邊長就自己向下延伸 */
+}
+/* 名單比圖長,捲名單的時候圖仍要留在視線內 */
+.sp-sticky { position: sticky; top: calc(var(--nav-h) + var(--s-2)); }
+
+/* 逐層收窄壓薄一點,讓名單早些入眼;最末一層再窄也要放得下「剩 36.4%」 */
+body.sp .funnel-bar { height: 60px; }
+body.sp .fb-seg { min-width: 94px; }
+
+/* 快照時點:由左邊點出來的,換的時候閃一下 */
+.at-point.is-flash { animation: at-flash .75s ease-out 1; }
+@keyframes at-flash {
+  0%   { background: var(--accent); color: #06121f; }
+  60%  { background: var(--accent); color: #06121f; }
+  100% { background: var(--bg-2); color: var(--text-1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .at-point.is-flash { animation: none; box-shadow: 0 0 0 2px var(--accent); }
+}
+
+@media (max-width: 1180px) {
+  .sp-split { grid-template-columns: minmax(0, 1fr); }
+  .sp-sticky { position: static; }
+}
