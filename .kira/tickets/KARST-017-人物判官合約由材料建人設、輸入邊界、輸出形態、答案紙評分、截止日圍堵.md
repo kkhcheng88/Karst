@@ -7,7 +7,7 @@ risk: medium
 model: opus
 fits: 一程
 approvalRequired: false
-dependsOn: [KARST-004]
+dependsOn: [KARST-004, KARST-018, KARST-019]
 claimedBy: null
 epic: V1 藍圖
 deliverable: KARST-D01
