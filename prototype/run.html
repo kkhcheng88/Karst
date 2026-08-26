@@ -86,20 +86,26 @@
     </div>
   </section>
 
-  <!-- ============ 逐筆交易 ============ -->
+  <!-- ============ 逐筆交易 + 鑽入 ============ -->
   <section class="section" aria-labelledby="h-trades">
     <div class="section-head">
       <h2 id="h-trades">逐筆交易</h2>
-      <span class="section-note">點擊表頭排序,排序狀態會寫入網址,重新載入不丟失。</span>
+      <span class="section-note">點任何一筆,下面即場展開該股的蠟燭圖與因子檢視,不用轉頁。點表頭排序,排序狀態會寫入網址。</span>
     </div>
     <div id="trades-table"></div>
+    <div id="drill-host"></div>
   </section>
+
+  <p class="archive-line">
+    舊變體(存檔,已不在主導航):<a href="stock-a.html">A・因子放側欄</a>　<a href="stock-b.html">B・因子放下方</a>
+  </p>
 
   <div id="foot-host"></div>
 </main>
 
 <script src="vendor/lightweight-charts.standalone.production.js"></script>
 <script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/data-ext.js" charset="utf-8"></script>
 <script src="assets/app.js" charset="utf-8"></script>
 <script>
 (function () {
@@ -213,14 +219,259 @@
   document.getElementById('changes-foot').textContent =
     '顯示最後 ' + r.holdingChanges.length + ' 筆調整・最新在上';
 
-  /* ---- 逐筆交易(可排序,狀態入網址) ---- */
-  KV.sortableTable({
+  /* ============================================================
+     鑽入:點一筆交易,即場開該股的蠟燭圖 + 因子側欄
+     ============================================================ */
+  var drillHost = document.getElementById('drill-host');
+  var drillChart = null;
+  var table = null;
+
+  var FDEF = [
+    { key: 'quality',   name: '質素',   color: '#4a9eff' },
+    { key: 'momentum',  name: '動量',   color: '#26a69a' },
+    { key: 'oversold',  name: '超賣度', color: '#f0a83c' },
+    { key: 'supply',    name: '供求',   color: '#b07de0' },
+    { key: 'composite', name: '綜合分', color: '#e8eaf0' },
+  ];
+
+  function showHint() {
+    drillHost.innerHTML =
+      '<div class="drill-hint">點上面任何一筆交易,這裡即場展開該股的蠟燭圖(有進出場標記)與當時的因子檢視。</div>';
+  }
+
+  function openTrade(t) {
+    var S = K.tradeSeries(t);
+    var F = S.factors;
+
+    if (drillChart) { try { drillChart.remove(); } catch (e) {} drillChart = null; }
+
+    drillHost.innerHTML =
+      '<div class="drill">' +
+
+        '<div class="chart-panel">' +
+          '<div class="chart-head">' +
+            '<div>' +
+              '<h3>' + KV.esc(t.sym) + '　' + KV.esc(t.name) +
+                ' <span class="tag" style="margin-left:var(--s-2)">' + KV.esc(t.sector) + '</span></h3>' +
+              '<div class="section-note">' + KV.esc(t.id) + '・' +
+                t.entryDate + ' 進場 ' + t.entryPx.toFixed(2) + ' → ' +
+                t.exitDate + ' 出場 ' + t.exitPx.toFixed(2) +
+                '・持倉 ' + t.holdDays + ' 日・' + KV.esc(t.reason) +
+                '　損益 <b class="' + KV.cls(t.pnl) + '">' + (t.pnl > 0 ? '+' : '') + KV.money(t.pnl) +
+                '(' + KV.pct(t.retPct) + ')</b></div>' +
+            '</div>' +
+            '<div style="display:flex;align-items:center;gap:var(--s-3)">' +
+              '<div class="chart-legend" id="d-ohlc"></div>' +
+              '<button class="drill-close" id="d-close">收起</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="chart-box" id="d-candle"></div>' +
+          '<p class="section-note" style="margin:var(--s-3) 0 0">' +
+            '綠色向上箭嘴為買入,紅色向下箭嘴為賣出。掃過蠟燭圖,右邊因子欄會跳到那一天。</p>' +
+        '</div>' +
+
+        '<aside class="factor-side" aria-label="因子檢視">' +
+          '<div class="factor-side-head">' +
+            '<div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-2)">' +
+              '<h3 style="font-size:var(--fs-md)">因子檢視</h3>' +
+              '<span class="tag" id="d-date"></span>' +
+            '</div>' +
+            '<p class="section-note" style="margin:var(--s-2) 0 0">' +
+              '答「策略為什麼那時候買這隻」。掃過左邊蠟燭圖即可換日。</p>' +
+          '</div>' +
+          '<div id="d-bars"></div>' +
+
+          '<div class="factor-side-head" style="padding-top:var(--s-4)">' +
+            '<div style="display:flex;align-items:baseline;justify-content:space-between">' +
+              '<h4>本段走勢</h4>' +
+              '<span class="section-note">' + F.length + ' 個交易日</span>' +
+            '</div>' +
+          '</div>' +
+          '<div id="d-sparks"></div>' +
+
+          '<div class="factor-side-head" style="padding-top:var(--s-4)">' +
+            '<h4>持倉期間</h4>' +
+            '<p class="section-note" style="margin:var(--s-1) 0 var(--s-2)">綠 = 策略持有中,灰 = 沒有持有</p>' +
+            '<div class="sel-strip" id="d-strip"></div>' +
+            '<div class="scale-ends"><span>' + F[0].time + '</span><span>' + F[F.length - 1].time + '</span></div>' +
+          '</div>' +
+
+          '<div class="factor-side-head" style="padding-top:var(--s-4)">' +
+            '<h4>逐日分數</h4>' +
+            '<p class="section-note" style="margin:var(--s-1) 0 0">出場前後 30 個交易日,最新在上</p>' +
+          '</div>' +
+          '<div class="table-scroll table-scroll-y" style="max-height:280px">' +
+            '<table class="kt" style="min-width:308px">' +
+              '<thead><tr>' +
+                '<th style="width:84px">日期</th>' +
+                '<th class="num" style="width:44px">質素</th>' +
+                '<th class="num" style="width:44px">動量</th>' +
+                '<th class="num" style="width:44px">超賣</th>' +
+                '<th class="num" style="width:48px">綜合</th>' +
+                '<th style="width:48px">持有</th>' +
+              '</tr></thead>' +
+              '<tbody id="d-body"></tbody>' +
+            '</table>' +
+          '</div>' +
+        '</aside>' +
+
+      '</div>';
+
+    /* ---- 蠟燭圖 ---- */
+    var el = document.getElementById('d-candle');
+    drillChart = KV.makeChart(el, 420);
+
+    var candles = drillChart.addCandlestickSeries({
+      upColor: '#26a69a', downColor: '#ef5350',
+      borderUpColor: '#26a69a', borderDownColor: '#ef5350',
+      wickUpColor: '#26a69a', wickDownColor: '#ef5350',
+    });
+    candles.setData(S.candles);
+    candles.priceScale().applyOptions({ scaleMargins: { top: 0.06, bottom: 0.26 } });
+
+    var vol = drillChart.addHistogramSeries({
+      priceFormat: { type: 'volume' },
+      priceScaleId: '',
+      color: 'rgba(122,134,156,.4)',
+      priceLineVisible: false,
+      lastValueVisible: false,
+    });
+    vol.setData(S.volumes.map(function (v, i) {
+      var c = S.candles[i];
+      return { time: v.time, value: v.value,
+        color: c.close >= c.open ? 'rgba(38,166,154,.35)' : 'rgba(239,83,80,.35)' };
+    }));
+    vol.priceScale().applyOptions({ scaleMargins: { top: 0.82, bottom: 0 } });
+
+    candles.setMarkers(S.markers.map(function (mk) {
+      return {
+        time: mk.time,
+        position: mk.side === 'buy' ? 'belowBar' : 'aboveBar',
+        color: mk.side === 'buy' ? '#26a69a' : '#ef5350',
+        shape: mk.side === 'buy' ? 'arrowUp' : 'arrowDown',
+        text: mk.text,
+      };
+    }));
+    drillChart.timeScale().fitContent();
+
+    /* ---- 因子條 ---- */
+    function renderBars(f) {
+      document.getElementById('d-date').textContent = f.time;
+      document.getElementById('d-bars').innerHTML = FDEF.map(function (def) {
+        var v = f[def.key];
+        return '<div class="factor-row">' +
+          '<span class="factor-name">' + def.name + '</span>' +
+          '<span class="factor-bar-track">' +
+            '<i class="factor-bar-fill" style="width:' + v + '%;background:' + def.color + '"></i>' +
+          '</span>' +
+          '<span class="factor-score">' + v.toFixed(0) + '</span>' +
+        '</div>';
+      }).join('') +
+      '<div class="factor-row" style="grid-template-columns:62px 1fr">' +
+        '<span class="factor-name">持有</span>' +
+        '<span>' + (f.selected
+          ? '<span class="badge-act act-add">持有中</span>'
+          : '<span class="badge-act" style="background:var(--bg-3);color:var(--text-3)">沒有持有</span>') +
+        '</span>' +
+      '</div>';
+    }
+    renderBars(F[S.exitIndex]);
+
+    /* ---- 細行圖 ---- */
+    document.getElementById('d-sparks').innerHTML = FDEF.map(function (def, i) {
+      return '<div class="factor-row" style="grid-template-columns:62px 1fr 40px">' +
+        '<span class="factor-name">' + def.name + '</span>' +
+        '<span class="factor-spark" id="d-fs-' + i + '"></span>' +
+        '<span class="factor-score" style="color:' + def.color + '">' +
+          F[S.exitIndex][def.key].toFixed(0) + '</span>' +
+      '</div>';
+    }).join('');
+    FDEF.forEach(function (def, i) {
+      KV.factorSpark(document.getElementById('d-fs-' + i),
+        F.map(function (f) { return f[def.key]; }), def.color);
+    });
+
+    /* ---- 持倉期間帶 ---- */
+    document.getElementById('d-strip').innerHTML = F.map(function (f) {
+      return '<i class="' + (f.selected ? 'sel-yes' : 'sel-no') + '"></i>';
+    }).join('');
+
+    /* ---- 逐日分數 ---- */
+    var recent = F.slice(Math.max(0, S.exitIndex - 22), S.exitIndex + 8).reverse();
+    function renderTable(highlight) {
+      document.getElementById('d-body').innerHTML = recent.map(function (f) {
+        var on = highlight === f.time;
+        return '<tr' + (on ? ' class="is-current"' : '') + '>' +
+          '<td class="mono dim">' + f.time.slice(5) + '</td>' +
+          '<td class="num">' + f.quality.toFixed(0) + '</td>' +
+          '<td class="num">' + f.momentum.toFixed(0) + '</td>' +
+          '<td class="num">' + f.oversold.toFixed(0) + '</td>' +
+          '<td class="num" style="font-weight:700">' + f.composite.toFixed(0) + '</td>' +
+          '<td>' + (f.selected ? '<span class="up">●</span> 是' : '<span class="dim">○ 否</span>') + '</td>' +
+        '</tr>';
+      }).join('');
+    }
+    renderTable(null);
+
+    /* ---- 十字線同步 ---- */
+    var byDate = {}, candleByDate = {};
+    F.forEach(function (f) { byDate[f.time] = f; });
+    S.candles.forEach(function (c) { candleByDate[c.time] = c; });
+
+    function timeToISO(tm) {
+      if (typeof tm === 'string') return tm;
+      if (tm && tm.year) {
+        return tm.year + '-' + String(tm.month).padStart(2, '0') + '-' + String(tm.day).padStart(2, '0');
+      }
+      return null;
+    }
+    var ohlc = document.getElementById('d-ohlc');
+    function showOHLC(c) {
+      if (!c) { ohlc.innerHTML = ''; return; }
+      var up = c.close >= c.open;
+      ohlc.innerHTML =
+        '<span class="legend-item">開 <b class="legend-val">' + c.open.toFixed(2) + '</b></span>' +
+        '<span class="legend-item">高 <b class="legend-val">' + c.high.toFixed(2) + '</b></span>' +
+        '<span class="legend-item">低 <b class="legend-val">' + c.low.toFixed(2) + '</b></span>' +
+        '<span class="legend-item">收 <b class="legend-val ' + (up ? 'up' : 'down') + '">' +
+          c.close.toFixed(2) + '</b></span>';
+    }
+    showOHLC(S.candles[S.exitIndex]);
+
+    drillChart.subscribeCrosshairMove(function (param) {
+      var iso = timeToISO(param.time);
+      if (!iso || !byDate[iso]) {
+        renderBars(F[S.exitIndex]);
+        renderTable(null);
+        showOHLC(S.candles[S.exitIndex]);
+        return;
+      }
+      renderBars(byDate[iso]);
+      renderTable(iso);
+      showOHLC(candleByDate[iso]);
+    });
+
+    document.getElementById('d-close').addEventListener('click', function () {
+      if (drillChart) { try { drillChart.remove(); } catch (e) {} drillChart = null; }
+      if (table) table.select(null);
+      showHint();
+    });
+  }
+
+  /* ---- 逐筆交易(可排序,狀態入網址;點行即鑽入) ---- */
+  table = KV.sortableTable({
     mount: '#trades-table',
     minWidth: '1240px',
     maxHeight: '520px',
     defaultSort: 'entryDate',
     defaultDir: 'desc',
     rows: r.trades,
+    rowKey: function (t) { return t.id; },
+    onRowClick: function (t) {
+      table.select(t.id);
+      openTrade(t);
+      document.getElementById('drill-host').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    },
     cols: [
       { key: 'id', label: '編號', width: '68px', get: function (t) { return t.id; },
         render: function (t) { return '<span class="mono dim">' + t.id + '</span>'; } },
@@ -254,9 +505,11 @@
     foot: function (rows) {
       return '<span>顯示 1–' + rows.length + ' 筆抽樣,整體共 ' + st.tradeCount + ' 筆' +
         '(抽樣勝率 ' + KV.pctPlain(st.sampleWinRate) + ',整體 ' + KV.pctPlain(st.winRate) + ')</span>' +
-        '<span>原型只載入其中一段,完整清單留待實作</span>';
+        '<span>點一行即在下面展開該股蠟燭圖</span>';
     },
   });
+
+  showHint();
 })();
 </script>
 </body>

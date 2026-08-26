@@ -50,12 +50,11 @@
   }
 
   /* ---------------- 頂欄 ---------------- */
+  /* 個股兩個變體已併入運行詳情頁,存檔連結留在該頁頁尾,不再佔主導航 */
   var PAGES = [
     { href: 'index.html', label: '策略總覽' },
     { href: 'strategy.html', label: '趨勢波段' },
     { href: 'run.html', label: '運行詳情' },
-    { href: 'stock-a.html', label: '個股・變體 A' },
-    { href: 'stock-b.html', label: '個股・變體 B' },
     { href: 'sweep.html', label: '參數掃描' },
   ];
 
@@ -239,6 +238,9 @@
   /**
    * 令一個表格可排序,排序狀態看得見(aria-sort)並寫入網址。
    * cols: [{key, label, cls, get(row), render(row)}]
+   * 可選:rowKey(row) 給每行一個身分、onRowClick(row) 點行的行為、
+   *       selected 目前選中那行的 rowKey(選中行會亮起)。
+   * 回傳 {render, select} —— 選中另一行時叫 select(key) 重畫。
    */
   function sortableTable(cfg) {
     var host = document.querySelector(cfg.mount);
@@ -246,6 +248,7 @@
     var state = readHashState();
     var sortKey = state[cfg.hashKey || 'sort'] || cfg.defaultSort;
     var sortDir = state[(cfg.hashKey || 'sort') + 'd'] || cfg.defaultDir || 'desc';
+    var selected = cfg.selected || null;
 
     function render() {
       var rows = cfg.rows.slice();
@@ -266,7 +269,16 @@
       }).join('');
 
       var body = rows.map(function (r) {
-        return '<tr>' + cfg.cols.map(function (c) {
+        var key = cfg.rowKey ? cfg.rowKey(r) : null;
+        var attrs = '';
+        if (key !== null && key !== undefined) attrs += ' data-rk="' + esc(key) + '"';
+        var klass = [];
+        if (cfg.onRowClick) klass.push('row-clickable');
+        if (key !== null && key === selected) klass.push('is-picked');
+        if (klass.length) attrs += ' class="' + klass.join(' ') + '"';
+        if (cfg.onRowClick) attrs += ' tabindex="0" role="button" aria-pressed="' +
+          (key === selected ? 'true' : 'false') + '"';
+        return '<tr' + attrs + '>' + cfg.cols.map(function (c) {
           return '<td class="' + (c.cls || '') + '">' + c.render(r) + '</td>';
         }).join('') + '</tr>';
       }).join('');
@@ -295,8 +307,28 @@
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
         });
       });
+
+      if (cfg.onRowClick) {
+        host.querySelectorAll('tbody tr[data-rk]').forEach(function (tr) {
+          var key = tr.getAttribute('data-rk');
+          var row = null;
+          for (var i = 0; i < rows.length; i++) {
+            if (String(cfg.rowKey(rows[i])) === key) { row = rows[i]; break; }
+          }
+          function go() { cfg.onRowClick(row, key); }
+          tr.addEventListener('click', go);
+          tr.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+          });
+        });
+      }
     }
     render();
+
+    return {
+      render: render,
+      select: function (key) { selected = key; render(); },
+    };
   }
 
   /* ---------------- 分頁籤 ---------------- */

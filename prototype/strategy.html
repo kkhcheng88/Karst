@@ -31,7 +31,68 @@
     </div>
   </header>
 
-  <section class="kpi-row" id="kpis" aria-label="策略整體指標"></section>
+  <!-- ============ 現役設定(門面)============ -->
+  <section aria-labelledby="h-config">
+    <div class="config-live">
+      <div class="config-head">
+        <span class="config-title" id="h-config">現役設定</span>
+        <span class="tag tag-live">紙上交易實際跟隨這一組</span>
+        <span class="section-note" id="config-sub"></span>
+      </div>
+      <div class="config-chips" id="config-chips"></div>
+      <div class="kpi-row" id="kpis" style="margin-top:var(--s-4)" aria-label="現役設定的長期表現"></div>
+    </div>
+
+    <!-- 歷史最佳只是參考,不可以同現役設定平起平坐 -->
+    <div class="config-past" id="config-past"></div>
+  </section>
+
+  <!-- ============ 選股快照 ============ -->
+  <section class="section" aria-labelledby="h-picks">
+    <div class="section-head">
+      <h2 id="h-picks">選股快照</h2>
+      <span class="section-note">揀一日,看策略當日如何由整個範圍逐層收窄到持倉。換一日,數字會不同。</span>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:var(--s-4);flex-wrap:wrap;margin-bottom:var(--s-4)">
+      <span class="slice-label">日期</span>
+      <div class="date-switch" id="pick-dates" role="group" aria-label="選股日期"></div>
+      <span class="section-note" id="pick-note"></span>
+    </div>
+
+    <div class="funnel" id="funnel" aria-label="逐層收窄"></div>
+    <p class="section-note" style="margin:var(--s-2) 0 0">
+      條的長度用平方根刻度,否則後面三條會細到看不見;實際數目以右邊數字為準。
+    </p>
+
+    <div class="section-head" style="margin-top:var(--s-5)">
+      <h3>當日逐隻評分</h3>
+      <span class="section-note" id="picks-note"></span>
+    </div>
+    <div class="table-scroll table-scroll-y" style="max-height:520px">
+      <table class="kt" style="min-width:1040px">
+        <thead>
+          <tr>
+            <th style="width:74px">代號</th>
+            <th style="width:140px">名稱</th>
+            <th style="width:116px">行業</th>
+            <th class="num" style="width:76px">質素分</th>
+            <th class="num" style="width:76px">動量分</th>
+            <th class="num" style="width:76px">超賣度</th>
+            <th class="num" style="width:76px">綜合分</th>
+            <th style="width:96px">基本面關</th>
+            <th style="width:88px">技術關</th>
+            <th style="width:88px">狀態</th>
+          </tr>
+        </thead>
+        <tbody id="picks-body"></tbody>
+      </table>
+    </div>
+    <div class="table-foot">
+      <span id="picks-foot"></span>
+      <span>狀態:持倉 = 現時持有・入選 = 兩關都過・觀察 = 只過基本面關・未過 = 第一關就不過。持倉那幾行的關卡標記是當日重新評分的結果,不是入場當日的分數。</span>
+    </div>
+  </section>
 
   <!-- ============ 歷次回測運行 ============ -->
   <section class="section" aria-labelledby="h-runs">
@@ -120,6 +181,7 @@
 
 <script src="vendor/lightweight-charts.standalone.production.js"></script>
 <script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/data-ext.js" charset="utf-8"></script>
 <script src="assets/app.js" charset="utf-8"></script>
 <script>
 (function () {
@@ -130,6 +192,19 @@
   var s = K.strategies.filter(function (x) { return x.id === 'trend-swing'; })[0];
   var qqq = K.benchmarks.QQQ;
   var m = s.metrics;
+  var runs = K.trendSwing.runs;
+  var cur = runs.filter(function (r) { return r.current; })[0] || runs[0];
+
+  /* ============================================================
+     現役設定 —— 紙上交易實際跟隨那一組
+     ============================================================ */
+  document.getElementById('config-sub').textContent =
+    cur.ver + '・運行 ' + cur.id + '・數據快照 ' + cur.snap;
+
+  document.getElementById('config-chips').innerHTML = K.run.paramList.map(function (p) {
+    return '<span class="chip"><span class="chip-k">' + KV.esc(p[0]) + '</span>' +
+      '<span class="chip-v">' + KV.esc(p[1]) + '</span></span>';
+  }).join('');
 
   /* ---- 整體指標。每個數字都帶一個比較基準 ---- */
   var kpis = [
@@ -145,15 +220,120 @@
       basis: '共 ' + m.trades + ' 筆交易' },
   ];
   document.getElementById('kpis').innerHTML = kpis.map(function (k) {
-    return '<div class="kpi">' +
+    return '<div class="kpi" style="background:var(--bg-2)">' +
       '<div class="kpi-label">' + k.label + '</div>' +
       '<div class="kpi-value sm ' + k.cls + '">' + k.value + '</div>' +
       '<div class="kpi-basis">' + k.basis + '</div>' +
     '</div>';
   }).join('');
 
-  /* ---- 歷次回測運行 ---- */
-  var runs = K.trendSwing.runs;
+  /* ---- 歷史最佳:講明身分,講明沒有跟隨過 ---- */
+  var W = K.sweep;
+  var best = null, bestPos = null;
+  W.grid.forEach(function (row, ri) {
+    row.forEach(function (c, ci) { if (!best || c.cagr > best.cagr) { best = c; bestPos = [ri, ci]; } });
+  });
+  function nbhdMean(ri, ci) {
+    var sum = 0, n = 0;
+    for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+      if (!dr && !dc) continue;
+      var r2 = ri + dr, c2 = ci + dc;
+      if (r2 < 0 || c2 < 0 || r2 >= W.rows.length || c2 >= W.cols.length) continue;
+      sum += W.grid[r2][c2].cagr; n++;
+    }
+    return n ? sum / n : 0;
+  }
+  var bestNbhd = nbhdMean(bestPos[0], bestPos[1]);
+
+  document.getElementById('config-past').innerHTML =
+    '<span class="past-label">歷史最佳(僅供參考)</span>' +
+    '<span class="past-val">N=' + best.n + '・止蝕 ' + best.s + '%・年化 ' + KV.pctPlain(best.cagr) + '</span>' +
+    '<span>這是參數掃描裡分數最高的一格,從來沒有實際跟隨過。它八個鄰居的年化平均只有 ' +
+      KV.pctPlain(bestNbhd) + ',參數偏一格就跌 ' + KV.pctPlain(best.cagr - bestNbhd) +
+      ' —— 屬孤峰,大機會只是撞中了歷史上幾筆交易。' +
+      '<a href="sweep.html">看參數掃描 →</a></span>';
+
+  /* ============================================================
+     選股快照
+     ============================================================ */
+  var P = K.picks;
+  var curDate = P.dates[0].date;
+
+  var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
+
+  document.getElementById('pick-dates').innerHTML = P.dates.map(function (d) {
+    return '<button type="button" data-date="' + d.date + '" ' +
+      'aria-pressed="' + (d.date === curDate ? 'true' : 'false') + '">' + KV.esc(d.label) + '</button>';
+  }).join('');
+
+  var ST_CLS = { '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch', '未過': 'st-out' };
+
+  function renderPicks(dateStr) {
+    var snap = P.byDate[dateStr];
+    var scope = snap.funnel[0].count;
+
+    document.getElementById('funnel').innerHTML = snap.funnel.map(function (f, i) {
+      var ratio = f.count / scope;
+      var w = Math.max(5, Math.pow(ratio, 0.5) * 100);
+      return '<div class="funnel-row">' +
+        '<div class="funnel-label">' + KV.esc(f.label) +
+          '<span class="hint" title="' + KV.esc(f.hint) + '">?</span></div>' +
+        '<div class="funnel-track">' +
+          '<div class="funnel-fill" style="width:' + w.toFixed(1) + '%;background:' + FUNNEL_COLOR[i] + '">' +
+            (i ? Math.round(ratio * 1000) / 10 + '%' : '') +
+          '</div>' +
+        '</div>' +
+        '<div class="funnel-num">' + f.count + ' 隻' +
+          '<small>' + (i ? '較上一層 −' + (snap.funnel[i - 1].count - f.count) : '全部可交易標的') + '</small>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    document.getElementById('pick-note').textContent =
+      '截至 ' + dateStr + ' 收市・門檻 質素分 ≥ ' + P.gates.quality + '、動量分 ≥ ' + P.gates.momentum;
+
+    var rows = snap.rows;
+    document.getElementById('picks-body').innerHTML = rows.map(function (r) {
+      return '<tr>' +
+        '<td class="mono">' + KV.esc(r.sym) + '</td>' +
+        '<td title="' + KV.esc(r.name) + '">' + KV.esc(r.name) + '</td>' +
+        '<td class="dim">' + KV.esc(r.sector) + '</td>' +
+        '<td class="num">' + r.quality.toFixed(0) + '</td>' +
+        '<td class="num">' + r.momentum.toFixed(0) + '</td>' +
+        '<td class="num">' + r.oversold.toFixed(0) + '</td>' +
+        '<td class="num" style="font-weight:700">' + r.composite.toFixed(0) + '</td>' +
+        '<td class="' + (r.passFund ? 'gate-yes' : 'gate-no') + '">' +
+          (r.passFund ? '✓ 過' : '✗ 不過') + '</td>' +
+        '<td class="' + (r.passTech ? 'gate-yes' : 'gate-no') + '">' +
+          (r.passFund ? (r.passTech ? '✓ 過' : '✗ 不過') : '<span class="dim">—</span>') + '</td>' +
+        '<td><span class="st ' + ST_CLS[r.status] + '">' + r.status + '</span></td>' +
+      '</tr>';
+    }).join('');
+
+    var counts = { '持倉': 0, '入選': 0, '觀察': 0, '未過': 0 };
+    rows.forEach(function (r) { counts[r.status]++; });
+    document.getElementById('picks-note').textContent =
+      '表列 ' + rows.length + ' 隻示意樣本・持倉 ' + counts['持倉'] + '、入選 ' + counts['入選'] +
+      '、觀察 ' + counts['觀察'] + '、未過 ' + counts['未過'];
+    document.getElementById('picks-foot').textContent =
+      '顯示 1–' + rows.length + ' 筆・當日範圍共 ' + scope + ' 隻,完整名單留待實作・按綜合分由高至低';
+  }
+
+  document.getElementById('pick-dates').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-date]');
+    if (!b) return;
+    curDate = b.getAttribute('data-date');
+    this.querySelectorAll('button').forEach(function (o) {
+      o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
+    });
+    renderPicks(curDate);
+  });
+
+  renderPicks(curDate);
+
+  /* ============================================================
+     歷次回測運行
+     ============================================================ */
   document.getElementById('runs-body').innerHTML = runs.map(function (r) {
     return '<tr class="' + (r.current ? 'is-current' : '') + '">' +
       '<td class="mono">' + KV.esc(r.id) + (r.current ? ' <span class="tag tag-current">本次</span>' : '') + '</td>' +
@@ -171,7 +351,9 @@
   }).join('');
   document.getElementById('runs-foot').textContent = '顯示 1–' + runs.length + ' 筆,共 ' + runs.length + ' 筆';
 
-  /* ---- 紙上帳 ---- */
+  /* ============================================================
+     紙上帳
+     ============================================================ */
   var p = K.trendSwing.paper;
   var pnl = p.value - p.startCapital;
   var pk = [

@@ -19,7 +19,7 @@
           <h1>策略總覽</h1>
           <span class="proto-badge">原型・假數據</span>
         </div>
-        <p class="page-sub">五套策略與兩個跟隨組合的長期表現。點擊任何一張卡進入策略詳情。</p>
+        <p class="page-sub">上面是你自己揀的重點策略,下面是全部策略按性質分組。策略數目由幾套加到幾百套,下面那張表都是同一個看法。</p>
       </div>
       <div class="kpi-row" style="grid-template-columns:repeat(2,minmax(150px,1fr));min-width:320px">
         <div class="kpi">
@@ -36,12 +36,42 @@
     </div>
   </header>
 
-  <section class="section" style="margin-top:var(--s-5)" aria-labelledby="h-cards">
+  <!-- ============ 置頂 ============ -->
+  <section class="section" style="margin-top:var(--s-5)" aria-labelledby="h-pin">
     <div class="section-head">
-      <h2 id="h-cards">策略與組合</h2>
-      <span class="section-note" id="cards-note"></span>
+      <h2 id="h-pin">置頂</h2>
+      <span class="section-note">最多三套。在下面的表格按 ☆ 加入,在卡上按 ★ 取消。</span>
     </div>
-    <div class="card-grid" id="cards"></div>
+    <div class="pin-grid" id="pinned"></div>
+  </section>
+
+  <!-- ============ 全部策略 ============ -->
+  <section class="section" aria-labelledby="h-all">
+    <div class="section-head">
+      <h2 id="h-all">全部策略</h2>
+      <span class="section-note" id="all-note"></span>
+    </div>
+    <div class="table-scroll">
+      <table class="kt" id="grp-table" style="min-width:1080px">
+        <thead>
+          <tr>
+            <th style="width:44px"><span class="dim" title="置頂">☆</span></th>
+            <th class="sortable" data-key="name" style="width:224px">名稱</th>
+            <th class="sortable num" data-key="vsBench" style="width:150px">累計回報 對基準</th>
+            <th class="sortable num" data-key="cagr" style="width:88px">年化</th>
+            <th class="sortable num" data-key="maxDD" style="width:100px">最大回撤</th>
+            <th class="sortable num" data-key="winRate" style="width:132px">勝率 ／ 盈虧比</th>
+            <th style="width:128px">迷你走勢</th>
+            <th style="width:150px">說明</th>
+          </tr>
+        </thead>
+        <tbody id="grp-body"></tbody>
+      </table>
+    </div>
+    <div class="table-foot">
+      <span id="all-foot"></span>
+      <span>迷你走勢:實線本策略、虛線 QQQ,同基期 100</span>
+    </div>
   </section>
 
   <div id="foot-host"></div>
@@ -49,6 +79,7 @@
 
 <script src="vendor/lightweight-charts.standalone.production.js"></script>
 <script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/data-ext.js" charset="utf-8"></script>
 <script src="assets/app.js" charset="utf-8"></script>
 <script>
 (function () {
@@ -68,65 +99,230 @@
   document.getElementById('spy-basis').textContent =
     '年化 ' + KV.pctPlain(spy.metrics.cagr) + '・最大回撤 ' + KV.pctPlain(spy.metrics.maxDD);
 
-  document.getElementById('cards-note').textContent =
-    '期間 ' + K.meta.periodFrom + ' 至 ' + K.meta.periodTo + '(' + K.meta.years + ' 年)・全部對比 QQQ';
+  var ALL = K.allStrategies;
+  var byId = {};
+  ALL.forEach(function (s) { byId[s.id] = s; });
 
-  var html = K.strategies.map(function (s, i) {
-    var m = s.metrics;
-    var vsBench = Math.round((m.cumReturn - qqq.metrics.cumReturn) * 10) / 10;
-    var vsCagr = Math.round((m.cagr - qqq.metrics.cagr) * 10) / 10;
-    var ddBetter = m.maxDD > qqq.metrics.maxDD;   /* 回撤是負數,數值大即是回撤淺 */
+  document.getElementById('all-note').textContent =
+    '期間 ' + K.meta.periodFrom + ' 至 ' + K.meta.periodTo + '(' + K.meta.years + ' 年)・全部對比 QQQ' +
+    '・按表頭排序,排序在每一組之內生效';
+  document.getElementById('all-foot').textContent =
+    '共 ' + ALL.length + ' 套,分 ' + K.groups.length + ' 組・截至 ' + K.meta.asOf;
 
-    return '' +
-    '<a class="strat-card" href="strategy.html" aria-label="' + KV.esc(s.name) + ' 策略詳情">' +
-      '<div class="card-head">' +
-        '<div>' +
-          '<div class="card-name">' + KV.esc(s.name) + '</div>' +
-          '<div class="card-en">' + KV.esc(s.en) + '</div>' +
+  function vsBench(s) { return Math.round((s.metrics.cumReturn - qqq.metrics.cumReturn) * 10) / 10; }
+
+  /* ============ 置頂 ============ */
+  var pinned = K.pinnedDefault.slice();
+
+  function renderPinned() {
+    var host = document.getElementById('pinned');
+    if (!pinned.length) {
+      host.innerHTML = '<div class="pin-empty">還未置頂任何策略。在下面的表格按 ☆ 加入,最多三套。</div>';
+      return;
+    }
+    host.innerHTML = pinned.map(function (id, i) {
+      var s = byId[id];
+      var m = s.metrics;
+      var vb = vsBench(s);
+      var vc = Math.round((m.cagr - qqq.metrics.cagr) * 10) / 10;
+      var ddBetter = m.maxDD > qqq.metrics.maxDD;   /* 回撤是負數,數值大即是回撤淺 */
+
+      return '' +
+      '<div class="strat-card">' +
+        '<button class="pin-btn is-on card-pin" data-unpin="' + KV.esc(s.id) + '" ' +
+          'aria-label="取消置頂 ' + KV.esc(s.name) + '" title="取消置頂">★</button>' +
+        '<div class="card-head">' +
+          '<div>' +
+            '<div class="card-name">' +
+              (s.href ? '<a class="strat-link" href="' + s.href + '">' + KV.esc(s.name) + '</a>' : KV.esc(s.name)) +
+            '</div>' +
+            '<div class="card-en">' + KV.esc(s.en) + '</div>' +
+          '</div>' +
+          '<span class="tag ' + (s.kind === '策略' ? 'tag-strategy' : 'tag-follow') + '" ' +
+            'style="margin-right:var(--s-6)">' + s.kind + '</span>' +
         '</div>' +
-        '<span class="tag ' + (s.kind === '策略' ? 'tag-strategy' : 'tag-follow') + '">' + s.kind + '</span>' +
-      '</div>' +
-      '<div class="card-tagline">' + KV.esc(s.tagline) + '</div>' +
+        '<div class="card-tagline">' + KV.esc(s.tagline) + '</div>' +
 
-      '<div class="metric-grid">' +
-        '<div>' +
-          '<div class="metric-label">累計回報 對基準</div>' +
-          '<div class="metric-value ' + KV.cls(vsBench) + '">' + KV.pp(vsBench) + '</div>' +
-          '<div class="metric-vs">本策略 ' + KV.pct(m.cumReturn) + '・QQQ ' + KV.pct(qqq.metrics.cumReturn) + '</div>' +
+        '<div class="metric-grid">' +
+          '<div>' +
+            '<div class="metric-label">累計回報 對基準</div>' +
+            '<div class="metric-value ' + KV.cls(vb) + '">' + KV.pp(vb) + '</div>' +
+            '<div class="metric-vs">本策略 ' + KV.pct(m.cumReturn) + '・QQQ ' + KV.pct(qqq.metrics.cumReturn) + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="metric-label">年化回報</div>' +
+            '<div class="metric-value ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</div>' +
+            '<div class="metric-vs">對 QQQ ' + KV.pp(vc) + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="metric-label">最大回撤</div>' +
+            '<div class="metric-value down">' + KV.pctPlain(m.maxDD) + '</div>' +
+            '<div class="metric-vs">QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + '・' +
+              (ddBetter ? '較淺' : '較深') + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="metric-label">勝率 ／ 盈虧比</div>' +
+            '<div class="metric-value">' + m.winRate + '%<span class="dim" style="font-weight:400"> ／ </span>' +
+              m.plRatio.toFixed(1) + '</div>' +
+            '<div class="metric-vs">共 ' + m.trades + ' 筆交易</div>' +
+          '</div>' +
         '</div>' +
-        '<div>' +
-          '<div class="metric-label">年化回報</div>' +
-          '<div class="metric-value ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</div>' +
-          '<div class="metric-vs">對 QQQ ' + KV.pp(vsCagr) + '</div>' +
-        '</div>' +
-        '<div>' +
-          '<div class="metric-label">最大回撤</div>' +
-          '<div class="metric-value down">' + KV.pctPlain(m.maxDD) + '</div>' +
-          '<div class="metric-vs">QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + '・' +
-            (ddBetter ? '較淺' : '較深') + '</div>' +
-        '</div>' +
-        '<div>' +
-          '<div class="metric-label">勝率 ／ 盈虧比</div>' +
-          '<div class="metric-value">' + m.winRate + '%<span class="dim" style="font-weight:400"> ／ </span>' +
-            m.plRatio.toFixed(1) + '</div>' +
-          '<div class="metric-vs">共 ' + m.trades + ' 筆交易</div>' +
-        '</div>' +
-      '</div>' +
 
-      '<div class="spark-wrap" id="spark-' + i + '"></div>' +
-      '<div class="spark-legend">' +
-        '<span><i style="background:' + (m.cumReturn >= 0 ? 'var(--up)' : 'var(--down)') + '"></i>' + KV.esc(s.name) + '</span>' +
-        '<span><i style="background:var(--bench-spy)"></i>QQQ</span>' +
-      '</div>' +
-    '</a>';
-  }).join('');
+        '<div class="spark-wrap" id="pin-spark-' + i + '"></div>' +
+        '<div class="spark-legend">' +
+          '<span><i style="background:' + (m.cumReturn >= 0 ? 'var(--up)' : 'var(--down)') + '"></i>' + KV.esc(s.name) + '</span>' +
+          '<span><i style="background:var(--bench-spy)"></i>QQQ</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
 
-  document.getElementById('cards').innerHTML = html;
+    pinned.forEach(function (id, i) {
+      KV.sparkline(document.getElementById('pin-spark-' + i), byId[id].equity, qqq.equity);
+    });
 
-  /* 迷你走勢:主線 + QQQ 虛線。兩者同基期 100,直接可比。 */
-  K.strategies.forEach(function (s, i) {
-    KV.sparkline(document.getElementById('spark-' + i), s.equity, qqq.equity);
+    host.querySelectorAll('[data-unpin]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-unpin');
+        pinned = pinned.filter(function (x) { return x !== id; });
+        renderPinned();
+        renderTable();
+      });
+    });
+  }
+
+  /* ============ 分組表 ============ */
+  var sortKey = 'vsBench', sortDir = 'desc';
+  var openState = {};
+  K.groups.forEach(function (g) { openState[g.id] = true; });
+
+  var GETTERS = {
+    name: function (s) { return s.name; },
+    vsBench: vsBench,
+    cagr: function (s) { return s.metrics.cagr; },
+    maxDD: function (s) { return s.metrics.maxDD; },
+    winRate: function (s) { return s.metrics.winRate; },
+  };
+
+  function renderTable() {
+    var sparkJobs = [];
+    var html = '';
+
+    K.groups.forEach(function (g) {
+      var rows = ALL.filter(function (s) { return s.group === g.id; });
+      var get = GETTERS[sortKey];
+      rows = rows.slice().sort(function (a, b) {
+        var x = get(a), y = get(b);
+        if (typeof x === 'string') return sortDir === 'asc' ? x.localeCompare(y) : y.localeCompare(x);
+        return sortDir === 'asc' ? x - y : y - x;
+      });
+
+      var open = openState[g.id];
+      html +=
+        '<tr class="grp-row">' +
+          '<td colspan="8">' +
+            '<button class="grp-head" data-group="' + g.id + '" aria-expanded="' + (open ? 'true' : 'false') + '">' +
+              '<span class="grp-caret">▼</span>' +
+              '<span class="grp-name">' + KV.esc(g.name) + '</span>' +
+              '<span class="grp-count">' + rows.length + ' 套</span>' +
+              '<span class="grp-note">' + KV.esc(g.note) + '</span>' +
+            '</button>' +
+          '</td>' +
+        '</tr>';
+
+      rows.forEach(function (s) {
+        var m = s.metrics;
+        var vb = vsBench(s);
+        var isPinned = pinned.indexOf(s.id) >= 0;
+        var sparkId = 'sp-' + s.id;
+        sparkJobs.push([sparkId, s]);
+
+        html +=
+          '<tr data-g="' + g.id + '"' + (open ? '' : ' hidden') + '>' +
+            '<td>' +
+              '<button class="pin-btn' + (isPinned ? ' is-on' : '') + '" data-pin="' + KV.esc(s.id) + '" ' +
+                'aria-pressed="' + (isPinned ? 'true' : 'false') + '" ' +
+                'aria-label="' + (isPinned ? '取消置頂 ' : '置頂 ') + KV.esc(s.name) + '">' +
+                (isPinned ? '★' : '☆') +
+              '</button>' +
+            '</td>' +
+            '<td title="' + KV.esc(s.name) + '">' +
+              (s.href
+                ? '<a class="strat-link" href="' + s.href + '">' + KV.esc(s.name) + '</a>'
+                : '<span>' + KV.esc(s.name) + '</span>') +
+              (s.demo ? '<span class="demo-mark">示意</span>' : '') +
+            '</td>' +
+            '<td class="num ' + KV.cls(vb) + '">' + KV.pp(vb) +
+              '<span class="dim" style="font-weight:400"> ' + KV.pct(m.cumReturn) + '</span></td>' +
+            '<td class="num ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</td>' +
+            '<td class="num down">' + KV.pctPlain(m.maxDD) + '</td>' +
+            '<td class="num">' + m.winRate + '%<span class="dim"> ／ </span>' + m.plRatio.toFixed(1) + '</td>' +
+            '<td><span class="row-spark" id="' + sparkId + '"></span></td>' +
+            '<td class="dim" title="' + KV.esc(s.tagline) + '">' + KV.esc(s.tagline) + '</td>' +
+          '</tr>';
+      });
+    });
+
+    document.getElementById('grp-body').innerHTML = html;
+
+    sparkJobs.forEach(function (j) {
+      var el = document.getElementById(j[0]);
+      if (el) KV.sparkline(el, j[1].equity, qqq.equity);
+    });
+
+    /* 摺疊 */
+    document.querySelectorAll('.grp-head').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-group');
+        openState[id] = !openState[id];
+        b.setAttribute('aria-expanded', openState[id] ? 'true' : 'false');
+        document.querySelectorAll('tr[data-g="' + id + '"]').forEach(function (tr) {
+          tr.hidden = !openState[id];
+        });
+      });
+    });
+
+    /* 置頂切換 */
+    document.querySelectorAll('[data-pin]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-pin');
+        var at = pinned.indexOf(id);
+        if (at >= 0) pinned.splice(at, 1);
+        else {
+          pinned.push(id);
+          if (pinned.length > 3) pinned.shift();   /* 最多三張,舊的自動讓位 */
+        }
+        renderPinned();
+        renderTable();
+      });
+    });
+  }
+
+  /* 表頭排序 */
+  function paintHeads() {
+    document.querySelectorAll('#grp-table th.sortable').forEach(function (th) {
+      var k = th.getAttribute('data-key');
+      th.setAttribute('aria-sort', k === sortKey ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none');
+    });
+  }
+  document.querySelectorAll('#grp-table th.sortable').forEach(function (th) {
+    th.setAttribute('tabindex', '0');
+    th.setAttribute('role', 'button');
+    function go() {
+      var k = th.getAttribute('data-key');
+      if (k === sortKey) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      else { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; }
+      paintHeads();
+      renderTable();
+    }
+    th.addEventListener('click', go);
+    th.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    });
   });
+
+  paintHeads();
+  renderPinned();
+  renderTable();
 })();
 </script>
 </body>
