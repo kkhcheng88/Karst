@@ -15,6 +15,11 @@ candidates.md 剔選那一行,腳本只取每行第一個欄位當 id,所以貼�
      記入 out-dir/skipped.md,不中止其餘影片。
   3. 自動字幕辨識質素一般 — 本腳本只負責抽取純文字,不做校對;任何
      要入引擎的具體數字,代理抽取筆記時必須標明「回片核對」。
+
+語言優先順序用 --sub-langs 控制(逗號分隔,前面的優先):同一條片若同時
+有多種語言字幕,揀清單裡排得最前那一種。預設「zh-Hant,zh-HK,yue,zh-Hans,en」
+(中文優先);對象本身講英文的材料(例:英文播客訪談)可以用
+--sub-langs "en,zh-Hant,zh-HK,yue,zh-Hans" 反過來揀英文優先。
 """
 import argparse
 import subprocess
@@ -42,7 +47,7 @@ def read_ids_file(path: Path) -> list[str]:
     return ids
 
 
-def fetch_one(video_id: str, workdir: Path) -> Path | None:
+def fetch_one(video_id: str, workdir: Path, sub_langs: str) -> Path | None:
     workdir.mkdir(parents=True, exist_ok=True)
     cmd = [
         YT_DLP,
@@ -50,7 +55,7 @@ def fetch_one(video_id: str, workdir: Path) -> Path | None:
         "--write-subs",
         "--write-auto-subs",
         "--sub-langs",
-        SUB_LANGS,
+        sub_langs,
         "--sub-format",
         "json3",
         "--sleep-requests",
@@ -67,9 +72,13 @@ def fetch_one(video_id: str, workdir: Path) -> Path | None:
     json3_files = sorted(workdir.glob(f"{video_id}*.json3"))
     if not json3_files:
         return None
-    # 若同時有多語言字幕,優先揀非 en 那個(較貼近粵/中原音)
-    non_en = [p for p in json3_files if ".en." not in p.name]
-    return non_en[0] if non_en else json3_files[0]
+    # 按 sub_langs 的順序揀語言;冇一個對得上就退而求其次揀第一個
+    for lang in sub_langs.split(","):
+        lang = lang.strip()
+        for p in json3_files:
+            if f".{lang}." in p.name:
+                return p
+    return json3_files[0]
 
 
 def main():
@@ -81,6 +90,11 @@ def main():
     ap.add_argument("--out-dir", required=True, help="輸出目錄")
     ap.add_argument(
         "--sleep", type=float, default=2.0, help="每條片之間額外 sleep 秒數(避 429)"
+    )
+    ap.add_argument(
+        "--sub-langs",
+        default=SUB_LANGS,
+        help="字幕語言優先順序,逗號分隔,前面的優先(預設中文優先)",
     )
     args = ap.parse_args()
 
@@ -100,7 +114,7 @@ def main():
     done = []
     for i, vid in enumerate(ids):
         print(f"[{i + 1}/{len(ids)}] {vid} ...")
-        json3_path = fetch_one(vid, raw_dir)
+        json3_path = fetch_one(vid, raw_dir, args.sub_langs)
         if json3_path is None:
             print("  無字幕(只有 live_chat 不算字幕),跳過")
             skipped.append(vid)

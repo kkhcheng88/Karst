@@ -8,10 +8,10 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: []
-claimedBy: KARST-011-video-to-skill
+claimedBy: null
 epic: V1 藍圖
 deliverable: KARST-D01
-raised: 第三條驗收(用一個新對象跑通全流程)要用戶剔選候選片單,可以開始揀「施傅」的候選影片抽字幕嗎?
+closed: 2026-08-27
 ---
 
 ## 工作內容
@@ -22,11 +22,12 @@ raised: 第三條驗收(用一個新對象跑通全流程)要用戶剔選候選�
 
 - [x] 倉內有可重跑腳本:輸入名字或影片 id 清單,輸出字幕純文字檔
 - [x] 管線步驟與篩選準則成文(含三個限制的處理方式)
-- [ ] 用一個新對象跑通一次全流程作驗收,筆記落 research/
+- [x] 用一個新對象跑通一次全流程作驗收,筆記落 research/
 
 ## 結果
 
 · 2026-08-26 12:00 零散腳本已整理成倉內可重跑工具,存 `tools/video-to-skill/`。`search.py` 名字→候選影片清單(CSV/MD),已用「施傅」實測,55 筆去重候選落 `research/_candidates/施傅/`;`captions.py` video id 清單→字幕純文字檔,無字幕的記入 `skipped.md`、不中止其餘影片,內建 429 節流(`--sleep-requests 2` + 每片間 `--sleep`);`json3_to_text.py` 搬自本 session scratchpad 的參考實作,同時可當 CLI 與模組被 `captions.py` 呼叫;`README.md` 寫步驟、篩選準則(訪談/系統披露類優先、行情評論類跳過)、三個限制(429、無字幕跳過、自動字幕數字回片核對)的處理方式、代理抽取提示模板(沿用 Eric 筆記章節形態)。第三條驗收(新對象跑全流程)只做到候選清單,見下方舉手留言,票不關檔。
+· 2026-08-27 00:50 用新對象 Situational Awareness(Leopold Aschenbrenner)跑通全流程,完成第三條驗收。用戶從 33 條候選(`research/_candidates/Situational Awareness/candidates.md`)剔選 7 條訪談/系統披露/講策略類影片抽字幕,`captions.py` 加了 `--sub-langs` 語言優先順序參數(此次 en 優先於 zh-Hant,原本只支援中文優先寫死),7 條全部有英文自動字幕、0 條跳過。論文原文站 `situational-awareness.ai` 對 WebFetch 一律回 403,改用 WebSearch 取第三方摘要並與影片逐字稿交叉核對數字一致,筆記內已標明此段落是轉引不是原文直讀。筆記落 `research/2026-08-27-situational-awareness-video-to-skill.md`,按用戶指示只記投資論點與自述倉位/風險原則,不評爆倉,基金近況相關第三方標題全部歸入筆記末「事實核查待辦」一節,只列出處不下結論,註明關乎 D-017、交主線處理。KARST-011 三條驗收條件全數完成,票關檔。
 
 ## 留言
 
@@ -44,3 +45,8 @@ raised: 第三條驗收(用一個新對象跑通全流程)要用戶剔選候選�
 
 **要睇邊份稿**：
 - research/_candidates/施傅/candidates.md
+
+### agent:KARST-011-video-to-skill · 2026-08-27 00:34
+**裁決**：示範對象改為 Situational Awareness(Leopold Aschenbrenner),不用「施傅」;用戶已從候選清單剔選 7 條片抽字幕(訪談/系統披露/講策略類),爆倉/清算/Citadel 類第三方片與中文轉述頻道全部跳過,論文原文改用 WebFetch/WebSearch 取代抽字幕。
+
+**出處**：用戶 2026-08-27 剔選(經派工訊息轉達候選清單勾選結果與抽取範圍指示)
