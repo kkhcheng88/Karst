@@ -6,23 +6,22 @@
 <title>運行詳情 RUN-2026-0812-07 — Karst 原型</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="fit">
 
 <div id="nav-host"></div>
 
 <main class="wrap">
 
-  <nav class="breadcrumb" aria-label="麵包屑">
-    <a href="index.html">策略總覽</a><span>／</span>
-    <a href="strategy.html">趨勢波段</a><span>／</span>
-    <span id="bc-run"></span>
-  </nav>
-
   <header class="page-head">
     <div class="page-head-row">
       <div>
         <div class="page-title-group">
+          <nav class="breadcrumb" aria-label="麵包屑" style="margin:0">
+            <a href="index.html">策略總覽</a><span>／</span>
+            <a href="strategy.html">趨勢波段</a><span>／</span>
+          </nav>
           <h1>運行詳情</h1>
+          <span class="page-en mono" id="bc-run"></span>
           <span class="proto-badge">原型・假數據</span>
         </div>
         <p class="page-sub">一次回測運行的完整留痕:同樣的版本、參數與數據快照,重跑一次要得出同樣的數字。</p>
@@ -30,71 +29,76 @@
     </div>
   </header>
 
-  <!-- ============ 頁頂一行留痕摘要 ============ -->
-  <div class="trace-bar" id="trace" aria-label="留痕摘要"></div>
+  <!-- ============ 頁頂留痕摘要:四格版本綁定 ============ -->
+  <div class="trace-grid" id="trace" aria-label="留痕摘要"></div>
+  <div class="trace-tail" id="trace-tail"></div>
 
-  <!-- ============ 詳情指標 ============ -->
-  <section class="section" aria-labelledby="h-metrics">
-    <div class="section-head">
-      <h2 id="h-metrics">詳情指標</h2>
-      <span class="section-note" id="metrics-note"></span>
+  <!-- 這次運行綁死的版本已經落後於現行版本,要講明 -->
+  <div id="stale-host"></div>
+
+  <dialog class="modal" id="rerun-modal" aria-labelledby="rerun-title">
+    <div class="modal-body">
+      <div class="modal-title" id="rerun-title">以現版本重跑</div>
+      <div id="rerun-body"></div>
     </div>
-    <div class="kpi-row" id="kpis-main"></div>
-    <div class="kpi-row" id="kpis-sub" style="margin-top:var(--s-3)"></div>
-  </section>
+    <div class="modal-foot">
+      <button class="btn" id="rerun-close">知道了</button>
+    </div>
+  </dialog>
 
-  <!-- ============ 淨值對比 ============ -->
-  <section class="section" aria-labelledby="h-equity">
-    <div class="chart-panel">
-      <div class="chart-head">
-        <div>
-          <h2 id="h-equity">組合淨值 對 QQQ／SPY</h2>
-          <div class="section-note" id="equity-note"></div>
-        </div>
-        <div class="chart-legend" id="equity-legend"></div>
+  <!-- ============ 詳情指標:收成一行 ============ -->
+  <div class="kpi-row" id="kpis-main" style="flex:none"></div>
+
+  <!-- ============ 主體:分頁,任何一頁都不會把版面拉長 ============ -->
+  <div class="fit-main">
+    <div class="fit-panel">
+      <div class="tabs" role="tablist" aria-label="運行內容">
+        <button class="tab-btn" role="tab" id="tab-eq" aria-selected="true" aria-controls="p-eq">淨值走勢</button>
+        <button class="tab-btn" role="tab" id="tab-chg" aria-selected="false" aria-controls="p-chg">持倉變化</button>
+        <button class="tab-btn" role="tab" id="tab-tr" aria-selected="false" aria-controls="p-tr">逐筆交易</button>
+        <button class="tab-btn" role="tab" id="tab-dr" aria-selected="false" aria-controls="p-dr">交易鑽入</button>
+        <div class="bench-line" id="equity-legend" style="margin-left:auto;align-self:center;padding-right:var(--s-4)"></div>
       </div>
-      <div class="chart-box" id="equity-chart"></div>
-    </div>
-  </section>
+      <div class="fit-panel-body">
 
-  <!-- ============ 持倉變化 ============ -->
-  <section class="section" aria-labelledby="h-changes">
-    <div class="section-head">
-      <h2 id="h-changes">持倉變化</h2>
-      <span class="section-note">運行期間最後一段的倉位調整,每一筆都寫得出原因。</span>
-    </div>
-    <div class="table-scroll">
-      <table class="kt" style="min-width:860px">
-        <thead>
-          <tr>
-            <th style="width:108px">日期</th>
-            <th style="width:74px">動作</th>
-            <th style="width:76px">代號</th>
-            <th style="width:132px">名稱</th>
-            <th class="num" style="width:86px">調整前</th>
-            <th class="num" style="width:86px">調整後</th>
-            <th class="num" style="width:78px">變動</th>
-            <th style="width:280px">原因</th>
-          </tr>
-        </thead>
-        <tbody id="changes-body"></tbody>
-      </table>
-    </div>
-    <div class="table-foot">
-      <span id="changes-foot"></span>
-      <span>權重為佔組合總值百分比</span>
-    </div>
-  </section>
+        <div class="tab-panel" id="p-eq" role="tabpanel" aria-labelledby="tab-eq">
+          <div class="chart-box" id="equity-chart"></div>
+          <p class="section-note" id="equity-note" style="padding:var(--s-2) var(--s-4) var(--s-3)"></p>
+        </div>
 
-  <!-- ============ 逐筆交易 + 鑽入 ============ -->
-  <section class="section" aria-labelledby="h-trades">
-    <div class="section-head">
-      <h2 id="h-trades">逐筆交易</h2>
-      <span class="section-note">點任何一筆,下面即場展開該股的蠟燭圖與因子檢視,不用轉頁。點表頭排序,排序狀態會寫入網址。</span>
+        <div class="tab-panel" id="p-chg" role="tabpanel" aria-labelledby="tab-chg" hidden>
+          <table class="kt" style="min-width:860px">
+            <thead>
+              <tr>
+                <th style="width:108px">日期</th>
+                <th style="width:74px">動作</th>
+                <th style="width:76px">代號</th>
+                <th style="width:132px">名稱</th>
+                <th class="num" style="width:86px">調整前</th>
+                <th class="num" style="width:86px">調整後</th>
+                <th class="num" style="width:78px">變動</th>
+                <th>原因</th>
+              </tr>
+            </thead>
+            <tbody id="changes-body"></tbody>
+          </table>
+          <div class="table-foot">
+            <span id="changes-foot"></span>
+            <span>權重為佔組合總值百分比</span>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="p-tr" role="tabpanel" aria-labelledby="tab-tr" hidden>
+          <div id="trades-table"></div>
+        </div>
+
+        <div class="tab-panel" id="p-dr" role="tabpanel" aria-labelledby="tab-dr" hidden>
+          <div id="drill-host"></div>
+        </div>
+
+      </div>
     </div>
-    <div id="trades-table"></div>
-    <div id="drill-host"></div>
-  </section>
+  </div>
 
   <p class="archive-line">
     舊變體(存檔,已不在主導航):<a href="stock-a.html">A・因子放側欄</a>　<a href="stock-b.html">B・因子放下方</a>
@@ -116,34 +120,89 @@
   var r = K.run, d = r.derived, st = r.stats;
   document.getElementById('bc-run').textContent = r.id;
 
-  /* ---- 留痕摘要:一行講齊「這個數字從哪裡來」 ---- */
-  var traceItems = [
-    ['運行編號', r.id],
-    ['策略', r.strategyName],
-    ['版本', r.version],
-    ['參數', r.params],
-    ['期間', r.periodFrom + ' → ' + r.periodTo],
-    ['數據快照', r.snapshot],
-    ['引擎', r.engine],
-    ['運行時間', r.ranAt],
+  /* ---- 留痕摘要:四格講齊「這個數字綁死了什麼版本」 ---- */
+  var bind = r.binding;
+  var stale = K.staleCheck(bind);
+  var staleNames = {};
+  stale.items.forEach(function (it) { staleNames[it.name] = it; });
+
+  /* 因子版本逐個寫,落後那個標黃 */
+  var factorCell = bind.factors.map(function (f) {
+    var reg = K.factorRegistry.filter(function (x) { return x.id === f.id; })[0];
+    var nm = reg ? reg.name : f.id;
+    var isStale = !!staleNames[nm];
+    return '<span class="' + (isStale ? 'ver-stale' : '') + '">' +
+      KV.esc(nm) + ' ' + KV.esc(f.ver) + (isStale ? ' ▲' : '') + '</span>';
+  }).join('<span class="dim">・</span>');
+
+  var cells = [
+    { k: '策略版本', v: KV.esc(bind.strategyVer) +
+        (staleNames['趨勢波段'] ? ' <span class="ver-stale">▲</span>' : ''),
+      hint: '這次運行用的策略程式版本' },
+    { k: '因子版本', v: factorCell, hint: '每個因子各有自己的版本,分開計' },
+    { k: '參數', v: KV.esc(r.params), hint: '這次運行實際餵入的參數' },
+    { k: '數據快照編號', v: KV.esc(r.snapshot), hint: '定住當時的價格與財務數據,重跑才會得出同樣的數字' },
   ];
-  document.getElementById('trace').innerHTML = traceItems.map(function (t, i) {
-    return (i ? '<span class="trace-sep">│</span>' : '') +
-      '<span class="trace-item"><span class="trace-key">' + t[0] + '</span>' +
-      '<span class="trace-val">' + KV.esc(t[1]) + '</span></span>';
+  document.getElementById('trace').innerHTML = cells.map(function (c) {
+    return '<div class="trace-cell">' +
+      '<div class="trace-cell-k">' + c.k +
+        '<span class="hint" title="' + KV.esc(c.hint) + '">?</span></div>' +
+      '<div class="trace-cell-v">' + c.v + '</div>' +
+    '</div>';
   }).join('');
 
-  document.getElementById('metrics-note').textContent =
-    '全部指標由 ' + r.periodFrom + ' 至 ' + r.periodTo + ' 這段期間計出・對比基準 QQQ';
+  document.getElementById('trace-tail').innerHTML =
+    ['運行編號 ' + r.id, '策略 ' + r.strategyName,
+     '期間 ' + r.periodFrom + ' → ' + r.periodTo,
+     '引擎 ' + r.engine, '運行時間 ' + r.ranAt]
+      .map(function (t) { return '<span>' + KV.esc(t) + '</span>'; }).join('');
 
-  /* ---- 票面指定的四個詳情指標 ---- */
+  /* ---- 舊版本標記 ---- */
+  if (stale.stale) {
+    var it = stale.items[0];
+    document.getElementById('stale-host').innerHTML =
+      '<div class="stale-bar">' +
+        '<span class="stale-badge">舊版本</span>' +
+        '<span class="stale-text"><b>' + KV.esc(it.name) + '計法已於 ' + KV.esc(it.updatedAt) +
+          ' 更新(' + KV.esc(it.now) + '),本運行結果為 ' + KV.esc(it.was) +
+          ' 之下的紀錄,不會自動更新。</b>　改動:' + KV.esc(it.whatChanged) + '</span>' +
+        '<button class="btn btn-primary" id="rerun-btn">以現版本重跑</button>' +
+      '</div>';
+
+    var modal = document.getElementById('rerun-modal');
+    document.getElementById('rerun-body').innerHTML =
+      '<p>會用現行版本重跑一次,產生一個<b>新的運行</b>,與本運行血統相連:同一個策略、同一段期間、同一個數據快照,' +
+        '分別只在版本。兩個運行可以並排比較,本運行的數字不會被改寫。</p>' +
+      '<div class="lineage">' +
+        '本運行　<b>' + KV.esc(r.id) + '</b>　' + KV.esc(bind.strategyVer) + '・' +
+          KV.esc(K.factorLine(bind)) + '<br>' +
+        '　　└─ 新運行　<b>RUN-2026-0826-NEW</b>　' + KV.esc(K.strategyCurrentVer) + '・' +
+          KV.esc(K.factorRegistry.map(function (f) { return f.name + ' ' + f.current; }).join('・')) +
+      '</div>' +
+      '<p class="dim">原型不會真的重跑 —— 這一格只為示意「舊運行不改寫,新運行接上血統」。</p>';
+
+    document.getElementById('rerun-btn').addEventListener('click', function () {
+      if (modal.showModal) modal.showModal();
+    });
+    document.getElementById('rerun-close').addEventListener('click', function () {
+      modal.close();
+    });
+  }
+
+  /* ---- 指標一行收齊。基準不再獨佔卡片,只在圖例列出現 ---- */
   var main = [
     { label: '年化超額', hint: '策略年化回報減去 QQQ 年化回報',
       value: KV.pp(d.excessCagr), cls: KV.cls(d.excessCagr),
       basis: '策略 ' + KV.pctPlain(d.cagr) + '・QQQ ' + KV.pctPlain(d.qqqCagr) },
+    { label: '最大回撤', hint: '由高位跌到低位的最深一次',
+      value: KV.pctPlain(d.maxDD), cls: 'down',
+      basis: 'QQQ ' + KV.pctPlain(d.qqqMaxDD) + '・較淺' },
     { label: 'Sortino', hint: '只罰下行波動的風險調整回報',
       value: d.sortino.toFixed(2), cls: '',
       basis: 'QQQ ' + K.benchmarks.QQQ.metrics.sortino.toFixed(2) + '・年化波動 ' + KV.pctPlain(d.vol) },
+    { label: '勝率 ／ 盈虧比', hint: '贏面有多大、贏一次抵蝕幾次',
+      value: st.winRate.toFixed(0) + '% ／ ' + st.plRatio.toFixed(2), cls: '',
+      basis: '贏面細但賺得大' },
     { label: '平均持倉日數', hint: '每筆交易由進場到出場的日曆日數平均',
       value: st.avgHold + ' 日', cls: '',
       basis: '共 ' + st.tradeCount + ' 筆交易' },
@@ -151,48 +210,39 @@
       value: d.turnover + '%', cls: '',
       basis: '約每 ' + Math.round(365 / (d.turnover / 100)) + ' 日換足一轉' },
   ];
+  document.getElementById('kpis-main').style.gridTemplateColumns =
+    'repeat(' + main.length + ', minmax(0, 1fr))';
   document.getElementById('kpis-main').innerHTML = main.map(function (k) {
     return '<div class="kpi">' +
       '<div class="kpi-label">' + k.label +
         '<span class="hint" title="' + KV.esc(k.hint) + '">?</span></div>' +
-      '<div class="kpi-value ' + k.cls + '">' + k.value + '</div>' +
-      '<div class="kpi-basis">' + k.basis + '</div>' +
-    '</div>';
-  }).join('');
-
-  /* ---- 支撐指標 ---- */
-  var sub = [
-    { label: '累計回報', value: KV.pct(d.cumReturn), cls: KV.cls(d.cumReturn),
-      basis: 'QQQ ' + KV.pct(d.qqqCumReturn) + '・SPY ' + KV.pct(d.spyCumReturn) },
-    { label: '年化回報', value: KV.pctPlain(d.cagr), cls: KV.cls(d.cagr),
-      basis: 'QQQ ' + KV.pctPlain(d.qqqCagr) },
-    { label: '最大回撤', value: KV.pctPlain(d.maxDD), cls: 'down',
-      basis: 'QQQ ' + KV.pctPlain(d.qqqMaxDD) + '・較淺' },
-    { label: '勝率 ／ 盈虧比', value: st.winRate.toFixed(0) + '% ／ ' + st.plRatio.toFixed(2), cls: '',
-      basis: '贏面細但賺得大' },
-    { label: '最佳 ／ 最差單筆', value: KV.pct(st.bestTrade) + ' ／ ' + KV.pct(st.worstTrade), cls: '',
-      basis: '止蝕設 8%,最差略為穿位' },
-  ];
-  document.getElementById('kpis-sub').innerHTML = sub.map(function (k) {
-    return '<div class="kpi">' +
-      '<div class="kpi-label">' + k.label + '</div>' +
       '<div class="kpi-value sm ' + k.cls + '">' + k.value + '</div>' +
       '<div class="kpi-basis">' + k.basis + '</div>' +
     '</div>';
   }).join('');
 
-  /* ---- 三線淨值圖 ---- */
+  /* ---- 三線淨值圖:基準只在圖例列以一行細字並排 ---- */
   document.getElementById('equity-note').textContent =
-    '三條線同以 ' + r.series.dates[0] + ' 為基期 100,直接可比。';
-  document.getElementById('equity-legend').innerHTML =
-    '<span class="legend-item"><i class="legend-swatch" style="background:#26a69a"></i>趨勢波段 ' +
-      '<b class="legend-val up">' + KV.pct(d.cumReturn) + '</b></span>' +
-    '<span class="legend-item"><i class="legend-swatch" style="background:#b07de0"></i>QQQ ' +
-      '<b class="legend-val up">' + KV.pct(d.qqqCumReturn) + '</b></span>' +
-    '<span class="legend-item"><i class="legend-swatch" style="background:#7d869c"></i>SPY ' +
-      '<b class="legend-val up">' + KV.pct(d.spyCumReturn) + '</b></span>';
+    '三條線同以 ' + r.series.dates[0] + ' 為基期 100,直接可比。期間 ' +
+    r.periodFrom + ' 至 ' + r.periodTo + '。最佳單筆 ' + KV.pct(st.bestTrade) +
+    ',最差單筆 ' + KV.pct(st.worstTrade) + '(止蝕設 8%,最差略為穿位)。';
 
-  var chart = KV.makeChart(document.getElementById('equity-chart'), 380);
+  document.getElementById('equity-legend').innerHTML =
+    '<span><i style="background:#26a69a"></i>趨勢波段 <b class="up">' + KV.pct(d.cumReturn) +
+      '</b>・年化 <b>' + KV.pctPlain(d.cagr) + '</b></span>' +
+    '<span><i style="background:#b07de0"></i>QQQ <b>' + KV.pct(d.qqqCumReturn) +
+      '</b>・年化 <b>' + KV.pctPlain(d.qqqCagr) + '</b></span>' +
+    '<span><i style="background:#7d869c"></i>SPY <b>' + KV.pct(d.spyCumReturn) +
+      '</b>・年化 <b>' + KV.pctPlain(K.benchmarks.SPY.metrics.cagr) + '</b></span>';
+
+  /* 圖高由分頁面板實際量得的高度分配,底部時間軸才不會被切走 */
+  function panelH(panelId, reserve) {
+    var body = document.getElementById(panelId).parentElement;
+    return Math.max(220, Math.round(body.clientHeight - reserve));
+  }
+
+  var chart = KV.makeChart(document.getElementById('equity-chart'),
+    panelH('p-eq', document.getElementById('equity-note').offsetHeight + 18));
   var sSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
   sSpy.setData(KV.zip(r.series.dates, r.series.spy));
   var sQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
@@ -219,8 +269,22 @@
   document.getElementById('changes-foot').textContent =
     '顯示最後 ' + r.holdingChanges.length + ' 筆調整・最新在上';
 
+  /* ---- 分頁 ---- */
+  KV.initTabs('.tabs');
+  /* 基準圖例只屬於淨值那一頁,轉去其他分頁就收起,免得誤讀成當前圖的數字 */
+  var legendEl = document.getElementById('equity-legend');
+  document.querySelectorAll('.tabs .tab-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      legendEl.style.visibility = (b.id === 'tab-eq') ? 'visible' : 'hidden';
+    });
+  });
+  function goTab(id) {
+    var b = document.getElementById(id);
+    if (b && b.getAttribute('aria-selected') !== 'true') b.click();
+  }
+
   /* ============================================================
-     鑽入:點一筆交易,即場開該股的蠟燭圖 + 因子側欄
+     鑽入:點一筆交易,切到「交易鑽入」分頁開該股的蠟燭圖 + 因子側欄
      ============================================================ */
   var drillHost = document.getElementById('drill-host');
   var drillChart = null;
@@ -236,19 +300,21 @@
 
   function showHint() {
     drillHost.innerHTML =
-      '<div class="drill-hint">點上面任何一筆交易,這裡即場展開該股的蠟燭圖(有進出場標記)與當時的因子檢視。</div>';
+      '<div class="drill-hint">去「逐筆交易」分頁點任何一筆,這裡即出該股的蠟燭圖(有進出場標記)與當時的因子檢視。</div>';
   }
 
   function openTrade(t) {
     var S = K.tradeSeries(t);
     var F = S.factors;
 
+    goTab('tab-dr');   /* 先切分頁,圖才量得到闊度 */
+
     if (drillChart) { try { drillChart.remove(); } catch (e) {} drillChart = null; }
 
     drillHost.innerHTML =
       '<div class="drill">' +
 
-        '<div class="chart-panel">' +
+        '<div class="chart-panel" style="background:transparent;padding:0">' +
           '<div class="chart-head">' +
             '<div>' +
               '<h3>' + KV.esc(t.sym) + '　' + KV.esc(t.name) +
@@ -262,11 +328,11 @@
             '</div>' +
             '<div style="display:flex;align-items:center;gap:var(--s-3)">' +
               '<div class="chart-legend" id="d-ohlc"></div>' +
-              '<button class="drill-close" id="d-close">收起</button>' +
+              '<button class="drill-close" id="d-close">回到逐筆交易</button>' +
             '</div>' +
           '</div>' +
           '<div class="chart-box" id="d-candle"></div>' +
-          '<p class="section-note" style="margin:var(--s-3) 0 0">' +
+          '<p class="section-note" style="margin:var(--s-2) 0 0">' +
             '綠色向上箭嘴為買入,紅色向下箭嘴為賣出。掃過蠟燭圖,右邊因子欄會跳到那一天。</p>' +
         '</div>' +
 
@@ -281,7 +347,7 @@
           '</div>' +
           '<div id="d-bars"></div>' +
 
-          '<div class="factor-side-head" style="padding-top:var(--s-4)">' +
+          '<div class="factor-side-head" style="padding-top:var(--s-3)">' +
             '<div style="display:flex;align-items:baseline;justify-content:space-between">' +
               '<h4>本段走勢</h4>' +
               '<span class="section-note">' + F.length + ' 個交易日</span>' +
@@ -289,18 +355,18 @@
           '</div>' +
           '<div id="d-sparks"></div>' +
 
-          '<div class="factor-side-head" style="padding-top:var(--s-4)">' +
+          '<div class="factor-side-head" style="padding-top:var(--s-3)">' +
             '<h4>持倉期間</h4>' +
             '<p class="section-note" style="margin:var(--s-1) 0 var(--s-2)">綠 = 策略持有中,灰 = 沒有持有</p>' +
             '<div class="sel-strip" id="d-strip"></div>' +
             '<div class="scale-ends"><span>' + F[0].time + '</span><span>' + F[F.length - 1].time + '</span></div>' +
           '</div>' +
 
-          '<div class="factor-side-head" style="padding-top:var(--s-4)">' +
+          '<div class="factor-side-head" style="padding-top:var(--s-3)">' +
             '<h4>逐日分數</h4>' +
             '<p class="section-note" style="margin:var(--s-1) 0 0">出場前後 30 個交易日,最新在上</p>' +
           '</div>' +
-          '<div class="table-scroll table-scroll-y" style="max-height:280px">' +
+          '<div class="table-scroll table-scroll-y" id="d-scroll">' +
             '<table class="kt" style="min-width:308px">' +
               '<thead><tr>' +
                 '<th style="width:84px">日期</th>' +
@@ -319,7 +385,7 @@
 
     /* ---- 蠟燭圖 ---- */
     var el = document.getElementById('d-candle');
-    drillChart = KV.makeChart(el, 420);
+    drillChart = KV.makeChart(el, panelH('p-dr', 118));
 
     var candles = drillChart.addCandlestickSeries({
       upColor: '#26a69a', downColor: '#ef5350',
@@ -397,6 +463,8 @@
     }).join('');
 
     /* ---- 逐日分數 ---- */
+    document.getElementById('d-scroll').style.maxHeight =
+      Math.max(120, Math.round(window.innerHeight - 880)) + 'px';
     var recent = F.slice(Math.max(0, S.exitIndex - 22), S.exitIndex + 8).reverse();
     function renderTable(highlight) {
       document.getElementById('d-body').innerHTML = recent.map(function (f) {
@@ -455,6 +523,7 @@
       if (drillChart) { try { drillChart.remove(); } catch (e) {} drillChart = null; }
       if (table) table.select(null);
       showHint();
+      goTab('tab-tr');
     });
   }
 
@@ -462,7 +531,7 @@
   table = KV.sortableTable({
     mount: '#trades-table',
     minWidth: '1240px',
-    maxHeight: '520px',
+    maxHeight: Math.max(200, Math.round(window.innerHeight - 430)) + 'px',
     defaultSort: 'entryDate',
     defaultDir: 'desc',
     rows: r.trades,
@@ -470,7 +539,6 @@
     onRowClick: function (t) {
       table.select(t.id);
       openTrade(t);
-      document.getElementById('drill-host').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     },
     cols: [
       { key: 'id', label: '編號', width: '68px', get: function (t) { return t.id; },
@@ -505,7 +573,7 @@
     foot: function (rows) {
       return '<span>顯示 1–' + rows.length + ' 筆抽樣,整體共 ' + st.tradeCount + ' 筆' +
         '(抽樣勝率 ' + KV.pctPlain(st.sampleWinRate) + ',整體 ' + KV.pctPlain(st.winRate) + ')</span>' +
-        '<span>點一行即在下面展開該股蠟燭圖</span>';
+        '<span>點一行即切去「交易鑽入」分頁</span>';
     },
   });
 

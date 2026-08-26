@@ -6,175 +6,133 @@
 <title>趨勢波段 策略詳情 — Karst 原型</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="fit">
 
 <div id="nav-host"></div>
 
 <main class="wrap">
 
-  <nav class="breadcrumb" aria-label="麵包屑">
-    <a href="index.html">策略總覽</a><span>／</span><span>趨勢波段</span>
-  </nav>
-
   <header class="page-head">
     <div class="page-head-row">
       <div>
         <div class="page-title-group">
+          <nav class="breadcrumb" aria-label="麵包屑" style="margin:0"><a href="index.html">策略總覽</a><span>／</span></nav>
           <h1>趨勢波段</h1>
           <span class="page-en">Trend Swing</span>
           <span class="tag tag-strategy">策略</span>
           <span class="tag tag-live">紙上交易運行中</span>
           <span class="proto-badge">原型・假數據</span>
         </div>
-        <p class="page-sub">突破 N 日新高,純風險回報驅動。兼任引擎參數掃描的試練場。</p>
       </div>
     </div>
   </header>
 
-  <!-- ============ 現役設定(門面)============ -->
-  <section aria-labelledby="h-config">
-    <div class="config-live">
-      <div class="config-head">
-        <span class="config-title" id="h-config">現役設定</span>
-        <span class="tag tag-live">紙上交易實際跟隨這一組</span>
-        <span class="section-note" id="config-sub"></span>
-      </div>
-      <div class="config-chips" id="config-chips"></div>
-      <div class="kpi-row" id="kpis" style="margin-top:var(--s-4)" aria-label="現役設定的長期表現"></div>
-    </div>
+  <!-- ============ 薄薄一條現役設定摘要 ============ -->
+  <div class="config-slim" id="config-slim"></div>
 
-    <!-- 歷史最佳只是參考,不可以同現役設定平起平坐 -->
-    <div class="config-past" id="config-past"></div>
-  </section>
+  <div class="fit-main" style="grid-template-columns:minmax(0,46fr) minmax(0,54fr)">
 
-  <!-- ============ 選股快照 ============ -->
-  <section class="section" aria-labelledby="h-picks">
-    <div class="section-head">
-      <h2 id="h-picks">選股快照</h2>
-      <span class="section-note">揀一日,看策略當日如何由整個範圍逐層收窄到持倉。換一日,數字會不同。</span>
-    </div>
+    <!-- ================= 左欄:圖 + 漏斗 + 版本沿革 ================= -->
+    <div class="fit-col">
 
-    <div style="display:flex;align-items:center;gap:var(--s-4);flex-wrap:wrap;margin-bottom:var(--s-4)">
-      <span class="slice-label">日期</span>
-      <div class="date-switch" id="pick-dates" role="group" aria-label="選股日期"></div>
-      <span class="section-note" id="pick-note"></span>
-    </div>
-
-    <div class="funnel" id="funnel" aria-label="逐層收窄"></div>
-    <p class="section-note" style="margin:var(--s-2) 0 0">
-      條的長度用平方根刻度,否則後面三條會細到看不見;實際數目以右邊數字為準。
-    </p>
-
-    <div class="section-head" style="margin-top:var(--s-5)">
-      <h3>當日逐隻評分</h3>
-      <span class="section-note" id="picks-note"></span>
-    </div>
-    <div class="table-scroll table-scroll-y" style="max-height:520px">
-      <table class="kt" style="min-width:1040px">
-        <thead>
-          <tr>
-            <th style="width:74px">代號</th>
-            <th style="width:140px">名稱</th>
-            <th style="width:116px">行業</th>
-            <th class="num" style="width:76px">質素分</th>
-            <th class="num" style="width:76px">動量分</th>
-            <th class="num" style="width:76px">超賣度</th>
-            <th class="num" style="width:76px">綜合分</th>
-            <th style="width:96px">基本面關</th>
-            <th style="width:88px">技術關</th>
-            <th style="width:88px">狀態</th>
-          </tr>
-        </thead>
-        <tbody id="picks-body"></tbody>
-      </table>
-    </div>
-    <div class="table-foot">
-      <span id="picks-foot"></span>
-      <span>狀態:持倉 = 現時持有・入選 = 兩關都過・觀察 = 只過基本面關・未過 = 第一關就不過。持倉那幾行的關卡標記是當日重新評分的結果,不是入場當日的分數。</span>
-    </div>
-  </section>
-
-  <!-- ============ 歷次回測運行 ============ -->
-  <section class="section" aria-labelledby="h-runs">
-    <div class="section-head">
-      <h2 id="h-runs">歷次回測運行</h2>
-      <span class="section-note">同一策略、不同版本與參數的運行紀錄。每一行都指得回它自己的數據快照。</span>
-    </div>
-    <div class="table-scroll">
-      <table class="kt" style="min-width:1120px">
-        <thead>
-          <tr>
-            <th style="width:172px">運行編號</th>
-            <th style="width:74px">版本</th>
-            <th style="width:280px">參數摘要</th>
-            <th style="width:186px">期間</th>
-            <th class="num" style="width:84px">年化</th>
-            <th class="num" style="width:92px">最大回撤</th>
-            <th class="num" style="width:78px">Sortino</th>
-            <th class="num" style="width:72px">交易數</th>
-            <th class="num" style="width:64px">勝率</th>
-            <th style="width:146px">數據快照</th>
-            <th style="width:72px"></th>
-          </tr>
-        </thead>
-        <tbody id="runs-body"></tbody>
-      </table>
-    </div>
-    <div class="table-foot">
-      <span id="runs-foot"></span>
-      <span>標示 <span class="tag tag-current">本次</span> 者為目前採用的運行</span>
-    </div>
-  </section>
-
-  <!-- ============ 紙上帳 ============ -->
-  <section class="section" aria-labelledby="h-paper">
-    <div class="section-head">
-      <h2 id="h-paper">紙上帳</h2>
-      <span class="section-note">全自動照訊號入帳,不落真金。用來隨時看到策略的實際表現。</span>
-    </div>
-
-    <div class="kpi-row" id="paper-kpis" style="margin-bottom:var(--s-4)"></div>
-
-    <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-4)">
-      <div class="chart-panel">
-        <div class="chart-head">
-          <h3>紙上帳淨值</h3>
-          <div class="chart-legend" id="paper-legend"></div>
+      <div class="fit-panel" style="flex:none">
+        <div class="fit-panel-head">
+          <h2 style="font-size:var(--fs-md)">淨值走勢</h2>
+          <div class="bench-line" id="equity-bench"></div>
         </div>
-        <div class="chart-box" id="paper-chart"></div>
+        <div class="fit-panel-body" style="overflow:hidden">
+          <div class="chart-box" id="equity-chart"></div>
+          <div style="padding:var(--s-2) var(--s-4) var(--s-3)">
+            <div class="section-note" id="metric-line"></div>
+            <div class="section-note" style="margin-top:2px;color:var(--accent)">
+              點圖上任何一日 = 選定時點,右邊選股快照即時跳到該日。
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <div class="section-head">
-          <h3>現時持倉</h3>
-          <span class="section-note" id="pos-note"></span>
+      <div class="fit-panel" style="flex:none">
+        <div class="fit-panel-head">
+          <h3>逐層收窄</h3>
+          <span class="section-note" id="funnel-note"></span>
         </div>
-        <div class="table-scroll">
-          <table class="kt" style="min-width:940px">
+        <div class="fit-panel-body" style="overflow:hidden">
+          <div class="funnel" id="funnel" style="background:transparent;padding:var(--s-3) var(--s-4)"></div>
+        </div>
+      </div>
+
+      <div class="fit-panel fit-grow">
+        <div class="tabs" role="tablist" aria-label="版本與運行">
+          <button class="tab-btn" role="tab" id="tab-hist" aria-selected="true" aria-controls="p-hist">版本沿革</button>
+          <button class="tab-btn" role="tab" id="tab-runs" aria-selected="false" aria-controls="p-runs">歷次運行</button>
+        </div>
+        <div class="fit-panel-body">
+          <div class="tab-panel" id="p-hist" role="tabpanel" aria-labelledby="tab-hist">
+            <div class="timeline" id="timeline"></div>
+            <div class="factor-hist" id="factor-hist"></div>
+          </div>
+          <div class="tab-panel" id="p-runs" role="tabpanel" aria-labelledby="tab-runs" hidden>
+            <table class="kt" style="min-width:640px">
+              <thead>
+                <tr>
+                  <th style="width:150px">運行編號</th>
+                  <th style="width:64px">版本</th>
+                  <th style="width:210px">參數摘要</th>
+                  <th class="num" style="width:66px">年化</th>
+                  <th class="num" style="width:76px">最大回撤</th>
+                  <th class="num" style="width:56px">勝率</th>
+                  <th style="width:124px">數據快照</th>
+                  <th style="width:60px"></th>
+                </tr>
+              </thead>
+              <tbody id="runs-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= 右欄:選股快照 ================= -->
+    <div class="fit-col">
+      <div class="fit-panel fit-grow">
+        <div class="fit-panel-head">
+          <div>
+            <h2 style="font-size:var(--fs-md)">選股快照</h2>
+            <div class="section-note" id="picks-basis" style="margin-top:2px"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap">
+            <span class="at-point" id="at-point"></span>
+            <div class="date-switch" id="pick-vers" role="group" aria-label="以哪個版本檢視"></div>
+          </div>
+        </div>
+        <div class="fit-panel-body">
+          <table class="kt" style="min-width:820px">
             <thead>
               <tr>
-                <th style="width:76px">代號</th>
-                <th style="width:132px">名稱</th>
-                <th style="width:108px">行業</th>
-                <th class="num" style="width:72px">權重</th>
-                <th style="width:106px">進場日</th>
-                <th class="num" style="width:84px">成本</th>
-                <th class="num" style="width:84px">現價</th>
-                <th class="num" style="width:96px">未實現</th>
-                <th class="num" style="width:88px">止蝕價</th>
-                <th class="num" style="width:104px">距止蝕</th>
+                <th style="width:66px">代號</th>
+                <th style="width:120px">名稱</th>
+                <th style="width:100px">行業</th>
+                <th class="num" style="width:66px">質素分</th>
+                <th class="num" style="width:66px">動量分</th>
+                <th class="num" style="width:66px">超賣度</th>
+                <th class="num" style="width:66px">綜合分</th>
+                <th style="width:80px">基本面關</th>
+                <th style="width:74px">技術關</th>
+                <th style="width:76px">狀態</th>
               </tr>
             </thead>
-            <tbody id="pos-body"></tbody>
+            <tbody id="picks-body"></tbody>
           </table>
         </div>
-        <div class="table-foot">
-          <span id="pos-foot"></span>
-          <span>止蝕價由 v2.3.0 的 8% 初始止蝕 + 移動止蝕計出</span>
+        <div class="table-foot" style="flex:none">
+          <span id="picks-note"></span>
+          <span id="picks-foot"></span>
         </div>
       </div>
     </div>
-  </section>
+
+  </div>
 
   <div id="foot-host"></div>
 </main>
@@ -190,44 +148,14 @@
   KV.mountFoot();
 
   var s = K.strategies.filter(function (x) { return x.id === 'trend-swing'; })[0];
-  var qqq = K.benchmarks.QQQ;
+  var qqq = K.benchmarks.QQQ, spy = K.benchmarks.SPY;
   var m = s.metrics;
   var runs = K.trendSwing.runs;
   var cur = runs.filter(function (r) { return r.current; })[0] || runs[0];
 
   /* ============================================================
-     現役設定 —— 紙上交易實際跟隨那一組
+     薄摘要列:現役設定 + 降級的歷史最佳
      ============================================================ */
-  document.getElementById('config-sub').textContent =
-    cur.ver + '・運行 ' + cur.id + '・數據快照 ' + cur.snap;
-
-  document.getElementById('config-chips').innerHTML = K.run.paramList.map(function (p) {
-    return '<span class="chip"><span class="chip-k">' + KV.esc(p[0]) + '</span>' +
-      '<span class="chip-v">' + KV.esc(p[1]) + '</span></span>';
-  }).join('');
-
-  /* ---- 整體指標。每個數字都帶一個比較基準 ---- */
-  var kpis = [
-    { label: '累計回報', value: KV.pct(m.cumReturn), cls: KV.cls(m.cumReturn),
-      basis: 'QQQ ' + KV.pct(qqq.metrics.cumReturn) + '・領先 ' + KV.pp(m.cumReturn - qqq.metrics.cumReturn) },
-    { label: '年化回報', value: KV.pctPlain(m.cagr), cls: KV.cls(m.cagr),
-      basis: 'QQQ ' + KV.pctPlain(qqq.metrics.cagr) },
-    { label: '最大回撤', value: KV.pctPlain(m.maxDD), cls: 'down',
-      basis: 'QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + '・較淺' },
-    { label: 'Sortino', value: m.sortino.toFixed(2), cls: '',
-      basis: 'QQQ ' + qqq.metrics.sortino.toFixed(2) },
-    { label: '勝率 ／ 盈虧比', value: m.winRate + '% ／ ' + m.plRatio.toFixed(1), cls: '',
-      basis: '共 ' + m.trades + ' 筆交易' },
-  ];
-  document.getElementById('kpis').innerHTML = kpis.map(function (k) {
-    return '<div class="kpi" style="background:var(--bg-2)">' +
-      '<div class="kpi-label">' + k.label + '</div>' +
-      '<div class="kpi-value sm ' + k.cls + '">' + k.value + '</div>' +
-      '<div class="kpi-basis">' + k.basis + '</div>' +
-    '</div>';
-  }).join('');
-
-  /* ---- 歷史最佳:講明身分,講明沒有跟隨過 ---- */
   var W = K.sweep;
   var best = null, bestPos = null;
   W.grid.forEach(function (row, ri) {
@@ -245,32 +173,124 @@
   }
   var bestNbhd = nbhdMean(bestPos[0], bestPos[1]);
 
-  document.getElementById('config-past').innerHTML =
-    '<span class="past-label">歷史最佳(僅供參考)</span>' +
-    '<span class="past-val">N=' + best.n + '・止蝕 ' + best.s + '%・年化 ' + KV.pctPlain(best.cagr) + '</span>' +
-    '<span>這是參數掃描裡分數最高的一格,從來沒有實際跟隨過。它八個鄰居的年化平均只有 ' +
-      KV.pctPlain(bestNbhd) + ',參數偏一格就跌 ' + KV.pctPlain(best.cagr - bestNbhd) +
-      ' —— 屬孤峰,大機會只是撞中了歷史上幾筆交易。' +
-      '<a href="sweep.html">看參數掃描 →</a></span>';
+  document.getElementById('config-slim').innerHTML =
+    '<span class="tag tag-live">現役設定</span>' +
+    '<span class="mono" style="font-weight:700">' + KV.esc(cur.ver) + '</span>' +
+    K.run.paramList.slice(0, 4).map(function (p) {
+      return '<span class="chip"><span class="chip-k">' + KV.esc(p[0]) + '</span>' +
+        '<span class="chip-v">' + KV.esc(p[1]) + '</span></span>';
+    }).join('') +
+    '<span class="section-note">運行 ' + KV.esc(cur.id) + '・快照 ' + KV.esc(cur.snap) + '</span>' +
+    '<span class="slim-past">歷史最佳(僅供參考)　<span class="mono">N=' + best.n + '・止蝕 ' + best.s +
+      '%・年化 ' + KV.pctPlain(best.cagr) + '</span>　鄰域平均只有 ' + KV.pctPlain(bestNbhd) +
+      ',屬孤峰,從來沒有實際跟隨過。<a href="sweep.html">看掃描 →</a></span>';
 
   /* ============================================================
-     選股快照
+     淨值走勢圖(基準只在圖例列出現,不再霸一行大卡)
      ============================================================ */
-  var P = K.picks;
-  var curDate = P.dates[0].date;
+  document.getElementById('equity-bench').innerHTML =
+    '<span><i style="background:#26a69a"></i>趨勢波段 <b class="up">' + KV.pct(m.cumReturn) +
+      '</b>・年化 <b>' + KV.pctPlain(m.cagr) + '</b></span>' +
+    '<span><i style="background:#b07de0"></i>QQQ <b>' + KV.pct(qqq.metrics.cumReturn) +
+      '</b>・年化 <b>' + KV.pctPlain(qqq.metrics.cagr) + '</b></span>' +
+    '<span><i style="background:#7d869c"></i>SPY <b>' + KV.pct(spy.metrics.cumReturn) +
+      '</b>・年化 <b>' + KV.pctPlain(spy.metrics.cagr) + '</b></span>';
 
-  var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
+  document.getElementById('metric-line').textContent =
+    '最大回撤 ' + KV.pctPlain(m.maxDD) + '(QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + ',較淺)' +
+    '・Sortino ' + m.sortino.toFixed(2) +
+    '・勝率 ' + m.winRate + '% ／ 盈虧比 ' + m.plRatio.toFixed(1) +
+    '・共 ' + m.trades + ' 筆交易';
 
-  document.getElementById('pick-dates').innerHTML = P.dates.map(function (d) {
-    return '<button type="button" data-date="' + d.date + '" ' +
-      'aria-pressed="' + (d.date === curDate ? 'true' : 'false') + '">' + KV.esc(d.label) + '</button>';
+  var chartEl = document.getElementById('equity-chart');
+  var chart = KV.makeChart(chartEl, 236);
+  var lSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
+  lSpy.setData(KV.zip(K.weeklyDates, spy.equity));
+  var lQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
+  lQqq.setData(KV.zip(K.weeklyDates, qqq.equity));
+  var lStr = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
+  lStr.setData(KV.zip(K.weeklyDates, s.equity));
+  chart.timeScale().fitContent();
+
+  /* ============================================================
+     版本沿革(git log 形態)
+     ============================================================ */
+  document.getElementById('timeline').innerHTML = K.strategyHistory.map(function (h) {
+    return '<div class="tl-item' + (h.current ? ' is-current' : '') + '">' +
+      '<div class="tl-head">' +
+        '<span class="tl-ver">' + KV.esc(h.ver) + '</span>' +
+        (h.current ? '<span class="tag tag-live">現役</span>' : '') +
+        '<span class="tl-date">' + KV.esc(h.date) + '</span>' +
+      '</div>' +
+      '<div class="tl-sum">' + KV.esc(h.summary) + '</div>' +
+      '<div class="tl-meta">' +
+        '<span class="' + (h.byKind === 'human' ? 'by-human' : 'by-agent') + '">' +
+          (h.byKind === 'human' ? '用戶' : 'agent') + '改' + '</span>' +
+        '<span>' + h.runs + ' 次運行掛在這一版之下</span>' +
+      '</div>' +
+    '</div>';
   }).join('');
 
+  document.getElementById('factor-hist').innerHTML =
+    '<div style="color:var(--text-2);font-weight:700;border-top:1px solid var(--line);' +
+      'padding-top:var(--s-3)">因子版本</div>' +
+    K.factorHistory.map(function (f) {
+      var chain = f.versions.map(function (v) {
+        return '<span class="' + (v.current ? 'fh-cur' : '') + '" title="' + KV.esc(v.date) + '　' +
+          KV.esc(v.summary) + '">' + KV.esc(v.ver) + '</span>';
+      }).join('<span class="fh-note"> ← </span>');
+      return '<div class="fh-name">' + KV.esc(f.name) + '</div>' +
+        '<div class="fh-chain">' + chain + '</div>' +
+        '<div class="fh-note">' + KV.esc(f.versions[0].date + '　' + f.versions[0].summary) + '</div>';
+    }).join('');
+
+  KV.initTabs('.tabs');
+
+  /* ---- 歷次運行 ---- */
+  document.getElementById('runs-body').innerHTML = runs.map(function (r) {
+    return '<tr class="' + (r.current ? 'is-current' : '') + '">' +
+      '<td class="mono">' + KV.esc(r.id) + (r.current ? ' <span class="tag tag-current">本次</span>' : '') + '</td>' +
+      '<td class="mono">' + KV.esc(r.ver) + '</td>' +
+      '<td title="' + KV.esc(r.params) + '">' + KV.esc(r.params) + '</td>' +
+      '<td class="num ' + KV.cls(r.cagr) + '">' + KV.pctPlain(r.cagr) + '</td>' +
+      '<td class="num down">' + KV.pctPlain(r.mdd) + '</td>' +
+      '<td class="num">' + r.win + '%</td>' +
+      '<td class="mono dim">' + KV.esc(r.snap) + '</td>' +
+      '<td>' + (r.current ? '<a href="run.html">查看 →</a>' : '<span class="dim">查看</span>') + '</td>' +
+    '</tr>';
+  }).join('');
+
+  /* ============================================================
+     選股快照 —— 由圖上的時點驅動
+     ============================================================ */
+  var P = K.picks;
+  var curVer = P.versions[0].id;
+  var curDate = K.weeklyDates[K.weeklyDates.length - 1];
+
+  var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
   var ST_CLS = { '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch', '未過': 'st-out' };
 
-  function renderPicks(dateStr) {
-    var snap = P.byDate[dateStr];
+  document.getElementById('pick-vers').innerHTML = P.versions.map(function (v) {
+    return '<button type="button" data-ver="' + v.id + '" ' +
+      'aria-pressed="' + (v.id === curVer ? 'true' : 'false') + '">' + KV.esc(v.label) + '</button>';
+  }).join('');
+
+  function render() {
+    var snap = P.snapshot(curVer, curDate);
+    var V = snap.version;
     var scope = snap.funnel[0].count;
+
+    document.getElementById('at-point').textContent = '時點 ' + curDate;
+
+    document.getElementById('picks-basis').innerHTML =
+      '時點:<b class="mono">' + KV.esc(curDate) + '</b>・基於 ' +
+      (V.live
+        ? '<b class="up">現役設定 ' + KV.esc(V.id) + '</b>'
+        : '<b class="down">' + KV.esc(V.label) + '(不是現役設定)</b>') +
+      '(' + KV.esc(V.params) + ')';
+
+    document.getElementById('funnel-note').textContent =
+      curDate + '・' + V.id + ' 門檻 質素 ≥ ' + V.gates.quality + '、動量 ≥ ' + V.gates.momentum;
 
     document.getElementById('funnel').innerHTML = snap.funnel.map(function (f, i) {
       var ratio = f.count / scope;
@@ -288,9 +308,6 @@
         '</div>' +
       '</div>';
     }).join('');
-
-    document.getElementById('pick-note').textContent =
-      '截至 ' + dateStr + ' 收市・門檻 質素分 ≥ ' + P.gates.quality + '、動量分 ≥ ' + P.gates.momentum;
 
     var rows = snap.rows;
     document.getElementById('picks-body').innerHTML = rows.map(function (r) {
@@ -316,99 +333,35 @@
       '表列 ' + rows.length + ' 隻示意樣本・持倉 ' + counts['持倉'] + '、入選 ' + counts['入選'] +
       '、觀察 ' + counts['觀察'] + '、未過 ' + counts['未過'];
     document.getElementById('picks-foot').textContent =
-      '顯示 1–' + rows.length + ' 筆・當日範圍共 ' + scope + ' 隻,完整名單留待實作・按綜合分由高至低';
+      '當日範圍共 ' + scope + ' 隻・按綜合分由高至低・持倉那幾行是當日重新評分';
   }
 
-  document.getElementById('pick-dates').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-date]');
+  /* 圖上點一日 = 選定時點 */
+  function isoOf(t) {
+    if (typeof t === 'string') return t;
+    if (t && t.year) {
+      return t.year + '-' + String(t.month).padStart(2, '0') + '-' + String(t.day).padStart(2, '0');
+    }
+    return null;
+  }
+  chart.subscribeClick(function (param) {
+    var iso = isoOf(param.time);
+    if (!iso) return;
+    curDate = iso;
+    render();
+  });
+
+  document.getElementById('pick-vers').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-ver]');
     if (!b) return;
-    curDate = b.getAttribute('data-date');
+    curVer = b.getAttribute('data-ver');
     this.querySelectorAll('button').forEach(function (o) {
       o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
     });
-    renderPicks(curDate);
+    render();
   });
 
-  renderPicks(curDate);
-
-  /* ============================================================
-     歷次回測運行
-     ============================================================ */
-  document.getElementById('runs-body').innerHTML = runs.map(function (r) {
-    return '<tr class="' + (r.current ? 'is-current' : '') + '">' +
-      '<td class="mono">' + KV.esc(r.id) + (r.current ? ' <span class="tag tag-current">本次</span>' : '') + '</td>' +
-      '<td class="mono">' + KV.esc(r.ver) + '</td>' +
-      '<td title="' + KV.esc(r.params) + '">' + KV.esc(r.params) + '</td>' +
-      '<td class="mono dim">' + r.from + ' → ' + r.to + '</td>' +
-      '<td class="num ' + KV.cls(r.cagr) + '">' + KV.pctPlain(r.cagr) + '</td>' +
-      '<td class="num down">' + KV.pctPlain(r.mdd) + '</td>' +
-      '<td class="num">' + r.sortino.toFixed(2) + '</td>' +
-      '<td class="num">' + r.trades + '</td>' +
-      '<td class="num">' + r.win + '%</td>' +
-      '<td class="mono dim">' + KV.esc(r.snap) + '</td>' +
-      '<td>' + (r.current ? '<a href="run.html">查看 →</a>' : '<span class="dim">查看</span>') + '</td>' +
-    '</tr>';
-  }).join('');
-  document.getElementById('runs-foot').textContent = '顯示 1–' + runs.length + ' 筆,共 ' + runs.length + ' 筆';
-
-  /* ============================================================
-     紙上帳
-     ============================================================ */
-  var p = K.trendSwing.paper;
-  var pnl = p.value - p.startCapital;
-  var pk = [
-    { label: '帳戶現值', value: KV.money(p.value), cls: '',
-      basis: '起始 ' + KV.money(p.startCapital) + '・' +
-        '<span class="' + KV.cls(pnl) + '">' + (pnl >= 0 ? '+' : '') + KV.money(pnl) + '</span>' },
-    { label: '累計回報', value: KV.pct(p.returnPct), cls: KV.cls(p.returnPct),
-      basis: '同期 QQQ ' + KV.pct(p.benchReturnPct) + '・領先 ' + KV.pp(p.returnPct - p.benchReturnPct) },
-    { label: '現金比重', value: KV.pctPlain(p.cashPct), cls: '',
-      basis: '上限 12 個持倉,現有 ' + p.positions.length + ' 個' },
-    { label: '開帳日', value: p.inceptionDate, cls: '',
-      basis: '運行 ' + Math.round((Date.parse(K.meta.asOf) - Date.parse(p.inceptionDate)) / 86400000) + ' 日' },
-  ];
-  document.getElementById('paper-kpis').innerHTML = pk.map(function (k) {
-    return '<div class="kpi">' +
-      '<div class="kpi-label">' + k.label + '</div>' +
-      '<div class="kpi-value sm ' + k.cls + '">' + k.value + '</div>' +
-      '<div class="kpi-basis">' + k.basis + '</div>' +
-    '</div>';
-  }).join('');
-
-  document.getElementById('paper-legend').innerHTML =
-    '<span class="legend-item"><i class="legend-swatch" style="background:var(--up)"></i>紙上帳 ' +
-      '<b class="legend-val ' + KV.cls(p.returnPct) + '">' + KV.pct(p.returnPct) + '</b></span>' +
-    '<span class="legend-item"><i class="legend-swatch" style="background:var(--bench-qqq)"></i>QQQ ' +
-      '<b class="legend-val ' + KV.cls(p.benchReturnPct) + '">' + KV.pct(p.benchReturnPct) + '</b></span>';
-
-  var el = document.getElementById('paper-chart');
-  var chart = KV.makeChart(el, 220);
-  var l1 = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
-  l1.setData(KV.zip(p.dates, p.equity));
-  var l2 = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
-  l2.setData(KV.zip(p.dates, p.benchEquity));
-  chart.timeScale().fitContent();
-
-  /* ---- 持倉 ---- */
-  document.getElementById('pos-body').innerHTML = p.positions.map(function (o) {
-    return '<tr>' +
-      '<td class="mono">' + KV.esc(o.sym) + '</td>' +
-      '<td title="' + KV.esc(o.name) + '">' + KV.esc(o.name) + '</td>' +
-      '<td class="dim">' + KV.esc(o.sector) + '</td>' +
-      '<td class="num">' + KV.pctPlain(o.weight) + '</td>' +
-      '<td class="mono dim">' + o.entryDate + '</td>' +
-      '<td class="num">' + o.cost.toFixed(2) + '</td>' +
-      '<td class="num">' + o.last.toFixed(2) + '</td>' +
-      '<td class="num ' + KV.cls(o.pnlPct) + '">' + KV.pct(o.pnlPct) + '</td>' +
-      '<td class="num dim">' + o.stopPrice.toFixed(2) + '</td>' +
-      '<td class="num ' + (o.stopDist < 4 ? 'down' : '') + '">' + KV.pctPlain(o.stopDist) + '</td>' +
-    '</tr>';
-  }).join('');
-  var invested = p.positions.reduce(function (a, o) { return a + o.weight; }, 0);
-  document.getElementById('pos-note').textContent =
-    p.positions.length + ' 個持倉・佔倉 ' + KV.pctPlain(invested) + '・現金 ' + KV.pctPlain(p.cashPct);
-  document.getElementById('pos-foot').textContent =
-    '顯示 1–' + p.positions.length + ' 筆,共 ' + p.positions.length + ' 筆・截至 ' + K.meta.asOf;
+  render();
 })();
 </script>
 </body>

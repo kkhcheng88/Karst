@@ -493,4 +493,251 @@
     };
   });
 
+  /* ============================================================
+     五、版本冊:因子現行版本 + 每次運行綁定的版本
+     ------------------------------------------------------------
+     一次運行綁死當時的策略版本與因子版本。之後因子計法更新了,
+     舊運行的數字**不會**自動跟上 —— 這一點要在畫面上講明,
+     否則看的人會當那個數字仍然代表現在的計法。
+     ============================================================ */
+  K.factorRegistry = [
+    { id: 'supply',   name: '供求因子', en: 'Supply-Demand Factor',
+      current: 'v1.3', updatedAt: '2026-08-20',
+      whatChanged: '改用成交金額加權,取代原本的成交股數加權' },
+    { id: 'momentum', name: '動量因子', en: 'Momentum Factor',
+      current: 'v2.0', updatedAt: '2026-05-11',
+      whatChanged: '加入 12-1 動量,剔除最近一個月的反轉' },
+    { id: 'quality',  name: '質素因子', en: 'Quality Factor',
+      current: 'v1.1', updatedAt: '2026-03-02',
+      whatChanged: '自由現金流改用四季滾動' },
+  ];
+
+  var FACTOR_BY_ID = {};
+  K.factorRegistry.forEach(function (f) { FACTOR_BY_ID[f.id] = f; });
+
+  function verNums(v) {
+    return String(v).replace(/^v/, '').split('.').map(function (x) { return parseInt(x, 10) || 0; });
+  }
+  function verOlder(a, b) {
+    var x = verNums(a), y = verNums(b);
+    for (var i = 0; i < Math.max(x.length, y.length); i++) {
+      var xa = x[i] || 0, ya = y[i] || 0;
+      if (xa !== ya) return xa < ya;
+    }
+    return false;
+  }
+
+  K.strategyCurrentVer = 'v2.3.0';
+
+  /* 這次運行綁定的版本 —— 供求因子停在 v1.2,現行已是 v1.3 */
+  K.run.binding = {
+    strategyVer: 'v2.3.0',
+    factors: [
+      { id: 'supply',   ver: 'v1.2' },
+      { id: 'momentum', ver: 'v2.0' },
+      { id: 'quality',  ver: 'v1.1' },
+    ],
+  };
+
+  /* 這次掃描綁定的版本 —— 策略同因子都落後了 */
+  K.sweep.binding = {
+    strategyVer: 'v2.2.0',
+    factors: [
+      { id: 'supply',   ver: 'v1.2' },
+      { id: 'momentum', ver: 'v2.0' },
+      { id: 'quality',  ver: 'v1.1' },
+    ],
+  };
+
+  /**
+   * 查一個綁定有沒有落後於現行版本。
+   * 回傳 { stale: bool, items: [{kind,name,was,now,updatedAt,whatChanged}] }
+   */
+  K.staleCheck = function (binding) {
+    var items = [];
+    if (verOlder(binding.strategyVer, K.strategyCurrentVer)) {
+      items.push({
+        kind: '策略', name: '趨勢波段',
+        was: binding.strategyVer, now: K.strategyCurrentVer,
+        updatedAt: '2026-08-12', whatChanged: '倉位上限由 8 個放寬到 12 個',
+      });
+    }
+    binding.factors.forEach(function (f) {
+      var reg = FACTOR_BY_ID[f.id];
+      if (reg && verOlder(f.ver, reg.current)) {
+        items.push({
+          kind: '因子', name: reg.name,
+          was: f.ver, now: reg.current,
+          updatedAt: reg.updatedAt, whatChanged: reg.whatChanged,
+        });
+      }
+    });
+    return { stale: items.length > 0, items: items };
+  };
+
+  /** 把綁定的因子版本寫成一行,例如「供求因子 v1.2・動量因子 v2.0」 */
+  K.factorLine = function (binding) {
+    return binding.factors.map(function (f) {
+      var reg = FACTOR_BY_ID[f.id];
+      return (reg ? reg.name : f.id) + ' ' + f.ver;
+    }).join('・');
+  };
+
+  /* ============================================================
+     六、選股快照的版本切換
+     ------------------------------------------------------------
+     同一日、不同算法版本,漏斗會收得不同鬆緊。
+     ============================================================ */
+  K.picks.versions = [
+    { id: 'v2.3.0', label: '現役設定 v2.3.0', runId: 'RUN-2026-0812-07', live: true,
+      params: 'N=30・止蝕 8%・目標 3R・最多 12 持倉',
+      gates: { quality: 60, momentum: 62 }, scale: 1.00 },
+    { id: 'v2.2.1', label: '歷史運行 v2.2.1', runId: 'RUN-2026-0731-11', live: false,
+      params: 'N=20・止蝕 6%・目標 3R・最多 12 持倉',
+      gates: { quality: 55, momentum: 58 }, scale: 1.32 },
+    { id: 'v2.1.0', label: '歷史運行 v2.1.0', runId: 'RUN-2026-0620-05', live: false,
+      params: 'N=30・止蝕 8%・無目標(移動止蝕)',
+      gates: { quality: 68, momentum: 71 }, scale: 0.64 },
+  ];
+
+  var VER_BY_ID = {};
+  K.picks.versions.forEach(function (v) { VER_BY_ID[v.id] = v; });
+
+  var snapCache = {};
+
+  /**
+   * 某個版本、某一日的選股快照。
+   * 版本換了,分數與門檻都不同,所以漏斗同表格一齊變。
+   */
+  K.picks.snapshot = function (verId, dateStr) {
+    var key = verId + '|' + dateStr;
+    if (snapCache[key]) return snapCache[key];
+
+    var V = VER_BY_ID[verId] || K.picks.versions[0];
+    var D = null;
+    PICK_DATES.forEach(function (d) { if (d.date === dateStr) D = d; });
+    /* 圖上可以點任何一日,不在三個示意日期之內就即場生一組 */
+    if (!D) {
+      var dr = rng('funnel-' + dateStr);
+      var scope = 480 + Math.floor(dr() * 40);
+      var fund = Math.round(scope * between(dr, 0.11, 0.22));
+      var tech = Math.round(fund * between(dr, 0.24, 0.42));
+      D = { date: dateStr, scope: scope, fund: fund, tech: tech,
+            held: Math.max(4, Math.min(12, Math.round(tech * between(dr, 0.34, 0.55)))) };
+    }
+
+    var rows = UNIVERSE.map(function (u) {
+      var r = rng('pick-' + verId + '-' + dateStr + '-' + u.sym);
+      var quality = round(between(r, 22, 96), 1);
+      var momentum = round(between(r, 18, 95), 1);
+      var oversold = round(between(r, 2, 88), 1);
+      var passFund = quality >= V.gates.quality;
+      var passTech = passFund && momentum >= V.gates.momentum;
+      var isHeld = !!HELD[u.sym];
+      var status = isHeld ? '持倉' : (passTech ? '入選' : (passFund ? '觀察' : '未過'));
+      return {
+        sym: u.sym, name: u.name, sector: u.sector,
+        quality: quality, momentum: momentum, oversold: oversold,
+        composite: round(quality * 0.4 + momentum * 0.45 + oversold * 0.15, 1),
+        passFund: passFund, passTech: passTech, status: status,
+      };
+    });
+    rows.sort(function (a, b) { return b.composite - a.composite; });
+
+    var fund = Math.max(8, Math.round(D.fund * V.scale));
+    var tech = Math.max(4, Math.round(D.tech * V.scale));
+    var held = Math.max(3, Math.min(12, Math.round(D.held * V.scale)));
+
+    var out = {
+      version: V,
+      funnel: [
+        { label: '範圍', hint: '當日可交易的全部標的', count: D.scope },
+        { label: '過基本面關', hint: '質素分達 ' + V.gates.quality + ' 分', count: fund },
+        { label: '過技術關', hint: '再要動量分達 ' + V.gates.momentum + ' 分', count: tech },
+        { label: '持倉', hint: '扣除倉位上限與風控後實際持有', count: held },
+      ],
+      rows: rows,
+    };
+    snapCache[key] = out;
+    return out;
+  };
+
+  /* ============================================================
+     七、總覽右欄詳情卡要用的每套策略摘要
+     ============================================================ */
+  var REAL_META = {
+    'trend-swing': { ver: 'v2.3.0', params: 'N=30・止蝕 8%・目標 3R・最多 12 持倉', lastRun: '2026-08-12' },
+    'minervini':   { ver: 'v1.8.2', params: '八項趨勢範本・止蝕 7%・最多 10 持倉', lastRun: '2026-08-11' },
+    'bottleneck':  { ver: 'v0.9.1', params: '供需缺口 ≥ 2 季・止蝕 12%・最多 8 持倉', lastRun: '2026-08-06' },
+    'oversold':    { ver: 'v1.4.0', params: '質素前 30%・RSI < 30・最多 15 持倉', lastRun: '2026-08-09' },
+    'factor-mix':  { ver: 'v2.0.3', params: '四因子等權・月度換倉・最多 25 持倉', lastRun: '2026-08-10' },
+    'sa':          { ver: 'v1.1.0', params: '評級 ≥ 4.2・跟隨延遲 2 日・最多 20 持倉', lastRun: '2026-08-08' },
+    'pelosi':      { ver: 'v1.0.4', params: '申報後 5 日內入場・最多 12 持倉', lastRun: '2026-07-30' },
+  };
+
+  /* ============================================================
+     八、版本沿革(git log 形態)
+     ------------------------------------------------------------
+     版本是這個平台的核心:每一版改了什麼、誰改的、之下跑過幾次,
+     全部要指得回去。現役那一版高亮。
+     ============================================================ */
+  K.strategyHistory = [
+    { ver: 'v2.3.0', date: '2026-08-12', by: '用戶', byKind: 'human', runs: 2, current: true,
+      summary: '倉位上限由 8 個放寬到 12 個' },
+    { ver: 'v2.2.1', date: '2026-07-28', by: 'agent', byKind: 'agent', runs: 2,
+      summary: '止蝕由 10% 收緊到 8%' },
+    { ver: 'v2.2.0', date: '2026-07-05', by: 'agent', byKind: 'agent', runs: 1,
+      summary: '供求因子改用 v1.2 計法' },
+    { ver: 'v2.1.0', date: '2026-06-18', by: '用戶', byKind: 'human', runs: 1,
+      summary: '撤走固定目標,改為全程移動止蝕' },
+    { ver: 'v2.0.0', date: '2026-05-30', by: '用戶', byKind: 'human', runs: 1,
+      summary: '加入共用風控層,單日虧損上限 3%' },
+    { ver: 'v1.4.0', date: '2026-04-11', by: 'agent', byKind: 'agent', runs: 3,
+      summary: '突破日數由 20 日改為 30 日' },
+    { ver: 'v1.2.0', date: '2026-03-09', by: 'agent', byKind: 'agent', runs: 2,
+      summary: '加入成交量放大確認' },
+    { ver: 'v1.0.0', date: '2026-02-02', by: '用戶', byKind: 'human', runs: 5,
+      summary: '策略開帳' },
+  ];
+
+  K.factorHistory = [
+    { id: 'supply', name: '供求因子', versions: [
+      { ver: 'v1.3', date: '2026-08-20', current: true, summary: '改用成交金額加權' },
+      { ver: 'v1.2', date: '2026-06-30', summary: '剔除停牌日' },
+      { ver: 'v1.1', date: '2026-04-02', summary: '首個可用版本' },
+    ] },
+    { id: 'momentum', name: '動量因子', versions: [
+      { ver: 'v2.0', date: '2026-05-11', current: true, summary: '改用 12-1 動量' },
+      { ver: 'v1.0', date: '2026-01-20', summary: '簡單 12 個月動量' },
+    ] },
+    { id: 'quality', name: '質素因子', versions: [
+      { ver: 'v1.1', date: '2026-03-02', current: true, summary: '自由現金流改四季滾動' },
+      { ver: 'v1.0', date: '2026-01-20', summary: '首個可用版本' },
+    ] },
+  ];
+
+  var DEMO_PARAM_BITS = [
+    ['入選門檻 前 20%', '入選門檻 前 10%', '入選門檻 前 30%'],
+    ['止蝕 6%', '止蝕 8%', '止蝕 10%', '止蝕 12%'],
+    ['月度換倉', '週度換倉', '季度換倉'],
+    ['最多 8 持倉', '最多 12 持倉', '最多 20 持倉'],
+  ];
+
+  K.allStrategies.forEach(function (s) {
+    if (REAL_META[s.id]) {
+      s.ver = REAL_META[s.id].ver;
+      s.paramSummary = REAL_META[s.id].params;
+      s.lastRun = REAL_META[s.id].lastRun;
+    } else {
+      var r = rng('meta-' + s.id);
+      s.ver = 'v' + Math.floor(between(r, 0, 3)) + '.' + Math.floor(between(r, 0, 9)) +
+        '.' + Math.floor(between(r, 0, 5));
+      s.paramSummary = DEMO_PARAM_BITS.map(function (bits) {
+        return bits[Math.floor(r() * bits.length)];
+      }).join('・');
+      var day = Math.floor(between(r, 1, 26));
+      s.lastRun = '2026-08-' + String(day).padStart(2, '0');
+    }
+  });
+
 })(window);

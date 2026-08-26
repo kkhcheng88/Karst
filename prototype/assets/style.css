@@ -944,12 +944,306 @@ table.kt tbody tr.is-picked:hover td { background: rgba(74,158,255,.17); }
 .small-note { font-size: var(--fs-xs); color: var(--text-3); line-height: 1.6; margin-top: var(--s-2); }
 
 /* ============================================================
+   第三版加入的零件
+   ------------------------------------------------------------
+   總覽雙欄主從、版本綁定格、舊版本標記、重跑提示框。
+   ============================================================ */
+
+/* ---- 雙欄主從(總覽)---- */
+.master-detail {
+  display: grid;
+  grid-template-columns: 62fr 38fr;
+  gap: var(--s-4);
+  align-items: start;
+}
+/* 左欄高度貼合視窗,欄內自己捲 */
+.md-list .table-scroll {
+  max-height: calc(100vh - var(--nav-h) - 210px);
+  min-height: 380px;
+  overflow-y: auto;
+}
+.md-detail {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--s-4));
+  background: var(--bg-1);
+  border-radius: var(--r-2);
+  padding: var(--s-5);
+  max-height: calc(100vh - var(--nav-h) - var(--s-7));
+  overflow-y: auto;
+}
+
+.detail-head { display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; }
+.detail-name { font-size: var(--fs-lg); font-weight: 700; }
+.detail-en { font-size: var(--fs-sm); color: var(--text-3); }
+.detail-sub {
+  font-size: var(--fs-sm); color: var(--text-2);
+  margin: var(--s-2) 0 var(--s-4); line-height: 1.6;
+}
+.detail-block { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.detail-block-title {
+  font-size: var(--fs-xs); color: var(--text-3);
+  margin-bottom: var(--s-2);
+}
+.detail-cta { display: block; width: 100%; text-align: center; margin-top: var(--s-4); }
+a.btn-primary:hover { text-decoration: none; }
+.detail-empty { color: var(--text-3); font-size: var(--fs-sm); text-align: center; padding: var(--s-8) 0; }
+
+/* 表格最後一欄的快捷箭嘴 */
+.row-go {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: var(--r-1);
+  color: var(--text-3); font-size: var(--fs-md); line-height: 1;
+}
+.row-go:hover { background: var(--bg-4); color: var(--accent); text-decoration: none; }
+
+/* ---- 版本綁定四格(運行 / 掃描)---- */
+.trace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2px;
+  background: var(--line);
+  border-radius: var(--r-2);
+  overflow: hidden;
+}
+.trace-cell { background: var(--bg-2); padding: var(--s-3) var(--s-4); min-width: 0; }
+.trace-cell-k {
+  font-size: var(--fs-xs); color: var(--text-3);
+  display: flex; align-items: center; gap: var(--s-1); margin-bottom: 2px;
+}
+.trace-cell-v {
+  font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-1);
+  line-height: 1.6; word-break: break-word;
+}
+.trace-cell-v .ver-stale { color: var(--warn); font-weight: 700; }
+.trace-tail {
+  font-size: var(--fs-xs); color: var(--text-3);
+  font-family: var(--font-mono);
+  margin-top: var(--s-2); display: flex; gap: var(--s-4); flex-wrap: wrap;
+}
+
+/* ---- 舊版本標記 ---- */
+.stale-bar {
+  display: flex; align-items: center; gap: var(--s-4);
+  flex-wrap: wrap;
+  background: rgba(240, 168, 60, .10);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--r-2);
+  padding: var(--s-3) var(--s-4);
+  margin-top: var(--s-3);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.stale-badge {
+  flex: none;
+  display: inline-flex; align-items: center; gap: var(--s-1);
+  background: var(--warn); color: #06121f;
+  font-size: var(--fs-xs); font-weight: 700;
+  padding: 2px var(--s-2); border-radius: var(--r-1);
+  white-space: nowrap;
+}
+.stale-badge::before { content: '▲'; font-size: 9px; }
+.stale-text { flex: 1 1 320px; min-width: 0; }
+.stale-text b { color: var(--text-1); }
+.stale-bar .btn { flex: none; }
+
+/* ---- 重跑提示框 ---- */
+dialog.modal {
+  border: 0; padding: 0;
+  background: var(--bg-1);
+  color: var(--text-1);
+  border-radius: var(--r-3);
+  max-width: 520px; width: calc(100% - 32px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .6);
+}
+dialog.modal::backdrop { background: rgba(6, 10, 18, .72); }
+.modal-body { padding: var(--s-6); }
+.modal-title { font-size: var(--fs-md); font-weight: 700; margin-bottom: var(--s-3); }
+.modal-body p { color: var(--text-2); font-size: var(--fs-sm); line-height: 1.75; }
+.modal-foot {
+  display: flex; justify-content: flex-end; gap: var(--s-2);
+  padding: var(--s-4) var(--s-6);
+  border-top: 1px solid var(--line);
+}
+.lineage {
+  background: var(--bg-2); border-radius: var(--r-2);
+  padding: var(--s-3) var(--s-4); margin: var(--s-3) 0;
+  font-family: var(--font-mono); font-size: var(--fs-sm);
+  color: var(--text-2); line-height: 1.8;
+}
+.lineage b { color: var(--text-1); }
+
+/* ============================================================
+   第四版:貼合螢幕 + 版本沿革
+   ------------------------------------------------------------
+   目標是 1920×1080 一屏睇完:面板按視窗高度分配,
+   長表格在自己的面板內捲,整頁不捲。
+   ============================================================ */
+body.fit { overflow: hidden; }
+body.fit .wrap {
+  height: calc(100vh - var(--nav-h) - 3px);
+  max-width: none;
+  padding: var(--s-3) var(--s-5) var(--s-3);
+  display: flex; flex-direction: column; gap: var(--s-3);
+  overflow: hidden;
+}
+body.fit .page-head { margin-bottom: 0; flex: none; }
+body.fit h1 { font-size: var(--fs-lg); }
+body.fit .page-sub { font-size: var(--fs-xs); margin-top: 2px; }
+body.fit .breadcrumb { margin-bottom: 0; }
+body.fit .section { margin-top: 0; }
+body.fit .foot {
+  flex: none; margin-top: 0;
+  padding: var(--s-2) var(--s-4);
+  max-height: 38px; overflow-y: auto;
+  font-size: 10px; line-height: 1.5;
+}
+/* 一屏之內表頭要更緊 */
+body.fit table.kt th, body.fit table.kt td { padding: 5px var(--s-3); }
+body.fit .kpi { padding: var(--s-2) var(--s-4); }
+body.fit .kpi-value { font-size: var(--fs-xl); }
+body.fit .kpi-value.sm { font-size: var(--fs-lg); }
+
+.fit-main { flex: 1 1 auto; min-height: 0; display: grid; gap: var(--s-3); }
+.fit-col { min-height: 0; display: flex; flex-direction: column; gap: var(--s-3); }
+.fit-grow { flex: 1 1 auto; min-height: 0; overflow: auto; }
+.fit-panel {
+  background: var(--bg-1); border-radius: var(--r-2);
+  display: flex; flex-direction: column; min-height: 0;
+}
+.fit-panel-head {
+  flex: none; padding: var(--s-3) var(--s-4);
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--s-3); flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+}
+.fit-panel-head h2, .fit-panel-head h3 { font-size: var(--fs-md); }
+.fit-panel-body { flex: 1 1 auto; min-height: 0; overflow: auto; }
+
+/* ---- 基準只在圖例列出現,不再霸一行大卡 ---- */
+.bench-line {
+  display: flex; gap: var(--s-4); flex-wrap: wrap;
+  font-size: var(--fs-xs); color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.bench-line span { display: inline-flex; align-items: center; gap: var(--s-1); }
+.bench-line i { display: inline-block; width: 12px; height: 2px; border-radius: 2px; flex: none; }
+.bench-line b { color: var(--text-1); font-weight: 700; }
+
+/* ---- 薄摘要列 ---- */
+.config-slim {
+  display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap;
+  background: var(--bg-1);
+  border-left: 3px solid var(--up);
+  border-radius: var(--r-2);
+  padding: var(--s-2) var(--s-4);
+  font-size: var(--fs-sm);
+  flex: none;
+}
+.config-slim .chip { padding: 1px var(--s-2); }
+.config-slim .slim-past {
+  margin-left: auto; color: var(--text-3); font-size: var(--fs-xs);
+  border-left: 1px dashed var(--line-strong); padding-left: var(--s-4);
+}
+
+/* ---- 版本沿革(git log 形態)---- */
+.timeline { position: relative; padding: var(--s-2) 0 var(--s-2) 20px; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 5px; top: 10px; bottom: 10px; width: 2px;
+  background: var(--line);
+}
+.tl-item { position: relative; padding: var(--s-2) 0 var(--s-2) var(--s-2); }
+.tl-item::before {
+  content: ''; position: absolute;
+  left: -19px; top: 12px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--bg-3);
+  box-shadow: 0 0 0 2px var(--bg-1);
+}
+.tl-item.is-current::before {
+  background: var(--up);
+  box-shadow: 0 0 0 2px var(--bg-1), 0 0 0 4px rgba(38, 166, 154, .25);
+}
+.tl-item.is-current { background: rgba(38, 166, 154, .06); border-radius: var(--r-1); }
+.tl-head { display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap; }
+.tl-ver { font-family: var(--font-mono); font-weight: 700; color: var(--text-1); }
+.tl-item.is-current .tl-ver { color: var(--up); }
+.tl-date { font-size: var(--fs-xs); color: var(--text-3); font-family: var(--font-mono); }
+.tl-sum { font-size: var(--fs-sm); color: var(--text-2); line-height: 1.5; margin-top: 1px; }
+.tl-meta { font-size: var(--fs-xs); color: var(--text-3); margin-top: 2px; display: flex; gap: var(--s-3); }
+.by-human { color: var(--accent); }
+.by-agent { color: var(--bench-qqq); }
+
+.factor-hist { padding: var(--s-2) var(--s-4) var(--s-4); font-size: var(--fs-xs); }
+.fh-name { color: var(--text-2); font-weight: 700; margin-top: var(--s-3); }
+.fh-chain { color: var(--text-3); font-family: var(--font-mono); line-height: 1.8; }
+.fh-cur { color: var(--up); font-weight: 700; }
+.fh-note { color: var(--text-3); }
+
+/* 貼屏模式下,主體以外的每一件都不許被壓縮 */
+body.fit > .wrap > .trace-grid,
+body.fit > .wrap > .trace-tail,
+body.fit > .wrap > .kpi-row,
+body.fit > .wrap > .archive-line,
+body.fit > .wrap > .breadcrumb,
+body.fit > .wrap > div:not(.fit-main):not(.wrap) { flex: none; }
+body.fit .archive-line { margin: 0; font-size: 10px; }
+body.fit .callout, body.fit .slice-bar, body.fit .section { margin: 0; }
+body.fit .callout { padding: var(--s-3) var(--s-4); line-height: 1.65; }
+body.fit .trace-tail { margin-top: var(--s-1); }
+body.fit .stale-bar { margin: 0; }
+body.fit .chart-head { padding: var(--s-3) var(--s-4) var(--s-2); }
+/* 一屏之內要見到整幅熱力圖,所以放棄固定長寬比,改用固定行高 */
+body.fit .heat-cell { aspect-ratio: auto; height: 36px; min-height: 0; }
+body.fit .heat-axis-label { font-size: 10px; }
+body.fit .legend-key { margin-top: var(--s-2); font-size: var(--fs-xs); }
+
+/* ---- 雙欄主從在貼屏模式下改由視窗高度分配 ---- */
+body.fit .master-detail {
+  align-items: stretch;
+  grid-template-columns: minmax(0, 62fr) minmax(0, 38fr);
+}
+body.fit .md-list { display: flex; flex-direction: column; min-height: 0; }
+body.fit .md-list .table-scroll {
+  max-height: none; min-height: 0; flex: 1 1 auto; overflow: auto;
+}
+body.fit .md-detail {
+  position: static; max-height: none; min-height: 0;
+  overflow: auto; padding: var(--s-4);
+}
+body.fit .md-detail .detail-block { margin-top: var(--s-3); padding-top: var(--s-3); }
+body.fit .md-detail .detail-sub { margin: var(--s-1) 0 var(--s-3); }
+
+/* 面板內的分頁籤 */
+.fit-panel > .tabs {
+  flex: none; border-bottom: 1px solid var(--line);
+  border-radius: var(--r-2) var(--r-2) 0 0;
+}
+.fit-panel .timeline { padding-left: 28px; padding-right: var(--s-4); }
+.fit-panel .timeline::before { left: 13px; }
+.fit-panel .kt { margin: 0; }
+
+/* 時點指示 */
+.at-point {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  background: var(--bg-2); border-radius: var(--r-1);
+  padding: 2px var(--s-3); font-size: var(--fs-sm);
+  font-family: var(--font-mono); color: var(--text-1);
+}
+
+/* ============================================================
    響應式
    ============================================================ */
+@media (max-height: 900px) {
+  body.fit .page-sub { display: none; }
+}
 @media (max-width: 1180px) {
   .stock-a-layout { grid-template-columns: 1fr; }
   .sweep-layout { grid-template-columns: 1fr; }
   .drill { grid-template-columns: 1fr; }
+  .master-detail { grid-template-columns: 1fr; }
+  .md-detail { position: static; max-height: none; }
+  .md-list .table-scroll { max-height: 520px; }
 }
 @media (max-width: 720px) {
   .wrap { padding: var(--s-4); }

@@ -6,29 +6,41 @@
 <title>參數掃描 — Karst 原型</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body class="fit">
 
 <div id="nav-host"></div>
 
 <main class="wrap">
 
-  <nav class="breadcrumb" aria-label="麵包屑">
-    <a href="index.html">策略總覽</a><span>／</span>
-    <a href="strategy.html">趨勢波段</a><span>／</span>
-    <span>參數掃描</span>
-  </nav>
-
   <header class="page-head">
     <div class="page-head-row">
       <div>
         <div class="page-title-group">
+          <nav class="breadcrumb" aria-label="麵包屑" style="margin:0">
+            <a href="index.html">策略總覽</a><span>／</span>
+            <a href="strategy.html">趨勢波段</a><span>／</span>
+          </nav>
           <h1>參數掃描</h1>
           <span class="proto-badge">原型・假數據</span>
         </div>
-        <p class="page-sub">趨勢波段 v2.3.0・掃描四個參數。主圖看突破日數 N × 止蝕幅度,另外兩個參數由上面的切片選擇器定住。</p>
+        <p class="page-sub">趨勢波段 v2.3.0・掃描四個參數。主圖看突破日數 N × 止蝕幅度,另外兩個參數由下面的切片選擇器定住。</p>
       </div>
     </div>
   </header>
+
+  <!-- ============ 版本綁定 ============ -->
+  <div class="trace-grid" id="sweep-trace" aria-label="本次掃描綁定的版本"></div>
+  <div id="sweep-stale"></div>
+
+  <dialog class="modal" id="rescan-modal" aria-labelledby="rescan-title">
+    <div class="modal-body">
+      <div class="modal-title" id="rescan-title">以現版本重掃</div>
+      <div id="rescan-body"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="rescan-close">知道了</button>
+    </div>
+  </dialog>
 
   <!-- ============ 切片選擇器 ============ -->
   <div class="slice-bar" id="slice-bar">
@@ -38,46 +50,69 @@
   </div>
 
   <!-- 全頁最重要那句:最高分那格不是最應該選那格 -->
-  <div class="callout" id="verdict" style="margin-bottom:var(--s-5)"></div>
+  <div class="callout" id="verdict"></div>
 
-  <div class="sweep-layout">
+  <div class="fit-main" style="grid-template-columns:minmax(0,1fr) 340px">
 
-    <!-- ============ 熱力圖 ============ -->
-    <div class="panel panel-pad">
-      <div class="section-head">
-        <h2>年化回報熱力圖</h2>
-        <span class="section-note">橫軸 止蝕幅度　縱軸 突破日數 N　點擊任何一格查看該組參數的詳情</span>
+    <!-- ============ 熱力圖 / 小倍數 ============ -->
+    <div class="fit-panel">
+      <div class="tabs" role="tablist" aria-label="掃描檢視">
+        <button class="tab-btn" role="tab" id="tab-heat" aria-selected="true" aria-controls="p-heat">年化回報熱力圖</button>
+        <button class="tab-btn" role="tab" id="tab-small" aria-selected="false" aria-controls="p-small">小倍數・六對參數</button>
+        <span class="section-note" style="margin-left:auto;align-self:center;padding-right:var(--s-4)">
+          橫軸 止蝕幅度　縱軸 突破日數 N　點任何一格看右邊詳情
+        </span>
       </div>
-      <div class="heat-scroll">
-        <div class="heat" id="heat"></div>
-      </div>
+      <div class="fit-panel-body">
 
-      <!-- 圖例 -->
-      <div style="margin-top:var(--s-5);max-width:520px">
-        <div class="scale-bar" id="scale-bar"></div>
-        <div class="scale-ends"><span id="scale-min"></span><span id="scale-max"></span></div>
+        <div class="tab-panel" id="p-heat" role="tabpanel" aria-labelledby="tab-heat">
+          <div style="padding:var(--s-4)">
+            <div class="heat-scroll">
+              <div class="heat" id="heat"></div>
+            </div>
 
-        <div class="legend-key">
-          <span class="legend-chip plateau" aria-hidden="true"></span>
-          <span><b>穩健平原</b>(白框):一整片鄰居一起好。參數偏離少許一樣賺錢,即是優勢來自策略本身,實盤可行。</span>
+            <div style="margin-top:var(--s-4);max-width:560px">
+              <div class="scale-bar" id="scale-bar"></div>
+              <div class="scale-ends"><span id="scale-min"></span><span id="scale-max"></span></div>
+
+              <div class="legend-key">
+                <span class="legend-chip plateau" aria-hidden="true"></span>
+                <span><b>穩健平原</b>(白框):一整片鄰居一起好。參數偏離少許一樣賺錢,即是優勢來自策略本身,實盤可行。</span>
+              </div>
+              <div class="legend-key">
+                <span class="legend-chip spike" aria-hidden="true"></span>
+                <span><b>孤峰</b>(黃框):自己一格特別好,四周全部差。多數是擬合噪音——那組參數只是剛好撞中歷史上幾筆交易,換一段時間就消失。</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="legend-key">
-          <span class="legend-chip spike" aria-hidden="true"></span>
-          <span><b>孤峰</b>(黃框):自己一格特別好,四周全部差。多數是擬合噪音——那組參數只是剛好撞中歷史上幾筆交易,換一段時間就消失。</span>
+
+        <div class="tab-panel" id="p-small" role="tabpanel" aria-labelledby="tab-small" hidden>
+          <div style="padding:var(--s-4)">
+            <p class="section-note" style="margin:0 0 var(--s-3)">
+              掃描有四個參數,一張圖只看得到兩個。四個兩兩配對共六張,一次過掃完,哪一對站得住一眼看得出。
+            </p>
+            <div class="small-grid" id="small"></div>
+            <p class="section-note" style="margin-top:var(--s-3)">
+              每張圖各自用自己的色階,只看形狀不看絕對值:亮的一整片 = 平原,亮的一點 = 孤峰。
+              白框那格是目前選定的參數位置。
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
 
     <!-- ============ 選中格詳情 ============ -->
-    <aside>
-      <div class="panel panel-pad" style="position:sticky;top:calc(var(--nav-h) + var(--s-4))">
-        <div class="section-head">
-          <h2 style="font-size:var(--fs-md)">參數組詳情</h2>
-          <span class="tag" id="cell-tag"></span>
-        </div>
+    <aside class="fit-panel" aria-label="參數組詳情">
+      <div class="fit-panel-head">
+        <h2 style="font-size:var(--fs-md)">參數組詳情</h2>
+        <span class="tag" id="cell-tag"></span>
+      </div>
+      <div class="fit-panel-body" style="padding:var(--s-4)">
         <div id="cell-detail"></div>
 
-        <div style="margin-top:var(--s-5);padding-top:var(--s-4);border-top:1px solid var(--line)">
+        <div style="margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line)">
           <h3 style="font-size:var(--fs-base);margin-bottom:var(--s-2)">鄰域穩健度</h3>
           <p class="section-note" style="margin:0 0 var(--s-3)">看四周八格的表現。鄰居一起好 = 平原;自己好、鄰居差 = 孤峰。</p>
           <div id="nbhd"></div>
@@ -86,19 +121,6 @@
     </aside>
 
   </div>
-
-  <!-- ============ 小倍數 ============ -->
-  <section class="section" aria-labelledby="h-small">
-    <div class="section-head">
-      <h2 id="h-small">小倍數:每對參數睇一眼</h2>
-      <span class="section-note">掃描有四個參數,一張圖只睇得到兩個。四個兩兩配對共六張,一次過掃完,邊一對站得住一眼睇得出。</span>
-    </div>
-    <div class="small-grid" id="small"></div>
-    <p class="section-note" style="margin-top:var(--s-3)">
-      每張圖各自用自己的色階,只看形狀不看絕對值:亮的一整片 = 平原,亮的一點 = 孤峰。
-      白框那格是目前選定的參數位置。
-    </p>
-  </section>
 
   <div id="foot-host"></div>
 </main>
@@ -119,6 +141,78 @@
 
   var heat = document.getElementById('heat');
   var S = null, MIN = 0, MAX = 1;
+
+  KV.initTabs('.tabs');
+
+  /* ============================================================
+     版本綁定:一次掃描綁死當時的策略版本與因子版本
+     ============================================================ */
+  (function () {
+    var bind = W.binding;
+    var stale = K.staleCheck(bind);
+    var staleNames = {};
+    stale.items.forEach(function (it) { staleNames[it.name] = it; });
+
+    var factorCell = bind.factors.map(function (f) {
+      var reg = K.factorRegistry.filter(function (x) { return x.id === f.id; })[0];
+      var nm = reg ? reg.name : f.id;
+      var bad = !!staleNames[nm];
+      return '<span class="' + (bad ? 'ver-stale' : '') + '">' +
+        KV.esc(nm) + ' ' + KV.esc(f.ver) + (bad ? ' ▲' : '') + '</span>';
+    }).join('<span class="dim">・</span>');
+
+    var cells = [
+      { k: '策略版本', v: KV.esc(bind.strategyVer) +
+          (staleNames['趨勢波段'] ? ' <span class="ver-stale">▲</span>' : ''),
+        hint: '本次掃描綁定的策略程式版本' },
+      { k: '因子版本', v: factorCell, hint: '每個因子各有自己的版本,分開計' },
+      { k: '掃描範圍', v: W.rows.length + ' × ' + W.cols.length + ' 格　共 ' +
+          (W.rows.length * W.cols.length) + ' 次回測',
+        hint: '主圖每一格都是一次完整回測' },
+      { k: '數據快照編號', v: 'DS-2026-06-30-a', hint: '定住當時的價格與財務數據' },
+    ];
+    document.getElementById('sweep-trace').innerHTML = cells.map(function (c) {
+      return '<div class="trace-cell">' +
+        '<div class="trace-cell-k">' + c.k +
+          '<span class="hint" title="' + KV.esc(c.hint) + '">?</span></div>' +
+        '<div class="trace-cell-v">' + c.v + '</div>' +
+      '</div>';
+    }).join('');
+
+    if (!stale.stale) return;
+
+    var lines = stale.items.map(function (it) {
+      return it.kind + ' ' + it.name + ' 由 ' + it.was + ' 更新到 ' + it.now +
+        '(' + it.updatedAt + ')';
+    });
+    document.getElementById('sweep-stale').innerHTML =
+      '<div class="stale-bar">' +
+        '<span class="stale-badge">舊版本</span>' +
+        '<span class="stale-text"><b>本次掃描綁定的版本已經落後:' + KV.esc(lines.join(';')) +
+          '。</b>整幅熱力圖是舊版本之下的紀錄,不會自動更新 —— ' +
+          '換言之,現在照這幅圖揀參數,揀到的是舊計法下的平原。</span>' +
+        '<button class="btn btn-primary" id="rescan-btn">以現版本重掃</button>' +
+      '</div>';
+
+    var modal = document.getElementById('rescan-modal');
+    document.getElementById('rescan-body').innerHTML =
+      '<p>會用現行版本重掃一次,產生一幅<b>新的掃描</b>,與本次掃描血統相連:同一個參數範圍、同一個數據快照,' +
+        '分別只在版本。兩幅圖可以並排比較,本次掃描不會被改寫。</p>' +
+      '<div class="lineage">' +
+        '本次掃描　<b>SWEEP-2026-0731-01</b>　' + KV.esc(bind.strategyVer) + '・' +
+          KV.esc(K.factorLine(bind)) + '<br>' +
+        '　　└─ 新掃描　<b>SWEEP-2026-0826-NEW</b>　' + KV.esc(K.strategyCurrentVer) + '・' +
+          KV.esc(K.factorRegistry.map(function (f) { return f.name + ' ' + f.current; }).join('・')) +
+      '</div>' +
+      '<p class="dim">原型不會真的重掃 —— 這一格只為示意「舊掃描不改寫,新掃描接上血統」。</p>';
+
+    document.getElementById('rescan-btn').addEventListener('click', function () {
+      if (modal.showModal) modal.showModal();
+    });
+    document.getElementById('rescan-close').addEventListener('click', function () {
+      modal.close();
+    });
+  })();
 
   function norm(v) { return (v - MIN) / ((MAX - MIN) || 1); }
 
@@ -197,10 +291,10 @@
 
     document.getElementById('verdict').innerHTML =
       '<b>全格最高分那格,不是最應該選那格。</b>' +
-      '<span class="dim">(風險比例 ' + AX_RISK.fmt(curRisk) + '・均線 ' + AX_MA.fmt(curMa) + ')</span><br>' +
+      '<span class="dim">(風險比例 ' + AX_RISK.fmt(curRisk) + '・均線 ' + AX_MA.fmt(curMa) + ')</span>　' +
       '最高分是 <b>N=' + best.n + '、止蝕 ' + best.s + '%</b>,年化 <b class="up">' + KV.pctPlain(best.cagr) + '</b>' +
       ',但它八個鄰居平均只有 <b class="down">' + KV.pctPlain(bestN.mean) + '</b>——參數偏離一格就跌 ' +
-      KV.pctPlain(bestN.gap) + ',這是孤峰。<br>' +
+      KV.pctPlain(bestN.gap) + ',這是孤峰。　' +
       '平原中心 <b>N=' + plateauCell.n + '、止蝕 ' + plateauCell.s + '%</b> 年化 <b class="up">' +
       KV.pctPlain(plateauCell.cagr) + '</b>' +
       ',低過孤峰 ' + KV.pctPlain(best.cagr - plateauCell.cagr) + ',但八個鄰居平均有 <b class="up">' +
@@ -258,7 +352,7 @@
       'tag ' + (cell.spike ? 'tag-current' : (isPlateau ? 'tag-live' : ''));
 
     document.getElementById('cell-detail').innerHTML =
-      '<div style="font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--text-2);margin-bottom:var(--s-4)">' +
+      '<div style="font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--text-2);margin-bottom:var(--s-3)">' +
         'N=' + cell.n + '　止蝕 ' + cell.s + '%' +
       '</div>' +
       '<dl class="def-list">' +
