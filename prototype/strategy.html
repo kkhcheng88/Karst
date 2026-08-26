@@ -6,128 +6,107 @@
 <title>趨勢波段 策略詳情 — Karst 原型</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body class="fit">
+<body class="sp">
 
 <div id="nav-host"></div>
 
 <main class="wrap">
 
   <header class="page-head">
-    <div class="page-head-row">
-      <div>
-        <div class="page-title-group">
-          <nav class="breadcrumb" aria-label="麵包屑" style="margin:0"><a href="index.html">策略總覽</a><span>／</span></nav>
-          <h1>趨勢波段</h1>
-          <span class="page-en">Trend Swing</span>
-          <span class="tag tag-strategy">策略</span>
-          <span class="tag tag-live">紙上交易運行中</span>
-          <span class="proto-badge">原型・假數據</span>
-        </div>
-      </div>
+    <div class="page-title-group">
+      <nav class="breadcrumb" aria-label="麵包屑"><a href="index.html">策略總覽</a><span>／</span></nav>
+      <h1>趨勢波段</h1>
+      <span class="page-en">Trend Swing</span>
+      <span class="tag tag-strategy">策略</span>
+      <span class="tag tag-live">紙上交易運行中</span>
+      <span class="proto-badge">原型・假數據</span>
     </div>
   </header>
 
-  <!-- ============ 薄薄一條現役設定摘要 ============ -->
-  <div class="config-slim" id="config-slim"></div>
+  <div class="sp-stack">
 
-  <div class="fit-main" style="grid-template-columns:minmax(0,46fr) minmax(0,54fr)">
+    <!-- ============ 現役設定:薄薄一條 ============ -->
+    <div class="config-slim" id="config-slim"></div>
 
-    <!-- ================= 左欄:圖 + 漏斗 + 版本沿革 ================= -->
-    <div class="fit-col">
+    <!-- ============ 頭條數字 ============ -->
+    <div class="kpi-row" id="kpis"></div>
 
-      <!-- 圖可縮,但有下限;下面的分頁區才不會被擠到零高度 -->
-      <div class="fit-panel" style="flex:1 1 auto;min-height:180px">
-        <div class="fit-panel-head">
-          <h2 style="font-size:var(--fs-md)">淨值走勢</h2>
+    <!-- ============ 淨值走勢 ============ -->
+    <section class="sp-panel">
+      <div class="sp-head">
+        <div class="sp-side">
+          <h2>淨值走勢</h2>
           <div class="bench-line" id="equity-bench"></div>
         </div>
-        <div class="fit-panel-body" style="overflow:hidden">
-          <div class="chart-box" id="equity-chart"></div>
-          <div id="chart-note" style="padding:var(--s-2) var(--s-4) var(--s-3)">
-            <div class="section-note" id="metric-line"></div>
-            <div class="section-note" style="margin-top:2px;color:var(--accent)">
-              點圖上任何一日 = 選定時點,右邊選股快照即時跳到該日。
-            </div>
-          </div>
+        <span class="section-note">點圖選時點 ↓</span>
+      </div>
+      <div class="sp-body">
+        <div class="sp-chart" id="equity-chart"></div>
+      </div>
+    </section>
+
+    <!-- ============ 選股快照:逐層收窄 + 兩欄名單 ============ -->
+    <section class="sp-panel">
+      <div class="sp-head">
+        <div class="sp-side">
+          <h2>選股快照</h2>
+          <span class="at-point" id="at-point"></span>
+        </div>
+        <div class="date-switch" id="pick-vers" role="group" aria-label="以哪個版本檢視"></div>
+      </div>
+      <div class="sp-sub" id="picks-basis"></div>
+      <div class="sp-funnel">
+        <div class="sp-funnel-cap">逐層收窄</div>
+        <div class="funnel-bar" id="funnel"></div>
+      </div>
+      <div class="sp-two">
+        <div id="picks-left"></div>
+        <div id="picks-right"></div>
+      </div>
+    </section>
+
+    <!-- ============ 版本沿革 ============ -->
+    <section class="sp-panel">
+      <div class="sp-head">
+        <h2>版本沿革</h2>
+        <span class="section-note">最新在上</span>
+      </div>
+      <div class="sp-hist">
+        <div>
+          <div class="sp-hist-t">策略版本</div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+        <div>
+          <div class="sp-hist-t">因子版本</div>
+          <div class="factor-hist" id="factor-hist"></div>
         </div>
       </div>
+    </section>
 
-      <div class="fit-panel" style="flex:none">
-        <div class="fit-panel-head">
-          <h3>逐層收窄</h3>
-          <span class="section-note" id="funnel-note"></span>
-        </div>
-        <div class="fit-panel-body" style="overflow:hidden">
-          <div class="funnel-bar" id="funnel"></div>
-        </div>
+    <!-- ============ 歷次運行 ============ -->
+    <section class="sp-panel">
+      <div class="sp-head">
+        <h2>歷次運行</h2>
+        <span class="section-note" id="runs-count"></span>
       </div>
-
-      <div class="fit-panel fit-grow" style="min-height:170px">
-        <div class="tabs" role="tablist" aria-label="版本與運行">
-          <button class="tab-btn" role="tab" id="tab-hist" aria-selected="true" aria-controls="p-hist">版本沿革</button>
-          <button class="tab-btn" role="tab" id="tab-runs" aria-selected="false" aria-controls="p-runs">歷次運行</button>
-        </div>
-        <div class="fit-panel-body">
-          <div class="tab-panel" id="p-hist" role="tabpanel" aria-labelledby="tab-hist">
-            <div class="timeline" id="timeline"></div>
-            <div class="factor-hist" id="factor-hist"></div>
-          </div>
-          <div class="tab-panel" id="p-runs" role="tabpanel" aria-labelledby="tab-runs" hidden>
-            <table class="kt" style="min-width:640px">
-              <thead>
-                <tr>
-                  <th style="width:150px">運行編號</th>
-                  <th style="width:64px">版本</th>
-                  <th style="width:210px">參數摘要</th>
-                  <th class="num" style="width:66px">年化</th>
-                  <th class="num" style="width:76px">最大回撤</th>
-                  <th class="num" style="width:56px">勝率</th>
-                  <th style="width:124px">數據快照</th>
-                  <th style="width:60px"></th>
-                </tr>
-              </thead>
-              <tbody id="runs-body"></tbody>
-            </table>
-          </div>
-        </div>
+      <div class="sp-body flush">
+        <table class="kt">
+          <thead>
+            <tr>
+              <th style="width:204px">運行編號</th>
+              <th style="width:70px">版本</th>
+              <th>參數</th>
+              <th class="num" style="width:72px">年化</th>
+              <th class="num" style="width:88px">最大回撤</th>
+              <th class="num" style="width:62px">勝率</th>
+              <th style="width:140px">快照</th>
+              <th style="width:64px"></th>
+            </tr>
+          </thead>
+          <tbody id="runs-body"></tbody>
+        </table>
       </div>
-
-    </div>
-
-    <!-- ================= 右欄:選股快照 ================= -->
-    <div class="fit-col">
-      <div class="fit-panel fit-grow">
-        <div class="fit-panel-head">
-          <div>
-            <h2 style="font-size:var(--fs-md)">選股快照</h2>
-            <div class="section-note" id="picks-basis" style="margin-top:2px"></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:var(--s-3);flex-wrap:wrap">
-            <span class="at-point" id="at-point"></span>
-            <div class="date-switch" id="pick-vers" role="group" aria-label="以哪個版本檢視"></div>
-          </div>
-        </div>
-        <div class="fit-panel-body">
-          <table class="kt" style="min-width:820px">
-            <thead>
-              <tr>
-                <th style="width:66px">代號</th>
-                <th style="width:120px">名稱</th>
-                <th style="width:100px">行業</th>
-                <th class="num" style="width:66px">質素分</th>
-                <th class="num" style="width:66px">動量分</th>
-                <th class="num" style="width:66px">超賣度</th>
-                <th class="num" style="width:66px">綜合分</th>
-                <th style="width:80px">基本面關</th>
-                <th style="width:74px">技術關</th>
-                <th style="width:76px">狀態</th>
-              </tr>
-            </thead>
-            <tbody id="picks-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    </section>
 
   </div>
 
@@ -151,7 +130,7 @@
   var cur = runs.filter(function (r) { return r.current; })[0] || runs[0];
 
   /* ============================================================
-     薄摘要列:現役設定 + 降級的歷史最佳
+     現役設定:一條薄列。歷史最佳降級成尾巴一句
      ============================================================ */
   var W = K.sweep;
   var best = null, bestPos = null;
@@ -177,37 +156,41 @@
       return '<span class="chip"><span class="chip-k">' + KV.esc(p[0]) + '</span>' +
         '<span class="chip-v">' + KV.esc(p[1]) + '</span></span>';
     }).join('') +
-    '<span class="section-note">運行 ' + KV.esc(cur.id) + '・快照 ' + KV.esc(cur.snap) + '</span>' +
-    '<span class="slim-past">歷史最佳(僅供參考)　<span class="mono">N=' + best.n + '・止蝕 ' + best.s +
-      '%・年化 ' + KV.pctPlain(best.cagr) + '</span>　鄰域平均只有 ' + KV.pctPlain(bestNbhd) +
-      ',屬孤峰,從來沒有實際跟隨過。<a href="sweep.html">看掃描 →</a></span>';
+    '<span class="section-note mono">' + KV.esc(cur.id) + '・' + KV.esc(cur.snap) + '</span>' +
+    '<span class="slim-past">歷史最佳 <span class="mono">N=' + best.n + '・止蝕 ' + best.s +
+      '%・年化 ' + KV.pctPlain(best.cagr) + '</span>(鄰域 ' + KV.pctPlain(bestNbhd) +
+      ',孤峰)　<a href="sweep.html">看掃描 →</a></span>';
 
   /* ============================================================
-     淨值走勢圖(基準只在圖例列出現,不再霸一行大卡)
+     頭條數字:七格,一行讀完
+     ============================================================ */
+  var KPIS = [
+    { l: '累計報酬', v: KV.pct(m.cumReturn),          c: KV.cls(m.cumReturn), b: 'QQQ ' + KV.pct(qqq.metrics.cumReturn) },
+    { l: '年化',     v: KV.pctPlain(m.cagr),          c: KV.cls(m.cagr),      b: 'QQQ ' + KV.pctPlain(qqq.metrics.cagr) },
+    { l: '最大回撤', v: KV.pctPlain(m.maxDD),         c: 'down',              b: 'QQQ ' + KV.pctPlain(qqq.metrics.maxDD) },
+    { l: '波幅',     v: KV.pctPlain(m.vol),           c: '',                  b: 'QQQ ' + KV.pctPlain(qqq.metrics.vol) },
+    { l: 'Sortino',  v: m.sortino.toFixed(2),         c: '',                  b: 'QQQ ' + qqq.metrics.sortino.toFixed(2) },
+    { l: '勝率',     v: m.winRate + '%',              c: '',                  b: '盈虧比 ' + m.plRatio.toFixed(1) },
+    { l: '交易筆數', v: String(m.trades),             c: '',                  b: K.meta.years + ' 年' },
+  ];
+  document.getElementById('kpis').innerHTML = KPIS.map(function (k) {
+    return '<div class="kpi">' +
+      '<div class="kpi-label">' + KV.esc(k.l) + '</div>' +
+      '<div class="kpi-value ' + k.c + '">' + KV.esc(k.v) + '</div>' +
+      '<div class="kpi-basis">' + KV.esc(k.b) + '</div>' +
+    '</div>';
+  }).join('');
+
+  /* ============================================================
+     淨值走勢圖
      ============================================================ */
   document.getElementById('equity-bench').innerHTML =
-    '<span><i style="background:#26a69a"></i>趨勢波段 <b class="up">' + KV.pct(m.cumReturn) +
-      '</b>・年化 <b>' + KV.pctPlain(m.cagr) + '</b></span>' +
-    '<span><i style="background:#b07de0"></i>QQQ <b>' + KV.pct(qqq.metrics.cumReturn) +
-      '</b>・年化 <b>' + KV.pctPlain(qqq.metrics.cagr) + '</b></span>' +
-    '<span><i style="background:#7d869c"></i>SPY <b>' + KV.pct(spy.metrics.cumReturn) +
-      '</b>・年化 <b>' + KV.pctPlain(spy.metrics.cagr) + '</b></span>';
-
-  document.getElementById('metric-line').textContent =
-    '最大回撤 ' + KV.pctPlain(m.maxDD) + '(QQQ ' + KV.pctPlain(qqq.metrics.maxDD) + ',較淺)' +
-    '・Sortino ' + m.sortino.toFixed(2) +
-    '・勝率 ' + m.winRate + '% ／ 盈虧比 ' + m.plRatio.toFixed(1) +
-    '・共 ' + m.trades + ' 筆交易';
+    '<span><i style="background:#26a69a"></i>趨勢波段 <b class="up">' + KV.pct(m.cumReturn) + '</b></span>' +
+    '<span><i style="background:#b07de0"></i>QQQ <b>' + KV.pct(qqq.metrics.cumReturn) + '</b></span>' +
+    '<span><i style="background:#7d869c"></i>SPY <b>' + KV.pct(spy.metrics.cumReturn) + '</b></span>';
 
   var chartEl = document.getElementById('equity-chart');
-
-  /* 圖的高度按面板實際剩多少來定,視窗矮的時候由圖讓位,下面的分頁區不會被壓到看不見 */
-  function chartHeight() {
-    var body = chartEl.parentElement;
-    var note = document.getElementById('chart-note');
-    return Math.max(120, Math.round(body.clientHeight - note.getBoundingClientRect().height));
-  }
-  var chart = KV.makeChart(chartEl, chartHeight());
+  var chart = KV.makeChart(chartEl, chartEl.clientHeight || 320);
   var lSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
   lSpy.setData(KV.zip(K.weeklyDates, spy.equity));
   var lQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
@@ -215,10 +198,6 @@
   var lStr = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
   lStr.setData(KV.zip(K.weeklyDates, s.equity));
   chart.timeScale().fitContent();
-
-  window.addEventListener('resize', function () {
-    chart.applyOptions({ height: chartHeight() });
-  });
 
   /* ============================================================
      版本沿革(git log 形態)
@@ -229,32 +208,27 @@
         '<span class="tl-ver">' + KV.esc(h.ver) + '</span>' +
         (h.current ? '<span class="tag tag-live">現役</span>' : '') +
         '<span class="tl-date">' + KV.esc(h.date) + '</span>' +
+        '<span class="tl-meta ' + (h.byKind === 'human' ? 'by-human' : 'by-agent') + '">' +
+          (h.byKind === 'human' ? '用戶' : 'agent') + '・' + h.runs + ' 次運行</span>' +
       '</div>' +
       '<div class="tl-sum">' + KV.esc(h.summary) + '</div>' +
-      '<div class="tl-meta">' +
-        '<span class="' + (h.byKind === 'human' ? 'by-human' : 'by-agent') + '">' +
-          (h.byKind === 'human' ? '用戶' : 'agent') + '改' + '</span>' +
-        '<span>' + h.runs + ' 次運行掛在這一版之下</span>' +
-      '</div>' +
     '</div>';
   }).join('');
 
-  document.getElementById('factor-hist').innerHTML =
-    '<div style="color:var(--text-2);font-weight:700;border-top:1px solid var(--line);' +
-      'padding-top:var(--s-3)">因子版本</div>' +
-    K.factorHistory.map(function (f) {
-      var chain = f.versions.map(function (v) {
-        return '<span class="' + (v.current ? 'fh-cur' : '') + '" title="' + KV.esc(v.date) + '　' +
-          KV.esc(v.summary) + '">' + KV.esc(v.ver) + '</span>';
-      }).join('<span class="fh-note"> ← </span>');
-      return '<div class="fh-name">' + KV.esc(f.name) + '</div>' +
-        '<div class="fh-chain">' + chain + '</div>' +
-        '<div class="fh-note">' + KV.esc(f.versions[0].date + '　' + f.versions[0].summary) + '</div>';
-    }).join('');
-
-  KV.initTabs('.tabs');
+  document.getElementById('factor-hist').innerHTML = K.factorHistory.map(function (f) {
+    var chain = f.versions.map(function (v) {
+      return '<span class="' + (v.current ? 'fh-cur' : '') + '" title="' + KV.esc(v.date) + '　' +
+        KV.esc(v.summary) + '">' + KV.esc(v.ver) + '</span>';
+    }).join('<span class="fh-note"> ← </span>');
+    return '<div class="fh-row">' +
+      '<div class="fh-name">' + KV.esc(f.name) + '</div>' +
+      '<div class="fh-chain">' + chain + '</div>' +
+      '<div class="fh-note">' + KV.esc(f.versions[0].date + '　' + f.versions[0].summary) + '</div>' +
+    '</div>';
+  }).join('');
 
   /* ---- 歷次運行 ---- */
+  document.getElementById('runs-count').textContent = runs.length + ' 次';
   document.getElementById('runs-body').innerHTML = runs.map(function (r) {
     return '<tr class="' + (r.current ? 'is-current' : '') + '">' +
       '<td class="mono">' + KV.esc(r.id) + (r.current ? ' <span class="tag tag-current">本次</span>' : '') + '</td>' +
@@ -276,29 +250,64 @@
   var curDate = K.weeklyDates[K.weeklyDates.length - 1];
 
   var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
+  var FUNNEL_LABEL = ['範圍', '基本面', '技術', '持倉'];
   var ST_CLS = { '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch', '未過': 'st-out' };
 
   document.getElementById('pick-vers').innerHTML = P.versions.map(function (v) {
     return '<button type="button" data-ver="' + v.id + '" ' +
-      'aria-pressed="' + (v.id === curVer ? 'true' : 'false') + '">' + KV.esc(v.label) + '</button>';
+      'aria-pressed="' + (v.id === curVer ? 'true' : 'false') + '">' +
+      KV.esc(v.id) + (v.live ? '・現役' : '') + '</button>';
   }).join('');
+
+  var PICK_HEAD =
+    '<thead><tr>' +
+      '<th style="width:60px">代號</th>' +
+      '<th>名稱</th>' +
+      '<th style="width:88px">行業</th>' +
+      '<th class="num" style="width:46px">質素</th>' +
+      '<th class="num" style="width:46px">動量</th>' +
+      '<th class="num" style="width:46px">超賣</th>' +
+      '<th class="num" style="width:52px">綜合</th>' +
+      '<th style="width:58px">基本面</th>' +
+      '<th style="width:50px">技術</th>' +
+      '<th style="width:68px">狀態</th>' +
+    '</tr></thead>';
+
+  function gateCell(pass, shown) {
+    if (!shown) return '<td><span class="dim">—</span></td>';
+    return '<td class="' + (pass ? 'gate-yes' : 'gate-no') + '" title="' +
+      (pass ? '過' : '不過') + '">' + (pass ? '✓' : '✗') + '</td>';
+  }
+
+  function picksTable(rows) {
+    return '<table class="kt">' + PICK_HEAD + '<tbody>' + rows.map(function (r) {
+      return '<tr>' +
+        '<td class="mono">' + KV.esc(r.sym) + '</td>' +
+        '<td title="' + KV.esc(r.name) + '">' + KV.esc(r.name) + '</td>' +
+        '<td class="dim" title="' + KV.esc(r.sector) + '">' + KV.esc(r.sector) + '</td>' +
+        '<td class="num">' + r.quality.toFixed(0) + '</td>' +
+        '<td class="num">' + r.momentum.toFixed(0) + '</td>' +
+        '<td class="num">' + r.oversold.toFixed(0) + '</td>' +
+        '<td class="num" style="font-weight:700">' + r.composite.toFixed(0) + '</td>' +
+        gateCell(r.passFund, true) +
+        gateCell(r.passTech, r.passFund) +
+        '<td><span class="st ' + ST_CLS[r.status] + '">' + r.status + '</span></td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+  }
 
   function render() {
     var snap = P.snapshot(curVer, curDate);
     var V = snap.version;
-    var scope = snap.funnel[0].count;
 
     document.getElementById('at-point').textContent = '時點 ' + curDate;
 
     document.getElementById('picks-basis').innerHTML =
-      '時點:<b class="mono">' + KV.esc(curDate) + '</b>・基於 ' +
-      (V.live
-        ? '<b class="up">現役設定 ' + KV.esc(V.id) + '</b>'
-        : '<b class="down">' + KV.esc(V.label) + '(不是現役設定)</b>') +
-      '(' + KV.esc(V.params) + ')';
-
-    document.getElementById('funnel-note').textContent =
-      curDate + '・' + V.id + ' 門檻 質素 ≥ ' + V.gates.quality + '、動量 ≥ ' + V.gates.momentum;
+      '<span class="mono">' + KV.esc(V.id) + '</span>' +
+      (V.live ? '' : '<span class="tag tag-current">非現役設定</span>') +
+      '<span class="mono">' + KV.esc(V.params) + '</span>' +
+      '<span>門檻 質素 ≥ ' + V.gates.quality + '・動量 ≥ ' + V.gates.momentum + '</span>' +
+      '<span>分數 0–100</span>';
 
     /* 一條橫向漸縮的分段條:每段闊度按隻數比例,數字寫在段內、關卡名在段下 */
     document.getElementById('funnel').innerHTML = snap.funnel.map(function (f, i) {
@@ -310,29 +319,15 @@
             '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
             '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
           '</div>' +
-          '<div class="fb-lab">' + KV.esc(f.label) +
+          '<div class="fb-lab">' + KV.esc(FUNNEL_LABEL[i] || f.label) +
             (i ? '　−' + (prev - f.count) : '') + '</div>' +
         '</div>';
     }).join('');
 
     var rows = snap.rows;
-    document.getElementById('picks-body').innerHTML = rows.map(function (r) {
-      return '<tr>' +
-        '<td class="mono">' + KV.esc(r.sym) + '</td>' +
-        '<td title="' + KV.esc(r.name) + '">' + KV.esc(r.name) + '</td>' +
-        '<td class="dim">' + KV.esc(r.sector) + '</td>' +
-        '<td class="num">' + r.quality.toFixed(0) + '</td>' +
-        '<td class="num">' + r.momentum.toFixed(0) + '</td>' +
-        '<td class="num">' + r.oversold.toFixed(0) + '</td>' +
-        '<td class="num" style="font-weight:700">' + r.composite.toFixed(0) + '</td>' +
-        '<td class="' + (r.passFund ? 'gate-yes' : 'gate-no') + '">' +
-          (r.passFund ? '✓ 過' : '✗ 不過') + '</td>' +
-        '<td class="' + (r.passTech ? 'gate-yes' : 'gate-no') + '">' +
-          (r.passFund ? (r.passTech ? '✓ 過' : '✗ 不過') : '<span class="dim">—</span>') + '</td>' +
-        '<td><span class="st ' + ST_CLS[r.status] + '">' + r.status + '</span></td>' +
-      '</tr>';
-    }).join('');
-
+    var half = Math.ceil(rows.length / 2);
+    document.getElementById('picks-left').innerHTML = picksTable(rows.slice(0, half));
+    document.getElementById('picks-right').innerHTML = picksTable(rows.slice(half));
   }
 
   /* 圖上點一日 = 選定時點 */

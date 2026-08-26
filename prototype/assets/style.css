@@ -1597,3 +1597,100 @@ body.fit .heat-fill .heat-cell { height: auto; min-height: 26px; }
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .lastrun-line b { color: var(--text-2); font-weight: 400; }
+
+/* ============================================================
+   第八版:策略詳情頁改為一條捲軸
+   ------------------------------------------------------------
+   這一頁不再「貼屏」:面板不設高度上限、不設內嵌捲軸,
+   內容長就讓整頁向下延伸,全頁只有瀏覽器本身那一條垂直捲軸。
+   以下規則全部收在 body.sp 之內,其他頁(body.fit)不受影響。
+   ============================================================ */
+body.sp .wrap { padding: var(--s-4) var(--s-5) var(--s-6); }
+body.sp .page-head { margin-bottom: var(--s-3); }
+body.sp h1 { font-size: var(--fs-lg); }
+body.sp .breadcrumb { margin-bottom: 0; }
+body.sp .foot { margin-top: var(--s-4); padding: var(--s-3) var(--s-4);
+                font-size: 10px; line-height: 1.5; }
+
+/* 區塊之間統一的節奏 */
+.sp-stack { display: flex; flex-direction: column; gap: var(--s-3); }
+
+/* 面板:一律 overflow visible,不許長出自己的捲軸 */
+.sp-panel { background: var(--bg-1); border-radius: var(--r-2); overflow: visible; }
+.sp-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-2) var(--s-4); flex-wrap: wrap;
+  padding: var(--s-2) var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+.sp-head h2 { font-size: var(--fs-md); }
+.sp-side { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; min-width: 0; }
+.sp-body { padding: var(--s-3) var(--s-4); }
+.sp-body.flush { padding: 0; }
+.sp-sub {
+  display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap;
+  padding: var(--s-2) var(--s-4);
+  font-size: var(--fs-xs); color: var(--text-3);
+  border-bottom: 1px solid var(--line);
+}
+.sp-sub .mono { color: var(--text-2); }
+
+/* 表格:表頭黏在導航列之下,而不是黏在某個內嵌捲軸的頂 */
+body.sp table.kt thead th { top: var(--nav-h); }
+body.sp table.kt th, body.sp table.kt td { padding: 5px var(--s-3); }
+
+/* 頭條數字列:一行七格 */
+body.sp .kpi-row { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: var(--s-2); }
+body.sp .kpi { padding: var(--s-2) var(--s-4); }
+body.sp .kpi-label { white-space: nowrap; }
+body.sp .kpi-value { font-size: var(--fs-xl); margin: 0; }
+body.sp .kpi-basis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 淨值圖:固定高度,不隨視窗高度爭位 */
+.sp-chart { height: 320px; }
+
+/* 逐層收窄:一條漸縮分段條,左邊一個細標題 */
+.sp-funnel { display: flex; align-items: stretch; border-bottom: 1px solid var(--line); }
+.sp-funnel-cap {
+  flex: none; align-self: center; width: 76px;
+  padding-left: var(--s-4);
+  font-size: var(--fs-xs); color: var(--text-3); white-space: nowrap;
+}
+.sp-funnel .funnel-bar { flex: 1 1 auto; min-width: 0; }
+body.sp .funnel-bar { height: 72px; padding: var(--s-3) var(--s-4) var(--s-3) var(--s-2); }
+
+/* 選股快照:左右兩欄,各自一半名單 */
+.sp-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.sp-two > div { min-width: 0; }
+.sp-two > div + div { border-left: 1px solid var(--line); }
+
+/* 版本沿革:策略版本 | 因子版本 */
+.sp-hist { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.sp-hist > div { min-width: 0; padding: var(--s-2) var(--s-4) var(--s-4); }
+.sp-hist > div + div { border-left: 1px solid var(--line); }
+.sp-hist-t { font-size: var(--fs-xs); color: var(--text-3); padding-top: var(--s-2); }
+
+body.sp .timeline { padding: var(--s-1) 0 0 20px; }
+body.sp .tl-item { padding: var(--s-1) 0 var(--s-1) var(--s-2); }
+body.sp .tl-item::before { top: 8px; }
+body.sp .tl-sum { margin-top: 0; }
+
+body.sp .tl-head .tl-meta { margin-top: 0; }
+
+body.sp .factor-hist { padding: var(--s-2) 0 0; font-size: var(--fs-sm); }
+body.sp .fh-name { margin-top: 0; }
+.fh-row {
+  display: grid; grid-template-columns: 76px 132px minmax(0, 1fr);
+  gap: var(--s-3); align-items: baseline;
+  padding: var(--s-2) 0;
+}
+.fh-row + .fh-row { border-top: 1px solid var(--line); }
+.fh-row .fh-note { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 1180px) {
+  body.sp .kpi-row { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .sp-two, .sp-hist { grid-template-columns: minmax(0, 1fr); }
+  .sp-two > div + div, .sp-hist > div + div {
+    border-left: 0; border-top: 1px solid var(--line);
+  }
+}
