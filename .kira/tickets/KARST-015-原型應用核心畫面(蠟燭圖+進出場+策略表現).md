@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-007, KARST-014]
-claimedBy: fable-main
+claimedBy: null
 epic: V1 藍圖
 deliverable: KARST-D01
 ---
@@ -19,11 +19,15 @@ deliverable: KARST-D01
 
 ## 驗收條件
 
-- [ ] 三個核心畫面有可打開的粗原型(假數據)
-- [ ] 用戶對原型的反應有記錄,採納與否逐項有裁決
-- [ ] 定案的 token 與元件落 design-system.md
+- [x] 三個核心畫面有可打開的粗原型(假數據)
+- [x] 用戶對原型的反應有記錄,採納與否逐項有裁決
+- [x] 定案的 token 與元件落 design-system.md
 
 ## 結果
+
+· 2026-08-27 02:40 原型十版迭代收版。prototype/ 四頁(策略總覽、策略詳情、運行詳情、參數掃描)以 lightweight-charts 假數據砌成,第十版定為 v1 基線(D-023:畫面不再是阻塞項,日後可改)。用戶逐版反應與裁決已入 D-020 精神與詞彙表(現役設定、選股快照、檢視運行、檢視視窗、因子族);未裁小項(漏斗篩選語意、圖下留白)照現狀落檔。設計系統正本 .kira/design-system.md(token、版面骨架、14 個元件狀態、六條畫面原則、十項待統一)由第十版抽出,值未改動。
+
+closed: 2026-08-27
 
 ## 留言
 
