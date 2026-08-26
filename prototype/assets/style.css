@@ -1694,3 +1694,84 @@ body.sp .fh-name { margin-top: 0; }
     border-left: 0; border-top: 1px solid var(--line);
   }
 }
+
+/* ============================================================
+   第九版:檢視運行、檢視視窗、買賣訊號、漏斗篩選
+   ============================================================ */
+
+/* ---- 檢視運行:頁頂一列,揀哪一次,全頁跟著換 ---- */
+.sp-runbar {
+  display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap;
+  background: var(--bg-1); border-radius: var(--r-2);
+  padding: var(--s-2) var(--s-4);
+}
+.sp-runbar-k { font-size: var(--fs-xs); color: var(--text-3); flex: none; }
+.runpick { display: flex; gap: 2px; padding: 2px; background: var(--bg-2); border-radius: var(--r-2); flex-wrap: wrap; }
+.runpick button {
+  appearance: none; border: 0; background: transparent;
+  color: var(--text-2); font-family: var(--font-mono); font-size: var(--fs-xs);
+  padding: 3px var(--s-3); border-radius: var(--r-1);
+  cursor: pointer; white-space: nowrap; line-height: 1.5;
+}
+.runpick button:hover { background: var(--bg-3); color: var(--text-1); }
+.runpick button[aria-pressed="true"] { background: var(--accent); color: #06121f; font-weight: 700; }
+.runpick button .rp-live { color: var(--up); margin-left: 4px; }
+.runpick button[aria-pressed="true"] .rp-live { color: #06121f; }
+.sp-runbar .btn { flex: none; padding: 2px var(--s-3); min-height: 24px; font-size: var(--fs-xs); }
+
+/* 非現役:整條薄列換成警示邊 */
+.config-slim.is-past { border-left-color: var(--warn); }
+.tag-past { background: rgba(240, 168, 60, .16); color: var(--warn); font-weight: 700; }
+.slim-win { color: var(--text-2); font-family: var(--font-mono); font-size: var(--fs-xs); }
+.slim-win b { color: var(--warn); font-weight: 700; }
+
+/* ---- 檢視視窗 ---- */
+.winpick { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; }
+.winpick > label { font-size: var(--fs-xs); color: var(--text-3); }
+.sp-date {
+  appearance: none; background: var(--bg-2); color: var(--text-1);
+  border: 1px solid var(--line); border-radius: var(--r-1);
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  height: 24px; padding: 0 var(--s-2);
+}
+.sp-date:hover { border-color: var(--line-strong); }
+.sp-date::-webkit-calendar-picker-indicator { filter: invert(.7); cursor: pointer; }
+.winpick .date-switch button { padding: 2px var(--s-2); font-size: var(--fs-xs); }
+
+/* ---- 圖區:買賣訊號浮層要貼住圖 ---- */
+.sp-chartwrap { position: relative; }
+
+/* ---- 漏斗:每一層可點 ---- */
+body.sp .fb-seg {
+  appearance: none; border: 0; background: transparent; padding: 0;
+  font-family: inherit; text-align: left; cursor: pointer;
+}
+body.sp .fb-seg .fb-block { transition: opacity .12s ease, box-shadow .12s ease; }
+body.sp .fb-seg:hover .fb-block { box-shadow: inset 0 0 0 2px rgba(232, 234, 240, .55); }
+body.sp .fb-seg[aria-pressed="true"] .fb-block { box-shadow: inset 0 0 0 2px var(--text-1); }
+body.sp .funnel-bar.has-filter .fb-seg[aria-pressed="false"] .fb-block { opacity: .38; }
+body.sp .fb-seg[aria-pressed="true"] .fb-lab { color: var(--text-1); }
+
+.sp-filter {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  background: rgba(74, 158, 255, .16); color: var(--accent);
+  border-radius: var(--r-1); padding: 2px var(--s-2);
+  font-size: var(--fs-xs); font-weight: 700; white-space: nowrap;
+}
+.sp-filter button {
+  appearance: none; border: 0; background: transparent; color: inherit;
+  font-family: inherit; font-size: var(--fs-sm); line-height: 1;
+  cursor: pointer; padding: 0 2px;
+}
+.sp-empty { padding: var(--s-6) var(--s-4); text-align: center; color: var(--text-3); font-size: var(--fs-sm); }
+
+/* ---- 因子版本:族名・具體定義 ---- */
+body.sp .fh-row { grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1.15fr); }
+.fh-fam { color: var(--text-3); }
+.fh-def { color: var(--text-1); font-weight: 700; }
+.fh-used {
+  font-size: 10px; padding: 0 5px; border-radius: var(--r-1);
+  background: rgba(38, 166, 154, .16); color: var(--up); font-weight: 700;
+  margin-left: var(--s-2); white-space: nowrap;
+}
+.fh-idle { color: var(--text-3); font-weight: 400; }

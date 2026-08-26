@@ -1044,4 +1044,244 @@
     return out;
   };
 
+  /* ============================================================
+     十、每次運行自己的一條線(策略頁「檢視運行」用)
+     ------------------------------------------------------------
+     之前只有現役那一次運行有日序列與逐筆交易;策略頁要做到
+     「換一次運行,全頁跟著換」,所以每次運行都要有自己的序列、
+     自己的交易、自己的交易日標記。現役那次沿用原有數據,
+     其餘五次按各自的年化與最大回撤生成,數字對得回歷次運行表。
+     ============================================================ */
+
+  /* 缺了 v2.0.0 的選股版本,補一個,否則揀到最舊那次運行會跌回現役設定 */
+  var V200 = {
+    id: 'v2.0.0', label: '歷史運行 v2.0.0', runId: 'RUN-2026-0602-01', live: false,
+    params: 'N=25・止蝕 7%・目標 3R・無風控層',
+    gates: { quality: 72, momentum: 74 }, scale: 0.46,
+  };
+  K.picks.versions.push(V200);
+  VER_BY_ID[V200.id] = V200;
+
+  function gauss(r) {
+    var u = Math.max(1e-9, r()), v = r();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  var runViewCache = {};
+
+  /**
+   * 一次運行的完整檢視資料:日序列(策略、QQQ、SPY)、逐筆交易、交易日標記。
+   * 序列一律以期間第一日為基期 100。
+   */
+  K.runView = function (runId) {
+    if (runViewCache[runId]) return runViewCache[runId];
+
+    var run = null;
+    K.trendSwing.runs.forEach(function (x) { if (x.id === runId) run = x; });
+    if (!run) run = K.trendSwing.runs[0];
+
+    /* 由全域週序列切出這次運行的期間,基準線與策略線用同一段日期 */
+    var i0 = 0, i1 = K.weeklyDates.length - 1;
+    while (i0 < i1 && K.weeklyDates[i0] < run.from) i0++;
+    while (i1 > i0 && K.weeklyDates[i1] > run.to) i1--;
+    var dates = K.weeklyDates.slice(i0, i1 + 1);
+    var n = dates.length;
+
+    function slice100(arr) {
+      var b = arr[i0];
+      return arr.slice(i0, i1 + 1).map(function (v) { return round(v / b * 100, 3); });
+    }
+    var qqqLine = slice100(K.benchmarks.QQQ.equity);
+    var spyLine = slice100(K.benchmarks.SPY.equity);
+
+    var stratLine;
+    var S = K.strategies.filter(function (x) { return x.id === 'trend-swing'; })[0];
+    if (run.current) {
+      /* 現役那次沿用原有的策略曲線,預設畫面同上一版一模一樣 */
+      stratLine = slice100(S.equity);
+    } else {
+      /* 其餘:先造一條零漂移隨機遊走,再把漂移調到目標年化,
+         最後二分搜尋波幅倍數,令最大回撤落在該次運行報稱的數字上 */
+      var r = rng('runview-' + run.id);
+      var years = (n - 1) / 52;
+      var eps = [];
+      for (var i = 0; i < n; i++) eps.push(gauss(r));
+      var mean = eps.reduce(function (a, b) { return a + b; }, 0) / n;
+      eps = eps.map(function (e) { return e - mean; });
+
+      var drift = Math.log(1 + run.cagr / 100) / 52;
+      function build(scale) {
+        var out = [100];
+        for (var j = 1; j < n; j++) out.push(out[j - 1] * Math.exp(drift + eps[j] * scale));
+        var last = out[out.length - 1];
+        /* 漂移會被波幅拖歪,收尾拉直,令年化剛好等於報稱值 */
+        var target = 100 * Math.pow(1 + run.cagr / 100, years);
+        var fix = Math.pow(target / last, 1 / Math.max(1, n - 1));
+        var fixed = [100];
+        for (var k = 1; k < n; k++) fixed.push(fixed[k - 1] * (out[k] / out[k - 1]) * fix);
+        return fixed;
+      }
+      var lo = 0.004, hi = 0.09, mid = 0.02, line = build(mid);
+      for (var pass = 0; pass < 26; pass++) {
+        mid = (lo + hi) / 2;
+        line = build(mid);
+        if (maxDrawdown(line) < run.mdd) hi = mid; else lo = mid;
+      }
+      stratLine = line.map(function (v) { return round(v, 3); });
+    }
+
+    /* ---- 逐筆交易 ---- */
+    var trades;
+    if (run.current) {
+      trades = K.run.trades;
+    } else {
+      var tr = rng('runtrades-' + run.id);
+      var want = Math.max(24, Math.round((run.trades || 180) * 0.28));
+      /* 贏輸用配額而不是逐筆擲骰,抽樣的勝率才會等於歷次運行表上報稱那個 */
+      var flags = [];
+      var winCount = Math.round(want * run.win / 100);
+      for (var q = 0; q < want; q++) flags.push(q < winCount);
+      for (var q2 = flags.length - 1; q2 > 0; q2--) {
+        var j2 = Math.floor(tr() * (q2 + 1));
+        var tmp = flags[q2]; flags[q2] = flags[j2]; flags[j2] = tmp;
+      }
+
+      trades = [];
+      for (var t = 0; t < want; t++) {
+        var u = UNIVERSE[Math.floor(tr() * UNIVERSE.length)];
+        var ei = Math.floor(between(tr, 0, n - 4));
+        var hold = Math.round(between(tr, 12, 96));
+        var xi = Math.min(n - 1, ei + Math.max(2, Math.round(hold / 7)));
+        var wins = flags[t];
+        var retPct = round(wins ? between(tr, 2.5, 34) : between(tr, -11, -1.2), 1);
+        var entryPx = round(between(tr, 22, 260), 2);
+        var shares = Math.round(between(tr, 60, 620));
+        trades.push({
+          id: run.id.slice(-5) + '-T' + String(t + 1).padStart(3, '0'),
+          sym: u.sym, name: u.name, sector: u.sector, side: '做多',
+          entryDate: dates[ei], entryPx: entryPx,
+          exitDate: dates[xi], exitPx: round(entryPx * (1 + retPct / 100), 2),
+          shares: shares, holdDays: hold,
+          pnl: Math.round(entryPx * shares * retPct / 100),
+          retPct: retPct,
+          reason: retPct <= 0 ? (retPct < -7 ? '觸及止蝕' : '月度熔斷')
+                              : (retPct > 20 ? '達目標 3R' : '移動止蝕帶出'),
+        });
+      }
+      trades.sort(function (a, b) { return a.entryDate < b.entryDate ? -1 : 1; });
+    }
+
+    /* ---- 交易日標記:同一日的買賣併成一格 ---- */
+    var byDate = {};
+    function put(d, kind, t) {
+      if (!byDate[d]) byDate[d] = { date: d, buys: [], sells: [] };
+      byDate[d][kind].push(t);
+    }
+    trades.forEach(function (t) { put(t.entryDate, 'buys', t); put(t.exitDate, 'sells', t); });
+    var marks = Object.keys(byDate).sort().map(function (d) {
+      var m = byDate[d];
+      m.side = m.buys.length && m.sells.length ? 'both' : (m.buys.length ? 'buy' : 'sell');
+      m.label = (m.buys.length ? '買' + m.buys.length : '') +
+                (m.buys.length && m.sells.length ? '・' : '') +
+                (m.sells.length ? '沽' + m.sells.length : '');
+      return m;
+    });
+
+    var view = {
+      run: run, dates: dates, strategy: stratLine, qqq: qqqLine, spy: spyLine,
+      trades: trades, marks: marks, markByDate: byDate,
+    };
+    runViewCache[runId] = view;
+    return view;
+  };
+
+  /**
+   * 檢視視窗:由 fromISO 起重設基準為 100,並按這一段重算指標。
+   * 這不是重跑 —— 同一次運行、同一條線,只是換一個起點看。
+   */
+  K.windowStats = function (view, fromISO) {
+    var i0 = 0;
+    while (i0 < view.dates.length - 3 && view.dates[i0] < fromISO) i0++;
+
+    function reb(arr) {
+      var b = arr[i0];
+      return arr.slice(i0).map(function (v) { return round(v / b * 100, 3); });
+    }
+    var dates = view.dates.slice(i0);
+    var st = reb(view.strategy), qq = reb(view.qqq), sp = reb(view.spy);
+    var years = Math.max(0.12, (dates.length - 1) / 52);
+
+    function cum(a) { return round(a[a.length - 1] - 100, 1); }
+    function cagr(a) { return round((Math.pow(a[a.length - 1] / 100, 1 / years) - 1) * 100, 1); }
+
+    /* 週報酬:波幅與 Sortino 都由這一段自己算 */
+    var rets = [];
+    for (var i = 1; i < st.length; i++) rets.push(st[i] / st[i - 1] - 1);
+    var mu = rets.reduce(function (a, b) { return a + b; }, 0) / Math.max(1, rets.length);
+    var varSum = 0, downSum = 0, downN = 0;
+    rets.forEach(function (x) {
+      varSum += (x - mu) * (x - mu);
+      if (x < 0) { downSum += x * x; downN++; }
+    });
+    var vol = round(Math.sqrt(varSum / Math.max(1, rets.length)) * Math.sqrt(52) * 100, 1);
+    var dvol = Math.sqrt(downSum / Math.max(1, downN)) * Math.sqrt(52);
+    var sortino = round(dvol > 0 ? (Math.pow(st[st.length - 1] / 100, 1 / years) - 1) / dvol : 0, 2);
+
+    /* 交易:出場日落在視窗之內的才算 */
+    var from = dates[0];
+    var trades = view.trades.filter(function (t) { return t.exitDate >= from; });
+    var wins = trades.filter(function (t) { return t.retPct > 0; });
+    var losses = trades.filter(function (t) { return t.retPct <= 0; });
+    function avg(a, f) { return a.length ? a.reduce(function (s, x) { return s + f(x); }, 0) / a.length : 0; }
+    var avgWin = avg(wins, function (t) { return t.retPct; });
+    var avgLoss = Math.abs(avg(losses, function (t) { return t.retPct; }));
+
+    return {
+      from: from, to: dates[dates.length - 1], years: round(years, 1),
+      dates: dates, strategy: st, qqq: qq, spy: sp,
+      trades: trades,
+      marks: view.marks.filter(function (m) { return m.date >= from; }),
+      isFull: i0 === 0,
+      metrics: {
+        cumReturn: cum(st), cagr: cagr(st),
+        maxDD: round(maxDrawdown(st), 1), vol: vol, sortino: sortino,
+        winRate: trades.length ? Math.round(wins.length / trades.length * 100) : 0,
+        plRatio: avgLoss > 0 ? round(avgWin / avgLoss, 1) : 0,
+        trades: trades.length,
+        qqqCum: cum(qq), qqqCagr: cagr(qq), qqqMaxDD: round(maxDrawdown(qq), 1),
+        spyCum: cum(sp),
+      },
+    };
+  };
+
+  /* ============================================================
+     十一、因子版本改為「具體定義」
+     ------------------------------------------------------------
+     「動量」「質素」都不是單一定義 —— 同一族之下可以有幾個算法,
+     各自有自己的版本線。命名一律「族名・具體定義」,
+     策略現時綁哪一個,寫明「現用」。
+     ============================================================ */
+  K.factorHistory = [
+    { id: 'mom-12-1', family: '動量', def: '12-1 月', en: 'Momentum · 12-1M', used: true,
+      versions: [
+        { ver: 'v1.2', date: '2026-05-11', current: true, summary: '剔除最近一個月的反轉' },
+        { ver: 'v1.1', date: '2026-02-18', summary: '改用對數報酬' },
+        { ver: 'v1.0', date: '2026-01-20', summary: '首個可用版本' },
+      ] },
+    { id: 'mom-6', family: '動量', def: '6 月', en: 'Momentum · 6M', used: false,
+      versions: [
+        { ver: 'v1.0', date: '2026-01-20', current: true, summary: '首個可用版本,未有策略採用' },
+      ] },
+    { id: 'qual-gpa-roe', family: '質素', def: '毛利率 ROE 合成', en: 'Quality · GP/A + ROE', used: true,
+      versions: [
+        { ver: 'v2.0', date: '2026-03-02', current: true, summary: '自由現金流改四季滾動' },
+        { ver: 'v1.0', date: '2026-01-20', summary: '首個可用版本' },
+      ] },
+    { id: 'sup-turnover', family: '供求', def: '成交金額加權', en: 'Supply-Demand · Turnover-weighted', used: true,
+      versions: [
+        { ver: 'v1.3', date: '2026-08-20', current: true, summary: '取代成交股數加權' },
+        { ver: 'v1.2', date: '2026-06-30', summary: '剔除停牌日' },
+        { ver: 'v1.1', date: '2026-04-02', summary: '首個可用版本' },
+      ] },
+  ];
+
 })(window);

@@ -25,10 +25,17 @@
 
   <div class="sp-stack">
 
-    <!-- ============ 現役設定:薄薄一條 ============ -->
+    <!-- ============ 檢視運行:揀哪一次,全頁跟著換 ============ -->
+    <div class="sp-runbar">
+      <span class="sp-runbar-k">檢視運行</span>
+      <div class="runpick" id="run-pick" role="group" aria-label="檢視哪一次運行"></div>
+      <button class="btn" id="back-live" hidden>回到現役</button>
+    </div>
+
+    <!-- ============ 檢視中那次運行的設定 ============ -->
     <div class="config-slim" id="config-slim"></div>
 
-    <!-- ============ 頭條數字 ============ -->
+    <!-- ============ 頭條數字(按檢視視窗重算) ============ -->
     <div class="kpi-row" id="kpis"></div>
 
     <!-- ============ 淨值走勢 ============ -->
@@ -38,28 +45,36 @@
           <h2>淨值走勢</h2>
           <div class="bench-line" id="equity-bench"></div>
         </div>
-        <span class="section-note">點圖選時點 ↓</span>
+        <div class="winpick">
+          <label for="win-date">檢視視窗</label>
+          <div class="date-switch" id="win-pick" role="group" aria-label="檢視視窗起始"></div>
+          <input class="sp-date" type="date" id="win-date" aria-label="自訂起始日">
+        </div>
       </div>
+      <div class="sp-sub" id="chart-sub"></div>
       <div class="sp-body">
-        <div class="sp-chart" id="equity-chart"></div>
+        <div class="sp-chartwrap">
+          <div class="sp-chart" id="equity-chart"></div>
+          <div class="hovcard" id="hovcard" hidden aria-hidden="true"></div>
+        </div>
       </div>
     </section>
 
-    <!-- ============ 選股快照:逐層收窄 + 兩欄名單 ============ -->
+    <!-- ============ 選股快照:逐層收窄可點篩選 + 兩欄名單 ============ -->
     <section class="sp-panel">
       <div class="sp-head">
         <div class="sp-side">
           <h2>選股快照</h2>
           <span class="at-point" id="at-point"></span>
         </div>
-        <div class="date-switch" id="pick-vers" role="group" aria-label="以哪個版本檢視"></div>
+        <div class="sp-side" id="picks-filter"></div>
       </div>
       <div class="sp-sub" id="picks-basis"></div>
       <div class="sp-funnel">
         <div class="sp-funnel-cap">逐層收窄</div>
-        <div class="funnel-bar" id="funnel"></div>
+        <div class="funnel-bar" id="funnel" role="group" aria-label="按層篩選名單"></div>
       </div>
-      <div class="sp-two">
+      <div class="sp-two" id="picks-two">
         <div id="picks-left"></div>
         <div id="picks-right"></div>
       </div>
@@ -83,11 +98,11 @@
       </div>
     </section>
 
-    <!-- ============ 歷次運行 ============ -->
+    <!-- ============ 歷次運行:點一行 = 換上面整頁 ============ -->
     <section class="sp-panel">
       <div class="sp-head">
         <h2>歷次運行</h2>
-        <span class="section-note" id="runs-count"></span>
+        <span class="section-note">點一行:全頁換成該次</span>
       </div>
       <div class="sp-body flush">
         <table class="kt">
@@ -123,141 +138,276 @@
   KV.mountNav('strategy.html');
   KV.mountFoot();
 
-  var s = K.strategies.filter(function (x) { return x.id === 'trend-swing'; })[0];
-  var qqq = K.benchmarks.QQQ, spy = K.benchmarks.SPY;
-  var m = s.metrics;
   var runs = K.trendSwing.runs;
-  var cur = runs.filter(function (r) { return r.current; })[0] || runs[0];
-
-  /* ============================================================
-     現役設定:一條薄列。歷史最佳降級成尾巴一句
-     ============================================================ */
-  var W = K.sweep;
-  var best = null, bestPos = null;
-  W.grid.forEach(function (row, ri) {
-    row.forEach(function (c, ci) { if (!best || c.cagr > best.cagr) { best = c; bestPos = [ri, ci]; } });
-  });
-  function nbhdMean(ri, ci) {
-    var sum = 0, n = 0;
-    for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
-      if (!dr && !dc) continue;
-      var r2 = ri + dr, c2 = ci + dc;
-      if (r2 < 0 || c2 < 0 || r2 >= W.rows.length || c2 >= W.cols.length) continue;
-      sum += W.grid[r2][c2].cagr; n++;
-    }
-    return n ? sum / n : 0;
-  }
-  var bestNbhd = nbhdMean(bestPos[0], bestPos[1]);
-
-  document.getElementById('config-slim').innerHTML =
-    '<span class="tag tag-live">現役設定</span>' +
-    '<span class="mono" style="font-weight:700">' + KV.esc(cur.ver) + '</span>' +
-    K.run.paramList.slice(0, 4).map(function (p) {
-      return '<span class="chip"><span class="chip-k">' + KV.esc(p[0]) + '</span>' +
-        '<span class="chip-v">' + KV.esc(p[1]) + '</span></span>';
-    }).join('') +
-    '<span class="section-note mono">' + KV.esc(cur.id) + '・' + KV.esc(cur.snap) + '</span>' +
-    '<span class="slim-past">歷史最佳 <span class="mono">N=' + best.n + '・止蝕 ' + best.s +
-      '%・年化 ' + KV.pctPlain(best.cagr) + '</span>(鄰域 ' + KV.pctPlain(bestNbhd) +
-      ',孤峰)　<a href="sweep.html">看掃描 →</a></span>';
-
-  /* ============================================================
-     頭條數字:七格,一行讀完
-     ============================================================ */
-  var KPIS = [
-    { l: '累計報酬', v: KV.pct(m.cumReturn),          c: KV.cls(m.cumReturn), b: 'QQQ ' + KV.pct(qqq.metrics.cumReturn) },
-    { l: '年化',     v: KV.pctPlain(m.cagr),          c: KV.cls(m.cagr),      b: 'QQQ ' + KV.pctPlain(qqq.metrics.cagr) },
-    { l: '最大回撤', v: KV.pctPlain(m.maxDD),         c: 'down',              b: 'QQQ ' + KV.pctPlain(qqq.metrics.maxDD) },
-    { l: '波幅',     v: KV.pctPlain(m.vol),           c: '',                  b: 'QQQ ' + KV.pctPlain(qqq.metrics.vol) },
-    { l: 'Sortino',  v: m.sortino.toFixed(2),         c: '',                  b: 'QQQ ' + qqq.metrics.sortino.toFixed(2) },
-    { l: '勝率',     v: m.winRate + '%',              c: '',                  b: '盈虧比 ' + m.plRatio.toFixed(1) },
-    { l: '交易筆數', v: String(m.trades),             c: '',                  b: K.meta.years + ' 年' },
-  ];
-  document.getElementById('kpis').innerHTML = KPIS.map(function (k) {
-    return '<div class="kpi">' +
-      '<div class="kpi-label">' + KV.esc(k.l) + '</div>' +
-      '<div class="kpi-value ' + k.c + '">' + KV.esc(k.v) + '</div>' +
-      '<div class="kpi-basis">' + KV.esc(k.b) + '</div>' +
-    '</div>';
-  }).join('');
-
-  /* ============================================================
-     淨值走勢圖
-     ============================================================ */
-  document.getElementById('equity-bench').innerHTML =
-    '<span><i style="background:#26a69a"></i>趨勢波段 <b class="up">' + KV.pct(m.cumReturn) + '</b></span>' +
-    '<span><i style="background:#b07de0"></i>QQQ <b>' + KV.pct(qqq.metrics.cumReturn) + '</b></span>' +
-    '<span><i style="background:#7d869c"></i>SPY <b>' + KV.pct(spy.metrics.cumReturn) + '</b></span>';
-
-  var chartEl = document.getElementById('equity-chart');
-  var chart = KV.makeChart(chartEl, chartEl.clientHeight || 320);
-  var lSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
-  lSpy.setData(KV.zip(K.weeklyDates, spy.equity));
-  var lQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
-  lQqq.setData(KV.zip(K.weeklyDates, qqq.equity));
-  var lStr = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
-  lStr.setData(KV.zip(K.weeklyDates, s.equity));
-  chart.timeScale().fitContent();
-
-  /* ============================================================
-     版本沿革(git log 形態)
-     ============================================================ */
-  document.getElementById('timeline').innerHTML = K.strategyHistory.map(function (h) {
-    return '<div class="tl-item' + (h.current ? ' is-current' : '') + '">' +
-      '<div class="tl-head">' +
-        '<span class="tl-ver">' + KV.esc(h.ver) + '</span>' +
-        (h.current ? '<span class="tag tag-live">現役</span>' : '') +
-        '<span class="tl-date">' + KV.esc(h.date) + '</span>' +
-        '<span class="tl-meta ' + (h.byKind === 'human' ? 'by-human' : 'by-agent') + '">' +
-          (h.byKind === 'human' ? '用戶' : 'agent') + '・' + h.runs + ' 次運行</span>' +
-      '</div>' +
-      '<div class="tl-sum">' + KV.esc(h.summary) + '</div>' +
-    '</div>';
-  }).join('');
-
-  document.getElementById('factor-hist').innerHTML = K.factorHistory.map(function (f) {
-    var chain = f.versions.map(function (v) {
-      return '<span class="' + (v.current ? 'fh-cur' : '') + '" title="' + KV.esc(v.date) + '　' +
-        KV.esc(v.summary) + '">' + KV.esc(v.ver) + '</span>';
-    }).join('<span class="fh-note"> ← </span>');
-    return '<div class="fh-row">' +
-      '<div class="fh-name">' + KV.esc(f.name) + '</div>' +
-      '<div class="fh-chain">' + chain + '</div>' +
-      '<div class="fh-note">' + KV.esc(f.versions[0].date + '　' + f.versions[0].summary) + '</div>' +
-    '</div>';
-  }).join('');
-
-  /* ---- 歷次運行 ---- */
-  document.getElementById('runs-count').textContent = runs.length + ' 次';
-  document.getElementById('runs-body').innerHTML = runs.map(function (r) {
-    return '<tr class="' + (r.current ? 'is-current' : '') + '">' +
-      '<td class="mono">' + KV.esc(r.id) + (r.current ? ' <span class="tag tag-current">本次</span>' : '') + '</td>' +
-      '<td class="mono">' + KV.esc(r.ver) + '</td>' +
-      '<td title="' + KV.esc(r.params) + '">' + KV.esc(r.params) + '</td>' +
-      '<td class="num ' + KV.cls(r.cagr) + '">' + KV.pctPlain(r.cagr) + '</td>' +
-      '<td class="num down">' + KV.pctPlain(r.mdd) + '</td>' +
-      '<td class="num">' + r.win + '%</td>' +
-      '<td class="mono dim">' + KV.esc(r.snap) + '</td>' +
-      '<td>' + (r.current ? '<a href="run.html">查看 →</a>' : '<span class="dim">查看</span>') + '</td>' +
-    '</tr>';
-  }).join('');
-
-  /* ============================================================
-     選股快照 —— 由圖上的時點驅動
-     ============================================================ */
+  var liveRun = runs.filter(function (r) { return r.current; })[0] || runs[0];
   var P = K.picks;
-  var curVer = P.versions[0].id;
-  var curDate = K.weeklyDates[K.weeklyDates.length - 1];
 
+  /* 全頁只有這四個狀態:看哪一次運行、由哪日起看、快照停在哪日、漏斗篩到哪一層 */
+  var S = { runId: liveRun.id, winFrom: null, winKey: 'all', date: null, layer: 0 };
+
+  var view = null, W = null, chart = null, stratSeries = null;
+
+  var el = {
+    runPick: document.getElementById('run-pick'),
+    backLive: document.getElementById('back-live'),
+    config: document.getElementById('config-slim'),
+    kpis: document.getElementById('kpis'),
+    bench: document.getElementById('equity-bench'),
+    winPick: document.getElementById('win-pick'),
+    winDate: document.getElementById('win-date'),
+    chartSub: document.getElementById('chart-sub'),
+    chartHost: document.getElementById('equity-chart'),
+    hov: document.getElementById('hovcard'),
+    atPoint: document.getElementById('at-point'),
+    filter: document.getElementById('picks-filter'),
+    basis: document.getElementById('picks-basis'),
+    funnel: document.getElementById('funnel'),
+    left: document.getElementById('picks-left'),
+    right: document.getElementById('picks-right'),
+    runsBody: document.getElementById('runs-body'),
+  };
+
+  /* ============================================================
+     檢視運行
+     ============================================================ */
+  el.runPick.innerHTML = runs.map(function (r) {
+    return '<button type="button" data-run="' + r.id + '" aria-pressed="false" ' +
+      'title="' + KV.esc(r.ver + '・' + r.params) + '">' + KV.esc(r.id.slice(4)) +
+      (r.current ? '<span class="rp-live">現役</span>' : '') + '</button>';
+  }).join('');
+
+  el.runPick.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-run]');
+    if (!b) return;
+    pickRun(b.getAttribute('data-run'));
+  });
+  el.backLive.addEventListener('click', function () { pickRun(liveRun.id); });
+
+  function pickRun(id) {
+    if (S.runId === id) return;
+    S.runId = id;
+    S.date = null;          /* 換運行:快照時點回到該次運行的最後一日 */
+    S.layer = 0;
+    renderAll(true);
+  }
+
+  /* ============================================================
+     檢視視窗 —— 換起點不是重跑
+     ============================================================ */
+  var WINS = [
+    { key: 'all', label: '全期' },
+    { key: '1y',  label: '近 1 年' },
+    { key: '3y',  label: '近 3 年' },
+    { key: '2023', label: '2023 起' },
+  ];
+  el.winPick.innerHTML = WINS.map(function (w) {
+    return '<button type="button" data-win="' + w.key + '" aria-pressed="false">' +
+      KV.esc(w.label) + '</button>';
+  }).join('');
+
+  function shiftYears(iso, n) {
+    var d = new Date(iso + 'T00:00:00Z');
+    d.setUTCFullYear(d.getUTCFullYear() - n);
+    return d.toISOString().slice(0, 10);
+  }
+
+  el.winPick.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-win]');
+    if (!b) return;
+    var key = b.getAttribute('data-win');
+    var last = view.dates[view.dates.length - 1];
+    S.winKey = key;
+    S.winFrom = key === 'all' ? null
+      : (key === '1y' ? shiftYears(last, 1)
+      : (key === '3y' ? shiftYears(last, 3) : '2023-01-01'));
+    S.date = null;
+    renderAll(true);
+  });
+
+  el.winDate.addEventListener('change', function () {
+    if (!this.value) return;
+    S.winKey = 'custom';
+    S.winFrom = this.value;
+    S.date = null;
+    renderAll(true);
+  });
+
+  /* ============================================================
+     頂部三件:運行列、設定薄列、頭條數字
+     ============================================================ */
+  function renderTop() {
+    var run = view.run, live = !!run.current, m = W.metrics;
+
+    el.runPick.querySelectorAll('button[data-run]').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-run') === S.runId ? 'true' : 'false');
+    });
+    el.backLive.hidden = live;
+
+    el.winPick.querySelectorAll('button[data-win]').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-win') === S.winKey ? 'true' : 'false');
+    });
+    el.winDate.value = W.from;
+    el.winDate.min = view.dates[0];
+    el.winDate.max = view.dates[view.dates.length - 1];
+
+    el.config.className = 'config-slim' + (live ? '' : ' is-past');
+    el.config.innerHTML =
+      '<span class="tag ' + (live ? 'tag-live">現役設定' : 'tag-past">非現役') + '</span>' +
+      '<span class="mono" style="font-weight:700">' + KV.esc(run.ver) + '</span>' +
+      run.params.split(/[·・]/).slice(0, 4).map(function (p) {
+        /* 參數寫法不一(N=30、止蝕 8%、最多 12 持倉),一律把數字那截當作值 */
+        var t = p.trim(), k = t, v = '';
+        var eq = t.split('=');
+        if (eq.length === 2) { k = eq[0].trim(); v = eq[1].trim(); }
+        else {
+          var hit = t.match(/\d[\d.]*\s*[%A-Za-z]*/);
+          if (hit) { v = hit[0].trim(); k = (t.slice(0, hit.index) + t.slice(hit.index + hit[0].length)).replace(/\s+/g, ''); }
+        }
+        return '<span class="chip">' + (k ? '<span class="chip-k">' + KV.esc(k) + '</span>' : '') +
+          (v ? '<span class="chip-v">' + KV.esc(v) + '</span>' : '') + '</span>';
+      }).join('') +
+      '<span class="section-note mono">' + KV.esc(run.id) + '・' + KV.esc(run.snap) + '</span>' +
+      '<span class="slim-win">視窗 ' +
+        (W.isFull ? '全期' : '<b>' + KV.esc(W.from) + ' 起・非重跑</b>') + '</span>' +
+      '<span class="slim-past">' + KV.esc(W.from) + ' 至 ' + KV.esc(W.to) +
+        '・' + W.years + ' 年　<a href="sweep.html">看掃描 →</a></span>';
+
+    var KPIS = [
+      { l: '累計報酬', v: KV.pct(m.cumReturn), c: KV.cls(m.cumReturn), b: 'QQQ ' + KV.pct(m.qqqCum) },
+      { l: '年化',     v: KV.pctPlain(m.cagr), c: KV.cls(m.cagr),      b: 'QQQ ' + KV.pctPlain(m.qqqCagr) },
+      { l: '最大回撤', v: KV.pctPlain(m.maxDD), c: 'down',             b: 'QQQ ' + KV.pctPlain(m.qqqMaxDD) },
+      { l: '波幅',     v: KV.pctPlain(m.vol),  c: '',                  b: '週度年化' },
+      /* 全期沿用該次運行報稱的 Sortino;切了視窗才由這一段自己算 */
+      { l: 'Sortino',  v: (W.isFull ? run.sortino : m.sortino).toFixed(2), c: '',
+        b: W.isFull ? '本次運行紀錄' : '視窗內重算' },
+      { l: '勝率',     v: m.winRate + '%',     c: '',                  b: '盈虧比 ' + m.plRatio.toFixed(1) },
+      { l: '交易筆數', v: String(m.trades),    c: '',
+        b: W.isFull ? '抽樣・全期 ' + run.trades + ' 筆' : '視窗內抽樣' },
+    ];
+    el.kpis.innerHTML = KPIS.map(function (k) {
+      return '<div class="kpi">' +
+        '<div class="kpi-label">' + KV.esc(k.l) + '</div>' +
+        '<div class="kpi-value ' + k.c + '">' + KV.esc(k.v) + '</div>' +
+        '<div class="kpi-basis">' + KV.esc(k.b) + '</div>' +
+      '</div>';
+    }).join('');
+
+    el.bench.innerHTML =
+      '<span><i style="background:#26a69a"></i>趨勢波段 <b class="' + KV.cls(m.cumReturn) + '">' +
+        KV.pct(m.cumReturn) + '</b></span>' +
+      '<span><i style="background:#b07de0"></i>QQQ <b>' + KV.pct(m.qqqCum) + '</b></span>' +
+      '<span><i style="background:#7d869c"></i>SPY <b>' + KV.pct(m.spyCum) + '</b></span>';
+
+    el.chartSub.innerHTML =
+      '<span><span class="up">▲</span> 買・<span class="down">▼</span> 沽・滑過看成交・點日期換快照</span>' +
+      '<span class="mono">基期 100 ＝ ' + KV.esc(W.from) + '</span>' +
+      '<span class="mono">' + W.marks.length + ' 個交易日有買賣</span>';
+  }
+
+  /* ============================================================
+     淨值圖:三條線 + 買賣訊號 + 懸停成交
+     ============================================================ */
+  function hideHover() { el.hov.hidden = true; }
+
+  function showHover(pt, m) {
+    var rows = m.buys.map(function (t) {
+      return { side: '買', cls: 'b', sym: t.sym, shares: t.shares, px: t.entryPx };
+    }).concat(m.sells.map(function (t) {
+      return { side: '沽', cls: 's', sym: t.sym, shares: t.shares, px: t.exitPx };
+    }));
+    var shown = rows.slice(0, 8);
+
+    el.hov.innerHTML =
+      '<div class="hov-date"><span>' + m.date + '</span>' +
+        '<span class="dim">' + KV.esc(m.label) + '</span></div>' +
+      shown.map(function (x) {
+        return '<div class="hov-row">' +
+          '<span class="hov-side ' + x.cls + '">' + x.side + '</span>' +
+          '<span class="hov-sym">' + KV.esc(x.sym) + '</span>' +
+          '<span class="dim">' + KV.num(x.shares, 0) + ' 股</span>' +
+          '<span>' + x.px.toFixed(2) + '</span>' +
+        '</div>';
+      }).join('') +
+      (rows.length > 8 ? '<div class="hov-more">另 ' + (rows.length - 8) + ' 筆</div>' : '') +
+      '<div class="hov-hint">點一下:快照跳到這一日</div>';
+
+    el.hov.hidden = false;
+
+    var box = el.hov.parentElement.getBoundingClientRect();
+    var w = el.hov.offsetWidth, h = el.hov.offsetHeight;
+    var x = pt.x + 16, y = pt.y + 16;
+    if (x + w > box.width - 6) x = pt.x - w - 16;
+    if (y + h > box.height - 6) y = Math.max(6, box.height - h - 6);
+    el.hov.style.left = Math.max(6, x) + 'px';
+    el.hov.style.top = Math.max(6, y) + 'px';
+  }
+
+  function isoOf(t) {
+    if (typeof t === 'string') return t;
+    if (t && t.year) {
+      return t.year + '-' + String(t.month).padStart(2, '0') + '-' + String(t.day).padStart(2, '0');
+    }
+    return null;
+  }
+
+  function drawChart() {
+    var dead = chart;
+    chart = null; stratSeries = null;
+    el.chartHost.innerHTML = '';
+    hideHover();
+    /* 圖表庫在下一格畫面仍會摸一次舊圖,等兩格才真正拆掉 */
+    if (dead) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { try { dead.remove(); } catch (e) {} });
+      });
+    }
+
+    var box = document.createElement('div');
+    el.chartHost.appendChild(box);
+    chart = KV.makeChart(box, el.chartHost.clientHeight || 320);
+
+    var lSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
+    lSpy.setData(KV.zip(W.dates, W.spy));
+    var lQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
+    lQqq.setData(KV.zip(W.dates, W.qqq));
+    stratSeries = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
+    stratSeries.setData(KV.zip(W.dates, W.strategy));
+
+    /* 交易日標記:買綠上箭、沽紅下箭、同日一買一沽用中性圓點 */
+    stratSeries.setMarkers(W.marks.map(function (m) {
+      return {
+        time: m.date,
+        position: m.side === 'sell' ? 'aboveBar' : 'belowBar',
+        color: m.side === 'buy' ? '#26a69a' : (m.side === 'sell' ? '#ef5350' : '#8f9bb3'),
+        shape: m.side === 'buy' ? 'arrowUp' : (m.side === 'sell' ? 'arrowDown' : 'circle'),
+        text: '',
+      };
+    }));
+
+    chart.timeScale().fitContent();
+
+    chart.subscribeCrosshairMove(function (p) {
+      var iso = isoOf(p.time);
+      var m = iso && view.markByDate[iso];
+      if (!m || !p.point) { hideHover(); return; }
+      showHover(p.point, m);
+    });
+
+    /* 點日期 = 換選股快照的時點,圖本身不重畫 */
+    chart.subscribeClick(function (p) {
+      var iso = isoOf(p.time);
+      if (!iso) return;
+      S.date = iso;
+      renderPicks();
+    });
+  }
+
+  /* ============================================================
+     選股快照
+     ============================================================ */
   var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
   var FUNNEL_LABEL = ['範圍', '基本面', '技術', '持倉'];
   var ST_CLS = { '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch', '未過': 'st-out' };
-
-  document.getElementById('pick-vers').innerHTML = P.versions.map(function (v) {
-    return '<button type="button" data-ver="' + v.id + '" ' +
-      'aria-pressed="' + (v.id === curVer ? 'true' : 'false') + '">' +
-      KV.esc(v.id) + (v.live ? '・現役' : '') + '</button>';
-  }).join('');
 
   var PICK_HEAD =
     '<thead><tr>' +
@@ -296,66 +446,156 @@
     }).join('') + '</tbody></table>';
   }
 
-  function render() {
-    var snap = P.snapshot(curVer, curDate);
-    var V = snap.version;
+  /* 篩選:到達該層的股票(持倉是最窄那一層) */
+  function inLayer(r, layer) {
+    if (layer === 1) return r.passFund;
+    if (layer === 2) return r.passTech;
+    if (layer === 3) return r.status === '持倉';
+    return true;
+  }
 
-    document.getElementById('at-point').textContent = '時點 ' + curDate;
+  function verOf(run) {
+    var hit = P.versions.filter(function (v) { return v.id === run.ver; })[0];
+    return hit || P.versions[0];
+  }
 
-    document.getElementById('picks-basis').innerHTML =
+  function renderPicks() {
+    var run = view.run;
+    var V = verOf(run);
+    var snap = P.snapshot(V.id, S.date);
+
+    el.atPoint.textContent = '時點 ' + S.date;
+
+    el.basis.innerHTML =
       '<span class="mono">' + KV.esc(V.id) + '</span>' +
-      (V.live ? '' : '<span class="tag tag-current">非現役設定</span>') +
+      (V.live ? '' : '<span class="tag tag-past">非現役設定</span>') +
       '<span class="mono">' + KV.esc(V.params) + '</span>' +
       '<span>門檻 質素 ≥ ' + V.gates.quality + '・動量 ≥ ' + V.gates.momentum + '</span>' +
       '<span>分數 0–100</span>';
 
-    /* 一條橫向漸縮的分段條:每段闊度按隻數比例,數字寫在段內、關卡名在段下 */
-    document.getElementById('funnel').innerHTML = snap.funnel.map(function (f, i) {
+    el.funnel.className = 'funnel-bar' + (S.layer ? ' has-filter' : '');
+    el.funnel.innerHTML = snap.funnel.map(function (f, i) {
       var prev = i ? snap.funnel[i - 1].count : 0;
       var keep = i ? Math.round(f.count / prev * 1000) / 10 : 100;
-      return '<div class="fb-seg" style="flex:' + f.count + ' 1 74px" ' +
-          'title="' + KV.esc(f.label + '　' + f.hint) + '">' +
+      return '<button type="button" class="fb-seg" data-layer="' + i + '" ' +
+          'aria-pressed="' + (S.layer === i && i ? 'true' : 'false') + '" ' +
+          'style="flex:' + f.count + ' 1 74px" ' +
+          'title="' + KV.esc(f.label + '　' + f.hint) + (i ? '　點一下:只看這一層' : '　點一下:取消篩選') + '">' +
           '<div class="fb-block" style="background:' + FUNNEL_COLOR[i] + '">' +
             '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
             '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
           '</div>' +
           '<div class="fb-lab">' + KV.esc(FUNNEL_LABEL[i] || f.label) +
             (i ? '　−' + (prev - f.count) : '') + '</div>' +
-        '</div>';
+        '</button>';
     }).join('');
 
-    var rows = snap.rows;
-    var half = Math.ceil(rows.length / 2);
-    document.getElementById('picks-left').innerHTML = picksTable(rows.slice(0, half));
-    document.getElementById('picks-right').innerHTML = picksTable(rows.slice(half));
-  }
+    var rows = snap.rows.filter(function (r) { return inLayer(r, S.layer); });
 
-  /* 圖上點一日 = 選定時點 */
-  function isoOf(t) {
-    if (typeof t === 'string') return t;
-    if (t && t.year) {
-      return t.year + '-' + String(t.month).padStart(2, '0') + '-' + String(t.day).padStart(2, '0');
+    el.filter.innerHTML = S.layer
+      ? '<span class="sp-filter">只看 ' + KV.esc(FUNNEL_LABEL[S.layer]) + '・' + rows.length +
+          ' 隻<button type="button" id="clear-filter" aria-label="取消篩選">✕</button></span>'
+      : '';
+    var cf = document.getElementById('clear-filter');
+    if (cf) cf.addEventListener('click', function () { S.layer = 0; renderPicks(); });
+
+    if (!rows.length) {
+      el.left.innerHTML = '<div class="sp-empty">這一層在本日沒有股票。</div>';
+      el.right.innerHTML = '';
+      return;
     }
-    return null;
+    var half = Math.ceil(rows.length / 2);
+    el.left.innerHTML = picksTable(rows.slice(0, half));
+    el.right.innerHTML = rows.length > half ? picksTable(rows.slice(half)) : '';
   }
-  chart.subscribeClick(function (param) {
-    var iso = isoOf(param.time);
-    if (!iso) return;
-    curDate = iso;
-    render();
-  });
 
-  document.getElementById('pick-vers').addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-ver]');
+  el.funnel.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-layer]');
     if (!b) return;
-    curVer = b.getAttribute('data-ver');
-    this.querySelectorAll('button').forEach(function (o) {
-      o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
-    });
-    render();
+    var i = Number(b.getAttribute('data-layer'));
+    S.layer = (i === 0 || S.layer === i) ? 0 : i;
+    renderPicks();
   });
 
-  render();
+  /* ============================================================
+     版本沿革(只畫一次)
+     ============================================================ */
+  document.getElementById('timeline').innerHTML = K.strategyHistory.map(function (h) {
+    return '<div class="tl-item' + (h.current ? ' is-current' : '') + '">' +
+      '<div class="tl-head">' +
+        '<span class="tl-ver">' + KV.esc(h.ver) + '</span>' +
+        (h.current ? '<span class="tag tag-live">現役</span>' : '') +
+        '<span class="tl-date">' + KV.esc(h.date) + '</span>' +
+        '<span class="tl-meta ' + (h.byKind === 'human' ? 'by-human' : 'by-agent') + '">' +
+          (h.byKind === 'human' ? '用戶' : 'agent') + '・' + h.runs + ' 次運行</span>' +
+      '</div>' +
+      '<div class="tl-sum">' + KV.esc(h.summary) + '</div>' +
+    '</div>';
+  }).join('');
+
+  document.getElementById('factor-hist').innerHTML = K.factorHistory.map(function (f) {
+    var chain = f.versions.map(function (v) {
+      return '<span class="' + (v.current ? 'fh-cur' : '') + '" title="' + KV.esc(v.date) + '　' +
+        KV.esc(v.summary) + '">' + KV.esc(v.ver) + '</span>';
+    }).join('<span class="fh-note"> ← </span>');
+    return '<div class="fh-row">' +
+      '<div><span class="fh-fam">' + KV.esc(f.family) + '・</span>' +
+        '<span class="fh-def' + (f.used ? '' : ' fh-idle') + '">' + KV.esc(f.def) + '</span>' +
+        (f.used ? '<span class="fh-used">現用</span>' : '') + '</div>' +
+      '<div class="fh-chain">' + chain + '</div>' +
+      '<div class="fh-note">' + KV.esc(f.versions[0].date + '　' + f.versions[0].summary) + '</div>' +
+    '</div>';
+  }).join('');
+
+  /* ============================================================
+     歷次運行:點一行 = 換上面整頁
+     ============================================================ */
+  function renderRuns() {
+    el.runsBody.innerHTML = runs.map(function (r) {
+      var picked = r.id === S.runId;
+      return '<tr class="row-clickable' + (picked ? ' is-picked' : '') + '" data-run="' + r.id + '" ' +
+          'tabindex="0" role="button" aria-pressed="' + (picked ? 'true' : 'false') + '">' +
+        '<td class="mono">' + KV.esc(r.id) +
+          (r.current ? ' <span class="tag tag-live">現役</span>' : '') +
+          (picked && !r.current ? ' <span class="tag tag-current">檢視中</span>' : '') + '</td>' +
+        '<td class="mono">' + KV.esc(r.ver) + '</td>' +
+        '<td title="' + KV.esc(r.params) + '">' + KV.esc(r.params) + '</td>' +
+        '<td class="num ' + KV.cls(r.cagr) + '">' + KV.pctPlain(r.cagr) + '</td>' +
+        '<td class="num down">' + KV.pctPlain(r.mdd) + '</td>' +
+        '<td class="num">' + r.win + '%</td>' +
+        '<td class="mono dim">' + KV.esc(r.snap) + '</td>' +
+        '<td>' + (r.current ? '<a href="run.html">查看 →</a>' : '<span class="dim">查看</span>') + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  el.runsBody.addEventListener('click', function (e) {
+    var tr = e.target.closest('tr[data-run]');
+    if (!tr || e.target.closest('a')) return;
+    pickRun(tr.getAttribute('data-run'));
+  });
+  el.runsBody.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var tr = e.target.closest('tr[data-run]');
+    if (!tr) return;
+    e.preventDefault();
+    pickRun(tr.getAttribute('data-run'));
+  });
+
+  /* ============================================================
+     總開關
+     ============================================================ */
+  function renderAll(rebuildChart) {
+    view = K.runView(S.runId);
+    W = K.windowStats(view, S.winFrom || view.dates[0]);
+    if (!S.date || S.date < W.from || S.date > W.to) S.date = W.to;
+    renderTop();
+    if (rebuildChart) drawChart();
+    renderPicks();
+    renderRuns();
+  }
+
+  renderAll(true);
 })();
 </script>
 </body>
