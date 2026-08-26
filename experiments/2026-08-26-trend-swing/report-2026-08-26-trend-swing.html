@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KARST-013 趨勢波段試跑報告</title>
+<style>
+  :root{
+    --bg:#ffffff; --fg:#1a1c1e; --muted:#5b6169; --line:#e2e5e9;
+    --accent:#1f5fa8; --warn:#a8541f; --good:#1f7a4d; --chip:#f4f6f8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#14171a; --fg:#e6e9ec; --muted:#9aa3ad; --line:#2a2f35;
+           --accent:#78b0ea; --warn:#e0a06a; --good:#6fce9f; --chip:#1d2126; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg);
+       font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+       line-height:1.75; font-size:16px}
+  .wrap{max-width:1040px; margin:0 auto; padding:48px 24px 96px}
+  h1{font-size:1.75rem; line-height:1.35; margin:0 0 4px}
+  h2{font-size:1.2rem; margin:48px 0 12px; padding-bottom:6px; border-bottom:2px solid var(--line)}
+  h3{font-size:1rem; margin:28px 0 8px; color:var(--accent)}
+  .sub{color:var(--muted); font-size:.9rem; margin-bottom:32px}
+  .verdict{background:var(--chip); border-left:4px solid var(--accent);
+           padding:18px 22px; border-radius:0 8px 8px 0; margin:24px 0}
+  .verdict strong{font-size:1.05rem}
+  table{border-collapse:collapse; width:100%; margin:14px 0; font-size:.9rem}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top}
+  th{background:var(--chip); font-weight:600}
+  td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+  code{background:var(--chip); padding:1px 5px; border-radius:4px;
+       font-family:ui-monospace,Consolas,monospace; font-size:.87em}
+  .tag{display:inline-block; padding:1px 8px; border-radius:99px; font-size:.78rem; font-weight:600}
+  .t-ok{background:rgba(31,122,77,.14); color:var(--good)}
+  .t-warn{background:rgba(168,84,31,.14); color:var(--warn)}
+  .scroll{overflow-x:auto}
+  figure{margin:20px 0}
+  img{max-width:100%; height:auto; border:1px solid var(--line); border-radius:8px}
+  figcaption{color:var(--muted); font-size:.85rem; margin-top:8px}
+  ul{padding-left:22px} li{margin:5px 0}
+  .foot{margin-top:56px; padding-top:16px; border-top:1px solid var(--line);
+        color:var(--muted); font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>趨勢波段最小案例:vectorbt 承載進出場規則合約與共用風控層</h1>
+<div class="sub">KARST-013 &middot; 2026-08-26 &middot; 假設 A-005 查證 &middot; 500 股 &times; 2,608 個交易日</div>
+
+<div class="verdict">
+<strong>結論:A-005 不成立(overturned),但塌的是一角,不是全條。</strong><br>
+五件規則之中,四件 vectorbt 現成介面直接食得落;唯獨<strong>組合層月度虧損熔斷</strong>,現成的
+<code>from_signals</code> 由頭到尾看不見組合權益,表達不到。同一原因令「單筆風險 2% <em>當下權益</em>」
+也只能降格成「2% <em>起始本金</em>」。改用 <code>from_order_func</code> 之後五件全部照原意表達,一次過跑完,
+單次回測 0.656 秒——<strong>引擎選 vectorbt(D-011)不需要翻案,要上調的是適配層的工作量估算</strong>:
+自訂訂單函式要自己手寫止蝕與目標,換走了引擎內建那一格。
+</div>
+
+<h2>一、考題與環境</h2>
+
+<p>照 D-016 的趨勢波段骨幹設一個玩具版,只用價格數據。數據直接沿用 KARST-009 那份合成面板
+(500 隻股票 &times; 2,608 個交易日,2016-01-04 至 2025-12-31,固定種子 20260825),
+環境亦沿用同一個 venv,沒有另起爐灶——所以本次的耗時數字與 KARST-009 那張表可以直接並排看。</p>
+
+<table>
+<tr><th style="width:22%">項目</th><th>內容</th></tr>
+<tr><td>引擎</td><td>vectorbt 1.1.0 / Python 3.11.15 / numpy 2.4.6 / pandas 3.0.5 / numba 0.67.0</td></tr>
+<tr><td>環境</td><td><code>experiments/2026-08-bakeoff/.venv-vbt</code>(與 KARST-009 同一個)</td></tr>
+<tr><td>數據</td><td><code>experiments/2026-08-bakeoff/data/panel.parquet</code>,重生指令 <code>python gen_data.py</code></td></tr>
+<tr><td>執行慣例</td><td>訊號在 t 日收市成形,t+1 日收市成交(無同日前視),與 KARST-009 一致</td></tr>
+<tr><td>本金與風控</td><td>起始 100 萬,單筆風險 2%,單一持倉市值上限 20%,月度熔斷門檻 −6%</td></tr>
+<tr><td>費用</td><td>費用與滑點設為零(與 KARST-009 同一取態,求兩條路線可比)</td></tr>
+</table>
+
+<h2>二、五件規則逐件註明用了引擎哪個入口</h2>
+
+<p>這是本票的正題。下表的「扭曲」一欄,指的是<em>用現成的 <code>from_signals</code> 表達時</em>有沒有走樣。</p>
+
+<div class="scroll">
+<table>
+<tr>
+  <th style="width:14%">規則</th>
+  <th style="width:24%">vectorbt 入口</th>
+  <th style="width:10%">扭曲?</th>
+  <th>說明與替代寫法</th>
+</tr>
+<tr>
+  <td><b>1. 入場</b><br>突破 N 日新高</td>
+  <td><code>from_signals(entries=)</code><br>布林矩陣</td>
+  <td><span class="tag t-ok">無</span></td>
+  <td>訊號層在 numpy 算好一張 (日期 &times; 股票) 布林矩陣交給引擎,引擎原生食。</td>
+</tr>
+<tr>
+  <td><b>2. 止蝕</b><br>前波段低位</td>
+  <td><code>from_signals(sl_stop=)</code><br>逐格百分比陣列</td>
+  <td><span class="tag t-ok">無</span></td>
+  <td>引擎只收百分比,不收絕對價位——但把分母定為「真正成交價」(t+1 日收市)之後,
+      換算回去的絕對止蝕價<b>剛好等於前波段低位本身</b>,沒有因為換算而走樣。
+      <code>sl_stop</code> 只在入場那一根鎖定,所以逐格填值不會互相污染。同理 <code>tp_stop</code> 表達目標價。</td>
+</tr>
+<tr>
+  <td><b>3. 賠率門檻</b><br>風險回報比過濾</td>
+  <td>訊號層自行過濾<br>(引擎沒參與)</td>
+  <td><span class="tag t-ok">無</span></td>
+  <td>賠率完全由訊號日已知的價位算得出(目標距離 &divide; 止蝕距離),入場前先在 numpy 篩走,
+      根本不需要引擎知道這回事。這件事引擎承不承載是個假問題。</td>
+</tr>
+<tr>
+  <td><b>4. 注碼</b><br>按止蝕距離反推<br>單筆風險 2%</td>
+  <td><code>size=</code> 股數陣列<br><code>size_type='amount'</code></td>
+  <td><span class="tag t-warn">部分</span></td>
+  <td><b>算式原生,基數走樣。</b>「股數 = 風險額 &divide; 止蝕距離」引擎照單全收;
+      但「風險額 = 2% &times; <b>當下權益</b>」做不到——<code>SignalContext</code> 只有
+      <code>(i, col, position_now, val_price_now, flex_2d)</code>,<b>沒有現金也沒有權益</b>,
+      自訂訊號函式 <code>signal_func_nb</code> 看不見組合值。只能退而求其次用起始本金做基數。
+      代價見第四節:同一條策略,十年總報酬由 2.23 倍變成 2.88 倍,成交筆數由 1,038 變成 1,944。
+      <b>替代寫法:<code>from_order_func</code></b>,<code>OrderContext.value_now</code> 就是當下權益。</td>
+</tr>
+<tr>
+  <td><b>5. 月度熔斷</b><br>組合層虧損斷路</td>
+  <td><code>from_order_func</code> 的<br><code>pre_segment_func_nb</code></td>
+  <td><span class="tag t-warn">表達不到</span></td>
+  <td><b>這一件是 A-005 真正塌下來的地方。</b>熔斷要看組合權益走勢,而 <code>from_signals</code>
+      全程沒有一個回呼看得見現金或權益,<b>無論怎樣寫都表達不到</b>。
+      兩條替代路都試過,見第三節。</td>
+</tr>
+</table>
+</div>
+
+<h3>為什麼 <code>from_signals</code> 一定做不到熔斷</h3>
+<p>不是寫法問題,是介面問題。引擎給訊號回呼的上下文只有五格,現金、權益、持倉市值一格都沒有;
+而給訂單回呼(<code>from_order_func</code>)的上下文有 <code>last_cash</code>、<code>last_value</code>、
+<code>value_now</code>。<b>一個組合層的規則,只可能寫在看得見組合的那一層。</b>
+這一句就是 A-005 判假的全部理由。</p>
+
+<h2>三、兩條替代路的實測代價</h2>
+
+<h3>路線甲:引擎外後處理(迭代法)</h3>
+<p>做法:先跑一次 → 讀組合權益曲線 → 找出每個月首次觸及 −6% 的那一根 → 把該根之後、同月之內的
+入場訊號抹走 → 再跑。抹走入場<b>會改變權益曲線本身</b>,所以要迭代到遮罩不再變——這是一個不動點搜索。</p>
+<p>本次 6 次迭代後收斂,共 0.944 秒(單次是 0.14 秒,即 <b>6.7 倍</b>)。但看中間過程就知道它不牢靠:
+十年總報酬在迭代之間來回擺 <b>2.88 → 3.82 → 3.13 → 3.35 → 2.82 → 2.82</b>。
+<b>收斂是這一組參數的運氣,不是保證</b>——沒有任何機制擔保它一定收斂,而一個掃描要跑幾百組。</p>
+
+<h3>路線乙:<code>from_order_func</code> 自寫訂單函式</h3>
+<p>五件規則全部照原意表達,一次過跑完,不需要迭代。真正的代價不在速度,在<b>換走了引擎內建的止蝕與目標</b>:
+<code>from_order_func</code> 沒有 <code>sl_stop</code> / <code>tp_stop</code>,止蝕、目標、
+連跳空穿價時以開市價成交的擺位,全部要自己逐根 bar 手寫。本次整個訂單函式 44 行,
+其中<b>純粹為了補回引擎內建那一格而寫的離場邏輯佔 17 行</b>——熔斷本身反而只是
+<code>pre_segment_func_nb</code> 裡的十來行。</p>
+
+<div class="verdict" style="border-left-color:var(--good)">
+<strong>手寫的那段是對的——有對照臂為證。</strong>
+把路線乙的注碼基數改回起始本金、熔斷關掉(即刻意重現路線甲的兩個扭曲),
+兩條路線的結果<b>吻合到小數點後十四位</b>:總報酬 2.8837882581230714 對 2.8837882581230656、
+最大回撤同為 −18.07%、夏普同為 1.2163、成交筆數同為 1,944 筆。
+即是說手寫止蝕/目標與引擎內建那一格<b>語意完全一致</b>,
+而路線甲與路線乙之間所有其餘差距,<b>全數歸因於注碼基數與熔斷</b>,不是實作誤差。
+</div>
+
+<h3>耗時對照(同機同數據)</h3>
+<div class="scroll">
+<table>
+<tr><th>路線</th><th>五件規則齊全?</th><th class="num">單次(熱身後)</th><th class="num">單次(首次含編譯)</th><th class="num">144 組掃描</th><th class="num">每組平均</th></tr>
+<tr><td><code>from_signals</code></td><td>否(缺熔斷,注碼基數走樣)</td><td class="num">0.106 秒</td><td class="num">4.44 秒</td><td class="num">42.9 秒</td><td class="num">0.298 秒</td></tr>
+<tr><td><code>from_signals</code> + 引擎外熔斷</td><td>熔斷靠迭代,不保證收斂</td><td class="num">0.944 秒(6 次迭代)</td><td class="num">—</td><td class="num">未跑</td><td class="num">—</td></tr>
+<tr><td><code>from_order_func</code></td><td><b>是</b></td><td class="num">0.656 秒</td><td class="num">7.70 秒</td><td class="num">117.1 秒</td><td class="num">0.813 秒</td></tr>
+</table>
+</div>
+<p>把五件規則做齊的代價是 <b>單次慢 6.2 倍、掃描慢 2.7 倍</b>,但絕對值仍然是次秒級,
+144 組掃描兩分鐘內完。對照 KARST-009 立下的標準(vectorbt 單次 0.332 秒、PyBroker 13.49 秒),
+<b>做齊五件規則的 vectorbt(0.656 秒)依然比 PyBroker 的選股玩具版快 20 倍</b>。
+換句話說,A-005 塌下來沒有動搖 D-011 的選型理由。</p>
+
+<h3>熔斷有沒有咬到東西</h3>
+<table>
+<tr><th>設定</th><th class="num">十年總報酬</th><th class="num">最大回撤</th><th class="num">夏普</th><th class="num">最深月內回撤</th><th class="num">被封鎖 bar 數</th></tr>
+<tr><td>路線乙,熔斷關</td><td class="num">2.229 倍</td><td class="num">−28.35%</td><td class="num">0.984</td><td class="num">−12.88%</td><td class="num">0</td></tr>
+<tr><td>路線乙,熔斷開</td><td class="num">1.922 倍</td><td class="num">−27.53%</td><td class="num">0.895</td><td class="num">−10.86%</td><td class="num">101 / 2,608</td></tr>
+</table>
+<p>熔斷把最深的月內回撤由 −12.88% 收窄到 −10.86%,代價是總報酬由 2.23 倍降到 1.92 倍。
+<b>注意它收不到 −6% 以內</b>:本次熔斷的語意是「停止該月新入場」,已開倉的持倉照樣可以繼續蝕,
+所以熔斷門檻不等於月虧上限。這是規則本身的語意,不是引擎的限制——要硬封頂就要改成觸發即平倉,
+那一樣寫在 <code>from_order_func</code> 同一個位置。</p>
+
+<h2>四、注碼基數走樣有多重要</h2>
+<p>值得單獨講一段,因為這一格最容易被當成小事放過。用起始本金做基數,權益由 100 萬升到 300 多萬之後,
+每一筆的實際風險已經跌到權益的 0.6%,而規則寫的是 2%——<b>策略在不知不覺間愈做愈細注</b>,
+變成一條隱形的減倉規則。實測分別:</p>
+<table>
+<tr><th>注碼基數</th><th class="num">十年總報酬</th><th class="num">最大回撤</th><th class="num">夏普</th><th class="num">成交筆數</th></tr>
+<tr><td>當下權益(規則原意)</td><td class="num">2.229 倍</td><td class="num">−28.35%</td><td class="num">0.984</td><td class="num">1,038</td></tr>
+<tr><td>起始本金(<code>from_signals</code> 只能做到這個)</td><td class="num">2.884 倍</td><td class="num">−18.07%</td><td class="num">1.216</td><td class="num">1,944</td></tr>
+</table>
+<p><b>走樣的方向是「看落去更靚」</b>:報酬更高、回撤更淺、夏普更好。如果照 <code>from_signals</code>
+那條路做下去而不知道有這回事,得出的會是一份系統性偏樂觀的回測。這正是要把它記進假設冊的理由。</p>
+
+<h2>五、參數掃描與穩健平原</h2>
+<p>掃 N(突破日數,12 個值)&times; 賠率門檻(12 個值)= 144 組,用五件規則全開的
+<code>from_order_func</code> 路線跑,耗時 <b>117.1 秒</b>(每組 0.813 秒)。
+成交少於 30 筆的 19 格當作無效(報酬率沒有統計意義,夏普會爆成無限大)。</p>
+
+<figure>
+  <img src="results/sweep-2026-08-26-trend-swing.png"
+       alt="N 乘賠率門檻的四張熱力圖:夏普原始格、夏普 3x3 鄰域平均(穩健平原視圖)、十年總報酬、成交筆數">
+  <figcaption>四張圖:左上為夏普原始格,右上為 3&times;3 鄰域平均(即穩健平原視圖),左下為十年總報酬,右下為成交筆數。紅星為各自的最優格。</figcaption>
+</figure>
+
+<p>照 D-016 第 3 條的判準看,這一輪剛好示範了「單點最優不等於穩健」:</p>
+<ul>
+  <li><b>單點最優</b>在 N=60、賠率門檻 1.25,夏普 1.61——但它的 3&times;3 鄰域平均只有 1.16,
+      <b>峰值是鄰域的 1.39 倍</b>,即是一支孤峰,照 D-016 應當視為擬合噪音。</li>
+  <li><b>鄰域最優</b>在 N=50、賠率門檻 1.5,鄰域平均 1.27,本身夏普 1.04。
+      平原在圖的右半邊:N 由 50 至 120、賠率門檻 1.0 至 1.5 一整片都企在 1.0 以上。</li>
+  <li>成交筆數圖解釋了左上角的空白:N 細(5 至 10 日)配高賠率門檻,兩個條件互相排斥
+      ——短區間的量度移動本來就細,除得出的賠率上不到 2,所以幾乎無單可做。</li>
+</ul>
+<p><b>對引擎的意思</b>:掃描這一格 vectorbt 交足貨。144 組兩分鐘,而且熱力圖有形狀、有平原、有孤峰,
+不是一片噪音——即是說引擎確實在跑一條有內容的策略,規則有咬到數據。
+(策略本身在合成數據上的表現不具投資意義,本次只用來考引擎。)</p>
+
+<h2>六、A-005 判定:不成立(overturned)</h2>
+<p>A-005 原文說 vectorbt 能<b>不扭曲地</b>表達三件套。實測:</p>
+<ul>
+  <li><b>每筆的止蝕/目標(sl/tp)</b> —— 成立,<code>from_signals</code> 原生,零扭曲。</li>
+  <li><b>按止蝕距離反推注碼的風險定額 sizing</b> —— 算式成立,<b>基數不成立</b>:
+      現成介面只做到「2% 起始本金」,做不到「2% 當下權益」。</li>
+  <li><b>組合層月度虧損熔斷</b> —— <b>不成立</b>,<code>from_signals</code> 的訊號上下文
+      看不見組合權益,無論怎樣寫都表達不到。</li>
+</ul>
+<p>三件之中一件全塌、一件半塌,所以整條假設判 <b>overturned</b>。
+它的後果條款寫住「適配層要改用自寫循環(<code>from_order_func</code> 或引擎外後處理),
+D-011 的引擎工作量估算要上調」——<b>後果如實觸發了</b>,而且明確落在
+<code>from_order_func</code> 那一邊(引擎外後處理是不動點搜索,不保證收斂,不建議用)。</p>
+<p>但要講清楚<b>沒有</b>發生什麼:引擎選型(D-011)不用翻案,vectorbt 做齊五件規則仍然次秒級;
+KARST-009 那批數據不用重做;沒有任何已完成的工作白做。要改的只是估算——
+適配層要多寫一個 numba 訂單函式,並自行維護止蝕/目標邏輯。</p>
+
+<h2>七、未解與風險</h2>
+<ul>
+  <li>合成數據沒有停牌、除權除息、成交量約束與存活者偏差;<b>引擎正確性本次一樣沒有考到</b>
+      (與 KARST-009 同一個缺口)。手寫止蝕/目標只做到「與 vectorbt 內建一致」,
+      不等於兩者都對——真實數據的跳空與停牌會考出分別。</li>
+  <li>費用與滑點設為零。開啟之後,成交筆數多一倍的路線甲會蝕得比路線乙多,兩條路線的差距會再擴大。</li>
+  <li>同日多個突破時用固定種子的隨機次序抽籤決定誰先成交(現金共用,先到先得)。
+      種子換一個,個別數字會變;本次沒有量度這個抽籤噪音有多大。</li>
+  <li>熔斷語意是「停止該月新入場」,不封頂月虧;「觸發即平倉」那一版未實作。</li>
+  <li>引擎外後處理的迭代法本次只在一組參數上試過,收斂了;<b>沒有量度它在整個參數格上的收斂率</b>。
+      既然路線乙又快又穩,沒有再追這條路。</li>
+  <li>多核並行未實測(與 KARST-009 同一個未解項)。</li>
+</ul>
+
+<h2>八、產物與重跑</h2>
+<p>全部在 <code>experiments/2026-08-26-trend-swing/</code>:</p>
+<table>
+<tr><th style="width:34%">檔案</th><th>內容</th></tr>
+<tr><td><code>swing_spec.py</code></td><td>共用規格與特徵計算(五件規則的定義單一正本)</td></tr>
+<tr><td><code>swing_signals.py</code></td><td>路線甲:<code>from_signals</code>,含引擎外後處理熔斷</td></tr>
+<tr><td><code>swing_orderfunc.py</code></td><td>路線乙:<code>from_order_func</code>,五件規則齊全,含對照臂</td></tr>
+<tr><td><code>sweep_view.py</code></td><td>穩健平原視圖產生器</td></tr>
+<tr><td><code>results/sweep-2026-08-26-trend-swing.png</code></td><td>參數穩健平原視圖(四格熱力圖)</td></tr>
+<tr><td><code>results/A_sweep.csv</code> / <code>B_sweep_breaker-{on,off}.csv</code></td><td>144 組逐組結果</td></tr>
+<tr><td><code>results/*_single*.json</code>、<code>robustness.json</code></td><td>單次回測指標、耗時、平原分析</td></tr>
+</table>
+<p>重跑(用 KARST-009 那個 venv,<code>experiments/2026-08-bakeoff/.venv-vbt</code>):</p>
+<pre><code>python swing_signals.py   --mode single | breaker | sweep
+python swing_orderfunc.py --mode single | sweep  [--breaker on|off] [--sizebase equity|init]
+python sweep_view.py      --src B_sweep_breaker-on.csv</code></pre>
+<p>數據若不在(<code>experiments/*/data/</code> 不入 git),先到
+<code>experiments/2026-08-bakeoff/</code> 跑 <code>python gen_data.py</code> 重生,種子固定。</p>
+
+<div class="foot">
+KARST-013 &middot; 認領 KARST-013-trend-swing &middot; 2026-08-26 &middot;
+機器 AMD Ryzen 7 7840HS / 16 核 / 23.8 GB &middot; vectorbt 1.1.0
+</div>
+
+</div>
+</body>
+</html>

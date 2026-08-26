@@ -1,0 +1,23 @@
+{
+  "total_return": 2.8837882581230714,
+  "max_drawdown": -0.1807234913071265,
+  "sharpe_ratio": 1.2162965667008423,
+  "n_orders": 3855,
+  "n_trades": 1944,
+  "final_value": 3883788.2581230714,
+  "win_rate": 0.43415637860082307,
+  "engine_path": "from_order_func",
+  "vbt_version": "1.1.0",
+  "breaker": "off",
+  "size_base": "init",
+  "load_sec": 0.5369925999548286,
+  "single_cold_sec": 7.217643900075927,
+  "single_warm_sec_median": 0.5613746999297291,
+  "n_entry_signals": 35753,
+  "breaker_blocked_bars": 0,
+  "worst_month_dd": -0.0997847750625036,
+  "params": {
+    "n_break": 20,
+    "rr_min": 1.5
+  }
+}

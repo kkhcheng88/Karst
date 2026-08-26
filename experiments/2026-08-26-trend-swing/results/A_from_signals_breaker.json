@@ -1,0 +1,64 @@
+{
+  "total_return": 2.8169702777114938,
+  "max_drawdown": -0.19480333866875388,
+  "sharpe_ratio": 1.1974858828534254,
+  "n_orders": 3862,
+  "n_trades": 1949,
+  "final_value": 3816970.277711494,
+  "win_rate": 0.44330425859415085,
+  "engine_path": "from_signals + 引擎外後處理熔斷",
+  "vbt_version": "1.1.0",
+  "breaker": "post-processing",
+  "breaker_total_sec": 0.9435447999276221,
+  "breaker_iters": 6,
+  "breaker_history": [
+    {
+      "iter": 0,
+      "sec": 0.13799630000721663,
+      "blocked_bars": 61,
+      "mask_cells_changed": 30500,
+      "total_return": 2.8837882581230656
+    },
+    {
+      "iter": 1,
+      "sec": 0.13664679997600615,
+      "blocked_bars": 60,
+      "mask_cells_changed": 10500,
+      "total_return": 3.81802691071536
+    },
+    {
+      "iter": 2,
+      "sec": 0.14253320009447634,
+      "blocked_bars": 43,
+      "mask_cells_changed": 9500,
+      "total_return": 3.1285116005188405
+    },
+    {
+      "iter": 3,
+      "sec": 0.14134159998502582,
+      "blocked_bars": 66,
+      "mask_cells_changed": 11500,
+      "total_return": 3.352018944884709
+    },
+    {
+      "iter": 4,
+      "sec": 0.13949960004538298,
+      "blocked_bars": 67,
+      "mask_cells_changed": 1500,
+      "total_return": 2.8169702777114938
+    },
+    {
+      "iter": 5,
+      "sec": 0.15720810007769614,
+      "blocked_bars": 67,
+      "mask_cells_changed": 0,
+      "total_return": 2.8169702777114938
+    }
+  ],
+  "converged": true,
+  "worst_month_dd": -0.09977416480882184,
+  "params": {
+    "n_break": 20,
+    "rr_min": 1.5
+  }
+}
