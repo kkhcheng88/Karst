@@ -35,14 +35,15 @@
     <!-- ================= 左欄:圖 + 漏斗 + 版本沿革 ================= -->
     <div class="fit-col">
 
-      <div class="fit-panel" style="flex:none">
+      <!-- 圖可縮,但有下限;下面的分頁區才不會被擠到零高度 -->
+      <div class="fit-panel" style="flex:1 1 auto;min-height:180px">
         <div class="fit-panel-head">
           <h2 style="font-size:var(--fs-md)">淨值走勢</h2>
           <div class="bench-line" id="equity-bench"></div>
         </div>
         <div class="fit-panel-body" style="overflow:hidden">
           <div class="chart-box" id="equity-chart"></div>
-          <div style="padding:var(--s-2) var(--s-4) var(--s-3)">
+          <div id="chart-note" style="padding:var(--s-2) var(--s-4) var(--s-3)">
             <div class="section-note" id="metric-line"></div>
             <div class="section-note" style="margin-top:2px;color:var(--accent)">
               點圖上任何一日 = 選定時點,右邊選股快照即時跳到該日。
@@ -57,11 +58,11 @@
           <span class="section-note" id="funnel-note"></span>
         </div>
         <div class="fit-panel-body" style="overflow:hidden">
-          <div class="funnel-line" id="funnel"></div>
+          <div class="funnel-bar" id="funnel"></div>
         </div>
       </div>
 
-      <div class="fit-panel fit-grow">
+      <div class="fit-panel fit-grow" style="min-height:170px">
         <div class="tabs" role="tablist" aria-label="版本與運行">
           <button class="tab-btn" role="tab" id="tab-hist" aria-selected="true" aria-controls="p-hist">版本沿革</button>
           <button class="tab-btn" role="tab" id="tab-runs" aria-selected="false" aria-controls="p-runs">歷次運行</button>
@@ -124,10 +125,6 @@
             </thead>
             <tbody id="picks-body"></tbody>
           </table>
-        </div>
-        <div class="table-foot" style="flex:none">
-          <span id="picks-note"></span>
-          <span id="picks-foot"></span>
         </div>
       </div>
     </div>
@@ -203,7 +200,14 @@
     '・共 ' + m.trades + ' 筆交易';
 
   var chartEl = document.getElementById('equity-chart');
-  var chart = KV.makeChart(chartEl, 236);
+
+  /* 圖的高度按面板實際剩多少來定,視窗矮的時候由圖讓位,下面的分頁區不會被壓到看不見 */
+  function chartHeight() {
+    var body = chartEl.parentElement;
+    var note = document.getElementById('chart-note');
+    return Math.max(120, Math.round(body.clientHeight - note.getBoundingClientRect().height));
+  }
+  var chart = KV.makeChart(chartEl, chartHeight());
   var lSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
   lSpy.setData(KV.zip(K.weeklyDates, spy.equity));
   var lQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
@@ -211,6 +215,10 @@
   var lStr = chart.addLineSeries({ color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false });
   lStr.setData(KV.zip(K.weeklyDates, s.equity));
   chart.timeScale().fitContent();
+
+  window.addEventListener('resize', function () {
+    chart.applyOptions({ height: chartHeight() });
+  });
 
   /* ============================================================
      版本沿革(git log 形態)
@@ -292,19 +300,18 @@
     document.getElementById('funnel-note').textContent =
       curDate + '・' + V.id + ' 門檻 質素 ≥ ' + V.gates.quality + '、動量 ≥ ' + V.gates.momentum;
 
-    /* 一行四格:數字大字、標籤細字,格與格之間用細箭嘴寫明剩幾多 */
+    /* 一條橫向漸縮的分段條:每段闊度按隻數比例,數字寫在段內、關卡名在段下 */
     document.getElementById('funnel').innerHTML = snap.funnel.map(function (f, i) {
       var prev = i ? snap.funnel[i - 1].count : 0;
-      var keep = i ? Math.round(f.count / prev * 1000) / 10 : 0;
-      var arrow = i
-        ? '<div class="fl-arrow" aria-hidden="true">→<small>剩 ' + keep + '%</small></div>'
-        : '';
-      return arrow +
-        '<div class="fl-step">' +
-          '<div class="fl-num" style="color:' + FUNNEL_COLOR[i] + '">' + f.count +
-            '<small>隻</small></div>' +
-          '<div class="fl-lab" title="' + KV.esc(f.hint) + '">' + KV.esc(f.label) +
-            (i ? '<span class="dim">・−' + (prev - f.count) + '</span>' : '') + '</div>' +
+      var keep = i ? Math.round(f.count / prev * 1000) / 10 : 100;
+      return '<div class="fb-seg" style="flex:' + f.count + ' 1 74px" ' +
+          'title="' + KV.esc(f.label + '　' + f.hint) + '">' +
+          '<div class="fb-block" style="background:' + FUNNEL_COLOR[i] + '">' +
+            '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
+            '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
+          '</div>' +
+          '<div class="fb-lab">' + KV.esc(f.label) +
+            (i ? '　−' + (prev - f.count) : '') + '</div>' +
         '</div>';
     }).join('');
 
@@ -326,13 +333,6 @@
       '</tr>';
     }).join('');
 
-    var counts = { '持倉': 0, '入選': 0, '觀察': 0, '未過': 0 };
-    rows.forEach(function (r) { counts[r.status]++; });
-    document.getElementById('picks-note').textContent =
-      '表列 ' + rows.length + ' 隻示意樣本・持倉 ' + counts['持倉'] + '、入選 ' + counts['入選'] +
-      '、觀察 ' + counts['觀察'] + '、未過 ' + counts['未過'];
-    document.getElementById('picks-foot').textContent =
-      '當日範圍共 ' + scope + ' 隻・按綜合分由高至低・持倉那幾行是當日重新評分';
   }
 
   /* 圖上點一日 = 選定時點 */

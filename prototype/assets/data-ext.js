@@ -876,4 +876,172 @@
     K.tradeMarkByDate = byDate;
   })();
 
+  /* ============================================================
+     十一、掃描:四個參數任揀兩個做軸
+     ------------------------------------------------------------
+     掃描一共四個參數,一幅圖只畫得出兩個。以前寫死「突破日數 × 止蝕」,
+     現在任揀兩個做軸,餘下兩個變成切片。預設那一幅(突破日數 × 止蝕、
+     風險比例 1%、均線 150 日)照舊沿用第一版原數據,畫面不變。
+     ============================================================ */
+  K.sweepParams = [
+    { id: 'n', label: '突破日數 N', short: 'N',
+      hint: '突破多少日的高位才當作訊號',
+      values: K.sweep.rows, def: 30,
+      fmt: function (v) { return String(v); } },
+    { id: 'stop', label: '止蝕幅度', short: '止蝕',
+      hint: '離進場價多遠就認輸離場',
+      values: K.sweep.cols, def: 8,
+      fmt: function (v) { return v + '%'; } },
+    { id: 'risk', label: '風險比例', short: '風險',
+      hint: '每筆交易願意輸掉的組合百分比',
+      values: [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0], def: 1.0,
+      fmt: function (v) { return v + '%'; } },
+    { id: 'ma', label: '均線長度', short: '均線',
+      hint: '判斷大市方向那條均線的日數',
+      values: [20, 50, 80, 100, 150, 200, 250, 300], def: 150,
+      fmt: function (v) { return v + ' 日'; } },
+  ];
+
+  K.sweepParamById = {};
+  K.sweepParams.forEach(function (p) { K.sweepParamById[p.id] = p; });
+
+  var gridCache = {};
+
+  /* 一格的附帶指標由年化推出來,免得四個數字各自亂走、對不上 */
+  function cellFrom(vals, cagr, r) {
+    return {
+      vals: vals,
+      n: vals.n, s: vals.stop,
+      cagr: cagr,
+      mdd: round(clamp(-14 - (30 - cagr) * 0.75 - between(r, 0, 9), -58, -12), 1),
+      sortino: round(clamp(0.35 + cagr / 16, 0.2, 2.6), 2),
+      trades: Math.round(between(r, 90, 260)),
+      spike: false,
+    };
+  }
+
+  /* 找平原(鄰域平均最高那一格)同孤峰(自己高出鄰域最多那一格) */
+  function judge(grid) {
+    var R = grid.length, C = grid[0].length;
+    var lo = R > 2 ? 1 : 0, hiR = R > 2 ? R - 1 : R, hiC = C > 2 ? C - 1 : C;
+    var bestMean = -1e9, pc = [0, 0];
+    for (var ri = lo; ri < hiR; ri++) {
+      for (var ci = (C > 2 ? 1 : 0); ci < hiC; ci++) {
+        var m = neighbourMean(grid, ri, ci);
+        if (m > bestMean) { bestMean = m; pc = [ri, ci]; }
+      }
+    }
+    var set = {}, centre = grid[pc[0]][pc[1]].cagr;
+    for (ri = 0; ri < R; ri++) {
+      for (ci = 0; ci < C; ci++) {
+        if (Math.abs(ri - pc[0]) <= 1 && Math.abs(ci - pc[1]) <= 1 &&
+            grid[ri][ci].cagr >= centre - 3.5) set[ri + ',' + ci] = true;
+      }
+    }
+    var bestGap = -1e9, sp = null;
+    for (ri = 0; ri < R; ri++) {
+      for (ci = 0; ci < C; ci++) {
+        if (set[ri + ',' + ci]) continue;
+        var gap = grid[ri][ci].cagr - neighbourMean(grid, ri, ci);
+        if (gap > bestGap) { bestGap = gap; sp = [ri, ci]; }
+      }
+    }
+    if (sp) grid[sp[0]][sp[1]].spike = true;
+    return { plateauSet: set, plateauCenter: pc, spikePos: sp };
+  }
+
+  function isBaseAsk(yId, xId, fixed) {
+    return ((yId === 'n' && xId === 'stop') || (yId === 'stop' && xId === 'n')) &&
+      fixed.risk === 1.0 && fixed.ma === 150;
+  }
+
+  /**
+   * 揀兩個參數做軸,餘下兩個定住,砌出一幅熱力圖。
+   * yId / xId:縱軸、橫軸的參數 id;fixed:餘下兩個參數的值。
+   */
+  K.sweepGrid = function (yId, xId, fixed) {
+    var key = 'g|' + yId + '|' + xId + '|' +
+      K.sweepParams.map(function (p) { return p.id + '=' + fixed[p.id]; }).join(',');
+    if (gridCache[key]) return gridCache[key];
+
+    var yp = K.sweepParamById[yId], xp = K.sweepParamById[xId];
+    var rowVals = yp.values, colVals = xp.values;
+    var R = rowVals.length, C = colVals.length;
+    var out, grid = [], ri, ci;
+
+    if (isBaseAsk(yId, xId, fixed)) {
+      /* 預設那一幅照舊用第一版原數據,一個數字都不改 */
+      var flip = (yId === 'stop');
+      for (ri = 0; ri < R; ri++) {
+        var row = [];
+        for (ci = 0; ci < C; ci++) {
+          var src = flip ? K.sweep.grid[ci][ri] : K.sweep.grid[ri][ci];
+          row.push({
+            vals: { n: src.n, stop: src.s, risk: 1.0, ma: 150 },
+            n: src.n, s: src.s,
+            cagr: src.cagr, mdd: src.mdd, sortino: src.sortino,
+            trades: src.trades, spike: src.spike,
+          });
+        }
+        grid.push(row);
+      }
+      var pset = {}, pcen = K.sweep.plateauCenter, spos = null;
+      K.sweep.plateauCells.forEach(function (p) {
+        pset[(flip ? p[1] + ',' + p[0] : p[0] + ',' + p[1])] = true;
+      });
+      if (flip) pcen = [K.sweep.plateauCenter[1], K.sweep.plateauCenter[0]];
+      /* 孤峰用原圖的座標找,再按需要轉置,免得掃描次序不同就答出兩個位置 */
+      K.sweep.grid.forEach(function (rw, a) {
+        rw.forEach(function (c, b) { if (c.spike && !spos) spos = flip ? [b, a] : [a, b]; });
+      });
+      out = { grid: grid, rowVals: rowVals, colVals: colVals,
+              plateauSet: pset, plateauCenter: pcen, spikePos: spos, isBase: true };
+      gridCache[key] = out;
+      return out;
+    }
+
+    /* 其餘組合:同一條種子生同一幅圖,揀來揀去都對得上 */
+    var r = rng(key);
+    var r0 = between(r, R * 0.25, R * 0.75);
+    var c0 = between(r, C * 0.25, C * 0.75);
+    var amp = between(r, 8, 13);
+    var base = between(r, 6, 12);
+    var spreadR = Math.max(1.6, R / 3.2), spreadC = Math.max(1.6, C / 3.2);
+
+    for (ri = 0; ri < R; ri++) {
+      var rw2 = [];
+      for (ci = 0; ci < C; ci++) {
+        var cr = rng(key + '|' + ri + '|' + ci);
+        var bump = amp * Math.exp(-(
+          Math.pow(ri - r0, 2) / (2 * spreadR * spreadR) +
+          Math.pow(ci - c0, 2) / (2 * spreadC * spreadC)));
+        var noise = (cr() - 0.5) * 2.6;
+        var vals = { n: fixed.n, stop: fixed.stop, risk: fixed.risk, ma: fixed.ma };
+        vals[yId] = rowVals[ri];
+        vals[xId] = colVals[ci];
+        rw2.push(cellFrom(vals, round(clamp(base + bump + noise, 1.5, 34), 1), cr));
+      }
+      grid.push(rw2);
+    }
+
+    var j = judge(grid);
+
+    /* 種一個孤峰在離平原遠的地方,好等「最高分不等於最應該選」這件事每幅圖都睇得到 */
+    var sr = (j.plateauCenter[0] + Math.floor(R / 2)) % R;
+    var sc = (j.plateauCenter[1] + Math.floor(C / 2)) % C;
+    if (j.plateauSet[sr + ',' + sc]) sc = (sc + 2) % C;
+    var sCell = grid[sr][sc];
+    sCell.cagr = round(neighbourMean(grid, sr, sc) + between(r, 6.5, 9.5), 1);
+    sCell.sortino = round(clamp(0.35 + sCell.cagr / 16, 0.2, 2.6), 2);
+    var j2 = judge(grid);
+    grid.forEach(function (rw3) { rw3.forEach(function (c) { c.spike = false; }); });
+    grid[sr][sc].spike = true;
+
+    out = { grid: grid, rowVals: rowVals, colVals: colVals,
+            plateauSet: j2.plateauSet, plateauCenter: j2.plateauCenter,
+            spikePos: [sr, sc], isBase: false };
+    gridCache[key] = out;
+    return out;
+  };
+
 })(window);

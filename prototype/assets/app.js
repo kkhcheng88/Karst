@@ -75,11 +75,71 @@
         '<div class="nav-meta">' +
           '<span>數據快照 ' + esc(K.meta.snapshot) + '</span>' +
           '<span>截至 ' + esc(K.meta.asOf) + '</span>' +
+          '<div id="nav-identity"></div>' +
         '</div>' +
       '</nav>';
 
     var host = document.getElementById('nav-host');
     if (host) host.innerHTML = html;
+  }
+
+  /**
+   * 運行身份晶片:版本與快照只在導航列出現一次,詳情收在浮層裡。
+   * cfg = { ver, snapshot, stale, rows:[{k,v}], warnText, actionLabel, onAction }
+   */
+  function runChip(cfg) {
+    var host = document.getElementById('nav-identity');
+    if (!host) return;
+    var bad = !!(cfg.stale && cfg.stale.stale);
+
+    host.innerHTML =
+      '<div class="idchip-wrap">' +
+        '<button type="button" class="idchip' + (bad ? ' is-stale' : '') + '" ' +
+          'id="idchip-btn" aria-expanded="false" aria-controls="idchip-pop" ' +
+          'title="本次運行綁定的版本與數據快照">' +
+          '<span class="idchip-v">' + esc(cfg.ver) + '</span>' +
+          '<span class="idchip-dot">・</span>' +
+          '<span class="idchip-s">' + esc(cfg.snapshot) + '</span>' +
+          (bad ? '<span class="idchip-warn" aria-label="綁定的版本已經落後">⚠</span>' : '') +
+        '</button>' +
+        '<div class="idchip-pop" id="idchip-pop" hidden>' +
+          '<div class="idpop-head">運行身份</div>' +
+          cfg.rows.map(function (r) {
+            return '<div class="idpop-row"><span class="idpop-k">' + esc(r.k) + '</span>' +
+              '<span class="idpop-v">' + r.v + '</span></div>';
+          }).join('') +
+          (bad
+            ? '<div class="idpop-warn"><span class="stale-badge">舊版本</span>' +
+                '<span>' + esc(cfg.warnText || '') + '</span></div>' +
+              '<button class="btn btn-primary idpop-act" id="idchip-act">' +
+                esc(cfg.actionLabel || '') + '</button>'
+            : '') +
+        '</div>' +
+      '</div>';
+
+    var wrap = host.firstChild;
+    var btn = document.getElementById('idchip-btn');
+    var pop = document.getElementById('idchip-pop');
+    var pinned = false, timer = null;
+
+    function show() { clearTimeout(timer); pop.hidden = false; btn.setAttribute('aria-expanded', 'true'); }
+    function hide() { if (pinned) return; pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+
+    wrap.addEventListener('mouseenter', show);
+    wrap.addEventListener('mouseleave', function () { timer = setTimeout(hide, 160); });
+    btn.addEventListener('click', function () {
+      pinned = !pinned;
+      if (pinned) show(); else { pinned = false; hide(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) { pinned = false; hide(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { pinned = false; hide(); }
+    });
+
+    var act = document.getElementById('idchip-act');
+    if (act && cfg.onAction) act.addEventListener('click', cfg.onAction);
   }
 
   function mountFoot() {
@@ -380,7 +440,7 @@
     K: K,
     pct: pct, pctPlain: pctPlain, pp: pp, num: num,
     money: money, moneyShort: moneyShort, cls: cls, esc: esc, truncate: truncate,
-    mountNav: mountNav, mountFoot: mountFoot,
+    mountNav: mountNav, mountFoot: mountFoot, runChip: runChip,
     sparkline: sparkline, factorSpark: factorSpark,
     makeChart: makeChart, chartOptions: chartOptions, zip: zip,
     sortableTable: sortableTable, initTabs: initTabs,

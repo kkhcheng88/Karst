@@ -24,13 +24,10 @@
           <span class="page-en mono" id="bc-run"></span>
           <span class="proto-badge">原型・假數據</span>
         </div>
-        <p class="page-sub">左邊看圖、右邊看數。圖上每個標記是一個有買賣的交易日,點下去右邊即跳到那幾筆交易。</p>
+        <p class="page-sub">左邊看圖、右邊看數。滑鼠停在曲線任何一日,即見當日的買賣;點下去右邊跳到那幾筆交易。</p>
       </div>
     </div>
   </header>
-
-  <!-- ============ 頂部一條薄摘要列:版本綁定 + 舊版本標 + 重跑 ============ -->
-  <div class="trace-slim" id="trace" aria-label="留痕摘要"></div>
 
   <dialog class="modal" id="rerun-modal" aria-labelledby="rerun-title">
     <div class="modal-body">
@@ -53,16 +50,9 @@
           <button class="chart-x" id="chart-back" hidden title="返回淨值走勢" aria-label="返回淨值走勢">✕</button>
         </div>
       </div>
-      <div class="fit-panel-body" style="overflow:hidden;display:flex;flex-direction:column">
+      <div class="fit-panel-body" style="overflow:hidden;display:flex;flex-direction:column;position:relative">
         <div class="chart-box" id="main-chart" style="flex:1 1 auto;min-height:0"></div>
-        <div class="hband-wrap" id="band-wrap">
-          <div class="hband-head">
-            <span>持倉帶　<span class="dim">每條橫線是一隻股,色塊在的時候即是持有中,色塊越高比重越大</span></span>
-            <span id="band-note"></span>
-          </div>
-          <div class="hband" id="hband"></div>
-          <div class="bench-line" id="band-legend" style="margin-top:var(--s-1)"></div>
-        </div>
+        <div class="hovcard" id="hovcard" hidden aria-hidden="true"></div>
       </div>
     </section>
 
@@ -114,7 +104,7 @@
   document.getElementById('bc-run').textContent = r.id;
 
   /* ============================================================
-     頂部薄摘要列
+     運行身份:版本與快照只在導航列的晶片講一次,詳情收在浮層
      ============================================================ */
   var bind = r.binding;
   var stale = K.staleCheck(bind);
@@ -129,34 +119,27 @@
       KV.esc(nm) + ' ' + KV.esc(f.ver) + (bad ? ' ▲' : '') + '</span>';
   }).join('<span class="dim">・</span>');
 
-  function kv(k, v, hint) {
-    return '<span class="ts-pair" title="' + KV.esc(hint || '') + '">' +
-      '<span class="ts-k">' + k + '</span><span class="ts-v">' + v + '</span></span>';
-  }
+  var modal = document.getElementById('rerun-modal');
 
-  var slim =
-    kv('版本', KV.esc(bind.strategyVer), '這次運行用的策略程式版本') +
-    '<span class="ts-sep">|</span>' +
-    kv('因子', factorCell, '每個因子各有自己的版本,分開計') +
-    '<span class="ts-sep">|</span>' +
-    kv('參數', KV.esc(r.params), '這次運行實際餵入的參數') +
-    '<span class="ts-sep">|</span>' +
-    kv('快照', KV.esc(r.snapshot), '定住當時的價格與財務數據,重跑才會得出同樣的數字');
-
-  if (stale.stale) {
-    var it = stale.items[0];
-    var full = it.name + '計法已於 ' + it.updatedAt + ' 更新(' + it.now +
-      '),本運行結果為 ' + it.was + ' 之下的紀錄,不會自動更新。改動:' + it.whatChanged;
-    slim +=
-      '<span class="stale-badge" style="margin-left:auto">舊版本</span>' +
-      '<span class="ts-warn" title="' + KV.esc(full) + '">' +
-        KV.esc(it.name + '已更新至 ' + it.now + ',本運行不會自動更新') + '</span>' +
-      '<button class="btn btn-primary" id="rerun-btn">以現版本重跑</button>';
-  }
-  document.getElementById('trace').innerHTML = slim;
+  KV.runChip({
+    ver: bind.strategyVer,
+    snapshot: r.snapshot,
+    stale: stale,
+    rows: [
+      { k: '策略版本', v: KV.esc(bind.strategyVer) },
+      { k: '因子版本', v: factorCell },
+      { k: '參數', v: KV.esc(r.params) },
+      { k: '數據快照', v: KV.esc(r.snapshot) },
+      { k: '期間', v: r.periodFrom + ' 至 ' + r.periodTo },
+    ],
+    warnText: stale.stale
+      ? stale.items[0].name + '已更新至 ' + stale.items[0].now + ',本運行不會自動更新。'
+      : '',
+    actionLabel: '以現版本重跑',
+    onAction: function () { if (modal.showModal) modal.showModal(); },
+  });
 
   if (stale.stale) {
-    var modal = document.getElementById('rerun-modal');
     document.getElementById('rerun-body').innerHTML =
       '<p><b>' + KV.esc(stale.items[0].name) + '計法已於 ' + KV.esc(stale.items[0].updatedAt) +
         ' 更新(' + KV.esc(stale.items[0].now) + '),本運行結果為 ' + KV.esc(stale.items[0].was) +
@@ -171,9 +154,6 @@
       '</div>' +
       '<p class="dim">原型不會真的重跑 —— 這一格只為示意「舊運行不改寫,新運行接上血統」。</p>';
 
-    document.getElementById('rerun-btn').addEventListener('click', function () {
-      if (modal.showModal) modal.showModal();
-    });
     document.getElementById('rerun-close').addEventListener('click', function () { modal.close(); });
   }
 
@@ -218,7 +198,7 @@
      左欄圖區
      ============================================================ */
   var chartHost = document.getElementById('main-chart');
-  var bandWrap = document.getElementById('band-wrap');
+  var hov = document.getElementById('hovcard');
   var legendEl = document.getElementById('chart-legend');
   var titleEl = document.getElementById('chart-title');
   var backBtn = document.getElementById('chart-back');
@@ -244,16 +224,56 @@
   }
 
   function availH() {
-    var body = chartHost.parentElement;
-    var used = mode === 'equity' ? bandWrap.offsetHeight : 0;
-    return Math.max(200, Math.round(body.clientHeight - used));
+    return Math.max(200, Math.round(chartHost.parentElement.clientHeight));
+  }
+
+  /* ============================================================
+     懸停浮層:停在曲線任何一日,即列出當日的買賣
+     ============================================================ */
+  var HOV_MAX = 8;
+
+  function hideHover() { hov.hidden = true; }
+
+  function showHover(pt, m) {
+    var rows = m.buys.map(function (t) {
+      return { side: '買', cls: 'b', sym: t.sym, shares: t.shares, px: t.entryPx };
+    }).concat(m.sells.map(function (t) {
+      return { side: '沽', cls: 's', sym: t.sym, shares: t.shares, px: t.exitPx };
+    }));
+
+    var shown = rows.slice(0, HOV_MAX);
+    hov.innerHTML =
+      '<div class="hov-date"><span>' + m.date + '</span><span class="dim">' +
+        KV.esc(m.label) + '</span></div>' +
+      shown.map(function (x) {
+        return '<div class="hov-row">' +
+          '<span class="hov-side ' + x.cls + '">' + x.side + '</span>' +
+          '<span class="hov-sym">' + KV.esc(x.sym) + '</span>' +
+          '<span class="dim">' + KV.num(x.shares, 0) + ' 股</span>' +
+          '<span>' + x.px.toFixed(2) + '</span>' +
+        '</div>';
+      }).join('') +
+      (rows.length > HOV_MAX
+        ? '<div class="hov-more">另 ' + (rows.length - HOV_MAX) + ' 筆</div>' : '') +
+      '<div class="hov-hint">點一下即跳到右邊那幾筆</div>';
+
+    hov.hidden = false;
+
+    /* 貼住游標,但不准越出圖區 */
+    var box = hov.parentElement.getBoundingClientRect();
+    var w = hov.offsetWidth, h = hov.offsetHeight;
+    var x = pt.x + 16, y = pt.y + 16;
+    if (x + w > box.width - 6) x = pt.x - w - 16;
+    if (y + h > box.height - 6) y = Math.max(6, box.height - h - 6);
+    hov.style.left = Math.max(6, x) + 'px';
+    hov.style.top = Math.max(6, y) + 'px';
   }
 
   /* ---- 淨值走勢 + 交易日標記 ---- */
   function showEquity() {
     mode = 'equity';
     disposeChart();
-    bandWrap.hidden = false;
+    hideHover();
     backBtn.hidden = true;
     legendEl.hidden = false;
 
@@ -296,9 +316,8 @@
     chart.subscribeCrosshairMove(function (p) {
       var iso = timeToISO(p.time);
       var m = iso && K.tradeMarkByDate[iso];
-      document.getElementById('band-note').textContent = m
-        ? (m.date + '　' + m.label + '　點一下看那幾筆')
-        : bandNoteDefault;
+      if (!m || !p.point) { hideHover(); return; }
+      showHover(p.point, m);
     });
 
     chart.subscribeClick(function (p) {
@@ -308,61 +327,6 @@
       goTab('tab-t');
       highlightDate(m);
     });
-
-    chart.timeScale().subscribeVisibleTimeRangeChange(renderBand);
-    renderBand();
-  }
-
-  /* ---- 持倉帶,與上面的曲線用同一條時間軸對齊 ---- */
-  var B = K.holdingsBand;
-  var bandNoteDefault = '只畫成交次數最多的 ' + B.lanes.length + ' 隻(涵蓋 ' +
-    B.coveredTrades + ' / ' + r.trades.length + ' 筆抽樣交易)';
-  document.getElementById('band-note').textContent = bandNoteDefault;
-
-  document.getElementById('band-legend').innerHTML = B.lanes.map(function (l) {
-    return '<span title="' + KV.esc(l.name) + '"><i style="background:' + l.color +
-      ';height:8px;border-radius:2px"></i>' + KV.esc(l.sym) + '</span>';
-  }).join('');
-
-  var LANE_H = 9, LANE_GAP = 2;
-  var bandEl = document.getElementById('hband');
-  /* 先把高度定死,圖才量得準自己有多少位置 */
-  var BAND_H = B.lanes.length * LANE_H + (B.lanes.length - 1) * LANE_GAP;
-  bandEl.style.height = BAND_H + 'px';
-
-  function renderBand() {
-    if (mode !== 'equity' || !chart) return;
-    var w = bandEl.clientWidth;
-    if (!w) return;
-    var ts = chart.timeScale();
-    var H = BAND_H;
-
-    var svg = '<svg viewBox="0 0 ' + w + ' ' + H + '" width="' + w + '" height="' + H +
-      '" role="img" aria-label="持倉帶:每條橫線一隻股,色塊在的時候即是持有中">';
-
-    B.lanes.forEach(function (l, li) {
-      var y = li * (LANE_H + LANE_GAP);
-      svg += '<rect x="0" y="' + (y + LANE_H / 2 - 0.5) + '" width="' + w +
-        '" height="1" fill="rgba(38,44,59,.9)"/>';
-
-      l.spells.forEach(function (sp) {
-        var x1 = ts.timeToCoordinate(sp.from);
-        var x2 = ts.timeToCoordinate(sp.to);
-        if (x1 === null && x2 === null) return;
-        if (x1 === null) x1 = 0;
-        if (x2 === null) x2 = w;
-        var bw = Math.max(2, x2 - x1);
-        var bh = Math.max(3, (sp.weight / B.maxWeight) * LANE_H);
-        svg += '<rect x="' + x1.toFixed(1) + '" y="' + (y + LANE_H - bh).toFixed(1) +
-          '" width="' + bw.toFixed(1) + '" height="' + bh.toFixed(1) +
-          '" rx="1" fill="' + l.color + '" opacity=".85">' +
-          '<title>' + KV.esc(l.sym + '　' + l.name + '\n' + sp.from + ' → ' + sp.to +
-            '\n比重 ' + sp.weight + '%') + '</title></rect>';
-      });
-    });
-
-    svg += '</svg>';
-    bandEl.innerHTML = svg;
   }
 
   /* ---- 鑽入:同一個圖區換成該股蠟燭圖 ---- */
@@ -388,7 +352,7 @@
 
     mode = 'stock';
     disposeChart();
-    bandWrap.hidden = true;
+    hideHover();
     backBtn.hidden = false;
     legendEl.hidden = true;
 
@@ -612,7 +576,6 @@
 
   factorHint();
   showEquity();
-  window.addEventListener('resize', renderBand);
 })();
 </script>
 </body>

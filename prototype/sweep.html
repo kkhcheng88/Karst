@@ -23,14 +23,25 @@
           <h1>參數掃描</h1>
           <span class="proto-badge">原型・假數據</span>
         </div>
-        <p class="page-sub">趨勢波段 v2.3.0・掃描四個參數。主圖看突破日數 N × 止蝕幅度,另外兩個參數由下面的切片選擇器定住。</p>
       </div>
     </div>
   </header>
 
-  <!-- ============ 版本綁定 ============ -->
-  <div class="trace-grid" id="sweep-trace" aria-label="本次掃描綁定的版本"></div>
-  <div id="sweep-stale"></div>
+  <!-- ============ 全頁只有這一條薄頂列:揀軸 + 定住餘下兩個參數 ============ -->
+  <div class="sweep-bar" id="sweep-bar">
+    <div class="axis-pick">
+      <label for="ax-y">縱軸</label>
+      <select class="axis-sel" id="ax-y"></select>
+    </div>
+    <div class="axis-pick">
+      <label for="ax-x">橫軸</label>
+      <select class="axis-sel" id="ax-x"></select>
+    </div>
+    <span class="bar-sep" aria-hidden="true"></span>
+    <div id="slices" style="display:flex;align-items:center;gap:var(--s-4);flex:none"></div>
+    <span class="bar-sep" aria-hidden="true"></span>
+    <span class="section-note" id="slice-note" style="min-width:0;overflow:hidden;text-overflow:ellipsis"></span>
+  </div>
 
   <dialog class="modal" id="rescan-modal" aria-labelledby="rescan-title">
     <div class="modal-body">
@@ -42,69 +53,50 @@
     </div>
   </dialog>
 
-  <!-- ============ 切片選擇器 ============ -->
-  <div class="slice-bar" id="slice-bar">
-    <div class="slice-group" id="slice-risk"></div>
-    <div class="slice-group" id="slice-ma"></div>
-    <div class="slice-note" id="slice-note"></div>
-  </div>
+  <div class="fit-main" style="grid-template-columns:minmax(0,1fr) 360px">
 
-  <!-- 全頁最重要那句:最高分那格不是最應該選那格 -->
-  <div class="callout" id="verdict"></div>
-
-  <div class="fit-main" style="grid-template-columns:minmax(0,1fr) 340px">
-
-    <!-- ============ 熱力圖 / 小倍數 ============ -->
+    <!-- ============ 熱力圖做畫面主體 ============ -->
     <div class="fit-panel">
       <div class="tabs" role="tablist" aria-label="掃描檢視">
         <button class="tab-btn" role="tab" id="tab-heat" aria-selected="true" aria-controls="p-heat">年化回報熱力圖</button>
         <button class="tab-btn" role="tab" id="tab-small" aria-selected="false" aria-controls="p-small">小倍數・六對參數</button>
-        <span class="section-note" style="margin-left:auto;align-self:center;padding-right:var(--s-4)">
-          橫軸 止蝕幅度　縱軸 突破日數 N　點任何一格看右邊詳情
-        </span>
+        <div class="heat-legend" style="margin-left:auto;align-self:center;padding-right:var(--s-4)">
+          <span id="scale-min"></span>
+          <span class="scale-bar" id="scale-bar"></span>
+          <span id="scale-max"></span>
+          <span class="hl-item" title="一整片鄰居一起好:參數偏離少許一樣賺錢,優勢來自策略本身,實盤可行">
+            <span class="legend-chip plateau" aria-hidden="true"></span><b>穩健平原</b></span>
+          <span class="hl-item" title="自己一格特別好、四周全部差:多數是擬合噪音,換一段時間就消失">
+            <span class="legend-chip spike" aria-hidden="true"></span><b>孤峰</b></span>
+        </div>
       </div>
-      <div class="fit-panel-body">
+      <div class="fit-panel-body" style="overflow:hidden">
 
         <div class="tab-panel" id="p-heat" role="tabpanel" aria-labelledby="tab-heat">
-          <div style="padding:var(--s-4)">
+          <div class="heat-fill" style="padding:var(--s-3) var(--s-4)">
             <div class="heat-scroll">
               <div class="heat" id="heat"></div>
-            </div>
-
-            <div style="margin-top:var(--s-4);max-width:560px">
-              <div class="scale-bar" id="scale-bar"></div>
-              <div class="scale-ends"><span id="scale-min"></span><span id="scale-max"></span></div>
-
-              <div class="legend-key">
-                <span class="legend-chip plateau" aria-hidden="true"></span>
-                <span><b>穩健平原</b>(白框):一整片鄰居一起好。參數偏離少許一樣賺錢,即是優勢來自策略本身,實盤可行。</span>
-              </div>
-              <div class="legend-key">
-                <span class="legend-chip spike" aria-hidden="true"></span>
-                <span><b>孤峰</b>(黃框):自己一格特別好,四周全部差。多數是擬合噪音——那組參數只是剛好撞中歷史上幾筆交易,換一段時間就消失。</span>
-              </div>
             </div>
           </div>
         </div>
 
-        <div class="tab-panel" id="p-small" role="tabpanel" aria-labelledby="tab-small" hidden>
+        <div class="tab-panel" id="p-small" role="tabpanel" aria-labelledby="tab-small" hidden
+             style="overflow:auto;height:100%">
           <div style="padding:var(--s-4)">
             <p class="section-note" style="margin:0 0 var(--s-3)">
               掃描有四個參數,一張圖只看得到兩個。四個兩兩配對共六張,一次過掃完,哪一對站得住一眼看得出。
+              每張各自用自己的色階,只看形狀:亮的一整片 = 平原,亮的一點 = 孤峰。
             </p>
             <div class="small-grid" id="small"></div>
-            <p class="section-note" style="margin-top:var(--s-3)">
-              每張圖各自用自己的色階,只看形狀不看絕對值:亮的一整片 = 平原,亮的一點 = 孤峰。
-              白框那格是目前選定的參數位置。
-            </p>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- ============ 選中格詳情 ============ -->
+    <!-- ============ 右欄:裁決 + 選中格詳情 ============ -->
     <aside class="fit-panel" aria-label="參數組詳情">
+      <div class="verdict-slim" id="verdict"></div>
       <div class="fit-panel-head">
         <h2 style="font-size:var(--fs-md)">參數組詳情</h2>
         <span class="tag" id="cell-tag"></span>
@@ -114,7 +106,7 @@
 
         <div style="margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line)">
           <h3 style="font-size:var(--fs-base);margin-bottom:var(--s-2)">鄰域穩健度</h3>
-          <p class="section-note" style="margin:0 0 var(--s-3)">看四周八格的表現。鄰居一起好 = 平原;自己好、鄰居差 = 孤峰。</p>
+          <p class="section-note" style="margin:0 0 var(--s-3)">看四周八格。鄰居一起好 = 平原;自己好、鄰居差 = 孤峰。</p>
           <div id="nbhd"></div>
         </div>
       </div>
@@ -135,9 +127,12 @@
   KV.mountNav('sweep.html');
   KV.mountFoot();
 
-  var W = K.sweep;
-  var AX_RISK = K.sweepAxes[0], AX_MA = K.sweepAxes[1];
-  var curRisk = AX_RISK.def, curMa = AX_MA.def;
+  var PARAMS = K.sweepParams;
+  var byId = K.sweepParamById;
+
+  /* 預設就是第一版那一幅:縱軸突破日數、橫軸止蝕,另外兩個定住 */
+  var yId = 'n', xId = 'stop';
+  var fixed = { n: 30, stop: 8, risk: 1.0, ma: 150 };
 
   var heat = document.getElementById('heat');
   var S = null, MIN = 0, MAX = 1;
@@ -145,59 +140,49 @@
   KV.initTabs('.tabs');
 
   /* ============================================================
-     版本綁定:一次掃描綁死當時的策略版本與因子版本
+     運行身份:版本與快照只在導航列的晶片講一次
      ============================================================ */
-  (function () {
-    var bind = W.binding;
-    var stale = K.staleCheck(bind);
-    var staleNames = {};
-    stale.items.forEach(function (it) { staleNames[it.name] = it; });
+  var SWEEP_SNAP = 'DS-2026-06-30-a';
+  var bind = K.sweep.binding;
+  var stale = K.staleCheck(bind);
+  var staleNames = {};
+  stale.items.forEach(function (it) { staleNames[it.name] = it; });
 
-    var factorCell = bind.factors.map(function (f) {
-      var reg = K.factorRegistry.filter(function (x) { return x.id === f.id; })[0];
-      var nm = reg ? reg.name : f.id;
-      var bad = !!staleNames[nm];
-      return '<span class="' + (bad ? 'ver-stale' : '') + '">' +
-        KV.esc(nm) + ' ' + KV.esc(f.ver) + (bad ? ' ▲' : '') + '</span>';
-    }).join('<span class="dim">・</span>');
+  var factorCell = bind.factors.map(function (f) {
+    var reg = K.factorRegistry.filter(function (x) { return x.id === f.id; })[0];
+    var nm = reg ? reg.name : f.id;
+    var bad = !!staleNames[nm];
+    return '<span class="' + (bad ? 'ver-stale' : '') + '">' +
+      KV.esc(nm) + ' ' + KV.esc(f.ver) + (bad ? ' ▲' : '') + '</span>';
+  }).join('<span class="dim">・</span>');
 
-    var cells = [
-      { k: '策略版本', v: KV.esc(bind.strategyVer) +
-          (staleNames['趨勢波段'] ? ' <span class="ver-stale">▲</span>' : ''),
-        hint: '本次掃描綁定的策略程式版本' },
-      { k: '因子版本', v: factorCell, hint: '每個因子各有自己的版本,分開計' },
-      { k: '掃描範圍', v: W.rows.length + ' × ' + W.cols.length + ' 格　共 ' +
-          (W.rows.length * W.cols.length) + ' 次回測',
-        hint: '主圖每一格都是一次完整回測' },
-      { k: '數據快照編號', v: 'DS-2026-06-30-a', hint: '定住當時的價格與財務數據' },
-    ];
-    document.getElementById('sweep-trace').innerHTML = cells.map(function (c) {
-      return '<div class="trace-cell">' +
-        '<div class="trace-cell-k">' + c.k +
-          '<span class="hint" title="' + KV.esc(c.hint) + '">?</span></div>' +
-        '<div class="trace-cell-v">' + c.v + '</div>' +
-      '</div>';
-    }).join('');
+  var modal = document.getElementById('rescan-modal');
 
-    if (!stale.stale) return;
+  KV.runChip({
+    ver: bind.strategyVer,
+    snapshot: SWEEP_SNAP,
+    stale: stale,
+    rows: [
+      { k: '策略版本', v: KV.esc(bind.strategyVer) },
+      { k: '因子版本', v: factorCell },
+      { k: '掃描範圍', v: '四個參數,任揀兩個做軸' },
+      { k: '數據快照', v: KV.esc(SWEEP_SNAP) },
+    ],
+    warnText: stale.stale
+      ? '整幅熱力圖是舊版本之下的紀錄,不會自動更新——照這幅圖揀參數,揀到的是舊計法下的平原。'
+      : '',
+    actionLabel: '以現版本重掃',
+    onAction: function () { if (modal.showModal) modal.showModal(); },
+  });
 
+  if (stale.stale) {
     var lines = stale.items.map(function (it) {
-      return it.kind + ' ' + it.name + ' 由 ' + it.was + ' 更新到 ' + it.now +
-        '(' + it.updatedAt + ')';
+      return it.kind + ' ' + it.name + ' 由 ' + it.was + ' 更新到 ' + it.now + '(' + it.updatedAt + ')';
     });
-    document.getElementById('sweep-stale').innerHTML =
-      '<div class="stale-bar">' +
-        '<span class="stale-badge">舊版本</span>' +
-        '<span class="stale-text"><b>本次掃描綁定的版本已經落後:' + KV.esc(lines.join(';')) +
-          '。</b>整幅熱力圖是舊版本之下的紀錄,不會自動更新 —— ' +
-          '換言之,現在照這幅圖揀參數,揀到的是舊計法下的平原。</span>' +
-        '<button class="btn btn-primary" id="rescan-btn">以現版本重掃</button>' +
-      '</div>';
-
-    var modal = document.getElementById('rescan-modal');
     document.getElementById('rescan-body').innerHTML =
-      '<p>會用現行版本重掃一次,產生一幅<b>新的掃描</b>,與本次掃描血統相連:同一個參數範圍、同一個數據快照,' +
-        '分別只在版本。兩幅圖可以並排比較,本次掃描不會被改寫。</p>' +
+      '<p><b>本次掃描綁定的版本已經落後:' + KV.esc(lines.join(';')) + '。</b></p>' +
+      '<p>會用現行版本重掃一次,產生一幅<b>新的掃描</b>,與本次掃描血統相連:同一個參數範圍、' +
+        '同一個數據快照,分別只在版本。兩幅圖可以並排比較,本次掃描不會被改寫。</p>' +
       '<div class="lineage">' +
         '本次掃描　<b>SWEEP-2026-0731-01</b>　' + KV.esc(bind.strategyVer) + '・' +
           KV.esc(K.factorLine(bind)) + '<br>' +
@@ -205,26 +190,80 @@
           KV.esc(K.factorRegistry.map(function (f) { return f.name + ' ' + f.current; }).join('・')) +
       '</div>' +
       '<p class="dim">原型不會真的重掃 —— 這一格只為示意「舊掃描不改寫,新掃描接上血統」。</p>';
+    document.getElementById('rescan-close').addEventListener('click', function () { modal.close(); });
+  }
 
-    document.getElementById('rescan-btn').addEventListener('click', function () {
-      if (modal.showModal) modal.showModal();
-    });
-    document.getElementById('rescan-close').addEventListener('click', function () {
-      modal.close();
-    });
-  })();
+  /* ============================================================
+     揀軸:四個參數任揀兩個,揀到同一個就對調
+     ============================================================ */
+  function fillSelect(sel, picked) {
+    sel.innerHTML = PARAMS.map(function (p) {
+      return '<option value="' + p.id + '"' + (p.id === picked ? ' selected' : '') + '>' +
+        KV.esc(p.label) + '</option>';
+    }).join('');
+  }
+  var selY = document.getElementById('ax-y'), selX = document.getElementById('ax-x');
+  fillSelect(selY, yId);
+  fillSelect(selX, xId);
 
-  function norm(v) { return (v - MIN) / ((MAX - MIN) || 1); }
+  selY.addEventListener('change', function () {
+    var v = selY.value;
+    if (v === xId) { xId = yId; fillSelect(selX, xId); }   /* 兩軸不可相同,對調 */
+    yId = v;
+    mountSlices();
+    renderAll();
+  });
+  selX.addEventListener('change', function () {
+    var v = selX.value;
+    if (v === yId) { yId = xId; fillSelect(selY, yId); }
+    xId = v;
+    mountSlices();
+    renderAll();
+  });
+
+  /* ---------- 餘下兩個參數自動變成切片選擇器 ---------- */
+  function sliceIds() {
+    return PARAMS.filter(function (p) { return p.id !== xId && p.id !== yId; })
+      .map(function (p) { return p.id; });
+  }
+
+  function mountSlices() {
+    var host = document.getElementById('slices');
+    host.innerHTML = sliceIds().map(function (id) {
+      var p = byId[id];
+      return '<div class="slice-group">' +
+        '<span class="slice-label">' + KV.esc(p.label) +
+          '<span class="hint" title="' + KV.esc(p.hint) + '">?</span></span>' +
+        '<div class="date-switch" role="group" aria-label="' + KV.esc(p.label) + '">' +
+          p.values.map(function (v) {
+            return '<button type="button" data-p="' + id + '" data-v="' + v + '" aria-pressed="' +
+              (v === fixed[id] ? 'true' : 'false') + '">' + KV.esc(p.fmt(v)) + '</button>';
+          }).join('') +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  document.getElementById('slices').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-v]');
+    if (!b) return;
+    var pid = b.getAttribute('data-p');
+    fixed[pid] = parseFloat(b.getAttribute('data-v'));
+    b.parentElement.querySelectorAll('button').forEach(function (o) {
+      o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
+    });
+    renderAll();
+  });
 
   /* ---------- 鄰域統計 ---------- */
   function neighbours(ri, ci) {
-    var out = [];
+    var out = [], R = S.grid.length, C = S.grid[0].length;
     for (var dr = -1; dr <= 1; dr++) {
       for (var dc = -1; dc <= 1; dc++) {
         if (!dr && !dc) continue;
-        var r = ri + dr, c = ci + dc;
-        if (r < 0 || c < 0 || r >= W.rows.length || c >= W.cols.length) continue;
-        out.push(S.grid[r][c]);
+        var a = ri + dr, b = ci + dc;
+        if (a < 0 || b < 0 || a >= R || b >= C) continue;
+        out.push(S.grid[a][b]);
       }
     }
     return out;
@@ -233,83 +272,85 @@
     var ns = neighbours(ri, ci).map(function (c) { return c.cagr; });
     var mean = ns.reduce(function (a, b) { return a + b; }, 0) / ns.length;
     var sd = Math.sqrt(ns.reduce(function (a, b) { return a + (b - mean) * (b - mean); }, 0) / ns.length);
-    var self = S.grid[ri][ci].cagr;
     return { mean: mean, sd: sd, min: Math.min.apply(null, ns), max: Math.max.apply(null, ns),
-             gap: self - mean, n: ns.length };
+             gap: S.grid[ri][ci].cagr - mean, n: ns.length };
   }
 
-  /* ---------- 切片選擇器 ---------- */
-  function mountAxis(hostId, axis, getCur, setCur) {
-    var host = document.getElementById(hostId);
-    host.innerHTML =
-      '<span class="slice-label">' + KV.esc(axis.label) +
-        '<span class="hint" title="' + KV.esc(axis.hint) + '">?</span></span>' +
-      '<div class="date-switch" role="group" aria-label="' + KV.esc(axis.label) + '">' +
-        axis.values.map(function (v) {
-          return '<button type="button" data-v="' + v + '" aria-pressed="' +
-            (v === getCur() ? 'true' : 'false') + '">' + KV.esc(axis.fmt(v)) + '</button>';
-        }).join('') +
-      '</div>';
-
-    host.addEventListener('click', function (e) {
-      var b = e.target.closest('button[data-v]');
-      if (!b) return;
-      setCur(parseFloat(b.getAttribute('data-v')));
-      host.querySelectorAll('button[data-v]').forEach(function (o) {
-        o.setAttribute('aria-pressed', o === b ? 'true' : 'false');
-      });
-      renderAll();
-    });
-  }
-
-  mountAxis('slice-risk', AX_RISK, function () { return curRisk; }, function (v) { curRisk = v; });
-  mountAxis('slice-ma', AX_MA, function () { return curMa; }, function (v) { curMa = v; });
+  function norm(v) { return (v - MIN) / ((MAX - MIN) || 1); }
 
   /* ---------- 整頁重畫 ---------- */
   function renderAll() {
-    S = K.sweepSlice(curRisk, curMa);
+    var yp = byId[yId], xp = byId[xId];
+    S = K.sweepGrid(yId, xId, fixed);
 
     var flat = [];
     S.grid.forEach(function (row) { row.forEach(function (c) { flat.push(c.cagr); }); });
     MIN = Math.min.apply(null, flat);
     MAX = Math.max.apply(null, flat);
 
+    var sliceTxt = sliceIds().map(function (id) {
+      return byId[id].label + ' ' + byId[id].fmt(fixed[id]);
+    }).join('、');
     document.getElementById('slice-note').innerHTML = S.isBase
-      ? '目前是預設切片(風險比例 1%、均線 150 日)。換一個切片,好的那一區會搬位 —— 這正是四維掃描要看的事。'
-      : '<b style="color:var(--warn)">已換切片</b>:風險比例 ' + AX_RISK.fmt(curRisk) +
-        '、均線 ' + AX_MA.fmt(curMa) + '。下面整幅圖是這個切片的數字,平原與孤峰的位置都不同了。';
+      ? '目前是預設那一幅(' + sliceTxt + ')。換軸或換切片,好的那一區會搬位 —— 這正是四維掃描要看的事。'
+      : '<b style="color:var(--warn)">已換</b>:' + yp.label + ' × ' + xp.label +
+        ',' + sliceTxt + '。整幅圖是這個切面的數字,平原與孤峰重新判過。';
 
-    /* ---- 頂部裁決 ---- */
+    /* ---- 裁決 ---- */
     var best = null, bestPos = null;
     S.grid.forEach(function (row, ri) {
       row.forEach(function (c, ci) { if (!best || c.cagr > best.cagr) { best = c; bestPos = [ri, ci]; } });
     });
     var pc = S.plateauCenter;
-    var plateauCell = S.grid[pc[0]][pc[1]];
+    var pCell = S.grid[pc[0]][pc[1]];
     var bestN = nbhdStats(bestPos[0], bestPos[1]);
     var plateauN = nbhdStats(pc[0], pc[1]);
+    var bestInPlateau = !!S.plateauSet[bestPos[0] + ',' + bestPos[1]];
 
-    document.getElementById('verdict').innerHTML =
-      '<b>全格最高分那格,不是最應該選那格。</b>' +
-      '<span class="dim">(風險比例 ' + AX_RISK.fmt(curRisk) + '・均線 ' + AX_MA.fmt(curMa) + ')</span>　' +
-      '最高分是 <b>N=' + best.n + '、止蝕 ' + best.s + '%</b>,年化 <b class="up">' + KV.pctPlain(best.cagr) + '</b>' +
-      ',但它八個鄰居平均只有 <b class="down">' + KV.pctPlain(bestN.mean) + '</b>——參數偏離一格就跌 ' +
-      KV.pctPlain(bestN.gap) + ',這是孤峰。　' +
-      '平原中心 <b>N=' + plateauCell.n + '、止蝕 ' + plateauCell.s + '%</b> 年化 <b class="up">' +
-      KV.pctPlain(plateauCell.cagr) + '</b>' +
-      ',低過孤峰 ' + KV.pctPlain(best.cagr - plateauCell.cagr) + ',但八個鄰居平均有 <b class="up">' +
-      KV.pctPlain(plateauN.mean) + '</b>,整片一起好。<b>實盤要選的是平原,不是孤峰。</b>';
+    var spikeCell = null, spikeN = null;
+    if (S.spikePos) {
+      spikeCell = S.grid[S.spikePos[0]][S.spikePos[1]];
+      spikeN = nbhdStats(S.spikePos[0], S.spikePos[1]);
+    }
 
-    /* ---- 熱力圖 ---- */
-    heat.style.gridTemplateColumns = '64px repeat(' + W.cols.length + ', minmax(54px, 1fr))';
+    function where(cell) {
+      return yp.label + ' ' + yp.fmt(cell.vals[yId]) + '、' + xp.label + ' ' + xp.fmt(cell.vals[xId]);
+    }
 
-    var html = '<div class="heat-corner" style="display:flex;align-items:center;justify-content:center">N ＼ 止蝕</div>';
-    W.cols.forEach(function (c) {
-      html += '<div class="heat-axis-label">' + c + '%</div>';
+    /* 換了軸或切片之後,最高分那格未必真的是孤峰 —— 有幾多講幾多,不要照套同一句 */
+    var head = (!bestInPlateau && bestN.gap >= 4)
+      ? '全格最高分那格,不是最應該選那格。'
+      : '這一幅的最高分,剛好就落在平原之內。';
+
+    var html = '<b>' + head + '</b><br>' +
+      '最高分 <b>' + KV.esc(where(best)) + '</b>,年化 <b class="up">' + KV.pctPlain(best.cagr) +
+        '</b>,八個鄰居平均 <b class="' + KV.cls(bestN.mean - 12) + '">' +
+        KV.pctPlain(bestN.mean) + '</b>(相差 ' + KV.pp(bestN.gap) + ')。<br>';
+
+    if (spikeCell && spikeN.gap >= 3 && (S.spikePos[0] !== bestPos[0] || S.spikePos[1] !== bestPos[1])) {
+      html += '孤峰在 <b>' + KV.esc(where(spikeCell)) + '</b>:年化 ' + KV.pctPlain(spikeCell.cagr) +
+        ',高出鄰域 ' + KV.pp(spikeN.gap) + ',換一段時間多數消失。<br>';
+    }
+
+    html += '平原中心 <b>' + KV.esc(where(pCell)) + '</b> 年化 <b class="up">' + KV.pctPlain(pCell.cagr) +
+      '</b>,鄰居平均有 <b class="up">' + KV.pctPlain(plateauN.mean) + '</b>,整片一起好。' +
+      '<b>實盤要選平原,不是孤峰。</b>';
+
+    document.getElementById('verdict').innerHTML = html;
+
+    /* ---- 熱力圖:撐滿面板 ---- */
+    var R = S.grid.length, C = S.grid[0].length;
+    heat.style.gridTemplateColumns = '64px repeat(' + C + ', minmax(48px, 1fr))';
+    heat.style.gridTemplateRows = '20px repeat(' + R + ', minmax(24px, 1fr))';
+
+    var html = '<div class="heat-corner" style="display:flex;align-items:center;justify-content:center">' +
+      KV.esc(yp.short) + ' ＼ ' + KV.esc(xp.short) + '</div>';
+    S.colVals.forEach(function (v) {
+      html += '<div class="heat-axis-label">' + KV.esc(xp.fmt(v)) + '</div>';
     });
 
     S.grid.forEach(function (row, ri) {
-      html += '<div class="heat-axis-label row-label">' + W.rows[ri] + '</div>';
+      html += '<div class="heat-axis-label row-label">' + KV.esc(yp.fmt(S.rowVals[ri])) + '</div>';
       row.forEach(function (cell, ci) {
         var t = norm(cell.cagr);
         var klass = 'heat-cell';
@@ -317,7 +358,7 @@
         else if (S.plateauSet[ri + ',' + ci]) klass += ' in-plateau';
         html += '<button class="' + klass + '" data-r="' + ri + '" data-c="' + ci + '" ' +
           'aria-pressed="false" ' +
-          'aria-label="突破日數 ' + cell.n + '、止蝕 ' + cell.s + '%,年化回報 ' + cell.cagr + '%' +
+          'aria-label="' + KV.esc(where(cell)) + ',年化回報 ' + cell.cagr + '%' +
             (cell.spike ? ',孤峰' : (S.plateauSet[ri + ',' + ci] ? ',穩健平原' : '')) + '" ' +
           'style="background:' + KV.heatColor(t) + ';color:' + KV.heatTextColor(t) + '">' +
           cell.cagr.toFixed(1) + '</button>';
@@ -325,11 +366,10 @@
     });
     heat.innerHTML = html;
 
-    /* 色階條 */
     var bar = '';
     for (var i = 0; i < 40; i++) bar += '<i style="background:' + KV.heatColor(i / 39) + '"></i>';
     document.getElementById('scale-bar').innerHTML = bar;
-    document.getElementById('scale-min').textContent = '年化 ' + MIN.toFixed(1) + '%';
+    document.getElementById('scale-min').textContent = MIN.toFixed(1) + '%';
     document.getElementById('scale-max').textContent = MAX.toFixed(1) + '%';
 
     select(pc[0], pc[1]);
@@ -346,22 +386,24 @@
     var st = nbhdStats(ri, ci);
     var isPlateau = !!S.plateauSet[ri + ',' + ci];
 
-    document.getElementById('cell-tag').textContent =
-      cell.spike ? '孤峰' : (isPlateau ? '穩健平原' : '一般');
-    document.getElementById('cell-tag').className =
-      'tag ' + (cell.spike ? 'tag-current' : (isPlateau ? 'tag-live' : ''));
+    var tag = document.getElementById('cell-tag');
+    tag.textContent = cell.spike ? '孤峰' : (isPlateau ? '穩健平原' : '一般');
+    tag.className = 'tag ' + (cell.spike ? 'tag-current' : (isPlateau ? 'tag-live' : ''));
 
     document.getElementById('cell-detail').innerHTML =
-      '<div style="font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--text-2);margin-bottom:var(--s-3)">' +
-        'N=' + cell.n + '　止蝕 ' + cell.s + '%' +
+      '<div style="font-family:var(--font-mono);font-size:var(--fs-sm);color:var(--text-2);' +
+        'margin-bottom:var(--s-3);line-height:1.8">' +
+        PARAMS.map(function (p) {
+          var onAxis = (p.id === xId || p.id === yId);
+          return '<span' + (onAxis ? ' style="color:var(--text-1);font-weight:700"' : '') + '>' +
+            KV.esc(p.short) + ' ' + KV.esc(p.fmt(cell.vals[p.id])) + '</span>';
+        }).join('<span class="dim">　</span>') +
       '</div>' +
       '<dl class="def-list">' +
         '<dt>年化回報</dt><dd class="' + KV.cls(cell.cagr) + '">' + KV.pctPlain(cell.cagr) + '</dd>' +
         '<dt>最大回撤</dt><dd class="down">' + KV.pctPlain(cell.mdd) + '</dd>' +
         '<dt>Sortino</dt><dd>' + cell.sortino.toFixed(2) + '</dd>' +
         '<dt>交易數</dt><dd>' + cell.trades + '</dd>' +
-        '<dt>風險比例</dt><dd>' + AX_RISK.fmt(curRisk) + '</dd>' +
-        '<dt>均線長度</dt><dd>' + AX_MA.fmt(curMa) + '</dd>' +
       '</dl>';
 
     var verdict, vcls;
@@ -385,43 +427,41 @@
     if (b) select(+b.dataset.r, +b.dataset.c);
   });
 
-  /* ---------- 小倍數 ---------- */
-  function renderSmall() {
-    document.getElementById('small').innerHTML = K.sweepSmall.map(function (p) {
-      var flat = [];
-      p.grid.forEach(function (row) { row.forEach(function (v) { flat.push(v); }); });
-      var lo = Math.min.apply(null, flat), hi = Math.max.apply(null, flat);
-      var span = (hi - lo) || 1;
+  /* ---------- 小倍數(摺入第二個分頁,不擠主圖) ---------- */
+  document.getElementById('small').innerHTML = K.sweepSmall.map(function (p) {
+    var flat = [];
+    p.grid.forEach(function (row) { row.forEach(function (v) { flat.push(v); }); });
+    var lo = Math.min.apply(null, flat), hi = Math.max.apply(null, flat);
+    var span = (hi - lo) || 1;
 
-      var cells = '';
-      p.grid.forEach(function (row, ri) {
-        row.forEach(function (v, ci) {
-          var t = (v - lo) / span;
-          var isCur = (ri === p.cur[0] && ci === p.cur[1]);
-          cells += '<div class="mini-cell' + (isCur ? ' is-cur' : '') + '" ' +
-            'title="' + KV.esc(p.rowLabel) + ' ' + p.rows[ri] + '・' +
-              KV.esc(p.colLabel) + ' ' + p.cols[ci] + ':年化 ' + v.toFixed(1) + '%"' +
-            ' style="background:' + KV.heatColor(t) + '"></div>';
-        });
+    var cells = '';
+    p.grid.forEach(function (row, ri) {
+      row.forEach(function (v, ci) {
+        var t = (v - lo) / span;
+        var isCur = (ri === p.cur[0] && ci === p.cur[1]);
+        cells += '<div class="mini-cell' + (isCur ? ' is-cur' : '') + '" ' +
+          'title="' + KV.esc(p.rowLabel) + ' ' + p.rows[ri] + '・' +
+            KV.esc(p.colLabel) + ' ' + p.cols[ci] + ':年化 ' + v.toFixed(1) + '%"' +
+          ' style="background:' + KV.heatColor(t) + '"></div>';
       });
+    });
 
-      return '<div class="small-card">' +
-        '<div class="small-head">' +
-          '<span class="small-title">' + KV.esc(p.rowLabel) + ' × ' + KV.esc(p.colLabel) + '</span>' +
-          '<span class="tag ' + (p.verdict === '平原' ? 'tag-live' : 'tag-current') + '">' + p.verdict + '</span>' +
-        '</div>' +
-        '<div class="small-axis">縱 ' + p.rows[0] + '–' + p.rows[p.rows.length - 1] +
-          '　橫 ' + p.cols[0] + '–' + p.cols[p.cols.length - 1] + '</div>' +
-        '<div class="mini-heat" style="grid-template-columns:repeat(' + p.cols.length + ',1fr)">' +
-          cells +
-        '</div>' +
-        '<div class="small-note">' + KV.esc(p.note) + '</div>' +
-      '</div>';
-    }).join('');
-  }
+    return '<div class="small-card">' +
+      '<div class="small-head">' +
+        '<span class="small-title">' + KV.esc(p.rowLabel) + ' × ' + KV.esc(p.colLabel) + '</span>' +
+        '<span class="tag ' + (p.verdict === '平原' ? 'tag-live' : 'tag-current') + '">' + p.verdict + '</span>' +
+      '</div>' +
+      '<div class="small-axis">縱 ' + p.rows[0] + '–' + p.rows[p.rows.length - 1] +
+        '　橫 ' + p.cols[0] + '–' + p.cols[p.cols.length - 1] + '</div>' +
+      '<div class="mini-heat" style="grid-template-columns:repeat(' + p.cols.length + ',1fr)">' +
+        cells +
+      '</div>' +
+      '<div class="small-note">' + KV.esc(p.note) + '</div>' +
+    '</div>';
+  }).join('');
 
+  mountSlices();
   renderAll();
-  renderSmall();
 })();
 </script>
 </body>

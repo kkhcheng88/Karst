@@ -1440,3 +1440,160 @@ table.kt tbody tr.is-hit td { background: rgba(240, 168, 60, .13); }
   .funnel-row { grid-template-columns: 92px minmax(0, 1fr) 76px; }
   .grp-note { display: none; }
 }
+
+/* ============================================================
+   第七版:運行身份晶片、漸縮分段條、懸停交易浮層、掃描頁換軸
+   ============================================================ */
+
+/* ---- 運行身份晶片(版本只在導航列講一次) ---- */
+.idchip-wrap { position: relative; flex: none; }
+.idchip {
+  appearance: none; border: 1px solid var(--line);
+  background: var(--bg-2); color: var(--text-2);
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+  display: inline-flex; align-items: center; gap: 2px;
+  height: 26px; padding: 0 var(--s-3);
+  border-radius: var(--r-1); cursor: pointer; white-space: nowrap;
+}
+.idchip:hover { background: var(--bg-3); color: var(--text-1); border-color: var(--line-strong); }
+.idchip.is-stale { border-color: rgba(240, 168, 60, .45); }
+.idchip-v { color: var(--text-1); font-weight: 700; }
+.idchip-dot { color: var(--line-strong); }
+.idchip-warn { color: var(--warn); font-size: var(--fs-sm); margin-left: 2px; }
+
+.idchip-pop {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 60;
+  width: 400px; max-width: 90vw;
+  background: var(--bg-2); border: 1px solid var(--line-strong);
+  border-radius: var(--r-2); box-shadow: 0 12px 32px rgba(0, 0, 0, .5);
+  padding: var(--s-3) var(--s-4) var(--s-4);
+  font-family: inherit; font-size: var(--fs-xs);
+  color: var(--text-2); white-space: normal; text-align: left;
+}
+.idchip-pop[hidden] { display: none; }
+.idpop-head {
+  font-weight: 700; color: var(--text-1); font-size: var(--fs-sm);
+  padding-bottom: var(--s-2); margin-bottom: var(--s-2);
+  border-bottom: 1px solid var(--line);
+}
+.idpop-row { display: flex; gap: var(--s-3); padding: 3px 0; align-items: baseline; }
+.idpop-k { flex: none; width: 84px; color: var(--text-3); }
+.idpop-v { flex: 1 1 auto; min-width: 0; color: var(--text-1); font-family: var(--font-mono); line-height: 1.6; }
+.idpop-v .ver-stale { color: var(--warn); font-weight: 700; }
+.idpop-warn {
+  display: flex; gap: var(--s-2); align-items: flex-start;
+  margin-top: var(--s-3); padding-top: var(--s-3);
+  border-top: 1px solid var(--line); color: var(--warn); line-height: 1.6;
+}
+.idpop-act { width: 100%; margin-top: var(--s-3); }
+
+/* ---- 逐層收窄:一條橫向漸縮的分段條 ---- */
+.funnel-bar {
+  display: flex; align-items: stretch; gap: 3px;
+  padding: var(--s-2) var(--s-4) var(--s-3);
+  height: 64px; box-sizing: border-box;
+}
+/* 每段闊度按隻數比例收窄,但保底 74px,最尾那幾隻一樣讀得到 */
+.fb-seg { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.fb-block {
+  flex: 1 1 auto; min-height: 0;
+  border-radius: var(--r-1); overflow: hidden;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-2); padding: 0 var(--s-2);
+  color: #0d1017; white-space: nowrap;
+}
+.fb-num {
+  font-size: var(--fs-lg); font-weight: 700; line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.fb-num small { font-size: 9px; font-weight: 400; margin-left: 1px; opacity: .72; }
+.fb-keep { font-size: 9px; color: rgba(13, 16, 23, .68); font-variant-numeric: tabular-nums; }
+.fb-lab {
+  flex: none; height: 13px;
+  font-size: 9px; line-height: 1.35; color: var(--text-3);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 2px;
+}
+
+/* ---- 淨值圖上的懸停交易浮層 ---- */
+.hovcard {
+  position: absolute; z-index: 30; pointer-events: none;
+  min-width: 210px; max-width: 300px;
+  background: rgba(18, 22, 31, .97); border: 1px solid var(--line-strong);
+  border-radius: var(--r-2); box-shadow: 0 8px 24px rgba(0, 0, 0, .55);
+  padding: var(--s-2) var(--s-3); font-size: var(--fs-xs); color: var(--text-2);
+}
+.hovcard[hidden] { display: none; }
+.hov-date {
+  font-family: var(--font-mono); color: var(--text-1); font-weight: 700;
+  padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px solid var(--line);
+  display: flex; justify-content: space-between; gap: var(--s-3);
+}
+.hov-row {
+  display: grid; grid-template-columns: 20px 46px 1fr auto;
+  gap: var(--s-2); align-items: baseline; padding: 1px 0;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.hov-side { font-weight: 700; }
+.hov-side.b { color: var(--up); }
+.hov-side.s { color: var(--down); }
+.hov-sym { font-family: var(--font-mono); color: var(--text-1); }
+.hov-more { color: var(--text-3); padding-top: 3px; }
+.hov-hint { color: var(--text-3); padding-top: 4px; margin-top: 3px; border-top: 1px solid var(--line); }
+
+/* ---- 掃描頁:一條薄頂列 + 換軸 ---- */
+.sweep-bar {
+  display: flex; align-items: center; gap: var(--s-4); flex-wrap: nowrap;
+  background: var(--bg-1); border-radius: var(--r-2);
+  padding: var(--s-2) var(--s-4); flex: none; overflow-x: auto;
+  scrollbar-width: none; white-space: nowrap;
+}
+.sweep-bar::-webkit-scrollbar { display: none; }
+.axis-pick { display: inline-flex; align-items: center; gap: var(--s-2); flex: none; }
+.axis-pick > label { font-size: var(--fs-xs); color: var(--text-3); }
+.axis-sel {
+  appearance: none; background: var(--bg-2); color: var(--text-1);
+  border: 1px solid var(--line); border-radius: var(--r-1);
+  font-family: inherit; font-size: var(--fs-xs);
+  height: 26px; padding: 0 var(--s-3); cursor: pointer;
+}
+.axis-sel:hover { border-color: var(--line-strong); }
+.sweep-bar .slice-group { display: inline-flex; align-items: center; gap: var(--s-2); flex: none; }
+.sweep-bar .slice-label { font-size: var(--fs-xs); color: var(--text-3); white-space: nowrap; }
+.sweep-bar .date-switch button { padding: 2px var(--s-2); font-size: 10px; }
+.bar-sep { flex: none; width: 1px; height: 20px; background: var(--line); }
+
+/* 熱力圖面板頭的一行細字圖例 */
+.heat-legend {
+  display: flex; align-items: center; gap: var(--s-3);
+  font-size: 10px; color: var(--text-3); white-space: nowrap; flex-wrap: nowrap;
+}
+.heat-legend .scale-bar { width: 96px; height: 8px; margin: 0; flex: none; }
+.heat-legend .legend-chip { width: 11px; height: 11px; }
+.heat-legend b { color: var(--text-2); }
+.hl-item { display: inline-flex; align-items: center; gap: 4px; }
+
+/* 掃描頁裁決縮成右欄頂部一格 */
+.verdict-slim {
+  background: rgba(240, 168, 60, .07);
+  border-left: 2px solid var(--warn);
+  border-radius: 0 var(--r-1) var(--r-1) 0;
+  padding: var(--s-3) var(--s-4);
+  font-size: var(--fs-xs); line-height: 1.75; color: var(--text-2);
+  flex: none;
+}
+.verdict-slim b { color: var(--text-1); }
+
+/* 熱力圖要做畫面主體:格仔按可用高度自己伸縮 */
+body.fit #p-heat { display: flex; flex-direction: column; min-height: 0; height: 100%; }
+body.fit .heat-fill { flex: 1 1 auto; min-height: 0; display: flex; }
+body.fit .heat-fill .heat-scroll { flex: 1 1 auto; min-width: 0; }
+body.fit .heat-fill .heat { height: 100%; }
+body.fit .heat-fill .heat-cell { height: auto; min-height: 26px; }
+
+/* ---- 總覽頁:最近運行縮成一行 ---- */
+.lastrun-line {
+  font-size: var(--fs-xs); color: var(--text-3);
+  padding: var(--s-2) var(--s-4) 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.lastrun-line b { color: var(--text-2); font-weight: 400; }

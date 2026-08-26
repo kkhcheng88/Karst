@@ -63,7 +63,7 @@
     <!-- ============ 右欄:緊湊詳情卡 + 最近運行 ============ -->
     <div class="fit-col">
       <aside class="dcard" id="detail" aria-live="polite" aria-label="策略詳情"></aside>
-      <div class="lastrun" id="lastrun"></div>
+      <div class="lastrun-line" id="lastrun"></div>
     </div>
 
   </div>
@@ -221,17 +221,10 @@
 
     KV.sparkline(document.getElementById('detail-spark'), s.equity, qqq.equity);
 
-    var runCell = (s.id === 'trend-swing')
-      ? '<a href="run.html">' + KV.esc(s.lastRunId) + '</a>'
-      : KV.esc(s.lastRunId);
-
+    /* 運行編號同快照編號對用戶無用,收起;只留「幾時跑過、跑出幾多」 */
     lr.innerHTML =
-      '<div class="lr-title">最近運行' +
-        (s.id === 'trend-swing' ? '　<span class="tag tag-live">紙上交易運行中</span>' : '') +
-        '<span style="float:right">累積 ' + s.runCount + ' 次運行</span></div>' +
-      '<div class="lr-row"><span>日期</span><span>' + KV.esc(s.lastRun) + '</span></div>' +
-      '<div class="lr-row"><span>運行編號</span><span>' + runCell + '</span></div>' +
-      '<div class="lr-row"><span>數據快照</span><span>' + KV.esc(s.lastRunSnap) + '</span></div>';
+      '最近運行 <b>' + KV.esc(s.lastRun) + '</b>・年化 <b>' + KV.pctPlain(m.cagr) + '</b>' +
+      (s.id === 'trend-swing' ? '　<span class="tag tag-live">紙上交易運行中</span>' : '');
   }
 
   /* ============================================================
