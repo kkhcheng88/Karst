@@ -41,4 +41,5 @@
 | 材料庫 | material store | 全部非結構化材料的登記處:每份材料不可變、有版本、記公開可得時間作知情時間、留來源與內容雜湊;分數逐筆指回其中段落(D-024)。 |
 | 判準書 | rubric | 一份文字材料怎樣變成分數的成文規則:問什麼、准看什麼證據、分數怎樣定、附固定樣本集;有版本,經五步流程(agent 草擬→試判→覆核附表現測試→用戶批→鎖版)生效(D-024)。 |
 | 合併法 | merge rule | 同日多份材料對同一股票各自出分時,策略取用因子所指定的合併方式(平均/最新/最高/計數一類);必填、不設預設、可掃描,屬合成參數(D-024)。 |
+| Situational Awareness 基金 | Situational Awareness LP | 名家組合之一,人物判官首個對象與答案紙來源。**不可縮寫為 SA**:與 Seeking Alpha 撞名(2026-08-27 用戶提醒);文件與程式一律寫全名或 `sitaware`,Seeking Alpha 寫 `seekingalpha`。舊文件中的「SA」一律指本基金。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |
