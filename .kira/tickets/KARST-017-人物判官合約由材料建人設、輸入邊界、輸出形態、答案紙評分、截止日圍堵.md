@@ -27,3 +27,5 @@ deliverable: KARST-D01
 ## 結果
 
 ## 留言
+
+· 2026-08-27 03:05 fable-main 兩項前置已完成可用:KARST-018 報告 research/2026-08-27-llm-cutoff-containment.md(能覆蓋 2023 年的 API 模型只剩 OpenAI 一款舊型號且 10 月停用;Anthropic/Google 現役全線覆蓋不到 2023–2024;每次判斷約 US$0.015–0.02);KARST-019 答案紙 research/sa-13f/(7 期 13F,2024Q4–2026Q2,165 列)。另按 D-024 加收兩題:材料來源等級(第一身/官方/第三方)是否作判官輸入邊界的一格;A-002 取捨(留在 Anthropic/Google 則回測不到 2023–2024,要回測該段則用弱模型或只做前向)。
