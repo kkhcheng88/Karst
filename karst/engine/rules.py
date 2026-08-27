@@ -24,7 +24,9 @@ D-007 第 3 條:核心回測引擎收在自家介面之後。本檔一個第三�
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
+from types import MappingProxyType
 from typing import Final
 
 import numpy as np
@@ -37,6 +39,39 @@ from .contracts import Order, _normalise_prices
 # ``current_equity`` 是唯一正確的一個;``initial_cash`` 只保留給對照臂——
 # 用來重現「基數走樣」那條路,證明差距歸因於基數本身(規格 6.2、KARST-013)。
 EQUITY_BASES: Final[frozenset[str]] = frozenset({"current_equity", "initial_cash"})
+
+# ----------------------------------------------------------------------
+# 出場原因(exit reason)
+# ----------------------------------------------------------------------
+# 一筆賣出、或者一個案例,是怎樣收場的。**這裡是全倉唯一一份出場規約**:同一根
+# K 線先看止蝕後看目標,跳空穿價以開市價成交,行到最後一根仍未收場就是期末未平。
+# 策略層不准另寫一份——引擎改了規約而策略層沒跟,案例表會靜靜走樣(KARST-028 留言 2)。
+EXIT_STOP: Final[str] = "stop"
+EXIT_TARGET: Final[str] = "target"
+EXIT_UNCLOSED: Final[str] = "unclosed"
+
+# 出場原因的中文名。程式裡用英文碼,交出去的表兩欄都有,人眼與機讀各取所需。
+EXIT_REASONS: Final[Mapping[str, str]] = MappingProxyType(
+    {EXIT_STOP: "止蝕", EXIT_TARGET: "目標", EXIT_UNCLOSED: "期末未平"}
+)
+
+# 同一批原因的整數碼:引擎內圈逐根 K 線行,只放得下數字,放不下字串。
+EXIT_CODE_NONE: Final[int] = 0        # 這一格根本沒有案例
+EXIT_CODE_STOP: Final[int] = 1
+EXIT_CODE_TARGET: Final[int] = 2
+EXIT_CODE_UNCLOSED: Final[int] = 3
+EXIT_CODE_REASONS: Final[Mapping[int, str]] = MappingProxyType(
+    {EXIT_CODE_STOP: EXIT_STOP, EXIT_CODE_TARGET: EXIT_TARGET, EXIT_CODE_UNCLOSED: EXIT_UNCLOSED}
+)
+
+# K 線四價一致性的**相對**容差。來源的已調整價經除權除息還原之後帶浮點尾數,偶爾
+# 會出現最高價比收市價低一個位(實測 3.5 萬根之中 5 根,相對誤差 1.4e-16,即 float64
+# 的最後一個 bit)。容差之內壓回包絡線,越界一律拋錯——不會把一根真的壞 K 線靜靜
+# 修好(KARST-028 留言 3)。
+BAR_CONSISTENCY_TOLERANCE: Final[float] = 1e-9
+
+# 算相對誤差時的分母下限,免得價格趨近 0 時除爆。
+_PRICE_SCALE_FLOOR: Final[float] = 1e-12
 
 
 class RuleNotSpecified(ContractViolation):
@@ -87,6 +122,11 @@ class BarPanel:
     (D-021 第 3 條)。``close`` 供逐日估值與突破判斷。
 
     欄名是實體編號(entity id),不是交易代號(D-026 第 2 條)。
+
+    **浮點尾數在這一關收**:高低價越出開收價的包絡線,若然只差在 ``tolerance``
+    之內(相對誤差),就當是已調整價的浮點尾數,壓回包絡線;越界即拋錯。這一格
+    刻意放在引擎入口,不是放在某一套策略裡——每一套策略都要餵同一批 K 線,
+    尾數只可以有一個壓法(KARST-028 留言 3)。
     """
 
     open: pd.DataFrame
@@ -102,7 +142,12 @@ class BarPanel:
         high: pd.DataFrame,
         low: pd.DataFrame,
         close: pd.DataFrame,
+        tolerance: float = BAR_CONSISTENCY_TOLERANCE,
     ) -> "BarPanel":
+        limit = float(tolerance)
+        if not np.isfinite(limit) or limit < 0.0:
+            raise ContractViolation(f"四價一致性容差要是非負的有限數,收到 {tolerance!r}")
+
         frames = {
             "開價表": _normalise_prices(open, "開價表"),
             "高價表": _normalise_prices(high, "高價表"),
@@ -122,13 +167,25 @@ class BarPanel:
         closes = reference.to_numpy()
         if (highs < lows).any():
             raise ContractViolation("有 K 線的最高價低過最低價")
-        if (highs < opens).any() or (highs < closes).any():
-            raise ContractViolation("有 K 線的最高價低過開價或收價")
-        if (lows > opens).any() or (lows > closes).any():
-            raise ContractViolation("有 K 線的最低價高過開價或收價")
+
+        envelope_high = np.maximum.reduce([highs, opens, closes])
+        envelope_low = np.minimum.reduce([lows, opens, closes])
+        scale = np.maximum(np.abs(closes), _PRICE_SCALE_FLOOR)
+        worst = max(
+            float(np.max((envelope_high - highs) / scale)),
+            float(np.max((lows - envelope_low) / scale)),
+        )
+        if worst > limit:
+            raise ContractViolation(
+                f"有 K 線的最高/最低價越出開收價的包絡線,最大相對越界 {worst:.3e},"
+                f"超過容差 {limit:.3e};這不是浮點尾數,是數據本身有問題,請先查明"
+            )
 
         return cls(
-            open=frames["開價表"], high=frames["高價表"], low=frames["低價表"], close=reference
+            open=frames["開價表"],
+            high=pd.DataFrame(envelope_high, index=reference.index, columns=reference.columns),
+            low=pd.DataFrame(envelope_low, index=reference.index, columns=reference.columns),
+            close=reference,
         )
 
     @property
@@ -311,6 +368,29 @@ class RuleStrategyParams:
 
 
 @dataclass(frozen=True, slots=True)
+class ExitPlan:
+    """每一張入場訊號的收場:在哪一根 K 線、幾多錢、什麼原因。
+
+    **全倉唯一一份出場規約的產物**。三張表同形狀(日期 × 實體編號),索引取的是
+    **入場那一根**——即第 b 列第 c 欄講的是「第 c 隻股票在第 b 根 K 線入場的話,
+    會怎樣收場」。沒有訊號、或者訊號到成交那一刻已經跌穿止蝕(引擎不會入場)的
+    格子,``exit_code`` 是 ``EXIT_CODE_NONE``。
+
+    - ``exit_bar`` 結算那一根的位置;沒有案例的格子是 −1。期末未平的指向最後一根。
+    - ``exit_price`` 結算價:止蝕/目標按規約(跳空以開市價),期末未平按最後一根收市價。
+    - ``exit_code`` 出場原因的整數碼,對照 ``EXIT_CODE_REASONS``。
+    """
+
+    exit_bar: np.ndarray
+    exit_price: np.ndarray
+    exit_code: np.ndarray
+
+    def reason_at(self, bar: int, column: int) -> str | None:
+        """第 ``bar`` 根、第 ``column`` 欄那個案例的出場原因;沒有案例即 ``None``。"""
+        return EXIT_CODE_REASONS.get(int(self.exit_code[bar, column]))
+
+
+@dataclass(frozen=True, slots=True)
 class RuleSignals:
     """規則 1、2、3 算完之後、引擎吃得落的那一份。
 
@@ -321,6 +401,7 @@ class RuleSignals:
     - ``stop_level`` / ``target_level`` 絕對價位,不是百分比
     - ``stop_fraction`` / ``target_fraction`` 同一對價位換算成佔成交價的比例
     - ``month_id`` 每根 K 線屬於第幾個月,熔斷用來認新一個月
+    - ``exits`` 每一張訊號的收場(規則 2、3 行到底),引擎與案例表共用同一份
     """
 
     entries: np.ndarray
@@ -329,6 +410,7 @@ class RuleSignals:
     stop_fraction: np.ndarray
     target_fraction: np.ndarray
     month_id: np.ndarray
+    exits: ExitPlan
 
     @property
     def count(self) -> int:
@@ -402,14 +484,84 @@ def build_rule_signals(panel: BarPanel, params: RuleStrategyParams) -> RuleSigna
     levels["tf"][1:] = target_fraction[:-1]
 
     blank = lambda values: np.where(entries, values, np.nan)  # noqa: E731
+    stop_level = blank(levels["stop"])
+    target_level = blank(levels["target"])
     return RuleSignals(
         entries=entries,
-        stop_level=blank(levels["stop"]),
-        target_level=blank(levels["target"]),
+        stop_level=stop_level,
+        target_level=target_level,
         stop_fraction=blank(levels["sf"]),
         target_fraction=blank(levels["tf"]),
         month_id=month_ids(panel.dates),
+        exits=resolve_exits(panel, entries, stop_level, target_level),
     )
+
+
+def resolve_exits(
+    panel: BarPanel,
+    entries: np.ndarray,
+    stop_level: np.ndarray,
+    target_level: np.ndarray,
+) -> ExitPlan:
+    """把規則 2、3 由每一張入場訊號行到收場。**全倉唯一一份出場規約。**
+
+    由入場那根 K 線的**下一根**起逐根行:
+
+      · 最低價跌穿止蝕 → 出場原因「止蝕」;跳空穿價就以開市價成交。
+      · 最高價觸及目標 → 出場原因「目標」;同樣處理跳空。
+      · 同一根兩者皆中 → 一律當止蝕(最壞情況)。
+      · 行到最後一根仍未收場 → 出場原因「期末未平」,以最後一根收市價結算。
+
+    到成交那一刻止蝕已經在成交價之上(計劃在訊號日收市成形,隔晚跳空跌穿),
+    引擎本來就不會入場——這種格子不算案例,``exit_code`` 留 ``EXIT_CODE_NONE``。
+
+    交回來的三張表同時餵兩個地方:引擎逐根 K 線照著它落賣單(所以賣出那一刻的
+    出場原因是引擎自己標的),案例表照著它砌每一行。兩邊同一份數,不會走樣。
+    """
+    opens = panel.open.to_numpy(dtype=float)
+    highs = panel.high.to_numpy(dtype=float)
+    lows = panel.low.to_numpy(dtype=float)
+    closes = panel.close.to_numpy(dtype=float)
+    rows, columns = closes.shape
+
+    exit_bar = np.full((rows, columns), -1, dtype=np.int64)
+    exit_price = np.full((rows, columns), np.nan, dtype=np.float64)
+    exit_code = np.full((rows, columns), EXIT_CODE_NONE, dtype=np.int8)
+
+    for column in range(columns):
+        for signal in np.flatnonzero(entries[:, column]):
+            bar = int(signal)
+            stop = float(stop_level[bar, column])
+            target = float(target_level[bar, column])
+            if not (float(opens[bar, column]) - stop > 0.0):
+                continue                      # 引擎不會入場,不算一個案例
+
+            after_low = lows[bar + 1 :, column]
+            after_high = highs[bar + 1 :, column]
+            stop_hits = np.flatnonzero(after_low <= stop)
+            target_hits = np.flatnonzero(after_high >= target)
+            first_stop = int(stop_hits[0]) if stop_hits.size else -1
+            first_target = int(target_hits[0]) if target_hits.size else -1
+
+            if first_stop >= 0 and (first_target < 0 or first_stop <= first_target):
+                step = bar + 1 + first_stop   # 同一根兩者皆中一律當止蝕
+                bar_open = float(opens[step, column])
+                settle, code = step, EXIT_CODE_STOP
+                price = bar_open if bar_open <= stop else stop
+            elif first_target >= 0:
+                step = bar + 1 + first_target
+                bar_open = float(opens[step, column])
+                settle, code = step, EXIT_CODE_TARGET
+                price = bar_open if bar_open >= target else target
+            else:
+                settle, code = rows - 1, EXIT_CODE_UNCLOSED
+                price = float(closes[rows - 1, column])
+
+            exit_bar[bar, column] = settle
+            exit_price[bar, column] = price
+            exit_code[bar, column] = code
+
+    return ExitPlan(exit_bar=exit_bar, exit_price=exit_price, exit_code=exit_code)
 
 
 @dataclass(frozen=True, slots=True)
@@ -476,8 +628,21 @@ class RuleBacktestResult:
         """全期被熔斷封鎖的日數。"""
         return int(self.breaker_blocked.sum())
 
+    @property
+    def exit_reason_counts(self) -> Mapping[str, int]:
+        """逐個出場原因數一數賣出筆數。期末未平不在此列——它沒有賣出。"""
+        counts = {EXIT_STOP: 0, EXIT_TARGET: 0}
+        for order in self.orders:
+            if order.side == "sell" and order.exit_reason in counts:
+                counts[order.exit_reason] += 1
+        return MappingProxyType(counts)
+
     def orders_frame(self) -> pd.DataFrame:
-        """逐筆訂單攤成一張表,方便落檔與人眼核對。"""
+        """逐筆訂單攤成一張表,方便落檔與人眼核對。
+
+        ``exit_reason`` 只有賣出那幾行才有值(買入是 ``None``)——它答的是
+        「這一筆是怎樣走的」,由引擎在賣出那一刻標記,不是事後推算回來。
+        """
         return pd.DataFrame(
             [
                 {
@@ -488,8 +653,12 @@ class RuleBacktestResult:
                     "price": order.price,
                     "fees": order.fees,
                     "gross_value": order.gross_value,
+                    "exit_reason": order.exit_reason,
                 }
                 for order in self.orders
             ],
-            columns=["trade_date", "entity_id", "side", "shares", "price", "fees", "gross_value"],
+            columns=[
+                "trade_date", "entity_id", "side", "shares", "price", "fees",
+                "gross_value", "exit_reason",
+            ],
         )

@@ -10,6 +10,17 @@
 保存這三條序列是「檢視視窗」的前提(規格 7.4、8.5):有了逐日淨值,另揀一段
 日期重看就不用重跑引擎。
 
+三條之外另收**查帳序列**(audit series):引擎交得出、查帳要用、但不是每條路徑
+都有的逐日序列。規則路徑那兩條——逐日注碼基數與逐日熔斷狀態——就住在這裡::
+
+    <root>/run-.../sizing_basis.parquet      逐日注碼基數
+                  /breaker_blocked.parquet   逐日熔斷狀態
+                  /audit.json                查帳序列的落點與雜湊
+
+查帳序列**不入運行編號**:編號蓋的仍然是策略版本 × 參數集 × 期間 × 數據快照 ×
+引擎版本那五件(規格 7.4),多存兩條序列不會令同一次運行變成另一次運行。它們
+亦不算「必須保存的三條」——舊運行沒有這兩條,照樣讀得回、照樣核對得到。
+
 **接口是為引擎預留的**:``record_simulation`` 收的東西,形狀就是引擎適配層
 交回來的 ``SimulationOutput`` / ``BacktestResult``(逐日淨值 + 逐日持倉 +
 逐筆交易)。本檔刻意**不 import 引擎**——引擎是可換件(D-007 第 3 條),留痕
@@ -19,10 +30,11 @@
 
 from __future__ import annotations
 
+import json
 from collections.abc import Iterable, Mapping, Sequence
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Final
 
 import pandas as pd
 
@@ -39,11 +51,30 @@ HOLDING_COLUMNS = ("date", "entity_id", "shares")
 # 逐筆交易的欄位。與引擎適配層 ``Order`` 同名同義,故引擎的訂單可以直接倒進來。
 ORDER_COLUMNS = ("trade_date", "entity_id", "side", "shares", "price", "fees")
 
+# 查帳序列(audit series)的種類。名與引擎交回來的欄位同名同義,故一句
+# ``record_simulation(result, ...)`` 就自己接得上,不用逐條交代。
+SIZING_BASIS = "sizing_basis"
+BREAKER_BLOCKED = "breaker_blocked"
+AUDIT_SERIES_KINDS: Final[tuple[str, ...]] = (SIZING_BASIS, BREAKER_BLOCKED)
+
+# 查帳序列的欄位:一日一列。日期一律 ISO 字串,與逐日持倉、逐筆交易同制。
+AUDIT_COLUMNS = ("date", "value")
+
+# 查帳序列的數值型別:注碼基數是錢,熔斷狀態是有沒有落閘。
+_AUDIT_DTYPES: Final[dict[str, str]] = {SIZING_BASIS: "float", BREAKER_BLOCKED: "bool"}
+
 _FILE_NAMES = {
     "equity": "equity.parquet",
     "holdings": "holdings.parquet",
     "orders": "orders.parquet",
 }
+
+_AUDIT_FILE_NAMES = {kind: f"{kind}.parquet" for kind in AUDIT_SERIES_KINDS}
+
+# 查帳序列的落點與雜湊住這一份小索引。登記表只認三條序列(``store.py``
+# 的 ``RUN_ARTIFACT_KINDS``),查帳序列因此自己記自己的帳——有了它,
+# 繞過本層直接改檔一樣核對得出。
+AUDIT_INDEX_FILE = "audit.json"
 
 
 class RunStore:
@@ -84,16 +115,21 @@ class RunStore:
         strategy_version_no: int | None = None,
         param_set_version_no: int | None = None,
         factor_version_ids: Sequence[int] | None = None,
+        audit_series: Mapping[str, Any] | None = None,
     ) -> RunRecord:
         """把一次運行的三條序列落檔並登記,回傳它的留痕。
 
         期間留空即取逐日淨值的頭尾兩日。同一組輸入重錄:序列內容一模一樣即當
         同一次運行,原封不動回舊記錄;內容不同即當改寫,**在動任何檔案之前**
         拒收(運行不可變,D-020 第 7 條)。
+
+        ``audit_series`` 是查帳序列(見本檔開頭),``AUDIT_SERIES_KINDS`` 揀名。
+        它**不入運行編號**;舊運行補交查帳序列會補寫上去,內容不同一樣拒收。
         """
         equity = normalise_equity(equity_curve)
         holdings_frame = _normalise_holdings(holdings)
         orders_frame = _normalise_orders(orders)
+        audit = _normalise_audit_series(audit_series)
 
         start = as_date(period_start, "period_start") if period_start is not None else str(
             equity.index[0].date()
@@ -144,6 +180,8 @@ class RunStore:
                     "運行不可改寫——同一組策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本"
                     "本應算出同一個結果,對不上即代表有一件沒有蓋住,請先查明"
                 )
+            # 三條序列一字不差,但這次多交了查帳序列:補寫上去,內容不同一樣拒收
+            self._write_audit_series(run_id, audit)
             return existing
 
         directory = self._root / run_id
@@ -162,7 +200,7 @@ class RunStore:
                 )
             )
 
-        return self._store.register_run(
+        record = self._store.register_run(
             strategy_name=strategy_name,
             param_set_name=param_set_name,
             period_start=start,
@@ -176,6 +214,8 @@ class RunStore:
             param_set_version_no=param_set_version_no,
             factor_version_ids=factor_version_ids,
         )
+        self._write_audit_series(run_id, audit)
+        return record
 
     def record_simulation(
         self,
@@ -198,6 +238,9 @@ class RunStore:
         ——引擎適配層的 ``SimulationOutput`` / ``BacktestResult`` 正是這個形狀,
         故此引擎票接上之後,一句 ``record_simulation(result, ...)`` 就接得通,
         本檔不用改。有 ``engine_name`` 的話連引擎名都不用再講一次。
+
+        結果上另有 ``sizing_basis`` / ``breaker_blocked`` 的話(規則路徑就有),
+        兩條**查帳序列**一併落痕,不用另外交代;沒有就當這條路徑交不出,照樣落痕。
         """
         missing = [
             field
@@ -208,6 +251,11 @@ class RunStore:
             raise ContractViolation(
                 f"運行結果缺:{'、'.join(missing)};留痕要逐日淨值、逐日持倉、逐筆交易三件"
             )
+        audit = {
+            kind: getattr(simulation, kind)
+            for kind in AUDIT_SERIES_KINDS
+            if getattr(simulation, kind, None) is not None
+        }
         name = engine_name or getattr(simulation, "engine_name", None)
         if not name:
             raise ContractViolation(
@@ -232,6 +280,7 @@ class RunStore:
             strategy_version_no=strategy_version_no,
             param_set_version_no=param_set_version_no,
             factor_version_ids=factor_version_ids,
+            audit_series=audit,
         )
 
     # ------------------------------------------------------------------
@@ -258,6 +307,33 @@ class RunStore:
     def orders(self, run_id: str) -> pd.DataFrame:
         """讀回逐筆交易。"""
         return self._read(run_id, "orders")
+
+    def audit_kinds(self, run_id: str) -> tuple[str, ...]:
+        """這次運行留了哪幾條查帳序列。回空即一條都沒有(例如排名再平衡那條路)。"""
+        index = self._audit_index(run_id)
+        return tuple(kind for kind in AUDIT_SERIES_KINDS if kind in index)
+
+    def audit_series(self, run_id: str, kind: str) -> pd.Series:
+        """讀回一條查帳序列,日期索引由早到遲。沒有那一條即拋 ``NotFound``。"""
+        if kind not in AUDIT_SERIES_KINDS:
+            raise ContractViolation(
+                f"查帳序列只有 {list(AUDIT_SERIES_KINDS)},收到 {kind!r}"
+            )
+        entry = self._audit_index(run_id).get(kind)
+        if entry is None:
+            raise NotFound(f"運行 {run_id} 沒有留下{kind}這一條查帳序列")
+        path = Path(entry["path"])
+        if not path.exists():
+            raise NotFound(f"運行 {run_id} 的 {kind} 查帳序列不在 {path}")
+        return _audit_frame_to_series(pd.read_parquet(path, engine="pyarrow"), kind)
+
+    def sizing_basis(self, run_id: str) -> pd.Series:
+        """讀回逐日注碼基數:當日開市那一刻的權益(詞彙表「注碼基數」)。"""
+        return self.audit_series(run_id, SIZING_BASIS)
+
+    def breaker_blocked(self, run_id: str) -> pd.Series:
+        """讀回逐日熔斷狀態:該日有沒有落閘停止新入場(詞彙表「月度虧損熔斷」)。"""
+        return self.audit_series(run_id, BREAKER_BLOCKED)
 
     def equity_on(self, run_id: str, day: date | datetime | str) -> float:
         """某一日的淨值。那日不是這次運行的交易日就拋錯,不猜前一日。"""
@@ -325,6 +401,63 @@ class RunStore:
                 mismatched.append(kind)
         return tuple(mismatched)
 
+    def verify_audit_series(self, run_id: str) -> tuple[str, ...]:
+        """重讀查帳序列再算一次雜湊,對不上 ``audit.json`` 記住那個就報出來。
+
+        回空即全對(一條都沒留過也是回空——沒有留過就沒有東西會對不上)。
+        """
+        index = self._audit_index(run_id)
+        mismatched: list[str] = []
+        for kind, entry in sorted(index.items()):
+            path = Path(entry["path"])
+            if not path.exists():
+                mismatched.append(kind)
+                continue
+            frame = pd.read_parquet(path, engine="pyarrow")
+            if content_hash(frame) != entry["content_hash"]:
+                mismatched.append(kind)
+        return tuple(mismatched)
+
+    # ------------------------------------------------------------------
+    # 查帳序列的落檔與索引
+    # ------------------------------------------------------------------
+
+    def _audit_index(self, run_id: str) -> dict[str, dict[str, Any]]:
+        """讀回這次運行的查帳序列索引。沒有那份檔即當一條都沒留過。"""
+        self._store.get_run(run_id)            # 先確認真有這次運行
+        path = self._root / run_id / AUDIT_INDEX_FILE
+        if not path.exists():
+            return {}
+        loaded = json.loads(path.read_text(encoding="utf-8"))
+        return {str(kind): dict(entry) for kind, entry in loaded.items()}
+
+    def _write_audit_series(self, run_id: str, audit: Mapping[str, pd.DataFrame]) -> None:
+        """把查帳序列寫出去並更新索引。已有同名檔而內容不同即拒收,不覆蓋。"""
+        if not audit:
+            return
+        directory = self._root / run_id
+        directory.mkdir(parents=True, exist_ok=True)
+
+        index = {}
+        index_path = directory / AUDIT_INDEX_FILE
+        if index_path.exists():
+            index = {
+                str(kind): dict(entry)
+                for kind, entry in json.loads(index_path.read_text(encoding="utf-8")).items()
+            }
+        for kind, frame in sorted(audit.items()):
+            path = directory / _AUDIT_FILE_NAMES[kind]
+            _write_parquet(frame, path, kind=kind, keep_index=False)
+            index[kind] = {
+                "path": str(path),
+                "content_hash": content_hash(frame),
+                "rows": int(len(frame)),
+            }
+        index_path.write_text(
+            json.dumps(index, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
     def _read(self, run_id: str, kind: str) -> pd.DataFrame:
         record = self._store.get_run(run_id)
         artifact = record.artifact(kind)
@@ -344,6 +477,69 @@ def _write_parquet(frame: pd.DataFrame, path: Path, *, kind: str, keep_index: bo
             )
         return
     frame.to_parquet(path, engine="pyarrow", index=keep_index)
+
+
+def _normalise_audit_series(audit: Mapping[str, Any] | None) -> dict[str, pd.DataFrame]:
+    """把查帳序列規範化成一日一列的表:``date`` 加 ``value``。
+
+    種類要在 ``AUDIT_SERIES_KINDS`` 之內;空的一條不收——交一條沒有內容的序列
+    等於甚麼都沒查,不如當場講清楚。
+    """
+    if not audit:
+        return {}
+    if not isinstance(audit, Mapping):
+        raise ContractViolation(
+            f"查帳序列要一份「種類 → 序列」的對照,收到 {type(audit).__name__}"
+        )
+
+    frames: dict[str, pd.DataFrame] = {}
+    for kind, series in audit.items():
+        name = str(kind)
+        if name not in AUDIT_SERIES_KINDS:
+            raise ContractViolation(
+                f"查帳序列只有 {list(AUDIT_SERIES_KINDS)},收到 {kind!r}"
+            )
+        if isinstance(series, pd.DataFrame):
+            if series.shape[1] != 1:
+                raise ContractViolation(f"查帳序列「{name}」要一條序列,收到 {series.shape[1]} 欄")
+            values = series.iloc[:, 0]
+        elif isinstance(series, pd.Series):
+            values = series
+        else:
+            raise ContractViolation(
+                f"查帳序列「{name}」要一條 pandas 序列,收到 {type(series).__name__}"
+            )
+        if values.empty:
+            raise ContractViolation(f"查帳序列「{name}」是空的")
+        if values.isna().any():
+            raise ContractViolation(
+                f"查帳序列「{name}」有留空的日子;查帳序列逐日都要有數,不猜、不補值"
+            )
+
+        index = pd.DatetimeIndex(values.index)
+        if index.has_duplicates:
+            raise ContractViolation(f"查帳序列「{name}」有重複的交易日")
+        frame = pd.DataFrame(
+            {
+                "date": [as_date(day, "date") for day in index],
+                "value": values.to_numpy(dtype=_AUDIT_DTYPES[name]),
+            },
+            columns=list(AUDIT_COLUMNS),
+        )
+        frames[name] = frame.sort_values("date").reset_index(drop=True)
+    return frames
+
+
+def _audit_frame_to_series(frame: pd.DataFrame, kind: str) -> pd.Series:
+    """把讀回來的查帳序列表還原成一條日期索引的序列。"""
+    missing = [column for column in AUDIT_COLUMNS if column not in frame.columns]
+    if missing:
+        raise ContractViolation(f"查帳序列「{kind}」缺欄位:{'、'.join(missing)}")
+    return pd.Series(
+        frame["value"].to_numpy(dtype=_AUDIT_DTYPES[kind]),
+        index=pd.DatetimeIndex(pd.to_datetime(frame["date"])),
+        name=kind,
+    ).sort_index()
 
 
 def _normalise_holdings(holdings: Any) -> pd.DataFrame:

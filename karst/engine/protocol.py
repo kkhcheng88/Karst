@@ -57,5 +57,9 @@ class RuleEngine(Protocol):
         入場成交價一律取該根 K 線的**開價**(D-021 第 3 條);止蝕與目標按絕對
         價位判,跳空穿價以開市價成交;注碼基數按 ``params.sizing.equity_basis``,
         熔斷按 ``params.breaker``(``None`` 即關掉)。
+
+        離場照 ``signals.exits`` 那份行好的出場規約落單,**每一筆賣出要帶回出場
+        原因**(``Order.exit_reason``:止蝕或目標),由引擎在賣出那一刻標記。
+        熔斷不是出場原因——它只攔新入場,不平已有的倉。
         """
         ...

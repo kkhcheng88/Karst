@@ -62,7 +62,12 @@ from ..data.snapshots import read_price_panel
 from ..engine.protocol import RuleEngine
 from ..engine.rule_runner import run_rule_strategy
 from ..engine.rules import (
+    BAR_CONSISTENCY_TOLERANCE,
     EQUITY_BASES,
+    EXIT_REASONS,
+    EXIT_STOP,
+    EXIT_TARGET,
+    EXIT_UNCLOSED,
     BarPanel,
     BreakoutEntry,
     RuleBacktestResult,
@@ -132,8 +137,8 @@ STRATEGY_PARAM_KEYS: Final[tuple[str, ...]] = (
     PARAM_TIE_BREAK_SEED,
 )
 
-# K 線一致性的容差(相對)。見 ``build_bar_panel``。
-BAR_CONSISTENCY_TOLERANCE: Final[float] = 1e-9
+# K 線一致性的容差(相對)住引擎那邊——尾數只可以有一個壓法,本檔只是轉引
+# (``karst.engine.rules.BAR_CONSISTENCY_TOLERANCE``)。見 ``build_bar_panel``。
 
 
 # ----------------------------------------------------------------------
@@ -306,9 +311,9 @@ def build_bar_panel(
 
     **一致性容差**:來源的已調整價經除權除息還原之後帶浮點尾數,偶爾會出現最高價
     比收市價低一個位(實測 3.5 萬根 K 線之中 5 根,相對誤差 1.4e-16,即 float64 的
-    最後一個 bit)。``BarPanel.from_frames`` 的一致性檢查沒有容差,照原數餵入即當場
-    拒收。本函式把這種尾數壓回四價的包絡線之內——**只壓容差之內的**;越界超過
-    ``tolerance`` 一律拋 ``ContractViolation``,不會把一根真的壞 K 線靜靜修好。
+    最後一個 bit)。收這種尾數是 ``BarPanel.from_frames`` 的事——引擎入口壓一次,
+    全部策略同一個壓法;越界超過 ``tolerance`` 由那一關拋 ``ContractViolation``,
+    不會把一根真的壞 K 線靜靜修好。本函式只把容差傳過去。
     """
     fields = ("open", "high", "low", "close")
     frames = {
@@ -337,37 +342,7 @@ def build_bar_panel(
         )
 
     frames = {field: frame.loc[index] for field, frame in frames.items()}
-    frames = _coerce_bar_consistency(frames, tolerance=float(tolerance))
-    return BarPanel.from_frames(**frames)
-
-
-def _coerce_bar_consistency(
-    frames: Mapping[str, pd.DataFrame], *, tolerance: float
-) -> dict[str, pd.DataFrame]:
-    """把浮點尾數造成的四價越界壓回包絡線之內;越界超過容差即拒收。"""
-    values = {field: frame.to_numpy(dtype=float) for field, frame in frames.items()}
-    envelope_high = np.maximum.reduce([values["high"], values["open"], values["close"]])
-    envelope_low = np.minimum.reduce([values["low"], values["open"], values["close"]])
-    scale = np.maximum(np.abs(values["close"]), 1e-12)
-
-    worst = max(
-        float(np.nanmax((envelope_high - values["high"]) / scale)),
-        float(np.nanmax((values["low"] - envelope_low) / scale)),
-    )
-    if worst > tolerance:
-        raise ContractViolation(
-            f"這批 K 線有最高/最低價越出開收價的包絡線,最大相對越界 {worst:.3e},"
-            f"超過容差 {tolerance:.3e};這不是浮點尾數,是數據本身有問題,請先查明"
-        )
-
-    fixed = dict(frames)
-    fixed["high"] = pd.DataFrame(
-        envelope_high, index=frames["high"].index, columns=frames["high"].columns
-    )
-    fixed["low"] = pd.DataFrame(
-        envelope_low, index=frames["low"].index, columns=frames["low"].columns
-    )
-    return fixed
+    return BarPanel.from_frames(**frames, tolerance=float(tolerance))
 
 
 # ----------------------------------------------------------------------
@@ -640,14 +615,9 @@ def record_trend_swing_run(
 # 案例:入場規則在歷史上觸發過幾多次、每次收場如何(規格 5.4 第 5 條、6.5)
 # ----------------------------------------------------------------------
 
-EXIT_STOP: Final[str] = "stop"
-EXIT_TARGET: Final[str] = "target"
-EXIT_UNCLOSED: Final[str] = "unclosed"
-
-# 出場原因的中文名。程式裡用英文碼,交出去的表兩欄都有,人眼與機讀各取所需。
-EXIT_REASONS: Final[Mapping[str, str]] = MappingProxyType(
-    {EXIT_STOP: "止蝕", EXIT_TARGET: "目標", EXIT_UNCLOSED: "期末未平"}
-)
+# 出場原因(exit reason)與它的中文名住引擎那邊(``karst.engine.rules``):
+# 出場規約全倉只此一份,本檔只是轉引,不另寫一套。案例表按這個次序數。
+CASE_EXIT_REASONS: Final[tuple[str, ...]] = (EXIT_STOP, EXIT_TARGET, EXIT_UNCLOSED)
 
 CASE_COLUMNS: Final[tuple[str, ...]] = (
     "entity_id",
@@ -718,15 +688,10 @@ def entry_cases(panel: BarPanel, params: RuleStrategyParams) -> tuple[EntryCase,
     訊號由 ``build_rule_signals`` 算——與回測用的是**同一個函式**,所以案例表數
     的正是回測那條路認得的訊號,不是另一套自己寫的規則。
 
-    每個案例由入場那根 K 線的**下一根**起逐根行:
-
-      · 最低價跌穿止蝕 → 出場原因「止蝕」;跳空穿價就以開市價成交。
-      · 最高價觸及目標 → 出場原因「目標」;同樣處理跳空。
-      · 同一根兩者皆中 → 一律當止蝕(最壞情況)。
-      · 行到最後一根仍未收場 → 出場原因「期末未平」,以最後一根收市價結算。
-
-    這四條與引擎 ``_order_rules_nb`` 逐條對齊:同一個入場,回測做得成的話,收場
-    的日子與價位對得上。不同的只是回測會因為沒錢或熔斷而做不成——案例照樣記。
+    收場的日子、價位與**出場原因**同樣不在本檔判:一律取引擎交回來那份
+    ``signals.exits``(``karst.engine.rules.resolve_exits``),與回測落賣單時查的是
+    **同一份表**。所以同一個入場,回測做得成的話,案例的收場日子與價位一定對得上;
+    不同的只是回測會因為沒錢或熔斷而做不成——案例照樣記。
     """
     if not isinstance(panel, BarPanel):
         raise ContractViolation(f"K 線面板要是 BarPanel,收到 {type(panel).__name__}")
@@ -734,39 +699,28 @@ def entry_cases(panel: BarPanel, params: RuleStrategyParams) -> tuple[EntryCase,
         raise ContractViolation(f"規則參數要是 RuleStrategyParams,收到 {type(params).__name__}")
 
     signals = build_rule_signals(panel, params)
+    exits = signals.exits
     dates = [pd.Timestamp(day).strftime("%Y-%m-%d") for day in panel.dates]
     entity_ids = panel.entity_ids
     opens = panel.open.to_numpy(dtype=float)
-    highs = panel.high.to_numpy(dtype=float)
-    lows = panel.low.to_numpy(dtype=float)
     closes = panel.close.to_numpy(dtype=float)
     rows, columns = closes.shape
 
     cases: list[EntryCase] = []
     for column in range(columns):
-        for bar in np.flatnonzero(signals.entries[:, column]):
-            bar = int(bar)
+        for signal in np.flatnonzero(signals.entries[:, column]):
+            bar = int(signal)
+            reason = exits.reason_at(bar, column)
+            if reason is None:
+                # 訊號日成形的計劃,到成交那一根已經跌穿止蝕:引擎照樣不會入場
+                continue
+
             entry_price = float(opens[bar, column])
             stop = float(signals.stop_level[bar, column])
             target = float(signals.target_level[bar, column])
             risk_per_share = entry_price - stop
-            if not np.isfinite(risk_per_share) or risk_per_share <= 0.0:
-                # 訊號日成形的計劃,到成交那一根已經跌穿止蝕:引擎照樣不會入場
-                continue
-
-            exit_bar = rows - 1
-            exit_price = float(closes[exit_bar, column])
-            reason = EXIT_UNCLOSED
-            for step in range(bar + 1, rows):
-                bar_open = float(opens[step, column])
-                if lows[step, column] <= stop:
-                    exit_bar, reason = step, EXIT_STOP
-                    exit_price = bar_open if bar_open <= stop else stop
-                    break
-                if highs[step, column] >= target:
-                    exit_bar, reason = step, EXIT_TARGET
-                    exit_price = bar_open if bar_open >= target else target
-                    break
+            exit_bar = int(exits.exit_bar[bar, column])
+            exit_price = float(exits.exit_price[bar, column])
 
             cases.append(
                 EntryCase(
@@ -850,14 +804,14 @@ class CaseStats:
             "average_r_multiple": self.average_r_multiple,
             "average_reward_risk": self.average_reward_risk,
             "average_holding_days": self.average_holding_days,
-            **{f"reason_{key}": self.by_reason.get(key, 0) for key in EXIT_REASONS},
+            **{f"reason_{key}": self.by_reason.get(key, 0) for key in CASE_EXIT_REASONS},
         }
 
 
 def case_stats(cases: Sequence[EntryCase]) -> CaseStats:
     """數一批案例:幾多個、贏幾多、平均賠率幾多。"""
     items = list(cases)
-    by_reason = {key: 0 for key in EXIT_REASONS}
+    by_reason = {key: 0 for key in CASE_EXIT_REASONS}
     for case in items:
         by_reason[case.exit_reason] += 1
 

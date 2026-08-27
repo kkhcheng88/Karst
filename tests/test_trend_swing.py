@@ -304,7 +304,8 @@ def test_a_full_backtest_on_real_daily_bars_yields_equity_orders_and_holdings(re
     assert len(orders) > 0
     assert set(orders["side"]) == {"buy", "sell"}
     assert list(orders.columns) == [
-        "trade_date", "entity_id", "side", "shares", "price", "fees", "gross_value"
+        "trade_date", "entity_id", "side", "shares", "price", "fees",
+        "gross_value", "exit_reason",
     ]
     assert (orders["shares"] > 0).all() and (orders["price"] > 0).all()
     assert set(orders["entity_id"]) <= set(panel.entity_ids)

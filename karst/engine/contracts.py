@@ -151,7 +151,12 @@ class RankingRebalanceParams:
 
 @dataclass(frozen=True, slots=True)
 class Order:
-    """一筆成交。價格一定是執行日那根 K 線的開價(D-021 可執行時點)。"""
+    """一筆成交。價格一定是執行日那根 K 線的開價(D-021 可執行時點)。
+
+    ``exit_reason`` 是**出場原因**(exit reason):這一筆賣出是止蝕還是觸目標,
+    由引擎在賣出那一刻標記(取值見 ``rules.EXIT_REASONS``)。買入一律 ``None``;
+    出場原因與規則路徑綁在一起,排名再平衡那條路沒有止蝕目標可言,同樣 ``None``。
+    """
 
     trade_date: str
     entity_id: int
@@ -159,6 +164,7 @@ class Order:
     shares: float
     price: float
     fees: float
+    exit_reason: str | None = None
 
     @property
     def gross_value(self) -> float:

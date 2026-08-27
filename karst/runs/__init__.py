@@ -6,6 +6,8 @@
 ——只是查得出它已經過時(D-021 第 9 條、規格 7.3)。
 
 每次運行保存三條序列(parquet,按運行編號分目錄):逐日淨值、逐日持倉、逐筆交易。
+規則路徑另交得出兩條**查帳序列**(逐日注碼基數、逐日熔斷狀態),一併落在同一個
+目錄;查帳序列不入運行編號,舊運行沒有這兩條照樣讀得回。
 有了逐日淨值,揀 2023 年以來那一段重看就**不用重跑引擎**——那就是「檢視視窗」
 (規格 8.5)。
 
@@ -28,7 +30,7 @@
 """
 
 from ..store import RunArtifact, RunRecord
-from .registry import RunStore
+from .registry import AUDIT_SERIES_KINDS, BREAKER_BLOCKED, SIZING_BASIS, RunStore
 from .synthetic import SyntheticSimulation, synthetic_simulation
 from .window import (
     BASE,
@@ -41,7 +43,10 @@ from .window import (
 )
 
 __all__ = [
+    "AUDIT_SERIES_KINDS",
     "BASE",
+    "BREAKER_BLOCKED",
+    "SIZING_BASIS",
     "TRADING_DAYS_PER_YEAR",
     "RunArtifact",
     "RunRecord",

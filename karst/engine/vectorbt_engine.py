@@ -27,7 +27,11 @@ from vectorbt.portfolio.nb import order_nb
 
 from .contracts import Order, PricePanel, RankingRebalanceParams, SimulationOutput
 from .rules import (
+    EXIT_CODE_NONE,
+    EXIT_CODE_REASONS,
+    EXIT_CODE_UNCLOSED,
     BarPanel,
+    ExitPlan,
     RuleNotExpressible,
     RuleSignals,
     RuleSimulationOutput,
@@ -36,10 +40,15 @@ from .rules import (
 
 # vectorbt 的買賣方向碼 → Karst 自己的說法。這張表就是防漏的最後一格。
 _SIDES: dict[int, str] = {0: "buy", 1: "sell"}
+_BUY: int = 0
 
 # 熔斷狀態陣列(每組一份)的兩格。
 _MONTH_START = 0   # 本月起點權益 = 上月最後一根收市的權益
 _BLOCKED = 1       # 本月已落閘?1.0 = 停止新入場
+
+# 出場原因的整數碼在 njit 內圈當常數用(numba 讀得到模組層的 int)。
+_UNCLOSED = EXIT_CODE_UNCLOSED
+_NO_ENTRY = -1
 
 
 class VectorbtEngine:
@@ -122,33 +131,26 @@ def _pre_segment_rules_nb(c, open_, close, month_id, state, basis, blocked, max_
 
 @njit(cache=True)
 def _order_rules_nb(
-    c, open_, high, low, entries, stop_level, target_level,
-    position_stop, position_target, blocked,
+    c, open_, entries, stop_level,
+    exit_bar, exit_price, exit_code, exit_mark,
+    position_entry, blocked,
     risk_per_trade, max_position_fraction, fixed_equity_basis, fees,
 ):
     """規則 1 至 4 的落點。手上有貨就只看離場,手上無貨才看入場。
 
-    ``from_order_func`` 沒有內建止蝕/目標,兩者要逐根 K 線自己判——連跳空穿價
-    (開市已經越過價位)都要自己擺位。這就是走這條路要付的代價(規格 6.2)。
+    離場**不在這裡重判**:哪一根收場、幾多錢、什麼原因,一律查 ``rules.resolve_exits``
+    行好的那三張表(索引取入場那一根)。本函式只做兩件事——認住手上這注是哪一根
+    入場的,以及在賣出那一刻把出場原因記入 ``exit_mark``。出場規約全倉只此一份。
     """
     i, col = c.i, c.col
     position = c.position_now
 
     if position > 0.0:
-        stop = position_stop[col]
-        target = position_target[col]
-        bar_open = open_[i, col]
-        if stop == stop and low[i, col] <= stop:          # stop == stop 即非 NaN
-            price = bar_open if bar_open <= stop else stop   # 跳空穿價就以開市價成交
-            position_stop[col] = np.nan
-            position_target[col] = np.nan
-            return order_nb(size=-position, price=price, fees=fees,
-                            size_type=SizeType.Amount, direction=Direction.LongOnly)
-        if target == target and high[i, col] >= target:
-            price = bar_open if bar_open >= target else target
-            position_stop[col] = np.nan
-            position_target[col] = np.nan
-            return order_nb(size=-position, price=price, fees=fees,
+        entered = position_entry[col]
+        if entered >= 0 and exit_code[entered, col] != _UNCLOSED and exit_bar[entered, col] == i:
+            exit_mark[i, col] = exit_code[entered, col]   # 賣出那一刻標記出場原因
+            position_entry[col] = _NO_ENTRY
+            return order_nb(size=-position, price=exit_price[entered, col], fees=fees,
                             size_type=SizeType.Amount, direction=Direction.LongOnly)
         return NoOrder
 
@@ -171,8 +173,7 @@ def _order_rules_nb(
     if not (shares > 0.0):
         return NoOrder
 
-    position_stop[col] = stop_level[i, col]
-    position_target[col] = target_level[i, col]
+    position_entry[col] = i
     return order_nb(size=shares, price=price, fees=fees,
                     size_type=SizeType.Amount, direction=Direction.LongOnly)
 
@@ -189,8 +190,9 @@ class VectorbtRuleEngine:
         params: RuleStrategyParams,
     ) -> RuleSimulationOutput:
         rows, columns = panel.close.shape
-        position_stop = np.full(columns, np.nan)
-        position_target = np.full(columns, np.nan)
+        exits = signals.exits
+        position_entry = np.full(columns, _NO_ENTRY, dtype=np.int64)
+        exit_mark = np.full((rows, columns), EXIT_CODE_NONE, dtype=np.int8)
         state = np.zeros(2)
         basis = np.zeros(rows)
         blocked = np.zeros(rows)
@@ -200,13 +202,13 @@ class VectorbtRuleEngine:
             panel.close,
             _order_rules_nb,
             panel.open.to_numpy(),
-            panel.high.to_numpy(),
-            panel.low.to_numpy(),
             signals.entries,
             signals.stop_level,
-            signals.target_level,
-            position_stop,
-            position_target,
+            exits.exit_bar,
+            exits.exit_price,
+            exits.exit_code,
+            exit_mark,
+            position_entry,
             blocked,
             params.sizing.risk_per_trade,
             params.sizing.max_position_fraction,
@@ -229,7 +231,7 @@ class VectorbtRuleEngine:
             init_cash=params.initial_cash,
             freq="1D",
         )
-        return _rule_output(portfolio, panel, basis, blocked > 0.0)
+        return _rule_output(portfolio, panel, basis, blocked > 0.0, exit_mark)
 
 
 class VectorbtSignalMatrixEngine:
@@ -298,7 +300,40 @@ class VectorbtSignalMatrixEngine:
             panel,
             np.full(rows, params.initial_cash),        # 這條路的注碼基數由頭到尾是起始本金
             np.zeros(rows, dtype=np.bool_),            # 熔斷:表達不到,所以永遠無閘
+            _exit_marks_by_pairing(portfolio, panel, signals.exits),
         )
+
+
+def _exit_marks_by_pairing(
+    portfolio: "vbt.Portfolio", panel: BarPanel, exits: ExitPlan
+) -> np.ndarray:
+    """對照臂專用:賣單由 vectorbt 內建的 sl/tp 發出,標記不到,唯有配對還原。
+
+    逐隻股票按時序把買入與賣出配成一對,那一對的出場原因就查**同一份**
+    ``ExitPlan``——不是另寫一套規約推算回來。走 ``from_order_func`` 那條正路的
+    引擎不用這個:它在賣出那一刻自己標。
+    """
+    rows, columns = panel.close.shape
+    marks = np.full((rows, columns), EXIT_CODE_NONE, dtype=np.int8)
+    records = portfolio.orders.records
+    if len(records) == 0:
+        return marks
+
+    bars = records["idx"].to_numpy(dtype=int)
+    cols = records["col"].to_numpy(dtype=int)
+    sides = records["side"].to_numpy(dtype=int)
+    entered = np.full(columns, _NO_ENTRY, dtype=np.int64)
+    for position in np.lexsort((bars, cols)):
+        column = int(cols[position])
+        bar = int(bars[position])
+        if int(sides[position]) == _BUY:
+            entered[column] = bar
+            continue
+        opened = int(entered[column])
+        if opened >= 0:
+            marks[bar, column] = exits.exit_code[opened, column]
+            entered[column] = _NO_ENTRY
+    return marks
 
 
 def _rule_output(
@@ -306,6 +341,7 @@ def _rule_output(
     panel: BarPanel,
     basis: np.ndarray,
     blocked: np.ndarray,
+    exit_marks: np.ndarray,
 ) -> RuleSimulationOutput:
     """把引擎的輸出翻譯成 Karst 的型別,一個第三方型別都不准漏出去。"""
     dates = panel.dates
@@ -317,12 +353,20 @@ def _rule_output(
         cash=pd.Series(np.asarray(portfolio.cash(), dtype=float), index=dates, name="cash"),
         sizing_basis=pd.Series(np.asarray(basis, dtype=float), index=dates, name="sizing_basis"),
         breaker_blocked=pd.Series(np.asarray(blocked, dtype=bool), index=dates, name="breaker_blocked"),
-        orders=_orders(portfolio, panel),
+        orders=_orders(portfolio, panel, exit_marks),
     )
 
 
-def _orders(portfolio: "vbt.Portfolio", panel: PricePanel | BarPanel) -> tuple[Order, ...]:
-    """把引擎的成交記錄翻譯成 Karst 的訂單型別,一筆不漏、一個第三方型別不留。"""
+def _orders(
+    portfolio: "vbt.Portfolio",
+    panel: PricePanel | BarPanel,
+    exit_marks: np.ndarray | None = None,
+) -> tuple[Order, ...]:
+    """把引擎的成交記錄翻譯成 Karst 的訂單型別,一筆不漏、一個第三方型別不留。
+
+    ``exit_marks`` 是規則路徑那張「哪一格賣出、原因是什麼」的標記表;排名再平衡
+    那條路沒有止蝕目標可言,留空即全部訂單的出場原因是 ``None``。
+    """
     records = portfolio.orders.records
     if len(records) == 0:
         return ()
@@ -336,6 +380,11 @@ def _orders(portfolio: "vbt.Portfolio", panel: PricePanel | BarPanel) -> tuple[O
     prices = records["price"].to_numpy(dtype=float)
     fees = records["fees"].to_numpy(dtype=float)
 
+    reason_of = (
+        (lambda bar, column: None)
+        if exit_marks is None
+        else (lambda bar, column: EXIT_CODE_REASONS.get(int(exit_marks[bar, column])))
+    )
     orders = [
         Order(
             trade_date=pd.Timestamp(dates[bar]).strftime("%Y-%m-%d"),
@@ -344,6 +393,7 @@ def _orders(portfolio: "vbt.Portfolio", panel: PricePanel | BarPanel) -> tuple[O
             shares=float(size),
             price=float(price),
             fees=float(fee),
+            exit_reason=reason_of(bar, column),
         )
         for bar, column, side, size, price, fee in zip(
             bar_positions, column_positions, sides, shares, prices, fees, strict=True
