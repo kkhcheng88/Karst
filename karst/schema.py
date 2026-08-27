@@ -14,6 +14,11 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 7. ``backtest_run`` / ``run_artifact`` / ``run_factor_ref``
                                    回測運行登記、逐日序列檔案落點、運行蓋齊的因子版本
                                    (D-020 第 7 條、規格 7.4;KARST-026)
+8. ``active_setup``                現役設定的指定登記:一套策略當下跟隨哪一個參數集
+                                   (規格 7.5、CONTEXT.md「現役設定」;KARST-030)
+9. ``risk_rule`` / ``strategy_risk_ref``
+                                   共用風控層三條規則的定義登記與策略引用
+                                   (D-013 第 4 條、規格 1.6;KARST-025)
 """
 
 from __future__ import annotations
@@ -21,8 +26,10 @@ from __future__ import annotations
 import sqlite3
 
 # 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);
-# 第 3 版加入回測運行登記三組表(KARST-026)。舊庫重開即自動補建。
-SCHEMA_VERSION = 3
+# 第 3 版加入回測運行登記三組表(KARST-026);
+# 第 4 版加入現役設定登記表(KARST-030);
+# 第 5 版加入共用風控層的規則定義表與策略引用表(KARST-025)。舊庫重開即自動補建。
+SCHEMA_VERSION = 5
 
 DDL = """
 CREATE TABLE IF NOT EXISTS schema_meta (
@@ -364,6 +371,93 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_run_factor_ref_no_delete
 BEFORE DELETE ON run_factor_ref BEGIN
     SELECT RAISE(ABORT, '運行蓋住的因子版本不可刪,追溯要指得回');
+END;
+
+-- ====================================================================
+-- 現役設定(規格 7.5、CONTEXT.md「現役設定」;KARST-030)
+-- ====================================================================
+
+-- 現役設定:一套策略由用戶指定、紙上交易實際跟隨的那個參數集。門面八個數字
+-- 一律只取現役設定那次運行(規格 7.5,防參數擬合美化)。
+--
+-- 本表是**只加不改的指定登記**:換一個現役設定 = 加一列新的,舊列一字不變。
+-- 「現在的現役設定」= 該策略 seq_no 最大的那一列。這樣換設定之後仍然查得出
+-- 「上一次跟隨的是哪一個、由哪一日起」——與運行不可改同一個道理。
+--
+-- 指的是 param_set_id 而不是參數集名稱:參數集同名會出新版(param_set 一版一列),
+-- 現役設定必須釘死其中一版,否則參數集一出新版門面數字就會悄悄換一個口徑。
+CREATE TABLE IF NOT EXISTS active_setup (
+    strategy_id         INTEGER NOT NULL REFERENCES strategy(strategy_id),
+    seq_no              INTEGER NOT NULL,
+    strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
+    param_set_id        INTEGER NOT NULL REFERENCES param_set(param_set_id),
+    note                TEXT,
+    designated_at       TEXT NOT NULL,
+    PRIMARY KEY (strategy_id, seq_no),
+    CHECK (seq_no > 0)
+);
+
+CREATE INDEX IF NOT EXISTS idx_active_setup_strategy
+    ON active_setup (strategy_id, seq_no);
+
+CREATE TRIGGER IF NOT EXISTS trg_active_setup_no_update
+BEFORE UPDATE ON active_setup BEGIN
+    SELECT RAISE(ABORT, '現役設定的指定不可改,換設定請加新一筆指定');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_active_setup_no_delete
+BEFORE DELETE ON active_setup BEGIN
+    SELECT RAISE(ABORT, '現役設定的指定不可刪,換過什麼要指得回');
+END;
+
+-- ====================================================================
+-- 共用風控層(D-013 第 4 條、規格 1.6;KARST-025)
+-- ====================================================================
+
+-- 共用風控規則:單筆風險上限、月度虧損熔斷、賠率門檻,三條各一列,全庫只此一份。
+-- 規則本體(叫什麼、管什麼、參數叫什麼名)的正本在 karst/risk;本表是它的登記處,
+-- 內容由該層提供,不在此處另寫一份。
+--
+-- **取值不在本表**:取值屬用戶領域,住在該策略自己的參數集(param_value),
+-- 一律做成可掃描的參數(D-008 第 3 條)。同一條規則、兩套策略、各自的取值,
+-- 改一邊不會動到另一邊——正因為兩邊改的都是自己的參數集,不是這條規則。
+CREATE TABLE IF NOT EXISTS risk_rule (
+    risk_rule_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    rule_key     TEXT NOT NULL UNIQUE,
+    name         TEXT NOT NULL UNIQUE,
+    param_key    TEXT NOT NULL UNIQUE,
+    description  TEXT NOT NULL,
+    created_at   TEXT NOT NULL,
+    CHECK (length(trim(rule_key)) > 0 AND length(trim(name)) > 0),
+    CHECK (length(trim(param_key)) > 0 AND length(trim(description)) > 0)
+);
+
+-- 策略引用了哪幾條風控規則:只存編號,不存規則本身(單一定義,與引用因子同制)。
+-- 一條都不引用 = 這裡一列都沒有,那套策略照樣跑得(D-013 第 4 條「可用可不用」)。
+CREATE TABLE IF NOT EXISTS strategy_risk_ref (
+    strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
+    risk_rule_id        INTEGER NOT NULL REFERENCES risk_rule(risk_rule_id),
+    PRIMARY KEY (strategy_version_id, risk_rule_id)
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_risk_rule_no_update
+BEFORE UPDATE ON risk_rule BEGIN
+    SELECT RAISE(ABORT, '共用風控規則的定義落庫後不可改;三條規則全平台只有一個正本');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_risk_rule_no_delete
+BEFORE DELETE ON risk_rule BEGIN
+    SELECT RAISE(ABORT, '共用風控規則的定義不可刪;策略引用要指得回');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_risk_ref_no_update
+BEFORE UPDATE ON strategy_risk_ref BEGIN
+    SELECT RAISE(ABORT, '策略引用的風控規則落庫後不可改,改引用請出策略新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_risk_ref_no_delete
+BEFORE DELETE ON strategy_risk_ref BEGIN
+    SELECT RAISE(ABORT, '策略引用的風控規則落庫後不可刪,改引用請出策略新版');
 END;
 """
 

@@ -180,6 +180,46 @@ class RunRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class ActiveSetup:
+    """現役設定(active setup):一套策略當下跟隨哪一個參數集(規格 7.5)。
+
+    指的是**參數集的某一版**(``param_set_id``),不是參數集的名。名一樣但出了
+    新版就是另一組取值——門面數字不可以因為誰出了新版而悄悄換口徑。
+
+    ``seq_no`` 是這套策略的第幾次指定,由 1 起。舊指定一字不變、只加新的,
+    故此換過什麼、由哪一刻起,全部查得回。
+    """
+
+    strategy_id: int
+    strategy_name: str
+    seq_no: int
+    strategy_version_id: int
+    strategy_version_no: int
+    param_set_id: int
+    param_set_name: str
+    param_set_version_no: int
+    rebalance_cadence: str
+    note: str | None
+    designated_at: str
+
+
+@dataclass(frozen=True, slots=True)
+class RiskRuleRecord:
+    """共用風控層一條規則在庫內的登記列(D-013 第 4 條;KARST-025)。
+
+    只有「這條規則是什麼」,**沒有取值**——取值屬用戶領域,住在該策略自己的
+    參數集,由 ``param_key`` 那個名指過去(D-008 第 3 條)。
+    """
+
+    risk_rule_id: int
+    key: str
+    name: str
+    param_key: str
+    description: str
+    created_at: str
+
+
+@dataclass(frozen=True, slots=True)
 class DefinitionLocation:
     """一項定義的唯一落點(D-002 第 4 條:單一正本、無第二影像)。"""
 
@@ -1532,6 +1572,117 @@ class DefinitionStore:
         """這次運行是否已經過時(蓋住的版本不再是最新版)。"""
         return bool(self.run_stale_reasons(run_id))
 
+    # ------------------------------------------------------------------
+    # 現役設定(規格 7.5、CONTEXT.md「現役設定」;KARST-030)
+    # ------------------------------------------------------------------
+
+    def set_active_setup(
+        self,
+        strategy_name: str,
+        param_set_name: str,
+        *,
+        strategy_version_no: int | None = None,
+        param_set_version_no: int | None = None,
+        note: str | None = None,
+    ) -> ActiveSetup:
+        """指定一套策略的現役設定,回傳這一次指定。
+
+        換一個現役設定 = **加一筆新指定**,舊指定一字不變(與運行不可改同制)。
+        指同一個參數集版本兩次即當同一件事,原封不動回上一筆,不會白加一列。
+
+        現役設定是**門面數字的來源**:換了它,策略卡與運行詳情那八個數字隨之
+        換成新設定那次運行的數(規格 7.5)。
+        """
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        param_set = self.get_param_set(
+            strategy.name,
+            param_set_name,
+            strategy_version_no=strategy.version_no,
+            set_version_no=param_set_version_no,
+        )
+
+        current = self._active_setup_row(strategy.strategy_id)
+        if current is not None and int(current["param_set_id"]) == param_set.param_set_id:
+            return self._active_setup(strategy, param_set, current)
+
+        seq_no = 1 if current is None else int(current["seq_no"]) + 1
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO active_setup (strategy_id, seq_no, strategy_version_id,"
+                " param_set_id, note, designated_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (
+                    strategy.strategy_id,
+                    seq_no,
+                    strategy.strategy_version_id,
+                    param_set.param_set_id,
+                    note,
+                    _now(),
+                ),
+            )
+        row = self._active_setup_row(strategy.strategy_id)
+        assert row is not None  # 剛剛寫入,不會查不到
+        return self._active_setup(strategy, param_set, row)
+
+    def get_active_setup(self, strategy_name: str) -> ActiveSetup:
+        """這套策略當下的現役設定。從未指定過即拋錯——**不猜**。
+
+        沒有現役設定的策略就是沒有門面數字:寧可講「未指定」,也不可以隨手
+        挑一個參數集充當門面(規格 7.5 防參數擬合美化)。
+        """
+        strategy = self.get_strategy_version(strategy_name)
+        row = self._active_setup_row(strategy.strategy_id)
+        if row is None:
+            raise NotFound(
+                f"策略「{strategy.name}」未指定現役設定;"
+                "門面數字只取現役設定那次運行,未指定即沒有門面數字(規格 7.5)"
+            )
+        return self._active_setup_by_row(row)
+
+    def has_active_setup(self, strategy_name: str) -> bool:
+        strategy = self.get_strategy_version(strategy_name)
+        return self._active_setup_row(strategy.strategy_id) is not None
+
+    def active_setup_history(self, strategy_name: str) -> list[ActiveSetup]:
+        """這套策略歷次指定過的現役設定,由早到遲。"""
+        strategy = self.get_strategy_version(strategy_name)
+        rows = self._conn.execute(
+            "SELECT strategy_id, seq_no, strategy_version_id, param_set_id, note,"
+            " designated_at FROM active_setup WHERE strategy_id = ? ORDER BY seq_no",
+            (strategy.strategy_id,),
+        ).fetchall()
+        return [self._active_setup_by_row(row) for row in rows]
+
+    def _active_setup_row(self, strategy_id: int) -> sqlite3.Row | None:
+        return self._conn.execute(
+            "SELECT strategy_id, seq_no, strategy_version_id, param_set_id, note,"
+            " designated_at FROM active_setup WHERE strategy_id = ?"
+            " ORDER BY seq_no DESC LIMIT 1",
+            (int(strategy_id),),
+        ).fetchone()
+
+    def _active_setup_by_row(self, row: sqlite3.Row) -> ActiveSetup:
+        strategy = self._strategy_version_by_id(int(row["strategy_version_id"]))
+        param_set = self._param_set_by_id(int(row["param_set_id"]))
+        return self._active_setup(strategy, param_set, row)
+
+    @staticmethod
+    def _active_setup(
+        strategy: StrategyVersion, param_set: ParamSet, row: sqlite3.Row
+    ) -> ActiveSetup:
+        return ActiveSetup(
+            strategy_id=strategy.strategy_id,
+            strategy_name=strategy.name,
+            seq_no=int(row["seq_no"]),
+            strategy_version_id=strategy.strategy_version_id,
+            strategy_version_no=strategy.version_no,
+            param_set_id=param_set.param_set_id,
+            param_set_name=param_set.name,
+            param_set_version_no=param_set.version_no,
+            rebalance_cadence=param_set.rebalance_cadence,
+            note=row["note"],
+            designated_at=row["designated_at"],
+        )
+
     @staticmethod
     def _check_run_artifacts(
         artifacts: Sequence[RunArtifact], run_id: str
@@ -1584,6 +1735,124 @@ class DefinitionStore:
                 "本應算出同一個結果,對不上即代表有一件沒有蓋住,請先查明"
             )
 
+    # ------------------------------------------------------------------
+    # 共用風控層的登記(D-013 第 4 條、規格 1.6;KARST-025)
+    # ------------------------------------------------------------------
+
+    def register_risk_rules(self, rules: Iterable[Mapping[str, Any]]) -> list[RiskRuleRecord]:
+        """登記共用風控層的規則定義,回傳全部登記列。
+
+        內容由風控層(``karst.risk``)提供,本層只負責入庫——所以規則本體的正本
+        仍然只有一份,庫裡這幾列是它的登記處,不是第二份定義(D-002 第 4 條)。
+
+        重覆登記回同一批列(與快照登記同制);庫內已有的一條與傳入的內容不符即
+        拒收:定義落庫後不可改,只可以由風控層那邊出新的一條。
+        """
+        wanted: dict[str, tuple[str, str, str]] = {}
+        for index, rule in enumerate(rules or ()):
+            fields = {}
+            for column in ("key", "name", "param_key", "description"):
+                value = str(rule.get(column, "") or "").strip()
+                if not value:
+                    raise ContractViolation(f"第 {index} 條風控規則缺「{column}」;定義不可留空")
+                fields[column] = value
+            if fields["key"] in wanted:
+                raise DuplicateDefinition(f"風控規則「{fields['key']}」在同一批裡出現兩次")
+            wanted[fields["key"]] = (
+                fields["name"],
+                fields["param_key"],
+                fields["description"],
+            )
+        if not wanted:
+            raise ContractViolation("一條風控規則都沒有;共用風控層不可以是空的")
+
+        for key, (name, param_key, description) in wanted.items():
+            row = self._conn.execute(
+                "SELECT name, param_key, description FROM risk_rule WHERE rule_key = ?", (key,)
+            ).fetchone()
+            if row is None:
+                with self._conn:
+                    self._conn.execute(
+                        "INSERT INTO risk_rule (rule_key, name, param_key, description,"
+                        " created_at) VALUES (?, ?, ?, ?, ?)",
+                        (key, name, param_key, description, _now()),
+                    )
+                continue
+            if (row["name"], row["param_key"], row["description"]) != (
+                name,
+                param_key,
+                description,
+            ):
+                raise DuplicateDefinition(
+                    f"庫內的風控規則「{key}」與現時的定義對不上"
+                    f"(庫內:{row['name']}/{row['param_key']});"
+                    "風控規則定義落庫後不可改,全平台只有一個正本"
+                )
+        return self.list_risk_rules()
+
+    def list_risk_rules(self) -> list[RiskRuleRecord]:
+        """庫內全部共用風控規則,按登記次序。"""
+        rows = self._conn.execute(
+            "SELECT risk_rule_id, rule_key, name, param_key, description, created_at"
+            " FROM risk_rule ORDER BY risk_rule_id"
+        ).fetchall()
+        return [_row_to_risk_rule(row) for row in rows]
+
+    def get_risk_rule(self, rule_key: str) -> RiskRuleRecord:
+        """按程式名取一條風控規則的登記列。查不到即拋錯,不猜。"""
+        key = str(rule_key or "").strip()
+        row = self._conn.execute(
+            "SELECT risk_rule_id, rule_key, name, param_key, description, created_at"
+            " FROM risk_rule WHERE rule_key = ?",
+            (key,),
+        ).fetchone()
+        if row is None:
+            raise NotFound(f"庫內沒有共用風控規則「{key}」;請先登記風控層")
+        return _row_to_risk_rule(row)
+
+    def attach_risk_rules(
+        self,
+        strategy_name: str,
+        rule_keys: Sequence[str],
+        *,
+        strategy_version_no: int | None = None,
+    ) -> list[RiskRuleRecord]:
+        """記下某策略版本引用了哪幾條風控規則,回傳它引用的全部規則。
+
+        只存編號,不存規則本身(與引用因子同制)。引用可以一條都沒有——
+        「策略可用可不用」就是這個意思,不引用不是錯,更不會有預設值頂上。
+        重覆引用同一條當同一件事,不會多出一列。
+        """
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        records = [self.get_risk_rule(key) for key in (rule_keys or ())]
+        if records:
+            with self._conn:
+                self._conn.executemany(
+                    # ON CONFLICT DO NOTHING:sqlite 與 Postgres 通用寫法(D-027 護欄一),
+                    # 不用 sqlite 專有的 INSERT OR IGNORE。
+                    "INSERT INTO strategy_risk_ref (strategy_version_id, risk_rule_id)"
+                    " VALUES (?, ?) ON CONFLICT DO NOTHING",
+                    [
+                        (strategy.strategy_version_id, record.risk_rule_id)
+                        for record in records
+                    ],
+                )
+        return self.strategy_risk_rules(strategy.name, strategy_version_no=strategy.version_no)
+
+    def strategy_risk_rules(
+        self, strategy_name: str, *, strategy_version_no: int | None = None
+    ) -> list[RiskRuleRecord]:
+        """這套策略版本引用了哪幾條風控規則;一條都沒有就回空清單。"""
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        rows = self._conn.execute(
+            "SELECT r.risk_rule_id, r.rule_key, r.name, r.param_key, r.description, r.created_at"
+            " FROM strategy_risk_ref AS ref"
+            " JOIN risk_rule AS r ON r.risk_rule_id = ref.risk_rule_id"
+            " WHERE ref.strategy_version_id = ? ORDER BY r.risk_rule_id",
+            (strategy.strategy_version_id,),
+        ).fetchall()
+        return [_row_to_risk_rule(row) for row in rows]
+
 
 def check_param_set(
     name: str,
@@ -1614,6 +1883,17 @@ SELECT v.factor_version_id, v.factor_id, f.name, f.family, v.version_no, v.paren
 FROM factor_version AS v
 JOIN factor AS f ON f.factor_id = v.factor_id
 """
+
+
+def _row_to_risk_rule(row: sqlite3.Row) -> RiskRuleRecord:
+    return RiskRuleRecord(
+        risk_rule_id=int(row["risk_rule_id"]),
+        key=row["rule_key"],
+        name=row["name"],
+        param_key=row["param_key"],
+        description=row["description"],
+        created_at=row["created_at"],
+    )
 
 
 def _row_to_version(row: sqlite3.Row) -> FactorVersion:
