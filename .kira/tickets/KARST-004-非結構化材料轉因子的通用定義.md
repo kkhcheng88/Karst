@@ -11,6 +11,7 @@ dependsOn: [KARST-003]
 claimedBy: null
 epic: V1 藍圖
 deliverable: KARST-D01
+closed: 2026-08-27
 ---
 
 ## 工作內容

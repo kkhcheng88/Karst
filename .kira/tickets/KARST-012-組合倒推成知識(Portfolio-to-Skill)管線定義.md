@@ -10,7 +10,7 @@ approvalRequired: false
 dependsOn: [KARST-008]
 claimedBy: null
 epic: V1 藍圖
-deliverable: KARST-D01
+deliverable: null
 ---
 
 ## 工作內容

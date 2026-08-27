@@ -405,7 +405,7 @@
 
 ## D-020 應用形態:研發主軸、本機網頁、唯一入口治理、紙上全自動、五畫面兩層指標
 - 類型：決策
-- 狀態：有效
+- 狀態：部分已取代（見 D-025）
 - 日期：2026-08-26
 
 - 出處：KARST-007 grilling,用戶 2026-08-26 三輪原生選項介面裁決
@@ -535,3 +535,24 @@
   > This question is about Video to Skill?
 
 - 影響：KARST-004 關檔;KARST-008 規格整理前置全部完成;KARST-017 加收來源等級與 A-002 取捨兩項;詞彙表加判準書、材料庫、合併法。
+
+## D-025 v1 規格核准開工;建置次序引擎先行、趨勢波段首出成績;數據免費源先行(defeatbeta+yfinance)另議架構;畫面以四頁為準、個股頁屬額外
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-27
+
+- 出處：用戶 2026-08-27 於原生選項介面四題回答(原話見引文)
+
+- 決策：
+  1. docs/karst-v1-spec.md 核准為開工依據;缺口清單照列不補裁,逐項在建置期補。地圖「V1 藍圖」到達目的地(D-001)。
+  2. 第一批建置次序照規格第 11 節草案:引擎(單一定義庫、唯一入口、適配層 A/B、共用風控層、運行留痕)→ 接真實行情 → 趨勢波段策略首先出成績 → 參數掃描 → 因子混合 ETF 版 → 本機網頁殼。樽頸策略排第二批(先要材料庫與判準書)。
+  3. 行情與基本面數據以免費來源先行:defeatbeta(基本面、逐字稿、價格)+ yfinance;日後可加其他免費來源。儲存與整合方式(是否沿用 defeatbeta 的 duckdb、快照如何版本化)另開需求票討論,先查 KarstETF 舊倉的用法。付費含退市股來源不在 v1 起步範圍;回測成績報告須標明存活者偏差風險。
+  4. 應用畫面以四頁為準(策略總覽、策略詳情、運行詳情、參數掃描),個股蠟燭圖連因子檢視住在運行詳情頁;獨立個股頁屬額外資訊查看功能,不在回測主線,日後有餘力再加。D-020 第 7 條「五個畫面」據此修訂。
+
+- **用戶原話（原文照錄）**
+
+  > I think defeatbeta + yfinance for the fundmentals, transcripts, stock prices or those candal sticks? You can check the KarstETF. And Actually I would like to introduce other free sourcee later consider what we should do. I mean even defeatbeta, we may not use duckdb. Seems we may need a discussion on the architecture when you have a look on this?
+
+  > I think have individual page is ok for information checking as well. But it is not really for backtesting. Bouns only
+
+- 影響：開建置交付品與第一批實作票;開數據架構需求票(前置:KarstETF defeatbeta 用法事實);D-020 狀態改部分已取代;規格 10.7 缺口關閉。
