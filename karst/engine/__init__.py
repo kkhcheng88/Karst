@@ -1,7 +1,10 @@
-"""Karst 引擎適配層(engine adapter):排名再平衡路徑。
+"""Karst 引擎適配層(engine adapter):兩條路徑。
 
-「每期按因子排名選前 N 隻等權再平衡」這一類策略由此跑得出回測,而策略層與
-資料層**完全不需要認識背後那個第三方引擎**(D-007 第 3 條、規格 6.3)。
+策略層與資料層**完全不需要認識背後那個第三方引擎**(D-007 第 3 條、規格 6.3):
+
+- **排名再平衡路徑**(``run_ranking_rebalance``)——每期按因子排名選前 N 隻等權。
+- **規則類路徑**(``run_rule_strategy``)——進出場五件規則一次過表達:入場突破、
+  止蝕、目標、注碼(基數取**當下權益**)、組合層月度虧損熔斷(規格 6.2)。
 
 進出兩頭全部是 Karst 自己的型別:
 
@@ -12,9 +15,10 @@
 換倉節奏沒有預設值,不指定即報錯(D-009 第 7 條)。可執行時點寫死:知情時點
 之後的下一根可交易 K 線的開價(D-021 第 3 條)。
 
-帶組合層風控的規則類策略走另一條路(``from_order_func``,規格 6.2),不在本層。
+規則類路徑的用法見 ``rule_runner.py``;它的注碼基數與熔斷寫在看得見現金與權益
+那一層,訊號矩陣路徑表達不到(規格 6.2 推翻 A-005)。
 
-用法:
+排名再平衡路徑用法:
 
     from karst import DefinitionStore
     from karst.engine import PricePanel, run_ranking_rebalance
@@ -46,26 +50,62 @@ from .contracts import (
     Rebalance,
     SimulationOutput,
 )
-from .protocol import PortfolioEngine
+from .protocol import PortfolioEngine, RuleEngine
+from .rule_runner import run_rule_strategy, run_rule_strategy_on_signal_matrix
+from .rules import (
+    EQUITY_BASES,
+    BarPanel,
+    BreakoutEntry,
+    MeasuredMoveTarget,
+    MonthlyLossBreaker,
+    RiskFractionSizing,
+    RuleBacktestResult,
+    RuleNotExpressible,
+    RuleNotSpecified,
+    RuleSignals,
+    RuleSimulationOutput,
+    RuleStrategyParams,
+    SwingLowStop,
+    build_rule_signals,
+    month_ids,
+)
 from .runner import run_ranking_rebalance, target_weights
 from .selection import build_targets, read_factor_panel
 
 __all__ = [
     "CADENCES",
+    "EQUITY_BASES",
     "ORDER_SIDES",
     "RANK_DIRECTIONS",
     "BacktestResult",
+    "BarPanel",
+    "BreakoutEntry",
     "CadenceNotSpecified",
+    "MeasuredMoveTarget",
+    "MonthlyLossBreaker",
     "Order",
     "PortfolioEngine",
     "PricePanel",
     "RankingRebalanceParams",
     "Rebalance",
+    "RiskFractionSizing",
+    "RuleBacktestResult",
+    "RuleEngine",
+    "RuleNotExpressible",
+    "RuleNotSpecified",
+    "RuleSignals",
+    "RuleSimulationOutput",
+    "RuleStrategyParams",
     "SimulationOutput",
+    "SwingLowStop",
+    "build_rule_signals",
     "build_targets",
     "decision_dates",
+    "month_ids",
     "read_factor_panel",
     "rebalance_schedule",
     "run_ranking_rebalance",
+    "run_rule_strategy",
+    "run_rule_strategy_on_signal_matrix",
     "target_weights",
 ]

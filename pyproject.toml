@@ -28,7 +28,7 @@ dev = ["pytest>=8.0"]
 karst = "karst.gateway.cli:main"
 
 [tool.setuptools]
-packages = ["karst", "karst.data", "karst.gateway", "karst.runs"]
+packages = ["karst", "karst.data", "karst.engine", "karst.gateway", "karst.runs"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
