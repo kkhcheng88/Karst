@@ -30,3 +30,8 @@ closed: 2026-08-26
 · 2026-08-26 12:00 查了七個候選(TradingView lightweight-charts、TradingView Charting Library 閉源版、Apache ECharts、Plotly/Dash、OpenBB、QuantDinger 前端、vnpy),逐個核對授權原文、蠟燭圖與標記能力、接駁 Python 後端形態,以及對「虛擬籃子自繪合成蠟燭圖」(D-010)的可行性。建議組合:前端圖表層以 TradingView lightweight-charts 為主(Apache-2.0、原生 Candlestick+`createSeriesMarkers`標記+多 pane,授權最乾淨),Python 側(vectorbt)經薄 REST 層餵 JSON;若介面日後需要大量非金融統計圖表,評估搭配或換成 Apache ECharts(同級乾淨授權,一套通吃);TradingView Charting Library 閉源版因授權明文排除私人/內部用途,連候選資格都不具備,已排除;Plotly/Dash(MIT)是「Python 原生、免前後端協定」的更快替代路徑,代價是互動流暢度較弱;OpenBB、QuantDinger 前端、vnpy 三個開源終端外殼均不整件借,只借思路(OpenBB 已轉 AGPL,只借其分層設計;QuantDinger 前端禁商用,重申 KARST-010 結論;vnpy 為 MIT、Python 原生桌面圖表元件先例,留待 Web 殼或桌面殼裁決時參考)。最終選型由用戶裁決(D-005)。報告:[research/2026-08-26-charting-ui-references.md](../../research/2026-08-26-charting-ui-references.md)
 
 ## 留言
+
+### human:Kaho · 2026-08-27 23:09
+交付品「Karst v1 規格」（KARST-D01）已簽收。
+
+**簽收人留言**：用戶 2026-08-27 於原生多選介面勾選簽收
