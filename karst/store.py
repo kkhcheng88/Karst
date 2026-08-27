@@ -12,8 +12,9 @@ from __future__ import annotations
 import json
 import sqlite3
 from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from datetime import date, datetime, timezone
-from typing import Any
+from typing import Any, Final
 
 import pandas as pd
 
@@ -55,8 +56,82 @@ _VALUE_COLUMNS = (
 )
 
 
+# 策略類型(strategy type):策略總覽頁的八類,一套策略只屬一個類型(KARST-015 原型)
+STRATEGY_TYPES: Final[dict[str, str]] = {
+    "fundamental": "基本面選股",
+    "technical": "技術趨勢",
+    "multifactor": "多因子",
+    "event": "事件驅動",
+    "meanrev": "均值回歸",
+    "follow": "組合跟隨",
+    "macro": "宏觀配置",
+    "options": "期權策略",
+}
+
+# 換倉節奏(rebalance cadence):日/月/季任揀,**不設預設值**(CONTEXT.md;用戶反問「Why we need a default?」)
+REBALANCE_CADENCES: Final[dict[str, str]] = {
+    "daily": "每日",
+    "monthly": "每月",
+    "quarterly": "每季",
+}
+
+# 策略引用因子的寫法:「名稱」取最新版,「名稱@版本號」釘死某一版
+FACTOR_REF_SEPARATOR = "@"
+
+
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+@dataclass(frozen=True, slots=True)
+class StrategyVersion:
+    """一個策略定義的其中一版。落庫後不可改,只可出新版(D-021 第 9 條同制)。
+
+    ``factors`` 是它引用的因子版本——引用只存編號,因子定義的正本仍然只有一份
+    (D-002 第 4 條單一定義)。
+    """
+
+    strategy_version_id: int
+    strategy_id: int
+    name: str
+    strategy_type: str
+    version_no: int
+    parent_version_id: int | None
+    factors: tuple[FactorVersion, ...]
+    description: str | None
+    created_at: str
+
+
+@dataclass(frozen=True, slots=True)
+class ParamSet:
+    """掛在一個策略版本上的一組參數:名稱→值,必帶換倉節奏,無預設值。"""
+
+    param_set_id: int
+    strategy_version_id: int
+    name: str
+    version_no: int
+    parent_version_id: int | None
+    rebalance_cadence: str
+    values: dict[str, str]
+    created_at: str
+
+
+@dataclass(frozen=True, slots=True)
+class DefinitionLocation:
+    """一項定義的唯一落點(D-002 第 4 條:單一正本、無第二影像)。"""
+
+    kind: str
+    name: str
+    table: str
+    row_key: str
+    version_count: int
+    latest_version_no: int
+    occurrences: tuple[str, ...]
+
+    @property
+    def has_second_image(self) -> bool:
+        """名稱在庫內出現超過一處,即代表有第二份影像。"""
+        return len(self.occurrences) > 1
 
 
 class DefinitionStore:
@@ -77,6 +152,11 @@ class DefinitionStore:
 
     def __exit__(self, *exc: object) -> None:
         self.close()
+
+    @property
+    def connection(self) -> sqlite3.Connection:
+        """底層連線。給唯一入口蓋簽章用;一般調用方不應該經此寫庫。"""
+        return self._conn
 
     # ------------------------------------------------------------------
     # 實體(entity)與代號歷史映射
@@ -661,6 +741,437 @@ class DefinitionStore:
             universe=tuple(json.loads(row["universe"])),
             created_at=row["created_at"],
         )
+
+    # ------------------------------------------------------------------
+    # 策略定義與版本鏈(KARST-022;版本制與因子同制,D-021 第 9 條)
+    # ------------------------------------------------------------------
+
+    def register_strategy(
+        self,
+        name: str,
+        *,
+        strategy_type: str | None = None,
+        factor_refs: Sequence[str] | None = None,
+        description: str | None = None,
+    ) -> StrategyVersion:
+        """登記一個新策略的第一版。類型與引用因子皆必填,缺就拒收。"""
+        full_name = self._check_strategy_name(name)
+        row = self._conn.execute(
+            "SELECT strategy_id FROM strategy WHERE name = ?", (full_name,)
+        ).fetchone()
+        if row is not None:
+            raise DuplicateDefinition(
+                f"策略「{full_name}」已存在;要改定義請用 new_strategy_version 出新版"
+            )
+        kind = self._check_strategy_type(strategy_type, full_name)
+        versions = self._resolve_factor_refs(factor_refs, full_name)
+
+        with self._conn:
+            cursor = self._conn.execute(
+                "INSERT INTO strategy (name, strategy_type, created_at) VALUES (?, ?, ?)",
+                (full_name, kind, _now()),
+            )
+            strategy_id = int(cursor.lastrowid)
+            version_id = self._insert_strategy_version(
+                strategy_id=strategy_id,
+                version_no=1,
+                parent_version_id=None,
+                factor_version_ids=[v.factor_version_id for v in versions],
+                description=description,
+            )
+        return self._strategy_version_by_id(version_id)
+
+    def new_strategy_version(
+        self,
+        name: str,
+        *,
+        factor_refs: Sequence[str] | None = None,
+        description: str | None = None,
+    ) -> StrategyVersion:
+        """為既有策略出新一版,父版本自動指向當前最新版(舊版一字不變)。
+
+        類型不隨新版更改——改了類型就是另一套策略,請另立名稱。
+        """
+        full_name = self._check_strategy_name(name)
+        head = self.get_strategy_version(full_name)
+        versions = self._resolve_factor_refs(factor_refs, full_name)
+
+        with self._conn:
+            version_id = self._insert_strategy_version(
+                strategy_id=head.strategy_id,
+                version_no=head.version_no + 1,
+                parent_version_id=head.strategy_version_id,
+                factor_version_ids=[v.factor_version_id for v in versions],
+                description=description,
+            )
+        return self._strategy_version_by_id(version_id)
+
+    def get_strategy_version(self, name: str, version_no: int | None = None) -> StrategyVersion:
+        """取某策略的某一版;``version_no`` 留空取最新版。"""
+        full_name = (name or "").strip()
+        if version_no is None:
+            row = self._conn.execute(
+                f"{_STRATEGY_SELECT} WHERE s.name = ? ORDER BY v.version_no DESC LIMIT 1",
+                (full_name,),
+            ).fetchone()
+        else:
+            row = self._conn.execute(
+                f"{_STRATEGY_SELECT} WHERE s.name = ? AND v.version_no = ?",
+                (full_name, int(version_no)),
+            ).fetchone()
+        if row is None:
+            where = "最新版" if version_no is None else f"第 {version_no} 版"
+            raise NotFound(f"沒有策略「{full_name}」的{where}")
+        return self._strategy_version_by_id(int(row["strategy_version_id"]))
+
+    def strategy_version_chain(
+        self, name: str, version_no: int | None = None
+    ) -> list[StrategyVersion]:
+        """由指定版本逐級追回第一版,順序為新→舊。"""
+        chain: list[StrategyVersion] = []
+        current: StrategyVersion | None = self.get_strategy_version(name, version_no)
+        while current is not None:
+            chain.append(current)
+            parent_id = current.parent_version_id
+            current = self._strategy_version_by_id(parent_id) if parent_id is not None else None
+        return chain
+
+    @staticmethod
+    def _check_strategy_name(name: str) -> str:
+        full_name = (name or "").strip()
+        if not full_name:
+            raise ContractViolation("策略必須有名")
+        return full_name
+
+    @staticmethod
+    def _check_strategy_type(strategy_type: str | None, name: str) -> str:
+        if not strategy_type:
+            raise ContractViolation(
+                f"策略「{name}」缺類型(strategy type):"
+                f"{'、'.join(f'{k}({v})' for k, v in STRATEGY_TYPES.items())} 揀一個"
+            )
+        if strategy_type not in STRATEGY_TYPES:
+            raise ContractViolation(
+                f"策略類型只收 {sorted(STRATEGY_TYPES)},收到 {strategy_type!r}"
+            )
+        return strategy_type
+
+    def _resolve_factor_refs(
+        self, factor_refs: Sequence[str] | None, name: str
+    ) -> list[FactorVersion]:
+        """把「因子名稱[@版本號]」逐個解析成一個確定的因子版本。
+
+        留空版本號即釘死當下最新版——引用一定落在**具體定義 × 版本**那一級,
+        不會浮動跟著因子出新版走(D-021 第 9 條:舊運行永不自動更新)。
+        """
+        refs = [str(r).strip() for r in (factor_refs or []) if str(r).strip()]
+        if not refs:
+            raise ContractViolation(
+                f"策略「{name}」缺引用因子:最少引用一個因子,寫法「因子名稱」或「因子名稱"
+                f"{FACTOR_REF_SEPARATOR}版本號」"
+            )
+        versions: list[FactorVersion] = []
+        seen: set[int] = set()
+        for ref in refs:
+            factor_name, _, version_text = ref.partition(FACTOR_REF_SEPARATOR)
+            version_no = None
+            if version_text.strip():
+                try:
+                    version_no = int(version_text)
+                except ValueError as exc:
+                    raise ContractViolation(
+                        f"因子引用 {ref!r} 的版本號不是數字"
+                    ) from exc
+            version = self.get_factor_version(factor_name, version_no)
+            if version.factor_version_id in seen:
+                raise ContractViolation(
+                    f"策略「{name}」重複引用因子「{version.name}」第 {version.version_no} 版"
+                )
+            seen.add(version.factor_version_id)
+            versions.append(version)
+        return versions
+
+    def _insert_strategy_version(
+        self,
+        *,
+        strategy_id: int,
+        version_no: int,
+        parent_version_id: int | None,
+        factor_version_ids: Sequence[int],
+        description: str | None,
+    ) -> int:
+        cursor = self._conn.execute(
+            "INSERT INTO strategy_version (strategy_id, version_no, parent_version_id,"
+            " description, created_at) VALUES (?, ?, ?, ?, ?)",
+            (strategy_id, version_no, parent_version_id, description, _now()),
+        )
+        version_id = int(cursor.lastrowid)
+        self._conn.executemany(
+            "INSERT INTO strategy_factor_ref (strategy_version_id, factor_version_id) "
+            "VALUES (?, ?)",
+            [(version_id, int(fid)) for fid in factor_version_ids],
+        )
+        return version_id
+
+    def _strategy_version_by_id(self, strategy_version_id: int) -> StrategyVersion:
+        row = self._conn.execute(
+            f"{_STRATEGY_SELECT} WHERE v.strategy_version_id = ?", (int(strategy_version_id),)
+        ).fetchone()
+        if row is None:
+            raise NotFound(f"沒有策略版本 {strategy_version_id}")
+        ref_rows = self._conn.execute(
+            "SELECT factor_version_id FROM strategy_factor_ref WHERE strategy_version_id = ? "
+            "ORDER BY factor_version_id",
+            (int(strategy_version_id),),
+        ).fetchall()
+        return StrategyVersion(
+            strategy_version_id=int(row["strategy_version_id"]),
+            strategy_id=int(row["strategy_id"]),
+            name=row["name"],
+            strategy_type=row["strategy_type"],
+            version_no=int(row["version_no"]),
+            parent_version_id=(
+                None if row["parent_version_id"] is None else int(row["parent_version_id"])
+            ),
+            factors=tuple(self._version_by_id(int(r["factor_version_id"])) for r in ref_rows),
+            description=row["description"],
+            created_at=row["created_at"],
+        )
+
+    # ------------------------------------------------------------------
+    # 參數集(param set):名稱→值,必帶換倉節奏,無預設值
+    # ------------------------------------------------------------------
+
+    def register_param_set(
+        self,
+        strategy_name: str,
+        *,
+        param_set_name: str,
+        rebalance_cadence: str | None = None,
+        values: Mapping[str, Any] | None = None,
+        strategy_version_no: int | None = None,
+    ) -> ParamSet:
+        """為某策略版本登記一個參數集;同名再登記即出新版(舊版一字不變)。"""
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        set_name = (param_set_name or "").strip()
+        if not set_name:
+            raise ContractViolation("參數集必須有名")
+        cadence = self._check_cadence(rebalance_cadence, set_name)
+        cleaned = self._check_param_values(values, set_name)
+
+        head = self._conn.execute(
+            "SELECT param_set_id, version_no FROM param_set "
+            "WHERE strategy_version_id = ? AND name = ? ORDER BY version_no DESC LIMIT 1",
+            (strategy.strategy_version_id, set_name),
+        ).fetchone()
+        if head is None:
+            version_no, parent_id = 1, None
+        else:
+            version_no, parent_id = int(head["version_no"]) + 1, int(head["param_set_id"])
+
+        with self._conn:
+            cursor = self._conn.execute(
+                "INSERT INTO param_set (strategy_version_id, name, version_no, parent_version_id,"
+                " rebalance_cadence, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (
+                    strategy.strategy_version_id,
+                    set_name,
+                    version_no,
+                    parent_id,
+                    cadence,
+                    _now(),
+                ),
+            )
+            param_set_id = int(cursor.lastrowid)
+            self._conn.executemany(
+                "INSERT INTO param_value (param_set_id, param_key, param_value) VALUES (?, ?, ?)",
+                [(param_set_id, k, v) for k, v in cleaned.items()],
+            )
+        return self._param_set_by_id(param_set_id)
+
+    def get_param_set(
+        self,
+        strategy_name: str,
+        param_set_name: str,
+        *,
+        strategy_version_no: int | None = None,
+        set_version_no: int | None = None,
+    ) -> ParamSet:
+        """取某策略版本的某個參數集;``set_version_no`` 留空取最新版。"""
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        set_name = (param_set_name or "").strip()
+        if set_version_no is None:
+            row = self._conn.execute(
+                "SELECT param_set_id FROM param_set WHERE strategy_version_id = ? AND name = ? "
+                "ORDER BY version_no DESC LIMIT 1",
+                (strategy.strategy_version_id, set_name),
+            ).fetchone()
+        else:
+            row = self._conn.execute(
+                "SELECT param_set_id FROM param_set "
+                "WHERE strategy_version_id = ? AND name = ? AND version_no = ?",
+                (strategy.strategy_version_id, set_name, int(set_version_no)),
+            ).fetchone()
+        if row is None:
+            raise NotFound(
+                f"策略「{strategy.name}」第 {strategy.version_no} 版沒有參數集「{set_name}」"
+            )
+        return self._param_set_by_id(int(row["param_set_id"]))
+
+    def list_param_sets(
+        self, strategy_name: str, *, strategy_version_no: int | None = None
+    ) -> list[ParamSet]:
+        """列出某策略版本的全部參數集(同名只取最新版)。"""
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        rows = self._conn.execute(
+            "SELECT param_set_id FROM param_set WHERE strategy_version_id = ? "
+            "AND version_no = (SELECT MAX(version_no) FROM param_set AS inner_set "
+            "                  WHERE inner_set.strategy_version_id = param_set.strategy_version_id"
+            "                    AND inner_set.name = param_set.name) ORDER BY name",
+            (strategy.strategy_version_id,),
+        ).fetchall()
+        return [self._param_set_by_id(int(r["param_set_id"])) for r in rows]
+
+    @staticmethod
+    def _check_cadence(rebalance_cadence: str | None, name: str) -> str:
+        if not rebalance_cadence:
+            raise ContractViolation(
+                f"參數集「{name}」缺換倉節奏(rebalance cadence):"
+                f"{'、'.join(f'{k}({v})' for k, v in REBALANCE_CADENCES.items())} 揀一個;"
+                "本平台不設預設值,缺就寫不入"
+            )
+        if rebalance_cadence not in REBALANCE_CADENCES:
+            raise ContractViolation(
+                f"換倉節奏只收 {sorted(REBALANCE_CADENCES)},收到 {rebalance_cadence!r}"
+            )
+        return rebalance_cadence
+
+    @staticmethod
+    def _check_param_values(values: Mapping[str, Any] | None, name: str) -> dict[str, str]:
+        items = dict(values or {})
+        if not items:
+            raise ContractViolation(
+                f"參數集「{name}」一個參數都沒有;參數無預設值,要用的一律寫明"
+            )
+        cleaned: dict[str, str] = {}
+        for key, value in items.items():
+            clean_key = str(key).strip()
+            clean_value = "" if value is None else str(value).strip()
+            if not clean_key:
+                raise ContractViolation(f"參數集「{name}」有參數名留空")
+            if not clean_value:
+                raise ContractViolation(
+                    f"參數集「{name}」的參數「{clean_key}」沒有值;無預設值,缺就拒收"
+                )
+            cleaned[clean_key] = clean_value
+        return cleaned
+
+    def _param_set_by_id(self, param_set_id: int) -> ParamSet:
+        row = self._conn.execute(
+            "SELECT param_set_id, strategy_version_id, name, version_no, parent_version_id,"
+            " rebalance_cadence, created_at FROM param_set WHERE param_set_id = ?",
+            (int(param_set_id),),
+        ).fetchone()
+        if row is None:
+            raise NotFound(f"沒有參數集 {param_set_id}")
+        value_rows = self._conn.execute(
+            "SELECT param_key, param_value FROM param_value WHERE param_set_id = ? "
+            "ORDER BY param_key",
+            (int(param_set_id),),
+        ).fetchall()
+        return ParamSet(
+            param_set_id=int(row["param_set_id"]),
+            strategy_version_id=int(row["strategy_version_id"]),
+            name=row["name"],
+            version_no=int(row["version_no"]),
+            parent_version_id=(
+                None if row["parent_version_id"] is None else int(row["parent_version_id"])
+            ),
+            rebalance_cadence=row["rebalance_cadence"],
+            values={r["param_key"]: r["param_value"] for r in value_rows},
+            created_at=row["created_at"],
+        )
+
+    # ------------------------------------------------------------------
+    # 唯一落點(D-002 第 4 條:單一正本、無第二影像)
+    # ------------------------------------------------------------------
+
+    def locate_definition(self, kind: str, name: str) -> DefinitionLocation:
+        """講出一項定義在庫內的唯一落點,並掃全庫看有沒有第二份影像。"""
+        full_name = (name or "").strip()
+        if kind == "factor":
+            version = self.get_factor_version(full_name)
+            table, row_key = "factor", f"factor_id={version.factor_id}"
+            count_row = self._conn.execute(
+                "SELECT COUNT(*) AS n FROM factor_version WHERE factor_id = ?",
+                (version.factor_id,),
+            ).fetchone()
+            latest = version.version_no
+        elif kind == "strategy":
+            strategy = self.get_strategy_version(full_name)
+            table, row_key = "strategy", f"strategy_id={strategy.strategy_id}"
+            count_row = self._conn.execute(
+                "SELECT COUNT(*) AS n FROM strategy_version WHERE strategy_id = ?",
+                (strategy.strategy_id,),
+            ).fetchone()
+            latest = strategy.version_no
+        else:
+            raise ContractViolation(f"落點只查 factor 或 strategy,收到 {kind!r}")
+        return DefinitionLocation(
+            kind=kind,
+            name=full_name,
+            table=table,
+            row_key=row_key,
+            version_count=int(count_row["n"]),
+            latest_version_no=latest,
+            occurrences=tuple(self.find_name_occurrences(full_name)),
+        )
+
+    def find_name_occurrences(self, name: str) -> list[str]:
+        """全庫掃描:這個名字一字不差地出現在哪些表的哪些欄。
+
+        單一定義下答案應該只有一處(正本);引用它的表只存編號,不存名字。
+        """
+        target = (name or "").strip()
+        occurrences: list[str] = []
+        tables = self._conn.execute(
+            "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' "
+            "ORDER BY name"
+        ).fetchall()
+        for table_row in tables:
+            table = table_row["name"]
+            for column_row in self._conn.execute(f'PRAGMA table_info("{table}")').fetchall():
+                column = column_row["name"]
+                if "TEXT" not in str(column_row["type"] or "").upper():
+                    continue
+                hit = self._conn.execute(
+                    f'SELECT COUNT(*) AS n FROM "{table}" WHERE "{column}" = ?', (target,)
+                ).fetchone()
+                if int(hit["n"]) > 0:
+                    occurrences.append(f"{table}.{column}({hit['n']} 列)")
+        return occurrences
+
+
+def check_param_set(
+    name: str,
+    rebalance_cadence: str | None,
+    values: Mapping[str, Any] | None,
+) -> dict[str, str]:
+    """參數集合約的預檢,不碰庫。
+
+    唯一入口在寫策略之前先驗一次:免得策略已經落庫、參數集才被拒收,
+    留下一個無參數集的半截策略。
+    """
+    DefinitionStore._check_cadence(rebalance_cadence, name)
+    return DefinitionStore._check_param_values(values, name)
+
+
+_STRATEGY_SELECT = """
+SELECT v.strategy_version_id, v.strategy_id, s.name, s.strategy_type, v.version_no,
+       v.parent_version_id, v.description, v.created_at
+FROM strategy_version AS v
+JOIN strategy AS s ON s.strategy_id = v.strategy_id
+"""
 
 
 _VERSION_SELECT = """

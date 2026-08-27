@@ -10,10 +10,20 @@ requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.0",
     "pyarrow>=14.0",
+    # 回測核心(D-011)。numba/numpy 的下限跟 KARST-009 對決實測過的那一套,
+    # 低過這個版本 vectorbt 1.1.0 的 numba 核心編譯不起。
+    "vectorbt>=1.1.0",
+    "numba>=0.67.0",
+    "numpy>=2.4.6",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
+
+# 唯一入口(D-020 第 4 條):裝好套件後 `karst` 就是那道門;
+# 未裝套件時同一道門叫 `python -m karst.gateway`。
+[project.scripts]
+karst = "karst.gateway.cli:main"
 
 [tool.setuptools]
 packages = ["karst"]

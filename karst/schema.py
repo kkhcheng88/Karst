@@ -8,13 +8,17 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 2. ``factor`` / ``factor_version`` 因子定義與版本鏈(D-021 第 2、6、9 條)
 3. ``factor_value``                日期 × 實體 → 值,雙時間戳(D-021 第 1、3、4 條)
 4. ``data_snapshot``               數據快照登記(D-026 第 3 條)
+5. ``strategy`` / ``strategy_version`` / ``strategy_factor_ref`` / ``param_set`` /
+   ``param_value``                 策略定義、版本鏈、引用因子與參數集(D-020 第 4 條、KARST-022)
+6. ``gateway_write``               寫入者簽章登記:凡經唯一入口寫入的列在此有一筆(KARST-022)
 """
 
 from __future__ import annotations
 
 import sqlite3
 
-SCHEMA_VERSION = 1
+# 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);舊庫重開即自動補建。
+SCHEMA_VERSION = 2
 
 DDL = """
 CREATE TABLE IF NOT EXISTS schema_meta (
@@ -147,6 +151,139 @@ WHEN old.cik IS NOT new.cik
      OR old.entity_kind <> new.entity_kind
 BEGIN
     SELECT RAISE(ABORT, '實體的錨(CIK/內部代碼)與種類不可改');
+END;
+
+-- ====================================================================
+-- 策略定義與參數集(D-020 第 4 條唯一入口、D-002 第 4 條單一定義)
+-- ====================================================================
+
+-- 策略:名稱全庫唯一(單一正本、無第二影像);類型限策略總覽八類之一。
+CREATE TABLE IF NOT EXISTS strategy (
+    strategy_id   INTEGER PRIMARY KEY AUTOINCREMENT,
+    name          TEXT NOT NULL UNIQUE,
+    strategy_type TEXT NOT NULL CHECK (strategy_type IN (
+        'fundamental', 'technical', 'multifactor', 'event',
+        'meanrev', 'follow', 'macro', 'options')),
+    created_at    TEXT NOT NULL
+);
+
+-- 策略版本:與因子同制,一經落庫不可改、只可出新版,每版有父版本(D-021 第 9 條)。
+CREATE TABLE IF NOT EXISTS strategy_version (
+    strategy_version_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    strategy_id         INTEGER NOT NULL REFERENCES strategy(strategy_id),
+    version_no          INTEGER NOT NULL,
+    parent_version_id   INTEGER REFERENCES strategy_version(strategy_version_id),
+    description         TEXT,
+    created_at          TEXT NOT NULL,
+    UNIQUE (strategy_id, version_no),
+    CHECK ((version_no = 1 AND parent_version_id IS NULL)
+        OR (version_no > 1 AND parent_version_id IS NOT NULL))
+);
+
+-- 策略引用的因子:只存因子版本編號,不存第二份因子定義(單一定義)。
+-- 引用落在「具體定義 × 版本」那一級,不是族名那一級(CONTEXT.md 因子族)。
+CREATE TABLE IF NOT EXISTS strategy_factor_ref (
+    strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
+    factor_version_id   INTEGER NOT NULL REFERENCES factor_version(factor_version_id),
+    PRIMARY KEY (strategy_version_id, factor_version_id)
+);
+
+-- 參數集:掛在一個策略版本上的一組「名稱→值」,必帶換倉節奏。
+-- 換倉節奏無預設值(CONTEXT.md 換倉節奏;用戶反問「Why we need a default?」),缺就寫不入。
+CREATE TABLE IF NOT EXISTS param_set (
+    param_set_id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
+    name                TEXT NOT NULL,
+    version_no          INTEGER NOT NULL,
+    parent_version_id   INTEGER REFERENCES param_set(param_set_id),
+    rebalance_cadence   TEXT NOT NULL CHECK (rebalance_cadence IN ('daily', 'monthly', 'quarterly')),
+    created_at          TEXT NOT NULL,
+    UNIQUE (strategy_version_id, name, version_no),
+    CHECK (length(trim(name)) > 0),
+    CHECK ((version_no = 1 AND parent_version_id IS NULL)
+        OR (version_no > 1 AND parent_version_id IS NOT NULL))
+);
+
+-- 參數值:一個參數集內每個參數只有一個值,不留空(無預設值)。
+CREATE TABLE IF NOT EXISTS param_value (
+    param_set_id INTEGER NOT NULL REFERENCES param_set(param_set_id),
+    param_key    TEXT NOT NULL,
+    param_value  TEXT NOT NULL,
+    PRIMARY KEY (param_set_id, param_key),
+    CHECK (length(trim(param_key)) > 0 AND length(trim(param_value)) > 0)
+);
+
+-- 寫入者簽章:凡經唯一入口寫入的列在此有一筆,簽章的鑰匙住在庫外。
+-- 直接改庫寫入的列在此無簽章,karst verify 一掃即揪得出(D-020 第 4 條)。
+CREATE TABLE IF NOT EXISTS gateway_write (
+    write_id       INTEGER PRIMARY KEY AUTOINCREMENT,
+    table_name     TEXT NOT NULL,
+    row_key        TEXT NOT NULL,
+    content_digest TEXT NOT NULL,
+    signature      TEXT NOT NULL,
+    writer         TEXT NOT NULL,
+    written_at     TEXT NOT NULL,
+    UNIQUE (table_name, row_key)
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_no_update
+BEFORE UPDATE ON strategy BEGIN
+    SELECT RAISE(ABORT, '策略落庫後不可改,只可出新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_no_delete
+BEFORE DELETE ON strategy BEGIN
+    SELECT RAISE(ABORT, '策略落庫後不可刪,版本鏈須完整');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_version_no_update
+BEFORE UPDATE ON strategy_version BEGIN
+    SELECT RAISE(ABORT, '策略版本落庫後不可改,只可出新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_version_no_delete
+BEFORE DELETE ON strategy_version BEGIN
+    SELECT RAISE(ABORT, '策略版本落庫後不可刪,版本鏈須完整');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_factor_ref_no_update
+BEFORE UPDATE ON strategy_factor_ref BEGIN
+    SELECT RAISE(ABORT, '策略引用的因子版本落庫後不可改,改引用請出策略新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_factor_ref_no_delete
+BEFORE DELETE ON strategy_factor_ref BEGIN
+    SELECT RAISE(ABORT, '策略引用的因子版本落庫後不可刪,改引用請出策略新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_param_set_no_update
+BEFORE UPDATE ON param_set BEGIN
+    SELECT RAISE(ABORT, '參數集落庫後不可改,只可出新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_param_set_no_delete
+BEFORE DELETE ON param_set BEGIN
+    SELECT RAISE(ABORT, '參數集落庫後不可刪,運行留痕要指得回它');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_param_value_no_update
+BEFORE UPDATE ON param_value BEGIN
+    SELECT RAISE(ABORT, '參數值落庫後不可改,只可出參數集新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_param_value_no_delete
+BEFORE DELETE ON param_value BEGIN
+    SELECT RAISE(ABORT, '參數值落庫後不可刪,只可出參數集新版');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_gateway_write_no_update
+BEFORE UPDATE ON gateway_write BEGIN
+    SELECT RAISE(ABORT, '寫入者簽章不可改');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_gateway_write_no_delete
+BEFORE DELETE ON gateway_write BEGIN
+    SELECT RAISE(ABORT, '寫入者簽章不可刪');
 END;
 """
 
