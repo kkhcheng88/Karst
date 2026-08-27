@@ -27,3 +27,5 @@ deliverable: KARST-D02
 ## 結果
 
 ## 留言
+
+· 2026-08-28 00:20 fable-main D-027 護欄自本票起列入驗收:只用 sqlite/Postgres 通用 SQL;任何模組不得直接開 sqlite 連線,一律經 karst/store.py。適用於本票及其後全部建置票。

@@ -582,3 +582,24 @@
   > 照舊倉只存已調整價
 
 - 影響：KARST-020 關檔;KARST-027 行情數據接入票範圍據此定稿(可開工);KARST-021 單一定義庫要加實體代號映射表;詞彙表加實體編號、數據快照。
+
+## D-027 數據庫本機先行(sqlite+parquet);雲端與否於紙上交易上線時一併決定;兩條護欄守住換庫成本
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-27
+
+- 出處：用戶 2026-08-27 提問「should I use Online DB from dayone? or you think it can be just later?」,並於我建議後答「Ok」
+
+- 決策：
+  1. v1 建置期數據庫留在本機:sqlite 存定義與登記、parquet 存數據快照(D-026)。不在第一日上雲數據庫。
+  2. 「在互聯網上看到」由網頁殼加安全隧道(Tailscale / Cloudflare Tunnel 一類)解決,不需改庫;雲數據庫要解決的是多機寫入或引擎在雲上跑,v1 無此需要。
+  3. 換庫時機=紙上交易上線:全自動入帳需要一部長開的機,屆時一次過決定長開機是本地還是雲上;若雲上,sqlite 換 Postgres、parquet 換對象儲存、網頁殼同時上網,一次決定不分兩次。
+  4. 兩條護欄自即日起為驗收條件:(一)只用 sqlite 與 Postgres 皆通用的 SQL(trigger、外鍵、索引通用;不用 sqlite 專有語法);(二)任何模組不得直接開 sqlite 連線,一律經單一定義庫 API(karst/store.py)。
+
+- **用戶原話（原文照錄）**
+
+  > Actually if we use SQLite then actually for the update I won't be able to see from the internet? I mean should I use Online DB from dayone? or you think it can be just later?
+
+  > Ok
+
+- 影響：KARST-021/022 已落地部分要覆核護欄(一);後續建置票驗收加護欄兩條;紙上交易排程票開票時必答長開機去向。

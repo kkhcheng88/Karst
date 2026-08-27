@@ -27,3 +27,5 @@ deliverable: KARST-D02
 ## 結果
 
 ## 留言
+
+· 2026-08-28 00:20 fable-main KARST-020 已裁(D-026):yfinance 管價格與日曆、只存已調整價;defeatbeta 管基本面與逐字稿;parquet 存快照(每次拉數一個編號=日期+內容雜湊,舊快照不動)、sqlite 存登記;實體編號主鍵連代號歷史映射(入庫按日期解析代號);單一管線單一快取根、原子寫入;快照連同當時宇宙名單一併凍結,報告標明未含退市股;新來源以適配器接入。另 D-027 護欄:只用 sqlite/Postgres 通用 SQL,任何模組不得直接開 sqlite 連線,一律經 karst/store.py。本票可開工。
