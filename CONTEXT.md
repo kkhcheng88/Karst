@@ -68,4 +68,7 @@
 | 因子敞口 | factor exposure | 一格因子在組合裡由哪一個可投資對象承載、佔多少比重;因子混合策略(ETF 版)的基本單位(KARST-031)。 |
 | 價格歸一化 | price normalisation | 凍結快照前把價格捨入到 7 位有效數字(來源已調整價本身只有這個精度);寫在快照說明檔,是數據定義的一部分(KARST-033)。 |
 | 等價重用 | equivalent reuse | 凍結前先查快取根有沒有同窗口、同宇宙、同規矩而價格相對差不過 1e-5 的已凍結快照,有就沿用原編號原檔案,不另存副本;修訂 D-026「每次拉數=新編號」(2026-08-28 用戶裁「no duplicated copy」,KARST-033)。 |
+| 抓取登記 | snapshot fetch record | 一個數據快照旁邊的那一列:幾時抓、抓哪段窗口、幾多實體幾多列;快照編號刻意不含抓取時間(重抓要得同一編號),故另有落點;查不到即該快照不是經唯一入口凍的(KARST-034)。 |
+| 生效序號 | activation sequence number | 一套策略第幾次指定現役設定(由 1 起);舊指定一字不變只加新一筆,換過什麼、由哪一刻起全部查得回(KARST-030、035)。 |
+| 治理清單 | governed tables | 受寫入者簽章治理的那批表:清單內每一列都要有入口簽章,`karst verify` 逐列核對,繞過入口即被點名(KARST-022、035)。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |

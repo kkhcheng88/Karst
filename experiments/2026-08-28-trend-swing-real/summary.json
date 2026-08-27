@@ -1,0 +1,145 @@
+{
+  "breakout_factor": "趨勢·收市價突破前 N 日最高(不含當日)",
+  "cases": {
+    "average_holding_days": 53.22707147375079,
+    "average_r_multiple": 0.6851334095956741,
+    "average_return": 0.05716377915480915,
+    "average_reward_risk": 2.749294627685507,
+    "cases": 1581,
+    "closed": 1566,
+    "closed_win_rate": 0.4706257982120051,
+    "reason_stop": 829,
+    "reason_target": 737,
+    "reason_unclosed": 15,
+    "win_rate": 0.47185325743200507,
+    "wins": 746
+  },
+  "engine_run": {
+    "blocked_days": 96,
+    "entry_signals": 1581,
+    "orders": 487,
+    "worst_month_drawdown": -0.12579616276570615
+  },
+  "metrics": {
+    "annual_excess": {
+      "QQQ": -0.07586938168851565,
+      "SPY": -0.024719390262130103
+    },
+    "annual_return": 0.1138002769974149,
+    "average_holding_days": 49.66528925619835,
+    "benchmarks": {
+      "QQQ": {
+        "annual_excess": -0.07586938168851565,
+        "annual_return": 0.18966965868593055,
+        "excess_total_return": -4.024560721998252,
+        "max_drawdown": -0.35118725001840734,
+        "total_return": 6.522856276100666
+      },
+      "SPY": {
+        "annual_excess": -0.024719390262130103,
+        "annual_return": 0.138519667259545,
+        "excess_total_return": -1.0163471430101603,
+        "max_drawdown": -0.33717274248906437,
+        "total_return": 3.5146426971125733
+      }
+    },
+    "closed_trades": 242,
+    "max_drawdown": -0.20844404672760009,
+    "profit_loss_ratio": 2.1320167477819396,
+    "risk_free_rate": 0.04,
+    "sortino": 0.775284568265982,
+    "total_return": 2.498295554102413,
+    "turnover": 3.6577278004474465,
+    "win_rate": 0.44214876033057854
+  },
+  "param_set": {
+    "name": "示例-KARST-028",
+    "note": "示例參數,不是現役設定",
+    "rebalance_cadence": "daily",
+    "values": {
+      "account.fees": "0.0",
+      "account.initial_cash": "1000000.0",
+      "entry.breakout_lookback_days": "50",
+      "execution.tie_break_seed": "20260828",
+      "risk.monthly_loss_cap": "0.06",
+      "risk.per_trade_risk": "0.02",
+      "risk.reward_risk_floor": "1.5",
+      "sizing.equity_basis": "current_equity",
+      "sizing.max_position_fraction": "0.25",
+      "stop.max_stop_fraction": "0.25",
+      "stop.min_stop_fraction": "0.01",
+      "stop.swing_lookback_days": "10"
+    },
+    "version_no": 1
+  },
+  "period": [
+    "2015-01-02",
+    "2026-08-26"
+  ],
+  "run": {
+    "artifacts": {
+      "equity": {
+        "path": "C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\equity.parquet",
+        "rows": 2929
+      },
+      "holdings": {
+        "path": "C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\holdings.parquet",
+        "rows": 12147
+      },
+      "orders": {
+        "path": "C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\orders.parquet",
+        "rows": 487
+      }
+    },
+    "engine_name": "vectorbt-order-func",
+    "engine_version": "0.1.0",
+    "run_id": "run-728a01087531258f",
+    "trading_days": 2929
+  },
+  "snapshot_id": "2026-08-27-61e284eaa998",
+  "strategy": {
+    "factors": [
+      "趨勢·收市價突破前 N 日最高(不含當日)@1"
+    ],
+    "name": "趨勢波段",
+    "type": "technical",
+    "version_no": 1
+  },
+  "sweep": {
+    "cells": 48,
+    "columns": [
+      "entry.breakout_lookback_days",
+      "stop.swing_lookback_days",
+      "stop.min_stop_fraction",
+      "stop.max_stop_fraction",
+      "sizing.max_position_fraction",
+      "sizing.equity_basis",
+      "account.initial_cash",
+      "account.fees",
+      "execution.tie_break_seed",
+      "per_trade_risk",
+      "monthly_loss_cap",
+      "reward_risk_floor",
+      "entry_signals",
+      "orders",
+      "total_return",
+      "max_drawdown",
+      "worst_month_drawdown",
+      "blocked_days"
+    ]
+  },
+  "ticket": "KARST-028",
+  "trading_days": 2929,
+  "universe": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "GOOGL",
+    "META",
+    "TSLA",
+    "JPM",
+    "XOM",
+    "JNJ"
+  ]
+}
