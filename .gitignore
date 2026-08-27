@@ -5,6 +5,9 @@ experiments/*/data/
 # 只擋倉根那一個 data/,不要連 karst/data/(程式碼)一齊擋走
 /data/
 /karst.sqlite
+# 唯一入口的簽章鑰匙(D-020 第 4 條):它刻意住在庫檔以外,拿得到庫檔不等於
+# 簽得出章。入了 git 這條防線就沒了,故此永不入倉。
+/karst.sqlite.gateway-key
 # 插件工作目錄,不屬項目內容
 .skill-compass/
 experiments/*/.venv/
