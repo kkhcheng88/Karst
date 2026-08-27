@@ -28,7 +28,12 @@ dev = ["pytest>=8.0"]
 karst = "karst.gateway.cli:main"
 
 [tool.setuptools]
-packages = ["karst", "karst.data", "karst.engine", "karst.gateway", "karst.metrics", "karst.risk", "karst.runs", "karst.strategies"]
+packages = ["karst", "karst.data", "karst.engine", "karst.gateway", "karst.metrics", "karst.risk", "karst.runs", "karst.strategies", "karst.sweep", "karst.web"]
+
+# 本機網頁殼(KARST-032)的靜態頁與圖表庫要跟住套件一齊裝,否則裝好之後
+# `python -m karst.web` 起得到服務但開出來是白頁。
+[tool.setuptools.package-data]
+"karst.web" = ["static/*.html", "static/*.css", "static/*.js", "static/vendor/*.js"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
