@@ -31,6 +31,7 @@ from ..store import DefinitionStore
 from .calendar import PANEL_COLUMNS
 from .errors import SnapshotBroken
 from .manifest import canonical_json
+from .normalise import EQUIVALENCE_RTOL, values_equivalent
 from .sources import PRICE_FIELDS
 
 # 單一快取根(D-026 第 5 條):全倉的快照只住這一處
@@ -143,6 +144,101 @@ def write_snapshot_dir(
         if staging.exists():
             shutil.rmtree(staging, ignore_errors=True)
     return final
+
+
+def price_frames_equivalent(
+    left: pd.DataFrame, right: pd.DataFrame, *, rtol: float = EQUIVALENCE_RTOL
+) -> bool:
+    """兩張日線長表是不是「同一批數據」——形狀逐格相同,數值在相對容差內相同。
+
+    形狀那半要求**逐位相同**,不留餘地:同一組日期、同一組實體、同一個排序,
+    每根日線的身分(actual / filled / missing)也要一樣。少一日、多一隻股、
+    停牌填補的位置不同,都是真的不一樣,不是抓取雜訊。
+    """
+    if len(left) != len(right):
+        return False
+    if not left["date"].equals(right["date"]):
+        return False
+    if not left["entity_id"].equals(right["entity_id"]):
+        return False
+    if not left["bar_status"].equals(right["bar_status"]):
+        return False
+    return all(
+        values_equivalent(left[field].to_numpy("float64"), right[field].to_numpy("float64"), rtol=rtol)
+        for field in PRICE_FIELDS
+    )
+
+
+def find_equivalent_snapshot(
+    root: str | Path,
+    *,
+    core: dict[str, Any],
+    prices: pd.DataFrame,
+    calendar: Sequence[str],
+    universe: pd.DataFrame,
+    rtol: float = EQUIVALENCE_RTOL,
+) -> tuple[Path, dict[str, Any]] | None:
+    """在快取根裡找一份與這批新數據等價的已凍結快照;找不到回 ``None``。
+
+    這是「重抓不多一份副本」(KARST-033)真正靠的那一關。同一個窗口抓兩次,
+    已調整價會在 float32 的最後幾個 bit 上飄(見 ``normalise``),四捨五入壓得住
+    雜訊的量級、壓不住「剛好跨過格線」,所以凍結之前要親自問一句:這批數,
+    是不是已經凍過了?
+
+    四關全過才算等價,次序由平到貴:
+
+      1. ``core`` 逐項相同——同一個來源、同一個窗口、同一條主日曆、同一套處置與
+         同一個歸一化精度。這一關只讀 manifest.json,把絕大多數候選擋在門外,
+         也保證舊規矩凍下來的快照永遠不會被誤認作等價。
+      2. 列數相同。
+      3. 主日曆與宇宙名單逐位相同(名單用內容雜湊比,不逐格比)。
+      4. 日線長表形狀逐格相同、數值在 ``rtol`` 內相同。
+
+    找到就沿用它——**原編號、原檔案、原抓取時間一概不動**(D-026 第 3 條
+    「舊快照永不改動」)。
+    """
+    root = Path(root)
+    if not root.is_dir():
+        return None
+
+    wanted_prices = canonical_prices(prices)
+    wanted_calendar = tuple(str(day) for day in calendar)
+    wanted_universe = content_hash(canonical_universe(universe))
+
+    for directory in sorted(
+        entry for entry in root.iterdir() if entry.is_dir() and not entry.name.startswith(".")
+    ):
+        manifest_path = directory / MANIFEST_FILE
+        if not manifest_path.exists():
+            continue
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue  # 半截或壞掉的快照不當候選,靜靜略過
+        if manifest.get("core") != core:
+            continue
+        if int(manifest.get("rows", -1)) != len(wanted_prices):
+            continue
+        try:
+            frozen_calendar = tuple(
+                pd.read_parquet(directory / CALENDAR_FILE, engine="pyarrow")["date"].astype(str)
+            )
+            frozen_universe = canonical_universe(
+                pd.read_parquet(directory / UNIVERSE_FILE, engine="pyarrow")
+            )
+            frozen_prices = canonical_prices(
+                pd.read_parquet(directory / PRICES_FILE, engine="pyarrow")
+            )
+        except (OSError, ValueError, KeyError):
+            continue
+        if frozen_calendar != wanted_calendar:
+            continue
+        if content_hash(frozen_universe) != wanted_universe:
+            continue
+        if not price_frames_equivalent(frozen_prices, wanted_prices, rtol=rtol):
+            continue
+        return directory, manifest
+    return None
 
 
 def snapshot_dir(

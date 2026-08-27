@@ -6,19 +6,23 @@
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 import pytest
 
 from karst import DefinitionStore
 from karst.data import (
+    PRICE_SIGNIFICANT_DIGITS,
     DataFetchFailed,
     UniverseMember,
     YFinanceSource,
     build_price_snapshot,
     is_placeholder,
     read_manifest,
+    read_price_frame,
     read_price_panel,
     read_universe,
+    round_significant,
     verify_snapshot,
 )
 
@@ -29,6 +33,14 @@ SAMPLE = (
     UniverseMember("AAPL", "company", "Apple Inc."),
 )
 WINDOW = ("2024-01-02", "2024-01-31")
+
+# 重抓去重那條驗收要用派過息、歷史夠長的股:飄移只出現在已調整價上,
+# 派息愈多、回溯愈遠,累計調整因子的尾數愈容易每次不同(KARST-033)。
+DIVIDEND_SAMPLE = (
+    UniverseMember("SPY", "etf", "SPDR S&P 500 ETF Trust"),
+    UniverseMember("KO", "company", "The Coca-Cola Company"),
+)
+DIVIDEND_WINDOW = ("2015-01-02", "2018-12-31")
 
 
 @pytest.fixture(scope="module")
@@ -116,6 +128,58 @@ def test_prices_are_dividend_adjusted(online):
     first_raw = float(raw["Close"].iloc[0].item())
     assert first_adjusted < first_raw
     assert first_adjusted == pytest.approx(first_raw, rel=0.15)  # 只差在派息,不是另一隻股
+
+
+def test_refetching_the_same_window_keeps_one_snapshot(online, tmp_path):
+    """KARST-033 驗收 1:同一窗口同一宇宙真實抓兩次,得同一個編號、只得一份副本。
+
+    KARST-027 收檔時量到的毛病就是這裡:同一個窗口相隔十幾秒抓兩次,已調整價在
+    float32 的最後幾個 bit 上飄,內容雜湊逐次不同,快取每抓一次就多 1.6MB。
+    現在凍結前先歸一化到 7 位有效數字,再問一句「這批數是不是已經凍過了」,
+    等價就沿用原編號原檔案。
+    """
+    with DefinitionStore.open(":memory:") as store:
+        common = {
+            "start": DIVIDEND_WINDOW[0],
+            "end": DIVIDEND_WINDOW[1],
+            "universe": DIVIDEND_SAMPLE,
+            "root": tmp_path,
+        }
+        first = build_price_snapshot(store, source=YFinanceSource(), **common)
+        second = build_price_snapshot(store, source=YFinanceSource(), **common)
+
+        assert second.snapshot_id == first.snapshot_id
+        assert second.content_hash == first.content_hash
+        assert second.reused  # 第二次是沿用,不是重新凍結
+
+        # 快取根裡只得一個快照目錄——重抓不再多一份幾乎一樣的檔
+        frozen = sorted(path.name for path in tmp_path.iterdir() if path.is_dir())
+        assert frozen == [first.snapshot_id]
+
+        # 沿用回來那份檔案照樣驗得過,抓取時間仍是第一次那個
+        assert verify_snapshot(store, second.snapshot_id) == first.content_hash
+        assert read_manifest(store, second.snapshot_id)["fetched_at"] == first.fetched_at
+
+
+def test_real_prices_are_stored_at_the_declared_precision(online, tmp_path):
+    """KARST-033:真實抓回來的價格,凍下來時已在宣告的精度上。"""
+    with DefinitionStore.open(":memory:") as store:
+        snapshot = build_price_snapshot(
+            store,
+            start=WINDOW[0],
+            end=WINDOW[1],
+            universe=SAMPLE,
+            source=YFinanceSource(),
+            root=tmp_path,
+        )
+        frame = read_price_frame(store, snapshot.snapshot_id)
+        manifest = read_manifest(store, snapshot.snapshot_id)
+
+        assert manifest["core"]["price_significant_digits"] == PRICE_SIGNIFICANT_DIGITS
+        for field in ("open", "high", "low", "close"):
+            values = frame[field].to_numpy("float64")
+            present = np.isfinite(values)
+            assert np.array_equal(values[present], round_significant(values[present]))
 
 
 def test_unknown_ticker_raises_instead_of_skipping(online):

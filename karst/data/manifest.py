@@ -14,6 +14,12 @@ import json
 from typing import Any
 
 from .calendar import BAR_ACTUAL, BAR_FILLED, BAR_MISSING, FFILL_LIMIT
+from .normalise import (
+    EQUIVALENCE_POLICY_ID,
+    EQUIVALENCE_RTOL,
+    NORMALISATION_POLICY_ID,
+    PRICE_SIGNIFICANT_DIGITS,
+)
 
 # 處置編號:寫在 manifest 裡,程式可據此認出用的是哪一條規矩
 DIVIDEND_POLICY_ID = "adjusted-close-only"
@@ -30,6 +36,22 @@ HALT_POLICY = (
     "超過即留 NaN;填補出來的那一根寫成 O=H=L=C=前一根收市價、成交量 0。"
     f"每根日線在 bar_status 欄自報身分({BAR_ACTUAL} 真有成交 / {BAR_FILLED} 前值填補 /"
     f" {BAR_MISSING} 留空),所以這條規矩在數據上驗得到。"
+)
+
+NORMALISATION_POLICY = (
+    f"價格歸一化:凍結之前,每個價格四捨五入到 {PRICE_SIGNIFICANT_DIGITS} 位"
+    "**有效數字**(不是固定小數位——2015 年的已調整舊價低見 0.45 元,固定小數位會把"
+    f"它們削平),成交量取整股。取 {PRICE_SIGNIFICANT_DIGITS} 位的理由:來源的已調整價"
+    "實測只有 float32 那一級精度(約 7.2 位十進位有效數字,飄移量度出來是 2 至 14 個"
+    "float32 ULP),第 8 位起是雜訊,不入庫。精度損失上限為半格,即相對 5e-8;"
+    "一支 0.45 元的已調整舊價最多差 0.000011%,一支 285 元的股最多差 0.000005%。"
+    "\n\n"
+    "同一個窗口重抓,兩次的價格歸一化後仍可能落在相鄰兩格(實測仍有三成如此),"
+    "單靠四捨五入不足以令兩次抓取拿到同一個編號,故另有一條**等價重用**規矩:凍結前"
+    f"先看快取根內有沒有同窗口、同宇宙、同一套規矩、而且價格相對差不過 {EQUIVALENCE_RTOL:.0e} "
+    "的已凍結快照;有就認定是同一批數據,沿用原編號與原檔案,不再多一份副本。"
+    "差過容差即當真的更動(除權除息、數據更正一類,那一級至少 1e-3),照 D-026 第 3 條"
+    "另開一個編號,舊快照一樣不動。"
 )
 
 SNAPSHOT_README_TEMPLATE = """# 數據快照 {snapshot_id}
@@ -49,6 +71,7 @@ SNAPSHOT_README_TEMPLATE = """# 數據快照 {snapshot_id}
 | 內容雜湊 | `{content_hash}` |
 | 日線列數 | {rows} |
 | 實體數 | {entities} |
+| 價格精度 | {price_significant_digits} 位有效數字 |
 
 ## 二、除權除息處置
 
@@ -58,12 +81,16 @@ SNAPSHOT_README_TEMPLATE = """# 數據快照 {snapshot_id}
 
 {halt_policy}
 
-## 四、當時的宇宙名單(連同快照一併凍結)
+## 四、價格歸一化處置
+
+{normalisation_policy}
+
+## 五、當時的宇宙名單(連同快照一併凍結)
 
 {universe_table}
 
 {notes_section}
-## 五、檔案
+## 六、檔案
 
 | 檔案 | 內容 |
 |---|---|
@@ -73,7 +100,7 @@ SNAPSHOT_README_TEMPLATE = """# 數據快照 {snapshot_id}
 | `manifest.json` | 上表全部欄位的機讀版 |
 | `說明.md` | 本檔 |
 
-## 六、存活者偏差
+## 七、存活者偏差
 
 免費來源不含退市股(D-026 第 6 條)。本快照的宇宙名單是**抓取當日仍在市**的名單,
 以此為據的回測成績報告一律標明「未含退市股」。
@@ -105,7 +132,7 @@ def render_readme(
     ]
     notes_section = ""
     if notes:
-        notes_section = "## 四之二、註記\n\n" + "\n".join(f"- {note}" for note in notes) + "\n\n"
+        notes_section = "## 五之二、註記\n\n" + "\n".join(f"- {note}" for note in notes) + "\n\n"
     return SNAPSHOT_README_TEMPLATE.format(
         snapshot_id=snapshot_id,
         source=source,
@@ -120,6 +147,8 @@ def render_readme(
         entities=entities,
         dividend_policy=DIVIDEND_POLICY,
         halt_policy=HALT_POLICY,
+        normalisation_policy=NORMALISATION_POLICY,
+        price_significant_digits=PRICE_SIGNIFICANT_DIGITS,
         universe_table="\n".join([header, *lines]),
         notes_section=notes_section,
     )
@@ -136,6 +165,10 @@ def snapshot_core(
     """進內容雜湊的那一格:決定數據長什麼樣的每一項,抓取時間**不在此列**。
 
     抓取時間不入雜湊,同一批內容重抓才會落回同一個快照編號(D-026 第 3 條)。
+
+    歸一化精度與等價容差也在此列(KARST-033):它們決定了凍下來的數字長什麼樣,
+    改了就是另一套數據定義,理應落成另一個編號。這一格同時是**等價重用的配方鎖**
+    ——只有 core 逐項相同的快照才拿來比對,舊規矩凍下來的快照永遠不會被誤認作等價。
     """
     return {
         "source": source,
@@ -146,6 +179,10 @@ def snapshot_core(
         "ffill_limit": FFILL_LIMIT,
         "dividend_policy_id": DIVIDEND_POLICY_ID,
         "halt_policy_id": HALT_POLICY_ID,
+        "price_significant_digits": PRICE_SIGNIFICANT_DIGITS,
+        "normalisation_policy_id": NORMALISATION_POLICY_ID,
+        "equivalence_policy_id": EQUIVALENCE_POLICY_ID,
+        "equivalence_rtol": EQUIVALENCE_RTOL,
     }
 
 

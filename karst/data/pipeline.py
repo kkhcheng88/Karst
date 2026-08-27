@@ -31,13 +31,16 @@ from .errors import DataFetchFailed, TickerRecycled
 from .manifest import (
     DIVIDEND_POLICY,
     HALT_POLICY,
+    NORMALISATION_POLICY,
     canonical_json,
     render_readme,
     snapshot_core,
 )
+from .normalise import EQUIVALENCE_RTOL, normalise_bars
 from .snapshots import (
     DEFAULT_SNAPSHOT_ROOT,
     canonical_universe,
+    find_equivalent_snapshot,
     snapshot_digest,
     write_snapshot_dir,
 )
@@ -71,6 +74,11 @@ class PriceSnapshot:
     trading_days: int
     rows: int
     notes: tuple[str, ...]
+    reused: bool = False
+    """這次抓取是否沿用了一份早已凍結的等價快照(KARST-033)。
+
+    ``True`` 即快取根裡沒有多一份副本,``snapshot_id`` 是原本那一個。
+    """
 
 
 def ensure_entities(
@@ -217,6 +225,10 @@ def build_price_snapshot(
             f"{source.name} 在 {window_start}~{window_end} 回了空批次,當抓取失敗處理"
         )
 
+    # 歸一化(KARST-033)緊接抓取,行在對齊與填補之前:填出來的那一根抄的是
+    # 已歸一化的收市價,不會再飄第二次。
+    bars = normalise_bars(bars)
+
     calendar = trading_calendar(bars, calendar_symbol)
 
     if cik_map is None:
@@ -243,7 +255,6 @@ def build_price_snapshot(
     )
     digest = snapshot_digest(aligned, calendar, universe_frame, core)
     day = as_date(taken_on, "taken_on") if taken_on is not None else fetched_at.date().isoformat()
-    snapshot_id = store.snapshot_id_for(day, digest)
 
     # numpy 的整數不入 JSON,一律先換回 Python 的 int
     universe_rows = [
@@ -251,50 +262,72 @@ def build_price_snapshot(
         for row in universe_frame.to_dict("records")
     ]
     entity_ids = tuple(sorted(int(row["entity_id"]) for row in universe_rows))
-    manifest = {
-        "snapshot_id": snapshot_id,
-        "source": source.name,
-        "fetched_at": fetched_at.isoformat(timespec="seconds"),
-        "taken_on": day,
-        "window_start": window_start,
-        "window_end": window_end,
-        "calendar_ticker": calendar_symbol,
-        "trading_days": len(calendar),
-        "rows": int(len(aligned)),
-        "entities": len(entity_ids),
-        "content_hash": digest,
-        "core": core,
-        "dividend_policy": DIVIDEND_POLICY,
-        "halt_policy": HALT_POLICY,
-        "universe": universe_rows,
-        "notes": notes,
-        "survivorship": "免費來源不含退市股;本快照的宇宙名單是抓取當日仍在市的名單(D-026 第 6 條)",
-    }
-    readme = render_readme(
-        snapshot_id=snapshot_id,
-        source=source.name,
-        fetched_at=manifest["fetched_at"],
-        taken_on=day,
-        window_start=window_start,
-        window_end=window_end,
-        calendar_ticker=calendar_symbol,
-        trading_days=len(calendar),
-        content_hash=digest,
-        rows=int(len(aligned)),
-        entities=len(entity_ids),
-        universe_rows=universe_rows,
-        notes=notes,
-    )
 
-    path = write_snapshot_dir(
-        root,
-        snapshot_id,
-        prices=aligned,
-        calendar=calendar,
-        universe=universe_frame,
-        manifest=manifest,
-        readme=readme,
+    # 等價重用(KARST-033):凍結之前先問一句「這批數是不是已經凍過了」。
+    # 歸一化壓得住飄移的量級,壓不住「剛好跨過捨入格線」,故單靠它不足以令重抓
+    # 得同一個編號;這一關才是「重抓不多一份副本」真正靠的那件事。
+    existing = find_equivalent_snapshot(
+        root, core=core, prices=aligned, calendar=calendar, universe=universe_frame
     )
+    if existing is not None:
+        path, manifest = existing
+        snapshot_id = str(manifest["snapshot_id"])
+        digest = str(manifest["content_hash"])
+        day = str(manifest["taken_on"])
+        reused = True
+        notes.append(
+            f"這次抓取與已凍結的快照 {snapshot_id} 等價(全部價格相對差不過 "
+            f"{EQUIVALENCE_RTOL:.0e}),沿用原編號與原檔案,不另存一份副本;"
+            f"該快照的抓取時間仍是 {manifest.get('fetched_at')}(KARST-033)"
+        )
+    else:
+        reused = False
+        snapshot_id = store.snapshot_id_for(day, digest)
+        manifest = {
+            "snapshot_id": snapshot_id,
+            "source": source.name,
+            "fetched_at": fetched_at.isoformat(timespec="seconds"),
+            "taken_on": day,
+            "window_start": window_start,
+            "window_end": window_end,
+            "calendar_ticker": calendar_symbol,
+            "trading_days": len(calendar),
+            "rows": int(len(aligned)),
+            "entities": len(entity_ids),
+            "content_hash": digest,
+            "core": core,
+            "dividend_policy": DIVIDEND_POLICY,
+            "halt_policy": HALT_POLICY,
+            "normalisation_policy": NORMALISATION_POLICY,
+            "universe": universe_rows,
+            "notes": notes,
+            "survivorship": "免費來源不含退市股;本快照的宇宙名單是抓取當日仍在市的名單(D-026 第 6 條)",
+        }
+        readme = render_readme(
+            snapshot_id=snapshot_id,
+            source=source.name,
+            fetched_at=manifest["fetched_at"],
+            taken_on=day,
+            window_start=window_start,
+            window_end=window_end,
+            calendar_ticker=calendar_symbol,
+            trading_days=len(calendar),
+            content_hash=digest,
+            rows=int(len(aligned)),
+            entities=len(entity_ids),
+            universe_rows=universe_rows,
+            notes=notes,
+        )
+        path = write_snapshot_dir(
+            root,
+            snapshot_id,
+            prices=aligned,
+            calendar=calendar,
+            universe=universe_frame,
+            manifest=manifest,
+            readme=readme,
+        )
+
     registered = store.register_snapshot(
         source=source.name,
         taken_on=day,
@@ -321,6 +354,7 @@ def build_price_snapshot(
         trading_days=len(calendar),
         rows=int(len(aligned)),
         notes=tuple(notes),
+        reused=reused,
     )
 
 
