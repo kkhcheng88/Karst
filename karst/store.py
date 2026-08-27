@@ -9,6 +9,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
 from collections.abc import Iterable, Mapping, Sequence
@@ -22,6 +23,7 @@ from . import schema
 from .errors import (
     ContractViolation,
     DuplicateDefinition,
+    ImmutabilityViolation,
     NotFound,
     TickerNotResolved,
 )
@@ -78,6 +80,14 @@ REBALANCE_CADENCES: Final[dict[str, str]] = {
 # 策略引用因子的寫法:「名稱」取最新版,「名稱@版本號」釘死某一版
 FACTOR_REF_SEPARATOR = "@"
 
+# 一次回測運行必須保存的三條序列(規格 7.4):逐日淨值、逐日持倉、逐筆交易。
+# 三條缺一不可——缺了逐日序列,「檢視視窗」就只能靠重跑,那正是本票要廢掉的做法。
+RUN_ARTIFACT_KINDS: Final[tuple[str, ...]] = ("equity", "holdings", "orders")
+
+# 運行編號的字首。編號本身是內容雜湊,不帶日期——同一組輸入隔年再跑仍然同一個編號。
+RUN_ID_PREFIX: Final[str] = "run-"
+RUN_ID_HASH_LENGTH: Final[int] = 16
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -114,6 +124,59 @@ class ParamSet:
     rebalance_cadence: str
     values: dict[str, str]
     created_at: str
+
+
+@dataclass(frozen=True, slots=True)
+class RunArtifact:
+    """一次運行其中一條序列的落點:parquet 在哪、內容雜湊是什麼、幾多列。
+
+    ``kind`` 三選一:``equity`` 逐日淨值、``holdings`` 逐日持倉、``orders`` 逐筆交易。
+    內容雜湊是「同一輸入得同一結果」的憑據——重錄時對不上即當改寫,拒收。
+    """
+
+    kind: str
+    path: str
+    content_hash: str
+    rows: int
+
+
+@dataclass(frozen=True, slots=True)
+class RunRecord:
+    """一次回測運行的留痕(規格 7.4)。
+
+    運行編號(run id)由「策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本」
+    的內容雜湊而來:同一組輸入永遠得同一個編號,改任何一件即另一次運行。
+
+    ``factors`` 是運行**當時**蓋住的因子版本(D-021 第 9 條)。因子或策略日後
+    出新版,這裡一字不變——只是比對之下查得出它已經過時。
+    """
+
+    run_id: str
+    strategy_name: str
+    strategy_type: str
+    strategy_version_id: int
+    strategy_version_no: int
+    param_set_id: int
+    param_set_name: str
+    param_set_version_no: int
+    rebalance_cadence: str
+    param_values: dict[str, str]
+    period_start: str
+    period_end: str
+    snapshot_id: str
+    engine_name: str
+    engine_version: str
+    factors: tuple[FactorVersion, ...]
+    trading_days: int
+    artifacts: dict[str, RunArtifact]
+    fingerprint: str
+    created_at: str
+
+    def artifact(self, kind: str) -> RunArtifact:
+        try:
+            return self.artifacts[kind]
+        except KeyError as exc:
+            raise NotFound(f"運行 {self.run_id} 沒有 {kind} 序列") from exc
 
 
 @dataclass(frozen=True, slots=True)
@@ -1150,6 +1213,376 @@ class DefinitionStore:
                 if int(hit["n"]) > 0:
                     occurrences.append(f"{table}.{column}({hit['n']} 列)")
         return occurrences
+
+    # ------------------------------------------------------------------
+    # 回測運行留痕(規格 7.4、D-020 第 7 條;KARST-026)
+    # ------------------------------------------------------------------
+
+    def run_fingerprint(
+        self,
+        *,
+        strategy_name: str,
+        param_set_name: str,
+        period_start: date | datetime | str,
+        period_end: date | datetime | str,
+        snapshot_id: str,
+        engine_name: str,
+        engine_version: str,
+        strategy_version_no: int | None = None,
+        param_set_version_no: int | None = None,
+        factor_version_ids: Sequence[int] | None = None,
+    ) -> str:
+        """把一次運行的身份寫成一串**規範化文字**,運行編號就是它的雜湊。
+
+        身份蓋齊五件:策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本。寫的是
+        **內容**(策略名+版本號、參數逐項的值、因子名@版本號)而不是庫內流水號,
+        故此換一個庫重建同一組定義,算出來仍然是同一個運行編號。
+
+        任何一件查不到即當場拋錯——身份不齊寧可沒有編號,不猜。
+        """
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        param_set = self.get_param_set(
+            strategy.name,
+            param_set_name,
+            strategy_version_no=strategy.version_no,
+            set_version_no=param_set_version_no,
+        )
+        snapshot = self.get_snapshot(str(snapshot_id or "").strip())
+
+        start = as_date(period_start, "period_start")
+        end = as_date(period_end, "period_end")
+        if end < start:
+            raise ContractViolation(f"回測期間的結束日 {end} 早於開始日 {start}")
+
+        engine = str(engine_name or "").strip()
+        version = str(engine_version or "").strip()
+        if not engine or not version:
+            raise ContractViolation(
+                "回測運行必須註明引擎名稱與引擎版本;引擎換版即另一次運行,不可留空"
+            )
+
+        if factor_version_ids is None:
+            factors = strategy.factors
+        else:
+            factors = tuple(self._version_by_id(int(fid)) for fid in factor_version_ids)
+        if not factors:
+            raise ContractViolation(
+                f"策略「{strategy.name}」第 {strategy.version_no} 版沒有蓋住任何因子版本"
+            )
+
+        identity = {
+            "engine": {"name": engine, "version": version},
+            "factors": sorted(
+                f"{f.name}{FACTOR_REF_SEPARATOR}{f.version_no}" for f in factors
+            ),
+            "param_set": {
+                "name": param_set.name,
+                "version_no": param_set.version_no,
+                "rebalance_cadence": param_set.rebalance_cadence,
+                "values": dict(sorted(param_set.values.items())),
+            },
+            "period": {"start": start, "end": end},
+            "snapshot_id": snapshot.snapshot_id,
+            "strategy": {
+                "name": strategy.name,
+                "type": strategy.strategy_type,
+                "version_no": strategy.version_no,
+            },
+        }
+        return json.dumps(identity, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+
+    @staticmethod
+    def run_id_for(fingerprint: str) -> str:
+        """由身份文字算出運行編號。落庫之前想先知編號時用。"""
+        digest = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()
+        return f"{RUN_ID_PREFIX}{digest[:RUN_ID_HASH_LENGTH]}"
+
+    def register_run(
+        self,
+        *,
+        strategy_name: str,
+        param_set_name: str,
+        period_start: date | datetime | str,
+        period_end: date | datetime | str,
+        snapshot_id: str,
+        engine_name: str,
+        engine_version: str,
+        artifacts: Sequence[RunArtifact],
+        trading_days: int,
+        strategy_version_no: int | None = None,
+        param_set_version_no: int | None = None,
+        factor_version_ids: Sequence[int] | None = None,
+    ) -> RunRecord:
+        """登記一次回測運行,回傳它的留痕。
+
+        同一組輸入重登記:三條序列的內容雜湊一模一樣即當**同一次運行**,原封不動
+        回舊記錄(與快照登記同制);雜湊對不上即當改寫,拒收——運行不可變
+        (D-020 第 7 條、規格 7.3)。序列本體不經此處,由 ``karst.runs`` 落 parquet。
+        """
+        fingerprint = self.run_fingerprint(
+            strategy_name=strategy_name,
+            param_set_name=param_set_name,
+            period_start=period_start,
+            period_end=period_end,
+            snapshot_id=snapshot_id,
+            engine_name=engine_name,
+            engine_version=engine_version,
+            strategy_version_no=strategy_version_no,
+            param_set_version_no=param_set_version_no,
+            factor_version_ids=factor_version_ids,
+        )
+        run_id = self.run_id_for(fingerprint)
+        checked = self._check_run_artifacts(artifacts, run_id)
+
+        days = int(trading_days)
+        if days <= 0:
+            raise ContractViolation(
+                f"運行 {run_id} 的交易日數是 {days};沒有逐日序列的運行不成留痕"
+            )
+
+        existing = self._conn.execute(
+            "SELECT run_id FROM backtest_run WHERE run_id = ?", (run_id,)
+        ).fetchone()
+        if existing is not None:
+            self._assert_same_run(run_id, checked)
+            return self.get_run(run_id)
+
+        strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+        param_set = self.get_param_set(
+            strategy.name,
+            param_set_name,
+            strategy_version_no=strategy.version_no,
+            set_version_no=param_set_version_no,
+        )
+        if factor_version_ids is None:
+            factor_ids = [f.factor_version_id for f in strategy.factors]
+        else:
+            factor_ids = [int(fid) for fid in factor_version_ids]
+
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO backtest_run (run_id, strategy_version_id, param_set_id,"
+                " period_start, period_end, snapshot_id, engine_name, engine_version,"
+                " fingerprint, trading_days, created_at)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    run_id,
+                    strategy.strategy_version_id,
+                    param_set.param_set_id,
+                    as_date(period_start, "period_start"),
+                    as_date(period_end, "period_end"),
+                    str(snapshot_id).strip(),
+                    str(engine_name).strip(),
+                    str(engine_version).strip(),
+                    fingerprint,
+                    days,
+                    _now(),
+                ),
+            )
+            self._conn.executemany(
+                "INSERT INTO run_artifact (run_id, kind, path, content_hash, rows)"
+                " VALUES (?, ?, ?, ?, ?)",
+                [
+                    (run_id, a.kind, a.path, a.content_hash, a.rows)
+                    for a in checked.values()
+                ],
+            )
+            self._conn.executemany(
+                "INSERT INTO run_factor_ref (run_id, factor_version_id) VALUES (?, ?)",
+                [(run_id, fid) for fid in sorted(set(factor_ids))],
+            )
+        return self.get_run(run_id)
+
+    def get_run(self, run_id: str) -> RunRecord:
+        """按運行編號取回一次運行的留痕。"""
+        key = str(run_id or "").strip()
+        row = self._conn.execute(
+            "SELECT r.run_id, r.strategy_version_id, r.param_set_id, r.period_start,"
+            " r.period_end, r.snapshot_id, r.engine_name, r.engine_version, r.fingerprint,"
+            " r.trading_days, r.created_at, s.name AS strategy_name, s.strategy_type,"
+            " v.version_no AS strategy_version_no, p.name AS param_set_name,"
+            " p.version_no AS param_set_version_no, p.rebalance_cadence"
+            " FROM backtest_run AS r"
+            " JOIN strategy_version AS v ON v.strategy_version_id = r.strategy_version_id"
+            " JOIN strategy AS s ON s.strategy_id = v.strategy_id"
+            " JOIN param_set AS p ON p.param_set_id = r.param_set_id"
+            " WHERE r.run_id = ?",
+            (key,),
+        ).fetchone()
+        if row is None:
+            raise NotFound(f"沒有回測運行 {key}")
+
+        artifact_rows = self._conn.execute(
+            "SELECT kind, path, content_hash, rows FROM run_artifact WHERE run_id = ?"
+            " ORDER BY kind",
+            (key,),
+        ).fetchall()
+        factor_rows = self._conn.execute(
+            "SELECT factor_version_id FROM run_factor_ref WHERE run_id = ?"
+            " ORDER BY factor_version_id",
+            (key,),
+        ).fetchall()
+        value_rows = self._conn.execute(
+            "SELECT param_key, param_value FROM param_value WHERE param_set_id = ?"
+            " ORDER BY param_key",
+            (int(row["param_set_id"]),),
+        ).fetchall()
+
+        return RunRecord(
+            run_id=row["run_id"],
+            strategy_name=row["strategy_name"],
+            strategy_type=row["strategy_type"],
+            strategy_version_id=int(row["strategy_version_id"]),
+            strategy_version_no=int(row["strategy_version_no"]),
+            param_set_id=int(row["param_set_id"]),
+            param_set_name=row["param_set_name"],
+            param_set_version_no=int(row["param_set_version_no"]),
+            rebalance_cadence=row["rebalance_cadence"],
+            param_values={r["param_key"]: r["param_value"] for r in value_rows},
+            period_start=row["period_start"],
+            period_end=row["period_end"],
+            snapshot_id=row["snapshot_id"],
+            engine_name=row["engine_name"],
+            engine_version=row["engine_version"],
+            factors=tuple(
+                self._version_by_id(int(r["factor_version_id"])) for r in factor_rows
+            ),
+            trading_days=int(row["trading_days"]),
+            artifacts={
+                r["kind"]: RunArtifact(
+                    kind=r["kind"],
+                    path=r["path"],
+                    content_hash=r["content_hash"],
+                    rows=int(r["rows"]),
+                )
+                for r in artifact_rows
+            },
+            fingerprint=row["fingerprint"],
+            created_at=row["created_at"],
+        )
+
+    def list_runs(
+        self, strategy_name: str | None = None, *, strategy_version_no: int | None = None
+    ) -> list[RunRecord]:
+        """列出歷次運行,由早到遲。留空策略名即全庫。
+
+        「檢視運行」要切換到歷次任何一次(規格 8.5),這就是那張清單的來源。
+        """
+        if strategy_name is None:
+            rows = self._conn.execute(
+                "SELECT run_id FROM backtest_run ORDER BY created_at, run_id"
+            ).fetchall()
+        elif strategy_version_no is None:
+            rows = self._conn.execute(
+                "SELECT r.run_id FROM backtest_run AS r"
+                " JOIN strategy_version AS v ON v.strategy_version_id = r.strategy_version_id"
+                " JOIN strategy AS s ON s.strategy_id = v.strategy_id"
+                " WHERE s.name = ? ORDER BY r.created_at, r.run_id",
+                ((strategy_name or "").strip(),),
+            ).fetchall()
+        else:
+            strategy = self.get_strategy_version(strategy_name, strategy_version_no)
+            rows = self._conn.execute(
+                "SELECT run_id FROM backtest_run WHERE strategy_version_id = ?"
+                " ORDER BY created_at, run_id",
+                (strategy.strategy_version_id,),
+            ).fetchall()
+        return [self.get_run(r["run_id"]) for r in rows]
+
+    def run_stale_reasons(self, run_id: str) -> tuple[str, ...]:
+        """這次運行有沒有過時,過時在哪。沒有過時就回空。
+
+        過時 = 它蓋住的版本已經不是**最新版**。舊運行內容一字不變、永不自動更新
+        (D-021 第 9 條、規格 7.3);要看新版的成績,請跑新一次運行。
+
+        註:比對的是最新版,不是「現役設定」——現役設定是用戶指定紙上交易跟隨的
+        那一個參數集,由誰指定是另一回事(詞彙表「現役設定」)。
+        """
+        record = self.get_run(run_id)
+        reasons: list[str] = []
+
+        latest_strategy = self.get_strategy_version(record.strategy_name)
+        if latest_strategy.version_no > record.strategy_version_no:
+            reasons.append(
+                f"策略「{record.strategy_name}」已出到第 {latest_strategy.version_no} 版,"
+                f"本運行蓋住的是第 {record.strategy_version_no} 版"
+            )
+
+        latest_param_set = self.get_param_set(
+            record.strategy_name,
+            record.param_set_name,
+            strategy_version_no=record.strategy_version_no,
+        )
+        if latest_param_set.version_no > record.param_set_version_no:
+            reasons.append(
+                f"參數集「{record.param_set_name}」已出到第 {latest_param_set.version_no} 版,"
+                f"本運行蓋住的是第 {record.param_set_version_no} 版"
+            )
+
+        for factor in record.factors:
+            latest_factor = self.get_factor_version(factor.name)
+            if latest_factor.version_no > factor.version_no:
+                reasons.append(
+                    f"因子「{factor.name}」已出到第 {latest_factor.version_no} 版,"
+                    f"本運行蓋住的是第 {factor.version_no} 版"
+                )
+        return tuple(reasons)
+
+    def run_is_stale(self, run_id: str) -> bool:
+        """這次運行是否已經過時(蓋住的版本不再是最新版)。"""
+        return bool(self.run_stale_reasons(run_id))
+
+    @staticmethod
+    def _check_run_artifacts(
+        artifacts: Sequence[RunArtifact], run_id: str
+    ) -> dict[str, RunArtifact]:
+        by_kind: dict[str, RunArtifact] = {}
+        for artifact in artifacts or ():
+            if not isinstance(artifact, RunArtifact):
+                raise ContractViolation(
+                    f"運行序列只收 RunArtifact,收到 {type(artifact).__name__}"
+                )
+            if artifact.kind not in RUN_ARTIFACT_KINDS:
+                raise ContractViolation(
+                    f"運行序列種類只收 {list(RUN_ARTIFACT_KINDS)},收到 {artifact.kind!r}"
+                )
+            if artifact.kind in by_kind:
+                raise ContractViolation(f"運行 {run_id} 的 {artifact.kind} 序列給了兩份")
+            if not str(artifact.path or "").strip():
+                raise ContractViolation(f"運行 {run_id} 的 {artifact.kind} 序列沒有落點")
+            if not str(artifact.content_hash or "").strip():
+                raise ContractViolation(
+                    f"運行 {run_id} 的 {artifact.kind} 序列沒有內容雜湊;"
+                    "沒有雜湊就證不到「同一輸入得同一結果」"
+                )
+            by_kind[artifact.kind] = artifact
+
+        missing = [kind for kind in RUN_ARTIFACT_KINDS if kind not in by_kind]
+        if missing:
+            raise ContractViolation(
+                f"運行 {run_id} 缺序列:{'、'.join(missing)};"
+                "逐日淨值、逐日持倉、逐筆交易三條缺一不可(規格 7.4)"
+            )
+        return by_kind
+
+    def _assert_same_run(self, run_id: str, incoming: Mapping[str, RunArtifact]) -> None:
+        stored = {
+            r["kind"]: r["content_hash"]
+            for r in self._conn.execute(
+                "SELECT kind, content_hash FROM run_artifact WHERE run_id = ?", (run_id,)
+            ).fetchall()
+        }
+        differing = [
+            kind
+            for kind, artifact in incoming.items()
+            if stored.get(kind) != artifact.content_hash
+        ]
+        if differing:
+            raise ImmutabilityViolation(
+                f"運行 {run_id} 已經留痕,但今次的{'、'.join(differing)}序列內容不同;"
+                "運行不可改寫——同一組策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本"
+                "本應算出同一個結果,對不上即代表有一件沒有蓋住,請先查明"
+            )
 
 
 def check_param_set(

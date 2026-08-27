@@ -11,14 +11,18 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 5. ``strategy`` / ``strategy_version`` / ``strategy_factor_ref`` / ``param_set`` /
    ``param_value``                 策略定義、版本鏈、引用因子與參數集(D-020 第 4 條、KARST-022)
 6. ``gateway_write``               寫入者簽章登記:凡經唯一入口寫入的列在此有一筆(KARST-022)
+7. ``backtest_run`` / ``run_artifact`` / ``run_factor_ref``
+                                   回測運行登記、逐日序列檔案落點、運行蓋齊的因子版本
+                                   (D-020 第 7 條、規格 7.4;KARST-026)
 """
 
 from __future__ import annotations
 
 import sqlite3
 
-# 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);舊庫重開即自動補建。
-SCHEMA_VERSION = 2
+# 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);
+# 第 3 版加入回測運行登記三組表(KARST-026)。舊庫重開即自動補建。
+SCHEMA_VERSION = 3
 
 DDL = """
 CREATE TABLE IF NOT EXISTS schema_meta (
@@ -285,6 +289,82 @@ CREATE TRIGGER IF NOT EXISTS trg_gateway_write_no_delete
 BEFORE DELETE ON gateway_write BEGIN
     SELECT RAISE(ABORT, '寫入者簽章不可刪');
 END;
+
+-- ====================================================================
+-- 回測運行留痕(規格 7.4、D-020 第 7 條、D-021 第 9 條;KARST-026)
+-- ====================================================================
+
+-- 回測運行:運行編號 = 「策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本」的內容雜湊。
+-- 同一組輸入永遠得同一個編號;運行一經落庫**一個字都不可改**,要改就是另一次運行。
+-- 逐日淨值、逐日持倉、逐筆交易本體住在 parquet(D-026 第 1 條),本表只記落點與雜湊。
+CREATE TABLE IF NOT EXISTS backtest_run (
+    run_id              TEXT PRIMARY KEY,
+    strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
+    param_set_id        INTEGER NOT NULL REFERENCES param_set(param_set_id),
+    period_start        TEXT NOT NULL,
+    period_end          TEXT NOT NULL,
+    snapshot_id         TEXT NOT NULL REFERENCES data_snapshot(snapshot_id),
+    engine_name         TEXT NOT NULL,
+    engine_version      TEXT NOT NULL,
+    fingerprint         TEXT NOT NULL UNIQUE,
+    trading_days        INTEGER NOT NULL,
+    created_at          TEXT NOT NULL,
+    CHECK (period_end >= period_start),
+    CHECK (trading_days > 0),
+    CHECK (length(trim(engine_name)) > 0 AND length(trim(engine_version)) > 0)
+);
+
+CREATE INDEX IF NOT EXISTS idx_backtest_run_strategy
+    ON backtest_run (strategy_version_id, created_at);
+
+-- 運行的序列檔:一次運行三份 parquet(逐日淨值、逐日持倉、逐筆交易),各記路徑與內容雜湊。
+-- 雜湊是「同一輸入得同一結果」的憑據,亦是擋改寫的憑據——重錄時對不上即拒收。
+CREATE TABLE IF NOT EXISTS run_artifact (
+    run_id       TEXT NOT NULL REFERENCES backtest_run(run_id),
+    kind         TEXT NOT NULL CHECK (kind IN ('equity', 'holdings', 'orders')),
+    path         TEXT NOT NULL,
+    content_hash TEXT NOT NULL,
+    rows         INTEGER NOT NULL CHECK (rows >= 0),
+    PRIMARY KEY (run_id, kind)
+);
+
+-- 運行蓋齊的因子版本(D-021 第 9 條:運行記錄蓋齊所用因子版本)。
+-- 因子或策略日後出新版,本表一字不變——只是比對之下該運行被查得出「過時」。
+CREATE TABLE IF NOT EXISTS run_factor_ref (
+    run_id            TEXT NOT NULL REFERENCES backtest_run(run_id),
+    factor_version_id INTEGER NOT NULL REFERENCES factor_version(factor_version_id),
+    PRIMARY KEY (run_id, factor_version_id)
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_backtest_run_no_update
+BEFORE UPDATE ON backtest_run BEGIN
+    SELECT RAISE(ABORT, '回測運行落庫後不可改,要改就是另一次運行(另一個運行編號)');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_backtest_run_no_delete
+BEFORE DELETE ON backtest_run BEGIN
+    SELECT RAISE(ABORT, '回測運行落庫後不可刪,歷次運行要指得回');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_run_artifact_no_update
+BEFORE UPDATE ON run_artifact BEGIN
+    SELECT RAISE(ABORT, '運行的序列檔落點與雜湊不可改,重跑請出新運行');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_run_artifact_no_delete
+BEFORE DELETE ON run_artifact BEGIN
+    SELECT RAISE(ABORT, '運行的序列檔登記不可刪');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_run_factor_ref_no_update
+BEFORE UPDATE ON run_factor_ref BEGIN
+    SELECT RAISE(ABORT, '運行蓋住的因子版本不可改,舊運行永不自動更新,只標過時');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_run_factor_ref_no_delete
+BEFORE DELETE ON run_factor_ref BEGIN
+    SELECT RAISE(ABORT, '運行蓋住的因子版本不可刪,追溯要指得回');
+END;
 """
 
 
@@ -294,9 +374,11 @@ def connect(path: str) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(DDL)
+    # 舊庫重開時 DDL 會自動補建新表,故版本印記亦要跟上——否則庫身已是新版、
+    # 印記仍寫舊版,下一個人會照印記去猜錶內有什麼表。
     conn.execute(
         "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
-        "ON CONFLICT(key) DO NOTHING",
+        "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
         (str(SCHEMA_VERSION),),
     )
     conn.commit()
