@@ -44,4 +44,7 @@
 | Situational Awareness 基金 | Situational Awareness LP | 名家組合之一,人物判官首個對象與答案紙來源。**不可縮寫為 SA**:與 Seeking Alpha 撞名(2026-08-27 用戶提醒);文件與程式一律寫全名或 `sitaware`,Seeking Alpha 寫 `seekingalpha`。舊文件中的「SA」一律指本基金。 |
 | 實體編號 | entity id | 每個可投資對象(公司、ETF、籃子)一個不變的內部編號;交易代號只是有生效期的屬性,以映射表維護。價格、因子、材料全部掛在實體編號上(D-026;源自舊倉 GOLD 代號回收事故)。 |
 | 數據快照 | data snapshot | 一次拉數凍結成的一批不可變數據,有編號(日期+內容雜湊);運行引用快照編號,同一編號重算一字不差;連同當時宇宙名單一併凍結(D-026)。 |
+| 交易代號 | ticker | 交易所用的股票代號;在 Karst 只是實體編號的一個有生效起訖日的屬性,不是主鍵(D-026)。 |
+| 事件時間 | event time | 一件事實際發生的時間戳(業績期末、成交日),與知情時間並列;每個因子值兩者皆帶,知情時間早過事件時間即前視,入庫拒收(D-021)。 |
+| 產生程序 | generation procedure | 因子定義的一格:這個因子的值是怎樣算出來的(公式、判準書+判官、外部披露一類),有版本;程式名 `procedure`(D-021)。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |

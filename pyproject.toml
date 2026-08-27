@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "karst"
+version = "0.1.0"
+description = "Karst 單一定義庫:因子定義、實體與代號歷史、因子值、數據快照登記"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools]
+packages = ["karst"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
