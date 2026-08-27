@@ -19,6 +19,8 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 9. ``risk_rule`` / ``strategy_risk_ref``
                                    共用風控層三條規則的定義登記與策略引用
                                    (D-013 第 4 條、規格 1.6;KARST-025)
+10. ``data_snapshot_fetch``        數據快照的抓取登記:抓取時間與抓的是哪一段窗口
+                                   (D-026 第 3 條;KARST-034)
 """
 
 from __future__ import annotations
@@ -28,8 +30,9 @@ import sqlite3
 # 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);
 # 第 3 版加入回測運行登記三組表(KARST-026);
 # 第 4 版加入現役設定登記表(KARST-030);
-# 第 5 版加入共用風控層的規則定義表與策略引用表(KARST-025)。舊庫重開即自動補建。
-SCHEMA_VERSION = 5
+# 第 5 版加入共用風控層的規則定義表與策略引用表(KARST-025);
+# 第 6 版加入數據快照的抓取登記附表(KARST-034)。舊庫重開即自動補建。
+SCHEMA_VERSION = 6
 
 DDL = """
 CREATE TABLE IF NOT EXISTS schema_meta (
@@ -458,6 +461,42 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_strategy_risk_ref_no_delete
 BEFORE DELETE ON strategy_risk_ref BEGIN
     SELECT RAISE(ABORT, '策略引用的風控規則落庫後不可刪,改引用請出策略新版');
+END;
+
+-- ====================================================================
+-- 數據快照的抓取登記(D-026 第 3 條;KARST-034)
+-- ====================================================================
+
+-- 一次抓取的隨身資料:幾時抓、抓的是哪一段窗口、抓了多少個實體多少列。
+-- 快照編號本身不含抓取時間(同一批數據重抓要得同一個編號),故這幾格另有落點。
+--
+-- 為什麼另開一張附表,而不是在 data_snapshot 加欄:快照登記一經落庫不可改
+-- (trg_snapshot_no_update),舊庫已有的快照列亦不會憑空多出這幾格值;附表只加不改,
+-- 舊列一個字都不用動。查不到附表那一列 = 那個快照不是經唯一入口凍的,不是資料缺失。
+--
+-- **來源不在本表再寫一次**:它的正本住在 data_snapshot.source(單一定義,無第二影像)。
+-- 要「抓取時間連來源」一次過取,經 karst/store.py 的 list_snapshots() 兩表併讀。
+CREATE TABLE IF NOT EXISTS data_snapshot_fetch (
+    snapshot_id  TEXT PRIMARY KEY REFERENCES data_snapshot(snapshot_id),
+    fetched_at   TEXT NOT NULL,
+    window_start TEXT NOT NULL,
+    window_end   TEXT NOT NULL,
+    entity_count INTEGER NOT NULL CHECK (entity_count >= 0),
+    row_count    INTEGER NOT NULL CHECK (row_count >= 0),
+    trading_days INTEGER NOT NULL CHECK (trading_days >= 0),
+    recorded_at  TEXT NOT NULL,
+    CHECK (window_end >= window_start),
+    CHECK (length(trim(fetched_at)) > 0)
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_snapshot_fetch_no_update
+BEFORE UPDATE ON data_snapshot_fetch BEGIN
+    SELECT RAISE(ABORT, '快照的抓取登記不可改;重抓同一段數據得同一個快照編號,沿用原本那次的抓取時間');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_snapshot_fetch_no_delete
+BEFORE DELETE ON data_snapshot_fetch BEGIN
+    SELECT RAISE(ABORT, '快照的抓取登記不可刪,追溯要指得回');
 END;
 """
 

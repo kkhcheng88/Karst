@@ -220,6 +220,64 @@ class RiskRuleRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class SnapshotFetch:
+    """一個數據快照的抓取登記:幾時抓、抓的是哪一段窗口、抓了幾多(KARST-034)。
+
+    快照編號本身刻意不含抓取時間(同一批數據重抓要得同一個編號),所以
+    「幾時抓的」住在這裡。同一個快照只有一列——重抓得回同一個編號時,
+    沿用**第一次**凍結那刻的抓取時間,不會被後來那次改寫。
+    """
+
+    snapshot_id: str
+    fetched_at: str
+    window_start: str
+    window_end: str
+    entity_count: int
+    row_count: int
+    trading_days: int
+    recorded_at: str
+
+    @property
+    def window(self) -> str:
+        return f"{self.window_start}~{self.window_end}"
+
+
+@dataclass(frozen=True, slots=True)
+class SnapshotListing:
+    """庫內一個數據快照的一覽列:快照登記那一列,連它的抓取登記(如有)。
+
+    ``fetch`` 是 ``None`` 即這個快照不是經唯一入口凍的(例如直接呼叫管線的
+    Python 程式)——那是「無此登記」,不是「資料缺失」。
+    """
+
+    snapshot_id: str
+    source: str
+    taken_on: str
+    content_hash: str
+    path: str | None
+    universe: tuple[str, ...]
+    created_at: str
+    fetch: SnapshotFetch | None
+
+    @property
+    def fetched_at(self) -> str | None:
+        return None if self.fetch is None else self.fetch.fetched_at
+
+    @property
+    def window(self) -> str | None:
+        return None if self.fetch is None else self.fetch.window
+
+    @property
+    def entity_count(self) -> int:
+        """這個快照凍了幾多個實體。
+
+        沒有抓取登記時退回宇宙名單的長度——一個代號一個實體,名單連快照一併
+        凍結(D-026 第 6 條),故數目對得上。
+        """
+        return len(self.universe) if self.fetch is None else self.fetch.entity_count
+
+
+@dataclass(frozen=True, slots=True)
 class DefinitionLocation:
     """一項定義的唯一落點(D-002 第 4 條:單一正本、無第二影像)。"""
 
@@ -1853,6 +1911,97 @@ class DefinitionStore:
         ).fetchall()
         return [_row_to_risk_rule(row) for row in rows]
 
+    def list_strategy_names(self) -> list[str]:
+        """庫內全部策略的名稱,按登記次序(KARST-035:逐套策略列風控引用時用)。"""
+        rows = self._conn.execute("SELECT name FROM strategy ORDER BY strategy_id").fetchall()
+        return [row["name"] for row in rows]
+
+    # ------------------------------------------------------------------
+    # 數據快照的抓取登記(D-026 第 3 條;KARST-034)
+    # ------------------------------------------------------------------
+
+    def record_snapshot_fetch(
+        self,
+        snapshot_id: str,
+        *,
+        fetched_at: str,
+        window_start: date | datetime | str,
+        window_end: date | datetime | str,
+        entity_count: int,
+        row_count: int,
+        trading_days: int,
+    ) -> SnapshotFetch:
+        """記下一次抓取的隨身資料,回傳這個快照的抓取登記。
+
+        同一個快照重覆登記回**原本那一列**(第一次凍結那刻的抓取時間),不覆寫、
+        不多加一列:同一批數據重抓得回同一個編號,而它第一次落地是哪一刻,
+        是一件已經發生的事,不會因為有人再抓一次而改變。
+        """
+        snapshot = self.get_snapshot(snapshot_id)  # 查無此快照即拋 NotFound,不憑空登記
+        existing = self.snapshot_fetch(snapshot.snapshot_id)
+        if existing is not None:
+            return existing
+
+        stamp = str(fetched_at or "").strip()
+        if not stamp:
+            raise ContractViolation("抓取登記必須有抓取時間;不知幾時抓的就不是一次可追溯的抓取")
+        first, last = as_date(window_start, "window_start"), as_date(window_end, "window_end")
+        if last < first:
+            raise ContractViolation(f"窗口起訖倒轉了:{first}~{last}")
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO data_snapshot_fetch (snapshot_id, fetched_at, window_start,"
+                " window_end, entity_count, row_count, trading_days, recorded_at)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    snapshot.snapshot_id,
+                    stamp,
+                    first,
+                    last,
+                    int(entity_count),
+                    int(row_count),
+                    int(trading_days),
+                    _now(),
+                ),
+            )
+        recorded = self.snapshot_fetch(snapshot.snapshot_id)
+        assert recorded is not None  # 剛剛寫入,不會查不到
+        return recorded
+
+    def snapshot_fetch(self, snapshot_id: str) -> SnapshotFetch | None:
+        """這個快照的抓取登記;不是經唯一入口凍的就回 ``None``。"""
+        row = self._conn.execute(
+            "SELECT snapshot_id, fetched_at, window_start, window_end, entity_count,"
+            " row_count, trading_days, recorded_at FROM data_snapshot_fetch"
+            " WHERE snapshot_id = ?",
+            (str(snapshot_id),),
+        ).fetchone()
+        return None if row is None else _row_to_snapshot_fetch(row)
+
+    def list_snapshots(self) -> list[SnapshotListing]:
+        """庫內全部數據快照,新的在前。抓取登記有就併埋,沒有就是 ``None``。"""
+        rows = self._conn.execute(
+            "SELECT s.snapshot_id, s.source, s.taken_on, s.content_hash, s.path, s.universe,"
+            " s.created_at, f.fetched_at, f.window_start, f.window_end, f.entity_count,"
+            " f.row_count, f.trading_days, f.recorded_at"
+            " FROM data_snapshot AS s"
+            " LEFT JOIN data_snapshot_fetch AS f ON f.snapshot_id = s.snapshot_id"
+            " ORDER BY s.taken_on DESC, s.snapshot_id DESC"
+        ).fetchall()
+        return [
+            SnapshotListing(
+                snapshot_id=row["snapshot_id"],
+                source=row["source"],
+                taken_on=row["taken_on"],
+                content_hash=row["content_hash"],
+                path=row["path"],
+                universe=tuple(json.loads(row["universe"])),
+                created_at=row["created_at"],
+                fetch=None if row["fetched_at"] is None else _row_to_snapshot_fetch(row),
+            )
+            for row in rows
+        ]
+
 
 def check_param_set(
     name: str,
@@ -1883,6 +2032,19 @@ SELECT v.factor_version_id, v.factor_id, f.name, f.family, v.version_no, v.paren
 FROM factor_version AS v
 JOIN factor AS f ON f.factor_id = v.factor_id
 """
+
+
+def _row_to_snapshot_fetch(row: sqlite3.Row) -> SnapshotFetch:
+    return SnapshotFetch(
+        snapshot_id=row["snapshot_id"],
+        fetched_at=row["fetched_at"],
+        window_start=row["window_start"],
+        window_end=row["window_end"],
+        entity_count=int(row["entity_count"]),
+        row_count=int(row["row_count"]),
+        trading_days=int(row["trading_days"]),
+        recorded_at=row["recorded_at"],
+    )
 
 
 def _row_to_risk_rule(row: sqlite3.Row) -> RiskRuleRecord:

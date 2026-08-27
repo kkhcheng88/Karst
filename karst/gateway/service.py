@@ -21,7 +21,15 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 
 from ..models import FormulaProcedure, MaterialProcedure, Procedure
-from ..store import DefinitionLocation, DefinitionStore, FactorVersion, ParamSet, StrategyVersion
+from ..store import (
+    ActiveSetup,
+    DefinitionLocation,
+    DefinitionStore,
+    FactorVersion,
+    ParamSet,
+    RiskRuleRecord,
+    StrategyVersion,
+)
 from . import ledger
 
 WRITER_ENV = "KARST_WRITER"
@@ -221,12 +229,128 @@ class Gateway:
         return param_set, self._receipt("參數集", param_set.name, param_set.version_no,
                                         param_set.parent_version_id, param_set.created_at, signed)
 
+    # ------------------------------------------------------------------
+    # 現役設定與共用風控規則(KARST-035)
+    # ------------------------------------------------------------------
+
+    def designate_active_setup(
+        self,
+        strategy_name: str,
+        *,
+        param_set_name: str,
+        strategy_version_no: int | None = None,
+        param_set_version_no: int | None = None,
+        note: str | None = None,
+    ) -> tuple[ActiveSetup, WriteReceipt]:
+        """指定一套策略的現役設定,並為這一筆指定蓋簽章。
+
+        現役設定決定門面八個數字取哪一次運行(規格 7.5),所以它與策略定義同一
+        道門:指定經這裡入庫、留寫入者簽章,``karst verify`` 核對得到。
+        """
+        setup = self._store.set_active_setup(
+            strategy_name,
+            param_set_name,
+            strategy_version_no=strategy_version_no,
+            param_set_version_no=param_set_version_no,
+            note=note,
+        )
+        signed = self._sign_once(("active_setup", (setup.strategy_id, setup.seq_no)))
+        return setup, self._receipt(
+            "現役設定", setup.strategy_name, setup.seq_no, None, setup.designated_at, signed
+        )
+
+    def register_risk_rules(self) -> tuple[tuple[RiskRuleRecord, ...], tuple[str, ...]]:
+        """把共用風控層三條規則的正本登記入庫並蓋簽章,回傳(登記列, 簽章)。
+
+        規則本體(叫什麼、管什麼、參數叫什麼名)的正本住在 ``karst/risk``;
+        入口只是把它入庫,不在此另寫一份定義(D-002 第 4 條)。
+        重覆跑回同一批列,簽章亦照舊那一個,不會多出第二份影像。
+        """
+        from ..risk import register_risk_layer
+
+        rules = tuple(register_risk_layer(self._store))
+        signed = self._sign_once(
+            *[("risk_rule", (rule.risk_rule_id,)) for rule in rules]
+        )
+        return rules, signed
+
+    def attach_risk_rules(
+        self,
+        strategy_name: str,
+        rule_keys: Sequence[str],
+        *,
+        strategy_version_no: int | None = None,
+    ) -> tuple[tuple[RiskRuleRecord, ...], tuple[str, ...]]:
+        """記下某策略版本引用了哪幾條風控規則,並為引用蓋簽章。
+
+        只存編號,不存規則本身(與引用因子同制)。一條都不引用照樣跑得
+        (D-013 第 4 條),故此這道命令不是每套策略都要走一次。
+        """
+        refs = tuple(
+            self._store.attach_risk_rules(
+                strategy_name, rule_keys, strategy_version_no=strategy_version_no
+            )
+        )
+        version = self._store.get_strategy_version(strategy_name, strategy_version_no)
+        signed = self._sign_once(
+            *[
+                ("strategy_risk_ref", (version.strategy_version_id, ref.risk_rule_id))
+                for ref in refs
+            ]
+        )
+        return refs, signed
+
     @staticmethod
     def _ref_rows(version: StrategyVersion) -> list[tuple[str, tuple[object, ...]]]:
         return [
             ("strategy_factor_ref", (version.strategy_version_id, factor.factor_version_id))
             for factor in version.factors
         ]
+
+    # ------------------------------------------------------------------
+    # 數據快照(KARST-034)
+    # ------------------------------------------------------------------
+
+    def take_snapshot(
+        self,
+        *,
+        start: str,
+        end: str,
+        universe: Sequence[object],
+        source: object | None = None,
+        root: str | None = None,
+        taken_on: str | None = None,
+    ) -> tuple[object, object]:
+        """一句話跑完抓取 → 凍結 → 登記,回傳(快照成果單, 抓取登記)。
+
+        管線本身(``karst.data``)一個字都不改:唯一入口只是**呼叫**它,再把
+        「幾時抓、抓的是哪一段窗口」記入抓取登記——快照編號本身不含抓取時間
+        (同一批數據重抓要得同一個編號),所以那幾格另有落點。
+        """
+        from ..data import build_price_snapshot
+
+        snapshot = build_price_snapshot(
+            self._store,
+            start=start,
+            end=end,
+            universe=universe,
+            source=source,
+            root=root,
+            taken_on=taken_on,
+        )
+        fetch = self._store.record_snapshot_fetch(
+            snapshot.snapshot_id,
+            fetched_at=snapshot.fetched_at,
+            window_start=snapshot.window_start,
+            window_end=snapshot.window_end,
+            entity_count=len(snapshot.entity_ids),
+            row_count=snapshot.rows,
+            trading_days=snapshot.trading_days,
+        )
+        return snapshot, fetch
+
+    def list_snapshots(self) -> list:
+        return self._store.list_snapshots()
 
     # ------------------------------------------------------------------
     # 核對與落點
@@ -250,6 +374,16 @@ class Gateway:
             signed.append(f"{table}[{key_text}]")
         return tuple(signed)
 
+    def _sign_once(self, *rows: tuple[str, tuple[object, ...]]) -> tuple[str, ...]:
+        """蓋簽章,但同一列蓋過就算數——給那幾種重覆呼叫回同一批列的登記用。"""
+        signed: list[str] = []
+        for table, primary_key in rows:
+            key_text = ledger.record_write_once(
+                self._conn, self._key, table, primary_key, writer=self._writer
+            )
+            signed.append(f"{table}[{key_text}]")
+        return tuple(signed)
+
     def _receipt(
         self,
         kind: str,
@@ -268,6 +402,61 @@ class Gateway:
             writer=self._writer,
             signed_rows=signed,
         )
+
+
+SOURCE_KINDS: tuple[str, ...] = ("yfinance", "csv")
+
+
+def resolve_universe(tickers: Sequence[str] | None) -> tuple[object, ...]:
+    """把命令列給的代號查回起步宇宙名單上的那一員;留空即整份名單。
+
+    **不猜**:名單上沒有的代號當場拒收。一個代號是公司還是 ETF、顯示名叫什麼,
+    決定了它以 SEC CIK 還是內部代碼為錨(D-026 第 2 條),不是命令列可以憑空填的。
+    """
+    from ..data import STARTER_UNIVERSE
+
+    wanted = [str(ticker).strip().upper() for ticker in (tickers or ()) if str(ticker).strip()]
+    if not wanted:
+        return tuple(STARTER_UNIVERSE)
+
+    known = {member.ticker.upper(): member for member in STARTER_UNIVERSE}
+    members: list[object] = []
+    seen: set[str] = set()
+    for ticker in wanted:
+        if ticker not in known:
+            raise ValueError(
+                f"起步宇宙名單上沒有代號 {ticker};"
+                f"名單現有:{'、'.join(sorted(known))}。"
+                "要加新代號請先在名單登記它是公司還是 ETF——這裡不猜"
+            )
+        if ticker in seen:
+            continue
+        seen.add(ticker)
+        members.append(known[ticker])
+    return tuple(members)
+
+
+def build_source(kind: str | None, *, bars: str | None = None) -> object:
+    """砌一個來源適配器。``yfinance`` 抓真數;``csv`` 由檔案重放同一批數。
+
+    ``csv`` 那條路不是為測試而設的後門——它就是 D-026 第 7 條講的適配器形態:
+    別的來源只要交得出同一套欄位(date、ticker、開高低收量),照樣經同一條管線
+    入同一種快照。離線時它亦令命令列本身驗得到。
+    """
+    name = (kind or "yfinance").strip().lower()
+    if name == "yfinance":
+        from ..data import YFinanceSource
+
+        return YFinanceSource()
+    if name == "csv":
+        import pandas as pd
+
+        from ..data import StaticSource
+
+        if not bars or not str(bars).strip():
+            raise ValueError("來源 csv 要用 --bars 指出日線檔在哪(欄位:date、ticker、開高低收量)")
+        return StaticSource(pd.read_csv(str(bars)), name="csv")
+    raise ValueError(f"未知來源 {kind!r};現有:{'、'.join(SOURCE_KINDS)}")
 
 
 def build_procedure(

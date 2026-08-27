@@ -10,6 +10,16 @@
         --factor "動量·12-1 月" --param-set 現役 --cadence monthly ^
         --set breakout_window=50 --set stop_atr=2.0
 
+    python -m karst.gateway params activate --strategy 趨勢波段 --name 現役 --note 換季調整
+
+    python -m karst.gateway risk register
+    python -m karst.gateway risk refs
+
+    python -m karst.gateway data snapshot --ticker SPY --ticker QQQ ^
+        --start 2024-01-02 --end 2024-01-31
+
+    python -m karst.gateway data list
+
     python -m karst.gateway verify
 
 回傳碼:0 寫得入/核對清白;1 合約拒收或查不到;2 命令用法錯(argparse);
@@ -26,7 +36,14 @@ from typing import TextIO
 
 from ..errors import KarstError
 from ..store import REBALANCE_CADENCES, STRATEGY_TYPES, check_param_set
-from .service import Gateway, build_procedure, default_store_path
+from .service import (
+    SOURCE_KINDS,
+    Gateway,
+    build_procedure,
+    build_source,
+    default_store_path,
+    resolve_universe,
+)
 
 EXIT_OK = 0
 EXIT_REJECTED = 1
@@ -109,6 +126,44 @@ def build_parser() -> argparse.ArgumentParser:
     params_show = params_commands.add_parser("show", help="看某策略版本的參數集")
     params_show.add_argument("--strategy", required=True)
     params_show.add_argument("--name", default=None, help="留空即列出全部參數集")
+    params_activate = params_commands.add_parser(
+        "activate", help="指定某策略的現役設定(釘死參數集的某一版),印出生效序號"
+    )
+    params_activate.add_argument("--strategy", required=True, help="策略名稱,可寫「名稱@版本號」")
+    params_activate.add_argument("--name", required=True, help="參數集名稱")
+    params_activate.add_argument("--set-version", dest="set_version", type=int, default=None,
+                                 help="參數集版本號,留空即最新版")
+    params_activate.add_argument("--note", default=None, help="一句講明為什麼換")
+
+    risk = commands.add_parser("risk", help="共用風控層:三條規則的正本與策略引用")
+    risk_commands = risk.add_subparsers(dest="subcommand", required=True)
+    risk_commands.add_parser(
+        "register", help="把共用風控層三條規則登記入庫(重覆跑回同一批,不會多出第二份)"
+    )
+    risk_commands.add_parser("list", help="列三條共用風控規則")
+    risk_refs = risk_commands.add_parser("refs", help="列各策略引用了哪幾條風控規則")
+    risk_refs.add_argument("--strategy", default=None, help="策略名稱,留空即全部策略")
+    risk_attach = risk_commands.add_parser("attach", help="記下某策略版本引用哪幾條風控規則")
+    risk_attach.add_argument("--strategy", required=True, help="策略名稱,可寫「名稱@版本號」")
+    risk_attach.add_argument("--rule", dest="rules", action="append", default=[],
+                             metavar="規則程式名", help="可重複給,例如 --rule per_trade_risk")
+
+    data = commands.add_parser("data", help="數據快照")
+    data_commands = data.add_subparsers(dest="subcommand", required=True)
+    take = data_commands.add_parser(
+        "snapshot", help="一句命令抓日線、凍成快照、登記編號並印出來"
+    )
+    take.add_argument("--ticker", dest="tickers", action="append", default=[],
+                      help="宇宙代號,可重複給;留空即起步宇宙名單全份")
+    take.add_argument("--start", required=True, help="窗口起(含頭)")
+    take.add_argument("--end", required=True, help="窗口訖(含尾)")
+    take.add_argument("--source", default="yfinance", choices=SOURCE_KINDS,
+                      help="來源適配器:yfinance 抓真數;csv 由檔案重放同一批數")
+    take.add_argument("--bars", default=None, help="來源 csv 時:日線檔路徑")
+    take.add_argument("--root", default=None, help="快取根(預設 data/snapshots)")
+    take.add_argument("--taken-on", dest="taken_on", default=None,
+                      help="快照日期,留空即抓取當日")
+    data_commands.add_parser("list", help="列庫內全部數據快照")
 
     where = commands.add_parser("where", help="講出一項定義的唯一落點,並掃全庫查有沒有第二份影像")
     where.add_argument("--kind", required=True, choices=("factor", "strategy"))
@@ -143,6 +198,10 @@ def _dispatch(args: argparse.Namespace, out: TextIO) -> int:
             return _strategy(args, gateway, out)
         if args.command == "params":
             return _params(args, gateway, out)
+        if args.command == "risk":
+            return _risk(args, gateway, out)
+        if args.command == "data":
+            return _data(args, gateway, out)
         if args.command == "where":
             return _where(args, gateway, out)
         if args.command == "verify":
@@ -287,6 +346,35 @@ def _print_param_set(param_set, out: TextIO) -> None:
 
 def _params(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     name, version_no = _split_strategy_ref(args.strategy)
+    if args.subcommand == "activate":
+        setup, receipt = gateway.designate_active_setup(
+            name,
+            param_set_name=args.name,
+            strategy_version_no=version_no,
+            param_set_version_no=args.set_version,
+            note=args.note,
+        )
+        print(f"已指定策略「{setup.strategy_name}」的現役設定", file=out)
+        print(f"  生效序號  第 {setup.seq_no} 次指定(seq_no={setup.seq_no})", file=out)
+        print(
+            f"  參數集    {setup.param_set_name} 第 {setup.param_set_version_no} 版"
+            f"(param_set_id={setup.param_set_id});換倉節奏 "
+            f"{setup.rebalance_cadence}({REBALANCE_CADENCES[setup.rebalance_cadence]})",
+            file=out,
+        )
+        print(
+            f"  策略版本  第 {setup.strategy_version_no} 版"
+            f"(strategy_version_id={setup.strategy_version_id})",
+            file=out,
+        )
+        print(f"  指定時間  {setup.designated_at}", file=out)
+        if setup.note:
+            print(f"  註記      {setup.note}", file=out)
+        print(f"  寫入者    {receipt.writer}", file=out)
+        print(f"  已蓋簽章  {'、'.join(receipt.signed_rows)}", file=out)
+        print("  門面八個數字自此取這一個設定那次運行;舊指定一字不變,換過什麼查得回。", file=out)
+        return EXIT_OK
+
     if args.subcommand == "show":
         if args.name:
             sets = [gateway.store.get_param_set(name, args.name, strategy_version_no=version_no)]
@@ -310,6 +398,115 @@ def _params(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     print(f"  落庫時間  {param_set.created_at}", file=out)
     print(f"  寫入者    {receipt.writer}", file=out)
     print(f"  已蓋簽章  {'、'.join(receipt.signed_rows)}", file=out)
+    return EXIT_OK
+
+
+def _risk(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    if args.subcommand == "register":
+        rules, signed = gateway.register_risk_rules()
+        print(f"已登記共用風控規則 {len(rules)} 條(全平台一個正本)", file=out)
+        for rule in rules:
+            _print_risk_rule(rule, out)
+        print(f"  寫入者    {gateway.writer}", file=out)
+        print(f"  已蓋簽章  {'、'.join(signed)}", file=out)
+        return EXIT_OK
+
+    if args.subcommand == "list":
+        rules = gateway.store.list_risk_rules()
+        if not rules:
+            print("庫內未登記共用風控規則;請先跑 karst risk register。", file=out)
+            return EXIT_OK
+        print(f"共用風控規則(共 {len(rules)} 條;定義只有一份,取值住在各策略的參數集)", file=out)
+        for rule in rules:
+            _print_risk_rule(rule, out)
+        return EXIT_OK
+
+    if args.subcommand == "attach":
+        name, version_no = _split_strategy_ref(args.strategy)
+        refs, signed = gateway.attach_risk_rules(name, args.rules, strategy_version_no=version_no)
+        print(f"策略「{name}」現引用 {len(refs)} 條共用風控規則", file=out)
+        for rule in refs:
+            print(f"  引用      {rule.name}({rule.key});取值住在參數集的 {rule.param_key}", file=out)
+        print(f"  寫入者    {gateway.writer}", file=out)
+        print(f"  已蓋簽章  {'、'.join(signed) if signed else '(無引用,無列可簽)'}", file=out)
+        return EXIT_OK
+
+    # refs:列各策略引用了哪幾條
+    names = [args.strategy] if args.strategy else gateway.store.list_strategy_names()
+    if not names:
+        print("庫內一套策略都沒有。", file=out)
+        return EXIT_OK
+    print("各策略引用的共用風控規則", file=out)
+    for name in names:
+        strategy_name, version_no = _split_strategy_ref(name)
+        version = gateway.store.get_strategy_version(strategy_name, version_no)
+        rules = gateway.store.strategy_risk_rules(version.name, strategy_version_no=version.version_no)
+        if rules:
+            body = "、".join(f"{rule.name}({rule.key})" for rule in rules)
+            print(f"  {version.name} 第 {version.version_no} 版  引用 {len(rules)} 條:{body}", file=out)
+        else:
+            print(
+                f"  {version.name} 第 {version.version_no} 版  一條都沒有引用"
+                "(不引用不是錯,這套策略照樣跑得)",
+                file=out,
+            )
+    return EXIT_OK
+
+
+def _print_risk_rule(rule, out: TextIO) -> None:
+    print(f"  {rule.name}({rule.key})", file=out)
+    print(f"            取值參數 {rule.param_key};{rule.description}", file=out)
+
+
+def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    if args.subcommand == "list":
+        return _data_list(gateway, out)
+
+    universe = resolve_universe(args.tickers)
+    source = build_source(args.source, bars=args.bars)
+    snapshot, fetch = gateway.take_snapshot(
+        start=args.start,
+        end=args.end,
+        universe=universe,
+        source=source,
+        root=args.root,
+        taken_on=args.taken_on,
+    )
+    print(f"已凍結數據快照 {snapshot.snapshot_id}", file=out)
+    print(f"  來源      {snapshot.source}", file=out)
+    print(f"  抓取時間  {fetch.fetched_at}", file=out)
+    print(f"  快照日期  {snapshot.taken_on}", file=out)
+    print(
+        f"  窗口      {fetch.window}({fetch.trading_days} 個交易日、{fetch.row_count} 列日線)",
+        file=out,
+    )
+    print(
+        f"  宇宙      {'、'.join(snapshot.universe)}({fetch.entity_count} 個實體)",
+        file=out,
+    )
+    print(f"  落點      {snapshot.path}", file=out)
+    print(f"  內容雜湊  {snapshot.content_hash}", file=out)
+    if getattr(snapshot, "reused", False):
+        print("  沿用      這批數據早已凍結,沿用原本那個編號,快取根沒有多一份副本", file=out)
+    for note in snapshot.notes:
+        print(f"  註記      {note}", file=out)
+    return EXIT_OK
+
+
+def _data_list(gateway: Gateway, out: TextIO) -> int:
+    listings = gateway.list_snapshots()
+    if not listings:
+        print("庫內一個數據快照都沒有。", file=out)
+        return EXIT_OK
+    print(f"庫內數據快照(共 {len(listings)} 個):", file=out)
+    for listing in listings:
+        window = listing.window or f"{listing.taken_on}(未經入口凍結,窗口不詳)"
+        fetched = listing.fetched_at or "—(不是經唯一入口凍的,無抓取登記)"
+        print(
+            f"  {listing.snapshot_id}  {window}  {listing.entity_count} 個實體"
+            f"  抓於 {fetched}  來源 {listing.source}",
+            file=out,
+        )
     return EXIT_OK
 
 
