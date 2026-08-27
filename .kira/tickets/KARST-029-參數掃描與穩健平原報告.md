@@ -7,8 +7,8 @@ risk: low
 model: opus
 fits: 一程
 approvalRequired: false
-dependsOn: [KARST-028]
-claimedBy: null
+dependsOn: [KARST-026, KARST-030, KARST-031]
+claimedBy: KARST-029-sweep
 epic: V1 建置
 deliverable: KARST-D02
 ---
@@ -27,3 +27,5 @@ deliverable: KARST-D02
 ## 結果
 
 ## 留言
+
+· 2026-08-28 fable-main 前置改為 KARST-026/030/031,不再等趨勢波段(028):用戶 2026-08-28 明令首個掃描對象是因子混合策略的權重矩陣,原話「I think 因子混合策略 is not just 25% each ... with matrix-like of running, I would like to know what is the best driver to move between 4 to get the best portfolio just with the 4 ... I don't mind overfitting at first」。本票做通用掃描能力並以四隻因子 ETF 的權重格(單純形格,步長由參數指定)為首個實跑;趨勢波段掃描待 028 落地後由同一套能力跑。「驅動器」(按訊號在四者之間動態移權)另開票 KARST-036。
