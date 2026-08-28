@@ -17,6 +17,9 @@ dependencies = [
     "numpy>=2.4.6",
     # 行情與交易日曆(D-026 第 5 條;只用已調整價 auto_adjust)
     "yfinance>=0.2.40",
+    # 掃描報告的熱力圖與投影圖(karst.sweep.report)。掃描表與判讀表照樣落 CSV,
+    # 所以沒有它數字一個不缺——但穩健平原要人一眼看得出,靠的正是那幾張圖。
+    "matplotlib>=3.8",
 ]
 
 [project.optional-dependencies]

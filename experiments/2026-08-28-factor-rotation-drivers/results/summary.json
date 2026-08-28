@@ -1,0 +1,1621 @@
+{
+  "snapshot_id": "2026-08-27-91a5d51339d9",
+  "period": [
+    "2015-01-02",
+    "2026-08-26"
+  ],
+  "trading_days": 2929,
+  "warmup_bars": 252,
+  "warmup_weights": {
+    "weight_quality": 0.25,
+    "weight_value": 0.25,
+    "weight_momentum": 0.25,
+    "weight_low_vol": 0.25
+  },
+  "cadences": [
+    "monthly",
+    "quarterly"
+  ],
+  "objective": "annual_excess:SPY",
+  "thresholds": {
+    "min_trades": 30,
+    "lonely_peak_margin": 0.005,
+    "plateau_quantile": 0.9
+  },
+  "external_data": [],
+  "market_ticker": "SPY",
+  "drivers": {
+    "factor_momentum": {
+      "title": "因子動量排名",
+      "grid": "笛卡兒積格 lookback_months(5) × mode(2) × cadence(2),共 20 格;相鄰 = 每個軸最多移一步且不可全部不動(3 維);無序軸(mode)同軸任意兩個取值皆相鄰",
+      "cells": 20,
+      "executed": 20,
+      "reused": 0,
+      "seconds": 9.63,
+      "counts": {
+        "plateau": 0,
+        "lonely_peak": 2,
+        "invalid": 0
+      },
+      "plateau_threshold": 0.021877192501012003,
+      "best_single": {
+        "params": {
+          "lookback_months": 3,
+          "mode": "winner",
+          "cadence": "monthly"
+        },
+        "value": 0.03243911322594206,
+        "neighbourhood_mean": -0.0016679352260407694,
+        "neighbour_mean": -0.004768575994402845,
+        "lift": 0.034107048451982834,
+        "verdict": "孤峰",
+        "trades": 144,
+        "annual_return": 0.1709587981080618,
+        "total_return": 5.257318735015201,
+        "max_drawdown": -0.3408229096214357,
+        "sortino": 0.982472551538215,
+        "turnover": 3.943041314834404,
+        "win_rate": 0.6354166666666666,
+        "profit_loss_ratio": 2.121313956588131,
+        "average_holding_days": 108.92708333333333,
+        "annual_excess": {
+          "QQQ": -0.01871086883887907,
+          "SPY": 0.03243911322594206
+        },
+        "run_id": "run-e2056ff3857a10bf"
+      },
+      "best_neighbourhood": {
+        "params": {
+          "lookback_months": 6,
+          "mode": "rank",
+          "cadence": "monthly"
+        },
+        "value": -0.0008408073581578357,
+        "neighbourhood_mean": 0.00637020304622458,
+        "neighbour_mean": 0.007025749446622981,
+        "lift": -0.007211010404382416,
+        "verdict": "普通",
+        "trades": 560,
+        "annual_return": 0.1376788775239619,
+        "total_return": 3.4760559131211597,
+        "max_drawdown": -0.3515400430250457,
+        "sortino": 0.797538955134452,
+        "turnover": 1.1677188307703896,
+        "win_rate": 0.8195488721804511,
+        "profit_loss_ratio": 1.1362028625463498,
+        "average_holding_days": 215.35714285714286,
+        "annual_excess": {
+          "QQQ": -0.05199078942297897,
+          "SPY": -0.0008408073581578357
+        },
+        "run_id": "run-3e44e2f10f1cc5f5"
+      },
+      "top5": [
+        {
+          "params": {
+            "lookback_months": 3,
+            "mode": "winner",
+            "cadence": "monthly"
+          },
+          "value": 0.03243911322594206,
+          "neighbourhood_mean": -0.0016679352260407694,
+          "neighbour_mean": -0.004768575994402845,
+          "lift": 0.034107048451982834,
+          "verdict": "孤峰",
+          "trades": 144,
+          "annual_return": 0.1709587981080618,
+          "total_return": 5.257318735015201,
+          "max_drawdown": -0.3408229096214357,
+          "sortino": 0.982472551538215,
+          "turnover": 3.943041314834404,
+          "win_rate": 0.6354166666666666,
+          "profit_loss_ratio": 2.121313956588131,
+          "average_holding_days": 108.92708333333333,
+          "annual_excess": {
+            "QQQ": -0.01871086883887907,
+            "SPY": 0.03243911322594206
+          },
+          "run_id": "run-e2056ff3857a10bf"
+        },
+        {
+          "params": {
+            "lookback_months": 9,
+            "mode": "winner",
+            "cadence": "monthly"
+          },
+          "value": 0.03014922198433001,
+          "neighbourhood_mean": 0.0034308583192905195,
+          "neighbour_mean": 0.0010019161679232932,
+          "lift": 0.02671836366503949,
+          "verdict": "孤峰",
+          "trades": 96,
+          "annual_return": 0.16866890686644975,
+          "total_return": 5.11660788514022,
+          "max_drawdown": -0.3408229096214357,
+          "sortino": 0.9726765479994122,
+          "turnover": 1.8170115073932045,
+          "win_rate": 0.6111111111111112,
+          "profit_loss_ratio": 2.49357357689891,
+          "average_holding_days": 155.09722222222223,
+          "annual_excess": {
+            "QQQ": -0.02100076008049112,
+            "SPY": 0.03014922198433001
+          },
+          "run_id": "run-41a9d3742f31a235"
+        },
+        {
+          "params": {
+            "lookback_months": 12,
+            "mode": "winner",
+            "cadence": "monthly"
+          },
+          "value": 0.020958078113976653,
+          "neighbourhood_mean": 0.005503073113208551,
+          "neighbour_mean": 0.003295215255955965,
+          "lift": 0.015455005000768102,
+          "verdict": "普通",
+          "trades": 90,
+          "annual_return": 0.1594777629960964,
+          "total_return": 4.580436414833647,
+          "max_drawdown": -0.3408229096214356,
+          "sortino": 0.9017484881618619,
+          "turnover": 1.466177224251266,
+          "win_rate": 0.6086956521739131,
+          "profit_loss_ratio": 10.17271873578229,
+          "average_holding_days": 144.18840579710144,
+          "annual_excess": {
+            "QQQ": -0.03019190395084448,
+            "SPY": 0.020958078113976653
+          },
+          "run_id": "run-687088bf67095d2f"
+        },
+        {
+          "params": {
+            "lookback_months": 6,
+            "mode": "winner",
+            "cadence": "monthly"
+          },
+          "value": 0.01949756866200114,
+          "neighbourhood_mean": 0.00637020304622458,
+          "neighbour_mean": 0.005176806172063075,
+          "lift": 0.01312736561577656,
+          "verdict": "普通",
+          "trades": 124,
+          "annual_return": 0.15801725354412088,
+          "total_return": 4.499307046408696,
+          "max_drawdown": -0.34209904958610726,
+          "sortino": 0.9070725573807615,
+          "turnover": 3.176343817466347,
+          "win_rate": 0.5697674418604651,
+          "profit_loss_ratio": 1.8288484220536618,
+          "average_holding_days": 126.43023255813954,
+          "annual_excess": {
+            "QQQ": -0.03165241340281999,
+            "SPY": 0.01949756866200114
+          },
+          "run_id": "run-1857bcad9b6af6a0"
+        },
+        {
+          "params": {
+            "lookback_months": 3,
+            "mode": "winner",
+            "cadence": "quarterly"
+          },
+          "value": 0.01703906622886686,
+          "neighbourhood_mean": -0.0016679352260407694,
+          "neighbour_mean": -0.003368571721941463,
+          "lift": 0.01870700145490763,
+          "verdict": "普通",
+          "trades": 74,
+          "annual_return": 0.1555587511109866,
+          "total_return": 4.36517134680062,
+          "max_drawdown": -0.39470518808213484,
+          "sortino": 0.8364474313029573,
+          "turnover": 2.35216546720325,
+          "win_rate": 0.7111111111111111,
+          "profit_loss_ratio": 1.6292767156521353,
+          "average_holding_days": 146.0888888888889,
+          "annual_excess": {
+            "QQQ": -0.03411091583595427,
+            "SPY": 0.01703906622886686
+          },
+          "run_id": "run-fa98c4f178ad3b4c"
+        }
+      ],
+      "max_drawdown_axis": {
+        "shallowest": {
+          "params": {
+            "lookback_months": 12,
+            "mode": "winner",
+            "cadence": "quarterly"
+          },
+          "value": -0.34056724459487453,
+          "neighbourhood_mean": -0.3428425209463632,
+          "neighbour_mean": -0.3431675604251473,
+          "lift": 0.0022752763514886643,
+          "verdict": "普通",
+          "trades": 48,
+          "annual_return": 0.13683402397954603,
+          "total_return": 3.4375864534579677,
+          "max_drawdown": -0.34056724459487453,
+          "sortino": 0.7314860138059716,
+          "turnover": 1.1538871998425835,
+          "win_rate": 0.75,
+          "profit_loss_ratio": 1.8161144126150102,
+          "average_holding_days": 205.53125,
+          "annual_excess": {
+            "QQQ": -0.05283564296739485,
+            "SPY": -0.0016856609025737157
+          },
+          "run_id": "run-b1f19a0946fff24a"
+        },
+        "counts": {
+          "plateau": 0,
+          "lonely_peak": 0,
+          "invalid": 0
+        },
+        "report": "factor_momentum\\報告-最大回撤.md"
+      },
+      "report": "factor_momentum\\報告.md",
+      "charts": [
+        "factor_momentum\\projection-lookback-months-mode.png",
+        "factor_momentum\\projection-lookback-months-cadence.png",
+        "factor_momentum\\projection-mode-cadence.png",
+        "factor_momentum\\drawdown-lookback-months-mode.png",
+        "factor_momentum\\drawdown-lookback-months-cadence.png",
+        "factor_momentum\\drawdown-mode-cadence.png"
+      ]
+    },
+    "relative_strength": {
+      "title": "相對強弱對 SPY",
+      "grid": "笛卡兒積格 lookback_months(5) × fallback(2) × cadence(2),共 20 格;相鄰 = 每個軸最多移一步且不可全部不動(3 維);無序軸(fallback)同軸任意兩個取值皆相鄰",
+      "cells": 20,
+      "executed": 20,
+      "reused": 0,
+      "seconds": 8.12,
+      "counts": {
+        "plateau": 0,
+        "lonely_peak": 1,
+        "invalid": 0
+      },
+      "plateau_threshold": 0.02903473381887223,
+      "best_single": {
+        "params": {
+          "lookback_months": 6,
+          "fallback": "cash",
+          "cadence": "monthly"
+        },
+        "value": 0.04037328967352294,
+        "neighbourhood_mean": 0.0128211892251196,
+        "neighbour_mean": 0.010316452820719297,
+        "lift": 0.02755210044840334,
+        "verdict": "孤峰",
+        "trades": 275,
+        "annual_return": 0.17889297455564268,
+        "total_return": 5.768060309555619,
+        "max_drawdown": -0.21139346218326038,
+        "sortino": 1.2381616769630448,
+        "turnover": 3.227083568524782,
+        "win_rate": 0.7589285714285714,
+        "profit_loss_ratio": 1.5932339921556613,
+        "average_holding_days": 100.70089285714286,
+        "annual_excess": {
+          "QQQ": -0.010776692391298193,
+          "SPY": 0.04037328967352294
+        },
+        "run_id": "run-6d9d318722bb82d1"
+      },
+      "best_neighbourhood": {
+        "params": {
+          "lookback_months": 6,
+          "fallback": "cash",
+          "cadence": "monthly"
+        },
+        "value": 0.04037328967352294,
+        "neighbourhood_mean": 0.0128211892251196,
+        "neighbour_mean": 0.010316452820719297,
+        "lift": 0.02755210044840334,
+        "verdict": "孤峰",
+        "trades": 275,
+        "annual_return": 0.17889297455564268,
+        "total_return": 5.768060309555619,
+        "max_drawdown": -0.21139346218326038,
+        "sortino": 1.2381616769630448,
+        "turnover": 3.227083568524782,
+        "win_rate": 0.7589285714285714,
+        "profit_loss_ratio": 1.5932339921556613,
+        "average_holding_days": 100.70089285714286,
+        "annual_excess": {
+          "QQQ": -0.010776692391298193,
+          "SPY": 0.04037328967352294
+        },
+        "run_id": "run-6d9d318722bb82d1"
+      },
+      "top5": [
+        {
+          "params": {
+            "lookback_months": 6,
+            "fallback": "cash",
+            "cadence": "monthly"
+          },
+          "value": 0.04037328967352294,
+          "neighbourhood_mean": 0.0128211892251196,
+          "neighbour_mean": 0.010316452820719297,
+          "lift": 0.02755210044840334,
+          "verdict": "孤峰",
+          "trades": 275,
+          "annual_return": 0.17889297455564268,
+          "total_return": 5.768060309555619,
+          "max_drawdown": -0.21139346218326038,
+          "sortino": 1.2381616769630448,
+          "turnover": 3.227083568524782,
+          "win_rate": 0.7589285714285714,
+          "profit_loss_ratio": 1.5932339921556613,
+          "average_holding_days": 100.70089285714286,
+          "annual_excess": {
+            "QQQ": -0.010776692391298193,
+            "SPY": 0.04037328967352294
+          },
+          "run_id": "run-6d9d318722bb82d1"
+        },
+        {
+          "params": {
+            "lookback_months": 9,
+            "fallback": "cash",
+            "cadence": "monthly"
+          },
+          "value": 0.03130109754288979,
+          "neighbourhood_mean": 0.008215277522124994,
+          "neighbour_mean": 0.006116566611146376,
+          "lift": 0.023085820020764793,
+          "verdict": "普通",
+          "trades": 257,
+          "annual_return": 0.16982078242500953,
+          "total_return": 5.187023543073969,
+          "max_drawdown": -0.33910183690425144,
+          "sortino": 1.0133999941812815,
+          "turnover": 2.340958641882857,
+          "win_rate": 0.7272727272727273,
+          "profit_loss_ratio": 3.0088029790303064,
+          "average_holding_days": 127.75909090909092,
+          "annual_excess": {
+            "QQQ": -0.019848884521931343,
+            "SPY": 0.03130109754288979
+          },
+          "run_id": "run-c976fccde0e65c92"
+        },
+        {
+          "params": {
+            "lookback_months": 3,
+            "fallback": "equal",
+            "cadence": "monthly"
+          },
+          "value": 0.02878291562731472,
+          "neighbourhood_mean": 0.0016522655519751923,
+          "neighbour_mean": -0.0008141571821465829,
+          "lift": 0.02713065007533953,
+          "verdict": "普通",
+          "trades": 353,
+          "annual_return": 0.16730260050943446,
+          "total_return": 5.034033821488515,
+          "max_drawdown": -0.33530178243853803,
+          "sortino": 1.0065282095793846,
+          "turnover": 3.533597529498788,
+          "win_rate": 0.7659574468085106,
+          "profit_loss_ratio": 1.4949474134389893,
+          "average_holding_days": 88.60992907801419,
+          "annual_excess": {
+            "QQQ": -0.02236706643750641,
+            "SPY": 0.02878291562731472
+          },
+          "run_id": "run-31608427bec2ef83"
+        },
+        {
+          "params": {
+            "lookback_months": 9,
+            "fallback": "cash",
+            "cadence": "quarterly"
+          },
+          "value": 0.02413401589567754,
+          "neighbourhood_mean": 0.008215277522124994,
+          "neighbour_mean": 0.0067681194881656715,
+          "lift": 0.015918738373552545,
+          "verdict": "普通",
+          "trades": 104,
+          "annual_return": 0.16265370077779728,
+          "total_return": 4.760644334271118,
+          "max_drawdown": -0.34056724459487453,
+          "sortino": 0.9782055199363517,
+          "turnover": 1.4429666258175613,
+          "win_rate": 0.759493670886076,
+          "profit_loss_ratio": 4.35333639200451,
+          "average_holding_days": 159.0126582278481,
+          "annual_excess": {
+            "QQQ": -0.02701596616914359,
+            "SPY": 0.02413401589567754
+          },
+          "run_id": "run-e0685486e09a4781"
+        },
+        {
+          "params": {
+            "lookback_months": 3,
+            "fallback": "cash",
+            "cadence": "monthly"
+          },
+          "value": 0.017814025651809784,
+          "neighbourhood_mean": 0.0016522655519751923,
+          "neighbour_mean": 0.00018301463380841133,
+          "lift": 0.016161760099834593,
+          "verdict": "普通",
+          "trades": 316,
+          "annual_return": 0.15633371053392953,
+          "total_return": 4.407126764566918,
+          "max_drawdown": -0.33530178243853836,
+          "sortino": 0.9352907050842129,
+          "turnover": 3.4089403448121427,
+          "win_rate": 0.756,
+          "profit_loss_ratio": 1.4891510082946484,
+          "average_holding_days": 87.684,
+          "annual_excess": {
+            "QQQ": -0.03333595641301135,
+            "SPY": 0.017814025651809784
+          },
+          "run_id": "run-4c52e2911ca0cc16"
+        }
+      ],
+      "max_drawdown_axis": {
+        "shallowest": {
+          "params": {
+            "lookback_months": 6,
+            "fallback": "cash",
+            "cadence": "monthly"
+          },
+          "value": -0.21139346218326038,
+          "neighbourhood_mean": -0.33838256410811174,
+          "neighbour_mean": -0.34992702791946184,
+          "lift": 0.12698910192485136,
+          "verdict": "孤峰",
+          "trades": 275,
+          "annual_return": 0.17889297455564268,
+          "total_return": 5.768060309555619,
+          "max_drawdown": -0.21139346218326038,
+          "sortino": 1.2381616769630448,
+          "turnover": 3.227083568524782,
+          "win_rate": 0.7589285714285714,
+          "profit_loss_ratio": 1.5932339921556613,
+          "average_holding_days": 100.70089285714286,
+          "annual_excess": {
+            "QQQ": -0.010776692391298193,
+            "SPY": 0.04037328967352294
+          },
+          "run_id": "run-6d9d318722bb82d1"
+        },
+        "counts": {
+          "plateau": 0,
+          "lonely_peak": 1,
+          "invalid": 0
+        },
+        "report": "relative_strength\\報告-最大回撤.md"
+      },
+      "report": "relative_strength\\報告.md",
+      "charts": [
+        "relative_strength\\projection-lookback-months-fallback.png",
+        "relative_strength\\projection-lookback-months-cadence.png",
+        "relative_strength\\projection-fallback-cadence.png",
+        "relative_strength\\drawdown-lookback-months-fallback.png",
+        "relative_strength\\drawdown-lookback-months-cadence.png",
+        "relative_strength\\drawdown-fallback-cadence.png"
+      ]
+    },
+    "inverse_volatility": {
+      "title": "逆波幅",
+      "grid": "笛卡兒積格 lookback_days(4) × power(2) × cadence(2),共 16 格;相鄰 = 每個軸最多移一步且不可全部不動(3 維)",
+      "cells": 16,
+      "executed": 16,
+      "reused": 0,
+      "seconds": 6.79,
+      "counts": {
+        "plateau": 0,
+        "lonely_peak": 0,
+        "invalid": 0
+      },
+      "plateau_threshold": -0.009495701422178038,
+      "best_single": {
+        "params": {
+          "lookback_days": 252,
+          "power": 1.0,
+          "cadence": "quarterly"
+        },
+        "value": -0.00853850059901995,
+        "neighbourhood_mean": -0.01232880107237852,
+        "neighbour_mean": -0.012870272568572603,
+        "lift": 0.003790300473358571,
+        "verdict": "普通",
+        "trades": 188,
+        "annual_return": 0.1299811842830998,
+        "total_return": 3.1365372435426178,
+        "max_drawdown": -0.3465673774078236,
+        "sortino": 0.761878147248179,
+        "turnover": 0.12809614759368337,
+        "win_rate": 0.9658119658119658,
+        "profit_loss_ratio": 47.87132942029419,
+        "average_holding_days": 1418.6239316239316,
+        "annual_excess": {
+          "QQQ": -0.05968848266384108,
+          "SPY": -0.00853850059901995
+        },
+        "run_id": "run-368f9549a14f8f27"
+      },
+      "best_neighbourhood": {
+        "params": {
+          "lookback_days": 252,
+          "power": 1.0,
+          "cadence": "monthly"
+        },
+        "value": -0.009580541426059241,
+        "neighbourhood_mean": -0.01232880107237852,
+        "neighbour_mean": -0.012721409593281274,
+        "lift": 0.0027482596463192788,
+        "verdict": "普通",
+        "trades": 560,
+        "annual_return": 0.1289391434560605,
+        "total_return": 3.0924314505278607,
+        "max_drawdown": -0.34730238224646337,
+        "sortino": 0.7543851016441628,
+        "turnover": 0.1518117271656045,
+        "win_rate": 0.9673024523160763,
+        "profit_loss_ratio": 36.49027868827873,
+        "average_holding_days": 1364.384196185286,
+        "annual_excess": {
+          "QQQ": -0.06073052349088037,
+          "SPY": -0.009580541426059241
+        },
+        "run_id": "run-ef909e6a5f21d7dc"
+      },
+      "top5": [
+        {
+          "params": {
+            "lookback_days": 252,
+            "power": 1.0,
+            "cadence": "quarterly"
+          },
+          "value": -0.00853850059901995,
+          "neighbourhood_mean": -0.01232880107237852,
+          "neighbour_mean": -0.012870272568572603,
+          "lift": 0.003790300473358571,
+          "verdict": "普通",
+          "trades": 188,
+          "annual_return": 0.1299811842830998,
+          "total_return": 3.1365372435426178,
+          "max_drawdown": -0.3465673774078236,
+          "sortino": 0.761878147248179,
+          "turnover": 0.12809614759368337,
+          "win_rate": 0.9658119658119658,
+          "profit_loss_ratio": 47.87132942029419,
+          "average_holding_days": 1418.6239316239316,
+          "annual_excess": {
+            "QQQ": -0.05968848266384108,
+            "SPY": -0.00853850059901995
+          },
+          "run_id": "run-368f9549a14f8f27"
+        },
+        {
+          "params": {
+            "lookback_days": 21,
+            "power": 1.0,
+            "cadence": "quarterly"
+          },
+          "value": -0.009410861418296834,
+          "neighbourhood_mean": -0.012519074847016642,
+          "neighbour_mean": -0.012963105336833758,
+          "lift": 0.003108213428719808,
+          "verdict": "普通",
+          "trades": 188,
+          "annual_return": 0.1291088234638229,
+          "total_return": 3.099583964173391,
+          "max_drawdown": -0.3450344877498348,
+          "sortino": 0.7599064465009642,
+          "turnover": 0.2961395328553816,
+          "win_rate": 0.975,
+          "profit_loss_ratio": 10.248679647586385,
+          "average_holding_days": 870.53125,
+          "annual_excess": {
+            "QQQ": -0.060560843483117965,
+            "SPY": -0.009410861418296834
+          },
+          "run_id": "run-8a4729cf248cd3cf"
+        },
+        {
+          "params": {
+            "lookback_days": 252,
+            "power": 1.0,
+            "cadence": "monthly"
+          },
+          "value": -0.009580541426059241,
+          "neighbourhood_mean": -0.01232880107237852,
+          "neighbour_mean": -0.012721409593281274,
+          "lift": 0.0027482596463192788,
+          "verdict": "普通",
+          "trades": 560,
+          "annual_return": 0.1289391434560605,
+          "total_return": 3.0924314505278607,
+          "max_drawdown": -0.34730238224646337,
+          "sortino": 0.7543851016441628,
+          "turnover": 0.1518117271656045,
+          "win_rate": 0.9673024523160763,
+          "profit_loss_ratio": 36.49027868827873,
+          "average_holding_days": 1364.384196185286,
+          "annual_excess": {
+            "QQQ": -0.06073052349088037,
+            "SPY": -0.009580541426059241
+          },
+          "run_id": "run-ef909e6a5f21d7dc"
+        },
+        {
+          "params": {
+            "lookback_days": 21,
+            "power": 1.0,
+            "cadence": "monthly"
+          },
+          "value": -0.010254957537898068,
+          "neighbourhood_mean": -0.012519074847016642,
+          "neighbour_mean": -0.012842520176890724,
+          "lift": 0.002264117309118574,
+          "verdict": "普通",
+          "trades": 560,
+          "annual_return": 0.12826472734422167,
+          "total_return": 3.064115425534638,
+          "max_drawdown": -0.34837588765297134,
+          "sortino": 0.7540095020075513,
+          "turnover": 0.6324766912706408,
+          "win_rate": 0.9054820415879017,
+          "profit_loss_ratio": 2.425929765492787,
+          "average_holding_days": 404.04158790170135,
+          "annual_excess": {
+            "QQQ": -0.0614049396027192,
+            "SPY": -0.010254957537898068
+          },
+          "run_id": "run-530344a1391c8d26"
+        },
+        {
+          "params": {
+            "lookback_days": 63,
+            "power": 1.0,
+            "cadence": "monthly"
+          },
+          "value": -0.01053017570121062,
+          "neighbourhood_mean": -0.013103717246053359,
+          "neighbour_mean": -0.01333767556831179,
+          "lift": 0.002573541544842739,
+          "verdict": "普通",
+          "trades": 560,
+          "annual_return": 0.12798950918090912,
+          "total_return": 3.052611654112072,
+          "max_drawdown": -0.34771401956047054,
+          "sortino": 0.7492931285643897,
+          "turnover": 0.29773064302580066,
+          "win_rate": 0.9678111587982833,
+          "profit_loss_ratio": 10.519551148395061,
+          "average_holding_days": 861.9420600858369,
+          "annual_excess": {
+            "QQQ": -0.06168015776603175,
+            "SPY": -0.01053017570121062
+          },
+          "run_id": "run-2b79ef2d467b21f5"
+        }
+      ],
+      "max_drawdown_axis": {
+        "shallowest": {
+          "params": {
+            "lookback_days": 21,
+            "power": 2.0,
+            "cadence": "quarterly"
+          },
+          "value": -0.3415759000033356,
+          "neighbourhood_mean": -0.3455658688491924,
+          "neighbour_mean": -0.3461358643986005,
+          "lift": 0.003989968845856784,
+          "verdict": "普通",
+          "trades": 188,
+          "annual_return": 0.12511418961314513,
+          "total_return": 2.934193854000181,
+          "max_drawdown": -0.3415759000033356,
+          "sortino": 0.7437204623484791,
+          "turnover": 0.5036516316129341,
+          "win_rate": 0.9248554913294798,
+          "profit_loss_ratio": 3.104526000220007,
+          "average_holding_days": 496.97109826589593,
+          "annual_excess": {
+            "QQQ": -0.06455547733379574,
+            "SPY": -0.01340549526897461
+          },
+          "run_id": "run-00a03926945e34b6"
+        },
+        "counts": {
+          "plateau": 0,
+          "lonely_peak": 0,
+          "invalid": 0
+        },
+        "report": "inverse_volatility\\報告-最大回撤.md"
+      },
+      "report": "inverse_volatility\\報告.md",
+      "charts": [
+        "inverse_volatility\\projection-lookback-days-power.png",
+        "inverse_volatility\\projection-lookback-days-cadence.png",
+        "inverse_volatility\\projection-power-cadence.png",
+        "inverse_volatility\\drawdown-lookback-days-power.png",
+        "inverse_volatility\\drawdown-lookback-days-cadence.png",
+        "inverse_volatility\\drawdown-power-cadence.png"
+      ]
+    },
+    "trend_switch": {
+      "title": "大市趨勢開關",
+      "grid": "笛卡兒積格 ma_days(4) × tilt(3) × cadence(2),共 24 格;相鄰 = 每個軸最多移一步且不可全部不動(3 維)",
+      "cells": 24,
+      "executed": 12,
+      "reused": 12,
+      "seconds": 5.58,
+      "counts": {
+        "plateau": 0,
+        "lonely_peak": 2,
+        "invalid": 0
+      },
+      "plateau_threshold": -0.012872102237679607,
+      "best_single": {
+        "params": {
+          "ma_days": 50,
+          "tilt": 0.5,
+          "cadence": "monthly"
+        },
+        "value": -0.01055250223084614,
+        "neighbourhood_mean": -0.01851919580885983,
+        "neighbour_mean": -0.019657294891433214,
+        "lift": 0.00796669357801369,
+        "verdict": "孤峰",
+        "trades": 560,
+        "annual_return": 0.1279671826512736,
+        "total_return": 3.0516797396693285,
+        "max_drawdown": -0.34454377577516615,
+        "sortino": 0.7197704985851253,
+        "turnover": 1.275523437351695,
+        "win_rate": 0.8777777777777778,
+        "profit_loss_ratio": 0.7930192387112547,
+        "average_holding_days": 676.6444444444444,
+        "annual_excess": {
+          "QQQ": -0.06170248429566727,
+          "SPY": -0.01055250223084614
+        },
+        "run_id": "run-155fadcfc362a78b"
+      },
+      "best_neighbourhood": {
+        "params": {
+          "ma_days": 50,
+          "tilt": 0.5,
+          "cadence": "monthly"
+        },
+        "value": -0.01055250223084614,
+        "neighbourhood_mean": -0.01851919580885983,
+        "neighbour_mean": -0.019657294891433214,
+        "lift": 0.00796669357801369,
+        "verdict": "孤峰",
+        "trades": 560,
+        "annual_return": 0.1279671826512736,
+        "total_return": 3.0516797396693285,
+        "max_drawdown": -0.34454377577516615,
+        "sortino": 0.7197704985851253,
+        "turnover": 1.275523437351695,
+        "win_rate": 0.8777777777777778,
+        "profit_loss_ratio": 0.7930192387112547,
+        "average_holding_days": 676.6444444444444,
+        "annual_excess": {
+          "QQQ": -0.06170248429566727,
+          "SPY": -0.01055250223084614
+        },
+        "run_id": "run-155fadcfc362a78b"
+      },
+      "top5": [
+        {
+          "params": {
+            "ma_days": 50,
+            "tilt": 0.5,
+            "cadence": "monthly"
+          },
+          "value": -0.01055250223084614,
+          "neighbourhood_mean": -0.01851919580885983,
+          "neighbour_mean": -0.019657294891433214,
+          "lift": 0.00796669357801369,
+          "verdict": "孤峰",
+          "trades": 560,
+          "annual_return": 0.1279671826512736,
+          "total_return": 3.0516797396693285,
+          "max_drawdown": -0.34454377577516615,
+          "sortino": 0.7197704985851253,
+          "turnover": 1.275523437351695,
+          "win_rate": 0.8777777777777778,
+          "profit_loss_ratio": 0.7930192387112547,
+          "average_holding_days": 676.6444444444444,
+          "annual_excess": {
+            "QQQ": -0.06170248429566727,
+            "SPY": -0.01055250223084614
+          },
+          "run_id": "run-155fadcfc362a78b"
+        },
+        {
+          "params": {
+            "ma_days": 150,
+            "tilt": 0.5,
+            "cadence": "monthly"
+          },
+          "value": -0.01094745839687672,
+          "neighbourhood_mean": -0.01978616424712169,
+          "neighbour_mean": -0.02058968296078032,
+          "lift": 0.00883870585024497,
+          "verdict": "孤峰",
+          "trades": 560,
+          "annual_return": 0.12757222648524302,
+          "total_return": 3.0352265227023016,
+          "max_drawdown": -0.34454377577516615,
+          "sortino": 0.70295580821667,
+          "turnover": 0.6468254699113127,
+          "win_rate": 0.9066666666666666,
+          "profit_loss_ratio": 1.112376921235793,
+          "average_holding_days": 803.5866666666667,
+          "annual_excess": {
+            "QQQ": -0.06209744046169785,
+            "SPY": -0.01094745839687672
+          },
+          "run_id": "run-6b1b9496cbbdbefa"
+        },
+        {
+          "params": {
+            "ma_days": 200,
+            "tilt": 0.5,
+            "cadence": "monthly"
+          },
+          "value": -0.012481996823898278,
+          "neighbourhood_mean": -0.019317632963685716,
+          "neighbour_mean": -0.02029415241222678,
+          "lift": 0.006835636139787438,
+          "verdict": "普通",
+          "trades": 560,
+          "annual_return": 0.12603768805822146,
+          "total_return": 2.971878062643523,
+          "max_drawdown": -0.34454377577516604,
+          "sortino": 0.6891704045006656,
+          "turnover": 0.7338456605936564,
+          "win_rate": 0.8911111111111111,
+          "profit_loss_ratio": 1.1412264644157173,
+          "average_holding_days": 769.4222222222222,
+          "annual_excess": {
+            "QQQ": -0.06363197888871941,
+            "SPY": -0.012481996823898278
+          },
+          "run_id": "run-a0832754eb7b7cc8"
+        },
+        {
+          "params": {
+            "ma_days": 100,
+            "tilt": 0.5,
+            "cadence": "monthly"
+          },
+          "value": -0.01378234820316937,
+          "neighbourhood_mean": -0.018594245359393264,
+          "neighbour_mean": -0.01903169055541362,
+          "lift": 0.004811897156223894,
+          "verdict": "普通",
+          "trades": 560,
+          "annual_return": 0.12473733667895037,
+          "total_return": 2.918910123283752,
+          "max_drawdown": -0.3445437757751657,
+          "sortino": 0.6832384447516661,
+          "turnover": 0.9455879882317655,
+          "win_rate": 0.8933333333333333,
+          "profit_loss_ratio": 0.7442258599604258,
+          "average_holding_days": 705.2533333333333,
+          "annual_excess": {
+            "QQQ": -0.0649323302679905,
+            "SPY": -0.01378234820316937
+          },
+          "run_id": "run-034a0964668da785"
+        },
+        {
+          "params": {
+            "ma_days": 50,
+            "tilt": 0.75,
+            "cadence": "monthly"
+          },
+          "value": -0.014596884438757618,
+          "neighbourhood_mean": -0.022853776879103265,
+          "neighbour_mean": -0.02360440346458923,
+          "lift": 0.008256892440345647,
+          "verdict": "普通",
+          "trades": 560,
+          "annual_return": 0.12392280044336212,
+          "total_return": 2.886060842436313,
+          "max_drawdown": -0.33913564233760596,
+          "sortino": 0.6633309164737405,
+          "turnover": 2.458692296602355,
+          "win_rate": 0.8836206896551724,
+          "profit_loss_ratio": 0.5181352631177616,
+          "average_holding_days": 677.989224137931,
+          "annual_excess": {
+            "QQQ": -0.06574686650357875,
+            "SPY": -0.014596884438757618
+          },
+          "run_id": "run-8c4844b01d642b00"
+        }
+      ],
+      "max_drawdown_axis": {
+        "shallowest": {
+          "params": {
+            "ma_days": 150,
+            "tilt": 1.0,
+            "cadence": "monthly"
+          },
+          "value": -0.3337250904100628,
+          "neighbourhood_mean": -0.33931396912269385,
+          "neighbour_mean": -0.33982204900566026,
+          "lift": 0.005588878712631029,
+          "verdict": "孤峰",
+          "trades": 90,
+          "annual_return": 0.11807393834396152,
+          "total_return": 2.65747470781261,
+          "max_drawdown": -0.3337250904100628,
+          "sortino": 0.5548689955990499,
+          "turnover": 1.6645965067658028,
+          "win_rate": 0.6231884057971014,
+          "profit_loss_ratio": 3.1751317510261154,
+          "average_holding_days": 148.5072463768116,
+          "annual_excess": {
+            "QQQ": -0.07159572860297936,
+            "SPY": -0.020445746538158227
+          },
+          "run_id": "run-66a774cdefa98e77"
+        },
+        "counts": {
+          "plateau": 0,
+          "lonely_peak": 2,
+          "invalid": 0
+        },
+        "report": "trend_switch\\報告-最大回撤.md"
+      },
+      "report": "trend_switch\\報告.md",
+      "charts": [
+        "trend_switch\\projection-ma-days-tilt.png",
+        "trend_switch\\projection-ma-days-cadence.png",
+        "trend_switch\\projection-tilt-cadence.png",
+        "trend_switch\\drawdown-ma-days-tilt.png",
+        "trend_switch\\drawdown-ma-days-cadence.png",
+        "trend_switch\\drawdown-tilt-cadence.png"
+      ]
+    }
+  },
+  "scoreboard": [
+    {
+      "名稱": "因子動量排名·最優格",
+      "類別": "驅動器",
+      "參數": "lookback_months=3、mode=winner、cadence=monthly",
+      "annual_excess:SPY": 0.0324391132,
+      "total_return": 5.257318735,
+      "annual_return": 0.1709587981,
+      "max_drawdown": -0.3408229096,
+      "win_rate": 0.6354166667,
+      "profit_loss_ratio": 2.1213139566,
+      "sortino": 0.9824725515,
+      "average_holding_days": 108.9270833333,
+      "turnover": 3.9430413148,
+      "annual_excess_QQQ": -0.0187108688,
+      "annual_excess_SPY": 0.0324391132,
+      "裁決": "孤峰",
+      "鄰域平均": -0.0016679352,
+      "成交筆數": 144,
+      "對「固定權重·動能95價值5(quarterly)」的差距": 0.0203642614,
+      "對「固定權重·各佔25%(quarterly)」的差距": 0.0390658049,
+      "run_id": "run-e2056ff3857a10bf",
+      "備註": "因子動量排名"
+    },
+    {
+      "名稱": "因子動量排名·鄰域平均最高",
+      "類別": "驅動器",
+      "參數": "lookback_months=6、mode=rank、cadence=monthly",
+      "annual_excess:SPY": -0.0008408074,
+      "total_return": 3.4760559131,
+      "annual_return": 0.1376788775,
+      "max_drawdown": -0.351540043,
+      "win_rate": 0.8195488722,
+      "profit_loss_ratio": 1.1362028625,
+      "sortino": 0.7975389551,
+      "average_holding_days": 215.3571428571,
+      "turnover": 1.1677188308,
+      "annual_excess_QQQ": -0.0519907894,
+      "annual_excess_SPY": -0.0008408074,
+      "裁決": "普通",
+      "鄰域平均": 0.006370203,
+      "成交筆數": 560,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -0.0129156592,
+      "對「固定權重·各佔25%(quarterly)」的差距": 0.0057858843,
+      "run_id": "run-3e44e2f10f1cc5f5",
+      "備註": "穩健平原的中心"
+    },
+    {
+      "名稱": "相對強弱對 SPY·最優格",
+      "類別": "驅動器",
+      "參數": "lookback_months=6、fallback=cash、cadence=monthly",
+      "annual_excess:SPY": 0.0403732897,
+      "total_return": 5.7680603096,
+      "annual_return": 0.1788929746,
+      "max_drawdown": -0.2113934622,
+      "win_rate": 0.7589285714,
+      "profit_loss_ratio": 1.5932339922,
+      "sortino": 1.238161677,
+      "average_holding_days": 100.7008928571,
+      "turnover": 3.2270835685,
+      "annual_excess_QQQ": -0.0107766924,
+      "annual_excess_SPY": 0.0403732897,
+      "裁決": "孤峰",
+      "鄰域平均": 0.0128211892,
+      "成交筆數": 275,
+      "對「固定權重·動能95價值5(quarterly)」的差距": 0.0282984379,
+      "對「固定權重·各佔25%(quarterly)」的差距": 0.0469999813,
+      "run_id": "run-6d9d318722bb82d1",
+      "備註": "相對強弱對大市"
+    },
+    {
+      "名稱": "逆波幅·最優格",
+      "類別": "驅動器",
+      "參數": "lookback_days=252、power=1、cadence=quarterly",
+      "annual_excess:SPY": -0.0085385006,
+      "total_return": 3.1365372435,
+      "annual_return": 0.1299811843,
+      "max_drawdown": -0.3465673774,
+      "win_rate": 0.9658119658,
+      "profit_loss_ratio": 47.8713294203,
+      "sortino": 0.7618781472,
+      "average_holding_days": 1418.6239316239,
+      "turnover": 0.1280961476,
+      "annual_excess_QQQ": -0.0596884827,
+      "annual_excess_SPY": -0.0085385006,
+      "裁決": "普通",
+      "鄰域平均": -0.0123288011,
+      "成交筆數": 188,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -0.0206133524,
+      "對「固定權重·各佔25%(quarterly)」的差距": -0.001911809,
+      "run_id": "run-368f9549a14f8f27",
+      "備註": "逆波幅"
+    },
+    {
+      "名稱": "逆波幅·鄰域平均最高",
+      "類別": "驅動器",
+      "參數": "lookback_days=252、power=1、cadence=monthly",
+      "annual_excess:SPY": -0.0095805414,
+      "total_return": 3.0924314505,
+      "annual_return": 0.1289391435,
+      "max_drawdown": -0.3473023822,
+      "win_rate": 0.9673024523,
+      "profit_loss_ratio": 36.4902786883,
+      "sortino": 0.7543851016,
+      "average_holding_days": 1364.3841961853,
+      "turnover": 0.1518117272,
+      "annual_excess_QQQ": -0.0607305235,
+      "annual_excess_SPY": -0.0095805414,
+      "裁決": "普通",
+      "鄰域平均": -0.0123288011,
+      "成交筆數": 560,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -0.0216553932,
+      "對「固定權重·各佔25%(quarterly)」的差距": -0.0029538498,
+      "run_id": "run-ef909e6a5f21d7dc",
+      "備註": "穩健平原的中心"
+    },
+    {
+      "名稱": "大市趨勢開關·最優格",
+      "類別": "驅動器",
+      "參數": "ma_days=50、tilt=0.5、cadence=monthly",
+      "annual_excess:SPY": -0.0105525022,
+      "total_return": 3.0516797397,
+      "annual_return": 0.1279671827,
+      "max_drawdown": -0.3445437758,
+      "win_rate": 0.8777777778,
+      "profit_loss_ratio": 0.7930192387,
+      "sortino": 0.7197704986,
+      "average_holding_days": 676.6444444444,
+      "turnover": 1.2755234374,
+      "annual_excess_QQQ": -0.0617024843,
+      "annual_excess_SPY": -0.0105525022,
+      "裁決": "孤峰",
+      "鄰域平均": -0.0185191958,
+      "成交筆數": 560,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -0.022627354,
+      "對「固定權重·各佔25%(quarterly)」的差距": -0.0039258106,
+      "run_id": "run-155fadcfc362a78b",
+      "備註": "大市趨勢開關"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(monthly)",
+      "類別": "對照",
+      "參數": "weight_quality=0、weight_value=0.05、weight_momentum=0.95、weight_low_vol=0、cadence=monthly",
+      "annual_excess:SPY": 0.0120541541,
+      "total_return": 4.1023285372,
+      "annual_return": 0.150573839,
+      "max_drawdown": -0.3431859148,
+      "win_rate": 0.9783783784,
+      "profit_loss_ratio": 29.6435287126,
+      "sortino": 0.7464004084,
+      "average_holding_days": 1271.7243243243,
+      "turnover": 0.0372259962,
+      "annual_excess_QQQ": -0.0390958279,
+      "annual_excess_SPY": 0.0120541541,
+      "裁決": "不在掃描格上",
+      "鄰域平均": null,
+      "成交筆數": 280,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -2.06977e-05,
+      "對「固定權重·各佔25%(quarterly)」的差距": 0.0186808458,
+      "run_id": "run-496f5fac69c3bf01",
+      "備註": "KARST-029 固定權重"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(quarterly)",
+      "類別": "對照",
+      "參數": "weight_quality=0、weight_value=0.05、weight_momentum=0.95、weight_low_vol=0、cadence=quarterly",
+      "annual_excess:SPY": 0.0120748518,
+      "total_return": 4.1033951024,
+      "annual_return": 0.1505945367,
+      "max_drawdown": -0.342986946,
+      "win_rate": 1.0,
+      "profit_loss_ratio": null,
+      "sortino": 0.7466880616,
+      "average_holding_days": 1609.0892857143,
+      "turnover": 0.028723756,
+      "annual_excess_QQQ": -0.0390751303,
+      "annual_excess_SPY": 0.0120748518,
+      "裁決": "不在掃描格上",
+      "鄰域平均": null,
+      "成交筆數": 94,
+      "對「固定權重·動能95價值5(quarterly)」的差距": 0.0,
+      "對「固定權重·各佔25%(quarterly)」的差距": 0.0187015434,
+      "run_id": "run-6e68b8aed4e4b8f1",
+      "備註": "KARST-029 固定權重"
+    },
+    {
+      "名稱": "固定權重·各佔25%(monthly)",
+      "類別": "對照",
+      "參數": "weight_quality=0.25、weight_value=0.25、weight_momentum=0.25、weight_low_vol=0.25、cadence=monthly",
+      "annual_excess:SPY": -0.0071525863,
+      "total_return": 3.1958711181,
+      "annual_return": 0.1313670986,
+      "max_drawdown": -0.3499494735,
+      "win_rate": 0.9706840391,
+      "profit_loss_ratio": 86.7041906302,
+      "sortino": 0.754555751,
+      "average_holding_days": 1529.2084690554,
+      "turnover": 0.1127099607,
+      "annual_excess_QQQ": -0.0583025684,
+      "annual_excess_SPY": -0.0071525863,
+      "裁決": "不在掃描格上",
+      "鄰域平均": null,
+      "成交筆數": 560,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -0.0192274381,
+      "對「固定權重·各佔25%(quarterly)」的差距": -0.0005258947,
+      "run_id": "run-bc650a4f67fceb9f",
+      "備註": "KARST-029 固定權重"
+    },
+    {
+      "名稱": "固定權重·各佔25%(quarterly)",
+      "類別": "對照",
+      "參數": "weight_quality=0.25、weight_value=0.25、weight_momentum=0.25、weight_low_vol=0.25、cadence=quarterly",
+      "annual_excess:SPY": -0.0066266916,
+      "total_return": 3.2185885908,
+      "annual_return": 0.1318929932,
+      "max_drawdown": -0.3492926443,
+      "win_rate": 0.978021978,
+      "profit_loss_ratio": 400.3370144167,
+      "sortino": 0.7584157352,
+      "average_holding_days": 1457.4835164835,
+      "turnover": 0.0772234535,
+      "annual_excess_QQQ": -0.0577766737,
+      "annual_excess_SPY": -0.0066266916,
+      "裁決": "不在掃描格上",
+      "鄰域平均": null,
+      "成交筆數": 188,
+      "對「固定權重·動能95價值5(quarterly)」的差距": -0.0187015434,
+      "對「固定權重·各佔25%(quarterly)」的差距": 0.0,
+      "run_id": "run-5110658680fb21c8",
+      "備註": "KARST-029 固定權重"
+    }
+  ],
+  "segments": [
+    {
+      "名稱": "因子動量排名·最優格",
+      "類別": "驅動器",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.140214152,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0241993707,
+      "最大回撤": -0.1593668608,
+      "run_id": "run-e2056ff3857a10bf"
+    },
+    {
+      "名稱": "因子動量排名·最優格",
+      "類別": "驅動器",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0771137082,
+      "SPY年化": 0.0729506068,
+      "年化超額": 0.0041631013,
+      "最大回撤": -0.3408229096,
+      "run_id": "run-e2056ff3857a10bf"
+    },
+    {
+      "名稱": "因子動量排名·最優格",
+      "類別": "驅動器",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.3017824439,
+      "SPY年化": 0.2276039326,
+      "年化超額": 0.0741785113,
+      "最大回撤": -0.1969655675,
+      "run_id": "run-e2056ff3857a10bf"
+    },
+    {
+      "名稱": "因子動量排名·鄰域平均最高",
+      "類別": "驅動器",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1238762608,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0078614795,
+      "最大回撤": -0.1868411472,
+      "run_id": "run-3e44e2f10f1cc5f5"
+    },
+    {
+      "名稱": "因子動量排名·鄰域平均最高",
+      "類別": "驅動器",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0582241504,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.0147264564,
+      "最大回撤": -0.351540043,
+      "run_id": "run-3e44e2f10f1cc5f5"
+    },
+    {
+      "名稱": "因子動量排名·鄰域平均最高",
+      "類別": "驅動器",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2289674559,
+      "SPY年化": 0.2276039326,
+      "年化超額": 0.0013635233,
+      "最大回撤": -0.167513477,
+      "run_id": "run-3e44e2f10f1cc5f5"
+    },
+    {
+      "名稱": "相對強弱對 SPY·最優格",
+      "類別": "驅動器",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1216865345,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0056717532,
+      "最大回撤": -0.1784784598,
+      "run_id": "run-6d9d318722bb82d1"
+    },
+    {
+      "名稱": "相對強弱對 SPY·最優格",
+      "類別": "驅動器",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.1976686478,
+      "SPY年化": 0.0729506068,
+      "年化超額": 0.1247180409,
+      "最大回撤": -0.1854888746,
+      "run_id": "run-6d9d318722bb82d1"
+    },
+    {
+      "名稱": "相對強弱對 SPY·最優格",
+      "類別": "驅動器",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2465782625,
+      "SPY年化": 0.2276039326,
+      "年化超額": 0.0189743299,
+      "最大回撤": -0.2113934622,
+      "run_id": "run-6d9d318722bb82d1"
+    },
+    {
+      "名稱": "逆波幅·最優格",
+      "類別": "驅動器",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1211046974,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0050899161,
+      "最大回撤": -0.185517464,
+      "run_id": "run-368f9549a14f8f27"
+    },
+    {
+      "名稱": "逆波幅·最優格",
+      "類別": "驅動器",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0576652241,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.0152853827,
+      "最大回撤": -0.3465673774,
+      "run_id": "run-368f9549a14f8f27"
+    },
+    {
+      "名稱": "逆波幅·最優格",
+      "類別": "驅動器",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2066008204,
+      "SPY年化": 0.2276039326,
+      "年化超額": -0.0210031123,
+      "最大回撤": -0.1496766759,
+      "run_id": "run-368f9549a14f8f27"
+    },
+    {
+      "名稱": "逆波幅·鄰域平均最高",
+      "類別": "驅動器",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1211430617,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0051282804,
+      "最大回撤": -0.1857123627,
+      "run_id": "run-ef909e6a5f21d7dc"
+    },
+    {
+      "名稱": "逆波幅·鄰域平均最高",
+      "類別": "驅動器",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0575728039,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.015377803,
+      "最大回撤": -0.3473023822,
+      "run_id": "run-ef909e6a5f21d7dc"
+    },
+    {
+      "名稱": "逆波幅·鄰域平均最高",
+      "類別": "驅動器",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2031109761,
+      "SPY年化": 0.2276039326,
+      "年化超額": -0.0244929565,
+      "最大回撤": -0.150396742,
+      "run_id": "run-ef909e6a5f21d7dc"
+    },
+    {
+      "名稱": "大市趨勢開關·最優格",
+      "類別": "驅動器",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1314997409,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0154849596,
+      "最大回撤": -0.1867882329,
+      "run_id": "run-155fadcfc362a78b"
+    },
+    {
+      "名稱": "大市趨勢開關·最優格",
+      "類別": "驅動器",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0439180952,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.0290325117,
+      "最大回撤": -0.3445437758,
+      "run_id": "run-155fadcfc362a78b"
+    },
+    {
+      "名稱": "大市趨勢開關·最優格",
+      "類別": "驅動器",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.1976668617,
+      "SPY年化": 0.2276039326,
+      "年化超額": -0.0299370709,
+      "最大回撤": -0.1516639299,
+      "run_id": "run-155fadcfc362a78b"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(monthly)",
+      "類別": "對照",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1440991648,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0280843835,
+      "最大回撤": -0.2209027697,
+      "run_id": "run-496f5fac69c3bf01"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(monthly)",
+      "類別": "對照",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0615762259,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.011374381,
+      "最大回撤": -0.3431859148,
+      "run_id": "run-496f5fac69c3bf01"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(monthly)",
+      "類別": "對照",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2436882904,
+      "SPY年化": 0.2276039326,
+      "年化超額": 0.0160843578,
+      "最大回撤": -0.2079675731,
+      "run_id": "run-496f5fac69c3bf01"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(quarterly)",
+      "類別": "對照",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.144015146,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0280003647,
+      "最大回撤": -0.2209529555,
+      "run_id": "run-6e68b8aed4e4b8f1"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(quarterly)",
+      "類別": "對照",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0617630198,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.011187587,
+      "最大回撤": -0.342986946,
+      "run_id": "run-6e68b8aed4e4b8f1"
+    },
+    {
+      "名稱": "固定權重·動能95價值5(quarterly)",
+      "類別": "對照",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2437016908,
+      "SPY年化": 0.2276039326,
+      "年化超額": 0.0160977582,
+      "最大回撤": -0.2079853083,
+      "run_id": "run-6e68b8aed4e4b8f1"
+    },
+    {
+      "名稱": "固定權重·各佔25%(monthly)",
+      "類別": "對照",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.1220517082,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0060369269,
+      "最大回撤": -0.1917338905,
+      "run_id": "run-bc650a4f67fceb9f"
+    },
+    {
+      "名稱": "固定權重·各佔25%(monthly)",
+      "類別": "對照",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0520190362,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.0209315707,
+      "最大回撤": -0.3499494735,
+      "run_id": "run-bc650a4f67fceb9f"
+    },
+    {
+      "名稱": "固定權重·各佔25%(monthly)",
+      "類別": "對照",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.2153937221,
+      "SPY年化": 0.2276039326,
+      "年化超額": -0.0122102106,
+      "最大回撤": -0.1622601509,
+      "run_id": "run-bc650a4f67fceb9f"
+    },
+    {
+      "名稱": "固定權重·各佔25%(quarterly)",
+      "類別": "對照",
+      "段": "2015–2019",
+      "起": "2015-01-02",
+      "訖": "2019-12-31",
+      "交易日": 1258,
+      "年化": 0.121914518,
+      "SPY年化": 0.1160147813,
+      "年化超額": 0.0058997367,
+      "最大回撤": -0.1912833376,
+      "run_id": "run-5110658680fb21c8"
+    },
+    {
+      "名稱": "固定權重·各佔25%(quarterly)",
+      "類別": "對照",
+      "段": "2020–2022",
+      "起": "2020-01-02",
+      "訖": "2022-12-30",
+      "交易日": 756,
+      "年化": 0.0523873283,
+      "SPY年化": 0.0729506068,
+      "年化超額": -0.0205632785,
+      "最大回撤": -0.3492926443,
+      "run_id": "run-5110658680fb21c8"
+    },
+    {
+      "名稱": "固定權重·各佔25%(quarterly)",
+      "類別": "對照",
+      "段": "2023–2026",
+      "起": "2023-01-03",
+      "訖": "2026-08-26",
+      "交易日": 915,
+      "年化": 0.217050331,
+      "SPY年化": 0.2276039326,
+      "年化超額": -0.0105536017,
+      "最大回撤": -0.1621430235,
+      "run_id": "run-5110658680fb21c8"
+    }
+  ],
+  "baselines": [
+    "固定權重·動能95價值5(quarterly)",
+    "固定權重·各佔25%(quarterly)"
+  ]
+}
