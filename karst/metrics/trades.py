@@ -26,11 +26,34 @@ from bisect import bisect_left
 from collections import deque
 from collections.abc import Sequence
 from dataclasses import dataclass
+from typing import Final
 
 import pandas as pd
 
 from ..errors import ContractViolation
 from .inventory import OpeningLot
+
+# 配對殘差的容差,**按股數比例計**,不是固定股數。
+#
+# 為什麼不可以用固定股數:先入先出逐注扣減,每扣一次就有一點浮點尾數,尾數隨
+# 「同一實體配過幾多次」累積,亦隨持倉量本身放大。日度換倉、單一實體逾兩千筆
+# 成交的運行,實測殘差去到 1.4e-12 股——超過原本寫死的 1e-12 股,配對就當成
+# 「仲有貨未配」而去撞下一注,撞到無貨即拋錯,整個掃描中斷(KARST-043)。
+# 同一段碼在月度、幾百筆成交的運行完全無事:所以出事的不是邏輯,是那個容差
+# 把「幾多股才算 0」寫成一個絕對數,而它應該跟持倉量走。
+#
+# 為什麼取 1e-9:
+#
+# · 噪音那一邊 —— float64 的相對精度是 2.2e-16,兩千次扣減累積下來約
+#   1e-13 相對;上述 1.4e-12 股是一注千股上下的倉,即約 1e-15 相對。
+#   1e-9 離實測噪音仍有六個數量級。
+# · 真事那一邊 —— 真正「賣出多過手上」的一筆,少也少不過一股的零頭:
+#   持一百股賣一百點零零一股已經是 1e-5 相對。1e-9 離它四個數量級。
+#
+# 噪音與真事之間隔著十個數量級,容差取中間偏緊那一格。**寧緊莫鬆**:收得太緊,
+# 後果是誤報「賣出無貨」而中斷(即 KARST-043 那件事,看得見、修得到);收得
+# 太鬆才會把一次真的超賣默默吞掉,而那一種錯不會叫。
+_SHARE_RTOL: Final[float] = 1e-9
 
 
 @dataclass(frozen=True, slots=True)
@@ -103,6 +126,10 @@ def _match(
     """先入先出配對本體:回「已平倉的來回」與「配剩的貨」。
 
     配剩的貨就是這一段完結時仍然揸住的倉——不入來回類指標,只用來報數。
+
+    一注貨排成 ``[買入日, 未配股數, 買入價, 每股費用, 買入時的股數]``。最後那格
+    記住這注**原本**幾多股:判斷「這注配乾淨未」的容差按它的比例算(見
+    ``_SHARE_RTOL``),不是按一個固定股數。
     """
     open_lots = _opening_lots(opening)
     closed: list[RoundTrip] = []
@@ -118,13 +145,15 @@ def _match(
         fee_per_share = float(row.fees) / shares
         if row.side == "buy":
             open_lots.setdefault(entity_id, deque()).append(
-                [str(row.trade_date), shares, float(row.price), fee_per_share]
+                [str(row.trade_date), shares, float(row.price), fee_per_share, shares]
             )
             continue
 
         lots = open_lots.get(entity_id)
         remaining = shares
-        while remaining > 1e-12:
+        # 剩得返這一筆賣出的十億分之一股就當配乾淨——那是浮點尾數,不是貨。
+        sell_residual = _SHARE_RTOL * shares
+        while remaining > sell_residual:
             if not lots:
                 raise ContractViolation(
                     f"{row.trade_date} 賣出實體 {entity_id} 但手上沒有貨;"
@@ -151,7 +180,7 @@ def _match(
             )
             remaining -= matched
             lot[1] -= matched
-            if lot[1] <= 1e-12:
+            if lot[1] <= _SHARE_RTOL * lot[4]:
                 lots.popleft()
 
     closed.sort(key=lambda t: (t.entry_date, t.exit_date, t.entity_id))
@@ -173,7 +202,7 @@ def _opening_lots(opening: Sequence[OpeningLot]) -> dict[int, deque[list]]:
                 "股數與成本都要正數"
             )
         lots.setdefault(int(lot.entity_id), deque()).append(
-            [str(lot.as_of), shares, price, 0.0]
+            [str(lot.as_of), shares, price, 0.0, shares]
         )
     return lots
 
@@ -202,8 +231,11 @@ def trade_stats(
     losses = [-t.profit for t in trips if t.profit < 0.0]
     closed = len(trips)
 
+    # 「仍然揸住」同樣按比例判:配剩的股數大過原本買入量的十億分之一才算一個倉。
     open_positions = sum(
-        1 for lots in leftover.values() if sum(lot[1] for lot in lots) > 1e-9
+        1
+        for lots in leftover.values()
+        if sum(lot[1] for lot in lots) > _SHARE_RTOL * sum(lot[4] for lot in lots)
     )
 
     return TradeStats(

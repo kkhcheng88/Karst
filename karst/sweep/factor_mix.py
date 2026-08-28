@@ -23,7 +23,7 @@ from dataclasses import replace
 from typing import Any
 
 from ..engine.contracts import PricePanel, TradingCosts
-from ..errors import ContractViolation, NotFound
+from ..errors import ContractViolation
 from ..store import ParamSet, StrategyVersion
 from ..strategies.factor_mix import (
     FactorMixParams,
@@ -182,17 +182,14 @@ def ensure_factor_mix_setup(
 ) -> StrategyVersion:
     """確保四個因子與策略已經登記,回傳策略版本。**已經有就一個字都不寫。**
 
-    登記走的仍然是唯一入口(D-020 第 4 條)——本檔一句直接寫庫都沒有。之所以要
-    「先查」,是因為 ``register_factor_mix`` 每次都會登記一個參數集,重跑一次掃描
-    就會白白多一個版本。
-    """
-    store = gateway.store
-    try:
-        store.get_param_set(strategy_name, setup_param_set_name)
-        return store.get_strategy_version(strategy_name)
-    except NotFound:
-        pass
+    登記走的仍然是唯一入口(D-020 第 4 條)——本檔一句直接寫庫都沒有。這裡本來
+    有一道「先查」:因為 ``register_factor_mix`` 每次都登記一個參數集,重跑一次
+    掃描就會白白多一個版本。那個理由已經不成立——同名同節奏同取值即沿用舊版,
+    這條規矩住在唯一入口(KARST-046),所以先查那一句刪走。
 
+    順帶執正一件事:舊那道先查只認**名**,同名而權重不同一樣會早走,於是改了
+    權重的設定參數集寫不入去。現在照直交去入口,取值不同就照樣出新版。
+    """
     version, _ = register_factor_mix(
         gateway,
         strategy_name=strategy_name,
@@ -287,27 +284,17 @@ class FactorMixJob:
         return {key: float(point.get(key)) for key in self.weight_keys}
 
     def _param_set(self, name: str, cadence: str, values: dict[str, str]) -> ParamSet:
-        try:
-            existing = self._store.get_param_set(
-                self._strategy_name, name, strategy_version_no=self._strategy_version_no
-            )
-        except NotFound:
-            existing = None
-        if (
-            existing is not None
-            and existing.rebalance_cadence == cadence
-            and dict(existing.values) == values
-        ):
-            return existing
-
-        param_set, _ = self._gateway.register_param_set(
+        # 不必先查一句「庫裡有沒有同一組」:同名同節奏同取值即沿用舊版,那條規矩
+        # 住在唯一入口(KARST-046)。查到現成的那幾格,收據自己會講 reused。
+        param_set, receipt = self._gateway.register_param_set(
             self._strategy_name,
             param_set_name=name,
             rebalance_cadence=cadence,
             values=values,
             strategy_version_no=self._strategy_version_no,
         )
-        self._written += 1
+        if not receipt.reused:
+            self._written += 1
         return param_set
 
     def plan(self, point: SweepPoint) -> CellPlan:

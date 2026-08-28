@@ -479,3 +479,40 @@ def test_the_report_points_back_to_snapshot_period_costs_and_run_ids(toy, tmp_pa
     assert "零(手續費與滑點皆為 0)" in provenance_note(
         snapshot_id=toy["snapshot_id"], period=PERIOD, costs=TradingCosts.zero()
     )
+
+
+# ----------------------------------------------------------------------
+# KARST-046 驗收條件 2:掃描層那道多餘的「先查」刪走,行為一個字不變
+# ----------------------------------------------------------------------
+
+
+def test_the_sweep_registers_straight_through_the_gateway(toy):
+    """掃描不再自己先查一句——重覆登記由唯一入口沿用舊版,一列都不會多寫。"""
+    store = toy["store"]
+
+    # 基座再叫一次(fixture 已經叫過一次):策略版本與參數集版本都不動
+    again = ensure_factor_rotation_setup(
+        toy["gateway"], strategy_name=MIX_STRATEGY, snapshot_id=toy["snapshot_id"],
+        setup_param_set_name="測試基座-混合-043", setup_weights=WARMUP_WEIGHTS,
+        cadence="quarterly", description="KARST-043 對照用的固定權重策略",
+    )
+    assert again.version_no == toy["mix"].version_no
+    assert store.get_param_set(MIX_STRATEGY, "測試基座-混合-043").version_no == 1
+
+    # 掃描格:同一格排兩次,「真正寫入的參數集數目」照樣數得準
+    job = _mix_job(toy, None)
+    point = reference_point(FACTOR_ETF_SLEEVES, WARMUP_WEIGHTS)
+
+    first = job.plan(point)
+    assert job.param_sets_written == 1
+    assert first.param_set_version_no == 1
+
+    second = job.plan(point)
+    assert second.param_set_name == first.param_set_name
+    assert second.param_set_version_no == first.param_set_version_no
+    assert job.param_sets_written == 1  # 第二次是沿用,沒有寫
+
+    # 換一個跑法由零重新數:查到的全是現成的,一次都沒有寫入
+    fresh = _mix_job(toy, None)
+    assert fresh.plan(point).param_set_version_no == 1
+    assert fresh.param_sets_written == 0

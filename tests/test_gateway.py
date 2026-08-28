@@ -9,10 +9,12 @@ from __future__ import annotations
 import io
 import json
 import sqlite3
+from pathlib import Path
 
 import pytest
 
 from karst.errors import NotFound
+from karst.gateway import Gateway
 from karst.gateway.cli import main
 from karst.store import DefinitionStore
 
@@ -197,3 +199,86 @@ def test_definition_has_exactly_one_home(karst):
         # 全庫掃描:這個名字只出現在正本那一欄;引用它的策略只存編號
         assert location.occurrences == ("factor.name(1 列)",)
         assert not location.has_second_image
+
+
+# ----------------------------------------------------------------------
+# KARST-046:「同名同值沿用舊版」收歸唯一入口一處
+# ----------------------------------------------------------------------
+
+
+def _register_trend_swing(karst) -> None:
+    assert register_momentum(karst)[0] == 0
+    assert karst(
+        "strategy", "register", "--name", "趨勢波段", "--type", "technical",
+        "--factor", MOMENTUM, "--param-set", "現役", "--cadence", "monthly",
+        "--set", "breakout_window=50",
+    )[0] == 0
+
+
+# KARST-046 驗收條件 1(前半):唯一入口自己就會沿用同名、同節奏、同取值的舊版
+def test_the_gateway_itself_reuses_the_same_name_cadence_and_values(karst):
+    _register_trend_swing(karst)
+    with Gateway.open(karst.path) as gateway:
+        first, first_receipt = gateway.register_param_set(
+            "趨勢波段", param_set_name="示例",
+            rebalance_cadence="monthly", values={"breakout_window": "50"},
+        )
+        assert first.version_no == 1
+        assert first_receipt.reused is False
+        assert first_receipt.signed_rows  # 真的寫過,所以蓋了章
+
+        # 一字不改再登記一次:回的是同一列,庫裡不會多一版
+        second, second_receipt = gateway.register_param_set(
+            "趨勢波段", param_set_name="示例",
+            rebalance_cadence="monthly", values={"breakout_window": "50"},
+        )
+        assert second.param_set_id == first.param_set_id
+        assert second.version_no == first.version_no
+        assert second.created_at == first.created_at  # 真是舊那一列,不是新寫的
+        assert second_receipt.reused is True
+        # 沿用不會補蓋新簽章,回的是那一列本來就有的
+        assert second_receipt.signed_rows == first_receipt.signed_rows
+
+        # 取值寫成數字而不是文字,一樣認得是同一組(庫層一律收成文字)
+        as_number, number_receipt = gateway.register_param_set(
+            "趨勢波段", param_set_name="示例",
+            rebalance_cadence="monthly", values={"breakout_window": 50},
+        )
+        assert as_number.param_set_id == first.param_set_id
+        assert number_receipt.reused is True
+
+        # 沿用不會過頭:節奏不同要出新版,取值不同亦然
+        other_cadence, cadence_receipt = gateway.register_param_set(
+            "趨勢波段", param_set_name="示例",
+            rebalance_cadence="quarterly", values={"breakout_window": "50"},
+        )
+        assert other_cadence.version_no == 2
+        assert cadence_receipt.reused is False
+
+        other_values, values_receipt = gateway.register_param_set(
+            "趨勢波段", param_set_name="示例",
+            rebalance_cadence="quarterly", values={"breakout_window": "80"},
+        )
+        assert other_values.version_no == 3
+        assert values_receipt.reused is False
+
+    # 沿用那幾次一列都沒有寫入,核對照樣清白
+    assert karst("verify")[0] == 0
+
+
+# KARST-046 驗收條件 1(後半):策略層查不到第二份同樣邏輯
+def test_the_strategy_layer_keeps_no_second_copy_of_the_reuse_rule():
+    from karst.gateway import service
+    from karst.strategies import factor_mix, trend_swing
+    from karst.sweep import factor_mix as sweep_factor_mix
+
+    # 正本只有入口那一份
+    assert hasattr(service.Gateway, "_existing_param_set")
+
+    for module in (trend_swing, factor_mix, sweep_factor_mix):
+        assert not hasattr(module, "_existing_param_set")
+        source = Path(module.__file__).read_text(encoding="utf-8")
+        assert "_existing_param_set" not in source
+        # 連比對那兩句本身都不應該再出現在策略層
+        assert "rebalance_cadence ==" not in source
+        assert "rebalance_cadence !=" not in source

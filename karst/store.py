@@ -70,12 +70,43 @@ STRATEGY_TYPES: Final[dict[str, str]] = {
     "options": "期權策略",
 }
 
-# 換倉節奏(rebalance cadence):日/月/季任揀,**不設預設值**(CONTEXT.md;用戶反問「Why we need a default?」)
-REBALANCE_CADENCES: Final[dict[str, str]] = {
+# 換倉節奏(rebalance cadence)。**選單正本不在本檔**:它住在引擎合約
+# (``karst.engine.contracts.CADENCES``),定義庫與引擎同取那一處(KARST-044)。
+#
+# 本檔以前另存一份日/月/季的清單,於是同一件事有兩個講法——引擎認得週度,定義庫
+# 收不到,週度參數集登記不了(KARST-043 撞到)。兩份清單就是兩個真相,遲早各走各路。
+#
+# 本檔只補一件引擎不需要的東西:**給人看的中文名**。名不是選單:正本多一個節奏而
+# 這裡漏了中文名,就用取值本身頂上,不會反過來令那個節奏收不到。
+_CADENCE_LABELS: Final[dict[str, str]] = {
     "daily": "每日",
+    "weekly": "每週",
     "monthly": "每月",
     "quarterly": "每季",
 }
+
+
+def rebalance_cadences() -> dict[str, str]:
+    """換倉節奏選單:取值 → 中文名,由引擎那份正本推出來,本檔不另存一份。
+
+    **不設預設值**(CONTEXT.md 換倉節奏;用戶反問「Why we need a default?」)——
+    這是一張選單,不是一個預設值。
+
+    正本要等到本函式被叫的那一刻才匯入:``karst.engine`` 反過來要匯入本檔,
+    寫在檔頭會兜成一個圈。
+    """
+    from .engine.contracts import CADENCES
+
+    return {
+        cadence: _CADENCE_LABELS.get(cadence, cadence) for cadence in sorted(CADENCES)
+    }
+
+
+def __getattr__(name: str) -> Any:
+    """``REBALANCE_CADENCES`` 是即場由正本推出來的,不是本檔另存的第二份清單。"""
+    if name == "REBALANCE_CADENCES":
+        return rebalance_cadences()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 # 策略引用因子的寫法:「名稱」取最新版,「名稱@版本號」釘死某一版
 FACTOR_REF_SEPARATOR = "@"
@@ -1195,15 +1226,17 @@ class DefinitionStore:
 
     @staticmethod
     def _check_cadence(rebalance_cadence: str | None, name: str) -> str:
+        # 校驗取的是引擎那份正本,不是本檔另存的清單(KARST-044)
+        roster = rebalance_cadences()
         if not rebalance_cadence:
             raise ContractViolation(
                 f"參數集「{name}」缺換倉節奏(rebalance cadence):"
-                f"{'、'.join(f'{k}({v})' for k, v in REBALANCE_CADENCES.items())} 揀一個;"
+                f"{'、'.join(f'{k}({v})' for k, v in roster.items())} 揀一個;"
                 "本平台不設預設值,缺就寫不入"
             )
-        if rebalance_cadence not in REBALANCE_CADENCES:
+        if rebalance_cadence not in roster:
             raise ContractViolation(
-                f"換倉節奏只收 {sorted(REBALANCE_CADENCES)},收到 {rebalance_cadence!r}"
+                f"換倉節奏只收 {sorted(roster)},收到 {rebalance_cadence!r}"
             )
         return rebalance_cadence
 

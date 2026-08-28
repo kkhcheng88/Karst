@@ -630,3 +630,154 @@ def test_the_same_call_serves_the_web_shell(
     assert metrics.excess_against("QQQ") == pytest.approx(
         metrics.annual_return - metrics.benchmarks["QQQ"].annual_return
     )
+
+
+# ----------------------------------------------------------------------
+# KARST-045:來回配對的容差按持倉量比例算,不再用一個固定股數
+# ----------------------------------------------------------------------
+
+# 日度換倉、單一實體逾兩千筆成交的樣子:逐日細細注買入,最後一次過清倉。
+# 每注 0.1 股是刻意揀的——0.1 在二進位存不準,兩千注逐注加落去與一次過乘出來
+# 相差 7.1e-12 股,正是 KARST-043 撞到的那種殘差(實測 1.4e-12)。
+CHURN_LOTS = 2_000
+CHURN_LOT_SHARES = 0.1
+CHURN_BUY_PRICE = 100.0
+CHURN_SELL_PRICE = 150.0
+CHURN_SELL_DAY = CHURN_LOTS // 2  # 每日兩注,所以買完那一日是第 1000 格
+
+
+def _churn_orders(entity_id):
+    """單一實體、逾兩千筆成交的逐筆交易表(買入兩千注,最後一次過賣清)。"""
+    rows = [
+        {
+            "trade_date": CALENDAR[index // 2],
+            "entity_id": entity_id,
+            "side": "buy",
+            "shares": CHURN_LOT_SHARES,
+            "price": CHURN_BUY_PRICE,
+            "fees": 0.0,
+        }
+        for index in range(CHURN_LOTS)
+    ]
+    rows.append(
+        {
+            "trade_date": CALENDAR[CHURN_SELL_DAY],
+            "entity_id": entity_id,
+            "side": "sell",
+            # 賣出股數由總數一次過乘出來,買入卻是逐注加——兩條路的浮點尾數不同,
+            # 這一格之差就是配對層要當成 0 的那件事。
+            "shares": CHURN_LOTS * CHURN_LOT_SHARES,
+            "price": CHURN_SELL_PRICE,
+            "fees": 0.0,
+        }
+    )
+    return pd.DataFrame(
+        rows, columns=["trade_date", "entity_id", "side", "shares", "price", "fees"]
+    )
+
+
+def _record_churn(runs, universe, snapshot_id):
+    company_ids = (universe["Apple Inc."], universe["Microsoft Corp."])
+    base = synthetic_simulation(
+        start=PERIOD[0], end=PERIOD[1], entity_ids=company_ids, seed=7
+    )
+    simulation = SyntheticSimulation(
+        equity_curve=base.equity_curve,
+        holdings=base.holdings,
+        orders=_churn_orders(company_ids[0]),
+    )
+    return runs.record_simulation(
+        simulation,
+        strategy_name=STRATEGY,
+        param_set_name=ACTIVE_SET,
+        snapshot_id=snapshot_id,
+        engine_name=ENGINE[0],
+        engine_version=ENGINE[1],
+    )
+
+
+# KARST-045 驗收條件 1:日度換倉的合成運行(單一實體逾兩千筆成交)算得出八項指標不拋錯
+def test_thousands_of_fills_on_one_entity_still_compute_eight_metrics(
+    runs, store, strategy, universe, snapshot_id
+):
+    # 先證這批數據真的踩得中那條線:殘差大過舊有的 1e-12 絕對容差,
+    # 否則這個測試證不到任何事(舊碼一樣會過)。
+    lots_total = 0.0
+    for _ in range(CHURN_LOTS):
+        lots_total += CHURN_LOT_SHARES
+    residual = CHURN_LOTS * CHURN_LOT_SHARES - lots_total
+    assert residual > 1e-12
+
+    record = _record_churn(runs, universe, snapshot_id)
+    orders = runs.orders(record.run_id)
+    assert len(orders) > 2_000
+    assert orders["entity_id"].nunique() == 1
+
+    metrics = run_metrics(runs, record.run_id, risk_free_rate=RISK_FREE)
+
+    # ---- 八項全部算得出,一項都沒有因為配對中斷而缺 ----
+    assert metrics.total_return is not None
+    assert metrics.annual_return is not None
+    assert metrics.max_drawdown is not None
+    assert metrics.win_rate == pytest.approx(1.0)  # 全部注都賺(買 100 賣 150)
+    assert metrics.profit_loss_ratio is None  # 一注都未蝕過,盈虧比無得計
+    assert set(metrics.annual_excess) == {"QQQ", "SPY"}
+    assert metrics.sortino is not None
+    assert metrics.average_holding_days is not None
+    assert metrics.turnover > 0.0
+
+    # 兩千注全部配得成來回,一注都不剩
+    assert metrics.closed_trades == CHURN_LOTS
+    stats = trade_stats(orders, runs.equity_curve(record.run_id).index)
+    assert stats.open_positions == 0
+
+
+# KARST-045 驗收條件 2:真正賣出多過持倉的情況仍拋錯,並講明實體與日期
+def test_a_real_oversell_still_raises_and_names_the_entity_and_the_day(universe):
+    entity_id = universe["Apple Inc."]
+    oversell_day = CALENDAR[5]
+    orders = pd.DataFrame(
+        [
+            {
+                "trade_date": CALENDAR[1],
+                "entity_id": entity_id,
+                "side": "buy",
+                "shares": 10.0,
+                "price": 100.0,
+                "fees": 0.0,
+            },
+            {
+                # 手上得十股,賣一百股——差九十股,不是浮點尾數
+                "trade_date": oversell_day,
+                "entity_id": entity_id,
+                "side": "sell",
+                "shares": 100.0,
+                "price": 150.0,
+                "fees": 0.0,
+            },
+        ],
+        columns=["trade_date", "entity_id", "side", "shares", "price", "fees"],
+    )
+    with pytest.raises(ContractViolation) as caught:
+        trade_stats(orders, CALENDAR)
+    message = str(caught.value)
+    assert "手上沒有貨" in message
+    assert str(entity_id) in message
+    assert oversell_day in message
+
+
+# KARST-045 驗收條件 3:既有運行的八項指標逐位不變
+def test_the_new_tolerance_leaves_the_existing_numbers_untouched(
+    runs, store, strategy, universe, snapshot_id
+):
+    record = _record(runs, universe, snapshot_id)
+    equity = runs.equity_curve(record.run_id)
+    stats = trade_stats(runs.orders(record.run_id), equity.index)
+
+    # 四個來回、兩贏兩輸,連同三項來回類指標與成交金額,全部與換容差之前同一個數
+    assert (stats.closed_trades, stats.winning_trades, stats.losing_trades) == (4, 2, 2)
+    assert stats.open_positions == 0
+    assert stats.win_rate == pytest.approx(EXPECTED_WIN_RATE)
+    assert stats.profit_loss_ratio == pytest.approx(EXPECTED_PL_RATIO)
+    assert stats.average_holding_days == pytest.approx(EXPECTED_HOLDING_DAYS)
+    assert stats.traded_value == pytest.approx(EXPECTED_TRADED_VALUE)

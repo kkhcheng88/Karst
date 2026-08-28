@@ -46,7 +46,7 @@ from typing import Any, Final
 import numpy as np
 import pandas as pd
 
-from ..errors import ContractViolation, DuplicateDefinition, NotFound
+from ..errors import ContractViolation, DuplicateDefinition
 from ..models import FormulaProcedure
 from ..store import FAMILY_SEPARATOR, DefinitionStore, ParamSet, StrategyVersion
 from ..engine.cadence import rebalance_schedule
@@ -426,50 +426,15 @@ def register_factor_mix(
                 strategy_name, factor_refs=factor_refs, description=description
             )
 
-    # 同名同值即沿用舊版(做法與趨勢波段同制,見 trend_swing._existing_param_set)。
-    param_set = _existing_param_set(
-        gateway.store,
-        version,
+    # 同名同節奏同取值即沿用舊版——這條規矩住在唯一入口,本層不另抄一份(KARST-046)。
+    param_set, _ = gateway.register_param_set(
+        version.name,
         param_set_name=param_set_name,
         rebalance_cadence=rebalance_cadence,
         values=weights,
+        strategy_version_no=version.version_no,
     )
-    if param_set is None:
-        param_set, _ = gateway.register_param_set(
-            version.name,
-            param_set_name=param_set_name,
-            rebalance_cadence=rebalance_cadence,
-            values=weights,
-            strategy_version_no=version.version_no,
-        )
     return version, param_set
-
-
-def _existing_param_set(
-    store: DefinitionStore,
-    version: StrategyVersion,
-    *,
-    param_set_name: str,
-    rebalance_cadence: str | None,
-    values: Mapping[str, Any] | None,
-) -> ParamSet | None:
-    """這個策略版本上有沒有一個同名、同節奏、同取值的參數集?有就回它,無就回 ``None``。
-
-    比的是**取值本身**,不是名——名一樣而值不同就是另一組取值,一定要出新版。
-    取值一律先按庫層的寫法收成文字再比(``str(值).strip()``,見
-    ``DefinitionStore._check_param_values``),所以權重寫 ``0.25`` 還是 ``"0.25"``
-    都認得是同一組;兩邊各寫一套收法就會出現「明明同值卻比不中」。
-    """
-    try:
-        head = store.get_param_set(
-            version.name, param_set_name, strategy_version_no=version.version_no
-        )
-    except NotFound:
-        return None
-    wanted = {str(k).strip(): str(v).strip() for k, v in dict(values or {}).items()}
-    if head.rebalance_cadence != rebalance_cadence or dict(head.values) != wanted:
-        return None
-    return head
 
 
 # ----------------------------------------------------------------------

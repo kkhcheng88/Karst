@@ -220,3 +220,59 @@ def test_snapshot_registers_a_frozen_parquet_batch(store, apple, tmp_path):
         snapshot_id=snapshot_id,
     )
     assert store.read_factor_values(MOMENTUM, as_of="2026-08-27").iloc[0]["snapshot_id"] == snapshot_id
+
+
+# ----------------------------------------------------------------------
+# KARST-044:換倉節奏選單只有一份正本,定義庫與引擎同取一處
+# ----------------------------------------------------------------------
+
+
+# KARST-044 驗收條件 1:節奏清單全倉只有一份正本,定義庫校驗與引擎同取一處
+def test_the_cadence_menu_has_exactly_one_source_of_truth():
+    from karst.engine.contracts import CADENCES
+    from karst.store import rebalance_cadences
+
+    roster = rebalance_cadences()
+
+    # 定義庫的選單不是另存一份,是由引擎那份正本推出來的:兩邊逐個取值對得上
+    assert set(roster) == set(CADENCES)
+    # 週度在正本裡,所以定義庫的校驗自然收得到(KARST-043 撞到的正是這一格漏了)
+    assert "weekly" in roster
+    assert roster["weekly"] == "每週"
+
+    # 正本加一個節奏,定義庫即刻認得——不用再改本檔一個字
+    import karst.engine.contracts as contracts
+
+    original = contracts.CADENCES
+    try:
+        contracts.CADENCES = frozenset({*original, "fortnightly"})
+        grown = rebalance_cadences()
+        assert "fortnightly" in grown
+        # 中文名漏了就用取值本身頂上,不會反過來令那個節奏收不到
+        assert grown["fortnightly"] == "fortnightly"
+    finally:
+        contracts.CADENCES = original
+
+
+# KARST-044 驗收條件 1(下半):校驗確實取自那一處,不是另一份清單
+def test_the_store_validates_every_cadence_the_engine_knows(store):
+    from karst.engine.contracts import CADENCES
+    from karst.store import rebalance_cadences
+
+    store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
+    store.register_strategy("趨勢波段", strategy_type="technical", factor_refs=[MOMENTUM])
+
+    # 引擎認得的每一個節奏,定義庫的合約檢查都收得住
+    for cadence in sorted(CADENCES):
+        assert DefinitionStore._check_cadence(cadence, "示例") == cadence
+
+    # 不在正本裡的照樣拒收,而且錯訊列的是正本那份清單
+    with pytest.raises(ContractViolation) as caught:
+        DefinitionStore._check_cadence("fortnightly", "示例")
+    assert sorted(rebalance_cadences()) == sorted(CADENCES)
+    assert "fortnightly" in str(caught.value)
+
+    # 缺節奏一樣拒收:不設預設值,不代用戶揀一個
+    with pytest.raises(ContractViolation) as missing:
+        DefinitionStore._check_cadence(None, "示例")
+    assert "不設預設值" in str(missing.value)

@@ -20,6 +20,7 @@ import sqlite3
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 
+from ..errors import NotFound
 from ..models import FormulaProcedure, MaterialProcedure, Procedure
 from ..store import (
     ActiveSetup,
@@ -53,7 +54,12 @@ def default_writer() -> str:
 
 @dataclass(frozen=True, slots=True)
 class WriteReceipt:
-    """一次經唯一入口寫入的收據:寫了什麼、蓋了哪一版、誰寫的。"""
+    """一次經唯一入口寫入的收據:寫了什麼、蓋了哪一版、誰寫的。
+
+    ``reused`` 是「這一次其實一個字都沒有寫,回的是庫裡本來那一列」——同名同節奏
+    同取值的參數集就是這樣(見 ``register_param_set``)。掃描要數「真正寫入了幾多
+    個參數集」,靠的就是這一格,不必自己再查一次庫。
+    """
 
     kind: str
     name: str
@@ -62,6 +68,7 @@ class WriteReceipt:
     created_at: str
     writer: str
     signed_rows: tuple[str, ...]
+    reused: bool = False
 
 
 class Gateway:
@@ -215,6 +222,41 @@ class Gateway:
         values: Mapping[str, object] | None = None,
         strategy_version_no: int | None = None,
     ) -> tuple[ParamSet, WriteReceipt]:
+        """登記一個參數集。**同名、同節奏、同取值即沿用舊版**,不會多寫一列。
+
+        為什麼這條規矩住在入口,而不是由每套策略各自抄一份:參數集版本號是運行
+        編號的原料之一,無端多一版就會把同一次回測記成兩次(D-021 第 9 條、
+        CONTEXT.md「運行編號」)。這是任何策略都要的行為,不是某一套策略的內部
+        細節——經這道門登記參數集就自動有(D-002 第 4 條單一定義、D-020 第 4 條)。
+
+        比的是**取值本身**,不是名:名一樣而值不同就是另一組取值,一定要出新版;
+        節奏亦然,節奏是參數集的一部分。取值一律先按庫層的寫法收成文字再比
+        (``str(值).strip()``,見 ``DefinitionStore._check_param_values``),所以
+        權重寫 ``0.25`` 還是 ``"0.25"`` 都認得是同一組;兩邊各寫一套收法就會出現
+        「明明同值卻比不中」。
+
+        沿用舊版那一次**一個字都不寫**,所以亦不蓋新簽章,收據回的是那一列本來
+        就有的簽章。庫內那一列若當初不是經這道門寫入,它照舊沒有簽章,``verify``
+        一掃仍然揪得到——沿用不會替繞過入口的列補一個簽章把痕跡蓋走。
+        """
+        existing = self._existing_param_set(
+            strategy_name,
+            param_set_name=param_set_name,
+            rebalance_cadence=rebalance_cadence,
+            values=values,
+            strategy_version_no=strategy_version_no,
+        )
+        if existing is not None:
+            return existing, self._receipt(
+                "參數集",
+                existing.name,
+                existing.version_no,
+                existing.parent_version_id,
+                existing.created_at,
+                self._recorded_signatures(existing),
+                reused=True,
+            )
+
         param_set = self._store.register_param_set(
             strategy_name,
             param_set_name=param_set_name,
@@ -228,6 +270,47 @@ class Gateway:
         )
         return param_set, self._receipt("參數集", param_set.name, param_set.version_no,
                                         param_set.parent_version_id, param_set.created_at, signed)
+
+    def _existing_param_set(
+        self,
+        strategy_name: str,
+        *,
+        param_set_name: str,
+        rebalance_cadence: str | None,
+        values: Mapping[str, object] | None,
+        strategy_version_no: int | None,
+    ) -> ParamSet | None:
+        """這個策略版本上有沒有一個同名、同節奏、同取值的參數集?有就回它,無就回 ``None``。
+
+        策略本身查無此名時一樣回 ``None``——真正的拒收留給庫層去講,本層不搶著報錯。
+        """
+        try:
+            head = self._store.get_param_set(
+                strategy_name, param_set_name, strategy_version_no=strategy_version_no
+            )
+        except NotFound:
+            return None
+        wanted = {str(key).strip(): str(value).strip() for key, value in dict(values or {}).items()}
+        if head.rebalance_cadence != rebalance_cadence or dict(head.values) != wanted:
+            return None
+        return head
+
+    def _recorded_signatures(self, param_set: ParamSet) -> tuple[str, ...]:
+        """沿用舊版時,回那幾列**本來就有**的簽章;查不到就不報——不補蓋、不改動。"""
+        rows: list[tuple[str, tuple[object, ...]]] = [("param_set", (param_set.param_set_id,))]
+        rows += [
+            ("param_value", (param_set.param_set_id, key)) for key in param_set.values
+        ]
+        signed: list[str] = []
+        for table, primary_key in rows:
+            key_text = "|".join(str(part) for part in primary_key)
+            found = self._conn.execute(
+                "SELECT 1 FROM gateway_write WHERE table_name = ? AND row_key = ?",
+                (table, key_text),
+            ).fetchone()
+            if found is not None:
+                signed.append(f"{table}[{key_text}]")
+        return tuple(signed)
 
     # ------------------------------------------------------------------
     # 現役設定與共用風控規則(KARST-035)
@@ -392,6 +475,8 @@ class Gateway:
         parent_version_id: int | None,
         created_at: str,
         signed: tuple[str, ...],
+        *,
+        reused: bool = False,
     ) -> WriteReceipt:
         return WriteReceipt(
             kind=kind,
@@ -401,6 +486,7 @@ class Gateway:
             created_at=created_at,
             writer=self._writer,
             signed_rows=signed,
+            reused=reused,
         )
 
 
