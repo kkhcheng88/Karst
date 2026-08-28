@@ -201,7 +201,7 @@
           "neighbourhood_mean": 0.0043141755024362,
           "weakest_sibling_mean": 0.002335297856441225,
           "layer_drop": 0.0019788776459949754,
-          "old_verdict": "山脊"
+          "old_verdict": "平原"
         }
       ],
       "plateaus": [],
@@ -209,7 +209,7 @@
         "params": "threshold=1.05、tilt=1、cadence=monthly",
         "layer": "cadence=monthly",
         "value": 0.0064088110009135,
-        "old_verdict": "普通",
+        "old_verdict": "孤峰",
         "new_verdict": "普通",
         "old_neighbourhood_mean": 0.0002884818489380334,
         "new_neighbourhood_mean": 0.001715421597866,
@@ -350,7 +350,7 @@
           "neighbourhood_mean": -0.0016544055996927333,
           "weakest_sibling_mean": -0.03329663421881846,
           "layer_drop": 0.03164222861912573,
-          "old_verdict": "山脊"
+          "old_verdict": "孤峰"
         },
         {
           "params": "lookback_days=10、tilt=1、cadence=monthly",
@@ -359,7 +359,7 @@
           "neighbourhood_mean": -0.0009427255219243001,
           "weakest_sibling_mean": -0.035187108982959375,
           "layer_drop": 0.034244383461035074,
-          "old_verdict": "山脊"
+          "old_verdict": "普通"
         }
       ],
       "plateaus": [],
@@ -367,7 +367,7 @@
         "params": "lookback_days=20、tilt=1、cadence=monthly",
         "layer": "cadence=monthly",
         "value": 0.0015851684138403,
-        "old_verdict": "山脊",
+        "old_verdict": "孤峰",
         "new_verdict": "山脊",
         "old_neighbourhood_mean": -0.0174755199092556,
         "new_neighbourhood_mean": -0.0016544055996927333,
@@ -599,7 +599,7 @@
           "neighbourhood_mean": 0.015418273284033225,
           "weakest_sibling_mean": -0.018443726565340823,
           "layer_drop": 0.03386199984937405,
-          "old_verdict": "山脊"
+          "old_verdict": "普通"
         }
       ],
       "plateaus": [],
@@ -814,7 +814,7 @@
       "改判格數": 4,
       "最優格": "threshold=1.05、tilt=1、cadence=monthly",
       "最優格年化超額": 0.006408811,
-      "最優格舊裁決": "普通",
+      "最優格舊裁決": "孤峰",
       "最優格新裁決": "普通",
       "最優格舊鄰域平均": 0.0002884818,
       "最優格新鄰域平均": 0.0017154216,
@@ -835,7 +835,7 @@
       "改判格數": 5,
       "最優格": "lookback_days=20、tilt=1、cadence=monthly",
       "最優格年化超額": 0.0015851684,
-      "最優格舊裁決": "山脊",
+      "最優格舊裁決": "孤峰",
       "最優格新裁決": "山脊",
       "最優格舊鄰域平均": -0.0174755199,
       "最優格新鄰域平均": -0.0016544056,

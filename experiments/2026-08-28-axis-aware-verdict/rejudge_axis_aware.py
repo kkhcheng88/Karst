@@ -262,6 +262,10 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
             "counts": {v: len(new._by(v)) for v in (PLATEAU, RIDGE, LONELY_PEAK)},
         },
         "changed_cells": len(changed),
+        # 「舊裁決」一律取**舊口徑重判**那一個(``old.cell_for``),與上面那張逐格
+        # 對照表同一個來源。KARST-060 之前這幾格讀的是 ``filed``(落檔判讀表那一欄)
+        # ——KARST-048 之後生產掃描路徑改判新口徑,來源腳本一重跑就會覆寫那張表,
+        # 於是「舊裁決」會填成新裁決自己,最優格一改判就報「沒有變」。
         "ridges": [
             {
                 "params": c.point.label,
@@ -270,14 +274,14 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
                 "neighbourhood_mean": c.neighbourhood_mean,
                 "weakest_sibling_mean": c.weakest_sibling_mean,
                 "layer_drop": c.layer_drop,
-                "old_verdict": filed[tuple(c.point.get(n) for n in names)],
+                "old_verdict": old.cell_for(c.point).verdict,
             }
             for c in sorted(new.ridges, key=lambda c: c.value or 0.0, reverse=True)
         ],
         "best": {
             "params": new.best.point.label,
             "value": new.best.value,
-            "old_verdict": filed[tuple(new.best.point.get(n) for n in names)],
+            "old_verdict": old.cell_for(new.best.point).verdict,
             "new_verdict": new.best.verdict,
             "old_neighbourhood_mean": old.best.neighbourhood_mean,
             "new_neighbourhood_mean": new.best.neighbourhood_mean,
@@ -289,6 +293,29 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
             "分層判讀.csv",
         ],
     }
+
+    # KARST-060 的閘:summary 那幾格「舊裁決」要與逐格對照表那一欄逐格對得上
+    # ——兩邊同一個來源(舊口徑重判)。對不上即代表有人又把它接回落檔判讀表。
+    from_table = {
+        tuple(_plain(row[name]) for name in names): str(row["舊裁決"])
+        for _, row in table.iterrows()
+    }
+    checked = [(new.best.point, summary["best"]["old_verdict"])]
+    checked += [
+        (cell.point, item["old_verdict"])
+        for cell, item in zip(
+            sorted(new.ridges, key=lambda c: c.value or 0.0, reverse=True),
+            summary["ridges"],
+            strict=True,
+        )
+    ]
+    for point, verdict in checked:
+        expected = from_table[tuple(point.get(name) for name in names)]
+        if verdict != expected:
+            raise SystemExit(
+                f"{driver_key}:summary 的「舊裁決」({verdict})與逐格對照表"
+                f"({expected})對不上,格 {point.label}"
+            )
 
     print(f"\n【{spec['title']}】{new_grid.describe()}")
     print(f"  舊口徑:{old.summary()}(每格鄰域 {len(old.cells[0].neighbours)} 個)")

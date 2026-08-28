@@ -193,14 +193,18 @@ class RunReader:
             self._snapshot_present_cache[snapshot_id] = cached
         return cached
 
-    def series_gap(self, record) -> tuple[str, ...]:
+    def series_missing(self, record) -> tuple[str, ...]:
         """這次運行缺了什麼才畫不出圖。畫得出就回空。
 
         KARST-057:2026-08-28 倉根 ``data/`` 被誤清空,4,087 條運行登記全部
         還在,它們指向的序列 parquet 與價格快照卻沒有了。**登記不刪**——
         定義表不可刪,那幾千次運行真的跑過。但它們畫不出圖,亦不應該混在
         「現時跑得出的成績」入面充數,所以讀取層在這裡把它們分辨出來,
-        標成「過時運行(序列缺失)」,不列入正式運行清單與掃描清單。
+        標成「序列缺失運行 series-missing run」,不列入正式運行清單與掃描清單。
+
+        KARST-060:這個名本來寫作「過時運行(序列缺失)」,與詞彙表的「過時運行
+        stale run」(蓋住的版本已不是最新版)撞名——兩者無關,一個講版本、一個
+        講檔案。網頁殼標籤與程式名自此一律叫「序列缺失運行」。
         """
         gaps: list[str] = []
         missing = self.runs.missing_series(record.run_id)
@@ -266,7 +270,7 @@ class RunReader:
         live: list[Any] = []
         missing = 0
         for record in records:
-            if self.series_gap(record):
+            if self.series_missing(record):
                 missing += 1
                 continue
             live.append(record)
@@ -284,7 +288,7 @@ class RunReader:
             "total": total,
             "shown": len(out),
             # 序列缺失那批照實報一個數:登記還在,只是畫不出圖(KARST-057)。
-            # 頁面據此講得出「另有 N 條過時運行(序列缺失)」,而不是靜靜少了幾千條。
+            # 頁面據此講得出「另有 N 條序列缺失運行」,而不是靜靜少了幾千條。
             "missingSeries": missing,
         }
 
@@ -336,12 +340,12 @@ class RunReader:
         兩者本來就是同一套視窗口徑(``run_metrics`` 內部亦是叫它)。
         """
         record = self.runs.get_run(run_id)
-        gaps = self.series_gap(record)
+        gaps = self.series_missing(record)
         if gaps:
             # 登記在,序列不在(KARST-057)。講明它是什麼、缺什麼,不要讓頁面
             # 收到一個看不出所以然的 parquet 錯。
             raise NotFound(
-                f"運行 {run_id} 是過時運行(序列缺失):{';'.join(gaps)}。"
+                f"運行 {run_id} 是序列缺失運行:{';'.join(gaps)}。"
                 "登記照舊在案,但畫不出圖——這次運行要重跑才看得回"
             )
         universe = self._universe(record.snapshot_id)

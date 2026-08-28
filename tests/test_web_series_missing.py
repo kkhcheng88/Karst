@@ -2,8 +2,11 @@
 
 背景:2026-08-28 倉根 ``data/`` 被誤清空,``karst.sqlite`` 完好——四千條運行
 登記全部還在,它們指向的序列 parquet 與價格快照卻沒有了。定義表不可刪
-(D-026),所以登記留住;讀取層要把這種運行標成「過時運行(序列缺失)」,
-並且不列入正式運行清單與掃描清單。
+(D-026),所以登記留住;讀取層要把這種運行標成「序列缺失運行 series-missing
+run」,並且不列入正式運行清單與掃描清單。
+
+(KARST-060:這個名本來寫作「過時運行(序列缺失)」,與詞彙表的「過時運行
+stale run」撞名——一個講版本過時、一個講序列檔不在,兩者無關。)
 
 每個測試對住一項行為,只證「行得通」,不掃邊界情況。
 
@@ -221,7 +224,7 @@ def test_清單濾走序列缺失的運行而登記照舊查得回(reader, runs,
 # ----------------------------------------------------------------------
 
 
-def test_取序列缺失的運行拋出過時運行序列缺失(reader, runs, strategy, entities, snapshot):
+def test_取序列缺失的運行拋出序列缺失運行(reader, runs, strategy, entities, snapshot):
     record = _record(runs, entities, snapshot.snapshot_id)
     _delete_series(runs, record.run_id, "equity")
 
@@ -229,5 +232,8 @@ def test_取序列缺失的運行拋出過時運行序列缺失(reader, runs, st
         reader.get_run(record.run_id)
 
     message = str(raised.value)
-    assert "過時運行(序列缺失)" in message
+    # KARST-060:這句訊息本來寫「過時運行(序列缺失)」,與詞彙表的「過時運行」
+    # (版本過時)撞名。名一律改為「序列缺失運行」,舊名不准再出現。
+    assert "序列缺失運行" in message
+    assert "過時運行" not in message
     assert record.run_id in message

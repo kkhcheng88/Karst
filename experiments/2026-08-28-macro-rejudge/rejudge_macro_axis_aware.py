@@ -289,6 +289,11 @@ def rejudge(
             }
             for _, row in changed.iterrows()
         ],
+        # 「舊裁決」一律取**舊口徑重判**那一個(``old.cell_for``),與上面那張逐格
+        # 對照表同一個來源。KARST-060 之前這幾格讀的是 ``filed``(落檔判讀表那一欄)
+        # ——KARST-048 之後生產掃描路徑改判新口徑,來源腳本一重跑就會覆寫那張表,
+        # 於是「舊裁決」會填成新裁決自己,最優格一改判就報「沒有變」;六驅動器總表
+        # 那一欄「最優格舊裁決」正是由這裡抄過去的。
         "ridges": [
             {
                 "params": c.point.label,
@@ -297,7 +302,7 @@ def rejudge(
                 "neighbourhood_mean": c.neighbourhood_mean,
                 "weakest_sibling_mean": c.weakest_sibling_mean,
                 "layer_drop": c.layer_drop,
-                "old_verdict": filed[tuple(c.point.get(n) for n in names)],
+                "old_verdict": old.cell_for(c.point).verdict,
             }
             for c in sorted(new.ridges, key=lambda c: c.value or 0.0, reverse=True)
         ],
@@ -307,7 +312,7 @@ def rejudge(
                 "layer": c.layer_name,
                 "value": c.value,
                 "neighbourhood_mean": c.neighbourhood_mean,
-                "old_verdict": filed[tuple(c.point.get(n) for n in names)],
+                "old_verdict": old.cell_for(c.point).verdict,
             }
             for c in sorted(new.plateaus, key=lambda c: c.value or 0.0, reverse=True)
         ],
@@ -315,7 +320,7 @@ def rejudge(
             "params": new.best.point.label,
             "layer": new.best.layer_name,
             "value": new.best.value,
-            "old_verdict": filed[tuple(new.best.point.get(n) for n in names)],
+            "old_verdict": old.cell_for(new.best.point).verdict,
             "new_verdict": new.best.verdict,
             "old_neighbourhood_mean": old.best.neighbourhood_mean,
             "new_neighbourhood_mean": new.best.neighbourhood_mean,
@@ -325,6 +330,31 @@ def rejudge(
         "charts": charts,
         "files": ["判讀表-軸型.csv", "新舊裁決對照表.csv", "分層判讀.csv"],
     }
+
+    # KARST-060 的閘:summary 那幾格「舊裁決」要與逐格對照表那一欄逐格對得上
+    # ——兩邊同一個來源(舊口徑重判)。對不上即代表有人又把它接回落檔判讀表;
+    # 六驅動器總表那一欄「最優格舊裁決」正是由 summary 抄過去的,所以這道閘同時
+    # 守住總表。
+    from_table = {
+        tuple(_plain(row[name]) for name in names): str(row["舊裁決"])
+        for _, row in table.iterrows()
+    }
+    checked = [(new.best.point, summary["best"]["old_verdict"])]
+    for group, filed_rows in (
+        (sorted(new.ridges, key=lambda c: c.value or 0.0, reverse=True), summary["ridges"]),
+        (sorted(new.plateaus, key=lambda c: c.value or 0.0, reverse=True), summary["plateaus"]),
+    ):
+        checked += [
+            (cell.point, item["old_verdict"])
+            for cell, item in zip(group, filed_rows, strict=True)
+        ]
+    for point, verdict in checked:
+        expected = from_table[tuple(point.get(name) for name in names)]
+        if verdict != expected:
+            raise SystemExit(
+                f"{driver_key}:summary 的「舊裁決」({verdict})與逐格對照表"
+                f"({expected})對不上,格 {point.label}"
+            )
 
     print(f"\n【{title}】{new_grid.describe()}")
     print(

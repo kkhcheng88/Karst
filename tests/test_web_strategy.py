@@ -158,13 +158,13 @@ def test_歷次運行表列出該策略全部運行並跳得到運行詳情(read
 
     # 這張表的口徑要與端點一樣,兩件事都要扣起:
     #   一、掃描格不入運行清單(D-029、KARST-054 起問 backtest_run.origin);
-    #   二、過時運行(序列缺失)不入清單(KARST-057)——逐日序列不在磁碟上,
+    #   二、序列缺失運行不入清單(KARST-057)——逐日序列不在磁碟上,
     #       這張表逐行要讀的年化/回撤/勝率根本算不出來。
     # 兩樣都是登記照舊在案、清單不列,所以這裡數的是「列得出的那幾次」。
     every = [
         record
         for record in reader.store.list_runs(name, origin=FORMAL_RUN)
-        if not reader.series_gap(record)
+        if not reader.series_missing(record)
     ]
 
     page = _get_json(base_url + "/api/strategy/runs?id=" + sid + "&limit=5")

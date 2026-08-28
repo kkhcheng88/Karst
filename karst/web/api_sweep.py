@@ -921,7 +921,7 @@ class SweepReader:
             try:
                 view = self.view(source.id)
                 if self._series_missing(view):
-                    # 過時運行(序列缺失):落檔還在,格內那批運行的序列已經不在。
+                    # 序列缺失運行:落檔還在,格內那批運行的序列已經不在。
                     # 不上架——掃描清單報的是現時打得開的掃描,不是歷史帳。
                     missing += 1
                     continue

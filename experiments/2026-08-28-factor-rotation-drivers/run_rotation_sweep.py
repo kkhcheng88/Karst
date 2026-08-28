@@ -412,8 +412,12 @@ def main() -> None:
                 "executed": sweep.executed,
                 "reused": sweep.reused,
                 "seconds": round(sweep.seconds, 2),
+                # 「山脊」自 KARST-047 起是一個獨立裁決,但這一格當日漏了它
+                # (KARST-060 補回)。少一欄不等於零格——不報就變成「數不到」,
+                # README 那張判讀表因此有一欄長期填不到。
                 "counts": {
                     "plateau": len(verdict.plateaus),
+                    "ridge": len(verdict.ridges),
                     "lonely_peak": len(verdict.lonely_peaks),
                     "invalid": len(verdict.invalid_cells),
                 },
@@ -425,6 +429,7 @@ def main() -> None:
                     "shallowest": _cell_summary(sweep, drawdown, drawdown.best),
                     "counts": {
                         "plateau": len(drawdown.plateaus),
+                        "ridge": len(drawdown.ridges),
                         "lonely_peak": len(drawdown.lonely_peaks),
                         "invalid": len(drawdown.invalid_cells),
                     },
