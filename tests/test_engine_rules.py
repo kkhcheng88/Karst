@@ -32,10 +32,12 @@ from karst.engine import (
     RuleSimulationOutput,
     RuleStrategyParams,
     SwingLowStop,
+    TradingCosts,
     build_rule_signals,
     run_rule_strategy,
     run_rule_strategy_on_signal_matrix,
 )
+from karst.errors import ContractViolation
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -335,6 +337,11 @@ def test_rule_contracts_stay_behind_our_own_interface(panel, breaker_arm):
     assert leaked == []
 
     # (d) 五件規則一個參數都沒有預設值:缺就拋錯,不代用戶決定
+    #
+    # 唯一一個豁免是 ``costs``:交易成本合約是後加的(KARST-043),舊有的
+    # ``fees`` 那個數字要繼續行得通,所以它留空即等於「按成交金額比例、無滑點」
+    # ——與成本入引擎之前逐位相同。豁免的只是「可以不寫」,**不是**「可以只寫一半」:
+    # ``TradingCosts`` 自己三個欄位一個預設值都沒有,見下面的斷言。
     for contract in (
         RuleStrategyParams,
         BreakoutEntry,
@@ -342,12 +349,34 @@ def test_rule_contracts_stay_behind_our_own_interface(panel, breaker_arm):
         MeasuredMoveTarget,
         RiskFractionSizing,
         MonthlyLossBreaker,
+        TradingCosts,
     ):
         for parameter in inspect.signature(contract).parameters.values():
+            if contract is RuleStrategyParams and parameter.name == "costs":
+                continue
             assert parameter.default is inspect.Parameter.empty, (contract.__name__, parameter.name)
     assert [field.name for field in fields(RuleStrategyParams)] == [
-        "entry", "stop", "target", "sizing", "breaker", "initial_cash", "fees", "tie_break_seed"
+        "entry", "stop", "target", "sizing", "breaker", "initial_cash", "fees",
+        "tie_break_seed", "costs",
     ]
+    # 留空即無成本;成本講兩次即拒收
+    assert _params(equity_basis="current_equity", breaker=None).costs == TradingCosts.zero()
+    with pytest.raises(ContractViolation):
+        RuleStrategyParams(
+            entry=BreakoutEntry(lookback_days=20),
+            stop=SwingLowStop(lookback_days=10, min_stop_fraction=0.01, max_stop_fraction=0.25),
+            target=MeasuredMoveTarget(min_reward_risk=1.5),
+            sizing=RiskFractionSizing(
+                risk_per_trade=0.02, max_position_fraction=0.20, equity_basis="current_equity"
+            ),
+            breaker=None,
+            initial_cash=100_000.0,
+            fees=0.001,
+            tie_break_seed=1,
+            costs=TradingCosts(
+                fee_model="per_share", fee_rate=0.005, slippage_fraction=0.0005
+            ),
+        )
     with pytest.raises(TypeError):
         RuleStrategyParams(entry=BreakoutEntry(lookback_days=20))  # 少寫幾件即湊不齊
     with pytest.raises(RuleNotSpecified):

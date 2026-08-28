@@ -33,7 +33,7 @@ import numpy as np
 import pandas as pd
 
 from ..errors import ContractViolation
-from .contracts import Order, _normalise_prices
+from .contracts import Order, TradingCosts, _normalise_prices, resolve_costs
 
 # 注碼基數(sizing basis)的兩個選項。
 # ``current_equity`` 是唯一正確的一個;``initial_cash`` 只保留給對照臂——
@@ -316,6 +316,9 @@ class RuleStrategyParams:
 
     ``tie_break_seed``:同一根 K 線多隻股票同時發出入場訊號、現金不夠分時,
     先來後到由抽籤決定。定死種子,同一組參數重跑一字不差(D-021 第 8 條精神)。
+
+    ``costs`` 是交易成本合約(``contracts.TradingCosts``),與排名再平衡路徑
+    **同一份定義**;留空即沿用舊的 ``fees`` 單一數字(按成交金額比例、無滑點)。
     """
 
     entry: BreakoutEntry
@@ -326,6 +329,7 @@ class RuleStrategyParams:
     initial_cash: float
     fees: float
     tie_break_seed: int
+    costs: TradingCosts | None = None
 
     def __post_init__(self) -> None:
         pieces = {
@@ -352,6 +356,9 @@ class RuleStrategyParams:
         if not np.isfinite(fees) or fees < 0.0:
             raise ContractViolation(f"手續費率不可為負,收到 {self.fees!r}")
         object.__setattr__(self, "fees", fees)
+        object.__setattr__(
+            self, "costs", resolve_costs(self.costs, fees, "規則類策略參數的交易成本")
+        )
         try:
             object.__setattr__(self, "tie_break_seed", int(self.tie_break_seed))
         except (TypeError, ValueError) as exc:

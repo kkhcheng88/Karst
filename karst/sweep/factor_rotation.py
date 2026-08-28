@@ -30,7 +30,7 @@ from typing import Any, Final
 
 import pandas as pd
 
-from ..engine.contracts import PricePanel
+from ..engine.contracts import PricePanel, TradingCosts
 from ..errors import ContractViolation, NotFound
 from ..metrics import RunMetrics, run_metrics
 from ..metrics.benchmark import BenchmarkCurve, benchmark_curve
@@ -44,7 +44,13 @@ from ..strategies.factor_rotation import (
     build_driver,
     run_factor_rotation,
 )
-from .factor_mix import CADENCE_AXIS, ensure_factor_mix_setup, weight_text
+from .factor_mix import (
+    CADENCE_AXIS,
+    cost_slug,
+    cost_values,
+    ensure_factor_mix_setup,
+    weight_text,
+)
 from .grid import ProductGrid, SweepAxis, SweepGrid, SweepPoint
 from .runner import METRIC_COLUMNS, CellPlan, SweepCell
 from .verdict import CellVerdict
@@ -180,6 +186,7 @@ class FactorRotationJob:
         market_ticker: str | None = None,
         initial_cash: float = 100_000.0,
         fees: float = 0.0,
+        costs: TradingCosts | None = None,
         engine: Any | None = None,
         engine_name: str = "vectorbt",
     ) -> None:
@@ -213,6 +220,7 @@ class FactorRotationJob:
         self._market_ticker = str(market_ticker).strip() if market_ticker else None
         self._initial_cash = float(initial_cash)
         self._fees = float(fees)
+        self._costs = costs
         self._engine = engine
         self._engine_name = str(engine_name).strip()
         self._written = 0
@@ -220,6 +228,10 @@ class FactorRotationJob:
     @property
     def driver_key(self) -> str:
         return self._driver_key
+
+    @property
+    def costs(self) -> TradingCosts | None:
+        return self._costs
 
     @property
     def param_names(self) -> tuple[str, ...]:
@@ -279,8 +291,13 @@ class FactorRotationJob:
         values.update(
             {f"warmup_{key}": weight_text(value) for key, value in self._warmup_weights.items()}
         )
+        # 交易成本同一個道理:成本一改就是另一次運行,所以要入參數集。零成本就一格
+        # 都不寫、名亦一字不改,零成本那批舊運行照樣撞得回去(見 cost_values/cost_slug)。
+        values.update(cost_values(self._costs))
 
-        param_set = self._param_set(f"{self._prefix}{point_slug(point)}", cadence, values)
+        param_set = self._param_set(
+            f"{self._prefix}{point_slug(point)}{cost_slug(self._costs)}", cadence, values
+        )
         factor_version_ids = tuple(
             self._store.get_factor_version(sleeve.factor_name).factor_version_id
             for sleeve in self._sleeves
@@ -309,6 +326,7 @@ class FactorRotationJob:
             warmup_weights=self._warmup_weights,
             initial_cash=self._initial_cash,
             fees=self._fees,
+            costs=self._costs,
         )
         result = run_factor_rotation(
             store=self._store,
@@ -460,3 +478,127 @@ def segment_excess(
                 }
             )
     return pd.DataFrame(rows)
+
+
+# ----------------------------------------------------------------------
+# 成本前後並列(KARST-043)
+# ----------------------------------------------------------------------
+
+
+@dataclass(frozen=True, slots=True)
+class CostPair:
+    """同一格參數的兩次運行:一次零成本,一次連成本。
+
+    兩次是**兩個獨立的運行編號**,不是同一個運行改了個數——成本入了參數集,
+    編號自然不同(見 ``cost_values``)。並列擺出來,「成本吃掉幾多」就是減出來
+    的一個數,不用人推。
+    """
+
+    label: str
+    kind: str
+    before: SweepCell
+    after: SweepCell
+    verdict_before: CellVerdict | None = None
+    verdict_after: CellVerdict | None = None
+    note: str = ""
+
+
+def cost_comparison(
+    pairs: Sequence[CostPair],
+    *,
+    objective: str,
+    costs: TradingCosts,
+) -> pd.DataFrame:
+    """成本前後並列表:目標指標(年化超額)與換手,兩邊同一行擺出來。
+
+    換手那兩欄是這張表的重點。KARST-036 收檔時留下的問題正是:輪動的換手是固定
+    權重的一百倍,而成本設為零——所以「成本前後的換手幾乎不變、超額卻掉了多少」
+    就是那條問題的答案。本函式**只減數,不裁決**哪一組參數該用(D-008)。
+    """
+    if not pairs:
+        raise ContractViolation("並列表一行都沒有")
+    labels = {pair.label for pair in pairs}
+    if len(labels) != len(pairs):
+        raise ContractViolation("並列表有兩行同名;每一行要一個獨一無二的名")
+
+    rows: list[dict[str, Any]] = []
+    for pair in pairs:
+        before, after = pair.before, pair.after
+        value_before = before.value_of(objective)
+        value_after = after.value_of(objective)
+        rows.append(
+            {
+                "名稱": pair.label,
+                "類別": pair.kind,
+                "參數": after.point.label,
+                "成本": costs.label,
+                f"成本前{objective}": value_before,
+                f"成本後{objective}": value_after,
+                "成本代價": (
+                    None
+                    if value_before is None or value_after is None
+                    else float(value_after - value_before)
+                ),
+                "成本前換手": before.metrics.turnover,
+                "成本後換手": after.metrics.turnover,
+                "成本前年化": before.metrics.annual_return,
+                "成本後年化": after.metrics.annual_return,
+                "成本前最大回撤": before.metrics.max_drawdown,
+                "成本後最大回撤": after.metrics.max_drawdown,
+                "成本前裁決": (
+                    pair.verdict_before.verdict
+                    if pair.verdict_before is not None
+                    else "不在掃描格上"
+                ),
+                "成本後裁決": (
+                    pair.verdict_after.verdict
+                    if pair.verdict_after is not None
+                    else "不在掃描格上"
+                ),
+                "成本前run_id": before.run_id,
+                "成本後run_id": after.run_id,
+                "備註": pair.note,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def provenance_note(
+    *,
+    snapshot_id: str,
+    period: tuple[str, str],
+    costs: TradingCosts,
+    run_ids: Sequence[str] = (),
+    extra: str = "",
+) -> str:
+    """報告要指得回去的那幾件:快照、期間、成本參數、運行編號。
+
+    一份報告的數字若指不回「哪一份數據、哪一段日子、哪一組成本、哪一次運行」,
+    下一個人就重現不到,亦查不出它是不是已經過時。所以這幾行是報告的**必印**部分。
+    """
+    lines = [
+        f"- 數據快照:`{snapshot_id}`",
+        f"- 期間:{period[0]} 至 {period[1]}",
+        f"- 交易成本:{_costs_sentence(costs)}",
+    ]
+    if run_ids:
+        unique = tuple(dict.fromkeys(str(run_id) for run_id in run_ids))
+        shown = "、".join(f"`{run_id}`" for run_id in unique[:8])
+        tail = f",另有 {len(unique) - 8} 個" if len(unique) > 8 else ""
+        lines.append(f"- 運行編號({len(unique)} 個):{shown}{tail}")
+    if extra:
+        lines.append(extra if extra.startswith("-") else f"- {extra}")
+    return "\n".join(lines)
+
+
+def _costs_sentence(costs: TradingCosts) -> str:
+    if costs.is_zero:
+        return "零(手續費與滑點皆為 0)"
+    if costs.fee_model == "per_share":
+        fee = f"每股 US${costs.fee_rate:g}"
+    else:
+        fee = f"成交金額的 {costs.fee_rate * 10_000:g} 個基點"
+    return (
+        f"手續費 {fee}(型別 `{costs.fee_model}`)、"
+        f"滑點 {costs.slippage_fraction * 10_000:g} 個基點(佔成交價比例)"
+    )

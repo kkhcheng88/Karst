@@ -25,7 +25,13 @@ from numba import njit
 from vectorbt.portfolio.enums import Direction, NoOrder, SizeType, StopEntryPrice
 from vectorbt.portfolio.nb import order_nb
 
-from .contracts import Order, PricePanel, RankingRebalanceParams, SimulationOutput
+from .contracts import (
+    Order,
+    PricePanel,
+    RankingRebalanceParams,
+    SimulationOutput,
+    TradingCosts,
+)
 from .rules import (
     EXIT_CODE_NONE,
     EXIT_CODE_REASONS,
@@ -51,6 +57,29 @@ _UNCLOSED = EXIT_CODE_UNCLOSED
 _NO_ENTRY = -1
 
 
+def _cost_arguments(
+    costs: TradingCosts, price: pd.DataFrame | np.ndarray
+) -> tuple[float, float | np.ndarray | pd.DataFrame]:
+    """把 Karst 的成本合約翻譯成引擎的入參。回傳 ``(手續費率, 滑點)``。
+
+    引擎收兩種費:按成交金額的比例費,以及按成交價比例的滑點。**每股固定費它沒有
+    對應的入參**,但兩者逐位等價:引擎的成交價是 ``q × (1 ± 滑點)``,所以把滑點
+    加大 ``c / q`` 之後,買入付 ``q(1+s) + c``、賣出收 ``q(1−s) − c``——正是
+    「每股收 c」。買賣兩邊同一條算式,不用分方向。
+
+    代價是那筆費用會混進成交價裡,引擎記的手續費欄變成 0;``_orders`` 會把它
+    還原成「滑點後成交價 + 每股費 × 股數」兩格,交出去的訂單表兩條路一模一樣。
+
+    成本為零就原封不動交回兩個 0.0——與成本入引擎之前的呼叫逐位相同。
+    """
+    if costs.is_zero:
+        return 0.0, 0.0
+    per_share = costs.fee_per_share
+    if per_share <= 0.0:
+        return costs.fee_fraction_of_value, costs.slippage_fraction
+    return 0.0, costs.slippage_fraction + per_share / price
+
+
 class VectorbtEngine:
     """以 ``Portfolio.from_orders`` 跑「每期按因子排名選前 N 隻等權再平衡」。"""
 
@@ -62,6 +91,7 @@ class VectorbtEngine:
         targets: pd.DataFrame,
         params: RankingRebalanceParams,
     ) -> SimulationOutput:
+        fees, slippage = _cost_arguments(params.costs, panel.open)
         portfolio = vbt.Portfolio.from_orders(
             close=panel.close,          # 逐日估值用收價
             size=targets,
@@ -73,7 +103,8 @@ class VectorbtEngine:
             call_seq="auto",            # 先賣後買。漏了它,買單會因現金未到位而被
             #                             默默部分拒絕——KARST-009 兩個「不寫就默默錯」之一
             init_cash=params.initial_cash,
-            fees=params.fees,
+            fees=fees,
+            slippage=slippage,     # 成交價 = 開價 × (1 ± 滑點);每股費亦折入這裡
             freq="1D",
         )
         return SimulationOutput(
@@ -85,7 +116,7 @@ class VectorbtEngine:
                 index=panel.dates,
                 columns=list(panel.entity_ids),
             ),
-            orders=_orders(portfolio, panel),
+            orders=_orders(portfolio, panel, fee_per_share=params.costs.fee_per_share),
         )
 
 
@@ -134,13 +165,18 @@ def _order_rules_nb(
     c, open_, entries, stop_level,
     exit_bar, exit_price, exit_code, exit_mark,
     position_entry, blocked,
-    risk_per_trade, max_position_fraction, fixed_equity_basis, fees,
+    risk_per_trade, max_position_fraction, fixed_equity_basis,
+    fee_value, fee_per_share, slippage,
 ):
     """規則 1 至 4 的落點。手上有貨就只看離場,手上無貨才看入場。
 
     離場**不在這裡重判**:哪一根收場、幾多錢、什麼原因,一律查 ``rules.resolve_exits``
     行好的那三張表(索引取入場那一根)。本函式只做兩件事——認住手上這注是哪一根
     入場的,以及在賣出那一刻把出場原因記入 ``exit_mark``。出場規約全倉只此一份。
+
+    交易成本與排名再平衡路徑同一份定義:滑點按成交價比例收,每股手續費折入
+    成交價(見 ``_cost_arguments``)。成本不影響注碼——股數按**計劃價**與止蝕
+    距離算,成本只影響成交那一刻付幾多錢。
     """
     i, col = c.i, c.col
     position = c.position_now
@@ -150,7 +186,12 @@ def _order_rules_nb(
         if entered >= 0 and exit_code[entered, col] != _UNCLOSED and exit_bar[entered, col] == i:
             exit_mark[i, col] = exit_code[entered, col]   # 賣出那一刻標記出場原因
             position_entry[col] = _NO_ENTRY
-            return order_nb(size=-position, price=exit_price[entered, col], fees=fees,
+            sell_price = exit_price[entered, col]
+            sell_slippage = slippage
+            if fee_per_share > 0.0:
+                sell_slippage = slippage + fee_per_share / sell_price
+            return order_nb(size=-position, price=sell_price, fees=fee_value,
+                            slippage=sell_slippage,
                             size_type=SizeType.Amount, direction=Direction.LongOnly)
         return NoOrder
 
@@ -173,8 +214,12 @@ def _order_rules_nb(
     if not (shares > 0.0):
         return NoOrder
 
+    buy_slippage = slippage
+    if fee_per_share > 0.0:
+        buy_slippage = slippage + fee_per_share / price
+
     position_entry[col] = i
-    return order_nb(size=shares, price=price, fees=fees,
+    return order_nb(size=shares, price=price, fees=fee_value, slippage=buy_slippage,
                     size_type=SizeType.Amount, direction=Direction.LongOnly)
 
 
@@ -197,6 +242,7 @@ class VectorbtRuleEngine:
         basis = np.zeros(rows)
         blocked = np.zeros(rows)
         fixed_basis = 0.0 if params.sizing.uses_current_equity else params.initial_cash
+        costs = params.costs
 
         portfolio = vbt.Portfolio.from_order_func(
             panel.close,
@@ -213,7 +259,9 @@ class VectorbtRuleEngine:
             params.sizing.risk_per_trade,
             params.sizing.max_position_fraction,
             fixed_basis,
-            params.fees,
+            costs.fee_fraction_of_value,
+            costs.fee_per_share,
+            costs.slippage_fraction,
             pre_segment_func_nb=_pre_segment_rules_nb,
             pre_segment_args=(
                 panel.open.to_numpy(),
@@ -231,7 +279,10 @@ class VectorbtRuleEngine:
             init_cash=params.initial_cash,
             freq="1D",
         )
-        return _rule_output(portfolio, panel, basis, blocked > 0.0, exit_mark)
+        return _rule_output(
+            portfolio, panel, basis, blocked > 0.0, exit_mark,
+            fee_per_share=costs.fee_per_share,
+        )
 
 
 class VectorbtSignalMatrixEngine:
@@ -271,6 +322,7 @@ class VectorbtSignalMatrixEngine:
             shares = np.minimum(shares, cap)
             usable = signals.entries & np.isfinite(shares) & (stop_distance > 0.0) & (shares > 0.0)
         size = np.where(usable, shares, np.nan)
+        fees, slippage = _cost_arguments(params.costs, fill)
 
         portfolio = vbt.Portfolio.from_signals(
             close=panel.close,
@@ -285,7 +337,8 @@ class VectorbtSignalMatrixEngine:
             sl_stop=signals.stop_fraction,             # 規則 2
             tp_stop=signals.target_fraction,           # 規則 3
             stop_entry_price=StopEntryPrice.FillPrice,  # 止蝕/目標以成交價為基準,換算回原本的絕對價位
-            fees=params.fees,
+            fees=fees,
+            slippage=slippage,
             direction="longonly",
             group_by=True,
             cash_sharing=True,
@@ -301,6 +354,7 @@ class VectorbtSignalMatrixEngine:
             np.full(rows, params.initial_cash),        # 這條路的注碼基數由頭到尾是起始本金
             np.zeros(rows, dtype=np.bool_),            # 熔斷:表達不到,所以永遠無閘
             _exit_marks_by_pairing(portfolio, panel, signals.exits),
+            fee_per_share=params.costs.fee_per_share,
         )
 
 
@@ -342,6 +396,8 @@ def _rule_output(
     basis: np.ndarray,
     blocked: np.ndarray,
     exit_marks: np.ndarray,
+    *,
+    fee_per_share: float = 0.0,
 ) -> RuleSimulationOutput:
     """把引擎的輸出翻譯成 Karst 的型別,一個第三方型別都不准漏出去。"""
     dates = panel.dates
@@ -353,7 +409,7 @@ def _rule_output(
         cash=pd.Series(np.asarray(portfolio.cash(), dtype=float), index=dates, name="cash"),
         sizing_basis=pd.Series(np.asarray(basis, dtype=float), index=dates, name="sizing_basis"),
         breaker_blocked=pd.Series(np.asarray(blocked, dtype=bool), index=dates, name="breaker_blocked"),
-        orders=_orders(portfolio, panel, exit_marks),
+        orders=_orders(portfolio, panel, exit_marks, fee_per_share=fee_per_share),
     )
 
 
@@ -361,11 +417,17 @@ def _orders(
     portfolio: "vbt.Portfolio",
     panel: PricePanel | BarPanel,
     exit_marks: np.ndarray | None = None,
+    *,
+    fee_per_share: float = 0.0,
 ) -> tuple[Order, ...]:
     """把引擎的成交記錄翻譯成 Karst 的訂單型別,一筆不漏、一個第三方型別不留。
 
     ``exit_marks`` 是規則路徑那張「哪一格賣出、原因是什麼」的標記表;排名再平衡
     那條路沒有止蝕目標可言,留空即全部訂單的出場原因是 ``None``。
+
+    ``fee_per_share`` 是每股手續費。它在引擎裡折入了成交價(見 ``_cost_arguments``),
+    所以這裡要還原:``price`` 交回**滑點後**的成交價,``fees`` 交回 ``每股費 × 股數``。
+    交出去的訂單表兩種手續費型別、兩條路徑,格式與意思完全一致。
     """
     records = portfolio.orders.records
     if len(records) == 0:
@@ -385,6 +447,13 @@ def _orders(
         if exit_marks is None
         else (lambda bar, column: EXIT_CODE_REASONS.get(int(exit_marks[bar, column])))
     )
+    if fee_per_share > 0.0:
+        # 買入的成交價被加大了 fee_per_share,賣出的被減小了同一個數:還原回去,
+        # 那一格就是滑點後的成交價,差額 × 股數 就是這一筆的手續費。
+        signs = np.where(sides == _BUY, -1.0, 1.0)
+        prices = prices + signs * fee_per_share
+        fees = shares * fee_per_share
+
     orders = [
         Order(
             trade_date=pd.Timestamp(dates[bar]).strftime("%Y-%m-%d"),

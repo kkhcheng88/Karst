@@ -62,6 +62,8 @@ from ..engine.contracts import (
     Order,
     PricePanel,
     RankingRebalanceParams,
+    TradingCosts,
+    resolve_costs,
 )
 from ..engine.protocol import PortfolioEngine
 from .factor_mix import (
@@ -524,6 +526,10 @@ class FactorRotationParams:
       整次掃描共用的**數,整個掃描格的每一格就走同一段日子,L 這條軸才乾淨。
     - ``warmup_weights`` 熱身期那段日子用的權重——同樣要寫明。掃描一律寫四格等權,
       即熱身期與「各佔 25%」那個對照一模一樣,分別由熱身期結束那一刻才開始出現。
+
+    ``costs`` 是交易成本合約(手續費型別 + 費率 + 滑點,見 ``engine.TradingCosts``),
+    照原樣交落引擎——**輪動這條路換手是固定權重的一百倍,成本正是它要過的那一關**
+    (KARST-036 收檔留下的問題)。留空即沿用 ``fees``(按成交金額比例、無滑點)。
     """
 
     cadence: str
@@ -531,6 +537,7 @@ class FactorRotationParams:
     warmup_weights: Mapping[str, float]
     initial_cash: float = 100_000.0
     fees: float = 0.0
+    costs: TradingCosts | None = None
 
     def __post_init__(self) -> None:
         if self.cadence is None or not str(self.cadence).strip():
@@ -564,12 +571,14 @@ class FactorRotationParams:
         fees = float(self.fees)
         if not np.isfinite(fees) or fees < 0.0:
             raise ContractViolation(f"手續費率不可為負,收到 {self.fees!r}")
+        costs = resolve_costs(self.costs, fees, "因子輪動參數的交易成本")
 
         object.__setattr__(self, "cadence", cadence)
         object.__setattr__(self, "warmup_bars", warmup)
         object.__setattr__(self, "warmup_weights", cleaned)
         object.__setattr__(self, "initial_cash", initial_cash)
         object.__setattr__(self, "fees", fees)
+        object.__setattr__(self, "costs", costs)
 
 
 @dataclass(frozen=True, slots=True)
@@ -870,14 +879,14 @@ def run_factor_rotation(
         market_ticker=ticker,
     )
 
-    # 適配層 A 的模擬器只讀這個型別的起始本金與手續費率兩格;排名那兩格
+    # 適配層 A 的模擬器只讀這個型別的起始本金與交易成本兩格;排名那兩格
     # (選幾隻、排名方向)在目標比重路徑上用不着,填的是這次敞口的格數。
     engine_params = RankingRebalanceParams(
         cadence=params.cadence,
         top_n=len(exposures),
         direction="high",
         initial_cash=params.initial_cash,
-        fees=params.fees,
+        costs=params.costs,
     )
 
     if engine is None:

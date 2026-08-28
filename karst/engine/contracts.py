@@ -25,9 +25,139 @@ RANK_DIRECTIONS: Final[frozenset[str]] = frozenset({"high", "low"})
 
 ORDER_SIDES: Final[frozenset[str]] = frozenset({"buy", "sell"})
 
+# 手續費型別(fee model)。兩個取值的意思完全不同,所以型別要寫明,不可以只交一個數:
+#
+# - ``per_share``          每買賣一股收固定金額(美股經紀慣例,例如每股 US$0.005)
+# - ``fraction_of_value``  按成交金額收比例(例如 0.001 即 10 個基點)
+#
+# 這是一張選單,**不是**預設值:成本用哪個型別、收多少,一律由參數集講明(D-008 第 3 條)。
+FEE_MODELS: Final[frozenset[str]] = frozenset({"per_share", "fraction_of_value"})
+
 
 class CadenceNotSpecified(ContractViolation):
     """沒有指定換倉節奏。D-009 第 7 條:不設預設值,缺即拋錯,不代用戶決定。"""
+
+
+@dataclass(frozen=True, slots=True)
+class TradingCosts:
+    """交易成本(trading costs):手續費與滑點,兩條引擎路徑共用**同一份**定義。
+
+    三個欄位一個都沒有預設值——要計成本就三件事都要講清楚,引擎不代用戶揀一個
+    「行內慣例」的數(D-008 第 3 條、D-009 第 7 條的同一個道理)。明示不計成本
+    要寫 ``TradingCosts.zero()``,寫出來的那一刻就是一個決定,不是一個預設。
+
+    定義(兩條路徑逐字相同):
+
+    - **滑點**(slippage)按成交價比例收:買入成交價 = 計劃價 × (1 + s),
+      賣出成交價 = 計劃價 × (1 − s)。計劃價是可執行時點那根 K 線的開價
+      (排名再平衡路徑),或者規則路徑算出來的止蝕/目標價位。
+    - **手續費**(fee)按 ``fee_model`` 收:
+      ``per_share`` 每股收 ``fee_rate`` 元,一筆收 ``fee_rate × 股數``;
+      ``fraction_of_value`` 按成交金額收 ``fee_rate``,一筆收
+      ``fee_rate × 股數 × 成交價``(成交價已含滑點)。
+
+    ``fee_rate`` 為 0 時兩個型別算出來一模一樣;``zero()`` 揀 ``fraction_of_value``
+    純粹因為要填一格,不代表偏好哪一個。
+    """
+
+    fee_model: str
+    fee_rate: float
+    slippage_fraction: float
+
+    def __post_init__(self) -> None:
+        fee_model = str(self.fee_model).strip() if self.fee_model is not None else ""
+        if fee_model not in FEE_MODELS:
+            raise ContractViolation(
+                f"手續費型別只收 {sorted(FEE_MODELS)}"
+                "(per_share=每股收固定金額,fraction_of_value=按成交金額收比例),"
+                f"收到 {self.fee_model!r};光有一個數字講不清是每股還是按金額"
+            )
+        try:
+            fee_rate = float(self.fee_rate)
+        except (TypeError, ValueError) as exc:
+            raise ContractViolation(f"手續費要是數字,收到 {self.fee_rate!r}") from exc
+        if not np.isfinite(fee_rate) or fee_rate < 0.0:
+            raise ContractViolation(f"手續費不可為負,收到 {self.fee_rate!r}")
+        try:
+            slippage = float(self.slippage_fraction)
+        except (TypeError, ValueError) as exc:
+            raise ContractViolation(f"滑點要是數字,收到 {self.slippage_fraction!r}") from exc
+        if not np.isfinite(slippage) or slippage < 0.0:
+            raise ContractViolation(f"滑點不可為負,收到 {self.slippage_fraction!r}")
+        if slippage >= 1.0:
+            raise ContractViolation(
+                f"滑點是佔成交價的比例(0.0005 即 5 個基點),收到 {self.slippage_fraction!r};"
+                "1.0 即賣出價變成 0,那不是滑點是報廢"
+            )
+        if fee_model == "fraction_of_value" and fee_rate >= 1.0:
+            raise ContractViolation(
+                f"按金額比例的手續費是比例(0.001 即 10 個基點),收到 {self.fee_rate!r}"
+            )
+
+        object.__setattr__(self, "fee_model", fee_model)
+        object.__setattr__(self, "fee_rate", fee_rate)
+        object.__setattr__(self, "slippage_fraction", slippage)
+
+    @classmethod
+    def zero(cls) -> "TradingCosts":
+        """明示「這次不計成本」。用來重現成本入引擎之前的舊運行。"""
+        return cls(fee_model="fraction_of_value", fee_rate=0.0, slippage_fraction=0.0)
+
+    @property
+    def is_zero(self) -> bool:
+        return self.fee_rate == 0.0 and self.slippage_fraction == 0.0
+
+    @property
+    def fee_per_share(self) -> float:
+        """每股手續費;不是每股型別即 0。"""
+        return self.fee_rate if self.fee_model == "per_share" else 0.0
+
+    @property
+    def fee_fraction_of_value(self) -> float:
+        """按成交金額計的手續費率;不是這個型別即 0。"""
+        return self.fee_rate if self.fee_model == "fraction_of_value" else 0.0
+
+    def as_params(self) -> dict[str, float | str]:
+        """攤成參數集入面的三格。成本入了參數集,運行編號自然跟著變。"""
+        return {
+            "fee_model": self.fee_model,
+            "fee_rate": self.fee_rate,
+            "slippage_fraction": self.slippage_fraction,
+        }
+
+    @property
+    def label(self) -> str:
+        """一行人話,供參數集命名與報告用。"""
+        if self.is_zero:
+            return "無成本"
+        if self.fee_model == "per_share":
+            fee = f"每股{self.fee_rate:g}"
+        else:
+            fee = f"金額{self.fee_rate * 10_000:g}bp"
+        return f"{fee}+滑點{self.slippage_fraction * 10_000:g}bp"
+
+
+def resolve_costs(costs: "TradingCosts | None", fees: float, label: str) -> "TradingCosts":
+    """把舊的 ``fees`` 單一數字與新的成本合約收成一個定義。
+
+    ``costs`` 留空即沿用 ``fees``(按成交金額比例、無滑點)——成本入引擎之前
+    全倉就是這樣算,所以舊呼叫逐位不變。兩邊同時講就當場拒收:成本只可以有
+    一個講法,不可以兩個。
+    """
+    if costs is None:
+        return TradingCosts(
+            fee_model="fraction_of_value", fee_rate=fees, slippage_fraction=0.0
+        )
+    if not isinstance(costs, TradingCosts):
+        raise ContractViolation(
+            f"{label}要是 TradingCosts,收到 {type(costs).__name__}"
+        )
+    if fees:
+        raise ContractViolation(
+            f"{label}同時收到 fees={fees!r} 與成本合約 {costs.label};"
+            "成本只可以有一個講法——交了 TradingCosts 就不要再交 fees"
+        )
+    return costs
 
 
 def _normalise_prices(frame: pd.DataFrame, label: str) -> pd.DataFrame:
@@ -104,6 +234,9 @@ class RankingRebalanceParams:
     - ``cadence`` 換倉節奏——D-009 第 7 條明令不設預設,每次執行由用戶指定。
     - ``top_n`` 選幾隻、``direction`` 排名方向——D-008 第 3 條:策略內部數值
       一律做成可掃描參數,改參數不用改碼。
+
+    ``costs`` 是交易成本合約(手續費型別 + 費率 + 滑點),同樣是可掃描參數。
+    留空即沿用舊的 ``fees`` 單一數字(按成交金額比例、無滑點);兩邊同時講即拒收。
     """
 
     cadence: str
@@ -111,6 +244,7 @@ class RankingRebalanceParams:
     direction: str
     initial_cash: float = 100_000.0
     fees: float = 0.0
+    costs: "TradingCosts | None" = None
 
     def __post_init__(self) -> None:
         if self.cadence is None or not str(self.cadence).strip():
@@ -141,7 +275,9 @@ class RankingRebalanceParams:
         fees = float(self.fees)
         if not np.isfinite(fees) or fees < 0.0:
             raise ContractViolation(f"手續費率不可為負,收到 {self.fees!r}")
+        costs = resolve_costs(self.costs, fees, "排名再平衡參數的交易成本")
 
+        object.__setattr__(self, "costs", costs)
         object.__setattr__(self, "cadence", cadence)
         object.__setattr__(self, "direction", direction)
         object.__setattr__(self, "top_n", top_n)

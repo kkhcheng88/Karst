@@ -11,7 +11,7 @@ import pandas as pd
 from ..errors import ContractViolation
 from ..store import DefinitionStore
 from .cadence import rebalance_schedule
-from .contracts import BacktestResult, PricePanel, RankingRebalanceParams
+from .contracts import BacktestResult, PricePanel, RankingRebalanceParams, TradingCosts
 from .protocol import PortfolioEngine
 from .selection import build_targets, read_factor_panel
 
@@ -27,6 +27,7 @@ def run_ranking_rebalance(
     version_no: int | None = None,
     initial_cash: float = 100_000.0,
     fees: float = 0.0,
+    costs: TradingCosts | None = None,
     engine: PortfolioEngine | None = None,
 ) -> BacktestResult:
     """每期按因子排名選前 ``top_n`` 隻等權再平衡,跑出一次完整回測。
@@ -37,6 +38,10 @@ def run_ranking_rebalance(
     ``top_n`` 與 ``direction`` 是可掃描參數:掃描一組參數只需重覆呼叫本函式,
     不用改一行碼(D-008 第 3 條)。
 
+    ``costs`` 是交易成本合約(手續費型別 + 費率 + 滑點),同樣是可掃描參數:
+    掃一格成本只需重覆呼叫本函式。留空即沿用 ``fees``(按成交金額比例、無滑點),
+    兩邊同時講即拒收。
+
     ``engine`` 留空就用 vectorbt(D-011)。傳別的進來即整件換走引擎——本函式
     與 ``contracts.py`` 一字不用改(D-007 第 3 條)。
     """
@@ -46,6 +51,7 @@ def run_ranking_rebalance(
         direction=direction,
         initial_cash=initial_cash,
         fees=fees,
+        costs=costs,
     )
     if not isinstance(panel, PricePanel):
         raise ContractViolation(

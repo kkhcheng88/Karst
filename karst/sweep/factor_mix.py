@@ -19,9 +19,10 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from dataclasses import replace
 from typing import Any
 
-from ..engine.contracts import PricePanel
+from ..engine.contracts import PricePanel, TradingCosts
 from ..errors import ContractViolation, NotFound
 from ..store import ParamSet, StrategyVersion
 from ..strategies.factor_mix import (
@@ -94,6 +95,80 @@ def weight_text(value: Any) -> str:
     return text if text else "0"
 
 
+def cost_text(value: Any) -> str:
+    """成本寫入參數集時的文字。與 ``weight_text`` 同一個道理,但**精細得多**。
+
+    權重那個寫法只留四位小數,而成本細得多:滑點 5 個基點是 ``0.0005``,每股
+    US$0.005 是 ``0.005``,再細一級就會被四位小數剪成同一串字——兩組不同的成本
+    撞成同一個參數集,即撞成同一個運行編號,靜靜地讀回上一次的成績。這裡留八位。
+    """
+    number = float(value)
+    if number.is_integer():
+        return str(int(number))
+    text = f"{number:.8f}".rstrip("0").rstrip(".")
+    return text if text else "0"
+
+
+def cost_values(costs: TradingCosts | None) -> dict[str, str]:
+    """交易成本在參數集裡的三格。**成本為零就一格都不寫。**
+
+    這一句是驗收條件第 1 條「成本為零時既有運行編號逐位不變」的全部:成本入了
+    參數集,運行編號自然跟著變(那正是要的——帶成本的重跑不可以讀回零成本的
+    舊成績);但零成本那批舊運行本來就沒有這三格,所以照樣撞得回去。
+    """
+    if costs is None or costs.is_zero:
+        return {}
+    return {
+        "fee_model": costs.fee_model,
+        "fee_rate": cost_text(costs.fee_rate),
+        "slippage": cost_text(costs.slippage_fraction),
+    }
+
+
+def cost_slug(costs: TradingCosts | None) -> str:
+    """成本在參數集**名**裡的一截。零成本即空字串。
+
+    為什麼成本要入名,不是只入值:參數集一格一個名,同名再登記會出新版,而版本號
+    是運行編號的一部分。若帶成本那次沿用同一個名,它會把那個名推上第 2 版;之後
+    再零成本重掃一次,又會被推去第 3 版——於是同一格零成本跑兩次,前後兩個運行
+    編號不同,「成本為零逐位不變」當場破功。換一個名,兩條路各自獨立,互不相干。
+    """
+    if costs is None or costs.is_zero:
+        return ""
+    model = "ps" if costs.fee_model == "per_share" else "pv"
+    return f"-fee{model}{cost_text(costs.fee_rate)}-slip{cost_text(costs.slippage_fraction)}"
+
+
+class CostedEngine:
+    """把交易成本注入引擎參數之後,才交給真正的引擎跑。
+
+    因子混合那條策略路徑的參數型別(``strategies.factor_mix.FactorMixParams``)
+    暫時只有舊的 ``fees`` 一個數字,載不起「每股手續費」與「滑點」。引擎本身是
+    **可換件**(D-007 第 3 條),所以成本由這一件薄薄的替換件補上去:它不改任何
+    成績的算法,只在參數交到引擎之前把成本那一格填好。
+
+    ``name`` 照抄被包住那件引擎——引擎名是運行編號的一部分,包一層不可以令它變成
+    另一個名(否則同一件引擎會算出兩個編號)。日後 ``FactorMixParams`` 自己接了
+    成本合約,這一件就可以整件刪走,呼叫方一個字不用改。
+    """
+
+    def __init__(self, costs: TradingCosts, engine: Any | None = None) -> None:
+        if not isinstance(costs, TradingCosts):
+            raise ContractViolation(
+                f"交易成本要是 TradingCosts,收到 {type(costs).__name__}"
+            )
+        if engine is None:
+            from ..engine.vectorbt_engine import VectorbtEngine
+
+            engine = VectorbtEngine()
+        self._costs = costs
+        self._engine = engine
+        self.name = getattr(engine, "name", type(engine).__name__)
+
+    def simulate(self, panel: Any, targets: Any, params: Any) -> Any:
+        return self._engine.simulate(panel, targets, replace(params, costs=self._costs))
+
+
 def ensure_factor_mix_setup(
     gateway: Any,
     *,
@@ -153,6 +228,7 @@ class FactorMixJob:
         strategy_version_no: int | None = None,
         initial_cash: float = 100_000.0,
         fees: float = 0.0,
+        costs: TradingCosts | None = None,
         engine: Any | None = None,
         engine_name: str = "vectorbt",
     ) -> None:
@@ -177,9 +253,16 @@ class FactorMixJob:
         self._strategy_version_no = strategy_version_no
         self._initial_cash = float(initial_cash)
         self._fees = float(fees)
-        self._engine = engine
+        self._costs = costs
+        # 成本非零就換上替換件引擎(見 CostedEngine):成本要入的是引擎參數,而
+        # 因子混合那個參數型別暫時載不起成本合約。引擎名照舊,運行編號不受影響。
+        self._engine = engine if costs is None or costs.is_zero else CostedEngine(costs, engine)
         self._engine_name = str(engine_name).strip()
         self._written = 0
+
+    @property
+    def costs(self) -> TradingCosts | None:
+        return self._costs
 
     @property
     def weight_keys(self) -> tuple[str, ...]:
@@ -230,7 +313,10 @@ class FactorMixJob:
     def plan(self, point: SweepPoint) -> CellPlan:
         cadence = self._cadence_of(point)
         values = {key: weight_text(value) for key, value in self._weights_of(point).items()}
-        param_set = self._param_set(f"{self._prefix}{point.slug}", cadence, values)
+        values.update(cost_values(self._costs))
+        param_set = self._param_set(
+            f"{self._prefix}{point.slug}{cost_slug(self._costs)}", cadence, values
+        )
         factor_version_ids = tuple(
             self._store.get_factor_version(sleeve.factor_name).factor_version_id
             for sleeve in self._sleeves
@@ -258,6 +344,7 @@ class FactorMixJob:
             initial_cash=self._initial_cash,
             fees=self._fees,
         )
+        # 成本不在這個型別裡,它由 CostedEngine 在參數交到引擎之前補上(見上文)。
         result = run_factor_mix(
             store=self._store,
             panel=self._panel,

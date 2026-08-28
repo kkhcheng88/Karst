@@ -40,6 +40,7 @@
 from .cadence import decision_dates, rebalance_schedule
 from .contracts import (
     CADENCES,
+    FEE_MODELS,
     ORDER_SIDES,
     RANK_DIRECTIONS,
     BacktestResult,
@@ -49,6 +50,8 @@ from .contracts import (
     RankingRebalanceParams,
     Rebalance,
     SimulationOutput,
+    TradingCosts,
+    resolve_costs,
 )
 from .protocol import PortfolioEngine, RuleEngine
 from .rule_runner import run_rule_strategy, run_rule_strategy_on_signal_matrix
@@ -97,6 +100,7 @@ __all__ = [
     "EXIT_STOP",
     "EXIT_TARGET",
     "EXIT_UNCLOSED",
+    "FEE_MODELS",
     "ORDER_SIDES",
     "RANK_DIRECTIONS",
     "BacktestResult",
@@ -121,12 +125,14 @@ __all__ = [
     "RuleStrategyParams",
     "SimulationOutput",
     "SwingLowStop",
+    "TradingCosts",
     "build_rule_signals",
     "build_targets",
     "decision_dates",
     "month_ids",
     "read_factor_panel",
     "rebalance_schedule",
+    "resolve_costs",
     "resolve_exits",
     "run_ranking_rebalance",
     "run_rule_strategy",
