@@ -41,16 +41,32 @@ SEC CIK 為錨;``^VIX`` 一類指數代號既沒有 CIK,亦根本不是可以持
 # 三、來源:全部免費,一個鑰匙都不要
 
 FRED 的 API 要申請鑰匙(``fredapi`` / ``pandas-datareader`` 皆然),CME 的
-FedWatch 本身亦不是免費數據。所以本檔**一條 FRED 序列都不用**,全部改用
-yfinance 取得的免費替代,亦因此**不必加任何新套件**——``yfinance`` 早已是本倉
-的依賴。逐項替代與代價寫在 ``MACRO_SERIES`` 每一條的 ``note`` 裡。
+FedWatch 本身亦不是免費數據。所以本檔**一條 FRED 序列都不用**,全部改用免費
+來源,亦因此**不必加任何新套件**——``yfinance`` 早已是本倉的依賴,Cboe 那條
+只用標準庫的 ``urllib``。逐項替代與代價寫在 ``MACRO_SERIES`` 每一條的 ``note`` 裡。
 
-2026-08-28 實測(窗口 2015-01-01 ~ 2026-08-27,逐個代號獨立抓):下列代號全部
-抓得到日線。唯一要留意的是 ``^VIX3M`` 與 ``^VIX9D`` 只去到 2026-07-17,而
-``^VIX`` 去到 2026-08-26——期限結構那一條在尾段有約五個星期沒有數。對齊主日曆
-時它會照停牌處置留空(``missing``),驅動器讀到留空即當「回望期不夠」退回熱身期
-權重並記成「數據不足」,不會靜靜地當作訊號真的講過話。``^VXV``(VIX 三個月的
-舊代號)已經抓不到,故不用。
+現時**兩個來源並存**,逐條序列各自寫明由哪一個來源取:
+
+  * ``yfinance-macro`` —— 息率、期貨、外匯、ETF 那十二條。
+  * ``cboe-macro`` —— VIX 與 VIX_3M 兩條,取 Cboe 官方免費歷史檔
+    (``cdn.cboe.com/api/global/us_indices/daily_prices/<代號>_History.csv``,
+    無鑰匙、無登記、無配額)。
+
+**為什麼 VIX 那兩條要換來源(KARST-058)。** 2026-08-28 實測發現 yfinance 的
+``^VIX3M`` 只去到 2026-07-17,而 ``^VIX`` 去到 2026-08-26——期限結構那一條在尾段
+有約五個星期沒有數,期限結構驅動器因此每日都判「數據不足」。用戶 2026-08-28 追問
+(原話「VIX should have index which everyday is moving? Why only update to Jul.
+This is weird」):指數本身 Cboe 每個交易日照常發布,停更的是免費轉發那一層,不是
+指數。2026-08-29 實測 Cboe 官方檔兩條都去到 2026-08-27(最近交易日),故 VIX 與
+VIX_3M 改由 Cboe 直取;VIX 一併改是為了兩條同源——期限結構是相除出來的比率,分子
+分母來自同一份官方檔才不會因為兩邊的修訂節奏不同而在比率上造出假訊號。
+``^VXV``(VIX 三個月的舊代號)已經抓不到,故不用。
+
+**序列代號不變,只換來源代號**(D-026 第 7 條適配器形態要換來的正是這件事):
+``VIX`` 與 ``VIX_3M`` 這兩個內部代號一個字都沒有改,驅動器、快照結構、報告全部
+不用動;改的只是名冊上的 ``symbol``(``^VIX`` → ``VIX``、``^VIX3M`` → ``VIX3M``)
+與新增的 ``source`` 一欄。名冊連同快照一併凍結,所以「這條讀數當日由哪個來源取」
+在已凍結的快照裡查得回。
 """
 
 from __future__ import annotations
@@ -96,6 +112,15 @@ SERIES_COLUMNS: tuple[str, ...] = ("date", "series", "value", "value_status")
 RAW_COLUMNS: tuple[str, ...] = ("date", "series", "value")
 
 MACRO_SOURCE_NAME = "yfinance-macro"
+CBOE_SOURCE_NAME = "cboe-macro"
+# 兩個來源並存時,快照登記的來源名。名字本身講得出「哪幾條由誰取」的分工。
+COMPOSITE_SOURCE_NAME = "cboe+yfinance-macro"
+
+# Cboe 官方免費歷史檔(KARST-058)。無鑰匙、無登記、無配額;欄位固定為
+# DATE、OPEN、HIGH、LOW、CLOSE,日期是 MM/DD/YYYY。
+CBOE_HISTORY_URL = (
+    "https://cdn.cboe.com/api/global/us_indices/daily_prices/{symbol}_History.csv"
+)
 
 # 序列分層(用戶 2026-08-28 裁定):
 #   第一層 —— 可以做驅動器參數格的四項。
@@ -144,9 +169,10 @@ class MacroSeries:
     """名冊上的一條宏觀序列。
 
     ``code`` 是**內部序列代號**,亦即快照與驅動器談的那個名;``symbol`` 是它在
-    來源那邊叫什麼。兩者分開,日後同一條序列換來源(例如由 yfinance 換去別的
-    免費源)只需改 ``symbol``,驅動器、快照結構、報告一個字都不用改——這正是
-    D-026 第 7 條適配器形態要換來的那件事。
+    來源那邊叫什麼,``source`` 是「哪一個適配器負責取它」。三者分開,日後同一條
+    序列換來源(KARST-058 就是這樣把 VIX 那兩條由 yfinance 換去 Cboe 官方檔)
+    只需改 ``symbol`` 與 ``source``,驅動器、快照結構、報告一個字都不用改——
+    這正是 D-026 第 7 條適配器形態要換來的那件事。
     """
 
     code: str
@@ -156,29 +182,37 @@ class MacroSeries:
     label: str
     unit: str
     note: str = ""
+    source: str = MACRO_SOURCE_NAME
 
 
 MACRO_SERIES: tuple[MacroSeries, ...] = (
     # ---- 第一層之(1):VIX 及期限結構 ----
     MacroSeries(
         code="VIX",
-        symbol="^VIX",
+        symbol="VIX",
+        source=CBOE_SOURCE_NAME,
         tier=TIER_DRIVER,
         family="波動率",
         label="CBOE 波動率指數(30 日)",
         unit="年化波動率點數",
-        note="免費、無鑰匙。恐慌水平的業界標準讀數。",
+        note=(
+            "免費、無鑰匙。恐慌水平的業界標準讀數。"
+            "KARST-058 起由 Cboe 官方歷史檔直取(舊來源代號 ^VIX / yfinance);"
+            "與 VIX_3M 同源,免得比率的分子分母來自兩邊而造出假訊號。"
+        ),
     ),
     MacroSeries(
         code="VIX_3M",
-        symbol="^VIX3M",
+        symbol="VIX3M",
+        source=CBOE_SOURCE_NAME,
         tier=TIER_DRIVER,
         family="波動率",
         label="CBOE 波動率指數(3 個月)",
         unit="年化波動率點數",
         note=(
             "與 VIX 相除即期限結構(VIX/VIX_3M > 1 = 倒掛 = 即市恐慌高於遠期)。"
-            "2026-08-28 實測:此代號只去到 2026-07-17,較 ^VIX 短約五星期,尾段會留空。"
+            "KARST-058 起由 Cboe 官方歷史檔直取(舊來源代號 ^VIX3M / yfinance):"
+            "免費轉發那一層自 2026-07-17 起停更,指數本身 Cboe 每個交易日照常發布。"
             "舊代號 ^VXV 已抓不到,不用。"
         ),
     ),
@@ -370,8 +404,9 @@ class YFinanceMacroSource:
     **逐個代號分開抓**,與價格那邊一批過抓不同。理由是實測出來的:指數
     (``^VIX``)、期貨(``ZQ=F``)、外匯(``DX-Y.NYB``)與 ETF 混在同一個批次時,
     yfinance 會為對不齊的日曆補一堆空行,而且**任何一個代號失手就整批回空**;
-    宏觀這幾條序列的日曆本來就各不相同(見 ``^VIX3M`` 短五星期那件事),所以分開
-    抓、逐條核,一條抓不到就指名道姓講出是哪一條。
+    宏觀這幾條序列的日曆本來就各不相同(``^VIX3M`` 尾段短五星期那件事就是這樣
+    看出來的,後來 KARST-058 把它換去 Cboe 官方檔),所以分開抓、逐條核,一條
+    抓不到就指名道姓講出是哪一條。
 
     只取收市價一欄:宏觀序列談的是水平與方向,開高低與成交量在這裡沒有意思
     (息率的「成交量」根本不存在)。
@@ -463,6 +498,180 @@ def _close_column(raw: pd.DataFrame, item: MacroSeries) -> np.ndarray:
     raise DataFetchFailed(
         f"{item.code}({item.symbol})的回應裡沒有收市價一欄;欄位是:{list(raw.columns)[:8]}"
     )
+
+
+def parse_cboe_history(
+    text: str, item: MacroSeries, start: str, end: str
+) -> pd.DataFrame:
+    """把一份 Cboe 官方歷史 CSV 的正文,切成本倉的長表形狀。
+
+    抽出來是為了**離線驗得到**:網絡那一段與解析那一段分家,解析這一段用一小段
+    示例正文就試得完,不必連網。
+
+    Cboe 那份檔的形狀寫死如下(2026-08-29 實測):首行 ``DATE,OPEN,HIGH,LOW,CLOSE``,
+    日期 ``MM/DD/YYYY``,收市價是最後一欄。形狀變了即當場拋錯,不猜、不靜靜跳過。
+    """
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    if not lines:
+        raise DataFetchFailed(f"Cboe 的 {item.code}({item.symbol})歷史檔是空的")
+    header = [cell.strip().upper() for cell in lines[0].split(",")]
+    if "DATE" not in header or "CLOSE" not in header:
+        raise DataFetchFailed(
+            f"Cboe 的 {item.code}({item.symbol})歷史檔欄位變了形:{header[:8]};"
+            "本適配器只認 DATE 與 CLOSE 兩欄,形狀不對即當抓取失敗"
+        )
+    date_at, close_at = header.index("DATE"), header.index("CLOSE")
+
+    days: list[str] = []
+    values: list[float] = []
+    for line in lines[1:]:
+        cells = line.split(",")
+        if len(cells) <= max(date_at, close_at):
+            continue
+        raw_day = cells[date_at].strip()
+        raw_value = cells[close_at].strip()
+        if not raw_day or not raw_value:
+            continue
+        try:
+            month, day, year = (int(part) for part in raw_day.split("/"))
+            iso = f"{year:04d}-{month:02d}-{day:02d}"
+        except ValueError:
+            continue
+        if iso < start or iso > end:
+            continue
+        try:
+            value = float(raw_value)
+        except ValueError:
+            continue
+        days.append(iso)
+        values.append(value)
+
+    frame = pd.DataFrame(
+        {
+            "date": pd.Series(days, dtype="object"),
+            "series": pd.Series([item.code] * len(days), dtype="object"),
+            "value": pd.Series(values, dtype="float64"),
+        }
+    )
+    if frame.empty:
+        raise DataFetchFailed(
+            f"Cboe 的 {item.code}({item.symbol})在 {start}~{end} 一個收市讀數都沒有;"
+            "空批次一律當失敗,不當作「這段日子沒有讀數」"
+        )
+    return frame
+
+
+class CboeMacroSource:
+    """Cboe 官方免費歷史檔的宏觀序列適配器(KARST-058)。
+
+    **不用鑰匙、不用登記、不用付費**,亦不加任何套件——只用標準庫的 ``urllib``。
+    每個指數一份 CSV,由 1990(VIX)或 2009(VIX3M)起至最近一個交易日,每個
+    交易日一行。與 yfinance 那一條同一個合約:只把外面的形狀搬成我們的形狀,
+    對齊、歸一化、凍結三件仍然歸下面那條管線。
+
+    取收市價一欄,理由與 yfinance 那條一樣:宏觀序列談的是水平與方向。
+    """
+
+    name = CBOE_SOURCE_NAME
+
+    def __init__(self, *, timeout: float = 60.0, url_template: str = CBOE_HISTORY_URL) -> None:
+        self.timeout = timeout
+        self.url_template = url_template
+
+    def url_for(self, item: MacroSeries) -> str:
+        return self.url_template.format(symbol=item.symbol)
+
+    def _download(self, item: MacroSeries) -> str:
+        import urllib.error  # noqa: PLC0415 - 只在真正抓數時才需要
+        import urllib.request  # noqa: PLC0415
+
+        url = self.url_for(item)
+        request = urllib.request.Request(url, headers={"User-Agent": "karst-macro/1.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                payload = response.read()
+        except Exception as exc:  # noqa: BLE001 - 對外抓取的錯一律歸一
+            raise DataFetchFailed(
+                f"Cboe 抓 {item.code}({item.symbol})失敗:{url}"
+                f"({type(exc).__name__}: {exc})"
+            ) from exc
+        return payload.decode("utf-8", errors="replace")
+
+    def fetch_daily_series(
+        self,
+        series: Sequence[MacroSeries],
+        start: date | datetime | str,
+        end: date | datetime | str,
+    ) -> pd.DataFrame:
+        wanted = tuple(series)
+        if not wanted:
+            raise DataFetchFailed("宏觀序列名單是空的,無數可抓")
+        first, last = as_date(start, "start"), as_date(end, "end")
+
+        blocks = [
+            parse_cboe_history(self._download(item), item, first, last) for item in wanted
+        ]
+        frame = pd.concat(blocks, ignore_index=True)
+        return frame.loc[:, list(RAW_COLUMNS)].sort_values(["date", "series"]).reset_index(drop=True)
+
+
+class CompositeMacroSource:
+    """按名冊上那一格 ``source``,把每條序列派去它自己的來源(KARST-058)。
+
+    宏觀名冊自此**不是一個來源一張表**:VIX 那兩條由 Cboe 官方檔取,其餘十二條
+    仍由 yfinance 取。派錯來源會靜靜地抓到另一條數(或者抓不到),所以這裡的做法
+    是**照名冊指名派工**,名冊上寫的來源沒有人接,就當場拋錯講出是哪一條——
+    不退回「隨便找一個來源試試」。
+    """
+
+    def __init__(self, sources: Sequence[MacroSource], *, name: str = COMPOSITE_SOURCE_NAME) -> None:
+        by_name: dict[str, MacroSource] = {}
+        for source in sources:
+            key = str(getattr(source, "name", "")).strip()
+            if not key:
+                raise ContractViolation("宏觀來源沒有名字,派不到工")
+            if key in by_name:
+                raise ContractViolation(f"宏觀來源名重覆:{key}")
+            by_name[key] = source
+        if not by_name:
+            raise ContractViolation("複合宏觀來源手上一個來源都沒有")
+        self._by_name = by_name
+        self.name = str(name)
+
+    @property
+    def sources(self) -> tuple[str, ...]:
+        return tuple(sorted(self._by_name))
+
+    def fetch_daily_series(
+        self,
+        series: Sequence[MacroSeries],
+        start: date | datetime | str,
+        end: date | datetime | str,
+    ) -> pd.DataFrame:
+        wanted = tuple(series)
+        if not wanted:
+            raise DataFetchFailed("宏觀序列名單是空的,無數可抓")
+
+        unknown = sorted(
+            {item.source for item in wanted if item.source not in self._by_name}
+        )
+        if unknown:
+            raise ContractViolation(
+                f"名冊上這幾個來源沒有人接:{'、'.join(unknown)};"
+                f"手上有的是:{'、'.join(self.sources)}"
+            )
+
+        blocks: list[pd.DataFrame] = []
+        for key in sorted({item.source for item in wanted}):
+            batch = tuple(item for item in wanted if item.source == key)
+            blocks.append(self._by_name[key].fetch_daily_series(batch, start, end))
+        frame = pd.concat(blocks, ignore_index=True)
+        return frame.loc[:, list(RAW_COLUMNS)].sort_values(["date", "series"]).reset_index(drop=True)
+
+
+def default_macro_source() -> CompositeMacroSource:
+    """現役的宏觀來源:Cboe 官方檔取 VIX 那兩條,yfinance 取其餘十二條。"""
+    return CompositeMacroSource((CboeMacroSource(), YFinanceMacroSource()))
 
 
 class StaticMacroSource:
@@ -588,6 +797,7 @@ def canonical_registry(series: Sequence[MacroSeries]) -> pd.DataFrame:
         {
             "series": item.code,
             "symbol": item.symbol,
+            "source": item.source,
             "tier": item.tier,
             "family": item.family,
             "label": item.label,
@@ -596,7 +806,9 @@ def canonical_registry(series: Sequence[MacroSeries]) -> pd.DataFrame:
         }
         for item in series
     ]
-    frame = pd.DataFrame(rows, columns=["series", "symbol", "tier", "family", "label", "unit", "note"])
+    frame = pd.DataFrame(
+        rows, columns=["series", "symbol", "source", "tier", "family", "label", "unit", "note"]
+    )
     for column in frame.columns:
         frame[column] = frame[column].astype(str).astype("object")
     return frame.sort_values("series").reset_index(drop=True)
@@ -704,7 +916,7 @@ MACRO_README_TEMPLATE = """# 宏觀數據快照 {snapshot_id}
 |---|---|
 | `series.parquet` | 讀數長表:date、series、value、value_status |
 | `calendar.parquet` | 對齊用的主日曆交易日 |
-| `registry.parquet` | 序列名冊:代號、來源代號、分層、族、名稱、單位、註記 |
+| `registry.parquet` | 序列名冊:代號、來源代號、來源、分層、族、名稱、單位、註記 |
 | `manifest.json` | 上表全部欄位的機讀版 |
 | `說明.md` | 本檔 |
 
@@ -732,9 +944,13 @@ def render_macro_readme(
     notes: Sequence[str],
 ) -> str:
     """照唯一那份範本填出一個宏觀快照的說明檔。"""
-    registry_header = "| 序列代號 | 來源代號 | 分層 | 族 | 名稱 | 單位 | 註記 |\n|---|---|---|---|---|---|---|"
+    registry_header = (
+        "| 序列代號 | 來源代號 | 來源 | 分層 | 族 | 名稱 | 單位 | 註記 |\n"
+        "|---|---|---|---|---|---|---|---|"
+    )
     registry_lines = [
-        f"| `{row['series']}` | `{row['symbol']}` | {row['tier']} | {row['family']} |"
+        f"| `{row['series']}` | `{row['symbol']}` | `{row.get('source', '')}` |"
+        f" {row['tier']} | {row['family']} |"
         f" {row['label']} | {row['unit']} | {row['note'] or '—'} |"
         for row in registry.to_dict("records")
     ]
@@ -958,7 +1174,7 @@ def build_macro_snapshot(
       4. **凍結** —— 原子寫入 ``data/macro_snapshots/<編號>/``,經單一定義庫登記,
          與價格快照同一套編號算法、同一張登記表,靠來源名分得開。
     """
-    source = source or YFinanceMacroSource()
+    source = source or default_macro_source()
     root = Path(root) if root is not None else DEFAULT_MACRO_ROOT
     wanted = series_of(codes)
     days = tuple(sorted({str(day) for day in calendar}))

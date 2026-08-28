@@ -35,16 +35,21 @@ PRICE_LARGE_CAP = "2026-08-28-a508d635a5fa"
 PRICE_FACTOR_ETF = "2026-08-28-000b4820a23a"
 
 # 宏觀十四序列,對齊 PRICE_LARGE_CAP 那條主日曆;41,006 列讀數。
-# ^VIX3M 尾段停在 2026-07-17(免費來源停更,見 KARST-058),留空的日子驅動器
-# 當「數據不足」退回熱身期權重,不當零。
-MACRO = "2026-08-28-810facb50382"
+# KARST-058 換來源之後重抓:VIX 與 VIX_3M 改由 Cboe 官方免費歷史檔直取
+# (來源名 cboe+yfinance-macro),VIX_3M 自此 2,929 個交易日**全部有真讀數、
+# 零留空**——舊那一份的尾段由 2026-07-18 起停數,期限結構驅動器每日判「數據不足」。
+MACRO = "2026-08-28-dc2d9f1a1778"
 
 # 舊編號 → 新編號。留在這裡是為了讀得懂舊落檔:倉內的舊報告、舊 summary.json
 # 仍然寫住左邊那幾個編號,它們指向的快照已經不在磁碟上。
 PREVIOUS: dict[str, str] = {
     "2026-08-27-61e284eaa998": PRICE_LARGE_CAP,
     "2026-08-27-91a5d51339d9": PRICE_FACTOR_ETF,
-    "2026-08-28-3b2de5c59740": MACRO,
+    "2026-08-28-3b2de5c59740": "2026-08-28-810facb50382",   # KARST-057 重建
+    # KARST-058 換來源(VIX 那兩條 yfinance → Cboe 官方檔)。舊那一份**沒有刪**,
+    # 仍在 data/macro_snapshots/ 與登記表上:換來源之前落的成績引用的是它,
+    # 刪掉就等於把那批成績的血統斬斷。
+    "2026-08-28-810facb50382": MACRO,
 }
 
 __all__ = ["PRICE_LARGE_CAP", "PRICE_FACTOR_ETF", "MACRO", "PREVIOUS"]

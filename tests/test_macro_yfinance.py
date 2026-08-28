@@ -5,12 +5,18 @@
 
 只抓小樣本(一個月),證兩件事:
 
-  1. VIX 與四條美債息率真的由 yfinance 抓得到、入得到快照,編號可引用;
+  1. VIX 與四條美債息率真的由**現役來源**抓得到、入得到快照,編號可引用;
   2. FedWatch 的免費替代(聯邦基金期貨 ``ZQ=F``)同樣抓得到——**一把 API 鑰匙、
      一分錢都沒有用**。
 
-另證一條 2026-08-28 實測出來的事實:``^VIX3M`` 的歷史尾段比 ``^VIX`` 短,所以
-「宏觀序列各有各的日曆」不是假設,是要處置的現實(留空,不當零)。
+KARST-058 之後現役來源是兩個並存的複合來源(VIX 那兩條由 Cboe 官方檔取、其餘
+十二條仍由 yfinance 取),所以第一條測試改用 ``default_macro_source()``:它證的
+是「這批數今日真的抓得回」,那就要用今日真正在用的那條路。**探測有沒有網的
+那一針要扎在 yfinance 上**(本檔測的是 yfinance 那一半),不然 yfinance 一斷,
+本檔會靜靜地全部 skip 變成假綠燈。
+
+另證一條 KARST-058 的因由:``^VIX3M``(yfinance)的歷史尾段短過 Cboe 官方檔,
+所以「宏觀序列各有各的日曆、甚至各有各的停更時間」不是假設,是要處置的現實。
 """
 
 from __future__ import annotations
@@ -20,9 +26,13 @@ import pytest
 
 from karst import DefinitionStore
 from karst.data import (
+    COMPOSITE_SOURCE_NAME,
+    CboeMacroSource,
     DataFetchFailed,
+    MacroSeries,
     YFinanceMacroSource,
     build_macro_snapshot,
+    default_macro_source,
     read_macro_manifest,
     read_macro_panel,
     series_of,
@@ -37,12 +47,25 @@ CALENDAR = tuple(day.strftime("%Y-%m-%d") for day in pd.bdate_range(*WINDOW))
 
 SAMPLE = ("VIX", "UST_3M", "UST_5Y", "UST_10Y", "UST_30Y", "FF_FUTURE")
 
+# KARST-058 之前 VIX_3M 的來源代號。留在這裡是為了驗得到那條因由,不是為了再用它。
+LEGACY_VIX_3M = MacroSeries(
+    code="VIX_3M",
+    symbol="^VIX3M",
+    tier="第一層",
+    family="波動率",
+    label="CBOE 波動率指數(3 個月)",
+    unit="年化波動率點數",
+    note="KARST-058 之前的來源代號",
+)
+
 
 @pytest.fixture(scope="module")
 def online() -> None:
+    # 探針扎在 yfinance 那一條(UST_10Y = ^TNX):本檔測的是 yfinance 那一半,
+    # 拿一條已經不歸 yfinance 的序列去探,會令 yfinance 斷線時全部靜靜 skip。
     try:
         YFinanceMacroSource().fetch_daily_series(
-            series_of(["VIX"]), "2024-01-02", "2024-01-05"
+            series_of(["UST_10Y"]), "2024-01-02", "2024-01-05"
         )
     except DataFetchFailed as exc:
         pytest.skip(f"離線或來源不通,跳過真實抓取:{exc}")
@@ -58,16 +81,21 @@ def test_real_macro_snapshot_holds_vix_and_treasury_yields(online, tmp_path):
             calendar=CALENDAR,
             calendar_ticker="SPY",
             codes=SAMPLE,
-            source=YFinanceMacroSource(),
+            source=default_macro_source(),
             root=tmp_path,
         )
         panel = read_macro_panel(store, snapshot.snapshot_id, root=tmp_path)
         manifest = read_macro_manifest(store, snapshot.snapshot_id, root=tmp_path)
 
-        # 來源與抓取時間查得出
-        assert manifest["source"] == "yfinance-macro"
-        assert store.get_snapshot(snapshot.snapshot_id).source == "yfinance-macro"
+        # 來源與抓取時間查得出;來源名講得出兩個來源的分工(KARST-058)
+        assert manifest["source"] == COMPOSITE_SOURCE_NAME
+        assert store.get_snapshot(snapshot.snapshot_id).source == COMPOSITE_SOURCE_NAME
         assert pd.Timestamp(manifest["fetched_at"]).tz is not None
+
+        # 名冊逐條記明由哪個來源取
+        by_code = {row["series"]: row for row in manifest["registry"]}
+        assert by_code["VIX"]["source"] == "cboe-macro"
+        assert by_code["UST_10Y"]["source"] == "yfinance-macro"
 
         # 五條序列(VIX + 四條息率)都有真數,而且落在合理水位
         assert set(SAMPLE) <= set(panel.columns)
@@ -83,7 +111,7 @@ def test_real_macro_snapshot_holds_vix_and_treasury_yields(online, tmp_path):
         assert "收市後可得" in manifest["informed_policy"]
 
 
-def test_the_fedwatch_free_substitute_really_fetches(online, tmp_path):
+def test_the_fedwatch_free_substitute_really_fetches(online):
     """驗收二(真實那半):聯邦基金期貨抓得到,不用鑰匙、不用付費。"""
     frame = YFinanceMacroSource().fetch_daily_series(
         series_of(["FF_FUTURE"]), WINDOW[0], WINDOW[1]
@@ -94,12 +122,21 @@ def test_the_fedwatch_free_substitute_really_fetches(online, tmp_path):
     assert 80.0 < float(frame["value"].mean()) <= 100.0
 
 
-def test_vix_term_structure_series_may_end_earlier_than_vix(online):
-    """實測事實:^VIX3M 的歷史尾段比 ^VIX 短,所以「各有各的日曆」要處置。"""
-    source = YFinanceMacroSource()
-    long_window = ("2024-01-02", "2024-01-31")
-    vix = source.fetch_daily_series(series_of(["VIX"]), *long_window)
-    term = source.fetch_daily_series(series_of(["VIX_3M"]), *long_window)
-    # 兩條都抓得到(這一段兩者皆有數);日子未必逐日對齊,故要對齊主日曆
-    assert not vix.empty and not term.empty
-    assert set(term["series"]) == {"VIX_3M"}
+def test_the_official_file_runs_at_least_as_far_as_the_free_relay(online):
+    """KARST-058 的因由:官方檔的尾**不會短過**免費轉發那一層。
+
+    只斷言「不短過」而不是「一定長 29 日」:轉發那一層日後修好了,這條測試照樣
+    成立,而換來源的理由(官方檔才是那條數的出處)一樣站得住。
+    """
+    window = ("2026-06-01", "2026-08-26")
+    official = CboeMacroSource().fetch_daily_series(series_of(["VIX_3M"]), *window)
+    assert not official.empty
+
+    try:
+        relay = YFinanceMacroSource().fetch_daily_series([LEGACY_VIX_3M], *window)
+    except DataFetchFailed:
+        relay = None   # 轉發那一層連數都回不了,更加不用比
+
+    assert str(official["date"].max()) >= "2026-08-20"
+    if relay is not None and not relay.empty:
+        assert str(official["date"].max()) >= str(relay["date"].max())
