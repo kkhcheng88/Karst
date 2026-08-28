@@ -54,8 +54,9 @@
     strategy: null,      /* /api/strategy 回來那份 */
     runId: null,
     detail: null,        /* /api/runs/<id> 回來那份 */
-    runs: [],            /* 歷次運行(已載入那幾頁) */
+    runs: [],            /* 歷次運行:只有正式運行(D-029) */
     runTotal: 0,
+    sweepCells: 0,       /* 這套策略有幾多格掃描格:空表那句話要講得出 */
     winKey: 'all',
     winFrom: null,
     date: null,          /* 選股快照停在哪一日 */
@@ -81,10 +82,13 @@
     return d.toISOString().slice(0, 10);
   }
 
-  function stateBlock(title, body, retry) {
+  /* link:{href, text} —— 空狀態要帶得出下一步去哪裡(例:掃描結果見參數掃描頁) */
+  function stateBlock(title, body, retry, link) {
     return '<div class="state-block">' +
       '<div class="state-title">' + KV.esc(title) + '</div>' +
-      '<div>' + KV.esc(body) + '</div>' +
+      '<div>' + KV.esc(body) +
+        (link ? ' <a href="' + KV.esc(link.href) + '">' + KV.esc(link.text) + '</a>' : '') +
+      '</div>' +
       (retry ? '<button class="btn" id="state-retry">再試一次</button>' : '') +
     '</div>';
   }
@@ -110,10 +114,10 @@
     if (again) again.addEventListener('click', function () { boot(); });
   }
 
-  function showEmpty(message) {
+  function showEmpty(title, message, link) {
     el.stack.hidden = true;
     el.pageState.innerHTML = '<div class="sp-panel">' +
-      stateBlock('這套策略未有運行', message, false) + '</div>';
+      stateBlock(title, message, false, link) + '</div>';
   }
 
   function ready() {
@@ -586,8 +590,26 @@
 
   /* ============================================================
      七、歷次運行:點一行 = 換上面整頁
+     ------------------------------------------------------------
+     這張表只有**正式運行**(D-029:一次掃描當一件事,掃描格不入運行清單)。
+     來歷由庫身那一格講(backtest_run.origin,KARST-054),不再靠參數集名的
+     前綴猜,所以這裡不用再標「掃描格」——表上一格都不會有。
      ============================================================ */
+  function noFormalRunsRow() {
+    var cells = S.sweepCells
+      ? '(庫內有 ' + S.sweepCells + ' 格掃描格)'
+      : '';
+    return '<tr><td colspan="8"><div class="sp-empty">' +
+        '此策略未有正式運行' + cells + ';掃描結果見' +
+        '<a href="/sweep">參數掃描頁</a>。' +
+      '</div></td></tr>';
+  }
+
   function renderRuns() {
+    if (!S.runs.length) {
+      el.runsBody.innerHTML = noFormalRunsRow();
+      return;
+    }
     var body = S.runs.map(function (r) {
       var picked = r.runId === S.runId;
       var params = Object.keys(r.paramValues).sort().map(function (k) {
@@ -599,7 +621,6 @@
         '<td class="mono">' + KV.esc(r.runId) +
           (r.isActiveSetup ? ' <span class="tag tag-live">現役</span>' : '') +
           (picked && !r.isActiveSetup ? ' <span class="tag tag-current">檢視中</span>' : '') +
-          (r.isSweepCell ? ' <span class="tag">掃描格</span>' : '') +
           (r.isStale ? ' <span class="stale-badge">舊版本</span>' : '') + '</td>' +
         '<td class="mono">v' + r.strategyVersionNo + '</td>' +
         '<td title="' + KV.esc(params) + '">' + KV.esc(KV.truncate(params, 46)) + '</td>' +
@@ -612,6 +633,9 @@
       '</tr>';
     }).join('');
 
+    /* 表上只有正式運行,一套策略通常得幾次,所以這一列平時不會出現。留住它
+       是為了「共 N 次・已列 M 次」那句話:真的多過一頁時,寧可讓人見到還有,
+       也不可以靜靜地只顯示頭 50 次。 */
     var more = S.runs.length < S.runTotal
       ? '<tr><td colspan="8" style="text-align:center;padding:var(--s-4) 0">' +
           '<span class="dim">共 ' + S.runTotal + ' 次・已列 ' + S.runs.length + ' 次　</span>' +
@@ -731,6 +755,7 @@
       '&limit=' + RUN_PAGE + '&offset=' + (offset || 0);
     return KV.fetchJSON(url).then(function (page) {
       S.runTotal = page.total;
+      S.sweepCells = page.sweepCellTotal || 0;
       S.runs = offset ? S.runs.concat(page.items) : page.items;
       renderRuns();
       renderRunPick();
@@ -751,9 +776,22 @@
         renderHead();
         renderFactors();
 
+        /* 這一頁畫的是一次正式運行。只跑過參數掃描的策略在這裡是空的——空一頁
+           而不講「掃描去哪裡看」,用戶會以為頁壞了(D-029、KARST-054)。 */
         if (!payload.runTotal || !payload.defaultRunId) {
-          showEmpty('「' + payload.strategy.name + '」在庫內未有任何回測運行,' +
-            '所以淨值、選股快照與因子敞口都畫不出。');
+          var cells = payload.sweepCellTotal || 0;
+          if (cells) {
+            showEmpty(
+              '這套策略未有正式運行',
+              '「' + payload.strategy.name + '」在庫內只有 ' + cells +
+                ' 格掃描格運行,所以淨值、選股快照與因子敞口都畫不出。掃描結果見',
+              { href: '/sweep', text: '參數掃描頁 →' }
+            );
+          } else {
+            showEmpty('這套策略未有運行',
+              '「' + payload.strategy.name + '」在庫內未有任何回測運行,' +
+              '所以淨值、選股快照與因子敞口都畫不出。');
+          }
           return;
         }
         return loadRuns(0).then(function () {

@@ -314,9 +314,10 @@ def _mix_job(toy, costs: TradingCosts | None, cadence: str = "quarterly"):
     )
 
 
-def _sweep(toy, grid, job):
+def _sweep(toy, grid, job, sweep_id="測試-成本前後"):
     return run_sweep(
-        runs=toy["runs"], grid=grid, job=job, risk_free_rate=RISK_FREE,
+        runs=toy["runs"], grid=grid, job=job, sweep_id=sweep_id,
+        risk_free_rate=RISK_FREE,
         benchmarks=(MARKET,), snapshot_root=toy["snapshot_root"],
     )
 

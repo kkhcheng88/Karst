@@ -30,6 +30,7 @@ from karst.metrics import (
     valuation_day,
 )
 from karst.runs import RunStore, synthetic_simulation
+from karst.store import FORMAL_RUN
 from karst.runs.synthetic import SyntheticSimulation
 from karst.runs.window import BASE, TRADING_DAYS_PER_YEAR
 
@@ -266,6 +267,7 @@ def _record(runs, universe, snapshot_id, *, param_set_name=ACTIVE_SET, seed=7):
         snapshot_id=snapshot_id,
         engine_name=ENGINE[0],
         engine_version=ENGINE[1],
+        origin=FORMAL_RUN,
     )
 
 
@@ -693,6 +695,7 @@ def _record_churn(runs, universe, snapshot_id):
         snapshot_id=snapshot_id,
         engine_name=ENGINE[0],
         engine_version=ENGINE[1],
+        origin=FORMAL_RUN,
     )
 
 

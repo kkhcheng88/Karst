@@ -17,7 +17,8 @@ import pytest
 
 from karst.metrics import run_metrics
 from karst.runs import BASE, window_stats
-from karst.web.api_overview import PAGES, STRATEGY_TYPE_NAMES, _page, is_sweep_run
+from karst.store import FORMAL_RUN, SWEEP_RUN
+from karst.web.api_overview import PAGES, STRATEGY_TYPE_NAMES, _page
 from karst.web.data import build_reader
 from karst.web.server import STATIC_ROOT, serve_in_background
 
@@ -102,7 +103,7 @@ def test_開本機網址即見策略總覽而每行來自庫內真實策略(base
         # 該行報的那次運行,確實是這套策略庫內的其中一次,而且不是掃描格
         record = reader.store.get_run(row["runId"])
         assert record.strategy_name == row["name"]
-        assert not is_sweep_run(record), "門面成績被一格參數掃描頂替了"
+        assert record.origin == FORMAL_RUN, "門面成績被一格參數掃描頂替了"
 
 
 def test_總覽只算正式運行掃描格不計不列(reader, overview):
@@ -111,9 +112,10 @@ def test_總覽只算正式運行掃描格不計不列(reader, overview):
     (用戶 2026-08-28 追問後由協調者交低:掃描另在參數掃描頁一次掃描一行呈現。)
     """
     records = reader.store.list_runs()
-    formal = [r for r in records if not is_sweep_run(r)]
-    swept = [r for r in records if is_sweep_run(r)]
+    formal = [r for r in records if r.origin == FORMAL_RUN]
+    swept = [r for r in records if r.origin == SWEEP_RUN]
     assert swept, "庫內未有掃描格,這一項驗不到"
+    assert len(formal) + len(swept) == len(records), "有運行的來歷兩邊都不屬"
 
     meta = overview["meta"]
     assert meta["runCount"] == len(formal)

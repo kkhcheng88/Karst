@@ -222,6 +222,7 @@ def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy):
             runs=runs,
             grid=grid,
             job=_rotation_job(toy, driver_key),
+            sweep_id=f"測試-驅動器對照-{driver_key}",
             risk_free_rate=RISK_FREE,
             benchmarks=(),
         )
@@ -261,6 +262,7 @@ def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy):
             label="對照格(固定權重最優)",
         ),
         job=mix_job,
+        sweep_id="測試-固定權重對照",
         risk_free_rate=RISK_FREE,
         benchmarks=(),
     )
@@ -307,6 +309,7 @@ def test_each_driver_gets_a_plateau_report_and_lonely_peaks_are_marked(toy, tmp_
         runs=toy["runs"],
         grid=grid,
         job=_rotation_job(toy, "factor_momentum"),
+        sweep_id="測試-動能驅動器格",
         risk_free_rate=RISK_FREE,
         benchmarks=(),
     )

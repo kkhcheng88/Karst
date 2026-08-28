@@ -44,6 +44,10 @@ if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
 
 HERE = Path(__file__).resolve().parent
 
+# 掃描編號(sweep id):一次掃描的識別字,逐格隨運行入庫(KARST-054)。慣例是
+# 落檔目錄的倉內相對路徑;同一個實驗跑幾次掃描,就在後面補一個字尾分開。
+EXPERIMENT_ID = HERE.relative_to(REPO).as_posix()
+
 import pandas as pd  # noqa: E402
 
 from karst.data.snapshots import read_price_panel  # noqa: E402
@@ -341,6 +345,7 @@ def main() -> None:
                 job=_rotation_job(
                     gateway, panel, driver_key, period, rotation.version_no, args.warmup, None
                 ),
+                sweep_id=f"{EXPERIMENT_ID}/{driver_key}·零成本",
                 risk_free_rate=RISK_FREE_RATE, snapshot_root=SNAPSHOT_ROOT,
             )
             verdict_before = judge(
@@ -359,6 +364,7 @@ def main() -> None:
                 job=_rotation_job(
                     gateway, panel, driver_key, period, rotation.version_no, args.warmup, costs
                 ),
+                sweep_id=f"{EXPERIMENT_ID}/{driver_key}·連成本最優格",
                 risk_free_rate=RISK_FREE_RATE, snapshot_root=SNAPSHOT_ROOT,
             )
             before_cell = before.cell_for(point)
@@ -392,11 +398,13 @@ def main() -> None:
         control_before = run_sweep(
             runs=runs, grid=control_grid,
             job=_mix_job(gateway, panel, period, mix_version.version_no, None),
+            sweep_id=f"{EXPERIMENT_ID}/固定權重對照·零成本",
             risk_free_rate=RISK_FREE_RATE, snapshot_root=SNAPSHOT_ROOT,
         )
         control_after = run_sweep(
             runs=runs, grid=control_grid,
             job=_mix_job(gateway, panel, period, mix_version.version_no, costs),
+            sweep_id=f"{EXPERIMENT_ID}/固定權重對照·連成本",
             risk_free_rate=RISK_FREE_RATE, snapshot_root=SNAPSHOT_ROOT,
         )
         print(
@@ -485,6 +493,7 @@ def main() -> None:
                             gateway, panel, driver_key, period, rotation.version_no,
                             args.warmup, cost,
                         ),
+                        sweep_id=f"{EXPERIMENT_ID}/dense-{driver_key}·{tag}",
                         risk_free_rate=RISK_FREE_RATE, snapshot_root=SNAPSHOT_ROOT,
                         progress=_progress(f"{title}·{tag}", every=12),
                     )

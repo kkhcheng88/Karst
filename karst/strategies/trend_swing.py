@@ -85,7 +85,7 @@ from ..risk import (
     build_rule_params,
     sweep_risk_settings,
 )
-from ..store import FAMILY_SEPARATOR, DefinitionStore, ParamSet, StrategyVersion
+from ..store import FAMILY_SEPARATOR, FORMAL_RUN, DefinitionStore, ParamSet, StrategyVersion
 
 # 策略類型(store.STRATEGY_TYPES 八選一):純技術波段屬技術趨勢。
 TREND_SWING_STRATEGY_TYPE: Final[str] = "technical"
@@ -557,6 +557,9 @@ def record_trend_swing_run(
     ``factor_version_ids`` 留空即由庫裡讀回這個策略版本引用住的因子版本——
     運行編號要蓋齊「策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本」,
     追溯深度連因子那一層都要有(D-021 第 8、9 條)。
+
+    這條路登記的一律是**正式運行**;掃描格由 ``karst.sweep.runner`` 逐格落痕
+    並自報掃描編號(KARST-054),不經這裡。
     """
     if factor_version_ids is None:
         version = runs.store.get_strategy_version(strategy_name, strategy_version_no)
@@ -568,6 +571,7 @@ def record_trend_swing_run(
         snapshot_id=snapshot_id,
         engine_version=engine_version,
         engine_name=result.engine_name,
+        origin=FORMAL_RUN,
         period_start=period_start,
         period_end=period_end,
         strategy_version_no=strategy_version_no,

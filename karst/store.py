@@ -119,6 +119,15 @@ RUN_ARTIFACT_KINDS: Final[tuple[str, ...]] = ("equity", "holdings", "orders")
 RUN_ID_PREFIX: Final[str] = "run-"
 RUN_ID_HASH_LENGTH: Final[int] = 16
 
+# 運行的來歷(run origin):這次運行是**正式運行**,還是參數掃描其中一格。
+# 取值那一面是 schema.py 的 CHECK 約束(單一正本),這裡只給程式一個名字用。
+#
+# 分得出來歷,是因為庫身有一格記住它——不是因為誰的名字改得好(假設 A-006 的教訓:
+# 靠參數集名前綴認掃描格,前綴一改,掃描格就會扮成一套策略的門面成績而且錯得無聲)。
+FORMAL_RUN: Final[str] = "formal"
+SWEEP_RUN: Final[str] = "sweep"
+RUN_ORIGINS: Final[tuple[str, ...]] = (FORMAL_RUN, SWEEP_RUN)
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -180,6 +189,11 @@ class RunRecord:
 
     ``factors`` 是運行**當時**蓋住的因子版本(D-021 第 9 條)。因子或策略日後
     出新版,這裡一字不變——只是比對之下查得出它已經過時。
+
+    ``origin`` 是來歷:``FORMAL_RUN`` 正式運行,``SWEEP_RUN`` 參數掃描其中一格
+    (D-029:運行清單與策略總覽的門面成績只算正式運行)。``sweep_id`` 是掃描格
+    所屬那次掃描的編號;正式運行一律 ``None``,掃描格只有第 8 版遷移之前那批舊列
+    才會是 ``None``(當時庫內未有這一格,回填不出)。
     """
 
     run_id: str
@@ -201,7 +215,14 @@ class RunRecord:
     trading_days: int
     artifacts: dict[str, RunArtifact]
     fingerprint: str
+    origin: str
+    sweep_id: str | None
     created_at: str
+
+    @property
+    def is_sweep_cell(self) -> bool:
+        """這次運行是不是參數掃描其中一格。問庫身那一格,不看名字。"""
+        return self.origin == SWEEP_RUN
 
     def artifact(self, kind: str) -> RunArtifact:
         try:
@@ -1428,6 +1449,31 @@ class DefinitionStore:
         digest = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()
         return f"{RUN_ID_PREFIX}{digest[:RUN_ID_HASH_LENGTH]}"
 
+    @staticmethod
+    def check_run_origin(origin: str, sweep_id: str | None) -> tuple[str, str | None]:
+        """核對一次運行的來歷,回傳規範化之後的 ``(來歷, 掃描編號)``。
+
+        **無預設值**:講不出這次是正式運行還是掃描格,寧可寫不入(KARST-054)。
+        掃描格必須連掃描編號——一格指不回它屬於哪一次掃描,參數掃描頁就併不回
+        那次掃描;正式運行則必須留空,它本來就不屬於任何一次掃描。
+        """
+        value = str(origin or "").strip()
+        if value not in RUN_ORIGINS:
+            raise ContractViolation(
+                f"運行來歷只收 {list(RUN_ORIGINS)},收到 {origin!r};"
+                "一次運行是正式運行還是掃描格,落庫那一刻就要講得出,無預設值"
+            )
+        ident = str(sweep_id or "").strip() or None
+        if value == FORMAL_RUN and ident is not None:
+            raise ContractViolation(
+                f"正式運行不屬於任何一次掃描,不可帶掃描編號(收到 {sweep_id!r})"
+            )
+        if value == SWEEP_RUN and ident is None:
+            raise ContractViolation(
+                "掃描格要寫明屬於哪一次掃描(掃描編號);沒有它,這一格指不回它那次掃描"
+            )
+        return value, ident
+
     def register_run(
         self,
         *,
@@ -1440,6 +1486,8 @@ class DefinitionStore:
         engine_version: str,
         artifacts: Sequence[RunArtifact],
         trading_days: int,
+        origin: str,
+        sweep_id: str | None = None,
         strategy_version_no: int | None = None,
         param_set_version_no: int | None = None,
         factor_version_ids: Sequence[int] | None = None,
@@ -1449,7 +1497,12 @@ class DefinitionStore:
         同一組輸入重登記:三條序列的內容雜湊一模一樣即當**同一次運行**,原封不動
         回舊記錄(與快照登記同制);雜湊對不上即當改寫,拒收——運行不可變
         (D-020 第 7 條、規格 7.3)。序列本體不經此處,由 ``karst.runs`` 落 parquet。
+
+        ``origin`` 無預設值(見 ``check_run_origin``):正式運行寫 ``FORMAL_RUN``,
+        掃描格寫 ``SWEEP_RUN`` 連 ``sweep_id``。來歷**不入運行編號**——同一格參數
+        無論由誰跑、屬於哪一次掃描,算出來仍然是同一個運行編號。
         """
+        origin, sweep_id = self.check_run_origin(origin, sweep_id)
         fingerprint = self.run_fingerprint(
             strategy_name=strategy_name,
             param_set_name=param_set_name,
@@ -1475,6 +1528,8 @@ class DefinitionStore:
             "SELECT run_id FROM backtest_run WHERE run_id = ?", (run_id,)
         ).fetchone()
         if existing is not None:
+            # 已經留過痕就照舊回它:運行不可改,連來歷都是落庫那一刻那個
+            # (同一格掃描第二次被掃到,讀回舊運行,不會改寫它屬於哪一次掃描)。
             self._assert_same_run(run_id, checked)
             return self.get_run(run_id)
 
@@ -1494,8 +1549,8 @@ class DefinitionStore:
             self._conn.execute(
                 "INSERT INTO backtest_run (run_id, strategy_version_id, param_set_id,"
                 " period_start, period_end, snapshot_id, engine_name, engine_version,"
-                " fingerprint, trading_days, created_at)"
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                " fingerprint, trading_days, origin, sweep_id, created_at)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     run_id,
                     strategy.strategy_version_id,
@@ -1507,6 +1562,8 @@ class DefinitionStore:
                     str(engine_version).strip(),
                     fingerprint,
                     days,
+                    origin,
+                    sweep_id,
                     _now(),
                 ),
             )
@@ -1530,7 +1587,8 @@ class DefinitionStore:
         row = self._conn.execute(
             "SELECT r.run_id, r.strategy_version_id, r.param_set_id, r.period_start,"
             " r.period_end, r.snapshot_id, r.engine_name, r.engine_version, r.fingerprint,"
-            " r.trading_days, r.created_at, s.name AS strategy_name, s.strategy_type,"
+            " r.trading_days, r.origin, r.sweep_id, r.created_at,"
+            " s.name AS strategy_name, s.strategy_type,"
             " v.version_no AS strategy_version_no, p.name AS param_set_name,"
             " p.version_no AS param_set_version_no, p.rebalance_cadence"
             " FROM backtest_run AS r"
@@ -1589,36 +1647,89 @@ class DefinitionStore:
                 for r in artifact_rows
             },
             fingerprint=row["fingerprint"],
+            origin=row["origin"],
+            sweep_id=row["sweep_id"],
             created_at=row["created_at"],
         )
 
     def list_runs(
-        self, strategy_name: str | None = None, *, strategy_version_no: int | None = None
+        self,
+        strategy_name: str | None = None,
+        *,
+        strategy_version_no: int | None = None,
+        origin: str | None = None,
     ) -> list[RunRecord]:
         """列出歷次運行,由早到遲。留空策略名即全庫。
 
         「檢視運行」要切換到歷次任何一次(規格 8.5),這就是那張清單的來源。
+
+        ``origin`` 收窄到某一種來歷:``FORMAL_RUN`` 只要正式運行(運行清單、策略
+        總覽的門面成績、策略詳情頁的歷次運行表三處都是這個口徑,D-029),
+        ``SWEEP_RUN`` 只要掃描格。留空即全部——連掃描格,庫內動輒幾千個。
         """
+        if origin is not None:
+            origin = str(origin).strip()
+            if origin not in RUN_ORIGINS:
+                raise ContractViolation(
+                    f"運行來歷只收 {list(RUN_ORIGINS)},收到 {origin!r}"
+                )
+        clause = " AND r.origin = ?" if origin is not None else ""
+        extra: tuple[object, ...] = (origin,) if origin is not None else ()
+
         if strategy_name is None:
             rows = self._conn.execute(
-                "SELECT run_id FROM backtest_run ORDER BY created_at, run_id"
+                f"SELECT r.run_id FROM backtest_run AS r WHERE 1 = 1{clause}"
+                " ORDER BY r.created_at, r.run_id",
+                extra,
             ).fetchall()
         elif strategy_version_no is None:
             rows = self._conn.execute(
                 "SELECT r.run_id FROM backtest_run AS r"
                 " JOIN strategy_version AS v ON v.strategy_version_id = r.strategy_version_id"
                 " JOIN strategy AS s ON s.strategy_id = v.strategy_id"
-                " WHERE s.name = ? ORDER BY r.created_at, r.run_id",
-                ((strategy_name or "").strip(),),
+                f" WHERE s.name = ?{clause} ORDER BY r.created_at, r.run_id",
+                ((strategy_name or "").strip(), *extra),
             ).fetchall()
         else:
             strategy = self.get_strategy_version(strategy_name, strategy_version_no)
             rows = self._conn.execute(
-                "SELECT run_id FROM backtest_run WHERE strategy_version_id = ?"
-                " ORDER BY created_at, run_id",
-                (strategy.strategy_version_id,),
+                "SELECT r.run_id FROM backtest_run AS r"
+                f" WHERE r.strategy_version_id = ?{clause}"
+                " ORDER BY r.created_at, r.run_id",
+                (strategy.strategy_version_id, *extra),
             ).fetchall()
         return [self.get_run(r["run_id"]) for r in rows]
+
+    def count_runs(
+        self, strategy_name: str | None = None, *, origin: str | None = None
+    ) -> int:
+        """數有幾多次運行,不砌留痕。
+
+        「這套策略只跑過參數掃描」那句話要數得出幾多格,但砌四千份留痕再數一次
+        是白做——那正是策略總覽開頁要等兩秒的原因。
+        """
+        if origin is not None:
+            origin = str(origin).strip()
+            if origin not in RUN_ORIGINS:
+                raise ContractViolation(
+                    f"運行來歷只收 {list(RUN_ORIGINS)},收到 {origin!r}"
+                )
+        clause = " AND r.origin = ?" if origin is not None else ""
+        extra: tuple[object, ...] = (origin,) if origin is not None else ()
+        if strategy_name is None:
+            row = self._conn.execute(
+                f"SELECT COUNT(*) AS n FROM backtest_run AS r WHERE 1 = 1{clause}",
+                extra,
+            ).fetchone()
+        else:
+            row = self._conn.execute(
+                "SELECT COUNT(*) AS n FROM backtest_run AS r"
+                " JOIN strategy_version AS v ON v.strategy_version_id = r.strategy_version_id"
+                " JOIN strategy AS s ON s.strategy_id = v.strategy_id"
+                f" WHERE s.name = ?{clause}",
+                ((strategy_name or "").strip(), *extra),
+            ).fetchone()
+        return int(row["n"])
 
     def run_stale_reasons(self, run_id: str) -> tuple[str, ...]:
         """這次運行有沒有過時,過時在哪。沒有過時就回空。

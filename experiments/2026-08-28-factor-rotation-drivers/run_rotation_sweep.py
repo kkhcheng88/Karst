@@ -44,6 +44,10 @@ if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
 
 HERE = Path(__file__).resolve().parent
 
+# 掃描編號(sweep id):一次掃描的識別字,逐格隨運行入庫(KARST-054)。慣例跟參數
+# 掃描頁認掃描那個一樣——落檔目錄的倉內相對路徑;同一個實驗跑幾次掃描就補字尾分開。
+EXPERIMENT_ID = HERE.relative_to(REPO).as_posix()
+
 import pandas as pd  # noqa: E402
 
 from karst.data.snapshots import read_price_panel  # noqa: E402
@@ -283,6 +287,7 @@ def main() -> None:
                 runs=runs,
                 grid=grid,
                 job=job,
+                sweep_id=f"{EXPERIMENT_ID}/{driver_key}",
                 risk_free_rate=RISK_FREE_RATE,
                 snapshot_root=SNAPSHOT_ROOT,
                 progress=progress,
@@ -449,6 +454,7 @@ def main() -> None:
             runs=runs,
             grid=ExplicitGrid(control_points, label="對照格(固定權重)"),
             job=mix_job,
+            sweep_id=f"{EXPERIMENT_ID}/固定權重對照",
             risk_free_rate=RISK_FREE_RATE,
             snapshot_root=SNAPSHOT_ROOT,
         )

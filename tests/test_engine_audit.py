@@ -32,7 +32,7 @@ from karst.engine import (
 )
 from karst.errors import ContractViolation, ImmutabilityViolation, NotFound
 from karst.runs import AUDIT_SERIES_KINDS, RunStore
-from karst.store import RUN_ARTIFACT_KINDS
+from karst.store import FORMAL_RUN, RUN_ARTIFACT_KINDS
 from karst.strategies import trend_swing
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -162,6 +162,7 @@ def _record(runs_and_snapshot, simulation):
         param_set_name=PARAM_SET,
         snapshot_id=snapshot_id,
         engine_version=ENGINE_VERSION,
+        origin=FORMAL_RUN,
     )
 
 
@@ -295,6 +296,7 @@ def test_the_two_audit_series_are_recorded_and_read_back(runs, run):
             equity_curve=run.equity_curve,
             holdings=run.holdings,
             orders=run.orders,
+            origin=FORMAL_RUN,
             audit_series={"sizing_basis": run.sizing_basis * 2.0},
         )
 

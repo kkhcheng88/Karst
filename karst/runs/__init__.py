@@ -14,7 +14,7 @@
 用法::
 
     from karst import DefinitionStore
-    from karst.runs import RunStore, synthetic_simulation
+    from karst.runs import FORMAL_RUN, RunStore, synthetic_simulation
 
     runs = RunStore(store, root="data/runs")
     result = synthetic_simulation(start="2020-01-01", end="2026-06-30",
@@ -25,11 +25,15 @@
         param_set_name="現役",
         snapshot_id=snapshot_id,
         engine_version="0.1.0",
+        origin=FORMAL_RUN,
     )
     runs.window_stats(record.run_id, "2023-01-01", "2026-06-30").total_return
+
+每次落痕都要講明**來歷**(``origin``):正式運行 ``FORMAL_RUN``,參數掃描其中一格
+``SWEEP_RUN`` 連掃描編號。無預設值——庫身分得出兩者,靠的就是這一格(KARST-054)。
 """
 
-from ..store import RunArtifact, RunRecord
+from ..store import FORMAL_RUN, SWEEP_RUN, RunArtifact, RunRecord
 from .registry import AUDIT_SERIES_KINDS, BREAKER_BLOCKED, SIZING_BASIS, RunStore
 from .synthetic import SyntheticSimulation, synthetic_simulation
 from .window import (
@@ -46,7 +50,9 @@ __all__ = [
     "AUDIT_SERIES_KINDS",
     "BASE",
     "BREAKER_BLOCKED",
+    "FORMAL_RUN",
     "SIZING_BASIS",
+    "SWEEP_RUN",
     "TRADING_DAYS_PER_YEAR",
     "RunArtifact",
     "RunRecord",

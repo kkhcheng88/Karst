@@ -40,6 +40,21 @@ if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
 
 HERE = Path(__file__).resolve().parent
 
+
+def sweep_id_for(out: Path, suffix: str = "") -> str:
+    """掃描編號:一次掃描的識別字,逐格隨運行入庫(KARST-054)。
+
+    慣例跟參數掃描頁認掃描那個一樣——落檔目錄的倉內相對路徑;同一個目錄跑多過
+    一次掃描,就在後面補一個字尾分開。
+    """
+    base = out.resolve()
+    try:
+        name = base.relative_to(REPO).as_posix()
+    except ValueError:  # --out 指到倉外,唯有用絕對路徑
+        name = base.as_posix()
+    return f"{name}{suffix}"
+
+
 from karst.data.snapshots import read_price_panel  # noqa: E402
 from karst.engine import PricePanel  # noqa: E402
 from karst.gateway.service import Gateway  # noqa: E402
@@ -166,6 +181,7 @@ def main() -> None:
             runs=runs,
             grid=grid,
             job=job,
+            sweep_id=sweep_id_for(out),
             risk_free_rate=RISK_FREE_RATE,
             snapshot_root=SNAPSHOT_ROOT,
             progress=progress,
@@ -200,6 +216,7 @@ def main() -> None:
                 runs=runs,
                 grid=ExplicitGrid(points, label="對照格(固定四等分)"),
                 job=job,
+                sweep_id=sweep_id_for(out, "·對照格"),
                 risk_free_rate=RISK_FREE_RATE,
                 snapshot_root=SNAPSHOT_ROOT,
             )

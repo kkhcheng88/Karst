@@ -22,7 +22,7 @@ from typing import Any, Callable
 from karst.errors import NotFound
 from karst.metrics import benchmark_curve, run_metrics
 from karst.runs import BASE, window_stats
-from karst.store import rebalance_cadences
+from karst.store import FORMAL_RUN, rebalance_cadences
 
 # 數值的出口口徑(NaN／inf 當缺值、比率轉百分點、日期一律 ISO)只有一份,
 # 住在 karst.web.data;這裡照用,不另抄一套——兩套口徑遲早會各走各路。
@@ -51,19 +51,9 @@ PRIMARY_BENCHMARK = "QQQ"
 # 總覽只算**正式運行**(示例運行、用戶自行重跑);參數掃描一格一次運行,庫內
 # 動輒幾千個,一律不計亦不列——掃描在參數掃描頁以「一次掃描一行」呈現。
 #
-# 判準:**參數集名的前綴**。庫內沒有一欄講得出「這次運行是不是掃描格產生」
-# (backtest_run 只有策略版本、參數集、期間、快照、引擎、指紋、交易日數),
-# 而掃描運行器規定每次掃描必帶一個參數集名前綴、一格一個參數集(見
-# karst.sweep.factor_mix 的 param_set_prefix:留空即拒收)。本倉現行掃描用
-# 「掃描」這個前綴。前綴改了而這裡沒有跟住改,後果是掃描格會扮成一套策略的
-# 門面成績——已登記為假設,不改庫。
-SWEEP_PARAM_SET_PREFIXES = ("掃描",)
-
-
-def is_sweep_run(record: Any) -> bool:
-    """這次運行是不是參數掃描其中一格。"""
-    name = str(getattr(record, "param_set_name", "") or "")
-    return name.startswith(SWEEP_PARAM_SET_PREFIXES)
+# 判準:**庫身那一格**(backtest_run.origin,KARST-054)。以前這裡靠參數集名的
+# 前綴猜,前綴一改掃描格就會扮成一套策略的門面成績,而且錯得無聲(假設 A-006)。
+# 現在來歷由落庫那一刻寫死,問庫要就有答案,這一層一個字都不用猜。
 
 _STATIC_ROOT = Path(__file__).resolve().parent / "static"
 
@@ -140,7 +130,7 @@ class OverviewReader:
         by_strategy: dict[str, list[Any]] = {}
         swept: dict[str, int] = {}
         for record in records:
-            if is_sweep_run(record):
+            if record.origin != FORMAL_RUN:
                 # 掃描格不入總覽,只記一個數,好讓「為什麼這套策略是空的」講得出
                 sweep_count += 1
                 swept[record.strategy_name] = swept.get(record.strategy_name, 0) + 1

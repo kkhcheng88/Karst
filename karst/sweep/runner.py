@@ -4,7 +4,8 @@
 
 * **每一格都是一次正正經經的運行**,經 ``karst.runs.RunStore`` 落痕,拿一個運行
   編號。掃描不另開一套帳,亦不繞過留痕——報告上任何一個數字,指得回它是哪一次
-  運行算出來的(規格 7.4)。
+  運行算出來的(規格 7.4)。落庫時逐格寫明**來歷是掃描格**、連這次掃描的編號
+  (KARST-054),所以運行清單與策略總覽問庫身就分得出正式運行,不必靠名字猜。
 * **同一格重掃不重跑**。運行編號是「策略版本 × 參數集 × 期間 × 數據快照 ×
   引擎版本」的雜湊(``store.run_fingerprint``),所以掃之前先算得出編號:庫裡已經
   有那一個編號,就直接讀回舊運行,一次引擎都不碰。中途斷了再掃,接得上。
@@ -31,6 +32,7 @@ from ..errors import ContractViolation, NotFound
 from ..metrics import DEFAULT_BENCHMARK_TICKERS, BenchmarkComparison, RunMetrics, run_metrics
 from ..metrics.benchmark import BenchmarkCurve, benchmark_curve
 from ..runs import RunStore
+from ..store import SWEEP_RUN
 from .grid import SweepGrid, SweepPoint
 from .verdict import CellScore
 
@@ -205,8 +207,9 @@ class SweepProvenance:
 
 @dataclass(frozen=True, slots=True)
 class SweepRun:
-    """一次掃描跑完之後的全部東西:逐格成績、來歷、耗時。"""
+    """一次掃描跑完之後的全部東西:掃描編號、逐格成績、來歷、耗時。"""
 
+    sweep_id: str
     cells: tuple[SweepCell, ...]
     grid: SweepGrid
     provenance: SweepProvenance
@@ -289,6 +292,7 @@ def run_sweep(
     runs: RunStore,
     grid: SweepGrid,
     job: CellJob,
+    sweep_id: str,
     risk_free_rate: float,
     benchmarks: Sequence[str] = DEFAULT_BENCHMARK_TICKERS,
     snapshot_root: str | Path | None = None,
@@ -301,6 +305,12 @@ def run_sweep(
     ``job`` 講「一格怎樣跑」(見 ``CellJob``)。掃描本身**不認得任何一套策略**:
     因子混合、趨勢波段、日後任何一套,都是砌一個 ``job`` 交進來,本檔一個字不用改。
 
+    ``sweep_id`` 是這次掃描的**掃描編號**,無預設值:逐格落庫時連同來歷「掃描格」
+    一齊寫入庫身(KARST-054),所以每一格日後都指得回它屬於哪一次掃描。慣例是掃描
+    落檔目錄的倉內相對路徑(與參數掃描頁認得的那個掃描識別字同一個),但本層不強制
+    ——它只要求你講得出一個名。**掃描編號不入運行編號**:同一格參數換一次掃描重掃,
+    算出來仍然是同一個運行編號,所以照舊查得到重、不會重跑。
+
     ``risk_free_rate`` 無預設值(Sortino 的分子要用它,見 ``karst.metrics``)。
     ``benchmarks`` 有預設,因為基準不是可調參數,是 D-010 第 4 條裁死的 QQQ 與 SPY;
     離線合成數據那類快照裡沒有基準日線,傳 ``()`` 即這次不算超額。
@@ -312,6 +322,11 @@ def run_sweep(
         raise ContractViolation(f"要一個 RunStore,收到 {type(runs).__name__}")
     if not isinstance(grid, SweepGrid):
         raise ContractViolation(f"掃描格要是 SweepGrid,收到 {type(grid).__name__}")
+    identifier = str(sweep_id or "").strip()
+    if not identifier:
+        raise ContractViolation(
+            "這次掃描的掃描編號不可留空;逐格落庫要指得回它屬於哪一次掃描"
+        )
     for method in ("plan", "simulate"):
         if not callable(getattr(job, method, None)):
             raise ContractViolation(
@@ -362,6 +377,10 @@ def run_sweep(
                 snapshot_id=plan.snapshot_id,
                 engine_version=plan.engine_version,
                 engine_name=plan.engine_name,
+                # 掃描落庫的每一格都是掃描格,連住這次掃描的編號:總覽與運行清單
+                # 自此問庫身要來歷,不再靠參數集名的前綴猜(KARST-054、假設 A-006)。
+                origin=SWEEP_RUN,
+                sweep_id=identifier,
                 period_start=plan.period_start,
                 period_end=plan.period_end,
                 strategy_version_no=plan.strategy_version_no,
@@ -436,6 +455,7 @@ def run_sweep(
             progress(index, len(points), cell)
 
     return SweepRun(
+        sweep_id=identifier,
         cells=tuple(cells),
         grid=grid,
         provenance=_provenance(cells),

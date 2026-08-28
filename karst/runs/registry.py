@@ -110,6 +110,8 @@ class RunStore:
         equity_curve: pd.Series,
         holdings: pd.DataFrame,
         orders: Any,
+        origin: str,
+        sweep_id: str | None = None,
         period_start: date | datetime | str | None = None,
         period_end: date | datetime | str | None = None,
         strategy_version_no: int | None = None,
@@ -123,9 +125,14 @@ class RunStore:
         同一次運行,原封不動回舊記錄;內容不同即當改寫,**在動任何檔案之前**
         拒收(運行不可變,D-020 第 7 條)。
 
+        ``origin`` 是來歷,**無預設值**:正式運行寫 ``FORMAL_RUN``,參數掃描其中
+        一格寫 ``SWEEP_RUN`` 連 ``sweep_id``(KARST-054)。核在最前——來歷講不出
+        就一份檔都不會落。
+
         ``audit_series`` 是查帳序列(見本檔開頭),``AUDIT_SERIES_KINDS`` 揀名。
         它**不入運行編號**;舊運行補交查帳序列會補寫上去,內容不同一樣拒收。
         """
+        origin, sweep_id = self._store.check_run_origin(origin, sweep_id)
         equity = normalise_equity(equity_curve)
         holdings_frame = _normalise_holdings(holdings)
         orders_frame = _normalise_orders(orders)
@@ -210,6 +217,8 @@ class RunStore:
             engine_version=engine_version,
             artifacts=artifacts,
             trading_days=int(len(equity)),
+            origin=origin,
+            sweep_id=sweep_id,
             strategy_version_no=strategy_version_no,
             param_set_version_no=param_set_version_no,
             factor_version_ids=factor_version_ids,
@@ -225,6 +234,8 @@ class RunStore:
         param_set_name: str,
         snapshot_id: str,
         engine_version: str,
+        origin: str,
+        sweep_id: str | None = None,
         engine_name: str | None = None,
         period_start: date | datetime | str | None = None,
         period_end: date | datetime | str | None = None,
@@ -241,6 +252,9 @@ class RunStore:
 
         結果上另有 ``sizing_basis`` / ``breaker_blocked`` 的話(規則路徑就有),
         兩條**查帳序列**一併落痕,不用另外交代;沒有就當這條路徑交不出,照樣落痕。
+
+        ``origin`` 是來歷,無預設值(見 ``record_run``):掃描運行器逐格填
+        ``SWEEP_RUN`` 連掃描編號,其餘一律 ``FORMAL_RUN``。
         """
         missing = [
             field
@@ -275,6 +289,8 @@ class RunStore:
             equity_curve=simulation.equity_curve,
             holdings=simulation.holdings,
             orders=simulation.orders,
+            origin=origin,
+            sweep_id=sweep_id,
             period_start=period_start,
             period_end=period_end,
             strategy_version_no=strategy_version_no,
@@ -291,9 +307,16 @@ class RunStore:
         return self._store.get_run(run_id)
 
     def list_runs(
-        self, strategy_name: str | None = None, *, strategy_version_no: int | None = None
+        self,
+        strategy_name: str | None = None,
+        *,
+        strategy_version_no: int | None = None,
+        origin: str | None = None,
     ) -> list[RunRecord]:
-        return self._store.list_runs(strategy_name, strategy_version_no=strategy_version_no)
+        """歷次運行。``origin`` 收窄到一種來歷(見 ``DefinitionStore.list_runs``)。"""
+        return self._store.list_runs(
+            strategy_name, strategy_version_no=strategy_version_no, origin=origin
+        )
 
     def equity_curve(self, run_id: str) -> pd.Series:
         """讀回逐日淨值。"""

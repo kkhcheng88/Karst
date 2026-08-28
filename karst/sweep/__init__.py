@@ -31,7 +31,10 @@
     from karst.sweep import FactorMixJob, judge, run_sweep, weight_grid, write_report
 
     grid = weight_grid(FACTOR_ETF_SLEEVES, step=0.05, cadences=("monthly", "quarterly"))
-    sweep = run_sweep(runs=runs, grid=grid, job=job, risk_free_rate=0.04)
+    sweep = run_sweep(
+        runs=runs, grid=grid, job=job, risk_free_rate=0.04,
+        sweep_id="experiments/2026-08-28-factor-mix-weight-grid/results-5pct",
+    )
     verdict = judge(
         sweep.scores("annual_excess:SPY"), grid,
         objective="annual_excess:SPY", min_trades=30,

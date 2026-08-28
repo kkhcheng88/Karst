@@ -64,6 +64,8 @@ FACTOR = "動量·12-1 月"
 CADENCE = "quarterly"
 ENGINE = ("synthetic", "0.1.0")
 RISK_FREE = 0.04
+# 這次掃描的掃描編號:逐格落庫時記住,一格指得回它屬於哪一次掃描(KARST-054)
+SWEEP_ID = "測試-兩軸規則格"
 
 DAYS = pd.bdate_range("2021-01-04", "2022-12-30")
 PERIOD = (str(DAYS[0].date()), str(DAYS[-1].date()))
@@ -206,7 +208,8 @@ def bench(tmp_path):
         grid = product_grid(fast=list(AXIS), slow=list(AXIS))
         job = _Job(gateway, snapshot_id, version.factor_version_id)
         sweep = run_sweep(
-            runs=runs, grid=grid, job=job, risk_free_rate=RISK_FREE, benchmarks=()
+            runs=runs, grid=grid, job=job, sweep_id=SWEEP_ID,
+            risk_free_rate=RISK_FREE, benchmarks=(),
         )
         verdict = judge(
             sweep.scores("annual_return"),
@@ -380,7 +383,10 @@ def test_rescanning_the_same_grid_reuses_the_runs_instead_of_rerunning_the_engin
     assert sweep.executed == len(sweep) and sweep.reused == 0
     assert len(job.executed) == len(sweep)
 
-    again = run_sweep(runs=runs, grid=grid, job=job, risk_free_rate=RISK_FREE, benchmarks=())
+    again = run_sweep(
+        runs=runs, grid=grid, job=job, sweep_id=SWEEP_ID,
+        risk_free_rate=RISK_FREE, benchmarks=(),
+    )
     assert again.reused == len(again) and again.executed == 0
     # 引擎一次都沒有再動過。
     assert len(job.executed) == len(sweep)

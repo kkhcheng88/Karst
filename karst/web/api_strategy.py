@@ -35,11 +35,12 @@ from karst.errors import ContractViolation, NotFound
 from karst.metrics import trade_stats
 from karst.metrics.ratios import annual_volatility
 from karst.runs import BASE, window_stats
+from karst.store import FORMAL_RUN, SWEEP_RUN
 
-# 一頁歷次運行的預設條數。一次參數掃描就寫幾百個運行,庫內動輒上千個
-# (data.py list_runs 已經踩過同一個坑),而每一行的年化/回撤/勝率都要
-# 讀一次該運行的 parquet(實測約 15ms 一個)——3500 行即等足一分鐘。
-# 所以逐頁交,並照實回報總數,由頁面講明「共 N 次」。
+# 一頁歷次運行的預設條數。這張表自 KARST-054 起只列**正式運行**,四千個掃描格
+# 由庫身篩走(D-029),所以現實中一頁綽綽有餘。閘照舊留住:每一行的年化/回撤/
+# 勝率都要讀一次該運行的 parquet(實測約 15ms 一個),真的有一日跑出幾百次正式
+# 運行,無閘就會等足一分鐘。照實回報總數,由頁面講明「共 N 次」。
 DEFAULT_RUN_PAGE = 50
 MAX_RUN_PAGE = 200
 
@@ -67,7 +68,13 @@ _CACHES: "WeakKeyDictionary[Any, dict[str, Any]]" = WeakKeyDictionary()
 def _cache(reader: Any) -> dict[str, Any]:
     bag = _CACHES.get(reader)
     if bag is None:
-        bag = {"runs": {}, "universe": {}, "prices": {}, "strategies": None}
+        bag = {
+            "runs": {},
+            "sweepCells": {},
+            "universe": {},
+            "prices": {},
+            "strategies": None,
+        }
         _CACHES[reader] = bag
     return bag
 
@@ -133,11 +140,28 @@ def _strategies(reader: Any) -> list[Any]:
 
 
 def _runs_of(reader: Any, name: str) -> list[Any]:
-    """該策略全部運行,**新的在前**(庫內登記由早到遲)。"""
+    """該策略的**正式運行**,新的在前(庫內登記由早到遲)。
+
+    只列正式運行,與運行清單、策略總覽同一個口徑(D-029:一次掃描當一件事,
+    掃描格不入運行清單)。來歷問庫身那一格(backtest_run.origin,KARST-054),
+    不再靠參數集名的前綴猜——所以四千個掃描格由庫身篩走,一格都不用砌出來。
+    """
     bag = _cache(reader)
     if name not in bag["runs"]:
-        bag["runs"][name] = list(reversed(reader.store.list_runs(name)))
+        bag["runs"][name] = list(reversed(reader.store.list_runs(name, origin=FORMAL_RUN)))
     return bag["runs"][name]
+
+
+def _sweep_cells_of(reader: Any, name: str) -> int:
+    """該策略有幾多格掃描格運行。
+
+    一套策略只跑過掃描時,歷次運行表是空的——空一格而不講,用戶會以為壞了。
+    這個數就是那句「掃描結果見參數掃描頁」講得出多少格的憑據。
+    """
+    bag = _cache(reader)
+    if name not in bag["sweepCells"]:
+        bag["sweepCells"][name] = int(reader.store.count_runs(name, origin=SWEEP_RUN))
+    return bag["sweepCells"][name]
 
 
 def _resolve(reader: Any, wanted: str | None) -> Any:
@@ -231,6 +255,8 @@ def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
             "note": active.note,
         },
         "runTotal": len(runs),
+        # 只有掃描格、未有正式運行的策略,頁面要講得出「幾多格、去哪裡看」
+        "sweepCellTotal": _sweep_cells_of(reader, strategy.name),
         "defaultRunId": runs[0].run_id if runs else None,
         "versions": [
             {
@@ -272,7 +298,12 @@ def _row_metrics(reader: Any, run_id: str) -> dict[str, Any]:
 
 
 def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
-    """該策略的歷次運行,新的在前,逐頁交。"""
+    """該策略的歷次運行(只列正式運行),新的在前,逐頁交。
+
+    自 KARST-054 起這張表只有正式運行,一套策略通常得幾次,所以逐頁那一套實際上
+    再用不著;``limit`` / ``offset`` 照舊收,因為端點的形狀是對外的約定,而且庫內
+    真的有一日出現幾百次正式運行時,它仍然是那道閘。
+    """
     strategy = _resolve(reader, _one(query, "id"))
     every = _runs_of(reader, strategy.name)
 
@@ -299,10 +330,6 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
             "createdAt": record.created_at,
             "isStale": bool(reasons),
             "staleReasons": list(reasons),
-            # 這一次是不是一格掃描格(D-029:掃描當一件事,不應該混作普通運行看)。
-            # 庫內現時沒有欄位分得出,只認得參數集的命名慣例——所以這是**推斷**,
-            # 認不出就當普通運行,不會反過來把普通運行誤標成掃描格。
-            "isSweepCell": record.param_set_name.startswith("掃描"),
         }
         item.update(_row_metrics(reader, record.run_id))
         items.append(item)
@@ -311,6 +338,8 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
         "strategyId": strategy.strategy_id,
         "strategyName": strategy.name,
         "total": len(every),
+        # 空表要講得出「不是壞了,是這套策略只跑過掃描」——連幾多格一齊交
+        "sweepCellTotal": _sweep_cells_of(reader, strategy.name),
         "offset": offset,
         "shown": len(items),
         "items": items,

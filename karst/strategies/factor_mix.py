@@ -48,7 +48,7 @@ import pandas as pd
 
 from ..errors import ContractViolation, DuplicateDefinition
 from ..models import FormulaProcedure
-from ..store import FAMILY_SEPARATOR, DefinitionStore, ParamSet, StrategyVersion
+from ..store import FAMILY_SEPARATOR, FORMAL_RUN, DefinitionStore, ParamSet, StrategyVersion
 from ..engine.cadence import rebalance_schedule
 from ..engine.contracts import (
     CADENCES,
@@ -635,6 +635,10 @@ def record_factor_mix_run(
 
     ``RunStore.record_simulation`` 只認得單一因子那一格,而混合策略一次蓋住
     四個因子版本——所以四個一併交過去,運行編號才蓋得齊來歷(D-021 第 9 條)。
+
+    這條路登記的一律是**正式運行**;掃描格一格都不經這裡,它們由
+    ``karst.sweep.runner`` 逐格落痕並自報掃描編號(KARST-054)。所以本函式
+    刻意沒有「來歷」這個參數:要落掃描格,請用掃描運行器。
     """
     return runs.record_simulation(
         result,
@@ -643,6 +647,7 @@ def record_factor_mix_run(
         snapshot_id=snapshot_id,
         engine_version=engine_version,
         engine_name=result.engine_name,
+        origin=FORMAL_RUN,
         period_start=period_start,
         period_end=period_end,
         strategy_version_no=strategy_version_no,

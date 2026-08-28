@@ -12,6 +12,7 @@ import pytest
 
 from karst import DefinitionStore, FormulaProcedure, ImmutabilityViolation
 from karst.runs import RunStore, synthetic_simulation
+from karst.store import FORMAL_RUN, SWEEP_RUN
 
 MOMENTUM = "動量·12-1 月"
 MOMENTUM_PROCEDURE = FormulaProcedure(
@@ -79,6 +80,7 @@ def _record(runs, entities, snapshot_id, *, seed=7, **overrides):
         "snapshot_id": snapshot_id,
         "engine_name": ENGINE[0],
         "engine_version": ENGINE[1],
+        "origin": FORMAL_RUN,
     }
     fields.update(overrides)
     return runs.record_simulation(_simulation(entities, seed), **fields)
@@ -112,6 +114,7 @@ def test_same_inputs_give_the_same_run_id(runs, strategy, entities, snapshot_id)
         snapshot_id=snapshot_id,
         engine_name=ENGINE[0],
         engine_version=ENGINE[1],
+        origin=FORMAL_RUN,
     )
     assert other.run_id != first.run_id
 

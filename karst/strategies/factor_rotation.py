@@ -63,7 +63,7 @@ import numpy as np
 import pandas as pd
 
 from ..errors import ContractViolation
-from ..store import DefinitionStore
+from ..store import FORMAL_RUN, DefinitionStore
 from ..engine.contracts import (
     CADENCES,
     CadenceNotSpecified,
@@ -1496,6 +1496,9 @@ def record_factor_rotation_run(
 
     與因子混合同一條路:一次成績蓋住四個因子版本,四個一併交過去,運行編號才
     蓋得齊來歷(D-021 第 9 條)。
+
+    這條路登記的一律是**正式運行**;掃描格由 ``karst.sweep.runner`` 逐格落痕
+    並自報掃描編號(KARST-054),不經這裡。
     """
     return runs.record_simulation(
         result,
@@ -1504,6 +1507,7 @@ def record_factor_rotation_run(
         snapshot_id=snapshot_id,
         engine_version=engine_version,
         engine_name=result.engine_name,
+        origin=FORMAL_RUN,
         period_start=period_start,
         period_end=period_end,
         strategy_version_no=strategy_version_no,

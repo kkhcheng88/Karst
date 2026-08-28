@@ -13,7 +13,9 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 6. ``gateway_write``               寫入者簽章登記:凡經唯一入口寫入的列在此有一筆(KARST-022)
 7. ``backtest_run`` / ``run_artifact`` / ``run_factor_ref``
                                    回測運行登記、逐日序列檔案落點、運行蓋齊的因子版本
-                                   (D-020 第 7 條、規格 7.4;KARST-026)
+                                   (D-020 第 7 條、規格 7.4;KARST-026)。運行的來歷
+                                   (正式運行／掃描格,連所屬掃描編號)在 backtest_run
+                                   的 origin 與 sweep_id 兩格(D-029;KARST-054)
 8. ``active_setup``                現役設定的指定登記:一套策略當下跟隨哪一個參數集
                                    (規格 7.5、CONTEXT.md「現役設定」;KARST-030)
 9. ``risk_rule`` / ``strategy_risk_ref``
@@ -35,8 +37,10 @@ from typing import Any
 # 第 5 版加入共用風控層的規則定義表與策略引用表(KARST-025);
 # 第 6 版加入數據快照的抓取登記附表(KARST-034)。舊庫重開即自動補建;
 # 第 7 版把 param_set 的換倉節奏約束改為由引擎那份正本砌出來(KARST-044),
-#        舊庫重開時自動重建 param_set(見 ``_migrate_param_set_cadence``)。
-SCHEMA_VERSION = 7
+#        舊庫重開時自動重建 param_set(見 ``_migrate_param_set_cadence``);
+# 第 8 版在 backtest_run 加「來歷」與「掃描編號」兩格(KARST-054),舊庫重開時
+#        自動重建 backtest_run 並回填(見 ``_migrate_backtest_run_origin``)。
+SCHEMA_VERSION = 8
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -318,6 +322,16 @@ END;
 -- 回測運行:運行編號 = 「策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本」的內容雜湊。
 -- 同一組輸入永遠得同一個編號;運行一經落庫**一個字都不可改**,要改就是另一次運行。
 -- 逐日淨值、逐日持倉、逐筆交易本體住在 parquet(D-026 第 1 條),本表只記落點與雜湊。
+--
+-- ``origin`` 是這次運行的**來歷**:``formal`` 正式運行(示例運行、用戶自行重跑),
+-- ``sweep`` 參數掃描其中一格。無預設值——落庫那一刻講不出來歷,寧可寫不入
+-- (KARST-054;以前庫內沒有這一格,畫面靠參數集名前綴猜,前綴一改掃描格就會扮成
+-- 一套策略的門面成績,而且錯得無聲:假設 A-006)。
+--
+-- ``sweep_id`` 是掃描格所屬那次掃描的**掃描編號**:正式運行必須留空(CHECK 擋住),
+-- 掃描格由掃描運行器落庫時填。留空的掃描格只有一種來路——第 8 版遷移之前已經在庫
+-- 裡的舊列(當時庫內未有這一格,回填不出),見 ``_migrate_backtest_run_origin``。
+-- 掃描編號**不入運行編號**:同一格無論屬於哪一次掃描,算出來仍是同一個運行編號。
 CREATE TABLE IF NOT EXISTS backtest_run (
     run_id              TEXT PRIMARY KEY,
     strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
@@ -329,14 +343,22 @@ CREATE TABLE IF NOT EXISTS backtest_run (
     engine_version      TEXT NOT NULL,
     fingerprint         TEXT NOT NULL UNIQUE,
     trading_days        INTEGER NOT NULL,
+    origin              TEXT NOT NULL CHECK (origin IN ('formal', 'sweep')),
+    sweep_id            TEXT,
     created_at          TEXT NOT NULL,
     CHECK (period_end >= period_start),
     CHECK (trading_days > 0),
-    CHECK (length(trim(engine_name)) > 0 AND length(trim(engine_version)) > 0)
+    CHECK (length(trim(engine_name)) > 0 AND length(trim(engine_version)) > 0),
+    CHECK (origin = 'sweep' OR sweep_id IS NULL),
+    CHECK (sweep_id IS NULL OR length(trim(sweep_id)) > 0)
 );
 
 CREATE INDEX IF NOT EXISTS idx_backtest_run_strategy
     ON backtest_run (strategy_version_id, created_at);
+
+-- 總覽與運行清單一開就問「只要正式運行」,四千個掃描格不必逐個砌出來才篩走。
+CREATE INDEX IF NOT EXISTS idx_backtest_run_origin
+    ON backtest_run (origin, created_at);
 
 -- 運行的序列檔:一次運行三份 parquet(逐日淨值、逐日持倉、逐筆交易),各記路徑與內容雜湊。
 -- 雜湊是「同一輸入得同一結果」的憑據,亦是擋改寫的憑據——重錄時對不上即拒收。
@@ -613,11 +635,115 @@ def _migrate_param_set_cadence(conn: sqlite3.Connection) -> bool:
     return True
 
 
+# 舊庫回填來歷時用的判準:參數集名的前綴。這正是 KARST-049 靠住的那條名前綴判準
+# (假設 A-006),自第 8 版起**全倉只此一處**——而且只在遷移那一刻用一次。遷移之後
+# 沒有任何一段程式再靠名字猜來歷:問庫身那一格就有答案。
+_LEGACY_SWEEP_PREFIX = "掃描"
+
+# 遷移記錄的落點:遷移做過什麼,寫在庫身自己那張 schema_meta,不寫在別處的筆記。
+# 下一個開這個庫的人問「這 4,085 格的來歷是誰填的、憑什麼」,答案就在庫內。
+RUN_ORIGIN_MIGRATION_KEY = "migration_008_run_origin"
+
+
+def _migrate_backtest_run_origin(conn: sqlite3.Connection) -> tuple[int, int] | None:
+    """舊庫的 ``backtest_run`` 重建一次,補上來歷與掃描編號兩格(KARST-054)。
+
+    做法照 ``_migrate_param_set_cadence``(KARST-044):sqlite 加不到「NOT NULL
+    而且無預設值」的欄,唯一做法是整張表重建——開新表 → 逐列搬過去 → 刪舊表 →
+    改名 → 讓 DDL 補回隨舊表一齊消失的索引與觸發器。全程一個交易,搬完即
+    ``PRAGMA foreign_key_check``。
+
+    **``run_id`` 逐個原封搬過去**:運行編號是「策略版本 × 參數集 × 期間 × 數據快照
+    × 引擎版本」的雜湊,本次遷移一件都沒有動過,所以編號逐位不變;``run_artifact``
+    與 ``run_factor_ref`` 靠它做外鍵,亦一列不用改。
+
+    來歷按**當時那條名前綴判準**回填一次:參數集名以「掃描」開頭的當掃描格,其餘當
+    正式運行。回填的掃描格**沒有掃描編號**——那一格當時不在庫內,回填不出,寧可留空
+    也不猜一個出來。回填了幾多列寫入 ``schema_meta``(見 ``RUN_ORIGIN_MIGRATION_KEY``)。
+
+    只在偵測到舊版(表在、但沒有 ``origin`` 那一格)時跑,跑完重開不會再跑。
+    回傳 ``(正式運行列數, 掃描格列數)``;沒有搬過即 ``None``。
+    """
+    columns = [str(row["name"]) for row in conn.execute("PRAGMA table_info(backtest_run)")]
+    if not columns or "origin" in columns:
+        return None
+
+    statement = re.search(
+        r"CREATE TABLE IF NOT EXISTS backtest_run \(.*?\n\);", ddl(), re.DOTALL
+    )
+    if statement is None:  # pragma: no cover - DDL 改壞才會走到這裡
+        raise RuntimeError("建表 DDL 裡找不到 backtest_run,無法重建")
+    create_new = statement.group(0).replace(
+        "CREATE TABLE IF NOT EXISTS backtest_run (", "CREATE TABLE backtest_run_new (", 1
+    )
+
+    column_list = ", ".join(f'"{column}"' for column in columns)
+    select_list = ", ".join(f'r."{column}"' for column in columns)
+    origin_case = (
+        "CASE WHEN p.name LIKE ? || '%' THEN 'sweep' ELSE 'formal' END"
+    )
+
+    counted = conn.execute(
+        f"SELECT {origin_case} AS origin, COUNT(*) AS n FROM backtest_run AS r"
+        " JOIN param_set AS p ON p.param_set_id = r.param_set_id GROUP BY 1",
+        (_LEGACY_SWEEP_PREFIX,),
+    ).fetchall()
+    tally = {str(row["origin"]): int(row["n"]) for row in counted}
+    formal_rows, sweep_rows = tally.get("formal", 0), tally.get("sweep", 0)
+    note = (
+        f"第 8 版遷移:backtest_run 補上來歷與掃描編號兩格。庫內原有的 "
+        f"{formal_rows + sweep_rows} 次運行按當時那條判準(參數集名以"
+        f"「{_LEGACY_SWEEP_PREFIX}」開頭即掃描格)回填一次:掃描格 {sweep_rows} 格、"
+        f"正式運行 {formal_rows} 次。回填的掃描格沒有掃描編號(那一格當時不在庫內,"
+        "回填不出,留空而不猜)。運行編號一位都沒有改。"
+    )
+
+    # PRAGMA foreign_keys 在交易之內是無聲的空操作,所以收放都要在 BEGIN 之外。
+    conn.commit()
+    previous_isolation = conn.isolation_level
+    conn.execute("PRAGMA foreign_keys = OFF")
+    conn.isolation_level = None
+    try:
+        conn.execute("BEGIN")
+        try:
+            conn.execute(create_new)
+            conn.execute(
+                f"INSERT INTO backtest_run_new ({column_list}, origin)"
+                f" SELECT {select_list}, {origin_case} FROM backtest_run AS r"
+                " JOIN param_set AS p ON p.param_set_id = r.param_set_id",
+                (_LEGACY_SWEEP_PREFIX,),
+            )
+            conn.execute("DROP TABLE backtest_run")
+            conn.execute("ALTER TABLE backtest_run_new RENAME TO backtest_run")
+            conn.execute(
+                "INSERT OR IGNORE INTO schema_meta (key, value) VALUES (?, ?)",
+                (RUN_ORIGIN_MIGRATION_KEY, note),
+            )
+        except Exception:
+            conn.execute("ROLLBACK")
+            raise
+        conn.execute("COMMIT")
+    finally:
+        conn.isolation_level = previous_isolation
+        conn.execute("PRAGMA foreign_keys = ON")
+
+    # 索引與觸發器隨舊表一齊消失,DDL 是 IF NOT EXISTS,重跑即補回。
+    conn.executescript(ddl())
+    broken = conn.execute("PRAGMA foreign_key_check").fetchall()
+    if broken:  # pragma: no cover - 搬表搬漏了才會走到這裡
+        raise RuntimeError(f"backtest_run 重建後外鍵對不上:{[tuple(r) for r in broken]}")
+    conn.commit()
+    return formal_rows, sweep_rows
+
+
 def connect(path: str) -> sqlite3.Connection:
     """開庫並建表。``path`` 用 ``":memory:"`` 即開一個即用即棄的庫。"""
     conn = sqlite3.connect(path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    # 補欄那個遷移要行在建表之前:新版 DDL 有一條索引落在新加的 origin 之上,
+    # 欄未補就建不出那條索引(舊庫一開就當場報「no such column」)。
+    _migrate_backtest_run_origin(conn)
     conn.executescript(ddl())
     _migrate_param_set_cadence(conn)
     # 舊庫重開時 DDL 會自動補建新表,故版本印記亦要跟上——否則庫身已是新版、
