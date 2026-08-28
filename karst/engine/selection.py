@@ -1,12 +1,14 @@
-"""按因子排名選前 N 隻等權——由單一定義庫讀值,到目標比重表為止。
+"""按因子排名選前 N 隻等權——按知情時點讀值,到目標比重表為止。
 
-本檔全程只用單一定義庫已有的讀取 API(``latest_known_values``),不改核心;
-亦沒有一個字提到背後跑的是哪個引擎。
+取值那一路是 ``factorvalues.FactorValueSource``:簽名與單一定義庫原本那個
+``latest_known_values`` 一字不差,分別只在它**兩個住處一齊看**——定義庫的
+``factor_value`` 表(小批人手值)與因子值批次的 Parquet 檔(D-032、KARST-071)。
+本檔不改核心,亦沒有一個字提到背後跑的是哪個引擎。
 
 兩條紀律寫死在這裡:
 
 1. **知情時間為閘**(D-021 第 3 條):每個決策日只看見「截至該日收工為止」
-   已知的最新值。因此逐個決策日讀一次,不是一次讀全部再自己截。
+   已知的最新值。因此逐個決策日問一次,不是一次讀全部再自己截。
 2. **缺失=不參與**(D-021 第 4 條):沒有值的實體不入排名,不填補、不當零。
 """
 
@@ -19,6 +21,7 @@ import pandas as pd
 
 from ..store import DefinitionStore
 from .contracts import Rebalance, RankingRebalanceParams
+from .factorvalues import FactorValueSource
 from .funnel import STAGE_SCOPE, STAGE_SELECTED, SelectionTraceBuilder
 
 
@@ -32,16 +35,20 @@ def read_factor_panel(
 ) -> pd.DataFrame:
     """逐個決策日按知情時間讀出因子值,砌成「決策日 × 實體編號」的表。
 
-    ``as_of`` 傳日期(不是時間戳),單一定義庫會當「該日收工為止」處理;
+    ``as_of`` 傳日期(不是時間戳),取值那一層會當「該日收工為止」處理;
     當日稍後才知道的值,那一日看不見。
+
+    值住表定住檔,呼叫方不必知道:``FactorValueSource`` 兩邊一齊看。整段決策日
+    共用同一個來源,所以一條因子只讀一次——揀出來的值與逐日各讀一次完全相同。
     """
     wanted = None if entity_ids is None else [int(entity) for entity in entity_ids]
     columns_hint = None if wanted is None else wanted
+    source = FactorValueSource(store)
 
     readings: dict[pd.Timestamp, pd.Series] = {}
     for day in decision_dates:
         stamp = pd.Timestamp(day)
-        frame = store.latest_known_values(
+        frame = source.latest_known_values(
             factor_name,
             stamp.date(),  # 傳純日期 → 閘定在該日收工
             version_no=version_no,

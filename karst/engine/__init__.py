@@ -9,7 +9,7 @@
 進出兩頭全部是 Karst 自己的型別:
 
     價格面板 PricePanel ─┐
-    因子(單一定義庫按知情時間讀出)─┼─► run_ranking_rebalance ─► BacktestResult
+    因子(按知情時間讀出:表與因子值批次兩邊)─┼─► run_ranking_rebalance ─► BacktestResult
     參數 RankingRebalanceParams ─┘                              (逐日淨值 / 逐日持倉 / 逐筆訂單)
 
 換倉節奏沒有預設值,不指定即報錯(D-009 第 7 條)。可執行時點寫死:知情時點
@@ -106,6 +106,7 @@ from .rules import (
     resolve_exits,
     rule_selection_trace,
 )
+from .factorvalues import FactorValueSource
 from .runner import run_ranking_rebalance, target_weights
 from .selection import build_targets, read_factor_panel
 
@@ -147,6 +148,7 @@ __all__ = [
     "BreakoutEntry",
     "CadenceNotSpecified",
     "ExitPlan",
+    "FactorValueSource",
     "MeasuredMoveTarget",
     "MonthlyLossBreaker",
     "Order",
