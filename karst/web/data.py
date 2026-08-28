@@ -144,13 +144,24 @@ class RunReader:
         }
 
     def list_runs(self, limit: int | None = None) -> dict[str, Any]:
-        """庫內運行,新的在前(登記本身由早到遲)。
+        """庫內**正式運行**,新的在前(登記本身由早到遲)。
 
-        參數掃描一次就寫幾百個運行(KARST-029),庫內動輒上千個。按鈕列擺不下,
-        所以這裡收窄到最近 ``limit`` 個,並照實回報總數,由頁面講明「共 N 次」。
+        正式運行即示例運行與用戶自行重跑。參數掃描一格就是一次運行
+        (KARST-029),庫內動輒幾千個,一律**不入這一張清單**——掃描在參數掃描頁
+        以「一次掃描一行」呈現(D-029),點得入那一格才看得到它自己那條曲線。
+        所以 ``total`` 報的是正式運行的總數,不是庫內運行總數。
+
+        分辨掃描格的判準沿用 KARST-049 那一份 ``is_sweep_run``(參數集名前綴,
+        假設 A-006):全倉只此一份,兩份判準遲早會各走各路。
+
+        仍然收窄到最近 ``limit`` 個並照實回報總數,由頁面講明「共 N 次」;
         過時狀態只為真正列出那幾個算——逐個查一千次會拖死開頁。
         """
-        records = list(reversed(self.runs.list_runs()))
+        # 就地匯入:api_overview 反過來要本檔的出口口徑(_day/_f/_pct),頂層
+        # 對匯會撞成循環。寧可就地匯入,也不抄第二份判準。
+        from karst.web.api_overview import is_sweep_run
+
+        records = [r for r in reversed(self.runs.list_runs()) if not is_sweep_run(r)]
         total = len(records)
         shown = records if limit is None else records[:limit]
         out = []

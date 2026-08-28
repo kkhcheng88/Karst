@@ -40,6 +40,12 @@
     chart: null,
     mode: 'equity',
     table: null,
+    /* 淨值圖上那幾條線:圖例鍵 → lightweight-charts 的線物件 */
+    lines: {},
+    /* 用戶在圖例收起了哪幾條。換運行、換視窗都留住——收起 QQQ 是一個看法,
+       不是一次性的動作(用戶 2026-08-28:「Is it possible to turn off the
+       QQQ and SPY in the chart?」)。 */
+    hidden: {},
     /* 現正揀住的檢視視窗;兩個日子都是 null 即全期 */
     win: { key: 'all', from: null, to: null },
     applied: { key: 'all', from: null, to: null },
@@ -65,23 +71,36 @@
   /* ============================================================
      檢視運行:揀哪一次,整頁跟著換(design-system 3.6)
      ============================================================ */
-  function mountRunPick(listing) {
-    var runs = listing.runs;
-    el.runPick.innerHTML = runs.map(function (r) {
-      var title = r.strategyName + '・' + r.paramSetName +
-        '(v' + r.strategyVersionNo + '・' + r.rebalanceCadence + ')';
-      return '<button type="button" data-run="' + KV.esc(r.runId) + '" aria-pressed="false" ' +
-        'title="' + KV.esc(title) + '">' + KV.esc(r.runId.replace(/^run-/, '')) +
-        (r.isActiveSetup ? '<span class="rp-live">現役</span>' : '') + '</button>';
-    }).join('');
+  /* 一項運行在選單上怎樣讀:策略・參數集與版本・期間・跑於哪一日。
+     運行編號是機器編的一串亂碼,認不出是哪一次(用戶 2026-08-28 原話:
+     「Can not using randon number index?」),所以編號退到明細裡——頁頭
+     那格小字、以及身分卡「運行編號」那一行,選單本身不再顯示。 */
+  function runLabel(r) {
+    var when = String(r.createdAt || '').slice(0, 10);
+    return KV.esc(r.strategyName) +
+      '・' + KV.esc(r.paramSetName) + ' v' + KV.esc(r.paramSetVersionNo) +
+      '・' + KV.esc(r.periodStart) + ' 至 ' + KV.esc(r.periodEnd) +
+      (when ? '・<span class="rp-when">跑於 ' + KV.esc(when) + '</span>' : '');
+  }
 
-    /* 參數掃描一次寫幾百個運行,按鈕列擺不下;照實講清楚列了幾多、共有幾多 */
+  function runButton(r) {
+    return '<button type="button" class="rp-run" data-run="' + KV.esc(r.runId) + '" ' +
+      'aria-pressed="false" title="運行編號 ' + KV.esc(r.runId) + '">' + runLabel(r) +
+      (r.isActiveSetup ? '<span class="rp-live">現役</span>' : '') + '</button>';
+  }
+
+  function mountRunPick(listing) {
+    el.runPick.innerHTML = listing.runs.map(runButton).join('');
+
+    /* 這張清單只有正式運行(示例運行、用戶自行重跑)。參數掃描一格就是一次
+       運行,庫內幾千個,一律不入這裡——它們在參數掃描頁看(D-029)。 */
     var note = document.createElement('span');
     note.className = 'section-note';
     note.style.flex = 'none';
-    note.textContent = listing.total > listing.shown
-      ? '最近 ' + listing.shown + ' 次・庫內共 ' + listing.total + ' 次(其餘經網址 ?run= 開)'
-      : '共 ' + listing.total + ' 次';
+    note.textContent = (listing.total > listing.shown
+      ? '最近 ' + listing.shown + ' 次・正式運行共 ' + listing.total + ' 次(其餘經網址 ?run= 開)'
+      : '正式運行共 ' + listing.total + ' 次') +
+      '・參數掃描的運行在參數掃描頁看';
     el.runBar.appendChild(note);
 
     el.runPick.addEventListener('click', function (e) {
@@ -236,6 +255,14 @@
   /* ---- 運行身份:版本與快照全頁只在這個晶片講一次(已裁畫面原則第 3 條) ---- */
   function renderIdentity(run) {
     KV.mountNav('/run', { snapshot: run.snapshotId, asOf: run.periodEnd });
+
+    /* 網址指名那顆臨時按鈕:運行讀回來了,換上與清單上一式一樣的標籤 */
+    var adhoc = el.runPick.querySelector('button[data-adhoc][data-run="' +
+      (window.CSS && CSS.escape ? CSS.escape(run.runId) : run.runId) + '"]');
+    if (adhoc) {
+      adhoc.innerHTML = runLabel(run);
+      adhoc.removeAttribute('data-adhoc');
+    }
 
     var factors = run.factors.map(function (f) {
       return KV.esc(f.name) + ' v' + f.versionNo;
@@ -481,6 +508,48 @@
     el.hov.style.top = Math.max(6, y) + 'px';
   }
 
+  /* ============================================================
+     圖例:每項可點,收起／放回那一條線
+     ------------------------------------------------------------
+     用戶 2026-08-28 原話:「Is it possible to turn off the QQQ and SPY in
+     the chart?」。三條線一視同仁——QQQ、SPY、策略淨值都收得起,線一收,
+     圖表自己會重新配刻度,剩下那幾條看得更清楚。
+
+     收起只是「不畫」,不是「不算」:右邊八項指標照舊由 /api/ 按同一段日子
+     交出來,一個數字都不會因為收起一條線而變。
+     ============================================================ */
+  /* 圖表色照 design-system 1.7:策略青、QQQ 紫、SPY 灰 */
+  var STRATEGY_COLOR = '#26a69a';
+  var BENCH_COLOR = { QQQ: '#b07de0', SPY: '#7d869c' };
+  /* 策略那條線在圖例上的鍵。基準用自己的代號(QQQ／SPY),策略沒有代號,
+     用一個不可能與代號相撞的字。 */
+  var STRATEGY_LINE = '__strategy__';
+
+  function benchColor(name) { return BENCH_COLOR[name] || '#7d869c'; }
+
+  function legendButton(key, color, inner) {
+    var on = !state.hidden[key];
+    return '<button type="button" data-line="' + KV.esc(key) + '" ' +
+      'aria-pressed="' + (on ? 'true' : 'false') + '" ' +
+      'title="點一下收起這條線,再點放回來">' +
+      '<i style="background:' + color + '"></i>' + inner + '</button>';
+  }
+
+  function toggleLine(key) {
+    var on = !!state.hidden[key];   /* 本來收起了,點一下就是放回來 */
+    state.hidden[key] = !on;
+    if (state.lines[key]) state.lines[key].applyOptions({ visible: on });
+    el.legend.querySelectorAll('button[data-line]').forEach(function (b) {
+      if (b.getAttribute('data-line') !== key) return;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+
+  el.legend.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-line]');
+    if (b) toggleLine(b.getAttribute('data-line'));
+  });
+
   /* ---- 淨值走勢 + 交易日標記 ---- */
   function showEquity() {
     var detail = state.detail;
@@ -497,25 +566,20 @@
     var benchNames = Object.keys(series.benchmarks);
     el.title.innerHTML =
       '<h2 style="font-size:var(--fs-md)">組合淨值 對 ' +
-        (benchNames.join('／') || '(無基準)') + '</h2>' +
-      '<div class="section-note">' +
-        (benchNames.length + 1) + ' 條線同以 ' + series.strategy.dates[0] + ' 為基期 ' +
-        KV.fixed(series.base, 0) + '・' +
-        '曲線上的箭嘴是有買賣的交易日,點一下右邊即跳到那幾筆</div>';
+        (benchNames.join('／') || '(無基準)') + '</h2>';
 
     var legendParts = [
-      '<span><i style="background:#26a69a"></i>' + KV.esc(series.strategy.label) +
+      legendButton(STRATEGY_LINE, STRATEGY_COLOR,
+        KV.esc(series.strategy.label) +
         ' <b class="' + KV.cls(m.totalReturnPct) + '">' + KV.pct(m.totalReturnPct) +
-        '</b>・年化 <b>' + KV.pctPlain(m.annualReturnPct) + '</b></span>',
+        '</b>・年化 <b>' + KV.pctPlain(m.annualReturnPct) + '</b>'),
     ];
-    /* 圖表色照 design-system 1.7:QQQ 紫、SPY 灰 */
-    var BENCH_COLOR = { QQQ: '#b07de0', SPY: '#7d869c' };
     benchNames.forEach(function (name) {
       var b = series.benchmarks[name];
       legendParts.push(
-        '<span><i style="background:' + (BENCH_COLOR[name] || '#7d869c') + '"></i>' +
-        KV.esc(name) + ' <b>' + KV.pct(b.totalReturnPct) + '</b>・年化 <b>' +
-        KV.pctPlain(b.annualReturnPct) + '</b></span>'
+        legendButton(name, benchColor(name),
+          KV.esc(name) + ' <b>' + KV.pct(b.totalReturnPct) + '</b>・年化 <b>' +
+          KV.pctPlain(b.annualReturnPct) + '</b>')
       );
     });
     el.legend.innerHTML = legendParts.join('');
@@ -523,21 +587,27 @@
     var box = chartBox();
     var chart = KV.makeChart(box, availH());
     state.chart = chart;
+    state.lines = {};
 
     /* 基準先畫,策略最後畫,策略那條才壓在最上(粗 2,基準幼 1) */
     benchNames.slice().reverse().forEach(function (name) {
       var b = series.benchmarks[name];
       var line = chart.addLineSeries({
-        color: BENCH_COLOR[name] || '#7d869c',
-        lineWidth: 1, priceLineVisible: false, lastValueVisible: false,
+        color: benchColor(name), lineWidth: 1,
+        priceLineVisible: false, lastValueVisible: false,
+        visible: !state.hidden[name],
       });
       line.setData(KV.zip(b.dates, b.values));
+      state.lines[name] = line;
     });
 
     var strategy = chart.addLineSeries({
-      color: '#26a69a', lineWidth: 2, priceLineVisible: false, lastValueVisible: false,
+      color: STRATEGY_COLOR, lineWidth: 2,
+      priceLineVisible: false, lastValueVisible: false,
+      visible: !state.hidden[STRATEGY_LINE],
     });
     strategy.setData(KV.zip(series.strategy.dates, series.strategy.values));
+    state.lines[STRATEGY_LINE] = strategy;
 
     /* 交易日標記:淨買入綠上箭、淨賣出紅下箭、同日一買一沽用中性圓點 */
     strategy.setMarkers(detail.tradeMarks.map(function (mk) {
@@ -732,10 +802,12 @@
     var target = wanted || (active ? active.runId : listing.runs[0].runId);
 
     if (wanted && !known) {
-      /* 網址指名了一個不在按鈕列的運行(例如掃描出來那幾百個),照樣開得到 */
+      /* 網址指名了一個不在清單上的運行(例如掃描格那幾千個),照樣開得到。
+         這一刻還未知道它是哪一套策略,先擺個交代;運行讀回來就換成正式標籤。 */
       el.runPick.insertAdjacentHTML('afterbegin',
-        '<button type="button" data-run="' + KV.esc(wanted) + '" aria-pressed="false" ' +
-        'title="由網址指名">' + KV.esc(wanted.replace(/^run-/, '')) + '</button>');
+        '<button type="button" class="rp-run" data-adhoc="1" data-run="' +
+        KV.esc(wanted) + '" aria-pressed="false" title="運行編號 ' + KV.esc(wanted) +
+        '">由網址指名的運行</button>');
     }
 
     state.runId = target;

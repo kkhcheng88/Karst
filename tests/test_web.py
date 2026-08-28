@@ -430,3 +430,80 @@ def test_視窗前已有持倉的運行照樣顯示得出八項指標(base_url, 
     assert m["annualReturnPct"] == pytest.approx(17.89, abs=0.01)
     assert m["maxDrawdownPct"] == pytest.approx(-18.14, abs=0.01)
     assert m["winRatePct"] == pytest.approx(48.19, abs=0.01)
+
+
+# ============================================================
+# KARST-053 運行選單認得出是哪一次、圖例可點、說明句已刪
+# ============================================================
+
+# 庫內兩次正式運行(示例運行)。掃描格一律不入運行清單(D-029)。
+FORMAL_RUNS = ("run-728a01087531258f", "run-f4c162e5aac34347")
+
+
+def test_運行選單只列正式運行且認得出是哪一次(base_url, reader):
+    """驗收一:選單顯示策略・參數集・期間・日期,不顯示編號;掃描格不在列。"""
+    listing = _get_json(f"{base_url}/api/runs?limit=8")
+
+    # 一、掃描格不入清單:庫內幾千次運行,清單上只剩正式那幾次
+    在庫 = len(reader.runs.list_runs())
+    assert listing["total"] < 在庫, "運行清單沒有把掃描格擋走"
+    for item in listing["runs"]:
+        assert not item["paramSetName"].startswith("掃描"), (
+            f"掃描格 {item['runId']} 走進了運行清單"
+        )
+
+    # 二、兩個示例運行必須在列
+    在列 = {item["runId"] for item in listing["runs"]}
+    for run_id in FORMAL_RUNS:
+        try:
+            reader.runs.get_run(run_id)
+        except NotFound:
+            continue  # 本機庫內沒有這一次,不能怪清單
+        assert run_id in 在列, f"示例運行 {run_id} 不在運行選單"
+
+    # 三、選單那四樣東西,端點逐項交得出(頁面才有得顯示)
+    for item in listing["runs"]:
+        for key in ("strategyName", "paramSetName", "paramSetVersionNo",
+                    "periodStart", "periodEnd", "createdAt"):
+            assert item.get(key), f"{item['runId']} 少了選單要顯示的 {key}"
+
+    # 四、按鈕的字是那四樣,不是運行編號;編號退到明細(頁頭小字與身分卡)
+    view = _strip_comments((STATIC_ROOT / "run-view.js").read_text(encoding="utf-8"))
+    標籤 = re.search(r"function runLabel\(r\)\s*\{.*?\n  \}", view, flags=re.S)
+    assert 標籤, "run-view.js 找不到運行選單的標籤"
+    標籤文 = 標籤.group(0)
+    for key in ("strategyName", "paramSetName", "paramSetVersionNo",
+                "periodStart", "periodEnd", "createdAt"):
+        assert key in 標籤文, f"運行選單沒有顯示 {key}"
+    assert "runId" not in 標籤文, "運行選單仍然把運行編號當招牌"
+    assert 'id="bc-run"' in _get(f"{base_url}/run").decode("utf-8")
+
+
+def test_圖表下的說明句已刪(base_url):
+    """驗收二:「N 條線同以 X 為基期・曲線上的箭嘴……」那一句不再出現。"""
+    view = _strip_comments((STATIC_ROOT / "run-view.js").read_text(encoding="utf-8"))
+    for 字 in ("為基期", "曲線上的箭嘴"):
+        assert 字 not in view, f"圖表下的說明句還在:{字}"
+
+
+def test_圖例每項可點收起該條線(base_url):
+    """驗收三:QQQ、SPY 與策略淨值三條線,圖例上逐條收得起、放得回。"""
+    view = _strip_comments((STATIC_ROOT / "run-view.js").read_text(encoding="utf-8"))
+
+    # 圖例是真按鈕,鍵盤到得了;aria-pressed 講出這一刻是開還是關
+    assert "legendButton" in view and "data-line" in view
+    assert "aria-pressed" in view
+    # 收起是叫圖表不畫那一條,不是把它由數據裡刪走
+    assert "applyOptions({ visible: on })" in view
+    # 三條線都掛得上鍵:策略一個、基準逐個用自己的代號
+    assert "STRATEGY_LINE" in view
+    assert "state.lines[name] = line" in view
+
+    # 基準真的有 QQQ 同 SPY 兩條,收得起的就是它們
+    listing = _get_json(f"{base_url}/api/runs?limit=1")
+    detail = _get_json(f"{base_url}/api/runs/{listing['runs'][0]['runId']}")
+    assert set(detail["series"]["benchmarks"]) >= {"QQQ", "SPY"}
+
+    # 點來點去只關畫面的事:八項指標由 /api/ 交,頁面沒有一條算式(同 KARST-042)
+    for banned in ("Math.pow", "Math.sqrt", "Math.log"):
+        assert banned not in view

@@ -5,6 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>運行詳情 — Karst</title>
 <link rel="stylesheet" href="/static/style.css">
+<style>
+/* ============================================================
+   運行詳情頁專用(KARST-053)
+   ------------------------------------------------------------
+   只有這一頁用得著,而 style.css 此刻同時有另外兩頁在改,所以先住在這裡。
+   兩頁收檔之後應搬回 style.css,本段連同註解一併移走。
+   ============================================================ */
+
+/* 運行選單改為顯示「策略・參數集・期間・跑於日期」(不再顯示運行編號):
+   標籤以中文為主,等寬字體排中文會鬆一格一格,改回內文字體。 */
+.runpick button.rp-run { font-family: var(--font-sans); white-space: normal; text-align: left; }
+.runpick button.rp-run .rp-when { font-family: var(--font-mono); }
+
+/* 圖例每項可點:點一下收起該條線,再點放回來(QQQ／SPY／策略淨值皆可)。
+   用真按鈕,鍵盤 Tab 到、Enter 按得到;aria-pressed 講出這一刻是開還是關。 */
+#chart-legend button {
+  appearance: none; border: 0; background: transparent; color: inherit;
+  font: inherit; padding: 0; margin: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: var(--s-1);
+  border-radius: var(--r-1);
+}
+#chart-legend button:hover { color: var(--text-1); }
+#chart-legend button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#chart-legend button[aria-pressed="false"] { opacity: .4; text-decoration: line-through; }
+</style>
 </head>
 <body class="fit">
 
