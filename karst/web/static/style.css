@@ -623,6 +623,16 @@ th.sortable[aria-sort]:not([aria-sort="none"]) { color: var(--text-1); font-weig
   z-index: 2;
 }
 
+/* 未掃過的格:與無效格是兩回事——無效格掃過但成績不作數,這裡根本沒有掃。
+   權重掃描四條軸加起來要等於 1,定住兩條就只剩一個組合,長方格其餘位置全是這種。
+   斜紋更淡、無邊框、不可點,一眼分得出「沒有數」與「有數但不作數」。 */
+.heat-cell.is-blank {
+  background: var(--bg-2);
+  background-image: repeating-linear-gradient(
+    45deg, transparent 0 5px, rgba(125,134,156,.13) 5px 7px);
+  cursor: default;
+}
+
 /* 無效格(KARST-029):成交筆數不夠門檻,成績不作數。斜紋蓋住,不入色階亦不印數字。 */
 .heat-cell.is-invalid { color: var(--text-3); font-weight: 400; }
 .heat-cell.is-invalid::after {
