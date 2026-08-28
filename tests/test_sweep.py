@@ -26,35 +26,38 @@ from karst import FormulaProcedure, NotFound
 from karst.gateway.service import Gateway
 from karst.runs import RunStore
 from karst.sweep import (
+    CHOICE,
+    CONTINUOUS,
     INVALID,
     LONELY_PEAK,
     PLATEAU,
+    RIDGE,
     VERDICTS,
     CellPlan,
+    CellScore,
+    ProductGrid,
     SweepAxis,
     SweepPoint,
     SweepProvenance,
-    judge,
+    all_continuous,
+    choice_axis,
+    continuous_axis,
     draw_heatmap,
+    draw_layer_projections,
+    judge,
+    layer_label,
     product_grid,
     projection,
     run_sweep,
     simplex_grid,
+    weight_grid,
     write_report,
 )
 
-# KARST-047 的新面:軸型與山脊。套件門面(``karst.sweep.__init__``)不在本票可改的
-# 檔案之內,所以這幾個名由子模組直接取。
-from karst.sweep.grid import (
-    CHOICE,
-    CONTINUOUS,
-    ProductGrid,
-    choice_axis,
-    continuous_axis,
-    layer_label,
-)
-from karst.sweep.report import draw_layer_projections
-from karst.sweep.verdict import RIDGE, CellScore
+# 生產掃描路徑那兩個格(KARST-048 驗收第 1 條)。``rotation_grid`` 不在套件門面上
+# ——它認得驅動器,是因子輪動那一層的東西,不是通用掃描的門面。
+from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES
+from karst.sweep.factor_rotation import DRIVER_CHOICE_PARAMETERS, rotation_grid
 
 STRATEGY = "掃描試場"
 FACTOR = "動量·12-1 月"
@@ -768,3 +771,282 @@ def test_the_weight_simplex_defines_a_neighbour_as_one_step_moved_between_two_we
     fine = simplex_grid(["w1", "w2", "w3", "w4"], step=0.05)
     assert len(fine.points()) == 1771
     assert set(grid.points()) <= set(fine.points())
+
+
+# ======================================================================
+# KARST-048:生產掃描路徑宣告軸型,宏觀驅動器 180 格重判
+# ======================================================================
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+EXPERIMENTS = REPO_ROOT / "experiments"
+
+# KARST-040/043/047 判讀時用的三個門檻。重判要對得回落檔,門檻一個字都不可以改。
+FILED_MIN_TRADES = 30
+FILED_MARGIN = 0.005
+FILED_QUANTILE = 0.90
+FILED_OBJECTIVE = "annual_excess:SPY"
+FILED_OBJECTIVE_COLUMN = "annual_excess_SPY"
+
+
+def _plain(value):
+    """由 CSV 讀回來的 ``numpy.int64`` 一類還原做 Python 型別。"""
+    return value.item() if hasattr(value, "item") else value
+
+
+def _filed_axis_values(frame, name: str) -> list:
+    """一條軸在落檔的掃描表上出現過的取值,數字軸按大細排,其餘按首次出現。"""
+    seen: list = []
+    for value in frame[name]:
+        value = _plain(value)
+        if value not in seen:
+            seen.append(value)
+    if all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in seen):
+        return sorted(seen)
+    return seen
+
+
+def _filed_scores(frame, grid) -> list[CellScore]:
+    names = list(grid.axis_names)
+    table = {
+        tuple(_plain(row[name]) for name in names): (
+            float(row[FILED_OBJECTIVE_COLUMN]),
+            int(row["trades"]),
+        )
+        for _, row in frame.iterrows()
+    }
+    out = []
+    for point in grid.points():
+        value, trades = table[tuple(point.get(n) for n in names)]
+        out.append(CellScore(point=point, value=value, trades=trades))
+    return out
+
+
+def _judge_filed(frame, grid):
+    return judge(
+        _filed_scores(frame, grid),
+        grid,
+        objective=FILED_OBJECTIVE,
+        min_trades=FILED_MIN_TRADES,
+        lonely_peak_margin=FILED_MARGIN,
+        plateau_quantile=FILED_QUANTILE,
+    )
+
+
+def _verdicts_match(judgement, filed_frame, names) -> bool:
+    filed = {
+        tuple(_plain(row[name]) for name in names): str(row["verdict"])
+        for _, row in filed_frame.iterrows()
+    }
+    return all(
+        filed.get(tuple(cell.point.get(n) for n in names)) == cell.verdict
+        for cell in judgement.cells
+    )
+
+
+# ----------------------------------------------------------------------
+# 驗收條件 1:rotation_grid 與 weight_grid 出的格每條軸標明軸型,
+#             節奏 / 退路 / 模式為選擇軸
+# ----------------------------------------------------------------------
+
+
+def test_the_production_rotation_grid_declares_the_kind_of_every_axis():
+    grid = rotation_grid(
+        "relative_strength",
+        values={"lookback_months": [6, 7, 8], "fallback": ["cash", "equal"]},
+        cadences=["monthly", "quarterly"],
+    )
+    # 退路(持現金 / 均分)與節奏(月度 / 季度)是選擇軸;回望期是連續軸。
+    assert grid.axis_kinds == {
+        "lookback_months": CONTINUOUS,
+        "fallback": CHOICE,
+        "cadence": CHOICE,
+    }
+    assert grid.continuous_axes == ("lookback_months",)
+    assert grid.choice_axes == ("fallback", "cadence")
+
+    # 鄰域只沿回望期走:換一套做法不再算「差一步」。
+    centre = SweepPoint(
+        values=(("lookback_months", 7), ("fallback", "cash"), ("cadence", "monthly"))
+    )
+    neighbours = grid.neighbours(centre)
+    assert {int(n.get("lookback_months")) for n in neighbours} == {6, 8}
+    assert all(
+        n.get("fallback") == "cash" and n.get("cadence") == "monthly" for n in neighbours
+    )
+    assert len(grid.layers()) == 4  # 兩種退路 × 兩個節奏
+
+    # 模式(整注押第一 / 按名次分注)同樣是選擇軸。
+    momentum = rotation_grid(
+        "factor_momentum",
+        values={"lookback_months": [6, 7, 8], "mode": ["winner", "rank"]},
+        cadences=["monthly"],
+    )
+    assert momentum.axis_kinds["mode"] == CHOICE
+    assert momentum.axis_kinds["lookback_months"] == CONTINUOUS
+
+    # 宏觀驅動器:門檻 / 回望日數與押注比重皆連續,層由節奏一條軸切出來。
+    macro = rotation_grid(
+        "curve_trend",
+        values={"lookback_days": [10, 20, 40, 60, 120], "tilt": [0.5, 0.75, 1.0]},
+        cadences=["monthly", "quarterly"],
+    )
+    assert macro.choice_axes == ("cadence",)
+    assert macro.continuous_axes == ("lookback_days", "tilt")
+    assert len(macro.layers()) == 2
+    inner = SweepPoint(
+        values=(("lookback_days", 40), ("tilt", 0.75), ("cadence", "monthly"))
+    )
+    assert len(macro.neighbours(inner)) == 8  # 3 × 3 − 自己,節奏釘死不動
+    # 軸型之前那個格還原得到:節奏一齊走,鄰居就是 17 個。
+    assert len(all_continuous(macro).neighbours(inner)) == 17
+
+    # 哪幾個驅動器參數是選擇軸,由一張明寫的表講明,不由參數名去猜。
+    assert DRIVER_CHOICE_PARAMETERS["relative_strength"] == ("fallback",)
+    assert DRIVER_CHOICE_PARAMETERS["factor_momentum"] == ("mode",)
+    assert DRIVER_CHOICE_PARAMETERS["curve_trend"] == ()
+
+
+def test_the_production_weight_grid_treats_the_cadence_as_a_choice_axis():
+    keys = [sleeve.weight_key for sleeve in FACTOR_ETF_SLEEVES]
+    grid = weight_grid(FACTOR_ETF_SLEEVES, step=0.5, cadences=("monthly", "quarterly"))
+
+    assert grid.choice_axes == ("cadence",)
+    assert grid.continuous_axes == tuple(keys)
+    assert len(grid.layers()) == 2
+
+    # 鄰居仍然是「一步權重由一格搬去另一格」,但節奏釘死不動。
+    point = SweepPoint(
+        values=(
+            *((key, 0.5 if key in keys[:2] else 0.0) for key in keys),
+            ("cadence", "monthly"),
+        )
+    )
+    neighbours = grid.neighbours(point)
+    assert neighbours
+    assert all(n.get("cadence") == "monthly" for n in neighbours)
+
+    # 不掃節奏的格一條選擇軸都沒有——舊行為一個字不變。
+    plain = weight_grid(FACTOR_ETF_SLEEVES, step=0.5)
+    assert plain.choice_axes == ()
+    assert plain.layers() == ((),)
+
+
+# ----------------------------------------------------------------------
+# 驗收條件 2:karst.sweep 門面補齊 RIDGE、choice_axis、draw_layer_projections
+# ----------------------------------------------------------------------
+
+
+def test_the_sweep_facade_exports_the_axis_aware_names():
+    import karst.sweep as facade
+    from karst.sweep import grid as grid_module
+    from karst.sweep import report as report_module
+    from karst.sweep import verdict as verdict_module
+
+    # 票上點名的三個,加 KARST-047 一併新增而門面漏了的其餘公開名。
+    expected = {
+        "RIDGE": verdict_module.RIDGE,
+        "choice_axis": grid_module.choice_axis,
+        "draw_layer_projections": report_module.draw_layer_projections,
+        "continuous_axis": grid_module.continuous_axis,
+        "CONTINUOUS": grid_module.CONTINUOUS,
+        "CHOICE": grid_module.CHOICE,
+        "AXIS_KINDS": grid_module.AXIS_KINDS,
+        "LayerKey": grid_module.LayerKey,
+        "layer_label": grid_module.layer_label,
+        "layer_slug": grid_module.layer_slug,
+        "all_continuous": grid_module.all_continuous,
+    }
+    for name, obj in expected.items():
+        assert getattr(facade, name) is obj, f"門面缺「{name}」或者指向另一件東西"
+        assert name in facade.__all__, f"「{name}」未列入 __all__"
+
+    # 門面列出來的名一個不缺,個個真的取得到。
+    for name in facade.__all__:
+        assert hasattr(facade, name), f"__all__ 有「{name}」但取不到"
+
+
+# ----------------------------------------------------------------------
+# 驗收條件 4:KARST-043 與 KARST-047 落檔的判讀結果逐格不變
+# ----------------------------------------------------------------------
+
+
+def test_the_filed_verdicts_of_karst_043_and_047_are_reproduced_cell_by_cell():
+    filed_043 = EXPERIMENTS / "2026-08-28-costs-and-regrid" / "results"
+    filed_047 = EXPERIMENTS / "2026-08-28-axis-aware-verdict" / "results"
+    if not filed_043.exists() or not filed_047.exists():
+        pytest.skip("未跑過 KARST-043 / KARST-047 的腳本,沒有落檔可以對")
+
+    for driver, choice in (("relative_strength", "fallback"), ("factor_momentum", "mode")):
+        sweep_table = pd.read_csv(filed_043 / f"dense-{driver}" / "掃描表.csv")
+        names = ["lookback_months", choice, "cadence"]
+        new_grid = rotation_grid(
+            driver,
+            values={
+                "lookback_months": _filed_axis_values(sweep_table, "lookback_months"),
+                choice: _filed_axis_values(sweep_table, choice),
+            },
+            cadences=_filed_axis_values(sweep_table, "cadence"),
+        )
+
+        # 舊口徑(軸型全部還原做連續)逐格對得回 KARST-043 當日的判讀表——
+        # 本票沒有改動軸型以外的任何一件事。
+        old = _judge_filed(sweep_table, all_continuous(new_grid))
+        assert len(old) == 60
+        assert _verdicts_match(
+            old, pd.read_csv(filed_043 / f"dense-{driver}" / "判讀表.csv"), names
+        )
+
+        # 新口徑(生產路徑那個格)逐格對得回 KARST-047 重判落檔的判讀表——
+        # 即是話生產路徑今日宣告的軸型,與 KARST-047 當日手砌那個格一模一樣。
+        new = _judge_filed(sweep_table, new_grid)
+        assert _verdicts_match(
+            new, pd.read_csv(filed_047 / f"dense-{driver}" / "判讀表-軸型.csv"), names
+        )
+        assert len(new.ridges) >= 1
+
+
+# ----------------------------------------------------------------------
+# 驗收條件 3:KARST-040 六個宏觀驅動器 180 格重判,交出分層判讀與新舊裁決對照
+# ----------------------------------------------------------------------
+
+
+def test_the_one_hundred_and_eighty_macro_cells_are_rejudged_layer_by_layer():
+    filed_040 = EXPERIMENTS / "2026-08-28-macro-drivers" / "results"
+    rejudged = EXPERIMENTS / "2026-08-28-macro-rejudge" / "results"
+    if not rejudged.exists():
+        pytest.skip(
+            "未跑過重判腳本:experiments/2026-08-28-macro-rejudge/rejudge_macro_axis_aware.py"
+        )
+
+    overall = pd.read_csv(rejudged / "六驅動器新舊裁決總表.csv")
+    assert len(overall) == 6
+    assert int(overall["格數"].sum()) == 180
+
+    ridges = 0
+    for driver in overall["代號"]:
+        table = pd.read_csv(rejudged / driver / "新舊裁決對照表.csv")
+        assert len(table) == 30  # 30 格重判,不重跑
+        assert {"舊裁決", "新裁決", "層", "舊鄰域平均", "新鄰域平均", "換層代價"} <= set(
+            table.columns
+        )
+
+        # 舊裁決欄要與 KARST-040 當日落檔的判讀表逐格對得上。
+        spine = "threshold" if "threshold" in table.columns else "lookback_days"
+        keys = [spine, "tilt", "cadence"]
+        before = pd.read_csv(filed_040 / driver / "判讀表.csv")
+        merged = table.merge(before[[*keys, "verdict"]], on=keys, how="left")
+        assert len(merged) == 30
+        assert (merged["舊裁決"] == merged["verdict"]).all()
+
+        # 分層判讀:節奏一條選擇軸切出兩層,每層 15 格。
+        layers = pd.read_csv(rejudged / driver / "分層判讀.csv")
+        assert len(layers) == 2
+        assert set(layers["格數"]) == {15}
+        ridges += int(layers[RIDGE].sum())
+
+    # KARST-040 當日唯一那格平原,新口徑判成山脊;180 格一片平原都沒有。
+    assert ridges == 1
+    assert int(overall[f"新{PLATEAU}"].sum()) == 0
+    assert int(overall[f"舊{PLATEAU}"].sum()) == 1
+    changed = overall[overall["最優格舊裁決"] != overall["最優格新裁決"]]
+    assert set(changed["代號"]) == {"vix_term", "credit_trend"}

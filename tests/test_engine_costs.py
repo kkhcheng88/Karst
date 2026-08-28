@@ -398,17 +398,26 @@ def test_a_denser_grid_with_costs_supports_a_plateau_verdict_and_segment_reading
 
     # 回望期逐月之後,「一步之遙」由三個月變成一個月——鄰域的定義本身變密了,
     # 平原才有機會浮出來(這亦即是說:新舊兩次掃描的裁決不可以直接比較)。
+    # KARST-048 起退路與節奏是**選擇軸**(換一套做法,不是差一步),鄰居釘死在
+    # 同一層,所以鄰域就只有回望期前後那兩格。
     middle = SweepPoint(
         values=(("lookback_months", 6), ("fallback", "cash"), ("cadence", "monthly"))
     )
     neighbours = grid.neighbours(middle)
     lookbacks = {int(point.get("lookback_months")) for point in neighbours}
-    assert lookbacks == {5, 6, 7}
+    assert lookbacks == {5, 7}
+    assert all(
+        n.get("fallback") == "cash" and n.get("cadence") == "monthly" for n in neighbours
+    )
 
-    # 判讀在加密格上行得通:鋪一片高地出來,它就要判平原
+    # 判讀在加密格上行得通:鋪一片高地出來,它就要判平原。高地要鋪**四層都有**
+    # ——只鋪一層的話,換一層即跌穿門檻,那是山脊不是平原(KARST-047/048)。
     plateau_cells = {
-        (months, "cash", "monthly") for months in (5, 6, 7)
-    } | {(months, "equal", "monthly") for months in (5, 6, 7)}
+        (months, fallback, cadence)
+        for months in (5, 6, 7)
+        for fallback in ("cash", "equal")
+        for cadence in ("monthly", "quarterly")
+    }
     scores = []
     for point in grid.points():
         key = (

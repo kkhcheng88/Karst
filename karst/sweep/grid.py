@@ -668,6 +668,25 @@ def choice_axis(name: str, values: Sequence[Any]) -> SweepAxis:
     return SweepAxis(name=name, values=tuple(values), ordered=False, kind=CHOICE)
 
 
+def all_continuous(grid: ProductGrid) -> ProductGrid:
+    """同一個笛卡兒積格,**軸型全部當連續**——「舊口徑」重判專用。
+
+    軸型落地之前,生產掃描路徑把節奏、退路、模式與回望期一視同仁,鄰域一併沿住
+    走。要證「今次裁決有變只可能來自軸型」,就要用當日那個格再判一次,逐格對回
+    當日落檔的判讀表。本函式就是把一個已經宣告好軸型的格還原成當日那一個。
+
+    ``ordered`` 照原樣留住——選擇軸的 ``ordered`` 對鄰域沒有作用,但還原的時候
+    它就是當日那條軸有序與否的唯一記錄,所以生產路徑砌選擇軸時照實寫,不一律
+    填 ``False``。
+    """
+    return ProductGrid(
+        [
+            SweepAxis(name=axis.name, values=axis.values, ordered=axis.ordered, kind=CONTINUOUS)
+            for axis in grid.axes
+        ]
+    )
+
+
 def simplex_grid(keys: Sequence[str], *, step: float, total: float = 1.0) -> SimplexGrid:
     """砌一個權重單純形格。步長無預設值,要掃幾密一律寫明。"""
     return SimplexGrid(keys, step=step, total=total)

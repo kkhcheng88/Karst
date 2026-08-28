@@ -1,0 +1,871 @@
+{
+  "ticket": "KARST-048",
+  "source": "experiments/2026-08-28-macro-drivers/results",
+  "price_snapshot_id": "2026-08-27-91a5d51339d9",
+  "macro_snapshot_id": "2026-08-28-3b2de5c59740",
+  "period": [
+    "2015-01-02",
+    "2026-08-26"
+  ],
+  "costs": "每股0.005+滑點5bp",
+  "objective": "annual_excess:SPY",
+  "thresholds": {
+    "min_trades": 30,
+    "lonely_peak_margin": 0.005,
+    "plateau_quantile": 0.9
+  },
+  "drivers": {
+    "vix_level": {
+      "driver": "vix_level",
+      "title": "VIX 水平開關",
+      "cells": 30,
+      "continuous_axes": [
+        "threshold",
+        "tilt"
+      ],
+      "choice_axes": [
+        "cadence"
+      ],
+      "layers": [
+        "cadence=monthly",
+        "cadence=quarterly"
+      ],
+      "plateau_threshold": -0.00038109698619878766,
+      "old": {
+        "summary": "共 30 格:孤峰 2 格、普通 28 格",
+        "neighbours_per_cell_max": 17,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 28
+        }
+      },
+      "new": {
+        "summary": "共 30 格:孤峰 4 格、普通 26 格",
+        "neighbours_per_cell_max": 8,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 4,
+          "普通": 26
+        }
+      },
+      "changed_cells": 2,
+      "changes": [
+        {
+          "threshold": 20.0,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0049523151277381,
+          "old": "普通",
+          "new": "孤峰"
+        },
+        {
+          "threshold": 25.0,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0080753847758416,
+          "old": "普通",
+          "new": "孤峰"
+        }
+      ],
+      "ridges": [],
+      "plateaus": [],
+      "best": {
+        "params": "threshold=16、tilt=1、cadence=monthly",
+        "layer": "cadence=monthly",
+        "value": 0.0068064510125223,
+        "old_verdict": "孤峰",
+        "new_verdict": "孤峰",
+        "old_neighbourhood_mean": -0.006049994473614,
+        "new_neighbourhood_mean": -0.0016835568494123,
+        "layer_drop": 0.0087328752484034
+      },
+      "layer_table": [
+        {
+          "cadence": "monthly",
+          "層": "cadence=monthly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.006806451,
+          "最優參數": "threshold=16、tilt=1、cadence=monthly",
+          "鄰域平均最高": -0.0016835568,
+          "層平均": -0.0064734989,
+          "高地格數": 3
+        },
+        {
+          "cadence": "quarterly",
+          "層": "cadence=quarterly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": -0.0009031941,
+          "最優參數": "threshold=16、tilt=0.5、cadence=quarterly",
+          "鄰域平均最高": -0.0054630419,
+          "層平均": -0.0134219922,
+          "高地格數": 0
+        }
+      ],
+      "charts": [
+        "舊判-monthly-threshold×tilt.png",
+        "舊判-quarterly-threshold×tilt.png",
+        "新判-cadence-monthly-threshold-tilt.png",
+        "新判-cadence-quarterly-threshold-tilt.png"
+      ],
+      "files": [
+        "判讀表-軸型.csv",
+        "新舊裁決對照表.csv",
+        "分層判讀.csv"
+      ]
+    },
+    "vix_term": {
+      "driver": "vix_term",
+      "title": "VIX 期限結構開關",
+      "cells": 30,
+      "continuous_axes": [
+        "threshold",
+        "tilt"
+      ],
+      "choice_axes": [
+        "cadence"
+      ],
+      "layers": [
+        "cadence=monthly",
+        "cadence=quarterly"
+      ],
+      "plateau_threshold": 0.0027017830690468712,
+      "old": {
+        "summary": "共 30 格:平原 1 格、普通 29 格",
+        "neighbours_per_cell_max": 17,
+        "counts": {
+          "平原": 1,
+          "山脊": 0,
+          "孤峰": 0,
+          "普通": 29
+        }
+      },
+      "new": {
+        "summary": "共 30 格:山脊 1 格、孤峰 1 格、普通 28 格",
+        "neighbours_per_cell_max": 8,
+        "counts": {
+          "平原": 0,
+          "山脊": 1,
+          "孤峰": 1,
+          "普通": 28
+        }
+      },
+      "changed_cells": 2,
+      "changes": [
+        {
+          "threshold": 1.1,
+          "tilt": 1.0,
+          "layer": "cadence=monthly",
+          "value": 0.0058132095647696,
+          "old": "平原",
+          "new": "山脊"
+        },
+        {
+          "threshold": 1.05,
+          "tilt": 1.0,
+          "layer": "cadence=quarterly",
+          "value": 0.003541378406378,
+          "old": "普通",
+          "new": "孤峰"
+        }
+      ],
+      "ridges": [
+        {
+          "params": "threshold=1.1、tilt=1、cadence=monthly",
+          "layer": "cadence=monthly",
+          "value": 0.0058132095647696,
+          "neighbourhood_mean": 0.00381022892518275,
+          "weakest_sibling_mean": 0.0019121528477294499,
+          "layer_drop": 0.0018980760774533001,
+          "old_verdict": "平原"
+        }
+      ],
+      "plateaus": [],
+      "best": {
+        "params": "threshold=1.1、tilt=1、cadence=monthly",
+        "layer": "cadence=monthly",
+        "value": 0.0058132095647696,
+        "old_verdict": "平原",
+        "new_verdict": "山脊",
+        "old_neighbourhood_mean": 0.0028611908864561,
+        "new_neighbourhood_mean": 0.00381022892518275,
+        "layer_drop": 0.0018980760774533001
+      },
+      "layer_table": [
+        {
+          "cadence": "monthly",
+          "層": "cadence=monthly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 1,
+          "孤峰": 0,
+          "普通": 14,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0058132096,
+          "最優參數": "threshold=1.1、tilt=1、cadence=monthly",
+          "鄰域平均最高": 0.0038102289,
+          "層平均": -0.0037417692,
+          "高地格數": 2
+        },
+        {
+          "cadence": "quarterly",
+          "層": "cadence=quarterly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 1,
+          "普通": 14,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0035413784,
+          "最優參數": "threshold=1.05、tilt=1、cadence=quarterly",
+          "鄰域平均最高": 0.0019121528,
+          "層平均": -0.0109989232,
+          "高地格數": 1
+        }
+      ],
+      "charts": [
+        "舊判-monthly-threshold×tilt.png",
+        "舊判-quarterly-threshold×tilt.png",
+        "新判-cadence-monthly-threshold-tilt.png",
+        "新判-cadence-quarterly-threshold-tilt.png"
+      ],
+      "files": [
+        "判讀表-軸型.csv",
+        "新舊裁決對照表.csv",
+        "分層判讀.csv"
+      ]
+    },
+    "credit_trend": {
+      "driver": "credit_trend",
+      "title": "信用利差變化方向",
+      "cells": 30,
+      "continuous_axes": [
+        "lookback_days",
+        "tilt"
+      ],
+      "choice_axes": [
+        "cadence"
+      ],
+      "layers": [
+        "cadence=monthly",
+        "cadence=quarterly"
+      ],
+      "plateau_threshold": -0.0065080035339085,
+      "old": {
+        "summary": "共 30 格:孤峰 4 格、普通 26 格",
+        "neighbours_per_cell_max": 17,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 4,
+          "普通": 26
+        }
+      },
+      "new": {
+        "summary": "共 30 格:孤峰 4 格、普通 26 格",
+        "neighbours_per_cell_max": 8,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 4,
+          "普通": 26
+        }
+      },
+      "changed_cells": 6,
+      "changes": [
+        {
+          "lookback_days": 20,
+          "tilt": 1.0,
+          "layer": "cadence=monthly",
+          "value": -0.0055740040645146,
+          "old": "孤峰",
+          "new": "普通"
+        },
+        {
+          "lookback_days": 40,
+          "tilt": 0.5,
+          "layer": "cadence=monthly",
+          "value": -0.0063905410658879,
+          "old": "孤峰",
+          "new": "普通"
+        },
+        {
+          "lookback_days": 10,
+          "tilt": 0.5,
+          "layer": "cadence=monthly",
+          "value": -0.0064753087229227,
+          "old": "孤峰",
+          "new": "普通"
+        },
+        {
+          "lookback_days": 120,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0077445313189501,
+          "old": "普通",
+          "new": "孤峰"
+        },
+        {
+          "lookback_days": 40,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0116246378678008,
+          "old": "普通",
+          "new": "孤峰"
+        },
+        {
+          "lookback_days": 10,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0140180273171217,
+          "old": "普通",
+          "new": "孤峰"
+        }
+      ],
+      "ridges": [],
+      "plateaus": [],
+      "best": {
+        "params": "lookback_days=20、tilt=1、cadence=monthly",
+        "layer": "cadence=monthly",
+        "value": -0.0055740040645146,
+        "old_verdict": "孤峰",
+        "new_verdict": "普通",
+        "old_neighbourhood_mean": -0.02108890163693851,
+        "new_neighbourhood_mean": -0.006943929277318133,
+        "layer_drop": 0.02828994471924075
+      },
+      "layer_table": [
+        {
+          "cadence": "monthly",
+          "層": "cadence=monthly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 1,
+          "普通": 14,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": -0.0055740041,
+          "最優參數": "lookback_days=20、tilt=1、cadence=monthly",
+          "鄰域平均最高": -0.0068313795,
+          "層平均": -0.0105597476,
+          "高地格數": 3
+        },
+        {
+          "cadence": "quarterly",
+          "層": "cadence=quarterly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 3,
+          "普通": 12,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": -0.0077445313,
+          "最優參數": "lookback_days=120、tilt=0.5、cadence=quarterly",
+          "鄰域平均最高": -0.0146639271,
+          "層平均": -0.0244944838,
+          "高地格數": 0
+        }
+      ],
+      "charts": [
+        "舊判-monthly-lookback_days×tilt.png",
+        "舊判-quarterly-lookback_days×tilt.png",
+        "新判-cadence-monthly-lookback-days-tilt.png",
+        "新判-cadence-quarterly-lookback-days-tilt.png"
+      ],
+      "files": [
+        "判讀表-軸型.csv",
+        "新舊裁決對照表.csv",
+        "分層判讀.csv"
+      ]
+    },
+    "curve_trend": {
+      "driver": "curve_trend",
+      "title": "曲線斜度變化方向",
+      "cells": 30,
+      "continuous_axes": [
+        "lookback_days",
+        "tilt"
+      ],
+      "choice_axes": [
+        "cadence"
+      ],
+      "layers": [
+        "cadence=monthly",
+        "cadence=quarterly"
+      ],
+      "plateau_threshold": 0.02912606407837806,
+      "old": {
+        "summary": "共 30 格:孤峰 2 格、普通 28 格",
+        "neighbours_per_cell_max": 17,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 28
+        }
+      },
+      "new": {
+        "summary": "共 30 格:孤峰 3 格、普通 27 格",
+        "neighbours_per_cell_max": 8,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 3,
+          "普通": 27
+        }
+      },
+      "changed_cells": 1,
+      "changes": [
+        {
+          "lookback_days": 60,
+          "tilt": 1.0,
+          "layer": "cadence=quarterly",
+          "value": 0.0182245262395699,
+          "old": "普通",
+          "new": "孤峰"
+        }
+      ],
+      "ridges": [],
+      "plateaus": [],
+      "best": {
+        "params": "lookback_days=20、tilt=1、cadence=monthly",
+        "layer": "cadence=monthly",
+        "value": 0.0466412800798072,
+        "old_verdict": "孤峰",
+        "new_verdict": "孤峰",
+        "old_neighbourhood_mean": 0.012138930366486942,
+        "new_neighbourhood_mean": 0.02354317569061665,
+        "layer_drop": 0.022808490648259416
+      },
+      "layer_table": [
+        {
+          "cadence": "monthly",
+          "層": "cadence=monthly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0466412801,
+          "最優參數": "lookback_days=20、tilt=1、cadence=monthly",
+          "鄰域平均最高": 0.0290594203,
+          "層平均": 0.0145259497,
+          "高地格數": 3
+        },
+        {
+          "cadence": "quarterly",
+          "層": "cadence=quarterly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 1,
+          "普通": 14,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0182245262,
+          "最優參數": "lookback_days=60、tilt=1、cadence=quarterly",
+          "鄰域平均最高": 0.0059229528,
+          "層平均": 0.000530543,
+          "高地格數": 0
+        }
+      ],
+      "charts": [
+        "舊判-monthly-lookback_days×tilt.png",
+        "舊判-quarterly-lookback_days×tilt.png",
+        "新判-cadence-monthly-lookback-days-tilt.png",
+        "新判-cadence-quarterly-lookback-days-tilt.png"
+      ],
+      "files": [
+        "判讀表-軸型.csv",
+        "新舊裁決對照表.csv",
+        "分層判讀.csv"
+      ]
+    },
+    "rate_trend": {
+      "driver": "rate_trend",
+      "title": "10 年息率趨勢",
+      "cells": 30,
+      "continuous_axes": [
+        "lookback_days",
+        "tilt"
+      ],
+      "choice_axes": [
+        "cadence"
+      ],
+      "layers": [
+        "cadence=monthly",
+        "cadence=quarterly"
+      ],
+      "plateau_threshold": 0.0016243917634854229,
+      "old": {
+        "summary": "共 30 格:孤峰 2 格、普通 28 格",
+        "neighbours_per_cell_max": 17,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 28
+        }
+      },
+      "new": {
+        "summary": "共 30 格:孤峰 4 格、普通 26 格",
+        "neighbours_per_cell_max": 8,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 4,
+          "普通": 26
+        }
+      },
+      "changed_cells": 2,
+      "changes": [
+        {
+          "lookback_days": 20,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0085172610415018,
+          "old": "普通",
+          "new": "孤峰"
+        },
+        {
+          "lookback_days": 60,
+          "tilt": 0.5,
+          "layer": "cadence=quarterly",
+          "value": -0.0106647843882883,
+          "old": "普通",
+          "new": "孤峰"
+        }
+      ],
+      "ridges": [],
+      "plateaus": [],
+      "best": {
+        "params": "lookback_days=20、tilt=1、cadence=monthly",
+        "layer": "cadence=monthly",
+        "value": 0.0230737976846506,
+        "old_verdict": "孤峰",
+        "new_verdict": "孤峰",
+        "old_neighbourhood_mean": -0.0100768729129064,
+        "new_neighbourhood_mean": 0.001463642692800567,
+        "layer_drop": 0.023081031211413933
+      },
+      "layer_table": [
+        {
+          "cadence": "monthly",
+          "層": "cadence=monthly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0230737977,
+          "最優參數": "lookback_days=20、tilt=1、cadence=monthly",
+          "鄰域平均最高": 0.0092777825,
+          "層平均": -0.0027369063,
+          "高地格數": 3
+        },
+        {
+          "cadence": "quarterly",
+          "層": "cadence=quarterly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": -0.008517261,
+          "最優參數": "lookback_days=20、tilt=0.5、cadence=quarterly",
+          "鄰域平均最高": -0.0131758887,
+          "層平均": -0.0187450283,
+          "高地格數": 0
+        }
+      ],
+      "charts": [
+        "舊判-monthly-lookback_days×tilt.png",
+        "舊判-quarterly-lookback_days×tilt.png",
+        "新判-cadence-monthly-lookback-days-tilt.png",
+        "新判-cadence-quarterly-lookback-days-tilt.png"
+      ],
+      "files": [
+        "判讀表-軸型.csv",
+        "新舊裁決對照表.csv",
+        "分層判讀.csv"
+      ]
+    },
+    "fed_expectation": {
+      "driver": "fed_expectation",
+      "title": "聯邦基金利率預期方向",
+      "cells": 30,
+      "continuous_axes": [
+        "lookback_days",
+        "tilt"
+      ],
+      "choice_axes": [
+        "cadence"
+      ],
+      "layers": [
+        "cadence=monthly",
+        "cadence=quarterly"
+      ],
+      "plateau_threshold": 0.004883047597419151,
+      "old": {
+        "summary": "共 30 格:孤峰 2 格、普通 28 格",
+        "neighbours_per_cell_max": 17,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 28
+        }
+      },
+      "new": {
+        "summary": "共 30 格:孤峰 4 格、普通 26 格",
+        "neighbours_per_cell_max": 8,
+        "counts": {
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 4,
+          "普通": 26
+        }
+      },
+      "changed_cells": 2,
+      "changes": [
+        {
+          "lookback_days": 120,
+          "tilt": 1.0,
+          "layer": "cadence=monthly",
+          "value": 0.004745780262841,
+          "old": "普通",
+          "new": "孤峰"
+        },
+        {
+          "lookback_days": 10,
+          "tilt": 0.75,
+          "layer": "cadence=monthly",
+          "value": -0.0075338514823992,
+          "old": "普通",
+          "new": "孤峰"
+        }
+      ],
+      "ridges": [],
+      "plateaus": [],
+      "best": {
+        "params": "lookback_days=10、tilt=1、cadence=quarterly",
+        "layer": "cadence=quarterly",
+        "value": 0.0260688570763807,
+        "old_verdict": "孤峰",
+        "new_verdict": "孤峰",
+        "old_neighbourhood_mean": -0.01269019081032105,
+        "new_neighbourhood_mean": -0.009384600109126725,
+        "layer_drop": 0.006611181402388651
+      },
+      "layer_table": [
+        {
+          "cadence": "monthly",
+          "層": "cadence=monthly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0047457803,
+          "最優參數": "lookback_days=120、tilt=1、cadence=monthly",
+          "鄰域平均最高": -0.0081955829,
+          "層平均": -0.0125718888,
+          "高地格數": 0
+        },
+        {
+          "cadence": "quarterly",
+          "層": "cadence=quarterly",
+          "格數": 15,
+          "有效格": 15,
+          "平原": 0,
+          "山脊": 0,
+          "孤峰": 2,
+          "普通": 13,
+          "無效": 0,
+          "無鄰": 0,
+          "最優": 0.0260688571,
+          "最優參數": "lookback_days=10、tilt=1、cadence=quarterly",
+          "鄰域平均最高": -0.0060606517,
+          "層平均": -0.0112661471,
+          "高地格數": 3
+        }
+      ],
+      "charts": [
+        "舊判-monthly-lookback_days×tilt.png",
+        "舊判-quarterly-lookback_days×tilt.png",
+        "新判-cadence-monthly-lookback-days-tilt.png",
+        "新判-cadence-quarterly-lookback-days-tilt.png"
+      ],
+      "files": [
+        "判讀表-軸型.csv",
+        "新舊裁決對照表.csv",
+        "分層判讀.csv"
+      ]
+    }
+  },
+  "overall": [
+    {
+      "驅動器": "VIX 水平開關",
+      "代號": "vix_level",
+      "格數": 30,
+      "連續軸": "threshold、tilt",
+      "選擇軸": "cadence",
+      "層數": 2,
+      "舊平原": 0,
+      "舊孤峰": 2,
+      "新平原": 0,
+      "新山脊": 0,
+      "新孤峰": 4,
+      "改判格數": 2,
+      "最優格": "threshold=16、tilt=1、cadence=monthly",
+      "最優格年化超額": 0.006806451,
+      "最優格舊裁決": "孤峰",
+      "最優格新裁決": "孤峰",
+      "最優格舊鄰域平均": -0.0060499945,
+      "最優格新鄰域平均": -0.0016835568,
+      "高地門檻": -0.000381097
+    },
+    {
+      "驅動器": "VIX 期限結構開關",
+      "代號": "vix_term",
+      "格數": 30,
+      "連續軸": "threshold、tilt",
+      "選擇軸": "cadence",
+      "層數": 2,
+      "舊平原": 1,
+      "舊孤峰": 0,
+      "新平原": 0,
+      "新山脊": 1,
+      "新孤峰": 1,
+      "改判格數": 2,
+      "最優格": "threshold=1.1、tilt=1、cadence=monthly",
+      "最優格年化超額": 0.0058132096,
+      "最優格舊裁決": "平原",
+      "最優格新裁決": "山脊",
+      "最優格舊鄰域平均": 0.0028611909,
+      "最優格新鄰域平均": 0.0038102289,
+      "高地門檻": 0.0027017831
+    },
+    {
+      "驅動器": "信用利差變化方向",
+      "代號": "credit_trend",
+      "格數": 30,
+      "連續軸": "lookback_days、tilt",
+      "選擇軸": "cadence",
+      "層數": 2,
+      "舊平原": 0,
+      "舊孤峰": 4,
+      "新平原": 0,
+      "新山脊": 0,
+      "新孤峰": 4,
+      "改判格數": 6,
+      "最優格": "lookback_days=20、tilt=1、cadence=monthly",
+      "最優格年化超額": -0.0055740041,
+      "最優格舊裁決": "孤峰",
+      "最優格新裁決": "普通",
+      "最優格舊鄰域平均": -0.0210889016,
+      "最優格新鄰域平均": -0.0069439293,
+      "高地門檻": -0.0065080035
+    },
+    {
+      "驅動器": "曲線斜度變化方向",
+      "代號": "curve_trend",
+      "格數": 30,
+      "連續軸": "lookback_days、tilt",
+      "選擇軸": "cadence",
+      "層數": 2,
+      "舊平原": 0,
+      "舊孤峰": 2,
+      "新平原": 0,
+      "新山脊": 0,
+      "新孤峰": 3,
+      "改判格數": 1,
+      "最優格": "lookback_days=20、tilt=1、cadence=monthly",
+      "最優格年化超額": 0.0466412801,
+      "最優格舊裁決": "孤峰",
+      "最優格新裁決": "孤峰",
+      "最優格舊鄰域平均": 0.0121389304,
+      "最優格新鄰域平均": 0.0235431757,
+      "高地門檻": 0.0291260641
+    },
+    {
+      "驅動器": "10 年息率趨勢",
+      "代號": "rate_trend",
+      "格數": 30,
+      "連續軸": "lookback_days、tilt",
+      "選擇軸": "cadence",
+      "層數": 2,
+      "舊平原": 0,
+      "舊孤峰": 2,
+      "新平原": 0,
+      "新山脊": 0,
+      "新孤峰": 4,
+      "改判格數": 2,
+      "最優格": "lookback_days=20、tilt=1、cadence=monthly",
+      "最優格年化超額": 0.0230737977,
+      "最優格舊裁決": "孤峰",
+      "最優格新裁決": "孤峰",
+      "最優格舊鄰域平均": -0.0100768729,
+      "最優格新鄰域平均": 0.0014636427,
+      "高地門檻": 0.0016243918
+    },
+    {
+      "驅動器": "聯邦基金利率預期方向",
+      "代號": "fed_expectation",
+      "格數": 30,
+      "連續軸": "lookback_days、tilt",
+      "選擇軸": "cadence",
+      "層數": 2,
+      "舊平原": 0,
+      "舊孤峰": 2,
+      "新平原": 0,
+      "新山脊": 0,
+      "新孤峰": 4,
+      "改判格數": 2,
+      "最優格": "lookback_days=10、tilt=1、cadence=quarterly",
+      "最優格年化超額": 0.0260688571,
+      "最優格舊裁決": "孤峰",
+      "最優格新裁決": "孤峰",
+      "最優格舊鄰域平均": -0.0126901908,
+      "最優格新鄰域平均": -0.0093846001,
+      "高地門檻": 0.0048830476
+    }
+  ]
+}

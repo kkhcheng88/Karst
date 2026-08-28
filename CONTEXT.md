@@ -98,4 +98,5 @@
 | 非可投資序列 | non-investable series | 沒有可買賣實體對應的數據序列(如 VIX);不入實體表、不進價格面板,故結構上持有不到(KARST-040)。 |
 | 宏觀驅動器 | macro driver | 以宏觀序列而非四隻 ETF 的價格作移權依據的輪動驅動器;參數集記宏觀快照編號,換數據必換運行編號(KARST-040)。 |
 | 序列代號 | series code | 宏觀序列的內部主鍵,與來源代號分開;換來源只改來源代號,序列代號不變(KARST-040)。 |
+| 重判 | rejudge | 不重跑引擎,只換判讀口徑把落檔的掃描表重新判一次;先用舊口徑逐格對回落檔自檢,全對才出新判讀(KARST-047、048)。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |

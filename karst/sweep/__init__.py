@@ -6,13 +6,16 @@
 ``grid``
     **掃描格**:要走哪些格,以及哪兩格算**相鄰**。三種——笛卡兒積格(二維即
     3×3 鄰域)、權重單純形格(相鄰 = 一步權重由一格移去另一格)、拼合格。
+    每條軸自報**軸型**:連續軸(回望期一類,鄰域沿住它走)與選擇軸(節奏、退路
+    一類,不入鄰域,把格切成**層**)。
 
 ``runner``
     逐格經引擎跑並經 ``karst.runs`` 落痕,**每格一個運行編號、同一格重掃不重跑**。
     交回一張逐格八項指標的表。
 
 ``verdict``
-    判**平原**、**孤峰**、**無效格**。三個門檻無預設值,報告一定要印出來。
+    判**平原**、**山脊**、**孤峰**、**無效格**。三個門檻無預設值,報告一定要印
+    出來。山脊 = 沿連續軸站得住,換一層即跌穿高地門檻。
 
 ``report``
     **熱力圖**(二維)與**投影圖**(高維每一對參數一張),加一份頂頭寫住
@@ -46,14 +49,23 @@ from .factor_mix import (
     weight_text,
 )
 from .grid import (
+    AXIS_KINDS,
+    CHOICE,
+    CONTINUOUS,
     CompositeGrid,
     ExplicitGrid,
+    LayerKey,
     ProductGrid,
     SimplexGrid,
     SweepAxis,
     SweepGrid,
     SweepPoint,
+    all_continuous,
+    choice_axis,
     compose,
+    continuous_axis,
+    layer_label,
+    layer_slug,
     points_frame,
     product_grid,
     simplex_grid,
@@ -61,6 +73,7 @@ from .grid import (
 from .report import (
     ProjectionCell,
     draw_heatmap,
+    draw_layer_projections,
     draw_projection_set,
     projection,
     projection_cells,
@@ -82,6 +95,7 @@ from .verdict import (
     NO_NEIGHBOUR,
     ORDINARY,
     PLATEAU,
+    RIDGE,
     VERDICTS,
     CellScore,
     CellVerdict,
@@ -90,13 +104,17 @@ from .verdict import (
 )
 
 __all__ = [
+    "AXIS_KINDS",
     "CADENCE_AXIS",
+    "CHOICE",
+    "CONTINUOUS",
     "INVALID",
     "LONELY_PEAK",
     "METRIC_COLUMNS",
     "NO_NEIGHBOUR",
     "ORDINARY",
     "PLATEAU",
+    "RIDGE",
     "VERDICTS",
     "CellJob",
     "CellPlan",
@@ -105,6 +123,7 @@ __all__ = [
     "CompositeGrid",
     "ExplicitGrid",
     "FactorMixJob",
+    "LayerKey",
     "ProductGrid",
     "ProjectionCell",
     "SimplexGrid",
@@ -115,11 +134,17 @@ __all__ = [
     "SweepPoint",
     "SweepProvenance",
     "SweepRun",
+    "all_continuous",
+    "choice_axis",
     "compose",
+    "continuous_axis",
     "draw_heatmap",
+    "draw_layer_projections",
     "draw_projection_set",
     "ensure_factor_mix_setup",
     "judge",
+    "layer_label",
+    "layer_slug",
     "objective_value",
     "points_frame",
     "product_grid",

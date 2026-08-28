@@ -12,9 +12,10 @@ KARST-043 收檔時舉了一手:現時的鄰域把三條軸一視同仁——回
 本檔**一次引擎都不動**:只讀 KARST-043 落下的掃描表(連成本那一份,兩個驅動器
 各 60 格),用兩套鄰域各判一次——
 
-* **舊口徑**:三條軸全部當連續(``rotation_grid`` 砌出來的格,即 KARST-043 用的
-  那一個)。判出來的結果**要與當日落檔的判讀表逐格對得上**,否則即是本票改動了
-  不該改的東西——所以這一步是本檔的自檢,不是裝飾。
+* **舊口徑**:三條軸全部當連續,即 KARST-043 用的那一個格。判出來的結果**要與
+  當日落檔的判讀表逐格對得上**,否則即是本票改動了不該改的東西——所以這一步是
+  本檔的自檢,不是裝飾。(KARST-048 之後 ``rotation_grid`` 自己會宣告軸型,所以
+  舊口徑要經 ``all_continuous`` 把它還原,不再是它的原樣。)
 * **新口徑**:回望期做連續軸,退路(持現金/均分)與節奏(月度/季度)做選擇軸。
   鄰域只沿回望期取,兩條選擇軸切出四層,每層各出一份判讀,並判得出**山脊**。
 
@@ -40,7 +41,7 @@ HERE = Path(__file__).resolve().parent
 import pandas as pd  # noqa: E402
 
 from karst.sweep.factor_rotation import rotation_grid  # noqa: E402
-from karst.sweep.grid import CHOICE, ProductGrid, SweepAxis, layer_label  # noqa: E402
+from karst.sweep.grid import CHOICE, ProductGrid, SweepAxis, all_continuous, layer_label  # noqa: E402
 from karst.sweep.report import draw_heatmap  # noqa: E402
 from karst.sweep.verdict import LONELY_PEAK, PLATEAU, RIDGE, CellScore, judge  # noqa: E402
 
@@ -135,7 +136,11 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
         raise SystemExit(f"{driver_key} 的掃描表不是 60 格,是 {len(frame)} 格")
 
     # --- 舊口徑:三條軸全部連續,即 KARST-043 當日用的那個格 -----------------
-    old_grid = rotation_grid(driver_key, values=spec["values"], cadences=spec["cadences"])
+    # KARST-048 起 ``rotation_grid`` 自己宣告軸型(退路/模式/節奏是選擇軸),所以
+    # 當日那個格要 ``all_continuous`` 還原一次才對得回落檔的判讀表。
+    old_grid = all_continuous(
+        rotation_grid(driver_key, values=spec["values"], cadences=spec["cadences"])
+    )
     old = judge(
         scores_from(frame, old_grid), old_grid, objective=OBJECTIVE,
         min_trades=MIN_TRADES, lonely_peak_margin=MARGIN, plateau_quantile=QUANTILE,

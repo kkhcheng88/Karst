@@ -333,7 +333,9 @@ def test_each_driver_gets_a_plateau_report_and_lonely_peaks_are_marked(toy, tmp_
     assert (out / "掃描表.csv").exists() and (out / "判讀表.csv").exists()
     # 三個門檻與相鄰的定義一定要印得出,否則裁決講不出根據。
     assert verdict.thresholds_line() in text
-    assert "相鄰 = 每個軸最多移一步" in text
+    # KARST-048 起這個格自報軸型:模式與節奏是選擇軸,鄰域只沿回望期走。
+    assert "相鄰 = 每條連續軸最多移一步且不可全部不動,選擇軸釘死不動" in text
+    assert "lookback_months(連續)" in text and "mode(選擇)" in text
 
     # 孤峰按同一套判準標出:在**這個輪動格自己的相鄰定義**上鋪一格獨高的成績,
     # 判讀就要把它叫做孤峰(價格數據不一定配合,所以這一格是明明白白鋪出來的)。

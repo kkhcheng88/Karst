@@ -7,7 +7,9 @@
     砌一個驅動器的參數格。**取值無預設**——掃 L 的哪幾個月、M 的哪幾條均線,一律
     由呼叫方寫明。哪一條軸有序(回望期由短到長)、哪一條無序(``winner`` 與
     ``rank`` 不是一步之遙),由驅動器自己在 ``DRIVER_UNORDERED_PARAMETERS`` 講明,
-    因為相鄰的定義就是平原與孤峰判讀的地基。
+    因為相鄰的定義就是平原與孤峰判讀的地基。**軸型**(連續 / 選擇)同一個道理,
+    由 ``DRIVER_CHOICE_PARAMETERS`` 講明:退路、模式與換倉節奏是選擇軸,不入鄰域
+    而是把格切成層(KARST-048)。
 
 ``FactorRotationJob``
     ``plan(point)`` 把這一格的驅動器參數登記成一個參數集(先查再登記,同一格重掃
@@ -31,7 +33,7 @@ from typing import Any, Final
 import pandas as pd
 
 from ..engine.contracts import PricePanel, TradingCosts
-from ..errors import ContractViolation, NotFound
+from ..errors import ContractViolation
 from ..metrics import RunMetrics, run_metrics
 from ..metrics.benchmark import BenchmarkCurve, benchmark_curve
 from ..runs import RunStore
@@ -52,7 +54,7 @@ from .factor_mix import (
     ensure_factor_mix_setup,
     weight_text,
 )
-from .grid import ProductGrid, SweepAxis, SweepGrid, SweepPoint
+from .grid import CHOICE, CONTINUOUS, ProductGrid, SweepAxis, SweepGrid, SweepPoint
 from .runner import METRIC_COLUMNS, CellPlan, SweepCell
 from .verdict import CellVerdict
 
@@ -60,6 +62,35 @@ from .verdict import CellVerdict
 # (不同驅動器的參數名根本不同,排不進同一個笛卡兒積),所以驅動器名寫在參數集的
 # 值裡做身份,不寫在格上。
 DRIVER_KEY: Final[str] = "driver"
+
+# 驅動器參數之中,哪幾個是**選擇軸**(KARST-048)。選擇軸換一個取值即**換一套
+# 做法**,不是沿刻度微調:退路由「持現金」改成「均分」、模式由「整注押第一」改成
+# 「按名次分注」,鄰格是另一個世界,不是一步之遙。它不入鄰域,改為把格切成層,
+# 逐層各出一份判讀(見 ``karst.sweep.grid``、``karst.sweep.verdict``)。
+#
+# 沒有列出來的參數一律是**連續軸**:回望期、均線日數、門檻、押注比重——這幾條
+# 沿住走一步有刻度上的意思。
+#
+# 換倉節奏(``cadence``)不在這張表:它不是驅動器自己的參數,而是每個格都有的
+# 那一條,一律當選擇軸(月度改季度是換一套做法)。
+#
+# 這張表與 ``DRIVER_UNORDERED_PARAMETERS`` 現時逐項相同,但**兩者不是同一件事**:
+# 無序講「這條軸上一步是幾遠」,軸型講「這條軸該不該走一步」。所以照樣分開寫,
+# 不由一張表推另一張。
+DRIVER_CHOICE_PARAMETERS: Final[Mapping[str, tuple[str, ...]]] = {
+    "factor_momentum": ("mode",),  # winner=整注押第一 / rank=按名次分注
+    "relative_strength": ("fallback",),  # cash=持現金 / equal=均分
+    "inverse_volatility": (),  # 回望日數與次方皆連續
+    "trend_switch": (),  # 均線日數與押注比重皆連續
+    # 宏觀驅動器:門檻 / 回望日數與押注比重皆連續,一條選擇軸都沒有,
+    # 所以層由節奏一條軸切出來(月度、季度兩層)。
+    "vix_level": (),
+    "vix_term": (),
+    "credit_trend": (),
+    "curve_trend": (),
+    "rate_trend": (),
+    "fed_expectation": (),
+}
 
 
 def param_text(value: Any) -> str:
@@ -98,16 +129,34 @@ def rotation_grid(
     """砌一個驅動器的參數格:驅動器自己那幾個參數 × 換倉節奏。
 
     ``values`` 逐個參數寫明要掃哪些取值——**沒有預設取值**(D-008 第 3 條)。
-    相鄰 = 每個軸最多移一步且不可全部不動(``ProductGrid``);無序的軸(例如
-    ``mode``)同軸任何兩個取值皆相鄰。
+
+    **每條軸自報軸型**(KARST-048)。連續軸(回望期、門檻、押注比重)相鄰 = 沿
+    住它移一步;選擇軸(退路、模式,加上永遠是選擇軸的換倉節奏)不入鄰域,改為
+    把格切成一層層,每層各出一份判讀。哪幾個驅動器參數是選擇軸,見
+    ``DRIVER_CHOICE_PARAMETERS``。
+
+    所以一個「回望期 × 退路 × 節奏」的格,某一格的鄰居只有回望期前後那兩格,不
+    是七格——「換一套做法」不再被當成「差一步」。要還原軸型之前那個格(舊口徑
+    重判、對回舊落檔),用 ``karst.sweep.grid.all_continuous``。
     """
     key = str(driver_key or "").strip()
     if key not in DRIVER_PARAMETERS:
         raise ContractViolation(
             f"沒有「{key}」這個驅動器;有的是:{'、'.join(sorted(DRIVER_PARAMETERS))}"
         )
+    if key not in DRIVER_CHOICE_PARAMETERS:
+        raise ContractViolation(
+            f"驅動器「{key}」未講明哪幾個參數是選擇軸;請在 DRIVER_CHOICE_PARAMETERS 寫明"
+            "(一個都沒有就寫空的),軸型不由參數名去猜"
+        )
     names = DRIVER_PARAMETERS[key]
     unordered = set(DRIVER_UNORDERED_PARAMETERS.get(key, ()))
+    choices = set(DRIVER_CHOICE_PARAMETERS[key])
+    stray = sorted(choices - set(names))
+    if stray:
+        raise ContractViolation(
+            f"驅動器「{key}」的選擇軸寫了它沒有的參數:{'、'.join(stray)}"
+        )
 
     missing = [name for name in names if not values.get(name)]
     if missing:
@@ -122,11 +171,24 @@ def rotation_grid(
         raise ContractViolation("換倉節奏要寫明要掃哪幾個;節奏無預設值(D-009 第 7 條)")
 
     axes = [
-        SweepAxis(name=name, values=tuple(values[name]), ordered=name not in unordered)
+        SweepAxis(
+            name=name,
+            values=tuple(values[name]),
+            ordered=name not in unordered,
+            kind=CHOICE if name in choices else CONTINUOUS,
+        )
         for name in names
     ]
+    # 換倉節奏永遠是選擇軸:月度改季度是換一套做法,不是把某個刻度推一格。
+    # ``ordered=True`` 對選擇軸沒有作用,照原樣留住只為 ``all_continuous`` 還原得
+    # 到軸型之前那個格。
     axes.append(
-        SweepAxis(name=CADENCE_AXIS, values=tuple(str(c).strip() for c in cadences), ordered=True)
+        SweepAxis(
+            name=CADENCE_AXIS,
+            values=tuple(str(c).strip() for c in cadences),
+            ordered=True,
+            kind=CHOICE,
+        )
     )
     return ProductGrid(axes)
 
@@ -289,27 +351,17 @@ class FactorRotationJob:
         return {name: point.get(name) for name in self.param_names}
 
     def _param_set(self, name: str, cadence: str, values: dict[str, str]) -> ParamSet:
-        try:
-            existing = self._store.get_param_set(
-                self._strategy_name, name, strategy_version_no=self._strategy_version_no
-            )
-        except NotFound:
-            existing = None
-        if (
-            existing is not None
-            and existing.rebalance_cadence == cadence
-            and dict(existing.values) == values
-        ):
-            return existing
-
-        param_set, _ = self._gateway.register_param_set(
+        # 不必先查一句「庫裡有沒有同一組」:同名同節奏同取值即沿用舊版,那條規矩
+        # 住在唯一入口(KARST-046)。查到現成的那幾格,收據自己會講 reused。
+        param_set, receipt = self._gateway.register_param_set(
             self._strategy_name,
             param_set_name=name,
             rebalance_cadence=cadence,
             values=values,
             strategy_version_no=self._strategy_version_no,
         )
-        self._written += 1
+        if not receipt.reused:
+            self._written += 1
         return param_set
 
     def plan(self, point: SweepPoint) -> CellPlan:

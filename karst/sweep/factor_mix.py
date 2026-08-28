@@ -31,7 +31,7 @@ from ..strategies.factor_mix import (
     register_factor_mix,
     run_factor_mix,
 )
-from .grid import ProductGrid, SimplexGrid, SweepAxis, SweepGrid, SweepPoint, compose
+from .grid import CHOICE, ProductGrid, SimplexGrid, SweepAxis, SweepGrid, SweepPoint, compose
 from .runner import CellPlan
 
 # 換倉節奏在掃描格裡的軸名。權重之外多掃一維節奏時用這個名。
@@ -52,12 +52,24 @@ def weight_grid(
 
     一句要記住:**步長 10% 排不出「各 25%」**——十步分不均四格。要那一格做對照,
     請用 5% 步長,或者把它當**對照格**另外跑一次(見 ``reference_point``)。
+
+    **軸型**(KARST-048):四格權重是**連續軸**(移一步 = 把一步的權重由其中一格
+    搬去另一格),換倉節奏是**選擇軸**——月度改季度是換一套做法,不是把某個刻度
+    推一格。所以節奏不入鄰域,而是把整個格切成兩層(或者幾層),每層各出一份
+    平原判讀,判得出山脊:權重上鋪得平,但換一個節奏就沒有了。
     """
     keys = [sleeve.weight_key for sleeve in sleeves]
     simplex = SimplexGrid(keys, step=step, total=total)
     if not cadences:
         return simplex
-    axis = SweepAxis(name=CADENCE_AXIS, values=tuple(str(c).strip() for c in cadences))
+    # ``ordered=True`` 對選擇軸沒有作用,照原樣留住只為 ``all_continuous`` 還原得
+    # 到軸型之前那個格(舊口徑重判要用)。
+    axis = SweepAxis(
+        name=CADENCE_AXIS,
+        values=tuple(str(c).strip() for c in cadences),
+        ordered=True,
+        kind=CHOICE,
+    )
     return compose(simplex, ProductGrid([axis]))
 
 
