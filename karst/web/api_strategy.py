@@ -12,6 +12,10 @@
     /api/strategy/runs?id=&limit=&offset=  歷次運行(逐頁,含年化/回撤/勝率)
     /api/strategy/picks?run=&date=         某一日的選股快照、漏斗、因子敞口
 
+頭兩個亦收 ``?run=``:不帶 ``?id=`` 時由那一次運行反查它自己那套策略
+(KARST-067),所以 ``/strategy?run=X`` 與 ``/strategy?id=<X 那套>&run=X``
+顯示同一頁,不會出現頁頂身份與正在看的運行對不上。
+
 淨值線、八項指標、成交標記**不在這裡**:那幾樣 ``/api/runs/<run_id>`` 早已
 交得出,策略頁直接沿用同一個端點,兩頁不會各算一套。
 
@@ -186,14 +190,25 @@ def _sweep_cells_of(reader: Any, name: str) -> int:
     return bag["sweepCells"][name]
 
 
-def _resolve(reader: Any, wanted: str | None) -> Any:
+def _resolve(reader: Any, wanted: str | None, run_id: str | None) -> Any:
     """把 ?id= 解成一套策略。收策略編號,亦收策略名(總覽頁連過來時兩者皆可)。
 
-    不帶 id:揀最近有運行的那一套——直接開 /strategy 也有東西看得到。
+    **不帶 id 而帶 ?run= 時,由那一次運行反查它自己那套策略**(KARST-067)。
+    以前這一格退回「最近有運行的那一套」,於是 ``/strategy?run=<因子混合那次>``
+    的上半部會掛住趨勢波段的身份與歷次運行——正在看的運行與頁頂那個名對不上,
+    而且錯得無聲(KARST-056 順帶發現)。運行編號本身已經指得回一套策略,問它
+    就有答案,不必猜。
+
+    兩者都沒有:揀最近有運行的那一套——直接開 /strategy 也有東西看得到。
     """
     versions = _strategies(reader)
     if not versions:
         raise NotFound("定義庫內未有任何策略")
+
+    if not wanted and run_id:
+        # 查無此運行即 404(``get_run`` 自己拋),不會靜靜退回預設那一套:
+        # 網址指名了一次運行,答不出就要講答不出。
+        wanted = reader.runs.get_run(run_id).strategy_name
 
     if wanted:
         for version in versions:
@@ -238,7 +253,7 @@ def _factor_payload(reader: Any, version: Any, used: bool) -> dict[str, Any]:
 
 def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
     """策略身份、版本沿革、因子、運行總數,以及預設檢視哪一次運行。"""
-    strategy = _resolve(reader, _one(query, "id"))
+    strategy = _resolve(reader, _one(query, "id"), _one(query, "run"))
     runs = _runs_of(reader, strategy.name)
 
     # 版本沿革:每一版之下跑過幾次,由運行清單自己數
@@ -325,8 +340,11 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
     自 KARST-054 起這張表只有正式運行,一套策略通常得幾次,所以逐頁那一套實際上
     再用不著;``limit`` / ``offset`` 照舊收,因為端點的形狀是對外的約定,而且庫內
     真的有一日出現幾百次正式運行時,它仍然是那道閘。
+
+    ``?run=`` 與 ``/api/strategy`` 一樣收:不帶 ``?id=`` 時由那一次運行反查它
+    自己那套策略(KARST-067),免得頁頂身份與下面那張表各自指住兩套策略。
     """
-    strategy = _resolve(reader, _one(query, "id"))
+    strategy = _resolve(reader, _one(query, "id"), _one(query, "run"))
     every = _runs_of(reader, strategy.name)
 
     offset = max(0, _int(query, "offset", 0))

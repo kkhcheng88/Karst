@@ -270,6 +270,20 @@
       if (pair[0] === 'lookback_months') v = v + ' 個月';
       return chip(pair[1], v);
     }).join('');
+
+    /* 宏觀驅動器:這套設定跟住的那份宏觀快照,有沒有一條序列已經靜靜停止講話。
+       以前這件事只寫在快照說明檔第七之一節,要有人去翻才看得見——^VIX3M 停更
+       28 個交易日無人察覺就是這樣發生的(KARST-058、假設 A-008)。數由
+       /api/macro/completeness 取(KARST-061 那個小端點),先掛一格「讀取中」,
+       取到再填:那一格讀不到,整頁策略詳情照舊畫得出。 */
+    var macroId = run.paramValues.macro_snapshot;
+    if (macroId) {
+      chips += '<span class="chip" id="macro-comp" title="' +
+        KV.esc('宏觀快照 ' + macroId) + '">' +
+        '<span class="chip-k">序列齊全度</span>' +
+        '<span class="chip-v" id="macro-comp-v">讀取中……</span></span>';
+    }
+
     chips += chip('換倉節奏', CADENCE[run.rebalanceCadence] || run.rebalanceCadence);
 
     /* 二、熱身期:一個晶片講完,四格熱身權重不逐個攤開 */
@@ -304,6 +318,43 @@
       '<span class="slim-past">' + KV.esc(w.start) + ' 至 ' + KV.esc(w.end) +
         '・' + years + ' 年' +
         (run.isStale ? '　<span class="stale-badge">舊版本</span>' : '') + '</span>';
+
+    if (macroId) loadCompleteness(macroId);
+  }
+
+  /* 序列齊全度:一條宏觀序列對主日曆核出來的兩個數(尾段落後幾多個交易日、
+     留空佔幾多)。端點**預設只交數、不交裁決**——「幾多日算停更」是對這條訊號的
+     容忍度,門檻沒有預設值(D-008 第 3 條),頁面亦不會自己揀一套,所以這一格
+     講的是「落後幾多日」,不是「合格 / 不合格」。 */
+  function loadCompleteness(snapshotId) {
+    var token = S.seq;
+    function fill(text, tip) {
+      if (S.seq !== token) return;
+      var cell = document.getElementById('macro-comp-v');
+      var host = document.getElementById('macro-comp');
+      if (!cell) return;
+      cell.textContent = text;
+      if (host) host.title = tip;
+    }
+    KV.fetchJSON('/api/macro/completeness?snapshot=' + encodeURIComponent(snapshotId))
+      .then(function (c) {
+        var stale = c.staleSeries || [];
+        fill(
+          stale.length
+            ? c.seriesCount + ' 條・' + stale.length + ' 條尾段落後最多 ' +
+                c.worstStaleDays + ' 日'
+            : c.seriesCount + ' 條・尾段貼齊主日曆',
+          '宏觀快照 ' + snapshotId + '　主日曆 ' + c.calendarStart + ' 至 ' +
+            c.calendarEnd + '(' + c.tradingDays + ' 個交易日)　' +
+            (stale.length
+              ? '尾段落後:' + stale.join('、') + '——那幾條訊號已經停止講話'
+              : '沒有一條序列停止講話')
+        );
+      })
+      .catch(function (err) {
+        /* 讀不到就講讀不到,不猜一個「合格」出來 */
+        fill('讀不到', '讀不到宏觀快照 ' + snapshotId + ' 的齊全度:' + err.message);
+      });
   }
 
   /* ============================================================
@@ -811,7 +862,15 @@
     var wanted = qs('id');
     var wantedRun = qs('run');
 
-    KV.fetchJSON('/api/strategy' + (wanted ? '?id=' + encodeURIComponent(wanted) : ''))
+    /* 只帶 ?run= 不帶 ?id= 時,端點由那一次運行反查它自己那套策略(KARST-067)。
+       以前這裡不帶 run 問,端點退回「最近有運行的那一套」,於是頁頂的策略身份
+       與歷次運行表指住一套策略、正在看的運行卻屬於另一套——兩種寫法看同一次
+       運行,顯示不一樣,而且錯得無聲(KARST-056 順帶發現)。 */
+    var ask = [];
+    if (wanted) ask.push('id=' + encodeURIComponent(wanted));
+    if (wantedRun) ask.push('run=' + encodeURIComponent(wantedRun));
+
+    KV.fetchJSON('/api/strategy' + (ask.length ? '?' + ask.join('&') : ''))
       .then(function (payload) {
         S.strategy = payload;
         S.sid = payload.strategy.id;

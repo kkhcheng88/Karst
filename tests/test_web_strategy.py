@@ -240,3 +240,88 @@ def test_既有頁面行為不變(reader, base_url):
     with ThreadPoolExecutor(max_workers=len(paths)) as pool:
         codes = list(pool.map(lambda p: _status_of(base_url + p), paths))
     assert codes == [200] * len(paths), dict(zip(paths, codes))
+
+
+# ------------------------------------------------- KARST-067 收尾兩件
+
+
+def test_只帶運行編號的網址與帶齊策略編號時顯示一致(reader, base_url):
+    """``?run=`` 不帶 ``?id=``:由運行反查它自己那套策略,不再退回預設那一套。
+
+    以前這一格答「最近有運行的那一套」,於是 ``/strategy?run=<因子混合那次>``
+    的頁頂身份與歷次運行表掛住趨勢波段,而正在看的運行屬於另一套——兩種寫法
+    看同一次運行,顯示不一樣,而且錯得無聲(KARST-056 順帶發現)。
+    """
+    default = _get_json(base_url + "/api/strategy")
+
+    # 要驗得出分別,那次運行必須**不屬於**預設那一套策略
+    picked = None
+    for name in reader.store.list_strategy_names():
+        if name == default["strategy"]["name"]:
+            continue
+        runs = [
+            record
+            for record in reader.store.list_runs(name, origin=FORMAL_RUN)
+            if not reader.series_missing(record)
+        ]
+        if runs:
+            picked = (name, runs[-1].run_id)
+            break
+    if picked is None:
+        pytest.skip("庫內只有一套策略有正式運行,兩種寫法的分別驗不出來")
+    name, run_id = picked
+
+    by_run = _get_json(base_url + "/api/strategy?run=" + run_id)
+    assert by_run["strategy"]["name"] == name, "只帶運行編號時仍然取了別套策略"
+
+    sid = str(by_run["strategy"]["id"])
+    assert by_run == _get_json(base_url + "/api/strategy?id=" + sid + "&run=" + run_id)
+
+    # 下面那張歷次運行表同一個口徑,而且真的列得出正在看的那一次
+    runs_by_run = _get_json(base_url + "/api/strategy/runs?run=" + run_id + "&limit=50")
+    assert runs_by_run == _get_json(
+        base_url + "/api/strategy/runs?id=" + sid + "&run=" + run_id + "&limit=50"
+    )
+    assert run_id in [item["runId"] for item in runs_by_run["items"]]
+
+    # 網址指名了一次庫內沒有的運行:答不出就講答不出,不會靜靜退回預設那一套
+    assert _status_of(base_url + "/api/strategy?run=run-0000000000000000") == 404
+
+    # 頁面那一邊要把 run 帶去問,否則端點永遠收不到它
+    script = _strip_comments((STATIC_ROOT / "strategy.js").read_text(encoding="utf-8"))
+    assert "'run=' + encodeURIComponent(wantedRun)" in script
+
+
+def test_宏觀驅動器參數區的序列齊全度由真數據填(reader, base_url):
+    """參數區那一行掛的是 KARST-061 那個小端點,數由已凍結快照當場重算。"""
+    from karst.data.macro import read_macro_completeness
+
+    script = _strip_comments((STATIC_ROOT / "strategy.js").read_text(encoding="utf-8"))
+    assert "序列齊全度" in script
+    assert "/api/macro/completeness?snapshot=" in script
+    # 跟住的是這次運行參數集記住的那份宏觀快照,不是頁面自己揀一份
+    assert "run.paramValues.macro_snapshot" in script
+
+    macro_root = Path(reader.snapshot_root).parent / "macro_snapshots"
+    picked = next(
+        (
+            listing.snapshot_id
+            for listing in reader.store.list_snapshots()
+            if (macro_root / listing.snapshot_id).is_dir()
+        ),
+        None,
+    )
+    if picked is None:
+        pytest.skip("本機沒有已凍結的宏觀快照,那一行的真數據無從對")
+
+    payload = _get_json(base_url + "/api/macro/completeness?snapshot=" + picked)
+    truth = read_macro_completeness(reader.store, picked, root=macro_root)
+    assert payload["seriesCount"] == len(truth)
+    assert payload["worstStaleDays"] == int(truth["stale_days"].max())
+    assert payload["staleSeries"] == [
+        str(row["series"])
+        for row in truth.to_dict("records")
+        if int(row["stale_days"]) > 0
+    ]
+    # 沒有給門檻 = 沒有裁決:頁面那一行講「落後幾多日」,不會自己揀一套門檻判合格
+    assert payload["thresholds"] is None and payload["alerts"] == []
