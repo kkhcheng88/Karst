@@ -1,31 +1,40 @@
-"""KARST-031 驗收:因子混合策略(ETF 版),四類因子敞口混權重跑回測。
+"""KARST-031 / KARST-041 驗收:因子混合策略(ETF 版)。
 
 每個測試對住票上一項驗收條件,只證「行得通」,不掃邊界情況。
 
-驗收條件 1 用**真實**行情(四隻因子 ETF 加 SPY、QQQ,經 karst.data 現有管線
-凍成快照);離線即 skip 並註明,做法沿用 tests/test_data_yfinance.py——不以
-合成數據冒充真實抓取,亦不讓離線變成假綠燈。其餘三條不需連網。
+KARST-031 驗收條件 1 用**真實**行情(四隻因子 ETF 加 SPY、QQQ,經 karst.data
+現有管線凍成快照);離線即 skip 並註明,做法沿用 tests/test_data_yfinance.py
+——不以合成數據冒充真實抓取,亦不讓離線變成假綠燈。其餘三條不需連網。
+
+KARST-041 那三條在本檔尾:同值重登記沿用舊版、示例運行的重生腳本、沿用不過頭
+加公開接口不變。第一條與第三條完全離線(靜態來源重放同一條管線凍一個真快照,
+D-026 第 7 條);第二條要倉裡有示例運行那個數據快照(``data/`` 不入 git),
+沒有就 skip 並講明怎樣重抓。
 """
 
 from __future__ import annotations
 
 import ast
+import importlib.util
 import inspect
+import shutil
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
 
-from karst import ContractViolation
+from karst import ContractViolation, DefinitionStore
 from karst.data import (
     DataFetchFailed,
+    StaticSource,
     UniverseMember,
     YFinanceSource,
     build_price_snapshot,
     read_price_panel,
 )
 from karst.engine import PricePanel
+from karst.errors import NotFound
 from karst.gateway.service import Gateway
 from karst.runs import RunStore, window_stats
 from karst.store import FAMILY_SEPARATOR
@@ -412,6 +421,243 @@ def test_the_four_weights_are_scannable_parameters(toy):
     # 策略層原始碼裡查不到任何權重數值(看語法樹,不看註解與說明文字)
     for path in (REPO_ROOT / "karst" / "strategies").rglob("*.py"):
         assert _weight_defaults(path) == [], path
+
+
+# ======================================================================
+# KARST-041:同值重登記沿用舊版,示例運行有入倉的重生腳本
+# ======================================================================
+
+# 離線凍一個**真快照**:同一條管線、同一種登記,只是日線由靜態來源重放而不是
+# 由 yfinance 抓(D-026 第 7 條)。要有真快照,是因為運行編號蓋住數據快照那一格
+# ——沒有快照就算不出編號,而「重登記之後編號相同」正是本票要證的事。
+FROZEN_UNIVERSE = tuple(
+    UniverseMember(sleeve.ticker, "etf", sleeve.display_name)
+    for sleeve in FACTOR_ETF_SLEEVES
+)
+FROZEN_PARAM_SET = "示例-四等分季度"
+
+SAMPLE_RUN_SCRIPT = (
+    REPO_ROOT / "experiments" / "2026-08-28-factor-mix-real" / "run_backtest.py"
+)
+
+
+def _toy_bars() -> pd.DataFrame:
+    """四隻因子 ETF 的玩具日線長表,欄位照來源合約(date、ticker、開高低收量)。"""
+    generator = np.random.default_rng(20260828)
+    rows = []
+    for offset, sleeve in enumerate(FACTOR_ETF_SLEEVES):
+        steps = generator.normal(0.0003 + offset * 0.0002, 0.009, len(TOY_DATES))
+        closes = 100.0 * np.exp(np.cumsum(steps))
+        opens = np.concatenate(([100.0], closes[:-1])) * 1.001
+        for day, open_price, close_price in zip(TOY_DATES, opens, closes, strict=True):
+            rows.append(
+                {
+                    "date": day.date(),
+                    "ticker": sleeve.ticker,
+                    "open": float(open_price),
+                    "high": float(max(open_price, close_price)) * 1.002,
+                    "low": float(min(open_price, close_price)) * 0.998,
+                    "close": float(close_price),
+                    "volume": 1_000_000.0,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+@pytest.fixture()
+def frozen(gateway, tmp_path):
+    """凍一個離線快照,並砌好它那張價格面板。"""
+    snapshot = build_price_snapshot(
+        gateway.store,
+        start=str(TOY_DATES[0].date()),
+        end=str(TOY_DATES[-1].date()),
+        universe=FROZEN_UNIVERSE,
+        source=StaticSource(_toy_bars(), name="toy"),
+        root=tmp_path / "snapshots",
+        calendar_ticker=FACTOR_ETF_SLEEVES[0].ticker,
+    )
+    opens = read_price_panel(
+        gateway.store, snapshot.snapshot_id, field="open", root=tmp_path / "snapshots"
+    ).dropna(how="any")
+    closes = read_price_panel(
+        gateway.store, snapshot.snapshot_id, field="close", root=tmp_path / "snapshots"
+    ).dropna(how="any")
+    common = opens.index.intersection(closes.index)
+    panel = PricePanel.from_frames(open=opens.loc[common], close=closes.loc[common])
+    return {
+        "snapshot_id": snapshot.snapshot_id,
+        "panel": panel,
+        "runs": RunStore(gateway.store, root=tmp_path / "runs"),
+        "period": (str(panel.dates[0].date()), str(panel.dates[-1].date())),
+    }
+
+
+def _register(gateway, frozen, *, param_set_name=FROZEN_PARAM_SET, weights=None, cadence=None):
+    return register_factor_mix(
+        gateway,
+        strategy_name=STRATEGY,
+        sleeves=FACTOR_ETF_SLEEVES,
+        snapshot_id=frozen["snapshot_id"],
+        param_set_name=param_set_name,
+        rebalance_cadence=cadence or SAMPLE_CADENCE,
+        weights=weights or SAMPLE_WEIGHTS,
+    )
+
+
+def _record(gateway, frozen, version, param_set):
+    params = FactorMixParams.from_param_set(param_set, FACTOR_ETF_SLEEVES)
+    result = run_factor_mix(
+        store=gateway.store,
+        panel=frozen["panel"],
+        sleeves=FACTOR_ETF_SLEEVES,
+        params=params,
+    )
+    return record_factor_mix_run(
+        frozen["runs"],
+        result,
+        strategy_name=version.name,
+        param_set_name=param_set.name,
+        snapshot_id=frozen["snapshot_id"],
+        engine_version=ENGINE_VERSION,
+        period_start=frozen["period"][0],
+        period_end=frozen["period"][1],
+        strategy_version_no=version.version_no,
+        param_set_version_no=param_set.version_no,
+    )
+
+
+def _version_count(store, param_set_name: str) -> int:
+    row = store.connection.execute(
+        "SELECT COUNT(*) AS n FROM param_set WHERE name = ?", (param_set_name,)
+    ).fetchone()
+    return int(row["n"])
+
+
+# 驗收條件 1:同一組取值重登記兩次,參數集版本數不變,運行編號相同
+def test_registering_the_same_values_twice_keeps_one_version_and_one_run_id(gateway, frozen):
+    store = gateway.store
+
+    first_version, first_set = _register(gateway, frozen)
+    assert first_set.version_no == 1
+    assert _version_count(store, FROZEN_PARAM_SET) == 1
+    first_run = _record(gateway, frozen, first_version, first_set)
+
+    # 一字不改再登記一次:庫裡一列都不應該多出來
+    second_version, second_set = _register(gateway, frozen)
+    assert _version_count(store, FROZEN_PARAM_SET) == 1
+    assert second_set.param_set_id == first_set.param_set_id
+    assert second_set.version_no == first_set.version_no
+    assert second_set.created_at == first_set.created_at      # 真的是舊那一列,不是新寫的
+    assert dict(second_set.values) == dict(first_set.values)
+    assert second_version.version_no == first_version.version_no
+
+    # 權重寫成數字而不是文字,一樣認得是同一組取值(庫層一律收成文字)
+    _, as_numbers = _register(
+        gateway,
+        frozen,
+        weights={key: float(value) for key, value in SAMPLE_WEIGHTS.items()},
+    )
+    assert _version_count(store, FROZEN_PARAM_SET) == 1
+    assert as_numbers.param_set_id == first_set.param_set_id
+
+    # 同一次回測不會記成兩次:運行編號相同,而且回的是同一筆舊留痕
+    second_run = _record(gateway, frozen, second_version, second_set)
+    assert second_run.run_id == first_run.run_id
+    assert second_run.created_at == first_run.created_at
+    assert second_run.fingerprint == first_run.fingerprint
+    assert (
+        int(
+            store.connection.execute("SELECT COUNT(*) AS n FROM backtest_run").fetchone()["n"]
+        )
+        == 1
+    )
+
+
+# 驗收條件 2:experiments/ 內有重生腳本,執行後運行編號與成績不變
+def test_the_sample_run_script_rebuilds_the_same_run_id_and_figures(tmp_path):
+    assert SAMPLE_RUN_SCRIPT.is_file(), SAMPLE_RUN_SCRIPT
+
+    spec = importlib.util.spec_from_file_location("karst_factor_mix_real", SAMPLE_RUN_SCRIPT)
+    script = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(script)
+
+    # 示例運行認的是 KARST-031 那一次
+    assert script.EXPECTED_RUN_ID == "run-f4c162e5aac34347"
+    assert script.SNAPSHOT_ID == "2026-08-27-91a5d51339d9"
+    assert script.SAMPLE_CADENCE == "quarterly"
+    assert set(script.SAMPLE_WEIGHTS.values()) == {"0.25"}
+
+    if not script.STORE_PATH.is_file() or not (script.SNAPSHOT_ROOT / script.SNAPSHOT_ID).is_dir():
+        pytest.skip(
+            f"倉裡沒有數據快照 {script.SNAPSHOT_ID}(data/ 不入 git),跳過重生核對;"
+            "重抓一句見腳本開頭的 karst data snapshot(記住 --taken-on 2026-08-27)"
+        )
+
+    # 複製一份庫來跑:核對重生,不動倉裡那個庫
+    store_copy = tmp_path / "karst.sqlite"
+    shutil.copy2(script.STORE_PATH, store_copy)
+    with DefinitionStore.open(str(store_copy)) as store:
+        try:
+            store.get_snapshot(script.SNAPSHOT_ID)
+        except NotFound:
+            pytest.skip(f"庫內沒有快照 {script.SNAPSHOT_ID} 的登記,跳過重生核對")
+
+    summary = script.rebuild(store_path=store_copy, check=False)
+
+    assert summary["run"]["run_id"] == script.EXPECTED_RUN_ID
+    assert summary["run"]["trading_days"] == script.EXPECTED_TRADING_DAYS == 2929
+    assert summary["run"]["rebalances"] == script.EXPECTED_REBALANCES == 47
+    assert summary["run"]["orders"] == script.EXPECTED_ORDERS == 188
+    assert round(summary["metrics"]["total_return"], 4) == 3.2186     # 累計 +321.86%
+    assert round(summary["metrics"]["annual_return"], 4) == 0.1319    # 年化 13.19%
+    assert round(summary["metrics"]["max_drawdown"], 4) == -0.3493    # 最大回撤 −34.93%
+
+    # 重跑沒有把參數集推出新版——正是驗收條件 1 那條在真庫上的樣子
+    assert summary["param_set"]["version_no"] == 1
+    assert summary["param_set"]["name"] == "示例-四等分季度"
+
+    # 腳本自己那道核對閘亦要行得通(對不上它會拋 AssertionError)
+    script.check_reproduction(summary)
+
+
+# 驗收條件 3:既有測試全部照過——沿用不可以過頭,公開接口一個字不變
+def test_reuse_does_not_overreach_and_the_public_signature_is_unchanged(gateway, frozen):
+    store = gateway.store
+    _register(gateway, frozen)
+    assert _version_count(store, FROZEN_PARAM_SET) == 1
+
+    # 名一樣而**取值**不同:照舊出新版(沿用只認同值)
+    _, tilted = _register(
+        gateway,
+        frozen,
+        weights={**SAMPLE_WEIGHTS, "weight_momentum": "0.4", "weight_low_vol": "0.1"},
+    )
+    assert tilted.version_no == 2
+    assert _version_count(store, FROZEN_PARAM_SET) == 2
+
+    # 名一樣、取值一樣而**節奏**不同:一樣要出新版(節奏是參數集的一部分)
+    _, monthly = _register(gateway, frozen, cadence="monthly")
+    assert monthly.version_no == 3
+    assert monthly.rebalance_cadence == "monthly"
+
+    # 公開接口簽名不變:別的票 import 得住這一個函式
+    signature = inspect.signature(register_factor_mix)
+    assert list(signature.parameters) == [
+        "gateway", "strategy_name", "sleeves", "snapshot_id", "param_set_name",
+        "rebalance_cadence", "weights", "description",
+    ]
+    keyword_only = [
+        name
+        for name, parameter in signature.parameters.items()
+        if parameter.kind is inspect.Parameter.KEYWORD_ONLY
+    ]
+    assert keyword_only == [
+        "strategy_name", "sleeves", "snapshot_id", "param_set_name",
+        "rebalance_cadence", "weights", "description",
+    ]
+    assert signature.parameters["rebalance_cadence"].default is None
+    assert signature.parameters["weights"].default is None
+    assert signature.parameters["description"].default is None
 
 
 # ----------------------------------------------------------------------

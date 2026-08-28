@@ -1,0 +1,126 @@
+{
+  "exposures": [
+    {
+      "entity_id": 13,
+      "entity_kind": "etf",
+      "factor_name": "質素·MSCI USA Sector Neutral Quality(QUAL)",
+      "factor_version_no": 1,
+      "family": "質素",
+      "ticker": "QUAL",
+      "weight": 0.25
+    },
+    {
+      "entity_id": 14,
+      "entity_kind": "etf",
+      "factor_name": "價值·MSCI USA Enhanced Value(VLUE)",
+      "factor_version_no": 1,
+      "family": "價值",
+      "ticker": "VLUE",
+      "weight": 0.25
+    },
+    {
+      "entity_id": 15,
+      "entity_kind": "etf",
+      "factor_name": "動能·MSCI USA Momentum SR Variant(MTUM)",
+      "factor_version_no": 1,
+      "family": "動能",
+      "ticker": "MTUM",
+      "weight": 0.25
+    },
+    {
+      "entity_id": 16,
+      "entity_kind": "etf",
+      "factor_name": "低波·MSCI USA Minimum Volatility(USMV)",
+      "factor_version_no": 1,
+      "family": "低波",
+      "ticker": "USMV",
+      "weight": 0.25
+    }
+  ],
+  "metrics": {
+    "annual_excess": {
+      "QQQ": -0.05777667371091755,
+      "SPY": -0.0066266916460964165
+    },
+    "annual_return": 0.13189299323602333,
+    "average_holding_days": 1457.4835164835165,
+    "benchmarks": {
+      "QQQ": {
+        "annual_excess": -0.05777667371091755,
+        "annual_return": 0.18966966694694087,
+        "excess_total_return": -3.3042682922161193,
+        "max_drawdown": -0.35118725001840734,
+        "total_return": 6.522856883060699
+      },
+      "SPY": {
+        "annual_excess": -0.0066266916460964165,
+        "annual_return": 0.13851968488211974,
+        "excess_total_return": -0.29605491820582674,
+        "max_drawdown": -0.337172726376749,
+        "total_return": 3.5146435090504067
+      }
+    },
+    "closed_trades": 91,
+    "max_drawdown": -0.34929264433446217,
+    "profit_loss_ratio": 400.3370144166992,
+    "risk_free_rate": 0.04,
+    "sortino": 0.7584157352459482,
+    "total_return": 3.21858859084458,
+    "turnover": 0.07722345345210621,
+    "win_rate": 0.978021978021978
+  },
+  "param_set": {
+    "name": "示例-四等分季度",
+    "note": "示例參數,不是現役設定",
+    "rebalance_cadence": "quarterly",
+    "values": {
+      "weight_low_vol": "0.25",
+      "weight_momentum": "0.25",
+      "weight_quality": "0.25",
+      "weight_value": "0.25"
+    },
+    "version_no": 1
+  },
+  "period": [
+    "2015-01-02",
+    "2026-08-26"
+  ],
+  "reproduces": {
+    "run_id": "run-f4c162e5aac34347",
+    "ticket": "KARST-031"
+  },
+  "run": {
+    "engine_name": "vectorbt",
+    "engine_version": "0.1.0",
+    "first_execution_date": "2015-01-05",
+    "orders": 188,
+    "rebalances": 47,
+    "run_id": "run-f4c162e5aac34347",
+    "series_check": [
+      "全對"
+    ],
+    "trading_days": 2929
+  },
+  "snapshot_id": "2026-08-27-91a5d51339d9",
+  "strategy": {
+    "factors": [
+      "質素·MSCI USA Sector Neutral Quality(QUAL)@1",
+      "價值·MSCI USA Enhanced Value(VLUE)@1",
+      "動能·MSCI USA Momentum SR Variant(MTUM)@1",
+      "低波·MSCI USA Minimum Volatility(USMV)@1"
+    ],
+    "name": "因子混合(ETF 版)",
+    "type": "multifactor",
+    "version_no": 1
+  },
+  "ticket": "KARST-041",
+  "trading_days": 2929,
+  "universe": [
+    "SPY",
+    "QQQ",
+    "QUAL",
+    "VLUE",
+    "MTUM",
+    "USMV"
+  ]
+}
