@@ -164,6 +164,7 @@ class RunReader:
         # 現役設定記錄),不是連線亦不是游標,兩條執行緒同時填最多重做一次。
         self._universe_cache: dict[str, dict[int, dict[str, str]]] = {}
         self._active_cache: dict[str, Any] = {}
+        self._snapshot_present_cache: dict[str, bool] = {}
 
     @property
     def store(self) -> DefinitionStore:
@@ -181,6 +182,33 @@ class RunReader:
         return cached
 
     # ---------------- 身份與清單 ----------------
+
+    def snapshot_present(self, snapshot_id: str) -> bool:
+        """這次運行蓋住的價格快照,目錄還在不在。"""
+        if not snapshot_id:
+            return False
+        cached = self._snapshot_present_cache.get(snapshot_id)
+        if cached is None:
+            cached = (self.snapshot_root / snapshot_id).is_dir()
+            self._snapshot_present_cache[snapshot_id] = cached
+        return cached
+
+    def series_gap(self, record) -> tuple[str, ...]:
+        """這次運行缺了什麼才畫不出圖。畫得出就回空。
+
+        KARST-057:2026-08-28 倉根 ``data/`` 被誤清空,4,087 條運行登記全部
+        還在,它們指向的序列 parquet 與價格快照卻沒有了。**登記不刪**——
+        定義表不可刪,那幾千次運行真的跑過。但它們畫不出圖,亦不應該混在
+        「現時跑得出的成績」入面充數,所以讀取層在這裡把它們分辨出來,
+        標成「過時運行(序列缺失)」,不列入正式運行清單與掃描清單。
+        """
+        gaps: list[str] = []
+        missing = self.runs.missing_series(record.run_id)
+        if missing:
+            gaps.append(f"逐日序列不在({'、'.join(missing)})")
+        if not self.snapshot_present(record.snapshot_id):
+            gaps.append(f"價格快照 {record.snapshot_id} 不在")
+        return tuple(gaps)
 
     def _active_setup(self, strategy_name: str):
         """該策略的現役設定;未指定就是 None——不猜、不頂替。"""
@@ -235,8 +263,15 @@ class RunReader:
         過時狀態只為真正列出那幾個算——逐個查一千次會拖死開頁。
         """
         records = list(reversed(self.runs.list_runs(origin=FORMAL_RUN)))
-        total = len(records)
-        shown = records if limit is None else records[:limit]
+        live: list[Any] = []
+        missing = 0
+        for record in records:
+            if self.series_gap(record):
+                missing += 1
+                continue
+            live.append(record)
+        total = len(live)
+        shown = live if limit is None else live[:limit]
         out = []
         for record in shown:
             item = self._identity(record)
@@ -244,7 +279,14 @@ class RunReader:
             item["isStale"] = bool(reasons)
             item["staleReasons"] = list(reasons)
             out.append(item)
-        return {"runs": out, "total": total, "shown": len(out)}
+        return {
+            "runs": out,
+            "total": total,
+            "shown": len(out),
+            # 序列缺失那批照實報一個數:登記還在,只是畫不出圖(KARST-057)。
+            # 頁面據此講得出「另有 N 條過時運行(序列缺失)」,而不是靜靜少了幾千條。
+            "missingSeries": missing,
+        }
 
     def get_meta(self) -> dict[str, Any]:
         records = self.runs.list_runs()
@@ -294,6 +336,14 @@ class RunReader:
         兩者本來就是同一套視窗口徑(``run_metrics`` 內部亦是叫它)。
         """
         record = self.runs.get_run(run_id)
+        gaps = self.series_gap(record)
+        if gaps:
+            # 登記在,序列不在(KARST-057)。講明它是什麼、缺什麼,不要讓頁面
+            # 收到一個看不出所以然的 parquet 錯。
+            raise NotFound(
+                f"運行 {run_id} 是過時運行(序列缺失):{';'.join(gaps)}。"
+                "登記照舊在案,但畫不出圖——這次運行要重跑才看得回"
+            )
         universe = self._universe(record.snapshot_id)
 
         equity = self.runs.equity_curve(run_id)

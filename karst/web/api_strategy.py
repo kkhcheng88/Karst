@@ -145,10 +145,15 @@ def _runs_of(reader: Any, name: str) -> list[Any]:
     只列正式運行,與運行清單、策略總覽同一個口徑(D-029:一次掃描當一件事,
     掃描格不入運行清單)。來歷問庫身那一格(backtest_run.origin,KARST-054),
     不再靠參數集名的前綴猜——所以四千個掃描格由庫身篩走,一格都不用砌出來。
+
+    **過時運行(序列缺失)一併篩走**(KARST-057):逐日序列不在磁碟上的運行,
+    登記照舊在案,但這張表逐行都要讀一次 parquet 算年化/回撤/勝率,讀不到就
+    整頁 404。與運行清單、掃描清單同一條規矩:登記留住,清單不列。
     """
     bag = _cache(reader)
     if name not in bag["runs"]:
-        bag["runs"][name] = list(reversed(reader.store.list_runs(name, origin=FORMAL_RUN)))
+        every = reversed(reader.store.list_runs(name, origin=FORMAL_RUN))
+        bag["runs"][name] = [r for r in every if not reader.series_gap(r)]
     return bag["runs"][name]
 
 

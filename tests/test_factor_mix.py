@@ -581,16 +581,24 @@ def test_the_sample_run_script_rebuilds_the_same_run_id_and_figures(tmp_path):
     script = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(script)
 
-    # 示例運行認的是 KARST-031 那一次
-    assert script.EXPECTED_RUN_ID == "run-f4c162e5aac34347"
-    assert script.SNAPSHOT_ID == "2026-08-27-91a5d51339d9"
+    # 示例運行認的是 KARST-031 那一次;數據目錄重建(KARST-057)之後,
+    # 快照重抓、編號跟住換:舊 run-f4c162e5aac34347 → 新 run-024df83fb4891c89。
+    # 三項核對指標一個都沒有變,見 experiments/2026-08-28-rebuild/成績新舊對照.md。
+    assert script.EXPECTED_RUN_ID == "run-024df83fb4891c89"
+
+    # 快照編號不在這裡寫死:七支腳本共用 experiments/snapshot_ids.py 那一份,
+    # 腳本 import 過,所以這裡拿得到同一個值——下次重抓只改那一個檔。
+    import snapshot_ids  # noqa: PLC0415 — 要等腳本先把 experiments/ 放上 sys.path
+
+    assert script.SNAPSHOT_ID == snapshot_ids.PRICE_FACTOR_ETF
     assert script.SAMPLE_CADENCE == "quarterly"
     assert set(script.SAMPLE_WEIGHTS.values()) == {"0.25"}
 
     if not script.STORE_PATH.is_file() or not (script.SNAPSHOT_ROOT / script.SNAPSHOT_ID).is_dir():
         pytest.skip(
             f"倉裡沒有數據快照 {script.SNAPSHOT_ID}(data/ 不入 git),跳過重生核對;"
-            "重抓一句見腳本開頭的 karst data snapshot(記住 --taken-on 2026-08-27)"
+            "重抓一句見腳本開頭的 karst data snapshot。重抓必然換一個快照編號"
+            "(假設 A-007),換完要同步改 experiments/snapshot_ids.py"
         )
 
     # 複製一份庫來跑:核對重生,不動倉裡那個庫

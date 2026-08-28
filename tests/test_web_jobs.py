@@ -29,6 +29,31 @@ from karst.web.server import STATIC_ROOT, serve_in_background
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
+@pytest.fixture
+def 收拾重掃落檔():
+    """重掃測試會在倉內真的落一幅掃描;測完收拾走,不要每跑一次測試就多一幅。
+
+    KARST-057:數據目錄重建之前,重掃那個測試因為沒有價格快照永遠跳過,
+    所以沒有人見到它會在 ``experiments/重掃/`` 留低垃圾。數據回來之後它
+    真的會跑,而落下的目錄會被掃描頁當成一幅正經掃描列出來,一跑一幅。
+
+    收拾刻意逐個檔案刪、刪前核對路徑:2026-08-28 的事故正是一條遞迴刪除
+    沿住目錄連結刪落主倉去。
+    """
+    生出來的: list[Path] = []
+    yield 生出來的
+    根 = (PROJECT_ROOT / "experiments" / "重掃").resolve()
+    for 目錄 in 生出來的:
+        目錄 = Path(目錄).resolve()
+        if 目錄.parent != 根 or 目錄.is_symlink() or not 目錄.is_dir():
+            continue  # 不是我們認得的那個位,不碰
+        for 檔 in 目錄.iterdir():
+            if 檔.is_file():
+                檔.unlink()
+        if not any(目錄.iterdir()):
+            目錄.rmdir()
+
+
 def _get(url: str):
     try:
         with urllib.request.urlopen(url, timeout=60) as response:
@@ -214,7 +239,7 @@ def test_重掃彈窗每格預填的是當前那幅掃描的取值(sample_sweep)
     assert sample_sweep["cells"] > 0
 
 
-def test_重掃改了範圍就掃出一幅新的掃描(base_url, reader, sample_sweep):
+def test_重掃改了範圍就掃出一幅新的掃描(base_url, reader, sample_sweep, 收拾重掃落檔):
     """驗收二(下半):改掃描範圍,真的掃得出一幅新的掃描,舊那幅一個字不改。"""
     if not _has_prices(reader, sample_sweep["snapshotId"]):
         pytest.skip(f"價格快照 {sample_sweep['snapshotId']} 的檔案不在,跑不動引擎")
@@ -247,6 +272,7 @@ def test_重掃改了範圍就掃出一幅新的掃描(base_url, reader, sample_
 
     # 新那幅真的落了檔,而且讀得回
     out_dir = PROJECT_ROOT / done["sweepId"]
+    收拾重掃落檔.append(out_dir)  # 斷言照做,做完收拾走(見 fixture)
     assert (out_dir / "掃描表.csv").is_file(), "新掃描要有自己的掃描表"
     assert (out_dir / "summary.json").is_file()
     summary = json.loads((out_dir / "summary.json").read_text(encoding="utf-8"))

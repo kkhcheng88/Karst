@@ -163,6 +163,19 @@ def build_parser() -> argparse.ArgumentParser:
     take.add_argument("--root", default=None, help="快取根(預設 data/snapshots)")
     take.add_argument("--taken-on", dest="taken_on", default=None,
                       help="快照日期,留空即抓取當日")
+    macro = data_commands.add_parser(
+        "macro-snapshot",
+        help="抓宏觀序列、對齊指定價格快照的主日曆、凍成快照並登記編號",
+    )
+    macro.add_argument("--price-snapshot", dest="price_snapshot", required=True,
+                       help="要對齊哪一個價格快照的主日曆(窗口由該日曆讀回,不另給)")
+    macro.add_argument("--series", dest="series", action="append", default=[],
+                       help="宏觀序列代號,可重複給;留空即名冊全份十四條")
+    macro.add_argument("--root", default=None, help="宏觀快取根(預設 data/macro_snapshots)")
+    macro.add_argument("--price-root", dest="price_root", default=None,
+                       help="價格快取根(預設 data/snapshots)")
+    macro.add_argument("--taken-on", dest="taken_on", default=None,
+                       help="快照日期,留空即抓取當日")
     data_commands.add_parser("list", help="列庫內全部數據快照")
 
     where = commands.add_parser("where", help="講出一項定義的唯一落點,並掃全庫查有沒有第二份影像")
@@ -461,6 +474,8 @@ def _print_risk_rule(rule, out: TextIO) -> None:
 def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     if args.subcommand == "list":
         return _data_list(gateway, out)
+    if args.subcommand == "macro-snapshot":
+        return _data_macro(args, gateway, out)
 
     universe = resolve_universe(args.tickers)
     source = build_source(args.source, bars=args.bars)
@@ -488,6 +503,33 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     print(f"  內容雜湊  {snapshot.content_hash}", file=out)
     if getattr(snapshot, "reused", False):
         print("  沿用      這批數據早已凍結,沿用原本那個編號,快取根沒有多一份副本", file=out)
+    for note in snapshot.notes:
+        print(f"  註記      {note}", file=out)
+    return EXIT_OK
+
+
+def _data_macro(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    snapshot, fetch = gateway.take_macro_snapshot(
+        price_snapshot_id=args.price_snapshot,
+        root=args.root,
+        price_root=args.price_root,
+        codes=args.series or None,
+        taken_on=args.taken_on,
+    )
+    print(f"已凍結宏觀快照 {snapshot.snapshot_id}", file=out)
+    print(f"  來源      {snapshot.source}", file=out)
+    print(f"  抓取時間  {fetch.fetched_at}", file=out)
+    print(f"  快照日期  {snapshot.taken_on}", file=out)
+    print(
+        f"  窗口      {fetch.window}({fetch.trading_days} 個交易日、{fetch.row_count} 列讀數)",
+        file=out,
+    )
+    print(f"  主日曆    {snapshot.calendar_ticker}(對齊價格快照 {args.price_snapshot})", file=out)
+    print(f"  序列      {'、'.join(snapshot.series)}({len(snapshot.series)} 條)", file=out)
+    print(f"  落點      {snapshot.path}", file=out)
+    print(f"  內容雜湊  {snapshot.content_hash}", file=out)
+    if getattr(snapshot, "reused", False):
+        print("  沿用      這批讀數早已凍結,沿用原本那個編號,快取根沒有多一份副本", file=out)
     for note in snapshot.notes:
         print(f"  註記      {note}", file=out)
     return EXIT_OK

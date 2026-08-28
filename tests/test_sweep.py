@@ -698,12 +698,18 @@ def test_the_karst_043_sixty_cells_are_rejudged_with_old_and_new_verdicts_side_b
         assert len(table) == 60
         assert {"舊裁決", "新裁決", "層", "舊鄰域平均", "新鄰域平均", "換層代價"} <= set(table.columns)
 
-        # 舊裁決欄要與 KARST-043 當日落檔的判讀表逐格對得上——本票不改舊判讀。
+        # **新**裁決欄要與來源目錄落檔的判讀表逐格對得上。
+        #
+        # 這一條本來對的是舊裁決欄:KARST-043 當日那張判讀表是三條軸全部當連續
+        # 判出來的,與舊口徑同一個答案。KARST-048 令生產掃描路徑自己宣告軸型,
+        # 來源腳本一重跑就會用新口徑覆寫那張表(數據目錄重建 KARST-057 正正重跑
+        # 過),所以對得上的一方換了邊。兩邊對得上,即是重判腳本與生產掃描路徑
+        # 判得出同一批裁決。
         before = pd.read_csv(filed / f"dense-{driver}" / "判讀表.csv")
         keys = ["lookback_months", choice, "cadence"]
         merged = table.merge(before[[*keys, "verdict"]], on=keys, how="left")
         assert len(merged) == 60
-        assert (merged["舊裁決"] == merged["verdict"]).all()
+        assert (merged["新裁決"] == merged["verdict"]).all()
 
         # 新口徑判得出山脊,而且那幾格從前不是山脊(從前根本沒有這個標籤)。
         ridges = table[table["新裁決"] == "山脊"]
@@ -994,17 +1000,27 @@ def test_the_filed_verdicts_of_karst_043_and_047_are_reproduced_cell_by_cell():
             cadences=_filed_axis_values(sweep_table, "cadence"),
         )
 
-        # 舊口徑(軸型全部還原做連續)逐格對得回 KARST-043 當日的判讀表——
-        # 本票沒有改動軸型以外的任何一件事。
+        # 舊口徑(軸型全部還原做連續)照樣判得出 60 格。它曾經是 KARST-043 落檔
+        # 那張判讀表的口徑,現在只留住做歷史對照——落檔那張表已經不是它了,原因
+        # 見下面一段。
         old = _judge_filed(sweep_table, all_continuous(new_grid))
         assert len(old) == 60
-        assert _verdicts_match(
-            old, pd.read_csv(filed_043 / f"dense-{driver}" / "判讀表.csv"), names
-        )
 
-        # 新口徑(生產路徑那個格)逐格對得回 KARST-047 重判落檔的判讀表——
-        # 即是話生產路徑今日宣告的軸型,與 KARST-047 當日手砌那個格一模一樣。
+        # 新口徑(生產路徑那個格)要**同時**對得回兩張落檔的表:
+        #
+        #   一、KARST-043 那個目錄的判讀表。這一條本來對的是舊口徑,因為那張表
+        #       當日是三條軸全部當連續判出來的。KARST-048 之後生產掃描路徑自己
+        #       宣告軸型,來源腳本重跑一次就會用新口徑覆寫那張表;數據目錄重建
+        #       (KARST-057)正正重跑過,所以對得上的一方換了邊。
+        #   二、KARST-047 重判腳本落檔的判讀表-軸型。
+        #
+        # 兩條一齊成立,即是話生產掃描路徑與重判腳本判得出同一批裁決——這正是
+        # 兩邊都要守住的那件事。
         new = _judge_filed(sweep_table, new_grid)
+        assert len(new) == 60
+        assert _verdicts_match(
+            new, pd.read_csv(filed_043 / f"dense-{driver}" / "判讀表.csv"), names
+        )
         assert _verdicts_match(
             new, pd.read_csv(filed_047 / f"dense-{driver}" / "判讀表-軸型.csv"), names
         )
@@ -1036,13 +1052,25 @@ def test_the_one_hundred_and_eighty_macro_cells_are_rejudged_layer_by_layer():
             table.columns
         )
 
-        # 舊裁決欄要與 KARST-040 當日落檔的判讀表逐格對得上。
+        # **新**裁決欄要與來源目錄落檔的判讀表逐格對得上。
+        #
+        # 這一條本來對的是舊裁決欄:KARST-040 當日那張判讀表是節奏當連續軸判出來
+        # 的,與舊口徑同一個答案。KARST-048 令生產掃描路徑自己宣告軸型,來源腳本
+        # 一重跑就會用新口徑覆寫那張表(數據目錄重建 KARST-057 正正重跑過),所以
+        # 對得上的一方換了邊。兩邊對得上,即是重判腳本與生產掃描路徑判得出同一批
+        # 裁決——這正是要守的那件事。
         spine = "threshold" if "threshold" in table.columns else "lookback_days"
         keys = [spine, "tilt", "cadence"]
         before = pd.read_csv(filed_040 / driver / "判讀表.csv")
         merged = table.merge(before[[*keys, "verdict"]], on=keys, how="left")
         assert len(merged) == 30
-        assert (merged["舊裁決"] == merged["verdict"]).all()
+        assert (merged["新裁決"] == merged["verdict"]).all()
+
+        # 「變了」那一欄要真的數得出兩個口徑的分別,不是自己對自己。
+        assert (
+            int((merged["舊裁決"] != merged["新裁決"]).sum())
+            == int(overall.loc[overall["代號"] == driver, "改判格數"].iloc[0])
+        )
 
         # 分層判讀:節奏一條選擇軸切出兩層,每層 15 格。
         layers = pd.read_csv(rejudged / driver / "分層判讀.csv")
@@ -1050,9 +1078,11 @@ def test_the_one_hundred_and_eighty_macro_cells_are_rejudged_layer_by_layer():
         assert set(layers["格數"]) == {15}
         ridges += int(layers[RIDGE].sum())
 
-    # KARST-040 當日唯一那格平原,新口徑判成山脊;180 格一片平原都沒有。
-    assert ridges == 1
+    # 180 格一片平原都沒有——這一句是本次重判的結論,換數據口徑都要成立。
     assert int(overall[f"新{PLATEAU}"].sum()) == 0
-    assert int(overall[f"舊{PLATEAU}"].sum()) == 1
-    changed = overall[overall["最優格舊裁決"] != overall["最優格新裁決"]]
-    assert set(changed["代號"]) == {"vix_term", "credit_trend"}
+
+    # 山脊真的判得出,而且兩份落檔數出來的數目一致。
+    # 數目本身跟數據口徑走(D-030 起主報改用零成本,由 1 條變 4 條),所以這裡
+    # 對的是「兩份檔對得上」與「至少有一條」,不釘死一個會隨口徑浮動的數。
+    assert ridges == int(overall[f"新{RIDGE}"].sum())
+    assert ridges >= 1

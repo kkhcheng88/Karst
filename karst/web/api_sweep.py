@@ -49,6 +49,9 @@ LAYER_FILENAMES = ("分層判讀.csv", "分層判讀表.csv")     # 兩個名字
 SUMMARY_FILENAME = "summary.json"
 EXPERIMENTS_DIRNAME = "experiments"
 
+# 驗一幅掃描的序列在不在時,試頭幾格就夠(KARST-057);全幅逐格查會拖死開頁。
+SERIES_PROBE_CELLS = 5
+
 # ---------------- 掃描表的欄位分類(karst/sweep/runner.py 的 METRIC_COLUMNS / TRACE_COLUMNS) ----------------
 
 METRIC_COLUMNS = (
@@ -887,11 +890,41 @@ class SweepReader:
             self._views[sweep_id] = (signature, SweepView(source))
         return self._views[sweep_id][1]
 
+    def _series_missing(self, view: SweepView) -> bool:
+        """這幅掃描的格,序列是不是已經不在磁碟上(KARST-057)。
+
+        只驗頭幾格:一幅掃描的格全部由同一支腳本同一程跑出來,序列在不在
+        是同生共死的一件事;逐格問幾百次只會拖死開頁。一格運行編號都沒有
+        (例如純判讀落檔)就不當它缺失——那種掃描本來就不靠序列畫圖。
+        """
+        if self.reader is None:
+            return False
+        run_ids = [
+            run_id
+            for cell in view.cells
+            if (run_id := (cell.get("runId") or "").strip())
+        ][:SERIES_PROBE_CELLS]
+        if not run_ids:
+            return False
+        for run_id in run_ids:
+            try:
+                if not self.reader.runs.missing_series(run_id):
+                    return False        # 有一格畫得出,就當這幅掃描還在
+            except Exception:  # noqa: BLE001 - 查無此運行等於畫不出,當缺失
+                continue
+        return True
+
     def list_sweeps(self) -> dict[str, Any]:
         sweeps = []
+        missing = 0
         for source in self.sources(refresh=True):
             try:
                 view = self.view(source.id)
+                if self._series_missing(view):
+                    # 過時運行(序列缺失):落檔還在,格內那批運行的序列已經不在。
+                    # 不上架——掃描清單報的是現時打得開的掃描,不是歷史帳。
+                    missing += 1
+                    continue
                 sweeps.append(self._with_strategy(view, view.brief()))
             except Exception as exc:  # noqa: BLE001
                 # 一次掃描讀不到,不應該令整張清單開不到——列出來並講明原因
@@ -903,7 +936,7 @@ class SweepReader:
                         "error": f"{type(exc).__name__}：{exc}",
                     }
                 )
-        return {"sweeps": sweeps, "total": len(sweeps)}
+        return {"sweeps": sweeps, "total": len(sweeps), "missingSeries": missing}
 
     def get_sweep(self, query: dict[str, list[str]]) -> dict[str, Any]:
         sweep_id = (query.get("id") or [""])[0].strip()

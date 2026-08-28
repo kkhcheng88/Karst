@@ -29,7 +29,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:      # 未裝套件也跑得動(倉根就在上兩層)
     sys.path.insert(0, str(REPO))
+_EXPERIMENTS = REPO / "experiments"
+if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號七支腳本共用一份(KARST-057)
+    sys.path.insert(0, str(_EXPERIMENTS))
 
+from snapshot_ids import PRICE_LARGE_CAP  # noqa: E402
 from karst.data import read_universe
 from karst.gateway import Gateway
 from karst.metrics import run_metrics
@@ -57,8 +61,10 @@ STORE_PATH = REPO / "karst.sqlite"
 SNAPSHOT_ROOT = REPO / "data" / "snapshots"
 RUNS_ROOT = REPO / "data" / "runs"
 
-# 這次用的數據快照(KARST-027 已凍結:SPY、QQQ 加十隻大型股,2015-01-02~2026-08-26)
-SNAPSHOT_ID = "2026-08-27-61e284eaa998"
+# 這次用的數據快照(SPY、QQQ 加十隻大型股,2015-01-02~2026-08-26)。
+# 編號不寫死在這裡——見 experiments/snapshot_ids.py(KARST-057 重建後改過一次:
+# 舊 2026-08-27-61e284eaa998 → 新 2026-08-28-a508d635a5fa)。
+SNAPSHOT_ID = PRICE_LARGE_CAP
 
 STRATEGY_NAME = "趨勢波段"
 PARAM_SET_NAME = "示例-KARST-028"

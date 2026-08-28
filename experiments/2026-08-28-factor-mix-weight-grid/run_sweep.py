@@ -8,8 +8,9 @@
 
 做六件事:
 
-1. 由數據快照 ``2026-08-27-91a5d51339d9`` 砌價格面板(六隻 ETF;SPY 與 QQQ 只做
-   基準,四隻因子 ETF 才是持倉)。
+1. 由數據快照砌價格面板(六隻 ETF;SPY 與 QQQ 只做基準,四隻因子 ETF 才是持倉)。
+   **編號不寫死在這裡**:七支成績腳本共用 ``experiments/snapshot_ids.py`` 那一份,
+   重抓之後只改那一個檔(現用 ``PRICE_FACTOR_ETF``,舊 ``2026-08-27-91a5d51339d9``)。
 2. 確保四個因子與策略已經登記(經唯一入口;已經有就一個字都不寫)。
 3. 砌權重單純形格 × 換倉節奏一維,逐格經引擎跑,每格經 ``karst.runs`` 落痕拿一個
    運行編號。**同一格重掃不重跑**。
@@ -37,6 +38,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
     sys.path.insert(0, str(REPO))
+_EXPERIMENTS = REPO / "experiments"
+if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號七支腳本共用一份(KARST-057)
+    sys.path.insert(0, str(_EXPERIMENTS))
+
+from snapshot_ids import PRICE_FACTOR_ETF  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 
@@ -77,7 +83,7 @@ STORE_PATH = REPO / "karst.sqlite"
 SNAPSHOT_ROOT = REPO / "data" / "snapshots"
 RUNS_ROOT = REPO / "data" / "runs"
 
-SNAPSHOT_ID = "2026-08-27-91a5d51339d9"
+SNAPSHOT_ID = PRICE_FACTOR_ETF   # 見 experiments/snapshot_ids.py(KARST-057 重建)
 STRATEGY = "因子混合(ETF 版)"
 ENGINE_VERSION = "0.1.0"
 

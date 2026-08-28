@@ -7,11 +7,16 @@
 
 做七件事:
 
-1. 由價格快照 ``2026-08-27-91a5d51339d9`` 砌價格面板(四隻因子 ETF 加 SPY)。
+1. 由價格快照砌價格面板(四隻因子 ETF 加 SPY)。**編號不寫死在這裡**:七支成績
+   腳本共用 ``experiments/snapshot_ids.py`` 那一份,重抓之後只改那一個檔
+   (現用 ``PRICE_FACTOR_ETF``,舊 ``2026-08-27-91a5d51339d9``)。
 2. 抓宏觀序列入**宏觀快照**(第一次要連網;之後等價重用,沿用原編號原檔案),
    對齊價格快照那條主日曆。宏觀序列**不是可投資對象**——處置見 ``karst.data.macro``。
-3. 六個宏觀驅動器各掃一個參數格(門檻/回望期 × 押注比重 × 換倉節奏),**連示例
-   成本**(每股 US$0.005 + 滑點 5 個基點)。
+3. 六個宏觀驅動器各掃一個參數格(門檻/回望期 × 押注比重 × 換倉節奏)。
+   **主報那一份用零成本**(D-030:基準情境不計交易成本),跑法加
+   ``--fee-rate 0 --slippage 0``,落 ``results/``;連示例成本(每股 US$0.005 +
+   滑點 5 個基點)那一份只作對照,落 ``results-連成本/``。命令列預設仍是連成本,
+   所以主報那一句一定要顯式寫出兩個零——這是刻意的,免得口徑靜靜地變。
 4. 逐個驅動器判平原 / 孤峰,出報告與投影圖。
 5. 把六個宏觀最優格、兩個**價格驅動器**最優格(KARST-043 的加密最優)、四個
    **固定權重對照格**擺上**同一張成績表**。
@@ -35,6 +40,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
     sys.path.insert(0, str(REPO))
+_EXPERIMENTS = REPO / "experiments"
+if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號七支腳本共用一份(KARST-057)
+    sys.path.insert(0, str(_EXPERIMENTS))
+
+from snapshot_ids import MACRO as MACRO_SNAPSHOT_ID  # noqa: E402
+from snapshot_ids import PRICE_FACTOR_ETF  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 
@@ -90,7 +101,7 @@ SNAPSHOT_ROOT = REPO / "data" / "snapshots"
 MACRO_ROOT = REPO / "data" / "macro_snapshots"
 RUNS_ROOT = REPO / "data" / "runs"
 
-SNAPSHOT_ID = "2026-08-27-91a5d51339d9"
+SNAPSHOT_ID = PRICE_FACTOR_ETF   # 見 experiments/snapshot_ids.py(KARST-057 重建)
 ROTATION_STRATEGY = "因子輪動(ETF 版)"
 MIX_STRATEGY = "因子混合(ETF 版)"
 SETUP_PARAM_SET = "掃描基座-KARST-036"
@@ -207,7 +218,8 @@ def main() -> int:
         help="要掃的宏觀驅動器,逗號分隔",
     )
     parser.add_argument(
-        "--macro-snapshot", default=None, help="沿用某個宏觀快照編號,不再抓數"
+        "--macro-snapshot", default=MACRO_SNAPSHOT_ID,
+        help="沿用某個宏觀快照編號,不再抓數(預設沿用現役那個;給 new 即重抓一份)",
     )
     args = parser.parse_args()
 
@@ -235,7 +247,7 @@ def main() -> int:
 
         # ---- 1. 宏觀快照 ----
         calendar = read_calendar(store, SNAPSHOT_ID, root=SNAPSHOT_ROOT)
-        if args.macro_snapshot:
+        if args.macro_snapshot and args.macro_snapshot != "new":
             macro_id = args.macro_snapshot
             print(f"沿用宏觀快照 {macro_id}(不抓數)", flush=True)
         else:
@@ -248,7 +260,7 @@ def main() -> int:
                 calendar_ticker=MARKET_TICKER,
                 source=YFinanceMacroSource(),
                 root=MACRO_ROOT,
-                taken_on="2026-08-28",
+                taken_on=None,      # 抓取當日;編號以它做前綴,不寫死在腳本裡
             )
             macro_id = macro_snapshot.snapshot_id
             print(

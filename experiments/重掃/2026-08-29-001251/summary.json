@@ -1,0 +1,28 @@
+{
+  "cells": 4,
+  "executed": 2,
+  "market_ticker": "SPY",
+  "objective": "max_drawdown",
+  "period": [
+    "2015-01-02",
+    "2026-08-26"
+  ],
+  "provenance": {
+    "engine": "vectorbt 0.1.0",
+    "period": [
+      "2015-01-02",
+      "2026-08-26"
+    ],
+    "snapshot_id": "2026-08-28-000b4820a23a",
+    "strategy": "因子輪動(ETF 版)",
+    "strategy_version_no": 2
+  },
+  "rescan_of": "experiments/2026-08-28-factor-rotation-drivers/results/inverse_volatility",
+  "reused": 2,
+  "snapshot_id": "2026-08-28-000b4820a23a",
+  "thresholds": {
+    "lonely_peak_margin": 0.005,
+    "min_trades": 30,
+    "plateau_quantile": 0.9
+  }
+}

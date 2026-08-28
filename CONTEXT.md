@@ -110,4 +110,6 @@
 | 工作佇列 | job queue | 網頁殼後端排隊執行重跑/重掃的那條單一工作執行緒;前端輪詢進行中狀態(KARST-052)。 |
 | 掃描編號 | sweep id | 一次參數掃描的識別字,隨每一格運行入庫;不入運行編號的計算(KARST-054)。 |
 | 來歷 | origin | 一條運行的出身:正式運行或掃描格;由定義庫欄位講,無預設(KARST-054)。 |
+| 序列缺失運行 | series-missing run | 登記完好、但逐日序列檔案已不在的運行;畫不出圖,不入正式運行清單與掃描清單。與「過時運行」(版本過時)無關(KARST-057)。 |
+| 宇宙名單登記 | universe registry | 唯一入口認得的實體名單;不在名單上的代號抓不到快照(KARST-057)。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |

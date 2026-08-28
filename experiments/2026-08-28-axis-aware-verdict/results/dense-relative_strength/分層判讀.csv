@@ -1,5 +1,5 @@
 ﻿fallback,cadence,層,格數,有效格,平原,山脊,孤峰,普通,無效,無鄰,最優,最優參數,鄰域平均最高,層平均,高地格數
-cash,monthly,fallback=cash、cadence=monthly,15,15,0,3,2,10,0,0,0.04171241794155,lookback_months=7、fallback=cash、cadence=monthly,0.03619602614907057,0.011217526149332533,4
-cash,quarterly,fallback=cash、cadence=quarterly,15,15,0,0,1,14,0,0,0.0222771148396336,lookback_months=9、fallback=cash、cadence=quarterly,0.020618774469963467,0.0026801503729462863,1
-equal,monthly,fallback=equal、cadence=monthly,15,15,0,0,2,13,0,0,0.0241137613359305,lookback_months=3、fallback=equal、cadence=monthly,0.017309696150818232,0.005020583369037646,1
-equal,quarterly,fallback=equal、cadence=quarterly,15,15,0,0,1,14,0,0,0.0090453877190923,lookback_months=3、fallback=equal、cadence=quarterly,0.0023591123253984335,-0.005423865803252907,0
+cash,monthly,fallback=cash、cadence=monthly,15,15,0,3,2,10,0,0,0.0417126026340732,lookback_months=7、fallback=cash、cadence=monthly,0.0361961046963883,0.011217598298336707,4
+cash,quarterly,fallback=cash、cadence=quarterly,15,15,0,0,1,14,0,0,0.0222772100685637,lookback_months=9、fallback=cash、cadence=quarterly,0.02061889491499783,0.00268026907199082,1
+equal,monthly,fallback=equal、cadence=monthly,15,15,0,0,2,13,0,0,0.0241137992210718,lookback_months=3、fallback=equal、cadence=monthly,0.017309714243860835,0.005020646712269907,1
+equal,quarterly,fallback=equal、cadence=quarterly,15,15,0,0,1,14,0,0,0.0090455905128707,lookback_months=3、fallback=equal、cadence=quarterly,0.0023592318726605665,-0.005423742139216753,0

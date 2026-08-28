@@ -1,55 +1,55 @@
 {
   "breakout_factor": "趨勢·收市價突破前 N 日最高(不含當日)",
   "cases": {
-    "average_holding_days": 53.22707147375079,
-    "average_r_multiple": 0.6851334095956741,
-    "average_return": 0.05716377915480915,
-    "average_reward_risk": 2.749294627685507,
-    "cases": 1581,
-    "closed": 1566,
-    "closed_win_rate": 0.4706257982120051,
-    "reason_stop": 829,
-    "reason_target": 737,
+    "average_holding_days": 53.15672588832487,
+    "average_r_multiple": 0.6881199329676702,
+    "average_return": 0.05741823444872289,
+    "average_reward_risk": 2.749166668883493,
+    "cases": 1576,
+    "closed": 1561,
+    "closed_win_rate": 0.4714926329276105,
+    "reason_stop": 825,
+    "reason_target": 736,
     "reason_unclosed": 15,
-    "win_rate": 0.47185325743200507,
-    "wins": 746
+    "win_rate": 0.4727157360406091,
+    "wins": 745
   },
   "engine_run": {
     "blocked_days": 96,
-    "entry_signals": 1581,
+    "entry_signals": 1576,
     "orders": 487,
-    "worst_month_drawdown": -0.12579616276570615
+    "worst_month_drawdown": -0.12579615452631598
   },
   "metrics": {
     "annual_excess": {
-      "QQQ": -0.07586938168851565,
-      "SPY": -0.024719390262130103
+      "QQQ": -0.07586960105346874,
+      "SPY": -0.02471962833619057
     },
-    "annual_return": 0.1138002769974149,
+    "annual_return": 0.11380006616008864,
     "average_holding_days": 49.66528925619835,
     "benchmarks": {
       "QQQ": {
-        "annual_excess": -0.07586938168851565,
-        "annual_return": 0.18966965868593055,
-        "excess_total_return": -4.024560721998252,
-        "max_drawdown": -0.35118725001840734,
-        "total_return": 6.522856276100666
+        "annual_excess": -0.07586960105346874,
+        "annual_return": 0.18966966721355738,
+        "excess_total_return": -4.024569042805833,
+        "max_drawdown": -0.35118716112138404,
+        "total_return": 6.522856902649767
       },
       "SPY": {
-        "annual_excess": -0.024719390262130103,
-        "annual_return": 0.138519667259545,
-        "excess_total_return": -1.0163471430101603,
-        "max_drawdown": -0.33717274248906437,
-        "total_return": 3.5146426971125733
+        "annual_excess": -0.02471962833619057,
+        "annual_return": 0.1385196944962792,
+        "excess_total_return": -1.0163560921667587,
+        "max_drawdown": -0.33717235283398306,
+        "total_return": 3.514643952010693
       }
     },
     "closed_trades": 242,
-    "max_drawdown": -0.20844404672760009,
-    "profit_loss_ratio": 2.1320167477819396,
+    "max_drawdown": -0.20844431034600586,
+    "profit_loss_ratio": 2.1320158666626288,
     "risk_free_rate": 0.04,
-    "sortino": 0.775284568265982,
-    "total_return": 2.498295554102413,
-    "turnover": 3.6577278004474465,
+    "sortino": 0.7752822617557282,
+    "total_return": 2.498287859843934,
+    "turnover": 3.6577266660152787,
     "win_rate": 0.44214876033057854
   },
   "param_set": {
@@ -79,31 +79,31 @@
   "run": {
     "artifacts": {
       "equity": {
-        "path": "C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\equity.parquet",
+        "path": "C:\\projects\\Karst\\data\\runs\\run-7e3b498e086bdb88\\equity.parquet",
         "rows": 2929
       },
       "holdings": {
-        "path": "C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\holdings.parquet",
+        "path": "C:\\projects\\Karst\\data\\runs\\run-7e3b498e086bdb88\\holdings.parquet",
         "rows": 12147
       },
       "orders": {
-        "path": "C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\orders.parquet",
+        "path": "C:\\projects\\Karst\\data\\runs\\run-7e3b498e086bdb88\\orders.parquet",
         "rows": 487
       }
     },
     "engine_name": "vectorbt-order-func",
     "engine_version": "0.1.0",
-    "run_id": "run-728a01087531258f",
+    "run_id": "run-7e3b498e086bdb88",
     "trading_days": 2929
   },
-  "snapshot_id": "2026-08-27-61e284eaa998",
+  "snapshot_id": "2026-08-28-a508d635a5fa",
   "strategy": {
     "factors": [
-      "趨勢·收市價突破前 N 日最高(不含當日)@1"
+      "趨勢·收市價突破前 N 日最高(不含當日)@2"
     ],
     "name": "趨勢波段",
     "type": "technical",
-    "version_no": 1
+    "version_no": 2
   },
   "sweep": {
     "cells": 48,

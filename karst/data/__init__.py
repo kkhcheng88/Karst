@@ -89,7 +89,14 @@ from .snapshots import (
     verify_snapshot,
 )
 from .sources import PRICE_FIELDS, PriceSource, StaticSource, YFinanceSource
-from .universe import CALENDAR_TICKER, STARTER_UNIVERSE, UniverseMember, tickers_of
+from .universe import (
+    CALENDAR_TICKER,
+    FACTOR_ETF_UNIVERSE,
+    STARTER_UNIVERSE,
+    UNIVERSE_REGISTRY,
+    UniverseMember,
+    tickers_of,
+)
 
 __all__ = [
     "ALL_SERIES_CODES",
@@ -134,7 +141,9 @@ __all__ = [
     "PriceSnapshot",
     "PriceSource",
     "SNAPSHOT_README_TEMPLATE",
+    "FACTOR_ETF_UNIVERSE",
     "STARTER_UNIVERSE",
+    "UNIVERSE_REGISTRY",
     "SnapshotBroken",
     "StaticSource",
     "TickerRecycled",

@@ -4,7 +4,7 @@
       "entity_id": 13,
       "entity_kind": "etf",
       "factor_name": "質素·MSCI USA Sector Neutral Quality(QUAL)",
-      "factor_version_no": 1,
+      "factor_version_no": 2,
       "family": "質素",
       "ticker": "QUAL",
       "weight": 0.25
@@ -13,7 +13,7 @@
       "entity_id": 14,
       "entity_kind": "etf",
       "factor_name": "價值·MSCI USA Enhanced Value(VLUE)",
-      "factor_version_no": 1,
+      "factor_version_no": 2,
       "family": "價值",
       "ticker": "VLUE",
       "weight": 0.25
@@ -22,7 +22,7 @@
       "entity_id": 15,
       "entity_kind": "etf",
       "factor_name": "動能·MSCI USA Momentum SR Variant(MTUM)",
-      "factor_version_no": 1,
+      "factor_version_no": 2,
       "family": "動能",
       "ticker": "MTUM",
       "weight": 0.25
@@ -31,7 +31,7 @@
       "entity_id": 16,
       "entity_kind": "etf",
       "factor_name": "低波·MSCI USA Minimum Volatility(USMV)",
-      "factor_version_no": 1,
+      "factor_version_no": 2,
       "family": "低波",
       "ticker": "USMV",
       "weight": 0.25
@@ -39,34 +39,34 @@
   ],
   "metrics": {
     "annual_excess": {
-      "QQQ": -0.05777667371091755,
-      "SPY": -0.0066266916460964165
+      "QQQ": -0.05777670177432048,
+      "SPY": -0.006626696573420965
     },
-    "annual_return": 0.13189299323602333,
+    "annual_return": 0.13189299792285825,
     "average_holding_days": 1457.4835164835165,
     "benchmarks": {
       "QQQ": {
-        "annual_excess": -0.05777667371091755,
-        "annual_return": 0.18966966694694087,
-        "excess_total_return": -3.3042682922161193,
-        "max_drawdown": -0.35118725001840734,
-        "total_return": 6.522856883060699
+        "annual_excess": -0.05777670177432048,
+        "annual_return": 0.18966969969717873,
+        "excess_total_return": -3.3042704955093765,
+        "max_drawdown": -0.35118716112138404,
+        "total_return": 6.522859289314678
       },
       "SPY": {
-        "annual_excess": -0.0066266916460964165,
-        "annual_return": 0.13851968488211974,
-        "excess_total_return": -0.29605491820582674,
-        "max_drawdown": -0.337172726376749,
-        "total_return": 3.5146435090504067
+        "annual_excess": -0.006626696573420965,
+        "annual_return": 0.1385196944962792,
+        "excess_total_return": -0.29605515820539097,
+        "max_drawdown": -0.3371726770846235,
+        "total_return": 3.514643952010693
       }
     },
     "closed_trades": 91,
-    "max_drawdown": -0.34929264433446217,
-    "profit_loss_ratio": 400.3370144166992,
+    "max_drawdown": -0.34929258840310273,
+    "profit_loss_ratio": 400.379168500573,
     "risk_free_rate": 0.04,
-    "sortino": 0.7584157352459482,
-    "total_return": 3.21858859084458,
-    "turnover": 0.07722345345210621,
+    "sortino": 0.7584157425897062,
+    "total_return": 3.218588793805302,
+    "turnover": 0.0772234158553801,
     "win_rate": 0.978021978021978
   },
   "param_set": {
@@ -86,7 +86,7 @@
     "2026-08-26"
   ],
   "reproduces": {
-    "run_id": "run-f4c162e5aac34347",
+    "run_id": "run-024df83fb4891c89",
     "ticket": "KARST-031"
   },
   "run": {
@@ -95,23 +95,23 @@
     "first_execution_date": "2015-01-05",
     "orders": 188,
     "rebalances": 47,
-    "run_id": "run-f4c162e5aac34347",
+    "run_id": "run-024df83fb4891c89",
     "series_check": [
       "全對"
     ],
     "trading_days": 2929
   },
-  "snapshot_id": "2026-08-27-91a5d51339d9",
+  "snapshot_id": "2026-08-28-000b4820a23a",
   "strategy": {
     "factors": [
-      "質素·MSCI USA Sector Neutral Quality(QUAL)@1",
-      "價值·MSCI USA Enhanced Value(VLUE)@1",
-      "動能·MSCI USA Momentum SR Variant(MTUM)@1",
-      "低波·MSCI USA Minimum Volatility(USMV)@1"
+      "質素·MSCI USA Sector Neutral Quality(QUAL)@2",
+      "價值·MSCI USA Enhanced Value(VLUE)@2",
+      "動能·MSCI USA Momentum SR Variant(MTUM)@2",
+      "低波·MSCI USA Minimum Volatility(USMV)@2"
     ],
     "name": "因子混合(ETF 版)",
     "type": "multifactor",
-    "version_no": 1
+    "version_no": 2
   },
   "ticket": "KARST-041",
   "trading_days": 2929,

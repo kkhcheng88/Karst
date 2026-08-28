@@ -1,0 +1,50 @@
+"""現役數據快照編號——**全部成績腳本共用這一份**(KARST-057)。
+
+2026-08-28 倉根 ``data/`` 被誤清空(436 MB:運行序列與價格快照),``karst.sqlite``
+完好。無檔案系統層面的備份,用戶裁決當作**重建**而不是還原(見 KARST-057)。
+
+重抓只生得出**新的**快照編號:編號是抓取日加內容雜湊前 12 位,而
+``find_equivalent_snapshot`` 認等價靠掃描磁碟上已有的快照目錄——目錄清空之後
+零候選,管線直接落一個新編號(假設 A-007 已推翻)。所以舊編號一個都撞不回,
+每一支腳本都要改。
+
+**為什麼集中在這裡。** 舊做法是七支腳本各自寫死一次快照編號,散落十幾處;
+下次再要換數據,漏改一處就會出一批對不上血統的成績,而且不會報錯——它只會
+靜靜跑出另一批數字。改在這裡一處,七支腳本一齊跟住走。
+
+三份快照全部經唯一入口重抓、有抓取登記::
+
+    python -m karst.gateway data snapshot --start 2015-01-02 --end 2026-08-26
+    python -m karst.gateway data snapshot --start 2015-01-02 --end 2026-08-26 \\
+        --ticker SPY --ticker QQQ --ticker QUAL --ticker VLUE --ticker MTUM --ticker USMV
+    python -m karst.gateway data macro-snapshot --price-snapshot <大型股那個編號>
+
+(第二句的四隻因子 ETF 在 KARST-057 之前不在宇宙名單登記上,唯一入口抓不到;
+本票已把它們登記入 ``karst/data/universe.py`` 的 ``FACTOR_ETF_UNIVERSE``,
+**起步名單那份預設批次不變**——登記與預設是兩件事。)
+"""
+
+from __future__ import annotations
+
+# SPY、QQQ 加十隻大型股;2015-01-02~2026-08-26,2,929 個交易日、35,148 列日線。
+# 用者:趨勢波段(KARST-028)。
+PRICE_LARGE_CAP = "2026-08-28-a508d635a5fa"
+
+# 六隻因子敞口 ETF(SPY、QQQ、QUAL、VLUE、MTUM、USMV);同一個窗口,17,574 列。
+# 用者:因子混合、權重掃描、因子輪動、成本重掃、宏觀驅動器。
+PRICE_FACTOR_ETF = "2026-08-28-000b4820a23a"
+
+# 宏觀十四序列,對齊 PRICE_LARGE_CAP 那條主日曆;41,006 列讀數。
+# ^VIX3M 尾段停在 2026-07-17(免費來源停更,見 KARST-058),留空的日子驅動器
+# 當「數據不足」退回熱身期權重,不當零。
+MACRO = "2026-08-28-810facb50382"
+
+# 舊編號 → 新編號。留在這裡是為了讀得懂舊落檔:倉內的舊報告、舊 summary.json
+# 仍然寫住左邊那幾個編號,它們指向的快照已經不在磁碟上。
+PREVIOUS: dict[str, str] = {
+    "2026-08-27-61e284eaa998": PRICE_LARGE_CAP,
+    "2026-08-27-91a5d51339d9": PRICE_FACTOR_ETF,
+    "2026-08-28-3b2de5c59740": MACRO,
+}
+
+__all__ = ["PRICE_LARGE_CAP", "PRICE_FACTOR_ETF", "MACRO", "PREVIOUS"]

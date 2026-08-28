@@ -11,8 +11,9 @@ KARST-031 交出的示例運行 `run-f4c162e5aac34347` 當初是在暫存區用�
 
 做五件事:
 
-1. 由數據快照 ``2026-08-27-91a5d51339d9`` 砌價格面板(六隻 ETF;SPY 與 QQQ 只做
-   基準,四隻因子 ETF 才是持倉)。
+1. 由數據快照砌價格面板(六隻 ETF;SPY 與 QQQ 只做基準,四隻因子 ETF 才是持倉)。
+   **編號不寫死在這裡**:七支成績腳本共用 ``experiments/snapshot_ids.py`` 那一份,
+   重抓之後只改那一個檔(現用 ``PRICE_FACTOR_ETF``,舊 ``2026-08-27-91a5d51339d9``)。
 2. 經唯一入口登記四個因子、策略與參數集(D-020 第 4 條)。**同名同值即沿用舊版**,
    所以重跑一次一列都不會多寫——參數集版本號入運行編號,多一版就會把同一次回測
    記成兩次(KARST-041)。
@@ -42,7 +43,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:      # 未裝套件也跑得動(倉根就在上兩層)
     sys.path.insert(0, str(REPO))
+_EXPERIMENTS = REPO / "experiments"
+if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號七支腳本共用一份(KARST-057)
+    sys.path.insert(0, str(_EXPERIMENTS))
 
+from snapshot_ids import PRICE_FACTOR_ETF  # noqa: E402
 from karst.data.snapshots import read_price_panel  # noqa: E402
 from karst.engine import PricePanel  # noqa: E402
 from karst.gateway import Gateway  # noqa: E402
@@ -62,10 +67,12 @@ STORE_PATH = REPO / "karst.sqlite"
 SNAPSHOT_ROOT = REPO / "data" / "snapshots"
 RUNS_ROOT = REPO / "data" / "runs"
 
-# 這次用的數據快照(KARST-031 用的同一個:yfinance、已調整價、六隻 ETF)
-SNAPSHOT_ID = "2026-08-27-91a5d51339d9"
+# 這次用的數據快照(yfinance、已調整價、六隻 ETF)。編號不寫死在這裡——
+# 見 experiments/snapshot_ids.py(KARST-057 重建後改過一次:
+# 舊 2026-08-27-91a5d51339d9 → 新 2026-08-28-000b4820a23a)。
+SNAPSHOT_ID = PRICE_FACTOR_ETF
 SNAPSHOT_WINDOW = ("2015-01-02", "2026-08-26")
-SNAPSHOT_TAKEN_ON = "2026-08-27"
+SNAPSHOT_TAKEN_ON = SNAPSHOT_ID[:10]
 SNAPSHOT_UNIVERSE = ("SPY", "QQQ", "QUAL", "VLUE", "MTUM", "USMV")
 
 STRATEGY_NAME = "因子混合(ETF 版)"
@@ -85,10 +92,15 @@ SAMPLE_WEIGHTS = {sleeve.weight_key: "0.25" for sleeve in FACTOR_ETF_SLEEVES}
 SAMPLE_RISK_FREE_RATE = 0.04
 
 # ----------------------------------------------------------------------
-# KARST-031 記低那一次的成績。重跑對不上即當場拋錯——重生腳本交不出同一份成績,
+# 記低那一次的成績。重跑對不上即當場拋錯——重生腳本交不出同一份成績,
 # 就不是重生,是另一次運行。
+#
+# KARST-057 重建後改過一次。**運行編號變了,三個指標一個都沒有變**:
+# 舊 run-f4c162e5aac34347 → 新 run-024df83fb4891c89。編號的原料之一是快照編號,
+# 快照重抓必然換編號,所以運行編號跟住換;而成績對到小數點後四位一字不差,
+# 即是重抓回來的價格與舊那份在這套策略用得着的精度上是同一批數。
 # ----------------------------------------------------------------------
-EXPECTED_RUN_ID = "run-f4c162e5aac34347"
+EXPECTED_RUN_ID = "run-024df83fb4891c89"
 EXPECTED_TRADING_DAYS = 2929
 EXPECTED_REBALANCES = 47
 EXPECTED_ORDERS = 188

@@ -5,29 +5,29 @@
     "quarterly"
   ],
   "cells": 572,
-  "executed": 0,
-  "reused": 572,
-  "seconds": 29.42,
+  "executed": 572,
+  "reused": 0,
+  "seconds": 171.03,
   "objective": "annual_excess:SPY",
   "thresholds": {
     "min_trades": 30,
     "lonely_peak_margin": 0.005,
     "plateau_quantile": 0.9,
-    "plateau_threshold": 0.003936060727188927
+    "plateau_threshold": 0.003936081689295577
   },
   "provenance": {
     "strategy": "因子混合(ETF 版)",
-    "strategy_version_no": 1,
+    "strategy_version_no": 2,
     "period": [
       "2015-01-02",
       "2026-08-26"
     ],
-    "snapshot_id": "2026-08-27-91a5d51339d9",
+    "snapshot_id": "2026-08-28-000b4820a23a",
     "engine": "vectorbt 0.1.0",
     "trading_days": 2929
   },
   "counts": {
-    "plateau": 47,
+    "plateau": 42,
     "lonely_peak": 0,
     "invalid": 8
   },
@@ -45,26 +45,26 @@
         "weight_low_vol": 0.9,
         "cadence": "monthly"
       },
-      "value": -0.331874757424919,
-      "neighbourhood_mean": -0.33390918043636547,
-      "neighbour_mean": -0.3340941279828606,
-      "lift": 0.0020344230114464623,
+      "value": -0.33187473178997773,
+      "neighbourhood_mean": -0.33396487941737174,
+      "neighbour_mean": -0.3343829089428506,
+      "lift": 0.0020901476273940123,
       "peak_over_neighbourhood": null,
       "verdict": "平原",
       "trades": 280,
-      "annual_return": 0.10788898464604846,
-      "total_return": 2.2885464610442754,
-      "max_drawdown": -0.331874757424919,
-      "sortino": 0.6514859071278328,
-      "turnover": 0.050949943393189805,
+      "annual_return": 0.10788899214787495,
+      "total_return": 2.2885467197733917,
+      "max_drawdown": -0.33187473178997773,
+      "sortino": 0.6514858007026881,
+      "turnover": 0.050949982815930175,
       "win_rate": 0.9883040935672515,
-      "profit_loss_ratio": 183.76645803153136,
+      "profit_loss_ratio": 183.766163587592,
       "average_holding_days": 1516.122807017544,
       "annual_excess": {
-        "QQQ": -0.08178068230089242,
-        "SPY": -0.030630700236071284
+        "QQQ": -0.08178070754930378,
+        "SPY": -0.03063070234840426
       },
-      "run_id": "run-6a1989ab52838307"
+      "run_id": "run-cb38c8ae01a7a191"
     },
     "report": "報告-最大回撤.md",
     "charts": [
@@ -90,26 +90,26 @@
       "weight_low_vol": 0.0,
       "cadence": "quarterly"
     },
-    "value": 0.011399677069490854,
-    "neighbourhood_mean": 0.009714296608830534,
-    "neighbour_mean": 0.00956108020331596,
-    "lift": 0.0016853804606603209,
-    "peak_over_neighbourhood": 1.1734948528469131,
+    "value": 0.011399698728012275,
+    "neighbourhood_mean": 0.009785594162756742,
+    "neighbour_mean": 0.009462773249705635,
+    "lift": 0.0016141045652555332,
+    "peak_over_neighbourhood": 1.1649470168504124,
     "verdict": "平原",
     "trades": 94,
-    "annual_return": 0.1499193619516106,
-    "total_return": 4.0687077685284105,
-    "max_drawdown": -0.3407984576856484,
-    "sortino": 0.7527357480672195,
-    "turnover": 0.031952711726146804,
+    "annual_return": 0.1499193932242915,
+    "total_return": 4.068709370170869,
+    "max_drawdown": -0.34079827612436164,
+    "sortino": 0.7527359124949905,
+    "turnover": 0.03195267300517205,
     "win_rate": 0.9782608695652174,
-    "profit_loss_ratio": 1677.75104068309,
+    "profit_loss_ratio": 1677.7608605618102,
     "average_holding_days": 1476.4130434782608,
     "annual_excess": {
-      "QQQ": -0.03975030499533028,
-      "SPY": 0.011399677069490854
+      "QQQ": -0.03975030647288724,
+      "SPY": 0.011399698728012275
     },
-    "run_id": "run-3dcd422c806b8499"
+    "run_id": "run-1310df2c03d7ed5f"
   },
   "best_neighbourhood": {
     "params": {
@@ -117,28 +117,28 @@
       "weight_value": 0.0,
       "weight_momentum": 0.9,
       "weight_low_vol": 0.0,
-      "cadence": "monthly"
+      "cadence": "quarterly"
     },
-    "value": 0.011348444889231146,
-    "neighbourhood_mean": 0.009714296608830534,
-    "neighbour_mean": 0.00956573767424866,
-    "lift": 0.0016341482804006126,
-    "peak_over_neighbourhood": 1.1682209578524843,
+    "value": 0.011399698728012275,
+    "neighbourhood_mean": 0.009785594162756742,
+    "neighbour_mean": 0.009462773249705635,
+    "lift": 0.0016141045652555332,
+    "peak_over_neighbourhood": 1.1649470168504124,
     "verdict": "平原",
-    "trades": 280,
-    "annual_return": 0.1498681297713509,
-    "total_return": 4.066084513556053,
-    "max_drawdown": -0.3407979186086648,
-    "sortino": 0.7526767162649957,
-    "turnover": 0.042943818762280414,
-    "win_rate": 0.98125,
-    "profit_loss_ratio": 616.977114423034,
-    "average_holding_days": 1568.2125,
+    "trades": 94,
+    "annual_return": 0.1499193932242915,
+    "total_return": 4.068709370170869,
+    "max_drawdown": -0.34079827612436164,
+    "sortino": 0.7527359124949905,
+    "turnover": 0.03195267300517205,
+    "win_rate": 0.9782608695652174,
+    "profit_loss_ratio": 1677.7608605618102,
+    "average_holding_days": 1476.4130434782608,
     "annual_excess": {
-      "QQQ": -0.039801537175589985,
-      "SPY": 0.011348444889231146
+      "QQQ": -0.03975030647288724,
+      "SPY": 0.011399698728012275
     },
-    "run_id": "run-1a7f54503443933f"
+    "run_id": "run-1310df2c03d7ed5f"
   },
   "top5": [
     {
@@ -149,26 +149,26 @@
         "weight_low_vol": 0.0,
         "cadence": "quarterly"
       },
-      "value": 0.011399677069490854,
-      "neighbourhood_mean": 0.009714296608830534,
-      "neighbour_mean": 0.00956108020331596,
-      "lift": 0.0016853804606603209,
-      "peak_over_neighbourhood": 1.1734948528469131,
+      "value": 0.011399698728012275,
+      "neighbourhood_mean": 0.009785594162756742,
+      "neighbour_mean": 0.009462773249705635,
+      "lift": 0.0016141045652555332,
+      "peak_over_neighbourhood": 1.1649470168504124,
       "verdict": "平原",
       "trades": 94,
-      "annual_return": 0.1499193619516106,
-      "total_return": 4.0687077685284105,
-      "max_drawdown": -0.3407984576856484,
-      "sortino": 0.7527357480672195,
-      "turnover": 0.031952711726146804,
+      "annual_return": 0.1499193932242915,
+      "total_return": 4.068709370170869,
+      "max_drawdown": -0.34079827612436164,
+      "sortino": 0.7527359124949905,
+      "turnover": 0.03195267300517205,
       "win_rate": 0.9782608695652174,
-      "profit_loss_ratio": 1677.75104068309,
+      "profit_loss_ratio": 1677.7608605618102,
       "average_holding_days": 1476.4130434782608,
       "annual_excess": {
-        "QQQ": -0.03975030499533028,
-        "SPY": 0.011399677069490854
+        "QQQ": -0.03975030647288724,
+        "SPY": 0.011399698728012275
       },
-      "run_id": "run-3dcd422c806b8499"
+      "run_id": "run-1310df2c03d7ed5f"
     },
     {
       "params": {
@@ -178,26 +178,26 @@
         "weight_low_vol": 0.0,
         "cadence": "quarterly"
       },
-      "value": 0.0113934967461633,
-      "neighbourhood_mean": 0.009701259994608765,
-      "neighbour_mean": 0.009547420289921988,
-      "lift": 0.0016922367515545354,
-      "peak_over_neighbourhood": 1.174434738631369,
+      "value": 0.011393522143829493,
+      "neighbourhood_mean": 0.009770081155327329,
+      "neighbour_mean": 0.009445392957626897,
+      "lift": 0.001623440988502164,
+      "peak_over_neighbourhood": 1.166164534633057,
       "verdict": "平原",
       "trades": 94,
-      "annual_return": 0.14991318162828304,
-      "total_return": 4.0683912499539385,
-      "max_drawdown": -0.34516809376162016,
-      "sortino": 0.7516582465544702,
-      "turnover": 0.03775085549489572,
+      "annual_return": 0.1499132166401087,
+      "total_return": 4.0683930429958455,
+      "max_drawdown": -0.34516789765022493,
+      "sortino": 0.7516584177344321,
+      "turnover": 0.03775083601195299,
       "win_rate": 1.0,
       "profit_loss_ratio": null,
       "average_holding_days": 1609.2222222222222,
       "annual_excess": {
-        "QQQ": -0.03975648531865783,
-        "SPY": 0.0113934967461633
+        "QQQ": -0.039756483057070025,
+        "SPY": 0.011393522143829493
       },
-      "run_id": "run-5aa36af377d088cb"
+      "run_id": "run-ac92401894e5e080"
     },
     {
       "params": {
@@ -207,26 +207,26 @@
         "weight_low_vol": 0.0,
         "cadence": "monthly"
       },
-      "value": 0.011354275742289754,
-      "neighbourhood_mean": 0.009701259994608765,
-      "neighbour_mean": 0.009550985835728675,
-      "lift": 0.001653015747680989,
-      "peak_over_neighbourhood": 1.1703918613251898,
+      "value": 0.011354303539511834,
+      "neighbourhood_mean": 0.00963248601121732,
+      "neighbour_mean": 0.009288122505558416,
+      "lift": 0.0017218175282945145,
+      "peak_over_neighbourhood": 1.1787511060269806,
       "verdict": "平原",
       "trades": 280,
-      "annual_return": 0.1498739606244095,
-      "total_return": 4.066383009693069,
-      "max_drawdown": -0.3455464126704908,
-      "sortino": 0.7511098412523088,
-      "turnover": 0.05386884689940088,
+      "annual_return": 0.14987399803579105,
+      "total_return": 4.06638492492835,
+      "max_drawdown": -0.34554621710357136,
+      "sortino": 0.7511100284098055,
+      "turnover": 0.05386891919356357,
       "win_rate": 0.978021978021978,
-      "profit_loss_ratio": 30.31901406903698,
+      "profit_loss_ratio": 30.31986203691927,
       "average_holding_days": 1303.521978021978,
       "annual_excess": {
-        "QQQ": -0.03979570632253138,
-        "SPY": 0.011354275742289754
+        "QQQ": -0.039795701661387684,
+        "SPY": 0.011354303539511834
       },
-      "run_id": "run-f8e6abd83923c342"
+      "run_id": "run-7566029a471ef9c0"
     },
     {
       "params": {
@@ -236,26 +236,26 @@
         "weight_low_vol": 0.0,
         "cadence": "monthly"
       },
-      "value": 0.011348444889231146,
-      "neighbourhood_mean": 0.009714296608830534,
-      "neighbour_mean": 0.00956573767424866,
-      "lift": 0.0016341482804006126,
-      "peak_over_neighbourhood": 1.1682209578524843,
+      "value": 0.011348468045760063,
+      "neighbourhood_mean": 0.009643042261633853,
+      "neighbour_mean": 0.009301957104808611,
+      "lift": 0.0017054257841262101,
+      "peak_over_neighbourhood": 1.1768555750202898,
       "verdict": "平原",
       "trades": 280,
-      "annual_return": 0.1498681297713509,
-      "total_return": 4.066084513556053,
-      "max_drawdown": -0.3407979186086648,
-      "sortino": 0.7526767162649957,
-      "turnover": 0.042943818762280414,
+      "annual_return": 0.14986816254203927,
+      "total_return": 4.0660861911256765,
+      "max_drawdown": -0.3407977376539427,
+      "sortino": 0.7526768889720882,
+      "turnover": 0.04294383156959118,
       "win_rate": 0.98125,
-      "profit_loss_ratio": 616.977114423034,
+      "profit_loss_ratio": 616.9405475464463,
       "average_holding_days": 1568.2125,
       "annual_excess": {
-        "QQQ": -0.039801537175589985,
-        "SPY": 0.011348444889231146
+        "QQQ": -0.039801537155139455,
+        "SPY": 0.011348468045760063
       },
-      "run_id": "run-1a7f54503443933f"
+      "run_id": "run-54594be669fa620f"
     },
     {
       "params": {
@@ -265,26 +265,26 @@
         "weight_low_vol": 0.0,
         "cadence": "quarterly"
       },
-      "value": 0.009996876286834322,
-      "neighbourhood_mean": 0.008909021879903122,
-      "neighbour_mean": 0.008851766384801481,
-      "lift": 0.0010878544069311998,
-      "peak_over_neighbourhood": 1.122107053007151,
+      "value": 0.009996894026320424,
+      "neighbourhood_mean": 0.00898542562579172,
+      "neighbour_mean": 0.008873040247955198,
+      "lift": 0.0010114684005287037,
+      "peak_over_neighbourhood": 1.1125676670925182,
       "verdict": "平原",
       "trades": 141,
-      "annual_return": 0.14851656116895406,
-      "total_return": 3.99732632907703,
-      "max_drawdown": -0.3451646622731587,
-      "sortino": 0.7619526654685397,
-      "turnover": 0.04777880194918634,
+      "annual_return": 0.14851658852259964,
+      "total_return": 3.997327711962612,
+      "max_drawdown": -0.3451644775896261,
+      "sortino": 0.7619528056016945,
+      "turnover": 0.04777875726639902,
       "win_rate": 0.9859154929577465,
-      "profit_loss_ratio": 1056.6063419270663,
+      "profit_loss_ratio": 1056.5786264527271,
       "average_holding_days": 1593.8732394366198,
       "annual_excess": {
-        "QQQ": -0.04115310577798681,
-        "SPY": 0.009996876286834322
+        "QQQ": -0.04115311117457909,
+        "SPY": 0.009996894026320424
       },
-      "run_id": "run-e8b2b8ed281b51ae"
+      "run_id": "run-8dda5ae12bf55077"
     }
   ],
   "reference": [
@@ -296,10 +296,10 @@
         "weight_low_vol": 0.25,
         "cadence": "monthly"
       },
-      "value": -0.007152586306217623,
-      "annual_return": 0.13136709857590212,
-      "max_drawdown": -0.34994947346600147,
-      "run_id": "run-bc650a4f67fceb9f"
+      "value": -0.007152588975811058,
+      "annual_return": 0.13136710552046815,
+      "max_drawdown": -0.3499494159383212,
+      "run_id": "run-e1ecd16be7d794ab"
     },
     {
       "params": {
@@ -309,10 +309,10 @@
         "weight_low_vol": 0.25,
         "cadence": "quarterly"
       },
-      "value": -0.0066266916460964165,
-      "annual_return": 0.13189299323602333,
-      "max_drawdown": -0.34929264433446217,
-      "run_id": "run-5110658680fb21c8"
+      "value": -0.006626696573420965,
+      "annual_return": 0.13189299792285825,
+      "max_drawdown": -0.34929258840310273,
+      "run_id": "run-9177d17490f49dc4"
     }
   ],
   "report": "報告.md",

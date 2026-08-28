@@ -1,5 +1,5 @@
 ﻿mode,cadence,層,格數,有效格,平原,山脊,孤峰,普通,無效,無鄰,最優,最優參數,鄰域平均最高,層平均,高地格數
-winner,monthly,mode=winner、cadence=monthly,15,15,0,3,4,8,0,0,0.0331663767290193,lookback_months=8、mode=winner、cadence=monthly,0.025622312799320066,0.0160300383797411,6
-winner,quarterly,mode=winner、cadence=quarterly,15,15,0,0,3,12,0,0,0.0165856217891184,lookback_months=15、mode=winner、cadence=quarterly,0.014034949809998499,-0.0013820614197078934,0
-rank,monthly,mode=rank、cadence=monthly,15,15,0,0,0,15,0,0,0.0027948014212648,lookback_months=10、mode=rank、cadence=monthly,0.0013264615833950453,-0.001384984490947278,0
-rank,quarterly,mode=rank、cadence=quarterly,15,15,0,0,0,15,0,0,-0.0003499128663024,lookback_months=10、mode=rank、cadence=quarterly,-0.0027129285027211666,-0.005337623862126601,0
+winner,monthly,mode=winner、cadence=monthly,15,15,0,3,4,8,0,0,0.0331664145880585,lookback_months=8、mode=winner、cadence=monthly,0.025622291812261666,0.016030064605487993,6
+winner,quarterly,mode=winner、cadence=quarterly,15,15,0,0,3,12,0,0,0.0165857977001964,lookback_months=15、mode=winner、cadence=quarterly,0.0140351217698971,-0.0013819424484096668,0
+rank,monthly,mode=rank、cadence=monthly,15,15,0,0,0,15,0,0,0.0027948328130653,lookback_months=10、mode=rank、cadence=monthly,0.0013264819423264675,-0.0013849795054961837,0
+rank,quarterly,mode=rank、cadence=quarterly,15,15,0,0,0,15,0,0,-0.0003499100766266,lookback_months=10、mode=rank、cadence=quarterly,-0.002712918049921633,-0.005337606304520173,0

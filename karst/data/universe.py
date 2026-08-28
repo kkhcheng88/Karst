@@ -42,6 +42,22 @@ STARTER_UNIVERSE: tuple[UniverseMember, ...] = (
     UniverseMember("JNJ", "company", "Johnson & Johnson"),
 )
 
+# 因子敞口 ETF(KARST-031 的因子混合策略、KARST-036 的因子輪動用這四隻)。
+# 它們不在起步名單——起步名單是「不指定代號時預設抓哪一批」,而這四隻只在
+# 因子那幾套策略用得着,不應該混進大型股那份預設批次。但它們一樣要**登記**
+# 過:一個代號是公司還是 ETF、顯示名叫什麼,決定了它以什麼為錨(D-026 第 2 條),
+# 命令列不猜。KARST-057 之前它們沒有登記,唯一入口抓不到,只能繞路直呼管線。
+FACTOR_ETF_UNIVERSE: tuple[UniverseMember, ...] = (
+    UniverseMember("QUAL", "etf", "iShares MSCI USA Quality Factor ETF"),
+    UniverseMember("VLUE", "etf", "iShares MSCI USA Value Factor ETF"),
+    UniverseMember("MTUM", "etf", "iShares MSCI USA Momentum Factor ETF"),
+    UniverseMember("USMV", "etf", "iShares MSCI USA Min Vol Factor ETF"),
+)
+
+# 登記在案的全部代號。唯一入口按這份查代號,**預設批次仍然是起步名單**——
+# 登記與預設是兩件事,這裡分開兩份正是為了不把它們混做一件。
+UNIVERSE_REGISTRY: tuple[UniverseMember, ...] = STARTER_UNIVERSE + FACTOR_ETF_UNIVERSE
+
 
 def tickers_of(universe: tuple[UniverseMember, ...]) -> tuple[str, ...]:
     return tuple(member.ticker for member in universe)

@@ -41,6 +41,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
     sys.path.insert(0, str(REPO))
+_EXPERIMENTS = REPO / "experiments"
+if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號七支腳本共用一份(KARST-057)
+    sys.path.insert(0, str(_EXPERIMENTS))
+
+from snapshot_ids import PRICE_FACTOR_ETF  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 
@@ -82,7 +87,7 @@ STORE_PATH = REPO / "karst.sqlite"
 SNAPSHOT_ROOT = REPO / "data" / "snapshots"
 RUNS_ROOT = REPO / "data" / "runs"
 
-SNAPSHOT_ID = "2026-08-27-91a5d51339d9"
+SNAPSHOT_ID = PRICE_FACTOR_ETF   # 見 experiments/snapshot_ids.py(KARST-057 重建)
 ROTATION_STRATEGY = "因子輪動(ETF 版)"
 MIX_STRATEGY = "因子混合(ETF 版)"
 ENGINE_VERSION = "0.1.0"

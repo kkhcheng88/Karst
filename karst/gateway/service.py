@@ -20,7 +20,7 @@ import sqlite3
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 
-from ..errors import NotFound
+from ..errors import ContractViolation, NotFound
 from ..models import FormulaProcedure, MaterialProcedure, Procedure
 from ..store import (
     ActiveSetup,
@@ -432,6 +432,52 @@ class Gateway:
         )
         return snapshot, fetch
 
+    def take_macro_snapshot(
+        self,
+        *,
+        price_snapshot_id: str,
+        source: object | None = None,
+        root: str | None = None,
+        price_root: str | None = None,
+        codes: Sequence[str] | None = None,
+        taken_on: str | None = None,
+    ) -> tuple[object, object]:
+        """宏觀十四序列走同一道門(KARST-057)。
+
+        與價格那條的分別只有一處:宏觀序列**要對齊價格快照那條主日曆**,所以
+        窗口不是命令列給的,是由指定那個價格快照的日曆讀回來——兩份快照的日子
+        對不上,驅動器就會拿住一條有洞的訊號去移權。門在這裡替呼叫方對齊,
+        免得每個腳本各自抄一次對齊的做法。
+        """
+        from ..data import CALENDAR_TICKER, ALL_SERIES_CODES, build_macro_snapshot, read_calendar
+
+        calendar = read_calendar(self._store, price_snapshot_id, root=price_root)
+        if not calendar:
+            raise ContractViolation(
+                f"價格快照 {price_snapshot_id} 的日曆是空的,宏觀序列無從對齊"
+            )
+        snapshot = build_macro_snapshot(
+            self._store,
+            start=calendar[0],
+            end=calendar[-1],
+            calendar=calendar,
+            calendar_ticker=CALENDAR_TICKER,
+            codes=tuple(codes) if codes else ALL_SERIES_CODES,
+            source=source,
+            root=root,
+            taken_on=taken_on,
+        )
+        fetch = self._store.record_snapshot_fetch(
+            snapshot.snapshot_id,
+            fetched_at=snapshot.fetched_at,
+            window_start=snapshot.window_start,
+            window_end=snapshot.window_end,
+            entity_count=len(snapshot.series),
+            row_count=snapshot.rows,
+            trading_days=snapshot.trading_days,
+        )
+        return snapshot, fetch
+
     def list_snapshots(self) -> list:
         return self._store.list_snapshots()
 
@@ -499,19 +545,19 @@ def resolve_universe(tickers: Sequence[str] | None) -> tuple[object, ...]:
     **不猜**:名單上沒有的代號當場拒收。一個代號是公司還是 ETF、顯示名叫什麼,
     決定了它以 SEC CIK 還是內部代碼為錨(D-026 第 2 條),不是命令列可以憑空填的。
     """
-    from ..data import STARTER_UNIVERSE
+    from ..data import STARTER_UNIVERSE, UNIVERSE_REGISTRY
 
     wanted = [str(ticker).strip().upper() for ticker in (tickers or ()) if str(ticker).strip()]
     if not wanted:
         return tuple(STARTER_UNIVERSE)
 
-    known = {member.ticker.upper(): member for member in STARTER_UNIVERSE}
+    known = {member.ticker.upper(): member for member in UNIVERSE_REGISTRY}
     members: list[object] = []
     seen: set[str] = set()
     for ticker in wanted:
         if ticker not in known:
             raise ValueError(
-                f"起步宇宙名單上沒有代號 {ticker};"
+                f"宇宙名單登記上沒有代號 {ticker};"
                 f"名單現有:{'、'.join(sorted(known))}。"
                 "要加新代號請先在名單登記它是公司還是 ETF——這裡不猜"
             )

@@ -12,12 +12,18 @@ KARST-043 收檔時舉了一手:現時的鄰域把三條軸一視同仁——回
 本檔**一次引擎都不動**:只讀 KARST-043 落下的掃描表(連成本那一份,兩個驅動器
 各 60 格),用兩套鄰域各判一次——
 
-* **舊口徑**:三條軸全部當連續,即 KARST-043 用的那一個格。判出來的結果**要與
-  當日落檔的判讀表逐格對得上**,否則即是本票改動了不該改的東西——所以這一步是
-  本檔的自檢,不是裝飾。(KARST-048 之後 ``rotation_grid`` 自己會宣告軸型,所以
+* **舊口徑**:三條軸全部當連續,即 KARST-043 當日用的那一個格。留住它是為了看得到
+  兩套鄰域判出來的分別。(KARST-048 之後 ``rotation_grid`` 自己會宣告軸型,所以
   舊口徑要經 ``all_continuous`` 把它還原,不再是它的原樣。)
 * **新口徑**:回望期做連續軸,退路(持現金/均分)與節奏(月度/季度)做選擇軸。
   鄰域只沿回望期取,兩條選擇軸切出四層,每層各出一份判讀,並判得出**山脊**。
+  **新口徑判出來的結果要與來源目錄落檔的判讀表逐格對得上**——這是本檔的自檢,
+  不是裝飾:它守住「重判腳本與生產掃描路徑判得出同一批裁決」。
+
+  自檢本來對的是舊口徑那一臂,因為本檔最初寫成時,來源那張判讀表裝住的是
+  KARST-043 當日三軸全連續的裁決。KARST-048 令生產掃描路徑自己宣告軸型,來源腳本
+  重跑一次就會用新口徑覆寫那張表;數據目錄重建(KARST-057)正正重跑過,所以對得上
+  的一方換了邊(實測:新口徑 0/60 格不同,舊口徑 9 格與 6 格不同)。
 
 落檔:逐驅動器一份新判讀表、一份新舊裁決對照表、一份分層判讀表,加四張投影圖
 (新舊各兩張,看得到裁決標記由三角變成等號)。
@@ -35,6 +41,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:  # 未裝套件也跑得動(倉根就在上兩層)
     sys.path.insert(0, str(REPO))
+_EXPERIMENTS = REPO / "experiments"
+if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號七支腳本共用一份(KARST-057)
+    sys.path.insert(0, str(_EXPERIMENTS))
+
+from snapshot_ids import PRICE_FACTOR_ETF  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 
@@ -75,7 +86,7 @@ DRIVERS = {
 
 COST_LABEL = "連成本(每股 US$0.005 + 滑點 5 個基點)"
 PERIOD = ("2015-01-02", "2026-08-26")
-SNAPSHOT = "2026-08-27-91a5d51339d9"
+SNAPSHOT = PRICE_FACTOR_ETF   # 見 experiments/snapshot_ids.py(KARST-057 重建)
 
 
 def _plain(value):
@@ -146,7 +157,24 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
         min_trades=MIN_TRADES, lonely_peak_margin=MARGIN, plateau_quantile=QUANTILE,
     )
 
-    # 自檢:重判出來的舊裁決要與 KARST-043 落檔的判讀表逐格對得上。
+    # --- 新口徑:回望期連續,退路與節奏做選擇軸 -----------------------------
+    new_grid = axis_aware_grid(frame, spec)
+    new = judge(
+        scores_from(frame, new_grid), new_grid, objective=OBJECTIVE,
+        min_trades=MIN_TRADES, lonely_peak_margin=MARGIN, plateau_quantile=QUANTILE,
+    )
+
+    # 自檢:重判出來的裁決要與來源目錄落檔的判讀表逐格對得上。
+    #
+    # 這道閘本來對的是**舊口徑**——本檔最初寫成時,來源那張判讀表是 KARST-043 當日
+    # 落檔的,裡面裝住三條軸全部當連續判出來的裁決。KARST-048 之後,生產掃描路徑
+    # 自己宣告軸型,來源腳本重跑一次就會用**新口徑**覆寫那張判讀表;數據目錄重建
+    # (KARST-057)正正重跑過,所以現時落檔那張表裝住的是新口徑的裁決。
+    #
+    # 於是對得上的一方換了邊:實測相對強弱與因子動量兩個驅動器,新口徑 0/60 格不同、
+    # 舊口徑分別 9 格與 6 格不同。閘照樣要有——它守的是「重判腳本與生產掃描路徑判
+    # 得出同一批裁決」,只是現在要對新口徑。舊口徑那一臂留住做歷史對照,但已經沒有
+    # 落檔的表可以核對它。
     names = list(old_grid.axis_names)
     filed = {
         tuple(_plain(row[name]) for name in names): str(row["verdict"])
@@ -154,21 +182,15 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
     }
     mismatched = [
         cell.point.label
-        for cell in old.cells
+        for cell in new.cells
         if filed.get(tuple(cell.point.get(n) for n in names)) != cell.verdict
     ]
     if mismatched:
         raise SystemExit(
-            f"{driver_key}:舊口徑重判與 KARST-043 落檔的判讀表對不上,"
-            f"{len(mismatched)} 格不同(例:{mismatched[0]});本票不應改動舊判讀"
+            f"{driver_key}:軸型重判與來源目錄落檔的判讀表對不上,"
+            f"{len(mismatched)} 格不同(例:{mismatched[0]});"
+            "重判腳本與生產掃描路徑應該判得出同一批裁決"
         )
-
-    # --- 新口徑:回望期連續,退路與節奏做選擇軸 -----------------------------
-    new_grid = axis_aware_grid(frame, spec)
-    new = judge(
-        scores_from(frame, new_grid), new_grid, objective=OBJECTIVE,
-        min_trades=MIN_TRADES, lonely_peak_margin=MARGIN, plateau_quantile=QUANTILE,
-    )
 
     out = out_root / f"dense-{driver_key}"
     out.mkdir(parents=True, exist_ok=True)
@@ -178,16 +200,19 @@ def rejudge(driver_key: str, spec: dict, out_root: Path) -> dict:
     # --- 新舊裁決對照表(60 行) --------------------------------------------
     rows = []
     for cell in new.cells:
-        key = tuple(cell.point.get(n) for n in names)
         before = old.cell_for(cell.point)
         rows.append(
             {
                 **cell.point.as_dict(),
                 "層": cell.layer_name,
                 OBJECTIVE: cell.value,
-                "舊裁決": filed[key],
+                # 舊裁決取**舊口徑重判**出來那一個,不是落檔判讀表那一欄。
+                # 兩者本來一樣(當日那張表就是舊口徑判的),KARST-048 之後生產掃描
+                # 路徑改判新口徑,來源腳本一重跑就會覆寫那張表;再讀 filed 的話,
+                # 這一欄會變成新裁決自己,整張對照表就永遠報「沒有變」。
+                "舊裁決": before.verdict,
                 "新裁決": cell.verdict,
-                "變了": "是" if filed[key] != cell.verdict else "",
+                "變了": "是" if before.verdict != cell.verdict else "",
                 "舊鄰域格數": len(before.neighbours),
                 "舊鄰域平均": before.neighbourhood_mean,
                 "舊落差": before.lift,

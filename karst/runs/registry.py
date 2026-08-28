@@ -409,6 +409,26 @@ class RunStore:
     def is_stale(self, run_id: str) -> bool:
         return self._store.run_is_stale(run_id)
 
+    def missing_series(self, run_id: str) -> tuple[str, ...]:
+        """這次運行有哪幾條序列**不在磁碟上**。三條都在就回空。
+
+        與 ``verify_run`` 的分別:那一個是「檔在,但內容改過」,這一個是「檔本身
+        不見了」。兩者都不改登記——**定義表不可刪**(D-026):登記是一件已經發生
+        的事,序列檔沒有了不等於那次運行沒有跑過。讀取層據此把它標成
+        「過時運行(序列缺失)」,列得出它的來歷,但不當它是一次畫得出圖的運行。
+
+        只看檔在不在,不讀內容:一次要問幾千個運行,逐個開 parquet 會拖死開頁。
+        """
+        record = self._store.get_run(run_id)
+        return tuple(
+            kind
+            for kind in RUN_ARTIFACT_KINDS
+            if not Path(record.artifact(kind).path).exists()
+        )
+
+    def series_intact(self, run_id: str) -> bool:
+        return not self.missing_series(run_id)
+
     def verify_run(self, run_id: str) -> tuple[str, ...]:
         """重讀三份 parquet 再算一次雜湊,對不上登記的就報出來。
 
