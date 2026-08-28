@@ -25,16 +25,26 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 
 from __future__ import annotations
 
+import re
 import sqlite3
+from typing import Any
 
 # 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);
 # 第 3 版加入回測運行登記三組表(KARST-026);
 # 第 4 版加入現役設定登記表(KARST-030);
 # 第 5 版加入共用風控層的規則定義表與策略引用表(KARST-025);
-# 第 6 版加入數據快照的抓取登記附表(KARST-034)。舊庫重開即自動補建。
-SCHEMA_VERSION = 6
+# 第 6 版加入數據快照的抓取登記附表(KARST-034)。舊庫重開即自動補建;
+# 第 7 版把 param_set 的換倉節奏約束改為由引擎那份正本砌出來(KARST-044),
+#        舊庫重開時自動重建 param_set(見 ``_migrate_param_set_cadence``)。
+SCHEMA_VERSION = 7
 
-DDL = """
+# 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
+# ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
+# (KARST-044)。以前這裡另寫一份日/月/季,於是引擎認得週度、庫身收不到,
+# 週度參數集登記不了——同一件事有兩個講法,遲早各走各路。
+_CADENCE_SLOT = "__REBALANCE_CADENCES__"
+
+_DDL_TEMPLATE = """
 CREATE TABLE IF NOT EXISTS schema_meta (
     key   TEXT PRIMARY KEY,
     value TEXT NOT NULL
@@ -204,13 +214,14 @@ CREATE TABLE IF NOT EXISTS strategy_factor_ref (
 
 -- 參數集:掛在一個策略版本上的一組「名稱→值」,必帶換倉節奏。
 -- 換倉節奏無預設值(CONTEXT.md 換倉節奏;用戶反問「Why we need a default?」),缺就寫不入。
+-- 收哪幾個節奏不在此處寫死:見上面 _CADENCE_SLOT,取值由引擎那份正本砌出來。
 CREATE TABLE IF NOT EXISTS param_set (
     param_set_id        INTEGER PRIMARY KEY AUTOINCREMENT,
     strategy_version_id INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
     name                TEXT NOT NULL,
     version_no          INTEGER NOT NULL,
     parent_version_id   INTEGER REFERENCES param_set(param_set_id),
-    rebalance_cadence   TEXT NOT NULL CHECK (rebalance_cadence IN ('daily', 'monthly', 'quarterly')),
+    rebalance_cadence   TEXT NOT NULL CHECK (rebalance_cadence IN (__REBALANCE_CADENCES__)),
     created_at          TEXT NOT NULL,
     UNIQUE (strategy_version_id, name, version_no),
     CHECK (length(trim(name)) > 0),
@@ -501,12 +512,114 @@ END;
 """
 
 
+def _cadence_values_sql() -> str:
+    """砌出 CHECK 裡那串取值,例如 ``'daily', 'monthly', 'quarterly', 'weekly'``。
+
+    正本要等到本函式被叫的那一刻才匯入:``karst.engine`` 反過來要匯入
+    ``karst.store``,而 ``karst.store`` 匯入本檔,寫在檔頭會兜成一個圈
+    (與 ``karst/store.py`` 的 ``rebalance_cadences()`` 同一個做法)。
+    """
+    from .engine.contracts import CADENCES
+
+    return ", ".join(f"'{cadence}'" for cadence in sorted(CADENCES))
+
+
+def ddl() -> str:
+    """完整建表 DDL。換倉節奏那一格由引擎那份正本即場砌入。"""
+    return _DDL_TEMPLATE.replace(_CADENCE_SLOT, _cadence_values_sql())
+
+
+def __getattr__(name: str) -> Any:
+    """``DDL`` 是即場由正本砌出來的,不是本檔另存的第二份表結構。"""
+    if name == "DDL":
+        return ddl()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
+def _cadences_in_db(conn: sqlite3.Connection) -> frozenset[str] | None:
+    """庫身現有的 ``param_set`` 收哪幾個換倉節奏;表未建成則 ``None``。"""
+    row = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'param_set'"
+    ).fetchone()
+    if row is None or not row[0]:
+        return None
+    clause = re.search(r"rebalance_cadence\s+IN\s*\(([^)]*)\)", row[0], re.IGNORECASE)
+    if clause is None:
+        return None
+    return frozenset(re.findall(r"'([^']*)'", clause.group(1)))
+
+
+def _migrate_param_set_cadence(conn: sqlite3.Connection) -> bool:
+    """舊庫的 ``param_set`` 重建一次,只換換倉節奏那條 CHECK(KARST-044)。
+
+    sqlite 改不到 CHECK,唯一做法是整張表重建:開新表 → 逐列搬過去 → 刪舊表 →
+    改名 → 讓 DDL 補回隨舊表一齊消失的觸發器。
+
+    **``param_set_id`` 逐個原封搬過去**:唯一入口的簽章是按 ``param_set[<id>]``
+    這個 row key 記的,``param_value`` 等表亦以它做外鍵。取值一個字不改,所以
+    內容雜湊不變、簽章仍然有效——搬完 ``karst verify`` 照舊清白。
+
+    只在偵測到舊版(庫身收的節奏與正本對不上)時跑,跑完庫身就是正本那一份,
+    重開不會再跑。回傳有沒有真的搬過。
+    """
+    from .engine.contracts import CADENCES
+
+    recorded = _cadences_in_db(conn)
+    if recorded is None or recorded == frozenset(CADENCES):
+        return False
+
+    statement = re.search(
+        r"CREATE TABLE IF NOT EXISTS param_set \(.*?\n\);", ddl(), re.DOTALL
+    )
+    if statement is None:  # pragma: no cover - DDL 改壞才會走到這裡
+        raise RuntimeError("建表 DDL 裡找不到 param_set,無法重建")
+    create_new = statement.group(0).replace(
+        "CREATE TABLE IF NOT EXISTS param_set (", "CREATE TABLE param_set_new (", 1
+    )
+
+    # 欄位由舊表自己報:新表與舊表同欄位,只換 CHECK,所以此處不另抄一份欄位名。
+    columns = [str(row["name"]) for row in conn.execute("PRAGMA table_info(param_set)")]
+    column_list = ", ".join(f'"{column}"' for column in columns)
+
+    # PRAGMA foreign_keys 在交易之內是無聲的空操作,所以收放都要在 BEGIN 之外。
+    conn.commit()
+    previous_isolation = conn.isolation_level
+    conn.execute("PRAGMA foreign_keys = OFF")
+    conn.isolation_level = None
+    try:
+        conn.execute("BEGIN")
+        try:
+            conn.execute(create_new)
+            conn.execute(
+                f"INSERT INTO param_set_new ({column_list}) "
+                f"SELECT {column_list} FROM param_set"
+            )
+            conn.execute("DROP TABLE param_set")
+            conn.execute("ALTER TABLE param_set_new RENAME TO param_set")
+        except Exception:
+            conn.execute("ROLLBACK")
+            raise
+        conn.execute("COMMIT")
+    finally:
+        conn.isolation_level = previous_isolation
+        conn.execute("PRAGMA foreign_keys = ON")
+
+    # 觸發器隨舊表一齊消失,DDL 是 IF NOT EXISTS,重跑即補回。
+    conn.executescript(ddl())
+    broken = conn.execute("PRAGMA foreign_key_check").fetchall()
+    if broken:  # pragma: no cover - 搬表搬漏了才會走到這裡
+        raise RuntimeError(f"param_set 重建後外鍵對不上:{[tuple(r) for r in broken]}")
+    conn.commit()
+    return True
+
+
 def connect(path: str) -> sqlite3.Connection:
     """開庫並建表。``path`` 用 ``":memory:"`` 即開一個即用即棄的庫。"""
     conn = sqlite3.connect(path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
-    conn.executescript(DDL)
+    conn.executescript(ddl())
+    _migrate_param_set_cadence(conn)
     # 舊庫重開時 DDL 會自動補建新表,故版本印記亦要跟上——否則庫身已是新版、
     # 印記仍寫舊版,下一個人會照印記去猜錶內有什麼表。
     conn.execute(
