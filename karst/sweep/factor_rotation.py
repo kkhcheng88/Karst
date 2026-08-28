@@ -42,6 +42,7 @@ from ..strategies.factor_rotation import (
     DRIVER_UNORDERED_PARAMETERS,
     FactorRotationParams,
     build_driver,
+    macro_series_needed,
     run_factor_rotation,
 )
 from .factor_mix import (
@@ -189,6 +190,8 @@ class FactorRotationJob:
         costs: TradingCosts | None = None,
         engine: Any | None = None,
         engine_name: str = "vectorbt",
+        macro: pd.DataFrame | None = None,
+        macro_snapshot_id: str | None = None,
     ) -> None:
         if not isinstance(panel, PricePanel):
             raise ContractViolation(f"價格面板要是 PricePanel,收到 {type(panel).__name__}")
@@ -225,6 +228,27 @@ class FactorRotationJob:
         self._engine_name = str(engine_name).strip()
         self._written = 0
 
+        # 宏觀驅動器(KARST-040)。宏觀面板要哪幾條序列由驅動器自己講(``needs_macro``),
+        # 不在這裡手抄一張表。缺面板就當場拒收——**不會靜靜地跑一次「宏觀訊號從來
+        # 沒有講過話」的掃描**。
+        self._macro = macro
+        self._macro_series = macro_series_needed(key)
+        self._macro_snapshot_id = (
+            str(macro_snapshot_id).strip() if macro_snapshot_id else None
+        )
+        if self._macro_series:
+            if macro is None:
+                raise ContractViolation(
+                    f"驅動器「{key}」要看宏觀序列 {'、'.join(self._macro_series)},"
+                    "但今次沒有給宏觀面板;寫明 macro=(見 karst.data.macro.read_macro_panel)"
+                )
+            if not self._macro_snapshot_id:
+                raise ContractViolation(
+                    f"驅動器「{key}」用宏觀數據,但沒有寫明宏觀快照編號;"
+                    "編號是這次成績來歷的一部分,亦入參數集(換一份宏觀數據就要另一個"
+                    "運行編號),不可留空"
+                )
+
     @property
     def driver_key(self) -> str:
         return self._driver_key
@@ -232,6 +256,15 @@ class FactorRotationJob:
     @property
     def costs(self) -> TradingCosts | None:
         return self._costs
+
+    @property
+    def macro_series(self) -> tuple[str, ...]:
+        """這個驅動器要看的宏觀序列(空的即它只看價格)。"""
+        return self._macro_series
+
+    @property
+    def macro_snapshot_id(self) -> str | None:
+        return self._macro_snapshot_id
 
     @property
     def param_names(self) -> tuple[str, ...]:
@@ -294,6 +327,12 @@ class FactorRotationJob:
         # 交易成本同一個道理:成本一改就是另一次運行,所以要入參數集。零成本就一格
         # 都不寫、名亦一字不改,零成本那批舊運行照樣撞得回去(見 cost_values/cost_slug)。
         values.update(cost_values(self._costs))
+        # 宏觀快照同一個道理(KARST-040):換一份宏觀數據就是另一次運行,所以編號
+        # 要入參數集。價格驅動器一格都不寫、名亦一字不改,KARST-036/043 那批舊運行
+        # 照樣撞得回去。
+        if self._macro_snapshot_id:
+            values["macro_snapshot"] = self._macro_snapshot_id
+            values["macro_series"] = "、".join(self._macro_series)
 
         param_set = self._param_set(
             f"{self._prefix}{point_slug(point)}{cost_slug(self._costs)}", cadence, values
@@ -336,6 +375,7 @@ class FactorRotationJob:
             params=params,
             engine=self._engine,
             market_ticker=self._market_ticker,
+            macro=self._macro,
         )
         if result.engine_name != self._engine_name:
             raise ContractViolation(

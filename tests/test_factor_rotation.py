@@ -26,6 +26,8 @@ from karst.strategies.factor_mix import (
 from karst.strategies.factor_rotation import (
     DRIVER_PARAMETERS,
     EXTERNAL_DATA,
+    PRICE_DRIVER_KEYS,
+    macro_series_needed,
     SOURCE_DRIVER,
     DriverView,
     FactorRotationParams,
@@ -424,9 +426,17 @@ def test_swapping_the_driver_changes_only_the_weights_not_the_path(toy):
 
 
 def test_no_external_data_is_needed_and_signals_never_peek_past_the_decision_day(toy):
-    # 外部數據清單是空的:四個驅動器的訊號全部由快照裡的 ETF 收價算出來,
-    # 所以沒有來源要列、沒有費用要付、沒有知情時間以外的處置。
-    assert EXTERNAL_DATA == ()
+    # KARST-036 這四個驅動器的訊號全部由快照裡的 ETF 收價算出來,一條外部序列
+    # 都不用——所以它們**自己**沒有來源要列、沒有費用要付。
+    # (KARST-040 之後 EXTERNAL_DATA 不再是空的:那張清單是**全檔**共用的,
+    #  宏觀驅動器逐條列在那裡。這裡要守住的是「價格驅動器不碰外部數據」。)
+    for key in PRICE_DRIVER_KEYS:
+        assert macro_series_needed(key) == (), f"{key} 是價格驅動器,不應要外部序列"
+
+    # 清單本身仍然逐條講明三件事,而且一條付費來源都沒有。
+    for row in EXTERNAL_DATA:
+        assert set(row) >= {"序列", "來源", "免費", "知情時間"}
+        assert row["免費"].startswith("是")
 
     store, panel = toy["store"], toy["panel"]
     seen: list[tuple[pd.Timestamp, pd.Timestamp, pd.Timestamp]] = []

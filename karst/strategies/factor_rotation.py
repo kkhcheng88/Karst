@@ -20,8 +20,16 @@
 3. **參數無預設值**(D-008 第 3 條)。回望期 L、均線日數 M、換倉節奏、熱身期權重,
    全部要寫明。本檔查不到任何一個「常用取值」。
 
-外部數據:**一個都不用**。四個驅動器的訊號全部由六隻 ETF 自身的收價算出來
-(見 ``EXTERNAL_DATA``),所以不涉知情時間以外的處置,亦沒有第三方來源要付費。
+外部數據:**價格驅動器一個都不用**,宏觀驅動器**只用免費序列**(KARST-040)。
+頭四個驅動器的訊號全部由六隻 ETF 自身的收價算出來;之後五個宏觀驅動器另收一張
+宏觀面板(VIX、美債息率、信用利差代理、聯邦基金期貨),逐條列於 ``EXTERNAL_DATA``
+——來源、免費與否、知情時間怎樣處置,三件事在那裡寫明。宏觀序列**不是可投資
+對象**,不入實體表、不入價格面板(處置見 ``karst.data.macro``),所以它們影響的
+永遠只是「四格怎樣分」,不會變成第五格持倉。
+
+接口是**向後相容**地擴出來的:``DriverView.macro``、``rotation_targets(macro=…)``、
+``run_factor_rotation(macro=…)`` 三處都是有預設值的新參數,留空即與 KARST-036 那
+四個驅動器一模一樣;不看宏觀的驅動器連 ``macro`` 這個字都不用提。
 
 用法::
 
@@ -82,14 +90,49 @@ _SUM_TOLERANCE: Final[float] = 1e-9
 # 大市那一條線用的代號。**它只做訊號,一股不持**——它不是四格敞口之一。
 DEFAULT_MARKET_TICKER: Final[str] = "SPY"
 
-# 四格敞口在參數集裡的參數名。趨勢開關要指名「押哪一格」,用得着這兩個。
+# 四格敞口在參數集裡的參數名。開關型驅動器要指名「押哪一格」,用得着這四個。
 MOMENTUM_KEY: Final[str] = "weight_momentum"
 LOW_VOL_KEY: Final[str] = "weight_low_vol"
+QUALITY_KEY: Final[str] = "weight_quality"
+VALUE_KEY: Final[str] = "weight_value"
 
-# **外部數據清單**(驗收條件四)。本檔四個驅動器一個外部來源都不用:訊號全部由
-# 快照裡六隻 ETF 自身的收價算出來,所以這張清單是空的。日後有驅動器非要 VIX、
-# 債息一類序列不可,先在這裡列明「來源、免費與否、知情時間怎樣處置」才准實作。
-EXTERNAL_DATA: Final[tuple[Mapping[str, str], ...]] = ()
+# **外部數據清單**(驗收條件四)。KARST-036 那四個價格驅動器一個外部來源都不用,
+# 故此清單本來是空的;KARST-040 加宏觀驅動器時照這裡的規矩逐條列明「來源、免費
+# 與否、知情時間怎樣處置」才實作。日後再加序列,一樣先在這裡寫一行。
+#
+# 全部經 ``karst.data.macro`` 的來源適配器入宏觀快照,對齊價格快照那條主日曆,
+# 知情時間一律**當日收市後可得**(D-021 第 3 條)——與價格同一級,成交照舊在決策
+# 日之後那一根 K 線的開價。**一個付費來源、一把 API 鑰匙都沒有用。**
+EXTERNAL_DATA: Final[tuple[Mapping[str, str], ...]] = (
+    {
+        "序列": "VIX、VIX_3M",
+        "來源": "yfinance ^VIX / ^VIX3M",
+        "免費": "是(無鑰匙)",
+        "知情時間": "當日收市後可得",
+        "用途": "恐慌水平與期限結構開關",
+    },
+    {
+        "序列": "HY_ETF、IG_ETF",
+        "來源": "yfinance HYG / LQD",
+        "免費": "是(無鑰匙)",
+        "知情時間": "當日收市後可得",
+        "用途": "信用利差的免費替代(FRED 高收益 OAS 要 API 鑰匙,故不用)",
+    },
+    {
+        "序列": "UST_3M、UST_5Y、UST_10Y、UST_30Y",
+        "來源": "yfinance ^IRX / ^FVX / ^TNX / ^TYX",
+        "免費": "是(無鑰匙)",
+        "知情時間": "當日收市後可得",
+        "用途": "美債息率與曲線斜度(2 年期以 ^IRX 替代,FRED DGS2 要鑰匙)",
+    },
+    {
+        "序列": "FF_FUTURE",
+        "來源": "yfinance ZQ=F",
+        "免費": "是(無鑰匙)",
+        "知情時間": "當日收市後可得",
+        "用途": "聯邦基金利率預期的免費替代(**FedWatch 本身不免費**,FRED DFF 要鑰匙)",
+    },
+)
 
 # 每次換倉那一格權重是誰決定的。報告與審計靠這一欄分得出「驅動器真的講過話」
 # 與「熱身期照鋪」兩件事。
@@ -123,6 +166,12 @@ class DriverView:
 
     ``market`` 是大市那一條收價線(預設 SPY),同樣切到決策日為止;用不着它的
     驅動器(例如逆波幅)不會碰它。
+
+    ``macro`` 是宏觀面板(KARST-040):日期為列、**序列代號**為欄,同樣只切到決策
+    日為止。它與 ``history`` 對齊同一條主日曆,所以「決策日」在兩張表裡指同一日。
+    宏觀讀數的知情時間是當日收市後可得(D-021 第 3 條),與收價同一級,故最後一行
+    用得着。**留空的格就是留空**——那一日沒有讀數,不是零;讀到留空即拋
+    ``InsufficientHistory``,由排期那一層退回熱身期權重並記成「數據不足」。
     """
 
     decision_date: pd.Timestamp
@@ -130,6 +179,7 @@ class DriverView:
     keys: tuple[str, ...]
     market: pd.Series | None = None
     market_ticker: str | None = None
+    macro: pd.DataFrame | None = None
 
     def __post_init__(self) -> None:
         if self.history.empty:
@@ -206,6 +256,106 @@ class DriverView:
             )
         return self.market
 
+    # ---- 宏觀序列(KARST-040)。同樣只讀得到決策日或之前的日子 ----
+
+    def require_macro(self, code: str) -> pd.Series:
+        """取一條宏觀序列(切到決策日為止)。沒有那條序列就當場拒收,不當零。"""
+        name = str(code).strip().upper()
+        if self.macro is None:
+            raise ContractViolation(
+                f"這個驅動器要看宏觀序列「{name}」,但今次沒有給宏觀面板;"
+                "跑的時候寫明 macro=(見 karst.data.macro.read_macro_panel)"
+            )
+        if name not in self.macro.columns:
+            raise ContractViolation(
+                f"宏觀面板裡沒有序列「{name}」;有的是:"
+                f"{'、'.join(str(c) for c in self.macro.columns) or '(一條都沒有)'}"
+            )
+        return self.macro[name]
+
+    def macro_last(self, code: str) -> float:
+        """一條宏觀序列在決策日的讀數。那一格留空即當回望期不夠,不當零。"""
+        series = self.require_macro(code)
+        if series.empty:
+            raise InsufficientHistory(f"宏觀序列 {code} 在決策日之前一個讀數都沒有")
+        value = float(series.iloc[-1])
+        if not np.isfinite(value):
+            raise InsufficientHistory(
+                f"宏觀序列 {code} 在 {pd.Timestamp(self.decision_date).date()} 留空"
+                "(那一日沒有讀數);留空不當零,這一期不由驅動器話事"
+            )
+        return value
+
+    def _macro_pair(self, code: str, days: int) -> tuple[float, float]:
+        """一條宏觀序列的「``days`` 根 K 線之前」與「決策日」兩個讀數。
+
+        用**位置**回望(不是日曆月份):宏觀序列已對齊主日曆,第 ``days`` 根之前就
+        是第 ``days`` 個交易日之前。兩端任何一端留空即拋 ``InsufficientHistory``
+        ——半個訊號不是訊號。
+        """
+        window = int(days)
+        if window < 1:
+            raise ContractViolation(f"宏觀回望期最少 1 日,收到 {days!r}")
+        series = self.require_macro(code)
+        if len(series) < window + 1:
+            raise InsufficientHistory(
+                f"宏觀序列 {code} 回望 {window} 日要 {window + 1} 個讀數,"
+                f"手上只有 {len(series)} 個"
+            )
+        base = float(series.iloc[-(window + 1)])
+        last = float(series.iloc[-1])
+        if not (np.isfinite(base) and np.isfinite(last)):
+            raise InsufficientHistory(
+                f"宏觀序列 {code} 回望 {window} 日的兩端有留空"
+                f"(起 {base}、訖 {last});留空不當零,這一期不由驅動器話事"
+            )
+        return base, last
+
+    def macro_change(self, code: str, days: int) -> float:
+        """一條宏觀序列過去 ``days`` 個交易日的**絕對變化**(決策日讀數減回望日讀數)。
+
+        息率、斜度一類以百分點計的序列要用這一條:2.1% 升到 2.3% 是升了 0.2 個
+        百分點,不是升了 9.5%。
+        """
+        base, last = self._macro_pair(code, days)
+        return last - base
+
+    def macro_return(self, code: str, days: int) -> float:
+        """一條宏觀序列過去 ``days`` 個交易日的**相對變化**(比率減一)。
+
+        價格型序列(ETF 收價一類)要用這一條。回望日的讀數是零即拋錯,不當無限大。
+        """
+        base, last = self._macro_pair(code, days)
+        if base == 0.0:
+            raise InsufficientHistory(f"宏觀序列 {code} 回望日的讀數是零,算不出相對變化")
+        return last / base - 1.0
+
+    def macro_ratio_last(self, numerator: str, denominator: str) -> float:
+        """兩條宏觀序列在決策日的比率(例如 VIX ÷ VIX_3M 即期限結構)。"""
+        top = self.macro_last(numerator)
+        bottom = self.macro_last(denominator)
+        if bottom == 0.0:
+            raise InsufficientHistory(f"宏觀序列 {denominator} 在決策日是零,算不出比率")
+        return top / bottom
+
+    def macro_ratio_change(self, numerator: str, denominator: str, days: int) -> float:
+        """兩條序列的比率過去 ``days`` 個交易日的**相對變化**。
+
+        信用利差代理(HY_ETF ÷ IG_ETF)用的正是這一條:比率跌 = 高收益跑輸 =
+        利差擴闊。兩條序列的兩端共四個讀數,任何一個留空即當數據不足。
+        """
+        top_base, top_last = self._macro_pair(numerator, days)
+        bottom_base, bottom_last = self._macro_pair(denominator, days)
+        if bottom_base == 0.0 or bottom_last == 0.0:
+            raise InsufficientHistory(
+                f"宏觀序列 {denominator} 在回望窗兩端有零,算不出比率變化"
+            )
+        base = top_base / bottom_base
+        last = top_last / bottom_last
+        if base == 0.0:
+            raise InsufficientHistory(f"{numerator}÷{denominator} 在回望日是零,算不出變化")
+        return last / base - 1.0
+
 
 # ----------------------------------------------------------------------
 # 驅動器:同一個接口,四個實作
@@ -224,6 +374,12 @@ class RotationDriver(Protocol):
     key: str
     name: str
     needs_market: bool
+    needs_macro: tuple[str, ...]
+    """要看的宏觀序列代號(KARST-040)。空的即這個驅動器只看價格。
+
+    跑的時候由 ``run_factor_rotation`` 逐條核對:宏觀面板裡缺任何一條即**當場
+    拒收**,不會靜靜地跑出一條「訊號從來沒有講過話」的淨值線。
+    """
 
     def weights(self, view: DriverView) -> Mapping[str, float]: ...
 
@@ -282,6 +438,54 @@ def _ranked(values: Mapping[str, float]) -> list[str]:
     return sorted(values, key=lambda key: (-float(values[key]), key))
 
 
+def _tilt_towards(
+    keys: Sequence[str], targets: Sequence[str], tilt: float
+) -> dict[str, float]:
+    """把 ``tilt`` 那一注平均押在 ``targets`` 幾格,其餘平均分給剩下那幾格。
+
+    開關型驅動器(趨勢開關與五個宏觀驅動器)共用這一條。``tilt=1.0`` 即整注押在
+    那幾格、其餘清零;``tilt=0.5`` 即一半押那幾格、一半平均分給其餘。要押的格不在
+    四格敞口裡就當場拒收——**不靜靜地把注落在別處**。
+    """
+    names = tuple(keys)
+    picked = [key for key in dict.fromkeys(targets)]
+    missing = [key for key in picked if key not in names]
+    if missing:
+        raise ContractViolation(
+            f"這個驅動器要押「{'、'.join(missing)}」那幾格,但四格敞口裡沒有它們:"
+            f"{'、'.join(names)}"
+        )
+    if not picked:  # pragma: no cover - 每個驅動器都指名道姓押哪幾格
+        raise ContractViolation("開關型驅動器要指名押哪一格,不可以一格都不押")
+    share = float(tilt) / len(picked)
+    rest = [key for key in names if key not in picked]
+    spare = (1.0 - float(tilt)) / len(rest) if rest else 0.0
+    return {key: (share if key in picked else spare) for key in names}
+
+
+def _check_tilt(value: Any) -> float:
+    tilt = float(value)
+    if not (0.0 < tilt <= 1.0):
+        raise ContractViolation(f"押注比重要在 0 與 1 之間,收到 {value!r}")
+    return tilt
+
+
+def _check_lookback_days(value: Any, label: str = "回望期") -> int:
+    days = int(value)
+    if days < 1:
+        raise ContractViolation(f"{label}最少 1 個交易日,收到 {value!r}")
+    return days
+
+
+# 「避險」那一邊押哪幾格:低波與質素。五個宏觀驅動器之中有四個用這一組——
+# 這是**結構性選擇不是可掃描參數**(與趨勢開關同一個道理):恐慌高、利差擴闊、
+# 預期加息時押防守型因子,正是這幾個驅動器的定義本身。要押別的組合,砌另一個
+# 驅動器,不要把它調成參數。
+RISK_OFF_KEYS: Final[tuple[str, ...]] = (LOW_VOL_KEY, QUALITY_KEY)
+# 「進攻」那一邊:動能。
+RISK_ON_KEYS: Final[tuple[str, ...]] = (MOMENTUM_KEY,)
+
+
 @dataclass(frozen=True, slots=True)
 class FactorMomentumDriver:
     """(a)**因子動量排名**:過去 L 個月報酬排名,全押第一或者按名次遞減。
@@ -296,6 +500,7 @@ class FactorMomentumDriver:
     key: str = field(default="factor_momentum", init=False)
     name: str = field(default="因子動量排名", init=False)
     needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=(), init=False)
 
     MODES: ClassVar[tuple[str, ...]] = ("winner", "rank")
 
@@ -336,6 +541,7 @@ class RelativeStrengthDriver:
     key: str = field(default="relative_strength", init=False)
     name: str = field(default="相對強弱對大市", init=False)
     needs_market: bool = field(default=True, init=False)
+    needs_macro: tuple[str, ...] = field(default=(), init=False)
 
     FALLBACKS: ClassVar[tuple[str, ...]] = ("cash", "equal")
 
@@ -383,6 +589,7 @@ class InverseVolatilityDriver:
     key: str = field(default="inverse_volatility", init=False)
     name: str = field(default="逆波幅", init=False)
     needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=(), init=False)
 
     def __post_init__(self) -> None:
         days = int(self.lookback_days)
@@ -430,6 +637,7 @@ class TrendSwitchDriver:
     key: str = field(default="trend_switch", init=False)
     name: str = field(default="大市趨勢開關", init=False)
     needs_market: bool = field(default=True, init=False)
+    needs_macro: tuple[str, ...] = field(default=(), init=False)
 
     def __post_init__(self) -> None:
         days = int(self.ma_days)
@@ -461,13 +669,273 @@ class TrendSwitchDriver:
         )
 
 
+# ----------------------------------------------------------------------
+# 宏觀驅動器(KARST-040):訊號來自價格以外
+# ----------------------------------------------------------------------
+#
+# 五個宏觀驅動器共通的三件事:
+#
+#   · **門檻與回望期一律是掃描參數,無預設值**(D-008 第 3 條)。本檔查不到任何
+#     一個「常用取值」——VIX 高於 20 算不算恐慌、利差回望 20 日還是 60 日,
+#     一律由掃描寫明,由平原判讀答。
+#   · **押哪幾格是結構性選擇**(見 ``RISK_OFF_KEYS``),不是可掃描參數。
+#   · 讀不到宏觀讀數(留空、回望期不夠)即拋 ``InsufficientHistory``,由排期那一層
+#     退回熱身期權重並記成「數據不足」——**不當零、不猜、不靜靜地當訊號講過話**。
+
+
+@dataclass(frozen=True, slots=True)
+class VixLevelDriver:
+    """(e)**VIX 水平開關**:VIX 高於門檻即高恐慌,押低波與質素;否則押動能。
+
+    ``threshold`` 的單位是 VIX 點數(年化波動率),``tilt`` 是押幾重。恐慌高低與
+    因子表現的關係是這個驅動器的假設本身:市場怕的時候低波與質素跑贏、不怕的時候
+    動能跑贏。它是不是真的,由掃描與分段超額答,不由本檔斷言。
+    """
+
+    threshold: float
+    tilt: float
+    key: str = field(default="vix_level", init=False)
+    name: str = field(default="VIX 水平開關", init=False)
+    needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=("VIX",), init=False)
+
+    def __post_init__(self) -> None:
+        threshold = float(self.threshold)
+        if not np.isfinite(threshold) or threshold <= 0.0:
+            raise ContractViolation(f"VIX 門檻要是正數,收到 {self.threshold!r}")
+        object.__setattr__(self, "threshold", threshold)
+        object.__setattr__(self, "tilt", _check_tilt(self.tilt))
+
+    def weights(self, view: DriverView) -> Mapping[str, float]:
+        fearful = view.macro_last("VIX") > self.threshold
+        targets = RISK_OFF_KEYS if fearful else RISK_ON_KEYS
+        return _tilt_towards(view.keys, targets, self.tilt)
+
+    def describe(self) -> str:
+        return (
+            f"{self.name}:VIX 收市高於 {self.threshold:g} 就押低波與質素、"
+            f"低於就押動能,押注比重 {self.tilt:.0%},其餘平均分給另外幾格"
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class VixTermDriver:
+    """(f)**VIX 期限結構開關**:VIX ÷ VIX_3M 高於門檻即倒掛,押低波與質素。
+
+    期限結構講的是「即市恐慌對遠期恐慌」:比率大於 1 即近月高於遠月(倒掛),
+    通常出現在急跌之中;小於 1 是常態。它與水平開關是兩件事——VIX 可以在高水平
+    但不倒掛(持續緊張),亦可以在低水平突然倒掛(急插開始),所以分開兩個驅動器
+    各自掃,不合併成一個「門檻」軸(兩者的門檻連單位都不同,排不進同一條軸)。
+    """
+
+    threshold: float
+    tilt: float
+    key: str = field(default="vix_term", init=False)
+    name: str = field(default="VIX 期限結構開關", init=False)
+    needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=("VIX", "VIX_3M"), init=False)
+
+    def __post_init__(self) -> None:
+        threshold = float(self.threshold)
+        if not np.isfinite(threshold) or threshold <= 0.0:
+            raise ContractViolation(f"期限結構門檻要是正數,收到 {self.threshold!r}")
+        object.__setattr__(self, "threshold", threshold)
+        object.__setattr__(self, "tilt", _check_tilt(self.tilt))
+
+    def weights(self, view: DriverView) -> Mapping[str, float]:
+        inverted = view.macro_ratio_last("VIX", "VIX_3M") > self.threshold
+        targets = RISK_OFF_KEYS if inverted else RISK_ON_KEYS
+        return _tilt_towards(view.keys, targets, self.tilt)
+
+    def describe(self) -> str:
+        return (
+            f"{self.name}:VIX ÷ VIX_3M 高於 {self.threshold:g}(近月高於遠月)"
+            f"就押低波與質素、低於就押動能,押注比重 {self.tilt:.0%}"
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class CreditTrendDriver:
+    """(g)**信用利差變化方向**:利差擴闊押低波與質素,收窄押動能。
+
+    利差本身用免費替代:``HY_ETF ÷ IG_ETF`` 的價格比率(FRED 的高收益 OAS 要 API
+    鑰匙,見 ``EXTERNAL_DATA``)。比率**跌**即高收益跑輸投資級,亦即利差擴闊;
+    比率升即利差收窄。所以判的是比率過去 ``lookback_days`` 個交易日的相對變化的
+    **方向**,不是它的水平——水平那一半含存續期與流動性差異,讀不準。
+    """
+
+    lookback_days: int
+    tilt: float
+    key: str = field(default="credit_trend", init=False)
+    name: str = field(default="信用利差變化方向", init=False)
+    needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=("HY_ETF", "IG_ETF"), init=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "lookback_days", _check_lookback_days(self.lookback_days, "信用利差回望期")
+        )
+        object.__setattr__(self, "tilt", _check_tilt(self.tilt))
+
+    def weights(self, view: DriverView) -> Mapping[str, float]:
+        change = view.macro_ratio_change("HY_ETF", "IG_ETF", self.lookback_days)
+        widening = change < 0.0
+        targets = RISK_OFF_KEYS if widening else RISK_ON_KEYS
+        return _tilt_towards(view.keys, targets, self.tilt)
+
+    def describe(self) -> str:
+        return (
+            f"{self.name}:HY_ETF÷IG_ETF 比率過去 {self.lookback_days} 個交易日下跌"
+            f"(利差擴闊)就押低波與質素、上升就押動能,押注比重 {self.tilt:.0%}"
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class CurveTrendDriver:
+    """(h)**曲線斜度變化方向**:陡峭化押價值,平坦化押低波。
+
+    斜度 = ``UST_10Y − UST_3M``(長端減短端,單位是百分點)。2 年期要 FRED 鑰匙,
+    故短端用 13 週國庫券替代(用戶 2026-08-28 裁定),代價明記於
+    ``karst.data.macro`` 的序列名冊:斜度的**絕對水平**因此與市場慣講的「10 年減
+    2 年」不同,所以本驅動器只讀**變化方向**,不讀水平、不設「倒掛與否」的門檻。
+
+    陡峭化(斜度升)通常伴隨增長與通脹預期回升,價值股受惠;平坦化押低波。
+    """
+
+    lookback_days: int
+    tilt: float
+    key: str = field(default="curve_trend", init=False)
+    name: str = field(default="曲線斜度變化方向", init=False)
+    needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=("UST_10Y", "UST_3M"), init=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "lookback_days", _check_lookback_days(self.lookback_days, "曲線斜度回望期")
+        )
+        object.__setattr__(self, "tilt", _check_tilt(self.tilt))
+
+    def weights(self, view: DriverView) -> Mapping[str, float]:
+        # 斜度的變化 = 長端變化 − 短端變化(兩者同一個回望窗,單位皆百分點)
+        steepening = (
+            view.macro_change("UST_10Y", self.lookback_days)
+            - view.macro_change("UST_3M", self.lookback_days)
+        ) > 0.0
+        targets = (VALUE_KEY,) if steepening else (LOW_VOL_KEY,)
+        return _tilt_towards(view.keys, targets, self.tilt)
+
+    def describe(self) -> str:
+        return (
+            f"{self.name}:UST_10Y 減 UST_3M 的斜度過去 {self.lookback_days} 個交易日"
+            f"上升(陡峭化)就押價值、下降就押低波,押注比重 {self.tilt:.0%}"
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class RateTrendDriver:
+    """(i)**10 年息率趨勢**:息率升押價值,息率跌押低波。
+
+    與曲線斜度那個分開,因為兩者可以各講各話:長短端同步上移時斜度不變而息率
+    大升。用戶裁定的第一層第(3)項寫的正是「美債息率**與**曲線斜度」兩件,
+    所以兩件各自一個驅動器,各自掃自己的回望期。
+    """
+
+    lookback_days: int
+    tilt: float
+    key: str = field(default="rate_trend", init=False)
+    name: str = field(default="10 年息率趨勢", init=False)
+    needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=("UST_10Y",), init=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "lookback_days", _check_lookback_days(self.lookback_days, "息率回望期")
+        )
+        object.__setattr__(self, "tilt", _check_tilt(self.tilt))
+
+    def weights(self, view: DriverView) -> Mapping[str, float]:
+        rising = view.macro_change("UST_10Y", self.lookback_days) > 0.0
+        targets = (VALUE_KEY,) if rising else (LOW_VOL_KEY,)
+        return _tilt_towards(view.keys, targets, self.tilt)
+
+    def describe(self) -> str:
+        return (
+            f"{self.name}:UST_10Y 過去 {self.lookback_days} 個交易日上升就押價值、"
+            f"下跌就押低波,押注比重 {self.tilt:.0%}"
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class FedExpectationDriver:
+    """(j)**聯邦基金利率預期方向**:預期加息押低波與質素,預期減息押動能。
+
+    **FedWatch 本身不免費**,FRED 的有效聯邦基金利率 DFF 亦要 API 鑰匙,故用免費
+    替代:聯邦基金期貨(``ZQ=F``)。隱含利率 = 100 − 報價,所以**報價升 = 隱含
+    利率跌 = 預期減息**;本驅動器判的是**隱含利率**的變化方向,即報價變化取負號。
+
+    近月連續合約在轉倉時會跳一格,所以同樣只讀方向不讀水平(見序列名冊的註記)。
+    """
+
+    lookback_days: int
+    tilt: float
+    key: str = field(default="fed_expectation", init=False)
+    name: str = field(default="聯邦基金利率預期方向", init=False)
+    needs_market: bool = field(default=False, init=False)
+    needs_macro: tuple[str, ...] = field(default=("FF_FUTURE",), init=False)
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self, "lookback_days", _check_lookback_days(self.lookback_days, "利率預期回望期")
+        )
+        object.__setattr__(self, "tilt", _check_tilt(self.tilt))
+
+    def weights(self, view: DriverView) -> Mapping[str, float]:
+        # 隱含利率 = 100 − 報價,故隱含利率的變化 = 報價變化的相反數
+        implied_change = -view.macro_change("FF_FUTURE", self.lookback_days)
+        tightening = implied_change > 0.0
+        targets = RISK_OFF_KEYS if tightening else RISK_ON_KEYS
+        return _tilt_towards(view.keys, targets, self.tilt)
+
+    def describe(self) -> str:
+        return (
+            f"{self.name}:聯邦基金期貨隱含利率(100 − 報價)過去 "
+            f"{self.lookback_days} 個交易日上升(預期加息)就押低波與質素、"
+            f"下跌(預期減息)就押動能,押注比重 {self.tilt:.0%}"
+        )
+
+
 # 驅動器名冊。**加一個驅動器只需在這裡加一行**,掃描層與引擎一個字不用改。
 DRIVER_BUILDERS: Final[Mapping[str, Callable[..., RotationDriver]]] = {
+    # 價格驅動器(KARST-036):訊號全部由四隻因子 ETF 與大市自身的收價算出來
     "factor_momentum": FactorMomentumDriver,
     "relative_strength": RelativeStrengthDriver,
     "inverse_volatility": InverseVolatilityDriver,
     "trend_switch": TrendSwitchDriver,
+    # 宏觀驅動器(KARST-040):訊號來自宏觀快照,全部免費序列
+    "vix_level": VixLevelDriver,
+    "vix_term": VixTermDriver,
+    "credit_trend": CreditTrendDriver,
+    "curve_trend": CurveTrendDriver,
+    "rate_trend": RateTrendDriver,
+    "fed_expectation": FedExpectationDriver,
 }
+
+# 哪幾個是宏觀驅動器。報告與掃描腳本靠這一張分得出「價格那批」與「宏觀那批」。
+MACRO_DRIVER_KEYS: Final[tuple[str, ...]] = (
+    "vix_level",
+    "vix_term",
+    "credit_trend",
+    "curve_trend",
+    "rate_trend",
+    "fed_expectation",
+)
+
+PRICE_DRIVER_KEYS: Final[tuple[str, ...]] = (
+    "factor_momentum",
+    "relative_strength",
+    "inverse_volatility",
+    "trend_switch",
+)
 
 # 每個驅動器的可掃描參數名(次序即掃描格上軸的次序),以及哪幾個是無序軸。
 # **這裡只講「有哪幾個參數」,不講「掃哪幾個取值」**——取值無預設,由呼叫方寫明。
@@ -476,6 +944,14 @@ DRIVER_PARAMETERS: Final[Mapping[str, tuple[str, ...]]] = {
     "relative_strength": ("lookback_months", "fallback"),
     "inverse_volatility": ("lookback_days", "power"),
     "trend_switch": ("ma_days", "tilt"),
+    # 宏觀驅動器:一條「門檻或回望期」軸 × 一條「押幾重」軸。兩條都有序,
+    # 所以 3×3 鄰域講得通,平原判讀有意思。
+    "vix_level": ("threshold", "tilt"),
+    "vix_term": ("threshold", "tilt"),
+    "credit_trend": ("lookback_days", "tilt"),
+    "curve_trend": ("lookback_days", "tilt"),
+    "rate_trend": ("lookback_days", "tilt"),
+    "fed_expectation": ("lookback_days", "tilt"),
 }
 
 # 無序軸:取值之間沒有「移一步」可言(``winner`` 與 ``rank`` 不是一步之遙),
@@ -485,7 +961,32 @@ DRIVER_UNORDERED_PARAMETERS: Final[Mapping[str, tuple[str, ...]]] = {
     "relative_strength": ("fallback",),
     "inverse_volatility": (),
     "trend_switch": (),
+    # 宏觀驅動器兩條軸皆有序:門檻由低到高、回望期由短到長、押注比重由輕到重,
+    # 「移一步」在三者都講得通。
+    "vix_level": (),
+    "vix_term": (),
+    "credit_trend": (),
+    "curve_trend": (),
+    "rate_trend": (),
+    "fed_expectation": (),
 }
+
+
+def macro_series_needed(driver: RotationDriver | str) -> tuple[str, ...]:
+    """一個驅動器要看哪幾條宏觀序列。收驅動器本身或者它的名。
+
+    掃描腳本靠這一條算出「這次掃描要由宏觀快照讀哪幾條序列」,不必逐個驅動器
+    手抄一張表——手抄的表遲早會與驅動器本身講的不一致。
+    """
+    if isinstance(driver, str):
+        name = driver.strip()
+        builder = DRIVER_BUILDERS.get(name)
+        if builder is None:
+            raise ContractViolation(
+                f"沒有「{name}」這個驅動器;有的是:{'、'.join(sorted(DRIVER_BUILDERS))}"
+            )
+        return tuple(getattr(builder, "__dataclass_fields__", {})["needs_macro"].default)
+    return tuple(getattr(driver, "needs_macro", ()))
 
 
 def build_driver(key: str, **params: Any) -> RotationDriver:
@@ -652,6 +1153,12 @@ class FactorRotationResult:
     driver_name: str
     driver_description: str
     engine_name: str
+    macro_series: tuple[str, ...] = ()
+    """這次成績用過哪幾條宏觀序列(KARST-040)。價格驅動器一律是空的。
+
+    報告靠這一欄講得出「這條淨值線用過外部數據」,亦是 ``EXTERNAL_DATA`` 那張
+    清單在單次運行上的落點。
+    """
 
     @property
     def total_return(self) -> float:
@@ -740,6 +1247,7 @@ def rotation_targets(
     params: FactorRotationParams,
     market: pd.Series | None = None,
     market_ticker: str | None = None,
+    macro: pd.DataFrame | None = None,
 ) -> tuple[pd.DataFrame, tuple[RotationRebalance, ...]]:
     """目標比重表:換倉的**執行日**那一行寫比重,其餘一律 ``NaN``。
 
@@ -780,6 +1288,9 @@ def rotation_targets(
             keys=keys,
             market=None if market is None else market.loc[:decision],
             market_ticker=market_ticker,
+            # 宏觀面板同樣切到決策日為止:與收價走同一條規矩,偷看之後的日子
+            # 在這裡連表達都表達不出(D-021 第 3 條)。
+            macro=None if macro is None else macro.loc[:decision],
         )
 
         if position_of[decision] < params.warmup_bars:
@@ -818,6 +1329,52 @@ def rotation_targets(
 # ----------------------------------------------------------------------
 
 
+def _prepare_macro(
+    driver: RotationDriver,
+    macro: pd.DataFrame | None,
+    *,
+    dates: Sequence[Any],
+) -> pd.DataFrame | None:
+    """核對並對齊宏觀面板(KARST-040)。
+
+    三件事,缺一不可:
+
+    1. **驅動器要的序列一條都不可以少。** 缺任何一條即當場拒收——不是靜靜地跑出
+       一條「訊號從來沒有講過話」的淨值線,那種成績表最誤導。
+    2. **把宏觀面板重新索引到價格面板那批日子。** 宏觀快照對齊的是主日曆,而價格
+       面板可能再窄一點(例如頭幾日有實體未有價而被丟掉)。兩邊的日子不是同一批,
+       「回望 20 個交易日」在兩張表裡就各指一段——重新索引之後才對得上。
+       索引不到的日子留空,驅動器讀到即當數據不足,不當零。
+    3. **欄名一律大寫**,與 ``karst.data.macro`` 的序列代號同一個寫法。
+    """
+    needed = tuple(getattr(driver, "needs_macro", ()) or ())
+    if macro is None:
+        if needed:
+            raise ContractViolation(
+                f"驅動器「{getattr(driver, 'name', driver)}」要看宏觀序列 "
+                f"{'、'.join(needed)},但今次沒有給宏觀面板;"
+                "跑的時候寫明 macro=(見 karst.data.macro.read_macro_panel)"
+            )
+        return None
+
+    if not isinstance(macro, pd.DataFrame):
+        raise ContractViolation(f"宏觀面板要是 DataFrame,收到 {type(macro).__name__}")
+
+    frame = macro.copy()
+    frame.columns = pd.Index([str(column).strip().upper() for column in frame.columns])
+    missing = [code for code in needed if code not in frame.columns]
+    if missing:
+        raise ContractViolation(
+            f"宏觀面板缺這幾條序列:{'、'.join(missing)};"
+            f"驅動器「{getattr(driver, 'name', driver)}」要看它們,"
+            "缺了就不是同一個訊號,不猜、不當零"
+        )
+
+    index = pd.DatetimeIndex(pd.to_datetime(frame.index))
+    frame.index = index
+    return frame.sort_index().reindex(pd.DatetimeIndex(dates))
+
+
 def run_factor_rotation(
     *,
     store: DefinitionStore,
@@ -827,6 +1384,7 @@ def run_factor_rotation(
     params: FactorRotationParams,
     engine: PortfolioEngine | None = None,
     market_ticker: str | None = None,
+    macro: pd.DataFrame | None = None,
 ) -> FactorRotationResult:
     """驅動器逐期在四格因子敞口之間移權,跑出一次完整回測。
 
@@ -836,6 +1394,12 @@ def run_factor_rotation(
 
     ``market_ticker`` 是大市那一條線的代號(例如 SPY)。它**只做訊號,一股不持**
     ——目標比重表裡它永遠是 0。要看大市的驅動器沒有它就當場拒收。
+
+    ``macro`` 是宏觀面板(KARST-040):日期為列、序列代號為欄,由
+    ``karst.data.macro.read_macro_panel`` 按宏觀快照編號讀回。它同樣**只做訊號,
+    一股不持**——而且比大市那條線更徹底:宏觀序列連實體編號都沒有,根本進不了
+    目標比重表的欄,所以「不小心買了 VIX」這件事在這裡表達不出來。要看宏觀的
+    驅動器沒有它就當場拒收(見 ``_prepare_macro``)。
     """
     if not isinstance(panel, PricePanel):
         raise ContractViolation(
@@ -870,6 +1434,8 @@ def run_factor_rotation(
             f"但今次沒有給大市代號;寫明 market_ticker(例如 {DEFAULT_MARKET_TICKER!r})"
         )
 
+    macro_frame = _prepare_macro(driver, macro, dates=panel.dates)
+
     targets, rebalances = rotation_targets(
         panel=panel,
         exposures=exposures,
@@ -877,6 +1443,7 @@ def run_factor_rotation(
         params=params,
         market=market,
         market_ticker=ticker,
+        macro=macro_frame,
     )
 
     # 適配層 A 的模擬器只讀這個型別的起始本金與交易成本兩格;排名那兩格
@@ -908,6 +1475,7 @@ def run_factor_rotation(
         driver_name=str(getattr(driver, "name", type(driver).__name__)),
         driver_description=str(driver.describe()),
         engine_name=getattr(engine, "name", type(engine).__name__),
+        macro_series=tuple(getattr(driver, "needs_macro", ()) or ()),
     )
 
 
