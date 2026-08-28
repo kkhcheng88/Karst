@@ -9,7 +9,13 @@
 故此本檔明文寫死一種,不設選項。
 
 **只計已平倉的來回**。期末仍然持有的倉不入勝率——它未有結果,填一個數落去
-就是在猜(與因子值缺失不填 0 同制,D-021 第 4 條)。
+就是在猜(與因子值缺失不填 0 同制,D-021 第 4 條)。那批倉的未實現賺蝕不會
+因此消失:它由逐日淨值那一邊帶出,累計回報、最大回撤、Sortino 全部已經含住。
+
+**檢視視窗由中間切一刀**時,切之前買入、切之後才賣出的倉在這一段只見得到
+賣出那一邊。餵 ``opening=`` 就是把那批倉當期初存貨承接入來(怎樣估值、
+為什麼不計費用,見 ``karst.metrics.inventory``);不餵就是全期的行法,
+一個字不變。
 
 一條都不碰引擎:入口只有那三張已保存的表(規格 8.5)。
 """
@@ -24,6 +30,7 @@ from dataclasses import dataclass
 import pandas as pd
 
 from ..errors import ContractViolation
+from .inventory import OpeningLot
 
 
 @dataclass(frozen=True, slots=True)
@@ -33,6 +40,10 @@ class RoundTrip:
     ``profit`` 已扣兩邊費用,正數即贏。``holding_days`` 數的是**交易日**
     (由運行自己那條逐日淨值的日曆數),不是日曆日——持倉三日跨一個週末,
     答案仍然是三日。
+
+    由期初存貨承接回來那一注:``entry_date`` 是估值日(視窗之前最後一個交易日)、
+    ``entry_price`` 是該日收市價、``fees`` 只有賣出那一邊,而 ``holding_days``
+    由**視窗第一日**起數——視窗之前揸過幾耐,是上一段的事。
     """
 
     entity_id: int
@@ -71,16 +82,29 @@ class TradeStats:
 
 
 def round_trips(
-    orders: pd.DataFrame, trading_days: Sequence[str] | pd.DatetimeIndex
+    orders: pd.DataFrame,
+    trading_days: Sequence[str] | pd.DatetimeIndex,
+    *,
+    opening: Sequence[OpeningLot] = (),
 ) -> tuple[RoundTrip, ...]:
     """把逐筆成交配成已平倉的來回,由買入日排序。
 
-    ``trading_days`` 是這次運行的交易日曆(逐日淨值的索引),只用來數持倉日數。
+    ``trading_days`` 是這一段的交易日曆(逐日淨值的索引),只用來數持倉日數。
+    ``opening`` 是期初存貨:視窗開波之前已經在手上、要承接入來配對的那批貨
+    (留空即全期的行法)。
     """
-    frame = _normalise(orders)
-    days = _day_strings(trading_days)
+    closed, _ = _match(_normalise(orders), _day_strings(trading_days), opening)
+    return closed
 
-    open_lots: dict[int, deque[list]] = {}
+
+def _match(
+    frame: pd.DataFrame, days: list[str], opening: Sequence[OpeningLot]
+) -> tuple[tuple[RoundTrip, ...], dict[int, deque[list]]]:
+    """先入先出配對本體:回「已平倉的來回」與「配剩的貨」。
+
+    配剩的貨就是這一段完結時仍然揸住的倉——不入來回類指標,只用來報數。
+    """
+    open_lots = _opening_lots(opening)
     closed: list[RoundTrip] = []
 
     for row in frame.itertuples(index=False):
@@ -105,6 +129,7 @@ def round_trips(
                 raise ContractViolation(
                     f"{row.trade_date} 賣出實體 {entity_id} 但手上沒有貨;"
                     "本層只配得出多頭來回,沽空的來回配法未裁"
+                    "(若這是一段檢視視窗,是期初存貨未有承接入來)"
                 )
             lot = lots[0]
             matched = min(remaining, lot[1])
@@ -130,35 +155,56 @@ def round_trips(
                 lots.popleft()
 
     closed.sort(key=lambda t: (t.entry_date, t.exit_date, t.entity_id))
-    return tuple(closed)
+    return tuple(closed), open_lots
+
+
+def _opening_lots(opening: Sequence[OpeningLot]) -> dict[int, deque[list]]:
+    """把期初存貨排成先入先出的貨架。同一實體只有一注(當日收工的總持股)。
+
+    入場費用一律 0:那筆費用在視窗之前已經付過,算落這一段等於收兩次。
+    """
+    lots: dict[int, deque[list]] = {}
+    for lot in opening:
+        shares = float(lot.shares)
+        price = float(lot.price)
+        if shares <= 0.0 or price <= 0.0:
+            raise ContractViolation(
+                f"期初存貨實體 {lot.entity_id} 是 {shares} 股 @ {price};"
+                "股數與成本都要正數"
+            )
+        lots.setdefault(int(lot.entity_id), deque()).append(
+            [str(lot.as_of), shares, price, 0.0]
+        )
+    return lots
 
 
 def trade_stats(
-    orders: pd.DataFrame, trading_days: Sequence[str] | pd.DatetimeIndex
+    orders: pd.DataFrame,
+    trading_days: Sequence[str] | pd.DatetimeIndex,
+    *,
+    opening: Sequence[OpeningLot] = (),
 ) -> TradeStats:
     """勝率、盈虧比、平均持倉日數,連同買賣雙邊的成交金額(算換手用)。
 
     · 勝率 = 賺錢的來回 ÷ 已平倉的來回(打和不算贏)。
     · 盈虧比 = 平均每筆賺幾多 ÷ 平均每筆蝕幾多(蝕的取絕對值)。
     · 平均持倉日數 = 各來回持倉交易日數的平均。
+
+    ``opening`` 是期初存貨(見 ``karst.metrics.inventory``)。它**只影響配對**:
+    成交金額仍然只數這一段真正落過的單,承接回來那批貨不當成一次買入——
+    它的買入發生在上一段,計落這一段的換手就是把同一注數兩次。
     """
-    trips = round_trips(orders, trading_days)
     frame = _normalise(orders)
+    trips, leftover = _match(frame, _day_strings(trading_days), opening)
     traded_value = float((frame["shares"] * frame["price"]).abs().sum())
 
     wins = [t.profit for t in trips if t.profit > 0.0]
     losses = [-t.profit for t in trips if t.profit < 0.0]
     closed = len(trips)
 
-    open_positions = 0
-    for entity_id, bought in frame[frame["side"] == "buy"].groupby("entity_id")["shares"]:
-        sold = float(
-            frame.loc[
-                (frame["entity_id"] == entity_id) & (frame["side"] == "sell"), "shares"
-            ].sum()
-        )
-        if float(bought.sum()) - sold > 1e-9:
-            open_positions += 1
+    open_positions = sum(
+        1 for lots in leftover.values() if sum(lot[1] for lot in lots) > 1e-9
+    )
 
     return TradeStats(
         closed_trades=closed,

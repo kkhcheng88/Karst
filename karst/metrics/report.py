@@ -27,6 +27,7 @@ from ..runs import RunStore
 from ..runs.window import window_stats
 from ..store import ActiveSetup, RunRecord
 from .benchmark import DEFAULT_BENCHMARK_TICKERS, BenchmarkCurve, benchmark_curve
+from .inventory import opening_inventory
 from .ratios import sortino_ratio, turnover
 from .trades import TradeStats, trade_stats
 
@@ -58,6 +59,10 @@ class RunMetrics:
     ``win_rate`` / ``profit_loss_ratio`` / ``average_holding_days`` / ``sortino``
     算不出時是 ``None``,不是 0——沒有平過倉就沒有勝率,一日都未跌穿目標就沒有
     Sortino;填 0 會被讀成「輸清」或者「零風險」,兩者都不是事實。
+
+    ``opening_lots`` 是這一段承接了幾多注期初存貨(視窗開波之前已經在手上的倉);
+    全期一定是 0。它不是第九項指標,只是讓人看得出這一段的來回有幾多注不是
+    在這一段開的。
     """
 
     run_id: str
@@ -88,6 +93,7 @@ class RunMetrics:
     # ---- 對照與口徑 ----
     benchmarks: dict[str, BenchmarkComparison]
     closed_trades: int
+    opening_lots: int
     risk_free_rate: float
 
     def excess_against(self, ticker: str) -> float:
@@ -121,6 +127,17 @@ def run_metrics(
 
     ``start`` / ``end`` 留空即全期;給了就是檢視視窗——**重看不重跑**,八項全部
     按那一段重算,運行本身一個字不變(規格 8.5)。
+
+    **視窗承接視窗之前已開的倉**(KARST-039):視窗由中間切一刀,切之前買入、
+    切之後才賣出的倉在這一段只見得到賣出那一邊,配不出來回。所以先取視窗之前
+    最後一個交易日收工時的持倉,按該日收市價入帳做期初存貨,再與這一段的成交
+    先入先出配對(細節見 ``karst.metrics.inventory``)。全期沒有「之前」,
+    期初存貨必然是空,八項數字與未有這一層之前逐位相同。
+
+    口徑兩句:**來回類三項(勝率、盈虧比、平均持倉日數)只計這一段之內平了倉的
+    來回**,段尾仍然揸住的倉不入——它未有結果;**淨值類幾項(累計回報、年化、
+    最大回撤、Sortino)自然含未實現**,因為逐日淨值本身就是把未平倉按當日收價
+    估足值的,段尾那一日的估值已經在裡面。
     """
     record = runs.get_run(run_id)
     equity = runs.equity_curve(record.run_id)
@@ -133,7 +150,8 @@ def run_metrics(
         (orders["trade_date"].astype(str) >= stats.start)
         & (orders["trade_date"].astype(str) <= stats.end)
     ]
-    trades: TradeStats = trade_stats(in_window, window_equity.index)
+    opening = opening_inventory(runs, record, equity, stats.start, root=snapshot_root)
+    trades: TradeStats = trade_stats(in_window, window_equity.index, opening=opening)
 
     comparisons: dict[str, BenchmarkComparison] = {}
     for ticker in benchmarks:
@@ -176,6 +194,7 @@ def run_metrics(
         turnover=turnover(window_equity, traded_value=trades.traded_value),
         benchmarks=comparisons,
         closed_trades=trades.closed_trades,
+        opening_lots=len(opening),
         risk_free_rate=float(risk_free_rate),
     )
 
