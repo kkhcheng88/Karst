@@ -1,0 +1,29 @@
+---
+id: KARST-050
+title: 策略詳情頁(真數據):淨值對基準、選股快照、歷次運行、漏斗、因子分布
+type: task
+createdAt: 2026-08-28
+risk: low
+model: opus
+fits: 一程
+approvalRequired: false
+dependsOn: [KARST-045]
+claimedBy: null
+epic: V1 建置
+deliverable: KARST-D03
+---
+
+## 工作內容
+
+用戶自此可以在一頁看清一套策略的整體:照原型第十版 prototype/strategy.html 實作淨值對基準圖、選股快照表、歷次運行表、漏斗圖、因子分布;數據經薄 REST 層來自真實運行(淨值、持倉、案例、因子敞口)。畫面三態照原型。不改設計決定。
+
+## 驗收條件
+
+- [ ] 策略詳情頁五個元件全部由真實運行數據畫出,與原型版面對齊
+- [ ] 歷次運行表列出該策略全部運行,點一行跳到運行詳情
+- [ ] 載入中/空/錯誤三態齊全
+- [ ] 既有頁面行為不變,既有測試全過
+
+## 結果
+
+## 留言
