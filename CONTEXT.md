@@ -85,4 +85,6 @@
 | 無效格 | invalid cell | 成交筆數低於門檻(門檻是參數)的格,成績不作數並在圖上區分(KARST-029)。 |
 | 投影圖 | projection map | 高維掃描格的呈現:每對參數一張二維熱力圖,其餘維度取平均(KARST-029)。 |
 | 對照格 | reference cell | 掃描報告裡用作比較基線的那一格(例如各佔 25%),與最優格並列(KARST-029)。 |
+| 驅動器 | rotation driver | 因子輪動策略的可換件:收四隻因子 ETF(或其他敞口)至決策日的價格歷史,回當期四格權重;每個驅動器連自己的參數格掃描,換驅動器不改引擎與目標比重路徑(KARST-036)。 |
+| 熱身期 | warm-up window | 驅動器回望期未夠數據那一段的處置(例如頭 252 根 K 線等權);寫入參數集,是可掃描參數不是預設(KARST-036)。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |
