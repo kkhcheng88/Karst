@@ -436,6 +436,7 @@ class Gateway:
         self,
         *,
         price_snapshot_id: str,
+        thresholds: object,
         source: object | None = None,
         root: str | None = None,
         price_root: str | None = None,
@@ -444,10 +445,14 @@ class Gateway:
     ) -> tuple[object, object]:
         """宏觀十四序列走同一道門(KARST-057)。
 
-        與價格那條的分別只有一處:宏觀序列**要對齊價格快照那條主日曆**,所以
+        與價格那條的分別有兩處。一,宏觀序列**要對齊價格快照那條主日曆**,所以
         窗口不是命令列給的,是由指定那個價格快照的日曆讀回來——兩份快照的日子
         對不上,驅動器就會拿住一條有洞的訊號去移權。門在這裡替呼叫方對齊,
         免得每個腳本各自抄一次對齊的做法。
+
+        二,``thresholds`` 是**必給的**齊全度門檻(KARST-061)。凍結那一刻逐條序列
+        對主日曆核尾段與留空比例,超出門檻的一條一筆講出來;門檻沒有預設值,
+        所以「凍了一份沒有人核對過的宏觀快照」在這道門後面表達不出來。
         """
         from ..data import CALENDAR_TICKER, ALL_SERIES_CODES, build_macro_snapshot, read_calendar
 
@@ -462,6 +467,7 @@ class Gateway:
             end=calendar[-1],
             calendar=calendar,
             calendar_ticker=CALENDAR_TICKER,
+            thresholds=thresholds,
             codes=tuple(codes) if codes else ALL_SERIES_CODES,
             source=source,
             root=root,

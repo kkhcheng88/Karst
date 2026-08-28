@@ -26,6 +26,7 @@ from karst.web import api_sweep
 from karst.web import api_strategy
 from karst.web import api_overview
 from karst.web import api_jobs  # KARST-052 重跑/重掃(唯一會寫庫的一層)
+from karst.web import api_macro  # KARST-061 宏觀序列齊全度
 
 STATIC_ROOT = Path(__file__).resolve().parent / "static"
 
@@ -123,6 +124,7 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
     routes.update(api_strategy.routes(reader))  # KARST-050 策略詳情頁的端點
     api_overview.register(routes, reader)  # KARST-049 策略總覽的端點
     routes.update(api_jobs.routes(reader))  # KARST-052 查重跑/重掃進度(下單是 POST)
+    routes.update(api_macro.routes(reader))  # KARST-061 宏觀序列齊全度(自成一個小端點)
 
     class Handler(BaseHTTPRequestHandler):
         server_version = "KarstWeb/0.1"

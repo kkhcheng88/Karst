@@ -23,6 +23,7 @@ from karst.data import (
     COMPOSITE_SOURCE_NAME,
     MACRO_SOURCE_NAME,
     CboeMacroSource,
+    CompletenessThresholds,
     CompositeMacroSource,
     DataFetchFailed,
     MacroSeries,
@@ -202,6 +203,25 @@ def test_the_frozen_registry_records_which_source_each_reading_came_from():
                 }
             ]
         ),
+        # 齊全度那一節(KARST-061)。本條測的是名冊那一節,所以這裡給一份齊全的、
+        # 零警報的表——門檻仍然要明給,它沒有預設值。
+        completeness=pd.DataFrame(
+            [
+                {
+                    "series": "VIX_3M",
+                    "actual": 2929,
+                    "filled": 0,
+                    "missing": 0,
+                    "missing_ratio": 0.0,
+                    "first_actual": "2015-01-02",
+                    "last_actual": "2026-08-26",
+                    "stale_days": 0,
+                }
+            ]
+        ),
+        alerts=(),
+        thresholds=CompletenessThresholds(max_stale_days=0, max_missing_ratio=0.0),
+        calendar_end="2026-08-26",
         notes=(),
     )
     assert "| 序列代號 | 來源代號 | 來源 |" in readme

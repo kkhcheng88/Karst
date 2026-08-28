@@ -910,6 +910,10 @@ MACRO_README_TEMPLATE = """# 宏觀數據快照 {snapshot_id}
 
 {coverage_table}
 
+## 七之一、齊全度核對(對主日曆;KARST-061)
+
+{completeness_section}
+
 {notes_section}## 八、檔案
 
 | 檔案 | 內容 |
@@ -941,6 +945,10 @@ def render_macro_readme(
     rows: int,
     registry: pd.DataFrame,
     coverage: pd.DataFrame,
+    completeness: pd.DataFrame,
+    alerts: Sequence[CompletenessAlert],
+    thresholds: CompletenessThresholds,
+    calendar_end: str,
     notes: Sequence[str],
 ) -> str:
     """照唯一那份範本填出一個宏觀快照的說明檔。"""
@@ -982,8 +990,57 @@ def render_macro_readme(
         normalisation_policy=MACRO_NORMALISATION_POLICY,
         registry_table="\n".join([registry_header, *registry_lines]),
         coverage_table="\n".join([coverage_header, *coverage_lines]),
+        completeness_section=render_macro_completeness(
+            completeness, alerts, thresholds, calendar_end
+        ),
         notes_section=notes_section,
     )
+
+
+def render_macro_completeness(
+    completeness: pd.DataFrame,
+    alerts: Sequence[CompletenessAlert],
+    thresholds: CompletenessThresholds,
+    calendar_end: str,
+) -> str:
+    """說明檔第七之一節:逐條序列對主日曆的核對結果,連這次用的是哪一套門檻。
+
+    第七節那張表數的是「有幾多日」,這一節答的是「夠不夠新」——**尾段短過主日曆
+    即等於那條訊號已經停止講話**,而那件事在第七節的三個數字裡看不出來
+    (停更之後每一日都算「留空」,與中段有洞的序列長得一模一樣)。
+    """
+    header = (
+        "| 序列代號 | 尾段落後(交易日) | 最後真讀數 | 留空 | 留空比例 | 核對結果 |\n"
+        "|---|---|---|---|---|---|"
+    )
+    flagged = {alert.series: alert for alert in alerts}
+    lines = []
+    for row in completeness.to_dict("records"):
+        code = str(row["series"])
+        alert = flagged.get(code)
+        verdict = f"**超出門檻({alert.kind})**" if alert is not None else "合格"
+        lines.append(
+            f"| `{code}` | {int(row['stale_days'])} | {row['last_actual'] or '—'} |"
+            f" {int(row['missing'])} | {float(row['missing_ratio']):.2%} | {verdict} |"
+        )
+
+    if alerts:
+        verdict_lines = [
+            f"**{len(alerts)} 條序列超出門檻**({thresholds.describe()};"
+            f"主日曆尾日 {calendar_end}):",
+            "",
+            *(f"- {alert.message}" for alert in alerts),
+            "",
+            "尾段短過主日曆,即等於那條訊號由某一日起**已經停止講話**:對齊時尾段照停牌"
+            "處置留空,驅動器讀到留空即當「數據不足」退回熱身期權重——掃描照跑、報告照出、"
+            "成績表照畫,一個錯都不會報(假設 A-008 已於 2026-08-29 推翻)。",
+        ]
+    else:
+        verdict_lines = [
+            f"**{len(completeness)} 條序列全部合格**({thresholds.describe()};"
+            f"主日曆尾日 {calendar_end})。",
+        ]
+    return "\n".join([*verdict_lines, "", header, *lines])
 
 
 def macro_coverage(values: pd.DataFrame) -> pd.DataFrame:
@@ -1005,6 +1062,212 @@ def macro_coverage(values: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(
         rows, columns=["series", "actual", "filled", "missing", "first_actual", "last_actual"]
     )
+
+
+# ----------------------------------------------------------------------
+# 齊全度核對(KARST-061;源自假設 A-008)
+# ----------------------------------------------------------------------
+#
+# A-008 已經真的塌過一次:yfinance 的 ^VIX3M 自 2026-07-17 起靜靜地不再供新讀數,
+# 抓取**一個錯都沒有報**——適配器的失手處置只認「回空批次」與「一條讀數都沒有」
+# 兩種,而「由某一日起不再有新的」兩種都不是。對齊主日曆時尾段照停牌處置留空,
+# 驅動器讀到留空即當「數據不足」退回熱身期權重:掃描照跑、報告照出、成績表照畫,
+# 只是那個驅動器由某一日起實際上已經停止講話,而 28 個交易日無人察覺。
+#
+# 本節做的就是把「有沒有停止講話」由**要人去翻說明檔第七節**,改成**凍結那一刻
+# 就講出來**。核對兩件事,逐條序列各自算:
+#
+#   1. **尾段落後** —— 最後一個真讀數之後,主日曆上還剩幾多個交易日。這一格正是
+#      上面那件事會令它逐日長大的那一格;前值填補與留空都不算真讀數,所以填補
+#      那三日遮不住它。
+#   2. **留空比例** —— 整段窗口留空的日數佔主日曆幾多。停更以外的洞(中段斷續、
+#      某條序列的日曆與美股差太遠)由這一格接住。
+#
+# 兩個門檻**都是參數、都沒有預設值**(D-008 第 3 條)。理由不是懶得揀:「幾多日
+# 算停更」不是數據的性質,是用戶對這條訊號的容忍度——期貨轉倉那幾日、外匯假期
+# 那幾日,容忍度本來就與指數不同。程式代它揀一個數,等於把一個沒有人裁決過的
+# 判斷寫進了每一次凍結,而且下一個人不會知道那個數是誰揀的。
+
+ALERT_STALE_TAIL = "尾段落後"
+ALERT_MISSING_RATIO = "留空過多"
+
+COMPLETENESS_COLUMNS: tuple[str, ...] = (
+    "series",
+    "actual",
+    "filled",
+    "missing",
+    "missing_ratio",
+    "first_actual",
+    "last_actual",
+    "stale_days",
+)
+
+
+@dataclass(frozen=True, slots=True)
+class CompletenessThresholds:
+    """齊全度門檻:兩格,兩格都要明給,**一個預設值都沒有**。
+
+    ``max_stale_days``
+        尾段容許落後主日曆幾多個**交易日**。0 = 必須供到主日曆尾日。
+    ``max_missing_ratio``
+        整段窗口留空日數佔主日曆的比例上限,``0.01`` = 1%。0.0 = 一日都不准留空。
+    """
+
+    max_stale_days: int
+    max_missing_ratio: float
+
+    def __post_init__(self) -> None:
+        try:
+            days = int(self.max_stale_days)
+        except (TypeError, ValueError):
+            raise ContractViolation(
+                f"尾段落後門檻要是整數個交易日,收到 {self.max_stale_days!r}"
+            ) from None
+        if days < 0:
+            raise ContractViolation(f"尾段落後門檻不可為負,收到 {self.max_stale_days!r}")
+        try:
+            ratio = float(self.max_missing_ratio)
+        except (TypeError, ValueError):
+            raise ContractViolation(
+                f"留空比例門檻要是一個比例,收到 {self.max_missing_ratio!r}"
+            ) from None
+        if not 0.0 <= ratio <= 1.0:
+            raise ContractViolation(
+                f"留空比例門檻要在 0 與 1 之間(0.01 = 1%),收到 {self.max_missing_ratio!r}"
+            )
+        object.__setattr__(self, "max_stale_days", days)
+        object.__setattr__(self, "max_missing_ratio", ratio)
+
+    def describe(self) -> str:
+        """一句講得出這次用的是哪一套門檻——報告與警告都要印得出來。"""
+        return (
+            f"門檻:尾段落後不過 {self.max_stale_days} 個交易日、"
+            f"留空不過 {self.max_missing_ratio:.2%}"
+        )
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "max_stale_days": int(self.max_stale_days),
+            "max_missing_ratio": float(self.max_missing_ratio),
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class CompletenessAlert:
+    """一條序列超出齊全度門檻的一筆警報。一條序列最多一筆,兩項都超就兩項都寫在裡面。"""
+
+    series: str
+    kind: str
+    stale_days: int
+    last_actual: str
+    missing: int
+    missing_ratio: float
+    calendar_end: str
+    message: str
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "series": self.series,
+            "kind": self.kind,
+            "stale_days": int(self.stale_days),
+            "last_actual": self.last_actual,
+            "missing": int(self.missing),
+            "missing_ratio": float(self.missing_ratio),
+            "calendar_end": self.calendar_end,
+            "message": self.message,
+        }
+
+
+def macro_completeness(coverage: pd.DataFrame, calendar: Sequence[str]) -> pd.DataFrame:
+    """逐條序列對主日曆核對:尾段落後幾多個交易日、留空佔幾多。
+
+    ``macro_coverage`` 只數清楚三種格各有幾多日;本表多的那兩格
+    (``stale_days``、``missing_ratio``)才是「這條序列有沒有靜靜停更」答得出來的
+    地方。本函式**不判合格與否**——判斷要門檻,而門檻是參數,見
+    ``audit_macro_completeness``。
+    """
+    days = tuple(sorted({str(day) for day in calendar}))
+    if not days:
+        raise ContractViolation("主日曆是空的,齊全度無從核對")
+    total = len(days)
+
+    rows: list[dict[str, Any]] = []
+    for row in coverage.to_dict("records"):
+        last_actual = str(row.get("last_actual") or "")
+        # 一個真讀數都沒有 = 由主日曆第一日起就在落後,不是「落後零日」
+        stale = sum(1 for day in days if day > last_actual) if last_actual else total
+        missing = int(row["missing"])
+        rows.append(
+            {
+                "series": str(row["series"]),
+                "actual": int(row["actual"]),
+                "filled": int(row["filled"]),
+                "missing": missing,
+                "missing_ratio": missing / total,
+                "first_actual": str(row.get("first_actual") or ""),
+                "last_actual": last_actual,
+                "stale_days": int(stale),
+            }
+        )
+    frame = pd.DataFrame(rows, columns=list(COMPLETENESS_COLUMNS))
+    return frame.sort_values("series").reset_index(drop=True)
+
+
+def audit_macro_completeness(
+    completeness: pd.DataFrame,
+    calendar: Sequence[str],
+    *,
+    thresholds: CompletenessThresholds,
+) -> tuple[CompletenessAlert, ...]:
+    """逐條核對門檻,超出的**一條一筆**講出來;齊全的一條都不報。
+
+    「不誤報」是本函式的合約之一:一條供到主日曆尾日、一日都沒有留空的序列,
+    在任何一套門檻下都不會出現在回傳的名單裡。報一堆狼來了,下一個人就會學會
+    不看警告——那樣這件事等於沒有做。
+    """
+    days = tuple(sorted({str(day) for day in calendar}))
+    if not days:
+        raise ContractViolation("主日曆是空的,齊全度無從核對")
+    calendar_end = days[-1]
+
+    alerts: list[CompletenessAlert] = []
+    for row in completeness.to_dict("records"):
+        code = str(row["series"])
+        stale = int(row["stale_days"])
+        missing = int(row["missing"])
+        ratio = float(row["missing_ratio"])
+        last_actual = str(row.get("last_actual") or "")
+
+        kinds: list[str] = []
+        reasons: list[str] = []
+        if stale > thresholds.max_stale_days:
+            kinds.append(ALERT_STALE_TAIL)
+            reasons.append(
+                f"最後一個真讀數在 {last_actual or '沒有'},"
+                f"比主日曆尾日 {calendar_end} 短 {stale} 個交易日"
+                f"(門檻 {thresholds.max_stale_days} 日)"
+            )
+        if ratio > thresholds.max_missing_ratio:
+            kinds.append(ALERT_MISSING_RATIO)
+            reasons.append(
+                f"留空 {missing} 日,佔主日曆 {ratio:.2%}"
+                f"(門檻 {thresholds.max_missing_ratio:.2%})"
+            )
+        if not kinds:
+            continue
+        alerts.append(
+            CompletenessAlert(
+                series=code,
+                kind="、".join(kinds),
+                stale_days=stale,
+                last_actual=last_actual,
+                missing=missing,
+                missing_ratio=ratio,
+                calendar_end=calendar_end,
+                message=f"{code}:" + ";".join(reasons),
+            )
+        )
+    return tuple(alerts)
 
 
 # ----------------------------------------------------------------------
@@ -1148,6 +1411,10 @@ class MacroSnapshot:
     rows: int
     notes: tuple[str, ...]
     reused: bool = False
+    # 齊全度核對的結果(KARST-061)。``alerts`` 空 = 每一條都合格,不是「沒有核對過」
+    # ——沒有核對過這件事表達不出來:門檻是必給的參數,凍結一次就核對一次。
+    thresholds: CompletenessThresholds | None = None
+    alerts: tuple[CompletenessAlert, ...] = ()
 
 
 def build_macro_snapshot(
@@ -1157,6 +1424,7 @@ def build_macro_snapshot(
     end: date | datetime | str,
     calendar: Sequence[str],
     calendar_ticker: str,
+    thresholds: CompletenessThresholds,
     codes: Sequence[str] = ALL_SERIES_CODES,
     source: MacroSource | None = None,
     root: str | Path | None = None,
@@ -1164,15 +1432,23 @@ def build_macro_snapshot(
 ) -> MacroSnapshot:
     """跑完整條宏觀管線,回傳快照成果單。
 
-    四步,次序與價格那條管線一樣、少一步(**沒有解析實體那一步**——宏觀序列不是
+    五步,次序與價格那條管線一樣、少一步(**沒有解析實體那一步**——宏觀序列不是
     實體,見本檔開頭第一節):
 
       1. **抓** —— 適配器逐條向來源要日線讀數。抓不到即拋錯,不靜靜跳過。
       2. **歸一化** —— 取 7 位有效數字,行在對齊與填補之前(D-028 第 1 條)。
       3. **對齊** —— 全部序列對齊**傳進來的那條主日曆**(即價格快照那一條),
          缺日照停牌處置最多前值填補 3 個交易日。
-      4. **凍結** —— 原子寫入 ``data/macro_snapshots/<編號>/``,經單一定義庫登記,
+      4. **核對齊全度**(KARST-061)—— 逐條對主日曆核尾段與留空比例,超出門檻即
+         逐條列出。``thresholds`` 是**必給的參數**:沒有它就凍結不到快照,所以
+         「凍了一份沒有人核對過的宏觀快照」這件事在這裡表達不出來。
+      5. **凍結** —— 原子寫入 ``data/macro_snapshots/<編號>/``,經單一定義庫登記,
          與價格快照同一套編號算法、同一張登記表,靠來源名分得開。
+
+    **門檻不入內容雜湊。** 齊全度是由讀數與主日曆算出來的,門檻只決定「這樣算不算
+    過關」;同一批讀數換一套門檻仍然是同一批讀數,所以換門檻**不會**換出一個新的
+    快照編號(``macro_core`` 一個字都沒有改)。核對結果落在說明檔與 manifest,
+    不落在編號裡。
     """
     source = source or default_macro_source()
     root = Path(root) if root is not None else DEFAULT_MACRO_ROOT
@@ -1194,6 +1470,20 @@ def build_macro_snapshot(
     raw = normalise_macro(raw)
     aligned = align_macro_to_calendar(raw, days)
     coverage = macro_coverage(aligned)
+    completeness = macro_completeness(coverage, days)
+    alerts = audit_macro_completeness(completeness, days, thresholds=thresholds)
+
+    if alerts:
+        notes.append(
+            f"齊全度核對:{len(alerts)} 條序列超出門檻({thresholds.describe()})。"
+            "尾段短過主日曆即等於那條訊號已經停止講話,而掃描與報告一個錯都不會報"
+            "(假設 A-008)"
+        )
+        notes.extend(f"齊全度警報 {alert.message}" for alert in alerts)
+    else:
+        notes.append(
+            f"齊全度核對:{len(completeness)} 條序列全部合格({thresholds.describe()})"
+        )
 
     for row in coverage.to_dict("records"):
         if int(row["missing"]) > 0:
@@ -1255,6 +1545,24 @@ def build_macro_snapshot(
                  for key, value in row.items()}
                 for row in coverage.to_dict("records")
             ],
+            # 齊全度核對(KARST-061):逐條的數、這次用的門檻、超出門檻的那幾條。
+            # 三樣一齊落在已凍結的快照裡,所以「當日核對過沒有、用的是哪一套門檻」
+            # 事後查得回,不必靠人記得。
+            "completeness_thresholds": thresholds.as_dict(),
+            "completeness": [
+                {
+                    key: (
+                        int(value)
+                        if key in {"actual", "filled", "missing", "stale_days"}
+                        else float(value)
+                        if key == "missing_ratio"
+                        else str(value)
+                    )
+                    for key, value in row.items()
+                }
+                for row in completeness.to_dict("records")
+            ],
+            "completeness_alerts": [alert.as_dict() for alert in alerts],
             "notes": notes,
         }
         readme = render_macro_readme(
@@ -1270,6 +1578,10 @@ def build_macro_snapshot(
             rows=int(len(aligned)),
             registry=registry,
             coverage=coverage,
+            completeness=completeness,
+            alerts=alerts,
+            thresholds=thresholds,
+            calendar_end=days[-1],
             notes=notes,
         )
         path = write_macro_dir(
@@ -1309,6 +1621,8 @@ def build_macro_snapshot(
         rows=int(len(aligned)),
         notes=tuple(notes),
         reused=reused,
+        thresholds=thresholds,
+        alerts=alerts,
     )
 
 
@@ -1346,6 +1660,31 @@ def read_macro_frame(
     if not path.exists():
         raise SnapshotBroken(f"宏觀快照 {snapshot_id} 缺 {SERIES_FILE}")
     return canonical_macro(pd.read_parquet(path, engine="pyarrow"))
+
+
+def read_macro_calendar(
+    store: DefinitionStore, snapshot_id: str, *, root: str | Path | None = None
+) -> tuple[str, ...]:
+    """讀回這個宏觀快照當日對齊的那條主日曆(連同快照一併凍結)。"""
+    path = macro_snapshot_dir(store, snapshot_id, root=root) / CALENDAR_FILE
+    if not path.exists():
+        raise SnapshotBroken(f"宏觀快照 {snapshot_id} 缺 {CALENDAR_FILE}")
+    frame = pd.read_parquet(path, engine="pyarrow")
+    return tuple(str(day) for day in frame["date"])
+
+
+def read_macro_completeness(
+    store: DefinitionStore, snapshot_id: str, *, root: str | Path | None = None
+) -> pd.DataFrame:
+    """由**已凍結**的快照重算齊全度表,不必重抓。
+
+    重算而不是讀回 manifest 那一份,是刻意的:manifest 那份是凍結當日算出來的,
+    重算這一份用的是磁碟上的讀數本身——兩者對不上,即那份快照被人改過。要核對的
+    是數據,不是別人寫下的結論。回傳的表與 ``macro_completeness`` 同一個形狀。
+    """
+    frame = read_macro_frame(store, snapshot_id, root=root)
+    calendar = read_macro_calendar(store, snapshot_id, root=root)
+    return macro_completeness(macro_coverage(frame), calendar)
 
 
 def read_macro_panel(

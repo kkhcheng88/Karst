@@ -176,6 +176,13 @@ def build_parser() -> argparse.ArgumentParser:
                        help="價格快取根(預設 data/snapshots)")
     macro.add_argument("--taken-on", dest="taken_on", default=None,
                        help="快照日期,留空即抓取當日")
+    # 齊全度門檻(KARST-061)。**兩個都是必給,兩個都沒有預設值**:「幾多日算停更」
+    # 不是數據的性質,是用戶對這條訊號的容忍度,程式代揀一個數就等於把一個沒有人
+    # 裁決過的判斷寫進了每一次凍結。
+    macro.add_argument("--max-stale-days", dest="max_stale_days", type=int, required=True,
+                       help="齊全度門檻:一條序列的尾段容許落後主日曆幾多個交易日(0 = 必須供到尾日)")
+    macro.add_argument("--max-missing-ratio", dest="max_missing_ratio", type=float, required=True,
+                       help="齊全度門檻:整段窗口留空日數佔主日曆的比例上限,0.01 即 1%%")
     data_commands.add_parser("list", help="列庫內全部數據快照")
 
     where = commands.add_parser("where", help="講出一項定義的唯一落點,並掃全庫查有沒有第二份影像")
@@ -509,8 +516,15 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
 
 
 def _data_macro(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    from karst.data import CompletenessThresholds
+
+    thresholds = CompletenessThresholds(
+        max_stale_days=args.max_stale_days,
+        max_missing_ratio=args.max_missing_ratio,
+    )
     snapshot, fetch = gateway.take_macro_snapshot(
         price_snapshot_id=args.price_snapshot,
+        thresholds=thresholds,
         root=args.root,
         price_root=args.price_root,
         codes=args.series or None,
@@ -530,7 +544,29 @@ def _data_macro(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     print(f"  內容雜湊  {snapshot.content_hash}", file=out)
     if getattr(snapshot, "reused", False):
         print("  沿用      這批讀數早已凍結,沿用原本那個編號,快取根沒有多一份副本", file=out)
+
+    # 齊全度核對(KARST-061)。放在註記之上、自成一格:這一格要答的是「有沒有一條
+    # 訊號已經靜靜停止講話」,以前那件事要有人去翻說明檔第七節才看得見,而 ^VIX3M
+    # 停更 28 個交易日就是這樣無人察覺的(假設 A-008)。
+    alerts = tuple(getattr(snapshot, "alerts", ()))
+    if alerts:
+        print(f"  齊全度    警報:{len(alerts)} 條序列超出門檻({thresholds.describe()})", file=out)
+        for alert in alerts:
+            print(f"            {alert.message}", file=out)
+        print(
+            "            尾段短過主日曆 = 那條訊號已經停止講話;"
+            "驅動器會每日判「數據不足」退回熱身期權重,而掃描與報告一個錯都不會報",
+            file=out,
+        )
+    else:
+        print(
+            f"  齊全度    {len(snapshot.series)} 條序列全部合格({thresholds.describe()})",
+            file=out,
+        )
+
     for note in snapshot.notes:
+        if note.startswith("齊全度"):
+            continue  # 上面那一格已經逐條講過,不再重覆一次
         print(f"  註記      {note}", file=out)
     return EXIT_OK
 

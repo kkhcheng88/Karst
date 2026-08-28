@@ -29,6 +29,7 @@ from karst.data import (
     BAR_MISSING,
     FFILL_LIMIT,
     PRICE_SIGNIFICANT_DIGITS,
+    CompletenessThresholds,
     DataFetchFailed,
     MacroSeries,
     StaticMacroSource,
@@ -90,13 +91,26 @@ def _values(codes=CODES, *, stale: tuple[str, ...] = STALE_TAIL) -> pd.DataFrame
     return pd.DataFrame(rows)
 
 
-def _build(store: DefinitionStore, root, values: pd.DataFrame | None = None, codes=CODES):
+# 本檔測的是 KARST-040 那幾條處置,不是齊全度門檻(那一條在 test_macro_completeness.py)。
+# 這裡刻意給一套寬鬆門檻,好讓 VIX_3M 尾段停數那個 fixture 不會令本檔滿屏警報——
+# 門檻沒有預設值,所以連「不核對」都要明寫一次(KARST-061)。
+LENIENT = CompletenessThresholds(max_stale_days=60, max_missing_ratio=1.0)
+
+
+def _build(
+    store: DefinitionStore,
+    root,
+    values: pd.DataFrame | None = None,
+    codes=CODES,
+    thresholds: CompletenessThresholds = LENIENT,
+):
     return build_macro_snapshot(
         store,
         start=CALENDAR[0],
         end=CALENDAR[-1],
         calendar=CALENDAR,
         calendar_ticker="SPY",
+        thresholds=thresholds,
         codes=codes,
         source=StaticMacroSource(_values(codes) if values is None else values),
         root=root,

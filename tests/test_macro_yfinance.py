@@ -28,6 +28,7 @@ from karst import DefinitionStore
 from karst.data import (
     COMPOSITE_SOURCE_NAME,
     CboeMacroSource,
+    CompletenessThresholds,
     DataFetchFailed,
     MacroSeries,
     YFinanceMacroSource,
@@ -80,6 +81,8 @@ def test_real_macro_snapshot_holds_vix_and_treasury_yields(online, tmp_path):
             end=WINDOW[1],
             calendar=CALENDAR,
             calendar_ticker="SPY",
+            # 真實抓取那半:門檻放寬,本檔測的是「抓不抓得到」,不是齊全度判斷
+            thresholds=CompletenessThresholds(max_stale_days=60, max_missing_ratio=1.0),
             codes=SAMPLE,
             source=default_macro_source(),
             root=tmp_path,
