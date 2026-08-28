@@ -25,11 +25,9 @@ from karst.errors import ContractViolation, NotFound
 from karst.web import api_sweep
 from karst.web import api_strategy
 from karst.web import api_overview
+from karst.web import api_jobs  # KARST-052 重跑/重掃(唯一會寫庫的一層)
 
 STATIC_ROOT = Path(__file__).resolve().parent / "static"
-
-# 查庫排隊用(見 do_GET 內的註釋)。靜態檔不經這道閘,圖與樣式照舊並行。
-_API_LOCK = threading.Lock()
 
 # 網址 → static/ 下的頁檔。每一頁在自己那個模組登記自己那一行,本檔不逐頁寫死。
 PAGE_FILES: dict[str, str] = {"/": "index.html", "/index.html": "index.html"}
@@ -124,6 +122,7 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
     routes.update(api_sweep.routes(reader))  # 參數掃描頁(KARST-051),端點全部住在 api_sweep.py
     routes.update(api_strategy.routes(reader))  # KARST-050 策略詳情頁的端點
     api_overview.register(routes, reader)  # KARST-049 策略總覽的端點
+    routes.update(api_jobs.routes(reader))  # KARST-052 查重跑/重掃進度(下單是 POST)
 
     class Handler(BaseHTTPRequestHandler):
         server_version = "KarstWeb/0.1"
@@ -158,6 +157,10 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
         def do_HEAD(self) -> None:  # noqa: N802
             self.do_GET()
 
+        def do_POST(self) -> None:  # noqa: N802
+            # 全站唯一的寫入路徑,連錯誤映射一併住在 api_jobs(KARST-052)
+            api_jobs.handle_post(self, reader)
+
         def do_GET(self) -> None:  # noqa: N802
             parsed = urlparse(self.path)
             path = parsed.path
@@ -165,13 +168,10 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
 
             try:
                 if path.startswith("/api/"):
-                    # 全部讀取層共用同一條 sqlite 連線(data.py open_read_only_store),
-                    # 而這是 ThreadingHTTPServer:兩個請求同時查庫會互相搞亂對方的
-                    # 游標,答出「沒有因子版本 N」這種明明存在卻查不到的錯。頁面一多
-                    # 就必然撞(KARST-050 實測三個端點並行 8/8 全錯)。本機檢視器一次
-                    # 只服務一個人,查庫排隊即可;真正的修法是逐個執行緒一條連線。
-                    with _API_LOCK:
-                        self._handle_api(path, query)
+                    # 查庫不再排隊:讀取層已改為逐執行緒各自一條唯讀連線
+                    # (KARST-055,data.py 的 _ThreadStore),兩個請求同時查庫
+                    # 各用各的游標,不會互相搞亂。KARST-050 臨時加的那道鎖已移除。
+                    self._handle_api(path, query)
                     return
                 self._handle_static(path)
             except WebError as exc:

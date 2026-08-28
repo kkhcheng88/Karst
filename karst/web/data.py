@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import math
 import sqlite3
+import threading
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -27,7 +28,7 @@ from karst.metrics import (
     trade_stats,
 )
 from karst.runs import BASE, RunStore, window_stats
-from karst.store import DefinitionStore
+from karst.store import FORMAL_RUN, DefinitionStore
 
 # 一年期無風險利率。Sortino 要它才算得出,而 karst.metrics 刻意不設預設值
 # (逼呼叫方講明用了什麼口徑)。這裡明文寫在一處,並隨指標一齊送到頁面顯示,
@@ -74,13 +75,67 @@ def open_read_only_store(db_path: str | Path) -> DefinitionStore:
     一,``open()`` 會執行建表 DDL 並 commit,一個檢視器不應該寫庫;
     二,同一個庫可能正被別的工序寫住,唯讀連線不會跟它爭鎖。
     庫的讀法本身仍然全部經 ``DefinitionStore``(D-027)。
+
+    連線**不開** ``check_same_thread=False``:sqlite 自己那道「開它那條執行緒才
+    用得」的閘刻意留住,一旦有人日後又把一條連線攤開給多條執行緒共用,會即場
+    報錯,而不是靜靜地答錯數(KARST-050 撞過的那件事)。
     """
     path = Path(db_path).resolve()
     if not path.is_file():
         raise NotFound(f"找不到定義庫:{path}")
-    conn = sqlite3.connect(f"file:{path.as_posix()}?mode=ro", uri=True, check_same_thread=False)
+    conn = sqlite3.connect(f"file:{path.as_posix()}?mode=ro", uri=True)
     conn.row_factory = sqlite3.Row
     return DefinitionStore(conn)
+
+
+class _StoreSource:
+    """讀取層每次要用庫時,經這裡拿。
+
+    一條 sqlite 連線不是多執行緒安全的:同一條連線上兩個查詢並行,會互相搞亂
+    對方的游標,答出「沒有因子版本 N」這種明明存在卻查不到的錯(KARST-050 實測
+    三個端點對撞 8 次全錯)。所以「一條連線」這個決定不再寫死在讀取層裡,而是
+    由這一層決定——網頁殼用逐執行緒一條,單執行緒的呼叫方照舊共用一條。
+    """
+
+    def get(self) -> DefinitionStore:  # pragma: no cover - 介面
+        raise NotImplementedError
+
+
+class _SharedStore(_StoreSource):
+    """一條開好的連線,大家共用。
+
+    給單執行緒的呼叫方(腳本、測試、記憶體庫)用:那裡本來就沒有並發,
+    多開一條連線只是白開。
+    """
+
+    def __init__(self, store: DefinitionStore) -> None:
+        self._store = store
+
+    def get(self) -> DefinitionStore:
+        return self._store
+
+
+class _ThreadStore(_StoreSource):
+    """逐執行緒一條唯讀連線。
+
+    ``ThreadingHTTPServer`` 每個請求開一條執行緒,所以實際上等於每個請求一條
+    連線,兩個請求各查各的,不再共用游標。執行緒收工時 thread-local 那一格連同
+    連線一齊被丟掉,由引用計數關掉——不另設連線名冊,否則名冊本身會拖住每一條
+    開過的連線不放,請求一多就變成漏連線。
+    """
+
+    def __init__(self, db_path: str | Path) -> None:
+        self.db_path = Path(db_path).resolve()
+        if not self.db_path.is_file():
+            raise NotFound(f"找不到定義庫:{self.db_path}")
+        self._local = threading.local()
+
+    def get(self) -> DefinitionStore:
+        store = getattr(self._local, "store", None)
+        if store is None:
+            store = open_read_only_store(self.db_path)
+            self._local.store = store
+        return store
 
 
 class RunReader:
@@ -88,21 +143,42 @@ class RunReader:
 
     def __init__(
         self,
-        store: DefinitionStore,
+        store: DefinitionStore | _StoreSource,
         *,
         runs_root: str | Path,
         snapshot_root: str | Path,
         risk_free_rate: float = DEFAULT_RISK_FREE_RATE,
         benchmarks: Iterable[str] = DEFAULT_BENCHMARK_TICKERS,
     ) -> None:
-        self.store = store
+        # 收一條開好的連線,亦收一個「逐執行緒開一條」的來源。呼叫方照舊寫
+        # ``reader.store`` / ``reader.runs``,拿到的是**當前這條執行緒**那一條。
+        self._source: _StoreSource = (
+            store if isinstance(store, _StoreSource) else _SharedStore(store)
+        )
         self.runs_root = Path(runs_root)
         self.snapshot_root = Path(snapshot_root)
         self.risk_free_rate = risk_free_rate
         self.benchmarks = tuple(benchmarks)
-        self.runs = RunStore(store, self.runs_root)
+        self._local = threading.local()
+        # 兩個名單快取跨執行緒共用:入面存的是已經整理好的純資料(代號表、
+        # 現役設定記錄),不是連線亦不是游標,兩條執行緒同時填最多重做一次。
         self._universe_cache: dict[str, dict[int, dict[str, str]]] = {}
         self._active_cache: dict[str, Any] = {}
+
+    @property
+    def store(self) -> DefinitionStore:
+        """本執行緒那一條庫連線。"""
+        return self._source.get()
+
+    @property
+    def runs(self) -> RunStore:
+        """本執行緒那一個 ``RunStore``,綁住本執行緒那條連線。"""
+        store = self._source.get()
+        cached = getattr(self._local, "runs", None)
+        if cached is None or cached.store is not store:
+            cached = RunStore(store, self.runs_root)
+            self._local.runs = cached
+        return cached
 
     # ---------------- 身份與清單 ----------------
 
@@ -151,17 +227,14 @@ class RunReader:
         以「一次掃描一行」呈現(D-029),點得入那一格才看得到它自己那條曲線。
         所以 ``total`` 報的是正式運行的總數,不是庫內運行總數。
 
-        分辨掃描格的判準沿用 KARST-049 那一份 ``is_sweep_run``(參數集名前綴,
-        假設 A-006):全倉只此一份,兩份判準遲早會各走各路。
+        分辨掃描格的判準是**庫身那一格**(backtest_run.origin,KARST-054):落庫
+        那一刻寫死,不再靠參數集名的前綴猜(假設 A-006 已收口)。四千個掃描格由
+        庫身篩走,不用逐個砌出來再丟掉。
 
         仍然收窄到最近 ``limit`` 個並照實回報總數,由頁面講明「共 N 次」;
         過時狀態只為真正列出那幾個算——逐個查一千次會拖死開頁。
         """
-        # 就地匯入:api_overview 反過來要本檔的出口口徑(_day/_f/_pct),頂層
-        # 對匯會撞成循環。寧可就地匯入,也不抄第二份判準。
-        from karst.web.api_overview import is_sweep_run
-
-        records = [r for r in reversed(self.runs.list_runs()) if not is_sweep_run(r)]
+        records = list(reversed(self.runs.list_runs(origin=FORMAL_RUN)))
         total = len(records)
         shown = records if limit is None else records[:limit]
         out = []
@@ -551,11 +624,15 @@ def build_reader(
     snapshot_root: str | Path | None = None,
     risk_free_rate: float = DEFAULT_RISK_FREE_RATE,
 ) -> RunReader:
-    """照專案根組一個唯讀讀取層。路徑一律解成絕對,不靠 cwd。"""
+    """照專案根組一個唯讀讀取層。路徑一律解成絕對,不靠 cwd。
+
+    庫連線逐執行緒各開一條(``_ThreadStore``):網頁殼是多執行緒的,共用一條
+    連線會令兩個同時到的請求互相搞亂對方的游標(KARST-050 / KARST-055)。
+    """
     root = Path(project_root or Path.cwd()).resolve()
-    store = open_read_only_store(db_path or root / DEFAULT_DB_FILENAME)
+    source = _ThreadStore(db_path or root / DEFAULT_DB_FILENAME)
     return RunReader(
-        store,
+        source,
         runs_root=Path(runs_root or root / DEFAULT_RUNS_DIRNAME).resolve(),
         snapshot_root=Path(snapshot_root or root / DEFAULT_SNAPSHOTS_DIRNAME).resolve(),
         risk_free_rate=risk_free_rate,
