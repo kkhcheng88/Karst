@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-058]
-claimedBy: null
+claimedBy: KARST-061-macro-completeness
 epic: V1 建置
 deliverable: KARST-D03
 ---
