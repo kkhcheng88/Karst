@@ -4,11 +4,28 @@
 「最優那一格的鄰域是不是同樣好」——鄰域一改,平原與孤峰的裁決就跟住改。所以
 本檔把每種格的相鄰定義寫死並寫明,報告亦一定要把它印出來(``describe()``)。
 
+**每條軸自報軸型**(KARST-047):
+
+``連續軸``(continuous axis)
+    回望期、均線日數那一類:軸上相鄰兩個取值是**真的一步之遙**,「移一步」有
+    刻度上的意思。鄰域只沿這種軸取。
+
+``選擇軸``(choice axis)
+    持現金/均分、月度/季度那一類:換一個取值是**換一套做法**,不是微調。這種
+    軸**不入鄰域**——它把整個格切成幾片(**層**,layer),每一層各自出一份平原
+    判讀。把兩種軸混在同一個鄰域平均裡,一條真山脊會被判成孤峰:KARST-043 的
+    相對強弱驅動器沿回望期 6 至 9 個月全部在 +2.8% 以上,卻因為鄰域把「均分」與
+    「季度」兩片一齊算進去而判了孤峰。
+
+軸型**預設連續**——舊有的格一個字不用改,判讀逐位不變(規格 6.5 的 3×3 仍然是
+3×3)。要分層的格請明寫 ``kind=CHOICE``。
+
 三種格:
 
 ``ProductGrid``
-    逐軸取值的笛卡兒積。相鄰 = **每個軸最多移一步、且不可全部不動**——二維格
-    即是經典的 3×3 鄰域(自己加八個鄰居,規格 6.5)。
+    逐軸取值的笛卡兒積。相鄰 = **每條連續軸最多移一步、且不可全部不動,選擇軸
+    釘死不動**——全部軸皆連續的二維格,即是經典的 3×3 鄰域(自己加八個鄰居,
+    規格 6.5)。
 
 ``SimplexGrid``
     權重單純形格:一堆權重,每個是步長的整數倍,加總剛好一。相鄰 = **把一步
@@ -31,12 +48,35 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from itertools import product
-from typing import Any
+from typing import Any, Final
 
 from ..errors import ContractViolation
 
 # 權重換算成整數步數時容許的浮點尾數。只擋尾數,不當「差不多就當一步」。
 _STEP_TOLERANCE = 1e-9
+
+# 兩種軸型。**連續軸**上「移一步」有刻度上的意思(回望期由 6 個月到 7 個月);
+# **選擇軸**換一個取值即換一套做法(持現金改成均分),鄰格是另一個世界。
+CONTINUOUS: Final[str] = "連續"
+CHOICE: Final[str] = "選擇"
+AXIS_KINDS: Final[tuple[str, ...]] = (CONTINUOUS, CHOICE)
+
+# 一層(layer)= 選擇軸的一組取值。沒有選擇軸即整個格只有一層,那一層的鍵是空的。
+LayerKey = tuple[tuple[str, Any], ...]
+
+
+def layer_label(key: LayerKey) -> str:
+    """一層的人話名:``fallback=cash、cadence=monthly``;沒有選擇軸就是「全格」。"""
+    if not key:
+        return "全格(沒有選擇軸)"
+    return "、".join(f"{name}={_format_value(value)}" for name, value in key)
+
+
+def layer_slug(key: LayerKey) -> str:
+    """一層的機器名(檔名用):``fallback-cash-cadence-monthly``。"""
+    if not key:
+        return "全格"
+    return "-".join(f"{name}-{_slug_value(value)}" for name, value in key)
 
 
 def _clean_name(name: Any, label: str = "參數名") -> str:
@@ -137,14 +177,31 @@ class SweepAxis:
     一格。換倉節奏由密到疏(月、季、年)就是這種軸。真正沒有次序的軸(例如三
     隻互不相干的基準)請寫 ``ordered=False``:那時同一軸的任何兩個取值皆相鄰,
     因為「移一步」在一個無序的軸上沒有意思。
+
+    ``kind`` 是**軸型**,預設 ``CONTINUOUS``(連續):鄰域沿住它走。寫
+    ``kind=CHOICE``(選擇)那一條軸就**退出鄰域**,改為把格切成幾層,每層各出
+    一份判讀(KARST-047)。兩者是兩件事:``ordered`` 講「這條軸上一步是幾遠」,
+    ``kind`` 講「這條軸該不該走一步」。選擇軸不走,所以它的 ``ordered`` 沒有作用。
     """
 
     name: str
     values: tuple[Any, ...]
     ordered: bool = True
+    kind: str = CONTINUOUS
+
+    @property
+    def is_choice(self) -> bool:
+        return self.kind == CHOICE
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "name", _clean_name(self.name))
+        kind = str(self.kind or "").strip()
+        if kind not in AXIS_KINDS:
+            raise ContractViolation(
+                f"軸「{self.name}」的軸型只收 {'、'.join(AXIS_KINDS)},收到 {self.kind!r};"
+                "連續軸(回望期一類)鄰格是一步之遙,選擇軸(持現金/均分一類)鄰格是另一個世界"
+            )
+        object.__setattr__(self, "kind", kind)
         items = tuple(self.values)
         if not items:
             raise ContractViolation(
@@ -164,12 +221,54 @@ class SweepAxis:
 class SweepGrid:
     """掃描格的共通門面:排得出全部格,講得出哪幾格與某一格相鄰。
 
-    子類要實作 ``points()``、``neighbours()`` 與 ``describe()``。
+    子類要實作 ``points()``、``neighbours()`` 與 ``describe()``。軸型預設全部連續
+    ——**舊有的格不用改一個字**,鄰域與判讀逐位不變;要分層的格覆寫 ``axis_kinds``。
     """
 
     @property
     def axis_names(self) -> tuple[str, ...]:
         raise NotImplementedError
+
+    @property
+    def axis_kinds(self) -> dict[str, str]:
+        """逐條軸的軸型。預設全部連續:沒有明寫的格,鄰域行為與從前一模一樣。"""
+        return {name: CONTINUOUS for name in self.axis_names}
+
+    @property
+    def choice_axes(self) -> tuple[str, ...]:
+        """選擇軸:不入鄰域,改為把格切成幾層。"""
+        kinds = self.axis_kinds
+        return tuple(name for name in self.axis_names if kinds.get(name) == CHOICE)
+
+    @property
+    def continuous_axes(self) -> tuple[str, ...]:
+        """連續軸:鄰域只沿住這幾條走。"""
+        kinds = self.axis_kinds
+        return tuple(name for name in self.axis_names if kinds.get(name) != CHOICE)
+
+    def axes_line(self) -> str:
+        """報告要印的一句:每條軸是連續還是選擇。"""
+        kinds = self.axis_kinds
+        parts = "、".join(f"{name}({kinds.get(name, CONTINUOUS)})" for name in self.axis_names)
+        tail = (
+            f";鄰域只沿連續軸取,選擇軸({'、'.join(self.choice_axes)})逐層分開判"
+            if self.choice_axes
+            else ";全部是連續軸,只有一層"
+        )
+        return f"軸型:{parts}{tail}"
+
+    def layer_of(self, point: SweepPoint) -> LayerKey:
+        """這一格屬於哪一層(選擇軸的一組取值)。沒有選擇軸就是空的那一層。"""
+        return tuple((name, point.get(name)) for name in self.choice_axes)
+
+    def layers(self) -> tuple[LayerKey, ...]:
+        """整個格切出來的層,次序按掃描次序首次出現。"""
+        seen: list[LayerKey] = []
+        for point in self.points():
+            key = self.layer_of(point)
+            if key not in seen:
+                seen.append(key)
+        return tuple(seen)
 
     def points(self) -> tuple[SweepPoint, ...]:
         raise NotImplementedError
@@ -193,10 +292,14 @@ class SweepGrid:
 
 
 class ProductGrid(SweepGrid):
-    """逐軸取值的笛卡兒積。相鄰 = 每個軸最多移一步,且不可全部不動。
+    """逐軸取值的笛卡兒積。相鄰 = 每條**連續軸**最多移一步,且不可全部不動。
 
-    二維格的鄰域就是規格 6.5 講的 3×3(中心格加八個鄰居);邊角的格鄰居少些
-    ——那是事實,不補格、不繞回對邊。
+    全部軸皆連續的二維格,鄰域就是規格 6.5 講的 3×3(中心格加八個鄰居);邊角的
+    格鄰居少些——那是事實,不補格、不繞回對邊。
+
+    **選擇軸釘死不動**:鄰居永遠與自己同一層。所以一個「回望期(連續)× 退路
+    (選擇)× 節奏(選擇)」的格,某一格的鄰居只有回望期前後那兩格,而不是
+    七格——這正是 KARST-047 要修的那件事。
     """
 
     def __init__(self, axes: Sequence[SweepAxis]) -> None:
@@ -216,6 +319,10 @@ class ProductGrid(SweepGrid):
     @property
     def axis_names(self) -> tuple[str, ...]:
         return tuple(axis.name for axis in self._axes)
+
+    @property
+    def axis_kinds(self) -> dict[str, str]:
+        return {axis.name: axis.kind for axis in self._axes}
 
     def points(self) -> tuple[SweepPoint, ...]:
         return tuple(
@@ -243,7 +350,10 @@ class ProductGrid(SweepGrid):
         base = self._indices(point)
         choices: list[list[int]] = []
         for axis, index in zip(self._axes, base, strict=True):
-            if axis.ordered:
+            if axis.is_choice:
+                # 選擇軸不移動:鄰居永遠與自己同一層(KARST-047)。
+                choices.append([index])
+            elif axis.ordered:
                 choices.append(
                     [i for i in (index - 1, index, index + 1) if 0 <= i < len(axis.values)]
                 )
@@ -265,14 +375,25 @@ class ProductGrid(SweepGrid):
 
     def describe(self) -> str:
         shape = " × ".join(f"{axis.name}({len(axis)})" for axis in self._axes)
-        unordered = [axis.name for axis in self._axes if not axis.ordered]
+        unordered = [axis.name for axis in self._axes if not axis.ordered and not axis.is_choice]
         note = ""
         if unordered:
             note = f";無序軸({'、'.join(unordered)})同軸任意兩個取值皆相鄰"
+        choices = self.choice_axes
+        if choices:
+            spine = len(self._axes) - len(choices)
+            rule = (
+                f"相鄰 = 每條連續軸最多移一步且不可全部不動,選擇軸釘死不動"
+                f"({spine} 條連續軸;選擇軸 {'、'.join(choices)} 切出 {len(self.layers())} 層,"
+                "每層各出一份判讀)"
+            )
+        else:
+            rule = (
+                f"相鄰 = 每個軸最多移一步且不可全部不動"
+                f"({'二維即 3×3 鄰域' if len(self._axes) == 2 else f'{len(self._axes)} 維'})"
+            )
         return (
-            f"笛卡兒積格 {shape},共 {len(self.points())} 格;"
-            f"相鄰 = 每個軸最多移一步且不可全部不動"
-            f"({'二維即 3×3 鄰域' if len(self._axes) == 2 else f'{len(self._axes)} 維'}){note}"
+            f"笛卡兒積格 {shape},共 {len(self.points())} 格;{rule}{note};{self.axes_line()}"
         )
 
 
@@ -434,6 +555,14 @@ class CompositeGrid(SweepGrid):
             out.extend(part.axis_names)
         return tuple(out)
 
+    @property
+    def axis_kinds(self) -> dict[str, str]:
+        """成分格各自報自己那幾條軸的軸型;拼合格不改寫任何一條。"""
+        out: dict[str, str] = {}
+        for part in self._parts:
+            out.update(part.axis_kinds)
+        return out
+
     def points(self) -> tuple[SweepPoint, ...]:
         out: list[SweepPoint] = []
         for combo in product(*(part.points() for part in self._parts)):
@@ -473,7 +602,8 @@ class CompositeGrid(SweepGrid):
         inner = ";".join(part.describe() for part in self._parts)
         return (
             f"拼合格({len(self._parts)} 個成分格,共 {len(self.points())} 格)"
-            f"——相鄰 = 每個成分格各自移一步或者不動,但不可全部不動。成分格:{inner}"
+            f"——相鄰 = 每個成分格各自移一步或者不動,但不可全部不動;{self.axes_line()}。"
+            f"成分格:{inner}"
         )
 
 
@@ -516,8 +646,26 @@ class ExplicitGrid(SweepGrid):
 
 
 def product_grid(**axes: Sequence[Any]) -> ProductGrid:
-    """砌一個笛卡兒積格:``product_grid(fast=[5,10], slow=[50,100])``。"""
+    """砌一個笛卡兒積格,**全部軸當連續**:``product_grid(fast=[5,10], slow=[50,100])``。
+
+    有選擇軸的格請用 ``continuous_axis`` / ``choice_axis`` 逐條砌好再交
+    ``ProductGrid``——軸型要明寫,不由參數名去猜。
+    """
     return ProductGrid([SweepAxis(name=name, values=tuple(values)) for name, values in axes.items()])
+
+
+def continuous_axis(name: str, values: Sequence[Any], *, ordered: bool = True) -> SweepAxis:
+    """砌一條**連續軸**(回望期、均線日數一類):鄰域沿住它走一步。"""
+    return SweepAxis(name=name, values=tuple(values), ordered=ordered, kind=CONTINUOUS)
+
+
+def choice_axis(name: str, values: Sequence[Any]) -> SweepAxis:
+    """砌一條**選擇軸**(持現金/均分、月度/季度一類)。
+
+    它不入鄰域,而是把格切成一層層,每層各出一份判讀。``ordered`` 在這裡沒有
+    作用(選擇軸不走一步),所以一律記 ``False``,免得下一個人以為它有意思。
+    """
+    return SweepAxis(name=name, values=tuple(values), ordered=False, kind=CHOICE)
 
 
 def simplex_grid(keys: Sequence[str], *, step: float, total: float = 1.0) -> SimplexGrid:
