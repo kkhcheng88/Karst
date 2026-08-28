@@ -51,6 +51,7 @@ def test_value_round_trips_with_both_timestamps(store, apple):
                 "entity_id": apple,
                 "event_time": "2026-08-25",
                 "knowledge_time": "2026-08-27T13:30:00",
+                "executable_time": "2026-08-28",
                 "value": 0.3142,
             }
         ],
@@ -76,7 +77,8 @@ def test_second_version_keeps_first_intact_and_records_parent(store, apple):
     )
     store.write_factor_values(
         MOMENTUM,
-        [{"entity_id": apple, "event_time": "2026-08-25", "knowledge_time": "2026-08-26", "value": 0.11}],
+        [{"entity_id": apple, "event_time": "2026-08-25", "knowledge_time": "2026-08-26",
+          "executable_time": "2026-08-27", "value": 0.11}],
     )
 
     second = store.new_factor_version(
@@ -118,7 +120,8 @@ def test_missing_value_is_not_applicable_not_zero(store, apple):
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
     store.write_factor_values(
         MOMENTUM,
-        [{"entity_id": apple, "event_time": "2026-08-25", "knowledge_time": "2026-08-26", "value": 0.0}],
+        [{"entity_id": apple, "event_time": "2026-08-25", "knowledge_time": "2026-08-26",
+          "executable_time": "2026-08-27", "value": 0.0}],
     )
 
     really_zero = store.value_for(MOMENTUM, apple, as_of="2026-08-27")  # 值真的是零
@@ -216,7 +219,8 @@ def test_snapshot_registers_a_frozen_parquet_batch(store, apple, tmp_path):
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
     store.write_factor_values(
         MOMENTUM,
-        [{"entity_id": apple, "event_time": "2026-08-26", "knowledge_time": "2026-08-27", "value": 0.2}],
+        [{"entity_id": apple, "event_time": "2026-08-26", "knowledge_time": "2026-08-27",
+          "executable_time": "2026-08-28", "value": 0.2}],
         snapshot_id=snapshot_id,
     )
     assert store.read_factor_values(MOMENTUM, as_of="2026-08-27").iloc[0]["snapshot_id"] == snapshot_id

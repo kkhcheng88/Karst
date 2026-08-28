@@ -78,6 +78,10 @@ def toy_factor(store, entity_ids):
     rows = []
     for position, day in enumerate(DATES):
         stamp = day.strftime("%Y-%m-%d")
+        # 可執行時點 = 下一根 K 線;最後一根之後沒有下一根,留空(D-021 第 3 條)
+        next_stamp = (
+            DATES[position + 1].strftime("%Y-%m-%d") if position + 1 < len(DATES) else None
+        )
         high_first = position < half
         for rank, entity_id in enumerate(entity_ids):
             score = len(entity_ids) - rank if high_first else rank + 1
@@ -86,6 +90,7 @@ def toy_factor(store, entity_ids):
                     "entity_id": entity_id,
                     "event_time": stamp,
                     "knowledge_time": stamp,
+                    "executable_time": next_stamp,
                     "value": float(score),
                 }
             )
@@ -294,9 +299,12 @@ def test_selection_fills_at_the_next_bar_open(store):
     store.write_factor_values(
         FACTOR,
         [
-            {"entity_id": ids[0], "event_time": "2026-02-27", "knowledge_time": "2026-03-04", "value": 3.0},
-            {"entity_id": ids[1], "event_time": "2026-02-27", "knowledge_time": "2026-03-04", "value": 2.0},
-            {"entity_id": ids[2], "event_time": "2026-02-27", "knowledge_time": "2026-03-04", "value": 1.0},
+            {"entity_id": ids[0], "event_time": "2026-02-27", "knowledge_time": "2026-03-04",
+             "executable_time": "2026-03-05", "value": 3.0},
+            {"entity_id": ids[1], "event_time": "2026-02-27", "knowledge_time": "2026-03-04",
+             "executable_time": "2026-03-05", "value": 2.0},
+            {"entity_id": ids[2], "event_time": "2026-02-27", "knowledge_time": "2026-03-04",
+             "executable_time": "2026-03-05", "value": 1.0},
         ],
     )
 

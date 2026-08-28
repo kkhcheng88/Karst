@@ -52,6 +52,7 @@ _VALUE_COLUMNS = (
     "entity_id",
     "event_time",
     "knowledge_time",
+    "executable_time",
     "value",
     "snapshot_id",
     "factor_version_id",
@@ -278,6 +279,12 @@ class SnapshotFetch:
     快照編號本身刻意不含抓取時間(同一批數據重抓要得同一個編號),所以
     「幾時抓的」住在這裡。同一個快照只有一列——重抓得回同一個編號時,
     沿用**第一次**凍結那刻的抓取時間,不會被後來那次改寫。
+
+    ``alert_count`` / ``alert_summary`` 是凍結那一刻的**齊全度核對結果**
+    (KARST-067):幾多條序列超出門檻、一句講得出是哪幾條。兩格同生共死,而且
+    ``None`` 有它自己的意思——**沒有經過齊全度核對**(價格快照沒有主日曆可核,
+    第 9 版之前的舊登記亦回填不出),不是「核對過、零警報」。要分得開這兩件事,
+    因為「零警報」是一句話,「沒有人核對過」是另一句。
     """
 
     snapshot_id: str
@@ -288,10 +295,17 @@ class SnapshotFetch:
     row_count: int
     trading_days: int
     recorded_at: str
+    alert_count: int | None
+    alert_summary: str | None
 
     @property
     def window(self) -> str:
         return f"{self.window_start}~{self.window_end}"
+
+    @property
+    def audited(self) -> bool:
+        """這份快照凍結時有沒有核對過齊全度。"""
+        return self.alert_count is not None
 
 
 @dataclass(frozen=True, slots=True)
@@ -327,6 +341,16 @@ class SnapshotListing:
         凍結(D-026 第 6 條),故數目對得上。
         """
         return len(self.universe) if self.fetch is None else self.fetch.entity_count
+
+    @property
+    def alert_count(self) -> int | None:
+        """凍結時有幾多條序列超出齊全度門檻;``None`` = 沒有核對過(KARST-067)。"""
+        return None if self.fetch is None else self.fetch.alert_count
+
+    @property
+    def alert_summary(self) -> str | None:
+        """那次核對的一句摘要;``None`` = 沒有核對過(KARST-067)。"""
+        return None if self.fetch is None else self.fetch.alert_summary
 
 
 @dataclass(frozen=True, slots=True)
@@ -726,7 +750,7 @@ class DefinitionStore:
         return _row_to_version(row)
 
     # ------------------------------------------------------------------
-    # 因子值:日期 × 實體 → 值,事件時間與知情時間雙時間戳
+    # 因子值:日期 × 實體 → 值,事件/知情雙時間戳連可執行時點
     # ------------------------------------------------------------------
 
     def write_factor_values(
@@ -737,10 +761,17 @@ class DefinitionStore:
         version_no: int | None = None,
         snapshot_id: str | None = None,
     ) -> int:
-        """寫入因子值。每列要有 entity_id、event_time、knowledge_time、value。
+        """寫入因子值。每列要有 entity_id、event_time、knowledge_time、
+        executable_time、value 五格。
 
         缺失值**不要寫**——沒有那一列就是「該股該日不參與」(D-021 第 4 條);
         寫 0 或 NaN 一律當錯。知情時間早於事件時間即前視,當場拒收。
+
+        ``executable_time`` 是可執行時點(D-021 第 3 條):知情時點之後**下一根
+        可交易 K 線**的開市。它**必須給**,但**可以給 ``None``**——沒有下一根
+        K 線(那個快照的日曆到此為止)時,值知得到而成交不到,那正是要記下來的
+        事實。刻意不設預設值:一列因子值幾時才成交得到,只有寫入它的那個人答得出;
+        這裡補一個出來就等於替它答了,而答錯的方向剛好就是前視。
         """
         version = self.get_factor_version(name, version_no)
         if isinstance(rows, pd.DataFrame):
@@ -750,7 +781,11 @@ class DefinitionStore:
 
         payload: list[tuple[Any, ...]] = []
         for index, record in enumerate(records):
-            missing = [k for k in ("entity_id", "event_time", "knowledge_time", "value") if k not in record]
+            missing = [
+                k
+                for k in ("entity_id", "event_time", "knowledge_time", "executable_time", "value")
+                if k not in record
+            ]
             if missing:
                 raise ContractViolation(f"第 {index} 列缺欄位:{'、'.join(missing)}")
             event_time = as_timestamp(record["event_time"], "event_time")
@@ -759,6 +794,16 @@ class DefinitionStore:
                 raise ContractViolation(
                     f"第 {index} 列前視:知情時間 {knowledge_time} 早於事件時間 {event_time}"
                 )
+            raw_executable = record["executable_time"]
+            if raw_executable is None or raw_executable != raw_executable:  # None 或 NaN
+                executable_time = None
+            else:
+                executable_time = as_timestamp(raw_executable, "executable_time")
+                if executable_time <= knowledge_time:
+                    raise ContractViolation(
+                        f"第 {index} 列前視:可執行時點 {executable_time} 不在知情時間 "
+                        f"{knowledge_time} 之後;可執行時點是知情之後下一根可交易 K 線的開市"
+                    )
             try:
                 value = as_finite_float(record["value"], f"第 {index} 列的值")
             except ValueError as exc:
@@ -771,6 +816,7 @@ class DefinitionStore:
                     knowledge_time,
                     value,
                     record.get("snapshot_id", snapshot_id),
+                    executable_time,
                 )
             )
 
@@ -778,7 +824,8 @@ class DefinitionStore:
             with self._conn:
                 self._conn.executemany(
                     "INSERT INTO factor_value (factor_version_id, entity_id, event_time,"
-                    " knowledge_time, value, snapshot_id) VALUES (?, ?, ?, ?, ?, ?)",
+                    " knowledge_time, value, snapshot_id, executable_time)"
+                    " VALUES (?, ?, ?, ?, ?, ?, ?)",
                     payload,
                 )
         except sqlite3.IntegrityError as exc:
@@ -800,7 +847,8 @@ class DefinitionStore:
         """讀回因子值。``as_of`` 是知情時間閘:該時點之後才知道的值一律看不見。"""
         version = self.get_factor_version(name, version_no)
         sql = [
-            "SELECT entity_id, event_time, knowledge_time, value, snapshot_id, factor_version_id",
+            "SELECT entity_id, event_time, knowledge_time, executable_time, value,"
+            " snapshot_id, factor_version_id",
             "FROM factor_value WHERE factor_version_id = ?",
         ]
         params: list[Any] = [version.factor_version_id]
@@ -843,7 +891,8 @@ class DefinitionStore:
             entity_filter = f"AND entity_id IN ({placeholders})"
             params.extend(int(e) for e in entity_ids)
         sql = f"""
-            SELECT entity_id, event_time, knowledge_time, value, snapshot_id, factor_version_id
+            SELECT entity_id, event_time, knowledge_time, executable_time, value,
+                   snapshot_id, factor_version_id
             FROM (
                 SELECT *, ROW_NUMBER() OVER (
                     PARTITION BY entity_id ORDER BY event_time DESC, knowledge_time DESC
@@ -2074,14 +2123,26 @@ class DefinitionStore:
         entity_count: int,
         row_count: int,
         trading_days: int,
+        alert_count: int | None,
+        alert_summary: str | None,
     ) -> SnapshotFetch:
         """記下一次抓取的隨身資料,回傳這個快照的抓取登記。
 
         同一個快照重覆登記回**原本那一列**(第一次凍結那刻的抓取時間),不覆寫、
         不多加一列:同一批數據重抓得回同一個編號,而它第一次落地是哪一刻,
-        是一件已經發生的事,不會因為有人再抓一次而改變。
+        是一件已經發生的事,不會因為有人再抓一次而改變。齊全度那兩格同一個道理
+        ——留住的是**第一次凍結那刻核對出來的結果**,後來換一套門檻再凍一次,
+        改的是那次核對的結論,不是這一次已經發生的登記。
+
+        ``alert_count`` 與 ``alert_summary`` 是**必給的**(KARST-067),而且兩者
+        同生共死:核對過就兩格都有,沒有核對過就兩格都是 ``None``。刻意不給預設值
+        ——「這份快照有沒有核對過齊全度」是呼叫方才答得出的事,補一個預設值出來,
+        就等於替它答了。
         """
         snapshot = self.get_snapshot(snapshot_id)  # 查無此快照即拋 NotFound,不憑空登記
+        # 齊全度那兩格先驗一次,行在「已經登記過就回原本那一列」之前:一句
+        # 講不通的登記,不會因為那個快照剛巧已經在案就靜靜過關。
+        alerts, summary = _check_completeness_cells(alert_count, alert_summary)
         existing = self.snapshot_fetch(snapshot.snapshot_id)
         if existing is not None:
             return existing
@@ -2095,8 +2156,9 @@ class DefinitionStore:
         with self._conn:
             self._conn.execute(
                 "INSERT INTO data_snapshot_fetch (snapshot_id, fetched_at, window_start,"
-                " window_end, entity_count, row_count, trading_days, recorded_at)"
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                " window_end, entity_count, row_count, trading_days, recorded_at,"
+                " alert_count, alert_summary)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     snapshot.snapshot_id,
                     stamp,
@@ -2106,6 +2168,8 @@ class DefinitionStore:
                     int(row_count),
                     int(trading_days),
                     _now(),
+                    alerts,
+                    summary,
                 ),
             )
         recorded = self.snapshot_fetch(snapshot.snapshot_id)
@@ -2116,8 +2180,8 @@ class DefinitionStore:
         """這個快照的抓取登記;不是經唯一入口凍的就回 ``None``。"""
         row = self._conn.execute(
             "SELECT snapshot_id, fetched_at, window_start, window_end, entity_count,"
-            " row_count, trading_days, recorded_at FROM data_snapshot_fetch"
-            " WHERE snapshot_id = ?",
+            " row_count, trading_days, recorded_at, alert_count, alert_summary"
+            " FROM data_snapshot_fetch WHERE snapshot_id = ?",
             (str(snapshot_id),),
         ).fetchone()
         return None if row is None else _row_to_snapshot_fetch(row)
@@ -2127,7 +2191,7 @@ class DefinitionStore:
         rows = self._conn.execute(
             "SELECT s.snapshot_id, s.source, s.taken_on, s.content_hash, s.path, s.universe,"
             " s.created_at, f.fetched_at, f.window_start, f.window_end, f.entity_count,"
-            " f.row_count, f.trading_days, f.recorded_at"
+            " f.row_count, f.trading_days, f.recorded_at, f.alert_count, f.alert_summary"
             " FROM data_snapshot AS s"
             " LEFT JOIN data_snapshot_fetch AS f ON f.snapshot_id = s.snapshot_id"
             " ORDER BY s.taken_on DESC, s.snapshot_id DESC"
@@ -2178,6 +2242,28 @@ JOIN factor AS f ON f.factor_id = v.factor_id
 """
 
 
+def _check_completeness_cells(
+    alert_count: int | None, alert_summary: str | None
+) -> tuple[int | None, str | None]:
+    """齊全度那兩格的合約:兩格同生共死,條數不可為負(KARST-067)。
+
+    庫身那條 CHECK 已經擋得住,這裡先擋一次是為了拋得出一句人話——一個
+    ``IntegrityError`` 講不出「你是核對過還是沒有核對過」。
+    """
+    summary = None if alert_summary is None else str(alert_summary).strip()
+    if alert_count is None and not summary:
+        return None, None
+    if alert_count is None or not summary:
+        raise ContractViolation(
+            "齊全度警報條數與警報摘要要一齊給:核對過就兩格都有,沒有核對過就兩格都留空;"
+            "留一格空補不出另一格"
+        )
+    alerts = int(alert_count)
+    if alerts < 0:
+        raise ContractViolation(f"齊全度警報條數不可為負:收到 {alert_count!r}")
+    return alerts, summary
+
+
 def _row_to_snapshot_fetch(row: sqlite3.Row) -> SnapshotFetch:
     return SnapshotFetch(
         snapshot_id=row["snapshot_id"],
@@ -2188,6 +2274,8 @@ def _row_to_snapshot_fetch(row: sqlite3.Row) -> SnapshotFetch:
         row_count=int(row["row_count"]),
         trading_days=int(row["trading_days"]),
         recorded_at=row["recorded_at"],
+        alert_count=None if row["alert_count"] is None else int(row["alert_count"]),
+        alert_summary=row["alert_summary"],
     )
 
 

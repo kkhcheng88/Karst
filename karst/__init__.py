@@ -17,7 +17,8 @@
         )
         store.write_factor_values("動量·12-1 月", [
             {"entity_id": apple, "event_time": "2026-08-26",
-             "knowledge_time": "2026-08-27", "value": 0.31},
+             "knowledge_time": "2026-08-27", "executable_time": "2026-08-28",
+             "value": 0.31},
         ])
         store.value_for("動量·12-1 月", apple, as_of="2026-08-27")
 """

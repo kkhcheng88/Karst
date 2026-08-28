@@ -114,7 +114,8 @@ def test_cli_rejects_incomplete_contracts(karst, tmp_path):
     values_file = tmp_path / "values.json"
     values_file.write_text(
         json.dumps([{"entity_id": 1, "event_time": "2026-08-26",
-                     "knowledge_time": "2026-08-25", "value": 0.31}]),
+                     "knowledge_time": "2026-08-25", "executable_time": "2026-08-27",
+                     "value": 0.31}]),
         encoding="utf-8",
     )
     code, output = karst("factor", "write-values", "--name", MOMENTUM,

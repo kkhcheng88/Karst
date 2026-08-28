@@ -139,6 +139,12 @@ def toy_factor(store):
     rows = []
     for position, day in enumerate(RANKING_DATES):
         stamp = day.strftime("%Y-%m-%d")
+        # 可執行時點 = 下一根 K 線;最後一根之後沒有下一根,留空(D-021 第 3 條)
+        next_stamp = (
+            RANKING_DATES[position + 1].strftime("%Y-%m-%d")
+            if position + 1 < len(RANKING_DATES)
+            else None
+        )
         high_first = position < half
         for rank, entity_id in enumerate(entity_ids):
             score = len(entity_ids) - rank if high_first else rank + 1
@@ -147,6 +153,7 @@ def toy_factor(store):
                     "entity_id": entity_id,
                     "event_time": stamp,
                     "knowledge_time": stamp,
+                    "executable_time": next_stamp,
                     "value": float(score),
                 }
             )

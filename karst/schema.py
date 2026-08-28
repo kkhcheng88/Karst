@@ -6,7 +6,8 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 四組表:
 1. ``entity`` / ``entity_ticker``  實體編號與代號歷史映射(D-026 第 2 條)
 2. ``factor`` / ``factor_version`` 因子定義與版本鏈(D-021 第 2、6、9 條)
-3. ``factor_value``                日期 × 實體 → 值,雙時間戳(D-021 第 1、3、4 條)
+3. ``factor_value``                日期 × 實體 → 值,雙時間戳連可執行時點
+                                   (D-021 第 1、3、4 條;可執行時點 KARST-064)
 4. ``data_snapshot``               數據快照登記(D-026 第 3 條)
 5. ``strategy`` / ``strategy_version`` / ``strategy_factor_ref`` / ``param_set`` /
    ``param_value``                 策略定義、版本鏈、引用因子與參數集(D-020 第 4 條、KARST-022)
@@ -21,8 +22,9 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 9. ``risk_rule`` / ``strategy_risk_ref``
                                    共用風控層三條規則的定義登記與策略引用
                                    (D-013 第 4 條、規格 1.6;KARST-025)
-10. ``data_snapshot_fetch``        數據快照的抓取登記:抓取時間與抓的是哪一段窗口
-                                   (D-026 第 3 條;KARST-034)
+10. ``data_snapshot_fetch``        數據快照的抓取登記:抓取時間、抓的是哪一段窗口,
+                                   以及凍結那一刻的齊全度核對結果
+                                   (D-026 第 3 條;KARST-034、KARST-067)
 """
 
 from __future__ import annotations
@@ -39,8 +41,12 @@ from typing import Any
 # 第 7 版把 param_set 的換倉節奏約束改為由引擎那份正本砌出來(KARST-044),
 #        舊庫重開時自動重建 param_set(見 ``_migrate_param_set_cadence``);
 # 第 8 版在 backtest_run 加「來歷」與「掃描編號」兩格(KARST-054),舊庫重開時
-#        自動重建 backtest_run 並回填(見 ``_migrate_backtest_run_origin``)。
-SCHEMA_VERSION = 8
+#        自動重建 backtest_run 並回填(見 ``_migrate_backtest_run_origin``);
+# 第 9 版在 data_snapshot_fetch 加「齊全度警報條數」與「警報摘要」兩格(KARST-067),
+#        舊庫重開時原地補欄、既有登記一列不動(見 ``_migrate_snapshot_fetch_alerts``);
+# 第 10 版在 factor_value 加「可執行時點」一格(KARST-064),舊庫重開時原地補欄、
+#        既有因子值一列不動(見 ``_migrate_factor_value_executable_time``)。
+SCHEMA_VERSION = 10
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -120,6 +126,11 @@ CREATE TABLE IF NOT EXISTS factor_version (
 
 -- 因子值:缺失=沒有這一列,不填 0、不填 NULL。
 -- 追溯到批次 = factor_version_id(含產生程序版本) × snapshot_id。
+-- 三個時點齊落一列(D-021 第 3 條):事件時點(那根 K 線)、知情時點(該日收工)、
+-- 可執行時點(其後下一根可交易 K 線的開市)。可執行時點**可以留空**,而留空
+-- 有它自己的意思:這個快照的日曆裡沒有下一根 K 線——值知得到,但成交不到。
+-- 把它記成「同一日可成交」就是前視,所以寧可留空而不猜(engine/cadence.py
+-- 的排期亦是這樣丟掉最後一個決策日的)。
 CREATE TABLE IF NOT EXISTS factor_value (
     factor_version_id INTEGER NOT NULL REFERENCES factor_version(factor_version_id),
     entity_id         INTEGER NOT NULL REFERENCES entity(entity_id),
@@ -127,6 +138,7 @@ CREATE TABLE IF NOT EXISTS factor_value (
     knowledge_time    TEXT NOT NULL,
     value             REAL NOT NULL,
     snapshot_id       TEXT REFERENCES data_snapshot(snapshot_id),
+    executable_time   TEXT CHECK (executable_time IS NULL OR executable_time > knowledge_time),
     PRIMARY KEY (factor_version_id, entity_id, event_time, knowledge_time),
     CHECK (knowledge_time >= event_time)
 );
@@ -509,15 +521,28 @@ END;
 --
 -- **來源不在本表再寫一次**:它的正本住在 data_snapshot.source(單一定義,無第二影像)。
 -- 要「抓取時間連來源」一次過取,經 karst/store.py 的 list_snapshots() 兩表併讀。
+--
+-- ``alert_count`` / ``alert_summary`` 是凍結那一刻的**齊全度核對結果**(KARST-067):
+-- 幾多條序列超出門檻、一句講得出是哪幾條。以前這件事只寫在已凍結快照自己的
+-- manifest 與說明檔,``karst data list`` 看不到——要開目錄才知道某個快照當日有沒有
+-- 警報(KARST-061 留言點名的那個缺口)。
+--
+-- **兩格都可以留空,而留空有它自己的意思**:``NULL`` = 這個快照根本沒有經過齊全度
+-- 核對(價格快照沒有主日曆可核;第 9 版之前登記的舊列亦回填不出),``0`` = 核對過而
+-- 且零警報。把「沒有核對過」寫成 0,就是把一件沒有發生過的核對記成合格——那正是
+-- ^VIX3M 停更 28 日無人察覺(假設 A-008)那件事的同一種錯。兩格同生共死:
+-- 有條數就有摘要,有摘要就有條數。
 CREATE TABLE IF NOT EXISTS data_snapshot_fetch (
-    snapshot_id  TEXT PRIMARY KEY REFERENCES data_snapshot(snapshot_id),
-    fetched_at   TEXT NOT NULL,
-    window_start TEXT NOT NULL,
-    window_end   TEXT NOT NULL,
-    entity_count INTEGER NOT NULL CHECK (entity_count >= 0),
-    row_count    INTEGER NOT NULL CHECK (row_count >= 0),
-    trading_days INTEGER NOT NULL CHECK (trading_days >= 0),
-    recorded_at  TEXT NOT NULL,
+    snapshot_id   TEXT PRIMARY KEY REFERENCES data_snapshot(snapshot_id),
+    fetched_at    TEXT NOT NULL,
+    window_start  TEXT NOT NULL,
+    window_end    TEXT NOT NULL,
+    entity_count  INTEGER NOT NULL CHECK (entity_count >= 0),
+    row_count     INTEGER NOT NULL CHECK (row_count >= 0),
+    trading_days  INTEGER NOT NULL CHECK (trading_days >= 0),
+    recorded_at   TEXT NOT NULL,
+    alert_count   INTEGER CHECK (alert_count IS NULL OR alert_count >= 0),
+    alert_summary TEXT CHECK ((alert_count IS NULL) = (alert_summary IS NULL)),
     CHECK (window_end >= window_start),
     CHECK (length(trim(fetched_at)) > 0)
 );
@@ -736,6 +761,115 @@ def _migrate_backtest_run_origin(conn: sqlite3.Connection) -> tuple[int, int] | 
     return formal_rows, sweep_rows
 
 
+# 第 9 版遷移的記錄落點:補了什麼、補在幾多列身上,寫在庫身自己那張 schema_meta。
+SNAPSHOT_FETCH_ALERTS_MIGRATION_KEY = "migration_009_snapshot_fetch_alerts"
+
+# 補的是哪兩格。欄位定義**不在此處另寫一次**:由上面那份建表 DDL 抄出來
+# (見 ``_column_definition``),免得新庫與遷移過的舊庫各有一套寫法。
+_ALERT_COLUMNS = ("alert_count", "alert_summary")
+
+
+def _column_definition(table: str, column: str) -> str:
+    """由建表 DDL 取一欄的定義原文(連它自己那條 CHECK)。"""
+    statement = re.search(
+        rf"CREATE TABLE IF NOT EXISTS {table} \(.*?\n\);", ddl(), re.DOTALL
+    )
+    if statement is None:  # pragma: no cover - DDL 改壞才會走到這裡
+        raise RuntimeError(f"建表 DDL 裡找不到 {table},無法補欄")
+    line = re.search(rf"^\s*{column}\s+(.+)$", statement.group(0), re.M)
+    if line is None:  # pragma: no cover - DDL 改壞才會走到這裡
+        raise RuntimeError(f"{table} 的 DDL 裡找不到 {column} 那一欄")
+    return f"{column} {line.group(1).strip().rstrip(',')}"
+
+
+def _migrate_snapshot_fetch_alerts(conn: sqlite3.Connection) -> int | None:
+    """舊庫的 ``data_snapshot_fetch`` 原地補上齊全度那兩格(KARST-067)。
+
+    與第 7、8 版那兩個遷移不同,**這一次不重建表**:兩格都可以留空,所以
+    ``ALTER TABLE ... ADD COLUMN`` 補得到。既有登記一列都不用搬——連
+    ``fetched_at`` 那個「第一次凍結是哪一刻」都不會在搬運途中被碰過,而那正是
+    這張表唯一答得出、事後補不回的東西。
+
+    舊列補出來是 ``NULL``,即「這個快照沒有經過齊全度核對」。**不回填 0**:
+    第 9 版之前根本沒有人核對過那幾份快照,把它記成「核對過、零警報」,就是把
+    一件沒有發生過的核對寫成合格——與 ^VIX3M 停更 28 日仍然看似正常(假設 A-008)
+    是同一種錯。
+
+    只在偵測到舊版(表在、但沒有 ``alert_count`` 那一格)時跑,跑完重開不會再跑。
+    回傳庫內原有幾多列抓取登記;沒有補過即 ``None``。
+    """
+    columns = [
+        str(row["name"]) for row in conn.execute("PRAGMA table_info(data_snapshot_fetch)")
+    ]
+    if not columns or _ALERT_COLUMNS[0] in columns:
+        return None
+
+    existing = int(
+        conn.execute("SELECT COUNT(*) AS n FROM data_snapshot_fetch").fetchone()["n"]
+    )
+    note = (
+        f"第 9 版遷移:data_snapshot_fetch 原地補上齊全度警報條數與警報摘要兩格。"
+        f"庫內原有的 {existing} 筆抓取登記一列都沒有搬過,兩格一律留空——"
+        "第 9 版之前沒有人核對過那幾份快照的齊全度,回填不出,留空而不記成零警報。"
+    )
+    with conn:
+        for column in _ALERT_COLUMNS:
+            conn.execute(
+                "ALTER TABLE data_snapshot_fetch ADD COLUMN "
+                + _column_definition("data_snapshot_fetch", column)
+            )
+        conn.execute(
+            "INSERT OR IGNORE INTO schema_meta (key, value) VALUES (?, ?)",
+            (SNAPSHOT_FETCH_ALERTS_MIGRATION_KEY, note),
+        )
+    return existing
+
+
+# 第 10 版遷移的記錄落點:補了什麼、補在幾多列身上,寫在庫身自己那張 schema_meta。
+FACTOR_VALUE_EXECUTABLE_MIGRATION_KEY = "migration_010_factor_value_executable_time"
+
+# 補的是哪一格。欄位定義同樣不在此處另寫一次,由建表 DDL 抄出來。
+_EXECUTABLE_COLUMN = "executable_time"
+
+
+def _migrate_factor_value_executable_time(conn: sqlite3.Connection) -> int | None:
+    """舊庫的 ``factor_value`` 原地補上可執行時點那一格(KARST-064)。
+
+    做法照第 9 版(``_migrate_snapshot_fetch_alerts``)而**不是**第 7、8 版那種
+    整表重建:這一格可以留空,``ALTER TABLE ... ADD COLUMN`` 補得到。因子值落庫
+    之後不可改不可刪(D-021 第 9 條,兩個 trigger 鎖住),重建表等於把每一列都
+    搬過一次;能不搬就不搬。
+
+    舊列補出來是 ``NULL``。**不回填**:一個舊值的可執行時點要靠它那個快照的日曆
+    才數得出下一根 K 線是哪一日,回填就是替一件沒有發生過的登記編一個答案;而且
+    ``snapshot_id`` 本身容許留空,那些列連日曆都無從查起。留空的意思寫在建表 DDL
+    的註解裡:值知得到、成交不到。
+
+    只在偵測到舊版(表在、但沒有 ``executable_time`` 那一格)時跑,跑完重開不會
+    再跑。回傳庫內原有幾多列因子值;沒有補過即 ``None``。
+    """
+    columns = [str(row["name"]) for row in conn.execute("PRAGMA table_info(factor_value)")]
+    if not columns or _EXECUTABLE_COLUMN in columns:
+        return None
+
+    existing = int(conn.execute("SELECT COUNT(*) AS n FROM factor_value").fetchone()["n"])
+    note = (
+        f"第 10 版遷移:factor_value 原地補上可執行時點一格。庫內原有的 {existing} "
+        "個因子值一列都沒有搬過,那一格一律留空——第 10 版之前沒有人登記過可執行"
+        "時點,要靠各自那個快照的日曆才數得出下一根 K 線,回填不出,留空而不猜。"
+    )
+    with conn:
+        conn.execute(
+            "ALTER TABLE factor_value ADD COLUMN "
+            + _column_definition("factor_value", _EXECUTABLE_COLUMN)
+        )
+        conn.execute(
+            "INSERT OR IGNORE INTO schema_meta (key, value) VALUES (?, ?)",
+            (FACTOR_VALUE_EXECUTABLE_MIGRATION_KEY, note),
+        )
+    return existing
+
+
 def connect(path: str) -> sqlite3.Connection:
     """開庫並建表。``path`` 用 ``":memory:"`` 即開一個即用即棄的庫。"""
     conn = sqlite3.connect(path)
@@ -746,6 +880,11 @@ def connect(path: str) -> sqlite3.Connection:
     _migrate_backtest_run_origin(conn)
     conn.executescript(ddl())
     _migrate_param_set_cadence(conn)
+    # 補欄那個不必行在建表之前:兩格都可以留空,而且沒有索引落在它們身上,
+    # 所以 DDL 的 IF NOT EXISTS 先行一步也不會撞板。
+    _migrate_snapshot_fetch_alerts(conn)
+    # 同一個道理:可執行時點可以留空,亦沒有索引落在它身上,所以補欄行在建表之後。
+    _migrate_factor_value_executable_time(conn)
     # 舊庫重開時 DDL 會自動補建新表,故版本印記亦要跟上——否則庫身已是新版、
     # 印記仍寫舊版,下一個人會照印記去猜錶內有什麼表。
     conn.execute(
