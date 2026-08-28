@@ -60,6 +60,12 @@
     scaleMin: document.getElementById('scale-min'),
     scaleMax: document.getElementById('scale-max'),
     crumb: document.getElementById('bc-strategy'),
+    /* 以現版本重掃(KARST-052) */
+    rescanOpen: document.getElementById('rescan-open'),
+    rescanModal: document.getElementById('rescan-modal'),
+    rescanBody: document.getElementById('rescan-body'),
+    rescanGo: document.getElementById('rescan-go'),
+    rescanCancel: document.getElementById('rescan-cancel'),
   };
 
   var state = {
@@ -1123,6 +1129,174 @@
       '</div>';
     }).join('');
   }
+
+  /* ============================================================
+     以現版本重掃(KARST-052)
+     ------------------------------------------------------------
+     彈窗照 KARST-015 原型 sweep.html 那一個:同一個標題、同一段血統說明、
+     同一塊 .lineage。原型只示意「舊掃描不改寫,新掃描接上血統」,這裡真的
+     會跑,並且多開放了掃描格本身讓人改——那正是重掃的用處。
+
+     哪幾格改得動,由後端講(/api/rescan-form):驅動器、熱身期、成本、
+     快照、期間、引擎全部由那幅掃描自己身上讀回,不會反問用戶,所以彈窗
+     只開放掃描格。每格預填的是**當前這幅掃描的取值**,不是預設值。
+     ============================================================ */
+  var POLL_MS = 900;
+
+  function postJSON(url, body) {
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+        return data;
+      });
+    });
+  }
+
+  /* 一格:標籤 + 預填了當前取值的格 + 一句說明它是什麼軸 */
+  function rescanCell(ctl) {
+    var id = 'rs-' + String(ctl.name).replace(/[^A-Za-z0-9_-]/g, '_');
+    return '<div class="rr-cell" data-key="' + KV.esc(ctl.name) + '">' +
+      '<label for="' + id + '">' + KV.esc(ctl.label) + '</label>' +
+      '<input id="' + id + '" type="text" value="' + KV.esc(ctl.value) + '" ' +
+        'data-current="' + KV.esc(ctl.value) + '" spellcheck="false">' +
+      (ctl.hint ? '<span class="rr-cell-hint">' + KV.esc(ctl.hint) + '</span>' : '') +
+      '</div>';
+  }
+
+  function rescanBodyHTML(form) {
+    var period = (form.period && form.period.length === 2)
+      ? form.period[0] + ' 至 ' + form.period[1] : '—';
+    var head =
+      '<p>以<b>現行版本</b>重掃一次,產生一幅<b>新的掃描</b>,與本次掃描血統相連:' +
+        '同一套策略、同一段期間、同一個數據快照、同一套成本,分別只在版本與你改動的掃描格。' +
+        '兩幅圖可以並排比較,本次掃描不會被改寫。</p>';
+
+    if (!form.supported) {
+      return head +
+        '<p class="rr-facts"><b style="color:var(--down)">這幅掃描暫時重掃不到：' +
+          KV.esc(form.reason || '不知道為什麼') + '</b></p>' +
+        '<p class="rr-facts">掃描 <b>' + KV.esc(form.sweepId) + '</b>・策略 <b>' +
+          KV.esc(form.strategy) + '</b>・' + KV.esc(form.cells) + ' 格</p>';
+    }
+
+    return head +
+      '<p>下面每一格預填的是<b>本次掃描當時的取值</b>——那是當前值,不是預設值。' +
+        '一格不改就按下去,得回的會是同一組格(每一格都讀回已有的運行,不會再跑一次)。</p>' +
+      '<div class="rr-grid">' +
+        form.controls.map(rescanCell).join('') +
+      '</div>' +
+      '<p class="rr-facts">期間 <b>' + KV.esc(period) + '</b>・數據快照 <b>' +
+        KV.esc(form.snapshotId) + '</b>・引擎 <b>' + KV.esc(form.engine) +
+        '</b>・判讀目標 <b>' + KV.esc(form.objective) +
+        '</b>　這幾件不變,所以不在這裡改。</p>' +
+      '<div class="lineage">' +
+        '本次掃描　<b>' + KV.esc(form.sweepId) + '</b>　' + KV.esc(form.strategy) +
+          '・' + KV.esc(form.cells) + ' 格<br>' +
+        '　　└─ 新掃描　<b id="rs-newid">(按下去才知道)</b>' +
+      '</div>' +
+      '<p class="rr-facts" id="rs-state" role="status" aria-live="polite"></p>';
+  }
+
+  function readRescanForm() {
+    var controls = {};
+    el.rescanBody.querySelectorAll('.rr-cell').forEach(function (cell) {
+      var input = cell.querySelector('input');
+      var text = input.value.trim();
+      cell.classList.toggle('is-changed', text !== input.getAttribute('data-current'));
+      controls[cell.getAttribute('data-key')] = text;
+    });
+    return controls;
+  }
+
+  function rescanSay(message, tone) {
+    var box = document.getElementById('rs-state');
+    if (!box) return;
+    box.innerHTML = tone === 'bad'
+      ? '<b style="color:var(--down)">' + KV.esc(message) + '</b>'
+      : KV.esc(message);
+  }
+
+  function rescanBusy(on) {
+    el.rescanGo.disabled = on;
+    el.rescanBody.querySelectorAll('input').forEach(function (i) { i.disabled = on; });
+  }
+
+  function openRescan() {
+    if (!state.sweepId) return;
+    el.rescanBody.innerHTML = '<p class="rr-facts">讀緊這幅掃描改得動哪幾格…</p>';
+    el.rescanGo.hidden = true;
+    el.rescanCancel.textContent = '取消';
+    if (el.rescanModal.showModal) el.rescanModal.showModal();
+
+    KV.fetchJSON('/api/rescan-form?id=' + encodeURIComponent(state.sweepId))
+      .then(function (form) {
+        el.rescanBody.innerHTML = rescanBodyHTML(form);
+        if (form.supported) {
+          el.rescanGo.hidden = false;
+          el.rescanGo.disabled = false;
+        } else {
+          el.rescanCancel.textContent = '知道了';
+        }
+      })
+      .catch(function (err) {
+        el.rescanBody.innerHTML = '<p class="rr-facts"><b style="color:var(--down)">' +
+          KV.esc('讀不到這幅掃描的可改項：' + err.message) + '</b></p>';
+        el.rescanCancel.textContent = '知道了';
+      });
+  }
+
+  /* 做完了:轉去新那幅掃描。清單要重讀一次(新掃描還未在清單裡),
+     所以直接把新編號寫入 hash 再重載,免得兩份清單各講各的。 */
+  function rescanDone(job) {
+    var idBox = document.getElementById('rs-newid');
+    if (idBox) idBox.textContent = job.sweepId || '';
+    rescanSay(job.note || '重掃完成,轉去新那幅掃描…');
+    if (!job.sweepId) { rescanBusy(false); return; }
+    location.hash = 'sweep=' + encodeURIComponent(job.sweepId);
+    location.reload();
+  }
+
+  function pollRescan(jobId) {
+    KV.fetchJSON('/api/job?id=' + encodeURIComponent(jobId)).then(function (job) {
+      if (job.status === 'done') { rescanDone(job); return; }
+      if (job.status === 'failed') {
+        rescanSay('掃不完：' + (job.error || '不知道為什麼'), 'bad');
+        rescanBusy(false);
+        return;
+      }
+      rescanSay((job.status === 'queued' ? '排隊中' : '進行中') + '：' + (job.note || ''));
+      setTimeout(function () { pollRescan(jobId); }, POLL_MS);
+    }).catch(function (err) {
+      rescanSay('查不到進度：' + err.message, 'bad');
+      rescanBusy(false);
+    });
+  }
+
+  function submitRescan() {
+    rescanBusy(true);
+    rescanSay('下單中…');
+    postJSON('/api/rescan', {
+      sweepId: state.sweepId,
+      controls: readRescanForm(),
+    }).then(function (job) {
+      pollRescan(job.jobId);
+    }).catch(function (err) {
+      rescanSay('下不到單：' + err.message, 'bad');
+      rescanBusy(false);
+    });
+  }
+
+  if (el.rescanOpen) el.rescanOpen.addEventListener('click', openRescan);
+  if (el.rescanGo) el.rescanGo.addEventListener('click', submitRescan);
+  if (el.rescanCancel) {
+    el.rescanCancel.addEventListener('click', function () { el.rescanModal.close(); });
+  }
+  /* 改過的格即時標出來。掛在外殼上一次就夠,彈窗內容重畫不用重新掛。 */
+  if (el.rescanBody) el.rescanBody.addEventListener('input', readRescanForm);
 
   /* ============================================================
      開場

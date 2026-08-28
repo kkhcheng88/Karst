@@ -29,6 +29,29 @@
 #chart-legend button:hover { color: var(--text-1); }
 #chart-legend button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 #chart-legend button[aria-pressed="false"] { opacity: .4; text-decoration: line-through; }
+
+/* ---- 重跑彈窗的參數格(KARST-052)---- */
+/* 同一個理由住在這裡:style.css 此刻有另外兩頁在改。兩頁收檔即連本段搬回去。 */
+.rr-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-2) var(--s-4); margin: var(--s-4) 0;
+}
+.rr-cell { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rr-cell > label { font-size: var(--fs-xs); color: var(--text-3); }
+.rr-cell input, .rr-cell select {
+  appearance: none; background: var(--bg-2); color: var(--text-1);
+  border: 1px solid var(--line); border-radius: var(--r-1);
+  padding: 4px var(--s-2); min-width: 0;
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+}
+.rr-cell input:focus-visible, .rr-cell select:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 1px;
+}
+/* 改動過的那一格自己講出來:一眼見到這次與當前運行差在哪 */
+.rr-cell.is-changed > label { color: var(--accent); }
+.rr-cell.is-changed input { border-color: var(--accent); }
+.rr-facts { font-size: var(--fs-xs); color: var(--text-3); margin-top: var(--s-2); }
+.rr-facts b { color: var(--text-2); font-weight: 400; font-family: var(--font-mono); }
 </style>
 </head>
 <body class="fit">
@@ -53,7 +76,25 @@
   <div class="sp-runbar">
     <span class="sp-runbar-k">檢視運行</span>
     <div class="runpick" id="run-pick" role="group" aria-label="檢視哪一次運行"></div>
+    <button class="btn" id="rerun-open" style="margin-left:auto" hidden>以現版本重跑</button>
   </div>
+
+  <!-- ============================================================
+       以現版本重跑(KARST-052)。彈窗照 KARST-015 原型 run.html 那一個:
+       同一個標題、同一段血統說明、同一塊 .lineage。
+       參數每格預填**當前運行的取值**——那是當前值,不是預設值:碼裡與畫面上
+       都不留任何一個參數預設值(D-008 第 3 條)。
+       ============================================================ -->
+  <dialog class="modal" id="rerun-modal" aria-labelledby="rerun-title">
+    <div class="modal-body">
+      <div class="modal-title" id="rerun-title">以現版本重跑</div>
+      <div id="rerun-body"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="rerun-cancel">取消</button>
+      <button class="btn btn-primary" id="rerun-go">開始重跑</button>
+    </div>
+  </dialog>
 
   <div class="fit-main" id="fit-main" style="grid-template-columns:minmax(0,62fr) minmax(0,38fr)">
 

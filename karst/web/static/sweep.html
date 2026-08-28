@@ -5,6 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>參數掃描 — Karst</title>
 <link rel="stylesheet" href="/static/style.css">
+<style>
+/* 重掃彈窗那張表(KARST-052)。放這裡不放 style.css:只有本頁用得著,
+   而且 style.css 現時由另外兩隊在改,少碰一個共用檔少一次撞。 */
+.rr-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-2) var(--s-4); margin: var(--s-4) 0;
+}
+.rr-cell { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rr-cell > label { font-size: var(--fs-xs); color: var(--text-3); }
+.rr-cell input {
+  appearance: none; background: var(--bg-2); color: var(--text-1);
+  border: 1px solid var(--line); border-radius: var(--r-1);
+  padding: 4px var(--s-2); min-width: 0;
+  font-family: var(--font-mono); font-size: var(--fs-xs);
+}
+.rr-cell input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+/* 改動過的那一格自己講出來:一眼見到新掃描與當前這幅差在哪 */
+.rr-cell.is-changed > label { color: var(--accent); }
+.rr-cell.is-changed input { border-color: var(--accent); }
+.rr-cell-hint { font-size: var(--fs-xs); color: var(--text-3); }
+.rr-facts { font-size: var(--fs-xs); color: var(--text-3); margin-top: var(--s-2); }
+.rr-facts b { color: var(--text-2); font-weight: 400; font-family: var(--font-mono); }
+</style>
 </head>
 <body class="fit">
 
@@ -54,6 +77,7 @@
       <button class="btn" id="back-list">← 掃描清單</button>
       <span class="sp-runbar-k">檢視掃描</span>
       <div class="runpick" id="sweep-pick" role="group" aria-label="檢視哪一次掃描"></div>
+      <button class="btn" id="rescan-open" style="margin-left:auto">以現版本重掃</button>
     </div>
 
     <!-- 薄頂列:揀軸 + 切層 + 定住餘下的連續軸 -->
@@ -156,6 +180,18 @@
 
   <div id="foot-host"></div>
 </main>
+
+<!-- 以現版本重掃(KARST-052)。舊掃描一個字不改,新掃描另開一幅、血統相連。 -->
+<dialog class="modal" id="rescan-modal" aria-labelledby="rescan-title">
+  <div class="modal-body">
+    <div class="modal-title" id="rescan-title">以現版本重掃</div>
+    <div id="rescan-body"></div>
+  </div>
+  <div class="modal-foot">
+    <button class="btn" id="rescan-cancel">取消</button>
+    <button class="btn btn-primary" id="rescan-go">開始重掃</button>
+  </div>
+</dialog>
 
 <script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
 <script src="/static/app.js" charset="utf-8"></script>

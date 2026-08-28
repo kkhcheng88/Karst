@@ -31,6 +31,12 @@
     winFrom: document.getElementById('win-from'),
     winTo: document.getElementById('win-to'),
     winState: document.getElementById('win-state'),
+    /* 以現版本重跑(KARST-052) */
+    rerunOpen: document.getElementById('rerun-open'),
+    rerunModal: document.getElementById('rerun-modal'),
+    rerunBody: document.getElementById('rerun-body'),
+    rerunGo: document.getElementById('rerun-go'),
+    rerunCancel: document.getElementById('rerun-cancel'),
   };
 
   var state = {
@@ -255,6 +261,8 @@
   /* ---- 運行身份:版本與快照全頁只在這個晶片講一次(已裁畫面原則第 3 條) ---- */
   function renderIdentity(run) {
     KV.mountNav('/run', { snapshot: run.snapshotId, asOf: run.periodEnd });
+    /* 運行讀到了才開放重跑:未知道當前取值之前,彈窗沒有東西可以預填 */
+    if (el.rerunOpen) el.rerunOpen.hidden = false;
 
     /* 網址指名那顆臨時按鈕:運行讀回來了,換上與清單上一式一樣的標籤 */
     var adhoc = el.runPick.querySelector('button[data-adhoc][data-run="' +
@@ -292,6 +300,164 @@
       ],
     });
   }
+
+  /* ============================================================
+     以現版本重跑(KARST-052)
+     ------------------------------------------------------------
+     彈窗照 KARST-015 原型 run.html 那一個:同一個標題、同一段血統說明、
+     同一塊 .lineage。原型只示意,這裡真的會跑。
+
+     三件事在這裡講清楚,免得日後有人以為畫面在做運算:
+       1. 每格預填的是**當前運行的取值**,不是預設值。所以整組取值原樣交回
+          後端,一格都不會由前端補。
+       2. 登記與執行全部在後端,而且經唯一入口。前端只負責交一份取值、
+          輪詢進度、跳去結果那個運行編號。
+       3. 同一組取值重跑必得同一個運行編號(運行編號是內容雜湊),所以
+          「沒有改動就按重跑」不會多出一次運行——後端會照直講「沿用」。
+     ============================================================ */
+  var POLL_MS = 900;
+
+  function postJSON(url, body) {
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(body),
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+        return data;
+      });
+    });
+  }
+
+  /* 參數一格:標籤 + 一個預填了當前取值的格 */
+  function paramCell(key, value) {
+    var id = 'rr-' + key.replace(/[^A-Za-z0-9_-]/g, '_');
+    return '<div class="rr-cell" data-key="' + KV.esc(key) + '">' +
+      '<label for="' + id + '">' + KV.esc(key) + '</label>' +
+      '<input id="' + id + '" type="text" value="' + KV.esc(value) + '" ' +
+        'data-current="' + KV.esc(value) + '" spellcheck="false">' +
+      '</div>';
+  }
+
+  function rerunBodyHTML(run) {
+    var keys = Object.keys(run.paramValues).sort();
+    return '' +
+      '<p>以<b>現行版本</b>重跑一次,產生一個<b>新的運行</b>,與本運行血統相連:' +
+        '同一個策略、同一段期間、同一個數據快照,分別只在版本與你改動的那幾格參數。' +
+        '兩個運行可以並排比較,本運行的數字不會被改寫。</p>' +
+      '<p>下面每一格預填的是<b>本運行當時的取值</b>——那是當前值,不是預設值。' +
+        '一格不改就按下去,得回的會是同一個運行編號(不會多出一次運行)。</p>' +
+      '<div class="rr-grid">' +
+        paramCell('__cadence__', run.rebalanceCadence) +
+        keys.map(function (k) { return paramCell(k, run.paramValues[k]); }).join('') +
+      '</div>' +
+      '<p class="rr-facts">期間 <b>' + KV.esc(run.periodStart) + ' 至 ' +
+        KV.esc(run.periodEnd) + '</b>・數據快照 <b>' + KV.esc(run.snapshotId) +
+        '</b>・引擎 <b>' + KV.esc(run.engineName) + ' ' + KV.esc(run.engineVersion) +
+        '</b>　這三件不變,所以不在這裡改。</p>' +
+      '<div class="lineage">' +
+        '本運行　<b>' + KV.esc(run.runId) + '</b>　' + KV.esc(run.strategyName) +
+          ' v' + run.strategyVersionNo + '・' + KV.esc(run.paramSetName) +
+          ' v' + run.paramSetVersionNo + '<br>' +
+        '　　└─ 新運行　<b id="rr-newid">(按下去才知道)</b>' +
+      '</div>' +
+      '<p class="rr-facts" id="rr-state" role="status" aria-live="polite"></p>';
+  }
+
+  /* 換倉節奏那一格借用同一個格子形狀,鍵名用一個不會與參數撞名的記號 */
+  function readForm() {
+    var values = {};
+    var cadence = '';
+    el.rerunBody.querySelectorAll('.rr-cell').forEach(function (cell) {
+      var key = cell.getAttribute('data-key');
+      var input = cell.querySelector('input');
+      var text = input.value.trim();
+      var changed = text !== input.getAttribute('data-current');
+      cell.classList.toggle('is-changed', changed);
+      if (key === '__cadence__') cadence = text; else values[key] = text;
+    });
+    return { values: values, cadence: cadence };
+  }
+
+  function rerunSay(message, tone) {
+    var box = document.getElementById('rr-state');
+    if (!box) return;
+    box.innerHTML = tone === 'bad'
+      ? '<b style="color:var(--down)">' + KV.esc(message) + '</b>'
+      : KV.esc(message);
+  }
+
+  function rerunBusy(on) {
+    el.rerunGo.disabled = on;
+    el.rerunBody.querySelectorAll('input').forEach(function (i) { i.disabled = on; });
+  }
+
+  function openRerun() {
+    if (!state.detail) return;
+    var run = state.detail.run;
+    el.rerunBody.innerHTML = rerunBodyHTML(run);
+    el.rerunGo.hidden = false;
+    el.rerunGo.disabled = false;
+    el.rerunCancel.textContent = '取消';
+    rerunBusy(false);
+    if (el.rerunModal.showModal) el.rerunModal.showModal();
+  }
+
+  /* 做完了:同一個編號就留在這一頁講一句,新編號就跳過去(畫面刷新到新運行) */
+  function rerunDone(job) {
+    var newId = job.runId;
+    var idBox = document.getElementById('rr-newid');
+    if (idBox) idBox.textContent = newId;
+    if (newId && newId !== state.runId) {
+      rerunSay(job.note || '跑完了,轉去新的運行…');
+      location.href = '/run?run=' + encodeURIComponent(newId);
+      return;
+    }
+    rerunSay(job.note || '同一組取值,沿用原來那個運行編號。');
+    el.rerunGo.hidden = true;
+    el.rerunCancel.textContent = '知道了';
+  }
+
+  function pollJob(jobId) {
+    KV.fetchJSON('/api/job?id=' + encodeURIComponent(jobId)).then(function (job) {
+      if (job.status === 'done') { rerunDone(job); return; }
+      if (job.status === 'failed') {
+        rerunSay('跑不完：' + (job.error || '不知道為什麼'), 'bad');
+        rerunBusy(false);
+        return;
+      }
+      rerunSay((job.status === 'queued' ? '排隊中' : '進行中') + '：' + (job.note || ''));
+      setTimeout(function () { pollJob(jobId); }, POLL_MS);
+    }).catch(function (err) {
+      rerunSay('查不到進度：' + err.message, 'bad');
+      rerunBusy(false);
+    });
+  }
+
+  function submitRerun() {
+    var form = readForm();
+    rerunBusy(true);
+    rerunSay('下單中…');
+    postJSON('/api/rerun', {
+      runId: state.runId,
+      cadence: form.cadence,
+      values: form.values,
+    }).then(function (job) {
+      pollJob(job.jobId);
+    }).catch(function (err) {
+      rerunSay('下不到單：' + err.message, 'bad');
+      rerunBusy(false);
+    });
+  }
+
+  if (el.rerunGo) el.rerunGo.addEventListener('click', submitRerun);
+  if (el.rerunCancel) {
+    el.rerunCancel.addEventListener('click', function () { el.rerunModal.close(); });
+  }
+  if (el.rerunOpen) el.rerunOpen.addEventListener('click', openRerun);
+  /* 改過的格即時標出來。掛在外殼上一次就夠,彈窗內容重畫不用重新掛。 */
+  if (el.rerunBody) el.rerunBody.addEventListener('input', readForm);
 
   /* ============================================================
      右欄一:八項指標(D-020 第 8 條,策略層四項 + 運行層四項)
