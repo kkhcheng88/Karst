@@ -1,20 +1,25 @@
-"""KARST-064 驗收:Alpha158 入庫與版本登記。
+"""KARST-064 驗收:Alpha158 入庫與版本登記(值的落點按 KARST-068 改為批次檔)。
 
 三件事要證:
 
   1. 唯一入口一句命令把 158 條全部登記成因子版本,查得到、有簽章、``verify`` 清白。
-  2. 三個時點照 D-021 第 3 條落庫:事件=該根 K 線那日開頭、知情=該日收工、
+  2. 三個時點照 D-021 第 3 條落檔:事件=該根 K 線那日開頭、知情=該日收工、
      可執行=下一根可交易 K 線那日開市;最後一日沒有下一根,可執行時點留空。
-  3. **滾動窗口未滿的日子留空、不回填**——庫內根本沒有那一列,不是有一列借了
+  3. **滾動窗口未滿的日子留空、不回填**——檔內根本沒有那一列,不是有一列借了
      後來的數。
 
 用的是離線靜態來源砌的小快照(兩個實體、八十幾個交易日),不連網、不碰真快照。
+
+D-032 之後值住 Parquet 而不再逐行入 ``factor_value``,所以本檔讀回值那幾項改用
+因子值檔案庫的讀取介面;**要證的三件事一字不變**——換的是承載體,不是合約。
 """
 
 from __future__ import annotations
 
 import io
+from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -23,6 +28,7 @@ from karst.errors import ContractViolation
 from karst.factors import ALPHA158_NAMES
 from karst.factors.alpha158 import ALPHA158_EXPRESSIONS, compute_alpha158_for_entity
 from karst.gateway.alpha158 import (
+    ALPHA158_BATCH,
     ALPHA158_FAMILY,
     ALPHA158_PROCEDURE_VERSION,
     _resolve_version,
@@ -85,8 +91,20 @@ def snapshot_id(gateway, tmp_path) -> str:
 
 
 @pytest.fixture()
-def report(gateway, snapshot_id):
-    return gateway.ingest_alpha158(snapshot_id=snapshot_id)
+def factor_root(tmp_path):
+    """因子值批次檔的落點。逐個測試各有一個,不會寫到倉內那份真的。"""
+    return tmp_path / "factors"
+
+
+@pytest.fixture()
+def report(gateway, snapshot_id, factor_root):
+    return gateway.ingest_alpha158(snapshot_id=snapshot_id, factor_root=str(factor_root))
+
+
+@pytest.fixture()
+def values(gateway, factor_root):
+    """因子值檔案庫:給定快照 × 因子版本 × 日期窗口讀回長表或寬表(D-032)。"""
+    return gateway.factor_values(str(factor_root))
 
 
 # ----------------------------------------------------------------------
@@ -124,9 +142,9 @@ def test_approximated_factor_says_so_in_its_description(gateway, report):
     assert "近似" not in kmid.description
 
 
-def test_verify_stays_clean_after_ingest(gateway, report):
-    """158 條全部經唯一入口登記,所以每一列定義都有寫入者簽章。"""
-    assert gateway.verify() == []
+def test_verify_stays_clean_after_ingest(gateway, report, factor_root):
+    """158 條全部經唯一入口登記,所以每一列定義都有寫入者簽章;批次檔的雜湊亦對得上。"""
+    assert gateway.verify(factor_root=str(factor_root)) == []
 
 
 def test_second_ingest_reuses_the_same_version_and_a_new_snapshot_makes_a_new_one(
@@ -149,9 +167,19 @@ def test_second_ingest_reuses_the_same_version_and_a_new_snapshot_makes_a_new_on
 # ----------------------------------------------------------------------
 
 
-def test_report_counts_match_the_database(gateway, report):
+def test_report_counts_match_the_registered_batch(gateway, report, snapshot_id):
+    """值一個都不在定義庫裡:庫內只有那一列登記,行數與雜湊對得上檔案(D-032)。"""
     conn = gateway.store.connection
-    assert conn.execute("SELECT COUNT(*) FROM factor_value").fetchone()[0] == report.written_rows
+    assert conn.execute("SELECT COUNT(*) FROM factor_value").fetchone()[0] == 0
+
+    batch = gateway.store.get_factor_value_batch(ALPHA158_BATCH, snapshot_id)
+    assert batch.rows == report.written_rows
+    assert batch.content_hash == report.content_hash
+    assert batch.procedure_version == ALPHA158_PROCEDURE_VERSION
+    assert len(batch.members) == 158
+    assert sum(member.rows for member in batch.members) == report.written_rows
+    assert Path(batch.path).is_file()
+
     assert report.possible_rows == 2 * len(CALENDAR_DAYS) * 158
     assert report.written_rows + report.missing_rows == report.possible_rows
     assert 0.0 < report.missing_ratio < 0.5
@@ -159,7 +187,9 @@ def test_report_counts_match_the_database(gateway, report):
     assert report.trading_days == len(CALENDAR_DAYS)
 
 
-def test_cli_subcommand_ingests_through_the_single_gateway(tmp_path, gateway, snapshot_id):
+def test_cli_subcommand_ingests_through_the_single_gateway(
+    tmp_path, gateway, snapshot_id, factor_root
+):
     out = io.StringIO()
     code = main(
         [
@@ -167,6 +197,7 @@ def test_cli_subcommand_ingests_through_the_single_gateway(tmp_path, gateway, sn
             "--writer", "測試",
             "factor", "ingest-alpha158",
             "--snapshot", snapshot_id,
+            "--factor-root", str(factor_root),
         ],
         out=out,
     )
@@ -175,6 +206,7 @@ def test_cli_subcommand_ingests_through_the_single_gateway(tmp_path, gateway, sn
     assert "已入庫 Alpha158 全部 158 條因子" in text
     assert snapshot_id in text
     assert "缺值比例" in text
+    assert "值的落點" in text
 
 
 # ----------------------------------------------------------------------
@@ -182,44 +214,49 @@ def test_cli_subcommand_ingests_through_the_single_gateway(tmp_path, gateway, sn
 # ----------------------------------------------------------------------
 
 
-def test_three_timepoints_follow_the_contract(gateway, snapshot_id, report):
-    frame = gateway.store.read_factor_values(factor_name("KMID"))
+def test_three_timepoints_follow_the_contract(values, snapshot_id, report):
+    frame = values.read_long([factor_name("KMID")], snapshot_id=snapshot_id)
     assert not frame.empty
 
     first_day, last_day = CALENDAR_DAYS[0], CALENDAR_DAYS[-1]
-    head = frame[frame["event_time"].str.startswith(first_day)].iloc[0]
+    head = frame[frame["event_time"] == pd.Timestamp(first_day)].iloc[0]
     # 事件時點 = 那一日的開頭;知情時點 = 同一日的結尾(該日收工才算知道)
-    assert head["event_time"] == f"{first_day}T00:00:00.000000"
-    assert head["knowledge_time"] == f"{first_day}T23:59:59.999999"
+    assert head["event_time"] == pd.Timestamp(f"{first_day}T00:00:00")
+    assert head["knowledge_time"] == pd.Timestamp(f"{first_day}T23:59:59.999999")
     # 可執行時點 = 下一根可交易 K 線那一日的開市,而且嚴格晚於知情時點
-    assert head["executable_time"] == f"{CALENDAR_DAYS[1]}T00:00:00.000000"
+    assert head["executable_time"] == pd.Timestamp(f"{CALENDAR_DAYS[1]}T00:00:00")
     assert head["executable_time"] > head["knowledge_time"]
 
     # 最後一日沒有下一根 K 線:值知得到、成交不到,可執行時點留空而不是當日成交
-    tail = frame[frame["event_time"].str.startswith(last_day)]
+    tail = frame[frame["event_time"] == pd.Timestamp(last_day)]
     assert len(tail) == 2
     assert tail["executable_time"].isna().all()
     assert report.last_executable_date is None
     assert report.not_executable_rows > 0
 
-    # 全庫沒有一列的可執行時點早過或等於知情時點(前視在形狀上表達不到)
-    bad = gateway.store.connection.execute(
-        "SELECT COUNT(*) FROM factor_value"
-        " WHERE executable_time IS NOT NULL AND executable_time <= knowledge_time"
-    ).fetchone()[0]
-    assert bad == 0
+    # 整批 158 條沒有一列的可執行時點早過或等於知情時點(前視在形狀上表達不到)
+    whole = values.read_long(
+        [factor_name(name) for name in ALPHA158_NAMES], snapshot_id=snapshot_id
+    )
+    assert len(whole) == report.written_rows
+    executable = whole["executable_time"]
+    assert not (executable.notna() & (executable <= whole["knowledge_time"])).any()
 
 
-def test_warm_up_days_are_left_empty_and_never_back_filled(gateway, snapshot_id, report):
-    """ROC60 頭 60 格窗口未滿:庫內**沒有那一列**,不是有一列借了後來的數。"""
+def test_warm_up_days_are_left_empty_and_never_back_filled(
+    gateway, values, snapshot_id, report
+):
+    """ROC60 頭 60 格窗口未滿:檔內**沒有那一列**,不是有一列借了後來的數。"""
     bars = read_price_frame(gateway.store, snapshot_id)
     entity_id = int(bars["entity_id"].iloc[0])
     reference = compute_alpha158_for_entity(
         bars[bars["entity_id"] == entity_id].sort_values("date", kind="stable")
     )["ROC60"]
 
-    frame = gateway.store.read_factor_values(factor_name("ROC60"), entity_ids=[entity_id])
-    stored_days = set(frame["event_time"].str.slice(0, 10))
+    frame = values.read_long(
+        [factor_name("ROC60")], snapshot_id=snapshot_id, entity_ids=[entity_id]
+    )
+    stored_days = set(frame["event_time"].dt.strftime("%Y-%m-%d"))
 
     # 頭 60 個交易日一列都沒有;第 61 日起逐日都有
     assert stored_days.isdisjoint(CALENDAR_DAYS[:60])
@@ -227,15 +264,18 @@ def test_warm_up_days_are_left_empty_and_never_back_filled(gateway, snapshot_id,
     assert len(frame) == int(reference.notna().sum())
 
     # 有值那幾格逐格對回計算層的原值:沒有被前值填補、沒有被後值補、沒有填零
-    stored = frame.set_index(frame["event_time"].str.slice(0, 10))["value"]
+    stored = frame.set_index(frame["event_time"].dt.strftime("%Y-%m-%d"))["value"]
     for day in CALENDAR_DAYS[60:]:
         assert stored[day] == pytest.approx(float(reference[day]))
 
 
-def test_missing_cells_have_no_row_at_all(gateway, report):
+def test_missing_cells_have_no_row_at_all(values, snapshot_id, report):
     """留空 = 沒有那一列(D-021 第 4 條):不填 0、不填 NULL。"""
-    conn = gateway.store.connection
-    assert conn.execute("SELECT COUNT(*) FROM factor_value WHERE value IS NULL").fetchone()[0] == 0
+    frame = values.read_long(
+        [factor_name(name) for name in ALPHA158_NAMES], snapshot_id=snapshot_id
+    )
+    assert frame["value"].notna().all()
+    assert np.isfinite(frame["value"].to_numpy("float64")).all()
     assert report.missing_rows > 0
 
 

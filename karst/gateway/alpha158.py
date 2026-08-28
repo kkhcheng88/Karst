@@ -1,11 +1,20 @@
-"""Alpha158 入庫:158 條各自登記因子版本,批量寫入因子值(KARST-064)。
+"""Alpha158 入庫:158 條各自登記因子版本,值落一個壓縮檔(KARST-064、068)。
 
 算與寫是兩件事,兩件事住在兩個地方。``karst.factors.alpha158`` 只算不入庫
 (它連 sqlite 都不認識);本檔負責把那張因子長表接上唯一入口——登記 158 個
-因子版本、按 D-021 合約補齊三個時點、逐條因子批量寫 ``factor_value``。
+因子版本、按 D-021 合約補齊三個時點、把 158 條的值拼成**一個批次檔**。
 一列都不繞過 ``Gateway``:登記走 ``register_factor`` / ``new_factor_version``,
-值走 ``write_factor_values``,所以每個因子版本身上都有寫入者簽章,
-``karst verify`` 掃得到(D-020 第 4 條)。
+值走 ``write_factor_batch``,所以每個因子版本、每一列批次登記身上都有寫入者
+簽章,``karst verify`` 掃得到(D-020 第 4 條)。
+
+值住哪裡(D-032)
+----------------
+
+158 條的值**不逐行入 sqlite**,而是一個「數據快照 × 因子庫批次」一個 Parquet 檔
+(``data/factors/<快照編號>/alpha158.parquet``),定義庫只留登記與內容雜湊。
+KARST-064 逐行入表那次,555 萬個值把定義庫由 40 MB 撐到 1.6 GB——一個值本身
+只需 8 字節,連三個 ISO 時點入表卻要近 300 字節。做法與運行的逐日序列、選股
+痕跡一字不差,``karst verify`` 重讀檔案再算一次雜湊來核。
 
 三個時點怎樣填(D-021 第 3 條)
 ------------------------------
@@ -37,7 +46,7 @@
 
 留空的格**不寫**(D-021 第 4 條:缺失=沒有那一列),亦**不回填**——不前值填補、
 不後值補、不填零。滾動窗口未滿而算不出值的日子(``ROC60`` 頭 60 格、
-``BETA``/``RSQR``/``RESI`` 那些常數段)因此在庫內根本沒有那一列,而不是有一列
+``BETA``/``RSQR``/``RESI`` 那些常數段)因此在檔內根本沒有那一列,而不是有一列
 借了後來的數。
 
 橫斷面百分位
@@ -54,6 +63,7 @@ from __future__ import annotations
 import time
 from collections.abc import Mapping
 from dataclasses import dataclass
+from pathlib import Path
 from typing import TYPE_CHECKING, Final
 
 import numpy as np
@@ -71,6 +81,14 @@ if TYPE_CHECKING:  # pragma: no cover - 只為型別註釋
 #: 158 條共用的族名。族名只是分類,版本鏈與策略引用落在具體定義那一級
 #: (CONTEXT.md「因子族」),所以庫內的名是「Alpha158·KMID」這個形狀。
 ALPHA158_FAMILY: Final[str] = "Alpha158"
+
+#: 因子庫批次名:158 條的值同住一個檔(D-032「一批一檔」)。檔名就是它,
+#: 落點 ``data/factors/<快照編號>/alpha158.parquet``。
+#:
+#: 158 條分不分 158 個檔?不分。它們同一份輸入、同一套程序、同一次算完,
+#: 拆開就是同一件事切成 158 份帳:158 個檔頭、158 列登記、讀十條因子開十個檔。
+#: 一個檔內按因子版本排好,讀一條因子照樣只讀它那一段(parquet 逐段跳得過)。
+ALPHA158_BATCH: Final[str] = "alpha158"
 
 #: 產生程序版本(D-021 第 6、8 條)。追溯到批次 = 因子版本 × 數據快照 ×
 #: **產生程序版本**,所以算這批值的那個模組是哪一版,要寫得出來。
@@ -126,6 +144,10 @@ class IngestReport:
     last_event_date: str
     last_executable_date: str | None
     seconds: float
+    batch_key: str
+    batch_path: str
+    content_hash: str
+    file_bytes: int
 
     @property
     def missing_ratio(self) -> float:
@@ -152,6 +174,10 @@ class IngestReport:
             "last_event_date": self.last_event_date,
             "last_executable_date": self.last_executable_date,
             "seconds": self.seconds,
+            "batch_key": self.batch_key,
+            "batch_path": self.batch_path,
+            "content_hash": self.content_hash,
+            "file_bytes": self.file_bytes,
         }
 
 
@@ -204,14 +230,20 @@ def _resolve_version(gateway: "Gateway", name: str, snapshot_id: str) -> str:
 
 
 def ingest_alpha158(
-    gateway: "Gateway", *, snapshot_id: str, root: str | None = None
+    gateway: "Gateway",
+    *,
+    snapshot_id: str,
+    root: str | None = None,
+    factor_root: str | None = None,
 ) -> IngestReport:
     """把一個價格快照上的 Alpha158 全部 158 條算出來並經唯一入口入庫。
 
-    ``root`` 是快照快取根(留空即管線那個預設落點);``snapshot_id`` 是要算哪
-    一份快照,沒有預設——「用哪一批數據」是呼叫方才答得出的事。
+    ``root`` 是快照快取根(留空即管線那個預設落點),``factor_root`` 是因子值
+    批次檔的落點(留空即 ``data/factors``);``snapshot_id`` 是要算哪一份快照,
+    沒有預設——「用哪一批數據」是呼叫方才答得出的事。
     """
     from ..data import read_calendar, read_price_frame
+    from ..factorstore import BATCH_COLUMNS
 
     started = time.perf_counter()
     store = gateway.store
@@ -221,11 +253,19 @@ def ingest_alpha158(
         raise ContractViolation(f"快照 {snapshot_id} 的日曆是空的,數不出可執行時點")
 
     next_bar = next_bar_by_date(calendar)
-    # 三個時點的字串逐日只砌一次:2,929 個日子砌三次,勝過 550 萬列各砌一次。
-    event_at = {day: as_timestamp(day, "event_time") for day in calendar}
-    knowledge_at = {day: as_timestamp(day, "knowledge_time", end_of_day=True) for day in calendar}
-    executable_at: dict[str, str | None] = {
-        day: (as_timestamp(next_bar[day], "executable_time") if day in next_bar else None)
+    # 三個時點逐日只砌一次:2,929 個日子砌三次,勝過 550 萬列各砌一次。
+    # 兩個邊仍然由 ``as_timestamp`` 那份正本講(日子的開頭與結尾),這裡只是把
+    # 它的答案收成時間戳——檔內存的是時間戳不是字串(見 ``karst.factorstore``)。
+    event_at = {day: _stamp(as_timestamp(day, "event_time")) for day in calendar}
+    knowledge_at = {
+        day: _stamp(as_timestamp(day, "knowledge_time", end_of_day=True)) for day in calendar
+    }
+    executable_at = {
+        day: (
+            _stamp(as_timestamp(next_bar[day], "executable_time"))
+            if day in next_bar
+            else _NOT_EXECUTABLE
+        )
         for day in calendar
     }
 
@@ -236,24 +276,47 @@ def ingest_alpha158(
         ordered = group.sort_values("date", kind="stable")
         wides[int(entity_id)] = compute_alpha158_for_entity(ordered)
 
+    # 每個實體那條日子軸的三個時點各砌一條整列,之後 158 條因子逐條只是切片。
+    stamps = {
+        entity_id: (
+            np.array([event_at[day] for day in wide.index], dtype=_STAMP),
+            np.array([knowledge_at[day] for day in wide.index], dtype=_STAMP),
+            np.array([executable_at[day] for day in wide.index], dtype=_STAMP),
+        )
+        for entity_id, wide in wides.items()
+    }
+
     tally: dict[str, int] = {"registered": 0, "reused": 0, "new_version": 0}
-    written = 0
+    parts: dict[str, list[np.ndarray]] = {column: [] for column in BATCH_COLUMNS}
     possible = 0
-    not_executable = 0
 
     for name in ALPHA158_NAMES:
         tally[_resolve_version(gateway, name, snapshot_id)] += 1
-        frame = _rows_for_factor(name, wides, event_at, knowledge_at, executable_at)
-        possible += int(frame.attrs["possible"])
-        not_executable += int(frame["executable_time"].isna().sum())
-        written += gateway.write_factor_values(
-            factor_name(name), frame, snapshot_id=snapshot_id
-        )
+        version_id = store.get_factor_version(factor_name(name)).factor_version_id
+        possible += _collect_factor(name, version_id, wides, stamps, parts)
+
+    entity_count = len(wides)
+    frame = pd.DataFrame({column: np.concatenate(parts[column]) for column in BATCH_COLUMNS})
+    # 158 × 12 段切片拼完就放手:555 萬列那張表已經自己有一份,兩份同時揸住
+    # 等於為了一句 ``len()`` 多佔幾百 MB。
+    parts.clear()
+    wides.clear()
+    stamps.clear()
+    written = int(len(frame))
+    not_executable = int(np.isnat(frame["executable_time"].to_numpy(_STAMP)).sum())
+
+    batch = gateway.write_factor_batch(
+        frame,
+        batch_key=ALPHA158_BATCH,
+        snapshot_id=snapshot_id,
+        procedure_version=ALPHA158_PROCEDURE_VERSION,
+        root=factor_root,
+    )
 
     last_executable = next_bar.get(calendar[-1])
     return IngestReport(
         snapshot_id=str(snapshot_id),
-        entity_count=len(wides),
+        entity_count=entity_count,
         trading_days=len(calendar),
         factor_count=len(ALPHA158_NAMES),
         registered=tally["registered"],
@@ -267,53 +330,49 @@ def ingest_alpha158(
         last_event_date=calendar[-1],
         last_executable_date=last_executable,
         seconds=time.perf_counter() - started,
+        batch_key=batch.batch_key,
+        batch_path=batch.path,
+        content_hash=batch.content_hash,
+        file_bytes=Path(batch.path).stat().st_size,
     )
 
 
-def _rows_for_factor(
-    name: str,
-    wides: Mapping[int, pd.DataFrame],
-    event_at: Mapping[str, str],
-    knowledge_at: Mapping[str, str],
-    executable_at: Mapping[str, str | None],
-) -> pd.DataFrame:
-    """一條因子在全部實體上的待寫列。留空的格不出現在結果裡。
+#: 檔內時點的型別:微秒時間戳(見 ``karst.factorstore``)。
+_STAMP: Final[str] = "datetime64[us]"
 
-    ``attrs["possible"]`` 是「本來有幾多格」(實體 × 交易日),用來算缺值比例:
-    寫入列數除不出這個分母,因為留空的格根本沒有那一列。
+#: 沒有下一根可交易 K 線那一日:可執行時點留空(詞彙表「不可執行值」)。
+_NOT_EXECUTABLE: Final[np.datetime64] = np.datetime64("NaT", "us")
+
+
+def _stamp(text: str) -> np.datetime64:
+    return np.datetime64(text, "us")
+
+
+def _collect_factor(
+    name: str,
+    factor_version_id: int,
+    wides: Mapping[int, pd.DataFrame],
+    stamps: Mapping[int, tuple[np.ndarray, np.ndarray, np.ndarray]],
+    parts: dict[str, list[np.ndarray]],
+) -> int:
+    """把一條因子在全部實體上的值切出來,append 落批次表那幾條欄。
+
+    回的是「本來有幾多格」(實體 × 交易日),用來算缺值比例:寫入列數除不出這個
+    分母,因為留空的格根本沒有那一列。
     """
-    pieces: list[pd.DataFrame] = []
     possible = 0
     for entity_id, wide in wides.items():
         column = wide[name].to_numpy("float64")
         possible += column.size
         keep = np.isfinite(column)
-        if not keep.any():
+        kept = int(keep.sum())
+        if kept == 0:
             continue
-        days = wide.index.to_numpy()[keep]
-        pieces.append(
-            pd.DataFrame(
-                {
-                    "entity_id": np.full(int(keep.sum()), entity_id, "int64"),
-                    "event_time": [event_at[day] for day in days],
-                    "knowledge_time": [knowledge_at[day] for day in days],
-                    "executable_time": [executable_at[day] for day in days],
-                    "value": column[keep],
-                }
-            )
-        )
-
-    if not pieces:
-        frame = pd.DataFrame(
-            {
-                "entity_id": pd.Series(dtype="int64"),
-                "event_time": pd.Series(dtype="object"),
-                "knowledge_time": pd.Series(dtype="object"),
-                "executable_time": pd.Series(dtype="object"),
-                "value": pd.Series(dtype="float64"),
-            }
-        )
-    else:
-        frame = pd.concat(pieces, ignore_index=True)
-    frame.attrs["possible"] = possible
-    return frame
+        event, knowledge, executable = stamps[entity_id]
+        parts["factor_version_id"].append(np.full(kept, int(factor_version_id), "int32"))
+        parts["entity_id"].append(np.full(kept, int(entity_id), "int32"))
+        parts["event_time"].append(event[keep])
+        parts["knowledge_time"].append(knowledge[keep])
+        parts["executable_time"].append(executable[keep])
+        parts["value"].append(column[keep])
+    return possible

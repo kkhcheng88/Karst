@@ -3,6 +3,10 @@
 一個 sqlite 檔裝住全庫的正本定義:實體與代號歷史、因子定義與版本鏈、因子值、
 數據快照登記。大批數據住在 parquet,本庫只記它的快照編號(D-026)。
 
+**因子庫級數的一批值亦住 parquet**(D-032):按「數據快照 × 因子庫批次」一批
+一個檔,庫內只留落點、內容雜湊、行數(見 ``karst.factorstore``)。下面示範那條
+逐值寫入的路留給小批人手登記的值。
+
 用法:
 
     from karst import DefinitionStore, FormulaProcedure

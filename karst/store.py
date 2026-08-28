@@ -273,6 +273,47 @@ class RiskRuleRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class FactorValueBatchMember:
+    """一個因子值批次檔內,某一個因子版本佔了幾多列(D-032;KARST-068)。"""
+
+    factor_version_id: int
+    rows: int
+
+
+@dataclass(frozen=True, slots=True)
+class FactorValueBatch:
+    """一個因子值批次的登記列:值住 Parquet,庫內只有這一列(D-032;KARST-068)。
+
+    ``batch_key`` 是因子庫批次的名(Alpha158 一整批就是一個),``snapshot_id`` 是
+    這批值算自哪一份數據快照;兩者合起來就是那個檔。``procedure_version`` 是算它
+    的那套程序是哪一版——追溯到批次要的三件(因子版本 × 數據快照 × 產生程序版本)
+    在這一列上齊了兩件,第三件在 ``members``。
+
+    ``content_hash`` 是檔案內容的雜湊,``karst verify`` 重讀檔案再算一次來對。
+    """
+
+    batch_key: str
+    snapshot_id: str
+    procedure_version: str
+    path: str
+    content_hash: str
+    rows: int
+    written_at: str
+    members: tuple[FactorValueBatchMember, ...]
+
+    @property
+    def factor_version_ids(self) -> tuple[int, ...]:
+        return tuple(member.factor_version_id for member in self.members)
+
+    def rows_of(self, factor_version_id: int) -> int:
+        """某一個因子版本在這個批次檔內佔幾多列;不在檔內即 0。"""
+        for member in self.members:
+            if member.factor_version_id == int(factor_version_id):
+                return member.rows
+        return 0
+
+
+@dataclass(frozen=True, slots=True)
 class SnapshotFetch:
     """一個數據快照的抓取登記:幾時抓、抓的是哪一段窗口、抓了幾多(KARST-034)。
 
@@ -926,6 +967,133 @@ class DefinitionStore:
         return pd.DataFrame(
             [tuple(row[c] for c in _VALUE_COLUMNS) for row in rows],
             columns=list(_VALUE_COLUMNS),
+        )
+
+    # ------------------------------------------------------------------
+    # 因子值批次:值住 Parquet,庫內只留登記與雜湊(D-032;KARST-068)
+    # ------------------------------------------------------------------
+
+    def register_factor_value_batch(
+        self,
+        *,
+        batch_key: str,
+        snapshot_id: str,
+        procedure_version: str,
+        path: str,
+        content_hash: str,
+        rows: int,
+        members: Mapping[int, int],
+    ) -> FactorValueBatch:
+        """登記一個因子值批次檔。**同一個名同一個快照,內容一樣即沿用,不再寫一次**。
+
+        內容不一樣即當改寫,當場拒收:同一個批次名在同一個快照上只可以有一份值
+        (單一定義,無第二影像)。改了算法就是另一批值,請用另一個批次名——沿用
+        原名而覆蓋,會令已經引用過這批值的運行指向一份它從未見過的內容。
+
+        ``members`` 是「因子版本編號 → 那個版本在檔內佔幾多列」;缺值的格根本沒有
+        那一列,所以這個行數就是「有值那幾格」,缺值比例不用開檔就數得出。
+        """
+        key = str(batch_key).strip()
+        snapshot = str(snapshot_id).strip()
+        if not key or not snapshot:
+            raise ContractViolation("因子值批次要有批次名與數據快照編號,兩者都不可留空")
+        digest = str(content_hash).strip().lower()
+        total = int(rows)
+        counted = sum(int(count) for count in members.values())
+        if counted != total:
+            raise ContractViolation(
+                f"因子值批次「{key}」逐個因子版本的行數加起來是 {counted},"
+                f"與整份檔的 {total} 列對不上"
+            )
+
+        existing = self._factor_value_batch_row(key, snapshot)
+        if existing is not None:
+            if existing["content_hash"] != digest:
+                raise ImmutabilityViolation(
+                    f"因子值批次「{key}」在快照 {snapshot} 上已經登記過一份內容不同的檔"
+                    f"(登記的雜湊 {existing['content_hash'][:12]},今次 {digest[:12]});"
+                    "因子值批次不覆蓋——改了算法就是另一批值,請用另一個批次名"
+                )
+            return self.get_factor_value_batch(key, snapshot)
+
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO factor_value_batch (batch_key, snapshot_id, procedure_version,"
+                " path, content_hash, rows, written_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (key, snapshot, str(procedure_version).strip(), str(path), digest, total, _now()),
+            )
+            self._conn.executemany(
+                "INSERT INTO factor_value_batch_member (batch_key, snapshot_id,"
+                " factor_version_id, rows) VALUES (?, ?, ?, ?)",
+                [
+                    (key, snapshot, int(version_id), int(count))
+                    for version_id, count in sorted(members.items())
+                ],
+            )
+        return self.get_factor_value_batch(key, snapshot)
+
+    def get_factor_value_batch(self, batch_key: str, snapshot_id: str) -> FactorValueBatch:
+        """取一個因子值批次的登記(連檔內載住哪幾個因子版本)。"""
+        key = str(batch_key).strip()
+        snapshot = str(snapshot_id).strip()
+        row = self._factor_value_batch_row(key, snapshot)
+        if row is None:
+            raise NotFound(f"沒有因子值批次「{key}」在快照 {snapshot} 上的登記")
+        return self._factor_value_batch(row)
+
+    def list_factor_value_batches(self) -> list[FactorValueBatch]:
+        """庫內全部因子值批次,按批次名、快照排。"""
+        rows = self._conn.execute(
+            "SELECT * FROM factor_value_batch ORDER BY batch_key, snapshot_id"
+        ).fetchall()
+        return [self._factor_value_batch(row) for row in rows]
+
+    def factor_value_batches_for(
+        self, factor_version_id: int, *, snapshot_id: str | None = None
+    ) -> list[FactorValueBatch]:
+        """哪幾個批次檔載住這個因子版本;``snapshot_id`` 收窄到某一份快照。"""
+        params: list[Any] = [int(factor_version_id)]
+        clause = ""
+        if snapshot_id is not None:
+            clause = " AND m.snapshot_id = ?"
+            params.append(str(snapshot_id).strip())
+        rows = self._conn.execute(
+            "SELECT b.* FROM factor_value_batch_member AS m"
+            " JOIN factor_value_batch AS b"
+            "   ON b.batch_key = m.batch_key AND b.snapshot_id = m.snapshot_id"
+            f" WHERE m.factor_version_id = ?{clause}"
+            " ORDER BY b.batch_key, b.snapshot_id",
+            tuple(params),
+        ).fetchall()
+        return [self._factor_value_batch(row) for row in rows]
+
+    def _factor_value_batch_row(self, batch_key: str, snapshot_id: str) -> sqlite3.Row | None:
+        return self._conn.execute(
+            "SELECT * FROM factor_value_batch WHERE batch_key = ? AND snapshot_id = ?",
+            (batch_key, snapshot_id),
+        ).fetchone()
+
+    def _factor_value_batch(self, row: sqlite3.Row) -> FactorValueBatch:
+        members = self._conn.execute(
+            "SELECT factor_version_id, rows FROM factor_value_batch_member"
+            " WHERE batch_key = ? AND snapshot_id = ? ORDER BY factor_version_id",
+            (row["batch_key"], row["snapshot_id"]),
+        ).fetchall()
+        return FactorValueBatch(
+            batch_key=row["batch_key"],
+            snapshot_id=row["snapshot_id"],
+            procedure_version=row["procedure_version"],
+            path=row["path"],
+            content_hash=row["content_hash"],
+            rows=int(row["rows"]),
+            written_at=row["written_at"],
+            members=tuple(
+                FactorValueBatchMember(
+                    factor_version_id=int(member["factor_version_id"]),
+                    rows=int(member["rows"]),
+                )
+                for member in members
+            ),
         )
 
     # ------------------------------------------------------------------

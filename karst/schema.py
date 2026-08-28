@@ -7,7 +7,13 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 1. ``entity`` / ``entity_ticker``  實體編號與代號歷史映射(D-026 第 2 條)
 2. ``factor`` / ``factor_version`` 因子定義與版本鏈(D-021 第 2、6、9 條)
 3. ``factor_value``                日期 × 實體 → 值,雙時間戳連可執行時點
-                                   (D-021 第 1、3、4 條;可執行時點 KARST-064)
+                                   (D-021 第 1、3、4 條;可執行時點 KARST-064)。
+                                   **大批因子值不住這裡**:由 D-032 起改存 Parquet,
+                                   本表只餘小批人手登記的值(KARST-068)
+   ``factor_value_batch`` / ``factor_value_batch_member``
+                                   因子值批次的登記:一個「數據快照 × 因子庫批次」
+                                   一個 Parquet 檔,庫內只留落點、內容雜湊、行數,
+                                   連檔內載住哪幾個因子版本(D-032;KARST-068)
 4. ``data_snapshot``               數據快照登記(D-026 第 3 條)
 5. ``strategy`` / ``strategy_version`` / ``strategy_factor_ref`` / ``param_set`` /
    ``param_value``                 策略定義、版本鏈、引用因子與參數集(D-020 第 4 條、KARST-022)
@@ -31,6 +37,7 @@ from __future__ import annotations
 
 import re
 import sqlite3
+from pathlib import Path
 from typing import Any
 
 # 第 2 版加入策略定義、參數集與寫入者簽章三組表(KARST-022);
@@ -45,8 +52,13 @@ from typing import Any
 # 第 9 版在 data_snapshot_fetch 加「齊全度警報條數」與「警報摘要」兩格(KARST-067),
 #        舊庫重開時原地補欄、既有登記一列不動(見 ``_migrate_snapshot_fetch_alerts``);
 # 第 10 版在 factor_value 加「可執行時點」一格(KARST-064),舊庫重開時原地補欄、
-#        既有因子值一列不動(見 ``_migrate_factor_value_executable_time``)。
-SCHEMA_VERSION = 10
+#        既有因子值一列不動(見 ``_migrate_factor_value_executable_time``);
+# 第 11 版加因子值批次的兩張登記表,因子值本身搬去 Parquet(D-032、KARST-068)。
+#        舊庫重開時**只在**那批值已經有 Parquet 登記、行數逐個因子版本對得上、
+#        而且檔案真的在落點上,才把 factor_value 清空重建(見
+#        ``_migrate_factor_values_to_files``);既有的因子、因子版本、實體編號
+#        一個都不動,所以策略引用與運行蓋住的版本編號照舊指得回。
+SCHEMA_VERSION = 11
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -126,6 +138,14 @@ CREATE TABLE IF NOT EXISTS factor_version (
 
 -- 因子值:缺失=沒有這一列,不填 0、不填 NULL。
 -- 追溯到批次 = factor_version_id(含產生程序版本) × snapshot_id。
+--
+-- **大批因子值由 D-032 起不住這裡**:一個值連三個時點入表要近 300 字節,值本身
+-- 只需 8 字節;Alpha158 十二隻十二年已經 555 萬列、庫檔 1.6 GB。因子庫級數的值
+-- 改為按「數據快照 × 因子庫批次」一批一個 Parquet 檔(見下面兩張登記表)。
+-- 本表**留下來**給小批人手登記的值:一次幾百列、要即場查得到、犯不著為它開一個檔
+-- (``factor write-values`` 那道命令,連引擎既有的 ``latest_known_values`` 讀取路徑)。
+-- 分界線是量,不是意思:兩邊的一列都是同一件事——三個時點連一個有限數。
+
 -- 三個時點齊落一列(D-021 第 3 條):事件時點(那根 K 線)、知情時點(該日收工)、
 -- 可執行時點(其後下一根可交易 K 線的開市)。可執行時點**可以留空**,而留空
 -- 有它自己的意思:這個快照的日曆裡沒有下一根 K 線——值知得到,但成交不到。
@@ -145,6 +165,69 @@ CREATE TABLE IF NOT EXISTS factor_value (
 
 CREATE INDEX IF NOT EXISTS idx_factor_value_asof
     ON factor_value (factor_version_id, entity_id, knowledge_time, event_time);
+
+-- ====================================================================
+-- 因子值批次的登記(D-032;KARST-068)
+-- ====================================================================
+
+-- 一個因子值批次 = 一個「數據快照 × 因子庫批次」的 Parquet 檔。值住檔案,庫內
+-- 只留這一列:落點、內容雜湊、行數、產生程序版本。做法與運行的三條逐日序列
+-- (run_artifact)、選股痕跡一字不差——大批數據住檔案、定義庫只登記編號與雜湊
+-- (D-026 第 1 條),``karst verify`` 重讀檔案再算一次雜湊,對不上即報。
+--
+-- 主鍵是「批次名 × 快照」,而**產生程序版本是它的一格內容,不是主鍵的一部分**:
+-- 同一個批次名在同一個快照上只可以有一份值。改了算法就是另一批值,要用另一個
+-- 批次名——否則同一個名底下會有兩份內容不同的正本,而讀取方無從知道自己讀到
+-- 哪一份(單一定義,無第二影像)。
+CREATE TABLE IF NOT EXISTS factor_value_batch (
+    batch_key         TEXT NOT NULL,
+    snapshot_id       TEXT NOT NULL REFERENCES data_snapshot(snapshot_id),
+    procedure_version TEXT NOT NULL,
+    path              TEXT NOT NULL,
+    content_hash      TEXT NOT NULL,
+    rows              INTEGER NOT NULL CHECK (rows >= 0),
+    written_at        TEXT NOT NULL,
+    PRIMARY KEY (batch_key, snapshot_id),
+    CHECK (length(trim(batch_key)) > 0),
+    CHECK (length(trim(procedure_version)) > 0),
+    CHECK (length(trim(path)) > 0 AND length(trim(content_hash)) > 0)
+);
+
+-- 一個批次檔載住哪幾個因子版本、各佔幾多列。D-032 要求登記講得出「因子、因子
+-- 版本」,靠的就是這一張;讀取介面亦靠它由「因子版本 × 快照」直接指到那一個檔,
+-- 不必逐個檔開來看。行數逐個因子版本記,所以缺值比例不用開檔就數得出。
+CREATE TABLE IF NOT EXISTS factor_value_batch_member (
+    batch_key         TEXT NOT NULL,
+    snapshot_id       TEXT NOT NULL,
+    factor_version_id INTEGER NOT NULL REFERENCES factor_version(factor_version_id),
+    rows              INTEGER NOT NULL CHECK (rows >= 0),
+    PRIMARY KEY (batch_key, snapshot_id, factor_version_id),
+    FOREIGN KEY (batch_key, snapshot_id)
+        REFERENCES factor_value_batch (batch_key, snapshot_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_factor_value_batch_member_version
+    ON factor_value_batch_member (factor_version_id, snapshot_id);
+
+CREATE TRIGGER IF NOT EXISTS trg_factor_value_batch_no_update
+BEFORE UPDATE ON factor_value_batch BEGIN
+    SELECT RAISE(ABORT, '因子值批次的落點與雜湊落庫後不可改;改了算法就是另一批值,請用另一個批次名');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_factor_value_batch_no_delete
+BEFORE DELETE ON factor_value_batch BEGIN
+    SELECT RAISE(ABORT, '因子值批次的登記不可刪,追溯要指得回');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_factor_value_batch_member_no_update
+BEFORE UPDATE ON factor_value_batch_member BEGIN
+    SELECT RAISE(ABORT, '批次載住哪幾個因子版本落庫後不可改');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_factor_value_batch_member_no_delete
+BEFORE DELETE ON factor_value_batch_member BEGIN
+    SELECT RAISE(ABORT, '批次載住哪幾個因子版本不可刪,追溯要指得回');
+END;
 
 -- 數據快照:編號=日期+內容雜湊;舊快照不動。
 CREATE TABLE IF NOT EXISTS data_snapshot (
@@ -870,6 +953,96 @@ def _migrate_factor_value_executable_time(conn: sqlite3.Connection) -> int | Non
     return existing
 
 
+# 第 11 版遷移的記錄落點:搬走了幾多個值、憑什麼敢搬,寫在庫身自己那張 schema_meta。
+FACTOR_VALUES_TO_FILES_MIGRATION_KEY = "migration_011_factor_values_to_files"
+
+
+def _table_exists(conn: sqlite3.Connection, name: str) -> bool:
+    row = conn.execute(
+        "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?", (name,)
+    ).fetchone()
+    return row is not None
+
+
+def _migrate_factor_values_to_files(conn: sqlite3.Connection) -> int | None:
+    """把已經搬去 Parquet 的因子值清出 ``factor_value``(D-032;KARST-068)。
+
+    **證明搬完了才清**,三個條件缺一不可:
+
+    1. 表內每一個有值的因子版本,在 ``factor_value_batch_member`` 都登記得到;
+    2. 那個因子版本在檔案裡的行數,與表內的行數逐個對得上;
+    3. 每一個批次檔真的在它登記的落點上。
+
+    有一項對不上就**一列都不動**(回 ``None``),寧可庫檔留著 1.6 GB。清空是不可逆
+    的,而「值已經在別處」這句話若果是猜的,清完就再也證不回——所以這裡不猜,
+    要麼三項齊備、要麼原封不動。
+
+    清法是 ``DROP TABLE`` 再由建表 DDL 重建一張空表(連索引與兩個 trigger)。
+    不用逐列 ``DELETE``:因子值落庫後不可刪(trigger 鎖住),而 555 萬列逐列刪
+    要先拆走那道鎖再裝回去——拆鎖的窗口比重建一張空表危險。**既有編號一個都不動**:
+    factor、factor_version、entity 三張表連碰都沒有碰過,所以策略引用、運行蓋住的
+    因子版本、實體編號照舊逐個指得回。
+
+    庫檔的體積要等 ``VACUUM`` 才縮——sqlite 只是把頁面標成可再用。本函式刻意不
+    自己跑 ``VACUUM``:那是一次全庫重寫,不應該在別人只是開一開庫的時候發生。
+
+    只跑一次:跑完在 ``schema_meta`` 留一筆,下次重開見到那一筆就不再數。
+    回傳清走了幾多個值;沒有清過即 ``None``。
+    """
+    if not _table_exists(conn, "factor_value") or not _table_exists(conn, "schema_meta"):
+        return None
+    done = conn.execute(
+        "SELECT 1 FROM schema_meta WHERE key = ?", (FACTOR_VALUES_TO_FILES_MIGRATION_KEY,)
+    ).fetchone()
+    if done is not None:
+        return None
+
+    # 先看有沒有登記,才去數表內那幾百萬列:數一次是一次全表掃描,而未有登記
+    # 那一刻怎樣數都清不了。
+    if not _table_exists(conn, "factor_value_batch_member"):
+        return None
+    if conn.execute("SELECT COUNT(*) AS n FROM factor_value_batch").fetchone()["n"] == 0:
+        return None
+
+    in_table = {
+        int(row["factor_version_id"]): int(row["n"])
+        for row in conn.execute(
+            "SELECT factor_version_id, COUNT(*) AS n FROM factor_value GROUP BY factor_version_id"
+        )
+    }
+    if not in_table:
+        return None
+
+    in_files = {
+        int(row["factor_version_id"]): int(row["n"])
+        for row in conn.execute(
+            "SELECT factor_version_id, SUM(rows) AS n FROM factor_value_batch_member"
+            " GROUP BY factor_version_id"
+        )
+    }
+    if any(in_files.get(version) != rows for version, rows in in_table.items()):
+        return None
+    if any(
+        not Path(str(row["path"])).is_file()
+        for row in conn.execute("SELECT path FROM factor_value_batch")
+    ):
+        return None
+
+    moved = sum(in_table.values())
+    note = (
+        f"第 11 版遷移:{len(in_table)} 個因子版本共 {moved} 個因子值搬去 Parquet 批次檔"
+        "(D-032),factor_value 清空重建。逐個因子版本核對過檔案登記的行數與表內一致、"
+        "而且每個批次檔都在登記的落點上,才清。因子、因子版本、實體三張表一個編號都沒有動。"
+    )
+    with conn:
+        conn.execute("DROP TABLE factor_value")
+        conn.execute(
+            "INSERT OR IGNORE INTO schema_meta (key, value) VALUES (?, ?)",
+            (FACTOR_VALUES_TO_FILES_MIGRATION_KEY, note),
+        )
+    return moved
+
+
 def connect(path: str) -> sqlite3.Connection:
     """開庫並建表。``path`` 用 ``":memory:"`` 即開一個即用即棄的庫。"""
     conn = sqlite3.connect(path)
@@ -878,6 +1051,9 @@ def connect(path: str) -> sqlite3.Connection:
     # 補欄那個遷移要行在建表之前:新版 DDL 有一條索引落在新加的 origin 之上,
     # 欄未補就建不出那條索引(舊庫一開就當場報「no such column」)。
     _migrate_backtest_run_origin(conn)
+    # 清空重建那個遷移一樣要行在建表之前:它 DROP 走舊的 factor_value,
+    # 由跟住那句 DDL 重建一張空表(連索引與兩個 trigger)。
+    _migrate_factor_values_to_files(conn)
     conn.executescript(ddl())
     _migrate_param_set_cadence(conn)
     # 補欄那個不必行在建表之前:兩格都可以留空,而且沒有索引落在它們身上,

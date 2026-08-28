@@ -35,7 +35,8 @@ IN_MEMORY = ":memory:"
 
 # 受治理的表 → 主鍵欄位。定義類的表全部在此;因子值(factor_value)不在——
 # 它已由 trigger 鎖死不可改不可刪,且掛在已簽章的因子版本之下,逐值簽章代價
-# 與它的行數不相稱(KARST-022 範圍註明)。
+# 與它的行數不相稱(KARST-022 範圍註明)。大批因子值連表都不入了(D-032:改存
+# Parquet),它們的**登記**在下面兩張表,逐列有簽章。
 GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     "factor": ("factor_id",),
     "factor_version": ("factor_version_id",),
@@ -50,6 +51,13 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     "active_setup": ("strategy_id", "seq_no"),
     "risk_rule": ("risk_rule_id",),
     "strategy_risk_ref": ("strategy_version_id", "risk_rule_id"),
+    # KARST-068 補上的兩張:因子值批次的登記。值本身住 Parquet(D-032),庫內
+    # 就只剩這兩列——落點、內容雜湊、行數、載住哪幾個因子版本。**那一列雜湊就是
+    # 整批值的唯一憑證**:它若果可以被人手改一個字,檔案核對就核了個寂寞
+    # (改檔的人順手改埋雜湊,重算出來一樣對得上)。所以它與定義同一道門、
+    # 同一種簽章。檔案本身的核對另有一段(見 ``Gateway.verify``)。
+    "factor_value_batch": ("batch_key", "snapshot_id"),
+    "factor_value_batch_member": ("batch_key", "snapshot_id", "factor_version_id"),
 }
 
 UNSIGNED = "未經唯一入口寫入"

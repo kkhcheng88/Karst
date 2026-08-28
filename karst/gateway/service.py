@@ -19,6 +19,7 @@ import os
 import sqlite3
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from ..errors import ContractViolation, NotFound
 from ..models import FormulaProcedure, MaterialProcedure, Procedure
@@ -32,6 +33,9 @@ from ..store import (
     StrategyVersion,
 )
 from . import ledger
+
+if TYPE_CHECKING:  # pragma: no cover - 只為型別註釋
+    from ..factorstore import FactorValueStore
 
 WRITER_ENV = "KARST_WRITER"
 STORE_ENV = "KARST_STORE"
@@ -178,26 +182,80 @@ class Gateway:
         version_no: int | None = None,
         snapshot_id: str | None = None,
     ) -> int:
-        """經同一道門寫因子值,回傳寫入列數。
+        """經同一道門逐值寫因子值入庫,回傳寫入列數。
 
         值本身不逐列蓋簽章(行數與定義不同一個量級),它靠三重防線:
         寫入時的合約檢查(前視、非有限數)、trigger 鎖死不可改不可刪,
         以及它掛住的因子版本已有簽章。
+
+        **這道門是給小批值用的**:一次幾百列、要即場查得到。因子庫級數的一批
+        (Alpha158 一類)走 ``write_factor_batch``——值落 Parquet,庫內只留登記與
+        雜湊(D-032)。分界線是量不是意思:兩邊寫的都是同一件事,三個時點連一個
+        有限數。
         """
         return self._store.write_factor_values(
             name, rows, version_no=version_no, snapshot_id=snapshot_id
         )
 
-    def ingest_alpha158(self, *, snapshot_id: str, root: str | None = None) -> object:
-        """把一個價格快照上的 Alpha158 全部 158 條算出來、登記、入庫(KARST-064)。
+    def factor_values(self, root: str | None = None) -> "FactorValueStore":
+        """因子值檔案庫的門面(D-032):值住 Parquet,庫內只留登記與雜湊。
+
+        ``root`` 留空即批次檔的預設落點 ``data/factors``,與快照、運行並列。
+        """
+        from ..factorstore import DEFAULT_FACTOR_ROOT, FactorValueStore
+
+        return FactorValueStore(self._store, root if root is not None else DEFAULT_FACTOR_ROOT)
+
+    def write_factor_batch(
+        self,
+        frame: object,
+        *,
+        batch_key: str,
+        snapshot_id: str,
+        procedure_version: str,
+        root: str | None = None,
+    ) -> object:
+        """經同一道門寫一個因子值批次:值落 Parquet,登記與雜湊入庫(D-032)。
+
+        與逐值入表那條路(``write_factor_values``)同一套合約——前視、非有限數、
+        重複的鍵一律在落檔之前擋。分別只在承載體:一批因子庫級數的值住檔案,
+        庫內留的是落點、內容雜湊、行數,而**那一列登記逐格有寫入者簽章**,
+        所以有人繞過這道門自己塞一列登記,``verify`` 一掃就見到。
+        """
+        batch = self.factor_values(root).write_batch(
+            frame,
+            batch_key=batch_key,
+            snapshot_id=snapshot_id,
+            procedure_version=procedure_version,
+        )
+        self._sign_once(
+            ("factor_value_batch", (batch.batch_key, batch.snapshot_id)),
+            *[
+                (
+                    "factor_value_batch_member",
+                    (batch.batch_key, batch.snapshot_id, member.factor_version_id),
+                )
+                for member in batch.members
+            ],
+        )
+        return batch
+
+    def ingest_alpha158(
+        self, *, snapshot_id: str, root: str | None = None, factor_root: str | None = None
+    ) -> object:
+        """把一個價格快照上的 Alpha158 全部 158 條算出來、登記、入庫(KARST-064、068)。
 
         本層一列都不另寫:登記走 ``register_factor`` / ``new_factor_version``、
-        值走 ``write_factor_values``,即與人手逐條登記行的是同一條路,只是不必
+        值走 ``write_factor_batch``,即與人手逐條登記行的是同一條路,只是不必
         逐條打 158 次。做法住在 ``karst.gateway.alpha158``。
+
+        ``root`` 是價格快照的快取根,``factor_root`` 是因子值批次檔的落點。
         """
         from .alpha158 import ingest_alpha158
 
-        return ingest_alpha158(self, snapshot_id=snapshot_id, root=root)
+        return ingest_alpha158(
+            self, snapshot_id=snapshot_id, root=root, factor_root=factor_root
+        )
 
     # ------------------------------------------------------------------
     # 策略定義與參數集
@@ -536,9 +594,27 @@ class Gateway:
     # 核對與落點
     # ------------------------------------------------------------------
 
-    def verify(self) -> list[ledger.Finding]:
-        """全庫核對:揪出繞過唯一入口寫入、或落庫後被改動的列。"""
-        return ledger.verify(self._conn, self._key)
+    def verify(self, *, factor_root: str | None = None) -> list[ledger.Finding]:
+        """全庫核對:揪出繞過唯一入口寫入、或落庫後被改動的列,連因子值檔的雜湊。
+
+        兩段:庫內受治理的表逐列核簽章(``ledger.verify``),然後**逐個因子值批次
+        檔重讀再算一次雜湊**(D-032:值住檔案,全庫核對照管雜湊)。少了第二段,
+        搬出去那 555 萬個值就等於搬出了核對範圍——庫檔清白而值早已被改過。
+
+        檔案由登記那一列自己講出落點,所以 ``factor_root`` 只在讀一個不在預設
+        落點的庫時才要給。
+        """
+        findings = ledger.verify(self._conn, self._key)
+        for batch, problem, detail in self.factor_values(factor_root).check_files():
+            findings.append(
+                ledger.Finding(
+                    "factor_value_batch",
+                    f"{batch.batch_key}|{batch.snapshot_id}",
+                    problem,
+                    detail,
+                )
+            )
+        return findings
 
     def locate(self, kind: str, name: str) -> DefinitionLocation:
         return self._store.locate_definition(kind, name)

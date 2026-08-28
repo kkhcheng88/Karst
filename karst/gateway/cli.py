@@ -105,6 +105,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     alpha158.add_argument("--snapshot", required=True, help="要算哪一個價格快照(無預設)")
     alpha158.add_argument("--root", default=None, help="快照快取根(預設 data/snapshots)")
+    alpha158.add_argument(
+        "--factor-root", dest="factor_root", default=None,
+        help="因子值批次檔的根(預設 data/factors)",
+    )
 
     strategy = commands.add_parser("strategy", help="策略定義")
     strategy_commands = strategy.add_subparsers(dest="subcommand", required=True)
@@ -214,7 +218,14 @@ def build_parser() -> argparse.ArgumentParser:
     where.add_argument("--kind", required=True, choices=("factor", "strategy"))
     where.add_argument("--name", required=True)
 
-    commands.add_parser("verify", help="核對全庫:揪出繞過唯一入口的寫入與落庫後的改動")
+    verify = commands.add_parser(
+        "verify", help="核對全庫:揪出繞過唯一入口的寫入與落庫後的改動,連因子值檔的雜湊"
+    )
+    verify.add_argument(
+        "--factor-root", dest="factor_root", default=None,
+        help="因子值批次檔的根(預設 data/factors);檔案落點由登記那一列自己講,"
+             "這一格只在庫與檔搬了家時才用得著",
+    )
     return parser
 
 
@@ -250,7 +261,7 @@ def _dispatch(args: argparse.Namespace, out: TextIO) -> int:
         if args.command == "where":
             return _where(args, gateway, out)
         if args.command == "verify":
-            return _verify(gateway, out)
+            return _verify(args, gateway, out)
     raise AssertionError(f"未知命令 {args.command!r}")  # pragma: no cover - argparse 已擋
 
 
@@ -317,7 +328,9 @@ def _factor_ingest_alpha158(args: argparse.Namespace, gateway: Gateway, out: Tex
     """Alpha158 一句入庫(KARST-064)。做法住在 ``karst.gateway.alpha158``,本檔只印。"""
     from .alpha158 import ALPHA158_FORMULA_SOURCE, ALPHA158_PROCEDURE_VERSION
 
-    report = gateway.ingest_alpha158(snapshot_id=args.snapshot, root=args.root)
+    report = gateway.ingest_alpha158(
+        snapshot_id=args.snapshot, root=args.root, factor_root=args.factor_root
+    )
     print(f"已入庫 Alpha158 全部 {report.factor_count} 條因子", file=out)
     print(f"  數據快照  {report.snapshot_id}", file=out)
     print(
@@ -337,6 +350,12 @@ def _factor_ingest_alpha158(args: argparse.Namespace, gateway: Gateway, out: Tex
         file=out,
     )
     print(
+        f"  值的落點  {report.batch_path}({report.file_bytes / 1_048_576:.1f} MB,"
+        f"批次「{report.batch_key}」);定義庫只留登記與雜湊 {report.content_hash[:12]}"
+        "(D-032)",
+        file=out,
+    )
+    print(
         "  三個時點  事件=該根 K 線那日開頭、知情=該日收工、"
         "可執行=下一根可交易 K 線那日開市(D-021 第 3 條)",
         file=out,
@@ -350,7 +369,7 @@ def _factor_ingest_alpha158(args: argparse.Namespace, gateway: Gateway, out: Tex
     else:
         print(f"  可執行    最後一日的可執行時點 {report.last_executable_date}", file=out)
     print(
-        "  留空不補  滾動窗口未滿而算不出值的日子庫內沒有那一列,不前值填補、不填零"
+        "  留空不補  滾動窗口未滿而算不出值的日子檔內沒有那一列,不前值填補、不填零"
         "(D-021 第 4 條)",
         file=out,
     )
@@ -741,11 +760,20 @@ def _where(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     return EXIT_OK
 
 
-def _verify(gateway: Gateway, out: TextIO) -> int:
-    findings = gateway.verify()
+def _verify(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    findings = gateway.verify(factor_root=args.factor_root)
+    batches = gateway.store.list_factor_value_batches()
     print(f"核對單一定義庫:{gateway.path}", file=out)
+    if batches:
+        values = sum(batch.rows for batch in batches)
+        print(
+            f"  連同 {len(batches)} 個因子值批次檔共 {values} 個值(D-032:值住檔案,"
+            "核對照管內容雜湊)",
+            file=out,
+        )
     if not findings:
-        print("  全庫清白:受治理的每一列都有唯一入口的寫入者簽章,內容與登記時一字不差。", file=out)
+        print("  全庫清白:受治理的每一列都有唯一入口的寫入者簽章,內容與登記時一字不差;"
+              "每個因子值批次檔的內容雜湊亦與登記的一樣。", file=out)
         return EXIT_OK
     print(f"  揪到 {len(findings)} 處不合格:", file=out)
     for finding in findings:
