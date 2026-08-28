@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>策略詳情 — Karst</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="sp">
+
+<div id="nav-host"></div>
+
+<main class="wrap">
+
+  <header class="page-head">
+    <div class="page-title-group">
+      <nav class="breadcrumb" aria-label="麵包屑"><a href="/">策略總覽</a><span>／</span></nav>
+      <h1 id="strat-name">策略詳情</h1>
+      <span class="page-en mono" id="strat-en"></span>
+      <span class="tag tag-strategy" id="strat-kind" style="display:none"></span>
+      <span class="tag tag-live" id="strat-live" style="display:none">現役設定</span>
+    </div>
+  </header>
+
+  <!-- 全頁載入中／錯誤／空:三態共用這一格,有內容時整疊面板讓路 -->
+  <div id="page-state"></div>
+
+  <div class="sp-stack" id="sp-stack" hidden>
+
+    <!-- ============ 檢視運行:揀哪一次,全頁跟著換 ============ -->
+    <div class="sp-runbar">
+      <span class="sp-runbar-k">檢視運行</span>
+      <div class="runpick" id="run-pick" role="group" aria-label="檢視哪一次運行"></div>
+      <button class="btn" id="back-live" hidden>回到現役</button>
+    </div>
+
+    <!-- ============ 檢視中那次運行的設定 ============ -->
+    <div class="config-slim" id="config-slim"></div>
+
+    <!-- ============ 頭條數字(按檢視視窗重算) ============ -->
+    <div class="kpi-row" id="kpis"></div>
+
+    <!-- ============ 左圖右名單:點圖上一日,右邊即時換 ============ -->
+    <div class="sp-split">
+
+      <section class="sp-panel sp-sticky" aria-labelledby="equity-title">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2 id="equity-title">淨值走勢</h2>
+            <div class="bench-line" id="equity-bench"></div>
+          </div>
+          <div class="winpick">
+            <label for="win-date">檢視視窗</label>
+            <div class="date-switch" id="win-pick" role="group" aria-label="檢視視窗起始"></div>
+            <input class="sp-date" type="date" id="win-date" aria-label="自訂起始日">
+          </div>
+        </div>
+        <div class="sp-sub" id="chart-sub"></div>
+        <div class="sp-body">
+          <div class="sp-chartwrap">
+            <div class="sp-chart" id="equity-chart"></div>
+            <div class="hovcard" id="hovcard" hidden aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sp-panel" aria-labelledby="picks-title">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2 id="picks-title">選股快照</h2>
+            <span class="at-point" id="at-point"></span>
+          </div>
+          <div class="sp-side" id="picks-filter"></div>
+        </div>
+        <div class="sp-sub" id="picks-basis"></div>
+        <div class="sp-funnel">
+          <div class="sp-funnel-cap">逐層收窄</div>
+          <div class="funnel-bar" id="funnel" role="group" aria-label="按層篩選名單"></div>
+        </div>
+        <div id="picks-table"></div>
+      </section>
+
+    </div>
+
+    <!-- ============ 歷次運行:點一行 = 換上面整頁 ============ -->
+    <section class="sp-panel" aria-labelledby="runs-title">
+      <div class="sp-head">
+        <h2 id="runs-title">歷次運行</h2>
+        <span class="section-note">點一行:全頁換成該次</span>
+      </div>
+      <div class="sp-body flush">
+        <table class="kt">
+          <thead>
+            <tr>
+              <th style="width:204px">運行編號</th>
+              <th style="width:70px">版本</th>
+              <th>參數</th>
+              <th class="num" style="width:72px">年化</th>
+              <th class="num" style="width:88px">最大回撤</th>
+              <th class="num" style="width:62px">勝率</th>
+              <th style="width:140px">快照</th>
+              <th style="width:64px"></th>
+            </tr>
+          </thead>
+          <tbody id="runs-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 因子分布 ============ -->
+    <section class="sp-panel" aria-labelledby="factor-title">
+      <div class="sp-head">
+        <h2 id="factor-title">因子分布</h2>
+        <span class="section-note" id="factor-note"></span>
+      </div>
+      <div class="sp-hist">
+        <div>
+          <div class="sp-hist-t">本次運行的因子敞口</div>
+          <div id="factor-expo"></div>
+        </div>
+        <div>
+          <div class="sp-hist-t">因子版本</div>
+          <div class="factor-hist" id="factor-hist"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="foot-host"></div>
+</main>
+
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script src="/static/app.js" charset="utf-8"></script>
+<script src="/static/strategy.js" charset="utf-8"></script>
+</body>
+</html>
