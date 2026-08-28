@@ -22,8 +22,19 @@ from typing import Any, Callable
 from urllib.parse import unquote, urlparse, parse_qs
 
 from karst.errors import ContractViolation, NotFound
+from karst.web import api_sweep
+from karst.web import api_strategy
+from karst.web import api_overview
 
 STATIC_ROOT = Path(__file__).resolve().parent / "static"
+
+# 查庫排隊用(見 do_GET 內的註釋)。靜態檔不經這道閘,圖與樣式照舊並行。
+_API_LOCK = threading.Lock()
+
+# 網址 → static/ 下的頁檔。每一頁在自己那個模組登記自己那一行,本檔不逐頁寫死。
+PAGE_FILES: dict[str, str] = {"/": "index.html", "/index.html": "index.html"}
+PAGE_FILES.update(api_overview.PAGES)  # KARST-049 策略總覽(連根路徑)
+PAGE_FILES.update(api_sweep.PAGES)  # KARST-051 參數掃描頁
 
 # 檢視視窗的起訖日:一律 YYYY-MM-DD。日子本身合不合理由下游那層講(揀了一段
 # 只得一日、結束早過開始),這裡只擋明顯不是日子的東西。
@@ -110,6 +121,9 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
         "/api/runs": _list_runs,
         "/api/meta": lambda r, q: reader.get_meta(),
     }
+    routes.update(api_sweep.routes(reader))  # 參數掃描頁(KARST-051),端點全部住在 api_sweep.py
+    routes.update(api_strategy.routes(reader))  # KARST-050 策略詳情頁的端點
+    api_overview.register(routes, reader)  # KARST-049 策略總覽的端點
 
     class Handler(BaseHTTPRequestHandler):
         server_version = "KarstWeb/0.1"
@@ -151,7 +165,13 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
 
             try:
                 if path.startswith("/api/"):
-                    self._handle_api(path, query)
+                    # 全部讀取層共用同一條 sqlite 連線(data.py open_read_only_store),
+                    # 而這是 ThreadingHTTPServer:兩個請求同時查庫會互相搞亂對方的
+                    # 游標,答出「沒有因子版本 N」這種明明存在卻查不到的錯。頁面一多
+                    # 就必然撞(KARST-050 實測三個端點並行 8/8 全錯)。本機檢視器一次
+                    # 只服務一個人,查庫排隊即可;真正的修法是逐個執行緒一條連線。
+                    with _API_LOCK:
+                        self._handle_api(path, query)
                     return
                 self._handle_static(path)
             except WebError as exc:
@@ -201,8 +221,8 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
             raise WebError(HTTPStatus.NOT_FOUND, f"沒有這個端點:{path}")
 
         def _handle_static(self, path: str) -> None:
-            if path in ("/", "/index.html"):
-                target = STATIC_ROOT / "index.html"
+            if path in PAGE_FILES:
+                target = STATIC_ROOT / PAGE_FILES[path]
             elif path.startswith("/static/"):
                 target = _safe_static_path(path[len("/static/") :])
             else:

@@ -235,7 +235,7 @@
 
   /* ---- 運行身份:版本與快照全頁只在這個晶片講一次(已裁畫面原則第 3 條) ---- */
   function renderIdentity(run) {
-    KV.mountNav('/', { snapshot: run.snapshotId, asOf: run.periodEnd });
+    KV.mountNav('/run', { snapshot: run.snapshotId, asOf: run.periodEnd });
 
     var factors = run.factors.map(function (f) {
       return KV.esc(f.name) + ' v' + f.versionNo;
@@ -710,7 +710,7 @@
      開機
      ============================================================ */
   KV.initTabs('.tabs');
-  KV.mountNav('/', {});
+  KV.mountNav('/run', {});
   mountWinPick();
 
   /* 網址帶住的視窗:重新整理、或者把連結傳開,看到的仍然是同一段 */

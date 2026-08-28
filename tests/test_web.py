@@ -94,7 +94,7 @@ def test_進出場標記落在對應日期的蠟燭上(base_url, traded_run):
     trade = traded_run["trades"][0]
 
     # 頁面本身載得到圖表庫與兩個圖區(淨值圖與蠟燭圖共用同一個圖區)
-    page = _get(f"{base_url}/").decode("utf-8")
+    page = _get(f"{base_url}/run").decode("utf-8")
     assert 'id="main-chart"' in page
     assert "lightweight-charts.standalone.production.js" in page
 
@@ -165,7 +165,8 @@ def test_數據來自真實運行而非寫死的假數據(base_url, reader, trad
 
 def test_圖用lightweight_charts且色值字級取自設計系統(base_url):
     """驗收三:圖表用 lightweight-charts 畫,顏色與字級取 token,無自定色值。"""
-    page = _get(f"{base_url}/").decode("utf-8")
+    # 根路徑自 KARST-049 起是策略總覽,運行詳情頁搬去 /run(頁本身一個字沒有改)
+    page = _get(f"{base_url}/run").decode("utf-8")
 
     # 本地載入,不經 CDN(D-019:Apache-2.0,本地載入)
     assert "/static/vendor/lightweight-charts.standalone.production.js" in page
@@ -248,7 +249,7 @@ def test_換運行整頁跟住換且運行編號顯示得到(base_url):
             assert key in metrics, f"少了指標 {key}"
 
     # 運行編號在頁面上有落腳位,而且真的由 JS 填上去
-    page = _get(f"{base_url}/").decode("utf-8")
+    page = _get(f"{base_url}/run").decode("utf-8")
     assert 'id="bc-run"' in page
     view = (STATIC_ROOT / "run-view.js").read_text(encoding="utf-8")
     assert "bcRun" in view and "runId" in view
@@ -291,7 +292,7 @@ def windowed(reader):
 
 def test_揀一段日期八項與淨值圖按該段重看而運行編號不變(base_url, windowed):
     """驗收一:頁面可揀起訖日期,八項指標與淨值圖隨之按該段重算,運行編號不變。"""
-    page = _get(f"{base_url}/").decode("utf-8")
+    page = _get(f"{base_url}/run").decode("utf-8")
     for anchor in ('id="win-pick"', 'id="win-from"', 'id="win-to"', "檢視視窗"):
         assert anchor in page, f"頁面上沒有檢視視窗控制:{anchor}"
 

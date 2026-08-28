@@ -77,9 +77,13 @@
   }
 
   /* ---------------- 頂欄 ---------------- */
-  /* 只列已建成的畫面。其餘四頁未建,不掛死連結。 */
+  /* 四頁齊列。未建成那兩頁連去佔位空狀態(不是死連結),各自那一頁建成時
+     由該頁改自己這一行的 href。 */
   var PAGES = [
-    { href: '/', label: '運行詳情' },
+    { href: '/', label: '策略總覽' },
+    { href: '/strategy', label: '策略詳情' },
+    { href: '/run', label: '運行詳情' },
+    { href: '/sweep', label: '參數掃描' },
   ];
 
   function mountNav(active, meta) {
