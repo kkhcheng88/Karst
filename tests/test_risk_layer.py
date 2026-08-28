@@ -35,13 +35,12 @@ from karst.risk import (
     RiskSettings,
     build_rule_params,
     read_risk_settings,
-    reference_risk_rules,
     referenced_rule_keys,
-    register_risk_layer,
     risk_settings_of,
     sweep_grid,
     sweep_risk_settings,
 )
+from karst.gateway import Gateway
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -114,9 +113,16 @@ def panel() -> BarPanel:
 
 
 @pytest.fixture()
-def store(tmp_path):
-    with DefinitionStore.open(str(tmp_path / "karst.sqlite")) as opened:
+def gateway(tmp_path, monkeypatch):
+    """唯一入口:三條規則入庫與策略引用都要經它(D-020 第 4 條、KARST-038)。"""
+    monkeypatch.setenv("KARST_WRITER", "KARST-038-test")
+    with Gateway.open(str(tmp_path / "karst.sqlite")) as opened:
         yield opened
+
+
+@pytest.fixture()
+def store(gateway) -> DefinitionStore:
+    return gateway.store
 
 
 @pytest.fixture()
@@ -150,7 +156,7 @@ def toy_factor(store):
 
 # 驗收條件 1:三類風控規則各自只有一個定義正本,庫內查不到第二份影像
 # (D-013 第 4 條、D-002 第 4 條)
-def test_each_risk_rule_has_exactly_one_definition(store):
+def test_each_risk_rule_has_exactly_one_definition(gateway, store):
     # (a) 程式那一邊:三條規則,一條不多一條不少,名與參數名皆不重覆
     assert list(RISK_RULES) == ["per_trade_risk", "monthly_loss_cap", "reward_risk_floor"]
     names = [rule.name for rule in RISK_RULES.values()]
@@ -158,12 +164,16 @@ def test_each_risk_rule_has_exactly_one_definition(store):
     assert names == ["單筆風險上限", "月度虧損熔斷", "賠率門檻"]
     assert len(set(names)) == len(set(param_keys)) == 3
 
-    # (b) 落庫:重覆登記回同一批列,不會生出第二份影像
-    first = register_risk_layer(store)
-    again = register_risk_layer(store)
+    # (b) 落庫:一律經唯一入口,重覆登記回同一批列,不會生出第二份影像
+    first, signed = gateway.register_risk_rules()
+    again, again_signed = gateway.register_risk_rules()
     assert [r.risk_rule_id for r in first] == [r.risk_rule_id for r in again]
+    assert signed == again_signed          # 同一列同一個簽章,不會蓋第二次
     assert len(store.list_risk_rules()) == 3
     assert [record.key for record in first] == list(RISK_RULES)
+
+    # (b2) 經入口寫的列有寫入者簽章:核對查不到繞過入口那一類
+    assert [f for f in gateway.verify() if f.table == "risk_rule"] == []
 
     # (c) 全庫掃名:每條規則的名一字不差地只出現在一處
     for record in first:
@@ -184,8 +194,8 @@ def test_each_risk_rule_has_exactly_one_definition(store):
 
 # 驗收條件 2:兩套策略同時引用同一份定義而各設不同參數,改一邊參數不影響另一邊
 # (D-013 第 4 條)
-def test_two_strategies_share_one_definition_with_their_own_params(store, toy_factor):
-    register_risk_layer(store)
+def test_two_strategies_share_one_definition_with_their_own_params(gateway, store, toy_factor):
+    gateway.register_risk_rules()
     store.register_strategy("趨勢波段·玩具", strategy_type="technical", factor_refs=[FACTOR])
     store.register_strategy("錯殺·玩具", strategy_type="meanrev", factor_refs=[FACTOR])
 
@@ -193,8 +203,8 @@ def test_two_strategies_share_one_definition_with_their_own_params(store, toy_fa
     swing = RiskSettings(per_trade_risk=0.02, monthly_loss_cap=0.06, reward_risk_floor=1.5)
     oversold = RiskSettings(per_trade_risk=0.01, monthly_loss_cap=None, reward_risk_floor=2.5)
 
-    swing_refs = reference_risk_rules(store, "趨勢波段·玩具", swing)
-    oversold_refs = reference_risk_rules(store, "錯殺·玩具", oversold)
+    swing_refs, _ = gateway.attach_risk_rules("趨勢波段·玩具", swing.referenced_keys)
+    oversold_refs, _ = gateway.attach_risk_rules("錯殺·玩具", oversold.referenced_keys)
     assert [r.key for r in swing_refs] == ["per_trade_risk", "monthly_loss_cap", "reward_risk_floor"]
     assert [r.key for r in oversold_refs] == ["per_trade_risk", "reward_risk_floor"]
 
@@ -250,8 +260,8 @@ def test_two_strategies_share_one_definition_with_their_own_params(store, toy_fa
 
 # 驗收條件 3:策略完全不引用風控層照樣跑得出回測,不引用不報錯
 # (D-013 第 4 條「策略可用可不用」)
-def test_a_strategy_that_references_nothing_still_backtests(store, toy_factor):
-    register_risk_layer(store)
+def test_a_strategy_that_references_nothing_still_backtests(gateway, store, toy_factor):
+    gateway.register_risk_rules()
     store.register_strategy("因子混合·玩具", strategy_type="multifactor", factor_refs=[FACTOR])
 
     # 一條風控規則都沒有引用——不是錯,只是這套策略不用這一層
@@ -354,3 +364,48 @@ def test_sweep_moves_only_the_three_risk_numbers(panel):
     result = run_rule_strategy(panel=panel, params=swapped)
     assert result.blocked_days == 0
     assert np.isfinite(result.total_return)
+
+
+# ----------------------------------------------------------------------
+# KARST-038 驗收條件 2:全庫查不到繞過唯一入口寫這三張表的程式路徑
+# ----------------------------------------------------------------------
+
+# 三張治理清單上的表(D-020 第 4 條、KARST-035),與寫它們的那三個庫層 API。
+GOVERNED_RISK_TABLES = ("active_setup", "risk_rule", "strategy_risk_ref")
+STORE_WRITE_METHODS = ("set_active_setup", "register_risk_rules", "attach_risk_rules")
+
+# 三個例外,而且只有這三個:
+#   karst/schema.py    —— 三張表的建表與不可改 trigger 住這裡(它就是表結構正本)
+#   karst/store.py     —— 三張表的 SQL 正本住這裡(它就是庫層)
+#   karst/gateway/     —— 唯一入口本身,它才是那條合法通道
+GATEWAY_ONLY = ("schema.py", "store.py")
+
+
+def test_no_module_outside_the_gateway_writes_the_three_tables():
+    """入口以外一個檔都不准寫這三張表——寫了就是繞過簽章,``verify`` 事後才發現。"""
+    package = REPO_ROOT / "karst"
+    offenders: list[str] = []
+    for path in sorted(package.rglob("*.py")):
+        relative = path.relative_to(REPO_ROOT).as_posix()
+        if relative.startswith("karst/gateway/") or path.name in GATEWAY_ONLY:
+            continue
+        source = path.read_text(encoding="utf-8")
+
+        # (a) 直接呼叫庫層那三個寫入方法(receiver 叫 store 或 _store)
+        for method in STORE_WRITE_METHODS:
+            hit = re.search(rf"(?:^|[^\w])_?store\s*\.\s*{method}\s*\(", source, re.M)
+            assert hit is None, f"{relative} 繞過唯一入口呼叫 store.{method}()"
+
+        # (b) 自己寫這三張表的 SQL
+        for table in GOVERNED_RISK_TABLES:
+            hit = re.search(rf"(?i)(insert|update|delete)[^\n]*\b{table}\b", source)
+            if hit is not None:
+                offenders.append(f"{relative}:{table}")
+    assert offenders == []
+
+
+def test_the_risk_layer_never_imports_the_gateway():
+    """方向只有一條:入口 import 風控層,風控層不准反過來 import 入口(免得繞成一圈)。"""
+    for path in sorted((REPO_ROOT / "karst" / "risk").glob("*.py")):
+        source = path.read_text(encoding="utf-8")
+        assert not re.search(r"^\s*(?:from|import)[^\n]*\bgateway\b", source, re.M), path.name

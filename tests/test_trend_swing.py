@@ -614,6 +614,34 @@ def test_every_parameter_is_scannable_and_no_value_is_hard_coded(toy):
     assert _value_defaults(MODULE_PATH) == []
 
 
+# KARST-038 驗收條件 1:跑完一次完整的登記與回測之後,全庫核對報清白——
+# 連風控規則與它的引用都有寫入者簽章,一列都沒有繞過唯一入口(D-020 第 4 條)。
+def test_a_full_run_leaves_the_whole_store_clean(toy):
+    gateway, store = toy["gateway"], toy["store"]
+
+    # 風控那兩張表真的有列可核(不是因為空表而「清白」)
+    assert len(store.list_risk_rules()) == 3
+    assert sorted(referenced_rule_keys(store, STRATEGY)) == sorted(RISK_RULES)
+
+    assert gateway.verify() == []
+
+    # 重跑同一次登記:回同一個策略版本與同一個參數集版本(運行編號因此不變),
+    # 簽章亦不會蓋第二次,核對照樣清白
+    version, param_set = register_trend_swing(
+        gateway,
+        strategy_name=STRATEGY,
+        snapshot_id=toy["snapshot_id"],
+        param_set_name=PARAM_SET,
+        rebalance_cadence=CADENCE,
+        values=param_values(SAMPLE_PARAMS, SAMPLE_RISK),
+        description="KARST-028 示例參數,不是現役設定",
+    )
+    assert version.version_no == toy["strategy"].version_no
+    assert param_set.version_no == toy["param_set"].version_no
+    assert len(store.list_risk_rules()) == 3
+    assert gateway.verify() == []
+
+
 # ----------------------------------------------------------------------
 # 掃原始碼用的兩個小工具(與 tests/test_factor_mix.py 同制)
 # ----------------------------------------------------------------------

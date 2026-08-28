@@ -1,58 +1,36 @@
-"""共用風控層與單一定義庫之間那一格:把三條規則登記入庫、記策略引用了哪幾條。
+"""共用風控層與單一定義庫之間那一格:交出登記單、讀回引用與取值。
 
 **庫內沒有第二份定義。** 規則本體(叫什麼、管什麼、參數叫什麼名)的正本住在
 ``layer.py``;庫裡那三列只是登記處,策略引用只存編號。取值不在規則那一邊——
 取值屬用戶領域,住在該策略自己的參數集(D-008)。
+
+**本檔一列都不寫**(KARST-038)。三條規則入庫、記某策略引用哪幾條,一律經唯一
+入口 ``karst.gateway.Gateway``(D-020 第 4 條):風控層只交出一份「登記單」,
+入口照單入庫並蓋寫入者簽章,``karst verify`` 才核對得到。方向亦只有一條——
+入口 import 風控層,風控層永不反過來 import 入口。
 
 D-027 第 4 條:本檔一條 sqlite 連線都不開,全部經 ``karst/store.py`` 的 API。
 """
 
 from __future__ import annotations
 
-from ..store import DefinitionStore, RiskRuleRecord
+from ..store import DefinitionStore
 from .layer import RISK_RULES, RiskSettings, get_risk_rule
 
 
-def register_risk_layer(store: DefinitionStore) -> tuple[RiskRuleRecord, ...]:
-    """把三條共用風控規則登記入庫,回傳它們的登記列。
+def risk_rule_definitions() -> tuple[dict[str, str], ...]:
+    """三條共用風控規則的登記單(叫什麼、管什麼、取值住在哪個參數名)。
 
-    重覆呼叫回同一批列(單一定義),不會多出第二份影像。
+    交給唯一入口照單入庫;本函式不寫庫,亦不在此另寫一份定義(D-002 第 4 條)。
     """
     return tuple(
-        store.register_risk_rules(
-            [
-                {
-                    "key": rule.key,
-                    "name": rule.name,
-                    "param_key": rule.param_key,
-                    "description": f"{rule.english}:{rule.what}",
-                }
-                for rule in RISK_RULES.values()
-            ]
-        )
-    )
-
-
-def reference_risk_rules(
-    store: DefinitionStore,
-    strategy_name: str,
-    risk: RiskSettings,
-    *,
-    strategy_version_no: int | None = None,
-) -> tuple[RiskRuleRecord, ...]:
-    """記下某策略版本引用了風控層的哪幾條規則。
-
-    引用哪幾條由取值講明:有給值的就是引用,寫 ``None`` 的就是不引用——
-    一條都不引用即一列都不寫,那套策略照樣跑得(D-013 第 4 條)。
-    """
-    if not isinstance(risk, RiskSettings):
-        raise TypeError(f"風控設定要是 RiskSettings,收到 {type(risk).__name__}")
-    return tuple(
-        store.attach_risk_rules(
-            strategy_name,
-            risk.referenced_keys,
-            strategy_version_no=strategy_version_no,
-        )
+        {
+            "key": rule.key,
+            "name": rule.name,
+            "param_key": rule.param_key,
+            "description": f"{rule.english}:{rule.what}",
+        }
+        for rule in RISK_RULES.values()
     )
 
 

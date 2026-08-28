@@ -266,9 +266,9 @@ class Gateway:
         入口只是把它入庫,不在此另寫一份定義(D-002 第 4 條)。
         重覆跑回同一批列,簽章亦照舊那一個,不會多出第二份影像。
         """
-        from ..risk import register_risk_layer
+        from ..risk import risk_rule_definitions
 
-        rules = tuple(register_risk_layer(self._store))
+        rules = tuple(self._store.register_risk_rules(risk_rule_definitions()))
         signed = self._sign_once(
             *[("risk_rule", (rule.risk_rule_id,)) for rule in rules]
         )

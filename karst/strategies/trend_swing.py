@@ -12,8 +12,9 @@
    五件規則的執行機制住 ``karst/engine/rules.py``,三條風控規則的定義住
    ``karst/risk/layer.py``——本檔一份都不抄。
 
-2. **登記** —— 策略、參數集、因子一律經唯一入口 ``karst.gateway.Gateway``
-   (D-020 第 4 條);風控規則的引用經 ``karst.risk.reference_risk_rules`` 記低。
+2. **登記** —— 策略、參數集、因子、風控規則與它的引用,一律經唯一入口
+   ``karst.gateway.Gateway``(D-020 第 4 條),沒有第二條寫入路徑;風控層
+   只交定義,本檔一列都不直接寫庫(KARST-038)。
 
 3. **驗規則** —— 規格 5.4 第 5 條、6.5 要求「一條規則須在約 500 個歷史案例上
    驗證」。``entry_cases`` 把入場規則在整個快照(全部實體 × 全期)觸發的每一次
@@ -82,8 +83,6 @@ from ..risk import (
     RiskSettings,
     RiskSweepGrid,
     build_rule_params,
-    reference_risk_rules,
-    register_risk_layer,
     sweep_risk_settings,
 )
 from ..store import FAMILY_SEPARATOR, DefinitionStore, ParamSet, StrategyVersion
@@ -482,7 +481,7 @@ def register_trend_swing(
     if not snapshot:
         raise ContractViolation("登記趨勢波段策略要註明數據快照編號,追溯不可留空")
 
-    register_risk_layer(gateway.store)
+    gateway.register_risk_rules()
 
     procedure = FormulaProcedure(
         formula=BREAKOUT_FACTOR_FORMULA, input_data_version=snapshot
@@ -540,10 +539,9 @@ def register_trend_swing(
             values=values,
             strategy_version_no=version.version_no,
         )
-    reference_risk_rules(
-        gateway.store,
+    gateway.attach_risk_rules(
         version.name,
-        RiskSettings.from_param_values(param_set.values),
+        RiskSettings.from_param_values(param_set.values).referenced_keys,
         strategy_version_no=version.version_no,
     )
     return version, param_set

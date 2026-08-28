@@ -26,8 +26,9 @@
 
     from karst.metrics import facade_metrics, run_metrics
 
-    # 門面:只取現役設定那次運行(規格 7.5)
-    store.set_active_setup("趨勢波段", "現役")
+    # 門面:只取現役設定那次運行(規格 7.5)。指定經唯一入口,才有寫入者簽章
+    # (D-020 第 4 條);命令列同一道門:karst params activate --strategy 趨勢波段 --name 現役
+    gateway.designate_active_setup("趨勢波段", param_set_name="現役")
     facade = facade_metrics(runs, "趨勢波段", risk_free_rate=0.04)
     facade.annual_excess["QQQ"], facade.annual_excess["SPY"]
 
@@ -42,6 +43,7 @@ from .benchmark import (
     benchmark_curve,
     benchmark_entity_id,
 )
+from .inventory import OpeningLot, opening_inventory, valuation_day
 from .ratios import (
     annual_volatility,
     daily_returns,
@@ -63,6 +65,7 @@ __all__ = [
     "DEFAULT_BENCHMARK_TICKERS",
     "BenchmarkComparison",
     "BenchmarkCurve",
+    "OpeningLot",
     "RoundTrip",
     "RunMetrics",
     "TradeStats",
@@ -74,10 +77,12 @@ __all__ = [
     "daily_returns",
     "downside_deviation",
     "facade_metrics",
+    "opening_inventory",
     "round_trips",
     "run_metrics",
     "sortino_ratio",
     "trade_stats",
     "turnover",
+    "valuation_day",
     "years_of",
 ]
