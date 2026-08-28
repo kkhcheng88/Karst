@@ -1731,6 +1731,14 @@ body.sp .fh-name { margin-top: 0; }
 .sp-date:hover { border-color: var(--line-strong); }
 .sp-date::-webkit-calendar-picker-indicator { filter: invert(.7); cursor: pointer; }
 .winpick .date-switch button { padding: 2px var(--s-2); font-size: var(--fs-xs); }
+.winpick .dim { font-size: var(--fs-xs); }
+
+/* 貼屏頁:檢視視窗自己佔薄薄一列,排在淨值圖的面板頭下面(design-system 3.7) */
+.winbar {
+  align-items: center; justify-content: flex-start;
+  padding-top: var(--s-2); padding-bottom: var(--s-2);
+}
+.winbar .slim-win { margin-left: auto; }
 
 /* ---- 圖區:買賣訊號浮層要貼住圖 ---- */
 .sp-chartwrap { position: relative; }

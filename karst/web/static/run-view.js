@@ -27,6 +27,10 @@
     legend: document.getElementById('chart-legend'),
     title: document.getElementById('chart-title'),
     back: document.getElementById('chart-back'),
+    winPick: document.getElementById('win-pick'),
+    winFrom: document.getElementById('win-from'),
+    winTo: document.getElementById('win-to'),
+    winState: document.getElementById('win-state'),
   };
 
   var state = {
@@ -36,6 +40,11 @@
     chart: null,
     mode: 'equity',
     table: null,
+    /* 現正揀住的檢視視窗;兩個日子都是 null 即全期 */
+    win: { key: 'all', from: null, to: null },
+    applied: { key: 'all', from: null, to: null },
+    window: null,
+    seq: 0,
   };
 
   /* ============================================================
@@ -92,10 +101,96 @@
     if (state.runId === runId) return;
     state.runId = runId;
     markPicked(runId);
-    /* 換運行:網址跟住換,重新整理後仍是同一次 */
-    try { history.replaceState(null, '', location.pathname + '?run=' + encodeURIComponent(runId)); }
-    catch (e) {}
+    /* 換運行:視窗回到全期——上一次那段日子未必落在這一次的期間之內 */
+    state.win = { key: 'all', from: null, to: null };
+    state.window = null;
     loadRun(runId);
+  }
+
+  /* ============================================================
+     檢視視窗:同一次運行揀一段日期重看(design-system 3.7)
+     ------------------------------------------------------------
+     頁內一個指標都不算。揀了日子只是把起訖日交給 /api/,八項指標與淨值線
+     全部由薄 REST 層按那一段重出——是重看不是重跑,運行編號一個字不變。
+     ============================================================ */
+  var WINS = [
+    { key: 'all', label: '全期' },
+    { key: '1y', label: '近 1 年' },
+    { key: '3y', label: '近 3 年' },
+    { key: '2023', label: '2023 起' },
+  ];
+
+  function shiftYears(iso, years) {
+    var d = new Date(iso + 'T00:00:00Z');
+    d.setUTCFullYear(d.getUTCFullYear() - years);
+    return d.toISOString().slice(0, 10);
+  }
+
+  function winParams() {
+    var parts = [];
+    if (state.win.from) parts.push('start=' + encodeURIComponent(state.win.from));
+    if (state.win.to) parts.push('end=' + encodeURIComponent(state.win.to));
+    return parts;
+  }
+
+  function setWindow(key, from, to) {
+    state.win = { key: key, from: from || null, to: to || null };
+    loadRun(state.runId);
+  }
+
+  function mountWinPick() {
+    el.winPick.innerHTML = WINS.map(function (w) {
+      return '<button type="button" data-win="' + w.key + '" aria-pressed="false">' +
+        KV.esc(w.label) + '</button>';
+    }).join('');
+
+    el.winPick.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-win]');
+      if (!b || !state.window) return;
+      var key = b.getAttribute('data-win');
+      var last = state.window.runEnd;
+      var from = key === 'all' ? null
+        : (key === '1y' ? shiftYears(last, 1)
+        : (key === '3y' ? shiftYears(last, 3) : '2023-01-01'));
+      setWindow(key, from, null);
+    });
+
+    /* 自訂:揀了日子即由四個預設鍵轉為自訂,四鍵全部退選(design-system 3.7) */
+    function custom() {
+      var from = el.winFrom.value || null;
+      var to = el.winTo.value || null;
+      setWindow(from || to ? 'custom' : 'all', from, to);
+    }
+    el.winFrom.addEventListener('change', custom);
+    el.winTo.addEventListener('change', custom);
+  }
+
+  /* 一段載回來之後,把控制列對回實際看到的那一段(伺服器會把日子貼到交易日上) */
+  function syncWindow(win) {
+    state.window = win;
+    if (win.isFull) state.win = { key: 'all', from: null, to: null };
+    state.applied = { key: state.win.key, from: state.win.from, to: state.win.to };
+
+    var key = win.isFull ? 'all' : state.win.key;
+    el.winPick.querySelectorAll('button[data-win]').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-win') === key ? 'true' : 'false');
+    });
+
+    el.winFrom.value = win.start;
+    el.winTo.value = win.end;
+    el.winFrom.min = el.winTo.min = win.runStart;
+    el.winFrom.max = el.winTo.max = win.runEnd;
+
+    el.winState.innerHTML = (win.isFull
+      ? '視窗 全期'
+      : '視窗 <b>' + KV.esc(win.start) + ' 至 ' + KV.esc(win.end) + '・非重跑</b>') +
+      '・' + win.tradingDays + ' 個交易日' +
+      (win.openingLots ? '・承接期初存貨 ' + win.openingLots + ' 注' : '');
+
+    /* 網址記住運行與視窗,重新整理後仍是同一段 */
+    var parts = ['run=' + encodeURIComponent(state.runId)].concat(winParams());
+    try { history.replaceState(null, '', location.pathname + '?' + parts.join('&')); }
+    catch (e) {}
   }
 
   /* ============================================================
@@ -103,11 +198,18 @@
      ============================================================ */
   function loadRun(runId) {
     el.bcRun.textContent = runId;
-    KV.fetchJSON('/api/runs/' + encodeURIComponent(runId)).then(function (detail) {
-      if (state.runId !== runId) return;       /* 期間又揀了另一次,這份作廢 */
+    var token = ++state.seq;
+    var parts = winParams();
+    var url = '/api/runs/' + encodeURIComponent(runId) +
+      (parts.length ? '?' + parts.join('&') : '');
+
+    KV.fetchJSON(url).then(function (detail) {
+      /* 期間又揀了另一次運行或另一段日子,這份作廢 */
+      if (state.runId !== runId || state.seq !== token) return;
       state.detail = detail;
       state.marksByDate = {};
       detail.tradeMarks.forEach(function (m) { state.marksByDate[m.date] = m; });
+      syncWindow(detail.window);
 
       renderIdentity(detail.run);
       renderMetrics(detail);
@@ -121,7 +223,13 @@
       });
       showEquity();
     }).catch(function (err) {
+      if (state.seq !== token) return;
       fail('讀不到運行 ' + runId + '：' + err.message);
+      /* 揀了一段揀不到的日子(例如只得一日):控制列退回上一段看得到的視窗 */
+      state.win = {
+        key: state.applied.key, from: state.applied.from, to: state.applied.to,
+      };
+      if (state.window) syncWindow(state.window);
     });
   }
 
@@ -237,9 +345,19 @@
       '</div>';
     }).join('');
 
+    /* 口徑會變的那幾項:全期註「本次運行紀錄」,揀了視窗註「視窗內重算」
+       (design-system 3.7)。承接回來的期初存貨要講清楚,否則勝率同持倉日數
+       會被讀成「這一段開的倉」。 */
+    var win = detail.window;
+    var basis = win.isFull
+      ? '本次運行紀錄'
+      : '視窗內重算・非重跑' +
+        (win.openingLots ? '・承接視窗前已開的 ' + win.openingLots + ' 注' : '');
+
     el.metricsNote.textContent =
       '全部指標由 ' + m.start + ' 至 ' + m.end + ' 這段期間計出(' + m.tradingDays +
-      ' 個交易日)・基準 QQQ 與 SPY 皆為買入持有・已平倉 ' + m.closedTrades + ' 筆。' +
+      ' 個交易日・' + basis + ')・基準 QQQ 與 SPY 皆為買入持有・已平倉 ' +
+      m.closedTrades + ' 筆。' +
       (spy ? '' : ' 該數據快照沒有 SPY,少一條基準。');
   }
 
@@ -479,8 +597,10 @@
     el.title.innerHTML =
       '<h2 style="font-size:var(--fs-md)">' + KV.esc(trade.symbol) + '　載入中……</h2>';
 
+    /* 蠟燭圖同樣按這一段取數:K 線與買賣標記聚焦視窗,不會扯出段外那幾年 */
+    var query = ['symbol=' + encodeURIComponent(trade.symbol)].concat(winParams());
     KV.fetchJSON('/api/runs/' + encodeURIComponent(runId) +
-                 '/candles?symbol=' + encodeURIComponent(trade.symbol))
+                 '/candles?' + query.join('&'))
       .then(function (data) {
         if (state.runId !== runId) return;
         drawCandles(trade, data);
@@ -510,7 +630,10 @@
         '　損益 <b class="' + KV.cls(trade.profit) + '">' +
         (trade.profit > 0 ? '+' : '') + KV.money(trade.profit) +
         '(' + KV.pct(trade.retPct) + ')</b>' +
-        '<span class="dim">・該實體在本次運行共 ' + data.trades.length + ' 筆</span></div>';
+        /* 揀了視窗:這裡數的是這一段之內的筆數,不是整次運行 */
+        '<span class="dim">・該實體在' +
+        (state.window && !state.window.isFull ? '這一段' : '本次運行') +
+        '共 ' + data.trades.length + ' 筆</span></div>';
 
     var box = chartBox();
     var chart = KV.makeChart(box, availH());
@@ -588,6 +711,12 @@
      ============================================================ */
   KV.initTabs('.tabs');
   KV.mountNav('/', {});
+  mountWinPick();
+
+  /* 網址帶住的視窗:重新整理、或者把連結傳開,看到的仍然是同一段 */
+  var fromQs = qs('start');
+  var toQs = qs('end');
+  if (fromQs || toQs) state.win = { key: 'custom', from: fromQs, to: toQs };
 
   KV.fetchJSON('/api/runs?limit=' + RUN_PICK_LIMIT).then(function (listing) {
     if (!listing.runs.length) {

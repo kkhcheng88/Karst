@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import mimetypes
 import posixpath
+import re
 import threading
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -20,9 +21,13 @@ from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import unquote, urlparse, parse_qs
 
-from karst.errors import NotFound
+from karst.errors import ContractViolation, NotFound
 
 STATIC_ROOT = Path(__file__).resolve().parent / "static"
+
+# 檢視視窗的起訖日:一律 YYYY-MM-DD。日子本身合不合理由下游那層講(揀了一段
+# 只得一日、結束早過開始),這裡只擋明顯不是日子的東西。
+_DAY = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 # .js 在部分 Windows 機器上被登記成 text/plain,瀏覽器會拒絕執行;明文釘死。
 _MIME = {
@@ -66,6 +71,24 @@ def _safe_static_path(url_path: str) -> Path | None:
     if not candidate.is_file():
         return None
     return candidate
+
+
+def _window_args(query: dict[str, list[str]]) -> tuple[str | None, str | None]:
+    """?start=&end= 兩個日子。兩個都留空即全期——留空與不帶,兩者同義。"""
+
+    def one(name: str) -> str | None:
+        values = query.get(name) or []
+        raw = (values[0] if values else "").strip()
+        if not raw:
+            return None
+        if not _DAY.fullmatch(raw):
+            raise WebError(
+                HTTPStatus.BAD_REQUEST,
+                f"檢視視窗的 {name} 要一個 YYYY-MM-DD 的日子,收到 {raw!r}",
+            )
+        return raw
+
+    return one("start"), one("end")
 
 
 def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
@@ -139,6 +162,9 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
             except NotFound as exc:
                 # 揀了一個庫裡沒有的運行 / 快照名單沒有的代號:是 404,不是伺服器壞
                 self._send_error_json(HTTPStatus.NOT_FOUND, str(exc))
+            except ContractViolation as exc:
+                # 揀了一段只得一日、或者結束日早過開始日:是揀錯,不是伺服器壞
+                self._send_error_json(HTTPStatus.BAD_REQUEST, str(exc))
             except Exception as exc:  # noqa: BLE001
                 self._send_error_json(
                     HTTPStatus.INTERNAL_SERVER_ERROR,
@@ -155,8 +181,10 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
             parts = [p for p in path.strip("/").split("/") if p]
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "runs":
                 run_id = unquote(parts[2])
+                # 兩個端點共用同一段檢視視窗:圖與數不會各看各的一段
+                start, end = _window_args(query)
                 if len(parts) == 3:
-                    self._send_json(HTTPStatus.OK, reader.get_run(run_id))
+                    self._send_json(HTTPStatus.OK, reader.get_run(run_id, start, end))
                     return
                 if len(parts) == 4 and parts[3] == "candles":
                     symbols = query.get("symbol") or []
@@ -165,7 +193,8 @@ def build_handler(reader: Any) -> type[BaseHTTPRequestHandler]:
                             HTTPStatus.BAD_REQUEST, "要畫哪一隻的蠟燭圖:請帶 ?symbol="
                         )
                     self._send_json(
-                        HTTPStatus.OK, reader.get_candles(run_id, symbols[0])
+                        HTTPStatus.OK,
+                        reader.get_candles(run_id, symbols[0], start, end),
                     )
                     return
 

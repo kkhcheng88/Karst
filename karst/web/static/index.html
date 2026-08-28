@@ -41,6 +41,18 @@
           <button class="chart-x" id="chart-back" hidden title="返回淨值走勢" aria-label="返回淨值走勢">✕</button>
         </div>
       </div>
+
+      <!-- ============ 檢視視窗:揀一段日期重看,是重看不是重跑 ============ -->
+      <div class="fit-panel-head winbar">
+        <div class="winpick">
+          <label for="win-from">檢視視窗</label>
+          <div class="date-switch" id="win-pick" role="group" aria-label="檢視視窗預設段"></div>
+          <input class="sp-date" type="date" id="win-from" aria-label="視窗起始日">
+          <span class="dim">至</span>
+          <input class="sp-date" type="date" id="win-to" aria-label="視窗結束日">
+        </div>
+        <span class="slim-win" id="win-state"></span>
+      </div>
       <div class="fit-panel-body" style="overflow:hidden;display:flex;flex-direction:column;position:relative">
         <div class="chart-box" id="main-chart" style="flex:1 1 auto;min-height:0"></div>
         <div class="hovcard" id="hovcard" hidden aria-hidden="true"></div>

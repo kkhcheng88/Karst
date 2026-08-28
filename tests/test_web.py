@@ -1,6 +1,6 @@
-"""KARST-032 驗收:本機網頁殼 v0,讀真實運行畫淨值圖與蠟燭圖。
+"""KARST-032 / KARST-042 驗收:本機網頁殼,讀真實運行畫圖,並可揀一段日期重看。
 
-四個測試對住票上四項驗收條件,一項一個,只證「行得通」,不掃邊界情況。
+每張票四項驗收條件,一項一個測試,只證「行得通」,不掃邊界情況。
 
 測試打的是**本機庫內真實的回測運行**——這正是要驗的那件事(規格 8.7:
 頁面上不准有假數據)。庫或運行不在,就跳過,不用捏一組數頂上。
@@ -15,7 +15,9 @@ from pathlib import Path
 
 import pytest
 
-from karst.web.data import build_reader
+from karst.errors import NotFound
+from karst.metrics import run_metrics, trade_stats
+from karst.web.data import DEFAULT_RISK_FREE_RATE, build_reader
 from karst.web.server import STATIC_ROOT, serve_in_background
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -250,3 +252,180 @@ def test_換運行整頁跟住換且運行編號顯示得到(base_url):
     assert 'id="bc-run"' in page
     view = (STATIC_ROOT / "run-view.js").read_text(encoding="utf-8")
     assert "bcRun" in view and "runId" in view
+
+
+# ============================================================
+# KARST-042 檢視視窗:揀一段日期,八項指標與淨值圖按該段重看
+# ============================================================
+
+# 票上指名那次真實運行(趨勢波段);2023 起那一段有期初存貨要承接
+WINDOW_RUN_ID = "run-728a01087531258f"
+WINDOW_START = "2023-01-01"
+
+# 八項指標(D-020 第 8 條)在 REST 出的名
+EIGHT = (
+    "totalReturnPct",
+    "annualReturnPct",
+    "maxDrawdownPct",
+    "winRatePct",
+    "profitLossRatio",
+    "annualExcessPct",
+    "sortino",
+    "averageHoldingDays",
+    "turnover",
+)
+
+
+@pytest.fixture(scope="module")
+def windowed(reader):
+    """一次跨過 2023 的真實運行——切得出視窗,才驗得到「重看」。"""
+    try:
+        return reader.runs.get_run(WINDOW_RUN_ID).run_id
+    except NotFound:
+        pass
+    for item in reader.list_runs(12)["runs"]:
+        if item["periodStart"] < WINDOW_START < item["periodEnd"]:
+            return item["runId"]
+    pytest.skip("庫內沒有一次跨過 2023 的運行,切不出檢視視窗")
+
+
+def test_揀一段日期八項與淨值圖按該段重看而運行編號不變(base_url, windowed):
+    """驗收一:頁面可揀起訖日期,八項指標與淨值圖隨之按該段重算,運行編號不變。"""
+    page = _get(f"{base_url}/").decode("utf-8")
+    for anchor in ('id="win-pick"', 'id="win-from"', 'id="win-to"', "檢視視窗"):
+        assert anchor in page, f"頁面上沒有檢視視窗控制:{anchor}"
+
+    view = (STATIC_ROOT / "run-view.js").read_text(encoding="utf-8")
+    for anchor in ("win-pick", "win-from", "win-to"):
+        assert anchor in view, f"run-view.js 未接上 {anchor}"
+
+    full = _get_json(f"{base_url}/api/runs/{windowed}")
+    win = _get_json(f"{base_url}/api/runs/{windowed}?start={WINDOW_START}")
+
+    # 是重看不是重跑:運行編號一個字不變
+    assert win["run"]["runId"] == full["run"]["runId"] == windowed
+    assert win["run"]["periodStart"] == full["run"]["periodStart"]
+
+    # 淨值圖由視窗起始日重設基準(與 window_stats 一致),基準線同一把尺
+    series = win["series"]
+    first = series["strategy"]["dates"][0]
+    assert first >= WINDOW_START
+    assert first > full["series"]["strategy"]["dates"][0]
+    assert series["strategy"]["values"][0] == pytest.approx(series["base"])
+    for ticker, bench in series["benchmarks"].items():
+        assert bench["dates"][0] == first, f"{ticker} 那條線不是由視窗起始日起"
+        assert bench["values"][0] == pytest.approx(series["base"])
+
+    # 八項按該段重算,不是全期那一份
+    assert win["metrics"]["start"] == first
+    assert win["metrics"] != full["metrics"]
+    assert win["window"]["isFull"] is False and full["window"]["isFull"] is True
+
+
+def test_起訖日期經薄REST層取數頁面不自行算指標(base_url, reader, windowed):
+    """驗收二:薄 REST 層以起訖日期取數,頁面內無自行計算指標。"""
+    payload = _get_json(f"{base_url}/api/runs/{windowed}?start={WINDOW_START}")
+    truth = run_metrics(
+        reader.runs,
+        windowed,
+        risk_free_rate=DEFAULT_RISK_FREE_RATE,
+        start=WINDOW_START,
+        snapshot_root=reader.snapshot_root,
+    )
+    m = payload["metrics"]
+    assert (m["start"], m["end"], m["tradingDays"]) == (
+        truth.start, truth.end, truth.trading_days
+    )
+    assert m["totalReturnPct"] == pytest.approx(truth.total_return * 100.0)
+    assert m["annualReturnPct"] == pytest.approx(truth.annual_return * 100.0)
+    assert m["maxDrawdownPct"] == pytest.approx(truth.max_drawdown * 100.0)
+    assert m["winRatePct"] == pytest.approx(truth.win_rate * 100.0)
+    assert m["profitLossRatio"] == pytest.approx(truth.profit_loss_ratio)
+    assert m["sortino"] == pytest.approx(truth.sortino)
+    assert m["averageHoldingDays"] == pytest.approx(truth.average_holding_days)
+    assert m["turnover"] == pytest.approx(truth.turnover)
+    for ticker, value in truth.annual_excess.items():
+        assert m["annualExcessPct"][ticker] == pytest.approx(value * 100.0)
+
+    # 蠟燭圖與買賣標記同樣經 REST 按這一段取數
+    symbol = payload["trades"][0]["symbol"]
+    stem = f"{base_url}/api/runs/{windowed}/candles?symbol={symbol}"
+    inside = _get_json(f"{stem}&start={WINDOW_START}")
+    whole = _get_json(stem)
+    assert inside["candles"], "視窗內畫不出蠟燭"
+    assert len(inside["candles"]) < len(whole["candles"])
+    for candle in inside["candles"]:
+        assert m["start"] <= candle["time"] <= m["end"]
+    for mark in inside["markers"]:
+        assert m["start"] <= mark["time"] <= m["end"]
+
+    # 頁面只負責把日子交出去、把數字擺上畫面:沒有一條算指標的算式
+    view = (STATIC_ROOT / "run-view.js").read_text(encoding="utf-8")
+    assert "start=" in view and "end=" in view and "/api/runs/" in view
+    for banned in ("Math.pow", "Math.sqrt", "Math.log", "cummax", "annualise"):
+        assert banned not in view, f"run-view.js 自己算起指標來了:{banned}"
+
+
+def test_不揀日期時全期的顯示與現行逐位相同(base_url, reader, windowed):
+    """驗收三:全期(不揀日期)的顯示與現行逐位相同。"""
+    payload = _get_json(f"{base_url}/api/runs/{windowed}")
+
+    # 未有檢視視窗那一層之前,頁面就是這樣取數的
+    equity = reader.runs.equity_curve(windowed)
+    stats = reader.runs.window_stats(windowed)
+    orders = reader.runs.orders(windowed)
+    trades = trade_stats(orders, equity.index)
+    truth = run_metrics(
+        reader.runs,
+        windowed,
+        risk_free_rate=DEFAULT_RISK_FREE_RATE,
+        snapshot_root=reader.snapshot_root,
+    )
+
+    assert payload["window"]["isFull"] is True
+    assert payload["window"]["openingLots"] == 0, "全期沒有『之前』,期初存貨必然是空"
+
+    series = payload["series"]["strategy"]
+    assert len(series["values"]) == len(stats.equity)
+    assert series["dates"][0] == str(stats.equity.index[0].date())
+    assert series["values"][0] == pytest.approx(float(stats.equity.iloc[0]))
+    assert series["values"][-1] == pytest.approx(float(stats.equity.iloc[-1]))
+
+    assert len(payload["trades"]) == trades.closed_trades
+    assert {mk["date"] for mk in payload["tradeMarks"]} == set(
+        orders["trade_date"].astype(str)
+    )
+
+    m = payload["metrics"]
+    assert m["totalReturnPct"] == pytest.approx(truth.total_return * 100.0)
+    assert m["annualReturnPct"] == pytest.approx(truth.annual_return * 100.0)
+    assert m["maxDrawdownPct"] == pytest.approx(truth.max_drawdown * 100.0)
+    assert m["winRatePct"] == pytest.approx(truth.win_rate * 100.0)
+    assert m["turnover"] == pytest.approx(truth.turnover)
+
+    # 留空的起訖日與不帶起訖日同義
+    assert _get_json(f"{base_url}/api/runs/{windowed}?start=&end=") == payload
+
+
+def test_視窗前已有持倉的運行照樣顯示得出八項指標(base_url, reader):
+    """驗收四:run-728a01087531258f 取 2023-01-01 起,八項顯示得出不報錯。"""
+    try:
+        reader.runs.get_run(WINDOW_RUN_ID)
+    except NotFound:
+        pytest.skip(f"本機庫內沒有 {WINDOW_RUN_ID}")
+
+    payload = _get_json(f"{base_url}/api/runs/{WINDOW_RUN_ID}?start={WINDOW_START}")
+
+    # 視窗開波之前已經在手上那幾注,承接得到才算得出來回類三項(KARST-039)
+    assert payload["window"]["openingLots"] == 4
+    assert payload["window"]["start"] == "2023-01-03"
+
+    m = payload["metrics"]
+    for key in EIGHT:
+        assert key in m, f"少了指標 {key}"
+        assert m[key] is not None, f"指標 {key} 算不出"
+
+    assert m["totalReturnPct"] == pytest.approx(81.66, abs=0.01)
+    assert m["annualReturnPct"] == pytest.approx(17.89, abs=0.01)
+    assert m["maxDrawdownPct"] == pytest.approx(-18.14, abs=0.01)
+    assert m["winRatePct"] == pytest.approx(48.19, abs=0.01)

@@ -22,10 +22,11 @@ from karst.errors import NotFound
 from karst.metrics import (
     DEFAULT_BENCHMARK_TICKERS,
     benchmark_curve,
+    opening_inventory,
     run_metrics,
     trade_stats,
 )
-from karst.runs import BASE, RunStore
+from karst.runs import BASE, RunStore, window_stats
 from karst.store import DefinitionStore
 
 # 一年期無風險利率。Sortino 要它才算得出,而 karst.metrics 刻意不設預設值
@@ -195,20 +196,41 @@ class RunReader:
 
     # ---------------- 一次運行的全部畫圖資料 ----------------
 
-    def get_run(self, run_id: str) -> dict[str, Any]:
+    def get_run(
+        self,
+        run_id: str,
+        start: str | None = None,
+        end: str | None = None,
+    ) -> dict[str, Any]:
+        """一次運行的全部畫圖資料;給了起訖日即只看那一段(檢視視窗)。
+
+        **重看不重跑**(規格 8.5):起訖日只用來切已經保存的逐日結果,運行編號、
+        參數、快照一個字不變。這一層自己不算任何指標——八項全部照原樣交給
+        ``karst.metrics.run_metrics(start=, end=)``,淨值線交給 ``window_stats``,
+        兩者本來就是同一套視窗口徑(``run_metrics`` 內部亦是叫它)。
+        """
         record = self.runs.get_run(run_id)
         universe = self._universe(record.snapshot_id)
 
         equity = self.runs.equity_curve(run_id)
-        stats = self.runs.window_stats(run_id, base=BASE)
-        orders = self.runs.orders(run_id)
-        trades = trade_stats(orders, equity.index)
+        stats = window_stats(equity, start, end, base=BASE)
+        window_equity = equity.loc[stats.equity.index]
+
+        orders = self._orders_in_window(self.runs.orders(run_id), stats)
+        # 視窗之前開的倉,按視窗前一日收市價承接入來(KARST-039);全期必然是空,
+        # 所以不揀日期時這一句與未有視窗之前行同一條路。
+        opening = opening_inventory(
+            self.runs, record, equity, stats.start, root=self.snapshot_root
+        )
+        trades = trade_stats(orders, window_equity.index, opening=opening)
 
         metrics = run_metrics(
             self.runs,
             run_id,
             risk_free_rate=self.risk_free_rate,
             benchmarks=self.benchmarks,
+            start=start,
+            end=end,
             snapshot_root=self.snapshot_root,
         )
 
@@ -231,10 +253,32 @@ class RunReader:
 
         return {
             "run": identity,
+            "window": self._window(equity, stats, metrics),
             "series": self._series(record, stats),
             "metrics": self._metrics(metrics),
             "trades": trade_rows,
             "tradeMarks": self._trade_marks(orders, trade_rows, universe),
+        }
+
+    @staticmethod
+    def _orders_in_window(orders: pd.DataFrame, stats) -> pd.DataFrame:
+        """只留視窗之內的成交。切法與 ``run_metrics`` 逐字相同,兩邊不會各切一套。"""
+        days = orders["trade_date"].astype(str)
+        return orders.loc[(days >= stats.start) & (days <= stats.end)]
+
+    def _window(self, equity: pd.Series, stats, metrics) -> dict[str, Any]:
+        """這一段是哪一段,連同它可以揀到的最闊範圍(日期輸入的上下限)。"""
+        run_start, run_end = _day(equity.index[0]), _day(equity.index[-1])
+        return {
+            "start": stats.start,
+            "end": stats.end,
+            "runStart": run_start,
+            "runEnd": run_end,
+            "isFull": stats.start == run_start and stats.end == run_end,
+            "tradingDays": stats.trading_days,
+            "base": stats.base,
+            # 這一段承接了幾多注視窗之前已開的倉;全期一定是 0
+            "openingLots": metrics.opening_lots,
         }
 
     def _series(self, record, stats) -> dict[str, Any]:
@@ -389,10 +433,24 @@ class RunReader:
 
     # ---------------- 蠟燭圖 ----------------
 
-    def get_candles(self, run_id: str, symbol: str) -> dict[str, Any]:
-        """某實體在該次運行所綁那個數據快照裡的 K 線,連該次運行的買賣標記。"""
+    def get_candles(
+        self,
+        run_id: str,
+        symbol: str,
+        start: str | None = None,
+        end: str | None = None,
+    ) -> dict[str, Any]:
+        """某實體在該次運行所綁那個數據快照裡的 K 線,連該次運行的買賣標記。
+
+        給了起訖日,K 線、標記與逐筆交易一律收窄到那一段(檢視視窗聚焦);
+        不揀日期就一整條歷史照舊——快照的價格歷史往往比運行本身長,全期時
+        截短反而會令現行畫面短一截。
+        """
         record = self.runs.get_run(run_id)
         universe = self._universe(record.snapshot_id)
+        windowed = start is not None or end is not None
+        equity = self.runs.equity_curve(run_id)
+        stats = window_stats(equity, start, end, base=BASE) if windowed else None
 
         wanted = symbol.strip().upper()
         entity_id = None
@@ -412,6 +470,8 @@ class RunReader:
         volumes = []
         for row in rows.itertuples():
             day = _day(row.date)
+            if stats is not None and not (stats.start <= day <= stats.end):
+                continue
             open_, high, low, close = _f(row.open), _f(row.high), _f(row.low), _f(row.close)
             if None in (open_, high, low, close):
                 # 停牌／未上市那幾日照 D-026 留空,不補一根假 K 線
@@ -424,6 +484,8 @@ class RunReader:
                 volumes.append({"time": day, "value": volume})
 
         orders = self.runs.orders(run_id)
+        if stats is not None:
+            orders = self._orders_in_window(orders, stats)
         mine = orders.loc[orders["entity_id"] == entity_id]
         markers = []
         for order in mine.sort_values("trade_date").itertuples():
@@ -443,8 +505,16 @@ class RunReader:
                 }
             )
 
-        equity = self.runs.equity_curve(run_id)
-        trades = trade_stats(orders, equity.index)
+        if stats is None:
+            trades = trade_stats(orders, equity.index)
+        else:
+            trades = trade_stats(
+                orders,
+                equity.loc[stats.equity.index].index,
+                opening=opening_inventory(
+                    self.runs, record, equity, stats.start, root=self.snapshot_root
+                ),
+            )
         all_rows = self._round_trip_rows(trades.round_trips, universe)
         label = self._label(universe, entity_id)
 
