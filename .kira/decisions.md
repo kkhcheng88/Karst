@@ -643,3 +643,24 @@
   > But then it is non-sense to breakdown to 3000+ chart for every 1 run then. … the parameter here shouldn't be the fixed % of the 4 etf. It should be the parameter of the strategy to decide the proportion of the 4 etf? as it is not a fixed portion?
 
 - 影響：KARST-049/050/051/053 據此實作;參數掃描頁、策略詳情頁的參數區、運行清單三處。
+
+## D-030 成績口徑:基準情境不計交易成本;存活者偏差暫不處理;成交時點沿 D-021 第 3 條
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-28
+
+- 出處：用戶 2026-08-28 過目 KARST-D02 交付摘要「假設」一節
+
+- 背景：用戶指自己不是日內交易者,月度/季度換倉的成本不足以左右結論;存活者偏差留待日後。
+
+- 決策：(1) 成績的基準情境不計交易成本(手續費與滑點皆為零);既有的成本敏感度掃描保留作對照,不作主報。(2) 存活者偏差暫不量化、暫不列為簽核阻礙。(3) 成交時點與價格照 D-021 第 3 條:訊號在收市成形,下一根可交易 K 線的開價成交;交付摘要假設一節要明寫此條。
+
+- 考慮過的替代方案：維持估計成本(每股 US$0.005 + 5 個基點)作主報——用戶否決;按券商校準成本——未選。
+
+- 為何選這個：用戶按自身交易形態裁定;成本情境仍保留,日後要校準只是換一格參數。
+
+- **用戶原話（原文照錄）**
+
+  > 交易成本是估計值(每股 US$0.005 + 5 個基點滑點) <<< Can actually assume no as I am not day trader;存活者偏差那條 <<< Can ignore for now;成交時點與價格……這條要寫明用的是哪一種 OK
+
+- 影響：KARST-D02 交付摘要假設一節改寫;KARST-057 重建時主報數字用零成本情境;成本情境降為對照。
