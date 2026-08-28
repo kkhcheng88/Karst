@@ -20,6 +20,8 @@
 
     python -m karst.gateway data list
 
+    python -m karst.gateway factor ingest-alpha158 --snapshot 2026-08-28-a508d635a5fa
+
     python -m karst.gateway verify
 
 回傳碼:0 寫得入/核對清白;1 合約拒收或查不到;2 命令用法錯(argparse);
@@ -83,16 +85,26 @@ def build_parser() -> argparse.ArgumentParser:
     factor_show.add_argument("--version", type=int, default=None, help="留空取最新版")
 
     factor_values = factor_commands.add_parser(
-        "write-values", help="經同一道門寫因子值(每列要有事件時間與知情時間)"
+        "write-values", help="經同一道門寫因子值(每列要有三個時點)"
     )
     factor_values.add_argument("--name", required=True)
     factor_values.add_argument("--version", type=int, default=None, help="留空寫入最新版")
     factor_values.add_argument(
         "--from-json", dest="from_json", required=True,
-        help="JSON 檔:一個 list,每項 {entity_id, event_time, knowledge_time, value}",
+        help="JSON 檔:一個 list,每項 {entity_id, event_time, knowledge_time, "
+             "executable_time, value};可執行時點必給,沒有下一根 K 線就寫 null",
     )
     factor_values.add_argument("--snapshot-id", dest="snapshot_id", default=None,
                                help="這批值出自哪個數據快照(追溯到批次)")
+
+    # Alpha158 一句入庫(KARST-064):158 條逐條登記因子版本 + 批量寫因子值。
+    # 走的是上面那兩道命令同一條路,只是不必逐條打 158 次。
+    alpha158 = factor_commands.add_parser(
+        "ingest-alpha158",
+        help="把一個價格快照上的 Alpha158 全部 158 條登記並入庫(三個時點照 D-021 合約)",
+    )
+    alpha158.add_argument("--snapshot", required=True, help="要算哪一個價格快照(無預設)")
+    alpha158.add_argument("--root", default=None, help="快照快取根(預設 data/snapshots)")
 
     strategy = commands.add_parser("strategy", help="策略定義")
     strategy_commands = strategy.add_subparsers(dest="subcommand", required=True)
@@ -163,6 +175,10 @@ def build_parser() -> argparse.ArgumentParser:
     take.add_argument("--root", default=None, help="快取根(預設 data/snapshots)")
     take.add_argument("--taken-on", dest="taken_on", default=None,
                       help="快照日期,留空即抓取當日")
+    # 呼叫方交來的註記(KARST-065)。管線只講得出自己見到的事;「這批數據少了哪些
+    # 代號、為什麼少」只有發起那個人知道,沒有這一格就只能靠人記得去翻另一份檔。
+    take.add_argument("--note", dest="notes", action="append", default=[],
+                      help="寫入快照說明檔的一句註記,可重複給(不入內容雜湊,不會改變快照編號)")
     macro = data_commands.add_parser(
         "macro-snapshot",
         help="抓宏觀序列、對齊指定價格快照的主日曆、凍成快照並登記編號",
@@ -184,6 +200,15 @@ def build_parser() -> argparse.ArgumentParser:
     macro.add_argument("--max-missing-ratio", dest="max_missing_ratio", type=float, required=True,
                        help="齊全度門檻:整段窗口留空日數佔主日曆的比例上限,0.01 即 1%%")
     data_commands.add_parser("list", help="列庫內全部數據快照")
+    # 宇宙名單登記(KARST-065):名單住在 karst/data/universe.py,這道命令只是**列**它。
+    # 有這一句,「登記上有什麼代號、成分期由哪日到哪日、名單哪裡來」不必開原始碼看。
+    universe = data_commands.add_parser(
+        "universe", help="列宇宙名單登記:有哪幾份名單、每份的代號與成分期"
+    )
+    universe.add_argument(
+        "--name", default=None,
+        help="名單的名(starter / factor-etf / sp500-historical);留空即列全部名單的摘要",
+    )
 
     where = commands.add_parser("where", help="講出一項定義的唯一落點,並掃全庫查有沒有第二份影像")
     where.add_argument("--kind", required=True, choices=("factor", "strategy"))
@@ -262,8 +287,15 @@ def _factor(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         print(f"已寫入因子「{version.name}」第 {version.version_no} 版 {written} 個值", file=out)
         if args.snapshot_id:
             print(f"  數據快照  {args.snapshot_id}", file=out)
-        print("  每個值都帶事件時間與知情時間;知情時間早過事件時間即前視,寫不入。", file=out)
+        print(
+            "  每個值都帶事件時間、知情時間與可執行時點;知情早過事件、"
+            "或可執行不在知情之後,即前視,寫不入。",
+            file=out,
+        )
         return EXIT_OK
+
+    if args.subcommand == "ingest-alpha158":
+        return _factor_ingest_alpha158(args, gateway, out)
 
     procedure = build_procedure(
         formula=args.formula,
@@ -278,6 +310,51 @@ def _factor(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     print(f"已登記因子「{version.name}」", file=out)
     _print_factor_version(version, out)
     _print_receipt(receipt, gateway, "factor", version.name, out)
+    return EXIT_OK
+
+
+def _factor_ingest_alpha158(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    """Alpha158 一句入庫(KARST-064)。做法住在 ``karst.gateway.alpha158``,本檔只印。"""
+    from .alpha158 import ALPHA158_FORMULA_SOURCE, ALPHA158_PROCEDURE_VERSION
+
+    report = gateway.ingest_alpha158(snapshot_id=args.snapshot, root=args.root)
+    print(f"已入庫 Alpha158 全部 {report.factor_count} 條因子", file=out)
+    print(f"  數據快照  {report.snapshot_id}", file=out)
+    print(
+        f"  範圍      {report.entity_count} 個實體 × {report.trading_days} 個交易日"
+        f"({report.first_event_date}~{report.last_event_date})",
+        file=out,
+    )
+    print(
+        f"  因子版本  新登記 {report.registered} 條、沿用 {report.reused} 條、"
+        f"出新版 {report.new_versions} 條",
+        file=out,
+    )
+    print(f"  產生程序  {ALPHA158_PROCEDURE_VERSION};公式出處 {ALPHA158_FORMULA_SOURCE}", file=out)
+    print(
+        f"  寫入      {report.written_rows} 個值(本來 {report.possible_rows} 格,"
+        f"留空 {report.missing_rows} 格,缺值比例 {report.missing_ratio:.4%})",
+        file=out,
+    )
+    print(
+        "  三個時點  事件=該根 K 線那日開頭、知情=該日收工、"
+        "可執行=下一根可交易 K 線那日開市(D-021 第 3 條)",
+        file=out,
+    )
+    if report.last_executable_date is None:
+        print(
+            f"  可執行    最後一日 {report.last_event_date} 之後這個快照沒有下一根 K 線,"
+            f"該日 {report.not_executable_rows} 個值知得到、成交不到,可執行時點留空",
+            file=out,
+        )
+    else:
+        print(f"  可執行    最後一日的可執行時點 {report.last_executable_date}", file=out)
+    print(
+        "  留空不補  滾動窗口未滿而算不出值的日子庫內沒有那一列,不前值填補、不填零"
+        "(D-021 第 4 條)",
+        file=out,
+    )
+    print(f"  用時      {report.seconds:.1f} 秒", file=out)
     return EXIT_OK
 
 
@@ -483,6 +560,8 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         return _data_list(gateway, out)
     if args.subcommand == "macro-snapshot":
         return _data_macro(args, gateway, out)
+    if args.subcommand == "universe":
+        return _data_universe(args, out)
 
     universe = resolve_universe(args.tickers)
     source = build_source(args.source, bars=args.bars)
@@ -493,6 +572,7 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         source=source,
         root=args.root,
         taken_on=args.taken_on,
+        extra_notes=args.notes,
     )
     print(f"已凍結數據快照 {snapshot.snapshot_id}", file=out)
     print(f"  來源      {snapshot.source}", file=out)
@@ -571,6 +651,50 @@ def _data_macro(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     return EXIT_OK
 
 
+def _data_universe(args: argparse.Namespace, out: TextIO) -> int:
+    """列宇宙名單登記(KARST-065)。名單的正本住在 ``karst/data/universe.py``,
+    這裡一個字都不另存,只是把它讀出來——登記與預設是兩件事,列出來才看得清。"""
+    from karst.data import NAMED_UNIVERSES, universe_listing
+
+    if not args.name:
+        print(f"宇宙名單登記(共 {len(NAMED_UNIVERSES)} 份)", file=out)
+        for listing in NAMED_UNIVERSES:
+            print(f"  {listing.key}  {listing.title}({len(listing.members)} 個代號)", file=out)
+            print(f"            {listing.description}", file=out)
+            for source in listing.sources:
+                print(
+                    f"            來源  {source.name}({source.url});"
+                    f"覆蓋 {source.coverage};抓取日期 {source.fetched_on}",
+                    file=out,
+                )
+        print("  不指定代號時抓的是 starter 那一份;登記與預設批次是兩件事。", file=out)
+        return EXIT_OK
+
+    listing = universe_listing(args.name)
+    print(f"{listing.title}({listing.key};{len(listing.members)} 個代號)", file=out)
+    print(f"  {listing.description}", file=out)
+    for source in listing.sources:
+        print(
+            f"  來源      {source.name}({source.url});"
+            f"覆蓋 {source.coverage};抓取日期 {source.fetched_on}",
+            file=out,
+        )
+    if not listing.membership:
+        for member in listing.members:
+            print(f"  {member.ticker}  {member.kind}  {member.display_name}", file=out)
+        return EXIT_OK
+
+    print(f"  成分期    共 {len(listing.membership)} 段(一個代號可以離開又回來)", file=out)
+    print("  代號  加入日期  剔除日期  來源  名稱", file=out)
+    for period in listing.membership:
+        left = period.left_on or "—(來源記為仍在名單上)"
+        line = f"  {period.ticker}  {period.joined_on}  {left}  {period.source}  {period.display_name}"
+        print(line, file=out)
+        if period.note:
+            print(f"        註記 {period.note}", file=out)
+    return EXIT_OK
+
+
 def _data_list(gateway: Gateway, out: TextIO) -> int:
     listings = gateway.list_snapshots()
     if not listings:
@@ -585,6 +709,14 @@ def _data_list(gateway: Gateway, out: TextIO) -> int:
             f"  抓於 {fetched}  來源 {listing.source}",
             file=out,
         )
+        # 齊全度那一行只在核對過的快照之下出現(KARST-067)。沒有這一行 = 那份
+        # 快照凍結時沒有核對過齊全度(價格快照、或第 9 版之前的舊登記),
+        # **不是**「核對過而零警報」——後者會正面印出「全部合格」那一句。
+        if listing.alert_count is not None:
+            print(
+                f"            齊全度  警報 {listing.alert_count} 條・{listing.alert_summary}",
+                file=out,
+            )
     return EXIT_OK
 
 

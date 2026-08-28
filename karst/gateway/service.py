@@ -52,6 +52,24 @@ def default_writer() -> str:
         return "unknown"
 
 
+def completeness_summary(snapshot: object) -> str:
+    """把一份宏觀快照的齊全度核對結果,壓成寫得入抓取登記的一句話(KARST-067)。
+
+    有警報就把每一條原文照錄——這一句是要答「哪一條序列停止講話、短了幾多日」,
+    答不出就等於沒有寫;零警報就正面講一句「全部合格」,而不是留白。**留白另有
+    意思**(見 ``store.SnapshotFetch``):留白 = 沒有人核對過。
+
+    這次用的門檻一併寫在句末:同一批讀數換一套門檻可以換出另一個結論,而登記上
+    那一句若果講不出當時用的是哪一把尺,下一個人就對不回。
+    """
+    alerts = tuple(getattr(snapshot, "alerts", ()))
+    thresholds = getattr(snapshot, "thresholds", None)
+    described = thresholds.describe() if thresholds is not None else "門檻不詳"
+    if alerts:
+        return ";".join(alert.message for alert in alerts) + f"({described})"
+    return f"{len(getattr(snapshot, 'series', ()))} 條序列全部合格({described})"
+
+
 @dataclass(frozen=True, slots=True)
 class WriteReceipt:
     """一次經唯一入口寫入的收據:寫了什麼、蓋了哪一版、誰寫的。
@@ -169,6 +187,17 @@ class Gateway:
         return self._store.write_factor_values(
             name, rows, version_no=version_no, snapshot_id=snapshot_id
         )
+
+    def ingest_alpha158(self, *, snapshot_id: str, root: str | None = None) -> object:
+        """把一個價格快照上的 Alpha158 全部 158 條算出來、登記、入庫(KARST-064)。
+
+        本層一列都不另寫:登記走 ``register_factor`` / ``new_factor_version``、
+        值走 ``write_factor_values``,即與人手逐條登記行的是同一條路,只是不必
+        逐條打 158 次。做法住在 ``karst.gateway.alpha158``。
+        """
+        from .alpha158 import ingest_alpha158
+
+        return ingest_alpha158(self, snapshot_id=snapshot_id, root=root)
 
     # ------------------------------------------------------------------
     # 策略定義與參數集
@@ -403,12 +432,16 @@ class Gateway:
         source: object | None = None,
         root: str | None = None,
         taken_on: str | None = None,
+        extra_notes: Sequence[str] = (),
     ) -> tuple[object, object]:
         """一句話跑完抓取 → 凍結 → 登記,回傳(快照成果單, 抓取登記)。
 
         管線本身(``karst.data``)一個字都不改:唯一入口只是**呼叫**它,再把
         「幾時抓、抓的是哪一段窗口」記入抓取登記——快照編號本身不含抓取時間
         (同一批數據重抓要得同一個編號),所以那幾格另有落點。
+
+        ``extra_notes`` 原封不動交給管線寫入快照說明檔:呼叫方知道而管線見不到的
+        事(這批數據少了哪些代號、為什麼少),只有這一格講得出(KARST-065)。
         """
         from ..data import build_price_snapshot
 
@@ -420,6 +453,7 @@ class Gateway:
             source=source,
             root=root,
             taken_on=taken_on,
+            extra_notes=extra_notes,
         )
         fetch = self._store.record_snapshot_fetch(
             snapshot.snapshot_id,
@@ -429,6 +463,11 @@ class Gateway:
             entity_count=len(snapshot.entity_ids),
             row_count=snapshot.rows,
             trading_days=snapshot.trading_days,
+            # 價格快照沒有齊全度核對這回事:主日曆本身就是由它定出來的,
+            # 沒有第二把尺可以拿來核它的尾段。兩格留空 = 沒有核對過,
+            # 不是「核對過、零警報」(KARST-067)。
+            alert_count=None,
+            alert_summary=None,
         )
         return snapshot, fetch
 
@@ -453,6 +492,10 @@ class Gateway:
         二,``thresholds`` 是**必給的**齊全度門檻(KARST-061)。凍結那一刻逐條序列
         對主日曆核尾段與留空比例,超出門檻的一條一筆講出來;門檻沒有預設值,
         所以「凍了一份沒有人核對過的宏觀快照」在這道門後面表達不出來。
+
+        那次核對的結論**一併寫入抓取登記**(KARST-067):警報條數與一句摘要。
+        以前它只寫在已凍結快照自己的 manifest 與說明檔,``karst data list``
+        看不到——要開目錄才知道某份快照當日有沒有序列停止講話。
         """
         from ..data import CALENDAR_TICKER, ALL_SERIES_CODES, build_macro_snapshot, read_calendar
 
@@ -481,6 +524,8 @@ class Gateway:
             entity_count=len(snapshot.series),
             row_count=snapshot.rows,
             trading_days=snapshot.trading_days,
+            alert_count=len(snapshot.alerts),
+            alert_summary=completeness_summary(snapshot),
         )
         return snapshot, fetch
 

@@ -195,8 +195,16 @@ def build_price_snapshot(
     taken_on: date | datetime | str | None = None,
     sec_user_agent: str | None = None,
     cik_map: dict[str, str] | None = None,
+    extra_notes: Sequence[str] = (),
 ) -> PriceSnapshot:
-    """跑完整條管線,回傳快照成果單。"""
+    """跑完整條管線,回傳快照成果單。
+
+    ``extra_notes`` 是**呼叫方交來的註記**,排在管線自己那批之前一併寫入 manifest
+    與說明檔。管線只講得出自己見到的事(佔位錨、未收市、等價重用);「這批數據
+    少了哪些代號、為什麼少」只有呼叫方知道——標普 500 歷史成分那批抓不到的退市
+    代號(KARST-065)正是這樣逐條講出來的。註記不入內容雜湊,所以它改變不了
+    快照編號,亦不會令同一批數據凍出第二個編號。
+    """
     source = source or YFinanceSource()
     root = Path(root) if root is not None else DEFAULT_SNAPSHOT_ROOT
     members = tuple(universe)
@@ -211,7 +219,7 @@ def build_price_snapshot(
 
     window_start, window_end = as_date(start, "start"), as_date(end, "end")
     fetched_at = datetime.now(timezone.utc)
-    notes: list[str] = []
+    notes: list[str] = [str(note) for note in extra_notes if str(note).strip()]
 
     if window_end >= fetched_at.date().isoformat():
         notes.append(

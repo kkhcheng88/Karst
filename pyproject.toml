@@ -31,12 +31,15 @@ dev = ["pytest>=8.0"]
 karst = "karst.gateway.cli:main"
 
 [tool.setuptools]
-packages = ["karst", "karst.data", "karst.engine", "karst.gateway", "karst.metrics", "karst.risk", "karst.runs", "karst.strategies", "karst.sweep", "karst.web"]
+packages = ["karst", "karst.data", "karst.engine", "karst.factors", "karst.gateway", "karst.metrics", "karst.risk", "karst.runs", "karst.strategies", "karst.sweep", "karst.web"]
 
 # 本機網頁殼(KARST-032)的靜態頁與圖表庫要跟住套件一齊裝,否則裝好之後
 # `python -m karst.web` 起得到服務但開出來是白頁。
 [tool.setuptools.package-data]
 "karst.web" = ["static/*.html", "static/*.css", "static/*.js", "static/vendor/*.js"]
+# 宇宙名單登記的成分歷史表(KARST-065)。它是名單的正本、不是可重抓的數據,
+# 所以入倉、亦要跟住套件一齊裝——裝好之後 `data universe` 讀不到它就列不出名單。
+"karst.data" = ["universes/*.csv"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

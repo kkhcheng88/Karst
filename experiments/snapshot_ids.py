@@ -34,6 +34,13 @@ PRICE_LARGE_CAP = "2026-08-28-a508d635a5fa"
 # 用者:因子混合、權重掃描、因子輪動、成本重掃、宏觀驅動器。
 PRICE_FACTOR_ETF = "2026-08-28-000b4820a23a"
 
+# 標普 500 歷史成分(宇宙名單登記 sp500-historical),2015-01-02~2026-08-28,
+# 2,931 個交易日、625 個實體、1,831,875 列。**含已被剔出指數的代號**,不是今日名單。
+# 窗口內曾入選 772 個代號,抓得到 629 個;缺口 147 個(19.0%)逐條列在快照說明檔
+# 與 experiments/2026-08-29-sp500-universe/缺口.csv。存活者偏差**只除得一半**,
+# 用之前先讀那個目錄的 README 第五節。(KARST-065)
+PRICE_SP500_HISTORICAL = "2026-08-28-493fd1df1cb9"
+
 # 宏觀十四序列,對齊 PRICE_LARGE_CAP 那條主日曆;41,006 列讀數。
 # KARST-058 換來源之後重抓:VIX 與 VIX_3M 改由 Cboe 官方免費歷史檔直取
 # (來源名 cboe+yfinance-macro),VIX_3M 自此 2,929 個交易日**全部有真讀數、
@@ -52,4 +59,10 @@ PREVIOUS: dict[str, str] = {
     "2026-08-28-810facb50382": MACRO,
 }
 
-__all__ = ["PRICE_LARGE_CAP", "PRICE_FACTOR_ETF", "MACRO", "PREVIOUS"]
+__all__ = [
+    "PRICE_LARGE_CAP",
+    "PRICE_FACTOR_ETF",
+    "PRICE_SP500_HISTORICAL",
+    "MACRO",
+    "PREVIOUS",
+]

@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import io
+import json
 import re
 from pathlib import Path
 
@@ -156,6 +157,48 @@ def test_list_shows_every_snapshot_in_the_store(karst, bars_file):
     assert "2024-01-02~2024-01-19" in output
     assert "2 個實體" in output                    # 實體數
     assert output.count("抓於 20") == 2            # 抓取時間
+
+
+# KARST-065:宇宙名單登記可由唯一入口列出(含成分期與來源)
+def test_universe_registry_lists_through_the_gateway(karst):
+    code, output = karst("data", "universe")
+    assert code == 0
+    for key in ("starter", "factor-etf", "sp500-historical"):
+        assert key in output
+    assert "fja05680/sp500" in output and "抓取日期 2026-08-29" in output
+
+    code, listing = karst("data", "universe", "--name", "sp500-historical")
+    assert code == 0
+    assert "加入日期" in listing and "剔除日期" in listing
+    assert "AABA  1999-12-08  2017-06-19" in listing      # 已剔除的代號帶兩個日期
+    assert "AAPL" in listing
+
+    # 查無此名即拒收,不猜
+    code, refused = karst("data", "universe", "--name", "no-such-list")
+    assert code == 1
+    assert "沒有" in refused
+
+
+# KARST-065:呼叫方交來的註記寫得入快照說明檔與清單(缺口逐條標示靠這一格)
+def test_caller_notes_land_in_the_snapshot_readme(karst, bars_file):
+    code, output = karst(
+        "data", "snapshot",
+        *[argument for ticker in OFFLINE_TICKERS for argument in ("--ticker", ticker)],
+        "--start", WINDOW[0], "--end", WINDOW[1],
+        "--source", "csv", "--bars", bars_file, "--root", karst.root,
+        "--note", "缺口·抓不到 AABA(成分期 1999-12-08~2017-06-19)",
+    )
+    assert code == 0
+    snapshot_id = snapshot_id_of(output)
+    assert "缺口·抓不到 AABA" in output
+
+    directory = Path(karst.root) / snapshot_id
+    readme = (directory / "說明.md").read_text(encoding="utf-8")
+    manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
+    assert "缺口·抓不到 AABA" in readme
+    assert "缺口·抓不到 AABA(成分期 1999-12-08~2017-06-19)" in manifest["notes"]
+    # 註記不入內容雜湊:同一批數據不會因為多一句註記而凍出第二個編號
+    assert "notes" not in manifest["core"]
 
 
 # 驗收條件 4:不繞過 karst/store.py 開連線(D-027 第 4 條護欄二)
