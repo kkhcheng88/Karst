@@ -1,0 +1,36 @@
+{
+  "macro_snapshot_id": "2026-08-28-dc2d9f1a1778",
+  "param_set": {
+    "name": "示例正式-KARST-070-來源mac-curve_trend",
+    "rebalance_cadence": "monthly",
+    "values": {
+      "driver": "curve_trend",
+      "lookback_days": "20",
+      "macro_series": "UST_10Y、UST_3M",
+      "macro_snapshot": "2026-08-28-dc2d9f1a1778",
+      "tilt": "1",
+      "warmup_bars": "252",
+      "warmup_weight_low_vol": "0.25",
+      "warmup_weight_momentum": "0.25",
+      "warmup_weight_quality": "0.25",
+      "warmup_weight_value": "0.25"
+    },
+    "version_no": 1
+  },
+  "period": [
+    "2015-01-02",
+    "2026-08-26"
+  ],
+  "run": {
+    "origin": "formal",
+    "run_id": "run-924a54eb843f0988"
+  },
+  "snapshot_id": "2026-08-28-000b4820a23a",
+  "source_best_cell": "experiments/2026-08-28-macro-rejudge/results/summary.json:drivers.curve_trend.best",
+  "source_sweep_id": "experiments/2026-08-28-macro-drivers/mac-curve_trend",
+  "strategy": {
+    "name": "因子輪動(ETF 版)",
+    "version_no": 2
+  },
+  "ticket": "KARST-070"
+}

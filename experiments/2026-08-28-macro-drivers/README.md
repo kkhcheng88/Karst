@@ -206,6 +206,17 @@ PYTHONUTF8=1 python experiments/2026-08-28-macro-drivers/run_macro_sweep.py --ou
 重算——運行指紋(策略版本 × 參數集 × 期間 × 快照 × 引擎版本)相同就讀回舊運行,所以
 價格與固定權重那 6 行不用重算,直接讀回。
 
+## 7.1 第一次正式運行(KARST-070,2026-08-29)
+
+上面 180 格全部是**掃描格**(來歷 `SWEEP_RUN`);本目錄一次帶宏觀快照的**正式運行**
+(`FORMAL_RUN`)都沒有,KARST-067 已指出這是策略頁「序列齊全度」標記在正路上見不到
+的原因。KARST-070 補上第一次:取曲線斜度變化方向最優格(`lookback_days=20、tilt=1、
+cadence=monthly`,來源掃描編號 `experiments/2026-08-28-macro-drivers/mac-curve_trend`),
+經唯一入口登記參數集**「示例正式-KARST-070-來源mac-curve_trend」第 1 版**,以現役
+宏觀快照 `2026-08-28-dc2d9f1a1778` 跑出**運行編號 `run-924a54eb843f0988`**(策略「因子
+輪動(ETF 版)」第 2 版)。策略頁在該策略正路上已核對到序列齊全度標記,詳見
+[`formal-run-2026-08-29.md`](formal-run-2026-08-29.md)、重跑腳本 `run_formal_run.py`。
+
 ## 8. 能力本體在哪
 
 - 宏觀來源適配器與快照:`karst/data/macro.py`
