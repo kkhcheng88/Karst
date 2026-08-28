@@ -110,6 +110,19 @@ def build_parser() -> argparse.ArgumentParser:
         help="因子值批次檔的根(預設 data/factors)",
     )
 
+    # 因子預測力(KARST-066):逐日 Spearman IC + 滾動 ICIR,唯一入口輸出成表。
+    ic = factor_commands.add_parser(
+        "ic", help="逐因子逐日 Spearman IC 與滾動 ICIR(回報起點=可執行時點開價)",
+    )
+    ic.add_argument("--snapshot", required=True, help="要對哪一個價格快照跑(無預設)")
+    ic.add_argument("--factor", dest="factors", action="append", required=True,
+                    help="因子引用「名稱」或「名稱@版本號」,可重複給;至少一條")
+    ic.add_argument("--horizon", type=int, required=True, help="持有期交易日數,無預設")
+    ic.add_argument("--window", type=int, required=True, help="滾動 ICIR 的窗口交易日數,無預設")
+    ic.add_argument("--root", default=None, help="價格快照快取根(預設 data/snapshots)")
+    ic.add_argument("--factor-root", dest="factor_root", default=None,
+                    help="因子值批次檔的根(預設 data/factors)")
+
     strategy = commands.add_parser("strategy", help="策略定義")
     strategy_commands = strategy.add_subparsers(dest="subcommand", required=True)
     register = strategy_commands.add_parser("register", help="登記新策略的第一版(連第一個參數集)")
@@ -308,6 +321,9 @@ def _factor(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     if args.subcommand == "ingest-alpha158":
         return _factor_ingest_alpha158(args, gateway, out)
 
+    if args.subcommand == "ic":
+        return _factor_ic(args, gateway, out)
+
     procedure = build_procedure(
         formula=args.formula,
         input_data_version=args.input_data_version,
@@ -374,6 +390,61 @@ def _factor_ingest_alpha158(args: argparse.Namespace, gateway: Gateway, out: Tex
         file=out,
     )
     print(f"  用時      {report.seconds:.1f} 秒", file=out)
+    return EXIT_OK
+
+
+def _factor_ic(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    """因子預測力:逐因子逐日 Spearman IC + 滾動 ICIR,唯一入口輸出成表(KARST-066)。
+
+    對齊、IC、ICIR 的算法住在 ``karst.factorpredict``,本檔只讀值、印表。
+    """
+    from ..data import read_price_frame
+    from ..factorpredict import daily_ic, rolling_icir, summarize_ic
+
+    store = gateway.factor_values(args.factor_root)
+    factor_long = store.read_long(args.factors, snapshot_id=args.snapshot)
+    price_frame = read_price_frame(gateway.store, args.snapshot, root=args.root)
+
+    from ..factorpredict import align_factor_to_forward_returns
+
+    aligned = align_factor_to_forward_returns(factor_long, price_frame, horizon=args.horizon)
+    daily = daily_ic(aligned)
+    summary = summarize_ic(daily)
+    rolled = rolling_icir(daily, window=args.window)
+
+    version_names = {
+        version.factor_version_id: f"{version.name}·第{version.version_no}版"
+        for version in (store.resolve(name) for name in args.factors)
+    }
+
+    print(
+        f"因子預測力:快照 {args.snapshot};持有期 {args.horizon} 個交易日;"
+        f"滾動 ICIR 窗口 {args.window} 個交易日",
+        file=out,
+    )
+    print(
+        "  持有期量法  第 1 日(可執行時點那根)開價買入,持有到第 N 日(含首日)收價賣出",
+        file=out,
+    )
+    if summary.empty:
+        print("  對齊之後一格值都沒有(可執行時點對不上這份快照的日曆,或持有期跨出尾巴)", file=out)
+        return EXIT_OK
+
+    print("  全期摘要(IC 均值、標準差、ICIR、樣本日數)", file=out)
+    for row in summary.sort_values("factor_version_id").itertuples():
+        label = version_names.get(row.factor_version_id, f"factor_version_id={row.factor_version_id}")
+        print(
+            f"    {label}  IC均值={row.ic_mean:.4f}  IC標準差={row.ic_std:.4f}  "
+            f"ICIR={row.icir:.4f}  樣本日數={row.n_days}",
+            file=out,
+        )
+
+    latest = rolled.dropna(subset=["icir"]).sort_values("date").groupby("factor_version_id").tail(1)
+    if not latest.empty:
+        print(f"  最新一個滾動窗({args.window} 個交易日)ICIR", file=out)
+        for row in latest.sort_values("factor_version_id").itertuples():
+            label = version_names.get(row.factor_version_id, f"factor_version_id={row.factor_version_id}")
+            print(f"    {label}  {row.date.date()}  滾動ICIR={row.icir:.4f}", file=out)
     return EXIT_OK
 
 

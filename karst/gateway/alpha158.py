@@ -148,6 +148,10 @@ class IngestReport:
     batch_path: str
     content_hash: str
     file_bytes: int
+    #: 逐個批次檔的落點(KARST-066 補:大宇宙分批寫,一個檔裝不下)。單一批次時
+    #: 只有一項,與 ``batch_key``/``batch_path``/``content_hash``/``file_bytes``
+    #: 那四格描述的是同一份;多過一項時,那四格改為彙總(見 ``__post_init__`` 呼叫處)。
+    batches: tuple[dict[str, object], ...] = ()
 
     @property
     def missing_ratio(self) -> float:
@@ -178,6 +182,7 @@ class IngestReport:
             "batch_path": self.batch_path,
             "content_hash": self.content_hash,
             "file_bytes": self.file_bytes,
+            "batches": list(self.batches),
         }
 
 
@@ -287,33 +292,74 @@ def ingest_alpha158(
     }
 
     tally: dict[str, int] = {"registered": 0, "reused": 0, "new_version": 0}
-    parts: dict[str, list[np.ndarray]] = {column: [] for column in BATCH_COLUMNS}
-    possible = 0
+    entity_count = len(wides)
 
+    # 逐條先登記版本(要 factor_version_id 才切得出那條的值)。與拼值分開做,
+    # 因為登記不吃記憶體,而拼值那步——大宇宙(標普 500)158 條 × 625 實體 ×
+    # 幾千個交易日合共兩億幾千萬列,一次過拼一張表會撐爆記憶體(KARST-066 實測
+    # 撞過一次:270,753,657 列要 6 GB 一條時間戳陣列,三條時間戳連值連編號
+    # 遠遠不止)。做法是分批:每批算好幾條因子的值就拼、寫、放手,不留到最後
+    # 158 條一次過拼。批多大由「這個宇宙大不大」決定,不是憑空一個常數——
+    # 十二隻那個量級批出來剛好是原本的一整批(批次名不變,行為不變)。
+    version_ids: list[int] = []
     for name in ALPHA158_NAMES:
         tally[_resolve_version(gateway, name, snapshot_id)] += 1
-        version_id = store.get_factor_version(factor_name(name)).factor_version_id
-        possible += _collect_factor(name, version_id, wides, stamps, parts)
+        version_ids.append(store.get_factor_version(factor_name(name)).factor_version_id)
 
-    entity_count = len(wides)
-    frame = pd.DataFrame({column: np.concatenate(parts[column]) for column in BATCH_COLUMNS})
-    # 158 × 12 段切片拼完就放手:555 萬列那張表已經自己有一份,兩份同時揸住
-    # 等於為了一句 ``len()`` 多佔幾百 MB。
-    parts.clear()
+    rows_upper_bound_per_factor = max(1, entity_count * len(calendar))
+    chunk_size = max(1, min(len(ALPHA158_NAMES), _TARGET_ROWS_PER_CHUNK // rows_upper_bound_per_factor))
+    chunks = [
+        list(zip(ALPHA158_NAMES[i : i + chunk_size], version_ids[i : i + chunk_size]))
+        for i in range(0, len(ALPHA158_NAMES), chunk_size)
+    ]
+
+    possible = 0
+    written = 0
+    not_executable = 0
+    written_batches = []
+    for index, chunk in enumerate(chunks):
+        parts: dict[str, list[np.ndarray]] = {column: [] for column in BATCH_COLUMNS}
+        for name, version_id in chunk:
+            possible += _collect_factor(name, version_id, wides, stamps, parts)
+        frame = pd.DataFrame({column: np.concatenate(parts[column]) for column in BATCH_COLUMNS})
+        parts.clear()
+        written += len(frame)
+        not_executable += int(np.isnat(frame["executable_time"].to_numpy(_STAMP)).sum())
+
+        batch_key = ALPHA158_BATCH if len(chunks) == 1 else f"{ALPHA158_BATCH}-{index:02d}"
+        batch = gateway.write_factor_batch(
+            frame,
+            batch_key=batch_key,
+            snapshot_id=snapshot_id,
+            procedure_version=ALPHA158_PROCEDURE_VERSION,
+            root=factor_root,
+        )
+        del frame
+        written_batches.append(
+            {
+                "batch_key": batch.batch_key,
+                "path": batch.path,
+                "content_hash": batch.content_hash,
+                "rows": batch.rows,
+                "file_bytes": Path(batch.path).stat().st_size,
+            }
+        )
+
     wides.clear()
     stamps.clear()
-    written = int(len(frame))
-    not_executable = int(np.isnat(frame["executable_time"].to_numpy(_STAMP)).sum())
-
-    batch = gateway.write_factor_batch(
-        frame,
-        batch_key=ALPHA158_BATCH,
-        snapshot_id=snapshot_id,
-        procedure_version=ALPHA158_PROCEDURE_VERSION,
-        root=factor_root,
-    )
 
     last_executable = next_bar.get(calendar[-1])
+    first = written_batches[0]
+    if len(written_batches) == 1:
+        batch_key_out = first["batch_key"]
+        batch_path_out = first["path"]
+        content_hash_out = first["content_hash"]
+    else:
+        batch_key_out = f"{ALPHA158_BATCH}(分 {len(written_batches)} 檔)"
+        batch_path_out = str(Path(first["path"]).parent)
+        content_hash_out = "、".join(item["content_hash"][:12] for item in written_batches)
+    file_bytes_out = sum(item["file_bytes"] for item in written_batches)
+
     return IngestReport(
         snapshot_id=str(snapshot_id),
         entity_count=entity_count,
@@ -330,15 +376,23 @@ def ingest_alpha158(
         last_event_date=calendar[-1],
         last_executable_date=last_executable,
         seconds=time.perf_counter() - started,
-        batch_key=batch.batch_key,
-        batch_path=batch.path,
-        content_hash=batch.content_hash,
-        file_bytes=Path(batch.path).stat().st_size,
+        batch_key=batch_key_out,
+        batch_path=batch_path_out,
+        content_hash=content_hash_out,
+        file_bytes=file_bytes_out,
+        batches=tuple(written_batches),
     )
 
 
 #: 檔內時點的型別:微秒時間戳(見 ``karst.factorstore``)。
 _STAMP: Final[str] = "datetime64[us]"
+
+#: 一批寫入的目標列數上限(KARST-066)。標普 500 這個量級(625 實體、約 2,900
+#: 交易日)一條因子上限約 181 萬列,158 條一次過拼要兩億幾千萬列,一條時間戳
+#: 陣列就要 6 GB——這個上限把單次拼表的記憶體壓在幾 GB 量級。小宇宙(十二隻)
+#: 算出來的批量遠超過 158 條的總數,分母公式自然收斂回「一批就是全部」,批次名
+#: 不變,行為與 KARST-064/068 那時一字不差。
+_TARGET_ROWS_PER_CHUNK: Final[int] = 20_000_000
 
 #: 沒有下一根可交易 K 線那一日:可執行時點留空(詞彙表「不可執行值」)。
 _NOT_EXECUTABLE: Final[np.datetime64] = np.datetime64("NaT", "us")
