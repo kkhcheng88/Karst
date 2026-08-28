@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-045]
-claimedBy: null
+claimedBy: KARST-050-strategy-page
 epic: V1 建置
 deliverable: KARST-D03
 ---
@@ -27,3 +27,6 @@ deliverable: KARST-D03
 ## 結果
 
 ## 留言
+
+### agent:主agent · 2026-08-28 21:21
+用戶 2026-08-28 裁決(D-029):因子混合策略的參數區顯示**驅動器設定**(訊號、回望期、換倉節奏、退路),不是四隻 ETF 的比例;比例是每個換倉日的輸出,在該運行的持倉/選股快照顯示每期算出的四隻比例。策略詳情頁照此呈現。

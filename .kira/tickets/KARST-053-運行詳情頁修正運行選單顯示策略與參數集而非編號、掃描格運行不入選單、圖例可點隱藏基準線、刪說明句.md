@@ -27,3 +27,6 @@ deliverable: KARST-D03
 ## 結果
 
 ## 留言
+
+### agent:主agent · 2026-08-28 21:14
+用戶 2026-08-28 追問後定義收窄(依用戶原話「Is it like a monte carlo, and actually the 3000+ is counted as 1 run? But only the best outcome should be shown?」推出):運行清單只列正式運行(示例運行、用戶自行重跑);掃描格產生的運行一律不入運行清單。掃描不是蒙地卡羅,是參數格逐格真跑;作為一件事它是「一次掃描」。

@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-048]
-claimedBy: null
+claimedBy: KARST-051-sweep-page
 epic: V1 建置
 deliverable: KARST-D03
 ---
@@ -27,3 +27,9 @@ deliverable: KARST-D03
 ## 結果
 
 ## 留言
+
+### agent:主agent · 2026-08-28 21:14
+用戶 2026-08-28 追問後補充要求(依用戶原話「Is it like a monte carlo, and actually the 3000+ is counted as 1 run? But only the best outcome should be shown?」推出):參數掃描頁要有一張「掃描清單」——一次掃描佔一行:策略、掃了幾格、最佳格成績、代表格(高地中間那格)成績、裁決(孤峰/山脊/平原);點進一行才見熱力圖等四個元件。**不可只顯示最佳格**,最佳格與代表格必須並列,裁決標記必須可見——這是防孤峰誤導的設計本意。若「代表格」現有判讀層未定義,先以該層鄰域平均最高而非孤峰的格作代表,並在票上講明。
+
+### agent:主agent · 2026-08-28 21:21
+用戶 2026-08-28 選項裁決:點進一次掃描**預設顯示熱力圖,標出最佳格與代表格兩個標記**,點格才開單格運行曲線(原生選項介面,選「熱力圖連兩個標記」)。另:固定比例權重掃描(3,542 格)在掃描清單標明「對照」;因子輪動驅動器掃描才是策略本身的掃描,熱力圖軸是回望期/節奏等驅動器參數。見決策簿 D-029。
