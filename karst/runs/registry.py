@@ -21,6 +21,17 @@
 引擎版本那五件(規格 7.4),多存兩條序列不會令同一次運行變成另一次運行。它們
 亦不算「必須保存的三條」——舊運行沒有這兩條,照樣讀得回、照樣核對得到。
 
+同一套做法之下另收**選股痕跡**(selection trace):逐個決策日,選股漏斗各層的
+候選名單與逐股分數(KARST-056)。它答的是「這一日,策略在範圍內看見什麼、
+過了哪幾關、揀了誰」::
+
+    <root>/run-.../candidates.parquet      決策日 × 層 × 實體編號
+                  /factor_scores.parquet   決策日 × 實體編號 × 分數名 → 數值、排名
+                  /selection.json          兩張表的落點與雜湊
+
+一樣不入運行編號,一樣舊運行沒有照舊讀得回。所以一個已經留了痕的運行原樣重跑,
+會把這兩張表補寫上去而**運行編號逐位不變**。
+
 **接口是為引擎預留的**:``record_simulation`` 收的東西,形狀就是引擎適配層
 交回來的 ``SimulationOutput`` / ``BacktestResult``(逐日淨值 + 逐日持倉 +
 逐筆交易)。本檔刻意**不 import 引擎**——引擎是可換件(D-007 第 3 條),留痕
@@ -41,7 +52,7 @@ import pandas as pd
 from ..batches import content_hash
 from ..errors import ContractViolation, ImmutabilityViolation, NotFound
 from ..models import as_date
-from ..store import RUN_ARTIFACT_KINDS, DefinitionStore, RunArtifact, RunRecord
+from ..store import FORMAL_RUN, RUN_ARTIFACT_KINDS, DefinitionStore, RunArtifact, RunRecord
 from .window import BASE, WindowStats, normalise_equity, window_stats
 
 # 逐日持倉的長表欄位:一日一實體一列,只存**持有的**——沒有那一列就是當日沒持有
@@ -75,6 +86,45 @@ _AUDIT_FILE_NAMES = {kind: f"{kind}.parquet" for kind in AUDIT_SERIES_KINDS}
 # 的 ``RUN_ARTIFACT_KINDS``),查帳序列因此自己記自己的帳——有了它,
 # 繞過本層直接改檔一樣核對得出。
 AUDIT_INDEX_FILE = "audit.json"
+
+# ----------------------------------------------------------------------
+# 選股痕跡(selection trace):逐個決策日,漏斗各層的候選名單與逐股分數。
+#
+# 與查帳序列同一套做法——**不入運行編號**、自己記自己的帳、舊運行沒有照樣
+# 讀得回。分別只在形狀:查帳序列是一日一個數,選股痕跡是一日一批列。
+#
+#     <root>/run-.../candidates.parquet      決策日 × 層 × 實體編號
+#                   /factor_scores.parquet   決策日 × 實體編號 × 分數名 → 數值、排名
+#                   /selection.json          兩張表的落點與雜湊
+#
+# 為什麼不入登記表的產物清單:產物種類的白名單住在 ``store.py``
+# (``RUN_ARTIFACT_KINDS``,「三條缺一不可」那一句),而那三條是**每次運行
+# 都必須有**的意思;選股痕跡不是每條路徑都交得出(舊運行一張都沒有),
+# 混進那張清單會令「缺一不可」那道閘變成撒謊。
+# ----------------------------------------------------------------------
+SELECTION_CANDIDATES = "candidates"
+SELECTION_SCORES = "factor_scores"
+SELECTION_KINDS: Final[tuple[str, ...]] = (SELECTION_CANDIDATES, SELECTION_SCORES)
+
+_SELECTION_FILE_NAMES = {kind: f"{kind}.parquet" for kind in SELECTION_KINDS}
+SELECTION_INDEX_FILE = "selection.json"
+
+# 兩張表的欄位。與 ``karst.engine.funnel`` 那邊**同名同義**,故引擎砌出來的表
+# 可以直接倒進來(與 ``Order`` / ``ORDER_COLUMNS`` 同一個做法);兩邊各自寫死
+# 一份名,落痕這一層因此仍然不用 import 引擎。
+_SELECTION_COLUMNS: Final[dict[str, tuple[str, ...]]] = {
+    SELECTION_CANDIDATES: ("decision_date", "stage", "entity_id"),
+    SELECTION_SCORES: ("decision_date", "entity_id", "score_name", "score", "rank"),
+}
+_SELECTION_DTYPES: Final[dict[str, dict[str, str]]] = {
+    SELECTION_CANDIDATES: {"stage": "object", "entity_id": "int64"},
+    SELECTION_SCORES: {
+        "entity_id": "int64",
+        "score_name": "object",
+        "score": "float64",
+        "rank": "int64",
+    },
+}
 
 
 class RunStore:
@@ -118,6 +168,7 @@ class RunStore:
         param_set_version_no: int | None = None,
         factor_version_ids: Sequence[int] | None = None,
         audit_series: Mapping[str, Any] | None = None,
+        selection: Mapping[str, Any] | None = None,
     ) -> RunRecord:
         """把一次運行的三條序列落檔並登記,回傳它的留痕。
 
@@ -131,12 +182,16 @@ class RunStore:
 
         ``audit_series`` 是查帳序列(見本檔開頭),``AUDIT_SERIES_KINDS`` 揀名。
         它**不入運行編號**;舊運行補交查帳序列會補寫上去,內容不同一樣拒收。
+
+        ``selection`` 是選股痕跡(候選名單各層 + 逐股分數),``SELECTION_KINDS``
+        揀名,規矩與查帳序列一字不差:不入運行編號,舊運行補交即補寫上去。
         """
         origin, sweep_id = self._store.check_run_origin(origin, sweep_id)
         equity = normalise_equity(equity_curve)
         holdings_frame = _normalise_holdings(holdings)
         orders_frame = _normalise_orders(orders)
         audit = _normalise_audit_series(audit_series)
+        picks = _normalise_selection(selection)
 
         start = as_date(period_start, "period_start") if period_start is not None else str(
             equity.index[0].date()
@@ -187,8 +242,11 @@ class RunStore:
                     "運行不可改寫——同一組策略版本 × 參數集 × 期間 × 數據快照 × 引擎版本"
                     "本應算出同一個結果,對不上即代表有一件沒有蓋住,請先查明"
                 )
-            # 三條序列一字不差,但這次多交了查帳序列:補寫上去,內容不同一樣拒收
+            # 三條序列一字不差,但這次多交了查帳序列或選股痕跡:補寫上去,
+            # 內容不同一樣拒收。運行編號與三條序列一個位都不會動——這正是
+            # 舊運行補得回痕跡而編號不變的那條路(KARST-056)。
             self._write_audit_series(run_id, audit)
+            self._write_selection(run_id, picks)
             return existing
 
         directory = self._root / run_id
@@ -224,6 +282,7 @@ class RunStore:
             factor_version_ids=factor_version_ids,
         )
         self._write_audit_series(run_id, audit)
+        self._write_selection(run_id, picks)
         return record
 
     def record_simulation(
@@ -252,6 +311,8 @@ class RunStore:
 
         結果上另有 ``sizing_basis`` / ``breaker_blocked`` 的話(規則路徑就有),
         兩條**查帳序列**一併落痕,不用另外交代;沒有就當這條路徑交不出,照樣落痕。
+        ``candidates`` / ``factor_scores`` 兩張**選股痕跡**同一個做法,但只有
+        ``origin`` 是正式運行才收(理由見下面那段註解)。
 
         ``origin`` 是來歷,無預設值(見 ``record_run``):掃描運行器逐格填
         ``SWEEP_RUN`` 連掃描編號,其餘一律 ``FORMAL_RUN``。
@@ -270,6 +331,22 @@ class RunStore:
             for kind in AUDIT_SERIES_KINDS
             if getattr(simulation, kind, None) is not None
         }
+        # 選股痕跡同一個做法:結果物件上有 ``candidates`` / ``factor_scores``
+        # 就自己拿走,交不出的路徑照樣落痕(KARST-056)。
+        #
+        # **只有正式運行才收**:痕跡是逐個決策日逐隻標的一列,一次趨勢波段運行
+        # 就近十萬列;一次掃描動輒四千格,格格都存等於把同一批名單抄四千次,
+        # 磁碟先爆,而掃描頁根本不看逐日名單——它看的是格與格之間的成績差異。
+        # 要看某一格的選股快照,把那一格當一次正式運行重跑一次即有。
+        picks = (
+            {
+                kind: getattr(simulation, kind)
+                for kind in SELECTION_KINDS
+                if getattr(simulation, kind, None) is not None
+            }
+            if origin == FORMAL_RUN
+            else {}
+        )
         name = engine_name or getattr(simulation, "engine_name", None)
         if not name:
             raise ContractViolation(
@@ -297,6 +374,7 @@ class RunStore:
             param_set_version_no=param_set_version_no,
             factor_version_ids=factor_version_ids,
             audit_series=audit,
+            selection=picks,
         )
 
     # ------------------------------------------------------------------
@@ -357,6 +435,33 @@ class RunStore:
     def breaker_blocked(self, run_id: str) -> pd.Series:
         """讀回逐日熔斷狀態:該日有沒有落閘停止新入場(詞彙表「月度虧損熔斷」)。"""
         return self.audit_series(run_id, BREAKER_BLOCKED)
+
+    def selection_kinds(self, run_id: str) -> tuple[str, ...]:
+        """這次運行留了哪幾張選股痕跡。回空即一張都沒有(舊運行就是這樣)。"""
+        index = self._selection_index(run_id)
+        return tuple(kind for kind in SELECTION_KINDS if kind in index)
+
+    def selection(self, run_id: str, kind: str) -> pd.DataFrame:
+        """讀回一張選股痕跡。沒有那一張即拋 ``NotFound``——不回一張空表頂替。"""
+        if kind not in SELECTION_KINDS:
+            raise ContractViolation(
+                f"選股痕跡只有 {list(SELECTION_KINDS)},收到 {kind!r}"
+            )
+        entry = self._selection_index(run_id).get(kind)
+        if entry is None:
+            raise NotFound(f"運行 {run_id} 沒有留下{kind}這一張選股痕跡")
+        path = Path(entry["path"])
+        if not path.exists():
+            raise NotFound(f"運行 {run_id} 的 {kind} 選股痕跡不在 {path}")
+        return pd.read_parquet(path, engine="pyarrow")
+
+    def candidates(self, run_id: str) -> pd.DataFrame:
+        """讀回候選名單:決策日 × 層 × 實體編號(詞彙表「選股漏斗」)。"""
+        return self.selection(run_id, SELECTION_CANDIDATES)
+
+    def factor_scores(self, run_id: str) -> pd.DataFrame:
+        """讀回逐股分數:決策日 × 實體編號 × 分數名 → 數值與當日排名。"""
+        return self.selection(run_id, SELECTION_SCORES)
 
     def equity_on(self, run_id: str, day: date | datetime | str) -> float:
         """某一日的淨值。那日不是這次運行的交易日就拋錯,不猜前一日。"""
@@ -462,6 +567,23 @@ class RunStore:
                 mismatched.append(kind)
         return tuple(mismatched)
 
+    def verify_selection(self, run_id: str) -> tuple[str, ...]:
+        """重讀選股痕跡再算一次雜湊,對不上 ``selection.json`` 記住那個就報出來。
+
+        回空即全對(一張都沒留過也是回空)。
+        """
+        index = self._selection_index(run_id)
+        mismatched: list[str] = []
+        for kind, entry in sorted(index.items()):
+            path = Path(entry["path"])
+            if not path.exists():
+                mismatched.append(kind)
+                continue
+            frame = pd.read_parquet(path, engine="pyarrow")
+            if content_hash(frame) != entry["content_hash"]:
+                mismatched.append(kind)
+        return tuple(mismatched)
+
     # ------------------------------------------------------------------
     # 查帳序列的落檔與索引
     # ------------------------------------------------------------------
@@ -491,6 +613,46 @@ class RunStore:
             }
         for kind, frame in sorted(audit.items()):
             path = directory / _AUDIT_FILE_NAMES[kind]
+            _write_parquet(frame, path, kind=kind, keep_index=False)
+            index[kind] = {
+                "path": str(path),
+                "content_hash": content_hash(frame),
+                "rows": int(len(frame)),
+            }
+        index_path.write_text(
+            json.dumps(index, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+    # ------------------------------------------------------------------
+    # 選股痕跡的落檔與索引(做法與查帳序列一字不差)
+    # ------------------------------------------------------------------
+
+    def _selection_index(self, run_id: str) -> dict[str, dict[str, Any]]:
+        """讀回這次運行的選股痕跡索引。沒有那份檔即當一張都沒留過。"""
+        self._store.get_run(run_id)            # 先確認真有這次運行
+        path = self._root / run_id / SELECTION_INDEX_FILE
+        if not path.exists():
+            return {}
+        loaded = json.loads(path.read_text(encoding="utf-8"))
+        return {str(kind): dict(entry) for kind, entry in loaded.items()}
+
+    def _write_selection(self, run_id: str, picks: Mapping[str, pd.DataFrame]) -> None:
+        """把選股痕跡寫出去並更新索引。已有同名檔而內容不同即拒收,不覆蓋。"""
+        if not picks:
+            return
+        directory = self._root / run_id
+        directory.mkdir(parents=True, exist_ok=True)
+
+        index = {}
+        index_path = directory / SELECTION_INDEX_FILE
+        if index_path.exists():
+            index = {
+                str(kind): dict(entry)
+                for kind, entry in json.loads(index_path.read_text(encoding="utf-8")).items()
+            }
+        for kind, frame in sorted(picks.items()):
+            path = directory / _SELECTION_FILE_NAMES[kind]
             _write_parquet(frame, path, kind=kind, keep_index=False)
             index[kind] = {
                 "path": str(path),
@@ -571,6 +733,49 @@ def _normalise_audit_series(audit: Mapping[str, Any] | None) -> dict[str, pd.Dat
             columns=list(AUDIT_COLUMNS),
         )
         frames[name] = frame.sort_values("date").reset_index(drop=True)
+    return frames
+
+
+def _normalise_selection(selection: Mapping[str, Any] | None) -> dict[str, pd.DataFrame]:
+    """把選股痕跡規範化:欄位齊、型別對、次序定死。
+
+    次序定死是為了雜湊——同一次運行重跑兩次要得同一個雜湊,否則「內容不同即
+    拒收」那道閘會冤枉好人。空的一張不收:交一張沒有內容的痕跡等於甚麼都沒記,
+    不如當場講清楚(與查帳序列同一條規矩)。
+    """
+    if not selection:
+        return {}
+    if not isinstance(selection, Mapping):
+        raise ContractViolation(
+            f"選股痕跡要一份「種類 → 表」的對照,收到 {type(selection).__name__}"
+        )
+
+    frames: dict[str, pd.DataFrame] = {}
+    for kind, frame in selection.items():
+        name = str(kind)
+        if name not in SELECTION_KINDS:
+            raise ContractViolation(
+                f"選股痕跡只有 {list(SELECTION_KINDS)},收到 {kind!r}"
+            )
+        if not isinstance(frame, pd.DataFrame):
+            raise ContractViolation(
+                f"選股痕跡「{name}」要一張 pandas 表,收到 {type(frame).__name__}"
+            )
+        columns = list(_SELECTION_COLUMNS[name])
+        missing = [column for column in columns if column not in frame.columns]
+        if missing:
+            raise ContractViolation(f"選股痕跡「{name}」缺欄位:{'、'.join(missing)}")
+        if frame.empty:
+            raise ContractViolation(f"選股痕跡「{name}」是空的")
+
+        out = frame[columns].copy()
+        out["decision_date"] = [as_date(day, "decision_date") for day in out["decision_date"]]
+        out = out.astype(_SELECTION_DTYPES[name])
+        if out.isna().any().any():
+            raise ContractViolation(
+                f"選股痕跡「{name}」有留空的格;沒有分數的一隻不應該有那一列,不填 0、不猜"
+            )
+        frames[name] = out.sort_values(columns).reset_index(drop=True)
     return frames
 
 

@@ -393,6 +393,17 @@ class TrendSwingResult:
         """逐日熔斷狀態:該日有沒有落閘停止新入場。"""
         return self.backtest.breaker_blocked
 
+    # ---- 選股痕跡:漏斗各層的候選名單與逐股分數(KARST-056)----
+    @property
+    def candidates(self) -> pd.DataFrame | None:
+        """逐個決策日,範圍 → 技術關 → 入選各層的名單。"""
+        return self.backtest.candidates
+
+    @property
+    def factor_scores(self) -> pd.DataFrame | None:
+        """逐個決策日、逐隻股票的突破幅度與計劃賠率,連當日排名。"""
+        return self.backtest.factor_scores
+
     # ---- 成績 ----
     @property
     def rule_params(self) -> RuleStrategyParams:

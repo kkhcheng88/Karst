@@ -58,6 +58,7 @@ import pandas as pd  # noqa: E402
 from karst.data import (  # noqa: E402
     DRIVER_TIER_CODES,
     REFERENCE_TIER_CODES,
+    CompletenessThresholds,
     YFinanceMacroSource,
     build_macro_snapshot,
     macro_coverage,
@@ -221,6 +222,16 @@ def main() -> int:
         "--macro-snapshot", default=MACRO_SNAPSHOT_ID,
         help="沿用某個宏觀快照編號,不再抓數(預設沿用現役那個;給 new 即重抓一份)",
     )
+    # 齊全度門檻(KARST-061)。**無預設值**:只在真的重抓一份新快照時才用得着,
+    # 所以這裡不設 required,改為到用的那一刻沒有給就當場停低講清楚。
+    parser.add_argument(
+        "--max-stale-days", type=int, default=None,
+        help="重抓時的齊全度門檻:尾段容許落後主日曆幾多個交易日(無預設值)",
+    )
+    parser.add_argument(
+        "--max-missing-ratio", type=float, default=None,
+        help="重抓時的齊全度門檻:留空日數佔主日曆的比例上限,0.01 即 1%%(無預設值)",
+    )
     args = parser.parse_args()
 
     out = Path(args.out) if args.out else HERE / "results"
@@ -252,12 +263,22 @@ def main() -> int:
             print(f"沿用宏觀快照 {macro_id}(不抓數)", flush=True)
         else:
             print("抓宏觀序列(第一次要連網;等價即沿用原編號)……", flush=True)
+            if args.max_stale_days is None or args.max_missing_ratio is None:
+                raise SystemExit(
+                    "要重抓一份宏觀快照,就要明給齊全度門檻:"
+                    "--max-stale-days 與 --max-missing-ratio。兩個都沒有預設值——"
+                    "「幾多日算停更」是對這條訊號的容忍度,不是數據的性質(KARST-061)"
+                )
             macro_snapshot = build_macro_snapshot(
                 store,
                 start=calendar[0],
                 end=calendar[-1],
                 calendar=calendar,
                 calendar_ticker=MARKET_TICKER,
+                thresholds=CompletenessThresholds(
+                    max_stale_days=args.max_stale_days,
+                    max_missing_ratio=args.max_missing_ratio,
+                ),
                 source=YFinanceMacroSource(),
                 root=MACRO_ROOT,
                 taken_on=None,      # 抓取當日;編號以它做前綴,不寫死在腳本裡

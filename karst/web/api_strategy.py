@@ -15,9 +15,13 @@
 淨值線、八項指標、成交標記**不在這裡**:那幾樣 ``/api/runs/<run_id>`` 早已
 交得出,策略頁直接沿用同一個端點,兩頁不會各算一套。
 
-一件事要講明白:庫內 ``factor_value`` 現時一列都沒有,即**逐日逐股的因子
-分數並未落檔**。所以選股快照只交得出落了檔的那幾樣(範圍、持倉、股數、
-權重),分數與過關格一格都不虛構——拿不到的東西前端就不顯示那一格
+選股快照與漏斗的數據來自**運行產物**:引擎每次運行把各決策日的候選名單各層
+與逐股分數落成兩份 parquet(``candidates`` / ``factor_scores``),與逐日淨值
+同一個目錄(KARST-056)。本檔只讀,不算——過了哪一關、幾多分、排第幾,
+全部是引擎跑那一趟的副產品,不是這裡另算一套。
+
+未有那兩份痕跡的運行(KARST-056 之前跑的,或者掃描格)照舊只畫得出範圍與
+持倉兩層,並在 ``notes`` 講明原因:**拿不到的東西一格都不虛構**
 (與 ``data.py`` 檔頭同一句)。
 """
 
@@ -31,6 +35,18 @@ from weakref import WeakKeyDictionary
 import pandas as pd
 
 from karst.data.snapshots import read_price_frame, read_universe
+from karst.engine.funnel import (
+    GATE_STAGES,
+    STAGE_HELD,
+    STAGE_LABELS,
+    STAGE_SCOPE,
+    STAGE_SELECTED,
+    STATUS_HELD,
+    STATUS_OUT,
+    STATUS_SELECTED,
+    STATUS_WATCH,
+    TRACE_STAGES,
+)
 from karst.errors import ContractViolation, NotFound
 from karst.metrics import trade_stats
 from karst.metrics.ratios import annual_volatility
@@ -73,6 +89,7 @@ def _cache(reader: Any) -> dict[str, Any]:
             "sweepCells": {},
             "universe": {},
             "prices": {},
+            "selection": {},
             "strategies": None,
         }
         _CACHES[reader] = bag
@@ -431,12 +448,92 @@ def _factor_for(symbol: str, factors: Any) -> Any:
     return None
 
 
-def picks(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
-    """某一次運行、某一日的選股快照:範圍、持倉、權重,連因子敞口。
+# 各層那句提示。「當日過關,或早前過關後仍在場」不是修辭:漏斗的語意是
+# 「到達該層」,而一隻早兩個月入場、今日仍在手的股票**已經到達過**每一層,
+# 所以它照計。少了這一句,持倉那一層就會比技術關還要闊,漏斗看落像壞了。
+_STAGE_HINTS = {
+    STAGE_SCOPE: "該策略在這一日看得見的全部標的(已扣除基準)",
+    "fundamental": "選股漏斗第一層(D-013):非結構化量化/基本面篩選;當日過關,或早前過關後仍在場",
+    "technical": "選股漏斗第二層(D-013):技術量化篩選;當日過關,或早前過關後仍在場",
+    "pattern": "選股漏斗第三層(D-013):圖形;當日過關,或早前過關後仍在場",
+    "theory": "選股漏斗第四層(D-013):技術分析理論;當日過關,或早前過關後仍在場",
+    STAGE_SELECTED: "決策日揀中要落注的名單;早前揀中而仍在場的一併計入",
+    STAGE_HELD: "扣除倉位上限與風控後,該日收工時實際持有",
+}
 
-    畫面上的漏斗只列**落了檔**的層。庫內 ``factor_value`` 一列都沒有,
-    基本面關與技術關那兩層現時無從算起,所以不畫——不是畫一個空格,
-    是連那一層都不出現,並在 ``notes`` 講明原因。
+# 表由窄到闊排:手上有的擺最前,未過關的墊底。
+_STATUS_ORDER = {STATUS_HELD: 0, STATUS_SELECTED: 1, STATUS_WATCH: 2, STATUS_OUT: 3}
+
+
+def _selection(reader: Any, run_id: str) -> dict[str, Any] | None:
+    """讀回這次運行的選股痕跡,整理成「決策日 → 各層名單 / 逐股分數」。
+
+    舊運行(或者掃描格)一張痕跡都沒有,回 ``None``——畫面照舊只畫得出的那
+    兩層,不虛構。整份讀回來一次就快取住:趨勢波段一次運行有近三千個決策日,
+    每次揀日子都重讀 parquet 就等到人不耐煩。
+    """
+    bag = _cache(reader)
+    if run_id in bag["selection"]:
+        return bag["selection"][run_id]
+
+    try:
+        kinds = reader.runs.selection_kinds(run_id)
+    except (NotFound, ContractViolation):
+        kinds = ()
+    if not kinds:
+        bag["selection"][run_id] = None
+        return None
+
+    by_date: dict[str, dict[str, set[int]]] = {}
+    stages: list[str] = []
+    if "candidates" in kinds:
+        frame = reader.runs.candidates(run_id)
+        present = set(frame["stage"])
+        stages = [stage for stage in TRACE_STAGES if stage in present]
+        for row in frame.itertuples():
+            day = _day(row.decision_date)
+            by_date.setdefault(day, {}).setdefault(str(row.stage), set()).add(
+                int(row.entity_id)
+            )
+
+    scores: dict[str, dict[int, dict[str, dict[str, Any]]]] = {}
+    score_names: list[str] = []
+    if "factor_scores" in kinds:
+        frame = reader.runs.factor_scores(run_id)
+        score_names = sorted(set(str(name) for name in frame["score_name"]))
+        for row in frame.itertuples():
+            day = _day(row.decision_date)
+            scores.setdefault(day, {}).setdefault(int(row.entity_id), {})[
+                str(row.score_name)
+            ] = {"value": _f(row.score), "rank": int(row.rank)}
+
+    days = sorted(set(by_date) | set(scores))
+    bag["selection"][run_id] = {
+        "stages": tuple(stages),
+        "byDate": by_date,
+        "scores": scores,
+        "days": days,
+        "scoreNames": tuple(score_names),
+    }
+    return bag["selection"][run_id]
+
+
+def _decision_day(trace: dict[str, Any], day: str) -> str | None:
+    """畫面停在 ``day``,那一刻手上這個組合是哪一個決策日的產物。
+
+    取 ``day`` 或之前**最近**那一個決策日——不會取之後那一個,取了就是偷看
+    未來(D-021 知情時間)。
+    """
+    earlier = [d for d in trace["days"] if d <= day]
+    return earlier[-1] if earlier else None
+
+
+def picks(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
+    """某一次運行、某一日的選股快照:各層名單、逐股分數、持倉權重,連因子敞口。
+
+    有選股痕跡的運行,漏斗按痕跡畫齊它真有的每一層,逐股分數逐隻寫出來
+    (KARST-056);未有痕跡的舊運行照舊只畫範圍與持倉兩層,並在 ``notes``
+    講明原因——**拿不到的東西一格都不虛構**。
     """
     run_id = _one(query, "run")
     if not run_id:
@@ -464,6 +561,29 @@ def picks(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
     closes = _closes(reader, record.snapshot_id, day)
     equity_value = _f(equity.loc[pd.Timestamp(day)])
 
+    # 選股痕跡:這一日的組合出自哪一個決策日,那一日各層揀了誰、逐股幾多分
+    trace = _selection(reader, run_id)
+    decision_day = None if trace is None else _decision_day(trace, day)
+    stage_ids: dict[str, set[int]] = {}
+    day_scores: dict[int, dict[str, dict[str, Any]]] = {}
+    if trace is not None and decision_day is not None:
+        stage_ids = {
+            stage: set(ids) for stage, ids in trace["byDate"].get(decision_day, {}).items()
+        }
+        day_scores = trace["scores"].get(decision_day, {})
+
+    held_ids = {int(entity) for entity, shares in held.items() if shares}
+    # 「到達該層」:早前過關而今日仍在場的,一樣算到達過每一層(見 _STAGE_HINTS)
+    reached = {
+        stage: set(stage_ids.get(stage, set())) | held_ids
+        for stage in (trace["stages"] if trace is not None else ())
+        if stage != STAGE_SCOPE
+    }
+    gate_ids: set[int] = set()
+    for stage in GATE_STAGES:
+        gate_ids |= reached.get(stage, set())
+    selected_ids = reached.get(STAGE_SELECTED, set())
+
     benchmarks = {t.upper() for t in reader.benchmarks}
     rows = []
     for item in _universe(reader, record.snapshot_id):
@@ -480,9 +600,30 @@ def picks(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
             else value / equity_value * 100.0
         )
         factor = _factor_for(item["symbol"], record.factors)
+        entity_id = item["entityId"]
+        is_held = shares is not None and shares > 0
+
+        if trace is None:
+            # 未有痕跡的舊運行:只講得出手上有沒有,講不出過了哪一關
+            status = "持倉" if is_held else "未持倉"
+            stages = [STAGE_SCOPE] + ([STAGE_HELD] if is_held else [])
+        else:
+            if is_held:
+                status = STATUS_HELD
+            elif entity_id in selected_ids:
+                status = STATUS_SELECTED
+            elif entity_id in gate_ids:
+                status = STATUS_WATCH
+            else:
+                status = STATUS_OUT
+            stages = [STAGE_SCOPE]
+            stages += [s for s in trace["stages"] if s != STAGE_SCOPE and entity_id in reached.get(s, set())]
+            if is_held:
+                stages.append(STAGE_HELD)
+
         rows.append(
             {
-                "entityId": item["entityId"],
+                "entityId": entity_id,
                 "symbol": item["symbol"],
                 "name": item["name"],
                 "kind": item["kind"],
@@ -493,14 +634,29 @@ def picks(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
                 "price": price,
                 "value": value,
                 "weightPct": weight,
-                "held": shares is not None and shares > 0,
-                "status": "持倉" if (shares is not None and shares > 0) else "未持倉",
+                "held": is_held,
+                "status": status,
+                "stages": stages,
+                "scores": day_scores.get(entity_id, {}),
             }
         )
-    rows.sort(key=lambda r: (-(r["weightPct"] or 0.0), r["symbol"]))
+
+    primary = trace["scoreNames"][0] if (trace and trace["scoreNames"]) else None
+
+    def _order(row: dict[str, Any]) -> tuple[Any, ...]:
+        rank = None if primary is None else (row["scores"].get(primary) or {}).get("rank")
+        return (
+            _STATUS_ORDER.get(row["status"], 9),
+            -(row["weightPct"] or 0.0),
+            rank if rank is not None else 10**9,
+            row["symbol"],
+        )
+
+    rows.sort(key=_order)
 
     scope = len(rows)
     holding = sum(1 for r in rows if r["held"])
+    in_scope = {r["entityId"] for r in rows}
 
     # 因子敞口:每一格因子由哪一個對象承載、佔多少比重(詞彙表「因子敞口」)。
     # 這次運行引用到的因子全部列出,未持有的照實寫 0,好讓分布看得出空格。
@@ -559,28 +715,64 @@ def picks(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
         "lastDay": days[-1],
         "equity": equity_value,
         "cashWeightPct": cash,
-        "funnel": [
-            {
-                "key": "scope",
-                "label": "範圍",
-                "hint": f"數據快照 {record.snapshot_id} 當日可交易的標的(已扣除基準)",
-                "count": scope,
-            },
-            {
-                "key": "held",
-                "label": "持倉",
-                "hint": "扣除倉位上限與風控後,該日收工時實際持有",
-                "count": holding,
-            },
-        ],
+        "decisionDate": decision_day,
+        "scoreNames": list(trace["scoreNames"]) if trace else [],
+        "funnel": _funnel(record, trace, scope, reached, in_scope, holding),
         "rows": rows,
         "exposure": exposure,
         "notes": {
-            "scoresAvailable": False,
-            "why": "定義庫未有逐日因子分數(factor_value 尚未落檔),"
-            "所以基本面關與技術關兩層、以及逐股分數欄位一格都不顯示。",
+            "scoresAvailable": bool(trace and trace["scoreNames"]),
+            "why": ""
+            if trace
+            else "這一次運行未有留下選股痕跡(候選名單與逐股分數),"
+            "所以中間各層與逐股分數欄位一格都不顯示;重跑一次即補得回。",
         },
     }
+
+
+def _funnel(
+    record: Any,
+    trace: dict[str, Any] | None,
+    scope: int,
+    reached: dict[str, set[int]],
+    in_scope: set[int],
+    holding: int,
+) -> list[dict[str, Any]]:
+    """漏斗:由闊到窄,只畫**真有數據**的層。
+
+    未有痕跡的運行照舊只得範圍與持倉兩層——一層都不虛構,亦不畫一格空的關口
+    扮篩過。有痕跡就把它真有的每一層畫出來:一套策略只用一兩層是常態
+    (D-013 明言),兩層畫兩格就是它的真相。
+    """
+    blocks = [
+        {
+            "key": STAGE_SCOPE,
+            "label": STAGE_LABELS[STAGE_SCOPE],
+            "hint": f"數據快照 {record.snapshot_id} 當日可交易的標的(已扣除基準)",
+            "count": scope,
+        }
+    ]
+    if trace is not None:
+        for stage in trace["stages"]:
+            if stage == STAGE_SCOPE:
+                continue
+            blocks.append(
+                {
+                    "key": stage,
+                    "label": STAGE_LABELS[stage],
+                    "hint": _STAGE_HINTS.get(stage, ""),
+                    "count": len(reached.get(stage, set()) & in_scope),
+                }
+            )
+    blocks.append(
+        {
+            "key": STAGE_HELD,
+            "label": STAGE_LABELS[STAGE_HELD],
+            "hint": _STAGE_HINTS[STAGE_HELD],
+            "count": holding,
+        }
+    )
+    return blocks
 
 
 # ---------------- 註冊 ----------------

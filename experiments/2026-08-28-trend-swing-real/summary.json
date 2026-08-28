@@ -70,7 +70,7 @@
       "stop.min_stop_fraction": "0.01",
       "stop.swing_lookback_days": "10"
     },
-    "version_no": 1
+    "version_no": 7
   },
   "period": [
     "2015-01-02",
@@ -79,21 +79,21 @@
   "run": {
     "artifacts": {
       "equity": {
-        "path": "C:\\projects\\Karst\\data\\runs\\run-7e3b498e086bdb88\\equity.parquet",
+        "path": "C:\\projects\\Karst\\data\\runs\\run-2120914a42d21911\\equity.parquet",
         "rows": 2929
       },
       "holdings": {
-        "path": "C:\\projects\\Karst\\data\\runs\\run-7e3b498e086bdb88\\holdings.parquet",
+        "path": "C:\\projects\\Karst\\data\\runs\\run-2120914a42d21911\\holdings.parquet",
         "rows": 12147
       },
       "orders": {
-        "path": "C:\\projects\\Karst\\data\\runs\\run-7e3b498e086bdb88\\orders.parquet",
+        "path": "C:\\projects\\Karst\\data\\runs\\run-2120914a42d21911\\orders.parquet",
         "rows": 487
       }
     },
     "engine_name": "vectorbt-order-func",
     "engine_version": "0.1.0",
-    "run_id": "run-7e3b498e086bdb88",
+    "run_id": "run-2120914a42d21911",
     "trading_days": 2929
   },
   "snapshot_id": "2026-08-28-a508d635a5fa",

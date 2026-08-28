@@ -6,7 +6,7 @@ title: Karst v1 引擎與首套策略成績
 ## 交付物
 - 引擎與治理層(可執行):`karst/`——定義庫(`store.py`、`schema.py`,表結構第 7 版)、唯一入口 `karst` 命令列(`gateway/`)、引擎兩條路徑(`engine/`:排名再平衡、規則與風控)、運行留痕(`runs/`)、八項指標(`metrics/`)、風控規則(`risk/`)、掃描與判讀(`sweep/`)、三套策略(`strategies/`:趨勢波段、因子混合、因子輪動連四個價格驅動器與六個宏觀驅動器)、宏觀快照(`data/macro.py`)、本機網頁殼(`karst/web`,`python -m karst.web --open`)。
 - 數據快照:`2026-08-28-a508d635a5fa`(SPY、QQQ 及十隻大型股,2015–2026 日線)、`2026-08-28-000b4820a23a`(六隻因子 ETF:SPY、QQQ、QUAL、VLUE、MTUM、USMV)、`2026-08-28-810facb50382`(宏觀十四序列,全部免費、免鑰匙)。三份全部經唯一入口重抓,抓取登記齊全。
-- 示例運行:趨勢波段 `run-7e3b498e086bdb88`、因子混合等權 `run-024df83fb4891c89`。
+- 示例運行:趨勢波段 `run-2120914a42d21911`(參數集「示例-KARST-028」第 7 版;舊編號 `run-7e3b498e086bdb88` 因參數集被逐版改動而失效,見 A-009)、因子混合等權 `run-024df83fb4891c89`。
 - 成績與掃描落檔(每個目錄有腳本、結果檔與 README):`experiments/2026-08-28-trend-swing-real/`、`factor-mix-real/`、`factor-mix-weight-grid/`、`factor-rotation-drivers/`、`costs-and-regrid/`、`macro-drivers/`、`axis-aware-verdict/`、`macro-rejudge/`。
 - 調研:`research/2026-08-28-factor-etf-inception-turnover.md`(因子 ETF 歷史長度與換手)。
 - 決策簿新增 D-026 至 D-028(快照凍結、價格歸一化與等價重用);詞彙表 `CONTEXT.md` 隨票補齊。

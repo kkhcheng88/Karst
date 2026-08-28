@@ -34,6 +34,18 @@ import pandas as pd
 
 from ..errors import ContractViolation
 from .contracts import Order, TradingCosts, _normalise_prices, resolve_costs
+from .funnel import (
+    STAGE_SCOPE,
+    STAGE_SELECTED,
+    STAGE_TECHNICAL,
+    SelectionTrace,
+    SelectionTraceBuilder,
+)
+
+# 規則路徑的兩個逐股分數(KARST-056)。名字就是畫面上那一欄的欄名——
+# 一個數字叫什麼名,由算它出來的這條路徑講清楚,不硬套「因子分數」的殼。
+SCORE_BREAKOUT_MARGIN: Final[str] = "突破幅度"
+SCORE_PLAN_REWARD_RISK: Final[str] = "計劃賠率"
 
 # 注碼基數(sizing basis)的兩個選項。
 # ``current_equity`` 是唯一正確的一個;``initial_cash`` 只保留給對照臂——
@@ -410,6 +422,15 @@ class RuleSignals:
     - ``stop_fraction`` / ``target_fraction`` 同一對價位換算成佔成交價的比例
     - ``month_id`` 每根 K 線屬於第幾個月,熔斷用來認新一個月
     - ``exits`` 每一張訊號的收場(規則 2、3 行到底),引擎與案例表共用同一份
+
+    最後四件是**決策日那一邊**的痕跡(第 i 列就是第 i 根 K 線收市判出來的東西,
+    未 shift):選股漏斗與逐股分數要的正是這一邊,因為問的是「那一日看見什麼」,
+    不是「下一日做了什麼」(KARST-056)。
+
+    - ``breakout`` 規則 1 過關沒有:收市價高過前 N 日最高
+    - ``plan_ready`` 規則 2、3 加賠率門檻全部過關(即這一根收市真的出了訊號)
+    - ``breakout_margin`` 收市價高出前 N 日最高幾多(比例);負數即未破頂
+    - ``plan_reward_risk`` 計劃賠率 =(目標 − 收市)/(收市 − 止蝕)
     """
 
     entries: np.ndarray
@@ -419,6 +440,10 @@ class RuleSignals:
     target_fraction: np.ndarray
     month_id: np.ndarray
     exits: ExitPlan
+    breakout: np.ndarray
+    plan_ready: np.ndarray
+    breakout_margin: np.ndarray
+    plan_reward_risk: np.ndarray
 
     @property
     def count(self) -> int:
@@ -482,6 +507,12 @@ def build_rule_signals(panel: BarPanel, params: RuleStrategyParams) -> RuleSigna
         )
         signal = breakout & tradable
 
+        # 決策日那一邊的兩個數(KARST-056):突破幅度是規則 1 那道閘的連續版
+        # ——閘本身是是非題(過或不過),但「高出前 N 日最高幾多」才排得出
+        # 名次,選股快照要的正是這個。計劃賠率就是規則 3 那道閘量的數。
+        breakout_margin = close / prior_high - 1.0
+        plan_reward_risk = np.where(plan_risk > 0.0, reward_risk, np.nan)
+
     rows, columns = close.shape
     entries = np.zeros((rows, columns), dtype=np.bool_)
     levels = {name: np.full((rows, columns), np.nan) for name in ("stop", "target", "sf", "tf")}
@@ -501,8 +532,47 @@ def build_rule_signals(panel: BarPanel, params: RuleStrategyParams) -> RuleSigna
         stop_fraction=blank(levels["sf"]),
         target_fraction=blank(levels["tf"]),
         month_id=month_ids(panel.dates),
+        breakout=np.asarray(breakout, dtype=np.bool_),
+        plan_ready=np.asarray(signal, dtype=np.bool_),
+        breakout_margin=np.asarray(breakout_margin, dtype=float),
+        plan_reward_risk=np.asarray(plan_reward_risk, dtype=float),
         exits=resolve_exits(panel, entries, stop_level, target_level),
     )
+
+
+def rule_selection_trace(panel: BarPanel, signals: RuleSignals) -> SelectionTrace | None:
+    """把規則路徑逐根 K 線的判斷,攤成選股漏斗的候選名單與逐股分數。
+
+    三層(KARST-056、D-013):
+
+    - **範圍**——這一日面板上有價的全部實體。K 線面板不收留空的格,所以就是
+      全部;寫出來是為了讓漏斗第一層有一個由引擎交出來的數,而不是由畫面那邊
+      自己數宇宙。
+    - **技術關**(D-013 第二層)——規則 1 過關:收市價高過前 N 日最高。
+    - **入選**——規則 2、3 加賠率門檻亦全部過關,即這一根收市真的出了訊號。
+      再窄一層的「持倉」不在這裡:落唔落到注要看錢與熔斷,那是逐日持倉那條
+      序列答的事,存兩份就會有兩個講法。
+
+    分數兩個:突破幅度與計劃賠率,兩個都取**決策日那一邊**的值。留空的一格
+    不入表(缺失=不參與,D-021 第 4 條)。
+    """
+    dates = list(panel.dates)
+    entity_ids = list(panel.entity_ids)
+    if not dates or not entity_ids:
+        return None
+
+    builder = SelectionTraceBuilder()
+    scope = np.isfinite(panel.close.to_numpy())
+    builder.stage_panel(STAGE_SCOPE, dates, entity_ids, scope)
+    builder.stage_panel(STAGE_TECHNICAL, dates, entity_ids, signals.breakout & scope)
+    builder.stage_panel(STAGE_SELECTED, dates, entity_ids, signals.plan_ready & scope)
+    builder.score_panel(
+        SCORE_BREAKOUT_MARGIN, dates, entity_ids, signals.breakout_margin
+    )
+    builder.score_panel(
+        SCORE_PLAN_REWARD_RISK, dates, entity_ids, signals.plan_reward_risk
+    )
+    return builder.build()
 
 
 def resolve_exits(
@@ -611,6 +681,19 @@ class RuleBacktestResult:
     params: RuleStrategyParams
     entry_signals: int
     engine_name: str
+    # 選股痕跡(KARST-056)。留空即這次沒有交出來——舊呼叫一字不用改,
+    # 落痕那一層見不到就當這條路徑交不出,照樣落痕。
+    selection: SelectionTrace | None = None
+
+    @property
+    def candidates(self) -> pd.DataFrame | None:
+        """候選名單:決策日 × 層 × 實體編號。落痕那一層自己會拿走這一件。"""
+        return None if self.selection is None else self.selection.candidates
+
+    @property
+    def factor_scores(self) -> pd.DataFrame | None:
+        """逐股分數:決策日 × 實體編號 × 分數名 → 數值與當日排名。"""
+        return None if self.selection is None else self.selection.factor_scores
 
     @property
     def total_return(self) -> float:

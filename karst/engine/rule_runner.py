@@ -33,7 +33,13 @@ from __future__ import annotations
 
 from ..errors import ContractViolation
 from .protocol import RuleEngine
-from .rules import BarPanel, RuleBacktestResult, RuleStrategyParams, build_rule_signals
+from .rules import (
+    BarPanel,
+    RuleBacktestResult,
+    RuleStrategyParams,
+    build_rule_signals,
+    rule_selection_trace,
+)
 
 
 def run_rule_strategy(
@@ -77,6 +83,9 @@ def run_rule_strategy(
         params=params,
         entry_signals=signals.count,
         engine_name=getattr(engine, "name", type(engine).__name__),
+        # 選股漏斗與逐股分數:由**同一份**訊號攤出來,所以畫面上見到的
+        # 「那一日過了哪一關」與引擎真正據以下單的,必然是同一件事(KARST-056)
+        selection=rule_selection_trace(panel, signals),
     )
 
 

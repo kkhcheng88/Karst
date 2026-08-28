@@ -14,6 +14,7 @@ import numpy as np
 import pandas as pd
 
 from ..errors import ContractViolation
+from .funnel import SelectionTrace
 
 # 換倉節奏(rebalance cadence)的全部選項。
 # 這是一張選單,**不是**預設值:D-009 第 7 條明令引擎必須節奏無關、不設任何
@@ -350,6 +351,19 @@ class BacktestResult:
     factor_name: str
     factor_version_id: int
     engine_name: str
+    # 選股痕跡(KARST-056):逐個決策日的候選名單各層與逐股因子分數。
+    # 留空即這次沒有交出來——落痕那一層見不到就當交不出,照樣落痕。
+    selection: "SelectionTrace | None" = None
+
+    @property
+    def candidates(self) -> "pd.DataFrame | None":
+        """候選名單:決策日 × 層 × 實體編號。落痕那一層自己會拿走這一件。"""
+        return None if self.selection is None else self.selection.candidates
+
+    @property
+    def factor_scores(self) -> "pd.DataFrame | None":
+        """逐股因子分數:決策日 × 實體編號 × 分數名 → 數值與當日排名。"""
+        return None if self.selection is None else self.selection.factor_scores
 
     @property
     def total_return(self) -> float:

@@ -509,18 +509,50 @@
   /* ============================================================
      六、選股快照與漏斗
      ============================================================ */
-  var FUNNEL_COLOR = ['#6b7488', '#26a69a', '#4a9eff', '#f0a83c'];
+  /* 由闊到窄各層一個色;層數按運行真有的痕跡而定,所以按位取色不夠用,
+     取到盡就沿用最後一個(design-system 5.1) */
+  var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
+  function funnelColor(i, total) {
+    if (i === 0) return FUNNEL_COLOR[0];
+    if (i === total - 1) return FUNNEL_COLOR[FUNNEL_COLOR.length - 1];
+    return FUNNEL_COLOR[Math.min(i, FUNNEL_COLOR.length - 2)];
+  }
 
-  function picksTable(rows) {
-    /* 這一頁全頁只有瀏覽器那一條捲軸(design-system 2.1),表不外加捲動框 */
+  /* 四個狀態:持倉/入選/觀察/未過(詞彙表「選股快照」)。舊運行只答得出
+     持倉/未持倉兩個,一樣落得到這張對照表 */
+  var ST_CLS = {
+    '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch',
+    '未過': 'st-out', '未持倉': 'st-out'
+  };
+
+  /* 分數的位數:賠率一類個位數要看到小數,比重一類百分比看兩位就夠 */
+  function scoreText(cell) {
+    if (!cell || cell.value === null || cell.value === undefined) return '<span class="dim">—</span>';
+    var v = cell.value;
+    var digits = Math.abs(v) >= 100 ? 1 : (Math.abs(v) >= 1 ? 2 : 3);
+    return KV.num(v, digits) +
+      (cell.rank ? ' <span class="dim" style="font-size:11px">#' + cell.rank + '</span>' : '');
+  }
+
+  function picksTable(rows, scoreNames) {
+    /* 這一頁全頁只有瀏覽器那一條捲軸(design-system 2.1),表不外加捲動框。
+       欄寬是固定佈局(table-layout:fixed),分數欄一多,沒有指定寬度的「名稱」
+       就會被壓到剩一個字。所以分數欄按數量收窄,其餘欄位一併收緊,
+       把餘下的寬度留給名稱;名稱過長照舊省略號收尾,全名在 title 上。 */
+    var names = scoreNames || [];
+    var scoreW = names.length >= 3 ? 72 : (names.length === 2 ? 80 : 96);
     return '<table class="kt"><thead><tr>' +
-        '<th style="width:64px">代號</th>' +
+        '<th style="width:60px">代號</th>' +
         '<th>名稱</th>' +
-        '<th style="width:64px">因子</th>' +
+        '<th style="width:56px">因子</th>' +
         '<th style="width:48px">類型</th>' +
-        '<th class="num" style="width:78px">股數</th>' +
-        '<th class="num" style="width:64px">權重</th>' +
-        '<th style="width:70px">狀態</th>' +
+        names.map(function (n) {
+          return '<th class="num" style="width:' + scoreW + 'px" title="' + KV.esc(n) + '">' +
+            KV.esc(n) + '</th>';
+        }).join('') +
+        '<th class="num" style="width:72px">股數</th>' +
+        '<th class="num" style="width:60px">權重</th>' +
+        '<th style="width:64px">狀態</th>' +
       '</tr></thead><tbody>' +
       rows.map(function (r) {
         return '<tr>' +
@@ -528,9 +560,12 @@
           '<td title="' + KV.esc(r.name) + '">' + KV.esc(KV.truncate(r.name, 22)) + '</td>' +
           '<td class="dim">' + KV.esc(r.family || '—') + '</td>' +
           '<td class="dim">' + KV.esc(r.kind) + '</td>' +
+          names.map(function (n) {
+            return '<td class="num">' + scoreText((r.scores || {})[n]) + '</td>';
+          }).join('') +
           '<td class="num">' + (r.shares === null ? '<span class="dim">—</span>' : KV.num(r.shares, 0)) + '</td>' +
           '<td class="num">' + (r.weightPct === null ? '<span class="dim">—</span>' : KV.pctPlain(r.weightPct)) + '</td>' +
-          '<td><span class="st ' + (r.held ? 'st-hold' : 'st-out') + '">' + KV.esc(r.status) + '</span></td>' +
+          '<td><span class="st ' + (ST_CLS[r.status] || 'st-out') + '">' + KV.esc(r.status) + '</span></td>' +
         '</tr>';
       }).join('') + '</tbody></table>';
   }
@@ -542,11 +577,15 @@
     el.basis.innerHTML =
       '<span class="mono">' + KV.esc(p.snapshotId) + '</span>' +
       '<span>權重＝該換倉日算出的比例,按當日收市價與淨值計</span>' +
+      (p.decisionDate && p.decisionDate !== p.date
+        ? '<span>分數與名單出自決策日 <span class="mono">' + KV.esc(p.decisionDate) + '</span></span>'
+        : '') +
       (p.notes && !p.notes.scoresAvailable
-        ? '<span class="dim" title="' + KV.esc(p.notes.why) + '">未有逐日因子分數</span>'
+        ? '<span class="dim" title="' + KV.esc(p.notes.why) + '">未有逐股分數</span>'
         : '');
 
-    /* 漏斗:只畫落了檔的層(design-system 5.1「到達該層」的語意) */
+    /* 漏斗:只畫真有數據的層(design-system 5.1「到達該層」的語意) */
+    var total = p.funnel.length;
     el.funnel.className = 'funnel-bar' + (S.layer ? ' has-filter' : '');
     el.funnel.innerHTML = p.funnel.map(function (f, i) {
       var prev = i ? p.funnel[i - 1].count : 0;
@@ -556,7 +595,7 @@
           'style="flex:' + Math.max(1, f.count) + ' 1 74px" ' +
           'title="' + KV.esc(f.label + '　' + f.hint) +
             (i ? '　點一下:只看這一層' : '　點一下:取消篩選') + '">' +
-          '<div class="fb-block" style="background:' + FUNNEL_COLOR[i] + '">' +
+          '<div class="fb-block" style="background:' + funnelColor(i, total) + '">' +
             '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
             '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
           '</div>' +
@@ -564,7 +603,11 @@
         '</button>';
     }).join('');
 
-    var rows = S.layer ? p.rows.filter(function (r) { return r.held; }) : p.rows;
+    /* 篩到某一層 = 只看到達了那一層的名單;每一行自己帶住它到過哪幾層 */
+    var key = S.layer ? p.funnel[S.layer].key : null;
+    var rows = key
+      ? p.rows.filter(function (r) { return (r.stages || []).indexOf(key) >= 0; })
+      : p.rows;
 
     el.filter.innerHTML = S.layer
       ? '<span class="sp-filter">只看 ' + KV.esc(p.funnel[S.layer].label) + '・' + rows.length +
@@ -574,7 +617,7 @@
     if (clear) clear.addEventListener('click', function () { S.layer = 0; renderPicks(); });
 
     el.picks.innerHTML = rows.length
-      ? picksTable(rows)
+      ? picksTable(rows, p.scoreNames)
       : '<div class="sp-empty">這一層在本日沒有標的。</div>';
 
     renderExposure();

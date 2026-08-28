@@ -57,10 +57,21 @@ from ..engine.contracts import (
     PricePanel,
     RankingRebalanceParams,
 )
+from ..engine.funnel import (
+    STAGE_SCOPE,
+    STAGE_SELECTED,
+    SelectionTrace,
+    SelectionTraceBuilder,
+)
 from ..engine.protocol import PortfolioEngine
 
 # 策略類型(store.STRATEGY_TYPES 八選一):因子混合屬多因子。
 FACTOR_MIX_STRATEGY_TYPE: Final[str] = "multifactor"
+
+# 這條路的逐股分數叫什麼(KARST-056)。這套策略**沒有排名這一步**——四格敞口
+# 的比例由參數集寫定,每個換倉日照抄。所以每隻 ETF 那個數字是目標比重,不是
+# 一個因子分數;欄名照實寫,不硬套「因子分數」的殼扮有排名。
+SCORE_TARGET_WEIGHT: Final[str] = "目標比重"
 
 # 權重加總的容差。只用來擋浮點尾數,不是「差不多就當一」——差得遠一律拒收。
 _SUM_TOLERANCE: Final[float] = 1e-9
@@ -294,6 +305,18 @@ class FactorMixResult:
     params: FactorMixParams
     exposures: tuple[FactorExposure, ...]
     engine_name: str
+    # 選股痕跡(KARST-056)。留空即這次沒有交出來。
+    selection: SelectionTrace | None = None
+
+    @property
+    def candidates(self) -> pd.DataFrame | None:
+        """逐個換倉決策日,範圍 → 入選兩層的名單。"""
+        return None if self.selection is None else self.selection.candidates
+
+    @property
+    def factor_scores(self) -> pd.DataFrame | None:
+        """逐個換倉決策日、逐隻 ETF 的目標比重,連當日排名。"""
+        return None if self.selection is None else self.selection.factor_scores
 
     @property
     def total_return(self) -> float:
@@ -552,6 +575,32 @@ def factor_mix_targets(
     return targets, tuple(rebalances)
 
 
+def factor_mix_selection_trace(
+    rebalances: Sequence[FactorMixRebalance],
+) -> SelectionTrace | None:
+    """把每一次換倉的目標比重,攤成選股漏斗的候選名單與逐股分數(KARST-056)。
+
+    這套策略的漏斗**只有兩層**,而那正是它的真相:範圍就是四格敞口那四隻 ETF,
+    入選就是比重大於零那幾隻。中間的基本面關與技術關一層都沒有——比例由參數集
+    寫定,沒有任何一道篩選閘(D-013 明言每個策略自選一至多層,多數只用一兩層)。
+    畫一個空關口出來扮四層,只會令人以為它篩過而其實沒有。
+    """
+    if not rebalances:
+        return None
+    builder = SelectionTraceBuilder()
+    for rebalance in rebalances:
+        day = rebalance.decision_date
+        weights = {int(entity): float(weight) for entity, weight in rebalance.weights}
+        builder.stage(day, STAGE_SCOPE, sorted(weights))
+        builder.stage(
+            day,
+            STAGE_SELECTED,
+            sorted(entity for entity, weight in weights.items() if weight > 0.0),
+        )
+        builder.score(day, SCORE_TARGET_WEIGHT, weights)
+    return builder.build()
+
+
 # ----------------------------------------------------------------------
 # 跑一次回測
 # ----------------------------------------------------------------------
@@ -615,6 +664,7 @@ def run_factor_mix(
         params=params,
         exposures=exposures,
         engine_name=getattr(engine, "name", type(engine).__name__),
+        selection=factor_mix_selection_trace(rebalances),
     )
 
 

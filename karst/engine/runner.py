@@ -12,6 +12,7 @@ from ..errors import ContractViolation
 from ..store import DefinitionStore
 from .cadence import rebalance_schedule
 from .contracts import BacktestResult, PricePanel, RankingRebalanceParams, TradingCosts
+from .funnel import SelectionTraceBuilder
 from .protocol import PortfolioEngine
 from .selection import build_targets, read_factor_panel
 
@@ -75,12 +76,17 @@ def run_ranking_rebalance(
         version_no=version_no,
         entity_ids=panel.entity_ids,
     )
+    # 選股痕跡與目標比重表同一趟算出來(KARST-056):畫面上的排名,就是引擎
+    # 據以落注那一份,不會各有一套。
+    trace = SelectionTraceBuilder()
     targets, rebalances = build_targets(
         dates=panel.dates,
         factor_panel=factor_panel,
         schedule=schedule,
         params=params,
         entity_ids=panel.entity_ids,
+        trace=trace,
+        factor_name=version.name,
     )
 
     if engine is None:
@@ -100,6 +106,7 @@ def run_ranking_rebalance(
         factor_name=version.name,
         factor_version_id=version.factor_version_id,
         engine_name=getattr(engine, "name", type(engine).__name__),
+        selection=trace.build(),
     )
 
 

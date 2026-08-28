@@ -34,7 +34,15 @@
 """
 
 from ..store import FORMAL_RUN, SWEEP_RUN, RunArtifact, RunRecord
-from .registry import AUDIT_SERIES_KINDS, BREAKER_BLOCKED, SIZING_BASIS, RunStore
+from .registry import (
+    AUDIT_SERIES_KINDS,
+    BREAKER_BLOCKED,
+    SELECTION_CANDIDATES,
+    SELECTION_KINDS,
+    SELECTION_SCORES,
+    SIZING_BASIS,
+    RunStore,
+)
 from .synthetic import SyntheticSimulation, synthetic_simulation
 from .window import (
     BASE,
@@ -51,6 +59,9 @@ __all__ = [
     "BASE",
     "BREAKER_BLOCKED",
     "FORMAL_RUN",
+    "SELECTION_CANDIDATES",
+    "SELECTION_KINDS",
+    "SELECTION_SCORES",
     "SIZING_BASIS",
     "SWEEP_RUN",
     "TRADING_DAYS_PER_YEAR",

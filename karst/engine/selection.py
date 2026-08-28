@@ -19,6 +19,7 @@ import pandas as pd
 
 from ..store import DefinitionStore
 from .contracts import Rebalance, RankingRebalanceParams
+from .funnel import STAGE_SCOPE, STAGE_SELECTED, SelectionTraceBuilder
 
 
 def read_factor_panel(
@@ -71,6 +72,8 @@ def build_targets(
     schedule: Sequence[tuple[pd.Timestamp, pd.Timestamp]],
     params: RankingRebalanceParams,
     entity_ids: Sequence[int],
+    trace: SelectionTraceBuilder | None = None,
+    factor_name: str | None = None,
 ) -> tuple[pd.DataFrame, tuple[Rebalance, ...]]:
     """目標比重表:換倉的**執行日**那一行寫比重,其餘一律 ``NaN``。
 
@@ -79,6 +82,11 @@ def build_targets(
 
     同分怎樣排:先按分數,再按實體編號由細到大。同一批數據跑一百次,揀中的
     是同一批股票。
+
+    交一個 ``trace`` 進來,順手把選股痕跡記低(KARST-056):範圍與入選兩層,
+    加逐股的因子分數與當日排名。**這條路上的分數是真正的因子分數**,所以
+    ``factor_name`` 就是分數名。記痕跡是同一趟計算的副產品,不是另跑一次
+    ——畫面見到的排名,與引擎據以落注的排名必然是同一份。
     """
     columns = [int(entity) for entity in entity_ids]
     known = set(columns)
@@ -104,6 +112,17 @@ def build_targets(
                 weight=weight,
             )
         )
+
+        if trace is not None:
+            trace.stage(decision_day, STAGE_SCOPE, columns)
+            trace.stage(decision_day, STAGE_SELECTED, chosen)
+            if factor_name:
+                trace.score(
+                    decision_day,
+                    factor_name,
+                    {int(entity): float(value) for entity, value in scores.items()},
+                    higher_is_better=not ascending,
+                )
     return targets, tuple(rebalances)
 
 
