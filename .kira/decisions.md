@@ -790,3 +790,24 @@
   > Also I remember you said the 策略詳情 should be a heatmap band? Why it is still line by line? / 是,照這個改
 
 - 影響：網頁殼策略頁重組、導覽改兩項(KARST-079,接 KARST-078 之後做);D-035 的「三頁」部分取代;KARST-066 面板版式問題前提再變(頂層只有兩頁)。
+
+## D-037 歷次運行表改為排名表(年化、Sortino、最大回撤、勝率可排序,拿走快照與參數兩欄);「因子分布」改為「持股分布」(點運行行即換,列最常持有前十股票、各股在該次運行內的累計報酬、行業佔比);因子敞口搬去運行詳情
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-29
+
+- 出處：用戶 2026-08-29
+
+- 背景：用戶指出策略詳情是該策略的總覽、歷次運行是逐次;引入自建量化因子後運行會數以千計,必須有排名;快照與參數在表上不需要;「因子分布」實際應是股票分布,並與歷次運行配對;隨後補充要顯示各股在該次運行內的累計報酬。再補充:策略頁的「檢視中」區塊(該次運行的參數清單、運行編號、快照、視窗)不必顯示(原話「Is not need to show in the strategy page」),這些資料只在運行詳情顯示。
+
+- 決策：策略詳情頁的歷次運行表:(1) 欄位為運行編號、版本、年化、Sortino、最大回撤、勝率(旁附交易次數),四個成績欄可點欄頭排序,預設按年化由高至低;快照、參數兩欄拿走(在運行詳情才看);(2) 幾千條時只列前 50,底下「載入更多」;失敗運行照 D-034 預設隱藏。「因子分布」一段改為「持股分布」:與歷次運行配對,點運行表某一行即換成該次運行的持股分布——最常持有的前十隻股票、每隻在該次運行內的累計報酬、行業佔比;因子敞口與因子版本搬到運行詳情頁。策略頁次序因此為:門面成績 → 熱力圖帶 → 歷次運行(排名)+ 持股分布 → 選股漏斗(補充 D-036)。
+
+- 考慮過的替代方案：預設按 Sortino 排序(未選);勝率換成交易次數一欄(未選);持股分布與因子分布並列(未選);持股分布不含行業佔比(未選)。
+
+- 為何選這個：用戶原話:「when we are getting thousands of run later … you need to have ranking on the run for 年化, Sortino, 最大回撤, 勝率」「快照, 參數 is not needed」「因子分布 is actually the Stock 分布 but not 因子 … can be paired up with the 歷次運行」「should the 累計報酬 of the Stock in the run as well」;勝率附交易次數、前 50 分頁、因子搬去運行詳情是主 agent 提出、用戶選「照這樣做」。
+
+- **用戶原話（原文照錄）**
+
+  > you need to have ranking on the run for 年化, Sortino, 最大回撤, 勝率?? / 快照, 參數 is not needed. And I think 因子分布 is actually thhe Stock 分布 but not 因子??? This can be paired up with the 歷次運行 / 因子分布 for the Stock can should the 累計報酬 of the Stock in the run as well
+
+- 影響：策略頁運行表與持股分布段重做、運行詳情頁加因子段(KARST-080,接 KARST-079);後端要有每次運行的持股彙總與每股累計報酬 API。
