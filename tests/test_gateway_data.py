@@ -163,9 +163,14 @@ def test_list_shows_every_snapshot_in_the_store(karst, bars_file):
 def test_universe_registry_lists_through_the_gateway(karst):
     code, output = karst("data", "universe")
     assert code == 0
-    for key in ("starter", "factor-etf", "sp500-historical"):
+    for key in ("starter", "factor-etf", "sector-etf", "sp500-historical"):
         assert key in output
     assert "fja05680/sp500" in output and "抓取日期 2026-08-29" in output
+
+    code, sector_listing = karst("data", "universe", "--name", "sector-etf")
+    assert code == 0
+    assert "XLK" in sector_listing and "XLRE" in sector_listing and "XLC" in sector_listing
+    assert "SPY" in sector_listing  # 主日曆錨連同十一隻行業 ETF 一併列出(KARST-073)
 
     code, listing = karst("data", "universe", "--name", "sp500-historical")
     assert code == 0

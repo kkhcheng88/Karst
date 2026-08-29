@@ -60,6 +60,27 @@ FACTOR_ETF_UNIVERSE: tuple[UniverseMember, ...] = (
     UniverseMember("USMV", "etf", "iShares MSCI USA Min Vol Factor ETF"),
 )
 
+# SPDR 行業 ETF(KARST-073;用戶 2026-08-29 裁決要測「XLK and related series of
+# industrial ETF」)。SPY 是主日曆錨,已在起步名單登記過,這裡不重覆登記——
+# _dedupe 按先出現者為準,SPY 仍解到起步名單那一員。十一隻分類 ETF 裡九隻
+# (XLK~XLB)1998-12-16 隨 State Street Select Sector SPDR 系列同日上市;
+# XLRE 2015-10-07 上市、XLC 2018-06-18 上市,兩隻在本票凍結的 2015-01 起窗口內
+# 有起始缺口(D-026 第 6 條同一條理:抓不到就留白,不補假數據),缺口說明寫入
+# 凍結那個快照的 --note,不在這裡假裝它們有更早的數據。
+SECTOR_ETF_UNIVERSE: tuple[UniverseMember, ...] = (
+    UniverseMember("XLK", "etf", "Technology Select Sector SPDR Fund"),
+    UniverseMember("XLF", "etf", "Financial Select Sector SPDR Fund"),
+    UniverseMember("XLE", "etf", "Energy Select Sector SPDR Fund"),
+    UniverseMember("XLV", "etf", "Health Care Select Sector SPDR Fund"),
+    UniverseMember("XLI", "etf", "Industrial Select Sector SPDR Fund"),
+    UniverseMember("XLY", "etf", "Consumer Discretionary Select Sector SPDR Fund"),
+    UniverseMember("XLP", "etf", "Consumer Staples Select Sector SPDR Fund"),
+    UniverseMember("XLU", "etf", "Utilities Select Sector SPDR Fund"),
+    UniverseMember("XLB", "etf", "Materials Select Sector SPDR Fund"),
+    UniverseMember("XLRE", "etf", "Real Estate Select Sector SPDR Fund"),  # 2015-10-07 上市
+    UniverseMember("XLC", "etf", "Communication Services Select Sector SPDR Fund"),  # 2018-06-18 上市
+)
+
 
 # ----------------------------------------------------------------------
 # 標普 500 歷史成分(KARST-065)
@@ -179,7 +200,7 @@ def _dedupe(*groups: tuple[UniverseMember, ...]) -> tuple[UniverseMember, ...]:
 # 登記在案的全部代號。唯一入口按這份查代號,**預設批次仍然是起步名單**——
 # 登記與預設是兩件事,這裡分開幾份正是為了不把它們混做一件。
 UNIVERSE_REGISTRY: tuple[UniverseMember, ...] = _dedupe(
-    STARTER_UNIVERSE, FACTOR_ETF_UNIVERSE, SP500_HISTORICAL_UNIVERSE
+    STARTER_UNIVERSE, FACTOR_ETF_UNIVERSE, SP500_HISTORICAL_UNIVERSE, SECTOR_ETF_UNIVERSE
 )
 
 NAMED_UNIVERSES: tuple[UniverseListing, ...] = (
@@ -196,6 +217,19 @@ NAMED_UNIVERSES: tuple[UniverseListing, ...] = (
         title="因子敞口 ETF",
         description="四隻 MSCI 因子 ETF(KARST-031 因子混合、KARST-036 因子輪動用)。",
         members=FACTOR_ETF_UNIVERSE,
+        membership=(),
+        sources=(),
+    ),
+    UniverseListing(
+        key="sector-etf",
+        title="SPDR 行業 ETF",
+        description=(
+            "十一隻 SPDR 行業 ETF(XLK 一族)連 SPY 作主日曆錨(KARST-073)。"
+            "XLK/XLF/XLE/XLV/XLI/XLY/XLP/XLU/XLB 九隻 1998-12-16 上市;"
+            "XLRE 2015-10-07 上市;XLC 2018-06-18 上市——後兩隻在 2015-01 起的"
+            "凍結窗口內有起始缺口,不補假數據,缺口寫在快照說明檔的註記。"
+        ),
+        members=(UniverseMember("SPY", "etf", "SPDR S&P 500 ETF Trust"), *SECTOR_ETF_UNIVERSE),
         membership=(),
         sources=(),
     ),

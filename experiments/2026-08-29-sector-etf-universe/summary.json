@@ -1,0 +1,80 @@
+{
+  "ticket": "KARST-073",
+  "date": "2026-08-29",
+  "universe_registry_key": "sector-etf",
+  "universe_title": "SPDR 行業 ETF",
+  "tickers": [
+    "SPY", "XLK", "XLF", "XLE", "XLV", "XLI",
+    "XLY", "XLP", "XLU", "XLB", "XLRE", "XLC"
+  ],
+  "inception_dates": {
+    "SPY": "1993-01-22",
+    "XLK": "1998-12-16",
+    "XLF": "1998-12-16",
+    "XLE": "1998-12-16",
+    "XLV": "1998-12-16",
+    "XLI": "1998-12-16",
+    "XLY": "1998-12-16",
+    "XLP": "1998-12-16",
+    "XLU": "1998-12-16",
+    "XLB": "1998-12-16",
+    "XLRE": "2015-10-07",
+    "XLC": "2018-06-18"
+  },
+  "snapshots": {
+    "sector_etf": {
+      "snapshot_id": "2026-08-29-d5c393e65534",
+      "window": "2015-01-02~2026-08-28",
+      "trading_days": 2930,
+      "entity_count": 12,
+      "row_count": 35160,
+      "missing_rows_total": 1064,
+      "missing_ratio_overall_pct": 3.03,
+      "missing_ratio_by_ticker_pct": {
+        "SPY": 0.0,
+        "XLK": 0.0,
+        "XLF": 0.0,
+        "XLE": 0.0,
+        "XLV": 0.0,
+        "XLI": 0.0,
+        "XLY": 0.0,
+        "XLP": 0.0,
+        "XLU": 0.0,
+        "XLB": 0.0,
+        "XLRE": 6.59,
+        "XLC": 29.73
+      },
+      "notes": [
+        "缺口·XLRE 2015-10-07 上市之前(2015-01-02~2015-10-06)無數據,起始缺口,不補假數據(D-026 第 6 條)",
+        "缺口·XLC 2018-06-18 上市之前(2015-01-02~2018-06-17)無數據,起始缺口,不補假數據(D-026 第 6 條)"
+      ]
+    },
+    "factor_etf_existing": {
+      "snapshot_id": "2026-08-28-000b4820a23a",
+      "note": "既有快照(KARST-057),本票不改動,只在其上加一批 Alpha158 因子值"
+    }
+  },
+  "alpha158_batches": {
+    "sector_etf": {
+      "snapshot_id": "2026-08-29-d5c393e65534",
+      "factor_count": 158,
+      "cells_expected": 5555280,
+      "cells_written": 5400668,
+      "cells_blank": 154612,
+      "missing_ratio_pct": 2.7832,
+      "parquet_path": "data/factors/2026-08-29-d5c393e65534/alpha158.parquet",
+      "parquet_content_hash_prefix": "ca812bb01e6e"
+    },
+    "factor_etf_existing": {
+      "snapshot_id": "2026-08-28-000b4820a23a",
+      "factor_count": 158,
+      "cells_expected": 2776692,
+      "cells_written": 2775447,
+      "cells_blank": 1245,
+      "missing_ratio_pct": 0.0448,
+      "parquet_path": "data/factors/2026-08-28-000b4820a23a/alpha158.parquet",
+      "parquet_content_hash_prefix": "a67e18b6f579"
+    }
+  },
+  "karst_verify": "clean"
+}
