@@ -832,3 +832,24 @@
   > but most of these parameter you havn't aligned with me yet. And actually I think these are the result of vectorbt? / 留到建置期
 
 - 影響：日後每張策略建置票的工作內容必含「參數對齊」一節;示例運行的成績只證明鏈通,不代表策略優劣。
+
+## D-039 策略總覽的欄位與策略詳情運行排名表對齊(年化、Sortino、最大回撤、勝率附交易次數),每行數字即該策略在策略詳情預設顯示的那次運行;拿走迷你走勢欄;所有頁面底部說明列拿走
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-29
+
+- 出處：用戶 2026-08-29
+
+- 背景：用戶在 D-037 之後指出策略總覽也要跟著改:欄位與策略詳情對齊,迷你走勢不需要,底部說明列不需要。
+
+- 決策：策略總覽表欄位為:名稱、類型、對基準、年化、Sortino、最大回撤、勝率(附交易次數)、開啟;迷你走勢欄拿走。每行代表的運行與策略詳情頁預設顯示的那次相同(有現役設定用現役,否則用排名第一的非失敗正式運行),兩頁數字必須一致。全部策略的正式運行都是失敗運行時,該策略不列於主表,收進一行「另有 N 條策略無達標運行」可展開(依 D-034 的做法推出)。所有頁面底部那條說明列(數據期間、數據快照、「數字全部由本機庫內…」、圖表庫版本)整個拿走。
+
+- 考慮過的替代方案：總覽保留盈虧比欄(未選,與運行表對齊為準);總覽保留迷你走勢(未選)。
+
+- 為何選這個：用戶原話:「策略總覽 need to be updated as well? As the column 1) should match with the 策略詳情 page? the column and the chart. 迷你走勢 in the table I think is not needed」及「the bottom bar is not needed」;每行對應策略頁預設那次運行、全失敗策略收進展開行,是主 agent 依 D-034/D-037 推出。
+
+- **用戶原話（原文照錄）**
+
+  > 策略總覽 need to be updated as well? As the column 1) should match with the 策略詳情 page? the column and the chart. 迷你走勢 in the table I think is not needed. … the bottom bar is not needed
+
+- 影響：策略總覽表與 API 改欄位(KARST-081,接 KARST-080);頁腳元件移除;design-system.md 更新。
