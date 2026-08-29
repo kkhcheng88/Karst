@@ -189,6 +189,9 @@ def build_parser() -> argparse.ArgumentParser:
     take.add_argument("--source", default="yfinance", choices=SOURCE_KINDS,
                       help="來源適配器:yfinance 抓真數;csv 由檔案重放同一批數")
     take.add_argument("--bars", default=None, help="來源 csv 時:日線檔路徑")
+    take.add_argument("--anchors", default=None,
+                      help="帶生效期的代號→CIK 對照表路徑(KARST-082);"
+                           "留空即問 SEC「代號今日屬誰」,歷史成分不宜")
     take.add_argument("--root", default=None, help="快取根(預設 data/snapshots)")
     take.add_argument("--taken-on", dest="taken_on", default=None,
                       help="快照日期,留空即抓取當日")
@@ -655,6 +658,15 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
 
     universe = resolve_universe(args.tickers)
     source = build_source(args.source, bars=args.bars)
+    cik_map = None
+    if args.anchors:
+        # 帶生效期的代號對照(KARST-082)。給了這一份就不再問 SEC「代號今日屬誰」——
+        # 那條路正是假設 A-011 崩塌的地方。窗口內同一代號錨到兩個實體即當場拒收。
+        from ..data.ticker_history import anchor_map_for_window, read_anchor_table
+
+        cik_map = anchor_map_for_window(
+            read_anchor_table(args.anchors), start=args.start, end=args.end
+        )
     snapshot, fetch = gateway.take_snapshot(
         start=args.start,
         end=args.end,
@@ -663,6 +675,7 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         root=args.root,
         taken_on=args.taken_on,
         extra_notes=args.notes,
+        cik_map=cik_map,
     )
     print(f"已凍結數據快照 {snapshot.snapshot_id}", file=out)
     print(f"  來源      {snapshot.source}", file=out)

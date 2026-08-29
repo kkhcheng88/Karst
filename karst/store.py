@@ -606,6 +606,29 @@ class DefinitionStore:
             for r in rows
         ]
 
+    def retract_ticker(self, ticker: str, *, entity_id: int, valid_from: str) -> None:
+        """撤回一段**錨錯了**的代號映射(KARST-082)。
+
+        這不是「改寫歷史」的後門,是更正錯配的唯一出路。代號→實體的錨一度取自
+        SEC ``company_tickers.json``,那份檔只講代號**今日**屬誰;假設 A-011 崩塌之後
+        查明有幾個代號被錨到今日的另一家公司(``BBBY`` 錨到 NEIGHBORHOOD INTELLIGENCE
+        而不是 Bed Bath & Beyond)。錯配一日不撤,``resolve_ticker`` 一日仍然把價格
+        解析到錯的實體,而且 ``register_ticker`` 的不准重疊那一關會擋住正確那一段寫不進去。
+
+        撤的是**映射**,不是實體:舊實體留在庫內,舊快照仍然引用得到它的實體編號,
+        一個字都不會變。查無此段即拋錯,不靜靜當作成功。
+        """
+        symbol = (ticker or "").strip().upper()
+        start = as_date(valid_from, "valid_from")
+        with self._conn:
+            cursor = self._conn.execute(
+                "DELETE FROM entity_ticker "
+                "WHERE entity_id = ? AND ticker = ? AND valid_from = ?",
+                (int(entity_id), symbol, start),
+            )
+        if cursor.rowcount == 0:
+            raise NotFound(f"沒有實體 {entity_id} 由 {start} 起持有 {symbol} 這一段,無從撤回")
+
     # ------------------------------------------------------------------
     # 因子定義與版本鏈
     # ------------------------------------------------------------------

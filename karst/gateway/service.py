@@ -491,6 +491,7 @@ class Gateway:
         root: str | None = None,
         taken_on: str | None = None,
         extra_notes: Sequence[str] = (),
+        cik_map: dict[str, str] | None = None,
     ) -> tuple[object, object]:
         """一句話跑完抓取 → 凍結 → 登記,回傳(快照成果單, 抓取登記)。
 
@@ -512,6 +513,7 @@ class Gateway:
             root=root,
             taken_on=taken_on,
             extra_notes=extra_notes,
+            cik_map=cik_map,
         )
         fetch = self._store.record_snapshot_fetch(
             snapshot.snapshot_id,
