@@ -59,7 +59,7 @@
     scaleBar: document.getElementById('scale-bar'),
     scaleMin: document.getElementById('scale-min'),
     scaleMax: document.getElementById('scale-max'),
-    crumb: document.getElementById('bc-strategy'),
+    bcCrumb: document.getElementById('bc-crumb'),
     /* 以現版本重掃(KARST-052) */
     rescanOpen: document.getElementById('rescan-open'),
     rescanModal: document.getElementById('rescan-modal'),
@@ -82,33 +82,18 @@
     min: 0, max: 1, digits: 2,
     chart: null,
     curveSeq: 0,
+    /* KARST-079:由策略詳情頁的熱力圖帶直達某一格,索引指向 load() 剛讀回那份
+       data.cells(即當時開著那一層)的第幾個;consumed 之後清走,免得換層/換軸
+       之後仍然誤中一格。 */
+    pendingCellIndex: null,
+    cellPicked: false,
   };
 
-  /* ============================================================
-     熱力圖配色(design-system 1.8:單色系連續色階,五個停站)
-     顏色不是唯一載體——每格同時印出數值,裁決另以形狀區分。
-     ============================================================ */
-  var HEAT_STOPS = [
-    [0.00, [23, 33, 54]],
-    [0.30, [26, 78, 96]],
-    [0.55, [30, 132, 121]],
-    [0.78, [116, 178, 88]],
-    [1.00, [240, 196, 76]]
-  ];
-  function heatColor(t) {
-    t = Math.max(0, Math.min(1, t));
-    for (var i = 0; i < HEAT_STOPS.length - 1; i++) {
-      if (t >= HEAT_STOPS[i][0] && t <= HEAT_STOPS[i + 1][0]) {
-        var f = (t - HEAT_STOPS[i][0]) / (HEAT_STOPS[i + 1][0] - HEAT_STOPS[i][0]);
-        var a = HEAT_STOPS[i][1], b = HEAT_STOPS[i + 1][1];
-        return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * f) + ',' +
-          Math.round(a[1] + (b[1] - a[1]) * f) + ',' +
-          Math.round(a[2] + (b[2] - a[2]) * f) + ')';
-      }
-    }
-    return 'rgb(240,196,76)';
-  }
-  function heatTextColor(t) { return t > 0.62 ? '#06121f' : '#dfe4ee'; }
+  /* 熱力圖配色(design-system 1.8):單一正本住 app.js 的 KV.heatColor/
+     heatTextColor,策略詳情頁的熱力圖帶(3.16)同一套,不各自各寫一份。
+     顏色不是唯一載體——每格同時印出數值,裁決另以形狀區分。 */
+  function heatColor(t) { return KV.heatColor(t); }
+  function heatTextColor(t) { return KV.heatTextColor(t); }
 
   /* ============================================================
      小工具
@@ -174,7 +159,15 @@
     el.title.textContent = '參數掃描';
     el.sub.textContent = '一次掃描一行。最佳格與代表格並排——只看最佳格會把孤峰當成成績,' +
       '代表格是高地中間那格,鄰域一齊好的那一格。點一行看熱力圖、小倍數、切片與鄰域。';
-    el.crumb.textContent = '';
+    /* D-036:參數掃描不再是頂層頁面,清單本身也是由策略詳情的熱力圖帶(或直連
+       網址)進來的下鑽層,所以一樣掛麵包屑——只是未揀定哪一次掃描,還講不出
+       是哪一套策略,退到「策略總覽」那一級。 */
+    if (el.bcCrumb) {
+      el.bcCrumb.innerHTML = KV.breadcrumb([
+        { label: '策略總覽', href: '/' },
+        { label: '參數掃描' },
+      ]);
+    }
   }
   function showDetail() {
     hideAll();
@@ -421,10 +414,36 @@
       mountSlices();
       renderAll();
       renderSmall(data);
+      /* KARST-079:由策略詳情頁的熱力圖帶直達某一格(?cell=),grid 剛砌好就
+         補選一次;換軸/換層之後索引可能已經對不上另一層,所以只消費一次。 */
+      if (state.pendingCellIndex !== null) {
+        var idx = state.pendingCellIndex;
+        state.pendingCellIndex = null;
+        selectByCellIndex(idx);
+      }
     }).catch(function (err) {
       if (state.seq !== token) return;
       fail('讀不到掃描 ' + state.sweepId + '：' + err.message, load);
     });
+  }
+
+  /* 麵包屑(design-system 3.6a 的通用格式,經 KARST-079 推廣到掃描格這一層):
+     「策略詳情 › <策略名> › 掃描 <名>」,揀定一格之後再多一節「格」。第二節連
+     回策略詳情頁——策略名若解析不到(落檔沒有記低,KARST-051 舊掃描的已知
+     缺口)就退一步只印實驗名,不冒充一個連結。 */
+  function mountBreadcrumb(data) {
+    if (!el.bcCrumb) return;
+    /* data.strategy 可能是由格內運行倒查回來的(落檔的 summary.json 未記低
+       策略名,api_sweep._with_strategy),不一定同 provenance.strategy 一致
+       ——data.strategy 較新,先取它。 */
+    var stratName = data.strategy || (data.provenance && data.provenance.strategy) || null;
+    var parts = [{ label: '策略詳情' }];
+    parts.push(stratName
+      ? { label: stratName, href: '/strategy?id=' + encodeURIComponent(stratName) }
+      : { label: data.experiment });
+    parts.push({ label: '掃描 ' + data.label });
+    if (state.cellPicked) parts.push({ label: '格' });
+    el.bcCrumb.innerHTML = KV.breadcrumb(parts);
   }
 
   function mountIdentity(data) {
@@ -433,7 +452,8 @@
     var period = (prov.period && prov.period.length === 2)
       ? prov.period[0] + ' 至 ' + prov.period[1] : '';
 
-    el.crumb.textContent = prov.strategy || data.experiment;
+    state.cellPicked = false;
+    mountBreadcrumb(data);
 
     var rows = [
       { k: '掃描', v: KV.esc(data.experiment + '　' + data.label) +
@@ -898,6 +918,7 @@
     el.cellTag.textContent = '';
     el.cellTag.className = 'tag';
     disposeChart();
+    if (state.cellPicked) { state.cellPicked = false; mountBreadcrumb(state.data); }
   }
 
   function disposeChart() {
@@ -906,6 +927,27 @@
       state.chart = null;
     }
     el.cellChart.innerHTML = '';
+  }
+
+  /* KARST-079:?cell= 帶來的索引,指向 data.cells(當時那一層)第幾格。
+     索引本身不是任何一格的身份——同一個索引換層/換軸會指去另一組參數,
+     所以要靠參數比對(sameCell)在 state.grid 裡找回它真正的位置。 */
+  function selectByCellIndex(idx) {
+    var data = state.data;
+    if (!data || !data.cells || idx < 0 || idx >= data.cells.length) return;
+    var want = data.cells[idx];
+    for (var ri = 0; ri < state.grid.length; ri++) {
+      for (var ci = 0; ci < state.grid[ri].length; ci++) {
+        var cell = state.grid[ri][ci];
+        if (cell && sameCell(cell.params, want.params)) {
+          select(ri, ci);
+          var btn = el.heat.querySelector(
+            '.heat-cell[data-r="' + ri + '"][data-c="' + ci + '"]');
+          if (btn) btn.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+          return;
+        }
+      }
+    }
   }
 
   /* ============================================================
@@ -924,6 +966,8 @@
     el.cellBody.hidden = false;
     el.cellTag.textContent = cell.verdict || '未判';
     el.cellTag.className = 'tag ' + (TAG_CLASS[cell.verdict] || '');
+    /* KARST-079:揀定一格,麵包屑多一節「格」(design-system 3.6a 的格式) */
+    if (!state.cellPicked) { state.cellPicked = true; mountBreadcrumb(state.data); }
 
     var data = state.data;
     var byKey = {};
@@ -1300,8 +1344,27 @@
 
   /* ============================================================
      開場
+     ------------------------------------------------------------
+     兩條入口路徑並存:
+       1. hash(#sweep=&layer=)——本頁自己的重掃/換層之後留下的深連結。
+       2. 查詢字串(?id=&sweep=&layer=&cell=)——KARST-079 由策略詳情頁的
+          熱力圖帶直達某一格用這一條;?id= 只供麵包屑/日後核對,本頁的
+          掃描不按策略過濾(倒查邏輯已在後端 api_sweep._with_strategy)。
+     兩者都有時 hash 優先——那是使用者在本頁內留下的較新狀態。
      ============================================================ */
-  KV.mountNav('/sweep');
+  function queryParams() {
+    var out = {};
+    (location.search || '').replace(/^\?/, '').split('&').forEach(function (part) {
+      if (!part) return;
+      var p = part.split('=');
+      out[decodeURIComponent(p[0])] = decodeURIComponent(p[1] || '');
+    });
+    return out;
+  }
+
+  /* D-036:參數掃描不再是頂層導覽項,掛在「策略詳情」之下(與運行詳情頁
+     run-view.js 同一個做法)——回上層改由麵包屑承擔。 */
+  KV.mountNav('/strategy');
   KV.initTabs('.tabs');
   loading('掃描清單');
 
@@ -1315,10 +1378,18 @@
       return;
     }
     var hash = readHash();
+    var query = queryParams();
+    var wantSweep = hash.sweep || query.sweep;
+    var wantLayer = hash.layer || query.layer || null;
     var found = null;
-    usable.forEach(function (s) { if (s.id === hash.sweep) found = s.id; });
+    usable.forEach(function (s) { if (s.id === wantSweep) found = s.id; });
     if (found) {
-      toDetail(found, hash.layer || null);
+      /* ?cell= 只在查詢字串出現(hash 深連結不帶格),而且要與 ?sweep= 同一次
+         導覽一併消費——換去另一次掃描就不再算數。 */
+      state.pendingCellIndex = (!hash.sweep && query.cell !== undefined && query.cell !== '')
+        ? parseInt(query.cell, 10) : null;
+      if (isNaN(state.pendingCellIndex)) state.pendingCellIndex = null;
+      toDetail(found, wantLayer);
     } else {
       toList();
     }

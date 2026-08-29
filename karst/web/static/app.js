@@ -77,12 +77,13 @@
   }
 
   /* ---------------- 頂欄 ---------------- */
-  /* 三頁齊列(D-035:運行詳情不是頂層頁面,是策略詳情的鑽取層,由頂層導覽移除,
-     只能經策略詳情的歷次運行表點入,或者直連網址 ?id=&run=)。 */
+  /* 兩頁齊列(D-036:策略詳情改為一頁四段——門面成績→熱力圖帶→正式運行表→
+     選股漏斗,參數掃描降為熱力圖帶的下鑽層,連同運行詳情(D-035)一併移出
+     頂層導覽,只經策略詳情頁點入,直連網址照舊保留:運行詳情 ?id=&run=、
+     參數掃描 ?id=&sweep=&layer=&cell=)。 */
   var PAGES = [
     { href: '/', label: '策略總覽' },
     { href: '/strategy', label: '策略詳情' },
-    { href: '/sweep', label: '參數掃描' },
   ];
 
   function mountNav(active, meta) {
@@ -204,6 +205,32 @@
           'vector-effect="non-scaling-stroke" stroke-linejoin="round"/>' +
       '</svg>';
   }
+
+  /* ---------------- 熱力圖色階(design-system 1.8) ----------------
+     單一正本:參數掃描頁的熱圖(3.13)與策略詳情頁的熱力圖帶(3.16,KARST-079)
+     同一套色階、同一套判讀色,不各自各寫一份。五個停站是唯一登記在案的形態,
+     顏色不是唯一載體——裁決另以形狀(邊框/斜紋/最佳格代表格籤)區分。 */
+  var HEAT_STOPS = [
+    [0.00, [23, 33, 54]],
+    [0.30, [26, 78, 96]],
+    [0.55, [30, 132, 121]],
+    [0.78, [116, 178, 88]],
+    [1.00, [240, 196, 76]]
+  ];
+  function heatColor(t) {
+    t = Math.max(0, Math.min(1, t));
+    for (var i = 0; i < HEAT_STOPS.length - 1; i++) {
+      if (t >= HEAT_STOPS[i][0] && t <= HEAT_STOPS[i + 1][0]) {
+        var f = (t - HEAT_STOPS[i][0]) / (HEAT_STOPS[i + 1][0] - HEAT_STOPS[i][0]);
+        var a = HEAT_STOPS[i][1], b = HEAT_STOPS[i + 1][1];
+        return 'rgb(' + Math.round(a[0] + (b[0] - a[0]) * f) + ',' +
+          Math.round(a[1] + (b[1] - a[1]) * f) + ',' +
+          Math.round(a[2] + (b[2] - a[2]) * f) + ')';
+      }
+    }
+    return 'rgb(240,196,76)';
+  }
+  function heatTextColor(t) { return t > 0.62 ? '#06121f' : '#dfe4ee'; }
 
   /* ---------------- lightweight-charts ---------------- */
   /* 這裡的字面值即 design-system 1.7「圖表專用色」那一格,逐個對得上 token。
@@ -433,7 +460,7 @@
     pct: pct, pctPlain: pctPlain, pp: pp, num: num, fixed: fixed,
     money: money, moneyShort: moneyShort, cls: cls, esc: esc, truncate: truncate,
     mountNav: mountNav, mountFoot: mountFoot, runChip: runChip, breadcrumb: breadcrumb,
-    factorSpark: factorSpark,
+    factorSpark: factorSpark, heatColor: heatColor, heatTextColor: heatTextColor,
     makeChart: makeChart, chartOptions: chartOptions, zip: zip, timeToISO: timeToISO,
     sortableTable: sortableTable, initTabs: initTabs,
   };

@@ -44,6 +44,8 @@
     funnel: document.getElementById('funnel'),
     picks: document.getElementById('picks-table'),
     runsBody: document.getElementById('runs-body'),
+    heatband: document.getElementById('heatband-body'),
+    heatbandNote: document.getElementById('heatband-note'),
     factorNote: document.getElementById('factor-note'),
     factorExpo: document.getElementById('factor-expo'),
     factorHist: document.getElementById('factor-hist'),
@@ -688,6 +690,109 @@
   });
 
   /* ============================================================
+     六之一、熱力圖帶(D-036,KARST-079)
+     ------------------------------------------------------------
+     該策略每個掃描一條帶,沿用參數掃描頁(sweep.js)的熱力圖色階與最佳格/
+     代表格籤(design-system 3.13),只是把方陣攤平成一行。掃描不入這一頁的
+     任何狀態(S)——載入一次、畫完即止,不隨檢視運行/檢視視窗換而重載。
+     ============================================================ */
+  function heatbandEmpty(text) {
+    el.heatband.innerHTML = '<div class="sp-empty">' + KV.esc(text) + '</div>';
+    el.heatbandNote.textContent = '';
+  }
+
+  /* 兩格是不是同一組參數:逐條軸的取值都一樣(與 sweep.js 的 sameCell 同一個
+     判法,這裡不跨檔共用——各自只用得著自己頁面那份 state)。 */
+  function sameParams(a, b, axes) {
+    if (!a || !b) return false;
+    for (var i = 0; i < axes.length; i++) if (a[axes[i]] !== b[axes[i]]) return false;
+    return true;
+  }
+
+  function heatbandCellHtml(data, cell, i, min, max) {
+    var invalid = cell.invalid || cell.value === null || cell.value === undefined;
+    var t = invalid ? 0 : (max === min ? 1 : (cell.value - min) / (max - min));
+    var style = invalid ? '' : 'background:' + KV.heatColor(t);
+    var isBest = data.best && sameParams(cell.params, data.best.params, data.axes);
+    var isRep = data.representative && sameParams(cell.params, data.representative.params, data.axes);
+    var marks = '';
+    if (isBest) marks += '<i class="cell-mark best">最佳</i>';
+    if (isRep) marks += '<i class="cell-mark rep">代表</i>';
+    var where = data.axes.map(function (n) {
+      return n + ' ' + cell.params[n];
+    }).join('、');
+    var label = where + '，' + data.objectiveLabel + ' ' +
+      (invalid ? '不作數' : KV.fixed(cell.value, 2)) +
+      (cell.verdict ? '，' + cell.verdict : '') +
+      (isBest ? '，最佳格' : '') + (isRep ? '，代表格' : '');
+    return '<button type="button" class="heatband-cell' + (invalid ? ' is-invalid' : '') + '" ' +
+      'style="' + style + '" data-i="' + i + '" ' +
+      'title="' + KV.esc(label) + '" aria-label="' + KV.esc(label) + '">' + marks + '</button>';
+  }
+
+  function heatbandBlockHtml(data) {
+    var scored = data.cells.filter(function (c) {
+      return c.value !== null && c.value !== undefined && !c.invalid;
+    });
+    var min = scored.length ? Math.min.apply(null, scored.map(function (c) { return c.value; })) : 0;
+    var max = scored.length ? Math.max.apply(null, scored.map(function (c) { return c.value; })) : 1;
+    var cells = data.cells.map(function (cell, i) {
+      return heatbandCellHtml(data, cell, i, min, max);
+    }).join('');
+    return '<div class="heatband-block">' +
+      '<div class="heatband-head">' +
+        '<b>' + KV.esc(data.label) + '</b>' +
+        (data.reference ? ' <span class="tag tag-type">對照</span>' : '') +
+        '<span class="dim">' + KV.esc(data.objectiveLabel) + '・' + data.cells.length + ' 格・' +
+          KV.esc(data.layer) + '</span>' +
+      '</div>' +
+      '<div class="heatband-scroll">' +
+        '<div class="heatband-row" data-sweep="' + KV.esc(data.id) +
+          '" data-layer="' + KV.esc(data.layer) + '">' + cells + '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  el.heatband.addEventListener('click', function (e) {
+    var btn = e.target.closest('.heatband-cell');
+    if (!btn || btn.classList.contains('is-invalid')) return;
+    var row = btn.closest('.heatband-row');
+    if (!row) return;
+    var sweepId = row.getAttribute('data-sweep');
+    var layer = row.getAttribute('data-layer');
+    var i = btn.getAttribute('data-i');
+    /* D-036:點熱力圖某格下鑽到單格曲線,由策略頁直達參數掃描頁的第三層,
+       麵包屑「策略詳情 › <策略名> › 掃描 <名> › 格」(design-system 3.6a)。 */
+    location.href = '/sweep?id=' + encodeURIComponent(S.strategy.strategy.name) +
+      '&sweep=' + encodeURIComponent(sweepId) +
+      '&layer=' + encodeURIComponent(layer) +
+      '&cell=' + encodeURIComponent(i);
+  });
+
+  function loadHeatband() {
+    var name = S.strategy.strategy.name;
+    heatbandEmpty('載入中……');
+    KV.fetchJSON('/api/sweeps').then(function (list) {
+      var mine = (list.sweeps || []).filter(function (s) {
+        return !s.error && s.strategy === name;
+      });
+      if (!mine.length) { heatbandEmpty('尚無參數掃描'); return; }
+      el.heatbandNote.textContent = mine.length + ' 個掃描';
+      return Promise.all(mine.map(function (s) {
+        return KV.fetchJSON('/api/sweep?id=' + encodeURIComponent(s.id))
+          .catch(function () { return null; });   /* 一次掃描讀不到不拖冧整條帶 */
+      })).then(function (details) {
+        var ok = details.filter(function (d) { return d && d.cells && d.cells.length; });
+        el.heatband.innerHTML = ok.length
+          ? ok.map(heatbandBlockHtml).join('')
+          : '<div class="sp-empty">尚無參數掃描</div>';
+      });
+    }).catch(function () {
+      heatbandEmpty('讀不到參數掃描。');
+    });
+  }
+
+  /* ============================================================
      七、歷次運行:點一行 = 換上面整頁
      ------------------------------------------------------------
      這張表只有**正式運行**(D-029:一次掃描當一件事,掃描格不入運行清單)。
@@ -901,6 +1006,7 @@
         KV.mountNav('/strategy');
         renderHead();
         renderFactors();
+        loadHeatband();
 
         /* 這一頁畫的是一次正式運行。只跑過參數掃描的策略在這裡是空的——空一頁
            而不講「掃描去哪裡看」,用戶會以為頁壞了(D-029、KARST-054)。 */

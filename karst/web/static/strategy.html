@@ -82,6 +82,19 @@
 
     </div>
 
+    <!-- ============================================================
+         熱力圖帶(D-036,KARST-079):該策略每個掃描一條帶,標最佳格與代表格。
+         點一格直達參數掃描頁的單格曲線(?id=&sweep=&layer=&cell=)。
+         沿用參數掃描頁(sweep.js)的熱力圖色階與最佳格/代表格籤,不重畫視覺。
+         ============================================================ -->
+    <section class="sp-panel" aria-labelledby="heatband-title">
+      <div class="sp-head">
+        <h2 id="heatband-title">參數掃描</h2>
+        <span class="section-note" id="heatband-note"></span>
+      </div>
+      <div class="sp-body" id="heatband-body"></div>
+    </section>
+
     <!-- ============ 歷次運行:點一行 = 換上面整頁 ============ -->
     <section class="sp-panel" aria-labelledby="runs-title">
       <div class="sp-head">

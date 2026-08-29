@@ -39,10 +39,11 @@
     <div class="page-head-row">
       <div>
         <div class="page-title-group">
-          <nav class="breadcrumb" aria-label="麵包屑" style="margin:0">
-            <a href="/">策略總覽</a><span>／</span>
-            <span id="bc-strategy"></span>
-          </nav>
+          <!-- KARST-079(D-036):參數掃描不再是頂層頁面,是策略詳情的下鑽層
+               (熱力圖帶→熱力圖→單格曲線)。格式與運行詳情頁同一個元件
+               (design-system 3.6a):「策略詳情 › <策略名> › 掃描 <名>」,
+               揀定一格再多一節「格」。 -->
+          <nav class="breadcrumb" aria-label="麵包屑" id="bc-crumb" style="margin:0"></nav>
           <h1 id="page-title">參數掃描</h1>
         </div>
         <p class="page-sub" id="page-sub"></p>

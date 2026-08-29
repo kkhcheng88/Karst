@@ -681,6 +681,38 @@ th.sortable[aria-sort]:not([aria-sort="none"]) { color: var(--text-1); font-weig
   box-shadow: inset 0 0 0 1px var(--line);
 }
 
+/* ============================================================
+   策略詳情頁:熱力圖帶(D-036,KARST-079)
+   一次掃描一條帶——熱圖攤平做一行,顏色與最佳格/代表格籤沿用上面那份
+   (同一套色階、同一個 .cell-mark),只是把方陣壓成一條,好讓幾個掃描疊在
+   同一頁不佔太多版面。逐格的參數與成績收在 title/aria-label,不印在格內
+   ——格太窄印不下數字。
+   ============================================================ */
+.heatband-block + .heatband-block { margin-top: var(--s-5); }
+.heatband-head {
+  display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap;
+  margin-bottom: var(--s-2); font-size: var(--fs-sm); color: var(--text-1);
+}
+.heatband-scroll { overflow-x: auto; }
+.heatband-row { display: flex; gap: 2px; min-width: max-content; }
+.heatband-cell {
+  position: relative;
+  flex: 1 1 12px; min-width: 12px; height: 28px;
+  border-radius: 2px;
+  cursor: pointer; appearance: none; border: 0; padding: 0;
+}
+.heatband-cell:hover { outline: 2px solid var(--text-1); outline-offset: -2px; }
+.heatband-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.heatband-cell.is-invalid {
+  background: var(--bg-2);
+  background-image: repeating-linear-gradient(45deg, transparent 0 3px, rgba(125,134,156,.38) 3px 5px);
+  box-shadow: inset 0 0 0 1px var(--line);
+  cursor: default;
+}
+/* 帶內的最佳格/代表格籤比全幅熱圖窄得多,籤縮到 7px 免得把整格蓋住 */
+.heatband-cell .cell-mark { font-size: 7px; padding: 0 2px; top: 2px; left: 2px; }
+.heatband-cell .cell-mark.best + .cell-mark.rep { left: 20px; }
+
 .callout {
   background: var(--bg-2);
   border-radius: var(--r-2);
