@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-069]
-claimedBy: null
+claimedBy: research-agent
 epic: V1 建置
 deliverable: KARST-D03
 ---
@@ -19,10 +19,24 @@ deliverable: KARST-D03
 
 ## 驗收條件
 
-- [ ] 研究檔落檔,四節各有出處;小型股數據源列授權與覆蓋年份
-- [ ] 結語一張表:三個宇宙 × 預期量級 × 量法 × 可信度
-- [ ] 不動程式、不動庫
+- [x] 研究檔落檔,四節各有出處;小型股數據源列授權與覆蓋年份
+- [x] 結語一張表:三個宇宙 × 預期量級 × 量法 × 可信度
+- [x] 不動程式、不動庫
 
 ## 結果
+
+研究檔:`research/2026-08-29-factor-power-smallcap-sector-etf.md`。四件工作內容各一句:
+(1) 小型股——技術異常在小型股/微型股集中(Hou Xue Zhang 2020、Fama French 2008),流動性
+限制會打折(Novy-Marx & Velikov 2016);免費成分歷史比標普 500 更弱,查不到現成含退市股的
+標普 600/羅素 2000 數據集,只能靠 Wikipedia 變動表自行重建或接受「只含現行成分」的簡化。
+(2) 十一隻行業 ETF——橫斷面太窄不能用 KARST-066 那種逐日跨資產 IC,應改用時間序列預測力
+(Moskowitz Ooi Pedersen 2012 出處),行業動量文獻(Moskowitz & Grinblatt 1999)機構級支持
+方向,但窗口偏長(月度以上),預期日線量價因子短窗口訊號偏弱。(3) 四隻因子 ETF——Asness
+2016 與 Arnott 2016 有公開機構級爭論,整體證據偏向「擇時難、不穩定」(Bender et al. 2018,
+查證後作者所屬機構應為 State Street Global Advisors,非票面猜測的 MSCI),樣本量小,預期
+三個宇宙中訊號最弱、可信度最低。(4) 結語表已落檔於研究檔第四節,精簡版:小型股(量級最高、
+用橫斷面 IC、可信度中高、預期比標普 500 多測到達標因子但少於起步十二隻)、行業 ETF(量級
+中等偏長窗口、用時間序列預測力、可信度中等、預期短窗口弱長窗口略好)、因子 ETF(量級最低、
+量法接近時間序列擇時、可信度中低、預期測不出穩定訊號)。
 
 ## 留言
