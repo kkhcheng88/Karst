@@ -129,6 +129,7 @@
       <div class="tabs" role="tablist" aria-label="右欄內容">
         <button class="tab-btn" role="tab" id="tab-m" aria-selected="true" aria-controls="p-m">指標</button>
         <button class="tab-btn" role="tab" id="tab-t" aria-selected="false" aria-controls="p-t">逐筆交易</button>
+        <button class="tab-btn" role="tab" id="tab-f" aria-selected="false" aria-controls="p-f">因子</button>
       </div>
       <div class="fit-panel-body" id="right-body">
 
@@ -139,6 +140,23 @@
 
         <div class="tab-panel" id="p-t" role="tabpanel" aria-labelledby="tab-t" hidden>
           <div id="trades-table"></div>
+        </div>
+
+        <!-- ============================================================
+             因子(KARST-080,D-037):因子敞口、因子版本兩塊由策略詳情頁
+             搬過來——策略頁不再顯示。沿用 strategy.html 原有的 CSS 元件
+             (.factor-row/.factor-bar-*、.factor-hist/.fh-row 等),
+             右欄較窄,兩塊上下疊放,不用 .sp-hist 那個左右並排網格。
+             ============================================================ -->
+        <div class="tab-panel" id="p-f" role="tabpanel" aria-labelledby="tab-f" hidden>
+          <div id="factor-host">
+            <div class="table-scroll">
+              <div class="sp-hist-t" style="padding:var(--s-3) var(--s-3) 0">本次運行的因子敞口</div>
+              <div id="factor-expo" style="padding:0 var(--s-1)"></div>
+              <div class="sp-hist-t" style="padding:var(--s-3) var(--s-3) 0">因子版本</div>
+              <div class="factor-hist" id="factor-hist" style="padding:0 var(--s-1)"></div>
+            </div>
+          </div>
         </div>
 
       </div>

@@ -32,6 +32,9 @@
     rerunBody: document.getElementById('rerun-body'),
     rerunGo: document.getElementById('rerun-go'),
     rerunCancel: document.getElementById('rerun-cancel'),
+    /* 因子(KARST-080,D-037):因子敞口、因子版本由策略詳情頁搬過來 */
+    factorExpo: document.getElementById('factor-expo'),
+    factorHist: document.getElementById('factor-hist'),
   };
 
   var state = {
@@ -191,6 +194,7 @@
       renderIdentity(detail.run);
       renderMetrics(detail);
       renderTrades(detail);
+      loadFactorTab(runId);
       /* 頁尾要在畫圖之前掛好:貼屏頁的圖按「剩餘高度」量,頁尾遲一步掛上
          就會把已經量好的圖擠出版面,底部時間軸看不見。 */
       KV.mountFoot({
@@ -233,25 +237,146 @@
       return KV.esc(k) + '=' + KV.esc(run.paramValues[k]);
     }).join('<span class="dim">・</span>') || '<span class="dim">—</span>';
 
+    var rows = [
+      { k: '運行編號', v: KV.esc(run.runId) },
+      { k: '策略版本', v: KV.esc(run.strategyName) + ' v' + run.strategyVersionNo +
+          '<span class="dim">・' + KV.esc(run.strategyType) + '</span>' },
+      { k: '參數集', v: KV.esc(run.paramSetName) + ' v' + run.paramSetVersionNo +
+          '<span class="dim">・' + KV.esc(run.rebalanceCadence) + '</span>' },
+      { k: '因子版本', v: factors },
+      { k: '參數', v: params },
+      { k: '數據快照', v: KV.esc(run.snapshotId) },
+      { k: '期間', v: run.periodStart + ' 至 ' + run.periodEnd +
+          '<span class="dim">・' + run.tradingDays + ' 個交易日</span>' },
+      { k: '引擎', v: KV.esc(run.engineName) + ' ' + KV.esc(run.engineVersion) },
+    ];
+
+    /* 宏觀驅動器:這套設定跟住的那份宏觀快照,有沒有一條序列已經靜靜停止講話
+       (KARST-080:與「檢視中」其餘幾樣一併由策略詳情頁搬過來,原本住在
+       strategy.js 的 renderConfig/loadCompleteness,行為原封不動)。 */
+    var macroId = run.paramValues && run.paramValues.macro_snapshot;
+    if (macroId) {
+      rows.push({ k: '序列齊全度', v: '<span id="macro-comp-v">讀取中……</span>' });
+    }
+
     KV.runChip({
       ver: run.strategyName + ' v' + run.strategyVersionNo,
       snapshot: run.snapshotId,
       stale: { stale: run.isStale },
       warnText: (run.staleReasons || []).join('・'),
-      rows: [
-        { k: '運行編號', v: KV.esc(run.runId) },
-        { k: '策略版本', v: KV.esc(run.strategyName) + ' v' + run.strategyVersionNo +
-            '<span class="dim">・' + KV.esc(run.strategyType) + '</span>' },
-        { k: '參數集', v: KV.esc(run.paramSetName) + ' v' + run.paramSetVersionNo +
-            '<span class="dim">・' + KV.esc(run.rebalanceCadence) + '</span>' },
-        { k: '因子版本', v: factors },
-        { k: '參數', v: params },
-        { k: '數據快照', v: KV.esc(run.snapshotId) },
-        { k: '期間', v: run.periodStart + ' 至 ' + run.periodEnd +
-            '<span class="dim">・' + run.tradingDays + ' 個交易日</span>' },
-        { k: '引擎', v: KV.esc(run.engineName) + ' ' + KV.esc(run.engineVersion) },
-      ],
+      rows: rows,
     });
+
+    if (macroId) loadCompleteness(macroId);
+  }
+
+  /* 序列齊全度:一條宏觀序列對主日曆核出來的兩個數(尾段落後幾多個交易日、
+     留空佔幾多)。端點**預設只交數、不交裁決**——「幾多日算停更」是對這條訊號的
+     容忍度,門檻沒有預設值(D-008 第 3 條),頁面亦不會自己揀一套,所以這一格
+     講的是「落後幾多日」,不是「合格 / 不合格」。 */
+  function loadCompleteness(snapshotId) {
+    var token = state.seq;
+    function fill(text, tip) {
+      if (state.seq !== token) return;
+      var cell = document.getElementById('macro-comp-v');
+      if (!cell) return;
+      cell.textContent = text;
+      var row = cell.closest('.idpop-row');
+      if (row) row.title = tip;
+    }
+    KV.fetchJSON('/api/macro/completeness?snapshot=' + encodeURIComponent(snapshotId))
+      .then(function (c) {
+        var stale = c.staleSeries || [];
+        fill(
+          stale.length
+            ? c.seriesCount + ' 條・' + stale.length + ' 條尾段落後最多 ' +
+                c.worstStaleDays + ' 日'
+            : c.seriesCount + ' 條・尾段貼齊主日曆',
+          '宏觀快照 ' + snapshotId + '　主日曆 ' + c.calendarStart + ' 至 ' +
+            c.calendarEnd + '(' + c.tradingDays + ' 個交易日)　' +
+            (stale.length
+              ? '尾段落後:' + stale.join('、') + '——那幾條訊號已經停止講話'
+              : '沒有一條序列停止講話')
+        );
+      })
+      .catch(function (err) {
+        /* 讀不到就講讀不到,不猜一個「合格」出來 */
+        fill('讀不到', '讀不到宏觀快照 ' + snapshotId + ' 的齊全度:' + err.message);
+      });
+  }
+
+  /* ============================================================
+     因子(KARST-080,D-037):因子敞口、因子版本由策略詳情頁搬過來,
+     策略頁不再顯示。因子版本鏈用 detail.run.factors(data.py 的
+     factor_payload() 交回,連 chain);因子敞口用 /api/strategy/picks
+     的 exposure 欄(不帶 date,預設按期末最後一日算)——與原本策略頁
+     picks() 端點同一份數,不另算一套。
+     ============================================================ */
+  function renderFactorHist(factors) {
+    if (!el.factorHist) return;
+    el.factorHist.innerHTML = (factors && factors.length) ? factors.map(function (f) {
+      var chain = f.chain.map(function (v) {
+        return '<span class="' + (v.versionNo === f.versionNo ? 'fh-cur' : '') + '" title="' +
+          KV.esc(v.createdAt + '　' + (v.description || '')) + '">v' + v.versionNo + '</span>';
+      }).join('<span class="fh-note"> ← </span>');
+      /* 因子名寫成「族·定義」,族已經自成一欄,右邊只留定義那一截 */
+      var def = String(f.name || '');
+      var dot = def.indexOf('·');
+      if (dot >= 0) def = def.slice(dot + 1);
+      return '<div class="fh-row">' +
+        '<div><span class="fh-fam">' + KV.esc(f.family) + '・</span>' +
+          '<span class="fh-def">' + KV.esc(def) + '</span>' +
+          (f.used ? '<span class="fh-used">現用</span>' : '') + '</div>' +
+        '<div class="fh-chain">' + chain + '</div>' +
+        '<div class="fh-note">' + KV.esc(f.scaleKind + '　' + (f.description || '')) + '</div>' +
+      '</div>';
+    }).join('') : '<div class="sp-empty">這次運行未引用任何因子。</div>';
+  }
+
+  function renderFactorExpo(exposure, atDate, cashWeightPct) {
+    if (!el.factorExpo) return;
+    var rows = exposure || [];
+    if (!rows.length) {
+      el.factorExpo.innerHTML = '<div class="sp-empty">這次運行沒有持倉,敞口是空的。</div>';
+      return;
+    }
+    var top = Math.max.apply(null, rows.map(function (r) { return r.weightPct || 0; }));
+    var scale = top > 0 ? top : 1;
+    el.factorExpo.innerHTML = rows.map(function (r) {
+      var w = r.weightPct || 0;
+      var label = r.family || r.symbol || '—';
+      return '<div class="factor-row" title="' +
+          KV.esc((r.factorName || r.name || '') + '　' + (r.symbol || '')) + '">' +
+        '<span class="factor-name">' + KV.esc(label) + '</span>' +
+        '<span class="factor-bar-track">' +
+          '<span class="factor-bar-fill" style="width:' +
+            (w / scale * 100).toFixed(1) + '%;background:var(--accent)"></span>' +
+        '</span>' +
+        '<span class="factor-score">' + w.toFixed(0) + '%</span>' +
+      '</div>';
+    }).join('') +
+    '<div class="section-note" style="padding:var(--s-2) var(--s-4) 0">' +
+      '按 ' + KV.esc(atDate) + ' 收工時的持倉市值計,現金 ' +
+      KV.pctPlain(Math.max(0, cashWeightPct || 0)) + '</div>';
+  }
+
+  var factorSeq = 0;
+  function loadFactorTab(runId) {
+    var token = ++factorSeq;
+    renderFactorHist((state.detail && state.detail.run && state.detail.run.factors) || []);
+    if (el.factorExpo) el.factorExpo.innerHTML = '<div class="sp-empty">載入中……</div>';
+    KV.fetchJSON('/api/strategy/picks?run=' + encodeURIComponent(runId))
+      .then(function (picks) {
+        if (token !== factorSeq || state.runId !== runId) return;
+        renderFactorExpo(picks.exposure, picks.date, picks.cashWeightPct);
+      })
+      .catch(function (err) {
+        if (token !== factorSeq || state.runId !== runId) return;
+        if (el.factorExpo) {
+          el.factorExpo.innerHTML = '<div class="sp-empty">讀不到因子敞口:' +
+            KV.esc(err.message) + '</div>';
+        }
+      });
   }
 
   /* ============================================================

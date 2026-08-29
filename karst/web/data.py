@@ -68,6 +68,39 @@ def _day(value: Any) -> str:
     return pd.Timestamp(value).strftime("%Y-%m-%d")
 
 
+def factor_payload(reader: "RunReader", version: Any, used: bool) -> dict[str, Any]:
+    """一個因子的身份與版本鏈。鏈由庫讀回,不是這裡數出來的。
+
+    原本各自住在 ``api_strategy.py``(策略詳情頁的「因子」)與這裡的
+    ``get_run()``(運行詳情頁的「因子」)一份正本,KARST-080 起因子敞口／
+    因子版本兩塊搬去運行詳情頁之後,兩處要交出同一種形狀,遂併成這一個
+    共用函式,住在讀取層最底(``api_strategy.py`` 只單向 import 這一檔,
+    反過來不行,所以正本只能落在這裡)。
+    """
+    try:
+        chain = reader.store.factor_version_chain(version.name)
+    except NotFound:
+        chain = [version]
+    return {
+        "factorId": version.factor_id,
+        "name": version.name,
+        "family": version.family,
+        "versionNo": version.version_no,
+        "scaleKind": version.scale_kind,
+        "description": version.description,
+        "createdAt": version.created_at,
+        "used": used,
+        "chain": [
+            {
+                "versionNo": item.version_no,
+                "createdAt": item.created_at,
+                "description": item.description,
+            }
+            for item in reversed(chain)
+        ],
+    }
+
+
 # D-034:判「失敗運行」用哪兩隻基準,是規則本身寫死的一部分,不是可調參數
 # ——所以擺常數,不擺函式預設值(D-008 第 3 條:不留參數預設值;這裡沒有
 # 參數,只有規則)。
@@ -408,15 +441,9 @@ class RunReader:
         identity["isStale"] = bool(reasons)
         identity["staleReasons"] = list(reasons)
         identity["paramValues"] = dict(record.param_values)
-        identity["factors"] = [
-            {
-                "name": factor.name,
-                "family": factor.family,
-                "versionNo": factor.version_no,
-                "factorId": factor.factor_id,
-            }
-            for factor in record.factors
-        ]
+        # KARST-080:因子敞口／因子版本搬去運行詳情頁,這裡要交出與策略頁
+        # 同一種形狀(連版本鏈),不是搬過去之前那個只有四個欄位的簡表。
+        identity["factors"] = [factor_payload(self, factor, True) for factor in record.factors]
 
         trade_rows = self._round_trip_rows(trades.round_trips, universe)
 

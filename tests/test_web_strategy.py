@@ -340,10 +340,14 @@ def test_只帶運行編號的網址與帶齊策略編號時顯示一致(reader,
 
 
 def test_宏觀驅動器參數區的序列齊全度由真數據填(reader, base_url):
-    """參數區那一行掛的是 KARST-061 那個小端點,數由已凍結快照當場重算。"""
+    """這一行掛的是 KARST-061 那個小端點,數由已凍結快照當場重算。
+
+    KARST-080(D-037)把「檢視中」整段(含這一行)由策略詳情頁搬去運行詳情頁的
+    運行身份晶片,策略頁不再顯示——查的檔案改為 run-view.js。
+    """
     from karst.data.macro import read_macro_completeness
 
-    script = _strip_comments((STATIC_ROOT / "strategy.js").read_text(encoding="utf-8"))
+    script = _strip_comments((STATIC_ROOT / "run-view.js").read_text(encoding="utf-8"))
     assert "序列齊全度" in script
     assert "/api/macro/completeness?snapshot=" in script
     # 跟住的是這次運行參數集記住的那份宏觀快照,不是頁面自己揀一份

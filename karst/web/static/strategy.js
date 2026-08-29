@@ -4,21 +4,24 @@
    版面與元件照 KARST-015 原型第十版(已核准 v1 基線,D-023),
    數據全部經 /api/ 由庫內真實運行讀出——頁內沒有一個寫死的數字。
 
-   一頁看清一套策略:
-     淨值走勢   策略對 QQQ／SPY,曲線上標出有買賣的交易日(design-system 3.8)
-     選股快照   某一日的範圍與持倉,連逐層收窄的漏斗(3.11、5.1)
-     歷次運行   該策略每一次運行,點一行全頁換成該次(3.7)
-     因子分布   這次運行的因子敞口,連因子版本鏈
+   一頁看清一套策略(D-036/D-037 定案的四段次序):
+     門面成績   頭條數字(門面)+ 淨值走勢 + 選股快照,一律按代表運行算
+     熱力圖帶   該策略每個參數掃描一條帶,標最佳格與代表格
+     歷次運行   排名表,四個成績欄可點欄頭排序;配一段「持股分布」——
+                點一行即換成該次運行最常持有的前十股票、累計報酬、行業佔比
+     選股漏斗   逐層收窄,對應「選股快照」那一日
 
-   全頁只有四個狀態:看哪一次運行、由哪日起看、快照停在哪一日、漏斗篩到哪一層。
+   因子敞口、因子版本兩塊(連「檢視中」的參數清單/運行編號/快照/視窗)
+   KARST-080 起搬去運行詳情頁,策略頁不再顯示——見 run-view.js。
+
+   頁內狀態:看哪一次運行(headline/圖表/選股快照,固定用代表運行,不隨
+   歷次運行表點選而變)、由哪日起看、快照停在哪一日、漏斗篩到哪一層、
+   持股分布正顯示歷次運行表的哪一行。
    ============================================================ */
 (function () {
   'use strict';
 
-  /* 一行擺得下的運行按鈕數目。一次參數掃描就寫幾百個運行,按鈕列擺不下;
-     其餘經下面「歷次運行」表揀得到(data.py list_runs 同一個處理)。 */
-  var RUN_PICK_LIMIT = 8;
-  /* 歷次運行一頁的行數。每一行的年化/回撤/勝率都要讀一次該運行的序列。 */
+  /* 歷次運行一頁的行數。每一行的年化/Sortino/回撤/勝率都要讀一次該運行的序列。 */
   var RUN_PAGE = 50;
 
   var el = {
@@ -28,9 +31,6 @@
     en: document.getElementById('strat-en'),
     kind: document.getElementById('strat-kind'),
     live: document.getElementById('strat-live'),
-    runPick: document.getElementById('run-pick'),
-    backLive: document.getElementById('back-live'),
-    config: document.getElementById('config-slim'),
     kpis: document.getElementById('kpis'),
     bench: document.getElementById('equity-bench'),
     winPick: document.getElementById('win-pick'),
@@ -46,20 +46,23 @@
     runsBody: document.getElementById('runs-body'),
     heatband: document.getElementById('heatband-body'),
     heatbandNote: document.getElementById('heatband-note'),
-    factorNote: document.getElementById('factor-note'),
-    factorExpo: document.getElementById('factor-expo'),
-    factorHist: document.getElementById('factor-hist'),
+    holdingsNote: document.getElementById('holdings-note'),
+    holdingsBody: document.getElementById('holdings-body'),
   };
 
   var S = {
     sid: null,
     strategy: null,      /* /api/strategy 回來那份 */
-    runId: null,
+    runId: null,          /* headline/圖表/選股快照那次運行:固定用代表運行 */
     detail: null,        /* /api/runs/<id> 回來那份 */
     runs: [],            /* 歷次運行:只有正式運行(D-029),失敗運行已篩走(D-034/D-040) */
     runTotal: 0,         /* 全部正式運行數(不論成敗) */
     failedCount: 0,      /* 篩走了幾多條失敗運行——只用來算「還有幾多可再載」,不顯示 */
     sweepCells: 0,       /* 這套策略有幾多格掃描格:空表那句話要講得出 */
+    sort: 'annualReturnPct',   /* 歷次運行表現正按哪一欄排序(D-037 預設年化) */
+    dir: 'desc',
+    holdingsRunId: null,  /* 持股分布正顯示歷次運行表哪一行(D-037) */
+    holdingsSeq: 0,
     winKey: 'all',
     winFrom: null,
     date: null,          /* 選股快照停在哪一日 */
@@ -154,214 +157,6 @@
     el.kind.style.display = '';
     /* 庫內未指定現役設定就不掛這個籤——沒有的東西不擺上畫面 */
     el.live.style.display = S.strategy.activeSetup ? '' : 'none';
-  }
-
-  function renderFactors() {
-    var factors = S.strategy.factors || [];
-    el.factorNote.textContent = factors.length
-      ? '這次運行引用 ' + factors.length + ' 個因子'
-      : '這套策略未引用任何因子';
-
-    el.factorHist.innerHTML = factors.length ? factors.map(function (f) {
-      var chain = f.chain.map(function (v) {
-        return '<span class="' + (v.versionNo === f.versionNo ? 'fh-cur' : '') + '" title="' +
-          KV.esc(v.createdAt + '　' + (v.description || '')) + '">v' + v.versionNo + '</span>';
-      }).join('<span class="fh-note"> ← </span>');
-      /* 因子名寫成「族·定義」,族已經自成一欄,右邊只留定義那一截 */
-      var def = String(f.name || '');
-      var dot = def.indexOf('·');
-      if (dot >= 0) def = def.slice(dot + 1);
-      return '<div class="fh-row">' +
-        '<div><span class="fh-fam">' + KV.esc(f.family) + '・</span>' +
-          '<span class="fh-def">' + KV.esc(def) + '</span>' +
-          (f.used ? '<span class="fh-used">現用</span>' : '') + '</div>' +
-        '<div class="fh-chain">' + chain + '</div>' +
-        '<div class="fh-note">' + KV.esc(f.scaleKind + '　' + (f.description || '')) + '</div>' +
-      '</div>';
-    }).join('') : '<div class="sp-empty">這套策略未引用任何因子。</div>';
-  }
-
-  /* 因子敞口:每一格因子由哪一個對象承載、佔多少比重(詞彙表「因子敞口」) */
-  function renderExposure() {
-    var rows = (S.picks && S.picks.exposure) || [];
-    if (!rows.length) {
-      el.factorExpo.innerHTML = '<div class="sp-empty">這一日沒有持倉,敞口是空的。</div>';
-      return;
-    }
-    var top = Math.max.apply(null, rows.map(function (r) { return r.weightPct || 0; }));
-    var scale = top > 0 ? top : 1;
-    el.factorExpo.innerHTML = rows.map(function (r) {
-      var w = r.weightPct || 0;
-      var label = r.family || r.symbol || '—';
-      return '<div class="factor-row" title="' +
-          KV.esc((r.factorName || r.name || '') + '　' + (r.symbol || '')) + '">' +
-        '<span class="factor-name">' + KV.esc(label) + '</span>' +
-        '<span class="factor-bar-track">' +
-          '<span class="factor-bar-fill" style="width:' +
-            (w / scale * 100).toFixed(1) + '%;background:var(--accent)"></span>' +
-        '</span>' +
-        '<span class="factor-score">' + w.toFixed(0) + '%</span>' +
-      '</div>';
-    }).join('') +
-    '<div class="section-note" style="padding:var(--s-2) var(--s-4) 0">' +
-      '按 ' + KV.esc(S.picks.date) + ' 收工時的持倉市值計,現金 ' +
-      KV.pctPlain(Math.max(0, S.picks.cashWeightPct || 0)) + '</div>';
-  }
-
-  /* ============================================================
-     二、檢視運行(頁頂按鈕列 + 設定薄列)
-     ============================================================ */
-  function renderRunPick() {
-    var shown = S.runs.slice(0, RUN_PICK_LIMIT);
-    /* 正在看的那一次若不在頭幾個之內,補上去——不能有揀了但見不到的狀態 */
-    var inShown = shown.some(function (r) { return r.runId === S.runId; });
-    if (!inShown) {
-      var hit = S.runs.filter(function (r) { return r.runId === S.runId; })[0];
-      if (hit) shown = [hit].concat(shown.slice(0, RUN_PICK_LIMIT - 1));
-    }
-
-    el.runPick.innerHTML = shown.map(function (r) {
-      return '<button type="button" data-run="' + KV.esc(r.runId) + '" ' +
-        'aria-pressed="' + (r.runId === S.runId ? 'true' : 'false') + '" ' +
-        'title="' + KV.esc(r.runId + '・' + r.paramSetName + ' v' + r.paramSetVersionNo) + '">' +
-        KV.esc(r.runId.slice(4, 12)) +
-        (r.isActiveSetup ? '<span class="rp-live">現役</span>' : '') +
-      '</button>';
-    }).join('') +
-    /* 「其餘在下面揀」比的是 S.runs(D-034 已篩走失敗運行那份),不是
-       S.runTotal(未篩的總數)——後者會包含篩走之後下面那張表也不會再列出的
-       失敗運行,講「其餘在下面揀」就變成一句假承諾(D-040:失敗運行完全
-       不顯示,不講計數)。 */
-    (S.runs.length > shown.length
-      ? '<span class="section-note">共 ' + S.runs.length + ' 次・其餘在下面「歷次運行」揀</span>'
-      : '');
-
-    var active = S.runs.filter(function (r) { return r.isActiveSetup; })[0];
-    el.backLive.hidden = !active || active.runId === S.runId;
-  }
-
-  /* 參數區顯示的是**驅動器設定**,不是四隻 ETF 的比例(D-029:比例是每個換倉日
-     由驅動器算出的輸出,不是參數;要看比例就看右邊選股快照與下面因子分布)。 */
-  var DRIVER_LABELS = [
-    ['driver', '訊號'],
-    ['macro_series', '訊號來源'],
-    ['lookback_days', '回望期'],
-    ['lookback_months', '回望期'],
-    ['fallback', '退路'],
-    ['mode', '模式'],
-    ['tilt', '傾斜'],
-  ];
-  var CADENCE = { daily: '日度', weekly: '週度', monthly: '月度', quarterly: '季度' };
-  var RATIO_KEY = /^weight_/;              /* 四隻 ETF 的比例:D-029 訂明是輸出 */
-  var WARMUP_KEY = /^warmup_/;             /* 熱身期:是可掃描參數(詞彙表「熱身期」) */
-
-  function chip(k, v) {
-    return '<span class="chip"><span class="chip-k">' + KV.esc(k) + '</span>' +
-      '<span class="chip-v">' + KV.esc(v) + '</span></span>';
-  }
-
-  function renderConfig() {
-    var run = S.detail.run;
-    var live = !!run.isActiveSetup;
-    var w = S.detail.window;
-    var p = run.paramValues;
-    var used = {};
-
-    /* 一、驅動器設定:訊號、回望期、換倉節奏、退路(D-029 點名那四樣行先) */
-    var chips = DRIVER_LABELS.filter(function (pair) {
-      return p[pair[0]] !== undefined;
-    }).map(function (pair) {
-      used[pair[0]] = true;
-      var v = p[pair[0]];
-      if (pair[0] === 'lookback_days') v = v + ' 日';
-      if (pair[0] === 'lookback_months') v = v + ' 個月';
-      return chip(pair[1], v);
-    }).join('');
-
-    /* 宏觀驅動器:這套設定跟住的那份宏觀快照,有沒有一條序列已經靜靜停止講話。
-       以前這件事只寫在快照說明檔第七之一節,要有人去翻才看得見——^VIX3M 停更
-       28 個交易日無人察覺就是這樣發生的(KARST-058、假設 A-008)。數由
-       /api/macro/completeness 取(KARST-061 那個小端點),先掛一格「讀取中」,
-       取到再填:那一格讀不到,整頁策略詳情照舊畫得出。 */
-    var macroId = run.paramValues.macro_snapshot;
-    if (macroId) {
-      chips += '<span class="chip" id="macro-comp" title="' +
-        KV.esc('宏觀快照 ' + macroId) + '">' +
-        '<span class="chip-k">序列齊全度</span>' +
-        '<span class="chip-v" id="macro-comp-v">讀取中……</span></span>';
-    }
-
-    chips += chip('換倉節奏', CADENCE[run.rebalanceCadence] || run.rebalanceCadence);
-
-    /* 二、熱身期:一個晶片講完,四格熱身權重不逐個攤開 */
-    var warmup = Object.keys(p).filter(function (k) { return WARMUP_KEY.test(k); });
-    if (warmup.length) {
-      warmup.forEach(function (k) { used[k] = true; });
-      chips += chip('熱身期', (p.warmup_bars ? p.warmup_bars + ' 根' : '') +
-        (warmup.length > (p.warmup_bars ? 1 : 0) ? '・等權起步' : ''));
-    }
-
-    /* 三、其餘的執行設定(費用、滑點、快照);四隻 ETF 的比例一格都不出現 */
-    var ratios = Object.keys(p).filter(function (k) { return RATIO_KEY.test(k); });
-    chips += Object.keys(p).sort().filter(function (k) {
-      return !used[k] && !RATIO_KEY.test(k);
-    }).map(function (k) { return chip(k, p[k]); }).join('');
-
-    if (ratios.length) {
-      chips += '<span class="section-note">四隻 ETF 的比例由驅動器每個換倉日算出,' +
-        '看右邊選股快照</span>';
-    }
-
-    var years = ((w.tradingDays - 1) / 252).toFixed(1);
-    el.config.className = 'config-slim' + (live ? '' : ' is-past');
-    el.config.innerHTML =
-      '<span class="tag ' + (live ? 'tag-live">現役設定' : 'tag-current">檢視中') + '</span>' +
-      '<span class="mono" style="font-weight:700">v' + run.strategyVersionNo +
-        '・' + KV.esc(run.paramSetName) + ' v' + run.paramSetVersionNo + '</span>' +
-      chips +
-      '<span class="section-note mono">' + KV.esc(run.runId) + '・' + KV.esc(run.snapshotId) + '</span>' +
-      '<span class="slim-win">視窗 ' +
-        (w.isFull ? '全期' : '<b>' + KV.esc(w.start) + ' 起・非重跑</b>') + '</span>' +
-      '<span class="slim-past">' + KV.esc(w.start) + ' 至 ' + KV.esc(w.end) +
-        '・' + years + ' 年' +
-        (run.isStale ? '　<span class="stale-badge">舊版本</span>' : '') + '</span>';
-
-    if (macroId) loadCompleteness(macroId);
-  }
-
-  /* 序列齊全度:一條宏觀序列對主日曆核出來的兩個數(尾段落後幾多個交易日、
-     留空佔幾多)。端點**預設只交數、不交裁決**——「幾多日算停更」是對這條訊號的
-     容忍度,門檻沒有預設值(D-008 第 3 條),頁面亦不會自己揀一套,所以這一格
-     講的是「落後幾多日」,不是「合格 / 不合格」。 */
-  function loadCompleteness(snapshotId) {
-    var token = S.seq;
-    function fill(text, tip) {
-      if (S.seq !== token) return;
-      var cell = document.getElementById('macro-comp-v');
-      var host = document.getElementById('macro-comp');
-      if (!cell) return;
-      cell.textContent = text;
-      if (host) host.title = tip;
-    }
-    KV.fetchJSON('/api/macro/completeness?snapshot=' + encodeURIComponent(snapshotId))
-      .then(function (c) {
-        var stale = c.staleSeries || [];
-        fill(
-          stale.length
-            ? c.seriesCount + ' 條・' + stale.length + ' 條尾段落後最多 ' +
-                c.worstStaleDays + ' 日'
-            : c.seriesCount + ' 條・尾段貼齊主日曆',
-          '宏觀快照 ' + snapshotId + '　主日曆 ' + c.calendarStart + ' 至 ' +
-            c.calendarEnd + '(' + c.tradingDays + ' 個交易日)　' +
-            (stale.length
-              ? '尾段落後:' + stale.join('、') + '——那幾條訊號已經停止講話'
-              : '沒有一條序列停止講話')
-        );
-      })
-      .catch(function (err) {
-        /* 讀不到就講讀不到,不猜一個「合格」出來 */
-        fill('讀不到', '讀不到宏觀快照 ' + snapshotId + ' 的齊全度:' + err.message);
-      });
   }
 
   /* ============================================================
@@ -677,8 +472,8 @@
     el.picks.innerHTML = rows.length
       ? picksTable(rows, p.scoreNames)
       : '<div class="sp-empty">這一層在本日沒有標的。</div>';
-
-    renderExposure();
+    /* 因子敞口(picks 端點連帶交回的 exposure 欄)搬去運行詳情頁顯示
+       (D-037,KARST-080),這裡不再畫——與這一頁畫面上再沒有一格因子有關。 */
   }
 
   el.funnel.addEventListener('click', function (e) {
@@ -793,11 +588,16 @@
   }
 
   /* ============================================================
-     七、歷次運行:點一行 = 換上面整頁
+     七、歷次運行:排名表(D-037),點一行 = 換下面「持股分布」
      ------------------------------------------------------------
      這張表只有**正式運行**(D-029:一次掃描當一件事,掃描格不入運行清單)。
      來歷由庫身那一格講(backtest_run.origin,KARST-054),不再靠參數集名的
      前綴猜,所以這裡不用再標「掃描格」——表上一格都不會有。
+
+     headline/圖表/選股快照固定用代表運行(S.runId,boot() 揀定就不再變)——
+     這張表的行click 不再切換整頁,只切換下面「持股分布」段(S.holdingsRunId)。
+     要看某次運行的完整詳情(圖表/逐筆交易/因子),click 運行編號那個連結,
+     直達運行詳情頁(D-035/D-036 的「下鑽」)。
      ============================================================ */
   function noFormalRunsRow() {
     if (S.runTotal > 0) {
@@ -806,7 +606,7 @@
          總覽同一句,D-040 明文定案這一句准講,不是「另有 N 條」那種展開行
          的計數)。上面圖表仍然顯示最近一次運行(即使它是失敗運行)的實際
          結果,不會是空白一片。 */
-      return '<tr><td colspan="8"><div class="sp-empty">' +
+      return '<tr><td colspan="6"><div class="sp-empty">' +
           (S.failedCount || S.runTotal) + ' 條運行全部失敗' +
           '(年化回報同時低於 SPY 與 QQQ 買入持有)。' +
         '</div></td></tr>';
@@ -814,40 +614,43 @@
     var cells = S.sweepCells
       ? '(庫內有 ' + S.sweepCells + ' 格掃描格)'
       : '';
-    return '<tr><td colspan="8"><div class="sp-empty">' +
+    return '<tr><td colspan="6"><div class="sp-empty">' +
         '此策略未有正式運行' + cells + ';掃描結果見' +
         '<a href="/sweep">參數掃描頁</a>。' +
       '</div></td></tr>';
   }
 
   function renderRuns() {
+    /* 排序狀態反映在欄頭(design-system 3.4 可排序表頭,沿用 th.sortable
+       這個既有元件的視覺——↕/↑/↓ 由 CSS 按 aria-sort 畫,這裡只負責寫值)。 */
+    el.runsBody.closest('table').querySelectorAll('th.sortable').forEach(function (th) {
+      var active = th.getAttribute('data-sort') === S.sort;
+      th.setAttribute('aria-sort', active ? (S.dir === 'asc' ? 'ascending' : 'descending') : 'none');
+    });
+
     if (!S.runs.length) {
       el.runsBody.innerHTML = noFormalRunsRow();
       return;
     }
     var body = S.runs.map(function (r) {
-      var picked = r.runId === S.runId;
-      var params = Object.keys(r.paramValues).sort().map(function (k) {
-        return k + '=' + r.paramValues[k];
-      }).join('・');
-      return '<tr class="row-clickable' + (picked ? ' is-picked' : '') + '" ' +
+      var selected = r.runId === S.holdingsRunId;
+      return '<tr class="row-clickable' + (selected ? ' is-picked' : '') + '" ' +
           'data-run="' + KV.esc(r.runId) + '" tabindex="0" role="button" ' +
-          'aria-pressed="' + (picked ? 'true' : 'false') + '">' +
-        '<td class="mono">' + KV.esc(r.runId) +
+          'aria-pressed="' + (selected ? 'true' : 'false') + '" ' +
+          'title="點一下:下面「持股分布」換成這一次">' +
+        /* D-035:運行編號本身是連去運行詳情頁的連結(唯一入口),
+           帶埋 ?id= 好讓運行頁的麵包屑與「重新整理」都認得返去邊一套策略。 */
+        '<td class="mono"><a href="/run?id=' + encodeURIComponent(S.sid) + '&run=' +
+          encodeURIComponent(r.runId) + '">' + KV.esc(r.runId) + '</a>' +
           (r.isActiveSetup ? ' <span class="tag tag-live">現役</span>' : '') +
-          (picked && !r.isActiveSetup ? ' <span class="tag tag-current">檢視中</span>' : '') +
           (r.isStale ? ' <span class="stale-badge">舊版本</span>' : '') + '</td>' +
         '<td class="mono">v' + r.strategyVersionNo + '</td>' +
-        '<td title="' + KV.esc(params) + '">' + KV.esc(KV.truncate(params, 46)) + '</td>' +
         '<td class="num ' + KV.cls(r.annualReturnPct) + '">' + KV.pctPlain(r.annualReturnPct) + '</td>' +
+        '<td class="num">' + (r.sortinoRatio === null || r.sortinoRatio === undefined
+          ? '<span class="dim">—</span>' : KV.fixed(r.sortinoRatio, 2)) + '</td>' +
         '<td class="num down">' + KV.pctPlain(r.maxDrawdownPct) + '</td>' +
-        '<td class="num">' + KV.pctPlain(r.winRatePct, 0) + '</td>' +
-        '<td class="mono dim" title="' + KV.esc(r.snapshotId) + '">' +
-          KV.esc(KV.truncate(r.snapshotId, 14)) + '</td>' +
-        /* D-035:運行詳情是策略詳情的鑽取層,連結帶埋 ?id= 好讓運行頁的
-           麵包屑與「重新整理」都認得返去邊一套策略。 */
-        '<td><a href="/run?id=' + encodeURIComponent(S.sid) + '&run=' +
-          encodeURIComponent(r.runId) + '">查看 →</a></td>' +
+        '<td class="num">' + KV.pctPlain(r.winRatePct, 0) +
+          '<div class="dim" style="font-size:11px">' + r.closedTrades + ' 筆</div></td>' +
       '</tr>';
     }).join('');
 
@@ -859,7 +662,7 @@
        不然「共 9 次」但表上一條都揭不出多過 1 條,一樣是講大話。 */
     var visibleTotal = S.runTotal - (S.failedCount || 0);
     var more = S.runs.length < visibleTotal
-      ? '<tr><td colspan="8" style="text-align:center;padding:var(--s-4) 0">' +
+      ? '<tr><td colspan="6" style="text-align:center;padding:var(--s-4) 0">' +
           '<span class="dim">共 ' + visibleTotal + ' 次・已列 ' + S.runs.length + ' 次　</span>' +
           '<button class="btn" id="more-runs">再載 ' +
             Math.min(RUN_PAGE, visibleTotal - S.runs.length) + ' 次</button>' +
@@ -877,36 +680,39 @@
     }
   }
 
+  /* 點一行(非連結、非按鈕):下面「持股分布」換成該次運行 */
   el.runsBody.addEventListener('click', function (e) {
     var tr = e.target.closest('tr[data-run]');
     if (!tr || e.target.closest('a') || e.target.closest('button')) return;
-    pickRun(tr.getAttribute('data-run'));
+    selectHoldingsRun(tr.getAttribute('data-run'));
   });
   el.runsBody.addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     var tr = e.target.closest('tr[data-run]');
-    if (!tr) return;
+    if (!tr || e.target.closest('a')) return;
     e.preventDefault();
-    pickRun(tr.getAttribute('data-run'));
+    selectHoldingsRun(tr.getAttribute('data-run'));
   });
 
-  el.runPick.addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-run]');
-    if (!b) return;
-    pickRun(b.getAttribute('data-run'));
-  });
-  el.backLive.addEventListener('click', function () {
-    var active = S.runs.filter(function (r) { return r.isActiveSetup; })[0];
-    if (active) pickRun(active.runId);
-  });
-
-  function pickRun(runId) {
-    if (!runId || runId === S.runId) return;
-    S.runId = runId;
-    S.date = null;   /* 換運行:快照時點回到該次運行的最後一日 */
-    S.layer = 0;
-    loadRun(runId);
+  /* 點欄頭:按該欄排序,再點一次反轉升降;換一欄由該欄的預設降序起
+     (與 KV.sortableTable 同一套鍵盤操作:Enter/Space 一樣觸發) */
+  function onSortHeaderActivate(e) {
+    var th = e.target.closest('th.sortable');
+    if (!th) return;
+    if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+    if (e.type === 'keydown') e.preventDefault();
+    var key = th.getAttribute('data-sort');
+    if (S.sort === key) {
+      S.dir = S.dir === 'desc' ? 'asc' : 'desc';
+    } else {
+      S.sort = key;
+      S.dir = 'desc';
+    }
+    loadRuns(0);
   }
+  var runsThead = el.runsBody.closest('table').querySelector('thead');
+  runsThead.addEventListener('click', onSortHeaderActivate);
+  runsThead.addEventListener('keydown', onSortHeaderActivate);
 
   /* ============================================================
      八、載入
@@ -925,7 +731,6 @@
       el.picks.innerHTML = '<div class="sp-empty">讀不到選股快照:' +
         KV.esc(err.message) + '</div>';
       el.funnel.innerHTML = '';
-      el.factorExpo.innerHTML = '<div class="sp-empty">讀不到因子敞口。</div>';
     });
   }
 
@@ -944,16 +749,13 @@
         S.detail.tradeMarks.forEach(function (m) { S.marksByDate[m.date] = m; });
 
         ready();
-        /* 導航列的快照與截止日跟住檢視中那一次運行走(與運行詳情頁同一個做法) */
+        /* 導航列的快照與截止日跟住代表運行走(與運行詳情頁同一個做法) */
         KV.mountNav('/strategy', {
           snapshot: S.detail.run.snapshotId,
           asOf: S.detail.run.periodEnd,
         });
-        renderRunPick();
-        renderConfig();
         syncWindow();
         renderKpis(both[1].annualVolatilityPct);
-        renderRuns();
         KV.mountFoot({
           snapshot: S.detail.run.snapshotId,
           periodFrom: S.detail.run.periodStart,
@@ -974,6 +776,7 @@
 
   function loadRuns(offset) {
     var url = '/api/strategy/runs?id=' + encodeURIComponent(S.sid) +
+      '&sort=' + encodeURIComponent(S.sort) + '&dir=' + encodeURIComponent(S.dir) +
       '&limit=' + RUN_PAGE + '&offset=' + (offset || 0);
     return KV.fetchJSON(url).then(function (page) {
       S.runTotal = page.total;
@@ -981,9 +784,91 @@
       S.sweepCells = page.sweepCellTotal || 0;
       S.runs = offset ? S.runs.concat(page.items) : page.items;
       renderRuns();
-      renderRunPick();
+
+      /* D-037:頁面載入時(以及每次重新排序、offset 由 0 開始那一頁)顯示
+         排名第一行的持股分布;之前選定那次若仍在這一頁之內就留住它,
+         不因為重新排序而無端跳走用戶正在看的那一次。 */
+      if (!offset) {
+        var stillThere = S.holdingsRunId &&
+          S.runs.some(function (r) { return r.runId === S.holdingsRunId; });
+        if (!stillThere) {
+          if (S.runs.length) selectHoldingsRun(S.runs[0].runId);
+          else { S.holdingsRunId = null; renderHoldingsEmpty('此策略未有正式運行,持股分布無從畫起。'); }
+        }
+      }
       return page;
     });
+  }
+
+  /* ============================================================
+     九、持股分布(D-037,原「因子分布」):與歷次運行表配對
+     ------------------------------------------------------------
+     排名基準:持有日數(該實體在這次運行逐日持倉長表裡出現的交易日數),
+     不是平均權重——不必逐日回讀收市價、算法簡單直驗(詞彙表「持股分布」
+     條目已寫明用這個口徑)。累計報酬:該股票在此運行全部已平倉交易的合計
+     損益,除以該次運行的起始資金(不是檢視視窗用的 BASE=100 顯示常數)。
+     行業佔比:現有實體登記冊與宇宙檔都沒有行業欄,這裡照後端 notes 講
+     清楚原因,不假裝有資料(已在票上舉手,詞彙表一併補注)。
+     ============================================================ */
+  function selectHoldingsRun(runId) {
+    if (!runId || runId === S.holdingsRunId) return;
+    S.holdingsRunId = runId;
+    renderRuns();   /* 更新表上的「選中」標記 */
+    loadHoldings(runId);
+  }
+
+  function renderHoldingsEmpty(text) {
+    el.holdingsNote.textContent = '';
+    el.holdingsBody.innerHTML = '<div class="sp-empty">' + KV.esc(text) + '</div>';
+  }
+
+  function renderHoldings(payload) {
+    el.holdingsNote.textContent = '運行 ' + payload.runId + '・以持有日數排名前十';
+    var rows = payload.topHoldings || [];
+    if (!rows.length) {
+      el.holdingsBody.innerHTML = '<div class="sp-empty">這次運行沒有持倉紀錄。</div>';
+      return;
+    }
+    var basis = '<div class="section-note" style="padding:var(--s-2) var(--s-4) 0">' +
+      '累計報酬 ＝ 該股在此運行全部已平倉交易的合計損益 ÷ 起始資金 ' +
+      KV.num(payload.startingCapital, 0) + '</div>';
+    var sectorNote = '<div class="section-note dim" style="padding:0 var(--s-4) var(--s-3)">' +
+      KV.esc((payload.notes && payload.notes.why) || '行業佔比未有資料來源。') + '</div>';
+    el.holdingsBody.innerHTML =
+      '<table class="kt"><thead><tr>' +
+        '<th style="width:70px">代號</th>' +
+        '<th>名稱</th>' +
+        '<th class="num" style="width:88px">持有日數</th>' +
+        '<th class="num" style="width:96px">累計報酬</th>' +
+      '</tr></thead><tbody>' +
+      rows.map(function (r) {
+        return '<tr>' +
+          '<td class="mono">' + KV.esc(r.symbol) + '</td>' +
+          '<td title="' + KV.esc(r.name) + '">' + KV.esc(KV.truncate(r.name, 28)) + '</td>' +
+          '<td class="num">' + r.holdingDays + '</td>' +
+          '<td class="num ' + KV.cls(r.cumulativeReturnPct) + '">' +
+            (r.cumulativeReturnPct === null || r.cumulativeReturnPct === undefined
+              ? '<span class="dim">—</span>' : KV.pctPlain(r.cumulativeReturnPct)) +
+          '</td>' +
+        '</tr>';
+      }).join('') +
+      '</tbody></table>' + basis + sectorNote;
+  }
+
+  function loadHoldings(runId) {
+    var token = ++S.holdingsSeq;
+    el.holdingsNote.textContent = '';
+    el.holdingsBody.innerHTML = '<div class="sp-empty">載入中……</div>';
+    KV.fetchJSON('/api/strategy/holdings?run=' + encodeURIComponent(runId))
+      .then(function (payload) {
+        if (token !== S.holdingsSeq) return;
+        renderHoldings(payload);
+      })
+      .catch(function (err) {
+        if (token !== S.holdingsSeq) return;
+        el.holdingsBody.innerHTML = '<div class="sp-empty">讀不到持股分布:' +
+          KV.esc(err.message) + '</div>';
+      });
   }
 
   function boot() {
@@ -1005,7 +890,6 @@
         S.sid = payload.strategy.id;
         KV.mountNav('/strategy');
         renderHead();
-        renderFactors();
         loadHeatband();
 
         /* 這一頁畫的是一次正式運行。只跑過參數掃描的策略在這裡是空的——空一頁
@@ -1016,13 +900,13 @@
             showEmpty(
               '這套策略未有正式運行',
               '「' + payload.strategy.name + '」在庫內只有 ' + cells +
-                ' 格掃描格運行,所以淨值、選股快照與因子敞口都畫不出。掃描結果見',
+                ' 格掃描格運行,所以淨值、選股快照與持股分布都畫不出。掃描結果見',
               { href: '/sweep', text: '參數掃描頁 →' }
             );
           } else {
             showEmpty('這套策略未有運行',
               '「' + payload.strategy.name + '」在庫內未有任何回測運行,' +
-              '所以淨值、選股快照與因子敞口都畫不出。');
+              '所以淨值、選股快照與持股分布都畫不出。');
           }
           return;
         }

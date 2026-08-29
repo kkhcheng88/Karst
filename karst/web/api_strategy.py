@@ -5,12 +5,14 @@
 讀回,快照經 ``karst.data.snapshots`` 讀回;自己不碰 sqlite、不碰 parquet
 格式,亦不產生任何數值——所有數字都是上面那幾層算出來的。
 
-端點三個,全部掛在 ``/api/strategy`` 之下(查詢字串帶參數,不再拆路徑,
+端點全部掛在 ``/api/strategy`` 之下(查詢字串帶參數,不再拆路徑,
 好讓 ``server.py`` 一行就註冊得完):
 
-    /api/strategy?id=<策略編號>            策略身份、版本沿革、因子、運行總數
-    /api/strategy/runs?id=&limit=&offset=  歷次運行(逐頁,含年化/回撤/勝率)
-    /api/strategy/picks?run=&date=         某一日的選股快照、漏斗、因子敞口
+    /api/strategy?id=<策略編號>                  策略身份、版本沿革、因子、運行總數
+    /api/strategy/runs?id=&sort=&dir=&limit=&offset=
+                                                  歷次運行(可排序、逐頁,含年化/Sortino/回撤/勝率)
+    /api/strategy/picks?run=&date=               某一日的選股快照、漏斗、因子敞口
+    /api/strategy/holdings?run=                  一次運行整段期間的持股分布(D-037,KARST-080)
 
 頭兩個亦收 ``?run=``:不帶 ``?id=`` 時由那一次運行反查它自己那套策略
 (KARST-067),所以 ``/strategy?run=X`` 與 ``/strategy?id=<X 那套>&run=X``
@@ -53,12 +55,13 @@ from karst.engine.funnel import (
 )
 from karst.errors import ContractViolation, NotFound
 from karst.metrics import benchmark_curve, trade_stats
-from karst.metrics.ratios import annual_volatility
+from karst.metrics.ratios import annual_volatility, sortino_ratio
 from karst.runs import BASE, window_stats
 from karst.store import FORMAL_RUN, SWEEP_RUN
 
-# D-034 的判準(失敗運行)一份正本住 karst.web.data,這裡照用,不另抄一套。
-from karst.web.data import FAILURE_JUDGE_BENCHMARKS, is_failed_run
+# D-034 的判準(失敗運行)、因子身份與版本鏈的形狀,一份正本住 karst.web.data,
+# 這裡照用,不另抄一套(KARST-080:factor_payload 原本這裡也有一份,現併走)。
+from karst.web.data import FAILURE_JUDGE_BENCHMARKS, factor_payload, is_failed_run
 
 # 一頁歷次運行的預設條數。這張表自 KARST-054 起只列**正式運行**,四千個掃描格
 # 由庫身篩走(D-029),所以現實中一頁綽綽有餘。閘照舊留住:每一行的年化/回撤/
@@ -66,6 +69,9 @@ from karst.web.data import FAILURE_JUDGE_BENCHMARKS, is_failed_run
 # 運行,無閘就會等足一分鐘。照實回報總數,由頁面講明「共 N 次」。
 DEFAULT_RUN_PAGE = 50
 MAX_RUN_PAGE = 200
+
+# 歷次運行表四個可排序的成績欄(D-037)。運行編號、版本欄不可排序。
+_SORT_FIELDS = {"annualReturnPct", "sortinoRatio", "maxDrawdownPct", "winRatePct"}
 
 # 策略型別的中文名。庫內 strategy_type 是 schema 的 CHECK 取值(英文),
 # 畫面要中文;對不上就照原樣顯示,不猜。
@@ -247,32 +253,6 @@ def _default_run_id(reader: Any, runs: list[Any]) -> str | None:
     return runs[0].run_id if runs else None
 
 
-def _factor_payload(reader: Any, version: Any, used: bool) -> dict[str, Any]:
-    """一個因子的身份與版本鏈。鏈由庫讀回,不是這裡數出來的。"""
-    try:
-        chain = reader.store.factor_version_chain(version.name)
-    except NotFound:
-        chain = [version]
-    return {
-        "factorId": version.factor_id,
-        "name": version.name,
-        "family": version.family,
-        "versionNo": version.version_no,
-        "scaleKind": version.scale_kind,
-        "description": version.description,
-        "createdAt": version.created_at,
-        "used": used,
-        "chain": [
-            {
-                "versionNo": item.version_no,
-                "createdAt": item.created_at,
-                "description": item.description,
-            }
-            for item in reversed(chain)
-        ],
-    }
-
-
 def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
     """策略身份、版本沿革、因子、運行總數,以及預設檢視哪一次運行。"""
     strategy = _resolve(reader, _one(query, "id"), _one(query, "run"))
@@ -330,7 +310,7 @@ def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
             }
             for item in sorted(chain, key=lambda v: v.version_no, reverse=True)
         ],
-        "factors": [_factor_payload(reader, f, True) for f in strategy.factors],
+        "factors": [factor_payload(reader, f, True) for f in strategy.factors],
     }
 
 
@@ -378,9 +358,13 @@ def _row_metrics(reader: Any, record: Any) -> dict[str, Any]:
     stats = window_stats(equity, None, None, base=BASE)
     trades = trade_stats(reader.runs.orders(run_id), equity.index)
     bench = _bench_annual_returns(reader, record.snapshot_id, stats.start, stats.end)
+    sortino = sortino_ratio(
+        stats.equity, annual_return=stats.annual_return, risk_free_rate=reader.risk_free_rate
+    )
     return {
         "totalReturnPct": _pct(stats.total_return),
         "annualReturnPct": _pct(stats.annual_return),
+        "sortinoRatio": _f(sortino),
         "maxDrawdownPct": _pct(stats.max_drawdown),
         "winRatePct": _pct(trades.win_rate),
         "profitLossRatio": _f(trades.profit_loss_ratio),
@@ -447,6 +431,27 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
     failed_count = sum(1 for item in items_all if item["isFailed"])
     visible = items_all if _wants_all(query) else [i for i in items_all if not i["isFailed"]]
 
+    # 四個成績欄可點欄頭升降排序,預設按年化由高至低(D-037)。排序要在
+    # 分頁之前做——不然「前 50」揀出來的不是真正排名最高那 50 條。
+    sort_key = _one(query, "sort") or "annualReturnPct"
+    if sort_key not in _SORT_FIELDS:
+        raise ContractViolation(
+            f"歷次運行表只認得 {sorted(_SORT_FIELDS)} 這幾個排序欄,收到 {sort_key!r}"
+        )
+    descending = (_one(query, "dir") or "desc") != "asc"
+    # None(算不出,例如未曾平倉的 Sortino)一律排到榜尾,不管升降序
+    visible = sorted(
+        visible,
+        key=lambda item: (item[sort_key] is None, item[sort_key] if item[sort_key] is not None else 0.0),
+        reverse=descending,
+    )
+    if descending:
+        # reverse=True 連 None 那組(True > False)也一併倒轉,推到榜首——
+        # 再排一次,只把「有值」那段倒轉,「無值」那段留在榜尾。
+        with_value = [i for i in visible if i[sort_key] is not None]
+        without_value = [i for i in visible if i[sort_key] is None]
+        visible = with_value + without_value
+
     offset = max(0, _int(query, "offset", 0))
     limit = _int(query, "limit", DEFAULT_RUN_PAGE)
     if limit <= 0 or limit > MAX_RUN_PAGE:
@@ -462,6 +467,8 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
         "failedCount": failed_count,
         # 空表要講得出「不是壞了,是這套策略只跑過掃描」——連幾多格一齊交
         "sweepCellTotal": _sweep_cells_of(reader, strategy.name),
+        "sort": sort_key,
+        "dir": "asc" if not descending else "desc",
         "offset": offset,
         "shown": len(page),
         "items": page,
@@ -875,6 +882,84 @@ def _funnel(
     return blocks
 
 
+# ---------------- 持股分布(D-037,KARST-080) ----------------
+
+# 「持股分布」前十名的排名基準:持有日數(該實體在 holdings 長表裡出現的
+# 交易日數),不是平均權重——不必逐日回讀收市價、算法簡單直驗,詞彙表
+# 「持股分布」條目已寫明用這個口徑。
+HOLDINGS_RANK_BASIS = "holdingDays"
+
+
+def holdings(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
+    """一次運行整段期間的持股彙總(D-037):最常持有的前十隻股票、
+    各股在此運行的累計報酬,連行業佔比(現有資料沒有行業欄,見下)。
+
+    直接讀 ``RunStore.holdings()``(逐日持倉長表)與 ``RunStore.orders()``
+    (逐筆成交)現算,不另建快取表——與本檔其餘端點同一條紀律。
+
+    排名:持有日數(``HOLDINGS_RANK_BASIS``)。累計報酬:該股票在此運行
+    全部已平倉交易的合計損益(``karst.metrics.trades.trade_stats`` 逐筆
+    FIFO 配對的 ``profit``,已扣手續費),除以該次運行的起始資金
+    (``equity_curve`` 第一天的淨值,不是檢視視窗用的 ``BASE=100`` 那個
+    顯示常數)。
+
+    行業佔比:``karst.data.universe.UniverseMember`` 與快照的宇宙檔都沒有
+    行業欄(核過 ``karst/data/universe.py`` 全檔),所以這裡只做前十股票與
+    累計報酬,``sectorBreakdown`` 固定回 ``None`` 並在 ``notes`` 講明——
+    這一截缺口已經在票上舉手,不是這裡漏做。
+    """
+    run_id = _one(query, "run")
+    if not run_id:
+        raise ContractViolation("要看哪一次運行的持股分布:請帶 ?run=")
+
+    record = reader.runs.get_run(run_id)
+    equity = reader.runs.equity_curve(run_id)
+    if equity.empty:
+        raise NotFound(f"運行 {run_id} 沒有淨值序列,算不出持股分布")
+    starting_capital = _f(equity.iloc[0])
+
+    held = reader.runs.holdings(run_id)
+    top_holdings: list[dict[str, Any]] = []
+    if not held.empty:
+        by_days = held.groupby("entity_id").size().sort_values(ascending=False)
+
+        trades = trade_stats(reader.runs.orders(run_id), equity.index)
+        profit_by_id: dict[int, float] = {}
+        for trip in trades.round_trips:
+            profit_by_id[trip.entity_id] = profit_by_id.get(trip.entity_id, 0.0) + trip.profit
+
+        universe_by_id = {row["entityId"]: row for row in _universe(reader, record.snapshot_id)}
+
+        for entity_id, days in by_days.head(10).items():
+            entity_id = int(entity_id)
+            info = universe_by_id.get(entity_id)
+            profit = profit_by_id.get(entity_id, 0.0)
+            cum_return_pct = None if not starting_capital else profit / starting_capital * 100.0
+            top_holdings.append(
+                {
+                    "entityId": entity_id,
+                    "symbol": info["symbol"] if info else f"#{entity_id}",
+                    "name": info["name"] if info else "",
+                    "holdingDays": int(days),
+                    "realizedProfit": _f(profit),
+                    "cumulativeReturnPct": _f(cum_return_pct),
+                }
+            )
+
+    return {
+        "runId": run_id,
+        "rankBasis": HOLDINGS_RANK_BASIS,
+        "startingCapital": starting_capital,
+        "topHoldings": top_holdings,
+        "sectorBreakdown": None,
+        "notes": {
+            "sectorAvailable": False,
+            "why": "現有實體登記冊／宇宙檔沒有行業欄,行業佔比未做"
+            "(KARST-080 留言已舉手,見票)。",
+        },
+    }
+
+
 # ---------------- 註冊 ----------------
 
 
@@ -885,4 +970,5 @@ def routes(reader: Any) -> dict[str, Callable[[Any, dict[str, list[str]]], Any]]
         "/api/strategy/runs": lambda handler, query: runs(reader, query),
         "/api/strategy/window": lambda handler, query: window(reader, query),
         "/api/strategy/picks": lambda handler, query: picks(reader, query),
+        "/api/strategy/holdings": lambda handler, query: holdings(reader, query),
     }
