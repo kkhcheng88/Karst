@@ -559,7 +559,7 @@
 
 ## D-026 數據架構:parquet 快照+sqlite 登記、實體編號主鍵連代號歷史映射、每次拉數一個快照編號、只存已調整價、單一管線單一快取根
 - 類型：決策
-- 狀態：部分已取代（見 D-028）
+- 狀態：部分已取代（見 D-028、D-041）
 - 日期：2026-08-27
 
 - 出處：用戶 2026-08-27 於 KARST-020 原生選項回答(原話見引文);儲存形態與主鍵兩項用戶交由按性能與擴展性建議,採本條建議
@@ -874,3 +874,24 @@
   > No need. Actually they are no need to show up and should be excluded from the strategy page at all I think
 
 - 影響：KARST-077 改為只隱藏、不做展開行;KARST-081 第 (3) 項改為全失敗策略不列;失敗運行詞條修訂。
+
+## D-041 基本面財報數據主幹改為 SEC EDGAR XBRL(2009 財年起,按申報日期還原知情時點,保留除牌公司);DefeatBeta 與 yfinance 降為補充與核對(部分取代 D-026 的 defeatbeta 管基本面分工)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-29
+
+- 出處：用戶 2026-08-29
+
+- 背景：KARST-076 實測:DefeatBeta 年報只由 2019 年起、典型每家 7 期、44 隻已除牌成分股無一有歷史;yfinance 硬上限 4 年度 5 季度、除牌股連價格都無;EDGAR 2009 財年起齊全、保留除牌公司、可還原申報時點(蘋果 2008 年總資產申報時 395.72 億 vs 重述後 361.71 億)。主 agent 提選項,用戶首答「維持 DefeatBeta 主幹」並留言「OK, just I afraid the scraping will be an issue」;主 agent 澄清 EDGAR 不是網頁抓取而是官方機讀接口後再問,用戶改選「改用 SEC EDGAR 主幹」。
+
+- 決策：基本面線(D-033 第 6–8 類與估值模型目錄首批 13 條)的財報數據主幹是 SEC EDGAR 的機讀申報數據(companyfacts 壓縮包 / 逐公司 JSON,官方免費、不需鑰匙、附聯絡電郵、每秒不超過十次請求);每個事實以申報日期作知情時間,不用重述後數字回測。誠實回測範圍為 2009–2026。DefeatBeta 與 yfinance 只作補充(近期季度、價格)與交叉核對,不作主幹。EDGAR 來源適配器待第一條基本面策略開工時連同建置票一併開,不在基建期插隊。
+
+- 考慮過的替代方案：維持 DefeatBeta 主幹(用戶首答,澄清後放棄);暫不裁等揀第一條策略(未選)。
+
+- 為何選這個：用戶原話:「OK, just I afraid the scraping will be an issue」;澄清後選「改用 SEC EDGAR 主幹 (Recommended)」。
+
+- **用戶原話（原文照錄）**
+
+  > 即是基本面線的數據主幹很可能要改為 EDGAR <<< OK, just I afraid the scraping will be an issue / 改用 SEC EDGAR 主幹
+
+- 影響：D-026 中「defeatbeta 管基本面」的分工部分取代;基本面線所有建置票以 EDGAR 適配器為前置;A-012 已按此記為崩塌。
