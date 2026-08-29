@@ -33,7 +33,7 @@
 
   <div class="sp-stack" id="sp-stack" hidden>
 
-    <!-- ============ 門面:最佳批次整體 + 該批最佳單次 + 現役設定(如有) ============ -->
+    <!-- ============ 門面:最佳批次整體 + 該批最佳單次(「現役設定」卡已依用戶 2026-08-30 裁決拿走) ============ -->
     <section class="sp-panel" aria-labelledby="facade-title">
       <div class="sp-head">
         <div class="sp-side">
@@ -44,54 +44,60 @@
       <div class="sp-body" id="facade-body"></div>
     </section>
 
-    <!-- ============ 密度熱帶淨值圖 ============ -->
-    <section class="sp-panel" aria-labelledby="heat-title">
-      <div class="sp-head">
-        <div class="sp-side">
-          <h2 id="heat-title">密度熱帶淨值圖</h2>
-          <span class="section-note" id="heat-note"></span>
-        </div>
-        <div class="heat-toolbar">
-          <div class="variant-switch" id="heat-variant" role="group" aria-label="熱帶畫法">
-            <button type="button" data-v="grid" aria-current="page">甲・格點密度</button>
-            <button type="button" data-v="band">乙・分位數帶</button>
+    <!-- ============ 密度熱帶淨值圖 + 持股分布:左圖右表併排(用戶 2026-08-30 裁決) ============ -->
+    <div class="sp-split">
+
+      <section class="sp-panel sp-sticky" aria-labelledby="heat-title">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2 id="heat-title">密度熱帶淨值圖</h2>
+            <span class="section-note" id="heat-note"></span>
+          </div>
+          <div class="heat-toolbar">
+            <div class="variant-switch" id="heat-variant" role="group" aria-label="熱帶畫法">
+              <button type="button" data-v="grid" aria-current="page">甲・格點密度</button>
+              <button type="button" data-v="band">乙・分位數帶</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="sp-sub" id="heat-legend"></div>
-      <div class="run-context-bar" id="run-context" hidden></div>
-      <div class="sp-body">
-        <div class="sp-chart" id="heat-chart"></div>
-      </div>
-      <div class="variant-note" id="heat-variant-note"></div>
-    </section>
+        <div class="sp-sub" id="heat-legend"></div>
+        <div class="run-context-bar" id="run-context" hidden></div>
+        <div class="sp-body">
+          <div class="sp-chart" id="heat-chart"></div>
+        </div>
+        <div class="variant-note" id="heat-variant-note"></div>
+      </section>
 
-    <!-- ============ 掃描批次表 ============ -->
-    <section class="sp-panel" aria-labelledby="sweeps-title">
-      <div class="sp-head">
-        <h2 id="sweeps-title">掃描批次</h2>
-        <span class="section-note">點一行:整頁切換到該批</span>
-      </div>
-      <div class="sp-body flush" id="sweeps-table"></div>
-    </section>
+      <section class="sp-panel" aria-labelledby="holdings-title">
+        <div class="sp-head">
+          <h2 id="holdings-title">持股分布</h2>
+          <span class="section-note" id="holdings-note"></span>
+        </div>
+        <div class="sp-body flush" id="holdings-table"></div>
+      </section>
 
-    <!-- ============ 歷次運行表 ============ -->
-    <section class="sp-panel" aria-labelledby="runs-title">
-      <div class="sp-head">
-        <h2 id="runs-title">歷次運行</h2>
-        <span class="section-note">該批達標運行・點一行:在批內選一次(篩選),再點一次或「回到批次」還原</span>
-      </div>
-      <div class="sp-body flush" id="runs-table"></div>
-    </section>
+    </div>
 
-    <!-- ============ 持股分布 ============ -->
-    <section class="sp-panel" aria-labelledby="holdings-title">
-      <div class="sp-head">
-        <h2 id="holdings-title">持股分布</h2>
-        <span class="section-note" id="holdings-note"></span>
-      </div>
-      <div class="sp-body flush" id="holdings-table"></div>
-    </section>
+    <!-- ============ 掃描批次表 + 歷次運行表:左批次右運行併排(用戶 2026-08-30 裁決) ============ -->
+    <div class="sp-split">
+
+      <section class="sp-panel sp-sticky" aria-labelledby="sweeps-title">
+        <div class="sp-head">
+          <h2 id="sweeps-title">掃描批次</h2>
+          <span class="section-note">點一行:整頁切換到該批</span>
+        </div>
+        <div class="sp-body flush" id="sweeps-table"></div>
+      </section>
+
+      <section class="sp-panel" aria-labelledby="runs-title">
+        <div class="sp-head">
+          <h2 id="runs-title">歷次運行</h2>
+          <span class="section-note">該批達標運行・點一行:在批內選一次(篩選),再點一次或「回到批次」還原</span>
+        </div>
+        <div class="sp-body flush" id="runs-table"></div>
+      </section>
+
+    </div>
 
     <!-- ============ 批內選次:選股快照 + 漏斗 + 參數/因子摺疊區 ============ -->
     <section class="sp-panel run-detail" id="run-detail" hidden aria-labelledby="run-detail-title">
@@ -184,8 +190,8 @@
 
   /* ---------------- 原型示範情境列 ---------------- */
   var SCEN_LABEL = {
-    'trend-swing': ['趨勢波段', '有批次・有現役設定(現役非最佳批次)'],
-    'scenario-noactive': ['批次示範', '有批次・無現役設定'],
+    'trend-swing': ['趨勢波段', '有批次・其中一次運行標「現役」'],
+    'scenario-noactive': ['批次示範', '有批次・沒有運行標「現役」'],
     'scenario-allfailed': ['批次示範', '批次全部失敗'],
     'scenario-nobatch': ['批次示範', '未曾執行參數掃描'],
   };
@@ -270,12 +276,8 @@
   function renderFacade() {
     var isBest = curSweep.id === DATA.bestSweepId;
     var bestRun = curRuns.filter(function (r) { return r.id === curSweep.bestRunId; })[0] || null;
-    var active = DATA.active;
-    var activeRun = null, activeSweep = null;
-    if (active) {
-      activeSweep = DATA.sweeps.filter(function (s) { return s.id === active.sweepId; })[0];
-      activeRun = (DATA.runsBySweep[active.sweepId] || []).filter(function (r) { return r.id === active.runId; })[0];
-    }
+    /* 「現役設定」門面卡已按用戶 2026-08-30 裁決整格拿走(有/無兩態都拿走)——
+       用戶不認識這個概念,見 assets/data-batch.js 開首註解與 KARST-086 票留言 */
 
     if (!curSweep.passedCount) {
       el.facadeNote.textContent = curSweep.label + '・' + curSweep.date;
@@ -299,22 +301,6 @@
       title: bestRun ? bestRun.id : '—',
       body: bestRun ? kpiRowHtml(runKpis(bestRun)) : '<div class="sp-empty">無資料</div>',
     });
-    if (active) {
-      var sameAsBest = activeRun && bestRun && activeRun.id === bestRun.id;
-      cards.push({
-        badge: '現役設定' + (sameAsBest ? '(與最佳單次相同)' : ''),
-        title: (activeSweep ? activeSweep.label + '・' : '') + (activeRun ? activeRun.id : '(該批查無此運行)'),
-        body: activeRun ? kpiRowHtml(runKpis(activeRun)) : '<div class="sp-empty">現役設定所屬批次目前未顯示,不冒充本頁門面。</div>',
-        warn: true,
-      });
-    } else {
-      cards.push({
-        badge: '現役設定',
-        title: '未設定',
-        body: '<div class="sp-empty">此策略尚未指定現役設定;紙上交易未跟隨任何一次運行。門面因此只顯示批次與批內最佳單次,兩者皆不冒充現役。</div>',
-        warn: true,
-      });
-    }
 
     el.facadeBody.innerHTML = '<div class="facade-grid">' + cards.map(function (c) {
       return '<div class="facade-card' + (c.warn ? ' is-active-setup' : '') + '">' +

@@ -7,10 +7,18 @@
    令批次示範與原型其他頁的大市走勢同一形狀,互相對得上。
 
    四個示範策略 = D-042 票面要求的四組畫面狀態:
-     trend-swing         — 正常:有批次、有現役設定(現役不等於最佳批次)
-     scenario-noactive   — 正常:有批次、無現役設定
+     trend-swing         — 正常:有批次、其中一次運行標「現役」
+     scenario-noactive   — 正常:有批次、沒有運行標「現役」
      scenario-allfailed  — 批次存在,但批內全部運行失敗
      scenario-nobatch    — 從未執行參數掃描
+
+   2026-08-30 用戶看過原型後裁決,原話「現役設定 don't know is what」——
+   用戶不認識「現役設定」這個概念,故批次門面那張「現役設定」卡已整個拿走
+   (有現役／無現役兩態都拿走,不只是拿走其中一態)。這份假數據仍然保留
+   active/current 這組欄位(見下面 buildStrategy 的 cfg.active、與各運行物件
+   的 current 旗標),因為歷次運行表裡「現役」那個小標籤(標在某一行運行
+   編號旁邊)沒有被拿走,還要靠這組欄位驅動;「現役設定」這個概念本身
+   也留在詞彙表不動。只是拿走的是「批次門面」那一張獨立卡,不是整個概念。
    ============================================================ */
 (function (g) {
   'use strict';
@@ -326,7 +334,7 @@
   })();
 
   var noActive = buildStrategy({
-    id: 'scenario-noactive', name: '批次示範・無現役設定', en: 'Batch Demo — No Active Setup',
+    id: 'scenario-noactive', name: '批次示範・無運行標現役', en: 'Batch Demo — No Run Marked Active',
     active: null,
     sweeps: [
       { id: 'sw-a', label: '2026-05 掃描・回望期×持倉數', date: '2026-05-10', cells: 96, passedCount: 62,
