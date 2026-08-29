@@ -730,7 +730,7 @@
 
 ## D-034 跑輸 SPY 與 QQQ 兩者的運行視為失敗運行,畫面預設不顯示;運行本身照留庫、照核對
 - 類型：決策
-- 狀態：有效
+- 狀態：部分已取代（見 D-040）
 - 日期：2026-08-29
 
 - 出處：用戶 2026-08-29
@@ -853,3 +853,24 @@
   > 策略總覽 need to be updated as well? As the column 1) should match with the 策略詳情 page? the column and the chart. 迷你走勢 in the table I think is not needed. … the bottom bar is not needed
 
 - 影響：策略總覽表與 API 改欄位(KARST-081,接 KARST-080);頁腳元件移除;design-system.md 更新。
+
+## D-040 失敗運行在畫面上完全不顯示,連「另有 N 條失敗運行」展開行也不要;全部正式運行皆失敗的策略不列於策略總覽(部分取代 D-034 的展開行)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-29
+
+- 出處：用戶 2026-08-29
+
+- 背景：主 agent 在 D-039 提出全失敗策略收進展開行,用戶答「No need. Actually they are no need to show up and should be excluded from the strategy page at all」。
+
+- 決策：失敗運行(年化同時低於 SPY 與 QQQ 買入持有的正式運行)在策略總覽、策略詳情、運行排名表、持股分布都不出現,不留展開行、不留計數;登記、留痕、直連網址照舊。全部正式運行皆失敗的策略不列於策略總覽,直到它有一次達標運行;策略頁仍可經直連網址開啟。D-034 的「另有 N 條失敗運行」展開行取消。
+
+- 考慮過的替代方案：保留展開行(未選)。
+
+- 為何選這個：用戶原話:「No need. Actually they are no need to show up and should be excluded from the strategy page at all I think」。
+
+- **用戶原話（原文照錄）**
+
+  > No need. Actually they are no need to show up and should be excluded from the strategy page at all I think
+
+- 影響：KARST-077 改為只隱藏、不做展開行;KARST-081 第 (3) 項改為全失敗策略不列;失敗運行詞條修訂。
