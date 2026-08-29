@@ -222,38 +222,9 @@ class FactorValueStore:
         )
         return frame.sort_values(list(_KEY_COLUMNS)).reset_index(drop=True)
 
-    def read_panel(
-        self,
-        name: str,
-        *,
-        snapshot_id: str,
-        as_of: date | datetime | str | None = None,
-        start: date | datetime | str | None = None,
-        end: date | datetime | str | None = None,
-        entity_ids: Sequence[int] | None = None,
-    ) -> pd.DataFrame:
-        """寬表:一條因子的「日期 × 實體編號 → 值」面板(D-021 第 1 條那張表)。
-
-        索引是事件時點那一日,欄名是**實體編號**(不是交易代號——代號會被回收
-        再發給別人,D-026 第 2 條)。缺值那一格是 ``NaN``,即該股該日不參與;
-        **不填 0、不前值填補**——這裡的空白與長表裡「沒有那一列」是同一件事。
-
-        同一日同一隻若有多個知情時點(值被更晚知道的新值取代,D-021 第 5 條),
-        取知情最遲那一個——那正是「截至此刻所知」的意思。
-        """
-        long = self.read_long(
-            [name], snapshot_id=snapshot_id, as_of=as_of, start=start, end=end,
-            entity_ids=entity_ids,
-        )
-        if long.empty:
-            return pd.DataFrame(index=pd.DatetimeIndex([], name="event_time"))
-        latest = long.sort_values("knowledge_time").drop_duplicates(
-            ["entity_id", "event_time"], keep="last"
-        )
-        panel = latest.pivot(index="event_time", columns="entity_id", values="value")
-        panel.columns = [int(column) for column in panel.columns]
-        panel.columns.name = "entity_id"
-        return panel.sort_index()
+    # 寬面板(「日期 × 實體編號 → 值」)不在這裡(KARST-088,架構審視候選五):
+    # 它要先揀「同一日同一隻取知情最遲那一個」,那是取值的挑法,不是讀檔。
+    # 挑法只可以有一份實作,住在 ``karst.factorvalues.FactorValueReader.panel``。
 
     def resolve(self, name: str) -> FactorVersion:
         """把「因子名稱[@版本號]」解析成一個確定的因子版本(與策略引用同一種寫法)。"""

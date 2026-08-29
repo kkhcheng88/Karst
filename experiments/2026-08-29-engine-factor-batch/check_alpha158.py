@@ -34,7 +34,7 @@ if str(_EXPERIMENTS) not in sys.path:   # 現役快照編號共用一份(KARST-0
 from snapshot_ids import PRICE_LARGE_CAP  # noqa: E402
 from karst.data.snapshots import read_price_panel  # noqa: E402
 from karst.engine import PricePanel, read_factor_panel, run_ranking_rebalance  # noqa: E402
-from karst.engine.factorvalues import FactorValueSource  # noqa: E402
+from karst.factorvalues import FactorValueReader  # noqa: E402
 from karst.factorstore import DEFAULT_FACTOR_ROOT, FactorValueStore  # noqa: E402
 from karst.store import DefinitionStore  # noqa: E402
 
@@ -70,9 +70,9 @@ def main() -> None:
         reference = f"{FACTOR}@{FACTOR_VERSION_NO}"
 
         # ---- 1. 引擎那條路 vs 直接開檔 ---------------------------------
-        source = FactorValueSource(store)
-        taken = source.latest_known_values(
-            FACTOR, DECISION_DAY, version_no=FACTOR_VERSION_NO
+        reader = FactorValueReader(store, REPO / DEFAULT_FACTOR_ROOT)
+        taken = reader.latest_known(
+            reference, DECISION_DAY, snapshot_id=None, entity_ids=None
         )
 
         gate = pd.Timestamp(f"{DECISION_DAY}T23:59:59.999999")

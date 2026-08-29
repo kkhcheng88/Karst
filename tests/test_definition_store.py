@@ -44,7 +44,7 @@ def apple(store):
 
 
 # 驗收條件 1:寫得入、讀得回,值帶事件時間與知情時間(D-021 第 1、3 條)
-def test_value_round_trips_with_both_timestamps(store, apple):
+def test_value_round_trips_with_both_timestamps(store, apple, tmp_path):
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
     store.write_factor_values(
         MOMENTUM,
@@ -69,7 +69,13 @@ def test_value_round_trips_with_both_timestamps(store, apple):
 
     # 知情時間是閘:8 月 26 日還未知道這個值
     assert store.read_factor_values(MOMENTUM, as_of="2026-08-26").empty
-    assert store.value_for(MOMENTUM, apple, as_of="2026-08-27") == pytest.approx(0.3142)
+    # 單點查詢經取值口(KARST-088);這條因子的值住表,批次那邊一格都沒有。
+    from karst.factorvalues import FactorValueReader
+
+    reader = FactorValueReader(store, str(tmp_path / "factors"))
+    assert reader.value_for(MOMENTUM, apple, "2026-08-27", snapshot_id=None) == pytest.approx(
+        0.3142
+    )
 
 
 # 驗收條件 2:出第二版時舊版一字不變,新版記得住父版本,追得回上一版(D-021 第 9 條)
@@ -117,7 +123,7 @@ def test_second_version_keeps_first_intact_and_records_parent(store, apple):
 
 
 # 驗收條件 3:缺失=不參與,不是 0;兩者分辨得到(D-021 第 4 條)
-def test_missing_value_is_not_applicable_not_zero(store, apple):
+def test_missing_value_is_not_applicable_not_zero(store, apple, tmp_path):
     quiet = store.register_entity(kind="company", display_name="Quiet Co.", cik="111111")
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
     store.write_factor_values(
@@ -126,15 +132,20 @@ def test_missing_value_is_not_applicable_not_zero(store, apple):
           "executable_time": "2026-08-27", "value": 0.0}],
     )
 
-    really_zero = store.value_for(MOMENTUM, apple, as_of="2026-08-27")  # 值真的是零
-    not_in_play = store.value_for(MOMENTUM, quiet, as_of="2026-08-27")  # 不參與
+    # 取值經 ``karst.factorvalues`` 那個取值口(KARST-088:全平台只此一條路);
+    # 這條因子的值住表,所以批次那邊一格都沒有。
+    from karst.factorvalues import FactorValueReader
+
+    reader = FactorValueReader(store, str(tmp_path / "factors"))
+    really_zero = reader.value_for(MOMENTUM, apple, "2026-08-27", snapshot_id=None)  # 值真的是零
+    not_in_play = reader.value_for(MOMENTUM, quiet, "2026-08-27", snapshot_id=None)  # 不參與
 
     assert really_zero == 0.0
     assert really_zero is not NOT_APPLICABLE
     assert not_in_play is NOT_APPLICABLE
 
     # 缺失不是「填了 0」,而是根本沒有那一列
-    latest = store.latest_known_values(MOMENTUM, as_of="2026-08-27")
+    latest = reader.latest_known(MOMENTUM, "2026-08-27", snapshot_id=None, entity_ids=None)
     assert list(latest["entity_id"]) == [apple]
 
     # 「不參與」不可當真假值用,逼調用方寫明,免得與 0 混為一談

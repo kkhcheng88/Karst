@@ -1,8 +1,9 @@
 """按因子排名選前 N 隻等權——按知情時點讀值,到目標比重表為止。
 
-取值那一路是 ``factorvalues.FactorValueSource``:簽名與單一定義庫原本那個
-``latest_known_values`` 一字不差,分別只在它**兩個住處一齊看**——定義庫的
-``factor_value`` 表(小批人手值)與因子值批次的 Parquet 檔(D-032、KARST-071)。
+取值那一路是 ``karst.factorvalues.FactorValueReader``——全平台「按知情時點取因子值」
+唯一那條路(KARST-088)。它**兩個住處一齊看**:定義庫的 ``factor_value`` 表
+(小批人手值)與因子值批次的 Parquet 檔(D-032、KARST-071);知情時間閘與
+「最新已知」的挑法住在它裡面,本檔不再自己實作一次。
 本檔不改核心,亦沒有一個字提到背後跑的是哪個引擎。
 
 兩條紀律寫死在這裡:
@@ -19,9 +20,10 @@ from collections.abc import Sequence
 import numpy as np
 import pandas as pd
 
-from ..store import DefinitionStore
+from ..factorstore import DEFAULT_FACTOR_ROOT
+from ..factorvalues import FactorValueReader
+from ..store import FACTOR_REF_SEPARATOR, DefinitionStore
 from .contracts import Rebalance, RankingRebalanceParams
-from .factorvalues import FactorValueSource
 from .funnel import STAGE_SCOPE, STAGE_SELECTED, SelectionTraceBuilder
 
 
@@ -38,20 +40,28 @@ def read_factor_panel(
     ``as_of`` 傳日期(不是時間戳),取值那一層會當「該日收工為止」處理;
     當日稍後才知道的值,那一日看不見。
 
-    值住表定住檔,呼叫方不必知道:``FactorValueSource`` 兩邊一齊看。整段決策日
-    共用同一個來源,所以一條因子只讀一次——揀出來的值與逐日各讀一次完全相同。
+    值住表定住檔,呼叫方不必知道:``FactorValueReader`` 兩邊一齊看。整段決策日
+    共用同一個取值口,所以一條因子只讀一次——揀出來的值與逐日各讀一次完全相同。
+
+    快照留空即「全部住處一齊看」:同一條因子跨快照都算過,一併看得見。要收窄到
+    某一份快照,是策略層的事,不在這一層決定。
     """
     wanted = None if entity_ids is None else [int(entity) for entity in entity_ids]
     columns_hint = None if wanted is None else wanted
-    source = FactorValueSource(store)
+    reader = FactorValueReader(store, DEFAULT_FACTOR_ROOT)
+    reference = (
+        factor_name
+        if version_no is None
+        else f"{factor_name}{FACTOR_REF_SEPARATOR}{int(version_no)}"
+    )
 
     readings: dict[pd.Timestamp, pd.Series] = {}
     for day in decision_dates:
         stamp = pd.Timestamp(day)
-        frame = source.latest_known_values(
-            factor_name,
+        frame = reader.latest_known(
+            reference,
             stamp.date(),  # 傳純日期 → 閘定在該日收工
-            version_no=version_no,
+            snapshot_id=None,
             entity_ids=wanted,
         )
         readings[stamp] = pd.Series(

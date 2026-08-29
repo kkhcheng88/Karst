@@ -154,14 +154,21 @@ def test_read_long_gates_on_knowledge_time(values, snapshot_id):
 
 
 def test_read_panel_returns_a_date_by_entity_wide_table(values, snapshot_id, entities):
-    panel = values.read_panel(FIRST, snapshot_id=snapshot_id)
+    """寬面板由取值口交出來(KARST-088):讀檔在這裡,揀哪一列不在這裡。"""
+    from karst.factorvalues import FactorValueReader
+
+    reader = FactorValueReader(values.store, values.root)
+    panel = reader.panel(
+        FIRST, snapshot_id=snapshot_id, as_of=None, start=None, end=None, entity_ids=None
+    )
     assert list(panel.columns) == sorted(entities)          # 欄名是實體編號,不是交易代號
     assert list(panel.index.strftime("%Y-%m-%d")) == list(DAYS)
     assert panel.shape == (4, 2)
     assert panel.iloc[0, 0] == pytest.approx(0.1 + 0.01 * sorted(entities)[0])
 
-    narrowed = values.read_panel(
-        FIRST, snapshot_id=snapshot_id, start=DAYS[2], entity_ids=[entities[0]]
+    narrowed = reader.panel(
+        FIRST, snapshot_id=snapshot_id, as_of=None, start=DAYS[2], end=None,
+        entity_ids=[entities[0]],
     )
     assert narrowed.shape == (2, 1)
 

@@ -24,7 +24,12 @@
              "knowledge_time": "2026-08-27", "executable_time": "2026-08-28",
              "value": 0.31},
         ])
-        store.value_for("動量·12-1 月", apple, as_of="2026-08-27")
+    取值(按知情時點取最新已知的一個數)不在定義庫身上,在取值口:
+
+        from karst.factorvalues import FactorValueReader
+
+        reader = FactorValueReader(store, "data/factors")
+        reader.value_for("動量·12-1 月", apple, "2026-08-27", snapshot_id=None)
 """
 
 from .batches import content_hash, freeze_batch, read_batch
@@ -46,6 +51,7 @@ from .models import (
     Snapshot,
     TickerPeriod,
 )
+from .factorvalues import FactorValueReader
 from .store import DefinitionStore
 
 __all__ = [
@@ -53,6 +59,7 @@ __all__ = [
     "SCALE_KINDS",
     "ContractViolation",
     "DefinitionStore",
+    "FactorValueReader",
     "DuplicateDefinition",
     "Entity",
     "FactorVersion",

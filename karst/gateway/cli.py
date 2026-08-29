@@ -420,13 +420,24 @@ def _factor_ingest_alpha158(args: argparse.Namespace, gateway: Gateway, out: Tex
 def _factor_ic(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     """因子預測力:逐因子逐日 Spearman IC + 滾動 ICIR,唯一入口輸出成表(KARST-066)。
 
-    對齊、IC、ICIR 的算法住在 ``karst.factorpredict``,本檔只讀值、印表。
+    對齊、IC、ICIR 的算法住在 ``karst.factorpredict``,本檔只讀值、印表。取值經
+    ``karst.factorvalues.FactorValueReader`` ——與選股引擎同一條路(KARST-088),
+    表與因子值批次兩個住處一齊看。
     """
     from ..data import read_price_frame
     from ..factorpredict import daily_ic, rolling_icir, summarize_ic
+    from ..factorvalues import FactorValueReader
 
     store = gateway.factor_values(args.factor_root)
-    factor_long = store.read_long(args.factors, snapshot_id=args.snapshot)
+    reader = FactorValueReader(gateway.store, store.root)
+    factor_long = reader.history(
+        args.factors,
+        snapshot_id=args.snapshot,
+        as_of=None,
+        start=None,
+        end=None,
+        entity_ids=None,
+    )
     price_frame = read_price_frame(gateway.store, args.snapshot, root=args.root)
 
     from ..factorpredict import align_factor_to_forward_returns

@@ -106,7 +106,6 @@ from .rules import (
     resolve_exits,
     rule_selection_trace,
 )
-from .factorvalues import FactorValueSource
 from .runner import run_ranking_rebalance, target_weights
 from .selection import build_targets, read_factor_panel
 
@@ -148,7 +147,6 @@ __all__ = [
     "BreakoutEntry",
     "CadenceNotSpecified",
     "ExitPlan",
-    "FactorValueSource",
     "MeasuredMoveTarget",
     "MonthlyLossBreaker",
     "Order",

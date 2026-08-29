@@ -29,7 +29,6 @@ from .errors import (
 )
 from .models import (
     ENTITY_KINDS,
-    NOT_APPLICABLE,
     SCALE_KINDS,
     Entity,
     FactorVersion,
@@ -38,7 +37,6 @@ from .models import (
     Procedure,
     Snapshot,
     TickerPeriod,
-    _NotApplicable,
     as_date,
     as_finite_float,
     as_timestamp,
@@ -1004,58 +1002,9 @@ class DefinitionStore:
         sql.append("ORDER BY event_time, entity_id, knowledge_time")
         return self._frame(" ".join(sql), params)
 
-    def latest_known_values(
-        self,
-        name: str,
-        as_of: date | datetime | str,
-        *,
-        version_no: int | None = None,
-        entity_ids: Sequence[int] | None = None,
-    ) -> pd.DataFrame:
-        """每個實體取截至 ``as_of`` **最新已知**的一個值(D-021 第 5 條:值永久有效直至被取代)。
-
-        沒有值的實體不會出現在結果裡——那就是「不參與」。
-        """
-        version = self.get_factor_version(name, version_no)
-        params: list[Any] = [
-            version.factor_version_id,
-            as_timestamp(as_of, "as_of", end_of_day=True),
-        ]
-        entity_filter = ""
-        if entity_ids is not None:
-            placeholders = ", ".join("?" for _ in entity_ids)
-            entity_filter = f"AND entity_id IN ({placeholders})"
-            params.extend(int(e) for e in entity_ids)
-        sql = f"""
-            SELECT entity_id, event_time, knowledge_time, executable_time, value,
-                   snapshot_id, factor_version_id
-            FROM (
-                SELECT *, ROW_NUMBER() OVER (
-                    PARTITION BY entity_id ORDER BY event_time DESC, knowledge_time DESC
-                ) AS rank_in_entity
-                FROM factor_value
-                WHERE factor_version_id = ? AND knowledge_time <= ? {entity_filter}
-            )
-            WHERE rank_in_entity = 1
-            ORDER BY entity_id
-        """
-        return self._frame(sql, params)
-
-    def value_for(
-        self,
-        name: str,
-        entity_id: int,
-        as_of: date | datetime | str,
-        *,
-        version_no: int | None = None,
-    ) -> float | _NotApplicable:
-        """單點查詢。查不到即回 ``NOT_APPLICABLE``——是「不參與」,不是 0。"""
-        frame = self.latest_known_values(
-            name, as_of, version_no=version_no, entity_ids=[int(entity_id)]
-        )
-        if frame.empty:
-            return NOT_APPLICABLE
-        return float(frame.iloc[0]["value"])
+    # 「按知情時點取最新已知值」不在這裡(KARST-088,架構審視候選五):本庫只交回
+    # ``factor_value`` 表裡**原本那幾列**,揀哪一列是 ``karst.factorvalues`` 那個
+    # 取值口的事——值住表定住因子值批次,合流與挑法只可以有一份實作。
 
     def _frame(self, sql: str, params: Sequence[Any]) -> pd.DataFrame:
         rows = self._conn.execute(sql, tuple(params)).fetchall()

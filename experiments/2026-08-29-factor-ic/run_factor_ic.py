@@ -36,6 +36,7 @@ import pandas as pd  # noqa: E402
 
 from karst.data import read_price_frame  # noqa: E402
 from karst.factorpredict import align_factor_to_forward_returns, daily_ic, summarize_ic  # noqa: E402
+from karst.factorvalues import FactorValueReader  # noqa: E402
 from karst.factors import ALPHA158_NAMES  # noqa: E402
 from karst.gateway.alpha158 import factor_name  # noqa: E402
 from karst.gateway.service import Gateway  # noqa: E402
@@ -98,6 +99,8 @@ def run(args: argparse.Namespace) -> dict:
     results: list[dict] = []
     with Gateway.open(args.store, writer="KARST-066-factor-ic") as gateway:
         store = gateway.factor_values(args.factor_root)
+        # 取值經全平台唯一那條路(KARST-088):表與因子值批次兩個住處一齊看。
+        reader = FactorValueReader(gateway.store, store.root)
         for universe in UNIVERSES:
             snapshot_id = universe["snapshot_id"]
             print(f"== 宇宙 {universe['key']}({snapshot_id}) ==", file=sys.stderr)
@@ -109,7 +112,10 @@ def run(args: argparse.Namespace) -> dict:
 
             # 一次過讀全部 158 條因子的長表(同一個批次檔,一次 I/O),之後逐條因子
             # 在記憶體裡切片——切片不必再讀檔,只有 align/daily_ic 逐條因子重算。
-            factor_long_all = store.read_long(names, snapshot_id=snapshot_id)
+            factor_long_all = reader.history(
+                names, snapshot_id=snapshot_id, as_of=None, start=None, end=None,
+                entity_ids=None,
+            )
             version_of = {name: store.resolve(name) for name in names}
 
             for horizon in HORIZONS:
