@@ -47,6 +47,7 @@ from karst.data.macro import (
     macro_snapshot_dir,
     series_of,
 )
+from karst.gateway import Gateway
 from karst.strategies.factor_rotation import EXTERNAL_DATA
 
 CALENDAR = tuple(
@@ -125,7 +126,8 @@ def _build(
 
 def test_vix_and_treasury_yields_enter_a_citable_snapshot(tmp_path):
     """驗收一:VIX 與至少三條美債息率經適配器入快照,知情時間寫明,編號可引用。"""
-    with DefinitionStore.open(":memory:") as store:
+    # 快照登記要經唯一入口簽章(KARST-087)
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path)
 
         # --- VIX 與四條美債息率真的入了快照 ---
@@ -163,7 +165,7 @@ def test_vix_and_treasury_yields_enter_a_citable_snapshot(tmp_path):
 
 def test_missing_readings_stay_missing_and_are_visible_in_the_data(tmp_path):
     """留空不當零:VIX_3M 尾段停數,前值填補至多 3 日,其餘留空,而且驗得到。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path)
         frame = read_macro_frame(store, snapshot.snapshot_id, root=tmp_path)
         block = frame.loc[frame["series"] == "VIX_3M"].sort_values("date")
@@ -211,7 +213,7 @@ def test_fedwatch_free_substitute_is_named_ingested_and_the_paywall_written_down
     assert any("FedWatch" in row["用途"] for row in EXTERNAL_DATA)
 
     # --- 真的接入了:它入了快照,讀得回來 ---
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path)
         panel = read_macro_panel(store, snapshot.snapshot_id, root=tmp_path)
         assert "FF_FUTURE" in panel.columns
@@ -229,7 +231,7 @@ def test_fedwatch_free_substitute_is_named_ingested_and_the_paywall_written_down
 
 def test_macro_series_are_never_investable_entities(tmp_path):
     """宏觀序列不入 entity 表、不佔實體編號、不入價格面板——處置寫明且驗得到。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path)
 
         # 一個實體都沒有登記:整條宏觀管線根本沒有 register_entity 那一步
@@ -264,7 +266,7 @@ def test_macro_series_are_never_investable_entities(tmp_path):
 
 def test_refetching_the_same_window_reuses_the_frozen_snapshot(tmp_path):
     """等價重用(D-028 第 2 條):同一批數重抓不多一份副本。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         first = _build(store, tmp_path)
         assert first.reused is False
 
@@ -287,7 +289,7 @@ def test_a_source_that_returns_nothing_is_a_failure_not_an_empty_series(tmp_path
     """抓不到不當作「這條序列沒有數」,一律當抓取失敗。"""
     values = _values()
     values = values.loc[values["series"] != "UST_10Y"]  # 少了一條
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         with pytest.raises(DataFetchFailed) as caught:
             _build(store, tmp_path, values=values)
     assert "UST_10Y" in str(caught.value)

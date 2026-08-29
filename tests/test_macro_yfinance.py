@@ -24,7 +24,6 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore
 from karst.data import (
     COMPOSITE_SOURCE_NAME,
     CboeMacroSource,
@@ -39,6 +38,7 @@ from karst.data import (
     series_of,
     verify_macro_snapshot,
 )
+from karst.gateway import Gateway
 
 pytest.importorskip("yfinance", reason="未安裝 yfinance,跳過真實抓取")
 
@@ -74,7 +74,8 @@ def online() -> None:
 
 def test_real_macro_snapshot_holds_vix_and_treasury_yields(online, tmp_path):
     """驗收一(真實那半):VIX 與四條美債息率抓得到、入得到快照、編號可引用。"""
-    with DefinitionStore.open(":memory:") as store:
+    # 快照登記要經唯一入口簽章(KARST-087)
+    with Gateway.open(":memory:").store as store:
         snapshot = build_macro_snapshot(
             store,
             start=WINDOW[0],

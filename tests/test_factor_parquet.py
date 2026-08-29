@@ -23,7 +23,7 @@ from karst.errors import ContractViolation, ImmutabilityViolation, NotFound
 from karst.factorstore import BATCH_COLUMNS, FILE_MISSING, FILE_TAMPERED, normalise_batch
 from karst.gateway.service import Gateway
 from karst.models import FormulaProcedure
-from karst.schema import FACTOR_VALUES_TO_FILES_MIGRATION_KEY
+from karst.schema import FACTOR_VALUES_TO_FILES_MIGRATION_KEY, SCHEMA_VERSION
 
 BATCH = "toy"
 PROCEDURE = "karst.tests.toy@1"
@@ -349,8 +349,10 @@ def test_old_values_are_cleared_only_after_the_file_registration_matches(
             (FACTOR_VALUES_TO_FILES_MIGRATION_KEY,),
         ).fetchone()
         assert note is not None and "4 個因子值" in note[0]
+        # 核的是「舊庫重開之後版本印記跟上庫身」,不是某一個數字:寫死一個數字,
+        # 下一次加表就會在這裡紅一次(這一句本來寫死 "11",第 12 版加表時就已經紅了)。
         assert conn.execute("SELECT value FROM schema_meta WHERE key = 'schema_version'"
-                            ).fetchone()[0] == "11"
+                            ).fetchone()[0] == str(SCHEMA_VERSION)
         assert gateway.store.get_factor_version(FIRST).factor_version_id == version.factor_version_id
         assert gateway.store.get_entity(entity).entity_id == entity
         # 表結構仍在:寫得入、讀得回(小批人手登記那條路照舊)

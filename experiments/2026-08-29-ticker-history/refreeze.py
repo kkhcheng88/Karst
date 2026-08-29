@@ -31,8 +31,8 @@ from karst.data.ticker_history import (  # noqa: E402
     write_anchor_table,
 )
 from karst.errors import NotFound  # noqa: E402
+from karst.gateway import Gateway  # noqa: E402
 from karst.gateway.cli import main as gateway_main  # noqa: E402
-from karst.store import DefinitionStore  # noqa: E402
 
 BASE_SNAPSHOT = "2026-08-28-493fd1df1cb9"
 WINDOW_START = "2015-01-02"
@@ -55,7 +55,10 @@ def main() -> int:
     scratch = Path(sys.argv[1])
     scratch.mkdir(parents=True, exist_ok=True)
 
-    store = DefinitionStore.open(str(STORE_PATH))
+    # 庫身一律由唯一入口開出來(KARST-087):快照登記要有那道門的簽章手才寫得入,
+    # 而這支腳本本身亦要撤回代號映射,同一條連線做完再放手,不留第二條在同一個庫檔上。
+    gateway = Gateway.open(str(STORE_PATH))
+    store = gateway.store
     universe = read_universe(store, BASE_SNAPSHOT)
     prices = read_price_frame(store, BASE_SNAPSHOT)
     by_entity = dict(zip(universe["entity_id"], universe["ticker"], strict=True))
@@ -221,6 +224,8 @@ def main() -> int:
     for note in notes:
         argv += ["--note", note]
 
+    # 重凍那一句自己會開唯一入口,所以先放手:同一個庫檔上不留兩條連線。
+    gateway.close()
     print("經唯一入口重凍中(karst data snapshot --source csv --anchors …)")
     return gateway_main(argv)
 

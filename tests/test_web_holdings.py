@@ -18,8 +18,9 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore, FormulaProcedure
+from karst import FormulaProcedure
 from karst.data import StaticSource, UniverseMember, build_price_snapshot, read_universe
+from karst.gateway import Gateway
 from karst.runs import RunStore
 from karst.store import FORMAL_RUN
 from karst.web import api_strategy
@@ -82,7 +83,8 @@ def runs_root(tmp_path):
 
 @pytest.fixture()
 def store(tmp_path):
-    with DefinitionStore.open(str(tmp_path / "karst.sqlite")) as opened:
+    # 快照登記要經唯一入口簽章(KARST-087),所以庫身由那道門開出來
+    with Gateway.open(str(tmp_path / "karst.sqlite")).store as opened:
         yield opened
 
 

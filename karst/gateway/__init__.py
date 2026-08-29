@@ -15,9 +15,11 @@
 
 from .cli import build_parser, main
 from .ledger import Finding, verify
-from .service import Gateway, WriteReceipt, build_procedure
+from .service import CategoryVerdict, Countersign, Gateway, WriteReceipt, build_procedure
 
 __all__ = [
+    "CategoryVerdict",
+    "Countersign",
     "Finding",
     "Gateway",
     "WriteReceipt",

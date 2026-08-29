@@ -251,7 +251,8 @@ def test_the_two_cells_are_required_with_no_default():
 def test_one_cell_alone_is_refused(karst, bars_file):
     """留一格空補不出另一格:核對過就兩格都有,沒有核對過就兩格都留空。"""
     snapshot_id = _price_snapshot(karst, bars_file)
-    with DefinitionStore.open(karst.path) as store:
+    # 快照登記要經唯一入口簽章(KARST-087)
+    with Gateway.open(karst.path).store as store:
         with pytest.raises(ContractViolation):
             store.record_snapshot_fetch(
                 snapshot_id,

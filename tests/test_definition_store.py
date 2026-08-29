@@ -22,6 +22,7 @@ from karst import (
     freeze_batch,
     read_batch,
 )
+from karst.gateway import Gateway
 
 MOMENTUM = "動量·12-1 月"
 MOMENTUM_PROCEDURE = FormulaProcedure(
@@ -32,7 +33,8 @@ MOMENTUM_PROCEDURE = FormulaProcedure(
 
 @pytest.fixture()
 def store(tmp_path):
-    with DefinitionStore.open(str(tmp_path / "karst.sqlite")) as opened:
+    # 快照登記要經唯一入口簽章(KARST-087),所以庫身由那道門開出來
+    with Gateway.open(str(tmp_path / "karst.sqlite")).store as opened:
         yield opened
 
 

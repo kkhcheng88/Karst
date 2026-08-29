@@ -10,7 +10,8 @@ import sqlite3
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore, FormulaProcedure, ImmutabilityViolation
+from karst import FormulaProcedure, ImmutabilityViolation
+from karst.gateway import Gateway
 from karst.runs import RunStore, synthetic_simulation
 from karst.store import FORMAL_RUN, SWEEP_RUN
 
@@ -28,7 +29,8 @@ ENGINE = ("vectorbt-adapter", "0.1.0")
 
 @pytest.fixture()
 def store(tmp_path):
-    with DefinitionStore.open(str(tmp_path / "karst.sqlite")) as opened:
+    # 快照登記要經唯一入口簽章(KARST-087),所以庫身由那道門開出來
+    with Gateway.open(str(tmp_path / "karst.sqlite")).store as opened:
         yield opened
 
 

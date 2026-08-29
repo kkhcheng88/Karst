@@ -40,6 +40,10 @@ def freeze_batch(
 
     同一批內容重跑會落回同一個編號、同一個檔;內容變了就是另一個快照,
     舊的一律不動。
+
+    ``store`` 要是**由唯一入口開出來**那一個(``Gateway.open(...).store``):快照登記
+    自本票起要有那道門的簽章手才寫得入(KARST-087),拎一個裸庫身來凍,登記那一句
+    當場拒收,一個字都不寫——但 parquet 已經落了檔,所以拒收出現在寫檔之後。
     """
     digest = content_hash(frame)
     snapshot_id = store.snapshot_id_for(taken_on, digest)

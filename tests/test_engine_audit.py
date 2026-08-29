@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore, FormulaProcedure
+from karst import FormulaProcedure
 from karst.engine import (
     BAR_CONSISTENCY_TOLERANCE,
     EXIT_STOP,
@@ -31,6 +31,7 @@ from karst.engine import (
     run_rule_strategy,
 )
 from karst.errors import ContractViolation, ImmutabilityViolation, NotFound
+from karst.gateway import Gateway
 from karst.runs import AUDIT_SERIES_KINDS, RunStore
 from karst.store import FORMAL_RUN, RUN_ARTIFACT_KINDS
 from karst.strategies import trend_swing
@@ -122,7 +123,8 @@ def run(panel):
 @pytest.fixture()
 def runs(tmp_path):
     """一個乾淨的定義庫連運行留痕,身份五件已登記齊。"""
-    with DefinitionStore.open(str(tmp_path / "karst.sqlite")) as store:
+    # 快照登記要經唯一入口簽章(KARST-087),所以庫身由那道門開出來
+    with Gateway.open(str(tmp_path / "karst.sqlite")).store as store:
         store.register_factor(
             FACTOR,
             scale_kind="boolean",

@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore, FormulaProcedure
+from karst import FormulaProcedure
 from karst.engine.funnel import (
     STAGE_HELD,
     STAGE_SCOPE,
@@ -27,6 +27,7 @@ from karst.engine.funnel import (
     STATUS_WATCH,
     SelectionTraceBuilder,
 )
+from karst.gateway import Gateway
 from karst.runs import SELECTION_CANDIDATES, SELECTION_SCORES, RunStore, synthetic_simulation
 from karst.store import FORMAL_RUN, SWEEP_RUN
 
@@ -45,7 +46,8 @@ ENGINE = ("vectorbt-adapter", "0.1.0")
 
 @pytest.fixture()
 def store(tmp_path):
-    with DefinitionStore.open(str(tmp_path / "karst.sqlite")) as opened:
+    # 快照登記要經唯一入口簽章(KARST-087),所以庫身由那道門開出來
+    with Gateway.open(str(tmp_path / "karst.sqlite")).store as opened:
         yield opened
 
 

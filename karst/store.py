@@ -12,7 +12,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sqlite3
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from typing import Any, Final
@@ -427,15 +427,72 @@ class DefinitionLocation:
         return len(self.occurrences) > 1
 
 
+SnapshotSigner = Callable[[str, Sequence[object]], None]
+"""快照登記的簽章手:收「表名 + 主鍵」,替那一列蓋唯一入口的寫入者簽章。
+
+實作住在 ``karst.gateway``——本層不認識鑰匙、不認識寫入者身分,只認識「有沒有人
+在門口接手蓋章」這件事。
+"""
+
+
 class DefinitionStore:
-    """單一定義庫。用 ``DefinitionStore.open(path)`` 開,支援 ``with`` 語法。"""
+    """單一定義庫。用 ``DefinitionStore.open(path)`` 開,支援 ``with`` 語法。
+
+    **數據快照登記是唯一一種「本層自己拒收」的寫入**(KARST-087):
+    ``register_snapshot`` 與 ``record_snapshot_fetch`` 要有簽章手才寫得入,而簽章手
+    只有唯一入口(``karst.gateway.Gateway``)裝得上。其餘寫入照舊由 ``verify`` 事後
+    揪繞過的列。分別在於:定義類的列繞過了還可以按版本鏈重登一次,快照登記繞過了
+    就等於整條取數追溯鏈由源頭起無憑無據,而且那批 parquet 已經凍好搬不動了。
+    """
 
     def __init__(self, conn: sqlite3.Connection) -> None:
         self._conn = conn
+        self._snapshot_signer: SnapshotSigner | None = None
 
     @classmethod
     def open(cls, path: str = ":memory:") -> "DefinitionStore":
         return cls(schema.connect(path))
+
+    def attach_snapshot_signer(self, signer: SnapshotSigner) -> None:
+        """裝上快照登記的簽章手。**只有唯一入口叫得動這一句**(``Gateway.__init__``)。
+
+        裝上之後,經這個庫身凍出來的快照登記與抓取登記逐列有簽章;沒有裝上,那兩種
+        登記一個字都寫不入(見 ``_require_snapshot_gate``)。凍結管線(價格線、宏觀線、
+        重凍腳本)照舊收一個庫身、照舊呼叫同樣那兩句,分別只在**那個庫身是不是由那道門
+        開出來的**——所以管線一句都不必改,而繞過那道門的凍結由此表達不出來。
+        """
+        self._snapshot_signer = signer
+
+    def _require_snapshot_gate(self) -> SnapshotSigner:
+        signer = self._snapshot_signer
+        if signer is None:
+            raise ContractViolation(
+                "數據快照登記一律經唯一入口(karst.gateway.Gateway);"
+                "直接用定義庫登記快照已不受理(KARST-087)。"
+                "凍結請用 Gateway.take_snapshot / take_macro_snapshot,"
+                "或者把 Gateway.open(...) 開出來那個 gateway.store 交給凍結管線"
+            )
+        return signer
+
+    def _sign_snapshot_row(self, table: str, primary_key: Sequence[object]) -> None:
+        """叫簽章手蓋章,然後核實真的蓋到。
+
+        核實那一句不是多餘:簽章手是外面交來的,一個不做事的簽章手會令這一列靜靜落庫
+        而無簽章——那正是本閘要擋的局面。核不到就當場拋錯,由外面那個 ``with self._conn``
+        把剛寫的那一列一併回滾:寧可寫不入,不要寫入一列無憑無據的快照登記。
+        """
+        signer = self._require_snapshot_gate()
+        signer(table, tuple(primary_key))
+        key_text = "|".join(str(part) for part in primary_key)
+        found = self._conn.execute(
+            "SELECT 1 FROM gateway_write WHERE table_name = ? AND row_key = ?",
+            (table, key_text),
+        ).fetchone()
+        if found is None:
+            raise ContractViolation(
+                f"{table}[{key_text}] 的簽章手沒有留下簽章,這一列不會落庫;"
+                "唯一入口的簽章是快照登記的入場券,不是事後補的裝飾"
+            )
 
     def close(self) -> None:
         self._conn.close()
@@ -1156,7 +1213,13 @@ class DefinitionStore:
 
         同一來源、同一日、同一內容重覆登記回同一個編號(單一定義);
         內容不同即另一個編號,舊快照永不改動。
+
+        **要有唯一入口的簽章手才寫得入**(KARST-087):落庫與蓋簽章同一次寫入落地,
+        蓋不到章就一列都不寫。沿用舊編號那一次一個字都不寫,所以亦不蓋新簽章——
+        庫內那一列若當初無簽章,它照舊無簽章,``verify`` 一掃仍然揪得到;沿用不會替
+        繞過入口的舊列補一個簽章把痕跡蓋走(補簽另有一道命令,而且會留痕)。
         """
+        self._require_snapshot_gate()
         if not source or not source.strip():
             raise ContractViolation("快照必須註明來源")
         if not content_hash or not str(content_hash).strip():
@@ -1190,6 +1253,7 @@ class DefinitionStore:
                     _now(),
                 ),
             )
+            self._sign_snapshot_row("data_snapshot", (snapshot_id,))
         return snapshot_id
 
     def get_snapshot(self, snapshot_id: str) -> Snapshot:
@@ -2344,7 +2408,12 @@ class DefinitionStore:
         同生共死:核對過就兩格都有,沒有核對過就兩格都是 ``None``。刻意不給預設值
         ——「這份快照有沒有核對過齊全度」是呼叫方才答得出的事,補一個預設值出來,
         就等於替它答了。
+
+        與快照登記同制,**要有唯一入口的簽章手才寫得入**(KARST-087):這一列答的是
+        「幾時抓、抓哪段窗口、當日齊全度核對出什麼」,而快照編號刻意不含抓取時間,
+        所以那幾格只此一份,改了沒有第二處對得回。
         """
+        self._require_snapshot_gate()
         snapshot = self.get_snapshot(snapshot_id)  # 查無此快照即拋 NotFound,不憑空登記
         # 齊全度那兩格先驗一次,行在「已經登記過就回原本那一列」之前:一句
         # 講不通的登記,不會因為那個快照剛巧已經在案就靜靜過關。
@@ -2378,6 +2447,7 @@ class DefinitionStore:
                     summary,
                 ),
             )
+            self._sign_snapshot_row("data_snapshot_fetch", (snapshot.snapshot_id,))
         recorded = self.snapshot_fetch(snapshot.snapshot_id)
         assert recorded is not None  # 剛剛寫入,不會查不到
         return recorded

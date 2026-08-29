@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-from ..errors import ImmutabilityViolation
+from ..errors import ContractViolation, ImmutabilityViolation
 
 # 鑰匙:環境變數優先,其次庫檔旁的鑰匙檔
 GATEWAY_KEY_ENV = "KARST_GATEWAY_KEY"
@@ -62,7 +62,59 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     # ——它決定了日後所有回測拿得到哪幾個快照——所以與策略定義同一道門、同一種簽章。
     # 沒有簽章的除名列即是有人繞過唯一入口靜靜除掉一個快照,verify 一掃就見到。
     "data_snapshot_retraction": ("snapshot_id",),
+    # KARST-087 補上的兩張:數據快照登記本身,連它的抓取登記。
+    #
+    # 以前清單裡只有「除名」而沒有「登記」,於是治理只管得住「哪個快照不算數」,管不住
+    # 「哪個快照算數」——價格線、宏觀線、重凍腳本三處各自拎住定義庫直接寫一列快照登記,
+    # 一列簽章都沒有,而 verify 照樣報全庫清白。清白報告不覆蓋的地方,正正是每一次回測
+    # 取數的源頭:一個快照的來源、日期、內容雜湊、落點、當時的宇宙名單,全部住在這一列。
+    # 有人改一個字(例如把落點指去另一份 parquet),整條追溯鏈就斷了而無人知。
+    #
+    # 抓取登記一併入清單:它答的是「幾時抓、抓哪段窗口、幾多實體幾多列、當日齊全度核對
+    # 出什麼」。快照編號刻意不含抓取時間,所以那幾格只此一份,改了就沒有第二處對得回。
+    "data_snapshot": ("snapshot_id",),
+    "data_snapshot_fetch": ("snapshot_id",),
 }
+
+# 核對報告的三類(KARST-087)。一份「全庫清白/揪到 N 處」的總帳讀不出**哪一邊**不清白,
+# 而三邊的意思差很遠:定義髒了是策略講法被人改過,因子批次髒了是值檔與登記對不上,
+# 快照髒了是取數的源頭被人動過。分三類列,才答得到「現在清白的是什麼」。
+CATEGORY_DEFINITION = "定義"
+CATEGORY_FACTOR_BATCH = "因子批次"
+CATEGORY_SNAPSHOT = "快照"
+
+CATEGORIES: tuple[str, ...] = (CATEGORY_DEFINITION, CATEGORY_FACTOR_BATCH, CATEGORY_SNAPSHOT)
+
+TABLE_CATEGORIES: dict[str, str] = {
+    "factor": CATEGORY_DEFINITION,
+    "factor_version": CATEGORY_DEFINITION,
+    "strategy": CATEGORY_DEFINITION,
+    "strategy_version": CATEGORY_DEFINITION,
+    "strategy_factor_ref": CATEGORY_DEFINITION,
+    "param_set": CATEGORY_DEFINITION,
+    "param_value": CATEGORY_DEFINITION,
+    "active_setup": CATEGORY_DEFINITION,
+    "risk_rule": CATEGORY_DEFINITION,
+    "strategy_risk_ref": CATEGORY_DEFINITION,
+    "factor_value_batch": CATEGORY_FACTOR_BATCH,
+    "factor_value_batch_member": CATEGORY_FACTOR_BATCH,
+    "data_snapshot": CATEGORY_SNAPSHOT,
+    "data_snapshot_fetch": CATEGORY_SNAPSHOT,
+    "data_snapshot_retraction": CATEGORY_SNAPSHOT,
+}
+
+
+def category_of(table: str) -> str:
+    """一張受治理的表屬於報告的哪一類。認不出的表當場拋錯,不歸去某一類了事——
+    治理清單加了一張表而忘記講它屬哪一類,應該在加的那一刻就撞板,不是靜靜歸錯類。
+    """
+    try:
+        return TABLE_CATEGORIES[table]
+    except KeyError:  # pragma: no cover - 兩份清單同步時不會走到
+        raise KeyError(
+            f"{table} 在治理清單內但沒有講明屬核對報告哪一類;"
+            f"請在 TABLE_CATEGORIES 補上(現有:{'、'.join(CATEGORIES)})"
+        ) from None
 
 UNSIGNED = "未經唯一入口寫入"
 TAMPERED = "落庫後被改動"
@@ -78,6 +130,11 @@ class Finding:
     row_key: str
     problem: str
     detail: str
+
+    @property
+    def category(self) -> str:
+        """這一處不合格屬核對報告哪一類:定義、因子批次,還是快照(KARST-087)。"""
+        return category_of(self.table)
 
     def __str__(self) -> str:
         return f"{self.problem}:{self.table}[{self.row_key}] — {self.detail}"
@@ -213,6 +270,86 @@ def _insert_signature(
             ),
         )
     return key_text
+
+
+def unsigned_rows(conn: sqlite3.Connection, tables: Sequence[str]) -> list[tuple[str, str]]:
+    """這幾張表裡,哪幾列一個簽章都沒有。回傳 ``(表名, row key)``,按表名與 row key 排。
+
+    「沒有簽章」與「簽章對不上」是兩回事,本函式只答前者:後者代表庫內那一列落庫之後
+    被人改過,補簽解決不了,亦不應該由補簽把痕跡蓋走。
+    """
+    missing: list[tuple[str, str]] = []
+    for table in tables:
+        pk_columns = GOVERNED_TABLES[table]
+        for row in conn.execute(f'SELECT * FROM "{table}"').fetchall():
+            key_text = row_key_of(pk_columns, row)
+            found = conn.execute(
+                "SELECT 1 FROM gateway_write WHERE table_name = ? AND row_key = ?",
+                (table, key_text),
+            ).fetchone()
+            if found is None:
+                missing.append((table, key_text))
+    return sorted(missing)
+
+
+def countersign(
+    conn: sqlite3.Connection,
+    key: bytes,
+    table: str,
+    row_key: str,
+    *,
+    writer: str,
+    reason: str,
+) -> str:
+    """替一列本來沒有簽章的舊列補簽,並在補簽冊留一行(誰、幾時、為什麼)。
+
+    補簽只證明「由補簽那一刻起,這一列沒有再被改過」;它證明不了這一列當初是經唯一入口
+    寫的——那件事已經過去了,今日蓋一個章擔保不了。所以簽章與留痕**同一次寫入落地**:
+    日後查一個簽章的來歷,查得出它是原簽還是補簽、補的人給的理由是什麼。
+
+    已經有簽章的列一律拒收:補簽是補「無」,不是覆蓋「有」。
+    """
+    note = str(reason).strip()
+    if not note:
+        raise ContractViolation("補簽必須講明為什麼;無理由的補簽等於把一列來歷不明的舊帳洗白")
+    existing = conn.execute(
+        "SELECT 1 FROM gateway_write WHERE table_name = ? AND row_key = ?",
+        (table, row_key),
+    ).fetchone()
+    if existing is not None:
+        raise ContractViolation(
+            f"{table}[{row_key}] 已經有簽章,不必亦不可補簽;"
+            "簽章對不上的列請按版本鏈重新經唯一入口登記,不要用補簽蓋過去"
+        )
+    pk_columns = GOVERNED_TABLES[table]
+    where = " AND ".join(f'"{column}" = ?' for column in pk_columns)
+    row = conn.execute(
+        f'SELECT * FROM "{table}" WHERE {where}', tuple(row_key.split("|"))
+    ).fetchone()
+    if row is None:
+        raise LookupError(f"{table} 查無 row key {row_key!r},簽不到章")
+    digest = content_digest(table, row)
+    moment = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    with conn:
+        conn.execute(
+            "INSERT INTO gateway_write (table_name, row_key, content_digest, signature,"
+            " writer, written_at) VALUES (?, ?, ?, ?, ?, ?)",
+            (table, row_key, digest, sign(key, digest), writer, moment),
+        )
+        conn.execute(
+            "INSERT INTO gateway_countersign (table_name, row_key, reason,"
+            " countersigned_by, countersigned_at) VALUES (?, ?, ?, ?, ?)",
+            (table, row_key, note, writer, moment),
+        )
+    return row_key
+
+
+def countersigned_rows(conn: sqlite3.Connection) -> list[sqlite3.Row]:
+    """補簽冊全份,新的在前。查一個簽章是原簽還是補簽就看這裡。"""
+    return conn.execute(
+        "SELECT table_name, row_key, reason, countersigned_by, countersigned_at"
+        " FROM gateway_countersign ORDER BY countersigned_at DESC, table_name, row_key"
+    ).fetchall()
 
 
 def verify(conn: sqlite3.Connection, key: bytes) -> list[Finding]:

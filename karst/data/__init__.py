@@ -2,12 +2,14 @@
 
 一條管線,五步:抓 → 定日曆 → 按日期把代號解析成實體編號 → 對齊主日曆 → 凍成快照。
 
-    from karst import DefinitionStore
     from karst.data import build_price_snapshot, read_price_panel
+    from karst.gateway import Gateway
 
-    with DefinitionStore.open("karst.sqlite") as store:
-        snapshot = build_price_snapshot(store, start="2020-01-01", end="2026-08-26")
-        panel = read_price_panel(store, snapshot.snapshot_id)   # 欄=實體編號
+    # 庫身由唯一入口開出來:快照登記要有那道門的簽章手才寫得入(KARST-087),
+    # 拎一個裸 DefinitionStore 來凍,登記那一句當場拒收。
+    with Gateway.open("karst.sqlite") as gateway:
+        snapshot = build_price_snapshot(gateway.store, start="2020-01-01", end="2026-08-26")
+        panel = read_price_panel(gateway.store, snapshot.snapshot_id)   # 欄=實體編號
 
 三條明文處置(規格 10.4,寫在每個快照的說明檔,並在數據上驗得到):
 

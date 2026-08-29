@@ -230,6 +230,16 @@ def build_parser() -> argparse.ArgumentParser:
                        help="齊全度門檻:一條序列的尾段容許落後主日曆幾多個交易日(0 = 必須供到尾日)")
     macro.add_argument("--max-missing-ratio", dest="max_missing_ratio", type=float, required=True,
                        help="齊全度門檻:整段窗口留空日數佔主日曆的比例上限,0.01 即 1%%")
+    # 快照補簽(KARST-087)。治理清單收入數據快照登記與抓取登記之後,收窄之前落庫那批
+    # 舊列一個簽章都沒有;這道命令經唯一入口替它們補簽,逐列留痕(誰、幾時、為什麼)。
+    countersign = data_commands.add_parser(
+        "countersign-snapshots",
+        help="替治理清單收窄之前落庫、無簽章的快照登記補簽,逐列留痕(誰、幾時、為什麼)",
+    )
+    countersign.add_argument(
+        "--reason", required=True,
+        help="為什麼要補簽,一句講清楚;這一句逐列落補簽冊,日後分得出原簽與補簽",
+    )
     data_commands.add_parser("list", help="列庫內全部數據快照")
     # 宇宙名單登記(KARST-065):名單住在 karst/data/universe.py,這道命令只是**列**它。
     # 有這一句,「登記上有什麼代號、成分期由哪日到哪日、名單哪裡來」不必開原始碼看。
@@ -664,6 +674,8 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         return _data_list(gateway, out)
     if args.subcommand == "retract-snapshot":
         return _data_retract(args, gateway, out)
+    if args.subcommand == "countersign-snapshots":
+        return _data_countersign(args, gateway, out)
     if args.subcommand == "macro-snapshot":
         return _data_macro(args, gateway, out)
     if args.subcommand == "universe":
@@ -740,6 +752,24 @@ def _data_retract(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> in
     print(
         "  除名之後  karst data list 與畫面選單不再列出它;直取(get_snapshot、"
         "讀說明檔)照樣讀得到,追溯指得回",
+        file=out,
+    )
+    return EXIT_OK
+
+
+def _data_countersign(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    done = gateway.countersign_snapshots(reason=args.reason)
+    if not done:
+        print("沒有一列快照登記欠簽章,補簽無事可做。", file=out)
+        return EXIT_OK
+    print(f"已補簽 {len(done)} 列快照登記", file=out)
+    print(f"  補簽者    {gateway.writer}", file=out)
+    print(f"  理由      {args.reason}", file=out)
+    for item in done:
+        print(f"    {item.table}[{item.row_key}]", file=out)
+    print(
+        "  補簽只擔保「由這一刻起這幾列沒有再被改過」,擔保不了它們當日是經唯一入口寫的"
+        "——那件事已經過去。補簽冊逐列留住這個分別。",
         file=out,
     )
     return EXIT_OK
@@ -892,7 +922,7 @@ def _where(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
 
 
 def _verify(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
-    findings = gateway.verify(factor_root=args.factor_root)
+    verdicts = gateway.verify_report(factor_root=args.factor_root)
     batches = gateway.store.list_factor_value_batches()
     print(f"核對單一定義庫:{gateway.path}", file=out)
     if batches:
@@ -911,14 +941,22 @@ def _verify(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         )
         for line in checked:
             print(f"    {line}", file=out)
+
+    # 三類分列(KARST-087)。一句「全庫清白」讀不出清白的是什麼:定義髒了是策略的講法
+    # 被人改過,因子批次髒了是值檔與登記對不上,快照髒了是取數的源頭被人動過。
+    print("  分三類:", file=out)
+    for verdict in verdicts:
+        print(f"    {verdict.describe()}", file=out)
+        for finding in verdict.findings:
+            print(f"      - {finding}", file=out)
+
+    findings = [finding for verdict in verdicts for finding in verdict.findings]
     if not findings:
-        print("  全庫清白:受治理的每一列都有唯一入口的寫入者簽章,內容與登記時一字不差;"
+        print("  三類全部清白:受治理的每一列都有唯一入口的寫入者簽章,內容與登記時一字不差;"
               "每個因子值批次檔的內容雜湊亦與登記的一樣;每個讀得到的快照三數都對得上。",
               file=out)
         return EXIT_OK
-    print(f"  揪到 {len(findings)} 處不合格:", file=out)
-    for finding in findings:
-        print(f"  - {finding}", file=out)
+    print(f"  合共揪到 {len(findings)} 處不合格。", file=out)
     print("  這些內容不會被當作正常定義用落去,請按版本鏈重新經唯一入口登記。", file=out)
     return EXIT_NOT_CLEAN
 

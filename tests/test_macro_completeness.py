@@ -26,7 +26,6 @@ import json
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore
 from karst.data import (
     ALERT_MISSING_RATIO,
     ALERT_STALE_TAIL,
@@ -43,6 +42,7 @@ from karst.data import (
 )
 from karst.data.macro import README_FILE, macro_snapshot_dir
 from karst.errors import ContractViolation
+from karst.gateway import Gateway
 from karst.gateway.cli import EXIT_OK, _data_macro, build_parser
 from karst.web import api_macro
 
@@ -92,7 +92,8 @@ def _build(store, root, *, thresholds, drop=None, taken_on="2026-08-29"):
 def test_stale_tail_is_named_at_freeze_time(tmp_path):
     """尾段停數的序列,凍結那一刻就被指名道姓講出來,不必等人翻說明檔。"""
     stale_tail = CALENDAR[-10:]
-    with DefinitionStore.open(":memory:") as store:
+    # 快照登記要經唯一入口簽章(KARST-087)
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -114,7 +115,7 @@ def test_stale_tail_is_named_at_freeze_time(tmp_path):
 
 def test_alert_lands_in_the_frozen_snapshot(tmp_path):
     """警報與這次用的門檻,一齊寫入已凍結快照的說明檔與 manifest,事後查得回。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -145,7 +146,7 @@ def test_alert_lands_in_the_frozen_snapshot(tmp_path):
 
 def test_clean_snapshot_says_so_in_the_readme(tmp_path):
     """齊全的一份,說明檔要正面寫「全部合格」——沒有警報不等於沒有核對過。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path, thresholds=STRICT)
         readme = (
             macro_snapshot_dir(store, snapshot.snapshot_id, root=tmp_path) / README_FILE
@@ -160,7 +161,7 @@ def test_clean_snapshot_says_so_in_the_readme(tmp_path):
 
 def test_complete_series_never_fire_even_at_the_strictest_thresholds(tmp_path):
     """四條都供到主日曆尾日、零留空:連 0 日 / 0% 這一套都一條都不報。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path, thresholds=STRICT)
         assert snapshot.alerts == ()
 
@@ -174,7 +175,7 @@ def test_complete_series_never_fire_even_at_the_strictest_thresholds(tmp_path):
 
 def test_only_the_offending_series_is_flagged(tmp_path):
     """一條停更,不會連累其餘三條:名單上只有它一個。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -199,7 +200,7 @@ def test_filled_days_do_not_hide_a_stale_tail(tmp_path):
     """
     tail = CALENDAR[-2:]
     assert len(tail) <= FFILL_LIMIT
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -218,7 +219,7 @@ def test_filled_days_do_not_hide_a_stale_tail(tmp_path):
 def test_mid_window_holes_fire_on_ratio_not_on_tail(tmp_path):
     """中段有洞、尾段照供:報的是留空比例,不是尾段落後。兩項核對各自獨立。"""
     hole = CALENDAR[20:32]
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -236,7 +237,7 @@ def test_mid_window_holes_fire_on_ratio_not_on_tail(tmp_path):
 
 def test_both_kinds_are_reported_on_one_line(tmp_path):
     """兩項都超,一條序列仍然只出一筆,兩個理由寫在同一筆裡。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -272,7 +273,7 @@ def test_a_series_with_no_reading_at_all_is_stale_for_the_whole_calendar():
 
 def test_recomputed_from_disk_matches_what_was_frozen(tmp_path):
     """由磁碟上的讀數重算,與凍結當日那一張逐格對得上——核對的是數據,不是別人的結論。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store, tmp_path, thresholds=STRICT, drop={"VIX_3M": CALENDAR[-10:]}
         )
@@ -309,7 +310,7 @@ def test_thresholds_do_not_change_the_snapshot_id(tmp_path):
     ids = []
     for index, thresholds in enumerate((STRICT, lenient)):
         root = tmp_path / f"root{index}"
-        with DefinitionStore.open(":memory:") as store:
+        with Gateway.open(":memory:").store as store:
             ids.append(
                 _build(
                     store, root, thresholds=thresholds, drop={"VIX_3M": CALENDAR[-10:]}
@@ -379,7 +380,7 @@ def _run_cli(snapshot, *, max_stale_days=3, max_missing_ratio=0.01):
 
 def test_gateway_prints_the_alert_block(tmp_path):
     """超出門檻,唯一入口自己印出來——不再要人去翻說明檔第七節。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store,
             tmp_path,
@@ -399,7 +400,7 @@ def test_gateway_prints_the_alert_block(tmp_path):
 
 def test_gateway_says_all_clear_when_nothing_is_stale(tmp_path):
     """齊全的一份,唯一入口正面講一句「全部合格」,不是靜靜不出聲。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(store, tmp_path, thresholds=STRICT)
     _, text = _run_cli(snapshot, max_stale_days=0, max_missing_ratio=0.0)
 
@@ -420,7 +421,7 @@ class _StubReader:
 
 def test_completeness_endpoint_serves_the_numbers_without_any_threshold(tmp_path):
     """逐條的數算得出來不必門檻;沒有給門檻就只交數,不交裁決。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store, tmp_path, thresholds=STRICT, drop={"VIX_3M": CALENDAR[-10:]}
         )
@@ -440,7 +441,7 @@ def test_completeness_endpoint_serves_the_numbers_without_any_threshold(tmp_path
 
 
 def test_completeness_endpoint_judges_only_when_both_thresholds_are_given(tmp_path):
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = _build(
             store, tmp_path, thresholds=STRICT, drop={"VIX_3M": CALENDAR[-10:]}
         )

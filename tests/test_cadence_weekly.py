@@ -198,7 +198,8 @@ def test_a_weekly_param_set_registers_through_the_gateway_and_runs_a_backtest(ka
 
     code, output = karst("verify")
     assert code == 0
-    assert "全庫清白" in output
+    # KARST-087 起報告分三類講(定義、因子批次、快照)
+    assert "三類全部清白" in output
 
 
 # 驗收條件 2(續):舊庫重開即自動搬表,param_set_id 與內容逐個原封不變
@@ -258,7 +259,8 @@ def test_an_old_database_migrates_in_place_without_touching_a_single_row(karst):
     # 簽章仍然有效:取值一個字沒改,內容雜湊不變
     code, output = karst("verify")
     assert code == 0
-    assert "全庫清白" in output
+    # KARST-087 起報告分三類講(定義、因子批次、快照)
+    assert "三類全部清白" in output
 
     # 週度自此寫得入這個舊庫
     code, output = karst(

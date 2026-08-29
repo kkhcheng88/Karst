@@ -34,6 +34,8 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 11. ``data_snapshot_retraction``   快照除名登記:哪個快照不再算可回測、被誰除名、
                                    幾時、為什麼、被哪個快照取代。只加不改不刪——
                                    除名是加一列,不是刪一列(KARST-084)
+12. ``gateway_countersign``        補簽留痕:一列本來沒有簽章(唯一入口收窄之前落庫的),
+                                   由誰、幾時、為什麼補上簽章(KARST-087)
 """
 
 from __future__ import annotations
@@ -65,7 +67,12 @@ from typing import Any
 #        才發現不可用(三數等式對不上一類),由**加一列**令它不再算可回測,不是刪走
 #        登記——data_snapshot_fetch 與因子值批次那三道 BEFORE DELETE 閘寫明
 #        「登記不可刪,追溯要指得回」。舊庫重開時 DDL 自動補建,既有登記一列不動。
-SCHEMA_VERSION = 12
+# 第 13 版加補簽留痕表 ``gateway_countersign``(KARST-087):數據快照登記與抓取登記
+#        由本版起收入治理清單,而它們在收窄之前已經落庫的那幾列一列簽章都沒有。
+#        補簽是**加一列簽章 + 加一列留痕**(誰、幾時、為什麼),不是靜靜替舊列蓋章:
+#        沒有這一列留痕,日後就分不出「當日經唯一入口凍的」與「事後補簽的」。
+#        舊庫重開時 DDL 自動補建,既有登記一列不動。
+SCHEMA_VERSION = 13
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -449,6 +456,38 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_gateway_write_no_delete
 BEFORE DELETE ON gateway_write BEGIN
     SELECT RAISE(ABORT, '寫入者簽章不可刪');
+END;
+
+-- 補簽留痕(KARST-087)。
+--
+-- 治理清單一收窄(這一次收入數據快照登記與抓取登記),清單裡就會出現一批「收窄之前
+-- 已經落庫、一個簽章都沒有」的舊列。它們要補簽,否則 verify 由第一日起就永遠不清白,
+-- 而一個長期紅色的核對報告等於沒有核對報告——真正的繞過寫入會混在那堆舊帳裡看不見。
+--
+-- 但補簽與「當日經唯一入口凍的」**不是同一回事**:前者只證明「補簽那一刻起這一列沒有
+-- 再被改過」,後者證明「這一列由頭到尾都是經那道門寫的」。混為一談,就等於用一個今日
+-- 蓋的章去擔保一件昨日發生的事。所以補簽一律在本表另留一列:哪一列、由誰、幾時、
+-- 為什麼補。日後查一個簽章的來歷,查得出它是原簽還是補簽。
+--
+-- 本表**不入治理清單**,理由與 gateway_write 同:簽章冊自己簽自己等於沒有簽。它靠的是
+-- 下面兩道閘(不可改、不可刪),以及它與 gateway_write 逐列對得上。
+CREATE TABLE IF NOT EXISTS gateway_countersign (
+    table_name       TEXT NOT NULL,
+    row_key          TEXT NOT NULL,
+    reason           TEXT NOT NULL CHECK (length(trim(reason)) > 0),
+    countersigned_by TEXT NOT NULL CHECK (length(trim(countersigned_by)) > 0),
+    countersigned_at TEXT NOT NULL,
+    PRIMARY KEY (table_name, row_key)
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_gateway_countersign_no_update
+BEFORE UPDATE ON gateway_countersign BEGIN
+    SELECT RAISE(ABORT, '補簽留痕不可改;補簽的理由是一件已經發生的事');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_gateway_countersign_no_delete
+BEFORE DELETE ON gateway_countersign BEGIN
+    SELECT RAISE(ABORT, '補簽留痕不可刪,追溯要分得出原簽與補簽');
 END;
 
 -- ====================================================================

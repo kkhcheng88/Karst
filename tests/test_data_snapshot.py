@@ -41,6 +41,7 @@ from karst.data import (
     verify_snapshot,
 )
 from karst.data.snapshots import README_FILE, snapshot_dir
+from karst.gateway import Gateway
 
 CALENDAR_DAYS = tuple(
     day.strftime("%Y-%m-%d") for day in pd.bdate_range("2024-01-02", "2024-02-29")
@@ -100,7 +101,8 @@ def _build(store: DefinitionStore, root, bars: pd.DataFrame | None = None):
 
 @pytest.fixture()
 def store():
-    with DefinitionStore.open(":memory:") as opened:
+    # 快照登記要經唯一入口簽章(KARST-087),所以庫身由那道門開出來
+    with Gateway.open(":memory:").store as opened:
         yield opened
 
 

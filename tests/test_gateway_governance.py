@@ -121,7 +121,9 @@ def test_the_three_tables_are_under_signature_governance(strategy):
 
     code, output = strategy("verify")
     assert code == 0                                 # 全部經同一道門,核對清白
-    assert "全庫清白" in output
+    # KARST-087 起報告分三類講(定義、因子批次、快照),不再只得一句總帳
+    assert "三類全部清白" in output
+    assert "定義:清白" in output
 
     # 重覆跑一次:回同一批列、同一個簽章,不會多出第二份影像,亦不會撞簽章
     assert strategy("risk", "register")[0] == 0

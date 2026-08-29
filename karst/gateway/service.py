@@ -93,6 +93,34 @@ class WriteReceipt:
     reused: bool = False
 
 
+@dataclass(frozen=True, slots=True)
+class Countersign:
+    """一次補簽:哪一列、由誰補、為什麼補(KARST-087)。"""
+
+    table: str
+    row_key: str
+    writer: str
+    reason: str
+
+
+@dataclass(frozen=True, slots=True)
+class CategoryVerdict:
+    """核對報告其中一類的裁決:這一類受治理的列共幾多、清白與否、不合格在哪(KARST-087)。"""
+
+    category: str
+    row_count: int
+    findings: tuple[ledger.Finding, ...]
+
+    @property
+    def clean(self) -> bool:
+        return not self.findings
+
+    def describe(self) -> str:
+        if self.clean:
+            return f"{self.category}:清白({self.row_count} 列)"
+        return f"{self.category}:揪到 {len(self.findings)} 處不合格({self.row_count} 列)"
+
+
 class Gateway:
     """唯一入口。``Gateway.open(path)`` 開,支援 ``with`` 語法。"""
 
@@ -101,6 +129,10 @@ class Gateway:
         self._key = key
         self._writer = writer
         self._path = path
+        # 快照登記那道閘只有這裡開得到(KARST-087)。庫身本身不認識鑰匙與寫入者身分,
+        # 它只認識「門口有沒有人接手蓋章」——所以一個不是由這道門開出來的庫身,
+        # 凍不出快照登記。價格線、宏觀線、重凍腳本三處由此無一繞得過簽章。
+        store.attach_snapshot_signer(self._sign_snapshot_row)
 
     @classmethod
     def open(cls, path: str | None = None, *, writer: str | None = None) -> "Gateway":
@@ -615,6 +647,52 @@ class Gateway:
     def list_snapshots(self) -> list:
         return self._store.list_snapshots()
 
+    def countersign_snapshots(self, *, reason: str) -> tuple[Countersign, ...]:
+        """替治理清單收窄之前落庫、一個簽章都沒有的快照登記補簽(KARST-087)。
+
+        為什麼要有這一道:治理清單一收入數據快照登記與抓取登記,清單裡即刻多了一批
+        收窄之前寫的舊列——它們當日不是經這道門寫的,所以一個簽章都沒有。不補,
+        ``verify`` 由第一日起就永遠報紅,而**一份長期報紅的核對報告等於沒有報告**:
+        真正的繞過寫入會混在那堆舊帳裡,沒有人看得出來。
+
+        補簽不等於原簽,所以逐列另留一行痕跡(誰、幾時、為什麼),日後查得出一個簽章
+        是當日蓋的還是事後補的。補簽只擔保「由補簽那一刻起這一列沒有再被改過」。
+
+        **見到對不上就停手**:任何一列快照類的簽章已經在案而內容對不上(落庫後被改動、
+        或者簽章核不過),整道命令一列都不補,當場拋錯。那種情況補簽解決不了,亦不應該
+        由補簽把痕跡蓋走——要按版本鏈重新登記,或者由人裁決。
+        """
+        note = str(reason).strip()
+        if not note:
+            raise ContractViolation("補簽必須講明為什麼;無理由的補簽等於把一列來歷不明的舊帳洗白")
+
+        tables = tuple(
+            table
+            for table in ledger.GOVERNED_TABLES
+            if ledger.category_of(table) == ledger.CATEGORY_SNAPSHOT
+        )
+        blocked = [
+            finding
+            for finding in ledger.verify(self._conn, self._key)
+            if finding.category == ledger.CATEGORY_SNAPSHOT and finding.problem != ledger.UNSIGNED
+        ]
+        if blocked:
+            raise ContractViolation(
+                "快照類有 "
+                + str(len(blocked))
+                + " 處簽章對不上,補簽一列都不做:"
+                + ";".join(str(finding) for finding in blocked)
+                + "。這幾列補簽解決不了,請按版本鏈重新經唯一入口登記,或者交由人裁決"
+            )
+
+        done: list[Countersign] = []
+        for table, row_key in ledger.unsigned_rows(self._conn, tables):
+            ledger.countersign(
+                self._conn, self._key, table, row_key, writer=self._writer, reason=note
+            )
+            done.append(Countersign(table=table, row_key=row_key, writer=self._writer, reason=note))
+        return tuple(done)
+
     # ------------------------------------------------------------------
     # 核對與落點
     # ------------------------------------------------------------------
@@ -641,6 +719,35 @@ class Gateway:
             )
         findings.extend(self.snapshot_balance_findings())
         return findings
+
+    def verify_report(self, *, factor_root: str | None = None) -> tuple[CategoryVerdict, ...]:
+        """同一次核對,分**定義、因子批次、快照**三類講(KARST-087)。
+
+        為什麼要分:一句「全庫清白」讀不出清白的是什麼。三邊的意思差很遠——定義髒了是
+        策略的講法被人改過,因子批次髒了是值檔與登記對不上,快照髒了是取數的源頭被人
+        動過。以前快照那一類根本不在治理清單內,所以那句「全庫清白」由頭到尾都沒有覆蓋
+        過它,而讀報告的人無從得知。分三類列,「現在清白的是什麼」才答得出。
+        """
+        findings = self.verify(factor_root=factor_root)
+        counts = self._governed_row_counts()
+        return tuple(
+            CategoryVerdict(
+                category=category,
+                row_count=counts[category],
+                findings=tuple(
+                    finding for finding in findings if finding.category == category
+                ),
+            )
+            for category in ledger.CATEGORIES
+        )
+
+    def _governed_row_counts(self) -> dict[str, int]:
+        """三類各自受治理幾多列。清白與否之外還要講這一格:零列的「清白」不是清白。"""
+        counts = {category: 0 for category in ledger.CATEGORIES}
+        for table in ledger.GOVERNED_TABLES:
+            rows = self._conn.execute(f'SELECT COUNT(*) AS n FROM "{table}"').fetchone()["n"]
+            counts[ledger.category_of(table)] += int(rows)
+        return counts
 
     def snapshot_balance_findings(self) -> list[ledger.Finding]:
         """逐個數據快照核三數等式:宇宙表代號數 = 實體數 + 剔除數(KARST-084)。
@@ -674,6 +781,17 @@ class Gateway:
         return self._store.locate_definition(kind, name)
 
     # ------------------------------------------------------------------
+
+    def _sign_snapshot_row(self, table: str, primary_key: Sequence[object]) -> None:
+        """快照登記那道閘的簽章手(KARST-087)。庫身寫完一列即叫這一句,同一次寫入落地。
+
+        用「蓋過就算數」那一種:同一批數據重凍會回同一個快照編號,而那一列一經落庫
+        即不可改(trigger 擋住),原本那個簽章照舊有效。內容對不上就當場拋錯,
+        不會用新內容蓋一個新簽章把痕跡蓋走。
+        """
+        ledger.record_write_once(
+            self._conn, self._key, table, primary_key, writer=self._writer
+        )
 
     def _sign(self, *rows: tuple[str, tuple[object, ...]]) -> tuple[str, ...]:
         signed: list[str] = []

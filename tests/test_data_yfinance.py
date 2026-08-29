@@ -10,7 +10,6 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from karst import DefinitionStore
 from karst.data import (
     PRICE_SIGNIFICANT_DIGITS,
     DataFetchFailed,
@@ -25,6 +24,7 @@ from karst.data import (
     round_significant,
     verify_snapshot,
 )
+from karst.gateway import Gateway
 
 pytest.importorskip("yfinance", reason="未安裝 yfinance,跳過真實抓取")
 
@@ -52,7 +52,8 @@ def online() -> None:
 
 
 def test_real_snapshot_is_daily_bars_from_yfinance(online, tmp_path):
-    with DefinitionStore.open(":memory:") as store:
+    # 快照登記要經唯一入口簽章(KARST-087)
+    with Gateway.open(":memory:").store as store:
         snapshot = build_price_snapshot(
             store,
             start=WINDOW[0],
@@ -81,7 +82,7 @@ def test_real_snapshot_is_daily_bars_from_yfinance(online, tmp_path):
 
 
 def test_company_anchored_on_sec_cik(online, tmp_path):
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = build_price_snapshot(
             store,
             start=WINDOW[0],
@@ -138,7 +139,7 @@ def test_refetching_the_same_window_keeps_one_snapshot(online, tmp_path):
     現在凍結前先歸一化到 7 位有效數字,再問一句「這批數是不是已經凍過了」,
     等價就沿用原編號原檔案。
     """
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         common = {
             "start": DIVIDEND_WINDOW[0],
             "end": DIVIDEND_WINDOW[1],
@@ -163,7 +164,7 @@ def test_refetching_the_same_window_keeps_one_snapshot(online, tmp_path):
 
 def test_real_prices_are_stored_at_the_declared_precision(online, tmp_path):
     """KARST-033:真實抓回來的價格,凍下來時已在宣告的精度上。"""
-    with DefinitionStore.open(":memory:") as store:
+    with Gateway.open(":memory:").store as store:
         snapshot = build_price_snapshot(
             store,
             start=WINDOW[0],
