@@ -916,3 +916,25 @@
   > Q1甲 Q2甲 Q3甲 Q4甲 Q5甲 Q6乙 <<< I have mentioned already. The gap is just to select 1 run in the batch. Then the chart, and the stock selection and distribution will be run level, it is kind of a filter of the batch. Q7甲 <<< And then can be run level Q8乙 Prototype first before implement to confirm
 
 - 影響：D-036、D-037 的頁面結構被取代;D-029、D-035 全部取代;D-039 總覽欄位的「代表運行」改為「最佳批次中位數」,細節待原型;KARST-079/080/081 已建的策略頁與運行詳情頁大部分要重做;開原型票(KARST-086),認可後開實作票。
+
+## D-043 後端架構審視八個候選全部推進;順序按「靜默錯數風險」先於「建置成本」
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-30
+
+- 出處：依用戶 2026-08-30 一句推出
+
+- 背景：2026-08-30 後端架構審視(research/2026-08-30-architecture-review-backend.md)列出八個深化候選。主腦判斷:候選二(治理漏快照登記)、五(三份「最新已知值」實作可能靜默分歧)、六(網頁層自己算指標)、八(風控算術重複)帶有「數字錯了沒有人知道」的信任風險;候選一(策略合約)、三(凍結單一正本)、四(掃描單一介面)、七(定義庫介面過闊)屬建置成本與速度,不改變任何結果數字。
+
+- 決策：
+  1. 八個候選全部做。
+  2. 順序:二(KARST-087)→ 五(KARST-088)→ 一+四合併設計(設計兩次後開票)→ 三(087 之後開票)→ 六(併入策略頁批次層實作票)→ 八(先開查證票確認是否真重複)→ 七(延後,首條策略落地後重審)。
+  3. 087 與 088 同觸 store.py,必須先後不可並行。
+
+- 為何選這個：帶靜默錯數風險的先做,因為它們影響對盤數的信任;純成本的候選在第一條新策略建置前做完即可,候選七面積大且不影響結果,延後不設期限。
+
+- **用戶原話（原文照錄）**
+
+  > any of them has business implication? If all are technically I think we should do that?
+
+- 影響：開票 KARST-087/088;候選一/四設計兩次後開實作票;候選三/八另開票;候選六併入策略頁批次層實作票;候選七不開票,首條策略落地後重審。
