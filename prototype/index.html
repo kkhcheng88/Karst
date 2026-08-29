@@ -24,6 +24,18 @@
     </div>
   </header>
 
+  <!-- ============ 建議:對齊批次門面(KARST-086 / D-042),未裁決,僅示範 ============ -->
+  <div class="suggest-callout" id="batch-align-suggest">
+    <span class="suggest-callout-tag">建議・未裁決</span>
+    <div>
+      <b>配合策略詳情「批次層」對齊本頁欄位(建議,非決定)。</b>
+      「年化」「最大回撤」「勝率／盈虧比」現時讀的是單一次運行的數字;若總覽表要與批次層口徑一致,建議這幾欄改讀
+      <b>最佳批次的中位數</b>(而不是某一次運行跑出的數字),避免同一策略在總覽與詳情頁看到兩套不同來源的數。
+      原型未接批次真數據,暫時只在下表<b>「趨勢波段」</b>一行示範(開啟連結已指去新的批次層原型;其餘策略仍連去舊版單頁)。
+      要不要換口徑、換哪幾欄、欄名怎麼定,留待用戶裁決;詳見 KARST-086 票上留言。
+    </div>
+  </div>
+
   <!-- ============ 篩選列:類型晶片(可多選)+ 名稱搜尋 ============ -->
   <div class="filter-bar">
     <div class="chip-row" id="type-chips" role="group" aria-label="按策略類型篩選"></div>
@@ -43,10 +55,14 @@
             <tr>
               <th class="sortable" data-key="name" style="width:168px">名稱</th>
               <th class="sortable" data-key="type" style="width:104px">類型</th>
-              <th class="sortable num" data-key="vsBench" style="width:104px">對基準</th>
-              <th class="sortable num" data-key="cagr" style="width:70px">年化</th>
-              <th class="sortable num" data-key="maxDD" style="width:84px">最大回撤</th>
-              <th class="sortable num" data-key="winRate" style="width:110px">勝率 ／ 盈虧比</th>
+              <th class="sortable num th-suggest" data-key="vsBench" style="width:104px"
+                title="建議:對齊批次門面後,此欄口徑可能改為「最佳批次中位對基準」,而非單次運行(未裁決)">對基準</th>
+              <th class="sortable num th-suggest" data-key="cagr" style="width:70px"
+                title="建議:對齊批次門面後,此欄口徑可能改為「最佳批次中位年化」,而非單次運行(未裁決)">年化</th>
+              <th class="sortable num th-suggest" data-key="maxDD" style="width:84px"
+                title="建議:對齊批次門面後,此欄口徑可能改為「批內最大回撤中位」,而非單次運行(未裁決)">最大回撤</th>
+              <th class="sortable num th-suggest" data-key="winRate" style="width:110px"
+                title="建議:對齊批次門面後,此欄口徑可能改為批次中位數,而非單次運行(未裁決)">勝率 ／ 盈虧比</th>
               <th style="width:92px">迷你走勢</th>
               <th style="width:40px"><span class="dim" title="開啟策略頁">開啟</span></th>
             </tr>
@@ -90,6 +106,12 @@
 
   /* 原型只做了趨勢波段一頁,其餘策略的入口一律指去同一頁示意 */
   var STRATEGY_HREF = 'strategy.html';
+
+  /* KARST-086:趨勢波段已有批次層原型,開啟連結改指去那頁示範對齊構想;
+     其餘策略未接批次假數據,連結不變(建議,非決定) */
+  function hrefFor(s) {
+    return s.id === 'trend-swing' ? 'strategy-batch.html?id=trend-swing' : STRATEGY_HREF;
+  }
 
   /* ============================================================
      篩選狀態:類型多選 + 名稱搜尋
@@ -217,7 +239,7 @@
         '</div>' +
       '</div>' +
 
-      '<a class="btn btn-primary dc-cta" href="' + STRATEGY_HREF + '">開啟策略頁 →</a>';
+      '<a class="btn btn-primary dc-cta" href="' + hrefFor(s) + '">開啟策略頁 →</a>';
 
     KV.sparkline(document.getElementById('detail-spark'), s.equity, qqq.equity);
 
@@ -261,14 +283,17 @@
           'class="row-clickable' + (s.id === selectedId ? ' is-picked' : '') + '" ' +
           'aria-pressed="' + (s.id === selectedId ? 'true' : 'false') + '">' +
         '<td title="' + KV.esc(s.name) + '">' + KV.esc(s.name) +
-          (s.demo ? '<span class="demo-mark">示意</span>' : '') + '</td>' +
+          (s.demo ? '<span class="demo-mark">示意</span>' : '') +
+          (s.id === 'trend-swing' ?
+            '<span class="tag tag-batchproto" title="此策略已有批次層原型(KARST-086),點開連去新版">批次原型</span>' : '') +
+          '</td>' +
         '<td><span class="tag tag-type">' + KV.esc(s.typeName) + '</span></td>' +
         '<td class="num ' + KV.cls(vb) + '">' + KV.pp(vb) + '</td>' +
         '<td class="num ' + KV.cls(m.cagr) + '">' + KV.pctPlain(m.cagr) + '</td>' +
         '<td class="num down">' + KV.pctPlain(m.maxDD) + '</td>' +
         '<td class="num">' + m.winRate + '%<span class="dim"> ／ </span>' + m.plRatio.toFixed(1) + '</td>' +
         '<td><span class="row-spark" id="' + sparkId + '"></span></td>' +
-        '<td><a class="row-go" href="' + STRATEGY_HREF + '" data-go="1" ' +
+        '<td><a class="row-go" href="' + hrefFor(s) + '" data-go="1" ' +
           'aria-label="開啟 ' + KV.esc(s.name) + ' 策略頁" title="開啟策略頁">→</a></td>' +
       '</tr>';
     }).join('');

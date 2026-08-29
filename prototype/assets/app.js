@@ -53,7 +53,8 @@
   /* 個股兩個變體已併入運行詳情頁,存檔連結留在該頁頁尾,不再佔主導航 */
   var PAGES = [
     { href: 'index.html', label: '策略總覽' },
-    { href: 'strategy.html', label: '趨勢波段' },
+    { href: 'strategy.html', label: '趨勢波段(舊版)' },
+    { href: 'strategy-batch.html', label: '策略詳情・批次層(KARST-086)' },
     { href: 'run.html', label: '運行詳情' },
     { href: 'sweep.html', label: '參數掃描' },
   ];

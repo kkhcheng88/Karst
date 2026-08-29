@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>策略詳情・批次層 — Karst 原型</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="sp">
+
+<div id="nav-host"></div>
+
+<main class="wrap">
+
+  <!-- ============================================================
+       KARST-086:原型示範情境切換(只在原型出現,不是真實應用的一部分)。
+       直連 ?id=&sweep=&run= 亦可達到同一效果,這排連結只是方便逐個過目。
+       ============================================================ -->
+  <div class="demo-scenarios" id="demo-scenarios" role="group" aria-label="原型示範情境"></div>
+
+  <header class="page-head">
+    <div class="page-title-group">
+      <nav class="breadcrumb" aria-label="麵包屑"><a href="index.html">策略總覽</a><span>／</span></nav>
+      <h1 id="strat-name">—</h1>
+      <span class="page-en" id="strat-en"></span>
+      <span class="tag tag-strategy">策略</span>
+      <span class="tag tag-live" id="strat-live" hidden>紙上交易運行中</span>
+      <span class="proto-badge">原型・假數據・批次層(D-042)</span>
+    </div>
+  </header>
+
+  <div id="page-state"></div>
+
+  <div class="sp-stack" id="sp-stack" hidden>
+
+    <!-- ============ 門面:最佳批次整體 + 該批最佳單次 + 現役設定(如有) ============ -->
+    <section class="sp-panel" aria-labelledby="facade-title">
+      <div class="sp-head">
+        <div class="sp-side">
+          <h2 id="facade-title">批次門面</h2>
+          <span class="section-note" id="facade-note"></span>
+        </div>
+      </div>
+      <div class="sp-body" id="facade-body"></div>
+    </section>
+
+    <!-- ============ 密度熱帶淨值圖 ============ -->
+    <section class="sp-panel" aria-labelledby="heat-title">
+      <div class="sp-head">
+        <div class="sp-side">
+          <h2 id="heat-title">密度熱帶淨值圖</h2>
+          <span class="section-note" id="heat-note"></span>
+        </div>
+        <div class="heat-toolbar">
+          <div class="variant-switch" id="heat-variant" role="group" aria-label="熱帶畫法">
+            <button type="button" data-v="grid" aria-current="page">甲・格點密度</button>
+            <button type="button" data-v="band">乙・分位數帶</button>
+          </div>
+        </div>
+      </div>
+      <div class="sp-sub" id="heat-legend"></div>
+      <div class="run-context-bar" id="run-context" hidden></div>
+      <div class="sp-body">
+        <div class="sp-chart" id="heat-chart"></div>
+      </div>
+      <div class="variant-note" id="heat-variant-note"></div>
+    </section>
+
+    <!-- ============ 掃描批次表 ============ -->
+    <section class="sp-panel" aria-labelledby="sweeps-title">
+      <div class="sp-head">
+        <h2 id="sweeps-title">掃描批次</h2>
+        <span class="section-note">點一行:整頁切換到該批</span>
+      </div>
+      <div class="sp-body flush" id="sweeps-table"></div>
+    </section>
+
+    <!-- ============ 歷次運行表 ============ -->
+    <section class="sp-panel" aria-labelledby="runs-title">
+      <div class="sp-head">
+        <h2 id="runs-title">歷次運行</h2>
+        <span class="section-note">該批達標運行・點一行:在批內選一次(篩選),再點一次或「回到批次」還原</span>
+      </div>
+      <div class="sp-body flush" id="runs-table"></div>
+    </section>
+
+    <!-- ============ 持股分布 ============ -->
+    <section class="sp-panel" aria-labelledby="holdings-title">
+      <div class="sp-head">
+        <h2 id="holdings-title">持股分布</h2>
+        <span class="section-note" id="holdings-note"></span>
+      </div>
+      <div class="sp-body flush" id="holdings-table"></div>
+    </section>
+
+    <!-- ============ 批內選次:選股快照 + 漏斗 + 參數/因子摺疊區 ============ -->
+    <section class="sp-panel run-detail" id="run-detail" hidden aria-labelledby="run-detail-title">
+      <div class="sp-head">
+        <div class="sp-side">
+          <h2 id="run-detail-title">該次運行・選股快照</h2>
+          <span class="at-point" id="run-detail-id"></span>
+        </div>
+        <button type="button" class="btn" id="back-to-batch">回到批次</button>
+      </div>
+      <div class="sp-sub" id="picks-basis"></div>
+      <div class="sp-funnel">
+        <div class="sp-funnel-cap">逐層收窄</div>
+        <div class="funnel-bar" id="funnel"></div>
+      </div>
+      <div id="picks-table"></div>
+
+      <details class="paramfac">
+        <summary>參數與因子(展開)</summary>
+        <div class="paramfac-body" id="paramfac-body"></div>
+      </details>
+    </section>
+
+  </div>
+
+  <div id="foot-host"></div>
+</main>
+
+<script src="vendor/lightweight-charts.standalone.production.js"></script>
+<script src="assets/data.js" charset="utf-8"></script>
+<script src="assets/data-ext.js" charset="utf-8"></script>
+<script src="assets/data-batch.js" charset="utf-8"></script>
+<script src="assets/app.js" charset="utf-8"></script>
+<script>
+(function () {
+  var K = window.KARST;
+  KV.mountNav('strategy-batch.html');
+  KV.mountFoot();
+
+  var DEMO = K.batchDemo;
+
+  /* ============================================================
+     網址參數:?id=&sweep=&run=&heat=  —— 直連示範用同一套參數
+     ============================================================ */
+  function readParams() {
+    var q = new URLSearchParams(location.search);
+    return { id: q.get('id') || 'trend-swing', sweep: q.get('sweep') || '', run: q.get('run') || '', heat: q.get('heat') || 'grid' };
+  }
+  function writeParams(p) {
+    var q = new URLSearchParams();
+    q.set('id', p.id);
+    if (p.sweepId) q.set('sweep', p.sweepId);
+    if (p.runId) q.set('run', p.runId);
+    if (p.heat && p.heat !== 'grid') q.set('heat', p.heat);
+    var url = location.pathname + '?' + q.toString() + location.hash;
+    try { history.replaceState(null, '', url); }
+    catch (e) { /* file:// 下可能被擋,不影響畫面本身 */ }
+  }
+
+  var init = readParams();
+  var S = { id: init.id, sweepId: init.sweep, runId: init.run, variant: init.heat === 'band' ? 'band' : 'grid' };
+
+  var el = {
+    demo: document.getElementById('demo-scenarios'),
+    name: document.getElementById('strat-name'),
+    en: document.getElementById('strat-en'),
+    live: document.getElementById('strat-live'),
+    pageState: document.getElementById('page-state'),
+    stack: document.getElementById('sp-stack'),
+    facadeNote: document.getElementById('facade-note'),
+    facadeBody: document.getElementById('facade-body'),
+    heatNote: document.getElementById('heat-note'),
+    heatVariant: document.getElementById('heat-variant'),
+    heatLegend: document.getElementById('heat-legend'),
+    heatChart: document.getElementById('heat-chart'),
+    heatVariantNote: document.getElementById('heat-variant-note'),
+    runContext: document.getElementById('run-context'),
+    sweepsTable: document.getElementById('sweeps-table'),
+    runsTable: document.getElementById('runs-table'),
+    holdingsNote: document.getElementById('holdings-note'),
+    holdingsTable: document.getElementById('holdings-table'),
+    runDetail: document.getElementById('run-detail'),
+    runDetailId: document.getElementById('run-detail-id'),
+    picksBasis: document.getElementById('picks-basis'),
+    funnel: document.getElementById('funnel'),
+    picksTable: document.getElementById('picks-table'),
+    paramfac: document.getElementById('paramfac-body'),
+    backToBatch: document.getElementById('back-to-batch'),
+  };
+
+  /* ---------------- 原型示範情境列 ---------------- */
+  var SCEN_LABEL = {
+    'trend-swing': ['趨勢波段', '有批次・有現役設定(現役非最佳批次)'],
+    'scenario-noactive': ['批次示範', '有批次・無現役設定'],
+    'scenario-allfailed': ['批次示範', '批次全部失敗'],
+    'scenario-nobatch': ['批次示範', '未曾執行參數掃描'],
+  };
+  el.demo.innerHTML = '<span class="demo-scenarios-cap">原型示範情境(等同直連網址)</span>' +
+    DEMO.order.map(function (id) {
+      var lb = SCEN_LABEL[id];
+      var cur = id === S.id;
+      return '<a class="fchip' + (cur ? ' is-cur' : '') + '" aria-pressed="' + cur + '" ' +
+        'href="strategy-batch.html?id=' + encodeURIComponent(id) + '">' +
+        KV.esc(lb[0]) + '<span class="demo-sub">' + KV.esc(lb[1]) + '</span></a>';
+    }).join('');
+
+  /* ---------------- 頁面資料 ---------------- */
+  var DATA = DEMO.strategies[S.id] || DEMO.strategies['trend-swing'];
+  if (!DEMO.strategies[S.id]) S.id = DATA.id;
+
+  el.name.textContent = DATA.name;
+  el.en.textContent = DATA.en;
+  el.live.hidden = DATA.id !== 'trend-swing';
+
+  /* ---------------- 狀態一:無批次 ---------------- */
+  if (!DATA.sweeps.length) {
+    el.pageState.innerHTML =
+      '<div class="state-block">' +
+        '<div class="state-title">此策略未曾執行參數掃描</div>' +
+        '此策略庫內未有任何掃描批次,故沒有批次門面、密度熱帶、掃描批次表可顯示。' +
+        '執行第一次參數掃描後,本頁會自動出現。' +
+      '</div>';
+    el.stack.hidden = true;
+    return;
+  }
+  el.stack.hidden = false;
+
+  /* ---------------- 揀「現在顯示哪一批」 ---------------- */
+  function pickSweep(sweepId) {
+    var hit = DATA.sweeps.filter(function (s) { return s.id === sweepId; })[0];
+    if (hit) return hit;
+    var bestId = DATA.bestSweepId;
+    if (bestId) return DATA.sweeps.filter(function (s) { return s.id === bestId; })[0];
+    return DATA.sweeps[0];
+  }
+  var curSweep = pickSweep(S.sweepId);
+  S.sweepId = curSweep.id;
+
+  /* run 要屬於目前這一批,否則當作未選 */
+  var curRuns = DATA.runsBySweep[curSweep.id] || [];
+  var curRun = curRuns.filter(function (r) { return r.id === S.runId; })[0] || null;
+  S.runId = curRun ? curRun.id : '';
+
+  writeParams(S);
+
+  var chart = null;
+
+  /* ============================================================
+     門面
+     ============================================================ */
+  function sweepAgg(s) {
+    return [
+      { l: '達標批次規模', v: s.passedCount + ' / ' + s.cells + ' 條', c: '', b: '達標比率 ' + s.passRate + '%' },
+      { l: '中位年化', v: s.medianCagr == null ? '—' : KV.pctPlain(s.medianCagr), c: KV.cls(s.medianCagr), b: '批內達標運行中位數' },
+      { l: '中位 Sortino', v: s.medianSortino == null ? '—' : s.medianSortino.toFixed(2), c: '', b: '批內達標運行中位數' },
+      { l: '中位最大回撤', v: s.medianMdd == null ? '—' : KV.pctPlain(s.medianMdd), c: 'down', b: '批內達標運行中位數' },
+    ];
+  }
+  function runKpis(r) {
+    if (!r) return [];
+    return [
+      { l: '年化', v: KV.pctPlain(r.cagr), c: KV.cls(r.cagr), b: r.paramsLabel },
+      { l: 'Sortino', v: r.sortino.toFixed(2), c: '', b: '' },
+      { l: '最大回撤', v: KV.pctPlain(r.mdd), c: 'down', b: '' },
+      { l: '勝率', v: r.winRate + '%', c: '', b: r.trades + ' 筆交易' },
+    ];
+  }
+  function kpiRowHtml(items) {
+    return '<div class="facade-kpis">' + items.map(function (k) {
+      return '<div class="kpi"><div class="kpi-label">' + KV.esc(k.l) + '</div>' +
+        '<div class="kpi-value sm ' + k.c + '">' + k.v + '</div>' +
+        '<div class="kpi-basis">' + KV.esc(k.b) + '</div></div>';
+    }).join('') + '</div>';
+  }
+
+  function renderFacade() {
+    var isBest = curSweep.id === DATA.bestSweepId;
+    var bestRun = curRuns.filter(function (r) { return r.id === curSweep.bestRunId; })[0] || null;
+    var active = DATA.active;
+    var activeRun = null, activeSweep = null;
+    if (active) {
+      activeSweep = DATA.sweeps.filter(function (s) { return s.id === active.sweepId; })[0];
+      activeRun = (DATA.runsBySweep[active.sweepId] || []).filter(function (r) { return r.id === active.runId; })[0];
+    }
+
+    if (!curSweep.passedCount) {
+      el.facadeNote.textContent = curSweep.label + '・' + curSweep.date;
+      el.facadeBody.innerHTML =
+        '<div class="sp-empty">此批 ' + curSweep.cells + ' 條運行全部失敗' +
+        '(年化回報同時低於 SPY 與 QQQ 買入持有),沒有達標運行可組成門面。</div>';
+      return;
+    }
+
+    el.facadeNote.textContent = (isBest ? '最佳批次(達標運行中位年化最高)・' : '非最佳批次,由掃描批次表切換而來・') +
+      curSweep.label + '・' + curSweep.date;
+
+    var cards = [];
+    cards.push({
+      badge: isBest ? '最佳批次整體' : '本批整體',
+      title: curSweep.label,
+      body: kpiRowHtml(sweepAgg(curSweep)),
+    });
+    cards.push({
+      badge: '最佳單次',
+      title: bestRun ? bestRun.id : '—',
+      body: bestRun ? kpiRowHtml(runKpis(bestRun)) : '<div class="sp-empty">無資料</div>',
+    });
+    if (active) {
+      var sameAsBest = activeRun && bestRun && activeRun.id === bestRun.id;
+      cards.push({
+        badge: '現役設定' + (sameAsBest ? '(與最佳單次相同)' : ''),
+        title: (activeSweep ? activeSweep.label + '・' : '') + (activeRun ? activeRun.id : '(該批查無此運行)'),
+        body: activeRun ? kpiRowHtml(runKpis(activeRun)) : '<div class="sp-empty">現役設定所屬批次目前未顯示,不冒充本頁門面。</div>',
+        warn: true,
+      });
+    } else {
+      cards.push({
+        badge: '現役設定',
+        title: '未設定',
+        body: '<div class="sp-empty">此策略尚未指定現役設定;紙上交易未跟隨任何一次運行。門面因此只顯示批次與批內最佳單次,兩者皆不冒充現役。</div>',
+        warn: true,
+      });
+    }
+
+    el.facadeBody.innerHTML = '<div class="facade-grid">' + cards.map(function (c) {
+      return '<div class="facade-card' + (c.warn ? ' is-active-setup' : '') + '">' +
+        '<div class="facade-card-head"><span class="tag ' + (c.warn ? 'tag-live' : 'tag-current') + '">' + KV.esc(c.badge) + '</span>' +
+        '<span class="mono facade-card-title">' + KV.esc(c.title) + '</span></div>' +
+        c.body +
+      '</div>';
+    }).join('') + '</div>';
+  }
+
+  /* ============================================================
+     密度熱帶淨值圖
+     ============================================================ */
+  function percentiles(sweepId) {
+    curSweep._pctCache = curSweep._pctCache || {};
+    if (curSweep._pctCache[sweepId]) return curSweep._pctCache[sweepId];
+    var runs = DATA.runsBySweep[sweepId];
+    var curves = DATA.curvesBySweep[sweepId];
+    var dates = DATA.dates;
+    var P = { p5: [], p25: [], p50: [], p75: [], p95: [] };
+    for (var i = 0; i < dates.length; i++) {
+      var col = runs.map(function (r) { return curves[r.id][i]; }).sort(function (a, b) { return a - b; });
+      function at(pct) { return col[Math.min(col.length - 1, Math.floor(pct * (col.length - 1)))]; }
+      P.p5.push(at(0.05)); P.p25.push(at(0.25)); P.p50.push(at(0.50)); P.p75.push(at(0.75)); P.p95.push(at(0.95));
+    }
+    curSweep._pctCache[sweepId] = P;
+    return P;
+  }
+
+  function tearChart() {
+    var dead = chart;
+    chart = null;
+    el.heatChart.innerHTML = '';
+    if (dead) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { try { dead.remove(); } catch (e) {} });
+      });
+    }
+  }
+
+  function drawHeat() {
+    tearChart();
+    var box = document.createElement('div');
+    el.heatChart.appendChild(box);
+    chart = KV.makeChart(box, 340);
+
+    var dates = DATA.dates, spy = DATA.spy, qqq = DATA.qqq;
+    var faded = !!S.runId;
+
+    if (!curSweep.passedCount) {
+      el.heatChart.innerHTML = '<div class="sp-empty">此批全部運行失敗,沒有達標曲線可畫密度熱帶。</div>';
+      chart = null;
+      return;
+    }
+
+    if (S.variant === 'grid') {
+      var runs = DATA.runsBySweep[curSweep.id];
+      var curves = DATA.curvesBySweep[curSweep.id];
+      var baseA = Math.min(0.10, Math.max(0.018, 2.6 / runs.length));
+      var a = faded ? baseA * 0.4 : baseA;
+      runs.forEach(function (r) {
+        var s = chart.addLineSeries({
+          color: 'rgba(239,83,80,' + a.toFixed(3) + ')', lineWidth: 1,
+          priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false,
+        });
+        s.setData(KV.zip(dates, curves[r.id]));
+      });
+    } else {
+      var P = percentiles(curSweep.id);
+      var fa = faded ? 0.4 : 1;
+      var outer = 'rgba(74,158,255,' + (0.10 * fa).toFixed(3) + ')';
+      var inner = 'rgba(74,158,255,' + (0.16 * fa).toFixed(3) + ')';
+      chart.addAreaSeries({ topColor: outer, bottomColor: outer, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: false }).setData(KV.zip(dates, P.p95));
+      chart.addAreaSeries({ topColor: outer, bottomColor: outer, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: true }).setData(KV.zip(dates, P.p5));
+      chart.addAreaSeries({ topColor: inner, bottomColor: inner, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: false }).setData(KV.zip(dates, P.p75));
+      chart.addAreaSeries({ topColor: inner, bottomColor: inner, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: true }).setData(KV.zip(dates, P.p25));
+      chart.addLineSeries({ color: 'rgba(74,158,255,' + (0.55 * fa).toFixed(3) + ')', lineWidth: 1, priceLineVisible: false, lastValueVisible: false }).setData(KV.zip(dates, P.p50));
+    }
+
+    /* 三條疊線:該次(或最佳單次)實線、SPY／QQQ 虛線 */
+    var highlightRun = S.runId ? curRun : curRuns.filter(function (r) { return r.id === curSweep.bestRunId; })[0];
+    var lSpy = chart.addLineSeries({ color: '#7d869c', lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
+    lSpy.setData(KV.zip(dates, spy));
+    var lQqq = chart.addLineSeries({ color: '#b07de0', lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
+    lQqq.setData(KV.zip(dates, qqq));
+    if (highlightRun) {
+      var lRun = chart.addLineSeries({ color: '#26a69a', lineWidth: 2.2, priceLineVisible: false, lastValueVisible: false });
+      lRun.setData(KV.zip(dates, DATA.curvesBySweep[curSweep.id][highlightRun.id]));
+    }
+
+    chart.timeScale().fitContent();
+    var padBars = dates.length * 0.02;
+    chart.timeScale().setVisibleLogicalRange({ from: -padBars, to: (dates.length - 1) + padBars * 0.5 });
+  }
+
+  function renderHeatMeta() {
+    document.querySelectorAll('#heat-variant button').forEach(function (b) {
+      var on = b.getAttribute('data-v') === S.variant;
+      b.setAttribute('aria-current', on ? 'page' : 'false');
+    });
+
+    if (!curSweep.passedCount) {
+      el.heatNote.textContent = curSweep.label + '・全部失敗,無達標曲線';
+      el.heatLegend.innerHTML = '';
+      el.heatVariantNote.textContent = '';
+    } else {
+      el.heatNote.textContent = curSweep.passedCount + ' 條達標／' + curSweep.cells + ' 條，隱藏 ' + curSweep.failedCount + ' 條失敗運行';
+      el.heatLegend.innerHTML =
+        '<span><i style="background:#26a69a"></i>' + (S.runId ? '該次運行' : '最佳單次') + '</span>' +
+        '<span><i style="background:#b07de0;border-bottom:1px dashed #b07de0;height:0"></i>QQQ</span>' +
+        '<span><i style="background:#7d869c;border-bottom:1px dashed #7d869c;height:0"></i>SPY</span>' +
+        (S.variant === 'grid'
+          ? '<span><i style="background:rgba(239,83,80,.55)"></i>密度(格點越紅 = 越多運行行經此處)</span>'
+          : '<span><i style="background:rgba(74,158,255,.45)"></i>25–75 分位帶</span>' +
+            '<span><i style="background:rgba(74,158,255,.22)"></i>5–95 分位帶</span>' +
+            '<span><i style="background:#4a9eff"></i>中位數</span>');
+      el.heatVariantNote.innerHTML = S.variant === 'grid'
+        ? '<b>甲・格點密度色階</b>:每條達標運行的淨值曲線疊成一條極淡紅線,同一時點經過的曲線越多,顏色疊得越紅——用透明度疊加近似「時間×淨值格點」的密度,不畫離散格仔。'
+        : '<b>乙・逐日分位數帶</b>:每個交易週按當日全部達標運行的淨值算 5/25/50/75/95 分位數,畫成兩層填色帶(內帶 25–75、外帶 5–95)加一條中位數線。';
+    }
+
+    if (S.runId) {
+      el.runContext.hidden = false;
+      el.runContext.innerHTML =
+        '<span class="tag tag-current">檢視中・單次運行</span>' +
+        '<span class="mono">' + KV.esc(S.runId) + '</span>' +
+        '<span class="dim">熱帶已淡化為底</span>' +
+        '<button type="button" class="btn" id="run-context-back">回到批次</button>';
+    } else {
+      el.runContext.hidden = true;
+      el.runContext.innerHTML = '';
+    }
+  }
+
+  /* ============================================================
+     掃描批次表
+     ============================================================ */
+  var sweepsCtl = null;
+  function renderSweepsTable() {
+    sweepsCtl = KV.sortableTable({
+      mount: '#sweeps-table',
+      hashKey: 'sw',
+      rows: DATA.sweeps,
+      rowKey: function (s) { return s.id; },
+      selected: curSweep.id,
+      defaultSort: 'medianCagr', defaultDir: 'desc',
+      onRowClick: function (s) { pickSweepAction(s.id); },
+      cols: [
+        { key: 'label', label: '名稱', get: function (s) { return s.label; },
+          render: function (s) { return KV.esc(s.label) + (s.id === DATA.bestSweepId ? ' <span class="tag tag-current">最佳批次</span>' : ''); } },
+        { key: 'date', label: '日期', get: function (s) { return s.date; }, render: function (s) { return '<span class="mono">' + s.date + '</span>'; } },
+        { key: 'cells', label: '格數', cls: 'num', get: function (s) { return s.cells; }, render: function (s) { return s.cells; } },
+        { key: 'passRate', label: '達標比率', cls: 'num', get: function (s) { return s.passRate; },
+          render: function (s) { return s.passRate + '%<span class="dim">(' + s.passedCount + '/' + s.cells + ')</span>'; } },
+        { key: 'medianCagr', label: '中位年化', cls: 'num', get: function (s) { return s.medianCagr == null ? -999 : s.medianCagr; },
+          render: function (s) { return s.medianCagr == null ? '<span class="dim">—</span>' : ('<span class="' + KV.cls(s.medianCagr) + '">' + KV.pctPlain(s.medianCagr) + '</span>'); } },
+      ],
+    });
+  }
+
+  function pickSweepAction(sweepId) {
+    if (sweepId === curSweep.id) return;
+    S.sweepId = sweepId; S.runId = '';
+    curSweep = DATA.sweeps.filter(function (s) { return s.id === sweepId; })[0];
+    curRuns = DATA.runsBySweep[curSweep.id] || [];
+    curRun = null;
+    writeParams(S);
+    renderAll();
+  }
+
+  /* ============================================================
+     歷次運行表
+     ============================================================ */
+  function renderRunsTable() {
+    if (!curSweep.passedCount) {
+      el.runsTable.innerHTML = '<div class="sp-empty">' + curSweep.cells + ' 條運行全部失敗' +
+        '(年化回報同時低於 SPY 與 QQQ 買入持有);沒有達標運行可列。</div>';
+      return;
+    }
+    KV.sortableTable({
+      mount: '#runs-table',
+      hashKey: 'rn',
+      rows: curRuns,
+      rowKey: function (r) { return r.id; },
+      selected: S.runId || null,
+      defaultSort: 'cagr', defaultDir: 'desc',
+      onRowClick: function (r) { pickRunAction(r.id); },
+      cols: [
+        { key: 'id', label: '運行編號', width: '200px', get: function (r) { return r.id; },
+          render: function (r) { return '<span class="mono">' + KV.esc(r.id) + '</span>' + (r.current ? ' <span class="tag tag-live">現役</span>' : ''); } },
+        { key: 'params', label: '參數', get: function (r) { return r.paramsLabel; }, render: function (r) { return '<span title="' + KV.esc(r.paramsLabel) + '">' + KV.esc(r.paramsLabel) + '</span>'; } },
+        { key: 'cagr', label: '年化', cls: 'num', width: '84px', get: function (r) { return r.cagr; }, render: function (r) { return '<span class="' + KV.cls(r.cagr) + '">' + KV.pctPlain(r.cagr) + '</span>'; } },
+        { key: 'sortino', label: 'Sortino', cls: 'num', width: '84px', get: function (r) { return r.sortino; }, render: function (r) { return r.sortino.toFixed(2); } },
+        { key: 'mdd', label: '最大回撤', cls: 'num', width: '92px', get: function (r) { return r.mdd; }, render: function (r) { return '<span class="down">' + KV.pctPlain(r.mdd) + '</span>'; } },
+        { key: 'winRate', label: '勝率', cls: 'num', width: '68px', get: function (r) { return r.winRate; }, render: function (r) { return r.winRate + '%'; } },
+      ],
+    });
+  }
+
+  function pickRunAction(runId) {
+    S.runId = (S.runId === runId) ? '' : runId;
+    curRun = S.runId ? curRuns.filter(function (r) { return r.id === S.runId; })[0] : null;
+    writeParams(S);
+    renderAll();
+  }
+
+  el.backToBatch.addEventListener('click', function () { pickRunAction(S.runId); });
+
+  /* ============================================================
+     持股分布(批次層 / 選次後轉單次層)
+     ============================================================ */
+  function renderHoldings() {
+    if (S.runId && curRun) {
+      var rows = DATA.holdingsByRun[curRun.id] || [];
+      el.holdingsNote.textContent = '單次層・' + curRun.id + '・以持有日數排前十';
+      el.holdingsTable.innerHTML = !rows.length
+        ? '<div class="sp-empty">這次運行沒有持倉紀錄。</div>'
+        : '<table class="kt"><thead><tr>' +
+            '<th style="width:70px">代號</th><th>名稱</th><th style="width:96px">行業</th>' +
+            '<th class="num" style="width:88px">持有日數</th><th class="num" style="width:96px">累計報酬</th>' +
+          '</tr></thead><tbody>' + rows.map(function (h) {
+            return '<tr><td class="mono">' + KV.esc(h.sym) + '</td><td>' + KV.esc(h.name) + '</td>' +
+              '<td class="dim">' + KV.esc(h.sector) + '</td><td class="num">' + h.holdDays + '</td>' +
+              '<td class="num ' + KV.cls(h.cumReturn) + '">' + KV.pct(h.cumReturn) + '</td></tr>';
+          }).join('') + '</tbody></table>';
+      return;
+    }
+    if (!curSweep.passedCount) {
+      el.holdingsNote.textContent = '';
+      el.holdingsTable.innerHTML = '<div class="sp-empty">此批全部運行失敗,沒有持倉可統計。</div>';
+      return;
+    }
+    var rows = DATA.holdingsBySweep[curSweep.id] || [];
+    el.holdingsNote.textContent = '批次層・' + curSweep.label + '・以命中頻率排前十(' + curSweep.passedCount + ' 條達標運行)';
+    el.holdingsTable.innerHTML = !rows.length
+      ? '<div class="sp-empty">此批沒有持倉紀錄。</div>'
+      : '<table class="kt"><thead><tr>' +
+          '<th style="width:70px">代號</th><th>名稱</th><th style="width:96px">行業</th>' +
+          '<th class="num" style="width:130px">命中頻率</th><th class="num" style="width:104px">平均持有日數</th>' +
+          '<th class="num" style="width:104px">平均累計報酬</th>' +
+        '</tr></thead><tbody>' + rows.map(function (h) {
+          return '<tr><td class="mono">' + KV.esc(h.sym) + '</td><td>' + KV.esc(h.name) + '</td>' +
+            '<td class="dim">' + KV.esc(h.sector) + '</td>' +
+            '<td class="num">' + h.freq + ' / ' + curSweep.passedCount + '<span class="dim">(' + h.freqPct + '%)</span></td>' +
+            '<td class="num">' + h.avgHoldDays + '</td>' +
+            '<td class="num ' + KV.cls(h.avgCumReturn) + '">' + KV.pct(h.avgCumReturn) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+  }
+
+  /* ============================================================
+     選股快照 + 漏斗 + 參數/因子(只在選了單次運行時出現)
+     ============================================================ */
+  var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
+  var ST_CLS = { '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch', '未過': 'st-out' };
+  var PICK_HEAD =
+    '<thead><tr>' +
+      '<th style="width:64px">代號</th><th>名稱</th><th style="width:96px">行業</th>' +
+      '<th class="num" style="width:50px">質素</th><th class="num" style="width:50px">動量</th>' +
+      '<th class="num" style="width:50px">超賣</th><th class="num" style="width:54px">綜合</th>' +
+      '<th style="width:60px">基本面</th><th style="width:52px">技術</th><th style="width:68px">狀態</th>' +
+    '</tr></thead>';
+  function gateCell(pass, shown) {
+    if (!shown) return '<td><span class="dim">—</span></td>';
+    return '<td class="' + (pass ? 'gate-yes' : 'gate-no') + '">' + (pass ? '✓' : '✗') + '</td>';
+  }
+
+  function renderRunDetail() {
+    if (!S.runId || !curRun) { el.runDetail.hidden = true; return; }
+    el.runDetail.hidden = false;
+    var snap = DATA.snapshotByRun[curRun.id];
+
+    el.runDetailId.textContent = curRun.id + '・快照日 ' + snap.asOfDate;
+
+    el.picksBasis.innerHTML =
+      '<span>門檻 質素 ≥ ' + snap.gates.quality + '・動量 ≥ ' + snap.gates.momentum + '</span>' +
+      '<span>分數 0–100</span>' +
+      '<span class="dim">批次層原型只示範一個代表快照,不設逐日回捲(運行詳情頁已取消,D-042)</span>';
+
+    el.funnel.innerHTML = snap.funnel.map(function (f, i) {
+      var prev = i ? snap.funnel[i - 1].count : 0;
+      var keep = i ? Math.round(f.count / prev * 1000) / 10 : 100;
+      return '<div class="fb-seg" style="flex:' + f.count + ' 1 74px" title="' + KV.esc(f.label + '　' + f.hint) + '">' +
+        '<div class="fb-block" style="background:' + FUNNEL_COLOR[i] + '">' +
+          '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
+          '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
+        '</div>' +
+        '<div class="fb-lab">' + KV.esc(f.label) + '</div>' +
+      '</div>';
+    }).join('');
+
+    el.picksTable.innerHTML = '<table class="kt">' + PICK_HEAD + '<tbody>' + snap.rows.map(function (r) {
+      return '<tr>' +
+        '<td class="mono">' + KV.esc(r.sym) + '</td>' +
+        '<td title="' + KV.esc(r.name) + '">' + KV.esc(r.name) + '</td>' +
+        '<td class="dim">' + KV.esc(r.sector) + '</td>' +
+        '<td class="num">' + r.quality.toFixed(0) + '</td>' +
+        '<td class="num">' + r.momentum.toFixed(0) + '</td>' +
+        '<td class="num">' + r.oversold.toFixed(0) + '</td>' +
+        '<td class="num" style="font-weight:700">' + r.composite.toFixed(0) + '</td>' +
+        gateCell(r.passFund, true) + gateCell(r.passTech, r.passFund) +
+        '<td><span class="st ' + ST_CLS[r.status] + '">' + r.status + '</span></td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+
+    el.paramfac.innerHTML =
+      '<div class="paramfac-col"><div class="paramfac-h">參數</div><dl class="def-list">' +
+        curRun.paramsDetail.map(function (p) { return '<dt>' + KV.esc(p.k) + '</dt><dd>' + KV.esc(p.v) + '</dd>'; }).join('') +
+      '</dl></div>' +
+      '<div class="paramfac-col"><div class="paramfac-h">因子(該次運行取用)</div><dl class="def-list">' +
+        curRun.factors.map(function (f) { return '<dt>' + KV.esc(f.name) + ' <span class="mono dim">' + f.ver + '</span></dt><dd>權重 ' + f.weightPct + '%</dd>'; }).join('') +
+      '</dl></div>';
+  }
+
+  /* ============================================================
+     總開關
+     ============================================================ */
+  function renderAll() {
+    renderFacade();
+    drawHeat();
+    renderHeatMeta();
+    renderSweepsTable();
+    renderRunsTable();
+    renderHoldings();
+    renderRunDetail();
+    var back = document.getElementById('run-context-back');
+    if (back) back.addEventListener('click', function () { pickRunAction(S.runId); });
+  }
+
+  el.heatVariant.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-v]');
+    if (!b) return;
+    var v = b.getAttribute('data-v');
+    if (v === S.variant) return;
+    S.variant = v;
+    writeParams(S);
+    drawHeat();
+    renderHeatMeta();
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

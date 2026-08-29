@@ -245,6 +245,7 @@ th[role="button"]:focus-visible {
   color: var(--text-2);
   white-space: nowrap;
 }
+.tag[hidden] { display: none; }
 .tag-strategy { background: rgba(74,158,255,.15); color: var(--accent); }
 .tag-follow   { background: rgba(176,125,224,.15); color: var(--bench-qqq); }
 .tag-live     { background: rgba(38,166,154,.15); color: var(--up); }
@@ -1614,6 +1615,7 @@ body.sp .foot { margin-top: var(--s-4); padding: var(--s-3) var(--s-4);
 
 /* 區塊之間統一的節奏 */
 .sp-stack { display: flex; flex-direction: column; gap: var(--s-3); }
+.sp-stack[hidden] { display: none; }
 
 /* 面板:一律 overflow visible,不許長出自己的捲軸 */
 .sp-panel { background: var(--bg-1); border-radius: var(--r-2); overflow: visible; }
@@ -1806,4 +1808,115 @@ body.sp .fb-seg { min-width: 94px; }
 @media (max-width: 1180px) {
   .sp-split { grid-template-columns: minmax(0, 1fr); }
   .sp-sticky { position: static; }
+}
+
+/* ============================================================
+   第十一版:批次層原型(KARST-086,依 D-042)
+   ------------------------------------------------------------
+   策略詳情頁改為以批次為顯示單位:批次門面、密度熱帶淨值圖(兩個變體)、
+   掃描批次表、批內選次。只加新零件,不改舊頁面用到的既有規則。
+   ============================================================ */
+
+/* ---- 原型示範情境列(只在 strategy-batch.html 出現) ---- */
+.demo-scenarios {
+  display: flex; align-items: stretch; gap: var(--s-2); flex-wrap: wrap;
+  background: rgba(240, 168, 60, .07);
+  border: 1px dashed rgba(240, 168, 60, .4);
+  border-radius: var(--r-2);
+  padding: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-4);
+}
+.demo-scenarios-cap {
+  flex: none; align-self: center;
+  font-size: var(--fs-xs); color: var(--warn); font-weight: 700; margin-right: var(--s-2);
+}
+.demo-scenarios .fchip {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  border-radius: var(--r-2); padding: var(--s-1) var(--s-3); text-decoration: none;
+}
+.demo-scenarios .fchip:hover { text-decoration: none; }
+.demo-scenarios .fchip.is-cur { background: rgba(240, 168, 60, .18); border-color: var(--warn); color: var(--text-1); }
+.demo-scenarios .demo-sub { font-size: 10px; color: var(--text-3); font-weight: 400; white-space: nowrap; }
+.demo-scenarios .fchip.is-cur .demo-sub { color: var(--text-2); }
+
+/* ---- 批次門面 ---- */
+.facade-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s-4);
+}
+.facade-card {
+  background: var(--bg-2); border-radius: var(--r-2);
+  padding: var(--s-4); border-left: 3px solid var(--line-strong);
+}
+.facade-kpis {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--s-3);
+}
+body.sp .facade-kpis .kpi { background: var(--bg-1); padding: var(--s-2) var(--s-3); }
+body.sp .facade-kpis .kpi-value { margin: var(--s-1) 0 2px; }
+.facade-card-head {
+  display: flex; align-items: baseline; gap: var(--s-2); flex-wrap: wrap;
+  margin-bottom: var(--s-3);
+}
+.facade-card-title { color: var(--text-2); font-size: var(--fs-xs); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.facade-card.is-active-setup { border-left-color: var(--up); }
+
+/* ---- 密度熱帶:工具列、圖例、選次上下文列 ---- */
+.heat-toolbar { display: flex; align-items: center; gap: var(--s-3); flex: none; }
+#heat-legend { flex-wrap: wrap; }
+#heat-legend i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+
+.run-context-bar {
+  display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap;
+  background: rgba(74, 158, 255, .08);
+  border-left: 3px solid var(--accent);
+  padding: var(--s-2) var(--s-4);
+  font-size: var(--fs-sm);
+}
+.run-context-bar .btn { margin-left: auto; }
+.run-context-bar[hidden] { display: none; }
+
+/* ---- 參數與因子摺疊區 ---- */
+.paramfac {
+  margin: var(--s-2) var(--s-4) var(--s-4);
+  background: var(--bg-2); border-radius: var(--r-2);
+  padding: var(--s-2) var(--s-4);
+}
+.paramfac summary {
+  cursor: pointer; font-size: var(--fs-sm); color: var(--text-2); font-weight: 700;
+  padding: var(--s-2) 0;
+}
+.paramfac summary:hover { color: var(--text-1); }
+.paramfac-body {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--s-4); padding: var(--s-2) 0 var(--s-3);
+}
+.paramfac-h { font-size: var(--fs-xs); color: var(--text-3); margin-bottom: var(--s-2); }
+
+/* 批次表「最佳批次」籤、運行表選中列沿用既有 .tag-current / .is-picked,不另加規則 */
+
+.suggest-callout {
+  display: flex; gap: var(--s-3);
+  background: rgba(240, 168, 60, .07);
+  border: 1px dashed rgba(240, 168, 60, .4);
+  border-radius: var(--r-2);
+  padding: var(--s-3) var(--s-4);
+  margin-bottom: var(--s-4);
+  font-size: var(--fs-sm); color: var(--text-2); line-height: 1.7;
+}
+.suggest-callout-tag {
+  flex: none; align-self: flex-start;
+  font-size: var(--fs-xs); color: var(--warn); font-weight: 700;
+  background: rgba(240, 168, 60, .15); border-radius: var(--r-1);
+  padding: 2px var(--s-2); white-space: nowrap;
+}
+.suggest-callout b { color: var(--text-1); }
+.th-suggest { text-decoration: underline dotted var(--text-3); text-underline-offset: 3px; cursor: help; }
+.tag-batchproto { background: rgba(74, 158, 255, .15); color: var(--accent); margin-left: 6px; }
+
+@media (max-width: 900px) {
+  .facade-grid { grid-template-columns: minmax(0, 1fr); }
+  .demo-scenarios { flex-direction: column; }
+  .suggest-callout { flex-direction: column; }
 }
