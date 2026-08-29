@@ -492,6 +492,7 @@ class Gateway:
         taken_on: str | None = None,
         extra_notes: Sequence[str] = (),
         cik_map: dict[str, str] | None = None,
+        anchor_valid_to: dict[str, str] | None = None,
     ) -> tuple[object, object]:
         """一句話跑完抓取 → 凍結 → 登記,回傳(快照成果單, 抓取登記)。
 
@@ -514,6 +515,7 @@ class Gateway:
             taken_on=taken_on,
             extra_notes=extra_notes,
             cik_map=cik_map,
+            anchor_valid_to=anchor_valid_to,
         )
         fetch = self._store.record_snapshot_fetch(
             snapshot.snapshot_id,
@@ -530,6 +532,27 @@ class Gateway:
             alert_summary=None,
         )
         return snapshot, fetch
+
+    def retract_snapshot(
+        self, snapshot_id: str, *, reason: str, superseded_by: str | None
+    ) -> object:
+        """把一個快照由登記冊除名,並蓋上寫入者簽章(KARST-084)。
+
+        除名是一個**定義級動作**——它決定日後所有回測拿得到哪幾個快照——所以與策略
+        定義同一道門:經這裡寫、留簽章,``karst verify`` 核得到。有人繞過這道門直接
+        塞一列除名登記,verify 一掃就見到它沒有簽章。
+
+        除的是**登記**,不是檔案:快照目錄與 parquet 一個字都不動(D-026 第 3 條),
+        ``get_snapshot`` 照樣讀得到,只是 ``list_snapshots`` 與畫面選單不再列出它。
+        """
+        retraction = self._store.retract_snapshot(
+            snapshot_id,
+            reason=reason,
+            superseded_by=superseded_by,
+            retracted_by=self._writer,
+        )
+        self._sign(("data_snapshot_retraction", (retraction.snapshot_id,)))
+        return retraction
 
     def take_macro_snapshot(
         self,
@@ -616,6 +639,35 @@ class Gateway:
                     detail,
                 )
             )
+        findings.extend(self.snapshot_balance_findings())
+        return findings
+
+    def snapshot_balance_findings(self) -> list[ledger.Finding]:
+        """逐個數據快照核三數等式:宇宙表代號數 = 實體數 + 剔除數(KARST-084)。
+
+        對不上就代表有兩個代號錨到同一個實體、其中一條價格序列被靜靜蓋走(D-026 第 2 條
+        講明實體編號才是主鍵,代號只是帶生效期的屬性)。讀不到目錄或檔案的快照**略過
+        不報**——那是「這部機上沒有這份檔」,不是「這個快照的宇宙表對不上」,兩件事不可
+        混為一談。
+        """
+        from ..data.snapshots import universe_balance
+        from ..data.errors import SnapshotBroken
+
+        findings: list[ledger.Finding] = []
+        for listing in self._store.list_snapshots():
+            try:
+                balance = universe_balance(self._store, listing.snapshot_id)
+            except (SnapshotBroken, OSError, ValueError, KeyError):
+                continue
+            if not balance.balances:
+                findings.append(
+                    ledger.Finding(
+                        "data_snapshot",
+                        listing.snapshot_id,
+                        "宇宙表三數等式對不上",
+                        balance.describe(),
+                    )
+                )
         return findings
 
     def locate(self, kind: str, name: str) -> DefinitionLocation:

@@ -20,6 +20,7 @@ from __future__ import annotations
 import json
 import shutil
 from collections.abc import Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from uuid import uuid4
@@ -319,6 +320,70 @@ def read_price_panel(
     panel.index = pd.DatetimeIndex(pd.to_datetime(panel.index), name="date")
     panel.columns = pd.Index([int(column) for column in panel.columns], name="entity_id")
     return panel.sort_index().sort_index(axis=1)
+
+
+@dataclass(frozen=True, slots=True)
+class UniverseBalance:
+    """一個快照的三數等式(KARST-084):宇宙表代號數 = 實體數 + 剔除數。
+
+    * ``universe_tickers``——**入口收到**的代號數,即登記那一列的宇宙名單長度。
+    * ``entities``——凍下來的宇宙表裡不同的實體編號數。
+    * ``alias_dropped``——同實體別名閘剔走的代號數。
+
+    對不上就代表有一條代號序列在登記實體那一層被靜靜蓋走(KARST-083 的 BBT/TFC、
+    EQR/VMRK 正是這樣),那個快照的宇宙名單與它實際載住的價格對不上,不可用。
+
+    ``declared`` 是 ``False`` 即**說明檔沒有剔除數那一格**(凍結於這道閘之前)。
+    那時剔除數以 0 核——不是猜:那一刻根本沒有這道閘,一條都沒有剔過。
+    """
+
+    snapshot_id: str
+    universe_tickers: int
+    entities: int
+    rows: int
+    alias_dropped: int
+    declared: bool
+
+    @property
+    def balances(self) -> bool:
+        """三數對得上,而且宇宙表裡沒有兩個代號共用一個實體編號。"""
+        return (
+            self.universe_tickers == self.entities + self.alias_dropped
+            and self.rows == self.entities
+        )
+
+    def describe(self) -> str:
+        head = (
+            f"{self.snapshot_id}:宇宙表代號數 {self.universe_tickers} = 實體數 "
+            f"{self.entities} + 剔除數 {self.alias_dropped}"
+        )
+        if not self.declared:
+            head += "(說明檔沒有剔除數那一格,凍結於同實體別名閘之前,以 0 核)"
+        if self.balances:
+            return head + ";對得上"
+        return (
+            head
+            + f";**對不上**——凍下來的宇宙表有 {self.rows} 個代號、只有 {self.entities} "
+            "個實體,即有代號序列被靜靜蓋走"
+        )
+
+
+def universe_balance(
+    store: DefinitionStore, snapshot_id: str, *, root: str | Path | None = None
+) -> UniverseBalance:
+    """由已凍結的檔案算出一個快照的三數等式;不改任何東西,純讀。"""
+    snapshot = store.get_snapshot(snapshot_id)
+    manifest = read_manifest(store, snapshot_id, root=root)
+    universe = read_universe(store, snapshot_id, root=root)
+    declared = "alias_dropped" in manifest
+    return UniverseBalance(
+        snapshot_id=snapshot_id,
+        universe_tickers=len(tuple(snapshot.universe)),
+        entities=int(universe["entity_id"].nunique()),
+        rows=int(len(universe)),
+        alias_dropped=int(manifest.get("alias_dropped", 0)),
+        declared=declared,
+    )
 
 
 def verify_snapshot(

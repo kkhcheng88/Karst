@@ -350,6 +350,21 @@ class SnapshotFetch:
 
 
 @dataclass(frozen=True, slots=True)
+class SnapshotRetraction:
+    """一個快照的除名登記(KARST-084):它不再算可回測,但檔案與追溯照留。
+
+    ``superseded_by`` 是取代它那個快照的編號;沒有取代者就留 ``None``——那是
+    「除名了而且沒有替身」,與「被新一代取代」是兩件事,不可混為一談。
+    """
+
+    snapshot_id: str
+    reason: str
+    superseded_by: str | None
+    retracted_by: str
+    retracted_at: str
+
+
+@dataclass(frozen=True, slots=True)
 class SnapshotListing:
     """庫內一個數據快照的一覽列:快照登記那一列,連它的抓取登記(如有)。
 
@@ -2377,14 +2392,107 @@ class DefinitionStore:
         ).fetchone()
         return None if row is None else _row_to_snapshot_fetch(row)
 
+    def retract_snapshot(
+        self,
+        snapshot_id: str,
+        *,
+        reason: str,
+        superseded_by: str | None,
+        retracted_by: str,
+    ) -> SnapshotRetraction:
+        """把一個快照由登記冊除名(KARST-084):**加一列,不是刪一列**。
+
+        除名之後 ``list_snapshots`` 與畫面選單一律略過它——登記冊列得出的只有可回測
+        的快照;但 ``get_snapshot`` 一類直連查詢照樣讀得到,快照目錄與 parquet 檔亦
+        一個字都不動(D-026 第 3 條:舊快照永不改動),所以追溯永遠指得回。
+
+        為什麼不刪:``data_snapshot_fetch``、``factor_value_batch``、
+        ``factor_value_batch_member`` 三張表各有一道 ``BEFORE DELETE`` 閘,寫明
+        「登記不可刪,追溯要指得回」。刪走等於把一件發生過的事由帳上抹掉。
+
+        還有運行掛住它就拒收:一個回測運行指住的快照若果由登記冊消失,那次運行就
+        再也講不出自己跑的是哪一批數。除名不可以令已發生的運行變成孤兒。
+        """
+        snapshot = self.get_snapshot(snapshot_id)  # 查無此快照即拋 NotFound
+        existing = self._conn.execute(
+            "SELECT snapshot_id FROM data_snapshot_retraction WHERE snapshot_id = ?",
+            (snapshot.snapshot_id,),
+        ).fetchone()
+        if existing is not None:
+            raise DuplicateDefinition(
+                f"快照 {snapshot.snapshot_id} 已經除名;除名登記只加不改"
+            )
+        if superseded_by is not None:
+            self.get_snapshot(superseded_by)  # 取代它那個必須真的在庫內
+        runs = self._conn.execute(
+            "SELECT COUNT(*) AS n FROM backtest_run WHERE snapshot_id = ?",
+            (snapshot.snapshot_id,),
+        ).fetchone()["n"]
+        if int(runs) > 0:
+            raise ContractViolation(
+                f"快照 {snapshot.snapshot_id} 仍有 {runs} 次回測運行掛住,不可除名;"
+                "運行要講得出自己跑的是哪一批數"
+            )
+        moment = _now()
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO data_snapshot_retraction (snapshot_id, reason, superseded_by,"
+                " retracted_by, retracted_at) VALUES (?, ?, ?, ?, ?)",
+                (
+                    snapshot.snapshot_id,
+                    str(reason).strip(),
+                    superseded_by,
+                    str(retracted_by).strip(),
+                    moment,
+                ),
+            )
+        return SnapshotRetraction(
+            snapshot_id=snapshot.snapshot_id,
+            reason=str(reason).strip(),
+            superseded_by=superseded_by,
+            retracted_by=str(retracted_by).strip(),
+            retracted_at=moment,
+        )
+
+    def list_snapshot_retractions(self) -> list[SnapshotRetraction]:
+        """全部除名登記,新的在前。"""
+        return [
+            SnapshotRetraction(
+                snapshot_id=row["snapshot_id"],
+                reason=row["reason"],
+                superseded_by=row["superseded_by"],
+                retracted_by=row["retracted_by"],
+                retracted_at=row["retracted_at"],
+            )
+            for row in self._conn.execute(
+                "SELECT snapshot_id, reason, superseded_by, retracted_by, retracted_at"
+                " FROM data_snapshot_retraction ORDER BY retracted_at DESC, snapshot_id DESC"
+            ).fetchall()
+        ]
+
+    def retired_snapshot_ids(self) -> tuple[str, ...]:
+        """已除名的快照編號。要查一個快照是不是已除名,用這一格,不要自己寫 SQL。"""
+        return tuple(
+            row["snapshot_id"]
+            for row in self._conn.execute(
+                "SELECT snapshot_id FROM data_snapshot_retraction ORDER BY snapshot_id"
+            ).fetchall()
+        )
+
     def list_snapshots(self) -> list[SnapshotListing]:
-        """庫內全部數據快照,新的在前。抓取登記有就併埋,沒有就是 ``None``。"""
+        """庫內**可回測**的數據快照,新的在前。抓取登記有就併埋,沒有就是 ``None``。
+
+        已除名的快照(``data_snapshot_retraction``)不在此列:登記冊列得出的就是可以
+        攞去回測的那幾個(KARST-084)。要連除名那幾個一齊看,用
+        ``list_snapshot_retractions``;要直取某一個,``get_snapshot`` 一律讀得到。
+        """
         rows = self._conn.execute(
             "SELECT s.snapshot_id, s.source, s.taken_on, s.content_hash, s.path, s.universe,"
             " s.created_at, f.fetched_at, f.window_start, f.window_end, f.entity_count,"
             " f.row_count, f.trading_days, f.recorded_at, f.alert_count, f.alert_summary"
             " FROM data_snapshot AS s"
             " LEFT JOIN data_snapshot_fetch AS f ON f.snapshot_id = s.snapshot_id"
+            " WHERE s.snapshot_id NOT IN (SELECT snapshot_id FROM data_snapshot_retraction)"
             " ORDER BY s.taken_on DESC, s.snapshot_id DESC"
         ).fetchall()
         return [

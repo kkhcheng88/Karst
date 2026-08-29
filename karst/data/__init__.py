@@ -92,6 +92,7 @@ from .pipeline import (
 )
 from .snapshots import (
     DEFAULT_SNAPSHOT_ROOT,
+    UniverseBalance,
     find_equivalent_snapshot,
     price_frames_equivalent,
     read_calendar,
@@ -100,6 +101,7 @@ from .snapshots import (
     read_price_panel,
     read_universe,
     snapshot_dir,
+    universe_balance,
     verify_snapshot,
 )
 from .sources import PRICE_FIELDS, PriceSource, StaticSource, YFinanceSource
@@ -215,6 +217,8 @@ __all__ = [
     "round_significant",
     "snapshot_dir",
     "snapshot_summary",
+    "UniverseBalance",
+    "universe_balance",
     "tickers_of",
     "trading_calendar",
     "values_equivalent",

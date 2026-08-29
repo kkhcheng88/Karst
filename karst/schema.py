@@ -31,6 +31,9 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 10. ``data_snapshot_fetch``        數據快照的抓取登記:抓取時間、抓的是哪一段窗口,
                                    以及凍結那一刻的齊全度核對結果
                                    (D-026 第 3 條;KARST-034、KARST-067)
+11. ``data_snapshot_retraction``   快照除名登記:哪個快照不再算可回測、被誰除名、
+                                   幾時、為什麼、被哪個快照取代。只加不改不刪——
+                                   除名是加一列,不是刪一列(KARST-084)
 """
 
 from __future__ import annotations
@@ -58,7 +61,11 @@ from typing import Any
 #        而且檔案真的在落點上,才把 factor_value 清空重建(見
 #        ``_migrate_factor_values_to_files``);既有的因子、因子版本、實體編號
 #        一個都不動,所以策略引用與運行蓋住的版本編號照舊指得回。
-SCHEMA_VERSION = 11
+# 第 12 版加快照除名登記表 ``data_snapshot_retraction``(KARST-084):快照凍出來之後
+#        才發現不可用(三數等式對不上一類),由**加一列**令它不再算可回測,不是刪走
+#        登記——data_snapshot_fetch 與因子值批次那三道 BEFORE DELETE 閘寫明
+#        「登記不可刪,追溯要指得回」。舊庫重開時 DDL 自動補建,既有登記一列不動。
+SCHEMA_VERSION = 12
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -265,6 +272,40 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_snapshot_no_update
 BEFORE UPDATE ON data_snapshot BEGIN
     SELECT RAISE(ABORT, '數據快照落庫後不可改,重拉數請出新快照編號');
+END;
+
+-- 快照除名登記(KARST-084)。
+--
+-- 一個快照凍出來之後才發現不可用(例如宇宙表三數等式對不上——兩個代號撞同一個
+-- 實體編號,有價格序列被靜靜蓋走),要令它不再被當作可回測的數據。**做法不是刪列**:
+-- data_snapshot_fetch、factor_value_batch 三張表各有一道 BEFORE DELETE 閘,寫明
+-- 「登記不可刪,追溯要指得回」。刪走就等於把一件發生過的事由帳上抹掉。
+--
+-- 所以除名是**加一列**,不是減一列:這張表只加不改不刪,一列講清楚哪個快照、
+-- 被誰除名、幾時、為什麼、被哪個快照取代。除名之後:
+--   · list_snapshots() 與三數等式核對一律略過它——登記冊列得出的只有可回測的;
+--   · 直連查詢(get_snapshot、read_manifest 一類)照樣讀得到——追溯指得回;
+--   · 快照目錄與 parquet 檔一個字都不動(D-026 第 3 條:舊快照永不改動)。
+--
+-- 這張表入治理清單(ledger.GOVERNED_TABLES),故此每一列都有唯一入口的寫入者簽章:
+-- 「除名」本身是一個定義級動作,不可以有人繞過那道門靜靜除掉一個快照。
+CREATE TABLE IF NOT EXISTS data_snapshot_retraction (
+    snapshot_id    TEXT PRIMARY KEY REFERENCES data_snapshot(snapshot_id),
+    reason         TEXT NOT NULL CHECK (length(trim(reason)) > 0),
+    superseded_by  TEXT REFERENCES data_snapshot(snapshot_id),
+    retracted_by   TEXT NOT NULL CHECK (length(trim(retracted_by)) > 0),
+    retracted_at   TEXT NOT NULL,
+    CHECK (superseded_by IS NULL OR superseded_by <> snapshot_id)
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_snapshot_retraction_no_update
+BEFORE UPDATE ON data_snapshot_retraction BEGIN
+    SELECT RAISE(ABORT, '除名登記落庫後不可改;判斷變了請另開票,不要改寫已發生的除名');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_snapshot_retraction_no_delete
+BEFORE DELETE ON data_snapshot_retraction BEGIN
+    SELECT RAISE(ABORT, '除名登記不可刪,追溯要指得回');
 END;
 
 CREATE TRIGGER IF NOT EXISTS trg_entity_anchor_immutable

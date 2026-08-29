@@ -28,9 +28,11 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from karst.data.snapshots import read_price_frame, read_universe  # noqa: E402
 from karst.data.ticker_history import (  # noqa: E402
+    AliasCandidate,
     anchors_for_range,
     distinct_ciks,
     read_anchor_table,
+    resolve_alias_collisions,
     write_anchor_table,
 )
 from karst.errors import NotFound  # noqa: E402
@@ -133,68 +135,35 @@ def main() -> int:
 
     # ---- 兩個代號錨到同一個實體:同一家公司的新舊代號各記一次,只可以留一個 ----
     #
-    # 錨補齊之後才浮出來的一格。`BBT` 與 `TFC` 都錨到 0000092230(BB&T 改名做 Truist),
-    # `EQR` 與 `VMRK` 都錨到 0000906107(Equity Residential 改名做 Vivmark)。兩個代號
-    # 一齊入表會撞同一個實體編號,管線那一層不會出聲,靜靜只留其中一條價格序列——
-    # 而兩條序列**不是同一批數字**:BBT 的日線由 18.55 行到 31.50,TFC 的由 24.43 行到
-    # 50.21,即免費行情源給的 `BBT` 根本是今日持有那三個字母的另一家公司。留邊條要
-    # 講得出理由,不可以靠登記次序決定。
-    #
-    # 挑法,次序寫死:
-    #   1. **生效期未結束的優先** —— 退了役的代號,免費源給的是今日持有人的歷史,
-    #      信不過(BBT 就是活例);仍然在用的那個代號才拿得到這家公司自己的序列。
-    #   2. 兩個都未結束(EQR/VMRK 就是:同一段成分期由兩個來源各記一次),
-    #      取真實成交日線較多的那個。
-    #   3. 仍然分不出高下 —— **兩個都剔走**,不猜。
-    by_cik: dict[str, list] = {}
-    for anchor in keep:
-        if anchor.cik:
-            by_cik.setdefault(anchor.cik, []).append(anchor)
+    # 規則**不住在這裡**(KARST-084)。本票原本在這一格寫過一份臨時規則,現已搬去
+    # 唯一入口的 `karst.data.ticker_history.resolve_alias_collisions`,凍結管線與這個
+    # 腳本同呼叫那一份,不留第二份。這裡只負責備料與落副產檔。
     bars_count = frame.groupby("ticker").size()
-    aliased = []
-    for cik, group in sorted(by_cik.items()):
-        if len(group) < 2:
-            continue
-        live = [a for a in group if not a.valid_to]
-        if len(live) == 1:
-            winner = live[0]
-            why = "生效期未結束,是這家公司仍然在用的代號"
-        else:
-            pool = live if live else group
-            ranked = sorted(pool, key=lambda a: int(bars_count.get(a.ticker, 0)), reverse=True)
-            if len(ranked) > 1 and int(bars_count.get(ranked[0].ticker, 0)) == int(
-                bars_count.get(ranked[1].ticker, 0)
-            ):
-                winner = None
-                why = ""
-            else:
-                winner = ranked[0]
-                why = f"生效期同樣未結束,取真實成交日線較多的那個({int(bars_count.get(winner.ticker, 0))} 根)"
-        for anchor in group:
-            if winner is not None and anchor.ticker == winner.ticker:
-                continue
-            other = "、".join(a.ticker for a in group if a.ticker != anchor.ticker)
-            reason = (
-                f"與 {other} 錨到同一個實體 {cik}(同一家公司的新舊代號各記一次);"
-                "兩個代號一齊入表會撞同一個實體編號,管線只會留低其中一條價格序列而不出聲,"
-                "故此在此明剔。"
-                + (
-                    f"留低 {winner.ticker}:{why}"
-                    if winner is not None
-                    else "兩個代號分不出高下,一齊剔走,不猜"
-                )
+    verdicts = resolve_alias_collisions(
+        [
+            AliasCandidate(
+                ticker=anchor.ticker,
+                cik=anchor.cik,
+                valid_to=anchor.valid_to,
+                bar_count=int(bars_count.get(anchor.ticker, 0)),
             )
+            for anchor in keep
+        ]
+    )
+    by_ticker = {anchor.ticker: anchor for anchor in keep}
+    aliased = []
+    for verdict in verdicts:
+        for ticker in verdict.dropped:
+            anchor = by_ticker[ticker]
             aliased.append(
                 {
-                    "ticker": anchor.ticker,
-                    "bars": (
-                        f"{ranges.loc[anchor.ticker, 'min']}~{ranges.loc[anchor.ticker, 'max']}"
-                    ),
+                    "ticker": ticker,
+                    "bars": f"{ranges.loc[ticker, 'min']}~{ranges.loc[ticker, 'max']}",
                     "membership": f"{anchor.valid_from}~{anchor.valid_to or '仍在名單上'}",
                     "old_anchor": str(
-                        universe.loc[universe["ticker"] == anchor.ticker, "anchor"].iloc[0]
+                        universe.loc[universe["ticker"] == ticker, "anchor"].iloc[0]
                     ),
-                    "reason": reason,
+                    "reason": verdict.reason,
                 }
             )
     losers = {row["ticker"] for row in aliased}

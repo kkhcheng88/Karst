@@ -58,6 +58,10 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     # 同一種簽章。檔案本身的核對另有一段(見 ``Gateway.verify``)。
     "factor_value_batch": ("batch_key", "snapshot_id"),
     "factor_value_batch_member": ("batch_key", "snapshot_id", "factor_version_id"),
+    # KARST-084 補上的一張:快照除名登記。「這個快照不再算可回測」是一個定義級動作
+    # ——它決定了日後所有回測拿得到哪幾個快照——所以與策略定義同一道門、同一種簽章。
+    # 沒有簽章的除名列即是有人繞過唯一入口靜靜除掉一個快照,verify 一掃就見到。
+    "data_snapshot_retraction": ("snapshot_id",),
 }
 
 UNSIGNED = "未經唯一入口寫入"

@@ -199,6 +199,17 @@ def build_parser() -> argparse.ArgumentParser:
     # 代號、為什麼少」只有發起那個人知道,沒有這一格就只能靠人記得去翻另一份檔。
     take.add_argument("--note", dest="notes", action="append", default=[],
                       help="寫入快照說明檔的一句註記,可重複給(不入內容雜湊,不會改變快照編號)")
+    # 快照除名(KARST-084)。除的是登記,不是檔案:快照目錄與 parquet 一個字都不動,
+    # 只是登記冊由此不再把它當作可回測的數據。除名是加一列,不是刪一列。
+    retract = data_commands.add_parser(
+        "retract-snapshot",
+        help="把一個快照由登記冊除名(檔案照留、追溯照指得回),經唯一入口留簽章",
+    )
+    retract.add_argument("--snapshot", required=True, help="要除名的快照編號")
+    retract.add_argument("--reason", required=True,
+                         help="為什麼除名,一句講清楚;這一句會落登記冊,日後查得回")
+    retract.add_argument("--superseded-by", dest="superseded_by", default=None,
+                         help="被哪個快照取代;沒有取代者就不給這一格")
     macro = data_commands.add_parser(
         "macro-snapshot",
         help="抓宏觀序列、對齊指定價格快照的主日曆、凍成快照並登記編號",
@@ -651,6 +662,8 @@ def _print_risk_rule(rule, out: TextIO) -> None:
 def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     if args.subcommand == "list":
         return _data_list(gateway, out)
+    if args.subcommand == "retract-snapshot":
+        return _data_retract(args, gateway, out)
     if args.subcommand == "macro-snapshot":
         return _data_macro(args, gateway, out)
     if args.subcommand == "universe":
@@ -659,14 +672,21 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     universe = resolve_universe(args.tickers)
     source = build_source(args.source, bars=args.bars)
     cik_map = None
+    anchor_valid_to = None
     if args.anchors:
         # 帶生效期的代號對照(KARST-082)。給了這一份就不再問 SEC「代號今日屬誰」——
-        # 那條路正是假設 A-011 崩塌的地方。窗口內同一代號錨到兩個實體即當場拒收。
-        from ..data.ticker_history import anchor_map_for_window, read_anchor_table
-
-        cik_map = anchor_map_for_window(
-            read_anchor_table(args.anchors), start=args.start, end=args.end
+        # 那條路正是假設 A-011 崩塌的地方。窗口內同一代號錨到兩個實體即當場拒收;
+        # 反方向那一格(兩個代號錨到同一個實體)由凍結管線的同實體別名閘處置
+        # (KARST-084),生效訖就是那道閘規則第一關要的材料。
+        from ..data.ticker_history import (
+            anchor_map_for_window,
+            read_anchor_table,
+            valid_to_for_window,
         )
+
+        table = read_anchor_table(args.anchors)
+        cik_map = anchor_map_for_window(table, start=args.start, end=args.end)
+        anchor_valid_to = valid_to_for_window(table, start=args.start, end=args.end)
     snapshot, fetch = gateway.take_snapshot(
         start=args.start,
         end=args.end,
@@ -676,6 +696,7 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         taken_on=args.taken_on,
         extra_notes=args.notes,
         cik_map=cik_map,
+        anchor_valid_to=anchor_valid_to,
     )
     print(f"已凍結數據快照 {snapshot.snapshot_id}", file=out)
     print(f"  來源      {snapshot.source}", file=out)
@@ -695,6 +716,32 @@ def _data(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         print("  沿用      這批數據早已凍結,沿用原本那個編號,快取根沒有多一份副本", file=out)
     for note in snapshot.notes:
         print(f"  註記      {note}", file=out)
+    return EXIT_OK
+
+
+def _data_retract(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
+    retraction = gateway.retract_snapshot(
+        args.snapshot, reason=args.reason, superseded_by=args.superseded_by
+    )
+    snapshot = gateway.store.get_snapshot(retraction.snapshot_id)
+    print(f"已由登記冊除名 {retraction.snapshot_id}", file=out)
+    print(f"  除名時間  {retraction.retracted_at}", file=out)
+    print(f"  除名者    {retraction.retracted_by}", file=out)
+    print(f"  理由      {retraction.reason}", file=out)
+    print(
+        f"  被取代    {retraction.superseded_by or '(無取代者;除名了而且沒有替身)'}",
+        file=out,
+    )
+    print(
+        f"  檔案      {snapshot.path or '(登記未記落點)'};一個字都沒有動"
+        "(D-026 第 3 條:舊快照永不改動)",
+        file=out,
+    )
+    print(
+        "  除名之後  karst data list 與畫面選單不再列出它;直取(get_snapshot、"
+        "讀說明檔)照樣讀得到,追溯指得回",
+        file=out,
+    )
     return EXIT_OK
 
 
@@ -855,15 +902,39 @@ def _verify(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
             "核對照管內容雜湊)",
             file=out,
         )
+    checked = _balance_lines(gateway)
+    if checked:
+        print(
+            f"  連同 {len(checked)} 個數據快照的三數等式(宇宙表代號數 = 實體數 + 剔除數,"
+            "KARST-084):",
+            file=out,
+        )
+        for line in checked:
+            print(f"    {line}", file=out)
     if not findings:
         print("  全庫清白:受治理的每一列都有唯一入口的寫入者簽章,內容與登記時一字不差;"
-              "每個因子值批次檔的內容雜湊亦與登記的一樣。", file=out)
+              "每個因子值批次檔的內容雜湊亦與登記的一樣;每個讀得到的快照三數都對得上。",
+              file=out)
         return EXIT_OK
     print(f"  揪到 {len(findings)} 處不合格:", file=out)
     for finding in findings:
         print(f"  - {finding}", file=out)
     print("  這些內容不會被當作正常定義用落去,請按版本鏈重新經唯一入口登記。", file=out)
     return EXIT_NOT_CLEAN
+
+
+def _balance_lines(gateway: Gateway) -> list[str]:
+    """逐個讀得到的數據快照,一行講完它的三數等式。讀不到檔的略過。"""
+    from karst.data.errors import SnapshotBroken
+    from karst.data.snapshots import universe_balance
+
+    lines: list[str] = []
+    for listing in gateway.store.list_snapshots():
+        try:
+            lines.append(universe_balance(gateway.store, listing.snapshot_id).describe())
+        except (SnapshotBroken, OSError, ValueError, KeyError):
+            continue
+    return lines
 
 
 # ----------------------------------------------------------------------

@@ -45,6 +45,13 @@ from .snapshots import (
     write_snapshot_dir,
 )
 from .sources import PRICE_FIELDS, PriceSource, YFinanceSource
+from .ticker_history import (
+    ALIAS_RULE,
+    AliasCandidate,
+    AliasVerdict,
+    dropped_by_alias,
+    resolve_alias_collisions,
+)
 from .universe import CALENDAR_TICKER, STARTER_UNIVERSE, UniverseMember, tickers_of
 
 UNIVERSE_COLUMNS: tuple[str, ...] = (
@@ -133,6 +140,46 @@ def ensure_entities(
     return canonical_universe(pd.DataFrame(rows, columns=list(UNIVERSE_COLUMNS)))
 
 
+def apply_alias_gate(
+    members: Sequence[UniverseMember],
+    *,
+    bars: pd.DataFrame,
+    cik_map: dict[str, str],
+    anchor_valid_to: dict[str, str],
+    notes: list[str],
+) -> tuple[tuple[UniverseMember, ...], tuple[str, ...], tuple[AliasVerdict, ...]]:
+    """凍結前那一道閘:同一個實體收到多過一條代號序列即按明文規則剔(KARST-084)。
+
+    規則本身**不住在這裡**——它住在 ``ticker_history.resolve_alias_collisions``,
+    全倉只有那一份;這道閘只負責備料(誰錨到哪個實體、生效期完了沒有、有幾多根日線)、
+    把裁決結果逐條寫入註記(於是它一定入 manifest 與說明檔),再把輸家由名單上剔走。
+
+    ``anchor_valid_to`` 空即「沒有帶生效期的對照表」(SEC 今日對照那條路):那份對照
+    列出的每一個代號都是今日仍然在用的,故此當作全部生效期未結束,規則自然落到第二關。
+    """
+    counts = bars.groupby("ticker").size() if len(bars) else {}
+    candidates = [
+        AliasCandidate(
+            ticker=member.ticker.strip().upper(),
+            cik=str(cik_map.get(member.ticker.strip().upper(), "")),
+            valid_to=str(anchor_valid_to.get(member.ticker.strip().upper(), "")),
+            bar_count=int(counts.get(member.ticker.strip().upper(), 0)),
+        )
+        for member in members
+        if member.kind == "company"
+    ]
+    verdicts = resolve_alias_collisions(candidates)
+    if not verdicts:
+        return tuple(members), (), ()
+
+    dropped = dropped_by_alias(verdicts)
+    notes.append(f"同實體別名閘(KARST-084)明文規則:{ALIAS_RULE}")
+    for verdict in verdicts:
+        notes.append(f"同實體別名·{verdict.cik}:{verdict.reason}")
+    kept = tuple(member for member in members if member.ticker.strip().upper() not in dropped)
+    return kept, dropped, verdicts
+
+
 def _ensure_ticker_period(
     store: DefinitionStore, entity_id: int, ticker: str, first_seen: str, last_seen: str
 ) -> None:
@@ -195,6 +242,7 @@ def build_price_snapshot(
     taken_on: date | datetime | str | None = None,
     sec_user_agent: str | None = None,
     cik_map: dict[str, str] | None = None,
+    anchor_valid_to: dict[str, str] | None = None,
     extra_notes: Sequence[str] = (),
 ) -> PriceSnapshot:
     """跑完整條管線,回傳快照成果單。
@@ -204,6 +252,10 @@ def build_price_snapshot(
     少了哪些代號、為什麼少」只有呼叫方知道——標普 500 歷史成分那批抓不到的退市
     代號(KARST-065)正是這樣逐條講出來的。註記不入內容雜湊,所以它改變不了
     快照編號,亦不會令同一批數據凍出第二個編號。
+
+    ``anchor_valid_to`` 是「代號→生效訖」(留空即未結束),由帶生效期的對照表交來
+    (``ticker_history.valid_to_for_window``)。它只餵同實體別名那道閘的規則第一關;
+    ``None`` 即沒有帶生效期的對照表,見 ``apply_alias_gate``。
     """
     source = source or YFinanceSource()
     root = Path(root) if root is not None else DEFAULT_SNAPSHOT_ROOT
@@ -248,6 +300,23 @@ def build_price_snapshot(
                 notes.append(f"SEC 代號→CIK 對照抓不到,全部上市公司改用佔位錨({exc})")
         else:
             cik_map = {}
+
+    # 同實體別名那道閘(KARST-084)。行在登記實體**之前**:兩個代號錨到同一個實體,
+    # 登記那一層只會回同一個實體編號,兩條價格序列撞在一起而無人出聲(KARST-083 的
+    # BBT/TFC、EQR/VMRK 就是這樣靜靜決定的)。規則正本住 ticker_history,不在這裡。
+    members, alias_dropped, alias_verdicts = apply_alias_gate(
+        members,
+        bars=bars,
+        cik_map=cik_map,
+        anchor_valid_to=anchor_valid_to or {},
+        notes=notes,
+    )
+    if alias_dropped:
+        bars = bars.loc[~bars["ticker"].isin(set(alias_dropped))].reset_index(drop=True)
+        if bars.empty:
+            raise ContractViolation(
+                f"同實體別名閘剔走 {len(alias_dropped)} 個代號之後,這批數據一列都不剩"
+            )
 
     universe_frame = ensure_entities(
         store, members, bars=bars, cik_map=cik_map, notes=notes
@@ -302,6 +371,21 @@ def build_price_snapshot(
             "trading_days": len(calendar),
             "rows": int(len(aligned)),
             "entities": len(entity_ids),
+            # 三數等式(KARST-084):宇宙表代號數 = 實體數 + 剔除數。
+            # 對得上就證明沒有一條代號序列被靜靜蓋走;`karst verify` 核的就是這一條。
+            "universe_tickers": len(tickers),
+            "alias_dropped": len(alias_dropped),
+            "alias_rule": ALIAS_RULE,
+            "alias_verdicts": [
+                {
+                    "cik": verdict.cik,
+                    "tickers": list(verdict.tickers),
+                    "kept": verdict.kept,
+                    "dropped": list(verdict.dropped),
+                    "reason": verdict.reason,
+                }
+                for verdict in alias_verdicts
+            ],
             "content_hash": digest,
             "core": core,
             "dividend_policy": DIVIDEND_POLICY,
@@ -323,6 +407,9 @@ def build_price_snapshot(
             content_hash=digest,
             rows=int(len(aligned)),
             entities=len(entity_ids),
+            universe_tickers=len(tickers),
+            alias_dropped=alias_dropped,
+            alias_verdicts=alias_verdicts,
             universe_rows=universe_rows,
             notes=notes,
         )

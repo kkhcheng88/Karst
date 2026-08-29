@@ -608,6 +608,32 @@ def distinct_ciks(anchors: Iterable[TickerAnchor]) -> tuple[str, ...]:
     return tuple(sorted({a.cik for a in anchors if a.cik and a.cik.isdigit()}))
 
 
+def anchors_for_window(
+    anchors: Iterable[TickerAnchor], *, start: str, end: str
+) -> dict[str, TickerAnchor]:
+    """取出 ``start``~``end`` 這段窗口用得着的「代號→錨」對照(挑錨那條規矩的正本)。
+
+    ``anchor_map_for_window`` 與凍結時的生效期都由這一格生出來,挑法只有一份。
+    """
+    picked: dict[str, TickerAnchor] = {}
+    for anchor in anchors:
+        if anchor.valid_from and anchor.valid_from > end:
+            continue
+        if anchor.valid_to and anchor.valid_to < start:
+            continue
+        if not anchor.cik or not anchor.cik.isdigit():
+            continue
+        existing = picked.get(anchor.ticker)
+        if existing is not None and existing.cik != anchor.cik:
+            raise ContractViolation(
+                f"代號 {anchor.ticker} 在窗口 {start}~{end} 之內錨到兩個實體"
+                f"({existing.cik} 與 {anchor.cik});代號中途易主,這個窗口不可凍成一個快照,"
+                "請按易主日期把窗口斬開"
+            )
+        picked[anchor.ticker] = anchor
+    return picked
+
+
 def anchor_map_for_window(
     anchors: Iterable[TickerAnchor], *, start: str, end: str
 ) -> dict[str, str]:
@@ -620,23 +646,155 @@ def anchor_map_for_window(
     佔位錨與空白的 CIK 不入對照:管線見不到某個代號就自己補佔位錨,
     這裡重覆一次只會令兩處各有一份說法。
     """
-    picked: dict[str, str] = {}
-    for anchor in anchors:
-        if anchor.valid_from and anchor.valid_from > end:
+    return {
+        ticker: anchor.cik
+        for ticker, anchor in anchors_for_window(anchors, start=start, end=end).items()
+    }
+
+
+def valid_to_for_window(
+    anchors: Iterable[TickerAnchor], *, start: str, end: str
+) -> dict[str, str]:
+    """同一批窗口內的錨,取出「代號→生效訖」(留空即生效期未結束)。
+
+    這是同實體別名那道閘(``resolve_alias_collisions``)規則第一關要的那一格:
+    退了役的代號拿回來的日線是今日持有人的歷史,信不過。
+    """
+    return {
+        ticker: anchor.valid_to
+        for ticker, anchor in anchors_for_window(anchors, start=start, end=end).items()
+    }
+
+
+# ----------------------------------------------------------------------
+# 同一個實體收到多過一條代號序列(KARST-084)
+# ----------------------------------------------------------------------
+#
+# ``anchor_map_for_window`` 擋的是「一個代號錨到兩個實體」。反方向那一格
+# ——**兩個代號錨到同一個實體**——直到 KARST-083 才浮出來:``BBT`` 與 ``TFC``
+# 都錨到 0000092230(BB&T 改名做 Truist),``EQR`` 與 ``VMRK`` 都錨到 0000906107。
+# 兩個代號一齊入表會撞同一個實體編號,管線那一層不會出聲,靜靜只留其中一條價格
+# 序列——而兩條序列**不是同一批數字**:BBT 的日線由 18.55 行到 31.50,TFC 的由
+# 24.43 行到 50.21,即免費行情源給的 ``BBT`` 根本是今日持有那三個字母的另一家公司。
+#
+# 留邊條要講得出理由,不可以靠登記次序決定。規則寫在下面,**全倉只有這一份**:
+# 凍結管線與 KARST-083 的重凍腳本同呼叫 ``resolve_alias_collisions``。
+
+
+ALIAS_RULE = (
+    "同一個實體收到多過一條代號序列時,按次序裁決:"
+    "(一)生效期未結束的優先——退了役的代號,免費行情源給的是**今日持有人**的歷史,"
+    "信不過;仍然在用的那個代號才拿得到這家公司自己的序列。"
+    "(二)生效期同樣未結束(或同樣已結束)——取真實日線較多的那條。"
+    "(三)仍然分不出高下——兩條都剔走,不猜。"
+)
+"""這道閘的明文規則。說明檔逐字照錄,規則只有這一份正本。"""
+
+
+@dataclass(frozen=True, slots=True)
+class AliasCandidate:
+    """凍結那一刻,一個代號帶住的三格材料。
+
+    ``valid_to`` 留空即生效期未結束。``bar_count`` 是這個代號在這批數據裡的日線根數
+    ——它是規則第二關那把尺,由呼叫方數,本層不去碰數據。
+    """
+
+    ticker: str
+    cik: str
+    valid_to: str
+    bar_count: int
+
+
+@dataclass(frozen=True, slots=True)
+class AliasVerdict:
+    """一次觸發的裁決:哪個實體、哪幾個代號、留了誰、為什麼。
+
+    ``kept`` 留空即「分不出高下,兩條都剔」——那一格不是失敗,是規則第三關寫明的結果。
+    ``reason`` 是給人讀的整句,說明檔逐條照抄。
+    """
+
+    cik: str
+    tickers: tuple[str, ...]
+    kept: str
+    dropped: tuple[str, ...]
+    reason: str
+
+
+def _describe_candidate(candidate: AliasCandidate) -> str:
+    span = "生效期未結束" if not candidate.valid_to else f"生效期訖 {candidate.valid_to}"
+    return f"{candidate.ticker}({span};日線 {int(candidate.bar_count)} 根)"
+
+
+def resolve_alias_collisions(
+    candidates: Sequence[AliasCandidate],
+) -> tuple[AliasVerdict, ...]:
+    """按 ``ALIAS_RULE`` 裁決「兩個代號錨到同一個實體」,逐條回一個判詞。
+
+    沒有撞的實體不會出現在結果裡——這個函數只講觸發了的那幾格。錨不是真 CIK 的
+    (佔位錨、空白)一律不入這道閘:佔位錨本身就是逐個代號各自一個,撞不起來。
+    """
+    by_cik: dict[str, list[AliasCandidate]] = {}
+    for candidate in candidates:
+        cik = str(candidate.cik).strip()
+        if not cik or not cik.isdigit():
             continue
-        if anchor.valid_to and anchor.valid_to < start:
+        by_cik.setdefault(cik, []).append(candidate)
+
+    verdicts: list[AliasVerdict] = []
+    for cik, found in sorted(by_cik.items()):
+        if len(found) < 2:
             continue
-        if not anchor.cik or not anchor.cik.isdigit():
-            continue
-        existing = picked.get(anchor.ticker)
-        if existing is not None and existing != anchor.cik:
-            raise ContractViolation(
-                f"代號 {anchor.ticker} 在窗口 {start}~{end} 之內錨到兩個實體"
-                f"({existing} 與 {anchor.cik});代號中途易主,這個窗口不可凍成一個快照,"
-                "請按易主日期把窗口斬開"
+        group = sorted(found, key=lambda item: item.ticker)
+        live = [item for item in group if not item.valid_to]
+
+        if len(live) == 1:
+            kept: AliasCandidate | None = live[0]
+            why = (
+                f"留低 {kept.ticker}:全組只有它生效期未結束,是這個實體仍然在用的代號;"
+                "其餘那幾個已經退役,免費行情源給的是代號今日持有人的歷史,不是這家公司自己的"
             )
-        picked[anchor.ticker] = anchor.cik
-    return picked
+        else:
+            pool = live if live else group
+            ranked = sorted(pool, key=lambda item: (-int(item.bar_count), item.ticker))
+            same = "同樣未結束" if live else "同樣已結束"
+            if len(ranked) > 1 and int(ranked[0].bar_count) == int(ranked[1].bar_count):
+                kept = None
+                why = (
+                    f"生效期{same},真實日線又同樣是 {int(ranked[0].bar_count)} 根,"
+                    "分不出高下;按規則第三關兩條都剔走,不猜"
+                )
+            else:
+                kept = ranked[0]
+                why = (
+                    f"留低 {kept.ticker}:生效期{same},取真實日線較多的那條"
+                    f"({int(kept.bar_count)} 根,次名 {ranked[1].ticker} 只有 "
+                    f"{int(ranked[1].bar_count)} 根)"
+                )
+
+        dropped = tuple(
+            item.ticker for item in group if kept is None or item.ticker != kept.ticker
+        )
+        reason = (
+            f"實體 {cik} 收到 {len(group)} 條代號序列("
+            + "、".join(_describe_candidate(item) for item in group)
+            + ");兩個代號一齊入表會撞同一個實體編號,管線只會留低其中一條價格序列而不出聲,"
+            f"故此在此明剔。{why}。剔走:{'、'.join(dropped)}"
+        )
+        verdicts.append(
+            AliasVerdict(
+                cik=cik,
+                tickers=tuple(item.ticker for item in group),
+                kept=kept.ticker if kept is not None else "",
+                dropped=dropped,
+                reason=reason,
+            )
+        )
+    return tuple(verdicts)
+
+
+def dropped_by_alias(verdicts: Sequence[AliasVerdict]) -> tuple[str, ...]:
+    """一批判詞合共剔走了哪些代號(排序、去重)。"""
+    return tuple(sorted({ticker for verdict in verdicts for ticker in verdict.dropped}))
 
 
 # ----------------------------------------------------------------------

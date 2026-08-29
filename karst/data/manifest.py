@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Sequence
 from typing import Any
 
 from .calendar import BAR_ACTUAL, BAR_FILLED, BAR_MISSING, FFILL_LIMIT
@@ -20,6 +21,7 @@ from .normalise import (
     NORMALISATION_POLICY_ID,
     PRICE_SIGNIFICANT_DIGITS,
 )
+from .ticker_history import ALIAS_RULE
 
 # 處置編號:寫在 manifest 裡,程式可據此認出用的是哪一條規矩
 DIVIDEND_POLICY_ID = "adjusted-close-only"
@@ -70,7 +72,10 @@ SNAPSHOT_README_TEMPLATE = """# 數據快照 {snapshot_id}
 | 主日曆 | {calendar_ticker}(交易日 {trading_days} 日) |
 | 內容雜湊 | `{content_hash}` |
 | 日線列數 | {rows} |
+| 宇宙表代號數 | {universe_tickers} |
 | 實體數 | {entities} |
+| 同實體別名剔除數 | {alias_dropped_count} |
+| 三數等式 | {balance_line} |
 | 價格精度 | {price_significant_digits} 位有效數字 |
 
 ## 二、除權除息處置
@@ -89,7 +94,7 @@ SNAPSHOT_README_TEMPLATE = """# 數據快照 {snapshot_id}
 
 {universe_table}
 
-{notes_section}
+{notes_section}{alias_section}
 ## 六、檔案
 
 | 檔案 | 內容 |
@@ -120,10 +125,19 @@ def render_readme(
     content_hash: str,
     rows: int,
     entities: int,
+    universe_tickers: int,
+    alias_dropped: Sequence[str],
+    alias_verdicts: Sequence[Any],
     universe_rows: list[dict[str, Any]],
     notes: list[str],
 ) -> str:
-    """照唯一那份範本填出一個快照的說明檔。"""
+    """照唯一那份範本填出一個快照的說明檔。
+
+    ``universe_tickers`` / ``entities`` / ``alias_dropped`` 是三數等式那一格
+    (KARST-084):宇宙表代號數 = 實體數 + 剔除數。對不上就代表有一條代號序列被
+    靜靜蓋走,``karst verify`` 核的正是這一條。``alias_verdicts`` 是每次觸發的判詞
+    (``ticker_history.AliasVerdict``),逐條落檔——哪個實體、哪幾個代號、留了誰、為什麼。
+    """
     header = "| 代號 | 實體編號 | 種類 | 錨 | 名稱 |\n|---|---|---|---|---|"
     lines = [
         f"| {row['ticker']} | {row['entity_id']} | {row['entity_kind']} |"
@@ -133,7 +147,37 @@ def render_readme(
     notes_section = ""
     if notes:
         notes_section = "## 五之二、註記\n\n" + "\n".join(f"- {note}" for note in notes) + "\n\n"
+
+    dropped_count = len(tuple(alias_dropped))
+    balances = int(universe_tickers) == int(entities) + dropped_count
+    balance_line = (
+        f"{universe_tickers} 代號 = {entities} 實體 + {dropped_count} 剔除;"
+        + ("對得上" if balances else "**對不上——有代號序列被靜靜蓋走,這個快照不可用**")
+    )
+
+    alias_section = (
+        "## 五之三、同實體別名裁決(KARST-084)\n\n"
+        f"{ALIAS_RULE}\n\n"
+    )
+    if alias_verdicts:
+        alias_section += (
+            "| 實體 | 收到的代號 | 留低 | 剔走 | 理由 |\n|---|---|---|---|---|\n"
+            + "\n".join(
+                f"| {verdict.cik} | {'、'.join(verdict.tickers)} |"
+                f" {verdict.kept or '(分不出,兩條都剔)'} | {'、'.join(verdict.dropped)} |"
+                f" {verdict.reason} |"
+                for verdict in alias_verdicts
+            )
+            + "\n\n"
+        )
+    else:
+        alias_section += "本快照一次都沒有觸發:每個實體都只收到一條代號序列。\n\n"
+
     return SNAPSHOT_README_TEMPLATE.format(
+        universe_tickers=universe_tickers,
+        alias_dropped_count=dropped_count,
+        balance_line=balance_line,
+        alias_section=alias_section,
         snapshot_id=snapshot_id,
         source=source,
         fetched_at=fetched_at,
