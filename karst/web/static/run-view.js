@@ -12,13 +12,8 @@
 (function () {
   'use strict';
 
-  /* 貼屏頁高度鎖死(design-system 2.1),按鈕列一多就吃掉圖的高度。
-     收到一行擺得下的數目;其餘經網址 ?run= 開得到。 */
-  var RUN_PICK_LIMIT = 8;
-
   var el = {
-    runPick: document.getElementById('run-pick'),
-    runBar: document.querySelector('.sp-runbar'),
+    bcCrumb: document.getElementById('bc-crumb'),
     bcRun: document.getElementById('bc-run'),
     kpis: document.getElementById('kpis'),
     metricsNote: document.getElementById('metrics-note'),
@@ -74,62 +69,16 @@
     el.legend.hidden = true;
   }
 
-  /* ============================================================
-     檢視運行:揀哪一次,整頁跟著換(design-system 3.6)
-     ============================================================ */
-  /* 一項運行在選單上怎樣讀:策略・參數集與版本・期間・跑於哪一日。
-     運行編號是機器編的一串亂碼,認不出是哪一次(用戶 2026-08-28 原話:
-     「Can not using randon number index?」),所以編號退到明細裡——頁頭
-     那格小字、以及身分卡「運行編號」那一行,選單本身不再顯示。 */
-  function runLabel(r) {
-    var when = String(r.createdAt || '').slice(0, 10);
-    return KV.esc(r.strategyName) +
-      '・' + KV.esc(r.paramSetName) + ' v' + KV.esc(r.paramSetVersionNo) +
-      '・' + KV.esc(r.periodStart) + ' 至 ' + KV.esc(r.periodEnd) +
-      (when ? '・<span class="rp-when">跑於 ' + KV.esc(when) + '</span>' : '');
-  }
-
-  function runButton(r) {
-    return '<button type="button" class="rp-run" data-run="' + KV.esc(r.runId) + '" ' +
-      'aria-pressed="false" title="運行編號 ' + KV.esc(r.runId) + '">' + runLabel(r) +
-      (r.isActiveSetup ? '<span class="rp-live">現役</span>' : '') + '</button>';
-  }
-
-  function mountRunPick(listing) {
-    el.runPick.innerHTML = listing.runs.map(runButton).join('');
-
-    /* 這張清單只有正式運行(示例運行、用戶自行重跑)。參數掃描一格就是一次
-       運行,庫內幾千個,一律不入這裡——它們在參數掃描頁看(D-029)。 */
-    var note = document.createElement('span');
-    note.className = 'section-note';
-    note.style.flex = 'none';
-    note.textContent = (listing.total > listing.shown
-      ? '最近 ' + listing.shown + ' 次・正式運行共 ' + listing.total + ' 次(其餘經網址 ?run= 開)'
-      : '正式運行共 ' + listing.total + ' 次') +
-      '・參數掃描的運行在參數掃描頁看';
-    el.runBar.appendChild(note);
-
-    el.runPick.addEventListener('click', function (e) {
-      var b = e.target.closest('button[data-run]');
-      if (!b) return;
-      pickRun(b.getAttribute('data-run'));
-    });
-  }
-
-  function markPicked(runId) {
-    el.runPick.querySelectorAll('button[data-run]').forEach(function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-run') === runId ? 'true' : 'false');
-    });
-  }
-
-  function pickRun(runId) {
-    if (state.runId === runId) return;
-    state.runId = runId;
-    markPicked(runId);
-    /* 換運行:視窗回到全期——上一次那段日子未必落在這一次的期間之內 */
-    state.win = { key: 'all', from: null, to: null };
-    state.window = null;
-    loadRun(runId);
+  /* D-035:運行詳情不再有自己的「檢視運行」選擇器,唯一入口是策略詳情頁的
+     歷次運行表(或者直連 ?id=&run=)。網址一個運行都沒指名時,講清楚去哪裡揀,
+     不猜一次「最近那次」出來。 */
+  function noRunSelected() {
+    el.title.innerHTML = '<h2 style="font-size:var(--fs-md)">未指定運行</h2>';
+    el.chartHost.innerHTML =
+      '<div class="drill-hint">運行詳情要由策略詳情頁的歷次運行表點入,' +
+      '或者用帶 <span class="mono">?run=</span> 的連結直開。<br>' +
+      '<a href="/">回策略總覽 →</a></div>';
+    el.legend.hidden = true;
   }
 
   /* ============================================================
@@ -212,8 +161,11 @@
       '・' + win.tradingDays + ' 個交易日' +
       (win.openingLots ? '・承接期初存貨 ' + win.openingLots + ' 注' : '');
 
-    /* 網址記住運行與視窗,重新整理後仍是同一段 */
-    var parts = ['run=' + encodeURIComponent(state.runId)].concat(winParams());
+    /* 網址記住運行與視窗,重新整理後仍是同一段;帶進來的 ?id= 也留住,
+       不然直連網址那個格式(策略詳情鑽入時用的 ?id=&run=)一操作視窗就走樣 */
+    var parts = (state.idQs ? ['id=' + encodeURIComponent(state.idQs)] : [])
+      .concat(['run=' + encodeURIComponent(state.runId)])
+      .concat(winParams());
     try { history.replaceState(null, '', location.pathname + '?' + parts.join('&')); }
     catch (e) {}
   }
@@ -260,17 +212,18 @@
 
   /* ---- 運行身份:版本與快照全頁只在這個晶片講一次(已裁畫面原則第 3 條) ---- */
   function renderIdentity(run) {
-    KV.mountNav('/run', { snapshot: run.snapshotId, asOf: run.periodEnd });
+    /* 頂層導覽不再有「運行詳情」一項(D-035):運行頁掛在「策略詳情」之下,
+       所以現頁標的是那一項,不是自己。回上層改由麵包屑與現役身份晶片承擔。 */
+    KV.mountNav('/strategy', { snapshot: run.snapshotId, asOf: run.periodEnd });
+    if (el.bcCrumb) {
+      el.bcCrumb.innerHTML = KV.breadcrumb([
+        { label: '策略詳情' },
+        { label: run.strategyName, href: '/strategy?id=' + encodeURIComponent(run.strategyName) },
+        { label: '運行' },
+      ]);
+    }
     /* 運行讀到了才開放重跑:未知道當前取值之前,彈窗沒有東西可以預填 */
     if (el.rerunOpen) el.rerunOpen.hidden = false;
-
-    /* 網址指名那顆臨時按鈕:運行讀回來了,換上與清單上一式一樣的標籤 */
-    var adhoc = el.runPick.querySelector('button[data-adhoc][data-run="' +
-      (window.CSS && CSS.escape ? CSS.escape(run.runId) : run.runId) + '"]');
-    if (adhoc) {
-      adhoc.innerHTML = runLabel(run);
-      adhoc.removeAttribute('data-adhoc');
-    }
 
     var factors = run.factors.map(function (f) {
       return KV.esc(f.name) + ' v' + f.versionNo;
@@ -943,10 +896,11 @@
   });
 
   /* ============================================================
-     開機
+     開機(D-035:唯一入口是策略詳情頁的歷次運行表,或者直連
+     ?id=&run=;這一頁不再自己列運行清單,`run` 沒帶到就講清楚去哪揀)
      ============================================================ */
   KV.initTabs('.tabs');
-  KV.mountNav('/run', {});
+  KV.mountNav('/strategy', {});
   mountWinPick();
 
   /* 網址帶住的視窗:重新整理、或者把連結傳開,看到的仍然是同一段 */
@@ -954,32 +908,12 @@
   var toQs = qs('end');
   if (fromQs || toQs) state.win = { key: 'custom', from: fromQs, to: toQs };
 
-  KV.fetchJSON('/api/runs?limit=' + RUN_PICK_LIMIT).then(function (listing) {
-    if (!listing.runs.length) {
-      fail('庫內還沒有任何回測運行。先用唯一入口跑一次回測,這一頁就有東西看。');
-      return;
-    }
-    mountRunPick(listing);
-
-    /* 預設現役設定那次(design-system 3.6);網址指名的優先;都沒有就最近那次 */
-    var wanted = qs('run');
-    var known = listing.runs.filter(function (r) { return r.runId === wanted; })[0];
-    var active = listing.runs.filter(function (r) { return r.isActiveSetup; })[0];
-    var target = wanted || (active ? active.runId : listing.runs[0].runId);
-
-    if (wanted && !known) {
-      /* 網址指名了一個不在清單上的運行(例如掃描格那幾千個),照樣開得到。
-         這一刻還未知道它是哪一套策略,先擺個交代;運行讀回來就換成正式標籤。 */
-      el.runPick.insertAdjacentHTML('afterbegin',
-        '<button type="button" class="rp-run" data-adhoc="1" data-run="' +
-        KV.esc(wanted) + '" aria-pressed="false" title="運行編號 ' + KV.esc(wanted) +
-        '">由網址指名的運行</button>');
-    }
-
-    state.runId = target;
-    markPicked(target);
-    loadRun(target);
-  }).catch(function (err) {
-    fail('連不上本機服務：' + err.message);
-  });
+  state.idQs = qs('id');
+  var wanted = qs('run');
+  if (!wanted) {
+    noRunSelected();
+  } else {
+    state.runId = wanted;
+    loadRun(wanted);
+  }
 })();

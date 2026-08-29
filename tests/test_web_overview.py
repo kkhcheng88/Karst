@@ -117,14 +117,18 @@ def test_總覽只算正式運行掃描格不計不列(reader, overview):
     assert swept, "庫內未有掃描格,這一項驗不到"
     assert len(formal) + len(swept) == len(records), "有運行的來歷兩邊都不屬"
 
+    # KARST-077:總覽的正式運行數與逐套策略的運行數,同 data.py／api_strategy.py
+    # 同一條規矩——序列缺失運行(KARST-057)登記在案,但不算「可揀的正式運行」。
+    usable = [r for r in formal if not reader.series_missing(r)]
+
     meta = overview["meta"]
-    assert meta["runCount"] == len(formal)
+    assert meta["runCount"] == len(usable)
     assert meta["sweepRunCount"] == len(swept)
     assert meta["runCount"] < len(records), "掃描格仍然計進總覽的運行數"
 
-    # 逐套策略的運行數亦只計正式運行
+    # 逐套策略的運行數亦只計正式運行(且不計序列缺失那幾條)
     for row in overview["strategies"]:
-        mine = [r for r in formal if r.strategy_name == row["name"]]
+        mine = [r for r in usable if r.strategy_name == row["name"]]
         assert row["runCount"] == len(mine)
 
     # 只跑過掃描、未有正式運行那一套:照樣在表上見到,而且講得出為什麼是空的
@@ -145,6 +149,42 @@ def test_總覽只算正式運行掃描格不計不列(reader, overview):
     # 原型那個「原型・假數據」徽章不准跟過來(design-system 3.15:正式版移除)
     page_source = (STATIC_ROOT / "overview.html").read_text(encoding="utf-8")
     assert "proto-badge" not in page_source and "proto-stripe" not in page_source
+
+
+def test_有成績那幾行代表的運行本身不是失敗運行(overview):
+    """驗收(KARST-077/D-034):總覽揀來代表一套策略的那次運行,如果有成績
+    可看,那次本身就不是失敗運行——門面不首先擺一個已知跑輸大盤的結果。
+    """
+    from karst.web.data import is_failed_run
+
+    scored = [s for s in overview["strategies"] if s["metrics"]]
+    assert scored, "庫內未有任何跑得出成績的策略"
+    for row in scored:
+        bench = {
+            ticker: b["annualReturnPct"] / 100.0
+            for ticker, b in row["benchmarks"].items()
+            if b["annualReturnPct"] is not None
+        }
+        judged = is_failed_run(row["metrics"]["annualReturnPct"] / 100.0, bench)
+        assert judged is not True, f"{row['name']} 門面代表的運行本身是失敗運行"
+
+
+def test_全部正式運行失敗的策略仍列一行只留失敗計數(overview):
+    """驗收(KARST-077/D-040):一套策略全部正式運行都是失敗運行,那一行仍然
+    照列(不是隱藏、不是移除),成績欄留空,只帶一個失敗計數——不是「有一次
+    失敗運行」就整行不見。
+    """
+    all_failed_rows = [s for s in overview["strategies"] if s["isFailed"]]
+    if not all_failed_rows:
+        pytest.skip("本機庫內未有一套策略全部正式運行都失敗,這一項驗不到")
+    for row in all_failed_rows:
+        assert row["runCount"] > 0, "全部運行都失敗的前提是真的有運行"
+        assert row["failedRunCount"] == row["runCount"]
+        assert row["metrics"] is None
+        assert str(row["failedRunCount"]) in (row["note"] or "")
+        # 這一行仍然是一套「看得見」的策略:名稱、運行編號照舊,開得進策略詳情頁
+        assert row["name"]
+        assert row["runId"]
 
 
 def test_類型篩選與搜尋可用且側欄有明細與真實淨值小走勢(base_url, reader, overview):
@@ -179,8 +219,8 @@ def test_類型篩選與搜尋可用且側欄有明細與真實淨值小走勢(b
             assert row["benchEquity"][0] == pytest.approx(BASE)
 
 
-def test_載入中空錯誤三態齊全且導航列四頁連結齊全(base_url):
-    """驗收三:三態照設計系統做齊;導航列四頁,未建的連去佔位空狀態。"""
+def test_載入中空錯誤三態齊全且導航列三頁連結齊全(base_url):
+    """驗收三:三態照設計系統做齊;導航列三頁(D-035),未建的連去佔位空狀態。"""
     script = (STATIC_ROOT / "overview.js").read_text(encoding="utf-8")
 
     # 載入中:骨架列(design-system 3.15 第 8 條,早已定義、原型未接上)
@@ -193,11 +233,12 @@ def test_載入中空錯誤三態齊全且導航列四頁連結齊全(base_url):
     # 蓋不過的話錯誤態出現時骨架表仍然留在上面(實測見過)
     assert "style.display" in script
 
-    # 導航列四頁齊全,四條連結逐條開得到(未建那兩頁開出佔位空狀態)
+    # 導航列三頁齊全(D-035:運行詳情不是頂層頁面,是策略詳情的鑽取層),
+    # 三條連結逐條開得到(未建那頁開出佔位空狀態)
     app_js = (STATIC_ROOT / "app.js").read_text(encoding="utf-8")
     hrefs = re.findall(r"\{\s*href:\s*'([^']+)'\s*,\s*label:\s*'([^']+)'\s*\}", app_js)
-    assert len(hrefs) == 4, f"導航列不是四頁:{hrefs}"
-    assert [label for _, label in hrefs] == ["策略總覽", "策略詳情", "運行詳情", "參數掃描"]
+    assert len(hrefs) == 3, f"導航列不是三頁:{hrefs}"
+    assert [label for _, label in hrefs] == ["策略總覽", "策略詳情", "參數掃描"]
     for href, label in hrefs:
         body = _get(f"{base_url}{href}").decode("utf-8")
         assert "<html" in body.lower(), f"導航列的 {label} 開不出一頁"
@@ -209,19 +250,28 @@ def test_載入中空錯誤三態齊全且導航列四頁連結齊全(base_url):
     assert "state-block" in pending and 'href="/"' in pending
 
 
-def test_既有運行詳情頁行為不變(base_url):
-    """驗收四:運行詳情頁一個字沒有改,只是搬了網址;它的端點照舊。"""
+def test_運行詳情頁改為策略詳情鑽取層直連網址仍行得通(base_url):
+    """驗收(D-035):運行詳情不再是頂層頁面,但網址、頁面本身、端點照舊
+    行得通——是導覽與入口改變,不是這個頁面被拆走。"""
     served = _get(f"{base_url}/run").decode("utf-8")
     on_disk = (STATIC_ROOT / "index.html").read_text(encoding="utf-8")
     assert served == on_disk, "/run 出的不是原本那一頁"
     assert "/static/run-view.js" in served
 
-    # 運行詳情自己那批端點照舊行得通
+    # 運行詳情自己那批端點照舊行得通(server.py 不用改)
     listing = _get_json(f"{base_url}/api/runs?limit=2")
     assert listing["runs"], "運行清單空白"
     detail = _get_json(f"{base_url}/api/runs/{listing['runs'][0]['runId']}")
     assert detail["series"]["strategy"]["values"], "運行詳情的淨值線空白"
 
-    # 導航列在運行詳情頁標住的是「運行詳情」那一項,不是總覽
+    # 導航列不再有「運行詳情」這一項(D-035);這一頁掛的導覽現頁高亮落在
+    # 「策略詳情」,回上層改由麵包屑(design-system 3.6a)承擔
     view = (STATIC_ROOT / "run-view.js").read_text(encoding="utf-8")
-    assert "KV.mountNav('/run'" in view and "KV.mountNav('/'," not in view
+    assert "KV.mountNav('/strategy'" in view
+    assert "bcCrumb" in view, "運行詳情頁沒有掛麵包屑"
+    app_js = (STATIC_ROOT / "app.js").read_text(encoding="utf-8")
+    assert "label: '運行詳情'" not in app_js
+
+    # D-035(用戶原話:「檢視運行 bar is not useful again if I have thousands
+    # of run for this strategy」):運行詳情頁不再有自己的「檢視運行」選擇器
+    assert "mountRunPick" not in view and "RUN_PICK_LIMIT" not in view

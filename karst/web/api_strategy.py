@@ -52,10 +52,13 @@ from karst.engine.funnel import (
     TRACE_STAGES,
 )
 from karst.errors import ContractViolation, NotFound
-from karst.metrics import trade_stats
+from karst.metrics import benchmark_curve, trade_stats
 from karst.metrics.ratios import annual_volatility
 from karst.runs import BASE, window_stats
 from karst.store import FORMAL_RUN, SWEEP_RUN
+
+# D-034 的判準(失敗運行)一份正本住 karst.web.data,這裡照用,不另抄一套。
+from karst.web.data import FAILURE_JUDGE_BENCHMARKS, is_failed_run
 
 # 一頁歷次運行的預設條數。這張表自 KARST-054 起只列**正式運行**,四千個掃描格
 # 由庫身篩走(D-029),所以現實中一頁綽綽有餘。閘照舊留住:每一行的年化/回撤/
@@ -146,6 +149,12 @@ def _int(query: dict[str, list[str]], name: str, default: int) -> int:
         raise ContractViolation(f"{name} 要一個整數,收到 {raw!r}") from None
 
 
+def _wants_all(query: dict[str, list[str]]) -> bool:
+    """網址 ``?all=1`` 要完整名單(連失敗運行一併給),否則預設篩走(D-034)。"""
+    raw = _one(query, "all")
+    return raw not in (None, "", "0", "false")
+
+
 # ---------------- 策略身份 ----------------
 
 
@@ -225,6 +234,19 @@ def _resolve(reader: Any, wanted: str | None, run_id: str | None) -> Any:
     return newest
 
 
+def _default_run_id(reader: Any, runs: list[Any]) -> str | None:
+    """D-034:門面預設帶去看的那一次運行——最近一次不是失敗運行的。
+
+    由新到舊逐次問,揀到第一次不是失敗的即止。全部都是失敗運行(真有這個
+    情況,例如目前庫內的趨勢波段)就退回最近一次——照樣有東西可看,
+    不留一個空白給用戶。
+    """
+    for record in runs:
+        if not _run_failed(reader, record):
+            return record.run_id
+    return runs[0].run_id if runs else None
+
+
 def _factor_payload(reader: Any, version: Any, used: bool) -> dict[str, Any]:
     """一個因子的身份與版本鏈。鏈由庫讀回,不是這裡數出來的。"""
     try:
@@ -294,7 +316,10 @@ def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
         "runTotal": len(runs),
         # 只有掃描格、未有正式運行的策略,頁面要講得出「幾多格、去哪裡看」
         "sweepCellTotal": _sweep_cells_of(reader, strategy.name),
-        "defaultRunId": runs[0].run_id if runs else None,
+        # D-034:預設帶去看最近一次不是失敗運行的那一次——門面不首先看一個
+        # 已知跑輸大盤的結果。全部運行都失敗(真有這個情況,例如趨勢波段)
+        # 就退回最近一次,好過帶去一個空白。
+        "defaultRunId": _default_run_id(reader, runs),
         "versions": [
             {
                 "versionNo": item.version_no,
@@ -312,17 +337,47 @@ def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
 # ---------------- 歷次運行 ----------------
 
 
-def _row_metrics(reader: Any, run_id: str) -> dict[str, Any]:
-    """一行運行要顯示的三個數。
+def _bench_annual_returns(
+    reader: Any, snapshot_id: str, start: str, end: str
+) -> dict[str, float | None]:
+    """該快照、該段期間,SPY 與 QQQ 買入持有的年化回報——D-034 判失敗運行要用。
 
-    只讀該次運行自己的兩條序列(淨值、成交),不叫 ``run_metrics``——
+    只讀這兩隻(``FAILURE_JUDGE_BENCHMARKS``),不是 ``reader.benchmarks``
+    整組:判準本身寫死是這兩隻,與頁面設定了顯示哪幾條基準線無關。
+    按(快照、代號、起、迄)快取:同一套策略的歷次運行往往共用同一個快照與
+    同一段期間,不必每行各讀一次基準價格。
+    """
+    bag = _cache(reader)
+    cache = bag.setdefault("benchAnnual", {})
+    out: dict[str, float | None] = {}
+    for ticker in FAILURE_JUDGE_BENCHMARKS:
+        key = (snapshot_id, ticker, start, end)
+        if key not in cache:
+            try:
+                curve = benchmark_curve(
+                    reader.store, snapshot_id, ticker, start, end, root=reader.snapshot_root
+                )
+                cache[key] = curve.stats.annual_return
+            except (NotFound, KeyError):
+                cache[key] = None
+        out[ticker] = cache[key]
+    return out
+
+
+def _row_metrics(reader: Any, record: Any) -> dict[str, Any]:
+    """一行運行要顯示的幾個數,連 D-034 的失敗運行判定。
+
+    只讀該次運行自己的兩條序列(淨值、成交)算前幾項,不叫 ``run_metrics``——
     後者連基準曲線一併算(要讀整份快照價格),一頁五十行就慢十倍。
     年化與最大回撤照 ``window_stats`` 的全期口徑,勝率照 ``trade_stats``,
-    與運行詳情頁同一套算法。
+    與運行詳情頁同一套算法。判失敗運行另外只讀 SPY／QQQ 兩條基準的年化,
+    比 ``run_metrics`` 省一大截。
     """
+    run_id = record.run_id
     equity = reader.runs.equity_curve(run_id)
     stats = window_stats(equity, None, None, base=BASE)
     trades = trade_stats(reader.runs.orders(run_id), equity.index)
+    bench = _bench_annual_returns(reader, record.snapshot_id, stats.start, stats.end)
     return {
         "totalReturnPct": _pct(stats.total_return),
         "annualReturnPct": _pct(stats.annual_return),
@@ -331,7 +386,20 @@ def _row_metrics(reader: Any, run_id: str) -> dict[str, Any]:
         "profitLossRatio": _f(trades.profit_loss_ratio),
         "closedTrades": trades.closed_trades,
         "tradingDays": stats.trading_days,
+        "isFailed": bool(is_failed_run(stats.annual_return, bench)),
     }
+
+
+def _run_failed(reader: Any, record: Any) -> bool:
+    """該次運行是不是失敗運行(D-034),不另外算三項顯示用的數字。
+
+    ``overview()`` 揀預設運行要用:由新到舊逐次問,揀到第一次不是失敗的
+    即可,不必像 ``runs()`` 那樣把整張表的三個數都算出來。
+    """
+    equity = reader.runs.equity_curve(record.run_id)
+    stats = window_stats(equity, None, None, base=BASE)
+    bench = _bench_annual_returns(reader, record.snapshot_id, stats.start, stats.end)
+    return bool(is_failed_run(stats.annual_return, bench))
 
 
 def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
@@ -343,18 +411,20 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
 
     ``?run=`` 與 ``/api/strategy`` 一樣收:不帶 ``?id=`` 時由那一次運行反查它
     自己那套策略(KARST-067),免得頁頂身份與下面那張表各自指住兩套策略。
+
+    D-034(經 D-040 定案):失敗運行(年化同時輸給 SPY 與 QQQ)預設不列,
+    亦不設展開行、不另外顯示計數在畫面——``failedCount`` 這個數只供頁面在
+    「此策略運行全部失敗」那種空表狀態講一句「N 條運行全部失敗」,不是用來
+    畫一條可以展開的行(D-035 起檢視運行選擇器已經拆走,策略詳情頁只剩歷次
+    運行表這一個進入運行的入口)。``?all=1`` 要完整名單(供核對用,連失敗運行
+    都在)。``offset``/``limit`` 照篩選之後那張表算,翻頁翻的是「看得見」
+    那幾條,不是庫內原始那幾條。
     """
     strategy = _resolve(reader, _one(query, "id"), _one(query, "run"))
     every = _runs_of(reader, strategy.name)
 
-    offset = max(0, _int(query, "offset", 0))
-    limit = _int(query, "limit", DEFAULT_RUN_PAGE)
-    if limit <= 0 or limit > MAX_RUN_PAGE:
-        limit = MAX_RUN_PAGE
-    page = every[offset : offset + limit]
-
-    items = []
-    for record in page:
+    items_all = []
+    for record in every:
         reasons = reader.runs.stale_reasons(record.run_id)
         item = {
             "runId": record.run_id,
@@ -371,18 +441,30 @@ def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
             "isStale": bool(reasons),
             "staleReasons": list(reasons),
         }
-        item.update(_row_metrics(reader, record.run_id))
-        items.append(item)
+        item.update(_row_metrics(reader, record))
+        items_all.append(item)
+
+    failed_count = sum(1 for item in items_all if item["isFailed"])
+    visible = items_all if _wants_all(query) else [i for i in items_all if not i["isFailed"]]
+
+    offset = max(0, _int(query, "offset", 0))
+    limit = _int(query, "limit", DEFAULT_RUN_PAGE)
+    if limit <= 0 or limit > MAX_RUN_PAGE:
+        limit = MAX_RUN_PAGE
+    page = visible[offset : offset + limit]
 
     return {
         "strategyId": strategy.strategy_id,
         "strategyName": strategy.name,
         "total": len(every),
+        # D-034(經 D-040 定案):預設篩走的失敗運行有幾多條——不設展開行,
+        # 只供「此策略運行全部失敗」那種空表狀態講一句「N 條運行全部失敗」。
+        "failedCount": failed_count,
         # 空表要講得出「不是壞了,是這套策略只跑過掃描」——連幾多格一齊交
         "sweepCellTotal": _sweep_cells_of(reader, strategy.name),
         "offset": offset,
-        "shown": len(items),
-        "items": items,
+        "shown": len(page),
+        "items": page,
     }
 
 

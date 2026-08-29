@@ -77,12 +77,11 @@
   }
 
   /* ---------------- 頂欄 ---------------- */
-  /* 四頁齊列。未建成那兩頁連去佔位空狀態(不是死連結),各自那一頁建成時
-     由該頁改自己這一行的 href。 */
+  /* 三頁齊列(D-035:運行詳情不是頂層頁面,是策略詳情的鑽取層,由頂層導覽移除,
+     只能經策略詳情的歷次運行表點入,或者直連網址 ?id=&run=)。 */
   var PAGES = [
     { href: '/', label: '策略總覽' },
     { href: '/strategy', label: '策略詳情' },
-    { href: '/run', label: '運行詳情' },
     { href: '/sweep', label: '參數掃描' },
   ];
 
@@ -394,6 +393,24 @@
     };
   }
 
+  /* ---------------- 麵包屑(D-035) ---------------- */
+  /**
+   * 鑽取層回上層的路徑。parts:[{label, href}],href 略去即該節是純文字
+   * (通常是最後一節——正在看的這一頁,或者無獨立網址的分節標籤)。
+   * 回傳的是 <nav class="breadcrumb"> 之內那一截,掛的頁自己提供外層 <nav>
+   * 容器(id 由該頁決定),好讓靜態 HTML 與其餘頁的麵包屑同一個殼。
+   */
+  function breadcrumb(parts) {
+    return parts.map(function (p, i) {
+      var sep = i > 0 ? '<span>／</span>' : '';
+      var last = i === parts.length - 1;
+      var seg = p.href
+        ? '<a href="' + esc(p.href) + '">' + esc(p.label) + '</a>'
+        : '<span' + (last ? ' aria-current="page"' : '') + '>' + esc(p.label) + '</span>';
+      return sep + seg;
+    }).join('');
+  }
+
   /* ---------------- 分頁籤 ---------------- */
   function initTabs(root) {
     var host = document.querySelector(root);
@@ -415,7 +432,7 @@
     fetchJSON: fetchJSON,
     pct: pct, pctPlain: pctPlain, pp: pp, num: num, fixed: fixed,
     money: money, moneyShort: moneyShort, cls: cls, esc: esc, truncate: truncate,
-    mountNav: mountNav, mountFoot: mountFoot, runChip: runChip,
+    mountNav: mountNav, mountFoot: mountFoot, runChip: runChip, breadcrumb: breadcrumb,
     factorSpark: factorSpark,
     makeChart: makeChart, chartOptions: chartOptions, zip: zip, timeToISO: timeToISO,
     sortableTable: sortableTable, initTabs: initTabs,

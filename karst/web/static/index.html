@@ -13,11 +13,6 @@
    兩頁收檔之後應搬回 style.css,本段連同註解一併移走。
    ============================================================ */
 
-/* 運行選單改為顯示「策略・參數集・期間・跑於日期」(不再顯示運行編號):
-   標籤以中文為主,等寬字體排中文會鬆一格一格,改回內文字體。 */
-.runpick button.rp-run { font-family: var(--font-sans); white-space: normal; text-align: left; }
-.runpick button.rp-run .rp-when { font-family: var(--font-mono); }
-
 /* 圖例每項可點:點一下收起該條線,再點放回來(QQQ／SPY／策略淨值皆可)。
    用真按鈕,鍵盤 Tab 到、Enter 按得到;aria-pressed 講出這一刻是開還是關。 */
 #chart-legend button {
@@ -64,6 +59,7 @@
     <div class="page-head-row">
       <div>
         <div class="page-title-group">
+          <nav class="breadcrumb" aria-label="麵包屑" id="bc-crumb"></nav>
           <h1>運行詳情</h1>
           <span class="page-en mono" id="bc-run"></span>
         </div>
@@ -72,10 +68,13 @@
     </div>
   </header>
 
-  <!-- ============ 檢視運行:揀哪一次,整頁跟著換 ============ -->
+  <!-- ============================================================
+       D-035:運行詳情不再有自己的「檢視運行」選擇器——揀哪一次運行改由
+       策略詳情頁的歷次運行表點入,或者直連網址 ?id=&run=(用戶原話:
+       「檢視運行 bar is not useful again if I have thousands of run for
+       this strategy」)。這裡只留「以現版本重跑」一個按鈕。
+       ============================================================ -->
   <div class="sp-runbar">
-    <span class="sp-runbar-k">檢視運行</span>
-    <div class="runpick" id="run-pick" role="group" aria-label="檢視哪一次運行"></div>
     <button class="btn" id="rerun-open" style="margin-left:auto" hidden>以現版本重跑</button>
   </div>
 

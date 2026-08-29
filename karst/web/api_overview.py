@@ -26,7 +26,8 @@ from karst.store import FORMAL_RUN, rebalance_cadences
 
 # 數值的出口口徑(NaN／inf 當缺值、比率轉百分點、日期一律 ISO)只有一份,
 # 住在 karst.web.data;這裡照用,不另抄一套——兩套口徑遲早會各走各路。
-from karst.web.data import _day, _f, _pct
+# D-034 的判準(失敗運行)同一個道理:一份正本住 karst.web.data,這裡照用。
+from karst.web.data import FAILURE_JUDGE_BENCHMARKS, _day, _f, _pct, is_failed_run
 
 # 策略總覽八類。取值那一面是 schema.py 的 CHECK 約束(單一正本),中文名
 # 這一面照原型第十版 prototype/assets/data-ext.js 逐字搬過來。
@@ -112,8 +113,22 @@ class OverviewReader:
         self._reader = reader
         self._cache: dict[str, Any] | None = None
         self._bench_cache: dict[tuple[str, str, str, str], Any] = {}
+        # D-034 判「失敗運行」只用得著 SPY／QQQ 的年化回報,與 _bench_cache
+        # 存的主基準整條走勢線是兩件事,另開一格,鍵同一個形狀。
+        self._failure_bench_cache: dict[tuple[str, str, str, str], float | None] = {}
 
     def overview(self) -> dict[str, Any]:
+        """庫內策略總覽。
+
+        D-034/D-040:單次失敗運行(年化同時輸給 SPY 與 QQQ)不會在總覽單獨
+        成為門面成績——``_pick_run`` 優先揀一次不是失敗的來代表這套策略。
+        只有一套策略**全部**正式運行都是失敗運行,那一行才會用回失敗運行的
+        身份,但仍然照列(不隱藏、不移除),成績欄留空,只在「對基準」那一格
+        講一句「N 條運行全部失敗」——用戶原話:「if all are failed. You can
+        just leave a failed count. Then the strategy will be visible as
+        well」。所以這裡不再需要「預設篩走、``?all=1`` 要完整名單」那一套:
+        每次回的都已經是完整名單。
+        """
         if self._cache is None:
             self._cache = self._build()
         return self._cache
@@ -134,6 +149,12 @@ class OverviewReader:
                 # 掃描格不入總覽,只記一個數,好讓「為什麼這套策略是空的」講得出
                 sweep_count += 1
                 swept[record.strategy_name] = swept.get(record.strategy_name, 0) + 1
+                continue
+            if reader.series_missing(record):
+                # 序列缺失運行(KARST-057):登記在案,但與運行清單、策略詳情
+                # 歷次運行表同一條規矩——不列入「這套策略有幾多次可揀的正式
+                # 運行」,否則揀到它,這一行整個讀不回結果(見 series_missing
+                # 檔頭說明)。
                 continue
             formal.append(record)
             by_strategy.setdefault(record.strategy_name, []).append(record)
@@ -165,19 +186,69 @@ class OverviewReader:
             },
         }
 
-    def _pick_run(self, name: str, runs: list[Any]):
-        """代表這套策略的那一次運行。
+    def _bench_annual_returns(
+        self, snapshot_id: str, start: str, end: str
+    ) -> dict[str, float | None]:
+        """該快照、該段期間,SPY 與 QQQ 買入持有的年化回報——D-034 判失敗運行要用。
 
-        有現役設定(用戶指定紙上交易跟隨哪一個參數集)就用它那一組的最新一次
-        ——門面數字不應該被一次參數掃描的最後一格頂走。未指定就用最新一次,
-        不猜「哪一格最靚」:總覽報的是最近跑出什麼,不是最好跑出什麼。
+        按(快照、代號、起、迄)快取,同一個道理見 ``api_strategy._bench_annual_returns``
+        (兩檔各自輕量讀取,不共用一個快取物件——``OverviewReader`` 是一頁一份)。
+        """
+        out: dict[str, float | None] = {}
+        for ticker in FAILURE_JUDGE_BENCHMARKS:
+            key = (snapshot_id, ticker, start, end)
+            if key not in self._failure_bench_cache:
+                try:
+                    curve = benchmark_curve(
+                        self._reader.store,
+                        snapshot_id,
+                        ticker,
+                        start,
+                        end,
+                        root=self._reader.snapshot_root,
+                    )
+                    self._failure_bench_cache[key] = curve.stats.annual_return
+                except (NotFound, KeyError):
+                    self._failure_bench_cache[key] = None
+            out[ticker] = self._failure_bench_cache[key]
+        return out
+
+    def _run_failed(self, record: Any) -> bool | None:
+        """該次運行是不是失敗運行(D-034)。
+
+        讀不回這次運行的序列(理論上不會發生——候選池已經篩走序列缺失運行,
+        這裡多一重保險,一次讀失敗不應該拖垮整頁)就回 ``None``:不當它是候選,
+        亦不當它已經判定——``_pick_run`` 遇到 ``None`` 會跳過,不會選中它。
+        """
+        try:
+            equity = self._reader.runs.equity_curve(record.run_id)
+        except Exception:  # noqa: BLE001
+            return None
+        stats = window_stats(equity, None, None, base=BASE)
+        bench = self._bench_annual_returns(record.snapshot_id, stats.start, stats.end)
+        return is_failed_run(stats.annual_return, bench)
+
+    def _pick_run(self, name: str, runs: list[Any]):
+        """代表這套策略的那一次運行,連「是不是全部運行都失敗」那個判定。
+
+        有現役設定(用戶指定紙上交易跟隨哪一個參數集)就優先用它那一組——門面
+        數字不應該被一次參數掃描的最後一格頂走。組內／全庫都揀「最近一次不是
+        失敗運行的」(D-034):門面不首先擺一個已知跑輸大盤的結果。
+
+        回傳 ``(record, is_active, all_failed)``。``all_failed`` 只有一種情況
+        是真:這套策略**全部**正式運行都是失敗運行(D-040)——那一刻才會退回
+        用最近一次(失敗的)代表,呼叫方據此把成績欄留空、只講一句「N 條運行
+        全部失敗」,但那一行仍然照列,不隱藏(用戶原話:「if all are failed.
+        You can just leave a failed count. Then the strategy will be visible
+        as well」)。
         """
         if not runs:
-            return None, False
+            return None, False, False
         try:
             active = self._reader.store.get_active_setup(name)
         except NotFound:
             active = None
+        matched: list[Any] = []
         if active is not None:
             matched = [
                 r
@@ -185,15 +256,23 @@ class OverviewReader:
                 if r.param_set_id == active.param_set_id
                 and r.strategy_version_id == active.strategy_version_id
             ]
-            if matched:
-                return matched[-1], True
-        return runs[-1], False
+        for record in reversed(matched):
+            if self._run_failed(record) is False:
+                return record, True, False
+        for record in reversed(runs):
+            if self._run_failed(record) is False:
+                return record, False, False
+        # 全部正式運行不是失敗就是讀不回:退回原本那條規矩,一樣有一行可看,
+        # 並標明 all_failed——呼叫方憑這個判斷要不要把成績欄留空。
+        if matched:
+            return matched[-1], True, True
+        return runs[-1], False, True
 
     def _strategy_row(
         self, index: int, name: str, runs: list[Any], sweep_runs: int = 0
     ) -> dict[str, Any]:
         store = self._reader.store
-        record, is_active = self._pick_run(name, runs)
+        record, is_active, all_failed = self._pick_run(name, runs)
 
         if record is not None:
             strategy_type = record.strategy_type
@@ -220,6 +299,11 @@ class OverviewReader:
             "snapshotId": None,
             "isActiveSetup": is_active,
             "isStale": False,
+            # D-034/D-040:True 只代表「這套策略全部正式運行都是失敗運行」
+            # ——那一刻整行仍照列,只是成績欄留空;不是「有一次失敗運行」
+            # 就會令整行消失(那件事由 _pick_run 優先避開,見它的說明)。
+            "isFailed": all_failed,
+            "failedRunCount": len(runs) if all_failed else 0,
             "metrics": None,
             "benchmarks": {},
             "equity": [],
@@ -248,6 +332,17 @@ class OverviewReader:
             }
         )
 
+        if all_failed:
+            # D-040:成績欄留空,不算它的年化/回撤/勝率——那些數字算出來也是
+            # 「輸給大盤」的那個結果,擺出來與「留空」相比沒有意義,徒添一格
+            # 要解讀的數字。「對基準」那一格由前端按 failedRunCount 講一句
+            # 「N 條運行全部失敗」,不是這裡另砌一句。
+            row["note"] = (
+                f"{row['failedRunCount']} 條運行全部失敗"
+                "(年化回報同時低於 SPY 與 QQQ 買入持有)。"
+            )
+            return row
+
         try:
             self._fill_results(row, record)
         except Exception as exc:  # noqa: BLE001
@@ -270,6 +365,9 @@ class OverviewReader:
             snapshot_root=reader.snapshot_root,
         )
 
+        # isFailed 已經由 _pick_run/_strategy_row 定案(True 只代表「全部運行
+        # 都失敗」那一種情況,見那邊說明)——這裡揀到的必然是一次不是失敗運行
+        # 的代表,不再重新判一次。
         primary = metrics.benchmarks.get(PRIMARY_BENCHMARK)
         row["metrics"] = {
             "totalReturnPct": _pct(metrics.total_return),
@@ -330,6 +428,10 @@ class OverviewReader:
 def register(
     routes: dict[str, Callable[[Any, dict[str, list[str]]], Any]], reader: Any
 ) -> None:
-    """把策略總覽的端點掛上網頁殼的路由表(server.py 只加這一句)。"""
+    """把策略總覽的端點掛上網頁殼的路由表(server.py 只加這一句)。
+
+    D-040 定案之後,總覽一律回完整名單(見 ``OverviewReader.overview`` 說明),
+    不再需要 ``?all=`` 這個切換,``query`` 這裡用不著。
+    """
     overview = OverviewReader(reader)
     routes["/api/overview"] = lambda handler, query: overview.overview()

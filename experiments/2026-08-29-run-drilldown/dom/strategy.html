@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>趨勢波段 策略詳情 — Karst</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="sp">
+
+<div id="nav-host"><nav class="nav"><div class="brand"><span class="brand-mark">KARST</span></div><div class="nav-links"><a class="nav-link" href="/">策略總覽</a><a class="nav-link" href="/strategy" aria-current="page">策略詳情</a><a class="nav-link" href="/sweep">參數掃描</a></div><div class="nav-meta"><span>數據快照 2026-08-28-a508d635a5fa</span><span>截至 2026-08-26</span><div id="nav-identity"></div></div></nav></div>
+
+<main class="wrap">
+
+  <header class="page-head">
+    <div class="page-title-group">
+      <nav class="breadcrumb" aria-label="麵包屑"><a href="/">策略總覽</a><span>／</span></nav>
+      <h1 id="strat-name">趨勢波段</h1>
+      <span class="page-en mono" id="strat-en">v2</span>
+      <span class="tag tag-strategy" id="strat-kind" style="">技術</span>
+      <span class="tag tag-live" id="strat-live" style="display:none">現役設定</span>
+    </div>
+  </header>
+
+  <!-- 全頁載入中／錯誤／空:三態共用這一格,有內容時整疊面板讓路 -->
+  <div id="page-state"></div>
+
+  <div class="sp-stack" id="sp-stack">
+
+    <!-- ============ 檢視運行:揀哪一次,全頁跟著換 ============ -->
+    <div class="sp-runbar">
+      <span class="sp-runbar-k">檢視運行</span>
+      <div class="runpick" id="run-pick" role="group" aria-label="檢視哪一次運行"></div>
+      <button class="btn" id="back-live" hidden="">回到現役</button>
+    </div>
+
+    <!-- ============ 檢視中那次運行的設定 ============ -->
+    <div class="config-slim is-past" id="config-slim"><span class="tag tag-current">檢視中</span><span class="mono" style="font-weight:700">v2・示例-KARST-028 v7</span><span class="chip"><span class="chip-k">換倉節奏</span><span class="chip-v">日度</span></span><span class="chip"><span class="chip-k">account.fees</span><span class="chip-v">0.0</span></span><span class="chip"><span class="chip-k">account.initial_cash</span><span class="chip-v">1000000.0</span></span><span class="chip"><span class="chip-k">entry.breakout_lookback_days</span><span class="chip-v">50</span></span><span class="chip"><span class="chip-k">execution.tie_break_seed</span><span class="chip-v">20260828</span></span><span class="chip"><span class="chip-k">risk.monthly_loss_cap</span><span class="chip-v">0.06</span></span><span class="chip"><span class="chip-k">risk.per_trade_risk</span><span class="chip-v">0.02</span></span><span class="chip"><span class="chip-k">risk.reward_risk_floor</span><span class="chip-v">1.5</span></span><span class="chip"><span class="chip-k">sizing.equity_basis</span><span class="chip-v">current_equity</span></span><span class="chip"><span class="chip-k">sizing.max_position_fraction</span><span class="chip-v">0.25</span></span><span class="chip"><span class="chip-k">stop.max_stop_fraction</span><span class="chip-v">0.25</span></span><span class="chip"><span class="chip-k">stop.min_stop_fraction</span><span class="chip-v">0.01</span></span><span class="chip"><span class="chip-k">stop.swing_lookback_days</span><span class="chip-v">10</span></span><span class="section-note mono">run-2120914a42d21911・2026-08-28-a508d635a5fa</span><span class="slim-win">視窗 全期</span><span class="slim-past">2015-01-02 至 2026-08-26・11.6 年</span></div>
+
+    <!-- ============ 頭條數字(按檢視視窗重算) ============ -->
+    <div class="kpi-row" id="kpis"><div class="kpi"><div class="kpi-label">累計報酬</div><div class="kpi-value up">+249.8%</div><div class="kpi-basis">QQQ +652.3%</div></div><div class="kpi"><div class="kpi-label">年化</div><div class="kpi-value up">11.4%</div><div class="kpi-basis">QQQ 19.0%</div></div><div class="kpi"><div class="kpi-label">最大回撤</div><div class="kpi-value down">-20.8%</div><div class="kpi-basis">QQQ -35.1%</div></div><div class="kpi"><div class="kpi-label">波幅</div><div class="kpi-value ">13.3%</div><div class="kpi-basis">日度年化</div></div><div class="kpi"><div class="kpi-label">Sortino</div><div class="kpi-value ">0.78</div><div class="kpi-basis">無風險 4.0%</div></div><div class="kpi"><div class="kpi-label">勝率</div><div class="kpi-value ">44%</div><div class="kpi-basis">盈虧比 2.1</div></div><div class="kpi"><div class="kpi-label">交易筆數</div><div class="kpi-value ">242</div><div class="kpi-basis">平均持倉 50 日</div></div></div>
+
+    <!-- ============ 左圖右名單:點圖上一日,右邊即時換 ============ -->
+    <div class="sp-split">
+
+      <section class="sp-panel sp-sticky" aria-labelledby="equity-title">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2 id="equity-title">淨值走勢</h2>
+            <div class="bench-line" id="equity-bench"><span><i style="background:#26a69a"></i>趨勢波段 <b class="up">+249.8%</b></span><span><i style="background:#b07de0"></i>QQQ <b>+652.3%</b></span><span><i style="background:#7d869c"></i>SPY <b>+351.5%</b></span></div>
+          </div>
+          <div class="winpick">
+            <label for="win-date">檢視視窗</label>
+            <div class="date-switch" id="win-pick" role="group" aria-label="檢視視窗起始"><button type="button" data-win="all" aria-pressed="true">全期</button><button type="button" data-win="1y" aria-pressed="false">近 1 年</button><button type="button" data-win="3y" aria-pressed="false">近 3 年</button><button type="button" data-win="2023" aria-pressed="false">2023 起</button></div>
+            <input class="sp-date" type="date" id="win-date" aria-label="自訂起始日" min="2015-01-02" max="2026-08-26">
+          </div>
+        </div>
+        <div class="sp-sub" id="chart-sub"><span><span class="up">▲</span> 買・<span class="down">▼</span> 沽・滑過看成交・點日期換快照</span><span class="mono">基期 100 ＝ 2015-01-02</span><span class="mono">421 個交易日有買賣</span></div>
+        <div class="sp-body">
+          <div class="sp-chartwrap">
+            <div class="sp-chart" id="equity-chart"><div><div class="tv-lightweight-charts" style="overflow: hidden; direction: ltr; width: 674px; height: 320px; user-select: none; -webkit-tap-highlight-color: transparent;"><table cellspacing="0" style="height: 320px; width: 674px;"><tr><td style="padding: 0px;"></td><td style="padding: 0px; position: relative; width: 620px; height: 292px;"><div style="width: 100%; height: 100%; position: relative; overflow: hidden;"><canvas width="620" height="292" style="width: 620px; height: 292px; position: absolute; z-index: 1; left: 0px; top: 0px;"></canvas><canvas width="620" height="292" style="width: 620px; height: 292px; position: absolute; z-index: 2; left: 0px; top: 0px;"></canvas></div></td><td style="padding: 0px;"><div style="height: 292px; overflow: hidden; width: 54px; left: 0px; position: relative;"><canvas width="54" height="292" style="width: 54px; height: 292px; position: absolute; z-index: 1; left: 0px; top: 0px;"></canvas><canvas width="54" height="292" style="width: 54px; height: 292px; position: absolute; z-index: 2; left: 0px; top: 0px;"></canvas></div></td></tr><tr><td style="padding: 0px;"></td><td style="height: 28px; padding: 0px; width: 620px;"><div style="width: 100%; height: 100%; position: relative; overflow: hidden;"><canvas width="620" height="28" style="width: 620px; height: 28px; position: absolute; z-index: 1; left: 0px; top: 0px;"></canvas><canvas width="620" height="28" style="width: 620px; height: 28px; position: absolute; z-index: 2; left: 0px; top: 0px;"></canvas></div></td><td style="padding: 0px;"><div style="width: 54px; height: 28px; overflow: hidden;"><canvas width="54" height="28" style="width: 54px; height: 28px;"></canvas></div></td></tr></table></div></div></div>
+            <div class="hovcard" id="hovcard" hidden="" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sp-panel" aria-labelledby="picks-title">
+        <div class="sp-head">
+          <div class="sp-side">
+            <h2 id="picks-title">選股快照</h2>
+            <span class="at-point" id="at-point">快照・2026-08-26</span>
+          </div>
+          <div class="sp-side" id="picks-filter"></div>
+        </div>
+        <div class="sp-sub" id="picks-basis"><span class="mono">2026-08-28-a508d635a5fa</span><span>權重＝該換倉日算出的比例,按當日收市價與淨值計</span></div>
+        <div class="sp-funnel">
+          <div class="sp-funnel-cap">逐層收窄</div>
+          <div class="funnel-bar" id="funnel" role="group" aria-label="按層篩選名單"><button type="button" class="fb-seg" data-layer="0" aria-pressed="false" style="flex:10 1 74px" title="範圍　數據快照 2026-08-28-a508d635a5fa 當日可交易的標的(已扣除基準)　點一下:取消篩選"><div class="fb-block" style="background:#6b7488"><span class="fb-num">10<small>隻</small></span><span class="fb-keep">全部</span></div><div class="fb-lab">範圍</div></button><button type="button" class="fb-seg" data-layer="1" aria-pressed="false" style="flex:3 1 74px" title="技術關　選股漏斗第二層(D-013):技術量化篩選;當日過關,或早前過關後仍在場　點一下:只看這一層"><div class="fb-block" style="background:#4a9eff"><span class="fb-num">3<small>隻</small></span><span class="fb-keep">剩 30%</span></div><div class="fb-lab">技術關　−7</div></button><button type="button" class="fb-seg" data-layer="2" aria-pressed="false" style="flex:3 1 74px" title="入選　決策日揀中要落注的名單;早前揀中而仍在場的一併計入　點一下:只看這一層"><div class="fb-block" style="background:#26a69a"><span class="fb-num">3<small>隻</small></span><span class="fb-keep">剩 100%</span></div><div class="fb-lab">入選　−0</div></button><button type="button" class="fb-seg" data-layer="3" aria-pressed="false" style="flex:3 1 74px" title="持倉　扣除倉位上限與風控後,該日收工時實際持有　點一下:只看這一層"><div class="fb-block" style="background:#f0a83c"><span class="fb-num">3<small>隻</small></span><span class="fb-keep">剩 100%</span></div><div class="fb-lab">持倉　−0</div></button></div>
+        </div>
+        <div id="picks-table"><table class="kt"><thead><tr><th style="width:60px">代號</th><th>名稱</th><th style="width:56px">因子</th><th style="width:48px">類型</th><th class="num" style="width:80px" title="突破幅度">突破幅度</th><th class="num" style="width:80px" title="計劃賠率">計劃賠率</th><th class="num" style="width:72px">股數</th><th class="num" style="width:60px">權重</th><th style="width:64px">狀態</th></tr></thead><tbody><tr><td class="mono">JPM</td><td title="JPMorgan Chase &amp; Co.">JPMorgan Chase &amp; Co.</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.027 <span class="dim" style="font-size:11px">#2</span></td><td class="num">8.01 <span class="dim" style="font-size:11px">#6</span></td><td class="num">2580</td><td class="num">26.3%</td><td><span class="st st-hold">持倉</span></td></tr><tr><td class="mono">XOM</td><td title="Exxon Mobil Corporation">Exxon Mobil Corporatio……</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.062 <span class="dim" style="font-size:11px">#4</span></td><td class="num">19.49 <span class="dim" style="font-size:11px">#2</span></td><td class="num">5592</td><td class="num">25.3%</td><td><span class="st st-hold">持倉</span></td></tr><tr><td class="mono">NVDA</td><td title="NVIDIA Corporation">NVIDIA Corporation</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.080 <span class="dim" style="font-size:11px">#5</span></td><td class="num">15.82 <span class="dim" style="font-size:11px">#4</span></td><td class="num">3045</td><td class="num">18.3%</td><td><span class="st st-hold">持倉</span></td></tr><tr><td class="mono">JNJ</td><td title="Johnson &amp; Johnson">Johnson &amp; Johnson</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.019 <span class="dim" style="font-size:11px">#1</span></td><td class="num">3.68 <span class="dim" style="font-size:11px">#10</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr><tr><td class="mono">MSFT</td><td title="Microsoft Corporation">Microsoft Corporation</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.032 <span class="dim" style="font-size:11px">#3</span></td><td class="num">8.16 <span class="dim" style="font-size:11px">#5</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr><tr><td class="mono">AAPL</td><td title="Apple Inc.">Apple Inc.</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.090 <span class="dim" style="font-size:11px">#6</span></td><td class="num">6.21 <span class="dim" style="font-size:11px">#8</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr><tr><td class="mono">AMZN</td><td title="Amazon.com, Inc.">Amazon.com, Inc.</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.094 <span class="dim" style="font-size:11px">#7</span></td><td class="num">19.03 <span class="dim" style="font-size:11px">#3</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr><tr><td class="mono">GOOGL</td><td title="Alphabet Inc.">Alphabet Inc.</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.110 <span class="dim" style="font-size:11px">#8</span></td><td class="num">20.29 <span class="dim" style="font-size:11px">#1</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr><tr><td class="mono">META</td><td title="Meta Platforms, Inc.">Meta Platforms, Inc.</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.160 <span class="dim" style="font-size:11px">#9</span></td><td class="num">4.16 <span class="dim" style="font-size:11px">#9</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr><tr><td class="mono">TSLA</td><td title="Tesla, Inc.">Tesla, Inc.</td><td class="dim">—</td><td class="dim">company</td><td class="num">-0.201 <span class="dim" style="font-size:11px">#10</span></td><td class="num">6.58 <span class="dim" style="font-size:11px">#7</span></td><td class="num"><span class="dim">—</span></td><td class="num"><span class="dim">—</span></td><td><span class="st st-out">未過</span></td></tr></tbody></table></div>
+      </section>
+
+    </div>
+
+    <!-- ============ 歷次運行:點一行 = 換上面整頁 ============ -->
+    <section class="sp-panel" aria-labelledby="runs-title">
+      <div class="sp-head">
+        <h2 id="runs-title">歷次運行</h2>
+        <span class="section-note">點一行:全頁換成該次</span>
+      </div>
+      <div class="sp-body flush">
+        <table class="kt">
+          <thead>
+            <tr>
+              <th style="width:204px">運行編號</th>
+              <th style="width:70px">版本</th>
+              <th>參數</th>
+              <th class="num" style="width:72px">年化</th>
+              <th class="num" style="width:88px">最大回撤</th>
+              <th class="num" style="width:62px">勝率</th>
+              <th style="width:140px">快照</th>
+              <th style="width:64px"></th>
+            </tr>
+          </thead>
+          <tbody id="runs-body"><tr><td colspan="8"><div class="sp-empty">7 條運行全部失敗(年化回報同時低於 SPY 與 QQQ 買入持有)。</div></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 因子分布 ============ -->
+    <section class="sp-panel" aria-labelledby="factor-title">
+      <div class="sp-head">
+        <h2 id="factor-title">因子分布</h2>
+        <span class="section-note" id="factor-note">這次運行引用 1 個因子</span>
+      </div>
+      <div class="sp-hist">
+        <div>
+          <div class="sp-hist-t">本次運行的因子敞口</div>
+          <div id="factor-expo"><div class="factor-row" title="JPMorgan Chase &amp; Co.　JPM"><span class="factor-name">JPM</span><span class="factor-bar-track"><span class="factor-bar-fill" style="width:100.0%;background:var(--accent)"></span></span><span class="factor-score">26%</span></div><div class="factor-row" title="Exxon Mobil Corporation　XOM"><span class="factor-name">XOM</span><span class="factor-bar-track"><span class="factor-bar-fill" style="width:96.2%;background:var(--accent)"></span></span><span class="factor-score">25%</span></div><div class="factor-row" title="NVIDIA Corporation　NVDA"><span class="factor-name">NVDA</span><span class="factor-bar-track"><span class="factor-bar-fill" style="width:69.4%;background:var(--accent)"></span></span><span class="factor-score">18%</span></div><div class="section-note" style="padding:var(--s-2) var(--s-4) 0">按 2026-08-26 收工時的持倉市值計,現金 30.2%</div></div>
+        </div>
+        <div>
+          <div class="sp-hist-t">因子版本</div>
+          <div class="factor-hist" id="factor-hist"><div class="fh-row"><div><span class="fh-fam">趨勢・</span><span class="fh-def">收市價突破前 N 日最高(不含當日)</span><span class="fh-used">現用</span></div><div class="fh-chain"><span class="" title="2026-08-27T16:44:26+00:00　趨勢波段策略的入場訊號(規格 5.4);N 是參數集裡的可掃描參數">v1</span><span class="fh-note"> ← </span><span class="fh-cur" title="2026-08-28T15:07:53+00:00　趨勢波段策略的入場訊號,改用快照 2026-08-28-a508d635a5fa">v2</span></div><div class="fh-note">boolean　趨勢波段策略的入場訊號,改用快照 2026-08-28-a508d635a5fa</div></div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="foot-host"><div class="foot">數據期間 2015-01-02 至 2026-08-26　數據快照 2026-08-28-a508d635a5fa　數字全部由本機庫內一次真實回測運行讀出,無任何寫死數值。<br>圖表 TradingView Lightweight Charts v4.2.3(Apache-2.0,本地載入)</div></div>
+</main>
+
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script src="/static/app.js" charset="utf-8"></script>
+<script src="/static/strategy.js" charset="utf-8"></script>
+
+
+</body></html>

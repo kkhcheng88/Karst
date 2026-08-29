@@ -68,6 +68,37 @@ def _day(value: Any) -> str:
     return pd.Timestamp(value).strftime("%Y-%m-%d")
 
 
+# D-034:判「失敗運行」用哪兩隻基準,是規則本身寫死的一部分,不是可調參數
+# ——所以擺常數,不擺函式預設值(D-008 第 3 條:不留參數預設值;這裡沒有
+# 參數,只有規則)。
+FAILURE_JUDGE_BENCHMARKS = ("SPY", "QQQ")
+
+
+def is_failed_run(
+    annual_return: float | None,
+    benchmark_annual_returns: dict[str, float | None],
+) -> bool | None:
+    """D-034:一次正式運行的年化回報,同時低於 SPY 買入持有與 QQQ 買入持有,
+    即為「失敗運行」。
+
+    用戶原話:「for run in which the performance is not better than both SPY
+    and QQQ. it is not need to show in the screen as they are failed.」
+
+    兩隻基準之中有一隻在該次運行的快照宇宙裡不存在(或算不出年化回報),
+    就不判——回 ``None``,運行照常列出,不歸入失敗那一堆:寧可少判,
+    不可拿一隻基準都不齊的數字定它失敗(規格見 KARST-077)。
+    """
+    if annual_return is None:
+        return None
+    values = []
+    for ticker in FAILURE_JUDGE_BENCHMARKS:
+        value = benchmark_annual_returns.get(ticker)
+        if value is None:
+            return None
+        values.append(value)
+    return all(annual_return < value for value in values)
+
+
 def open_read_only_store(db_path: str | Path) -> DefinitionStore:
     """以唯讀連線開庫。
 

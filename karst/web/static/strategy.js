@@ -54,8 +54,9 @@
     strategy: null,      /* /api/strategy 回來那份 */
     runId: null,
     detail: null,        /* /api/runs/<id> 回來那份 */
-    runs: [],            /* 歷次運行:只有正式運行(D-029) */
-    runTotal: 0,
+    runs: [],            /* 歷次運行:只有正式運行(D-029),失敗運行已篩走(D-034/D-040) */
+    runTotal: 0,         /* 全部正式運行數(不論成敗) */
+    failedCount: 0,      /* 篩走了幾多條失敗運行——只用來算「還有幾多可再載」,不顯示 */
     sweepCells: 0,       /* 這套策略有幾多格掃描格:空表那句話要講得出 */
     winKey: 'all',
     winFrom: null,
@@ -225,8 +226,12 @@
         (r.isActiveSetup ? '<span class="rp-live">現役</span>' : '') +
       '</button>';
     }).join('') +
-    (S.runTotal > shown.length
-      ? '<span class="section-note">共 ' + S.runTotal + ' 次・其餘在下面「歷次運行」揀</span>'
+    /* 「其餘在下面揀」比的是 S.runs(D-034 已篩走失敗運行那份),不是
+       S.runTotal(未篩的總數)——後者會包含篩走之後下面那張表也不會再列出的
+       失敗運行,講「其餘在下面揀」就變成一句假承諾(D-040:失敗運行完全
+       不顯示,不講計數)。 */
+    (S.runs.length > shown.length
+      ? '<span class="section-note">共 ' + S.runs.length + ' 次・其餘在下面「歷次運行」揀</span>'
       : '');
 
     var active = S.runs.filter(function (r) { return r.isActiveSetup; })[0];
@@ -690,6 +695,17 @@
      前綴猜,所以這裡不用再標「掃描格」——表上一格都不會有。
      ============================================================ */
   function noFormalRunsRow() {
+    if (S.runTotal > 0) {
+      /* D-034／D-040:這套策略真有正式運行(S.runTotal > 0),只是全部都是
+         失敗運行——表格空白,只講一句「N 條運行全部失敗」的計數(與策略
+         總覽同一句,D-040 明文定案這一句准講,不是「另有 N 條」那種展開行
+         的計數)。上面圖表仍然顯示最近一次運行(即使它是失敗運行)的實際
+         結果,不會是空白一片。 */
+      return '<tr><td colspan="8"><div class="sp-empty">' +
+          (S.failedCount || S.runTotal) + ' 條運行全部失敗' +
+          '(年化回報同時低於 SPY 與 QQQ 買入持有)。' +
+        '</div></td></tr>';
+    }
     var cells = S.sweepCells
       ? '(庫內有 ' + S.sweepCells + ' 格掃描格)'
       : '';
@@ -723,18 +739,25 @@
         '<td class="num">' + KV.pctPlain(r.winRatePct, 0) + '</td>' +
         '<td class="mono dim" title="' + KV.esc(r.snapshotId) + '">' +
           KV.esc(KV.truncate(r.snapshotId, 14)) + '</td>' +
-        '<td><a href="/run?run=' + encodeURIComponent(r.runId) + '">查看 →</a></td>' +
+        /* D-035:運行詳情是策略詳情的鑽取層,連結帶埋 ?id= 好讓運行頁的
+           麵包屑與「重新整理」都認得返去邊一套策略。 */
+        '<td><a href="/run?id=' + encodeURIComponent(S.sid) + '&run=' +
+          encodeURIComponent(r.runId) + '">查看 →</a></td>' +
       '</tr>';
     }).join('');
 
     /* 表上只有正式運行,一套策略通常得幾次,所以這一列平時不會出現。留住它
        是為了「共 N 次・已列 M 次」那句話:真的多過一頁時,寧可讓人見到還有,
-       也不可以靜靜地只顯示頭 50 次。 */
-    var more = S.runs.length < S.runTotal
+       也不可以靜靜地只顯示頭 50 次。
+       N 用「篩走失敗運行之後那個總數」(visibleTotal),不是 S.runTotal——
+       失敗運行完全不顯示(D-040),連累計數都不可以露出它們存在過,
+       不然「共 9 次」但表上一條都揭不出多過 1 條,一樣是講大話。 */
+    var visibleTotal = S.runTotal - (S.failedCount || 0);
+    var more = S.runs.length < visibleTotal
       ? '<tr><td colspan="8" style="text-align:center;padding:var(--s-4) 0">' +
-          '<span class="dim">共 ' + S.runTotal + ' 次・已列 ' + S.runs.length + ' 次　</span>' +
+          '<span class="dim">共 ' + visibleTotal + ' 次・已列 ' + S.runs.length + ' 次　</span>' +
           '<button class="btn" id="more-runs">再載 ' +
-            Math.min(RUN_PAGE, S.runTotal - S.runs.length) + ' 次</button>' +
+            Math.min(RUN_PAGE, visibleTotal - S.runs.length) + ' 次</button>' +
         '</td></tr>'
       : '';
 
@@ -849,6 +872,7 @@
       '&limit=' + RUN_PAGE + '&offset=' + (offset || 0);
     return KV.fetchJSON(url).then(function (page) {
       S.runTotal = page.total;
+      S.failedCount = page.failedCount || 0;
       S.sweepCells = page.sweepCellTotal || 0;
       S.runs = offset ? S.runs.concat(page.items) : page.items;
       renderRuns();

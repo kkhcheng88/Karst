@@ -200,7 +200,10 @@
      右欄:緊湊詳情卡
      ============================================================ */
   function strategyHref(s) {
-    return '/strategy?name=' + encodeURIComponent(s.name);
+    /* strategy.js 的 boot() 只讀 ?id=(策略編號或者策略名皆收,見
+       api_strategy._resolve),沒有 ?name= 這一格——舊寫法帶錯參數名,
+       連結靜靜地選不中目標策略。 */
+    return '/strategy?id=' + encodeURIComponent(s.name);
   }
 
   function renderDetail(id) {
@@ -335,8 +338,15 @@
           'aria-pressed="' + (s.id === selectedId ? 'true' : 'false') + '">' +
         '<td title="' + KV.esc(s.name) + '">' + KV.esc(s.name) + '</td>' +
         '<td><span class="tag tag-type">' + KV.esc(s.typeName) + '</span></td>' +
-        '<td class="num ' + (m ? KV.cls(m.vsBenchPp) : 'dim') + '">' +
-          (m ? KV.pp(m.vsBenchPp) : '—') + '</td>' +
+        /* D-034/D-040:一套策略全部正式運行都是失敗運行時,成績欄留空,
+           只在「對基準」這一格講一句「N 條運行全部失敗」——不是隱藏這一行,
+           這一行照常可點,只是沒有可比的成績(用戶原話:「if all are
+           failed. You can just leave a failed count. Then the strategy
+           will be visible as well」)。 */
+        '<td class="num ' + (s.isFailed ? 'dim' : (m ? KV.cls(m.vsBenchPp) : 'dim')) + '">' +
+          (s.isFailed ? KV.esc(s.failedRunCount + ' 條運行全部失敗')
+            : (m ? KV.pp(m.vsBenchPp) : '—')) +
+        '</td>' +
         '<td class="num ' + (m ? KV.cls(m.annualReturnPct) : 'dim') + '">' +
           (m ? KV.pctPlain(m.annualReturnPct) : '—') + '</td>' +
         '<td class="num ' + (m ? 'down' : 'dim') + '">' +

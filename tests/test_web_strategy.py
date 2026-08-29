@@ -152,7 +152,27 @@ def test_五個元件全部由真實運行數據畫出(reader, base_url, overvie
 # ---------------------------------------------------------------- 驗收二
 
 
+def _bench_annual_returns_truth(reader, snapshot_id, start, end):
+    """獨立於 api_strategy.py 另算一次 SPY／QQQ 年化——同一個判準,不同一條路,
+    用來驗 KARST-077 那個過濾是不是真的照 D-034 判,不是自己抄自己。"""
+    from karst.metrics import benchmark_curve
+    from karst.web.data import FAILURE_JUDGE_BENCHMARKS
+
+    out = {}
+    for ticker in FAILURE_JUDGE_BENCHMARKS:
+        try:
+            curve = benchmark_curve(
+                reader.store, snapshot_id, ticker, start, end, root=reader.snapshot_root
+            )
+            out[ticker] = curve.stats.annual_return
+        except Exception:
+            out[ticker] = None
+    return out
+
+
 def test_歷次運行表列出該策略全部運行並跳得到運行詳情(reader, base_url, overview):
+    from karst.web.data import is_failed_run
+
     name = overview["strategy"]["name"]
     sid = str(overview["strategy"]["id"])
 
@@ -167,26 +187,50 @@ def test_歷次運行表列出該策略全部運行並跳得到運行詳情(read
         if not reader.series_missing(record)
     ]
 
+    # KARST-077(D-034):失敗運行預設不列——獨立算一次哪幾條是失敗運行,
+    # 驗證端點真的照這個判準篩,不是巧合對得上。
+    def _failed(record):
+        equity = reader.runs.equity_curve(record.run_id)
+        stats = window_stats(equity, None, None, base=BASE)
+        bench = _bench_annual_returns_truth(reader, record.snapshot_id, stats.start, stats.end)
+        return bool(is_failed_run(stats.annual_return, bench))
+
+    failed_ids = {r.run_id for r in every if _failed(r)}
+    visible = [r for r in every if r.run_id not in failed_ids]
+
     page = _get_json(base_url + "/api/strategy/runs?id=" + sid + "&limit=5")
     assert page["total"] == len(every), "報稱的總數與庫內對不上"
-    assert page["shown"] == min(5, len(every))
+    assert page["failedCount"] == len(failed_ids), "失敗運行數與獨立算一次的不對版"
+    assert page["shown"] == min(5, len(visible))
+    assert all(item["runId"] not in failed_ids for item in page["items"]), (
+        "失敗運行預設不應該出現在歷次運行表(D-034)"
+    )
 
-    # 逐頁取得完:第二頁接得上第一頁,不重複亦不跳號
-    if page["total"] > 5:
+    # 逐頁取得完(只計看得見那幾條):第二頁接得上第一頁,不重複亦不跳號
+    if len(visible) > 5:
         second = _get_json(base_url + "/api/strategy/runs?id=" + sid + "&limit=5&offset=5")
         ids = [r["runId"] for r in page["items"]] + [r["runId"] for r in second["items"]]
         assert len(set(ids)) == len(ids)
-        newest_first = [r.run_id for r in reversed(every)][: len(ids)]
-        assert ids == newest_first
+        newest_first_visible = [r.run_id for r in reversed(visible)][: len(ids)]
+        assert ids == newest_first_visible
 
-    # 點一行跳到運行詳情:那一頁在、而且該運行編號真的開得到
+    # ?all=1 要得回完整名單(供核對用,連失敗運行都在)
+    full = _get_json(base_url + "/api/strategy/runs?id=" + sid + "&all=1&limit=200")
+    assert full["shown"] == min(200, len(every))
+    if failed_ids:
+        assert failed_ids <= {item["runId"] for item in full["items"]}
+
+    # 點一行跳到運行詳情:那一頁在、而且該運行編號真的開得到。連結帶埋 ?id=
+    # (D-035:運行頁的麵包屑、重新整理都認得返去邊一套策略)
     from karst.web.server import PAGE_FILES
 
     assert "/run" in PAGE_FILES, "運行詳情頁的路徑不見了,歷次運行表跳不過去"
     assert (STATIC_ROOT / PAGE_FILES["/run"]).is_file()
-    target = page["items"][0]["runId"]
-    assert _status_of(base_url + "/api/runs/" + target) == 200
-    assert 'href="/run?run=' in (STATIC_ROOT / "strategy.js").read_text(encoding="utf-8")
+    if page["items"]:
+        target = page["items"][0]["runId"]
+        assert _status_of(base_url + "/api/runs/" + target) == 200
+    script = (STATIC_ROOT / "strategy.js").read_text(encoding="utf-8")
+    assert "/run?id=' + encodeURIComponent(S.sid) + '&run=' +" in script
 
 
 # ---------------------------------------------------------------- 驗收三
@@ -277,10 +321,13 @@ def test_只帶運行編號的網址與帶齊策略編號時顯示一致(reader,
     sid = str(by_run["strategy"]["id"])
     assert by_run == _get_json(base_url + "/api/strategy?id=" + sid + "&run=" + run_id)
 
-    # 下面那張歷次運行表同一個口徑,而且真的列得出正在看的那一次
-    runs_by_run = _get_json(base_url + "/api/strategy/runs?run=" + run_id + "&limit=50")
+    # 下面那張歷次運行表同一個口徑,而且真的列得出正在看的那一次。這裡帶
+    # ?all=1——本測試驗的是 ?run= 與 ?id=&run= 兩種寫法對不對版,不是
+    # D-034 失敗運行過濾(那個另有 test_歷次運行表列出該策略全部運行並跳得到運行詳情
+    # 專門驗);picked 那次運行本身是不是失敗運行不影響這裡要驗的事。
+    runs_by_run = _get_json(base_url + "/api/strategy/runs?run=" + run_id + "&all=1&limit=50")
     assert runs_by_run == _get_json(
-        base_url + "/api/strategy/runs?id=" + sid + "&run=" + run_id + "&limit=50"
+        base_url + "/api/strategy/runs?id=" + sid + "&run=" + run_id + "&all=1&limit=50"
     )
     assert run_id in [item["runId"] for item in runs_by_run["items"]]
 
