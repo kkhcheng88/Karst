@@ -14,7 +14,7 @@ import math
 import sqlite3
 import threading
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 import pandas as pd
 
@@ -130,6 +130,70 @@ def is_failed_run(
             return None
         values.append(value)
     return all(annual_return < value for value in values)
+
+
+# D-039/D-040:代表一套策略的那次運行——策略總覽每一行、策略詳情頁預設帶去看
+# 的那一次,必須是同一次,所以「揀哪一次」這個政策只住這一處,兩個呼叫方
+# (``api_overview.OverviewReader``、``api_strategy.overview``)共用,不各寫一份
+# (KARST-081 之前兩邊各自寫過一份,而且判準不一致:總覽那份有理現役設定但揀
+# 「最近一次」,策略詳情那份連現役設定都沒理,兩處都不是 D-039 講的「排名第一
+# (年化最高)」——這裡收成一份,兩邊都改叫它)。
+def pick_representative_run(
+    active: Any | None,
+    runs: list[Any],
+    perf: Callable[[Any], tuple[float | None, bool | None]],
+) -> tuple[Any | None, bool, bool]:
+    """代表這套策略的那次運行,連「是不是全部候選都失敗」那個判定。
+
+    政策(D-039):有現役設定(``active``,用戶指定紙上交易實際跟隨哪一組)就
+    優先在那一組裡面揀;組內沒有揀得中的(或者根本沒有現役設定)就在全部正式
+    運行裡面揀。**組內、組外同一條規矩:年化回報最高的非失敗運行**——「排名
+    第一」照的是 D-037 歷次運行表的預設排序(年化由高至低),不是「最近一次」。
+
+    全部候選都是失敗運行,或者連年化都算不出(序列讀不回,``perf`` 回
+    ``(None, None)``):退回那一組(有現役設定就是現役那組,否則全部)裡面
+    登記時間最新的一次,並回報 ``all_failed=True``——呼叫方據此把成績欄留空、
+    只顯示失敗計數(D-040),但這一行/這一次仍然照給,不是無運行可看。
+
+    ``perf`` 由呼叫方提供 ``(annual_return, is_failed)``:兩個呼叫方各自有
+    自己的取數與快取方式(讀 parquet、查基準年化),併的是**揀哪一次**這個
+    決定,不是算法本身——算法本來就分住兩處,勉強拉成一個函式反而要多傳一堆
+    呼叫方特有的狀態進來。
+    """
+    if not runs:
+        return None, False, False
+
+    matched: list[Any] = []
+    if active is not None:
+        matched = [
+            r
+            for r in runs
+            if r.param_set_id == active.param_set_id
+            and r.strategy_version_id == active.strategy_version_id
+        ]
+
+    def best(pool: list[Any]) -> Any | None:
+        winner, winner_annual = None, None
+        for record in pool:
+            annual, failed = perf(record)
+            if failed is False and annual is not None:
+                if winner_annual is None or annual > winner_annual:
+                    winner, winner_annual = record, annual
+        return winner
+
+    if matched:
+        candidate = best(matched)
+        if candidate is not None:
+            return candidate, True, False
+    candidate = best(runs)
+    if candidate is not None:
+        return candidate, False, False
+
+    # 全部候選不是失敗就是讀不回:退回登記時間最新那一次,一樣有東西可看,
+    # 並標明 all_failed——呼叫方憑這個決定要不要把成績欄留空。
+    pool = matched or runs
+    newest = max(pool, key=lambda r: r.created_at)
+    return newest, bool(matched), True
 
 
 def open_read_only_store(db_path: str | Path) -> DefinitionStore:

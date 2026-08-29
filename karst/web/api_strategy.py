@@ -61,7 +61,14 @@ from karst.store import FORMAL_RUN, SWEEP_RUN
 
 # D-034 的判準(失敗運行)、因子身份與版本鏈的形狀,一份正本住 karst.web.data,
 # 這裡照用,不另抄一套(KARST-080:factor_payload 原本這裡也有一份,現併走)。
-from karst.web.data import FAILURE_JUDGE_BENCHMARKS, factor_payload, is_failed_run
+# D-039「代表運行」的揀法(KARST-081)同一條規矩:與策略總覽共用
+# ``pick_representative_run``,不各寫一份。
+from karst.web.data import (
+    FAILURE_JUDGE_BENCHMARKS,
+    factor_payload,
+    is_failed_run,
+    pick_representative_run,
+)
 
 # 一頁歷次運行的預設條數。這張表自 KARST-054 起只列**正式運行**,四千個掃描格
 # 由庫身篩走(D-029),所以現實中一頁綽綽有餘。閘照舊留住:每一行的年化/回撤/
@@ -240,17 +247,29 @@ def _resolve(reader: Any, wanted: str | None, run_id: str | None) -> Any:
     return newest
 
 
-def _default_run_id(reader: Any, runs: list[Any]) -> str | None:
-    """D-034:門面預設帶去看的那一次運行——最近一次不是失敗運行的。
-
-    由新到舊逐次問,揀到第一次不是失敗的即止。全部都是失敗運行(真有這個
-    情況,例如目前庫內的趨勢波段)就退回最近一次——照樣有東西可看,
-    不留一個空白給用戶。
+def _run_perf(reader: Any, record: Any) -> tuple[float | None, bool | None]:
+    """該次運行的年化回報,連是不是失敗運行(D-034)——``pick_representative_run``
+    揀代表運行要用,不算三個顯示用的數字(那是 ``_row_metrics`` 的事)。
     """
-    for record in runs:
-        if not _run_failed(reader, record):
-            return record.run_id
-    return runs[0].run_id if runs else None
+    try:
+        equity = reader.runs.equity_curve(record.run_id)
+    except Exception:  # noqa: BLE001
+        return None, None
+    stats = window_stats(equity, None, None, base=BASE)
+    bench = _bench_annual_returns(reader, record.snapshot_id, stats.start, stats.end)
+    return stats.annual_return, is_failed_run(stats.annual_return, bench)
+
+
+def _default_run_id(reader: Any, active: Any | None, runs: list[Any]) -> str | None:
+    """D-039:門面預設帶去看的那一次運行——與策略總覽共用同一個挑選函數
+    (``karst.web.data.pick_representative_run``),不各寫一份。
+
+    有現役設定就優先在那一組裡面揀,組內／全庫都揀年化回報最高的非失敗運行。
+    全部都是失敗運行(真有這個情況,例如目前庫內的趨勢波段)就退回登記時間
+    最新那一次——照樣有東西可看,不留一個空白給用戶。
+    """
+    record, _, _ = pick_representative_run(active, runs, lambda r: _run_perf(reader, r))
+    return record.run_id if record is not None else None
 
 
 def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
@@ -296,10 +315,10 @@ def overview(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:
         "runTotal": len(runs),
         # 只有掃描格、未有正式運行的策略,頁面要講得出「幾多格、去哪裡看」
         "sweepCellTotal": _sweep_cells_of(reader, strategy.name),
-        # D-034:預設帶去看最近一次不是失敗運行的那一次——門面不首先看一個
-        # 已知跑輸大盤的結果。全部運行都失敗(真有這個情況,例如趨勢波段)
-        # 就退回最近一次,好過帶去一個空白。
-        "defaultRunId": _default_run_id(reader, runs),
+        # D-039:預設帶去看的那一次運行,與策略總覽同一個挑選函數——有現役
+        # 設定用現役,否則用年化回報最高的非失敗運行。全部運行都失敗(真有
+        # 這個情況,例如趨勢波段)就退回登記時間最新那一次,好過帶去一個空白。
+        "defaultRunId": _default_run_id(reader, active, runs),
         "versions": [
             {
                 "versionNo": item.version_no,
@@ -372,18 +391,6 @@ def _row_metrics(reader: Any, record: Any) -> dict[str, Any]:
         "tradingDays": stats.trading_days,
         "isFailed": bool(is_failed_run(stats.annual_return, bench)),
     }
-
-
-def _run_failed(reader: Any, record: Any) -> bool:
-    """該次運行是不是失敗運行(D-034),不另外算三項顯示用的數字。
-
-    ``overview()`` 揀預設運行要用:由新到舊逐次問,揀到第一次不是失敗的
-    即可,不必像 ``runs()`` 那樣把整張表的三個數都算出來。
-    """
-    equity = reader.runs.equity_curve(record.run_id)
-    stats = window_stats(equity, None, None, base=BASE)
-    bench = _bench_annual_returns(reader, record.snapshot_id, stats.start, stats.end)
-    return bool(is_failed_run(stats.annual_return, bench))
 
 
 def runs(reader: Any, query: dict[str, list[str]]) -> dict[str, Any]:

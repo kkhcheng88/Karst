@@ -4,11 +4,12 @@
    由 prototype/assets/app.js 移植。原型版本從 window.KARST(假數據檔)
    取數;本版一律經 fetch 向本機 REST 層取真實運行,頁內不留任何寫死數據。
 
-   與原型的差異只有三處,全部因為「這裡不再是原型」:
+   與原型的差異:
      1. 導航列不再掛原型斜紋條與「原型・假數據」徽章(design-system 3.15
         明文:兩者皆屬原型專用,正式版移除);
-     2. 頁尾不再宣告假數據,改為講真實數據期間與快照;
-     3. 導航列的頁連結只列已建成的畫面,不列尚未建成那幾頁的死連結。
+     2. 導航列的頁連結只列已建成的畫面,不列尚未建成那幾頁的死連結;
+     3. 頁尾整條說明列(數據期間、快照、圖表庫版本)拿走(D-039,KARST-081);
+        圖表庫的授權聲明改記在倉根 NOTICE。
    顏色與字級一律靠 static/style.css 的 token,本檔不寫任何色值——
    唯一例外是圖表庫要求以字面值傳入的那組(design-system 1.7 已登記在案)。
    ============================================================ */
@@ -170,22 +171,6 @@
 
     var act = document.getElementById('idchip-act');
     if (act && cfg.onAction) act.addEventListener('click', cfg.onAction);
-  }
-
-  function mountFoot(meta) {
-    var host = document.getElementById('foot-host');
-    if (!host) return;
-    meta = meta || {};
-    var period = (meta.periodFrom && meta.periodTo)
-      ? '數據期間 ' + esc(meta.periodFrom) + ' 至 ' + esc(meta.periodTo) + '　'
-      : '';
-    host.innerHTML =
-      '<div class="foot">' +
-        period +
-        (meta.snapshot ? '數據快照 ' + esc(meta.snapshot) + '　' : '') +
-        '數字全部由本機庫內一次真實回測運行讀出,無任何寫死數值。<br>' +
-        '圖表 TradingView Lightweight Charts v4.2.3(Apache-2.0,本地載入)' +
-      '</div>';
   }
 
   /* ---------------- 因子用的細行圖(0-100 固定刻度) ---------------- */
@@ -459,7 +444,7 @@
     fetchJSON: fetchJSON,
     pct: pct, pctPlain: pctPlain, pp: pp, num: num, fixed: fixed,
     money: money, moneyShort: moneyShort, cls: cls, esc: esc, truncate: truncate,
-    mountNav: mountNav, mountFoot: mountFoot, runChip: runChip, breadcrumb: breadcrumb,
+    mountNav: mountNav, runChip: runChip, breadcrumb: breadcrumb,
     factorSpark: factorSpark, heatColor: heatColor, heatTextColor: heatTextColor,
     makeChart: makeChart, chartOptions: chartOptions, zip: zip, timeToISO: timeToISO,
     sortableTable: sortableTable, initTabs: initTabs,

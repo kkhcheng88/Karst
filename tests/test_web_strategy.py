@@ -132,18 +132,27 @@ def test_五個元件全部由真實運行數據畫出(reader, base_url, overvie
         assert item["symbol"] in carried or item["weightPct"] == 0.0
 
     # 五、歷次運行:那三個數照 karst.metrics 算
+    # (D-040:失敗運行全部隱藏、不列——若這套策略的正式運行全部都是失敗運行,
+    # 表身照樣是空的,不是漏了東西沒畫出來;那種情況改驗 failedCount 對得上。)
     page = _get_json(base_url + "/api/strategy/runs?id=" + str(overview["strategy"]["id"]) + "&limit=3")
-    first = page["items"][0]
-    truth_equity = reader.runs.equity_curve(first["runId"])
-    truth = window_stats(truth_equity, None, None, base=BASE)
-    trades = trade_stats(reader.runs.orders(first["runId"]), truth_equity.index)
-    assert first["annualReturnPct"] == pytest.approx(truth.annual_return * 100.0)
-    assert first["maxDrawdownPct"] == pytest.approx(truth.max_drawdown * 100.0)
-    assert first["winRatePct"] == pytest.approx(trades.win_rate * 100.0)
+    if page["items"]:
+        first = page["items"][0]
+        truth_equity = reader.runs.equity_curve(first["runId"])
+        truth = window_stats(truth_equity, None, None, base=BASE)
+        trades = trade_stats(reader.runs.orders(first["runId"]), truth_equity.index)
+        assert first["annualReturnPct"] == pytest.approx(truth.annual_return * 100.0)
+        assert first["maxDrawdownPct"] == pytest.approx(truth.max_drawdown * 100.0)
+        assert first["winRatePct"] == pytest.approx(trades.win_rate * 100.0)
+    else:
+        assert page["failedCount"] == page["total"] > 0, (
+            "表身是空的,卻不是「正式運行全部失敗」那種情況——像是漏了東西沒畫出來"
+        )
 
-    # 六、頁內不准吊住假數據:五個元件的掛點在,數字一個都不寫死
+    # 六、頁內不准吊住假數據:四個元件的掛點在,數字一個都不寫死
+    # (因子敞口那一格已經按 D-037/KARST-080 搬去運行詳情頁,不再是這一頁的元件,
+    # 上面「四、因子分布」一段驗的是 API 本身的數,不是這一頁的畫面掛點。)
     page_html = (STATIC_ROOT / "strategy.html").read_text(encoding="utf-8")
-    for host in ("equity-chart", "picks-table", "funnel", "runs-body", "factor-expo"):
+    for host in ("equity-chart", "picks-table", "funnel", "runs-body"):
         assert 'id="' + host + '"' in page_html, host
     script = _strip_comments((STATIC_ROOT / "strategy.js").read_text(encoding="utf-8"))
     assert "window.KARST" not in script and "KARST." not in script

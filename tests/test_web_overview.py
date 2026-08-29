@@ -16,7 +16,6 @@ from pathlib import Path
 import pytest
 
 from karst.metrics import run_metrics
-from karst.runs import BASE, window_stats
 from karst.store import FORMAL_RUN, SWEEP_RUN
 from karst.web.api_overview import PAGES, STRATEGY_TYPE_NAMES, _page
 from karst.web.data import build_reader
@@ -100,6 +99,11 @@ def test_開本機網址即見策略總覽而每行來自庫內真實策略(base
         assert row["metrics"]["vsBenchPp"] == pytest.approx(
             metrics.benchmarks["QQQ"].excess_total_return * 100
         )
+        # D-039:總覽表新增的 Sortino 一欄,同 karst.metrics 獨立算一次的結果對得上
+        if metrics.sortino is None:
+            assert row["metrics"]["sortinoRatio"] is None
+        else:
+            assert row["metrics"]["sortinoRatio"] == pytest.approx(metrics.sortino)
         # 該行報的那次運行,確實是這套策略庫內的其中一次,而且不是掃描格
         record = reader.store.get_run(row["runId"])
         assert record.strategy_name == row["name"]
@@ -187,8 +191,12 @@ def test_全部正式運行失敗的策略仍列一行只留失敗計數(overvie
         assert row["runId"]
 
 
-def test_類型篩選與搜尋可用且側欄有明細與真實淨值小走勢(base_url, reader, overview):
-    """驗收二:類型篩選、名稱搜尋照原型可用;側欄明細連小走勢圖畫真實淨值。"""
+def test_類型篩選與搜尋可用且側欄有明細(base_url, reader, overview):
+    """驗收二:類型篩選、名稱搜尋照原型可用;側欄明細有成績卡。
+
+    (D-039/KARST-081:迷你走勢欄與其資料整個拿走,這裡不再驗小走勢,
+    改驗那批資料真的沒有再送到前端。)
+    """
     page = (STATIC_ROOT / "overview.html").read_text(encoding="utf-8")
     script = (STATIC_ROOT / "overview.js").read_text(encoding="utf-8")
 
@@ -197,30 +205,22 @@ def test_類型篩選與搜尋可用且側欄有明細與真實淨值小走勢(b
     assert 'id="detail"' in page, "右邊的明細側欄不在"
     assert "picked[s.type]" in script, "類型篩選沒有接上"
     assert "s.name.toLowerCase().indexOf(q)" in script, "名稱搜尋沒有接上"
-    assert "function sparkline" in script and "renderDetail" in script
+    assert "renderDetail" in script
+
+    # D-039:迷你走勢連同它的資料一併拿走——畫線的函式不應該再留在腳本裡,
+    # 回應裡逐行都不應該再帶 equity/benchEquity 這兩個陣列。
+    assert "function sparkline" not in script
+    for row in overview["strategies"]:
+        assert "equity" not in row and "benchEquity" not in row
 
     # 篩選要有得篩:每一行的類型都是庫認得那八類之一,而且中文名對得上
     for row in overview["strategies"]:
         assert row["type"] in STRATEGY_TYPE_NAMES
         assert row["typeName"] == STRATEGY_TYPE_NAMES[row["type"]]
 
-    # 小走勢畫的是真實淨值:同 RunStore 由 parquet 讀回那一條,頭尾對得上
-    scored = [s for s in overview["strategies"] if s["metrics"]]
-    for row in scored:
-        stats = window_stats(
-            reader.runs.equity_curve(row["runId"]), None, None, base=BASE
-        )
-        assert len(row["equity"]) >= 2
-        assert row["equity"][0] == pytest.approx(float(stats.equity.iloc[0]))
-        assert row["equity"][-1] == pytest.approx(float(stats.equity.iloc[-1]))
-        # 基準那條虛線同基期 100,而且逐點同策略線對齊(同一日對同一日)
-        if row["benchEquity"]:
-            assert len(row["benchEquity"]) == len(row["equity"])
-            assert row["benchEquity"][0] == pytest.approx(BASE)
 
-
-def test_載入中空錯誤三態齊全且導航列三頁連結齊全(base_url):
-    """驗收三:三態照設計系統做齊;導航列三頁(D-035),未建的連去佔位空狀態。"""
+def test_載入中空錯誤三態齊全且導航列兩頁連結齊全(base_url):
+    """驗收三:三態照設計系統做齊;導航列兩頁(D-036),未建的連去佔位空狀態。"""
     script = (STATIC_ROOT / "overview.js").read_text(encoding="utf-8")
 
     # 載入中:骨架列(design-system 3.15 第 8 條,早已定義、原型未接上)
@@ -233,12 +233,13 @@ def test_載入中空錯誤三態齊全且導航列三頁連結齊全(base_url):
     # 蓋不過的話錯誤態出現時骨架表仍然留在上面(實測見過)
     assert "style.display" in script
 
-    # 導航列三頁齊全(D-035:運行詳情不是頂層頁面,是策略詳情的鑽取層),
-    # 三條連結逐條開得到(未建那頁開出佔位空狀態)
+    # 導航列兩頁齊全(D-035:運行詳情不是頂層頁面,是策略詳情的鑽取層;
+    # D-036:參數掃描降為策略詳情的下鑽層,頂層只剩總覽同詳情兩頁),
+    # 兩條連結逐條開得到(未建那頁開出佔位空狀態)
     app_js = (STATIC_ROOT / "app.js").read_text(encoding="utf-8")
     hrefs = re.findall(r"\{\s*href:\s*'([^']+)'\s*,\s*label:\s*'([^']+)'\s*\}", app_js)
-    assert len(hrefs) == 3, f"導航列不是三頁:{hrefs}"
-    assert [label for _, label in hrefs] == ["策略總覽", "策略詳情", "參數掃描"]
+    assert len(hrefs) == 2, f"導航列不是兩頁:{hrefs}"
+    assert [label for _, label in hrefs] == ["策略總覽", "策略詳情"]
     for href, label in hrefs:
         body = _get(f"{base_url}{href}").decode("utf-8")
         assert "<html" in body.lower(), f"導航列的 {label} 開不出一頁"

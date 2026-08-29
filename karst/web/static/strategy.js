@@ -756,11 +756,6 @@
         });
         syncWindow();
         renderKpis(both[1].annualVolatilityPct);
-        KV.mountFoot({
-          snapshot: S.detail.run.snapshotId,
-          periodFrom: S.detail.run.periodStart,
-          periodTo: S.detail.run.periodEnd,
-        });
         drawChart();
         rememberUrl();
         return loadPicks();

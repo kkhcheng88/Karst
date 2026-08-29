@@ -26,8 +26,16 @@ from karst.store import FORMAL_RUN, rebalance_cadences
 
 # 數值的出口口徑(NaN／inf 當缺值、比率轉百分點、日期一律 ISO)只有一份,
 # 住在 karst.web.data;這裡照用,不另抄一套——兩套口徑遲早會各走各路。
-# D-034 的判準(失敗運行)同一個道理:一份正本住 karst.web.data,這裡照用。
-from karst.web.data import FAILURE_JUDGE_BENCHMARKS, _day, _f, _pct, is_failed_run
+# D-034 的判準(失敗運行)、D-039 的「代表運行」揀法同一個道理:一份正本住
+# karst.web.data,這裡照用,不另寫一份(KARST-081)。
+from karst.web.data import (
+    FAILURE_JUDGE_BENCHMARKS,
+    _day,
+    _f,
+    _pct,
+    is_failed_run,
+    pick_representative_run,
+)
 
 # 策略總覽八類。取值那一面是 schema.py 的 CHECK 約束(單一正本),中文名
 # 這一面照原型第十版 prototype/assets/data-ext.js 逐字搬過來。
@@ -41,10 +49,6 @@ STRATEGY_TYPE_NAMES: dict[str, str] = {
     "macro": "宏觀配置",
     "options": "期權策略",
 }
-
-# 迷你走勢只有 92px 闊,一千幾百點畫出來是同一條線,但 JSON 會脹幾十倍。
-# 均勻抽 120 點,頭尾兩點必取——線的起點與終點正是用戶在看那兩個數。
-SPARK_POINTS = 120
 
 # 表上「對基準」那一欄比的是它。QQQ 是原型定下的主基準,SPY 只在詳情卡列數。
 PRIMARY_BENCHMARK = "QQQ"
@@ -93,15 +97,6 @@ def _no_run_note(sweep_runs: int) -> str:
     return "這套策略未跑過任何一次運行。"
 
 
-def _sample_positions(total: int, count: int = SPARK_POINTS) -> list[int]:
-    """在 ``total`` 個點之中均勻抽 ``count`` 個位置,頭尾必取。"""
-    if total <= 0:
-        return []
-    if total <= count or count < 2:
-        return list(range(total))
-    return [round(i * (total - 1) / (count - 1)) for i in range(count)]
-
-
 class OverviewReader:
     """庫內全部策略,連同各自最新一次運行的成績。
 
@@ -112,9 +107,9 @@ class OverviewReader:
     def __init__(self, reader: Any) -> None:
         self._reader = reader
         self._cache: dict[str, Any] | None = None
-        self._bench_cache: dict[tuple[str, str, str, str], Any] = {}
-        # D-034 判「失敗運行」只用得著 SPY／QQQ 的年化回報,與 _bench_cache
-        # 存的主基準整條走勢線是兩件事,另開一格,鍵同一個形狀。
+        # D-034 判「失敗運行」只用得著 SPY／QQQ 的年化回報。KARST-081 之前這裡
+        # 另有一格存主基準整條走勢線(迷你走勢用),迷你走勢欄拿走之後那格
+        # 一併撤走,不留死快取。
         self._failure_bench_cache: dict[tuple[str, str, str, str], float | None] = {}
 
     def overview(self) -> dict[str, Any]:
@@ -213,60 +208,39 @@ class OverviewReader:
             out[ticker] = self._failure_bench_cache[key]
         return out
 
-    def _run_failed(self, record: Any) -> bool | None:
-        """該次運行是不是失敗運行(D-034)。
+    def _run_perf(self, record: Any) -> tuple[float | None, bool | None]:
+        """該次運行的年化回報,連是不是失敗運行(D-034)——``pick_representative_run``
+        揀代表運行要用。
 
         讀不回這次運行的序列(理論上不會發生——候選池已經篩走序列缺失運行,
-        這裡多一重保險,一次讀失敗不應該拖垮整頁)就回 ``None``:不當它是候選,
-        亦不當它已經判定——``_pick_run`` 遇到 ``None`` 會跳過,不會選中它。
+        這裡多一重保險,一次讀失敗不應該拖垮整頁)就回 ``(None, None)``:
+        不當它是候選,亦不當它已經判定。
         """
         try:
             equity = self._reader.runs.equity_curve(record.run_id)
         except Exception:  # noqa: BLE001
-            return None
+            return None, None
         stats = window_stats(equity, None, None, base=BASE)
         bench = self._bench_annual_returns(record.snapshot_id, stats.start, stats.end)
-        return is_failed_run(stats.annual_return, bench)
+        return stats.annual_return, is_failed_run(stats.annual_return, bench)
 
     def _pick_run(self, name: str, runs: list[Any]):
         """代表這套策略的那一次運行,連「是不是全部運行都失敗」那個判定。
 
-        有現役設定(用戶指定紙上交易跟隨哪一個參數集)就優先用它那一組——門面
-        數字不應該被一次參數掃描的最後一格頂走。組內／全庫都揀「最近一次不是
-        失敗運行的」(D-034):門面不首先擺一個已知跑輸大盤的結果。
-
-        回傳 ``(record, is_active, all_failed)``。``all_failed`` 只有一種情況
-        是真:這套策略**全部**正式運行都是失敗運行(D-040)——那一刻才會退回
-        用最近一次(失敗的)代表,呼叫方據此把成績欄留空、只講一句「N 條運行
-        全部失敗」,但那一行仍然照列,不隱藏(用戶原話:「if all are failed.
-        You can just leave a failed count. Then the strategy will be visible
-        as well」)。
+        揀法住在 ``karst.web.data.pick_representative_run``(D-039),與策略
+        詳情頁預設帶去看的那一次共用同一個函式,不各寫一份:有現役設定就優先
+        用它那一組,組內／全庫都揀年化回報最高的非失敗運行。回傳
+        ``(record, is_active, all_failed)``——``all_failed`` 只有一種情況是真:
+        這套策略**全部**正式運行都是失敗運行(D-040),那一刻仍然照列這一行,
+        只是成績欄留空、只講一句「N 條運行全部失敗」(用戶原話:「if all are
+        failed. You can just leave a failed count. Then the strategy will be
+        visible as well」)。
         """
-        if not runs:
-            return None, False, False
         try:
             active = self._reader.store.get_active_setup(name)
         except NotFound:
             active = None
-        matched: list[Any] = []
-        if active is not None:
-            matched = [
-                r
-                for r in runs
-                if r.param_set_id == active.param_set_id
-                and r.strategy_version_id == active.strategy_version_id
-            ]
-        for record in reversed(matched):
-            if self._run_failed(record) is False:
-                return record, True, False
-        for record in reversed(runs):
-            if self._run_failed(record) is False:
-                return record, False, False
-        # 全部正式運行不是失敗就是讀不回:退回原本那條規矩,一樣有一行可看,
-        # 並標明 all_failed——呼叫方憑這個判斷要不要把成績欄留空。
-        if matched:
-            return matched[-1], True, True
-        return runs[-1], False, True
+        return pick_representative_run(active, runs, self._run_perf)
 
     def _strategy_row(
         self, index: int, name: str, runs: list[Any], sweep_runs: int = 0
@@ -306,8 +280,6 @@ class OverviewReader:
             "failedRunCount": len(runs) if all_failed else 0,
             "metrics": None,
             "benchmarks": {},
-            "equity": [],
-            "benchEquity": [],
             "note": None if record is not None else _no_run_note(sweep_runs),
         }
         if record is None:
@@ -353,9 +325,6 @@ class OverviewReader:
 
     def _fill_results(self, row: dict[str, Any], record: Any) -> None:
         reader = self._reader
-        equity = reader.runs.equity_curve(record.run_id)
-        stats = window_stats(equity, None, None, base=BASE)
-        series = stats.equity
 
         metrics = run_metrics(
             reader.runs,
@@ -372,6 +341,10 @@ class OverviewReader:
         row["metrics"] = {
             "totalReturnPct": _pct(metrics.total_return),
             "annualReturnPct": _pct(metrics.annual_return),
+            # D-039:與策略詳情頁的歷次運行表(D-037)同一組成績欄,總覽表
+            # 這裡補回 Sortino,跟那邊四個成績欄(年化、Sortino、最大回撤、
+            # 勝率)對齊。
+            "sortinoRatio": _f(metrics.sortino),
             "maxDrawdownPct": _pct(metrics.max_drawdown),
             "winRatePct": _pct(metrics.win_rate),
             "profitLossRatio": _f(metrics.profit_loss_ratio),
@@ -389,40 +362,6 @@ class OverviewReader:
             }
             for ticker, cmp in metrics.benchmarks.items()
         }
-
-        positions = _sample_positions(len(series))
-        row["equity"] = [_f(series.iloc[i]) for i in positions]
-        row["benchEquity"] = self._bench_points(record, stats, series, positions)
-
-    def _bench_points(
-        self, record: Any, stats: Any, series: Any, positions: list[int]
-    ) -> list[float | None]:
-        """主基準在同一段、同一批日子上的線,與策略同基期 100。
-
-        基準走自己的交易日,所以先貼到策略那條時間軸上再抽點——兩條線的第 i
-        點必須是同一日,否則迷你圖上兩條線會對不上。
-        """
-        key = (record.snapshot_id, PRIMARY_BENCHMARK, stats.start, stats.end)
-        if key not in self._bench_cache:
-            try:
-                curve = benchmark_curve(
-                    self._reader.store,
-                    record.snapshot_id,
-                    PRIMARY_BENCHMARK,
-                    stats.start,
-                    stats.end,
-                    root=self._reader.snapshot_root,
-                    base=stats.base,
-                )
-                self._bench_cache[key] = curve.equity
-            except (NotFound, KeyError):
-                # 該快照的名單沒有這隻基準:那條虛線就不畫,不補假數據
-                self._bench_cache[key] = None
-        curve_equity = self._bench_cache[key]
-        if curve_equity is None:
-            return []
-        aligned = curve_equity.reindex(series.index).ffill().bfill()
-        return [_f(aligned.iloc[i]) for i in positions]
 
 
 def register(

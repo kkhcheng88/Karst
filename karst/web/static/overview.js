@@ -23,7 +23,6 @@
     body: document.getElementById('grp-body'),
     table: document.getElementById('grp-table'),
     pageFoot: document.getElementById('page-foot'),
-    sparkLegend: document.getElementById('spark-legend'),
     detail: document.getElementById('detail'),
     lastrun: document.getElementById('lastrun'),
     main: document.getElementById('fit-main'),
@@ -44,56 +43,6 @@
   function ratio(v) {
     if (v === null || v === undefined || isNaN(v)) return '—';
     return KV.fixed(v, Math.abs(v) >= 100 ? 0 : 1);
-  }
-
-  /* ============================================================
-     迷你走勢(SVG)
-     ------------------------------------------------------------
-     由 prototype/assets/app.js 移植。只有這一頁用得著,所以住在本檔,
-     不加進共用的 app.js。
-     ============================================================ */
-  function sparkline(host, series, bench) {
-    if (!host) return;
-    if (!series || series.length < 2) {
-      /* 一點都畫不成一條線:留空,不畫一條假線出來 */
-      host.innerHTML = '';
-      return;
-    }
-    var W = 100, H = 100, pad = 4;
-    var all = (bench && bench.length) ? series.concat(bench) : series;
-    var min = Math.min.apply(null, all);
-    var max = Math.max.apply(null, all);
-    var span = (max - min) || 1;
-
-    function path(vals) {
-      var n = vals.length, d = '';
-      for (var i = 0; i < n; i++) {
-        var x = (i / (n - 1)) * W;
-        var y = H - pad - ((vals[i] - min) / span) * (H - pad * 2);
-        d += (i === 0 ? 'M' : 'L') + x.toFixed(2) + ' ' + y.toFixed(2);
-      }
-      return d;
-    }
-
-    var up = series[series.length - 1] >= series[0];
-    var color = up ? 'var(--up)' : 'var(--down)';
-    var fillId = 'sg' + Math.random().toString(36).slice(2, 8);
-    var areaD = path(series) + 'L' + W + ' ' + H + 'L0 ' + H + 'Z';
-
-    host.innerHTML =
-      '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true" focusable="false">' +
-        '<defs><linearGradient id="' + fillId + '" x1="0" y1="0" x2="0" y2="1">' +
-          '<stop offset="0%" stop-color="' + color + '" stop-opacity=".22"/>' +
-          '<stop offset="100%" stop-color="' + color + '" stop-opacity="0"/>' +
-        '</linearGradient></defs>' +
-        '<path d="' + areaD + '" fill="url(#' + fillId + ')"/>' +
-        ((bench && bench.length >= 2)
-          ? '<path d="' + path(bench) + '" fill="none" stroke="var(--bench-spy)" stroke-width="1" ' +
-            'stroke-dasharray="3 2.5" vector-effect="non-scaling-stroke" opacity=".85"/>'
-          : '') +
-        '<path d="' + path(series) + '" fill="none" stroke="' + color + '" stroke-width="1.6" ' +
-          'stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>' +
-      '</svg>';
   }
 
   /* ============================================================
@@ -118,8 +67,7 @@
       '<div class="dc-top"><div class="skeleton" style="width:52%;height:16px"></div></div>' +
       '<div class="dc-metrics">' +
         new Array(5).join('<div class="dc-m"><div class="skeleton" style="height:32px"></div></div>') +
-      '</div>' +
-      '<div class="dc-chart"><div class="skeleton" style="height:100%"></div></div>';
+      '</div>';
     el.lastrun.innerHTML = '';
     el.pageFoot.textContent = '載入中……';
     el.filterCount.textContent = '';
@@ -271,26 +219,22 @@
         '</div>' +
       '</div>' +
 
-      '<div>' +
-        '<div class="dc-chart" id="detail-spark"></div>' +
-        '<div class="bench-line" style="margin-top:var(--s-2)">' +
-          '<span><i style="background:' +
-            (m.totalReturnPct >= 0 ? 'var(--up)' : 'var(--down)') + '"></i>' +
-            KV.esc(s.name) + ' <b class="' + KV.cls(m.totalReturnPct) + '">' +
-            KV.pct(m.totalReturnPct) + '</b>・年化 <b>' + KV.pctPlain(m.annualReturnPct) + '</b></span>' +
-          '<span><i style="background:var(--bench-spy)"></i>' + KV.esc(data.primaryBenchmark) +
-            ' <b>' + KV.pct(qqq.totalReturnPct) + '</b>・年化 <b>' +
-            KV.pctPlain(qqq.annualReturnPct) + '</b></span>' +
-          (spy.totalReturnPct === undefined ? '' :
-            '<span title="圖上只畫了本策略與 ' + KV.esc(data.primaryBenchmark) + ' 兩條線">' +
-              '<i style="background:var(--bg-4)"></i>SPY <b>' + KV.pct(spy.totalReturnPct) +
-              '</b>・年化 <b>' + KV.pctPlain(spy.annualReturnPct) + '</b></span>') +
-        '</div>' +
+      /* D-039/KARST-081:迷你走勢連同它的數據一併拿走,這裡只留文字對比
+         (本策略／QQQ／SPY 的累計與年化),不再畫線。 */
+      '<div class="bench-line" style="margin-top:var(--s-3)">' +
+        '<span><i style="background:' +
+          (m.totalReturnPct >= 0 ? 'var(--up)' : 'var(--down)') + '"></i>' +
+          KV.esc(s.name) + ' <b class="' + KV.cls(m.totalReturnPct) + '">' +
+          KV.pct(m.totalReturnPct) + '</b>・年化 <b>' + KV.pctPlain(m.annualReturnPct) + '</b></span>' +
+        '<span><i style="background:var(--bench-spy)"></i>' + KV.esc(data.primaryBenchmark) +
+          ' <b>' + KV.pct(qqq.totalReturnPct) + '</b>・年化 <b>' +
+          KV.pctPlain(qqq.annualReturnPct) + '</b></span>' +
+        (spy.totalReturnPct === undefined ? '' :
+          '<span><i style="background:var(--bg-4)"></i>SPY <b>' + KV.pct(spy.totalReturnPct) +
+            '</b>・年化 <b>' + KV.pctPlain(spy.annualReturnPct) + '</b></span>') +
       '</div>' +
 
       '<a class="btn btn-primary dc-cta" href="' + strategyHref(s) + '">開啟策略頁 →</a>';
-
-    sparkline(document.getElementById('detail-spark'), s.equity, s.benchEquity);
 
     /* 運行編號同快照編號對用戶無用,收起;只留「幾時跑過、跑出幾多」 */
     el.lastrun.innerHTML =
@@ -307,6 +251,7 @@
     type: function (s) { return s.typeName; },
     vsBench: function (s) { return s.metrics ? s.metrics.vsBenchPp : null; },
     cagr: function (s) { return s.metrics ? s.metrics.annualReturnPct : null; },
+    sortino: function (s) { return s.metrics ? s.metrics.sortinoRatio : null; },
     maxDD: function (s) { return s.metrics ? s.metrics.maxDrawdownPct : null; },
     winRate: function (s) { return s.metrics ? s.metrics.winRatePct : null; },
   };
@@ -327,11 +272,8 @@
       return compare(a, b, GETTERS[sortKey]);
     });
 
-    var sparkJobs = [];
     var html = rows.map(function (s) {
       var m = s.metrics;
-      var sparkId = 'sp-' + s.id;
-      if (m) sparkJobs.push([sparkId, s]);
 
       return '<tr data-id="' + KV.esc(s.id) + '" tabindex="0" role="button" ' +
           'class="row-clickable' + (s.id === selectedId ? ' is-picked' : '') + '" ' +
@@ -349,12 +291,14 @@
         '</td>' +
         '<td class="num ' + (m ? KV.cls(m.annualReturnPct) : 'dim') + '">' +
           (m ? KV.pctPlain(m.annualReturnPct) : '—') + '</td>' +
+        '<td class="num">' + (m && m.sortinoRatio !== null && m.sortinoRatio !== undefined
+          ? KV.fixed(m.sortinoRatio, 2) : '<span class="dim">—</span>') + '</td>' +
         '<td class="num ' + (m ? 'down' : 'dim') + '">' +
           (m ? KV.pctPlain(m.maxDrawdownPct) : '—') + '</td>' +
         '<td class="num">' + (m
-          ? KV.pctPlain(m.winRatePct) + '<span class="dim"> ／ </span>' + ratio(m.profitLossRatio)
+          ? KV.pctPlain(m.winRatePct, 0) + '<div class="dim" style="font-size:11px">' +
+            m.closedTrades + ' 筆</div>'
           : '<span class="dim">—</span>') + '</td>' +
-        '<td><span class="row-spark" id="' + sparkId + '"></span></td>' +
         '<td><a class="row-go" href="' + strategyHref(s) + '" data-go="1" ' +
           'aria-label="開啟 ' + KV.esc(s.name) + ' 策略頁" title="開啟策略頁">→</a></td>' +
       '</tr>';
@@ -363,10 +307,6 @@
     el.body.innerHTML = html ||
       '<tr><td colspan="' + COLS + '" class="dim" style="text-align:center;padding:var(--s-6) 0">' +
       '沒有符合的策略。清一清類型或搜尋字。</td></tr>';
-
-    sparkJobs.forEach(function (j) {
-      sparkline(document.getElementById(j[0]), j[1].equity, j[1].benchEquity);
-    });
 
     /* 點行選中。箭嘴是快捷入口,點它直接開頁,不當作選中 */
     el.body.querySelectorAll('tr[data-id]').forEach(function (tr) {
@@ -453,11 +393,6 @@
       data = payload;
       var meta = payload.meta || {};
       KV.mountNav('/', { snapshot: meta.snapshot, asOf: meta.asOf });
-      KV.mountFoot({
-        snapshot: meta.snapshot,
-        periodFrom: meta.periodFrom,
-        periodTo: meta.periodTo,
-      });
 
       if (!payload.strategies.length) {
         showState('未有策略',
@@ -474,15 +409,12 @@
       payload.strategies.forEach(function (s) { byId[s.id] = s; });
 
       el.q.disabled = false;
-      el.sparkLegend.textContent =
-        '實線本策略、虛線 ' + payload.primaryBenchmark + ',同基期 100';
 
       mountChips();
       paintChips();
       paintHeads();
       renderTable();              /* 內部會預設選中第一行 */
     }).catch(function (err) {
-      KV.mountFoot({});
       showState('拿不到數據', '連不上本機服務,或者讀不到定義庫：' + err.message, true);
     });
   }

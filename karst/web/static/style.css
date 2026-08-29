@@ -769,19 +769,6 @@ th.sortable[aria-sort]:not([aria-sort="none"]) { color: var(--text-1); font-weig
 }
 
 /* ============================================================
-   頁尾
-   ============================================================ */
-.foot {
-  margin-top: var(--s-9);
-  padding: var(--s-5) var(--s-6);
-  color: var(--text-3);
-  font-size: var(--fs-xs);
-  line-height: 1.7;
-  background: var(--bg-1);
-  border-radius: var(--r-2);
-}
-
-/* ============================================================
    第二版加入的零件
    ------------------------------------------------------------
    置頂卡與分組表(總覽)、選股快照(策略頁)、
@@ -851,9 +838,6 @@ table.kt tbody tr.grp-row:hover td { background: transparent; }
 .grp-count { color: var(--text-3); font-size: var(--fs-xs); }
 .grp-note { color: var(--text-3); font-size: var(--fs-xs); margin-left: auto; }
 table.kt tbody tr[hidden] { display: none; }
-
-.row-spark { display: block; height: 22px; width: 100%; }
-.row-spark svg { display: block; width: 100%; height: 100%; }
 
 .strat-link { color: var(--text-1); }
 .strat-link:hover { color: var(--accent); }
@@ -1187,12 +1171,6 @@ body.fit h1 { font-size: var(--fs-lg); }
 body.fit .page-sub { font-size: var(--fs-xs); margin-top: 2px; }
 body.fit .breadcrumb { margin-bottom: 0; }
 body.fit .section { margin-top: 0; }
-body.fit .foot {
-  flex: none; margin-top: 0;
-  padding: var(--s-2) var(--s-4);
-  /* 不設高度上限,免得這一格自己長出捲軸;它由主體讓高度出來 */
-  font-size: 10px; line-height: 1.5;
-}
 /* 一屏之內表頭要更緊 */
 body.fit table.kt th, body.fit table.kt td { padding: 5px var(--s-3); }
 body.fit .kpi { padding: var(--s-2) var(--s-4); }
@@ -1400,8 +1378,6 @@ body.fit .md-detail .detail-sub { margin: var(--s-1) 0 var(--s-3); }
 .dc-v.sm { font-size: var(--fs-lg); }
 .dc-b { font-size: 10px; color: var(--text-3); line-height: 1.4; white-space: nowrap;
         overflow: hidden; text-overflow: ellipsis; }
-.dc-chart { position: relative; height: 132px; overflow: hidden; }
-.dc-chart svg { display: block; width: 100%; height: 100%; }
 .dc-cta { margin-top: auto; display: block; width: 100%; text-align: center; }
 
 /* ---- 最近運行三行 ---- */
@@ -1704,8 +1680,6 @@ body.sp .wrap { padding: var(--s-4) var(--s-5) var(--s-6); }
 body.sp .page-head { margin-bottom: var(--s-3); }
 body.sp h1 { font-size: var(--fs-lg); }
 body.sp .breadcrumb { margin-bottom: 0; }
-body.sp .foot { margin-top: var(--s-4); padding: var(--s-3) var(--s-4);
-                font-size: 10px; line-height: 1.5; }
 
 /* 區塊之間統一的節奏 */
 .sp-stack { display: flex; flex-direction: column; gap: var(--s-3); }

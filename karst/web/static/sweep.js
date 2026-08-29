@@ -346,7 +346,6 @@
     writeHash();
     showList();
     renderList();
-    KV.mountFoot({});
   }
 
   function toDetail(id, layer) {
@@ -477,12 +476,6 @@
       ver: data.label,
       snapshot: prov.snapshotId || period || '—',
       rows: rows,
-    });
-
-    KV.mountFoot({
-      snapshot: prov.snapshotId,
-      periodFrom: prov.period && prov.period[0],
-      periodTo: prov.period && prov.period[1],
     });
   }
 

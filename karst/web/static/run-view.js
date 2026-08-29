@@ -195,13 +195,6 @@
       renderMetrics(detail);
       renderTrades(detail);
       loadFactorTab(runId);
-      /* 頁尾要在畫圖之前掛好:貼屏頁的圖按「剩餘高度」量,頁尾遲一步掛上
-         就會把已經量好的圖擠出版面,底部時間軸看不見。 */
-      KV.mountFoot({
-        snapshot: detail.run.snapshotId,
-        periodFrom: detail.run.periodStart,
-        periodTo: detail.run.periodEnd,
-      });
       showEquity();
     }).catch(function (err) {
       if (state.seq !== token) return;
