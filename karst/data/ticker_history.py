@@ -69,6 +69,14 @@ VERDICT_MANUAL = "人手待辨"
 VERDICT_PLACEHOLDER = "佔位錨"
 """兩份來源都認不出這個代號當時屬誰,維持佔位錨(見 ``cik.placeholder_cik``)。"""
 
+VERDICT_IDENTIFIED = "人手辨明"
+"""``人手待辨`` / ``佔位錨`` 那一格經人手查證之後定了案,錨換上查實的 CIK。
+
+自動裁決那五格一字不改;這個判詞只出現在人手裁決過的列上,並且**必須**在
+``evidence`` 逐條寫明用了哪一份公開來源(SEC 名稱窗口、SEC 名稱→CIK 表、
+維基百科標普 500 成分變動表)。查不出的不落這個判詞——維持 ``人手待辨`` 與佔位錨,
+判不出就寫判不出(KARST-083)。"""
+
 ANCHOR_COLUMNS = (
     "ticker",
     "cik",
