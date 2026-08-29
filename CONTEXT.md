@@ -134,3 +134,7 @@
 | 序列缺失運行 | series-missing run | 登記完好、但逐日序列檔案已不在的運行;畫不出圖,不入正式運行清單與掃描清單。與「過時運行」(版本過時)無關(KARST-057)。 |
 | 宇宙名單登記 | universe registry | 唯一入口認得的實體名單;不在名單上的代號抓不到快照(KARST-057)。 |
 | 單一定義 | single definition | 每項定義(規則、名單、參數)全庫只有一個正本、無第二影像(2026-08-25 用戶明令「All database should have only 1 definition, no second image」)。 |
+| 絕對估值 | absolute valuation | 不參考別人出價,單憑公司本身的未來現金流或會計盈餘折算出「它值多少」的一族模型(DCF、股息折現、剩餘收益)。共通弱點:答案多由終值決定,而終值由假設決定(KARST-076)。 |
+| 相對估值 | relative valuation | 用倍數把一間公司與同業比較貴平的一族做法(市盈率、市帳率、EV/EBITDA)。每個倍數都隱含一個 DCF,故必須配對照變數使用——市盈率配增長與風險、市帳率配股東權益回報率(KARST-076)。 |
+| 學術錯價訊號 | academic mispricing signal | 由學術文獻證實能預測未來橫斷面回報的會計訊號(應計、資產增長、盈利意外一類);問的不是「值多少」而是「市場現在錯在哪、多久改正」(KARST-076)。 |
+| 財務質素評分 | financial quality score | 把多項財務指標合成一個「這盤生意好不好、會不會出事」的分數(Piotroski F 分、毛利率、Altman Z 分);定位是在便宜股之中剔走陷阱,不是單獨選股(KARST-076)。 |
