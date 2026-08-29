@@ -811,3 +811,24 @@
   > you need to have ranking on the run for 年化, Sortino, 最大回撤, 勝率?? / 快照, 參數 is not needed. And I think 因子分布 is actually thhe Stock 分布 but not 因子??? This can be paired up with the 歷次運行 / 因子分布 for the Stock can should the 累計報酬 of the Stock in the run as well
 
 - 影響：策略頁運行表與持股分布段重做、運行詳情頁加因子段(KARST-080,接 KARST-079);後端要有每次運行的持股彙總與每股累計報酬 API。
+
+## D-038 策略參數取值逐條策略在建置期與用戶對齊;現有「示例」參數集(如示例-KARST-028)只是通鏈用的示例值,未經用戶對齊,不視為現役設定
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-29
+
+- 出處：用戶 2026-08-29
+
+- 背景：用戶見策略頁列出示例-KARST-028 的參數清單,指出「most of these parameter you havn't aligned with me yet」並問是否 vectorbt 的結果;主 agent 說明 vectorbt 只是引擎、取值是代理揀的示例值,提出現在對齊或留到建置期兩個選項,用戶選「留到建置期」。
+
+- 決策：每條策略(波段 1–5、基本面 6–8)開工建置時,固定有一步與用戶對齊參數:哪幾個旋鈕、每個掃描範圍、代表格如何揀;對齊結果落在該策略的建置票。趨勢波段現有示例值(突破回望 59 日、單筆風險 2%、月度熔斷 6%、賠率門檻 1.5、單一持倉上限 25% 等)留到建置期才對齊,現在不另開對齊票。示例參數集不是現役設定,畫面與紀錄須能分辨。
+
+- 考慮過的替代方案：現在開一張趨勢波段參數對齊討論票(未選)。
+
+- 為何選這個：用戶原話:「留到建置期」。
+
+- **用戶原話（原文照錄）**
+
+  > but most of these parameter you havn't aligned with me yet. And actually I think these are the result of vectorbt? / 留到建置期
+
+- 影響：日後每張策略建置票的工作內容必含「參數對齊」一節;示例運行的成績只證明鏈通,不代表策略優劣。
