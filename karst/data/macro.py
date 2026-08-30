@@ -6,6 +6,12 @@
 按同一套規矩(來源適配器 → 對齊主日曆 → 凍結成有編號的快照)入庫,好讓驅動器
 用價格以外的訊號決定四格怎樣分。
 
+**凍結不在本檔**(KARST-096)。本檔只做名冊、來源適配器、歸一化與讀回四件;
+對齊主日曆、齊全度核對、內容雜湊、等價重用、寫檔、簽章登記那一整條,住凍結模組
+``karst.data.freeze``,與價格線共用同一份正本。從前宏觀線自己有一套私家凍結,
+於是同一條規矩要改兩處而改漏一處沒有人會發現——兩邊都跑得通,只是凍出來的東西
+不一樣。
+
 # 一、非可投資序列的處置(本檔最要緊的一條)
 
 宏觀序列**不是可投資對象**。單一定義庫的 ``entity`` 表只收得三種實體
@@ -71,44 +77,41 @@ VIX_3M 改由 Cboe 直取;VIX 一併改是為了兩條同源——期限結構�
 
 from __future__ import annotations
 
-import hashlib
 import json
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Protocol, runtime_checkable
-from uuid import uuid4
 
 import numpy as np
 import pandas as pd
 
-from ..batches import content_hash
 from ..errors import ContractViolation
 from ..models import as_date
 from ..store import DefinitionStore
-from .calendar import BAR_ACTUAL, BAR_FILLED, BAR_MISSING, FFILL_LIMIT
 from .errors import DataFetchFailed, SnapshotBroken
-from .manifest import canonical_json
-from .normalise import (
-    EQUIVALENCE_POLICY_ID,
-    EQUIVALENCE_RTOL,
-    NORMALISATION_POLICY_ID,
-    PRICE_SIGNIFICANT_DIGITS,
-    round_significant,
+from .freeze import (
+    CALENDAR_FILE,
+    DEFAULT_MACRO_ROOT,
+    MANIFEST_FILE,
+    README_FILE,
+    REGISTRY_FILE,
+    SERIES_COLUMNS,
+    SERIES_FILE,
+    CompletenessAlert,
+    CompletenessThresholds,
+    MacroFreezePlan,
+    canonical_macro,
+    freeze_snapshot,
+    macro_completeness,
+    macro_coverage,
+    macro_digest,
 )
+from .normalise import PRICE_SIGNIFICANT_DIGITS, round_significant
 
-# 單一快取根(D-026 第 5 條的同一個道理):宏觀快照只住這一處,與價格快照分家。
-DEFAULT_MACRO_ROOT = Path("data") / "macro_snapshots"
-
-SERIES_FILE = "series.parquet"
-CALENDAR_FILE = "calendar.parquet"
-REGISTRY_FILE = "registry.parquet"
-MANIFEST_FILE = "manifest.json"
-README_FILE = "說明.md"
-
-# 統一輸出:一列一條序列一日。``value_status`` 與價格的 ``bar_status`` 同義同值。
-SERIES_COLUMNS: tuple[str, ...] = ("date", "series", "value", "value_status")
+# 適配器交回來的形狀:一列一條序列一日,未對齊、未標身分。
+# 對齊之後那一張(多一欄 ``value_status``)是 ``freeze.SERIES_COLUMNS``。
 RAW_COLUMNS: tuple[str, ...] = ("date", "series", "value")
 
 MACRO_SOURCE_NAME = "yfinance-macro"
@@ -127,36 +130,6 @@ CBOE_HISTORY_URL = (
 #   第二層 —— **只作對照列於成績表,不作驅動器參數格**。
 TIER_DRIVER = "第一層"
 TIER_REFERENCE = "第二層"
-
-MACRO_INFORMED_POLICY = (
-    "知情時間:本快照全部序列一律**當日收市後可得**(D-021 第 3 條),與價格同一級。"
-    "驅動器在決策日看得見的最後一行就是決策日當日的收市讀數,成交在之後那一根 K 線"
-    "的開價。指數與息率序列沒有盤後修訂的問題;期貨結算價亦於收市後公布。"
-)
-
-NON_INVESTABLE_POLICY = (
-    "非可投資序列處置:本快照的序列**一律不是可投資對象**。它們不入 entity 表、"
-    "不佔實體編號、不入代號生效期映射表,亦不入價格快照的 prices.parquet——"
-    "所以永遠不會出現在價格面板裡,引擎的目標比重表以實體編號為欄,"
-    "**結構性地落不到注在它們身上**(不是靠自律)。本快照的主鍵是序列代號,不是實體編號。"
-    "HY_ETF(HYG)與 IG_ETF(LQD)背後雖是可投資 ETF,在此亦只作訊號來源,同樣不入實體表;"
-    "要真的持有它們,須另行寫入宇宙名單、走價格那一條管線。"
-)
-
-MACRO_HALT_POLICY = (
-    f"缺日處置:與價格同一條規矩(karst.data.calendar)。對齊主日曆時最多以前值填補 "
-    f"{FFILL_LIMIT} 個交易日,超過即留空(NaN),不外推、不內插、不當零。"
-    f"每一格自報身分(value_status:{BAR_ACTUAL} 真有讀數 / {BAR_FILLED} 前值填補 / "
-    f"{BAR_MISSING} 留空),所以「哪一格是填出來的」在數據上驗得到。"
-    "驅動器讀到留空即當回望期不夠,退回熱身期權重並記成「數據不足」。"
-)
-
-MACRO_NORMALISATION_POLICY = (
-    f"歸一化:凍結前每個讀數四捨五入到 {PRICE_SIGNIFICANT_DIGITS} 位有效數字,"
-    "與價格快照同一條規矩、同一個函式(D-028 第 1 條)。同樣配一層等價重用:"
-    f"同窗口、同序列、同規矩而讀數相對差不過 {EQUIVALENCE_RTOL:.0e} 的已凍結宏觀快照,"
-    "沿用原編號原檔案,不另存一份副本。"
-)
 
 
 # ----------------------------------------------------------------------
@@ -719,69 +692,11 @@ class StaticMacroSource:
 
 
 # ----------------------------------------------------------------------
-# 對齊主日曆與規範形態
+# 凍結前的歸一化與序列名冊
 # ----------------------------------------------------------------------
-
-
-def align_macro_to_calendar(
-    values: pd.DataFrame,
-    calendar: Sequence[str],
-    *,
-    ffill_limit: int = FFILL_LIMIT,
-) -> pd.DataFrame:
-    """把宏觀讀數對齊**價格快照那條主日曆**,並標明每一格的身分。
-
-    對齊到價格的主日曆(而不是各自為政)是刻意的:驅動器在同一個決策日既要看
-    四格 ETF 的收價,又要看宏觀讀數,兩邊的日子必須是同一批,否則「決策日」這
-    三個字在兩個表裡各指一日。宏觀序列自己的假期與美股不同(例如期貨多幾日),
-    對齊之後多出來的日子一律丟掉、缺的日子照停牌處置最多前值填補 ``ffill_limit``
-    個交易日。
-    """
-    days = pd.Index(sorted({str(day) for day in calendar}), name="date")
-    if days.empty:
-        raise ContractViolation("主日曆是空的,無法對齊")
-
-    blocks: list[pd.DataFrame] = []
-    for code, block in values.groupby("series", sort=True):
-        aligned_block = (
-            block.drop_duplicates(subset="date", keep="last")
-            .set_index("date")
-            .sort_index()
-            .reindex(days)
-        )
-        actual = aligned_block["value"].notna().to_numpy()
-        carried = aligned_block["value"].ffill(limit=ffill_limit)
-        filled = carried.notna().to_numpy() & ~actual
-        carried_values = carried.to_numpy(dtype="float64")
-        original = aligned_block["value"].to_numpy(dtype="float64")
-
-        out = pd.DataFrame(index=days)
-        out["series"] = str(code)
-        out["value"] = np.where(actual, original, np.where(filled, carried_values, np.nan))
-        out["value_status"] = np.where(
-            actual, BAR_ACTUAL, np.where(filled, BAR_FILLED, BAR_MISSING)
-        )
-        blocks.append(out.reset_index())
-
-    if not blocks:
-        return pd.DataFrame({column: pd.Series(dtype="object") for column in SERIES_COLUMNS})
-
-    frame = pd.concat(blocks, ignore_index=True)
-    return canonical_macro(frame)
-
-
-def canonical_macro(frame: pd.DataFrame) -> pd.DataFrame:
-    """宏觀長表的規範形態:欄序、型別、排序都寫死。
-
-    與 ``snapshots.canonical_prices`` 同一個用途——寫檔前與讀回後都過這一關,
-    內容雜湊才會與寫檔的雜項無關。
-    """
-    out = frame.loc[:, list(SERIES_COLUMNS)].copy()
-    out["date"] = out["date"].astype(str).astype("object")
-    out["series"] = out["series"].astype(str).astype("object")
-    out["value"] = out["value"].astype("float64")
-    out["value_status"] = out["value_status"].astype(str).astype("object")
-    return out.sort_values(["date", "series"]).reset_index(drop=True)
+#
+# 對齊主日曆、規範形態、內容雜湊、等價重用、寫檔、登記那六步都不在本檔——
+# 它們住凍結模組 ``karst.data.freeze``,價格線與宏觀線共用那一份正本(KARST-096)。
 
 
 def normalise_macro(frame: pd.DataFrame, *, digits: int = PRICE_SIGNIFICANT_DIGITS) -> pd.DataFrame:
@@ -814,583 +729,9 @@ def canonical_registry(series: Sequence[MacroSeries]) -> pd.DataFrame:
     return frame.sort_values("series").reset_index(drop=True)
 
 
-def macro_core(
-    *,
-    source: str,
-    window_start: str,
-    window_end: str,
-    calendar_ticker: str,
-    series_codes: Sequence[str],
-) -> dict[str, Any]:
-    """進內容雜湊的那一格:決定這批宏觀數據長什麼樣的每一項。抓取時間不在此列。"""
-    return {
-        "source": source,
-        "window_start": window_start,
-        "window_end": window_end,
-        "calendar_ticker": calendar_ticker,
-        "series": sorted(str(code) for code in series_codes),
-        "ffill_limit": FFILL_LIMIT,
-        "informed_at": "close",
-        "non_investable": True,
-        "price_significant_digits": PRICE_SIGNIFICANT_DIGITS,
-        "normalisation_policy_id": NORMALISATION_POLICY_ID,
-        "equivalence_policy_id": EQUIVALENCE_POLICY_ID,
-        "equivalence_rtol": EQUIVALENCE_RTOL,
-    }
-
-
-def macro_digest(
-    values: pd.DataFrame,
-    calendar: Sequence[str],
-    registry: pd.DataFrame,
-    core: dict[str, Any],
-) -> str:
-    """一個宏觀快照的內容雜湊:同樣的內容永遠同一串字。"""
-    digest = hashlib.sha256()
-    digest.update(content_hash(canonical_macro(values)).encode("utf-8"))
-    digest.update(b"|")
-    digest.update(content_hash(registry).encode("utf-8"))
-    digest.update(b"|")
-    digest.update("\n".join(str(day) for day in calendar).encode("utf-8"))
-    digest.update(b"|")
-    digest.update(canonical_json(core).encode("utf-8"))
-    return digest.hexdigest()
-
-
 # ----------------------------------------------------------------------
-# 說明檔
+# 凍結(交給凍結模組)與讀回
 # ----------------------------------------------------------------------
-
-
-MACRO_README_TEMPLATE = """# 宏觀數據快照 {snapshot_id}
-
-> 本檔由 `karst.data.macro` 產生,是宏觀快照的說明檔;快照一經凍結即不可改,
-> 要改就出新編號。**本快照的序列全部不是可投資對象**,詳見第三節。
-
-## 一、身分
-
-| 項目 | 內容 |
-|---|---|
-| 快照編號 | `{snapshot_id}` |
-| 快照種類 | 宏觀訊號序列(非可投資) |
-| 來源 | {source} |
-| 抓取時間(UTC) | {fetched_at} |
-| 快照日期 | {taken_on} |
-| 數據期間 | {window_start} ~ {window_end} |
-| 對齊的主日曆 | {calendar_ticker}(交易日 {trading_days} 日) |
-| 內容雜湊 | `{content_hash}` |
-| 讀數列數 | {rows} |
-| 序列數 | {series_count} |
-| 讀數精度 | {price_significant_digits} 位有效數字 |
-
-## 二、知情時間
-
-{informed_policy}
-
-## 三、非可投資序列處置
-
-{non_investable_policy}
-
-## 四、缺日處置
-
-{halt_policy}
-
-## 五、歸一化處置
-
-{normalisation_policy}
-
-## 六、序列名冊(連同快照一併凍結)
-
-{registry_table}
-
-## 七、逐條序列的齊全度
-
-下表逐條數清楚:真有讀數幾多日、前值填補幾多日、留空幾多日。**留空不是零**,
-驅動器讀到留空即當回望期不夠。
-
-{coverage_table}
-
-## 七之一、齊全度核對(對主日曆;KARST-061)
-
-{completeness_section}
-
-{notes_section}## 八、檔案
-
-| 檔案 | 內容 |
-|---|---|
-| `series.parquet` | 讀數長表:date、series、value、value_status |
-| `calendar.parquet` | 對齊用的主日曆交易日 |
-| `registry.parquet` | 序列名冊:代號、來源代號、來源、分層、族、名稱、單位、註記 |
-| `manifest.json` | 上表全部欄位的機讀版 |
-| `說明.md` | 本檔 |
-
-## 九、與價格快照的關係
-
-本快照**不取代亦不改動**任何價格快照。一次回測引用兩個編號:價格快照決定買賣
-什麼、宏觀快照決定怎樣分。兩者對齊同一條主日曆,所以「決策日」在兩邊指同一日。
-"""
-
-
-def render_macro_readme(
-    *,
-    snapshot_id: str,
-    source: str,
-    fetched_at: str,
-    taken_on: str,
-    window_start: str,
-    window_end: str,
-    calendar_ticker: str,
-    trading_days: int,
-    content_hash_value: str,
-    rows: int,
-    registry: pd.DataFrame,
-    coverage: pd.DataFrame,
-    completeness: pd.DataFrame,
-    alerts: Sequence[CompletenessAlert],
-    thresholds: CompletenessThresholds,
-    calendar_end: str,
-    notes: Sequence[str],
-) -> str:
-    """照唯一那份範本填出一個宏觀快照的說明檔。"""
-    registry_header = (
-        "| 序列代號 | 來源代號 | 來源 | 分層 | 族 | 名稱 | 單位 | 註記 |\n"
-        "|---|---|---|---|---|---|---|---|"
-    )
-    registry_lines = [
-        f"| `{row['series']}` | `{row['symbol']}` | `{row.get('source', '')}` |"
-        f" {row['tier']} | {row['family']} |"
-        f" {row['label']} | {row['unit']} | {row['note'] or '—'} |"
-        for row in registry.to_dict("records")
-    ]
-    coverage_header = "| 序列代號 | 真有讀數 | 前值填補 | 留空 | 首個讀數 | 最後讀數 |\n|---|---|---|---|---|---|"
-    coverage_lines = [
-        f"| `{row['series']}` | {row['actual']} | {row['filled']} | {row['missing']} |"
-        f" {row['first_actual'] or '—'} | {row['last_actual'] or '—'} |"
-        for row in coverage.to_dict("records")
-    ]
-    notes_section = ""
-    if notes:
-        notes_section = "## 七之二、註記\n\n" + "\n".join(f"- {note}" for note in notes) + "\n\n"
-    return MACRO_README_TEMPLATE.format(
-        snapshot_id=snapshot_id,
-        source=source,
-        fetched_at=fetched_at,
-        taken_on=taken_on,
-        window_start=window_start,
-        window_end=window_end,
-        calendar_ticker=calendar_ticker,
-        trading_days=trading_days,
-        content_hash=content_hash_value,
-        rows=rows,
-        series_count=len(registry),
-        price_significant_digits=PRICE_SIGNIFICANT_DIGITS,
-        informed_policy=MACRO_INFORMED_POLICY,
-        non_investable_policy=NON_INVESTABLE_POLICY,
-        halt_policy=MACRO_HALT_POLICY,
-        normalisation_policy=MACRO_NORMALISATION_POLICY,
-        registry_table="\n".join([registry_header, *registry_lines]),
-        coverage_table="\n".join([coverage_header, *coverage_lines]),
-        completeness_section=render_macro_completeness(
-            completeness, alerts, thresholds, calendar_end
-        ),
-        notes_section=notes_section,
-    )
-
-
-def render_macro_completeness(
-    completeness: pd.DataFrame,
-    alerts: Sequence[CompletenessAlert],
-    thresholds: CompletenessThresholds,
-    calendar_end: str,
-) -> str:
-    """說明檔第七之一節:逐條序列對主日曆的核對結果,連這次用的是哪一套門檻。
-
-    第七節那張表數的是「有幾多日」,這一節答的是「夠不夠新」——**尾段短過主日曆
-    即等於那條訊號已經停止講話**,而那件事在第七節的三個數字裡看不出來
-    (停更之後每一日都算「留空」,與中段有洞的序列長得一模一樣)。
-    """
-    header = (
-        "| 序列代號 | 尾段落後(交易日) | 最後真讀數 | 留空 | 留空比例 | 核對結果 |\n"
-        "|---|---|---|---|---|---|"
-    )
-    flagged = {alert.series: alert for alert in alerts}
-    lines = []
-    for row in completeness.to_dict("records"):
-        code = str(row["series"])
-        alert = flagged.get(code)
-        verdict = f"**超出門檻({alert.kind})**" if alert is not None else "合格"
-        lines.append(
-            f"| `{code}` | {int(row['stale_days'])} | {row['last_actual'] or '—'} |"
-            f" {int(row['missing'])} | {float(row['missing_ratio']):.2%} | {verdict} |"
-        )
-
-    if alerts:
-        verdict_lines = [
-            f"**{len(alerts)} 條序列超出門檻**({thresholds.describe()};"
-            f"主日曆尾日 {calendar_end}):",
-            "",
-            *(f"- {alert.message}" for alert in alerts),
-            "",
-            "尾段短過主日曆,即等於那條訊號由某一日起**已經停止講話**:對齊時尾段照停牌"
-            "處置留空,驅動器讀到留空即當「數據不足」退回熱身期權重——掃描照跑、報告照出、"
-            "成績表照畫,一個錯都不會報(假設 A-008 已於 2026-08-29 推翻)。",
-        ]
-    else:
-        verdict_lines = [
-            f"**{len(completeness)} 條序列全部合格**({thresholds.describe()};"
-            f"主日曆尾日 {calendar_end})。",
-        ]
-    return "\n".join([*verdict_lines, "", header, *lines])
-
-
-def macro_coverage(values: pd.DataFrame) -> pd.DataFrame:
-    """逐條序列數清楚:真有讀數 / 前值填補 / 留空各幾多日,首尾在哪一日。"""
-    rows: list[dict[str, Any]] = []
-    for code, block in values.groupby("series", sort=True):
-        status = block["value_status"]
-        actual_days = block.loc[status == BAR_ACTUAL, "date"]
-        rows.append(
-            {
-                "series": str(code),
-                "actual": int((status == BAR_ACTUAL).sum()),
-                "filled": int((status == BAR_FILLED).sum()),
-                "missing": int((status == BAR_MISSING).sum()),
-                "first_actual": str(actual_days.min()) if not actual_days.empty else "",
-                "last_actual": str(actual_days.max()) if not actual_days.empty else "",
-            }
-        )
-    return pd.DataFrame(
-        rows, columns=["series", "actual", "filled", "missing", "first_actual", "last_actual"]
-    )
-
-
-# ----------------------------------------------------------------------
-# 齊全度核對(KARST-061;源自假設 A-008)
-# ----------------------------------------------------------------------
-#
-# A-008 已經真的塌過一次:yfinance 的 ^VIX3M 自 2026-07-17 起靜靜地不再供新讀數,
-# 抓取**一個錯都沒有報**——適配器的失手處置只認「回空批次」與「一條讀數都沒有」
-# 兩種,而「由某一日起不再有新的」兩種都不是。對齊主日曆時尾段照停牌處置留空,
-# 驅動器讀到留空即當「數據不足」退回熱身期權重:掃描照跑、報告照出、成績表照畫,
-# 只是那個驅動器由某一日起實際上已經停止講話,而 28 個交易日無人察覺。
-#
-# 本節做的就是把「有沒有停止講話」由**要人去翻說明檔第七節**,改成**凍結那一刻
-# 就講出來**。核對兩件事,逐條序列各自算:
-#
-#   1. **尾段落後** —— 最後一個真讀數之後,主日曆上還剩幾多個交易日。這一格正是
-#      上面那件事會令它逐日長大的那一格;前值填補與留空都不算真讀數,所以填補
-#      那三日遮不住它。
-#   2. **留空比例** —— 整段窗口留空的日數佔主日曆幾多。停更以外的洞(中段斷續、
-#      某條序列的日曆與美股差太遠)由這一格接住。
-#
-# 兩個門檻**都是參數、都沒有預設值**(D-008 第 3 條)。理由不是懶得揀:「幾多日
-# 算停更」不是數據的性質,是用戶對這條訊號的容忍度——期貨轉倉那幾日、外匯假期
-# 那幾日,容忍度本來就與指數不同。程式代它揀一個數,等於把一個沒有人裁決過的
-# 判斷寫進了每一次凍結,而且下一個人不會知道那個數是誰揀的。
-
-ALERT_STALE_TAIL = "尾段落後"
-ALERT_MISSING_RATIO = "留空過多"
-
-COMPLETENESS_COLUMNS: tuple[str, ...] = (
-    "series",
-    "actual",
-    "filled",
-    "missing",
-    "missing_ratio",
-    "first_actual",
-    "last_actual",
-    "stale_days",
-)
-
-
-@dataclass(frozen=True, slots=True)
-class CompletenessThresholds:
-    """齊全度門檻:兩格,兩格都要明給,**一個預設值都沒有**。
-
-    ``max_stale_days``
-        尾段容許落後主日曆幾多個**交易日**。0 = 必須供到主日曆尾日。
-    ``max_missing_ratio``
-        整段窗口留空日數佔主日曆的比例上限,``0.01`` = 1%。0.0 = 一日都不准留空。
-    """
-
-    max_stale_days: int
-    max_missing_ratio: float
-
-    def __post_init__(self) -> None:
-        try:
-            days = int(self.max_stale_days)
-        except (TypeError, ValueError):
-            raise ContractViolation(
-                f"尾段落後門檻要是整數個交易日,收到 {self.max_stale_days!r}"
-            ) from None
-        if days < 0:
-            raise ContractViolation(f"尾段落後門檻不可為負,收到 {self.max_stale_days!r}")
-        try:
-            ratio = float(self.max_missing_ratio)
-        except (TypeError, ValueError):
-            raise ContractViolation(
-                f"留空比例門檻要是一個比例,收到 {self.max_missing_ratio!r}"
-            ) from None
-        if not 0.0 <= ratio <= 1.0:
-            raise ContractViolation(
-                f"留空比例門檻要在 0 與 1 之間(0.01 = 1%),收到 {self.max_missing_ratio!r}"
-            )
-        object.__setattr__(self, "max_stale_days", days)
-        object.__setattr__(self, "max_missing_ratio", ratio)
-
-    def describe(self) -> str:
-        """一句講得出這次用的是哪一套門檻——報告與警告都要印得出來。"""
-        return (
-            f"門檻:尾段落後不過 {self.max_stale_days} 個交易日、"
-            f"留空不過 {self.max_missing_ratio:.2%}"
-        )
-
-    def as_dict(self) -> dict[str, Any]:
-        return {
-            "max_stale_days": int(self.max_stale_days),
-            "max_missing_ratio": float(self.max_missing_ratio),
-        }
-
-
-@dataclass(frozen=True, slots=True)
-class CompletenessAlert:
-    """一條序列超出齊全度門檻的一筆警報。一條序列最多一筆,兩項都超就兩項都寫在裡面。"""
-
-    series: str
-    kind: str
-    stale_days: int
-    last_actual: str
-    missing: int
-    missing_ratio: float
-    calendar_end: str
-    message: str
-
-    def as_dict(self) -> dict[str, Any]:
-        return {
-            "series": self.series,
-            "kind": self.kind,
-            "stale_days": int(self.stale_days),
-            "last_actual": self.last_actual,
-            "missing": int(self.missing),
-            "missing_ratio": float(self.missing_ratio),
-            "calendar_end": self.calendar_end,
-            "message": self.message,
-        }
-
-
-def macro_completeness(coverage: pd.DataFrame, calendar: Sequence[str]) -> pd.DataFrame:
-    """逐條序列對主日曆核對:尾段落後幾多個交易日、留空佔幾多。
-
-    ``macro_coverage`` 只數清楚三種格各有幾多日;本表多的那兩格
-    (``stale_days``、``missing_ratio``)才是「這條序列有沒有靜靜停更」答得出來的
-    地方。本函式**不判合格與否**——判斷要門檻,而門檻是參數,見
-    ``audit_macro_completeness``。
-    """
-    days = tuple(sorted({str(day) for day in calendar}))
-    if not days:
-        raise ContractViolation("主日曆是空的,齊全度無從核對")
-    total = len(days)
-
-    rows: list[dict[str, Any]] = []
-    for row in coverage.to_dict("records"):
-        last_actual = str(row.get("last_actual") or "")
-        # 一個真讀數都沒有 = 由主日曆第一日起就在落後,不是「落後零日」
-        stale = sum(1 for day in days if day > last_actual) if last_actual else total
-        missing = int(row["missing"])
-        rows.append(
-            {
-                "series": str(row["series"]),
-                "actual": int(row["actual"]),
-                "filled": int(row["filled"]),
-                "missing": missing,
-                "missing_ratio": missing / total,
-                "first_actual": str(row.get("first_actual") or ""),
-                "last_actual": last_actual,
-                "stale_days": int(stale),
-            }
-        )
-    frame = pd.DataFrame(rows, columns=list(COMPLETENESS_COLUMNS))
-    return frame.sort_values("series").reset_index(drop=True)
-
-
-def audit_macro_completeness(
-    completeness: pd.DataFrame,
-    calendar: Sequence[str],
-    *,
-    thresholds: CompletenessThresholds,
-) -> tuple[CompletenessAlert, ...]:
-    """逐條核對門檻,超出的**一條一筆**講出來;齊全的一條都不報。
-
-    「不誤報」是本函式的合約之一:一條供到主日曆尾日、一日都沒有留空的序列,
-    在任何一套門檻下都不會出現在回傳的名單裡。報一堆狼來了,下一個人就會學會
-    不看警告——那樣這件事等於沒有做。
-    """
-    days = tuple(sorted({str(day) for day in calendar}))
-    if not days:
-        raise ContractViolation("主日曆是空的,齊全度無從核對")
-    calendar_end = days[-1]
-
-    alerts: list[CompletenessAlert] = []
-    for row in completeness.to_dict("records"):
-        code = str(row["series"])
-        stale = int(row["stale_days"])
-        missing = int(row["missing"])
-        ratio = float(row["missing_ratio"])
-        last_actual = str(row.get("last_actual") or "")
-
-        kinds: list[str] = []
-        reasons: list[str] = []
-        if stale > thresholds.max_stale_days:
-            kinds.append(ALERT_STALE_TAIL)
-            reasons.append(
-                f"最後一個真讀數在 {last_actual or '沒有'},"
-                f"比主日曆尾日 {calendar_end} 短 {stale} 個交易日"
-                f"(門檻 {thresholds.max_stale_days} 日)"
-            )
-        if ratio > thresholds.max_missing_ratio:
-            kinds.append(ALERT_MISSING_RATIO)
-            reasons.append(
-                f"留空 {missing} 日,佔主日曆 {ratio:.2%}"
-                f"(門檻 {thresholds.max_missing_ratio:.2%})"
-            )
-        if not kinds:
-            continue
-        alerts.append(
-            CompletenessAlert(
-                series=code,
-                kind="、".join(kinds),
-                stale_days=stale,
-                last_actual=last_actual,
-                missing=missing,
-                missing_ratio=ratio,
-                calendar_end=calendar_end,
-                message=f"{code}:" + ";".join(reasons),
-            )
-        )
-    return tuple(alerts)
-
-
-# ----------------------------------------------------------------------
-# 落地、等價重用與讀回
-# ----------------------------------------------------------------------
-
-
-def write_macro_dir(
-    root: str | Path,
-    snapshot_id: str,
-    *,
-    values: pd.DataFrame,
-    calendar: Sequence[str],
-    registry: pd.DataFrame,
-    manifest: dict[str, Any],
-    readme: str,
-) -> Path:
-    """原子寫入一個宏觀快照目錄(與價格快照同一個做法),回傳它的路徑。"""
-    root = Path(root)
-    root.mkdir(parents=True, exist_ok=True)
-    final = root / snapshot_id
-    if final.exists():
-        return final
-
-    staging = root / f".tmp-{snapshot_id}-{uuid4().hex[:8]}"
-    if staging.exists():  # pragma: no cover - uuid 撞名近乎不可能
-        import shutil
-
-        shutil.rmtree(staging)
-    staging.mkdir(parents=True)
-    try:
-        canonical_macro(values).to_parquet(staging / SERIES_FILE, engine="pyarrow", index=False)
-        pd.DataFrame({"date": [str(day) for day in calendar]}).to_parquet(
-            staging / CALENDAR_FILE, engine="pyarrow", index=False
-        )
-        registry.to_parquet(staging / REGISTRY_FILE, engine="pyarrow", index=False)
-        (staging / MANIFEST_FILE).write_text(
-            json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-            encoding="utf-8",
-        )
-        (staging / README_FILE).write_text(readme, encoding="utf-8")
-        try:
-            staging.replace(final)
-        except OSError:
-            if not final.exists():
-                raise
-    finally:
-        if staging.exists():
-            import shutil
-
-            shutil.rmtree(staging, ignore_errors=True)
-    return final
-
-
-def find_equivalent_macro_snapshot(
-    root: str | Path,
-    *,
-    core: dict[str, Any],
-    values: pd.DataFrame,
-    calendar: Sequence[str],
-    registry: pd.DataFrame,
-    rtol: float = EQUIVALENCE_RTOL,
-) -> tuple[Path, dict[str, Any]] | None:
-    """在快取根裡找一份與這批新數據等價的已凍結宏觀快照(D-028 第 2 條同一條規矩)。"""
-    root = Path(root)
-    if not root.is_dir():
-        return None
-
-    wanted_values = canonical_macro(values)
-    wanted_calendar = tuple(str(day) for day in calendar)
-    wanted_registry = content_hash(registry)
-
-    for directory in sorted(
-        entry for entry in root.iterdir() if entry.is_dir() and not entry.name.startswith(".")
-    ):
-        manifest_path = directory / MANIFEST_FILE
-        if not manifest_path.exists():
-            continue
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except (OSError, ValueError):
-            continue
-        if manifest.get("core") != core:
-            continue
-        if int(manifest.get("rows", -1)) != len(wanted_values):
-            continue
-        try:
-            frozen_calendar = tuple(
-                pd.read_parquet(directory / CALENDAR_FILE, engine="pyarrow")["date"].astype(str)
-            )
-            frozen_registry = pd.read_parquet(directory / REGISTRY_FILE, engine="pyarrow")
-            frozen_values = canonical_macro(
-                pd.read_parquet(directory / SERIES_FILE, engine="pyarrow")
-            )
-        except (OSError, ValueError, KeyError):
-            continue
-        if frozen_calendar != wanted_calendar:
-            continue
-        if content_hash(frozen_registry) != wanted_registry:
-            continue
-        if not _macro_values_equivalent(frozen_values, wanted_values, rtol=rtol):
-            continue
-        return directory, manifest
-    return None
-
-
-def _macro_values_equivalent(
-    left: pd.DataFrame, right: pd.DataFrame, *, rtol: float = EQUIVALENCE_RTOL
-) -> bool:
-    """形狀逐格相同、數值在相對容差內相同,才算同一批宏觀數據。"""
-    if len(left) != len(right):
-        return False
-    if not left["date"].equals(right["date"]):
-        return False
-    if not left["series"].equals(right["series"]):
-        return False
-    if not left["value_status"].equals(right["value_status"]):
-        return False
-    from .normalise import values_equivalent
-
-    return values_equivalent(
-        left["value"].to_numpy("float64"), right["value"].to_numpy("float64"), rtol=rtol
-    )
 
 
 @dataclass(frozen=True, slots=True)
@@ -1432,22 +773,21 @@ def build_macro_snapshot(
 ) -> MacroSnapshot:
     """跑完整條宏觀管線,回傳快照成果單。
 
-    五步,次序與價格那條管線一樣、少一步(**沒有解析實體那一步**——宏觀序列不是
-    實體,見本檔開頭第一節):
+    本檔只做頭兩步——**把外面那批數搬進來**;之後的全部交給凍結模組
+    (``karst.data.freeze``),與價格線用同一份正本(KARST-096):
 
       1. **抓** —— 適配器逐條向來源要日線讀數。抓不到即拋錯,不靜靜跳過。
       2. **歸一化** —— 取 7 位有效數字,行在對齊與填補之前(D-028 第 1 條)。
-      3. **對齊** —— 全部序列對齊**傳進來的那條主日曆**(即價格快照那一條),
-         缺日照停牌處置最多前值填補 3 個交易日。
-      4. **核對齊全度**(KARST-061)—— 逐條對主日曆核尾段與留空比例,超出門檻即
-         逐條列出。``thresholds`` 是**必給的參數**:沒有它就凍結不到快照,所以
-         「凍了一份沒有人核對過的宏觀快照」這件事在這裡表達不出來。
-      5. **凍結** —— 原子寫入 ``data/macro_snapshots/<編號>/``,經單一定義庫登記,
-         與價格快照同一套編號算法、同一張登記表,靠來源名分得開。
+      3. **對齊、核齊全度、凍結、登記** —— 全部住凍結模組。
+
+    比價格那條少一步(**沒有解析實體那一步**——宏觀序列不是實體,見本檔開頭第一節);
+    多的那一步是齊全度核對(KARST-061):逐條對主日曆核尾段與留空比例,超出門檻即
+    逐條列出。``thresholds`` 是**必給的參數**,沒有它就凍結不到快照,所以「凍了一份
+    沒有人核對過的宏觀快照」這件事在這裡表達不出來。
 
     **門檻不入內容雜湊。** 齊全度是由讀數與主日曆算出來的,門檻只決定「這樣算不算
     過關」;同一批讀數換一套門檻仍然是同一批讀數,所以換門檻**不會**換出一個新的
-    快照編號(``macro_core`` 一個字都沒有改)。核對結果落在說明檔與 manifest,
+    快照編號(``freeze.macro_core`` 一個字都沒有改)。核對結果落在說明檔與 manifest,
     不落在編號裡。
     """
     source = source or default_macro_source()
@@ -1459,7 +799,6 @@ def build_macro_snapshot(
 
     window_start, window_end = as_date(start, "start"), as_date(end, "end")
     fetched_at = datetime.now(timezone.utc)
-    notes: list[str] = []
 
     raw = source.fetch_daily_series(wanted, window_start, window_end)
     if raw.empty:
@@ -1467,162 +806,46 @@ def build_macro_snapshot(
             f"{source.name} 在 {window_start}~{window_end} 回了空批次,當抓取失敗處理"
         )
 
-    raw = normalise_macro(raw)
-    aligned = align_macro_to_calendar(raw, days)
-    coverage = macro_coverage(aligned)
-    completeness = macro_completeness(coverage, days)
-    alerts = audit_macro_completeness(completeness, days, thresholds=thresholds)
-
-    if alerts:
-        notes.append(
-            f"齊全度核對:{len(alerts)} 條序列超出門檻({thresholds.describe()})。"
-            "尾段短過主日曆即等於那條訊號已經停止講話,而掃描與報告一個錯都不會報"
-            "(假設 A-008)"
-        )
-        notes.extend(f"齊全度警報 {alert.message}" for alert in alerts)
-    else:
-        notes.append(
-            f"齊全度核對:{len(completeness)} 條序列全部合格({thresholds.describe()})"
-        )
-
-    for row in coverage.to_dict("records"):
-        if int(row["missing"]) > 0:
-            notes.append(
-                f"{row['series']} 在主日曆上有 {row['missing']} 日留空"
-                f"(真有讀數 {row['actual']} 日、前值填補 {row['filled']} 日;"
-                f"最後一個讀數在 {row['last_actual'] or '沒有'});"
-                "留空的日子驅動器會當「數據不足」退回熱身期權重,不當零"
-            )
-
-    registry = canonical_registry(wanted)
-    core = macro_core(
-        source=source.name,
-        window_start=window_start,
-        window_end=window_end,
-        calendar_ticker=str(calendar_ticker).strip().upper(),
-        series_codes=[item.code for item in wanted],
-    )
-    digest = macro_digest(aligned, days, registry, core)
-    day = as_date(taken_on, "taken_on") if taken_on is not None else fetched_at.date().isoformat()
-
-    existing = find_equivalent_macro_snapshot(
-        root, core=core, values=aligned, calendar=days, registry=registry
-    )
-    if existing is not None:
-        path, manifest = existing
-        snapshot_id = str(manifest["snapshot_id"])
-        digest = str(manifest["content_hash"])
-        day = str(manifest["taken_on"])
-        reused = True
-        notes.append(
-            f"這次抓取與已凍結的宏觀快照 {snapshot_id} 等價(全部讀數相對差不過 "
-            f"{EQUIVALENCE_RTOL:.0e}),沿用原編號與原檔案,不另存一份副本(D-028 第 2 條)"
-        )
-    else:
-        reused = False
-        snapshot_id = store.snapshot_id_for(day, digest)
-        manifest = {
-            "snapshot_id": snapshot_id,
-            "snapshot_kind": "macro",
-            "source": source.name,
-            "fetched_at": fetched_at.isoformat(timespec="seconds"),
-            "taken_on": day,
-            "window_start": window_start,
-            "window_end": window_end,
-            "calendar_ticker": core["calendar_ticker"],
-            "trading_days": len(days),
-            "rows": int(len(aligned)),
-            "series": [item.code for item in wanted],
-            "content_hash": digest,
-            "core": core,
-            "informed_policy": MACRO_INFORMED_POLICY,
-            "non_investable_policy": NON_INVESTABLE_POLICY,
-            "halt_policy": MACRO_HALT_POLICY,
-            "normalisation_policy": MACRO_NORMALISATION_POLICY,
-            "registry": registry.to_dict("records"),
-            "coverage": [
-                {key: (int(value) if key in {"actual", "filled", "missing"} else str(value))
-                 for key, value in row.items()}
-                for row in coverage.to_dict("records")
-            ],
-            # 齊全度核對(KARST-061):逐條的數、這次用的門檻、超出門檻的那幾條。
-            # 三樣一齊落在已凍結的快照裡,所以「當日核對過沒有、用的是哪一套門檻」
-            # 事後查得回,不必靠人記得。
-            "completeness_thresholds": thresholds.as_dict(),
-            "completeness": [
-                {
-                    key: (
-                        int(value)
-                        if key in {"actual", "filled", "missing", "stale_days"}
-                        else float(value)
-                        if key == "missing_ratio"
-                        else str(value)
-                    )
-                    for key, value in row.items()
-                }
-                for row in completeness.to_dict("records")
-            ],
-            "completeness_alerts": [alert.as_dict() for alert in alerts],
-            "notes": notes,
-        }
-        readme = render_macro_readme(
-            snapshot_id=snapshot_id,
+    frozen = freeze_snapshot(
+        store,
+        MacroFreezePlan(
             source=source.name,
-            fetched_at=manifest["fetched_at"],
-            taken_on=day,
+            fetched_at=fetched_at.isoformat(timespec="seconds"),
+            taken_on=(
+                as_date(taken_on, "taken_on")
+                if taken_on is not None
+                else fetched_at.date().isoformat()
+            ),
             window_start=window_start,
             window_end=window_end,
-            calendar_ticker=core["calendar_ticker"],
-            trading_days=len(days),
-            content_hash_value=digest,
-            rows=int(len(aligned)),
-            registry=registry,
-            coverage=coverage,
-            completeness=completeness,
-            alerts=alerts,
-            thresholds=thresholds,
-            calendar_end=days[-1],
-            notes=notes,
-        )
-        path = write_macro_dir(
-            root,
-            snapshot_id,
-            values=aligned,
+            calendar_ticker=str(calendar_ticker).strip().upper(),
             calendar=days,
-            registry=registry,
-            manifest=manifest,
-            readme=readme,
-        )
-
-    registered = store.register_snapshot(
-        source=source.name,
-        taken_on=day,
-        content_hash=digest,
-        path=path.as_posix(),
-        universe=[item.code for item in wanted],
+            values=normalise_macro(raw),
+            registry=canonical_registry(wanted),
+            series_codes=tuple(item.code for item in wanted),
+            thresholds=thresholds,
+            notes=(),
+            root=root,
+        ),
     )
-    if registered != snapshot_id:  # pragma: no cover - 兩邊同一條算法
-        raise ContractViolation(
-            f"宏觀快照編號對不上:管線算出 {snapshot_id},登記表回 {registered}"
-        )
 
     return MacroSnapshot(
-        snapshot_id=snapshot_id,
-        source=source.name,
-        fetched_at=str(manifest["fetched_at"]),
-        taken_on=day,
-        window_start=window_start,
-        window_end=window_end,
-        calendar_ticker=core["calendar_ticker"],
-        path=path.as_posix(),
-        content_hash=digest,
+        snapshot_id=frozen.snapshot_id,
+        source=frozen.source,
+        fetched_at=frozen.fetched_at,
+        taken_on=frozen.taken_on,
+        window_start=frozen.window_start,
+        window_end=frozen.window_end,
+        calendar_ticker=frozen.calendar_ticker,
+        path=frozen.path,
+        content_hash=frozen.content_hash,
         series=tuple(item.code for item in wanted),
-        trading_days=len(days),
-        rows=int(len(aligned)),
-        notes=tuple(notes),
-        reused=reused,
-        thresholds=thresholds,
-        alerts=alerts,
+        trading_days=frozen.trading_days,
+        rows=frozen.rows,
+        notes=frozen.notes,
+        reused=frozen.reused,
+        thresholds=frozen.detail.thresholds,
+        alerts=frozen.detail.alerts,
     )
 
 

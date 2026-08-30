@@ -29,11 +29,11 @@ from karst.data import (
     MacroSeries,
     default_macro_source,
 )
+from karst.data.freeze import render_macro_readme
 from karst.data.macro import (
     SERIES_BY_CODE,
     canonical_registry,
     parse_cboe_history,
-    render_macro_readme,
     series_of,
 )
 from karst.errors import ContractViolation

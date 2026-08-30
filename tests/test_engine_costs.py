@@ -39,7 +39,7 @@ from karst.engine import (
     TradingCosts,
     run_rule_strategy,
 )
-from karst.data.snapshots import write_snapshot_dir
+from karst.data.freeze import write_snapshot_dir
 from karst.engine.costed import CostedEngine
 from karst.engine.vectorbt_engine import VectorbtEngine
 from karst.errors import ContractViolation

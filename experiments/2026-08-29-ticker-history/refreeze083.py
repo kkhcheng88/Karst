@@ -26,9 +26,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT))
 
+from karst.data.freeze import alias_candidates  # noqa: E402
 from karst.data.snapshots import read_price_frame, read_universe  # noqa: E402
 from karst.data.ticker_history import (  # noqa: E402
-    AliasCandidate,
     anchors_for_range,
     distinct_ciks,
     read_anchor_table,
@@ -138,20 +138,14 @@ def main() -> int:
 
     # ---- 兩個代號錨到同一個實體:同一家公司的新舊代號各記一次,只可以留一個 ----
     #
-    # 規則**不住在這裡**(KARST-084)。本票原本在這一格寫過一份臨時規則,現已搬去
-    # 唯一入口的 `karst.data.ticker_history.resolve_alias_collisions`,凍結管線與這個
-    # 腳本同呼叫那一份,不留第二份。這裡只負責備料與落副產檔。
-    bars_count = frame.groupby("ticker").size()
+    # 規則**不住在這裡**(KARST-084),備料亦**不住在這裡**(KARST-096)。規則住
+    # `karst.data.ticker_history.resolve_alias_collisions`,備料住凍結模組的
+    # `karst.data.freeze.alias_candidates`;凍結管線與這個腳本同呼叫那兩份,不留第二份。
+    # 本腳本在這一格剩下的只有一件:把裁決結果落成 083 那兩份副產檔。
     verdicts = resolve_alias_collisions(
-        [
-            AliasCandidate(
-                ticker=anchor.ticker,
-                cik=anchor.cik,
-                valid_to=anchor.valid_to,
-                bar_count=int(bars_count.get(anchor.ticker, 0)),
-            )
-            for anchor in keep
-        ]
+        alias_candidates(
+            [(anchor.ticker, anchor.cik, anchor.valid_to) for anchor in keep], bars=frame
+        )
     )
     by_ticker = {anchor.ticker: anchor for anchor in keep}
     aliased = []

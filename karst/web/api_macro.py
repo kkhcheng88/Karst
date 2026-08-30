@@ -19,13 +19,12 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-from karst.data.macro import (
+from karst.data.freeze import (
     DEFAULT_MACRO_ROOT,
+    CompletenessThresholds,
     audit_macro_completeness,
-    read_macro_calendar,
-    read_macro_completeness,
 )
-from karst.data.macro import CompletenessThresholds
+from karst.data.macro import read_macro_calendar, read_macro_completeness
 from karst.errors import ContractViolation
 
 

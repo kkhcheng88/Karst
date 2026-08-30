@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from karst.data.snapshots import write_snapshot_dir
+from karst.data.freeze import write_snapshot_dir
 from karst.engine import PricePanel, TradingCosts
 from karst.engine.costed import CostedEngine
 from karst.executor import (

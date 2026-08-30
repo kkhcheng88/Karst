@@ -17,9 +17,9 @@ import pytest
 
 from karst import ContractViolation, DefinitionStore, FormulaProcedure, NotFound
 from karst.gateway import Gateway
-from karst.data.pipeline import UNIVERSE_COLUMNS
 from karst.data.calendar import BAR_ACTUAL, PANEL_COLUMNS
-from karst.data.snapshots import read_price_panel, write_snapshot_dir
+from karst.data.freeze import UNIVERSE_COLUMNS, write_snapshot_dir
+from karst.data.snapshots import read_price_panel
 from karst.metrics import (
     benchmark_curve,
     facade_metrics,
