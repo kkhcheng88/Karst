@@ -42,6 +42,9 @@ from ..errors import ContractViolation, DuplicateDefinition, NotFound
 from ..metrics import DEFAULT_BENCHMARK_TICKERS, RunMetrics, run_metrics
 from ..runs import RunStore
 from ..store import FORMAL_RUN, SWEEP_RUN, ParamSet, StrategyVersion
+from ..store import ALIGNED as _STORE_ALIGNED
+from ..store import ALIGNMENTS as _STORE_ALIGNMENTS
+from ..store import SAMPLE as _STORE_SAMPLE
 from .contract import (
     ENGINE_RULES,
     ENGINE_TARGETS,
@@ -61,12 +64,17 @@ from .contract import (
 
 # 參數集自報自己是哪一種(D-038)。**無預設值**:未經與用戶對齊的示例取值不得
 # 當作現役設定,而「它是哪一種」不是執行台猜得出的事。
-ALIGNED: Final[str] = "aligned"
-SAMPLE: Final[str] = "sample"
-ALIGNMENTS: Final[dict[str, str]] = {
-    ALIGNED: "已對齊",
-    SAMPLE: "示例",
-}
+#
+# 取值的正本住在 ``karst.store``(與運行來歷 FORMAL_RUN/SWEEP_RUN 同制:庫身的
+# CHECK 是最終正本,store 給程式一個名字用)。這裡只是轉引,不另寫一份——
+# KARST-094 把標記落庫之後,庫、入口、執行台三邊必須認同一套字。
+ALIGNED: Final[str] = _STORE_ALIGNED
+SAMPLE: Final[str] = _STORE_SAMPLE
+ALIGNMENTS: Final[dict[str, str]] = _STORE_ALIGNMENTS
+
+# 補記既有參數集時的依據句(KARST-094):KARST-090 之前登記的參數集從來沒有人
+# 申報過,而 D-038 已經講明它們未經與用戶對齊。
+SAMPLE_BASIS: Final[str] = "D-038:未經用戶對齊"
 
 
 @dataclass(frozen=True, slots=True)
@@ -257,6 +265,8 @@ class Executor:
         values: Mapping[str, Any],
         alignment: str,
         description: str | None = None,
+        alignment_basis: str | None = None,
+        aligned_on: str | None = None,
     ) -> Setup:
         """一次過登記因子、策略與參數集,回一個 ``Setup``。
 
@@ -266,7 +276,8 @@ class Executor:
         (同名同節奏同取值即沿用舊版)住在唯一入口,本層不另抄一份(KARST-046)。
 
         ``alignment`` 無預設值:一個參數集要講得出它是**已對齊**還是**示例**
-        (D-038)。執行台原樣記下,不替策略猜。
+        (D-038)。執行台原樣記下,不替策略猜;自 KARST-094 起同時經唯一入口寫入
+        對齊標記旁表,庫內查得到、``karst verify`` 核得到。
         """
         return register_setup(
             self._gateway,
@@ -277,6 +288,8 @@ class Executor:
             values=values,
             alignment=alignment,
             description=description,
+            alignment_basis=alignment_basis,
+            aligned_on=aligned_on,
         )
 
     # ------------------------------------------------------------------
@@ -1052,8 +1065,20 @@ def register_setup(
     values: Mapping[str, Any],
     alignment: str,
     description: str | None = None,
+    alignment_basis: str | None = None,
+    aligned_on: str | None = None,
 ) -> Setup:
-    """登記因子、策略、參數集,回一個 ``Setup``。**一切寫入經唯一入口。**"""
+    """登記因子、策略、參數集,回一個 ``Setup``。**一切寫入經唯一入口。**
+
+    自 KARST-094 起,``alignment`` 那個申報不再只掛在記憶體:登記完參數集即經唯一
+    入口把它寫入對齊標記旁表,逐列蓋簽章(D-038 要求「畫面與紀錄須能分辨」)。
+    標記走旁表、不進參數集內容,所以寫它一列,運行編號與既有簽章一位都不動。
+
+    ``alignment_basis`` 是對齊依據那一句。標為**示例**時可以不給——D-038 已經替
+    全部未對齊的取值講了那一句(見 ``SAMPLE_BASIS``),再要每個呼叫點抄一次只會
+    抄出十個講法。標為**已對齊**時一定要給,連同 ``aligned_on`` 對齊日期:講不出
+    依據哪一次對話、哪一日對的,就不算對齊過(D-038),當場拒收而不是填一個預設。
+    """
     snapshot = str(snapshot_id or "").strip()
     if not snapshot:
         raise ContractViolation("登記要註明數據快照編號,追溯不可留空(D-021 第 8 條)")
@@ -1080,6 +1105,20 @@ def register_setup(
         rebalance_cadence=cadence,
         values=texts,
         strategy_version_no=version.version_no,
+    )
+    # 申報落庫(KARST-094)。走旁表,不碰參數集內容:寫這一列,運行編號與既有簽章
+    # 一位都不動。同名同值的參數集沿用舊版時,重覆申報同一件事亦不會白加一列。
+    basis = str(alignment_basis or "").strip()
+    if key == ALIGNED and not basis:
+        raise ContractViolation(
+            "標為「已對齊」要講明對齊依據一句(alignment_basis):"
+            "講不出依據哪一次對話或哪張票,就不算與用戶對齊過(D-038)"
+        )
+    gateway.mark_param_set_alignment(
+        param_set.param_set_id,
+        mark=key,
+        basis=basis or SAMPLE_BASIS,
+        aligned_on=aligned_on,
     )
     return Setup(
         strategy=version,

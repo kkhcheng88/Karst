@@ -1,0 +1,168 @@
+{
+  "basis": "D-038:未經用戶對齊",
+  "writer": "KARST-094-backfill",
+  "param_sets": [
+    {
+      "param_set_id": 1,
+      "strategy": "因子混合(ETF 版)",
+      "param_set": "示例-四等分季度@1",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[1|1]"
+      ]
+    },
+    {
+      "param_set_id": 2,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@1",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[2|1]"
+      ]
+    },
+    {
+      "param_set_id": 4094,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@1",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[4094|1]"
+      ]
+    },
+    {
+      "param_set_id": 4095,
+      "strategy": "因子混合(ETF 版)",
+      "param_set": "示例-四等分季度@1",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[4095|1]"
+      ]
+    },
+    {
+      "param_set_id": 8286,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@2",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8286|1]"
+      ]
+    },
+    {
+      "param_set_id": 8289,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@3",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8289|1]"
+      ]
+    },
+    {
+      "param_set_id": 8290,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@4",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8290|1]"
+      ]
+    },
+    {
+      "param_set_id": 8291,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@5",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8291|1]"
+      ]
+    },
+    {
+      "param_set_id": 8292,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@6",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8292|1]"
+      ]
+    },
+    {
+      "param_set_id": 8323,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@7",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8323|1]"
+      ]
+    },
+    {
+      "param_set_id": 8324,
+      "strategy": "因子輪動(ETF 版)",
+      "param_set": "示例正式-KARST-070-來源mac-curve_trend@1",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8324|1]"
+      ]
+    },
+    {
+      "param_set_id": 8325,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@8",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8325|1]"
+      ]
+    },
+    {
+      "param_set_id": 8326,
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@9",
+      "already_declared": false,
+      "mark": "sample",
+      "seq_no": 1,
+      "recorded_at": "2026-08-30T05:10:04+00:00",
+      "signed": [
+        "param_set_alignment[8326|1]"
+      ]
+    }
+  ],
+  "dry_run": false,
+  "verify": [
+    "定義:清白(50826 列)",
+    "因子批次:清白(997 列)",
+    "快照:清白(22 列)"
+  ]
+}

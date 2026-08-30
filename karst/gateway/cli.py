@@ -37,7 +37,7 @@ from collections.abc import Sequence
 from typing import TextIO
 
 from ..errors import KarstError
-from ..store import REBALANCE_CADENCES, STRATEGY_TYPES, check_param_set
+from ..store import ALIGNMENTS, REBALANCE_CADENCES, STRATEGY_TYPES, check_param_set
 from .service import (
     SOURCE_KINDS,
     Gateway,
@@ -163,6 +163,22 @@ def build_parser() -> argparse.ArgumentParser:
     params_activate.add_argument("--set-version", dest="set_version", type=int, default=None,
                                  help="參數集版本號,留空即最新版")
     params_activate.add_argument("--note", default=None, help="一句講明為什麼換")
+    # 參數集對齊標記(D-038;KARST-094)。標記走旁表,不進參數集內容:改幾多次,
+    # 運行編號與既有簽章一位都不動。改標記是加一筆新申報,舊申報一字不變。
+    params_mark = params_commands.add_parser(
+        "mark-alignment",
+        help="申報某個參數集是「已對齊」還是「示例」(D-038),經唯一入口留簽章",
+    )
+    params_mark.add_argument("--strategy", required=True, help="策略名稱,可寫「名稱@版本號」")
+    params_mark.add_argument("--name", required=True, help="參數集名稱")
+    params_mark.add_argument("--set-version", dest="set_version", type=int, default=None,
+                             help="參數集版本號,留空即最新版")
+    params_mark.add_argument("--mark", required=True, choices=sorted(ALIGNMENTS),
+                             help="aligned=已對齊(與用戶逐格對過);sample=示例(通鏈用取值)")
+    params_mark.add_argument("--basis", required=True,
+                             help="對齊依據一句;這一句會落庫,日後查得回。無理由的標記等於沒有標記")
+    params_mark.add_argument("--aligned-on", dest="aligned_on", default=None,
+                             help="對齊日期(YYYY-MM-DD);標 aligned 時必給,標 sample 時不可給")
 
     risk = commands.add_parser("risk", help="共用風控層:三條規則的正本與策略引用")
     risk_commands = risk.add_subparsers(dest="subcommand", required=True)
@@ -559,11 +575,17 @@ def _print_strategy_version(version, out: TextIO) -> None:
     print(f"  落庫時間  {version.created_at}", file=out)
 
 
-def _print_param_set(param_set, out: TextIO) -> None:
+def _print_param_set(param_set, out: TextIO, alignment=None) -> None:
     cadence = f"{param_set.rebalance_cadence}({REBALANCE_CADENCES[param_set.rebalance_cadence]})"
     body = "、".join(f"{k}={v}" for k, v in param_set.values.items())
     print(f"  參數集    {param_set.name} 第 {param_set.version_no} 版;換倉節奏 {cadence}", file=out)
     print(f"            {body}", file=out)
+    # 對齊標記(D-038;KARST-094)。「未申報」與「申報過是示例」是兩回事:前者代表
+    # 這個參數集是標記落庫之前寫的,後者代表有人真的看過並判過。所以分開兩句講。
+    if alignment is None:
+        print("  對齊標記  未申報(對齊標記落庫之前登記的參數集)", file=out)
+    else:
+        print(f"  對齊標記  {alignment.label};依據:{alignment.basis}", file=out)
 
 
 def _params(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
@@ -597,6 +619,39 @@ def _params(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         print("  門面八個數字自此取這一個設定那次運行;舊指定一字不變,換過什麼查得回。", file=out)
         return EXIT_OK
 
+    if args.subcommand == "mark-alignment":
+        param_set = gateway.store.get_param_set(
+            name, args.name, strategy_version_no=version_no, set_version_no=args.set_version
+        )
+        alignment, receipt = gateway.mark_param_set_alignment(
+            param_set.param_set_id,
+            mark=args.mark,
+            basis=args.basis,
+            aligned_on=args.aligned_on,
+        )
+        print(
+            f"已申報參數集「{param_set.name}」第 {param_set.version_no} 版"
+            f"(param_set_id={alignment.param_set_id})的對齊標記",
+            file=out,
+        )
+        print(f"  標記      {alignment.label}", file=out)
+        print(f"  申報序號  第 {alignment.seq_no} 次申報(seq_no={alignment.seq_no})", file=out)
+        print(f"  依據      {alignment.basis}", file=out)
+        print(f"  落庫時間  {alignment.recorded_at}", file=out)
+        print(f"  寫入者    {receipt.writer}", file=out)
+        print(f"  已蓋簽章  {'、'.join(receipt.signed_rows)}", file=out)
+        if not alignment.is_aligned:
+            print(
+                "  示例取值不是現役設定:它的成績只證明鏈通,不代表策略優劣(D-038)。",
+                file=out,
+            )
+        print(
+            "  標記不進參數集內容,所以運行編號與既有簽章一位都沒有動;"
+            "改標記是加一筆新申報,舊申報一字不變。",
+            file=out,
+        )
+        return EXIT_OK
+
     if args.subcommand == "show":
         if args.name:
             sets = [gateway.store.get_param_set(name, args.name, strategy_version_no=version_no)]
@@ -604,8 +659,9 @@ def _params(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
             sets = gateway.store.list_param_sets(name, strategy_version_no=version_no)
         strategy = gateway.store.get_strategy_version(name, version_no)
         print(f"策略「{strategy.name}」第 {strategy.version_no} 版的參數集", file=out)
+        marks = gateway.store.param_set_alignments(one.param_set_id for one in sets)
         for param_set in sets:
-            _print_param_set(param_set, out)
+            _print_param_set(param_set, out, marks.get(param_set.param_set_id))
         return EXIT_OK
 
     param_set, receipt = gateway.register_param_set(

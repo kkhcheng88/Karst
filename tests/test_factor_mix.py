@@ -721,11 +721,14 @@ def test_reuse_does_not_overreach_and_the_public_signature_is_unchanged(gateway,
     assert monthly.version_no == 3
     assert monthly.rebalance_cadence == "monthly"
 
-    # 登記那道門的簽名:別的票 import 得住,而且**參數集要自報已對齊還是示例**
+    # 登記那道門的簽名:別的票 import 得住,而且**參數集要自報已對齊還是示例**。
+    # KARST-094 加了兩格:對齊依據一句與對齊日期,兩者都是標為「已對齊」時才要給
+    # (標為示例時 D-038 已經替全部未對齊的取值講了那一句),所以 alignment 那格
+    # 照舊無預設值,新加的兩格可以留空。
     signature = inspect.signature(register_setup)
     assert list(signature.parameters) == [
         "gateway", "contract", "strategy_name", "snapshot_id", "param_set_name",
-        "values", "alignment", "description",
+        "values", "alignment", "description", "alignment_basis", "aligned_on",
     ]
     assert signature.parameters["alignment"].default is inspect.Parameter.empty
     with pytest.raises(ContractViolation, match="示例"):
@@ -738,6 +741,41 @@ def test_reuse_does_not_overreach_and_the_public_signature_is_unchanged(gateway,
             values=_values(SAMPLE_WEIGHTS),
             alignment="",
         )
+
+
+def test_registering_writes_the_alignment_mark_into_the_store(toy):
+    """執行台登記參數集時,把那個申報寫入對齊標記旁表(D-038;KARST-094)。
+
+    以前 ``alignment`` 只掛在記憶體的 ``Setup`` 上,庫內查不到哪個參數集是示例。
+    """
+    store = toy["store"]
+    param_set_id = toy["param_set"].param_set_id
+
+    alignment = store.param_set_alignment(param_set_id)
+    assert alignment is not None
+    assert alignment.mark == SAMPLE
+    assert alignment.label == "示例"
+    assert alignment.aligned_on is None
+    assert alignment.basis  # 依據句不留空
+
+    # 那一列有唯一入口的簽章,全庫核對清白。
+    signed = {
+        (row["table_name"], row["row_key"])
+        for row in store.connection.execute(
+            "SELECT table_name, row_key FROM gateway_write"
+        )
+    }
+    assert ("param_set_alignment", f"{param_set_id}|1") in signed
+    assert toy["gateway"].verify() == []
+
+
+def test_registering_the_same_setup_twice_does_not_pile_up_marks(toy):
+    """同名同值即沿用舊參數集版本,標記亦不應該每登記一次多一列。"""
+    gateway = toy["gateway"]
+    _register_toy(gateway)
+    _register_toy(gateway)
+    history = gateway.store.param_set_alignment_history(toy["param_set"].param_set_id)
+    assert [one.seq_no for one in history] == [1]
 
 
 # ----------------------------------------------------------------------

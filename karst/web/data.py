@@ -292,6 +292,9 @@ class RunReader:
         # 現役設定記錄),不是連線亦不是游標,兩條執行緒同時填最多重做一次。
         self._universe_cache: dict[str, dict[int, dict[str, str]]] = {}
         self._active_cache: dict[str, Any] = {}
+        # 對齊標記逐個參數集查一次就夠(KARST-094):一頁動輒列幾十次運行,而同一個
+        # 參數集會出現好多次。None 亦要入快取——「未申報」是一個答案,不是查漏了。
+        self._alignment_cache: dict[int, Any] = {}
         self._snapshot_present_cache: dict[str, bool] = {}
 
     @property
@@ -360,6 +363,31 @@ class RunReader:
             and active.strategy_version_id == record.strategy_version_id
         )
 
+    def param_set_alignment(self, param_set_id: int):
+        """一個參數集的對齊標記(D-038;KARST-094);從未申報過就是 None——不猜。
+
+        回 None 而不是當它是示例:「未申報」代表這個參數集在標記落庫之前就登記了、
+        從來沒有人看過;「申報過是示例」代表有人真的判過。畫面把兩者混為一談,
+        就會令一個無人看過的參數集扮成已經查證過的示例。
+        """
+        key = int(param_set_id)
+        if key not in self._alignment_cache:
+            self._alignment_cache[key] = self.store.param_set_alignment(key)
+        return self._alignment_cache[key]
+
+    def _alignment_json(self, param_set_id: int) -> dict[str, Any] | None:
+        """對齊標記給畫面的形狀;未申報即 None,由畫面決定怎樣講。"""
+        alignment = self.param_set_alignment(param_set_id)
+        if alignment is None:
+            return None
+        return {
+            "mark": alignment.mark,
+            "label": alignment.label,
+            "alignedOn": alignment.aligned_on,
+            "basis": alignment.basis,
+            "isAligned": alignment.is_aligned,
+        }
+
     def _identity(self, record) -> dict[str, Any]:
         return {
             "runId": record.run_id,
@@ -377,6 +405,7 @@ class RunReader:
             "tradingDays": record.trading_days,
             "createdAt": record.created_at,
             "isActiveSetup": self._is_active_setup(record),
+            "paramSetAlignment": self._alignment_json(record.param_set_id),
         }
 
     def list_runs(self, limit: int | None = None) -> dict[str, Any]:

@@ -127,6 +127,18 @@ FORMAL_RUN: Final[str] = "formal"
 SWEEP_RUN: Final[str] = "sweep"
 RUN_ORIGINS: Final[tuple[str, ...]] = (FORMAL_RUN, SWEEP_RUN)
 
+# 參數集對齊標記的取值(D-038;KARST-094)。與運行來歷同制:取值那一面的正本是
+# schema.py 的 CHECK 約束,這裡只給程式一個名字用,執行台由這裡引,不另寫一份。
+#
+# **無預設值**:一個參數集要講得出自己是哪一種。未經與用戶對齊的示例取值不得當作
+# 現役設定,而「它是哪一種」不是程式猜得出的事——猜錯的方向永遠是把示例當真。
+ALIGNED: Final[str] = "aligned"
+SAMPLE: Final[str] = "sample"
+ALIGNMENTS: Final[dict[str, str]] = {
+    ALIGNED: "已對齊",
+    SAMPLE: "示例",
+}
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -252,6 +264,41 @@ class ActiveSetup:
     rebalance_cadence: str
     note: str | None
     designated_at: str
+
+
+@dataclass(frozen=True, slots=True)
+class ParamSetAlignment:
+    """參數集對齊標記(param set alignment mark):一次「這組取值算不算已對齊」的申報。
+
+    ``mark`` 只有兩種(D-038):``已對齊`` 是與用戶逐格對過、可以拿去做現役設定的
+    取值;``示例`` 是通鏈用的取值,成績只證明鏈通,不代表策略優劣。
+
+    ``seq_no`` 是這個參數集第幾次申報,由 1 起。**改標記 = 加一筆新申報**,舊申報
+    一字不變(與現役設定同制),所以「當日為什麼認為它是示例」永遠查得回。
+
+    ``aligned_on`` 只有已對齊那一種才有;示例從來沒有對齊過,日期一律留空。
+    ``basis`` 是對齊依據那一句——已對齊要講得出依據哪一次對話或哪張票,示例要講
+    得出為什麼仍是示例。兩者都不准留空:無理由的標記等於沒有標記。
+    """
+
+    param_set_id: int
+    seq_no: int
+    mark: str
+    aligned_on: str | None
+    basis: str
+    recorded_at: str
+
+    @property
+    def is_aligned(self) -> bool:
+        """這組取值可不可以拿去做現役設定(D-038)。示例取值一律不可以。"""
+        return self.mark == ALIGNED
+
+    @property
+    def label(self) -> str:
+        """畫面上的寫法:「示例」,或者「已對齊(2026-08-30)」。"""
+        if not self.is_aligned:
+            return ALIGNMENTS[self.mark]
+        return f"{ALIGNMENTS[self.mark]}({self.aligned_on})"
 
 
 @dataclass(frozen=True, slots=True)
@@ -2466,6 +2513,130 @@ class DefinitionStore:
         row = self._active_setup_row(strategy.strategy_id)
         assert row is not None  # 剛剛寫入,不會查不到
         return self._active_setup(strategy, param_set, row)
+
+    # ---- 參數集對齊標記(D-038;KARST-094)------------------------------
+
+    def mark_param_set_alignment(
+        self,
+        param_set_id: int,
+        *,
+        mark: str,
+        basis: str,
+        aligned_on: str | None = None,
+    ) -> ParamSetAlignment:
+        """申報一個參數集是「已對齊」還是「示例」,回傳這一次申報。
+
+        **追加式**:改標記 = 加一筆新申報,舊申報一字不變(與現役設定同制)。
+        重覆申報同一個標記、同一句依據、同一個日期即當同一件事,原封不動回上一筆,
+        不會白加一列——執行台每次登記參數集都會走這裡,同名同值的參數集沿用舊版時
+        不應該每跑一次就多一列。
+
+        標記本身不進參數集內容,所以這裡寫幾多列都好,運行編號一位不變(KARST-026)。
+        """
+        key = str(mark or "").strip()
+        if key not in ALIGNMENTS:
+            raise ContractViolation(
+                f"參數集要自報是「已對齊」還是「示例」({sorted(ALIGNMENTS)} 揀一個),"
+                f"收到 {mark!r};未經與用戶對齊的示例取值不得當作現役設定(D-038)"
+            )
+        note = str(basis or "").strip()
+        if not note:
+            raise ContractViolation(
+                "對齊標記要講明依據一句;無理由的標記等於沒有標記,"
+                "日後無人分得出它是查證過還是隨手填的(D-038)"
+            )
+        on_date = str(aligned_on or "").strip() or None
+        if key == ALIGNED and on_date is None:
+            raise ContractViolation(
+                "標為「已對齊」要講明對齊日期:對齊是一件在某一日發生過的事,"
+                "講不出哪一日的對齊不是對齊(D-038)"
+            )
+        if key == SAMPLE and on_date is not None:
+            raise ContractViolation(
+                f"「示例」不可以有對齊日期(收到 {aligned_on!r}):"
+                "示例從來沒有對齊過,給它一個日期就是造一件沒有發生過的事(D-038)"
+            )
+        # 參數集要真的存在才簽得到章——簽不到不存在的東西。
+        self._param_set_by_id(int(param_set_id))
+
+        current = self._param_set_alignment_row(int(param_set_id))
+        if current is not None and (
+            str(current["mark"]) == key
+            and str(current["basis"]) == note
+            and (current["aligned_on"] if current["aligned_on"] is None else str(current["aligned_on"]))
+            == on_date
+        ):
+            return self._param_set_alignment(current)
+
+        seq_no = 1 if current is None else int(current["seq_no"]) + 1
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO param_set_alignment (param_set_id, seq_no, mark,"
+                " aligned_on, basis, recorded_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (int(param_set_id), seq_no, key, on_date, note, _now()),
+            )
+        row = self._param_set_alignment_row(int(param_set_id))
+        assert row is not None  # 剛剛寫入,不會查不到
+        return self._param_set_alignment(row)
+
+    def param_set_alignment(self, param_set_id: int) -> ParamSetAlignment | None:
+        """這個參數集**現在**的對齊標記(seq_no 最大那一筆);從未申報過即 ``None``。
+
+        回 ``None`` 而不是當它是示例:「未申報」與「申報過是示例」是兩回事,前者
+        代表這個參數集是標記落庫之前寫的,後者代表有人真的看過並判過。畫面要分得出
+        這兩句話,否則一個從未有人看過的參數集會扮成已經查證過的示例。
+        """
+        row = self._param_set_alignment_row(int(param_set_id))
+        return None if row is None else self._param_set_alignment(row)
+
+    def param_set_alignments(
+        self, param_set_ids: Iterable[int]
+    ) -> dict[int, ParamSetAlignment]:
+        """一次過取一批參數集現在的標記,回 ``{param_set_id: 標記}``。
+
+        畫面一頁動輒列幾十個參數集,逐個查一次庫即是幾十次來回;取數層要的是這一個。
+        從未申報過的參數集**不在回傳的 dict 內**(與 ``param_set_alignment`` 同一
+        句話:未申報不等於示例)。
+        """
+        wanted = [int(one) for one in param_set_ids]
+        if not wanted:
+            return {}
+        marks: dict[int, ParamSetAlignment] = {}
+        # 逐個取「最大 seq_no 那一列」;參數集數目是頁面級(幾十),不值得為它砌
+        # 一句窗口函數 SQL,而且分批 IN 查詢反而要處理 SQLite 的變數上限。
+        for param_set_id in wanted:
+            row = self._param_set_alignment_row(param_set_id)
+            if row is not None:
+                marks[param_set_id] = self._param_set_alignment(row)
+        return marks
+
+    def param_set_alignment_history(self, param_set_id: int) -> list[ParamSetAlignment]:
+        """這個參數集歷次申報過的標記,由早到遲。改過什麼、幾時改、依據是什麼。"""
+        rows = self._conn.execute(
+            "SELECT param_set_id, seq_no, mark, aligned_on, basis, recorded_at"
+            " FROM param_set_alignment WHERE param_set_id = ? ORDER BY seq_no",
+            (int(param_set_id),),
+        ).fetchall()
+        return [self._param_set_alignment(row) for row in rows]
+
+    def _param_set_alignment_row(self, param_set_id: int) -> sqlite3.Row | None:
+        return self._conn.execute(
+            "SELECT param_set_id, seq_no, mark, aligned_on, basis, recorded_at"
+            " FROM param_set_alignment WHERE param_set_id = ?"
+            " ORDER BY seq_no DESC LIMIT 1",
+            (int(param_set_id),),
+        ).fetchone()
+
+    @staticmethod
+    def _param_set_alignment(row: sqlite3.Row) -> ParamSetAlignment:
+        return ParamSetAlignment(
+            param_set_id=int(row["param_set_id"]),
+            seq_no=int(row["seq_no"]),
+            mark=str(row["mark"]),
+            aligned_on=None if row["aligned_on"] is None else str(row["aligned_on"]),
+            basis=str(row["basis"]),
+            recorded_at=str(row["recorded_at"]),
+        )
 
     def get_active_setup(self, strategy_name: str) -> ActiveSetup:
         """這套策略當下的現役設定。從未指定過即拋錯——**不猜**。

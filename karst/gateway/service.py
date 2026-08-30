@@ -29,6 +29,7 @@ from ..store import (
     DefinitionStore,
     FactorVersion,
     ParamSet,
+    ParamSetAlignment,
     RiskRuleRecord,
     StrategyVersion,
 )
@@ -459,6 +460,42 @@ class Gateway:
         signed = self._sign_once(("active_setup", (setup.strategy_id, setup.seq_no)))
         return setup, self._receipt(
             "現役設定", setup.strategy_name, setup.seq_no, None, setup.designated_at, signed
+        )
+
+    def mark_param_set_alignment(
+        self,
+        param_set_id: int,
+        *,
+        mark: str,
+        basis: str,
+        aligned_on: str | None = None,
+    ) -> tuple[ParamSetAlignment, WriteReceipt]:
+        """申報一個參數集是「已對齊」還是「示例」,並為這一筆申報蓋簽章(D-038)。
+
+        標記決定一組取值可不可以當現役設定、它那次運行的成績算不算數,所以它與
+        指定現役設定同一道門:申報經這裡入庫、留寫入者簽章,``karst verify`` 核對
+        得到。有人繞過這道門把一組從未與用戶對齊的示例取值標成已對齊送上門面,
+        正正是 D-038 要防的那件事。
+
+        標記走旁表,**不進參數集內容**:運行編號由參數集內容雜湊而來(KARST-026),
+        寫這裡幾多列,既有運行的編號與簽章一位都不會動(假設 A-014)。
+
+        改標記 = 加一筆新申報;重覆申報同一件事回上一筆,不會白加一列,亦不會多蓋
+        一個簽章(``_sign_once``:那一列一經落庫即不可改,原簽章照舊有效)。
+        """
+        alignment = self._store.mark_param_set_alignment(
+            param_set_id, mark=mark, basis=basis, aligned_on=aligned_on
+        )
+        signed = self._sign_once(
+            ("param_set_alignment", (alignment.param_set_id, alignment.seq_no))
+        )
+        return alignment, self._receipt(
+            "參數集對齊標記",
+            f"param_set_id={alignment.param_set_id}",
+            alignment.seq_no,
+            None,
+            alignment.recorded_at,
+            signed,
         )
 
     def register_risk_rules(self) -> tuple[tuple[RiskRuleRecord, ...], tuple[str, ...]]:

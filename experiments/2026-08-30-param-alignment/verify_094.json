@@ -1,0 +1,21 @@
+{
+  "formal_run_rows_before": 13,
+  "formal_run_rows_after": 13,
+  "field_differences": [],
+  "retracted_runs": [
+    "run-47479e5b36fed94a"
+  ],
+  "counted_formal_runs": 12,
+  "signatures_before": 51832,
+  "signatures_after": 51845,
+  "signatures_removed": 0,
+  "signatures_added": 13,
+  "added_tables": [
+    "param_set_alignment"
+  ],
+  "schema_version_before": "14",
+  "schema_version_after": "16",
+  "alignment_rows": 13,
+  "problems": [],
+  "verdict": "全部逐格相同"
+}

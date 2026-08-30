@@ -39,6 +39,15 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
 13. ``backtest_run_retraction``    運行除名登記:哪一次運行不再算數、被誰除名、幾時、
                                    為什麼。只加不改不刪——除名是加一列,不是刪一列
                                    (KARST-093)
+14. ``sweep_batch``                批次登記:一次參數掃描收工寫的那一列——格數、達標格數、
+                                   三個中位數成績、判讀目標與門檻、最佳格與代表格、報告
+                                   落點與內容雜湊(D-042、CONTEXT.md「批次登記」;
+                                   KARST-091 加表時漏了這一行,KARST-094 補上)
+15. ``param_set_alignment``        參數集對齊標記:一個參數集是「已對齊」還是「示例」、
+                                   對齊日期、對齊依據一句。只加不改不刪——改標記是加一筆
+                                   新申報,不是改寫已發生的申報。走旁表而不是參數集多一格,
+                                   所以不進運行編號雜湊、不動既有簽章
+                                   (D-038、CONTEXT.md「參數集對齊標記」;KARST-094)
 """
 
 from __future__ import annotations
@@ -89,7 +98,15 @@ from typing import Any
 #        的中位數年化」排批次名次,即門面左半那四個數當時全部無憑無據。本表入治理清單,
 #        每列有唯一入口簽章。掃描編號不入運行編號(KARST-054),所以這是加一列:舊掃描
 #        可以事後補登記,既有運行一個位都不動。舊庫重開時 DDL 自動補建,既有登記一列不動。
-SCHEMA_VERSION = 15
+# 第 16 版加參數集對齊標記表 ``param_set_alignment``(D-038、KARST-094):按參數集編號記
+#        「已對齊／示例」、對齊日期、對齊依據一句,追加式不可刪,入治理清單逐列有簽章。
+#        D-038 要求「畫面與紀錄須能分辨」示例參數集與現役設定,而 KARST-090 只做到登記時
+#        強制申報,結果掛在記憶體裡、庫內查不到。標記走**旁表**而不是參數集多一格:當一格
+#        參數值會改動參數集內容、13 條正式運行連同編號一併改號(KARST-026);做成 param_set
+#        一條新欄會改動該表的 content_digest、8326 列既有簽章一次過作廢。旁表兩樣都不碰
+#        (假設 A-014,2026-08-30 查證成立)。舊庫重開時 DDL 自動補建,既有登記一列不動;
+#        新表開頭是空的,補記由唯一入口逐列簽章寫入,不由遷移直接塞。
+SCHEMA_VERSION = 16
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -737,6 +754,58 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_active_setup_no_delete
 BEFORE DELETE ON active_setup BEGIN
     SELECT RAISE(ABORT, '現役設定的指定不可刪,換過什麼要指得回');
+END;
+
+-- 參數集對齊標記(D-038、CONTEXT.md「參數集對齊標記」;KARST-094)。
+--
+-- D-038 講明:示例參數集只是通鏈用的取值,未經與用戶對齊,**不是現役設定**,而
+-- 「畫面與紀錄須能分辨」。KARST-090 把這句話做成登記時強制申報(``register_setup``
+-- 的 ``alignment`` 無預設值,漏填當場拒收),但結果只掛在記憶體的 ``Setup`` 上——
+-- 庫裡查不到哪個參數集是示例,日後看報告的人分不出。
+--
+-- 為什麼是**旁表**而不是參數集多一格:兩條路都撞牆。當一格參數值,參數集內容就變,
+-- 而運行編號正是由參數集內容雜湊而來(KARST-026),13 條正式運行會全部改號;做成
+-- ``param_set`` 一條新欄,該表的 ``content_digest`` 就變,8326 列既有寫入者簽章
+-- 一次過作廢,``karst verify`` 會全紅。主腦於 KARST-090 裁決:標記是一件**治理
+-- 資料**,不是策略身份的一部分,所以它不應該進入運行編號的雜湊(假設 A-014,
+-- 2026-08-30 查證成立)。旁表兩樣都不碰:運行編號一位不變、既有簽章一個不動。
+--
+-- **追加式,一列都不改不刪。** 改標記(示例查證過後對齊了,或者對齊依據推翻了)
+-- = 加一列新的 ``seq_no``,舊列一字不變——與 ``active_setup`` 同制。「這個參數集
+-- 現在的標記」= 該 ``param_set_id`` 之下 ``seq_no`` 最大那一列;歷次改過什麼、
+-- 由哪一刻起、依據是什麼,全部查得回。改寫已發生的申報等於把當日那個判斷抹走。
+--
+-- ``aligned_on``(對齊日期)只有已對齊那一種才有,示例一律留空:示例從來沒有對齊
+-- 過,給它一個日期就是憑空造一件沒有發生過的事。CHECK 把這句話寫死在庫身上。
+--
+-- 本表入治理清單(ledger.GOVERNED_TABLES),歸「定義」類——與 active_setup、
+-- backtest_run_retraction、sweep_batch 同級:四者都不是數據來源出了事(那是
+-- 「快照」),而是一句「畫面上這個數字算不算數、代表什麼」的定義級講法。沒有簽章
+-- 的對齊標記即是有人繞過唯一入口把一組未對齊的示例取值標成已對齊、送上門面充當
+-- 現役設定,而那正是 D-038 要防的那件事;verify 一掃就見到。
+CREATE TABLE IF NOT EXISTS param_set_alignment (
+    param_set_id INTEGER NOT NULL REFERENCES param_set(param_set_id),
+    seq_no       INTEGER NOT NULL,
+    mark         TEXT NOT NULL CHECK (mark IN ('aligned', 'sample')),
+    aligned_on   TEXT,
+    basis        TEXT NOT NULL CHECK (length(trim(basis)) > 0),
+    recorded_at  TEXT NOT NULL,
+    PRIMARY KEY (param_set_id, seq_no),
+    CHECK (seq_no > 0),
+    CHECK ((mark = 'aligned') = (aligned_on IS NOT NULL))
+);
+
+CREATE INDEX IF NOT EXISTS idx_param_set_alignment_set
+    ON param_set_alignment (param_set_id, seq_no);
+
+CREATE TRIGGER IF NOT EXISTS trg_param_set_alignment_no_update
+BEFORE UPDATE ON param_set_alignment BEGIN
+    SELECT RAISE(ABORT, '參數集對齊標記落庫後不可改;標記變了請加新一筆申報,不要改寫已發生的申報');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_param_set_alignment_no_delete
+BEFORE DELETE ON param_set_alignment BEGIN
+    SELECT RAISE(ABORT, '參數集對齊標記不可刪,追溯要指得回');
 END;
 
 -- ====================================================================
