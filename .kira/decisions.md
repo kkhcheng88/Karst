@@ -1458,3 +1458,28 @@
   > I think actually for these 錯殺 or 樽頸 as in a stock or a specific narrative. The evidence and the founding is every important. So actually every narrative of such is worth setting up like a project or a hypothesis + dairy and it is like a MD based or else. To make sure the logic within the scenarios is not missed and always validated. ... ok
 
 - 影響：錯殺與樽頸策略票必含論點記錄一節並照此形實作;論點記錄的庫表與唯一入口支援屬該實作票範圍;介面(論點記錄檢視)照 D-057 押後。
+
+## D-063 選股(含敘事)是唯一的策略形態;擇時從來不是策略,只是時機與訊號——否決 KARST-118 修訂版對「服侍選股,不是擇時」的重新解讀
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-31
+
+- 出處：用戶 2026-08-31 裁決,原話見 quote。回應 KARST-118 舉手:修訂版把 D-006 原句解讀為「排除單股擇時、組合層市況判斷升為第一層」,用戶指出這個框架本身錯了。
+
+- 背景：KARST-118 修訂 v1 規格時,把三層架構與「Karst 服侍選股,不是擇時」的表面衝突,調和為「市況擇時已是正式的第一層」。用戶否決這個寫法:擇時由頭到尾都不是策略,無所謂「升為一層策略」;策略一律是選股(含錯殺、樽頸一類敘事),擇時只是服侍策略的時機與訊號。
+
+- 決策：
+  1. 策略(strategy)一詞收窄:只有選股/選板塊(含敘事型:錯殺、樽頸)才是策略;alpha 來自揀對對象,不來自捉市場時機
+  2. 擇時(market timing)定性:時機與訊號,是服侍策略的治理層——市況層與防守階梯決定幾時可以入、幾時要退守,本身不是策略、不產生 alpha 主張
+  3. D-006 原句「Karst 服侍選股,不是擇時」照字面完全成立,不需重新解讀;三層架構與它無衝突——第一層(市況)是訊號開關,不是一條策略線
+  4. 規格 1.2 第 2 點按此改寫;「擇時線」一詞日後指訊號線(報信人一族),不指策略線
+
+- 考慮過的替代方案：維持修訂版解讀(市況擇時=正式第一層策略)—— 否決:把訊號層講成策略層,正是用戶怕新 agent 走歪的那種讀法
+
+- 為何選這個：分清「策略」與「訊號」是這個平台的骨:策略票量的是揀對幾多,訊號票量的是報信準繩度(D-049);兩者混為一談,防守階梯就會被誤建成一條擇時策略去追優化。
+
+- **用戶原話（原文照錄）**
+
+  > This is wrong, as I think our strategy is by stock selection (includig narratives), 擇時 is never our strategy of all, it is the timing or signal.
+
+- 影響：v1 規格 1.2 第 2 點改寫、0.6 補一句定性;詞彙表新增擇時詞條;KARST-118 舉手就此了結。
