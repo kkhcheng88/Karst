@@ -11,6 +11,7 @@ dependsOn: []
 claimedBy: KARST-109-signal-search
 epic: V1 建置
 deliverable: KARST-D02
+closed: 2026-08-30
 ---
 
 ## 工作內容
