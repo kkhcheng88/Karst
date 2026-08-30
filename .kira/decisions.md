@@ -1666,3 +1666,30 @@
   > I think it should be asset level risk off. Usually need to confirm with the Fund Flow as well but not just sector rotation
 
 - 影響：KARST-119 票面補一條裁決留言;規格 0.6 防守階梯第二級與 10.13 補寫雙腳正形;詞彙表新增資產層退守。
+
+## D-071 持倉三態狀態機定形:風險開+有及格訊號→揸揀中對象;風險開+無及格訊號或賠率唔吸引→揸 SPY(日常預設地板);資產層退守雙腳齊響→全撤 USD。SPY 由 D-069 認命方案擴展為風險開預設
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-31
+
+- 出處：用戶 2026-08-31 提出並問主 agent 意見,主 agent 認同並加一條收緊(切換判準要寫死);原話見 quote。
+
+- 背景：用戶把幾日裁決串成完整狀態機:板塊輪動的本質係市場仍在、錢由一處搬另一處(熱板塊獲利了結但敘事仍在),唔係 risk-off,所以唔觸發撤退;真正撤去現金係資產類別層面的退守(D-070 雙腳制);而市場風險開但自家訊號無一個及格/賠率唔吸引時,應該揸 SPY 而唔係坐現金。三次轉態的認錯成本啱啱好遞增(搬板塊最平→退 SPY 中價→全撤最貴),同 D-053 防守階梯排序一致。
+
+- 決策：
+  1. 持倉狀態機三態定形:一、風險開+有及格訊號→揸揀中的板塊/個股;二、風險開+無及格訊號或賠率唔吸引→揸 SPY;三、資產層退守(D-070 雙腳齊響)→全撤 USD
+  2. SPY 角色由 D-069 的「系統肥佬認命方案」擴展為「風險開之內的日常預設地板」——唔識揀就揸大市,現金只留畀資產層退守嗰格
+  3. 板塊輪動確認定性:風險開之內的資金搬倉(獲利了結、敘事仍在),唔係 risk-off,唔觸發任何撤退動作——與 D-070 分層一致
+  4. 「無及格訊號/賠率唔吸引」的切換判準必須白紙黑字寫死,唔准靠感覺(D-049/D-063 紀律:擇時係訊號,訊號要考試);具體數值留到板塊線建置票參數對齊(D-038)
+
+- 考慮過的替代方案：
+  1. 無及格訊號時坐現金等機會 —— 不揀:風險開之內坐現金會錯過大市慢升,認錯成本高過揸 SPY
+  2. 切換掣留人手判斷 —— 不揀:會變成憑感覺擇時的後門
+
+- 為何選這個：三態各有一個明確持倉,冇曖昧地帶;成本階梯遞增同防守階梯同構,成套制度一個邏輯講得晒。
+
+- **用戶原話（原文照錄）**
+
+  > so i think the whole idea of sector rotation means the market is still on going, it is only that the money moved from one thing to the other. It is usually profit take but not entire risk off. ... If the asset level wanted to risk off on stock, then we fall back to cash. Last question then when should we switch to SPY. I thinnk it is when no signal is good or the R&R is not attractive but the market is still risk on?
+
+- 影響：規格 0.6 補三態狀態機;詞彙表新增風險開預設;板塊線建置票必含「SPY 地板切換判準」一節;KARST-119 不受影響(佢量的是第三態嗰個掣)。
