@@ -1,0 +1,243 @@
+{
+  "runs": {
+    "run-f4c162e5aac34347": {
+      "strategy": "因子混合(ETF 版)",
+      "param_set": "示例-四等分季度@1",
+      "recomputed_run_id": "run-f4c162e5aac34347",
+      "identity_stable": true,
+      "series_intact": "讀不到:NotFound: 運行 run-f4c162e5aac34347 的 equity 序列不在 C:\\projects\\Karst\\data\\runs\\run-f4c162e5aac34347\\equity.parquet",
+      "metrics": "算不出:NotFound: 運行 run-f4c162e5aac34347 的 equity 序列不在 C:\\projects\\Karst\\data\\runs\\run-f4c162e5aac34347\\equity.parquet"
+    },
+    "run-728a01087531258f": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@1",
+      "recomputed_run_id": "run-728a01087531258f",
+      "identity_stable": true,
+      "series_intact": "讀不到:NotFound: 運行 run-728a01087531258f 的 equity 序列不在 C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\equity.parquet",
+      "metrics": "算不出:NotFound: 運行 run-728a01087531258f 的 equity 序列不在 C:\\projects\\Karst\\data\\runs\\run-728a01087531258f\\equity.parquet"
+    },
+    "run-7e3b498e086bdb88": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@1",
+      "recomputed_run_id": "run-7e3b498e086bdb88",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.498287859843934,
+        "annual_return": 0.11380006616008864,
+        "max_drawdown": -0.20844431034600586,
+        "win_rate": 0.44214876033057854,
+        "profit_loss_ratio": 2.1320158666626288,
+        "sortino": 0.7752822617557282,
+        "average_holding_days": 49.66528925619835,
+        "turnover": 3.6577266660152787
+      }
+    },
+    "run-024df83fb4891c89": {
+      "strategy": "因子混合(ETF 版)",
+      "param_set": "示例-四等分季度@1",
+      "recomputed_run_id": "run-024df83fb4891c89",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 3.218588793805302,
+        "annual_return": 0.13189299792285825,
+        "max_drawdown": -0.34929258840310273,
+        "win_rate": 0.978021978021978,
+        "profit_loss_ratio": 400.379168500573,
+        "sortino": 0.7584157425897062,
+        "average_holding_days": 1457.4835164835165,
+        "turnover": 0.0772234158553801
+      }
+    },
+    "run-9ddfd9a188267279": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@2",
+      "recomputed_run_id": "run-9ddfd9a188267279",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.9830170074232147,
+        "annual_return": 0.1263091285351723,
+        "max_drawdown": -0.20997886262240928,
+        "win_rate": 0.4435146443514644,
+        "profit_loss_ratio": 2.232026171939719,
+        "sortino": 0.8916741140558485,
+        "average_holding_days": 47.14644351464435,
+        "turnover": 3.650556842518724
+      }
+    },
+    "run-e9e08a9c807103c5": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@3",
+      "recomputed_run_id": "run-e9e08a9c807103c5",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.7141635761148666,
+        "annual_return": 0.11955495450532516,
+        "max_drawdown": -0.22336186726100948,
+        "win_rate": 0.43162393162393164,
+        "profit_loss_ratio": 2.2223709372881526,
+        "sortino": 0.7979908827890634,
+        "average_holding_days": 48.504273504273506,
+        "turnover": 3.6656719364801957
+      }
+    },
+    "run-cf4981cf20985201": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@4",
+      "recomputed_run_id": "run-cf4981cf20985201",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.8172831342508995,
+        "annual_return": 0.1221967948087197,
+        "max_drawdown": -0.22337029879172166,
+        "win_rate": 0.4364406779661017,
+        "profit_loss_ratio": 2.132741485025758,
+        "sortino": 0.8252006827459166,
+        "average_holding_days": 47.70762711864407,
+        "turnover": 3.6429086703633073
+      }
+    },
+    "run-633fd148308f1e49": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@5",
+      "recomputed_run_id": "run-633fd148308f1e49",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.2859231169097938,
+        "annual_return": 0.10781289328319188,
+        "max_drawdown": -0.21703647858404107,
+        "win_rate": 0.4322033898305085,
+        "profit_loss_ratio": 2.0791781951157096,
+        "sortino": 0.6715052600853988,
+        "average_holding_days": 48.720338983050844,
+        "turnover": 3.5287652789142934
+      }
+    },
+    "run-f2cd2bcb85ed8ec4": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@6",
+      "recomputed_run_id": "run-f2cd2bcb85ed8ec4",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 3.43653303870323,
+        "annual_return": 0.13681079520938422,
+        "max_drawdown": -0.18059074400937047,
+        "win_rate": 0.4425531914893617,
+        "profit_loss_ratio": 2.259348438593444,
+        "sortino": 0.9625391840706987,
+        "average_holding_days": 50.77872340425532,
+        "turnover": 3.5789266557042745
+      }
+    },
+    "run-2120914a42d21911": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@7",
+      "recomputed_run_id": "run-2120914a42d21911",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.498287859843934,
+        "annual_return": 0.11380006616008864,
+        "max_drawdown": -0.20844431034600586,
+        "win_rate": 0.44214876033057854,
+        "profit_loss_ratio": 2.1320158666626288,
+        "sortino": 0.7752822617557282,
+        "average_holding_days": 49.66528925619835,
+        "turnover": 3.6577266660152787
+      }
+    },
+    "run-924a54eb843f0988": {
+      "strategy": "因子輪動(ETF 版)",
+      "param_set": "示例正式-KARST-070-來源mac-curve_trend@1",
+      "recomputed_run_id": "run-924a54eb843f0988",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 6.713253684437847,
+        "annual_return": 0.19223156114265283,
+        "max_drawdown": -0.33695497549462927,
+        "win_rate": 0.6306306306306306,
+        "profit_loss_ratio": 2.389683415327162,
+        "sortino": 1.308448303920648,
+        "average_holding_days": 92.88288288288288,
+        "turnover": 5.744994671516169
+      }
+    },
+    "run-026772a05d2da3a2": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@8",
+      "recomputed_run_id": "run-026772a05d2da3a2",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.7408011461259214,
+        "annual_return": 0.12024374842270968,
+        "max_drawdown": -0.2292465069794032,
+        "win_rate": 0.4579831932773109,
+        "profit_loss_ratio": 2.1001431673983255,
+        "sortino": 0.8380629125429148,
+        "average_holding_days": 51.109243697478995,
+        "turnover": 3.6057327598342055
+      }
+    },
+    "run-47479e5b36fed94a": {
+      "strategy": "趨勢波段",
+      "param_set": "示例-KARST-028@9",
+      "recomputed_run_id": "run-47479e5b36fed94a",
+      "identity_stable": true,
+      "series_intact": [
+        "全對"
+      ],
+      "metrics": {
+        "total_return": 2.878755042107961,
+        "annual_return": 0.12374078948257994,
+        "max_drawdown": -0.20818219736465626,
+        "win_rate": 0.46382978723404256,
+        "profit_loss_ratio": 2.0766684810098344,
+        "sortino": 0.8470247765866985,
+        "average_holding_days": 51.306382978723406,
+        "turnover": 3.6104645168464717
+      }
+    }
+  },
+  "identity_mismatch": [],
+  "content": {
+    "run_id": "run-024df83fb4891c89",
+    "engine_rerun": true,
+    "equity_identical": true,
+    "holdings_identical": true,
+    "orders_identical": true,
+    "rows": {
+      "equity": 2929,
+      "orders": 188,
+      "rebalances": 47
+    }
+  },
+  "problems": []
+}
