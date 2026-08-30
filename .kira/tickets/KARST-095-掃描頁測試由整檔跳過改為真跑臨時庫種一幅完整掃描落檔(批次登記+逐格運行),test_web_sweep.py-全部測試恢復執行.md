@@ -8,7 +8,7 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-091]
-claimedBy: null
+claimedBy: agent-095
 epic: V1 建置
 deliverable: KARST-D03
 ---
