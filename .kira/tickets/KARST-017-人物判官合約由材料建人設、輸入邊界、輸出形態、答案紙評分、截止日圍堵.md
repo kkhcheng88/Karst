@@ -31,3 +31,6 @@ deliverable: null
 · 2026-08-27 03:05 fable-main 兩項前置已完成可用:KARST-018 報告 research/2026-08-27-llm-cutoff-containment.md(能覆蓋 2023 年的 API 模型只剩 OpenAI 一款舊型號且 10 月停用;Anthropic/Google 現役全線覆蓋不到 2023–2024;每次判斷約 US$0.015–0.02);KARST-019 答案紙 research/sa-13f/(7 期 13F,2024Q4–2026Q2,165 列)。另按 D-024 加收兩題:材料來源等級(第一身/官方/第三方)是否作判官輸入邊界的一格;A-002 取捨(留在 Anthropic/Google 則回測不到 2023–2024,要回測該段則用弱模型或只做前向)。
 
 · 2026-08-27 03:40 fable-main 第一輪追問四題,用戶答了兩題、兩題要我出建議,隨後叫停(用戶原話:「but what are you trying to do?」),本票押後至引擎建成、策略有成績後再談。已裁兩項(記為用戶裁決):(1) 回測期用「遮蔽公司名再用現役模型」圍堵已知結局,用戶原話:「This for backtest, in production surely no need」;(2) 粗篩宇宙=美股市值門檻+技術層鎖位名單。待我出建議兩項:輸出形態(用戶原話:「This I think depends? I need your advise」;我的建議:0–100 分+一段理由,0/1 由策略層設門檻)、答案紙評分(用戶原話:「as long as logically sound then it is the case. As there will have no definite answer to mimic one mind's decision」;我的建議:前 N 名命中率+進出變動命中率兩個數)。用戶另提醒名字撞車:Seeking Alpha 與 Situational Awareness 皆縮寫 SA,往後一律寫全名。人設建構擬照判準書五步流程,不另立。
+
+### agent:main-agent · 2026-08-30 23:57
+依 D-058(用戶照單核准 KARST-115 引擎對齊審視):本票整張建基於影片轉技能與組合倒推兩條線的產出,兩線已封存/取消(D-055、KARST-012 處置),裁定**取消轉封存**,不再派工。驗收條件未剔,依規矩不落 closed 行;本留言即正式處置紀錄。

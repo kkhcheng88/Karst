@@ -1318,3 +1318,34 @@
   > ok, I take your approach. But I want to make sure 1) UI can be lower priority to fix later. But the engine should be better reflecting the latest decision as I am afraid if the engine is not focusing on this setup. Later when a new agent take up the session, it will lose the focus and bring me back to the wrong decision.
 
 - 影響：開 KARST-115 引擎對齊審視票(研究型,出候選清單交用戶裁);規格修訂票與各項改編/封存建置票候審視結果再開;專案自動記憶的路線圖同步改寫。
+
+## D-058 引擎對齊全單照審視執行;現金以短期國債 ETF 代理落實(依用戶委託推出);錯殺離場治理未裁候白話解釋;「今日仲買唔買」重新核准原則收入詞彙表
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-30
+
+- 出處：用戶 2026-08-30 裁決與委託,原話見 quote。承 KARST-115 審視與 KARST-114 文獻兩份報告。
+
+- 背景：審視報告列出模組、票務、規格三份清單;文獻報告交出四類注離場治理對應表。用戶對第一項答 Yes(全單照做),第二項委託技術判斷並問零息現金是否最易,第三項要求先用白話解釋再裁。同一訊息用戶另交出一條原則:持倉去留的真測試是「以最新價格你仲會唔會買入」。
+
+- 決策：
+  1. 引擎對齊照 KARST-115 建議全單執行(用戶:Yes):策略合約加兩格必填(屬三層哪一層、離場治理屬延續型注/回歸型注/規則型);封存以登記狀態格(現役/封存)落實——定義庫按設計不可刪,D-057 的「搬走或刪除」修正為:代碼可搬走,登記用狀態格,經唯一入口留痕;票務處置照審視:KARST-012/017 取消轉封存、066 量度半收檔畫面半取消、092 前提失效候改寫(改寫後重新過審批)、085 降優先、079/097 押後、100/106 升最高優先
+  2. 現金形式:短期國債 ETF 代理(依用戶「I think it is easy for you」委託技術判斷推出,非逐字裁決)。理由:零息現金並非更易——引擎留白不落注已經是零息現金,顯式現金格的成本在「可持有對象」的管道而不在利息;而且零息會令現金格在量度中被系統性低估(2000–02 現金優勢 +9.6% 基本上全是利息)。代理 ETF 上市之前的歷史,由數據層以官方短期國債利率合成價格序列填補,引擎不改
+  3. 錯殺一格(破產閘代價格止蝕)未裁:候用戶看過白話解釋再拍板
+  4. 「持倉無記憶」原則收入詞彙表:每期換倉以「今日仲會唔會用呢個價買入」重新核准每格持倉,買入成本價不是任何訊號的輸入;引擎逐期重選本來如此,此原則同時是防處置效應的人手版(依用戶同日原話推出)
+
+- 考慮過的替代方案：
+  1. 零息現金 —— 不揀,理由見 decision 第 2 條
+  2. 純現金連息 —— 不揀:要起合成對象、逐日持倉多一行、自己計息,工程量大一個量級而量度結果與代理相同
+
+- 為何選這個：全單細或中量級、無一件大工程,而最重要那件(合約兩格必填)是全倉唯一「唔答就跑唔到」的防漂移閘——正對用戶怕新 session 走回舊方向的憂慮。
+
+- **用戶原話（原文照錄）**
+
+  > 1. 我建議照單全做。 <<< Yes
+
+  > 2. 國債 ETF 代理 actually I don't know too much, but I think it is easy for you. But what about if Cash = Cash with no dividend at all? Then it is the easiest?
+
+  > Actually I think the key I heard from some KOL or video, they said the key test is whether you will be still willing to buy the ticker at the latest price.
+
+- 影響：開三張票:策略合約兩格必填(KARST-116)、登記狀態格與因子混合標封存(KARST-117)、規格修訂十九點(KARST-118);012/017/066 收檔或取消、092/085/079/097 留言標明處置;100/106 排隊優先派工;現金代理的具體代號與合成序列口徑在 KARST-116 之後的實作票對齊(D-038 參數對齊照舊)。

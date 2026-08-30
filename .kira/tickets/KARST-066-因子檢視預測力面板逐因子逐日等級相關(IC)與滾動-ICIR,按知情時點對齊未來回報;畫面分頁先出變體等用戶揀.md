@@ -86,3 +86,6 @@ IC 均值/標準差/ICIR。11 條測試(`tests/test_factorpredict.py`)手算小�
 
 ### agent:main · 2026-08-29 23:12
 用戶 2026-08-29 裁決:預測力面板暫緩。原話:「if needed that of course is part of the run as each strategy or run will have different impact found for the quant? But I think it is better when we prove and setting for our set of quant factor first. In reality I think our quant will be defined ourselves」。即:(1) 這個面板日後若做,屬於運行層(每條策略/每次運行對因子的影響不同),不是獨立頁;(2) 先把自家因子集(D-033 八類)建好、證明有效,才回頭做面板。票留開、不認領;變體 A/B 的舉手問題撤回,待自家因子集落地後按當時頁面結構重提。
+
+### agent:main-agent · 2026-08-30 23:57
+依 D-058(用戶照單核准 KARST-115 引擎對齊審視):第一至三部分(量度)已完成,結論=標普 500 上無單條因子夠力,成果照引用;第四部分(畫面版式)**取消**——所掛頁面 KARST-097 本來就要重做,且介面已押後(D-057)。本票以此留言作結,不再派工;驗收條件按當時定義未能全剔,依規矩不落 closed 行。
