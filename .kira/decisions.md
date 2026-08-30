@@ -1291,3 +1291,30 @@
   > 趨勢波段 <<< If it is Eric approach, I think it is actually some governance of a strategy. but itself is not a strategy as well. ... for those sector in faith (i.e. you bet is bottleneck), then actually 賠率 or 止蝕 may not needed? ... Whether you should be 均注 to buy in the 2nd entry level, or you should exit. I think this is something important to know at first before the trade is executed.
 
 - 影響：開 KARST-114 文獻研究票;進出場規則合約日後加「治理配置」一節(策略合約必填);D-055 的趨勢波段懸案就此了結——相關票由凍結轉為按新編制改寫;錯殺與樽頸的策略票日後必須寫明自己的離場治理屬哪一族。
+
+## D-057 轉向落地次序:引擎優先對齊新重心,介面押後;不重開新倉,以 tag、文件轉向聲明與逐模組審視防止新 session 走回舊方向
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-30
+
+- 出處：用戶 2026-08-30 裁決,原話見 quote。承 D-054–056 轉向後,用戶問資料庫與介面是否還適用、應否重開新倉;主 agent 建議「不重開、打 tag、逐模組審視」,用戶接納並加兩點:介面可後補、引擎必須先行反映最新決策以防日後 session 失焦。
+
+- 背景：用戶的核心憂慮是漂移:轉向只住在對話與決策簿裡的話,下一個接手的 agent 會照舊規格與舊代碼的重心行事,把他帶回已否決的方向。Karst 本身是 KarstETF 的重開,教訓是重開保得住文件、保不住行得通的護欄,所以這次以「標記+聲明+審視」代替重開。
+
+- 決策：
+  1. 不重開新倉;已打 git tag `pre-pivot-2026-08-30` 作轉向前標記,git 歷史即存檔,倉內不放 ZIP
+  2. 介面修改降為後補優先(儀錶板一類新畫面留待引擎對齊之後)
+  3. 引擎優先對齊 D-052–056:現金作一等可投資對象、宇宙以市面 ETF 為基礎、三層次序、離場治理欄位入策略合約;開審視票逐模組判「留用/改編制/封存」,封存以搬走或刪除落實(git 留底),不留誤導性重心
+  4. 防漂移三件:v1 規格文件已加轉向聲明(牴觸處以決策簿為準);規格正式修訂隨審視結果開票;現存開放票逐張覆核是否已因轉向失效
+
+- 考慮過的替代方案：
+  1. 重開新倉只帶文件 —— 用戶接納不重開:重開會失去經測試的護欄(實體編號、知情時間、唯一入口、快照治理),而這些正是新方向最需要的
+  2. 只寫文件不動代碼 —— 不揀:用戶明言怕引擎唔對焦令新 session 失焦;誤導性代碼與文件一樣會帶錯方向
+
+- 為何選這個：把「轉向」由對話記憶變成倉內三層護欄:tag 保舊貌、聲明擋誤讀、審視清誤導;引擎先行是因為引擎是所有 session 實際打交道的東西,它的形狀就是最有力的方向指示。
+
+- **用戶原話（原文照錄）**
+
+  > ok, I take your approach. But I want to make sure 1) UI can be lower priority to fix later. But the engine should be better reflecting the latest decision as I am afraid if the engine is not focusing on this setup. Later when a new agent take up the session, it will lose the focus and bring me back to the wrong decision.
+
+- 影響：開 KARST-115 引擎對齊審視票(研究型,出候選清單交用戶裁);規格修訂票與各項改編/封存建置票候審視結果再開;專案自動記憶的路線圖同步改寫。
