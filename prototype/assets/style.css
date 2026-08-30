@@ -1948,19 +1948,41 @@ body.sp .table-scroll table.kt thead th { top: 0; }
 }
 .table-expand-btn:hover { background: var(--bg-3); color: var(--text-1); border-color: var(--line-strong); }
 
-/* ---- 時點檢視:圖(60)| 時點卡(40) ---- */
-.tp-split {
+/* ---- 單次運行層(KARST-086,依 D-046):圖(左 40–50)| 選股快照(右 50–60) ----
+   上一輪(D-045)呢度係「時點檢視」嘅 .tp-split(60/40,圖大卡細);
+   D-046 改為淨值圖縮到 40–50%,右邊換成選股快照表(要闊啲裝十欄),
+   故 45/55。下方另加一行成交(左)／持倉時點(右),對半分。 */
+.run-top-split {
   display: grid;
-  grid-template-columns: minmax(0, 60fr) minmax(0, 40fr);
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
   gap: var(--s-3);
   align-items: start;
 }
+.run-bottom-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: start;
+  margin-top: var(--s-3);
+}
 @media (max-width: 1180px) {
-  .tp-split { grid-template-columns: minmax(0, 1fr); }
+  .run-top-split, .run-bottom-split { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* 圖表區:淨值線 + 密度帶背景 + 時點直線 */
-.tp-chartwrap { position: relative; }
+/* 圖表區:淨值線 + 密度帶背景 + 時點直線
+   ------------------------------------------------------------
+   KARST-086 第四輪修 bug(D-046 用戶原話:「the blue dotted line has
+   bug. it is not accurate」)。成因:舊版 .tp-at-line 掛喺 .tp-chartwrap
+   (成個圖卡,連 sp-head 標題都計埋)度做 position:absolute 嘅參照,
+   但 lightweight-charts 嘅 timeToCoordinate() 返嘅 x 係相對於圖表
+   自己嗰個容器(即下面 #tp-chart 入面動態起嗰個 box),兩者之間隔咗
+   .sp-body 嘅 padding(左右)同 .sp-head 嘅高度(上),條線嘅 left
+   就係咁樣同實際格點錯開一截,點極都對唔正所點嗰一日。
+   修法:起一層 .tp-chart-stage 淨係包住圖本身(唔連標題),
+   .tp-at-line／.tp-hov 都搬入呢層度,令 position:absolute 嘅參照
+   同 timeToCoordinate() 嘅座標系一致(兩者原點同一個位),
+   top:0;bottom:0 亦剛好等於圖嘅高度,唔會再拉到標題度。 */
+.tp-chart-stage { position: relative; }
 .tp-chart { height: 360px; }
 .tp-at-line {
   position: absolute; top: 0; bottom: 0; width: 0;
@@ -1999,3 +2021,34 @@ body.sp .table-scroll table.kt thead th { top: 0; }
   font-size: var(--fs-xs); color: var(--text-3);
 }
 .st-held { color: var(--accent); font-weight: 700; }
+
+/* ============================================================
+   第十三版:單次運行層改為整頁換成該次(KARST-086,依 D-046)
+   ------------------------------------------------------------
+   選咗一次運行後,批次層(門面、密度熱帶、掃描批次表、歷次運行表)
+   整頁收起,換成單次層:頂部麵包屑加「批次」同運行編號、回到批次鍵、
+   該次身份列;淨值圖(左 40–50%)配選股快照(右 50–60%);
+   下方成交(左,全部成交)配持倉時點(右)。
+   ============================================================ */
+
+/* ---- 頂部:麵包屑第二節(策略名連返批次)、回到批次鍵靠右 ---- */
+#bc-strategy a { color: var(--text-2); }
+#bc-strategy a:hover { color: var(--accent); }
+.page-title-group .btn { margin-left: auto; }
+
+/* ---- 該次身份列:參數摘要／期間／快照 + 四項成績 ---- */
+.run-id-row { padding: var(--s-3) var(--s-4); }
+.run-id-meta {
+  display: flex; align-items: center; gap: var(--s-2) var(--s-5); flex-wrap: wrap;
+  font-size: var(--fs-sm); color: var(--text-3);
+  margin-bottom: var(--s-3);
+}
+.run-id-meta b { color: var(--text-1); font-weight: 700; }
+
+/* ---- 選股快照:固定高度可捲動,持倉行置頂並標色 ---- */
+table.kt tbody tr.row-held td { background: rgba(38, 166, 154, .07); }
+table.kt tbody tr.row-held:hover td { background: rgba(38, 166, 154, .13); }
+
+/* ---- 成交:固定高度可捲動,點一行把時點定到該日;命中當前時點高亮 ---- */
+table.kt tbody tr.is-curdate td { background: rgba(240, 168, 60, .16); }
+table.kt tbody tr.is-curdate:hover td { background: rgba(240, 168, 60, .22); }

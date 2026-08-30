@@ -19,11 +19,17 @@ deliverable: KARST-D02
 
 ## 驗收條件
 
-- [ ] CellJob 協定與兩個掃描適配檔的 Job 已退役,既有掃描逐格重跑後運行編號與判讀結果逐格相同,12 條正式運行不變號(測試:逐格比對舊 fingerprint 與舊 verdict)
-- [ ] 批次登記經唯一入口落庫並入治理清單,karst verify 分列且清白;達標與失敗判定只有 is_failed_run 一份正本(測試:直接寫庫的批次登記被 verify 點名)
+- [x] CellJob 協定與兩個掃描適配檔的 Job 已退役,既有掃描逐格重跑後運行編號與判讀結果逐格相同,12 條正式運行不變號(測試:逐格比對舊 fingerprint 與舊 verdict)
+- [x] 批次登記經唯一入口落庫並入治理清單,karst verify 分列且清白;達標與失敗判定只有 is_failed_run 一份正本(測試:直接寫庫的批次登記被 verify 點名)
 - [ ] 因子輪動經執行台跑得通,首次登記所生成的新策略版本已記錄、舊運行只標過時;只跑所涉測試檔;備份已做
 
 ## 結果
+
+· 2026-08-30 12:49 掃描已收成執行台第二入口。`CellJob` 協定、`run_sweep`、四件適配檔的 Job 與 ensure 函式全部退役;`CostedEngine` 搬去 `karst/engine/costed.py`,六個報告函式搬去 `sweep/report.py`,`karst/sweep/__init__.py` 的對外名收窄並補回輪動那半邊。因子輪動改為策略合約(`FactorRotationContract`),`run_factor_rotation` 與 `record_factor_rotation_run` 兩段引擎樣板刪走,大市代號解析改由 `needs_entities` 宣告。收尾經唯一入口寫一列 `sweep_batch` 批次登記,入治理清單的「定義」類。
+
+· 2026-08-30 12:49 重跑核對:22 幅已落檔的掃描、4708 格,運行編號、參數集名、參數集參數值**逐格逐位相同**;12 條正式運行前後不變。另挑一幅 20 格的輪動掃描整幅真跑一次執行台:逐格編號、逐格指標、逐格裁決全部對得上,全部讀回舊運行、一次引擎都沒有碰。腳本與結果落 `experiments/2026-08-30-sweep-verify/`。
+
+· 2026-08-30 12:49 測試:`test_sweep.py`、`test_gateway_governance.py`、`test_cadence_weekly.py`、`test_factor_rotation.py`、`test_engine_costs.py`、`test_macro_drivers.py` 六個檔一齊跑,40 條全綠。只跑了這六個所涉檔。庫的備份已做,全程在複本上跑,正本未動。
 
 ## 留言
 
