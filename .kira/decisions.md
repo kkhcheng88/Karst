@@ -1023,3 +1023,26 @@
   > 淨值與進出場 that concept should go backk to 淨值圖, but now the blue dotted line has bug. it is not accurate. Also 成交 just show all 成交 it is not needed to show only point in time.
 
 - 影響：D-045 第 3、4 條被本決策取代(部分已取代);KARST-086 原型第四輪;CONTEXT.md「時點檢視」詞條意思收窄為單次層本身而非附加區塊。成交與持倉在下方的左右擺位由主腦按用戶原話推出,用戶未明講。
+
+## D-047 畫面一期定稿並凍結迭代;工作重心轉入策略期,策略測試以對話+命令列先行,畫面實作押後至首條策略有真批次
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-30
+
+- 出處：用戶 2026-08-30 原話
+
+- 背景：KARST-086 原型第四輪(D-046 佈局)給用戶過目。用戶裁定一期收貨、停止畫面細節迭代,並確認策略測試以對話進行、畫面只是窗口;數據與引擎已各剩一套(S&P500 凍結快照+宏觀;vectorbt 經適配層;唯一入口)。
+
+- 決策：
+  1. KARST-086 第四輪稿即畫面一期定稿(批次層 D-042/D-044、單次層 D-046);此後不再開畫面變體、不再迭代細節,除非壞掉或用戶主動再提。
+  2. 策略詳情頁實作票開而不派,排在首條策略產出真批次之後;架構候選六(網頁取數層停止自己算數)併入該票一次過做。
+  3. 進入策略期:參數對齊、掃描、判讀、報數全部在對話+命令列完成;報數用業務語言(達標率、中位年化、回撤、穩健平原)。
+  4. 策略期數據前設:價格與宏觀已就緒;基本面策略須先建 SEC EDGAR 數據線(D-041)才排得上。
+
+- **用戶原話（原文照錄）**
+
+  > I think the current design is just acceptable for phase 1. But I don't want to drill to detail in the screen already. As for an investment strategy, the key is the strategy but not the UI as it is still only for my personal use for now.
+
+  > Meanwhile, I pressumed by now, you should only rely on 1 single dataset, single backtest framework. Then actual if I just talk to you here without the UI. You will still able to perform the strategy testing properly? If that's the case. We will move on to the next phase on Strategy
+
+- 影響：KARST-086 關檔;開策略頁實作票(不派);KARST-092/094/096 照常收尾;下一步由用戶揀首條策略。

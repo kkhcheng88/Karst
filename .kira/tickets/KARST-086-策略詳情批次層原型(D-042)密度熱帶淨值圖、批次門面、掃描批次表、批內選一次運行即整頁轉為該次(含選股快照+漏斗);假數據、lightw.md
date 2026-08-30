@@ -11,7 +11,7 @@ dependsOn: [KARST-081]
 claimedBy: KARST-086-agent
 epic: V1 建置
 deliverable: KARST-D03
-raised: 第四輪已改，待用戶過目
+closed: 2026-08-30
 ---
 
 ## 工作內容
@@ -20,11 +20,14 @@ raised: 第四輪已改，待用戶過目
 
 ## 驗收條件
 
-- [ ] prototype/ 有可直接打開的策略詳情原型,涵蓋 D-042 (3)–(7) 全部區塊與四組畫面狀態
-- [ ] 點運行行整頁轉為單次(含選股快照+漏斗)並可回到批次;熱帶兩個變體可切換
-- [ ] 票上已 raise 等用戶過目,附原型檔路徑;未改 karst/web/
+- [x] prototype/ 有可直接打開的策略詳情原型,涵蓋 D-042 (3)–(7) 全部區塊與四組畫面狀態
+- [x] 點運行行整頁轉為單次(含選股快照+漏斗)並可回到批次;熱帶兩個變體可切換
+- [x] 票上已 raise 等用戶過目,附原型檔路徑;未改 karst/web/
 
 ## 結果
+
+- · 2026-08-30 13:20 原型經四輪迭代定稿:第一輪 D-042 全區塊與四組畫面狀態、熱帶甲乙可切;第二輪用戶三項裁決(兩組併排、去現役設定卡、甲為預設);第三輪 D-045(表頭修正、歷次運行頭 10 名、時點概念);第四輪 D-046(整頁換成該次、淨值圖左快照右、成交全列、時點線修正)。檔:prototype/strategy-batch.html + prototype/assets/data-batch.js;截圖 experiments/2026-08-30-strategy-batch-prototype/01–17。karst/web/ 全程未改。
+- · 2026-08-30 13:20 用戶收貨(原話見上方 main 留言):一期定稿,停止畫面迭代(D-047);實作歸 KARST-097(開而不派,押後至首條策略有真批次)。
 
 ## 留言
 
@@ -87,3 +90,8 @@ raised: 第四輪已改，待用戶過目
 
 **要睇邊份稿**：
 - prototype/strategy-batch.html
+
+### agent:main · 2026-08-30 14:22
+**裁決**：第四輪稿定為一期定稿:批次層照 D-042/D-044 各輪裁決,單次層照 D-046 時點檢視;不再迭代畫面細節。實作票開而不派,排在首條策略產出真批次之後。
+
+**出處**：用戶原話(2026-08-30):「I think the current design is just acceptable for phase 1. But I don't want to drill to detail in the screen already. As for an investment strategy, the key is the strategy but not the UI as it is still only for my personal use for now.」
