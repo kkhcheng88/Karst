@@ -17,14 +17,23 @@ import pytest
 
 from karst.errors import NotFound
 from karst.metrics import run_metrics, trade_stats
+from karst.store import FORMAL_RUN
 from karst.web.data import DEFAULT_RISK_FREE_RATE, build_reader
 from karst.web.server import STATIC_ROOT, serve_in_background
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-# design-system 1.7「圖表專用色」連 1.5 蠟燭圖成交量柱那兩格的全集。
-# 圖表庫的選項不吃 CSS 變數,只能傳字面值;能出現在前端 JS 的就只有這一組。
+# design-system 1.7「圖表專用色」、1.6「亮底上的深字」連 1.5 蠟燭圖成交量柱那兩格
+# 的全集。圖表庫的選項不吃 CSS 變數,只能傳字面值;能出現在前端 JS 的就只有這一組。
+#
+# 1.6 那兩格本來漏了(KARST-093 補)。漏的後果不是放行了一個未登記的色,而是**倒轉**
+# ——熱圖格內的字色 `#06121f` / `#dfe4ee` 明明白白登記在 design-system.md 1.6,連
+# 用在哪個函數(`heatTextColor`)都寫住,測試卻報它們違規。當時這條紅燈被當成
+# 「有人加了自定色值」,差點按住紅燈去改 app.js——那就會把一個對住正本的實作改到
+# 對不住正本。清單由正本抄過來,抄漏一節,紅燈就會指錯方向。
 ALLOWED_CHART_COLOURS = {
+    "#06121f",                  # 熱圖亮格上的字(design-system 1.6)
+    "#dfe4ee",                  # 熱圖暗格上的字(design-system 1.6)
     "#26a69a",                  # 策略淨值線、買入標記、蠟燭升色(= --up)
     "#b07de0",                  # QQQ 線(= --bench-qqq)
     "#7d869c",                  # SPY 線、圖表軸文字色(= --bench-spy / --text-3)
@@ -59,13 +68,15 @@ def _get_json(url: str):
 
 
 @pytest.fixture(scope="module")
-def reader():
-    if not (PROJECT_ROOT / "karst.sqlite").is_file():
-        pytest.skip("本機沒有定義庫,網頁殼無從讀起")
-    built = build_reader(PROJECT_ROOT)
-    if not built.list_runs(1)["total"]:
-        pytest.skip("庫內未有任何回測運行")
-    return built
+def reader(seeded_project_root):
+    """讀取層一律接**種好數的臨時專案根**,不是倉根那個生產庫(KARST-093)。
+
+    以前這裡是 ``build_reader(PROJECT_ROOT)``,即是直接打生產庫。讀那邊本身已經
+    不好——斷言吊住生產庫當日有幾多條運行,庫一長大就無故轉紅(下面那條運行清單
+    斷言正是這樣紅了);而同一批夾具之下 ``test_web_jobs.py`` 更加會經正式路徑
+    寫回去,每跑一次測試就替生產庫添一條正式運行。種數的做法見 ``conftest.py``。
+    """
+    return build_reader(seeded_project_root)
 
 
 @pytest.fixture(scope="module")
@@ -437,17 +448,11 @@ def test_視窗前已有持倉的運行照樣顯示得出八項指標(base_url, 
 # KARST-053 運行選單認得出是哪一次、圖例可點、說明句已刪
 # ============================================================
 
-# 庫內兩次正式運行(示例運行)。掃描格一律不入運行清單(D-029)。
-# 舊編號 run-728a01087531258f / run-f4c162e5aac34347 在數據目錄重建(KARST-057)
-# 之後成為序列缺失運行:登記照舊在案,但逐日序列已經不在,畫不出圖。
-FORMAL_RUNS = ("run-7e3b498e086bdb88", "run-024df83fb4891c89")
-
-
 def test_運行選單只列正式運行且認得出是哪一次(base_url, reader):
     """驗收一:選單顯示策略・參數集・期間・日期,不顯示編號;掃描格不在列。"""
     listing = _get_json(f"{base_url}/api/runs?limit=8")
 
-    # 一、掃描格不入清單:庫內幾千次運行,清單上只剩正式那幾次
+    # 一、掃描格不入清單:庫內的運行不只清單上那幾條,差額就是掃描格
     在庫 = len(reader.runs.list_runs())
     assert listing["total"] < 在庫, "運行清單沒有把掃描格擋走"
     for item in listing["runs"]:
@@ -455,14 +460,20 @@ def test_運行選單只列正式運行且認得出是哪一次(base_url, reader
             f"掃描格 {item['runId']} 走進了運行清單"
         )
 
-    # 二、兩個示例運行必須在列
+    # 二、庫內每一次正式運行都要在列。
+    #
+    # 這裡本來釘死兩個生產庫的運行編號,要求它們出現在 ``limit=8`` 那一頁——
+    # 於是生產庫一多幾次正式運行,它們就被擠出頭八名,測試無故轉紅(KARST-087
+    # 撞到的正是這件事:當時排第 11)。斷言吊住的是「生產庫今日有幾多條運行」,
+    # 那不是這一頁的行為,是別人跑了幾多次的副作用。
+    #
+    # 改為對住**這個庫自己**的正式運行:清單要列得齊。臨時庫種了兩次正式運行
+    # 連一格掃描運行(見 conftest.py),所以擋不擋得住掃描格、列不列得齊正式
+    # 運行,兩件都真的驗得到,而且不會因為別處多跑一次而轉紅。
     在列 = {item["runId"] for item in listing["runs"]}
-    for run_id in FORMAL_RUNS:
-        try:
-            reader.runs.get_run(run_id)
-        except NotFound:
-            continue  # 本機庫內沒有這一次,不能怪清單
-        assert run_id in 在列, f"示例運行 {run_id} 不在運行選單"
+    正式 = {record.run_id for record in reader.runs.list_runs(origin=FORMAL_RUN)}
+    assert 正式, "庫內一次正式運行都沒有,這一條驗不到東西"
+    assert 正式 <= 在列, f"正式運行不在運行選單:{sorted(正式 - 在列)}"
 
     # 三、選單那四樣東西,端點逐項交得出(頁面才有得顯示)
     for item in listing["runs"]:
@@ -470,16 +481,24 @@ def test_運行選單只列正式運行且認得出是哪一次(base_url, reader
                     "periodStart", "periodEnd", "createdAt"):
             assert item.get(key), f"{item['runId']} 少了選單要顯示的 {key}"
 
-    # 四、按鈕的字是那四樣,不是運行編號;編號退到明細(頁頭小字與身分卡)
+    # 四、運行的身份由麵包屑認得出,不是靠一個編號。
+    #
+    # 這裡本來拆 ``run-view.js`` 裡 ``function runLabel(r)`` 的函數本體,驗運行選單
+    # 那顆按鈕的字是「策略・參數集・期間・日期」而不是運行編號。**那顆按鈕已經不在**
+    # ——D-035(KARST-078)把運行詳情改為策略詳情的鑽取層,運行選擇器整個拆走,
+    # 換運行改為由策略頁的運行排名表點入(D-037,KARST-080)。``runLabel`` 由那一刻
+    # 起全倉都搜不到,這一段自此恆真轉紅,只是它一直被上面第二段(釘死生產庫運行
+    # 編號那條)的失敗遮住,無人見到。
+    #
+    # 保留的是這一條驗收真正要問的東西:**這一頁講不講得出自己是哪一次運行**。
+    # 現在答它的是麵包屑那一格,由 JS 填上策略名與運行身份。
+    page = _get(f"{base_url}/run").decode("utf-8")
+    assert 'id="bc-run"' in page, "運行頁沒有認得出自己是哪一次運行的落腳位"
     view = _strip_comments((STATIC_ROOT / "run-view.js").read_text(encoding="utf-8"))
-    標籤 = re.search(r"function runLabel\(r\)\s*\{.*?\n  \}", view, flags=re.S)
-    assert 標籤, "run-view.js 找不到運行選單的標籤"
-    標籤文 = 標籤.group(0)
+    assert "bcRun" in view, "run-view.js 沒有填麵包屑那一格"
     for key in ("strategyName", "paramSetName", "paramSetVersionNo",
-                "periodStart", "periodEnd", "createdAt"):
-        assert key in 標籤文, f"運行選單沒有顯示 {key}"
-    assert "runId" not in 標籤文, "運行選單仍然把運行編號當招牌"
-    assert 'id="bc-run"' in _get(f"{base_url}/run").decode("utf-8")
+                "periodStart", "periodEnd"):
+        assert key in view, f"運行身份沒有顯示 {key}"
 
 
 def test_圖表下的說明句已刪(base_url):

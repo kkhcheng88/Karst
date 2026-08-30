@@ -363,6 +363,29 @@ class SnapshotRetraction:
 
 
 @dataclass(frozen=True, slots=True)
+class RunRetraction:
+    """一次運行的除名登記(KARST-093):它不再算數,但留痕與追溯照留。
+
+    最常見的用途:自動測試經正式路徑跑出來的運行。測試要驗的是「這條路行不行得
+    通」,不是要為策略添一次成績,但它寫出來那一列與人手跑的正式運行在庫內一模
+    一樣,於是計數無聲無息多了一條。除名令它不再入清單、不再入計數,而
+    ``get_run`` 照樣讀得到——那次運行確實發生過,帳上不可以當它沒發生。
+    """
+
+    run_id: str
+    reason: str
+    retracted_by: str
+    retracted_at: str
+
+
+#: 「已除名的運行不算數」這一句,在 SQL 裡就是這一段(KARST-093)。``list_runs`` 與
+#: ``count_runs`` 兩處都要掛,而兩處掛得不一樣就會出現「清單見不到、計數見得到」
+#: 這種最難查的帳目不符,所以只寫一次。前綴的 ``AND`` 與 ``r`` 別名是刻意的:
+#: 兩處都是接在一個已經有 WHERE 的 ``backtest_run AS r`` 之後。
+_RUN_NOT_RETRACTED = " AND r.run_id NOT IN (SELECT run_id FROM backtest_run_retraction)"
+
+
+@dataclass(frozen=True, slots=True)
 class SnapshotListing:
     """庫內一個數據快照的一覽列:快照登記那一列,連它的抓取登記(如有)。
 
@@ -1934,6 +1957,10 @@ class DefinitionStore:
         ``origin`` 收窄到某一種來歷:``FORMAL_RUN`` 只要正式運行(運行清單、策略
         總覽的門面成績、策略詳情頁的歷次運行表三處都是這個口徑,D-029),
         ``SWEEP_RUN`` 只要掃描格。留空即全部——連掃描格,庫內動輒幾千個。
+
+        已除名的運行(``backtest_run_retraction``)不在此列:清單列得出的就是算數
+        的那幾次(KARST-093)。要連除名那幾次一齊看,用 ``list_run_retractions``;
+        要直取某一次,``get_run`` 一律讀得到。
         """
         if origin is not None:
             origin = str(origin).strip()
@@ -1942,6 +1969,7 @@ class DefinitionStore:
                     f"運行來歷只收 {list(RUN_ORIGINS)},收到 {origin!r}"
                 )
         clause = " AND r.origin = ?" if origin is not None else ""
+        clause += _RUN_NOT_RETRACTED
         extra: tuple[object, ...] = (origin,) if origin is not None else ()
 
         if strategy_name is None:
@@ -1975,6 +2003,9 @@ class DefinitionStore:
 
         「這套策略只跑過參數掃描」那句話要數得出幾多格,但砌四千份留痕再數一次
         是白做——那正是策略總覽開頁要等兩秒的原因。
+
+        口徑與 ``list_runs`` 同一條:已除名的運行不計(KARST-093)。兩處掛得不一樣
+        就會出現「清單見不到、計數見得到」這種最難查的帳目不符。
         """
         if origin is not None:
             origin = str(origin).strip()
@@ -1983,6 +2014,7 @@ class DefinitionStore:
                     f"運行來歷只收 {list(RUN_ORIGINS)},收到 {origin!r}"
                 )
         clause = " AND r.origin = ?" if origin is not None else ""
+        clause += _RUN_NOT_RETRACTED
         extra: tuple[object, ...] = (origin,) if origin is not None else ()
         if strategy_name is None:
             row = self._conn.execute(
@@ -1998,6 +2030,78 @@ class DefinitionStore:
                 ((strategy_name or "").strip(), *extra),
             ).fetchone()
         return int(row["n"])
+
+    def retract_run(
+        self,
+        run_id: str,
+        *,
+        reason: str,
+        retracted_by: str,
+    ) -> RunRetraction:
+        """把一次運行由清單與計數除名(KARST-093):**加一列,不是刪一列**。
+
+        除名之後 ``list_runs`` 與 ``count_runs`` 一律略過它——清單同計數列得出的
+        只有算數的運行;但 ``get_run`` 一類直連查詢照樣讀得到,運行目錄與 parquet
+        檔亦一個字都不動,所以追溯永遠指得回。
+
+        為什麼不刪:``backtest_run`` 身上那道 ``BEFORE DELETE`` 閘寫明「運行登記
+        不可刪,追溯要指得回」。刪走等於把一件發生過的事由帳上抹掉——那次運行確實
+        跑過、確實寫過檔,只是它不應該算進成績。
+
+        同一次運行只除名得一次:除名登記只加不改(``trg_run_retraction_no_update``),
+        重覆除名即是想改寫已發生的除名,當場拒收。
+        """
+        record = self.get_run(run_id)  # 查無此運行即拋 NotFound
+        existing = self._conn.execute(
+            "SELECT run_id FROM backtest_run_retraction WHERE run_id = ?",
+            (record.run_id,),
+        ).fetchone()
+        if existing is not None:
+            raise DuplicateDefinition(
+                f"運行 {record.run_id} 已經除名;除名登記只加不改"
+            )
+        moment = _now()
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO backtest_run_retraction (run_id, reason, retracted_by,"
+                " retracted_at) VALUES (?, ?, ?, ?)",
+                (
+                    record.run_id,
+                    str(reason).strip(),
+                    str(retracted_by).strip(),
+                    moment,
+                ),
+            )
+        return RunRetraction(
+            run_id=record.run_id,
+            reason=str(reason).strip(),
+            retracted_by=str(retracted_by).strip(),
+            retracted_at=moment,
+        )
+
+    def list_run_retractions(self) -> list[RunRetraction]:
+        """全部運行除名登記,新的在前。"""
+        return [
+            RunRetraction(
+                run_id=row["run_id"],
+                reason=row["reason"],
+                retracted_by=row["retracted_by"],
+                retracted_at=row["retracted_at"],
+            )
+            for row in self._conn.execute(
+                "SELECT run_id, reason, retracted_by, retracted_at"
+                " FROM backtest_run_retraction ORDER BY retracted_at DESC, run_id DESC"
+            ).fetchall()
+        ]
+
+    def retired_run_ids(self) -> tuple[str, ...]:
+        """已除名的運行編號。要查一次運行是不是已除名,用這一格,不要自己寫 SQL。"""
+        return tuple(
+            row["run_id"]
+            for row in self._conn.execute(
+                "SELECT run_id FROM backtest_run_retraction ORDER BY run_id"
+            ).fetchall()
+        )
 
     def run_stale_reasons(self, run_id: str) -> tuple[str, ...]:
         """這次運行有沒有過時,過時在哪。沒有過時就回空。

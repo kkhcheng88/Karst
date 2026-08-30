@@ -36,6 +36,9 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
                                    除名是加一列,不是刪一列(KARST-084)
 12. ``gateway_countersign``        補簽留痕:一列本來沒有簽章(唯一入口收窄之前落庫的),
                                    由誰、幾時、為什麼補上簽章(KARST-087)
+13. ``backtest_run_retraction``    運行除名登記:哪一次運行不再算數、被誰除名、幾時、
+                                   為什麼。只加不改不刪——除名是加一列,不是刪一列
+                                   (KARST-093)
 """
 
 from __future__ import annotations
@@ -72,7 +75,14 @@ from typing import Any
 #        補簽是**加一列簽章 + 加一列留痕**(誰、幾時、為什麼),不是靜靜替舊列蓋章:
 #        沒有這一列留痕,日後就分不出「當日經唯一入口凍的」與「事後補簽的」。
 #        舊庫重開時 DDL 自動補建,既有登記一列不動。
-SCHEMA_VERSION = 13
+# 第 14 版加運行除名登記表 ``backtest_run_retraction``(KARST-093):一次運行落了庫之後
+#        才發現不算數(最常見的是自動測試經正式路徑寫進來的那種),由**加一列**令它
+#        不再入清單、不再入計數,不是刪走 backtest_run 那一列——運行登記與快照登記
+#        同一個道理:刪走就等於把一件發生過的事由帳上抹掉,而那次運行的淨值、交易、
+#        參數集版本鏈全部還在,追溯要指得回。這張表入治理清單,故每一列都有唯一入口
+#        的簽章:「這次運行不算數」是一個定義級動作,不可以有人繞過那道門靜靜除掉一次
+#        運行。舊庫重開時 DDL 自動補建,既有登記一列不動。
+SCHEMA_VERSION = 14
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -583,6 +593,41 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_run_factor_ref_no_delete
 BEFORE DELETE ON run_factor_ref BEGIN
     SELECT RAISE(ABORT, '運行蓋住的因子版本不可刪,追溯要指得回');
+END;
+
+-- 運行除名登記(KARST-093)。
+--
+-- 一次運行落了庫之後才發現「它根本不應該算數」——最常見的是自動測試經正式路徑
+-- 跑出來的那種:測試要驗的是「重跑這條路行不行得通」,不是要為策略添一次成績,
+-- 但它寫出來的那一列與人手跑的正式運行在庫內一模一樣,於是策略的正式運行計數
+-- 無聲無息多了一條,門面成績、歷次運行表、運行選單全部跟住錯。
+--
+-- 除名照 ``data_snapshot_retraction`` 那一套(KARST-084):**加一列,不是刪一列**。
+-- backtest_run 那一列、淨值與交易檔、參數集版本鏈全部一個字不動——
+-- ``trg_backtest_run_no_delete`` 本來就寫明「運行登記不可刪,追溯要指得回」。
+-- 除名之後:
+--   · list_runs() 與 count_runs() 一律略過它——清單同計數列得出的只有算數的運行;
+--   · get_run() 一類直連查詢照樣讀得到,追溯指得回;
+--   · 運行目錄與 parquet 檔一個字都不動。
+--
+-- 這張表入治理清單(ledger.GOVERNED_TABLES),故此每一列都有唯一入口的寫入者簽章:
+-- 「這次運行不算數」與「指定現役設定」同級,都是決定門面數字取哪幾次運行的定義級
+-- 動作,不可以有人繞過那道門靜靜除掉一次運行。
+CREATE TABLE IF NOT EXISTS backtest_run_retraction (
+    run_id       TEXT PRIMARY KEY REFERENCES backtest_run(run_id),
+    reason       TEXT NOT NULL CHECK (length(trim(reason)) > 0),
+    retracted_by TEXT NOT NULL CHECK (length(trim(retracted_by)) > 0),
+    retracted_at TEXT NOT NULL
+);
+
+CREATE TRIGGER IF NOT EXISTS trg_run_retraction_no_update
+BEFORE UPDATE ON backtest_run_retraction BEGIN
+    SELECT RAISE(ABORT, '運行除名登記落庫後不可改;判斷變了請另開票,不要改寫已發生的除名');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_run_retraction_no_delete
+BEFORE DELETE ON backtest_run_retraction BEGIN
+    SELECT RAISE(ABORT, '運行除名登記不可刪,追溯要指得回');
 END;
 
 -- ====================================================================

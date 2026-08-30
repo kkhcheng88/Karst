@@ -50,10 +50,16 @@ def _sweep_url(base_url: str, sweep_id: str, layer: str | None = None) -> str:
 
 
 @pytest.fixture(scope="module")
-def reader():
-    if not (PROJECT_ROOT / "karst.sqlite").is_file():
-        pytest.skip("本機沒有定義庫,網頁殼無從讀起")
-    return build_reader(PROJECT_ROOT)
+def reader(seeded_project_root):
+    """讀取層接**種好數的臨時專案根**,不是倉根那個生產庫(KARST-093)。
+
+    臨時專案根的 ``experiments/`` 是空的,所以本檔各條測試現時一律跳過(下面
+    ``sweeps`` 夾具那句「本機沒有任何掃描落檔」)。要它們真的跑起來,臨時庫還要
+    種一幅**完整的掃描落檔**——掃描表連判讀表、帶選擇軸、判讀已按軸型分層——那是
+    另一件工,不在 KARST-093 範圍(票上已註明)。這裡先把讀取層接離生產庫:
+    照舊打生產庫的話,斷言就會吊住倉內今日剛好有哪幾幅掃描。
+    """
+    return build_reader(seeded_project_root)
 
 
 @pytest.fixture(scope="module")

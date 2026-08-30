@@ -30,8 +30,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture
-def 收拾重掃落檔():
-    """重掃測試會在倉內真的落一幅掃描;測完收拾走,不要每跑一次測試就多一幅。
+def 收拾重掃落檔(seeded_project_root):
+    """重掃測試會真的落一幅掃描;測完收拾走,不要每跑一次測試就多一幅。
+
+    KARST-093:落點跟住 reader 由倉根搬去臨時專案根。臨時目錄 session 完自己會
+    掉,收拾其實已經多餘,但照留——收拾的那幾行本身寫住一課(見下),而且日後
+    有人把落點改回倉內時,收拾還在,不用重新想一次。
 
     KARST-057:數據目錄重建之前,重掃那個測試因為沒有價格快照永遠跳過,
     所以沒有人見到它會在 ``experiments/重掃/`` 留低垃圾。數據回來之後它
@@ -42,7 +46,7 @@ def 收拾重掃落檔():
     """
     生出來的: list[Path] = []
     yield 生出來的
-    根 = (PROJECT_ROOT / "experiments" / "重掃").resolve()
+    根 = (Path(seeded_project_root) / "experiments" / "重掃").resolve()
     for 目錄 in 生出來的:
         目錄 = Path(目錄).resolve()
         if 目錄.parent != 根 or 目錄.is_symlink() or not 目錄.is_dir():
@@ -89,10 +93,17 @@ def _wait(base_url: str, job_id: str, limit_seconds: float = 900.0):
 
 
 @pytest.fixture(scope="module")
-def reader():
-    if not (PROJECT_ROOT / "karst.sqlite").is_file():
-        pytest.skip("本機沒有定義庫,重跑無從讀起")
-    return build_reader(PROJECT_ROOT)
+def reader(seeded_project_root):
+    """讀取層接**種好數的臨時專案根**,不是倉根那個生產庫(KARST-093)。
+
+    本檔是整批網頁測試裡最要緊接走的一個:它驗的是「畫面按重跑」,而重跑走的正是
+    **正式路徑**——經唯一入口登記一版新參數集、跑引擎、落一次 ``origin='formal'``
+    的運行。以前 reader 打倉根那個生產庫,於是每跑一次這個檔,生產庫就多一條正式
+    運行,而那一條與人手跑出來的一模一樣,分不出來:正式運行由 12 條變 13 條就是
+    這樣來的(KARST-087 交低)。接了臨時庫之後,它照樣真的跑、真的寫,只是寫在
+    session 完就掉的臨時目錄裡。
+    """
+    return build_reader(seeded_project_root)
 
 
 @pytest.fixture(scope="module")

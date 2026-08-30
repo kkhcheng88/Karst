@@ -74,6 +74,11 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     # 出什麼」。快照編號刻意不含抓取時間,所以那幾格只此一份,改了就沒有第二處對得回。
     "data_snapshot": ("snapshot_id",),
     "data_snapshot_fetch": ("snapshot_id",),
+    # KARST-093 補上的一張:運行除名登記。「這一次運行不算數」與「指定現役設定」
+    # 同級——兩者都是決定門面八個數字、歷次運行表、運行選單取哪幾次運行的定義級
+    # 動作,所以同一道門、同一種簽章。沒有簽章的除名列即是有人繞過唯一入口靜靜
+    # 抹走一次運行的成績,verify 一掃就見到。
+    "backtest_run_retraction": ("run_id",),
 }
 
 # 核對報告的三類(KARST-087)。一份「全庫清白/揪到 N 處」的總帳讀不出**哪一邊**不清白,
@@ -94,6 +99,9 @@ TABLE_CATEGORIES: dict[str, str] = {
     "param_set": CATEGORY_DEFINITION,
     "param_value": CATEGORY_DEFINITION,
     "active_setup": CATEGORY_DEFINITION,
+    # 運行除名歸「定義」而不是自立一類:它與 active_setup 是同一種東西——不是數據
+    # 來源出了事(那是「快照」),而是一句「門面數字該取哪幾次運行」的講法。
+    "backtest_run_retraction": CATEGORY_DEFINITION,
     "risk_rule": CATEGORY_DEFINITION,
     "strategy_risk_ref": CATEGORY_DEFINITION,
     "factor_value_batch": CATEGORY_FACTOR_BATCH,

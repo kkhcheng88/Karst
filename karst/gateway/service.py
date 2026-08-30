@@ -586,6 +586,28 @@ class Gateway:
         self._sign(("data_snapshot_retraction", (retraction.snapshot_id,)))
         return retraction
 
+    def retract_run(self, run_id: str, *, reason: str) -> object:
+        """把一次運行由清單與計數除名,並蓋上寫入者簽章(KARST-093)。
+
+        除名是一個**定義級動作**——它決定門面成績、歷次運行表、運行選單取哪幾次
+        運行——所以與指定現役設定同一道門:經這裡寫、留簽章,``karst verify`` 核得
+        到。有人繞過這道門直接塞一列除名登記,verify 一掃就見到它沒有簽章。
+
+        除的是**帳**,不是檔案:``backtest_run`` 那一列、淨值與交易 parquet 一個字
+        都不動,``get_run`` 照樣讀得到,只是 ``list_runs`` 與 ``count_runs`` 不再
+        算它一份。
+
+        ``reason`` 不設預設值:除名一次運行必須講得出憑什麼,而一個預設理由等於
+        沒有理由——日後翻帳只會見到一句人人一樣的空話,查不出當時發生過什麼事。
+        """
+        retraction = self._store.retract_run(
+            run_id,
+            reason=reason,
+            retracted_by=self._writer,
+        )
+        self._sign(("backtest_run_retraction", (retraction.run_id,)))
+        return retraction
+
     def take_macro_snapshot(
         self,
         *,

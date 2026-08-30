@@ -42,13 +42,9 @@ def _strip_comments(text: str) -> str:
 
 
 @pytest.fixture(scope="module")
-def reader():
-    if not (PROJECT_ROOT / "karst.sqlite").is_file():
-        pytest.skip("本機沒有定義庫,策略總覽無從讀起")
-    built = build_reader(PROJECT_ROOT)
-    if not built.store.list_strategy_names():
-        pytest.skip("庫內未有任何策略")
-    return built
+def reader(seeded_project_root):
+    """讀取層接**種好數的臨時專案根**,不是倉根那個生產庫(KARST-093)。"""
+    return build_reader(seeded_project_root)
 
 
 @pytest.fixture(scope="module")
