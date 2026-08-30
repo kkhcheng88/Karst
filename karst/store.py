@@ -170,6 +170,20 @@ EXIT_GOVERNANCES: Final[dict[str, str]] = {
 # 在那裡「為什麼改」是要人判的事,講不出就不准改(與 D-038 對齊依據同一條紀律)。
 DEFAULT_GOVERNANCE_BASIS: Final[str] = "D-058:登記時由策略合約宣告"
 
+# 策略登記狀態的取值(D-055、D-058;KARST-117)。同制:正本是 schema.py 的 CHECK,
+# 這裡只給程式一個名字與一個中文名。
+#
+# **這一格有預設,而且刻意有**:未記過狀態即現役。與上面兩格相反,不是因為紀律鬆了,
+# 而是因為這一格猜得出——不封存就是現役,封存是一個要人動手、要寫得出依據的動作。
+# 三層那兩格猜哪一個都是亂猜,這一格不是。
+ACTIVE_STATUS: Final[str] = "active"
+ARCHIVED_STATUS: Final[str] = "archived"
+STRATEGY_STATUSES: Final[dict[str, str]] = {
+    ACTIVE_STATUS: "現役",
+    ARCHIVED_STATUS: "封存",
+}
+"""策略登記狀態兩個取值(D-058 第 1 條:封存以狀態落實,定義庫不刪任何登記)。"""
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -366,6 +380,36 @@ class StrategyGovernance:
     def label(self) -> str:
         """畫面上的寫法:「個股層 / 規則型」。"""
         return f"{self.layer_label}層 / {self.exit_label}"
+
+
+@dataclass(frozen=True, slots=True)
+class StrategyStatus:
+    """策略登記狀態(strategy registration status):一條策略現在算現役還是封存的那一筆
+    紀錄(D-055、D-058;KARST-117)。
+
+    定義庫按設計不可刪改任何登記,所以封存不用刪、用狀態(D-058 第 1 條修正 D-057 的
+    「搬走或刪除」)。一條線封存之後,它的參數集與歷次運行原地一個位都不動、照查得到。
+
+    ``seq_no`` 是這條策略第幾次記狀態,由 1 起。**改狀態 = 加一筆新的**,舊紀錄一字不變
+    (與治理宣告、對齊標記、現役設定同制),所以「幾時封存、依哪條決策封存」永遠查得回。
+
+    ``basis`` 是狀態依據那一句,不准留空:封存要指得出依哪一條決策。
+    """
+
+    strategy_id: int
+    seq_no: int
+    status: str
+    basis: str
+    recorded_at: str
+
+    @property
+    def is_archived(self) -> bool:
+        return self.status == ARCHIVED_STATUS
+
+    @property
+    def label(self) -> str:
+        """畫面上的寫法:「封存」/「現役」。"""
+        return STRATEGY_STATUSES[self.status]
 
 
 @dataclass(frozen=True, slots=True)
@@ -2860,6 +2904,118 @@ class DefinitionStore:
             declared_at=str(row["declared_at"]),
         )
 
+    # ------------------------------------------------------------------
+    # 策略登記狀態:現役/封存(D-055、D-058;KARST-117)
+    # ------------------------------------------------------------------
+
+    def set_strategy_status(
+        self,
+        strategy_name: str,
+        *,
+        status: str,
+        basis: str,
+    ) -> StrategyStatus:
+        """記下一條**已登記**策略現在算現役還是封存,回傳這一筆紀錄。
+
+        D-058 第 1 條:定義庫按設計不可刪改任何登記,所以封存不用刪、用狀態。這一筆
+        寫入之後,該策略的登記、參數集、歷次運行、既有簽章一個位都不動——變的只是
+        「它還算不算現役」這一句。
+
+        **追加式**:封存 = 加一筆;日後復役 = 再加一筆 ``active``,舊紀錄一字不變
+        (與治理宣告、對齊標記、現役設定同制)。重覆記同一件事(同狀態、同一句依據)
+        即當同一件事,原封不動回上一筆,不會白加一列。
+
+        ``basis`` **不准留空亦沒有預設**:封存要指得出依哪一條決策(例如「D-055:
+        因子混合線降級封存」)。與治理宣告改宣告那條路同一條紀律——「為什麼封存」
+        是要人判的事,講不出就不准封。
+        """
+        head = self.get_strategy_version(strategy_name)
+        which = self._check_strategy_status(status, head.name)
+        note = str(basis or "").strip()
+        if not note:
+            raise ContractViolation(
+                f"策略「{head.name}」的狀態要講明依據一句(basis):"
+                "封存要指得出依哪一條決策,否則日後無人分得出它是判過的還是隨手改的"
+                "(D-058;與治理宣告、D-038 對齊依據同制)"
+            )
+
+        current = self._strategy_status_row(head.strategy_id)
+        if current is not None and (
+            str(current["status"]) == which and str(current["basis"]) == note
+        ):
+            return self._strategy_status(current)
+
+        seq_no = 1 if current is None else int(current["seq_no"]) + 1
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO strategy_status (strategy_id, seq_no, status, basis,"
+                " recorded_at) VALUES (?, ?, ?, ?, ?)",
+                (head.strategy_id, seq_no, which, note, _now()),
+            )
+        row = self._strategy_status_row(head.strategy_id)
+        assert row is not None  # 剛剛寫入,不會查不到
+        return self._strategy_status(row)
+
+    @staticmethod
+    def _check_strategy_status(status: str | None, name: str) -> str:
+        """狀態取值只收現役/封存。與層別那兩格不同,這裡不做「未答拒收」——
+        未記過狀態本來就有意思(現役),要擋的只是打錯字。"""
+        key = str(status or "").strip()
+        if key not in STRATEGY_STATUSES:
+            raise ContractViolation(
+                f"策略「{name}」的登記狀態只收 {sorted(STRATEGY_STATUSES)}"
+                f"({'、'.join(f'{k}={v}' for k, v in STRATEGY_STATUSES.items())}),"
+                f"收到 {status!r}(D-058 第 1 條:封存以狀態落實,定義庫不刪任何登記)"
+            )
+        return key
+
+    def strategy_status(self, strategy_id: int) -> StrategyStatus | None:
+        """這條策略**現在**的狀態紀錄(seq_no 最大那一筆);從未記過即 ``None``。
+
+        回 ``None`` 不代表狀態不明:**未記過就是現役**(見 ``is_strategy_archived``)。
+        分開回 ``None`` 只是為了讓呼叫者答得出「這條線有沒有人動過手封存」——
+        與治理宣告那個 ``None``(真的未宣告、猜不出)不是同一回事。
+        """
+        row = self._strategy_status_row(int(strategy_id))
+        return None if row is None else self._strategy_status(row)
+
+    def strategy_status_by_name(self, strategy_name: str) -> StrategyStatus | None:
+        """同上,但按策略名查。策略本身查無此名即拋 ``NotFound``。"""
+        head = self.get_strategy_version(strategy_name)
+        return self.strategy_status(head.strategy_id)
+
+    def is_strategy_archived(self, strategy_id: int) -> bool:
+        """這條策略現在是否封存。未記過狀態 = 現役(D-058;見 schema 第 18 版判詞)。"""
+        current = self.strategy_status(int(strategy_id))
+        return current is not None and current.is_archived
+
+    def strategy_status_history(self, strategy_id: int) -> list[StrategyStatus]:
+        """這條策略歷次記過什麼狀態,由早到遲。幾時封存、依據是什麼、有無復役過。"""
+        rows = self._conn.execute(
+            "SELECT strategy_id, seq_no, status, basis, recorded_at"
+            " FROM strategy_status WHERE strategy_id = ? ORDER BY seq_no",
+            (int(strategy_id),),
+        ).fetchall()
+        return [self._strategy_status(row) for row in rows]
+
+    def _strategy_status_row(self, strategy_id: int) -> sqlite3.Row | None:
+        return self._conn.execute(
+            "SELECT strategy_id, seq_no, status, basis, recorded_at"
+            " FROM strategy_status WHERE strategy_id = ?"
+            " ORDER BY seq_no DESC LIMIT 1",
+            (int(strategy_id),),
+        ).fetchone()
+
+    @staticmethod
+    def _strategy_status(row: sqlite3.Row) -> StrategyStatus:
+        return StrategyStatus(
+            strategy_id=int(row["strategy_id"]),
+            seq_no=int(row["seq_no"]),
+            status=str(row["status"]),
+            basis=str(row["basis"]),
+            recorded_at=str(row["recorded_at"]),
+        )
+
     def get_active_setup(self, strategy_name: str) -> ActiveSetup:
         """這套策略當下的現役設定。從未指定過即拋錯——**不猜**。
 
@@ -3090,9 +3246,34 @@ class DefinitionStore:
         ).fetchall()
         return [_row_to_risk_rule(row) for row in rows]
 
-    def list_strategy_names(self) -> list[str]:
-        """庫內全部策略的名稱,按登記次序(KARST-035:逐套策略列風控引用時用)。"""
-        rows = self._conn.execute("SELECT name FROM strategy ORDER BY strategy_id").fetchall()
+    def list_strategy_names(self, *, include_archived: bool = False) -> list[str]:
+        """策略名稱清單,按登記次序(KARST-035:逐套策略列風控引用時用)。
+
+        **預設只列現役**(D-058 第 1 條;KARST-117):封存了的線不再算現役,清單不列它。
+        要連封存一齊列,傳 ``include_archived=True``——封存不是刪除,它的登記、參數集與
+        歷次運行全部原地不動,指名查一樣查得到,只是不再自動出現在「現在有哪幾條線」
+        這條問題的答案裡。
+
+        未記過狀態的策略當現役(見 schema 第 18 版判詞):舊登記一列狀態都沒有,而封存
+        是一個要人動手的動作。
+        """
+        if include_archived:
+            rows = self._conn.execute(
+                "SELECT name FROM strategy ORDER BY strategy_id"
+            ).fetchall()
+            return [row["name"] for row in rows]
+        rows = self._conn.execute(
+            "SELECT s.name FROM strategy s"
+            " WHERE NOT EXISTS ("
+            "   SELECT 1 FROM strategy_status t"
+            "    WHERE t.strategy_id = s.strategy_id"
+            "      AND t.status = ?"
+            "      AND t.seq_no = ("
+            "          SELECT MAX(u.seq_no) FROM strategy_status u"
+            "           WHERE u.strategy_id = s.strategy_id)"
+            " ) ORDER BY s.strategy_id",
+            (ARCHIVED_STATUS,),
+        ).fetchall()
         return [row["name"] for row in rows]
 
     # ------------------------------------------------------------------

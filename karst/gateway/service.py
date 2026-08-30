@@ -32,6 +32,7 @@ from ..store import (
     ParamSetAlignment,
     RiskRuleRecord,
     StrategyGovernance,
+    StrategyStatus,
     StrategyVersion,
 )
 from . import ledger
@@ -548,6 +549,41 @@ class Gateway:
             governance.seq_no,
             None,
             governance.declared_at,
+            signed,
+        )
+
+    def set_strategy_status(
+        self,
+        strategy_name: str,
+        *,
+        status: str,
+        basis: str,
+    ) -> tuple[StrategyStatus, WriteReceipt]:
+        """記下一條**已登記**策略算現役還是封存,並蓋簽章(D-055、D-058;KARST-117)。
+
+        D-058 第 1 條:定義庫按設計不可刪改任何登記,所以封存不用刪、用狀態。這道門
+        是封存的**唯一**入口——一條線由現役變封存,即是說它不再出現在「現在有哪幾條線」
+        的答案裡,那與指定現役設定同級。有人繞過這道門靜靜封存一條線(或者把一條已封存
+        的線靜靜復活),正正是 D-057/D-058 要防的漂移。
+
+        改狀態 = 加一筆新的;重覆記同一件事回上一筆,不會白加一列,亦不會多蓋一個簽章
+        (``_sign_once``:那一列一經落庫即不可改,原簽章照舊有效)。
+
+        **封存不動任何既有登記**:該策略的登記、參數集、歷次運行與它們的簽章一個位都
+        不動,指名查一樣查得到。
+        """
+        record = self._store.set_strategy_status(
+            strategy_name, status=status, basis=basis
+        )
+        signed = self._sign_once(
+            ("strategy_status", (record.strategy_id, record.seq_no))
+        )
+        return record, self._receipt(
+            "策略登記狀態",
+            f"strategy_id={record.strategy_id}",
+            record.seq_no,
+            None,
+            record.recorded_at,
             signed,
         )
 

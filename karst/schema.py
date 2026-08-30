@@ -56,6 +56,12 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
                                    三條登記補填不了,而多兩欄亦會令該表既有簽章一次過作廢
                                    (D-054、D-056、D-058;CONTEXT.md「由上而下三層」「離場治理」;
                                    KARST-116)
+17. ``strategy_status``            策略登記狀態:一條策略是現役(``active``)還是封存
+                                   (``archived``),連狀態依據一句(封存依哪條決策)。只加不改
+                                   不刪——封存是加一列,不是刪一列;定義庫按設計不可刪任何登記,
+                                   所以封存不用刪、用狀態。未記過狀態即現役:舊登記一列都沒有
+                                   這一列,而封存是一個要人動手的動作
+                                   (D-055、D-058;CONTEXT.md「策略登記狀態」;KARST-117)
 """
 
 from __future__ import annotations
@@ -124,7 +130,19 @@ from typing import Any
 #        一次過作廢,``karst verify`` 會全紅。旁表兩樣都不碰。
 #        舊庫重開時 DDL 自動補建,既有登記一列不動;新表開頭是空的,補填由唯一入口逐列簽章
 #        寫入,不由遷移直接塞——「這條策略屬哪一層」是要人判的事,不是遷移猜得出的。
-SCHEMA_VERSION = 17
+# 第 18 版加策略登記狀態表 ``strategy_status``(D-055、D-058;KARST-117):按策略編號記
+#        「現役／封存」連狀態依據一句,追加式不可刪,入治理清單逐列有簽章。D-058 第 1 條把
+#        D-057 原本的「封存以搬走或刪除落實」修正為狀態格:定義庫按設計不可刪改任何登記,
+#        而那正是治理要的不可竄改——所以封存不用刪,用狀態。一條線封存之後,它的參數集、
+#        歷次運行、簽章全部原地不動、照查得到,變的只是「它還算不算現役」這一句。
+#        走**旁表**的理由與第 17 版同一條,不重複:``strategy`` 不可 UPDATE、加欄會令既有
+#        簽章一次過作廢。
+#        **與第 17 版一處刻意不同**:治理宣告未宣告時回 ``None`` 不猜(三層猜不出),狀態
+#        未記時當現役(猜得出——不封存就是現役,而封存是一個要人動手、要寫依據的動作)。
+#        所以本表不必填、不在登記時拒收,``register_strategy`` 的簽名一格不改。
+#        舊庫重開時 DDL 自動補建,既有登記一列不動;新表開頭是空的,封存由唯一入口逐列簽章
+#        寫入,不由遷移直接塞——「哪一條線封存了」是決策的結果,不是遷移猜得出的。
+SCHEMA_VERSION = 18
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -878,6 +896,55 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_strategy_governance_no_delete
 BEFORE DELETE ON strategy_governance BEGIN
     SELECT RAISE(ABORT, '策略治理宣告不可刪,追溯要指得回');
+END;
+
+-- 策略登記狀態(D-055、D-058;CONTEXT.md「策略登記狀態」;KARST-117)。
+--
+-- ``status``  這條策略是 ``active`` 現役,還是 ``archived`` 封存。
+--
+-- 為什麼有這張表:D-057 本來寫「封存以搬走或刪除落實」,D-058 第 1 條把它修正了——定義庫
+-- 按設計不可刪改任何登記,而那正是治理要的不可竄改。所以封存不用刪,用狀態。一條線封存
+-- 之後,它的策略登記、參數集、歷次運行、既有簽章全部原地一個位都不動,照查得到;變的只是
+-- 「它還算不算現役」這一句,而這一句本身有簽章、有依據、有時戳。
+--
+-- 為什麼是**旁表**而不是 ``strategy`` 多一格:與 ``strategy_governance`` 同一條理由,
+-- 不重複(``trg_strategy_no_update`` 擋 UPDATE;加欄會改動 content_digest 令既有簽章作廢)。
+--
+-- **追加式,一列都不改不刪。** 封存 = 加一列;日後復役 = 再加一列 ``active``,舊列一字不變。
+-- 「這條策略現在是什麼狀態」= 該 ``strategy_id`` 之下 ``seq_no`` 最大那一列;幾時封存、
+-- 依哪條決策封存、中間改過幾多次,全部查得回。
+--
+-- **未記過狀態 = 現役。** 這一點與治理宣告刻意相反:治理宣告未宣告時回「未宣告」不猜,
+-- 因為三層之中猜哪一層都是亂猜;狀態則猜得出——不封存就是現役,而封存是一個要人動手、
+-- 要寫得出依據的動作。所以本表不必填、登記時不拒收,舊登記無需補一列 ``active`` 才算現役。
+--
+-- ``basis``(狀態依據一句)不准留空:封存要指得出依哪一條決策(例如「D-055:因子混合線
+-- 降級封存」),否則日後無人分得出它是判過的還是隨手改的——與對齊標記、治理宣告同一句話。
+--
+-- 本表入治理清單(ledger.GOVERNED_TABLES),歸「定義」類:一條策略還算不算現役是定義級
+-- 講法。沒有簽章的狀態即是有人繞過唯一入口靜靜封存或復活一條線,而那正是 D-057/D-058
+-- 要防的漂移。
+CREATE TABLE IF NOT EXISTS strategy_status (
+    strategy_id   INTEGER NOT NULL REFERENCES strategy(strategy_id),
+    seq_no        INTEGER NOT NULL,
+    status        TEXT NOT NULL CHECK (status IN ('active', 'archived')),
+    basis         TEXT NOT NULL CHECK (length(trim(basis)) > 0),
+    recorded_at   TEXT NOT NULL,
+    PRIMARY KEY (strategy_id, seq_no),
+    CHECK (seq_no > 0)
+);
+
+CREATE INDEX IF NOT EXISTS idx_strategy_status_strategy
+    ON strategy_status (strategy_id, seq_no);
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_status_no_update
+BEFORE UPDATE ON strategy_status BEGIN
+    SELECT RAISE(ABORT, '策略登記狀態落庫後不可改;現役/封存變了請加新一筆,不要改寫已發生的狀態');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_status_no_delete
+BEFORE DELETE ON strategy_status BEGIN
+    SELECT RAISE(ABORT, '策略登記狀態不可刪,追溯要指得回');
 END;
 
 -- ====================================================================

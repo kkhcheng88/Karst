@@ -14,6 +14,12 @@
     python -m karst.gateway strategy declare-governance --name 板塊輪動 ^
         --layer sector --exit-governance rule_based --basis "D-058:改編制"
 
+    python -m karst.gateway strategy set-status --name "因子混合(ETF 版)" ^
+        --status archived --basis "D-055:因子混合線降級封存"
+
+    python -m karst.gateway strategy list
+    python -m karst.gateway strategy list --include-archived
+
     python -m karst.gateway params activate --strategy 趨勢波段 --name 現役 --note 換季調整
 
     python -m karst.gateway risk register
@@ -46,6 +52,7 @@ from ..store import (
     EXIT_GOVERNANCES,
     LAYERS,
     REBALANCE_CADENCES,
+    STRATEGY_STATUSES,
     STRATEGY_TYPES,
     check_param_set,
 )
@@ -176,6 +183,28 @@ def build_parser() -> argparse.ArgumentParser:
     declare.add_argument("--basis", required=True,
                          help="宣告依據一句;這一句會落庫,日後查得回。無理由的宣告等於沒有宣告")
 
+    # 策略登記狀態(D-055、D-058;KARST-117)。封存不是刪:定義庫按設計不可刪任何登記,
+    # 封存只是加一筆「它不再算現役」。追加式——日後復役是再加一筆,舊紀錄一字不變。
+    # ``--status`` 同樣刻意不用 argparse 的 choices:擋在那一層就只剩一句 usage,
+    # 講不出依據哪一條決策(見 _check_strategy_status)。
+    set_status = strategy_commands.add_parser(
+        "set-status",
+        help="記下某條已登記策略算現役還是封存(D-058),經唯一入口留簽章",
+    )
+    set_status.add_argument("--name", required=True, help="策略名稱")
+    set_status.add_argument("--status", default=None,
+                            help=f"{'、'.join(f'{k}={v}' for k, v in STRATEGY_STATUSES.items())}(D-058 第 1 條)")
+    set_status.add_argument("--basis", required=True,
+                            help="狀態依據一句(封存依哪條決策);這一句會落庫,日後查得回")
+
+    strategy_list = strategy_commands.add_parser(
+        "list", help="列策略清單;**預設只列現役**,要連封存一齊列加 --include-archived",
+    )
+    strategy_list.add_argument(
+        "--include-archived", dest="include_archived", action="store_true",
+        help="連已封存的策略一齊列(封存不是刪除,它的參數集與歷次運行照查得到)",
+    )
+
     strategy_show = strategy_commands.add_parser("show", help="看某策略的某一版連引用因子與參數集")
     strategy_show.add_argument("--name", required=True)
     strategy_show.add_argument("--version", type=int, default=None, help="留空取最新版")
@@ -222,7 +251,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     risk_commands.add_parser("list", help="列三條共用風控規則")
     risk_refs = risk_commands.add_parser("refs", help="列各策略引用了哪幾條風控規則")
-    risk_refs.add_argument("--strategy", default=None, help="策略名稱,留空即全部策略")
+    risk_refs.add_argument("--strategy", default=None, help="策略名稱,留空即全部現役策略")
+    risk_refs.add_argument(
+        "--include-archived", dest="include_archived", action="store_true",
+        help="留空 --strategy 時,連已封存的策略一齊列(預設只列現役;D-058)",
+    )
     risk_attach = risk_commands.add_parser("attach", help="記下某策略版本引用哪幾條風控規則")
     risk_attach.add_argument("--strategy", required=True, help="策略名稱,可寫「名稱@版本號」")
     risk_attach.add_argument("--rule", dest="rules", action="append", default=[],
@@ -553,8 +586,35 @@ def _strategy(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         print(f"策略「{version.name}」", file=out)
         _print_strategy_version(version, out)
         _print_governance(gateway.store.strategy_governance(version.strategy_id), out)
+        _print_strategy_status(gateway.store.strategy_status(version.strategy_id), out)
         for param_set in gateway.store.list_param_sets(args.name, strategy_version_no=args.version):
             _print_param_set(param_set, out)
+        return EXIT_OK
+
+    if args.subcommand == "list":
+        # 預設只列現役(D-058 第 1 條);封存不是刪除,加旗標就連封存一齊列。
+        names = gateway.store.list_strategy_names(include_archived=args.include_archived)
+        if not names:
+            print("庫內未有現役策略", file=out)
+            return EXIT_OK
+        for name in names:
+            head = gateway.store.get_strategy_version(name)
+            current = gateway.store.strategy_status(head.strategy_id)
+            mark = "現役" if current is None else current.label
+            print(f"{name}  [{mark}]", file=out)
+            if current is not None and current.is_archived:
+                print(f"    依據  {current.basis}({current.recorded_at})", file=out)
+        if not args.include_archived:
+            print("(只列現役;要連封存一齊列請加 --include-archived)", file=out)
+        return EXIT_OK
+
+    if args.subcommand == "set-status":
+        record, receipt = gateway.set_strategy_status(
+            args.name, status=args.status, basis=args.basis
+        )
+        print(f"已為策略「{args.name}」記下第 {record.seq_no} 筆登記狀態", file=out)
+        _print_strategy_status(record, out)
+        print(f"  簽章      {'、'.join(receipt.signed_rows)}", file=out)
         return EXIT_OK
 
     if args.subcommand == "declare-governance":
@@ -636,6 +696,19 @@ def _print_governance(governance, out: TextIO) -> None:
     print(
         f"  治理宣告  {governance.layer_label}層({governance.layer})/ "
         f"{governance.exit_label}({governance.exit_governance});依據:{governance.basis}",
+        file=out,
+    )
+
+
+def _print_strategy_status(record, out: TextIO) -> None:
+    """策略登記狀態(D-055、D-058;KARST-117)。未記過即現役——與治理宣告的
+    「未宣告」不同,這裡沒有待補填那回事,所以直接講「現役」,另註明它從未記過。"""
+    if record is None:
+        print("  登記狀態  現役(未記過狀態即現役)", file=out)
+        return
+    print(
+        f"  登記狀態  {record.label}({record.status});第 {record.seq_no} 筆;"
+        f"依據:{record.basis};記於 {record.recorded_at}",
         file=out,
     )
 
@@ -774,10 +847,15 @@ def _risk(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         print(f"  已蓋簽章  {'、'.join(signed) if signed else '(無引用,無列可簽)'}", file=out)
         return EXIT_OK
 
-    # refs:列各策略引用了哪幾條
-    names = [args.strategy] if args.strategy else gateway.store.list_strategy_names()
+    # refs:列各策略引用了哪幾條。留空 --strategy 即全部策略,而「全部」由本票起
+    # 預設解作**現役**(D-058 第 1 條);指名一條封存了的策略照樣查得到。
+    names = (
+        [args.strategy]
+        if args.strategy
+        else gateway.store.list_strategy_names(include_archived=args.include_archived)
+    )
     if not names:
-        print("庫內一套策略都沒有。", file=out)
+        print("庫內一套現役策略都沒有。", file=out)
         return EXIT_OK
     print("各策略引用的共用風控規則", file=out)
     for name in names:

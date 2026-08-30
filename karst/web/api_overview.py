@@ -155,7 +155,14 @@ class OverviewReader:
             by_strategy.setdefault(record.strategy_name, []).append(record)
 
         rows: list[dict[str, Any]] = []
-        for index, name in enumerate(store.list_strategy_names(), start=1):
+        # ``include_archived=True`` 是**維持現狀**,不是改介面(D-057、KARST-117):
+        # 引擎與 CLI 由本票起預設只列現役,而畫面要不要收起封存了的線、收起之後
+        # 用戶怎樣仍然揭得到它的歷史運行,是一個未經裁決的畫面設計問題——D-057
+        # 明文把介面押後。所以這裡明寫全列,令畫面與本票之前逐格一樣;日後介面
+        # 那一票要收起封存線,改這一句即可,而不是靠一個預設值靜靜替畫面決定。
+        for index, name in enumerate(
+            store.list_strategy_names(include_archived=True), start=1
+        ):
             rows.append(
                 self._strategy_row(
                     index, name, by_strategy.get(name, []), swept.get(name, 0)

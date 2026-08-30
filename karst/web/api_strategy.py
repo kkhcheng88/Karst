@@ -177,7 +177,10 @@ def _strategies(reader: Any) -> list[Any]:
     if bag["strategies"] is None:
         bag["strategies"] = [
             reader.store.get_strategy_version(name)
-            for name in reader.store.list_strategy_names()
+            # ``include_archived=True`` 是維持現狀,不是改介面(D-057、KARST-117);
+            # 理由同 api_overview,見該處註解。封存了的線在畫面上照樣揭得到它的
+            # 參數集與歷次運行,直至介面那一票另有裁決。
+            for name in reader.store.list_strategy_names(include_archived=True)
         ]
     return bag["strategies"]
 

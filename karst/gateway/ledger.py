@@ -97,6 +97,12 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     # 還是逐期按規則重算)——與指定現役設定同級的定義級動作。沒有簽章的宣告即是有人繞過
     # 唯一入口靜靜替一條策略改層別或改離場分型,而那正是 D-057/D-058 要防的漂移。
     "strategy_governance": ("strategy_id", "seq_no"),
+    # KARST-117 補上的一張:策略登記狀態。D-058 第 1 條把 D-057 的「封存以搬走或刪除
+    # 落實」修正為狀態格——定義庫按設計不可刪任何登記,所以封存不用刪、用狀態。而狀態
+    # 一旦決定「這條線還算不算現役」,它就與指定現役設定同級:一條線由現役變封存,即是
+    # 說它不再出現在「現在有哪幾條線」的答案裡。沒有簽章的狀態即是有人繞過唯一入口靜靜
+    # 封存一條線(或者把一條已封存的線靜靜復活),而那正是 D-057/D-058 要防的漂移。
+    "strategy_status": ("strategy_id", "seq_no"),
 }
 
 # 核對報告的三類(KARST-087)。一份「全庫清白/揪到 N 處」的總帳讀不出**哪一邊**不清白,
@@ -133,6 +139,9 @@ TABLE_CATEGORIES: dict[str, str] = {
     # 策略治理宣告同樣歸「定義」:它不是數據來源出了事(那是「快照」),而是一句
     # 「這條策略是什麼、它的注怎樣走」的講法,與策略定義本身同一類(KARST-116)。
     "strategy_governance": CATEGORY_DEFINITION,
+    # 策略登記狀態同樣歸「定義」:「這條線還算不算現役」與 active_setup 的
+    # 「跟隨哪一個參數集」是同一族講法,不是數據來源出了事(KARST-117)。
+    "strategy_status": CATEGORY_DEFINITION,
     "risk_rule": CATEGORY_DEFINITION,
     "strategy_risk_ref": CATEGORY_DEFINITION,
     "factor_value_batch": CATEGORY_FACTOR_BATCH,
