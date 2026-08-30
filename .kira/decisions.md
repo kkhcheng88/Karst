@@ -1429,3 +1429,32 @@
   > 樽頸同款 may not have 嗰日發生咗咩事. But 論點分類、死亡清單 and 時間閘 could be. I think as 樽頸 we could buy at the time the market is still calm or a just the right timing it start to be warm (the best timing). so it may or may not be 嗰日發生咗咩事 But the current situation or a snapshot of situation?
 
 - 影響：詞彙表論點記錄詞條更新為二型錨定;樽頸策略票的論點記錄一節按情景錨定寫;覆盤的三分法(論點錯/時機錯/執行錯)兩型照用。
+
+## D-062 論點記錄的載體定形:骨架結構化落庫(經唯一入口)、日誌自由 MD 追加、格式逼出驗證;明文否決純 MD 檔做骨幹
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-31
+
+- 出處：用戶 2026-08-31 核准主 agent 方案(原話 ok);起因是用戶提出每單錯殺/樽頸敘事值得當一個「假設+日誌」項目管理,問好的做法。
+
+- 背景：用戶要保證「情景內的邏輯不會漏、永遠被驗證」。主 agent 指出純 MD 項目正是舊倉 KarstETF 的死法(D-001 立項理由:MD 為骨幹難管理難擴展——沒有東西逼人回去覆核,死亡清單埋在文中三個月後無人記得);好的形是 Kira 票的形:一單論點=一張票。
+
+- 決策：
+  1. 每單論點型注一個論點記錄,兩層落實:骨架結構化落庫,經唯一入口、有版本有時間戳——錨定(事件/情景快照,D-061)、論點分類、死亡清單逐項一格各有狀態(未觸發/觸發/已覆核)、時間閘到期日、注碼上限、記錄狀態(進行中/論點死/到期/完場)
+  2. 日誌自由文追加(內容格式 MD 無妨):一條條有日期、引材料庫材料;每條日誌三格必答——死亡清單各項今日狀態、有無新證據、時間閘剩餘;不答不收貨,驗證由格式逼出,不靠自律
+  3. 機器守閘:時間閘到期要響、死亡清單未覆核格一眼可見、進行中論點一列可得
+  4. 完場必覆盤:結果+三分法歸因(論點錯/時機錯/執行錯),積累自家命中率與錯法分佈
+  5. 日後 agent 輔助:換倉日 agent 掃新材料草擬各論點死亡清單狀態、人手確認;用 D-024 材料庫+判準書機制,判準書問題=死亡清單
+  6. 明文否決純 MD 檔做骨幹(重蹈 D-001 舊倉死因);MD 做內容,庫做脊骨,格式做紀律
+
+- 考慮過的替代方案：
+  1. 純 MD 項目(一單敘事一個資料夾)—— 否決:舊倉已死過一次,無機制逼覆核,正是用戶怕的 logic missed 的成因
+  2. 全結構化無自由文 —— 不揀:敘事的血肉要寫得出先留得低,自由文放日誌層
+
+- 為何選這個：用戶日日在用的 Kira 票證明了這個形行得通:假設=開票、死亡清單=驗收條件、日誌=留言、離場=關檔;把同一套紀律搬到落注,覆盤數據(命中率、錯法分佈)就是無人有的私家資產。
+
+- **用戶原話（原文照錄）**
+
+  > I think actually for these 錯殺 or 樽頸 as in a stock or a specific narrative. The evidence and the founding is every important. So actually every narrative of such is worth setting up like a project or a hypothesis + dairy and it is like a MD based or else. To make sure the logic within the scenarios is not missed and always validated. ... ok
+
+- 影響：錯殺與樽頸策略票必含論點記錄一節並照此形實作;論點記錄的庫表與唯一入口支援屬該實作票範圍;介面(論點記錄檢視)照 D-057 押後。
