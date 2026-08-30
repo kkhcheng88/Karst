@@ -313,6 +313,9 @@
     var sortKey = state[cfg.hashKey || 'sort'] || cfg.defaultSort;
     var sortDir = state[(cfg.hashKey || 'sort') + 'd'] || cfg.defaultDir || 'desc';
     var selected = cfg.selected || null;
+    /* cfg.limit:預設只列頭 N 名,底下擺一個「展開全部」鍵;
+       換咗排序欄或方向即刻收返轉去頭 N 名(D-045・歷次運行表)。 */
+    var expanded = false;
 
     function render() {
       var rows = cfg.rows.slice();
@@ -325,6 +328,10 @@
         });
       }
 
+      var totalCount = rows.length;
+      var isCut = !!(cfg.limit && !expanded && totalCount > cfg.limit);
+      var shownRows = isCut ? rows.slice(0, cfg.limit) : rows;
+
       var head = cfg.cols.map(function (c) {
         var aria = c.key === sortKey ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none';
         var w = c.width ? ' style="width:' + c.width + '"' : '';
@@ -332,7 +339,7 @@
           'aria-sort="' + aria + '" tabindex="0" role="button"' + w + '>' + c.label + '</th>';
       }).join('');
 
-      var body = rows.map(function (r) {
+      var body = shownRows.map(function (r) {
         var key = cfg.rowKey ? cfg.rowKey(r) : null;
         var attrs = '';
         if (key !== null && key !== undefined) attrs += ' data-rk="' + esc(key) + '"';
@@ -347,19 +354,37 @@
         }).join('') + '</tr>';
       }).join('');
 
+      var expandHtml = '';
+      if (cfg.limit && totalCount > cfg.limit) {
+        expandHtml = '<div class="table-expand">' +
+          '<button type="button" class="table-expand-btn" id="' + (cfg.limitBtnId || 'table-expand-btn') + '">' +
+            (expanded ? '收起,只看頭 ' + cfg.limit + ' 條' : '展開全部 ' + totalCount + ' 條') +
+          '</button></div>';
+      }
+
       host.innerHTML =
         '<div class="table-scroll' + (cfg.maxHeight ? ' table-scroll-y' : '') + '"' +
           (cfg.maxHeight ? ' style="max-height:' + cfg.maxHeight + '"' : '') + '>' +
           '<table class="kt"' + (cfg.minWidth ? ' style="min-width:' + cfg.minWidth + '"' : '') + '>' +
             '<thead><tr>' + head + '</tr></thead><tbody>' + body + '</tbody></table>' +
         '</div>' +
+        expandHtml +
         (cfg.foot ? '<div class="table-foot">' + cfg.foot(rows) + '</div>' : '');
+
+      if (cfg.limit && totalCount > cfg.limit) {
+        var expandBtn = host.querySelector('.table-expand-btn');
+        if (expandBtn) expandBtn.addEventListener('click', function () {
+          expanded = !expanded;
+          render();
+        });
+      }
 
       host.querySelectorAll('th.sortable').forEach(function (th) {
         function go() {
           var k = th.getAttribute('data-key');
           if (k === sortKey) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
           else { sortKey = k; sortDir = 'desc'; }
+          expanded = false; /* 換咗排序,收返轉去頭 N 名(D-045) */
           var st = readHashState();
           st[cfg.hashKey || 'sort'] = sortKey;
           st[(cfg.hashKey || 'sort') + 'd'] = sortDir;

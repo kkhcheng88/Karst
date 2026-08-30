@@ -99,21 +99,60 @@
 
     </div>
 
-    <!-- ============ 批內選次:選股快照 + 漏斗 + 參數/因子摺疊區 ============ -->
+    <!-- ============ 時點檢視:選了一次運行之後(D-045) ============ -->
     <section class="sp-panel run-detail" id="run-detail" hidden aria-labelledby="run-detail-title">
       <div class="sp-head">
         <div class="sp-side">
-          <h2 id="run-detail-title">該次運行・選股快照</h2>
+          <h2 id="run-detail-title">時點檢視</h2>
+          <span class="mono dim" id="run-detail-runid"></span>
           <span class="at-point" id="run-detail-id"></span>
         </div>
         <button type="button" class="btn" id="back-to-batch">回到批次</button>
       </div>
-      <div class="sp-sub" id="picks-basis"></div>
-      <div class="sp-funnel">
-        <div class="sp-funnel-cap">逐層收窄</div>
-        <div class="funnel-bar" id="funnel"></div>
+
+      <div class="sp-body">
+        <div class="tp-split">
+
+          <div class="sp-panel tp-chartwrap" aria-labelledby="tp-chart-title">
+            <div class="sp-head">
+              <div class="sp-side"><h2 id="tp-chart-title" style="font-size:var(--fs-sm)">淨值與進出場</h2></div>
+              <span class="section-note">▲買・▼沽・同日多筆合成一個・滑過看成交・點任何一日設時點</span>
+            </div>
+            <div class="sp-body">
+              <div class="tp-chart" id="tp-chart"></div>
+              <div class="tp-at-line" id="tp-at-line" hidden></div>
+              <div class="hovcard" id="tp-hov" hidden></div>
+            </div>
+            <div class="tp-hint" id="tp-hint"></div>
+          </div>
+
+          <div class="sp-panel" aria-labelledby="tp-card-title">
+            <div class="tp-card-head">
+              <h2 id="tp-card-title" style="font-size:var(--fs-sm)">時點卡</h2>
+              <span class="tp-card-date mono" id="tp-card-date"></span>
+            </div>
+            <div class="tabs" role="tablist" id="tp-tabs">
+              <button type="button" class="tab-btn" role="tab" id="tp-tab-hold" aria-controls="tp-panel-hold" aria-selected="true">持倉</button>
+              <button type="button" class="tab-btn" role="tab" id="tp-tab-trade" aria-controls="tp-panel-trade" aria-selected="false">成交</button>
+              <button type="button" class="tab-btn" role="tab" id="tp-tab-dist" aria-controls="tp-panel-dist" aria-selected="false">全期持股分布</button>
+            </div>
+            <div class="sp-body flush" role="tabpanel" id="tp-panel-hold"></div>
+            <div class="sp-body flush" role="tabpanel" id="tp-panel-trade" hidden></div>
+            <div class="sp-body flush" role="tabpanel" id="tp-panel-dist" hidden></div>
+          </div>
+
+        </div>
       </div>
-      <div id="picks-table"></div>
+
+      <!-- ============ 選股快照(全寬)+ 漏斗(與時點同步) ============ -->
+      <div class="tp-snap-funnel">
+        <div class="sp-funnel">
+          <div class="sp-funnel-cap">逐層收窄</div>
+          <div class="funnel-bar" id="funnel"></div>
+        </div>
+        <div class="tp-snap-toolbar" id="picks-basis"></div>
+        <div id="picks-table"></div>
+      </div>
 
       <details class="paramfac">
         <summary>參數與因子(展開)</summary>
@@ -144,7 +183,10 @@
      ============================================================ */
   function readParams() {
     var q = new URLSearchParams(location.search);
-    return { id: q.get('id') || 'trend-swing', sweep: q.get('sweep') || '', run: q.get('run') || '', heat: q.get('heat') || 'grid' };
+    return {
+      id: q.get('id') || 'trend-swing', sweep: q.get('sweep') || '', run: q.get('run') || '',
+      heat: q.get('heat') || 'grid', at: q.get('at') || '',
+    };
   }
   function writeParams(p) {
     var q = new URLSearchParams();
@@ -152,13 +194,17 @@
     if (p.sweepId) q.set('sweep', p.sweepId);
     if (p.runId) q.set('run', p.runId);
     if (p.heat && p.heat !== 'grid') q.set('heat', p.heat);
+    if (p.runId && p.at) q.set('at', p.at);
     var url = location.pathname + '?' + q.toString() + location.hash;
     try { history.replaceState(null, '', url); }
     catch (e) { /* file:// 下可能被擋,不影響畫面本身 */ }
   }
 
   var init = readParams();
-  var S = { id: init.id, sweepId: init.sweep, runId: init.run, variant: init.heat === 'band' ? 'band' : 'grid' };
+  var S = {
+    id: init.id, sweepId: init.sweep, runId: init.run, variant: init.heat === 'band' ? 'band' : 'grid',
+    at: '', tpTab: 'hold', layer: 0,
+  };
 
   var el = {
     demo: document.getElementById('demo-scenarios'),
@@ -180,12 +226,22 @@
     holdingsNote: document.getElementById('holdings-note'),
     holdingsTable: document.getElementById('holdings-table'),
     runDetail: document.getElementById('run-detail'),
+    runDetailRunid: document.getElementById('run-detail-runid'),
     runDetailId: document.getElementById('run-detail-id'),
     picksBasis: document.getElementById('picks-basis'),
     funnel: document.getElementById('funnel'),
     picksTable: document.getElementById('picks-table'),
     paramfac: document.getElementById('paramfac-body'),
     backToBatch: document.getElementById('back-to-batch'),
+    tpChartHost: document.getElementById('tp-chart'),
+    tpAtLine: document.getElementById('tp-at-line'),
+    tpHov: document.getElementById('tp-hov'),
+    tpHint: document.getElementById('tp-hint'),
+    tpCardDate: document.getElementById('tp-card-date'),
+    tpTabs: document.getElementById('tp-tabs'),
+    tpPanelHold: document.getElementById('tp-panel-hold'),
+    tpPanelTrade: document.getElementById('tp-panel-trade'),
+    tpPanelDist: document.getElementById('tp-panel-dist'),
   };
 
   /* ---------------- 原型示範情境列 ---------------- */
@@ -240,6 +296,8 @@
   var curRuns = DATA.runsBySweep[curSweep.id] || [];
   var curRun = curRuns.filter(function (r) { return r.id === S.runId; })[0] || null;
   S.runId = curRun ? curRun.id : '';
+  /* 時點預設 = 該次運行「最後一日」(D-045);直連 ?at= 校正去最近一個交易週 */
+  S.at = curRun ? (init.at ? DEMO.snapDate(init.at) : DATA.dates[DATA.dates.length - 1]) : '';
 
   writeParams(S);
 
@@ -487,6 +545,7 @@
       rowKey: function (r) { return r.id; },
       selected: S.runId || null,
       defaultSort: 'cagr', defaultDir: 'desc',
+      limit: 10, /* 預設只列按目前排序的頭 10 名,「展開全部」鍵可再收(D-045) */
       onRowClick: function (r) { pickRunAction(r.id); },
       cols: [
         { key: 'id', label: '運行編號', width: '200px', get: function (r) { return r.id; },
@@ -501,8 +560,15 @@
   }
 
   function pickRunAction(runId) {
+    var turningOn = S.runId !== runId;
     S.runId = (S.runId === runId) ? '' : runId;
     curRun = S.runId ? curRuns.filter(function (r) { return r.id === S.runId; })[0] : null;
+    if (S.runId && turningOn) {
+      /* 揀一次新運行:時點退回預設(該次最後一日),頁籤與漏斗篩選一併還原(D-045) */
+      S.at = DATA.dates[DATA.dates.length - 1];
+      S.tpTab = 'hold';
+      S.layer = 0;
+    }
     writeParams(S);
     renderAll();
   }
@@ -515,17 +581,8 @@
   function renderHoldings() {
     if (S.runId && curRun) {
       var rows = DATA.holdingsByRun[curRun.id] || [];
-      el.holdingsNote.textContent = '單次層・' + curRun.id + '・以持有日數排前十';
-      el.holdingsTable.innerHTML = !rows.length
-        ? '<div class="sp-empty">這次運行沒有持倉紀錄。</div>'
-        : '<table class="kt"><thead><tr>' +
-            '<th style="width:70px">代號</th><th>名稱</th><th style="width:96px">行業</th>' +
-            '<th class="num" style="width:88px">持有日數</th><th class="num" style="width:96px">累計報酬</th>' +
-          '</tr></thead><tbody>' + rows.map(function (h) {
-            return '<tr><td class="mono">' + KV.esc(h.sym) + '</td><td>' + KV.esc(h.name) + '</td>' +
-              '<td class="dim">' + KV.esc(h.sector) + '</td><td class="num">' + h.holdDays + '</td>' +
-              '<td class="num ' + KV.cls(h.cumReturn) + '">' + KV.pct(h.cumReturn) + '</td></tr>';
-          }).join('') + '</tbody></table>';
+      el.holdingsNote.textContent = '單次層・' + curRun.id + '・全期持股分布・以進出次數排前十';
+      el.holdingsTable.innerHTML = runHoldingsTableHtml(rows);
       return;
     }
     if (!curSweep.passedCount) {
@@ -551,7 +608,8 @@
   }
 
   /* ============================================================
-     選股快照 + 漏斗 + 參數/因子(只在選了單次運行時出現)
+     時點檢視(D-045):淨值圖 + 時點卡(持倉／成交／全期持股分布)
+     + 選股快照(全寬)+ 漏斗(全部同步同一個時點) + 參數/因子
      ============================================================ */
   var FUNNEL_COLOR = ['#6b7488', '#4a9eff', '#26a69a', '#f0a83c'];
   var ST_CLS = { '持倉': 'st-hold', '入選': 'st-in', '觀察': 'st-watch', '未過': 'st-out' };
@@ -566,44 +624,284 @@
     if (!shown) return '<td><span class="dim">—</span></td>';
     return '<td class="' + (pass ? 'gate-yes' : 'gate-no') + '">' + (pass ? '✓' : '✗') + '</td>';
   }
+  /* 全期持股分布用的表(單次運行版,亦同一張表用於上面批次層/單次層「持股分布」面板) */
+  function runHoldingsTableHtml(rows) {
+    if (!rows.length) return '<div class="sp-empty">這次運行沒有持倉紀錄。</div>';
+    return '<table class="kt"><thead><tr>' +
+        '<th style="width:64px">代號</th><th>名稱</th><th style="width:90px">行業</th>' +
+        '<th class="num" style="width:60px">次數</th><th class="num" style="width:88px">平均持有日數</th>' +
+        '<th class="num" style="width:96px">平均累計報酬</th>' +
+      '</tr></thead><tbody>' + rows.map(function (h) {
+        return '<tr><td class="mono">' + KV.esc(h.sym) + '</td><td>' + KV.esc(h.name) + '</td>' +
+          '<td class="dim">' + KV.esc(h.sector) + '</td>' +
+          '<td class="num">' + h.freq + '</td>' +
+          '<td class="num">' + h.avgHoldDays + '</td>' +
+          '<td class="num ' + KV.cls(h.avgCumReturn) + '">' + KV.pct(h.avgCumReturn) + '</td></tr>';
+      }).join('') + '</tbody></table>';
+  }
 
-  function renderRunDetail() {
-    if (!S.runId || !curRun) { el.runDetail.hidden = true; return; }
-    el.runDetail.hidden = false;
-    var snap = DATA.snapshotByRun[curRun.id];
+  /* ---- 頁籤(programmatic 切,亦收 click) ---- */
+  function setTpTab(name) {
+    S.tpTab = name;
+    ['hold', 'trade', 'dist'].forEach(function (t) {
+      var btn = document.getElementById('tp-tab-' + t);
+      var panel = document.getElementById('tp-panel-' + t);
+      var on = t === name;
+      if (btn) btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (panel) panel.hidden = !on;
+    });
+  }
+  el.tpTabs.addEventListener('click', function (e) {
+    var b = e.target.closest('.tab-btn');
+    if (!b) return;
+    setTpTab(b.id.replace('tp-tab-', ''));
+  });
 
-    el.runDetailId.textContent = curRun.id + '・快照日 ' + snap.asOfDate;
+  /* ---- 時點卡三個頁籤內容;每次時點變動,三面一起重畫,切頁籤只是換顯示 ---- */
+  function renderTimePointCard() {
+    if (!S.runId || !curRun) return;
+    el.tpCardDate.textContent = S.at;
 
-    el.picksBasis.innerHTML =
-      '<span>門檻 質素 ≥ ' + snap.gates.quality + '・動量 ≥ ' + snap.gates.momentum + '</span>' +
-      '<span>分數 0–100</span>' +
-      '<span class="dim">批次層原型只示範一個代表快照,不設逐日回捲(運行詳情頁已取消,D-042)</span>';
+    /* 持倉 */
+    var pos = DEMO.positionsAt(S.id, curRun.id, S.at);
+    if (!pos.length) {
+      var trades0 = DATA.tradesByRun[curRun.id] || [];
+      var firstEntry = trades0.length ? trades0[0].entryDate : null;
+      el.tpPanelHold.innerHTML = firstEntry && S.at < firstEntry
+        ? '<div class="tp-empty">此時點早於首次入場<div class="tp-empty-sub">最早一筆入場在 ' + KV.esc(firstEntry) + '。</div></div>'
+        : '<div class="tp-empty">此時點沒有持倉。</div>';
+    } else {
+      el.tpPanelHold.innerHTML = '<table class="kt"><thead><tr>' +
+          '<th style="width:60px">代號</th><th>名稱</th><th class="num" style="width:68px">比重</th>' +
+          '<th class="num" style="width:64px">成本</th><th class="num" style="width:70px">浮動盈虧</th>' +
+        '</tr></thead><tbody>' + pos.map(function (p) {
+          return '<tr><td class="mono">' + KV.esc(p.sym) + '</td><td>' + KV.esc(p.name) + '</td>' +
+            '<td class="num">' + p.weightPct.toFixed(1) + '%</td>' +
+            '<td class="num">' + p.cost.toFixed(2) + '</td>' +
+            '<td class="num ' + KV.cls(p.floatPnl) + '">' + KV.pct(p.floatPnl) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+    }
 
+    /* 成交 */
+    var td = DEMO.tradesOnDate(S.id, curRun.id, S.at);
+    if (td.fills.length) {
+      el.tpPanelTrade.innerHTML = '<table class="kt"><thead><tr>' +
+          '<th style="width:60px">代號</th><th>名稱</th><th style="width:48px">方向</th>' +
+          '<th class="num" style="width:70px">股數</th><th class="num" style="width:64px">價格</th>' +
+        '</tr></thead><tbody>' + td.fills.map(function (f) {
+          return '<tr><td class="mono">' + KV.esc(f.sym) + '</td><td>' + KV.esc(f.name) + '</td>' +
+            '<td class="' + (f.side === '買' ? 'side-buy' : 'side-sell') + '">' + f.side + '</td>' +
+            '<td class="num">' + KV.num(f.shares, 0) + '</td>' +
+            '<td class="num">' + f.price.toFixed(2) + '</td></tr>';
+        }).join('') + '</tbody></table>';
+    } else if (td.mostRecentDate) {
+      el.tpPanelTrade.innerHTML = '<div class="tp-empty">當日無成交<div class="tp-empty-sub">最近一筆在 ' + KV.esc(td.mostRecentDate) + '。</div></div>';
+    } else {
+      el.tpPanelTrade.innerHTML = '<div class="tp-empty">此時點之前未有任何成交。</div>';
+    }
+
+    /* 全期持股分布(單次運行版,與批次層持股分布同一張表,不隨時點變) */
+    el.tpPanelDist.innerHTML = runHoldingsTableHtml(DATA.holdingsByRun[curRun.id] || []);
+  }
+
+  /* ---- 選股快照(全寬) + 漏斗(可點篩選) ---- */
+  var FUNNEL_LABEL = ['範圍', '基本面', '技術', '持倉'];
+  function inLayer(r, layer) {
+    if (layer === 1) return r.passFund;
+    if (layer === 2) return r.passTech;
+    if (layer === 3) return r.status === '持倉';
+    return true;
+  }
+  function renderSnapshotFunnel() {
+    if (!S.runId || !curRun) return;
+    var snap = DEMO.snapshotAt(S.id, curRun.id, S.at);
+
+    el.funnel.className = 'funnel-bar' + (S.layer ? ' has-filter' : '');
     el.funnel.innerHTML = snap.funnel.map(function (f, i) {
       var prev = i ? snap.funnel[i - 1].count : 0;
       var keep = i ? Math.round(f.count / prev * 1000) / 10 : 100;
-      return '<div class="fb-seg" style="flex:' + f.count + ' 1 74px" title="' + KV.esc(f.label + '　' + f.hint) + '">' +
-        '<div class="fb-block" style="background:' + FUNNEL_COLOR[i] + '">' +
-          '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
-          '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
-        '</div>' +
-        '<div class="fb-lab">' + KV.esc(f.label) + '</div>' +
-      '</div>';
+      return '<button type="button" class="fb-seg" data-layer="' + i + '" ' +
+          'aria-pressed="' + (S.layer === i && i ? 'true' : 'false') + '" ' +
+          'style="flex:' + f.count + ' 1 74px" ' +
+          'title="' + KV.esc(f.label + '　' + f.hint) + (i ? '　點一下:只看這一層' : '') + '">' +
+          '<div class="fb-block" style="background:' + FUNNEL_COLOR[i] + '">' +
+            '<span class="fb-num">' + f.count + '<small>隻</small></span>' +
+            '<span class="fb-keep">' + (i ? '剩 ' + keep + '%' : '全部') + '</span>' +
+          '</div>' +
+          '<div class="fb-lab">' + KV.esc(FUNNEL_LABEL[i] || f.label) +
+            (i ? '　−' + (prev - f.count) : '') + '</div>' +
+        '</button>';
     }).join('');
 
-    el.picksTable.innerHTML = '<table class="kt">' + PICK_HEAD + '<tbody>' + snap.rows.map(function (r) {
-      return '<tr>' +
-        '<td class="mono">' + KV.esc(r.sym) + '</td>' +
-        '<td title="' + KV.esc(r.name) + '">' + KV.esc(r.name) + '</td>' +
-        '<td class="dim">' + KV.esc(r.sector) + '</td>' +
-        '<td class="num">' + r.quality.toFixed(0) + '</td>' +
-        '<td class="num">' + r.momentum.toFixed(0) + '</td>' +
-        '<td class="num">' + r.oversold.toFixed(0) + '</td>' +
-        '<td class="num" style="font-weight:700">' + r.composite.toFixed(0) + '</td>' +
-        gateCell(r.passFund, true) + gateCell(r.passTech, r.passFund) +
-        '<td><span class="st ' + ST_CLS[r.status] + '">' + r.status + '</span></td>' +
-      '</tr>';
-    }).join('') + '</tbody></table>';
+    var rows = snap.rows.filter(function (r) { return inLayer(r, S.layer); });
+
+    el.picksBasis.innerHTML =
+      '<span>時點 <b class="mono">' + KV.esc(S.at) + '</b></span>' +
+      '<span>門檻 質素 ≥ ' + snap.gates.quality + '・動量 ≥ ' + snap.gates.momentum + '</span>' +
+      '<span>分數 0–100・全宇宙 ' + DEMO.universe.length + ' 隻</span>' +
+      (S.layer
+        ? '<span class="sp-filter">只看 ' + KV.esc(FUNNEL_LABEL[S.layer]) + '・' + rows.length +
+            ' 隻<button type="button" id="clear-filter" aria-label="取消篩選">✕</button></span>'
+        : '');
+    var cf = document.getElementById('clear-filter');
+    if (cf) cf.addEventListener('click', function () { S.layer = 0; renderSnapshotFunnel(); });
+
+    el.picksTable.innerHTML = rows.length
+      ? '<table class="kt">' + PICK_HEAD + '<tbody>' + rows.map(function (r) {
+          return '<tr>' +
+            '<td class="mono">' + KV.esc(r.sym) + '</td>' +
+            '<td title="' + KV.esc(r.name) + '">' + KV.esc(r.name) + '</td>' +
+            '<td class="dim">' + KV.esc(r.sector) + '</td>' +
+            '<td class="num">' + r.quality.toFixed(0) + '</td>' +
+            '<td class="num">' + r.momentum.toFixed(0) + '</td>' +
+            '<td class="num">' + r.oversold.toFixed(0) + '</td>' +
+            '<td class="num" style="font-weight:700">' + r.composite.toFixed(0) + '</td>' +
+            gateCell(r.passFund, true) + gateCell(r.passTech, r.passFund) +
+            '<td><span class="st ' + ST_CLS[r.status] + '">' + r.status + '</span></td>' +
+          '</tr>';
+        }).join('') + '</tbody></table>'
+      : '<div class="sp-empty">這一層在本時點沒有股票。</div>';
+  }
+  el.funnel.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-layer]');
+    if (!b) return;
+    var i = Number(b.getAttribute('data-layer'));
+    S.layer = (i === 0 || S.layer === i) ? 0 : i;
+    renderSnapshotFunnel();
+  });
+
+  /* ---- 換時點:圖上點日子、或點成交標記 —— 統一入口 ---- */
+  function setTimePoint(iso, isMarkerDay) {
+    if (iso === S.at) return;
+    S.at = iso;
+    writeParams(S);
+    if (isMarkerDay) setTpTab('trade');
+    renderTimePointCard();
+    renderSnapshotFunnel();
+    repositionAtLine();
+    el.runDetailId.classList.remove('is-flash');
+    void el.runDetailId.offsetWidth;
+    el.runDetailId.classList.add('is-flash');
+  }
+
+  /* ---- 淨值圖:批次密度帶(淡)做底 + 該次運行實線 + 進出場標記 ---- */
+  var tpChart = null;
+  function tearTpChart() {
+    var dead = tpChart;
+    tpChart = null;
+    el.tpChartHost.innerHTML = '';
+    el.tpAtLine.hidden = true;
+    if (dead) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { try { dead.remove(); } catch (e) {} });
+      });
+    }
+  }
+  function repositionAtLine() {
+    if (!tpChart || !S.at) { el.tpAtLine.hidden = true; return; }
+    var x = tpChart.timeScale().timeToCoordinate(S.at);
+    if (x == null) { el.tpAtLine.hidden = true; return; }
+    el.tpAtLine.hidden = false;
+    el.tpAtLine.style.left = Math.round(x) + 'px';
+  }
+  function isoOfTp(t) {
+    if (typeof t === 'string') return t;
+    if (t && t.year) return t.year + '-' + String(t.month).padStart(2, '0') + '-' + String(t.day).padStart(2, '0');
+    return null;
+  }
+  function hideTpHover() { el.tpHov.hidden = true; }
+  function showTpHover(pt, m) {
+    var rows = m.buys.map(function (t) {
+      return { side: '買', cls: 'b', sym: t.sym, shares: t.shares, px: t.entryPx };
+    }).concat(m.sells.map(function (t) {
+      return { side: '沽', cls: 's', sym: t.sym, shares: t.shares, px: t.exitPx };
+    }));
+    var shown = rows.slice(0, 8);
+    el.tpHov.innerHTML =
+      '<div class="hov-date"><span>' + m.date + '</span><span class="dim">' + KV.esc(m.label) + '</span></div>' +
+      shown.map(function (x) {
+        return '<div class="hov-row">' +
+          '<span class="hov-side ' + x.cls + '">' + x.side + '</span>' +
+          '<span class="hov-sym">' + KV.esc(x.sym) + '</span>' +
+          '<span class="dim">' + KV.num(x.shares, 0) + ' 股</span>' +
+          '<span>' + x.px.toFixed(2) + '</span>' +
+        '</div>';
+      }).join('') +
+      (rows.length > 8 ? '<div class="hov-more">另 ' + (rows.length - 8) + ' 筆</div>' : '') +
+      '<div class="hov-hint">點一下:時點跳到這一日、切去「成交」頁籤</div>';
+    el.tpHov.hidden = false;
+    var box = el.tpHov.parentElement.getBoundingClientRect();
+    var w = el.tpHov.offsetWidth, h = el.tpHov.offsetHeight;
+    var x = pt.x + 16, y = pt.y + 16;
+    if (x + w > box.width - 6) x = pt.x - w - 16;
+    if (y + h > box.height - 6) y = Math.max(6, box.height - h - 6);
+    el.tpHov.style.left = Math.max(6, x) + 'px';
+    el.tpHov.style.top = Math.max(6, y) + 'px';
+  }
+  function drawTpChart() {
+    tearTpChart();
+    if (!S.runId || !curRun) return;
+    var box = document.createElement('div');
+    el.tpChartHost.appendChild(box);
+    tpChart = KV.makeChart(box, el.tpChartHost.clientHeight || 360);
+
+    var dates = DATA.dates;
+    if (curSweep.passedCount) {
+      var P = percentiles(curSweep.id);
+      var outer = 'rgba(74,158,255,.07)', inner = 'rgba(74,158,255,.13)';
+      tpChart.addAreaSeries({ topColor: outer, bottomColor: outer, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: false }).setData(KV.zip(dates, P.p95));
+      tpChart.addAreaSeries({ topColor: outer, bottomColor: outer, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: true }).setData(KV.zip(dates, P.p5));
+      tpChart.addAreaSeries({ topColor: inner, bottomColor: inner, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: false }).setData(KV.zip(dates, P.p75));
+      tpChart.addAreaSeries({ topColor: inner, bottomColor: inner, lineColor: 'rgba(0,0,0,0)', lineWidth: 1, priceLineVisible: false, lastValueVisible: false, invertFilledArea: true }).setData(KV.zip(dates, P.p25));
+    }
+
+    var runSeries = tpChart.addLineSeries({ color: '#26a69a', lineWidth: 2.2, priceLineVisible: false, lastValueVisible: false });
+    runSeries.setData(KV.zip(dates, DATA.curvesBySweep[curSweep.id][curRun.id]));
+
+    var marks = DATA.marksByRun[curRun.id] || [];
+    runSeries.setMarkers(marks.map(function (m) {
+      return {
+        time: m.date,
+        position: m.side === 'sell' ? 'aboveBar' : 'belowBar',
+        color: m.side === 'buy' ? '#26a69a' : (m.side === 'sell' ? '#ef5350' : '#8f9bb3'),
+        shape: m.side === 'sell' ? 'arrowDown' : 'arrowUp',
+        text: '',
+      };
+    }));
+
+    tpChart.timeScale().fitContent();
+    var padBars = dates.length * 0.02;
+    tpChart.timeScale().setVisibleLogicalRange({ from: -padBars, to: (dates.length - 1) + padBars * 0.5 });
+
+    var byDate = DATA.markByDateByRun[curRun.id] || {};
+    tpChart.subscribeCrosshairMove(function (p) {
+      var iso = isoOfTp(p.time);
+      var m = iso && byDate[iso];
+      if (!m || !p.point) { hideTpHover(); return; }
+      showTpHover(p.point, m);
+    });
+    tpChart.subscribeClick(function (p) {
+      var iso = isoOfTp(p.time);
+      if (!iso) return;
+      setTimePoint(iso, !!byDate[iso]);
+    });
+
+    requestAnimationFrame(repositionAtLine);
+  }
+
+  function renderRunDetail() {
+    if (!S.runId || !curRun) { el.runDetail.hidden = true; tearTpChart(); return; }
+    el.runDetail.hidden = false;
+    el.runDetailRunid.textContent = curRun.id;
+    el.runDetailId.textContent = '時點・' + S.at;
+
+    el.tpHint.innerHTML = '<b>' + (DATA.tradesByRun[curRun.id] || []).length + '</b> 筆成交・' +
+      '<b>' + (DATA.marksByRun[curRun.id] || []).length + '</b> 個交易日有進出場・淨值背景為本批次 5–95 分位密度帶(已淡化)';
+
+    setTpTab(S.tpTab || 'hold');
+    drawTpChart();
+    renderTimePointCard();
+    renderSnapshotFunnel();
 
     el.paramfac.innerHTML =
       '<div class="paramfac-col"><div class="paramfac-h">參數</div><dl class="def-list">' +

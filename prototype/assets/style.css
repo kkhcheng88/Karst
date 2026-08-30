@@ -1920,3 +1920,82 @@ body.sp .facade-kpis .kpi-value { margin: var(--s-1) 0 2px; }
   .demo-scenarios { flex-direction: column; }
   .suggest-callout { flex-direction: column; }
 }
+
+/* ============================================================
+   第十二版:表頭修正、歷次運行表頭 10 名、時點檢視(KARST-086,依 D-045)
+   ============================================================ */
+
+/* ---- 表頭黏錯位修正 ----
+   成因:.table-scroll 只設 overflow-x:auto,但瀏覽器對 overflow-x/y
+   有一條配對規則——只要有一邊唔係 visible,另一邊冇明講就唔再當
+   visible,會自動一併變成 auto。結果 .table-scroll 意外變成一個
+   捲動容器,裡面又冇乜嘢好捲(內容高度同容器一樣高),而
+   thead th 個 sticky top 又設咗 var(--nav-h)(52px)——sticky 綁定
+   去最近嗰個捲動容器,而唔係去成頁,於是個表頭被推落 52px,跌到
+   第一行資料下面(掃描批次表、歷次運行表左右並排嗰陣特別明顯,
+   即用戶原話「Header of 掃描批次 and 歷次運行 seems broken」嗰張圖)。
+   修法:呢類表格嘅表頭改為黏返去 .table-scroll 本身個頂(top:0),
+   唔再嘗試黏去成頁——選擇性比 body.sp table.kt thead th 高,蓋得住。 */
+body.sp .table-scroll table.kt thead th { top: 0; }
+
+/* ---- 表格「展開全部」鍵(sortableTable cfg.limit,D-045 歷次運行表預設頭 10 名) ---- */
+.table-expand { padding: var(--s-2) var(--s-3); text-align: center; }
+.table-expand-btn {
+  appearance: none; border: 1px solid var(--line); background: var(--bg-2);
+  color: var(--text-2); font-family: inherit; font-size: var(--fs-xs);
+  border-radius: var(--r-1); padding: var(--s-1) var(--s-3);
+  cursor: pointer; width: 100%;
+}
+.table-expand-btn:hover { background: var(--bg-3); color: var(--text-1); border-color: var(--line-strong); }
+
+/* ---- 時點檢視:圖(60)| 時點卡(40) ---- */
+.tp-split {
+  display: grid;
+  grid-template-columns: minmax(0, 60fr) minmax(0, 40fr);
+  gap: var(--s-3);
+  align-items: start;
+}
+@media (max-width: 1180px) {
+  .tp-split { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* 圖表區:淨值線 + 密度帶背景 + 時點直線 */
+.tp-chartwrap { position: relative; }
+.tp-chart { height: 360px; }
+.tp-at-line {
+  position: absolute; top: 0; bottom: 0; width: 0;
+  border-left: 1px dashed var(--accent);
+  pointer-events: none; z-index: 3;
+}
+.tp-at-line::before {
+  content: ''; position: absolute; top: -3px; left: -3px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+.tp-hint {
+  padding: var(--s-2) var(--s-4); font-size: var(--fs-xs); color: var(--text-3);
+  border-top: 1px solid var(--line);
+}
+.tp-hint b { color: var(--text-2); }
+
+/* 時點卡:頁籤 + 三個內容面 */
+.tp-card-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-2);
+  padding: var(--s-2) var(--s-4);
+  border-bottom: 1px solid var(--line);
+}
+.tp-card-date { font-family: var(--font-mono); color: var(--text-1); font-weight: 700; }
+.tp-empty { padding: var(--s-5) var(--s-4); text-align: center; color: var(--text-3); font-size: var(--fs-sm); }
+.tp-empty .tp-empty-sub { margin-top: var(--s-2); font-size: var(--fs-xs); }
+
+/* 成交方向 */
+.side-buy { color: var(--up); font-weight: 700; }
+.side-sell { color: var(--down); font-weight: 700; }
+
+/* ---- 選股快照 + 選股漏斗(全寬,與時點同步) ---- */
+.tp-snap-funnel { border-bottom: 1px solid var(--line); }
+.tp-snap-toolbar {
+  display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap;
+  padding: var(--s-2) var(--s-4);
+  font-size: var(--fs-xs); color: var(--text-3);
+}
+.st-held { color: var(--accent); font-weight: 700; }
