@@ -34,6 +34,8 @@ import pandas as pd
 
 from ..engine.contracts import PricePanel, TradingCosts
 from ..errors import ContractViolation
+from ..executor.contract import SLUG_VERBATIM, TEXT_AUTO, value_text
+from ..executor.contract import point_slug as contract_point_slug
 from ..metrics import RunMetrics, run_metrics
 from ..metrics.benchmark import BenchmarkCurve, benchmark_curve
 from ..runs import RunStore
@@ -99,16 +101,10 @@ def param_text(value: Any) -> str:
     參數集一律以文字存值(``store`` 會 ``str(value).strip()``),而運行編號正是由
     這串文字算出來的——所以格式一變,同一格就會變成另一個運行。這裡定死:整數就
     是整數(``6``)、小數最多四位並剪走末尾的零(``0.5``)、其餘照原文剪空白。
+
+    寫法的正本住 ``karst.executor.contract``(KARST-090);本檔只轉引。
     """
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    if isinstance(value, int):
-        return str(int(value))
-    if isinstance(value, float):
-        if float(value).is_integer():
-            return str(int(value))
-        return weight_text(value)
-    return str(value).strip()
+    return value_text(value, TEXT_AUTO)
 
 
 def point_slug(point: SweepPoint) -> str:
@@ -116,8 +112,10 @@ def point_slug(point: SweepPoint) -> str:
 
     通用的 ``SweepPoint.slug`` 把 0 至 1 之間的數當權重印成百分點,於是回望期
     ``1`` 個月會印成 ``100``——對讀庫的人是誤導。本層自己用明碼:數字就是數字。
+
+    寫法的正本住 ``karst.executor.contract``(KARST-090);本檔只轉引「明碼」那種。
     """
-    return "-".join(f"{name}{param_text(value)}" for name, value in point.values)
+    return contract_point_slug(point.values, SLUG_VERBATIM)
 
 
 def rotation_grid(

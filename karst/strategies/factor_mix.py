@@ -41,21 +41,20 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime
-from typing import Any, Final
+from typing import Any, ClassVar, Final
 
 import numpy as np
 import pandas as pd
 
-from ..errors import ContractViolation, DuplicateDefinition
+from ..errors import ContractViolation
 from ..models import FormulaProcedure
-from ..store import FAMILY_SEPARATOR, FORMAL_RUN, DefinitionStore, ParamSet, StrategyVersion
+from ..store import FAMILY_SEPARATOR, DefinitionStore, ParamSet
 from ..engine.cadence import rebalance_schedule
 from ..engine.contracts import (
     CADENCES,
     CadenceNotSpecified,
     Order,
     PricePanel,
-    RankingRebalanceParams,
 )
 from ..engine.funnel import (
     STAGE_SCOPE,
@@ -64,6 +63,22 @@ from ..engine.funnel import (
     SelectionTraceBuilder,
 )
 from ..engine.protocol import PortfolioEngine
+from ..executor.contract import (
+    ENGINE_TARGETS,
+    KIND_NUMBER,
+    KIND_TEXT,
+    SLOT_CADENCE,
+    TEXT_FOUR_PLACES,
+    TEXT_VERBATIM,
+    EntityRequest,
+    FactorSpec,
+    FactorVersionRef,
+    ParamField,
+    ParamSpec,
+    ResolvedEntity,
+    RunRequest,
+    TargetPlan,
+)
 
 # 策略類型(store.STRATEGY_TYPES 八選一):因子混合屬多因子。
 FACTOR_MIX_STRATEGY_TYPE: Final[str] = "multifactor"
@@ -75,6 +90,11 @@ SCORE_TARGET_WEIGHT: Final[str] = "目標比重"
 
 # 權重加總的容差。只用來擋浮點尾數,不是「差不多就當一」——差得遠一律拒收。
 _SUM_TOLERANCE: Final[float] = 1e-9
+
+# 換倉節奏那一格在參數規格與掃描格裡的名。**全倉一份**:掃描格那條軸
+# (``karst.sweep.factor_mix.CADENCE_AXIS``)轉引本欄,兩邊飄開即同一格會寫成
+# 兩個參數集。
+CADENCE_PARAM: Final[str] = "cadence"
 
 
 @dataclass(frozen=True, slots=True)
@@ -369,100 +389,45 @@ class FactorMixResult:
 
 
 # ----------------------------------------------------------------------
-# 登記:因子定義、策略、參數集,一律經唯一入口(D-020 第 4 條)
-# ----------------------------------------------------------------------
-
-
-def register_factor_mix(
-    gateway: Any,
-    *,
-    strategy_name: str,
-    sleeves: Sequence[FactorSleeve],
-    snapshot_id: str,
-    param_set_name: str,
-    rebalance_cadence: str | None = None,
-    weights: Mapping[str, Any] | None = None,
-    description: str | None = None,
-) -> tuple[StrategyVersion, ParamSet]:
-    """經唯一入口登記四個因子、一套策略與一個參數集,回傳策略版本與參數集。
-
-    ``gateway`` 是 ``karst.gateway.Gateway``——人手與 agent 同一道門,寫入者
-    簽章由它蓋(D-020 第 4 條)。本函式**不**繞過它直接寫庫。
-
-    每個因子的產生程序記成「持有這隻 ETF 一單位即取得該指數的因子敞口」,
-    輸入數據版本就是這次用的數據快照編號:因子的哪一版由哪一批數據而來,
-    追溯得回去(D-021 第 6、8 條)。同名因子已在庫而快照不同,即自動出新版
-    (版本鏈,D-021 第 9 條);快照相同就原封不動沿用舊版。
-
-    參數集同制:**同名、同節奏、同取值即沿用舊版**,一列都不寫。重跑一次登記
-    不應該無端多一個參數集版本——版本號入運行編號,多一版就把同一次回測記成
-    兩次(D-021 第 9 條、CONTEXT.md「運行編號」)。名一樣而取值不同就是另一組
-    取值,照舊出新版。
-    """
-    snapshot = str(snapshot_id or "").strip()
-    if not snapshot:
-        raise ContractViolation("登記因子敞口要註明數據快照編號,追溯不可留空")
-
-    for sleeve in sleeves:
-        procedure = FormulaProcedure(
-            formula=(
-                f"持有 {sleeve.ticker}({sleeve.display_name})一單位,"
-                f"即取得 {sleeve.specific} 的因子敞口"
-            ),
-            input_data_version=snapshot,
-        )
-        try:
-            gateway.register_factor(
-                sleeve.factor_name,
-                scale_kind="cardinal",
-                procedure=procedure,
-                description=f"{sleeve.family}族的 ETF 版因子敞口(D-012 第 2 條)",
-            )
-        except DuplicateDefinition:
-            head = gateway.store.get_factor_version(sleeve.factor_name)
-            if getattr(head.procedure, "input_data_version", None) != snapshot:
-                gateway.new_factor_version(
-                    sleeve.factor_name,
-                    scale_kind=head.scale_kind,
-                    procedure=procedure,
-                    description=f"{sleeve.family}族的 ETF 版因子敞口,改用快照 {snapshot}",
-                )
-
-    factor_refs = [
-        f"{sleeve.factor_name}@{gateway.store.get_factor_version(sleeve.factor_name).version_no}"
-        for sleeve in sleeves
-    ]
-    try:
-        version, _ = gateway.register_strategy(
-            strategy_name,
-            strategy_type=FACTOR_MIX_STRATEGY_TYPE,
-            factor_refs=factor_refs,
-            description=description,
-        )
-    except DuplicateDefinition:
-        head = gateway.store.get_strategy_version(strategy_name)
-        current = sorted(f"{f.name}@{f.version_no}" for f in head.factors)
-        if current == sorted(factor_refs):
-            version = head
-        else:
-            version, _ = gateway.new_strategy_version(
-                strategy_name, factor_refs=factor_refs, description=description
-            )
-
-    # 同名同節奏同取值即沿用舊版——這條規矩住在唯一入口,本層不另抄一份(KARST-046)。
-    param_set, _ = gateway.register_param_set(
-        version.name,
-        param_set_name=param_set_name,
-        rebalance_cadence=rebalance_cadence,
-        values=weights,
-        strategy_version_no=version.version_no,
-    )
-    return version, param_set
-
-
-# ----------------------------------------------------------------------
 # 解析:代號 → 實體編號 → 目標比重表
 # ----------------------------------------------------------------------
+
+
+def factor_exposures(
+    sleeves: Sequence[FactorSleeve],
+    params: FactorMixParams,
+    *,
+    entities: Mapping[str, ResolvedEntity],
+    factors: Mapping[str, FactorVersionRef],
+) -> tuple[FactorExposure, ...]:
+    """把四格敞口砌成「實體編號 × 因子版本 × 權重」。**純函數,不開庫。**
+
+    代號怎樣解析、有沒有撞實體,由執行台那一段解析(``karst.executor`` 的
+    ``resolve_entities``)一手包辦;本函式只做因子混合真正獨有的那件事——把敞口
+    名單、權重、已解析的實體與因子版本對起來。
+    """
+    if not sleeves:
+        raise ContractViolation("因子混合最少要有一格敞口")
+
+    exposures: list[FactorExposure] = []
+    for sleeve in sleeves:
+        if sleeve.weight_key not in params.weights:
+            raise ContractViolation(
+                f"參數缺「{sleeve.weight_key}」({sleeve.family}族)的權重;無預設值"
+            )
+        entity = entities[sleeve.ticker]
+        version = factors[sleeve.factor_name]
+        exposures.append(
+            FactorExposure(
+                sleeve=sleeve,
+                entity_id=int(entity.entity_id),
+                entity_kind=entity.entity_kind,
+                factor_version_id=version.factor_version_id,
+                factor_version_no=version.version_no,
+                weight=float(params.weights[sleeve.weight_key]),
+            )
+        )
+    return tuple(exposures)
 
 
 def resolve_exposures(
@@ -472,42 +437,37 @@ def resolve_exposures(
     *,
     on_date: date | datetime | str,
 ) -> tuple[FactorExposure, ...]:
-    """把四格敞口解析成「實體編號 × 因子版本 × 權重」。
+    """把四格敞口解析成「實體編號 × 因子版本 × 權重」(開庫的那個版本)。
 
     代號一律經 ``store.resolve_ticker`` **按那一日**解析(D-026 第 2 條)——
     這正是股票走的同一條路;ETF 在這裡沒有任何特殊待遇,分別只在解析出來的
     實體那一欄 ``entity_kind`` 寫住 ``etf`` 而不是 ``company``。
+
+    解析那一段本身住在執行台(全倉一份),本函式只是把它接上因子版本。
     """
     if not sleeves:
         raise ContractViolation("因子混合最少要有一格敞口")
 
-    exposures: list[FactorExposure] = []
-    seen: set[int] = set()
-    for sleeve in sleeves:
-        if sleeve.weight_key not in params.weights:
-            raise ContractViolation(
-                f"參數缺「{sleeve.weight_key}」({sleeve.family}族)的權重;無預設值"
-            )
-        entity_id = int(store.resolve_ticker(sleeve.ticker, on_date))
-        if entity_id in seen:
-            raise ContractViolation(
-                f"{on_date} 的代號 {sleeve.ticker} 解析到實體 {entity_id},"
-                "但這個實體已經佔了另一格敞口;同一個可投資對象不可佔兩格"
-            )
-        seen.add(entity_id)
-        entity = store.get_entity(entity_id)
-        version = store.get_factor_version(sleeve.factor_name)
-        exposures.append(
-            FactorExposure(
-                sleeve=sleeve,
-                entity_id=entity_id,
-                entity_kind=entity.entity_kind,
-                factor_version_id=version.factor_version_id,
-                factor_version_no=version.version_no,
-                weight=float(params.weights[sleeve.weight_key]),
-            )
-        )
-    return tuple(exposures)
+    from ..executor.executor import resolve_entities
+
+    entities = resolve_entities(
+        store,
+        EntityRequest(exposures=tuple(sleeve.ticker for sleeve in sleeves)),
+        on_date=on_date,
+    )
+    factors = {
+        sleeve.factor_name: _factor_ref(store, sleeve.factor_name) for sleeve in sleeves
+    }
+    return factor_exposures(sleeves, params, entities=entities, factors=factors)
+
+
+def _factor_ref(store: DefinitionStore, factor_name: str) -> FactorVersionRef:
+    version = store.get_factor_version(factor_name)
+    return FactorVersionRef(
+        name=factor_name,
+        factor_version_id=version.factor_version_id,
+        version_no=version.version_no,
+    )
 
 
 def factor_mix_schedule(
@@ -602,6 +562,152 @@ def factor_mix_selection_trace(
 
 
 # ----------------------------------------------------------------------
+# 策略合約:這條策略真正獨有的那四件(KARST-090)
+# ----------------------------------------------------------------------
+
+
+@dataclass(frozen=True, slots=True)
+class FactorMixContract:
+    """因子混合策略的**策略合約**(見 ``karst.executor.contract``)。
+
+    登記、驗參數、解析實體、叫引擎、查重、落痕、算指標、判失敗運行**一件都不在
+    這裡**——那些每條策略做法一模一樣的事,全部住在策略執行台。本類只交出四件:
+    參數規格、要登記哪幾條因子、要解析哪些代號、以及策略本體 ``plan``。
+
+    ``initial_cash`` 與 ``fees`` 無預設值,但它們**不是參數規格的一格**:它們是
+    帳戶設定,不入參數集亦不入運行編號——把它們寫進參數集會令全部既有正式運行
+    當場換編號(參數集多一格即多一版,版本號是運行編號的原料)。兩格容許明寫
+    ``None``,那是「這份合約只用來登記」(見 ``for_setup``);一叫 ``plan()``
+    就當場拒收,不會靜靜地用一個猜出來的本金跑出一條淨值。
+    """
+
+    sleeves: tuple[FactorSleeve, ...]
+    initial_cash: float | None
+    fees: float | None
+
+    strategy_type: ClassVar[str] = FACTOR_MIX_STRATEGY_TYPE
+    #: 漏斗只有兩層,而那正是它的真相(見 ``factor_mix_selection_trace``)。
+    funnel_stages: ClassVar[tuple[str, ...]] = (STAGE_SCOPE, STAGE_SELECTED)
+    engine_path: ClassVar[str] = ENGINE_TARGETS
+
+    def __post_init__(self) -> None:
+        sleeves = tuple(self.sleeves)
+        if not sleeves:
+            raise ContractViolation("因子混合最少要有一格敞口")
+        object.__setattr__(self, "sleeves", sleeves)
+
+    @classmethod
+    def for_setup(cls, sleeves: Sequence[FactorSleeve]) -> "FactorMixContract":
+        """只用來登記的一份合約:登記碰不到帳戶設定,所以兩格明寫留空。"""
+        return cls(sleeves=tuple(sleeves), initial_cash=None, fees=None)
+
+    @property
+    def weight_keys(self) -> tuple[str, ...]:
+        return tuple(sleeve.weight_key for sleeve in self.sleeves)
+
+    def param_spec(self) -> ParamSpec:
+        """四格權重 + 換倉節奏。**一格預設值都沒有,一格都掃得到**(D-008 第 3 條)。
+
+        格數與掃描格認得的軸數相同:權重單純形格四條軸,加節奏那條選擇軸。
+        """
+        fields = [
+            ParamField(
+                name=sleeve.weight_key,
+                kind=KIND_NUMBER,
+                what=f"{sleeve.family}族({sleeve.ticker})佔組合的目標比重",
+                label=f"{sleeve.family}族權重",
+                lower=0.0,
+                upper=1.0,
+                lower_inclusive=True,
+                upper_inclusive=True,
+                text_style=TEXT_FOUR_PLACES,
+            )
+            for sleeve in self.sleeves
+        ]
+        fields.append(
+            ParamField(
+                name=CADENCE_PARAM,
+                kind=KIND_TEXT,
+                what="幾耐拉一次倉回目標比重",
+                label="換倉節奏",
+                choices=tuple(sorted(CADENCES)),
+                text_style=TEXT_VERBATIM,
+                slot=SLOT_CADENCE,
+            )
+        )
+        return ParamSpec(fields=tuple(fields))
+
+    def factor_specs(self, snapshot_id: str) -> tuple[FactorSpec, ...]:
+        """四條因子。產生程序記成「持有這隻 ETF 一單位即取得該指數的因子敞口」,
+        輸入數據版本就是這次的數據快照編號(D-021 第 6、8 條)。"""
+        snapshot = str(snapshot_id or "").strip()
+        if not snapshot:
+            raise ContractViolation("登記因子敞口要註明數據快照編號,追溯不可留空")
+        return tuple(
+            FactorSpec(
+                name=sleeve.factor_name,
+                scale_kind="cardinal",
+                procedure=FormulaProcedure(
+                    formula=(
+                        f"持有 {sleeve.ticker}({sleeve.display_name})一單位,"
+                        f"即取得 {sleeve.specific} 的因子敞口"
+                    ),
+                    input_data_version=snapshot,
+                ),
+                description=f"{sleeve.family}族的 ETF 版因子敞口(D-012 第 2 條)",
+            )
+            for sleeve in self.sleeves
+        )
+
+    def needs_entities(self, params: Mapping[str, Any]) -> EntityRequest:
+        """四格敞口那四隻代號,全部持得到。這條策略沒有只做訊號的線。"""
+        return EntityRequest(exposures=tuple(sleeve.ticker for sleeve in self.sleeves))
+
+    def params_from(self, values: Mapping[str, Any]) -> FactorMixParams:
+        """把一組已驗取值收成 ``FactorMixParams``(加總不可多於一那條跨格規矩)。"""
+        if self.initial_cash is None or self.fees is None:
+            raise ContractViolation(
+                "這份因子混合合約只用來登記(起始本金與手續費率留空),跑不動;"
+                "要跑一次回測請明寫兩格帳戶設定"
+            )
+        return FactorMixParams(
+            cadence=values[CADENCE_PARAM],
+            weights={key: values[key] for key in self.weight_keys},
+            initial_cash=self.initial_cash,
+            fees=self.fees,
+        )
+
+    def plan(self, request: RunRequest) -> TargetPlan:
+        """策略本體:砌一張「日期 × 實體編號 → 目標比重」的表。**純函數。**
+
+        不開庫、不讀檔、不 import 第三方引擎——哪一件引擎在背後跑,本檔一個字
+        都不提(D-007 第 3 條)。
+        """
+        params = self.params_from(request.params)
+        exposures = factor_exposures(
+            self.sleeves,
+            params,
+            entities=request.entities,
+            factors=request.factors,
+        )
+        targets, rebalances = factor_mix_targets(
+            dates=request.panel.dates,
+            entity_ids=request.panel.entity_ids,
+            exposures=exposures,
+            cadence=params.cadence,
+        )
+        return TargetPlan(
+            targets=targets,
+            cadence=params.cadence,
+            initial_cash=params.initial_cash,
+            fees=params.fees,
+            rebalances=rebalances,
+            selection=factor_mix_selection_trace(rebalances),
+            extras={"exposures": exposures, "params": params},
+        )
+
+
+# ----------------------------------------------------------------------
 # 跑一次回測
 # ----------------------------------------------------------------------
 
@@ -616,10 +722,9 @@ def run_factor_mix(
 ) -> FactorMixResult:
     """四類因子敞口按參數集指定的權重混成一個組合,跑出一次完整回測。
 
-    走的是引擎適配層 A 的**目標比重路徑**:本函式只砌一張「日期 × 實體編號 →
-    目標比重」的表,交給 ``PortfolioEngine.simulate``。哪一個第三方引擎在背後
-    跑,本檔一個字都不提;``engine`` 留空就用 vectorbt(D-011),傳別的進來即
-    整件換走引擎,本檔與策略定義一字不用改(D-007 第 3 條)。
+    **本函式已經沒有引擎樣板**(KARST-090):揀哪一件引擎、目標比重路徑那句
+    填空格,兩段都搬去了執行台,全倉各只此一份。留下的是一層薄殼,給尚未搬完
+    的掃描跑法用;掃描本身搬入執行台之後(KARST-091)整件可以刪走。
 
     代號按**面板第一根 K 線那一日**解析成實體編號——ETF 與股票同一條路。
     """
@@ -628,79 +733,44 @@ def run_factor_mix(
             f"價格面板要是 PricePanel,收到 {type(panel).__name__};"
             "請先用 PricePanel.from_frames 核對開價表與收價表"
         )
+    from ..executor.executor import engine_for, resolve_entities, simulate_plan
 
-    exposures = resolve_exposures(store, sleeves, params, on_date=panel.dates[0])
-    targets, rebalances = factor_mix_targets(
-        dates=panel.dates,
-        entity_ids=panel.entity_ids,
-        exposures=exposures,
-        cadence=params.cadence,
-    )
-
-    # 適配層 A 的模擬器只讀這個型別的起始本金與手續費率兩格;排名那兩格
-    # (選幾隻、排名方向)在目標比重路徑上用不著,填的是這次敞口的格數。
-    # (適配層欠一個「與排名無關」的組合參數型別,已在 KARST-031 票上留言。)
-    engine_params = RankingRebalanceParams(
-        cadence=params.cadence,
-        top_n=len(exposures),
-        direction="high",
+    contract = FactorMixContract(
+        sleeves=tuple(sleeves),
         initial_cash=params.initial_cash,
         fees=params.fees,
     )
-
-    if engine is None:
-        # 遲到這一刻才 import:換了引擎的人不需要裝 vectorbt(D-007 第 3 條)。
-        from ..engine.vectorbt_engine import VectorbtEngine
-
-        engine = VectorbtEngine()
-
-    output = engine.simulate(panel, targets, engine_params)
+    values = {**params.weights, CADENCE_PARAM: params.cadence}
+    entities = resolve_entities(
+        store,
+        contract.needs_entities(values),
+        on_date=panel.dates[0],
+        known_entity_ids=tuple(panel.entity_ids),
+    )
+    factors = {
+        sleeve.factor_name: _factor_ref(store, sleeve.factor_name)
+        for sleeve in contract.sleeves
+    }
+    plan = contract.plan(
+        RunRequest(
+            panel=panel,
+            params=values,
+            entities=entities,
+            factors=factors,
+            snapshot_id="",
+        )
+    )
+    engine = engine_for(contract, engine)
+    engine_name = getattr(engine, "name", type(engine).__name__)
+    simulation = simulate_plan(engine, panel, plan, engine_name=engine_name)
 
     return FactorMixResult(
-        equity_curve=output.equity_curve,
-        holdings=output.holdings,
-        orders=output.orders,
-        rebalances=rebalances,
-        params=params,
-        exposures=exposures,
-        engine_name=getattr(engine, "name", type(engine).__name__),
-        selection=factor_mix_selection_trace(rebalances),
-    )
-
-
-def record_factor_mix_run(
-    runs: Any,
-    result: FactorMixResult,
-    *,
-    strategy_name: str,
-    param_set_name: str,
-    snapshot_id: str,
-    engine_version: str,
-    period_start: date | datetime | str | None = None,
-    period_end: date | datetime | str | None = None,
-    strategy_version_no: int | None = None,
-    param_set_version_no: int | None = None,
-) -> Any:
-    """把一次因子混合回測交去 ``karst.runs`` 登記,回傳運行留痕。
-
-    ``RunStore.record_simulation`` 只認得單一因子那一格,而混合策略一次蓋住
-    四個因子版本——所以四個一併交過去,運行編號才蓋得齊來歷(D-021 第 9 條)。
-
-    這條路登記的一律是**正式運行**;掃描格一格都不經這裡,它們由
-    ``karst.sweep.runner`` 逐格落痕並自報掃描編號(KARST-054)。所以本函式
-    刻意沒有「來歷」這個參數:要落掃描格,請用掃描運行器。
-    """
-    return runs.record_simulation(
-        result,
-        strategy_name=strategy_name,
-        param_set_name=param_set_name,
-        snapshot_id=snapshot_id,
-        engine_version=engine_version,
-        engine_name=result.engine_name,
-        origin=FORMAL_RUN,
-        period_start=period_start,
-        period_end=period_end,
-        strategy_version_no=strategy_version_no,
-        param_set_version_no=param_set_version_no,
-        factor_version_ids=result.factor_version_ids,
+        equity_curve=simulation.equity_curve,
+        holdings=simulation.holdings,
+        orders=tuple(simulation.orders),
+        rebalances=tuple(plan.rebalances),
+        params=plan.extras["params"],
+        exposures=tuple(plan.extras["exposures"]),
+        engine_name=engine_name,
+        selection=plan.selection,
     )

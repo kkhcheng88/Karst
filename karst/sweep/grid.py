@@ -51,6 +51,7 @@ from itertools import product
 from typing import Any, Final
 
 from ..errors import ContractViolation
+from ..executor.contract import SLUG_PERCENT, display_text, point_slug, value_slug
 
 # 權重換算成整數步數時容許的浮點尾數。只擋尾數,不當「差不多就當一步」。
 _STEP_TOLERANCE = 1e-9
@@ -86,29 +87,11 @@ def _clean_name(name: Any, label: str = "參數名") -> str:
     return text
 
 
-def _format_value(value: Any) -> str:
-    """把一個取值印成人看得明、機器又對得回的樣子。"""
-    if isinstance(value, bool):
-        return "true" if value else "false"
-    if isinstance(value, (int, float)):
-        number = float(value)
-        if abs(number - round(number)) < _STEP_TOLERANCE:
-            return str(int(round(number)))
-        return f"{number:g}"
-    return str(value)
-
-
-def _slug_value(value: Any) -> str:
-    if isinstance(value, (int, float)) and not isinstance(value, bool):
-        number = float(value)
-        if 0.0 <= number <= 1.0:
-            # 權重那一類:印成百分點,10% 就是 10,看得懂又不會撞名。
-            percent = number * 100.0
-            if abs(percent - round(percent)) < 1e-6:
-                return str(int(round(percent)))
-            return f"{percent:g}".replace(".", "p")
-        return _format_value(value).replace(".", "p").replace("-", "neg")
-    return str(value).strip().replace(" ", "-")
+# 印法的正本住參數規格(``karst.executor.contract``,KARST-090)——短名是參數集
+# 名的一截,而參數集版本號是運行編號的原料之一:同一套寫法以前在四處各有一份,
+# 一旦飄開,同一格重掃就會寫成另一個參數集、白白重跑一次。本檔只轉引。
+_format_value = display_text
+_slug_value = value_slug
 
 
 @dataclass(frozen=True, slots=True)
@@ -159,11 +142,7 @@ class SweepPoint:
     @property
     def slug(self) -> str:
         """機器用的短名(參數集命名、檔名):``quality25-value25-cadence-quarterly``。"""
-        parts = []
-        for name, value in self.values:
-            short = name[len("weight_"):] if name.startswith("weight_") else name
-            parts.append(f"{short}{_slug_value(value)}")
-        return "-".join(parts)
+        return point_slug(self.values, SLUG_PERCENT)
 
     def __str__(self) -> str:  # pragma: no cover - 只為方便看
         return self.label

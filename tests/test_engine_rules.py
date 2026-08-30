@@ -39,6 +39,8 @@ from karst.engine import (
 )
 from karst.errors import ContractViolation
 
+from doubles.engines import RecordingRuleEngine
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 SEED = 20260828
@@ -383,7 +385,7 @@ def test_rule_contracts_stay_behind_our_own_interface(panel, breaker_arm):
         _params(equity_basis="", breaker=None)                     # 注碼基數留白即拒收
 
     # (e) 整件換走引擎:規則定義一個字都不用改
-    fake = _FakeRuleEngine()
+    fake = RecordingRuleEngine(name="fake")
     assert isinstance(fake, RuleEngine)
     swapped = run_rule_strategy(
         panel=panel, params=_params(equity_basis="current_equity", breaker=BREAKER_DD), engine=fake
@@ -393,27 +395,4 @@ def test_rule_contracts_stay_behind_our_own_interface(panel, breaker_arm):
     assert fake.seen_signals is not None
 
 
-class _FakeRuleEngine:
-    """一個假引擎,用來證明「引擎是可換件」:換走 vectorbt,規則定義一字不用改。"""
-
-    name = "fake"
-
-    def __init__(self) -> None:
-        self.seen_signals: RuleSignals | None = None
-
-    def simulate_rules(
-        self,
-        panel: BarPanel,
-        signals: RuleSignals,
-        params: RuleStrategyParams,
-    ) -> RuleSimulationOutput:
-        self.seen_signals = signals
-        flat = lambda value: pd.Series(value, index=panel.dates, dtype=float)  # noqa: E731
-        return RuleSimulationOutput(
-            equity_curve=flat(params.initial_cash),
-            holdings=pd.DataFrame(0.0, index=panel.dates, columns=list(panel.entity_ids)),
-            cash=flat(params.initial_cash),
-            sizing_basis=flat(params.initial_cash),
-            breaker_blocked=pd.Series(False, index=panel.dates, dtype=bool),
-            orders=(),
-        )
+# 假引擎住在 tests/doubles/engines.py(KARST-090)。

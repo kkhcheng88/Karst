@@ -63,6 +63,7 @@ import numpy as np
 import pandas as pd
 
 from ..errors import ContractViolation
+from ..executor.contract import check_count, check_ratio
 from ..store import FORMAL_RUN, DefinitionStore
 from ..engine.contracts import (
     CADENCES,
@@ -463,18 +464,15 @@ def _tilt_towards(
     return {key: (share if key in picked else spare) for key in names}
 
 
+# 純量驗證的正本住在參數規格(``karst.executor.contract``,KARST-090):
+# 押注比重是「大於 0、上限 1 含」,回望期是「整數、下限 1 含」——兩種值域本檔
+# 不再自己算一次。
 def _check_tilt(value: Any) -> float:
-    tilt = float(value)
-    if not (0.0 < tilt <= 1.0):
-        raise ContractViolation(f"押注比重要在 0 與 1 之間,收到 {value!r}")
-    return tilt
+    return check_ratio(value, "押注比重")
 
 
 def _check_lookback_days(value: Any, label: str = "回望期") -> int:
-    days = int(value)
-    if days < 1:
-        raise ContractViolation(f"{label}最少 1 個交易日,收到 {value!r}")
-    return days
+    return check_count(value, label)
 
 
 # 「避險」那一邊押哪幾格:低波與質素。五個宏觀驅動器之中有四個用這一組——

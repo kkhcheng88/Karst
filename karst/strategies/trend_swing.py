@@ -77,6 +77,7 @@ from ..engine.rules import (
     build_rule_signals,
 )
 from ..errors import ContractViolation, DuplicateDefinition
+from ..executor.contract import check_integer, check_number
 from ..models import FormulaProcedure
 from ..risk import (
     SWEEP_COLUMNS as RISK_SWEEP_COLUMNS,
@@ -274,18 +275,14 @@ def read_setup(param_set: ParamSet) -> tuple[TrendSwingParams, RiskSettings]:
     )
 
 
+# 純量驗證的正本住在參數規格(``karst.executor.contract``,KARST-090):
+# 「是不是整數 / 是不是一個數」全倉只算一次,本檔不再自己寫一遍。
 def _as_int(value: Any, key: str) -> int:
-    try:
-        return int(str(value).strip())
-    except (TypeError, ValueError) as exc:
-        raise ContractViolation(f"參數「{key}」要是整數,收到 {value!r}") from exc
+    return check_integer(value, f"參數「{key}」")
 
 
 def _as_float(value: Any, key: str) -> float:
-    try:
-        return float(str(value).strip())
-    except (TypeError, ValueError) as exc:
-        raise ContractViolation(f"參數「{key}」要是一個數,收到 {value!r}") from exc
+    return check_number(value, f"參數「{key}」")
 
 
 # ----------------------------------------------------------------------

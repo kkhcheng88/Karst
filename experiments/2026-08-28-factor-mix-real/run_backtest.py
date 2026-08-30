@@ -53,12 +53,16 @@ from karst.engine import PricePanel  # noqa: E402
 from karst.gateway import Gateway  # noqa: E402
 from karst.metrics import run_metrics  # noqa: E402
 from karst.runs import RunStore  # noqa: E402
+from karst.executor import (  # noqa: E402
+    SAMPLE,
+    Executor,
+    RunRequest,
+    resolve_entities,
+)
 from karst.strategies.factor_mix import (  # noqa: E402
+    CADENCE_PARAM,
     FACTOR_ETF_SLEEVES,
-    FactorMixParams,
-    record_factor_mix_run,
-    register_factor_mix,
-    run_factor_mix,
+    FactorMixContract,
 )
 
 HERE = Path(__file__).resolve().parent
@@ -87,6 +91,10 @@ STRATEGY_DESCRIPTION = "KARST-031 示例參數,不是現役設定"
 # ----------------------------------------------------------------------
 SAMPLE_CADENCE = "quarterly"
 SAMPLE_WEIGHTS = {sleeve.weight_key: "0.25" for sleeve in FACTOR_ETF_SLEEVES}
+
+# 帳戶設定。**不是參數集的一格**:它們不入運行編號,寫在這裡即這次用的是這兩個數。
+SAMPLE_INITIAL_CASH = 100_000.0
+SAMPLE_FEES = 0.0
 
 # Sortino 的分子是「年化回報減無風險利率」,這個數無預設值,要明寫(KARST-030)。
 SAMPLE_RISK_FREE_RATE = 0.04
@@ -140,48 +148,57 @@ def rebuild(*, store_path: Path | str = STORE_PATH, check: bool = True) -> dict:
         panel = build_panel(store)
         period = (str(panel.dates[0].date()), str(panel.dates[-1].date()))
 
-        # 2. 登記(唯一入口;同名同值即沿用舊版,重跑不多寫一列)---------------
-        version, param_set = register_factor_mix(
-            gateway,
-            strategy_name=STRATEGY_NAME,
+        # 2. 登記 + 跑 + 落痕 + 算指標,全部經策略執行台(KARST-090)------------
+        # 這條腳本本來自己編排四步(登記、跑、落痕、算指標);那四步每條策略做法
+        # 一模一樣,已經搬去執行台。本檔剩下的是這條策略獨有的東西:用哪一份合約、
+        # 哪一個快照、哪一組示例取值。
+        contract = FactorMixContract(
             sleeves=FACTOR_ETF_SLEEVES,
+            initial_cash=SAMPLE_INITIAL_CASH,
+            fees=SAMPLE_FEES,
+        )
+        runs = RunStore(store, root=RUNS_ROOT)
+        executor = Executor(gateway, runs, snapshot_root=SNAPSHOT_ROOT)
+
+        setup = executor.register(
+            contract,
+            strategy_name=STRATEGY_NAME,
             snapshot_id=SNAPSHOT_ID,
             param_set_name=PARAM_SET_NAME,
-            rebalance_cadence=SAMPLE_CADENCE,
-            weights=SAMPLE_WEIGHTS,
+            values={**SAMPLE_WEIGHTS, CADENCE_PARAM: SAMPLE_CADENCE},
+            alignment=SAMPLE,          # 示例參數,不是現役設定(D-038)
             description=STRATEGY_DESCRIPTION,
         )
+        version, param_set = setup.strategy, setup.param_set
 
-        # 參數一律由參數集讀回來再跑,不用碼裡那一份——證明取值真的住在參數集
-        params = FactorMixParams.from_param_set(param_set, FACTOR_ETF_SLEEVES)
-
-        # 3. 跑回測 ----------------------------------------------------------
-        result = run_factor_mix(
-            store=store, panel=panel, sleeves=FACTOR_ETF_SLEEVES, params=params
-        )
-
-        # 4. 落痕(同一組輸入即同一個編號;舊記錄還在就回舊記錄)---------------
-        runs = RunStore(store, root=RUNS_ROOT)
-        record = record_factor_mix_run(
-            runs,
-            result,
-            strategy_name=version.name,
-            param_set_name=param_set.name,
-            snapshot_id=SNAPSHOT_ID,
+        outcome = executor.run(
+            contract,
+            setup=setup,
+            panel=panel,
+            period=period,
             engine_version=ENGINE_VERSION,
-            period_start=period[0],
-            period_end=period[1],
-            strategy_version_no=version.version_no,
-            param_set_version_no=param_set.version_no,
-        )
-
-        # 5. 八項指標(讀回已保存的序列,不重跑引擎)--------------------------
-        metrics = run_metrics(
-            runs,
-            record.run_id,
             risk_free_rate=SAMPLE_RISK_FREE_RATE,
-            snapshot_root=SNAPSHOT_ROOT,
         )
+        record, metrics = outcome.record, outcome.metrics
+
+        # 3. 摘要要印的那幾件(換倉次數、敞口)由**純函數**的策略本體再砌一次:
+        #    它不碰引擎,所以查重命中(一格都沒改)時照樣印得出。
+        values = contract.param_spec().read(param_set)
+        plan = contract.plan(
+            RunRequest(
+                panel=panel,
+                params=values,
+                entities=resolve_entities(
+                    store,
+                    contract.needs_entities(values),
+                    on_date=panel.dates[0],
+                    known_entity_ids=tuple(panel.entity_ids),
+                ),
+                factors={ref.name: ref for ref in setup.factors},
+                snapshot_id=SNAPSHOT_ID,
+            )
+        )
+        exposures = tuple(plan.extras["exposures"])
 
         summary = {
             "ticket": "KARST-041",
@@ -208,9 +225,10 @@ def rebuild(*, store_path: Path | str = STORE_PATH, check: bool = True) -> dict:
                 "engine_name": record.engine_name,
                 "engine_version": record.engine_version,
                 "trading_days": record.trading_days,
-                "rebalances": len(result.rebalances),
-                "orders": len(result.orders),
-                "first_execution_date": result.rebalances[0].execution_date,
+                "reused": outcome.reused,
+                "rebalances": len(plan.rebalances),
+                "orders": int(len(runs.orders(record.run_id))),
+                "first_execution_date": plan.rebalances[0].execution_date,
                 "series_check": list(runs.verify_run(record.run_id)) or ["全對"],
             },
             "metrics": {
@@ -236,7 +254,18 @@ def rebuild(*, store_path: Path | str = STORE_PATH, check: bool = True) -> dict:
                     for ticker, cell in metrics.benchmarks.items()
                 },
             },
-            "exposures": result.exposures_frame().to_dict("records"),
+            "exposures": [
+                {
+                    "family": e.sleeve.family,
+                    "factor_name": e.factor_name,
+                    "factor_version_no": e.factor_version_no,
+                    "ticker": e.sleeve.ticker,
+                    "entity_id": e.entity_id,
+                    "entity_kind": e.entity_kind,
+                    "weight": e.weight,
+                }
+                for e in exposures
+            ],
         }
 
     if check:

@@ -24,18 +24,19 @@ from typing import Any
 
 from ..engine.contracts import PricePanel, TradingCosts
 from ..errors import ContractViolation
+from ..executor.contract import TEXT_EIGHT_PLACES, TEXT_FOUR_PLACES, value_text
 from ..store import ParamSet, StrategyVersion
 from ..strategies.factor_mix import (
+    CADENCE_PARAM,
     FactorMixParams,
     FactorSleeve,
-    register_factor_mix,
     run_factor_mix,
 )
 from .grid import CHOICE, ProductGrid, SimplexGrid, SweepAxis, SweepGrid, SweepPoint, compose
 from .runner import CellPlan
 
 # 換倉節奏在掃描格裡的軸名。權重之外多掃一維節奏時用這個名。
-CADENCE_AXIS = "cadence"
+CADENCE_AXIS = CADENCE_PARAM
 
 
 def weight_grid(
@@ -101,10 +102,10 @@ def weight_text(value: Any) -> str:
     參數集一律以文字存值(``store`` 會 ``str(value).strip()``),而運行編號正是由
     這串文字算出來的——所以格式一變,同一格就會變成另一個運行。這裡定死:最多四位
     小數,末尾的零剪走(``0.25``、``0.1``、``0``、``1``)。
+
+    寫法的正本住 ``karst.executor.contract``(KARST-090);本檔只轉引。
     """
-    number = float(value)
-    text = f"{number:.4f}".rstrip("0").rstrip(".")
-    return text if text else "0"
+    return value_text(value, TEXT_FOUR_PLACES)
 
 
 def cost_text(value: Any) -> str:
@@ -113,12 +114,10 @@ def cost_text(value: Any) -> str:
     權重那個寫法只留四位小數,而成本細得多:滑點 5 個基點是 ``0.0005``,每股
     US$0.005 是 ``0.005``,再細一級就會被四位小數剪成同一串字——兩組不同的成本
     撞成同一個參數集,即撞成同一個運行編號,靜靜地讀回上一次的成績。這裡留八位。
+
+    寫法的正本住 ``karst.executor.contract``(KARST-090);本檔只轉引。
     """
-    number = float(value)
-    if number.is_integer():
-        return str(int(number))
-    text = f"{number:.8f}".rstrip("0").rstrip(".")
-    return text if text else "0"
+    return value_text(value, TEXT_EIGHT_PLACES)
 
 
 def cost_values(costs: TradingCosts | None) -> dict[str, str]:
@@ -194,25 +193,28 @@ def ensure_factor_mix_setup(
 ) -> StrategyVersion:
     """確保四個因子與策略已經登記,回傳策略版本。**已經有就一個字都不寫。**
 
-    登記走的仍然是唯一入口(D-020 第 4 條)——本檔一句直接寫庫都沒有。這裡本來
-    有一道「先查」:因為 ``register_factor_mix`` 每次都登記一個參數集,重跑一次
-    掃描就會白白多一個版本。那個理由已經不成立——同名同節奏同取值即沿用舊版,
-    這條規矩住在唯一入口(KARST-046),所以先查那一句刪走。
+    登記走的仍然是唯一入口(D-020 第 4 條)——本檔一句直接寫庫都沒有。登記那一段
+    本身已經搬去執行台(KARST-090),本函式只是舊掃描路徑的接駁殼;掃描搬入執行台
+    之後(KARST-091)整件可以刪走。
 
-    順帶執正一件事:舊那道先查只認**名**,同名而權重不同一樣會早走,於是改了
-    權重的設定參數集寫不入去。現在照直交去入口,取值不同就照樣出新版。
+    這裡登記的是**掃描的起步參數集**——一組讓策略有東西可以起步的權重,從來不是
+    與用戶對齊過的現役設定,所以自報「示例」(D-038)。掃描每一格自己那個參數集
+    由 ``FactorMixJob`` 另行登記,不經這裡。
     """
-    version, _ = register_factor_mix(
+    from ..executor.executor import SAMPLE, register_setup
+    from ..strategies.factor_mix import CADENCE_PARAM, FactorMixContract
+
+    setup = register_setup(
         gateway,
+        FactorMixContract.for_setup(sleeves),
         strategy_name=strategy_name,
-        sleeves=sleeves,
         snapshot_id=snapshot_id,
         param_set_name=setup_param_set_name,
-        rebalance_cadence=cadence,
-        weights={key: weight_text(value) for key, value in setup_weights.items()},
+        values={**dict(setup_weights), CADENCE_PARAM: cadence},
+        alignment=SAMPLE,
         description=description,
     )
-    return version
+    return setup.strategy
 
 
 class FactorMixJob:

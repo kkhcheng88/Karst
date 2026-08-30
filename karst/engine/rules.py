@@ -33,6 +33,7 @@ import numpy as np
 import pandas as pd
 
 from ..errors import ContractViolation
+from ..executor.contract import check_count, check_fraction, check_positive
 from .contracts import Order, TradingCosts, _normalise_prices, resolve_costs
 from .funnel import (
     STAGE_SCOPE,
@@ -100,28 +101,12 @@ class RuleNotExpressible(ContractViolation):
     """
 
 
-def _positive(value: float, label: str) -> float:
-    number = float(value)
-    if not np.isfinite(number) or number <= 0.0:
-        raise ContractViolation(f"{label}要是正數,收到 {value!r}")
-    return number
-
-
-def _fraction(value: float, label: str) -> float:
-    number = float(value)
-    if not np.isfinite(number) or not 0.0 < number < 1.0:
-        raise ContractViolation(f"{label}要是 0 與 1 之間的比例,收到 {value!r}")
-    return number
-
-
-def _lookback(value: int, label: str) -> int:
-    try:
-        number = int(value)
-    except (TypeError, ValueError) as exc:
-        raise ContractViolation(f"{label}要是整數,收到 {value!r}") from exc
-    if number < 1:
-        raise ContractViolation(f"{label}至少要 1 日,收到 {number}")
-    return number
+# 純量驗證的正本住在參數規格(``karst.executor.contract``):以前全倉五套並存,
+# 各自寫一遍「是不是有限數、在不在範圍內」,一旦飄開同一個取值就會在一處收得、
+# 另一處拒收。這三句只是把本檔用到的三種值域指過去,自己不再算一次(KARST-090)。
+_positive = check_positive
+_fraction = check_fraction
+_lookback = check_count
 
 
 @dataclass(frozen=True, slots=True)

@@ -58,6 +58,8 @@ from karst.sweep.factor_rotation import (
     segment_excess,
 )
 
+from doubles.engines import RecordingEngine
+
 ROTATION_STRATEGY = "因子輪動(ETF 版)"
 MIX_STRATEGY = "因子混合(ETF 版)"
 ENGINE_VERSION = "0.1.0"
@@ -169,27 +171,7 @@ def _write_snapshot(root, snapshot_id: str, panel: PricePanel, entity_of: dict[s
     )
 
 
-class RecordingEngine:
-    """一個只做記錄的可換件引擎:收下目標比重表,回一條固定的淨值線。
-
-    用它來看**策略層交了什麼給引擎**——換上宏觀驅動器之後,交出去的表除了那幾行
-    數字之外有沒有變過形狀。它同時證明策略層不綁 vectorbt(D-007 第 3 條)。
-    """
-
-    name = "recorder"
-
-    def __init__(self) -> None:
-        self.calls: list[pd.DataFrame] = []
-
-    def simulate(self, panel, targets, params) -> SimulationOutput:
-        self.calls.append(targets.copy())
-        equity = pd.Series(
-            params.initial_cash * np.linspace(1.0, 1.5, len(panel.dates)),
-            index=panel.dates,
-            name="equity",
-        )
-        holdings = pd.DataFrame(0.0, index=panel.dates, columns=list(panel.entity_ids))
-        return SimulationOutput(equity_curve=equity, holdings=holdings, orders=())
+# 那個只做記錄的可換件引擎住在 tests/doubles/engines.py(KARST-090)。
 
 
 @pytest.fixture()

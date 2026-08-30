@@ -30,6 +30,8 @@ from karst.engine import (
     run_ranking_rebalance,
 )
 
+from doubles.engines import RecordingEngine
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 FACTOR = "動量·玩具 12-1 月"
@@ -185,7 +187,7 @@ def test_engine_stays_behind_our_own_interface(store, panel, toy_factor):
     assert leaked == []
 
     # (d) 整件換走引擎:策略定義(選股邏輯)與因子定義一個字都不用改
-    fake = _FakeEngine()
+    fake = RecordingEngine(name="fake", drift=0.0)
     assert isinstance(fake, PortfolioEngine)
     swapped = run_ranking_rebalance(
         store=store,
@@ -381,25 +383,5 @@ def _cadence_defaults(path: Path) -> list[str]:
     return offenders
 
 
-class _FakeEngine:
-    """一個假引擎,用來證明「引擎是可換件」:換走 vectorbt,語意層一字不用改。"""
-
-    name = "fake"
-
-    def __init__(self) -> None:
-        self.seen_targets: pd.DataFrame | None = None
-
-    def simulate(
-        self,
-        panel: PricePanel,
-        targets: pd.DataFrame,
-        params: RankingRebalanceParams,
-    ) -> SimulationOutput:
-        self.seen_targets = targets
-        return SimulationOutput(
-            equity_curve=pd.Series(
-                params.initial_cash, index=panel.dates, name="equity", dtype=float
-            ),
-            holdings=pd.DataFrame(0.0, index=panel.dates, columns=list(panel.entity_ids)),
-            orders=(),
-        )
+# 假引擎住在 tests/doubles/engines.py(KARST-090):以前四個測試檔各寫一個,
+# 改一次引擎合約要四處跟改,漏改那一份會靜靜地繼續過測試。

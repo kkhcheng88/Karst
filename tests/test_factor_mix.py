@@ -38,15 +38,30 @@ from karst.errors import NotFound
 from karst.gateway.service import Gateway
 from karst.runs import RunStore, window_stats
 from karst.store import FAMILY_SEPARATOR
+from karst.executor import (
+    RISK_MAX_POSITION,
+    RISK_MONTHLY_CAP,
+    RISK_PER_TRADE,
+    SAMPLE,
+    SLOT_CADENCE,
+    Executor,
+    MissingParameter,
+    ParameterOutOfRange,
+    RunRequest,
+    UnknownParameter,
+    register_setup,
+    risk_fields,
+)
 from karst.strategies.factor_mix import (
+    CADENCE_PARAM,
     FACTOR_ETF_SLEEVES,
+    FactorMixContract,
     FactorMixParams,
     FactorSleeve,
-    record_factor_mix_run,
-    register_factor_mix,
     resolve_exposures,
     run_factor_mix,
 )
+from karst.sweep.factor_mix import weight_grid
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -122,21 +137,41 @@ def _toy_panel(store, sleeves, *, kinds=None) -> PricePanel:
     return PricePanel.from_frames(open=open_prices * 1.001, close=close)
 
 
+def _contract(
+    sleeves=FACTOR_ETF_SLEEVES, *, initial_cash: float = 100_000.0, fees: float = 0.0
+) -> FactorMixContract:
+    """這條策略的合約。帳戶設定明寫——它們無預設值,亦不入參數集。"""
+    return FactorMixContract(
+        sleeves=tuple(sleeves), initial_cash=initial_cash, fees=fees
+    )
+
+
+def _values(weights, cadence: str = SAMPLE_CADENCE) -> dict:
+    """一組取值:四格權重加換倉節奏。節奏在參數規格裡與權重同級,一樣要明寫。"""
+    return {**dict(weights), CADENCE_PARAM: cadence}
+
+
+def _register_toy(gateway, *, sleeves=FACTOR_ETF_SLEEVES, snapshot_id=None,
+                  param_set_name="示例-四等分", weights=None, cadence=SAMPLE_CADENCE):
+    """經策略執行台登記一次。示例取值一律自報「示例」(D-038)。"""
+    return register_setup(
+        gateway,
+        _contract(sleeves),
+        strategy_name=STRATEGY,
+        snapshot_id=snapshot_id or TOY_SNAPSHOT,
+        param_set_name=param_set_name,
+        values=_values(weights or SAMPLE_WEIGHTS, cadence),
+        alignment=SAMPLE,
+    )
+
+
 @pytest.fixture()
 def toy(gateway):
     """四格因子敞口的玩具場:因子、策略、參數集全部經唯一入口登記。"""
     panel = _toy_panel(gateway.store, FACTOR_ETF_SLEEVES)
-    version, param_set = register_factor_mix(
-        gateway,
-        strategy_name=STRATEGY,
-        sleeves=FACTOR_ETF_SLEEVES,
-        snapshot_id=TOY_SNAPSHOT,
-        param_set_name="示例-四等分",
-        rebalance_cadence=SAMPLE_CADENCE,
-        weights=SAMPLE_WEIGHTS,
-    )
+    setup = _register_toy(gateway)
     return {"gateway": gateway, "store": gateway.store, "panel": panel,
-            "strategy": version, "param_set": param_set}
+            "strategy": setup.strategy, "param_set": setup.param_set, "setup": setup}
 
 
 # ----------------------------------------------------------------------
@@ -171,31 +206,36 @@ def real(online, tmp_path_factory):
         common = opens.index.intersection(closes.index)
         panel = PricePanel.from_frames(open=opens.loc[common], close=closes.loc[common])
 
-        strategy, param_set = register_factor_mix(
+        contract = _contract()
+        setup = register_setup(
             opened,
+            contract,
             strategy_name=STRATEGY,
-            sleeves=FACTOR_ETF_SLEEVES,
             snapshot_id=snapshot.snapshot_id,
             param_set_name="示例-四等分",
-            rebalance_cadence=SAMPLE_CADENCE,
-            weights=SAMPLE_WEIGHTS,
+            values=_values(SAMPLE_WEIGHTS),
+            alignment=SAMPLE,
             description="KARST-031 示例參數,不是現役設定",
         )
+        param_set = setup.param_set
         params = FactorMixParams.from_param_set(param_set, FACTOR_ETF_SLEEVES)
+        runs = RunStore(store, root=root / "runs")
+        executor = Executor(opened, runs)
+        outcome = executor.run(
+            contract,
+            setup=setup,
+            panel=panel,
+            period=(str(panel.dates[0].date()), str(panel.dates[-1].date())),
+            engine_version=ENGINE_VERSION,
+            risk_free_rate=0.0,
+            benchmarks=(),
+        )
         result = run_factor_mix(
             store=store, panel=panel, sleeves=FACTOR_ETF_SLEEVES, params=params
         )
-        runs = RunStore(store, root=root / "runs")
-        record = record_factor_mix_run(
-            runs,
-            result,
-            strategy_name=strategy.name,
-            param_set_name=param_set.name,
-            snapshot_id=snapshot.snapshot_id,
-            engine_version=ENGINE_VERSION,
-        )
         yield {"store": store, "snapshot": snapshot, "panel": panel, "params": params,
-               "result": result, "runs": runs, "record": record}
+               "result": result, "runs": runs, "record": outcome.record,
+               "outcome": outcome, "setup": setup}
 
 
 # 驗收條件 1:四類因子 ETF 按指定權重混成一個組合,跑得出一次完整回測並交得出逐日淨值(D-012)
@@ -278,14 +318,14 @@ def test_etfs_and_stocks_share_one_investable_path(gateway):
         ),
     )
     panel = _toy_panel(store, mixed_sleeves, kinds=["etf", "company"])
-    register_factor_mix(
+    register_setup(
         gateway,
+        _contract(mixed_sleeves),
         strategy_name="因子混合(ETF 加股票玩具版)",
-        sleeves=mixed_sleeves,
         snapshot_id=TOY_SNAPSHOT,
         param_set_name="玩具-對半",
-        rebalance_cadence="monthly",
-        weights={"weight_quality": "0.5", "weight_value": "0.5"},
+        values=_values({"weight_quality": "0.5", "weight_value": "0.5"}, "monthly"),
+        alignment=SAMPLE,
     )
     params = FactorMixParams(
         cadence="monthly", weights={"weight_quality": 0.5, "weight_value": 0.5}
@@ -374,15 +414,12 @@ def test_the_four_weights_are_scannable_parameters(toy):
 
     finals = {}
     for set_name, (cadence, values) in grid.items():
-        _, param_set = register_factor_mix(
+        param_set = _register_toy(
             gateway,
-            strategy_name=STRATEGY,
-            sleeves=FACTOR_ETF_SLEEVES,
-            snapshot_id=TOY_SNAPSHOT,
             param_set_name=set_name,
-            rebalance_cadence=cadence,
             weights=dict(zip(keys, values, strict=True)),
-        )
+            cadence=cadence,
+        ).param_set
         params = FactorMixParams.from_param_set(param_set, FACTOR_ETF_SLEEVES)
         assert params.cadence == cadence
         assert params.weights == {k: float(v) for k, v in zip(keys, values, strict=True)}
@@ -398,18 +435,13 @@ def test_the_four_weights_are_scannable_parameters(toy):
     # 半倉那格與全倉那格只差在權重(節奏一樣),結果照樣不同:權重真的入了數
     assert finals["掃描-四等分"] != finals["掃描-半倉四等分"]
 
-    # 權重沒有預設值:參數集缺一格即拒收,不代用戶決定
-    _, short = register_factor_mix(
-        gateway,
-        strategy_name=STRATEGY,
-        sleeves=FACTOR_ETF_SLEEVES,
-        snapshot_id=TOY_SNAPSHOT,
-        param_set_name="掃描-缺一格",
-        rebalance_cadence="quarterly",
-        weights={keys[0]: "0.5", keys[1]: "0.5"},
-    )
-    with pytest.raises(ContractViolation, match="缺權重"):
-        FactorMixParams.from_param_set(short, FACTOR_ETF_SLEEVES)
+    # 權重沒有預設值:缺一格根本寫不入參數集,不代用戶決定
+    with pytest.raises(MissingParameter):
+        _register_toy(
+            gateway,
+            param_set_name="掃描-缺一格",
+            weights={keys[0]: "0.5", keys[1]: "0.5"},
+        )
     with pytest.raises(ContractViolation, match="缺權重"):
         FactorMixParams(cadence="quarterly", weights={})
 
@@ -418,9 +450,55 @@ def test_the_four_weights_are_scannable_parameters(toy):
         parameter = inspect.signature(FactorMixParams).parameters[field]
         assert parameter.default is inspect.Parameter.empty
 
-    # 策略層原始碼裡查不到任何權重數值(看語法樹,不看註解與說明文字)
-    for path in (REPO_ROOT / "karst" / "strategies").rglob("*.py"):
-        assert _weight_defaults(path) == [], path
+
+# 驗收條件 4(續):參數規格**就是**那張掃描格,每格有值域無取值
+def test_the_param_spec_declares_exactly_the_axes_the_sweep_grid_knows():
+    spec = _contract().param_spec()
+
+    # (a) 宣告的格數 = 掃描格認得的軸數。多一格會掃不到,少一格會寫不入。
+    grid = weight_grid(FACTOR_ETF_SLEEVES, step=0.05, cadences=("monthly", "quarterly"))
+    assert set(spec.names) == set(grid.axis_names)
+    assert len(spec.fields) == len(grid.axis_names) == 5
+
+    # (b) 每格有值域、無取值——規格裡根本沒有「取值」這個欄位可以填
+    assert not hasattr(spec.fields[0], "value")
+    assert not hasattr(spec.fields[0], "default")
+    for item in spec.fields:
+        assert item.range_text.strip()
+        assert item.what.strip()
+
+    # (c) 換倉節奏無預設:它是規格裡一格普通可掃軸,只不過落庫時落在自己那一欄
+    cadence = spec.cadence_field
+    assert cadence is not None
+    assert cadence.name == CADENCE_PARAM
+    assert cadence.slot == SLOT_CADENCE
+    assert set(cadence.choices) >= {"monthly", "quarterly"}
+
+    # (d) 缺一格拒收、多一格拒收、值域不合拒收
+    full = _values(SAMPLE_WEIGHTS)
+    assert spec.validate(full)                        # 齊的那組照收
+    with pytest.raises(MissingParameter):
+        spec.validate({k: v for k, v in full.items() if k != CADENCE_PARAM})
+    with pytest.raises(UnknownParameter):
+        spec.validate({**full, "weight_不存在的族": "0.1"})
+    with pytest.raises(ParameterOutOfRange):
+        spec.validate({**full, "weight_quality": "1.5"})
+    with pytest.raises(ParameterOutOfRange):
+        spec.validate({**full, CADENCE_PARAM: "每兩星期"})
+
+    # (e) 風控三格同制:它們是**普通可掃軸**,不是 RunRequest 上一格特權輸入。
+    #     單筆風險由 2% 改做 1.5% 要換一個運行編號,所以它們一定要入參數集。
+    risk = risk_fields()
+    assert [item.name for item in risk] == [
+        RISK_PER_TRADE, RISK_MAX_POSITION, RISK_MONTHLY_CAP
+    ]
+    for item in risk:
+        assert item.range_text.strip()
+        assert not hasattr(item, "value")
+        assert item.check("0.02") == pytest.approx(0.02)
+        with pytest.raises(ParameterOutOfRange):
+            item.check("1.5")
+    assert "risk" not in inspect.signature(RunRequest).parameters
 
 
 # ======================================================================
@@ -493,36 +571,26 @@ def frozen(gateway, tmp_path):
 
 
 def _register(gateway, frozen, *, param_set_name=FROZEN_PARAM_SET, weights=None, cadence=None):
-    return register_factor_mix(
+    return _register_toy(
         gateway,
-        strategy_name=STRATEGY,
-        sleeves=FACTOR_ETF_SLEEVES,
         snapshot_id=frozen["snapshot_id"],
         param_set_name=param_set_name,
-        rebalance_cadence=cadence or SAMPLE_CADENCE,
         weights=weights or SAMPLE_WEIGHTS,
+        cadence=cadence or SAMPLE_CADENCE,
     )
 
 
-def _record(gateway, frozen, version, param_set):
-    params = FactorMixParams.from_param_set(param_set, FACTOR_ETF_SLEEVES)
-    result = run_factor_mix(
-        store=gateway.store,
+def _record(gateway, frozen, setup):
+    """跑一次正式運行並落痕,全程經策略執行台。"""
+    executor = Executor(gateway, frozen["runs"])
+    return executor.run(
+        _contract(),
+        setup=setup,
         panel=frozen["panel"],
-        sleeves=FACTOR_ETF_SLEEVES,
-        params=params,
-    )
-    return record_factor_mix_run(
-        frozen["runs"],
-        result,
-        strategy_name=version.name,
-        param_set_name=param_set.name,
-        snapshot_id=frozen["snapshot_id"],
+        period=frozen["period"],
         engine_version=ENGINE_VERSION,
-        period_start=frozen["period"][0],
-        period_end=frozen["period"][1],
-        strategy_version_no=version.version_no,
-        param_set_version_no=param_set.version_no,
+        risk_free_rate=0.0,
+        benchmarks=(),
     )
 
 
@@ -537,13 +605,16 @@ def _version_count(store, param_set_name: str) -> int:
 def test_registering_the_same_values_twice_keeps_one_version_and_one_run_id(gateway, frozen):
     store = gateway.store
 
-    first_version, first_set = _register(gateway, frozen)
+    first = _register(gateway, frozen)
+    first_version, first_set = first.strategy, first.param_set
     assert first_set.version_no == 1
     assert _version_count(store, FROZEN_PARAM_SET) == 1
-    first_run = _record(gateway, frozen, first_version, first_set)
+    first_run = _record(gateway, frozen, first)
+    assert first_run.reused is False           # 第一次真的叫過引擎
 
     # 一字不改再登記一次:庫裡一列都不應該多出來
-    second_version, second_set = _register(gateway, frozen)
+    second = _register(gateway, frozen)
+    second_version, second_set = second.strategy, second.param_set
     assert _version_count(store, FROZEN_PARAM_SET) == 1
     assert second_set.param_set_id == first_set.param_set_id
     assert second_set.version_no == first_set.version_no
@@ -552,19 +623,21 @@ def test_registering_the_same_values_twice_keeps_one_version_and_one_run_id(gate
     assert second_version.version_no == first_version.version_no
 
     # 權重寫成數字而不是文字,一樣認得是同一組取值(庫層一律收成文字)
-    _, as_numbers = _register(
+    as_numbers = _register(
         gateway,
         frozen,
         weights={key: float(value) for key, value in SAMPLE_WEIGHTS.items()},
-    )
+    ).param_set
     assert _version_count(store, FROZEN_PARAM_SET) == 1
     assert as_numbers.param_set_id == first_set.param_set_id
 
     # 同一次回測不會記成兩次:運行編號相同,而且回的是同一筆舊留痕
-    second_run = _record(gateway, frozen, second_version, second_set)
-    assert second_run.run_id == first_run.run_id
-    assert second_run.created_at == first_run.created_at
-    assert second_run.fingerprint == first_run.fingerprint
+    second_outcome = _record(gateway, frozen, second)
+    second_run = second_outcome.record
+    assert second_outcome.reused is True        # 一格都沒改,一次引擎都沒有碰
+    assert second_run.run_id == first_run.record.run_id
+    assert second_run.created_at == first_run.record.created_at
+    assert second_run.fingerprint == first_run.record.fingerprint
     assert (
         int(
             store.connection.execute("SELECT COUNT(*) AS n FROM backtest_run").fetchone()["n"]
@@ -635,37 +708,36 @@ def test_reuse_does_not_overreach_and_the_public_signature_is_unchanged(gateway,
     assert _version_count(store, FROZEN_PARAM_SET) == 1
 
     # 名一樣而**取值**不同:照舊出新版(沿用只認同值)
-    _, tilted = _register(
+    tilted = _register(
         gateway,
         frozen,
         weights={**SAMPLE_WEIGHTS, "weight_momentum": "0.4", "weight_low_vol": "0.1"},
-    )
+    ).param_set
     assert tilted.version_no == 2
     assert _version_count(store, FROZEN_PARAM_SET) == 2
 
     # 名一樣、取值一樣而**節奏**不同:一樣要出新版(節奏是參數集的一部分)
-    _, monthly = _register(gateway, frozen, cadence="monthly")
+    monthly = _register(gateway, frozen, cadence="monthly").param_set
     assert monthly.version_no == 3
     assert monthly.rebalance_cadence == "monthly"
 
-    # 公開接口簽名不變:別的票 import 得住這一個函式
-    signature = inspect.signature(register_factor_mix)
+    # 登記那道門的簽名:別的票 import 得住,而且**參數集要自報已對齊還是示例**
+    signature = inspect.signature(register_setup)
     assert list(signature.parameters) == [
-        "gateway", "strategy_name", "sleeves", "snapshot_id", "param_set_name",
-        "rebalance_cadence", "weights", "description",
+        "gateway", "contract", "strategy_name", "snapshot_id", "param_set_name",
+        "values", "alignment", "description",
     ]
-    keyword_only = [
-        name
-        for name, parameter in signature.parameters.items()
-        if parameter.kind is inspect.Parameter.KEYWORD_ONLY
-    ]
-    assert keyword_only == [
-        "strategy_name", "sleeves", "snapshot_id", "param_set_name",
-        "rebalance_cadence", "weights", "description",
-    ]
-    assert signature.parameters["rebalance_cadence"].default is None
-    assert signature.parameters["weights"].default is None
-    assert signature.parameters["description"].default is None
+    assert signature.parameters["alignment"].default is inspect.Parameter.empty
+    with pytest.raises(ContractViolation, match="示例"):
+        register_setup(
+            gateway,
+            _contract(),
+            strategy_name=STRATEGY,
+            snapshot_id=frozen["snapshot_id"],
+            param_set_name="示例-沒有自報",
+            values=_values(SAMPLE_WEIGHTS),
+            alignment="",
+        )
 
 
 # ----------------------------------------------------------------------
@@ -702,45 +774,3 @@ def _code_symbols(path: Path) -> list[str]:
                 symbols.append(node.value)
     return symbols
 
-
-def _weight_defaults(path: Path) -> list[str]:
-    """找出這個檔裡有沒有人偷偷給某格權重一個數值。
-
-    與節奏那一關同制(tests/test_engine_ranking_rebalance.py):說明文字裡的
-    用法示範不算,只有真的寫進簽名或賦值那一格才算。
-    """
-    tree = ast.parse(path.read_text(encoding="utf-8"))
-    offenders: list[str] = []
-
-    def is_number(node: ast.AST | None) -> bool:
-        return (
-            isinstance(node, ast.Constant)
-            and isinstance(node.value, (int, float))
-            and not isinstance(node.value, bool)
-        )
-
-    for node in ast.walk(tree):
-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            positional = node.args.posonlyargs + node.args.args
-            tail = positional[len(positional) - len(node.args.defaults) :]
-            pairs = list(zip(tail, node.args.defaults))
-            pairs += [
-                (argument, default)
-                for argument, default in zip(node.args.kwonlyargs, node.args.kw_defaults)
-                if default is not None
-            ]
-            offenders += [
-                f"{path.name}:{node.name}({argument.arg}=...)"
-                for argument, default in pairs
-                if "weight" in argument.arg and is_number(default)
-            ]
-        elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-            if "weight" in node.target.id and is_number(node.value):
-                offenders.append(f"{path.name}:{node.target.id}")
-        elif isinstance(node, ast.Assign):
-            offenders += [
-                f"{path.name}:{target.id}"
-                for target in node.targets
-                if isinstance(target, ast.Name) and "weight" in target.id and is_number(node.value)
-            ]
-    return offenders
