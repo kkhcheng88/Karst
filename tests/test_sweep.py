@@ -147,6 +147,8 @@ class _ToyContract:
     """
 
     strategy_type = "multifactor"
+    layer = "stock"
+    exit_governance = "rule_based"
     funnel_stages: tuple[str, ...] = ()
     engine_path = ENGINE_TARGETS
 

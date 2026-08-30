@@ -6,9 +6,13 @@
         --name "動量·12-1 月" --scale cardinal ^
         --formula "close[-21] / close[-252] - 1" --input-data-version 2026-08-27-a1b2c3d4e5f6
 
-    python -m karst.gateway strategy register --name 趨勢波段 --type technical ^
+    python -m karst.gateway strategy register --name 板塊輪動 --type multifactor ^
+        --layer sector --exit-governance rule_based ^
         --factor "動量·12-1 月" --param-set 現役 --cadence monthly ^
         --set breakout_window=50 --set stop_atr=2.0
+
+    python -m karst.gateway strategy declare-governance --name 板塊輪動 ^
+        --layer sector --exit-governance rule_based --basis "D-058:改編制"
 
     python -m karst.gateway params activate --strategy 趨勢波段 --name 現役 --note 換季調整
 
@@ -37,7 +41,14 @@ from collections.abc import Sequence
 from typing import TextIO
 
 from ..errors import KarstError
-from ..store import ALIGNMENTS, REBALANCE_CADENCES, STRATEGY_TYPES, check_param_set
+from ..store import (
+    ALIGNMENTS,
+    EXIT_GOVERNANCES,
+    LAYERS,
+    REBALANCE_CADENCES,
+    STRATEGY_TYPES,
+    check_param_set,
+)
 from .service import (
     SOURCE_KINDS,
     Gateway,
@@ -128,6 +139,15 @@ def build_parser() -> argparse.ArgumentParser:
     register = strategy_commands.add_parser("register", help="登記新策略的第一版(連第一個參數集)")
     register.add_argument("--name", required=True, help="策略名稱")
     register.add_argument("--type", dest="strategy_type", default=None, help=f"策略類型:{'、'.join(STRATEGY_TYPES)}")
+    # 兩格必填,未答拒收(D-058 第 1 條;KARST-116)。這裡刻意**不用** argparse 的
+    # required/choices 去擋:擋在 argparse 那一層,錯誤訊息就只剩一句 usage,講不出
+    # 依據哪一條決策、為什麼要答。拒收那句話由庫層那份正本講(見 _check_layer)。
+    register.add_argument("--layer", default=None,
+                          help=f"屬由上而下三層哪一層(D-054):{'、'.join(f'{k}={v}層' for k, v in LAYERS.items())};必填無預設")
+    register.add_argument("--exit-governance", dest="exit_governance", default=None,
+                          help=f"離場治理屬哪一型(D-056):{'、'.join(f'{k}={v}' for k, v in EXIT_GOVERNANCES.items())};必填無預設")
+    register.add_argument("--governance-basis", dest="governance_basis", default=None,
+                          help="兩格的依據一句;留空即記「由策略合約宣告」")
     register.add_argument("--factor", dest="factors", action="append", default=[],
                           help="引用因子「名稱」或「名稱@版本號」;可重複給")
     register.add_argument("--param-set", dest="param_set", default=None, help="第一個參數集的名稱")
@@ -140,6 +160,21 @@ def build_parser() -> argparse.ArgumentParser:
     new_version.add_argument("--name", required=True)
     new_version.add_argument("--factor", dest="factors", action="append", default=[])
     new_version.add_argument("--description", default=None)
+
+    # 策略治理宣告(D-054、D-056、D-058;KARST-116)。兩條路用得着它:D-058 之前登記
+    # 的策略補填,以及一條策略日後改編制。宣告走旁表,追加式——改宣告是加一筆,舊宣告
+    # 一字不變,所以「當日為什麼判它屬個股層」永遠查得回。
+    declare = strategy_commands.add_parser(
+        "declare-governance",
+        help="宣告某條已登記策略屬三層哪一層、離場治理屬哪一型(D-058),經唯一入口留簽章",
+    )
+    declare.add_argument("--name", required=True, help="策略名稱")
+    declare.add_argument("--layer", default=None,
+                         help=f"{'、'.join(f'{k}={v}層' for k, v in LAYERS.items())}(D-054)")
+    declare.add_argument("--exit-governance", dest="exit_governance", default=None,
+                         help=f"{'、'.join(f'{k}={v}' for k, v in EXIT_GOVERNANCES.items())}(D-056)")
+    declare.add_argument("--basis", required=True,
+                         help="宣告依據一句;這一句會落庫,日後查得回。無理由的宣告等於沒有宣告")
 
     strategy_show = strategy_commands.add_parser("show", help="看某策略的某一版連引用因子與參數集")
     strategy_show.add_argument("--name", required=True)
@@ -517,8 +552,21 @@ def _strategy(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
         version = gateway.store.get_strategy_version(args.name, args.version)
         print(f"策略「{version.name}」", file=out)
         _print_strategy_version(version, out)
+        _print_governance(gateway.store.strategy_governance(version.strategy_id), out)
         for param_set in gateway.store.list_param_sets(args.name, strategy_version_no=args.version):
             _print_param_set(param_set, out)
+        return EXIT_OK
+
+    if args.subcommand == "declare-governance":
+        governance, receipt = gateway.declare_strategy_governance(
+            args.name,
+            layer=args.layer,
+            exit_governance=args.exit_governance,
+            basis=args.basis,
+        )
+        print(f"已為策略「{args.name}」記下第 {governance.seq_no} 筆治理宣告", file=out)
+        _print_governance(governance, out)
+        print(f"  簽章      {'、'.join(receipt.signed_rows)}", file=out)
         return EXIT_OK
 
     if args.subcommand == "new-version":
@@ -541,6 +589,9 @@ def _strategy(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     version, receipt = gateway.register_strategy(
         args.name,
         strategy_type=args.strategy_type,
+        layer=args.layer,
+        exit_governance=args.exit_governance,
+        governance_basis=args.governance_basis,
         factor_refs=args.factors,
         description=args.description,
     )
@@ -553,6 +604,7 @@ def _strategy(args: argparse.Namespace, gateway: Gateway, out: TextIO) -> int:
     )
     print(f"已登記策略「{version.name}」", file=out)
     _print_strategy_version(version, out)
+    _print_governance(gateway.store.strategy_governance(version.strategy_id), out)
     _print_param_set(param_set, out)
     _print_receipt(receipt, gateway, "strategy", version.name, out)
     print(f"  參數集簽章 {'、'.join(param_receipt.signed_rows)}", file=out)
@@ -573,6 +625,19 @@ def _print_strategy_version(version, out: TextIO) -> None:
             file=out,
         )
     print(f"  落庫時間  {version.created_at}", file=out)
+
+
+def _print_governance(governance, out: TextIO) -> None:
+    """策略治理宣告(D-058)。「未宣告」與「宣告過屬個股層」是兩回事,分開兩句講——
+    前者代表這條策略是兩格必填之前登記的,還未補填。"""
+    if governance is None:
+        print("  治理宣告  未宣告(兩格必填之前登記的策略,待補填)", file=out)
+        return
+    print(
+        f"  治理宣告  {governance.layer_label}層({governance.layer})/ "
+        f"{governance.exit_label}({governance.exit_governance});依據:{governance.basis}",
+        file=out,
+    )
 
 
 def _print_param_set(param_set, out: TextIO, alignment=None) -> None:

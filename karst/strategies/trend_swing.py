@@ -78,6 +78,7 @@ from ..engine.rules import (
 )
 from ..errors import ContractViolation, DuplicateDefinition
 from ..executor.contract import check_integer, check_number
+from ..executor.executor import check_governance
 from ..models import FormulaProcedure
 from ..risk import (
     SWEEP_COLUMNS as RISK_SWEEP_COLUMNS,
@@ -86,10 +87,33 @@ from ..risk import (
     build_rule_params,
     sweep_risk_settings,
 )
-from ..store import FAMILY_SEPARATOR, FORMAL_RUN, DefinitionStore, ParamSet, StrategyVersion
+from ..store import (
+    CONTINUATION_EXIT,
+    FAMILY_SEPARATOR,
+    FORMAL_RUN,
+    STOCK_LAYER,
+    DefinitionStore,
+    ParamSet,
+    StrategyVersion,
+)
 
 # 策略類型(store.STRATEGY_TYPES 八選一):純技術波段屬技術趨勢。
 TREND_SWING_STRATEGY_TYPE: Final[str] = "technical"
+
+# 層別與離場治理(D-054、D-056、D-058;KARST-116)。
+#
+# **個股層**:突破 N 日新高入場、在強勢股之中揀——D-054 個股層三個用途裡「在已揀
+# 板塊之內押強者」正是這一族;它不揀市況、不在板塊之間調配。
+#
+# **延續型注**:它的每一件治理零件都是 CONTEXT.md「延續型注」那一條的逐字對應——
+# 突破入場(押升完傾向繼續升)、波段低位/均線成本線價格止蝕(下跌即入場理由的死亡
+# 證明)、賠率門檻(止蝕定義了一注的風險,門檻才計得出賠率)、不溝貨。
+#
+# 附註:D-056 已裁趨勢波段**不是一條策略,是一套進出場治理規則庫**。庫內那一列策略
+# 登記是 D-056 之前寫的,而登記按設計不可刪(見 KARST-117 的封存狀態格);在它被標
+# 封存之前,這兩格照它的實際形態誠實填,不預先當它已經消失。
+TREND_SWING_LAYER: Final[str] = STOCK_LAYER
+TREND_SWING_EXIT_GOVERNANCE: Final[str] = CONTINUATION_EXIT
 
 # ----------------------------------------------------------------------
 # 入場訊號登記成因子
@@ -517,11 +541,20 @@ def register_trend_swing(
         version, _ = gateway.register_strategy(
             strategy_name,
             strategy_type=TREND_SWING_STRATEGY_TYPE,
+            layer=TREND_SWING_LAYER,
+            exit_governance=TREND_SWING_EXIT_GOVERNANCE,
             factor_refs=factor_refs,
             description=description,
         )
     except DuplicateDefinition:
         head = gateway.store.get_strategy_version(strategy_name)
+        # 已在庫的一樣要過閘:未宣告過即照上面兩格補一筆,對不上即拒收(D-058)。
+        check_governance(
+            gateway,
+            head,
+            layer=TREND_SWING_LAYER,
+            exit_governance=TREND_SWING_EXIT_GOVERNANCE,
+        )
         current = sorted(f"{f.name}@{f.version_no}" for f in head.factors)
         if current == sorted(factor_refs):
             version = head

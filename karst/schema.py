@@ -48,6 +48,14 @@ D-026 第 1 條:因子定義、策略、運行登記、實體代號映射存**�
                                    新申報,不是改寫已發生的申報。走旁表而不是參數集多一格,
                                    所以不進運行編號雜湊、不動既有簽章
                                    (D-038、CONTEXT.md「參數集對齊標記」;KARST-094)
+16. ``strategy_governance``        策略治理宣告:一條策略屬由上而下三層的哪一層(市況/板塊/
+                                   個股),離場治理屬哪一型(延續型注/回歸型注/規則型),連
+                                   宣告依據一句。兩格必填,未答即拒收。只加不改不刪——改宣告
+                                   是加一筆新的,不是改寫已發生的宣告。走旁表而不是 ``strategy``
+                                   多兩欄:``strategy`` 一經落庫即不可改(trigger 擋住),既有
+                                   三條登記補填不了,而多兩欄亦會令該表既有簽章一次過作廢
+                                   (D-054、D-056、D-058;CONTEXT.md「由上而下三層」「離場治理」;
+                                   KARST-116)
 """
 
 from __future__ import annotations
@@ -106,7 +114,17 @@ from typing import Any
 #        一條新欄會改動該表的 content_digest、8326 列既有簽章一次過作廢。旁表兩樣都不碰
 #        (假設 A-014,2026-08-30 查證成立)。舊庫重開時 DDL 自動補建,既有登記一列不動;
 #        新表開頭是空的,補記由唯一入口逐列簽章寫入,不由遷移直接塞。
-SCHEMA_VERSION = 16
+# 第 17 版加策略治理宣告表 ``strategy_governance``(D-054、D-056、D-058;KARST-116):按策略
+#        編號記「屬三層哪一層」「離場治理屬哪一型」連依據一句,追加式不可刪,入治理清單逐列
+#        有簽章。D-058 第 1 條要求這兩格必填、未答拒收——這是全倉唯一一個「唔答就跑唔到」的
+#        防漂移閘:一條新策略交代不出自己屬哪一層、離場靠什麼,它連登記都登記不了。
+#        走**旁表**而不是 ``strategy`` 多兩欄,兩個理由都是硬的:(1) ``strategy`` 有
+#        ``trg_strategy_no_update`` 擋住 UPDATE,多兩欄的話生產庫現存三條登記永遠補填不到,
+#        而登記按設計不可刪重來;(2) 多兩欄會改動 ``strategy`` 的 content_digest,既有簽章
+#        一次過作廢,``karst verify`` 會全紅。旁表兩樣都不碰。
+#        舊庫重開時 DDL 自動補建,既有登記一列不動;新表開頭是空的,補填由唯一入口逐列簽章
+#        寫入,不由遷移直接塞——「這條策略屬哪一層」是要人判的事,不是遷移猜得出的。
+SCHEMA_VERSION = 17
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -806,6 +824,60 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_param_set_alignment_no_delete
 BEFORE DELETE ON param_set_alignment BEGIN
     SELECT RAISE(ABORT, '參數集對齊標記不可刪,追溯要指得回');
+END;
+
+-- 策略治理宣告(D-054、D-056、D-058;CONTEXT.md「由上而下三層」「離場治理」;KARST-116)。
+--
+-- 一條策略要交代兩件事,兩件都**必填**:
+--
+-- ``layer``            它屬由上而下三層的哪一層:``regime`` 市況(防守階梯)、``sector`` 板塊、
+--                      ``stock`` 個股。D-054 定平台重心為這三層,任何策略按此次序收窄,
+--                      不准跳層由個股起步——一條策略講不出自己站在哪一層,就無從判它有沒有
+--                      跳層。
+-- ``exit_governance``  它的離場治理屬哪一型:``continuation`` 延續型注(價格止蝕增值、不准
+--                      溝貨、賠率門檻有意義)、``reversion`` 回歸型注(價格止蝕有害,離場靠
+--                      入場前寫死的論點失效條件加注碼上限)、``rule_based`` 規則型(既非押
+--                      延續亦非押回歸,離場由預先寫死的規則逐期重算,無價格止蝕亦無論點條件)。
+--                      D-056 第 2 條:治理配置必須在入場之前寫死,是策略合約的一部分。
+--
+-- 為什麼是**旁表**而不是 ``strategy`` 多兩欄:兩條路都撞牆。``strategy`` 有
+-- ``trg_strategy_no_update`` 擋住 UPDATE(登記按設計不可改不可刪),多兩欄的話現存三條登記
+-- 永遠補填不到;而且多兩欄會改動該表的 content_digest,既有簽章一次過作廢,``verify`` 全紅。
+-- 旁表兩樣都不碰,而且與 ``param_set_alignment`` 同制(KARST-094 走過同一條路)。
+--
+-- **追加式,一列都不改不刪。** 改宣告(例如一條策略由個股層改編為板塊層)= 加一列新的
+-- ``seq_no``,舊列一字不變。「這條策略現在屬哪一層」= 該 ``strategy_id`` 之下 ``seq_no``
+-- 最大那一列;歷次改過什麼、由哪一刻起、依據是什麼,全部查得回。
+--
+-- ``basis``(宣告依據一句)不准留空:無理由的宣告等於沒有宣告,日後無人分得出它是判過的
+-- 還是隨手填的——與對齊標記同一句話。
+--
+-- 本表入治理清單(ledger.GOVERNED_TABLES),歸「定義」類:它與 active_setup 同級,是一句
+-- 「這條策略是什麼、它的注怎樣走」的定義級講法。沒有簽章的宣告即是有人繞過唯一入口替一條
+-- 策略改層別或改離場分型,而那正是 D-057/D-058 要防的漂移。
+CREATE TABLE IF NOT EXISTS strategy_governance (
+    strategy_id      INTEGER NOT NULL REFERENCES strategy(strategy_id),
+    seq_no           INTEGER NOT NULL,
+    layer            TEXT NOT NULL CHECK (layer IN ('regime', 'sector', 'stock')),
+    exit_governance  TEXT NOT NULL CHECK (exit_governance IN (
+        'continuation', 'reversion', 'rule_based')),
+    basis            TEXT NOT NULL CHECK (length(trim(basis)) > 0),
+    declared_at      TEXT NOT NULL,
+    PRIMARY KEY (strategy_id, seq_no),
+    CHECK (seq_no > 0)
+);
+
+CREATE INDEX IF NOT EXISTS idx_strategy_governance_strategy
+    ON strategy_governance (strategy_id, seq_no);
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_governance_no_update
+BEFORE UPDATE ON strategy_governance BEGIN
+    SELECT RAISE(ABORT, '策略治理宣告落庫後不可改;層別或離場分型變了請加新一筆宣告,不要改寫已發生的宣告');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_strategy_governance_no_delete
+BEFORE DELETE ON strategy_governance BEGIN
+    SELECT RAISE(ABORT, '策略治理宣告不可刪,追溯要指得回');
 END;
 
 -- ====================================================================

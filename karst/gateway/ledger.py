@@ -91,6 +91,12 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     # 同級,是決定門面數字代表什麼的定義級動作。沒有簽章的標記即是有人繞過那道門,把一組
     # 從未與用戶對齊的取值標成已對齊送上門面——正正是 D-038 要防的那件事。
     "param_set_alignment": ("param_set_id", "seq_no"),
+    # KARST-116 補上的一張:策略治理宣告。D-058 第 1 條要求每條策略講得出自己屬由上而下
+    # 三層的哪一層、離場治理屬哪一型,兩格必填。這兩句話決定這條策略在三層次序裡站哪一格
+    # (即它應不應該先過板塊層才落個股),以及一注落了下去幾時走(價格止蝕、論點失效,
+    # 還是逐期按規則重算)——與指定現役設定同級的定義級動作。沒有簽章的宣告即是有人繞過
+    # 唯一入口靜靜替一條策略改層別或改離場分型,而那正是 D-057/D-058 要防的漂移。
+    "strategy_governance": ("strategy_id", "seq_no"),
 }
 
 # 核對報告的三類(KARST-087)。一份「全庫清白/揪到 N 處」的總帳讀不出**哪一邊**不清白,
@@ -124,6 +130,9 @@ TABLE_CATEGORIES: dict[str, str] = {
     # 「那個參數集算不算數」),兩者分開兩類反而讀不出它們是連在一起的。自立一類亦會令
     # 報告多一行長期「1 類、13 列、清白」的雜音,把真正要分辨的三邊沖淡。
     "param_set_alignment": CATEGORY_DEFINITION,
+    # 策略治理宣告同樣歸「定義」:它不是數據來源出了事(那是「快照」),而是一句
+    # 「這條策略是什麼、它的注怎樣走」的講法,與策略定義本身同一類(KARST-116)。
+    "strategy_governance": CATEGORY_DEFINITION,
     "risk_rule": CATEGORY_DEFINITION,
     "strategy_risk_ref": CATEGORY_DEFINITION,
     "factor_value_batch": CATEGORY_FACTOR_BATCH,

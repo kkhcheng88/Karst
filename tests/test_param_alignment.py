@@ -62,6 +62,7 @@ def strategy(karst):
     )[0] == 0
     assert karst(
         "strategy", "register", "--name", STRATEGY, "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", MOMENTUM, "--param-set", PARAM_SET, "--cadence", "monthly",
         "--set", "breakout_window=59", "--set", "risk.per_trade_risk=0.02",
     )[0] == 0

@@ -31,6 +31,7 @@ from ..store import (
     ParamSet,
     ParamSetAlignment,
     RiskRuleRecord,
+    StrategyGovernance,
     StrategyVersion,
 )
 from . import ledger
@@ -299,18 +300,37 @@ class Gateway:
         name: str,
         *,
         strategy_type: str | None = None,
+        layer: str | None = None,
+        exit_governance: str | None = None,
+        governance_basis: str | None = None,
         factor_refs: Sequence[str] | None = None,
         description: str | None = None,
     ) -> tuple[StrategyVersion, WriteReceipt]:
+        """登記一條新策略的第一版。
+
+        ``layer``(屬三層哪一層)與 ``exit_governance``(離場治理屬哪一型)**必填,
+        未答即拒收**(D-058 第 1 條;KARST-116)。這是全倉唯一一個「唔答就跑唔到」的
+        防漂移閘:規格可以不讀、註解可以略過、決策簿可以無人翻,但一條新策略交代不出
+        自己屬哪一層、離場靠什麼,它連登記都登記不了。
+
+        兩格連依據一句走旁表 ``strategy_governance``,與策略那一列同一個交易入庫、
+        同一道門蓋簽章。
+        """
         version = self._store.register_strategy(
             name,
             strategy_type=strategy_type,
+            layer=layer,
+            exit_governance=exit_governance,
+            governance_basis=governance_basis,
             factor_refs=factor_refs,
             description=description,
         )
+        governance = self._store.strategy_governance(version.strategy_id)
+        assert governance is not None  # 與策略同一個交易寫入,不會查不到
         signed = self._sign(
             ("strategy", (version.strategy_id,)),
             ("strategy_version", (version.strategy_version_id,)),
+            ("strategy_governance", (governance.strategy_id, governance.seq_no)),
             *self._ref_rows(version),
         )
         return version, self._receipt("策略", version.name, version.version_no,
@@ -495,6 +515,39 @@ class Gateway:
             alignment.seq_no,
             None,
             alignment.recorded_at,
+            signed,
+        )
+
+    def declare_strategy_governance(
+        self,
+        strategy_name: str,
+        *,
+        layer: str,
+        exit_governance: str,
+        basis: str,
+    ) -> tuple[StrategyGovernance, WriteReceipt]:
+        """宣告一條**已登記**策略屬哪一層、離場治理屬哪一型,並蓋簽章(D-058)。
+
+        兩條路用得着它:D-058 之前登記的策略補填,以及一條策略日後改編制。兩者都是
+        定義級動作——它決定這條策略在三層次序裡站哪一格、一注落了下去幾時走——所以與
+        指定現役設定同一道門、同一種簽章。有人繞過這道門靜靜替一條策略改層別,正正是
+        D-057/D-058 要防的漂移。
+
+        改宣告 = 加一筆新宣告;重覆宣告同一件事回上一筆,不會白加一列,亦不會多蓋一個
+        簽章(``_sign_once``:那一列一經落庫即不可改,原簽章照舊有效)。
+        """
+        governance = self._store.declare_strategy_governance(
+            strategy_name, layer=layer, exit_governance=exit_governance, basis=basis
+        )
+        signed = self._sign_once(
+            ("strategy_governance", (governance.strategy_id, governance.seq_no))
+        )
+        return governance, self._receipt(
+            "策略治理宣告",
+            f"strategy_id={governance.strategy_id}",
+            governance.seq_no,
+            None,
+            governance.declared_at,
             signed,
         )
 

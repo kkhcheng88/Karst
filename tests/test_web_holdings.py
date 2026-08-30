@@ -114,7 +114,11 @@ def entities(store, snapshot, snapshot_root):
 def strategy(store, entities):
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
     version = store.register_strategy(
-        STRATEGY, strategy_type="technical", factor_refs=[MOMENTUM]
+        STRATEGY,
+        strategy_type="technical",
+        layer="stock",
+        exit_governance="continuation",
+        factor_refs=[MOMENTUM],
     )
     store.register_param_set(
         STRATEGY,

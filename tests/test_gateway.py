@@ -61,6 +61,7 @@ def test_cli_stamps_version_timestamp_and_parent(karst):
 
     code, output = karst(
         "strategy", "register", "--name", "趨勢波段", "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", f"{MOMENTUM}@1",
         "--param-set", "現役", "--cadence", "monthly",
         "--set", "breakout_window=50", "--set", "stop_atr=2.0",
@@ -135,6 +136,7 @@ def test_cli_rejects_param_set_without_cadence(karst):
 
     code, output = karst(
         "strategy", "register", "--name", "趨勢波段", "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", MOMENTUM, "--param-set", "現役", "--set", "breakout_window=50",
     )
     assert code == 1
@@ -151,6 +153,7 @@ def test_verify_catches_writes_that_bypass_the_gateway(karst):
     assert register_momentum(karst)[0] == 0
     assert karst(
         "strategy", "register", "--name", "趨勢波段", "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", MOMENTUM, "--param-set", "現役", "--cadence", "monthly",
         "--set", "breakout_window=50",
     )[0] == 0
@@ -185,6 +188,7 @@ def test_definition_has_exactly_one_home(karst):
     )[0] == 0
     assert karst(
         "strategy", "register", "--name", "趨勢波段", "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", MOMENTUM, "--param-set", "現役", "--cadence", "quarterly",
         "--set", "breakout_window=50",
     )[0] == 0
@@ -211,6 +215,7 @@ def _register_trend_swing(karst) -> None:
     assert register_momentum(karst)[0] == 0
     assert karst(
         "strategy", "register", "--name", "趨勢波段", "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", MOMENTUM, "--param-set", "現役", "--cadence", "monthly",
         "--set", "breakout_window=50",
     )[0] == 0

@@ -133,7 +133,13 @@ def runs(tmp_path):
                 input_data_version="2026-08-27-a1b2c3d4e5f6",
             ),
         )
-        store.register_strategy(STRATEGY, strategy_type="technical", factor_refs=[FACTOR])
+        store.register_strategy(
+            STRATEGY,
+            strategy_type="technical",
+            layer="stock",
+            exit_governance="continuation",
+            factor_refs=[FACTOR],
+        )
         store.register_param_set(
             STRATEGY,
             param_set_name=PARAM_SET,

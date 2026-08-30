@@ -44,6 +44,8 @@ from ..runs import RunStore
 from ..store import FORMAL_RUN, SWEEP_RUN, ParamSet, StrategyVersion
 from ..store import ALIGNED as _STORE_ALIGNED
 from ..store import ALIGNMENTS as _STORE_ALIGNMENTS
+from ..store import EXIT_GOVERNANCES as _STORE_EXIT_GOVERNANCES
+from ..store import LAYERS as _STORE_LAYERS
 from ..store import SAMPLE as _STORE_SAMPLE
 from .contract import (
     ENGINE_RULES,
@@ -1180,17 +1182,27 @@ def _register_strategy(
     *,
     description: str | None,
 ) -> StrategyVersion:
-    """引用的因子版本一樣就沿用舊策略版本,不一樣才出新版。"""
+    """引用的因子版本一樣就沿用舊策略版本,不一樣才出新版。
+
+    合約兩格必填(``layer``、``exit_governance``)在這裡交去唯一入口(D-058 第 1 條)。
+    策略**已經在庫**那條路一樣要過閘,見 ``check_governance``:登記過一次不等於從此
+    不用答,否則一條策略只要曾經登記過,合約改成什麼都沒有人核。
+    """
     refs = [f"{ref.name}@{ref.version_no}" for ref in factors]
+    layer = getattr(contract, "layer", None)
+    exit_governance = getattr(contract, "exit_governance", None)
     try:
         version, _ = gateway.register_strategy(
             strategy_name,
             strategy_type=contract.strategy_type,
+            layer=layer,
+            exit_governance=exit_governance,
             factor_refs=refs,
             description=description,
         )
     except DuplicateDefinition:
         head = gateway.store.get_strategy_version(strategy_name)
+        check_governance(gateway, head, layer=layer, exit_governance=exit_governance)
         current = sorted(f"{f.name}@{f.version_no}" for f in head.factors)
         if current == sorted(refs):
             version = head
@@ -1199,6 +1211,54 @@ def _register_strategy(
                 strategy_name, factor_refs=refs, description=description
             )
     return version
+
+
+# 補填一條 D-058 之前登記、庫內未有治理宣告的策略時,依據那一句。
+GOVERNANCE_BASIS: Final[str] = "D-058:登記時由策略合約宣告"
+
+# 合約與庫內宣告對不上時的講法。**不自動改庫**:哪一邊才對是要人判的事。
+_GOVERNANCE_DRIFT: Final[str] = (
+    "策略「{name}」的治理宣告對不上:庫內宣告是{recorded},"
+    "但策略合約現時宣告的是{declared}。"
+    "宣告是加一筆新的、不是靜靜覆蓋——真要改編制請經唯一入口"
+    "(gateway.declare_strategy_governance)講明依據宣告一次,"
+    "改錯了方向的合約請改回合約(D-054、D-056、D-058)"
+)
+
+
+def check_governance(
+    gateway: Any,
+    head: StrategyVersion,
+    *,
+    layer: Any,
+    exit_governance: Any,
+) -> None:
+    """已在庫的策略:合約那兩格與庫內宣告要對得上。
+
+    三種情況三種做法:庫內**未宣告**(D-058 之前登記的)即照合約補一筆,經唯一入口
+    留簽章;**對得上**即什麼都不做;**對不上**當場拒收——一邊是庫、一邊是碼,哪一邊
+    才是真的不是這裡判得出的事,靜靜覆蓋等於把當日那個判斷抹走。
+    """
+    recorded = gateway.store.strategy_governance(head.strategy_id)
+    if recorded is None:
+        gateway.declare_strategy_governance(
+            head.name,
+            layer=layer,
+            exit_governance=exit_governance,
+            basis=GOVERNANCE_BASIS,
+        )
+        return
+    if recorded.layer == layer and recorded.exit_governance == exit_governance:
+        return
+    raise ContractViolation(
+        _GOVERNANCE_DRIFT.format(
+            name=head.name,
+            recorded=f"{_STORE_LAYERS[recorded.layer]}層 / "
+                     f"{_STORE_EXIT_GOVERNANCES[recorded.exit_governance]}",
+            declared=f"{_STORE_LAYERS.get(layer, layer)}層 / "
+                     f"{_STORE_EXIT_GOVERNANCES.get(exit_governance, exit_governance)}",
+        )
+    )
 
 
 def engine_for(contract: StrategyContract, engine: Any | None) -> Any:

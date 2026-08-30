@@ -150,7 +150,11 @@ def snapshot_id(store, universe, tmp_path):
 def strategy(store, universe):
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
     version = store.register_strategy(
-        STRATEGY, strategy_type="technical", factor_refs=[MOMENTUM]
+        STRATEGY,
+        strategy_type="technical",
+        layer="stock",
+        exit_governance="continuation",
+        factor_refs=[MOMENTUM],
     )
     for set_name, window in ((ACTIVE_SET, "50"), (OTHER_SET, "120")):
         store.register_param_set(

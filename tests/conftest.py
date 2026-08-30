@@ -259,7 +259,11 @@ def seeded_project_root(tmp_path_factory) -> Path:
             SEED_FACTOR, scale_kind="cardinal", procedure=SEED_FACTOR_PROCEDURE
         )
         gateway.register_strategy(
-            SEED_STRATEGY, strategy_type="technical", factor_refs=[SEED_FACTOR]
+            SEED_STRATEGY,
+            strategy_type="technical",
+            layer="stock",
+            exit_governance="continuation",
+            factor_refs=[SEED_FACTOR],
         )
         for name in (SEED_PARAM_SET, SEED_SWEEP_PARAM_SET):
             gateway.register_param_set(
@@ -367,6 +371,9 @@ class _SweepFixtureContract:
     """
 
     strategy_type = "multifactor"
+    # 兩格必填(D-058;KARST-116)。夾具策略是玩具,但它照樣要答——閘不分真假策略。
+    layer = "stock"
+    exit_governance = "rule_based"
     funnel_stages: tuple[str, ...] = ()
     engine_path = ENGINE_TARGETS
 

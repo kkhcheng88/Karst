@@ -84,7 +84,7 @@ from ..executor.contract import (
     check_ratio,
     cost_fields,
 )
-from ..store import DefinitionStore
+from ..store import RULE_BASED_EXIT, STOCK_LAYER, DefinitionStore
 from ..engine.contracts import (
     CADENCES,
     CadenceNotSpecified,
@@ -104,6 +104,17 @@ from .factor_mix import (
 
 # 策略類型(store.STRATEGY_TYPES 八選一):輪動仍然是多因子,與因子混合同類。
 FACTOR_ROTATION_STRATEGY_TYPE: Final[str] = FACTOR_MIX_STRATEGY_TYPE
+
+# 層別與離場治理(D-054、D-056、D-058;KARST-116)。**與因子混合同一組值,而且理由
+# 就是它與混合蓋住同一四格因子敞口**——同一批可投資對象、同一個收窄步驟,分別只在
+# 「那一行比重由誰算」(混合照抄參數集,輪動每期問驅動器)。同一個宇宙的兩條策略若果
+# 站在不同層,三層次序就不再指得出任何東西。
+#
+# 離場屬**規則型**:輪動沒有價格止蝕、沒有賠率門檻(不是延續型注),亦沒有入場前寫死
+# 的論點失效條件(不是回歸型注);離場就是每個換倉日問一次驅動器再重算比重,權重歸零
+# 那格自然清倉、加總少於一即餘下持現金——由規則本身逐期重算,正是規則型。
+FACTOR_ROTATION_LAYER: Final[str] = STOCK_LAYER
+FACTOR_ROTATION_EXIT_GOVERNANCE: Final[str] = RULE_BASED_EXIT
 
 # 這條策略在參數集裡那幾個鍵。**它們同時是運行編號的原料**:改一個字,全部輪動
 # 運行當場換編號,所以正本只此一份。
@@ -1543,6 +1554,9 @@ class FactorRotationContract:
     macro_snapshot_id: str | None = None
 
     strategy_type: ClassVar[str] = FACTOR_ROTATION_STRATEGY_TYPE
+    #: 兩格必填(D-058;判詞見檔頭 ``FACTOR_ROTATION_LAYER``)。
+    layer: ClassVar[str] = FACTOR_ROTATION_LAYER
+    exit_governance: ClassVar[str] = FACTOR_ROTATION_EXIT_GOVERNANCE
     #: 這條策略交不出選股痕跡:四格敞口固定,每期變的只是比重,沒有「由三千隻收
     #: 到三十隻」那個漏斗(D-013)。空的就是空的,不硬套一個兩層殼扮有選股。
     funnel_stages: ClassVar[tuple[str, ...]] = ()

@@ -203,8 +203,20 @@ def test_each_risk_rule_has_exactly_one_definition(gateway, store):
 # (D-013 第 4 條)
 def test_two_strategies_share_one_definition_with_their_own_params(gateway, store, toy_factor):
     gateway.register_risk_rules()
-    store.register_strategy("趨勢波段·玩具", strategy_type="technical", factor_refs=[FACTOR])
-    store.register_strategy("錯殺·玩具", strategy_type="meanrev", factor_refs=[FACTOR])
+    store.register_strategy(
+        "趨勢波段·玩具",
+        strategy_type="technical",
+        layer="stock",
+        exit_governance="continuation",
+        factor_refs=[FACTOR],
+    )
+    store.register_strategy(
+        "錯殺·玩具",
+        strategy_type="meanrev",
+        layer="stock",
+        exit_governance="reversion",
+        factor_refs=[FACTOR],
+    )
 
     # 甲三條全用;乙不用熔斷——同一層規則,可用可不用
     swing = RiskSettings(per_trade_risk=0.02, monthly_loss_cap=0.06, reward_risk_floor=1.5)
@@ -269,7 +281,13 @@ def test_two_strategies_share_one_definition_with_their_own_params(gateway, stor
 # (D-013 第 4 條「策略可用可不用」)
 def test_a_strategy_that_references_nothing_still_backtests(gateway, store, toy_factor):
     gateway.register_risk_rules()
-    store.register_strategy("因子混合·玩具", strategy_type="multifactor", factor_refs=[FACTOR])
+    store.register_strategy(
+        "因子混合·玩具",
+        strategy_type="multifactor",
+        layer="stock",
+        exit_governance="rule_based",
+        factor_refs=[FACTOR],
+    )
 
     # 一條風控規則都沒有引用——不是錯,只是這套策略不用這一層
     assert store.strategy_risk_rules("因子混合·玩具") == []

@@ -48,7 +48,13 @@ import pandas as pd
 
 from ..errors import ContractViolation
 from ..models import FormulaProcedure
-from ..store import FAMILY_SEPARATOR, DefinitionStore, ParamSet
+from ..store import (
+    FAMILY_SEPARATOR,
+    RULE_BASED_EXIT,
+    STOCK_LAYER,
+    DefinitionStore,
+    ParamSet,
+)
 from ..engine.cadence import rebalance_schedule
 from ..engine.contracts import (
     CADENCES,
@@ -83,6 +89,19 @@ from ..executor.contract import (
 
 # 策略類型(store.STRATEGY_TYPES 八選一):因子混合屬多因子。
 FACTOR_MIX_STRATEGY_TYPE: Final[str] = "multifactor"
+
+# 屬由上而下三層的哪一層(D-054)與離場治理屬哪一型(D-056),兩格必填(D-058;
+# KARST-116)。
+#
+# **個股層**:因子(動能、質素、低波、價值)本身是一套選股講法,這條策略只是改用
+# 四隻現成因子 ETF 落注,不是先揀市況、亦不是在板塊之間調配——按 D-054 的三層次序,
+# 它站在最底那一層(KARST-116 依票裁定)。
+#
+# **規則型**:它沒有價格止蝕、沒有賠率門檻(即不是延續型注),亦沒有入場前寫死的
+# 論點失效條件(即不是回歸型注);離場就是每個換倉日照參數集那組固定比重重算一次,
+# 由規則本身決定持幾多——所以是三型之中的規則型。
+FACTOR_MIX_LAYER: Final[str] = STOCK_LAYER
+FACTOR_MIX_EXIT_GOVERNANCE: Final[str] = RULE_BASED_EXIT
 
 # 這條路的逐股分數叫什麼(KARST-056)。這套策略**沒有排名這一步**——四格敞口
 # 的比例由參數集寫定,每個換倉日照抄。所以每隻 ETF 那個數字是目標比重,不是
@@ -591,6 +610,9 @@ class FactorMixContract:
     costs: Any = None
 
     strategy_type: ClassVar[str] = FACTOR_MIX_STRATEGY_TYPE
+    #: 兩格必填(D-058;判詞見檔頭 ``FACTOR_MIX_LAYER``)。
+    layer: ClassVar[str] = FACTOR_MIX_LAYER
+    exit_governance: ClassVar[str] = FACTOR_MIX_EXIT_GOVERNANCE
     #: 漏斗只有兩層,而那正是它的真相(見 ``factor_mix_selection_trace``)。
     funnel_stages: ClassVar[tuple[str, ...]] = (STAGE_SCOPE, STAGE_SELECTED)
     engine_path: ClassVar[str] = ENGINE_TARGETS

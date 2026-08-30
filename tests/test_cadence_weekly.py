@@ -159,6 +159,7 @@ def test_a_weekly_param_set_registers_through_the_gateway_and_runs_a_backtest(ka
     # 週度經同一道門寫得入庫身——以前 sqlite 那條 CHECK 會在這一句當場擋住。
     code, output = karst(
         "strategy", "register", "--name", STRATEGY, "--type", "technical",
+        "--layer", "stock", "--exit-governance", "continuation",
         "--factor", FACTOR, "--param-set", PARAM_SET, "--cadence", "weekly",
         "--set", "top_n=2", "--set", "direction=high",
     )
@@ -214,6 +215,7 @@ def test_an_old_database_migrates_in_place_without_touching_a_single_row(karst):
         code, output = karst(
             "strategy", "register", "--name", f"{STRATEGY}-{cadence}",
             "--type", "technical", "--factor", FACTOR,
+            "--layer", "stock", "--exit-governance", "continuation",
             "--param-set", PARAM_SET, "--cadence", cadence,
             "--set", f"top_n={index + 1}", "--set", "direction=high",
         )

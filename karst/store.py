@@ -139,6 +139,37 @@ ALIGNMENTS: Final[dict[str, str]] = {
     SAMPLE: "示例",
 }
 
+# 由上而下三層(top-down layers,D-054)與離場治理分型(exit governance,D-056)。
+# 與運行來歷、對齊標記同制:取值那一面的正本是 schema.py 的 CHECK 約束,這裡只給程式
+# 一個名字與一個中文名用,合約那一層由這裡引,不另寫一份。
+#
+# **兩格都無預設值**(D-058 第 1 條):一條策略要講得出自己屬哪一層、離場靠什麼。
+# 猜一個出來的方向永遠是把新策略塞回舊重心——那正是這道閘要擋的漂移。
+REGIME_LAYER: Final[str] = "regime"
+SECTOR_LAYER: Final[str] = "sector"
+STOCK_LAYER: Final[str] = "stock"
+LAYERS: Final[dict[str, str]] = {
+    REGIME_LAYER: "市況",
+    SECTOR_LAYER: "板塊",
+    STOCK_LAYER: "個股",
+}
+"""三層的次序就是這個字典的次序:市況 → 板塊 → 個股(D-054)。"""
+
+CONTINUATION_EXIT: Final[str] = "continuation"
+REVERSION_EXIT: Final[str] = "reversion"
+RULE_BASED_EXIT: Final[str] = "rule_based"
+EXIT_GOVERNANCES: Final[dict[str, str]] = {
+    CONTINUATION_EXIT: "延續型注",
+    REVERSION_EXIT: "回歸型注",
+    RULE_BASED_EXIT: "規則型",
+}
+"""離場治理三型(D-056;CONTEXT.md「延續型注」「回歸型注」「規則型離場」)。"""
+
+# 登記時沒有另外給依據那一句時寫的一句。登記那一刻兩格的來源本來就只有一個——策略
+# 合約自己的宣告——所以這一句是實話,不是補一個預設值。**改宣告那條路沒有這一句**:
+# 在那裡「為什麼改」是要人判的事,講不出就不准改(與 D-038 對齊依據同一條紀律)。
+DEFAULT_GOVERNANCE_BASIS: Final[str] = "D-058:登記時由策略合約宣告"
+
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -299,6 +330,42 @@ class ParamSetAlignment:
         if not self.is_aligned:
             return ALIGNMENTS[self.mark]
         return f"{ALIGNMENTS[self.mark]}({self.aligned_on})"
+
+
+@dataclass(frozen=True, slots=True)
+class StrategyGovernance:
+    """策略治理宣告(strategy governance declaration):一條策略交代自己屬哪一層、
+    離場治理屬哪一型的那一筆宣告(D-054、D-056、D-058;KARST-116)。
+
+    ``layer`` 是由上而下三層的哪一層(市況/板塊/個股);``exit_governance`` 是離場
+    治理分型(延續型注/回歸型注/規則型)。兩格必填,登記時未答當場拒收——這是全倉
+    唯一一個「唔答就跑唔到」的防漂移閘。
+
+    ``seq_no`` 是這條策略第幾次宣告,由 1 起。**改宣告 = 加一筆新宣告**,舊宣告一字
+    不變(與對齊標記、現役設定同制),所以「當日為什麼判它屬個股層」永遠查得回。
+
+    ``basis`` 是宣告依據那一句,不准留空:無理由的宣告等於沒有宣告。
+    """
+
+    strategy_id: int
+    seq_no: int
+    layer: str
+    exit_governance: str
+    basis: str
+    declared_at: str
+
+    @property
+    def layer_label(self) -> str:
+        return LAYERS[self.layer]
+
+    @property
+    def exit_label(self) -> str:
+        return EXIT_GOVERNANCES[self.exit_governance]
+
+    @property
+    def label(self) -> str:
+        """畫面上的寫法:「個股層 / 規則型」。"""
+        return f"{self.layer_label}層 / {self.exit_label}"
 
 
 @dataclass(frozen=True, slots=True)
@@ -1349,10 +1416,23 @@ class DefinitionStore:
         name: str,
         *,
         strategy_type: str | None = None,
+        layer: str | None = None,
+        exit_governance: str | None = None,
+        governance_basis: str | None = None,
         factor_refs: Sequence[str] | None = None,
         description: str | None = None,
     ) -> StrategyVersion:
-        """登記一個新策略的第一版。類型與引用因子皆必填,缺就拒收。"""
+        """登記一個新策略的第一版。類型、層別、離場治理、引用因子皆必填,缺就拒收。
+
+        ``layer`` 與 ``exit_governance`` 是 D-058 第 1 條加的兩格(KARST-116):這條
+        策略屬由上而下三層的哪一層、它的離場治理屬哪一型。**無預設值,未答即拒收**
+        ——一條策略講不出自己站在哪一層、離場靠什麼,就無從判它有沒有跳層、有沒有
+        走回已否決的方向。
+
+        兩格連同依據一句寫入旁表 ``strategy_governance``,與策略那一列**同一個交易**:
+        策略登記了而治理宣告沒有,就會留下一條永遠補不到的登記(``strategy`` 不可改
+        不可刪),所以兩者要麼一齊入庫,要麼一齊不入。
+        """
         full_name = self._check_strategy_name(name)
         row = self._conn.execute(
             "SELECT strategy_id FROM strategy WHERE name = ?", (full_name,)
@@ -1362,6 +1442,9 @@ class DefinitionStore:
                 f"策略「{full_name}」已存在;要改定義請用 new_strategy_version 出新版"
             )
         kind = self._check_strategy_type(strategy_type, full_name)
+        which_layer = self._check_layer(layer, full_name)
+        which_exit = self._check_exit_governance(exit_governance, full_name)
+        basis = str(governance_basis or "").strip() or DEFAULT_GOVERNANCE_BASIS
         versions = self._resolve_factor_refs(factor_refs, full_name)
 
         with self._conn:
@@ -1376,6 +1459,11 @@ class DefinitionStore:
                 parent_version_id=None,
                 factor_version_ids=[v.factor_version_id for v in versions],
                 description=description,
+            )
+            self._conn.execute(
+                "INSERT INTO strategy_governance (strategy_id, seq_no, layer,"
+                " exit_governance, basis, declared_at) VALUES (?, 1, ?, ?, ?, ?)",
+                (strategy_id, which_layer, which_exit, basis, _now()),
             )
         return self._strategy_version_by_id(version_id)
 
@@ -1453,6 +1541,45 @@ class DefinitionStore:
                 f"策略類型只收 {sorted(STRATEGY_TYPES)},收到 {strategy_type!r}"
             )
         return strategy_type
+
+    @staticmethod
+    def _check_layer(layer: str | None, name: str) -> str:
+        """這條策略屬由上而下三層的哪一層。**未答即拒收**(D-054、D-058 第 1 條)。"""
+        key = str(layer or "").strip()
+        if not key:
+            raise ContractViolation(
+                f"策略「{name}」缺層別(layer):平台重心是由上而下三層,"
+                "任何策略按此次序收窄,不准跳層由個股起步(D-054);"
+                f"{'、'.join(f'{k}({v}層)' for k, v in LAYERS.items())} 揀一個。"
+                "無預設值——講不出自己站在哪一層的策略,無從判它有沒有跳層"
+            )
+        if key not in LAYERS:
+            raise ContractViolation(
+                f"策略「{name}」的層別只收 {sorted(LAYERS)}"
+                f"({'、'.join(f'{k}={v}層' for k, v in LAYERS.items())}),"
+                f"收到 {layer!r}(D-054)"
+            )
+        return key
+
+    @staticmethod
+    def _check_exit_governance(exit_governance: str | None, name: str) -> str:
+        """這條策略的離場治理屬哪一型。**未答即拒收**(D-056、D-058 第 1 條)。"""
+        key = str(exit_governance or "").strip()
+        if not key:
+            raise ContractViolation(
+                f"策略「{name}」缺離場治理分型(exit_governance):治理配置"
+                "(有沒有止蝕、賠率門檻要不要、跌後加注還是離場)必須在入場之前寫死,"
+                "是策略合約的一部分,不准臨場決定(D-056 第 2 條);"
+                f"{'、'.join(f'{k}({v})' for k, v in EXIT_GOVERNANCES.items())} 揀一個。"
+                "無預設值——講不出離場靠什麼的策略,一注落了下去就沒有人答得出幾時走"
+            )
+        if key not in EXIT_GOVERNANCES:
+            raise ContractViolation(
+                f"策略「{name}」的離場治理分型只收 {sorted(EXIT_GOVERNANCES)}"
+                f"({'、'.join(f'{k}={v}' for k, v in EXIT_GOVERNANCES.items())}),"
+                f"收到 {exit_governance!r}(D-056)"
+            )
+        return key
 
     def _resolve_factor_refs(
         self, factor_refs: Sequence[str] | None, name: str
@@ -2636,6 +2763,101 @@ class DefinitionStore:
             aligned_on=None if row["aligned_on"] is None else str(row["aligned_on"]),
             basis=str(row["basis"]),
             recorded_at=str(row["recorded_at"]),
+        )
+
+    # ---- 策略治理宣告(D-054、D-056、D-058;KARST-116)---------------------
+
+    def declare_strategy_governance(
+        self,
+        strategy_name: str,
+        *,
+        layer: str,
+        exit_governance: str,
+        basis: str,
+    ) -> StrategyGovernance:
+        """宣告一條**已登記**策略屬哪一層、離場治理屬哪一型,回傳這一次宣告。
+
+        兩條路用得着它:D-058 之前登記的策略**補填**(生產庫那三條),以及一條策略
+        日後**改編制**(例如由個股層改為板塊層)。
+
+        **追加式**:改宣告 = 加一筆新宣告,舊宣告一字不變(與對齊標記、現役設定同制)。
+        重覆宣告同一件事(同層、同分型、同一句依據)即當同一件事,原封不動回上一筆,
+        不會白加一列——執行台每次登記都會走這裡核對。
+
+        ``basis`` **不准留空亦沒有預設**:改編制或補填「為什麼判它屬這一層」是要人判
+        的事,講不出理由的宣告日後無人分得出它是判過的還是隨手填的(與 D-038 對齊
+        依據同一條紀律)。
+        """
+        head = self.get_strategy_version(strategy_name)
+        which_layer = self._check_layer(layer, head.name)
+        which_exit = self._check_exit_governance(exit_governance, head.name)
+        note = str(basis or "").strip()
+        if not note:
+            raise ContractViolation(
+                f"策略「{head.name}」的治理宣告要講明依據一句(basis):"
+                "無理由的宣告等於沒有宣告,日後無人分得出它是判過的還是隨手填的"
+                "(D-058;與 D-038 對齊依據同制)"
+            )
+
+        current = self._strategy_governance_row(head.strategy_id)
+        if current is not None and (
+            str(current["layer"]) == which_layer
+            and str(current["exit_governance"]) == which_exit
+            and str(current["basis"]) == note
+        ):
+            return self._strategy_governance(current)
+
+        seq_no = 1 if current is None else int(current["seq_no"]) + 1
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO strategy_governance (strategy_id, seq_no, layer,"
+                " exit_governance, basis, declared_at) VALUES (?, ?, ?, ?, ?, ?)",
+                (head.strategy_id, seq_no, which_layer, which_exit, note, _now()),
+            )
+        row = self._strategy_governance_row(head.strategy_id)
+        assert row is not None  # 剛剛寫入,不會查不到
+        return self._strategy_governance(row)
+
+    def strategy_governance(self, strategy_id: int) -> StrategyGovernance | None:
+        """這條策略**現在**的治理宣告(seq_no 最大那一筆);從未宣告過即 ``None``。
+
+        回 ``None`` 而不是猜一層出來:「未宣告」是 D-058 之前登記、還未補填的策略,
+        與「宣告過屬個股層」是兩回事。猜一個出來的方向永遠是把它塞回舊重心。
+        """
+        row = self._strategy_governance_row(int(strategy_id))
+        return None if row is None else self._strategy_governance(row)
+
+    def strategy_governance_by_name(self, strategy_name: str) -> StrategyGovernance | None:
+        """同上,但按策略名查。策略本身查無此名即拋 ``NotFound``。"""
+        head = self.get_strategy_version(strategy_name)
+        return self.strategy_governance(head.strategy_id)
+
+    def strategy_governance_history(self, strategy_id: int) -> list[StrategyGovernance]:
+        """這條策略歷次宣告過什麼,由早到遲。改過什麼、幾時改、依據是什麼。"""
+        rows = self._conn.execute(
+            "SELECT strategy_id, seq_no, layer, exit_governance, basis, declared_at"
+            " FROM strategy_governance WHERE strategy_id = ? ORDER BY seq_no",
+            (int(strategy_id),),
+        ).fetchall()
+        return [self._strategy_governance(row) for row in rows]
+
+    def _strategy_governance_row(self, strategy_id: int) -> sqlite3.Row | None:
+        return self._conn.execute(
+            "SELECT strategy_id, seq_no, layer, exit_governance, basis, declared_at"
+            " FROM strategy_governance WHERE strategy_id = ?"
+            " ORDER BY seq_no DESC LIMIT 1",
+            (int(strategy_id),),
+        ).fetchone()
+
+    @staticmethod
+    def _strategy_governance(row: sqlite3.Row) -> StrategyGovernance:
+        return StrategyGovernance(
+            strategy_id=int(row["strategy_id"]),
+            seq_no=int(row["seq_no"]),
+            layer=str(row["layer"]),
+            exit_governance=str(row["exit_governance"]),
+            basis=str(row["basis"]),
+            declared_at=str(row["declared_at"]),
         )
 
     def get_active_setup(self, strategy_name: str) -> ActiveSetup:

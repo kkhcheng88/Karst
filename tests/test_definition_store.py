@@ -277,7 +277,13 @@ def test_the_store_validates_every_cadence_the_engine_knows(store):
     from karst.store import rebalance_cadences
 
     store.register_factor(MOMENTUM, scale_kind="cardinal", procedure=MOMENTUM_PROCEDURE)
-    store.register_strategy("趨勢波段", strategy_type="technical", factor_refs=[MOMENTUM])
+    store.register_strategy(
+        "趨勢波段",
+        strategy_type="technical",
+        layer="stock",
+        exit_governance="continuation",
+        factor_refs=[MOMENTUM],
+    )
 
     # 引擎認得的每一個節奏,定義庫的合約檢查都收得住
     for cadence in sorted(CADENCES):

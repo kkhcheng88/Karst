@@ -41,6 +41,8 @@ from typing import Any, Final, Protocol, runtime_checkable
 import numpy as np
 
 from ..errors import ContractViolation
+from ..store import EXIT_GOVERNANCES as _STORE_EXIT_GOVERNANCES
+from ..store import LAYERS as _STORE_LAYERS
 
 # ----------------------------------------------------------------------
 # 錯誤模式:全部是 ContractViolation 的子型別,執行台在跑引擎**之前**擲出
@@ -797,17 +799,50 @@ ENGINE_PATHS: Final[frozenset[str]] = frozenset({ENGINE_TARGETS, ENGINE_RULES})
 
 
 # ----------------------------------------------------------------------
+# 三層與離場治理:合約兩格必填(D-054、D-056、D-058;KARST-116)
+#
+# 取值的正本住在庫身的 CHECK 約束,``karst.store`` 給程式一個名字用;這裡只是轉引,
+# 不另寫一份——庫、入口、執行台、策略四邊必須認同一套字(與對齊標記同制)。
+# ----------------------------------------------------------------------
+
+LAYERS: Final[dict[str, str]] = _STORE_LAYERS
+"""由上而下三層:``regime`` 市況 → ``sector`` 板塊 → ``stock`` 個股(D-054)。"""
+
+EXIT_GOVERNANCES: Final[dict[str, str]] = _STORE_EXIT_GOVERNANCES
+"""離場治理三型:``continuation`` 延續型注、``reversion`` 回歸型注、
+``rule_based`` 規則型(D-056)。"""
+
+
+# ----------------------------------------------------------------------
 # 合約本身
 # ----------------------------------------------------------------------
 
 
 @runtime_checkable
 class StrategyContract(Protocol):
-    """一條策略要交出的那六件。用 ``Protocol`` 不用基類:基類會誘使策略去繼承
-    編排,而編排正是要拆走的東西。"""
+    """一條策略要交出的那八件。用 ``Protocol`` 不用基類:基類會誘使策略去繼承
+    編排,而編排正是要拆走的東西。
+
+    其中 ``layer`` 與 ``exit_governance`` 是 D-058 第 1 條加的兩格必填(KARST-116):
+    它們不影響怎樣跑,只答「這條策略站在三層的哪一層、它的注幾時走」——而正因為未答
+    就登記不到、登記不到就跑不動,它是全倉唯一一道逼人在寫策略之前先答的閘。
+    """
 
     #: 這條策略在 ``store.STRATEGY_TYPES`` 八個之中屬哪一類。執行台不猜。
     strategy_type: str
+
+    #: 這條策略屬**由上而下三層**的哪一層:``regime`` 市況(防守階梯)、``sector``
+    #: 板塊、``stock`` 個股(``LAYERS`` 三揀一)。**必填,執行台不猜、庫身不收空白**
+    #: (D-054、D-058 第 1 條)。平台重心是由上而下三層,任何策略按此次序收窄、不准
+    #: 跳層由個股起步——一條策略講不出自己站在哪一層,就無從判它有沒有跳層。
+    layer: str
+
+    #: 這條策略的**離場治理**屬哪一型:``continuation`` 延續型注(價格止蝕增值、不准
+    #: 溝貨、賠率門檻有意義)、``reversion`` 回歸型注(價格止蝕有害,靠入場前寫死的
+    #: 論點失效條件加注碼上限)、``rule_based`` 規則型(離場由預先寫死的規則逐期重算,
+    #: 無價格止蝕亦無論點條件)。**必填**(D-056 第 2 條、D-058 第 1 條):治理配置
+    #: 必須在入場之前寫死,是策略合約的一部分,不准臨場決定。
+    exit_governance: str
 
     #: 用選股漏斗哪幾層,由上而下。空的即這條策略交不出選股痕跡(D-013)。
     funnel_stages: tuple[str, ...]
