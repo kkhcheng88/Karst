@@ -13,15 +13,12 @@ import json
 import urllib.error
 import urllib.parse
 import urllib.request
-from pathlib import Path
 
 import pandas as pd
 import pytest
 
 from karst.web.data import build_reader
 from karst.web.server import STATIC_ROOT, serve_in_background
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def _get(url: str) -> bytes:
@@ -50,14 +47,15 @@ def _sweep_url(base_url: str, sweep_id: str, layer: str | None = None) -> str:
 
 
 @pytest.fixture(scope="module")
-def reader(seeded_project_root):
+def reader(seeded_project_root, seeded_sweep):
     """讀取層接**種好數的臨時專案根**,不是倉根那個生產庫(KARST-093)。
 
-    臨時專案根的 ``experiments/`` 是空的,所以本檔各條測試現時一律跳過(下面
-    ``sweeps`` 夾具那句「本機沒有任何掃描落檔」)。要它們真的跑起來,臨時庫還要
-    種一幅**完整的掃描落檔**——掃描表連判讀表、帶選擇軸、判讀已按軸型分層——那是
-    另一件工,不在 KARST-093 範圍(票上已註明)。這裡先把讀取層接離生產庫:
-    照舊打生產庫的話,斷言就會吊住倉內今日剛好有哪幾幅掃描。
+    帶 ``seeded_sweep`` 這個參數只為逼 pytest 先種好那幅掃描落檔
+    (KARST-095,經 ``Executor.sweep`` 落在同一個臨時專案根的
+    ``experiments/`` 之下)再起讀取層——``build_reader`` 本身不記快照,
+    每次 API 呼叫都會重新掃檔案,次序錯了也不會真的讀漏,但寫明依賴才是
+    夾具間該有的樣子。照舊打生產庫的話,斷言就會吊住倉內今日剛好有哪幾幅
+    掃描,所以讀取層一律接臨時專案根。
     """
     return build_reader(seeded_project_root)
 
@@ -90,7 +88,7 @@ def layered(sweeps):
     pytest.skip("本機沒有已按軸型分層判讀的掃描")
 
 
-def test_四個元件由真實掃描表與判讀表畫出(base_url, sweeps, layered):
+def test_四個元件由真實掃描表與判讀表畫出(base_url, sweeps, layered, seeded_project_root):
     """驗收一:四個元件由真實掃描表與判讀表畫出,孤峰/山脊/平原標記可見。"""
     page = _get(f"{base_url}/sweep").decode("utf-8")
     for anchor in ('id="heat"', 'id="small"', 'id="nbhd"', 'id="slices"'):
@@ -101,8 +99,13 @@ def test_四個元件由真實掃描表與判讀表畫出(base_url, sweeps, laye
     assert payload["cells"], "熱力圖一格都沒有"
     assert payload["projections"], "小倍數一張圖都沒有"
 
-    # 格內的數,同掃描表 CSV 那一行逐點對得上——不是頁面自己算出來的
-    grid = pd.read_csv(PROJECT_ROOT / payload["provenance"]["gridPath"], encoding="utf-8-sig")
+    # 格內的數,同掃描表 CSV 那一行逐點對得上——不是頁面自己算出來的。
+    # gridPath 是相對於掃描落檔那個專案根(即 seeded_project_root)的路徑,
+    # 不是相對於這個測試檔所在的倉根——KARST-093 把 reader 接離生產庫之後,
+    # 掃描落檔就搬去了臨時專案根,這裡照舊用倉根去拼路徑就會拼錯地方。
+    grid = pd.read_csv(
+        seeded_project_root / payload["provenance"]["gridPath"], encoding="utf-8-sig"
+    )
     assert sum(row["cells"] for row in payload["layerRows"]) == len(grid)
 
     cell = next(c for c in payload["cells"] if c["runId"])

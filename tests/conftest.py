@@ -36,6 +36,32 @@ from karst.gateway import Gateway
 from karst.runs import RunStore, synthetic_simulation
 from karst.store import FORMAL_RUN, SWEEP_RUN
 
+# KARST-095 補上的第二批 import:種一幅完整掃描要用的執行台、掃描格與假引擎。
+# 獨立成一組,不併入上面那組——上面那組是 KARST-090/093 的正本,這裡只加不改。
+from types import SimpleNamespace
+from typing import Any
+
+import numpy as np
+
+from doubles.engines import RecordingEngine
+from karst.engine.contracts import CADENCES, PricePanel, SimulationOutput
+from karst.executor import SAMPLE, BatchReport, Executor
+from karst.executor.contract import (
+    ENGINE_TARGETS,
+    KIND_INTEGER,
+    KIND_TEXT,
+    SLOT_CADENCE,
+    SLUG_VERBATIM,
+    TEXT_VERBATIM,
+    EntityRequest,
+    FactorSpec,
+    ParamField,
+    ParamSpec,
+    RunRequest,
+    TargetPlan,
+)
+from karst.sweep import ProductGrid, choice_axis, continuous_axis
+
 #: 寫入者名字。唯一入口每寫一列都蓋一個簽章,而簽章要有名字;測試沒有人手輸入,
 #: 所以在這裡給一個一看就知道是測試的預設。**測試自己設了就不覆蓋**——有些測試
 #: 正是要驗「換一個寫入者會怎樣」。
@@ -285,3 +311,249 @@ def seeded_project_root(tmp_path_factory) -> Path:
         )
 
     return root
+
+
+# ----------------------------------------------------------------------
+# 種一幅完整掃描(KARST-095):test_web_sweep.py 要的真實掃描落檔
+# ----------------------------------------------------------------------
+#
+# KARST-093 只把 ``seeded_project_root`` 的 ``experiments/`` 留空(見上面那個
+# 夾具的說明),``test_web_sweep.py`` 因此整檔跳過。這裡補上那一幅:經**策略
+# 執行台的 sweep 入口**(KARST-091,``Executor.sweep``)在同一個臨時專案根種
+# 一幅小型完整掃描——批次登記、逐格運行、判讀一次過經唯一入口落檔,與生產
+# 掃描走的是同一條路,分別只在策略本體與引擎換了替身。
+
+#: 掃描夾具的因子、策略、參數集名。名字刻意帶 KARST-095,一眼看得出是這張票
+#: 種的掃描,不是任何人的真策略、亦不是上面 KARST-093 那組正式運行種數。
+SWEEP_FACTOR = "KARST-095·掃描判讀因子"
+SWEEP_STRATEGY = "KARST-095·掃描夾具策略"
+SWEEP_PARAM_SET = "KARST-095·掃描起步"
+SWEEP_ENGINE_VERSION = "0.1.0"
+SWEEP_TICKERS = ("KRSWEEPA", "KRSWEEPB")
+SWEEP_DAYS = pd.bdate_range("2021-01-04", "2022-12-30")
+SWEEP_PERIOD = (str(SWEEP_DAYS[0].date()), str(SWEEP_DAYS[-1].date()))
+SWEEP_ID = "KARST-095-掃描夾具"
+
+#: 逐格的目標年化回報(判讀的輸入)。鋪成三種形狀,一格都不靠運氣:
+#: mode=A、mode=B 在 x=1、x=2 同樣高(候選平原);mode=A 的 x=2、x=3 換去
+#: mode=B/C 就跌穿高地門檻(山脊——沿 x 軸自己站得住,換一套 mode 就沒有了);
+#: mode=C 的 x=2 獨高、四周低(孤峰)。三個判讀門檻(``SWEEP_MIN_TRADES`` /
+#: ``SWEEP_LONELY_PEAK_MARGIN`` / ``SWEEP_PLATEAU_QUANTILE``)配這組數精挑
+#: 出來,換一個數就要重新推導判讀結果,不要當隨手改。
+SWEEP_RATES: dict[tuple[str, int], float] = {
+    ("A", 1): 0.20, ("A", 2): 0.20, ("A", 3): 0.20,
+    ("B", 1): 0.20, ("B", 2): 0.20, ("B", 3): 0.03,
+    ("C", 1): 0.03, ("C", 2): 0.60, ("C", 3): 0.03,
+}
+SWEEP_MODES = ("A", "B", "C")
+SWEEP_XVALUES = (1, 2, 3)
+SWEEP_OBJECTIVE = "annual_return"
+#: ``_SweepFixtureEngine``(``RecordingEngine`` 之上加一味)從不交訂單,成交
+#: 筆數恆為零;無效格門檻因此定 0,不然九格會全部因「零成交」被判無效。
+SWEEP_MIN_TRADES = 0
+SWEEP_LONELY_PEAK_MARGIN = 0.05
+SWEEP_PLATEAU_QUANTILE = 0.5
+
+
+class _SweepFixtureContract:
+    """種掃描夾具專用的玩具策略合約(見 ``karst.executor.contract.StrategyContract``)。
+
+    只有兩格參數是掃描軸:``mode``(選擇軸,對應 ``karst.sweep`` 的「層」)與
+    ``x``(連續軸)。``cadence`` 是換倉節奏那格,釘死不掃。目標比重表把
+    ``mode``、``x`` 編碼進兩隻代號各自的比重,好讓 ``_SweepFixtureEngine`` 由
+    比重表反推返呢一格是邊一格——同 ``tests/test_sweep.py`` 的 ``_ToyContract``
+    同一手法,分別只在這裡用嘅底是 ``tests/doubles/engines.py`` 嗰個
+    ``RecordingEngine``(KARST-095 票明文要求)。
+    """
+
+    strategy_type = "multifactor"
+    funnel_stages: tuple[str, ...] = ()
+    engine_path = ENGINE_TARGETS
+
+    def param_spec(self) -> ParamSpec:
+        return ParamSpec(
+            fields=(
+                ParamField(
+                    name="mode", kind=KIND_TEXT, what="選擇軸(掃描格的層)",
+                    label="模式", choices=SWEEP_MODES,
+                    text_style=TEXT_VERBATIM, slug_style=SLUG_VERBATIM,
+                ),
+                ParamField(
+                    name="x", kind=KIND_INTEGER, what="連續軸(掃描格的鄰域)",
+                    label="X", lower=1, upper=3,
+                    lower_inclusive=True, upper_inclusive=True, slug_style=SLUG_VERBATIM,
+                ),
+                ParamField(
+                    name="cadence", kind=KIND_TEXT, what="幾耐拉一次倉回目標比重",
+                    label="換倉節奏", choices=tuple(sorted(CADENCES)),
+                    text_style=TEXT_VERBATIM, slug_style=SLUG_VERBATIM, slot=SLOT_CADENCE,
+                ),
+            )
+        )
+
+    def factor_specs(self, snapshot_id: str) -> tuple[FactorSpec, ...]:
+        return (
+            FactorSpec(
+                name=SWEEP_FACTOR,
+                scale_kind="cardinal",
+                procedure=FormulaProcedure(
+                    formula="close[-21] / close[-252] - 1",
+                    input_data_version=str(snapshot_id),
+                ),
+            ),
+        )
+
+    def needs_entities(self, params) -> EntityRequest:
+        return EntityRequest(exposures=SWEEP_TICKERS)
+
+    def plan(self, request: RunRequest) -> TargetPlan:
+        """一張目標比重表:比重**只寫在執行日那一行**(D-021 第 3 條)。"""
+        panel = request.panel
+        held = sorted(request.entity(ticker).entity_id for ticker in SWEEP_TICKERS)
+        execution_day = panel.dates[1]
+        targets = pd.DataFrame(
+            np.nan, index=panel.dates, columns=[int(e) for e in panel.entity_ids], dtype=float
+        )
+        targets.loc[execution_day, :] = 0.0
+        mode_index = SWEEP_MODES.index(str(request.params["mode"]))
+        x_value = int(request.params["x"])
+        targets.loc[execution_day, held[0]] = mode_index / 1000.0
+        targets.loc[execution_day, held[1]] = x_value / 1000.0
+        return TargetPlan(
+            targets=targets,
+            cadence=str(request.params["cadence"]),
+            initial_cash=100_000.0,
+            fees=0.0,
+            rebalances=(
+                SimpleNamespace(
+                    decision_date=str(panel.dates[0].date()),
+                    execution_date=str(execution_day.date()),
+                ),
+            ),
+        )
+
+
+class _SweepFixtureEngine(RecordingEngine):
+    """``RecordingEngine``(``tests/doubles/engines.py``)之上加一味:淨值曲線
+    的年化回報由目標比重表反推的那一格話事,不是全期一條斜率。
+
+    ``RecordingEngine`` 本身的 ``drift`` 是全批一條線,砌不出「呢格高嗰格低」
+    ——判讀要驗的三種形狀(平原/山脊/孤峰)正正靠逐格不同的成績鋪出來。呼叫
+    記錄(``calls``/``seen_params``)一律照舊由父類的字段接住,只有
+    ``simulate`` 本身要換一條淨值線的算法,所以整個方法要覆寫,不是加一味。
+    """
+
+    def __init__(self) -> None:
+        super().__init__(name="karst-095-sweep-recorder", drift=0.0)
+
+    def simulate(self, panel: Any, targets: pd.DataFrame, params: Any) -> SimulationOutput:
+        self.calls.append(targets.copy())
+        self.seen_params.append(params)
+        written = targets.index[targets.notna().any(axis=1)]
+        row = targets.loc[written[0]]
+        columns = sorted(int(column) for column in targets.columns)
+        mode_index = int(round(float(row[columns[0]]) * 1000.0))
+        x_value = int(round(float(row[columns[1]]) * 1000.0))
+        mode = SWEEP_MODES[mode_index]
+        annual_return = SWEEP_RATES[(mode, x_value)]
+        daily_rate = (1.0 + annual_return) ** (1.0 / 252.0) - 1.0
+        base = float(params.initial_cash)
+        equity = pd.Series(
+            base * np.power(1.0 + daily_rate, np.arange(len(panel.dates), dtype=float)),
+            index=panel.dates, name="equity",
+        )
+        # 持倉一定要有非零數:落庫那關(karst/runs/registry.py 的
+        # _normalise_holdings)會把全零的倉篩剩一列都不留,當成「一日都沒持過倉」
+        # 拒收——同 tests/test_sweep.py 的 _ToyEngine 一樣,要交一個持過倉的形狀。
+        holdings = pd.DataFrame(10.0, index=panel.dates, columns=list(panel.entity_ids))
+        return SimulationOutput(equity_curve=equity, holdings=holdings, orders=())
+
+
+def _sweep_fixture_panel(entity_ids: list[int]) -> PricePanel:
+    """一張最細的價格面板:兩隻代號 × ``SWEEP_DAYS`` 那段日子,價格一律 100。
+
+    ``_SweepFixtureEngine`` 不看價格,這裡只求形狀正確:代號解析得回實體、
+    實體在面板裡、日子與掃描期間對得上(同 ``tests/test_sweep.py`` 的 ``_panel``)。
+    """
+    frame = pd.DataFrame(100.0, index=SWEEP_DAYS, columns=[int(e) for e in entity_ids])
+    return PricePanel.from_frames(open=frame, close=frame)
+
+
+@pytest.fixture(scope="session")
+def seeded_sweep(seeded_project_root: Path) -> dict[str, Any]:
+    """KARST-095:在 ``seeded_project_root`` 之上,經**策略執行台的 sweep 入口**
+    (KARST-091,``Executor.sweep``)種一幅 3×3 格以內的完整掃描——批次登記、
+    逐格運行、判讀一次過經唯一入口落檔,``test_web_sweep.py`` 讀的正是這一幅。
+
+    掃描格:``mode``(選擇軸,3 個取值)× ``x``(連續軸,3 個取值)= 9 格,在
+    「3×3 格以內」那句票文的字面範圍內。九格逐格的目標年化回報寫在
+    ``SWEEP_RATES``,精挑到令平原、山脊、孤峰三種裁決在這一幅之內全部出現
+    ——``test_四個元件由真實掃描表與判讀表畫出`` 要驗的「三個裁決標記都真的
+    有格拿得到」正是靠這一點,不是隨便九個數就驗得到。
+    """
+    with Gateway.open(
+        str(seeded_project_root / "karst.sqlite"), writer=DEFAULT_TEST_WRITER
+    ) as gateway:
+        store = gateway.store
+        snapshot_id = store.list_snapshots()[0].snapshot_id
+
+        entity_ids: list[int] = []
+        for ticker in SWEEP_TICKERS:
+            entity_id = store.register_entity(
+                kind="etf", display_name=f"KARST-095 掃描夾具標的 {ticker}",
+                local_code=f"ETF-{ticker}",
+            )
+            store.register_ticker(entity_id, ticker, valid_from="2020-01-01")
+            entity_ids.append(entity_id)
+        panel = _sweep_fixture_panel(entity_ids)
+
+        runs = RunStore(store, root=seeded_project_root / "data" / "runs")
+        executor = Executor(
+            gateway, runs, snapshot_root=seeded_project_root / "data" / "snapshots"
+        )
+        contract = _SweepFixtureContract()
+        engine = _SweepFixtureEngine()
+        grid = ProductGrid(
+            [
+                choice_axis("mode", SWEEP_MODES),
+                continuous_axis("x", SWEEP_XVALUES),
+            ]
+        )
+
+        setup = executor.register(
+            contract,
+            strategy_name=SWEEP_STRATEGY,
+            snapshot_id=snapshot_id,
+            param_set_name=SWEEP_PARAM_SET,
+            values={"mode": "A", "x": 1, "cadence": "quarterly"},
+            alignment=SAMPLE,
+        )
+
+        directory = seeded_project_root / "experiments" / "KARST-095-掃描夾具"
+        outcome = executor.sweep(
+            contract,
+            setup=setup,
+            grid=grid,
+            panel=panel,
+            period=SWEEP_PERIOD,
+            engine_version=SWEEP_ENGINE_VERSION,
+            risk_free_rate=0.04,
+            sweep_id=SWEEP_ID,
+            param_set_prefix="KARST-095-掃描-",
+            param_set_suffix="",
+            base_values={"cadence": "quarterly"},
+            objective=SWEEP_OBJECTIVE,
+            min_trades=SWEEP_MIN_TRADES,
+            lonely_peak_margin=SWEEP_LONELY_PEAK_MARGIN,
+            plateau_quantile=SWEEP_PLATEAU_QUANTILE,
+            report=BatchReport(directory=directory, title="KARST-095 掃描頁測試夾具"),
+            engine=engine,
+            benchmarks=(),
+        )
+
+    return {
+        "root": seeded_project_root,
+        "sweep_id": SWEEP_ID,
+        "directory": directory,
+        "outcome": outcome,
+    }
