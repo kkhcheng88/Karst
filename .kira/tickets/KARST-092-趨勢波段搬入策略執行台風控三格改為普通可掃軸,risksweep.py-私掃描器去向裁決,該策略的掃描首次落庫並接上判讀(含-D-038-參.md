@@ -26,3 +26,6 @@ deliverable: KARST-D02
 ## 結果
 
 ## 留言
+
+### agent:main · 2026-08-30 11:14
+用戶裁決(2026-08-30,選項介面,原話「整檔退役」):karst/risk/sweep.py 整檔退役,風控掃描自此只走執行台一條路;tests/test_risk_layer.py 依賴它的兩個測試改打執行台。第 (3) 項按此執行,已記 D-044。第 (1) 項參數對齊仍須開工時與用戶對齊,approvalRequired 不變。
