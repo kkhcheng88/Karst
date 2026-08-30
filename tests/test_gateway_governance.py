@@ -16,6 +16,7 @@ import pytest
 
 from karst.gateway.cli import main
 from karst.gateway.ledger import GOVERNED_TABLES
+from karst.gateway.service import Gateway
 from karst.store import DefinitionStore
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -139,6 +140,65 @@ def test_the_three_tables_are_under_signature_governance(strategy):
     assert "未經唯一入口寫入" in output
     assert "active_setup" in output
     assert "不會被當作正常定義用落去" in output
+
+
+# KARST-091:批次登記同樣納入簽章治理
+#
+# 一次掃描收工寫的那一列,載住門面左半那四個數(達標幾條/共幾條、中位年化、中位
+# Sortino、中位最大回撤)與判讀口徑,而 D-042 用「達標運行的中位數年化最高」排批次
+# 名次——即那一列直接決定用戶見到哪一批成績。繞過那道門塞一批看似達標的成績進去,
+# 核對一掃就要見到。
+def test_a_sweep_batch_written_behind_the_gateway_is_caught_by_verify(strategy, tmp_path):
+    assert "sweep_batch" in GOVERNED_TABLES
+
+    assert strategy("verify")[0] == 0                # 未有批次登記,全庫清白
+
+    report = tmp_path / "掃描報告.md"
+    report.write_text("# 一份假報告\n", encoding="utf-8")
+
+    # 批次登記那一列要指得回一個真的數據快照,所以先**經唯一入口**登記一個
+    # ——這一句是清白的,核對揪的是下面那一句。
+    with Gateway.open(strategy.path) as gateway:
+        snapshot_id = gateway.store.register_snapshot(
+            source="test", taken_on="2026-08-28", content_hash="a1b2c3d4e5f60000",
+        )
+
+    # 有人繞過入口,用庫層 API 直接寫一列批次登記(沒有經入口,自然沒有簽章)
+    with DefinitionStore.open(strategy.path) as store:
+        store.register_sweep_batch(
+            "測試-繞過入口的批次",
+            strategy_name=STRATEGY,
+            strategy_version_no=1,
+            period_start="2021-01-04",
+            period_end="2022-12-30",
+            snapshot_id=snapshot_id,
+            engine_name="synthetic",
+            engine_version="0.1.0",
+            cell_count=49,
+            qualified_cells=9,
+            failed_cells=0,
+            error_cells=0,
+            median_annual_return=0.12,
+            median_sortino=1.5,
+            median_max_drawdown=-0.2,
+            objective="annual_return",
+            min_trades=4,
+            lonely_peak_margin=0.05,
+            plateau_quantile=0.78,
+            best_point="fast=6、slow=6",
+            best_run_id=None,
+            representative_point="fast=3、slow=3",
+            report_path=str(report),
+            report_hash="0" * 64,
+        )
+
+    code, output = strategy("verify")
+    assert code == 3
+    assert "未經唯一入口寫入" in output
+    assert "sweep_batch" in output
+    assert "測試-繞過入口的批次" in output
+    # 批次登記歸「定義」那一類(KARST-087 起報告分三類講)
+    assert "定義:" in output
 
 
 # 驗收條件 4:不繞過 karst/store.py 開連線(D-027 第 4 條護欄二)

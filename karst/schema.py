@@ -82,7 +82,14 @@ from typing import Any
 #        參數集版本鏈全部還在,追溯要指得回。這張表入治理清單,故每一列都有唯一入口
 #        的簽章:「這次運行不算數」是一個定義級動作,不可以有人繞過那道門靜靜除掉一次
 #        運行。舊庫重開時 DDL 自動補建,既有登記一列不動。
-SCHEMA_VERSION = 14
+# 第 15 版加批次登記表 ``sweep_batch``(KARST-091):一次參數掃描收工經唯一入口寫一列,
+#        記住格數、達標格數、隱藏的失敗運行條數、三個中位數成績、判讀目標與門檻、最佳格、
+#        代表格、批內最佳單次的運行編號、報告落點與內容雜湊。以前這幾個數只住在 CSV 裡,
+#        畫面靠掃實驗目錄反推——那是全站唯一繞過定義庫的地方,而 D-042 明文用「達標運行
+#        的中位數年化」排批次名次,即門面左半那四個數當時全部無憑無據。本表入治理清單,
+#        每列有唯一入口簽章。掃描編號不入運行編號(KARST-054),所以這是加一列:舊掃描
+#        可以事後補登記,既有運行一個位都不動。舊庫重開時 DDL 自動補建,既有登記一列不動。
+SCHEMA_VERSION = 15
 
 # 換倉節奏清單在 DDL 裡的佔位。**不在此處逐個字寫死節奏**:正本住在
 # ``karst.engine.contracts.CADENCES``,建表那一刻才由它砌出 CHECK 的取值表
@@ -628,6 +635,71 @@ END;
 CREATE TRIGGER IF NOT EXISTS trg_run_retraction_no_delete
 BEFORE DELETE ON backtest_run_retraction BEGIN
     SELECT RAISE(ABORT, '運行除名登記不可刪,追溯要指得回');
+END;
+
+-- 批次登記(KARST-091;D-042、CONTEXT.md「批次登記」)。
+--
+-- **批次 = 一次參數掃描跑出來的那批運行。** 以前程式裡根本沒有一個叫批次的東西:
+-- 一次掃描在庫內的痕跡只有運行表上一格 ``sweep_id`` 字串,其餘全部住在 experiments/
+-- 底下的 CSV,而畫面靠掃實驗目錄、讀 CSV 反推——那是全站唯一真正繞過定義庫的地方。
+-- 於是「哪一批最好」這句話(D-042 明文:達標運行的中位數年化最高)要由 CSV 反推,
+-- 而 CSV 是任何人改得到的一份檔。
+--
+-- 本表把那一句收回庫內:一次掃描收工經唯一入口寫**一列**——格數、達標格數、隱藏了
+-- 幾多條失敗運行、三個中位數、判讀目標與門檻、最佳格、代表格、批內最佳單次那個運行
+-- 編號,以及報告落點與它的內容雜湊。門面左半那四個數自此問庫身要。
+--
+-- **它不碰運行。** 掃描編號本來就不入運行編號(KARST-054),所以批次登記是加一列,
+-- 舊掃描可以事後補登記,既有運行一個位都不動。
+--
+-- 本表入治理清單(ledger.GOVERNED_TABLES),歸「定義」類——與 active_setup、
+-- backtest_run_retraction 同級:三者都是決定「門面數字取哪幾次運行」的定義級動作。
+-- 沒有簽章的批次登記即是有人繞過那道門塞一批看似達標的成績入門面,verify 一掃就見到。
+--
+-- 只加不改不刪:一次掃描的成績是一件已經發生的事。要換判讀口徑請重判並另寫一列
+-- (重判出的是另一份判讀,不是把當日那份改掉)。
+CREATE TABLE IF NOT EXISTS sweep_batch (
+    sweep_id             TEXT PRIMARY KEY,
+    strategy_version_id  INTEGER NOT NULL REFERENCES strategy_version(strategy_version_id),
+    period_start         TEXT NOT NULL,
+    period_end           TEXT NOT NULL,
+    snapshot_id          TEXT NOT NULL REFERENCES data_snapshot(snapshot_id),
+    engine_name          TEXT NOT NULL,
+    engine_version       TEXT NOT NULL,
+    cell_count           INTEGER NOT NULL CHECK (cell_count > 0),
+    qualified_cells      INTEGER NOT NULL CHECK (qualified_cells >= 0),
+    failed_cells         INTEGER NOT NULL CHECK (failed_cells >= 0),
+    error_cells          INTEGER NOT NULL CHECK (error_cells >= 0),
+    median_annual_return REAL,
+    median_sortino       REAL,
+    median_max_drawdown  REAL,
+    objective            TEXT NOT NULL CHECK (length(trim(objective)) > 0),
+    min_trades           INTEGER NOT NULL CHECK (min_trades >= 0),
+    lonely_peak_margin   REAL NOT NULL,
+    plateau_quantile     REAL NOT NULL,
+    best_point           TEXT,
+    best_run_id          TEXT REFERENCES backtest_run(run_id),
+    representative_point TEXT,
+    report_path          TEXT NOT NULL,
+    report_hash          TEXT NOT NULL,
+    created_at           TEXT NOT NULL,
+    CHECK (length(trim(sweep_id)) > 0),
+    CHECK (period_end >= period_start),
+    CHECK (length(trim(engine_name)) > 0 AND length(trim(engine_version)) > 0),
+    CHECK (qualified_cells + failed_cells + error_cells <= cell_count)
+);
+
+CREATE INDEX IF NOT EXISTS idx_sweep_batch_strategy
+    ON sweep_batch (strategy_version_id, created_at);
+
+CREATE TRIGGER IF NOT EXISTS trg_sweep_batch_no_update
+BEFORE UPDATE ON sweep_batch BEGIN
+    SELECT RAISE(ABORT, '批次登記落庫後不可改;一次掃描的成績是一件已經發生的事,換判讀口徑請重判並另寫一列');
+END;
+
+CREATE TRIGGER IF NOT EXISTS trg_sweep_batch_no_delete
+BEFORE DELETE ON sweep_batch BEGIN
+    SELECT RAISE(ABORT, '批次登記不可刪,追溯要指得回');
 END;
 
 -- ====================================================================

@@ -11,6 +11,10 @@
 
 這幾條算式在下面是**逐位核對**的,不是「大致對」——成本一走樣,整份重掃的結論
 就會偏,而偏多少沒有人看得出來。
+
+KARST-091 起,成本那三格的正本住 ``karst.executor.contract``(``cost_fields`` /
+``cost_inputs`` / ``cost_slug``),而逐格怎樣跑住在**策略執行台**
+(``Executor.sweep``);把成本補進引擎參數那一件是 ``karst.engine.costed.CostedEngine``。
 """
 
 from __future__ import annotations
@@ -36,32 +40,44 @@ from karst.engine import (
     run_rule_strategy,
 )
 from karst.data.snapshots import write_snapshot_dir
+from karst.engine.costed import CostedEngine
 from karst.engine.vectorbt_engine import VectorbtEngine
 from karst.errors import ContractViolation
+from karst.executor import (
+    SAMPLE,
+    BatchReport,
+    Executor,
+    cost_inputs,
+    cost_slug,
+    register_setup,
+)
 from karst.gateway.service import Gateway
 from karst.metrics import run_metrics
 from karst.runs import RunStore
-from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES
+from karst.strategies.factor_mix import (
+    CADENCE_PARAM,
+    FACTOR_ETF_SLEEVES,
+    FactorMixContract,
+)
+from karst.strategies.factor_rotation import (
+    DRIVER_KEY,
+    WARMUP_BARS_KEY,
+    WARMUP_PREFIX,
+    FactorRotationContract,
+)
 from karst.sweep import (
     PLATEAU,
     CellScore,
+    CostPair,
     ExplicitGrid,
-    FactorMixJob,
     SweepPoint,
+    cost_comparison,
     judge,
+    provenance_note,
     reference_point,
-    run_sweep,
     write_report,
 )
-from karst.sweep.factor_mix import cost_slug, cost_values
-from karst.sweep.factor_rotation import (
-    CostPair,
-    FactorRotationJob,
-    cost_comparison,
-    ensure_factor_rotation_setup,
-    provenance_note,
-    rotation_grid,
-)
+from karst.sweep.factor_rotation import rotation_grid
 
 # 票上寫明的**示例**成本:每股 US$0.005 加滑點 5 個基點。
 # 它只是一組合理的數,不是裁定值——哪一組成本才對是用戶的事(D-008)。
@@ -77,6 +93,8 @@ MIX_STRATEGY = "因子混合(ETF 版)"
 ENGINE_VERSION = "0.1.0"
 MARKET = "SPY"
 RISK_FREE = 0.04
+INITIAL_CASH = 100_000.0
+FEES = 0.0
 
 DATES = pd.bdate_range("2020-01-01", periods=400)
 PERIOD = (str(DATES[0].date()), str(DATES[-1].date()))
@@ -264,6 +282,17 @@ def _write_snapshot(root, snapshot_id: str, panel: PricePanel, entity_of: dict[s
     )
 
 
+ROTATION_SETUP_VALUES = {
+    DRIVER_KEY: "relative_strength",
+    "lookback_months": 3,
+    "fallback": "cash",
+    WARMUP_BARS_KEY: WARMUP_BARS,
+    **{f"{WARMUP_PREFIX}{key}": value for key, value in WARMUP_WEIGHTS.items()},
+    CADENCE_PARAM: "quarterly",
+}
+MIX_SETUP_VALUES = {**WARMUP_WEIGHTS, CADENCE_PARAM: "quarterly"}
+
+
 @pytest.fixture()
 def toy(tmp_path, monkeypatch):
     monkeypatch.setenv("KARST_WRITER", "KARST-043-costs-test")
@@ -276,49 +305,105 @@ def toy(tmp_path, monkeypatch):
         )
         snapshot_root = tmp_path / "snapshots"
         _write_snapshot(snapshot_root, snapshot_id, panel, entity_of)
-        rotation = ensure_factor_rotation_setup(
-            gateway, strategy_name=ROTATION_STRATEGY, snapshot_id=snapshot_id,
-            setup_param_set_name="測試基座-輪動-043", setup_weights=WARMUP_WEIGHTS,
-            cadence="quarterly", description="KARST-043 測試基座,不是現役設定",
+        rotation = register_setup(
+            gateway, FactorRotationContract.for_setup("relative_strength"),
+            strategy_name=ROTATION_STRATEGY, snapshot_id=snapshot_id,
+            param_set_name="測試基座-輪動-043", values=ROTATION_SETUP_VALUES,
+            alignment=SAMPLE, description="KARST-043 測試基座,不是現役設定",
         )
-        mix = ensure_factor_rotation_setup(
-            gateway, strategy_name=MIX_STRATEGY, snapshot_id=snapshot_id,
-            setup_param_set_name="測試基座-混合-043", setup_weights=WARMUP_WEIGHTS,
-            cadence="quarterly", description="KARST-043 對照用的固定權重策略",
+        mix = register_setup(
+            gateway, FactorMixContract.for_setup(FACTOR_ETF_SLEEVES),
+            strategy_name=MIX_STRATEGY, snapshot_id=snapshot_id,
+            param_set_name="測試基座-混合-043", values=MIX_SETUP_VALUES,
+            alignment=SAMPLE, description="KARST-043 對照用的固定權重策略",
         )
+        runs = RunStore(store, root=tmp_path / "runs")
         yield {
             "gateway": gateway, "store": store, "panel": panel, "snapshot_id": snapshot_id,
             "rotation": rotation, "mix": mix, "snapshot_root": snapshot_root,
-            "runs": RunStore(store, root=tmp_path / "runs"), "tmp": tmp_path,
+            "runs": runs, "tmp": tmp_path,
+            "executor": Executor(gateway, runs, snapshot_root=snapshot_root),
         }
 
 
-def _rotation_job(toy, driver_key: str, costs: TradingCosts | None, cadence: str = "quarterly"):
-    return FactorRotationJob(
-        gateway=toy["gateway"], panel=toy["panel"], driver_key=driver_key,
-        strategy_name=ROTATION_STRATEGY, snapshot_id=toy["snapshot_id"],
-        engine_version=ENGINE_VERSION, param_set_prefix=f"測試r-{driver_key}-",
-        period_start=PERIOD[0], period_end=PERIOD[1],
-        warmup_bars=WARMUP_BARS, warmup_weights=WARMUP_WEIGHTS, cadence=cadence,
-        strategy_version_no=toy["rotation"].version_no, market_ticker=MARKET, costs=costs,
+def _engine(costs: TradingCosts | None):
+    """成本非零就把引擎包一層;引擎名不變(它是運行編號的一部分)。"""
+    if costs is None or costs.is_zero:
+        return None
+    return CostedEngine(costs)
+
+
+def _rotation_values(driver_key: str, costs, cadence: str = "quarterly") -> dict:
+    return {
+        DRIVER_KEY: driver_key,
+        WARMUP_BARS_KEY: WARMUP_BARS,
+        **{f"{WARMUP_PREFIX}{key}": value for key, value in WARMUP_WEIGHTS.items()},
+        CADENCE_PARAM: cadence,
+        **cost_inputs(costs),
+    }
+
+
+def _rotation_sweep(toy, driver_key, costs, grid, *, sweep_id="測試-成本前後",
+                    directory=None, title="因子輪動(成本測試)",
+                    objective=None, min_trades=1, cadence="quarterly"):
+    contract = FactorRotationContract(
+        driver_key=driver_key, sleeves=FACTOR_ETF_SLEEVES,
+        warmup_bars=WARMUP_BARS, warmup_weights=WARMUP_WEIGHTS,
+        market_ticker=MARKET, initial_cash=INITIAL_CASH, fees=FEES, costs=costs,
     )
-
-
-def _mix_job(toy, costs: TradingCosts | None, cadence: str = "quarterly"):
-    return FactorMixJob(
-        gateway=toy["gateway"], panel=toy["panel"], sleeves=FACTOR_ETF_SLEEVES,
-        strategy_name=MIX_STRATEGY, snapshot_id=toy["snapshot_id"],
-        engine_version=ENGINE_VERSION, param_set_prefix="測試w-",
-        period_start=PERIOD[0], period_end=PERIOD[1], cadence=cadence,
-        strategy_version_no=toy["mix"].version_no, costs=costs,
-    )
-
-
-def _sweep(toy, grid, job, sweep_id="測試-成本前後"):
-    return run_sweep(
-        runs=toy["runs"], grid=grid, job=job, sweep_id=sweep_id,
+    return toy["executor"].sweep(
+        contract,
+        setup=toy["rotation"],
+        grid=grid,
+        panel=toy["panel"],
+        period=PERIOD,
+        engine_version=ENGINE_VERSION,
         risk_free_rate=RISK_FREE,
-        benchmarks=(MARKET,), snapshot_root=toy["snapshot_root"],
+        sweep_id=sweep_id,
+        param_set_prefix=f"測試r-{driver_key}-",
+        param_set_suffix=cost_slug(costs),
+        base_values=_rotation_values(driver_key, costs, cadence),
+        objective=objective or f"annual_excess:{MARKET}",
+        min_trades=min_trades,
+        lonely_peak_margin=0.005,
+        plateau_quantile=0.90,
+        report=BatchReport(
+            directory=directory or (toy["tmp"] / "報告" / sweep_id.replace("/", "-")),
+            title=title,
+        ),
+        engine=_engine(costs),
+        benchmarks=(MARKET,),
+    )
+
+
+def _mix_sweep(toy, costs, grid, *, sweep_id="測試-成本前後-混合", directory=None,
+               title="因子混合(成本測試)", objective=None, min_trades=1,
+               cadence="quarterly"):
+    contract = FactorMixContract(
+        sleeves=FACTOR_ETF_SLEEVES, initial_cash=INITIAL_CASH, fees=FEES, costs=costs
+    )
+    return toy["executor"].sweep(
+        contract,
+        setup=toy["mix"],
+        grid=grid,
+        panel=toy["panel"],
+        period=PERIOD,
+        engine_version=ENGINE_VERSION,
+        risk_free_rate=RISK_FREE,
+        sweep_id=sweep_id,
+        param_set_prefix="測試w-",
+        param_set_suffix=cost_slug(costs),
+        base_values={CADENCE_PARAM: cadence, **cost_inputs(costs)},
+        objective=objective or f"annual_excess:{MARKET}",
+        min_trades=min_trades,
+        lonely_peak_margin=0.005,
+        plateau_quantile=0.90,
+        report=BatchReport(
+            directory=directory or (toy["tmp"] / "報告" / sweep_id.replace("/", "-")),
+            title=title,
+        ),
+        engine=_engine(costs),
+        benchmarks=(MARKET,),
     )
 
 
@@ -335,23 +420,27 @@ def test_rerunning_with_the_example_costs_yields_a_before_and_after_table(toy):
     mix_point = reference_point(FACTOR_ETF_SLEEVES, WARMUP_WEIGHTS)
     mix_grid = ExplicitGrid([mix_point])
 
-    before_driver = _sweep(toy, driver_grid, _rotation_job(toy, "relative_strength", None))
-    after_driver = _sweep(
-        toy, driver_grid, _rotation_job(toy, "relative_strength", EXAMPLE_COSTS)
+    before_driver = _rotation_sweep(
+        toy, "relative_strength", None, driver_grid, sweep_id="測試-成本前-輪動"
     )
-    before_mix = _sweep(toy, mix_grid, _mix_job(toy, None))
-    after_mix = _sweep(toy, mix_grid, _mix_job(toy, EXAMPLE_COSTS))
+    after_driver = _rotation_sweep(
+        toy, "relative_strength", EXAMPLE_COSTS, driver_grid, sweep_id="測試-成本後-輪動"
+    )
+    before_mix = _mix_sweep(toy, None, mix_grid, sweep_id="測試-成本前-混合")
+    after_mix = _mix_sweep(toy, EXAMPLE_COSTS, mix_grid, sweep_id="測試-成本後-混合")
 
     # 成本入了參數集,所以成本前後是兩個**不同**的運行編號,不是同一個運行改了個數
     assert before_driver.cells[0].run_id != after_driver.cells[0].run_id
     assert before_mix.cells[0].run_id != after_mix.cells[0].run_id
-    assert cost_values(None) == {} and cost_slug(None) == ""
-    assert set(cost_values(EXAMPLE_COSTS)) == {"fee_model", "fee_rate", "slippage"}
+    assert cost_inputs(None) == {} and cost_slug(None) == ""
+    assert set(cost_inputs(EXAMPLE_COSTS)) == {"fee_model", "fee_rate", "slippage"}
 
     # 零成本那一格再掃一次,撞回**同一個**運行編號:舊運行逐位不變
-    again = _sweep(toy, driver_grid, _rotation_job(toy, "relative_strength", None))
+    again = _rotation_sweep(
+        toy, "relative_strength", None, driver_grid, sweep_id="測試-成本前-輪動-重掃"
+    )
     assert again.cells[0].run_id == before_driver.cells[0].run_id
-    assert again.reused == 1
+    assert again.sweep.reused == 1
 
     table = cost_comparison(
         [
@@ -437,8 +526,10 @@ def test_a_denser_grid_with_costs_supports_a_plateau_verdict_and_segment_reading
 
     # 連成本真跑一格,分段重看(重看不重跑)得回三段各自的年化
     point = SweepPoint(values=(("lookback_months", 6), ("fallback", "cash")))
-    sweep = _sweep(toy, ExplicitGrid([point]), _rotation_job(toy, "relative_strength",
-                                                            EXAMPLE_COSTS))
+    sweep = _rotation_sweep(
+        toy, "relative_strength", EXAMPLE_COSTS, ExplicitGrid([point]),
+        sweep_id="測試-加密格連成本",
+    )
     cell = sweep.cells[0]
     segments = [
         ("前段", PERIOD[0], "2020-12-31"),
@@ -463,18 +554,17 @@ def test_a_denser_grid_with_costs_supports_a_plateau_verdict_and_segment_reading
 def test_the_report_points_back_to_snapshot_period_costs_and_run_ids(toy, tmp_path):
     point = SweepPoint(values=(("lookback_months", 3), ("fallback", "cash")))
     grid = ExplicitGrid([point])
-    sweep = _sweep(toy, grid, _rotation_job(toy, "relative_strength", EXAMPLE_COSTS))
-    objective = f"annual_excess:{MARKET}"
-    judgement = judge(
-        sweep.scores(objective), grid, objective=objective,
-        min_trades=1, lonely_peak_margin=0.005, plateau_quantile=0.90,
+    outcome = _rotation_sweep(
+        toy, "relative_strength", EXAMPLE_COSTS, grid, sweep_id="測試-報告來歷",
+        directory=tmp_path / "掃描報告",
     )
     note = provenance_note(
         snapshot_id=toy["snapshot_id"], period=PERIOD, costs=EXAMPLE_COSTS,
-        run_ids=sweep.run_ids(),
+        run_ids=outcome.run_ids,
     )
     path = write_report(
-        sweep, judgement, tmp_path / "報告", title="KARST-043 測試報告", notes=note
+        outcome.sweep, outcome.judgement, tmp_path / "報告",
+        title="KARST-043 測試報告", notes=note,
     )
     text = path.read_text(encoding="utf-8")
 
@@ -482,7 +572,7 @@ def test_the_report_points_back_to_snapshot_period_costs_and_run_ids(toy, tmp_pa
     assert PERIOD[0] in text and PERIOD[1] in text  # 哪一段日子
     assert "per_share" in text and "0.005" in text  # 哪一組成本
     assert "5 個基點" in text                        # 滑點寫成人話
-    for run_id in sweep.run_ids():                 # 哪幾次運行
+    for run_id in outcome.run_ids:                 # 哪幾次運行
         assert run_id in text
 
     # 零成本那一份報告一樣要講清楚它是零成本,不可以留白讓人以為「未計」
@@ -500,29 +590,24 @@ def test_the_sweep_registers_straight_through_the_gateway(toy):
     """掃描不再自己先查一句——重覆登記由唯一入口沿用舊版,一列都不會多寫。"""
     store = toy["store"]
 
-    # 基座再叫一次(fixture 已經叫過一次):策略版本與參數集版本都不動
-    again = ensure_factor_rotation_setup(
-        toy["gateway"], strategy_name=MIX_STRATEGY, snapshot_id=toy["snapshot_id"],
-        setup_param_set_name="測試基座-混合-043", setup_weights=WARMUP_WEIGHTS,
-        cadence="quarterly", description="KARST-043 對照用的固定權重策略",
+    # 基座再登記一次(fixture 已經登記過一次):策略版本與參數集版本都不動
+    again = register_setup(
+        toy["gateway"], FactorMixContract.for_setup(FACTOR_ETF_SLEEVES),
+        strategy_name=MIX_STRATEGY, snapshot_id=toy["snapshot_id"],
+        param_set_name="測試基座-混合-043", values=MIX_SETUP_VALUES,
+        alignment=SAMPLE, description="KARST-043 對照用的固定權重策略",
     )
-    assert again.version_no == toy["mix"].version_no
+    assert again.strategy.version_no == toy["mix"].strategy.version_no
     assert store.get_param_set(MIX_STRATEGY, "測試基座-混合-043").version_no == 1
 
-    # 掃描格:同一格排兩次,「真正寫入的參數集數目」照樣數得準
-    job = _mix_job(toy, None)
-    point = reference_point(FACTOR_ETF_SLEEVES, WARMUP_WEIGHTS)
+    # 掃描格:同一格排兩次,參數集照樣只有一版,運行亦沒有重跑
+    grid = ExplicitGrid([reference_point(FACTOR_ETF_SLEEVES, WARMUP_WEIGHTS)])
+    first = _mix_sweep(toy, None, grid, sweep_id="測試-混合格-第一次")
+    assert first.cells[0].plan.param_set_version_no == 1
+    assert first.sweep.reused == 0
 
-    first = job.plan(point)
-    assert job.param_sets_written == 1
-    assert first.param_set_version_no == 1
-
-    second = job.plan(point)
-    assert second.param_set_name == first.param_set_name
-    assert second.param_set_version_no == first.param_set_version_no
-    assert job.param_sets_written == 1  # 第二次是沿用,沒有寫
-
-    # 換一個跑法由零重新數:查到的全是現成的,一次都沒有寫入
-    fresh = _mix_job(toy, None)
-    assert fresh.plan(point).param_set_version_no == 1
-    assert fresh.param_sets_written == 0
+    second = _mix_sweep(toy, None, grid, sweep_id="測試-混合格-第二次")
+    assert second.cells[0].plan.param_set_name == first.cells[0].plan.param_set_name
+    assert second.cells[0].plan.param_set_version_no == 1  # 第二次是沿用,沒有寫
+    assert second.cells[0].run_id == first.cells[0].run_id
+    assert second.sweep.reused == 1

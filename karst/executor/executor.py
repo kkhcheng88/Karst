@@ -12,18 +12,25 @@
                 values, description, alignment) -> Setup
       .run(contract, *, setup, panel, values, period, engine_version,
            risk_free_rate, engine=None, extras=None) -> RunOutcome
+      .sweep(contract, *, setup, grid, panel, period, engine_version,
+             risk_free_rate, sweep_id, param_set_prefix, param_set_suffix,
+             base_values, objective, min_trades, lonely_peak_margin,
+             plateau_quantile, report, …) -> BatchOutcome
       .rejudge(table, grid, *, objective, thresholds, previous=None) -> Rejudgement
 
-掃描(``sweep``)是同一條路走 N 次加一次判讀,留給 KARST-091;它與 ``run`` 共用
-私有的 ``_execute_cell``,分別只在來歷那一格(掃描格 + 掃描編號)、收不收選股痕跡、
-以及參數由哪裡來三處。
+掃描(``sweep``)是同一條路走 N 次加一次判讀(KARST-091);它與 ``run`` 共用私有的
+``_execute_cell``,分別只在來歷那一格(掃描格 + 掃描編號)、收不收選股痕跡、以及
+參數由哪裡來三處。一次掃描 = 一個**批次**(D-042),收尾寫一列批次登記。
 
 **一切寫入經唯一入口**(D-020 第 4 條):本檔一句直接寫庫都沒有。
 """
 
 from __future__ import annotations
 
-from collections.abc import Mapping, Sequence
+import hashlib
+import statistics
+import time
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
@@ -147,6 +154,54 @@ class RunOutcome:
     metrics: RunMetrics
     failed: bool | None
     simulation: Simulation | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class FailedCell:
+    """掃描途中拋錯那一格。
+
+    記下來的用意只有一個:**它沒有靜靜消失**。一格拋錯不中斷整批(否則三千格跑
+    到尾段炸掉就要整批重來),但它會以無效格的身份入判讀、入報告、入批次登記的
+    錯誤格數——一個高地旁邊若果有幾格其實是炸掉的,讀報告的人有權見到。
+    """
+
+    point: Any
+    error: str
+    detail: str
+
+
+@dataclass(frozen=True, slots=True)
+class BatchReport:
+    """一次掃描落哪一份報告。**無預設值**:落到哪、叫什麼名,不是執行台猜得出的。"""
+
+    directory: str | Path
+    title: str
+    notes: str = ""
+
+
+@dataclass(frozen=True, slots=True)
+class BatchOutcome:
+    """一次掃描走完的結果 = 一個**批次**(D-042)。
+
+    ``reused_batch`` 為真即這個掃描編號本來就登記過、而且內容一模一樣,今次沒有
+    新開一列(重掃同一幅格不應該多一列帳)。
+    """
+
+    sweep_id: str
+    sweep: Any
+    judgement: Any
+    failures: tuple[FailedCell, ...]
+    batch: Any
+    reused_batch: bool
+    report_path: Path
+
+    @property
+    def cells(self) -> tuple[Any, ...]:
+        return self.sweep.cells
+
+    @property
+    def run_ids(self) -> tuple[str, ...]:
+        return self.sweep.run_ids()
 
 
 @dataclass(frozen=True, slots=True)
@@ -299,8 +354,458 @@ class Executor:
             },
         )
 
+    def setup_from(
+        self,
+        contract: StrategyContract,
+        *,
+        strategy_name: str,
+        snapshot_id: str,
+        param_set_name: str,
+        alignment: str,
+        strategy_version_no: int | None = None,
+        param_set_version_no: int | None = None,
+    ) -> Setup:
+        """由庫裡**已經有**的東西砌一份 ``Setup``。**一個字都不寫。**
+
+        重掃、重判、由一次舊運行倒查來歷那幾條路要的是這個:它們接住的是一次已經
+        發生過的登記,再登記一次只會把版本鏈無故推前一格,而版本號是運行編號的
+        原料——那正是「本來查得回、不用重跑的格白跑一次」的來源。
+
+        因子一律取**現行那一版**,與登記那條路同一個口徑。
+        """
+        key = str(alignment or "").strip()
+        if key not in ALIGNMENTS:
+            raise ContractViolation(
+                f"參數集要自報是「已對齊」還是「示例」({sorted(ALIGNMENTS)} 揀一個),"
+                f"收到 {alignment!r}(D-038)"
+            )
+        snapshot = str(snapshot_id or "").strip()
+        if not snapshot:
+            raise ContractViolation("要註明數據快照編號,追溯不可留空(D-021 第 8 條)")
+        version = self._store.get_strategy_version(str(strategy_name).strip(), strategy_version_no)
+        param_set = self._store.get_param_set(
+            version.name,
+            str(param_set_name).strip(),
+            strategy_version_no=version.version_no,
+            set_version_no=param_set_version_no,
+        )
+        factors = tuple(
+            FactorVersionRef(
+                name=spec.name,
+                factor_version_id=self._store.get_factor_version(spec.name).factor_version_id,
+                version_no=self._store.get_factor_version(spec.name).version_no,
+            )
+            for spec in contract.factor_specs(snapshot)
+        )
+        return Setup(
+            strategy=version,
+            param_set=param_set,
+            factors=factors,
+            snapshot_id=snapshot,
+            alignment=key,
+        )
+
     # ------------------------------------------------------------------
-    # 一格怎樣走:run 與(日後的)sweep 共用同一條路
+    # sweep:一次掃描 = 一個批次(D-042、KARST-091)
+    # ------------------------------------------------------------------
+
+    def sweep(
+        self,
+        contract: StrategyContract,
+        *,
+        setup: Setup,
+        grid: Any,
+        panel: Any,
+        period: tuple[str, str],
+        engine_version: str,
+        risk_free_rate: float,
+        sweep_id: str,
+        param_set_prefix: str,
+        param_set_suffix: str,
+        base_values: Mapping[str, Any],
+        objective: str,
+        min_trades: int,
+        lonely_peak_margin: float,
+        plateau_quantile: float,
+        report: "BatchReport",
+        engine: Any | None = None,
+        engine_name: str | None = None,
+        extras: Mapping[str, Any] | None = None,
+        benchmarks: Sequence[str] = DEFAULT_BENCHMARK_TICKERS,
+        progress: Any | None = None,
+    ) -> "BatchOutcome":
+        """跑一次**掃描**,即一個**批次**:逐格落痕、判讀、落報告、登記批次。
+
+        逐格走的是與 ``run`` **同一條** ``_execute_cell``,分別只有三格(見該方法的
+        說明):來歷是掃描格而不是正式運行、不收選股痕跡、參數由掃描格逐格展開而
+        不是由呼叫方交一組。所以「一次掃描」不是另一套編舞,是同一條路走 N 次加
+        一次判讀。
+
+        **一格拋錯不中斷整個批次。** 三千格跑到第 2,900 格才炸就要整批重跑,是白
+        燒兩晚機。拋錯那一格記入 ``failures``,並以「算不出目標指標」的身份入判讀
+        ——即**無效格**,不是靜靜消失:一個掃出來的高地若果旁邊三格其實是炸掉的,
+        讀報告的人有權見到。
+
+        **判讀口徑無預設值**(D-008 第 3 條)。目標指標與三個門檻逐格明寫,報告與
+        批次登記都會把它們印出來——沒有口徑的「最佳格」是一句空話。
+
+        參數集的名:``param_set_prefix`` + 掃描格那一格的短名 + ``param_set_suffix``。
+        短名逐格由**參數規格**自己那一格的寫法砌出來(``ParamField.slug``),所以
+        全倉只有這一條路寫得出——寫法一變,同一格重掃就會寫成另一個參數集、白白
+        重跑一次。後綴留給「同一幅格、另一套帳戶設定」那類要另開一條命名線的情形
+        (交易成本那一截),**無預設值**:不用就明寫空字串。
+        """
+        from ..sweep.runner import SweepCell, SweepRun, _provenance
+        from ..sweep.verdict import CellScore, judge
+
+        identifier = str(sweep_id or "").strip()
+        if not identifier:
+            raise ContractViolation(
+                "這次掃描的掃描編號不可留空;逐格落庫要指得回它屬於哪一次掃描(KARST-054)"
+            )
+        prefix = str(param_set_prefix or "").strip()
+        if not prefix:
+            raise ContractViolation(
+                "參數集名前綴不可留空;一格一個參數集名,沒有前綴會與別的掃描撞名"
+            )
+        points = tuple(grid.points())
+        if not points:
+            raise ContractViolation("這個掃描格一格都沒有")
+
+        spec = contract.param_spec()
+        start, end = (str(period[0]).strip(), str(period[1]).strip())
+        tickers = tuple(str(t).strip().upper() for t in benchmarks)
+
+        curves: dict[tuple[str, str, str, str], Any] = {}
+        cells: list[SweepCell] = []
+        failures: list[FailedCell] = []
+        verdicts: dict[Any, bool | None] = {}
+        reused_count = 0
+        began = time.perf_counter()
+
+        for index, point in enumerate(points, start=1):
+            cell_began = time.perf_counter()
+            try:
+                cell, reused, failed = self._sweep_cell(
+                    contract,
+                    setup=setup,
+                    spec=spec,
+                    point=point,
+                    base_values=base_values,
+                    prefix=prefix,
+                    suffix=str(param_set_suffix),
+                    panel=panel,
+                    period=(start, end),
+                    engine_version=engine_version,
+                    engine=engine,
+                    engine_name=engine_name,
+                    extras=extras,
+                    sweep_id=identifier,
+                    risk_free_rate=risk_free_rate,
+                    tickers=tickers,
+                    curves=curves,
+                    began=cell_began,
+                )
+            except Exception as exc:  # noqa: BLE001 - 一格拋錯不中斷整批(D-043 嫁接第 2 件)
+                failures.append(
+                    FailedCell(
+                        point=point,
+                        error=type(exc).__name__,
+                        detail=str(exc),
+                    )
+                )
+                continue
+            cells.append(cell)
+            verdicts[point] = failed
+            if reused:
+                reused_count += 1
+            if progress is not None:
+                progress(index, len(points), cell)
+
+        if not cells:
+            raise ContractViolation(
+                f"這次掃描 {len(points)} 格全部拋錯,一格都沒有跑出成績;"
+                f"第一格報的是:{failures[0].error}:{failures[0].detail}"
+            )
+
+        run = SweepRun(
+            sweep_id=identifier,
+            cells=tuple(cells),
+            grid=grid,
+            provenance=_provenance(cells),
+            seconds=time.perf_counter() - began,
+            reused=reused_count,
+            risk_free_rate=float(risk_free_rate),
+            benchmark_tickers=tickers,
+        )
+
+        # 拋錯那幾格以「算不出目標指標」的身份入判讀 = 無效格,不是消失。
+        scores = list(run.scores(objective)) + [
+            CellScore(point=failure.point, value=None, trades=0) for failure in failures
+        ]
+        judgement = judge(
+            scores,
+            grid,
+            objective=objective,
+            min_trades=min_trades,
+            lonely_peak_margin=lonely_peak_margin,
+            plateau_quantile=plateau_quantile,
+        )
+
+        report_path = self._write_batch_report(run, judgement, report, failures)
+        batch, reused_batch = self._register_batch(
+            run,
+            judgement,
+            setup=setup,
+            failed_by_point=verdicts,
+            failures=failures,
+            engine_version=engine_version,
+            period=(start, end),
+            report_path=report_path,
+        )
+        return BatchOutcome(
+            sweep_id=identifier,
+            sweep=run,
+            judgement=judgement,
+            failures=tuple(failures),
+            batch=batch,
+            reused_batch=reused_batch,
+            report_path=report_path,
+        )
+
+    def _sweep_cell(
+        self,
+        contract: StrategyContract,
+        *,
+        setup: Setup,
+        spec: ParamSpec,
+        point: Any,
+        base_values: Mapping[str, Any],
+        prefix: str,
+        suffix: str,
+        panel: Any,
+        period: tuple[str, str],
+        engine_version: str,
+        engine: Any | None,
+        engine_name: str | None,
+        extras: Mapping[str, Any] | None,
+        sweep_id: str,
+        risk_free_rate: float,
+        tickers: Sequence[str],
+        curves: dict[tuple[str, str, str, str], Any],
+        began: float,
+    ) -> tuple[Any, bool, bool | None]:
+        """跑一格:砌參數集 → 走 ``_execute_cell`` → 算指標與共用基準。
+
+        **超額只算一次基準**:一次掃描全部格的期間與快照按定義相同,QQQ / SPY 的
+        年化自然一模一樣,逐格重算是白做。基準曲線按(快照 × 代號 × 起訖)入快取,
+        真的有一格期間不同就會另算一條,不會靜靜地借錯尺。
+        """
+        from ..metrics.benchmark import benchmark_curve
+        from ..metrics import BenchmarkComparison
+        from ..sweep.runner import CellPlan, SweepCell
+
+        values = {**dict(base_values or {}), **point.as_dict()}
+        params = spec.validate(values)
+        cadence, texts = spec.as_param_set(values)
+        name = prefix + "-".join(
+            spec.field(axis).slug(params[axis]) for axis, _ in point.values
+        ) + suffix
+
+        # 同名同節奏同取值即沿用舊版,那條規矩住在唯一入口(KARST-046),本層不另抄。
+        param_set, _receipt = self._gateway.register_param_set(
+            setup.strategy.name,
+            param_set_name=name,
+            rebalance_cadence=cadence,
+            values=texts,
+            strategy_version_no=setup.strategy.version_no,
+        )
+        cell_setup = Setup(
+            strategy=setup.strategy,
+            param_set=param_set,
+            factors=setup.factors,
+            snapshot_id=setup.snapshot_id,
+            alignment=setup.alignment,
+        )
+
+        record, reused, _simulation, resolved_engine = self._execute_cell(
+            contract,
+            setup=cell_setup,
+            params=params,
+            panel=panel,
+            period=period,
+            engine_version=engine_version,
+            engine=engine,
+            engine_name=engine_name,
+            extras=extras,
+            origin=SWEEP_RUN,
+            sweep_id=sweep_id,
+        )
+
+        metrics = run_metrics(
+            self._runs,
+            record.run_id,
+            risk_free_rate=risk_free_rate,
+            benchmarks=(),
+            snapshot_root=self._snapshot_root,
+        )
+
+        comparisons: dict[str, Any] = {}
+        excess: dict[str, float] = {}
+        for ticker in tickers:
+            key = (record.snapshot_id, ticker, metrics.start, metrics.end)
+            curve = curves.get(key)
+            if curve is None:
+                curve = benchmark_curve(
+                    self._store,
+                    record.snapshot_id,
+                    ticker,
+                    metrics.start,
+                    metrics.end,
+                    root=self._snapshot_root,
+                )
+                curves[key] = curve
+            comparison = BenchmarkComparison(
+                ticker=curve.ticker,
+                entity_id=curve.entity_id,
+                start=curve.stats.start,
+                end=curve.stats.end,
+                trading_days=curve.stats.trading_days,
+                total_return=curve.stats.total_return,
+                annual_return=curve.stats.annual_return,
+                max_drawdown=curve.stats.max_drawdown,
+                excess_total_return=float(metrics.total_return - curve.stats.total_return),
+                annual_excess=float(metrics.annual_return - curve.stats.annual_return),
+            )
+            comparisons[curve.ticker] = comparison
+            excess[curve.ticker] = comparison.annual_excess
+
+        plan = CellPlan(
+            strategy_name=cell_setup.strategy.name,
+            param_set_name=param_set.name,
+            snapshot_id=cell_setup.snapshot_id,
+            engine_name=resolved_engine,
+            engine_version=str(engine_version).strip(),
+            period_start=period[0],
+            period_end=period[1],
+            strategy_version_no=cell_setup.strategy.version_no,
+            param_set_version_no=param_set.version_no,
+            factor_version_ids=cell_setup.factor_version_ids,
+        )
+        cell = SweepCell(
+            point=point,
+            run_id=record.run_id,
+            plan=plan,
+            metrics=metrics,
+            trades=int(len(self._runs.orders(record.run_id))),
+            reused=reused,
+            seconds=time.perf_counter() - began,
+            annual_excess=excess,
+            benchmarks=comparisons,
+        )
+        # 失敗運行判定走**同一份正本**(D-034/D-040):本層有基準年化在手,
+        # 但判準不在這裡另寫一次。
+        from ..web.data import is_failed_run
+
+        failed = is_failed_run(
+            metrics.annual_return,
+            {ticker: comparison.annual_return for ticker, comparison in comparisons.items()},
+        )
+        return cell, reused, failed
+
+    @staticmethod
+    def _write_batch_report(
+        run: Any, judgement: Any, report: "BatchReport", failures: Sequence["FailedCell"]
+    ) -> Path:
+        """落報告,回報告檔的路徑。拋錯那幾格在報告裡逐格講出來。"""
+        from ..sweep.report import write_report
+
+        notes = str(report.notes or "")
+        if failures:
+            listed = "、".join(
+                f"{failure.point.label}({failure.error})" for failure in failures[:5]
+            )
+            tail = f",另有 {len(failures) - 5} 格" if len(failures) > 5 else ""
+            notes = (
+                f"{notes}\n\n" if notes else ""
+            ) + (
+                f"⚠ 這次掃描有 {len(failures)} 格拋錯,已按無效格入判讀(不中斷整批):"
+                f"{listed}{tail}。"
+            )
+        return write_report(
+            run,
+            judgement,
+            report.directory,
+            title=report.title,
+            notes=notes,
+        )
+
+    def _register_batch(
+        self,
+        run: Any,
+        judgement: Any,
+        *,
+        setup: Setup,
+        failed_by_point: Mapping[Any, bool | None],
+        failures: Sequence["FailedCell"],
+        engine_version: str,
+        period: tuple[str, str],
+        report_path: Path,
+    ) -> tuple[Any, bool]:
+        """經唯一入口寫一列批次登記(D-042、KARST-091)。
+
+        **達標** = 這一格不是失敗運行(年化沒有同時輸給 SPY 與 QQQ,D-034/D-040)。
+        兩隻基準有一隻算不出的格既不算達標亦不算失敗——寧可少判,不可拿一隻不齊的
+        尺定它成敗;那幾格只入總格數。
+
+        三個中位數只取**達標格**:D-042 明文把最佳批次定義為「達標運行的中位數年化
+        最高」,把失敗那批混進中位數即是拿一堆已經判定不成立的成績去拉低(或拉高)
+        門面數字。
+        """
+        qualified = [
+            cell for cell in run.cells if failed_by_point.get(cell.point) is False
+        ]
+        failed_runs = sum(1 for cell in run.cells if failed_by_point.get(cell.point) is True)
+
+        best = judgement.best
+        robust = judgement.most_robust
+        best_run_id: str | None = None
+        if best is not None:
+            for cell in run.cells:
+                if cell.point == best.point:
+                    best_run_id = cell.run_id
+                    break
+
+        digest = hashlib.sha256(Path(report_path).read_bytes()).hexdigest()
+        return self._gateway.register_sweep_batch(
+            run.sweep_id,
+            strategy_name=setup.strategy.name,
+            strategy_version_no=setup.strategy.version_no,
+            period_start=period[0],
+            period_end=period[1],
+            snapshot_id=setup.snapshot_id,
+            engine_name=run.provenance.engines[0] if run.provenance.engines else "",
+            engine_version=str(engine_version).strip(),
+            cell_count=len(run.cells) + len(failures),
+            qualified_cells=len(qualified),
+            failed_cells=failed_runs,
+            error_cells=len(failures),
+            median_annual_return=_median(c.metrics.annual_return for c in qualified),
+            median_sortino=_median(c.metrics.sortino for c in qualified),
+            median_max_drawdown=_median(c.metrics.max_drawdown for c in qualified),
+            objective=judgement.objective,
+            min_trades=judgement.min_trades,
+            lonely_peak_margin=judgement.lonely_peak_margin,
+            plateau_quantile=judgement.plateau_quantile,
+            best_point=None if best is None else best.point.label,
+            best_run_id=best_run_id,
+            representative_point=None if robust is None else robust.point.label,
+            report_path=str(report_path),
+            report_hash=digest,
+        )
+
+    # ------------------------------------------------------------------
+    # 一格怎樣走:run 與 sweep 共用同一條路
     # ------------------------------------------------------------------
 
     def _execute_cell(
@@ -764,6 +1269,18 @@ def simulate_plan(engine: Any, panel: Any, plan: Any, *, engine_name: str) -> Si
         selection=plan.selection,
         extras=extras,
     )
+
+
+def _median(values: Iterable[float | None]) -> float | None:
+    """一批讀數的中位數;一個讀數都沒有就回 ``None``,不回 0。
+
+    0 是一個成績,「沒有成績」不是。批次登記那三格中位數容得下空值,正是為了不
+    讓「這次掃描一格都沒有達標」寫成「中位數年化 0%」。
+    """
+    numbers = [float(value) for value in values if value is not None]
+    if not numbers:
+        return None
+    return float(statistics.median(numbers))
 
 
 def _verdict_differences(previous: Any, fresh: Any) -> list[str]:

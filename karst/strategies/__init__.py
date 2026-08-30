@@ -31,6 +31,17 @@ from .factor_mix import (
     resolve_exposures,
     run_factor_mix,
 )
+from .factor_rotation import (
+    DRIVER_BUILDERS,
+    DRIVER_KEY,
+    DRIVER_PARAMETERS,
+    FactorRotationContract,
+    FactorRotationParams,
+    RotationDriver,
+    build_driver,
+    macro_series_needed,
+    rotation_targets,
+)
 from .trend_swing import (
     BREAKOUT_FACTOR_NAME,
     CaseStats,
@@ -53,6 +64,13 @@ from .trend_swing import (
 
 __all__ = [
     "BREAKOUT_FACTOR_NAME",
+    "DRIVER_BUILDERS",
+    "DRIVER_KEY",
+    "DRIVER_PARAMETERS",
+    "RotationDriver",
+    "build_driver",
+    "macro_series_needed",
+    "rotation_targets",
     "CaseStats",
     "EntryCase",
     "TrendSwingParams",
@@ -76,6 +94,8 @@ __all__ = [
     "FactorMixParams",
     "FactorMixRebalance",
     "FactorMixResult",
+    "FactorRotationContract",
+    "FactorRotationParams",
     "FactorSleeve",
     "factor_exposures",
     "factor_mix_schedule",

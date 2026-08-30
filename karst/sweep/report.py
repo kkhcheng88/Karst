@@ -28,16 +28,19 @@ from __future__ import annotations
 import shutil
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import datetime
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
+from ..engine.contracts import TradingCosts
 from ..errors import ContractViolation
+from ..metrics import RunMetrics, run_metrics
+from ..metrics.benchmark import BenchmarkCurve, benchmark_curve
+from ..runs import RunStore
 from .grid import LayerKey, layer_label, layer_slug
-from .runner import SweepCell, SweepRun
-from .verdict import INVALID, LONELY_PEAK, PLATEAU, RIDGE, SweepJudgement
+from .runner import METRIC_COLUMNS, SweepCell, SweepRun
+from .verdict import INVALID, LONELY_PEAK, PLATEAU, RIDGE, CellVerdict, SweepJudgement
 
 # 圖上想用的中文字型,由上而下試。一個都沒有就退回英文標題,不畫豆腐方塊。
 _CJK_FONTS = (
@@ -428,8 +431,12 @@ def write_report(
     lines: list[str] = []
     lines.append(f"# {title}")
     lines.append("")
-    lines.append(f"產出於 {datetime.now():%Y-%m-%d %H:%M}。")
-    lines.append("")
+    # 這份報告刻意**不寫產出時刻、不寫今次跑了多久、不寫幾多格動過引擎**:同一幅格
+    # 同一批運行,重掃一次要得出逐位相同的一份報告。批次登記把這份報告的 sha256 當
+    # 內容指紋收進治理表,而批次登記只加不改——報告若逐次不同,重掃同一個掃描編號
+    # 就必然撞「內容不同」而被拒收,`reused_batch` 那條重用路線亦永遠走不到。
+    # 那三樣執行事實沒有丟:登記時刻在批次登記的 `created_at`,逐格的「讀回抑或真跑」
+    # 與耗時在同一個資料夾的 `掃描表.csv`(`reused`、`seconds` 兩欄)。
     lines.append("## 這次掃的是哪一套設定")
     lines.append("")
     lines.append(f"- 來歷:{sweep.provenance.line()}")
@@ -440,8 +447,8 @@ def write_report(
         )
     lines.append(f"- 掃描格:{judgement.grid_description}")
     lines.append(
-        f"- 跑法:共 {len(sweep)} 格,其中 {sweep.executed} 格今次真的動過引擎、"
-        f"{sweep.reused} 格是讀回已有的運行(同一格不重跑);耗時 {sweep.seconds:.1f} 秒"
+        f"- 跑法:共 {len(sweep)} 格,一格一個運行;同一格不重跑,已有的讀回。"
+        f"逐格是讀回抑或今次真的動過引擎,見 `{sweep_csv.name}` 的 `reused`、`seconds` 兩欄。"
     )
     lines.append(
         f"- 無風險利率 {sweep.risk_free_rate:.2%}(Sortino 用);"
@@ -695,3 +702,257 @@ def _slug(text: str) -> str:
 def _ascii_fallback(text: str) -> str:
     """沒有中文字型時,寧可印得出的英文,不印一行豆腐方塊。"""
     return "".join(ch if ord(ch) < 128 else "?" for ch in text)
+
+
+@dataclass(frozen=True, slots=True)
+class ScoreEntry:
+    """成績表的一行:一個驅動器的最優格,或者一個固定權重的對照格。
+
+    ``verdict`` 是這一格在它自己那個掃描格上的裁決(平原 / 孤峰 / 普通)。對照格
+    不在任何掃描格上,所以留空——**不冤枉它是孤峰,亦不替它充穩健**。
+    """
+
+    label: str
+    kind: str
+    cell: SweepCell
+    verdict: CellVerdict | None = None
+    note: str = ""
+
+
+def scoreboard(
+    entries: Sequence[ScoreEntry],
+    *,
+    objective: str,
+    baselines: Sequence[str] = (),
+) -> pd.DataFrame:
+    """一張成績表:逐行八項指標、對每一條基準的年化超額,以及對對照的差距。
+
+    ``baselines`` 是要比的那幾行的 ``label``。每一個 baseline 加一欄
+    ``對「<label>」的差距``——本行的目標指標減那一行的目標指標。差距是**減出來的
+    數,不是裁決**:哪一格該用是用戶的事(D-008)。
+    """
+    if not entries:
+        raise ContractViolation("成績表一行都沒有")
+
+    table = {entry.label: entry for entry in entries}
+    if len(table) != len(entries):
+        raise ContractViolation("成績表有兩行同名;每一行要一個獨一無二的名")
+    missing = [name for name in baselines if name not in table]
+    if missing:
+        raise ContractViolation(f"要比的對照不在成績表上:{'、'.join(missing)}")
+
+    reference_values = {
+        name: table[name].cell.value_of(objective) for name in baselines
+    }
+
+    rows: list[dict[str, Any]] = []
+    for entry in entries:
+        cell = entry.cell
+        value = cell.value_of(objective)
+        row: dict[str, Any] = {
+            "名稱": entry.label,
+            "類別": entry.kind,
+            "參數": cell.point.label,
+            objective: value,
+        }
+        for name in METRIC_COLUMNS:
+            row[name] = getattr(cell.metrics, name)
+        for ticker in sorted(cell.annual_excess):
+            row[f"annual_excess_{ticker}"] = cell.annual_excess[ticker]
+        row["裁決"] = entry.verdict.verdict if entry.verdict is not None else "不在掃描格上"
+        row["鄰域平均"] = entry.verdict.neighbourhood_mean if entry.verdict is not None else None
+        row["成交筆數"] = cell.trades
+        for name in baselines:
+            base = reference_values[name]
+            row[f"對「{name}」的差距"] = (
+                None if value is None or base is None else float(value - base)
+            )
+        row["run_id"] = cell.run_id
+        row["備註"] = entry.note
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def segment_excess(
+    runs: RunStore,
+    entries: Sequence[ScoreEntry],
+    *,
+    segments: Sequence[tuple[str, str, str]],
+    risk_free_rate: float,
+    benchmark: str,
+    snapshot_root: str | Path | None = None,
+) -> pd.DataFrame:
+    """分段年化超額:同一批運行,只換檢視視窗重看一次(**重看不重跑**,規格 8.5)。
+
+    ``segments`` 是 ``(段名, 起, 訖)`` 的串——分幾段、怎樣分,由呼叫方寫明,本層
+    不設預設分段。每一段的基準按**同一段日子**另算一條買入持有線,兩邊比得過。
+    """
+    if not segments:
+        raise ContractViolation("分段要寫明分哪幾段;本層不設預設分段")
+
+    curves: dict[tuple[str, str, str, str], BenchmarkCurve] = {}
+    rows: list[dict[str, Any]] = []
+    for entry in entries:
+        cell = entry.cell
+        for name, start, end in segments:
+            metrics: RunMetrics = run_metrics(
+                runs,
+                cell.run_id,
+                risk_free_rate=risk_free_rate,
+                benchmarks=(),
+                start=start,
+                end=end,
+                snapshot_root=snapshot_root,
+            )
+            key = (cell.plan.snapshot_id, benchmark, metrics.start, metrics.end)
+            curve = curves.get(key)
+            if curve is None:
+                curve = benchmark_curve(
+                    runs.store,
+                    cell.plan.snapshot_id,
+                    benchmark,
+                    metrics.start,
+                    metrics.end,
+                    root=snapshot_root,
+                )
+                curves[key] = curve
+            rows.append(
+                {
+                    "名稱": entry.label,
+                    "類別": entry.kind,
+                    "段": name,
+                    "起": metrics.start,
+                    "訖": metrics.end,
+                    "交易日": metrics.trading_days,
+                    "年化": metrics.annual_return,
+                    f"{curve.ticker}年化": curve.stats.annual_return,
+                    "年化超額": float(metrics.annual_return - curve.stats.annual_return),
+                    "最大回撤": metrics.max_drawdown,
+                    "run_id": cell.run_id,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+# ----------------------------------------------------------------------
+# 成本前後並列(KARST-043)
+# ----------------------------------------------------------------------
+
+
+@dataclass(frozen=True, slots=True)
+class CostPair:
+    """同一格參數的兩次運行:一次零成本,一次連成本。
+
+    兩次是**兩個獨立的運行編號**,不是同一個運行改了個數——成本入了參數集,
+    編號自然不同(見 ``cost_inputs`` / ``cost_fields``)。並列擺出來,「成本吃掉幾多」就是減出來
+    的一個數,不用人推。
+    """
+
+    label: str
+    kind: str
+    before: SweepCell
+    after: SweepCell
+    verdict_before: CellVerdict | None = None
+    verdict_after: CellVerdict | None = None
+    note: str = ""
+
+
+def cost_comparison(
+    pairs: Sequence[CostPair],
+    *,
+    objective: str,
+    costs: TradingCosts,
+) -> pd.DataFrame:
+    """成本前後並列表:目標指標(年化超額)與換手,兩邊同一行擺出來。
+
+    換手那兩欄是這張表的重點。KARST-036 收檔時留下的問題正是:輪動的換手是固定
+    權重的一百倍,而成本設為零——所以「成本前後的換手幾乎不變、超額卻掉了多少」
+    就是那條問題的答案。本函式**只減數,不裁決**哪一組參數該用(D-008)。
+    """
+    if not pairs:
+        raise ContractViolation("並列表一行都沒有")
+    labels = {pair.label for pair in pairs}
+    if len(labels) != len(pairs):
+        raise ContractViolation("並列表有兩行同名;每一行要一個獨一無二的名")
+
+    rows: list[dict[str, Any]] = []
+    for pair in pairs:
+        before, after = pair.before, pair.after
+        value_before = before.value_of(objective)
+        value_after = after.value_of(objective)
+        rows.append(
+            {
+                "名稱": pair.label,
+                "類別": pair.kind,
+                "參數": after.point.label,
+                "成本": costs.label,
+                f"成本前{objective}": value_before,
+                f"成本後{objective}": value_after,
+                "成本代價": (
+                    None
+                    if value_before is None or value_after is None
+                    else float(value_after - value_before)
+                ),
+                "成本前換手": before.metrics.turnover,
+                "成本後換手": after.metrics.turnover,
+                "成本前年化": before.metrics.annual_return,
+                "成本後年化": after.metrics.annual_return,
+                "成本前最大回撤": before.metrics.max_drawdown,
+                "成本後最大回撤": after.metrics.max_drawdown,
+                "成本前裁決": (
+                    pair.verdict_before.verdict
+                    if pair.verdict_before is not None
+                    else "不在掃描格上"
+                ),
+                "成本後裁決": (
+                    pair.verdict_after.verdict
+                    if pair.verdict_after is not None
+                    else "不在掃描格上"
+                ),
+                "成本前run_id": before.run_id,
+                "成本後run_id": after.run_id,
+                "備註": pair.note,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def provenance_note(
+    *,
+    snapshot_id: str,
+    period: tuple[str, str],
+    costs: TradingCosts,
+    run_ids: Sequence[str] = (),
+    extra: str = "",
+) -> str:
+    """報告要指得回去的那幾件:快照、期間、成本參數、運行編號。
+
+    一份報告的數字若指不回「哪一份數據、哪一段日子、哪一組成本、哪一次運行」,
+    下一個人就重現不到,亦查不出它是不是已經過時。所以這幾行是報告的**必印**部分。
+    """
+    lines = [
+        f"- 數據快照:`{snapshot_id}`",
+        f"- 期間:{period[0]} 至 {period[1]}",
+        f"- 交易成本:{_costs_sentence(costs)}",
+    ]
+    if run_ids:
+        unique = tuple(dict.fromkeys(str(run_id) for run_id in run_ids))
+        shown = "、".join(f"`{run_id}`" for run_id in unique[:8])
+        tail = f",另有 {len(unique) - 8} 個" if len(unique) > 8 else ""
+        lines.append(f"- 運行編號({len(unique)} 個):{shown}{tail}")
+    if extra:
+        lines.append(extra if extra.startswith("-") else f"- {extra}")
+    return "\n".join(lines)
+
+
+def _costs_sentence(costs: TradingCosts) -> str:
+    if costs.is_zero:
+        return "零(手續費與滑點皆為 0)"
+    if costs.fee_model == "per_share":
+        fee = f"每股 US${costs.fee_rate:g}"
+    else:
+        fee = f"成交金額的 {costs.fee_rate * 10_000:g} 個基點"
+    return (
+        f"手續費 {fee}(型別 `{costs.fee_model}`)、"
+        f"滑點 {costs.slippage_fraction * 10_000:g} 個基點(佔成交價比例)"
+    )

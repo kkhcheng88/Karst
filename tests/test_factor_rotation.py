@@ -5,6 +5,11 @@
 
 合成價格刻意鋪成四種脾性,好令四個驅動器真的分得出高下:動能那隻升得最急、
 質素次之、價值原地打轉、低波升得慢但最穩;大市(SPY)介乎中間。
+
+KARST-091 起,這條策略交出的是一份**策略合約**(``FactorRotationContract``),
+逐格怎樣跑住在**策略執行台**(``Executor.run`` / ``Executor.sweep``)。所以驗
+「策略怎樣決定」的測試直接叫 ``contract.plan()``(純函數,不用開庫),驗「落痕、
+編號、查重」的測試才經執行台。
 """
 
 from __future__ import annotations
@@ -14,46 +19,54 @@ import pandas as pd
 import pytest
 
 from karst.engine import PricePanel
-from karst.engine.contracts import SimulationOutput
+from karst.executor import (
+    SAMPLE,
+    BatchReport,
+    DuplicateExposureEntity,
+    Executor,
+    RunRequest,
+    TargetPlan,
+    register_setup,
+    resolve_entities,
+    simulate_plan,
+)
 from karst.gateway.service import Gateway
 from karst.runs import RunStore
 from karst.strategies.factor_mix import (
+    CADENCE_PARAM,
     FACTOR_ETF_SLEEVES,
+    FactorMixContract,
     FactorMixParams,
     factor_mix_targets,
     resolve_exposures,
 )
 from karst.strategies.factor_rotation import (
+    DRIVER_KEY,
     DRIVER_PARAMETERS,
     EXTERNAL_DATA,
     PRICE_DRIVER_KEYS,
+    WARMUP_BARS_KEY,
+    WARMUP_PREFIX,
     macro_series_needed,
     SOURCE_DRIVER,
     DriverView,
+    FactorRotationContract,
     FactorRotationParams,
     build_driver,
     resolve_rotation_exposures,
     rotation_targets,
-    run_factor_rotation,
 )
 from karst.sweep import (
     LONELY_PEAK,
     VERDICTS,
     CellScore,
     ExplicitGrid,
-    FactorMixJob,
+    ScoreEntry,
     judge,
     reference_point,
-    run_sweep,
-    write_report,
-)
-from karst.sweep.factor_rotation import (
-    FactorRotationJob,
-    ScoreEntry,
-    ensure_factor_rotation_setup,
-    rotation_grid,
     scoreboard,
 )
+from karst.sweep.factor_rotation import rotation_grid
 
 from doubles.engines import RecordingEngine
 
@@ -62,6 +75,8 @@ MIX_STRATEGY = "因子混合(ETF 版)"
 ENGINE_VERSION = "0.1.0"
 MARKET = "SPY"
 RISK_FREE = 0.04
+INITIAL_CASH = 100_000.0
+FEES = 0.0
 
 DATES = pd.bdate_range("2020-01-01", periods=400)
 PERIOD = (str(DATES[0].date()), str(DATES[-1].date()))
@@ -106,6 +121,48 @@ def _prices(store) -> tuple[PricePanel, dict[str, int]]:
     return PricePanel.from_frames(open=open_prices * 1.0005, close=close), entity_of
 
 
+# 每個驅動器一組**寫明的**參數(無預設值,測試一樣要寫出來)。
+DRIVER_CASES = {
+    "factor_momentum": {"lookback_months": 3, "mode": "winner"},
+    "relative_strength": {"lookback_months": 3, "fallback": "cash"},
+    "inverse_volatility": {"lookback_days": 63, "power": 1.0},
+    "trend_switch": {"ma_days": 50, "tilt": 1.0},
+}
+
+
+def _rotation_contract(driver_key: str, **overrides) -> FactorRotationContract:
+    """一份跑得動的因子輪動合約(登記用那份見 ``for_setup``)。"""
+    settings = {
+        "warmup_bars": WARMUP_BARS,
+        "warmup_weights": WARMUP_WEIGHTS,
+        "market_ticker": MARKET,
+        "initial_cash": INITIAL_CASH,
+        "fees": FEES,
+    }
+    settings.update(overrides)
+    return FactorRotationContract(
+        driver_key=driver_key, sleeves=FACTOR_ETF_SLEEVES, **settings
+    )
+
+
+def _base_values(driver_key: str) -> dict:
+    """整幅格共用的那幾格:驅動器身份、熱身期、熱身期權重(它們不是軸)。"""
+    return {
+        DRIVER_KEY: driver_key,
+        WARMUP_BARS_KEY: WARMUP_BARS,
+        **{f"{WARMUP_PREFIX}{key}": value for key, value in WARMUP_WEIGHTS.items()},
+    }
+
+
+def _setup_values(driver_key: str, cadence: str = "quarterly") -> dict:
+    """登記那份基座的一整組取值(驅動器自己那幾個參數一律寫明)。"""
+    return {
+        **_base_values(driver_key),
+        **DRIVER_CASES[driver_key],
+        CADENCE_PARAM: cadence,
+    }
+
+
 @pytest.fixture()
 def toy(tmp_path, monkeypatch):
     """一個獨立的庫:五個實體、四個因子、輪動與混合兩套策略、一個快照。"""
@@ -119,24 +176,27 @@ def toy(tmp_path, monkeypatch):
             content_hash="b1c2d3e4f5060708",
             universe=tuple(entity_of),
         )
-        rotation = ensure_factor_rotation_setup(
+        rotation = register_setup(
             gateway,
+            FactorRotationContract.for_setup("factor_momentum"),
             strategy_name=ROTATION_STRATEGY,
             snapshot_id=snapshot_id,
-            setup_param_set_name="測試基座-輪動",
-            setup_weights=WARMUP_WEIGHTS,
-            cadence="quarterly",
+            param_set_name="測試基座-輪動",
+            values=_setup_values("factor_momentum"),
+            alignment=SAMPLE,
             description="KARST-036 測試基座,不是現役設定",
         )
-        mix = ensure_factor_rotation_setup(
+        mix = register_setup(
             gateway,
+            FactorMixContract.for_setup(FACTOR_ETF_SLEEVES),
             strategy_name=MIX_STRATEGY,
             snapshot_id=snapshot_id,
-            setup_param_set_name="測試基座-混合",
-            setup_weights=WARMUP_WEIGHTS,
-            cadence="quarterly",
+            param_set_name="測試基座-混合",
+            values={**WARMUP_WEIGHTS, CADENCE_PARAM: "quarterly"},
+            alignment=SAMPLE,
             description="KARST-036 對照用的固定權重策略",
         )
+        runs = RunStore(store, root=tmp_path / "runs")
         yield {
             "gateway": gateway,
             "store": store,
@@ -145,7 +205,8 @@ def toy(tmp_path, monkeypatch):
             "snapshot_id": snapshot_id,
             "rotation": rotation,
             "mix": mix,
-            "runs": RunStore(store, root=tmp_path / "runs"),
+            "runs": runs,
+            "executor": Executor(gateway, runs),
             "tmp": tmp_path,
         }
 
@@ -156,31 +217,49 @@ def _params(cadence: str = "quarterly") -> FactorRotationParams:
     )
 
 
-# 每個驅動器一組**寫明的**參數(無預設值,測試一樣要寫出來)。
-DRIVER_CASES = {
-    "factor_momentum": {"lookback_months": 3, "mode": "winner"},
-    "relative_strength": {"lookback_months": 3, "fallback": "cash"},
-    "inverse_volatility": {"lookback_days": 63, "power": 1.0},
-    "trend_switch": {"ma_days": 50, "tilt": 1.0},
-}
+def _request(toy, contract, values, extras=None) -> RunRequest:
+    """砌一次 ``plan()`` 要的輸入:已驗取值、已解析實體、現行因子版本。
 
-
-def _rotation_job(toy, driver_key: str, cadence: str | None = None) -> FactorRotationJob:
-    return FactorRotationJob(
-        gateway=toy["gateway"],
+    解析走的是**執行台那一份**(``resolve_entities``),不是測試自己另寫一套。
+    """
+    checked = contract.param_spec().validate(values)
+    entities = resolve_entities(
+        toy["store"],
+        contract.needs_entities(checked),
+        on_date=toy["panel"].dates[0],
+        known_entity_ids=tuple(toy["panel"].entity_ids),
+    )
+    return RunRequest(
         panel=toy["panel"],
-        driver_key=driver_key,
-        strategy_name=ROTATION_STRATEGY,
+        params=checked,
+        entities=entities,
+        factors={ref.name: ref for ref in toy["rotation"].factors},
         snapshot_id=toy["snapshot_id"],
+        extras=dict(extras or {}),
+    )
+
+
+def _rotation_sweep(toy, driver_key, grid, *, sweep_id, title, directory,
+                    objective="annual_return", min_trades=4):
+    """經策略執行台跑一幅輪動格。"""
+    return toy["executor"].sweep(
+        _rotation_contract(driver_key),
+        setup=toy["rotation"],
+        grid=grid,
+        panel=toy["panel"],
+        period=PERIOD,
         engine_version=ENGINE_VERSION,
+        risk_free_rate=RISK_FREE,
+        sweep_id=sweep_id,
         param_set_prefix=f"測試r-{driver_key}-",
-        period_start=PERIOD[0],
-        period_end=PERIOD[1],
-        warmup_bars=WARMUP_BARS,
-        warmup_weights=WARMUP_WEIGHTS,
-        cadence=cadence,
-        strategy_version_no=toy["rotation"].version_no,
-        market_ticker=MARKET,
+        param_set_suffix="",
+        base_values=_base_values(driver_key),
+        objective=objective,
+        min_trades=min_trades,
+        lonely_peak_margin=0.02,
+        plateau_quantile=0.80,
+        report=BatchReport(directory=directory, title=title),
+        benchmarks=(),
     )
 
 
@@ -190,8 +269,7 @@ def _rotation_job(toy, driver_key: str, cadence: str | None = None) -> FactorRot
 # ----------------------------------------------------------------------
 
 
-def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy):
-    runs = toy["runs"]
+def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy, tmp_path):
     entries: list[ScoreEntry] = []
 
     for driver_key, params in DRIVER_CASES.items():
@@ -200,16 +278,16 @@ def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy):
             values={name: [params[name]] for name in DRIVER_PARAMETERS[driver_key]},
             cadences=["quarterly"],
         )
-        sweep = run_sweep(
-            runs=runs,
-            grid=grid,
-            job=_rotation_job(toy, driver_key),
+        outcome = _rotation_sweep(
+            toy,
+            driver_key,
+            grid,
             sweep_id=f"測試-驅動器對照-{driver_key}",
-            risk_free_rate=RISK_FREE,
-            benchmarks=(),
+            title=f"驅動器對照·{driver_key}",
+            directory=tmp_path / "對照" / driver_key,
         )
-        assert len(sweep) == 1
-        cell = sweep.cells[0]
+        assert len(outcome.cells) == 1
+        cell = outcome.cells[0]
         # 完整回測:有淨值、有成交、八項指標算得出。
         assert cell.trades > 0
         assert cell.metrics.trading_days == len(DATES)
@@ -218,20 +296,11 @@ def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy):
         )
 
     # 對照:固定權重,同一套快照、同一期間、同一節奏,走因子混合那條原路。
-    mix_job = FactorMixJob(
-        gateway=toy["gateway"],
-        panel=toy["panel"],
-        sleeves=FACTOR_ETF_SLEEVES,
-        strategy_name=MIX_STRATEGY,
-        snapshot_id=toy["snapshot_id"],
-        engine_version=ENGINE_VERSION,
-        param_set_prefix="測試w-",
-        period_start=PERIOD[0],
-        period_end=PERIOD[1],
-        strategy_version_no=toy["mix"].version_no,
-    )
-    fixed = run_sweep(
-        runs=runs,
+    fixed = toy["executor"].sweep(
+        FactorMixContract(
+            sleeves=FACTOR_ETF_SLEEVES, initial_cash=INITIAL_CASH, fees=FEES
+        ),
+        setup=toy["mix"],
         grid=ExplicitGrid(
             [
                 reference_point(
@@ -243,9 +312,19 @@ def test_four_drivers_run_on_one_snapshot_and_land_on_one_scoreboard(toy):
             ],
             label="對照格(固定權重最優)",
         ),
-        job=mix_job,
-        sweep_id="測試-固定權重對照",
+        panel=toy["panel"],
+        period=PERIOD,
+        engine_version=ENGINE_VERSION,
         risk_free_rate=RISK_FREE,
+        sweep_id="測試-固定權重對照",
+        param_set_prefix="測試w-",
+        param_set_suffix="",
+        base_values={},
+        objective="annual_return",
+        min_trades=1,
+        lonely_peak_margin=0.02,
+        plateau_quantile=0.80,
+        report=BatchReport(directory=tmp_path / "對照" / "固定權重", title="固定權重對照"),
         benchmarks=(),
     )
     entries.append(
@@ -287,22 +366,16 @@ def test_each_driver_gets_a_plateau_report_and_lonely_peaks_are_marked(toy, tmp_
     )
     assert len(grid.points()) == 6
 
-    sweep = run_sweep(
-        runs=toy["runs"],
-        grid=grid,
-        job=_rotation_job(toy, "factor_momentum"),
-        sweep_id="測試-動能驅動器格",
-        risk_free_rate=RISK_FREE,
-        benchmarks=(),
-    )
-    verdict = judge(
-        sweep.scores("annual_return"),
+    out = tmp_path / "報告"
+    outcome = _rotation_sweep(
+        toy,
+        "factor_momentum",
         grid,
-        objective="annual_return",
-        min_trades=4,
-        lonely_peak_margin=0.02,
-        plateau_quantile=0.80,
+        sweep_id="測試-動能驅動器格",
+        title="因子動量排名(測試)",
+        directory=out,
     )
+    verdict = outcome.judgement
     # 判讀走的正是 KARST-029 那一套:每一格貼一個標籤,鄰域平均含自己與不含自己
     # 兩個數都在。
     assert len(verdict) == 6
@@ -310,11 +383,7 @@ def test_each_driver_gets_a_plateau_report_and_lonely_peaks_are_marked(toy, tmp_
     frame = verdict.frame()
     assert {"neighbourhood_mean", "neighbour_mean", "lift", "verdict"} <= set(frame.columns)
 
-    out = tmp_path / "報告"
-    report = write_report(
-        sweep, verdict, out, title="因子動量排名(測試)", top=3,
-    )
-    text = report.read_text(encoding="utf-8")
+    text = outcome.report_path.read_text(encoding="utf-8")
     assert (out / "掃描表.csv").exists() and (out / "判讀表.csv").exists()
     # 三個門檻與相鄰的定義一定要印得出,否則裁決講不出根據。
     assert verdict.thresholds_line() in text
@@ -335,6 +404,37 @@ def test_each_driver_gets_a_plateau_report_and_lonely_peaks_are_marked(toy, tmp_
     )
     assert rigged.cell_for(peak).verdict == LONELY_PEAK
     assert rigged.cell_for(peak).is_local_peak
+
+
+# ----------------------------------------------------------------------
+# 驗收條件 2(續):同一格重掃不重跑——撞回同一個運行編號,一次引擎都不碰
+# ----------------------------------------------------------------------
+
+
+def test_rescanning_the_same_cell_reuses_the_run_instead_of_running_it_again(toy, tmp_path):
+    grid = rotation_grid(
+        "factor_momentum",
+        values={"lookback_months": [3], "mode": ["winner"]},
+        cadences=["quarterly"],
+    )
+    first = _rotation_sweep(
+        toy, "factor_momentum", grid,
+        sweep_id="測試-重掃-第一次", title="重掃(第一次)",
+        directory=tmp_path / "重掃1",
+    )
+    again = _rotation_sweep(
+        toy, "factor_momentum", grid,
+        sweep_id="測試-重掃-第二次", title="重掃(第二次)",
+        directory=tmp_path / "重掃2",
+    )
+    assert again.cells[0].run_id == first.cells[0].run_id
+    assert again.sweep.reused == 1
+    # 參數集亦沒有被推上新一版:同名同值即沿用舊版,版本號是運行編號的原料。
+    assert (
+        again.cells[0].plan.param_set_version_no
+        == first.cells[0].plan.param_set_version_no
+        == 1
+    )
 
 
 # ----------------------------------------------------------------------
@@ -359,19 +459,24 @@ def test_swapping_the_driver_changes_only_the_weights_not_the_path(toy):
         def describe(self) -> str:
             return "測試自訂:頭兩格各一半"
 
-    engine_a, engine_b = RecordingEngine(), RecordingEngine()
-    built_in = build_driver("factor_momentum", **DRIVER_CASES["factor_momentum"])
-
-    result_a = run_factor_rotation(
-        store=store, panel=panel, driver=built_in, params=_params(),
-        engine=engine_a, market_ticker=MARKET,
+    # 甲:內建驅動器,走策略合約那條正路(``plan()`` 是純函數,不用開庫跑引擎)。
+    contract = _rotation_contract("factor_momentum")
+    plan_a = contract.plan(
+        _request(toy, contract, _setup_values("factor_momentum"))
     )
-    result_b = run_factor_rotation(
-        store=store, panel=panel, driver=HalfAndHalfDriver(), params=_params(),
-        engine=engine_b, market_ticker=MARKET,
+    targets_a = plan_a.targets
+
+    # 乙:自訂驅動器,由同一批敞口、同一組參數砌出同一張表。
+    exposures = resolve_rotation_exposures(store, FACTOR_ETF_SLEEVES, on_date=panel.dates[0])
+    targets_b, rebalances_b = rotation_targets(
+        panel=panel,
+        exposures=exposures,
+        driver=HalfAndHalfDriver(),
+        params=_params(),
+        market=panel.close[toy["entity_of"][MARKET]],
+        market_ticker=MARKET,
     )
 
-    targets_a, targets_b = engine_a.calls[0], engine_b.calls[0]
     # 換驅動器,交給引擎的表**形狀一模一樣**:同一批日子、同一批實體編號、
     # 同一批換倉日;改變的只是那幾行的數字。
     assert targets_a.index.equals(targets_b.index)
@@ -381,13 +486,26 @@ def test_swapping_the_driver_changes_only_the_weights_not_the_path(toy):
     assert not targets_a.loc[rows_a].equals(targets_b.loc[rows_a])
     # 自訂驅動器的決定原原本本落到表上。
     keys = [sleeve.weight_key for sleeve in FACTOR_ETF_SLEEVES]
-    exposures = resolve_rotation_exposures(store, FACTOR_ETF_SLEEVES, on_date=panel.dates[0])
     entity_of = {e.weight_key: e.entity_id for e in exposures}
     last = rows_a[-1]
     assert targets_b.loc[last, entity_of[keys[0]]] == pytest.approx(0.5)
     assert targets_b.loc[last, entity_of[keys[3]]] == pytest.approx(0.0)
     # 大市那隻只做訊號,一股不持。
     assert targets_a.loc[last, toy["entity_of"][MARKET]] == pytest.approx(0.0)
+
+    # 而「大市同時又是一格持倉」根本入不到場:同一個實體佔兩格,執行台的實體解析
+    # 當場拒收(全倉只此一份守門)。
+    store.register_ticker(
+        toy["entity_of"]["MTUM"], "MTUMALIAS", valid_from=str(DATES[0].date())
+    )
+    doubled = _rotation_contract("factor_momentum", market_ticker="MTUMALIAS")
+    with pytest.raises(DuplicateExposureEntity):
+        resolve_entities(
+            store,
+            doubled.needs_entities(_setup_values("factor_momentum")),
+            on_date=panel.dates[0],
+            known_entity_ids=tuple(panel.entity_ids),
+        )
 
     # 走的是**因子混合那條目標比重路徑**:同一個排期,連換倉日都一模一樣。
     mix_params = FactorMixParams(cadence="quarterly", weights=WARMUP_WEIGHTS)
@@ -403,8 +521,20 @@ def test_swapping_the_driver_changes_only_the_weights_not_the_path(toy):
     assert list(mix_targets.columns) == list(targets_a.columns)
 
     # 引擎收到的是同一個型別、同一組引擎參數;策略層沒有為新驅動器改過引擎。
+    plan_b = TargetPlan(
+        targets=targets_b,
+        cadence=plan_a.cadence,
+        initial_cash=plan_a.initial_cash,
+        fees=plan_a.fees,
+        rebalances=rebalances_b,
+        selection=None,
+    )
+    engine_a, engine_b = RecordingEngine(), RecordingEngine()
+    result_a = simulate_plan(engine_a, panel, plan_a, engine_name="recorder")
+    result_b = simulate_plan(engine_b, panel, plan_b, engine_name="recorder")
     assert result_a.engine_name == result_b.engine_name == "recorder"
-    assert result_a.driver_name != result_b.driver_name
+    assert engine_a.seen_params[0] == engine_b.seen_params[0]
+    assert plan_a.extras["driver"].name != HalfAndHalfDriver().name
 
 
 # ----------------------------------------------------------------------
@@ -475,12 +605,6 @@ def test_no_external_data_is_needed_and_signals_never_peek_past_the_decision_day
         assert positions[execution] == positions[decision] + 1
 
     # 要看大市的驅動器,沒有大市那條線就當場拒收,不會靜靜地當零。
+    blind = _rotation_contract("trend_switch", market_ticker=None)
     with pytest.raises(Exception):
-        run_factor_rotation(
-            store=store,
-            panel=panel,
-            driver=build_driver("trend_switch", **DRIVER_CASES["trend_switch"]),
-            params=_params(),
-            engine=RecordingEngine(),
-            market_ticker=None,
-        )
+        blind.plan(_request(toy, blind, _setup_values("trend_switch")))

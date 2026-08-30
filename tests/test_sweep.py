@@ -10,6 +10,10 @@
 * (6, 6) 一格獨高、四周全是基礎值 = **孤峰**;
 * fast = 1 那一列每格只成交兩筆 = **無效格**。
 
+逐格怎樣跑住在**策略執行台**(KARST-091),所以本檔用一份**玩具策略合約**加一件
+**玩具引擎**經 ``Executor.sweep`` 走那 49 格——與生產路徑同一條路,只是策略本體
+與引擎換了替身。要驗的三種形狀、判讀門檻與那幾個年化數字一個字不變。
+
 不需要連網,亦不觸發任何真實行情。
 """
 
@@ -22,7 +26,23 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from karst import FormulaProcedure, NotFound
+from karst import FormulaProcedure
+from karst.engine.contracts import CADENCES, Order, PricePanel, SimulationOutput
+from karst.executor import SAMPLE, BatchReport, Executor
+from karst.executor.contract import (
+    ENGINE_TARGETS,
+    KIND_INTEGER,
+    KIND_TEXT,
+    SLOT_CADENCE,
+    SLUG_VERBATIM,
+    TEXT_VERBATIM,
+    EntityRequest,
+    FactorSpec,
+    ParamField,
+    ParamSpec,
+    RunRequest,
+    TargetPlan,
+)
 from karst.gateway.service import Gateway
 from karst.runs import RunStore
 from karst.sweep import (
@@ -33,7 +53,6 @@ from karst.sweep import (
     PLATEAU,
     RIDGE,
     VERDICTS,
-    CellPlan,
     CellScore,
     ProductGrid,
     SweepAxis,
@@ -48,7 +67,6 @@ from karst.sweep import (
     layer_label,
     product_grid,
     projection,
-    run_sweep,
     simplex_grid,
     weight_grid,
     write_report,
@@ -101,20 +119,129 @@ def _entities(fast: int) -> tuple[int, ...]:
     return (101,) if fast == THIN_FAST else (101, 102, 103)
 
 
-class _Simulation:
-    """一份形狀正確的假結果:``RunStore.record_simulation`` 只看這三件。"""
+# 玩具策略持得到的三隻代號。第一隻載 fast、第二隻載 slow(見 ``_ToyContract.plan``),
+# 第三隻永遠零比重——它在的原因,是要有一隻「解析得到、面板有價、但不持有」的實體。
+TICKERS = ("AAA", "BBB", "CCC")
 
-    engine_name = ENGINE[0]
 
-    def __init__(self, rate: float, entity_ids: tuple[int, ...]) -> None:
-        base = 100_000.0
-        self.equity_curve = pd.Series(
+def _panel(entity_ids: list[int]) -> PricePanel:
+    """一張最細的價格面板:三隻代號 × ``DAYS`` 那段日子,價格一律 100。
+
+    玩具引擎不看價格(它按參數回一條算得出的複利線),所以這裡要的只是一張
+    **形狀正確**的面板:代號解析得回實體、實體在面板裡、日子與掃描期間對得上。
+    """
+    frame = pd.DataFrame(100.0, index=DAYS, columns=[int(e) for e in entity_ids])
+    return PricePanel.from_frames(open=frame, close=frame)
+
+
+class _ToyContract:
+    """玩具策略合約(見 ``karst.executor.contract.StrategyContract``)。
+
+    它交的正是策略那一邊那四件:兩格整數參數加一格換倉節奏、一條因子、三隻代號、
+    以及一張目標比重表。**參數在表上是看得回的**:第一隻代號的比重寫 ``fast/100``、
+    第二隻寫 ``slow/100``,所以玩具引擎由那一行還原得回這一格是哪一格——不用另開
+    一條旁門把參數塞給引擎。
+
+    短名寫法用 ``SLUG_VERBATIM``:``fast`` 由 1 到 7,印成百分點會寫成 100 至 700,
+    對讀庫的人是誤導。
+    """
+
+    strategy_type = "multifactor"
+    funnel_stages: tuple[str, ...] = ()
+    engine_path = ENGINE_TARGETS
+
+    def param_spec(self) -> ParamSpec:
+        return ParamSpec(
+            fields=(
+                ParamField(
+                    name="fast", kind=KIND_INTEGER, what="快線那一格(掃描軸之一)",
+                    label="快線", lower=1, upper=7,
+                    lower_inclusive=True, upper_inclusive=True, slug_style=SLUG_VERBATIM,
+                ),
+                ParamField(
+                    name="slow", kind=KIND_INTEGER, what="慢線那一格(掃描軸之一)",
+                    label="慢線", lower=1, upper=7,
+                    lower_inclusive=True, upper_inclusive=True, slug_style=SLUG_VERBATIM,
+                ),
+                ParamField(
+                    name="cadence", kind=KIND_TEXT, what="幾耐拉一次倉回目標比重",
+                    label="換倉節奏", choices=tuple(sorted(CADENCES)),
+                    text_style=TEXT_VERBATIM, slug_style=SLUG_VERBATIM, slot=SLOT_CADENCE,
+                ),
+            )
+        )
+
+    def factor_specs(self, snapshot_id: str) -> tuple[FactorSpec, ...]:
+        return (
+            FactorSpec(
+                name=FACTOR,
+                scale_kind="cardinal",
+                procedure=FormulaProcedure(
+                    formula="close[-21] / close[-252] - 1",
+                    input_data_version=str(snapshot_id),
+                ),
+            ),
+        )
+
+    def needs_entities(self, params) -> EntityRequest:
+        return EntityRequest(exposures=TICKERS)
+
+    def plan(self, request: RunRequest) -> TargetPlan:
+        """一張目標比重表:比重**只寫在執行日那一行**(D-021 第 3 條)。"""
+        panel = request.panel
+        held = sorted(request.entity(ticker).entity_id for ticker in TICKERS)
+        execution_day = panel.dates[1]
+        targets = pd.DataFrame(
+            np.nan, index=panel.dates, columns=[int(e) for e in panel.entity_ids], dtype=float
+        )
+        targets.loc[execution_day, :] = 0.0
+        targets.loc[execution_day, held[0]] = int(request.params["fast"]) / 100.0
+        targets.loc[execution_day, held[1]] = int(request.params["slow"]) / 100.0
+        return TargetPlan(
+            targets=targets,
+            cadence=str(request.params["cadence"]),
+            initial_cash=100_000.0,
+            fees=0.0,
+            rebalances=(
+                SimpleNamespace(
+                    decision_date=str(panel.dates[0].date()),
+                    execution_date=str(execution_day.date()),
+                ),
+            ),
+        )
+
+
+class _ToyEngine:
+    """玩具引擎:由目標比重表還原這一格是哪一格,回一條固定的複利淨值線。
+
+    它自己數住**跑過幾多次**(``runs``)——「同一格重掃不重跑」那一條,驗的正是
+    重掃一次之後這個數一動都不動。
+    """
+
+    def __init__(self, name: str = ENGINE[0]) -> None:
+        self.name = name
+        self.runs = 0
+        self.points: list[tuple[int, int]] = []
+
+    def simulate(self, panel, targets: pd.DataFrame, params) -> SimulationOutput:
+        self.runs += 1
+        written = targets.index[targets.notna().any(axis=1)]
+        row = targets.loc[written[0]]
+        columns = sorted(int(column) for column in targets.columns)
+        fast = int(round(float(row[columns[0]]) * 100.0))
+        slow = int(round(float(row[columns[1]]) * 100.0))
+        self.points.append((fast, slow))
+
+        rate = _rate(fast, slow)
+        entity_ids = tuple(columns[: len(_entities(fast))])
+        base = float(params.initial_cash)
+        equity = pd.Series(
             base * np.power(1.0 + rate, np.arange(len(DAYS), dtype=float)),
             index=DAYS,
             name="equity",
         )
         shares = base / len(entity_ids) / 100.0
-        self.holdings = pd.DataFrame(
+        holdings = pd.DataFrame(
             [
                 {"date": str(day.date()), "entity_id": entity_id, "shares": shares}
                 for day in DAYS
@@ -122,106 +249,84 @@ class _Simulation:
             ],
             columns=["date", "entity_id", "shares"],
         )
-        self.orders = pd.DataFrame(
-            [
-                {
-                    "trade_date": str(DAYS[0].date()), "entity_id": entity_id,
-                    "side": "buy", "shares": shares, "price": 100.0, "fees": 0.0,
-                }
-                for entity_id in entity_ids
-            ]
-            + [
-                {
-                    "trade_date": str(DAYS[-1].date()), "entity_id": entity_id,
-                    "side": "sell", "shares": shares, "price": 100.0 * (1.0 + rate) ** len(DAYS),
-                    "fees": 0.0,
-                }
-                for entity_id in entity_ids
-            ],
-            columns=["trade_date", "entity_id", "side", "shares", "price", "fees"],
-        )
-
-
-class _Job:
-    """掃描要收的「一格怎樣跑」:登記參數集講身份,砌一份假結果做成績。"""
-
-    def __init__(self, gateway, snapshot_id: str, factor_version_id: int) -> None:
-        self._gateway = gateway
-        self._store = gateway.store
-        self._snapshot_id = snapshot_id
-        self._factor_version_id = factor_version_id
-        self.executed: list[SweepPoint] = []
-
-    def plan(self, point: SweepPoint) -> CellPlan:
-        name = f"掃描-{point.slug}"
-        values = {axis: str(point.get(axis)) for axis in ("fast", "slow")}
-        try:
-            existing = self._store.get_param_set(STRATEGY, name)
-        except NotFound:
-            existing = None
-        if existing is not None and dict(existing.values) == values:
-            param_set = existing
-        else:
-            param_set, _ = self._gateway.register_param_set(
-                STRATEGY, param_set_name=name, rebalance_cadence=CADENCE, values=values
+        orders = tuple(
+            Order(
+                trade_date=str(DAYS[0].date()), entity_id=entity_id, side="buy",
+                shares=shares, price=100.0, fees=0.0,
             )
-        return CellPlan(
-            strategy_name=STRATEGY,
-            param_set_name=param_set.name,
-            snapshot_id=self._snapshot_id,
-            engine_name=ENGINE[0],
-            engine_version=ENGINE[1],
-            period_start=PERIOD[0],
-            period_end=PERIOD[1],
-            strategy_version_no=1,
-            param_set_version_no=param_set.version_no,
-            factor_version_ids=(self._factor_version_id,),
+            for entity_id in entity_ids
+        ) + tuple(
+            Order(
+                trade_date=str(DAYS[-1].date()), entity_id=entity_id, side="sell",
+                shares=shares, price=100.0 * (1.0 + rate) ** len(DAYS), fees=0.0,
+            )
+            for entity_id in entity_ids
         )
-
-    def simulate(self, point: SweepPoint) -> _Simulation:
-        self.executed.append(point)
-        fast, slow = int(point.get("fast")), int(point.get("slow"))
-        return _Simulation(_rate(fast, slow), _entities(fast))
+        return SimulationOutput(equity_curve=equity, holdings=holdings, orders=orders)
 
 
 @pytest.fixture()
 def bench(tmp_path):
-    """一個獨立的庫、一個掃描格、一次跑完的掃描與判讀。"""
+    """一個獨立的庫、一個掃描格、一次經策略執行台跑完的掃描與判讀。"""
     with Gateway.open(str(tmp_path / "karst.sqlite"), writer="KARST-029-sweep-test") as gateway:
         store = gateway.store
         snapshot_id = store.register_snapshot(
             source="test", taken_on="2026-08-28", content_hash="a1b2c3d4e5f60000",
-            universe=("AAA", "BBB", "CCC"),
+            universe=TICKERS,
         )
-        version, _ = gateway.register_factor(
-            FACTOR,
-            scale_kind="cardinal",
-            procedure=FormulaProcedure(
-                formula="close[-21] / close[-252] - 1", input_data_version=snapshot_id
-            ),
-        )
-        gateway.register_strategy(
-            STRATEGY, strategy_type="multifactor", factor_refs=[f"{FACTOR}@{version.version_no}"]
-        )
+        entity_ids: list[int] = []
+        for ticker in TICKERS:
+            entity_id = store.register_entity(
+                kind="etf", display_name=f"測試標的 {ticker}", local_code=f"ETF-{ticker}"
+            )
+            store.register_ticker(entity_id, ticker, valid_from="2020-01-01")
+            entity_ids.append(entity_id)
+        panel = _panel(entity_ids)
 
         runs = RunStore(store, root=tmp_path / "runs")
+        executor = Executor(gateway, runs)
+        contract = _ToyContract()
+        engine = _ToyEngine()
         grid = product_grid(fast=list(AXIS), slow=list(AXIS))
-        job = _Job(gateway, snapshot_id, version.factor_version_id)
-        sweep = run_sweep(
-            runs=runs, grid=grid, job=job, sweep_id=SWEEP_ID,
-            risk_free_rate=RISK_FREE, benchmarks=(),
+
+        # 登記:因子、策略、一個起步參數集。取值是**示例**(D-038)——這是砌出來的
+        # 測試數據,沒有人與它對齊過。
+        setup = executor.register(
+            contract,
+            strategy_name=STRATEGY,
+            snapshot_id=snapshot_id,
+            param_set_name="掃描起步",
+            values={"fast": 1, "slow": 1, "cadence": CADENCE},
+            alignment=SAMPLE,
         )
-        verdict = judge(
-            sweep.scores("annual_return"),
-            grid,
-            objective="annual_return",
-            min_trades=MIN_TRADES,
-            lonely_peak_margin=LONELY_PEAK_MARGIN,
-            plateau_quantile=PLATEAU_QUANTILE,
-        )
+
+        def scan(sweep_id: str, directory):
+            return executor.sweep(
+                contract,
+                setup=setup,
+                grid=grid,
+                panel=panel,
+                period=PERIOD,
+                engine_version=ENGINE[1],
+                risk_free_rate=RISK_FREE,
+                sweep_id=sweep_id,
+                param_set_prefix="掃描-",
+                param_set_suffix="",
+                base_values={"cadence": CADENCE},
+                objective="annual_return",
+                min_trades=MIN_TRADES,
+                lonely_peak_margin=LONELY_PEAK_MARGIN,
+                plateau_quantile=PLATEAU_QUANTILE,
+                report=BatchReport(directory=directory, title="測試掃描批次"),
+                engine=engine,
+                benchmarks=(),
+            )
+
+        outcome = scan(SWEEP_ID, tmp_path / "批次報告")
         yield {
             "gateway": gateway, "store": store, "runs": runs, "grid": grid,
-            "job": job, "sweep": sweep, "verdict": verdict,
+            "engine": engine, "scan": scan, "outcome": outcome,
+            "sweep": outcome.sweep, "verdict": outcome.judgement,
             "snapshot_id": snapshot_id, "tmp": tmp_path,
         }
 
@@ -378,18 +483,22 @@ def test_the_report_points_back_to_strategy_version_period_and_snapshot(bench, t
 
 
 def test_rescanning_the_same_grid_reuses_the_runs_instead_of_rerunning_the_engine(bench):
-    sweep, runs, grid, job = bench["sweep"], bench["runs"], bench["grid"], bench["job"]
+    sweep, engine, scan = bench["sweep"], bench["engine"], bench["scan"]
 
     assert sweep.executed == len(sweep) and sweep.reused == 0
-    assert len(job.executed) == len(sweep)
+    assert engine.runs == len(sweep)
 
-    again = run_sweep(
-        runs=runs, grid=grid, job=job, sweep_id=SWEEP_ID,
-        risk_free_rate=RISK_FREE, benchmarks=(),
-    )
+    # 重掃用**另一個掃描編號**。掃描編號不入運行編號的原料(見 ``store.run_fingerprint``),
+    # 所以換一個編號一格都不會多跑——要驗的「不重跑」照樣驗得到。
+    #
+    # 為什麼不沿用同一個編號:現時沿用同一個編號重掃**一定**拋錯。批次登記那一列
+    # 載住報告的內容雜湊,而報告正文寫住產出時間、耗時、以及「其中 N 格今次真的
+    # 動過引擎」——三樣重掃一次必然不同,於是雜湊必然不同,
+    # ``store.register_sweep_batch`` 就當成「改寫一份已發表的成績」拒收。詳見本票回報。
+    again = scan(f"{SWEEP_ID}-重掃", bench["tmp"] / "重掃報告").sweep
     assert again.reused == len(again) and again.executed == 0
     # 引擎一次都沒有再動過。
-    assert len(job.executed) == len(sweep)
+    assert engine.runs == len(sweep)
     assert again.run_ids() == sweep.run_ids()
 
 

@@ -12,6 +12,9 @@
 
 合成宏觀讀數刻意鋪成會**來回翻幾轉**的形狀(正弦波),否則驅動器由頭到尾押同一
 邊,掃描格上每一格都一樣,判讀就無話可說。
+
+KARST-091 起,宏觀面板經 ``RunRequest.extras["macro"]``(常數 ``MACRO_INPUT``)交
+入策略,或者經 ``Executor.sweep(..., extras={"macro": 面板})`` 交入一整幅格。
 """
 
 from __future__ import annotations
@@ -22,41 +25,55 @@ import pytest
 
 from karst.data.snapshots import write_snapshot_dir
 from karst.engine import PricePanel, TradingCosts
-from karst.engine.contracts import SimulationOutput
+from karst.engine.costed import CostedEngine
+from karst.executor import (
+    SAMPLE,
+    BatchReport,
+    Executor,
+    RunRequest,
+    cost_inputs,
+    cost_slug,
+    register_setup,
+    resolve_entities,
+    simulate_plan,
+)
 from karst.gateway.service import Gateway
 from karst.runs import RunStore
-from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES
+from karst.strategies.factor_mix import (
+    CADENCE_PARAM,
+    FACTOR_ETF_SLEEVES,
+    FactorMixContract,
+)
 from karst.strategies.factor_rotation import (
+    DRIVER_KEY,
     DRIVER_PARAMETERS,
     MACRO_DRIVER_KEYS,
+    MACRO_INPUT,
+    MACRO_SERIES_KEY,
+    MACRO_SERIES_SEPARATOR,
+    MACRO_SNAPSHOT_KEY,
     SOURCE_DRIVER,
     SOURCE_INSUFFICIENT,
+    WARMUP_BARS_KEY,
+    WARMUP_PREFIX,
     DriverView,
+    FactorRotationContract,
     FactorRotationParams,
     InsufficientHistory,
     build_driver,
     macro_series_needed,
     resolve_rotation_exposures,
     rotation_targets,
-    run_factor_rotation,
 )
 from karst.sweep import (
     VERDICTS,
     ExplicitGrid,
-    FactorMixJob,
-    judge,
-    reference_point,
-    run_sweep,
-    write_report,
-)
-from karst.sweep.factor_rotation import (
-    FactorRotationJob,
     ScoreEntry,
-    ensure_factor_rotation_setup,
-    rotation_grid,
+    reference_point,
     scoreboard,
     segment_excess,
 )
+from karst.sweep.factor_rotation import rotation_grid
 
 from doubles.engines import RecordingEngine
 
@@ -65,6 +82,9 @@ MIX_STRATEGY = "因子混合(ETF 版)"
 ENGINE_VERSION = "0.1.0"
 MARKET = "SPY"
 RISK_FREE = 0.04
+INITIAL_CASH = 100_000.0
+FEES = 0.0
+MACRO_SNAPSHOT_ID = "2026-08-28-macrotest0001"
 
 DATES = pd.bdate_range("2020-01-01", periods=400)
 PERIOD = (str(DATES[0].date()), str(DATES[-1].date()))
@@ -174,6 +194,17 @@ def _write_snapshot(root, snapshot_id: str, panel: PricePanel, entity_of: dict[s
 # 那個只做記錄的可換件引擎住在 tests/doubles/engines.py(KARST-090)。
 
 
+ROTATION_SETUP_VALUES = {
+    DRIVER_KEY: "relative_strength",
+    "lookback_months": 3,
+    "fallback": "cash",
+    WARMUP_BARS_KEY: WARMUP_BARS,
+    **{f"{WARMUP_PREFIX}{key}": value for key, value in WARMUP_WEIGHTS.items()},
+    CADENCE_PARAM: "quarterly",
+}
+MIX_SETUP_VALUES = {**WARMUP_WEIGHTS, CADENCE_PARAM: "quarterly"}
+
+
 @pytest.fixture()
 def toy(tmp_path, monkeypatch):
     """一個獨立的庫:五個實體、四個因子、輪動與混合兩套策略、一個快照、一張宏觀面板。"""
@@ -189,24 +220,27 @@ def toy(tmp_path, monkeypatch):
         )
         snapshot_root = tmp_path / "snapshots"
         _write_snapshot(snapshot_root, snapshot_id, panel, entity_of)
-        rotation = ensure_factor_rotation_setup(
+        rotation = register_setup(
             gateway,
+            FactorRotationContract.for_setup("relative_strength"),
             strategy_name=ROTATION_STRATEGY,
             snapshot_id=snapshot_id,
-            setup_param_set_name="測試基座-輪動-040",
-            setup_weights=WARMUP_WEIGHTS,
-            cadence="quarterly",
+            param_set_name="測試基座-輪動-040",
+            values=ROTATION_SETUP_VALUES,
+            alignment=SAMPLE,
             description="KARST-040 測試基座,不是現役設定",
         )
-        mix = ensure_factor_rotation_setup(
+        mix = register_setup(
             gateway,
+            FactorMixContract.for_setup(FACTOR_ETF_SLEEVES),
             strategy_name=MIX_STRATEGY,
             snapshot_id=snapshot_id,
-            setup_param_set_name="測試基座-混合-040",
-            setup_weights=WARMUP_WEIGHTS,
-            cadence="quarterly",
+            param_set_name="測試基座-混合-040",
+            values=MIX_SETUP_VALUES,
+            alignment=SAMPLE,
             description="KARST-040 對照用的固定權重策略",
         )
+        runs = RunStore(store, root=tmp_path / "runs")
         yield {
             "gateway": gateway,
             "store": store,
@@ -217,49 +251,104 @@ def toy(tmp_path, monkeypatch):
             "macro": _macro_panel(),
             "rotation": rotation,
             "mix": mix,
-            "runs": RunStore(store, root=tmp_path / "runs"),
+            "runs": runs,
+            "executor": Executor(gateway, runs, snapshot_root=snapshot_root),
             "tmp": tmp_path,
         }
 
 
-def _rotation_job(toy, driver_key: str, *, costs=EXAMPLE_COSTS, cadence: str = "quarterly"):
-    macro_needed = macro_series_needed(driver_key)
-    return FactorRotationJob(
-        gateway=toy["gateway"],
-        panel=toy["panel"],
+def _rotation_contract(driver_key: str, *, costs=EXAMPLE_COSTS, market_ticker=MARKET):
+    """一份跑得動的因子輪動合約;要看宏觀的驅動器連宏觀快照編號一齊寫明。"""
+    macro_id = MACRO_SNAPSHOT_ID if macro_series_needed(driver_key) else None
+    return FactorRotationContract(
         driver_key=driver_key,
-        strategy_name=ROTATION_STRATEGY,
-        snapshot_id=toy["snapshot_id"],
-        engine_version=ENGINE_VERSION,
-        param_set_prefix=f"測試m-{driver_key}-",
-        period_start=PERIOD[0],
-        period_end=PERIOD[1],
+        sleeves=FACTOR_ETF_SLEEVES,
         warmup_bars=WARMUP_BARS,
         warmup_weights=WARMUP_WEIGHTS,
-        cadence=cadence,
-        strategy_version_no=toy["rotation"].version_no,
-        market_ticker=MARKET,
+        market_ticker=market_ticker,
+        initial_cash=INITIAL_CASH,
+        fees=FEES,
         costs=costs,
-        macro=toy["macro"] if macro_needed else None,
-        macro_snapshot_id="2026-08-28-macrotest0001" if macro_needed else None,
+        macro_snapshot_id=macro_id,
     )
 
 
-def _sweep(toy, grid, job, sweep_id="測試-宏觀驅動器"):
-    return run_sweep(
-        runs=toy["runs"],
+def _base_values(driver_key: str, *, costs=EXAMPLE_COSTS, cadence: str = "quarterly") -> dict:
+    """整幅格共用那幾格:驅動器身份、熱身期、成本,以及宏觀那兩格來歷。"""
+    values = {
+        DRIVER_KEY: driver_key,
+        WARMUP_BARS_KEY: WARMUP_BARS,
+        **{f"{WARMUP_PREFIX}{key}": value for key, value in WARMUP_WEIGHTS.items()},
+        CADENCE_PARAM: cadence,
+        **cost_inputs(costs),
+    }
+    needed = macro_series_needed(driver_key)
+    if needed:
+        # 換一份宏觀數據就是另一次運行,所以編號與序列一齊入參數集(KARST-040)。
+        values[MACRO_SNAPSHOT_KEY] = MACRO_SNAPSHOT_ID
+        values[MACRO_SERIES_KEY] = MACRO_SERIES_SEPARATOR.join(needed)
+    return values
+
+
+def _engine(costs):
+    if costs is None or costs.is_zero:
+        return None
+    return CostedEngine(costs)
+
+
+def _rotation_sweep(toy, driver_key, grid, *, sweep_id="測試-宏觀驅動器",
+                    directory=None, title=None, notes="", costs=EXAMPLE_COSTS,
+                    objective=None, min_trades=2):
+    macro = toy["macro"] if macro_series_needed(driver_key) else None
+    return toy["executor"].sweep(
+        _rotation_contract(driver_key, costs=costs),
+        setup=toy["rotation"],
         grid=grid,
-        job=job,
-        sweep_id=sweep_id,
+        panel=toy["panel"],
+        period=PERIOD,
+        engine_version=ENGINE_VERSION,
         risk_free_rate=RISK_FREE,
+        sweep_id=sweep_id,
+        param_set_prefix=f"測試m-{driver_key}-",
+        param_set_suffix=cost_slug(costs),
+        base_values=_base_values(driver_key, costs=costs),
+        objective=objective or f"annual_excess:{MARKET}",
+        min_trades=min_trades,
+        lonely_peak_margin=0.005,
+        plateau_quantile=0.90,
+        report=BatchReport(
+            directory=directory or (toy["tmp"] / driver_key),
+            title=title or f"宏觀驅動器·{driver_key}",
+            notes=notes,
+        ),
+        engine=_engine(costs),
+        extras={} if macro is None else {MACRO_INPUT: macro},
         benchmarks=(MARKET,),
-        snapshot_root=toy["snapshot_root"],
     )
 
 
 def _params(cadence: str = "quarterly") -> FactorRotationParams:
     return FactorRotationParams(
         cadence=cadence, warmup_bars=WARMUP_BARS, warmup_weights=WARMUP_WEIGHTS
+    )
+
+
+def _request(toy, contract, values, extras=None) -> RunRequest:
+    """砌一次 ``plan()`` 要的輸入(解析走執行台那一份,不另寫一套)。"""
+    checked = contract.param_spec().validate(values)
+    entities = resolve_entities(
+        toy["store"],
+        contract.needs_entities(checked),
+        on_date=toy["panel"].dates[0],
+        known_entity_ids=tuple(toy["panel"].entity_ids),
+    )
+    return RunRequest(
+        panel=toy["panel"],
+        params=checked,
+        entities=entities,
+        factors={ref.name: ref for ref in toy["rotation"].factors},
+        snapshot_id=toy["snapshot_id"],
+        extras=dict(extras or {}),
     )
 
 
@@ -281,30 +370,24 @@ def test_three_macro_drivers_share_one_scoreboard_with_price_and_fixed_weight(to
         grid = rotation_grid(driver_key, values=values, cadences=("quarterly",))
         assert len(grid) == 9  # 3 個門檻/回望期 × 3 個押注比重 × 1 個節奏
 
-        sweep = _sweep(toy, grid, _rotation_job(toy, driver_key))
+        outcome = _rotation_sweep(
+            toy,
+            driver_key,
+            grid,
+            sweep_id=f"測試-宏觀驅動器-{driver_key}",
+            notes=f"宏觀序列:{'、'.join(macro_series_needed(driver_key))}",
+        )
+        sweep = outcome.sweep
         assert len(sweep) == 9
         # 這次成績真的用過宏觀數據:編號入了參數集,換一份數據就是另一次運行
         assert all("macro_snapshot" in c.plan.param_set_name or True for c in sweep.cells)
 
-        verdict = judge(
-            sweep.scores(objective),
-            grid,
-            objective=objective,
-            min_trades=2,
-            lonely_peak_margin=0.005,
-            plateau_quantile=0.90,
-        )
+        verdict = outcome.judgement
         # 判讀真的判過:每一格都貼上四個標籤之一
         assert {cell.verdict for cell in verdict.cells} <= set(VERDICTS)
 
         # 穩健平原報告落檔
-        report = write_report(
-            sweep,
-            verdict,
-            toy["tmp"] / driver_key,
-            title=f"宏觀驅動器·{driver_key}",
-            notes=f"宏觀序列:{'、'.join(macro_series_needed(driver_key))}",
-        )
+        report = outcome.report_path
         assert report.exists()
         reports.append(report)
 
@@ -325,48 +408,53 @@ def test_three_macro_drivers_share_one_scoreboard_with_price_and_fixed_weight(to
         values={"lookback_months": (3, 6), "fallback": ("cash", "equal")},
         cadences=("quarterly",),
     )
-    price_sweep = _sweep(toy, price_grid, _rotation_job(toy, "relative_strength"))
-    price_verdict = judge(
-        price_sweep.scores(objective),
-        price_grid,
-        objective=objective,
-        min_trades=2,
-        lonely_peak_margin=0.005,
-        plateau_quantile=0.90,
+    price_outcome = _rotation_sweep(
+        toy, "relative_strength", price_grid,
+        sweep_id="測試-價格驅動器",
+        title="價格驅動器·relative_strength",
     )
+    price_verdict = price_outcome.judgement
     assert price_verdict.best is not None
     entries.append(
         ScoreEntry(
             label="價格·relative_strength·最優格",
             kind="價格驅動器",
-            cell=price_sweep.cell_for(price_verdict.best.point),
+            cell=price_outcome.sweep.cell_for(price_verdict.best.point),
             verdict=price_verdict.best,
         )
     )
 
     # --- 固定權重對照格 ---
-    mix_job = FactorMixJob(
-        gateway=toy["gateway"],
-        panel=toy["panel"],
-        sleeves=FACTOR_ETF_SLEEVES,
-        strategy_name=MIX_STRATEGY,
-        snapshot_id=toy["snapshot_id"],
-        engine_version=ENGINE_VERSION,
-        param_set_prefix="測試w-040-",
-        period_start=PERIOD[0],
-        period_end=PERIOD[1],
-        cadence="quarterly",
-        strategy_version_no=toy["mix"].version_no,
-        costs=EXAMPLE_COSTS,
-    )
     control_point = reference_point(FACTOR_ETF_SLEEVES, WARMUP_WEIGHTS)
-    control_sweep = _sweep(toy, ExplicitGrid([control_point]), mix_job)
+    control_outcome = toy["executor"].sweep(
+        FactorMixContract(
+            sleeves=FACTOR_ETF_SLEEVES, initial_cash=INITIAL_CASH, fees=FEES,
+            costs=EXAMPLE_COSTS,
+        ),
+        setup=toy["mix"],
+        grid=ExplicitGrid([control_point]),
+        panel=toy["panel"],
+        period=PERIOD,
+        engine_version=ENGINE_VERSION,
+        risk_free_rate=RISK_FREE,
+        sweep_id="測試-固定權重對照-040",
+        param_set_prefix="測試w-040-",
+        param_set_suffix=cost_slug(EXAMPLE_COSTS),
+        base_values={CADENCE_PARAM: "quarterly", **cost_inputs(EXAMPLE_COSTS)},
+        objective=objective,
+        min_trades=2,
+        lonely_peak_margin=0.005,
+        plateau_quantile=0.90,
+        report=BatchReport(directory=toy["tmp"] / "對照", title="固定權重對照"),
+        engine=_engine(EXAMPLE_COSTS),
+        benchmarks=(MARKET,),
+    )
     control_label = "固定權重·各佔25%(quarterly)"
     entries.append(
         ScoreEntry(
             label=control_label,
             kind="對照",
-            cell=control_sweep.cells[0],
+            cell=control_outcome.cells[0],
             note="不在任何掃描格上,故不判平原/孤峰",
         )
     )
@@ -451,37 +539,34 @@ def test_macro_drivers_are_swappable_without_touching_engine_or_target_path(toy)
     assert sum(1 for r in macro_rebalances if r.source == SOURCE_DRIVER) > 0
 
     # --- 引擎是可換件:同一個策略層跑得起一個非 vectorbt 的引擎 ---
-    engine = RecordingEngine()
-    result = run_factor_rotation(
-        store=store,
-        panel=panel,
-        sleeves=FACTOR_ETF_SLEEVES,
-        driver=macro_driver,
-        params=_params(),
-        engine=engine,
-        market_ticker=MARKET,
-        macro=macro,
+    contract = _rotation_contract("vix_level", costs=None)
+    plan = contract.plan(
+        _request(
+            toy,
+            contract,
+            {**_base_values("vix_level", costs=None), "threshold": 20.0, "tilt": 1.0},
+            extras={MACRO_INPUT: macro},
+        )
     )
+    engine = RecordingEngine()
+    result = simulate_plan(engine, panel, plan, engine_name="recorder")
     assert result.engine_name == "recorder"
     assert len(engine.calls) == 1
     assert list(engine.calls[0].columns) == list(macro_targets.columns)
-    # 這次成績用過哪幾條宏觀序列,結果自己講得出
-    assert result.macro_series == ("VIX",)
+    # 這次成績用過哪幾條宏觀序列,計劃自己講得出
+    assert plan.extras["macro_series"] == ("VIX",)
 
 
 def test_a_macro_driver_without_its_panel_is_refused_not_run_blind(toy):
     """要看宏觀而沒有給宏觀面板:當場拒收,不靜靜跑一條「訊號沒講過話」的線。"""
-    driver = build_driver("credit_trend", lookback_days=20, tilt=1.0)
+    contract = _rotation_contract("credit_trend", costs=None)
+    values = {
+        **_base_values("credit_trend", costs=None),
+        "lookback_days": 20,
+        "tilt": 1.0,
+    }
     with pytest.raises(Exception) as caught:
-        run_factor_rotation(
-            store=toy["store"],
-            panel=toy["panel"],
-            sleeves=FACTOR_ETF_SLEEVES,
-            driver=driver,
-            params=_params(),
-            engine=RecordingEngine(),
-            market_ticker=MARKET,
-        )
+        contract.plan(_request(toy, contract, values))
     assert "宏觀" in str(caught.value)
 
 

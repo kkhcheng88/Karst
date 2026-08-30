@@ -378,6 +378,53 @@ class RunRetraction:
     retracted_at: str
 
 
+@dataclass(frozen=True, slots=True)
+class SweepBatch:
+    """一次參數掃描的**批次登記**(KARST-091;D-042、CONTEXT.md「批次登記」)。
+
+    批次 = 一次參數掃描跑出來的那批運行。這一列答的是「這一批整體交出了什麼」:
+    共幾多格、幾多格達標、隱藏了幾多條失敗運行、三個中位數成績、用哪一套判讀口徑
+    判的、最好那一格與最穩那一格是哪一格、批內最佳單次是哪一個運行編號,以及報告
+    落在哪、那份報告的內容雜湊是什麼。
+
+    **它不是因子值批次**(``FactorValueBatch``)。同一個「批次」二字在本倉有兩個
+    出處:那邊講的是一批因子值,這邊講的是一次掃描;詞彙表分得開,型別亦分得開。
+    """
+
+    sweep_id: str
+    strategy_name: str
+    strategy_version_no: int
+    period_start: str
+    period_end: str
+    snapshot_id: str
+    engine_name: str
+    engine_version: str
+    cell_count: int
+    qualified_cells: int
+    failed_cells: int
+    error_cells: int
+    median_annual_return: float | None
+    median_sortino: float | None
+    median_max_drawdown: float | None
+    objective: str
+    min_trades: int
+    lonely_peak_margin: float
+    plateau_quantile: float
+    best_point: str | None
+    best_run_id: str | None
+    representative_point: str | None
+    report_path: str
+    report_hash: str
+    created_at: str
+
+    @property
+    def qualified_ratio(self) -> float | None:
+        """達標比率。掃描批次表那一欄(D-042 第 5 條)。零格即答不出,不當零。"""
+        if self.cell_count <= 0:
+            return None
+        return float(self.qualified_cells) / float(self.cell_count)
+
+
 #: 「已除名的運行不算數」這一句,在 SQL 裡就是這一段(KARST-093)。``list_runs`` 與
 #: ``count_runs`` 兩處都要掛,而兩處掛得不一樣就會出現「清單見不到、計數見得到」
 #: 這種最難查的帳目不符,所以只寫一次。前綴的 ``AND`` 與 ``r`` 別名是刻意的:
@@ -2145,6 +2192,229 @@ class DefinitionStore:
     def run_is_stale(self, run_id: str) -> bool:
         """這次運行是否已經過時(蓋住的版本不再是最新版)。"""
         return bool(self.run_stale_reasons(run_id))
+
+    # ------------------------------------------------------------------
+    # 批次登記(KARST-091;D-042、CONTEXT.md「批次登記」)
+    # ------------------------------------------------------------------
+
+    def register_sweep_batch(
+        self,
+        sweep_id: str,
+        *,
+        strategy_name: str,
+        strategy_version_no: int,
+        period_start: str,
+        period_end: str,
+        snapshot_id: str,
+        engine_name: str,
+        engine_version: str,
+        cell_count: int,
+        qualified_cells: int,
+        failed_cells: int,
+        error_cells: int,
+        median_annual_return: float | None,
+        median_sortino: float | None,
+        median_max_drawdown: float | None,
+        objective: str,
+        min_trades: int,
+        lonely_peak_margin: float,
+        plateau_quantile: float,
+        best_point: str | None,
+        best_run_id: str | None,
+        representative_point: str | None,
+        report_path: str,
+        report_hash: str,
+    ) -> tuple[SweepBatch, bool]:
+        """登記一次掃描的批次,回 ``(批次, 是不是沿用舊那一列)``。
+
+        **同一個掃描編號登記兩次**:內容逐格相同就原封不動沿用(重掃同一幅格會
+        走到這裡——每一格都讀回舊運行,結論自然一模一樣);有一格不同即當場拒收,
+        因為批次登記只加不改(``trg_sweep_batch_no_update``),而改寫一份已經發表
+        的成績正是治理要防的那件事。
+
+        **一格預設值都沒有。** 判讀目標與三個門檻尤其:它們是這一批成績的口徑,
+        報告一定要印得出(D-008 第 3 條),補一個預設等於替用戶決定怎樣讀這批數。
+
+        本方法**不蓋簽章**——簽章手只有唯一入口拿得到(D-020 第 4 條),
+        見 ``Gateway.register_sweep_batch``。
+        """
+        identifier = str(sweep_id or "").strip()
+        if not identifier:
+            raise ContractViolation(
+                "批次登記的掃描編號不可留空;一批成績講不出自己是哪一次掃描就指不回去"
+            )
+        version = self.get_strategy_version(strategy_name, strategy_version_no)
+        objective_text = str(objective or "").strip()
+        if not objective_text:
+            raise ContractViolation(
+                "批次登記要寫明判讀目標;沒有目標就講不出「最佳格」是按什麼最佳(D-008 第 3 條)"
+            )
+        report = str(report_path or "").strip()
+        digest = str(report_hash or "").strip()
+        if not report or not digest:
+            raise ContractViolation(
+                "批次登記要寫明報告落點與它的內容雜湊;報告是這一批成績的憑據,"
+                "指不回一份檔就核不出它有沒有被改過"
+            )
+        counts = {
+            "總格數": int(cell_count),
+            "達標格數": int(qualified_cells),
+            "失敗運行條數": int(failed_cells),
+            "出錯格數": int(error_cells),
+        }
+        for label, value in counts.items():
+            if value < 0:
+                raise ContractViolation(f"批次登記的{label}不可為負,收到 {value}")
+        if counts["總格數"] <= 0:
+            raise ContractViolation("批次登記的總格數要大於零;一格都沒有的掃描登記不出東西")
+
+        row = tuple(
+            (
+                identifier,
+                version.strategy_version_id,
+                str(period_start).strip(),
+                str(period_end).strip(),
+                str(snapshot_id).strip(),
+                str(engine_name).strip(),
+                str(engine_version).strip(),
+                counts["總格數"],
+                counts["達標格數"],
+                counts["失敗運行條數"],
+                counts["出錯格數"],
+                None if median_annual_return is None else float(median_annual_return),
+                None if median_sortino is None else float(median_sortino),
+                None if median_max_drawdown is None else float(median_max_drawdown),
+                objective_text,
+                int(min_trades),
+                float(lonely_peak_margin),
+                float(plateau_quantile),
+                None if best_point is None else str(best_point).strip(),
+                None if best_run_id is None else str(best_run_id).strip(),
+                None if representative_point is None else str(representative_point).strip(),
+                report,
+                digest,
+            )
+        )
+
+        existing = self._sweep_batch_row(identifier)
+        if existing is not None:
+            found = self._sweep_batch(existing)
+            if self._batch_row_tuple(existing) != row:
+                raise DuplicateDefinition(
+                    f"掃描編號 {identifier} 已經有一列批次登記,而今次要寫的內容與它不同;"
+                    "批次登記只加不改——一次掃描的成績是一件已經發生的事,"
+                    "換判讀口徑請重判並用另一個掃描編號另寫一列"
+                )
+            return found, True
+
+        moment = _now()
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO sweep_batch (sweep_id, strategy_version_id, period_start,"
+                " period_end, snapshot_id, engine_name, engine_version, cell_count,"
+                " qualified_cells, failed_cells, error_cells, median_annual_return,"
+                " median_sortino, median_max_drawdown, objective, min_trades,"
+                " lonely_peak_margin, plateau_quantile, best_point, best_run_id,"
+                " representative_point, report_path, report_hash, created_at)"
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                row + (moment,),
+            )
+        return self.get_sweep_batch(identifier), False
+
+    def get_sweep_batch(self, sweep_id: str) -> SweepBatch:
+        """按掃描編號讀回批次登記。查無此批即 ``NotFound``。"""
+        identifier = str(sweep_id or "").strip()
+        row = self._sweep_batch_row(identifier)
+        if row is None:
+            raise NotFound(f"查無掃描編號 {identifier!r} 的批次登記")
+        return self._sweep_batch(row)
+
+    def has_sweep_batch(self, sweep_id: str) -> bool:
+        return self._sweep_batch_row(str(sweep_id or "").strip()) is not None
+
+    def list_sweep_batches(self, strategy_name: str | None = None) -> list[SweepBatch]:
+        """批次登記一覽,新的在前。給了策略名就只列那一套的(D-042 第 5 條的批次表)。"""
+        sql = (
+            "SELECT b.*, s.name AS strategy_name, v.version_no AS strategy_version_no"
+            " FROM sweep_batch AS b"
+            " JOIN strategy_version AS v ON v.strategy_version_id = b.strategy_version_id"
+            " JOIN strategy AS s ON s.strategy_id = v.strategy_id"
+        )
+        params: list[Any] = []
+        if strategy_name is not None:
+            sql += " WHERE s.name = ?"
+            params.append(str(strategy_name).strip())
+        sql += " ORDER BY b.created_at DESC, b.sweep_id DESC"
+        return [self._sweep_batch(row) for row in self._conn.execute(sql, params).fetchall()]
+
+    def _sweep_batch_row(self, sweep_id: str) -> sqlite3.Row | None:
+        return self._conn.execute(
+            "SELECT b.*, s.name AS strategy_name, v.version_no AS strategy_version_no"
+            " FROM sweep_batch AS b"
+            " JOIN strategy_version AS v ON v.strategy_version_id = b.strategy_version_id"
+            " JOIN strategy AS s ON s.strategy_id = v.strategy_id"
+            " WHERE b.sweep_id = ?",
+            (sweep_id,),
+        ).fetchone()
+
+    @staticmethod
+    def _batch_row_tuple(row: sqlite3.Row) -> tuple[Any, ...]:
+        """把庫內那一列收成與寫入時一模一樣的形狀,好逐格比對。"""
+        return (
+            row["sweep_id"],
+            row["strategy_version_id"],
+            row["period_start"],
+            row["period_end"],
+            row["snapshot_id"],
+            row["engine_name"],
+            row["engine_version"],
+            row["cell_count"],
+            row["qualified_cells"],
+            row["failed_cells"],
+            row["error_cells"],
+            row["median_annual_return"],
+            row["median_sortino"],
+            row["median_max_drawdown"],
+            row["objective"],
+            row["min_trades"],
+            row["lonely_peak_margin"],
+            row["plateau_quantile"],
+            row["best_point"],
+            row["best_run_id"],
+            row["representative_point"],
+            row["report_path"],
+            row["report_hash"],
+        )
+
+    @staticmethod
+    def _sweep_batch(row: sqlite3.Row) -> SweepBatch:
+        return SweepBatch(
+            sweep_id=row["sweep_id"],
+            strategy_name=row["strategy_name"],
+            strategy_version_no=int(row["strategy_version_no"]),
+            period_start=row["period_start"],
+            period_end=row["period_end"],
+            snapshot_id=row["snapshot_id"],
+            engine_name=row["engine_name"],
+            engine_version=row["engine_version"],
+            cell_count=int(row["cell_count"]),
+            qualified_cells=int(row["qualified_cells"]),
+            failed_cells=int(row["failed_cells"]),
+            error_cells=int(row["error_cells"]),
+            median_annual_return=row["median_annual_return"],
+            median_sortino=row["median_sortino"],
+            median_max_drawdown=row["median_max_drawdown"],
+            objective=row["objective"],
+            min_trades=int(row["min_trades"]),
+            lonely_peak_margin=float(row["lonely_peak_margin"]),
+            plateau_quantile=float(row["plateau_quantile"]),
+            best_point=row["best_point"],
+            best_run_id=row["best_run_id"],
+            representative_point=row["representative_point"],
+            report_path=row["report_path"],
+            report_hash=row["report_hash"],
+            created_at=row["created_at"],
+        )
 
     # ------------------------------------------------------------------
     # 現役設定(規格 7.5、CONTEXT.md「現役設定」;KARST-030)

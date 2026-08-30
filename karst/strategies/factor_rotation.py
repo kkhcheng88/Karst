@@ -27,27 +27,28 @@
 對象**,不入實體表、不入價格面板(處置見 ``karst.data.macro``),所以它們影響的
 永遠只是「四格怎樣分」,不會變成第五格持倉。
 
-接口是**向後相容**地擴出來的:``DriverView.macro``、``rotation_targets(macro=…)``、
-``run_factor_rotation(macro=…)`` 三處都是有預設值的新參數,留空即與 KARST-036 那
-四個驅動器一模一樣;不看宏觀的驅動器連 ``macro`` 這個字都不用提。
+接口是**向後相容**地擴出來的:``DriverView.macro``、``rotation_targets(macro=…)``
+兩處都是有預設值的新參數,留空即與 KARST-036 那四個驅動器一模一樣;不看宏觀的
+驅動器連 ``macro`` 這個字都不用提。宏觀面板由執行台當一格 ``extras`` 交進來
+(鍵 ``MACRO_INPUT``)。
 
-用法::
+用法(KARST-091 起走策略合約,策略自己不開庫、不碰引擎)::
 
-    from karst.strategies.factor_rotation import (
-        FactorRotationParams, build_driver, run_factor_rotation,
-    )
+    from karst.executor import Executor, RunRequest
+    from karst.strategies.factor_rotation import FactorRotationContract
     from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES
 
-    driver = build_driver("factor_momentum", lookback_months=6, mode="winner")
-    params = FactorRotationParams(
-        cadence="monthly",
+    contract = FactorRotationContract(
+        driver_key="factor_momentum",
+        sleeves=FACTOR_ETF_SLEEVES,
         warmup_bars=252,
         warmup_weights={s.weight_key: 0.25 for s in FACTOR_ETF_SLEEVES},
+        market_ticker="SPY",
+        initial_cash=100_000.0,
+        fees=0.0,
     )
-    result = run_factor_rotation(
-        store=store, panel=panel, sleeves=FACTOR_ETF_SLEEVES,
-        driver=driver, params=params, market_ticker="SPY",
-    )
+    # 策略只交一張目標比重表出來;落痕、落格、判讀全部是執行台的事。
+    plan = contract.plan(RunRequest(...))
     result.equity_curve      # 逐日淨值
     result.weights_frame()   # 逐次換倉那四格權重走過的路
 """
@@ -63,27 +64,58 @@ import numpy as np
 import pandas as pd
 
 from ..errors import ContractViolation
-from ..executor.contract import check_count, check_ratio
-from ..store import FORMAL_RUN, DefinitionStore
+from ..executor.contract import (
+    ENGINE_TARGETS,
+    KIND_INTEGER,
+    KIND_NUMBER,
+    KIND_TEXT,
+    SLOT_CADENCE,
+    TEXT_AUTO,
+    TEXT_FOUR_PLACES,
+    TEXT_VERBATIM,
+    SLUG_VERBATIM,
+    EntityRequest,
+    FactorSpec,
+    ParamField,
+    ParamSpec,
+    RunRequest,
+    TargetPlan,
+    check_count,
+    check_ratio,
+    cost_fields,
+)
+from ..store import DefinitionStore
 from ..engine.contracts import (
     CADENCES,
     CadenceNotSpecified,
     Order,
     PricePanel,
-    RankingRebalanceParams,
     TradingCosts,
     resolve_costs,
 )
-from ..engine.protocol import PortfolioEngine
 from .factor_mix import (
+    CADENCE_PARAM,
     FACTOR_ETF_SLEEVES,
     FACTOR_MIX_STRATEGY_TYPE,
+    FactorMixContract,
     FactorSleeve,
     factor_mix_schedule,
 )
 
 # 策略類型(store.STRATEGY_TYPES 八選一):輪動仍然是多因子,與因子混合同類。
 FACTOR_ROTATION_STRATEGY_TYPE: Final[str] = FACTOR_MIX_STRATEGY_TYPE
+
+# 這條策略在參數集裡那幾個鍵。**它們同時是運行編號的原料**:改一個字,全部輪動
+# 運行當場換編號,所以正本只此一份。
+DRIVER_KEY: Final[str] = "driver"
+"""驅動器的名。**它不是掃描格的一條軸**——一次掃描只掃一個驅動器(不同驅動器的
+參數名根本不同,排不進同一個笛卡兒積),所以它寫在參數集的值裡做身份,不入名。"""
+
+WARMUP_BARS_KEY: Final[str] = "warmup_bars"
+WARMUP_PREFIX: Final[str] = "warmup_"
+MACRO_SNAPSHOT_KEY: Final[str] = "macro_snapshot"
+MACRO_SERIES_KEY: Final[str] = "macro_series"
+MACRO_SERIES_SEPARATOR: Final[str] = "、"
 
 # 權重加總的容差。只用來擋浮點尾數,不是「差不多就當一」。
 _SUM_TOLERANCE: Final[float] = 1e-9
@@ -378,7 +410,7 @@ class RotationDriver(Protocol):
     needs_macro: tuple[str, ...]
     """要看的宏觀序列代號(KARST-040)。空的即這個驅動器只看價格。
 
-    跑的時候由 ``run_factor_rotation`` 逐條核對:宏觀面板裡缺任何一條即**當場
+    跑的時候由 ``_prepare_macro`` 逐條核對:宏觀面板裡缺任何一條即**當場
     拒收**,不會靜靜地跑出一條「訊號從來沒有講過話」的淨值線。
     """
 
@@ -1373,142 +1405,404 @@ def _prepare_macro(
     return frame.sort_index().reindex(pd.DatetimeIndex(dates))
 
 
-def run_factor_rotation(
-    *,
-    store: DefinitionStore,
-    panel: PricePanel,
-    sleeves: Sequence[FactorSleeve] = FACTOR_ETF_SLEEVES,
-    driver: RotationDriver,
-    params: FactorRotationParams,
-    engine: PortfolioEngine | None = None,
-    market_ticker: str | None = None,
-    macro: pd.DataFrame | None = None,
-) -> FactorRotationResult:
-    """驅動器逐期在四格因子敞口之間移權,跑出一次完整回測。
+# ----------------------------------------------------------------------
+# 策略合約:這條策略真正獨有的那幾件(KARST-091)
+# ----------------------------------------------------------------------
 
-    走的仍然是引擎適配層 A 的**目標比重路徑**:本函式只砌一張表交給
-    ``PortfolioEngine.simulate``。哪一個第三方引擎在背後跑,本檔一個字都不提;
-    ``engine`` 留空就用 vectorbt(D-011)。
+#: 宏觀面板在 ``RunRequest.extras`` 裡叫什麼。策略只認得這個名,不認得檔案路徑
+#: 亦不認得宏觀快照庫——讀檔那一步在執行台外面(D-007 第 3 條)。
+MACRO_INPUT: Final[str] = "macro"
 
-    ``market_ticker`` 是大市那一條線的代號(例如 SPY)。它**只做訊號,一股不持**
-    ——目標比重表裡它永遠是 0。要看大市的驅動器沒有它就當場拒收。
+#: 驅動器參數的值域正本。以前散在十個驅動器各自的 ``__post_init__`` 裡,掃描腳本
+#: 要改一個範圍就要翻十個類;現在一張表講完,而驅動器自己那一關照樣留住(同一組
+#: 取值過兩次是重複,不是矛盾——驅動器仍然可以獨立砌出來用)。
+#:
+#: 鍵是 ``(驅動器, 參數名)``:同一個參數名在不同驅動器可以有不同值域——逆波幅的
+#: 回望日數最少 2 日(一日算不出波幅),信用利差的最少 1 日。合成一格會靜靜地
+#: 放寬其中一邊。
+_DRIVER_PARAM_SPECS: Final[dict[tuple[str, str], dict[str, Any]]] = {
+    ("factor_momentum", "lookback_months"): {
+        "kind": KIND_INTEGER, "lower": 1, "lower_inclusive": True,
+        "what": "比較各因子報酬的回望期(月)", "label": "回望期(月)",
+    },
+    ("factor_momentum", "mode"): {
+        "kind": KIND_TEXT, "choices": ("winner", "rank"),
+        "what": "整注押第一(winner)還是按名次分注(rank)", "label": "排名用法",
+    },
+    ("relative_strength", "lookback_months"): {
+        "kind": KIND_INTEGER, "lower": 1, "lower_inclusive": True,
+        "what": "與大市比較報酬的回望期(月)", "label": "回望期(月)",
+    },
+    ("relative_strength", "fallback"): {
+        "kind": KIND_TEXT, "choices": ("cash", "equal"),
+        "what": "四格全部跑輸大市時持現金(cash)還是等權(equal)", "label": "全輸時的處置",
+    },
+    ("inverse_volatility", "lookback_days"): {
+        "kind": KIND_INTEGER, "lower": 2, "lower_inclusive": True,
+        "what": "計波幅的回望期(交易日)", "label": "回望期(日)",
+    },
+    ("inverse_volatility", "power"): {
+        "kind": KIND_NUMBER, "lower": 0.0,
+        "what": "波幅倒數的次方:越大注越集中在最穩那格", "label": "集中程度",
+    },
+    ("trend_switch", "ma_days"): {
+        "kind": KIND_INTEGER, "lower": 2, "lower_inclusive": True,
+        "what": "大市均線的日數", "label": "均線日數",
+    },
+    ("trend_switch", "tilt"): {
+        "kind": KIND_NUMBER, "lower": 0.0, "upper": 1.0, "upper_inclusive": True,
+        "what": "押向其中一邊的比重", "label": "押注比重",
+    },
+    ("vix_level", "threshold"): {
+        "kind": KIND_NUMBER, "lower": 0.0,
+        "what": "VIX 高於它即當恐慌", "label": "VIX 門檻",
+    },
+    ("vix_term", "threshold"): {
+        "kind": KIND_NUMBER, "lower": 0.0,
+        "what": "期限結構比率高於它即當恐慌", "label": "期限結構門檻",
+    },
+    ("credit_trend", "lookback_days"): {
+        "kind": KIND_INTEGER, "lower": 1, "lower_inclusive": True,
+        "what": "看信用利差走向的回望期(交易日)", "label": "回望期(日)",
+    },
+    ("curve_trend", "lookback_days"): {
+        "kind": KIND_INTEGER, "lower": 1, "lower_inclusive": True,
+        "what": "看孳息曲線走向的回望期(交易日)", "label": "回望期(日)",
+    },
+    ("rate_trend", "lookback_days"): {
+        "kind": KIND_INTEGER, "lower": 1, "lower_inclusive": True,
+        "what": "看利率走向的回望期(交易日)", "label": "回望期(日)",
+    },
+    ("fed_expectation", "lookback_days"): {
+        "kind": KIND_INTEGER, "lower": 1, "lower_inclusive": True,
+        "what": "看利率預期走向的回望期(交易日)", "label": "回望期(日)",
+    },
+}
 
-    ``macro`` 是宏觀面板(KARST-040):日期為列、序列代號為欄,由
-    ``karst.data.macro.read_macro_panel`` 按宏觀快照編號讀回。它同樣**只做訊號,
-    一股不持**——而且比大市那條線更徹底:宏觀序列連實體編號都沒有,根本進不了
-    目標比重表的欄,所以「不小心買了 VIX」這件事在這裡表達不出來。要看宏觀的
-    驅動器沒有它就當場拒收(見 ``_prepare_macro``)。
+# 五個宏觀驅動器 + 趨勢開關那格押注比重共用同一個值域。
+for _macro_key in ("vix_level", "vix_term", "credit_trend", "curve_trend",
+                   "rate_trend", "fed_expectation"):
+    _DRIVER_PARAM_SPECS[(_macro_key, "tilt")] = {
+        "kind": KIND_NUMBER, "lower": 0.0, "upper": 1.0, "upper_inclusive": True,
+        "what": "押向避險那一邊的比重", "label": "押注比重",
+    }
+del _macro_key
+
+
+def driver_param_field(driver_key: str, name: str) -> ParamField:
+    """一個驅動器參數在參數規格裡那一格。**短名一律明碼**。
+
+    通用的百分點短名會把回望期 ``1`` 個月印成 ``100``——對讀庫的人是誤導,所以
+    輪動這一線全部用 ``SLUG_VERBATIM``:數字就是數字。這一格是運行編號的原料,
+    所以「印成什麼」與「值域是什麼」同樣要緊。
     """
-    if not isinstance(panel, PricePanel):
+    key = str(driver_key or "").strip()
+    spec = _DRIVER_PARAM_SPECS.get((key, str(name).strip()))
+    if spec is None:
         raise ContractViolation(
-            f"價格面板要是 PricePanel,收到 {type(panel).__name__};"
-            "請先用 PricePanel.from_frames 核對開價表與收價表"
+            f"驅動器「{key}」的參數「{name}」沒有值域規格;"
+            "參數無預設值亦無隱含值域,要掃的一律先寫明(D-008 第 3 條)"
         )
-    for method in ("weights", "describe"):
-        if not callable(getattr(driver, method, None)):
-            raise ContractViolation(
-                f"驅動器缺 {method}();見 RotationDriver:收一個決策日視角,回四格權重"
-            )
-
-    exposures = resolve_rotation_exposures(store, sleeves, on_date=panel.dates[0])
-
-    market: pd.Series | None = None
-    ticker = str(market_ticker).strip() if market_ticker else None
-    if ticker:
-        market_entity = int(store.resolve_ticker(ticker, panel.dates[0]))
-        if market_entity not in set(panel.entity_ids):
-            raise ContractViolation(
-                f"大市代號 {ticker} 解析到實體 {market_entity},但它不在價格面板裡"
-            )
-        if market_entity in {exposure.entity_id for exposure in exposures}:
-            raise ContractViolation(
-                f"大市代號 {ticker} 與其中一格因子敞口是同一個實體;"
-                "大市那條線只做訊號,不可以同時是持倉"
-            )
-        market = panel.close[market_entity]
-    elif getattr(driver, "needs_market", False):
-        raise ContractViolation(
-            f"驅動器「{getattr(driver, 'name', driver)}」要看大市那一條線,"
-            f"但今次沒有給大市代號;寫明 market_ticker(例如 {DEFAULT_MARKET_TICKER!r})"
-        )
-
-    macro_frame = _prepare_macro(driver, macro, dates=panel.dates)
-
-    targets, rebalances = rotation_targets(
-        panel=panel,
-        exposures=exposures,
-        driver=driver,
-        params=params,
-        market=market,
-        market_ticker=ticker,
-        macro=macro_frame,
-    )
-
-    # 適配層 A 的模擬器只讀這個型別的起始本金與交易成本兩格;排名那兩格
-    # (選幾隻、排名方向)在目標比重路徑上用不着,填的是這次敞口的格數。
-    engine_params = RankingRebalanceParams(
-        cadence=params.cadence,
-        top_n=len(exposures),
-        direction="high",
-        initial_cash=params.initial_cash,
-        costs=params.costs,
-    )
-
-    if engine is None:
-        # 遲到這一刻才 import:換了引擎的人不需要裝 vectorbt(D-007 第 3 條)。
-        from ..engine.vectorbt_engine import VectorbtEngine
-
-        engine = VectorbtEngine()
-
-    output = engine.simulate(panel, targets, engine_params)
-
-    return FactorRotationResult(
-        equity_curve=output.equity_curve,
-        holdings=output.holdings,
-        orders=output.orders,
-        rebalances=rebalances,
-        params=params,
-        exposures=exposures,
-        driver_key=str(getattr(driver, "key", "")),
-        driver_name=str(getattr(driver, "name", type(driver).__name__)),
-        driver_description=str(driver.describe()),
-        engine_name=getattr(engine, "name", type(engine).__name__),
-        macro_series=tuple(getattr(driver, "needs_macro", ()) or ()),
+    return ParamField(
+        name=str(name).strip(),
+        text_style=TEXT_AUTO,
+        slug_style=SLUG_VERBATIM,
+        **spec,
     )
 
 
-def record_factor_rotation_run(
-    runs: Any,
-    result: FactorRotationResult,
-    *,
-    strategy_name: str,
-    param_set_name: str,
-    snapshot_id: str,
-    engine_version: str,
-    period_start: date | datetime | str | None = None,
-    period_end: date | datetime | str | None = None,
-    strategy_version_no: int | None = None,
-    param_set_version_no: int | None = None,
-) -> Any:
-    """把一次因子輪動回測交去 ``karst.runs`` 登記,回傳運行留痕。
+@dataclass(frozen=True, slots=True)
+class FactorRotationContract:
+    """因子輪動策略的**策略合約**(見 ``karst.executor.contract``)。
 
-    與因子混合同一條路:一次成績蓋住四個因子版本,四個一併交過去,運行編號才
-    蓋得齊來歷(D-021 第 9 條)。
+    與因子混合蓋住同一四格因子敞口,分別只在「那一行比重由誰算」:混合照抄參數集,
+    輪動每期問驅動器。所以登記那一段直接借用混合那份(``factor_specs``),不另開
+    一套因子。
 
-    這條路登記的一律是**正式運行**;掃描格由 ``karst.sweep.runner`` 逐格落痕
-    並自報掃描編號(KARST-054),不經這裡。
+    **一個合約對一個驅動器。** 驅動器不是可掃軸,是「這次掃的是哪一套做法」——
+    十個驅動器混在同一幅格裡,鄰域就沒有意思了(見 ``rotation_grid``)。
+
+    以下幾格是整次掃描共用、但**照樣會改變成績**的設定,所以照樣入參數集(否則
+    換一個熱身期重掃會撞回同一個運行編號,靜靜地讀回舊成績):熱身期、熱身期權重、
+    交易成本、宏觀快照編號。它們不是掃描格的軸,所以不入參數集的**名**——名只由
+    軸砌出來。
+
+    ``initial_cash``、``fees``、``warmup_bars``、``warmup_weights`` 容許明寫
+    ``None``,那是「這份合約只用來登記」(見 ``for_setup``);一叫 ``plan()`` 就
+    當場拒收,不會靜靜地用一個猜出來的本金跑出一條淨值。
     """
-    return runs.record_simulation(
-        result,
-        strategy_name=strategy_name,
-        param_set_name=param_set_name,
-        snapshot_id=snapshot_id,
-        engine_version=engine_version,
-        engine_name=result.engine_name,
-        origin=FORMAL_RUN,
-        period_start=period_start,
-        period_end=period_end,
-        strategy_version_no=strategy_version_no,
-        param_set_version_no=param_set_version_no,
-        factor_version_ids=result.factor_version_ids,
-    )
+
+    driver_key: str
+    sleeves: tuple[FactorSleeve, ...]
+    warmup_bars: int | None
+    warmup_weights: Mapping[str, float] | None
+    market_ticker: str | None
+    initial_cash: float | None
+    fees: float | None
+    costs: TradingCosts | None = None
+    macro_snapshot_id: str | None = None
+
+    strategy_type: ClassVar[str] = FACTOR_ROTATION_STRATEGY_TYPE
+    #: 這條策略交不出選股痕跡:四格敞口固定,每期變的只是比重,沒有「由三千隻收
+    #: 到三十隻」那個漏斗(D-013)。空的就是空的,不硬套一個兩層殼扮有選股。
+    funnel_stages: ClassVar[tuple[str, ...]] = ()
+    engine_path: ClassVar[str] = ENGINE_TARGETS
+
+    def __post_init__(self) -> None:
+        key = str(self.driver_key or "").strip()
+        if key not in DRIVER_PARAMETERS:
+            raise ContractViolation(
+                f"沒有「{key}」這個驅動器;有的是:{'、'.join(sorted(DRIVER_PARAMETERS))}"
+            )
+        sleeves = tuple(self.sleeves)
+        if len(sleeves) < 2:
+            raise ContractViolation("因子輪動最少要有兩格敞口才有東西可以互相調配")
+        object.__setattr__(self, "driver_key", key)
+        object.__setattr__(self, "sleeves", sleeves)
+        object.__setattr__(
+            self,
+            "market_ticker",
+            str(self.market_ticker).strip() if self.market_ticker else None,
+        )
+        object.__setattr__(
+            self,
+            "macro_snapshot_id",
+            str(self.macro_snapshot_id).strip() if self.macro_snapshot_id else None,
+        )
+
+    @classmethod
+    def for_setup(
+        cls,
+        driver_key: str,
+        sleeves: Sequence[FactorSleeve] = FACTOR_ETF_SLEEVES,
+    ) -> "FactorRotationContract":
+        """只用來登記的一份合約:登記碰不到帳戶設定與熱身期,所以那幾格明寫留空。"""
+        return cls(
+            driver_key=driver_key,
+            sleeves=tuple(sleeves),
+            warmup_bars=None,
+            warmup_weights=None,
+            market_ticker=None,
+            initial_cash=None,
+            fees=None,
+            costs=None,
+            macro_snapshot_id=None,
+        )
+
+    @property
+    def weight_keys(self) -> tuple[str, ...]:
+        return tuple(sleeve.weight_key for sleeve in self.sleeves)
+
+    @property
+    def param_names(self) -> tuple[str, ...]:
+        """這個驅動器自己那幾個參數(即掃描格上的軸,節奏除外)。"""
+        return DRIVER_PARAMETERS[self.driver_key]
+
+    @property
+    def macro_series(self) -> tuple[str, ...]:
+        """這個驅動器要看哪幾條宏觀序列(空的即它只看價格)。"""
+        return macro_series_needed(self.driver_key)
+
+    def param_spec(self) -> ParamSpec:
+        """驅動器 + 它自己那幾個參數 + 熱身期 + 節奏(+ 成本、宏觀那幾格)。
+
+        **一格預設值都沒有**(D-008 第 3 條)。次序刻意與參數集裡讀出來的次序一致,
+        方便人眼對照;參數集的名只由掃描格的軸砌出來,與這裡的次序無關。
+        """
+        fields: list[ParamField] = [
+            ParamField(
+                name=DRIVER_KEY,
+                kind=KIND_TEXT,
+                what="每期由哪一套做法決定四格比重",
+                label="驅動器",
+                choices=tuple(sorted(DRIVER_BUILDERS)),
+                text_style=TEXT_VERBATIM,
+                slug_style=SLUG_VERBATIM,
+            )
+        ]
+        fields.extend(driver_param_field(self.driver_key, name) for name in self.param_names)
+        fields.append(
+            ParamField(
+                name=WARMUP_BARS_KEY,
+                kind=KIND_INTEGER,
+                what="頭幾根 K 線不讓驅動器話事(回望期未夠長的那一段)",
+                label="熱身期(K 線根數)",
+                lower=0,
+                lower_inclusive=True,
+                text_style=TEXT_AUTO,
+                slug_style=SLUG_VERBATIM,
+            )
+        )
+        fields.extend(
+            ParamField(
+                name=f"{WARMUP_PREFIX}{key}",
+                kind=KIND_NUMBER,
+                what=f"熱身期那段日子 {key} 佔組合的比重",
+                label=f"熱身期權重({key})",
+                lower=0.0,
+                upper=1.0,
+                lower_inclusive=True,
+                upper_inclusive=True,
+                text_style=TEXT_FOUR_PLACES,
+                slug_style=SLUG_VERBATIM,
+            )
+            for key in self.weight_keys
+        )
+        fields.append(
+            ParamField(
+                name=CADENCE_PARAM,
+                kind=KIND_TEXT,
+                what="幾耐讓驅動器重新決定一次四格比重",
+                label="換倉節奏",
+                choices=tuple(sorted(CADENCES)),
+                text_style=TEXT_VERBATIM,
+                slug_style=SLUG_VERBATIM,
+                slot=SLOT_CADENCE,
+            )
+        )
+        fields.extend(cost_fields(self.costs))
+        if self.macro_snapshot_id:
+            # 換一份宏觀數據就是另一次運行,所以編號要入參數集(KARST-040)。
+            # 價格驅動器一格都不寫、名亦一字不改,KARST-036/043 那批舊運行照樣撞得回去。
+            fields.append(
+                ParamField(
+                    name=MACRO_SNAPSHOT_KEY,
+                    kind=KIND_TEXT,
+                    what="這次用的宏觀數據快照編號",
+                    label="宏觀快照",
+                    choices=(self.macro_snapshot_id,),
+                    text_style=TEXT_VERBATIM,
+                    slug_style=SLUG_VERBATIM,
+                )
+            )
+            fields.append(
+                ParamField(
+                    name=MACRO_SERIES_KEY,
+                    kind=KIND_TEXT,
+                    what="這個驅動器由宏觀快照讀哪幾條序列",
+                    label="宏觀序列",
+                    choices=(MACRO_SERIES_SEPARATOR.join(self.macro_series),),
+                    text_style=TEXT_VERBATIM,
+                    slug_style=SLUG_VERBATIM,
+                )
+            )
+        return ParamSpec(fields=tuple(fields))
+
+    def factor_specs(self, snapshot_id: str) -> tuple[FactorSpec, ...]:
+        """四條因子,與因子混合**同一份**——輪動與混合蓋住的是同一四格敞口。
+
+        另開一套只會令同一個敞口在庫裡有兩條因子鏈,之後誰都講不出兩者的分別。
+        """
+        return FactorMixContract.for_setup(self.sleeves).factor_specs(snapshot_id)
+
+    def needs_entities(self, params: Mapping[str, Any]) -> EntityRequest:
+        """四格敞口持得到;大市那條線**只做訊號,一股不持**;宏觀序列連實體都不是。
+
+        「大市不可以同時是持倉」那一關不在這裡自己寫一次——同一個實體佔兩格會被
+        執行台的實體解析當場擋住(``DuplicateExposureEntity``),全倉只此一份。
+        """
+        return EntityRequest(
+            exposures=tuple(sleeve.ticker for sleeve in self.sleeves),
+            signals=(self.market_ticker,) if self.market_ticker else (),
+            series=self.macro_series,
+        )
+
+    def build_driver(self, values: Mapping[str, Any]) -> RotationDriver:
+        """由一組已驗取值砌出這一格的驅動器。"""
+        return build_driver(
+            self.driver_key, **{name: values[name] for name in self.param_names}
+        )
+
+    def params_from(self, values: Mapping[str, Any]) -> FactorRotationParams:
+        """把一組已驗取值收成 ``FactorRotationParams``。"""
+        missing = [
+            label
+            for label, value in (
+                ("起始本金", self.initial_cash),
+                ("手續費率", self.fees),
+                ("熱身期", self.warmup_bars),
+                ("熱身期權重", self.warmup_weights),
+            )
+            if value is None
+        ]
+        if missing:
+            raise ContractViolation(
+                f"這份因子輪動合約只用來登記({'、'.join(missing)}留空),跑不動;"
+                "要跑一次回測請明寫那幾格"
+            )
+        # 要看宏觀的驅動器沒有宏觀快照編號即當場拒收:編號是這次成績來歷的一部分,
+        # 亦入參數集(換一份宏觀數據就要另一個運行編號),不可留空。登記那一步碰
+        # 不到宏觀數據,所以這一關留到真的要跑才把。
+        if self.macro_series and not self.macro_snapshot_id:
+            raise ContractViolation(
+                f"驅動器「{self.driver_key}」用宏觀數據,但沒有寫明宏觀快照編號;"
+                "編號是這次成績來歷的一部分,亦入參數集,不可留空"
+            )
+        return FactorRotationParams(
+            cadence=values[CADENCE_PARAM],
+            warmup_bars=int(self.warmup_bars),
+            warmup_weights=dict(self.warmup_weights or {}),
+            initial_cash=float(self.initial_cash),
+            fees=float(self.fees),
+        )
+
+    def plan(self, request: RunRequest) -> TargetPlan:
+        """策略本體:驅動器逐期在四格敞口之間移權,砌一張目標比重表。**純函數。**
+
+        不開庫、不讀檔、不 import 第三方引擎——哪一件引擎在背後跑,本檔一個字
+        都不提(D-007 第 3 條)。
+
+        交易成本不在計劃裡:它入的是引擎參數,由 ``CostedEngine`` 在參數交到引擎
+        之前補上(見 ``karst.engine.costed``)。
+        """
+        params = self.params_from(request.params)
+        driver = self.build_driver(request.params)
+        panel = request.panel
+
+        exposures = tuple(
+            RotationExposure(
+                sleeve=sleeve,
+                entity_id=request.entity(sleeve.ticker).entity_id,
+                entity_kind=request.entity(sleeve.ticker).entity_kind,
+                factor_version_id=request.factor(sleeve.factor_name).factor_version_id,
+                factor_version_no=request.factor(sleeve.factor_name).version_no,
+            )
+            for sleeve in self.sleeves
+        )
+
+        market: pd.Series | None = None
+        if self.market_ticker:
+            market = panel.close[request.entity(self.market_ticker).entity_id]
+        elif getattr(driver, "needs_market", False):
+            raise ContractViolation(
+                f"驅動器「{getattr(driver, 'name', driver)}」要看大市那一條線,"
+                f"但今次沒有給大市代號;寫明 market_ticker(例如 {DEFAULT_MARKET_TICKER!r})"
+            )
+
+        macro_frame = _prepare_macro(
+            driver, request.extras.get(MACRO_INPUT), dates=panel.dates
+        )
+        targets, rebalances = rotation_targets(
+            panel=panel,
+            exposures=exposures,
+            driver=driver,
+            params=params,
+            market=market,
+            market_ticker=self.market_ticker,
+            macro=macro_frame,
+        )
+        return TargetPlan(
+            targets=targets,
+            cadence=params.cadence,
+            initial_cash=params.initial_cash,
+            fees=params.fees,
+            rebalances=rebalances,
+            selection=None,
+            extras={
+                "params": params,
+                "exposures": exposures,
+                "driver": driver,
+                "macro_series": self.macro_series,
+            },
+        )
+

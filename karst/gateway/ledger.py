@@ -79,6 +79,12 @@ GOVERNED_TABLES: dict[str, tuple[str, ...]] = {
     # 動作,所以同一道門、同一種簽章。沒有簽章的除名列即是有人繞過唯一入口靜靜
     # 抹走一次運行的成績,verify 一掃就見到。
     "backtest_run_retraction": ("run_id",),
+    # KARST-091 補上的一張:批次登記。一次參數掃描收工寫的那一列,載住門面左半那四個
+    # 數(達標幾條/共幾條、中位年化、中位 Sortino、中位最大回撤)與判讀口徑。D-042 用
+    # 「達標運行的中位數年化最高」排批次名次,即那一列直接決定用戶見到哪一批成績——
+    # 與指定現役設定同級的定義級動作。它以前只住在 experiments/ 的 CSV 裡,任何人改得到
+    # 而無人知;收入清單之後,繞過那道門塞一批看似達標的成績,verify 一掃就見到。
+    "sweep_batch": ("sweep_id",),
 }
 
 # 核對報告的三類(KARST-087)。一份「全庫清白/揪到 N 處」的總帳讀不出**哪一邊**不清白,
@@ -102,6 +108,9 @@ TABLE_CATEGORIES: dict[str, str] = {
     # 運行除名歸「定義」而不是自立一類:它與 active_setup 是同一種東西——不是數據
     # 來源出了事(那是「快照」),而是一句「門面數字該取哪幾次運行」的講法。
     "backtest_run_retraction": CATEGORY_DEFINITION,
+    # 批次登記同樣歸「定義」:它不是數據來源出了事(那是「快照」),而是一句
+    # 「門面數字取哪一批運行、按哪一套判讀口徑」的講法(KARST-091)。
+    "sweep_batch": CATEGORY_DEFINITION,
     "risk_rule": CATEGORY_DEFINITION,
     "strategy_risk_ref": CATEGORY_DEFINITION,
     "factor_value_batch": CATEGORY_FACTOR_BATCH,

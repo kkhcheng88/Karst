@@ -78,6 +78,7 @@ from ..executor.contract import (
     ResolvedEntity,
     RunRequest,
     TargetPlan,
+    cost_fields,
 )
 
 # 策略類型(store.STRATEGY_TYPES 八選一):因子混合屬多因子。
@@ -584,6 +585,10 @@ class FactorMixContract:
     sleeves: tuple[FactorSleeve, ...]
     initial_cash: float | None
     fees: float | None
+    #: 交易成本合約。留空 = 零成本,參數規格連那三格都不出(見 ``cost_fields``),
+    #: 於是零成本那批舊運行照樣撞得回同一個運行編號。非零成本要另外把引擎包成
+    #: ``CostedEngine``——成本要入的是引擎參數,而本策略那個參數型別載不起它。
+    costs: Any = None
 
     strategy_type: ClassVar[str] = FACTOR_MIX_STRATEGY_TYPE
     #: 漏斗只有兩層,而那正是它的真相(見 ``factor_mix_selection_trace``)。
@@ -599,7 +604,7 @@ class FactorMixContract:
     @classmethod
     def for_setup(cls, sleeves: Sequence[FactorSleeve]) -> "FactorMixContract":
         """只用來登記的一份合約:登記碰不到帳戶設定,所以兩格明寫留空。"""
-        return cls(sleeves=tuple(sleeves), initial_cash=None, fees=None)
+        return cls(sleeves=tuple(sleeves), initial_cash=None, fees=None, costs=None)
 
     @property
     def weight_keys(self) -> tuple[str, ...]:
@@ -635,6 +640,9 @@ class FactorMixContract:
                 slot=SLOT_CADENCE,
             )
         )
+        # 成本非零才多這三格(見 ``cost_fields``);零成本一格都不出,舊運行編號
+        # 逐位不變。
+        fields.extend(cost_fields(self.costs))
         return ParamSpec(fields=tuple(fields))
 
     def factor_specs(self, snapshot_id: str) -> tuple[FactorSpec, ...]:

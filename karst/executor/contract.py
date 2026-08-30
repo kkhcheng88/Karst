@@ -205,6 +205,14 @@ def point_slug(values: Sequence[tuple[str, Any]], style: str = SLUG_PERCENT) -> 
     return "-".join(field_slug(name, value, style) for name, value in values)
 
 
+# 交易成本在參數集裡的三格。名寫死在這裡,因為它們同時是**運行編號的原料**:
+# 三個名任何一個改一個字,全部帶成本的運行當場換編號。
+COST_FEE_MODEL: Final[str] = "fee_model"
+COST_FEE_RATE: Final[str] = "fee_rate"
+COST_SLIPPAGE: Final[str] = "slippage"
+COST_FIELD_NAMES: Final[tuple[str, ...]] = (COST_FEE_MODEL, COST_FEE_RATE, COST_SLIPPAGE)
+
+
 # ----------------------------------------------------------------------
 # 參數規格:一格的值域檢查
 # ----------------------------------------------------------------------
@@ -546,6 +554,83 @@ class ParamSpec:
         if cadence_field is not None:
             raw[cadence_field.name] = getattr(param_set, "rebalance_cadence", None)
         return self.validate(raw)
+
+
+# ----------------------------------------------------------------------
+# 交易成本那三格:全倉唯一一份
+# ----------------------------------------------------------------------
+
+
+def cost_fields(costs: Any) -> tuple[ParamField, ...]:
+    """交易成本在參數規格裡的三格。**成本為零就一格都不出。**
+
+    這一句是「成本為零時既有運行編號逐位不變」的全部:成本入了參數集,運行編號
+    自然跟著變(那正是要的——帶成本的重跑不可以讀回零成本的舊成績);但零成本
+    那批舊運行本來就沒有這三格,所以照樣撞得回去。
+    """
+    if costs is None or bool(getattr(costs, "is_zero", False)):
+        return ()
+    return (
+        ParamField(
+            name=COST_FEE_MODEL,
+            kind=KIND_TEXT,
+            what="手續費按每股收還是按成交金額比例收",
+            label="手續費型別",
+            choices=("per_share", "fraction_of_value"),
+            text_style=TEXT_VERBATIM,
+            slug_style=SLUG_VERBATIM,
+        ),
+        ParamField(
+            name=COST_FEE_RATE,
+            kind=KIND_NUMBER,
+            what="手續費率(每股銀碼,或者成交金額的比例)",
+            label="手續費率",
+            lower=0.0,
+            lower_inclusive=True,
+            # 滑點 5 個基點是 0.0005;四位小數會把兩組不同的成本剪成同一串字,
+            # 即撞成同一個運行編號,靜靜地讀回上一次的成績。這裡留八位。
+            text_style=TEXT_EIGHT_PLACES,
+            slug_style=SLUG_VERBATIM,
+        ),
+        ParamField(
+            name=COST_SLIPPAGE,
+            kind=KIND_NUMBER,
+            what="滑點:成交價相對參考價偏走的比例",
+            label="滑點",
+            lower=0.0,
+            upper=1.0,
+            lower_inclusive=True,
+            text_style=TEXT_EIGHT_PLACES,
+            slug_style=SLUG_VERBATIM,
+        ),
+    )
+
+
+def cost_inputs(costs: Any) -> dict[str, Any]:
+    """交易成本那三格的取值(未文字化),零成本即空的。交去 ``sweep`` 的起步取值。"""
+    if costs is None or bool(getattr(costs, "is_zero", False)):
+        return {}
+    return {
+        COST_FEE_MODEL: costs.fee_model,
+        COST_FEE_RATE: costs.fee_rate,
+        COST_SLIPPAGE: costs.slippage_fraction,
+    }
+
+
+def cost_slug(costs: Any) -> str:
+    """成本在參數集**名**裡的一截。零成本即空字串。
+
+    為什麼成本要入名,不是只入值:參數集一格一個名,同名再登記會出新版,而版本號
+    是運行編號的一部分。若帶成本那次沿用同一個名,它會把那個名推上第 2 版;之後
+    再零成本重掃一次,又會被推去第 3 版——於是同一格零成本跑兩次,前後兩個運行
+    編號不同,「成本為零逐位不變」當場破功。換一個名,兩條路各自獨立,互不相干。
+    """
+    if costs is None or bool(getattr(costs, "is_zero", False)):
+        return ""
+    model = "ps" if costs.fee_model == "per_share" else "pv"
+    rate = value_text(costs.fee_rate, TEXT_EIGHT_PLACES)
+    slip = value_text(costs.slippage_fraction, TEXT_EIGHT_PLACES)
+    return f"-fee{model}{rate}-slip{slip}"
 
 
 # ----------------------------------------------------------------------

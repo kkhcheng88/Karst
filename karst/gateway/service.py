@@ -608,6 +608,79 @@ class Gateway:
         self._sign(("backtest_run_retraction", (retraction.run_id,)))
         return retraction
 
+    def register_sweep_batch(
+        self,
+        sweep_id: str,
+        *,
+        strategy_name: str,
+        strategy_version_no: int,
+        period_start: str,
+        period_end: str,
+        snapshot_id: str,
+        engine_name: str,
+        engine_version: str,
+        cell_count: int,
+        qualified_cells: int,
+        failed_cells: int,
+        error_cells: int,
+        median_annual_return: float | None,
+        median_sortino: float | None,
+        median_max_drawdown: float | None,
+        objective: str,
+        min_trades: int,
+        lonely_peak_margin: float,
+        plateau_quantile: float,
+        best_point: str | None,
+        best_run_id: str | None,
+        representative_point: str | None,
+        report_path: str,
+        report_hash: str,
+    ) -> tuple[object, bool]:
+        """登記一次掃描的**批次**,並蓋上寫入者簽章(KARST-091;D-042)。
+
+        批次登記是一個**定義級動作**——D-042 明文用「達標運行的中位數年化最高」排
+        批次名次,而門面左半那四個數(達標幾條/共幾條、中位年化、中位 Sortino、
+        中位最大回撤)全部由這一列讀出來。所以它與指定現役設定同一道門:經這裡寫、
+        留簽章,``karst verify`` 核得到。有人繞過這道門直接塞一列看似達標的批次,
+        verify 一掃就見到它沒有簽章。
+
+        **它不碰運行。** 掃描編號本來就不入運行編號(KARST-054),所以這是加一列;
+        舊掃描事後補登記照樣寫得入,既有運行一個位都不動。
+
+        回 ``(批次, 是不是沿用舊那一列)``:同一個掃描編號、同一份內容再登記一次,
+        原封不動沿用舊那一列(重掃同一幅格會走到這裡)。
+        """
+        batch, reused = self._store.register_sweep_batch(
+            sweep_id,
+            strategy_name=strategy_name,
+            strategy_version_no=strategy_version_no,
+            period_start=period_start,
+            period_end=period_end,
+            snapshot_id=snapshot_id,
+            engine_name=engine_name,
+            engine_version=engine_version,
+            cell_count=cell_count,
+            qualified_cells=qualified_cells,
+            failed_cells=failed_cells,
+            error_cells=error_cells,
+            median_annual_return=median_annual_return,
+            median_sortino=median_sortino,
+            median_max_drawdown=median_max_drawdown,
+            objective=objective,
+            min_trades=min_trades,
+            lonely_peak_margin=lonely_peak_margin,
+            plateau_quantile=plateau_quantile,
+            best_point=best_point,
+            best_run_id=best_run_id,
+            representative_point=representative_point,
+            report_path=report_path,
+            report_hash=report_hash,
+        )
+        # 沿用舊那一列時亦要走一次:那一列一經落庫即不可改(trigger 擋住),
+        # 原本那個簽章照舊有效,``record_write_once`` 蓋過就算數。
+        self._sign_once(("sweep_batch", (batch.sweep_id,)))
+        return batch, reused
+
     def take_macro_snapshot(
         self,
         *,

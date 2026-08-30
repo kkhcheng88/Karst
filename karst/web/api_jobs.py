@@ -29,6 +29,7 @@ import os
 import queue
 import threading
 import traceback
+from dataclasses import dataclass, field
 from datetime import datetime
 from http import HTTPStatus
 from pathlib import Path
@@ -461,8 +462,8 @@ def _rerun(job: Job, ctx: JobContext) -> dict[str, Any]:
 #
 # 掃描現時不在庫裡:一次掃描 = ``experiments/`` 之下一個目錄,裡面一張掃描表加
 # 一張判讀表(見 api_sweep.py 檔頭)。所以重掃做三件事:砌新格 → 經
-# ``karst.sweep.run_sweep`` 逐格落痕(同一格查得回舊運行就不重跑)→ 判讀並把
-# 兩張表寫入一個新目錄。舊掃描一個字不改。
+# ``Executor.sweep`` 逐格落痕(同一格查得回舊運行就不重跑)→ 判讀並把兩張表
+# 寫入一個新目錄,收尾多寫一列批次登記。舊掃描一個字不改。
 #
 # 重掃**不會**問用戶「這幅掃描本來是怎樣跑的」——那些全部由掃描自己身上讀回:
 # 驅動器、熱身期、成本、快照、期間、引擎,一律取自格內那次運行的參數集與留痕。
@@ -470,6 +471,44 @@ def _rerun(job: Job, ctx: JobContext) -> dict[str, Any]:
 
 RESCAN_DIRNAME = "重掃"
 MACRO_DIRNAME = "macro_snapshots"
+
+# 帳戶設定:重掃沿用原來那批掃描用的那一套。**它不入參數集,亦不入運行編號**
+# ——所以它不是「一個沒有寫明的預設參數」,而是一件不影響身份的環境設定;寫在
+# 這裡是為了兩條重掃路走同一個數,不是為了讓人調它。
+RESCAN_INITIAL_CASH = 100_000.0
+RESCAN_FEES = 0.0
+
+
+@dataclass(frozen=True, slots=True)
+class RescanPlan:
+    """重掃要砌的東西:一幅新格 + 一份策略合約 + 起步取值 + 命名的兩截。
+
+    以前這裡交的是一個「跑法」物件(``FactorMixJob`` / ``FactorRotationJob``),
+    而那兩件各自抄了一次登記、查重、跑引擎、落痕。現在逐格怎樣跑住在執行台,
+    本層只需要講「掃哪一幅格、用哪一份合約」。
+    """
+
+    grid: Any
+    contract: Any
+    base_values: dict[str, Any]
+    param_set_prefix: str
+    param_set_suffix: str
+    engine: Any
+    title: str
+    extras: dict[str, Any] = field(default_factory=dict)
+
+
+def _costed_engine(costs: Any) -> Any:
+    """成本非零就換上替換件引擎;零成本就用預設那件(交回 ``None``)。
+
+    成本要入的是**引擎參數**,而策略計劃載不起它(見 ``karst.engine.costed``)。
+    引擎名照舊,所以運行編號不受這一層影響。
+    """
+    if costs is None or costs.is_zero:
+        return None
+    from karst.engine.costed import CostedEngine
+
+    return CostedEngine(costs)
 
 
 def _sweep_view(ctx: JobContext, sweep_id: str) -> Any:
@@ -609,12 +648,23 @@ def _rotation_form(view: Any, sample: Any) -> list[dict[str, Any]]:
 
 
 def _rotation_build(gateway: Any, ctx: JobContext, view: Any, sample: Any,
-                    controls: dict[str, str]) -> tuple[Any, Any, str]:
+                    controls: dict[str, str]) -> "RescanPlan":
     from karst.data import read_macro_panel
-    from karst.sweep.factor_rotation import FactorRotationJob, point_slug, rotation_grid
-    from karst.sweep.factor_mix import cost_slug
+    from karst.executor.contract import cost_inputs, cost_slug
+    from karst.sweep.factor_rotation import point_slug, rotation_grid
     from karst.sweep.grid import SweepPoint
-    from karst.strategies.factor_rotation import macro_series_needed
+    from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES
+    from karst.strategies.factor_rotation import (
+        DRIVER_KEY,
+        MACRO_INPUT,
+        MACRO_SERIES_KEY,
+        MACRO_SERIES_SEPARATOR,
+        MACRO_SNAPSHOT_KEY,
+        WARMUP_BARS_KEY,
+        WARMUP_PREFIX,
+        FactorRotationContract,
+        macro_series_needed,
+    )
 
     driver, names, cadence_axis = _rotation_axes(sample)
     values = sample.param_values
@@ -658,26 +708,40 @@ def _rotation_build(gateway: Any, ctx: JobContext, view: Any, sample: Any,
             gateway.store, macro_id, root=ctx.project_root / "data" / MACRO_DIRNAME
         )
 
-    cell_job = FactorRotationJob(
-        gateway=gateway,
-        panel=_price_panel(gateway.store, ctx, sample.snapshot_id),
+    contract = FactorRotationContract(
         driver_key=driver,
-        strategy_name=sample.strategy_name,
-        snapshot_id=sample.snapshot_id,
-        engine_version=sample.engine_version,
-        param_set_prefix=prefix,
-        period_start=sample.period_start,
-        period_end=sample.period_end,
+        sleeves=FACTOR_ETF_SLEEVES,
         warmup_bars=warmup_bars,
         warmup_weights=warmup_weights,
-        strategy_version_no=sample.strategy_version_no,
         market_ticker=view.summary.get("market_ticker"),
+        initial_cash=RESCAN_INITIAL_CASH,
+        fees=RESCAN_FEES,
         costs=costs,
-        engine_name=sample.engine_name,
-        macro=macro,
         macro_snapshot_id=macro_id,
     )
-    return grid, cell_job, f"因子輪動·{driver}·重掃"
+    # 起步取值 = 整幅格共用那幾格(不是軸,所以不入參數集的名,但照樣入值——
+    # 換一個熱身期重掃就是另一次運行)。
+    base_values: dict[str, Any] = {
+        DRIVER_KEY: driver,
+        WARMUP_BARS_KEY: warmup_bars,
+        **{f"{WARMUP_PREFIX}{key}": value for key, value in warmup_weights.items()},
+        **cost_inputs(costs),
+    }
+    if macro_id:
+        base_values[MACRO_SNAPSHOT_KEY] = macro_id
+        base_values[MACRO_SERIES_KEY] = MACRO_SERIES_SEPARATOR.join(
+            macro_series_needed(driver)
+        )
+    return RescanPlan(
+        grid=grid,
+        contract=contract,
+        base_values=base_values,
+        param_set_prefix=prefix,
+        param_set_suffix=cost_slug(costs),
+        engine=_costed_engine(costs),
+        extras={} if macro is None else {MACRO_INPUT: macro},
+        title=f"因子輪動·{driver}·重掃",
+    )
 
 
 # ---------------- 因子混合(權重單純形格) ----------------
@@ -727,9 +791,10 @@ def _mix_form(view: Any, sample: Any) -> list[dict[str, Any]]:
 
 
 def _mix_build(gateway: Any, ctx: JobContext, view: Any, sample: Any,
-               controls: dict[str, str]) -> tuple[Any, Any, str]:
-    from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES
-    from karst.sweep.factor_mix import CADENCE_AXIS, FactorMixJob, cost_slug, weight_grid
+               controls: dict[str, str]) -> "RescanPlan":
+    from karst.executor.contract import cost_inputs, cost_slug
+    from karst.strategies.factor_mix import FACTOR_ETF_SLEEVES, FactorMixContract
+    from karst.sweep.factor_mix import CADENCE_AXIS, weight_grid
     from karst.sweep.grid import SweepPoint
 
     keys = _mix_keys()
@@ -756,22 +821,26 @@ def _mix_build(gateway: Any, ctx: JobContext, view: Any, sample: Any,
         own_values.append((CADENCE_AXIS, sample.rebalance_cadence))
     prefix = _prefix_of(sample.param_set_name, SweepPoint(tuple(own_values)).slug + cost_slug(costs))
 
-    cell_job = FactorMixJob(
-        gateway=gateway,
-        panel=_price_panel(gateway.store, ctx, sample.snapshot_id),
+    contract = FactorMixContract(
         sleeves=FACTOR_ETF_SLEEVES,
-        strategy_name=sample.strategy_name,
-        snapshot_id=sample.snapshot_id,
-        engine_version=sample.engine_version,
-        param_set_prefix=prefix,
-        period_start=sample.period_start,
-        period_end=sample.period_end,
-        cadence=None if cadences else sample.rebalance_cadence,
-        strategy_version_no=sample.strategy_version_no,
+        initial_cash=RESCAN_INITIAL_CASH,
+        fees=RESCAN_FEES,
         costs=costs,
-        engine_name=sample.engine_name,
     )
-    return grid, cell_job, "因子混合權重格·重掃"
+    base_values: dict[str, Any] = dict(cost_inputs(costs))
+    if CADENCE_AXIS not in view.axes:
+        # 節奏不是這幅格的軸,即整幅格共用一個節奏:由樣本那一格讀回。
+        base_values[CADENCE_AXIS] = sample.rebalance_cadence
+    return RescanPlan(
+        grid=grid,
+        contract=contract,
+        base_values=base_values,
+        param_set_prefix=prefix,
+        param_set_suffix=cost_slug(costs),
+        engine=_costed_engine(costs),
+        extras={},
+        title="因子混合權重格·重掃",
+    )
 
 
 # 策略名 → (彈窗開放改哪幾格, 怎樣砌新格與跑法)
@@ -834,10 +903,8 @@ def rescan_form(ctx: JobContext, sweep_id: str) -> dict[str, Any]:
 
 
 def _rescan(job: Job, ctx: JobContext) -> dict[str, Any]:
+    from karst.executor import SAMPLE, BatchReport, Executor
     from karst.runs import RunStore
-    from karst.sweep.report import write_report
-    from karst.sweep.runner import run_sweep
-    from karst.sweep.verdict import judge
 
     sweep_id = str(job.payload.get("sweepId") or "").strip()
     controls = job.payload.get("controls")
@@ -858,52 +925,65 @@ def _rescan(job: Job, ctx: JobContext) -> dict[str, Any]:
         objective = view.objective
 
         job.say("砌新的掃描格")
-        grid, cell_job, title = family[1](gateway, ctx, view, sample, controls)
+        plan = family[1](gateway, ctx, view, sample, controls)
 
         stamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
         out_dir = ctx.project_root / "experiments" / RESCAN_DIRNAME / stamp
         new_id = out_dir.relative_to(ctx.project_root).as_posix()
-        total = len(grid)
+        total = len(plan.grid)
 
         def progress(index: int, count: int, _cell: Any) -> None:
             job.say(f"跑緊第 {index}/{count} 格")
 
         job.say(f"共 {total} 格,開始跑")
-        sweep = run_sweep(
-            runs=RunStore(store, root=ctx.runs_root),
-            grid=grid,
-            job=cell_job,
-            sweep_id=new_id,
-            risk_free_rate=ctx.risk_free_rate,
-            snapshot_root=ctx.snapshot_root,
-            progress=progress,
+        executor = Executor(
+            gateway, RunStore(store, root=ctx.runs_root), snapshot_root=ctx.snapshot_root
         )
-
-        job.say("判讀")
-        verdict = judge(
-            sweep.scores(objective),
-            grid,
+        # 重掃接住的是一次**已經發生過**的登記,所以只讀不寫:再登記一次會把版本鏈
+        # 無故推前一格,而版本號是運行編號的原料——本來查得回、不用重跑的格會白跑。
+        setup = executor.setup_from(
+            plan.contract,
+            strategy_name=sample.strategy_name,
+            snapshot_id=sample.snapshot_id,
+            param_set_name=sample.param_set_name,
+            alignment=SAMPLE,
+            strategy_version_no=sample.strategy_version_no,
+            param_set_version_no=sample.param_set_version_no,
+        )
+        outcome = executor.sweep(
+            plan.contract,
+            setup=setup,
+            grid=plan.grid,
+            panel=_price_panel(store, ctx, sample.snapshot_id),
+            period=(sample.period_start, sample.period_end),
+            engine_version=sample.engine_version,
+            risk_free_rate=ctx.risk_free_rate,
+            sweep_id=new_id,
+            param_set_prefix=plan.param_set_prefix,
+            param_set_suffix=plan.param_set_suffix,
+            base_values=plan.base_values,
             objective=objective,
             min_trades=int(thresholds["min_trades"]),
             lonely_peak_margin=float(thresholds["lonely_peak_margin"]),
             plateau_quantile=float(thresholds["plateau_quantile"]),
-        )
-
-        job.say("落檔")
-        write_report(
-            sweep,
-            verdict,
-            out_dir,
-            title=f"{title}(由畫面發起)",
-            notes=(
-                f"由 `{sweep_id}` 重掃而來:同一個策略版本、同一段期間、同一個數據快照、"
-                "同一套成本,分別只在掃描格本身。舊那幅掃描一個字不改。\n\n"
-                f"判讀目標與門檻沿用原來那一幅({objective};"
-                f"min_trades={thresholds['min_trades']}、"
-                f"lonely_peak_margin={thresholds['lonely_peak_margin']}、"
-                f"plateau_quantile={thresholds['plateau_quantile']})。"
+            report=BatchReport(
+                directory=out_dir,
+                title=f"{plan.title}(由畫面發起)",
+                notes=(
+                    f"由 `{sweep_id}` 重掃而來:同一個策略版本、同一段期間、同一個數據快照、"
+                    "同一套成本,分別只在掃描格本身。舊那幅掃描一個字不改。\n\n"
+                    f"判讀目標與門檻沿用原來那一幅({objective};"
+                    f"min_trades={thresholds['min_trades']}、"
+                    f"lonely_peak_margin={thresholds['lonely_peak_margin']}、"
+                    f"plateau_quantile={thresholds['plateau_quantile']})。"
+                ),
             ),
+            engine=plan.engine,
+            engine_name=sample.engine_name,
+            extras=plan.extras,
+            progress=progress,
         )
+        sweep = outcome.sweep
         # 頁面靠這一份讀回判讀門檻與來歷。**不可以有 source 這一格**——
         # api_sweep 見到 source 就當這個目錄是「別處那幅掃描的重判」。
         summary = {
@@ -928,14 +1008,17 @@ def _rescan(job: Job, ctx: JobContext) -> dict[str, Any]:
             json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
+        failed = len(outcome.failures)
         return {
             "sweepId": new_id,
             "cells": len(sweep),
             "executed": sweep.executed,
             "reusedCells": sweep.reused,
+            "errorCells": failed,
             "note": (
                 f"重掃完成:{len(sweep)} 格,其中 {sweep.executed} 格今次真的跑過、"
                 f"{sweep.reused} 格讀回已有的運行"
+                + (f";另有 {failed} 格拋錯,已按無效格入判讀" if failed else "")
             ),
         }
 

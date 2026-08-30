@@ -1696,8 +1696,9 @@ def read_macro_panel(
 ) -> pd.DataFrame:
     """按快照編號讀回宏觀面板:日期為列、**序列代號**為欄。
 
-    留空的格就是留空(NaN)——那是那一日沒有讀數,不是零。這張表就是交給
-    ``karst.strategies.factor_rotation.run_factor_rotation(macro=...)`` 的那一張。
+    留空的格就是留空(NaN)——那是那一日沒有讀數,不是零。這張表就是經執行台的
+    ``extras``(鍵 ``karst.strategies.factor_rotation.MACRO_INPUT``)交給因子輪動
+    合約的那一張。
     """
     frame = read_macro_frame(store, snapshot_id, root=root)
     if codes is not None:
