@@ -1,0 +1,104 @@
+{
+  "counts": {
+    "G1": {
+      "fired": 207,
+      "hit": 60,
+      "false": 147,
+      "precision": 0.2899
+    },
+    "G2": {
+      "fired": 129,
+      "hit": 35,
+      "false": 94,
+      "precision": 0.2713
+    },
+    "F1": {
+      "fired": 103,
+      "hit": 65,
+      "false": 38,
+      "precision": 0.6311
+    },
+    "F2": {
+      "fired": 80,
+      "hit": 54,
+      "false": 26,
+      "precision": 0.675
+    }
+  },
+  "noise": {
+    "G1": {
+      "mean_pct": 0.904,
+      "sd_pct": 4.1601,
+      "stderr_pct": 0.2891,
+      "note": "重疊窗令有效樣本遠少於響的次數,此標準誤是樂觀下限"
+    },
+    "G2": {
+      "mean_pct": 0.9403,
+      "sd_pct": 3.0671,
+      "stderr_pct": 0.27,
+      "note": "重疊窗令有效樣本遠少於響的次數,此標準誤是樂觀下限"
+    },
+    "F1": {
+      "mean_pct": 1.1588,
+      "sd_pct": 7.2719,
+      "stderr_pct": 0.7165,
+      "note": "重疊窗令有效樣本遠少於響的次數,此標準誤是樂觀下限"
+    },
+    "F2": {
+      "mean_pct": 1.4515,
+      "sd_pct": 5.6431,
+      "stderr_pct": 0.6309,
+      "note": "重疊窗令有效樣本遠少於響的次數,此標準誤是樂觀下限"
+    }
+  },
+  "diagnostics": {
+    "2020_03": {
+      "spy_rsi2_min": 6.38,
+      "days_spy_rsi2_le5": 0,
+      "max_sectors_rsi2_le10": 8,
+      "days_both": 0
+    },
+    "2008_F1": [
+      {
+        "date": "2008-01-16",
+        "leader": "XLU",
+        "fwd21_leader_pct": -4.325
+      },
+      {
+        "date": "2008-07-07",
+        "leader": "XLE",
+        "fwd21_leader_pct": -12.829
+      },
+      {
+        "date": "2008-09-23",
+        "leader": "XLP",
+        "fwd21_leader_pct": -13.635
+      },
+      {
+        "date": "2008-10-08",
+        "leader": "XLP",
+        "fwd21_leader_pct": -4.648
+      },
+      {
+        "date": "2008-10-27",
+        "leader": "XLP",
+        "fwd21_leader_pct": 1.359
+      },
+      {
+        "date": "2008-11-12",
+        "leader": "XLP",
+        "fwd21_leader_pct": 0.865
+      },
+      {
+        "date": "2009-01-13",
+        "leader": "XLU",
+        "fwd21_leader_pct": 0.461
+      },
+      {
+        "date": "2009-02-20",
+        "leader": "XLV",
+        "fwd21_leader_pct": -5.388
+      }
+    ]
+  }
+}

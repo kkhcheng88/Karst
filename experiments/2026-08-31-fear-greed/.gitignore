@@ -1,0 +1,3 @@
+# 板塊 ETF / SPY 的原始日線價格屬探索性數據,照 KARST-113 的先例不入本倉。
+# 跑一次 fetch_prices.py 即重新生成(來源與口徑見 README)。
+prices_daily.parquet
