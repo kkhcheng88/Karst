@@ -30,6 +30,10 @@
 
     python -m karst.gateway data list
 
+    python -m karst.gateway multiples capture       # 每日跑一次:抄低今日的前瞻市盈率
+    python -m karst.gateway multiples list
+    python -m karst.gateway multiples list --symbol XLK
+
     python -m karst.gateway factor ingest-alpha158 --snapshot 2026-08-28-a508d635a5fa
 
     python -m karst.gateway verify
@@ -56,6 +60,7 @@ from ..store import (
     STRATEGY_TYPES,
     check_param_set,
 )
+from ..data.multiples import DEFAULT_MULTIPLES_ROOT
 from .service import (
     SOURCE_KINDS,
     Gateway,
@@ -335,6 +340,37 @@ def build_parser() -> argparse.ArgumentParser:
         help="名單的名(starter / factor-etf / sp500-historical);留空即列全部名單的摘要",
     )
 
+    # 板塊倍數版本存檔(KARST-124,依 D-084)。它與上面幾條不同:寫的是**數據**不是
+    # 定義,所以不入單一定義庫、不蓋簽章,只往一份追加式存檔加列。之所以仍然住在
+    # 這道門,是因為「平台有哪幾句命令」本身要一處講齊——散出去就會有人自己寫腳本
+    # 抓,而抓法一分岔,存檔就再不是同一條序列。
+    multiples = commands.add_parser(
+        "multiples",
+        help="板塊倍數版本存檔:每日抄低發行商公布的前瞻市盈率,追加式累積(D-084)",
+    )
+    multiples_commands = multiples.add_subparsers(dest="subcommand", required=True)
+    capture = multiples_commands.add_parser(
+        "capture",
+        help="抓一次板塊 ETF 的估值欄位,追加落存檔(同日重跑冪等;數字變了兩列都留)",
+    )
+    capture.add_argument(
+        "--symbol", dest="symbols", action="append", default=[],
+        help="代號,可重複給;留空即存檔名單全份(十一隻 SPDR 板塊 ETF 連 SPY)",
+    )
+    capture.add_argument(
+        "--root", default=None,
+        help=f"存檔根(預設 {DEFAULT_MULTIPLES_ROOT.as_posix()});舊列永不改寫,只加新列",
+    )
+    multiples_list = multiples_commands.add_parser(
+        "list", help="列存檔:留空即每隻最新一列;給 --symbol 即列該隻的逐次讀數"
+    )
+    multiples_list.add_argument("--root", default=None,
+                                help=f"存檔根(預設 {DEFAULT_MULTIPLES_ROOT.as_posix()})")
+    multiples_list.add_argument("--symbol", default=None,
+                                help="只看這一隻,列它逐次的讀數;留空即每隻最新一列")
+    multiples_list.add_argument("--since", default=None,
+                                help="只列這一日(含)之後抓的;留空即不篩,不是預設今日")
+
     where = commands.add_parser("where", help="講出一項定義的唯一落點,並掃全庫查有沒有第二份影像")
     where.add_argument("--kind", required=True, choices=("factor", "strategy"))
     where.add_argument("--name", required=True)
@@ -366,6 +402,11 @@ def main(argv: Sequence[str] | None = None, out: TextIO | None = None) -> int:
 
 
 def _dispatch(args: argparse.Namespace, out: TextIO) -> int:
+    # 板塊倍數存檔要攔在開庫**之前**(KARST-124):``Gateway.open`` 一開就會對庫檔
+    # 建表並寫 ``schema_meta``,即使那句命令一個定義都沒有寫,庫檔的位元也會變。
+    # 這一條命令按設計不碰單一定義庫,所以連開都不開——生產庫雜湊分毫不動。
+    if args.command == "multiples":
+        return _multiples(args, out)
     with Gateway.open(args.store, writer=args.writer) as gateway:
         if args.command == "init":
             return _init(gateway, out)
@@ -1207,6 +1248,137 @@ def _parse_params(pairs: Sequence[str]) -> dict[str, str]:
             raise ValueError(f"參數「{key}」在同一個參數集給了兩次,單一定義下只可有一個值")
         values[key] = value.strip()
     return values
+
+
+def _multiples(args: argparse.Namespace, out: TextIO) -> int:
+    if args.subcommand == "capture":
+        return _multiples_capture(args, out)
+    if args.subcommand == "list":
+        return _multiples_list(args, out)
+    raise AssertionError(f"未知子命令 {args.subcommand!r}")  # pragma: no cover - argparse 已擋
+
+
+def _multiples_root(raw: str | None):
+    from pathlib import Path  # noqa: PLC0415
+
+    return Path(raw) if raw else DEFAULT_MULTIPLES_ROOT
+
+
+def _multiples_capture(args: argparse.Namespace, out: TextIO) -> int:
+    from datetime import datetime, timezone  # noqa: PLC0415
+    from ..data.multiples import (  # noqa: PLC0415
+        CAPTURED,
+        FAILED,
+        MULTIPLES_UNIVERSE,
+        SsgaMultiplesSource,
+        capture_multiples,
+        readings_path,
+    )
+
+    root = _multiples_root(args.root)
+    symbols = tuple(args.symbols) if args.symbols else MULTIPLES_UNIVERSE
+    report = capture_multiples(
+        source=SsgaMultiplesSource(),
+        symbols=symbols,
+        root=root,
+        now=datetime.now(timezone.utc),
+    )
+    print(f"板塊倍數存檔 {report.capture_id}", file=out)
+    print(f"  來源      {report.source_name}", file=out)
+    print(f"  抓取時間  {report.captured_at_utc}", file=out)
+    print(f"  存檔正本  {readings_path(report.root)}", file=out)
+    print(f"  原始頁面  {report.root / 'raw' / report.capture_id}(先落檔、後解析)", file=out)
+    print("", file=out)
+    print("  代號    前瞻市盈率 FY1  後顧市盈率  截數日        結果", file=out)
+    for item in report.outcomes:
+        if item.reading is None:
+            print(f"  {item.symbol:<6}  {'—':>13}  {'—':>10}  {'—':<12}  {item.status}", file=out)
+            continue
+        reading = item.reading
+        print(
+            f"  {item.symbol:<6}  {reading.forward_pe_fy1:>13}  {reading.trailing_pe:>10}  "
+            f"{reading.index_as_of:<12}  {item.status}",
+            file=out,
+        )
+    print("", file=out)
+    print(
+        f"  合計      新寫 {len(report.written)} 列、同日不變 {len(report.unchanged)} 隻、"
+        f"失敗 {len(report.failed)} 隻",
+        file=out,
+    )
+    print(
+        "  截數日是發行商自報的,通常是抓取日前一個交易日(知情滯後 T+1);"
+        "回測對齊用截數日,不是抓取日。",
+        file=out,
+    )
+    if report.failed:
+        print("", file=out)
+        print(f"{FAILED}的逐隻講明斷了哪一格;存檔沒有為它們寫任何一列(不寫空值):", file=out)
+        for item in report.failed:
+            print(f"  {item.symbol}  {item.trouble}", file=out)
+        print("  原始頁面已落檔,修好解析之後由存檔重跑補得回,那一日不會白蝕。", file=out)
+        return EXIT_REJECTED
+    if not report.written:
+        print(f"  今日全部代號的數字與早前那次一樣,沒有加新列({CAPTURED}零列)。", file=out)
+    return EXIT_OK
+
+
+def _multiples_list(args: argparse.Namespace, out: TextIO) -> int:
+    from ..data.multiples import (  # noqa: PLC0415
+        history_of,
+        latest_per_symbol,
+        read_readings,
+        readings_path,
+        summarise,
+    )
+
+    root = _multiples_root(args.root)
+    rows = read_readings(root)
+    path = readings_path(root)
+    if not rows:
+        print(f"板塊倍數存檔 {path} 還未有任何一列。", file=out)
+        print("  先跑一次:python -m karst.gateway multiples capture", file=out)
+        return EXIT_OK
+
+    summary = summarise(rows)
+    print(f"板塊倍數存檔 {path}", file=out)
+    print(
+        f"  覆蓋      {summary.first_day} 至 {summary.last_day},"
+        f"{summary.captures} 次抓取、{summary.rows} 列、{len(summary.symbols)} 隻",
+        file=out,
+    )
+    print("", file=out)
+
+    if args.symbol:
+        picked = history_of(rows, args.symbol, since=args.since)
+        if not picked:
+            print(f"  存檔內沒有 {args.symbol} 在這段日子的讀數。", file=out)
+            return EXIT_OK
+        print(f"  {args.symbol} 逐次讀數(共 {len(picked)} 列)", file=out)
+        print("  抓取時間              截數日        FY1      後顧      市帳    市現", file=out)
+        for row in picked:
+            print(
+                f"  {row['captured_at_utc']:<20}  {row['index_as_of']:<12}  "
+                f"{row['forward_pe_fy1']:>6}  {row['trailing_pe']:>7}  "
+                f"{row['price_book']:>6}  {row['price_cash_flow']:>6}",
+                file=out,
+            )
+        return EXIT_OK
+
+    print("  每隻最新一列", file=out)
+    print(
+        "  代號    FY1      後顧      市帳    市現    截數日        抓取時間", file=out
+    )
+    for row in latest_per_symbol(rows):
+        print(
+            f"  {row['symbol']:<6}  {row['forward_pe_fy1']:>6}  {row['trailing_pe']:>7}  "
+            f"{row['price_book']:>6}  {row['price_cash_flow']:>6}  "
+            f"{row['index_as_of']:<12}  {row['captured_at_utc']}",
+            file=out,
+        )
+    print("", file=out)
+    print("  FY1 = 發行商公布的前瞻市盈率(加權調和平均);要看某一隻的歷史加 --symbol。", file=out)
+    return EXIT_OK
 
 
 def _read_json_rows(path: str) -> list[dict]:
