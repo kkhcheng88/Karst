@@ -8,9 +8,11 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-004, KARST-018, KARST-019]
-claimedBy: null
+claimedBy: main-agent
 epic: V1 藍圖
 deliverable: null
+closed: 2026-08-31
+cancelReason: 依轉向個股層敘事改由論點記錄承載(D-059/D-061/D-073),人物判官不在 v1 範圍;重啟時另開新票引本票(D-082)
 ---
 
 ## 工作內容

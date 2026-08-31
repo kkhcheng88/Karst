@@ -8,9 +8,11 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-068]
-claimedBy: null
+claimedBy: main-agent
 epic: V1 建置
 deliverable: KARST-D03
+closed: 2026-08-31
+cancelReason: 計算件兩條驗收已交並保留(karst/factorpredict.py);餘下畫面分頁依因子線封存(D-068)與介面押後不做(D-082)
 ---
 
 ## 工作內容

@@ -8,9 +8,11 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: []
-claimedBy: null
+claimedBy: main-agent
 epic: V1 建置
 deliverable: KARST-D02
+closed: 2026-08-31
+cancelReason: 源自已封存的因子矩陣路線(D-068);組合回報尺本身通用,個股籃/板塊計分量度重啟需要時另開新票引本票(D-082)
 ---
 
 ## 工作內容

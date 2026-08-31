@@ -8,9 +8,11 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: [KARST-008]
-claimedBy: null
+claimedBy: main-agent
 epic: V1 藍圖
 deliverable: null
+closed: 2026-08-31
+cancelReason: 藍圖期構想,依轉向(D-052–057 三層路線、D-063)不在 v1 範圍;構想未推翻(45 日披露時滯理據仍成立),重啟時另開新票引本票(D-082)
 ---
 
 ## 工作內容

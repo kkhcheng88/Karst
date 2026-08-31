@@ -8,9 +8,11 @@ model: opus
 fits: 一程
 approvalRequired: true
 dependsOn: [KARST-091]
-claimedBy: null
+claimedBy: main-agent
 epic: V1 建置
 deliverable: KARST-D02
+closed: 2026-08-31
+cancelReason: 趨勢波段已封存(D-068),搬入執行台的前提消失;risk/sweep.py 去向一問隨之擱置,日後有現役策略需要風控掃描時另開票引本票(D-082)
 ---
 
 ## 工作內容

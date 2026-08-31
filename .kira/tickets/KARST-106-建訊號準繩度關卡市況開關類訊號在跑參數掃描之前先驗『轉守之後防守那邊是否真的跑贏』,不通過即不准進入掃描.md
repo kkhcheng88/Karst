@@ -8,9 +8,11 @@ model: opus
 fits: 一程
 approvalRequired: false
 dependsOn: []
-claimedBy: null
+claimedBy: main-agent
 epic: V1 建置
 deliverable: KARST-D02
+closed: 2026-08-31
+cancelReason: 「先驗準繩度再掃描」的紀律已由考試票慣例承載(KARST-119/120/122 先例)並將寫入考試協議(KARST-123);引擎內建關卡留待有現役訊號線進入建置時另開票引本票(D-082)
 ---
 
 ## 工作內容
