@@ -1,0 +1,1092 @@
+{
+  "ticket": "KARST-129",
+  "nature": "純診斷,不是考試,不產生任何及格宣稱",
+  "data_file": "C:\\projects\\Karst\\experiments\\2026-08-31-fear-greed\\prices_daily.parquet",
+  "holdings_file": "C:\\projects\\Karst\\experiments\\2026-09-01-sector-momentum-exam\\monthly_holdings.csv",
+  "date_range": "1998-12-22..2026-08-27",
+  "zigzag_thresholds": [
+    "10%",
+    "15%",
+    "20%"
+  ],
+  "primary_threshold": "15%",
+  "short_windows_months": [
+    1,
+    3,
+    6
+  ],
+  "cycle": {
+    "10%": {
+      "per_sector": {
+        "XLB": {
+          "n_pivots": 34,
+          "trough_to_peak": {
+            "n": 17,
+            "median_months": 7.096509240246407,
+            "mean_months": 8.90155815919797,
+            "q1_months": 3.186858316221766,
+            "q3_months": 13.963039014373717,
+            "min_months": 0.919917864476386,
+            "max_months": 21.026694045174537
+          },
+          "peak_to_trough": {
+            "n": 16,
+            "median_months": 5.207392197125257,
+            "mean_months": 10.82340862422998,
+            "q1_months": 3.655030800821355,
+            "q3_months": 8.188911704312115,
+            "min_months": 0.7885010266940452,
+            "max_months": 57.69199178644764
+          },
+          "full_cycle": {
+            "n": 16,
+            "median_months": 15.04722792607803,
+            "mean_months": 20.071868583162217,
+            "q1_months": 6.349075975359343,
+            "q3_months": 26.874743326488705,
+            "min_months": 3.318275154004107,
+            "max_months": 67.61396303901438
+          }
+        },
+        "XLE": {
+          "n_pivots": 98,
+          "trough_to_peak": {
+            "n": 48,
+            "median_months": 2.0533880903490758,
+            "mean_months": 3.1136208076659826,
+            "q1_months": 1.2402464065708418,
+            "q3_months": 3.2443531827515404,
+            "min_months": 0.09856262833675565,
+            "max_months": 17.642710472279262
+          },
+          "peak_to_trough": {
+            "n": 49,
+            "median_months": 1.6427104722792607,
+            "mean_months": 3.6937518333822235,
+            "q1_months": 1.1170431211498972,
+            "q3_months": 3.9425051334702257,
+            "min_months": 0.26283367556468173,
+            "max_months": 22.04517453798768
+          },
+          "full_cycle": {
+            "n": 48,
+            "median_months": 4.632443531827516,
+            "mean_months": 6.851471594798084,
+            "q1_months": 2.529774127310062,
+            "q3_months": 7.4661190965092405,
+            "min_months": 0.75564681724846,
+            "max_months": 29.700205338809035
+          }
+        },
+        "XLF": {
+          "n_pivots": 41,
+          "trough_to_peak": {
+            "n": 20,
+            "median_months": 1.1498973305954827,
+            "mean_months": 7.965503080082135,
+            "q1_months": 0.3860369609856263,
+            "q3_months": 7.7207392197125255,
+            "min_months": 0.13141683778234087,
+            "max_months": 78.42299794661191
+          },
+          "peak_to_trough": {
+            "n": 20,
+            "median_months": 4.895277207392198,
+            "mean_months": 8.42381930184805,
+            "q1_months": 0.9281314168377823,
+            "q3_months": 12.459958932238195,
+            "min_months": 0.2299794661190965,
+            "max_months": 35.48254620123203
+          },
+          "full_cycle": {
+            "n": 20,
+            "median_months": 5.503080082135524,
+            "mean_months": 16.389322381930185,
+            "q1_months": 1.3634496919917864,
+            "q3_months": 22.907597535934293,
+            "min_months": 0.45995893223819306,
+            "max_months": 90.57905544147845
+          }
+        },
+        "XLI": {
+          "n_pivots": 23,
+          "trough_to_peak": {
+            "n": 11,
+            "median_months": 12.484599589322382,
+            "mean_months": 18.502893410490948,
+            "q1_months": 10.529774127310061,
+            "q3_months": 22.685831622176593,
+            "min_months": 2.299794661190965,
+            "max_months": 56.54209445585216
+          },
+          "peak_to_trough": {
+            "n": 11,
+            "median_months": 11.170431211498974,
+            "mean_months": 11.32872876610043,
+            "q1_months": 5.782340862422998,
+            "q3_months": 15.605749486652979,
+            "min_months": 1.1498973305954825,
+            "max_months": 28.057494866529773
+          },
+          "full_cycle": {
+            "n": 11,
+            "median_months": 22.702258726899384,
+            "mean_months": 29.831622176591374,
+            "q1_months": 17.100616016427104,
+            "q3_months": 38.29158110882957,
+            "min_months": 3.4496919917864473,
+            "max_months": 67.71252566735113
+          }
+        },
+        "XLK": {
+          "n_pivots": 28,
+          "trough_to_peak": {
+            "n": 14,
+            "median_months": 5.650924024640657,
+            "mean_months": 16.082135523613964,
+            "q1_months": 0.9938398357289527,
+            "q3_months": 15.039014373716633,
+            "min_months": 0.4928131416837782,
+            "max_months": 100.59958932238193
+          },
+          "peak_to_trough": {
+            "n": 13,
+            "median_months": 5.453798767967146,
+            "mean_months": 7.996209129679356,
+            "q1_months": 2.529774127310062,
+            "q3_months": 8.804928131416839,
+            "min_months": 2.3983572895277208,
+            "max_months": 30.094455852156056
+          },
+          "full_cycle": {
+            "n": 13,
+            "median_months": 8.969199178644764,
+            "mean_months": 24.243879323961455,
+            "q1_months": 5.946611909650924,
+            "q3_months": 26.940451745379875,
+            "min_months": 2.9568788501026693,
+            "max_months": 113.44558521560575
+          }
+        },
+        "XLP": {
+          "n_pivots": 36,
+          "trough_to_peak": {
+            "n": 17,
+            "median_months": 3.6139630390143735,
+            "mean_months": 8.727624109191932,
+            "q1_months": 2.299794661190965,
+            "q3_months": 13.240246406570842,
+            "min_months": 0.8213552361396304,
+            "max_months": 31.080082135523615
+          },
+          "peak_to_trough": {
+            "n": 18,
+            "median_months": 6.11088295687885,
+            "mean_months": 10.038786219484372,
+            "q1_months": 2.8911704312114987,
+            "q3_months": 15.416837782340862,
+            "min_months": 0.2299794661190965,
+            "max_months": 27.794661190965094
+          },
+          "full_cycle": {
+            "n": 17,
+            "median_months": 16.854209445585216,
+            "mean_months": 19.146273704553693,
+            "q1_months": 5.552361396303901,
+            "q3_months": 31.835728952772076,
+            "min_months": 1.3141683778234088,
+            "max_months": 54.37371663244353
+          }
+        },
+        "XLU": {
+          "n_pivots": 63,
+          "trough_to_peak": {
+            "n": 31,
+            "median_months": 3.0882956878850103,
+            "mean_months": 4.988540769689342,
+            "q1_months": 2.0369609856262834,
+            "q3_months": 6.833675564681725,
+            "min_months": 0.7885010266940452,
+            "max_months": 20.960985626283367
+          },
+          "peak_to_trough": {
+            "n": 31,
+            "median_months": 4.041067761806982,
+            "mean_months": 5.627608134066372,
+            "q1_months": 2.283367556468172,
+            "q3_months": 6.965092402464066,
+            "min_months": 0.8542094455852156,
+            "max_months": 19.08829568788501
+          },
+          "full_cycle": {
+            "n": 31,
+            "median_months": 7.622176591375769,
+            "mean_months": 10.616148903755713,
+            "q1_months": 5.503080082135524,
+            "q3_months": 12.172484599589323,
+            "min_months": 2.4640657084188913,
+            "max_months": 31.605749486652975
+          }
+        },
+        "XLV": {
+          "n_pivots": 32,
+          "trough_to_peak": {
+            "n": 15,
+            "median_months": 6.209445585215605,
+            "mean_months": 9.746748802190279,
+            "q1_months": 3.663244353182751,
+            "q3_months": 11.449691991786448,
+            "min_months": 0.75564681724846,
+            "max_months": 53.74948665297741
+          },
+          "peak_to_trough": {
+            "n": 16,
+            "median_months": 7.474332648870637,
+            "mean_months": 11.195071868583163,
+            "q1_months": 3.9589322381930185,
+            "q3_months": 19.15400410677618,
+            "min_months": 0.1971252566735113,
+            "max_months": 26.217659137577
+          },
+          "full_cycle": {
+            "n": 15,
+            "median_months": 16.657084188911703,
+            "mean_months": 21.274195756331277,
+            "q1_months": 9.363449691991786,
+            "q3_months": 29.20739219712526,
+            "min_months": 3.121149897330595,
+            "max_months": 72.9034907597536
+          }
+        },
+        "XLY": {
+          "n_pivots": 33,
+          "trough_to_peak": {
+            "n": 16,
+            "median_months": 5.716632443531827,
+            "mean_months": 11.790554414784394,
+            "q1_months": 2.7104722792607805,
+            "q3_months": 8.944558521560575,
+            "min_months": 0.6570841889117043,
+            "max_months": 84.17248459958932
+          },
+          "peak_to_trough": {
+            "n": 16,
+            "median_months": 4.7967145790554415,
+            "mean_months": 7.535934291581109,
+            "q1_months": 2.2258726899383983,
+            "q3_months": 11.811088295687885,
+            "min_months": 0.7227926078028748,
+            "max_months": 22.93223819301848
+          },
+          "full_cycle": {
+            "n": 16,
+            "median_months": 12.928131416837783,
+            "mean_months": 19.326488706365502,
+            "q1_months": 9.88911704312115,
+            "q3_months": 20.8870636550308,
+            "min_months": 2.3655030800821355,
+            "max_months": 86.50513347022587
+          }
+        }
+      },
+      "pooled": {
+        "trough_to_peak": {
+          "n": 189,
+          "median_months": 3.351129363449692,
+          "mean_months": 8.077442065121739,
+          "q1_months": 1.6098562628336757,
+          "q3_months": 9.363449691991786,
+          "min_months": 0.09856262833675565,
+          "max_months": 100.59958932238193
+        },
+        "peak_to_trough": {
+          "n": 190,
+          "median_months": 4.090349075975359,
+          "mean_months": 7.400324219172159,
+          "q1_months": 1.782340862422998,
+          "q3_months": 9.946611909650924,
+          "min_months": 0.1971252566735113,
+          "max_months": 57.69199178644764
+        },
+        "full_cycle": {
+          "n": 187,
+          "median_months": 8.739219712525667,
+          "mean_months": 15.529675301145284,
+          "q1_months": 4.123203285420944,
+          "q3_months": 20.79671457905544,
+          "min_months": 0.45995893223819306,
+          "max_months": 113.44558521560575
+        },
+        "all_legs": {
+          "n": 379,
+          "median_months": 3.679671457905544,
+          "mean_months": 7.73798984683567,
+          "q1_months": 1.7412731006160165,
+          "q3_months": 9.544147843942504,
+          "min_months": 0.09856262833675565,
+          "max_months": 100.59958932238193
+        }
+      }
+    },
+    "15%": {
+      "per_sector": {
+        "XLB": {
+          "n_pivots": 17,
+          "trough_to_peak": {
+            "n": 8,
+            "median_months": 17.49486652977413,
+            "mean_months": 19.301848049281315,
+            "q1_months": 2.7022587268993843,
+            "q3_months": 29.1088295687885,
+            "min_months": 1.1170431211498972,
+            "max_months": 53.35523613963039
+          },
+          "peak_to_trough": {
+            "n": 8,
+            "median_months": 6.86652977412731,
+            "mean_months": 20.841889117043124,
+            "q1_months": 5.494866529774128,
+            "q3_months": 34.932238193018485,
+            "min_months": 2.0698151950718686,
+            "max_months": 57.69199178644764
+          },
+          "full_cycle": {
+            "n": 8,
+            "median_months": 43.860369609856264,
+            "mean_months": 40.143737166324435,
+            "q1_months": 9.149897330595483,
+            "q3_months": 62.10266940451746,
+            "min_months": 3.318275154004107,
+            "max_months": 85.65092402464066
+          }
+        },
+        "XLE": {
+          "n_pivots": 39,
+          "trough_to_peak": {
+            "n": 19,
+            "median_months": 4.008213552361396,
+            "mean_months": 7.523613963039014,
+            "q1_months": 3.137577002053388,
+            "q3_months": 9.790554414784394,
+            "min_months": 1.3470225872689938,
+            "max_months": 32.459958932238195
+          },
+          "peak_to_trough": {
+            "n": 19,
+            "median_months": 6.012320328542095,
+            "mean_months": 9.79747109045715,
+            "q1_months": 3.4168377823408624,
+            "q3_months": 7.967145790554414,
+            "min_months": 1.51129363449692,
+            "max_months": 57.724845995893226
+          },
+          "full_cycle": {
+            "n": 19,
+            "median_months": 11.466119096509239,
+            "mean_months": 17.321085053496162,
+            "q1_months": 7.950718685831623,
+            "q3_months": 22.308008213552363,
+            "min_months": 3.909650924024641,
+            "max_months": 67.64681724845997
+          }
+        },
+        "XLF": {
+          "n_pivots": 18,
+          "trough_to_peak": {
+            "n": 8,
+            "median_months": 8.37782340862423,
+            "mean_months": 25.5564681724846,
+            "q1_months": 1.7659137577002055,
+            "q3_months": 39.761806981519506,
+            "min_months": 0.26283367556468173,
+            "max_months": 81.83983572895278
+          },
+          "peak_to_trough": {
+            "n": 9,
+            "median_months": 13.371663244353183,
+            "mean_months": 13.444672598676707,
+            "q1_months": 2.0698151950718686,
+            "q3_months": 18.365503080082135,
+            "min_months": 1.215605749486653,
+            "max_months": 30.357289527720738
+          },
+          "full_cycle": {
+            "n": 8,
+            "median_months": 24.032854209445585,
+            "mean_months": 39.01026694045175,
+            "q1_months": 7.039014373716632,
+            "q3_months": 66.95687885010267,
+            "min_months": 1.675564681724846,
+            "max_months": 100.27104722792608
+          }
+        },
+        "XLI": {
+          "n_pivots": 9,
+          "trough_to_peak": {
+            "n": 4,
+            "median_months": 64.22997946611909,
+            "mean_months": 59.819301848049285,
+            "q1_months": 24.944558521560573,
+            "q3_months": 99.1047227926078,
+            "min_months": 4.566735112936345,
+            "max_months": 106.25051334702259
+          },
+          "peak_to_trough": {
+            "n": 4,
+            "median_months": 14.636550308008214,
+            "mean_months": 16.542094455852155,
+            "q1_months": 10.587268993839835,
+            "q3_months": 20.591375770020534,
+            "min_months": 8.837782340862423,
+            "max_months": 28.057494866529773
+          },
+          "full_cycle": {
+            "n": 4,
+            "median_months": 78.86652977412732,
+            "mean_months": 76.36139630390144,
+            "q1_months": 40.73100616016427,
+            "q3_months": 114.49691991786449,
+            "min_months": 13.404517453798768,
+            "max_months": 134.30800821355237
+          }
+        },
+        "XLK": {
+          "n_pivots": 13,
+          "trough_to_peak": {
+            "n": 6,
+            "median_months": 8.229979466119097,
+            "mean_months": 41.45653661875428,
+            "q1_months": 0.944558521560575,
+            "q3_months": 15.342915811088297,
+            "min_months": 0.4928131416837782,
+            "max_months": 215.55646817248459
+          },
+          "peak_to_trough": {
+            "n": 6,
+            "median_months": 9.297741273100616,
+            "mean_months": 11.07186858316222,
+            "q1_months": 6.291581108829569,
+            "q3_months": 9.815195071868583,
+            "min_months": 2.4640657084188913,
+            "max_months": 30.094455852156056
+          },
+          "full_cycle": {
+            "n": 6,
+            "median_months": 18.036960985626283,
+            "mean_months": 52.52840520191649,
+            "q1_months": 7.441478439425051,
+            "q3_months": 40.36139630390144,
+            "min_months": 3.02258726899384,
+            "max_months": 224.36139630390142
+          }
+        },
+        "XLP": {
+          "n_pivots": 15,
+          "trough_to_peak": {
+            "n": 7,
+            "median_months": 17.084188911704313,
+            "mean_months": 21.17219125843356,
+            "q1_months": 8.295687885010267,
+            "q3_months": 25.905544147843944,
+            "min_months": 2.891170431211499,
+            "max_months": 59.827515400410675
+          },
+          "peak_to_trough": {
+            "n": 7,
+            "median_months": 24.903490759753595,
+            "mean_months": 25.32590202405397,
+            "q1_months": 17.478439425051334,
+            "q3_months": 27.3347022587269,
+            "min_months": 6.439425051334703,
+            "max_months": 56.31211498973306
+          },
+          "full_cycle": {
+            "n": 7,
+            "median_months": 45.30595482546201,
+            "mean_months": 46.49809328248754,
+            "q1_months": 30.55441478439425,
+            "q3_months": 61.28952772073922,
+            "min_months": 9.790554414784395,
+            "max_months": 86.70225872689937
+          }
+        },
+        "XLU": {
+          "n_pivots": 25,
+          "trough_to_peak": {
+            "n": 12,
+            "median_months": 11.28542094455852,
+            "mean_months": 15.20602327173169,
+            "q1_months": 4.484599589322382,
+            "q3_months": 14.850102669404517,
+            "min_months": 2.0369609856262834,
+            "max_months": 73.16632443531827
+          },
+          "peak_to_trough": {
+            "n": 12,
+            "median_months": 10.365503080082135,
+            "mean_months": 11.978097193702943,
+            "q1_months": 5.7412731006160165,
+            "q3_months": 16.845995893223822,
+            "min_months": 2.2012320328542097,
+            "max_months": 27.039014373716633
+          },
+          "full_cycle": {
+            "n": 12,
+            "median_months": 21.97946611909651,
+            "mean_months": 27.184120465434635,
+            "q1_months": 12.616016427104723,
+            "q3_months": 33.18275154004107,
+            "min_months": 6.537987679671458,
+            "max_months": 86.04517453798768
+          }
+        },
+        "XLV": {
+          "n_pivots": 17,
+          "trough_to_peak": {
+            "n": 8,
+            "median_months": 10.64476386036961,
+            "mean_months": 15.905544147843942,
+            "q1_months": 5.979466119096509,
+            "q3_months": 16.09034907597536,
+            "min_months": 3.6139630390143735,
+            "max_months": 53.74948665297741
+          },
+          "peak_to_trough": {
+            "n": 8,
+            "median_months": 21.371663244353183,
+            "mean_months": 22.694045174537987,
+            "q1_months": 5.831622176591376,
+            "q3_months": 25.9958932238193,
+            "min_months": 3.975359342915811,
+            "max_months": 67.18685831622176
+          },
+          "full_cycle": {
+            "n": 8,
+            "median_months": 32.016427104722794,
+            "mean_months": 38.59958932238193,
+            "q1_months": 11.030800821355236,
+            "q3_months": 49.26488706365503,
+            "min_months": 7.687885010266941,
+            "max_months": 92.2217659137577
+          }
+        },
+        "XLY": {
+          "n_pivots": 15,
+          "trough_to_peak": {
+            "n": 7,
+            "median_months": 4.1067761806981515,
+            "mean_months": 28.14197711938985,
+            "q1_months": 2.924024640657084,
+            "q3_months": 14.932238193018481,
+            "min_months": 1.0841889117043122,
+            "max_months": 156.09034907597535
+          },
+          "peak_to_trough": {
+            "n": 7,
+            "median_months": 6.04517453798768,
+            "mean_months": 16.032854209445585,
+            "q1_months": 4.632443531827516,
+            "q3_months": 12.451745379876797,
+            "min_months": 2.3326488706365502,
+            "max_months": 69.68377823408625
+          },
+          "full_cycle": {
+            "n": 7,
+            "median_months": 17.05133470225873,
+            "mean_months": 44.17483132883543,
+            "q1_months": 11.46611909650924,
+            "q3_months": 50.4640657084189,
+            "min_months": 9.88911704312115,
+            "max_months": 158.4229979466119
+          }
+        }
+      },
+      "pooled": {
+        "trough_to_peak": {
+          "n": 79,
+          "median_months": 9.330595482546201,
+          "mean_months": 20.819587762846677,
+          "q1_months": 3.186858316221766,
+          "q3_months": 21.059548254620125,
+          "min_months": 0.26283367556468173,
+          "max_months": 215.55646817248459
+        },
+        "peak_to_trough": {
+          "n": 80,
+          "median_months": 8.821355236139631,
+          "mean_months": 15.26611909650924,
+          "q1_months": 5.44558521560575,
+          "q3_months": 20.566735112936346,
+          "min_months": 1.215605749486653,
+          "max_months": 69.68377823408625
+        },
+        "full_cycle": {
+          "n": 79,
+          "median_months": 22.6694045174538,
+          "mean_months": 36.10968731318067,
+          "q1_months": 9.938398357289529,
+          "q3_months": 47.474332648870636,
+          "min_months": 1.675564681724846,
+          "max_months": 224.36139630390142
+        },
+        "all_legs": {
+          "n": 159,
+          "median_months": 8.837782340862423,
+          "mean_months": 18.025389691733498,
+          "q1_months": 3.7289527720739217,
+          "q3_months": 21.059548254620125,
+          "min_months": 0.26283367556468173,
+          "max_months": 215.55646817248459
+        }
+      }
+    },
+    "20%": {
+      "per_sector": {
+        "XLB": {
+          "n_pivots": 9,
+          "trough_to_peak": {
+            "n": 4,
+            "median_months": 20.960985626283367,
+            "mean_months": 34.48870636550308,
+            "q1_months": 11.26899383983573,
+            "q3_months": 44.18069815195072,
+            "min_months": 3.186858316221766,
+            "max_months": 92.84599589322382
+          },
+          "peak_to_trough": {
+            "n": 4,
+            "median_months": 35.17043121149898,
+            "mean_months": 45.79876796714579,
+            "q1_months": 13.921971252566737,
+            "q3_months": 67.04722792607804,
+            "min_months": 5.420944558521561,
+            "max_months": 107.43326488706366
+          },
+          "full_cycle": {
+            "n": 4,
+            "median_months": 82.90759753593429,
+            "mean_months": 80.28747433264887,
+            "q1_months": 55.64681724845996,
+            "q3_months": 107.5482546201232,
+            "min_months": 19.942505133470227,
+            "max_months": 135.39219712525667
+          }
+        },
+        "XLE": {
+          "n_pivots": 22,
+          "trough_to_peak": {
+            "n": 11,
+            "median_months": 6.242299794661191,
+            "mean_months": 13.395557214859059,
+            "q1_months": 3.597535934291581,
+            "q3_months": 10.349075975359343,
+            "min_months": 2.6940451745379876,
+            "max_months": 79.50718685831622
+          },
+          "peak_to_trough": {
+            "n": 10,
+            "median_months": 7.671457905544148,
+            "mean_months": 17.843121149897332,
+            "q1_months": 5.568788501026694,
+            "q3_months": 24.525667351129364,
+            "min_months": 1.8069815195071868,
+            "max_months": 57.724845995893226
+          },
+          "full_cycle": {
+            "n": 10,
+            "median_months": 16.722792607802873,
+            "mean_months": 32.08542094455852,
+            "q1_months": 10.80082135523614,
+            "q3_months": 44.48459958932238,
+            "min_months": 7.655030800821355,
+            "max_months": 102.50513347022587
+          }
+        },
+        "XLF": {
+          "n_pivots": 13,
+          "trough_to_peak": {
+            "n": 6,
+            "median_months": 17.691991786447637,
+            "mean_months": 32.45448323066393,
+            "q1_months": 3.4496919917864477,
+            "q3_months": 63.1047227926078,
+            "min_months": 0.5585215605749486,
+            "max_months": 81.83983572895278
+          },
+          "peak_to_trough": {
+            "n": 6,
+            "median_months": 14.505133470225871,
+            "mean_months": 14.97056810403833,
+            "q1_months": 4.829568788501026,
+            "q3_months": 23.71252566735113,
+            "min_months": 2.0698151950718686,
+            "max_months": 30.357289527720738
+          },
+          "full_cycle": {
+            "n": 6,
+            "median_months": 39.49075975359343,
+            "mean_months": 47.42505133470226,
+            "q1_months": 12.772073921971252,
+            "q3_months": 83.97535934291581,
+            "min_months": 2.628336755646817,
+            "max_months": 100.27104722792608
+          }
+        },
+        "XLI": {
+          "n_pivots": 5,
+          "trough_to_peak": {
+            "n": 2,
+            "median_months": 101.48665297741273,
+            "mean_months": 101.48665297741273,
+            "q1_months": 99.1047227926078,
+            "q3_months": 103.86858316221766,
+            "min_months": 96.72279260780287,
+            "max_months": 106.25051334702259
+          },
+          "peak_to_trough": {
+            "n": 2,
+            "median_months": 19.613963039014372,
+            "mean_months": 19.613963039014372,
+            "q1_months": 15.392197125256674,
+            "q3_months": 23.835728952772072,
+            "min_months": 11.170431211498974,
+            "max_months": 28.057494866529773
+          },
+          "full_cycle": {
+            "n": 2,
+            "median_months": 121.10061601642711,
+            "mean_months": 121.10061601642711,
+            "q1_months": 114.49691991786449,
+            "q3_months": 127.70431211498973,
+            "min_months": 107.89322381930185,
+            "max_months": 134.30800821355237
+          }
+        },
+        "XLK": {
+          "n_pivots": 11,
+          "trough_to_peak": {
+            "n": 5,
+            "median_months": 2.102669404517454,
+            "mean_months": 6.636550308008213,
+            "q1_months": 0.5585215605749486,
+            "q3_months": 14.35728952772074,
+            "min_months": 0.4928131416837782,
+            "max_months": 15.671457905544148
+          },
+          "peak_to_trough": {
+            "n": 5,
+            "median_months": 9.790554414784394,
+            "mean_months": 11.525256673511294,
+            "q1_months": 5.453798767967146,
+            "q3_months": 9.82340862422998,
+            "min_months": 2.4640657084188913,
+            "max_months": 30.094455852156056
+          },
+          "full_cycle": {
+            "n": 5,
+            "median_months": 11.926078028747433,
+            "mean_months": 18.161806981519508,
+            "q1_months": 5.946611909650924,
+            "q3_months": 24.147843942505133,
+            "min_months": 3.02258726899384,
+            "max_months": 45.765913757700204
+          }
+        },
+        "XLP": {
+          "n_pivots": 13,
+          "trough_to_peak": {
+            "n": 6,
+            "median_months": 19.236139630390145,
+            "mean_months": 24.142368240930868,
+            "q1_months": 14.20123203285421,
+            "q3_months": 28.164271047227928,
+            "min_months": 2.891170431211499,
+            "max_months": 59.827515400410675
+          },
+          "peak_to_trough": {
+            "n": 6,
+            "median_months": 25.88911704312115,
+            "mean_months": 28.47364818617385,
+            "q1_months": 21.281314168377826,
+            "q3_months": 27.564681724845997,
+            "min_months": 14.882956878850102,
+            "max_months": 56.31211498973306
+          },
+          "full_cycle": {
+            "n": 6,
+            "median_months": 47.24435318275154,
+            "mean_months": 52.61601642710472,
+            "q1_months": 36.31211498973306,
+            "q3_months": 67.3429158110883,
+            "min_months": 27.794661190965094,
+            "max_months": 86.70225872689937
+          }
+        },
+        "XLU": {
+          "n_pivots": 15,
+          "trough_to_peak": {
+            "n": 7,
+            "median_months": 17.905544147843944,
+            "mean_months": 24.81431504840129,
+            "q1_months": 12.15605749486653,
+            "q3_months": 25.42915811088296,
+            "min_months": 7.457905544147844,
+            "max_months": 73.16632443531827
+          },
+          "peak_to_trough": {
+            "n": 7,
+            "median_months": 20.008213552361397,
+            "mean_months": 20.181871516573775,
+            "q1_months": 15.572895277207392,
+            "q3_months": 25.100616016427104,
+            "min_months": 12.878850102669405,
+            "max_months": 27.039014373716633
+          },
+          "full_cycle": {
+            "n": 7,
+            "median_months": 34.365503080082135,
+            "mean_months": 44.99618656497507,
+            "q1_months": 31.44147843942505,
+            "q3_months": 50.59548254620123,
+            "min_months": 30.48870636550308,
+            "max_months": 86.04517453798768
+          }
+        },
+        "XLV": {
+          "n_pivots": 10,
+          "trough_to_peak": {
+            "n": 5,
+            "median_months": 13.1088295687885,
+            "mean_months": 22.636550308008214,
+            "q1_months": 11.958932238193018,
+            "q3_months": 25.034907597535934,
+            "min_months": 9.330595482546201,
+            "max_months": 53.74948665297741
+          },
+          "peak_to_trough": {
+            "n": 4,
+            "median_months": 34.06981519507187,
+            "mean_months": 38.62012320328542,
+            "q1_months": 22.480492813141684,
+            "q3_months": 50.209445585215605,
+            "min_months": 19.15400410677618,
+            "max_months": 67.18685831622176
+          },
+          "full_cycle": {
+            "n": 4,
+            "median_months": 62.57084188911704,
+            "mean_months": 63.63860369609856,
+            "q1_months": 32.46817248459959,
+            "q3_months": 93.74127310061601,
+            "min_months": 31.1129363449692,
+            "max_months": 98.29979466119096
+          }
+        },
+        "XLY": {
+          "n_pivots": 7,
+          "trough_to_peak": {
+            "n": 3,
+            "median_months": 23.227926078028748,
+            "mean_months": 61.14168377823409,
+            "q1_months": 13.66735112936345,
+            "q3_months": 89.65913757700206,
+            "min_months": 4.1067761806981515,
+            "max_months": 156.09034907597535
+          },
+          "peak_to_trough": {
+            "n": 3,
+            "median_months": 32.72279260780287,
+            "mean_months": 41.93292265571527,
+            "q1_months": 25.90554414784394,
+            "q3_months": 53.35523613963039,
+            "min_months": 19.08829568788501,
+            "max_months": 73.98767967145791
+          },
+          "full_cycle": {
+            "n": 3,
+            "median_months": 42.31622176591376,
+            "mean_months": 103.07460643394937,
+            "q1_months": 39.572895277207394,
+            "q3_months": 136.19712525667353,
+            "min_months": 36.82956878850102,
+            "max_months": 230.07802874743328
+          }
+        }
+      },
+      "pooled": {
+        "trough_to_peak": {
+          "n": 49,
+          "median_months": 13.305954825462011,
+          "mean_months": 27.17043121149898,
+          "q1_months": 4.9281314168377826,
+          "q3_months": 28.09034907597536,
+          "min_months": 0.4928131416837782,
+          "max_months": 156.09034907597535
+        },
+        "peak_to_trough": {
+          "n": 47,
+          "median_months": 20.008213552361397,
+          "mean_months": 24.270173445759973,
+          "q1_months": 9.806981519507186,
+          "q3_months": 27.926078028747433,
+          "min_months": 1.8069815195071868,
+          "max_months": 107.43326488706366
+        },
+        "full_cycle": {
+          "n": 47,
+          "median_months": 36.82956878850102,
+          "mean_months": 52.21302809209664,
+          "q1_months": 20.862422997946613,
+          "q3_months": 79.72073921971253,
+          "min_months": 2.628336755646817,
+          "max_months": 230.07802874743328
+        },
+        "all_legs": {
+          "n": 96,
+          "median_months": 16.91991786447639,
+          "mean_months": 25.750513347022586,
+          "q1_months": 7.416837782340862,
+          "q3_months": 28.06570841889117,
+          "min_months": 0.4928131416837782,
+          "max_months": 156.09034907597535
+        }
+      }
+    }
+  },
+  "entry_state": {
+    "main_12_1": {
+      "n_picks": 909,
+      "period": "2000-01..2026-07",
+      "windows": {
+        "1m": {
+          "share_already_down_pct": 49.394939493949394,
+          "n_down": 449,
+          "n_up": 460,
+          "median_rel_trend_pct": 0.04209852330132602,
+          "fwd_rel_1m_when_up_pct": -0.048056754373265655,
+          "fwd_rel_1m_when_down_pct": 0.22300910499590054,
+          "fwd_gap_pp": -0.2710658593691662,
+          "win_share_when_up_pct": 48.91304347826087,
+          "win_share_when_down_pct": 50.55679287305123,
+          "gap_se_pp": 0.24960152968857088
+        },
+        "3m": {
+          "share_already_down_pct": 34.32343234323432,
+          "n_down": 312,
+          "n_up": 597,
+          "median_rel_trend_pct": 1.7674071837442629,
+          "fwd_rel_1m_when_up_pct": -0.018915665872232618,
+          "fwd_rel_1m_when_down_pct": 0.2862744668499358,
+          "fwd_gap_pp": -0.30519013272216844,
+          "win_share_when_up_pct": 47.73869346733669,
+          "win_share_when_down_pct": 53.52564102564102,
+          "gap_se_pp": 0.26377856774415886
+        },
+        "6m": {
+          "share_already_down_pct": 24.532453245324533,
+          "n_down": 223,
+          "n_up": 686,
+          "median_rel_trend_pct": 3.795019555270418,
+          "fwd_rel_1m_when_up_pct": 0.06481750439274513,
+          "fwd_rel_1m_when_down_pct": 0.15049404985665468,
+          "fwd_gap_pp": -0.08567654546390956,
+          "win_share_when_up_pct": 48.68804664723032,
+          "win_share_when_down_pct": 52.91479820627802,
+          "gap_se_pp": 0.297762414279812
+        }
+      },
+      "fwd_rel_1m_overall_pct": 0.08583606285088795,
+      "cycle_phase_at_entry_pct": {
+        "上升段(未見頂)": 88.77887788778878,
+        "已見頂(下降段)": 10.671067106710671,
+        "未有轉折": 0.5500550055005501
+      },
+      "months_since_last_peak": {
+        "n": 97,
+        "median": 18.82546201232033,
+        "mean": 20.799762907766887
+      },
+      "fwd_rel_1m_by_phase_pct": {
+        "上升段(未見頂)": {
+          "n": 807,
+          "fwd_rel_1m_pct": 0.12487623089685403
+        },
+        "已見頂(下降段)": {
+          "n": 97,
+          "fwd_rel_1m_pct": -0.2028803159117009
+        },
+        "未有轉折": {
+          "n": 5,
+          "fwd_rel_1m_pct": -0.614149311773815
+        }
+      }
+    },
+    "sub_12_7": {
+      "n_picks": 909,
+      "period": "2000-01..2026-07",
+      "windows": {
+        "1m": {
+          "share_already_down_pct": 49.394939493949394,
+          "n_down": 449,
+          "n_up": 460,
+          "median_rel_trend_pct": 0.05336118013861135,
+          "fwd_rel_1m_when_up_pct": 0.0157108434274355,
+          "fwd_rel_1m_when_down_pct": 0.3517511808590845,
+          "fwd_gap_pp": -0.336040337431649,
+          "win_share_when_up_pct": 52.60869565217391,
+          "win_share_when_down_pct": 52.56124721603563,
+          "gap_se_pp": 0.25268628600581333
+        },
+        "3m": {
+          "share_already_down_pct": 49.834983498349835,
+          "n_down": 453,
+          "n_up": 456,
+          "median_rel_trend_pct": 0.005718520288344742,
+          "fwd_rel_1m_when_up_pct": -0.05239140267882734,
+          "fwd_rel_1m_when_down_pct": 0.4173371916200764,
+          "fwd_gap_pp": -0.46972859429890373,
+          "win_share_when_up_pct": 49.122807017543856,
+          "win_share_when_down_pct": 56.07064017660044,
+          "gap_se_pp": 0.2525702220610329
+        },
+        "6m": {
+          "share_already_down_pct": 49.28492849284928,
+          "n_down": 448,
+          "n_up": 461,
+          "median_rel_trend_pct": 0.14604949748369123,
+          "fwd_rel_1m_when_up_pct": 0.09109163549267864,
+          "fwd_rel_1m_when_down_pct": 0.2749330897772867,
+          "fwd_gap_pp": -0.18384145428460807,
+          "win_share_when_up_pct": 50.759219088937094,
+          "win_share_when_down_pct": 54.46428571428571,
+          "gap_se_pp": 0.2528367548417952
+        }
+      },
+      "fwd_rel_1m_overall_pct": 0.18169776477706195,
+      "cycle_phase_at_entry_pct": {
+        "上升段(未見頂)": 77.88778877887789,
+        "已見頂(下降段)": 21.45214521452145,
+        "未有轉折": 0.6600660066006601
+      },
+      "months_since_last_peak": {
+        "n": 195,
+        "median": 10.020533880903491,
+        "mean": 18.639456641920706
+      },
+      "fwd_rel_1m_by_phase_pct": {
+        "上升段(未見頂)": {
+          "n": 708,
+          "fwd_rel_1m_pct": 0.15836123086987433
+        },
+        "已見頂(下降段)": {
+          "n": 195,
+          "fwd_rel_1m_pct": 0.28487267607989253
+        },
+        "未有轉折": {
+          "n": 6,
+          "fwd_rel_1m_pct": -0.41777585151679203
+        }
+      }
+    }
+  }
+}
