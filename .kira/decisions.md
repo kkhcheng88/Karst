@@ -1693,3 +1693,31 @@
   > so i think the whole idea of sector rotation means the market is still on going, it is only that the money moved from one thing to the other. It is usually profit take but not entire risk off. ... If the asset level wanted to risk off on stock, then we fall back to cash. Last question then when should we switch to SPY. I thinnk it is when no signal is good or the R&R is not attractive but the market is still risk on?
 
 - 影響：規格 0.6 補三態狀態機;詞彙表新增風險開預設;板塊線建置票必含「SPY 地板切換判準」一節;KARST-119 不受影響(佢量的是第三態嗰個掣)。
+
+## D-072 營運模式轉換:agent 主導策略成形(排程、開票、量度、實作不逐步請示);用戶轉任贊助人兼討論夥伴,保留三個把關位——判準/參數批核、每條線入紙上交易前放行、定期成績覆核;真錢落注永遠是用戶在券商的人手決定
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-31
+
+- 出處：用戶 2026-08-31 提出交棒,原話見 quote;主 agent 接受並加兩條護欄(大量試錯只用於參數穩健性、訊號必行先寫後看+樣本外),用戶提出時已同意 proven by backtesting 為底線。
+
+- 背景：用戶看過 vibe-coded 產品後反思自己深度答題但感覺無進展,提出由 agent 主導策略成形、自己做 sponsor/discussion。此時作戰守則已齊(D-053/D-054/D-056/D-059–D-071 三態狀態機收官),agent 已無方向性問題要問,交棒條件成熟。
+
+- 決策：
+  1. agent 主導:排程、開票、派工、量度、引擎實作自行推進,不逐步請示;方向性新問題出現時仍先問後行
+  2. 用戶三個把關位:一、判準與參數批核(agent 提案連依據,用戶一句准否——D-038/D-049 的對齊步不取消,改為 agent 主動遞案);二、每條策略線入紙上交易前的放行;三、定期成績覆核(agent 主動交數)
+  3. 護欄一:大量試錯(VectorBT 一類)只用於參數穩健性掃描與既定假設的量度;禁止無假設撈訊號揀「歷史最佳形態」——訊號一律先有理由、先寫死判準、後看數據,樣本外考試先算數(D-049 紀律不因交棒鬆綁)
+  4. 護欄二:所有結論以回測與打和線白紙黑字呈報,期望值講實話;回測證明的是紀律,不是保證
+  5. 真金白銀落注不在本平台範圍:永遠是用戶自己在券商執行的人手決定
+
+- 考慮過的替代方案：
+  1. 維持逐步請示 —— 用戶主動放棄:密集答題期已完,樽頸在執行不在方向
+  2. 全自動連判準都不批 —— 不揀:判準批核是防自欺的最後一重人手閘,保留
+
+- 為何選這個：守則已寫齊,剩下的是執行量;agent 快在迭代,用戶貴在判斷——把判斷集中在三個真正要人的位,其餘交機器,正是整個平台的設計初衷。
+
+- **用戶原話（原文照錄）**
+
+  > Can I handover to you to take the lead? You can explore the way we should be doing in order to get the best strategy to earn the living of both of us. And for sure it should be proven by backtesting ... I guess it could be easier that I am the discussion and sponsor of you, but you take the lead on this stratgy forming?
+
+- 影響：自此 agent 不再等「開工」口令,照現行路線推進(首件:KARST-119 即場派工);用戶可隨時叫停或收回主導權;決策簿照舊逐條入帳供覆核。
