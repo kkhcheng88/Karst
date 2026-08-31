@@ -2105,3 +2105,27 @@
   > actually if API support, I would like to backtest on these list by forming the multiple ourselves. But yes, do the industry ETF first
 
 - 影響：HANDOFF 隊列第 2 項補一句;板塊層數據材料由 SPDR 十二隻擴闊到富途 145 個行業板塊(粒度細一個層級)的可能性入了路線圖。
+
+## D-088 ETF 範圍暫不擴闊(用戶裁決):驗證倍數假設期間,宇宙維持十二隻超集(SPY+十一隻 SPDR);iShares 細分行業 ETF 與富途板塊線全部押後,先證假設再擴器皿
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-31
+
+- 出處：用戶裁決(2026-08-31,見原話)。
+
+- 背景：同日先後傾過 iShares 行業 ETF(SOXX 一類,只公開後顧倍數,定位入池材料)與富途 262 板塊(D-087 後續候選線)。用戶裁定暫時唔加 ETF 範圍,集中證明倍數情緒儀假設本身。
+
+- 決策：
+  1. 板塊層驗證宇宙鎖定現有十二隻(SPY+十一隻 SPDR)——每日存檔件、板塊計分設計、EDGAR 自砌全部以此為範圍
+  2. iShares 細分行業 ETF、富途板塊自砌倍數回測(D-087)一律押後:假設證得成先講擴闊
+  3. D-087 的先決條件不變,只是排序更後
+
+- 考慮過的替代方案：同步擴 iShares/富途細分層 —— 用戶否決:未證假設先擴範圍係本末倒置
+
+- 為何選這個：先用最平、數據最齊嘅十一個板塊證明「倍數講唔講到板塊層嘅嘢」;證得成,擴到細分層先有意義。
+
+- **用戶原話（原文照錄）**
+
+  > ok. I think I rather not adding the scope of ETF for now. So to proof our hypothesis.
+
+- 影響：板塊計分設計票範圍收窄、更快可以開;HANDOFF 隊列次序不變。
