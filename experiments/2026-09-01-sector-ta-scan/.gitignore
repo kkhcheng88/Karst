@@ -1,0 +1,4 @@
+# 全量逐月持倉(64 格 × 314 個月,約 1.3MB):大檔不入 git。
+# 跑一次 ta_sweep_vbt.py 即重新生成;入倉的是 monthly_picks_focus.csv(精簡版)。
+monthly_picks.csv
+__pycache__/

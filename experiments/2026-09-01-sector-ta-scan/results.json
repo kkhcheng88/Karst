@@ -1,0 +1,30 @@
+{
+  "n_periods": 314,
+  "score_window": [
+    "2000-06",
+    "2026-07"
+  ],
+  "n_cells_total": 64,
+  "n_cells_core": 44,
+  "spy_cagr_pct": 8.421,
+  "ew9_cagr_pct": 9.09,
+  "vbt_vs_hand_max_abs_pp": 0.012,
+  "core_t_min": -1.48,
+  "core_t_max": 1.392,
+  "core_n_abs_t_ge_2": 0,
+  "core_n_excess_pos": 8,
+  "best_core": {
+    "combo": "MAX10x100-low",
+    "excess_cagr_pp": 1.878,
+    "paired_t": 1.392
+  },
+  "worst_core": {
+    "combo": "MAD20-high",
+    "excess_cagr_pp": -2.643,
+    "paired_t": -1.48
+  },
+  "data_file": "C:\\projects\\Karst\\experiments\\2026-08-31-fear-greed\\prices_daily.parquet",
+  "cost_bp": 10.0,
+  "n_hold": 3,
+  "warmup_days": 350
+}
