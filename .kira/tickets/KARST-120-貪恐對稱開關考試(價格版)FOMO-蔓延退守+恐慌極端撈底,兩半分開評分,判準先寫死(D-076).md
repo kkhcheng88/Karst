@@ -7,7 +7,7 @@ risk: medium
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: KARST-120-fear-greed
 deliverable: KARST-D02
 ---
 
