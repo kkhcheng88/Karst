@@ -2311,3 +2311,31 @@
   > But I think if the answer is not a 孤峰 but it is actually very helpful as if we are still just trial and error for now only. As if we won't giveup easily. Having hints are the good starting point actually. So I want you to use VectorBT
 
 - 影響：探索速度快好多(一個腳本一次過睇齊全景),而假發現風險由「孤峰唔入候選+考試協議把關」兩重閘接住;KARST-129 派工即時更新。
+
+## D-096 判生死改制(用戶裁決):預選兩組落榜只等於「嗰兩點唔得」,不准再判「成條線死」;線嘅生死由 vectorBT 全景圖判——搵到非孤峰、道理講得通嘅平原,嗰度大概就係答案;次序倒轉為「先全景圖攞提示、後喺未見過嘅時段/場地正式驗證」;D-092/D-094 判詞相應收窄;考試協議加第七節正本更新
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-01
+
+- 出處：用戶對兩考齊落榜嘅回應(承 D-095);主 agent 按裁決修訂協議並落實。
+
+- 背景：舊制:每考預先寫死主副兩組,落榜即當一條線證僞。用戶指出:兩點覆蓋唔到成個參數面,喺佢眼中同隨機揀無異;逐次重考又浪費時間 token。KARST-127/128 兩張落榜判詞受影響。
+
+- 決策：
+  1. 廢除「兩點定生死」:兩組考試落榜嘅判詞只可以講「嗰兩組參數唔得」,唔准講「條線死」;線嘅死刑要全景圖顯示無任何講得通嘅平原先判得出
+  2. 生死判據三件套:非孤峰(鄰域一片組合企得住嘅平原)+ 道理講得通(有經濟/行為解釋,唔係純數字靚)+ 喺佢未見過嘅時段或場地企得住
+  3. 次序倒轉:新線或回爐線一律先跑 vectorBT 全景圖(探索票)攞提示,先至定正式判準;正式考試嘅主判場改為全景圖未見過嘅時段/市場/資產——因為平原係喺見過嘅數據搵出嚟,同一批數據自己讚自己唔算數
+  4. 全景圖唔逐格計入 4.3 嘅 M(否則門檻爆表,制度自廢);代價改由兩樣嘢承擔:考試必帶知情聲明,且樣本外主判唔可以豁免
+  5. D-092 判詞收窄:動能線只證咗 12-1 同 12-7 兩點唔得,線嘅生死等 KARST-129 全景圖;D-094 判詞收窄:資金流線只證咗 1 個月/3 個月兩點唔得,兼且數據唔夠,等自儲數據夠量再判
+  6. 唔靠逐次人手叫重考:一張探索票一次過掃齊成個參數面,唔好擠牙膏
+  7. docs/考試協議.md 加第七節(全景圖探索閘)作正本更新,引 D-095/D-096
+
+- 考慮過的替代方案：維持兩點定生死 —— 用戶明言不能接受;統計上亦確實只證得嗰兩點
+
+- 為何選這個：誠實記低一句:嗰兩組唔係隨機——12-1 係經典動能、12-7 係 Novy-Marx、1/3 個月流係文獻常用窗;但用戶重點成立:兩點覆蓋唔到成個參數面,判唔到成條線嘅生死。新制用「平原+道理+未見過場地」三件套換走「兩點」,假發現風險冇放鬆,判詞反而更準確。
+
+- **用戶原話（原文照錄）**
+
+  > yes. as to be honest, if we do in the way like choosing only 2 option, ffailed and then saying it is failed I can't accept. as if the 2 option you choose is random at first to me. If 2 random parameter failed = strategy failed then I can't accept. And then if I ask for retry and rerun actually is wasting time and token, and also it is just trial and error. But if vectorBT can find out the answer which is not a 孤峰. And if the reasoning making sense, then it is properly the answer
+
+- 影響：探索流程由「文獻揀兩點→考→落榜即死」改為「全景圖→平原+道理→未見過場地驗證」;KARST-129 已照新制執行中;兩張已收案判詞讀法即時收窄,決策簿以本條為準,原文不改。
