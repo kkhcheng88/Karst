@@ -1,0 +1,83 @@
+{
+ "captured_at_utc": "2026-08-31T13:36:12+00:00",
+ "entity_name": "SELECT SECTOR SPDR TRUST",
+ "cik": "0001064641",
+ "note": "每一份申報都帶申報日期(filingDate),知情時點由它決定,不用重述後數字——這正是 point-in-time 的定義。本摘要只數申報份數與日期範圍,未解析持股明細。",
+ "holdings_filings_in_recent_index": {
+  "NPORT-P": {
+   "count": 352,
+   "newest_filing_date": "2026-08-28",
+   "oldest_filing_date": "2019-11-18"
+  },
+  "NPORT-EX": {
+   "count": 11,
+   "newest_filing_date": "2019-08-29",
+   "oldest_filing_date": "2019-08-29"
+  },
+  "N-Q": {
+   "count": 22,
+   "newest_filing_date": "2019-02-28",
+   "oldest_filing_date": "2008-08-28"
+  },
+  "N-Q/A": {
+   "count": 1,
+   "newest_filing_date": "2009-08-31",
+   "oldest_filing_date": "2009-08-31"
+  },
+  "N-CSR": {
+   "count": 19,
+   "newest_filing_date": "2026-03-06",
+   "oldest_filing_date": "2008-12-03"
+  },
+  "N-CSRS": {
+   "count": 19,
+   "newest_filing_date": "2026-06-04",
+   "oldest_filing_date": "2008-06-03"
+  }
+ },
+ "all_forms_in_recent_index": {
+  "NPORT-P": 352,
+  "497K": 242,
+  "40-17F2": 61,
+  "497": 58,
+  "485BPOS": 36,
+  "SC 13G/A": 30,
+  "497J": 22,
+  "SC 13G": 22,
+  "N-Q": 22,
+  "N-PX": 20,
+  "N-CSRS": 19,
+  "24F-2NT": 19,
+  "N-CSR": 19,
+  "40-17G": 18,
+  "NPORT-EX": 11,
+  "NSAR-A": 11,
+  "NSAR-B": 10,
+  "N-CEN": 9,
+  "CORRESP": 9,
+  "485APOS": 7,
+  "8-A12B": 4,
+  "485BXT": 4,
+  "40-APP/A": 3,
+  "CERT": 2,
+  "40-17G/A": 2,
+  "N-CSR/A": 1,
+  "N-PX/A": 1,
+  "DEFA14A": 1,
+  "DEF 14A": 1,
+  "PRE 14A": 1,
+  "N-CEN/A": 1,
+  "25-NSE": 1,
+  "N-Q/A": 1,
+  "CERTPAC": 1,
+  "25": 1
+ },
+ "older_index_files": [
+  {
+   "name": "CIK0001064641-submissions-001.json",
+   "filingCount": 175,
+   "filingFrom": "1998-06-26",
+   "filingTo": "2008-05-28"
+  }
+ ]
+}
