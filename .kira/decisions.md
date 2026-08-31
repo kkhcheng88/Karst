@@ -2522,3 +2522,29 @@
   > yes, so I think it is not practical on oracle or now. As in just 9 sector ETF, for monthly rebalance, the oracle is definitely very high againt SPY already. Doesn't need to mention when going to further smaller ETF section. The key is always whether we have a way to find out the entry or exit signal
 
 - 影響：KARST-133 派工已再修正;決策鏈 D-099→D-101→本條記錄咗成個收窄過程:由「上限值唔值」到「序列訊號」到「唯一問題係訊號」。
+
+## D-104 價格類配菜兩隊即停(用戶裁決):唔 fit 整體策略(倍數情緒儀)嘅材料,就算可能有小利都唔要——KARST-134 恐慌買入取消(未接觸數據,腳本棄);KARST-131 反轉停機時已交齊卷,結果照收並依 D-096 補判死刑(唯一平原坐喺機制對唔上嘅位置且矮過盲揀三隻);KARST-129 候選庫「短期反轉方向」劃走;板塊層價格類材料全部清場,現役只剩倍數序列一條主線(KARST-133)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-01
+
+- 出處：用戶 2026-09-01 原話見 quote;主 agent 即時執行:TaskStop 兩隊、KARST-131 代行關票、KARST-134 取消。
+
+- 背景：用戶盤點四隊在跑嘅 agent 後裁定:恐慌買入(含 RSI2 on SPY 嗰格)同短窗反轉兩條係價格層材料,同核心假設(D-077 倍數情緒儀)無關,停。停機時反轉隊啱啱交齊卷(文獻關 386a5c2、結果 e9b482d),恐慌隊未接觸數據。
+
+- 決策：
+  1. KARST-134 取消:未開跑,experiments 草稿腳本唔入倉照棄;cancelReason 記重啟路徑——情緒族恐半重啟另開新票引本票及 D-083/D-096,QQQ/SOXX 做全新樣本外對象嘅備案一併記低;RSI2 喺 SPY 得唔得呢條問題隨之擱置未答,係本裁決接受咗嘅
+  2. KARST-131 結果照收:172 格掃齊,零格正向 |t|≥2;唯一平原(6–13 週反動能)有平原無道理,且矮過盲揀三隻嘅運氣帶;順勢臂輸錢無等額變成反轉賺錢(兩臂同正 1/43)——依 D-096 三件套補判:短窗反轉線死刑成立
+  3. KARST-129 候選庫「短期反轉方向」一條劃走——開票嗰條線索(追強者輸推反買贏)已被本票證明推唔成立
+  4. 通則入帳:材料線立項要同核心假設(倍數情緒儀)接得上;「可能有小利」唔係立項理由
+  5. 板塊層現役線清單:KARST-133 倍數序列訊號一條;資金流等自儲重開條件(D-100)、倍數閘等 KARST-133 結果
+
+- 考慮過的替代方案：俾恐慌隊跑埋先停(佢答緊用戶自己問嘅 RSI2) —— 用戶裁明唔值,fit 唔 fit 行先過有冇小利
+
+- 為何選這個：用戶把關位用喺正確層次:資源同注意力對齊核心假設,唔係逐條線問「賺唔賺」;證僞紀錄已經齊,清場成本低。
+
+- **用戶原話（原文照錄）**
+
+  > 兩隊配菜即刻停 I think. It is not worth as even it has some profit. But it  doesn't fit our overall strategy at all
+
+- 影響：四隊縮一隊;板塊層價格類材料(動能/TA 橫截面/反轉/恐慌買入)全部清場或擱置,證僞紀錄齊備;下一個裁決點=KARST-133 四族有冇平原。
