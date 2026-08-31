@@ -1878,3 +1878,29 @@
   > I think this is not something difficult for you. As you mentioned, the market use the lower tier is only because the higher is not applicable. So actually I think you can fform the logic of which stock should use which. And minor stitch is not actually matter as the product should be a continuous plot, the key is always the trend, especially when it is a sector level consideration ... I am actually interest to test the multiple chart with mean reveral/trend TA. I think the result can be interesting. potential is SMC, RSI, and Moving Average pattern (e.g. 多頭排列, or 金叉死叉). But yes we can check later. ... Yes I think it is ok.
 
 - 影響：分母指定規則寫入日後倍數層實作票;候選庫在勘察票回報後轉考試票;三項決定的署名升級為用戶裁決。
+
+## D-079 KARST-120 收案:貪恐對稱開關價格版兩半皆不及格——貪半帶反向資訊整族收檔;恐半有料但不過值博線不入建置;恐慌極端重新定位為「風險開之內加注時機」候選另開考試;退守目的地一問已答(現金每格最差,D-069 SPY 預設不改)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-08-31
+
+- 出處：量度結果 KARST-120(research/2026-08-31-貪恐對稱開關.md);主 agent 依 D-072 主導權定案,成績留用戶覆核。判準先寫死 commit 5944006 早於結果 commit fd6a230,時序可證。
+
+- 背景：27 年日線,響後 21 個交易日評分,打和精確度 46.2%、跌月基礎率 35.2%。貪半(FOMO 蔓延退守):主副兩組響 207/129 次,精確度 29.0%/27.1% 低過基礎率——報「危險」之後大市平均反而升 0.90%/0.94%,85% 訊號響在熊市外;2020-03-26 見底後三日響一次,之後 +14.91%。三目的地:繼續持有 +0.97% > 轉 SPY +0.90% > 轉現金 0.00%。恐半(恐慌極端撈底):個別撈底/黃金撈底響 103/80 次,響後 +1.16%/+1.45%,精確度過基礎率,但超額 +0.53/+0.65 點不足事前寫死的 1.00 點值博線;一季窗超額 +1.22/+1.78 點過得到,但主窗事前寫死 21 日,事後改窗=作弊,無做。關鍵發現:恐半熊外(+2.00%)賺多過熊內,2008 個別撈底 8 次平均蝕 4.77%(領漲板塊已換防守股,撈=接刀);2020 黃金撈底門檻寫死 5.0、極端讀數最低 6.38,差 1.38 點一次未響。
+
+- 決策：
+  1. 貪半(FOMO 蔓延退守)整族收檔,不入建置,不開變體票——精確度低過基礎率即帶反向資訊,唔係參數問題係方向問題
+  2. 恐半不入建置——過賺錢關與有資訊關,倒在事前寫死的值博線;窗長不事後改,考試紀律優先
+  3. 恐慌極端重新定位:總開關係擺錯位,正位係「風險開之內的加注/入場時機」(熊外賺多過熊內、熊內撈底=接刀、錯誤成本在風險開內最平);另開票重考,判準事前寫死,百分位門檻與一季窗兩個選擇受本輪結果知情要明寫、證據力打折、值博線相應從嚴
+  4. D-076 遺留一問(退守目的地 SPY 定 USD)以數據答畢:現金每格最差,D-069 被動預設 SPY 不變
+  5. 總開關(全撤 USD)維持 D-075 現狀:無自動掣,平台只顯示報信人狀態
+
+- 考慮過的替代方案：改用一季窗令恐半及格 —— 否決:事後改窗=作弊,考試制度存在的意義正是擋這一步
+
+- 為何選這個：兩半分開評分(D-076)正是為了容許一半死一半留;貪半死於方向、恐半死於幅度,前者收檔後者換位重考,各得其所。
+
+- **用戶原話（原文照錄）**
+
+  > (用戶未批示,成績覆核待用戶;文獻預期「貪半最弱」已於派工前向用戶預告)
+
+- 影響：開恐慌重定位考試票並派工;貪半方向自此不再立票;規格 0.6 開關一節按此補記(留待與 KARST-121 結果一併改)。
