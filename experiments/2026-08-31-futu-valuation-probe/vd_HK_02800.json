@@ -1,0 +1,3 @@
+2026-08-31 23:33:16,163 | 38504 | 12564 | [open_context_base.py:411] _init_connect_sync: New connect ready: conn=7500214131382861128(1) context=<futu.quote.open_quote_context.OpenQuoteContext object at 0x000001B4B3EA94F0>
+{"code": "HK.02800", "data": {}}
+2026-08-31 23:33:16,298 | 38504 | 26588 | [open_context_base.py:521] on_disconnect: Disconnected: conn=0(1) reason=CallClose

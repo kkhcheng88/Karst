@@ -1,0 +1,97 @@
+{
+ "probe4": {
+  "US.MFG": {
+   "plate": "US.LIST2456",
+   "plate_name": "Banks - Regional",
+   "plate_average_value": 12.812,
+   "plate_stock_item_count": 306,
+   "own_pe": 16.966,
+   "first": "2006-11-08",
+   "last": "2026-08-31",
+   "points": 4982
+  },
+  "US.FITB": {
+   "plate": "US.LIST2456",
+   "plate_name": "Banks - Regional",
+   "plate_average_value": 12.812,
+   "plate_stock_item_count": 306,
+   "own_pe": 18.159,
+   "first": "1997-01-02",
+   "last": "2026-08-31",
+   "points": 7462
+  },
+  "US.RF": {
+   "plate": "US.LIST2456",
+   "plate_name": "Banks - Regional",
+   "plate_average_value": 12.812,
+   "plate_stock_item_count": 306,
+   "own_pe": 12.178,
+   "first": "2004-07-01",
+   "last": "2026-08-31",
+   "points": 5577
+  },
+  "US.KEY": {
+   "plate": "US.LIST2456",
+   "plate_name": "Banks - Regional",
+   "plate_average_value": 12.812,
+   "plate_stock_item_count": 306,
+   "own_pe": 12.69,
+   "first": "1997-01-02",
+   "last": "2026-08-31",
+   "points": 7462
+  },
+  "US.AAPL": {
+   "plate": "US.LIST2075",
+   "plate_name": "Consumer Electronics",
+   "plate_average_value": 36.092,
+   "plate_stock_item_count": 3,
+   "own_pe": 36.093,
+   "first": "1996-09-03",
+   "last": "2026-08-31",
+   "points": 7546
+  }
+ },
+ "probe5": {
+  "plate": "US.LIST2075",
+  "observed": 36.092,
+  "candidates": {
+   "mean_all": -17.512526315789472,
+   "median_all": -1.914,
+   "mean_positive": 30.05966666666667,
+   "median_positive": 34.511,
+   "capw_mean_positive": 36.092209100956566,
+   "aggregate_positive": 36.09204644379663,
+   "aggregate_all": 38.21707871662995
+  },
+  "closest": "aggregate_positive",
+  "closest_err_pct": 0.00012868169299102625,
+  "members": 19
+ },
+ "probe6_series_len": 7462,
+ "probe6": [
+  {
+   "event": "SVB failure",
+   "event_date": "2023-03-10",
+   "anchor": "2023-03-10",
+   "mean_20d_before": 2.71885,
+   "mean_20d_after": 1.86435,
+   "shift_pct": -31.428729058241544
+  },
+  {
+   "event": "Signature failure",
+   "event_date": "2023-03-12",
+   "anchor": "2023-03-13",
+   "mean_20d_before": 2.6835,
+   "mean_20d_after": 1.84505,
+   "shift_pct": -31.244643189863986
+  },
+  {
+   "event": "First Republic seized",
+   "event_date": "2023-05-01",
+   "anchor": "2023-05-01",
+   "mean_20d_before": 1.6286999999999998,
+   "mean_20d_after": 0.5516500000000001,
+   "shift_pct": -66.12942837846134
+  }
+ ]
+}
