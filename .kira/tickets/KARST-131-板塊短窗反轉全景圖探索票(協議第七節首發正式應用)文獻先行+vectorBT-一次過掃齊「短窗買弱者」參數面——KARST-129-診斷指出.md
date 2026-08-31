@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: karst-131-agent
 deliverable: KARST-D02
 ---
 
