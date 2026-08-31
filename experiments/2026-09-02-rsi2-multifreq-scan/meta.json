@@ -1,0 +1,97 @@
+{
+  "ticket": "KARST-135",
+  "generated": "2026-09-01 03:24:31",
+  "prices": "experiments\\2026-08-31-fear-greed\\prices_daily.parquet",
+  "multiples": "experiments\\2026-09-02-multiples-oracle-scan\\sector_multiples.csv",
+  "sectors": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "cost_bp": 10.0,
+  "rsi_window": 2,
+  "burn_bars": 5,
+  "bar_sizes": [
+    "1D",
+    "3D",
+    "1W",
+    "1M",
+    "3M"
+  ],
+  "holds": {
+    "1D": [
+      1,
+      2,
+      3,
+      5,
+      10
+    ],
+    "3D": [
+      1,
+      2,
+      3
+    ],
+    "1W": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "1M": [
+      1,
+      2,
+      3
+    ],
+    "3M": [
+      1,
+      2
+    ]
+  },
+  "n_top": [
+    1,
+    2,
+    3
+  ],
+  "entry": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40
+  ],
+  "exit": [
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95
+  ],
+  "rsi_kinds": [
+    "wilder",
+    "simple"
+  ],
+  "common_start": "2000-09-29",
+  "daily_multiple_coverage": 0.9698,
+  "prod_db_sha256_head16_before": "b168e9f45b578cf9",
+  "prod_db_sha256_head16_after": "b168e9f45b578cf9",
+  "prod_db_unchanged": true,
+  "arms": "mult(票面砌法) / price(對照臂) / mult_raw(月底 pe_lag 正本,只 1M+3M)",
+  "panorama_rows": 6484,
+  "contrast_rows": 4482,
+  "vbt_max_abs_cagr_diff_pp": 0.0105,
+  "runtime_sec": 59.3
+}
