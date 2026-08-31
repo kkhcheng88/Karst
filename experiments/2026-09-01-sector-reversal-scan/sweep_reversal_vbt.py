@@ -252,7 +252,7 @@ def run_grid(close, opn, cols, cadence):
         "cadence": cadence, "n_periods": int(n_per),
         "first_exec": str(exec_px.index[0].date()),
         "last_exec": str(exec_px.index[-1].date()),
-        "spy_cagr_pct": round(spy_cagr, 3),
+        "spy_cagr_pct": round(spy_cagr, 4),   # 唔好 round 到 3 位再 .2f 印:會二次進位變 8.44
         "n_cells": int(len(labels)), "calib_cells": calib,
     }
     return pd.DataFrame(rows), info
