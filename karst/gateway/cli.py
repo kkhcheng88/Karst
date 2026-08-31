@@ -34,6 +34,11 @@
     python -m karst.gateway multiples list
     python -m karst.gateway multiples list --symbol XLK
 
+    python -m karst.gateway shares capture          # 每日跑一次:抄低今日的在外股數
+    python -m karst.gateway shares backfill         # 由已落檔的原始頁面補開檔前那幾次
+    python -m karst.gateway shares list
+    python -m karst.gateway shares list --symbol XLK
+
     python -m karst.gateway factor ingest-alpha158 --snapshot 2026-08-28-a508d635a5fa
 
     python -m karst.gateway verify
@@ -60,6 +65,7 @@ from ..store import (
     STRATEGY_TYPES,
     check_param_set,
 )
+from ..data.fund_shares import DEFAULT_SHARES_ROOT
 from ..data.multiples import DEFAULT_MULTIPLES_ROOT
 from .service import (
     SOURCE_KINDS,
@@ -371,6 +377,52 @@ def build_parser() -> argparse.ArgumentParser:
     multiples_list.add_argument("--since", default=None,
                                 help="只列這一日(含)之後抓的;留空即不篩,不是預設今日")
 
+    # 每日在外股數存檔(KARST-130)。與上面那一組同型、同一批基金、同一張發行商頁面,
+    # 但**另一份存檔**:兩節解析各自獨立,一邊斷了另一邊照樣儲得到;而且新欄硬塞落
+    # 舊 CSV 等於改寫已經寫好的歷史列,追加式存檔不做這件事。
+    shares = commands.add_parser(
+        "shares",
+        help="每日在外股數存檔:抄低發行商公布的基金單位數,追加式累積(申贖流的乾淨線,KARST-130)",
+    )
+    shares_commands = shares.add_subparsers(dest="subcommand", required=True)
+    shares_capture = shares_commands.add_parser(
+        "capture",
+        help="抓一次十二隻 ETF 的在外股數,追加落存檔(同日重跑冪等;數字變了兩列都留)",
+    )
+    shares_capture.add_argument(
+        "--symbol", dest="symbols", action="append", default=None,
+        help="只抓這幾隻(可重複);留空即整個名單十二隻",
+    )
+    shares_capture.add_argument(
+        "--root", default=None,
+        help=f"存檔根(預設 {DEFAULT_SHARES_ROOT.as_posix()});舊列永不改寫,只加新列",
+    )
+    shares_capture.add_argument(
+        "--pause", type=float, default=None,
+        help="逐隻之間停幾多秒(禮貌節奏);留空即用預設一秒",
+    )
+    shares_backfill = shares_commands.add_parser(
+        "backfill",
+        help="由板塊倍數存檔已落檔的原始頁面補回開檔前那幾次;一個網都不出,重跑冪等",
+    )
+    shares_backfill.add_argument(
+        "--root", default=None,
+        help=f"存檔根(預設 {DEFAULT_SHARES_ROOT.as_posix()})",
+    )
+    shares_backfill.add_argument(
+        "--from-root", dest="from_root", default=None,
+        help=f"原始頁面來自哪一份存檔(預設 {DEFAULT_MULTIPLES_ROOT.as_posix()})",
+    )
+    shares_list = shares_commands.add_parser(
+        "list", help="列存檔:留空即每隻最新一列;給 --symbol 即列該隻的逐次讀數"
+    )
+    shares_list.add_argument("--root", default=None,
+                             help=f"存檔根(預設 {DEFAULT_SHARES_ROOT.as_posix()})")
+    shares_list.add_argument("--symbol", default=None,
+                             help="只看這一隻,列它逐次的讀數;留空即每隻最新一列")
+    shares_list.add_argument("--since", default=None,
+                             help="只列這一日(含)之後抓的;留空即不篩,不是預設今日")
+
     where = commands.add_parser("where", help="講出一項定義的唯一落點,並掃全庫查有沒有第二份影像")
     where.add_argument("--kind", required=True, choices=("factor", "strategy"))
     where.add_argument("--name", required=True)
@@ -402,11 +454,14 @@ def main(argv: Sequence[str] | None = None, out: TextIO | None = None) -> int:
 
 
 def _dispatch(args: argparse.Namespace, out: TextIO) -> int:
-    # 板塊倍數存檔要攔在開庫**之前**(KARST-124):``Gateway.open`` 一開就會對庫檔
+    # 兩份 vintage 存檔(板塊倍數 KARST-124、在外股數 KARST-130)要攔在開庫**之前**:
+    # ``Gateway.open`` 一開就會對庫檔
     # 建表並寫 ``schema_meta``,即使那句命令一個定義都沒有寫,庫檔的位元也會變。
     # 這一條命令按設計不碰單一定義庫,所以連開都不開——生產庫雜湊分毫不動。
     if args.command == "multiples":
         return _multiples(args, out)
+    if args.command == "shares":
+        return _shares(args, out)
     with Gateway.open(args.store, writer=args.writer) as gateway:
         if args.command == "init":
             return _init(gateway, out)
@@ -1378,6 +1433,188 @@ def _multiples_list(args: argparse.Namespace, out: TextIO) -> int:
         )
     print("", file=out)
     print("  FY1 = 發行商公布的前瞻市盈率(加權調和平均);要看某一隻的歷史加 --symbol。", file=out)
+    return EXIT_OK
+
+
+# ----------------------------------------------------------------------
+# 每日在外股數存檔(KARST-130)
+# ----------------------------------------------------------------------
+
+
+def _shares(args: argparse.Namespace, out: TextIO) -> int:
+    if args.subcommand == "capture":
+        return _shares_capture(args, out)
+    if args.subcommand == "backfill":
+        return _shares_backfill(args, out)
+    if args.subcommand == "list":
+        return _shares_list(args, out)
+    raise AssertionError(f"未知子命令 {args.subcommand!r}")  # pragma: no cover - argparse 已擋
+
+
+def _shares_root(raw: str | None):
+    from pathlib import Path  # noqa: PLC0415
+
+    return Path(raw) if raw else DEFAULT_SHARES_ROOT
+
+
+def _shares_outcome_lines(outcomes, out: TextIO) -> None:
+    print("  代號    在外股數(百萬股)      NAV      截數日        結果", file=out)
+    for item in outcomes:
+        if item.reading is None:
+            print(f"  {item.symbol:<6}  {'—':>16}  {'—':>7}  {'—':<12}  {item.status}", file=out)
+            continue
+        reading = item.reading
+        print(
+            f"  {item.symbol:<6}  {reading.shares_outstanding_m:>16}  "
+            f"{reading.nav_usd:>7}  {reading.nav_as_of:<12}  {item.status}",
+            file=out,
+        )
+
+
+def _shares_failure_lines(failed, out: TextIO) -> None:
+    print("", file=out)
+    print("失敗的逐隻講明斷了哪一格;存檔沒有為它們寫任何一列(不寫空值):", file=out)
+    for item in failed:
+        print(f"  {item.symbol}  {item.trouble}", file=out)
+
+
+def _shares_capture(args: argparse.Namespace, out: TextIO) -> int:
+    from datetime import datetime, timezone  # noqa: PLC0415
+
+    from ..data.fund_shares import (  # noqa: PLC0415
+        CAPTURED,
+        POLITE_PAUSE_SECONDS,
+        SHARES_UNIVERSE,
+        SsgaMultiplesSource,
+        capture_shares,
+        shares_readings_path,
+    )
+
+    root = _shares_root(args.root)
+    symbols = tuple(args.symbols) if args.symbols else SHARES_UNIVERSE
+    pause = POLITE_PAUSE_SECONDS if args.pause is None else args.pause
+    report = capture_shares(
+        source=SsgaMultiplesSource(),
+        symbols=symbols,
+        root=root,
+        now=datetime.now(timezone.utc),
+        pause_seconds=pause,
+    )
+    print(f"在外股數存檔 {report.capture_id}", file=out)
+    print(f"  來源      {report.source_name}", file=out)
+    print(f"  抓取時間  {report.captured_at_utc}", file=out)
+    print(f"  存檔正本  {shares_readings_path(report.root)}", file=out)
+    print(f"  原始頁面  {report.root / 'raw' / report.capture_id}(先落檔、後解析)", file=out)
+    print("", file=out)
+    _shares_outcome_lines(report.outcomes, out)
+    print("", file=out)
+    print(
+        f"  合計      新寫 {len(report.written)} 列、同日不變 {len(report.unchanged)} 隻、"
+        f"失敗 {len(report.failed)} 隻",
+        file=out,
+    )
+    print(
+        "  在外股數的每日增減就是申贖流;截數日是發行商自報的,通常是抓取日前一個"
+        "交易日(知情滯後 T+1),回測對齊用截數日,不是抓取日。",
+        file=out,
+    )
+    if report.failed:
+        _shares_failure_lines(report.failed, out)
+        print("  原始頁面已落檔,修好解析之後由存檔重跑補得回,那一日不會白蝕。", file=out)
+        return EXIT_REJECTED
+    if not report.written:
+        print(f"  今日全部代號的數字與早前那次一樣,沒有加新列({CAPTURED}零列)。", file=out)
+    return EXIT_OK
+
+
+def _shares_backfill(args: argparse.Namespace, out: TextIO) -> int:
+    from pathlib import Path  # noqa: PLC0415
+
+    from ..data.fund_shares import (  # noqa: PLC0415
+        SHARES_UNIVERSE,
+        backfill_from_raw,
+        shares_readings_path,
+    )
+
+    root = _shares_root(args.root)
+    from_root = Path(args.from_root) if args.from_root else DEFAULT_MULTIPLES_ROOT
+    report = backfill_from_raw(
+        multiples_root=from_root,
+        root=root,
+        symbols=SHARES_UNIVERSE,
+    )
+    print(f"在外股數存檔回填:由 {from_root / 'raw'} 已落檔的原始頁面補", file=out)
+    print(f"  存檔正本  {shares_readings_path(report.root)}", file=out)
+    print(f"  來源抓取  {len(report.captures)} 次:{', '.join(report.captures) or '(無)'}", file=out)
+    print("", file=out)
+    _shares_outcome_lines(report.outcomes, out)
+    print("", file=out)
+    print(
+        f"  合計      新寫 {len(report.written)} 列、已有不再寫 {len(report.unchanged)} 列、"
+        f"失敗 {len(report.failed)} 列",
+        file=out,
+    )
+    print("  回填一個網都不出;每列的抓取時間是當日真正抓那張頁面那一刻,不是回填這一刻。", file=out)
+    if report.failed:
+        _shares_failure_lines(report.failed, out)
+        return EXIT_REJECTED
+    return EXIT_OK
+
+
+def _shares_list(args: argparse.Namespace, out: TextIO) -> int:
+    from ..data.fund_shares import (  # noqa: PLC0415
+        latest_shares_per_symbol,
+        read_shares_readings,
+        shares_history_of,
+        shares_readings_path,
+        summarise_shares,
+    )
+
+    root = _shares_root(args.root)
+    rows = read_shares_readings(root)
+    path = shares_readings_path(root)
+    if not rows:
+        print(f"在外股數存檔 {path} 還未有任何一列。", file=out)
+        print("  先跑一次:python -m karst.gateway shares capture", file=out)
+        return EXIT_OK
+
+    summary = summarise_shares(rows)
+    print(f"在外股數存檔 {path}", file=out)
+    print(
+        f"  覆蓋      {summary.first_day} 至 {summary.last_day},"
+        f"{summary.captures} 次抓取、{summary.rows} 列、{len(summary.symbols)} 隻",
+        file=out,
+    )
+    print("", file=out)
+
+    if args.symbol:
+        picked = shares_history_of(rows, args.symbol, since=args.since)
+        if not picked:
+            print(f"  存檔內沒有 {args.symbol} 在這段日子的讀數。", file=out)
+            return EXIT_OK
+        print(f"  {args.symbol} 逐次讀數(共 {len(picked)} 列)", file=out)
+        print("  抓取時間              截數日        在外股數(百萬股)      NAV", file=out)
+        for row in picked:
+            print(
+                f"  {row['captured_at_utc']:<20}  {row['nav_as_of']:<12}  "
+                f"{row['shares_outstanding_m']:>16}  {row['nav_usd']:>8}",
+                file=out,
+            )
+        print("", file=out)
+        print("  兩列之間的在外股數差額就是那段日子的淨申贖(創設為正、贖回為負)。", file=out)
+        return EXIT_OK
+
+    print("  每隻最新一列", file=out)
+    print("  代號    在外股數(百萬股)      NAV       資產淨值(百萬美元)  截數日        抓取時間", file=out)
+    for row in latest_shares_per_symbol(rows):
+        print(
+            f"  {row['symbol']:<6}  {row['shares_outstanding_m']:>16}  "
+            f"{row['nav_usd']:>8}  {row['aum_musd']:>18}  "
+            f"{row['nav_as_of']:<12}  {row['captured_at_utc']}",
+            file=out,
+        )
+    print("", file=out)
+    print("  在外股數單位是百萬股;要看某一隻的逐日變化(即申贖流)加 --symbol。", file=out)
     return EXIT_OK
 
 
