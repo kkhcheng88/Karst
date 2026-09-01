@@ -1,0 +1,17 @@
+{
+  "panel_tickers": 718,
+  "priced_tickers_anywhere": 634,
+  "accounts_but_no_price": 84,
+  "accounts_but_no_price_and_delisted": 81,
+  "price_sources_checked": [
+    "experiments/2026-09-01-stock-oracle-curve/data/stock_monthly.parquet(587 個代號)",
+    "data/snapshots/2026-08-28-000b4820a23a/universe.parquet(6 個代號)",
+    "data/snapshots/2026-08-28-3bf7ab0a522a/universe.parquet(603 個代號)",
+    "data/snapshots/2026-08-28-493fd1df1cb9/universe.parquet(625 個代號)",
+    "data/snapshots/2026-08-28-a508d635a5fa/universe.parquet(12 個代號)",
+    "data/snapshots/2026-08-28-c442236133d4/universe.parquet(607 個代號)",
+    "data/snapshots/2026-08-28-d506871935cd/universe.parquet(605 個代號)",
+    "data/snapshots/2026-08-29-d5c393e65534/universe.parquet(12 個代號)",
+    "experiments/2026-09-01-stock-oracle-curve/data/stock_monthly.parquet(587 個代號)"
+  ]
+}

@@ -1,0 +1,15 @@
+﻿702 unique CIKs to fetch
+50/702  ok=50 skip=0 fail=0 35s
+100/702  ok=100 skip=0 fail=0 68s
+150/702  ok=150 skip=0 fail=0 102s
+200/702  ok=200 skip=0 fail=0 133s
+250/702  ok=249 skip=0 fail=1 161s
+300/702  ok=299 skip=0 fail=1 188s
+350/702  ok=349 skip=0 fail=1 214s
+450/702  ok=447 skip=0 fail=3 271s
+500/702  ok=497 skip=0 fail=3 298s
+550/702  ok=546 skip=0 fail=4 328s
+600/702  ok=596 skip=0 fail=4 359s
+650/702  ok=646 skip=0 fail=4 382s
+700/702  ok=696 skip=0 fail=4 403s
+DONE {'unique_ciks': 702, 'downloaded': 698, 'already_present': 0, 'failed': 4, 'bytes_on_disk': 2514915803, 'seconds': 404.1}

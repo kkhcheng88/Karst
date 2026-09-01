@@ -1,0 +1,16 @@
+{
+  "probed": 12,
+  "yfinance_returned_data": 0,
+  "stooq_returned_data": 0,
+  "control_live_ticker": {
+    "yfinance": {
+      "live_ticker_works": true,
+      "detail": "11522 個交易日,1980-12-12~2026-09-01"
+    },
+    "stooq": {
+      "live_ticker_works": false,
+      "detail": "回應不是行情表:<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name="
+    }
+  },
+  "note": "回傳有數不等於「是當年那家公司的價格」——代號被後人接用時,拿到的是接用者的走勢(KARST-083 的 ADT 案例)。逐個核對留給價格線的票。對照組不通過的來源,只證明它不肯服務這部機,不證明它沒有除牌資料。"
+}

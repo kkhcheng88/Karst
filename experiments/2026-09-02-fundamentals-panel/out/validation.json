@@ -1,0 +1,111 @@
+{
+  "panel_rows": 123754,
+  "tickers": 718,
+  "month_end_min": "2009-04-30",
+  "month_end_max": "2026-08-31",
+  "look_ahead_violations": {
+    "revenue": 0,
+    "gross_profit": 0,
+    "net_income": 0,
+    "diluted_shares": 0,
+    "cfo": 0,
+    "capex": 0,
+    "assets": 0,
+    "liabilities": 0,
+    "equity": 0,
+    "cash": 0,
+    "lt_debt": 0
+  },
+  "look_ahead_total": 0,
+  "period_end_after_filing": {
+    "revenue": 0,
+    "gross_profit": 0,
+    "net_income": 14,
+    "diluted_shares": 0,
+    "cfo": 0,
+    "capex": 0,
+    "assets": 29,
+    "liabilities": 29,
+    "equity": 29,
+    "cash": 60,
+    "lt_debt": 37
+  },
+  "age_days": {
+    "revenue": {
+      "median": 51,
+      "p90": 89,
+      "max": 3050
+    },
+    "gross_profit": {
+      "median": 59,
+      "p90": 749,
+      "max": 6149
+    },
+    "net_income": {
+      "median": 51,
+      "p90": 89,
+      "max": 4344
+    },
+    "diluted_shares": {
+      "median": 51,
+      "p90": 89,
+      "max": 3958
+    },
+    "cfo": {
+      "median": 60,
+      "p90": 161,
+      "max": 2696
+    },
+    "capex": {
+      "median": 62,
+      "p90": 179,
+      "max": 5866
+    },
+    "assets": {
+      "median": 49,
+      "p90": 88,
+      "max": 2696
+    },
+    "liabilities": {
+      "median": 52,
+      "p90": 90,
+      "max": 6156
+    },
+    "equity": {
+      "median": 49,
+      "p90": 88,
+      "max": 2696
+    },
+    "cash": {
+      "median": 50,
+      "p90": 88,
+      "max": 3967
+    },
+    "lt_debt": {
+      "median": 60,
+      "p90": 952,
+      "max": 5871
+    }
+  },
+  "share_of_cells_later_restated": {
+    "revenue": 0.1193,
+    "gross_profit": 0.0672,
+    "net_income": 0.0784,
+    "diluted_shares": 0.0625,
+    "cfo": 0.1089,
+    "capex": 0.0586,
+    "assets": 0.0509,
+    "liabilities": 0.0268,
+    "equity": 0.0405,
+    "cash": 0.0449,
+    "lt_debt": 0.0207
+  },
+  "months_per_ticker": {
+    "median": 193,
+    "min": 1,
+    "max": 209
+  },
+  "tickers_with_full_history": 293,
+  "rows_while_in_index": 92813,
+  "tickers_ever_in_index_in_panel": 714
+}

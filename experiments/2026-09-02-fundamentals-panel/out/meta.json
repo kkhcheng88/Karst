@@ -1,0 +1,40 @@
+{
+  "rules_commit_note": "規則見 RULES.md,已於面板數字產生前獨立 commit",
+  "panel_start": "2009-01-31",
+  "panel_end": "2026-08-31",
+  "month_ends": 212,
+  "universe_tickers": 1209,
+  "tickers_with_cik": 722,
+  "tickers_without_cik": 487,
+  "tickers_in_panel": 718,
+  "tickers_cik_but_no_facts_file": [
+    "AET",
+    "MEE",
+    "SBNY",
+    "TWX"
+  ],
+  "tickers_facts_but_no_usable_row": [],
+  "panel_rows": 123754,
+  "custom_tag_bucket": "無法量度。已掃全部 698 份 companyfacts,出現過的分類體系只有 dei / us-gaap / srt / ffd / invest / ecd / rxp / ifrs-full,一個公司自訂命名空間都沒有。自訂標籤住在每份申報自己的 XBRL 實例檔,不在這個端點。所以覆蓋率報告的第三格恆為 0,那是端點的限制,不是事實陳述。要真正量度自訂標籤,要另外下載申報實例檔——本票範圍以外。",
+  "field_coverage_overall": {
+    "revenue": 0.953,
+    "gross_profit": 0.4929,
+    "net_income": 0.9964,
+    "diluted_shares": 0.9721,
+    "cfo": 0.995,
+    "capex": 0.8975,
+    "assets": 0.9977,
+    "liabilities": 0.6992,
+    "equity": 0.995,
+    "cash": 0.9774,
+    "lt_debt": 0.8353
+  },
+  "download": {
+    "unique_ciks": 702,
+    "downloaded": 698,
+    "already_present": 0,
+    "failed": 4,
+    "bytes_on_disk": 2514915803,
+    "seconds": 404.1
+  }
+}
