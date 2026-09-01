@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: bottleneck-142
 deliverable: KARST-D02
 ---
 
