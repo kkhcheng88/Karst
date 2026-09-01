@@ -1,0 +1,16 @@
+metric,label,direction_expected,n_pairs_with_both,n_pairs_missing,n_winner_higher,n_ties,n_agreeing_with_prior,hit_rate,detail
+mult_hold_from_base_year_end_to_peak,outcome: multiple if bought at base-year end,no prior,10,0,10,0,,,P01:W>L; P02:W>L; P03:W>L; P04:W>L; P05:W>L; P06:W>L; P07:W>L; P08:W>L; P09:W>L; P10:W>L
+revenue_growth_yoy,"revenue growth, latest readable FY",winner higher,9,1,5,0,5.0,0.56,P01:W<L; P02:W<L; P03:W>L; P04:W<L; P05:W>L; P06:W>L; P07:W>L; P08:missing; P09:W<L; P10:W>L
+revenue_accel,revenue growth minus prior-year growth (acceleration),winner higher,6,4,2,0,2.0,0.33,P01:W<L; P02:W<L; P03:W>L; P04:missing; P05:missing; P06:W>L; P07:missing; P08:missing; P09:W<L; P10:W<L
+gross_margin,gross margin level,winner higher,7,3,4,0,4.0,0.57,P01:W>L; P02:W<L; P03:W>L; P04:missing; P05:W>L; P06:missing; P07:missing; P08:W<L; P09:W<L; P10:W>L
+gross_margin_direction,gross margin direction YoY,winner higher,6,4,2,0,2.0,0.33,P01:W<L; P02:W<L; P03:W<L; P04:missing; P05:W<L; P06:missing; P07:missing; P08:missing; P09:W>L; P10:W>L
+net_income_positive,profitable on net income,winner higher,10,0,1,7,1.0,0.1,P01:tie; P02:W<L; P03:tie; P04:W<L; P05:tie; P06:tie; P07:tie; P08:tie; P09:tie; P10:W>L
+cfo_positive,operating cash flow positive,winner higher,10,0,2,7,2.0,0.2,P01:tie; P02:W<L; P03:tie; P04:tie; P05:tie; P06:tie; P07:tie; P08:W>L; P09:W>L; P10:tie
+dilution_yoy,share count growth (lower is better),winner lower,9,1,5,0,4.0,0.44,P01:W>L; P02:W>L; P03:W<L; P04:W<L; P05:missing; P06:W>L; P07:W<L; P08:W<L; P09:W>L; P10:W>L
+net_debt_over_equity,net debt / equity (lower is better),winner lower,6,4,2,0,4.0,0.67,P01:W<L; P02:W>L; P03:W<L; P04:W<L; P05:missing; P06:missing; P07:W<L; P08:missing; P09:missing; P10:W>L
+liabilities_over_assets,liabilities / assets (lower is better),winner lower,8,2,4,0,4.0,0.5,P01:W>L; P02:missing; P03:missing; P04:W<L; P05:W<L; P06:W>L; P07:W>L; P08:W<L; P09:W>L; P10:W<L
+ps_ratio,price / sales at base-year end (lower is cheaper),winner lower,9,1,2,0,7.0,0.78,P01:W<L; P02:W<L; P03:W<L; P04:W<L; P05:missing; P06:W<L; P07:W>L; P08:W<L; P09:W<L; P10:W>L
+market_cap_at_base_year_end,market cap at base-year end (smaller base),winner lower,9,1,6,0,3.0,0.33,P01:W>L; P02:W<L; P03:W<L; P04:W>L; P05:missing; P06:W<L; P07:W>L; P08:W>L; P09:W>L; P10:W>L
+revenue_latest,revenue scale at base-year end (smaller base),winner lower,10,0,5,0,5.0,0.5,P01:W>L; P02:W<L; P03:W<L; P04:W>L; P05:W<L; P06:W<L; P07:W<L; P08:W>L; P09:W>L; P10:W>L
+rs12_vs_spy_at_base_year_end,12m relative strength vs SPY,no prior,9,1,6,0,,,P01:W>L; P02:W>L; P03:W>L; P04:W>L; P05:W>L; P06:W<L; P07:missing; P08:W<L; P09:W>L; P10:W<L
+maxdd_24m_to_base_year_end,worst drawdown over prior 24m,no prior,10,0,6,0,,,P01:W>L; P02:W<L; P03:W>L; P04:W<L; P05:W>L; P06:W<L; P07:W>L; P08:W>L; P09:W<L; P10:W>L
