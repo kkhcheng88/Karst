@@ -16,6 +16,8 @@ experiments/*/data/
 # 插件工作目錄,不屬項目內容
 .skill-compass/
 experiments/*/.venv/
+# 抓回來的原始 API 快取(KARST-136 前瞻預估):可重抓、體積大,不入 git
+experiments/*/cache/
 .venv/
 __pycache__/
 *.pyc
