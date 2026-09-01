@@ -2724,3 +2724,29 @@
   > (用戶未批示;屬 D-072 授權內收案,成績覆核照舊留用戶)
 
 - 影響：板塊層倍數線維持開放但唔加注;觀察台已升級;下一階段方向(個股層 vs 其他)上 gate-1 等用戶裁,方向討論已喺對話展開(行內排名+月頻起跳+事件錨定骨架獲用戶推理獨立收斂)。
+
+## D-112 用戶裁決(gate-1 方向級,經多輪平級討論收斂):主力落個股層,憲法修一條——板塊層職能由「揀贏家」改「劃賽道」(行內比較組+風險欄),市況閘不變、先揀嘢後時機不變;個股層架構四件:①過濾器=盈利能力+投資紀律+行內價值三因子加「預估未被斬」活線,行業內每行頭 N 隻出名單(用戶原話傾向 top 3 per industry,主 agent 否決「全市場頭十隻」);②排名=事件/修訂錨定,事件時鐘唔用月曆時鐘;③TA 退役做入場/離場/賠率條件,唔做選股;④波段持有(swing),明文唔炒即日;細分行業 ETF 做載具/樣本外考場/刻度三個配角,唔做超額層;樽頸論=壽命錯價,量化影子併入修訂訊號,供應紀律入因子候選,論點記錄表加「產能倒數」欄
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-01
+
+- 出處：用戶 2026-09-01 連串裁示與討論收斂(關鍵原話見 quote;其餘:「Our rules is not Market > Sector / Value Chain > Individual? And selection first then timing?」「should we introduce subsector after section given Market and Sector? iShare those ETF?」(主 agent 回:做三配角唔做超額層,用戶未反對)「Swing trade I think la. But not day trade at least」)。主 agent 依 D-072 落實,開設計票。
+
+- 背景：板塊層七輪實測清場(D-097/102/104/105/108/111)後,用戶擲波問最大寶藏喺邊;多輪討論收斂:細 IC 必須闊棋盤兌現、估值訊號預測力住喺長視界、事件訊號要事件時鐘、樽頸 edge 喺壽命錯價。五因子入面近代企得穩嘅三隻(盈利能力/投資紀律/行內價值)原料喺 657 公司免費數據齊備。
+
+- 決策：
+  1. 憲法修訂:三層維持,板塊/價值鏈層之於超額回報——經七輪實測,職能由選擇改為結構(比較組+風險欄);此條入 CONTEXT/HANDOFF
+  2. 個股層設計票即開:過濾器四件套、事件排名、TA 幾何、波段節奏、參數對齊一節(D-038)、考法照考試協議、樣本外考場寫死(QQQ/SOXX/細分 ETF 池)
+  3. 過濾器名單制:行業內 top-N(N 對齊時定),唔用全市場 top-10;過濾器必含修訂活線防價值陷阱
+  4. TA 角色明文:entry/exit/R&R 條件,唔產生選股訊號;持有期波段級,即日交易明文排除
+  5. 樽頸三落點:修訂延續訊號(量化影子)、供應紀律因子(候選)、論點記錄表「產能倒數」欄
+
+- 考慮過的替代方案：繼續板塊層挖倍數 —— 用戶同 agent 立場一致:剝乾淨後唔夠俾成本,轉場
+
+- 為何選這個：三條獨立線索(闊度數學、文獻證據、用戶常識推理)收斂同一出口;設計票先行俾 gate-1 把關,符合判準先寫死紀律。
+
+- **用戶原話（原文照錄）**
+
+  > Agree. I think it could be the case where these 3 factor is not a TA by itself, but the best stock filter at the point in time. Say only look at the top 10 stocks of the market, or top 3 in each industry. Then simple TA as single as good stock gonna good. Even if buying the dip, should buy the book stock instead of the bad stock at the dip. TA should help to set the entry, exit and R&R as condition
+
+- 影響：下一階段主力=個股層設計方案書(gate-1 審批件);板塊層倍數線維持開放但唔加注;觀察台照留;日課照舊歸零。
