@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: sweep-145
+claimedBy: sweep-145b
 deliverable: KARST-D02
 ---
 

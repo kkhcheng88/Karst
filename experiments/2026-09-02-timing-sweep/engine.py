@@ -152,14 +152,22 @@ def run_cell(
     spy_col: int,
     start_i: int,
 ):
-    """One sweep cell. Signals read on day t, executed at day t+1 close.
+    """One sweep cell. Signals read at close of day t, executed at close of t+1.
+
+    Day-by-day ordering inside the loop (CRITERIA sec.4.1 -- no same-day fill):
+      1. day i's return is earned by the book standing at close of day i-1;
+      2. peaks refresh on close of day i;
+      3. the decision taken at close of day i-1 is EXECUTED at close of day i,
+         so the resulting book first earns a return on day i+1;
+      4. a fresh decision is taken at close of day i (post-execution book) and
+         queued for execution at close of day i+1.
 
     Returns dict of daily series and trade stats.
     """
     n_days = len(dates)
     port_ret = np.zeros(n_days)
     pick_ret = np.zeros(n_days)      # self-picked sleeve only, equal weight
-    turnover = np.zeros(n_days)      # one-sided fraction of portfolio traded
+    turnover = np.zeros(n_days)      # sum of absolute one-sided weight changes
     slots_filled = np.zeros(n_days)
 
     held: dict[int, dict] = {}       # col -> {entry_i, peak}
@@ -169,6 +177,10 @@ def run_cell(
     month_keys = sorted(pool_by_month)
     cur_pool: set[int] = set()
     cur_order: list[int] = []
+    pend_exit: list[int] = []        # decided at close of i-1, filled at close of i
+    pend_entry: list[int] = []
+
+    w_pick = 1.0 / k_slots
 
     for i in range(start_i, n_days):
         mi = pool_month_index[i]
@@ -177,8 +189,7 @@ def run_cell(
             cur_order = [col_of[s] for s in syms if s in col_of]
             cur_pool = set(cur_order)
 
-        # ---- returns of the book carried into day i (positions set at i-1 close)
-        w_pick = 1.0 / k_slots
+        # ---- 1. returns of the book carried into day i (set at close of i-1)
         held_cols = list(held)
         r_day = 0.0
         for c in held_cols:
@@ -190,58 +201,68 @@ def run_cell(
         pick_ret[i] = (sum(ret_arr[i, c] for c in held_cols) / n_h) if n_h else 0.0
         slots_filled[i] = n_h
 
-        # peaks update on today's close
+        # ---- 2. peaks update on today's close
         for c in held_cols:
             px = close_arr[i, c]
             if px > held[c]["peak"]:
                 held[c]["peak"] = px
 
-        # ---- decide at close of day i, trade at close of day i+1
+        # ---- 3. execute what was decided at close of day i-1, at close of day i
+        traded = 0.0
+        for c in pend_exit:
+            if c in held:
+                hold_days_total += i - held[c]["entry_i"]
+                del held[c]
+                traded += w_pick
+        for c in pend_entry:
+            if len(held) >= k_slots or c in held:
+                continue
+            if not valid_arr[i, c]:          # no fill without a price to fill at
+                continue
+            held[c] = {"entry_i": i, "peak": close_arr[i, c]}
+            traded += w_pick
+            n_entries += 1
+        turnover[i] = traded
+        pend_exit, pend_entry = [], []
+
+        # ---- 4. decide at close of day i, to be executed at close of day i+1
         if i + 1 >= n_days:
             continue
 
-        to_exit = []
-        for c in held_cols:
+        for c in list(held):
             st = held[c]
-            if not valid_arr[i, c] or not valid_arr[i + 1, c]:
-                to_exit.append(c)
+            if not valid_arr[i, c]:          # price series broke -> forced exit
+                pend_exit.append(c)
                 continue
             if exit_state is not None and exit_state[i, c]:
-                to_exit.append(c)
+                pend_exit.append(c)
                 continue
             if max_hold and (i - st["entry_i"]) >= max_hold:
-                to_exit.append(c)
+                pend_exit.append(c)
                 continue
             if trail_stop and close_arr[i, c] <= st["peak"] * (1.0 - trail_stop):
-                to_exit.append(c)
+                pend_exit.append(c)
                 continue
             if drop_out and c not in cur_pool:
-                to_exit.append(c)
+                pend_exit.append(c)
                 continue
 
-        traded = 0.0
-        for c in to_exit:
-            hold_days_total += i - held[c]["entry_i"]
-            del held[c]
-            traded += w_pick
-
-        free = k_slots - len(held)
+        free = k_slots - (len(held) - len(pend_exit))
         if free > 0:
+            leaving = set(pend_exit)
             for c in cur_order:
                 if free == 0:
                     break
-                if c in held:
+                if c in held and c not in leaving:
                     continue
-                if not valid_arr[i, c] or not valid_arr[i + 1, c]:
+                if c in leaving:             # never re-buy a name exiting today
+                    continue
+                if not valid_arr[i, c]:
                     continue
                 if not entry_sig[i, c]:
                     continue
-                held[c] = {"entry_i": i + 1, "peak": close_arr[i + 1, c]}
-                traded += w_pick
-                n_entries += 1
+                pend_entry.append(c)
                 free -= 1
-
-        turnover[i + 1] = traded
 
     for c in held:
         hold_days_total += (n_days - 1) - held[c]["entry_i"]
@@ -274,4 +295,10 @@ def max_drawdown(daily_ret: np.ndarray) -> float:
 
 
 def apply_cost(daily_ret: np.ndarray, turnover: np.ndarray, bps: float) -> np.ndarray:
-    return daily_ret - turnover * (bps / 10000.0) * 2.0
+    """CRITERIA sec.4.6: `bps` per side, charged on the one-sided weight change.
+
+    `turnover` already carries every side separately (a sell adds w, the buy that
+    replaces it adds w again), so the charge is turnover * bps -- multiplying by
+    two again would bill 2*bps per side.
+    """
+    return daily_ret - turnover * (bps / 10000.0)

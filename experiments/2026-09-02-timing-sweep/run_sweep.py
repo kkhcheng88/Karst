@@ -31,6 +31,7 @@ COST_BPS_MAIN = 15.0
 COST_GRID = [0.0, 15.0, 25.0, 50.0]
 RANDOM_PATHS = 2000
 RANDOM_SEED = 20260902
+PROXY_SEED_OFFSET = {"fwd_yield": 100, "low_vol": 200}
 
 TOP_N_GRID = [3, 5]
 K_GRID = [6, 10, 15]
@@ -78,10 +79,11 @@ def bench_pool_series(ret_arr, valid_arr, col_of, dates, pool_by_month, months, 
                 syms = pool_by_month[months[mei[i]]]
                 new = [col_of[s] for s in syms if s in col_of and valid_arr[i, col_of[s]]]
                 if new:
-                    w = 1.0 / len(new)
                     inter = len(set(new) & prev)
                     denom = max(len(new), len(prev), 1)
-                    tno[i] = (denom - inter) / denom
+                    # both sides: the names dropped are sold and the names added
+                    # are bought, matching run_cell's turnover convention.
+                    tno[i] = 2.0 * (denom - inter) / denom
                     prev = set(new)
                     cur = new
             if cur:
@@ -105,7 +107,7 @@ def bench_pool_series(ret_arr, valid_arr, col_of, dates, pool_by_month, months, 
             idx, W = cur_mat
             R[i] = ret_arr[i, idx] @ W
     tno = np.zeros(n_days)
-    tno[mei >= 0] = 1.0          # random arm rebalances fully each month
+    tno[mei >= 0] = 2.0          # random arm sells the book and rebuys each month
     return R, tno
 
 
@@ -161,12 +163,15 @@ def main():
             )
 
             for k in K_GRID:
-                rng = np.random.default_rng(RANDOM_SEED + k + top_n * 7 + hash(proxy) % 1000)
+                # deterministic seed: `hash()` is salted per process in Python 3,
+                # which would make CRITERIA sec.5.4's fixed seed unreproducible.
+                rng = np.random.default_rng(
+                    RANDOM_SEED + k + top_n * 7 + PROXY_SEED_OFFSET[proxy])
                 Rr, rt = bench_pool_series(ret_arr, valid_arr, col_of, dates, pool, months, mei,
                                            k=k, rng=rng, paths=RANDOM_PATHS)
                 Rr = Rr[start_i:end_i]
                 rtc = clip(rt)
-                net = Rr - rtc[:, None] * (COST_BPS_MAIN / 10000.0) * 2.0
+                net = Rr - rtc[:, None] * (COST_BPS_MAIN / 10000.0)
                 growth = np.prod(1.0 + net, axis=0)
                 cg = np.where(growth > 0, np.power(np.maximum(growth, 1e-12), 1.0 / n_years) - 1.0, -1.0)
                 bench_cache[(proxy, top_n, k, "rand")] = (
