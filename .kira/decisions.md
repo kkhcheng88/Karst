@@ -2676,3 +2676,26 @@
   > Yes, I think the market only look at 前瞻分母 to be honest. 盈利收益率連續化 is ok. But may want to know how to mix and match both of them. Or maybe 2 line for 1 industry. both tested with RSI2. But I think Earning should need forecast as well. In fact I think all these should use forward
 
 - 影響：倍數線探索地基由「後顧市盈率」升級做「前瞻盈利收益率」;免費路線,錢袋照舊唔使開;日課照舊歸零。
+
+## D-110 用戶明令(常設):agent 同用戶平級對話——誠實批判,唔准附和;認真考慮用戶觀點但必須帶自己立場同批判評估;用戶會持續挑戰,agent 讓步必須寫得出讓喺邊、點解讓
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-01
+
+- 出處：用戶 2026-09-01 原話(quote 欄),緊接佢批評 agent 連續多輪只識話佢啱、冇 solid insight 之後。
+
+- 背景：倍數線探索期間用戶連續推理(比率約價格、釘同財季量修訂),agent 逐輪確認佢啱但冇企出大局立場;用戶指出自己係 layman 都搵到 loophole 而 agent 冇貢獻判斷。agent 承認並補硬立場(板塊圖無寶藏、2013 斷層係結構性、現時實證最佳組合=揸 SPY、建議落個股層)。
+
+- 決策：
+  1. 常設規矩:每個回覆帶 agent 自己立場(信乜、押邊邊、把握幾多),唔准淨係整理用戶諗法
+  2. 用戶觀點啱要講埋「放喺大局代表乜」;錯要直接講,俾理由證據
+  3. 被挑戰時真思考先答;可以認錯但唔准為息事寧人讓步
+  4. 此令與 D-072(agent 主導)同讀:執行主導之外,判斷都要主導
+
+- 為何選這個：附和令用戶失去強模型嘅價值;用戶要對手盤,唔係應聲蟲。
+
+- **用戶原話（原文照錄）**
+
+  > OK - First, from now on, you need to be the same level as me, give honest comment. I will for sure challenging you, but you really need to think about with your best understanding, and consider my point honestly. And critical thinking to assess.
+
+- 影響：溝通紀律,全部日後對話適用;已同步寫入專案記憶。
