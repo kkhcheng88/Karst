@@ -1,0 +1,30 @@
+{
+  "months": 199,
+  "first": "2010-01-31",
+  "last": "2026-07-31",
+  "long_short_annualised": 0.00201,
+  "long_only_no_revision_annualised": 0.1461,
+  "benchmarks": {
+    "SPY": 0.14592,
+    "XLK": 0.20524,
+    "same_pool_equal_weight": 0.14299
+  },
+  "diff_vs_benchmarks": {
+    "SPY": -0.14391,
+    "XLK": -0.20323,
+    "same_pool_equal_weight": -0.14099
+  },
+  "luck_band": {
+    "paths": 2000,
+    "p5": -0.01169,
+    "p50": 0.01015,
+    "p95": 0.03246
+  },
+  "diff_vs_luck_median": -0.00814,
+  "percentile_in_luck_band": 27.1,
+  "avg_n_long": 298.8,
+  "avg_n_short": 48.4,
+  "avg_n_pool": 372.9,
+  "cost_bp": 15,
+  "note": "多空組合市場中性,對長倉基準的年化差額不是同類比較;同類的是運氣帶——同樣隻數、同樣換倉日、同樣成本的隨機多空。"
+}
