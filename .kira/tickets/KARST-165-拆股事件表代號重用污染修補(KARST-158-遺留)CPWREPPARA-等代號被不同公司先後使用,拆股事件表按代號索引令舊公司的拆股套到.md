@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: data-gov-163
 deliverable: KARST-D02
 ---
 
@@ -23,5 +23,38 @@ deliverable: KARST-D02
 - [ ] commit 用 git commit --only -F <訊息檔> -- <自己的檔>
 
 ## 結果
+
+· 2026-09-03 03:00 代號重用全掃 + 修補清單 + 主鍵方案寫完(data-gov-163)
+
+**做了什麼**:掃 1,001 條拆股事件、1,209 行宇宙代號對照、123,754 行帳目面板,用四個獨立
+訊號找接錯公司的格,逐個人手核;出代號重用清單、拆股修補清單、主鍵方案與下游影響表。
+報告落 `experiments/2026-09-03-ticker-reuse/代號重用修補清單與主鍵方案.md`(票上寫的檔名是
+`REPORT.md`,實際檔名不同,內容照三項要求寫齊),六支掃描腳本與八個結果檔同目錄。
+
+**沒有做**:面板 v2 一個位元不改(SHA256 首 16 位 `ab02e335c3ebc169`)、拆股事件表不改
+(`82c2a2133d260e8f`)、生產庫不寫、沒有重跑回測。
+
+數字:
+
+- 命中至少一個訊號的代號 12 個。人手核後:**確證代號重用 3 個**(CPWR、EP、PARA,
+  面板共 **427 格**)、訊號假陽性同一家公司 3 個(NKTR、NBR、ERIE)、嫌疑要人手核 6 個
+  (SUN、COV、MEE、RAI、RTN、WRK)。
+- 三個確證的證據是三重獨立的:SEC 名冊查得出 CIK 0000827099 是 Ocean Thermal Energy
+  (不是 Compuware)、0000887396 是 Empire Petroleum(不是 El Paso)、0001826011 是
+  Banzai International(不是 Paramount Global);yfinance 今日的公司名與 SEC 一致;
+  面板算出的規模荒謬(CPWR 成分期市值中位數 784 萬美元;PARA 市值 37.5 億美元配營收 456 萬)。
+- 拆股修補清單 12 條事件:**建議剔走 7 條**(CPWR 2、EP 2、PARA 3),保留 5 條
+  (同一家公司自己的拆股)。
+- 已知被污染的面板格 7 格(scale_flags_mcap.csv);受影響的十倍股名單行 4 行
+  (CPWR、EP 各佔三年窗與五年窗),十倍股盤點第 1.5 節前二十名裡 EP 排第三、CPWR 排第八。
+- **比票上寫的更嚴重的一件事**:壞的不只是拆股基準。`data/sec/company_tickers.json` 是
+  2026-09-02 當日快照、沒有歷史,面板按代號 join 上去拿到的是今日那家公司的 XBRL,
+  再乘前一家公司的價格——**基本面本身也接錯了公司**。那 427 格要重建,不是只修 7 格。
+- 生產庫 SHA256 首 16 位:`b168e9f45b578cf9`(維持不變)。
+
+建議主鍵:`entity_id`,代號降格為帶時段的別名。生產線 `karst/data/freeze.py` 的
+`ensure_entities` / `_ensure_ticker_period` / `resolve_entity_ids` 已經把這套寫好,
+`entity` + `entity_ticker` 兩張表就是落地——問題不是缺機制,是實驗線全部繞過了它。
+已在票上 raise 交裁。
 
 ## 留言
