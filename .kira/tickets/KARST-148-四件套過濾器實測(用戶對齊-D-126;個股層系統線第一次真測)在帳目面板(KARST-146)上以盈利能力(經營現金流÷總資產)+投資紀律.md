@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: fourpiece-148
 deliverable: KARST-D02
 ---
 

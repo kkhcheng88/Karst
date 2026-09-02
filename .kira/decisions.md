@@ -3064,3 +3064,23 @@
   > 用戶 2026-09-02 原話:「Goal set: I would like you to continue finding any possible edges and validate and keep on improving the strategy. Like the Bottleneck we have made a preliminary great success on those. I would like you to continue exploring the strategy with only 1 principle is that the decisions should be from the top (market) > value-chain > individual > TA triggers. You can use any methodology, you can use any tools or measure of TA. Think out of the box. 大膽假設 then preliminary to proof the existance first. Give me the 5 best strategy you find out later and discuss with me」
 
 - 影響：研究路線由「逐條線收檔」轉為「廣搜優勢、快證存在」;既有攔路石全部保留,不因廣搜而放寬。
+
+## D-128 用戶補充新總目標(2026-09-02,續 D-127):廣泛分頭研究、設實驗、由第一原理思考;目標是找到能長期跑贏標普、年化 30% 或以上級數的策略(原話「like 30% or above annualized if possible」);先探索;允許任何技能、技術與網上研究
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：用戶 2026-09-02 原話(quote 欄)。主 agent 依 D-072 接棒。
+
+- 背景：主 agent 立場(D-110,不附和):①30% 年化持續數十年,在公開紀錄裡幾乎不存在——巴菲特約 20%(50 年)、公開因子策略 15–20% 且回撤深;文獻中超過 30% 的多屬容量極細的私人基金或短時期。所以我押「30% 持續三十年」不可能,把握高;但「30% 持續五至十年」在集中、長揸、容量細的打法(散戶結構優勢:無容量約束、無基準壓力、可揸小型與非流動、可集中)有存在空間,把握中低。②倉內神諭曲線已量出上限空間極大(個股層事後全知 1,190%/年,板塊層 105.7%/年),問題從來是準繩度不是空間;30% 目標把「所需準繩度」推得很高,所以每條新假設都要先算「達 30% 需要的命中率」再決定值不值得測。③既有攔路石全部不放寬。執行:在 KARST-149 假設長名單之外,再分兩隊——(甲)公開紀錄研究:誰真的做到 30%+、用什麼機制(集中度、持有期、槓桿、容量、時期),用來校準目標與策略形狀;(乙)第一原理推導:散戶相對機構的結構優勢在哪裡、超額回報的來源(誰被迫交易/誰在犯錯)、由此推出符合由上而下原則的策略形狀,並為每個形狀算出達 30% 所需的命中率與持有期。三隊回報後主 agent 揀約八條開存在性測試,最後五條交用戶討論。
+
+- 決策：
+  1. 目標登記為「年化 30% 或以上,跑贏標普」,但以「五至十年可持續」為工作定義,不以三十年為準;每條候選策略必報「達 30% 所需命中率/持有期/集中度」與「文獻中同類打法的實際紀錄」
+  2. 開 KARST-150 公開紀錄研究票(誰做到 30%+、機制、容量、時期、失敗者名單)與 KARST-151 第一原理推導票(散戶結構優勢、超額回報來源、由上而下策略形狀與所需命中率);與 KARST-149 三票平行,互不通氣
+  3. 存在性測試門檻(D-127 第 4 條)不變;30% 目標不得成為放寬偷看、倖存者或多重測試紀律的理由
+
+- **用戶原話（原文照錄）**
+
+  > 用戶 2026-09-02 原話:「try to fan out to research or setting experiment or thinking on first principle. And I want to get the great strategy which can beat S&P like 30% or above annualized if possible of level. Explore first. You are allowed to use any skills or technique or web research」
+
+- 影響：研究由「找優勢」升級為「找 30% 級數的優勢」,主 agent 立場已登記:三十年不可能、五至十年有空間但把握中低;所有候選都要先過「所需命中率」這一格。
