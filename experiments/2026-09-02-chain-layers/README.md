@@ -78,6 +78,55 @@ PDD RIO SGHC SHEL SPOT TCOM TECK TGB TME TTE VIK XPEV`
    v1 依票面規定未動 v0 原行。
 3. `uranium_power` 把礦商與濃縮商放同一條、`streaming` 把內容自有商與分發平台放同一條,同樣建議 v2 拆開。
 
+## v2 純度版(2026-09-03,KARST-161,交審稿)
+
+用戶裁決 D-147 ③(原話:「Yes, I dont care how much you add, but the purity of the layer is the
+highest priority. The company in the same layer should share the same narrative」)。判斷每家成員
+只問一句:**這家公司的股價,主要跟這條鏈的共同敘事走,還是跟它自己的故事走?**
+
+- **正本交審文件**:`chain_stories_v2.md`(逐鏈故事、位置、純度判詞、成員表;首段四項誠實聲明)
+- **表**:`chain_membership_v2.csv`(UTF-8 BOM)。新增 `purity`(逐家一句判斷)、`purity_note`
+  (逐鏈一句:共同敘事是什麼、哪家最邊緣)、`src_theme_v1`(它在 v1 屬於哪條鏈)三欄。
+- **出隊名單**:`removed_v2.csv`,23 行,每行寫明中了四條出隊規則的哪一條加一句理由。
+- **腳本**:`roster_v2.py`(逐鏈定義與出隊名單)、`build_v2.py`(重組、EDGAR 查證、與 v1 逐行對帳)、
+  `gen_doc_v2.py`(生成交審文件)。
+- **v1 與 v0 一字不改**,仍在原處;`build_v2.py` 只讀不寫 v1。
+
+### 出隊四規則
+
+| 規則 | 意思 |
+|---|---|
+| a 位置不同 | 它在鏈上的位置與其餘成員不同(買方對賣方、製造對零售、持牌對輕資產) |
+| b 定價機制不同 | 決定它售價的那個變數,與其餘成員不同 |
+| c 單一資產主導 | 股價主要由一項自有資產或一宗自有事件驅動(舊倉 ADR-0039 代表性測試,D-147 ③ 收回) |
+| d 主業已轉向 | 主要股價驅動已轉去另一條鏈;多元業務只入其股價主要跟隨的那條 |
+
+### 數
+
+| | v1 | v2 |
+|---|---:|---:|
+| 鏈數 | 52 | **65**(v1 的 9 條拆散,22 條新鏈名) |
+| 成員行數 | 309 | **347**(新增 61,出隊 23) |
+| 不重覆公司數 | 298 | **343** |
+| 名冊 <5 家的鏈 | 4 | **16** |
+| 年報佐證 | 273/309(88.3%) | **306/347(88.2%)**,本票新抓 25 份 |
+| valid_from 近似 | 50.8% | **60.5%** |
+
+拆散的 9 條:`staples` `web3_crypto` `china`(票面指定)、`uranium_power` `streaming` `fintech`
+`ev` `casino_resorts` `ag_fertilizer`(純度覆核發現)。另外由 `crypto_mining` 拆出 `ai_hpc_hosting`、
+由 `auto_retail` 拆出 `auto_aftermarket`;`aero_aftermarket` 與 `china_education` 是沒有 v1 成員的新鏈。
+
+### v2 的兩個代價(交用戶裁)
+
+1. `copper` 由八家縮到三家(三家初級礦商中規則 c、兩家多元化礦商中規則 d),這條鏈從此量不出顯著同步度。
+2. `ag_fertilizer` 拆成鉀磷與氮肥之後,兩邊都不足五家。**純度與可量度性在這兩條上直接相撞。**
+
+### 未做、留給後續票
+
+1. 事前可得那一關仍未答(同 v1)。
+2. 純度判斷全部是人手判斷,**沒有任何統計量度背書**——本票是編表票,不出成績。
+3. `valid_from` 近似比例由 50.8% 升到 60.5%(新增成員多數近似),需要準確入位日的測試仍要先補這一欄。
+
 ## 出處檔(舊倉,唯讀)
 
 - `docs\adr\0024-three-layer-model-theme-layer-narrative.md`
