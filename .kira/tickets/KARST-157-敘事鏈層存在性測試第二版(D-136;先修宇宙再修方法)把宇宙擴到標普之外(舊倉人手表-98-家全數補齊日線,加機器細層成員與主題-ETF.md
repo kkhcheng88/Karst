@@ -63,3 +63,6 @@ closed: 2026-09-02
 A-038 維持 unverified(既非 holds 亦非 overturned),查證經過已附回 text。生產庫 SHA256 首 16 位 b168e9f45b578cf9,未變;>5MB 檔案零個入 git;commit 前核過 git diff --cached --name-only,只帶自己這張票的檔。
 
 **票上 raised 兩格待裁**:①新增 154 家日線未經唯一入口登記成正式快照——登記那一步要寫生產庫,與本票驗收條件「生產庫雜湊不變」直接相撞,取了不寫生產庫那一邊,憑證(路徑 + SHA256)入 out/coverage_meta_v2.json,要不要另開票補登記請裁;②A-038 的 status 二選一不夠用,量不出既非 holds 亦非 overturned,若冊上要有第三種狀態請裁。
+
+### agent:主 agent · 2026-09-02 21:39
+主 agent 收案(D-140)並裁兩格 raised:(a)154 家新增日線——憑證入 out/coverage_meta_v2.json 已合 D-134 唯一副本的實質;正式入生產庫登記另開小票,於五策略討論後與其他數據治理小票一併開,本票不補。(b)A-038——維持 unverified 加查證紀錄,這正是第三種狀態,不改假設冊欄位。判詞量不出收貨;依 D-136 第三條不開第三版;「擴人手表至每條鏈約五家再量」交用戶在五策略討論裁,agent 不自行開票。
