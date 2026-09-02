@@ -3084,3 +3084,24 @@
   > 用戶 2026-09-02 原話:「try to fan out to research or setting experiment or thinking on first principle. And I want to get the great strategy which can beat S&P like 30% or above annualized if possible of level. Explore first. You are allowed to use any skills or technique or web research」
 
 - 影響：研究由「找優勢」升級為「找 30% 級數的優勢」,主 agent 立場已登記:三十年不可能、五至十年有空間但把握中低;所有候選都要先過「所需命中率」這一格。
+
+## D-129 KARST-148 收案:四件套過濾器實測(用戶對齊 D-126)——合成臂 2010-03 至 2026-08 每邊 15bp 年化 11.2%,SPY 14.5%、XLK 20.5%,輸 SPY 3.3pp、輸 XLK 9.3pp,最大跌幅 −45.4%,兩個分期都輸;三件無一做功(盈利能力 12.7%、投資紀律剔除臂 13.5% 比不剔 13.7% 更低、行內價值 10.4%),合成比單用盈利能力更差;修訂延續 2013 起 +0.9pp 仍在運氣帶內;鄰域九格 11.2–13.1% 無一格達 SPY,判「無平原」(地形平但平在輸的水平);唯一苗頭=資產增長最慢三隻 15.1% 贏 SPY 0.6pp、升穿運氣帶上緣,但超出 D-126 定義(投資紀律不作排名),只入候選庫,仍輸 XLK 5.4pp;順手拆出拆股市值陷阱(申報時股數 × 已調整價格令申報後拆股公司市值低估數倍,不修正合成臂假顯示 16.6% 贏 SPY,假優勢每年 5.2–5.4pp,已修正入詞彙表)。同時登記用戶對「價值鏈」的定義修正:價值鏈=產業鏈,鏈再分「鏈層」,同層=鏈上同位置、對市場講同一個故事、行業消息衝擊相似的一群公司
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：KARST-148 交付(票已關,四條驗收剔齊;判準凍結 commit efe5d08 一字未改,收檔 580d58b;偷看核對 22,934 格零違規;生產庫倉根 karst.sqlite 開工收工雜湊同為 b168e9f45b578cf9)。正本 research/2026-09-02-四件套實測.md、experiments/2026-09-02-fourpiece-test/。用戶 2026-09-02 價值鏈定義原話見 quote 欄。主 agent 依 D-072 收案。
+
+- 背景：主 agent 立場(D-110):①我事前押「四件套贏 XLK 機會不到一半」,結果比預期更差——連 SPY 都輸,而且三件單獨全部不做功,這與 KARST-141(傳統質素篩選事前分不出 10× 贏輸)和文獻一致;個股層系統線(機械篩選揀股)作為優勢來源至此已測到底:價格代用品(139/140/143)、擇時掣(145)、帳目四件套(148)三路全部輸給乾坐 XLK。我押收檔,把握高;收檔理由書現在寫得真,因為四件套真的測過了。②帳目面板本身保留為資料資產——價值鏈層與論點線都會用到它。③「資產增長最慢」那個苗頭:文獻上資產增長效應(Cooper-Gulen-Schill 2008)是已知的,但在這個宇宙只贏 SPY 0.6pp 且輸 XLK 5.4pp,不足以撐一條線,列候選不追。④用戶的價值鏈定義比我先前寫的窄而可驗證(核心=同層對同一消息反應相似),已更新詞彙表並即時傳給正在跑的 KARST-149/151 兩隊;舊倉 KarstETF 的 98 個代表公司分層表正在找,找到就成為鏈層的第一版人手表。
+
+- 決策：
+  1. KARST-148 結論收貨;個股層系統線(機械篩選揀股)收檔理由書定稿引用 139/140/143/145/148 五票:價格代用品、擇時掣、帳目四件套三路皆輸 XLK;不得寫「四件套未測」——現在已測;收檔本身上 gate,與五策略討論一併交用戶確認
+  2. 帳目面板(KARST-146)維持為個股層與價值鏈層共用資料資產;「資產增長最慢」入候選庫不開票
+  3. 拆股市值陷阱入詞彙表與派工守則:凡用申報股數計市值,必須用申報當日未調整價格或同步調整股數;日後任何用市值的票開票必寫此條
+  4. 價值鏈定義照用戶修正更新 CONTEXT.md(價值鏈=產業鏈;新增「鏈層」條目);KARST-149/151 兩隊已收到新定義;舊倉 KarstETF 分層表由 Explore 隊尋找,找到則列為鏈層第一版人手表,待用戶覆核
+
+- **用戶原話（原文照錄）**
+
+  > 用戶 2026-09-02 原話:「value chain to me is 產業鏈, and if you refer to KarstETF value chain can further break down into layers, it is defined as at 1 layer with companies sharing the same position with the same story or narrative in the market. So if any news or any update of the industry, the same layer will have very similar impact. So the same layer should be also the same business or position of 上下遊」(收檔一格用戶未裁)
+
+- 影響：個股層系統線實測全部完成,結論一致為輸;研究重心正式移到價值鏈/鏈層(第二層)與論點線(樽頸文本),等 149/150/151 三隊回報後揀存在性測試。
