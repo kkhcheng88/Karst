@@ -3126,3 +3126,24 @@
   > 用戶 2026-09-02 原話:「but I think you need to chain-layers definition. But at that time, although we have a liternal means of definition but we don't have any better way of classification. In case you think is needed you can adjust the layer itself. Prelimary, I think with the age of AI, maybe the edge in more on the unstructured data or the text based information. So Value-Chain which is narrative / story point of view, should be more valuable than industry or GICS point of view. as the latter is just trying to fit a classification just for indexing or grouping in the pass. But nowadays the different player within the same sector is too different. I think the grouping should be sticked with the narrative is more making sense as the starting point of all edges」
 
 - 影響：由上而下第二層的單位由「板塊」正式改為「敘事鏈層」;文本數據線(10-K、逐字稿)升為核心原料,帳目面板與價格為配角。
+
+## D-131 KARST-151 收案:第一原理推導——年化 30% 不是選股問題是賠率結構問題:任何策略的長期複合年化封頂於「無風險利率 + 夏普平方÷2」(最佳槓桿下的增長率),以 4% 計 30% 需夏普 ≥0.72 且要加槓桿;巴郡四十年夏普 0.76 用 1.6 倍槓桿;倉內旁證 XLK 2013–2025 夏普 0.97 兩倍槓桿零選股可到 31.3%,但 2004–2026 全段夏普 0.70 上限 26.5% 加槓桿也不夠。命中率同一條算式:季頻常見賠率(+15%/−10%)需 72.8% 命中(不可能),三年 +400%/−50% 只需 43.1%,一年 +150%/−25% 只需 35.1%——「一注講不出四至五倍目標就不是 30% 策略的一注」。五個形狀:①鏈層(先量同層是否同動、等效獨立層數是否遠高於板塊層 1.60;本身不產回報但把可偵測下限由 3.6pp 拉低到約 1.5pp;1–2 小時)②市況層注碼調節(不改選股只改注碼,需市況閘每次熊市早於 −35% 減注;1 小時,D-049 前科)③股本供給(跟管理層自己買賣自己股票,1.5–2.5pp,2–3 小時,零預估洩漏)④產能週期(一層公司一齊擴產兩至四年後該層蝕錢,1.5–3pp,半日;KARST-148 唯一苗頭在此格)⑤樽頸鏈(買鏈上短期加得到價的那一層,一年 +150%/−25% 只需 35.1% 命中,半日)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：KARST-151 交付(票已關,四條驗收剔齊,只讀未動其他票,生產庫倉根 karst.sqlite 雜湊 b168e9f45b578cf9 不變)。正本 research/2026-09-02-第一原理策略形狀.md,commit f80ecf6。主 agent 依 D-072 收案。
+
+- 背景：主 agent 立場(D-110):①夏普上限那條算式是 Kelly 增長率的近似,前提是可以自由加槓桿且回報接近常態——散戶用槓桿 ETF 或孖展做得到但有波動拖累與爆倉尾巴,所以「30% 的數學入口在市況注碼」這句我接受一半:它是唯一乘數級的入口,但 D-049 準繩度檢驗曾把所有開關類訊號全部篩走,我押第一步再被篩走,把握中等。②「一注講不出四至五倍目標就不是 30% 策略的一注」是本票對用戶最有用的一句,它把 30% 目標從「揀股」改寫成「賠率結構」,與 D-120 基礎率(十年 10× 機率 2–7%)接得上。③agent 三格待裁:第一格(同層相似 + 等效獨立層數 >1.60)前半已是 A-037,後半補入 KARST-152 作事後診斷(判準已凍結不改);第二格同意(人手表只量解析度不回測);第三格(日線補成交量欄)同意,併入下一張用到它的票的準備步。
+
+- 決策：
+  1. KARST-151 結論收貨;「複合年化上限 = 無風險利率 + 夏普²/2」與「命中率門檻算式」列為五策略遴選的兩把尺,每條候選必報所需夏普或所需命中率
+  2. 五個形狀全部進入遴選池,與 KARST-149/150/152 回報一併排序;鏈層(①)與樽頸鏈(⑤)已有票或苗頭在跑,股本供給(③)與產能週期(④)為新形狀候選
+  3. KARST-152 追加事後診斷(不改凍結判準):敘事層的等效獨立層數,對照板塊層 1.60
+  4. 日線面板補成交量欄併入下一張需要它的票的準備步,不另開票;鏈層人手表只量解析度不回測
+
+- **用戶原話（原文照錄）**
+
+  > (用戶未裁;屬 D-072 授權內收案)
+
+- 影響：30% 目標有了數學尺:要麼夏普 ≥0.72 加槓桿(市況注碼入口),要麼長賠率注(四至五倍目標、35–43% 命中);五策略遴選兩把尺定形。
