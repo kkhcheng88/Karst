@@ -1,0 +1,40 @@
+{
+ "universe_n": 574,
+ "tickers_with_any_filing_text": 561,
+ "tickers_with_any_pair": 556,
+ "coverage_frac": 0.9773519163763066,
+ "filings_fetched": 9666,
+ "filings_with_section": 9119,
+ "filings_mdna_ok": 6714,
+ "filings_risk_ok": 9032,
+ "pairs": 8493,
+ "pairs_both_sections": 5962,
+ "missing_tickers": {
+  "CCEP": "CIK 0001650107 has no 10-K filings (COCA-COLA EUROPACIFIC PARTNERS plc)",
+  "CCU": "CIK 0000888746 has no 10-K filings (UNITED BREWERIES CO INC)",
+  "HONA": "CIK 0002089271 has no 10-K filings (Honeywell Aerospace Inc.)",
+  "SII": "CIK 0001512920 has no 10-K filings (SPROTT INC.)",
+  "SNT": "CIK 0001993727 has no 10-K filings (Senstar Technologies Corp)",
+  "XOM": "CIK 0002115436 has no 10-K filings (ExxonMobil Holdings Corp)"
+ },
+ "tickers_no_pair": [
+  "AMCR",
+  "BLK",
+  "C",
+  "CCEP",
+  "CCU",
+  "CLX",
+  "FDXF",
+  "HAL",
+  "HONA",
+  "ICE",
+  "KG",
+  "LVS",
+  "Q",
+  "SII",
+  "SNT",
+  "SOLS",
+  "WOR",
+  "XOM"
+ ]
+}
