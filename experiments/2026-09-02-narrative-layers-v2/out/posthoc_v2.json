@@ -1,0 +1,1398 @@
+{
+ "manual_layer_detail": {
+  "2023-06-30": {
+   "homebuilders": {
+    "members": [
+     "DHI",
+     "LEN",
+     "PHM"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.8614538690490218
+   },
+   "semi_equipment": {
+    "members": [
+     "AMAT",
+     "LRCX",
+     "KLAC"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7905620193656228
+   },
+   "copper": {
+    "members": [
+     "FCX",
+     "SCCO"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7713862742739138
+   },
+   "solar": {
+    "members": [
+     "ENPH",
+     "SEDG"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7341473423725078
+   },
+   "gold": {
+    "members": [
+     "NEM",
+     "B",
+     "AEM"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7338442067174662
+   },
+   "travel_cruise": {
+    "members": [
+     "RCL",
+     "CCL",
+     "NCLH"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.6945885067217991
+   },
+   "web3_crypto": {
+    "members": [
+     "COIN",
+     "MSTR",
+     "MARA",
+     "RIOT",
+     "HUT"
+    ],
+    "n": 5,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": 0.6385388985648316
+   },
+   "glp1": {
+    "members": [
+     "LLY",
+     "NVO"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.6115567073183349
+   },
+   "ag_fertilizer": {
+    "members": [
+     "MOS",
+     "CF"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.5877032448897658
+   },
+   "china": {
+    "members": [
+     "BABA",
+     "BIDU",
+     "JD",
+     "NTES"
+    ],
+    "n": 4,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": 0.570119651567364
+   },
+   "defense": {
+    "members": [
+     "LMT",
+     "NOC",
+     "LHX",
+     "HII"
+    ],
+    "n": 4,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.5399833335601992
+   },
+   "uranium_power": {
+    "members": [
+     "CCJ",
+     "LEU"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.49012215569374445
+   },
+   "optical_cpo": {
+    "members": [
+     "LITE",
+     "COHR"
+    ],
+    "n": 2,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.42575404274200757
+   },
+   "oilfield_services": {
+    "members": [
+     "SLB",
+     "HAL",
+     "WFRD"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.4229631014597393
+   },
+   "quantum": {
+    "members": [
+     "IONQ",
+     "RGTI",
+     "QBTS",
+     "QUBT"
+    ],
+    "n": 4,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.38024178332126995
+   },
+   "power_producers": {
+    "members": [
+     "VST",
+     "CEG",
+     "TLN"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.35602974267123044
+   },
+   "cyber": {
+    "members": [
+     "PANW",
+     "CRWD",
+     "ZS",
+     "FTNT",
+     "OKTA"
+    ],
+    "n": 5,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.32364475688055794
+   },
+   "fintech": {
+    "members": [
+     "HOOD",
+     "SOFI",
+     "AFRM",
+     "PYPL",
+     "UPST"
+    ],
+    "n": 5,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.3217723938063851
+   },
+   "betting": {
+    "members": [
+     "DKNG",
+     "FLUT"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.30158717427422854
+   },
+   "metaverse_innov": {
+    "members": [
+     "U",
+     "RBLX"
+    ],
+    "n": 2,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.28027529593299344
+   },
+   "gig": {
+    "members": [
+     "UBER",
+     "DASH",
+     "LYFT",
+     "GRAB"
+    ],
+    "n": 4,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.24250273308437173
+   },
+   "banks": {
+    "members": [
+     "JPM",
+     "BAC",
+     "WFC",
+     "GS",
+     "MS"
+    ],
+    "n": 5,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.2121538464920183
+   },
+   "upstream_oil": {
+    "members": [
+     "EOG",
+     "OXY"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.1760274702994198
+   },
+   "semis": {
+    "members": [
+     "NVDA",
+     "AMD",
+     "AVGO"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.16670248905278565
+   },
+   "biotech": {
+    "members": [
+     "AMGN",
+     "GILD",
+     "VRTX",
+     "REGN",
+     "BIIB"
+    ],
+    "n": 5,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.1391638985953282
+   },
+   "software_cloud": {
+    "members": [
+     "MSFT",
+     "CRM",
+     "ORCL",
+     "ADBE",
+     "NOW",
+     "PLTR",
+     "SHOP"
+    ],
+    "n": 7,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.09737830401455397
+   },
+   "streaming": {
+    "members": [
+     "NFLX",
+     "DIS",
+     "WBD",
+     "PARA",
+     "SPOT",
+     "ROKU"
+    ],
+    "n": 6,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": 0.07093211608382768
+   },
+   "staples": {
+    "members": [
+     "WMT",
+     "PG",
+     "KO",
+     "COST"
+    ],
+    "n": 4,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": -0.1107599811288605
+   },
+   "energy": {
+    "members": [
+     "XOM",
+     "CVX",
+     "COP"
+    ],
+    "n": 3,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": -0.13542533189314915
+   },
+   "cannabis": {
+    "members": [
+     "GTBIF"
+    ],
+    "n": 1,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": NaN
+   },
+   "memory": {
+    "members": [
+     "MU"
+    ],
+    "n": 1,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": NaN
+   }
+  },
+  "2025-06-30": {
+   "homebuilders": {
+    "members": [
+     "DHI",
+     "LEN",
+     "PHM"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.8563982927317361
+   },
+   "gold": {
+    "members": [
+     "NEM",
+     "B",
+     "AEM"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7951201937246825
+   },
+   "quantum": {
+    "members": [
+     "IONQ",
+     "RGTI",
+     "QBTS",
+     "QUBT"
+    ],
+    "n": 4,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7624528315102301
+   },
+   "semi_equipment": {
+    "members": [
+     "AMAT",
+     "LRCX",
+     "KLAC"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.7371131723764633
+   },
+   "travel_cruise": {
+    "members": [
+     "RCL",
+     "CCL",
+     "NCLH"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.6756172028906301
+   },
+   "betting": {
+    "members": [
+     "DKNG",
+     "FLUT"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.670952353398567
+   },
+   "optical_cpo": {
+    "members": [
+     "LITE",
+     "COHR"
+    ],
+    "n": 2,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.640696905370524
+   },
+   "power_producers": {
+    "members": [
+     "VST",
+     "CEG",
+     "TLN"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.6333854917972669
+   },
+   "solar": {
+    "members": [
+     "ENPH",
+     "SEDG"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.6315410949970371
+   },
+   "memory": {
+    "members": [
+     "MU",
+     "SNDK"
+    ],
+    "n": 2,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.5770931645226024
+   },
+   "cyber": {
+    "members": [
+     "PANW",
+     "CRWD",
+     "ZS",
+     "FTNT",
+     "OKTA"
+    ],
+    "n": 5,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.57169328583833
+   },
+   "oilfield_services": {
+    "members": [
+     "SLB",
+     "HAL",
+     "WFRD"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.5341188439907504
+   },
+   "china": {
+    "members": [
+     "BABA",
+     "BIDU",
+     "JD",
+     "NTES"
+    ],
+    "n": 4,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": 0.49135500654508896
+   },
+   "copper": {
+    "members": [
+     "FCX",
+     "SCCO"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.4870163050536254
+   },
+   "defense": {
+    "members": [
+     "LMT",
+     "NOC",
+     "LHX",
+     "HII"
+    ],
+    "n": 4,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.47167127441418205
+   },
+   "web3_crypto": {
+    "members": [
+     "COIN",
+     "MSTR",
+     "MARA",
+     "RIOT",
+     "HUT"
+    ],
+    "n": 5,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": 0.4682232547679156
+   },
+   "uranium_power": {
+    "members": [
+     "CCJ",
+     "LEU"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.46119224465746095
+   },
+   "ag_fertilizer": {
+    "members": [
+     "MOS",
+     "CF"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.4105763130974568
+   },
+   "software_cloud": {
+    "members": [
+     "MSFT",
+     "CRM",
+     "ORCL",
+     "ADBE",
+     "NOW",
+     "PLTR",
+     "SHOP"
+    ],
+    "n": 7,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.38027537990139304
+   },
+   "banks": {
+    "members": [
+     "JPM",
+     "BAC",
+     "WFC",
+     "GS",
+     "MS"
+    ],
+    "n": 5,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.313747234060658
+   },
+   "gig": {
+    "members": [
+     "UBER",
+     "DASH",
+     "LYFT",
+     "GRAB"
+    ],
+    "n": 4,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.28493083748454495
+   },
+   "fintech": {
+    "members": [
+     "HOOD",
+     "SOFI",
+     "AFRM",
+     "PYPL",
+     "UPST"
+    ],
+    "n": 5,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.2837614635209655
+   },
+   "upstream_oil": {
+    "members": [
+     "EOG",
+     "OXY"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": 0.2665311662970973
+   },
+   "metaverse_innov": {
+    "members": [
+     "U",
+     "RBLX"
+    ],
+    "n": 2,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.2337341455059421
+   },
+   "biotech": {
+    "members": [
+     "AMGN",
+     "GILD",
+     "VRTX",
+     "REGN",
+     "BIIB"
+    ],
+    "n": 5,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": 0.14021408981921776
+   },
+   "streaming": {
+    "members": [
+     "NFLX",
+     "DIS",
+     "WBD",
+     "PARA",
+     "SPOT",
+     "ROKU"
+    ],
+    "n": 6,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": 0.06723769892683823
+   },
+   "energy": {
+    "members": [
+     "XOM",
+     "CVX",
+     "COP"
+    ],
+    "n": 3,
+    "n_subindustries": 2,
+    "within_layer_resid_corr": -0.009710281893027724
+   },
+   "glp1": {
+    "members": [
+     "LLY",
+     "NVO"
+    ],
+    "n": 2,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": -0.022444560356966625
+   },
+   "semis": {
+    "members": [
+     "NVDA",
+     "AMD",
+     "AVGO"
+    ],
+    "n": 3,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": -0.05824127044808048
+   },
+   "staples": {
+    "members": [
+     "WMT",
+     "PG",
+     "KO",
+     "COST"
+    ],
+    "n": 4,
+    "n_subindustries": 3,
+    "within_layer_resid_corr": -0.07113466460624752
+   },
+   "cannabis": {
+    "members": [
+     "GTBIF"
+    ],
+    "n": 1,
+    "n_subindustries": 1,
+    "within_layer_resid_corr": NaN
+   }
+  }
+ },
+ "exemplar_layers": {
+  "2015-06-30": [
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "ATI",
+     "NUE",
+     "RS",
+     "STLD"
+    ],
+    "top_terms": "alloys ferrous scrap metals rolled bar steel stainless mills alloy",
+    "within_layer_resid_corr": 0.4907644323659679
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "CDE",
+     "NEM",
+     "RGLD",
+     "SCCO"
+    ],
+    "top_terms": "ounces silver mines ounce royalty mineral exploration gold ore mining",
+    "within_layer_resid_corr": 0.4790081066395126
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "CDE",
+     "CLF",
+     "NEM",
+     "RGLD"
+    ],
+    "top_terms": "ounces silver mines ore ounce mineral royalty gold exploration mineralization",
+    "within_layer_resid_corr": 0.45238882761951854
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "HP",
+     "NBR",
+     "NOV",
+     "SLB"
+    ],
+    "top_terms": "rig drilling rigs drilling rig oilfield oil gas offshore oil wells drilling rigs",
+    "within_layer_resid_corr": 0.31404587589256955
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 9,
+    "n_subindustries": 2,
+    "members": [
+     "CNC",
+     "EHC",
+     "ELV",
+     "HCA",
+     "HUM",
+     "MOH",
+     "THC",
+     "UHS",
+     "UNH"
+    ],
+    "top_terms": "medicare medicaid cms physicians managed care hospital hipaa hospitals physician quality care",
+    "within_layer_resid_corr": 0.3057527220753311
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 15,
+    "n_subindustries": 4,
+    "members": [
+     "BAC",
+     "FHN",
+     "FITB",
+     "GS",
+     "JPM",
+     "KEY",
+     "MS",
+     "MTB",
+     "RF",
+     "RJF",
+     "STT",
+     "TFC",
+     "USB",
+     "WFC",
+     "ZION"
+    ],
+    "top_terms": "fdic banking depository institution bhc federal reserve basel volcker volcker rule bank",
+    "within_layer_resid_corr": 0.2359772006568201
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 10,
+    "n_subindustries": 4,
+    "members": [
+     "CPRI",
+     "DECK",
+     "FOSL",
+     "NKE",
+     "PVH",
+     "RL",
+     "TPR",
+     "UAA",
+     "URBN",
+     "VFC"
+    ],
+    "top_terms": "footwear apparel stores retail stores accessories women department stores men wholesale lifestyle",
+    "within_layer_resid_corr": 0.23023739285223396
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "ANET",
+     "CIEN",
+     "CSCO",
+     "VIAV"
+    ],
+    "top_terms": "networking cloud virtualization data center switching ethernet programmable networking solutions architectures provisioning",
+    "within_layer_resid_corr": 0.2136047398056428
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 4,
+    "n_subindustries": 3,
+    "members": [
+     "BR",
+     "CBOE",
+     "CME",
+     "IBKR"
+    ],
+    "top_terms": "clearing trading trades futures exchanges options futures quotes futures options electronic trading chicago",
+    "within_layer_resid_corr": 0.20374299969961177
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 7,
+    "n_subindustries": 2,
+    "members": [
+     "AME",
+     "EMR",
+     "IEX",
+     "PH",
+     "PNR",
+     "TDY",
+     "XYL"
+    ],
+    "top_terms": "valves pumps instrumentation fluid industrial motors filtration water wastewater fittings engineered",
+    "within_layer_resid_corr": 0.1988776837829524
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 7,
+    "n_subindustries": 4,
+    "members": [
+     "CHRW",
+     "JBHT",
+     "NSC",
+     "ODFL",
+     "R",
+     "UNP",
+     "WAB"
+    ],
+    "top_terms": "freight intermodal railroads rail trailers truckload carriers motor carriers transportation motor carrier",
+    "within_layer_resid_corr": 0.18962962055383292
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 11,
+    "n_subindustries": 4,
+    "members": [
+     "ALGT",
+     "CHRW",
+     "DAL",
+     "EXPD",
+     "FDX",
+     "JBHT",
+     "JBLU",
+     "LUV",
+     "ODFL",
+     "R",
+     "UAL"
+    ],
+    "top_terms": "carriers dot carrier flights airline freight transportation aircraft airport fuel",
+    "within_layer_resid_corr": 0.1795259278515846
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 7,
+    "n_subindustries": 2,
+    "members": [
+     "CZR",
+     "HLT",
+     "LVS",
+     "MAR",
+     "MGM",
+     "PENN",
+     "WYNN"
+    ],
+    "top_terms": "casino hotel gaming resort rooms casinos table games amenities suites slot machines",
+    "within_layer_resid_corr": 0.17856525957008268
+   },
+   {
+    "arm": "semantic",
+    "slice": "2015-06-30",
+    "size": 7,
+    "n_subindustries": 2,
+    "members": [
+     "CZR",
+     "HLT",
+     "LVS",
+     "MAR",
+     "MGM",
+     "PENN",
+     "WYNN"
+    ],
+    "top_terms": "casino hotel gaming resort rooms casinos table games amenities suites slot machines",
+    "within_layer_resid_corr": 0.17856525957008268
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2015-06-30",
+    "size": 3,
+    "n_subindustries": 2,
+    "members": [
+     "BBY",
+     "HD",
+     "LOW"
+    ],
+    "top_terms": "stores merchandise store picked star energy star online shop appliances garden",
+    "within_layer_resid_corr": 0.17734478277180254
+   }
+  ],
+  "2019-06-30": [
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 4,
+    "n_subindustries": 3,
+    "members": [
+     "ACGL",
+     "CB",
+     "EG",
+     "WRB"
+    ],
+    "top_terms": "reinsurance casualty bermuda surplus lines lloyd insurance reinsurance reinsurers syndicate solvency property casualty",
+    "within_layer_resid_corr": 0.5701779799881882
+   },
+   {
+    "arm": "semantic",
+    "slice": "2019-06-30",
+    "size": 6,
+    "n_subindustries": 2,
+    "members": [
+     "BLDR",
+     "DHI",
+     "KBH",
+     "LEN",
+     "NVR",
+     "TOL"
+    ],
+    "top_terms": "homebuilding homes land development homebuyers mortgage lots homebuilders land subcontractors housing",
+    "within_layer_resid_corr": 0.5360052894870034
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 3,
+    "n_subindustries": 3,
+    "members": [
+     "AES",
+     "NRG",
+     "PNW"
+    ],
+    "top_terms": "coal epa ash fired solar effluent electricity doe nuclear power plants",
+    "within_layer_resid_corr": 0.40119704102720816
+   },
+   {
+    "arm": "semantic",
+    "slice": "2019-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "EW",
+     "MDT",
+     "TFX",
+     "ZBH"
+    ],
+    "top_terms": "surgical aortic catheters medical devices medical device fda therapies heart patients valve",
+    "within_layer_resid_corr": 0.39267393945931306
+   },
+   {
+    "arm": "semantic",
+    "slice": "2019-06-30",
+    "size": 7,
+    "n_subindustries": 2,
+    "members": [
+     "AAOI",
+     "ADI",
+     "AVGO",
+     "ON",
+     "QRVO",
+     "SWKS",
+     "TXN"
+    ],
+    "top_terms": "signal analog semiconductor wafer signals wireless mixed signal semiconductors amplifiers modules",
+    "within_layer_resid_corr": 0.35198476421875247
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 3,
+    "n_subindustries": 2,
+    "members": [
+     "EW",
+     "MDT",
+     "TFX"
+    ],
+    "top_terms": "aortic catheters valve surgical therapies catheter heart vascular cardiac medical devices",
+    "within_layer_resid_corr": 0.33994995246212073
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 6,
+    "n_subindustries": 2,
+    "members": [
+     "ADI",
+     "AVGO",
+     "KEYS",
+     "QRVO",
+     "SWKS",
+     "TXN"
+    ],
+    "top_terms": "semiconductor signal wireless wafer analog amplifiers semiconductors automotive broadband signals",
+    "within_layer_resid_corr": 0.3389495718520325
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 6,
+    "n_subindustries": 2,
+    "members": [
+     "ALGT",
+     "DAL",
+     "FDX",
+     "JBLU",
+     "LUV",
+     "UAL"
+    ],
+    "top_terms": "flights airline faa airport aircraft dot flight airports airline industry fares",
+    "within_layer_resid_corr": 0.32466231274667956
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 7,
+    "n_subindustries": 2,
+    "members": [
+     "AMP",
+     "BHF",
+     "GNW",
+     "MET",
+     "PFG",
+     "PRU",
+     "UNM"
+    ],
+    "top_terms": "life insurance annuities annuity universal life rbc variable annuity naic reinsurance insurer policyholders",
+    "within_layer_resid_corr": 0.3200787716717648
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "CBOE",
+     "CME",
+     "ICE",
+     "RIOT"
+    ],
+    "top_terms": "exchanges futures indexes clearing cftc trading bitcoin futures options venues equities",
+    "within_layer_resid_corr": 0.3112270851561909
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 3,
+    "n_subindustries": 3,
+    "members": [
+     "CAR",
+     "EXPE",
+     "MAR"
+    ],
+    "top_terms": "hotels hotel reservation reservations lodging rentals travel online travel travelers traveler",
+    "within_layer_resid_corr": 0.2696975118168789
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2019-06-30",
+    "size": 3,
+    "n_subindustries": 3,
+    "members": [
+     "CDNS",
+     "NVDA",
+     "SNPS"
+    ],
+    "top_terms": "prototyping chip verification ics soc semiconductor simulation university logic chips",
+    "within_layer_resid_corr": 0.26945528667035223
+   },
+   {
+    "arm": "semantic",
+    "slice": "2019-06-30",
+    "size": 10,
+    "n_subindustries": 3,
+    "members": [
+     "CNC",
+     "CVS",
+     "EHC",
+     "ELV",
+     "HCA",
+     "HSIC",
+     "HUM",
+     "THC",
+     "UHS",
+     "UNH"
+    ],
+    "top_terms": "medicare medicaid cms physicians medicare advantage physician care managed care clinical hospital",
+    "within_layer_resid_corr": 0.266366823131368
+   },
+   {
+    "arm": "semantic",
+    "slice": "2019-06-30",
+    "size": 4,
+    "n_subindustries": 3,
+    "members": [
+     "CHRW",
+     "JBHT",
+     "ODFL",
+     "R"
+    ],
+    "top_terms": "truckload tractors trailers carriers freight motor carrier drivers motor intermodal carrier",
+    "within_layer_resid_corr": 0.2646523512304875
+   },
+   {
+    "arm": "semantic",
+    "slice": "2019-06-30",
+    "size": 5,
+    "n_subindustries": 2,
+    "members": [
+     "GD",
+     "KTOS",
+     "LDOS",
+     "LMT",
+     "NOC"
+    ],
+    "top_terms": "missile dod aircraft navy army missions command command control tactical sustainment",
+    "within_layer_resid_corr": 0.2615672542356553
+   }
+  ],
+  "2023-06-30": [
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 5,
+    "n_subindustries": 2,
+    "members": [
+     "CIFR",
+     "CLSK",
+     "MARA",
+     "RIOT",
+     "WULF"
+    ],
+    "top_terms": "bitcoin bitcoin mining miners mining blockchain bitcoin blockchain mining bitcoin bitcoin network mining pool computing power",
+    "within_layer_resid_corr": 0.6975713338657028
+   },
+   {
+    "arm": "semantic",
+    "slice": "2023-06-30",
+    "size": 5,
+    "n_subindustries": 2,
+    "members": [
+     "CIFR",
+     "CLSK",
+     "MARA",
+     "RIOT",
+     "WULF"
+    ],
+    "top_terms": "bitcoin bitcoin mining miners mining blockchain bitcoin blockchain mining bitcoin bitcoin network mining pool computing power",
+    "within_layer_resid_corr": 0.6975713338657028
+   },
+   {
+    "arm": "semantic",
+    "slice": "2023-06-30",
+    "size": 6,
+    "n_subindustries": 2,
+    "members": [
+     "BLDR",
+     "DHI",
+     "LEN",
+     "LPX",
+     "NVR",
+     "TOL"
+    ],
+    "top_terms": "homebuilding homes mortgage land development single family lots land homebuilders housing mortgage financing",
+    "within_layer_resid_corr": 0.5150374475851214
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 4,
+    "n_subindustries": 3,
+    "members": [
+     "ACGL",
+     "CB",
+     "EG",
+     "WRB"
+    ],
+    "top_terms": "reinsurance casualty bermuda insurance reinsurance property casualty reinsurers surplus lines insurer solvency lloyd",
+    "within_layer_resid_corr": 0.48399353511825405
+   },
+   {
+    "arm": "semantic",
+    "slice": "2023-06-30",
+    "size": 11,
+    "n_subindustries": 4,
+    "members": [
+     "CFG",
+     "FITB",
+     "GS",
+     "JEF",
+     "KEY",
+     "RF",
+     "RJF",
+     "STT",
+     "USB",
+     "WFC",
+     "ZION"
+    ],
+    "top_terms": "banking bank bhc depository fdic loans bhcs federal banking institution frb",
+    "within_layer_resid_corr": 0.37771242968788743
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 5,
+    "n_subindustries": 2,
+    "members": [
+     "CZR",
+     "DKNG",
+     "MGM",
+     "PENN",
+     "WYNN"
+    ],
+    "top_terms": "betting sports betting casino gaming sports las vegas vegas las casinos games",
+    "within_layer_resid_corr": 0.3528200902362904
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 4,
+    "n_subindustries": 3,
+    "members": [
+     "A",
+     "RVTY",
+     "TWST",
+     "TXG"
+    ],
+    "top_terms": "gene dna reagents sample sequencing cell rna genome ngs biology",
+    "within_layer_resid_corr": 0.3204160408505817
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 14,
+    "n_subindustries": 5,
+    "members": [
+     "AXP",
+     "CFG",
+     "FITB",
+     "GS",
+     "JPM",
+     "KEY",
+     "MTB",
+     "NTRS",
+     "RF",
+     "SCHW",
+     "STT",
+     "USB",
+     "WFC",
+     "ZION"
+    ],
+    "top_terms": "fdic depository banking bhc bank stress institution basel federal reserve depository institution",
+    "within_layer_resid_corr": 0.3083105348424976
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 6,
+    "n_subindustries": 2,
+    "members": [
+     "AMP",
+     "BHF",
+     "MET",
+     "PFG",
+     "PRU",
+     "UNM"
+    ],
+    "top_terms": "annuity annuities universal life reinsurance naic rbc variable annuity individual life life insurance term life",
+    "within_layer_resid_corr": 0.3082310150500321
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 4,
+    "n_subindustries": 2,
+    "members": [
+     "DDOG",
+     "MDB",
+     "OKTA",
+     "SNOW"
+    ],
+    "top_terms": "cloud integrations clouds developers user experience public cloud developer database query users",
+    "within_layer_resid_corr": 0.30463216654507325
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 5,
+    "n_subindustries": 3,
+    "members": [
+     "CDE",
+     "NEM",
+     "RGLD",
+     "SCCO",
+     "UEC"
+    ],
+    "top_terms": "silver mineral exploration mining mines pit gold metals precious extraction",
+    "within_layer_resid_corr": 0.2996440602909278
+   },
+   {
+    "arm": "semantic",
+    "slice": "2023-06-30",
+    "size": 5,
+    "n_subindustries": 2,
+    "members": [
+     "FTI",
+     "HAL",
+     "HP",
+     "NE",
+     "OII"
+    ],
+    "top_terms": "drilling offshore subsea rigs gulf mexico oil rig drilling rigs oil gas oil natural",
+    "within_layer_resid_corr": 0.2851436889329837
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 8,
+    "n_subindustries": 3,
+    "members": [
+     "CAG",
+     "CPB",
+     "GIS",
+     "HSY",
+     "IFF",
+     "KHC",
+     "MDLZ",
+     "SJM"
+    ],
+    "top_terms": "snacks foods ingredients food foodservice president vice president meals snacking vice",
+    "within_layer_resid_corr": 0.2735351713496377
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 7,
+    "n_subindustries": 2,
+    "members": [
+     "GD",
+     "HII",
+     "KTOS",
+     "LDOS",
+     "LMT",
+     "NOC",
+     "RTX"
+    ],
+    "top_terms": "aircraft missile sustainment missiles mission systems navy aeronautics fighter unmanned dod",
+    "within_layer_resid_corr": 0.2618037627213765
+   },
+   {
+    "arm": "machine_v2",
+    "slice": "2023-06-30",
+    "size": 11,
+    "n_subindustries": 5,
+    "members": [
+     "ADI",
+     "AVGO",
+     "KEYS",
+     "MRVL",
+     "NXPI",
+     "QRVO",
+     "SANM",
+     "STX",
+     "SWKS",
+     "TER",
+     "TXN"
+    ],
+    "top_terms": "semiconductor signal wireless analog automotive wafer devices circuits mixed signal silicon",
+    "within_layer_resid_corr": 0.2530977382076534
+   }
+  ]
+ },
+ "pair_ceiling": {
+  "2023-06-30": {
+   "n_members": 102,
+   "n_layers": 31,
+   "median_layer_size": 3.0,
+   "G1_pairs": 61,
+   "G2_pairs": 77,
+   "members_needed_for_100_G1_pairs_same_shape": 167
+  },
+  "2025-06-30": {
+   "n_members": 103,
+   "n_layers": 31,
+   "median_layer_size": 3.0,
+   "G1_pairs": 62,
+   "G2_pairs": 81,
+   "members_needed_for_100_G1_pairs_same_shape": 166
+  }
+ }
+}
