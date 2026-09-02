@@ -1,0 +1,13 @@
+{
+  "rows": 123754,
+  "reported": 86530,
+  "derived": 36717,
+  "still_missing": 507,
+  "coverage_before": 0.6992,
+  "coverage_after": 0.9959,
+  "identity_check_rows": 85836,
+  "identity_rel_err_median": 0.000215,
+  "identity_rel_err_p90": 0.076986,
+  "identity_rel_err_within_1pct": 0.7214,
+  "note": "差額源於少數股東權益:面板 equity 欄的回退次序把 StockholdersEquity (不含少數股東)排在含少數股東那個之前,所以倒算值在有少數股東的公司會偏高。四件套本身沒有用到總負債,本欄只作記錄。"
+}
