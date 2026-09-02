@@ -29,6 +29,17 @@
     "cash": 0.9774,
     "lt_debt": 0.8353
   },
+  "panel_v2": {
+    "ticket": "KARST-158",
+    "file": "experiments/2026-09-02-panel-scale-fix/out/panel_monthly_v2.parquet",
+    "rows": 123754,
+    "tickers": 718,
+    "sha256": "ab02e335c3ebc169e05365f4d254cad498ad02a334c45f1cdd94b98da35a2fed",
+    "sha256_16": "ab02e335c3ebc169",
+    "bytes": 13441780,
+    "note": "股數單位刻度修補版(A-041)。diluted_shares 校正 1,008 格、設缺值 353 格;diluted_shares_restated 校正 751 格、設缺值 409 格。規則與誠實聲明見 RULES.md「v2 變更紀錄」,逐格明細見 experiments/2026-09-02-panel-scale-fix/out/scale_fixes.csv。下游一律改讀 v2;本檔 panel_monthly.parquet(v1)一個位元未改,只留追溯。",
+    "v1_sha256_16": "e1f8caf4dc7ab424"
+  },
   "download": {
     "unique_ciks": 702,
     "downloaded": 698,
