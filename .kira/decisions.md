@@ -3188,3 +3188,24 @@
   > (用戶未裁;屬 D-072 授權內收案)
 
 - 影響：30% 目標的公開紀錄校準完成:三隊(149/150/151)結論一致——場地比訊號重要、30% 是賠率結構與槓桿問題、散戶優勢在容量;第一波存在性測試(153/154/155)與 152 平行開跑。
+
+## D-134 原料文本唯一快取(用戶明令):EDGAR 為正本,倉內年報/申報全文只准一份副本,住 data/sec/10k_text/ 連 manifest.jsonl;實驗票只存衍生物(切節、分層、面板)並記 accession;抓之前先查 manifest,已有不再打 EDGAR;D-002 單一正本與「等價重用」(2026-08-28 no duplicated copy)由價格快照延伸至文本原料
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：用戶 2026-09-02 原話:「Make sure we keep only single copy. Still the golden principle is governance on data」(針對 KARST-152 與 KARST-153 兩隊同時向 EDGAR 抓同一批年報)。主 agent 依 D-072 定具體規則。
+
+- 背景：實況:KARST-152 只存 Item 1 切節(out/texts,918KB),KARST-153 正在抓 574 家 2008–2026 約一萬份 10-K,原本也只存 MD&A 與 Item 1A 切節——即倉內零份全文、兩份不同切節、下一條文本假設又要重抓一萬份。用戶那句話點中的問題不是「兩份太多」,是「沒有一份正本、每隊各抓各存」。主 agent 立場(D-110):①同意用戶,治理先於速度;不同意的地方只有一處——原始 HTML 不存,存 clean 後全文純文本:HTML 一萬份約 10–30GB,純文本 gz 約十分之一,而所有文本假設(相似度、敘事分層、轉折)都只用純文本;真要 HTML 可按 accession 從 EDGAR 重取,EDGAR 才是正本。②153 抓取途中改規則的代價是補抓已抓的約 700 份,可接受。③152 不重抓:153 的抓取範圍是 152 三個年份的超集,152 只補一句聲明。
+
+- 決策：
+  1. EDGAR 為正本;倉內年報/申報全文唯一快取住 C:\projects\Karst\data\sec\10k_text\<TICKER>_<accession>.txt.gz(clean 後純文本,gitignore 已覆蓋 data/),同目錄 manifest.jsonl 每份一行:ticker、cik、accession、form、filingDate、reportDate、url、chars、sha256、fetchedAt、fetchedBy
+  2. 任何票抓 EDGAR 全文之前先查 manifest,已有就讀快取;實驗票目錄只存衍生物(切節、分層、面板)並記 accession,不存第二份全文;company_tickers 一類查表同樣只用 data/sec/ 那一份
+  3. KARST-153 即改為同時寫入快取並補抓已抓的那批;KARST-152 不重抓,報告聲明文本直接取自 EDGAR、日後重跑改讀快取;派工模板數據段加一句「原料只入 data/sec 唯一快取,票內只存衍生物」
+  4. D-002 單一正本與「等價重用」由價格快照延伸至文本原料;日後 8-K、Form 4、逐字稿等文本原料照同一形(data/sec/<form>_text/ + manifest)
+
+- **用戶原話（原文照錄）**
+
+  > Make sure we keep only single copy. Still the golden principle is governance on data
+
+- 影響：第二波所有文本類假設(敘事轉折、8-K、產能敘事)零重抓;153 抓取多寫一份全文與補抓約 700 份,估計多一小時;152 不受影響。
