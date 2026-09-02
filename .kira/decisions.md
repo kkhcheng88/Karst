@@ -3105,3 +3105,24 @@
   > 用戶 2026-09-02 原話:「value chain to me is 產業鏈, and if you refer to KarstETF value chain can further break down into layers, it is defined as at 1 layer with companies sharing the same position with the same story or narrative in the market. So if any news or any update of the industry, the same layer will have very similar impact. So the same layer should be also the same business or position of 上下遊」(收檔一格用戶未裁)
 
 - 影響：個股層系統線實測全部完成,結論一致為輸;研究重心正式移到價值鏈/鏈層(第二層)與論點線(樽頸文本),等 149/150/151 三隊回報後揀存在性測試。
+
+## D-130 用戶指示(2026-09-02):鏈層的分類方法可由 agent 調整——舊倉只有字面定義、沒有更好的分類法;初步判斷 AI 時代的優勢更多在非結構化/文本資訊,價值鏈(敘事/故事視角)的分組比行業或 GICS 分組更有價值,因為 GICS 只是為過去的索引與分組而設,而今同一板塊內的玩家差異太大;敘事分組應是所有優勢的起點
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：用戶 2026-09-02 原話(quote 欄)。主 agent 依 D-072 接棒。
+
+- 背景：主 agent 立場(D-110):同意兩點、挑戰三點。同意:①KARST-141/142 已顯示唯一乾淨的判別力在文本(D-119/D-120),與用戶方向一致;②GICS 是為指數編製服務的靜態分類,NVDA 與 INTC 同屬半導體但故事相反,用戶的觀察成立。挑戰:①敘事標籤最容易偷看——「AI 晶片鏈」這個故事是股價升完才被市場命名的,用事後的故事分組再量該組回報,等於 KARST-140 印象標籤(A-032)的翻版;所以敘事分層必須用當時的文本(10-K 業務描述、電話會議逐字稿,按申報日定格)由機器分,不用今日的認知;②同層共同波動有一部分只是共同的因子曝險(規模、動量、板塊),存在性測試必須量「扣走市場與板塊之後」的殘餘相關,否則量到的是板塊;③AI 時代人人有 LLM,「讀得快」不是優勢,散戶的真優勢是願意在一個敘事上集中、長揸幾年而機構不能——所以敘事分層是起點,但優勢要在「層級敘事轉折(如樽頸在文本出現)→ 層回報」這一步才成立。執行:即開 KARST-152 敘事鏈層存在性測試(不等 149 回報,因為這一格已由用戶定為起點):用按申報日定格的 10-K 業務描述做機器分層(先用不需 API 的 TF-IDF 聚類,再視需要升級),三個年份切片,量同層殘餘回報相關是否顯著高於同 GICS 子行業;另用舊倉 98 代表人手表直接驗「同層比同 GICS 更同步」。
+
+- 決策：
+  1. 鏈層分類方法由 agent 定義與調整,舊倉人手表降為對照組之一;任何分層必須按申報日定格(point-in-time),禁止用今日認知或事後命名的故事回頭分組
+  2. 「敘事分組是所有優勢的起點」登記為現役工作假設 A-037(若假:同層殘餘相關不高於 GICS 子行業,則價值鏈層無解析度優勢,由上而下第二層要另找單位)
+  3. 開 KARST-152 敘事鏈層存在性測試,判準跑數前凍結;結果與 149/150/151 一併進入五策略遴選
+  4. KARST-149/151 兩隊即時收到本指示:價值鏈層提案以敘事/文本分層為主,GICS 只作對照
+
+- **用戶原話（原文照錄）**
+
+  > 用戶 2026-09-02 原話:「but I think you need to chain-layers definition. But at that time, although we have a liternal means of definition but we don't have any better way of classification. In case you think is needed you can adjust the layer itself. Prelimary, I think with the age of AI, maybe the edge in more on the unstructured data or the text based information. So Value-Chain which is narrative / story point of view, should be more valuable than industry or GICS point of view. as the latter is just trying to fit a classification just for indexing or grouping in the pass. But nowadays the different player within the same sector is too different. I think the grouping should be sticked with the narrative is more making sense as the starting point of all edges」
+
+- 影響：由上而下第二層的單位由「板塊」正式改為「敘事鏈層」;文本數據線(10-K、逐字稿)升為核心原料,帳目面板與價格為配角。
