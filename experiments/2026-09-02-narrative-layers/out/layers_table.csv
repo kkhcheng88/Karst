@@ -1,0 +1,541 @@
+﻿slice,k,layer,size,within_layer_resid_corr,n_subindustries,members,top_terms
+2015-06-30,40,0,72,0.0405,16,ACGL AFL AIZ AJG ALL AMG AMP AON ARES AXP BAC BBT BEN BNY BR BRK-B BRO BX CB CBOE CFG CME DHI EG ERIE FDS FHN FITB FMCC FNMA GNW GS HBAN HIG HRB IBKR IVZ JEF JPM KBH KEY KKR LEN MCO MET MKTX MRSH MS MSCI MTB MTG NAVI NVR PFG PGR PRU RF RJF SCHW SCI SLM SPGI STT TFC TROW TRV UNM USB WFC WRB WTW ZION,insurance | banking | bank | funds | broker | banks | loans | clients | mortgage | underwriting
+2015-06-30,40,1,54,0.0392,10,A ABBV ABT ALGN BAX BDX BIIB BIO BMY BSX CAH CNC COO COR CRL CVS DGX DVA DXCM EHC ELV EW GILD HCA HSIC HUM ILMN INCY IQV JNJ KEYS LH LLY MOH MRK MTD NKTR PFE PODD PRGO REGN RVTY SYK TECH TFX THC TMO UHS UNH VRTX WAT WST XRAY ZBH,clinical | patients | fda | medical | drug | patient | pharmaceutical | medicare | care | disease
+2015-06-30,40,2,48,0.0404,18,ALB ALLE APD APTV ATI BA BALL BWA CCK CMI DOV ECL EME EMN EMR FIX FLR FMC GD GLW GM GNRC HII HON IEX ITW J JCI LDOS LEG LII LMT MMM NOC NUE OI PH PNR PPG ROP RTX STLD TDG TKR TT TXT WHR XYL,industrial | raw | energy | engineering | raw materials | backlog | research development | gas | air | aerospace
+2015-06-30,40,3,25,0.0583,9,BKNG CAR CASY CCL CMG CZR DAL DPZ DRI EXPE FDX HLT LUV LVS MAR MCD MGM PENN RCL SUN TRIP UAL WEN WYNN YUM,hotel | restaurant | restaurants | travel | dining | food | rooms | menu | franchisees | casino
+2015-06-30,40,4,2,0.0026,2,AVY NDSN,adhesive | adhesives | coating | coatings | dispensing | reflective | backing | plastic | durable | melt
+2015-06-30,40,5,2,-0.0274,2,ADM NI,agricultural commodities | corridor | agricultural | http www | http | commodity | commodities | gas supplies | reference room | public reference
+2015-06-30,40,6,6,0.1219,3,EOG EP HP NBR NOV SLB,drilling | rig | oil gas | oil | wells | gas | rigs | exploration | drilling rig | gas wells
+2015-06-30,40,7,7,0.0138,7,COF GME MCHP MCK MDT PKG TAP,non gaap | tax | gaap | income tax | diluted | impairment | tax rate | graph | expense income | tax expense
+2015-06-30,40,8,14,0.0923,6,AN BC CAT CPRT DE GPC GT HOG KMX LKQ MTW PCAR SNA TEX,vehicle | dealers | vehicles | parts | trucks | dealer | truck | engines | automotive | repair
+2015-06-30,40,9,1,,1,SHW,asc | finishes | codm | paint | coatings | meets criteria | performance allocate | assess performance | opened stores | allocate resources
+2015-06-30,40,10,1,,1,ROL,pest | mediterranean | america caribbean | europe africa | franchises | east asia | central america | international franchise | availability terms | caribbean
+2015-06-30,40,11,6,-0.051,6,AMZN CL COST MBI STZ UIS,vice president | president | vice | officer | president chief | chief | senior vice | chief officer | executive vice | chairman
+2015-06-30,40,12,1,,1,GHC,campuses | students | higher education | student | school | title | schools | university | educational programs | nursing
+2015-06-30,40,13,16,0.0749,7,CAG CPB GIS HRL HSY IFF KDP KO MDLZ MKC MNST PEP SBUX SJM SYY TSN,foodservice | foods | beverages | food | ingredients | beverage | brands | stores | snacks | juice
+2015-06-30,40,14,3,0.0713,2,AYI ETN HUBB,lighting | electrical systems | electrical | fixtures | non residential | cooper | wiring | residential | equipment manufacturers | lighting systems
+2015-06-30,40,15,2,0.1739,2,LHX MSI,public safety | government commercial | lte | satellite | communications | analog | government public | maritime | turnkey | radio
+2015-06-30,40,16,69,0.0642,16,AAPL ACN ADBE ADI ADP ADSK AKAM AMAT AME ANET APH AXON CDNS CDW CIEN COHR CPAY CRM CSCO CTSH DLX EFX ENPH EPAM FICO FIS FLEX FSLR FTNT GEN GRMN HPQ IBM INTC INTU IPGP IT JKHY KLAC LRCX MSFT NOW NVDA ON ORCL PANW PAYC PTC QCOM QRVO SANM SMCI SNPS STX SWKS TDC TDY TEL TER TRMB TXN TYL VIAV VRSK VRSN WDAY WDC WU ZBRA,software | cloud | devices | enterprise | solution | mobile | computing | hardware | research development | intellectual property
+2015-06-30,40,17,2,0.1804,1,KMB PG,care | stores | note consolidated | pants | youth | tissue | mass merchandisers | health care | merchandisers | win
+2015-06-30,40,18,43,0.0011,23,AEE AEP AES AMD ATO AWK CF CLF CLX CNP CNX CVX D DUK ED EQT ES FANG FE HAL ICE IP L MLM MOS MPC MUR NC NEE NEM NRG NTAP OKE PNW PPL PWR RSG SO SRE VMC WM WMB XEL,natural gas | gas | ferc | natural | plant | pipeline | transmission | coal | epa | emissions
+2015-06-30,40,19,1,,1,LNC,term credit | fitch | aaa | moody | rating agencies | ratings | strength ratings | rating | credit ratings | trigger
+2015-06-30,40,20,1,,1,GPN,merchant | term loan | enterprise software | payment solutions | consolidated income | credit facility | pacific region | merchants | loan | financial institutions
+2015-06-30,40,21,1,,1,AIG,catastrophe | modeled | reinsurance | earthquake | catastrophe reinsurance | reinsurance program | hurricane | catastrophe risk | catastrophes | exposures
+2015-06-30,40,22,1,,1,MU,dram | process technologies | nand | product process | trustee | wafer fabrication | wafer | flash | memory | reorganization
+2015-06-30,40,23,1,,1,PNC,asset quality | contingencies | non strategic | expense management | technology develop | meet evolving | monetary policy | affected number | appropriateness | cautionary statement
+2015-06-30,40,24,1,,1,WEC,coal combustion | molybdenum | landfills | wisconsin | ash | groundwater | local international | combustion | brotherhood electrical | oak
+2015-06-30,40,25,1,,1,EBAY,paypal | marketplaces | ecommerce | merchants | mean | addressable | counterparts | commerce | localized | located www
+2015-06-30,40,26,1,,1,AMGN,row | product sales | diluted | driven primarily | partially | increases decreases | offset | eps | foreign currency | sales prices
+2015-06-30,40,27,2,0.1082,2,IDXX ZTS,livestock | poultry | veterinary | dairy | animal | companion | diagnostics | diagnostic | cattle | pharmaceutical product
+2015-06-30,40,28,1,,1,CTAS,uniforms | destruction | local delivery | rental | routes | uniform | document | aid | laundry | fabric
+2015-06-30,40,29,1,,1,AOS,water heaters | heaters | boilers | water heating | rest world | water treatment | residential commercial | epc | heating | rest
+2015-06-30,40,30,25,0.0039,17,AAL CE CMS DHR EXC FAST FFIV FLS ISRG LNT MA MPWR NCLH NDAQ PAYX PBI PCG PEG RIG ROK SYF TRGP UPS URI V,looking statements | forward looking | stockholder matters | related stockholder | looking | forward | stockholder | disclosures | factors unresolved | matters relationships
+2015-06-30,40,31,1,,1,BF-B,jack | daniel | spirits | kentucky | tennessee | comfort | wine | sales geographic | southern | canadian
+2015-06-30,40,32,37,0.1078,12,AAP ANF AZO BBWI BBY COTY CPRI DDS DECK DG DLTR EL FOSL HAS HD KR KSS LOW LULU M MAT NKE ORLY PVH RL ROST SIG TGT TJX TPR TSCO UAA ULTA URBN VFC WMT WSM,stores | merchandise | store | apparel | brands | accessories | retailers | assortment | merchandising | shopping
+2015-06-30,40,33,1,,1,RHI,management resources | finance accounting | internal audit | staffing | creative | accounting finance | public relations | temporary | clients | specializes
+2015-06-30,40,34,9,0.1931,4,CHRW CSX EXPD JBHT NSC ODFL R UNP WAB,freight | intermodal | railroads | rail | transportation | carriers | trailers | shipments | motor carriers | transit
+2015-06-30,40,35,1,,1,F,engineering research | hourly employees | represented unions | vehicle safety | agreements covering | salaried employees | germany italy | hourly | argentina brazil | wages
+2015-06-30,40,36,2,0.2665,1,AIT GWW,catalog | facilities maintenance | maintenance repair | center network | fasteners | power transmission | repair | product breadth | distributor | sales representatives
+2015-06-30,40,37,2,0.2966,1,MO PM,tobacco | leaf | vapor | usa | smoke | reporting consolidated | manufacture sale | smoking | grades | morris
+2015-06-30,40,38,7,0.108,5,BLDR LPX MAS MHK NWL POOL SWK,home centers | remodeling | wood | lumber | home | home construction | housing | resin | retailers | mass merchants
+2015-06-30,40,39,1,,1,GL,annualized premium | index financial | medicare | medicare supplement | direct response | liberty | annualized | account values | health insurance | middle income
+2015-06-30,60,0,31,0.1196,12,AAPL ADI AMAT AME APH AXON CDNS COHR ENPH FLEX FSLR GRMN INTC IPGP KLAC LRCX NVDA ON QCOM QRVO SANM SMCI SNPS STX SWKS TDY TEL TER TXN VIAV WDC,semiconductor | devices | electronics | high performance | wireless | silicon | wafer | computing | circuit | circuits
+2015-06-30,60,1,2,0.1739,2,LHX MSI,public safety | government commercial | lte | satellite | communications | analog | government public | maritime | turnkey | radio
+2015-06-30,60,2,12,0.0856,6,ALB ATI BALL CCK ECL EMN FMC LEG NUE OI PPG STLD,raw | metal | raw material | raw materials | steel | specialty | producers | aluminum | energy | scrap
+2015-06-30,60,3,35,0.0027,16,AEE AEP AES ATO AWK CF CLF CNP CNX CVX DUK ED EQT ES FANG FE IP L MLM MOS MUR NC NEE NRG OKE PNW PPL PWR RSG SO SRE VMC WM WMB XEL,natural gas | gas | ferc | natural | coal | epa | plant | transmission | plants | emissions
+2015-06-30,60,4,11,0.0345,8,APD APTV BWA CMI GLW GM GNRC HON LII MMM WHR,vice president | president | vice | officer | diesel | chief | executive vice | president chief | general manager | president president
+2015-06-30,60,5,2,-0.0274,2,ADM NI,agricultural commodities | corridor | agricultural | http www | http | commodity | commodities | gas supplies | reference room | public reference
+2015-06-30,60,6,16,0.0749,7,CAG CPB GIS HRL HSY IFF KDP KO MDLZ MKC MNST PEP SBUX SJM SYY TSN,foodservice | foods | beverages | food | ingredients | beverage | brands | stores | snacks | juice
+2015-06-30,60,7,37,0.1078,12,AAP ANF AZO BBWI BBY COTY CPRI DDS DECK DG DLTR EL FOSL HAS HD KR KSS LOW LULU M MAT NKE ORLY PVH RL ROST SIG TGT TJX TPR TSCO UAA ULTA URBN VFC WMT WSM,stores | merchandise | store | apparel | brands | accessories | retailers | assortment | merchandising | shopping
+2015-06-30,60,8,8,0.1342,3,BC CAT DE GT HOG MTW PCAR TEX,dealers | trucks | parts | truck | independent dealers | engines | cranes | loaders | manufactures | dealer
+2015-06-30,60,9,13,0.0564,3,BA EME FIX FLR GD HII J LDOS LMT NOC RTX TDG TXT,aircraft | military | defense | engineering | missile | backlog | government contracts | aviation | navy | dod
+2015-06-30,60,10,3,0.1183,1,CME MCO SPGI,dow jones | mcgraw hill | mcgraw | dow | jones | ratings | hill | indices | subscription | credit ratings
+2015-06-30,60,11,6,0.1134,4,AN CPRT GPC KMX LKQ SNA,vehicle | vehicles | automotive | repair | repair shops | vehicle repair | auctions | vehicles sold | dealerships | stores
+2015-06-30,60,12,8,-0.0225,8,AMD CLX D HAL ICE MPC NEM NTAP,looking statements | litigation | forward looking | looking | materially adversely | cause | adversely affect | forward | materially | adversely
+2015-06-30,60,13,38,0.0634,9,ACN ADBE ADP ADSK AKAM ANET CDW CIEN CPAY CRM CSCO CTSH DLX EFX EPAM FICO FIS FTNT GEN HPQ IBM INTU IT JKHY MSFT NOW ORCL PANW PAYC PTC TDC TRMB TYL VRSK VRSN WDAY WU ZBRA,cloud | software | enterprise | solution | clients | hardware | mobile | platform | subscription | analytics
+2015-06-30,60,14,5,0.1565,3,EOG HP NBR NOV SLB,drilling | rig | rigs | oil gas | oil | wells | drilling rig | gas wells | gas | oilfield
+2015-06-30,60,15,40,0.0327,9,ABBV ABT BAX BIIB BMY BSX CAH CNC COO COR CRL CVS DGX DVA DXCM EHC ELV EW GILD HCA HSIC HUM INCY IQV JNJ LH LLY MOH MRK NKTR PODD PRGO REGN SYK TFX THC UHS UNH VRTX ZBH,patients | clinical | medicare | fda | patient | medical | medicaid | drug | care | physicians
+2015-06-30,60,16,9,0.1931,4,CHRW CSX EXPD JBHT NSC ODFL R UNP WAB,freight | intermodal | railroads | rail | transportation | carriers | trailers | shipments | motor carriers | transit
+2015-06-30,60,17,2,0.1804,1,KMB PG,care | stores | note consolidated | pants | youth | tissue | mass merchandisers | health care | merchandisers | win
+2015-06-30,60,18,63,0.0429,15,ACGL AFL AIZ AJG ALL AMG AMP AON ARES AXP BAC BBT BEN BR BRK-B BRO BX CB CBOE CFG EG ERIE FDS FHN FITB FMCC FNMA GNW GS HBAN HIG HRB IBKR IVZ JEF JPM KEY KKR MET MKTX MRSH MS MSCI MTB MTG NAVI PFG PGR PRU RF RJF SCHW SLM STT TFC TROW TRV UNM USB WFC WRB WTW ZION,insurance | broker | funds | bank | banking | clients | banks | underwriting | loans | holding
+2015-06-30,60,19,1,,1,SHW,asc | finishes | codm | paint | coatings | meets criteria | performance allocate | assess performance | opened stores | allocate resources
+2015-06-30,60,20,2,0.0026,2,AVY NDSN,adhesive | adhesives | coating | coatings | dispensing | reflective | backing | plastic | durable | melt
+2015-06-30,60,21,2,0.1194,1,ALGN XRAY,dental | impression | patients | consumable | scanner | precious | cam | implants | metal | medical device
+2015-06-30,60,22,17,0.1167,6,BKNG CAR CCL CZR DAL EXPE FDX HLT LUV LVS MAR MGM PENN RCL TRIP UAL WYNN,hotel | travel | casino | rooms | hotels | amenities | gaming | reservation | resort | reservations
+2015-06-30,60,23,1,,1,PNC,asset quality | contingencies | non strategic | expense management | technology develop | meet evolving | monetary policy | affected number | appropriateness | cautionary statement
+2015-06-30,60,24,6,-0.051,6,AMZN CL COST MBI STZ UIS,vice president | president | vice | officer | president chief | chief | senior vice | chief officer | executive vice | chairman
+2015-06-30,60,25,2,0.0013,2,NWL SWK,mass merchants | hand tools | home centers | merchants | fastening | baby | accessories | win | game | mass
+2015-06-30,60,26,6,0.078,1,CMG DPZ DRI MCD WEN YUM,restaurant | menu | franchisees | restaurants | chicken | franchisee | franchise | restaurant industry | dining | quality food
+2015-06-30,60,27,9,0.2493,3,DOV EMR IEX ITW PH PNR ROP TKR XYL,valves | pumps | industrial | fluid | food | bearings | engineered | power generation | oil gas | backlog
+2015-06-30,60,28,5,0.0939,3,BLDR LPX MAS MHK POOL,remodeling | wood | lumber | home construction | housing | home centers | insulation | starts | construction | housing starts
+2015-06-30,60,29,1,,1,SCI,unparalleled | homes | office space | memorial | corporate activities | locations north | sales organization | associates | support centers | houston
+2015-06-30,60,30,25,0.0039,17,AAL CE CMS DHR EXC FAST FFIV FLS ISRG LNT MA MPWR NCLH NDAQ PAYX PBI PCG PEG RIG ROK SYF TRGP UPS URI V,looking statements | forward looking | stockholder matters | related stockholder | looking | forward | stockholder | disclosures | factors unresolved | matters relationships
+2015-06-30,60,31,1,,1,BF-B,jack | daniel | spirits | kentucky | tennessee | comfort | wine | sales geographic | southern | canadian
+2015-06-30,60,32,2,-0.0035,2,CASY SUN,convenience store | gallons | gallon | tobacco | fuel | newly constructed | convenience | store | profit margin | tanks
+2015-06-30,60,33,1,,1,RHI,management resources | finance accounting | internal audit | staffing | creative | accounting finance | public relations | temporary | clients | specializes
+2015-06-30,60,34,5,0.0324,5,COF GME MCK PKG TAP,diluted | graph | expense income | non gaap | gaap measures | income continuing | income loss | gaap | income tax | depreciation amortization
+2015-06-30,60,35,1,,1,F,engineering research | hourly employees | represented unions | vehicle safety | agreements covering | salaried employees | germany italy | hourly | argentina brazil | wages
+2015-06-30,60,36,2,0.2665,1,AIT GWW,catalog | facilities maintenance | maintenance repair | center network | fasteners | power transmission | repair | product breadth | distributor | sales representatives
+2015-06-30,60,37,2,0.2966,1,MO PM,tobacco | leaf | vapor | usa | smoke | reporting consolidated | manufacture sale | smoking | grades | morris
+2015-06-30,60,38,2,0.1926,1,AYI HUBB,lighting | non residential | fixtures | wiring | electrical | residential | lighting systems | electrical systems | international sales | led
+2015-06-30,60,39,1,,1,GL,annualized premium | index financial | medicare | medicare supplement | direct response | liberty | annualized | account values | health insurance | middle income
+2015-06-30,60,40,1,,1,LNC,term credit | fitch | aaa | moody | rating agencies | ratings | strength ratings | rating | credit ratings | trigger
+2015-06-30,60,41,1,,1,GPN,merchant | term loan | enterprise software | payment solutions | consolidated income | credit facility | pacific region | merchants | loan | financial institutions
+2015-06-30,60,42,3,0.0791,2,ALLE JCI TT,electronic security | security businesses | ingersoll rand | rand | ingersoll | access control | tyco | residential | von | remediation sites
+2015-06-30,60,43,1,,1,AIG,catastrophe | modeled | reinsurance | earthquake | catastrophe reinsurance | reinsurance program | hurricane | catastrophe risk | catastrophes | exposures
+2015-06-30,60,44,1,,1,ROL,pest | mediterranean | america caribbean | europe africa | franchises | east asia | central america | international franchise | availability terms | caribbean
+2015-06-30,60,45,1,,1,MU,dram | process technologies | nand | product process | trustee | wafer fabrication | wafer | flash | memory | reorganization
+2015-06-30,60,46,2,-0.0931,2,PFE WST,biopharmaceutical | injectable | proxy statement | packaging systems | voc | syringe | sterile | healthcare | vaccines | delivery systems
+2015-06-30,60,47,1,,1,EP,prospect | albert | gas leases | oil gas | gas industry | leases | oil | valley | exploration | wyoming
+2015-06-30,60,48,1,,1,ETN,cooper | electrical systems | principal methods | strong competitive | methods competition | presented note | danaher | cockpit | distribution management | electrical
+2015-06-30,60,49,1,,1,WEC,coal combustion | molybdenum | landfills | wisconsin | ash | groundwater | local international | combustion | brotherhood electrical | oak
+2015-06-30,60,50,1,,1,BNY,notes notes | required section | dec | consolidated balance | guide | regulation section | supervision regulation | custody | sections | trust
+2015-06-30,60,51,1,,1,EBAY,paypal | marketplaces | ecommerce | merchants | mean | addressable | counterparts | commerce | localized | located www
+2015-06-30,60,52,1,,1,GHC,campuses | students | higher education | student | school | title | schools | university | educational programs | nursing
+2015-06-30,60,53,1,,1,AMGN,row | product sales | diluted | driven primarily | partially | increases decreases | offset | eps | foreign currency | sales prices
+2015-06-30,60,54,4,0.5337,1,DHI KBH LEN NVR,homebuilding | homebuyers | homes | land development | mortgage | land | lots | homebuilders | subcontractors | mortgage financing
+2015-06-30,60,55,2,0.0405,2,MCHP MDT,belief | tax rate | tax positions | tax | effective tax | future cash | tax liabilities | deferred tax | deferred | legal actions
+2015-06-30,60,56,2,0.1082,2,IDXX ZTS,livestock | poultry | veterinary | dairy | animal | companion | diagnostics | diagnostic | cattle | pharmaceutical product
+2015-06-30,60,57,1,,1,CTAS,uniforms | destruction | local delivery | rental | routes | uniform | document | aid | laundry | fabric
+2015-06-30,60,58,10,0.1667,5,A BDX BIO ILMN KEYS MTD RVTY TECH TMO WAT,diagnostics | life science | reagents | clinical | laboratory | science | instruments | diagnostic | pharmaceutical | instrument
+2015-06-30,60,59,1,,1,AOS,water heaters | heaters | boilers | water heating | rest world | water treatment | residential commercial | epc | heating | rest
+2015-06-30,80,0,17,0.1167,6,BKNG CAR CCL CZR DAL EXPE FDX HLT LUV LVS MAR MGM PENN RCL TRIP UAL WYNN,hotel | travel | casino | rooms | hotels | amenities | gaming | reservation | resort | reservations
+2015-06-30,80,1,9,0.1931,4,CHRW CSX EXPD JBHT NSC ODFL R UNP WAB,freight | intermodal | railroads | rail | transportation | carriers | trailers | shipments | motor carriers | transit
+2015-06-30,80,2,8,-0.0225,8,AMD CLX D HAL ICE MPC NEM NTAP,looking statements | litigation | forward looking | looking | materially adversely | cause | adversely affect | forward | materially | adversely
+2015-06-30,80,3,40,0.0327,9,ABBV ABT BAX BIIB BMY BSX CAH CNC COO COR CRL CVS DGX DVA DXCM EHC ELV EW GILD HCA HSIC HUM INCY IQV JNJ LH LLY MOH MRK NKTR PODD PRGO REGN SYK TFX THC UHS UNH VRTX ZBH,patients | clinical | medicare | fda | patient | medical | medicaid | drug | care | physicians
+2015-06-30,80,4,3,0.1294,2,BC GT HOG,tires | motorcycles | parts accessories | dealers | sport | motorcycle | independent dealers | styling | boat | manufactures
+2015-06-30,80,5,2,-0.023,2,GPC SNA,repair shops | automotive | traction | repair | mitchell | heavy duty | shops | automotive aftermarket | vehicle | brake
+2015-06-30,80,6,5,0.0939,3,BLDR LPX MAS MHK POOL,remodeling | wood | lumber | home construction | housing | home centers | insulation | starts | construction | housing starts
+2015-06-30,80,7,2,0.1126,2,MKC SYY,foodservice | spices | herbs | foods | flavor | food | food safety | dairy | seasonings | grocery
+2015-06-30,80,8,19,0.1522,8,ANF BBWI COTY CPRI DECK EL FOSL HAS LULU M MAT NKE PVH RL TPR UAA URBN VFC WSM,stores | apparel | accessories | women | retail stores | men | lifestyle | department stores | brands | footwear
+2015-06-30,80,9,2,0.0026,2,AVY NDSN,adhesive | adhesives | coating | coatings | dispensing | reflective | backing | plastic | durable | melt
+2015-06-30,80,10,2,-0.0931,2,PFE WST,biopharmaceutical | injectable | proxy statement | packaging systems | voc | syringe | sterile | healthcare | vaccines | delivery systems
+2015-06-30,80,11,6,-0.051,6,AMZN CL COST MBI STZ UIS,vice president | president | vice | officer | president chief | chief | senior vice | chief officer | executive vice | chairman
+2015-06-30,80,12,37,0.0634,9,ACN ADBE ADP ADSK AKAM ANET CDW CIEN CPAY CRM CSCO CTSH DLX EFX EPAM FICO FIS FTNT GEN HPQ IBM INTU JKHY MSFT NOW ORCL PANW PAYC PTC TDC TRMB TYL VRSK VRSN WDAY WU ZBRA,cloud | software | enterprise | solution | clients | platform | hardware | mobile | analytics | web
+2015-06-30,80,13,9,0.2493,3,DOV EMR IEX ITW PH PNR ROP TKR XYL,valves | pumps | industrial | fluid | food | bearings | engineered | power generation | oil gas | backlog
+2015-06-30,80,14,10,0.0362,7,APD APTV BWA CMI GLW GM GNRC HON LII MMM,vice president | president | vice | diesel | officer | chief | president chief | general manager | president general | automotive
+2015-06-30,80,15,3,0.1068,3,ATO AWK PPL,regulated businesses | regulatory lag | lag | rate case | mechanisms | rate base | energy supply | formula rate | regulated | kentucky
+2015-06-30,80,16,5,0.245,1,CAT DE MTW PCAR TEX,cranes | trucks | loaders | truck | machinery | dealers | crane | parts | attachments | construction
+2015-06-30,80,17,3,0.0249,3,AAPL AXON GRMN,ios | camera | video | audio | watch | inch | compatible | allows users | devices | app
+2015-06-30,80,18,10,0.1018,5,CAG CPB GIS HRL HSY IFF MDLZ SBUX SJM TSN,foodservice | ingredients | food | foods | stores | snacks | vice president | frozen | beverages | president
+2015-06-30,80,19,1,,1,SHW,asc | finishes | codm | paint | coatings | meets criteria | performance allocate | assess performance | opened stores | allocate resources
+2015-06-30,80,20,31,0.0008,13,AEE AEP AES CF CLF CNP CNX CVX DUK ED EQT ES FANG FE L MLM MOS MUR NC NEE NRG OKE PNW PWR RSG SO SRE VMC WM WMB XEL,natural gas | gas | ferc | natural | coal | plant | epa | emissions | plants | transmission
+2015-06-30,80,21,2,0.1194,1,ALGN XRAY,dental | impression | patients | consumable | scanner | precious | cam | implants | metal | medical device
+2015-06-30,80,22,58,0.0447,15,ACGL AFL AIZ ALL AMG AMP ARES AXP BAC BBT BEN BR BRK-B BX CB CBOE CFG EG ERIE FDS FHN FITB FMCC FNMA GNW GS HBAN HIG HRB IBKR IVZ JEF JPM KEY KKR MET MKTX MS MSCI MTB MTG NAVI PFG PGR PRU RF RJF SCHW SLM STT TFC TROW TRV UNM USB WFC WRB ZION,bank | funds | banking | broker | insurance | banks | loans | dodd frank | dodd | holding
+2015-06-30,80,23,1,,1,PNC,asset quality | contingencies | non strategic | expense management | technology develop | meet evolving | monetary policy | affected number | appropriateness | cautionary statement
+2015-06-30,80,24,5,0.1633,2,EME FIX FLR J LDOS,projects | engineering | construction | project | design build | engineering construction | consulting | industrial | piping | backlog
+2015-06-30,80,25,2,0.0013,2,NWL SWK,mass merchants | hand tools | home centers | merchants | fastening | baby | accessories | win | game | mass
+2015-06-30,80,26,6,0.078,1,CMG DPZ DRI MCD WEN YUM,restaurant | menu | franchisees | restaurants | chicken | franchisee | franchise | restaurant industry | dining | quality food
+2015-06-30,80,27,18,0.1417,8,AAP AZO BBY DDS DG DLTR HD KR KSS LOW ORLY ROST SIG TGT TJX TSCO ULTA WMT,merchandise | stores | store | assortment | shopping | apparel | brands | retailers | merchandising | distribution centers
+2015-06-30,80,28,10,0.1667,5,A BDX BIO ILMN KEYS MTD RVTY TECH TMO WAT,diagnostics | life science | reagents | clinical | laboratory | science | instruments | diagnostic | pharmaceutical | instrument
+2015-06-30,80,29,2,0.2725,1,ENPH FSLR,module | utility scale | inverters | installations | installers | modules | solar | string | installation | electricity
+2015-06-30,80,30,4,0.204,3,ATI LEG NUE STLD,scrap | ferrous | wire | iron | alloys | mills | steel | metals | nonferrous | titanium
+2015-06-30,80,31,4,0.2064,1,KDP KO MNST PEP,bottling | bottlers | juice | beverages | diet | ready drink | drink | beverage | pepper | drinks
+2015-06-30,80,32,2,-0.0035,2,CASY SUN,convenience store | gallons | gallon | tobacco | fuel | newly constructed | convenience | store | profit margin | tanks
+2015-06-30,80,33,8,0.1283,1,BA GD HII LMT NOC RTX TDG TXT,aircraft | missile | defense | aviation | military | navy | government contracts | aerospace | unmanned | weapons
+2015-06-30,80,34,3,0.4028,1,BALL CCK OI,container | containers | aerosol | beverage | cans | packaging | aluminum | beverage containers | metal | beer
+2015-06-30,80,35,26,0.1439,9,ADI AMAT AME APH CDNS COHR FLEX INTC IPGP KLAC LRCX NVDA ON QCOM QRVO SANM SMCI SNPS STX SWKS TDY TEL TER TXN VIAV WDC,semiconductor | devices | electronics | high performance | wafer | wireless | circuit | silicon | circuits | computing
+2015-06-30,80,36,2,0.2665,1,AIT GWW,catalog | facilities maintenance | maintenance repair | center network | fasteners | power transmission | repair | product breadth | distributor | sales representatives
+2015-06-30,80,37,5,0.3377,1,AJG AON BRO MRSH WTW,brokerage | reinsurance | insurance | casualty | property casualty | insurance reinsurance | clients | professional liability | risk management | brokers
+2015-06-30,80,38,2,0.4365,1,MCO SPGI,ratings | dow jones | mcgraw hill | mcgraw | jones | credit ratings | dow | analytics | data analytics | poor ratings
+2015-06-30,80,39,1,,1,KMB,pants | youth | tissue | disposable | consolidated income | distribution date | venezuela | personal care | income statement | record date
+2015-06-30,80,40,1,,1,LNC,term credit | fitch | aaa | moody | rating agencies | ratings | strength ratings | rating | credit ratings | trigger
+2015-06-30,80,41,1,,1,GPN,merchant | term loan | enterprise software | payment solutions | consolidated income | credit facility | pacific region | merchants | loan | financial institutions
+2015-06-30,80,42,3,0.0791,2,ALLE JCI TT,electronic security | security businesses | ingersoll rand | rand | ingersoll | access control | tyco | residential | von | remediation sites
+2015-06-30,80,43,1,,1,AIG,catastrophe | modeled | reinsurance | earthquake | catastrophe reinsurance | reinsurance program | hurricane | catastrophe risk | catastrophes | exposures
+2015-06-30,80,44,1,,1,ROL,pest | mediterranean | america caribbean | europe africa | franchises | east asia | central america | international franchise | availability terms | caribbean
+2015-06-30,80,45,1,,1,MU,dram | process technologies | nand | product process | trustee | wafer fabrication | wafer | flash | memory | reorganization
+2015-06-30,80,46,5,0.1094,2,ALB ECL EMN FMC PPG,chemicals | chemistries | intermediates | lithium | coatings | chemical | raw | specialty | raw materials | raw material
+2015-06-30,80,47,1,,1,EP,prospect | albert | gas leases | oil gas | gas industry | leases | oil | valley | exploration | wyoming
+2015-06-30,80,48,1,,1,ETN,cooper | electrical systems | principal methods | strong competitive | methods competition | presented note | danaher | cockpit | distribution management | electrical
+2015-06-30,80,49,1,,1,WEC,coal combustion | molybdenum | landfills | wisconsin | ash | groundwater | local international | combustion | brotherhood electrical | oak
+2015-06-30,80,50,1,,1,BNY,notes notes | required section | dec | consolidated balance | guide | regulation section | supervision regulation | custody | sections | trust
+2015-06-30,80,51,1,,1,EBAY,paypal | marketplaces | ecommerce | merchants | mean | addressable | counterparts | commerce | localized | located www
+2015-06-30,80,52,1,,1,GHC,campuses | students | higher education | student | school | title | schools | university | educational programs | nursing
+2015-06-30,80,53,1,,1,AMGN,row | product sales | diluted | driven primarily | partially | increases decreases | offset | eps | foreign currency | sales prices
+2015-06-30,80,54,4,0.5337,1,DHI KBH LEN NVR,homebuilding | homebuyers | homes | land development | mortgage | land | lots | homebuilders | subcontractors | mortgage financing
+2015-06-30,80,55,2,0.0405,2,MCHP MDT,belief | tax rate | tax positions | tax | effective tax | future cash | tax liabilities | deferred tax | deferred | legal actions
+2015-06-30,80,56,2,0.1082,2,IDXX ZTS,livestock | poultry | veterinary | dairy | animal | companion | diagnostics | diagnostic | cattle | pharmaceutical product
+2015-06-30,80,57,1,,1,CTAS,uniforms | destruction | local delivery | rental | routes | uniform | document | aid | laundry | fabric
+2015-06-30,80,58,1,,1,MSI,public safety | government public | represented sales | devices systems | communications networks | verticals | voice data | lifecycle | broadband | channel partner
+2015-06-30,80,59,1,,1,AOS,water heaters | heaters | boilers | water heating | rest world | water treatment | residential commercial | epc | heating | rest
+2015-06-30,80,60,1,,1,SCI,unparalleled | homes | office space | memorial | corporate activities | locations north | sales organization | associates | support centers | houston
+2015-06-30,80,61,1,,1,LHX,public safety | satellite | government commercial | maritime | turnkey | remain subject | subject risks | weather | communications | ground
+2015-06-30,80,62,25,0.0039,17,AAL CE CMS DHR EXC FAST FFIV FLS ISRG LNT MA MPWR NCLH NDAQ PAYX PBI PCG PEG RIG ROK SYF TRGP UPS URI V,looking statements | forward looking | stockholder matters | related stockholder | looking | forward | stockholder | disclosures | factors unresolved | matters relationships
+2015-06-30,80,63,1,,1,BF-B,jack | daniel | spirits | kentucky | tennessee | comfort | wine | sales geographic | southern | canadian
+2015-06-30,80,64,1,,1,WHR,home appliances | appliances | brand names | emea | appliance | aggregate purchase | borrowings | freezers | refrigerators | materials purchased
+2015-06-30,80,65,1,,1,ADM,agricultural commodities | agricultural | commodities | government programs | makes available | weather conditions | prices increased | website http | disease | adversely affect
+2015-06-30,80,66,1,,1,PG,win | salons | sales assets | stores drug | club stores | patents licenses | stores | stores department | truth | high frequency
+2015-06-30,80,67,1,,1,RHI,management resources | finance accounting | internal audit | staffing | creative | accounting finance | public relations | temporary | clients | specializes
+2015-06-30,80,68,5,0.0324,5,COF GME MCK PKG TAP,diluted | graph | expense income | non gaap | gaap measures | income continuing | income loss | gaap | income tax | depreciation amortization
+2015-06-30,80,69,1,,1,IT,digital marketing | analysts | insight | consulting | executives | clients | summit | employees located | revolution | professionals
+2015-06-30,80,70,1,,1,NI,corridor | gas supplies | pipelines | gas distribution | indiana | gas | energy sources | natural gas | marketers | electric
+2015-06-30,80,71,1,,1,CME,clearing | futures options | clearing house | nymex | futures | electronic trading | dow jones | clearing houses | trading | mcgraw hill
+2015-06-30,80,72,1,,1,F,engineering research | hourly employees | represented unions | vehicle safety | agreements covering | salaried employees | germany italy | hourly | argentina brazil | wages
+2015-06-30,80,73,4,0.314,2,HP NBR NOV SLB,rig | drilling | rigs | drilling rig | oilfield | oil gas | offshore | oil | drilling rigs | wells
+2015-06-30,80,74,4,0.1851,3,AN CPRT KMX LKQ,vehicle | auctions | vehicles sold | salvage | vehicles | auction | sell vehicles | vehicle sales | sales process | dealerships
+2015-06-30,80,75,1,,1,EOG,acreage | crude oil | trinidad | crude | proved reserves | barrels | condensate | ngl | proved | wells
+2015-06-30,80,76,2,0.2966,1,MO PM,tobacco | leaf | vapor | usa | smoke | reporting consolidated | manufacture sale | smoking | grades | morris
+2015-06-30,80,77,2,0.1926,1,AYI HUBB,lighting | non residential | fixtures | wiring | electrical | residential | lighting systems | electrical systems | international sales | led
+2015-06-30,80,78,1,,1,IP,papers | kyoto | kyoto protocol | ghgs | mact | boiler | converting | ghg | ets | previously served
+2015-06-30,80,79,1,,1,GL,annualized premium | index financial | medicare | medicare supplement | direct response | liberty | annualized | account values | health insurance | middle income
+2019-06-30,40,0,47,0.0822,16,AAP AN ANF AZO BBWI BBY CASY COTY CPRT CVNA DDS DECK DG DPZ DRI EL FOSL GME GPC HAS HD HRB KMX KR KSS LKQ LOW LULU M MAT MCD NKE ORLY PVH RL ROST SIG TGT TJX TPR TSCO UA UAA VFC WEN WSM YUM,stores | merchandise | store | apparel | brands | accessories | retailers | online | inventory | distribution centers
+2019-06-30,40,1,114,0.0308,43,AEE AEP AES ALB AME ASH ATI ATO AVY AYI BC BRK-B BWA CAR CAT CCL CF CHRW CLF CMI CNP CNX CSX CVX CZR DAL DD DE DOV DUK ECL ED EME EMN EMR EOG EP EQT ES EVRG EXPD EXPE FANG FDX FIX FLR FMC FTI GNRC GT HAL HOG HP HUBB HWM IEX IP ITW JBHT JCI L LII LIN LPX LUV LVS MAR MAS MGM MHK MMM MOS MUR NBR NC NCLH NEE NEM NOV NRG NSC NUE ODFL OKE PCAR PH PNR PNW POOL PPG PWR R RCL ROP RSG SLB SNA SO STE SWK TDY TEX TKR TT UAL VMC VST WAB WHR WM WMB WYNN XEL XYL,gas | industrial | natural gas | energy | construction | oil | natural | transportation | water | president
+2019-06-30,40,2,2,0.1275,2,J RHI,clients | consulting | project | performance improvement | clients employees | management resources | staffing | accounting finance | finance accounting | internal audit
+2019-06-30,40,3,6,0.302,3,AIZ DHI KBH LEN NVR SCI,homebuilding | mortgage | homes | homebuyers | land development | lots | housing | land | homebuilders | multifamily
+2019-06-30,40,4,123,0.0119,36,A ABBV ABT ACGL AIG AJG ALGN AMD AMG AMP AON AOS ARES AXP BAC BAX BBT BDX BEN BHF BIO BLDR BNY BRO BX CB CBOE CFG CLX CME CMG CNC COO COR CRL CVS DGX DXCM EG EHC ELV EW FDS FE FHN FITB FNMA GILD GNW GS HBAN HCA HSIC HUM IBKR ICE ILMN INCY IVZ JEF JNJ JPM KEY KKR LH LLY MCK MCO MDT MET MKTX MRK MRNA MRSH MSCI MSFT MTB MTD MTG MTW NAVI NTAP NTRS OI ORCL PFG PGR PODD PRU REGN RF RJF RMD ROL RVTY SCHW SLM STT SYK TECH TFC TFX THC TMO TRIP TROW UHS ULTA UNH UNM URBN USB VEEV VRTX WAT WFC WRB WST WTW XRAY ZBH ZION ZTS,insurance | clinical | medical | institutions | claims | care | patients | funds | clients | approval
+2019-06-30,40,5,2,-0.0537,1,AIT GWW,mro | flow control | endless | catalog | managed inventory | sales representatives | high touch | product breadth | catalogs | fluid
+2019-06-30,40,6,2,-0.0065,2,GHC GPN,higher education | visa | students | enterprise software | payment | sponsorship | english | education | cardholder | student
+2019-06-30,40,7,48,0.0297,33,AAL APD AWK BIIB BSX CE CMS COF CPRI D DHR DLTR EXC FAST FFIV FLS FTV GEN GM HLT IDXX IR ISRG LEG LNT LW MCHP MLM MPC MPWR MU NDAQ PEG PENN PKG PPL PYPL QCOM RIG SEDG STLD SUN TRGP UPS URI V VRT WMT,looking statements | forward looking | looking | forward | stockholder matters | related stockholder | stockholder | disclosures | purchases equity | equity
+2019-06-30,40,8,81,0.0518,20,AAPL ACN ADBE ADI ADP ADSK AKAM ALLE AMAT ANET APH APTV AVGO AXON BR CDNS CDW CIEN COHR CPAY CRM CSCO CTSH DELL DLX DXC EBAY ENPH EPAM ETSY FICO FIS FLEX FSLR FTNT GDDY GLW GRMN HPE HPQ IBM INTU IPGP IQV IT JBL JKHY KEYS KLAC LITE LRCX MA MSI NOW NVDA ON PANW PAYC PBI PTC QRVO SANM SMCI SNPS STX SWKS TDC TEL TER TRMB TXN TYL UIS VIAV VRSK VRSN WDAY WDC WU XYZ ZBRA,software | cloud | devices | solution | digital | enterprise | mobile | hardware | platform | intellectual property
+2019-06-30,40,9,6,0.0684,6,AFL ALL AMZN CL COST MBI,vice president | president | vice | officer | chief | president chief | chief risk | risk officer | senior vice | executive vice
+2019-06-30,40,10,1,,1,SRE,chevron | barrels | terminal | denominated | plan develop | develop construct | project located | capital cost | percent equity | photovoltaic
+2019-06-30,40,11,2,0.2665,1,MO PM,tobacco | leaf | heated | pmi | smoke | vapor | inbev | usa | usd | manufacture sale
+2019-06-30,40,12,1,,1,SHW,consumer brands | codm | coatings | asc | paint | assess performance | americas | discrete | pages | type type
+2019-06-30,40,13,1,,1,TRV,recoverables | reinsurance recoverables | value financial | reinsurance | impairments | fair value | statements discussion | estimated fair | uncollectible | annuities
+2019-06-30,40,14,2,-0.0363,2,LNC NI,ratings | fitch | moody | credit ratings | rating | fitch moody | rating agencies | baa | trigger | aaa
+2019-06-30,40,15,1,,1,ETN,strong competitive | principal methods | sales large | methods competition | competition product | related components | electrical systems | technology global | presented note | product performance
+2019-06-30,40,16,2,0.1437,2,PFE PRGO,exclusivity | regulatory exclusivity | generic | pediatric exclusivity | developed commercialized | pediatric | marketing authorization | global regulatory | commercialized | obtain approval
+2019-06-30,40,17,2,0.0898,2,ERIE GL,insurance | insurance holding | policyholders | agents | underwriting | policyholder | life insurance | insurers | dollar amounts | policy
+2019-06-30,40,18,23,0.0288,10,BALL CAG CCK CPB GIS HRL HSY IFF KDP KHC KMB KO MDLZ MKC MNST NWL PG SBUX SJM STZ SYY TAP TSN,food | stores | beverage | grocery | ingredients | foodservice | packaging | brands | foods | raw
+2019-06-30,40,19,1,,1,WEC,opeb | trust fund | rate debt | variable rate | temperatures | heating season | decoupling | trust funds | gas utility | commodity costs
+2019-06-30,40,20,1,,1,PNC,basel iii | basel | advanced approaches | risk weighted | weighted assets | tier capital | equity tier | capital ratio | supplementary leverage | tier risk
+2019-06-30,40,21,1,,1,F,fitness | hourly employees | represented unions | industry sales | salaried employees | vehicle sales | agreements covering | wages benefits | india mexico | hourly
+2019-06-30,40,22,1,,1,NKTR,drug candidates | clinical development | candidates | clinical | drug candidate | candidate | collaboration agreement | clinical study | drug | preclinical
+2019-06-30,40,23,1,,1,BKR,historical financial | master | separation | contemplates | oilfield | technology provider | delaware formed | clarity | announced intention | related financial
+2019-06-30,40,24,1,,1,LHX,percent revenue | revenue percent | percent percent | indirect sales | dealers distributors | sales prices | percent | revenue respectively | denominated | government contracts
+2019-06-30,40,25,1,,1,BMY,biopharmaceutical | medicines | transformational | licensing arrangements | acquisitions divestitures | patients | cardiovascular | divestitures | diseases | licensing
+2019-06-30,40,26,1,,1,PCG,wildfires | utility | tab | http investor | links | incorporated california | northern | california | presentations | routinely
+2019-06-30,40,27,1,,1,BF-B,jack | daniel | spirits | barrel | straight | kentucky | tennessee | old | cola | global brands
+2019-06-30,40,28,1,,1,PEP,taxes regulations | manufactured distributed | beverages | continue monitor | taxes | unfavorable | packaging | normal course | economic political | ingredients
+2019-06-30,40,29,1,,1,ROK,boeing | shareowners | suppliers subcontractors | bradley | countries sell | allen | independent distributors | proxy statement | reorganization | subcontractors
+2019-06-30,40,30,1,,1,HIG,domestic insurers | solvency | financial regulation | insurers | naic | insurer | investment advisers | orsa | financial providers | risk solvency
+2019-06-30,40,31,1,,1,BKNG,search results | brand marketing | traffic websites | search | travel | cancellation | percentage gross | observed | bookings | google
+2019-06-30,40,32,1,,1,EFX,cybersecurity incident | consumer commercial | unauthorized access | vulnerability | incident | process outsourcing | costa rica | identity theft | identity | cybersecurity
+2019-06-30,40,33,1,,1,DVA,dialysis | payment rates | patients | payors | payment rate | integrated care | financial assistance | network providers | medicare | aco
+2019-06-30,40,34,1,,1,CTAS,local delivery | rental | aid | uniform | discontinued | uniforms | discontinued periods | laundry | routes | periods presented
+2019-06-30,40,35,1,,1,ADM,flavors | enzyme | enzymes | genomic | laboratories | feed | earnings competitive | pilot | makes available | gas emissions
+2019-06-30,40,36,1,,1,SPGI,subscription revenue | indices | ratings | transaction revenue | benchmarks | credit ratings | subscription | dow jones | intelligence | revenue primarily
+2019-06-30,40,37,1,,1,CI,fcpa | state owned | multiple jurisdictions | utilization management | brokers agents | regulations jurisdictions | money laundering | laundering | cms | anti corruption
+2019-06-30,40,38,10,0.0659,3,BA GD HII HON LDOS LMT NOC RTX TDG TXT,aircraft | defense | aerospace | missile | military | aviation | navy | dod | government contracts | contracts government
+2019-06-30,40,39,1,,1,AMGN,product sales | driven primarily | increases decreases | row | selling price | primarily higher | foreign currency | changes foreign | hedging activities | decreases
+2019-06-30,60,0,46,0.0566,20,ALB AME ASH ATI AVY BC BRK-B BWA CAT CMI DD DE DOV ECL EMN EMR FMC GNRC GT HOG HWM IEX IP ITW LII LIN LPX MHK MMM NUE PCAR PH PNR POOL PPG ROP SNA STE SWK TDY TEX TKR TT VMC WHR XYL,industrial | raw | raw materials | energy | gas | manufactures | patents | construction | components | manufacture
+2019-06-30,60,1,5,0.4079,2,DHI KBH LEN NVR SCI,homebuilding | homes | homebuyers | land development | lots | land | mortgage | homebuilders | lot | subcontractors
+2019-06-30,60,2,77,0.0543,19,AAPL ACN ADBE ADI ADP ADSK AKAM ALLE AMAT ANET APH APTV AVGO BR CDNS CDW CIEN COHR CPAY CRM CTSH DLX DXC EBAY ENPH EPAM ETSY FICO FIS FLEX FSLR FTNT GDDY GLW GRMN HPE HPQ IBM INTU IPGP IQV IT JBL JKHY KEYS KLAC LITE LRCX MA NOW NVDA ON PANW PAYC PBI PTC QRVO SANM SMCI SNPS STX SWKS TDC TEL TER TRMB TXN TYL UIS VIAV VRSK VRSN WDAY WDC WU XYZ ZBRA,software | cloud | solution | devices | enterprise | digital | mobile | intellectual property | intellectual | platform
+2019-06-30,60,3,2,0.1437,2,PFE PRGO,exclusivity | regulatory exclusivity | generic | pediatric exclusivity | developed commercialized | pediatric | marketing authorization | global regulatory | commercialized | obtain approval
+2019-06-30,60,4,6,0.0684,6,AFL ALL AMZN CL COST MBI,vice president | president | vice | officer | chief | president chief | chief risk | risk officer | senior vice | executive vice
+2019-06-30,60,5,42,0.0155,16,AEE AEP AES ATO CF CLF CNP CNX CVX DUK ED EME EOG EP EQT ES EVRG FANG FIX FLR FTI HAL HP L MOS MUR NBR NC NEE NEM NOV NRG OKE PNW PWR RSG SLB SO VST WM WMB XEL,natural gas | gas | natural | drilling | oil | ferc | pipeline | transmission | projects | energy
+2019-06-30,60,6,12,0.0723,5,CHRW CSX DAL EXPD FDX JBHT LUV NSC ODFL R UAL WAB,freight | carriers | intermodal | transportation | dot | railroads | rail | carrier | railway | shipments
+2019-06-30,60,7,74,0.0139,27,ACGL AIG AJG AMD AMG AMP AON AOS ARES AXP BAC BBT BEN BHF BLDR BRO BX CB CBOE CFG CLX CME CMG EG FDS FE FHN FITB FNMA GNW GS HBAN IBKR ICE IVZ JEF JPM KEY KKR MCO MET MKTX MRSH MSCI MSFT MTB MTG MTW NAVI NTAP NTRS OI ORCL PFG PGR PRU RF RJF ROL SCHW SLM STT TFC TRIP TROW ULTA UNM URBN USB VEEV WFC WRB WTW ZION,insurance | funds | bank | banking | clients | broker | credit | institutions | asset | regulators
+2019-06-30,60,8,10,0.0659,3,BA GD HII HON LDOS LMT NOC RTX TDG TXT,aircraft | defense | aerospace | missile | military | aviation | navy | dod | government contracts | contracts government
+2019-06-30,60,9,47,0.0174,9,A ABBV ABT ALGN BAX BDX BIO CNC COO COR CRL CVS DGX DXCM EHC ELV EW GILD HCA HSIC HUM ILMN INCY JNJ LH LLY MCK MDT MRK MRNA MTD PODD REGN RMD RVTY SYK TECH TFX THC TMO UHS UNH VRTX WAT XRAY ZBH ZTS,clinical | patients | medical | fda | patient | drug | pharmaceutical | care | disease | medicare
+2019-06-30,60,10,3,0.0261,1,KMB NWL PG,baby | stores | mass merchandisers | merchandisers | care | walmart | department stores | pants | mass | grocery
+2019-06-30,60,11,2,-0.0537,1,AIT GWW,mro | flow control | endless | catalog | managed inventory | sales representatives | high touch | product breadth | catalogs | fluid
+2019-06-30,60,12,6,0.199,3,AN CPRT CVNA GPC KMX LKQ,vehicle | vehicles | auto | automotive | auctions | car | repair | vehicle sales | salvage | auction
+2019-06-30,60,13,10,0.4338,4,CAR CCL CZR EXPE LVS MAR MGM NCLH RCL WYNN,hotel | guests | casino | travel | amenities | accommodations | cruise | luxury | rooms | resort
+2019-06-30,60,14,7,0.0258,7,APD GM PKG PPL STLD SUN VRT,diluted | graph | dividends | income continuing | equity | looking statements | basic | financial data | income income | forward looking
+2019-06-30,60,15,1,,1,ETN,strong competitive | principal methods | sales large | methods competition | competition product | related components | electrical systems | technology global | presented note | product performance
+2019-06-30,60,16,3,0.1275,3,BSX COF MU,partially offset | loan | primarily driven | compared primarily | partially | offset | basis points | activities cash | loan portfolio | held investment
+2019-06-30,60,17,2,0.0898,2,ERIE GL,insurance | insurance holding | policyholders | agents | underwriting | policyholder | life insurance | insurers | dollar amounts | policy
+2019-06-30,60,18,20,0.0403,9,BALL CAG CCK CPB GIS HRL HSY IFF KDP KHC KO MDLZ MKC MNST SBUX SJM STZ SYY TAP TSN,food | beverage | ingredients | foodservice | foods | packaging | beverages | grocery | brands | stores
+2019-06-30,60,19,5,0.2842,1,DPZ DRI MCD WEN YUM,restaurant | franchisees | menu | franchised | restaurants | franchise | franchisee | chicken | food | quality food
+2019-06-30,60,20,34,0.0888,12,AAP ANF AZO BBWI BBY COTY DDS DECK DG EL FOSL GME HAS HD KR KSS LOW LULU M MAT NKE ORLY PVH RL ROST SIG TGT TJX TPR TSCO UA UAA VFC WSM,stores | merchandise | apparel | store | brands | accessories | retailers | online | footwear | shopping
+2019-06-30,60,21,2,-0.053,2,AXON MSI,public safety | cameras | video | software | evidence | systems integration | represented sales | law enforcement | government public | devices
+2019-06-30,60,22,38,0.021,27,AAL AWK BIIB CE CMS CPRI D DHR DLTR EXC FAST FFIV FLS FTV GEN HLT IDXX IR ISRG LEG LNT LW MCHP MLM MPC MPWR NDAQ PEG PENN PYPL QCOM RIG SEDG TRGP UPS URI V WMT,looking statements | forward looking | looking | forward | stockholder matters | related stockholder | stockholder | disclosures | risks uncertainties | financial disclosure
+2019-06-30,60,23,2,0.2665,1,MO PM,tobacco | leaf | heated | pmi | smoke | vapor | inbev | usa | usd | manufacture sale
+2019-06-30,60,24,1,,1,LHX,percent revenue | revenue percent | percent percent | indirect sales | dealers distributors | sales prices | percent | revenue respectively | denominated | government contracts
+2019-06-30,60,25,1,,1,SHW,consumer brands | codm | coatings | asc | paint | assess performance | americas | discrete | pages | type type
+2019-06-30,60,26,3,0.1302,2,AYI HUBB MAS,lighting | fixtures | non residential | decorative | electrical | architectural | wiring | enclosures | iot | outdoor
+2019-06-30,60,27,1,,1,TRV,recoverables | reinsurance recoverables | value financial | reinsurance | impairments | fair value | statements discussion | estimated fair | uncollectible | annuities
+2019-06-30,60,28,2,0.1826,2,CSCO DELL,multi cloud | cloud | networking | cloud environments | clouds | vmware | software defined | hybrid | software | highly secure
+2019-06-30,60,29,2,-0.0363,2,LNC NI,ratings | fitch | moody | credit ratings | rating | fitch moody | rating agencies | baa | trigger | aaa
+2019-06-30,60,30,1,,1,HIG,domestic insurers | solvency | financial regulation | insurers | naic | insurer | investment advisers | orsa | financial providers | risk solvency
+2019-06-30,60,31,1,,1,BKNG,search results | brand marketing | traffic websites | search | travel | cancellation | percentage gross | observed | bookings | google
+2019-06-30,60,32,1,,1,EFX,cybersecurity incident | consumer commercial | unauthorized access | vulnerability | incident | process outsourcing | costa rica | identity theft | identity | cybersecurity
+2019-06-30,60,33,1,,1,DVA,dialysis | payment rates | patients | payors | payment rate | integrated care | financial assistance | network providers | medicare | aco
+2019-06-30,60,34,1,,1,CTAS,local delivery | rental | aid | uniform | discontinued | uniforms | discontinued periods | laundry | routes | periods presented
+2019-06-30,60,35,1,,1,ADM,flavors | enzyme | enzymes | genomic | laboratories | feed | earnings competitive | pilot | makes available | gas emissions
+2019-06-30,60,36,1,,1,SPGI,subscription revenue | indices | ratings | transaction revenue | benchmarks | credit ratings | subscription | dow jones | intelligence | revenue primarily
+2019-06-30,60,37,1,,1,CI,fcpa | state owned | multiple jurisdictions | utilization management | brokers agents | regulations jurisdictions | money laundering | laundering | cms | anti corruption
+2019-06-30,60,38,1,,1,GPN,enterprise software | cardholder | card | ecommerce | software solutions | merchant | payment solutions | pos | cloud enterprise | offer integrated
+2019-06-30,60,39,1,,1,AMGN,product sales | driven primarily | increases decreases | row | selling price | primarily higher | foreign currency | changes foreign | hedging activities | decreases
+2019-06-30,60,40,1,,1,WEC,opeb | trust fund | rate debt | variable rate | temperatures | heating season | decoupling | trust funds | gas utility | commodity costs
+2019-06-30,60,41,1,,1,PNC,basel iii | basel | advanced approaches | risk weighted | weighted assets | tier capital | equity tier | capital ratio | supplementary leverage | tier risk
+2019-06-30,60,42,1,,1,AIZ,lender | homeowner | flood | housing | multifamily | homeowners | renters | mortgage | placed | servicers
+2019-06-30,60,43,1,,1,F,fitness | hourly employees | represented unions | industry sales | salaried employees | vehicle sales | agreements covering | wages benefits | india mexico | hourly
+2019-06-30,60,44,1,,1,SRE,chevron | barrels | terminal | denominated | plan develop | develop construct | project located | capital cost | percent equity | photovoltaic
+2019-06-30,60,45,1,,1,NKTR,drug candidates | clinical development | candidates | clinical | drug candidate | candidate | collaboration agreement | clinical study | drug | preclinical
+2019-06-30,60,46,1,,1,RHI,management resources | staffing | accounting finance | finance accounting | internal audit | creative | public relations | specializes | thought leadership | temporary
+2019-06-30,60,47,1,,1,BKR,historical financial | master | separation | contemplates | oilfield | technology provider | delaware formed | clarity | announced intention | related financial
+2019-06-30,60,48,1,,1,BNY,notes notes | required section | collateral management | dec | regulation section | guide | supervision regulation | consolidated balance | custody | sections
+2019-06-30,60,49,1,,1,JCI,power solutions | technologies solutions | lead acid | hvac | suppression | batteries | battery | acid | worker safety | air conditioning
+2019-06-30,60,50,1,,1,CASY,pizza | towns | goods sold | cost goods | sandwiches | iowa | gallons | prepared | tobacco | health beauty
+2019-06-30,60,51,1,,1,BMY,biopharmaceutical | medicines | transformational | licensing arrangements | acquisitions divestitures | patients | cardiovascular | divestitures | diseases | licensing
+2019-06-30,60,52,1,,1,J,clients | superior value | van | value clients | profitable growth | mental health | project delivery | sectors | engineering construction | headquartered
+2019-06-30,60,53,1,,1,PCG,wildfires | utility | tab | http investor | links | incorporated california | northern | california | presentations | routinely
+2019-06-30,60,54,1,,1,WST,injectable | drug delivery | molding | delivery systems | order backlog | caption | containment | manufacturing sites | website investors | drug
+2019-06-30,60,55,1,,1,BF-B,jack | daniel | spirits | barrel | straight | kentucky | tennessee | old | cola | global brands
+2019-06-30,60,56,1,,1,GHC,students | higher education | english | student | courses | pathways | immigration | priority payment | language | visa
+2019-06-30,60,57,1,,1,PEP,taxes regulations | manufactured distributed | beverages | continue monitor | taxes | unfavorable | packaging | normal course | economic political | ingredients
+2019-06-30,60,58,1,,1,HRB,tax return | diy | tax returns | emerald | electronic filing | franchisees | refund | preparation | irs | prepared
+2019-06-30,60,59,1,,1,ROK,boeing | shareowners | suppliers subcontractors | bradley | countries sell | allen | independent distributors | proxy statement | reorganization | subcontractors
+2019-06-30,80,0,6,0.199,3,AN CPRT CVNA GPC KMX LKQ,vehicle | vehicles | auto | automotive | auctions | car | repair | vehicle sales | salvage | auction
+2019-06-30,80,1,11,0.0604,7,ALB ASH ATI AVY DD EMN FMC HWM MMM NUE PPG,adhesives | coatings | automotive | raw | specialty | raw materials | industrial | fasteners | lithium | metal
+2019-06-30,80,2,5,0.0618,5,AFL ALL AMZN COST MBI,vice president | president | vice | officer | chief | president chief | chief risk | risk officer | senior vice | executive vice
+2019-06-30,80,3,32,0.0446,11,AAPL ADBE ADP ADSK AKAM ANET BR CDW CPAY CRM DLX EBAY ETSY FICO FIS FTNT GDDY GRMN INTU JKHY MA NOW PANW PAYC PBI PTC TYL VRSK VRSN WDAY WU XYZ,cloud | software | solution | online | platform | mobile | digital | functionality | enterprise | tools
+2019-06-30,80,4,3,0.0261,1,KMB NWL PG,baby | stores | mass merchandisers | merchandisers | care | walmart | department stores | pants | mass | grocery
+2019-06-30,80,5,10,0.1185,5,A BDX BIO ILMN MTD RVTY TECH TMO WAT ZTS,reagents | diagnostics | pharmaceutical | laboratory | clinical | diagnostic | life science | sample | life sciences | sciences
+2019-06-30,80,6,9,0.0506,7,ECL GNRC GT IP LII LIN STE TT WHR,president | vice president | vice | officer | senior vice | chief | served | president chief | americas | air
+2019-06-30,80,7,34,0.1638,11,ADI ALLE AMAT APH APTV AVGO CDNS CIEN COHR ENPH FLEX FSLR GLW IPGP JBL KEYS KLAC LITE LRCX NVDA ON QRVO SANM SMCI SNPS STX SWKS TEL TER TRMB TXN VIAV WDC ZBRA,semiconductor | optical | devices | wireless | electronics | automotive | software | components | assembly | power
+2019-06-30,80,8,2,0.0898,2,ERIE GL,insurance | insurance holding | policyholders | agents | underwriting | policyholder | life insurance | insurers | dollar amounts | policy
+2019-06-30,80,9,36,0.0302,8,ABBV ABT BAX CNC COO COR CRL CVS DGX DXCM EHC ELV EW GILD HCA HSIC HUM INCY JNJ LH LLY MCK MDT MRK MRNA PODD REGN RMD SYK TFX THC UHS UNH VRTX XRAY ZBH,clinical | patients | medical | patient | fda | medicare | care | medicaid | physicians | drug
+2019-06-30,80,10,38,0.021,27,AAL AWK BIIB CE CMS CPRI D DHR DLTR EXC FAST FFIV FLS FTV GEN HLT IDXX IR ISRG LEG LNT LW MCHP MLM MPC MPWR NDAQ PEG PENN PYPL QCOM RIG SEDG TRGP UPS URI V WMT,looking statements | forward looking | looking | forward | stockholder matters | related stockholder | stockholder | disclosures | risks uncertainties | financial disclosure
+2019-06-30,80,11,2,-0.0537,1,AIT GWW,mro | flow control | endless | catalog | managed inventory | sales representatives | high touch | product breadth | catalogs | fluid
+2019-06-30,80,12,3,0.1302,2,AYI HUBB MAS,lighting | fixtures | non residential | decorative | electrical | architectural | wiring | enclosures | iot | outdoor
+2019-06-30,80,13,10,0.4338,4,CAR CCL CZR EXPE LVS MAR MGM NCLH RCL WYNN,hotel | guests | casino | travel | amenities | accommodations | cruise | luxury | rooms | resort
+2019-06-30,80,14,12,0.0723,5,CHRW CSX DAL EXPD FDX JBHT LUV NSC ODFL R UAL WAB,freight | carriers | intermodal | transportation | dot | railroads | rail | carrier | railway | shipments
+2019-06-30,80,15,13,0.0674,6,CAG CPB GIS HRL HSY IFF KHC MDLZ MKC SBUX SJM SYY TSN,foodservice | food | foods | snacks | ingredients | grocery | frozen | president | vice president | stores
+2019-06-30,80,16,56,0.0229,13,ACGL AIG AJG AMG AMP AON ARES AXP BAC BBT BEN BHF BRO BX CB CBOE CFG CME EG FDS FHN FITB FNMA GNW GS HBAN IBKR ICE IVZ JEF JPM KEY KKR MCO MET MRSH MSCI MTG NAVI NTRS PFG PGR PRU RF RJF SCHW SLM STT TFC TROW UNM USB WFC WRB WTW ZION,insurance | broker | banking | bank | funds | clients | institutions | risk management | underwriting | banks
+2019-06-30,80,17,31,0.0025,12,AEE AEP AES ATO CF CLF CNP CNX CVX DUK ED EOG EP EQT ES EVRG FANG L MOS MUR NC NEE NRG OKE PNW RSG SO VST WM WMB XEL,natural gas | gas | natural | ferc | pipeline | transmission | electricity | epa | coal | oil
+2019-06-30,80,18,16,0.086,8,AAP AZO BBY DDS DG HD KR KSS LOW M ORLY ROST SIG TGT TJX TSCO,merchandise | stores | store | assortment | apparel | retailers | brands | merchandising | shopping | distribution centers
+2019-06-30,80,19,5,0.2842,1,DPZ DRI MCD WEN YUM,restaurant | franchisees | menu | franchised | restaurants | franchise | franchisee | chicken | food | quality food
+2019-06-30,80,20,4,0.6494,1,DHI KBH LEN NVR,homebuilding | homebuyers | homes | land development | land | mortgage | lots | homebuilders | lot | subcontractors
+2019-06-30,80,21,2,-0.053,2,AXON MSI,public safety | cameras | video | software | evidence | systems integration | represented sales | law enforcement | government public | devices
+2019-06-30,80,22,18,0.14,7,ANF BBWI COTY DECK EL FOSL GME HAS LULU MAT NKE PVH RL TPR UA UAA VFC WSM,stores | apparel | accessories | footwear | brands | retail stores | lifestyle | commerce | women | store
+2019-06-30,80,23,2,0.2665,1,MO PM,tobacco | leaf | heated | pmi | smoke | vapor | inbev | usa | usd | manufacture sale
+2019-06-30,80,24,1,,1,LHX,percent revenue | revenue percent | percent percent | indirect sales | dealers distributors | sales prices | percent | revenue respectively | denominated | government contracts
+2019-06-30,80,25,1,,1,SHW,consumer brands | codm | coatings | asc | paint | assess performance | americas | discrete | pages | type type
+2019-06-30,80,26,9,0.0973,2,BA GD HII LDOS LMT NOC RTX TDG TXT,aircraft | defense | missile | military | navy | dod | aviation | government contracts | aerospace | contracts government
+2019-06-30,80,27,1,,1,TRV,recoverables | reinsurance recoverables | value financial | reinsurance | impairments | fair value | statements discussion | estimated fair | uncollectible | annuities
+2019-06-30,80,28,2,0.1826,2,CSCO DELL,multi cloud | cloud | networking | cloud environments | clouds | vmware | software defined | hybrid | software | highly secure
+2019-06-30,80,29,7,0.0258,7,APD GM PKG PPL STLD SUN VRT,diluted | graph | dividends | income continuing | equity | looking statements | basic | financial data | income income | forward looking
+2019-06-30,80,30,1,,1,SCI,memorial | dignity | capital deployment | merchandise | unparalleled | average age | associates | sales organization | grow revenue | leverage scale
+2019-06-30,80,31,1,,1,ETN,strong competitive | principal methods | sales large | methods competition | competition product | related components | electrical systems | technology global | presented note | product performance
+2019-06-30,80,32,6,0.0222,6,BRK-B LPX MHK POOL TEX VMC,wood | housing | remodeling | flooring | tile | construction | residential | concrete | stone | carpet
+2019-06-30,80,33,4,0.1191,1,EME FIX FLR PWR,piping | remaining performance | performance obligations | projects | industrial infrastructure | installation | construction | fabrication | project | industrial
+2019-06-30,80,34,8,0.1422,5,BC BWA CAT CMI DE HOG PCAR TKR,engines | heavy | dealers | engine | trucks | parts | dealer | highway | manufactures | heavy duty
+2019-06-30,80,35,6,0.2518,2,FTI HAL HP NBR NOV SLB,drilling | rig | rigs | downhole | offshore | wellbore | oil gas | wells | drilling rig | oil
+2019-06-30,80,36,2,0.1663,1,SNA SWK,hand tools | power tools | tools equipment | tool | hand | cash purchase | tools | related accessories | vehicle repair | fastening
+2019-06-30,80,37,10,0.1286,3,AME DOV EMR IEX ITW PH PNR ROP TDY XYL,pumps | valves | industrial | engineered | fluid | food | instrumentation | backlog | gas | measurement
+2019-06-30,80,38,11,0.0915,5,ACN CTSH DXC EPAM HPE HPQ IBM IQV IT TDC UIS,clients | consulting | software | cloud | vice president | president | client | vice | chief | digital
+2019-06-30,80,39,2,0.1224,2,BSX MU,activities cash | property plant | investing activities | plant equipment | cash provided | partially offset | manufacturing cost | financing activities | percent compared | intangible
+2019-06-30,80,40,1,,1,WEC,opeb | trust fund | rate debt | variable rate | temperatures | heating season | decoupling | trust funds | gas utility | commodity costs
+2019-06-30,80,41,1,,1,PNC,basel iii | basel | advanced approaches | risk weighted | weighted assets | tier capital | equity tier | capital ratio | supplementary leverage | tier risk
+2019-06-30,80,42,1,,1,AIZ,lender | homeowner | flood | housing | multifamily | homeowners | renters | mortgage | placed | servicers
+2019-06-30,80,43,1,,1,F,fitness | hourly employees | represented unions | industry sales | salaried employees | vehicle sales | agreements covering | wages benefits | india mexico | hourly
+2019-06-30,80,44,1,,1,SRE,chevron | barrels | terminal | denominated | plan develop | develop construct | project located | capital cost | percent equity | photovoltaic
+2019-06-30,80,45,1,,1,NKTR,drug candidates | clinical development | candidates | clinical | drug candidate | candidate | collaboration agreement | clinical study | drug | preclinical
+2019-06-30,80,46,1,,1,RHI,management resources | staffing | accounting finance | finance accounting | internal audit | creative | public relations | specializes | thought leadership | temporary
+2019-06-30,80,47,1,,1,BKR,historical financial | master | separation | contemplates | oilfield | technology provider | delaware formed | clarity | announced intention | related financial
+2019-06-30,80,48,1,,1,BNY,notes notes | required section | collateral management | dec | regulation section | guide | supervision regulation | consolidated balance | custody | sections
+2019-06-30,80,49,1,,1,JCI,power solutions | technologies solutions | lead acid | hvac | suppression | batteries | battery | acid | worker safety | air conditioning
+2019-06-30,80,50,1,,1,CASY,pizza | towns | goods sold | cost goods | sandwiches | iowa | gallons | prepared | tobacco | health beauty
+2019-06-30,80,51,1,,1,BMY,biopharmaceutical | medicines | transformational | licensing arrangements | acquisitions divestitures | patients | cardiovascular | divestitures | diseases | licensing
+2019-06-30,80,52,1,,1,J,clients | superior value | van | value clients | profitable growth | mental health | project delivery | sectors | engineering construction | headquartered
+2019-06-30,80,53,1,,1,PCG,wildfires | utility | tab | http investor | links | incorporated california | northern | california | presentations | routinely
+2019-06-30,80,54,1,,1,WST,injectable | drug delivery | molding | delivery systems | order backlog | caption | containment | manufacturing sites | website investors | drug
+2019-06-30,80,55,1,,1,BF-B,jack | daniel | spirits | barrel | straight | kentucky | tennessee | old | cola | global brands
+2019-06-30,80,56,1,,1,GHC,students | higher education | english | student | courses | pathways | immigration | priority payment | language | visa
+2019-06-30,80,57,1,,1,PEP,taxes regulations | manufactured distributed | beverages | continue monitor | taxes | unfavorable | packaging | normal course | economic political | ingredients
+2019-06-30,80,58,1,,1,HRB,tax return | diy | tax returns | emerald | electronic filing | franchisees | refund | preparation | irs | prepared
+2019-06-30,80,59,1,,1,ROK,boeing | shareowners | suppliers subcontractors | bradley | countries sell | allen | independent distributors | proxy statement | reorganization | subcontractors
+2019-06-30,80,60,2,-0.0363,2,LNC NI,ratings | fitch | moody | credit ratings | rating | fitch moody | rating agencies | baa | trigger | aaa
+2019-06-30,80,61,1,,1,HIG,domestic insurers | solvency | financial regulation | insurers | naic | insurer | investment advisers | orsa | financial providers | risk solvency
+2019-06-30,80,62,1,,1,PRGO,exclusivity | generic | marketing authorization | global regulatory | obtain approval | party suppliers | prescription | affect revenue | suspension | conditions met
+2019-06-30,80,63,1,,1,BKNG,search results | brand marketing | traffic websites | search | travel | cancellation | percentage gross | observed | bookings | google
+2019-06-30,80,64,1,,1,CL,hill | oral care | pet | stick | diet | nutrition | oral | home care | share data | commerce retailers
+2019-06-30,80,65,1,,1,EFX,cybersecurity incident | consumer commercial | unauthorized access | vulnerability | incident | process outsourcing | costa rica | identity theft | identity | cybersecurity
+2019-06-30,80,66,1,,1,PFE,regulatory exclusivity | exclusivity | pediatric exclusivity | developed commercialized | pediatric | commercialized | patent term | forth table | basic | patent
+2019-06-30,80,67,1,,1,DVA,dialysis | payment rates | patients | payors | payment rate | integrated care | financial assistance | network providers | medicare | aco
+2019-06-30,80,68,1,,1,ALGN,scanner | restorative | scanners | doctor | dental | scan | doctors | dental professionals | impression | simulator
+2019-06-30,80,69,1,,1,CTAS,local delivery | rental | aid | uniform | discontinued | uniforms | discontinued periods | laundry | routes | periods presented
+2019-06-30,80,70,18,-0.003,16,AMD AOS BLDR CLX CMG FE MKTX MSFT MTB MTW NTAP OI ORCL ROL TRIP ULTA URBN VEEV,adversely | adversely affect | harm | adversely affected | unable | negatively | adverse | adverse effect | material adverse | incur
+2019-06-30,80,71,1,,1,ADM,flavors | enzyme | enzymes | genomic | laboratories | feed | earnings competitive | pilot | makes available | gas emissions
+2019-06-30,80,72,1,,1,HON,productivity solutions | safety productivity | performance materials | aerospace | petrochemicals | aircraft | process solutions | overhaul | provider software | remaining performance
+2019-06-30,80,73,1,,1,SPGI,subscription revenue | indices | ratings | transaction revenue | benchmarks | credit ratings | subscription | dow jones | intelligence | revenue primarily
+2019-06-30,80,74,1,,1,COF,loan portfolio | sale consumer | primarily driven | loan portfolios | home loan | partially offset | loan | compared primarily | held investment | credit performance
+2019-06-30,80,75,1,,1,CI,fcpa | state owned | multiple jurisdictions | utilization management | brokers agents | regulations jurisdictions | money laundering | laundering | cms | anti corruption
+2019-06-30,80,76,1,,1,NEM,gold | silver | copper | depletion | ore | ghana | pounds | lessons | phoenix | additions
+2019-06-30,80,77,1,,1,GPN,enterprise software | cardholder | card | ecommerce | software solutions | merchant | payment solutions | pos | cloud enterprise | offer integrated
+2019-06-30,80,78,7,0.0594,3,BALL CCK KDP KO MNST STZ TAP,cans | beverage | beer | bottles | aluminum | beverages | containers | brewing | packaging | drinks
+2019-06-30,80,79,1,,1,AMGN,product sales | driven primarily | increases decreases | row | selling price | primarily higher | foreign currency | changes foreign | hedging activities | decreases
+2023-06-30,40,0,2,-0.0577,2,ROP VRT,backlog | pacific europe | digital infrastructure | management software | americas asia | software | leading provider | cloud | technology enabled | remaining performance
+2023-06-30,40,1,6,0.0417,4,BSX D MCK NRG VST WEC,ercot | proceeds | winter | credit facility | natural gas | revolving credit | revolving | facility | temperatures | tax
+2023-06-30,40,2,6,0.022,5,AIG AIZ BAC FDX HBAN TRV,catastrophe | losses | reinsurance | exposures | loss | catastrophes | partially offset | credit risk | increased primarily | hurricane
+2023-06-30,40,3,2,-0.2138,2,CTAS URI,rental | equipment rental | percent | uniform | percent revenues | industry overview | laws government | saw | fleet | north american
+2023-06-30,40,4,365,0.0261,95,A ABBV ABNB ACGL ADBE ADI ADP ADSK AEE AEP AES AIT AKAM ALB ALGN ALK AMAT AME AMG AMP AMZN AN ANET AON AOS APD APTV ARES ASH ATI ATO AVGO AVY AXP AZO BA BALL BBT BBWI BBY BC BEN BHF BIO BKNG BKR BLDR BR BWA CAG CAR CARR CASY CAT CB CBOE CCK CCL CDNS CF CFG CHRW CIEN CL CLF CLX CME CMG CMI CMS CNC CNP CNX COHR COIN COO COST COTY CPAY CPB CPRT CPWR CRL CRM CRWD CSCO CSX CTSH CVNA CVS CVX CZR DASH DD DDOG DDS DE DECK DELL DG DGX DHI DLX DOV DOW DPZ DRI DUK DXC DXCM EBAY ECL ED EFX EG EHC EL ELV EME EMN EMR ENPH EOG EP EPAM EQT ES ETR ETSY EVRG EW EXPD EXPE FDS FE FFIV FICO FIS FITB FLEX FLR FNMA FOSL FSLR FTI FTNT GD GDDY GEHC GHC GIS GLW GME GPC GS GT HAL HCA HII HLT HOG HOOD HP HPE HPQ HRL HSIC HSY HUM HWM IBKR ICE IEX IFF INCY INTU IPGP IQV IT ITW IVZ JBHT JBL JCI JEF JKHY JNJ JPM KBH KEY KEYS KHC KKR KLAC KMX KR L LDOS LEN LH LII LIN LITE LKQ LLY LMT LOW LPX LRCX LULU LUV M MAR MAT MCO MDLZ MET MGM MHK MKC MKTX MMM MOS MRK MRNA MRSH MRVL MSCI MSFT MTB MTD MTG NBR NC NDSN NEE NEM NKTR NOC NOW NSC NTAP NTRS NUE NVDA NVR NWL NXPI OGN OI OKE ON ORCL ORLY OTIS PANW PARA PAYX PCAR PENN PFG PGR PH PLTR PNR PNW PODD POOL PPG PRU PVH QRVO R REGN RF RHI RJF RL RMD ROL ROST RSG RTX RVTY SANM SBUX SCHW SCI SIG SJM SLB SLM SMCI SNA SNPS SO SPGI SRE STE STT STX SWKS SYK SYY TDC TDG TDY TER TEX TFC TFX TGT THC TJX TKR TMO TPL TPR TRMB TROW TSCO TSLA TSN TT TXN TXT TYL UA UAA UBER UIS ULTA UNH UNM UNP USB VEEV VFC VIAV VMC VNT VRSK VRSN VRTX VTRS WAB WAT WDAY WDC WFC WHR WMB WRB WTW WU WYNN XEL XRAY XRX XYL XYZ YUM ZBH ZBRA ZION,president | vice | manufacturing | officer | vice president | chief | software | retail | served | learning
+2023-06-30,40,5,2,-0.0351,2,MA PPL,corporate website | sustainability | corporate sustainability | sustainability reporting | topics | specific topics | proposed | relations section | climate | subject matter
+2023-06-30,40,6,3,0.0198,3,BMY PRGO WM,pharmaceutical industry | generic | adverse impact | pharmaceutical | drug pricing | class action | charges | antitrust | civil false | adverse
+2023-06-30,40,7,4,0.0137,2,KDP KMB MNST PG,drinks | drink | brands | stores | flavored | beverages | mass merchandisers | single serve | merchandisers | club stores
+2023-06-30,40,8,3,-0.0043,3,AMGN DHR GNRC,virus | spread | covid related | variants | visits | mitigate | covid pandemic | uncertain | situation | patient
+2023-06-30,40,9,5,0.1608,4,AYI HUBB MAS SHW SWK,lighting | brands | architectural | coatings | brass | paint | outdoor | industrial | electrical | fixtures
+2023-06-30,40,10,2,0.2754,2,ANF WSM,kids | current economic | economic environment | retailer | williams | brands | stores | store | style | week
+2023-06-30,40,11,2,0.1674,2,AAPL NKE,footwear apparel | footwear | athletic | accessories | sports | apparel | fitness | ipad | jordan | corporate website
+2023-06-30,40,12,59,0.0205,44,AAL AAP ALLE AMCR AMD APO AWK AXON BIIB CE CEG CI COF CPRI DLTR EXC EXE FAST FIX FLS FTV GEN GILD GM GNW GPN GWW HAS HD IR ISRG J KO LEG LNT LW MCHP MPC MPWR MSI NDAQ PEG PKG PWR PYPL QCOM RIG SEDG STLD SUN TAP TECH TEL TRGP UHS UPS V WEN WMT,looking statements | forward looking | looking | forward | related stockholder | stockholder matters | stockholder | risks uncertainties | purchases equity | uncertainties
+2023-06-30,40,13,2,0.1626,2,ADM MUR,erm | reputation financial | crude | energy supply | impact reputation | production levels | adverse impact | threat | http www | normal course
+2023-06-30,40,14,8,0.0012,8,ACN AFL ALL DAL MLM NI PCG STZ,chief | officer | vice president | president | vice | executive vice | president chief | senior vice | officer senior | executive officer
+2023-06-30,40,15,1,,1,ROK,boeing | allen | reorganization | proxy statement | hardware software | refers | intelligent | asset utilization | software | lifecycle
+2023-06-30,40,16,2,0.4369,1,FHN PNC,changing economic | liquidity | federal reserve | beginning page | risks risks | regulatory legislative | operational risks | merger | ability manage | page
+2023-06-30,40,17,1,,1,PEP,sales incentives | indefinite | amortized | intangible | intangible assets | lived | inflationary cost | future cash | ukraine conflict | goodwill
+2023-06-30,40,18,2,0.4917,1,CTVA FMC,crop protection | crop | crops | traits | growers | biotechnology | farmers | pesticides | seed | active ingredient
+2023-06-30,40,19,2,0.0938,2,ERIE GL,insurance holding | agents | insurance | underwriting | policyholders | subscribers | policyholder | insurers | subscriber | management fee
+2023-06-30,40,20,1,,1,IP,mills | converting | pulp | master | capital spending | europe north | pages | equity investment | hourly | packaging
+2023-06-30,40,21,3,0.0777,2,CDW IBM PBI,cloud | vendor partners | clients | hybrid cloud | breadth | parcel | providers | cloud providers | alto | cisco
+2023-06-30,40,22,7,0.0977,4,ABT BAX BDX IDXX MDT WST ZTS,diagnostic | injectable | surgical | respiratory | catheters | point care | diseases | blood | drug | medical
+2023-06-30,40,23,1,,1,HRB,emerald | tax return | tax returns | diy | financial solutions | refund | refunds | mastercard | wave | assisted
+2023-06-30,40,24,1,,1,LHX,sales prices | denominated | revenue revenue | subject international | foreign country | generally receive | commercial government | local currency | order remain | financing arrangements
+2023-06-30,40,25,1,,1,MBI,puerto rico | rico | puerto | defaulted | related risk | insured | factors risk | stress | bankruptcy | young
+2023-06-30,40,26,1,,1,BNY,dec | ethnic racial | underrepresented ethnic | wealth | supervision regulation | wealth management | custody | frozen | executive committee | regulation section
+2023-06-30,40,27,2,0.5958,1,NCLH RCL,ships | itineraries | cruise | destinations | guests | global brands | brands offer | bermuda | ship | miami
+2023-06-30,40,28,1,,1,UAL,seat | boeing | aircraft | ex | max | airspace | jets | travel demand | global macroeconomic | air travel
+2023-06-30,40,29,2,0.0086,2,COR DVA,dialysis | pharmaceuticals | risk factor | payors | patient | medicare | patient care | ballot | policy changes | heading
+2023-06-30,40,30,2,0.2985,1,MO PM,tobacco | heated | leaf | smoke | oral | cured | usa | manufactured sold | shipment | adult
+2023-06-30,40,31,1,,1,APH,interconnect | connector | cable | value add | harsh | connectors | optic | fiber optic | newly formed | industrial technology
+2023-06-30,40,32,1,,1,HIG,women people | dei | people color | erg | inclusive workplace | representation | color | website https | relations section | bias
+2023-06-30,40,33,1,,1,F,fuel consumption | passenger | light duty | vehicle | figures | trigger | vehicles | consumption | canadian | fuel
+2023-06-30,40,34,1,,1,PFE,recalls | global economic | product manufacturing | economic environment | voluntary | pricing pressure | intake | potential risk | economic cycles | active role
+2023-06-30,40,35,1,,1,BX,management fees | unrealized | nav | value investments | separately managed | fund management | managed accounts | fair value | investment income | allocations
+2023-06-30,40,36,1,,1,LNC,rbc | sources liquidity | ability generate | liquidity capital | statutory surplus | statutory capital | maintain sufficient | strength ratings | liquidity | statutory
+2023-06-30,40,37,1,,1,ETN,principal methods | strong competitive | methods competition | power management | related components | electrical | case rate | technology global | competition product | survey employees
+2023-06-30,40,38,1,,1,MU,rba | results capital | team members | international trade | authorizations | environmental compliance | wellbeing | local foreign | comply laws | bis
+2023-06-30,40,39,1,,1,BF-B,jack | daniel | straight | barrel | kentucky | old | spirits | tennessee | expressions | wine
+2023-06-30,60,0,329,0.0268,90,A ABBV ACGL ADBE ADI ADP ADSK AEE AEP AES AIT AKAM ALB ALGN ALK AMAT AME AMG AMP AMZN AN ANET AON AOS APD APTV ARES ASH ATO AVGO AVY AXP AZO BALL BBT BBWI BBY BC BEN BHF BIO BKR BLDR BR BWA CAG CAR CARR CASY CAT CB CBOE CCK CCL CDNS CF CFG CHRW CIEN CL CLF CLX CME CMG CMI CMS CNC CNP CNX COHR COIN COO COST COTY CPAY CPB CPRT CPWR CRL CRM CRWD CSCO CTSH CVNA CVS CVX DD DDOG DDS DE DECK DELL DG DGX DLX DOV DOW DPZ DRI DUK DXC DXCM ECL ED EFX EG EHC EL ELV EME EMN EMR ENPH EOG EP EPAM EQT ES ETR ETSY EVRG EW EXPD FDS FE FFIV FICO FIS FITB FLEX FLR FNMA FOSL FSLR FTI FTNT GDDY GEHC GIS GLW GME GS GT HAL HCA HOG HOOD HP HPE HPQ HRL HSIC HSY HUM IBKR ICE IEX IFF INCY INTU IPGP IQV IT ITW IVZ JBL JCI JEF JKHY JNJ JPM KEY KEYS KHC KKR KLAC KMX KR L LH LII LIN LITE LKQ LLY LOW LPX LRCX LULU LUV M MAT MCO MDLZ MET MHK MKC MKTX MMM MOS MRK MRNA MRSH MRVL MSCI MSFT MTB MTD MTG NBR NC NDSN NEE NEM NKTR NOW NTAP NTRS NUE NVDA NWL NXPI OGN OI OKE ON ORCL ORLY OTIS PANW PARA PAYX PCAR PFG PGR PH PLTR PNR PNW PODD POOL PPG PRU PVH QRVO REGN RF RHI RJF RL RMD ROL ROST RSG RVTY SANM SBUX SCHW SCI SIG SJM SLB SLM SMCI SNPS SO SPGI SRE STE STT STX SWKS SYK SYY TDC TDY TER TEX TFC TFX TGT THC TJX TKR TMO TPL TPR TRMB TROW TSCO TSLA TSN TT TXN TYL UA UAA UIS ULTA UNH UNM USB VEEV VFC VIAV VMC VRSK VRSN VRTX VTRS WAB WAT WDAY WDC WFC WHR WMB WRB WTW WU XEL XRAY XRX XYL XYZ YUM ZBH ZBRA ZION,president | vice | officer | vice president | chief | manufacturing | software | retail | served | president chief
+2023-06-30,60,1,3,-0.0043,3,AMGN DHR GNRC,virus | spread | covid related | variants | visits | mitigate | covid pandemic | uncertain | situation | patient
+2023-06-30,60,2,2,0.162,2,BMY PRGO,pharmaceutical industry | generic | pharmaceutical | drug pricing | adverse impact | antitrust | civil false | patent rights | drug | drugs
+2023-06-30,60,3,4,0.0137,2,KDP KMB MNST PG,drinks | drink | brands | stores | flavored | beverages | mass merchandisers | single serve | merchandisers | club stores
+2023-06-30,60,4,8,0.3629,2,CZR DHI KBH LEN MGM NVR PENN WYNN,homebuilding | casino | land | gaming | vegas | las | las vegas | estate assets | land development | homes
+2023-06-30,60,5,8,0.1716,4,ABNB BKNG DASH EBAY EXPE HLT MAR UBER,hotels | travelers | travel | hotel | accommodations | bookings | guests | listings | online travel | brands
+2023-06-30,60,6,2,0.1626,2,ADM MUR,erm | reputation financial | crude | energy supply | impact reputation | production levels | adverse impact | threat | http www | normal course
+2023-06-30,60,7,2,0.4369,1,FHN PNC,changing economic | liquidity | federal reserve | beginning page | risks risks | regulatory legislative | operational risks | merger | ability manage | page
+2023-06-30,60,8,2,0.4917,1,CTVA FMC,crop protection | crop | crops | traits | growers | biotechnology | farmers | pesticides | seed | active ingredient
+2023-06-30,60,9,2,0.0938,2,ERIE GL,insurance holding | agents | insurance | underwriting | policyholders | subscribers | policyholder | insurers | subscriber | management fee
+2023-06-30,60,10,3,0.0777,2,CDW IBM PBI,cloud | vendor partners | clients | hybrid cloud | breadth | parcel | providers | cloud providers | alto | cisco
+2023-06-30,60,11,11,0.1032,3,ATI BA GD HII HWM LDOS LMT NOC RTX TDG TXT,aircraft | defense | aviation | aerospace | jet | sustainment | missile | military | unmanned | government contracts
+2023-06-30,60,12,3,0.2722,3,MAS SHW SWK,coatings | paint | architectural | brands | resins | private label | retailers | outdoor | consumer brands | brass
+2023-06-30,60,13,2,0.1696,1,AYI HUBB,lighting | electrical | meter | wiring | residential | utility | brands trademarks | fixtures | consolidated revenues | critical infrastructure
+2023-06-30,60,14,2,0.0086,2,COR DVA,dialysis | pharmaceuticals | risk factor | payors | patient | medicare | patient care | ballot | policy changes | heading
+2023-06-30,60,15,1,,1,ROK,boeing | allen | reorganization | proxy statement | hardware software | refers | intelligent | asset utilization | software | lifecycle
+2023-06-30,60,16,1,,1,WSM,williams | kids | commerce websites | furniture | cooking | home furnishings | catalogs | furnishings | omni | kitchen
+2023-06-30,60,17,1,,1,PEP,sales incentives | indefinite | amortized | intangible | intangible assets | lived | inflationary cost | future cash | ukraine conflict | goodwill
+2023-06-30,60,18,1,,1,PPL,subject matter | sustainability | applicable law | spring | rulemaking | proposed | com www | utility industry | results operation | edison
+2023-06-30,60,19,1,,1,VRT,pacific europe | digital infrastructure | americas asia | backlog | critical infrastructure | east africa | americas | equity interests | europe middle | africa
+2023-06-30,60,20,2,0.4072,2,AIG TRV,catastrophe | hurricane | modeling | reinsurance | exposures | earthquake | modeled | losses | earthquakes | catastrophes
+2023-06-30,60,21,7,0.0195,7,AFL ALL DAL MLM NI PCG STZ,vice president | president | vice | executive vice | officer | chief | president chief | senior vice | officer senior | financial officer
+2023-06-30,60,22,4,0.1897,3,BSX MCK NRG VST,ercot | proceeds | credit facility | revolving credit | revolving | storm | facility | repurchased | winter | cash hand
+2023-06-30,60,23,1,,1,HRB,emerald | tax return | tax returns | diy | financial solutions | refund | refunds | mastercard | wave | assisted
+2023-06-30,60,24,5,0.2154,3,CSX JBHT NSC R UNP,intermodal | railroads | rail | freight | carriers | railroad | shipments | transportation | fms | containers
+2023-06-30,60,25,8,0.0559,8,ALLE COF EXE FLS PKG STLD UHS WMT,repurchase | graph | share repurchase | number purchased | repurchase program | proceedings | leased | purchases equity | publicly announced | average price
+2023-06-30,60,26,51,0.0183,40,AAL AAP AMCR AMD APO AWK AXON BIIB CE CEG CI CPRI DLTR EXC FAST FIX FTV GEN GILD GM GNW GPN GWW HAS HD IR ISRG J KO LEG LNT LW MCHP MPC MPWR MSI NDAQ PEG PWR PYPL QCOM RIG SEDG SUN TAP TECH TEL TRGP UPS V WEN,looking statements | forward looking | looking | forward | stockholder matters | related stockholder | stockholder | risks uncertainties | uncertainties | words
+2023-06-30,60,27,2,-0.0242,1,BAX WST,injectable | drug delivery | therapies | diagnostic | surgical | containment | devices | generic | delivery systems | drug
+2023-06-30,60,28,1,,1,UAL,seat | boeing | aircraft | ex | max | airspace | jets | travel demand | global macroeconomic | air travel
+2023-06-30,60,29,5,0.1174,4,ABT BDX IDXX MDT ZTS,catheters | diagnostic | diseases | blood | vascular | respiratory | infections | disease | point care | stent
+2023-06-30,60,30,2,0.2985,1,MO PM,tobacco | heated | leaf | smoke | oral | cured | usa | manufactured sold | shipment | adult
+2023-06-30,60,31,1,,1,APH,interconnect | connector | cable | value add | harsh | connectors | optic | fiber optic | newly formed | industrial technology
+2023-06-30,60,32,1,,1,HIG,women people | dei | people color | erg | inclusive workplace | representation | color | website https | relations section | bias
+2023-06-30,60,33,1,,1,F,fuel consumption | passenger | light duty | vehicle | figures | trigger | vehicles | consumption | canadian | fuel
+2023-06-30,60,34,1,,1,PFE,recalls | global economic | product manufacturing | economic environment | voluntary | pricing pressure | intake | potential risk | economic cycles | active role
+2023-06-30,60,35,1,,1,BX,management fees | unrealized | nav | value investments | separately managed | fund management | managed accounts | fair value | investment income | allocations
+2023-06-30,60,36,1,,1,LNC,rbc | sources liquidity | ability generate | liquidity capital | statutory surplus | statutory capital | maintain sufficient | strength ratings | liquidity | statutory
+2023-06-30,60,37,1,,1,ETN,principal methods | strong competitive | methods competition | power management | related components | electrical | case rate | technology global | competition product | survey employees
+2023-06-30,60,38,1,,1,MU,rba | results capital | team members | international trade | authorizations | environmental compliance | wellbeing | local foreign | comply laws | bis
+2023-06-30,60,39,1,,1,BF-B,jack | daniel | straight | barrel | kentucky | old | spirits | tennessee | expressions | wine
+2023-06-30,60,40,1,,1,ROP,technology enabled | remaining performance | application software | performance obligations | software solutions | management software | niche | ipa | frontline | cloud software
+2023-06-30,60,41,1,,1,IP,mills | converting | pulp | master | capital spending | europe north | pages | equity investment | hourly | packaging
+2023-06-30,60,42,1,,1,WEC,opeb | variable rate | gas utility | inflation supply | temperatures | trust fund | investment returns | heating season | decoupling | trust funds
+2023-06-30,60,43,1,,1,WM,epr | landfills | landfill | landfill gas | recycling | hire retain | energy businesses | stations | zoning | obtain maintain
+2023-06-30,60,44,1,,1,MA,corporate sustainability | corporate website | specific topics | relations section | esg matters | alerts | esg | voting | email | directive
+2023-06-30,60,45,3,0.032,3,GPC SNA VNT,vehicle repair | wheel | repair shops | automotive | vehicle | repair | stores | australasia | shops | tools equipment
+2023-06-30,60,46,2,0.054,2,AIZ FDX,increased primarily | loss experience | adjusted ebitda | consolidated income | pre tax | partially offset | ebitda | primarily driven | catastrophes | income
+2023-06-30,60,47,1,,1,D,condition cash | ozone | phmsa | alternative minimum | virginia | rulemaking | cea | minimum tax | clearing | swap
+2023-06-30,60,48,1,,1,CTAS,uniform | rental | laws government | regulations standards | aid | farmer | mats | laundry | routes | primarily canada
+2023-06-30,60,49,1,,1,LHX,sales prices | denominated | revenue revenue | subject international | foreign country | generally receive | commercial government | local currency | order remain | financing arrangements
+2023-06-30,60,50,1,,1,URI,equipment rental | rental | percent revenues | industry overview | fleet | north american | percent | impact changes | pronounced | covid impact
+2023-06-30,60,51,1,,1,GHC,higher education | english language | english | student | students | priority payment | university | undergraduate | academic | schools
+2023-06-30,60,52,1,,1,MBI,puerto rico | rico | puerto | defaulted | related risk | insured | factors risk | stress | bankruptcy | young
+2023-06-30,60,53,1,,1,BNY,dec | ethnic racial | underrepresented ethnic | wealth | supervision regulation | wealth management | custody | frozen | executive committee | regulation section
+2023-06-30,60,54,1,,1,AAPL,ipad | wearables | mac | personal computers | digital content | mini | watch | smartphones | computers | accessories
+2023-06-30,60,55,2,0.5958,1,NCLH RCL,ships | itineraries | cruise | destinations | guests | global brands | brands offer | bermuda | ship | miami
+2023-06-30,60,56,2,0.478,2,BAC HBAN,loans leases | credit risk | unfunded | credit losses | risk risk | loans | allowance | held sale | credit | allowance credit
+2023-06-30,60,57,1,,1,ACN,senior managing | served group | managing director | officer served | moore | finance director | served | served global | group chief | chief compliance
+2023-06-30,60,58,1,,1,ANF,current economic | economic environment | kids | week | owned stores | closest | costs labor | continue assess | weak | abatement
+2023-06-30,60,59,1,,1,NKE,footwear apparel | footwear | athletic | apparel | jordan | sports | apparel accessories | casual | digital platforms | consumer experiences
+2023-06-30,80,0,2,0.3219,1,KMB PG,stores | privacy protection | equity diversity | patents licenses | brands | regulations countries | incontinence | inclusion equity | consumers | walmart
+2023-06-30,80,1,144,0.0323,51,A ABBV ACGL ADP ALGN ALK AMG AMP AN AON APTV ARES AXP BBT BC BEN BHF BIO BLDR BR BWA CAR CAT CB CBOE CCL CFG CHRW CLX CME CMI CNC COIN COO CPAY CPRT CRL CVNA CVS DE DGX DPZ DXCM ECL EFX EG EHC ELV ENPH ETSY EW EXPD FDS FICO FIS FITB FNMA FSLR GEHC GS GT HCA HOG HOOD HSIC HUM IBKR ICE INCY IQV IT IVZ JEF JNJ JPM KEY KKR KMX LH LKQ LLY LUV MCO MET MKTX MMM MRK MRNA MRSH MSCI MTB MTD MTG NEM NKTR NTAP NTRS OGN OI OTIS PARA PCAR PFG PGR PODD PRU REGN RF RHI RJF RMD ROL RSG RVTY SCHW SLM SPGI STE STT SYK TEX TFC TFX THC TMO TROW TSLA ULTA UNH UNM USB VRSK VRTX VTRS WAB WAT WFC WRB WTW WU XRAY XYZ ZBH ZION,insurance | clients | credit | officer | funds | institutions | chief | income | president | bank
+2023-06-30,80,2,7,0.2061,4,ABNB BKNG DASH EXPE HLT MAR UBER,hotels | travelers | travel | hotel | accommodations | bookings | guests | online travel | lodging | guest
+2023-06-30,80,3,44,0.0778,19,AZO BBWI BBY CAG CASY CL COST COTY CPB DDS DECK DG DLX EL FOSL GIS GME HSY IFF KHC KR LOW LULU M MAT MDLZ MKC NWL ORLY PVH RL ROST SBUX SCI SIG SJM TGT TJX TPR TSCO UA UAA VFC WHR,stores | merchandise | store | brands | retailers | vice | president | vice president | retail | apparel
+2023-06-30,80,4,2,0.0938,2,ERIE GL,insurance holding | agents | insurance | underwriting | policyholders | subscribers | policyholder | insurers | subscriber | management fee
+2023-06-30,80,5,26,0.0761,8,AIT ALB AME AOS ASH AVY BALL CARR CCK DD DOV DOW EME EMN EMR IEX ITW JCI LII NDSN PH PNR PPG TKR TT XYL,industrial | manufacturing | raw | raw materials | refrigeration | beverage | water | food | backlog | residential
+2023-06-30,80,6,2,0.1696,1,AYI HUBB,lighting | electrical | meter | wiring | residential | utility | brands trademarks | fixtures | consolidated revenues | critical infrastructure
+2023-06-30,80,7,2,0.4917,1,CTVA FMC,crop protection | crop | crops | traits | growers | biotechnology | farmers | pesticides | seed | active ingredient
+2023-06-30,80,8,41,0.0194,16,AEE AEP AES APD ATO BKR CF CLF CMS CNP CNX CPWR CVX DUK ED EOG EP EQT ES ETR EVRG FE FLR FTI HAL HP L LIN MOS NBR NC NEE NUE OKE PNW SLB SO SRE VMC WMB XEL,natural gas | gas | natural | ferc | transmission | electricity | oil | electric | coal | emissions
+2023-06-30,80,9,2,-0.1629,2,AMZN VRSN,domain names | registry | domain | publishers | president | vice | vice president | served | counsel secretary | web
+2023-06-30,80,10,2,0.054,2,AIZ FDX,increased primarily | loss experience | adjusted ebitda | consolidated income | pre tax | partially offset | ebitda | primarily driven | catastrophes | income
+2023-06-30,80,11,62,0.0659,11,ADBE ADI ADSK AKAM AMAT ANET AVGO CDNS CIEN COHR CRM CRWD CSCO CTSH DDOG DELL DXC EPAM FFIV FLEX FTNT GDDY GLW HPE HPQ INTU IPGP JBL JKHY KEYS KLAC LITE LRCX MRVL MSFT NOW NVDA NXPI ON ORCL PANW PAYX PLTR QRVO SANM SMCI SNPS STX SWKS TDC TDY TER TRMB TXN TYL UIS VEEV VIAV WDAY WDC XRX ZBRA,cloud | software | devices | manufacturing | computing | semiconductor | enterprise | automation | solution | infrastructure
+2023-06-30,80,12,3,0.2722,3,MAS SHW SWK,coatings | paint | architectural | brands | resins | private label | retailers | outdoor | consumer brands | brass
+2023-06-30,80,13,2,-0.0242,1,BAX WST,injectable | drug delivery | therapies | diagnostic | surgical | containment | devices | generic | delivery systems | drug
+2023-06-30,80,14,2,0.0086,2,COR DVA,dialysis | pharmaceuticals | risk factor | payors | patient | medicare | patient care | ballot | policy changes | heading
+2023-06-30,80,15,4,0.4665,1,CZR MGM PENN WYNN,casino | gaming | las | vegas | las vegas | sports | games | casinos | hotel | estate assets
+2023-06-30,80,16,2,0.1237,2,BSX MCK,contingent consideration | divestiture | credit facility | cash hand | charges | recorded | compared prior | primarily driven | impairment | gross profit
+2023-06-30,80,17,4,0.7875,1,DHI KBH LEN NVR,homebuilding | land development | homes | land | mortgage | lots | homebuilders | single family | mortgage financing | construction
+2023-06-30,80,18,6,0.0604,4,CMG DRI HRL SYY TSN YUM,restaurant | food safety | food | chicken | restaurants | foodservice | pork | team members | beef | quality food
+2023-06-30,80,19,2,0.4072,2,AIG TRV,catastrophe | hurricane | modeling | reinsurance | exposures | earthquake | modeled | losses | earthquakes | catastrophes
+2023-06-30,80,20,1,,1,WEC,opeb | variable rate | gas utility | inflation supply | temperatures | trust fund | investment returns | heating season | decoupling | trust funds
+2023-06-30,80,21,2,0.0491,2,DHR GNRC,covid related | spread | virus | situation | covid testing | russia | vaccines | outage | russia ukraine | ukraine conflict
+2023-06-30,80,22,9,0.14,2,BA GD HII LDOS LMT NOC RTX TDG TXT,aircraft | defense | sustainment | aviation | missile | unmanned | government contracts | navy | aeronautics | contracts government
+2023-06-30,80,23,1,,1,HRB,emerald | tax return | tax returns | diy | financial solutions | refund | refunds | mastercard | wave | assisted
+2023-06-30,80,24,5,0.2154,3,CSX JBHT NSC R UNP,intermodal | railroads | rail | freight | carriers | railroad | shipments | transportation | fms | containers
+2023-06-30,80,25,8,0.0559,8,ALLE COF EXE FLS PKG STLD UHS WMT,repurchase | graph | share repurchase | number purchased | repurchase program | proceedings | leased | purchases equity | publicly announced | average price
+2023-06-30,80,26,51,0.0183,40,AAL AAP AMCR AMD APO AWK AXON BIIB CE CEG CI CPRI DLTR EXC FAST FIX FTV GEN GILD GM GNW GPN GWW HAS HD IR ISRG J KO LEG LNT LW MCHP MPC MPWR MSI NDAQ PEG PWR PYPL QCOM RIG SEDG SUN TAP TECH TEL TRGP UPS V WEN,looking statements | forward looking | looking | forward | stockholder matters | related stockholder | stockholder | risks uncertainties | uncertainties | words
+2023-06-30,80,27,2,0.478,2,BAC HBAN,loans leases | credit risk | unfunded | credit losses | risk risk | loans | allowance | held sale | credit | allowance credit
+2023-06-30,80,28,1,,1,UAL,seat | boeing | aircraft | ex | max | airspace | jets | travel demand | global macroeconomic | air travel
+2023-06-30,80,29,2,0.1744,1,CDW IBM,vendor partners | hybrid cloud | cloud | cloud providers | alto | cisco | packard enterprise | vmware | palo | microsoft
+2023-06-30,80,30,2,0.2985,1,MO PM,tobacco | heated | leaf | smoke | oral | cured | usa | manufactured sold | shipment | adult
+2023-06-30,80,31,1,,1,ROK,boeing | allen | reorganization | proxy statement | hardware software | refers | intelligent | asset utilization | software | lifecycle
+2023-06-30,80,32,1,,1,WSM,williams | kids | commerce websites | furniture | cooking | home furnishings | catalogs | furnishings | omni | kitchen
+2023-06-30,80,33,1,,1,PBI,parcel | mailing | ecommerce | shipping | mail | clients | sending | enable clients | offerings cloud | provide clients
+2023-06-30,80,34,2,0.187,2,ATI HWM,alloys | titanium | jet | nickel | forgings | alloy | specialty materials | engine | engines | rings
+2023-06-30,80,35,5,0.0008,5,AFL ALL DAL NI PCG,vice president | vice | president | executive vice | president chief | senior vice | chief | officer | chief risk | risk officer
+2023-06-30,80,36,2,0.5795,1,NRG VST,ercot | storm | proceeds | repurchased | winter | pjm | revolving | revolving credit | auction | dividend
+2023-06-30,80,37,1,,1,TPL,easements | produced water | permian basin | permian | revenue consolidated | resource management | reorganization | royalties | oil gas | consolidated revenue
+2023-06-30,80,38,3,0.3142,3,LPX MHK POOL,remodeling | flooring | wood | housing | vinyl | carpet | fiber | home centers | residential | distributes
+2023-06-30,80,39,1,,1,VRT,pacific europe | digital infrastructure | americas asia | backlog | critical infrastructure | east africa | americas | equity interests | europe middle | africa
+2023-06-30,80,40,1,,1,ROP,technology enabled | remaining performance | application software | performance obligations | software solutions | management software | niche | ipa | frontline | cloud software
+2023-06-30,80,41,1,,1,IP,mills | converting | pulp | master | capital spending | europe north | pages | equity investment | hourly | packaging
+2023-06-30,80,42,1,,1,MUR,crude | production levels | esg reporting | natural gas | production activities | gas liquids | liquids | indices | exploration | natural
+2023-06-30,80,43,1,,1,WM,epr | landfills | landfill | landfill gas | recycling | hire retain | energy businesses | stations | zoning | obtain maintain
+2023-06-30,80,44,1,,1,MA,corporate sustainability | corporate website | specific topics | relations section | esg matters | alerts | esg | voting | email | directive
+2023-06-30,80,45,1,,1,PNC,ability manage | regulatory environment | liquidity capital | liquidity | contingencies | planning stress | performance availability | appropriateness | related changes | standby
+2023-06-30,80,46,2,0.0679,2,MLM STZ,code ethics | beer | applies | committee | ethics | guidelines charters | officer | code | chief | corporate governance
+2023-06-30,80,47,1,,1,D,condition cash | ozone | phmsa | alternative minimum | virginia | rulemaking | cea | minimum tax | clearing | swap
+2023-06-30,80,48,1,,1,CTAS,uniform | rental | laws government | regulations standards | aid | farmer | mats | laundry | routes | primarily canada
+2023-06-30,80,49,1,,1,LHX,sales prices | denominated | revenue revenue | subject international | foreign country | generally receive | commercial government | local currency | order remain | financing arrangements
+2023-06-30,80,50,1,,1,URI,equipment rental | rental | percent revenues | industry overview | fleet | north american | percent | impact changes | pronounced | covid impact
+2023-06-30,80,51,1,,1,GHC,higher education | english language | english | student | students | priority payment | university | undergraduate | academic | schools
+2023-06-30,80,52,1,,1,MBI,puerto rico | rico | puerto | defaulted | related risk | insured | factors risk | stress | bankruptcy | young
+2023-06-30,80,53,1,,1,BNY,dec | ethnic racial | underrepresented ethnic | wealth | supervision regulation | wealth management | custody | frozen | executive committee | regulation section
+2023-06-30,80,54,1,,1,AAPL,ipad | wearables | mac | personal computers | digital content | mini | watch | smartphones | computers | accessories
+2023-06-30,80,55,2,0.5958,1,NCLH RCL,ships | itineraries | cruise | destinations | guests | global brands | brands offer | bermuda | ship | miami
+2023-06-30,80,56,2,0.0995,2,SNA VNT,vehicle repair | wheel | repair shops | tools equipment | tire | franchisees | lifts | vehicle | repair | aligners
+2023-06-30,80,57,1,,1,ACN,senior managing | served group | managing director | officer served | moore | finance director | served | served global | group chief | chief compliance
+2023-06-30,80,58,1,,1,ANF,current economic | economic environment | kids | week | owned stores | closest | costs labor | continue assess | weak | abatement
+2023-06-30,80,59,1,,1,NKE,footwear apparel | footwear | athletic | apparel | jordan | sports | apparel accessories | casual | digital platforms | consumer experiences
+2023-06-30,80,60,5,0.1174,4,ABT BDX IDXX MDT ZTS,catheters | diagnostic | diseases | blood | vascular | respiratory | infections | disease | point care | stent
+2023-06-30,80,61,1,,1,AMGN,buying patterns | virus | product sales | variants | visits | onset | patients | patient | clinical | impact future
+2023-06-30,80,62,2,0.0837,1,KDP MNST,drinks | drink | flavored | beverages | single serve | juice | concentrates | brands primarily | coffee | packaged
+2023-06-30,80,63,1,,1,APH,interconnect | connector | cable | value add | harsh | connectors | optic | fiber optic | newly formed | industrial technology
+2023-06-30,80,64,1,,1,BMY,generic | exclusivity | biosimilar | generic biosimilar | lower priced | indications | lose | prior expiration | versions | clinical benefit
+2023-06-30,80,65,1,,1,HIG,women people | dei | people color | erg | inclusive workplace | representation | color | website https | relations section | bias
+2023-06-30,80,66,1,,1,FHN,beginning page | risks risks | merger | page | regulatory approvals | necessary regulatory | approvals | caption | merger agreement | monetary policy
+2023-06-30,80,67,1,,1,F,fuel consumption | passenger | light duty | vehicle | figures | trigger | vehicles | consumption | canadian | fuel
+2023-06-30,80,68,1,,1,EBAY,listings | sellers | buyers sellers | buyers | seller | charity | promoted | partner choice | buyer | listing
+2023-06-30,80,69,1,,1,PFE,recalls | global economic | product manufacturing | economic environment | voluntary | pricing pressure | intake | potential risk | economic cycles | active role
+2023-06-30,80,70,1,,1,PRGO,pharmaceutical industry | drug pricing | antitrust | civil false | pharmaceutical | pharmaceutical manufacturers | class action | increased scrutiny | vigorously | claims act
+2023-06-30,80,71,1,,1,BX,management fees | unrealized | nav | value investments | separately managed | fund management | managed accounts | fair value | investment income | allocations
+2023-06-30,80,72,1,,1,PEP,sales incentives | indefinite | amortized | intangible | intangible assets | lived | inflationary cost | future cash | ukraine conflict | goodwill
+2023-06-30,80,73,1,,1,LNC,rbc | sources liquidity | ability generate | liquidity capital | statutory surplus | statutory capital | maintain sufficient | strength ratings | liquidity | statutory
+2023-06-30,80,74,1,,1,GPC,australasia | owned stores | independently owned | automotive | diy | auto | stores | independently | automotive industrial | heavy duty
+2023-06-30,80,75,1,,1,ETN,principal methods | strong competitive | methods competition | power management | related components | electrical | case rate | technology global | competition product | survey employees
+2023-06-30,80,76,1,,1,PPL,subject matter | sustainability | applicable law | spring | rulemaking | proposed | com www | utility industry | results operation | edison
+2023-06-30,80,77,1,,1,ADM,erm | risk mitigation | agricultural | corporate responsibility | adverse impact | high low | risk limits | disruption | conduct corporate | mitigation
+2023-06-30,80,78,1,,1,MU,rba | results capital | team members | international trade | authorizations | environmental compliance | wellbeing | local foreign | comply laws | bis
+2023-06-30,80,79,1,,1,BF-B,jack | daniel | straight | barrel | kentucky | old | spirits | tennessee | expressions | wine

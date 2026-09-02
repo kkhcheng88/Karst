@@ -1,0 +1,342 @@
+[
+ {
+  "theme": "homebuilders",
+  "n_usable": 3,
+  "within_corr": 0.8724,
+  "members": [
+   "DHI",
+   "LEN",
+   "PHM"
+  ],
+  "subindustries": [
+   "Residential Construction"
+  ]
+ },
+ {
+  "theme": "semi_equipment",
+  "n_usable": 3,
+  "within_corr": 0.7551,
+  "members": [
+   "AMAT",
+   "LRCX",
+   "KLAC"
+  ],
+  "subindustries": [
+   "Semiconductor Equipment & Materials"
+  ]
+ },
+ {
+  "theme": "travel_cruise",
+  "n_usable": 3,
+  "within_corr": 0.7447,
+  "members": [
+   "RCL",
+   "CCL",
+   "NCLH"
+  ],
+  "subindustries": [
+   "Travel Services"
+  ]
+ },
+ {
+  "theme": "solar",
+  "n_usable": 2,
+  "within_corr": 0.7002,
+  "members": [
+   "ENPH",
+   "SEDG"
+  ],
+  "subindustries": [
+   "Solar"
+  ]
+ },
+ {
+  "theme": "optical_cpo",
+  "n_usable": 2,
+  "within_corr": 0.5913,
+  "members": [
+   "LITE",
+   "COHR"
+  ],
+  "subindustries": [
+   "Communication Equipment",
+   "Scientific & Technical Instruments"
+  ]
+ },
+ {
+  "theme": "power_producers",
+  "n_usable": 2,
+  "within_corr": 0.5876,
+  "members": [
+   "VST",
+   "CEG"
+  ],
+  "subindustries": [
+   "Utilities - Independent Power Producers"
+  ]
+ },
+ {
+  "theme": "ag_fertilizer",
+  "n_usable": 2,
+  "within_corr": 0.5809,
+  "members": [
+   "MOS",
+   "CF"
+  ],
+  "subindustries": [
+   "Agricultural Inputs"
+  ]
+ },
+ {
+  "theme": "memory",
+  "n_usable": 2,
+  "within_corr": 0.5377,
+  "members": [
+   "MU",
+   "SNDK"
+  ],
+  "subindustries": [
+   "Computer Hardware",
+   "Semiconductors"
+  ]
+ },
+ {
+  "theme": "web3_crypto",
+  "n_usable": 2,
+  "within_corr": 0.5223,
+  "members": [
+   "COIN",
+   "HOOD"
+  ],
+  "subindustries": [
+   "Capital Markets",
+   "Financial Data & Stock Exchanges"
+  ]
+ },
+ {
+  "theme": "oilfield_services",
+  "n_usable": 2,
+  "within_corr": 0.5116,
+  "members": [
+   "SLB",
+   "HAL"
+  ],
+  "subindustries": [
+   "Oil & Gas Equipment & Services"
+  ]
+ },
+ {
+  "theme": "defense",
+  "n_usable": 4,
+  "within_corr": 0.4805,
+  "members": [
+   "LMT",
+   "NOC",
+   "LHX",
+   "HII"
+  ],
+  "subindustries": [
+   "Aerospace & Defense"
+  ]
+ },
+ {
+  "theme": "cyber",
+  "n_usable": 3,
+  "within_corr": 0.4657,
+  "members": [
+   "PANW",
+   "CRWD",
+   "FTNT"
+  ],
+  "subindustries": [
+   "Software - Infrastructure"
+  ]
+ },
+ {
+  "theme": "gig",
+  "n_usable": 2,
+  "within_corr": 0.4001,
+  "members": [
+   "UBER",
+   "DASH"
+  ],
+  "subindustries": [
+   "Internet Retail",
+   "Software - Application"
+  ]
+ },
+ {
+  "theme": "banks",
+  "n_usable": 5,
+  "within_corr": 0.3016,
+  "members": [
+   "JPM",
+   "BAC",
+   "WFC",
+   "GS",
+   "MS"
+  ],
+  "subindustries": [
+   "Banks - Diversified",
+   "Capital Markets"
+  ]
+ },
+ {
+  "theme": "software_cloud",
+  "n_usable": 6,
+  "within_corr": 0.2313,
+  "members": [
+   "MSFT",
+   "CRM",
+   "ORCL",
+   "ADBE",
+   "NOW",
+   "PLTR"
+  ],
+  "subindustries": [
+   "Software - Application",
+   "Software - Infrastructure"
+  ]
+ },
+ {
+  "theme": "upstream_oil",
+  "n_usable": 3,
+  "within_corr": 0.223,
+  "members": [
+   "COP",
+   "EOG",
+   "OXY"
+  ],
+  "subindustries": [
+   "Oil & Gas E&P"
+  ]
+ },
+ {
+  "theme": "biotech",
+  "n_usable": 5,
+  "within_corr": 0.1413,
+  "members": [
+   "AMGN",
+   "GILD",
+   "VRTX",
+   "REGN",
+   "BIIB"
+  ],
+  "subindustries": [
+   "Biotechnology",
+   "Drug Manufacturers - General"
+  ]
+ },
+ {
+  "theme": "semis",
+  "n_usable": 3,
+  "within_corr": 0.0444,
+  "members": [
+   "NVDA",
+   "AMD",
+   "AVGO"
+  ],
+  "subindustries": [
+   "Semiconductors"
+  ]
+ },
+ {
+  "theme": "staples",
+  "n_usable": 4,
+  "within_corr": -0.0886,
+  "members": [
+   "WMT",
+   "PG",
+   "KO",
+   "COST"
+  ],
+  "subindustries": [
+   "Beverages - Non-Alcoholic",
+   "Discount Stores",
+   "Household & Personal Products"
+  ]
+ },
+ {
+  "theme": "betting",
+  "n_usable": 0,
+  "within_corr": null,
+  "members": [],
+  "subindustries": []
+ },
+ {
+  "theme": "china",
+  "n_usable": 0,
+  "within_corr": null,
+  "members": [],
+  "subindustries": []
+ },
+ {
+  "theme": "copper",
+  "n_usable": 1,
+  "within_corr": null,
+  "members": [
+   "FCX"
+  ],
+  "subindustries": [
+   "Copper"
+  ]
+ },
+ {
+  "theme": "fintech",
+  "n_usable": 1,
+  "within_corr": null,
+  "members": [
+   "PYPL"
+  ],
+  "subindustries": [
+   "Credit Services"
+  ]
+ },
+ {
+  "theme": "glp1",
+  "n_usable": 1,
+  "within_corr": null,
+  "members": [
+   "LLY"
+  ],
+  "subindustries": [
+   "Drug Manufacturers - General"
+  ]
+ },
+ {
+  "theme": "gold",
+  "n_usable": 1,
+  "within_corr": null,
+  "members": [
+   "NEM"
+  ],
+  "subindustries": [
+   "Gold"
+  ]
+ },
+ {
+  "theme": "quantum",
+  "n_usable": 0,
+  "within_corr": null,
+  "members": [],
+  "subindustries": []
+ },
+ {
+  "theme": "streaming",
+  "n_usable": 1,
+  "within_corr": null,
+  "members": [
+   "PARA"
+  ],
+  "subindustries": [
+   "Software - Application"
+  ]
+ },
+ {
+  "theme": "uranium_power",
+  "n_usable": 0,
+  "within_corr": null,
+  "members": [],
+  "subindustries": []
+ }
+]
