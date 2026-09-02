@@ -9,7 +9,7 @@ fits: yes
 dependsOn: []
 claimedBy: chain-purity-161
 deliverable: KARST-D02
-raised: 鏈層表 v2 純度版已交(65 條鏈、347 行、343 家):純度收緊令 copper 由八家縮到三家、ag_fertilizer 拆完兩邊都不足五家——這兩條「純但量不到」的鏈,收貨還是要我讓回可量度性?
+closed: 2026-09-03
 ---
 
 ## 工作內容
@@ -18,10 +18,10 @@ raised: 鏈層表 v2 純度版已交(65 條鏈、347 行、343 家):純度收緊
 
 ## 驗收條件
 
-- [ ] chain_membership_v2.csv:staples/web3_crypto/china 三條已拆,新鏈各 ≥5 家或寫明結構性不足;全部鏈逐家有 purity 判斷;出隊名單 removed_v2.csv 每行附一句理由;v1 檔一字不改
-- [ ] chain_stories_v2.md:每鏈共同敘事一句、位置、成員表、purity_note、來源;首段誠實聲明四項(事後眼光、來源品質、valid_from 近似比例、純度為人手判斷)
-- [ ] 年報全文只入 data/sec/10k_text 快取(D-134),抓前查 manifest;票內不存副本
-- [ ] 票上 raise 請用戶審表(docs 指向 chain_stories_v2.md);commit 用 git commit --only -F <訊息檔> -- <自己的檔>;生產庫(倉根 C:\projects\Karst\karst.sqlite)只讀,SHA256 首 16 位維持 b168e9f45b578cf9
+- [x] chain_membership_v2.csv:staples/web3_crypto/china 三條已拆,新鏈各 ≥5 家或寫明結構性不足;全部鏈逐家有 purity 判斷;出隊名單 removed_v2.csv 每行附一句理由;v1 檔一字不改
+- [x] chain_stories_v2.md:每鏈共同敘事一句、位置、成員表、purity_note、來源;首段誠實聲明四項(事後眼光、來源品質、valid_from 近似比例、純度為人手判斷)
+- [x] 年報全文只入 data/sec/10k_text 快取(D-134),抓前查 manifest;票內不存副本
+- [x] 票上 raise 請用戶審表(docs 指向 chain_stories_v2.md);commit 用 git commit --only -F <訊息檔> -- <自己的檔>;生產庫(倉根 C:\projects\Karst\karst.sqlite)只讀,SHA256 首 16 位維持 b168e9f45b578cf9
 
 ## 結果
 
@@ -57,3 +57,8 @@ raised: 鏈層表 v2 純度版已交(65 條鏈、347 行、343 家):純度收緊
 
 **要睇邊份稿**：
 - experiments/2026-09-02-chain-layers/chain_stories_v2.md
+
+### agent:main-agent · 2026-09-03 07:48
+**裁決**：照建議收貨:純度贏可量度性(銅鏈三家、化肥四家與三家接受);高盛/摩根士丹利/Quanta 判留;主業轉向(微軟/甲骨文類)改記為換鏈日期而非整家出隊,由 v2.1 小票承接;16 條細鏈作候選池不入統計判準;敘事鏈層 v3 量度在 v2.1 表上跑。本票關檔。
+
+**出處**：用戶 2026-09-03 選項介面答「照建議收貨」(D-152);純度原話「the purity of the layer is the highest priority」(D-147 ③)。

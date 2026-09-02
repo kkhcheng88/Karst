@@ -9,7 +9,7 @@ fits: yes
 dependsOn: []
 claimedBy: data-gov-163
 deliverable: KARST-D02
-raised: 代號重用要收到哪一層?只剔那 7 條拆股事件,還是連 427 格接錯公司的基本面一齊重建,並全面改用 entity_id 做主鍵?
+closed: 2026-09-03
 ---
 
 ## 工作內容
@@ -18,10 +18,10 @@ raised: 代號重用要收到哪一層?只剔那 7 條拆股事件,還是連 427
 
 ## 驗收條件
 
-- [ ] 全部代號重用清單(代號、各 CIK、時段)落 out/ticker_reuse.csv;已知的 CPWR/EP/PARA 必須在內
-- [ ] 修補清單 out/split_fixes_proposed.csv:每格附正確 CIK 與理由;受影響的十倍股名單行標出
-- [ ] REPORT.md 建議主鍵方案與下游影響;票上 raise;面板 v2、生產庫一個位元不改,SHA256 首 16 位維持 b168e9f45b578cf9
-- [ ] commit 用 git commit --only -F <訊息檔> -- <自己的檔>
+- [x] 全部代號重用清單(代號、各 CIK、時段)落 out/ticker_reuse.csv;已知的 CPWR/EP/PARA 必須在內
+- [x] 修補清單 out/split_fixes_proposed.csv:每格附正確 CIK 與理由;受影響的十倍股名單行標出
+- [x] REPORT.md 建議主鍵方案與下游影響;票上 raise;面板 v2、生產庫一個位元不改,SHA256 首 16 位維持 b168e9f45b578cf9
+- [x] commit 用 git commit --only -F <訊息檔> -- <自己的檔>
 
 ## 結果
 
@@ -91,3 +91,8 @@ raised: 代號重用要收到哪一層?只剔那 7 條拆股事件,還是連 427
 
 **要睇邊份稿**：
 - experiments/2026-09-03-ticker-reuse/代號重用修補清單與主鍵方案.md
+
+### agent:main-agent · 2026-09-03 07:48
+**裁決**：實驗線一律改用 entity_id 作主鍵,代號降為帶時段別名;CPWR/EP/PARA 的 7 條拆股修補與 427 面板格在免費路宇宙重建(面板 v3 按實體 join)時處理;6 個嫌疑代號重建時人手核;十倍股名單重建後重出。本票關檔。
+
+**出處**：主 agent 依 D-134、A-011 與 D-072 裁決(D-153);用戶未裁。

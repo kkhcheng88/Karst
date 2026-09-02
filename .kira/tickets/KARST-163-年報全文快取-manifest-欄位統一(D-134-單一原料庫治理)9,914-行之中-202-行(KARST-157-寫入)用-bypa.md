@@ -9,7 +9,7 @@ fits: yes
 dependsOn: []
 claimedBy: data-gov-163
 deliverable: KARST-D02
-raised: 年報全文快取有 21 份 10-K 存了兩個副本(雙重股權代號 GOOGL/GOOG、UAA/UA),要不要收成一份?
+closed: 2026-09-03
 ---
 
 ## 工作內容
@@ -18,10 +18,10 @@ raised: 年報全文快取有 21 份 10-K 存了兩個副本(雙重股權代號 
 
 ## 驗收條件
 
-- [ ] manifest.jsonl 全部行同一套必填欄位(fetchedBy 取代 by;path 刪;primaryDoc 選填);改前備份存在 ~/.claude/backups/
-- [ ] data/sec/10k_text/README.md 有欄位表、新增規則、校驗方法;validate_manifest.py 唯讀,跑過一次,結果寫入 README
-- [ ] 校驗發現對不上的行(sha256/檔案缺/重複)只列不修,清單在 README 與票上 raise
-- [ ] commit 用 git commit --only -F <訊息檔> -- <自己的檔>;生產庫只讀,SHA256 首 16 位維持 b168e9f45b578cf9;年報 .txt.gz 一個不改
+- [x] manifest.jsonl 全部行同一套必填欄位(fetchedBy 取代 by;path 刪;primaryDoc 選填);改前備份存在 ~/.claude/backups/
+- [x] data/sec/10k_text/README.md 有欄位表、新增規則、校驗方法;validate_manifest.py 唯讀,跑過一次,結果寫入 README
+- [x] 校驗發現對不上的行(sha256/檔案缺/重複)只列不修,清單在 README 與票上 raise
+- [x] commit 用 git commit --only -F <訊息檔> -- <自己的檔>;生產庫只讀,SHA256 首 16 位維持 b168e9f45b578cf9;年報 .txt.gz 一個不改
 
 ## 結果
 
@@ -79,3 +79,8 @@ README 與校驗腳本是說明與工具,已用 `git add -f` 納入版本控制�
 
 **要睇邊份稿**：
 - data/sec/10k_text/README.md
+
+### agent:main-agent · 2026-09-03 07:48
+**裁決**：雙重股權代號的 21 行重複保留不刪;manifest 主鍵定為 ticker+accession(accession 單獨不作主鍵);README 註明。本票關檔。
+
+**出處**：主 agent 依 D-134(單一副本原則)與 D-072 在數據治理範圍內裁決(D-153);用戶未裁。
