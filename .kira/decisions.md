@@ -3375,3 +3375,24 @@
   > (用戶未裁;屬 D-072 授權內收案)
 
 - 影響：八張存在性/修補票全部收齊;帳目面板 v2 成為現行;三件數據治理小票待開;五策略討論可以定稿。
+
+## D-143 用戶三裁(2026-09-02 晚,五策略討論第一輪):①人手鏈位表擴至每鏈約五家——可行就做,agent 主編可用網上資料,事後眼光編表的偏差接受(「Approximate may twist the performance. But the overall trend should hold」);②個股層由主菜降為配菜——接受,但另開「十倍股」線:先盤點名單,並設過濾器避開 BYND 一類迷因股;③主目標 30% 或 15–22%——用戶記得舊倉樽頸「贏 60% 以上」,待舊倉檔案核實後再裁
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：用戶 2026-09-02 原話三段(見 quote)。主 agent 依 D-072 把①②落成票,③押後至舊倉核實。
+
+- 背景：主 agent 立場(D-110):①用戶接受事後眼光的代價,我照做,但誠實聲明照寫、而且量法要分兩版(事後表證解析度、受控表證事前可得)——這不是不信用戶,是這兩件事答的問題不同,混在一起將來紙上交易會被反噬。②「十倍股」線是用戶對「個股層降為配菜」的補充:他要的不是個股層系統規則,是「哪些股票會十倍」的名單與特徵——這與 D-131 長賠率注形狀完全一致(一注要講得出四至五倍),所以我把它定為候選一的注碼來源盤點,不是重開個股層系統線。先盤點歷史十倍股的基礎率與 t0 特徵,再設迷因過濾器;股數收縮(D-139)天然是反迷因過濾器之一(BYND 一類靠增發續命)。③樽頸 60%+ 我不憑記憶接受:要看口徑、窗口、鏈表是否事後編、成本;核實前不裁主目標。
+
+- 決策：
+  1. 開 KARST-159 人手鏈位表擴編(agent 主編、網上資料可用、每家附 valid_from 與年報佐證、每鏈附故事一句;交用戶審);量法分兩版寫入其後的 v3 票
+  2. 開 KARST-160 十倍股盤點:歷史十倍股名單(倉內 728 家 + 文獻/網上)、基礎率、t0 特徵、所屬鏈位,並設計迷因過濾器(BYND 一類),以歷史十倍股回測過濾器的誤殺率
+  3. 敘事鏈層 v3(擴表後重量)待 159 交表後開,D-136「不開第三版」由用戶本裁決解除
+  4. 主目標裁決押後至舊倉樽頸成績核實;核實結果原樣交用戶
+
+- **用戶原話（原文照錄）**
+
+  > ①「I think it is ok if doable. But I think you can web research to purpose. Actually I think you should have the memory to propose?」/「This is fine. Approximate may twist the performance. But the overall trend should hold」 ②「OK, or we can still on 10x stock track. Try to stock take a list first. We may need need to set some filter as some MEME stock should be avoided like BYND」 ③「I remember Bottleneck at the time of KarstETF is winning 60+%?」
+
+- 影響：價值鏈層由「候選池」升回「待證訊號層」(用戶授權擴表);個股層新增十倍股線作長賠率注的注碼來源;主目標未裁。
