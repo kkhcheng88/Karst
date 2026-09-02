@@ -1,0 +1,38 @@
+{
+ "cells_total": 47251,
+ "cells_10x": 643,
+ "tickers": 538,
+ "coverage": {
+  "s1_net_cash_to_mcap": {
+   "cells": 35491,
+   "cells_10x": 436,
+   "share_of_all_10x": 0.6781
+  },
+  "s2_runway_yrs": {
+   "cells": 38897,
+   "cells_10x": 549,
+   "share_of_all_10x": 0.8538
+  },
+  "s3_tangible_nav_to_mcap": {
+   "cells": 45110,
+   "cells_10x": 528,
+   "share_of_all_10x": 0.8212
+  },
+  "s2b_runway_cfo_yrs": {
+   "cells": 42328,
+   "cells_10x": 599,
+   "share_of_all_10x": 0.9316
+  },
+  "s3b_book_nav_to_mcap": {
+   "cells": 45110,
+   "cells_10x": 528,
+   "share_of_all_10x": 0.8212
+  }
+ },
+ "st_debt_missing_share": 0.298,
+ "goodwill_missing_share": 0.0995,
+ "intangibles_missing_share": 0.1894,
+ "s2_infinite_share": 0.7313,
+ "mortality_group_cells": 2276,
+ "price_panel_last": "2026-09-01"
+}
