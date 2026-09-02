@@ -3396,3 +3396,24 @@
   > ①「I think it is ok if doable. But I think you can web research to purpose. Actually I think you should have the memory to propose?」/「This is fine. Approximate may twist the performance. But the overall trend should hold」 ②「OK, or we can still on 10x stock track. Try to stock take a list first. We may need need to set some filter as some MEME stock should be avoided like BYND」 ③「I remember Bottleneck at the time of KarstETF is winning 60+%?」
 
 - 影響：價值鏈層由「候選池」升回「待證訊號層」(用戶授權擴表);個股層新增十倍股線作長賠率注的注碼來源;主目標未裁。
+
+## D-144 舊倉樽頸成績核實(D-143 ③):查不到「贏 60% 以上」;舊倉所有 60%+ 都是捕捉率(揀中目標比率),且捕捉率推到六至七成時全期回報跑輸 QQQ(R0–R3 四臂 −2.4 至 −28.3pp);現行三注生產配置全期 +422% 至 +519%(2021Q4–2026Q1,三個快照口徑不一),對 QQQ 約 +420pp——但鏈籃於 2026-07 回測窗後才編(倒填 valid_from)、引擎無交易成本、讀卷模型帶事後知識;定性為「最強苗頭、非已證成績」;主目標裁決不建基於舊倉數字,改建基於本倉重驗
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-02
+
+- 出處：唯讀偵察回報,主 agent 改寫落 research/2026-09-02-舊倉樽頸成績核實.md(每個數字附舊倉檔案出處)。
+
+- 背景：主 agent 立場(D-110):①用戶的記憶最可能是把「捕捉率 60%」與「贏 QQQ」溝在一起,或把 +422% 四年半折算成年化 44–50%;我要原樣講,不修飾。②這不代表那條線不值錢——它是本倉手上形狀最對(三注集中、鏈位讀卷、供需缺口=長賠率注)的苗頭;正確做法是以考試協議重驗,補三件事:鏈籃按 valid_from 定格(159 在編)、交易成本、模型事後知識對照。③主目標:我建議 15–22% 作主線量度、30% 作長賠率副線目標,直到重驗給出有成本、無事後知識的數字;不建議因舊倉數字維持 30% 為主線。
+
+- 決策：
+  1. 舊倉「60%+」定性為捕捉率或事後折算,非已證回報;本倉任何文件引用舊倉成績須附本核實檔
+  2. 「樽頸引擎重驗」列為候選二的正式票(待 KARST-159 交表後開):鏈籃定格、交易成本、模型事後知識對照三件為必備判準;不重驗不引用其回報
+  3. 舊倉 docs/adr/0039 §三之二 的逐鏈故事定義與 chain_audit_proposal.md 舊草稿交 KARST-159 作來源
+  4. 主目標裁決再交用戶(建議 15–22% 主線、30% 長賠率副線)
+
+- **用戶原話（原文照錄）**
+
+  > 用戶原話:「I remember Bottleneck at the time of KarstETF is winning 60+%?」
+
+- 影響：候選二由「舊倉初步成功」改為「待重驗的最強苗頭」;159 多兩個來源;主目標待裁。
