@@ -3480,3 +3480,24 @@
   > 「Not doing these.」/「Yes, we need to. But I want to have a study project and research on this topic first」/「Yes, I dont care how much you add, but the purity of the layer is the highest priority. The company in the same layer should share the same narrative」
 
 - 影響：十倍股線多一道硬排除;小型股宇宙由「待裁」轉「研究中」;鏈表進 v2(純度版),v3 量度順延到 v2 之後;主目標(15–22% 主線加 30% 副線或維持 30%)仍待裁。
+
+## D-148 用戶裁決:回報目標數字不作把關——「target = 30% or target = 22% doesn't matter at all」;agent 的任務是持續探索並找出最好的策略;五策略討論稿第五節第 2 問撤回;日後每條策略一律報齊四個數(年化、最大跌幅、命中率、容量),不以目標數字判生死;預設風險假設:主線可承受最大跌幅 25%、長賠率副線 50%(agent 假設,用戶未裁)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-03
+
+- 出處：用戶原話:「how does it matter on the target? At the end, the goal to you is to explore and explore the best strategy for us. target = 30% or target = 22% doesn't matter at all」(2026-09-03)。
+
+- 背景：主 agent 立場(D-110):用戶對——現階段全部票是存在性測試,存不存在與目標無關;我問主目標其實是在問資源先投哪條線,而用戶已用 D-147 三裁答了(建小型股宇宙、純度優先、十倍股線繼續)。目標仍有一處作用:比較「低回報淺跌幅」與「高回報深跌幅」的策略要一把尺;改為報齊四個數交用戶揀,不由 agent 以目標代裁。D-131 的 30% 數學(夏普上限、長賠率命中率)保留為難度標尺,不作門檻。D-137 的開關死線(漏一半熊市不算候選)是機制有效性判準,與目標無關,維持。
+
+- 決策：
+  1. 回報目標數字不作任何票的判準或死線;D-131 的 30% 數學降為難度標尺
+  2. 每條策略交付一律報齊:年化、最大跌幅、命中率(長賠率注)或月勝率(橫截面)、容量;由用戶按四個數揀
+  3. 預設風險假設(A-043):主線最大跌幅 25%、長賠率副線 50%;用戶一句話可改
+  4. 五策略討論稿第五節第 2 問標記撤回;主目標問題不再向用戶重問
+
+- **用戶原話（原文照錄）**
+
+  > 「how does it matter on the target? At the end, the goal to you is to explore and explore the best strategy for us. target = 30% or target = 22% doesn't matter at all」
+
+- 影響：少一條待裁;判準設計改為四數並報;討論稿更新。
