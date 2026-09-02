@@ -3459,3 +3459,24 @@
   > (用戶未裁;三格 raised 原文見票)
 
 - 影響：價值鏈層有了 298 家的名冊(舊 98 家的三倍),v3 可過 100 對門檻;三條鏈拆不拆、四條細鏈處置、名冊與代表分家三件待用戶;主目標與小型股宇宙兩件仍待裁。
+
+## D-147 用戶三裁(2026-09-03):①純資金推動的狂熱股(GME/AMC 類)一律不做——不是靠注碼上限與止蝕去管,而是整條線排除在外;②小型股宇宙要建,但先開研究專案研究這個題目,研究完再裁建法;③鏈層純度是最高優先——同一層的公司必須共享同一敘事,加多少家不設上限;staples/web3_crypto/china 三條 v0 鏈按此拆開
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-03
+
+- 出處：用戶原話三句:「Not doing these.」(指 GME/AMC 類純資金狂熱股);「Yes, we need to. But I want to have a study project and research on this topic first」(指小型股宇宙);「Yes, I dont care how much you add, but the purity of the layer is the highest priority. The company in the same layer should share the same narrative」(指鏈表三條不合格鏈)。
+
+- 背景：主 agent 立場(D-110):①同意排除。D-145 寫的是「該類靠注碼上限與止蝕」,用戶改為整條線不做;代價是十倍股名單裡 GME 一類會被剔走(五年窗 138 家之中 GME 99 倍在列),接受——那不是可複製的形。迷因過濾器 R2+R5 由「注碼守則」升為「入場硬排除」。②同意先研究:小型股宇宙的分母重建最大的坑不是抓價,是倖存者偏差(退市、除牌、殼股的歷史要齊)與代號重用污染(CPWR/EP 已中招);研究專案要先答「用什麼來源才有退市歷史」,答不到就建出來的基礎率全是假的。③純度優先我照辦,而且要收回我在 D-146 ③ 的立場:我當時支持把「只講自己那個礦」的初級銅礦商收回鏈表(名冊門檻放寬),按用戶「同一層必須共享同一敘事」的原則,它們不合格——敘事是那個礦,不是銅市。名冊門檻由「同鏈位」收緊為「同鏈位且同敘事」,舊倉的代表性測試回歸。讓步在此,理由是用戶定義優先於我的解析度考量。④D-146 ①(四條細鏈作候選池不入判準)用戶未反對,維持。
+
+- 決策：
+  1. 純資金推動狂熱股整條線不做:迷因過濾器 R2+R5 升為入場硬排除,不再以注碼上限與止蝕承接;十倍股基礎率日後分開報「排除後」一欄
+  2. 小型股宇宙:先開研究專案票(宇宙定義選項、有退市歷史的數據來源、倖存者偏差與代號重用處置、工作量估算),研究交付後由用戶裁建法;裁前不建
+  3. 鏈層純度為最高優先:同一層必須共享同一敘事,成員數不設上限;開鏈表 v2 票拆 staples/web3_crypto/china,並對全部 52 條鏈做一次敘事純度覆核;名冊門檻收緊為「同鏈位且同敘事」,D-146 ③ 主 agent 立場撤回
+  4. KARST-159 raise 以此裁決作答並關檔;敘事鏈層 v3 量度改在 v2 表上做
+
+- **用戶原話（原文照錄）**
+
+  > 「Not doing these.」/「Yes, we need to. But I want to have a study project and research on this topic first」/「Yes, I dont care how much you add, but the purity of the layer is the highest priority. The company in the same layer should share the same narrative」
+
+- 影響：十倍股線多一道硬排除;小型股宇宙由「待裁」轉「研究中」;鏈表進 v2(純度版),v3 量度順延到 v2 之後;主目標(15–22% 主線加 30% 副線或維持 30%)仍待裁。
