@@ -1,7 +1,8 @@
-location,role,filename_pattern,content,files,bytes,fetched,status_after_KARST-174,note
-data/sec/submissions/,canonical,CIK<10>.json,申報索引本體,8012,674295058,2026-09-02/03,正本,逐份索引見同目錄 manifest.jsonl；filings.files 分頁檔一個都無存（2066 份被截短）
-experiments/2026-09-02-fundamentals-panel/data/submissions/,copy,CIK<10>.json,申報索引本體,78,11865248,2026-09-02,已清 32 份與正本相同的,餘 2 份同 CIK 內容有異＋76 份正本無此 CIK
-experiments/2026-09-02-silent-revisions/data/submissions/,copy+shard,CIK<10>.json 與 CIK<10>-submissions-00N.json,申報索引本體與 EDGAR 分頁檔,1173,256420005,2026-09-02,已清 482 份與正本相同的,餘 1051 個分頁檔（237886946 位元組，正本完全沒有）＋99 份內容有異＋23 份正本無此 CIK
+location,role,filename_pattern,content,files,bytes,fetched,status_after_KARST-177,note
+data/sec/submissions/,canonical,CIK<10>.json,申報索引主檔(8012 v0 宇宙+99 宇宙外),8111,685772226,2026-09-02/03,正本,逐份索引見同目錄 manifest.jsonl；99 份宇宙外主檔 KARST-177 由下列兩個副本目錄收編，manifest 標 outside_universe_v0
+data/sec/submissions/pages/,canonical,CIK<10>-submissions-NNN.json,申報索引歷史分頁檔,2816,477102617,2026-09-02(收編部分)/2026-09-03(補抓部分),正本,KARST-177 新結構：1051 個由 silent-revisions 收編＋1765 個向 EDGAR 補抓，零失敗；2066 家截短公司完整性 100%（見 completeness.csv）
+experiments/2026-09-02-fundamentals-panel/data/submissions/,copy,CIK<10>.json,申報索引本體,2,295876,2026-09-02,已清 32 份與正本相同的+已收編 76 份宇宙外 CIK,餘 2 份同 CIK 內容有異（較正本舊）
+experiments/2026-09-02-silent-revisions/data/submissions/,copy,CIK<10>.json,申報索引本體,99,15167624,2026-09-02,已清 482 份與正本相同的+已收編 1051 個分頁檔與 23 份宇宙外 CIK,餘 99 份同 CIK 內容有異（較正本舊）
 experiments/2026-09-02-lazy-prices/data/submissions/,derivative,<10>.json,10-K 清單衍生物 非申報索引本體,573,883651,2026-09-02,全數保留,D-134 決策第 2 條准許實驗票存衍生物；目錄名誤導
 experiments/2026-09-02-narrative-layers/data/submissions/,derivative,<10>.json,10-K 清單衍生物 非申報索引本體,573,883651,2026-09-02,全數保留,同上
 experiments/2026-09-02-narrative-layers-v2/data/submissions/,derivative,<10>.json,10-K 清單衍生物 非申報索引本體,152,95095,2026-09-02,全數保留,同上

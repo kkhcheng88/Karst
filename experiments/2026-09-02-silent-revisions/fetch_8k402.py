@@ -28,29 +28,27 @@ import pandas as pd
 HERE = pathlib.Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 PANEL_DIR = REPO / "experiments" / "2026-09-02-fundamentals-panel"
-CACHE = HERE / "data" / "submissions"
 OUT = HERE / "out"
-CACHE.mkdir(parents=True, exist_ok=True)
 OUT.mkdir(parents=True, exist_ok=True)
 
 spec = importlib.util.spec_from_file_location("sec_client", PANEL_DIR / "sec_client.py")
 sec_client = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sec_client)
 
-# KARST-174:唯讀退路由 fundamentals-panel 的副本改指單一快取(D-134)。
-# CACHE 仍留在本票目錄:它要存 EDGAR 分頁檔(CIK*-submissions-00N.json),
-# 而單一快取現時不收分頁檔,寫進去等同擅自合併(票面明文禁止)。
+# KARST-177:正本已收編歷史分頁檔(data/sec/submissions/pages/),寫入路徑改指正本。
+# 主檔(CIK<10>.json)住 data/sec/submissions/ 頂層;分頁檔(CIK<10>-submissions-00N.json)
+# 住 data/sec/submissions/pages/。CACHE 只是路徑常數,抓之前先查、查不到才打 EDGAR 的
+# load_or_fetch() 邏輯一字未改。
 EXISTING = REPO / "data" / "sec" / "submissions"
+PAGES_CACHE = EXISTING / "pages"
 
 
 def load_or_fetch(name: str) -> dict | None:
     """name is like CIK0000004281.json or CIK0000004281-submissions-001.json."""
-    local = CACHE / name
+    is_shard = "-submissions-" in name
+    local = (PAGES_CACHE if is_shard else EXISTING) / name
     if local.exists() and local.stat().st_size > 0:
         return json.loads(local.read_text(encoding="utf-8"))
-    inherited = EXISTING / name
-    if inherited.exists() and inherited.stat().st_size > 0:
-        return json.loads(inherited.read_text(encoding="utf-8"))
     url = f"https://data.sec.gov/submissions/{name}"
     raw, err = sec_client.get(url)
     if raw is None:
