@@ -1,0 +1,582 @@
+{
+ "n_rows": 353,
+ "n_themes": 65,
+ "n_companies": 343,
+ "themes_lt5": [
+  "ag_nitrogen",
+  "ag_potash_phosphate",
+  "cannabis",
+  "casino_macau",
+  "china_ecommerce",
+  "china_education",
+  "china_ev",
+  "copper",
+  "crypto_exchange",
+  "ev_us",
+  "memory",
+  "metaverse_innov",
+  "smr_newbuild",
+  "solar",
+  "streaming_content",
+  "uranium_enrichment"
+ ],
+ "n_themes_lt5": 16,
+ "n_themes_ge5": 49,
+ "slices": {
+  "2023-06-30": {
+   "n_rows_in_effect": 268,
+   "n_themes_in_effect": 49,
+   "n_companies": 268,
+   "n_with_price": 204,
+   "n_item1_derivative": 169,
+   "n_cache_10k_within_500d": 192,
+   "n_price_and_cache": 191,
+   "themes_with_ge2_priced": 44,
+   "themes_with_ge3_priced": 39,
+   "per_theme": {
+    "aero_aftermarket": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "ai_hpc_hosting": {
+     "roster": 1,
+     "with_price": 0
+    },
+    "airlines": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "alt_lending": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "auto_aftermarket": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "auto_retail": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "banks": {
+     "roster": 7,
+     "with_price": 7
+    },
+    "betting": {
+     "roster": 4,
+     "with_price": 2
+    },
+    "biotech": {
+     "roster": 9,
+     "with_price": 9
+    },
+    "building_products": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "casino_us_regional": {
+     "roster": 6,
+     "with_price": 3
+    },
+    "china_online_content": {
+     "roster": 5,
+     "with_price": 1
+    },
+    "crypto_mining": {
+     "roster": 9,
+     "with_price": 7
+    },
+    "crypto_treasury": {
+     "roster": 1,
+     "with_price": 1
+    },
+    "ctv_adtech": {
+     "roster": 5,
+     "with_price": 1
+    },
+    "cyber": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "datacenter_power": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "defense": {
+     "roster": 7,
+     "with_price": 7
+    },
+    "discount_retail": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "drilling_contractors": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "energy": {
+     "roster": 5,
+     "with_price": 2
+    },
+    "gig": {
+     "roster": 4,
+     "with_price": 4
+    },
+    "glp1": {
+     "roster": 2,
+     "with_price": 2
+    },
+    "gold": {
+     "roster": 8,
+     "with_price": 5
+    },
+    "homebuilders": {
+     "roster": 7,
+     "with_price": 4
+    },
+    "hyperscalers": {
+     "roster": 4,
+     "with_price": 4
+    },
+    "insurance_brokers": {
+     "roster": 5,
+     "with_price": 5
+    },
+    "managed_care": {
+     "roster": 5,
+     "with_price": 5
+    },
+    "midstream": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "natgas_ep": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "oilfield_services": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "optical_cpo": {
+     "roster": 3,
+     "with_price": 2
+    },
+    "payments": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "power_producers": {
+     "roster": 3,
+     "with_price": 3
+    },
+    "quantum": {
+     "roster": 4,
+     "with_price": 4
+    },
+    "railroads": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "refiners": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "restaurants": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "semi_equipment": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "semis": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "software_cloud": {
+     "roster": 8,
+     "with_price": 7
+    },
+    "solar_utility": {
+     "roster": 5,
+     "with_price": 2
+    },
+    "staples_brand": {
+     "roster": 11,
+     "with_price": 11
+    },
+    "staples_retail": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "steel": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "travel_cruise": {
+     "roster": 4,
+     "with_price": 3
+    },
+    "travel_platform": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "upstream_oil": {
+     "roster": 10,
+     "with_price": 7
+    },
+    "uranium_mining": {
+     "roster": 5,
+     "with_price": 1
+    }
+   },
+   "missing_price": [
+    "ACI",
+    "ACLS",
+    "AGI",
+    "AM",
+    "APLD",
+    "AR",
+    "ARRY",
+    "AWI",
+    "BILI",
+    "BJ",
+    "BP",
+    "BURL",
+    "BYD",
+    "CHDN",
+    "CHRD",
+    "CMC",
+    "CNI",
+    "CORZ",
+    "CP",
+    "CRDO",
+    "CSIQ",
+    "DNN",
+    "DORM",
+    "DV",
+    "ENVA",
+    "EU",
+    "FN",
+    "FOUR",
+    "GPOR",
+    "GRBK",
+    "HIVE",
+    "HUBS",
+    "HUYA",
+    "IAG",
+    "IQ",
+    "KGC",
+    "LAD",
+    "LGIH",
+    "LIND",
+    "MGNI",
+    "MHO",
+    "MOD",
+    "MTDR",
+    "OC",
+    "ONTO",
+    "OPRT",
+    "PAG",
+    "PTEN",
+    "PUBM",
+    "PXD",
+    "RRR",
+    "RSI",
+    "S",
+    "SGHC",
+    "SHEL",
+    "SHLS",
+    "TCOM",
+    "TME",
+    "TTD",
+    "TTE",
+    "URG",
+    "UUUU",
+    "VAL",
+    "WWD"
+   ]
+  },
+  "2025-06-30": {
+   "n_rows_in_effect": 278,
+   "n_themes_in_effect": 49,
+   "n_companies": 278,
+   "n_with_price": 209,
+   "n_item1_derivative": 0,
+   "n_cache_10k_within_500d": 161,
+   "n_price_and_cache": 160,
+   "themes_with_ge2_priced": 46,
+   "themes_with_ge3_priced": 39,
+   "per_theme": {
+    "aero_aftermarket": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "ai_hpc_hosting": {
+     "roster": 4,
+     "with_price": 2
+    },
+    "airlines": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "alt_lending": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "auto_aftermarket": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "auto_retail": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "banks": {
+     "roster": 7,
+     "with_price": 7
+    },
+    "betting": {
+     "roster": 4,
+     "with_price": 2
+    },
+    "biotech": {
+     "roster": 9,
+     "with_price": 9
+    },
+    "building_products": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "casino_us_regional": {
+     "roster": 6,
+     "with_price": 3
+    },
+    "china_online_content": {
+     "roster": 5,
+     "with_price": 1
+    },
+    "crypto_mining": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "crypto_treasury": {
+     "roster": 5,
+     "with_price": 2
+    },
+    "ctv_adtech": {
+     "roster": 5,
+     "with_price": 1
+    },
+    "cyber": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "datacenter_power": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "defense": {
+     "roster": 7,
+     "with_price": 7
+    },
+    "discount_retail": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "drilling_contractors": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "energy": {
+     "roster": 5,
+     "with_price": 2
+    },
+    "gig": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "glp1": {
+     "roster": 2,
+     "with_price": 2
+    },
+    "gold": {
+     "roster": 8,
+     "with_price": 5
+    },
+    "homebuilders": {
+     "roster": 7,
+     "with_price": 4
+    },
+    "hyperscalers": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "insurance_brokers": {
+     "roster": 5,
+     "with_price": 5
+    },
+    "managed_care": {
+     "roster": 5,
+     "with_price": 5
+    },
+    "midstream": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "natgas_ep": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "oilfield_services": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "optical_cpo": {
+     "roster": 3,
+     "with_price": 2
+    },
+    "payments": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "power_producers": {
+     "roster": 3,
+     "with_price": 3
+    },
+    "quantum": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "railroads": {
+     "roster": 5,
+     "with_price": 3
+    },
+    "refiners": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "restaurants": {
+     "roster": 6,
+     "with_price": 6
+    },
+    "semi_equipment": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "semis": {
+     "roster": 6,
+     "with_price": 5
+    },
+    "software_cloud": {
+     "roster": 8,
+     "with_price": 7
+    },
+    "solar_utility": {
+     "roster": 5,
+     "with_price": 2
+    },
+    "staples_brand": {
+     "roster": 11,
+     "with_price": 11
+    },
+    "staples_retail": {
+     "roster": 6,
+     "with_price": 4
+    },
+    "steel": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "travel_cruise": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "travel_platform": {
+     "roster": 5,
+     "with_price": 4
+    },
+    "upstream_oil": {
+     "roster": 9,
+     "with_price": 7
+    },
+    "uranium_mining": {
+     "roster": 5,
+     "with_price": 1
+    }
+   },
+   "missing_price": [
+    "ACI",
+    "ACLS",
+    "AGI",
+    "AM",
+    "APLD",
+    "AR",
+    "ARRY",
+    "AWI",
+    "BILI",
+    "BJ",
+    "BP",
+    "BURL",
+    "BYD",
+    "CART",
+    "CHDN",
+    "CHRD",
+    "CMC",
+    "CNI",
+    "CORZ",
+    "CP",
+    "CRDO",
+    "CSIQ",
+    "DFDV",
+    "DNN",
+    "DORM",
+    "DV",
+    "ENVA",
+    "EU",
+    "FN",
+    "FOUR",
+    "GPOR",
+    "GRBK",
+    "HIVE",
+    "HUBS",
+    "HUYA",
+    "IAG",
+    "INFQ",
+    "IQ",
+    "KGC",
+    "LAD",
+    "LGIH",
+    "LIND",
+    "META",
+    "MGNI",
+    "MHO",
+    "MOD",
+    "MTDR",
+    "OC",
+    "ONTO",
+    "OPRT",
+    "PAG",
+    "PTEN",
+    "PUBM",
+    "RRR",
+    "RSI",
+    "S",
+    "SBET",
+    "SGHC",
+    "SHEL",
+    "SHLS",
+    "TCOM",
+    "TME",
+    "TTD",
+    "TTE",
+    "UPXI",
+    "URG",
+    "UUUU",
+    "VAL",
+    "WWD"
+   ]
+  }
+ }
+}
