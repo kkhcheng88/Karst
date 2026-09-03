@@ -1,0 +1,144 @@
+{
+ "arm": "diag_v3set_newprice",
+ "n_labelled": 203,
+ "n_unlabelled": 0,
+ "coverage": 1.0,
+ "n_layers": 48,
+ "layer_sizes": [
+  4,
+  6,
+  3,
+  5,
+  3,
+  7,
+  2,
+  9,
+  4,
+  3,
+  1,
+  7,
+  1,
+  1,
+  5,
+  4,
+  7,
+  4,
+  4,
+  1,
+  4,
+  2,
+  5,
+  4,
+  4,
+  5,
+  5,
+  4,
+  3,
+  6,
+  2,
+  5,
+  3,
+  4,
+  3,
+  6,
+  6,
+  4,
+  4,
+  7,
+  2,
+  11,
+  4,
+  4,
+  3,
+  4,
+  7,
+  1
+ ],
+ "largest_layer": 11,
+ "median_layer": 4.0,
+ "pair_stats": {
+  "G1_same_layer_diff_subind": {
+   "n_pairs": 125,
+   "mean": 0.15720564287091235
+  },
+  "G2_same_subind_diff_layer": {
+   "n_pairs": 156,
+   "mean": 0.05565265886014579
+  },
+  "G3_same_layer_same_subind": {
+   "n_pairs": 306,
+   "mean": 0.37759863650140135
+  },
+  "G0_neither": {
+   "n_pairs": 19916,
+   "mean": 0.007248953293402503
+  }
+ },
+ "G1": 0.15720564287091235,
+ "G2": 0.05565265886014579,
+ "diff": 0.10155298401076657,
+ "resolution_multiple": 2.8247642806423237,
+ "bootstrap": {
+  "B_used": 1996,
+  "diff_mean": 0.11090943857316626,
+  "diff_ci95": [
+   -0.0014012350375309322,
+   0.2309077731277019
+  ],
+  "G1_ci95": [
+   0.0954342547236294,
+   0.2802728283792444
+  ],
+  "G2_ci95": [
+   -0.02587115675082684,
+   0.13255662759397582
+  ]
+ },
+ "permutation": {
+  "B_used": 2000,
+  "null_mean": -0.2605981550786612,
+  "band95": [
+   -0.2694039475059084,
+   -0.25092292534317806
+  ],
+  "observed_percentile": 100.0
+ },
+ "ami_vs_subindustry": 0.7991825282299186,
+ "n_eff_layers": 3.6526289627950677,
+ "n_layers_with_returns": 43,
+ "sector_etf_n_eff": 1.9609435679945058,
+ "n_eff_gap": 1.691685394800562,
+ "below_pair_threshold": false,
+ "n_v3_keep": 204,
+ "n_matched": 203,
+ "v3_members_lost": [
+  "XOM"
+ ],
+ "decomposition_by_newness": {
+  "G1_both_old": {
+   "n_pairs": 125,
+   "mean": 0.15720564287091235
+  },
+  "G1_one_new": {
+   "n_pairs": 36,
+   "mean": 0.22884131815117867
+  },
+  "G1_both_new": {
+   "n_pairs": 10,
+   "mean": 0.33687917780758025
+  },
+  "G2_both_old": {
+   "n_pairs": 156,
+   "mean": 0.05565265886014579
+  },
+  "G2_one_new": {
+   "n_pairs": 80,
+   "mean": 0.10739188294614954
+  },
+  "G2_both_new": {
+   "n_pairs": 10,
+   "mean": 0.16649775310822945
+  }
+ },
+ "n_new_members": 62
+}
