@@ -1,0 +1,15 @@
+{
+  "produced_by": "KARST-171",
+  "source": "universe_smallcap_v0.csv (KARST-167)",
+  "rule_added": "E5:剔 SIC 6221(商品合約經紀商)——信託型 ETP;三家人手核為營運公司者留下",
+  "manual_keep": {
+    "0000862861": "AI Financial Corp:entityType=operating,交 10-Q 91 份、DEF 14A 30 份,是營運公司不是信託",
+    "0002070542": "AIB Data Centers Inc.:entityType=operating,2025 年上市的數據中心營運商",
+    "0002143673": "Uranium Royalty Corp.:entityType=operating,鈾權利金公司,交 10-K/A 與 S-8"
+  },
+  "v0_rows": 3188,
+  "dropped_rows": 71,
+  "v1_rows": 3117,
+  "sha256": "e7a6a470ace4f8e89bd4a5a49680ca7d0478648c6e0d6e1a73f806ca31b0c5ed",
+  "bytes": 706333
+}
