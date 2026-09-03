@@ -127,6 +127,62 @@ highest priority. The company in the same layer should share the same narrative�
 2. 純度判斷全部是人手判斷,**沒有任何統計量度背書**——本票是編表票,不出成績。
 3. `valid_from` 近似比例由 50.8% 升到 60.5%(新增成員多數近似),需要準確入位日的測試仍要先補這一欄。
 
+## v2.1 換鏈日期版(2026-09-03,KARST-168)
+
+用戶裁決 D-152 ②「照建議收貨」,當中一項是 D-151 ② 的建議:**主業轉向的成員不整家出隊,
+改記為換鏈日期**——舊鏈一行 `valid_to`=轉向日、新鏈一行 `valid_from`=同日,
+令切片日期在轉向日之前的樣本仍然可用。
+
+- **正本**:`chain_membership_v2_1.csv`(UTF-8 BOM)、`chain_stories_v2_1.md`、`removed_v2_1.csv`(UTF-8 BOM)
+- **腳本**:`build_v2_1.py`(只讀 v2 三個檔,不寫回;轉向日與佐證是腳本內的一張表,改判詞改那張表再重跑)
+- **v0 / v1 / v2 一字不改**,仍在原處(已用逐格比對確認)。
+
+### 逐行覆核 `removed_v2.csv` 23 行的結果
+
+| | 行數 |
+|---|---:|
+| 改記換鏈日期(規則 d,而且兩條鏈在 v2 都存在) | **2**(MSFT、ORCL) |
+| 維持出隊 | **21** |
+| ↳ 其中掛規則 d 名下但不是「某一日轉向」 | 4(BHP、RIO、COP、HOOD) |
+| ↳ 規則 a / b / c | 17 |
+
+- **MSFT** 轉向日 `2023-01-23`(月準確):FY2023 10-K 明文「In January 2023 we announced the third
+  phase of our OpenAI strategic partnership」;OpenAI 一詞在 FY2022 年報 0 次、FY2023 年報 7 次。
+- **ORCL** 轉向日 `2023-06-01`(**近似**,取 FY2024 財年首日):FY2024 10-K 業務描述開首首次以
+  「用 OCI 訓練生成式 AI 模型的 AI 公司」作代表客戶,FY2022/FY2023 同一段只有通用 AI 字眼。
+  這個日期由 2024-06-20 才公開的年報倒推,**本身帶前視成分**。
+- **COP** 的轉向日查得到(2012-04-30 完成 Phillips 66 下游分拆,FY2012 10-K 有明文),但在表的
+  起點 2022-01-01 之前,補回舊鏈那一行只會得出空區間,所以維持出隊。順帶更正:v0 那一行的
+  `valid_to=2026-07-22` 是舊倉的表務日期,不是業務轉向日。
+- **BHP / RIO** 全期鐵礦石主導、沒有轉向日,而且 v2 的 65 條鏈沒有鐵礦石那一層可換。
+- **HOOD** 那一行本來是同一家公司在 v1 出現兩次的去重,不是轉向;`fintech` 在 v2 已拆散,沒有舊鏈可寫。
+
+### 數
+
+| | v2 | v2.1 |
+|---|---:|---:|
+| 鏈數 | 65 | 65 |
+| 成員行數 | 347 | **349** |
+| 不重覆公司數 | 343 | 343 |
+| 出隊行數 | 23 | **21** |
+| 本票新抓年報 | — | **0 份**(佐證全部在 `data/sec/10k_text` 快取內) |
+
+`chain_membership_v2_1.csv` 比 v2 多三欄(`v21_change`、`switch_date_basis`、`switch_evidence`),
+`removed_v2_1.csv` 多三欄(`v21_review`、`switch_date`、`switch_evidence`);沒有改動的行留空。
+
+### 對 v2 內容的唯一一處連帶改動
+
+`software_cloud` 的逐鏈純度句(`purity_note`,該鏈 10 行共用)在 v2 寫住「v2 剔走四家:MSFT 與
+ORCL 按規則 d……」,在 v2.1 已經不成立,所以改寫了那一句。除此之外,carried 過來的 347 行
+只有 MSFT / ORCL 在 `hyperscalers` 那兩行的 6 格有改(`valid_from`、`note`、`valid_from_basis`)。
+
+### 未做
+
+1. 同一類前視問題在 v2 其他地方仍在:`ai_hpc_hosting` 四家(CORZ / IREN / WULF / CIFR)2024 年才
+   轉去 AI 託管,`valid_from` 仍是 2022 年初;HOOD 在 `crypto_exchange` 的 `valid_from` 仍是 2022-01-01。
+   按票面「其餘 v2 內容一字不改」本票沒有動,要處理是另一張票。
+2. 純度判斷仍然全屬人手,沒有統計量度背書;本票是改表票,不出成績。
+
 ## 出處檔(舊倉,唯讀)
 
 - `docs\adr\0024-three-layer-model-theme-layer-narrative.md`
