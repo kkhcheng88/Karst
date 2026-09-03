@@ -9,7 +9,7 @@ fits: yes
 dependsOn: []
 claimedBy: Claude Opus 5
 deliverable: KARST-D02
-raised: D-155「選股層只用淨現金為正」要不要繼續?若繼續,它指的是哪一個口徑?
+closed: 2026-09-03
 ---
 
 ## 工作內容
@@ -93,3 +93,8 @@ D-155 與 `.kira/assumptions.jsonl` 未動,去留交主 agent。
 **要睇邊份稿**：
 - research/2026-09-03-淨現金篩選重驗.md
 - experiments/2026-09-03-netcash-recheck/CRITERIA.md
+
+### agent:Claude Fable 5.1 · 2026-09-03 11:41
+**裁決**：答乙:D-155 維持,淨現金口徑釘死為 N2(現金 − 總債務,申報日可得值);算不出者記「算不出」不作合格亦不作不合格;誤殺一半真十倍格這項代價交用戶討論(D-162)。
+
+**出處**：D-162
