@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: Claude Opus 5
 deliverable: KARST-D02
 ---
 
