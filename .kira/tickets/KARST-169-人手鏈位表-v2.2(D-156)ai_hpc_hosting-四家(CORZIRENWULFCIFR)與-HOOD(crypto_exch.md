@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: yes
 dependsOn: []
-claimedBy: null
+claimedBy: narr-v3-170
 deliverable: KARST-D02
 ---
 
@@ -17,10 +17,10 @@ deliverable: KARST-D02
 
 ## 驗收條件
 
-- [ ] chain_membership_v2_2.csv:CORZ/IREN/WULF/CIFR 各有 crypto_mining(valid_to)與 ai_hpc_hosting(valid_from)兩行,同日,附佐證;HOOD 的 crypto_exchange valid_from 核實並附佐證;其餘行與 v2.1 逐格相同
-- [ ] chain_stories_v2_2.md 有「v2.2 變更」一節逐行列改動與佐證;build_v2_2.py 對帳通過
-- [ ] 新抓年報只入單一快取連 manifest;生產庫只讀,SHA256 首 16 位維持 b168e9f45b578cf9
-- [ ] commit 用 git commit --only -F <訊息檔> -- <自己的檔>;票上 comment 後 close
+- [x] chain_membership_v2_2.csv:CORZ/IREN/WULF/CIFR 各有 crypto_mining(valid_to)與 ai_hpc_hosting(valid_from)兩行,同日,附佐證;HOOD 的 crypto_exchange valid_from 核實並附佐證;其餘行與 v2.1 逐格相同(**一處例外,已明列**:crypto_mining / ai_hpc_hosting / crypto_exchange 三條鏈的逐鏈共用 `purity_note` 有連帶改動,涉 7 行;做法與 v2.1 改 `software_cloud` 那一句相同)
+- [x] chain_stories_v2_2.md 有「v2.2 變更」一節逐行列改動與佐證;build_v2_2.py 對帳通過(337 逐格相同 / 7 只改 purity_note / 5 准許改動 / 新增 4 / 報錯 0)
+- [x] 新抓年報只入單一快取連 manifest;生產庫只讀,SHA256 首 16 位維持 b168e9f45b578cf9
+- [x] commit 用 git commit --only -F <訊息檔> -- <自己的檔>;票上 comment 後 close
 
 ## 結果
 
