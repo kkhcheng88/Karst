@@ -1,0 +1,7 @@
+location,role,filename_pattern,content,files,bytes,fetched,status_after_KARST-174,note
+data/sec/submissions/,canonical,CIK<10>.json,申報索引本體,8012,674295058,2026-09-02/03,正本,逐份索引見同目錄 manifest.jsonl；filings.files 分頁檔一個都無存（2066 份被截短）
+experiments/2026-09-02-fundamentals-panel/data/submissions/,copy,CIK<10>.json,申報索引本體,78,11865248,2026-09-02,已清 32 份與正本相同的,餘 2 份同 CIK 內容有異＋76 份正本無此 CIK
+experiments/2026-09-02-silent-revisions/data/submissions/,copy+shard,CIK<10>.json 與 CIK<10>-submissions-00N.json,申報索引本體與 EDGAR 分頁檔,1173,256420005,2026-09-02,已清 482 份與正本相同的,餘 1051 個分頁檔（237886946 位元組，正本完全沒有）＋99 份內容有異＋23 份正本無此 CIK
+experiments/2026-09-02-lazy-prices/data/submissions/,derivative,<10>.json,10-K 清單衍生物 非申報索引本體,573,883651,2026-09-02,全數保留,D-134 決策第 2 條准許實驗票存衍生物；目錄名誤導
+experiments/2026-09-02-narrative-layers/data/submissions/,derivative,<10>.json,10-K 清單衍生物 非申報索引本體,573,883651,2026-09-02,全數保留,同上
+experiments/2026-09-02-narrative-layers-v2/data/submissions/,derivative,<10>.json,10-K 清單衍生物 非申報索引本體,152,95095,2026-09-02,全數保留,同上

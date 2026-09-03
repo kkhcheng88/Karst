@@ -37,7 +37,10 @@ spec = importlib.util.spec_from_file_location("sec_client", PANEL_DIR / "sec_cli
 sec_client = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sec_client)
 
-EXISTING = PANEL_DIR / "data" / "submissions"
+# KARST-174:唯讀退路由 fundamentals-panel 的副本改指單一快取(D-134)。
+# CACHE 仍留在本票目錄:它要存 EDGAR 分頁檔(CIK*-submissions-00N.json),
+# 而單一快取現時不收分頁檔,寫進去等同擅自合併(票面明文禁止)。
+EXISTING = REPO / "data" / "sec" / "submissions"
 
 
 def load_or_fetch(name: str) -> dict | None:

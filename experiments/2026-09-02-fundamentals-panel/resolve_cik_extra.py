@@ -33,7 +33,9 @@ from sec_client import get
 REPO = pathlib.Path(r"C:\projects\Karst")
 HERE = pathlib.Path(__file__).resolve().parent
 OUT = HERE / "out"
-CACHE = HERE / "data" / "submissions"
+# KARST-174:由票目錄改指單一快取(D-134)。只改路徑,抓取邏輯不變。
+# 注意:本檔寫入時不補寫 manifest.jsonl,重跑並新抓之前要先補登記步驟。
+CACHE = REPO / "data" / "sec" / "submissions"
 CACHE.mkdir(parents=True, exist_ok=True)
 
 XBRL_ERA_START = 2010   # no companyfacts exist for members gone before this
