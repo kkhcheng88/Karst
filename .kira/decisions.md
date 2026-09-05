@@ -3831,3 +3831,23 @@
   > (用戶未裁;屬 D-072 授權內收案)
 
 - 影響：D-134 在申報索引這一格完整落地;D-161 一句推論更正。
+
+## D-165 用戶裁:開發暫停,先做一輪「最新可用資源」研究;券商接口 Longbridge 與 Futu 兩者並用(Longbridge 已接入,美股即時報價含盤前盤後夜盤;Futu 主力路線須本機常駐 OpenD)。比較報告落 scratchpad longbridge-vs-futu.md(非項目檔)
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-05
+
+- 出處：用戶 2026-09-05 原話:「So I think I will use both. Actually I want to stop a bit on the development. And do some research on the latest resources that we can have first」
+
+- 背景：主 agent 立場(D-110):①暫停開發是對的時機——資料層剛換代,三個舊結論剛重量,鏈層與淨現金兩條路都停在「要不要再投」的位,這時多看外面有什麼比多開一張票值錢。②「資源」要先定義範圍,否則研究會散:我建議四類——數據源(尤其退市歷史、業績電話會議、事件時鐘)、現成回測與因子框架、學術與公開策略紀錄、AI 接口(MCP/CLI)工具;每類先出一頁清單再深挖。③研究票由 sonnet 做搜集、opus 做評估(D-160 派工規則)。
+
+- 決策：
+  1. Karst 開發線暫停;KARST-170、175 舉手維持待裁,不開新實作票
+  2. 券商接口:Longbridge 與 Futu 並用;Longbridge 作無人值守報價與美股基本面原料,Futu 作港股深度與期權異動掃描
+  3. 開一輪資源研究,範圍待用戶確認四類分法
+
+- **用戶原話（原文照錄）**
+
+  > So I think I will use both. Actually I want to stop a bit on the development. And do some research on the latest resources that we can have first
+
+- 影響：路線圖由「重量舊結論」轉入「資源研究」階段;討論議程四項(鏈層去向、淨現金取捨、停手線、三件善後)押後。
