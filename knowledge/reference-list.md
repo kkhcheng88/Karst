@@ -58,9 +58,12 @@
 | 來源 | 材料 | 狀態 |
 |---|---|---|
 | royalflush Discord(皇者顺,2023–2026) | `C:\projects\Investment\Reference\royalflush_discord\by_year` | done(communities/royalflush-discord.md) |
-| JLawStock、markminervini、aleabitoreddit(X) | 站內搜尋按季分段 | pending(瀏覽器隊在跑) |
-| edwardleeten(Threads) | 捲動極限 | pending(同上) |
-| meatbonetea、alexmokinvest(Facebook) | 按年篩選 | pending(同上) |
+| JLawStock(X) | 站內搜尋按季分段 | done(social/jlawstock.md) |
+| markminervini(X) | 站內搜尋按季分段 | done(social/markminervini.md;逐月抽樣,四個月無檔、三個月零則) |
+| aleabitoreddit(X) | 站內搜尋按季分段 | partial(social/aleabitoreddit.md;只覆蓋 2026-06 至 09 兩個多月,不足全帳號貼文 4%,判斷不了持續性) |
+| edwardleeten(Threads) | 捲動極限 | partial(social/edwardleeten.md;只取最新 440 則,2024-01 至 2026-01 約 256 則未取,即缺 2024–2025 兩年) |
+| meatbonetea(Facebook) | 按年篩選 | done(social/meatbonetea.md;四個年末切片,四年合計只讀約 56 天,窗口外整段缺) |
+| alexmokinvest(Facebook) | 按年篩選 | done(social/alexmokinvest.md;三個年末切片,三年合計約 156 天,窗口外整段缺) |
 
 ## 庚、隱藏寶石(2026-09-07 主 agent 建議;用戶問「what could be the bigger hidden GEM」)
 
