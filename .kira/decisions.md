@@ -3873,3 +3873,25 @@
   > I want we won't be scapling or day trader as our infrastuture, capital or execution will not be as fast or as resourceful as the institution or fund house. So I will bet on the fundementals or swing trade. […] 1) The core of investment is still on the fundmentals, the business or the Narrtive itself. 2) Technical Analysis is still useful between the disclosure of key events […] I think for each of them it is worth to explore. Please mark this down in the overall idea of the repo and project, and you should always in your mind to achieve this with me
 
 - 影響：D-165 的資源研究範圍由「四類資源」改為「四類注各自要什麼資源」;技術線由 D-147 後的擱置轉為收窄重開;十倍股/鏈層/錯殺/樽頸四條舊線改掛到四類注下;KARST-170、175 舉手維持。
+
+## D-167 用戶裁:專家心得全部可作參考,但一律要加權;參考組以散戶起家有對帳單的交易者與小型集中基金為主,大資本人物只借框架不借戰術;Cathie Wood 不做。落地為倉內知識庫 knowledge/(來源層+結論層)、來源權重四格(時代/持有期/親身做過/資本規模)、擴充待蒸餾名單 reference-list.md
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-07
+
+- 出處：用戶 2026-09-07 原話:「It is ok, all voice can be a good reference it is only a matter of how we manage ourselves, but all the expert voice should be weighted」「Here I use Trader is because we are not having the capital as soros or buffett. We have retail trader」「Yes, I think she is just betting on a believe, I don't see a key insight especially her timing is too bad」「please expand the list with your suggestion. Properly manage these distilled knowledge in our repo to be reusable」
+
+- 背景：主 agent 立場(D-110):①加權四格由我提出,用戶「should be weighted」一句推出,四格內容(era/horizon/practised/capital)是主 agent 定案,資本規模一格由用戶「we have retail trader」一句推出。②散戶真正有的邊四條:結構邊(機構不能持有的那格)、行為邊(無基準無季考)、資訊邊(利基)、分析邊(agent 讀全宇宙申報,我們獨有);參考對象要能證明自己用過其中一條。③第一輪書庫蒸餾(七隊)已浮現三個對 D-166 框架的真挑戰:Porter/Aschenbrenner「對的敘事錢落在瓶頸不落在主角,可用②押」;Lynch「明文拒收③④」;Tharp/宏觀派「四類注一年三五注,期望總值不利,宏觀派用九成底倉一成機會注繞開」;加 Market Wizards 十四位「生死線在注碼與離場,框架未寫這一半」。這些不砍四類注,轉為論點卡必填格與 insights/conflicts-with-framework.md,待總合成後給用戶完整立場。
+
+- 決策：
+  1. 倉內建 knowledge/ 知識庫:來源層(books/ traders/ communities/ social/)與結論層(insights/ 按四類注問題分檔);策略票只引結論層;原件不入倉(留 C:\projects\Investment\)
+  2. 每個來源檔頭部必填來源權重四格(時代/持有期/親身做過/資本規模,各高中低+一句理由);四格皆低者只作背景不入結論句;大資本來源框架不折減、戰術折減
+  3. 待蒸餾名單照 knowledge/reference-list.md 五組(主參考散戶交易者/小型集中基金信函/大資本框架與案例/反面教材紅線/社群與本地),第二輪次序 Kullamägi、Stine、Nomad 先行;材料搜集 sonnet、對照 opus
+  4. Cathie Wood / ARK 不蒸餾(用戶裁);X 上無往績網紅、量化論文、Hougaard 方法論不做
+  5. 第一輪蒸餾對框架的挑戰不砍四類注,改為四類注論點卡必填格:(a) 敘事若成真錢落在主角還是瓶頸環節;(b) 不欠債篩加時間止損兜底;(c) 注碼與離場規則(集中必須配快走條件,四類注無逃生條件則注碼降級)
+
+- **用戶原話（原文照錄）**
+
+  > all voice can be a good reference it is only a matter of how we manage ourselves, but all the expert voice should be weighted […] we are not having the capital as soros or buffett. We have retail trader […] Properly manage these distilled knowledge in our repo to be reusable
+
+- 影響：D-165 資源研究線由「找數據源」正式轉為「蒸餾人的心得並加權」;D-166 框架將補「注碼與離場」一半與「錢落在哪裡」一格(待總合成後修訂研究檔);CONTEXT.md 新增「來源權重四格」「知識庫」兩詞條。
