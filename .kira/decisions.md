@@ -3851,3 +3851,25 @@
   > So I think I will use both. Actually I want to stop a bit on the development. And do some research on the latest resources that we can have first
 
 - 影響：路線圖由「重量舊結論」轉入「資源研究」階段;討論議程四項(鏈層去向、淨現金取捨、停手線、三件善後)押後。
+
+## D-166 用戶裁項目總方向:不做即日/剝頭皮,押基本面或波段;投資核心是基本面與敘事,技術分析只在關鍵事件披露之間(最長一個業績週期約三個月)讀價格行為;四類注按風險回報遞增——①錯殺注(基本面強、被拋棄,10–20%)②趨勢注(基本面好、敘事已知、已高但仍上調)③熱敘事注(敘事已知、基本面差、已高)④未共識敘事注(我們認為敘事好、市場爭論中、基本面差、未高,500–1000%+);敘事三件=護城河、經濟學(供需/技術商業化)、財務(債務/破產風險);注碼跨注分散、注內集中(一類押一兩隻不押五至十隻);四類都值得探索。全文正本 research/2026-09-06-用戶投資框架四類注.md
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-06
+
+- 出處：用戶 2026-09-06 原話(全文見研究檔第一節),節錄:「I want we won't be scapling or day trader […] So I will bet on the fundementals or swing trade」「The core of investment is still on the fundmentals, the business or the Narrtive itself」「Technical Analysis is still useful between the disclosure of key events […] within the result period (like every 3 month at most as a cycle)」「Please mark this down in the overall idea of the repo and project, and you should always in your mind to achieve this with me」。同一訊息用戶駁回主 agent「時間是免費的數據源」一句:「I can't accept 時間是免費的數據源 this way […] This is very crazy」
+
+- 背景：主 agent 立場(D-110,詳見研究檔第三節):①三前提同意,與本週實測(價格上無長期訊號)一致;技術線收窄到事件窗價格行為後可重開,題目換成「業績間的價量形態有沒有資訊」。②「時間是免費數據源」收回作為方法:等數據不是策略;論點卡留作成績表用,方向由框架定不由數據浮現。③四類注是一條「基本面好壞 × 市場已否共識」的光譜,同一公司會沿光譜移動;平台要做一套分類器加按類治理,不是四套引擎,換類本身是最重要事件。④四類死法不同:價值陷阱/估值頂/純資金推動(與 D-147 GME 類邊界要寫死)/敘事不成立加燒錢破產(KARST-166 量到燒錢是十倍股反向篩,四類注只能用不欠債篩)。⑤10–20% 與 500–1000% 是贏注回報不是期望值,四類命中率可能一兩成,四數(D-148)照報。⑥現有資產全部有掛處:十倍股研究=四類起步剖面、鏈層=敘事共識度量器、錯殺策略(D-018)=一類、樽頸=二類/四類供需版。⑦不同意一點:市值加權指數 ETF 是趨勢注不是錯殺注,等權/價值型才近似一類,影響一類基準選擇。
+
+- 決策：
+  1. 項目總方向以研究檔 research/2026-09-06-用戶投資框架四類注.md 為正本;HANDOFF.md 第零節、CONTEXT.md 四類注詞條同步;任何策略票開工前先讀
+  2. 策略範圍:不做即日與剝頭皮;持有期數週至數季;技術分析只用於關鍵事件披露之間的價格行為,不作長期訊號
+  3. 四類注①錯殺注②趨勢注③熱敘事注④未共識敘事注全部列入探索範圍;每類先出一頁文獻結論(D-129)再開存在性測試;三類與 D-147 純資金推動股的邊界須先寫死
+  4. 暫停期(D-165)第一件落地改為:四類注分類器與論點卡規格(類別、基本面證據、敘事證據、市場共識度量、定價位置、推翻條件、時限、注碼理由;機械紅線;只追加不改寫)
+  5. 「時間是免費的數據源」不再作為方法主張;向前記錄只作成績表
+
+- **用戶原話（原文照錄）**
+
+  > I want we won't be scapling or day trader as our infrastuture, capital or execution will not be as fast or as resourceful as the institution or fund house. So I will bet on the fundementals or swing trade. […] 1) The core of investment is still on the fundmentals, the business or the Narrtive itself. 2) Technical Analysis is still useful between the disclosure of key events […] I think for each of them it is worth to explore. Please mark this down in the overall idea of the repo and project, and you should always in your mind to achieve this with me
+
+- 影響：D-165 的資源研究範圍由「四類資源」改為「四類注各自要什麼資源」;技術線由 D-147 後的擱置轉為收窄重開;十倍股/鏈層/錯殺/樽頸四條舊線改掛到四類注下;KARST-170、175 舉手維持。
