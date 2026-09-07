@@ -3895,3 +3895,25 @@
   > all voice can be a good reference it is only a matter of how we manage ourselves, but all the expert voice should be weighted […] we are not having the capital as soros or buffett. We have retail trader […] Properly manage these distilled knowledge in our repo to be reusable
 
 - 影響：D-165 資源研究線由「找數據源」正式轉為「蒸餾人的心得並加權」;D-166 框架將補「注碼與離場」一半與「錢落在哪裡」一格(待總合成後修訂研究檔);CONTEXT.md 新增「來源權重四格」「知識庫」兩詞條。
+
+## D-168 歷史資料的用途只剩三件:基準率、治理校準、分類器時點考核;不再做訊號搜尋。資料層只留原料級(EDGAR 申報文本與財務事實、日線價格),衍生表全刪;引擎回測模組角色由因子掃描改為事件研究加分類器考核;實際操作用當下非結構化資料由模型判讀
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-07
+
+- 出處：用戶 2026-09-07 原話:「I think most of the history data is serving the backtest only? As I think in our new findings, it seems most of unstructured data transformation with LLM + "Current" financial data to assess?」;主 agent 答一半同意一半不同意並提出三用途,用戶答「yes please do this」
+
+- 背景：背景:八月七輪回測全部輸指數(D-112/D-125/D-122–129),證明在歷史數字裡找訊號這條路不通;D-166 四類注是判斷型框架,分類、共識階段、被迫賣、持貨結構全由當下申報、電話會、持股披露等非結構化文字判讀。主 agent 立場(D-110):用戶對的一半是操作只需當下資料;不同意的一半是歷史有三件事非它不可——(1) 基準率:Tharp 期望值必須寫得出,錯殺後 30/60/90 日回報、業績跳空後漂移、指數剔除後見底時間,只能由歷史事件量出,是事件研究不是因子格;(2) 治理校準:止蝕幅度、時間閘只能在歷史價格路徑上量(Freeman-Shor 三萬筆交易的用法),只需日線;(3) 分類器考核:模型讀歷史年報與電話會能否在當時分對類、判對共識階段,要用歷史申報文本做時點測試,並提防模型記得結局(用知識截止後時段或遮公司名)。同日用戶已裁刪除實驗中間產物 4.2 GB 與 Alpha158 因子表 5.7 GB(原話「①實驗目錄 4.2 GB,併入 99 家後刪; OK」「② Delete」),699 家原始 companyfacts 中 99 家不在快取者先併入 data/sec 再刪。
+
+- 決策：
+  1. 歷史資料的合法用途只有三件:基準率(事件研究)、治理規則校準(止蝕、時間閘、注碼)、分類器時點考核(模型讀歷史申報能否當時分對類);不再開任何「歷史數字找訊號」的票
+  2. 資料層只留原料級:data/sec(EDGAR 申報文本、companyfacts、submissions,D-134 唯一快取)、data/prices 日線、universe、面板;衍生表(因子、運行輸出、掃描矩陣)一律不保留,要用時由原料重算
+  3. 引擎回測模組角色改為事件研究加分類器考核;因子掃描與參數格掃描功能凍結不刪(D-165 引擎凍結不變)
+  4. 每張類別規格書(KARST-178/179 起)的每個手法必列:需要哪些基準率、來自哪段歷史、樣本大約多少事件;以及實際操作時要讀哪些當下非結構化資料
+  5. 分類器考核必須防模型事後知識:用模型知識截止後的時段,或遮住公司名與日期;考核設計寫進規格書待測節
+
+- **用戶原話（原文照錄）**
+
+  > I think most of the history data is serving the backtest only? As I think in our new findings, it seems most of unstructured data transformation with LLM + "Current" financial data to assess? […] yes please do this
+
+- 影響：data/ 由約 10 GB 減至約 4 GB;實驗目錄與因子表已刪(2026-09-07 倉重整);研究方向由「回測找優勢」轉為「量基準率、校準治理、考核判讀」;CONTEXT.md 新增「基準率」「分類器時點考核」兩詞條。
