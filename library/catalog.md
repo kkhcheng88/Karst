@@ -9,7 +9,7 @@
 | 人 | 往績可查度 | 第一手材料 | 對應類注 | 為什麼 | 優先 | 狀態 |
 |---|---|---|---|---|---|---|
 | Kristjan Kullamägi(Qullamaggie) | 對帳單公開,2011 年起 5 千美元至九位數 | 免費直播存檔、網誌、Twitter | ②、事件窗 | 業績日缺口延續(episodic pivot)是事件窗價格行為第一手方法;書庫標他名字那本其實是 Schwager 1992 年書,材料要另取 | 1 | pending |
-| Jesse Stine | 書附對帳單,28 個月 140 倍 | 《Insider Buy Superstocks》2013 | ④→③、內部人買入 | 小型股由業績轉折加內部人買入起步;實際他硬要已盈利、正現金流,只服務①②,搬去③④會篩走獵物 | 1 | done(traders/jesse-stine.md) |
+| Jesse Stine | 書附對帳單,28 個月 14,972%(約 150 倍,p.7、p.15:$45,721→$6,845,342) | 《Insider Buy Superstocks》2013 | ④→③、內部人買入 | 小型股由業績轉折加內部人買入起步;實際他硬要已盈利、正現金流,只服務①②,搬去③④會篩走獵物 | 1 | done(traders/jesse-stine.md) |
 | Oliver Kell | 2020 年美國投資錦標賽冠軍,審計 941%(單年單次) | 《Victory in Stock Trading》、訪談 | ②、事件窗 | 價格週期狀態機、延伸次數計數器、結構化止蝕;相對前人蒸餾新增四件 | 2 | done(traders/oliver-kell.md) |
 | Chris Camillo | 訪談自述,無審計;Schwager 查證過部分 | 《Unknown Market Wizards》一章、Dumb Money 節目 | ④ 敘事發現 | 社交觀察先於華爾街發現需求變化 | 1 | partial(書庫 MW 後四本那隊在抽) |
 | Mark Minervini | 1997 冠軍 155%、2021 冠軍 335%,審計 | 書庫四本(已有前人蒸餾) | ②、事件窗、治理 | 已蒸餾,不重做;第四冊心態已抽 | — | done(引用前人) |
@@ -117,5 +117,10 @@
 3. 做空報告紅線清單(Chanos、Muddy Waters、Hindenburg)。
 4. Druckenmiller 近年訪談、Gerstner/Baker、GME 案例。
 5. 其餘按優先欄。
+
+## 更正紀錄
+
+- 2026-09-08:Jesse Stine 一行「28 個月 140 倍」改為「28 個月 14,972%(約 150 倍,p.7、p.15:$45,721→$6,845,342)」。來源:對帳單`2026-09-08-④未共識敘事注材料全盤梳理.md`引言段(d)。
+- 2026-09-08:確認 Druckenmiller 1999 年科網泡沫自述**不在本表已蒸餾範圍內**(見上方「第二輪派工次序」第 4 項,近年訪談仍待補),故 `library/insights/` 若有引 Druckenmiller 掛在 Market Wizards 系列書目下的句子屬誤植,已在對應 insights 檔一併改正。來源:對帳單`2026-09-08-③熱敘事注材料全盤梳理.md`引言段末句。
 
 材料搜集 sonnet,對照框架 opus(D-160 派工規則)。每位入庫一檔,格式照 `library/README.md` §三。

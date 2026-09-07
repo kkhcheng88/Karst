@@ -6,7 +6,7 @@ source_path: C:\projects\Investment\ebooks\Fundamental Value & Growth\Edward Cha
 era: 樣本落在 2002–2015(Marathon Asset Management 資本週期分析報告結集),方法論本身不受時代限制,但案例年代早於未盈利敘事股主導的年代
 market: 多市場(全球股市,案例含美、歐、亞股)
 weights: {era: 中, horizon: 低, practised: 高, capital: 低}
-weights_note: 案例集中於 2015 年前、供給側方法論本身跨時代適用(era 中);Marathon 明言資本週期訊號常提早兩至五年出現且靠持股數多、低換手抵銷時點不確定,持倉以年計、注碼分散,與用戶「數週至數季、注內集中」的框架直接衝突(horizon 低);Marathon Asset Management 是實盤操作多年的機構基金,書內大量案例是自家倉位紀錄(practised 高);屬大型機構基金規模,戰術受折減,但供給側定價框架本身不受折減。
+weights_note: 案例集中於 2015 年前、供給側方法論本身跨時代適用(era 中);Marathon 明言資本週期「醞釀期長、時點高度不確定」(書內未見「提早兩至五年」這句自認,兩個約五年的實例是 1995 年開始泡沫至 2000 年春爆破、2006 年示警商品超級週期至其後五年才轉向,p.33–34),靠持股數多、低換手抵銷時點不確定,持倉以年計、注碼分散,與用戶「數週至數季、注內集中」的框架直接衝突(horizon 低);Marathon Asset Management 是實盤操作多年的機構基金,書內大量案例是自家倉位紀錄(practised 高);屬大型機構基金規模,戰術受折減,但供給側定價框架本身不受折減。
 categories: [pricing-position, forced-selling, consensus-gauge, category-transitions, moat-durability]
 verified_record: 基金淨值(Marathon Asset Management 機構基金實盤操作紀錄,書中未附第三方審計數字)
 status: distilled
@@ -36,10 +36,10 @@ distilled_by: Claude Opus 5
    加上註33 的四項:**capex/折舊高於自身歷史均值**;**盈利與自由現金流的差距擴大**;**Herfindahl 集中度下降**;以及軼事型訊號——公司起豪華總部。
    對應:②注「敘事何時斷」、③注「派對何時散」。歸類:可操作,全部可由申報數據機械計算。
 
-4. **短缺訊號(正向那一半,book 內講得比過剩少但更值錢)。**(p.41–43、p.63)
+4. **短缺訊號(正向那一半,book 內講得比過剩少但更值錢)。**(p.43、p.63–64)
    少數大玩家、產品同質、進入壁壘在、退出壁壘不在、競爭規則簡單(定價決策次數少、事前公告),就有機會出現「pricing discipline」。作者原話:一個行業已經處於這種狀態很易辨認(看現有資本回報就知),
-   > "the really juicy investment returns are to be found in industries which are evolving to this state."
-   最強的買點是**最悲觀時最弱的對手投降**(產能真正離場)。
+   > "the really juicy investment returns are to be found in industries which are evolving to this state."(p.43)
+   最強的買點是**最悲觀時最弱的對手投降**(產能真正離場),原文:「The turn in the capital cycle often occurs during periods of maximum pessimism, as the weakest competitor throws in the towel at a point of extreme stress.」(p.63–64);方法立足點在 p.32:「returns are driven by changes on the supply side.」
    對應:②注進場、①注轉折。歸類:可操作,但要人手判斷「規則簡不簡單」。
 
 5. **資產增長異象——文獻已站住的一格。**(p.22–23)
@@ -49,6 +49,11 @@ distilled_by: Claude Opus 5
 
 6. **「價值/增長」二分是假的;貴不貴要看供給側。**(p.34、p.88)Baidu 買入時 7.2 倍賬面、18 倍盈利,Marathon 照買,理由是七成市佔、輕資產、現金轉換率逾100%、創辦人持股 20.7%。
    對應:②注(已高但仍可買的條件)。歸類:判準,非訊號。
+
+## 更正紀錄
+
+- 2026-09-08:`weights_note` 一句「Marathon 明言資本週期訊號常提早兩至五年出現」改為「醞釀期長、時點高度不確定(書內未見『提早兩至五年』的自認語句)」,並補上兩個約五年的實例(1995 年科網泡沫醞釀至 2000 年爆破、2006 年商品超級週期示警至其後五年才轉向,p.33–34)。來源:對帳單`2026-09-08-②趨勢注材料全盤梳理.md`引言段(d)。
+- 2026-09-08:第 4 條「短缺訊號」頁碼「p.41–43、p.63」改為「p.43、p.63–64」,兩句引文分別歸位到正確頁碼,並補上 p.32 的方法立足點引文。來源:同上引言段(d)。
 
 7. **同一家公司會在類別之間移動——Vestas 案。**(p.63–65)2003 年當價值股買、到 2008 年變成貴的增長股、再跌 96% 變回便宜的價值股;capex/折舊由 1 倍升到近 5 倍(頂),2013 年砍到 0.4 倍(底),Marathon 據此加碼九成,之後升 360%。
    對應:**換類事件**的最乾淨案例,而且換類的標記是一個數字(capex/折舊)。歸類:可操作,我認為這是全書對本項目最直接可用的一條。

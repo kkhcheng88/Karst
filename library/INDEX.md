@@ -22,14 +22,14 @@
 | `mw-little-book` | book | The Little Book of Market Wizards(Jack Schwager) | 2014 | 中 | 中 | 高 | 中 | 治理、事件窗 | 注碼由推翻條件反推;「核心是基本面」在 59 人樣本裡是一個選擇,不是定律 | distilled |
 | `mw-market-wizards` | book | Market Wizards(Jack Schwager) | 1989 | 低 | 低 | 高 | 高 | 治理、事件窗、共識 | 決定生死的是注碼與離場,不是選股 | distilled |
 | `mw-new` | book | The New Market Wizards(Jack Schwager) | 1992 | 低 | 低 | 高 | 高 | 治理、事件窗、共識 | 敢重注是因為有一小時逃生窗;④類注沒有這個條件 | distilled |
-| `mw-stock` | book | Stock Market Wizards(Jack Schwager) | 2001 | 中 | 低 | 高 | 中 | ①③、事件窗、定價 | 一類注有現成六道閘,但最高回報者明言買便宜貨是輸家做法 | distilled |
+| `mw-stock` | book | Stock Market Wizards(Jack Schwager) | 2001 | 中 | 低 | 高 | 中 | ①③、事件窗、定價 | 一類注有現成六道閘,但最高回報者 Walton 明言「不再買便宜貨、賣升得多的股,改為買貴的股」(p.15),原書無「買便宜貨是輸家做法」逐字原句 | distilled |
 | `mw-unknown` | book | Unknown Market Wizards(Jack Schwager) | 2020 | 高 | 中 | 高 | 高 | ③④、事件窗、共識 | 四類注真正的死因一半不在敘事上,在持貨結構上 | distilled |
 | `porter-competitive-advantage` | book | Competitive Advantage(Michael Porter) | 1985 / 1998 | 中 | 低 | 低 | 低 | 護城河、換類、定價 | 創造價值不等於賺到價值;持續性 = 模仿壁壘 + 移動靶 | distilled |
 | `rokos-house-of-money` | book | Inside the House of Money(Steven Drobny) | 2014 增訂版 | 中 | 低 | 高 | 低 | ④、定價、治理 | 把「我信這條敘事」變成一注寫得出賠率、推翻條件與災難上限的注 | distilled |
 | `soros-alchemy` | book | The Alchemy of Finance(George Soros) | 1985(日誌 1970s–1986) | 中 | 低 | 高 | 低 | 換類、共識、事件窗 | 價格會反過來改造基本面;盛衰序列有八個可辨認的階段 | distilled |
 | `soros-new-paradigm` | book | The New Paradigm for Financial Markets(George Soros) | 2008 | 高 | 低 | 高 | 低 | 換類、共識、事件窗 | 泡沫 = 一個現行趨勢 + 一個現行誤解;形狀不對稱,慢起快跌 | distilled |
 | `tharp-financial-freedom` | book | 通向財務自由之路(Van K. Tharp) | 1998 原版 / 2011 中譯 | 中 | 低 | 高 | 高 | 治理 | 要報的是 R 分布的期望值 × 機會次數,不是贏那一注賺多少 | distilled |
-| `zeckhauser-unknown-unknowable` | book | Investing in the Unknown and Unknowable(Richard Zeckhauser) | 2006 / 2010 重刊 | 中 | 低 | 高 | 高 | ③④、治理 | ④的優勢來自排他性與事後責備的缺席,不來自看法獨到 | distilled |
+| `zeckhauser-unknown-unknowable` | book | Investing in the Unknown and Unknowable(Richard Zeckhauser) | 2006 / 2010 重刊 | 中 | 低 | 高 | 高 | ③④、治理 | ④的優勢來自排他性,前提是先量度自己的「事後被責備」風險(MMQ risk)、風險可觀就避開,不來自看法獨到,也不是「沒人會責備你」 | distilled |
 
 ## 二、交易者(traders/,3 份)
 
@@ -37,7 +37,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | `jesse-stine` | trader | Jesse C. Stine(《Insider Buy Superstocks》) | 2003–2013(核心戰績 2003–2005) | 中 | 高 | 高 | 高 | ①②、事件窗 | 盈利拐點是燃料、圖表是扳機、內部人買入只是確認;買他的紀律不買他的選股宇宙 | distilled |
 | `nomad-partnership` | trader | Nomad Investment Partnership(Nick Sleep、Qais Zakaria) | 2001–2014 | 中 | 低 | 高 | 中 | ①②、護城河、治理 | 分享規模效益五訊號可以搬,倉位節奏與十年持有期不可以搬 | distilled |
-| `oliver-kell` | trader | Oliver Kell(《Victory in Stock Trading》) | 2010–2021(冠軍年 2020) | 高 | 中 | 高 | 高 | ②③、事件窗、治理 | 價格五階段加結構性止蝕;業績跳空突破大型平台是風險回報最高的形態之一 | distilled |
+| `oliver-kell` | trader | Oliver Kell(《Victory in Stock Trading》) | 2010–2021(冠軍年 2020) | 高 | 中 | 高 | 高 | ②③、事件窗、治理 | 書內正名「Cycle of Price Action」六個形態(非五階段)加結構性止蝕,另有一套獨立的 Stage 1–4 平台計數;業績跳空突破大型平台是風險回報最高的形態之一 | distilled |
 
 ## 三、社群(communities/,1 份)
 
@@ -49,7 +49,7 @@
 
 | slug | 類型 | 標題(帳號) | 年代 | 時代 | 期限 | 實踐 | 資本 | 對應注類 | 一句結論 | 狀態 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `markminervini` | social | Mark Minervini(X @markminervini) | 2023–2026(貼文);交易生涯自 1983 | 高 | 中 | 高 | 高 | ②、事件窗、治理 | 該全信的是他的風險算式(注碼 × 止蝕 ≤ 總權益 1.25–2.5%),不是他的市場判斷;他對④一句都沒有 | 已蒸餾(逐月抽樣:四個月無檔、三個月零則) |
+| `markminervini` | social | Mark Minervini(X @markminervini) | 2023–2026(貼文);交易生涯自 1983 | 高 | 中 | 高 | 高 | ②、事件窗、治理 | 風險算式(注碼 × 止蝕 ≤ 總權益 1.25–2.5%)只在此份社交提煉檔出現,《股票魔法師IV》書內零出處,原始貼文已不在倉內、無法核,引用前要標明證據等級已降;他對④一句都沒有 | 已蒸餾(逐月抽樣:四個月無檔、三個月零則) |
 | `jlawstock` | social | J Law 羅偉森(X @JLawStock) | 2024-09 至 2026-09 | 高 | 高 | 高 | 中 | ①②、事件窗、治理 | 脈絡大於形態:形態只在主題選對之後才用來定進場點;入場前先要 3–5R | 已蒸餾 |
 | `aleabitoreddit` | social | Serenity(X @aleabitoreddit) | 2026-06 至 2026-09 | 高 | 高 | 中 | 高 | ②③④ | 他證明了四類注可以怎樣選,同時證明了四類注不能怎樣持 | 部分——只覆蓋兩個多月、不足其全部貼文 4%,判斷不了持續性 |
 | `edwardleeten` | social | EdwardLee 發掘十倍股(Threads @edwardleeten) | 2024–2026(取材集中 2026) | 高 | 高 | 低 | 高 | ①②③、事件窗、治理 | 基本面只做名單、資金流決定時機;最值錢的一句是「管理層不作為就沒有重估」 | 部分——只取到 2026 年這九個月的單向升市,2024–2025 約 256 則未取,且回報數字全部來自模擬倉 |
@@ -63,3 +63,10 @@
 - 幾份來源檔缺 README §三 要求的第五節「蒸餾員一句判斷」,以「值不值得深讀」節代替(`aschenbrenner-situational`、`lynch-one-up`、`lynch-beating-street`、`porter-competitive-advantage`),`oliver-kell` 與 `royalflush-discord` 則整節缺。本表的「一句結論」由該節或第一節核心主張抽出。
 - 社交六份的往績可查度是全表最弱的一格:只有 `markminervini` 與 `jlawstock` 有第三方(美國投資錦標賽主辦方)核過的比賽名次,其餘四位全部是自報,`edwardleeten` 更是模擬倉。四位另有收費課程或訂閱,公開的成績與銷售直接掛鈎,採信度要再降一級——細節見各檔頭部的 `verified_record` 與第五節。
 - `insights/` 九份齊備:`sizing-and-exit`、`consensus-gauge`、`pricing-position`、`moat-durability`、`forced-selling`、`event-window-price-action`、`category-transitions`、`where-the-money-lands`、`conflicts-with-framework`。
+
+## 更正紀錄
+
+- 2026-09-08:`zeckhauser-unknown-unknowable` 一句結論「④的優勢來自排他性與事後責備的缺席,不來自看法獨到」改為「④的優勢來自排他性,前提是先量度自己的『事後被責備』風險(MMQ risk)、風險可觀就避開,不來自看法獨到,也不是『沒人會責備你』」(方向原句寫反)。來源:對帳單`2026-09-08-④未共識敘事注材料全盤梳理.md`第 34 條。
+- 2026-09-08:`oliver-kell` 一句結論「價格五階段」改為「書內正名『Cycle of Price Action』六個形態(非五階段),另有一套獨立的 Stage 1–4 平台計數」。來源:對帳單`2026-09-08-③熱敘事注材料全盤梳理.md`引言段(f)。
+- 2026-09-08:`markminervini` 一句結論「該全信的是他的風險算式……不是他的市場判斷」改為註明該算式只在社交提煉檔出現、書內零出處、原始貼文已不在倉內無法核,引用前要標明證據等級已降。來源:對帳單`2026-09-08-②趨勢注材料全盤梳理.md`引言段(b)、第 27 條。
+- 2026-09-08:`mw-stock` 一句結論「最高回報者明言買便宜貨是輸家做法」改為 Walton 的原句(p.15)「不再買便宜貨、賣升得多的股,改為買貴的股」——原書核不到「買便宜貨是輸家做法」這句逐字原話。來源:對帳單`2026-09-07-①錯殺注材料全盤梳理.md`第 9、68 條。
