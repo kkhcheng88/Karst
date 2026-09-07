@@ -1,47 +1,0 @@
-price panel: 738 cols, 5702 rows (2004-01-02..2026-09-01)
-[2015-06-30] texts=513 usable=506 days=251 sectorNeff=1.42
-C:\Users\Kaho\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\cluster\_hdbscan\hdbscan.py:722: FutureWarning: The default value of `copy` will change from False to True in 1.10. Explicitly set a value for `copy` to silence this warning.
-  warn(
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5304.42it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-C:\Users\Kaho\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\cluster\_hdbscan\hdbscan.py:722: FutureWarning: The default value of `copy` will change from False to True in 1.10. Explicitly set a value for `copy` to silence this warning.
-  warn(
-[2019-06-30] texts=556 usable=552 days=251 sectorNeff=1.17
-C:\Users\Kaho\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\cluster\_hdbscan\hdbscan.py:722: FutureWarning: The default value of `copy` will change from False to True in 1.10. Explicitly set a value for `copy` to silence this warning.
-  warn(
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 7534.63it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-C:\Users\Kaho\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\cluster\_hdbscan\hdbscan.py:722: FutureWarning: The default value of `copy` will change from False to True in 1.10. Explicitly set a value for `copy` to silence this warning.
-  warn(
-[2023-06-30] texts=599 usable=596 days=249 sectorNeff=1.96
-C:\Users\Kaho\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\cluster\_hdbscan\hdbscan.py:722: FutureWarning: The default value of `copy` will change from False to True in 1.10. Explicitly set a value for `copy` to silence this warning.
-  warn(
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9143.14it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-C:\Users\Kaho\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\cluster\_hdbscan\hdbscan.py:722: FutureWarning: The default value of `copy` will change from False to True in 1.10. Explicitly set a value for `copy` to silence this warning.
-  warn(
-[manual 2015-06-30] no rows in effect
-[manual 2019-06-30] no rows in effect
-[manual 2023-06-30] rows=103 usable=102 layers=31 G1=0.175 G2=0.061
-[manual 2025-06-30] rows=103 usable=103 layers=31 G1=0.232 G2=0.123
-[manual continuous] usable=100 layers=31
-written -> out/results_v2.json, out/layers_v2.csv

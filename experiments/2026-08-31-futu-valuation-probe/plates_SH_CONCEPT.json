@@ -1,3 +1,0 @@
-2026-08-31 23:34:02,103 | 43424 | 6900 | [open_context_base.py:411] _init_connect_sync: New connect ready: conn=7500214324070800745(1) context=<futu.quote.open_quote_context.OpenQuoteContext object at 0x000001754FFDBDA0>
-{"ret": -1, "action": "获取板块列表", "error": "Get Sector List request failed due to high frequency. Maximum 10 times per 30 seconds."}
-2026-08-31 23:34:02,104 | 43424 | 33976 | [open_context_base.py:521] on_disconnect: Disconnected: conn=0(1) reason=CallClose

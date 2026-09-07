@@ -1,3 +1,0 @@
-2026-08-31 23:35:41,667 | 44692 | 40412 | [open_context_base.py:411] _init_connect_sync: New connect ready: conn=7500214741674033589(1) context=<futu.quote.open_quote_context.OpenQuoteContext object at 0x0000019CCC6EBA10>
-{"code": "US.AAPL", "data": {"highest": 400.0, "average": 346.78, "lowest": 245.0, "rating": "BUY", "total": 25, "update_time": 1788183103, "update_time_str": "2026-08-31", "buy": 60.0, "hold": 24.0, "sell": 16.0}}
-2026-08-31 23:35:41,851 | 44692 | 17168 | [open_context_base.py:521] on_disconnect: Disconnected: conn=0(1) reason=CallClose

@@ -1,3 +1,0 @@
-2026-08-31 23:33:14,975 | 30800 | 33136 | [open_context_base.py:411] _init_connect_sync: New connect ready: conn=7500214126403431447(1) context=<futu.quote.open_quote_context.OpenQuoteContext object at 0x00000177A8D2EF00>
-{"code": "US.SPY", "data": {}}
-2026-08-31 23:33:15,101 | 30800 | 17172 | [open_context_base.py:521] on_disconnect: Disconnected: conn=0(1) reason=CallClose

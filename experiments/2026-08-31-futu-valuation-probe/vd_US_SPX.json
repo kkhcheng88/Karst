@@ -1,3 +1,0 @@
-2026-08-31 23:33:17,349 | 37628 | 27620 | [open_context_base.py:411] _init_connect_sync: New connect ready: conn=7500214136359422460(1) context=<futu.quote.open_quote_context.OpenQuoteContext object at 0x000001C28D0D94C0>
-{"ret": -1, "action": "获取估值详情", "error": "Unknown stock. SPX"}
-2026-08-31 23:33:17,351 | 37628 | 44020 | [open_context_base.py:521] on_disconnect: Disconnected: conn=0(1) reason=CallClose

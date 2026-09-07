@@ -21,4 +21,6 @@ experiments/*/cache/
 .venv/
 __pycache__/
 *.pyc
+.pytest_cache/
+.ruff_cache/
 /karst/web/screenshots/

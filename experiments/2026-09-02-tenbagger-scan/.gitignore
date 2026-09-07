@@ -1,6 +1,0 @@
-# 證監會 companyfacts 原始快取(約 19MB,可由 fetch_counterexamples.py 重抓)
-data/secfacts/
-# 中途產物,可由腳本重生;不入 git 只為免倉脹
-out/t0_cells.parquet
-out/filter_cells_universe.parquet
-__pycache__/

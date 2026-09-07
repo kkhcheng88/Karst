@@ -1,6 +1,0 @@
-data/
-__pycache__/
-*.pyc
-# 運氣帶的 1000 次抽樣原始陣列(每條線 1.7MB,共 10MB)。種子 20260902 寫死,
-# analyze.py 重跑即可完全復現;5-95 百分位已入 summary.json。
-out/luck_*.npy
