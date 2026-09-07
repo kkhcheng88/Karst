@@ -92,20 +92,65 @@ def duration_series(facts: dict, tags: Sequence[str]) -> Dict[Tuple[dt.date, dt.
     return {k: v[1] for k, v in best.items()}
 
 
-def instant_series(facts: dict, tags: Sequence[str]) -> Dict[dt.date, float]:
-    """時點型事實 (現金、負債、股數)。"""
+def _tag_series(facts: dict, tag: str) -> Dict[dt.date, float]:
     best: Dict[dt.date, Tuple[str, float]] = {}
+    for r in _rows(facts, tag):
+        if "start" in r or "end" not in r:
+            continue
+        k = _d(r["end"])
+        filed = r.get("filed", "")
+        if k not in best or filed >= best[k][0]:
+            best[k] = (filed, float(r["val"]))
+    return {k: v[1] for k, v in best.items()}
+
+
+def instant_series(facts: dict, tags: Sequence[str], asof: Optional[dt.date] = None,
+                    tol_days: int = 200, label: str = "", notes: Optional[List[str]] = None
+                    ) -> Dict[dt.date, float]:
+    """時點型事實 (現金、負債、股數)。有序後備清單:依序試每個標籤,取第一個
+    『覆蓋到 asof 附近 tol_days 日內』的標籤 —— 不是第一個有任何資料的標籤(KARST-183
+    的舊寫法在公司換標籤時會卡死在舊標籤的過期資料上,見 A-048/lululemon:
+    CashAndCashEquivalentsAtCarryingValue 停在 2019 年,舊寫法見它非空即停,
+    現金被 _latest 的容差濾成 0,淨負債誇大 15.15 億美元)。
+
+    若沒有任何標籤覆蓋到 asof 附近,退回「合併全部標籤取每個時點最後申報值」的
+    盡力結果,並在 notes 印警告 —— 不再靜默當 0。asof=None 時(呼叫端不關心新鮮度)
+    沿用「第一個有資料的標籤」這條舊行為。
+    """
+    if asof is None:
+        for tag in tags:
+            s = _tag_series(facts, tag)
+            if s:
+                return s
+        return {}
+
+    for tag in tags:
+        s = _tag_series(facts, tag)
+        if not s:
+            continue
+        if (asof - max(s)).days <= tol_days:
+            return s
+
+    # 有序後備清單全部落空:合併全部標籤,每個時點取最後申報值,盡力給一個答案
+    merged: Dict[dt.date, Tuple[str, float]] = {}
     for tag in tags:
         for r in _rows(facts, tag):
             if "start" in r or "end" not in r:
                 continue
             k = _d(r["end"])
             filed = r.get("filed", "")
-            if k not in best or filed >= best[k][0]:
-                best[k] = (filed, float(r["val"]))
-        if best:
-            break
-    return {k: v[1] for k, v in best.items()}
+            if k not in merged or filed >= merged[k][0]:
+                merged[k] = (filed, float(r["val"]))
+    series = {k: v[1] for k, v in merged.items()}
+    # 只在「有資料但太舊」時印警告 —— 這才是缺數的風險所在(A-048 那種)。
+    # 全部標籤完全沒有資料(series 空)多數是公司真的沒有這一項(例如沒有租賃負債、
+    # 沒有少數股東權益),不是抽取缺陷,不印警告以免洗版;_latest 照舊當 0。
+    if notes is not None and series:
+        notes.append(
+            "警告:%s 的候選標籤(%s)全部缺 asof(%s)前後 %d 日內的資料,"
+            "最新只到 %s,用這筆舊值代替 —— 可能失真,建議人手核對資產負債表。"
+            % (label or "/".join(tags), "/".join(tags), asof, tol_days, max(series)))
+    return series
 
 
 def quarterize(series: Dict[Tuple[dt.date, dt.date], float]) -> Dict[dt.date, float]:
@@ -176,7 +221,9 @@ PRETAX_TAGS = ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinary
 DILUTED_TAGS = ["WeightedAverageNumberOfDilutedSharesOutstanding",
                 "WeightedAverageNumberOfShareOutstandingBasicAndDiluted",
                 "WeightedAverageNumberOfSharesOutstandingBasic"]
-CASH_TAGS = ["CashAndCashEquivalentsAtCarryingValue"]
+CASH_TAGS = ["CashAndCashEquivalentsAtCarryingValue",
+             "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+             "CashAndCashEquivalentsAtCarryingValueIncludingDiscontinuedOperations"]
 STI_TAGS = ["ShortTermInvestments", "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
             "MarketableSecuritiesCurrent"]
 LTI_TAGS = ["AvailableForSaleSecuritiesDebtSecuritiesNoncurrent", "MarketableSecuritiesNoncurrent",
@@ -281,20 +328,21 @@ def build_financials(ticker: str) -> Financials:
     dil_ttm_ends = sorted(dil_q)
     diluted_shares = dil_q[dil_ttm_ends[-1]] if dil_ttm_ends else 0.0
 
-    cash = _latest(instant_series(facts, CASH_TAGS), asof)
-    inv = (_latest(instant_series(facts, STI_TAGS), asof)
-           + _latest(instant_series(facts, LTI_TAGS), asof))
-    debt = (_latest(instant_series(facts, DEBT_CUR_TAGS), asof)
-            + _latest(instant_series(facts, DEBT_NC_TAGS), asof))
-    lease = (_latest(instant_series(facts, LEASE_CUR_TAGS), asof)
-             + _latest(instant_series(facts, LEASE_NC_TAGS), asof))
+    def _inst(tags: Sequence[str], label: str) -> float:
+        return _latest(instant_series(facts, tags, asof=asof, label=label, notes=notes), asof)
+
+    cash = _inst(CASH_TAGS, "現金")
+    inv = _inst(STI_TAGS, "短期投資") + _inst(LTI_TAGS, "長期投資")
+    debt = _inst(DEBT_CUR_TAGS, "短期有息負債") + _inst(DEBT_NC_TAGS, "長期有息負債")
+    lease = _inst(LEASE_CUR_TAGS, "短期經營租賃負債") + _inst(LEASE_NC_TAGS, "長期經營租賃負債")
+    nci = _inst(NCI_TAGS, "少數股東權益")
 
     return Financials(
         ticker=ticker.upper(), cik=cik, name=facts.get("entityName", ticker),
         asof=asof, rev_ttm=rev_ttm, ebit_ttm=ebit_ttm, sbc_ttm=sbc_ttm,
         da_ttm=da_ttm, capex_ttm=capex_ttm, tax_rate_hist=tax_rate_hist,
         diluted_shares=diluted_shares, cash=cash, investments=inv,
-        debt=debt, lease_debt=lease, nci=_latest(instant_series(facts, NCI_TAGS), asof),
+        debt=debt, lease_debt=lease, nci=nci,
         rev_ttm_hist=ttm_series(rev_q), rev_q=rev_q, notes=notes,
     )
 
