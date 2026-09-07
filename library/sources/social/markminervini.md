@@ -2,7 +2,7 @@
 name: markminervini
 type: social
 title: Mark Minervini(X @markminervini)
-source_path: "X 站內搜尋 from:markminervini,2023-01 至 2026-09;原始抓取檔 scratchpad/raw-markminervini*.txt(約 40 檔)"
+source_path: "X 站內搜尋 from:markminervini,2023-01 至 2026-09;原始抓取檔 **library/raw/social/markminervini/raw-markminervini-*.txt(41 檔,在倉內、可核)**——2026-09-08 更正:舊值寫 scratchpad/ 路徑,令②對帳單誤判『原始貼文已不在倉內、無法核』(KARST-185)"
 era: 2023-01 至 2026-09(貼文期);作者本人交易生涯自 1983 年起
 market: US
 weights: {era: 高, horizon: 中, practised: 高, capital: 高}
@@ -138,6 +138,18 @@ distilled_by: Claude Opus 5
 | 事件窗·財報前減半 | 財報前賣出一半持倉鎖利,餘半用利潤緩衝持倉過業績;是否持倉由隱含波動率 × 現有緩衝 × 注碼決定 | 事件窗;②治理 | **中**(業績前後波動與 PEAD 文獻強,此具體規則未見) | 即日;免費(IV 需券商接口) | 減半組與全持組在多次業績窗的期望值無差異——**與 Oliver Kell 檔第三項候選正面對打** |
 | 甲族·創新高為必要條件 | 只買創出 52 週或歷史新高的股票;大升幅必然一路破新高 | ② 名單生成 | **強**(52 週高動能文獻多篇一致) | 即日;免費 | 新高子集的其後 3–12 個月超額回報不優於同市值非新高子集 |
 | 己族·跌穿 50 日線首日收市即賣 | 對最強勢股、在新牛市初期,首個收市價跌穿 50 日線即全數賣出 | ② 離場 | **弱**(移動平均離場文獻結果分歧,此限定條件版未見) | 即日;免費 | 該規則的期望值不優於同一批股票用 7–8% 固定止蝕 |
+
+## 四之二、2026-09-08 更正(KARST-185:四條規則已回原貼與書內雙重核實)
+
+Minervini 第一至三冊入庫後,本檔幾條主要規則已可與**書內頁碼**及**原始貼文日期**兩邊對照。三點要改:
+
+1. **「書內零出處」作廢。** 注碼公式的書內出處是第二冊 `minervini-2-think-trade-like-champion` **p.203(章前引言)與 p.204(完整算式)**,第三冊 **p.38、p.94** 他本人再講一次;X 原貼 **2023-06-26**「1.25-2.50 of total equity risk. Example: 25% position size x 5% stop = 1.25% of total equity. There's an entire section on position sizing in my book Think & Trade Like a Champion.」——**他自己指着那本書**。合共三個獨立出處。
+2. **5–6% 的口徑錯了一格。** 原貼 **2026-02-15**「You should be able to get half your trades right and average 5-6% losses. I've averaged even lower.」屬實;但**書內把 5–6% 定位為「惡劣市況才收緊到」的數字**(第一冊 p.376、第二冊 p.79),常態是 7–8%,絕對上限 10%(第二冊 p.62、p.104 的「牆」/Uncle Point;第三冊 p.95–96)。本檔把 5–6% 當成常態目標,**與書內口徑不符,應改為「弱市值」**。
+3. **50 日線離場那條要收窄。** 原貼 **2023-06-14**「Sold on the first close below the 50-day.」但同串 **2023-06-16** 他自己補了限定:「**The 50-day as a stop is something I do rarely, but would adhere to for the best stocks, generally at the beginning of a new bull market.**」——即「很少用,只用在最好的股票、通常在新牛市初期」。書內第二冊 p.230 的「盈虧平衡或更好」法則觸發條件是**50 日線升抵成本價**,不是跌破就走。**本檔第四節「己族·跌穿 50 日線首日收市即賣」那項候選的描述已含限定條件,可保留;但正文其他處若當成常規離場規則,要改。**
+
+VCP 原貼:**2023-06-29**「My classic signature Volatility Contraction Pattern - VCP characteristics. Look for the same today; nothing has changed. Read my books Trade Like a Stock Market Wizard and Think & Trade Like a Champion for historical precedent charts and instructions…」;書內定義與參數在第一冊 p.252–254、樞紐點 p.279–281。
+
+**證據等級的結論:算式那一格不必再降**(三個出處、二十年口徑一致);**要降的仍是他 2023–2026 的日常實盤自報**(零對帳單),那一格第五節已寫清楚,不變。
 
 ## 五、蒸餾員一句判斷
 

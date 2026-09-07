@@ -12,8 +12,8 @@
 | Jesse Stine | 書附對帳單,28 個月 14,972%(約 150 倍,p.7、p.15:$45,721→$6,845,342) | 《Insider Buy Superstocks》2013 | ④→③、內部人買入 | 小型股由業績轉折加內部人買入起步;實際他硬要已盈利、正現金流,只服務①②,搬去③④會篩走獵物 | 1 | done(traders/jesse-stine.md) |
 | Oliver Kell | 2020 年美國投資錦標賽冠軍,審計 941%(單年單次) | 《Victory in Stock Trading》、訪談 | ②、事件窗 | 價格週期狀態機、延伸次數計數器、結構化止蝕;相對前人蒸餾新增四件 | 2 | done(traders/oliver-kell.md) |
 | Chris Camillo | 訪談自述,無審計;Schwager 查證過部分 | 《Unknown Market Wizards》一章、Dumb Money 節目 | ④ 敘事發現 | 社交觀察先於華爾街發現需求變化 | 1 | partial(書庫 MW 後四本那隊在抽) |
-| Mark Minervini | 1997 冠軍 155%、2021 冠軍 335%,審計 | 書庫四本(已有前人蒸餾) | ②、事件窗、治理 | 已蒸餾,不重做;第四冊心態已抽 | — | done(引用前人) |
-| Dan Zanger | 1998–99 對帳單 29,000% | 書庫六頁訪談、Minervini 第三冊圓桌 | ② | 已在前人蒸餾;倉位一節有料 | — | done(引用前人) |
+| Mark Minervini | 1997 冠軍 155%、2021 冠軍 335%,審計 | 書庫四本 | ②、事件窗、治理 | **四冊全部入庫(2026-09-08,KARST-185)**:`minervini-1-stock-market-wizard`(趨勢模板/VCP/四階段/Weinstein 出處)、`minervini-2-think-trade-like-champion`(注碼公式正本)、`minervini-3-trading-roundtable`(四人對照)、`minervini-4-winner-rules`(心態) | — | done |
+| Dan Zanger | 1998–99 首 12 個月經 Effron 核數、至 1999-12 經《Fortune》核實;$42M 那段他自認未審計 | 書庫六頁訪談、Minervini 第三冊圓桌 | ② | **2026-09-08 首次入庫(KARST-185)**:`zanger-traders-interview-2003`;重點是 2000-10 單日蝕 32%、熊市累計回撤約 75%,以及與第三冊相隔十五年的立場對照 | — | done |
 | David Ryan | 1985–87 三連冠 | Market Wizards 一章、Minervini 第三冊 | ② | 已抽 | — | done |
 | Brian Shannon | 無公開審計;方法有書 | 《Maximum Trading Gains with Anchored VWAP》2023、免費影片 | 事件窗 | 以事件日為錨讀機構持倉成本,「像機構一樣讀價格」最可操作的一種 | 2 | pending |
 | Pradeep Bonde(Stockbee) | 無公開審計;Kullamägi 自認師承 | 網誌、會員區(收費) | ②、事件窗 | episodic pivot 概念來源;只取免費部分 | 3 | pending |
@@ -81,6 +81,7 @@
 | Philip Fisher《Common Stocks and Uncommon Profits》1958 | 資訊邊(利基) | 「閒聊法」是散戶資訊邊的原型 | 2 | pending |
 | William Poundstone《Fortune's Formula》/ Ed Thorp《A Man for All Markets》 | 注碼數學 | Kelly 準則的來歷與實戰折減 | 2 | pending |
 | Richard Love《Superperformance Stocks》1977 | ② 源頭 | Minervini 方法的原始出處 | 3 | pending |
+| Stan Weinstein《Secrets for Profiting in Bull and Bear Markets》1988 | ② 價格四階段的源頭 | **2026-09-08 升為必收(KARST-185)**:Minervini 第一冊 p.103 明文歸功此書與此人(中譯作「斯坦·威斯特恩」《在牛市和熊市中赚钱的秘密》),四階段是②「定位卡」的骨架,但我們手上只有 Minervini 的轉述,無一手 | **1** | pending(倉外未見,要先找書) |
 | Michael Batnick《Big Mistakes》2018 | 失敗模式 | 十五位大師各一次大錯 | 3 | pending |
 | William Thorndike《The Outsiders》2012 | 資本配置 | 八位行政總裁怎樣配置資本 | 3 | pending |
 

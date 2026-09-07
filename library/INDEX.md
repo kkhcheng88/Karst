@@ -1,10 +1,10 @@
-# INDEX —— 知識庫來源一覽(32 份)
+# INDEX —— 知識庫來源一覽(36 份)
 
-> 2026-09-07 重建;同日補入社交帳號六份。收錄 `books/` 22 份、`traders/` 3 份、`communities/` 1 份、`social/` 6 份,合共 32 份,與 `reference-list.md` 的狀態欄一致。四格權重(時代 / 期限 / 實踐 / 資本)判準見 `README.md` §二;「對應注類」用①錯殺 ②趨勢 ③熱敘事 ④未共識敘事,加「事件窗」「治理」「定價」「護城河」「換類」「共識」六個橫向題目。跨來源合成結論在 `insights/`(九份)。
+> 2026-09-07 重建;同日補入社交帳號六份。收錄 `books/` 26 份(2026-09-08 補入 Minervini 第一至三冊與 Zanger 2003 訪談,KARST-185)、`traders/` 3 份、`communities/` 1 份、`social/` 6 份,合共 36 份。四格權重(時代 / 期限 / 實踐 / 資本)判準見 `README.md` §二;「對應注類」用①錯殺 ②趨勢 ③熱敘事 ④未共識敘事,加「事件窗」「治理」「定價」「護城河」「換類」「共識」六個橫向題目。跨來源合成結論在 `insights/`(九份)。
 >
 > 舊版本表只收 19 份、且刻意排除「隱藏寶石」那條並行工作線的六份檔——本版把兩條線合併,舊表的分線註記作廢。
 
-## 一、書籍(books/,22 份)
+## 一、書籍(books/,26 份)
 
 | slug | 類型 | 標題(作者) | 年代 | 時代 | 期限 | 實踐 | 資本 | 對應注類 | 一句結論 | 狀態 |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -17,6 +17,9 @@
 | `lynch-one-up` | book | One Up On Wall Street(Peter Lynch) | 1989 | 低 | 低 | 高 | 低 | ①②、換類、共識、治理 | 先歸類再用該類專屬的買賣規則;並且明文拒收③④兩類 | distilled |
 | `mauboussin-expectations` | book | Expectations Investing(Michael Mauboussin、Alfred Rappaport) | 2021 修訂版 | 高 | 中 | 中 | 中 | 全類、定價 | 股價是一張已寫好的預期清單,工作是找出哪一項會被修訂 | distilled |
 | `mayer-100-baggers` | book | 100 Baggers(Christopher Mayer) | 2015(樣本 1962–2014) | 中 | 低 | 中 | 高 | ②④、治理 | 百倍股是高資本回報 × 能再投資 × 很多年;中位持有 26 年 | distilled |
+| `minervini-1-stock-market-wizard` | book | 股票魔法師:縱橫天下股市的奧秘(Mark Minervini) | 2013 原著 / 2014 中譯 | 高 | 高 | 高 | 高 | ②、事件窗、治理 | ②的規則正本:趨勢模板八條(p.119)、VCP(p.252–254)、止蝕綁定平均贏幅且他明文否認有固定止蝕點(p.363)、價格四階段連 Stan Weinstein 出處(p.103);零基準率 | distilled |
+| `minervini-2-think-trade-like-champion` | book | 股票魔法師II:像冠軍一樣思考和交易(Mark Minervini) | 2017 原著 / 2018 中譯 | 高 | 高 | 高 | 高 | ②、治理 | 注碼公式的書內正本:單注風險 = 注碼 × 止蝕 ≤ 總權益 1.25–2.5%(p.203–204);要抄的是方法不是參數 | distilled |
+| `minervini-3-trading-roundtable` | book | 股票魔法師III:趨勢交易圓桌訪談(Minervini、Zanger、Ryan、Ritchie II) | 2018 原著 / 2021 中譯 | 高 | 高 | 高 | 中 | ②、治理 | 四個冠軍的單注風險差五倍(0.5%–2.5%)、止蝕四種做法、追蹤止蝕兩派互相否定——沒有「動能派標準答案」這回事 | distilled |
 | `minervini-4-winner-rules` | book | 股票魔法師 IV:贏家法則(Mark Minervini) | 2022(中譯) | 中 | 中 | 高 | 高 | 治理 | 只值得抄他的臨場程序(決定前置、開倉後不再論證),不抄燒船心態 | distilled |
 | `mw-hedge-fund` | book | Hedge Fund Market Wizards(Jack Schwager) | 2012 | 中 | 高 | 高 | 低 | ①、事件窗、定價、治理 | 被迫賣出事件庫在此有現成規格,但錯殺兌現要兩三年,不是數季 | distilled |
 | `mw-little-book` | book | The Little Book of Market Wizards(Jack Schwager) | 2014 | 中 | 中 | 高 | 中 | 治理、事件窗 | 注碼由推翻條件反推;「核心是基本面」在 59 人樣本裡是一個選擇,不是定律 | distilled |
@@ -29,6 +32,7 @@
 | `soros-alchemy` | book | The Alchemy of Finance(George Soros) | 1985(日誌 1970s–1986) | 中 | 低 | 高 | 低 | 換類、共識、事件窗 | 價格會反過來改造基本面;盛衰序列有八個可辨認的階段 | distilled |
 | `soros-new-paradigm` | book | The New Paradigm for Financial Markets(George Soros) | 2008 | 高 | 低 | 高 | 低 | 換類、共識、事件窗 | 泡沫 = 一個現行趨勢 + 一個現行誤解;形狀不對稱,慢起快跌 | distilled |
 | `tharp-financial-freedom` | book | 通向財務自由之路(Van K. Tharp) | 1998 原版 / 2011 中譯 | 中 | 低 | 高 | 高 | 治理 | 要報的是 R 分布的期望值 × 機會次數,不是贏那一注賺多少 | distilled |
+| `zanger-traders-interview-2003` | interview | Dan Zanger Trading Method(TRADERS' 雜誌訪談) | 2003(所述操作 1998–2001) | 低 | 高 | 高 | 中 | ②、治理 | 那 164,000% 有一半未經審計(他自己講);同一套方法 2000-10 單日蝕 32%、熊市累計回撤約 75% | distilled |
 | `zeckhauser-unknown-unknowable` | book | Investing in the Unknown and Unknowable(Richard Zeckhauser) | 2006 / 2010 重刊 | 中 | 低 | 高 | 高 | ③④、治理 | ④的優勢來自排他性,前提是先量度自己的「事後被責備」風險(MMQ risk)、風險可觀就避開,不來自看法獨到,也不是「沒人會責備你」 | distilled |
 
 ## 二、交易者(traders/,3 份)
@@ -49,7 +53,7 @@
 
 | slug | 類型 | 標題(帳號) | 年代 | 時代 | 期限 | 實踐 | 資本 | 對應注類 | 一句結論 | 狀態 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `markminervini` | social | Mark Minervini(X @markminervini) | 2023–2026(貼文);交易生涯自 1983 | 高 | 中 | 高 | 高 | ②、事件窗、治理 | 風險算式(注碼 × 止蝕 ≤ 總權益 1.25–2.5%)只在此份社交提煉檔出現,《股票魔法師IV》書內零出處,原始貼文已不在倉內、無法核,引用前要標明證據等級已降;他對④一句都沒有 | 已蒸餾(逐月抽樣:四個月無檔、三個月零則) |
+| `markminervini` | social | Mark Minervini(X @markminervini) | 2023–2026(貼文);交易生涯自 1983 | 高 | 中 | 高 | 高 | ②、事件窗、治理 | 風險算式(注碼 × 止蝕 ≤ 總權益 1.25–2.5%)另有三個獨立出處——第二冊 p.203–204、第三冊 p.38/p.94、X 貼文 2023-06-26(2026-09-08 KARST-185 核實;原始貼文在 `raw/social/markminervini/` 41 個月檔內,「不在倉內」是舊註之誤);要降級的是他的日常實盤自報(零對帳單),不是這條算式;他對④一句都沒有 | 已蒸餾(逐月抽樣:四個月無檔、三個月零則) |
 | `jlawstock` | social | J Law 羅偉森(X @JLawStock) | 2024-09 至 2026-09 | 高 | 高 | 高 | 中 | ①②、事件窗、治理 | 脈絡大於形態:形態只在主題選對之後才用來定進場點;入場前先要 3–5R | 已蒸餾 |
 | `aleabitoreddit` | social | Serenity(X @aleabitoreddit) | 2026-06 至 2026-09 | 高 | 高 | 中 | 高 | ②③④ | 他證明了四類注可以怎樣選,同時證明了四類注不能怎樣持 | 部分——只覆蓋兩個多月、不足其全部貼文 4%,判斷不了持續性 |
 | `edwardleeten` | social | EdwardLee 發掘十倍股(Threads @edwardleeten) | 2024–2026(取材集中 2026) | 高 | 高 | 低 | 高 | ①②③、事件窗、治理 | 基本面只做名單、資金流決定時機;最值錢的一句是「管理層不作為就沒有重估」 | 部分——只取到 2026 年這九個月的單向升市,2024–2025 約 256 則未取,且回報數字全部來自模擬倉 |
@@ -69,4 +73,5 @@
 - 2026-09-08:`zeckhauser-unknown-unknowable` 一句結論「④的優勢來自排他性與事後責備的缺席,不來自看法獨到」改為「④的優勢來自排他性,前提是先量度自己的『事後被責備』風險(MMQ risk)、風險可觀就避開,不來自看法獨到,也不是『沒人會責備你』」(方向原句寫反)。來源:對帳單`2026-09-08-④未共識敘事注材料全盤梳理.md`第 34 條。
 - 2026-09-08:`oliver-kell` 一句結論「價格五階段」改為「書內正名『Cycle of Price Action』六個形態(非五階段),另有一套獨立的 Stage 1–4 平台計數」。來源:對帳單`2026-09-08-③熱敘事注材料全盤梳理.md`引言段(f)。
 - 2026-09-08:`markminervini` 一句結論「該全信的是他的風險算式……不是他的市場判斷」改為註明該算式只在社交提煉檔出現、書內零出處、原始貼文已不在倉內無法核,引用前要標明證據等級已降。來源:對帳單`2026-09-08-②趨勢注材料全盤梳理.md`引言段(b)、第 27 條。
+- **2026-09-08(KARST-185,更正上一條的兩半)**:(甲)「書內零出處」不成立——注碼公式 1.25–2.5% 的書內出處是第二冊 p.203–204(章前引言 + 完整算式),第三冊 p.38、p.94 他本人再講一次,連例子數字相同;之前判零出處是因為庫內只有第四冊(純心理)。(乙)「原始貼文已不在倉內」是事實錯誤——`library/raw/social/markminervini/` 有 41 個月檔,注碼公式、5–6% 蝕幅、VCP、50 日線四條全部核到原貼日期與原句。`markminervini` 的證據等級應復原:算式**有三個獨立出處**,降級的理由消失;仍要降的只有他的**日常實盤自報**(零對帳單)。
 - 2026-09-08:`mw-stock` 一句結論「最高回報者明言買便宜貨是輸家做法」改為 Walton 的原句(p.15)「不再買便宜貨、賣升得多的股,改為買貴的股」——原書核不到「買便宜貨是輸家做法」這句逐字原話。來源:對帳單`2026-09-07-①錯殺注材料全盤梳理.md`第 9、68 條。
