@@ -16,7 +16,7 @@ distilled_by: Claude Opus 5
 
 # Pat Dorsey《The Little Book That Builds Wealth》(中譯《巴菲特的護城河》)蒸餾
 
-> 手上是簡體中譯本掃描文字,頁碼用檔內 `=== PAGE n ===` 的掃描頁號(標作「掃描頁 n」)。直接引述保留原文措詞,字形轉繁。對照對象:`research/2026-09-06-用戶投資框架四類注.md` 與 `research/2026-09-06-方法論候選登記表.md`。
+> 手上是簡體中譯本掃描文字,頁碼用檔內 `=== PAGE n ===` 的掃描頁號(標作「掃描頁 n」)。直接引述保留原文措詞,字形轉繁。對照對象:`strategy/framework.md` 與 `strategy/candidates.md`。
 
 ## ① 一句核心主張
 

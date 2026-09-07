@@ -1,0 +1,16 @@
+{
+ "library": "data/prices/daily/",
+ "manifest_sha256_16": "13184359cd43de65",
+ "fetchedAt_min": "2026-09-03T00:59:57+00:00",
+ "fetchedAt_max": "2026-09-03T01:07:59+00:00",
+ "segments_for_chain_tickers": 341,
+ "tickers_found": 340,
+ "tickers_requested": 343,
+ "tickers_missing": [
+  "GTBIF",
+  "PXD",
+  "XOM"
+ ],
+ "adjustment": "p = close * (adj_close / close);自算因子,凍結庫版本(CRITERIA_rerun 3.3)",
+ "benchmark_panel": "experiments/2026-09-02-timing-sweep/data/daily_close.parquet"
+}

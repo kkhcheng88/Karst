@@ -1,0 +1,134 @@
+{
+ "2015-06-30": {
+  "40": {
+   "G2_same_subind_baseline": 0.1289,
+   "small_layers_3to25": {
+    "n_layers": 10,
+    "n_stocks": 118,
+    "mean_within_corr": 0.0686,
+    "median_within_corr": 0.0731,
+    "n_beating_G2": 1
+   },
+   "big_layers_over25": {
+    "n_layers": 6,
+    "mean_within_corr": 0.0489
+   }
+  },
+  "60": {
+   "G2_same_subind_baseline": 0.1229,
+   "small_layers_3to25": {
+    "n_layers": 20,
+    "n_stocks": 181,
+    "mean_within_corr": 0.1123,
+    "median_within_corr": 0.0897,
+    "n_beating_G2": 6
+   },
+   "big_layers_over25": {
+    "n_layers": 6,
+    "mean_within_corr": 0.0615
+   }
+  },
+  "80": {
+   "G2_same_subind_baseline": 0.1226,
+   "small_layers_3to25": {
+    "n_layers": 29,
+    "n_stocks": 220,
+    "mean_within_corr": 0.1539,
+    "median_within_corr": 0.1294,
+    "n_beating_G2": 16
+   },
+   "big_layers_over25": {
+    "n_layers": 5,
+    "mean_within_corr": 0.0571
+   }
+  }
+ },
+ "2019-06-30": {
+  "40": {
+   "G2_same_subind_baseline": 0.1242,
+   "small_layers_3to25": {
+    "n_layers": 4,
+    "n_stocks": 45,
+    "mean_within_corr": 0.1163,
+    "median_within_corr": 0.0672,
+    "n_beating_G2": 1
+   },
+   "big_layers_over25": {
+    "n_layers": 5,
+    "mean_within_corr": 0.0413
+   }
+  },
+  "60": {
+   "G2_same_subind_baseline": 0.1247,
+   "small_layers_3to25": {
+    "n_layers": 12,
+    "n_stocks": 90,
+    "mean_within_corr": 0.1568,
+    "median_within_corr": 0.0999,
+    "n_beating_G2": 6
+   },
+   "big_layers_over25": {
+    "n_layers": 7,
+    "mean_within_corr": 0.0382
+   }
+  },
+  "80": {
+   "G2_same_subind_baseline": 0.1124,
+   "small_layers_3to25": {
+    "n_layers": 24,
+    "n_stocks": 211,
+    "mean_within_corr": 0.1381,
+    "median_within_corr": 0.0944,
+    "n_beating_G2": 11
+   },
+   "big_layers_over25": {
+    "n_layers": 6,
+    "mean_within_corr": 0.0475
+   }
+  }
+ },
+ "2023-06-30": {
+  "40": {
+   "G2_same_subind_baseline": 0.1791,
+   "small_layers_3to25": {
+    "n_layers": 9,
+    "n_stocks": 45,
+    "mean_within_corr": 0.0478,
+    "median_within_corr": 0.022,
+    "n_beating_G2": 0
+   },
+   "big_layers_over25": {
+    "n_layers": 2,
+    "mean_within_corr": 0.0233
+   }
+  },
+  "60": {
+   "G2_same_subind_baseline": 0.1741,
+   "small_layers_3to25": {
+    "n_layers": 13,
+    "n_stocks": 72,
+    "mean_within_corr": 0.1251,
+    "median_within_corr": 0.1032,
+    "n_beating_G2": 4
+   },
+   "big_layers_over25": {
+    "n_layers": 2,
+    "mean_within_corr": 0.0226
+   }
+  },
+  "80": {
+   "G2_same_subind_baseline": 0.1556,
+   "small_layers_3to25": {
+    "n_layers": 11,
+    "n_stocks": 59,
+    "mean_within_corr": 0.2397,
+    "median_within_corr": 0.2061,
+    "n_beating_G2": 6
+   },
+   "big_layers_over25": {
+    "n_layers": 6,
+    "mean_within_corr": 0.0483
+   }
+  }
+ }
+}

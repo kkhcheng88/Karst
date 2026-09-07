@@ -16,7 +16,7 @@ distilled_by: Claude Opus 5
 
 # Mauboussin & Rappaport《Expectations Investing》(2021 修訂版)蒸餾
 
-> 頁碼用原書印刷頁(非 PDF 頁)。直接引述保留英文原文。對照對象:`research/2026-09-06-用戶投資框架四類注.md` 與 `research/2026-09-06-方法論候選登記表.md`。
+> 頁碼用原書印刷頁(非 PDF 頁)。直接引述保留英文原文。對照對象:`strategy/framework.md` 與 `strategy/candidates.md`。
 
 ## ① 一句核心主張
 

@@ -2,7 +2,7 @@
 
 > 挑選三條標準(主 agent 2026-09-07 定,用戶同意):①往績可查(審計、對帳單、13F、公開基金淨值);②有第一手材料(信函、書、直播、對帳單),不是別人轉述;③持有期與資本規模和散戶對得上。用戶 2026-09-07 原話:「we are not having the capital as soros or buffett. We have retail trader」——參考組以**散戶起家有對帳單的交易者**與**小型集中基金**為主,大資本人物只借框架與案例。用戶明確不做:Cathie Wood(「she is just betting on a believe, I don't see a key insight especially her timing is too bad」)。
 
-狀態:`done` 已蒸餾入 knowledge/;`partial` 部分材料已抽;`pending` 未開;`skip` 決定不做。
+狀態:`done` 已蒸餾入 `library/sources/`;`partial` 部分材料已抽;`pending` 未開;`skip` 決定不做。
 
 ## 甲、主參考:散戶起家、有對帳單或審計往績(權重四格多為高)
 
@@ -57,7 +57,7 @@
 
 | 來源 | 材料 | 狀態 |
 |---|---|---|
-| royalflush Discord(皇者顺,2023–2026) | `C:\projects\Investment\Reference\royalflush_discord\by_year` | done(communities/royalflush-discord.md) |
+| royalflush Discord(皇者顺,2023–2026) | 倉內 `library/raw/communities/royalflush_discord/by_year`(原件 `C:\projects\Investment\Reference\royalflush_discord\by_year`) | done(sources/communities/royalflush-discord.md) |
 | JLawStock(X) | 站內搜尋按季分段 | done(social/jlawstock.md) |
 | markminervini(X) | 站內搜尋按季分段 | done(social/markminervini.md;逐月抽樣,四個月無檔、三個月零則) |
 | aleabitoreddit(X) | 站內搜尋按季分段 | partial(social/aleabitoreddit.md;只覆蓋 2026-06 至 09 兩個多月,不足全帳號貼文 4%,判斷不了持續性) |
@@ -118,4 +118,4 @@
 4. Druckenmiller 近年訪談、Gerstner/Baker、GME 案例。
 5. 其餘按優先欄。
 
-材料搜集 sonnet,對照框架 opus(D-160 派工規則)。每位入庫一檔,格式照 `knowledge/README.md` §三。
+材料搜集 sonnet,對照框架 opus(D-160 派工規則)。每位入庫一檔,格式照 `library/README.md` §三。

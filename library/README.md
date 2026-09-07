@@ -1,22 +1,23 @@
-# knowledge/ —— 成功交易者與投資書的蒸餾知識庫
+# library/ —— 成功交易者與投資書的蒸餾知識庫(圖書館)
 
-> 2026-09-07 建(D-165 暫停期研究線;D-166 四類注為對照骨架)。這個目錄放**別人的心得經我們對照過的版本**,不放原書、不放原始貼文(原件留在 `C:\projects\Investment\`,這裡只放連結與頁碼)。用戶 2026-09-07 原話:「all voice can be a good reference it is only a matter of how we manage ourselves, but all the expert voice should be weighted」「Properly manage these distilled knowledge in our repo to be reusable」。
+> 2026-09-07 建(D-165 暫停期研究線;D-166 四類注為對照骨架);同日倉重整,由 `knowledge/` 改名 `library/`。這個目錄放**別人的心得經我們對照過的版本**;原始全文另存 `raw/`(2026-09-07 起倉內自足,原件同時仍在 `C:\projects\Investment\`)。用戶 2026-09-07 原話:「all voice can be a good reference it is only a matter of how we manage ourselves, but all the expert voice should be weighted」「Properly manage these distilled knowledge in our repo to be reusable」。
 
 ## 一、目錄
 
 ```
-knowledge/
+library/
   README.md            本檔:結構、權重規矩、檔案格式
   INDEX.md             全部來源一覽表(來源、類型、權重四格、對應類注、狀態),由蒸餾檔頭部欄位彙整
-  reference-list.md    待蒸餾名單(擴充版),含往績可查度、材料位置、優先次序、狀態
-  books/<slug>.md      一本書一檔
-  traders/<slug>.md    一位交易者一檔(跨書、跨訪談、跨貼文合併;書中某位受訪者若獨立成檔亦放此)
-  communities/<slug>.md 社群存檔(如 royalflush Discord)一檔
-  social/<handle>.md   社交帳號一檔
+  catalog.md           待蒸餾名單(擴充版),含往績可查度、材料位置、優先次序、狀態
+  sources/books/<slug>.md       一本書一檔
+  sources/traders/<slug>.md     一位交易者一檔(跨書、跨訪談、跨貼文合併;書中某位受訪者若獨立成檔亦放此)
+  sources/communities/<slug>.md 社群存檔(如 royalflush Discord)一檔
+  sources/social/<handle>.md    社交帳號一檔
   insights/<topic>.md  跨來源合成的主題結論,按四類注的問題分檔(見 §四);每條結論列出支持與反對的來源
+  raw/                 原始全文(書的抽字 md、社交帳號原始抓取、Discord 逐年全文);見 raw/README.md
 ```
 
-**規矩**:`books/`、`traders/`、`communities/`、`social/` 是**來源層**,只記那個來源講了什麼、我們怎樣對照;`insights/` 是**結論層**,只由來源層引用而來,不准出現沒有來源的主張。策略票引用知識庫時引 `insights/`,追溯時才落到來源層。
+**規矩**:`sources/` 下四個目錄是**來源層**,只記那個來源講了什麼、我們怎樣對照;`insights/` 是**結論層**,只由來源層引用而來,不准出現沒有來源的主張。策略票引用知識庫時引 `insights/`,追溯時才落到來源層。
 
 ## 二、來源權重四格(每個來源檔頭部必填)
 
@@ -57,7 +58,7 @@ distilled_by: <模型>
 ## 五、蒸餾員一句判斷
 ```
 
-## 四、insights/ 的分檔(按四類注要答的問題,見 `research/2026-09-06-方法論候選登記表.md` §零)
+## 四、insights/ 的分檔(按四類注要答的問題,見 `strategy/candidates.md` §零)
 
 - `sizing-and-exit.md` 注碼與離場治理(所有來源最一致的一半;D-166 框架未寫的一半)
 - `consensus-gauge.md` 敘事共識度量:市場知不知道、飽和了沒有
@@ -73,7 +74,8 @@ distilled_by: <模型>
 
 ## 五、與其他檔的關係
 
-- 原件與前人蒸餾:`C:\projects\Investment\ebooks\`(內有動能派可回測規則蒸餾 `Discretionary Momentum/DISTILLATION-backtestable-rules.md` 與 Mark Douglas/Tom Hougaard 六維整理,**不重做,只引用**;該檔第零節記有書庫檔案錯置,引用前先看)。
-- 候選登記表:`research/2026-09-06-方法論候選登記表.md`,來源檔第四節的項目最終要併進去。
-- 框架正本:`research/2026-09-06-用戶投資框架四類注.md`(D-166)。
+- 原始全文:`library/raw/`(倉內自足,書按頁號可核對引述)。
+- 倉外原件與前人蒸餾:`C:\projects\Investment\ebooks\`(內有動能派可回測規則蒸餾 `Discretionary Momentum/DISTILLATION-backtestable-rules.md` 與 Mark Douglas/Tom Hougaard 六維整理,**不重做,只引用**;該檔第零節記有書庫檔案錯置,引用前先看)。
+- 候選登記表:`strategy/candidates.md`,來源檔第四節的項目最終要併進去。
+- 框架正本:`strategy/framework.md`(D-166)。
 - 詞彙:`CONTEXT.md`「四類注 / 敘事 / 事件窗價格行為 / 來源權重四格」。
