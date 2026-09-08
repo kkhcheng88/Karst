@@ -1,0 +1,64 @@
+{
+  "stress_floor_applied": 56,
+  "stress_raw_positive": 15,
+  "n3_vs_ps_ratio_spearman": -0.9947,
+  "n2_positive": 11,
+  "terminal_gt90": 18,
+  "terminal_gt100": 14,
+  "g_gt40": 10,
+  "g_clamped": 1,
+  "odds_vs_g_spearman": 0.5387,
+  "top12_A_conclusion": {
+    "不入": 6,
+    "入選": 4,
+    "觀察": 2
+  },
+  "top12_veto_by_ma200": [
+    "CLS"
+  ],
+  "label_vs_bottom_line": {
+    "市場比指引更悲觀": {
+      "False": 13,
+      "True": 13
+    },
+    "市場比指引更樂觀": {
+      "False": 18,
+      "True": 12
+    },
+    "與指引重疊": {
+      "False": 1,
+      "True": 2
+    }
+  },
+  "bottom_line_knife_edge": [
+    "CIEN",
+    "STRL",
+    "MTZ",
+    "FSLR",
+    "CDNS"
+  ],
+  "shares_fixed": 7,
+  "debt_fixed": 19,
+  "cash_fixed": 9,
+  "debt_gate_fail": [
+    "AAON",
+    "TROX",
+    "MEC",
+    "ORCL",
+    "MTZ",
+    "KRMN",
+    "CLVT"
+  ],
+  "field_missing": {
+    "數一 現價隱含五年增速": 22,
+    "數二 相對現價上行": 16,
+    "賠率": 16,
+    "數三 一年回報": 1,
+    "市銷率 四年中位": 1,
+    "分析員共識收入增速": 0,
+    "同業中位相對標普(殺法歸因)": 0,
+    "營運現金流": 0,
+    "營業利潤率": 0
+  },
+  "label_missing": 0
+}
