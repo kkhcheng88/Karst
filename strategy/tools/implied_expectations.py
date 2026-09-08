@@ -38,6 +38,83 @@ DAY = dt.timedelta(days=1)
 
 
 # ----------------------------------------------------------------------------
+# 零、折現率規則 (KARST-190)
+# ----------------------------------------------------------------------------
+# 折現率 = 十年期美債收益率 + 股權溢價,四捨五入至最近 0.5%,同一批候選公司共用
+# 同一個數 —— 取消逐家在 CASES 手填折現率的做法(SNOW 10%、AXTI 12% 就是舊做法
+# 的產物,現在只當歷史記錄留在 CASES 裡,計算時預設忽略,見 analyse())。
+
+EQUITY_PREMIUM = 0.05      # 股權溢價,加在十年期美債收益率之上
+RATE_ROUND_STEP = 0.005    # 折現率四捨五入到最近 0.5 個百分點
+
+
+def _round_half_up(x: float, step: float) -> float:
+    """四捨五入到 step 的倍數 —— 明確用四捨五入(非 Python round() 的銀行家捨入),
+    因為折現率的取整規則是「四捨五入」,兩者在 .x5 邊界會給出不同答案。"""
+    import decimal
+    q = decimal.Decimal(str(x)) / decimal.Decimal(str(step))
+    q = q.quantize(decimal.Decimal("1"), rounding=decimal.ROUND_HALF_UP)
+    return float(q * decimal.Decimal(str(step)))
+
+
+def fetch_treasury_10y() -> dict:
+    """十年期美債收益率。FRED DGS10 與 yfinance ^TNX 兩個來源都試,取日期較新
+    的那個(FRED 常常慢幾日才更新,^TNX 是即市代碼,新鮮度更可靠)。回傳的
+    dict 連同兩個來源各自的嘗試結果一併記錄,方便事後查來源與日期。
+    兩個來源都失敗就拋錯 —— 折現率是全套裡最強的槓桿,寧願報錯也不要
+    靜默套一個假數字。"""
+    attempts: List[dict] = []
+
+    try:
+        import urllib.request
+        url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            text = resp.read().decode("utf-8")
+        rows = [r.split(",") for r in text.strip().splitlines()[1:]]
+        rows = [(d, v) for d, v in rows if v not in (".", "")]
+        if rows:
+            d, v = rows[-1]
+            attempts.append(dict(source="FRED DGS10", date=d, yield_pct=float(v)))
+        else:
+            attempts.append(dict(source="FRED DGS10", error="回傳空表"))
+    except Exception as e:
+        attempts.append(dict(source="FRED DGS10", error=str(e)))
+
+    try:
+        import yfinance as yf
+        tk = yf.Ticker("^TNX")
+        hist = tk.history(period="7d")
+        if not hist.empty:
+            d = str(hist.index[-1].date())
+            v = float(hist["Close"].iloc[-1])
+            attempts.append(dict(source="yfinance ^TNX", date=d, yield_pct=v))
+        else:
+            attempts.append(dict(source="yfinance ^TNX", error="沒有歷史價"))
+    except Exception as e:
+        attempts.append(dict(source="yfinance ^TNX", error=str(e)))
+
+    ok = [a for a in attempts if "yield_pct" in a]
+    if not ok:
+        raise RuntimeError(
+            "十年期美債收益率取數失敗:FRED DGS10 與 yfinance ^TNX 都不可用 -- %r" % attempts)
+    ok.sort(key=lambda a: a["date"], reverse=True)
+    chosen = ok[0]
+    return dict(treasury_yield=chosen["yield_pct"] / 100.0, treasury_source=chosen["source"],
+                treasury_date=chosen["date"], attempts=attempts)
+
+
+def rule_discount_rate() -> dict:
+    """規則折現率:十年期美債收益率 + 5.0 個百分點,四捨五入至最近 0.5%。
+    回傳完整記錄(供寫入輸出 JSON 頭部與印說明用)。"""
+    info = fetch_treasury_10y()
+    raw = info["treasury_yield"] + EQUITY_PREMIUM
+    rate = _round_half_up(raw, RATE_ROUND_STEP)
+    info.update(equity_premium=EQUITY_PREMIUM, raw_rate=raw,
+                rounded_to=RATE_ROUND_STEP, rate=rate, manual_override=False)
+    return info
+
+
+# ----------------------------------------------------------------------------
 # 一、SEC companyfacts 讀取
 # ----------------------------------------------------------------------------
 
@@ -367,7 +444,8 @@ class Assumptions:
     sbc_treatment: str = "expensed"  # 股權薪酬:在營業利潤中已扣,配稀釋後股數
 
     # --- 第三組:長期估值 ---
-    wacc: float = 0.10
+    wacc: float = 0.10        # 折現率。經 --full 批次跑時由規則自動算出(見
+                               # rule_discount_rate()),不再逐家手填 —— 見 analyse()
     terminal_growth: float = 0.025
     terminal_roic: float = 0.15   # 終值期投入資本回報率,決定終值再投資率
 
@@ -571,6 +649,12 @@ def fmt_m(x: float) -> str:
 
 CASES: Dict[str, dict] = {
     # 每家一組「固定假設」。這些是判斷,不是資料;改動要在報告的假設清單裡寫明理由。
+    #
+    # KARST-190:wacc 這一格現在只是歷史記錄 —— --full 批次跑時折現率一律由
+    # rule_discount_rate() 自動算出、全批共用,檔內這個手填數會被忽略並印警告
+    # (除非命令列明確傳 --override-discount-rate)。SNOW 的 10%、AXTI 的 12% 正是
+    # 舊「逐家手填」做法的產物,留著只為了對照;直接呼叫 analyse() 不傳
+    # discount_rate 的舊腳本(如 KARST-184/186 的重跑腳本)仍會讀到這個值,行為不變。
     "SNOW": dict(
         wacc=0.10, terminal_growth=0.025, terminal_roic=0.15, tax_rate=0.23,
         sales_to_capital=3.0, margin_ramp_years=8, horizon=10,
@@ -590,6 +674,22 @@ CASES: Dict[str, dict] = {
         stage1_years_ref=5,
         dilution_1y=0.025,
         g1_cases={"訂單見頂(收入 -10%)": -0.10, "增長腰斬(+25%)": 0.25, "維持現速(+55%)": 0.55},
+    ),
+    # LULU 的固定假設沿用 KARST-184 候選卡(research/2026-09-methodology/
+    # 2026-09-08-①候選池走通/run_three_numbers.py)已核過的一組,原本用 monkeypatch
+    # 注入、不在共用工具內 —— 現搬進 CASES 供本票三家重跑直接使用。該票另外對現金
+    # 做了人手更正(BS_FIX,A-048),但 KARST-186 已把同一個修復做進
+    # instant_series() 的候選標籤後備清單,build_financials("LULU") 現在會自動
+    # 取到新標籤的現金(實測 asof 2026-08-02 現金 13.90 億),不用再另外套 BS_FIX。
+    "LULU": dict(
+        wacc=0.10, terminal_growth=0.025, terminal_roic=0.18, tax_rate=0.23,
+        sales_to_capital=3.0, margin_ramp_years=3, horizon=10,
+        recovery_growth=0.03,
+        target_margin=0.17,
+        stage1_growth_ref=0.03,
+        stage1_years_ref=5,
+        dilution_1y=0.005,
+        g1_cases={"北美續跌(-5%)": -0.05, "走平(0%)": 0.0, "低單位數增長(+4%)": 0.04},
     ),
 }
 
@@ -615,18 +715,40 @@ def annualise_latest_quarter(fin: Financials) -> Financials:
     return out
 
 
-def analyse(ticker: str, base_mode: str = "ttm") -> dict:
+def analyse(ticker: str, base_mode: str = "ttm",
+            discount_rate: Optional[float] = None, manual_override: bool = False) -> dict:
+    """discount_rate=None 時走舊行為:讀 CASES[ticker]["wacc"](供未傳這個參數的
+    舊腳本 —— 例如 KARST-184/186 的重跑腳本 —— 直接呼叫 analyse() 仍能重現當日結果)。
+    傳了 discount_rate,CASES 內的手填 wacc 一律當唯讀:預設忽略並在 notes 印警告,
+    manual_override=True 時才採用傳入值並標明「人手覆寫」(見 main() 的
+    --override-discount-rate)。"""
     fin = build_financials(ticker)
     mkt = market_data(fin)
     if base_mode == "annualized_q":
         fin = annualise_latest_quarter(fin)
     C = CASES[fin.ticker]
+    if discount_rate is not None:
+        wacc = discount_rate
+        if "wacc" in C:
+            if manual_override:
+                fin.notes.append(
+                    "折現率:人手覆寫 %.1f%%(--override-discount-rate);"
+                    "CASES 內的舊手填值 %.1f%% 不採用。"
+                    % (100 * wacc, 100 * C["wacc"]))
+            else:
+                fin.notes.append(
+                    "折現率:CASES 內的舊手填值 %.1f%% 已忽略,改用批次規則值 %.1f%%"
+                    "(十年期美債收益率 + 5%% 股權溢價,四捨五入至 0.5%%;"
+                    "如要採用手填值,重跑時加 --override-discount-rate 明確覆寫)。"
+                    % (100 * C["wacc"], 100 * wacc))
+    else:
+        wacc = C["wacc"]   # 舊行為:向後相容,供不傳 discount_rate 的舊腳本使用
     base = Assumptions(
         bad_growth=C["stage1_growth_ref"], bad_years=C["stage1_years_ref"],
         recovery_growth=C["recovery_growth"], target_margin=C["target_margin"],
         margin_ramp_years=C["margin_ramp_years"], horizon=C["horizon"],
         tax_rate=C["tax_rate"], sales_to_capital=C["sales_to_capital"],
-        wacc=C["wacc"], terminal_growth=C["terminal_growth"],
+        wacc=wacc, terminal_growth=C["terminal_growth"],
         terminal_roic=C["terminal_roic"],
     )
     px = mkt.price
@@ -663,11 +785,11 @@ def analyse(ticker: str, base_mode: str = "ttm") -> dict:
     # ---- 輸出(甲):長期價值範圍 ----
     scen = {
         "悲觀": replace(base, bad_growth=C["stage1_growth_ref"] - 0.15,
-                      target_margin=C["target_margin"] - 0.08, wacc=C["wacc"] + 0.02,
+                      target_margin=C["target_margin"] - 0.08, wacc=base.wacc + 0.02,
                       recovery_growth=C["recovery_growth"] - 0.02, terminal_growth=0.015),
         "基準": base,
         "樂觀": replace(base, bad_growth=C["stage1_growth_ref"] + 0.15,
-                      target_margin=C["target_margin"] + 0.08, wacc=C["wacc"] - 0.01,
+                      target_margin=C["target_margin"] + 0.08, wacc=base.wacc - 0.01,
                       recovery_growth=C["recovery_growth"] + 0.02, terminal_growth=0.03),
     }
     valA = {}
@@ -680,6 +802,24 @@ def analyse(ticker: str, base_mode: str = "ttm") -> dict:
                                      target_margin=a.target_margin, wacc=a.wacc,
                                      terminal_growth=a.terminal_growth))
     valA_sens = value_sensitivity(fin, base, SENS_KEYS + ["bad_growth", "target_margin"])
+
+    # ---- 折現率敏感度:±1 個百分點(絕對值),KARST-190 規定的自動輸出 ----
+    # 跟上面 valA_sens 的 wacc 那一行不同 —— 那個是「相對 ±10%」(舊有全項統一規則),
+    # 這裡是折現率規則本身要求的「絕對 ±1 個百分點」,基準情境(scen["基準"] = base)
+    # 之外另外印,不覆蓋 valA_sens。
+    base_ps = valA["基準"]["per_share"]
+    rate_sens = []
+    for dpp, label in ((-0.01, "-1pp"), (0.01, "+1pp")):
+        a2 = replace(base, wacc=base.wacc + dpp)
+        try:
+            ps2 = value(fin, a2).per_share
+        except Exception:
+            ps2 = None
+        rate_sens.append(dict(
+            wacc=a2.wacc, bump=label, per_share=ps2, base=base_ps,
+            delta=(None if ps2 is None or base_ps is None else ps2 - base_ps),
+            pct=(None if not ps2 or not base_ps else ps2 / base_ps - 1.0),
+        ))
 
     # ---- 輸出(乙):一年持有回報情境(退出倍數來自公司自己的歷史市銷率) ----
     # 退出倍數的語意要看現價站在自己歷史區間的哪一邊:
@@ -707,7 +847,8 @@ def analyse(ticker: str, base_mode: str = "ttm") -> dict:
 
     return dict(fin=fin, mkt=mkt, base=base, tableA=tableA, tableB=tableB,
                 valA=valA, valA_sens=valA_sens, oneyear=oneyear,
-                mult_cases=mult_cases, dilution_1y=dilution, cfg=C)
+                mult_cases=mult_cases, dilution_1y=dilution, cfg=C,
+                rate_sensitivity=rate_sens)
 
 
 def _jsonable(o):
@@ -731,18 +872,38 @@ def main(argv=None):
     ap.add_argument("--full", action="store_true", help="跑完整反推 + 敏感度 + 兩個輸出")
     ap.add_argument("--base", default="ttm", choices=["ttm", "annualized_q"],
                     help="起步年:TTM(預設)或最近一季年化")
+    ap.add_argument("--override-discount-rate", type=float, default=None,
+                    help="人手指定折現率(小數,如 0.12 = 12%%),整批共用,取代規則值;"
+                         "輸出會標明「手動覆寫」。不傳就用規則值(十年期美債收益率 "
+                         "+ 5%% 股權溢價,四捨五入至 0.5%%),CASES 內任何舊手填值一律忽略。")
     args = ap.parse_args(argv)
 
     if args.full:
-        res = {}
+        if args.override_discount_rate is not None:
+            rate_info = dict(rate=args.override_discount_rate, manual_override=True,
+                             treasury_yield=None, treasury_source=None, treasury_date=None)
+            print("折現率:人手覆寫 = %.2f%%(--override-discount-rate;不經規則計算,"
+                  "本批 %d 家共用此數,輸出標明「手動覆寫」)"
+                  % (100 * rate_info["rate"], len(args.tickers)))
+        else:
+            rate_info = rule_discount_rate()
+            print("折現率規則:十年期美債收益率 %.3f%%(來源 %s,取數日 %s)+ 股權溢價 %.1f 個百分點"
+                  " = %.3f%% → 四捨五入至最近 0.5%% = %.2f%%,本批 %d 家共用此數"
+                  % (100 * rate_info["treasury_yield"], rate_info["treasury_source"],
+                     rate_info["treasury_date"], 100 * rate_info["equity_premium"],
+                     100 * rate_info["raw_rate"], 100 * rate_info["rate"], len(args.tickers)))
+        res = {"_meta": dict(discount_rate=rate_info)}
         for t in args.tickers:
-            r = analyse(t, base_mode=args.base)
+            r = analyse(t, base_mode=args.base, discount_rate=rate_info["rate"],
+                        manual_override=rate_info["manual_override"])
             res[t.upper()] = _jsonable(r)
             f, m = r["fin"], r["mkt"]
             print("=" * 72)
             print("%s  price=%.2f (%s)  rev_ttm=%.1fM  margin=%.1f%%  netdebt=%.1fM  shares=%.1fM"
                   % (f.ticker, m.price, m.price_date, f.rev_ttm / 1e6, 100 * f.op_margin,
                      f.net_debt / 1e6, f.diluted_shares / 1e6))
+            for n in f.notes:
+                print("  [注意] " + n)
             print("-- A: implied stage-1 revenue CAGR (margin fixed) --")
             for row in r["tableA"]:
                 print("   D=%dy  g=%s  vs_now=%s  TVshare=%s"
@@ -768,6 +929,13 @@ def main(argv=None):
                       % (k, v["per_share"], 100 * v["upside"], 100 * v["terminal_share"]))
             for s in r["valA_sens"]:
                 print("        %-18s %s -> value %+.1f%%" % (s["key"], s["bump"], 100 * s["pct"]))
+            print("-- 折現率敏感度(絕對 ±1 個百分點,KARST-190) --")
+            for s in r["rate_sensitivity"]:
+                if s["per_share"] is None:
+                    print("        wacc=%.1f%% (%s) -> 無解" % (100 * s["wacc"], s["bump"]))
+                else:
+                    print("        wacc=%.1f%% (%s) -> %8.2f/sh  %+.1f%%"
+                          % (100 * s["wacc"], s["bump"], s["per_share"], 100 * (s["pct"] or 0.0)))
             print("-- (B) one-year holding return --")
             for row in r["oneyear"]:
                 print("   %-22s x %-26s px1=%8.2f  ret=%+7.1f%%"
