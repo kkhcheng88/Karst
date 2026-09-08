@@ -38,14 +38,24 @@ DAY = dt.timedelta(days=1)
 
 
 # ----------------------------------------------------------------------------
-# 零、折現率規則 (KARST-190)
+# 零、資本成本規則 (KARST-190 定折現率規則,KARST-193 改為 WACC 口徑)
 # ----------------------------------------------------------------------------
-# 折現率 = 十年期美債收益率 + 股權溢價,四捨五入至最近 0.5%,同一批候選公司共用
-# 同一個數 —— 取消逐家在 CASES 手填折現率的做法(SNOW 10%、AXTI 12% 就是舊做法
-# 的產物,現在只當歷史記錄留在 CASES 裡,計算時預設忽略,見 analyse())。
+# KARST-190:折現率 = 十年期美債收益率 + 股權溢價,四捨五入至最近 0.5%,同一批
+# 候選公司共用同一個數 —— 取消逐家在 CASES 手填折現率的做法(SNOW 10%、AXTI 12%
+# 就是舊做法的產物,現在只當歷史記錄留在 CASES 裡,計算時預設忽略,見 analyse())。
+#
+# KARST-193:上面那個數是**股權成本**,但 value() 折現的是**企業自由現金流**
+# (FCFF,付利息之前的現金流,得出企業價值再減淨負債)。兩者不配對 —— FCFF 要配
+# 加權資本成本(WACC)。改法:股權成本沿用 190 的規則值(四捨五入前的原值),
+# 債務成本 = 十年期美債 + 信用差價,再乘 (1 − 稅率);權重用市值與有息負債帳面值;
+# 四捨五入至 0.5% 改在 WACC 這一層做。淨現金公司(有息負債 ≤ 現金)沒有實質槓桿,
+# WACC 直接等於股權成本,值不變。
 
 EQUITY_PREMIUM = 0.05      # 股權溢價,加在十年期美債收益率之上
-RATE_ROUND_STEP = 0.005    # 折現率四捨五入到最近 0.5 個百分點
+RATE_ROUND_STEP = 0.005    # 資本成本四捨五入到最近 0.5 個百分點
+CREDIT_SPREAD = 0.02       # 信用差價(債務成本 = 十年期美債 + 這一格)。
+                           # 第一版全批共用 2.0 個百分點 —— 這是**示例值,待對齊**,
+                           # 不是任何一家公司的實際信用評級推算,見 README 限制第 10 條。
 
 
 def _round_half_up(x: float, step: float) -> float:
@@ -103,15 +113,70 @@ def fetch_treasury_10y() -> dict:
                 treasury_date=chosen["date"], attempts=attempts)
 
 
-def rule_discount_rate() -> dict:
-    """規則折現率:十年期美債收益率 + 5.0 個百分點,四捨五入至最近 0.5%。
-    回傳完整記錄(供寫入輸出 JSON 頭部與印說明用)。"""
+def rule_discount_rate(credit_spread: float = CREDIT_SPREAD) -> dict:
+    """規則資本成本的**批次共用輸入**:十年期美債收益率 + 5.0 個百分點 = 股權成本。
+
+    `rate` 一格是股權成本四捨五入至 0.5% 後的值 —— KARST-190 直接把它當折現率用,
+    KARST-193 之後它只是「淨現金公司的折現率」與舊行為的對照值;實際折現率由
+    cost_of_capital() 逐家算(股權成本用 `raw_rate` 這個未四捨五入的原值)。
+    回傳完整記錄(供寫入輸出 JSON `_meta` 與印說明用)。"""
     info = fetch_treasury_10y()
     raw = info["treasury_yield"] + EQUITY_PREMIUM
     rate = _round_half_up(raw, RATE_ROUND_STEP)
     info.update(equity_premium=EQUITY_PREMIUM, raw_rate=raw,
-                rounded_to=RATE_ROUND_STEP, rate=rate, manual_override=False)
+                rounded_to=RATE_ROUND_STEP, rate=rate, manual_override=False,
+                credit_spread=credit_spread,
+                cost_of_equity_raw=raw,
+                cost_of_debt_pretax=info["treasury_yield"] + credit_spread,
+                basis="WACC(KARST-193):股權成本 = 美債 + 股權溢價;債務成本 = "
+                      "美債 + 信用差價,再乘 (1 − 稅率);權重用市值與有息負債帳面值;"
+                      "四捨五入至 0.5% 在 WACC 層做")
     return info
+
+
+def cost_of_capital(fin: "Financials", market_cap: float, tax_rate: float,
+                    treasury_yield: float, equity_premium: float = EQUITY_PREMIUM,
+                    credit_spread: float = CREDIT_SPREAD,
+                    round_step: float = RATE_ROUND_STEP,
+                    net_cash_include_investments: bool = False) -> dict:
+    """逐家加權資本成本(KARST-193)。回傳的 dict 就是輸出 JSON `_meta` 那一格。
+
+      股權成本   Ke = 十年期美債 + 股權溢價(四捨五入前的原值)
+      債務成本   Kd = (十年期美債 + 信用差價) × (1 − 稅率)
+      權重       市值 E = 現價 × 稀釋後股數;債務 D = 有息負債帳面值
+      WACC       = Ke × E/(D+E) + Kd × D/(D+E),四捨五入至最近 round_step
+
+    淨現金公司(有息負債 ≤ 現金,對齊 D-162 釘死的 N2 口徑「現金 − 總債務」)
+    當作沒有槓桿:WACC = Ke,值與 KARST-190 的舊折現率完全相同。
+
+    經營租賃負債**不入權重**(仍然留在淨負債裡,口徑不變)—— 本票只按「有息負債
+    帳面值」定權重,租賃債務化的資本成本處理是另一個議題,見 README 限制第 11 條。
+    net_cash_include_investments=True 時,判定淨現金那一步把短期及長期投資也當現金
+    (SNOW、ENPH 這種「現金少於債務、但現金加證券遠多於債務」的公司會因此翻邊)。
+    """
+    ke = treasury_yield + equity_premium
+    kd_pre = treasury_yield + credit_spread
+    kd_post = kd_pre * (1.0 - tax_rate)
+    cash_base = fin.cash + (fin.investments if net_cash_include_investments else 0.0)
+    debt = fin.debt
+    net_cash = debt <= cash_base
+    if net_cash or market_cap <= 0 or (debt + market_cap) <= 0:
+        w_debt, w_equity = 0.0, 1.0
+        wacc_raw = ke
+    else:
+        w_debt = debt / (debt + market_cap)
+        w_equity = 1.0 - w_debt
+        wacc_raw = ke * w_equity + kd_post * w_debt
+    wacc = _round_half_up(wacc_raw, round_step)
+    return dict(
+        wacc=wacc, wacc_raw=wacc_raw, rounded_to=round_step,
+        cost_of_equity=ke, cost_of_debt_pretax=kd_pre, cost_of_debt_after_tax=kd_post,
+        tax_rate=tax_rate, treasury_yield=treasury_yield, equity_premium=equity_premium,
+        credit_spread=credit_spread,
+        market_cap=market_cap, debt_book=debt, cash=fin.cash, investments=fin.investments,
+        lease_debt=fin.lease_debt, weight_equity=w_equity, weight_debt=w_debt,
+        net_cash=net_cash, net_cash_include_investments=net_cash_include_investments,
+    )
 
 
 # ----------------------------------------------------------------------------
@@ -639,6 +704,91 @@ def one_year_scenarios(fin: Financials, mkt: Market, growth_cases: Dict[str, flo
     return rows
 
 
+# --- 四情境固定次序 (KARST-193) ---------------------------------------------
+# 一年回報表的正表。固定四行、固定次序,第一行永遠是「倍數不變」——
+# 先看「市場什麼都不改變主意,單靠經營賺不賺得到錢」,再看倍數變化的情境。
+# 規則:倍數一改動,就必須寫得出接到盈利能力 / 增長 / 風險 / 資本配置的哪一項
+# 具體變化(「重估理由」欄),空白只印警告、不阻止跑。
+
+FOUR_SCENARIOS = (
+    (1, "經營按基準路徑、倍數不變", "基準", "現時", False),
+    (2, "經營改善、倍數收縮至近一年 25 分位", "樂觀", "p25", True),
+    (3, "具體反證出現、倍數回到近一年中位", "基準", "p50", True),
+    (4, "論點失效、倍數近一年 25 分位", "悲觀", "p25", True),
+)
+
+
+def _label_growth_cases(growth_cases: Dict[str, float]) -> Dict[str, Tuple[str, float]]:
+    """把 CASES 裡的 g1_cases 按收入增速排序,配到悲觀 / 基準 / 樂觀三格。
+    最低的一格 = 悲觀,最高的一格 = 樂觀,中間 = 基準(只有兩格時基準取較低那格)。"""
+    items = sorted(growth_cases.items(), key=lambda kv: kv[1])
+    if not items:
+        return {}
+    lo, hi = items[0], items[-1]
+    mid = items[len(items) // 2] if len(items) >= 3 else items[0]
+    return {"悲觀": lo, "基準": mid, "樂觀": hi}
+
+
+def one_year_four_scenarios(fin: Financials, mkt: Market, growth_cases: Dict[str, float],
+                            dilution: float,
+                            rerating_reasons: Optional[Dict] = None) -> Tuple[List[dict], List[str]]:
+    """一年回報表正表:四情境、固定次序。回傳 (rows, warnings)。
+
+    退出倍數用**近一年**市銷率分位(近一年才是同一盤生意的定價區間;四年那套留在
+    附錄的原有情境表)。近一年樣本不足就退回四年分位並在 warnings 說明。
+    rerating_reasons:{情境編號或情境名: '重估理由'},由使用者填;空白印警告。
+    """
+    warnings: List[str] = []
+    h1 = mkt.ps_hist_1y if mkt.ps_hist_1y.get("n") else {}
+    src = "近一年"
+    if not h1:
+        h1 = mkt.ps_hist
+        src = "四年(近一年樣本不足)"
+        warnings.append("近一年市銷率樣本不足,四情境的退出倍數改用四年分位數。")
+    gmap = _label_growth_cases(growth_cases)
+    mults = {"現時": mkt.ps_now, "p25": h1.get("p25"), "p50": h1.get("p50")}
+    mlabel = {"現時": "現時 %.1fx" % mkt.ps_now,
+              "p25": "%s 25 分位 %.1fx" % (src, h1["p25"]) if h1.get("p25") is not None else "n/a",
+              "p50": "%s 中位 %.1fx" % (src, h1["p50"]) if h1.get("p50") is not None else "n/a"}
+    reasons = dict(rerating_reasons or {})
+    shares1 = fin.diluted_shares * (1.0 + dilution)
+    rows: List[dict] = []
+    for seq, name, gkey, mkey, needs in FOUR_SCENARIOS:
+        if gkey not in gmap or mults.get(mkey) is None:
+            rows.append(dict(seq=seq, scenario=name, growth_case=None, growth=None,
+                             mult_case=mlabel.get(mkey), mult=None, rev1=None,
+                             price1=None, ret=None, rerating_reason=None,
+                             needs_rerating_reason=needs, note="缺退出倍數或增速格,無法計算"))
+            continue
+        gname, g = gmap[gkey]
+        mult = mults[mkey]
+        rev1 = fin.rev_ttm * (1.0 + g)
+        px1 = mult * rev1 / shares1
+        reason = reasons.get(seq, reasons.get(name))
+        reason = reason.strip() if isinstance(reason, str) else None
+        if not needs:
+            reason = reason or "不適用(倍數不變,沒有重估)"
+        elif not reason:
+            warnings.append(
+                "情境 %d「%s」的**重估理由**欄空白 —— 倍數由 %.1fx 變成 %.1fx 是一個判斷,"
+                "必須寫得出接到盈利能力 / 增長 / 風險 / 資本配置的哪一項具體變化,"
+                "否則這一行只是把倍數當自變數亂撥。"
+                % (seq, name, mkt.ps_now, mult))
+        rows.append(dict(seq=seq, scenario=name, growth_case=gname, growth=g,
+                         mult_case=mlabel[mkey], mult=mult, rev1=rev1, price1=px1,
+                         ret=px1 / mkt.price - 1.0, rerating_reason=reason,
+                         needs_rerating_reason=needs, note=None))
+    # 四情境的名字假設了現價的倍數站在自己近一年區間的上半 —— 現價已經低於 25 分位時,
+    # 「倍數收縮至 25 分位」其實是倍數**上調**,情境 2 與 4 會變成正回報,名不副實。
+    if mults.get("p25") is not None and mkt.ps_now < mults["p25"]:
+        warnings.append(
+            "現價市銷率 %.1fx 已經低於%s 25 分位 %.1fx —— 情境 2 與 4 的「倍數收縮至 25 分位」"
+            "實際上是倍數**上調**,那兩行的正回報來自倍數修復,不是經營變差之下仍然賺錢。"
+            "讀表時要把名字反過來看,或者改用更低的退出倍數。"
+            % (mkt.ps_now, src, mults["p25"]))
+    return rows, warnings
+
+
 # ----------------------------------------------------------------------------
 # 六、CLI
 # ----------------------------------------------------------------------------
@@ -691,7 +841,51 @@ CASES: Dict[str, dict] = {
         dilution_1y=0.005,
         g1_cases={"北美續跌(-5%)": -0.05, "走平(0%)": 0.0, "低單位數增長(+4%)": 0.04},
     ),
+    # KARST-193:TDC / ON / ENPH / ARM 四家的固定假設原本只存在於 KARST-184 的
+    # research/2026-09-methodology/2026-09-08-①候選池走通/run_three_numbers.py
+    # (monkeypatch 注入),照搬進來供本票七家一次過重跑,一格未改;理由見該票總覽檔的
+    # 假設清單。舊 wacc 欄同樣只是歷史記錄,計算時忽略(見 analyse())。
+    "TDC": dict(
+        wacc=0.10, terminal_growth=0.025, terminal_roic=0.15, tax_rate=0.23,
+        sales_to_capital=3.0, margin_ramp_years=5, horizon=10,
+        recovery_growth=0.02, target_margin=0.18,
+        stage1_growth_ref=-0.03, stage1_years_ref=5, dilution_1y=0.020,
+        g1_cases={"加速流失(收入 -10%)": -0.10, "緩慢流失(-3%)": -0.03, "企穩(+2%)": 0.02},
+    ),
+    "ON": dict(
+        wacc=0.10, terminal_growth=0.025, terminal_roic=0.12, tax_rate=0.23,
+        sales_to_capital=1.2, margin_ramp_years=4, horizon=10,
+        recovery_growth=0.04, target_margin=0.25,
+        stage1_growth_ref=0.05, stage1_years_ref=5, dilution_1y=0.010,
+        g1_cases={"再跌一年(-8%)": -0.08, "見底走平(0%)": 0.0, "週期回升(+12%)": 0.12},
+    ),
+    "ENPH": dict(
+        wacc=0.10, terminal_growth=0.025, terminal_roic=0.15, tax_rate=0.23,
+        sales_to_capital=4.0, margin_ramp_years=4, horizon=10,
+        recovery_growth=0.05, target_margin=0.20,
+        stage1_growth_ref=0.05, stage1_years_ref=5, dilution_1y=0.020,
+        g1_cases={"補貼退場(-20%)": -0.20, "走平(0%)": 0.0, "回升(+15%)": 0.15},
+    ),
+    "ARM": dict(
+        wacc=0.10, terminal_growth=0.025, terminal_roic=0.25, tax_rate=0.23,
+        sales_to_capital=4.0, margin_ramp_years=6, horizon=10,
+        recovery_growth=0.08, target_margin=0.40,
+        stage1_growth_ref=0.25, stage1_years_ref=5, dilution_1y=0.020,
+        g1_cases={"授權見頂(+5%)": 0.05, "減速(+15%)": 0.15, "維持現速(+25%)": 0.25},
+    ),
 }
+
+# 一年回報表四情境的「重估理由」:{代號: {情境編號: '理由'}} —— **由使用者填**,
+# 空白時輸出印警告但不阻止跑(KARST-193)。倍數一改動就要寫得出它接到盈利能力 /
+# 增長 / 風險 / 資本配置的哪一項具體變化;寫不出,那一行就只是把倍數當自變數亂撥。
+RERATING_REASONS: Dict[str, Dict[int, str]] = {}
+
+# 聯合情境的三項同時偏移(KARST-193):增長 ∓10 個百分點、目標利潤率 ∓5 個百分點、
+# 折現率 ±1 個百分點。與逐項 ±10% 的敏感度表不同 —— 那個答「一項錯一成」,
+# 這個答「三項一齊錯向同一邊」,後者才是真正的下行情形。
+JOINT_GROWTH_SHIFT = 0.10
+JOINT_MARGIN_SHIFT = 0.05
+JOINT_RATE_SHIFT = 0.01
 
 SENS_KEYS = ["wacc", "terminal_growth", "sales_to_capital", "tax_rate", "horizon"]
 GBOUND = (-0.50, 3.00)   # 反推收入增長率的搜尋範圍
@@ -716,18 +910,54 @@ def annualise_latest_quarter(fin: Financials) -> Financials:
 
 
 def analyse(ticker: str, base_mode: str = "ttm",
-            discount_rate: Optional[float] = None, manual_override: bool = False) -> dict:
-    """discount_rate=None 時走舊行為:讀 CASES[ticker]["wacc"](供未傳這個參數的
-    舊腳本 —— 例如 KARST-184/186 的重跑腳本 —— 直接呼叫 analyse() 仍能重現當日結果)。
-    傳了 discount_rate,CASES 內的手填 wacc 一律當唯讀:預設忽略並在 notes 印警告,
-    manual_override=True 時才採用傳入值並標明「人手覆寫」(見 main() 的
-    --override-discount-rate)。"""
+            discount_rate: Optional[float] = None, manual_override: bool = False,
+            rate_inputs: Optional[dict] = None,
+            rerating_reasons: Optional[Dict] = None) -> dict:
+    """折現率四條路,由上而下先中先用(前三條是舊有行為,一句沒改):
+
+    1. manual_override=True + discount_rate  → 直接用傳入值,標明「人手覆寫」。
+    2. rate_inputs(KARST-193 新增,`rule_discount_rate()` 的回傳)→ 逐家算 WACC
+       (見 cost_of_capital()),CASES 內的手填 wacc 忽略並在 notes 說明。
+    3. discount_rate(KARST-190 的批次規則值)→ 全批共用這個數,不算 WACC。
+       舊腳本傳這一個參數的行為完全不變。
+    4. 兩個都不傳 → 舊行為:讀 CASES[ticker]["wacc"](供 KARST-184/186 那種
+       直接呼叫 analyse() 的舊重跑腳本重現當日結果)。
+
+    rerating_reasons:一年回報表四情境的「重估理由」,{情境編號: '理由'};不傳
+    就讀 RERATING_REASONS[代號],仍然沒有就留空並印警告。"""
     fin = build_financials(ticker)
     mkt = market_data(fin)
     if base_mode == "annualized_q":
         fin = annualise_latest_quarter(fin)
     C = CASES[fin.ticker]
-    if discount_rate is not None:
+    wacc_detail: Optional[dict] = None
+    if rate_inputs is not None and not (manual_override and discount_rate is not None):
+        wacc_detail = cost_of_capital(
+            fin, market_cap=mkt.price * fin.diluted_shares, tax_rate=C["tax_rate"],
+            treasury_yield=rate_inputs["treasury_yield"],
+            equity_premium=rate_inputs.get("equity_premium", EQUITY_PREMIUM),
+            credit_spread=rate_inputs.get("credit_spread", CREDIT_SPREAD),
+            round_step=rate_inputs.get("rounded_to", RATE_ROUND_STEP),
+            net_cash_include_investments=rate_inputs.get(
+                "net_cash_include_investments", False))
+        wacc = wacc_detail["wacc"]
+        if wacc_detail["net_cash"]:
+            fin.notes.append(
+                "折現率:淨現金公司(有息負債 %.0fM ≤ 現金 %.0fM),沒有實質槓桿,"
+                "WACC = 股權成本 %.2f%% → %.1f%%;CASES 內的舊手填值 %.1f%% 已忽略。"
+                % (fin.debt / 1e6, fin.cash / 1e6, 100 * wacc_detail["cost_of_equity"],
+                   100 * wacc, 100 * C.get("wacc", float("nan"))))
+        else:
+            fin.notes.append(
+                "折現率:WACC = 股權成本 %.2f%% × %.1f%% + 稅後債務成本 %.2f%% × %.1f%% "
+                "= %.2f%% → 四捨五入至 %.1f%%(有息負債 %.0fM、市值 %.0fM;"
+                "信用差價 %.1f 個百分點是示例值,待對齊)。CASES 內的舊手填值 %.1f%% 已忽略。"
+                % (100 * wacc_detail["cost_of_equity"], 100 * wacc_detail["weight_equity"],
+                   100 * wacc_detail["cost_of_debt_after_tax"], 100 * wacc_detail["weight_debt"],
+                   100 * wacc_detail["wacc_raw"], 100 * wacc,
+                   wacc_detail["debt_book"] / 1e6, wacc_detail["market_cap"] / 1e6,
+                   100 * wacc_detail["credit_spread"], 100 * C.get("wacc", float("nan"))))
+    elif discount_rate is not None:
         wacc = discount_rate
         if "wacc" in C:
             if manual_override:
@@ -803,6 +1033,32 @@ def analyse(ticker: str, base_mode: str = "ttm",
                                      terminal_growth=a.terminal_growth))
     valA_sens = value_sensitivity(fin, base, SENS_KEYS + ["bad_growth", "target_margin"])
 
+    # ---- 聯合情境(KARST-193):三項一齊偏向同一邊,不是逐項各自 ±10% ----
+    joint_defs = {
+        "悲觀(增長 -10pp、目標利潤率 -5pp、折現率 +1pp)": replace(
+            base, bad_growth=base.bad_growth - JOINT_GROWTH_SHIFT,
+            target_margin=base.target_margin - JOINT_MARGIN_SHIFT,
+            wacc=base.wacc + JOINT_RATE_SHIFT),
+        "中性(全部基準)": base,
+        "樂觀(增長 +10pp、目標利潤率 +5pp、折現率 -1pp)": replace(
+            base, bad_growth=base.bad_growth + JOINT_GROWTH_SHIFT,
+            target_margin=base.target_margin + JOINT_MARGIN_SHIFT,
+            wacc=base.wacc - JOINT_RATE_SHIFT),
+    }
+    valA_joint = {}
+    for name, a in joint_defs.items():
+        try:
+            v = value(fin, a)
+            valA_joint[name] = dict(per_share=v.per_share, ev=v.ev,
+                                    terminal_share=v.terminal_share,
+                                    upside=v.per_share / px - 1.0,
+                                    assum=dict(bad_growth=a.bad_growth, bad_years=a.bad_years,
+                                               recovery_growth=a.recovery_growth,
+                                               target_margin=a.target_margin, wacc=a.wacc,
+                                               terminal_growth=a.terminal_growth))
+        except Exception as e:
+            valA_joint[name] = dict(per_share=None, error=str(e))
+
     # ---- 折現率敏感度:±1 個百分點(絕對值),KARST-190 規定的自動輸出 ----
     # 跟上面 valA_sens 的 wacc 那一行不同 —— 那個是「相對 ±10%」(舊有全項統一規則),
     # 這裡是折現率規則本身要求的「絕對 ±1 個百分點」,基準情境(scen["基準"] = base)
@@ -845,10 +1101,19 @@ def analyse(ticker: str, base_mode: str = "ttm",
     dilution = max(0.005, fin.sbc_ttm / (mkt.price * fin.diluted_shares))
     oneyear = one_year_scenarios(fin, mkt, C["g1_cases"], mult_cases, dilution)
 
+    # 四情境正表(KARST-193):固定次序,「倍數不變」永遠第一;上面那個 3×4 網格
+    # (oneyear)保留為附錄,一行沒刪。
+    reasons = rerating_reasons if rerating_reasons is not None else \
+        RERATING_REASONS.get(fin.ticker) or C.get("rerating_reasons")
+    oneyear_four, rerating_warnings = one_year_four_scenarios(
+        fin, mkt, C["g1_cases"], dilution, reasons)
+
     return dict(fin=fin, mkt=mkt, base=base, tableA=tableA, tableB=tableB,
                 valA=valA, valA_sens=valA_sens, oneyear=oneyear,
                 mult_cases=mult_cases, dilution_1y=dilution, cfg=C,
-                rate_sensitivity=rate_sens)
+                rate_sensitivity=rate_sens,
+                wacc_detail=wacc_detail, valA_joint=valA_joint,
+                oneyear_four=oneyear_four, rerating_warnings=rerating_warnings)
 
 
 def _jsonable(o):
@@ -876,6 +1141,13 @@ def main(argv=None):
                     help="人手指定折現率(小數,如 0.12 = 12%%),整批共用,取代規則值;"
                          "輸出會標明「手動覆寫」。不傳就用規則值(十年期美債收益率 "
                          "+ 5%% 股權溢價,四捨五入至 0.5%%),CASES 內任何舊手填值一律忽略。")
+    ap.add_argument("--credit-spread", type=float, default=CREDIT_SPREAD,
+                    help="信用差價(小數,預設 %.3f = %.1f 個百分點)。債務成本 = 十年期美債 "
+                         "+ 這一格,再乘 (1 − 稅率)。預設值是示例,待對齊。"
+                         % (CREDIT_SPREAD, 100 * CREDIT_SPREAD))
+    ap.add_argument("--net-cash-include-investments", action="store_true",
+                    help="判定「淨現金公司」時把短期及長期投資也當現金(預設只看現金,"
+                         "對齊 D-162 的 N2 口徑)。翻邊的公司 WACC 會由加權值變回股權成本。")
     args = ap.parse_args(argv)
 
     if args.full:
@@ -886,17 +1158,27 @@ def main(argv=None):
                   "本批 %d 家共用此數,輸出標明「手動覆寫」)"
                   % (100 * rate_info["rate"], len(args.tickers)))
         else:
-            rate_info = rule_discount_rate()
-            print("折現率規則:十年期美債收益率 %.3f%%(來源 %s,取數日 %s)+ 股權溢價 %.1f 個百分點"
-                  " = %.3f%% → 四捨五入至最近 0.5%% = %.2f%%,本批 %d 家共用此數"
+            rate_info = rule_discount_rate(credit_spread=args.credit_spread)
+            rate_info["net_cash_include_investments"] = args.net_cash_include_investments
+            print("資本成本規則(KARST-193):十年期美債 %.3f%%(來源 %s,取數日 %s)"
+                  " + 股權溢價 %.1f 個百分點 = 股權成本 %.3f%%;"
+                  "債務成本 = 美債 + 信用差價 %.1f 個百分點(示例值,待對齊)× (1 − 稅率);"
+                  "WACC 逐家按市值與有息負債權重計,四捨五入至最近 0.5%%。"
+                  "淨現金公司 WACC = 股權成本 = %.2f%%。本批 %d 家。"
                   % (100 * rate_info["treasury_yield"], rate_info["treasury_source"],
                      rate_info["treasury_date"], 100 * rate_info["equity_premium"],
-                     100 * rate_info["raw_rate"], 100 * rate_info["rate"], len(args.tickers)))
-        res = {"_meta": dict(discount_rate=rate_info)}
+                     100 * rate_info["raw_rate"], 100 * rate_info["credit_spread"],
+                     100 * rate_info["rate"], len(args.tickers)))
+        res = {"_meta": dict(discount_rate=rate_info, cost_of_capital={})}
         for t in args.tickers:
-            r = analyse(t, base_mode=args.base, discount_rate=rate_info["rate"],
-                        manual_override=rate_info["manual_override"])
+            if rate_info["manual_override"]:
+                r = analyse(t, base_mode=args.base, discount_rate=rate_info["rate"],
+                            manual_override=True)
+            else:
+                r = analyse(t, base_mode=args.base, rate_inputs=rate_info)
             res[t.upper()] = _jsonable(r)
+            if r.get("wacc_detail"):
+                res["_meta"]["cost_of_capital"][t.upper()] = _jsonable(r["wacc_detail"])
             f, m = r["fin"], r["mkt"]
             print("=" * 72)
             print("%s  price=%.2f (%s)  rev_ttm=%.1fM  margin=%.1f%%  netdebt=%.1fM  shares=%.1fM"
@@ -936,7 +1218,26 @@ def main(argv=None):
                 else:
                     print("        wacc=%.1f%% (%s) -> %8.2f/sh  %+.1f%%"
                           % (100 * s["wacc"], s["bump"], s["per_share"], 100 * (s["pct"] or 0.0)))
-            print("-- (B) one-year holding return --")
+            print("-- (A2) 聯合情境(三項一齊偏,KARST-193) --")
+            for k, v in r["valA_joint"].items():
+                if v.get("per_share") is None:
+                    print("   %-40s 無解(%s)" % (k, v.get("error", "")))
+                else:
+                    print("   %-40s %8.2f/sh  upside %+6.1f%%  TVshare %.0f%%  wacc %.1f%%"
+                          % (k, v["per_share"], 100 * v["upside"], 100 * v["terminal_share"],
+                             100 * v["assum"]["wacc"]))
+            print("-- (B) 一年回報表 · 四情境正表(KARST-193;第 1 行永遠是倍數不變) --")
+            for row in r["oneyear_four"]:
+                if row["price1"] is None:
+                    print("   %d %-34s %s" % (row["seq"], row["scenario"], row["note"]))
+                    continue
+                print("   %d %-34s %-22s 倍數 %-22s px1=%8.2f  ret=%+7.1f%%"
+                      % (row["seq"], row["scenario"], row["growth_case"], row["mult_case"],
+                         row["price1"], 100 * row["ret"]))
+                print("       重估理由:%s" % (row["rerating_reason"] or "(空白 —— 未填)"))
+            for w in r["rerating_warnings"]:
+                print("   [注意] " + w)
+            print("-- (B 附錄) 原有情境網格(收入格 × 歷史市銷率格) --")
             for row in r["oneyear"]:
                 print("   %-22s x %-26s px1=%8.2f  ret=%+7.1f%%"
                       % (row["growth_case"], row["mult_case"], row["price1"], 100 * row["ret"]))
