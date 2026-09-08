@@ -3943,3 +3943,23 @@
   > ok, can we make the respons to GPT for me to paste for his final comment? […] I follow you expertise.
 
 - 影響：KARST-178 ①規格書按本決定重寫(原「甲已知賣家/乙未知賣家」兩手法作廢);新開隱含預期計算器原型、①候選池第一版兩張票;基準率表設計納入評論修正(確認訊號當時可辨、由可成交時點計、未成熟樣本標記、非獨立樣本、保留驗證資料);共用層寫入 strategy/framework.md 待後續票;CONTEXT.md 待加「定位卡」「隱含預期」「證據日曆」三詞條。
+
+## D-170 注碼三數(單筆損失預算、單股上限、同一故事共用上限)延後至四類注全部成形後,按組合層一起定;KARST-184 所用組合 2% 只是示例值,不是現役參數
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-09
+
+- 出處：用戶 2026-09-09 對主 agent「三個注碼數字未經你批核」的回應。原話:「I don't know. Can we review the balance of betting after all 4 strategy is formed, as the percentage of each could impact?」
+
+- 背景：KARST-184 ①候選池走通時,倉位公式(組合損失預算÷壓力情境跌幅)需要一個損失預算才算得出數,隊伍用了組合 2% 作示例並標明未經對齊。主 agent 提請用戶批核三個數;用戶指出四類注各佔多少會影響每一注的注碼,應在四類齊備後一併看。主 agent 立場:同意。注碼是組合層決定,單獨為①定數等於預先分配了①的席位,與 D-169「①的實際資金配置等待實作證據,不為湊齊四類注保留席位」同一方向。
+
+- 決策：
+  1. 單筆損失預算、單股上限、同一故事共用上限三個數,待②③④規格成形後在組合層一次過定,同時考慮四類注各佔比例
+  2. 在此之前,①的候選卡與計算器輸出繼續以組合 2% 作示例損失預算,所有輸出必須標明「示例值,未經用戶對齊」;不得用作真實下注
+  3. 四類注的注碼平衡另開一張組合層票,依賴②③④規格票
+
+- **用戶原話（原文照錄）**
+
+  > I don't know. Can we review the balance of betting after all 4 strategy is formed, as the percentage of each could impact?
+
+- 影響：KARST-178 ①規格書的倉位一節寫成「公式已定、參數待組合層」;KARST-184 舉手第一項(損失預算 2% 未對齊)以本決定結案;組合層注碼票待②③④規格票開出後再開。
