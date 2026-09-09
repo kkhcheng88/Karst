@@ -377,6 +377,508 @@ LEASE_NC_TAGS = ["OperatingLeaseLiabilityNoncurrent"]
 NCI_TAGS = ["MinorityInterest"]
 
 
+# ============================================================================
+# 一之二、資產負債表取數修復 (KARST-195)
+# ============================================================================
+# 六處缺陷的一手證據與本地修法全部來自 KARST-188:
+#   research/2026-09-methodology/2026-09-09-①候選池全量/
+#     run_60_full.py(interest_debt_fixed / cash_invest_fixed / diluted_shares_fixed)
+#     check_finance_lease.py、finance_lease_gap.csv、bs_staleness.csv、facts-*.md
+# 本節把那批本地修法搬進共用工具,不是另外發明一套。舊的 *_TAGS 常數一格不刪
+# (KARST-188 的腳本直接引用 IE.CASH_TAGS / IE.DILUTED_TAGS),新表另立。
+
+BS_FRESH_DAYS = 45       # 時點科目距結算日超過這個日數 = 上一季的舊結餘,不採用
+PRICE_STALE_DAYS = 200   # 結算日距價格日超過這個日數 = 「過期」,印警告
+
+# --- (二) 有息負債:三桶,合計標籤與分項標籤互斥 ---------------------------
+# 舊清單只認五個窄式標籤,信貸額度 / 可轉債 / 有抵押債 / 其他短期借款 / 把租賃併在
+# 一起報的合計標籤全部不在內,取不到值就當「沒有負債」(A-053)。實測後果:ORCL 的
+# 1,295 億債務讀成 72 億;CLVT 的 43 億債務全部漏掉,淨負債由 +41 億變成淨現金 −1.9 億。
+#
+# 三桶分清楚,否則會重覆計數:
+#   COMBINED   一個標籤就代表全部有息負債(含流動部分)的「總額」標籤
+#   CUR / NC   分項標籤,兩者相加才是總額
+# 桶值 = max(總額標籤, 各分項族最大值之和) —— 只取 max,**永不把總額與分項相加**,
+# 這就是缺陷(四)「合計標籤同時入流動與非流動兩桶」的根治法。
+# 總額標籤先比新鮮度、後比金額;總額標籤的日期早於分項桶就是上一季的舊總額,棄用
+# (反過來先取金額最大,會挑中舊總額再被新鮮度規則整筆丟掉,債務當零——CLVT、TROX
+# 一度因此變成淨現金)。
+DEBT_COMBINED = ["DebtLongtermAndShorttermCombinedAmount",
+                 "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities"]
+# **含糊標籤**:`LongTermDebt` 與 `NotesPayable` 兩條,不同申報人用法相反 —— 有人用來
+# 報「全部有息負債的總額」,有人用來報「資產負債表上非流動那一行」。當成總額而它其實
+# 只是非流動,就會漏掉流動部分(QCOM 2026-06-28:LongTermDebt 127.81 億被當成總額,
+# 流動的 24.89 億整筆漏掉,低估 16%);當成非流動而它其實是總額,則會重覆計數。
+# 六十家之中 15 家的債務取自這兩條標籤,所以不能靠猜,要逐家用申報歷史判。
+DEBT_AMBIGUOUS = ["LongTermDebt", "NotesPayable"]
+# 判斷用的對照標籤:找一個「含糊標籤與非流動標籤同日並存」的申報日,看它等於非流動
+# 那一行,還是等於非流動 + 流動。QCOM 2025-09-28 兩者都是 148.11 億 → 非流動那一行。
+_AMB_NC_PROBE = ["LongTermDebtNoncurrent", "NotesPayableNoncurrent"]
+_AMB_NC_FAMILY = ["LongTermNotesPayable", "LongTermLoansPayable",
+                  "ConvertibleLongTermNotesPayable", "ConvertibleDebtNoncurrent",
+                  "LongTermLineOfCredit", "SecuredLongTermDebt"]
+_AMB_CUR_PROBE = ["DebtCurrent", "LongTermDebtCurrent", "NotesPayableCurrent",
+                  "LoansPayableCurrent", "ConvertibleNotesPayableCurrent",
+                  "LinesOfCreditCurrent", "SecuredDebtCurrent", "ShortTermBorrowings"]
+# 債務**附註**口徑:本金總額,不是資產負債表帳面值(帳面值 = 本金 − 未攤銷折價與
+# 發行成本)。KARST-188 的本地版把 DebtInstrumentCarryingAmount 放進總額桶,於是
+# ORCL 取到 1,301.05 億(本金)而不是資產負債表的 1,295.41 億,CRNC 取到 1.80 億
+# 而不是 10-Q 帳面的 1.7346 億 —— 後者與本票驗收條件「對得上一手 10-Q」直接相撞。
+# 本工具改為:**只在資產負債表口徑完全取不到值時**才退到這一格,並印警告。
+DEBT_NOTE_PRINCIPAL = ["DebtInstrumentCarryingAmount", "DebtInstrumentFaceAmount"]
+DEBT_CUR_AGG = ["LongTermDebtCurrent", "DebtCurrent",
+                "LongTermDebtAndCapitalLeaseObligationsCurrent"]
+# 一個桶之內「依序取第一個有值的標籤」會漏數:同一家公司可以同時有定期貸款與可轉債,
+# 分別報在兩條標籤上,取了第一條就當第二條不存在(COLL:LongTermLoansPayable 7.978 億
+# + ConvertibleLongTermNotesPayable 2.387 億,舊寫法只讀到 7.978 億)。族之間互不重疊,
+# 可以相加;族之內只取第一條。
+DEBT_CUR_FAMILIES = [["NotesPayableCurrent", "LoansPayableCurrent"],
+                     ["ConvertibleNotesPayableCurrent"],
+                     ["LinesOfCreditCurrent"],
+                     ["ShortTermBorrowings", "OtherShortTermBorrowings"],
+                     ["SecuredDebtCurrent"]]
+# LongTermDebtAndCapitalLeaseObligations 按 US-GAAP 定義就是「非流動」那一行
+# (含流動到期部分的是 ...IncludingCurrentMaturities 那一條),所以住在非流動桶,
+# 不進總額桶。放錯桶會令 LMB / GNRC / SAIA / DRS 漏掉流動到期部分。
+DEBT_NC_AGG = ["LongTermDebtNoncurrent", "LongTermDebtAndCapitalLeaseObligations"]
+DEBT_NC_FAMILIES = [["LongTermNotesPayable", "LongTermLoansPayable"],
+                    ["ConvertibleLongTermNotesPayable", "ConvertibleDebtNoncurrent"],
+                    ["LongTermLineOfCredit", "LineOfCredit"],
+                    ["SecuredLongTermDebt"]]
+
+# --- (五) 融資租賃:整筆漏計 (A-059) ---------------------------------------
+# 舊工具的租賃清單只有經營租賃,債務清單亦不含融資租賃,於是 FinanceLeaseLiability*
+# 整筆消失。全批 29/60 家受影響、合共 97.1 億美元;DOCN 的負債閘因此判錯
+# (淨負債 6.331 億 → 10.429 億,由「過」變「不過」)。融資租賃是有息負債,計入
+# `debt`;經營租賃照舊留在 `lease_debt` 分開列。
+FIN_LEASE_CUR = ["FinanceLeaseLiabilityCurrent", "CapitalLeaseObligationsCurrent"]
+FIN_LEASE_NC = ["FinanceLeaseLiabilityNoncurrent", "CapitalLeaseObligationsNoncurrent"]
+FIN_LEASE_TOT = ["FinanceLeaseLiability", "CapitalLeaseObligations"]
+
+# --- (三)(四) 現金與投資:標籤過窄、不核申報日、合計標籤雙計 ----------------
+# 舊清單漏掉 DebtSecuritiesAvailableForSale* 一系(CRUS 漏 3.567 億、AGX 漏 4.806 億),
+# 又不核申報日期(COLL 的 1.573 億證券在結算日之前已變現用於收購,工具仍當它在手)。
+STI_WIDE = ["ShortTermInvestments", "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+            "MarketableSecuritiesCurrent",
+            "DebtSecuritiesAvailableForSaleExcludingAccruedInterestCurrent",
+            "AvailableForSaleSecuritiesCurrent", "OtherShortTermInvestments"]
+LTI_WIDE = ["AvailableForSaleSecuritiesDebtSecuritiesNoncurrent",
+            "MarketableSecuritiesNoncurrent", "LongTermInvestments",
+            "DebtSecuritiesAvailableForSaleExcludingAccruedInterestNoncurrent",
+            "AvailableForSaleSecuritiesNoncurrent"]
+# **合計標籤只准住在這一格。** AvailableForSaleSecuritiesDebtSecurities 是合計
+# (流動 + 非流動);把它放進非流動桶,而公司的證券全部是流動,同一筆錢就會在兩個桶
+# 各計一次 —— RMBS 因此虛報 6.518 億淨現金(A-054 同族)。
+INV_AGG = ["DebtSecuritiesAvailableForSaleExcludingAccruedInterest", "MarketableSecurities",
+           "AvailableForSaleSecurities", "AvailableForSaleSecuritiesDebtSecurities"]
+# 現金標籤同樣太窄:CRNC 的現金掛在
+# CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsIncludingDisposalGroupAnd
+# DiscontinuedOperations,三個標籤一個都對不上,1.276 億現金被當成零。改為前綴比對,
+# 按「愈接近純現金愈優先」排序。
+CASH_PREFIXES = ["CashAndCashEquivalentsAtCarryingValue",
+                 "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+                 "CashAndCashEquivalentsAtFairValue"]
+
+
+def _bs_pick(facts: dict, tags: Sequence[str], asof: dt.date,
+             fresh_days: int = BS_FRESH_DAYS) -> Tuple[float, Optional[dt.date], Optional[str]]:
+    """時點科目:依序試每個標籤,取第一個**結算日在 asof 前後 fresh_days 日內**
+    且有值的標籤,回傳 (金額, 結算日, 標籤名)。
+
+    容差用 fresh_days(45 日)而不是 instant_series() 的 200 日:200 日容得下上一季,
+    而「公司在最近一期沒有再報這一格」通常代表那一格已經歸零或改了標籤,不是維持不變
+    (COLL 的可供出售證券就是這樣被當成仍在手,淨負債少計 1.573 億)。
+    """
+    for tg in tags:
+        node = facts.get("facts", {}).get("us-gaap", {}).get(tg)
+        if not node:
+            continue
+        best: Dict[dt.date, Tuple[str, float]] = {}
+        for unit, rows in node.get("units", {}).items():
+            if not unit.startswith("USD"):
+                continue
+            for r in rows:
+                if "start" in r or "end" not in r or r.get("val") is None:
+                    continue
+                k = _d(r["end"])
+                filed = r.get("filed", "")
+                if k not in best or filed >= best[k][0]:
+                    best[k] = (filed, float(r["val"]))
+        cands = [(k, v[1]) for k, v in best.items()
+                 if abs((k - asof).days) <= fresh_days and v[1]]
+        if cands:
+            k, v = max(cands)
+            return float(v), k, tg
+    return 0.0, None, None
+
+
+def classify_ambiguous_debt_tag(facts: dict, tag: str) -> Tuple[str, str]:
+    """判斷 `LongTermDebt` / `NotesPayable` 在這一家公司是「總額」還是「非流動那一行」。
+
+    做法:在申報歷史裡由新到舊找一個「該標籤與非流動標籤同日並存」的結算日,比對
+      - 標籤值 ≈ 非流動值              → 它是資產負債表非流動那一行(`noncurrent`)
+      - 標籤值 ≈ 非流動值 + 流動值      → 它是全部有息負債的總額(`total`)
+    兩者都對不上就繼續向前找;全無證據回 `unknown`(呼叫方當作總額並印警告)。
+
+    回傳 (判斷, 證據字串)。容差 1%,遷就四捨五入與少量其他長期負債。
+    """
+    amb = instant_series(facts, [tag], asof=dt.date(2100, 1, 1))
+    if not amb:
+        return "unknown", ""
+    nc_agg = instant_series(facts, _AMB_NC_PROBE, asof=dt.date(2100, 1, 1))
+    nc_fam = {}
+    for g in _AMB_NC_FAMILY:
+        for k, v in instant_series(facts, [g], asof=dt.date(2100, 1, 1)).items():
+            nc_fam[k] = nc_fam.get(k, 0.0) + v
+    cur = instant_series(facts, _AMB_CUR_PROBE, asof=dt.date(2100, 1, 1))
+    for d in sorted(amb, reverse=True):
+        a = amb[d]
+        n = nc_agg.get(d) or nc_fam.get(d) or 0.0
+        c = cur.get(d) or 0.0
+        if not a or not n:
+            continue
+        tol = 0.01 * abs(a)
+        if abs(a - n) <= tol:
+            return "noncurrent", "%s:%s=%.0fM,非流動=%.0fM" % (d, tag, a / 1e6, n / 1e6)
+        if c and abs(a - (n + c)) <= tol:
+            return "total", "%s:%s=%.0fM,非流動+流動=%.0fM" % (
+                d, tag, a / 1e6, (n + c) / 1e6)
+    return "unknown", ""
+
+
+def interest_bearing_debt(facts: dict, asof: dt.date,
+                          notes: Optional[List[str]] = None) -> Tuple[float, dict]:
+    """有息負債 = max(總額標籤, 流動分項 + 非流動分項) + 融資租賃負債。
+
+    回傳 (金額, 明細)。明細記齊用了哪個標籤、哪一個結算日,供輸出逐家印出來
+    ——本票要求「印出每家用了哪個標籤」,因為這一格出錯時輸出表面上完全看不出來。
+    """
+    def bucket(agg_tags, families):
+        a_val, a_d, a_tag = 0.0, None, None
+        for tg in agg_tags:
+            v, d, t = _bs_pick(facts, [tg], asof)
+            if not v:
+                continue
+            if a_d is None or (d and d > a_d) or (d == a_d and v > a_val):
+                a_val, a_d, a_tag = v, d, t
+        s_val, s_d, s_tags = 0.0, None, []
+        for fam in families:
+            v, d, t = _bs_pick(facts, fam, asof)
+            if v:
+                s_val += v
+                s_tags.append("%s@%s %.0fM" % (t, d, v / 1e6))
+                if d and (s_d is None or d > s_d):
+                    s_d = d
+        if s_val > a_val:
+            return s_val, s_d, "+".join(s_tags)
+        return a_val, a_d, ("%s@%s %.0fM" % (a_tag, a_d, a_val / 1e6) if a_tag else "")
+
+    # 含糊標籤先逐家歸位:是「非流動那一行」就進非流動桶(流動部分照樣另外加),
+    # 是「總額」才進總額桶。判不出的當總額(保守沿用舊行為)並印警告。
+    amb_cls = {}
+    nc_agg_tags, comb_tags = list(DEBT_NC_AGG), list(DEBT_COMBINED)
+    for tg in DEBT_AMBIGUOUS:
+        verdict, ev = classify_ambiguous_debt_tag(facts, tg)
+        amb_cls[tg] = dict(verdict=verdict, evidence=ev)
+        if verdict == "noncurrent":
+            nc_agg_tags.append(tg)
+        else:
+            comb_tags.append(tg)
+
+    cur, d_cur, src_cur = bucket(DEBT_CUR_AGG, DEBT_CUR_FAMILIES)
+    nc, d_nc, src_nc = bucket(nc_agg_tags, DEBT_NC_FAMILIES)
+    parts = cur + nc
+    d_parts = max([d for d in (d_cur, d_nc) if d], default=None)
+
+    combined, d_comb, tag_comb = 0.0, None, None
+    for tg in comb_tags:
+        v, d, t = _bs_pick(facts, [tg], asof)
+        if not v or d is None:
+            continue
+        if d_comb is None or d > d_comb:
+            combined, d_comb, tag_comb = v, d, t
+        elif d == d_comb and v > combined:
+            combined, tag_comb = v, t
+    if d_comb and d_parts and d_comb < d_parts:
+        combined, d_comb, tag_comb = 0.0, None, None   # 舊總額,不採用
+
+    if combined >= parts and tag_comb:
+        debt_bs, src = combined, "%s@%s %.0fM" % (tag_comb, d_comb, combined / 1e6)
+        if amb_cls.get(tag_comb, {}).get("verdict") == "unknown" and notes is not None:
+            notes.append(
+                "警告:有息負債取自 %s = %.0fM,但申報歷史裡沒有一個結算日可以判斷它是"
+                "「全部有息負債的總額」還是「資產負債表非流動那一行」。當成總額處理;"
+                "若實為非流動,流動到期部分會漏計。" % (tag_comb, combined / 1e6))
+    else:
+        debt_bs, src = parts, "; ".join(x for x in (src_cur, src_nc) if x)
+
+    # 資產負債表口徑完全取不到 → 退到債務附註的本金總額,並印警告
+    principal, d_pri, tag_pri = 0.0, None, None
+    if debt_bs <= 0:
+        principal, d_pri, tag_pri = _bs_pick(facts, DEBT_NOTE_PRINCIPAL, asof)
+        if principal:
+            debt_bs, src = principal, "%s@%s %.0fM(債務附註本金)" % (
+                tag_pri, d_pri, principal / 1e6)
+            if notes is not None:
+                notes.append(
+                    "警告:有息負債取不到任何資產負債表口徑的標籤,退用債務附註的本金總額 "
+                    "%s = %.0fM —— 本金不等於帳面值(未扣未攤銷折價與發行成本),可能高估。"
+                    % (tag_pri, principal / 1e6))
+    else:
+        principal, d_pri, tag_pri = _bs_pick(facts, DEBT_NOTE_PRINCIPAL, asof)
+
+    fl_cur, d_fc, t_fc = _bs_pick(facts, FIN_LEASE_CUR, asof)
+    fl_nc, d_fn, t_fn = _bs_pick(facts, FIN_LEASE_NC, asof)
+    fl_tot, d_ft, t_ft = _bs_pick(facts, FIN_LEASE_TOT, asof)
+    if fl_tot > fl_cur + fl_nc:
+        fin_lease, fl_src = fl_tot, "%s@%s %.0fM" % (t_ft, d_ft, fl_tot / 1e6)
+    else:
+        fin_lease = fl_cur + fl_nc
+        fl_src = "+".join(x for x in (
+            ("%s@%s %.0fM" % (t_fc, d_fc, fl_cur / 1e6)) if t_fc else "",
+            ("%s@%s %.0fM" % (t_fn, d_fn, fl_nc / 1e6)) if t_fn else "") if x)
+
+    # 融資租賃已經併在總額標籤裡的情形:*AndCapitalLeaseObligations* 一族按定義
+    # 包含資本(融資)租賃,再加一次就是重覆計數。金額多數很小(CLVT 佔淨負債 0.7%),
+    # 但要講出來,不靜靜調整 —— 靜靜扣掉會令「這個數怎樣來」更難查。
+    if fin_lease and tag_comb and "CapitalLeaseObligations" in (tag_comb or "") \
+            and debt_bs == combined and notes is not None:
+        notes.append(
+            "注意:有息負債取自合計標籤 %s(按定義已含資本 / 融資租賃),而融資租賃 "
+            "%.0fM 另外再加了一次,可能重覆計數 %.1f%%。"
+            % (tag_comb, fin_lease / 1e6, 100.0 * fin_lease / max(debt_bs, 1.0)))
+
+    detail = dict(debt_total=debt_bs + fin_lease, debt_balance_sheet=debt_bs,
+                  finance_lease=fin_lease, combined=combined, parts=parts,
+                  cur=cur, nc=nc, note_principal=principal,
+                  tag_combined=tag_comb, date_combined=str(d_comb),
+                  date_parts=str(d_parts), src=src, src_finance_lease=fl_src,
+                  ambiguous_tags=amb_cls)
+    return debt_bs + fin_lease, detail
+
+
+def cash_and_investments(facts: dict, asof: dt.date,
+                         notes: Optional[List[str]] = None) -> Tuple[float, float, dict]:
+    """現金與短 / 長期投資。回傳 (現金, 投資, 明細)。
+
+    (三) 現金標籤取不到就退到前綴比對;(四) 合計標籤只准住 INV_AGG,而且與分項
+    互斥(取較大者,永不相加);另加一條保險絲:流動桶與非流動桶金額完全相同,
+    幾乎肯定是同一筆證券的兩個標籤,不是兩筆錢。
+    """
+    cash, d_cash, t_cash = _bs_pick(facts, CASH_TAGS, asof)
+    if not cash:
+        us = facts.get("facts", {}).get("us-gaap", {})
+        wide, seen = [], set()
+        for p in CASH_PREFIXES:
+            for t in sorted(us):
+                if t.startswith(p) and t not in seen:
+                    seen.add(t)
+                    wide.append(t)
+        cash, d_cash, t_cash = _bs_pick(facts, wide, asof)
+        if cash and notes is not None:
+            notes.append("現金標籤退用前綴比對:%s@%s = %.0fM(三個標準標籤都對不上)."
+                         % (t_cash, d_cash, cash / 1e6))
+
+    sti, d_sti, t_sti = _bs_pick(facts, STI_WIDE, asof)
+    lti, d_lti, t_lti = _bs_pick(facts, LTI_WIDE, asof)
+    agg, d_agg, t_agg = _bs_pick(facts, INV_AGG, asof)
+
+    fuse = None
+    if sti > 0 and abs(sti - lti) < 1.0:
+        fuse = ("流動桶 %s 與非流動桶 %s 金額完全相同(%.0fM),判為同一筆證券的兩個標籤,"
+                "非流動那一筆不重覆計。" % (t_sti, t_lti, sti / 1e6))
+        lti, t_lti = 0.0, None
+        if notes is not None:
+            notes.append(fuse)
+
+    if agg > sti + lti:
+        inv = agg
+        src_inv = "%s@%s %.0fM(合計標籤)" % (t_agg, d_agg, agg / 1e6)
+    else:
+        inv = sti + lti
+        src_inv = "+".join(x for x in (
+            ("%s@%s %.0fM" % (t_sti, d_sti, sti / 1e6)) if t_sti else "",
+            ("%s@%s %.0fM" % (t_lti, d_lti, lti / 1e6)) if t_lti else "") if x)
+
+    detail = dict(cash=cash, investments=inv, src_cash=(
+        "%s@%s %.0fM" % (t_cash, d_cash, cash / 1e6) if t_cash else "(無)"),
+        src_investments=src_inv or "(無)", sti=sti, lti=lti, agg=agg, fuse=fuse,
+        date_cash=str(d_cash))
+    return cash, inv, detail
+
+
+def latest_diluted_shares(facts: dict) -> Tuple[float, str]:
+    """(一) 稀釋股數:**不可以拆季**。
+
+    稀釋後加權平均股數是加權平均**存量**,不是流量;quarterize() 用「全年 − 首九個月」
+    去拆它,等於用全年平均減九個月平均,數學上沒有意義,結果接近零(A-049:六十家
+    之中 VPG / ORCL / FN / VIAV / MRCY / IREN 六家被壓到真實值的 0.1%–4.4%,
+    FN 的基準每股值因此變成現價的 +99,660%)。
+
+    改法:直接取未拆季的 duration 事實中結束日最近的一筆;同一結束日有多筆時優先取
+    60–100 日的那筆(季度期)。回傳 (股數, 來源說明)。
+    """
+    ser = duration_series(facts, DILUTED_TAGS)
+    if not ser:
+        return 0.0, "無稀釋股數標籤"
+    latest_end = max(e for (_s, e) in ser)
+    cands = [((s, e), v) for (s, e), v in ser.items() if e == latest_end]
+    cands.sort(key=lambda kv: abs((kv[0][1] - kv[0][0]).days - 91))
+    (s0, e0), val = cands[0]
+    return float(val), "XBRL 未拆季 %s→%s" % (s0, e0)
+
+
+def reconcile_diluted_shares(fin: "Financials", shares_now: Optional[float]
+                             ) -> "Financials":
+    """與 yfinance 現時股數對照:相差超過 ±25% 就改用市場股數並記一筆。
+    股數可以因回購 / 增發而變,±25% 是容差不是判準 —— 這一步是為了接住
+    「XBRL 那一格本身有問題」的情形,不是為了追平兩個來源。"""
+    if not shares_now or shares_now <= 0:
+        if not fin.diluted_shares:
+            fin.notes.append("警告:XBRL 與 yfinance 都取不到稀釋股數。")
+        return fin
+    v = fin.diluted_shares
+    if v and 0.75 <= v / shares_now <= 1.25:
+        return fin
+    out = replace(fin, diluted_shares=float(shares_now))
+    out.notes = list(fin.notes) + [
+        "稀釋股數改用 yfinance 現時股數 %.1fM(XBRL %s 相差超過 25%%,來源:%s)。"
+        % (shares_now / 1e6, ("%.1fM" % (v / 1e6)) if v else "0",
+           fin.shares_src or "n/a")]
+    out.extraction = dict(fin.extraction or {})
+    out.extraction["shares_src"] = "yfinance 現時股數(XBRL %s 與市場股數相差 >25%%)" % (
+        ("%.1fM" % (v / 1e6)) if v else "0")
+    out.shares_src = out.extraction["shares_src"]
+    return out
+
+
+# --- (六) 報表新鮮度:companyfacts 會靜靜地落後一季 (A-055) ------------------
+
+SUBMISSIONS_DIR = os.path.join(REPO, "data", "sec", "submissions")
+
+
+_SUB_NET_CACHE: Dict[str, Optional[dict]] = {}
+
+
+def _fetch_submissions(cik: str) -> Optional[dict]:
+    if cik in _SUB_NET_CACHE:
+        return _SUB_NET_CACHE[cik]
+    out = None
+    try:
+        import urllib.request
+        req = urllib.request.Request(
+            "https://data.sec.gov/submissions/CIK%s.json" % cik,
+            headers={"User-Agent": "Karst research karsoncheng@casy.hk"})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            out = json.loads(resp.read().decode("utf-8"))
+    except Exception:
+        out = None
+    _SUB_NET_CACHE[cik] = out
+    return out
+
+
+def load_submissions(cik: str, prefer_local: bool = True) -> Tuple[Optional[dict], str]:
+    """SEC 申報清單。先讀本地 data/sec/submissions 快取,沒有才打 SEC 端點。
+    回傳 (資料, 來源說明)。"""
+    path = os.path.join(SUBMISSIONS_DIR, "CIK%s.json" % cik)
+    if prefer_local and os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                return json.load(fh), "data/sec/submissions(本地快取)"
+        except Exception:
+            pass
+    got = _fetch_submissions(cik)
+    return got, ("data.sec.gov(即時)" if got else "無 submissions 資料")
+
+
+def filing_freshness(cik: str, asof: dt.date, price_date: Optional[dt.date] = None
+                     ) -> dict:
+    """companyfacts 的最新資產負債表期末日,對 EDGAR 申報清單交叉核對。
+
+    A-055:2026-09-09 當日重新下載六十家 companyfacts,仍有 5 家(ENPH、RMBS、
+    AMKR、CDNS、CLVT)的最新一張資產負債表停在 2026-03-31,而公司早已申報了
+    2026-06-30 那一季 —— 表照樣填得滿,不會報錯。所以要對申報清單核一次:
+    最近一份 10-Q / 10-K 所涵蓋的期末日若晚於 companyfacts 的結算日,即「資料落後」。
+    """
+    out = dict(facts_asof=str(asof), stale=None, expired=False, index_behind=False,
+               latest_form=None, latest_filing_date=None, latest_report_date=None,
+               lag_days=None, days_asof_to_price=None, source=None, note=None,
+               expired_note=None)
+    if price_date is not None:
+        gap = (price_date - asof).days
+        out["days_asof_to_price"] = gap
+        out["expired"] = gap > PRICE_STALE_DAYS
+        if out["expired"]:
+            out["expired_note"] = (
+                "過期:結算日 %s 距價格日 %s 已 %d 日,超過 %d 日。"
+                % (asof, price_date, gap, PRICE_STALE_DAYS))
+
+    def _latest_periodic(sub):
+        rec = (sub or {}).get("filings", {}).get("recent", {})
+        forms = rec.get("form", [])
+        rpt = rec.get("reportDate", [""] * len(forms))
+        rows = [(rec["filingDate"][i], rpt[i], forms[i]) for i in range(len(forms))
+                if forms[i] in ("10-Q", "10-K") and rpt[i]]
+        rows.sort()
+        return rows[-1] if rows else None
+
+    sub, src = load_submissions(cik)
+    out["source"] = src
+    row = _latest_periodic(sub)
+    # 本地快取自己落後(它的最近一期比 companyfacts 還舊)→ 打一次 SEC 端點確認,
+    # 否則會漏報「資料落後」:一個過期的對照表只會給出假的安心。
+    if row and _d(row[1]) < asof:
+        live = _fetch_submissions(cik)
+        row2 = _latest_periodic(live)
+        if row2 and _d(row2[1]) >= _d(row[1]):
+            row, out["source"], out["index_behind"] = row2, "data.sec.gov(本地快取落後,已即時重取)", True
+        else:
+            out["index_behind"] = True
+    if not row:
+        out["note"] = "申報清單取不到 10-Q / 10-K,新鮮度無法核對"
+        return out
+    fdate, rdate, form = row
+    out.update(latest_form=form, latest_filing_date=fdate, latest_report_date=rdate)
+    stale = _d(rdate) > asof
+    out["stale"] = bool(stale)
+    out["lag_days"] = (_d(rdate) - asof).days
+    notes = []
+    if stale:
+        notes.append(
+            "資料落後:companyfacts 最新資產負債表期末日 %s,但 EDGAR 顯示公司已於 %s "
+            "申報涵蓋 %s 的 %s(落後 %d 日)—— 淨負債、現金、股數全部是上一季的數。"
+            % (asof, fdate, rdate, form, out["lag_days"]))
+    if out["expired_note"]:
+        notes.append(out["expired_note"])
+    if notes:
+        out["note"] = "".join(notes)
+    return out
+
+
+# --- (七) 收市價核對:最後一根日線是不是已收市 (A-056) ----------------------
+
+US_EASTERN = "America/New_York"
+
+
+def _now_eastern() -> dt.datetime:
+    from zoneinfo import ZoneInfo
+    return dt.datetime.now(ZoneInfo(US_EASTERN))
+
+
+def us_market_state(now_et: dt.datetime) -> str:
+    """美股正常交易時段狀態:'pre'(未開市)/ 'open'(交易中)/ 'closed'(已收市)。
+    週末一律 'closed'。假期不另判 —— 假期當日 yfinance 根本不會有那一根日線,
+    退回上一根本身就是退回上一個真交易日。"""
+    if now_et.weekday() >= 5:
+        return "closed"
+    t = now_et.time()
+    if t < dt.time(9, 30):
+        return "pre"
+    if t < dt.time(16, 0):
+        return "open"
+    return "closed"
+
+
 @dataclass
 class Financials:
     ticker: str
@@ -398,11 +900,17 @@ class Financials:
     rev_ttm_hist: Dict[dt.date, float] = field(default_factory=dict)
     rev_q: Dict[dt.date, float] = field(default_factory=dict)
     notes: List[str] = field(default_factory=list)
+    # --- KARST-195 新增欄位(只加不改舊欄)---------------------------------
+    finance_lease: float = 0.0        # 融資租賃負債。已經**包含在 debt 之內**,
+                                      # 這一格只為了拆解得出來,不要再加一次。
+    shares_src: str = ""              # 稀釋股數的來源(XBRL 期間 / yfinance)
+    extraction: dict = field(default_factory=dict)   # 逐格用了哪個標籤、哪一日
 
     @property
     def net_debt(self) -> float:
         """淨負債口徑:有息負債 + 經營租賃負債 + 少數股東權益帳面值 − 現金 − 投資。
-        少數股東權益放這裡,是因為企業價值屬於全體資本提供者,不只母公司股東。"""
+        少數股東權益放這裡,是因為企業價值屬於全體資本提供者,不只母公司股東。
+        KARST-195 之後,`debt` 已含融資租賃(A-059);經營租賃仍然分開放 lease_debt。"""
         return self.debt + self.lease_debt + self.nci - self.cash - self.investments
 
     @property
@@ -467,17 +975,35 @@ def build_financials(ticker: str) -> Financials:
     if tt is not None and pt is not None and pt > 0:
         tax_rate_hist = tt / pt
 
+    # (一) 稀釋股數:不拆季(A-049)。dil_q 那條舊路只留作對照,不再用來取值。
     dil_ttm_ends = sorted(dil_q)
-    diluted_shares = dil_q[dil_ttm_ends[-1]] if dil_ttm_ends else 0.0
+    shares_quarterized = dil_q[dil_ttm_ends[-1]] if dil_ttm_ends else 0.0
+    diluted_shares, shares_src = latest_diluted_shares(facts)
 
     def _inst(tags: Sequence[str], label: str) -> float:
         return _latest(instant_series(facts, tags, asof=asof, label=label, notes=notes), asof)
 
-    cash = _inst(CASH_TAGS, "現金")
-    inv = _inst(STI_TAGS, "短期投資") + _inst(LTI_TAGS, "長期投資")
-    debt = _inst(DEBT_CUR_TAGS, "短期有息負債") + _inst(DEBT_NC_TAGS, "長期有息負債")
+    # (二)(四)(五) 有息負債:三桶互斥 + 融資租賃
+    debt, debt_detail = interest_bearing_debt(facts, asof, notes)
+    # (三)(四) 現金與投資:前綴變體 + 申報日核對 + 合計標籤互斥
+    cash, inv, cash_detail = cash_and_investments(facts, asof, notes)
     lease = _inst(LEASE_CUR_TAGS, "短期經營租賃負債") + _inst(LEASE_NC_TAGS, "長期經營租賃負債")
     nci = _inst(NCI_TAGS, "少數股東權益")
+
+    extraction = dict(
+        asof=str(asof),
+        debt=debt_detail, cash=cash_detail,
+        shares=diluted_shares, shares_src=shares_src,
+        shares_quarterized_old=shares_quarterized,
+        operating_lease=lease, nci=nci,
+    )
+    notes.append(
+        "取數標籤:有息負債 %.0fM = %s(其中融資租賃 %.0fM = %s);現金 %.0fM = %s;"
+        "投資 %.0fM = %s;經營租賃 %.0fM;稀釋股數 %.1fM(%s)。"
+        % (debt / 1e6, debt_detail["src"] or "(無)",
+           debt_detail["finance_lease"] / 1e6, debt_detail["src_finance_lease"] or "(無)",
+           cash / 1e6, cash_detail["src_cash"], inv / 1e6, cash_detail["src_investments"],
+           lease / 1e6, diluted_shares / 1e6, shares_src))
 
     return Financials(
         ticker=ticker.upper(), cik=cik, name=facts.get("entityName", ticker),
@@ -486,6 +1012,8 @@ def build_financials(ticker: str) -> Financials:
         diluted_shares=diluted_shares, cash=cash, investments=inv,
         debt=debt, lease_debt=lease, nci=nci,
         rev_ttm_hist=ttm_series(rev_q), rev_q=rev_q, notes=notes,
+        finance_lease=debt_detail["finance_lease"], shares_src=shares_src,
+        extraction=extraction,
     )
 
 
@@ -635,16 +1163,66 @@ class Market:
     ps_hist: Dict[str, float]   # 歷史市銷率百分位(長窗)
     ps_now: float
     ps_hist_1y: Dict[str, float] = field(default_factory=dict)  # 近一年
+    # --- KARST-195 新增(只加不改舊欄)------------------------------------
+    is_closing_price: bool = True          # 用的是不是已完成的收市價
+    price_check: dict = field(default_factory=dict)
 
 
-def market_data(fin: Financials, years: int = 4) -> Market:
+def market_data(fin: Financials, years: int = 4,
+                now_et: Optional[dt.datetime] = None) -> Market:
+    """(七) 收市價核對(A-056)。
+
+    yfinance 在交易時段回的最後一根日線是**未完成的當日線**,不是收市價。KARST-188
+    整份六十家名單因此不可重現:同一日相隔一小時抽兩次,五十九家價格不同,中位差
+    0.39%,而 STRL 只需 +0.13% 就跨過回報底線、擠走 LINC。
+
+    做法:按**美東時間**判交易時段。最後一根日線的日期若等於美東今日、而當刻仍在
+    09:30–16:00 之內(或未開市),就丟掉那一根,退回上一個已完成的交易日 ——
+    寧可用兩日前的真收市價,不要用今日的假收市價。now_et 可傳入,供測試注入時點。
+    """
     import yfinance as yf
     tk = yf.Ticker(fin.ticker)
     hist = tk.history(period="%dy" % (years + 1), auto_adjust=False)
     if hist.empty:
         raise RuntimeError("yfinance 沒有 %s 的價格" % fin.ticker)
+
+    now_et = now_et or _now_eastern()
+    state = us_market_state(now_et)
+    last_bar = hist.index[-1].date()
+    check = dict(now_eastern=now_et.strftime("%Y-%m-%d %H:%M:%S %Z"),
+                 market_state=state, last_bar_date=str(last_bar),
+                 dropped_bar_date=None, fell_back=False, volume_note=None)
+    if last_bar == now_et.date() and state in ("open", "pre"):
+        check["dropped_bar_date"] = str(last_bar)
+        check["fell_back"] = True
+        hist = hist.iloc[:-1]
+        if hist.empty:
+            raise RuntimeError("%s 丟掉未收市那一根之後沒有價格" % fin.ticker)
+        check["note"] = (
+            "美股仍在%s(美東 %s),yfinance 最後一根日線 %s 是未完成的當日線,已丟棄,"
+            "退回上一交易日 %s 的收市價。"
+            % ("交易時段" if state == "open" else "開市前", check["now_eastern"],
+               last_bar, hist.index[-1].date()))
+    else:
+        check["note"] = ("美東 %s,市場狀態「%s」,最後一根日線 %s 為已完成的收市價。"
+                         % (check["now_eastern"], state, last_bar))
+
     price = float(hist["Close"].iloc[-1])
     pdate = hist.index[-1].date()
+    # 成交量完整度:只發警告,不改價。時鐘說已收市而成交量明顯不足全日,多數代表
+    # 那一根仍在結算(收市後幾分鐘),值得知道,但不足以推翻時鐘。
+    try:
+        if "Volume" in hist and len(hist) > 21:
+            v_last = float(hist["Volume"].iloc[-1])
+            v_med = float(hist["Volume"].iloc[-21:-1].median())
+            if v_med > 0 and v_last < 0.5 * v_med:
+                check["volume_note"] = (
+                    "注意:%s 那一根的成交量只有近 20 日中位的 %.0f%%,可能仍未足全日。"
+                    % (pdate, 100.0 * v_last / v_med))
+    except Exception:
+        pass
+    check["price_date"] = str(pdate)
+    check["price"] = price
     try:
         shares_now = float(tk.fast_info.get("shares"))
     except Exception:
@@ -679,7 +1257,8 @@ def market_data(fin: Financials, years: int = 4) -> Market:
     return Market(price=price, price_date=pdate, shares_now=shares_now,
                   ps_hist=pcts([v for _, v in ps_all]),
                   ps_hist_1y=pcts([v for d0, v in ps_all if d0 >= cutoff]),
-                  ps_now=ps_now)
+                  ps_now=ps_now,
+                  is_closing_price=True, price_check=check)
 
 
 # ----------------------------------------------------------------------------
@@ -912,7 +1491,9 @@ def annualise_latest_quarter(fin: Financials) -> Financials:
 def analyse(ticker: str, base_mode: str = "ttm",
             discount_rate: Optional[float] = None, manual_override: bool = False,
             rate_inputs: Optional[dict] = None,
-            rerating_reasons: Optional[Dict] = None) -> dict:
+            rerating_reasons: Optional[Dict] = None,
+            allow_stale: bool = False,
+            now_et: Optional[dt.datetime] = None) -> dict:
     """折現率四條路,由上而下先中先用(前三條是舊有行為,一句沒改):
 
     1. manual_override=True + discount_rate  → 直接用傳入值,標明「人手覆寫」。
@@ -924,9 +1505,28 @@ def analyse(ticker: str, base_mode: str = "ttm",
        直接呼叫 analyse() 的舊重跑腳本重現當日結果)。
 
     rerating_reasons:一年回報表四情境的「重估理由」,{情境編號: '理由'};不傳
-    就讀 RERATING_REASONS[代號],仍然沒有就留空並印警告。"""
+    就讀 RERATING_REASONS[代號],仍然沒有就留空並印警告。
+
+    allow_stale(KARST-195):companyfacts 落後於 EDGAR 申報清單時,預設**拒絕給
+    基準值**(valA 的 per_share 置 None,原值移到 per_share_withheld),只給警告;
+    傳 True 就照樣輸出數字,並在 `data_freshness` 內留下記錄。
+    now_et:注入「現在的美東時間」,供收市價核對的測試用。"""
     fin = build_financials(ticker)
-    mkt = market_data(fin)
+    mkt = market_data(fin, now_et=now_et)
+    # (一) 稀釋股數與市場股數對照 —— 差得太遠就換市場股數,再重算市銷率
+    fin2 = reconcile_diluted_shares(fin, mkt.shares_now)
+    if fin2 is not fin:
+        fin = fin2
+        mkt = market_data(fin, now_et=now_et)
+    # (六) 報表新鮮度:對 EDGAR 申報清單交叉核對
+    freshness = filing_freshness(fin.cik, fin.asof, mkt.price_date)
+    if freshness.get("note"):
+        fin.notes.append(freshness["note"])
+    baseline_withheld = bool(freshness.get("stale")) and not allow_stale
+    if baseline_withheld:
+        fin.notes.append(
+            "【拒絕輸出基準值】資料落後於公司已申報的最新一期,基準每股值不予輸出"
+            "(要照樣看數字,加 --allow-stale 並自行承擔口徑落後一季的後果)。")
     if base_mode == "annualized_q":
         fin = annualise_latest_quarter(fin)
     C = CASES[fin.ticker]
@@ -1108,12 +1708,23 @@ def analyse(ticker: str, base_mode: str = "ttm",
     oneyear_four, rerating_warnings = one_year_four_scenarios(
         fin, mkt, C["g1_cases"], dilution, reasons)
 
+    # (六) 資料落後時拒絕給基準值 —— 欄位一格不刪,原值改放 *_withheld
+    if baseline_withheld:
+        for v in valA.values():
+            v["per_share_withheld"] = v["per_share"]
+            v["upside_withheld"] = v["upside"]
+            v["per_share"] = None
+            v["upside"] = None
+            v["withheld"] = True
+
     return dict(fin=fin, mkt=mkt, base=base, tableA=tableA, tableB=tableB,
                 valA=valA, valA_sens=valA_sens, oneyear=oneyear,
                 mult_cases=mult_cases, dilution_1y=dilution, cfg=C,
                 rate_sensitivity=rate_sens,
                 wacc_detail=wacc_detail, valA_joint=valA_joint,
-                oneyear_four=oneyear_four, rerating_warnings=rerating_warnings)
+                oneyear_four=oneyear_four, rerating_warnings=rerating_warnings,
+                data_freshness=freshness, price_check=mkt.price_check,
+                extraction=fin.extraction, baseline_withheld=baseline_withheld)
 
 
 def _jsonable(o):
@@ -1148,6 +1759,9 @@ def main(argv=None):
     ap.add_argument("--net-cash-include-investments", action="store_true",
                     help="判定「淨現金公司」時把短期及長期投資也當現金(預設只看現金,"
                          "對齊 D-162 的 N2 口徑)。翻邊的公司 WACC 會由加權值變回股權成本。")
+    ap.add_argument("--allow-stale", action="store_true",
+                    help="companyfacts 落後於 EDGAR 申報清單時,照樣輸出基準每股值"
+                         "(預設拒絕輸出,只給警告)。用了就要自行承擔口徑落後一季。")
     args = ap.parse_args(argv)
 
     if args.full:
@@ -1169,21 +1783,35 @@ def main(argv=None):
                      rate_info["treasury_date"], 100 * rate_info["equity_premium"],
                      100 * rate_info["raw_rate"], 100 * rate_info["credit_spread"],
                      100 * rate_info["rate"], len(args.tickers)))
-        res = {"_meta": dict(discount_rate=rate_info, cost_of_capital={})}
+        res = {"_meta": dict(discount_rate=rate_info, cost_of_capital={},
+                             data_freshness={}, price_check={}, extraction={},
+                             allow_stale=bool(args.allow_stale))}
         for t in args.tickers:
             if rate_info["manual_override"]:
                 r = analyse(t, base_mode=args.base, discount_rate=rate_info["rate"],
-                            manual_override=True)
+                            manual_override=True, allow_stale=args.allow_stale)
             else:
-                r = analyse(t, base_mode=args.base, rate_inputs=rate_info)
+                r = analyse(t, base_mode=args.base, rate_inputs=rate_info,
+                            allow_stale=args.allow_stale)
             res[t.upper()] = _jsonable(r)
             if r.get("wacc_detail"):
                 res["_meta"]["cost_of_capital"][t.upper()] = _jsonable(r["wacc_detail"])
+            res["_meta"]["data_freshness"][t.upper()] = _jsonable(r["data_freshness"])
+            res["_meta"]["price_check"][t.upper()] = _jsonable(r["price_check"])
+            res["_meta"]["extraction"][t.upper()] = _jsonable(r["extraction"])
             f, m = r["fin"], r["mkt"]
             print("=" * 72)
             print("%s  price=%.2f (%s)  rev_ttm=%.1fM  margin=%.1f%%  netdebt=%.1fM  shares=%.1fM"
                   % (f.ticker, m.price, m.price_date, f.rev_ttm / 1e6, 100 * f.op_margin,
                      f.net_debt / 1e6, f.diluted_shares / 1e6))
+            print("  [價格] %s" % r["price_check"].get("note", ""))
+            if r["price_check"].get("volume_note"):
+                print("  [價格] " + r["price_check"]["volume_note"])
+            print("  [新鮮度] %s" % (r["data_freshness"].get("note")
+                                or "companyfacts 結算日 %s = EDGAR 最近一份 %s(%s)所涵蓋的期末,無落後"
+                                   % (r["data_freshness"].get("facts_asof"),
+                                      r["data_freshness"].get("latest_form"),
+                                      r["data_freshness"].get("latest_filing_date"))))
             for n in f.notes:
                 print("  [注意] " + n)
             print("-- A: implied stage-1 revenue CAGR (margin fixed) --")
@@ -1206,7 +1834,15 @@ def main(argv=None):
                     if s["delta"] is not None:
                         print("        %-18s %s -> margin %+.1fpp" % (s["key"], s["bump"], 100 * s["delta"]))
             print("-- (A) long-term value range --")
+            if r["baseline_withheld"]:
+                print("   【拒絕輸出基準值】%s" % r["data_freshness"].get("note", ""))
+                print("   (要照樣看數字,重跑時加 --allow-stale)")
             for k, v in r["valA"].items():
+                if v.get("per_share") is None:
+                    print("   %-4s 不予輸出(資料落後;內部計算值 %s/sh)"
+                          % (k, ("%.2f" % v["per_share_withheld"])
+                             if v.get("per_share_withheld") is not None else "n/a"))
+                    continue
                 print("   %-4s %8.2f/sh  upside %+6.1f%%  TVshare %.0f%%"
                       % (k, v["per_share"], 100 * v["upside"], 100 * v["terminal_share"]))
             for s in r["valA_sens"]:
@@ -1250,19 +1886,26 @@ def main(argv=None):
     for t in args.tickers:
         fin = build_financials(t)
         mkt = market_data(fin)
+        fin = reconcile_diluted_shares(fin, mkt.shares_now)
+        fresh = filing_freshness(fin.cik, fin.asof, mkt.price_date)
         print("=" * 70)
         print("%s (%s) CIK %s  帳目截至 %s" % (fin.ticker, fin.name, fin.cik, fin.asof))
         print("  TTM 收入 %s M / 營業利潤 %s M (利潤率 %.1f%%) / 股權薪酬 %s M"
               % (fmt_m(fin.rev_ttm), fmt_m(fin.ebit_ttm), 100 * fin.op_margin, fmt_m(fin.sbc_ttm)))
         print("  折舊攤銷 %s M / 資本開支 %s M" % (fmt_m(fin.da_ttm), fmt_m(fin.capex_ttm)))
-        print("  現金 %s M / 投資 %s M / 有息負債 %s M / 租賃負債 %s M -> 淨負債 %s M"
+        print("  現金 %s M / 投資 %s M / 有息負債 %s M(其中融資租賃 %s M)/ 經營租賃 %s M -> 淨負債 %s M"
               % (fmt_m(fin.cash), fmt_m(fin.investments), fmt_m(fin.debt),
-                 fmt_m(fin.lease_debt), fmt_m(fin.net_debt)))
+                 fmt_m(fin.finance_lease), fmt_m(fin.lease_debt), fmt_m(fin.net_debt)))
         print("  稀釋股數 %.1f M (申報) / yfinance 現時股數 %s"
               % (fin.diluted_shares / 1e6,
                  ("%.1f M" % (mkt.shares_now / 1e6)) if mkt.shares_now else "n/a"))
         print("  現價 %.2f (%s) / 市銷率 %.2f / 歷史 %s" % (mkt.price, mkt.price_date, mkt.ps_now, mkt.ps_hist))
         print("  TTM 收入年增 %s" % (("%.1f%%" % (100 * fin.rev_growth_yoy)) if fin.rev_growth_yoy is not None else "n/a"))
+        print("  [價格] %s" % mkt.price_check.get("note", ""))
+        if mkt.price_check.get("volume_note"):
+            print("  [價格] " + mkt.price_check["volume_note"])
+        print("  [新鮮度] %s" % (fresh.get("note") or "無落後(EDGAR 最近一份 %s 涵蓋 %s)"
+                             % (fresh.get("latest_form"), fresh.get("latest_report_date"))))
         for n in fin.notes:
             print("  [注意] " + n)
         out[fin.ticker] = dict(
@@ -1270,11 +1913,14 @@ def main(argv=None):
                      sbc_ttm=fin.sbc_ttm, da_ttm=fin.da_ttm, capex_ttm=fin.capex_ttm,
                      tax_rate_hist=fin.tax_rate_hist, diluted_shares=fin.diluted_shares,
                      cash=fin.cash, investments=fin.investments, debt=fin.debt,
+                     finance_lease=fin.finance_lease, shares_src=fin.shares_src,
                      lease_debt=fin.lease_debt, net_debt=fin.net_debt,
                      op_margin=fin.op_margin, rev_growth_yoy=fin.rev_growth_yoy,
-                     notes=fin.notes),
+                     notes=fin.notes, extraction=fin.extraction),
             mkt=dict(price=mkt.price, date=str(mkt.price_date), ps_now=mkt.ps_now,
-                     ps_hist=mkt.ps_hist, shares_now=mkt.shares_now),
+                     ps_hist=mkt.ps_hist, shares_now=mkt.shares_now,
+                     price_check=mkt.price_check),
+            data_freshness=fresh,
         )
     if args.json:
         with open(args.json, "w", encoding="utf-8") as fh:
