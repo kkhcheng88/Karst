@@ -1,0 +1,239 @@
+# -*- coding: utf-8 -*-
+"""KARST-199 敘事衝擊事件籃子:共用核心。
+
+單位是「事件」不是個股:一個敘事打在一個籃子上,量的是籃內分散度。
+價格庫、SPY 基準、相對跌幅與超額的算法一律沿用 KARST-187 build_events.py 的口徑:
+  - 只取 series_role == "primary"
+  - 相對大市 = (1 + 個股回報) / (1 + SPY 回報) - 1,兩邊都用 adj_close(總回報口徑)
+  - 進場日 = 錨日之後下一個交易日的收市(可成交時點)
+  - 前瞻窗口以 SPY 日曆數交易日:3m=63、6m=126、12m=252
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+ROOT = Path(r"C:\projects\Karst")
+HERE = Path(__file__).resolve().parent
+OUT = HERE / "out"
+OUT.mkdir(parents=True, exist_ok=True)
+
+PRICES = ROOT / "data" / "prices" / "daily"
+PANEL = ROOT / "data" / "panel" / "quarterly_v3.parquet"
+ENTITIES = ROOT / "data" / "universe" / "entities.parquet"
+TICKER_PERIODS = ROOT / "data" / "universe" / "ticker_periods.parquet"
+SPY_CSV = ROOT / "data" / "prices" / "spy_daily.csv"
+
+HORIZONS = {"3m": 63, "6m": 126, "12m": 252}
+PANEL_STALE_DAYS = 400
+TTM_SPAN_DAYS = 450
+SPAN_DAYS = {"Q": 90, "H": 180, "9M": 270, "FY": 365}
+
+
+def log(msg: str) -> None:
+    print(msg, flush=True)
+
+
+# ------------------------------------------------------------------ 價格
+def load_spy() -> pd.DataFrame:
+    spy = pd.read_csv(SPY_CSV, parse_dates=["date"]).sort_values("date").reset_index(drop=True)
+    return spy[["date", "adj_close"]].rename(columns={"adj_close": "spy_adj"})
+
+
+def load_prices() -> pd.DataFrame:
+    """日線價格庫,只取主序列;對齊到 SPY 交易日曆。"""
+    parts = sorted(PRICES.glob("part_*.parquet"))
+    cols = ["entity_id", "date", "close", "adj_close", "low", "volume", "series_role"]
+    frames = []
+    for p in parts:
+        d = pd.read_parquet(p, columns=cols)
+        d = d[d["series_role"] == "primary"].drop(columns=["series_role"])
+        frames.append(d)
+    df = pd.concat(frames, ignore_index=True)
+    df["date"] = pd.to_datetime(df["date"])
+    for c in ("close", "adj_close", "low", "volume"):
+        df[c] = df[c].astype("float64")
+    df = df.dropna(subset=["adj_close", "close"])
+    df = df[(df["adj_close"] > 0) & (df["close"] > 0)]
+    df = df.sort_values(["entity_id", "date"], kind="stable").reset_index(drop=True)
+    return df
+
+
+def build_wide(px: pd.DataFrame, spy: pd.DataFrame):
+    """回 (日曆, adj_close 寬表, spy 序列)。寬表欄=entity_id、列=SPY 交易日。"""
+    px = px.merge(spy, on="date", how="inner")
+    cal = np.sort(px["date"].unique())
+    wide = px.pivot_table(index="date", columns="entity_id", values="adj_close", aggfunc="last")
+    wide = wide.reindex(cal)
+    s = spy.set_index("date")["spy_adj"].reindex(cal)
+    return cal, wide, s
+
+
+# ------------------------------------------------------------------ 代號解析
+def resolve_tickers(tickers, asof: pd.Timestamp) -> pd.DataFrame:
+    """把新聞點名的代號解析成 entity_id(以衝擊起日為準的代號時段)。
+
+    解析不到的一律留一列並標明原因——它們多數是後來被收購或除牌的公司,
+    正正是倖存者偏差的所在,不可以靜靜丟掉。
+    """
+    tp = pd.read_parquet(TICKER_PERIODS)
+    tp["valid_from"] = pd.to_datetime(tp["valid_from"])
+    tp["valid_to"] = pd.to_datetime(tp["valid_to"])
+    rows = []
+    for t in tickers:
+        t = t.strip().upper()
+        sub = tp[tp["ticker"] == t]
+        if len(sub) == 0:
+            rows.append(dict(ticker=t, entity_id=None, resolve_status="代號不在宇宙(多為已除牌/被收購)"))
+            continue
+        ok = sub[(sub["valid_from"] <= asof) &
+                 (sub["valid_to"].isna() | (sub["valid_to"] >= asof))]
+        if len(ok) == 0:
+            rows.append(dict(ticker=t, entity_id=None, resolve_status="代號在宇宙但衝擊日不在有效時段"))
+            continue
+        if len(ok) > 1:
+            rows.append(dict(ticker=t, entity_id=None, resolve_status="代號時段多於一段,人手裁"))
+            continue
+        rows.append(dict(ticker=t, entity_id=ok["entity_id"].iloc[0], resolve_status="已解析"))
+    return pd.DataFrame(rows)
+
+
+# ------------------------------------------------------------------ 面板特徵
+class PanelFeatures:
+    """事前可辨特徵:一律以衝擊起日為知情時點閘,filed_date <= 衝擊起日 才准用。"""
+
+    def __init__(self):
+        cols = ["entity_id", "period_end", "filed_date", "currency",
+                "cash_and_equivalents", "cash_and_equivalents_filed",
+                "short_term_investments", "short_term_investments_filed",
+                "total_debt", "total_debt_filed",
+                "liabilities", "liabilities_filed",
+                "assets", "assets_filed",
+                "equity", "equity_filed",
+                "revenue", "revenue_filed", "revenue_period",
+                "operating_cash_flow", "operating_cash_flow_filed", "operating_cash_flow_period",
+                "net_income", "net_income_filed", "net_income_period",
+                "shares_outstanding", "shares_outstanding_filed"]
+        pan = pd.read_parquet(PANEL, columns=cols)
+        pan = pan.dropna(subset=["period_end"])
+        pan = pan[(pan["period_end"] >= pd.Timestamp("1990-01-01")) &
+                  (pan["period_end"] <= pd.Timestamp("2026-12-31"))]
+        self.pan = pan.sort_values(["entity_id", "period_end"], kind="stable").reset_index(drop=True)
+        self.by_ent = {e: d for e, d in self.pan.groupby("entity_id", sort=False)}
+
+    @staticmethod
+    def _ttm(sub: pd.DataFrame, col: str, per_col: str, t: pd.Timestamp):
+        """滾動四季累計(照 build_events.py 的四條路:FY_latest / YTD_diff / 4Q / FY_stale)。"""
+        ok = sub[sub[col].notna() & sub[f"{col}_filed"].notna() & (sub[f"{col}_filed"] <= t)]
+        if len(ok) == 0:
+            return np.nan, ""
+        q = ok.iloc[-1]
+        span_q = q[per_col] if isinstance(q[per_col], str) else ""
+        if span_q == "FY":
+            return float(q[col]), "FY_latest"
+        if span_q in ("Q", "H", "9M"):
+            pe_q = q["period_end"]
+            fy = ok[(ok[per_col] == "FY") & (ok["period_end"] < pe_q)]
+            prv = ok[(ok[per_col] == span_q) & (ok["period_end"] < pe_q)]
+            if len(fy) and len(prv):
+                f = fy.iloc[-1]
+                lag_fy = (pe_q - f["period_end"]).days
+                d = (pe_q - prv["period_end"]).dt.days
+                cand = prv[(d - 365).abs() <= 45]
+                if len(cand) and abs(lag_fy - SPAN_DAYS[span_q]) <= 45:
+                    return float(q[col]) + float(f[col]) - float(cand.iloc[-1][col]), "YTD_diff"
+        qq = ok[ok[per_col] == "Q"]
+        if len(qq) >= 4:
+            last4 = qq.iloc[-4:]
+            if (last4["period_end"].iloc[-1] - last4["period_end"].iloc[0]).days <= TTM_SPAN_DAYS:
+                return float(last4[col].sum()), "4Q"
+        fy = ok[ok[per_col] == "FY"]
+        if len(fy):
+            f = fy.iloc[-1]
+            if (t - f["period_end"]).days <= 500:
+                return float(f[col]), "FY_stale"
+        return np.nan, ""
+
+    def at(self, entity_id: str, t: pd.Timestamp, px_close: float) -> dict:
+        """回一家公司在知情時點 t 的事前特徵。取不到的留空,不填零。"""
+        out = dict(feat_status="無面板")
+        sub = self.by_ent.get(entity_id)
+        if sub is None:
+            return out
+        av = sub[(sub["filed_date"].notna()) & (sub["filed_date"] <= t) & (sub["period_end"] <= t)]
+        if len(av) == 0:
+            return out
+        q = av.iloc[-1]
+        age = (t - q["period_end"]).days
+        if age > PANEL_STALE_DAYS:
+            out["feat_status"] = "最近季度過期"
+            return out
+        out["feat_status"] = "有"
+        out["panel_period_end"] = q["period_end"]
+        out["panel_filed"] = q["filed_date"]
+        out["panel_age_days"] = age
+        out["currency"] = q["currency"]
+
+        def g(col):
+            v, f = q[col], q[f"{col}_filed"]
+            if pd.isna(v) or pd.isna(f) or f > t:
+                return np.nan
+            return float(v)
+
+        cash, sti = g("cash_and_equivalents"), g("short_term_investments")
+        td, liab, assets, eq = g("total_debt"), g("liabilities"), g("assets"), g("equity")
+        out["cash"] = cash
+        out["total_debt"] = td
+        out["assets"] = assets
+        out["equity"] = eq
+
+        # 股數(封面頁,400 日內)
+        shq = av[av["shares_outstanding"].notna() & av["shares_outstanding_filed"].notna()
+                 & (av["shares_outstanding_filed"] <= t)]
+        mcap = np.nan
+        if len(shq):
+            k = shq.iloc[-1]
+            if (t - k["shares_outstanding_filed"]).days <= PANEL_STALE_DAYS:
+                mcap = float(k["shares_outstanding"]) * px_close
+        out["mcap_usd"] = mcap
+
+        rev, rev_m = self._ttm(av, "revenue", "revenue_period", t)
+        ocf, ocf_m = self._ttm(av, "operating_cash_flow", "operating_cash_flow_period", t)
+        ni, ni_m = self._ttm(av, "net_income", "net_income_period", t)
+        out["ttm_revenue"] = rev
+        out["ttm_ocf"] = ocf
+        out["ttm_net_income"] = ni
+        out["ttm_method_rev"] = rev_m
+
+        # --- 特徵(全部事前可得)
+        out["f_net_cash_n2"] = (cash - td) if (not np.isnan(cash) and not np.isnan(td)) else np.nan
+        out["f_net_cash_over_mcap"] = (out["f_net_cash_n2"] / mcap) if (mcap and mcap > 0 and not np.isnan(out["f_net_cash_n2"])) else np.nan
+        out["f_debt_to_assets"] = (td / assets) if (not np.isnan(td) and assets and assets > 0) else np.nan
+        out["f_liab_to_assets"] = (liab / assets) if (not np.isnan(liab) and assets and assets > 0) else np.nan
+        out["f_ocf_positive"] = (1.0 if ocf > 0 else 0.0) if not np.isnan(ocf) else np.nan
+        out["f_ocf_margin"] = (ocf / rev) if (not np.isnan(ocf) and rev and rev > 0) else np.nan
+        out["f_ni_margin"] = (ni / rev) if (not np.isnan(ni) and rev and rev > 0) else np.nan
+        out["f_ps"] = (mcap / rev) if (mcap and rev and rev > 0) else np.nan
+        out["f_pb"] = (mcap / eq) if (mcap and eq and eq > 0) else np.nan
+        out["f_pe"] = (mcap / ni) if (mcap and ni and ni > 0) else np.nan
+        out["f_log_mcap"] = np.log(mcap) if (mcap and mcap > 0) else np.nan
+
+        # 營收增長(TTM 對一年前 TTM)——一年前那格同樣要 filed <= t
+        prev_t_cut = av[av["period_end"] <= (q["period_end"] - pd.Timedelta(days=300))]
+        if len(prev_t_cut):
+            rev_prev, _ = self._ttm(prev_t_cut, "revenue", "revenue_period", t)
+            if not np.isnan(rev) and not np.isnan(rev_prev) and rev_prev > 0:
+                out["f_rev_growth_yoy"] = rev / rev_prev - 1.0
+        # 營收波動度(過去八格 revenue 的變異係數)——經常性收入佔比的代理
+        r8 = av[av["revenue"].notna() & (av["revenue_filed"] <= t)].tail(8)["revenue"].astype(float)
+        if len(r8) >= 6 and r8.mean() > 0:
+            out["f_rev_cv8"] = float(r8.std() / r8.mean())
+        return out
+
+
+def to_json(obj, path: Path) -> None:
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2, default=str)
