@@ -7,9 +7,10 @@ risk: low
 model: opus
 fits: strategy/framework.md §四(D-166):暫停期第一件落地=四類注分類器與論點卡規格(八格),至今未開票;用戶 2026-09-10 原話:「what should be the checklist to be validated, and always to the story / narrative, to falsification or validate if the MOAT or business value is impact to the point where the price is affected?」;KARST-199 查出歷史籃子分得開的特徵全是「好生意」而無一條答「敘事適不適用」;KARST-188 六十家卡片 29 條規則 22 條可明文化
 dependsOn: []
-claimedBy: null
+claimedBy: checklist203-opus
 epic: 方法論期(D-166)
 deliverable: KARST-D04
+closed: 2026-09-10
 ---
 
 ## 工作內容
@@ -18,11 +19,27 @@ deliverable: KARST-D04
 
 ## 驗收條件
 
-- [ ] 規格檔落檔:通用論點卡八格 + 敘事衝擊檢查清單 + 機械化前置否決,每格有資料來源與答不到的標法
-- [ ] 敘事適用度四級與價格影響門檻有定義與例子;證偽條件與反對票為必填
-- [ ] 歷史考試防污染協議一節(引用衝擊前文件、記憶對照臂、判斷與評分分隊、抽查)
-- [ ] 不做個案、不改 karst/ library/ strategy/tools/;含中文檔案只用 Read/Write/Edit;不 commit
+- [x] 規格檔落檔:通用論點卡八格 + 敘事衝擊檢查清單 + 機械化前置否決,每格有資料來源與答不到的標法
+- [x] 敘事適用度四級與價格影響門檻有定義與例子;證偽條件與反對票為必填
+- [x] 歷史考試防污染協議一節(引用衝擊前文件、記憶對照臂、判斷與評分分隊、抽查)
+- [x] 不做個案、不改 karst/ library/ strategy/tools/;含中文檔案只用 Read/Write/Edit;不 commit
 
 ## 結果
 
+· 2026-09-10 18:30 規格落檔 `strategy/specs/論點卡與敘事衝擊檢查清單-v1.md`(strategy/specs/ 首份檔),八節,四格驗收全中
+
+- **第一節 通用論點卡八格**:framework §四 只有一句並列清單,全倉從無逐格說明,本檔為首次定義。每格寫明答什麼、用什麼文件(10-K 哪一節、10-Q、8-K EX-99.1、業績會逐字稿問答、產品定價頁)、答不到怎標。格一納 D-174 的 200 日線定義;格五納 D-169 第 2 條三個數;格六證偽必填;格八注碼分母改證偽出場價(D-174 第 1 條)。
+- **第二節 敘事衝擊檢查清單八步**(主線):敘事一句(須含主體/機制/後果/時間四樣)→ 機制歸類(護城河/經濟學/財務,逐類指定查什麼與引哪份 insights)→ 打中哪條線並估佔比區間 → 衝擊前證據六條(客戶集中度、合約年期、經常性收入佔比、定價方式、可替代性、管理層已有應對收入,逐條指定文件節名)→ 適用度四級 → 價格影響門檻(兩條路算價值影響、兩個口徑量跌幅、三判詞)→ 證偽三條(來源須分開)→ 反對票(另一 agent 寫,三條必寫)。
+- **第三節 機械前置否決**:KARST-199 三條否決問題(用法是否決不是排序,零條到一條收回幾乎全部改善)+ D-173 兩閘 + KARST-188 可明文化規則(A1 終值佔比、A7 隱含增速高於共識、B1 壓力封底、同業口徑 10pp、淨負債兩口徑、攤薄淨計);3.4 明文寫死「品牌壞沒壞」一類不設機械版本、日後不准偷偷加比率代替。
+- **第四節 防污染三行**(依用戶「no point … until we can got the correct way」定為附件):引用制必做、分隊必做、記憶對照臂選做。
+- **第五節 統一標法**:`已核`/`推算`/`判斷`/`查不到` 四標籤,空白不是標籤,每卡末必附「判不出的事」;第六節四類注共用換入口;第七節課程 7–24 則對照;第八節未答與舉手。
+- 材料出處:framework §四 與 §一 用戶原話、principles §三、candidates 己族、D-166/169/171/173/174、①對帳單 §一 與 §十一 第 1/3/27–30 條、KARST-199 總覽 §4.2/§4.3/§七、KARST-188 規則清單與兩張 B 卡體例、library/insights 四份(moat-durability、where-the-money-lands、pricing-position、category-transitions)。
+- 未改 karst/ library/ strategy/tools/、未做個案、未 commit。
+
 ## 留言
+
+· 2026-09-10 18:35 agent checklist203-opus 交回
+
+- 三處要用戶裁,已寫入規格第八節:(一)A7 門檻 0 對 10 個百分點是 KARST-188 明文記錄的真分歧,未裁;(二)本檔所有門檻數字(價格影響判詞 1.5 倍/0.6 倍、兩路差距 15pp、終值佔比 60%、抽查 20%、成交額 300 萬)全屬示例值,未經參數對齊(D-038);(三)`principles.md` §三 第 2 條的停手線,用戶至今未講。
+- 一句立場:第五步的判詞方向極易寫反——**我們買的是「敘事不適用而價格照跌」那一種**,高度適用等於市場對了、不買;規格已把這一句整句寫在卡上。
+- `docs: strategy/specs/論點卡與敘事衝擊檢查清單-v1.md`
