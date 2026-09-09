@@ -9,6 +9,7 @@ fits: KARST-188 舉手裁決(先修工具再重跑);KARST-195 留言第一件:�
 dependsOn: [KARST-196]
 claimedBy: rank197-opus
 deliverable: KARST-D04
+closed: 2026-09-10
 ---
 
 ## 工作內容
@@ -17,10 +18,10 @@ deliverable: KARST-D04
 
 ## 驗收條件
 
-- [ ] 六十家新版排序表與篩選表落檔,舊版另存;逐家標排位 / 過閘 / 底線三項變動,翻轉家數與名單在總覽更正紀錄寫明
-- [ ] 十四張卡只在翻轉處加註,FN、COLL 加更正段;前瞻登記表既有預測一字不改
-- [ ] 版式按本票寫入的五件裁決結果做;五件之中任何一件未寫入本票不派、不做
-- [ ] 不改 karst/、library/、strategy/tools/、其他票;含中文檔案只用 Read/Write/Edit;Python 一律 PYTHONUTF8=1;不 commit
+- [x] 六十家新版排序表與篩選表落檔,舊版另存;逐家標排位 / 過閘 / 底線三項變動,翻轉家數與名單在總覽更正紀錄寫明
+- [x] 十四張卡只在翻轉處加註,FN、COLL 加更正段;前瞻登記表既有預測一字不改
+- [x] 版式按本票寫入的五件裁決結果做;五件之中任何一件未寫入本票不派、不做
+- [x] 不改 karst/、library/、strategy/tools/、其他票;含中文檔案只用 Read/Write/Edit;Python 一律 PYTHONUTF8=1;不 commit
 
 ## 結果
 
