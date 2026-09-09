@@ -7,8 +7,9 @@ risk: low
 model: opus
 fits: ①對齊紀錄第 28、29 條:用戶點名 SaaS 事件是錯殺而非「活不活得過」;它仍在一年窗內,是唯一可以乾淨考核代理判斷「敘事適用度」的活個案(歷史個案受模型知道結局污染,D-168);D-169 第 3 條行業殺錯要「至少一項持有期內可觀察、能區分替代尚未反映與實際替代有限」的證據
 dependsOn: []
-claimedBy: null
-deliverable: KARST-D04
+claimedBy: saas200-opus
+deliverable: KARST-D05
+epic: 方法論期(D-166)
 ---
 
 ## 工作內容

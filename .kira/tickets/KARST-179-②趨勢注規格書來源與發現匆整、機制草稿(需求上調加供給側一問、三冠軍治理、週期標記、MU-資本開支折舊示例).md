@@ -8,7 +8,8 @@ model: opus
 fits: 一程做得完:只寫規格與一個示例計算,不跑回測
 dependsOn: []
 claimedBy: null
-deliverable: KARST-D04
+deliverable: KARST-D06
+epic: 方法論期(D-166)
 ---
 
 ## 工作內容

@@ -8,7 +8,8 @@ model: opus
 fits: 一程做得完:只寫規格,不跑回測;來源全在 library/ 已提煉檔
 dependsOn: []
 claimedBy: spec189-opus
-deliverable: KARST-D04
+deliverable: KARST-D05
+epic: 方法論期(D-166)
 ---
 
 ## 工作內容

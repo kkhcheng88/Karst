@@ -9,6 +9,7 @@ fits: 一程做得完:只寫規格與欄位,不建資料庫;依 strategy/chains/
 dependsOn: [KARST-180]
 claimedBy: null
 deliverable: KARST-D04
+epic: 方法論期(D-166)
 ---
 
 ## 工作內容
