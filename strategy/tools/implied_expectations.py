@@ -50,12 +50,42 @@ DAY = dt.timedelta(days=1)
 # 債務成本 = 十年期美債 + 信用差價,再乘 (1 − 稅率);權重用市值與有息負債帳面值;
 # 四捨五入至 0.5% 改在 WACC 這一層做。淨現金公司(有息負債 ≤ 現金)沒有實質槓桿,
 # WACC 直接等於股權成本,值不變。
+#
+# KARST-196:193 那條規則的股權成本**不隨槓桿變**,於是債務權重越高 WACC 越低 ——
+# 方向與公司金融的基本結論相反(加槓桿會令股權風險上升,WACC 大致持平,只差稅盾)。
+# 實測 TROX / CLVT / LUMN / COLL 四家債務補上之後,WACC 由 10.0% 機械地跌到
+# 6.0–7.0%,估值被推高;規則本身沒有下限,一家槓桿高、又剛好過得到負債閘的公司,
+# 會同時拿到便宜的折現率與通行證。
+#
+# 改法(Hamada 重槓桿):把 5.0 個百分點視為**無槓桿(零負債)股權溢價**,按 D/E 與
+# 稅率重槓桿 —— 重槓桿後溢價 = 無槓桿溢價 × (1 + (1 − t) × D/E),
+# 出自 Hamada (1972) 的 βL = βU × (1 + (1 − t) × D/E)(債務 beta 當 0);
+# 股權成本 Ke = 美債 + 重槓桿後溢價,再照舊按市值 / 有息負債權重加權。
+# 代入之後有一條封閉式(w = 債務權重、Ke_u = 無槓桿股權成本、s = 信用差價):
+#
+#     WACC(w) = Ke_u − w × [ t × Ke_u − (1 − t) × s ]
+#
+# 即 WACC 對槓桿是一條線,w = 0 時等於無槓桿股權成本,w = 1 時等於 (1 − t)(Ke_u + s)。
+# 兩個端點取細那個就是**這條規則本身算得出的最低 WACC**,寫成 wacc_floor;它不是
+# 外加的任意下限,是同一條公式的極限值,只用來擋住下面 D/E 上限造成的越界。
+# 稅率 t = 0 時全條線變成水平(WACC ≡ Ke_u),與直覺一致:沒有稅盾就沒有槓桿好處。
+#
+# D/E 上限:重槓桿後溢價對 D/E 是線性的,D/E 爆大(TROX 4.21 倍、CLVT 3.58 倍)時
+# 溢價會爆到二十幾個百分點,那個股權成本已經沒有意義 —— 這種公司的股權其實是一張
+# 期權,不是可以用單一折現率描述的東西。所以 D/E 截頂至 DE_CAP 並印警告。截頂只
+# 壓住**報出來的股權成本**;WACC 那一邊由 wacc_floor 兜住,兩者合起來令 WACC 對
+# 任何槓桿都落在 [wacc_floor, Ke_u] 之內。
 
-EQUITY_PREMIUM = 0.05      # 股權溢價,加在十年期美債收益率之上
+EQUITY_PREMIUM = 0.05      # **無槓桿**股權溢價(D/E = 0 時的溢價),加在十年期美債
+                           # 收益率之上;有槓桿的公司按 Hamada 式重槓桿,見
+                           # cost_of_capital()。KARST-196 之前它是固定溢價。
 RATE_ROUND_STEP = 0.005    # 資本成本四捨五入到最近 0.5 個百分點
 CREDIT_SPREAD = 0.02       # 信用差價(債務成本 = 十年期美債 + 這一格)。
                            # 第一版全批共用 2.0 個百分點 —— 這是**示例值,待對齊**,
                            # 不是任何一家公司的實際信用評級推算,見 README 限制第 10 條。
+DE_CAP = 3.0               # 重槓桿用的 D/E 上限(市值口徑),超過就截頂並印警告。
+                           # 3.0 = 債務佔資本 75%,非金融公司到這一級已是信貸故事;
+                           # 這是判斷不是市場觀察,見 README 限制第 19 條。
 
 
 def _round_half_up(x: float, step: float) -> float:
@@ -113,13 +143,15 @@ def fetch_treasury_10y() -> dict:
                 treasury_date=chosen["date"], attempts=attempts)
 
 
-def rule_discount_rate(credit_spread: float = CREDIT_SPREAD) -> dict:
-    """規則資本成本的**批次共用輸入**:十年期美債收益率 + 5.0 個百分點 = 股權成本。
+def rule_discount_rate(credit_spread: float = CREDIT_SPREAD,
+                       de_cap: float = DE_CAP) -> dict:
+    """規則資本成本的**批次共用輸入**:十年期美債收益率 + 5.0 個百分點 =
+    **無槓桿**股權成本(D/E = 0 那一家的股權成本)。
 
-    `rate` 一格是股權成本四捨五入至 0.5% 後的值 —— KARST-190 直接把它當折現率用,
-    KARST-193 之後它只是「淨現金公司的折現率」與舊行為的對照值;實際折現率由
-    cost_of_capital() 逐家算(股權成本用 `raw_rate` 這個未四捨五入的原值)。
-    回傳完整記錄(供寫入輸出 JSON `_meta` 與印說明用)。"""
+    `rate` 一格是無槓桿股權成本四捨五入至 0.5% 後的值 —— KARST-190 直接把它當折現率
+    用,KARST-193 之後它只是「淨現金公司的折現率」與舊行為的對照值;實際折現率由
+    cost_of_capital() 逐家算(無槓桿股權成本用 `raw_rate` 這個未四捨五入的原值,
+    再按該公司的 D/E 重槓桿)。回傳完整記錄(供寫入輸出 JSON `_meta` 與印說明用)。"""
     info = fetch_treasury_10y()
     raw = info["treasury_yield"] + EQUITY_PREMIUM
     rate = _round_half_up(raw, RATE_ROUND_STEP)
@@ -128,9 +160,17 @@ def rule_discount_rate(credit_spread: float = CREDIT_SPREAD) -> dict:
                 credit_spread=credit_spread,
                 cost_of_equity_raw=raw,
                 cost_of_debt_pretax=info["treasury_yield"] + credit_spread,
-                basis="WACC(KARST-193):股權成本 = 美債 + 股權溢價;債務成本 = "
-                      "美債 + 信用差價,再乘 (1 − 稅率);權重用市值與有息負債帳面值;"
-                      "四捨五入至 0.5% 在 WACC 層做")
+                # KARST-196 新增欄(只加不刪):無槓桿溢價與 D/E 上限是本批共用的輸入,
+                # 重槓桿後溢價逐家不同,記在 cost_of_capital() 的回傳裡。
+                equity_premium_unlevered=EQUITY_PREMIUM,
+                cost_of_equity_unlevered=raw,
+                de_cap=de_cap, relever="hamada",
+                basis="WACC(KARST-193 定口徑,KARST-196 補槓桿調整):無槓桿股權溢價 "
+                      "= 5.0 個百分點,按 Hamada 式 × (1 + (1 − 稅率) × D/E) 重槓桿 "
+                      "→ 股權成本 = 美債 + 重槓桿後溢價;債務成本 = 美債 + 信用差價,"
+                      "再乘 (1 − 稅率);權重用市值與有息負債帳面值;D/E 截頂 %.1f 倍;"
+                      "WACC 不低於同一條公式的極限值 wacc_floor;"
+                      "四捨五入至 0.5%% 在 WACC 層做" % de_cap)
     return info
 
 
@@ -138,35 +178,83 @@ def cost_of_capital(fin: "Financials", market_cap: float, tax_rate: float,
                     treasury_yield: float, equity_premium: float = EQUITY_PREMIUM,
                     credit_spread: float = CREDIT_SPREAD,
                     round_step: float = RATE_ROUND_STEP,
-                    net_cash_include_investments: bool = False) -> dict:
-    """逐家加權資本成本(KARST-193)。回傳的 dict 就是輸出 JSON `_meta` 那一格。
+                    net_cash_include_investments: bool = False,
+                    de_cap: float = DE_CAP,
+                    relever: bool = True) -> dict:
+    """逐家加權資本成本(KARST-193 定口徑,KARST-196 補槓桿調整)。
+    回傳的 dict 就是輸出 JSON `_meta` 那一格。
 
-      股權成本   Ke = 十年期美債 + 股權溢價(四捨五入前的原值)
+      D/E        = 有息負債帳面值 ÷ 市值(與下面權重同一口徑,含融資租賃),截頂 de_cap
+      重槓桿溢價 = 無槓桿溢價 × (1 + (1 − 稅率) × D/E)      ← Hamada (1972)
+      股權成本   Ke = 十年期美債 + 重槓桿後溢價(四捨五入前的原值)
       債務成本   Kd = (十年期美債 + 信用差價) × (1 − 稅率)
       權重       市值 E = 現價 × 稀釋後股數;債務 D = 有息負債帳面值
-      WACC       = Ke × E/(D+E) + Kd × D/(D+E),四捨五入至最近 round_step
+      WACC       = max(Ke × E/(D+E) + Kd × D/(D+E), wacc_floor),四捨五入至 round_step
+
+    **為什麼要重槓桿。** KARST-193 的 Ke 不隨槓桿變,而 Kd 恆低於 Ke,於是債務權重
+    越高 WACC 越低 —— 高槓桿公司反而拿到便宜折現率、估值被推高,方向與公司金融的
+    基本結論相反。重槓桿之後代入,WACC 對債務權重 w 是一條線:
+
+        WACC(w) = Ke_u − w × [ 稅率 × Ke_u − (1 − 稅率) × 信用差價 ]
+
+    Ke_u = 無槓桿股權成本。w = 0 時 WACC = Ke_u(淨現金公司,值與 KARST-190/193
+    完全相同);w = 1 時 WACC = (1 − 稅率) × (Ke_u + 信用差價)。**兩個端點取細那個
+    就是 wacc_floor** —— 它是同一條公式的極限值,不是外加的任意數字下限;只在 D/E
+    被 de_cap 截頂、算出來的 WACC 越過這條線時才生效(`wacc_floor_binding`)。
+
+    **D/E 上限。** 重槓桿後溢價對 D/E 線性,D/E 爆大時溢價會爆到二十幾個百分點,
+    那個股權成本已經沒有意義(這種公司的股權其實是一張期權)。所以截頂並在
+    `warnings` 留一句;截頂只壓住報出來的股權成本,WACC 那一邊由 wacc_floor 兜住。
 
     淨現金公司(有息負債 ≤ 現金,對齊 D-162 釘死的 N2 口徑「現金 − 總債務」)
-    當作沒有槓桿:WACC = Ke,值與 KARST-190 的舊折現率完全相同。
+    當作沒有槓桿:D/E = 0、溢價 = 無槓桿溢價、WACC = Ke_u,值與 KARST-190/193 相同。
 
     經營租賃負債**不入權重**(仍然留在淨負債裡,口徑不變)—— 本票只按「有息負債
     帳面值」定權重,租賃債務化的資本成本處理是另一個議題,見 README 限制第 11 條。
     net_cash_include_investments=True 時,判定淨現金那一步把短期及長期投資也當現金
     (SNOW、ENPH 這種「現金少於債務、但現金加證券遠多於債務」的公司會因此翻邊)。
+
+    relever=False 還原 KARST-193 的舊算法(固定溢價、無下限),**只供前後對照與
+    回歸測試用**(KARST-196 的六十家差異表就是這樣出「前」那一欄),不是給正常路徑
+    用的開關 —— 走這條路等於把本票修好的方向缺陷放回去。
     """
-    ke = treasury_yield + equity_premium
+    ke_unlevered = treasury_yield + equity_premium
     kd_pre = treasury_yield + credit_spread
     kd_post = kd_pre * (1.0 - tax_rate)
     cash_base = fin.cash + (fin.investments if net_cash_include_investments else 0.0)
     debt = fin.debt
     net_cash = debt <= cash_base
+    warnings: List[str] = []
+    # WACC 對槓桿是一條線,極小值必在 w = 0 或 w = 1 其中一端(見上方推導)
+    wacc_floor = min(ke_unlevered, (1.0 - tax_rate) * (ke_unlevered + credit_spread))
+    de_raw = 0.0
+    de_used = 0.0
+    de_capped = False
     if net_cash or market_cap <= 0 or (debt + market_cap) <= 0:
         w_debt, w_equity = 0.0, 1.0
-        wacc_raw = ke
+        premium_levered = equity_premium
+        ke = ke_unlevered
+        wacc_pre_floor = ke_unlevered
     else:
         w_debt = debt / (debt + market_cap)
         w_equity = 1.0 - w_debt
-        wacc_raw = ke * w_equity + kd_post * w_debt
+        de_raw = debt / market_cap
+        de_used = min(de_raw, de_cap) if relever else 0.0
+        de_capped = bool(relever and de_raw > de_cap)
+        if de_capped:
+            warnings.append(
+                "D/E %.2f 倍超過上限 %.1f 倍,重槓桿時截頂 —— 槓桿到這一級,單一股權"
+                "折現率已經描述不了這家公司(股權接近一張期權),數字要人手核。"
+                % (de_raw, de_cap))
+        premium_levered = equity_premium * (1.0 + (1.0 - tax_rate) * de_used)
+        ke = treasury_yield + premium_levered
+        wacc_pre_floor = ke * w_equity + kd_post * w_debt
+    wacc_floor_binding = bool(relever and wacc_pre_floor < wacc_floor - 1e-12)
+    wacc_raw = max(wacc_pre_floor, wacc_floor) if relever else wacc_pre_floor
+    if wacc_floor_binding:
+        warnings.append(
+            "WACC 原值 %.3f%% 低於本規則的極限值 %.3f%%(D/E 截頂所致),已抬到極限值。"
+            % (100 * wacc_pre_floor, 100 * wacc_floor))
     wacc = _round_half_up(wacc_raw, round_step)
     return dict(
         wacc=wacc, wacc_raw=wacc_raw, rounded_to=round_step,
@@ -176,6 +264,15 @@ def cost_of_capital(fin: "Financials", market_cap: float, tax_rate: float,
         market_cap=market_cap, debt_book=debt, cash=fin.cash, investments=fin.investments,
         lease_debt=fin.lease_debt, weight_equity=w_equity, weight_debt=w_debt,
         net_cash=net_cash, net_cash_include_investments=net_cash_include_investments,
+        # ---- KARST-196 新增欄(只加不刪)----
+        relever=("hamada" if relever else "none"),
+        equity_premium_unlevered=equity_premium,
+        equity_premium_levered=premium_levered,
+        cost_of_equity_unlevered=ke_unlevered,
+        de_ratio=de_raw, de_ratio_used=de_used, de_cap=de_cap, de_capped=de_capped,
+        wacc_floor=wacc_floor, wacc_pre_floor=wacc_pre_floor,
+        wacc_floor_binding=wacc_floor_binding,
+        warnings=warnings,
     )
 
 
@@ -1494,15 +1591,18 @@ def analyse(ticker: str, base_mode: str = "ttm",
             rerating_reasons: Optional[Dict] = None,
             allow_stale: bool = False,
             now_et: Optional[dt.datetime] = None) -> dict:
-    """折現率四條路,由上而下先中先用(前三條是舊有行為,一句沒改):
+    """折現率四條路,由上而下先中先用(呼叫方式一句沒改;走了哪一條記在回傳的
+    `rate_path`,取值見每條後面的括號):
 
     1. manual_override=True + discount_rate  → 直接用傳入值,標明「人手覆寫」。
+       (`rate_path="manual_override"`)
     2. rate_inputs(KARST-193 新增,`rule_discount_rate()` 的回傳)→ 逐家算 WACC
-       (見 cost_of_capital()),CASES 內的手填 wacc 忽略並在 notes 說明。
+       (見 cost_of_capital();KARST-196 起股權溢價按 D/E 重槓桿),CASES 內的
+       手填 wacc 忽略並在 notes 說明。(`rate_path="rule_wacc"`)
     3. discount_rate(KARST-190 的批次規則值)→ 全批共用這個數,不算 WACC。
-       舊腳本傳這一個參數的行為完全不變。
+       舊腳本傳這一個參數的行為完全不變。(`rate_path="batch_discount_rate"`)
     4. 兩個都不傳 → 舊行為:讀 CASES[ticker]["wacc"](供 KARST-184/186 那種
-       直接呼叫 analyse() 的舊重跑腳本重現當日結果)。
+       直接呼叫 analyse() 的舊重跑腳本重現當日結果)。(`rate_path="cases_legacy"`)
 
     rerating_reasons:一年回報表四情境的「重估理由」,{情境編號: '理由'};不傳
     就讀 RERATING_REASONS[代號],仍然沒有就留空並印警告。
@@ -1531,7 +1631,9 @@ def analyse(ticker: str, base_mode: str = "ttm",
         fin = annualise_latest_quarter(fin)
     C = CASES[fin.ticker]
     wacc_detail: Optional[dict] = None
+    rate_path: str
     if rate_inputs is not None and not (manual_override and discount_rate is not None):
+        rate_path = "rule_wacc"
         wacc_detail = cost_of_capital(
             fin, market_cap=mkt.price * fin.diluted_shares, tax_rate=C["tax_rate"],
             treasury_yield=rate_inputs["treasury_yield"],
@@ -1539,25 +1641,39 @@ def analyse(ticker: str, base_mode: str = "ttm",
             credit_spread=rate_inputs.get("credit_spread", CREDIT_SPREAD),
             round_step=rate_inputs.get("rounded_to", RATE_ROUND_STEP),
             net_cash_include_investments=rate_inputs.get(
-                "net_cash_include_investments", False))
+                "net_cash_include_investments", False),
+            de_cap=rate_inputs.get("de_cap", DE_CAP))
         wacc = wacc_detail["wacc"]
         if wacc_detail["net_cash"]:
             fin.notes.append(
-                "折現率:淨現金公司(有息負債 %.0fM ≤ 現金 %.0fM),沒有實質槓桿,"
-                "WACC = 股權成本 %.2f%% → %.1f%%;CASES 內的舊手填值 %.1f%% 已忽略。"
-                % (fin.debt / 1e6, fin.cash / 1e6, 100 * wacc_detail["cost_of_equity"],
+                "折現率:淨現金公司(有息負債 %.0fM ≤ 現金 %.0fM),沒有實質槓桿,D/E = 0,"
+                "股權溢價維持無槓桿值 %.1f 個百分點,WACC = 股權成本 %.2f%% → %.1f%%;"
+                "CASES 內的舊手填值 %.1f%% 已忽略。"
+                % (fin.debt / 1e6, fin.cash / 1e6,
+                   100 * wacc_detail["equity_premium_unlevered"],
+                   100 * wacc_detail["cost_of_equity"],
                    100 * wacc, 100 * C.get("wacc", float("nan"))))
         else:
             fin.notes.append(
-                "折現率:WACC = 股權成本 %.2f%% × %.1f%% + 稅後債務成本 %.2f%% × %.1f%% "
+                "折現率:D/E %.2f 倍%s → 股權溢價由無槓桿 %.1f 個百分點重槓桿至 %.2f 個"
+                "百分點(Hamada:× (1 + (1 − %.0f%% 稅率) × D/E));"
+                "WACC = 股權成本 %.2f%% × %.1f%% + 稅後債務成本 %.2f%% × %.1f%% "
                 "= %.2f%% → 四捨五入至 %.1f%%(有息負債 %.0fM、市值 %.0fM;"
                 "信用差價 %.1f 個百分點是示例值,待對齊)。CASES 內的舊手填值 %.1f%% 已忽略。"
-                % (100 * wacc_detail["cost_of_equity"], 100 * wacc_detail["weight_equity"],
+                % (wacc_detail["de_ratio"],
+                   ("(已截頂至 %.1f 倍)" % wacc_detail["de_cap"]) if wacc_detail["de_capped"] else "",
+                   100 * wacc_detail["equity_premium_unlevered"],
+                   100 * wacc_detail["equity_premium_levered"],
+                   100 * wacc_detail["tax_rate"],
+                   100 * wacc_detail["cost_of_equity"], 100 * wacc_detail["weight_equity"],
                    100 * wacc_detail["cost_of_debt_after_tax"], 100 * wacc_detail["weight_debt"],
-                   100 * wacc_detail["wacc_raw"], 100 * wacc,
+                   100 * wacc_detail["wacc_pre_floor"], 100 * wacc,
                    wacc_detail["debt_book"] / 1e6, wacc_detail["market_cap"] / 1e6,
                    100 * wacc_detail["credit_spread"], 100 * C.get("wacc", float("nan"))))
+        for w in wacc_detail["warnings"]:
+            fin.notes.append("[注意] 折現率:" + w)
     elif discount_rate is not None:
+        rate_path = "manual_override" if manual_override else "batch_discount_rate"
         wacc = discount_rate
         if "wacc" in C:
             if manual_override:
@@ -1572,6 +1688,7 @@ def analyse(ticker: str, base_mode: str = "ttm",
                     "如要採用手填值,重跑時加 --override-discount-rate 明確覆寫)。"
                     % (100 * C["wacc"], 100 * wacc))
     else:
+        rate_path = "cases_legacy"
         wacc = C["wacc"]   # 舊行為:向後相容,供不傳 discount_rate 的舊腳本使用
     base = Assumptions(
         bad_growth=C["stage1_growth_ref"], bad_years=C["stage1_years_ref"],
@@ -1721,6 +1838,7 @@ def analyse(ticker: str, base_mode: str = "ttm",
                 valA=valA, valA_sens=valA_sens, oneyear=oneyear,
                 mult_cases=mult_cases, dilution_1y=dilution, cfg=C,
                 rate_sensitivity=rate_sens,
+                rate_path=rate_path,
                 wacc_detail=wacc_detail, valA_joint=valA_joint,
                 oneyear_four=oneyear_four, rerating_warnings=rerating_warnings,
                 data_freshness=freshness, price_check=mkt.price_check,
@@ -1756,6 +1874,13 @@ def main(argv=None):
                     help="信用差價(小數,預設 %.3f = %.1f 個百分點)。債務成本 = 十年期美債 "
                          "+ 這一格,再乘 (1 − 稅率)。預設值是示例,待對齊。"
                          % (CREDIT_SPREAD, 100 * CREDIT_SPREAD))
+    ap.add_argument("--de-cap", type=float, default=DE_CAP,
+                    # 注意:這句 help 先被 % DE_CAP 格式化一次,argparse 印說明時再
+                    # 格式化一次,所以字面上的百分號要寫四個 %,兩輪之後才剩一個。
+                    help="重槓桿用的 D/E 上限(市值口徑,預設 %.1f 倍 = 債務佔資本 75%%%%)。"
+                         "股權溢價按 Hamada 式 × (1 + (1 − 稅率) × D/E) 重槓桿,D/E 超過"
+                         "這一格就截頂並印警告;WACC 另有本規則自身的極限值兜底。"
+                         % DE_CAP)
     ap.add_argument("--net-cash-include-investments", action="store_true",
                     help="判定「淨現金公司」時把短期及長期投資也當現金(預設只看現金,"
                          "對齊 D-162 的 N2 口徑)。翻邊的公司 WACC 會由加權值變回股權成本。")
@@ -1772,19 +1897,25 @@ def main(argv=None):
                   "本批 %d 家共用此數,輸出標明「手動覆寫」)"
                   % (100 * rate_info["rate"], len(args.tickers)))
         else:
-            rate_info = rule_discount_rate(credit_spread=args.credit_spread)
+            rate_info = rule_discount_rate(credit_spread=args.credit_spread,
+                                           de_cap=args.de_cap)
             rate_info["net_cash_include_investments"] = args.net_cash_include_investments
-            print("資本成本規則(KARST-193):十年期美債 %.3f%%(來源 %s,取數日 %s)"
-                  " + 股權溢價 %.1f 個百分點 = 股權成本 %.3f%%;"
+            print("資本成本規則(KARST-193 口徑,KARST-196 補槓桿調整):十年期美債 "
+                  "%.3f%%(來源 %s,取數日 %s) + **無槓桿**股權溢價 %.1f 個百分點 "
+                  "= 無槓桿股權成本 %.3f%%;逐家按 D/E(市值口徑,截頂 %.1f 倍)"
+                  "以 Hamada 式 × (1 + (1 − 稅率) × D/E) 重槓桿;"
                   "債務成本 = 美債 + 信用差價 %.1f 個百分點(示例值,待對齊)× (1 − 稅率);"
-                  "WACC 逐家按市值與有息負債權重計,四捨五入至最近 0.5%%。"
-                  "淨現金公司 WACC = 股權成本 = %.2f%%。本批 %d 家。"
+                  "WACC 逐家按市值與有息負債權重計,不低於本規則的極限值,"
+                  "四捨五入至最近 0.5%%。淨現金公司 D/E = 0,WACC = 無槓桿股權成本 "
+                  "= %.2f%%。本批 %d 家。"
                   % (100 * rate_info["treasury_yield"], rate_info["treasury_source"],
                      rate_info["treasury_date"], 100 * rate_info["equity_premium"],
-                     100 * rate_info["raw_rate"], 100 * rate_info["credit_spread"],
+                     100 * rate_info["raw_rate"], rate_info["de_cap"],
+                     100 * rate_info["credit_spread"],
                      100 * rate_info["rate"], len(args.tickers)))
         res = {"_meta": dict(discount_rate=rate_info, cost_of_capital={},
                              data_freshness={}, price_check={}, extraction={},
+                             rate_path={},
                              allow_stale=bool(args.allow_stale))}
         for t in args.tickers:
             if rate_info["manual_override"]:
@@ -1799,6 +1930,7 @@ def main(argv=None):
             res["_meta"]["data_freshness"][t.upper()] = _jsonable(r["data_freshness"])
             res["_meta"]["price_check"][t.upper()] = _jsonable(r["price_check"])
             res["_meta"]["extraction"][t.upper()] = _jsonable(r["extraction"])
+            res["_meta"]["rate_path"][t.upper()] = r["rate_path"]
             f, m = r["fin"], r["mkt"]
             print("=" * 72)
             print("%s  price=%.2f (%s)  rev_ttm=%.1fM  margin=%.1f%%  netdebt=%.1fM  shares=%.1fM"
