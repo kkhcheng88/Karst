@@ -6,7 +6,7 @@ createdAt: 2026-09-11
 risk: low
 model: opus
 fits: 第三輪外部評論第 7、8 題:優勢假說在「同一分類下並排比較實際暴露」,下一步「用修訂後清單先完成一個行業敘事下三至五家並排分析,先判斷並預測經營差異,再看價格是否補償」;主 agent ①對齊紀錄第 32 條(丙):並排分析是把方法做對的手段,不是成績考;KARST-200 已核出 SaaS 事件與 35 家籃子,可直接取材
-dependsOn: [KARST-205]
+dependsOn: [KARST-205, KARST-207]
 claimedBy: null
 epic: 方法論期(D-166)
 deliverable: KARST-D05
