@@ -9,6 +9,7 @@ fits: D-169 ①研究立項第 6 條;D-168(即時判斷工具,不是訊號挖掘
 dependsOn: []
 claimedBy: calc183-opus
 deliverable: KARST-D04
+closed: 2026-09-11
 ---
 
 ## 工作內容

@@ -9,6 +9,7 @@ fits: D-169、D-170;KARST-184 流程檢討對 KARST-178 提出七條具名修改
 dependsOn: []
 claimedBy: spec189-opus
 deliverable: KARST-D04
+closed: 2026-09-11
 ---
 
 ## 工作內容

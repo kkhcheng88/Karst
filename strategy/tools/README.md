@@ -459,7 +459,7 @@ lululemon 的 `CashAndCashEquivalentsAtCarryingValue` 停在 2019 財年,之後�
   TDC / ON / ENPH / ARM 四家(假設原封搬自 KARST-184)。輸出 JSON 只加欄不刪欄
   (新增 `wacc_detail`、`valA_joint`、`oneyear_four`、`rerating_warnings`、
   `_meta.cost_of_capital`),四種舊呼叫方式實測全部重現原值。完整重跑紀錄見
-  `research/2026-09-methodology/2026-09-09-隱含預期計算器口徑修正重跑.md`(連同
+  `research/2026-09-methodology/2026-09-09-①計算器重跑/2026-09-09-隱含預期計算器口徑修正重跑.md`(連同
   同名 `.json` / `.txt` 與 `2026-09-09-KARST193-前後差異.csv`)。
 
 - 2026-09-09(KARST-190):折現率規則寫入工具(見上方「折現率規則」一節),取消
@@ -484,5 +484,5 @@ lululemon 的 `CashAndCashEquivalentsAtCarryingValue` 停在 2019 財年,之後�
   偏離規則值的公司;SNOW、LULU 的舊手填值本來就與今日的規則值巧合相同,數字不變
   不代表規則沒有生效——三家現在共用同一個可重現、可查來源的數字,不再各自各憑
   判斷手填。完整重跑紀錄(含 ±1 個百分點敏感度、`_meta.discount_rate` 頭部)見
-  `research/2026-09-methodology/2026-09-09-隱含預期計算器折現率規則重跑.json`
+  `research/2026-09-methodology/2026-09-09-①計算器重跑/2026-09-09-隱含預期計算器折現率規則重跑.json`
   與同名 `.txt`。

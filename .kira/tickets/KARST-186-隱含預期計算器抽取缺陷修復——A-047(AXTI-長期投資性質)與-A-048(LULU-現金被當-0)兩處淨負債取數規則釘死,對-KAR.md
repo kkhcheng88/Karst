@@ -9,6 +9,7 @@ fits: D-169 第 9 條(計算器分開輸出長期價值範圍與一年回報);KA
 dependsOn: []
 claimedBy: calcfix186-sonnet
 deliverable: KARST-D04
+closed: 2026-09-11
 ---
 
 ## 工作內容

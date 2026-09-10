@@ -9,6 +9,7 @@ fits: D-167 知識庫;②對帳單第 27、32c、32d 條指出②治理規則書
 dependsOn: []
 claimedBy: minervini185-opus
 deliverable: KARST-D04
+closed: 2026-09-11
 ---
 
 ## 工作內容

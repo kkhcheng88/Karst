@@ -9,6 +9,7 @@ fits: D-169 ①研究立項第 2、3、7、9 條;外部評論最終建議「先�
 dependsOn: []
 claimedBy: pool184-opus
 deliverable: KARST-D04
+closed: 2026-09-11
 ---
 
 ## 工作內容

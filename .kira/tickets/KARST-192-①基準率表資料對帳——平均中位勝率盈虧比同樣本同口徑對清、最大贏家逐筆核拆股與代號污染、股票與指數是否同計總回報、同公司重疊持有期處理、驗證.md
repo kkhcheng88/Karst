@@ -9,6 +9,7 @@ fits: 第二輪外部評論「先修正三個問題」第一項與「優先修�
 dependsOn: []
 claimedBy: recon192-opus
 deliverable: KARST-D04
+closed: 2026-09-11
 ---
 
 ## 工作內容

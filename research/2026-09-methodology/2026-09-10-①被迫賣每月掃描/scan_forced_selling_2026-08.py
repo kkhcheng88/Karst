@@ -15,7 +15,7 @@ import os
 from pathlib import Path
 
 SUBMISSIONS_DIR = Path(r"C:\projects\Karst\data\sec\submissions")
-OUT_DIR = Path(r"C:\projects\Karst\research\2026-09-methodology")
+OUT_DIR = Path(r"C:\projects\Karst\research\2026-09-methodology\2026-09-10-①被迫賣每月掃描")  # 2026-09-11 倉內整理搬入子目錄(原型,已由 scan_forced_selling.py 取代)
 CSV_PATH = OUT_DIR / "2026-08-forced-selling-filings.csv"
 SUMMARY_PATH = OUT_DIR / "2026-08-forced-selling-summary.txt"
 

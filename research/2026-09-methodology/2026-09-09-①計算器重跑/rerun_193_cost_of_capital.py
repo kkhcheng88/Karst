@@ -19,7 +19,7 @@ from dataclasses import replace
 sys.path.insert(0, r"C:\projects\Karst\strategy\tools")
 import implied_expectations as IE  # noqa: E402
 
-OUT = r"C:\projects\Karst\research\2026-09-methodology"
+OUT = r"C:\projects\Karst\research\2026-09-methodology\2026-09-09-①計算器重跑"  # 2026-09-11 倉內整理搬入子目錄
 TICKERS = ["SNOW", "AXTI", "LULU", "TDC", "ON", "ENPH", "ARM"]
 
 
