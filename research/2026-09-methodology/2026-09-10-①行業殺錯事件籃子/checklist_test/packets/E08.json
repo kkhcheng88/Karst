@@ -1,0 +1,854 @@
+{
+ "event_id": "E08",
+ "name": "2025-04 對等關稅殺零售與電子硬件",
+ "narrative": "美國宣布普遍加徵一成關稅另加對越南、中國、台灣、印度的懲罰性稅率,市場怕零售商花了多年由中國搬去的低成本產地一次過被打中,而且再無地方可搬。",
+ "shock_start": "2025-04-02",
+ "news_shock_end": "2025-04-09",
+ "basket_definition": "當時報導點名的服裝零售與電子硬件/半導體",
+ "evidence_cutoff": "申報日 < 2025-04-02",
+ "redacted": [
+  "N_12m_excess",
+  "N_12m_status",
+  "N_3m_excess",
+  "N_3m_status",
+  "N_6m_excess",
+  "N_6m_status",
+  "T_12m_excess",
+  "T_12m_status",
+  "T_3m_excess",
+  "T_3m_status",
+  "T_6m_excess",
+  "T_6m_status",
+  "anchor_N_date",
+  "anchor_T_date"
+ ],
+ "companies": [
+  {
+   "ticker": "NKE",
+   "name": "NIKE, Inc.",
+   "entity_id": "0000320187",
+   "sic": "3021",
+   "sic_description": "Rubber & Plastics Footwear",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.06757417972903634",
+   "panel_period_end": "2024-11-30",
+   "panel_filed": "2025-01-03",
+   "currency": "USD",
+   "ttm_revenue": "49760000000.0",
+   "ttm_ocf": "6121000000.0",
+   "ttm_net_income": "4964000000.0",
+   "cash": "7979000000.0",
+   "total_debt": "9022000000.0",
+   "assets": "37959000000.0",
+   "equity": "14037000000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "0.12301045016077171",
+   "f_ni_margin": "0.0997588424437299",
+   "f_rev_growth_yoy": "-0.04366543665436651",
+   "f_rev_cv8": "0.8085453124548915",
+   "dollar_vol_60d": "954649064.6923065",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2024-07-25",
+     "reportDate": "2024-05-31",
+     "accession": "0000320187-24-000044",
+     "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018724000044/nke-20240531.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2025-01-03",
+     "reportDate": "2024-11-30",
+     "accession": "0000320187-25-000004",
+     "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018725000004/nke-20241130.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-10-07",
+     "reportDate": "2024-08-31",
+     "accession": "0000320187-24-000065",
+     "url": "https://www.sec.gov/Archives/edgar/data/320187/000032018724000065/nke-20240831.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/NKE_000032018724000044.txt.gz"
+  },
+  {
+   "ticker": "GAP",
+   "name": "GAP INC",
+   "entity_id": "0000039911",
+   "sic": "5651",
+   "sic_description": "Retail-Family Clothing Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.10377693814866773",
+   "panel_period_end": "2025-02-01",
+   "panel_filed": "2025-03-18",
+   "currency": "USD",
+   "ttm_revenue": "15086000000.0",
+   "ttm_ocf": "1486000000.0",
+   "ttm_net_income": "844000000.0",
+   "cash": "2335000000.0",
+   "total_debt": "1490000000.0",
+   "assets": "11885000000.0",
+   "equity": "3264000000.0",
+   "mcap_usd": "8005112681.874407",
+   "f_ps": "0.5306318892930139",
+   "f_ocf_margin": "0.09850192231207743",
+   "f_ni_margin": "0.055945910115338726",
+   "f_rev_growth_yoy": "0.013231244542951215",
+   "f_rev_cv8": "0.8202304376040996",
+   "dollar_vol_60d": "141634585.55459976",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-18",
+     "reportDate": "2025-02-01",
+     "accession": "0000039911-25-000029",
+     "url": "https://www.sec.gov/Archives/edgar/data/39911/000003991125000029/gap-20250201.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-11-26",
+     "reportDate": "2024-11-02",
+     "accession": "0000039911-24-000202",
+     "url": "https://www.sec.gov/Archives/edgar/data/39911/000003991124000202/gap-20241102.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-30",
+     "reportDate": "2024-08-03",
+     "accession": "0000039911-24-000179",
+     "url": "https://www.sec.gov/Archives/edgar/data/39911/000003991124000179/gps-20240803.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "LEVI",
+   "name": "LEVI STRAUSS & CO",
+   "entity_id": "0000094845",
+   "sic": "2300",
+   "sic_description": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.15588187707220558",
+   "panel_period_end": "2024-08-25",
+   "panel_filed": "2024-10-02",
+   "currency": "USD",
+   "ttm_revenue": "6026600000.0",
+   "ttm_ocf": "860000000.0",
+   "ttm_net_income": "37700000.0",
+   "cash": "577100000.0",
+   "total_debt": "1027300000.0",
+   "assets": "6253500000.0",
+   "equity": "1873100000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "0.14270069359174328",
+   "f_ni_margin": "0.006255600172568281",
+   "f_rev_growth_yoy": "-0.004501267788266983",
+   "f_rev_cv8": "0.8081526071518912",
+   "dollar_vol_60d": "31356637.32099533",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-01-29",
+     "reportDate": "2024-12-01",
+     "accession": "0000094845-25-000005",
+     "url": "https://www.sec.gov/Archives/edgar/data/94845/000009484525000005/lvis-20241201.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-10-02",
+     "reportDate": "2024-08-25",
+     "accession": "0000094845-24-000058",
+     "url": "https://www.sec.gov/Archives/edgar/data/94845/000009484524000058/lvis-20240825.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-06-26",
+     "reportDate": "2024-05-26",
+     "accession": "0000094845-24-000045",
+     "url": "https://www.sec.gov/Archives/edgar/data/94845/000009484524000045/lvis-20240526.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "M",
+   "name": "Macy's, Inc.",
+   "entity_id": "0000794367",
+   "sic": "5311",
+   "sic_description": "Retail-Department Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1362251711387782",
+   "panel_period_end": "2024-11-02",
+   "panel_filed": "2024-12-12",
+   "currency": "USD",
+   "ttm_revenue": "20037000000.0",
+   "ttm_ocf": "1117000000.0",
+   "ttm_net_income": "112000000.0",
+   "cash": "315000000.0",
+   "total_debt": "2779000000.0",
+   "assets": "17293000000.0",
+   "equity": "4147000000.0",
+   "mcap_usd": "3474321020.4083443",
+   "f_ps": "0.17339526977134023",
+   "f_ocf_margin": "0.055746868293656736",
+   "f_ni_margin": "0.005589659130608374",
+   "f_rev_growth_yoy": "-0.04394503292298879",
+   "f_rev_cv8": "0.9094584658981768",
+   "dollar_vol_60d": "88206659.13176537",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-21",
+     "reportDate": "2025-02-01",
+     "accession": "0001628280-25-014315",
+     "url": "https://www.sec.gov/Archives/edgar/data/794367/000162828025014315/m-20250201.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-12-12",
+     "reportDate": "2024-11-02",
+     "accession": "0001628280-24-051058",
+     "url": "https://www.sec.gov/Archives/edgar/data/794367/000162828024051058/m-20241102.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-09-04",
+     "reportDate": "2024-08-03",
+     "accession": "0001628280-24-039219",
+     "url": "https://www.sec.gov/Archives/edgar/data/794367/000162828024039219/m-20240803.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/M_000162828025014315.txt.gz"
+  },
+  {
+   "ticker": "RH",
+   "name": "RH",
+   "entity_id": "0001528849",
+   "sic": "5712",
+   "sic_description": "Retail-Furniture Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.318913176868893",
+   "panel_period_end": "2025-02-01",
+   "panel_filed": "2025-04-02",
+   "currency": "USD",
+   "ttm_revenue": "3180753000.0",
+   "ttm_ocf": "17095000.0",
+   "ttm_net_income": "72412000.0",
+   "cash": "30413000.0",
+   "total_debt": "",
+   "assets": "4554689000.0",
+   "equity": "-163589000.0",
+   "mcap_usd": "4669940617.909424",
+   "f_ps": "1.4681871298744114",
+   "f_ocf_margin": "0.0053745135192830125",
+   "f_ni_margin": "0.022765678441551418",
+   "f_rev_growth_yoy": "0.050056352888588895",
+   "f_rev_cv8": "0.7943313143905688",
+   "dollar_vol_60d": "239068892.90771484",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2024-03-28",
+     "reportDate": "2024-02-03",
+     "accession": "0001558370-24-004248",
+     "url": "https://www.sec.gov/Archives/edgar/data/1528849/000155837024004248/rh-20240203x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-12-12",
+     "reportDate": "2024-11-02",
+     "accession": "0001558370-24-016185",
+     "url": "https://www.sec.gov/Archives/edgar/data/1528849/000155837024016185/rh-20241102x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-09-12",
+     "reportDate": "2024-08-03",
+     "accession": "0001558370-24-012768",
+     "url": "https://www.sec.gov/Archives/edgar/data/1528849/000155837024012768/rh-20240803x10q.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "TGT",
+   "name": "TARGET CORP",
+   "entity_id": "0000027419",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.04581542270657901",
+   "panel_period_end": "2024-11-02",
+   "panel_filed": "2024-11-27",
+   "currency": "USD",
+   "ttm_revenue": "101049000000.0",
+   "ttm_ocf": "7367000000.0",
+   "ttm_net_income": "4370000000.0",
+   "cash": "3433000000.0",
+   "total_debt": "",
+   "assets": "58531000000.0",
+   "equity": "14489000000.0",
+   "mcap_usd": "45558379664.538864",
+   "f_ps": "0.4508543346746515",
+   "f_ocf_margin": "0.07290522419816128",
+   "f_ni_margin": "0.043246345832220014",
+   "f_rev_growth_yoy": "-0.009430355549891689",
+   "f_rev_cv8": "0.836843522926025",
+   "dollar_vol_60d": "729217653.3740997",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-12",
+     "reportDate": "2025-02-01",
+     "accession": "0000027419-25-000018",
+     "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741925000018/tgt-20250201.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-11-27",
+     "reportDate": "2024-11-02",
+     "accession": "0000027419-24-000179",
+     "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741924000179/tgt-20241102.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-30",
+     "reportDate": "2024-08-03",
+     "accession": "0000027419-24-000152",
+     "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741924000152/tgt-20240803.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/TGT_000002741925000018.txt.gz"
+  },
+  {
+   "ticker": "LULU",
+   "name": "lululemon athletica inc.",
+   "entity_id": "0001397187",
+   "sic": "2300",
+   "sic_description": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.00426649159301784",
+   "panel_period_end": "2025-02-02",
+   "panel_filed": "2025-03-27",
+   "currency": "USD",
+   "ttm_revenue": "10588126000.0",
+   "ttm_ocf": "2272713000.0",
+   "ttm_net_income": "1814616000.0",
+   "cash": "1984336000.0",
+   "total_debt": "",
+   "assets": "7603292000.0",
+   "equity": "4324047000.0",
+   "mcap_usd": "32663628065.25",
+   "f_ps": "3.084930049496011",
+   "f_ocf_margin": "0.2146473323041301",
+   "f_ni_margin": "0.1713821690448338",
+   "f_rev_growth_yoy": "0.1007194095024595",
+   "f_rev_cv8": "0.8703224055346077",
+   "dollar_vol_60d": "591828608.9614868",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-27",
+     "reportDate": "2025-02-02",
+     "accession": "0001397187-25-000013",
+     "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718725000013/lulu-20250202.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-12-05",
+     "reportDate": "2024-10-27",
+     "accession": "0001397187-24-000041",
+     "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718724000041/lulu-20241027.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-29",
+     "reportDate": "2024-07-28",
+     "accession": "0001397187-24-000034",
+     "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718724000034/lulu-20240728.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/LULU_000139718725000013.txt.gz"
+  },
+  {
+   "ticker": "BBY",
+   "name": "BEST BUY CO INC",
+   "entity_id": "0000764478",
+   "sic": "5731",
+   "sic_description": "Retail-Radio, Tv & Consumer Electronics Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.15663816952584442",
+   "panel_period_end": "2025-02-01",
+   "panel_filed": "2025-03-19",
+   "currency": "USD",
+   "ttm_revenue": "41528000000.0",
+   "ttm_ocf": "2098000000.0",
+   "ttm_net_income": "927000000.0",
+   "cash": "1578000000.0",
+   "total_debt": "1154000000.0",
+   "assets": "14782000000.0",
+   "equity": "2808000000.0",
+   "mcap_usd": "14953751733.257904",
+   "f_ps": "0.3600884158461256",
+   "f_ocf_margin": "0.05052013099595454",
+   "f_ni_margin": "0.0223222885763822",
+   "f_rev_growth_yoy": "-0.0442787443615944",
+   "f_rev_cv8": "0.8675161999001069",
+   "dollar_vol_60d": "230894782.9788208",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-19",
+     "reportDate": "2025-02-01",
+     "accession": "0000764478-25-000007",
+     "url": "https://www.sec.gov/Archives/edgar/data/764478/000076447825000007/bby-20250201x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-12-06",
+     "reportDate": "2024-11-02",
+     "accession": "0000764478-24-000041",
+     "url": "https://www.sec.gov/Archives/edgar/data/764478/000076447824000041/bby-20241102x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-09-06",
+     "reportDate": "2024-08-03",
+     "accession": "0000764478-24-000035",
+     "url": "https://www.sec.gov/Archives/edgar/data/764478/000076447824000035/bby-20240803x10q.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/BBY_000076447825000007.txt.gz"
+  },
+  {
+   "ticker": "WMT",
+   "name": "Walmart Inc.",
+   "entity_id": "0000104169",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "0.036083897781107765",
+   "panel_period_end": "2025-01-31",
+   "panel_filed": "2025-03-14",
+   "currency": "USD",
+   "ttm_revenue": "680985000000.0",
+   "ttm_ocf": "36443000000.0",
+   "ttm_net_income": "19436000000.0",
+   "cash": "9037000000.0",
+   "total_debt": "39067000000.0",
+   "assets": "260823000000.0",
+   "equity": "91013000000.0",
+   "mcap_usd": "710204405784.8942",
+   "f_ps": "1.0429075615246945",
+   "f_ocf_margin": "0.053515128820752295",
+   "f_ni_margin": "0.028541010448100913",
+   "f_rev_growth_yoy": "0.05070009643201545",
+   "f_rev_cv8": "0.8076190828795881",
+   "dollar_vol_60d": "1690047489.6064758",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-14",
+     "reportDate": "2025-01-31",
+     "accession": "0000104169-25-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416925000021/wmt-20250131.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-12-06",
+     "reportDate": "2024-10-31",
+     "accession": "0000104169-24-000178",
+     "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000178/wmt-20241031.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-30",
+     "reportDate": "2024-07-31",
+     "accession": "0000104169-24-000141",
+     "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416924000141/wmt-20240731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/WMT_000010416925000021.txt.gz"
+  },
+  {
+   "ticker": "AMZN",
+   "name": "AMAZON COM INC",
+   "entity_id": "0001018724",
+   "sic": "5961",
+   "sic_description": "Retail-Catalog & Mail-Order Houses",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.010009359531133577",
+   "panel_period_end": "2024-12-31",
+   "panel_filed": "2025-02-07",
+   "currency": "USD",
+   "ttm_revenue": "637959000000.0",
+   "ttm_ocf": "115877000000.0",
+   "ttm_net_income": "59248000000.0",
+   "cash": "78779000000.0",
+   "total_debt": "57791000000.0",
+   "assets": "624894000000.0",
+   "equity": "285970000000.0",
+   "mcap_usd": "2077260872070.454",
+   "f_ps": "3.2561040318742336",
+   "f_ocf_margin": "0.1816370644508503",
+   "f_ni_margin": "0.09287117197186653",
+   "f_rev_growth_yoy": "0.1099089224666614",
+   "f_rev_cv8": "0.8341164541611616",
+   "dollar_vol_60d": "8321648156.577301",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-02-07",
+     "reportDate": "2024-12-31",
+     "accession": "0001018724-25-000004",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/amzn-20241231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-11-01",
+     "reportDate": "2024-09-30",
+     "accession": "0001018724-24-000161",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000161/amzn-20240930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-02",
+     "reportDate": "2024-06-30",
+     "accession": "0001018724-24-000130",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872424000130/amzn-20240630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/AMZN_000101872425000004.txt.gz"
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA CORP",
+   "entity_id": "0001045810",
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.008355252357944098",
+   "panel_period_end": "2025-01-26",
+   "panel_filed": "2025-02-26",
+   "currency": "USD",
+   "ttm_revenue": "130497000000.0",
+   "ttm_ocf": "64089000000.0",
+   "ttm_net_income": "72880000000.0",
+   "cash": "8589000000.0",
+   "total_debt": "8463000000.0",
+   "assets": "111601000000.0",
+   "equity": "79327000000.0",
+   "mcap_usd": "2690477340698.242",
+   "f_ps": "20.617158560719727",
+   "f_ocf_margin": "0.4911147382698453",
+   "f_ni_margin": "0.5584802715771244",
+   "f_rev_growth_yoy": "1.1420340763599355",
+   "f_rev_cv8": "0.9957351025552256",
+   "dollar_vol_60d": "32246976956.102753",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-02-26",
+     "reportDate": "2025-01-26",
+     "accession": "0001045810-25-000023",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-20250126.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-11-20",
+     "reportDate": "2024-10-27",
+     "accession": "0001045810-24-000316",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000316/nvda-20241027.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-28",
+     "reportDate": "2024-07-28",
+     "accession": "0001045810-24-000264",
+     "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000264/nvda-20240728.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/NVDA_000104581025000023.txt.gz"
+  },
+  {
+   "ticker": "AMD",
+   "name": "ADVANCED MICRO DEVICES INC",
+   "entity_id": "0000002488",
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.13628332267048127",
+   "panel_period_end": "2024-12-28",
+   "panel_filed": "2025-02-05",
+   "currency": "USD",
+   "ttm_revenue": "25785000000.0",
+   "ttm_ocf": "3041000000.0",
+   "ttm_net_income": "1641000000.0",
+   "cash": "3787000000.0",
+   "total_debt": "1721000000.0",
+   "assets": "69226000000.0",
+   "equity": "57568000000.0",
+   "mcap_usd": "166844409483.9281",
+   "f_ps": "6.4705995533809615",
+   "f_ocf_margin": "0.11793678495249175",
+   "f_ni_margin": "0.06364165212332752",
+   "f_rev_growth_yoy": "0.13690476190476186",
+   "f_rev_cv8": "0.8276843917715629",
+   "dollar_vol_60d": "3858902167.313385",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-02-05",
+     "reportDate": "2024-12-28",
+     "accession": "0000002488-25-000012",
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-10-30",
+     "reportDate": "2024-09-28",
+     "accession": "0000002488-24-000163",
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000163/amd-20240928.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-07-31",
+     "reportDate": "2024-06-29",
+     "accession": "0000002488-24-000123",
+     "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248824000123/amd-20240629.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/AMD_000000248825000012.txt.gz"
+  },
+  {
+   "ticker": "AVGO",
+   "name": "Broadcom Inc.",
+   "entity_id": "0001730168",
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "0.03093211070510682",
+   "panel_period_end": "2025-02-02",
+   "panel_filed": "2025-03-12",
+   "currency": "USD",
+   "ttm_revenue": "54529000000.0",
+   "ttm_ocf": "21260000000.0",
+   "ttm_net_income": "10073000000.0",
+   "cash": "9307000000.0",
+   "total_debt": "",
+   "assets": "165358000000.0",
+   "equity": "69789000000.0",
+   "mcap_usd": "801386447310.5088",
+   "f_ps": "14.696518317051638",
+   "f_ocf_margin": "0.38988428175833045",
+   "f_ni_margin": "0.18472739276348366",
+   "f_rev_growth_yoy": "0.4030361507783353",
+   "f_rev_cv8": "0.7899944774197971",
+   "dollar_vol_60d": "5505789442.630005",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2024-12-20",
+     "reportDate": "2024-11-03",
+     "accession": "0001730168-24-000139",
+     "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000139/avgo-20241103.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2025-03-12",
+     "reportDate": "2025-02-02",
+     "accession": "0001730168-25-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000021/avgo-20250202.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-09-11",
+     "reportDate": "2024-08-04",
+     "accession": "0001730168-24-000099",
+     "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000099/avgo-20240804.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/AVGO_000173016824000139.txt.gz"
+  },
+  {
+   "ticker": "MU",
+   "name": "MICRON TECHNOLOGY INC",
+   "entity_id": "0000723125",
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1588947329741417",
+   "panel_period_end": "2025-02-27",
+   "panel_filed": "2025-03-21",
+   "currency": "USD",
+   "ttm_revenue": "29397000000.0",
+   "ttm_ocf": "13073000000.0",
+   "ttm_net_income": "4578000000.0",
+   "cash": "7552000000.0",
+   "total_debt": "11541000000.0",
+   "assets": "73053000000.0",
+   "equity": "48633000000.0",
+   "mcap_usd": "98765187414.81113",
+   "f_ps": "3.3597029429809546",
+   "f_ocf_margin": "0.4447052420314998",
+   "f_ni_margin": "0.15573017654862742",
+   "f_rev_growth_yoy": "0.6336204501250347",
+   "f_rev_cv8": "0.7292589031495204",
+   "dollar_vol_60d": "1931297122.0596313",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2024-10-04",
+     "reportDate": "2024-08-29",
+     "accession": "0000723125-24-000027",
+     "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312524000027/mu-20240829.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2025-03-21",
+     "reportDate": "2025-02-27",
+     "accession": "0000723125-25-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000009/mu-20250227.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-12-19",
+     "reportDate": "2024-11-28",
+     "accession": "0000723125-24-000047",
+     "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312524000047/mu-20241128.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/MU_000072312524000027.txt.gz"
+  },
+  {
+   "ticker": "TSM",
+   "name": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+   "entity_id": "0001046179",
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.05661118711346813",
+   "panel_period_end": "",
+   "panel_filed": "",
+   "currency": "",
+   "ttm_revenue": "",
+   "ttm_ocf": "",
+   "ttm_net_income": "",
+   "cash": "",
+   "total_debt": "",
+   "assets": "",
+   "equity": "",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "",
+   "f_ni_margin": "",
+   "f_rev_growth_yoy": "",
+   "f_rev_cv8": "",
+   "dollar_vol_60d": "2876900332.233429",
+   "prefilings": {},
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "entity_id": "0000320193",
+   "sic": "3571",
+   "sic_description": "Electronic Computers",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.12435010396914725",
+   "panel_period_end": "2024-12-28",
+   "panel_filed": "2025-01-31",
+   "currency": "USD",
+   "ttm_revenue": "395760000000.0",
+   "ttm_ocf": "108294000000.0",
+   "ttm_net_income": "96150000000.0",
+   "cash": "30299000000.0",
+   "total_debt": "94804000000.0",
+   "assets": "344085000000.0",
+   "equity": "66758000000.0",
+   "mcap_usd": "3342731231725.891",
+   "f_ps": "8.44635948990775",
+   "f_ocf_margin": "0.2736355366889024",
+   "f_ni_margin": "0.24295027289266222",
+   "f_rev_growth_yoy": "0.026066485872659584",
+   "f_rev_cv8": "0.7819338744516994",
+   "dollar_vol_60d": "11182321072.91565",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2024-11-01",
+     "reportDate": "2024-09-28",
+     "accession": "0000320193-24-000123",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2025-01-31",
+     "reportDate": "2024-12-28",
+     "accession": "0000320193-25-000008",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000008/aapl-20241228.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-02",
+     "reportDate": "2024-06-29",
+     "accession": "0000320193-24-000081",
+     "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000081/aapl-20240629.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/AAPL_000032019324000123.txt.gz"
+  },
+  {
+   "ticker": "DELL",
+   "name": "Dell Technologies Inc.",
+   "entity_id": "0001571996",
+   "sic": "3571",
+   "sic_description": "Electronic Computers",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1341857578990331",
+   "panel_period_end": "2025-01-31",
+   "panel_filed": "2025-03-25",
+   "currency": "USD",
+   "ttm_revenue": "95567000000.0",
+   "ttm_ocf": "4521000000.0",
+   "ttm_net_income": "4471000000.0",
+   "cash": "3633000000.0",
+   "total_debt": "19363000000.0",
+   "assets": "79746000000.0",
+   "equity": "-1482000000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "0.04730712484435004",
+   "f_ni_margin": "0.046783931691902016",
+   "f_rev_growth_yoy": "0.08076901328809716",
+   "f_rev_cv8": "0.05869817206222253",
+   "dollar_vol_60d": "741090173.4996796",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2025-03-25",
+     "reportDate": "2025-01-31",
+     "accession": "0001571996-25-000034",
+     "url": "https://www.sec.gov/Archives/edgar/data/1571996/000157199625000034/dell-20250131.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2024-12-10",
+     "reportDate": "2024-11-01",
+     "accession": "0001571996-24-000143",
+     "url": "https://www.sec.gov/Archives/edgar/data/1571996/000157199624000143/dell-20241101.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-09-10",
+     "reportDate": "2024-08-02",
+     "accession": "0001571996-24-000090",
+     "url": "https://www.sec.gov/Archives/edgar/data/1571996/000157199624000090/dell-20240802.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/DELL_000157199625000034.txt.gz"
+  },
+  {
+   "ticker": "HPQ",
+   "name": "HP INC",
+   "entity_id": "0000047217",
+   "sic": "3570",
+   "sic_description": "Computer & office Equipment",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.10765646892972458",
+   "panel_period_end": "2025-01-31",
+   "panel_filed": "2025-02-28",
+   "currency": "USD",
+   "ttm_revenue": "53878000000.0",
+   "ttm_ocf": "4002000000.0",
+   "ttm_net_income": "2718000000.0",
+   "cash": "2880000000.0",
+   "total_debt": "9636000000.0",
+   "assets": "38930000000.0",
+   "equity": "-1072000000.0",
+   "mcap_usd": "24717145940.52048",
+   "f_ps": "0.45876138573296116",
+   "f_ocf_margin": "0.07427892646349159",
+   "f_ni_margin": "0.05044730687850329",
+   "f_rev_growth_yoy": "0.015129533678756468",
+   "f_rev_cv8": "0.8037813020505855",
+   "dollar_vol_60d": "193544528.97319794",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2024-12-13",
+     "reportDate": "2024-10-31",
+     "accession": "0000047217-24-000080",
+     "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721724000080/hpq-20241031.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2025-02-28",
+     "reportDate": "2025-01-31",
+     "accession": "0000047217-25-000025",
+     "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721725000025/hpq-20250131.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2024-08-29",
+     "reportDate": "2024-07-31",
+     "accession": "0000047217-24-000070",
+     "url": "https://www.sec.gov/Archives/edgar/data/47217/000004721724000070/hpq-20240731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/HPQ_000004721724000080.txt.gz"
+  }
+ ]
+}

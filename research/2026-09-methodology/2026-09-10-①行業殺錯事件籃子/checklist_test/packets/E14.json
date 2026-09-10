@@ -1,0 +1,121 @@
+{
+ "event_id": "E14",
+ "name": "2023-05 生成式 AI 殺教育科技",
+ "narrative": "Chegg 在業績電話會議明講 ChatGPT 正在搶走它的新客,市場怕免費通用聊天機械人直接打掉賣功課輔導與參考內容的付費訂閱。",
+ "shock_start": "2023-05-01",
+ "news_shock_end": "2023-05-03",
+ "basket_definition": "當時報導點名的教育科技",
+ "evidence_cutoff": "申報日 < 2023-05-01",
+ "redacted": [
+  "N_12m_excess",
+  "N_12m_status",
+  "N_3m_excess",
+  "N_3m_status",
+  "N_6m_excess",
+  "N_6m_status",
+  "T_12m_excess",
+  "T_12m_status",
+  "T_3m_excess",
+  "T_3m_status",
+  "T_6m_excess",
+  "T_6m_status",
+  "anchor_N_date",
+  "anchor_T_date"
+ ],
+ "companies": [
+  {
+   "ticker": "CHGG",
+   "name": "CHEGG, INC",
+   "entity_id": "0001364954",
+   "sic": "8200",
+   "sic_description": "Services-Educational Services",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.4782266078404196",
+   "panel_period_end": "2023-03-31",
+   "panel_filed": "2023-05-01",
+   "currency": "USD",
+   "ttm_revenue": "752254000.0",
+   "ttm_ocf": "248861000.0",
+   "ttm_net_income": "263082000.0",
+   "cash": "281302000.0",
+   "total_debt": "",
+   "assets": "2361787000.0",
+   "equity": "1006759000.0",
+   "mcap_usd": "2107006151.2681274",
+   "f_ps": "2.8009238252879047",
+   "f_ocf_margin": "0.3308204409680773",
+   "f_ni_margin": "0.3497249599204524",
+   "f_rev_growth_yoy": "-0.0357337421535614",
+   "f_rev_cv8": "0.8144468964237486",
+   "dollar_vol_60d": "42655809.55400467",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2023-02-21",
+     "reportDate": "2022-12-31",
+     "accession": "0001364954-23-000013",
+     "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495423000013/chgg-20221231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-11-01",
+     "reportDate": "2022-09-30",
+     "accession": "0001364954-22-000107",
+     "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495422000107/chgg-20220930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2022-08-04",
+     "reportDate": "2022-06-30",
+     "accession": "0001364954-22-000088",
+     "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495422000088/chgg-20220630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "DUOL",
+   "name": "Duolingo, Inc.",
+   "entity_id": "0001562088",
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.09180858864059338",
+   "panel_period_end": "2022-12-31",
+   "panel_filed": "2023-03-01",
+   "currency": "USD",
+   "ttm_revenue": "369495000.0",
+   "ttm_ocf": "53656000.0",
+   "ttm_net_income": "-59574000.0",
+   "cash": "608180000.0",
+   "total_debt": "",
+   "assets": "747347000.0",
+   "equity": "542078000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "0.1452144142681227",
+   "f_ni_margin": "-0.1612308691592579",
+   "f_rev_growth_yoy": "0.4734300480117397",
+   "f_rev_cv8": "0.86309018862906",
+   "dollar_vol_60d": "62209979.23736572",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2023-03-01",
+     "reportDate": "2022-12-31",
+     "accession": "0001562088-23-000052",
+     "url": "https://www.sec.gov/Archives/edgar/data/1562088/000156208823000052/duol-20221231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-11-14",
+     "reportDate": "2022-09-30",
+     "accession": "0001562088-22-000165",
+     "url": "https://www.sec.gov/Archives/edgar/data/1562088/000156208822000165/duol-20220930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2022-08-05",
+     "reportDate": "2022-06-30",
+     "accession": "0001562088-22-000135",
+     "url": "https://www.sec.gov/Archives/edgar/data/1562088/000156208822000135/duol-20220630.htm"
+    }
+   },
+   "local_10k_gz": null
+  }
+ ]
+}
