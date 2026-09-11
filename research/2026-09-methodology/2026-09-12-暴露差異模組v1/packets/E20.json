@@ -1,0 +1,1073 @@
+{
+ "event_id": "E20",
+ "name": "2022-05 通脹與庫存過剩殺零售",
+ "narrative": "沃爾瑪與 Target 同一週公布季績,毛利率被燃料與庫存減價打穿、並下調全年指引;市場怕通脹吃掉消費者的可支配開支、零售商要連環減價清庫存,整條零售鏈的盈利預測要下修。",
+ "shock_start": "2022-05-17",
+ "news_shock_end": "2022-06-17",
+ "basket_definition": "當時報導點名的綜合零售、食品零售、家居建材與服飾零售",
+ "basket_source": "Walmart(2022-05-17)與 Target(2022-05-18)季績公告＋同期報導逐隻點名;籃子以美國上市大型零售商為界",
+ "sources": [
+  {
+   "outlet": "Walmart(原始,2022-05-17 Q1 FY23 季績)",
+   "date": "2022-05-17",
+   "url": "https://corporate.walmart.com/news/2022/05/17/walmart-releases-q1-fy23-earnings",
+   "verified": "連線核",
+   "note": "本宗起日的原始出處:同日股價單日跌約 11%,並下調全年盈利指引"
+  },
+  {
+   "outlet": "Target(原始,2022-05-18 Q1 季績)",
+   "date": "2022-05-18",
+   "url": "https://corporate.target.com/press/release/2022/05/Target-Corporation-Reports-First-Quarter-Earnings",
+   "verified": "連線核",
+   "note": "毛利率跌約 4.3 個百分點、股價單日跌約 25%,是市場重估零售股的那一日"
+  },
+  {
+   "outlet": "Federal Reserve(原始,FOMC 2022-05-04 聲明)",
+   "date": "2022-05-04",
+   "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20220504a.htm",
+   "verified": "連線核",
+   "note": "加息 50 基點並公布縮表計劃:本宗的宏觀背景"
+  },
+  {
+   "outlet": "Lowe's(原始,2022-05-18 Q1 季績)",
+   "date": "2022-05-18",
+   "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2022-sales-and-earnings-05-18-22",
+   "verified": "連線核",
+   "note": "家居建材同業同期業績,作對照出處"
+  }
+ ],
+ "evidence_cutoff": "申報日 < 2022-05-17",
+ "redacted": [
+  "N_12m_excess",
+  "N_12m_status",
+  "N_3m_excess",
+  "N_3m_status",
+  "N_6m_excess",
+  "N_6m_status",
+  "T_12m_excess",
+  "T_12m_status",
+  "T_3m_excess",
+  "T_3m_status",
+  "T_6m_excess",
+  "T_6m_status",
+  "anchor_N_date",
+  "anchor_T_date"
+ ],
+ "companies": [
+  {
+   "ticker": "WMT",
+   "name": "Walmart Inc.",
+   "entity_id": "0000104169",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.02034701925991822",
+   "panel_period_end": "2022-01-31",
+   "panel_filed": "2022-03-18",
+   "currency": "USD",
+   "ttm_revenue": "572754000000.0",
+   "ttm_ocf": "24181000000.0",
+   "ttm_net_income": "13673000000.0",
+   "cash": "14760000000.0",
+   "total_debt": "38077000000.0",
+   "assets": "244860000000.0",
+   "equity": "83253000000.0",
+   "mcap_usd": "114487485785.89969",
+   "f_ps": "0.19988945653090104",
+   "f_ocf_margin": "0.04221882343903316",
+   "f_ni_margin": "0.0238723780191845",
+   "f_rev_growth_yoy": "0.024327954345069625",
+   "f_rev_cv8": "0.8095775493605538",
+   "dollar_vol_60d": "1094742204.636383",
+   "prefilings": {},
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "TGT",
+   "name": "TARGET CORP",
+   "entity_id": "0000027419",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.2779482778546035",
+   "panel_period_end": "2021-10-30",
+   "panel_filed": "2021-11-24",
+   "currency": "USD",
+   "ttm_revenue": "97641000000.0",
+   "ttm_ocf": "9078000000.0",
+   "ttm_net_income": "6782000000.0",
+   "cash": "5753000000.0",
+   "total_debt": "",
+   "assets": "54411000000.0",
+   "equity": "13803000000.0",
+   "mcap_usd": "89320100318.107",
+   "f_ps": "0.914780679408312",
+   "f_ocf_margin": "0.09297323870095554",
+   "f_ni_margin": "0.06945852664352065",
+   "f_rev_growth_yoy": "0.10179417738659446",
+   "f_rev_cv8": "0.773995528202122",
+   "dollar_vol_60d": "775986258.4106445",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-09",
+     "reportDate": "2022-01-29",
+     "accession": "0000027419-22-000007",
+     "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741922000007/tgt-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-24",
+     "reportDate": "2021-10-30",
+     "accession": "0000027419-21-000034",
+     "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741921000034/tgt-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-27",
+     "reportDate": "2021-07-31",
+     "accession": "0000027419-21-000026",
+     "url": "https://www.sec.gov/Archives/edgar/data/27419/000002741921000026/tgt-20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/TGT_000002741922000007.txt.gz"
+  },
+  {
+   "ticker": "COST",
+   "name": "COSTCO WHOLESALE CORP /NEW",
+   "entity_id": "0000909832",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.07487676985329239",
+   "panel_period_end": "2022-02-13",
+   "panel_filed": "2022-03-10",
+   "currency": "USD",
+   "ttm_revenue": "192313000000.0",
+   "ttm_ocf": "",
+   "ttm_net_income": "4794000000.0",
+   "cash": "11819000000.0",
+   "total_debt": "6658000000.0",
+   "assets": "63078000000.0",
+   "equity": "19418000000.0",
+   "mcap_usd": "206995130565.5365",
+   "f_ps": "1.0763449718195677",
+   "f_ocf_margin": "",
+   "f_ni_margin": "0.024928111984109238",
+   "f_rev_growth_yoy": "0.17039223442777596",
+   "f_rev_cv8": "0.7269772250711586",
+   "dollar_vol_60d": "1289556884.7473145",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-10-06",
+     "reportDate": "2021-08-29",
+     "accession": "0000909832-21-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983221000014/cost-20210829.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-03-10",
+     "reportDate": "2022-02-13",
+     "accession": "0000909832-22-000005",
+     "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983222000005/cost-20220213.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-12-22",
+     "reportDate": "2021-11-21",
+     "accession": "0000909832-21-000021",
+     "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983221000021/cost-20211121.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/COST_000090983221000014.txt.gz"
+  },
+  {
+   "ticker": "KR",
+   "name": "KROGER CO",
+   "entity_id": "0000056873",
+   "sic": "5411",
+   "sic_description": "Retail-Grocery Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "0.04229988636137971",
+   "panel_period_end": "2021-11-06",
+   "panel_filed": "2021-12-10",
+   "currency": "USD",
+   "ttm_revenue": "124002000000.0",
+   "ttm_ocf": "5709000000.0",
+   "ttm_net_income": "1504000000.0",
+   "cash": "2288000000.0",
+   "total_debt": "12238000000.0",
+   "assets": "49829000000.0",
+   "equity": "9519000000.0",
+   "mcap_usd": "34250912127.59404",
+   "f_ps": "0.2762125782454641",
+   "f_ocf_margin": "0.046039580006774085",
+   "f_ni_margin": "0.012128836631667231",
+   "f_rev_growth_yoy": "0.059131014101589496",
+   "f_rev_cv8": "0.05018794308794967",
+   "dollar_vol_60d": "354510641.93115234",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-29",
+     "reportDate": "2022-01-29",
+     "accession": "0001558370-22-004595",
+     "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837022004595/kr-20220129x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-10",
+     "reportDate": "2021-11-06",
+     "accession": "0001558370-21-016667",
+     "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837021016667/kr-20211106x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-09-17",
+     "reportDate": "2021-08-14",
+     "accession": "0001558370-21-012583",
+     "url": "https://www.sec.gov/Archives/edgar/data/56873/000155837021012583/kr-20210814x10q.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/KR_000155837022004595.txt.gz"
+  },
+  {
+   "ticker": "HD",
+   "name": "HOME DEPOT, INC.",
+   "entity_id": "0000354950",
+   "sic": "5211",
+   "sic_description": "Retail-Lumber & Other Building Materials Dealers",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.008247964813763109",
+   "panel_period_end": "2022-01-30",
+   "panel_filed": "2022-03-23",
+   "currency": "USD",
+   "ttm_revenue": "151157000000.0",
+   "ttm_ocf": "16571000000.0",
+   "ttm_net_income": "16433000000.0",
+   "cash": "2343000000.0",
+   "total_debt": "36400000000.0",
+   "assets": "71876000000.0",
+   "equity": "-1696000000.0",
+   "mcap_usd": "278804989366.17194",
+   "f_ps": "1.8444728948455706",
+   "f_ocf_margin": "0.10962773804719596",
+   "f_ni_margin": "0.1087147799969568",
+   "f_rev_growth_yoy": "0.14417530845507542",
+   "f_rev_cv8": "0.7920758325600326",
+   "dollar_vol_60d": "1366101715.2679443",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-23",
+     "reportDate": "2022-01-30",
+     "accession": "0000354950-22-000070",
+     "url": "https://www.sec.gov/Archives/edgar/data/354950/000035495022000070/hd-20220130.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-23",
+     "reportDate": "2021-10-31",
+     "accession": "0000354950-21-000234",
+     "url": "https://www.sec.gov/Archives/edgar/data/354950/000035495021000234/hd-20211031.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-24",
+     "reportDate": "2021-08-01",
+     "accession": "0000354950-21-000189",
+     "url": "https://www.sec.gov/Archives/edgar/data/354950/000035495021000189/hd-20210801.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/HD_000035495022000070.txt.gz"
+  },
+  {
+   "ticker": "LOW",
+   "name": "LOWES COMPANIES INC",
+   "entity_id": "0000060667",
+   "sic": "5211",
+   "sic_description": "Retail-Lumber & Other Building Materials Dealers",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.01364002120507568",
+   "panel_period_end": "2021-10-29",
+   "panel_filed": "2021-11-24",
+   "currency": "USD",
+   "ttm_revenue": "97219000000.0",
+   "ttm_ocf": "8743000000.0",
+   "ttm_net_income": "7927000000.0",
+   "cash": "6121000000.0",
+   "total_debt": "",
+   "assets": "49400000000.0",
+   "equity": "-1576000000.0",
+   "mcap_usd": "119966651785.98152",
+   "f_ps": "1.2339836018266133",
+   "f_ocf_margin": "0.08993098056964173",
+   "f_ni_margin": "0.08153755953054444",
+   "f_rev_growth_yoy": "0.12166278237995254",
+   "f_rev_cv8": "0.7019905435666156",
+   "dollar_vol_60d": "827237956.4399719",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-21",
+     "reportDate": "2022-01-28",
+     "accession": "0000060667-22-000038",
+     "url": "https://www.sec.gov/Archives/edgar/data/60667/000006066722000038/low-20220128.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-24",
+     "reportDate": "2021-10-29",
+     "accession": "0000060667-21-000168",
+     "url": "https://www.sec.gov/Archives/edgar/data/60667/000006066721000168/low-20211029.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-26",
+     "reportDate": "2021-07-30",
+     "accession": "0000060667-21-000149",
+     "url": "https://www.sec.gov/Archives/edgar/data/60667/000006066721000149/low-20210730.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/LOW_000006066722000038.txt.gz"
+  },
+  {
+   "ticker": "BBY",
+   "name": "BEST BUY CO INC",
+   "entity_id": "0000764478",
+   "sic": "5731",
+   "sic_description": "Retail-Radio, Tv & Consumer Electronics Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.09868031718643955",
+   "panel_period_end": "2022-01-29",
+   "panel_filed": "2022-03-18",
+   "currency": "USD",
+   "ttm_revenue": "51761000000.0",
+   "ttm_ocf": "3252000000.0",
+   "ttm_net_income": "2454000000.0",
+   "cash": "2936000000.0",
+   "total_debt": "1229000000.0",
+   "assets": "17504000000.0",
+   "equity": "3020000000.0",
+   "mcap_usd": "15466226348.73172",
+   "f_ps": "0.2988007640642901",
+   "f_ocf_margin": "0.06282722513089005",
+   "f_ni_margin": "0.04741021232201851",
+   "f_rev_growth_yoy": "0.09519275527908255",
+   "f_rev_cv8": "0.8706080858231211",
+   "dollar_vol_60d": "246337702.63290405",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-18",
+     "reportDate": "2022-01-29",
+     "accession": "0000764478-22-000008",
+     "url": "https://www.sec.gov/Archives/edgar/data/764478/000076447822000008/bby-20220129x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-03",
+     "reportDate": "2021-10-30",
+     "accession": "0000764478-21-000068",
+     "url": "https://www.sec.gov/Archives/edgar/data/764478/000076447821000068/bby-20211030x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-31",
+     "reportDate": "2021-07-31",
+     "accession": "0000764478-21-000060",
+     "url": "https://www.sec.gov/Archives/edgar/data/764478/000076447821000060/bby-20210731x10q.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/BBY_000076447822000008.txt.gz"
+  },
+  {
+   "ticker": "DG",
+   "name": "DOLLAR GENERAL CORP",
+   "entity_id": "0000029534",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.10732362508893656",
+   "panel_period_end": "2021-10-29",
+   "panel_filed": "2021-12-02",
+   "currency": "USD",
+   "ttm_revenue": "33983525000.0",
+   "ttm_ocf": "2719335000.0",
+   "ttm_net_income": "2444542000.0",
+   "cash": "488662000.0",
+   "total_debt": "4127426000.0",
+   "assets": "25925302000.0",
+   "equity": "6189801000.0",
+   "mcap_usd": "48785543492.82263",
+   "f_ps": "1.4355645417249279",
+   "f_ocf_margin": "0.08001921519324437",
+   "f_ni_margin": "0.07193314996016452",
+   "f_rev_growth_yoy": "0.04597014394324983",
+   "f_rev_cv8": "0.05891405394437187",
+   "dollar_vol_60d": "409708529.77905273",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-18",
+     "reportDate": "2022-01-28",
+     "accession": "0001558370-22-003921",
+     "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837022003921/dg-20220128x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-02",
+     "reportDate": "2021-10-29",
+     "accession": "0001558370-21-016455",
+     "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837021016455/dg-20211029x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-26",
+     "reportDate": "2021-07-30",
+     "accession": "0001558370-21-012076",
+     "url": "https://www.sec.gov/Archives/edgar/data/29534/000155837021012076/dg-20210730x10q.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/DG_000155837022003921.txt.gz"
+  },
+  {
+   "ticker": "DLTR",
+   "name": "DOLLAR TREE, INC.",
+   "entity_id": "0000935703",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.13674597389313659",
+   "panel_period_end": "2021-10-30",
+   "panel_filed": "2021-11-23",
+   "currency": "USD",
+   "ttm_revenue": "26008500000.0",
+   "ttm_ocf": "2001300000.0",
+   "ttm_net_income": "1376500000.0",
+   "cash": "701400000.0",
+   "total_debt": "3231100000.0",
+   "assets": "21390000000.0",
+   "equity": "7244400000.0",
+   "mcap_usd": "35171881197.67282",
+   "f_ps": "1.3523225559979553",
+   "f_ocf_margin": "0.07694792087202261",
+   "f_ni_margin": "0.05292500528673318",
+   "f_rev_growth_yoy": "0.03798584809651717",
+   "f_rev_cv8": "0.028253261269108765",
+   "dollar_vol_60d": "343311635.1272583",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-15",
+     "reportDate": "2022-01-29",
+     "accession": "0000935703-22-000020",
+     "url": "https://www.sec.gov/Archives/edgar/data/935703/000093570322000020/dltr-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-23",
+     "reportDate": "2021-10-30",
+     "accession": "0000935703-21-000058",
+     "url": "https://www.sec.gov/Archives/edgar/data/935703/000093570321000058/dltr-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-26",
+     "reportDate": "2021-07-31",
+     "accession": "0000935703-21-000043",
+     "url": "https://www.sec.gov/Archives/edgar/data/935703/000093570321000043/dltr-20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/DLTR_000093570322000020.txt.gz"
+  },
+  {
+   "ticker": "ROST",
+   "name": "ROSS STORES, INC.",
+   "entity_id": "0000745732",
+   "sic": "5651",
+   "sic_description": "Retail-Family Clothing Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.13546990995867636",
+   "panel_period_end": "2022-01-29",
+   "panel_filed": "2022-03-29",
+   "currency": "USD",
+   "ttm_revenue": "18916244000.0",
+   "ttm_ocf": "1738849000.0",
+   "ttm_net_income": "1722589000.0",
+   "cash": "4922365000.0",
+   "total_debt": "2452325000.0",
+   "assets": "13640256000.0",
+   "equity": "4060050000.0",
+   "mcap_usd": "31167222480.171616",
+   "f_ps": "1.6476432890256445",
+   "f_ocf_margin": "0.09192358694463869",
+   "f_ni_margin": "0.09106400826718031",
+   "f_rev_growth_yoy": "0.5094877615046485",
+   "f_rev_cv8": "0.961717791603164",
+   "dollar_vol_60d": "268074190.3553009",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-29",
+     "reportDate": "2022-01-29",
+     "accession": "0000745732-22-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/745732/000074573222000014/rost-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-08",
+     "reportDate": "2021-10-30",
+     "accession": "0000745732-21-000058",
+     "url": "https://www.sec.gov/Archives/edgar/data/745732/000074573221000058/rost-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-09-08",
+     "reportDate": "2021-07-31",
+     "accession": "0000745732-21-000052",
+     "url": "https://www.sec.gov/Archives/edgar/data/745732/000074573221000052/rost-20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/ROST_000074573222000014.txt.gz"
+  },
+  {
+   "ticker": "TJX",
+   "name": "TJX COMPANIES INC /DE/",
+   "entity_id": "0000109198",
+   "sic": "5651",
+   "sic_description": "Retail-Family Clothing Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "0.10102049790400369",
+   "panel_period_end": "2022-01-29",
+   "panel_filed": "2022-03-30",
+   "currency": "USD",
+   "ttm_revenue": "48549982000.0",
+   "ttm_ocf": "3057485000.0",
+   "ttm_net_income": "3282815000.0",
+   "cash": "6226765000.0",
+   "total_debt": "3354841000.0",
+   "assets": "28461458000.0",
+   "equity": "6002992000.0",
+   "mcap_usd": "62213257482.70567",
+   "f_ps": "1.2814269937876737",
+   "f_ocf_margin": "0.06297602746794015",
+   "f_ni_margin": "0.06761722383336825",
+   "f_rev_growth_yoy": "0.5107209573823437",
+   "f_rev_cv8": "0.9747828966483162",
+   "dollar_vol_60d": "464868835.5331421",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-30",
+     "reportDate": "2022-01-29",
+     "accession": "0000109198-22-000008",
+     "url": "https://www.sec.gov/Archives/edgar/data/109198/000010919822000008/tjx-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-30",
+     "reportDate": "2021-10-30",
+     "accession": "0000109198-21-000030",
+     "url": "https://www.sec.gov/Archives/edgar/data/109198/000010919821000030/tjx-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-27",
+     "reportDate": "2021-07-31",
+     "accession": "0000109198-21-000027",
+     "url": "https://www.sec.gov/Archives/edgar/data/109198/000010919821000027/tjx-20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/TJX_000010919822000008.txt.gz"
+  },
+  {
+   "ticker": "M",
+   "name": "Macy's, Inc.",
+   "entity_id": "0000794367",
+   "sic": "5311",
+   "sic_description": "Retail-Department Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1429518184334495",
+   "panel_period_end": "2021-10-30",
+   "panel_filed": "2021-12-07",
+   "currency": "USD",
+   "ttm_revenue": "22573000000.0",
+   "ttm_ocf": "1246000000.0",
+   "ttm_net_income": "847000000.0",
+   "cash": "316000000.0",
+   "total_debt": "3377000000.0",
+   "assets": "18279000000.0",
+   "equity": "3008000000.0",
+   "mcap_usd": "5364579292.486771",
+   "f_ps": "0.2376546888976552",
+   "f_ocf_margin": "0.055198688698888054",
+   "f_ni_margin": "0.03752270411553626",
+   "f_rev_growth_yoy": "0.19414907686610583",
+   "f_rev_cv8": "0.34006754326646743",
+   "dollar_vol_60d": "296384675.60663223",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-25",
+     "reportDate": "2022-01-29",
+     "accession": "0001564590-22-011726",
+     "url": "https://www.sec.gov/Archives/edgar/data/794367/000156459022011726/m-10k_20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-07",
+     "reportDate": "2021-10-30",
+     "accession": "0001564590-21-059577",
+     "url": "https://www.sec.gov/Archives/edgar/data/794367/000156459021059577/m-10q_20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-09-03",
+     "reportDate": "2021-07-31",
+     "accession": "0001564590-21-047102",
+     "url": "https://www.sec.gov/Archives/edgar/data/794367/000156459021047102/m-10q_20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/M_000156459022011726.txt.gz"
+  },
+  {
+   "ticker": "KSS",
+   "name": "KOHLS Corp",
+   "entity_id": "0000885639",
+   "sic": "5311",
+   "sic_description": "Retail-Department Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.22621346505395645",
+   "panel_period_end": "2021-05-01",
+   "panel_filed": "2021-06-03",
+   "currency": "USD",
+   "ttm_revenue": "17414000000.0",
+   "ttm_ocf": "1563000000.0",
+   "ttm_net_income": "392000000.0",
+   "cash": "1609000000.0",
+   "total_debt": "1909000000.0",
+   "assets": "14689000000.0",
+   "equity": "5117000000.0",
+   "mcap_usd": "5656476827.312954",
+   "f_ps": "0.3248235228731454",
+   "f_ocf_margin": "0.0897553692431377",
+   "f_ni_margin": "0.022510623636154817",
+   "f_rev_growth_yoy": "-0.15943428102524493",
+   "f_rev_cv8": "0.347035439980679",
+   "dollar_vol_60d": "136817374.0951538",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-17",
+     "reportDate": "2022-01-29",
+     "accession": "0000950170-22-004076",
+     "url": "https://www.sec.gov/Archives/edgar/data/885639/000095017022004076/kss-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-02",
+     "reportDate": "2021-10-30",
+     "accession": "0000950170-21-005013",
+     "url": "https://www.sec.gov/Archives/edgar/data/885639/000095017021005013/kss-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-09-02",
+     "reportDate": "2021-07-31",
+     "accession": "0000950170-21-001654",
+     "url": "https://www.sec.gov/Archives/edgar/data/885639/000095017021001654/kss-20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/KSS_000095017022004076.txt.gz"
+  },
+  {
+   "ticker": "AMZN",
+   "name": "AMAZON COM INC",
+   "entity_id": "0001018724",
+   "sic": "5961",
+   "sic_description": "Retail-Catalog & Mail-Order Houses",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.06461797696252036",
+   "panel_period_end": "2022-03-31",
+   "panel_filed": "2022-04-29",
+   "currency": "USD",
+   "ttm_revenue": "448854000000.0",
+   "ttm_ocf": "21451000000.0",
+   "ttm_net_income": "15197000000.0",
+   "cash": "36393000000.0",
+   "total_debt": "50237000000.0",
+   "assets": "410767000000.0",
+   "equity": "134001000000.0",
+   "mcap_usd": "58690318688.049164",
+   "f_ps": "0.1307559221663373",
+   "f_ocf_margin": "0.047790595605698066",
+   "f_ni_margin": "0.033857334456192885",
+   "f_rev_growth_yoy": "0.07091833082814403",
+   "f_rev_cv8": "0.15669341891586724",
+   "dollar_vol_60d": "9979449176.818848",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-02-04",
+     "reportDate": "2021-12-31",
+     "accession": "0001018724-22-000005",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000005/amzn-20211231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-04-29",
+     "reportDate": "2022-03-31",
+     "accession": "0001018724-22-000013",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/amzn-20220331.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-10-29",
+     "reportDate": "2021-09-30",
+     "accession": "0001018724-21-000028",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872421000028/amzn-20210930.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/AMZN_000101872422000005.txt.gz"
+  },
+  {
+   "ticker": "ACI",
+   "name": "Albertsons Companies, Inc.",
+   "entity_id": "0001646972",
+   "sic": "5411",
+   "sic_description": "Retail-Grocery Stores",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "0.03840711851958689",
+   "panel_period_end": "2022-02-26",
+   "panel_filed": "2022-04-26",
+   "currency": "USD",
+   "ttm_revenue": "71887000000.0",
+   "ttm_ocf": "3513400000.0",
+   "ttm_net_income": "1619600000.0",
+   "cash": "2902000000.0",
+   "total_debt": "",
+   "assets": "28123000000.0",
+   "equity": "3024600000.0",
+   "mcap_usd": "9881274175.34262",
+   "f_ps": "0.13745564810525715",
+   "f_ocf_margin": "0.04887392713564344",
+   "f_ni_margin": "0.022529803719726793",
+   "f_rev_growth_yoy": "0.152485907951186",
+   "f_rev_cv8": "0.8762300907884819",
+   "dollar_vol_60d": "71988860.01319885",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-04-26",
+     "reportDate": "2022-02-26",
+     "accession": "0001646972-22-000031",
+     "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697222000031/aci-20220226.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-01-12",
+     "reportDate": "2021-12-04",
+     "accession": "0001646972-22-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697222000009/aci-20211204.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-10-20",
+     "reportDate": "2021-09-11",
+     "accession": "0001646972-21-000061",
+     "url": "https://www.sec.gov/Archives/edgar/data/1646972/000164697221000061/aci-20210911.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "ANF",
+   "name": "ABERCROMBIE & FITCH CO /DE/",
+   "entity_id": "0001018840",
+   "sic": "5651",
+   "sic_description": "Retail-Family Clothing Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.4067941531309467",
+   "panel_period_end": "2021-10-30",
+   "panel_filed": "2021-12-06",
+   "currency": "USD",
+   "ttm_revenue": "3371068000.0",
+   "ttm_ocf": "377311000.0",
+   "ttm_net_income": "239772000.0",
+   "cash": "865622000.0",
+   "total_debt": "303247000.0",
+   "assets": "3112534000.0",
+   "equity": "908934000.0",
+   "mcap_usd": "1884625396.2409363",
+   "f_ps": "0.5590588490771875",
+   "f_ocf_margin": "0.1119262500786101",
+   "f_ni_margin": "0.07112642046971464",
+   "f_rev_growth_yoy": "0.057460245660845954",
+   "f_rev_cv8": "0.7566877298179158",
+   "dollar_vol_60d": "57192372.24655151",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-28",
+     "reportDate": "2022-01-29",
+     "accession": "0001018840-22-000011",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018840/000101884022000011/anf-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-06",
+     "reportDate": "2021-10-30",
+     "accession": "0001018840-21-000073",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018840/000101884021000073/anf-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-09-08",
+     "reportDate": "2021-07-31",
+     "accession": "0001018840-21-000058",
+     "url": "https://www.sec.gov/Archives/edgar/data/1018840/000101884021000058/anf-20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/ANF_000101884022000011.txt.gz"
+  },
+  {
+   "ticker": "URBN",
+   "name": "URBAN OUTFITTERS INC",
+   "entity_id": "0000912615",
+   "sic": "5651",
+   "sic_description": "Retail-Family Clothing Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.21078924931212284",
+   "panel_period_end": "2022-01-31",
+   "panel_filed": "2022-04-01",
+   "currency": "USD",
+   "ttm_revenue": "4548763000.0",
+   "ttm_ocf": "359319000.0",
+   "ttm_net_income": "310616000.0",
+   "cash": "206575000.0",
+   "total_debt": "",
+   "assets": "3791347000.0",
+   "equity": "1745740000.0",
+   "mcap_usd": "2260492507.1172714",
+   "f_ps": "0.49694664398151134",
+   "f_ocf_margin": "0.07899268438474372",
+   "f_ni_margin": "0.06828581748488545",
+   "f_rev_growth_yoy": "0.3185779603095762",
+   "f_rev_cv8": "0.8615562224385211",
+   "dollar_vol_60d": "39248106.294345856",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-04-01",
+     "reportDate": "2022-01-31",
+     "accession": "0001564590-22-013232",
+     "url": "https://www.sec.gov/Archives/edgar/data/912615/000156459022013232/urbn-10k_20220131.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-10",
+     "reportDate": "2021-10-31",
+     "accession": "0001564590-21-060025",
+     "url": "https://www.sec.gov/Archives/edgar/data/912615/000156459021060025/urbn-10q_20211031.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-09-09",
+     "reportDate": "2021-07-31",
+     "accession": "0001564590-21-047501",
+     "url": "https://www.sec.gov/Archives/edgar/data/912615/000156459021047501/urbn-10q_20210731.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/URBN_000156459022013232.txt.gz"
+  },
+  {
+   "ticker": "BURL",
+   "name": "Burlington Stores, Inc.",
+   "entity_id": "0001579298",
+   "sic": "5311",
+   "sic_description": "Retail-Department Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.13762041145998483",
+   "panel_period_end": "2022-01-29",
+   "panel_filed": "2022-03-16",
+   "currency": "USD",
+   "ttm_revenue": "9322256000.0",
+   "ttm_ocf": "833159000.0",
+   "ttm_net_income": "408839000.0",
+   "cash": "1091091000.0",
+   "total_debt": "1528929000.0",
+   "assets": "7089513000.0",
+   "equity": "760417000.0",
+   "mcap_usd": "11625401416.060272",
+   "f_ps": "1.2470588037981656",
+   "f_ocf_margin": "0.08937310882687624",
+   "f_ni_margin": "0.04385622965084846",
+   "f_rev_growth_yoy": "0.6184413216549036",
+   "f_rev_cv8": "1.002265459809903",
+   "dollar_vol_60d": "180907197.3236084",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-16",
+     "reportDate": "2022-01-29",
+     "accession": "0000950170-22-003963",
+     "url": "https://www.sec.gov/Archives/edgar/data/1579298/000095017022003963/burl-20220129.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-23",
+     "reportDate": "2021-10-30",
+     "accession": "0000950170-21-004869",
+     "url": "https://www.sec.gov/Archives/edgar/data/1579298/000095017021004869/burl-20211030.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-26",
+     "reportDate": "2021-07-31",
+     "accession": "0001564590-21-045937",
+     "url": "https://www.sec.gov/Archives/edgar/data/1579298/000156459021045937/burl-10q_20210731.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "OLLI",
+   "name": "Ollie's Bargain Outlet Holdings, Inc.",
+   "entity_id": "0001639300",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.04935602429308661",
+   "panel_period_end": "2022-01-29",
+   "panel_filed": "2022-03-25",
+   "currency": "USD",
+   "ttm_revenue": "1752995000.0",
+   "ttm_ocf": "45033000.0",
+   "ttm_net_income": "157455000.0",
+   "cash": "246977000.0",
+   "total_debt": "",
+   "assets": "1972172000.0",
+   "equity": "1287710000.0",
+   "mcap_usd": "2872012867.437126",
+   "f_ps": "1.638346297300977",
+   "f_ocf_margin": "0.025689177664511308",
+   "f_ni_margin": "0.08982056423435321",
+   "f_rev_growth_yoy": "-0.030863197629837358",
+   "f_rev_cv8": "0.14713275047079466",
+   "dollar_vol_60d": "64427505.99403381",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-25",
+     "reportDate": "2022-01-29",
+     "accession": "0001140361-22-011225",
+     "url": "https://www.sec.gov/Archives/edgar/data/1639300/000114036122011225/brhc10035363_10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-12-07",
+     "reportDate": "2021-10-30",
+     "accession": "0001140361-21-040668",
+     "url": "https://www.sec.gov/Archives/edgar/data/1639300/000114036121040668/brhc10031437_10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-31",
+     "reportDate": "2021-07-31",
+     "accession": "0001140361-21-029880",
+     "url": "https://www.sec.gov/Archives/edgar/data/1639300/000114036121029880/brhc10028404_10q.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "SFM",
+   "name": "Sprouts Farmers Market, Inc.",
+   "entity_id": "0001575515",
+   "sic": "5411",
+   "sic_description": "Retail-Grocery Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "0.04809579688031684",
+   "panel_period_end": "2022-04-03",
+   "panel_filed": "2022-05-04",
+   "currency": "USD",
+   "ttm_revenue": "6165583000.0",
+   "ttm_ocf": "412390000.0",
+   "ttm_net_income": "249416000.0",
+   "cash": "324301000.0",
+   "total_debt": "",
+   "assets": "2997754000.0",
+   "equity": "1011974000.0",
+   "mcap_usd": "2676989419.283558",
+   "f_ps": "0.43418269112321706",
+   "f_ocf_margin": "0.06688580787899538",
+   "f_ni_margin": "0.040452946623214706",
+   "f_rev_growth_yoy": "-0.036276348862796404",
+   "f_rev_cv8": "0.7446448223969975",
+   "dollar_vol_60d": "52144437.31651306",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-02-24",
+     "reportDate": "2022-01-02",
+     "accession": "0000950170-22-001976",
+     "url": "https://www.sec.gov/Archives/edgar/data/1575515/000095017022001976/sfm-20220102.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-05-04",
+     "reportDate": "2022-04-03",
+     "accession": "0000950170-22-007411",
+     "url": "https://www.sec.gov/Archives/edgar/data/1575515/000095017022007411/sfm-20220403.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-11-04",
+     "reportDate": "2021-10-03",
+     "accession": "0000950170-21-003077",
+     "url": "https://www.sec.gov/Archives/edgar/data/1575515/000095017021003077/sfm-20211003.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "GO",
+   "name": "Grocery Outlet Holding Corp.",
+   "entity_id": "0001771515",
+   "sic": "5411",
+   "sic_description": "Retail-Grocery Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "0.09804353939946364",
+   "panel_period_end": "2022-04-02",
+   "panel_filed": "2022-05-11",
+   "currency": "USD",
+   "ttm_revenue": "3158543000.0",
+   "ttm_ocf": "175503000.0",
+   "ttm_net_income": "54992000.0",
+   "cash": "137996000.0",
+   "total_debt": "460000000.0",
+   "assets": "2707046000.0",
+   "equity": "1024070000.0",
+   "mcap_usd": "3546320356.8775063",
+   "f_ps": "1.1227709601792681",
+   "f_ocf_margin": "0.055564543525289986",
+   "f_ni_margin": "0.01741055923569823",
+   "f_rev_growth_yoy": "0.010152558623870211",
+   "f_rev_cv8": "0.7562561962940476",
+   "dollar_vol_60d": "26654526.90153122",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2022-03-02",
+     "reportDate": "2022-01-01",
+     "accession": "0001771515-22-000011",
+     "url": "https://www.sec.gov/Archives/edgar/data/1771515/000177151522000011/go-20220101.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-05-11",
+     "reportDate": "2022-04-02",
+     "accession": "0001771515-22-000055",
+     "url": "https://www.sec.gov/Archives/edgar/data/1771515/000177151522000055/go-20220402.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-11-10",
+     "reportDate": "2021-10-02",
+     "accession": "0001771515-21-000088",
+     "url": "https://www.sec.gov/Archives/edgar/data/1771515/000177151521000088/go-20211002.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "PSMT",
+   "name": "PRICESMART INC",
+   "entity_id": "0001041803",
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.019597283741845106",
+   "panel_period_end": "2022-02-28",
+   "panel_filed": "2022-04-07",
+   "currency": "USD",
+   "ttm_revenue": "3846746000.0",
+   "ttm_ocf": "89519000.0",
+   "ttm_net_income": "112737000.0",
+   "cash": "178705000.0",
+   "total_debt": "164160000.0",
+   "assets": "1773330000.0",
+   "equity": "953884000.0",
+   "mcap_usd": "2299308219.505661",
+   "f_ps": "0.5977281108515251",
+   "f_ocf_margin": "0.02327135714185444",
+   "f_ni_margin": "0.029307107877671153",
+   "f_rev_growth_yoy": "0.1229693187560521",
+   "f_rev_cv8": "0.774065237336392",
+   "dollar_vol_60d": "8753209.574890137",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-10-21",
+     "reportDate": "2021-08-31",
+     "accession": "0001562762-21-000364",
+     "url": "https://www.sec.gov/Archives/edgar/data/1041803/000156276221000364/psmt-20210831x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2022-04-07",
+     "reportDate": "2022-02-28",
+     "accession": "0001041803-22-000020",
+     "url": "https://www.sec.gov/Archives/edgar/data/1041803/000104180322000020/psmt-20220228x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2022-01-06",
+     "reportDate": "2021-11-30",
+     "accession": "0001041803-22-000006",
+     "url": "https://www.sec.gov/Archives/edgar/data/1041803/000104180322000006/psmt-20211130x10q.htm"
+    }
+   },
+   "local_10k_gz": null
+  }
+ ]
+}

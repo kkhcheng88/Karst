@@ -1,0 +1,1298 @@
+{
+ "event_id": "E19",
+ "name": "2021-11 Omicron 殺旅遊休閒",
+ "narrative": "世衛把 Omicron 列為「受關注變異株」,市場怕新一波疫情令各國重新封關、航空與郵輪停航、酒店與訂房平台訂單取消;旅遊休閒一整條鏈的復甦假設要推遲。",
+ "shock_start": "2021-11-24",
+ "news_shock_end": "2021-12-20",
+ "basket_definition": "當時報導點名的航空、郵輪、酒店、訂房平台與博彩股",
+ "basket_source": "WHO 2021-11-26 分類公告＋同期報導逐隻點名;籃子以美國上市旅遊休閒公司為界",
+ "sources": [
+  {
+   "outlet": "WHO(原始,Omicron 列為 VOC 公告)",
+   "date": "2021-11-26",
+   "url": "https://www.who.int/news/item/26-11-2021-classification-of-omicron-(b.1.1.529)-sars-cov-2-variant-of-concern",
+   "verified": "連線核",
+   "note": "本宗敘事的原始出處與起點"
+  },
+  {
+   "outlet": "Federal Reserve(原始,Powell 2021-11-30 作證)",
+   "date": "2021-11-30",
+   "url": "https://www.federalreserve.gov/newsevents/testimony/powell20211130a.htm",
+   "verified": "連線核",
+   "note": "同日市場把 Omicron 與政策收緊一齊定價,作第二條出處"
+  },
+  {
+   "outlet": "CNBC / Reuters 同期報導(逐隻點名郵輪與航空)",
+   "date": "2021-11-26",
+   "url": "(逐條新聞網址未能連線核對)",
+   "verified": "未核",
+   "note": "2021-11-26 郵輪與航空為標普 500 跌幅最前列"
+  }
+ ],
+ "evidence_cutoff": "申報日 < 2021-11-24",
+ "redacted": [
+  "N_12m_excess",
+  "N_12m_status",
+  "N_3m_excess",
+  "N_3m_status",
+  "N_6m_excess",
+  "N_6m_status",
+  "T_12m_excess",
+  "T_12m_status",
+  "T_3m_excess",
+  "T_3m_status",
+  "T_6m_excess",
+  "T_6m_status",
+  "anchor_N_date",
+  "anchor_T_date"
+ ],
+ "companies": [
+  {
+   "ticker": "AAL",
+   "name": "American Airlines Group Inc.",
+   "entity_id": "0000006201",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.14563739202623893",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-21",
+   "currency": "USD",
+   "ttm_revenue": "24482000000.0",
+   "ttm_ocf": "-959000000.0",
+   "ttm_net_income": "-3240000000.0",
+   "cash": "431000000.0",
+   "total_debt": "37875000000.0",
+   "assets": "68437000000.0",
+   "equity": "-7437000000.0",
+   "mcap_usd": "12600632005.30275",
+   "f_ps": "0.5146896497550343",
+   "f_ocf_margin": "-0.03917163630422351",
+   "f_ni_margin": "-0.1323421289110367",
+   "f_rev_growth_yoy": "-0.0057263534094139645",
+   "f_rev_cv8": "0.5521998082385328",
+   "dollar_vol_60d": "571053329.574585",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-17",
+     "reportDate": "2020-12-31",
+     "accession": "0000006201-21-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/6201/000000620121000014/aal-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-21",
+     "reportDate": "2021-09-30",
+     "accession": "0000006201-21-000098",
+     "url": "https://www.sec.gov/Archives/edgar/data/6201/000000620121000098/aal-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-22",
+     "reportDate": "2021-06-30",
+     "accession": "0000006201-21-000080",
+     "url": "https://www.sec.gov/Archives/edgar/data/6201/000000620121000080/aal-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/AAL_000000620121000014.txt.gz"
+  },
+  {
+   "ticker": "DAL",
+   "name": "DELTA AIR LINES, INC.",
+   "entity_id": "0000027904",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.0922277096366858",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-13",
+   "currency": "USD",
+   "ttm_revenue": "23492000000.0",
+   "ttm_ocf": "1422000000.0",
+   "ttm_net_income": "-4692000000.0",
+   "cash": "8785000000.0",
+   "total_debt": "26101000000.0",
+   "assets": "72783000000.0",
+   "equity": "2606000000.0",
+   "mcap_usd": "24519494223.52533",
+   "f_ps": "1.0437380479961405",
+   "f_ocf_margin": "0.06053124467903967",
+   "f_ni_margin": "-0.1997275668312617",
+   "f_rev_growth_yoy": "-0.043524286470420614",
+   "f_rev_cv8": "0.6505093308699708",
+   "dollar_vol_60d": "420480094.11468506",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-12",
+     "reportDate": "2020-12-31",
+     "accession": "0000027904-21-000003",
+     "url": "https://www.sec.gov/Archives/edgar/data/27904/000002790421000003/dal-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-13",
+     "reportDate": "2021-09-30",
+     "accession": "0000027904-21-000012",
+     "url": "https://www.sec.gov/Archives/edgar/data/27904/000002790421000012/dal-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-14",
+     "reportDate": "2021-06-30",
+     "accession": "0000027904-21-000009",
+     "url": "https://www.sec.gov/Archives/edgar/data/27904/000002790421000009/dal-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/DAL_000002790421000003.txt.gz"
+  },
+  {
+   "ticker": "UAL",
+   "name": "United Airlines Holdings, Inc.",
+   "entity_id": "0000100517",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.13745506626754",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-20",
+   "currency": "USD",
+   "ttm_revenue": "19854000000.0",
+   "ttm_ocf": "159000000.0",
+   "ttm_net_income": "-3215000000.0",
+   "cash": "19256000000.0",
+   "total_debt": "33789000000.0",
+   "assets": "69294000000.0",
+   "equity": "5431000000.0",
+   "mcap_usd": "15131478391.18314",
+   "f_ps": "0.7621375234805651",
+   "f_ocf_margin": "0.008008461770927773",
+   "f_ni_margin": "-0.16193210436184144",
+   "f_rev_growth_yoy": "-0.13039288686435113",
+   "f_rev_cv8": "0.6128338376095149",
+   "dollar_vol_60d": "474556425.7698059",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-03-01",
+     "reportDate": "2020-12-31",
+     "accession": "0000100517-21-000016",
+     "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051721000016/ual-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-20",
+     "reportDate": "2021-09-30",
+     "accession": "0000100517-21-000072",
+     "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051721000072/ual-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-22",
+     "reportDate": "2021-06-30",
+     "accession": "0000100517-21-000055",
+     "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051721000055/ual-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/UAL_000010051721000016.txt.gz"
+  },
+  {
+   "ticker": "LUV",
+   "name": "SOUTHWEST AIRLINES CO",
+   "entity_id": "0000092380",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.15336498393159181",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-26",
+   "currency": "USD",
+   "ttm_revenue": "12752000000.0",
+   "ttm_ocf": "1025000000.0",
+   "ttm_net_income": "2000000.0",
+   "cash": "12980000000.0",
+   "total_debt": "",
+   "assets": "37110000000.0",
+   "equity": "10250000000.0",
+   "mcap_usd": "25654942373.315662",
+   "f_ps": "2.011836760768167",
+   "f_ocf_margin": "0.08037954830614806",
+   "f_ni_margin": "0.00015683814303638644",
+   "f_rev_growth_yoy": "-0.0009401441554371948",
+   "f_rev_cv8": "0.5275143088634753",
+   "dollar_vol_60d": "329299603.95355225",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-08",
+     "reportDate": "2020-12-31",
+     "accession": "0000092380-21-000033",
+     "url": "https://www.sec.gov/Archives/edgar/data/92380/000009238021000033/luv-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-26",
+     "reportDate": "2021-09-30",
+     "accession": "0000092380-21-000160",
+     "url": "https://www.sec.gov/Archives/edgar/data/92380/000009238021000160/luv-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-27",
+     "reportDate": "2021-06-30",
+     "accession": "0000092380-21-000143",
+     "url": "https://www.sec.gov/Archives/edgar/data/92380/000009238021000143/luv-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/LUV_000009238021000033.txt.gz"
+  },
+  {
+   "ticker": "ALK",
+   "name": "ALASKA AIR GROUP, INC.",
+   "entity_id": "0000766421",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.06377797662168161",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-04",
+   "currency": "USD",
+   "ttm_revenue": "4978000000.0",
+   "ttm_ocf": "551000000.0",
+   "ttm_net_income": "29000000.0",
+   "cash": "495000000.0",
+   "total_debt": "2650000000.0",
+   "assets": "13882000000.0",
+   "equity": "3531000000.0",
+   "mcap_usd": "6630187424.7591095",
+   "f_ps": "1.3318978354277038",
+   "f_ocf_margin": "0.11068702290076336",
+   "f_ni_margin": "0.005825632784250703",
+   "f_rev_growth_yoy": "-0.03283466096755394",
+   "f_rev_cv8": "1.135645718247609",
+   "dollar_vol_60d": "95443981.02302551",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-26",
+     "reportDate": "2020-12-31",
+     "accession": "0000766421-21-000018",
+     "url": "https://www.sec.gov/Archives/edgar/data/766421/000076642121000018/alk-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-04",
+     "reportDate": "2021-09-30",
+     "accession": "0000766421-21-000100",
+     "url": "https://www.sec.gov/Archives/edgar/data/766421/000076642121000100/alk-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-03",
+     "reportDate": "2021-06-30",
+     "accession": "0000766421-21-000075",
+     "url": "https://www.sec.gov/Archives/edgar/data/766421/000076642121000075/alk-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/ALK_000076642121000018.txt.gz"
+  },
+  {
+   "ticker": "JBLU",
+   "name": "JETBLUE AIRWAYS CORP",
+   "entity_id": "0001158463",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.05274956497391048",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-01",
+   "currency": "USD",
+   "ttm_revenue": "4865000000.0",
+   "ttm_ocf": "1295000000.0",
+   "ttm_net_income": "-426000000.0",
+   "cash": "2193000000.0",
+   "total_debt": "4124000000.0",
+   "assets": "14069000000.0",
+   "equity": "3949000000.0",
+   "mcap_usd": "4598721331.331902",
+   "f_ps": "0.9452664607054269",
+   "f_ocf_margin": "0.26618705035971224",
+   "f_ni_margin": "-0.08756423432682425",
+   "f_rev_growth_yoy": "0.12459546925566345",
+   "f_rev_cv8": "0.6142170786470222",
+   "dollar_vol_60d": "98737626.1165142",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-03-02",
+     "reportDate": "2020-12-31",
+     "accession": "0001628280-21-003705",
+     "url": "https://www.sec.gov/Archives/edgar/data/1158463/000162828021003705/jblu-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-01",
+     "reportDate": "2021-09-30",
+     "accession": "0001158463-21-000089",
+     "url": "https://www.sec.gov/Archives/edgar/data/1158463/000115846321000089/jblu-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-30",
+     "reportDate": "2021-06-30",
+     "accession": "0001158463-21-000067",
+     "url": "https://www.sec.gov/Archives/edgar/data/1158463/000115846321000067/jblu-20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "CCL",
+   "name": "Carnival Corp Ltd.",
+   "entity_id": "0000815097",
+   "sic": "4400",
+   "sic_description": "Water Transportation",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.12288563050921586",
+   "panel_period_end": "2021-08-31",
+   "panel_filed": "2021-09-30",
+   "currency": "USD",
+   "ttm_revenue": "653000000.0",
+   "ttm_ocf": "-5393000000.0",
+   "ttm_net_income": "-9739000000.0",
+   "cash": "7151000000.0",
+   "total_debt": "31233000000.0",
+   "assets": "53514000000.0",
+   "equity": "14863000000.0",
+   "mcap_usd": "19465139147.68285",
+   "f_ps": "29.808788893848163",
+   "f_ocf_margin": "-8.258805513016846",
+   "f_ni_margin": "-14.914241960183768",
+   "f_rev_growth_yoy": "-0.9460018192342677",
+   "f_rev_cv8": "1.7497074066712373",
+   "dollar_vol_60d": "638795585.6776237",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-01-26",
+     "reportDate": "2020-11-30",
+     "accession": "0000815097-21-000027",
+     "url": "https://www.sec.gov/Archives/edgar/data/815097/000081509721000027/ccl-20201130.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-09-30",
+     "reportDate": "2021-08-31",
+     "accession": "0000815097-21-000098",
+     "url": "https://www.sec.gov/Archives/edgar/data/815097/000081509721000098/ccl-20210831.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-06-28",
+     "reportDate": "2021-05-31",
+     "accession": "0000815097-21-000074",
+     "url": "https://www.sec.gov/Archives/edgar/data/815097/000081509721000074/ccl-20210531.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/CCL_000081509721000027.txt.gz"
+  },
+  {
+   "ticker": "RCL",
+   "name": "ROYAL CARIBBEAN CRUISES LTD",
+   "entity_id": "0000884887",
+   "sic": "4400",
+   "sic_description": "Water Transportation",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1161473003993514",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-29",
+   "currency": "USD",
+   "ttm_revenue": "584024000.0",
+   "ttm_ocf": "-2498167000.0",
+   "ttm_net_income": "-5270466000.0",
+   "cash": "3289326000.0",
+   "total_debt": "",
+   "assets": "32665566000.0",
+   "equity": "6467498000.0",
+   "mcap_usd": "19410953931.28482",
+   "f_ps": "33.23656892744959",
+   "f_ocf_margin": "-4.277507431201458",
+   "f_ni_margin": "-9.024399682204841",
+   "f_rev_growth_yoy": "-0.875529828988423",
+   "f_rev_cv8": "1.5416277173419406",
+   "dollar_vol_60d": "249076729.51278687",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-26",
+     "reportDate": "2020-12-31",
+     "accession": "0000884887-21-000006",
+     "url": "https://www.sec.gov/Archives/edgar/data/884887/000088488721000006/rcl-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-29",
+     "reportDate": "2021-09-30",
+     "accession": "0000884887-21-000028",
+     "url": "https://www.sec.gov/Archives/edgar/data/884887/000088488721000028/rcl-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-05",
+     "reportDate": "2021-06-30",
+     "accession": "0000884887-21-000018",
+     "url": "https://www.sec.gov/Archives/edgar/data/884887/000088488721000018/rcl-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/RCL_000088488721000006.txt.gz"
+  },
+  {
+   "ticker": "NCLH",
+   "name": "Norwegian Cruise Line Holdings Ltd.",
+   "entity_id": "0001513761",
+   "sic": "4400",
+   "sic_description": "Water Transportation",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.13990399870023174",
+   "panel_period_end": "2020-12-31",
+   "panel_filed": "2021-02-26",
+   "currency": "USD",
+   "ttm_revenue": "1279908000.0",
+   "ttm_ocf": "-2556243000.0",
+   "ttm_net_income": "-4012514000.0",
+   "cash": "3300482000.0",
+   "total_debt": "1552480000.0",
+   "assets": "18399317000.0",
+   "equity": "4354105000.0",
+   "mcap_usd": "7145239859.848818",
+   "f_ps": "5.582619891311577",
+   "f_ocf_margin": "-1.9972083931032543",
+   "f_ni_margin": "-3.1350018907608983",
+   "f_rev_growth_yoy": "-0.8019446717430245",
+   "f_rev_cv8": "0.8428294688457094",
+   "dollar_vol_60d": "310790353.98483276",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-26",
+     "reportDate": "2020-12-31",
+     "accession": "0001558370-21-001998",
+     "url": "https://www.sec.gov/Archives/edgar/data/1513761/000155837021001998/nclh-20201231x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-09",
+     "reportDate": "2021-09-30",
+     "accession": "0001558370-21-015236",
+     "url": "https://www.sec.gov/Archives/edgar/data/1513761/000155837021015236/nclh-20210930x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-09",
+     "reportDate": "2021-06-30",
+     "accession": "0001558370-21-010944",
+     "url": "https://www.sec.gov/Archives/edgar/data/1513761/000155837021010944/nclh-20210630x10q.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/NCLH_000155837021001998.txt.gz"
+  },
+  {
+   "ticker": "MAR",
+   "name": "MARRIOTT INTERNATIONAL INC /MD/",
+   "entity_id": "0001048286",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.03733002815696018",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-03",
+   "currency": "USD",
+   "ttm_revenue": "11583000000.0",
+   "ttm_ocf": "761000000.0",
+   "ttm_net_income": "467000000.0",
+   "cash": "772000000.0",
+   "total_debt": "",
+   "assets": "24506000000.0",
+   "equity": "918000000.0",
+   "mcap_usd": "49210768093.10913",
+   "f_ps": "4.248533893905649",
+   "f_ocf_margin": "0.06569973236639903",
+   "f_ni_margin": "0.040317706984373654",
+   "f_rev_growth_yoy": "-0.1588235294117647",
+   "f_rev_cv8": "0.43339101848233186",
+   "dollar_vol_60d": "293057436.29074097",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-18",
+     "reportDate": "2020-12-31",
+     "accession": "0001628280-21-002433",
+     "url": "https://www.sec.gov/Archives/edgar/data/1048286/000162828021002433/mar-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-03",
+     "reportDate": "2021-09-30",
+     "accession": "0001628280-21-021326",
+     "url": "https://www.sec.gov/Archives/edgar/data/1048286/000162828021021326/mar-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-03",
+     "reportDate": "2021-06-30",
+     "accession": "0001628280-21-015288",
+     "url": "https://www.sec.gov/Archives/edgar/data/1048286/000162828021015288/mar-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/MAR_000162828021002433.txt.gz"
+  },
+  {
+   "ticker": "HLT",
+   "name": "Hilton Worldwide Holdings Inc.",
+   "entity_id": "0001585689",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.037159819603866495",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-27",
+   "currency": "USD",
+   "ttm_revenue": "4842000000.0",
+   "ttm_ocf": "-160000000.0",
+   "ttm_net_income": "39000000.0",
+   "cash": "1288000000.0",
+   "total_debt": "",
+   "assets": "15314000000.0",
+   "equity": "-1128000000.0",
+   "mcap_usd": "39938406455.50604",
+   "f_ps": "8.248328470777787",
+   "f_ocf_margin": "-0.033044196612969846",
+   "f_ni_margin": "0.0080545229244114",
+   "f_rev_growth_yoy": "-0.16315243691669545",
+   "f_rev_cv8": "0.47171751773459275",
+   "dollar_vol_60d": "245881732.92694092",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-17",
+     "reportDate": "2020-12-31",
+     "accession": "0001585689-21-000016",
+     "url": "https://www.sec.gov/Archives/edgar/data/1585689/000158568921000016/hlt-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-27",
+     "reportDate": "2021-09-30",
+     "accession": "0001585689-21-000118",
+     "url": "https://www.sec.gov/Archives/edgar/data/1585689/000158568921000118/hlt-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-29",
+     "reportDate": "2021-06-30",
+     "accession": "0001585689-21-000100",
+     "url": "https://www.sec.gov/Archives/edgar/data/1585689/000158568921000100/hlt-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/HLT_000158568921000016.txt.gz"
+  },
+  {
+   "ticker": "H",
+   "name": "Hyatt Hotels Corp",
+   "entity_id": "0001468174",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.010592064127937117",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-04",
+   "currency": "USD",
+   "ttm_revenue": "2351000000.0",
+   "ttm_ocf": "61000000.0",
+   "ttm_net_income": "-354000000.0",
+   "cash": "2418000000.0",
+   "total_debt": "2978000000.0",
+   "assets": "9477000000.0",
+   "equity": "3586000000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "0.025946405784772437",
+   "f_ni_margin": "-0.15057422373458104",
+   "f_rev_growth_yoy": "-0.19403496743229343",
+   "f_rev_cv8": "0.6818428225085397",
+   "dollar_vol_60d": "52948977.56271362",
+   "prefilings": {
+    "10-Q[0]": {
+     "filingDate": "2021-11-04",
+     "reportDate": "2021-09-30",
+     "accession": "0001468174-21-000113",
+     "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817421000113/h-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-04",
+     "reportDate": "2021-06-30",
+     "accession": "0001468174-21-000093",
+     "url": "https://www.sec.gov/Archives/edgar/data/1468174/000146817421000093/h-20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "HST",
+   "name": "HOST HOTELS & RESORTS, INC.",
+   "entity_id": "0001070750",
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.11134915987419369",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-05",
+   "currency": "USD",
+   "ttm_revenue": "2090000000.0",
+   "ttm_ocf": "-65000000.0",
+   "ttm_net_income": "-644000000.0",
+   "cash": "1038000000.0",
+   "total_debt": "",
+   "assets": "12712000000.0",
+   "equity": "6121000000.0",
+   "mcap_usd": "9853522052.00549",
+   "f_ps": "4.714603852634205",
+   "f_ocf_margin": "-0.03110047846889952",
+   "f_ni_margin": "-0.30813397129186604",
+   "f_rev_growth_yoy": "-0.20076481835564053",
+   "f_rev_cv8": "1.3609672119092027",
+   "dollar_vol_60d": "108713606.40707016",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-25",
+     "reportDate": "2020-12-31",
+     "accession": "0001564590-21-008676",
+     "url": "https://www.sec.gov/Archives/edgar/data/1070750/000156459021008676/hst-10k_20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-05",
+     "reportDate": "2021-09-30",
+     "accession": "0000950170-21-003158",
+     "url": "https://www.sec.gov/Archives/edgar/data/1070750/000095017021003158/hst-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-05",
+     "reportDate": "2021-06-30",
+     "accession": "0001564590-21-041518",
+     "url": "https://www.sec.gov/Archives/edgar/data/1070750/000156459021041518/hst-10q_20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "BKNG",
+   "name": "Booking Holdings Inc.",
+   "entity_id": "0001075531",
+   "sic": "4700",
+   "sic_description": "Transportation Services",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.06212883438379824",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-03",
+   "currency": "USD",
+   "ttm_revenue": "10617000000.0",
+   "ttm_ocf": "1964000000.0",
+   "ttm_net_income": "2551360000.0",
+   "cash": "11643000000.0",
+   "total_debt": "11034000000.0",
+   "assets": "23341000000.0",
+   "equity": "5545000000.0",
+   "mcap_usd": "3736445987.969017",
+   "f_ps": "0.35193048770547397",
+   "f_ocf_margin": "0.18498634265800132",
+   "f_ni_margin": "0.24030893849486673",
+   "f_rev_growth_yoy": "0.19332359222209727",
+   "f_rev_cv8": "0.6727526667193537",
+   "dollar_vol_60d": "673131426.1245728",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-24",
+     "reportDate": "2020-12-31",
+     "accession": "0001075531-21-000019",
+     "url": "https://www.sec.gov/Archives/edgar/data/1075531/000107553121000019/bkng-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-03",
+     "reportDate": "2021-09-30",
+     "accession": "0001075531-21-000053",
+     "url": "https://www.sec.gov/Archives/edgar/data/1075531/000107553121000053/bkng-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-04",
+     "reportDate": "2021-06-30",
+     "accession": "0001075531-21-000044",
+     "url": "https://www.sec.gov/Archives/edgar/data/1075531/000107553121000044/bkng-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/BKNG_000107553121000019.txt.gz"
+  },
+  {
+   "ticker": "EXPE",
+   "name": "Expedia Group, Inc.",
+   "entity_id": "0001324424",
+   "sic": "4700",
+   "sic_description": "Transportation Services",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.11963353479467598",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-05",
+   "currency": "USD",
+   "ttm_revenue": "7239000000.0",
+   "ttm_ocf": "3078000000.0",
+   "ttm_net_income": "-566000000.0",
+   "cash": "5031000000.0",
+   "total_debt": "8465000000.0",
+   "assets": "21944000000.0",
+   "equity": "1603000000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "0.4251968503937008",
+   "f_ni_margin": "-0.07818759497168117",
+   "f_rev_growth_yoy": "0.03031596925704516",
+   "f_rev_cv8": "0.4833817778623493",
+   "dollar_vol_60d": "311691967.7711487",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-12",
+     "reportDate": "2020-12-31",
+     "accession": "0001324424-21-000015",
+     "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442421000015/expe-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-05",
+     "reportDate": "2021-09-30",
+     "accession": "0001324424-21-000093",
+     "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442421000093/expe-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-06",
+     "reportDate": "2021-06-30",
+     "accession": "0001324424-21-000070",
+     "url": "https://www.sec.gov/Archives/edgar/data/1324424/000132442421000070/expe-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/EXPE_000132442421000015.txt.gz"
+  },
+  {
+   "ticker": "LVS",
+   "name": "LAS VEGAS SANDS CORP",
+   "entity_id": "0001300514",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.11684408118915668",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-22",
+   "currency": "USD",
+   "ttm_revenue": "4372000000.0",
+   "ttm_ocf": "-341000000.0",
+   "ttm_net_income": "-1137000000.0",
+   "cash": "1644000000.0",
+   "total_debt": "",
+   "assets": "19892000000.0",
+   "equity": "2102000000.0",
+   "mcap_usd": "28683769431.932404",
+   "f_ps": "6.56078898260119",
+   "f_ocf_margin": "-0.07799634034766698",
+   "f_ni_margin": "-0.260064043915828",
+   "f_rev_growth_yoy": "-0.26828451882845183",
+   "f_rev_cv8": "0.7902766870324806",
+   "dollar_vol_60d": "296745304.08878326",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-05",
+     "reportDate": "2020-12-31",
+     "accession": "0001300514-21-000033",
+     "url": "https://www.sec.gov/Archives/edgar/data/1300514/000130051421000033/lvs-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-22",
+     "reportDate": "2021-09-30",
+     "accession": "0001300514-21-000166",
+     "url": "https://www.sec.gov/Archives/edgar/data/1300514/000130051421000166/lvs-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-23",
+     "reportDate": "2021-06-30",
+     "accession": "0001300514-21-000115",
+     "url": "https://www.sec.gov/Archives/edgar/data/1300514/000130051421000115/lvs-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/LVS_000130051421000033.txt.gz"
+  },
+  {
+   "ticker": "MGM",
+   "name": "MGM Resorts International",
+   "entity_id": "0000789570",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.04122337786091079",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-03",
+   "currency": "USD",
+   "ttm_revenue": "7749168000.0",
+   "ttm_ocf": "643267000.0",
+   "ttm_net_income": "588626000.0",
+   "cash": "5570833000.0",
+   "total_debt": "12618913000.0",
+   "assets": "41338323000.0",
+   "equity": "6829954000.0",
+   "mcap_usd": "20077395157.692593",
+   "f_ps": "2.590909779952195",
+   "f_ocf_margin": "0.08301110519219612",
+   "f_ni_margin": "0.07595989659793155",
+   "f_rev_growth_yoy": "0.13065765233928284",
+   "f_rev_cv8": "0.627916901839562",
+   "dollar_vol_60d": "242274931.64863586",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-26",
+     "reportDate": "2020-12-31",
+     "accession": "0001564590-21-009205",
+     "url": "https://www.sec.gov/Archives/edgar/data/789570/000156459021009205/mgm-10k_20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-03",
+     "reportDate": "2021-09-30",
+     "accession": "0000789570-21-000010",
+     "url": "https://www.sec.gov/Archives/edgar/data/789570/000078957021000010/mgm-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-06",
+     "reportDate": "2021-06-30",
+     "accession": "0001564590-21-041935",
+     "url": "https://www.sec.gov/Archives/edgar/data/789570/000156459021041935/mgm-10q_20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/MGM_000156459021009205.txt.gz"
+  },
+  {
+   "ticker": "WYNN",
+   "name": "WYNN RESORTS LTD",
+   "entity_id": "0001174922",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.11100423073757815",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-09",
+   "currency": "USD",
+   "ttm_revenue": "3080992000.0",
+   "ttm_ocf": "-508178000.0",
+   "ttm_net_income": "-1336738000.0",
+   "cash": "2475757000.0",
+   "total_debt": "11743785000.0",
+   "assets": "12607695000.0",
+   "equity": "-53238000.0",
+   "mcap_usd": "10178502821.406555",
+   "f_ps": "3.303644677235954",
+   "f_ocf_margin": "-0.1649397336961602",
+   "f_ni_margin": "-0.4338661054621369",
+   "f_rev_growth_yoy": "0.007641217309626969",
+   "f_rev_cv8": "1.3141926291459056",
+   "dollar_vol_60d": "303650570.664978",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-26",
+     "reportDate": "2020-12-31",
+     "accession": "0001174922-21-000029",
+     "url": "https://www.sec.gov/Archives/edgar/data/1174922/000117492221000029/wynn-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-09",
+     "reportDate": "2021-09-30",
+     "accession": "0001174922-21-000160",
+     "url": "https://www.sec.gov/Archives/edgar/data/1174922/000117492221000160/wynn-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-09",
+     "reportDate": "2021-06-30",
+     "accession": "0001174922-21-000104",
+     "url": "https://www.sec.gov/Archives/edgar/data/1174922/000117492221000104/wynn-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/WYNN_000117492221000029.txt.gz"
+  },
+  {
+   "ticker": "UBER",
+   "name": "Uber Technologies, Inc",
+   "entity_id": "0001543151",
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.09834457053945989",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-09",
+   "currency": "USD",
+   "ttm_revenue": "14806000000.0",
+   "ttm_ocf": "-1143000000.0",
+   "ttm_net_income": "-2477000000.0",
+   "cash": "6482000000.0",
+   "total_debt": "9306000000.0",
+   "assets": "36884000000.0",
+   "equity": "13931000000.0",
+   "mcap_usd": "81640179428.30261",
+   "f_ps": "5.513992937208065",
+   "f_ocf_margin": "-0.07719843306767527",
+   "f_ni_margin": "-0.1672970417398352",
+   "f_rev_growth_yoy": "0.1634449159201634",
+   "f_rev_cv8": "0.7681997142615106",
+   "dollar_vol_60d": "1045587395.8076477",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-03-01",
+     "reportDate": "2020-12-31",
+     "accession": "0001543151-21-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/1543151/000154315121000014/uber-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-09",
+     "reportDate": "2021-09-30",
+     "accession": "0001543151-21-000047",
+     "url": "https://www.sec.gov/Archives/edgar/data/1543151/000154315121000047/uber-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-05",
+     "reportDate": "2021-06-30",
+     "accession": "0001543151-21-000038",
+     "url": "https://www.sec.gov/Archives/edgar/data/1543151/000154315121000038/uber-20210630.htm"
+    }
+   },
+   "local_10k_gz": "C:/projects/Karst/data/sec/10k_text/UBER_000154315121000014.txt.gz"
+  },
+  {
+   "ticker": "LYFT",
+   "name": "Lyft, Inc.",
+   "entity_id": "0001759509",
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1531868459548409",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-04",
+   "currency": "USD",
+   "ttm_revenue": "2738134000.0",
+   "ttm_ocf": "-340115000.0",
+   "ttm_net_income": "-1210313000.0",
+   "cash": "728382000.0",
+   "total_debt": "712010000.0",
+   "assets": "4824268000.0",
+   "equity": "1484074000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "-0.12421415460309831",
+   "f_ni_margin": "-0.4420210990404414",
+   "f_rev_growth_yoy": "-0.004459352988420928",
+   "f_rev_cv8": "0.9115735715635065",
+   "dollar_vol_60d": "209131103.05080414",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-03-01",
+     "reportDate": "2020-12-31",
+     "accession": "0001759509-21-000011",
+     "url": "https://www.sec.gov/Archives/edgar/data/1759509/000175950921000011/lyft-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-04",
+     "reportDate": "2021-09-30",
+     "accession": "0001759509-21-000054",
+     "url": "https://www.sec.gov/Archives/edgar/data/1759509/000175950921000054/lyft-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-05",
+     "reportDate": "2021-06-30",
+     "accession": "0001759509-21-000045",
+     "url": "https://www.sec.gov/Archives/edgar/data/1759509/000175950921000045/lyft-20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "ABNB",
+   "name": "Airbnb, Inc.",
+   "entity_id": "0001559720",
+   "sic": "7340",
+   "sic_description": "Services-To Dwellings & Other Buildings",
+   "named_confidence": "A",
+   "f_shock_rel_drop": "-0.1251185762851692",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-05",
+   "currency": "USD",
+   "ttm_revenue": "5801895000.0",
+   "ttm_ocf": "",
+   "ttm_net_income": "-187207000.0",
+   "cash": "5994698000.0",
+   "total_debt": "1981496000.0",
+   "assets": "13582003000.0",
+   "equity": "4448934000.0",
+   "mcap_usd": "",
+   "f_ps": "",
+   "f_ocf_margin": "",
+   "f_ni_margin": "-0.03226652671239311",
+   "f_rev_growth_yoy": "",
+   "f_rev_cv8": "0.5547484305359426",
+   "dollar_vol_60d": "737709358.6090088",
+   "prefilings": {},
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "ULCC",
+   "name": "Frontier Group Holdings, Inc.",
+   "entity_id": "0001670076",
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.14740227405896789",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-10",
+   "currency": "USD",
+   "ttm_revenue": "1696000000.0",
+   "ttm_ocf": "",
+   "ttm_net_income": "-100000000.0",
+   "cash": "802000000.0",
+   "total_debt": "365000000.0",
+   "assets": "4252000000.0",
+   "equity": "576000000.0",
+   "mcap_usd": "3279071819.6818237",
+   "f_ps": "1.9334149880199432",
+   "f_ocf_margin": "",
+   "f_ni_margin": "-0.0589622641509434",
+   "f_rev_growth_yoy": "",
+   "f_rev_cv8": "0.4664737153129274",
+   "dollar_vol_60d": "5654526.634550095",
+   "prefilings": {
+    "10-Q[0]": {
+     "filingDate": "2021-11-10",
+     "reportDate": "2021-09-30",
+     "accession": "0001670076-21-000033",
+     "url": "https://www.sec.gov/Archives/edgar/data/1670076/000167007621000033/fron-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-04",
+     "reportDate": "2021-06-30",
+     "accession": "0001670076-21-000019",
+     "url": "https://www.sec.gov/Archives/edgar/data/1670076/000167007621000019/fron-20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "WH",
+   "name": "WYNDHAM HOTELS & RESORTS, INC.",
+   "entity_id": "0001722684",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.05612096149632617",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-28",
+   "currency": "USD",
+   "ttm_revenue": "1468000000.0",
+   "ttm_ocf": "337000000.0",
+   "ttm_net_income": "188000000.0",
+   "cash": "193000000.0",
+   "total_debt": "",
+   "assets": "4310000000.0",
+   "equity": "1123000000.0",
+   "mcap_usd": "7290859892.509888",
+   "f_ps": "4.966525812336436",
+   "f_ocf_margin": "0.2295640326975477",
+   "f_ni_margin": "0.12806539509536785",
+   "f_rev_growth_yoy": "-0.019372077488309936",
+   "f_rev_cv8": "0.22808931162901197",
+   "dollar_vol_60d": "46586150.102996826",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-12",
+     "reportDate": "2020-12-31",
+     "accession": "0001722684-21-000008",
+     "url": "https://www.sec.gov/Archives/edgar/data/1722684/000172268421000008/wh-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-28",
+     "reportDate": "2021-09-30",
+     "accession": "0001722684-21-000028",
+     "url": "https://www.sec.gov/Archives/edgar/data/1722684/000172268421000028/wh-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-29",
+     "reportDate": "2021-06-30",
+     "accession": "0001722684-21-000022",
+     "url": "https://www.sec.gov/Archives/edgar/data/1722684/000172268421000022/wh-20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "CHH",
+   "name": "CHOICE HOTELS INTERNATIONAL INC /DE",
+   "entity_id": "0001046311",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.04907788873364616",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-04",
+   "currency": "USD",
+   "ttm_revenue": "995431000.0",
+   "ttm_ocf": "285625000.0",
+   "ttm_net_income": "239374000.0",
+   "cash": "415116000.0",
+   "total_debt": "1060037000.0",
+   "assets": "1865934000.0",
+   "equity": "212146000.0",
+   "mcap_usd": "8014438189.937439",
+   "f_ps": "8.051224233460118",
+   "f_ocf_margin": "0.2869360106325803",
+   "f_ni_margin": "0.24047271985702676",
+   "f_rev_growth_yoy": "0.17280206606555648",
+   "f_rev_cv8": "0.661155663169484",
+   "dollar_vol_60d": "29054596.641540527",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-02-26",
+     "reportDate": "2020-12-31",
+     "accession": "0001046311-21-000014",
+     "url": "https://www.sec.gov/Archives/edgar/data/1046311/000104631121000014/chh-20201231.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-04",
+     "reportDate": "2021-09-30",
+     "accession": "0001046311-21-000045",
+     "url": "https://www.sec.gov/Archives/edgar/data/1046311/000104631121000045/chh-20210930.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-05",
+     "reportDate": "2021-06-30",
+     "accession": "0001046311-21-000036",
+     "url": "https://www.sec.gov/Archives/edgar/data/1046311/000104631121000036/chh-20210630.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "BYD",
+   "name": "BOYD GAMING CORP",
+   "entity_id": "0000906553",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.04334924224202363",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-10-28",
+   "currency": "USD",
+   "ttm_revenue": "3142207000.0",
+   "ttm_ocf": "",
+   "ttm_net_income": "392180000.0",
+   "cash": "570926000.0",
+   "total_debt": "3334711000.0",
+   "assets": "6500117000.0",
+   "equity": "1507938000.0",
+   "mcap_usd": "6639562292.131844",
+   "f_ps": "2.113025110099953",
+   "f_ocf_margin": "",
+   "f_ni_margin": "0.12481036418033567",
+   "f_rev_growth_yoy": "0.3302092549710227",
+   "f_rev_cv8": "0.30855973475940524",
+   "dollar_vol_60d": "72697440.22407532",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-03-01",
+     "reportDate": "2020-12-31",
+     "accession": "0001437749-21-004478",
+     "url": "https://www.sec.gov/Archives/edgar/data/906553/000143774921004478/bgc20201231b_10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-10-28",
+     "reportDate": "2021-09-30",
+     "accession": "0001437749-21-024529",
+     "url": "https://www.sec.gov/Archives/edgar/data/906553/000143774921024529/bgc20210930_10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-07-29",
+     "reportDate": "2021-06-30",
+     "accession": "0001437749-21-017879",
+     "url": "https://www.sec.gov/Archives/edgar/data/906553/000143774921017879/bgc20210630_10q.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "MCRI",
+   "name": "MONARCH CASINO & RESORT INC",
+   "entity_id": "0000907242",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.08005506520202943",
+   "panel_period_end": "2021-09-30",
+   "panel_filed": "2021-11-08",
+   "currency": "USD",
+   "ttm_revenue": "344178000.0",
+   "ttm_ocf": "108436000.0",
+   "ttm_net_income": "59362000.0",
+   "cash": "33036000.0",
+   "total_debt": "",
+   "assets": "672428000.0",
+   "equity": "424395000.0",
+   "mcap_usd": "1189290357.9078598",
+   "f_ps": "3.455451417312727",
+   "f_ocf_margin": "0.31505790608348005",
+   "f_ni_margin": "0.1724747078546566",
+   "f_rev_growth_yoy": "0.8296051372557358",
+   "f_rev_cv8": "0.6172381145583526",
+   "dollar_vol_60d": "3045052.946472168",
+   "prefilings": {
+    "10-K": {
+     "filingDate": "2021-03-12",
+     "reportDate": "2020-12-31",
+     "accession": "0001558370-21-002943",
+     "url": "https://www.sec.gov/Archives/edgar/data/907242/000155837021002943/mcri-20201231x10k.htm"
+    },
+    "10-Q[0]": {
+     "filingDate": "2021-11-08",
+     "reportDate": "2021-09-30",
+     "accession": "0001558370-21-014990",
+     "url": "https://www.sec.gov/Archives/edgar/data/907242/000155837021014990/mcri-20210930x10q.htm"
+    },
+    "10-Q[1]": {
+     "filingDate": "2021-08-06",
+     "reportDate": "2021-06-30",
+     "accession": "0001558370-21-010774",
+     "url": "https://www.sec.gov/Archives/edgar/data/907242/000155837021010774/mcri-20210630x10q.htm"
+    }
+   },
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "IHG",
+   "name": "INTERCONTINENTAL HOTELS GROUP PLC /NEW/",
+   "entity_id": "0000858446",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.10268054445617603",
+   "panel_period_end": "2020-12-31",
+   "panel_filed": "2021-03-04",
+   "currency": "USD",
+   "ttm_revenue": "2394000000.0",
+   "ttm_ocf": "137000000.0",
+   "ttm_net_income": "-260000000.0",
+   "cash": "1675000000.0",
+   "total_debt": "",
+   "assets": "5039000000.0",
+   "equity": "-1849000000.0",
+   "mcap_usd": "11371451450.483093",
+   "f_ps": "4.749979720335461",
+   "f_ocf_margin": "0.057226399331662486",
+   "f_ni_margin": "-0.1086048454469507",
+   "f_rev_growth_yoy": "-0.48260211800302577",
+   "f_rev_cv8": "0.4849352061640784",
+   "dollar_vol_60d": "7065792.833328247",
+   "prefilings": {},
+   "local_10k_gz": null
+  },
+  {
+   "ticker": "HTHT",
+   "name": "H World Group Ltd",
+   "entity_id": "0001483994",
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "named_confidence": "B",
+   "f_shock_rel_drop": "-0.2473467904937232",
+   "panel_period_end": "2020-12-31",
+   "panel_filed": "2021-04-23",
+   "currency": "USD",
+   "ttm_revenue": "1563000000.0",
+   "ttm_ocf": "93000000.0",
+   "ttm_net_income": "-336000000.0",
+   "cash": "1077000000.0",
+   "total_debt": "1839000000.0",
+   "assets": "9985000000.0",
+   "equity": "1736000000.0",
+   "mcap_usd": "12462892755.534668",
+   "f_ps": "7.973699779612711",
+   "f_ocf_margin": "0.05950095969289827",
+   "f_ni_margin": "-0.21497120921305182",
+   "f_rev_growth_yoy": "-0.029795158286778367",
+   "f_rev_cv8": "0.8682697009138659",
+   "dollar_vol_60d": "48210829.31213379",
+   "prefilings": {},
+   "local_10k_gz": null
+  }
+ ]
+}
