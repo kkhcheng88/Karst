@@ -24,3 +24,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 /karst/web/screenshots/
+# 2026-09-11: workers fetched raw filings into research dirs; raw docs live only in data/sec (D-134)
+research/2026-09-methodology/*/docs/
+research/2026-09-methodology/*/*/docs/
+research/2026-09-methodology/*/edgar_cache/
+research/2026-09-methodology/*/*/edgar_cache/
