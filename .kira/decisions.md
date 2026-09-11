@@ -4045,3 +4045,24 @@
   > Yes / But then 1 year has almost no case and this is only 1 of the 錯殺? I think we have discussed earlier already / Yes / If kill should have 200MA broken already? Otherwise should be counted as 回調?
 
 - 影響：KARST-178 規格書第一節(定義)、第二節(三個數)、第九節(排序)相應改寫;KARST-197 在跑,主 agent 以留言追加兩項口徑;②講解由第二節起。
+
+## D-175 Karst 派工分層(研究項目,非軟件開發):需判斷的工作至少用 Opus(high);策略思考與探索由 Fable 親自執行;回測與大批量評估股票用 DeepSeek
+- 類型：決策
+- 狀態：有效
+- 日期：2026-09-12
+
+- 出處：用戶 2026-09-12 原話:「I think this project is a research project but not a SDLC project. So i think if anything need judgement, you should use at least high OPUS, and if it need thinking and exploration of trading strategy. Probably need you Fable to execute. But if it is for backtest or mass evaluate of stock. Then Deepseek is ok」。背景:用戶問「you are using Deepseek on this?」,主 agent 報 205–218 十四張票全部 DeepSeek Flash high,並自陳工人品質參差、關鍵判斷結論來自 GPT 對照與主 agent 而非工人。
+
+- 背景：全域守則 2026-09-10 D-231/D-232 定「開關開着時所有委派一律 DeepSeek,effort 預設 high;Anthropic Opus 只用於獨立覆核」,以及 2026-08-04「Fable 只做主腦永不落場執行」。兩條都是為軟件開發型項目定的。Karst 現階段是方法論研究:判斷層(能力卡、模組規格、對外報告、對評論的逐條評估)的品質直接決定結論,工人在這一層曾令主 agent 多次回頭修(驗收條件重貼、票號寫反、報表用詞錯、收益分解錯誤)。本決策是 Karst 專案層對全域守則的例外,不改全域守則本身。
+
+- 決策：
+  1. 需要判斷的工作(能力卡與模組規格撰寫、對外評論報告、卡片判詞覆核、事件與籃子界定、任何要下結論的分析)至少派 Anthropic Opus,effort high;risk high 者仍照全域四層覆核
+  2. 策略層面的思考與探索(四類注定位、主流程結構、模組要多問的問題、與用戶討論後的立場)由 Fable 主腦親自執行,不派工;此為 2026-08-04「Fable 不落場」在 Karst 的例外
+  3. 回測、大批量填卡、取數、對照表、腳本重跑、格式整理等大量而規則明確的工作照用 DeepSeek Flash(effort high,純機械 low)
+  4. 一張票同時含判斷與量產兩部分時拆票:判斷部分 Opus 或 Fable,量產部分 DeepSeek;DeepSeek 產出之中的判斷成分(例如卡上的判詞)交貨後由 Opus 或 Fable 抽查,抽查結果記票
+
+- **用戶原話（原文照錄）**
+
+  > I think this project is a research project but not a SDLC project. So i think if anything need judgement, you should use at least high OPUS, and if it need thinking and exploration of trading strategy. Probably need you Fable to execute. But if it is for backtest or mass evaluate of stock. Then Deepseek is ok
+
+- 影響：Karst 倉根 CLAUDE.md 加派工分層一節;自動記憶 dispatch-model-by-judgement 更新;進行中的 KARST-218(能力卡與提示詞凍結 + 樣本外測 + 經營結果核)由 DeepSeek 跑到尾,交貨後能力卡與提示詞(判斷部分)由 Fable 親自覆核改定稿才算凍結;②③④模組撰寫由 Fable 執行;全域守則 10-dispatch §8 不改,加一句「研究型項目可在專案 CLAUDE.md 立例外」由主 agent 另行處理。
