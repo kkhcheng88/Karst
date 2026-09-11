@@ -1,0 +1,161 @@
+{
+  "_note": "KARST-220 樣本外擴樣本正本(E21–E27)。形狀照 KARST-199/218:一個敘事打一個籃子、籃子相對大市急跌、有新聞點名名單。shock_start 一律取『反應之前最後一個收市』。七宗一律不在 E01–E20 之內。sources 每條附 verified 欄:'連線核' = 本票以 HTTP 抓取核過(200 且正文含本宗敘事關鍵詞);'未核' = 由模型記憶寫出,未逐條連線核對(污染聲明已明寫)。籃子由當時報導逐隻點名;點名名單本身多數未能連線核對,已逐宗在 basket_source 註明。",
+  "events": [
+    {
+      "event_id": "E21",
+      "name": "2016-06 英國脫歐公投殺歐洲銀行",
+      "event_type": "價格事件",
+      "narrative": "英國公投決定離開歐盟;市場怕英國與歐盟的金融通行證失效、企業貸款需求急凍、英鎊貶值令銀行的外幣資產與資本比率受壓,歐洲銀行股的估值中樞與派息能力一齊被重估。",
+      "shock_start": "2016-06-23",
+      "news_shock_end": "2016-06-27",
+      "basket_definition": "當時報導點名的英國與歐洲大型銀行(含在美上市的存託憑證),以及同期被一同點名的美國大型銀行",
+      "basket_source": "報導逐隻點名(公投結果 2016-06 至 07 月);點名名單本身未有可連線核對的新聞出處,由模型記憶寫出,未核。同時期同業公司的公開申報(AVIVA PLC 6-K 2016-06-24)確認市場當時確實在為公投結果定價。",
+      "tickers": ["BCS", "DB", "HSBC", "UBS", "CS", "ING", "LYG", "NWG", "MFG",
+                  "JPM", "GS", "MS", "C", "BAC", "WFC"],
+      "tickers_headline_only": ["USB", "PNC", "TFC", "BK", "STT", "SAN", "BBVA",
+                                "AIG", "MET", "PRU", "AXP", "COF", "SCHW", "ALL",
+                                "TRV", "RF", "KEY", "HBAN", "ZION", "FITB"],
+      "sic2_basket": ["60", "61", "62", "63", "64", "67"],
+      "sources": [
+        {"outlet": "European Central Bank(原始,2016-06-24 聲明)", "date": "2016-06-24", "url": "https://www.ecb.europa.eu/press/pr/date/2016/html/pr160624.en.html", "verified": "連線核", "note": "標題『ECB is closely monitoring financial markets』;公投結果當日歐洲央行的即時聲明,是本宗衝擊起日的市場側出處"},
+        {"outlet": "Aviva plc(6-K,2016-06-24 申報)", "date": "2016-06-24", "url": "https://www.sec.gov/Archives/edgar/data/1140022/000119163816002226/av201606246k.htm", "verified": "連線核", "note": "標題『AVIVA PLC RESPONSE TO RESULT OF THE UK REFERENDUM』;英國大型金融機構在結果當日的第一手申報,確認本宗的起訖與受影響行業"},
+        {"outlet": "財經媒體逐隻點名銀行股(2016-06-24 至 06-27)", "date": "2016-06-24", "url": "(逐條新聞網址未能連線核對)", "verified": "未核", "note": "2016-06-24 歐洲與美國銀行股為跌幅最前列;點名名單由模型記憶寫出"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2016-06-23(公投日收市,結果在 06-24 開市前公布)。新聞結束日取 2016-06-27(結果後第二個交易日,首輪急跌完成);籃子相對大市低點落在 2016-07-06。MFG(瑞穗)與 NWG(蘇格蘭皇家)為存託憑證/英國本土銀行;其後 CS 併入 UBS(2023)、NWG 續上市。倖存者缺口記入 unresolved。"
+    },
+    {
+      "event_id": "E22",
+      "name": "2021-07 中國監管風暴殺中概股",
+      "event_type": "財務事件",
+      "narrative": "中國監管機構先對赴美上市的網約車平台啟動網絡安全審查,再於月底發布義務教育階段校外培訓的『雙減』文件;市場怕的是平台型與教育類中概股的收入模式本身被政策改寫,而不是一次性的罰款。",
+      "shock_start": "2021-07-01",
+      "news_shock_end": "2021-07-30",
+      "basket_definition": "當時在美上市、被報導逐隻點名的中國互聯網平台、教育、電動車與消費類存託憑證",
+      "basket_source": "網信辦 2021-07-02 審查公告與國務院辦公廳 2021-07-24『雙減』意見,加上同期報導逐隻點名;籃子以當時在美上市的中國公司存託憑證為界。",
+      "tickers": ["BABA", "JD", "PDD", "BIDU", "NTES", "TME", "EDU", "TAL", "GOTU",
+                  "NIO", "XPEV", "LI", "FUTU", "TIGR", "VIPS", "YUMC"],
+      "tickers_headline_only": ["BILI", "IQ", "HUYA", "DOYU", "ZTO", "YY", "MOMO",
+                                "TCOM", "QFIN", "LU", "NOAH", "BZUN", "RERE", "YJ",
+                                "GSX", "CAN", "WB", "ATHM"],
+      "sic2_basket": [],
+      "sources": [
+        {"outlet": "中央網絡安全和信息化委員會辦公室(原始,2021-07-02 審查公告)", "date": "2021-07-02", "url": "http://www.cac.gov.cn/2021-07/02/c_1626811521011934.htm", "verified": "連線核", "note": "標題『网络安全审查办公室关于对“滴滴出行”启动网络安全审查的公告』;這是本宗衝擊起日(2021-07-01 收市後、07-02 開市前)的原始出處。該站憑證鏈在本機未通過,改用不驗證 context 讀到標題與正文,內容已核。"},
+        {"outlet": "中共中央辦公廳、國務院辦公廳(原始,2021-07-24『雙減』意見)", "date": "2021-07-24", "url": "http://www.gov.cn/zhengce/2021-07/24/content_5627132.htm", "verified": "連線核", "note": "標題『中共中央办公厅 国务院办公厅印发《关于进一步减轻义务教育阶段学生作业负担和校外培训负担的意见》』;這是教育類中概股(EDU/TAL/GOTU)被直接改寫收入模式的原始文件,亦界定了本宗新聞窗的結束。同樣以不驗證 context 讀到正文。"},
+        {"outlet": "財經媒體逐隻點名中概股(2021-07-02 至 07-27)", "date": "2021-07-26", "url": "(逐條新聞網址未能連線核對)", "verified": "未核", "note": "2021-07-26 至 07-27 中概股為跌幅最前列;點名名單由模型記憶寫出"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2021-07-01(審查公告前一交易日收市)。新聞結束日取 2021-07-30(『雙減』後第一個完整交易週末),搜索窗加 21 個交易日;籃子相對大市低點落在此窗內。本宗是七宗之中跌幅最大的一宗(籃子相對大市 −40% 級),因為打中『政策改寫收入模式』而不是估值。EDU/TAL 其後大跌但仍在上市;DIDI 已退市,未入籃子名單。"
+    },
+    {
+      "event_id": "E23",
+      "name": "2022-06 加密貨幣崩盤殺加密相關股",
+      "event_type": "價格事件",
+      "narrative": "聯儲一次加息 75 基點、加密借貸平台 Celsius 暫停提款、三箭資本傳出爆倉;市場怕的是加密市場的槓桿鏈斷裂,交易所成交量、礦工算力變現與加密銀行的存款同時收縮。",
+      "shock_start": "2022-06-10",
+      "news_shock_end": "2022-06-30",
+      "basket_definition": "當時報導點名的加密交易所、持幣公司、比特幣礦商、加密銀行與零售券商",
+      "basket_source": "報導逐隻點名(2022-06 至 07 月);籃子以美國上市、收入或資產負債表直接掛住加密價格的公司為界。Core Scientific(2022-07-05)與 Silvergate(2022-07-22)的公開申報確認市場當時確實在為同一件事定價(Terra、Celsius、Voyager 的連鎖效應)。",
+      "tickers": ["COIN", "MSTR", "MARA", "RIOT", "HUT", "BITF", "CLSK", "HIVE",
+                  "BTBT", "WULF", "SI", "HOOD"],
+      "tickers_headline_only": ["CORZ", "SDIG", "GREE", "IREN", "DGHI", "CIFR",
+                                "BTCM", "SQ", "PYPL", "CAN", "EBON", "SOS"],
+      "sic2_basket": [],
+      "sources": [
+        {"outlet": "Silvergate Capital(8-K EX-99.1,2022-07-22)", "date": "2022-07-22", "url": "https://www.sec.gov/Archives/edgar/data/1312109/000131210922000158/ex991siconferencecalltrans.htm", "verified": "連線核", "note": "正文:『There was a sharp drop in crypto prices in the quarter. There were spillover effects, Terra, Celsius, Voyager.』——籃子成員自己把本宗的敘事鏈講清楚"},
+        {"outlet": "Core Scientific(8-K EX-99.1,2022-07-05)", "date": "2022-07-05", "url": "https://www.sec.gov/Archives/edgar/data/1839341/000119312522187925/d371642dex991.htm", "verified": "連線核", "note": "正文:『Our industry is enduring tremendous stress as capital markets have weakened, interest rates are rising…』——礦商一側的第一手申報"},
+        {"outlet": "Federal Reserve(原始,FOMC 2022-06-15 聲明)", "date": "2022-06-15", "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20220615a.htm", "verified": "連線核", "note": "加息 75 基點;本宗的宏觀觸發點,在衝擊窗之內"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2022-06-10(Celsius 暫停提款在 06-12 星期日公布,反應在 06-13 開市)。新聞結束日取 2022-06-30(三箭資本清算與 Celsius 事件第一波結束)。籃子相對大市低點落在 2022-06-30 前後。CORZ 其後破產重整、SI 其後自行清盤,屬倖存者缺口。"
+    },
+    {
+      "event_id": "E24",
+      "name": "2022-10 對華晶片出口管制新規殺半導體與設備",
+      "event_type": "財務事件",
+      "narrative": "美國商務部工業與安全局發布新規,對先進運算晶片、相關製造設備與人才往中國的出口加設許可要求;市場怕的是半導體設備商與晶片設計公司在中國的那一段收入直接消失,而不是一個季度的事。",
+      "shock_start": "2022-10-06",
+      "news_shock_end": "2022-10-28",
+      "basket_definition": "當時報導點名的美國上市半導體設備商、晶片設計公司與記憶體商(中國收入佔比高者在前)",
+      "basket_source": "聯邦公報 2022-10-13 刊出的商務部新規(2022-10-07 公布),加上同期報導逐隻點名;Applied Materials 於 2022-10-12 就同一件事發出 8-K,確認市場當時確實在為同一條規則定價。",
+      "tickers": ["AMAT", "LRCX", "KLAC", "ASML", "TER", "ONTO", "ACLS", "UCTT",
+                  "AEIS", "MKSI", "ENTG", "NVDA", "AMD", "MU", "FORM", "COHU"],
+      "tickers_headline_only": ["NVMI", "AEHR", "ICHR", "VECO", "AXTI", "PLAB",
+                                "PDFS", "ASYS", "RTEC", "AMKR", "SWKS", "QRVO"],
+      "sic2_basket": ["35", "36", "38"],
+      "sources": [
+        {"outlet": "美國聯邦公報(原始,2022-10-13 刊出;商務部 BIS 2022-10-07 公布)", "date": "2022-10-13", "url": "https://www.govinfo.gov/content/pkg/FR-2022-10-13/html/2022-22273.htm", "verified": "連線核", "note": "規則是本宗敘事的原始出處,亦界定衝擊起日(2022-10-06 收市後公布)"},
+        {"outlet": "Applied Materials(8-K,2022-10-12)", "date": "2022-10-12", "url": "https://www.sec.gov/Archives/edgar/data/6951/000119312522261327/d370937d8k.htm", "verified": "連線核", "note": "正文:『issued a press release following the announcement of new export regulations by the United States government…expanding export license requirements for companies that sell certain products to customers in China』"},
+        {"outlet": "財經媒體逐隻點名設備商(2022-10-07 至 10-18)", "date": "2022-10-07", "url": "(逐條新聞網址未能連線核對)", "verified": "未核", "note": "2022-10-07 至 10-18 半導體設備股為跌幅最前列;點名名單由模型記憶寫出"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2022-10-06(新規公布前一交易日收市)。新聞結束日取 2022-10-28,搜索窗加 21 個交易日;籃子相對大市低點落在 2022-10-18。**本宗與 218 的 E18(2024-08 日圓套息殺半導體)題材鄰近但事件不同**:E18 是價格／資金流事件,本宗是財務／政策事件,兩宗籃子重疊 ASML/AMAT 等設備商但事件窗相隔近兩年。"
+    },
+    {
+      "event_id": "E25",
+      "name": "2023-09 美國汽車工會罷工殺汽車與零件商",
+      "event_type": "財務事件",
+      "narrative": "美國汽車工會對三大車廠同時發動罷工;市場怕的是停線令車廠的產量與利潤在 2023 年第四季直接消失,而零件商因為客戶高度集中在這三家,出貨會比車廠更早、更急地下滑。",
+      "shock_start": "2023-09-14",
+      "news_shock_end": "2023-10-27",
+      "basket_definition": "當時報導點名的美國三大車廠與其北美零件供應商",
+      "basket_source": "報導逐隻點名(2023-09 至 10 月);Dana(2023-10-27)與 Worthington(2023-10-03)的季績申報確認市場當時確實在為同一場罷工定價,前者明寫『impact of the UAW strike on two of our key customers』。",
+      "tickers": ["F", "GM", "STLA", "APTV", "LEA", "BWA", "MGA", "ADNT", "DAN",
+                  "ALV", "GNTX", "MOD", "THRM"],
+      "tickers_headline_only": ["AXL", "DORM", "SRI", "SMP", "TEN", "VC", "PATK",
+                                "SUP", "CPS"],
+      "sic2_basket": ["37"],
+      "sources": [
+        {"outlet": "Dana Incorporated(8-K EX-99.1,2023-10-27)", "date": "2023-10-27", "url": "https://www.sec.gov/Archives/edgar/data/26780/000119312523264461/d528555dex991.htm", "verified": "連線核", "note": "正文:『we improved our margin by 150 basis points in the third quarter despite the impact of the UAW strike on two of our key customers in our North American Light Vehicle business』——籃子成員自己把傳導鏈講清楚"},
+        {"outlet": "Worthington Industries(8-K EX-99.1,2023-10-03)", "date": "2023-10-03", "url": "https://www.sec.gov/Archives/edgar/data/108516/000095017023051497/wor-ex99_1.htm", "verified": "連線核", "note": "電話會問答:『what impact you're seeing from the strike…』——上游供應商一側的第一手紀錄"},
+        {"outlet": "財經媒體逐隻點名車廠與零件商(2023-09-14 至 10-27)", "date": "2023-09-15", "url": "(逐條新聞網址未能連線核對)", "verified": "未核", "note": "2023-09-15 起三巨頭與零件商為跌幅最前列;點名名單由模型記憶寫出"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2023-09-14(罷工在 2023-09-15 凌晨開始,反應在 09-15 開市)。新聞結束日取 2023-10-27(福特與 Stellantis 相繼達成臨時協議),搜索窗加 21 個交易日;籃子相對大市低點落在此窗內。三大車廠在整個樣本期間均續上市,倖存者缺口小。"
+    },
+    {
+      "event_id": "E26",
+      "name": "2023-09 長息衝上 5% 殺地產信託(REITs)",
+      "event_type": "價格事件",
+      "narrative": "聯儲點陣圖顯示高息維持更久,十年期美債息在一個月內由 4.3% 升到 5.0%;市場怕的是地產信託的槓桿再融資成本上升、資產估值被折現率壓低,而租金那條線短期追不上。",
+      "shock_start": "2023-09-19",
+      "news_shock_end": "2023-10-19",
+      "basket_definition": "當時報導點名的美國上市大型地產信託(商場、辦公、工業、淨租、住宅各段)",
+      "basket_source": "報導逐隻點名(2023-09 至 10 月);點名名單本身未有可連線核對的新聞出處,由模型記憶寫出,未核。同期的市場側出處(美國財政部每日國債息曲線、聯儲主席 2023-10-19 講話)確認利率那條線的幅度與時點。",
+      "tickers": ["SPG", "O", "VNO", "BXP", "ARE", "PLD", "SLG", "KIM", "REG",
+                  "AVB", "EQR", "ESS", "MAA", "NNN", "WPC"],
+      "tickers_headline_only": ["CIO", "CUZ", "HIW", "DEI", "PGRE", "VTR", "WELL",
+                                "DLR", "EQIX", "PSA", "EXR", "IRM", "HST", "LXP",
+                                "ELS", "UDR", "CPT", "BRX"],
+      "sic2_basket": ["65", "67"],
+      "sources": [
+        {"outlet": "美國財政部(原始,每日國債息曲線)", "date": "2023-10-19", "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2023", "verified": "連線核", "note": "十年期美債息在本宗新聞結束日觸及約 5.0%,是本宗敘事的量度出處"},
+        {"outlet": "Federal Reserve(原始,Powell 2023-10-19 紐約經濟俱樂部講話)", "date": "2023-10-19", "url": "https://www.federalreserve.gov/newsevents/speech/powell20231019a.htm", "verified": "連線核", "note": "同日聯儲主席講話;市場把它讀成高息維持更久,與 09-20 點陣圖同一條線"},
+        {"outlet": "財經媒體逐隻點名地產信託(2023-09-20 至 10-19)", "date": "2023-10-03", "url": "(逐條新聞網址未能連線核對)", "verified": "未核", "note": "2023-10 地產信託為標普 500 表現最差行業之一;點名名單由模型記憶寫出"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2023-09-19(聯儲 09-20 議息前一交易日收市)。新聞結束日取 2023-10-19(十年息觸及 5.0% 當日),搜索窗加 21 個交易日;籃子相對大市低點落在 2023-11-13(本宗是『慢磨』不是單日急跌,已在總覽明寫)。"
+    },
+    {
+      "event_id": "E27",
+      "name": "2018-01 三巨頭健保合資殺健保與藥品分銷",
+      "event_type": "價格事件",
+      "narrative": "亞馬遜、巴郡與摩根大通宣布合組獨立公司,替三家合共逾百萬員工直接處理醫療保險;市場怕的是保險公司、藥品福利管理商與藥品分銷商這三段中間環節被最大的買方繞過,議價能力與收費率一齊被壓。",
+      "shock_start": "2018-01-29",
+      "news_shock_end": "2018-03-15",
+      "basket_definition": "當時報導點名的健康保險公司、藥品福利管理商(PBM)、藥品分銷商與相關醫療服務商",
+      "basket_source": "報導逐隻點名(2018-01-30 至 03 月);Premier Inc 於 2018-02-08 的申報內,分析員逐字問『the Amazon, JPMorgan, Berkshire announcement』,確認市場當時確實在為同一件事定價。",
+      "tickers": ["UNH", "ANTM", "CI", "HUM", "CVS", "ESRX", "MCK", "ABC", "CAH",
+                  "MOH", "CNC", "WCG", "HSIC", "PDCO"],
+      "tickers_headline_only": ["OMI", "AHCO"],
+      "sic2_basket": ["63", "80", "50", "51"],
+      "sources": [
+        {"outlet": "Premier, Inc.(8-K EX-99.2,2018-02-08 電話會逐字稿)", "date": "2018-02-08", "url": "https://www.sec.gov/Archives/edgar/data/1577916/000119312518035409/d538060dex992.htm", "verified": "連線核", "note": "正文:『how are you reviewing Amazon's announcement last week…So I assume you're talking about the Amazon, JPMorgan, Berkshire announcement』——同期公開申報逐字記錄了本宗敘事"},
+        {"outlet": "Cigna Corporation(8-K EX-99.1,2018-04-25)", "date": "2018-04-25", "url": "https://www.sec.gov/Archives/edgar/data/701221/000095015918000163/ex99-1.htm", "verified": "連線核", "note": "正文:『whether we pursued a combination with Express Scripts in reaction to announcements by Amazon regarding health care』——籃子成員自己承認本宗敘事是當時的定價主線"},
+        {"outlet": "財經媒體逐隻點名健保股(2018-01-30 至 03 月)", "date": "2018-01-30", "url": "(逐條新聞網址未能連線核對)", "verified": "未核", "note": "2018-01-30 健保股與藥品分銷商同日大跌;點名名單由模型記憶寫出"}
+      ],
+      "in_main_sample": true,
+      "notes": "起日取 2018-01-29(合資公告 2018-01-30 開市前發布)。新聞結束日取 2018-03-15,搜索窗加 21 個交易日;籃子相對大市低點落在 2018-03-26,是本宗之後才出現的低點。ESRX 2018-12 被 Cigna 收購、WCG 2019 被 Centene 收購、PDCO 其後私有化,屬倖存者缺口。"
+    }
+  ]
+}
