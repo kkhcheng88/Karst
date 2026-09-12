@@ -9,6 +9,7 @@ fits: yes
 dependsOn: []
 claimedBy: scout-121
 deliverable: KARST-D02
+closed: 2026-09-13
 ---
 
 ## 工作內容
