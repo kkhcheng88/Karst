@@ -1,0 +1,220 @@
+{
+ "event_id": "E047",
+ "schema": "②第一次考試取證包 v1",
+ "ticker": "NUS",
+ "cik": "0001021561",
+ "name": "NU SKIN ENTERPRISES, INC.",
+ "sic": "5122",
+ "sic2": "51",
+ "bucket": "製造與工業",
+ "evidence_cutoff": "T1 = 2020-07-02(反應日收市)",
+ "provenance": {
+  "rule": "執行口徑——②第一次考試-v1.md 第二節與 v1.1 修訂頁(成交額門檻 1,000 萬美元);提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "frozen": "2026-09-13"
+ },
+ "1_事件識別": {
+  "event_id": "E047",
+  "ticker": "NUS",
+  "cik": "0001021561",
+  "T0_公布時間_美東": "2020-07-01T16:45:34",
+  "T0_UTC": "2020-07-01T20:45:34.000Z",
+  "signal_date_反應日": "2020-07-02",
+  "T1_分析截止": "2020-07-02 收市",
+  "T2_可成交": "2020-07-06 開市",
+  "fiscal_quarter": "2020Q2",
+  "cluster_id": "51-2020Q3",
+  "improvement_type_機械": "加速",
+  "8-K_items": "2.02,9.01",
+  "accessionNumber": "0001140361-20-015283",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1021561/000114036120015283/form8k.htm"
+ },
+ "2_觸發資料": {
+  "ex991_full_text": " \n EX-99.1\n 2\n ex99_1.htm\n EXHIBIT 99.1\n Exhibit 99.1 \n FOR IMMEDIATE RELEASE\n NU SKIN ENTERPRISES REPORTS ESTIMATED SECOND-QUARTER REVENUE ABOVE PREVIOUS GUIDANCE\n Company experiencing stronger than expected global customer growth and accelerated digital adoption; second-quarter earnings\n release scheduled for Aug. 5\n PROVO, Utah — July 1, 2020 — Nu Skin Enterprises, Inc. (NYSE: NUS) today reported it estimates revenue for the second quarter of 2020 to be approximately $603 to $608\n million. The company previously forecasted second-quarter revenue of $520 to $550 million. The company will report its second-quarter results including earnings per share and provide a revised outlook for the full-year 2020 on Aug. 5.\n “We are pleased to report that our expected revenue for the second quarter is well ahead of our previous guidance, driven by strong global customer growth with particular\n strength in the Americas and Europe,” said Ritch Wood, chief executive officer. “The trends we are seeing are a credit to the adaptability and hard work of our global sales force and the enduring value of our products. Nu Skin’s investments in\n technology and our commitment to enhancing the company’s digital capabilities have been a critical driver of performance and business continuity in the second quarter, with online transactions accounting for more than 80 percent of volume.”\n Nu Skin Enterprises will release its full second-quarter results after the market closes on Wednesday, Aug. 5. The management team will host a conference call with the\n investment community later that same day at 5 p.m. ET. The webcast of the conference call, including the financial information presented, will be available on the investor relations page of the company’s website at ir.nuskin.com. A replay of the\n webcast will be available at the same location through Wednesday, Aug. 19.\n About Nu Skin Enterprises, Inc.\n Founded more than 35 years ago, Nu Skin Enterprises, Inc. (NSE) empowers innovative companies\n to change the world with sustainable solutions, opportunities, technologies and life-improving values. The company currently focuses its efforts around innovative consumer products, product manufacturing and controlled environment agriculture\n technology. The NSE family of companies includes Nu Skin, which develops and distributes a comprehensive line of premium-quality beauty and wellness solutions through a global network of sales leaders in Asia, the Americas, Europe, Africa and the\n Pacific; and Rhyz, our strategic investment arm that includes a collection of sustainable manufacturing and technology innovation companies. Nu Skin Enterprises is traded on the New York Stock Exchange under the symbol \"NUS.\" More information is\n available at nuskinenterprises.com . \n Important Information Regarding Forward-Looking\n Statements: This release’s disclosures regarding estimated revenue for the second quarter of 2020 are forward-looking statements within the meaning of Section 27A of the Securities Act and Section 21E of the Securities Exchange Act, and they\n represent the Company’s current expectations and beliefs. The forward-looking statements involve risks and uncertainties that could cause actual results and outcomes to differ materially from the forward-looking statements expressed herein, including\n completion of the Company’s close and review procedures, which may necessitate material adjustments to the preliminary estimates provided in this release, and other risks and uncertainties that are set forth in the documents the Company has filed\n with the Securities and Exchange Commission. The forward-looking statements set forth the Company’s beliefs as of the date that such information was first provided, and the Company assumes no duty to update the forward-looking statement contained in\n this report to reflect any change except as required by law.\n # # #\n CONTACTS: \n Media: media@nuskin.com , (801) 345-6397 \n Investors: investorrelations@nuskin.com , (801) 345-3577 \n",
+  "ex991_chars": 4007,
+  "same_day_8k_items": "2.02,9.01",
+  "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
+  "local_8k": "000114036120015283__8k.txt.gz",
+  "earnings_call_transcript": "查不到"
+ },
+ "3_截止前文件": {
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2020-02-13",
+   "reportDate": "2019-12-31",
+   "accession": "0001140361-20-002997",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021561/000114036120002997/form10k.htm",
+   "local_gz": "000114036120002997__annual.txt.gz"
+  },
+  "最近 10-Q/6-K(1)": {
+   "form": "10-Q",
+   "filingDate": "2020-05-07",
+   "reportDate": "2020-03-31",
+   "accession": "0001140361-20-010880",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021561/000114036120010880/form10q.htm",
+   "local_gz": "000114036120010880__q0.txt.gz"
+  },
+  "最近 10-Q/6-K(2)": {
+   "form": "10-Q",
+   "filingDate": "2019-11-06",
+   "reportDate": "2019-09-30",
+   "accession": "0001140361-19-019870",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021561/000114036119019870/form10q.htm",
+   "local_gz": "000114036119019870__q1.txt.gz"
+  }
+ },
+ "4_財務數列": {
+  "source": "data/sec/companyfacts(XBRL 首報值)",
+  "quarters": [
+   {
+    "period_end": "2018-03-31",
+    "revenue": 616219000.0,
+    "gross_profit": 469938000.0,
+    "operating_income": 58990000.0,
+    "ocf": -1113000.0
+   },
+   {
+    "period_end": "2018-06-30",
+    "revenue": 704190000.0,
+    "gross_profit": 535641000.0,
+    "operating_income": 82764000.0,
+    "ocf": 53046000.0
+   },
+   {
+    "period_end": "2018-09-30",
+    "revenue": 675312000.0,
+    "gross_profit": 517855000.0,
+    "operating_income": 80675000.0,
+    "ocf": 61917000.0
+   },
+   {
+    "period_end": "2019-03-31",
+    "revenue": 623623000.0,
+    "gross_profit": 476959000.0,
+    "operating_income": 68653000.0,
+    "ocf": -8186000.0
+   },
+   {
+    "period_end": "2019-06-30",
+    "revenue": 623500000.0,
+    "gross_profit": 469472000.0,
+    "operating_income": 74202000.0,
+    "ocf": 82663000.0
+   },
+   {
+    "period_end": "2019-09-30",
+    "revenue": 589934000.0,
+    "gross_profit": 449772000.0,
+    "operating_income": 69892000.0,
+    "ocf": 53551000.0
+   },
+   {
+    "period_end": "2020-03-31",
+    "revenue": 518028000.0,
+    "gross_profit": 392235000.0,
+    "operating_income": 36565000.0,
+    "ocf": 69027000.0
+   },
+   {
+    "period_end": "2020-06-30",
+    "revenue": 612366000.0,
+    "gross_profit": 458256000.0,
+    "operating_income": 58074000.0,
+    "ocf": 97054000.0
+   }
+  ],
+  "signal_q_end": "2020-06-30",
+  "g0_signal_q_yoy": -0.017857,
+  "prev_q_yoy": -0.169325,
+  "accel_pp": 15.1468
+ },
+ "5_同業與行業": {
+  "sic2": "51",
+  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
+  "n_listed_peers_same_sic2": 30,
+  "peer_list_all_same_sic2_tickers": [
+   "ANDE",
+   "ASH",
+   "CAH",
+   "CAPL",
+   "CENT",
+   "CHEF",
+   "CHSCL",
+   "COR",
+   "COSM",
+   "DIT",
+   "DPZ",
+   "EDUC",
+   "GLP",
+   "HFFG",
+   "HLF",
+   "HWKN",
+   "MCK",
+   "MGPI",
+   "MMLP",
+   "NHTC",
+   "PFGC",
+   "RAVE",
+   "SEB",
+   "SYY",
+   "UNFI",
+   "USFD",
+   "UVV",
+   "WEYS",
+   "WILC",
+   "WKC"
+  ],
+  "peer_annual_reports_2_largest": [
+   {
+    "entity_id": "0001286681",
+    "name": "DOMINOS PIZZA INC",
+    "ticker": "DPZ",
+    "sic2": "51",
+    "form": "10-K",
+    "filingDate": "2020-02-20",
+    "accn": "0001193125-20-042675",
+    "local_gz": "000119312520042675__peer10k.txt.gz",
+    "capex_excerpt": [
+     "quipment to those sub-franchisees, as well as by running pizza stores. We believe that everyone in the system can benefit, including the end consumer, who can purchase Domino’s menu items for themselves and their family conveniently and economically. The Domino’s business model can yield strong returns for our franchise owners and Company-owned stores. It can also yield significant cash flows to us, through a consistent franchise royalty payment and supply chain revenue stream, with moderate capital expenditures. We have historically returned cash to shareholders through dividend payments and share repurchases. Our History We pioneered the pizza delivery business and built Domino’s into one ",
+     "royalty payments generated by retail sales from franchised stores. Our international franchisees employ our basic standard operating model and adapt it to satisfy the local eating habits and consumer preferences of various regions outside the U.S. Currently, the vast majority of our international stores operate under master franchise agreements. We believe Domino’s appeals to potential international franchisees because of our recognized brand name and technological leadership, the moderate capital expenditures required to open and operate our stores and our system’s desirable store profitability. Stores in eight of our top ten international markets in terms of store count are operated by mas",
+     "logos, in particular, have significant value and are important to our business. Our policy is to pursue registration of our trademarks and to vigorously oppose the infringement of any of our trademarks. We license the use of our registered marks to franchisees through franchise agreements. Environmental Matters We are not aware of any federal, state or local environmental laws or regulations that we would expect to materially affect our earnings or competitive position or result in material capital expenditures. However, we cannot predict the effect of possible future environmental legislation or regulations. During 2019, there were no material environmental compliance-related capital expend"
+    ]
+   },
+   {
+    "entity_id": "0000096021",
+    "name": "SYSCO CORP",
+    "ticker": "SYY",
+    "sic2": "51",
+    "form": "10-K",
+    "filingDate": "2019-08-26",
+    "accn": "0000096021-19-000093",
+    "local_gz": "000009602119000093__peer10k.txt.gz",
+    "capex_excerpt": [
+     ", which provide assistance in operational best practices, including space utilization, energy conservation, fleet management and work flow. Capital Improvements During fiscal 2019 , 2018 and 2017 , $692.4 million , $687.8 million and $686.4 million , respectively, were invested in delivery fleet, facilities, technology and other capital asset enhancements. From time to time, we dispose of assets in the normal course of business; we consider proceeds from these asset sales to be an offset to capital expenditures. During fiscal 2019 , 2018 and 2017 , capital expenditures, net of proceeds from sales of assets, were $671.5 million , $665.6 million and $662.7 million , respectively. Capital expen",
+     "ncluding space utilization, energy conservation, fleet management and work flow. Capital Improvements During fiscal 2019 , 2018 and 2017 , $692.4 million , $687.8 million and $686.4 million , respectively, were invested in delivery fleet, facilities, technology and other capital asset enhancements. From time to time, we dispose of assets in the normal course of business; we consider proceeds from these asset sales to be an offset to capital expenditures. During fiscal 2019 , 2018 and 2017 , capital expenditures, net of proceeds from sales of assets, were $671.5 million , $665.6 million and $662.7 million , respectively. Capital expenditures as a percentage of sales during fiscal 2019 , 2018 ",
+     "and 2017 , $692.4 million , $687.8 million and $686.4 million , respectively, were invested in delivery fleet, facilities, technology and other capital asset enhancements. From time to time, we dispose of assets in the normal course of business; we consider proceeds from these asset sales to be an offset to capital expenditures. During fiscal 2019 , 2018 and 2017 , capital expenditures, net of proceeds from sales of assets, were $671.5 million , $665.6 million and $662.7 million , respectively. Capital expenditures as a percentage of sales during fiscal 2019 , 2018 and 2017 were 1.1% , 1.1% and 1.2% , respectively. We estimate our capital expenditures, net of proceeds from sales of assets, i"
+    ]
+   }
+  ]
+ },
+ "6_價格狀態": {
+  "ret_6m_skip1m": 0.04623521807546749,
+  "ret_12m_skip1m": -0.17804326137679627,
+  "rank_6m_pct_in_universe": 0.7132053519488074,
+  "rank_12m_pct_in_universe": 0.40311004784689,
+  "dist_from_52w_high": 0.0,
+  "reaction_day_return": 0.2488947742274974,
+  "reaction_day_rel_spy": 0.24338786647433852,
+  "reaction_day_rel_sic2_median": 0.24657263708318333
+ },
+ "7_共識": {
+  "analyst_consensus": "查不到",
+  "note": "倉內無歷史共識資料;不得憑記憶補"
+ },
+ "masking_check": {
+  "latest_data_date": "2020-07-02",
+  "cutoff": "2020-07-02",
+  "excluded": "T1 之後的價格、財報、公告整欄不入包",
+  "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。",
+  "verified": true
+ }
+}

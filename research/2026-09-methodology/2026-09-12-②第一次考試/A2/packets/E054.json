@@ -1,0 +1,259 @@
+{
+ "event_id": "E054",
+ "schema": "②第一次考試取證包 v1",
+ "ticker": "AMCX",
+ "cik": "0001514991",
+ "name": "AMC Global Media Inc.",
+ "sic": "4841",
+ "sic2": "48",
+ "bucket": "科技與軟件",
+ "evidence_cutoff": "T1 = 2021-11-05(反應日收市)",
+ "provenance": {
+  "rule": "執行口徑——②第一次考試-v1.md 第二節與 v1.1 修訂頁(成交額門檻 1,000 萬美元);提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "frozen": "2026-09-13"
+ },
+ "1_事件識別": {
+  "event_id": "E054",
+  "ticker": "AMCX",
+  "cik": "0001514991",
+  "T0_公布時間_美東": "2021-11-05T07:03:29",
+  "T0_UTC": "2021-11-05T11:03:29.000Z",
+  "signal_date_反應日": "2021-11-05",
+  "T1_分析截止": "2021-11-05 收市",
+  "T2_可成交": "2021-11-08 開市",
+  "fiscal_quarter": "2021Q3",
+  "cluster_id": "48-2021Q4",
+  "improvement_type_機械": "兩者",
+  "8-K_items": "2.02,9.01",
+  "accessionNumber": "0001514991-21-000059",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1514991/000151499121000059/amcx-20211105.htm"
+ },
+ "2_觸發資料": {
+  "ex991_full_text": " \n EX-99.1\n 2\n amcx-11521ex991.htm\n EX-99.1\n Document \n AMC NETWORKS INC. REPORTS THIRD QUARTER 2021 RESULTS \n New York, NY – November 5, 2021: AMC Networks Inc. (“AMC Networks” or the “Company”) (NASDAQ: AMCX) today reported financial results for the third quarter ended September 30, 2021. \n Interim Chief Executive Officer Matt Blank said: \"AMC Networks is in a very strong position, underscored by its third quarter revenue and AOI growth of 24% and 21%, respectively. In anticipation of having a strong finish to the year, we are increasing our full year financial guidance for total company revenue and AOI. We continue to see subscriber acquisition momentum and high engagement across our targeted streaming portfolio of AMC+, Acorn TV, Shudder, Sundance Now and ALLBLK, and are on track to deliver our year-end streaming target to achieve 9 million paid subscribers. We are building a streaming business that is sustainable and will be profitable over the long term, and with our owned IP, our library of high-quality content, and our strong legacy channels business, we have the right assets to drive growth and increase shareholder value.\" \n Third Quarter Financial Highlights: \n • Net revenues increased 24% to $811 million as compared to the prior year quarter, driven by growth in content licensing, streaming and advertising revenues \n • Operating income increased 35% to $188 million; Adjusted Operating Income (1) increased 21% to $225 million as compared to the prior year quarter \n • Diluted EPS of $2.55; Adjusted Diluted EPS (1) of $2.68 \n Dollars in thousands, except per share amounts Three Months Ended September 30, Nine Months Ended September 30, \n 2021 2020 Change 2021 2020 Change \n Net Revenues $ 810,766 $ 654,015 24.0 % $ 2,273,899 $ 2,034,681 11.8 % \n Operating Income $ 188,326 $ 139,477 35.0 % $ 426,290 $ 361,249 18.0 % \n Adjusted Operating Income $ 224,691 $ 185,491 21.1 % $ 713,307 $ 633,223 12.6 % \n Diluted Earnings Per Share $ 2.55 $ 1.17 117.9 % $ 5.39 $ 2.69 100.4 % \n Adjusted Diluted Earnings Per Share $ 2.68 $ 1.32 103.0 % $ 9.11 $ 5.17 76.2 % \n Net cash (used in) provided by operating activities $ (87,183) $ 219,175 (139.8) % $ 43,984 $ 644,087 (93.2) % \n Free Cash Flow (1) \n $ (101,297) $ 203,009 (149.9) % $ (891) $ 595,142 (100.1) % \n Operational Highlights: \n • On track to achieve 2021 year-end streaming subscriber target \n • Increasing full year 2021 financial outlook for total company revenue and adjusted operating income growth \n • Premiered season 11 of The Walking Dead, which was a top driver of subscriber acquisition and viewership, on AMC+ \n • Greenlit new AMC+ and AMC series Interview With the Vampire , Tales of the Walking Dead, Dark Winds , and Moonhaven \n • Opened writers rooms for development of potential new original series including Anne Rice’s Lives of the Mayfair Witches, Demascus and Invitation to a Bonfire \n • Kicked off Shudder’s 61 Days of Halloween annual event \n • Launched innovative AMC+ promotional partnership with Verizon Wireless and Verizon Fios \n (1) See page 4 of this earnings release for a discussion of non-GAAP financial measures used in this release. This discussion includes the definition of Adjusted Operating Income (Loss), Adjusted EPS and Free Cash Flow. \n 1 \n Segment Results \n (dollars in thousands) \n Three Months Ended September 30, Nine Months Ended September 30, \n 2021 2020 Change 2021 2020 Change \n Net Revenues: \n Domestic Operations $ 682,746 $ 546,865 24.8 % $ 1,895,730 $ 1,721,690 10.1 % \n International and Other 129,940 111,398 16.6 % 389,384 326,908 19.1 % \n Corporate / Inter-segment Eliminations (1,920) (4,248) 54.8 % (11,215) (13,917) 19.4 % \n Total Net Revenues $ 810,766 $ 654,015 24.0 % $ 2,273,899 $ 2,034,681 11.8 % \n Operating Income: \n Domestic Operations $ 213,299 $ 179,259 19.0 % $ 517,874 $ 621,446 (16.7) % \n International and Other 15,564 3,061 408.5 % 32,365 (118,140) 127.4 % \n Corporate / Inter-segment Eliminations (40,537) (42,843) 5.4 % (123,949) (142,057) 12.7 % \n Total Operating Income $ 188,326 $ 139,477 35.0 % $ 426,290 $ 361,249 18.0 % \n Adjusted Operating Income: \n Domestic Operations $ 231,076 $ 205,614 12.4 % $ 723,749 $ 683,000 6.0 % \n International and Other 22,109 8,917 147.9 % 70,777 42,343 67.2 % \n Corporate / Inter-segment Eliminations (28,494) (29,040) 1.9 % (81,219) (92,120) 11.8 % \n Total Adjusted Operating Income $ 224,691 $ 185,491 21.1 % $ 713,307 $ 633,223 12.6 % \n Domestic Operations \n • Domestic Operations revenues for the third quarter increased 25% to $683 million compared to the prior year quarter \n ◦ Distribution and Other revenues increased 26% to $483 million \n ▪ Content licensing revenues increased 60%, driven by a higher number of distributed original programs as compared to the prior comparable period as a result of earlier COVID-19 pandemic production delays \n ▪ Subscription revenues increased 14% due to increased streaming revenues driven by increased subscribers to our streaming services, partially offset by a low-single digit decrease in linear affiliate revenues, attributable to declines in the linear subscriber universe \n ◦ Advertising revenues increased 22% to $200 million due to higher pricing and ad-supported streaming growth, and an increase in the number of episodes of our original programming, partially offset by lower linear ratings \n • Operating Income increased 19% to $213 million in the quarter \n • Adjusted Operating Income increased 12% to $231 million, reflecting increased advertising and distribution revenues, partially offset by increased programming and subscriber acquisition and retention marketing investments to support the continued growth of streaming revenue \n 2 \n International and Other \n • International and Other revenues for the third quarter of 2021 increased 17% to $130 million compared to the prior year quarter \n ◦ Distribution and Other revenues increased 13% to $105 million primarily due to increased production revenues at 25/7 Media and increased distribution revenues at AMCNI, as well as the favorable impact of foreign currency translation \n ◦ Advertising revenues increased 34% to $25 million largely related to higher pricing, better ratings and the favorable impact of foreign currency translation at AMCNI \n • Operating Income increased 409% to $16 million in the quarter \n • Adjusted Operating Income increased 148% to $22 million in the quarter \n ◦ Operating Income and Adjusted Operating Income reflected the increase in Advertising and Distribution and Other revenues, partially offset by an increase in selling, general and administrative expense \n Other Matters \n Stock Repurchase Program & Outstanding Shares \n As previously disclosed, the Company's Board of Directors has authorized a program to repurchase up to $1.5 billion of the Company’s outstanding shares of common stock. The Stock Repurchase Program has no pre-established closing date and may be suspended or discontinued at any time. During the third quarter of 2021, the Company did not repurchase any shares. As of September 30, 2021, the Company had $135 million of authorization remaining for repurchase under the Stock Repurchase Program. \n As of October 29, 2021 the Company had 30,767,784 shares of Class A Common Stock and 11,484,408 shares of Class B Common Stock outstanding. \n Please see the Company’s Form 10-Q for the period ended September 30, 2021 for further details regarding the above matters. \n 3 \n Description of Non-GAAP Measures \n The Company defines Adjusted Operating Income (Loss), which is a non-GAAP financial measure, as operating income (loss) before depreciation and amortization, cloud computing amortization, share-based compensation expense or benefit, impairment and other charges (including gains or losses on sales or dispositions of businesses), restructuring and other related charges, and including the Company’s proportionate share of adjusted operating income (loss) from majority owned equity method investees. From time to time, we may exclude the impact of certain events, gains, losses or other charges (such as significant legal settlements) from AOI that affect our operating performance. Because it is based upon operating income (loss), Adjusted Operating Income (Loss) also excludes interest expense (including cash interest expense) and other non-operating income and expense items. The Company believes that the exclusion of share-based compensation expense or benefit allows investors to better track the performance of the various operating units of the business without regard to the effect of the settlement of an obligation that is not expected to be made in cash. \n The Company believes that Adjusted Operating Income (Loss) is an appropriate measure for evaluating the operating performance of the business segments and the Company on a consolidated basis. Adjusted Operating Income (Loss) and similar measures with similar titles are common performance measures used by investors, analysts and peers to compare performance in the industry. \n Internally, the Company uses net revenues and Adjusted Operating Income (Loss) measures as the most important indicators of its business performance, and evaluates management’s effectiveness with specific reference to these indicators. Adjusted Operating Income (Loss) should be viewed as a supplement to and not a substitute for operating income (loss), net income (loss), and other measures of performance presented in accordance with U.S. generally accepted accounting principles (\"GAAP\"). Since Adjusted Operating Income (Loss) is not a measure of performance calculated in accordance with GAAP, this measure may not be comparable to similar measures with similar titles used by other companies. For a reconciliation of operating income (loss) to Adjusted Operating Income (Loss), please s ee pages 7-8 of this release. \n The Company defines Free Cash Flow, which is a non-GAAP financial measure, as net cash provided by operating activities less capital expenditures and cash distributions to noncontrolling interests, all of which are reported in our Consolidated Statement of Cash Flows. The Company believes the most comparable GAAP financial measure of its liquidity is net cash provided by operating activities. The Company believes that Free Cash Flow is useful as an indicator of its overall liquidity, as the amount of Free Cash Flow generated in any period is representative of cash that is available for debt repayment, investment, and other discretionary and non-discretionary cash uses. The Company also believes that Free Cash Flow is one of several benchmarks used by analysts and investors who follow the industry for comparison of its liquidity with other companies in the industry, although the Company’s measure of Free Cash Flow may not be directly comparable to similar measures reported by other companies. For a reconciliation of net cash provided by operating activities to Free Cash Flow, please see page 9 of this release. \n The Company defines Adjusted Earnings per Diluted Share (“Adjusted EPS”), which is a non-GAAP financial measure, as earnings per diluted share excluding the following items: amortization of acquisition-related intangible assets; impairment and other charges (including gains or losses on sales or dispositions of businesses); non-cash impairments of goodwill, intangible and fixed assets; restructuring and other related charges; and gains and losses related to the extinguishment of debt; as well as the impact of taxes on the aforementioned items. The Company believes the most comparable GAAP financial measure is earnings per diluted share. The Company believes that Adjusted EPS is one of several benchmarks used by analysts and investors who follow the industry for comparison of its performance with other companies in the industry, although the Company’s measure of Adjusted EPS may not be directly comparable to similar measures reported by other companies. For a reconciliation of earnings per diluted share to Adjusted EPS, please see pages 10-11 o f this release. \n 4 \n Forward-Looking Statements \n This earnings release may contain statements that constitute forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. These statements are based on management's current expectations and are subject to uncertainty and changes in circumstances. Investors are cautioned that any such forward-looking statements are not guarantees of future performance or results and involve risks and uncertainties, and that actual results or developments may differ materially from those in the forward-looking statements as a result of various factors, including financial community and rating agency perceptions of the Company and its business, operations, financial condition and the industries in which it operates and the factors described in the Company’s filings with the Securities and Exchange Commission, including the sections entitled \"Risk Factors\" and \"Management’s Discussion and Analysis of Financial Condition and Results of Operations\" contained therein. The Company disclaims any obligation to update any forward-looking statements contained herein. \n Conference Call Information \n AMC Networks will host a conference call today at 8:30 a.m. ET to discuss its third quarter 2021 results. To listen to the call, visit http://www.amcnetworks.com or dial 833-714-3268, using the following conference ID: 1525219. \n About AMC Networks Inc. \n AMC Networks is a global entertainment company known for its popular and critically-acclaimed content. Its portfolio of brands includes AMC, BBC AMERICA (operated through a joint venture with BBC Studios), IFC, SundanceTV, WE tv, IFC Films, and a number of fast-growing streaming services, including the AMC+ premium streaming bundle, Acorn TV, Shudder, Sundance Now and ALLBLK. AMC Studios, the Company’s in-house studio, production and distribution operation, is behind award-winning owned series and franchises, including The Walking Dead, the highest-rated series in cable history. The Company also operates AMC Networks International, its international programming business, and 25/7 Media, its production services business. \n Contacts \n Investor Relations Corporate Communications \n Nicholas Seibert (646) 740-5749 Georgia Juvelis (917) 542-6390 \n nicholas.seibert@amcnetworks.com georgia.juvelis@amcnetworks.com \n 5 \n AMC NETWORKS INC. \n CONSOLIDATED STATEMENTS OF INCOME \n (In thousands, except per share amounts) \n (unaudited) \n Three Months Ended September 30, Nine Months Ended September 30, \n 2021 2020 2021 2020 \n Revenues, net \n $ 810,766 $ 654,015 $ 2,273,899 $ 2,034,681 \n Operating expenses: \n Technical and operating (excluding depreciation and amortization) \n 378,264 333,816 997,677 960,379 \n Selling, general and administrative \n 220,011 148,769 610,164 488,581 \n Depreciation and amortization 23,411 27,547 71,261 80,182 \n Impairment and other charges — — 158,973 130,411 \n Restructuring and other related charges 754 4,406 9,534 13,879 \n 622,440 514,538 1,847,609 1,673,432 \n Operating income 188,326 139,477 426,290 361,249 \n Other income (expense): \n Interest expense (31,413) (33,418) (97,674) (105,283) \n Interest income 2,264 2,994 7,614 11,276 \n Loss on extinguishment of debt — — (22,074) (2,908) \n Miscellaneous, net 54 11,138 19,634 (10,088) \n (29,095) (19,286) (92,500) (107,003) \n Income from operations before income taxes 159,231 120,191 333,790 254,246 \n Income tax expense (40,744) (52,195) (77,980) (95,490) \n Net income including noncontrolling interests 118,487 67,996 255,810 158,756 \n Net income attributable to noncontrolling interests (7,836) (6,356) (22,253) (13,488) \n Net income attributable to AMC Networks’ stockholders $ 110,651 $ 61,640 $ 233,557 $ 145,268 \n Net income per share attributable to AMC Networks’ stockholders: \n Basic $ 2.60 $ 1.18 $ 5.52 $ 2.72 \n Diluted $ 2.55 $ 1.17 $ 5.39 $ 2.69 \n Weighted average common shares: \n Basic 42,506 52,346 42,308 53,374 \n Diluted 43,440 52,904 43,332 53,917 \n 6 \n AMC NETWORKS INC. \n SUPPLEMENTAL FINANCIAL DATA \n (Dollars in thousands) \n (Unaudited) \n Three Months Ended September 30, 2021 \n Domestic Operations International and Other Corporate / Inter-segment Eliminations Consolidated \n Operating income (loss) \n $ 213,299 $ 15,564 $ (40,537) $ 188,326 \n Share-based compensation expense \n 4,174 545 4,736 9,455 \n Depreciation and amortization 11,589 5,200 6,622 23,411 \n Impairment and other charges \n — — — — \n Restructuring and other related charges (135) 800 89 754 \n Cloud computing amortization \n — — 596 596 \n Majority owned equity investees AOI 2,149 — — 2,149 \n Adjusted operating income (loss) \n $ 231,076 $ 22,109 $ (28,494) $ 224,691 \n Three Months Ended September 30, 2020 \n Domestic Operations International and Other Corporate / Inter-segment Eliminations Consolidated \n Operating income (loss) $ 179,259 $ 3,061 $ (42,843) $ 139,477 \n Share-based compensation expense 4,437 919 7,038 12,394 \n Depreciation and amortization 15,799 4,937 6,811 27,547 \n Impairment and other charges — — — — \n Restructuring and other related charges 4,452 — (46) 4,406 \n Majority owned equity investees AOI 1,667 — — 1,667 \n Adjusted operating income (loss) $ 205,614 $ 8,917 $ (29,040) $ 185,491 \n 7 \n Nine Months Ended September 30, 2021 \n Domestic Operations International and Other Corporate / Inter-segment Eliminations Consolidated \n Operating income (loss) $ 517,874 $ 32,365 $ (123,949) $ 426,290 \n Share-based compensation expense 17,105 2,689 19,369 39,163 \n Depreciation and amortization 36,678 14,477 20,106 71,261 \n Impairment and other charges 143,000 15,973 — 158,973 \n Restructuring and other related charges 2,508 5,273 1,753 9,534 \n Cloud computing amortization — — 1,502 1,502 \n Majority owned equity investees AOI 6,584 — — 6,584 \n Adjusted operating income (loss) $ 723,749 $ 70,777 $ (81,219) $ 713,307 \n Nine Months Ended September 30, 2020 \n Domestic Operations International and Other Corporate / Inter-segment Eliminations Consolidated \n Operating income (loss) $ 621,446 $ (118,140) $ (142,057) $ 361,249 \n Share-based compensation expense 12,005 2,437 28,699 43,141 \n Depreciation and amortization 38,050 21,396 20,736 80,182 \n Impairment and other charges — 130,411 — 130,411 \n Restructuring and other related charges 7,138 6,239 502 13,879 \n Majority owned equity investees AOI 4,361 — — 4,361 \n Adjusted operating income (loss) $ 683,000 $ 42,343 $ (92,120) $ 633,223 \n 8 \n AMC NETWORKS INC. \n SUPPLEMENTAL FINANCIAL DATA \n (In thousands) \n (Unaudited) \n Capitalization September 30, 2021 \n Cash and cash equivalents \n $ 870,967 \n Credit facility debt (a) \n $ 675,000 \n Senior notes (a) \n 2,200,000 \n Other debt 1,500 \n Total debt $ 2,876,500 \n Net debt \n $ 2,005,533 \n Finance leases 28,229 \n Net debt and finance leases $ 2,033,762 \n Twelve Months Ended September 30, 2021 \n Operating Income (GAAP) $ 507,685 \n Share-based compensation expense 48,930 \n Depreciation and amortization 95,685 \n Impairment and other charges 150,789 \n Restructuring and other related charges 30,723 \n Cloud computing amortization 1,702 \n Majority owned equity investees 11,181 \n Adjusted Operating Income (Non-GAAP) $ 846,695 \n Leverage ratio (b) \n 2.4 x \n (a) Represents the aggregate principal amount of the debt. \n (b) Represents net debt and finance leases divided by Adjusted Operating Income for the twelve months ended September 30, 2021. This ratio differs from the calculation contained in the Company's credit facility. No adjustments have been made for consolidated entities that are not 100% owned. \n Free Cash Flow Three Months Ended September 30, Nine Months Ended September 30, \n 2021 2020 2021 2020 \n Net cash (used in) provided by operating activities \n $ (87,183) $ 219,175 $ 43,984 $ 644,087 \n Less: capital expenditures \n (11,120) (12,818) (29,969) (34,990) \n Less: distributions to noncontrolling interests \n (2,994) (3,348) (14,906) (13,955) \n Free cash flow \n $ (101,297) $ 203,009 $ (891) $ 595,142 \n 9 \n Adjusted Earnings Per Diluted Share \n Three Months Ended September 30, 2021 \n Income from operations before income taxes Income tax expense Net income attributable to noncontrolling interests Net income attributable to AMC Networks' stockholders Diluted EPS attributable to AMC Networks' stockholders \n Reported Results (GAAP) \n $ 159,231 $ (40,744) $ (7,836) $ 110,651 $ 2.55 \n Adjustments: \n Amortization of acquisition-related intangible assets 10,214 (1,691) (2,951) 5,572 0.12 \n Impairment and other charges — — — — — \n Restructuring and other related charges 754 (387) 25 392 0.01 \n Loss on extinguishment of debt — — — — — \n Adjusted Results (Non-GAAP) $ 170,199 $ (42,822) $ (10,762) $ 116,615 $ 2.68 \n Three Months Ended September 30, 2020 \n Income from operations before income taxes Income tax expense Net income attributable to noncontrolling interests Net income attributable to AMC Networks' stockholders Diluted EPS attributable to AMC Networks' stockholders \n Reported Results (GAAP) \n $ 120,191 $ (52,195) $ (6,356) $ 61,640 $ 1.17 \n Adjustments: \n Amortization of acquisition-related intangible assets 9,548 (1,464) (3,027) 5,057 0.09 \n Impairment charges — — — — — \n Restructuring and other related charges 4,406 (1,051) — 3,355 0.06 \n Loss on extinguishment of debt — — — — — \n Adjusted Results (Non-GAAP) $ 134,145 $ (54,710) $ (9,383) $ 70,052 $ 1.32 \n 10 \n Nine Months Ended September 30, 2021 \n Income from operations before income taxes Income tax expense Net income attributable to noncontrolling interests Net income attributable to AMC Networks' stockholders Diluted EPS attributable to AMC Networks' stockholders \n Reported Results (GAAP) \n $ 333,790 $ (77,980) $ (22,253) $ 233,557 $ 5.39 \n Adjustments: \n Amortization of acquisition-related intangible assets 29,077 (4,661) (8,928) 15,488 0.35 \n Impairment charges 158,973 (38,078) — 120,895 2.79 \n Restructuring and other related charges 9,534 (1,419) 12 8,127 0.19 \n Loss on extinguishment of debt 22,074 (5,257) — 16,817 0.39 \n Adjusted Results (Non-GAAP) $ 553,448 $ (127,395) $ (31,169) $ 394,884 $ 9.11 \n Nine Months Ended September 30, 2020 \n Income from operations before income taxes Income tax expense Net income attributable to noncontrolling interests Net income attributable to AMC Networks' stockholders Diluted EPS attributable to AMC Networks' stockholders \n Reported Results (GAAP) \n $ 254,246 $ (95,490) $ (13,488) $ 145,268 $ 2.69 \n Adjustments: \n Amortization of acquisition-related intangible assets 32,642 (5,413) (9,081) 18,148 0.34 \n Impairment charges 130,411 (27,984) — 102,427 1.90 \n Restructuring and other related charges 13,879 (3,349) 13 10,543 0.20 \n Loss on extinguishment of debt 2,908 (733) — 2,175 0.04 \n Adjusted Results (Non-GAAP) $ 434,086 $ (132,969) $ (22,556) $ 278,561 $ 5.17 \n 11 \n",
+  "ex991_chars": 22827,
+  "same_day_8k_items": "2.02,9.01",
+  "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
+  "local_8k": "000151499121000059__8k.txt.gz",
+  "earnings_call_transcript": "查不到"
+ },
+ "3_截止前文件": {
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2021-02-26",
+   "reportDate": "2020-12-31",
+   "accession": "0001514991-21-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1514991/000151499121000014/amcx-20201231.htm",
+   "local_gz": "000151499121000014__annual.txt.gz"
+  },
+  "最近 10-Q/6-K(1)": {
+   "form": "10-Q",
+   "filingDate": "2021-11-05",
+   "reportDate": "2021-09-30",
+   "accession": "0001514991-21-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1514991/000151499121000061/amcx-20210930.htm",
+   "local_gz": "000151499121000061__q0.txt.gz"
+  },
+  "最近 10-Q/6-K(2)": {
+   "form": "10-Q",
+   "filingDate": "2021-08-06",
+   "reportDate": "2021-06-30",
+   "accession": "0001514991-21-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1514991/000151499121000045/amcx-20210630.htm",
+   "local_gz": "000151499121000045__q1.txt.gz"
+  }
+ },
+ "4_財務數列": {
+  "source": "data/sec/companyfacts(XBRL 首報值)",
+  "quarters": [
+   {
+    "period_end": "2019-12-31",
+    "revenue": 785204000.0,
+    "gross_profit": null,
+    "operating_income": 41719000.0,
+    "ocf": 83351000.0
+   },
+   {
+    "period_end": "2020-03-31",
+    "revenue": 734375000.0,
+    "gross_profit": null,
+    "operating_income": 172970000.0,
+    "ocf": 198408000.0
+   },
+   {
+    "period_end": "2020-06-30",
+    "revenue": 646291000.0,
+    "gross_profit": null,
+    "operating_income": 48802000.0,
+    "ocf": 226504000.0
+   },
+   {
+    "period_end": "2020-09-30",
+    "revenue": 654015000.0,
+    "gross_profit": null,
+    "operating_income": 139477000.0,
+    "ocf": 219175000.0
+   },
+   {
+    "period_end": "2020-12-31",
+    "revenue": 780275000.0,
+    "gross_profit": null,
+    "operating_income": 81395000.0,
+    "ocf": 104649000.0
+   },
+   {
+    "period_end": "2021-03-31",
+    "revenue": 691741000.0,
+    "gross_profit": null,
+    "operating_income": 169708000.0,
+    "ocf": 107563000.0
+   },
+   {
+    "period_end": "2021-06-30",
+    "revenue": 771392000.0,
+    "gross_profit": null,
+    "operating_income": 68256000.0,
+    "ocf": 23604000.0
+   },
+   {
+    "period_end": "2021-09-30",
+    "revenue": 810766000.0,
+    "gross_profit": null,
+    "operating_income": 188326000.0,
+    "ocf": -87183000.0
+   }
+  ],
+  "signal_q_end": "2021-09-30",
+  "g0_signal_q_yoy": 0.239675,
+  "prev_q_yoy": 0.193568,
+  "accel_pp": 4.6107
+ },
+ "5_同業與行業": {
+  "sic2": "48",
+  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
+  "n_listed_peers_same_sic2": 78,
+  "peer_list_all_same_sic2_tickers": [
+   "AD",
+   "ADEA",
+   "AEHL",
+   "AMX",
+   "ANGH",
+   "AREN",
+   "ASTS",
+   "ATEX",
+   "ATNI",
+   "BBGI",
+   "BCE",
+   "BZFD",
+   "CABO",
+   "CALX",
+   "CCOI",
+   "CCZ",
+   "CHAI",
+   "CHT",
+   "CHTR",
+   "CXDO",
+   "ECHO",
+   "EVC",
+   "FABC",
+   "FENG",
+   "FOX",
+   "FWONA",
+   "GOGO",
+   "GSAT",
+   "GTN",
+   "IDT",
+   "IHRT",
+   "IHS",
+   "IQST",
+   "IRDM",
+   "KT",
+   "KVHI",
+   "LBTYA",
+   "LILA",
+   "LUMN",
+   "MDIA",
+   "MYSE",
+   "NXPL",
+   "NXST",
+   "OPTU",
+   "PHI",
+   "RCI",
+   "ROKU",
+   "SGA",
+   "SHEN",
+   "SIRI",
+   "SKM",
+   "SPIR",
+   "SPOK",
+   "SPOT",
+   "SSP",
+   "SURG",
+   "T",
+   "TDS",
+   "TEO",
+   "TIGO",
+   "TIMB",
+   "TKC",
+   "TLK",
+   "TME",
+   "TMUS",
+   "TSAT",
+   "TSQ",
+   "TU",
+   "TV",
+   "UCL",
+   "UONE",
+   "VEON",
+   "VIV",
+   "VOD",
+   "VSAT",
+   "VZ",
+   "WBD",
+   "ZD"
+  ],
+  "peer_annual_reports_2_largest": [
+   {
+    "entity_id": "0001428439",
+    "name": "ROKU, INC",
+    "ticker": "ROKU",
+    "sic2": "48",
+    "form": "10-K",
+    "filingDate": "2021-02-26",
+    "accn": "0001564590-21-009021",
+    "local_gz": "000156459021009021__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ay season our partners saw fewer shoppers in their brick-and-mortar locations. Further, our management team has focused on addressing the impacts of the COVID-19 pandemic on our business, which has required and will continue to require, a significant investment of their time and resources, and has diverted their attention away from other aspects of our business. In light of the COVID-19 pandemic, during 2020 our management team took steps to slow the rate of growth of our operating expenses and capital expenditures. Our management team also monitored our liquidity and in May 2020, we entered into an Equity Distribution Agreement with Morgan Stanley & Co. LLC and Citigroup Global Markets Inc.",
+     "t of taxes we pay and harm our business. Legislation enacted in 2017, informally titled the Tax Cuts and Jobs Act (“TCJA”), as modified by legislation enacted on March 27, 2020, entitled the Coronavirus Aid, Relief, and Economic Security Act (“CARES Act”), significantly reformed the Internal Revenue Code of 1986, as amended. The TCJA, as modified by the CARES Act, alters U.S. federal tax rates, imposes additional limitations on the deductibility of interest, allows for the expensing of certain capital expenditures, and puts into effect the migration from a “worldwide” system of taxation to a territorial system. Additionally, the TCJA, as modified by the CARES Act, has both positive and negat",
+     "moderated due to the impact of ongoing COVID-19 pandemic restrictions and ongoing economic uncertainty on holiday sales and consumer demand. While our player and Roku TV model sales have remained strong during the COVID-19 pandemic, there can be no assurance that these patterns will continue throughout the pandemic or beyond. 56 Although the COVID-19 pandemic’s impact on our future operations and financial performance remains uncertain, we are continuing to monitor our operating expenses and capital expenditures and are committed to investing in strategic areas to grow our business and extend our competitive advantages. Key Performance Metrics The key performance metrics we use to evaluate o"
+    ]
+   },
+   {
+    "entity_id": "0000732717",
+    "name": "AT&T INC.",
+    "ticker": "T",
+    "sic2": "48"
+   }
+  ]
+ },
+ "6_價格狀態": {
+  "ret_6m_skip1m": -0.11177839165354275,
+  "ret_12m_skip1m": 0.9192130450194966,
+  "rank_6m_pct_in_universe": 0.3221128948731227,
+  "rank_12m_pct_in_universe": 0.8068527217463388,
+  "dist_from_52w_high": -0.3755564010020773,
+  "reaction_day_return": 0.14265760016931317,
+  "reaction_day_rel_spy": 0.13918791336337333,
+  "reaction_day_rel_sic2_median": 0.13916109667280963
+ },
+ "7_共識": {
+  "analyst_consensus": "查不到",
+  "note": "倉內無歷史共識資料;不得憑記憶補"
+ },
+ "masking_check": {
+  "latest_data_date": "2021-11-05",
+  "cutoff": "2021-11-05",
+  "excluded": "T1 之後的價格、財報、公告整欄不入包",
+  "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。",
+  "verified": true
+ }
+}

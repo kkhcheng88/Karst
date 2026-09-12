@@ -1,0 +1,189 @@
+{
+ "event_id": "E013",
+ "schema": "②第一次考試取證包 v1",
+ "ticker": "CPRT",
+ "cik": "0000900075",
+ "name": "COPART INC",
+ "sic": "5500",
+ "sic2": "55",
+ "bucket": "消費與零售",
+ "evidence_cutoff": "T1 = 2016-05-26(反應日收市)",
+ "provenance": {
+  "rule": "執行口徑——②第一次考試-v1.md 第二節與 v1.1 修訂頁(成交額門檻 1,000 萬美元);提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "frozen": "2026-09-13"
+ },
+ "1_事件識別": {
+  "event_id": "E013",
+  "ticker": "CPRT",
+  "cik": "0000900075",
+  "T0_公布時間_美東": "2016-05-25T18:01:51",
+  "T0_UTC": "2016-05-25T22:01:51.000Z",
+  "signal_date_反應日": "2016-05-26",
+  "T1_分析截止": "2016-05-26 收市",
+  "T2_可成交": "2016-05-27 開市",
+  "fiscal_quarter": "2016Q2",
+  "cluster_id": "55-2016Q2",
+  "improvement_type_機械": "加速",
+  "8-K_items": "2.02,9.01",
+  "accessionNumber": "0000900075-16-000035",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/900075/000090007516000035/cprt04302016-8k.htm"
+ },
+ "2_觸發資料": {
+  "ex991_full_text": " \n EX-99.1\n 2\n cprt04302016ex99-1.htm\n EXHIBIT 99.1\n Exhibit \n Exhibit 99.1 \n Copart, Inc. \n For Immediate Release \n Copart Reports Third Quarter Fiscal 2016 Financial Results \n Dallas, Texas. ( May 25, 2016 ) — Copart, Inc. (NASDAQ: CPRT) today reported financial results for the quarter ended April 30, 2016 . \n For the three months ended April 30, 2016 , revenue, gross margin, and net income were $347.2 million , $157.6 million , and $74.0 million , respectively. These represent an increase in revenue of $50.1 million , or 16.9% ; an increase in gross margin of $30.2 million , or 23.7% ; and an increase in net income of $16.5 million , or 28.6% , respectively, from the same quarter last year. Fully diluted earnings per share for the three months were $0.64 compared to $0.44 last year, an increase of 45.5% . \n For the nine months ended April 30, 2016 , revenue, gross margin, and net income were $935.8 million , $403.1 million and $185.4 million , respectively. These represent an increase in revenue of $72.0 million , or 8.3% ; an increase in gross margin of $38.5 million , or 10.6% ; and an increase in net income of $23.0 million , or 14.2% , respectively, from the same period last year. Fully diluted earnings per share for the nine months were $ 1.51 compared to $ 1.23 last year, an increase of 22.8% . \n On Thursday, May 26, 2016, at 11 a.m. Eastern time, Copart will conduct a conference call to discuss the results for the quarter. The call will be webcast live at http://stream.conferenceamerica.com/copart05262016. A replay of the call will be available through July 25, 2016 by calling (877) 919-4059 . Use confirmation code # 73323554. \n About Copart \n Copart, founded in 1982, provides vehicle sellers with a full range of remarketing services to process and sell salvage and clean title vehicles to dealers, dismantlers, rebuilders, exporters and, in some locations, to end users. Copart remarkets the vehicles through Internet sales utilizing its VB3 technology. Copart sells vehicles on behalf of insurance companies, banks, financial institutions, charities, car dealerships, fleet operators, vehicle rental companies, as well as cars sourced from the general public. The company currently operates in the United States and Canada (www.copart.com), the United Kingdom (www.copart.co.uk), Brazil (www.copart.com.br), Germany (www.copart.de), the United Arab Emirates, Oman and Bahrain (www.copartmea.com), Spain (www.autoresiduos.com), Ireland (www.copart.ie), and India (www.copart.in). Copart links sellers to more than 750,000 members in over 150 countries worldwide through its multi-channel platform. Copart was recently ranked at the top of Deloitte’s “Exceptional 100” list of companies, which reviewed U.S. publicly traded companies based upon a multidimensional approach to measuring financial performance. For more information, or to become a member, visit www.copart.com. \n - 1 - \n Copart, Inc. ~ 14185 Dallas Parkway, Suite 300, Dallas TX 75254 ~ (972) 391-5000 \n Copart, Inc. \n Cautionary Note About Forward-Looking Statements \n This press release contains forward-looking statements within the meaning of federal securities laws, and these forward-looking statements are subject to substantial risks and uncertainties. These forward-looking statements are subject to certain risks, trends and uncertainties that could cause actual results to differ materially from those projected or implied by our statements and comments. For a more complete discussion of the risks that could affect our business, please review the “Management's Discussion and Analysis” and the other risks identified in Copart’s latest Annual Report on Form 10-K, Quarterly Reports on Form 10-Q, and Current Reports on Form 8-K, as filed with the Securities and Exchange Commission. We encourage investors to review these disclosures carefully. We do not undertake to update any forward-looking statement that may be made from time to time on our behalf. \n Contact: \n Christopher M. Smith, Senior Analyst, Office of the Chief Financial Officer \n 972-391-5021 or christopher.smith3@copart.com \n - 2 - \n Copart, Inc. ~ 14185 Dallas Parkway, Suite 300, Dallas TX 75254 ~ (972) 391-5000 \n Copart, Inc. \n Condensed Consolidated Statements of Income \n (In thousands, except per share data) \n (Unaudited) \n Three Months Ended \n April 30, \n Nine Months Ended \n April 30, \n 2016 \n 2015 \n 2016 \n 2015 \n Service revenues and vehicle sales: \n Service revenues \n $ \n 303,507 \n $ \n 256,564 \n $ \n 814,891 \n $ \n 741,692 \n Vehicle sales \n 43,739 \n 40,578 \n 120,899 \n 122,094 \n Total service revenues and vehicle sales \n 347,246 \n 297,142 \n 935,790 \n 863,786 \n Operating expenses: \n Yard operations \n 142,802 \n 125,348 \n 401,721 \n 367,124 \n Cost of vehicle sales \n 37,744 \n 34,503 \n 103,939 \n 103,694 \n Yard depreciation and amortization \n 8,339 \n 9,248 \n 24,932 \n 26,655 \n Yard stock-based payment compensation \n 714 \n 626 \n 2,076 \n 1,721 \n Gross margin \n 157,647 \n 127,417 \n 403,122 \n 364,592 \n General and administrative \n 27,360 \n 25,940 \n 78,447 \n 86,741 \n General and administrative depreciation and amortization \n 4,019 \n 2,916 \n 10,638 \n 8,646 \n General and administrative stock-based payment compensation \n 4,320 \n 3,794 \n 13,758 \n 11,569 \n Total operating expenses \n 225,298 \n 202,375 \n 635,511 \n 606,150 \n Operating income \n 121,948 \n 94,767 \n 300,279 \n 257,636 \n Other (expense) income: \n Interest expense, net \n (5,419 \n ) \n (5,656 \n ) \n (15,900 \n ) \n (11,932 \n ) \n Other income, net \n 39 \n (815 \n ) \n 5,501 \n 4,919 \n Total other expenses \n (5,380 \n ) \n (6,471 \n ) \n (10,399 \n ) \n (7,013 \n ) \n Income before income taxes \n 116,568 \n 88,296 \n 289,880 \n 250,623 \n Income taxes \n 42,552 \n 30,733 \n 104,488 \n 88,252 \n Net income \n $ \n 74,016 \n $ \n 57,563 \n $ \n 185,392 \n $ \n 162,371 \n Basic net income per common share \n $ \n 0.67 \n $ \n 0.46 \n $ \n 1.58 \n $ \n 1.29 \n Weighted average common shares outstanding \n 110,543 \n 126,415 \n 117,071 \n 126,309 \n Diluted net income per common share \n $ \n 0.64 \n $ \n 0.44 \n $ \n 1.51 \n $ \n 1.23 \n Diluted weighted average common shares outstanding \n 116,388 \n 132,124 \n 122,692 \n 131,837 \n - 3 - \n Copart, Inc. ~ 14185 Dallas Parkway, Suite 300, Dallas TX 75254 ~ (972) 391-5000 \n Copart, Inc. \n Condensed Consolidated Balance Sheets \n (In thousands) \n (Unaudited) \n April 30, 2016 \n July 31, 2015 \n ASSETS \n Current assets: \n Cash and cash equivalents \n $ \n 137,653 \n $ \n 456,012 \n Accounts receivable, net \n 263,292 \n 215,696 \n Vehicle pooling costs and inventories\n 41,210 \n 33,562 \n Income taxes receivable \n 2,772 \n 6,092 \n Deferred income taxes \n 668 \n 3,396 \n Prepaid expenses and other assets \n 18,910 \n 19,824 \n Total current assets \n 464,505 \n 734,582 \n Property and equipment, net \n 806,973 \n 700,402 \n Intangibles, net \n 13,390 \n 17,857 \n Goodwill \n 267,367 \n 271,850 \n Deferred income taxes \n 31,245 \n 28,840 \n Other assets \n 40,655 \n 46,421 \n Total assets \n $ \n 1,624,135 \n $ \n 1,799,952 \n LIABILITIES AND STOCKHOLDERS’ EQUITY \n Current liabilities: \n Accounts payable and accrued liabilities \n $ \n 150,298 \n $ \n 147,452 \n Deferred revenue \n 5,745 \n 3,724 \n Income taxes payable \n 17,169 \n 8,279 \n Current portion of long-term debt, revolving credit facility, and capital lease obligations \n 30,369 \n 53,671 \n Total current liabilities \n 203,581 \n 213,126 \n Deferred income taxes \n 5,001 \n 5,322 \n Income taxes payable \n 25,675 \n 21,157 \n Long-term debt and capital lease obligations, net of discount \n 670,507 \n 592,135 \n Other liabilities \n 2,844 \n 3,748 \n Total liabilities \n 907,608 \n 835,488 \n Commitments and contingencies \n Stockholders' equity: \n Preferred stock \n — \n — \n Common stock \n 11 \n 12 \n Additional paid-in capital \n 393,351 \n 407,808 \n Accumulated other comprehensive loss \n (83,791 \n ) \n (68,793 \n ) \n Retained earnings \n 406,956 \n 625,437 \n Total stockholders' equity \n 716,527 \n 964,464 \n Total liabilities and stockholders' equity \n $ \n 1,624,135 \n $ \n 1,799,952 \n - 4 - \n Copart, Inc. ~ 14185 Dallas Parkway, Suite 300, Dallas TX 75254 ~ (972) 391-5000 \n Copart, Inc. \n Condensed Consolidated Statements of Cash Flows \n (In thousands) \n (Unaudited) \n Nine Months Ended April 30, \n 2016 \n 2015 \n Cash flows from operating activities: \n Net income \n $ \n 185,392 \n $ \n 162,371 \n Adjustments to reconcile net income to net cash provided by operating activities: \n Depreciation and amortization \n 35,900 \n 37,579 \n Allowance for doubtful accounts \n 1,227 \n (453 \n ) \n Equity in losses of unconsolidated affiliates \n 768 \n — \n Stock-based payment compensation \n 15,834 \n 13,290 \n Excess tax benefits from stock-based payment compensation \n (848 \n ) \n (1,279 \n ) \n Gain on sale of property and equipment \n (188 \n ) \n (735 \n ) \n Deferred income taxes \n (325 \n ) \n 3,641 \n Changes in operating assets and liabilities, net of effects from acquisitions: \n Accounts receivable \n (49,594 \n ) \n (21,763 \n ) \n Vehicle pooling costs and inventories \n (8,121 \n ) \n (1,874 \n ) \n Prepaid expenses and other current assets \n 293 \n 1,480 \n Other assets \n 3,206 \n 7,584 \n Accounts payable and accrued liabilities \n 5,024 \n 2,042 \n Deferred revenue \n 2,038 \n 445 \n Income taxes receivable \n 4,172 \n 985 \n Income taxes payable \n 13,858 \n 1,313 \n Other liabilities \n (1,138 \n ) \n (1,257 \n ) \n Net cash provided by operating activities \n 207,498 \n 203,369 \n Cash flows from investing activities: \n Purchases of property and equipment \n (143,833 \n ) \n (49,079 \n ) \n Proceeds from sale of property and equipment \n 485 \n 1,087 \n Purchases of marketable securities \n (21,119 \n ) \n — \n Proceeds from sale of marketable securities \n 21,498 \n — \n Net cash used in investing activities \n (142,969 \n ) \n (47,992 \n ) \n Cash flows from financing activities: \n Proceeds from the exercise of stock options \n 4,989 \n 3,372 \n Excess tax benefit from stock-based payment compensation \n 848 \n 1,279 \n Proceeds from the issuance of Employee Stock Purchase Plan shares \n 1,640 \n 1,495 \n Repurchases of common stock \n (442,855 \n ) \n (1,737 \n ) \n Proceeds from the issuance of long-term debt, net of discount \n 93,468 \n 698,939 \n Debt offering costs \n (165 \n ) \n (955 \n ) \n Principal payments on long-term debt \n (37,500 \n ) \n (331,250 \n ) \n Net cash (used in) provided by financing activities \n (379,575 \n ) \n 371,143 \n Effect of foreign currency translation \n (3,313 \n ) \n (6,446 \n ) \n Net (decrease) increase in cash and cash equivalents \n (318,359 \n ) \n 520,074 \n Cash and cash equivalents at beginning of period \n 456,012 \n 158,668 \n Cash and cash equivalents at end of period \n $ \n 137,653 \n $ \n 678,742 \n Supplemental disclosure of cash flow information: \n Interest paid \n $ \n 16,996 \n $ \n 9,705 \n Income taxes paid, net of refunds \n $ \n 86,243 \n $ \n 81,995 \n - 5 - \n Copart, Inc. ~ 14185 Dallas Parkway, Suite 300, Dallas TX 75254 ~ (972) 391-5000 \n",
+  "ex991_chars": 10792,
+  "same_day_8k_items": "2.02,9.01",
+  "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
+  "local_8k": "000090007516000035__8k.txt.gz",
+  "earnings_call_transcript": "查不到"
+ },
+ "3_截止前文件": {
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2015-09-25",
+   "reportDate": "2015-07-31",
+   "accession": "0001628280-15-007286",
+   "url": "https://www.sec.gov/Archives/edgar/data/900075/000162828015007286/cprt07312015-10k.htm",
+   "local_gz": "000162828015007286__annual.txt.gz"
+  },
+  "最近 10-Q/6-K(1)": {
+   "form": "10-Q",
+   "filingDate": "2016-05-26",
+   "reportDate": "2016-04-30",
+   "accession": "0000900075-16-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/900075/000090007516000038/cprt04302016-10q.htm",
+   "local_gz": "000090007516000038__q0.txt.gz"
+  },
+  "最近 10-Q/6-K(2)": {
+   "form": "10-Q",
+   "filingDate": "2016-02-25",
+   "reportDate": "2016-01-31",
+   "accession": "0000900075-16-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/900075/000090007516000018/cprt01312016-10q.htm",
+   "local_gz": "000090007516000018__q1.txt.gz"
+  }
+ },
+ "4_財務數列": {
+  "source": "data/sec/companyfacts(XBRL 首報值)",
+  "quarters": [
+   {
+    "period_end": "2014-07-31",
+    "revenue": 287450000.0,
+    "gross_profit": 116939000.0,
+    "operating_income": 75858000.0,
+    "ocf": 54960000.0
+   },
+   {
+    "period_end": "2014-10-31",
+    "revenue": 290386000.0,
+    "gross_profit": 122308000.0,
+    "operating_income": 82401000.0,
+    "ocf": 83366000.0
+   },
+   {
+    "period_end": "2015-01-31",
+    "revenue": 276258000.0,
+    "gross_profit": 114867000.0,
+    "operating_income": 80468000.0,
+    "ocf": 5517000.0
+   },
+   {
+    "period_end": "2015-04-30",
+    "revenue": 297142000.0,
+    "gross_profit": 127417000.0,
+    "operating_income": 94767000.0,
+    "ocf": 114486000.0
+   },
+   {
+    "period_end": "2015-07-31",
+    "revenue": 282293000.0,
+    "gross_profit": 118784000.0,
+    "operating_income": 86765000.0,
+    "ocf": 61707000.0
+   },
+   {
+    "period_end": "2015-10-31",
+    "revenue": 288838000.0,
+    "gross_profit": 120861000.0,
+    "operating_income": 86246000.0,
+    "ocf": 76594000.0
+   },
+   {
+    "period_end": "2016-01-31",
+    "revenue": 299706000.0,
+    "gross_profit": 124614000.0,
+    "operating_income": 92085000.0,
+    "ocf": 6486000.0
+   },
+   {
+    "period_end": "2016-04-30",
+    "revenue": 347246000.0,
+    "gross_profit": 157647000.0,
+    "operating_income": 121948000.0,
+    "ocf": 124418000.0
+   }
+  ],
+  "signal_q_end": "2016-04-30",
+  "g0_signal_q_yoy": 0.16862,
+  "prev_q_yoy": 0.084877,
+  "accel_pp": 8.3743
+ },
+ "5_同業與行業": {
+  "sic2": "55",
+  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
+  "n_listed_peers_same_sic2": 17,
+  "peer_list_all_same_sic2_tickers": [
+   "AAP",
+   "ABG",
+   "AN",
+   "AZO",
+   "CASY",
+   "CRMT",
+   "GPI",
+   "HZO",
+   "KMX",
+   "LAD",
+   "MUSA",
+   "OPLN",
+   "ORLY",
+   "PAG",
+   "PRTS",
+   "RUSHA",
+   "SAH"
+  ],
+  "peer_annual_reports_2_largest": [
+   {
+    "entity_id": "0000866787",
+    "name": "AUTOZONE INC",
+    "ticker": "AZO",
+    "sic2": "55"
+   },
+   {
+    "entity_id": "0000898173",
+    "name": "O REILLY AUTOMOTIVE INC",
+    "ticker": "ORLY",
+    "sic2": "55"
+   }
+  ]
+ },
+ "6_價格狀態": {
+  "ret_6m_skip1m": 0.19113961345817576,
+  "ret_12m_skip1m": 0.16771371994766748,
+  "rank_6m_pct_in_universe": 0.8299099099099099,
+  "rank_12m_pct_in_universe": 0.8235076010381905,
+  "dist_from_52w_high": 0.0,
+  "reaction_day_return": 0.09585617201019625,
+  "reaction_day_rel_spy": 0.09556965870759004,
+  "reaction_day_rel_sic2_median": 0.09344750132834723
+ },
+ "7_共識": {
+  "analyst_consensus": "查不到",
+  "note": "倉內無歷史共識資料;不得憑記憶補"
+ },
+ "masking_check": {
+  "latest_data_date": "2016-05-26",
+  "cutoff": "2016-05-26",
+  "excluded": "T1 之後的價格、財報、公告整欄不入包",
+  "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。",
+  "verified": true
+ }
+}

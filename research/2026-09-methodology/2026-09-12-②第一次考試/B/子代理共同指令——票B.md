@@ -8,14 +8,14 @@
 
 ## 輸入(每事件)
 
-1. 取證包:`C:/projects/Karst/research/2026-09-methodology/2026-09-12-②第一次考試/A/packets/<event_id>.json`(用 Read 讀;約 15–110 KB)。八節:事件識別(T0/T1/T2、improvement_type)、觸發資料(EX-99.1 全文)、截止前文件(只給本地路徑)、財務數列(截止前八季;`g0_signal_q_yoy` 是訊號季按年收入增速)、同業與行業(同 SIC2 名單、兩大同業年報資本開支摘錄)、價格狀態、共識(一律查不到)、masking_check。
+1. 取證包:`C:/projects/Karst/research/2026-09-methodology/2026-09-12-②第一次考試/A2/packets/<event_id>.json`(用 Read 讀;約 15–110 KB;**A2 是執行口徑 v1.1 的現行輸出,`A/packets/` 是作廢的 v1,不得讀**;event_id 可能是 E0xx 或補位的 B0xx)。八節:事件識別(T0/T1/T2、improvement_type)、觸發資料(EX-99.1 全文)、截止前文件(只給本地路徑)、財務數列(截止前八季;`g0_signal_q_yoy` 是訊號季按年收入增速)、同業與行業(同 SIC2 名單、兩大同業年報資本開支摘錄)、價格狀態、共識(一律查不到)、masking_check。
 2. 截止前文件本體:包內 `3_截止前文件` 各項的 `local_gz` 是 `C:/projects/Karst/research/2026-09-methodology/2026-09-12-②第一次考試/A/edgar_cache/<local_gz>`(gzip 純文字,英文)。**用 Bash 選讀,不要整份讀入**:先 `gzip -dc <檔> | grep -n -i -E "management's discussion|item 7|segment|backlog|guidance|capital expenditure|outlook|customers" | head -60` 找位置,再 `gzip -dc <檔> | sed -n 'A,Bp'` 讀需要的段落(每段控制在數百行內)。年報重點:Business 節、MD&A、分部附註;季報重點:MD&A。
 3. **訊號季數字的界線**:包內 `4_財務數列` 訊號季那一行來自 XBRL(該季 10-Q 在 T1 之後才申報),只有 EX-99.1 同日已公布的項目可用;EX-99.1 沒有披露的項目(例如毛利率、經營現金流)一律標「查不到」,不得用 XBRL 那行補。這是包內 `masking_check.known_leak_note` 講的已知越界,由你在判斷層堵住。
 
 ## 硬界線(違反即該卡作廢)
 
 - 只用取證包與包內列出的本地文件。**禁止** WebSearch、WebFetch、任何網絡存取。
-- **禁止讀**:`A/population.csv`、`A/population.csv.gz`、`A/entry_pool.csv`、`A/controls_operating.csv`、`A/thresholds.md`、`A/picks_before_results.md`、`A/cache/`、`C:/projects/Karst/data/` 之下任何檔、其他事件的取證包或卡、`B/` 之下別人的卡。
+- **禁止讀**:`A/` 與 `A2/` 之下的 `population.csv`、`population.csv.gz`、`entry_pool.csv`、`controls_operating.csv`、`thresholds.md`、`picks_before_results.md`、`cache/`、`執行紀錄——*.md`;`A/packets/`(作廢的 v1);`C:/projects/Karst/data/` 之下任何檔;其他事件的取證包或卡;`B/` 之下別人的卡。可讀的只有:你被指派事件的 `A2/packets/<event_id>.json`、該包 `3_截止前文件` 列出的 `A/edgar_cache/<local_gz>`、提示詞 v1、能力卡 v1、本指令。
 - 證據一律以 T1(反應日收市)或之前已公開的為準;T1 之後的價格、財報、公告不得用。你可能「記得」這家公司後來怎樣——那是記憶污染,照樣隔離,並在 `contamination_note` 誠實寫出你記得什麼、有沒有影響判斷。
 - 分析員共識一律「查不到」,不得憑記憶補。
 - 不寫「市場對/市場錯」、不給買賣判詞、不填價格已反映多少。

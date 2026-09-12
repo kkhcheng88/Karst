@@ -1,0 +1,224 @@
+{
+ "event_id": "E045",
+ "schema": "②第一次考試取證包 v1",
+ "ticker": "AGNT",
+ "cik": "0001495932",
+ "name": "AGNT, Inc.",
+ "sic": "6531",
+ "sic2": "65",
+ "bucket": "金融地產",
+ "evidence_cutoff": "T1 = 2020-10-27(反應日收市)",
+ "provenance": {
+  "rule": "執行口徑——②第一次考試-v1.md 第二節與 v1.1 修訂頁(成交額門檻 1,000 萬美元);提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "frozen": "2026-09-13"
+ },
+ "1_事件識別": {
+  "event_id": "E045",
+  "ticker": "AGNT",
+  "cik": "0001495932",
+  "T0_公布時間_美東": "2020-10-27T09:01:21",
+  "T0_UTC": "2020-10-27T13:01:21.000Z",
+  "signal_date_反應日": "2020-10-27",
+  "T1_分析截止": "2020-10-27 收市",
+  "T2_可成交": "2020-10-28 開市",
+  "fiscal_quarter": "2020Q3",
+  "cluster_id": "65-2020Q4",
+  "improvement_type_機械": "加速",
+  "8-K_items": "2.02,9.01",
+  "accessionNumber": "0001558370-20-011774",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1495932/000155837020011774/expi-20201027x8k.htm"
+ },
+ "2_觸發資料": {
+  "ex991_full_text": " \n EX-99.1\n 2\n expi-20201027xex99d1.htm\n EX-99.1\n Exhibit 99.1 \n eXp World Holdings Announces Preliminary Third Quarter 2020 Business Highlights \n Company to Report Third Quarter Financial Results on November 9 \n BELLINGHAM, Wash. — October 27, 2020 — eXp World Holdings, Inc. (Nasdaq: EXPI), the holding company for eXp Realty and VirBELA, today provided preliminary unaudited financial and operational results for the third quarter ended September 30, 2020. \n eXp World Holdings Preliminary Third Quarter 2020 Highlights (the financial information below is subject to change and could be different when earnings are released): \n ● The number of agents and brokers on the eXp Realty platform increased 56% to 35,877 at the end of the third quarter of 2020, compared to 23,034 a year ago. \n ● Residential transaction sides closed for the third quarter of 2020 increased 95% to 75,392, compared to 38,567 during the third quarter of 2019. \n ● Residential transaction volume closed for the third quarter of 2020 increased 112% to $23.6 billion, compared to $11.1 billion during the third quarter of 2019. \n ● eXp Realty ended the third quarter with a 73 agent Net Promoter Score, which measures agent satisfaction, as compared to 61. \n ● eXp Realty continues to maintain a Glassdoor rating of 4.6 placing it close to the top of all large companies in terms of culture and collaboration. \n ● VirBELA revenue grew more than 360%. \n ● International expansion continues with the launch of South Africa, with near-term plans to expand into additional key international markets. \n “As one of the fastest-growing residential real estate brokerages, we continue to deliver on our value proposition to agents, consumers and shareholders,” said Glenn Sanford, Founder, Chairman and CEO of eXp World Holdings. “Our world-class agents combined with a progressive cloud-based model provides a significant competitive advantage in the real estate industry, driving eXp to yet another quarter of record results.” \n This information is delivered in advance of the company's quarterly earnings report that will be released on Monday, November 9, 2020 and can be viewed on the company’s website at www.expworldholdings.com . \n Third Quarter Financial Results – Virtual Fireside Chat \n The company will hold a virtual fireside chat and investor Q&A session with eXp World Holdings Founder and CEO Glenn Sanford and CFO Jeff Whiteside on Tuesday, Nov. 10 \n to discuss third quarter financial results and recent milestone achievements. \n The investor Q&A is open to investors, current shareholders and anyone interested in learning more about eXp World Holdings and its companies. \n Date: Tuesday, Nov. 10, 2020 \n Time: 11:00 a.m. – 12:00 p.m. Eastern time (8:00 – 9:00 a.m. Pacific time) \n Location: VirBELA Open Campus in the Auditorium. Join at virbela.com . \n Livestream: expworldholdings.com/events \n About eXp World Holdings \n eXp World Holdings, Inc. (Nasdaq: EXPI) owns eXp Realty and VirBELA. \n eXp Realty, The Real Estate Cloud Brokerage, is one of the fastest-growing, global residential real estate companies with more than 36,000 agents in the United States, Canada, the United Kingdom Australia and South Africa. As a subsidiary of a publicly traded company, eXp Realty uniquely offers real estate professionals within its ranks opportunities to earn eXp World Holdings stock for production and contributions to overall company growth. \n VirBELA is an immersive technology platform for business, events and education. Its modern, cloud-based environment provides a virtual experience for workers, attendees, students and more to communicate, collaborate, meet and socialize. For more information, visit the company’s website at virbela.com . \n For more information, please visit the company’s website at www.expworldholdings.com . \n Safe Harbor Statement \n The statements contained herein may include statements of future expectations and other forward-looking statements that are based on management’s current views and assumptions and involve known and unknown risks and uncertainties that could cause actual results, performance or events to differ materially from those expressed or implied in \n such statements. Such forward-looking statements speak only as of the date hereof, and the company undertakes no obligation to revise or update them. These statements include, but are not limited to, statements about the company’s expansion, revenue growth, operating results, financial performance and net income changes. Such statements are not guarantees of future performance. Important factors that may cause actual results to differ materially and adversely from those expressed in forward-looking statements include changes in business or other market conditions; the difficulty of keeping expense growth at modest levels while increasing revenues; and other risks detailed from time to time in the company’s Securities and Exchange Commission filings, including but not limited to the most recently filed Annual Report on Form 10-K. \n Company Contacts: \n Investor Relations \n Investors@expworldholdings.com \n Media Relations \n Mediarelations@expworldholdings.com \n",
+  "ex991_chars": 5163,
+  "same_day_8k_items": "2.02,9.01",
+  "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
+  "local_8k": "000155837020011774__8k.txt.gz",
+  "earnings_call_transcript": "查不到"
+ },
+ "3_截止前文件": {
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2020-03-12",
+   "reportDate": "2019-12-31",
+   "accession": "0001558370-20-002569",
+   "url": "https://www.sec.gov/Archives/edgar/data/1495932/000155837020002569/expi-20191231x10k.htm",
+   "local_gz": "000155837020002569__annual.txt.gz"
+  },
+  "最近 10-Q/6-K(1)": {
+   "form": "10-Q",
+   "filingDate": "2020-08-05",
+   "reportDate": "2020-06-30",
+   "accession": "0001558370-20-009246",
+   "url": "https://www.sec.gov/Archives/edgar/data/1495932/000155837020009246/expi-20200630x10q.htm",
+   "local_gz": "000155837020009246__q0.txt.gz"
+  },
+  "最近 10-Q/6-K(2)": {
+   "form": "10-Q",
+   "filingDate": "2020-05-05",
+   "reportDate": "2020-03-31",
+   "accession": "0001558370-20-005081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1495932/000155837020005081/expi-20200331x10q.htm",
+   "local_gz": "000155837020005081__q1.txt.gz"
+  }
+ },
+ "4_財務數列": {
+  "source": "data/sec/companyfacts(XBRL 首報值)",
+  "quarters": [
+   {
+    "period_end": "2018-09-30",
+    "revenue": 157236070.0,
+    "gross_profit": null,
+    "operating_income": -4630103.0,
+    "ocf": 6325852.0
+   },
+   {
+    "period_end": "2019-03-31",
+    "revenue": 157034000.0,
+    "gross_profit": null,
+    "operating_income": -6098395.0,
+    "ocf": 6657355.0
+   },
+   {
+    "period_end": "2019-06-30",
+    "revenue": 266704945.0,
+    "gross_profit": null,
+    "operating_income": -2157029.0,
+    "ocf": 18119125.0
+   },
+   {
+    "period_end": "2019-09-30",
+    "revenue": 282179339.0,
+    "gross_profit": null,
+    "operating_income": -1642255.0,
+    "ocf": 14999646.0
+   },
+   {
+    "period_end": "2019-12-31",
+    "revenue": 274019000.0,
+    "gross_profit": null,
+    "operating_income": null,
+    "ocf": 15410306.0
+   },
+   {
+    "period_end": "2020-03-31",
+    "revenue": 271421000.0,
+    "gross_profit": null,
+    "operating_income": 211000.0,
+    "ocf": 17489000.0
+   },
+   {
+    "period_end": "2020-06-30",
+    "revenue": 353525000.0,
+    "gross_profit": null,
+    "operating_income": 8319000.0,
+    "ocf": 28547000.0
+   },
+   {
+    "period_end": "2020-09-30",
+    "revenue": 564017000.0,
+    "gross_profit": null,
+    "operating_income": 15223000.0,
+    "ocf": 43170000.0
+   }
+  ],
+  "signal_q_end": "2020-09-30",
+  "g0_signal_q_yoy": 0.998789,
+  "prev_q_yoy": 0.325528,
+  "accel_pp": 67.3261
+ },
+ "5_同業與行業": {
+  "sic2": "65",
+  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
+  "n_listed_peers_same_sic2": 43,
+  "peer_list_all_same_sic2_tickers": [
+   "AHRT",
+   "ARL",
+   "AXR",
+   "BEKE",
+   "BN",
+   "BOC",
+   "BPYPM",
+   "CBRE",
+   "CHCI",
+   "CIGI",
+   "CRESY",
+   "CWK",
+   "DUO",
+   "EFC",
+   "FOR",
+   "FPH",
+   "FRPH",
+   "FSV",
+   "FTHM",
+   "GOOD",
+   "GTY",
+   "GYRO",
+   "HPP",
+   "IIPR",
+   "INTG",
+   "INVH",
+   "IRS",
+   "JLL",
+   "JOE",
+   "MAYS",
+   "MLP",
+   "MMI",
+   "NEN",
+   "NMRK",
+   "OPEN",
+   "PDM",
+   "PETZ",
+   "SRG",
+   "STRS",
+   "TRC",
+   "TRNO",
+   "UE",
+   "VAC"
+  ],
+  "peer_annual_reports_2_largest": [
+   {
+    "entity_id": "0001809587",
+    "name": "KE Holdings Inc.",
+    "ticker": "BEKE",
+    "sic2": "65"
+   },
+   {
+    "entity_id": "0001687229",
+    "name": "Invitation Homes Inc.",
+    "ticker": "INVH",
+    "sic2": "65",
+    "form": "10-K",
+    "filingDate": "2020-02-19",
+    "accn": "0001687229-20-000004",
+    "local_gz": "000168722920000004__peer10k.txt.gz",
+    "capex_excerpt": [
+     "s; • changes in job markets and employment levels on a national, regional, and local basis; • declines in the value of residential real estate; • overall conditions in the housing market, including: • macroeconomic shifts in demand for rental homes; • inability to lease or re-lease homes to residents on a timely basis, on attractive terms or at all; 15 • failure of residents to pay rent when due or otherwise perform their lease obligations; • unanticipated repairs, capital expenditures, weather related damages, or other costs; • uninsured damages; and • increases in property taxes, HOA fees, and insurance costs; • level of competition for suitable rental homes; • terms and conditions of purc",
+     "debtedness or the terms of any refinancing may be less favorable to us than the terms of existing debt; (3) required debt payments are not reduced if the economic performance of any property declines; (4) debt service obligations could reduce funds available for distribution to our stockholders and funds available for capital investment; (5) any default on our indebtedness could result in acceleration of those obligations and possible loss of property to foreclosure; (6) the risk that necessary capital expenditures cannot be financed on favorable terms; and (7) the value of the collateral securing our indebtedness may fluctuate and fall below the amount of indebtedness it secures. If the inc",
+     "uld result in a decrease in the market price of our common stock. In addition, our charter allows us to issue preferred stock that could have a preference over our 43 common stock as to distributions. All distributions will be made at the sole discretion of our board of directors and will depend upon a number of factors, including our actual and projected results of operations, financial condition, cash flows and liquidity, maintenance of our REIT qualification and other tax considerations, capital expenditure and other obligations, debt covenants, contractual prohibitions or other limitations, and applicable law and such other matters as our board of directors may deem relevant from time to"
+    ]
+   }
+  ]
+ },
+ "6_價格狀態": {
+  "ret_6m_skip1m": 4.075150928830102,
+  "ret_12m_skip1m": 4.118582826581822,
+  "rank_6m_pct_in_universe": 0.9896640826873385,
+  "rank_12m_pct_in_universe": 0.9891240446796002,
+  "dist_from_52w_high": -0.22245852624678752,
+  "reaction_day_return": 0.1437516036116735,
+  "reaction_day_rel_spy": 0.14719878488987892,
+  "reaction_day_rel_sic2_median": 0.15914719790301451
+ },
+ "7_共識": {
+  "analyst_consensus": "查不到",
+  "note": "倉內無歷史共識資料;不得憑記憶補"
+ },
+ "masking_check": {
+  "latest_data_date": "2020-10-27",
+  "cutoff": "2020-10-27",
+  "excluded": "T1 之後的價格、財報、公告整欄不入包",
+  "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。",
+  "verified": true
+ }
+}

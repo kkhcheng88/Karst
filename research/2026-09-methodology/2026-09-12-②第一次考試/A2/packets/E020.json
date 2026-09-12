@@ -1,0 +1,227 @@
+{
+ "event_id": "E020",
+ "schema": "②第一次考試取證包 v1",
+ "ticker": "TREE",
+ "cik": "0001434621",
+ "name": "LendingTree, Inc.",
+ "sic": "6163",
+ "sic2": "61",
+ "bucket": "金融地產",
+ "evidence_cutoff": "T1 = 2017-07-27(反應日收市)",
+ "provenance": {
+  "rule": "執行口徑——②第一次考試-v1.md 第二節與 v1.1 修訂頁(成交額門檻 1,000 萬美元);提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "frozen": "2026-09-13"
+ },
+ "1_事件識別": {
+  "event_id": "E020",
+  "ticker": "TREE",
+  "cik": "0001434621",
+  "T0_公布時間_美東": "2017-07-27T07:25:14",
+  "T0_UTC": "2017-07-27T11:25:14.000Z",
+  "signal_date_反應日": "2017-07-27",
+  "T1_分析截止": "2017-07-27 收市",
+  "T2_可成交": "2017-07-28 開市",
+  "fiscal_quarter": "2017Q2",
+  "cluster_id": "61-2017Q3",
+  "improvement_type_機械": "兩者",
+  "8-K_items": "2.02,9.01",
+  "accessionNumber": "0001434621-17-000050",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1434621/000143462117000050/q2-17earningsrelease8xk.htm"
+ },
+ "2_觸發資料": {
+  "ex991_full_text": " \n EX-99.1\n 2\n tree-063017xer.htm\n EXHIBIT 99.1\n Exhibit \n Exhibit 99.1 \n LENDINGTREE REPORTS RECORD 2Q 2017 RESULTS; INCREASING FULL-YEAR 2017 GUIDANCE \n • \n Record Consolidated Revenue of $152.8 million; up 62% over 2Q 2016 \n • \n Record Revenue from Mortgage products of $71.5 million; up 28% over 2Q 2016 \n • \n Record Revenue from Non-mortgage products of $81.3 million; up 112% over 2Q 2016 \n • \n GAAP Net Income from Continuing Operations of $8.0 million or $0.59 per diluted share \n • \n Record Variable Marketing Margin of $48.3 million; up 42% over 2Q 2016 \n • \n Record Adjusted EBITDA of $27.0 million; up 62% over 2Q 2016 \n • \n Adjusted Net Income per share of $0.90; up 8% over 2Q 2016 \n CHARLOTTE, NC - July 27, 2017 - LendingTree, Inc. (NASDAQ: TREE), operator of LendingTree.com, the nation's leading online loan marketplace, today announced results for the quarter ended June 30, 2017. \n \"Record revenue and continued growth across the board are the highlights of LendingTree's record second quarter results,” said Doug Lebda, Chairman and Chief Executive Officer. “We continued to grow our network as lenders increasingly recognize the value in partnering with LendingTree, and we’re seeing substantial growth in consumer demand, solidifying the efficacy of LendingTree’s business model. Simultaneously, we are executing well against our long-term strategic initiatives to expand into new products, strengthen relationships with consumers, improve the consumer experience and optimize across the board. I’m extremely proud of our results and am even more excited about the opportunities ahead.” \n Gabe Dalporto, Chief Financial Officer added, \"Clearly, the core business continued to fire on all cylinders in the second quarter. And while that performance is the story, what is equally exciting is the execution of our M&A strategy. We're finding that we can acquire terrific companies at reasonable valuations, and that those businesses can accelerate quickly as part of the LendingTree platform.\" \n Second Quarter 2017 Business Highlights \n • \n Total loan requests in the quarter of 5.4 million grew 48% compared to second quarter 2016 \n • \n Record revenue from mortgage products of $71.5 million represents an increase of 28% over second quarter 2016 primarily driven by growth in purchase revenue, although refinance revenues grew more than 10%. \n • \n Record revenue from non-mortgage products of $81.3 million in the second quarter represents an increase of 112% over the second quarter 2016 and comprised 53% of total revenue. \n • \n Revenue from our credit card offerings grew to $37.0 million, an increase of 377% compared to second quarter 2016, or 43% on a proforma basis. \n • \n Record personal loans revenue of $20.5 million grew 23% over second quarter 2016 and grew 21% sequentially. \n • \n Home equity revenue grew $6.9 million over second quarter 2016 representing growth of more than 100%. \n • \n More than 5.7 million consumers have now signed up for free credit scores and savings alerts through My LendingTree, and the volume of new enrollments is accelerating. Revenue contribution from MyLendingTree grew 60% in the second quarter compared to the prior year period. \n LendingTree Selected Financial Metrics \n (In millions, except per share amounts) \n Q/Q \n Y/Y \n 2Q 2017 \n 1Q 2017 \n % Change \n 2Q 2016 \n % Change \n Revenue by Product \n Mortgage Products (1) \n $ \n 71.5 \n $ \n 62.9 \n 14 \n % \n $ \n 56.0 \n 28 \n % \n Non-Mortgage Products (2) \n 81.3 \n 69.6 \n 17 \n % \n 38.3 \n 112 \n % \n Total Revenue \n $ \n 152.8 \n $ \n 132.5 \n 15 \n % \n $ \n 94.3 \n 62 \n % \n Non-Mortgage % of Total \n 53 \n % \n 53 \n % \n 41 \n % \n Income Before Income Taxes \n $ \n 7.9 \n $ \n 6.7 \n 18 \n % \n $ \n 12.6 \n (37 \n )% \n Income Tax (Expense) Benefit \n $ \n 0.1 \n $ \n 1.1 \n $ \n (3.6 \n ) \n Net Income from Continuing Operations \n $ \n 8.0 \n $ \n 7.8 \n 3 \n % \n $ \n 9.0 \n (11 \n )% \n Net Income from Cont. Ops. % of Revenue \n 5 \n % \n 6 \n % \n 10 \n % \n Net Income per Share from Cont. Ops. \n Basic \n $ \n 0.67 \n $ \n 0.66 \n 2 \n % \n $ \n 0.76 \n (12 \n )% \n Diluted \n $ \n 0.59 \n $ \n 0.58 \n 2 \n % \n $ \n 0.71 \n (17 \n )% \n Selling and Marketing Expense \n Variable Selling & Marketing Expense (3) \n $ \n 104.4 \n $ \n 89.0 \n 17 \n % \n $ \n 60.3 \n 73 \n % \n Non-variable Selling & Marketing \n 4.7 \n 4.3 \n 9 \n % \n 4.2 \n 12 \n % \n Selling and Marketing Expense \n $ \n 109.1 \n $ \n 93.3 \n 17 \n % \n $ \n 64.5 \n 69 \n % \n Variable Marketing Margin (4) \n $ \n 48.3 \n $ \n 43.5 \n 11 \n % \n $ \n 34.0 \n 42 \n % \n Variable Marketing Margin % of Revenue \n 32 \n % \n 33 \n % \n 36 \n % \n Adjusted EBITDA (4) \n $ \n 27.0 \n $ \n 23.8 \n 13 \n % \n $ \n 16.7 \n 62 \n % \n Adjusted EBITDA % of Revenue (4) \n 18 \n % \n 18 \n % \n 18 \n % \n Adjusted Net Income (4) \n $ \n 12.2 \n $ \n 11.5 \n 6 \n % \n $ \n 10.6 \n 15 \n % \n Adjusted Net Income per Share (4) \n $ \n 0.90 \n $ \n 0.85 \n 6 \n % \n $ \n 0.83 \n 8 \n % \n (1) \n Includes the purchase mortgage and refinance mortgage products. \n (2) \n Includes the home equity, reverse mortgage, personal loan, credit card, small business loan, student loan, auto loan, home services, insurance, deposit and personal credit products. \n (3) \n Defined as the portion of selling and marketing expense attributable to variable costs paid for advertising, direct marketing and related expenses, which excludes overhead, fixed costs and personnel-related expenses. \n (4) \n Variable Marketing Margin, Variable Marketing Margin % of Revenue, Adjusted EBITDA, Adjusted EBITDA % of revenue, Adjusted Net Income and Adjusted Net Income per Share are non-GAAP measures. Please see \"LendingTree's Reconciliation of Non-GAAP Measures to GAAP\" and \"LendingTree's Principles of Financial Reporting\" below for more information. \n Second Quarter 2017 Financial Highlights \n • \n Record consolidated revenue of $152.8 million represents an increase of $58.5 million, or 62%, over revenue in the second quarter 2016. \n • \n GAAP net income from continuing operations of $8.0 million, or $0.59 per diluted share. GAAP net income from continuing operations in 2Q 2017 was impacted by a $9.4 million charge ($5.6 million net of tax) due to an increase in the fair value of contingent consideration associated with the CompareCards acquisition, reflecting the strong performance of that business and the higher probability of achieving earn-out targets. We also recognized a $3.8 million excess tax benefit related to stock-based compensation under the new accounting rules of ASU 2016-09. \n • \n Record Variable Marketing Margin of $48.3 million represents an increase of $14.3 million, or 42%, over second quarter 2016. \n • \n Record Adjusted EBITDA of $27.0 million increased $10.3 million, or 62%, over second quarter 2016. \n • \n Adjusted Net Income per share of $0.90 represents growth of 8% over second quarter 2016. \n • \n On May 31, 2017 the company issued $300 million aggregate principal amount of its 0.625% Convertible Senior Notes due June 1, 2022. \n • \n LendingTree generated $31 million in cash flow from operations in the second quarter, and as of June 30, 2017, maintained an unrestricted cash balance of $356 million. \n Business Outlook - 2017 \n LendingTree is providing Revenue, Variable Marketing Margin and Adjusted EBITDA guidance for third quarter 2017 and updating full-year 2017 guidance, as follows: \n For third quarter 2017: \n • \n Revenue is anticipated to be $155 - $160 million, or 64% - 69% over third quarter 2016. \n • \n Variable Marketing Margin is anticipated to be in the range of $51 - $54 million. \n • \n Adjusted EBITDA is anticipated to be in the range of $28 - $30 million, implying year-over-year growth of 52% - 63%. \n For full-year 2017: \n • \n Revenue is anticipated to be in the range of $580 - $590 million, representing growth of 51% - 53% over full-year 2016 and an increase from prior guidance of $535 - $545 million. \n • \n Variable Marketing Margin is anticipated to be $190 - $195 million compared to prior guidance of $180 - $185 million. \n • \n Adjusted EBITDA is anticipated to be in the range of $103 - $106 million, up 48% - 52% over full-year 2016 and an increase from prior guidance of $95 - $99 million. \n LendingTree is not able to provide a reconciliation of projected Variable Marketing Margin or Adjusted EBITDA to the most directly comparable expected GAAP results due to the unknown effect, timing and potential significance of the effects of legal matters, contingent consideration and income taxes. These expenses or benefits have in the past, and may in the future, significantly affect GAAP results in a particular period. \n Quarterly Conference Call \n A conference call to discuss LendingTree's second quarter 2017 financial results will be webcast live today, July 27, 2017 at 9:00 AM Eastern Time (ET). The live audiocast is open to the public and will be available on LendingTree's investor relations website at http://investors.lendingtree.com/ . The call may also be accessed toll-free via phone at (877) 606-1416. Callers outside the United States and Canada may dial (707) 287-9313. Following completion of the call, a recorded replay of the \n webcast will be available on LendingTree's investor relations website until 12:00 PM ET on Thursday, August 3, 2017. To listen to the telephone replay, call toll-free (855) 859-2056 with passcode #47309986. Callers outside the United States and Canada may dial (404) 537-3406 with passcode #47309986. \n LENDINGTREE, INC. AND SUBSIDIARIES \n CONSOLIDATED STATEMENTS OF OPERATIONS \n (Unaudited) \n Three Months Ended \n June 30, \n Six Months Ended \n June 30, \n 2017 \n 2016 \n 2017 \n 2016 \n (in thousands, except per share\namounts) \n Revenue \n $ \n 152,773 \n $ \n 94,290 \n $ \n 285,288 \n $ \n 189,003 \n Costs and expenses: \n Cost of revenue (exclusive of depreciation and amortization shown separately below) \n 4,164 \n 3,464 \n 7,755 \n 6,937 \n Selling and marketing expense \n 109,141 \n 64,538 \n 202,392 \n 129,597 \n General and administrative expense \n 12,094 \n 8,553 \n 23,641 \n 17,812 \n Product development \n 4,064 \n 3,781 \n 7,687 \n 7,666 \n Depreciation \n 1,808 \n 1,174 \n 3,511 \n 2,172 \n Amortization of intangibles \n 2,608 \n 72 \n 5,217 \n 97 \n Change in fair value of contingent consideration \n 9,393 \n — \n 18,139 \n — \n Severance \n 247 \n 72 \n 404 \n 72 \n Litigation settlements and contingencies \n 285 \n (79 \n ) \n 689 \n 90 \n Total costs and expenses \n 143,804 \n 81,575 \n 269,435 \n 164,443 \n Operating income \n 8,969 \n 12,715 \n 15,853 \n 24,560 \n Other income (expense), net: \n Interest expense, net \n (1,079 \n ) \n (141 \n ) \n (1,244 \n ) \n (283 \n ) \n Other income \n 13 \n — \n 13 \n — \n Income before income taxes \n 7,903 \n 12,574 \n 14,622 \n 24,277 \n Income tax benefit (expense) \n 104 \n (3,572 \n ) \n 1,183 \n (8,370 \n ) \n Net income from continuing operations \n 8,007 \n 9,002 \n 15,805 \n 15,907 \n Loss from discontinued operations, net of tax \n (689 \n ) \n (1,150 \n ) \n (1,621 \n ) \n (2,353 \n ) \n Net income and comprehensive income \n $ \n 7,318 \n $ \n 7,852 \n $ \n 14,184 \n $ \n 13,554 \n Weighted average shares outstanding: \n Basic \n 11,965 \n 11,795 \n 11,896 \n 11,863 \n Diluted \n 13,604 \n 12,730 \n 13,552 \n 12,800 \n Income per share from continuing operations: \n Basic \n $ \n 0.67 \n $ \n 0.76 \n $ \n 1.33 \n $ \n 1.34 \n Diluted \n $ \n 0.59 \n $ \n 0.71 \n $ \n 1.17 \n $ \n 1.24 \n Loss per share from discontinued operations: \n Basic \n $ \n (0.06 \n ) \n $ \n (0.10 \n ) \n $ \n (0.14 \n ) \n $ \n (0.20 \n ) \n Diluted \n $ \n (0.05 \n ) \n $ \n (0.09 \n ) \n $ \n (0.12 \n ) \n $ \n (0.18 \n ) \n Net income per share: \n Basic \n $ \n 0.61 \n $ \n 0.67 \n $ \n 1.19 \n $ \n 1.14 \n Diluted \n $ \n 0.54 \n $ \n 0.62 \n $ \n 1.05 \n $ \n 1.06 \n LENDINGTREE, INC. AND SUBSIDIARIES \n CONSOLIDATED BALANCE SHEETS \n (Unaudited) \n June 30, \n2017 \n December 31, \n2016 \n (in thousands, except par value and share amounts) \n ASSETS: \n Cash and cash equivalents \n $ \n 355,636 \n $ \n 91,131 \n Restricted cash and cash equivalents \n 4,089 \n 4,089 \n Accounts receivable, net \n 52,217 \n 41,382 \n Prepaid and other current assets \n 4,392 \n 4,021 \n Total current assets \n 416,334 \n 140,623 \n Property and equipment, net \n 35,487 \n 35,462 \n Goodwill \n 99,694 \n 56,457 \n Intangible assets, net \n 85,393 \n 71,684 \n Deferred income tax assets \n 18,517 \n 14,610 \n Other non-current assets \n 849 \n 810 \n Non-current assets of discontinued operations \n 3,781 \n 3,781 \n Total assets \n $ \n 660,055 \n $ \n 323,427 \n LIABILITIES: \n Accounts payable, trade \n $ \n 1,885 \n $ \n 5,593 \n Accrued expenses and other current liabilities \n 68,960 \n 49,403 \n Current contingent consideration \n 23,942 \n — \n Current liabilities of discontinued operations \n 12,899 \n 11,711 \n Total current liabilities \n 107,686 \n 66,707 \n Long-term debt \n 232,095 \n — \n Non-current contingent consideration \n 22,785 \n 23,600 \n Other non-current liabilities \n 1,559 \n 1,685 \n Total liabilities \n 364,125 \n 91,992 \n Commitments and contingencies \n SHAREHOLDERS' EQUITY: \n Preferred stock $.01 par value; 5,000,000 shares authorized; none issued or outstanding \n — \n — \n Common stock $.01 par value; 50,000,000 shares authorized; 14,162,254 and 13,955,378 shares issued, respectively, and 11,998,509 and 11,791,633 shares outstanding, respectively \n 142 \n 140 \n Additional paid-in capital \n 1,068,970 \n 1,018,010 \n Accumulated deficit \n (709,748 \n ) \n (722,630 \n ) \n Treasury stock; 2,163,745 and 2,163,745 shares, respectively \n (64,085 \n ) \n (64,085 \n ) \n Noncontrolling interest \n 651 \n — \n Total shareholders' equity \n 295,930 \n 231,435 \n Total liabilities and shareholders' equity \n $ \n 660,055 \n $ \n 323,427 \n LENDINGTREE'S RECONCILIATION OF NON-GAAP MEASURES TO GAAP \n Below is a reconciliation of net income from continuing operations to Variable Marketing Margin and net income from continuing operations % of revenue to Variable Marketing Margin % of revenue. See \"LendingTree's Principles of Financial Reporting\" for further discussion of the Company's use of these non-GAAP measures. \n Three Months Ended \n June 30, \n2017 \n March 31, \n2017 \n June 30, \n2016 \n Net income from continuing operations \n $ \n 8,007 \n $ \n 7,798 \n $ \n 9,002 \n Net income from continuing operations % of revenue \n 5 \n % \n 6 \n % \n 10 \n % \n Adjustments to reconcile to Variable Marketing Margin: \n Cost of revenue \n 4,164 \n 3,591 \n 3,464 \n Non-variable selling and marketing expense (1) \n 4,681 \n 4,249 \n 4,225 \n General and administrative expense \n 12,094 \n 11,547 \n 8,553 \n Product development \n 4,064 \n 3,623 \n 3,781 \n Depreciation \n 1,808 \n 1,703 \n 1,174 \n Amortization of intangibles \n 2,608 \n 2,609 \n 72 \n Change in fair value of contingent consideration \n 9,393 \n 8,746 \n — \n Severance \n 247 \n 157 \n 72 \n Litigation settlements and contingencies (2) \n 285 \n 404 \n (79 \n ) \n Interest expense, net \n 1,079 \n 165 \n 141 \n Other income \n (13 \n ) \n — \n — \n Income tax (benefit) expense \n (104 \n ) \n (1,079 \n ) \n 3,572 \n Variable Marketing Margin \n $ \n 48,313 \n $ \n 43,513 \n $ \n 33,977 \n Variable Marketing Margin % of revenue \n 32 \n % \n 33 \n % \n 36 \n % \n (1 \n ) \n Defined as the portion of selling and marketing expense not attributable to variable costs paid for advertising, direct marketing and related expenses. Includes overhead, fixed costs and personnel-related expenses. \n (2 \n ) \n Includes legal fees for certain patent litigation. \n Below is a reconciliation of net income from continuing operations to adjusted EBITDA and net income from continuing operations % of revenue to adjusted EBITDA % of revenue. See \"LendingTree's Principles of Financial Reporting\" for further discussion of the Company's use of these non-GAAP measures. \n Three Months Ended \n June 30, \n2017 \n March 31, \n2017 \n June 30, \n2016 \n Net income from continuing operations \n $ \n 8,007 \n $ \n 7,798 \n $ \n 9,002 \n Net income from continuing operations % of revenue \n 5 \n % \n 6 \n % \n 10 \n % \n Adjustments to reconcile to Adjusted EBITDA: \n Non-cash compensation \n 2,900 \n 2,230 \n 2,429 \n Loss on disposal of assets \n 36 \n 273 \n 140 \n Acquisition expense \n 488 \n 549 \n 137 \n Change in fair value of contingent consideration \n 9,393 \n 8,746 \n — \n Severance \n 247 \n 157 \n 72 \n Litigation settlements and contingencies (1) \n 285 \n 404 \n (79 \n ) \n Depreciation \n 1,808 \n 1,703 \n 1,174 \n Amortization of intangibles \n 2,608 \n 2,609 \n 72 \n Rental depreciation and amortization of intangibles \n 263 \n 262 \n — \n Interest expense, net \n 1,079 \n 165 \n 141 \n Income tax (benefit) expense \n (104 \n ) \n (1,079 \n ) \n 3,572 \n Adjusted EBITDA \n $ \n 27,010 \n $ \n 23,817 \n $ \n 16,660 \n Adjusted EBITDA % of revenue \n 18 \n % \n 18 \n % \n 18 \n % \n (1) \n Includes legal fees for certain patent litigation. \n Below is a reconciliation of net income from continuing operations to Adjusted Net Income and net income per diluted share from continuing operations to Adjusted Net Income per share. See \"LendingTree's Principles of Financial Reporting\" for further discussion of the Company's use of these non-GAAP measures. \n June 30, \n2017 \n March 31, \n2017 \n June 30, \n2016 \n Net income from continuing operations \n $ \n 8,007 \n $ \n 7,798 \n $ \n 9,002 \n Adjustments to reconcile to Adjusted Net Income: \n Non-cash compensation \n 2,900 \n 2,230 \n 2,429 \n Loss on disposal of assets \n 36 \n 273 \n 140 \n Acquisition expense \n 488 \n 549 \n 137 \n Change in fair value of contingent consideration \n 9,393 \n 8,746 \n — \n Severance \n 247 \n 157 \n 72 \n Litigation settlements and contingencies (1) \n 285 \n 404 \n (79 \n ) \n Income tax benefit from adjusted items \n (5,340 \n ) \n (4,942 \n ) \n (1,149 \n ) \n Excess tax benefit from stock-based compensation \n (3,840 \n ) \n (3,762 \n ) \n — \n Adjusted net income \n $ \n 12,176 \n $ \n 11,453 \n $ \n 10,552 \n Net income per diluted share from continuing operations \n $ \n 0.59 \n $ \n 0.58 \n $ \n 0.71 \n Adjustments to reconcile net income from continuing operations to Adjusted Net Income \n 0.31 \n 0.27 \n 0.12 \n Adjusted net income per share \n $ \n 0.90 \n $ \n 0.85 \n $ \n 0.83 \n Weighted average diluted shares outstanding \n 13,604 \n 13,477 \n 12,730 \n (1 \n ) \n Includes legal fees for certain patent litigation. \n LENDINGTREE’S PRINCIPLES OF FINANCIAL REPORTING \n LendingTree reports the following non-GAAP measures as supplemental to GAAP: \n • \n Variable Marketing Margin \n • \n Variable Marketing Margin % of revenue \n • \n Earnings Before Interest, Taxes, Depreciation and Amortization, as adjusted for certain items discussed below (\"Adjusted EBITDA\") \n • \n Adjusted EBITDA % of revenue \n • \n Adjusted Net Income \n • \n Adjusted Net Income per share \n Variable Marketing Margin is a measure of the operating efficiency of the Company’s operating model, measuring revenue after subtracting variable marketing costs that directly influence revenue. The Company’s operating model is highly sensitive to the amount and efficiency of variable marketing expenditures, and the Company’s proprietary systems are able to make rapidly changing decisions concerning the deployment of variable marketing expenditures (primarily but not exclusively online and mobile advertising placement) based on proprietary and sophisticated analytics. Variable Marketing Margin and Variable Marketing Margin % of revenue are primary metrics by which the Company measure the effectiveness of its marketing efforts. \n Adjusted EBITDA and Adjusted EBITDA % of revenue are primary metrics by which LendingTree evaluates the operating performance of its businesses, on which its marketing expenditures and internal budgets are based and, in the case of Adjusted EBITDA, by which management and many employees are compensated. \n Adjusted Net Income and Adjusted Net Income per share supplement GAAP income from continuing operations and GAAP income per diluted share from continuing operations by enabling investors to make period to period comparisons of those components of the nearest comparable GAAP measures that management believes better reflect the underlying financial performance of the Company’s business operations during particular financial reporting periods. Adjusted Net Income and Adjusted Net Income per share exclude certain amounts, such as non-cash compensation, non-cash asset impairment charges, gain/loss on disposal of assets, severance, litigation settlements, contingencies and legal fees for certain patent litigation, acquisition and disposition income or expenses including with respect to changes in fair value of contingent consideration, one-time items which are recognized and recorded under GAAP in particular periods but which might be viewed as not necessarily coinciding with the underlying business operations for the periods in which they are so recognized and recorded, the effects to income taxes of the aforementioned adjustments and any excess tax benefit or expense associated with stock-based compensation recorded in net income in conjunction with FASB pronouncement ASU 2016-09. LendingTree believes that Adjusted Net Income and Adjusted Net Income per share are useful financial indicators that provide a different view of the financial performance of the Company than Adjusted EBITDA (the primary metric by which LendingTree evaluates the operating performance of its businesses) and the GAAP measures of net income from continuing operations and GAAP income (loss) per diluted share from continuing operations. \n These non-GAAP measures should be considered in addition to results prepared in accordance with GAAP, but should not be considered a substitute for or superior to GAAP results. LendingTree provides and encourages investors to examine the reconciling adjustments between the GAAP and non-GAAP measures set forth above. \n Definition of LendingTree's Non-GAAP Measures \n Variable Marketing Margin is defined as revenue less the portion of selling & marketing expense attributable to variable costs paid for advertising, direct marketing and related expenses, which excludes overhead, fixed costs and personnel-related expenses. \n EBITDA is defined as net income from continuing operations excluding interest, income taxes, amortization of intangibles and depreciation. \n Adjusted EBITDA is defined as EBITDA excluding (1) non-cash compensation expense, (2) non-cash impairment charges, (3) gain/loss on disposal of assets, (4) severance expenses, (5) litigation settlements, contingencies and legal fees for certain patent litigation, (6) acquisitions and dispositions income or expense (including with respect to changes in fair value of contingent consideration), and (7) one-time items. \n Adjusted Net Income is defined as net income (loss) from continuing operations excluding (1) non-cash compensation expense, (2) non-cash impairment charges, (3) gain/loss on disposal of assets, (4) severance expenses, (5) litigation settlements, contingencies and legal fees for certain patent litigation, \n (6) acquisitions and dispositions income or expense (including with respect to changes in fair value of contingent consideration), (7) one-time items, (8) the effects to income taxes of the aforementioned adjustments, and (9) any excess tax benefit or expense associated with stock-based compensation recorded in net income in conjunction with FASB pronouncement ASU 2016-09. \n Adjusted Net Income per share is defined as Adjusted Net Income divided by the adjusted weighted average diluted shares outstanding. For periods which the Company reports GAAP loss from continuing operations, the effects of potentially dilutive securities are excluded from the calculation of net loss per diluted share from continuing operations because their inclusion would have been anti-dilutive. In periods where the Company reports GAAP loss from continuing operations but reports positive non-GAAP Adjusted Net Income, the effects of potentially dilutive securities are included in the denominator for calculating Adjusted Net Income per share. There were no GAAP losses recorded in any periods in this report. \n LendingTree endeavors to compensate for the limitations of these non-GAAP measures by also providing the comparable GAAP measures with equal or greater prominence and descriptions of the reconciling items, including quantifying such items, to derive the non-GAAP measures. These non-GAAP measures may not be comparable to similarly titled measures used by other companies. \n One-Time Items \n Adjusted EBITDA and Adjusted Net Income are adjusted for one-time items, if applicable. Items are considered one-time in nature if they are non-recurring, infrequent or unusual, and have not occurred in the past two years or are not expected to recur in the next two years, in accordance with SEC rules. For the periods presented in this report, there are no adjustments for one-time items. \n Non-Cash Expenses That Are Excluded From LendingTree's Adjusted EBITDA and Adjusted Net Income \n Non-cash compensation expense consists principally of expense associated with the grants of restricted stock, restricted stock units and stock options. These expenses are not paid in cash and LendingTree includes the related shares in its calculations of fully diluted shares outstanding. Upon settlement of restricted stock units, exercise of certain stock options or vesting of restricted stock awards, the awards may be settled on a net basis, with LendingTree remitting the required tax withholding amounts from its current funds. \n Amortization of intangibles are non-cash expenses relating primarily to acquisitions. At the time of an acquisition, the intangible assets of the acquired company, such as purchase agreements, technology and customer relationships, are valued and amortized over their estimated lives. Amortization of intangibles are only excluded from Adjusted EBITDA. \n Safe Harbor Statement Under the Private Securities Litigation Reform Act of 1995 \n The matters contained in the discussion above may be considered to be “forward-looking statements” within the meaning of the Securities Act of 1933 and the Securities Exchange Act of 1934, as amended by the Private Securities Litigation Reform Act of 1995. Those statements include statements regarding the intent, belief or current expectations or anticipations of LendingTree and members of our management team. Factors currently known to management that could cause actual results to differ materially from those in forward-looking statements include the following: adverse conditions in the primary and secondary mortgage markets and in the economy, particularly interest rates; default rates on loans, particularly unsecured loans; demand by investors for unsecured personal loans; the effect of such demand on interest rates for personal loans and consumer demand for personal loans; seasonality of results; potential liabilities to secondary market purchasers; changes in the Company's relationships with network lenders, including dependence on certain key network lenders; breaches of network security or the misappropriation or misuse of personal consumer information; failure to provide competitive service; failure to maintain brand recognition; ability to attract and retain consumers in a cost-effective manner; the effects of potential acquisitions of other businesses, including the ability to integrate them successfully with LendingTree’s existing operations; accounting rules related to contingent consideration and excess tax benefits or expenses on stock-based compensation that could materially affect earnings in future periods; ability to develop new products and services and enhance existing ones; competition; allegations of failure to comply with existing or changing laws, rules or regulations, or to obtain and maintain required licenses; failure of network lenders or other affiliated parties to comply with regulatory requirements; failure to maintain the integrity of systems and infrastructure; liabilities as a result of privacy regulations; failure to adequately protect intellectual property rights or allegations of infringement of intellectual property rights; and changes in management. These and additional factors to be considered are set forth under “Risk Factors” in our Form 10-Q for the period ended March 31, 2017, our Annual Report on Form 10-K for the period ended December 31, 2016 and in our other filings with the Securities and Exchange Commission. LendingTree undertakes no obligation to update or revise forward-looking statements to reflect changed assumptions, the occurrence of unanticipated events or changes to future operating results or expectations. \n About LendingTree, Inc. \n LendingTree, Inc. (NASDAQ: TREE) operates the nation's leading online loan marketplace and provides consumers with an array of online tools and information to help them find the best loans for their needs. LendingTree's online marketplace connects consumers with multiple lenders that compete for their business, empowering consumers as they comparison-shop across a full suite of loans and credit-based offerings. Since its inception, LendingTree has facilitated more than 65 million loan requests. LendingTree provides access to its network of over 450 lenders offering home loans, home equity loans/lines of credit, reverse mortgages, personal loans, auto loans, small business loans, credit cards, student loans, and more. \n LendingTree, Inc. is headquartered in Charlotte, NC and maintains operations solely in the United States. For more information, please visit www.lendingtree.com . \n Investor Relations Contact: \n Trent Ziegler \n trent.ziegler@lendingtree.com \n 704-943-8294 \n Media Contact: \n Megan Greuling \n megan.greuling@lendingtree.com \n 704-943-8208 \n",
+  "ex991_chars": 29349,
+  "same_day_8k_items": "2.02,9.01",
+  "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
+  "local_8k": "000143462117000050__8k.txt.gz",
+  "earnings_call_transcript": "查不到"
+ },
+ "3_截止前文件": {
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2017-02-28",
+   "reportDate": "2016-12-31",
+   "accession": "0001434621-17-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1434621/000143462117000017/tree-12312016x10k.htm",
+   "local_gz": "000143462117000017__annual.txt.gz"
+  },
+  "最近 10-Q/6-K(1)": {
+   "form": "10-Q",
+   "filingDate": "2017-04-28",
+   "reportDate": "2017-03-31",
+   "accession": "0001434621-17-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1434621/000143462117000029/tree-2017331x10q.htm",
+   "local_gz": "000143462117000029__q0.txt.gz"
+  },
+  "最近 10-Q/6-K(2)": {
+   "form": "10-Q",
+   "filingDate": "2016-10-28",
+   "reportDate": "2016-09-30",
+   "accession": "0001434621-16-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1434621/000143462116000097/tree-2016930x10q.htm",
+   "local_gz": "000143462116000097__q1.txt.gz"
+  }
+ },
+ "4_財務數列": {
+  "source": "data/sec/companyfacts(XBRL 首報值)",
+  "quarters": [
+   {
+    "period_end": "2015-09-30",
+    "revenue": 69804000.0,
+    "gross_profit": null,
+    "operating_income": 7773000.0,
+    "ocf": 15894000.0
+   },
+   {
+    "period_end": "2015-12-31",
+    "revenue": 78341000.0,
+    "gross_profit": null,
+    "operating_income": 8248000.0,
+    "ocf": 1488000.0
+   },
+   {
+    "period_end": "2016-03-31",
+    "revenue": 94713000.0,
+    "gross_profit": null,
+    "operating_income": 11845000.0,
+    "ocf": 8074000.0
+   },
+   {
+    "period_end": "2016-06-30",
+    "revenue": 94290000.0,
+    "gross_profit": null,
+    "operating_income": 12715000.0,
+    "ocf": 2762000.0
+   },
+   {
+    "period_end": "2016-09-30",
+    "revenue": 94558000.0,
+    "gross_profit": null,
+    "operating_income": 14150000.0,
+    "ocf": 22348000.0
+   },
+   {
+    "period_end": "2016-12-31",
+    "revenue": 100841000.0,
+    "gross_profit": null,
+    "operating_income": 13402000.0,
+    "ocf": 25270000.0
+   },
+   {
+    "period_end": "2017-03-31",
+    "revenue": 132515000.0,
+    "gross_profit": null,
+    "operating_income": 6884000.0,
+    "ocf": 16682000.0
+   },
+   {
+    "period_end": "2017-06-30",
+    "revenue": 152773000.0,
+    "gross_profit": null,
+    "operating_income": 8969000.0,
+    "ocf": 31542000.0
+   }
+  ],
+  "signal_q_end": "2017-06-30",
+  "g0_signal_q_yoy": 0.620246,
+  "prev_q_yoy": 0.399122,
+  "accel_pp": 22.1124
+ },
+ "5_同業與行業": {
+  "sic2": "61",
+  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
+  "n_listed_peers_same_sic2": 55,
+  "peer_list_all_same_sic2_tickers": [
+   "AGM",
+   "AGPU",
+   "AIXC",
+   "ALP",
+   "ANY",
+   "ATLC",
+   "AXP",
+   "BFH",
+   "BGDE",
+   "BLNE",
+   "BTCS",
+   "CACC",
+   "CD",
+   "CLSK",
+   "CPSS",
+   "ECPG",
+   "ENVA",
+   "FGNX",
+   "FRMM",
+   "FWDI",
+   "GDOT",
+   "GHI",
+   "HAPN",
+   "HSDT",
+   "IX",
+   "MARA",
+   "MFIN",
+   "MSTR",
+   "NCPL",
+   "NCTY",
+   "NNI",
+   "OMF",
+   "ONIT",
+   "ORIO",
+   "PLBC",
+   "PRAA",
+   "PWCM",
+   "RIOT",
+   "RM",
+   "SDEV",
+   "SII",
+   "SLM",
+   "SLNH",
+   "SNFCA",
+   "SUIG",
+   "SYF",
+   "TONX",
+   "TROO",
+   "USBC",
+   "VRME",
+   "WD",
+   "WRLD",
+   "WULF",
+   "YDKG",
+   "YRD"
+  ],
+  "peer_annual_reports_2_largest": [
+   {
+    "entity_id": "0000004962",
+    "name": "AMERICAN EXPRESS CO",
+    "ticker": "AXP",
+    "sic2": "61"
+   },
+   {
+    "entity_id": "0001601712",
+    "name": "Synchrony Financial",
+    "ticker": "SYF",
+    "sic2": "61"
+   }
+  ]
+ },
+ "6_價格狀態": {
+  "ret_6m_skip1m": 0.7039922609559075,
+  "ret_12m_skip1m": 1.2029203754000055,
+  "rank_6m_pct_in_universe": 0.9696237487055575,
+  "rank_12m_pct_in_universe": 0.9565371024734982,
+  "dist_from_52w_high": 0.0,
+  "reaction_day_return": 0.18144717242107578,
+  "reaction_day_rel_spy": 0.1823768996455084,
+  "reaction_day_rel_sic2_median": 0.1819139429251334
+ },
+ "7_共識": {
+  "analyst_consensus": "查不到",
+  "note": "倉內無歷史共識資料;不得憑記憶補"
+ },
+ "masking_check": {
+  "latest_data_date": "2017-07-27",
+  "cutoff": "2017-07-27",
+  "excluded": "T1 之後的價格、財報、公告整欄不入包",
+  "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。",
+  "verified": true
+ }
+}

@@ -27,3 +27,6 @@ deliverable: KARST-D06
 ## 結果
 
 ## 留言
+
+### agent:fable-main · 2026-09-13 00:33
+輸入改為 A2/(執行口徑 v1.1,成交額門檻 1,000 萬美元,D-176;KARST-225 已收檔):取證包 research/2026-09-methodology/2026-09-12-②第一次考試/A2/packets/(84 包:E001–E084 之中 81 個 + 補位 B011/B029/B034),鎖定清單 A2/picks_before_results.md(2026-09-13 00:19:19),截止前文件本體仍在 A/edgar_cache/。A/ 的 v1 輸出已作廢,不得讀 A/packets/。票面「票 A」字樣一律讀作 A2。派工仍待 DeepSeek 工人開關關閉(Kira 閘擋 Agent 工具),用戶未答。
