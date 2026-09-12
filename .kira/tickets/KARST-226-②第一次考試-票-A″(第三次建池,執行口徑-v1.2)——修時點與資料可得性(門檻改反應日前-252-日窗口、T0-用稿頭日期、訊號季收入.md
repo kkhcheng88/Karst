@@ -7,7 +7,7 @@ risk: low
 model: opus
 fits: ②第三輪外評(2026-09-13,原文 2026-09-13-②第三輪外部評論(原文).md;用戶轉來);執行口徑 v1.2 修訂頁十項;②對帳單 §十二 第 8 條;D-175 機械工作交 DeepSeek
 dependsOn: []
-claimedBy: null
+claimedBy: exam2-A3-ds
 epic: 方法論期(D-166)
 deliverable: KARST-D06
 ---
@@ -28,3 +28,6 @@ deliverable: KARST-D06
 ## 結果
 
 ## 留言
+
+### agent:fable-main · 2026-09-13 01:38
+規格補充三條(②第三輪外評追問,2026-09-13;寫入執行口徑 v1.2 修訂頁「補充三條」):補一、公開改善完整條件=收入加速或可核實的收入指引上調,至少一項;補二、公開時間分盤前/盤中/盤後(美東)與稿頭日期,盤中發布不入池,稿件用申報時版本,加 release_timing 欄;補三、加速所用歷史季度的來源申報日須 ≤ T1,加 hist_quarters_public_by_t1 欄。上一工人 exam2-A3-ds 在抓文本階段被主 agent 停止(非出錯),以續做 prompt 重派 exam2-A3b-ds,A3/cache 沿用。另:自查腳本要出 A3/cache/audit_sample.json(四類各 5 宗申報編號),供下一票入口抽查。
