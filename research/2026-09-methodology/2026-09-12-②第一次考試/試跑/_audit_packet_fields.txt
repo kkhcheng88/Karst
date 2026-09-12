@@ -1,0 +1,120 @@
+======================================================================
+E001 PBH  T1=2015-02-05 收市  T0=2015-02-05T06:06:44
+  acceptance_cutoff_packet=T1 = 2015-02-05(反應日收市)  signal_q=2014Q4  8K_items=2.02,7.01,9.01  acc=0001295947-15-000004
+  觸發: local_8k=000129594715000004__8k.txt.gz  ex991_chars=36001  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2014-05-19 reportDate=2014-03-31 accessions=0001295947-14-000015 local=000129594714000015__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2015-02-05 reportDate=2014-12-31 accessions=0001295947-15-000006 local=000129594715000006__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2014-11-06 reportDate=2014-09-30 accessions=0001295947-14-000028 local=000129594714000028__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2014-12-31 g0=0.351503 prev_q=0.076151 accel=27.5352 nq=8
+  5_同業: n_peers=304 peers2=[('GILD', None, None, None), ('JNJ', None, None, None)]
+  6_價格狀態: {"ret_6m_skip1m": 0.020902831762828145, "ret_12m_skip1m": -0.021486582267040144, "rank_6m_pct_in_universe": 0.5667564447864564, "rank_12m_pct_in_universe": 0.41899441340782123, "dist_from_52w_high": 0.0, "reaction_day_return": 0.1216947061934548, "reaction_day_rel_spy": 0.11159947149511273, "reaction_day_rel_sic2_median": 0.10445332688311004}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2015-02-05", "cutoff": "2015-02-05", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E009 SM  T1=2016-08-03 收市  T0=2016-08-02T17:25:44
+  acceptance_cutoff_packet=T1 = 2016-08-03(反應日收市)  signal_q=2016Q2  8K_items=2.02,9.01  acc=0000893538-16-000178
+  觸發: local_8k=000089353816000178__8k.txt.gz  ex991_chars=42716  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2016-02-24 reportDate=2015-12-31 accessions=0000893538-16-000122 local=000089353816000122__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2016-08-03 reportDate=2016-06-30 accessions=0000893538-16-000180 local=000089353816000180__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2016-05-04 reportDate=2016-03-31 accessions=0000893538-16-000137 local=000089353816000137__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2016-06-30 g0=-0.337757 prev_q=-0.609011 accel=27.1254 nq=8
+  5_同業: n_peers=68 peers2=[('SLB', None, None, None), ('HAL', None, None, None)]
+  6_價格狀態: {"ret_6m_skip1m": 0.30463985613247413, "ret_12m_skip1m": -0.37886482049466674, "rank_6m_pct_in_universe": 0.8608228980322004, "rank_12m_pct_in_universe": 0.16733649981731824, "dist_from_52w_high": -0.2764573375337177, "reaction_day_return": 0.1407857957286467, "reaction_day_rel_spy": 0.13786307250087115, "reaction_day_rel_sic2_median": 0.11703813541222585}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2016-08-03", "cutoff": "2016-08-03", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E017 OSUR  T1=2017-08-03 收市  T0=2017-08-02T17:11:57
+  acceptance_cutoff_packet=T1 = 2017-08-03(反應日收市)  signal_q=2017Q2  8K_items=2.02,7.01,9.01  acc=0001193125-17-245965
+  觸發: local_8k=000119312517245965__8k.txt.gz  ex991_chars=19078  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2017-03-14 reportDate=2016-12-31 accessions=0001193125-17-082033 local=000119312517082033__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2017-05-09 reportDate=2017-03-31 accessions=0001193125-17-164160 local=000119312517164160__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2016-11-08 reportDate=2016-09-30 accessions=0001193125-16-762972 local=000119312516762972__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2017-06-30 g0=0.281163 prev_q=0.118842 accel=16.2321 nq=8
+  5_同業: n_peers=148 peers2=[('MDT', None, '000161310317000018__peer10k.txt.gz', '10-K'), ('MMM', None, None, None)]
+  6_價格狀態: {"ret_6m_skip1m": 1.0386803360709247, "ret_12m_skip1m": 2.001675160145805, "rank_6m_pct_in_universe": 0.9862068965517241, "rank_12m_pct_in_universe": 0.9855379188712522, "dist_from_52w_high": 0.0, "reaction_day_return": 0.1667631201174582, "reaction_day_rel_spy": 0.1687030303668977, "reaction_day_rel_sic2_median": 0.1656812216630208}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2017-08-03", "cutoff": "2017-08-03", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E025 GPRO  T1=2018-08-03 收市  T0=2018-08-02T16:08:02
+  acceptance_cutoff_packet=T1 = 2018-08-03(反應日收市)  signal_q=2018Q2  8K_items=2.02,9.01  acc=0001500435-18-000037
+  觸發: local_8k=000150043518000037__8k.txt.gz  ex991_chars=24866  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2018-02-16 reportDate=2017-12-31 accessions=0001500435-18-000010 local=000150043518000010__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2018-08-03 reportDate=2018-06-30 accessions=0001500435-18-000038 local=000150043518000038__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2018-05-04 reportDate=2018-03-31 accessions=0001500435-18-000023 local=000150043518000023__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2018-06-30 g0=-0.046704 prev_q=-0.074414 accel=2.771 nq=8
+  5_同業: n_peers=160 peers2=[('MMM', None, None, None), ('ISRG', None, None, None)]
+  6_價格狀態: {"ret_6m_skip1m": -0.1201601663595131, "ret_12m_skip1m": -0.18136646006882806, "rank_6m_pct_in_universe": 0.23652401176086246, "rank_12m_pct_in_universe": 0.15575696542463915, "dist_from_52w_high": -0.39692040686081, "reaction_day_return": 0.17696167948581198, "reaction_day_rel_spy": 0.17267745014176739, "reaction_day_rel_sic2_median": 0.17961880465482793}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2018-08-03", "cutoff": "2018-08-03", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E033 BHC  T1=2019-05-06 收市  T0=2019-05-06T07:21:23
+  acceptance_cutoff_packet=T1 = 2019-05-06(反應日收市)  signal_q=2019Q1  8K_items=2.02,9.01  acc=0000885590-19-000015
+  觸發: local_8k=000088559019000015__8k.txt.gz  ex991_chars=50600  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2019-02-20 reportDate=2018-12-31 accessions=0000885590-19-000006 local=000088559019000006__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2019-05-06 reportDate=2019-03-31 accessions=0000885590-19-000017 local=000088559019000017__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2018-11-06 reportDate=2018-09-30 accessions=0000885590-18-000071 local=000088559018000071__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2019-03-31 g0=0.010526 prev_q=-0.019417 accel=2.9944 nq=8
+  5_同業: n_peers=453 peers2=[('LLY', None, None, None), ('PFE', None, None, None)]
+  6_價格狀態: {"ret_6m_skip1m": -0.08437274853623589, "ret_12m_skip1m": 0.5807472542605052, "rank_6m_pct_in_universe": 0.3959752321981424, "rank_12m_pct_in_universe": 0.9267902813299232, "dist_from_52w_high": -0.10028249234433895, "reaction_day_return": 0.08703067242744522, "reaction_day_rel_spy": 0.0911458212808981, "reaction_day_rel_sic2_median": 0.08593698201788735}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2019-05-06", "cutoff": "2019-05-06", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E041 ROG  T1=2020-10-30 收市  T0=2020-10-29T16:10:29
+  acceptance_cutoff_packet=T1 = 2020-10-30(反應日收市)  signal_q=2020Q3  8K_items=2.02,7.01,9.01  acc=0000084748-20-000041
+  觸發: local_8k=000008474820000041__8k.txt.gz  ex991_chars=22227  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2020-02-21 reportDate=2019-12-31 accessions=0000084748-20-000009 local=000008474820000009__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2020-10-30 reportDate=2020-09-30 accessions=0000084748-20-000044 local=000008474820000044__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2020-07-31 reportDate=2020-06-30 accessions=0000084748-20-000032 local=000008474820000032__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2020-09-30 g0=-0.089694 prev_q=-0.212866 accel=12.3172 nq=8
+  5_同業: n_peers=544 peers2=[('JNJ', None, '000020040620000010__peer10k.txt.gz', '10-K'), ('PFE', None, None, None)]
+  6_價格狀態: {"ret_6m_skip1m": 0.1509884278844067, "ret_12m_skip1m": -0.2266412400107347, "rank_6m_pct_in_universe": 0.3340028694404591, "rank_12m_pct_in_universe": 0.32559506317954745, "dist_from_52w_high": -0.17244671793833832, "reaction_day_return": 0.17712174469978237, "reaction_day_rel_spy": 0.1875467426092614, "reaction_day_rel_sic2_median": 0.1961290887374708}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2020-10-30", "cutoff": "2020-10-30", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E049 MATX  T1=2021-07-09 收市  T0=2021-07-08T16:10:51
+  acceptance_cutoff_packet=T1 = 2021-07-09(反應日收市)  signal_q=2021Q2  8K_items=2.02,9.01  acc=0001558370-21-008819
+  觸發: local_8k=000155837021008819__8k.txt.gz  ex991_chars=11755  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2021-02-26 reportDate=2020-12-31 accessions=0001558370-21-001909 local=000155837021001909__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2021-04-28 reportDate=2021-03-31 accessions=0001558370-21-004977 local=000155837021004977__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2020-11-02 reportDate=2020-09-30 accessions=0001558370-20-012259 local=000155837020012259__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2021-06-30 g0=0.669338 prev_q=0.385094 accel=28.4244 nq=8
+  5_同業: n_peers=46 peers2=[('CCL', None, '000081509721000027__peer10k.txt.gz', '10-K'), ('NCLH', None, '000155837021001998__peer10k.txt.gz', '10-K')]
+  6_價格狀態: {"ret_6m_skip1m": 0.11177931740700475, "ret_12m_skip1m": 0.8923308208659175, "rank_6m_pct_in_universe": 0.3317947325549824, "rank_12m_pct_in_universe": 0.7661634861862717, "dist_from_52w_high": -0.11804676217101295, "reaction_day_return": 0.09114212599827876, "reaction_day_rel_spy": 0.08046725323786719, "reaction_day_rel_sic2_median": 0.06309425739619767}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2021-07-09", "cutoff": "2021-07-09", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E057 TALO  T1=2022-08-05 收市  T0=2022-08-04T17:03:26
+  acceptance_cutoff_packet=T1 = 2022-08-05(反應日收市)  signal_q=2022Q2  8K_items=2.02,7.01,9.01  acc=0001193125-22-212638
+  觸發: local_8k=000119312522212638__8k.txt.gz  ex991_chars=42641  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2022-02-25 reportDate=2021-12-31 accessions=0000950170-22-002013 local=000095017022002013__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2022-08-05 reportDate=2022-06-30 accessions=0000950170-22-014894 local=000095017022014894__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2022-05-05 reportDate=2022-03-31 accessions=0000950170-22-007461 local=000095017022007461__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2022-06-30 g0=0.708821 prev_q=0.543687 accel=16.5134 nq=8
+  5_同業: n_peers=101 peers2=[('OXY', None, '000079746822000008__peer10k.txt.gz', '10-K'), ('DVN', None, '000156459022005321__peer10k.txt.gz', '10-K')]
+  6_價格狀態: {"ret_6m_skip1m": 0.34758361445748953, "ret_12m_skip1m": 0.024735009957977727, "rank_6m_pct_in_universe": 0.9701492537313433, "rank_12m_pct_in_universe": 0.782967032967033, "dist_from_52w_high": -0.270377707363875, "reaction_day_return": 0.14259034817427185, "reaction_day_rel_spy": 0.14428055365736558, "reaction_day_rel_sic2_median": 0.11909785668677775}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2022-08-05", "cutoff": "2022-08-05", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E065 CLX  T1=2023-02-03 收市  T0=2023-02-02T16:11:57
+  acceptance_cutoff_packet=T1 = 2023-02-03(反應日收市)  signal_q=2022Q4  8K_items=2.02,7.01,9.01  acc=0000021076-23-000005
+  觸發: local_8k=000002107623000005__8k.txt.gz  ex991_chars=35246  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2022-08-10 reportDate=2022-06-30 accessions=0000021076-22-000026 local=000002107622000026__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2023-02-02 reportDate=2022-12-31 accessions=0000021076-23-000007 local=000002107623000007__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2022-11-01 reportDate=2022-09-30 accessions=0000021076-22-000035 local=000002107622000035__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2022-12-31 g0=0.014193 prev_q=-0.036545 accel=5.0738 nq=8
+  5_同業: n_peers=702 peers2=[('JNJ', None, '000020040622000022__peer10k.txt.gz', '10-K'), ('PFE', None, '000007800322000027__peer10k.txt.gz', '10-K')]
+  6_價格狀態: {"ret_6m_skip1m": -0.003672537551311028, "ret_12m_skip1m": -0.15272066219175262, "rank_6m_pct_in_universe": 0.4972286374133949, "rank_12m_pct_in_universe": 0.5794835347074153, "dist_from_52w_high": -0.032996018277555605, "reaction_day_return": 0.09765975494595658, "reaction_day_rel_spy": 0.10828887898474493, "reaction_day_rel_sic2_median": 0.10545720852667223}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2023-02-03", "cutoff": "2023-02-03", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}
+======================================================================
+E073 AEHR  T1=2024-10-11 收市  T0=2024-10-10T16:42:51
+  acceptance_cutoff_packet=T1 = 2024-10-11(反應日收市)  signal_q=2024Q3  8K_items=2.02,9.01  acc=0001654954-24-012870
+  觸發: local_8k=000165495424012870__8k.txt.gz  ex991_chars=22827  transcript=查不到
+  3_截止前文件[最近 10-K/20-F] form=10-K filingDate=2024-07-30 reportDate=2024-05-31 accessions=0001654954-24-009642 local=000165495424009642__annual.txt.gz
+  3_截止前文件[最近 10-Q/6-K(1)] form=10-Q filingDate=2024-10-11 reportDate=2024-08-30 accessions=0001654954-24-012913 local=000165495424012913__q0.txt.gz
+  3_截止前文件[最近 10-Q/6-K(2)] form=10-Q filingDate=2024-04-10 reportDate=2024-02-29 accessions=0001654954-24-004455 local=000165495424004455__q1.txt.gz
+  4_財務數列: source=data/sec/companyfacts(XBRL 首報值) signal_q_end=2024-08-30 g0=-0.363896 prev_q=-0.560444 accel=19.6548 nq=8
+  5_同業: n_peers=251 peers2=[('TMO', None, '000009774524000007__peer10k.txt.gz', '10-K'), ('KLAC', None, '000031920124000021__peer10k.txt.gz', '10-K')]
+  6_價格狀態: {"ret_6m_skip1m": -0.1578599926767389, "ret_12m_skip1m": -0.7312394525909265, "rank_6m_pct_in_universe": 0.3218366027161026, "rank_12m_pct_in_universe": 0.06975717439293598, "dist_from_52w_high": -0.6000998525066302, "reaction_day_return": 0.2027027646245816, "reaction_day_rel_spy": 0.19671463903028008, "reaction_day_rel_sic2_median": 0.18961377164288828}
+  7_共識: 查不到 | 倉內無歷史共識資料;不得憑記憶補
+  masking: {"latest_data_date": "2024-10-11", "cutoff": "2024-10-11", "excluded": "T1 之後的價格、財報、公告整欄不入包", "known_leak_note": "財務數列取 XBRL 首報值;訊號季那組數的最早申報來源是該季 10-Q(在 T1 之後才申報),但同一批數在同日 EX-99.1 已公布;毛利率、經營現金流等項目有時季報才見,屬已知的輕微越界。", "verified": true}

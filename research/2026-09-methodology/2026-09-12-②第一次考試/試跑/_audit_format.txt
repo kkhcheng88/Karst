@@ -1,0 +1,36 @@
+======================================================================
+ARM=ds  csv=10
+  E001 cols=27 rows(data)=1 -> PASS
+  E009 cols=27 rows(data)=1 -> PASS
+  E017 cols=27 rows(data)=1 -> PASS
+  E025 cols=27 rows(data)=1 -> PASS
+  E033 cols=27 rows(data)=1 -> FAIL
+  E041 cols=27 rows(data)=1 -> FAIL
+  E049 cols=27 rows(data)=1 -> PASS
+  E057 cols=27 rows(data)=1 -> PASS
+  E065 cols=27 rows(data)=1 -> FAIL
+  E073 cols=27 rows(data)=1 -> PASS
+  --- csv 解析合格數 = 7 / 10
+  --- 取值違規 = 3
+      E073 persistence_overall='1.00'
+      E073 supply_catchup='0.50'
+      E073 top_driver_type='6'
+  --- 一致性違規 = 1
+      E073 persistence_overall csv=1.00 / card=中
+  --- 缺節 = 0
+======================================================================
+ARM=opus  csv=10
+  E001 cols=27 rows(data)=1 -> PASS
+  E009 cols=27 rows(data)=1 -> PASS
+  E017 cols=27 rows(data)=1 -> PASS
+  E025 cols=27 rows(data)=1 -> PASS
+  E033 cols=27 rows(data)=1 -> PASS
+  E041 cols=27 rows(data)=1 -> PASS
+  E049 cols=27 rows(data)=1 -> PASS
+  E057 cols=27 rows(data)=1 -> PASS
+  E065 cols=27 rows(data)=1 -> PASS
+  E073 cols=27 rows(data)=1 -> PASS
+  --- csv 解析合格數 = 10 / 10
+  --- 取值違規 = 0
+  --- 一致性違規 = 0
+  --- 缺節 = 0
