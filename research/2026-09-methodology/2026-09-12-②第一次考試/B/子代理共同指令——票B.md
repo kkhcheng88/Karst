@@ -1,6 +1,6 @@
-# 票 B 子代理共同指令(判斷層;Anthropic Opus;2026-09-12 凍結,與提示詞 v1 同時生效)
+# 票 B 子代理共同指令(判斷層;2026-09-12 凍結,與提示詞 v1 同時生效;2026-09-13 改為兩臂共用——Opus 臂與 DeepSeek 臂各自獨立執行,輸出目錄由派工訊息指定:`B/opus/` 或 `B/ds/`;下文凡寫 `B/` 即指你被指派的那個目錄;取證包一律 `A3/packets/`)
 
-你是②第一次考試的**判斷者**。你的方法正本是 `C:/projects/Karst/strategy/specs/提示詞——改善驅動可持續性判斷-v1.md`——**先用 Read 讀完它的第三步至第八步與第四節輸出,然後一字不改地照做**。第九步(熊方)不是你的工作。能力卡在 `C:/projects/Karst/strategy/specs/能力卡——改善驅動可持續性判斷-v1.md`,只作背景。
+你是②第一次考試的**判斷者**。你不得讀另一臂(`B/opus/` 或 `B/ds/` 之中不屬於你的那個)的任何檔。你的方法正本是 `C:/projects/Karst/strategy/specs/提示詞——改善驅動可持續性判斷-v1.md`——**先用 Read 讀完它的第三步至第八步與第四節輸出,然後一字不改地照做**。第九步(熊方)不是你的工作。能力卡在 `C:/projects/Karst/strategy/specs/能力卡——改善驅動可持續性判斷-v1.md`,只作背景。
 
 ## 你要處理的事件
 
@@ -8,7 +8,7 @@
 
 ## 輸入(每事件)
 
-1. 取證包:`C:/projects/Karst/research/2026-09-methodology/2026-09-12-②第一次考試/A2/packets/<event_id>.json`(用 Read 讀;約 15–110 KB;**A2 是執行口徑 v1.1 的現行輸出,`A/packets/` 是作廢的 v1,不得讀**;event_id 可能是 E0xx 或補位的 B0xx)。八節:事件識別(T0/T1/T2、improvement_type)、觸發資料(EX-99.1 全文)、截止前文件(只給本地路徑)、財務數列(截止前八季;`g0_signal_q_yoy` 是訊號季按年收入增速)、同業與行業(同 SIC2 名單、兩大同業年報資本開支摘錄)、價格狀態、共識(一律查不到)、masking_check。
+1. 取證包:`C:/projects/Karst/research/2026-09-methodology/2026-09-12-②第一次考試/A3/packets/<event_id>.json`(用 Read 讀;約 15–110 KB;**A3 是執行口徑 v1.2 的現行輸出,`A/packets/` 與 `A2/packets/` 是作廢的 v1/v1.1,不得讀**;event_id 可能是 E0xx 或補位的 B0xx)。八節:事件識別(T0/T1/T2、improvement_type)、觸發資料(EX-99.1 全文)、截止前文件(只給本地路徑)、財務數列(截止前八季;`g0_signal_q_yoy` 是訊號季按年收入增速)、同業與行業(同 SIC2 名單、兩大同業年報資本開支摘錄)、價格狀態、共識(一律查不到)、masking_check。
 2. 截止前文件本體:包內 `3_截止前文件` 各項的 `local_gz` 是 `C:/projects/Karst/research/2026-09-methodology/2026-09-12-②第一次考試/A/edgar_cache/<local_gz>`(gzip 純文字,英文)。**用 Bash 選讀,不要整份讀入**:先 `gzip -dc <檔> | grep -n -i -E "management's discussion|item 7|segment|backlog|guidance|capital expenditure|outlook|customers" | head -60` 找位置,再 `gzip -dc <檔> | sed -n 'A,Bp'` 讀需要的段落(每段控制在數百行內)。年報重點:Business 節、MD&A、分部附註;季報重點:MD&A。
 3. **訊號季數字的界線**:包內 `4_財務數列` 訊號季那一行來自 XBRL(該季 10-Q 在 T1 之後才申報),只有 EX-99.1 同日已公布的項目可用;EX-99.1 沒有披露的項目(例如毛利率、經營現金流)一律標「查不到」,不得用 XBRL 那行補。這是包內 `masking_check.known_leak_note` 講的已知越界,由你在判斷層堵住。
 
