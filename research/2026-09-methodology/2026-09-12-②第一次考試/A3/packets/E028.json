@@ -1,0 +1,272 @@
+{
+ "event_id": "E028",
+ "schema": "②第一次考試取證包 v1",
+ "ticker": "VSAT",
+ "cik": "0000797721",
+ "name": "VIASAT INC",
+ "sic": "4899",
+ "sic2": "48",
+ "bucket": "科技與軟件",
+ "evidence_cutoff": "T1 = 2018-11-01(反應日收市)",
+ "provenance": {
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "frozen": "2026-09-13"
+ },
+ "1_事件識別": {
+  "event_id": "E028",
+  "ticker": "VSAT",
+  "cik": "0000797721",
+  "T0_公布時間_美東": "2018-11-01T08:30:59",
+  "T0_UTC": "2018-11-01T12:30:59.000Z",
+  "t0_source": "稿頭",
+  "EX-99.1_稿頭日期": "2018-11-01",
+  "公開時段": "pre_market",
+  "signal_date_反應日": "2018-11-01",
+  "T1_分析截止": "2018-11-01 收市",
+  "T2_可成交": "2018-11-02 開市",
+  "fiscal_quarter": "2018Q3",
+  "improvement_type_機械": "加速",
+  "8-K_items": "2.02,9.01",
+  "accessionNumber": "0001193125-18-314896",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/797721/000119312518314896/d645406d8k.htm"
+ },
+ "2_觸發資料": {
+  "ex991_full_text": " \n EX-99.1\n 2\n d645406dex991.htm\n EX-99.1\n EX-99.1 \n Exhibit 99.1 \n Viasat Announces Second Quarter Fiscal Year 2019 Results \n — \n Strong sequential quarter and year-over-year growth reported across all segments; record revenue of\n$517.5 million, up 18% sequentially and 32% year-over-year \n — \n New contract awards surged to new highs, close to double over the prior year quarter, bringing fiscal year 2019\nfirst half contract wins to over $1.3 billion and a Company-wide book-to-bill ratio of 1.4:1 \n — \n Second quarter fiscal year 2019 reported net loss decreased by $8.3 million sequentially to\n$25.7 million, while the year-over-year comparison increased by $12.0 million as non-cash fixed costs increased along with reduced capitalized interest following\n ViaSat-2 service launch \n — \n Adjusted EBITDA performance showed strong acceleration, growing 72% sequentially and 25% year-over-year to\n$77.5 million \n — \n Initiated ViaSat-2 insurance settlement process, with\n$44.4 million in claims received in the second quarter of fiscal year 2019 \n CARLSBAD, Calif. , \n November 1, 2018 – Viasat Inc. (NASDAQ: VSAT), a global communications company, today announced financial results for the fiscal second quarter ended September 30, 2018. \n “We are executing on our objective of converting our investments in prior periods into significant revenue and Adjusted EBITDA growth now in fiscal year\n2019. We entered the year with a substantial order book and we’re capitalizing on that by ramping activation of In-Flight Connectivity (IFC) on commercial airlines and delivering products and mobile\nbroadband services to government customers. Satellite services segment revenues are accelerating on a more diversified base including residential, IFC, enterprise and community Wi-Fi applications – while\nour government segment is also reflecting the benefits of many of these same investments,” said Mark Dankberg, Viasat chairman and CEO. “Strong sequential and quarter-over-quarter Adjusted EBITDA growth is indicative of the earnings\npotential as we scale these businesses. Exceptional new order activity helps highlight the momentum we are achieving in our target markets, yielding record levels of backlog, and lending confidence to sustained growth through the balance of the\nfiscal year and beyond. The near term momentum behind these more global services reinforces the medium- and long-term potential that will be enabled by our groundbreaking ViaSat-3 constellation.” \n Financial Results \n (In millions, except per share data) \n Q2 FY19 \n Q2 FY18 \n Year-\nOver-\nYear\nChange \n First 6\nMonths \n FY19 \n First 6\nMonths \n FY18 \n Year-\nOver-\nYear\nChange \n Revenues\n $ \n 517.5 \n $ \n 393.1 \n 31.6 \n % \n $ \n 956.3 \n $ \n 773.1 \n 23.7 \n % \n Net loss 1 \n $ \n (25.7 \n ) \n $ \n (13.7 \n ) \n 87.9 \n % \n $ \n (59.7 \n ) \n $ \n (22.7 \n ) \n 162.8 \n % \n Non-GAAP net (loss) income 1 \n $ \n (9.0 \n ) \n $ \n 5.2 \n * \n $ \n (26.4 \n ) \n $ \n 7.8 \n * \n Adjusted EBITDA\n $ \n 77.5 \n $ \n 61.9 \n 25.1 \n % \n $ \n 122.5 \n $ \n 123.1 \n (0.5 \n )% \n Diluted per share net loss 1 \n $ \n (0.43 \n ) \n $ \n (0.24 \n ) \n 79.2 \n % \n $ \n (1.00 \n ) \n $ \n (0.39 \n ) \n 156.4 \n % \n Non-GAAP diluted per share net (loss) income 1 \n $ \n (0.15 \n ) \n $ \n 0.09 \n * \n $ \n (0.44 \n ) \n $ \n 0.13 \n * \n Fully diluted weighted average shares 2\n 59.7 \n 58.2 \n 2.6 \n % \n 59.5 \n 58.0 \n 2.5 \n % \n New contract awards 3 \n $ \n 738.6 \n $ \n 384.8 \n 92.0 \n % \n $ \n 1,308.3 \n $ \n 826.6 \n 58.3 \n % \n Sales backlog 4 \n $ \n 1,911.7 \n $ \n 1,078.9 \n 77.2 \n % \n $ \n 1,911.7 \n $ \n 1,078.9 \n 77.2 \n % \n Segment Results \n (In millions) \n Q2\nFY19 \n Q2\nFY18 \n Year-\nOver-\nYear\nChange \n First 6\nMonths \n FY19 \n First 6\nMonths \n FY18 \n Year-\nOver-\nYear\nChange \n Satellite Services \n New contract awards 3 \n $ \n 164.7 \n $ \n 147.7 \n 11.5 \n % \n $ \n 318.2 \n $ \n 299.0 \n 6.4 \n % \n Revenues\n $ \n 163.0 \n $ \n 147.6 \n 10.4 \n % \n $ \n 316.5 \n $ \n 299.8 \n 5.6 \n % \n Operating (loss) profit 5 \n $ \n (24.8 \n ) \n $ \n 12.6 \n * \n $ \n (54.8 \n ) \n $ \n 31.5 \n * \n Adjusted EBITDA\n $ \n 39.9 \n $ \n 55.4 \n (28.1 \n )% \n $ \n 74.1 \n $ \n 117.4 \n (36.9 \n )% \n Commercial Networks \n New contract awards\n $ \n 123.2 \n $ \n 54.5 \n 126.2 \n % \n $ \n 237.3 \n $ \n 97.1 \n 144.5 \n % \n Revenues\n $ \n 114.5 \n $ \n 56.3 \n 103.5 \n % \n $ \n 209.6 \n $ \n 101.5 \n 106.5 \n % \n Operating loss 5 \n $ \n (39.2 \n ) \n $ \n (59.4 \n ) \n (34.0 \n )% \n $ \n (86.2 \n ) \n $ \n (125.5 \n ) \n (31.3 \n )% \n Adjusted EBITDA\n $ \n (24.6 \n ) \n $ \n (45.0 \n ) \n (45.3 \n )% \n $ \n (57.4 \n ) \n $ \n (95.0 \n ) \n (39.6 \n )% \n Government Systems \n New contract awards\n $ \n 450.7 \n $ \n 182.6 \n 146.8 \n % \n $ \n 752.8 \n $ \n 430.5 \n 74.9 \n % \n Revenues\n $ \n 240.0 \n $ \n 189.2 \n 26.8 \n % \n $ \n 430.2 \n $ \n 371.8 \n 15.7 \n % \n Operating profit 5 \n $ \n 44.9 \n $ \n 34.2 \n 31.2 \n % \n $ \n 69.8 \n $ \n 66.8 \n 4.5 \n % \n Adjusted EBITDA\n $ \n 62.2 \n $ \n 51.5 \n 20.8 \n % \n $ \n 105.7 \n $ \n 100.7 \n 5.0 \n % \n 1 \n Attributable to Viasat, Inc. common stockholders. \n 2 \n As the three and six months ended September 30, 2018 and 2017 financial information resulted in a net\nloss, the weighted average number of shares used to calculate basic and diluted net loss per share is the same, as diluted shares would be anti-dilutive. \n 3 \n Awards exclude future revenue under recurring consumer commitment arrangements. \n 4 \n Amounts include certain backlog adjustments due to contract changes and amendments. Backlog does not include\nanticipated purchase orders and requests for the installation of IFC systems or future recurring in-flight internet service revenues under our commercial in-flight \ninternet agreements in our Commercial Networks and Satellite Services segments, respectively. Starting with the first quarter of fiscal year 2019, upon adoption of ASC 606, our backlog includes contracts with subscribers for fixed broadband services\nin our Satellite Services segment. Backlog as of September 30, 2017 does not include contracts with our subscribers for fixed broadband services in our Satellite Services segment. \n 5 \n Before corporate and amortization of acquired intangible assets. \n * \n Percentage not meaningful. \n Satellite Services \n Viasat’s Satellite\nServices segment achieved record revenue of $163.0 million for the second quarter of fiscal year 2019, representing an increase both year-over-year and sequentially. Year-over-year growth was primarily driven by fixed broadband internet service\nrevenue increases and accelerating commercial aviation IFC gains, as commercial \naircraft in service grew by 56% compared to the second quarter of fiscal year 2018, bringing revenues from services other than fixed broadband to nearly 20% of segment revenues. Sequential\nquarter performance also included a narrowed operating loss, which declined 17%, as a result of improved segment Adjusted EBITDA, up 16% from the first quarter of fiscal 2019. Highlights for the quarter include: \n • \n Fixed broadband services \n • \n Residential average revenue per user (ARPU) in the U.S. grew sequentially, and by 10% year-over-year, to $74.35,\nreflecting a higher mix of new and existing subscribers choosing Viasat’s premium highest speed plans. At the close of the second quarter of fiscal year 2019, subscribers totaled approximately 585,000, up on a sequential quarter basis.\n • \n The Federal Communications Commission announced Viasat as a winning bidder in the Connect America Fund II (CAF-II) auction. Viasat will offer advanced satellite broadband services to designated areas within 20 U.S. states, covering more than 190,000 locations. For its commitment, Viasat is expected to receive\napproximately $122.5 million over a 10-year period to support the U.S.-based expansion of satellite broadband services. \n • \n In business internet, Viasat expanded into new vertical segments, including state parks, announcing Nevada as the\nfirst state to deploy Viasat’s Wi-Fi hotspot technology at its parks statewide. Viasat also expanded its distribution to businesses, having signed the top five Master Agents in the telecommunications\nchannel. Viasat now has access to over 12,000 new business-to-business agents throughout the U.S. \n • \n The Community Wi-Fi hotspot business continued to grow in Latin America.\nViasat’s service is now within walking distance to over 950,000 people in Mexico. \n • \n Mobility services \n • \n At the close of the second quarter of fiscal year 2019, 898 commercial aircraft were in service using\nViasat’s IFC systems, an increase of 141 commercial planes quarter-over-quarter. Viasat expects to install its IFC systems on an additional 854 commercial aircraft under existing contracts. \n • \n Commercial airline customers that began flying with Viasat’s IFC equipment in the second quarter of fiscal\nyear 2019 included EL AL Israel Airlines, which officially launched its IFC service offering to passengers, and Finnair, which began its passenger in-flight testing program. \n • \n Viasat continued to grow its wireless in-flight entertainment (W-IFE) business, with three of Viasat’s IFC airline customers now using its W-IFE platform. \n • \n New airline deals announced in the second quarter of fiscal year 2019: In August 2018, Viasat was selected to\noutfit 100 new American Airlines Airbus A321neo aircraft with its IFC and W-IFE systems; Aeromexico selected the Viasat IFC system across 18 new Boeing 737 MAX aircraft, with an option to extend up to 60\naircraft; and boutique business-class only airline, La Compagnie, chose Viasat’s IFC system for its fleet with installs expected to begin in the first quarter of fiscal year 2020. \n • \n Following the close of the second quarter of fiscal year 2019, Viasat announced its business aviation\nconnectivity solution will be offered as a line-fit option on the Gulfstream G280, the Embraer Praetor 500 and the Embraer Praetor 600 aircraft. \n • \n Additionally, after the close of the second quarter of fiscal year 2019, Viasat announced it will provide\ntechnology integration and cybersecurity services to Bentley for its ‘Advanced Connectivity,’ in-car Wi-Fi system. \n Fiscal year-to-date, Satellite Services segment revenues reached a new record\nas ViaSat-2-based services began to scale. In addition, operating profit and Adjusted EBITDA for the segment were lower compared to the same period last year, reflecting\nthe same fixed expense impacts seen year-over-year. \n Commercial Networks \n Viasat’s Commercial Networks segment second quarter fiscal 2019 revenues hit record levels, doubling year-over-year\nas the Company’s scaling IFC equipment business continued to gain market penetration. The strong revenue growth coupled with segment operating cost decreases led to narrowed segment\noperating losses and improved Adjusted EBITDA on both a sequential quarter and year-over-year basis. Research and development (R&D) expenses declined for the fourth consecutive quarter, contributing to segment year-over-year performance by\n$15.4 million, as the Company’s ViaSat-3 payload program migrated to the capital portion of the project. Sequential quarter earnings performance improved, primarily due to large-scale mobile terminal\ndeliveries, and to a lesser extent to reductions in segment level R&D expenses. Highlights for the quarter include: \n • \n In support of Viasat’s accelerating IFC installations, the Commercial Networks segment expanded delivery\nvolumes of its next-generation IFC systems for commercial aircraft, bringing total year-to-date fiscal year 2019 next-generation IFC system shipments to over 350\naircraft across nine commercial airlines. \n • \n New contract awards rose 126% versus the same period last year, generating a segment book-to-bill ratio of 1.1:1, marking the highest segment backlog in over three years. \n • \n Viasat continued to meet key milestones on the ViaSat-3 satellite\nprogram, and announced its first ViaSat-3 payload module structure was shipped from Boeing to Viasat’s Tempe, Arizona facility, enabling Viasat to begin integration and testing of the payload electronics.\n • \n Viasat announced two ViaSat-3 launch partners: United Launch Alliance in\nSeptember 2018 and SpaceX in October 2018. \n Fiscal\n year-to-date, Commercial Networks segment revenues increased significantly to a new record. In addition, operating loss narrowed and Adjusted EBITDA was higher for the\nsegment compared to the same period last year, reflecting the same year-over-year impacts and investment trends seen in the second quarter of fiscal year 2019. \n Government Systems \n Viasat’s Government\nSystems segment achieved quarterly record revenues, operating profit and Adjusted EBITDA. Second quarter fiscal year 2019 revenues increased 27% year-over-year to $240.0 million; operating profits increased 31% year-over-year to\n$44.9 million; and Adjusted EBITDA increased 21% year-over-year to $62.2 million. Higher operating profit and Adjusted EBITDA were achieved primarily by strong demand for Viasat’s unique\n Non-Developmental Item (NDI) products, as well as government mobile broadband products and services, with segment level service revenues hitting record levels. Highlights for the quarter include: \n • \n New contract awards increased 147% year-over-year, generating a quarterly segment level book-to-bill ratio of 1.9:1. \n • \n Viasat secured a new $559.8 million eight-year contract from the U.S. Government to provide elite global IFC\nservices on U.S. Government senior leader aircraft, with second quarter fiscal year 2019 awards inclusive of only the initial 12-month period at $55.6 million. \n • \n The Company also announced its Ku-/Ka-band multi-network, multi-mode\nGlobal Mobile Antenna 5560-101 successfully completed key Federal Aviation Administration and the U.S. Air Force Materiel Command testing, demonstrating critical IFC capabilities. \n • \n Viasat announced its commercial\n off-the-shelf Visual Integrated Satellite Communications Information, Operation and Networking (VISION) software successfully passed the North Atlantic Treaty\nOrganization (NATO) First Article System Test, enabling NATO to expedite the roll-out of its Ultra High Frequency satellite communications modernization efforts. \n On a fiscal year-to-date basis, Viasat’s Government Systems segment\nachieved record performance with revenue growth of 16% to $430.2 million, operating profit increases of 4% to $69.8 million and Adjusted EBITDA increases of 5% to $105.7 million, over the same period last year. \n Conference Call \n Viasat will host a conference call to discuss the second quarter of fiscal year 2019 results. Details follow: \n DATE/TIME: \n Thursday, November 1, 2018 at 1:00 p.m. Eastern Time \n DIAL-IN: \n (877) 640-9809 in the U.S.; (914) 495-8528 international \n WEBCAST: \n investors.viasat.com. \n REPLAY: \n Available from 4:00 p.m. Eastern Time on Thursday, November 1 until 11:59 p.m. Eastern Time on Friday, November 2 by dialing (855) 859-2056 for U.S. callers and (404) 537-3406 for international callers; conference ID 1486685. \n Forward-Looking Statements \n This press release contains forward-looking statements that are subject to the safe harbors created under the Securities Act of 1933 and the Securities\nExchange Act of 1934. Forward-looking statements include, among others, statements that refer to opportunities, growth and outlook for fiscal year 2019 and beyond; satellite construction and launch activities; the performance and benefits of our ViaSat-2 and ViaSat-3 class satellites; the expected completion, capacity, service, coverage, service speeds, availability and other features of our satellites, and the\ntiming, cost, economics and other benefits associated therewith; the development and performance of equipment and hardware for the ViaSat-2 and ViaSat-3 class satellite\nplatforms, the timing thereof and the benefits associated therewith; domestic and international expansion plans; the realization of IFC and W-IFE investments and the number of IFC systems expected to be\ninstalled under existing contracts with commercial airlines; the impacts of new contracts entered into with, and the roll-out, ramp-up and uptake of products and\nservices by, and services to be offered by, our airline partners and other customers; and expected payments for providing advanced satellite broadband services resulting from the CAF-II auction. Readers are\ncautioned that actual results could differ materially and adversely from those expressed in any forward-looking statements. Factors that could cause actual results to differ include: our ability to realize the anticipated benefits of the ViaSat-2 and ViaSat-3 class satellites; unexpected expenses related to our satellite projects; our ability to successfully implement our business plan for our broadband\nsatellite services on our anticipated timeline or at all; risks associated with the construction, launch and operation of our satellites, including the effect of any anomaly, operational failure or degradation in satellite performance; our ability\nto realize the anticipated benefits of our strategic partnership arrangement with Eutelsat; our ability to successfully develop, introduce and sell new technologies, products and services; the number of purchase orders that are submitted and\naccepted for the installation of IFC systems with respect to aircraft under contract; audits by the U.S. government; changes in the global business environment and economic conditions; delays in approving U.S. government budgets and cuts in\ngovernment defense expenditures; our reliance on U.S. government contracts, and on a small number of contracts which account for a significant percentage of our revenues; reduced demand for products and services as a result of continued constraints\non capital spending by customers; changes in relationships with, or the financial condition of, key customers or suppliers; our reliance on a limited number of third parties to manufacture and supply our products; increased competition; introduction\nof new technologies and other factors affecting the communications and defense industries generally; the effect of adverse regulatory changes on our ability to sell products and services; our level of indebtedness and ability to comply with\napplicable debt covenants; our involvement in litigation, including intellectual property claims and litigation to protect our proprietary technology; and our dependence on a limited number of key employees. In addition, please refer to the risk\nfactors contained in our SEC filings available at www.sec.gov, including our most recent Annual Report on Form 10-K and Quarterly Reports on Form 10-Q. Readers are\ncautioned not to place undue reliance on any forward-looking statements, which speak only as of the date on which they are made. We undertake no obligation to update or revise any forward-looking statements for any reason. \n About Viasat \n Viasat is a global communications company\nthat believes everyone and everything in the world can be connected. For more than 30 years, Viasat has helped shape how consumers, businesses, governments and militaries around the world communicate. Today, the Company is developing the ultimate\nglobal communications network to power high-quality, secure, affordable, fast connections to impact people’s lives anywhere they are – on the ground, in the air or at sea. To learn more about Viasat, visit: www.viasat.com , go\nto Viasat’s Corporate Blog , or follow the Company on social media at: Facebook , Instagram , LinkedIn , Twitter or YouTube . \n Use of Non-GAAP Financial Information \n To supplement Viasat’s consolidated financial statements presented in accordance with generally accepted accounting principles (GAAP), ViaSat uses non-GAAP net income (loss) attributable to Viasat Inc. and Adjusted EBITDA, measures Viasat believes are appropriate to enhance an overall understanding of Viasat’s past financial performance and prospects for\nthe future. We believe the non-GAAP results provide useful information to both management and investors by excluding specific expenses that we believe are not indicative of our core operating results. In\naddition, since we have historically reported non-GAAP results to the investment community, we believe the inclusion of non-GAAP numbers provides consistency in our\nfinancial reporting and facilitates comparisons to the Company’s historical operating results. Further, these non-GAAP results are among the primary indicators that management uses as a basis for\nevaluating the operating performance of our segments, allocating resources to such segments, planning and forecasting in future periods. The presentation of this additional information is not meant to be considered in isolation or as a substitute\nfor measures of financial performance prepared in accordance with GAAP. A reconciliation of specific adjustments to GAAP results is provided in the tables below. \n Copyright © 2018 Viasat, Inc. All rights reserved. Viasat is a registered trademark of Viasat, Inc.\nThe Viasat logo is a trademark of Viasat, Inc. All other product or company names mentioned are used for identification purposes only and may be trademarks of their respective owners. \n Condensed Consolidated Statements of Operations \n (Unaudited) \n (In\nthousands, except per share data) \n Three months ended \n Six months ended \n September 30,\n2018 \n September 30,\n2017 \n September 30,\n2018 \n September 30,\n2017 \n Revenues:\n Product revenues\n $ \n 280,435 \n $ \n 181,783 \n $ \n 498,564 \n $ \n 347,901 \n Service revenues\n 237,039 \n 211,291 \n 457,779 \n 425,217 \n Total revenues\n 517,474 \n 393,074 \n 956,343 \n 773,118 \n Operating expenses:\n Cost of product revenues\n 216,900 \n 133,850 \n 390,348 \n 256,495 \n Cost of service revenues\n 175,230 \n 135,412 \n 346,662 \n 273,263 \n Selling, general and administrative\n 113,120 \n 90,084 \n 225,762 \n 179,257 \n Independent research and development\n 31,360 \n 46,268 \n 64,733 \n 91,333 \n Amortization of acquired intangible assets\n 2,435 \n 3,320 \n 4,888 \n 6,580 \n Loss from operations\n (21,571 \n ) \n (15,860 \n ) \n (76,050 \n ) \n (33,810 \n ) \n Interest (expense) income, net\n (14,045 \n ) \n (20 \n ) \n (25,333 \n ) \n 17 \n Loss on extinguishment of debt\n — \n (10,217 \n ) \n — \n (10,217 \n ) \n Loss before income taxes\n (35,616 \n ) \n (26,097 \n ) \n (101,383 \n ) \n (44,010 \n ) \n Benefit from income taxes\n 9,704 \n 11,464 \n 38,909 \n 20,644 \n Equity in income of unconsolidated affiliate, net\n 314 \n 741 \n 1,379 \n 228 \n Net loss\n (25,598 \n ) \n (13,892 \n ) \n (61,095 \n ) \n (23,138 \n ) \n Less: net income (loss) attributable to noncontrolling interests, net of tax\n 126 \n (203 \n ) \n (1,361 \n ) \n (410 \n ) \n Net loss attributable to Viasat Inc.\n $ \n (25,724 \n ) \n $ \n (13,689 \n ) \n $ \n (59,734 \n ) \n $ \n (22,728 \n ) \n Diluted net loss per share attributable to Viasat Inc. common stockholders\n $ \n (0.43 \n ) \n $ \n (0.24 \n ) \n $ \n (1.00 \n ) \n $ \n (0.39 \n ) \n Diluted common equivalent shares\n 59,734 \n 58,229 \n 59,470 \n 58,039 \n AN ITEMIZED RECONCILIATION BETWEEN NET INCOME (LOSS)\nATTRIBUTABLE TO VIASAT INC. \n ON A GAAP BASIS AND NON-GAAP BASIS IS AS FOLLOWS: \n (In thousands, except per share data) \n Three months ended \n Six months ended \n September 30,\n2018 \n September 30,\n2017 \n September 30,\n2018 \n September 30,\n2017 \n GAAP net loss attributable to Viasat Inc.\n $ \n (25,724 \n ) \n $ \n (13,689 \n ) \n $ \n (59,734 \n ) \n $ \n (22,728 \n ) \n Amortization of acquired intangible assets\n 2,435 \n 3,320 \n 4,888 \n 6,580 \n Stock-based compensation expense\n 19,377 \n 15,983 \n 38,503 \n 31,490 \n Loss on extinguishment of debt\n — \n 10,217 \n — \n 10,217 \n Income tax effect (1) \n (5,042 \n ) \n (10,592 \n ) \n (10,087 \n ) \n (17,809 \n ) \n Non-GAAP net (loss) income attributable to Viasat\nInc.\n $ \n (8,954 \n ) \n $ \n 5,239 \n $ \n (26,430 \n ) \n $ \n 7,750 \n Non-GAAP diluted net (loss) income per share attributable\nto Viasat Inc. common stockholders\n $ \n (0.15 \n ) \n $ \n 0.09 \n $ \n (0.44 \n ) \n $ \n 0.13 \n Diluted common equivalent shares\n 59,734 \n 58,229 \n 59,470 \n 58,039 \n (1) \n The income tax effect is calculated using the tax rate applicable for the\n non-GAAP adjustments. \n AN ITEMIZED RECONCILIATION BETWEEN NET INCOME (LOSS) ATTRIBUTABLE TO\nVIASAT INC. \n AND ADJUSTED EBITDA IS AS FOLLOWS: \n (In thousands) \n Three months ended \n Six months ended \n September 30,\n2018 \n September 30,\n2017 \n September 30,\n2018 \n September 30,\n2017 \n GAAP net loss attributable to Viasat Inc.\n $ \n (25,724 \n ) \n $ \n (13,689 \n ) \n $ \n (59,734 \n ) \n $ \n (22,728 \n ) \n Benefit from income taxes\n (9,704 \n ) \n (11,464 \n ) \n (38,909 \n ) \n (20,644 \n ) \n Interest expense (income), net\n 14,045 \n 20 \n 25,333 \n (17 \n ) \n Depreciation and amortization\n 79,474 \n 60,874 \n 157,271 \n 124,809 \n Stock-based compensation expense\n 19,377 \n 15,983 \n 38,503 \n 31,490 \n Loss on extinguishment of debt\n — \n 10,217 \n — \n 10,217 \n Adjusted EBITDA\n $ \n 77,468 \n $ \n 61,941 \n $ \n 122,464 \n $ \n 123,127 \n AN ITEMIZED RECONCILIATION BETWEEN SEGMENT OPERATING PROFIT (LOSS) BEFORE \n CORPORATE AND AMORTIZATION OF ACQUIRED INTANGIBLE ASSETS AND ADJUSTED EBITDA IS AS FOLLOWS: \n (In thousands) \n Three months ended September 30, 2018 \n Three months ended September 30, 2017 \n Satellite\nServices \n Commercial\nNetworks \n Government\nSystems \n Total \n Satellite\nServices \n Commercial\nNetworks \n Government\nSystems \n Total \n Segment operating (loss) profit before corporate and amortization of acquired intangible\nassets\n $ \n (24,839 \n ) \n $ \n (39,197 \n ) \n $ \n 44,900 \n $ \n (19,136 \n ) \n $ \n 12,616 \n $ \n (59,377 \n ) \n $ \n 34,221 \n $ \n (12,540 \n ) \n Depreciation (2) \n 50,823 \n 5,502 \n 8,872 \n 65,197 \n 35,307 \n 6,729 \n 8,795 \n 50,831 \n Stock-based compensation expense\n 5,733 \n 6,758 \n 6,886 \n 19,377 \n 3,816 \n 6,109 \n 6,058 \n 15,983 \n Other amortization\n 7,051 \n 2,328 \n 2,463 \n 11,842 \n 2,502 \n 1,573 \n 2,648 \n 6,723 \n Equity in income of unconsolidated affiliate, net\n 314 \n — \n — \n 314 \n 741 \n — \n — \n 741 \n Noncontrolling interests\n 783 \n — \n (909 \n ) \n (126 \n ) \n 436 \n — \n (233 \n ) \n 203 \n Adjusted EBITDA\n $ \n 39,865 \n $ \n (24,609 \n ) \n $ \n 62,212 \n $ \n 77,468 \n $ \n 55,418 \n $ \n (44,966 \n ) \n $ \n 51,489 \n $ \n 61,941 \n Six months ended September 30, 2018 \n Six months ended September 30, 2017 \n Satellite\nServices \n Commercial\nNetworks \n Government\nSystems \n Total \n Satellite\nServices \n Commercial\nNetworks \n Government\nSystems \n Total \n Segment operating (loss) profit before corporate and amortization of acquired intangible\nassets\n $ \n (54,775 \n ) \n $ \n (86,205 \n ) \n $ \n 69,818 \n $ \n (71,162 \n ) \n $ \n 31,459 \n $ \n (125,502 \n ) \n $ \n 66,813 \n $ \n (27,230 \n ) \n Depreciation (2) \n 100,833 \n 10,995 \n 17,162 \n 128,990 \n 70,944 \n 13,255 \n 17,460 \n 101,659 \n Stock-based compensation expense\n 11,026 \n 13,864 \n 13,613 \n 38,503 \n 7,448 \n 12,080 \n 11,962 \n 31,490 \n Other amortization\n 13,960 \n 3,995 \n 5,438 \n 23,393 \n 6,546 \n 5,161 \n 4,863 \n 16,570 \n Equity in income of unconsolidated affiliate, net\n 1,379 \n — \n — \n 1,379 \n 228 \n — \n — \n 228 \n Noncontrolling interests\n 1,707 \n — \n (346 \n ) \n 1,361 \n 813 \n — \n (403 \n ) \n 410 \n Adjusted EBITDA\n $ \n 74,130 \n $ \n (57,351 \n ) \n $\n105,685 \n $\n122,464 \n $\n117,438 \n $ \n (95,006 \n ) \n $\n100,695 \n $\n123,127 \n (2) \n Depreciation expenses not specifically recorded in a particular segment have been allocated based on other\nindirect allocable costs, which management believes is a reasonable method. \n Condensed Consolidated Balance Sheets \n (Unaudited) \n (In\nthousands) \n Assets \n As of\nSeptember 30, 2018 \n As of\nMarch 31, 2018 \n Current assets:\n Cash and cash equivalents\n $ \n 44,458 \n $ \n 71,446 \n Restricted cash\n 7,169 \n — \n Accounts receivable, net\n 268,803 \n 267,665 \n Inventories\n 232,078 \n 196,307 \n Prepaid expenses and other current assets\n 233,258 \n 77,135 \n Total current assets\n 785,766 \n 612,553 \n Property, equipment and satellites, net\n 1,950,373 \n 1,962,475 \n Other acquired intangible assets, net\n 26,072 \n 31,862 \n Goodwill\n 122,676 \n 121,085 \n Other assets\n 744,740 \n 686,134 \n Total assets\n $ \n 3,629,627 \n $ \n 3,414,109 \n Liabilities and Equity \n As of\nSeptember 30, 2018 \n As of\nMarch 31, 2018 \n Current liabilities:\n Accounts payable\n $ \n 165,317 \n $ \n 157,481 \n Accrued liabilities\n 250,407 \n 263,676 \n Current portion of long-term debt\n 47,702 \n 45,300 \n Total current liabilities\n 463,426 \n 466,457 \n Senior notes\n 691,497 \n 690,886 \n Other long-term debt\n 460,101 \n 287,519 \n Other liabilities\n 130,266 \n 121,240 \n Total liabilities\n 1,745,290 \n 1,566,102 \n Total Viasat Inc. stockholders’ equity\n 1,874,713 \n 1,837,166 \n Noncontrolling interest in subsidiaries\n 9,624 \n 10,841 \n Total equity\n 1,884,337 \n 1,848,007 \n Total liabilities and equity\n $ \n 3,629,627 \n $ \n 3,414,109 \n # # # \n Viasat, Inc. Contacts: \n Chris Phillips, Corporate\nCommunications and Public Relations, +1 760-476-2322, chris.phillips@viasat.com \n June Harrison, Investor Relations, +1 760-476-2633, IR@viasat.com \n",
+  "ex991_chars": 28665,
+  "same_day_8k_items": "2.02,9.01",
+  "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
+  "local_8k": "000119312518314896__8k.txt.gz",
+  "earnings_call_transcript": "查不到",
+  "going_concern_hit": 0,
+  "going_concern_snippet": ""
+ },
+ "3_截止前文件": {
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2018-05-30",
+   "reportDate": "2018-03-31",
+   "accession": "0001564590-18-014641",
+   "url": "https://www.sec.gov/Archives/edgar/data/797721/000156459018014641/vsat-10k_20180331.htm",
+   "local_gz": "000156459018014641__annual.txt.gz"
+  },
+  "最近 10-Q/6-K(1)": {
+   "form": "10-Q",
+   "filingDate": "2018-08-09",
+   "reportDate": "2018-06-30",
+   "accession": "0001564590-18-021096",
+   "url": "https://www.sec.gov/Archives/edgar/data/797721/000156459018021096/vsat-10q_20180630.htm",
+   "local_gz": "000156459018021096__q0.txt.gz"
+  },
+  "最近 10-Q/6-K(2)": {
+   "form": "10-Q",
+   "filingDate": "2018-02-09",
+   "reportDate": "2017-12-31",
+   "accession": "0001193125-18-036708",
+   "url": "https://www.sec.gov/Archives/edgar/data/797721/000119312518036708/d493158d10q.htm",
+   "local_gz": "000119312518036708__q1.txt.gz"
+  }
+ },
+ "4_財務數列": {
+  "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
+  "source_by_row": "見 quarters[].revenue_source",
+  "hist_quarters_public_by_T1": true,
+  "hist_src_latest_filed": "2018-08-09",
+  "n_rows": 8,
+  "n_rows_first_filed_after_T1": 2,
+  "year_end_derived_note": "標 `revenue_year_end_derived=true` 的季是**推算**而來:該季無 80–100 日的單季 duration,由年報(340–380 日)減同期 9 個月累計(255–285 日)得出(票 A″ 第 3 步同一條)。",
+  "quarters": [
+   {
+    "period_end": "2016-12-31",
+    "revenue": 380630000.0,
+    "gross_profit": null,
+    "operating_income": 7591000.0,
+    "ocf": 121052000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2017-03-31",
+    "revenue": 416419000.0,
+    "gross_profit": null,
+    "operating_income": 2676000.0,
+    "ocf": 98619000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": true,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2017-06-30",
+    "revenue": 380044000.0,
+    "gross_profit": null,
+    "operating_income": -17950000.0,
+    "ocf": 153654000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2017-09-30",
+    "revenue": 393074000.0,
+    "gross_profit": null,
+    "operating_income": -15860000.0,
+    "ocf": 32172000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2017-12-31",
+    "revenue": 381837000.0,
+    "gross_profit": null,
+    "operating_income": -25326000.0,
+    "ocf": 96769000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2018-03-31",
+    "revenue": 439670000.0,
+    "gross_profit": null,
+    "operating_income": null,
+    "ocf": 76038000.0,
+    "revenue_xbrl_first_filed_after_T1": true,
+    "revenue_year_end_derived": true,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2018-06-30",
+    "revenue": 438869000.0,
+    "gross_profit": null,
+    "operating_income": -54479000.0,
+    "ocf": 53814000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2018-09-30",
+    "revenue": 517474000.0,
+    "gross_profit": null,
+    "operating_income": -21571000.0,
+    "ocf": 57478000.0,
+    "revenue_xbrl_first_filed_after_T1": true,
+    "revenue_year_end_derived": false,
+    "revenue_source": "EX-99.1 稿內文字",
+    "revenue_ex991": 517500000.0,
+    "revenue_xbrl_for_reference": 517474000.0
+   }
+  ],
+  "signal_q_end": "2018-09-30",
+  "g0_signal_q_yoy": 0.316546,
+  "g0_xbrl_for_reference": 0.31648,
+  "prev_q_yoy": 0.154785,
+  "accel_pp": 16.1761,
+  "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
+ },
+ "5_同業與行業": {
+  "sic2": "48",
+  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
+  "n_listed_peers_same_sic2": 62,
+  "peer_list_all_same_sic2_tickers": [
+   "AD",
+   "AEHL",
+   "AMCX",
+   "AMX",
+   "AREN",
+   "ATEX",
+   "ATNI",
+   "BBGI",
+   "BCE",
+   "CABO",
+   "CALX",
+   "CCOI",
+   "CCZ",
+   "CHT",
+   "CHTR",
+   "CXDO",
+   "ECHO",
+   "EVC",
+   "FABC",
+   "FENG",
+   "FWONA",
+   "GOGO",
+   "GSAT",
+   "GTN",
+   "IDT",
+   "IQST",
+   "IRDM",
+   "KT",
+   "KVHI",
+   "LBTYA",
+   "LILA",
+   "LUMN",
+   "NXPL",
+   "NXST",
+   "OPTU",
+   "PHI",
+   "RCI",
+   "ROKU",
+   "SGA",
+   "SHEN",
+   "SIRI",
+   "SKM",
+   "SPOK",
+   "SPOT",
+   "SSP",
+   "SURG",
+   "T",
+   "TDS",
+   "TEO",
+   "TKC",
+   "TLK",
+   "TMUS",
+   "TSQ",
+   "TU",
+   "TV",
+   "UONE",
+   "VEON",
+   "VIV",
+   "VOD",
+   "VZ",
+   "WBD",
+   "ZD"
+  ],
+  "peer_annual_reports_2_largest": [
+   {
+    "entity_id": "0000732717",
+    "name": "AT&T INC.",
+    "ticker": "T",
+    "sic2": "48"
+   },
+   {
+    "entity_id": "0000732712",
+    "name": "VERIZON COMMUNICATIONS INC",
+    "ticker": "VZ",
+    "sic2": "48"
+   }
+  ]
+ },
+ "6_價格狀態": {
+  "ret_6m_skip1m": -0.002823534198835742,
+  "ret_12m_skip1m": -0.054299337393566405,
+  "rank_6m_pct_in_universe": 0.40377237851662406,
+  "rank_12m_pct_in_universe": 0.33101160862354895,
+  "dist_from_52w_high": -0.11711149106895546,
+  "reaction_day_return": 0.11025725814079812,
+  "reaction_day_rel_spy": 0.09961574264485717,
+  "reaction_day_rel_sic2_median": 0.09609519574629521
+ },
+ "7_共識": {
+  "analyst_consensus": "查不到",
+  "note": "倉內無歷史共識資料;不得憑記憶補"
+ },
+ "masking_check": {
+  "latest_data_date": "2018-11-01",
+  "cutoff": "2018-11-01",
+  "excluded": "T1 之後的價格、財報、公告整欄不入包",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "verified": true
+ }
+}
