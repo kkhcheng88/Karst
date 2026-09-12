@@ -1,0 +1,30 @@
+---
+id: KARST-226
+title: ②第一次考試 票 A″(第三次建池,執行口徑 v1.2)——修時點與資料可得性(門檻改反應日前 252 日窗口、T0 用稿頭日期、訊號季收入須在稿內找到)、指引上調改解析器只認收入上調、分析口徑適用性 F、併購閘改 Item 2.01/1.01 加字眼、標籤欄不作閘;查 290 宗無數列與 adr_flag 全 1 成因;重建母體→入口→抽樣鎖定→取證包→對照,輸出 A3/,主 agent 不讀名單
+type: research
+createdAt: 2026-09-13
+risk: low
+model: opus
+fits: ②第三輪外評(2026-09-13,原文 2026-09-13-②第三輪外部評論(原文).md;用戶轉來);執行口徑 v1.2 修訂頁十項;②對帳單 §十二 第 8 條;D-175 機械工作交 DeepSeek
+dependsOn: []
+claimedBy: null
+epic: 方法論期(D-166)
+deliverable: KARST-D06
+---
+
+## 工作內容
+
+規格正本:research/2026-09-methodology/2026-09-12-②第一次考試/執行口徑——②第一次考試-v1.2(修訂頁).md 第一節十項(一字不改;不清楚處記執行紀錄不自行改規則),其餘照 v1 與 v1.1。沿用 A/ 與 A2/ 的腳本體例與快取(events_raw、xbrl_metrics、price_metrics、turnover60、merger_days、guidance.jsonl、A/edgar_cache/),A/ 與 A2/ 一個檔都不改;輸出全部到 A3/。母體掃描起點提前至 2014-01-01(2014 只供窗口)。逐年門檻改為逐事件的過去 252 個交易日窗口第 90 百分位(不足 300 宗用 504 日,再不足標門檻資料不足)。T0 = min(8-K 受理, EX-99.1 稿頭日期),前一交易日絕對報酬 > 8% 標疑更早公開不入池。訊號季收入須在 EX-99.1 文本內數字匹配(容差 0.5%),找不到不入池;取證包訊號季一行改用稿內數字。指引解析器:每條指引句抽指標/期間/舊新上下限中點/單位口徑/一次性提及;上調 = 新中點 > 舊中點且下限不降;只認收入指引上調入池;純 EPS 上調作標籤;40 句抽查逐句核,錯誤率 > 15% 舉手。適用性 F:剔 SIC 60–64、67;要求標準收入標籤且訊號前 8 季連續;缺者按三類原因標資料不適用不入池。併購閘:Item 2.01,或 Item 1.01 且正文含 merger/acquisition/agreement and plan of merger/acquire。標籤欄九項照修訂頁第 6 項。抽樣同前(84+44、分年分桶、種子 20260912);對照 C1 只在可比收入指引子樣本、財年分配用去年同季佔比、標估算,C2 主對照,C3 保留。查證三件寫入執行紀錄:290 宗無數列原因分類、adr_flag 全 1 成因、舊 Item 1.01 閘誤剔數。主 agent 不讀名單:最終訊息與票留言不得列公司名或代號,只報數量、雜湊、時間戳。含中文檔案只用 Read/Write/Edit;PYTHONUTF8=1;單線程逐檔;申報原文不入庫;不 commit。
+
+## 驗收條件
+
+- [ ] A3/thresholds.md 改為逐事件窗口門檻的描述統計(逐年的門檻中位、窗內事件數中位、用 504 日者數、門檻資料不足者數);反例:任何入池事件的門檻用到反應日當日或之後的事件,即不合格
+- [ ] A3/population.csv 每列有 t0_source(8-K/稿頭)、prior_day_abs_ret、signal_rev_in_text(真/假/容差內差值)、guidance_parse 各欄(metric/period/old_lo/old_hi/new_lo/new_hi/mid_change/raise_flag/eps_only)、applicability_reason(三類)與九個標籤欄;反例:任何入池事件 signal_rev_in_text 為假、或 guidance 只靠 raise 字眼而無舊新中點且未標「舊值缺」,即不合格
+- [ ] A3/guidance_audit.md 40 句抽查逐句列原句、解析結果、人核結果,錯誤率一數;> 15% 已舉手
+- [ ] A3/picks_before_results.md 主 84 + 後備 44、種子 20260912、每年每桶數、SHA-256;落檔時間早於 A3/packets/ 與 A3/controls_operating.csv 任何檔;最終訊息與票留言不含公司名或代號
+- [ ] A3/packets/ 84 包,任何一包含 T1 之後日期的資料即整批不合格;4_財務數列 訊號季一行標明來源=EX-99.1 稿內;控制檔另檔不入包
+- [ ] A3/執行紀錄——A3.md 含:v1.1 對 v1.2 的宇宙/入口池/抽樣差、290 宗無數列原因分類、adr_flag 成因、舊 Item 1.01 閘誤剔數、疑更早公開數、訊號季收入未在稿內數、適用性三類剔除數;A/ 與 A2/ git status 乾淨;不 commit
+
+## 結果
+
+## 留言
