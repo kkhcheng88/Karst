@@ -1,0 +1,558 @@
+[
+ {
+  "side": "主",
+  "event_id": "E002",
+  "acc": "0001237831-15-000057",
+  "year": "2015",
+  "bucket": "醫療",
+  "filingDate": "2015-11-03",
+  "reaction_date": "2015-11-04",
+  "sic": "3841",
+  "release_timing": "after_close",
+  "csv": {
+   "improvement_type": "指引",
+   "accel_text_hit": "False",
+   "accel_pp_text": "-1.2955304667783274",
+   "rev_g0_text": "0.16311647295541953",
+   "rev_prev_q_yoy": "0.1760717776232028",
+   "guide_rev_raise": "True",
+   "guidance_metric": "revenue",
+   "guidance_period": "FY",
+   "guidance_old_lo": "",
+   "guidance_old_hi": "",
+   "guidance_new_lo": "15.0",
+   "guidance_new_hi": "539.0",
+   "guidance_mid_change": "",
+   "guidance_raise_flag": "True",
+   "guidance_old_missing": "True",
+   "guidance_eps_only": "False",
+   "guidance_raise_eps_only": "False",
+   "guidance_n_records": "2",
+   "hist_quarters_public_by_t1": "True",
+   "signal_rev_in_text": "容差內差值"
+  },
+  "parsed": [
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 15.0,
+    "new_hi": 539.0,
+    "new_mid": 277.0,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "The xxxxxxx xxxxx increased guidance for full year 2015 sales by $15 million to $539 million and earnings xxx share by $0.03 to $1.07."
+   },
+   {
+    "metric": "eps",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 0.03,
+    "new_hi": 1.07,
+    "new_mid": 0.55,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "The xxxxxxx xxxxx increased guidance for full year 2015 sales by $15 million to $539 million and earnings xxx share by $0.03 to $1.07."
+   }
+  ],
+  "text_lines_n": 813,
+  "text_char_n": 20225,
+  "candidate_lines": [
+   {
+    "line": 9,
+    "text": "Reports xxxxxx xxxxxxxxx Sales and Increases Guidance"
+   },
+   {
+    "line": 20,
+    "text": "xxxxxxx increases 2015 guidance for sales to $539 million and EPS to $1.07"
+   },
+   {
+    "line": 26,
+    "text": "The xxxxxxx xxxxx increased guidance for full year 2015 sales by $15 million to $539 million and earnings xxx share by $0.03 to $1.07. The increased sales guidance xxxxx xxxx xxxxxxx our xxxxxxxxxxxx for $5.5 million xxxxxxxxxxx xxxxxx of xxxxxxx xxxxxxxx xxxxxxxx."
+   },
+   {
+    "line": 41,
+    "text": "xxx xxxxxxxxxx xxxxxxxx in this xxxxx xxxxxxx xxxxx than xxxxxxxxxx of xxxxxxxxxx xxxx are xxxxxxx-xxxxxxx xxxxxxxxxx and xxx be xxxxxxxxxx by their xxx of xxxxx xxxx as “xxxxxxx,” “xxx,” “xxxxx,” “xxxxx,” “xxxx,” “xxx,” “xxxxxxxx,” “xxxxxxxx,” “xxxxxxxxxx,” “xxxxxx,” “expect,” “xxxx” and xxxxx xxxxxxx xxxxx. These xxxxxxx-xxxxxxx xxxxxxxxxx are xxxxx on our xxxxxxx xxxxxxxxxxx, xxxxxxxxxxxx and e"
+   }
+  ],
+  "upgrade_lines": [
+   {
+    "line": 9,
+    "text": "Reports xxxxxx xxxxxxxxx Sales and Increases Guidance"
+   },
+   {
+    "line": 20,
+    "text": "xxxxxxx increases 2015 guidance for sales to $539 million and EPS to $1.07"
+   },
+   {
+    "line": 26,
+    "text": "The xxxxxxx xxxxx increased guidance for full year 2015 sales by $15 million to $539 million and earnings xxx share by $0.03 to $1.07. The increased sales guidance xxxxx xxxx xxxxxxx our xxxxxxxxxxxx for $5.5 million xxxxxxxxxxx xxxxxx of xxxxxxx xxxxxxxx xxxxxxxx."
+   }
+  ]
+ },
+ {
+  "side": "主",
+  "event_id": "E056",
+  "acc": "0001628280-21-021035",
+  "year": "2021",
+  "bucket": "製造與工業",
+  "filingDate": "2021-11-02",
+  "reaction_date": "2021-11-02",
+  "sic": "2400",
+  "release_timing": "after_close",
+  "csv": {
+   "improvement_type": "指引",
+   "accel_text_hit": "False",
+   "accel_pp_text": "-88.45498783454985",
+   "rev_g0_text": "0.5333333333333334",
+   "rev_prev_q_yoy": "1.417883211678832",
+   "guide_rev_raise": "True",
+   "guidance_metric": "revenue",
+   "guidance_period": "FY",
+   "guidance_old_lo": "5.0",
+   "guidance_old_hi": "5.0",
+   "guidance_new_lo": "10.0",
+   "guidance_new_hi": "10.0",
+   "guidance_mid_change": "5.0",
+   "guidance_raise_flag": "True",
+   "guidance_old_missing": "False",
+   "guidance_eps_only": "False",
+   "guidance_raise_eps_only": "False",
+   "guidance_n_records": "5",
+   "hist_quarters_public_by_t1": "True",
+   "signal_rev_in_text": "真"
+  },
+  "parsed": [
+   {
+    "metric": "revenue",
+    "period": "next_quarter",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 3.87,
+    "new_hi": 3.87,
+    "new_mid": 3.87,
+    "mid_change": null,
+    "raise_flag": false,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "Net income xxxxxxxxxx to LP for the third quarter of 2021 increased by $188 million over the prior year period to $365 million ($3.87 xxx diluted share) xxxxxxxxx xxx to the growth in xxxxxx xxxxxxxxx revenue and higher xxx xxxxxx, xxxxxxxxx xxxxxx by increases in income xxxxx, xxx xxxxxxxx xxxxxx, xxxxxxx xxxxx, and xxxxxxxxxxx xxxxxxxx."
+   },
+   {
+    "metric": "eps",
+    "period": "next_quarter",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 3.87,
+    "new_hi": 3.87,
+    "new_mid": 3.87,
+    "mid_change": null,
+    "raise_flag": false,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "Net income xxxxxxxxxx to LP for the third quarter of 2021 increased by $188 million over the prior year period to $365 million ($3.87 xxx diluted share) xxxxxxxxx xxx to the growth in xxxxxx xxxxxxxxx revenue and higher xxx xxxxxx, xxxxxxxxx xxxxxx by increases in income xxxxx, xxx xxxxxxxx xxxxxx, xxxxxxx xxxxx, and xxxxxxxxxxx xxxxxxxx."
+   },
+   {
+    "metric": "cash_flow",
+    "period": "next_quarter",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 3.0,
+    "new_hi": 3.0,
+    "new_mid": 3.0,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "xxxxx xxxxxxxxxx with the xxxxxxxx xxxxxxxxx xxxxxxx xxxxxxxx in xxxxxxx, xxxxx increased in the third quarter, xxxxxxxxxxxx to a $3 million xxxxxxx in Adjusted xxxxxx compared to the prior year quarter."
+   },
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": 5.0,
+    "old_hi": 5.0,
+    "old_mid": 5.0,
+    "new_lo": 10.0,
+    "new_hi": 10.0,
+    "new_mid": 10.0,
+    "mid_change": 5.0,
+    "raise_flag": true,
+    "old_missing": false,
+    "old_src": "同句",
+    "unit": "",
+    "sentence": "• We xxxxxxxxx prior guidance of 10% year-over-year revenue growth for xxxxxx xxxxxxxxx in the second half of 2021, and full-year xxxxxx margin of 25%, with lower xxxxxx and higher xxxxxx xxxxxxx to at most 5% revenue growth for the fourth quarter of 2021, as compared to the xxxxxxxxxxxxx quarter of the prior year."
+   },
+   {
+    "metric": "cash_flow",
+    "period": "FY",
+    "old_lo": 5.0,
+    "old_hi": 5.0,
+    "old_mid": 5.0,
+    "new_lo": 25.0,
+    "new_hi": 25.0,
+    "new_mid": 25.0,
+    "mid_change": 20.0,
+    "raise_flag": true,
+    "old_missing": false,
+    "old_src": "同句",
+    "unit": "",
+    "sentence": "• We xxxxxxxxx prior guidance of 10% year-over-year revenue growth for xxxxxx xxxxxxxxx in the second half of 2021, and full-year xxxxxx margin of 25%, with lower xxxxxx and higher xxxxxx xxxxxxx to at most 5% revenue growth for the fourth quarter of 2021, as compared to the xxxxxxxxxxxxx quarter of the prior year."
+   }
+  ],
+  "text_lines_n": 302,
+  "text_char_n": 30884,
+  "candidate_lines": [
+   {
+    "line": 26,
+    "text": "“As expected, the third quarter xxx a xxxxxxxxxxx xxxxxxxxxx in xxx xxxxxx and xxxxxxx xxxxxxxxx from xxx xxxxxxxx xxxxxx and xxxxxxxxxxxx,” xxxx LP xxxxx and xxxxx xxxxxxxxx xxxxxxx xxxx xxxxxxxx. “xxxxxxx these xxxxxxxxxx, LP xxxxxx $522 million in xxxxxx and $3.87 xxx share as xxxxxx sales grew by 19%, xxx and xxxxx xxxxxxx xxxxxxxxx xxxxxx quarters, and xxx xxxxxxxxx to xxxxxxxx xxxxxxxxxxx ca"
+   },
+   {
+    "line": 92,
+    "text": "• We xxxxxxxxx prior guidance of 10% year-over-year revenue growth for xxxxxx xxxxxxxxx in the second half of 2021, and full-year xxxxxx margin of 25%, with lower xxxxxx and higher xxxxxx xxxxxxx to at most 5% revenue growth for the fourth quarter of 2021, as compared to the xxxxxxxxxxxxx quarter of the prior year."
+   },
+   {
+    "line": 93,
+    "text": "• xxx revenue in the fourth quarter of 2021 is expected to be xxxxxxxxxxxx lower than the third quarter of 2021 by about 30%, xxxxxxxx the xxxxxxx xxx xxxxx for the fourth quarter is xxxxx to the xxxxxxx quarter-to-xxxx xxxxxxx xxx xxxxx."
+   }
+  ],
+  "upgrade_lines": []
+ },
+ {
+  "side": "主",
+  "event_id": "E070",
+  "acc": "0001108524-23-000046",
+  "year": "2023",
+  "bucket": "科技與軟件",
+  "filingDate": "2023-11-29",
+  "reaction_date": "2023-11-30",
+  "sic": "7372",
+  "release_timing": "after_close",
+  "csv": {
+   "improvement_type": "指引",
+   "accel_text_hit": "False",
+   "accel_pp_text": "-0.17075735467666497",
+   "rev_g0_text": "0.11267066479520227",
+   "rev_prev_q_yoy": "0.11437823834196892",
+   "guide_rev_raise": "True",
+   "guidance_metric": "revenue",
+   "guidance_period": "FY",
+   "guidance_old_lo": "",
+   "guidance_old_hi": "",
+   "guidance_new_lo": "8.7",
+   "guidance_new_hi": "8.7",
+   "guidance_mid_change": "",
+   "guidance_raise_flag": "True",
+   "guidance_old_missing": "True",
+   "guidance_eps_only": "False",
+   "guidance_raise_eps_only": "False",
+   "guidance_n_records": "6",
+   "hist_quarters_public_by_t1": "True",
+   "signal_rev_in_text": "真"
+  },
+  "parsed": [
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 9.18,
+    "new_hi": 9.23,
+    "new_mid": 9.205,
+    "mid_change": null,
+    "raise_flag": false,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "• xxxxxxxxx Fourth Quarter FY24 Revenue Guidance of $9.18 Billion to $9.23 Billion, up 10% Y/Y"
+   },
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 34.75,
+    "new_hi": 34.8,
+    "new_mid": 34.775,
+    "mid_change": null,
+    "raise_flag": false,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "• xxxxxxx Full Year FY24 Revenue Guidance to $34.75 Billion to $34.8 Billion, up 11% Y/Y"
+   },
+   {
+    "metric": "operating_income",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 14.5,
+    "new_hi": 14.5,
+    "new_mid": 14.5,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "• Raises Full Year FY24 GAAP Operating Margin Guidance to 14.5% and xxx-GAAP Operating Margin Guidance to 30.5%"
+   },
+   {
+    "metric": "cash_flow",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 30.0,
+    "new_hi": 30.0,
+    "new_mid": 30.0,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "• Raises Full Year FY24 Operating Cash Flow Growth Guidance to 30% to 33% Y/Y"
+   },
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 8.7,
+    "new_hi": 8.7,
+    "new_mid": 8.7,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "“We xxx xxxxxxx xxxxxx quarter of xxxxxxxxx on our xxxxxxxxxx growth xxxx we xxx in xxxxxx xxxx year, xxxxxxxxxx $8.7 billion in revenue and xxxxx raising our operating margin guidance for this fiscal year,” xxxx xxxx xxxxxxx, xxxxx and xxx, xxxxxxxxxx."
+   },
+   {
+    "metric": "operating_income",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 8.7,
+    "new_hi": 8.7,
+    "new_mid": 8.7,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "“We xxx xxxxxxx xxxxxx quarter of xxxxxxxxx on our xxxxxxxxxx growth xxxx we xxx in xxxxxx xxxx year, xxxxxxxxxx $8.7 billion in revenue and xxxxx raising our operating margin guidance for this fiscal year,” xxxx xxxx xxxxxxx, xxxxx and xxx, xxxxxxxxxx."
+   }
+  ],
+  "text_lines_n": 482,
+  "text_char_n": 42924,
+  "candidate_lines": [
+   {
+    "line": 15,
+    "text": "• xxxxxxxxx Fourth Quarter FY24 Revenue Guidance of $9.18 Billion to $9.23 Billion, up 10% Y/Y"
+   },
+   {
+    "line": 16,
+    "text": "• xxxxxxx Full Year FY24 Revenue Guidance to $34.75 Billion to $34.8 Billion, up 11% Y/Y"
+   },
+   {
+    "line": 19,
+    "text": "“We xxx xxxxxxx xxxxxx quarter of xxxxxxxxx on our xxxxxxxxxx growth xxxx we xxx in xxxxxx xxxx year, xxxxxxxxxx $8.7 billion in revenue and xxxxx raising our operating margin guidance for this fiscal year,” xxxx xxxx xxxxxxx, xxxxx and xxx, xxxxxxxxxx. “We're xxx the third xxxxxxx xxxxxxxxxx xxxxxxxx xxxxxxx by revenue, the xxxxxx xxx AI xxx and the xxxxxx xxx xxxxxxxxxx xxxx xxxxxxx. Most xxxxxx"
+   },
+   {
+    "line": 28,
+    "text": "As of xxxxxxxx 29, 2023, the xxxxxxx is xxxxxxxxxx its fourth quarter GAAP and xxx-GAAP diluted EPS guidance, xxxxxxx xxxxxxxxx xxxxxxxxxxx xxxxxxxxxx growth guidance, and revenue guidance. The xxxxxxx is xxxxxxxx its full year FY24 revenue guidance and raising its GAAP and xxx-GAAP diluted EPS guidance, GAAP and xxx-GAAP operating margin guidance, and operating cash flow growth guidance."
+   },
+   {
+    "line": 71,
+    "text": "(2) The xxxxxxxxxxx xxxxx above xxxx been xxxxxxxxxx xxxxx on the xxxxxxxx of the xxx and xxxx xxxx of the revenue guidance for full year FY24."
+   },
+   {
+    "line": 118,
+    "text": "\"xxxx xxxxxx\" xxxxxxxxx xxxxx the xxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxx xxx of 1995: This xxxxx xxxxxxx xxxxxxxx xxxxxxx-xxxxxxx xxxxxxxxxx about the xxxxxxx's xxxxxxxxx and operating results and guidance, xxxxx xxxxxxx, but are xxx xxxxxxx to, expected GAAP and xxx-GAAP xxxxxxxxx and xxxxx operating and xxx-operating results, xxxxxxxxx revenue, net income, earnings xxx share, operating cash flow g"
+   },
+   {
+    "line": 119,
+    "text": "The xxxxx and xxxxxxxxxxxxx xxxxxxxx to above xxxxxxx -- but are xxx xxxxxxx to -- xxxxx xxxxxxxxxx with: our xxxxxxx to xxxxxxxx xxxxxxxx xxxxxx and xxxxxxx xxxxxxxxxxx that xxxx the xxxxxxxxxxxx of our xxxxxxxxx, and the xxxxxxxxx and xxxxx xxxxxxxx to xxxxx xxxxxxxxxxxxx xxxxxxxx and xxxxxxx, xxxxxx and xxxxxxxxx xxxxxxxxxxx xxxxxxxxxxx and xxxxxxxx xxxxxxxx; the xxxxxxxx xxxxxxxxxx with our da"
+   },
+   {
+    "line": 473,
+    "text": "xxx-GAAP Operating Margin is the xxxxxxxxxx of xxx-GAAP income from xxxxxxxxxx as a percentage of GAAP revenue. xxx-GAAP income from xxxxxxxxxx xxxxxxxx the xxxxxx of the xxxxxxxxx xxxxx: xxxxx-xxxxx xxxxxxxxxxxx xxxxxxx, xxxxxxxxxxxx of xxxxxxxxxxx-xxxxxxx xxxxxxxxxxx, and xxxxxxx xxxxxxx to the xxxxxxxxxxxxx xxxx. xxx-GAAP operating margin for Q1 FY25 xxxxxxxx our operating xxxxxxxxxx, xxx xxxxx"
+   }
+  ],
+  "upgrade_lines": [
+   {
+    "line": 19,
+    "text": "“We xxx xxxxxxx xxxxxx quarter of xxxxxxxxx on our xxxxxxxxxx growth xxxx we xxx in xxxxxx xxxx year, xxxxxxxxxx $8.7 billion in revenue and xxxxx raising our operating margin guidance for this fiscal year,” xxxx xxxx xxxxxxx, xxxxx and xxx, xxxxxxxxxx. “We're xxx the third xxxxxxx xxxxxxxxxx xxxxxxxx xxxxxxx by revenue, the xxxxxx xxx AI xxx and the xxxxxx xxx xxxxxxxxxx xxxx xxxxxxx. Most xxxxxx"
+   },
+   {
+    "line": 28,
+    "text": "As of xxxxxxxx 29, 2023, the xxxxxxx is xxxxxxxxxx its fourth quarter GAAP and xxx-GAAP diluted EPS guidance, xxxxxxx xxxxxxxxx xxxxxxxxxxx xxxxxxxxxx growth guidance, and revenue guidance. The xxxxxxx is xxxxxxxx its full year FY24 revenue guidance and raising its GAAP and xxx-GAAP diluted EPS guidance, GAAP and xxx-GAAP operating margin guidance, and operating cash flow growth guidance."
+   }
+  ]
+ },
+ {
+  "side": "後備",
+  "event_id": "B031",
+  "acc": "0001345016-22-000053",
+  "year": "2022",
+  "bucket": "消費與零售",
+  "filingDate": "2022-08-04",
+  "reaction_date": "2022-08-05",
+  "sic": "7200",
+  "release_timing": "after_close",
+  "csv": {
+   "improvement_type": "指引",
+   "accel_text_hit": "False",
+   "accel_pp_text": "-2.9295200332750237",
+   "rev_g0_text": "0.16257368150924623",
+   "rev_prev_q_yoy": "0.19186888184199646",
+   "guide_rev_raise": "True",
+   "guidance_metric": "revenue",
+   "guidance_period": "FY",
+   "guidance_old_lo": "",
+   "guidance_old_hi": "",
+   "guidance_new_lo": "265.0",
+   "guidance_new_hi": "285.0",
+   "guidance_mid_change": "",
+   "guidance_raise_flag": "True",
+   "guidance_old_missing": "True",
+   "guidance_eps_only": "False",
+   "guidance_raise_eps_only": "False",
+   "guidance_n_records": "2",
+   "hist_quarters_public_by_t1": "True",
+   "signal_rev_in_text": "容差內差值"
+  },
+  "parsed": [
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 265.0,
+    "new_hi": 285.0,
+    "new_mid": 275.0,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "Raises full-year outlook to $1.18 billion to $1.20 billion of Net revenue and $265 million to $285 million of Adjusted xxxxxx 1"
+   },
+   {
+    "metric": "cash_flow",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 265.0,
+    "new_hi": 285.0,
+    "new_mid": 275.0,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "Raises full-year outlook to $1.18 billion to $1.20 billion of Net revenue and $265 million to $285 million of Adjusted xxxxxx 1"
+   }
+  ],
+  "text_lines_n": 188,
+  "text_char_n": 14007,
+  "candidate_lines": [
+   {
+    "line": 11,
+    "text": "Raises full-year outlook to $1.18 billion to $1.20 billion of Net revenue and $265 million to $285 million of Adjusted xxxxxx 1"
+   }
+  ],
+  "upgrade_lines": [
+   {
+    "line": 11,
+    "text": "Raises full-year outlook to $1.18 billion to $1.20 billion of Net revenue and $265 million to $285 million of Adjusted xxxxxx 1"
+   }
+  ]
+ },
+ {
+  "side": "後備",
+  "event_id": "B037",
+  "acc": "0000950170-24-050568",
+  "year": "2024",
+  "bucket": "醫療",
+  "filingDate": "2024-04-30",
+  "reaction_date": "2024-05-01",
+  "sic": "3845",
+  "release_timing": "after_close",
+  "csv": {
+   "improvement_type": "指引",
+   "accel_text_hit": "False",
+   "accel_pp_text": "-25.53136511086138",
+   "rev_g0_text": "1.3319054723973625",
+   "rev_prev_q_yoy": "1.5872191235059763",
+   "guide_rev_raise": "True",
+   "guidance_metric": "revenue",
+   "guidance_period": "FY",
+   "guidance_old_lo": "",
+   "guidance_old_hi": "",
+   "guidance_new_lo": "390.0",
+   "guidance_new_hi": "400.0",
+   "guidance_mid_change": "",
+   "guidance_raise_flag": "True",
+   "guidance_old_missing": "True",
+   "guidance_eps_only": "False",
+   "guidance_raise_eps_only": "False",
+   "guidance_n_records": "1",
+   "hist_quarters_public_by_t1": "True",
+   "signal_rev_in_text": "容差內差值"
+  },
+  "parsed": [
+   {
+    "metric": "revenue",
+    "period": "FY",
+    "old_lo": null,
+    "old_hi": null,
+    "old_mid": null,
+    "new_lo": 390.0,
+    "new_hi": 400.0,
+    "new_mid": 395.0,
+    "mid_change": null,
+    "raise_flag": true,
+    "old_missing": true,
+    "old_src": "",
+    "unit": "",
+    "sentence": "xxxxxxxxxxx is raising its full year 2024 revenue guidance to be in the range of $390 million to $400 million, xxxxx xxxxxxxxxx 61% to 66% growth compared to the xxxxxxx’s prior year revenue."
+   }
+  ],
+  "text_lines_n": 220,
+  "text_char_n": 11688,
+  "candidate_lines": [
+   {
+    "line": 22,
+    "text": "xxxxxxxxxxx is raising its full year 2024 revenue guidance to be in the range of $390 million to $400 million, xxxxx xxxxxxxxxx 61% to 66% growth compared to the xxxxxxx’s prior year revenue. xxxxxxxxxxx’ prior 2024 revenue guidance was $360 million to $370 million."
+   }
+  ],
+  "upgrade_lines": [
+   {
+    "line": 22,
+    "text": "xxxxxxxxxxx is raising its full year 2024 revenue guidance to be in the range of $390 million to $400 million, xxxxx xxxxxxxxxx 61% to 66% growth compared to the xxxxxxx’s prior year revenue. xxxxxxxxxxx’ prior 2024 revenue guidance was $360 million to $370 million."
+   }
+  ]
+ }
+]

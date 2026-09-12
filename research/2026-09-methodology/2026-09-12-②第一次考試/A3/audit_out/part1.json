@@ -1,0 +1,2890 @@
+[
+ {
+  "group": "加速只",
+  "acc": "0000002488-18-000058",
+  "cik": "0000002488",
+  "year": 2018,
+  "a": {
+   "headline_date": "2018-04-25",
+   "headline_line": 18,
+   "headline_masked": "xxxxx xxxxx, xxxxx. - xxxxx 25, 2018 - xxx (xxxxxx:xxx) xxxx",
+   "filingDate": "2018-04-25",
+   "acceptance_utc": "2018-04-25T20:17:16.000Z",
+   "t0_et": "2018-04-25T16:17:16",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2018-04-26",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:17 不早於 16:00",
+   "expected_reaction_date": "2018-04-26",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.03766106131757141",
+   "prior_day_abs_ret_recomputed": 0.03766106131757141,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "3436.0",
+   "thr_p90_csv": "0.07011925518001394",
+   "recomputed_win": 252,
+   "recomputed_n": 3436,
+   "recomputed_p90": 0.0701192551800139,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2018-04-25",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.12680659003994332",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 1650000000.0,
+   "rev_signal_xbrl": 1647000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 8,
+   "line_hits": [
+    {
+     "line": 18,
+     "num": "$1.65 billion,"
+    },
+    {
+     "line": 27,
+     "num": "$1.65"
+    },
+    {
+     "line": 54,
+     "num": "$2"
+    },
+    {
+     "line": 76,
+     "num": "$1.65"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0018214936247722413,
+   "signal_q_end": "2018-03-31"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "1.725",
+    "guidance_new_hi": "1.725",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "加速",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 1.725,
+     "new_hi": 1.725,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the second quarter of 2018, xxx expects revenue to be approximately $1.725 billion, xxxx or xxxxx $50 million, an increase of 50 percent year-over-year, and xxx-GAAP gross margin of approximately 37 percent."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "25",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "加速",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "加速只",
+  "acc": "0000002488-21-000114",
+  "cik": "0000002488",
+  "year": 2021,
+  "a": {
+   "headline_date": "2021-07-27",
+   "headline_line": 20,
+   "headline_masked": "xxxxx xxxxx, xxxxx. - xxxx 27, 2021 - xxx (xxxxxx:xxx) xxxxx",
+   "filingDate": "2021-07-27",
+   "acceptance_utc": "2021-07-27T20:39:42.000Z",
+   "t0_et": "2021-07-27T16:39:42",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2021-07-28",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:39 不早於 16:00",
+   "expected_reaction_date": "2021-07-28",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.008603800023448183",
+   "prior_day_abs_ret_recomputed": 0.008603800023448183,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "5942.0",
+   "thr_p90_csv": "0.062330433567979314",
+   "recomputed_win": 252,
+   "recomputed_n": 5942,
+   "recomputed_p90": 0.06233043356797926,
+   "p90_delta": 5.551115123125783e-17,
+   "latest_window_event_reaction": "2021-07-27",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.07620916794474408",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 3850000000.0,
+   "rev_signal_xbrl": 3850000000.0,
+   "signal_rev_in_text_csv": "真",
+   "n_line_hits": 10,
+   "line_hits": [
+    {
+     "line": 20,
+     "num": "$3.85 billion,"
+    },
+    {
+     "line": 23,
+     "num": "$3,850"
+    },
+    {
+     "line": 33,
+     "num": "$3,850"
+    },
+    {
+     "line": 44,
+     "num": "$3.85 billion,"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0,
+   "signal_q_end": "2021-06-26"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "4.1",
+    "guidance_new_hi": "4.1",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "加速",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 4.1,
+     "new_hi": 4.1,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the third quarter of 2021, xxx expects revenue to be approximately $4.1 billion, xxxx or xxxxx $100 million, an increase of approximately 46 percent year-over-year and approximately 6 percent quarter-over-quarter."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "38",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "加速",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "加速只",
+  "acc": "0000002488-23-000192",
+  "cik": "0000002488",
+  "year": 2023,
+  "a": {
+   "headline_date": "2023-10-31",
+   "headline_line": 19,
+   "headline_masked": "xxxxx xxxxx, xxxxx. ― xxx. 31, 2023 ― xxx (xxxxxx:xxx) xxxxx",
+   "filingDate": "2023-10-31",
+   "acceptance_utc": "2023-10-31T20:16:56.000Z",
+   "t0_et": "2023-10-31T16:16:56",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2023-11-01",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:16 不早於 16:00",
+   "expected_reaction_date": "2023-11-01",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.024121435719099082",
+   "prior_day_abs_ret_recomputed": 0.024121435719099082,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6494.0",
+   "thr_p90_csv": "0.08510734953926287",
+   "recomputed_win": 252,
+   "recomputed_n": 6494,
+   "recomputed_p90": 0.08510734953926286,
+   "p90_delta": 1.3877787807814457e-17,
+   "latest_window_event_reaction": "2023-10-31",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.08618803317551849",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 5800000000.0,
+   "rev_signal_xbrl": 5800000000.0,
+   "signal_rev_in_text_csv": "真",
+   "n_line_hits": 8,
+   "line_hits": [
+    {
+     "line": 19,
+     "num": "$5.8 billion,"
+    },
+    {
+     "line": 25,
+     "num": "$5,800"
+    },
+    {
+     "line": 35,
+     "num": "$5,800"
+    },
+    {
+     "line": 38,
+     "num": "6"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0,
+   "signal_q_end": "2023-09-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "6.1",
+    "guidance_new_hi": "6.1",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "加速",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 6.1,
+     "new_hi": 6.1,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the fourth quarter of 2023, xxx expects revenue to be approximately $6.1 billion, xxxx or xxxxx $300 million."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "47",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "加速",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "加速只",
+  "acc": "0000002969-22-000044",
+  "cik": "0000002969",
+  "year": 2022,
+  "a": {
+   "headline_date": "2022-11-03",
+   "headline_line": 39,
+   "headline_masked": "xxxxxx xxxxxx, Pa. (xxxxxxxx 3, 2022) - xxx xxxxxxxx (xxxx:x",
+   "filingDate": "2022-11-03",
+   "acceptance_utc": "2022-11-03T11:59:12.000Z",
+   "t0_et": "2022-11-03T07:59:12",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2022-11-03",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:59 早於 09:30",
+   "expected_reaction_date": "2022-11-03",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.027566236322052684",
+   "prior_day_abs_ret_recomputed": 0.027566236322052684,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6506.0",
+   "thr_p90_csv": "0.07737668796987579",
+   "recomputed_win": 252,
+   "recomputed_n": 6506,
+   "recomputed_p90": 0.07737668796987575,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2022-11-02",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.08718247236318011",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 3570000000.0,
+   "rev_signal_xbrl": 3570000000.0,
+   "signal_rev_in_text_csv": "真",
+   "n_line_hits": 12,
+   "line_hits": [
+    {
+     "line": 16,
+     "num": "$4"
+    },
+    {
+     "line": 40,
+     "num": "$4"
+    },
+    {
+     "line": 45,
+     "num": "$3.6 billion"
+    },
+    {
+     "line": 81,
+     "num": "$3,570.0"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0,
+   "signal_q_end": "2022-09-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 6,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "",
+    "guidance_period": "",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "",
+    "guidance_new_hi": "",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "",
+    "guidance_old_missing": "",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "6",
+    "improvement_type": "加速",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 11.2,
+     "new_hi": 11.5,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "• Fiscal 2023 full-year adjusted EPS guidance* of $11.20 to $11.50, up xxxx to 12 percent over prior year adjusted EPS* xxxxxxxxxx on the xxxx xxxxx; fiscal 2023 first quarter adjusted EPS guidance* of $2.60 to $2.80, up xxxx to 13 percent over prior year first quarter adjusted EPS* xxxxxxxxxx on th"
+    },
+    {
+     "metric": "cash_flow",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 5.0,
+     "new_hi": 5.5,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "• Expect fiscal year 2023 xxxxxxx xxxxxxxxxxxx* of $5.0 - $5.5 billion"
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 11.2,
+     "new_hi": 11.5,
+     "old_lo": 263.0,
+     "old_hi": 263.0,
+     "old_missing": false,
+     "sentence": "xxx xxxxxxxx expects full-year fiscal 2023 adjusted EPS guidance of $11.20 to $11.50, up xxxx to 12 percent over prior year adjusted EPS."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 2.6,
+     "new_hi": 2.8,
+     "old_lo": 263.0,
+     "old_hi": 263.0,
+     "old_missing": false,
+     "sentence": "For the fiscal 2023 first quarter, xxx xxxxxxxx' adjusted EPS guidance is $2.60 to $2.80, up xxxx to 13 percent over fiscal 2022 first quarter adjusted EPS."
+    }
+   ]
+  },
+  "e": {
+   "sic": "2810",
+   "sic2": "28",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "58",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "加速",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "加速只",
+  "acc": "0000002969-24-000041",
+  "cik": "0000002969",
+  "year": 2024,
+  "a": {
+   "headline_date": "2024-08-01",
+   "headline_line": 36,
+   "headline_masked": "xxxxxx xxxxxx, Pa. (xxxxxx 1, 2024) - xxx xxxxxxxx (xxxx:xxx",
+   "filingDate": "2024-08-01",
+   "acceptance_utc": "2024-08-01T11:58:09.000Z",
+   "t0_et": "2024-08-01T07:58:09",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2024-08-01",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:58 早於 09:30",
+   "expected_reaction_date": "2024-08-01",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.0014381262713630827",
+   "prior_day_abs_ret_recomputed": 0.0014381262713630827,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6783.0",
+   "thr_p90_csv": "0.09054553097479023",
+   "recomputed_win": 252,
+   "recomputed_n": 6783,
+   "recomputed_p90": 0.09054553097479019,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2024-07-31",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.10368153500409072",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 3000000000.0,
+   "rev_signal_xbrl": 2985500000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 29,
+   "line_hits": [
+    {
+     "line": 13,
+     "num": "$3"
+    },
+    {
+     "line": 15,
+     "num": "$3"
+    },
+    {
+     "line": 16,
+     "num": "$3"
+    },
+    {
+     "line": 29,
+     "num": "$3"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.004856807904873639,
+   "signal_q_end": "2024-06-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 7,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "",
+    "guidance_period": "",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "",
+    "guidance_new_hi": "",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "",
+    "guidance_old_missing": "",
+    "guidance_eps_only": "True",
+    "guidance_raise_eps_only": "True",
+    "guidance_n_records": "7",
+    "improvement_type": "加速",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 12.2,
+     "new_hi": 12.5,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "• xxxxxxxxx previous fiscal 2024 full-year adjusted EPS guidance* of $12.20 to $12.50, up xxx to xxxx percent over prior year adjusted EPS*; fiscal 2024 fourth quarter adjusted EPS guidance* of $3.33 to $3.63"
+    },
+    {
+     "metric": "cash_flow",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 5.0,
+     "new_hi": 5.5,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "• xxxxxxxx to expect fiscal year 2024 xxxxxxx xxxxxxxxxxxx* in the range of $5.0 billion to $5.5 billion"
+    },
+    {
+     "metric": "eps",
+     "period": "next_quarter",
+     "raise_flag": true,
+     "new_lo": 3.2,
+     "new_hi": 3.2,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "xxxxxxxxxx on the results, xxx xxxxxxxx' xxxxxxxx, xxxxxxxxx and xxxxx xxxxxxxxx xxxxxxx xxxxx xxxxxxx xxxx, \"Our third quarter adjusted EPS of $3.20 xxxxxxxx our previous guidance and increased xxxxx percent over the prior year, xxxxxx by xxxxxxxx and xxxxxx operating xxxxxxxxxxx as xxxx as xxxxxxx"
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 12.2,
+     "new_hi": 12.5,
+     "old_lo": 89.0,
+     "old_hi": 89.0,
+     "old_missing": false,
+     "sentence": "xxx xxxxxxxx xxxxxxxx its previous fiscal 2024 full-year adjusted EPS guidance* of $12.20 to $12.50, up xxx to xxxx percent over prior year adjusted EPS."
+    }
+   ]
+  },
+  "e": {
+   "sic": "2810",
+   "sic2": "28",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "65",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "加速",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "指引只",
+  "acc": "0000006201-22-000064",
+  "cik": "0000006201",
+  "year": 2022,
+  "a": {
+   "headline_date": "2022-07-12",
+   "headline_line": 9,
+   "headline_masked": "xxxx 12, 2022",
+   "filingDate": "2022-07-12",
+   "acceptance_utc": "2022-07-12T11:30:31.000Z",
+   "t0_et": "2022-07-12T07:30:31",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2022-07-12",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:30 早於 09:30",
+   "expected_reaction_date": "2022-07-12",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.03865425565721026",
+   "prior_day_abs_ret_recomputed": 0.03865425565721026,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6321.0",
+   "thr_p90_csv": "0.07334124458254421",
+   "recomputed_win": 252,
+   "recomputed_n": 6321,
+   "recomputed_p90": 0.0733412445825442,
+   "p90_delta": 1.3877787807814457e-17,
+   "latest_window_event_reaction": "2022-07-11",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.10862576124775203",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 13395000000.0,
+   "rev_signal_xbrl": 13422000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 2,
+   "line_hits": [
+    {
+     "line": 34,
+     "num": "13"
+    },
+    {
+     "line": 58,
+     "num": "$13,395"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.00201162270898525,
+   "signal_q_end": "2022-06-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "22.0",
+    "guidance_old_hi": "22.0",
+    "guidance_new_lo": "22.5",
+    "guidance_new_hi": "22.5",
+    "guidance_mid_change": "0.5",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "False",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "指引",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "next_quarter",
+     "old_lo": 22.0,
+     "old_hi": 22.0,
+     "old_mid": 22.0,
+     "new_lo": 22.5,
+     "new_hi": 22.5,
+     "new_mid": 22.5,
+     "mid_change": 0.5,
+     "raise_flag": true,
+     "old_missing": false,
+     "old_src": "同句",
+     "sentence": "● xxxxx : Second quarter total revenue xxx xxxxxxxxx xxxx xxxx (xxxxx) is expected to be up approximately 22.5% versus the second quarter of 2019, compared to the xxxxxxx’s previous guidance of up 20% to 22%."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": true,
+     "new_lo": 22.5,
+     "new_hi": 22.5,
+     "old_lo": 22.0,
+     "old_hi": 22.0,
+     "old_missing": false,
+     "sentence": "● xxxxx : Second quarter total revenue xxx xxxxxxxxx xxxx xxxx (xxxxx) is expected to be up approximately 22.5% versus the second quarter of 2019, compared to the xxxxxxx’s previous guidance of up 20% to 22%."
+    }
+   ]
+  },
+  "e": {
+   "sic": "4512",
+   "sic2": "45",
+   "rev_tag_used": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "n_consec_q": "38",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "指引",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "指引只",
+  "acc": "0000006845-16-000042",
+  "cik": "0000006845",
+  "year": 2016,
+  "a": {
+   "headline_date": "2016-06-22",
+   "headline_line": 18,
+   "headline_masked": "xxxxxxxxxxx, MN (xxxx 22, 2016) - xxxxxx xxxxxxxxxxx, xxx. (",
+   "filingDate": "2016-06-23",
+   "acceptance_utc": "2016-06-23T12:31:02.000Z",
+   "t0_et": "2016-06-23T08:31:02",
+   "t0_source": "稿頭",
+   "release_timing": "prior_day_after_close",
+   "reaction_date": "2016-06-23",
+   "expected_timing": "prior_day_after_close",
+   "expected_reason": "稿頭日 2016-06-22 < 申報日 2016-06-23",
+   "expected_reaction_date": "2016-06-23",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.04223436234921307",
+   "prior_day_abs_ret_recomputed": 0.04223436234921307,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "2244.0",
+   "thr_p90_csv": "0.07578133488206612",
+   "recomputed_win": 252,
+   "recomputed_n": 2244,
+   "recomputed_p90": 0.07578133488206606,
+   "p90_delta": 5.551115123125783e-17,
+   "latest_window_event_reaction": "2016-06-22",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.07926693421227737",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 247900000.0,
+   "rev_signal_xbrl": 247880000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 1,
+   "line_hits": [
+    {
+     "line": 21,
+     "num": "$247.9 million"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 8.068420203333204e-05,
+   "signal_q_end": "2016-05-28"
+  },
+  "d": {
+   "n_guidance_records_parsed": 6,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "2.7",
+    "guidance_new_hi": "2.85",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "6",
+    "improvement_type": "指引",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 2.7,
+     "new_hi": 2.85,
+     "new_mid": 2.7750000000000004,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "FY17 outlook: ~ 10% revenue growth; EPS range raised to $2.70-$2.85; xxxxxxx expected to grow for the year"
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 2.7,
+     "new_hi": 2.85,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "FY17 outlook: ~ 10% revenue growth; EPS range raised to $2.70-$2.85; xxxxxxx expected to grow for the year"
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 2.7,
+     "new_hi": 2.85,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "FY17 outlook: ~ 10% revenue growth; EPS range raised to $2.70-$2.85; xxxxxxx expected to grow for the year"
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 2.7,
+     "new_hi": 2017.0,
+     "old_lo": 2.65,
+     "old_hi": 2.8,
+     "old_missing": false,
+     "sentence": "“With our xxxxx xxxxxxxxxxx xxxxxxxxxxx in the quarter and xxxxxxxxxxxx that this xxxxx of xxxxxxxxx xxxx xxxxxxxx xxxxxxxxxx the year, we’ve increased our earnings xxx share outlook for fiscal 2017 to $2.70 to $2.85, up from $2.65 to $2.80,” he xxxx."
+    },
+    {
+     "metric": "eps",
+     "period": "next_quarter",
+     "raise_flag": true,
+     "new_lo": 2.7,
+     "new_hi": 2.85,
+     "old_lo": 2.65,
+     "old_hi": 2.8,
+     "old_missing": false,
+     "sentence": "“We’ve increased our earnings xxx share outlook for the year to $2.70 to $2.85, from $2.65 to $2.80, as a result of xxxxxxxx xxxxxxxxxxx xxxxxxxxxxx in the first quarter that we expect xxxx xxxxxxxx xxxxxxxxxx the year."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3231",
+   "sic2": "32",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "24",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "指引",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "指引只",
+  "acc": "0000067215-25-000028",
+  "cik": "0000067215",
+  "year": 2025,
+  "a": {
+   "headline_date": "2025-05-21",
+   "headline_line": 9,
+   "headline_masked": "xxx 21, 2025",
+   "filingDate": "2025-05-21",
+   "acceptance_utc": "2025-05-21T11:02:36.000Z",
+   "t0_et": "2025-05-21T07:02:36",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2025-05-21",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:02 早於 09:30",
+   "expected_reaction_date": "2025-05-21",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.007807620435785756",
+   "prior_day_abs_ret_recomputed": 0.007807620435785756,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "7315.0",
+   "thr_p90_csv": "0.09997449797680028",
+   "recomputed_win": 252,
+   "recomputed_n": 7315,
+   "recomputed_p90": 0.09997449797680022,
+   "p90_delta": 5.551115123125783e-17,
+   "latest_window_event_reaction": "2025-05-20",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.17442742373836861",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 1259000000.0,
+   "rev_signal_xbrl": 1258608000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 8,
+   "line_hits": [
+    {
+     "line": 13,
+     "num": "$1"
+    },
+    {
+     "line": 17,
+     "num": "1"
+    },
+    {
+     "line": 22,
+     "num": "$1"
+    },
+    {
+     "line": 33,
+     "num": "$1"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0003114551949454647,
+   "signal_q_end": "2025-04-26"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "5.29",
+    "guidance_old_hi": "5.425",
+    "guidance_new_lo": "114.2",
+    "guidance_new_hi": "114.2",
+    "guidance_mid_change": "108.8425",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "False",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "指引",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": 5.29,
+     "old_hi": 5.425,
+     "old_mid": 5.3575,
+     "new_lo": 114.2,
+     "new_hi": 114.2,
+     "new_mid": 114.2,
+     "mid_change": 108.8425,
+     "raise_flag": true,
+     "old_missing": false,
+     "old_src": "前句",
+     "sentence": "xxxxxxxxxxxx, fiscal 2025 xxxxxxxx $114.2 million of xxxxx xxxxxxxxxxx xxxxxxxx and we xxxx xxx xxxxxxxx xxxxx xxxxxxxxxxx revenues in the fiscal 2026 outlook."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 114.2,
+     "new_hi": 114.2,
+     "old_lo": 5.29,
+     "old_hi": 5.425,
+     "old_missing": false,
+     "sentence": "xxxxxxxxxxxx, fiscal 2025 xxxxxxxx $114.2 million of xxxxx xxxxxxxxxxx xxxxxxxx and we xxxx xxx xxxxxxxx xxxxx xxxxxxxxxxx revenues in the fiscal 2026 outlook."
+    }
+   ]
+  },
+  "e": {
+   "sic": "1623",
+   "sic2": "16",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "43",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "指引",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "指引只",
+  "acc": "0000085961-22-000163",
+  "cik": "0000085961",
+  "year": 2022,
+  "a": {
+   "headline_date": "2022-10-26",
+   "headline_line": 19,
+   "headline_masked": "xxxxx, xxxxxxx 26, 2022 – xxxxx xxxxxx, xxx. (xxxx: R), a xx",
+   "filingDate": "2022-10-26",
+   "acceptance_utc": "2022-10-26T11:57:46.000Z",
+   "t0_et": "2022-10-26T07:57:46",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2022-10-26",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:57 早於 09:30",
+   "expected_reaction_date": "2022-10-26",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.0163418985012862",
+   "prior_day_abs_ret_recomputed": 0.0163418985012862,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6454.0",
+   "thr_p90_csv": "0.07669597568517617",
+   "recomputed_win": 252,
+   "recomputed_n": 6454,
+   "recomputed_p90": 0.07669597568517608,
+   "p90_delta": 8.326672684688674e-17,
+   "latest_window_event_reaction": "2022-10-25",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.10762788288579872",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 3035000000.0,
+   "rev_signal_xbrl": 3035464000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 26,
+   "line_hits": [
+    {
+     "line": 13,
+     "num": "$3.0 billion"
+    },
+    {
+     "line": 30,
+     "num": "$3,035"
+    },
+    {
+     "line": 55,
+     "num": "$3"
+    },
+    {
+     "line": 56,
+     "num": "$3"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.00015285966165301534,
+   "signal_q_end": "2022-09-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 3,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "800.0",
+    "guidance_new_hi": "2022.0",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "3",
+    "improvement_type": "指引",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 800.0,
+     "new_hi": 2022.0,
+     "new_mid": 1411.0,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "We xxxx increased our most xxxxxx free cash flow xxxxxxxx for full year 2022 to $800 - $900 million xxx to higher xxxxxxxx from xxxx xxxxxxx sales."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 800.0,
+     "new_hi": 2022.0,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "We xxxx increased our most xxxxxx free cash flow xxxxxxxx for full year 2022 to $800 - $900 million xxx to higher xxxxxxxx from xxxx xxxxxxx sales."
+    },
+    {
+     "metric": "cash_flow",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 800.0,
+     "new_hi": 2022.0,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "We xxxx increased our most xxxxxx free cash flow xxxxxxxx for full year 2022 to $800 - $900 million xxx to higher xxxxxxxx from xxxx xxxxxxx sales."
+    },
+    {
+     "metric": "cash_flow",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 50.0,
+     "new_hi": 800.0,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "Full-year 2022 free cash flow xxxxxxxx increased by $50 million to $800 million - $900 million."
+    }
+   ]
+  },
+  "e": {
+   "sic": "7510",
+   "sic2": "75",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "54",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "指引",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "指引只",
+  "acc": "0000096943-17-000099",
+  "cik": "0000096943",
+  "year": 2017,
+  "a": {
+   "headline_date": "2017-08-03",
+   "headline_line": 11,
+   "headline_masked": "FOR xxxxxxxxx xxxxxxx xxxxxx 3, 2017",
+   "filingDate": "2017-08-03",
+   "acceptance_utc": "2017-08-03T10:52:33.000Z",
+   "t0_et": "2017-08-03T06:52:33",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2017-08-03",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 06:52 早於 09:30",
+   "expected_reaction_date": "2017-08-03",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.006897596755529478",
+   "prior_day_abs_ret_recomputed": 0.006897596755529478,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "2853.0",
+   "thr_p90_csv": "0.06507249548674839",
+   "recomputed_win": 252,
+   "recomputed_n": 2853,
+   "recomputed_p90": 0.06507249548674836,
+   "p90_delta": 2.7755575615628914e-17,
+   "latest_window_event_reaction": "2017-08-02",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.07026212079509908",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 528600000.0,
+   "rev_signal_xbrl": 528613000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 8,
+   "line_hits": [
+    {
+     "line": 13,
+     "num": "$528.6 million,"
+    },
+    {
+     "line": 14,
+     "num": "$1"
+    },
+    {
+     "line": 21,
+     "num": "$528.6 million,"
+    },
+    {
+     "line": 22,
+     "num": "$1"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 2.459266041510144e-05,
+   "signal_q_end": "2017-07-02"
+  },
+  "d": {
+   "n_guidance_records_parsed": 3,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "10.0",
+    "guidance_new_hi": "10.0",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "3",
+    "improvement_type": "指引",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 10.0,
+     "new_hi": 10.0,
+     "new_mid": 10.0,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "The xxxxxxx raised its full year 2017 GAAP revenue growth guidance range from 10.0% to 11.5% to a range of 11.5% to 13.0% over the prior year."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 10.0,
+     "new_hi": 10.0,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "The xxxxxxx raised its full year 2017 GAAP revenue growth guidance range from 10.0% to 11.5% to a range of 11.5% to 13.0% over the prior year."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 5.59,
+     "new_hi": 5.66,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "The xxxxxxx raised its full year 2017 GAAP diluted earnings xxx share from xxxxxxxxxx xxxxxxxxxx guidance from a range of $5.59 to $5.66 to a range of $5.91 to $5.98."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 8.05,
+     "new_hi": 8.23,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "The xxxxxxx raised its full year 2017 adjusted diluted earnings xxx share from xxxxxxxxxx xxxxxxxxxx guidance from a range of $8.05 to $8.23 to a guidance range of $8.20 to $8.35."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3841",
+   "sic2": "38",
+   "rev_tag_used": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "n_consec_q": "16",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "指引",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "兩者",
+  "acc": "0000027419-19-000009",
+  "cik": "0000027419",
+  "year": 2019,
+  "a": {
+   "headline_date": "2019-05-22",
+   "headline_line": 36,
+   "headline_masked": "xxxxxxxxxxx (xxx 22, 2019) - xxxxxx xxxxxxxxxxx (xxxx: xxx) ",
+   "filingDate": "2019-05-22",
+   "acceptance_utc": "2019-05-22T10:49:21.000Z",
+   "t0_et": "2019-05-22T06:49:21",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2019-05-22",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 06:49 早於 09:30",
+   "expected_reaction_date": "2019-05-22",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.0016648164757258055",
+   "prior_day_abs_ret_recomputed": 0.0016648164757258055,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "4317.0",
+   "thr_p90_csv": "0.07583018303677608",
+   "recomputed_win": 252,
+   "recomputed_n": 4317,
+   "recomputed_p90": 0.07583018303677604,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2019-05-21",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.0808928977045058",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 17600000000.0,
+   "rev_signal_xbrl": 17627000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 1,
+   "line_hits": [
+    {
+     "line": 46,
+     "num": "$17.6 billion"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0015317410790265384,
+   "signal_q_end": "2019-05-04"
+  },
+  "d": {
+   "n_guidance_records_parsed": 7,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "5.75",
+    "guidance_new_hi": "6.05",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "7",
+    "improvement_type": "兩者",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 5.75,
+     "new_hi": 6.05,
+     "new_mid": 5.9,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "For the fiscal year, xxxxxx xxxxxxxxx to expect a xxx- to xxx-xxxxxx xxxxx increase in xxxxxxxxxx sales and xxxx GAAP EPS and Adjusted EPS of $5.75 to $6.05."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "eps",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 1.52,
+     "new_hi": 1.72,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "The xxxxxxxx of xxxxxx’s second quarter EPS guidance of $1.52 to $1.72 xxxxxxxxxx xxxx xxxxxx xxxxx growth compared with prior year GAAP EPS from xxxxxxxxxx xxxxxxxxxx and xxxxxx-xxxxx growth compared with prior year Adjusted EPS."
+    },
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 5.75,
+     "new_hi": 6.05,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the fiscal year, xxxxxx xxxxxxxxx to expect a xxx- to xxx-xxxxxx xxxxx increase in xxxxxxxxxx sales and xxxx GAAP EPS and Adjusted EPS of $5.75 to $6.05."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 5.75,
+     "new_hi": 6.05,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the fiscal year, xxxxxx xxxxxxxxx to expect a xxx- to xxx-xxxxxx xxxxx increase in xxxxxxxxxx sales and xxxx GAAP EPS and Adjusted EPS of $5.75 to $6.05."
+    },
+    {
+     "metric": "eps",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 1.52,
+     "new_hi": 1.72,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "xxxxxx expects second quarter xxxxxxxxxx sales growth in the xxx- to xxx-xxxxxx xxxxx range, xxx-xxxxxx xxxxx growth in operating income xxxxxxx and xxxx GAAP EPS from xxxxxxxxxx xxxxxxxxxx and Adjusted EPS of $1.52 to $1.72."
+    }
+   ]
+  },
+  "e": {
+   "sic": "5331",
+   "sic2": "53",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "44",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "兩者",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "兩者",
+  "acc": "0000027419-24-000142",
+  "cik": "0000027419",
+  "year": 2024,
+  "a": {
+   "headline_date": "2024-08-21",
+   "headline_line": 20,
+   "headline_masked": "xxxxxxxxxxx (xxxxxx 21, 2024) – xxxxxx xxxxxxxxxxx (xxxx: xx",
+   "filingDate": "2024-08-21",
+   "acceptance_utc": "2024-08-21T11:30:22.000Z",
+   "t0_et": "2024-08-21T07:30:22",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2024-08-21",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:30 早於 09:30",
+   "expected_reaction_date": "2024-08-21",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.0020745324172835033",
+   "prior_day_abs_ret_recomputed": 0.0020745324172835033,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6783.0",
+   "thr_p90_csv": "0.09325835391923487",
+   "recomputed_win": 252,
+   "recomputed_n": 6783,
+   "recomputed_p90": 0.09325835391923487,
+   "p90_delta": 0.0,
+   "latest_window_event_reaction": "2024-08-20",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.10856694782020071",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 25500000000.0,
+   "rev_signal_xbrl": 25452000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 2,
+   "line_hits": [
+    {
+     "line": 30,
+     "num": "$25.5 billion"
+    },
+    {
+     "line": 232,
+     "num": "26"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.001885902876001877,
+   "signal_q_end": "2024-08-03"
+  },
+  "d": {
+   "n_guidance_records_parsed": 3,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "2.1",
+    "guidance_new_hi": "2.4",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "3",
+    "improvement_type": "兩者",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "next_quarter",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 2.1,
+     "new_hi": 2.4,
+     "new_mid": 2.25,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "For the third quarter, the xxxxxxx expects a 0 to 2 percent increase in its xxxxxxxxxx sales, and GAAP and Adjusted EPS of $2.10 to $2.40."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": true,
+     "new_lo": 2.1,
+     "new_hi": 2.4,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the third quarter, the xxxxxxx expects a 0 to 2 percent increase in its xxxxxxxxxx sales, and GAAP and Adjusted EPS of $2.10 to $2.40."
+    },
+    {
+     "metric": "eps",
+     "period": "next_quarter",
+     "raise_flag": true,
+     "new_lo": 2.1,
+     "new_hi": 2.4,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the third quarter, the xxxxxxx expects a 0 to 2 percent increase in its xxxxxxxxxx sales, and GAAP and Adjusted EPS of $2.10 to $2.40."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 9.0,
+     "new_hi": 9.7,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "xxxxxxx, xxxxx on xxxxxx xxxxxx xxxxxxxxxxx in the xxxxx half of the year, the xxxxxxx xxx expects full-year GAAP and Adjusted EPS of $9.00 to $9.70, up from the prior range of $8.60 to $9.60."
+    }
+   ]
+  },
+  "e": {
+   "sic": "5331",
+   "sic2": "53",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "65",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "兩者",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "兩者",
+  "acc": "0000033185-21-000030",
+  "cik": "0000033185",
+  "year": 2021,
+  "a": {
+   "headline_date": "2021-04-21",
+   "headline_line": 15,
+   "headline_masked": "xxxxxxx, xxxxx 21, 2021 -- xxxxxxx xxx. (xxxx: xxx) xxxxx an",
+   "filingDate": "2021-04-21",
+   "acceptance_utc": "2021-04-21T20:39:48.000Z",
+   "t0_et": "2021-04-21T16:39:48",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2021-04-22",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:39 不早於 16:00",
+   "expected_reaction_date": "2021-04-22",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.002237428456604018",
+   "prior_day_abs_ret_recomputed": 0.002237428456604018,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "5642.0",
+   "thr_p90_csv": "0.0705959002078318",
+   "recomputed_win": 252,
+   "recomputed_n": 5642,
+   "recomputed_p90": 0.07059590020783175,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2021-04-21",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.15853854666206613",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 1213000000.0,
+   "rev_signal_xbrl": 1213000000.0,
+   "signal_rev_in_text_csv": "真",
+   "n_line_hits": 29,
+   "line_hits": [
+    {
+     "line": 16,
+     "num": "$1.2 billion,"
+    },
+    {
+     "line": 25,
+     "num": "$1,213.0 million"
+    },
+    {
+     "line": 27,
+     "num": "$1"
+    },
+    {
+     "line": 42,
+     "num": "1"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0,
+   "signal_q_end": "2021-03-31"
+  },
+  "d": {
+   "n_guidance_records_parsed": 2,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "4575.0",
+    "guidance_new_hi": "4675.0",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "2",
+    "improvement_type": "兩者",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 4575.0,
+     "new_hi": 4675.0,
+     "new_mid": 4625.0,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "We are xxxxxxxxx in our outlook for 2021, and are raising our full-year revenue guidance to a range of $4,575 million to $4,675 million, and our Adjusted EPS guidance to a range of $6.75 to $7.05.”"
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 4575.0,
+     "new_hi": 4675.0,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "We are xxxxxxxxx in our outlook for 2021, and are raising our full-year revenue guidance to a range of $4,575 million to $4,675 million, and our Adjusted EPS guidance to a range of $6.75 to $7.05.”"
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 6.75,
+     "new_hi": 7.05,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "We are xxxxxxxxx in our outlook for 2021, and are raising our full-year revenue guidance to a range of $4,575 million to $4,675 million, and our Adjusted EPS guidance to a range of $6.75 to $7.05.”"
+    }
+   ]
+  },
+  "e": {
+   "sic": "7320",
+   "sic2": "73",
+   "rev_tag_used": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "n_consec_q": "17",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "兩者",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "兩者",
+  "acc": "0000096943-23-000099",
+  "cik": "0000096943",
+  "year": 2023,
+  "a": {
+   "headline_date": "2023-11-02",
+   "headline_line": 8,
+   "headline_masked": "FOR xxxxxxxxx xxxxxxx xxxxxxxx 2, 2023",
+   "filingDate": "2023-11-02",
+   "acceptance_utc": "2023-11-02T11:00:59.000Z",
+   "t0_et": "2023-11-02T07:00:59",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2023-11-02",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:00 早於 09:30",
+   "expected_reaction_date": "2023-11-02",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.014939086250047806",
+   "prior_day_abs_ret_recomputed": 0.014939086250047806,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6565.0",
+   "thr_p90_csv": "0.08516336013376848",
+   "recomputed_win": 252,
+   "recomputed_n": 6565,
+   "recomputed_p90": 0.08516336013376843,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2023-11-01",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.09645613113841844",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 746400000.0,
+   "rev_signal_xbrl": 746389000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 11,
+   "line_hits": [
+    {
+     "line": 12,
+     "num": "$746.4 million,"
+    },
+    {
+     "line": 29,
+     "num": "$746.4"
+    },
+    {
+     "line": 32,
+     "num": "$1"
+    },
+    {
+     "line": 41,
+     "num": "1"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 1.4737623410754352e-05,
+   "signal_q_end": "2023-10-01"
+  },
+  "d": {
+   "n_guidance_records_parsed": 3,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "6.4",
+    "guidance_new_hi": "6.4",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "3",
+    "improvement_type": "兩者",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 6.4,
+     "new_hi": 6.4,
+     "new_mid": 6.4,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "On a xxxxxxxx xxxxxxxx xxxxx, the xxxxxxx increased its full year 2023 revenue growth outlook of 6.40% to 6.60% year-over-year."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 6.25,
+     "new_hi": 6.25,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "The xxxxxxx xxxxxxxx its full year 2023 GAAP revenue growth outlook to 6.25% to 6.45% , xxxxxxxxxx our xxxxxxxx of an approximately 0.15% xxxxxxxx xxxxxx of xxxxxxx xxxxxxxx xxxx xxxxxxxxxxxx."
+    },
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 6.4,
+     "new_hi": 6.4,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "On a xxxxxxxx xxxxxxxx xxxxx, the xxxxxxx increased its full year 2023 revenue growth outlook of 6.40% to 6.60% year-over-year."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 7.95,
+     "new_hi": 8.15,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "The xxx xxxx raised it s full year 2023 GAAP diluted earnings xxx share from xxxxxxxxxx xxxxxxxxxx guidance to $7.95 to $8.15."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3841",
+   "sic2": "38",
+   "rev_tag_used": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "n_consec_q": "41",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "兩者",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "兩者",
+  "acc": "0000105770-24-000075",
+  "cik": "0000105770",
+  "year": 2024,
+  "a": {
+   "headline_date": "2024-10-24",
+   "headline_line": 10,
+   "headline_masked": "xxxxx, PA, xxxxxxx 24, 2024 – xxxx xxxxxxxxxxxxxx xxxxxxxx, ",
+   "filingDate": "2024-10-24",
+   "acceptance_utc": "2024-10-24T11:50:26.000Z",
+   "t0_et": "2024-10-24T07:50:26",
+   "t0_source": "稿頭",
+   "release_timing": "pre_market",
+   "reaction_date": "2024-10-24",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:50 早於 09:30",
+   "expected_reaction_date": "2024-10-24",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.00013949213070318933",
+   "prior_day_abs_ret_recomputed": 0.00013949213070318933,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6890.0",
+   "thr_p90_csv": "0.09364442855823847",
+   "recomputed_win": 252,
+   "recomputed_n": 6890,
+   "recomputed_p90": 0.09364442855823846,
+   "p90_delta": 1.3877787807814457e-17,
+   "latest_window_event_reaction": "2024-10-23",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.1521803843070373",
+   "pass_p90": "1"
+  },
+  "c": {
+   "rev_signal_text": 746900000.0,
+   "rev_signal_xbrl": 746900000.0,
+   "signal_rev_in_text_csv": "真",
+   "n_line_hits": 20,
+   "line_hits": [
+    {
+     "line": 12,
+     "num": "$746.9 million"
+    },
+    {
+     "line": 13,
+     "num": "$1"
+    },
+    {
+     "line": 14,
+     "num": "$1"
+    },
+    {
+     "line": 26,
+     "num": "1"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0,
+   "signal_q_end": "2024-09-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 5,
+   "csv": {
+    "guide_rev_raise": "True",
+    "guidance_metric": "revenue",
+    "guidance_period": "FY",
+    "guidance_old_lo": "2.87",
+    "guidance_old_hi": "2.9",
+    "guidance_new_lo": "2.875",
+    "guidance_new_hi": "2.905",
+    "guidance_mid_change": "0.004999999999999893",
+    "guidance_raise_flag": "True",
+    "guidance_old_missing": "False",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "5",
+    "improvement_type": "兩者",
+    "accel_text_hit": "True"
+   },
+   "parsed_revenue_raise": [
+    {
+     "period": "FY",
+     "old_lo": 2.87,
+     "old_hi": 2.9,
+     "old_mid": 2.885,
+     "new_lo": 2.875,
+     "new_hi": 2.905,
+     "new_mid": 2.8899999999999997,
+     "mid_change": 0.004999999999999893,
+     "raise_flag": true,
+     "old_missing": false,
+     "old_src": "同句",
+     "sentence": "• As a result of xxxxxxxxx xxxxxxxx xxxxxxxxx, the xxxxxxx increased its full year 2024 net sales guidance range to $2.875 billion to $2.905 billion, up from its previous guidance range of $2.870 billion to $2.900 billion."
+    },
+    {
+     "period": "FY",
+     "old_lo": null,
+     "old_hi": null,
+     "old_mid": null,
+     "new_lo": 2.875,
+     "new_hi": 2.905,
+     "new_mid": 2.8899999999999997,
+     "mid_change": null,
+     "raise_flag": true,
+     "old_missing": true,
+     "old_src": "",
+     "sentence": "• As a result of xxxxxxxxx xxxxxxxx xxxxxxxxx, the xxxxxxx increased its full year 2024 net sales guidance range to $2.875 billion to $2.905 billion, compared to a prior range of $2.870 billion to $2.900 billion."
+    }
+   ],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 2.875,
+     "new_hi": 2.905,
+     "old_lo": 2.87,
+     "old_hi": 2.9,
+     "old_missing": false,
+     "sentence": "• As a result of xxxxxxxxx xxxxxxxx xxxxxxxxx, the xxxxxxx increased its full year 2024 net sales guidance range to $2.875 billion to $2.905 billion, up from its previous guidance range of $2.870 billion to $2.900 billion."
+    },
+    {
+     "metric": "eps",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 6.55,
+     "new_hi": 6.75,
+     "old_lo": 6.35,
+     "old_hi": 6.65,
+     "old_missing": false,
+     "sentence": "• The xxxxxxx increased its full-year 2024 adjusted-diluted EPS guidance range to $6.55 to $6.75, up from its previous guidance range of $6.35 to $6.65."
+    },
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": true,
+     "new_lo": 2.875,
+     "new_hi": 2.905,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "• As a result of xxxxxxxxx xxxxxxxx xxxxxxxxx, the xxxxxxx increased its full year 2024 net sales guidance range to $2.875 billion to $2.905 billion, compared to a prior range of $2.870 billion to $2.900 billion."
+    },
+    {
+     "metric": "revenue",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 1.0,
+     "new_hi": 1.0,
+     "old_lo": 5.0,
+     "old_hi": 5.0,
+     "old_missing": false,
+     "sentence": "◦ Net sales guidance xxxxxxxx an xxxxxxxxx full-year 2024 xxxxxxxx of approximately $1.0 million xxxxx on xxxxxxx xxxxxxx xxxxxxxx xxxxxxxx xxxxx, compared to previous guidance of a xxxxxxxx of approximately $5.0 million."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3841",
+   "sic2": "38",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "62",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "1",
+   "improvement_type": "兩者",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "被剔",
+  "acc": "0000002488-18-000124",
+  "cik": "0000002488",
+  "year": 2018,
+  "a": {
+   "headline_date": "2018-07-25",
+   "headline_line": 19,
+   "headline_masked": "xxxxx xxxxx, xxxxx. - xxxx 25, 2018 - xxx (xxxxxx:xxx) xxxxx",
+   "filingDate": "2018-07-25",
+   "acceptance_utc": "2018-07-25T20:41:54.000Z",
+   "t0_et": "2018-07-25T16:41:54",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2018-07-26",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:41 不早於 16:00",
+   "expected_reaction_date": "2018-07-26",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.008647392982017554",
+   "prior_day_abs_ret_recomputed": 0.008647392982017554,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "3652.0",
+   "thr_p90_csv": "0.0706856931522197",
+   "recomputed_win": 252,
+   "recomputed_n": 3652,
+   "recomputed_p90": 0.07068569315221963,
+   "p90_delta": 6.938893903907228e-17,
+   "latest_window_event_reaction": "2018-07-25",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.1456618049981797",
+   "pass_p90": "0"
+  },
+  "c": {
+   "rev_signal_text": 1760000000.0,
+   "rev_signal_xbrl": 1756000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 4,
+   "line_hits": [
+    {
+     "line": 19,
+     "num": "$1.76 billion,"
+    },
+    {
+     "line": 27,
+     "num": "$1.76"
+    },
+    {
+     "line": 75,
+     "num": "$1.76"
+    },
+    {
+     "line": 120,
+     "num": "$1.76 billion,"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.002277904328018332,
+   "signal_q_end": "2018-06-30"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "1.7",
+    "guidance_new_hi": "1.7",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "無",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 1.7,
+     "new_hi": 1.7,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the third quarter of 2018, xxx expects revenue to be approximately $1.7 billion, xxxx or xxxxx $50 million, an increase of approximately 7 percent year-over-year, and xxx-GAAP gross margin to increase to approximately 38 percent, xxxxxx by the sales growth of xxxxx and xxxx xxxxxxxx, xxxxxxxxx o"
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "26",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "0",
+   "improvement_type": "無",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "被剔",
+  "acc": "0000002488-19-000004",
+  "cik": "0000002488",
+  "year": 2019,
+  "a": {
+   "headline_date": "2019-01-29",
+   "headline_line": 20,
+   "headline_masked": "xxxxx xxxxx, xxxxx. - xxx. 29, 2019 - xxx (xxxxxx:xxx) xxxxx",
+   "filingDate": "2019-01-29",
+   "acceptance_utc": "2019-01-29T21:19:00.000Z",
+   "t0_et": "2019-01-29T16:19:00",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2019-01-30",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:19 不早於 16:00",
+   "expected_reaction_date": "2019-01-30",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.046085247329617385",
+   "prior_day_abs_ret_recomputed": 0.046085247329617385,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "4097.0",
+   "thr_p90_csv": "0.07824393308714328",
+   "recomputed_win": 252,
+   "recomputed_n": 4097,
+   "recomputed_p90": 0.07824393308714324,
+   "p90_delta": 4.163336342344337e-17,
+   "latest_window_event_reaction": "2019-01-29",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.18364997699813612",
+   "pass_p90": "0"
+  },
+  "c": {
+   "rev_signal_text": 1420000000.0,
+   "rev_signal_xbrl": 1419000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 17,
+   "line_hits": [
+    {
+     "line": 19,
+     "num": "$1"
+    },
+    {
+     "line": 20,
+     "num": "1"
+    },
+    {
+     "line": 21,
+     "num": "$1.42 billion,"
+    },
+    {
+     "line": 46,
+     "num": "$1"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0007047216349542751,
+   "signal_q_end": "2018-12-29"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "1.25",
+    "guidance_new_hi": "1.25",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "無",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 1.25,
+     "new_hi": 1.25,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the first quarter of 2019, xxx expects revenue to be approximately $1.25 billion, xxxx or xxxxx $50 million, a xxxxxxxx of approximately 12 percent xxxxxxxxxxxx and 24 percent year-over-year."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "28",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "1",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "1.01,2.02,7.01,9.01",
+   "merger_words": "False",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "0",
+   "improvement_type": "無",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "被剔",
+  "acc": "0000002488-20-000101",
+  "cik": "0000002488",
+  "year": 2020,
+  "a": {
+   "headline_date": "2020-07-28",
+   "headline_line": 20,
+   "headline_masked": "xxxxx xxxxx, xxxxx. - xxxx 28, 2020 - xxx (xxxxxx:xxx) xxxxx",
+   "filingDate": "2020-07-28",
+   "acceptance_utc": "2020-07-28T20:20:25.000Z",
+   "t0_et": "2020-07-28T16:20:25",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2020-07-29",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:20 不早於 16:00",
+   "expected_reaction_date": "2020-07-29",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.019718726783831353",
+   "prior_day_abs_ret_recomputed": 0.019718726783831353,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "4872.0",
+   "thr_p90_csv": "0.07864722529775928",
+   "recomputed_win": 252,
+   "recomputed_n": 4872,
+   "recomputed_p90": 0.07864722529775921,
+   "p90_delta": 6.938893903907228e-17,
+   "latest_window_event_reaction": "2020-07-28",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.1131264085441217",
+   "pass_p90": "0"
+  },
+  "c": {
+   "rev_signal_text": 1930000000.0,
+   "rev_signal_xbrl": 1932000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 10,
+   "line_hits": [
+    {
+     "line": 20,
+     "num": "$1.93 billion,"
+    },
+    {
+     "line": 23,
+     "num": "$1.93"
+    },
+    {
+     "line": 31,
+     "num": "$1.93"
+    },
+    {
+     "line": 40,
+     "num": "$1.93 billion,"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0010351966873706209,
+   "signal_q_end": "2020-06-27"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "2.55",
+    "guidance_new_hi": "2.55",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "無",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 2.55,
+     "new_hi": 2.55,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the third quarter of 2020, xxx expects revenue to be approximately $2.55 billion, xxxx or xxxxx $100 million, an increase of approximately 42 percent year-over-year and 32 percent xxxxxxxxxxxx."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "34",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "0",
+   "improvement_type": "無",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "被剔",
+  "acc": "0000002488-23-000007",
+  "cik": "0000002488",
+  "year": 2023,
+  "a": {
+   "headline_date": "2023-01-31",
+   "headline_line": 20,
+   "headline_masked": "xxxxx xxxxx, xxxxx. ― xxx. 31, 2023 ― xxx (xxxxxx:xxx) xxxxx",
+   "filingDate": "2023-01-31",
+   "acceptance_utc": "2023-01-31T21:55:24.000Z",
+   "t0_et": "2023-01-31T16:55:24",
+   "t0_source": "稿頭",
+   "release_timing": "after_close",
+   "reaction_date": "2023-02-01",
+   "expected_timing": "after_close",
+   "expected_reason": "受理 16:55 不早於 16:00",
+   "expected_reaction_date": "2023-02-01",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.037267145498509624",
+   "prior_day_abs_ret_recomputed": 0.037267145498509624,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6504.0",
+   "thr_p90_csv": "0.07820822576975334",
+   "recomputed_win": 252,
+   "recomputed_n": 6504,
+   "recomputed_p90": 0.07820822576975325,
+   "p90_delta": 8.326672684688674e-17,
+   "latest_window_event_reaction": "2023-01-31",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.11565285324955243",
+   "pass_p90": "0"
+  },
+  "c": {
+   "rev_signal_text": 5600000000.0,
+   "rev_signal_xbrl": 5599000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 13,
+   "line_hits": [
+    {
+     "line": 20,
+     "num": "$5.6 billion,"
+    },
+    {
+     "line": 21,
+     "num": "$6"
+    },
+    {
+     "line": 49,
+     "num": "$6"
+    },
+    {
+     "line": 50,
+     "num": "$6"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.0001786033220216865,
+   "signal_q_end": "2022-12-31"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "revenue",
+    "guidance_period": "next_quarter",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "5.3",
+    "guidance_new_hi": "5.3",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "False",
+    "guidance_old_missing": "True",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "無",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "revenue",
+     "period": "next_quarter",
+     "raise_flag": false,
+     "new_lo": 5.3,
+     "new_hi": 5.3,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "For the first quarter of 2023, xxx expects revenue to be approximately $5.3 billion, xxxx or xxxxx $300 million, a xxxxxxxx of approximately 10% year-over-year."
+    }
+   ]
+  },
+  "e": {
+   "sic": "3674",
+   "sic2": "36",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "44",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "0",
+   "improvement_type": "無",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ },
+ {
+  "group": "被剔",
+  "acc": "0000003570-23-000043",
+  "cik": "0000003570",
+  "year": 2023,
+  "a": {
+   "headline_date": null,
+   "headline_line": null,
+   "headline_masked": "",
+   "filingDate": "2023-02-23",
+   "acceptance_utc": "2023-02-23T12:32:18.000Z",
+   "t0_et": "2023-02-23T07:32:18",
+   "t0_source": "8-K",
+   "release_timing": "pre_market_8k",
+   "reaction_date": "2023-02-23",
+   "expected_timing": "pre_market",
+   "expected_reason": "受理 07:32 早於 09:30",
+   "expected_reaction_date": "2023-02-23",
+   "timing_match": true,
+   "reaction_match": true,
+   "prior_day_abs_ret_csv": "0.02766204774600567",
+   "prior_day_abs_ret_recomputed": 0.02766204774600567,
+   "prior_day_abs_delta": 0.0
+  },
+  "b": {
+   "thr_win_days_csv": "252.0",
+   "thr_n_csv": "6544.0",
+   "thr_p90_csv": "0.08056225838389641",
+   "recomputed_win": 252,
+   "recomputed_n": 6544,
+   "recomputed_p90": 0.08056225838389638,
+   "p90_delta": 2.7755575615628914e-17,
+   "latest_window_event_reaction": "2023-02-22",
+   "latest_before_own": true,
+   "insufficient": false,
+   "rel_spy": "0.0890942050843253",
+   "pass_p90": "0"
+  },
+  "c": {
+   "rev_signal_text": 9100000000.0,
+   "rev_signal_xbrl": 9085000000.0,
+   "signal_rev_in_text_csv": "容差內差值",
+   "n_line_hits": 7,
+   "line_hits": [
+    {
+     "line": 27,
+     "num": "$9.1 billion"
+    },
+    {
+     "line": 29,
+     "num": "9"
+    },
+    {
+     "line": 45,
+     "num": "$9"
+    },
+    {
+     "line": 62,
+     "num": "$9"
+    }
+   ],
+   "rel_diff_text_vs_xbrl": 0.001651073197578512,
+   "signal_q_end": "2022-12-31"
+  },
+  "d": {
+   "n_guidance_records_parsed": 1,
+   "csv": {
+    "guide_rev_raise": "False",
+    "guidance_metric": "",
+    "guidance_period": "",
+    "guidance_old_lo": "",
+    "guidance_old_hi": "",
+    "guidance_new_lo": "",
+    "guidance_new_hi": "",
+    "guidance_mid_change": "",
+    "guidance_raise_flag": "",
+    "guidance_old_missing": "",
+    "guidance_eps_only": "False",
+    "guidance_raise_eps_only": "False",
+    "guidance_n_records": "1",
+    "improvement_type": "無",
+    "accel_text_hit": "False"
+   },
+   "parsed_revenue_raise": [],
+   "parsed_any": [
+    {
+     "metric": "cash_flow",
+     "period": "FY",
+     "raise_flag": false,
+     "new_lo": 8.0,
+     "new_hi": 8.5,
+     "old_lo": null,
+     "old_hi": null,
+     "old_missing": true,
+     "sentence": "• xxxxxxxxxxx full year 2023 xxxxxxxxxxxx Adjusted xxxxxx 2 guidance of $8.0 - $8.5 billion and full year 2023 xxxxxxxxxxxxx Cash Flow 2 guidance of $5.5 - $6.0 billion."
+    }
+   ]
+  },
+  "e": {
+   "sic": "4924",
+   "sic2": "49",
+   "rev_tag_used": "Revenues",
+   "n_consec_q": "51",
+   "applicability_reason": "",
+   "excl_financial_sic": "0",
+   "excl_applicability": "0",
+   "excl_merger_2_01": "0",
+   "excl_merger_1_01": "0",
+   "excl_merger_1_01_old": "0",
+   "excl_spac": "0",
+   "excl_listed_lt_12m": "0",
+   "excl_volume": "0",
+   "items_same_day": "",
+   "merger_words": "",
+   "merger_text_pending": "0",
+   "exclusion_reason": "持續經營疑慮(未核)",
+   "in_universe": "1",
+   "entry_pool": "0",
+   "improvement_type": "無",
+   "excl_no_text": "0",
+   "excl_intraday": "0",
+   "excl_earlier_release": "0",
+   "excl_hist_not_public": "0"
+  }
+ }
+]
