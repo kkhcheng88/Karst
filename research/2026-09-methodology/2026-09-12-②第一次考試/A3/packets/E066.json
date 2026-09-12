@@ -1,6 +1,7 @@
 {
  "event_id": "E066",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E066",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "BMI",
  "cik": "0000009092",
  "name": "BADGER METER INC",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2023-04-20(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E066",
   "event_id": "E066",
   "ticker": "BMI",
   "cik": "0000009092",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001157523-23-000585",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/9092/000115752323000585/a53384119.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/9092/000115752323000585/a53384119.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a53384119ex99_1.htm\n EXHIBIT 99.1\n Exhibit 99.1 \n Badger Meter Reports Record First Quarter 2023 Financial Results \n MILWAUKEE--(BUSINESS WIRE)--April 20, 2023--Badger Meter, Inc. (NYSE: BMI) today reported record results for the first quarter ended March 31, 2023. \n First Quarter 2023 Highlights \n Total sales of $159.1 million, 20% higher than the prior year’s $132.4 million. \n Operating profit increased 33% year-over-year, with operating profit margins expanding 150 basis points to 15.7% from 14.2%. \n Diluted earnings per share (EPS) increased 35% to $0.66, up from $0.49 in the comparable prior year quarter. \n Completed the acquisition of Syrinix, Ltd. (“Syrinix”) \n Robust demand environment continued with strong orders; record backlog despite the all-time high sales performance in the quarter. \n “Badger Meter delivered record financial results in the first quarter reflecting our ongoing success in capitalizing on the strength of our end markets and the sequentially improving operating environment. We generated an all-time high\n quarterly revenue total in the first quarter, delivering 20% sales growth reflective of favorable industry fundamentals, healthy demand for our innovative smart water solutions, and outstanding execution on the part of our employees and supply\n base which led to higher production output. This, in turn, led to operating profit margin improvement which also benefited from structural mix improvement, value-based pricing, stabilization of inflationary pressures and selling, engineering\n and administration (SEA) leverage. We completed the acquisition of Syrinix at the beginning of the year for $18 million, extending our differentiated smart water offerings with pressure monitoring and leak detection capabilities,” said Kenneth\n C. Bockhorst, Chairman, President and Chief Executive Officer. “I am extremely pleased with our start to the year and want to thank our global employees for their continued tremendous efforts in serving customers.” \n First Quarter Operating Results \n Utility water sales increased 20% year-over-year with continued robust adoption of our cellular AMI solution, including higher ORION ® Cellular endpoint and BEACON ® Software as a Service (SaaS) revenues coupled with\n increased water meter volumes including E-Series ® Ultrasonic meters. Improved component availability, price realization and the addition of Syrinix also contributed to the year-over-year sales increase. Backlog expanded further\n despite the strong sales result. \n Sales of flow instrumentation products increased 22% year-over-year, with strong order demand across the water-focused end markets and improving supply chain dynamics which aided manufacturing output. \n Gross margin dollars increased $12.1 million year-over-year, and gross margin as a percent of sales improved 120 basis points to 39.5%, at the higher end of the Company’s normalized range. The improvement was due to the combined benefits of\n positive sales mix including higher SaaS revenues, production efficiencies, value-based pricing and the sequential stabilization of inflationary pressures. \n SEA expenses in the first quarter of 2023 were $37.8 million, $5.9 million higher than the comparable prior year quarter. As a percent of sales, SEA improved by 40 basis points to 23.7% versus 24.1% in the comparable prior year quarter. The\n increase in SEA dollars year-over-year was due to higher personnel-related costs including increased headcount, salaries, sales and management incentives and travel expenses and the addition of Syrinix, including the associated intangible asset\n amortization. \n Operating profit margin was 15.7% in the first quarter of 2023, a 150 basis point improvement from the prior year’s 14.2%. \n The tax rate for the first quarter of 2023 was 24.3%, modestly above the prior year’s 23.7%. As a result, EPS was a record $0.66, up 35% compared to $0.49 in the comparable prior year period. \n Strategic Review and Outlook \n Bockhorst continued, “As our first quarter demonstrates, we have started 2023 with positive momentum. We have confidence in the resiliency of our end markets, flexible business model and proven execution playbook to deliver on our strategy\n for superior through-cycle shareholder value creation. Our expanding portfolio of end-to-end smart water offerings brings tailorable and proactive intelligence for optimal water management to our customers and our stellar balance sheet supports\n our capital allocation priorities including value-added, disciplined acquisitions. \n Demand trends in our markets remain healthy and we have experienced positive order trends, stable bid funnel and record backlogs supportive of continued strong financial performance. The sustained high order level is evidence that utility and\n industrial customers are willing to invest in our innovative and industry leading smart water solutions. The benefit of supply chain relief and steadying inflationary headwinds, along with solid operational execution lay the foundation for\n margin resilience for the balance of 2023. \n We are proud to be named to Barron's 2023 100 Most Sustainable Companies list. We believe this type of recognition demonstrates our longstanding philosophy that it is possible to deliver both strong financial and sustainability performance.”\n Bockhorst concluded, “Badger Meter provides differentiated smart water solutions that deliver efficiency, resiliency and sustainability to customers throughout the water eco-system. Healthy demand for these innovative and trusted offerings,\n along with our strong balance sheet, give us confidence in our long-term growth outlook as we help to preserve the world’s most precious resource.” \n Conference Call and Webcast Information \n Badger Meter management will hold a conference call to discuss the Company’s first quarter 2023 results today, Thursday April 20, 2023 at 10:00 AM Central/11:00 AM Eastern time. The webcast and related presentation can be accessed via the\n Investor section of our website. Participants can also register to take part in the call using this online registration link: \n https://www.netroadshow.com/events/login?show=9a93b9e7&confId=48968 \n The webcast will be archived on the Company’s website until its next earnings release. \n Safe Harbor Statement \n Certain statements contained in this news release, as well as other information provided from time to time by Badger Meter, Inc. (the “Company”) or its employees, may contain forward-looking statements that involve risks and uncertainties\n that could cause actual results to differ materially from those statements. The Company’s results are subject to general economic conditions, variation in demand from customers, continued market acceptance of new products, the successful\n integration of acquisitions, competitive pricing and operating efficiencies, supply chain risk, material and labor cost increases, tax reform and foreign currency risk. See the Company’s Annual Report on Form 10-K filed with the Securities and\n Exchange Commission for further information regarding risk factors, which are incorporated herein by reference. Badger Meter disclaims any obligation to publicly update or revise any forward-looking statements as a result of new information,\n future events or any other reason. \n About Badger Meter \n With more than a century of water technology innovation, Badger Meter is a global provider of industry leading water solutions encompassing flow measurement, quality and other system parameters. These offerings provide our customers with the\n data and analytics essential to optimize their operations and contribute to the sustainable use and protection of the world’s most precious resource. For more information, visit www.badgermeter.com. \n BADGER METER, INC. \n CONSOLIDATED CONDENSED STATEMENTS OF OPERATIONS \n (in thousands, except share and earnings per share data) \n Three Months Ended March 31, \n 2023 \n 2022 \n (Unaudited) \n (Unaudited) \n Net sales \n $ \n 159,101 \n $ \n 132,402 \n Cost of sales \n 96,285 \n 81,679 \n Gross margin \n 62,816 \n 50,723 \n Selling, engineering and administration \n 37,770 \n 31,861 \n Operating earnings \n 25,046 \n 18,862 \n Interest (income) expense, net \n (622 \n ) \n 13 \n Other pension and postretirement costs \n 32 \n 32 \n Earnings before income taxes \n 25,636 \n 18,817 \n Provision for income taxes \n 6,221 \n 4,457 \n Net earnings \n $ \n 19,415 \n $ \n 14,360 \n Earnings per share: \n Basic \n $ \n 0.66 \n $ \n 0.49 \n Diluted \n $ \n 0.66 \n $ \n 0.49 \n Shares used in computation of earnings per share: \n Basic \n 29,255,184 \n 29,198,888 \n Diluted \n 29,420,954 \n 29,363,326 \n BADGER METER, INC. \n CONSOLIDATED CONDENSED BALANCE SHEETS \n (in thousands) \n Assets \n March 31, \n December 31, \n 2023 \n 2022 \n (Unaudited) \n Cash and cash equivalents \n $ \n 128,361 \n $ \n 138,052 \n Receivables \n 84,246 \n 76,651 \n Inventories \n 132,344 \n 119,856 \n Other current assets \n 15,892 \n 13,273 \n Total current assets \n 360,843 \n 347,832 \n Net property, plant and equipment \n 74,525 \n 73,542 \n Intangible assets, at cost less accumulated amortization \n 59,511 \n 53,607 \n Other long-term assets \n 24,756 \n 26,805 \n Goodwill \n 113,768 \n 101,261 \n Total assets \n $ \n 633,403 \n $ \n 603,047 \n Liabilities and Shareholders' Equity \n Payables \n $ \n 79,549 \n $ \n 71,440 \n Accrued compensation and employee benefits \n 11,984 \n 20,513 \n Other current liabilities \n 24,253 \n 18,359 \n Total current liabilities \n 115,786 \n 110,312 \n Deferred income taxes \n 6,744 \n 4,648 \n Long-term employee benefits and other \n 52,836 \n 45,665 \n Shareholders' equity \n 458,037 \n 442,422 \n Total liabilities and shareholders' equity \n $ \n 633,403 \n $ \n 603,047 \n BADGER METER, INC. \n CONSOLIDATED CONDENSED STATEMENTS OF CASH FLOWS \n (in thousands) \n Three Months Ended March 31, \n 2023 \n 2022 \n (Unaudited) \n (Unaudited) \n Operating activities: \n Net earnings \n $ \n 19,415 \n $ \n 14,360 \n Adjustments to reconcile net earnings to net cash provided by operations: \n Depreciation \n 2,663 \n 2,760 \n Amortization \n 4,284 \n 4,016 \n Deferred income taxes \n (10 \n ) \n (34 \n ) \n Noncurrent employee benefits \n (37 \n ) \n (112 \n ) \n Stock-based compensation expense \n 1,006 \n 615 \n Changes in: \n Receivables \n (6,843 \n ) \n (12,509 \n ) \n Inventories \n (11,439 \n ) \n (3,763 \n ) \n Payables \n 6,959 \n 10,749 \n Prepaid expenses and other current assets \n (2,133 \n ) \n (2,904 \n ) \n Other liabilities \n 4,105 \n (3,928 \n ) \n Total adjustments \n (1,445 \n ) \n (5,110 \n ) \n Net cash provided by operations \n 17,970 \n 9,250 \n Investing activities: \n Property, plant and equipment expenditures \n (4,271 \n ) \n (1,141 \n ) \n Acquisitions, net of cash acquired \n (17,052 \n ) \n - \n Net cash used for investing activities \n (21,323 \n ) \n (1,141 \n ) \n Financing activities: \n Dividends paid \n (6,626 \n ) \n (5,869 \n ) \n Proceeds from exercise of stock options \n 58 \n - \n Net cash used for financing activities \n (6,568 \n ) \n (5,869 \n ) \n Effect of foreign exchange rates on cash \n 230 \n (195 \n ) \n (Decrease) increase in cash and cash equivalents \n (9,691 \n ) \n 2,045 \n Cash and cash equivalents - beginning of period \n 138,052 \n 87,174 \n Cash and cash equivalents - end of period \n $ \n 128,361 \n $ \n 89,219 \n Contacts\n Karen Bauer \n (414) 371-7276 \n kbauer@badgermeter.com \n",
@@ -36,7 +39,344 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000115752323000585__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001157523-23-000109",
+   "filingDate": "2023-01-27",
+   "reportDate": "2023-01-27",
+   "form": "8-K",
+   "local_gz": "000115752323000109__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "Full Year Recap and Outlook Bockhorst continued, “Badger Meter’s 2022 results provide a clear demonstration of how our ongoing strategic actions position the company to perform well throughout economic cycles, generating superior value for shareholders."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2023-04-20",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 62,
+   "has_qna": false,
+   "n_chars": 23561,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, welcome to the First Quarter 2023 Badger Meter Earnings Conference Call. [Operator Instructions] As a reminder, today's conference is being recorded. It is now my pleasure to turn the conference over to Karen Bauer, Vice President of Investor Relations, Corporate Strategy and Treasurer. Please go ahead, Ms. Bauer."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Karen Bauer",
+     "content": "Good morning, and thank you for joining the Badger Meter first quarter 2023 earnings conference call. On the call with me today are Ken Bockhorst, Chairman, President and Chief Executive Officer; and Bob Wrocklage, Chief Financial Officer. The earnings release and related slide presentation are available on our website. Quickly, I will cover the safe harbor, reminding you that any forward-looking statements made during this call are subject to various risks and uncertainties, the most important of which are outlined in our press release and SEC filings. On today's call, we will refer to certain non-GAAP financial metrics. Our earnings slides provide a reconciliation of the GAAP to non-GAAP financial metrics used. With that, I will turn the call over to Ken."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Ken Bockhorst",
+     "content": "Thanks, Karen, and thank you for joining our first quarter earnings call. The Badger Meter team started off the year continuing the exceptional performance of 2022, delivering record revenue and profit while still achieving yet another positive book-to-bill ratio. Operating profit margin improved, benefiting from both gross profit margin expansion and continuing SEA expense leverage. Early in the quarter, we completed the Syrinix acquisition, adding pressure monitoring and acoustic leak detection capabilities to our broad smart water solutions. We're pleased with the integration progress and the early discussions we're having with customers about our expanded offerings, reinforcing our views on the complementary and scalable nature of the acquisition. I'll provide an update on the macroenvironment and outlook later in the call, but for now, I'll turn the call over to Bob to go through the details of the quarter."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Bob Wrocklage",
+     "content": "Thanks, Ken, and good morning, everyone. Turning to Slide 4. Our total sales in the first quarter were $159 million, an increase of 20% compared to the $132.4 million in the same period last year, representing an all-time record sales quarter for Badger Meter. Total utility water product line sales increased 20% year-over-year, as we experienced continued strong order demand, sequentially improving supply chain dynamics and ongoing price realization. Strong orders and shipments associated with utility cellular AMI adoption, including higher ORION Cellular endpoint and BEACON Software as a Service sales continued. Additionally, we saw increased sales of meters, including E-Series Ultrasonic meters in residential and commercial applications. Finally, while the impact was relatively small, Syrinix sales were included for the full quarter. The strong demand environment resulted in another record utility water backlog exiting the quarter, even with the record top-line sales performance. Sales for the flow instrumentation product line increased an exceptional 22% year-over-year, led by solid demand in water related markets and improved component supply availability. Order trends were strong with our emphasis on water related applications outperforming general industrial end markets. Turning to margins. We are very pleased with the operating margin expansion of 150 basis points in the quarter, with both gross margin expansion and continuing SEA spend leverage contributing to the improvement. Gross profit dollars increased $12 million year-over-year, and, as a percent of sales, improved 120 basis points to 39.5%, at the higher end of our normalized range. The combination of higher volumes, favorable mix, including higher SaaS revenues, value-based pricing and some leveling off of input cost inflation drove the improvement. SEA expenses in the first quarter were $37.8 million, an increase of approximately $6 million year-over-year, due primarily to personnel related costs, including higher headcount, salaries, sales commissions and travel. The addition of Syrinix with its related intangible asset amortization also contributed to the increase. Despite the higher spend levels to support growth, SEA as a percent of sales declined 40 basis points to 23.7% from 24.1% in the comparable prior-year quarter. Note that historically the first quarter tends to be on the higher end for SEA leverage and we would expect modestly improved sequential leverage in the remainder of the year. With higher interest rates, we are seeing some return on our cash balance, as noted in the interest income line. To address the related topical question on the strength of our banking partners, we are not with -- involved with any of the named troubled banks, we have no debt, and we've reviewed asset makeup and other data with our primary banking partners and do not anticipate any concerns. The income tax provision in the first quarter of 2023 was 24.3% compared to 23.7% in the comparable prior-year quarter. In summary, consolidated EPS was $0.66, a robust 35% improvement from $0.49 in the prior-year comparable quarter. Working capital as a percent of sales was 23.1%, a 100 basis point increase from the record low 22.1% at calendar year end, but still improved from 24.7% in the prior-year comparable period. While working capital did increase to support growth, we continue to carefully manage customer payments and strategic inventory investments. Free cash flow of $13.7 million was improved from a year ago, primarily on higher earnings and reflects the typical seasonality with incentive compensation and retirement plan contributions earned in 2022 based on those strong results and then made in the first quarter. With that, I'll turn over the call back over to Ken."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Ken Bockhorst",
+     "content": "Thanks, Bob. Turning to our outlook, I remain excited about the opportunities ahead. With continued robust order pacing, a strong bid funnel and record backlog, we remain confident that our exceptional customer support and winning portfolio of digital smart water solutions position us well for sustainable growth. To-date, we've seen no evidence that the higher interest rate environment or the banking sector consternation are having an impact on customer budgets. In addition, with 85% of meter volumes being replacement driven, an increasing level of replacement radio volumes and recurring software revenue, we expect very limited impact from any potential moderation in new residential or commercial construction markets. I'm also encouraged by the sequential improvement in supply chain dynamics. Coupled with moderation in the rate of input cost inflation, value-based pricing and continued SEA leverage, we continue to expect gradual operating margin improvement in 2023. Our cash on hand, overall strong free cash flow generation and debt-free balance sheet provide us with ample capacity to further invest in both organic and acquisition-enabled growth. Finally, we were proud to be named for the first time as one of Barron's 100 Most Sustainable Companies. We have a long history of working to grow our business and our positive impact in the world by enabling our customers to do the same. This type of recognition demonstrates that it is possible to deliver both strong financial and sustainability performance. In closing, I want to thank our team for their ongoing commitment and efforts in serving our customers. With that, operator, please open the line for questions."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Operator",
+     "content": "Certainly. [Operator Instructions] The first question comes from the line of Nathan Jones of Stifel. Please proceed."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Nathan Jones",
+     "content": "Good morning, everyone."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Ken Bockhorst",
+     "content": "Hi, Nathan."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Karen Bauer",
+     "content": "Hi, Nathan."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Bob Wrocklage",
+     "content": "Good morning, Nathan."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Nathan Jones",
+     "content": "Just want to -- just going to start with a question around supply chain. Some pretty positive commentary, I think, in your prepared remarks and in the press release this morning. Can you just talk about where supply chain is now compared to, say, where it was last year, where it was in 2019 before COVID? Is it still a problem with throughput, or you kind of back to normal capacity utilization today?"
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, as we've talked throughout this entire challenging time was supply chain. We're still not back to pre-COVID supply chain reliability, but we're certainly in the best position that we've been ever since COVID. So, 2021 was extremely difficult. 2022 remained extremely difficult and started to improve a bit at the end of the year, and certainly Q1 is the best that we've seen. Now that doesn't mean that we still didn't have some challenges that limited some output, but overall, the way that we've thought that it was going to play out is the way that we're seeing it. We do still think there'll be some intermittent challenges in the first half of the year, but again still improving. And then, we think towards the back half of the year, it will be perhaps hard to predict, but perhaps back to pre-COVID levels."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Nathan Jones",
+     "content": "Fingers crossed, right? Are metrics like on-time delivery and past due backlog still a little bit below where you would have been in 2019? And it sounds like maybe hoping to be back to that level by the end of '23."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, we have a very high bar in expectations for on-time delivery and past due backlog. And admittedly yes, they're -- on-time delivery is lower than we expect of ourselves and past due backlog is higher, but I definitely think as we start to see supply chain improve, which then also leads to some better efficiency and throughput, that we'll be making progress in those areas coming forward."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Nathan Jones",
+     "content": "Let's say hypothetically that the supply chains are back to normal by the end of 2023, is there a meaningful amount of backlog for you to work down? Or is the record backlog more a result of obviously very strong? Or it is -- if it's still going up as supply chains are improving? Just trying to get a sense of how much of that kind of backlog should get worked down, or whether that's -- something that's going to stay consistently high."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, as with many things, it's a multi-variable situation. So, the backlog is perhaps inflated a bit because demand has been so hot and supply chain has caused some things to be later in backlog. There is the very positive side of it as we've talked for years now about growing technology adoption, so now we're selling a larger portion of radios with meters. So just by pure definition, the backlog is going to be higher than it used to be because of the average sell price of a bundle. So, I think we're going to continue into the future at an elevated rate versus pre-COVID, but it's still certainly elevated beyond where I think it will normalize after we get through the supply chain operational challenges."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Nathan Jones",
+     "content": "Great. Thanks for taking the questions. I'll get back in queue."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Ken Bockhorst",
+     "content": "You bet. Thanks."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Operator",
+     "content": "Thank you. The next question comes from Ryan Connors of Northcoast Research. Please proceed."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Ryan Connors",
+     "content": "Good morning. Thanks for taking my questions, and congrats to the team on another great number."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. Hi, Ryan. Thanks."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Karen Bauer",
+     "content": "Hi, Ryan."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Ryan Connors",
+     "content": "So, my first question was just on -- sure. First question was just on price versus volume. I apologize if I missed it, but I didn't hear any kind of breakdown there. Are you able to provide any breakdown on top-line in that regard?"
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, we haven't quite disclosed that, but it is certainly much more volume driven than it is price."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Ryan Connors",
+     "content": "Okay. And then, my other question was, as I mentioned, you've had great numbers here. You've been, I think, kind of outperforming your peers really for the last year or plus. Is it your view that anything is going on here that you're actually taking share? And what would be your comment on that? Or do you just believe that you're participating in some more systemic factors in the markets that's lifting all boats? And just trying to break down the relative contributions there, because certainly you've made some good bets on technology with cellular and otherwise."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, we generally maintain the Midwest humble approach and usually shy away from making claims about taking share. But I think if you look at our competitors, we clearly have performed and delivered, I think, significantly more than most of them throughout this period and also carry an elevated backlog. So, when you look at some of the areas where we've seen the outsized growth, I think being first in Ultrasonic has been extremely beneficial for us. Being on the lead and changing, if you will, the way the AMI market views the value within it, our cellular approach certainly, I believe, is taking share on the AMI side. Coupled that with our best-in-class software package that comes with that and the continued -- over the last several years, 45% CAGR on software. I do believe that, yes, I can -- I will confidently tell you we are taking share in the AMI space."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Ryan Connors",
+     "content": "Yeah, seems to be. And then, my last question was just on sort of the visibility. I know that you don't have perfect visibility on what kind of funding is driving every order, but is it your sense that this -- a lot of the strength we're seeing today is actually some of the federal money finally flowing through, or is this kind of organic local municipal funding coming through? I mean, any comments about the relative contribution of where the funding is coming from that's driving the strength?"
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah, thanks for asking that. Yeah, I mean, we've been pretty consistent throughout this entire period that with the fundamentals, the macroeconomic drivers that we have around AMI, whether it's now water quality with the acquisition that we did there, that we didn't need infrastructure money to grow. And I will tell you that through these couple of years, since the bill was passed, we've seen little to no uplift from the infrastructure bill."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Ryan Connors",
+     "content": "Got it. Okay..."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Ken Bockhorst",
+     "content": "So, it's all organically driven [indiscernible]. Yeah. No, go ahead."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Ryan Connors",
+     "content": "Just a quick housekeeping for Bob. In the flow instrumentation, you mentioned these water related markets. Can you just be specific, just call out a few of what those are? I am just curious what exactly you're referring to there."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Bob Wrocklage",
+     "content": "Yeah. So, following the strategy over the last few years, now that we've pivoted away from some more of the general industrial markets and focused on water-wastewater buildings sustainability HVAC. And so, when we talk about water-related markets, that's where our focus is. And in the quarter, we saw above-line average growth in those lines -- or in those market focuses versus, say, the more general industrial, which were still up year-over-year, but just to a lesser extent. So, really we're talking about building sustainability water-wastewater."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. And if I could remind you that even in those other markets, we're still generally doing water related activities. It's just the markets that we talk about when we call those out are the ones that are specifically water related markets."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Ryan Connors",
+     "content": "Got it. Thanks for your time today."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Ken Bockhorst",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Operator",
+     "content": "Thank you. The next question comes from Rob Mason with Baird. Please proceed."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Rob Mason",
+     "content": "Yes, good morning. The first quarter..."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Ken Bockhorst",
+     "content": "Good morning, Rob."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Rob Mason",
+     "content": "Your first quarter revenue -- good morning, Ken. Your first quarter revenue was a pretty good size step up, high single digit step-up versus the second half and you already identified supply chain getting better. That's probably a contributor. But you had previously spoken about some capacity expansions that would be ongoing. Are we starting to see the benefits from those? Is that's flowing through? Or is that -- those projects still kind of in progress?"
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, obviously, we did signal the capacity investment over the course of the last 2022. We would say that basically the revenue growth you saw in the first quarter was sans any benefit from those investments that are very early stage. So, while the CapEx is elevated in the quarter and there is some of that that's oriented toward capacity expansion, it's not bearing fruits in what you're seeing in the first quarter."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Rob Mason",
+     "content": "How did -- maybe your historical pricing actions, how did those contribute to the first quarter maybe versus the fourth quarter? And maybe what I'm trying to understand is how those actions that you've taken in '22 are perhaps resident in the backlog, if that question is clear to you?"
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah, well, let me take a shot at it, Rob. And then, I think, Bob will clean up anything that maybe I don't hit. But if you think about our pricing model, what we started in 2020 when we went to a more value-based pricing model, it's something that we do on an ongoing basis. It's much more dynamic with the growth of AMI and some of the project-based nature of the backlog. We transitioned away from what used to be the annual list price increase and you'd see that come through in the beginning. So, I think it's -- in my view, Q1 versus Q4, there is not that huge much of a price step-up change. But I don't know, Bob, you..."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Bob Wrocklage",
+     "content": "Yeah. I mean, untangling price for us becomes a bit challenging, because when we talk about price impact, it's not only the traditional list price increase that you're referring to, Rob, but also certainly the average sell price evolution combined with this value-based pricing initiatives Ken described. So, there is an impact of price in the quarter, that's a benefit to us. As Ryan had asked, we typically don't parse that out percentage wise or attributing a portion of dollars to each element. What we would say, as Ken mentioned earlier, is the largest share of the increase in dollars and in percentage is unit volume driven. And while there is a price benefit certainly, it's the minority of the year-over-year growth."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Rob Mason",
+     "content": "If you look at your backlog as it stands today, is there a way to assess how mix should impact you this year? Would it be more favorable, less favorable, the same versus '22?"
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, when we talk about our confidence in our margin resiliency, again that always starts with the positive structural mix change that we have, which continues to be ongoing. We clearly keep a good view on the health of our backlog and that's where -- in our commentary or the press release, when we talk about we're very confident in our ability to be margin resilient through any period, we do that through, obviously, having a lot of excitement around our product line and at the same time analytics that we have in the backlog."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Bob Wrocklage",
+     "content": "Yeah. I think if you're specifically trying to drive toward -- if you're specifically trying to drive toward gross margin, I guess, I would just reinforce our universal messaging of a normalized range of 38% to 40%. Certainly, we continue to believe in the ability to leverage SEA as revenues grow. And so, op margin and EBITDA margin expansion is going to come through those two. I think the oversized impact in 2023 will be from -- more from SEA leverage than it will be from gross margin contribution."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Rob Mason",
+     "content": "Understood. Very helpful. Maybe just one last question quickly. Ken, you noted Syrinix. I know it's early under your ownership, but I'm just curious if you have any initial impressions around how you think that product will slot into your channel maybe comparatively versus other products that you've added to the portfolio inorganically and need to work into the sales channel? Just how we should think about uptake there?"
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, keeping in mind that it's starting from a very small base, but we've had extremely positive reaction from our channel partners. So, many of our long-standing great utility distributors have been really positive about feeling like they know how to sell this immediately to customers that we already have. So that's not usually the case within the water industry, but with Syrinix, it's a lot closer to the center of what we're doing and how we talk about AMI and real-time information within the market. But do keep in mind, it is small, but there's a lot of excitement around it. And as we've talked about before, small deals for us are certainly not viewed as a bad thing, because it takes a while sometimes to get the leverage, but when we do, it's very good. The other thing that we're really excited about Syrinix is now if you take our BEACON software platform, which was built on AMI, and now since we acquired s::can and ATi, now we can leverage in the water quality information. And now with the fully-developed RADAR software that Syrinix -- that we acquired with Syrinix, we're now giving utilities the opportunity to monitor all three of those in one software platform, which is something that our customers are finding very valuable."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Rob Mason",
+     "content": "Very good. Thank you."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Ken Bockhorst",
+     "content": "Thanks, Rob."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Operator",
+     "content": "Thank you. And the next question comes from Tate Sullivan of Maxim Group. Please proceed."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Tate Sullivan",
+     "content": "Thank you. Ken, sticking with the demand from utility customers in the U.S. for real-time water quality monitoring, is it a constant sales process, or is it most of the time that you're selling when meters are up for replacement for utilities, please?"
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Ken Bockhorst",
+     "content": "No, it's a constant selling process, similar to with other budgeting concerns and things that utilities tend to budget out into the future. So, the water quality sales team is out there selling independently. The water quality sales team is selling jointly with the utility business. So, it's an ongoing thing."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Tate Sullivan",
+     "content": "And then, are your customers, I mean, just -- are they still worried about water quality in their systems meaningfully? I mean, it's been since 2014 with -- when -- I mean, can you just comment on what you're hearing from customers? And do they want your -- do they -- are they still worried about water quality and their infrastructure?"
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah, I think if you just turn on the news and look online on any news, I guess people don't open newspapers that much anymore, but the news just continues to grow on people being concerned about what's in their water, and that's why we were so excited about s::can and ATi because of the high-tech nature and the ability to provide that water quality real-time, on-demand information. So, certainly people are interested in it, and that interest we view as growing, which is why we really want to get into that space."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Tate Sullivan",
+     "content": "And then, I think you mentioned in your prepared remarks more radio replacement meter levels. When were your first ultrasonic meters in the field? And when is the replacement cycle going to start for those ultrasonic meters?"
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. So, I think the point that I was making was on radios, but I'll answer your meter question first. So, meters, whether they'd be mechanical or ultrasonic, that's in that -- meters are about 85% annual replacement volume. What I was speaking to on the radio replacement volume is that now if you think about the drive-by radios, they've been in the market 25 to 30 years. AMI radios have been out there now roughly 10 years. And as more and more radios get deployed, you're going to see the same over time, right? It takes a long time, because these are long-cycle products in the field. But radio replacement volume is going to be the same exciting 85% once you get the full saturation in the market. So, every year, we see a higher level of replacement volume in radios just because that's the nature of the business."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Tate Sullivan",
+     "content": "Okay. Thank you very much."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Ken Bockhorst",
+     "content": "Yeah. And you're welcome."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Operator",
+     "content": "Thank you. There are currently no additional questions registered at this time. So, I will pass the conference back over to Ms. Bauer for closing remarks."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Karen Bauer",
+     "content": "Great. Thank you, operator, and thank you all for joining our call today. For your planning purposes, our second quarter 2023 call is tentatively scheduled for July 20. I'll be around all day to take any follow-up questions you might have. Have a great day. Thanks."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Operator",
+     "content": "And with that, we will conclude today's call. Thank you for participating. You may now disconnect your lines."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +387,8 @@
    "reportDate": "2022-12-31",
    "accession": "0000950170-23-003676",
    "url": "https://www.sec.gov/Archives/edgar/data/9092/000095017023003676/bmi-20221231.htm",
-   "local_gz": "000095017023003676__annual.txt.gz"
+   "local_gz": "000095017023003676__annual.txt.gz",
+   "n_lines": 2768
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +396,8 @@
    "reportDate": "2022-09-30",
    "accession": "0000950170-22-020003",
    "url": "https://www.sec.gov/Archives/edgar/data/9092/000095017022020003/bmi-20220930.htm",
-   "local_gz": "000095017022020003__q0.txt.gz"
+   "local_gz": "000095017022020003__q0.txt.gz",
+   "n_lines": 1479
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +405,106 @@
    "reportDate": "2022-06-30",
    "accession": "0000950170-22-013097",
    "url": "https://www.sec.gov/Archives/edgar/data/9092/000095017022013097/bmi-20220630.htm",
-   "local_gz": "000095017022013097__q1.txt.gz"
+   "local_gz": "000095017022013097__q1.txt.gz",
+   "n_lines": 1433
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2023-02-22",
   "n_rows": 8,
@@ -83,6 +519,58 @@
     "ocf": 14513000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 90793000.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 63951000.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 26700000.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 57359000.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 2619000.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 13972000.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.48,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29312174.0,
+      "filed": "2021-07-27",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +581,58 @@
     "ocf": 17691000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 91824000.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 73747000.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 29008000.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 67038000.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3791000.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 15855000.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.54,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29341832.0,
+      "filed": "2021-10-28",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +643,53 @@
     "ocf": 24750000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 99611000.0,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 65866000.0,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30194000.0,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 87174000.0,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": -1423000.0,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 17276000.0,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.59,
+      "filed": "2022-02-23",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +700,58 @@
     "ocf": 9250000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 103020000.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 78147000.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30339000.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 89219000.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1141000.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 14360000.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.49,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29363326.0,
+      "filed": "2022-04-28",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +762,53 @@
     "ocf": 19662000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 111437000.0,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 77247000.0,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 32776000.0,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1632000.0,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 16664000.0,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.57,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29344351.0,
+      "filed": "2022-07-26",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +819,53 @@
     "ocf": 23831000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 113608000.0,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 83491000.0,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 37205000.0,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1917000.0,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 17933000.0,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.61,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29372464.0,
+      "filed": "2022-10-25",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +876,48 @@
     "ocf": 29708000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 119856000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 76651000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 40700000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1201000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 17539000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.6,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +928,24 @@
     "ocf": 17970000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": 0.66,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": {
+      "value": 29420954.0,
+      "source": "EX-99.1 稿內文字"
+     }
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 159100000.0,
     "revenue_xbrl_for_reference": 159101000.0
@@ -166,151 +959,42 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3824",
   "sic2": "38",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 239,
-  "peer_list_all_same_sic2_tickers": [
-   "A",
-   "AEHR",
-   "AEMD",
-   "ALC",
-   "ALGN",
-   "ALNT",
-   "AME",
-   "ANGO",
-   "ANIK",
-   "AORT",
-   "APT",
-   "APYX",
-   "ARAY",
-   "ASTC",
-   "ATEC",
-   "ATRC",
-   "AVTR",
-   "AXGN",
-   "BAX",
-   "BBLG",
-   "BCHT",
-   "BDX",
-   "BEAT",
-   "BFLY",
-   "BIO",
-   "BJDX",
-   "BLCO",
-   "BLFS",
-   "BNGO",
-   "BRKR",
-   "BSX",
-   "BVS",
-   "BWAY",
-   "CAMT",
-   "CDRE",
-   "CERS",
-   "CGNX",
-   "CLGN",
-   "CLIR",
-   "CLPT",
-   "CNMD",
-   "CNSY",
-   "COCH",
-   "CODA",
-   "CODX",
-   "COHR",
-   "COHU",
-   "COO",
-   "CTKB",
-   "CTSO",
-   "CVRX",
-   "DAIO",
-   "DCTH",
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic3",
+  "n_listed_peers": 64,
+  "peer_list_all_tickers": [
    "DHR",
-   "DRIO",
-   "DRS",
-   "DRTS",
-   "DXCM",
-   "ECOR",
-   "ELMD",
-   "EMBC",
-   "ENOV",
-   "ESTA",
-   "EW",
-   "EYE",
-   "EYPT",
-   "FCUV",
-   "FEED",
-   "FEIM",
-   "FEMY",
-   "FOCL",
-   "FOSL",
-   "FTV",
-   "GCTK",
-   "GEHC",
-   "GEOS",
-   "GKOS",
-   "GMED",
-   "GPRO",
-   "GRMN",
-   "HAE",
-   "HBIO",
-   "HURC",
-   "HYPR",
-   "IART",
-   "ICCM",
-   "ICU",
-   "ICUI",
-   "ILMN",
-   "IMAX",
-   "INBS",
-   "INFU",
-   "INGN",
-   "INMD",
-   "INSP",
-   "INTT",
-   "IRIX",
-   "IRMD",
-   "IRTC",
-   "ISRG",
-   "ITGR",
-   "ITRI",
-   "IVF",
-   "KEQU",
-   "KEYS",
-   "KIDS",
-   "KLAC",
-   "KODK",
-   "KRMD",
-   "LAKE",
-   "LFWD",
-   "LHX",
-   "LIVN",
-   "LMAT",
-   "LNSR",
-   "LUCD",
-   "LUCY",
-   "LUNG",
-   "LUNR",
-   "MASS"
+   "TMO"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000097745",
     "name": "THERMO FISHER SCIENTIFIC INC.",
     "ticker": "TMO",
-    "sic2": "38",
+    "sic4": "3829",
+    "sic3": "382",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2023-02-23",
     "accn": "0000097745-23-000008",
     "local_gz": "000009774523000008__peer10k.txt.gz",
     "capex_excerpt": [
-     "rges/credits for changes in estimates of contingent acquisition consideration, and charges/credits related to product liability litigation. (In millions) 2022 2021 2020 Total assets Life Sciences Solutions $ 21,848 $ 22,751 $ 20,209 Analytical Instruments 10,019 9,692 9,773 Specialty Diagnostics 5,542 6,010 6,534 Laboratory Products and Biopharma Services 51,281 52,639 22,711 Corporate/other (a) 8,464 4,031 9,825 Consolidated total assets $ 97,154 $ 95,123 $ 69,052 Capital expenditures Life Sciences Solutions $ 490 $ 810 $ 392 Analytical Instruments 140 79 74 Specialty Diagnostics 112 167 175 Laboratory Products and Biopharma Services 1,403 1,327 772 Corporate/other 98 140 61 Consolidated ca",
-     "cal Instruments 10,019 9,692 9,773 Specialty Diagnostics 5,542 6,010 6,534 Laboratory Products and Biopharma Services 51,281 52,639 22,711 Corporate/other (a) 8,464 4,031 9,825 Consolidated total assets $ 97,154 $ 95,123 $ 69,052 Capital expenditures Life Sciences Solutions $ 490 $ 810 $ 392 Analytical Instruments 140 79 74 Specialty Diagnostics 112 167 175 Laboratory Products and Biopharma Services 1,403 1,327 772 Corporate/other 98 140 61 Consolidated capital expenditures $ 2,243 $ 2,523 $ 1,474 (a) Corporate assets consist primarily of cash and cash equivalents and property and equipment at the company's corporate offices. Geographical Information (In millions) 2022 2021 2020 Revenues (b)"
-    ]
+     "n unfavorable outcome that differs materially from current accrual estimates, if any, for one or more of the matters described under the heading “ Product Liability, Workers Compensation and Other Personal Injury Matters, ” in Note 12 could have a material adverse effect on the company’s financial position as well as its results of operations and cash flows. Investing Activities During 2022, acquisitions used cash of $0.04 billion. The company’s investing activities were principally for the purchase of property, plant and equipment for capacity and capability investments. During 2021, acquisitions used cash of $19.40 billion. The company’s investing activities also included the purchase of $",
+     "eneral and administrative expenses adjustments (b) 0.09 0.36 Restructuring and other costs (c) 0.29 0.50 Amortization of acquisition-related intangible assets 6.07 4.43 Other income/expense adjustments (d) 0.30 1.84 Provision for income taxes adjustments (e) (1.70) (1.49) Equity in earnings/losses of unconsolidated entities 0.44 0.01 Adjusted EPS (non-GAAP measure) $ 23.24 $ 25.13 Reconciliation of free cash flow GAAP net cash provided by operating activities $ 9,154 $ 9,312 Purchases of property, plant and equipment (2,243) (2,523) Proceeds from sale of property, plant and equipment 24 20 Free cash flow (non-GAAP measure) $ 6,935 $ 6,809 (a) Adjusted results exclude charges for the sale of ",
+     "— Other non-cash expenses 524 190 338 Changes in assets and liabilities, excluding the effects of acquisitions and disposition: Accounts receivable ( 430 ) ( 204 ) ( 1,302 ) Inventories ( 825 ) ( 1,065 ) ( 508 ) Accounts payable 648 479 59 Contributions to retirement plans ( 41 ) ( 34 ) ( 96 ) Other ( 401 ) ( 724 ) 1,452 Net cash provided by operating activities 9,154 9,312 8,289 Investing activities Acquisitions, net of cash acquired ( 39 ) ( 19,395 ) ( 38 ) Purchase of property, plant and equipment ( 2,243 ) ( 2,523 ) ( 1,474 ) Proceeds from sale of property, plant and equipment 24 20 8 Other investing activities, net 99 ( 34 ) ( 6 ) Net cash used in investing activities ( 2,159 ) ( 21,932"
+    ],
+    "capex_status": "ok"
    },
    {
     "entity_id": "0000313616",
     "name": "DANAHER CORP /DE/",
     "ticker": "DHR",
-    "sic2": "38",
+    "sic4": "3823",
+    "sic3": "382",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2023-02-22",
     "accn": "0000313616-23-000087",
@@ -318,8 +1002,9 @@
     "capex_excerpt": [
      "nts • 2022 impairment of accounts receivable and inventory in Russia - 15 basis points 2022 vs. 2021 operating profit margin comparisons were favorably impacted by: • 2021 acquisition-related fair value adjustments to inventory and deferred revenue, in each case related to the acquisition of Cytiva - 55 basis points Depreciation as a percentage of sales increased in 2022 as compared with 2021 as the increase in depreciation attributable to assets related to the acquisition of Cytiva and capital expenditures exceeded the increase in sales. Amortization of intangible assets as a percentage of sales decreased in 2022 as compared with 2021 primarily due to the increase in sales. Operating profit",
      "development and sales and marketing growth investments and incremental year-over-year material and labor costs - 585 basis points • The incremental accretive effect in 2021 of acquired businesses, net of product line dispositions which did not qualify as discontinued operations - 80 basis points 42 Table of Contents Depreciation as a percentage of sales increased in 2021 as compared with 2020 as the increase in depreciation attributable to assets related to the acquisition of Cytiva and capital expenditures exceeded the increase in sales. Amortization of intangible assets as a percentage of sales decreased in 2021 as compared with 2020 primarily due to increased sales from the acquisition of",
-     "ngible assets and inventory step-up), stock compensation, gain on sale of product lines, unrealized investment gains/losses, loss on the extinguishment of debt and the contract settlement expense in 2021). These increases were partially offset by higher cash used in aggregate for accounts receivables, inventories, trade accounts payable and prepaid and accrued expenses, including deferred taxes, in 2022 compared to the prior year. • Net cash used in investing activities consisted primarily of capital expenditures, cash paid for acquisitions and investments, net of proceeds from the sale of investments, and decreased primarily as a result of lower cash paid for acquisitions in 2022 compared t"
-    ]
+     "ns in the financial and capital markets that occurred at times in 2020), the Company anticipates following the same approach in the future. 52 Table of Contents Overview of Cash Flows and Liquidity Following is an overview of the Company’s cash flows and liquidity for the years ended December 31: ($ in millions) 2022 2021 2020 Total operating cash flows provided by continuing operations $ 8,519 $ 8,358 $ 6,215 Cash paid for acquisitions $ (637) $ (10,961) $ (20,971) Payments for additions to property, plant and equipment (1,152) (1,294) (791) Proceeds from sales of property, plant and equipment 9 13 2 Payments for purchases of investments (523) (934) (342) Proceeds from sales of investments "
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -341,7 +1026,16 @@
   "latest_data_date": "2023-04-20",
   "cutoff": "2023-04-20",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2023-04-20",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2023-04-21",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

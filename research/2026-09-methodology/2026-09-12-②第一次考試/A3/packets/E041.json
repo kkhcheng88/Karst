@@ -1,6 +1,7 @@
 {
  "event_id": "E041",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E041",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "CC",
  "cik": "0001627223",
  "name": "Chemours Co",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2020-02-14(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E041",
   "event_id": "E041",
   "ticker": "CC",
   "cik": "0001627223",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001564590-20-004616",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1627223/000156459020004616/cc-8k_20200213.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1627223/000156459020004616/cc-8k_20200213.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n cc-ex991_6.htm\n EX-99.1\ncc-ex991_6.htm\n EXHIBIT 99.1\n The Chemours Company Reports Fourth Quarter and Full Year 2019 Results\n Full Year 2019 Results In-line with Updated Guidance\n WILMINGTON, Del., February 13, 2020\n Full Year 2019 Results\n • \n Net Sales of $5.5 billion \n • \n Net Income of $( 52) million with EPS of $(0.32) \n • \n Adjusted Net Income of $419 million with Adjusted EPS of $2.51 \n • \n Adjusted EBITDA of $1.02 billion \n • \n Free Cash Flow of $169 million \n • \n Returned $486 million to shareholders through share repurchases and dividends \n Fourth Quarter 2019 Results\n • \n Net Sales of $1.4 billion \n • \n Net Income of $( 317) million with EPS of $(1.94) \n • \n Adjusted Net Income of $92 million, with Adjusted EPS of $0.56 \n • \n Adjusted EBITDA of $227 million \n • \n Free Cash Flow of $304 million \n Other Highlights\n • \n Announced 2020 outlook for Adjusted EBITDA, Adjusted EPS, Capex, and Free Cash Flow \n o \n Adjusted EBITDA up 13% from 2019 at the mid-point \n o \n Free Cash Flow more than double 2019 \n o \n Capex lowered approximately 20% from 2019 \n The Chemours Company (Chemours) (NYSE: CC), a global chemistry company with leading market positions in Fluoroproducts, Chemical Solutions and Titanium Technologies, today announced its financial results for the fourth quarter and full-year 2019.\n “Our results for 2019 reflect a challenging year on several fronts, including TiO2 destocking, the continued impact of illegal imports of HFC refrigerants into Europe, and operational challenges, offset to some extent by record results in Chemical Solutions,” said President and CEO Mark Vergnano. “The Chemours Team delivered a solid fourth quarter, including finishing the year strong with $169 million of Free Cash Flow. After a slow start, we began to build some momentum in the second half across several of our core products and end markets. At the same time, we continued our efforts to focus the portfolio with the acquisition of Southern Ionics Minerals and the divestiture of our Methylamines and Methylamides business.” \n Full-year 2019 net sales were $5.5 billion versus $6.6 billion in 2018, reflecting lower prices and volume across all businesses. Currency was a 1 percent negative impact on a year-over-year basis. Full-year 2019 adjusted net income was $419 million and diluted adjusted earnings per share for 2019 was $2.51. Adjusted EBITDA for 2019 was $1.02 billion. \n EXHIBIT 99.1\n Fourth quarter 2019 net sales were $1.4 billion in comparison to $1.5 billion in the prior year. Results were driven primarily by lower volume and price in Fluoroproducts and Titanium Technologies. Fourth quarter net income was $(317) million, or $(1.94) per diluted share, inclusive of a $380 million non-cash charge related to the settlement of the non-active portion of our Netherlands Pension Plan obligations and transfer of liabilities to a third-party asset management firm, and a $132 million charge related to onsite remediation at our Fayetteville site. Adjusted net income was $92 million, or $0.56 per diluted share. Adjusted EBITDA for the fourth quarter 2019 was $227 million in comparison to $341 million in the previous year’s fourth quarter due to headwinds in Titanium Technologies and Fluoroproducts which were partially offset by record performance of the Chemical Solutions segment. \n Fluoroproducts\n Fluoroproducts segment sales for 2019 were $2.6 billion, a 7 percent decrease in comparison to the prior-year. Lower volumes and prices were driven by weakness in the automotive and electronics markets and the continued impact of illegal imports of HFC refrigerants into the EU. \n Lower cost from the Corpus Christi Opteon™ site startup was more than offset by impact of lower F-Gas quota sales, operational issues and lower average price of refrigerants. These factors contributed to segment Adjusted EBITDA of $578 million in 2019 as compared to $783 million in 2018. \n Fluoroproducts segment sales in the fourth quarter were $614 million in comparison to $649 million in the prior-year quarter. Segment Adjusted EBITDA of $117 million declined 29 percent versus the prior-year quarter, primarily due to lower F-Gas quota sales, operational issues communicated in the previous quarter and lower net sales.\n Chemical Solutions\n For the full year 2019, Chemical Solutions segment sales were $533 million, an 11 percent decrease compared to the prior year driven primarily by lower raw material prices that are passed through in Performance Chemicals and Intermediates and operational issues at a key customer mine. Record Adjusted EBITDA of $80 million represents a 25 percent increase compared to the prior year. This record setting result reflects solid productivity and good execution across the business along with solid licensing demand.\n In the fourth quarter 2019, Chemical Solutions segment sales were $129 million, a 13 percent decrease versus the prior-year quarter, driven by lower prices due to lower raw material prices that are passed through in Performance Chemicals and Intermediates. Fourth quarter 2019 segment Adjusted EBITDA was a record $25 million, a 79 percent increase compared to the prior year quarter, as improved volume and lower costs more than offset the lower prices in comparison to last year’s fourth quarter. \n Titanium Technologies\n Titanium Technologies segment sales for the full year were $2.3 billion in comparison to $3.2 billion in the prior-year. Lower sales were the result of lower volumes of Ti-Pure™ titanium dioxide driven by destocking and market share loss in the first half of the year as we implemented our Ti-Pure™ Value Stabilization strategy. Global average selling prices were down 1 percent in comparison to 2018. These factors and fixed cost under-absorption contributed to a 52 percent year-over-year decrease in earnings, resulting in $505 million Adjusted EBITDA in 2019 as compared to $1.1 billion in 2018. \n Titanium Technologies segment sales in the fourth quarter were $610 million versus $666 million in the prior-year quarter. This decrease was a result of lower volumes of Ti-Pure™ titanium dioxide in comparison to last year. Volumes were flat sequentially reflecting anticipated share regain. Global average selling prices, accounting for regional, customer and channel mix, declined modestly versus the prior year period. On a sequential basis, average local price was down 1 percent in comparison to the third quarter of 2019. Fourth quarter segment Adjusted EBITDA was $115 million, in comparison to $199 million last year. Results were driven primarily by lower sales volumes, higher raw material costs and under-absorption of fixed cost. \n EXHIBIT 99.1\n Corporate and Other\n Corporate and Other represented a $143 million cost included in Adjusted EBITDA for the full year 2019 in comparison to a $162 million offset in the prior year, primarily the result of lower performance-related compensation and lower costs related to legacy legal matters. Corporate and Other in the fourth quarter 2019 represented a $30 million cost included in Adjusted EBITDA, versus a $36 million offset in the prior-year quarter. This decrease was primarily related to lower performance-related compensation. \n The company realized an adjusted effective tax rate of approximately 17 percent for the 2019 fiscal year and 5 percent for the fourth quarter. The company expects its adjusted effective tax rate for the full-year 2020 to be within a range of 19 to 20 percent , reflecting the company’s anticipated geographic mix of earnings.\n Liquidity\n As of December 31, 2019, gross consolidated debt was $4.2 billion. Debt, net of $943 million cash, was $3.2 billion, resulting in a net leverage ratio of approximately 3.2 times on a trailing twelve-month Adjusted EBITDA basis. \n For the full-year 2019, cash provided by operating activities was $650 million, versus $1.1 billion in 2018. Capital expenditures for 2018 were $481 million in comparison to $498 million in full-year 2018. Full-year 2019 Free Cash Flow was $169 million versus the prior-year Free Cash Flow of $642 million in 2018. \n Cash provided by operating activities for the fourth quarter of 2019 was $400 million, versus $259 million in the prior year quarter. Capital expenditures for the fourth quarter 2019 were $96 million, versus $154 million in last year’s fourth quarter. Free Cash Flow for the fourth quarter of 2019 was $304 million versus the prior-year quarter result of $105 million. \n Outlook\n The company expects to deliver 2020 Adjusted EBITDA within a range of $1.05 to $1.25 billion. C apital expenditures are expected to be approximately $400 million, with Free Cash Flow of greater than $350 million. The company expects to deliver Adjusted EPS of between $2.60 and $3.55 per share. \n “ Our outlook for 2020 reflects top line and bottom line growth across all segments. While the macroeconomic environment remains uncertain, we remain committed to delivering solid earnings growth and a significant improvement in free cash flow.” Vergnano concluded. “Looking ahead after a challenging year, we are well positioned to improve our performance in 2020 and are focused on continuing to unlock shareholder value over time.” \n Conference Call\n As previously announced, Chemours will hold a conference call and webcast on Friday, February 14, 2020 at 8:30 AM EST. The webcast and additional presentation materials can be accessed by visiting the Events & Presentations page of Chemours’ investor website, investors.chemours.com. A webcast replay of the conference call will be available on the Chemours investor website. \n EXHIBIT 99.1\n About The Chemours Company \n The Chemours Company (NYSE: CC) helps create a colorful, capable and cleaner world through the power of chemistry. Chemours is a global leader in fluoroproducts, chemical solutions, and titanium technologies, providing its customers with solutions in a wide range of industries with market-defining products, application expertise and chemistry-based innovations. Chemours ingredients are found in refrigeration and air conditioning, mining and general industrial manufacturing, plastics and coatings. Our flagship products include prominent brands such as Teflon™, Ti-Pure™, Krytox™, Viton™, Opteon™, Freon™ and Nafion™. Chemours has approximately 7,000 employees and 30 manufacturing sites serving approximately 3,700 customers in North America, Latin America, Asia-Pacific and Europe. Chemours is headquartered in Wilmington, Delaware and is listed on the NYSE under the symbol CC. For more information please visit chemours.com, or follow us on Twitter @Chemours, or LinkedIn. \n Non-GAAP Financial Measures \n We prepare our financial statements in accordance with Generally Accepted Accounting Principles (GAAP). Within this press release, we may make reference to Adjusted Net Income (Loss), Adjusted EPS, Adjusted EBITDA, Adjusted EBITDA Margin, Free Cash Flow, Adjusted Effective Tax Rate, Return on Invested Capital and Net Leverage Ratio which are non-GAAP financial measures. The company includes these non-GAAP financial measures because management believes they are useful to investors in that they provide for greater transparency with respect to supplemental information used by management in its financial and operational decision making. \n Management uses Adjusted Net Income (Loss), Adjusted EPS, Adjusted EBITDA, Adjusted EBITDA Margin, Free Cash Flow, Adjusted Effective Tax Rate, Return on Invested Capital and Net Leverage Ratio to evaluate the company's performance excluding the impact of certain noncash charges and other special items which we expect to be infrequent in occurrence in order to have comparable financial results to analyze changes in our underlying business from quarter to quarter. \n Accordingly, the company believes the presentation of these non-GAAP financial measures, when used in conjunction with GAAP financial measures, is a useful financial analysis tool that can assist investors in assessing the company's operating performance and underlying prospects. This analysis should not be considered in isolation or as a substitute for analysis of our results as reported under GAAP. This analysis, as well as the other information in this press release, should be read in conjunction with the company's financial statements and footnotes contained in the documents that the company files with the U.S. Securities and Exchange Commission. The non-GAAP financial measures used by the company in this press release may be different from the methods used by other companies. For more information on the non-GAAP financial measures, please refer to the attached schedules or the table, \"Reconciliation of Non-GAAP Financial Measures to GAAP Financial Measures\" and materials posted to the company's website at investors.chemours.com.\n EXHIBIT 99.1\n Forward-Looking Statements \n This press release contains forward-looking statements, within the meaning of the safe harbor provisions of the U.S. Private Securities Litigation Reform Act of 1995, which involve risks and uncertainties. Forward-looking statements provide current expectations of future events based on certain assumptions and include any statement that does not directly relate to a historical or current fact. The words \"believe,\" \"expect,\" \"will,\" \"anticipate,\" \"plan,\" \"estimate,\" \"target,\" \"project\" and similar expressions, among others, generally identify \"forward-looking statements,\" which speak only as of the date such statements were made. These forward-looking statements may address, among other things, the outcome or resolution of any pending or future environmental liabilities, the commencement, outcome or resolution of any regulatory inquiry, investigation or proceeding, the initiation, outcome or settlement of any litigation, changes in environmental regulations in the U.S. or other jurisdictions that affect demand for or adoption of our products, anticipated future operating and financial performance, business plans, prospects, targets, goals and commitments, capital investments and projects, plans for dividends or share repurchases, sufficiency or longevity of intellectual property protection, cost savings targets, plans to increase profitability and growth, our ability to make acquisitions, integrate acquired businesses or assets into our operations, and achieve anticipated synergies or cost savings, and our outlook for net sales, Adjusted EBITDA, Adjusted EPS, Free Cash Flow, Adjusted Effective Tax Rate, and Return on Invested Capital, all of which are subject to substantial risks and uncertainties that could cause actual results to differ materially from those expressed or implied by such statements. Forward-looking statements are based on certain assumptions and expectations of future events that may not be accurate or realized. These statements are not guarantees of future performance. Forward-looking statements also involve risks and uncertainties that are beyond Chemours' control. Additionally, there may be other risks and uncertainties that Chemours is unable to identify at this time or that Chemours does not currently expect to have a material impact on its business. Factors that could cause or contribute to these differences include the risks, uncertainties and other factors discussed in our filings with the U.S. Securities and Exchange Commission, including in our Annual Report on Form 10-K for the year ended December 31, 2019. Chemours assumes no obligation to revise or update any forward-looking statement for any reason, except as required by law. \n CONTACT:\n INVESTORS \n Jonathan Lock \n VP, Corporate Development and Investor Relations \n +1.302.773.2263 \n investor@chemours.com \n NEWS MEDIA \n David Rosen\nExecutive and Financial Communications Manager\n+1.302.773.2711\n media@chemours.com \n EXHIBIT 99.1\n The Chemours Company \n Consolidated Statements of Operations\n (Dollars in millions, except per share amounts)\n Year Ended December 31,\n 2019 (Unaudited)\n 2018\n 2017\n Net sales\n $\n 5,526\n $\n 6,638\n $\n 6,183\n Cost of goods sold\n 4,463\n 4,667\n 4,438\n Gross profit\n 1,063\n 1,971\n 1,745\n Selling, general, and administrative expense\n 548\n 657\n 626\n Research and development expense\n 80\n 82\n 81\n Restructuring, asset-related, and other charges\n 87\n 49\n 57\n Total other operating expenses\n 715\n 788\n 764\n Equity in earnings of affiliates\n 29\n 43\n 33\n Interest expense, net\n (208\n )\n (195\n )\n (214\n )\n Loss on extinguishment of debt\n —\n (38\n )\n (1\n )\n Other (expense) income, net\n (293\n )\n 162\n 113\n (Loss) income before income taxes\n (124\n )\n 1,155\n 912\n (Benefit from) provision for income taxes\n (72\n )\n 159\n 165\n Net (loss) income\n (52\n )\n 996\n 747\n Less: Net income attributable to non-controlling interests\n —\n 1\n 1\n Net (loss) income attributable to Chemours\n $\n (52\n )\n $\n 995\n $\n 746\n Per share data\n Basic (loss) earnings per share of common stock\n $\n (0.32\n )\n $\n 5.62\n $\n 4.04\n Diluted (loss) earnings per share of common stock\n (0.32\n )\n 5.45\n 3.91\n EXHIBIT 99.1\n The Chemours Company \n Consolidated Balance Sheets\n (Dollars in millions, except per share amounts)\n December 31,\n 2019 (Unaudited)\n 2018\n Assets\n Current assets:\n Cash and cash equivalents\n $\n 943\n $\n 1,201\n Accounts and notes receivable, net\n 674\n 861\n Inventories\n 1,079\n 1,147\n Prepaid expenses and other\n 81\n 84\n Total current assets\n 2,777\n 3,293\n Property, plant, and equipment\n 9,413\n 8,992\n Less: Accumulated depreciation\n (5,854\n )\n (5,701\n )\n Property, plant, and equipment, net\n 3,559\n 3,291\n Operating lease right-of-use assets\n 294\n —\n Goodwill and other intangible assets, net\n 174\n 181\n Investments in affiliates\n 162\n 160\n Other assets\n 292\n 437\n Total assets\n $\n 7,258\n $\n 7,362\n Liabilities\n Current liabilities:\n Accounts payable\n $\n 923\n $\n 1,137\n Short-term and current maturities of long-term debt\n 134\n 13\n Other accrued liabilities\n 484\n 559\n Total current liabilities\n 1,541\n 1,709\n Long-term debt, net\n 4,026\n 3,959\n Operating lease liabilities\n 245\n —\n Deferred income taxes\n 118\n 217\n Other liabilities\n 633\n 457\n Total liabilities\n 6,563\n 6,342\n Commitments and contingent liabilities\n Equity\n Common stock (par value $0.01 per share; 810,000,000 shares authorized;\n 188,893,478 shares issued and 163,574,243 shares outstanding at December 31, 2019;\n 187,204,567 shares issued and 170,780,474 shares outstanding at December 31, 2018)\n 2\n 2\n Treasury stock, at cost (25,319,235 shares at December 31, 2019;\n 16,424,093 shares at December 31, 2018)\n (1,072\n )\n (750\n )\n Additional paid-in capital\n 859\n 860\n Retained earnings\n 1,249\n 1,466\n Accumulated other comprehensive loss\n (349\n )\n (564\n )\n Total Chemours stockholders’ equity\n 689\n 1,014\n Non-controlling interests\n 6\n 6\n Total equity\n 695\n 1,020\n Total liabilities and equity\n $\n 7,258\n $\n 7,362\n EXHIBIT 99.1\n The Chemours Company \n Consolidated Statements of Cash Flows\n (Dollars in millions)\n Year Ended December 31,\n 2019 (Unaudited)\n 2018\n 2017\n Cash flows from operating activities\n Net (loss) income\n $\n (52\n )\n $\n 996\n $\n 747\n Adjustments to reconcile net income to cash provided by (used for) operating activities:\n Depreciation and amortization\n 311\n 284\n 273\n Gain on sales of assets and businesses\n (10\n )\n (45\n )\n (22\n )\n Equity in earnings of affiliates, net\n (3\n )\n 18\n (33\n )\n Loss on extinguishment of debt\n —\n 38\n 1\n Amortization of debt issuance costs and issue discounts\n 9\n 11\n 13\n Deferred tax (benefit) provision\n (165\n )\n 23\n 83\n Asset-related charges\n 43\n 4\n 3\n Stock-based compensation expense\n 19\n 24\n 29\n Net periodic pension cost (income)\n 381\n (18\n )\n (22\n )\n Defined benefit plan contributions\n (19\n )\n (15\n )\n (38\n )\n Other operating charges and credits, net\n (2\n )\n (7\n )\n 12\n Decrease (increase) in operating assets:\n Accounts and notes receivable, net\n 191\n 47\n (88\n )\n Inventories and other operating assets\n 116\n (284\n )\n (146\n )\n (Decrease) increase in operating liabilities:\n Accounts payable and other operating liabilities\n (169\n )\n 64\n (172\n )\n Cash provided by operating activities\n 650\n 1,140\n 640\n Cash flows from investing activities\n Purchases of property, plant, and equipment\n (481\n )\n (498\n )\n (411\n )\n Acquisition of business, net\n (10\n )\n (37\n )\n —\n Proceeds from sales of assets and businesses, net\n 9\n 46\n 39\n Proceeds from life insurance policies\n 1\n —\n —\n Foreign exchange contract settlements, net\n (2\n )\n 2\n 2\n Cash used for investing activities\n (483\n )\n (487\n )\n (370\n )\n Cash flows from financing activities\n Proceeds from issuance of debt, net\n —\n 520\n 495\n Proceeds from revolving loan\n 150\n —\n —\n Repayments on revolving loan\n (150\n )\n —\n —\n Proceeds from accounts receivable securitization facility\n 128\n —\n —\n Debt repayments\n (37\n )\n (679\n )\n (27\n )\n Payments related to extinguishment of debt\n —\n (29\n )\n (1\n )\n Payments of debt issuance costs\n —\n (12\n )\n (6\n )\n Payments on finance leases\n (3\n )\n —\n —\n Purchases of treasury stock, at cost\n (322\n )\n (644\n )\n (106\n )\n Proceeds from exercised stock options, net\n 9\n 16\n 31\n Payments related to tax withholdings on vested stock awards\n (30\n )\n (17\n )\n (12\n )\n Payments of dividends\n (164\n )\n (148\n )\n (22\n )\n Cash (used for) provided by financing activities\n (419\n )\n (993\n )\n 352\n Effect of exchange rate changes on cash and cash equivalents\n (6\n )\n (15\n )\n 32\n (Decrease) increase in cash and cash equivalents\n (258\n )\n (355\n )\n 654\n Cash and cash equivalents at January 1,\n 1,201\n 1,556\n 902\n Cash and cash equivalents at December 31,\n $\n 943\n $\n 1,201\n $\n 1,556\n Supplemental cash flows information\n Cash paid during the year for:\n Interest, net of amounts capitalized\n $\n 204\n $\n 206\n $\n 208\n Income taxes, net of refunds\n 85\n 75\n 79\n Non-cash investing and financing activities:\n Changes in property, plant, and equipment included in accounts payable\n $\n 85\n $\n 37\n $\n (14\n )\n Obligations incurred under build-to-suit lease arrangement\n 40\n 47\n 8\n Purchases of treasury stock not settled by year-end\n —\n —\n 10\n Non-cash financing arrangements\n 11\n —\n —\n Deferred payments related to acquisition of business\n 15\n —\n —\n Dividends accrued but not yet paid\n —\n —\n 31\n EXHIBIT 99.1\n The Chemours Company \n Segment Financial and Operating Data (Unaudited)\n (Dollars in millions)\n Segment Net Sales\n Three Months\n Three Months Ended\n Ended\n Sequential\n December 31,\n Increase /\n September 30,\n Increase /\n 2019\n 2018\n (Decrease)\n 2019\n (Decrease)\n Fluoroproducts\n $\n 614\n $\n 649\n $\n (35\n )\n $\n 636\n $\n (22\n )\n Chemical Solutions\n 129\n 149\n (20\n )\n 140\n (11\n )\n Titanium Technologies\n 610\n 666\n (56\n )\n 614\n (4\n )\n Total Net Sales\n $\n 1,353\n $\n 1,464\n $\n (111\n )\n $\n 1,390\n $\n (37\n )\n Segment Adjusted EBITDA\n Three Months\n Three Months Ended\n Ended\n Sequential\n December 31,\n Increase /\n September 30,\n Increase /\n 2019\n 2018\n (Decrease)\n 2019\n (Decrease)\n Fluoroproducts\n $\n 117\n $\n 164\n $\n (47\n )\n $\n 122\n $\n (5\n )\n Chemical Solutions\n 25\n 14\n 11\n 23\n 2\n Titanium Technologies\n 115\n 199\n (84\n )\n 137\n (22\n )\n Corporate and Other\n (30\n )\n (36\n )\n 6\n (34\n )\n 4\n Total Adjusted EBITDA\n $\n 227\n $\n 341\n $\n (114\n )\n $\n 248\n $\n (21\n )\n Adjusted EBITDA Margin\n 17%\n 23%\n 18%\n Quarterly Change in Net Sales from the three months ended December 31, 2018\n Percentage\n Percentage Change Due To\n December 31, 2019\n Net Sales\n Change vs.\n December 31, 2018\n Local Price\n Volume\n Currency Effect\n Total Company\n $\n 1,353\n (8\n )%\n (4\n )%\n (3\n )%\n (1\n )%\n Fluoroproducts\n $\n 614\n (5\n )%\n (3\n )%\n (2\n )%\n —\n %\n Chemical Solutions\n 129\n (13\n )%\n (16\n )%\n 3\n %\n —\n %\n Titanium Technologies\n 610\n (8\n )%\n (3\n )%\n (5\n )%\n —\n %\n Quarterly Change in Net Sales from the three months ended September 30, 2019\n Percentage\n Percentage Change Due To\n December 31, 2019\n Net Sales\n Change vs.\n September 30, 2019\n Local Price\n Volume\n Currency Effect\n Total Company\n $\n 1,353\n (3\n )%\n (1\n )%\n (1\n )%\n (1\n )%\n Fluoroproducts\n $\n 614\n (3\n )%\n (1\n )%\n (2\n )%\n —\n %\n Chemical Solutions\n 129\n (8\n )%\n (2\n )%\n (6\n )%\n —\n %\n Titanium Technologies\n 610\n (1\n )%\n (1\n )%\n 1\n %\n (1\n )%\n EXHIBIT 99.1\n The Chemours Company \n Segment Financial and Operating Data (Unaudited)\n (Dollars in millions)\n Segment Net Sales\n Year Ended\n December 31,\n Increase /\n 2019\n 2018\n (Decrease)\n Fluoroproducts\n $\n 2,648\n $\n 2,862\n $\n (214\n )\n Chemical Solutions\n 533\n 602\n (69\n )\n Titanium Technologies\n 2,345\n 3,174\n (829\n )\n Total Net Sales\n $\n 5,526\n $\n 6,638\n $\n (1,112\n )\n Segment Adjusted EBITDA\n Year Ended\n December 31,\n Increase /\n 2019\n 2018\n (Decrease)\n Fluoroproducts\n $\n 578\n $\n 783\n $\n (205\n )\n Chemical Solutions\n 80\n 64\n 16\n Titanium Technologies\n 505\n 1,055\n (550\n )\n Corporate and Other\n (143\n )\n (162\n )\n 19\n Total Adjusted EBITDA\n $\n 1,020\n $\n 1,740\n $\n (720\n )\n Adjusted EBITDA Margin\n 18%\n 26%\n Change in Net Sales from the year ended December 31, 2018\n Percentage\n Percentage Change Due To\n December 31, 2019\n Net Sales\n Change vs.\n December 31, 2018\n Local Price\n Volume\n Currency Effect\n Total Company\n $\n 5,526\n (17\n )%\n (2\n )%\n (14\n )%\n (1\n )%\n Fluoroproducts\n $\n 2,648\n (7\n )%\n (2\n )%\n (4\n )%\n (1\n )%\n Chemical Solutions\n 533\n (11\n )%\n (4\n )%\n (7\n )%\n —\n %\n Titanium Technologies\n 2,345\n (26\n )%\n (1\n )%\n (24\n )%\n (1\n )%\n EXHIBIT 99.1\n The Chemours Company \n Reconciliation of Non-GAAP Financial Measures to GAAP Financial Measures (Unaudited)\n (Dollars in millions)\n Adjusted EBITDA and Adjusted Net Income to GAAP Net Income Reconciliation \n Adjusted earnings before interest, taxes, depreciation, and amortization (“Adjusted EBITDA”) is defined as income (loss) before income taxes, excluding the following items: interest expense, depreciation, and amortization; non-operating pension and other post-retirement employee benefit costs, which represent the components of net periodic pension (income) costs excluding the service cost component; exchange (gains) losses included in other income (expense), net; restructuring, asset-related, and other charges; asset impairments; (gains) losses on sale of business or assets; and, other items not considered indicative of the Company’s ongoing operational performance and expected to occur infrequently. Adjusted Net Income is defined as net income (loss) attributable to Chemours, adjusted for items excluded from Adjusted EBITDA, except interest expense, depreciation, amortization, and certain provision for (benefit from) income tax amounts.\n Three Months Ended\n Year Ended\n December 31,\n September 30,\n December 31,\n 2019\n 2018\n 2019\n 2019\n 2018\n Net (loss) income attributable to Chemours\n $\n (317\n )\n $\n 142\n $\n 76\n $\n (52\n )\n $\n 995\n Non-operating pension and other post-retirement employee benefit cost (income)\n 373\n (9\n )\n 1\n 368\n (27\n )\n Exchange losses (gains), net\n 4\n (5\n )\n (5\n )\n 2\n (1\n )\n Restructuring, asset-related, and other charges\n 38\n 18\n 34\n 87\n 49\n Loss on extinguishment of debt\n —\n —\n —\n —\n 38\n (Loss) gain on sales of assets and businesses\n 1\n —\n (9\n )\n (10\n )\n (45\n )\n Transaction costs\n 2\n —\n —\n 3\n 9\n Legal and environmental charges\n 132\n 36\n 5\n 175\n 82\n Other charges\n —\n 1\n —\n —\n 1\n Adjustments made to income taxes\n (5\n )\n 13\n 3\n —\n (41\n )\n Benefit from income taxes relating to reconciling items\n (136\n )\n (11\n )\n (7\n )\n (154\n )\n (26\n )\n Adjusted Net Income\n 92\n 185\n 98\n 419\n 1,034\n Net income attributable to non-controlling interests\n —\n —\n —\n —\n 1\n Interest expense, net\n 52\n 47\n 53\n 208\n 195\n Depreciation and amortization\n 79\n 71\n 78\n 311\n 284\n All remaining provision for income taxes\n 4\n 38\n 19\n 82\n 226\n Adjusted EBITDA\n $\n 227\n $\n 341\n $\n 248\n $\n 1,020\n $\n 1,740\n (1) \n EXHIBIT 99.1\n The Chemours Company \n Reconciliation of Non-GAAP Financial Measures to GAAP Financial Measures (Unaudited)\n (Dollars in millions, except per share amounts)\n Adjusted Earnings per Share to GAAP Earnings per Share Reconciliation \n Adjusted earnings per share (“EPS”) is calculated by dividing Adjusted Net Income by the weighted-average number of common shares outstanding. Diluted Adjusted EPS accounts for the dilutive impact of stock-based compensation awards, which includes unvested restricted shares. Diluted Adjusted EPS considers the impact of potentially-dilutive securities, except in periods in which there is a loss because the inclusion of the potentially-dilutive securities would have an anti-dilutive effect.\n Three Months Ended\n Year Ended\n December 31,\n September 30,\n December 31,\n 2019\n 2018\n 2019\n 2019\n 2018\n Numerator:\n Net (loss) income attributable to Chemours\n $\n (317\n )\n $\n 142\n $\n 76\n $\n (52\n )\n $\n 995\n Adjusted Net Income\n 92\n 185\n 98\n 419\n 1,034\n Denominator:\n Weighted-average number of common shares outstanding - basic\n 163,519,362\n 171,641,788\n 163,815,483\n 164,816,839\n 176,968,554\n Dilutive effect of the Company's employee compensation plans (1)\n 1,370,113\n 4,740,652\n 1,325,380\n 2,428,184\n 5,603,467\n Weighted-average number of common shares outstanding - diluted (1)\n 164,889,475\n 176,382,440\n 165,140,863\n 167,245,023\n 182,572,021\n Basic (loss) earnings per share of common stock\n $\n (1.94\n )\n $\n 0.83\n $\n 0.46\n $\n (0.32\n )\n $\n 5.62\n Diluted (loss) earnings per share of common stock (1)\n (1.94\n )\n 0.81\n 0.46\n (0.32\n )\n 5.45\n Adjusted basic earnings per share of common stock\n 0.56\n 1.08\n 0.60\n 2.54\n 5.85\n Adjusted diluted earnings per share of common stock (1)\n 0.56\n 1.05\n 0.59\n 2.51\n 5.67\n (1) \n In periods where the Company incurs a net loss, the impact of potentially dilutive securities is excluded from the calculation of EPS under U.S. GAAP, as their inclusion would have an anti-dilutive effect. As such, with respect to the U.S. GAAP measure of diluted EPS, the impact of potentially dilutive securities is excluded from our calculation for the three and twelve months ended December 31, 2019. With respect to the non-GAAP measure of adjusted diluted EPS, the impact of potentially dilutive securities is included in our calculation for the three and twelve months ended December 31, 2019, as Adjusted Net Income was in a net income position. \n EXHIBIT 99.1\n The Chemours Company \n Reconciliation of Non-GAAP Financial Measures to GAAP Financial Measures (Unaudited)\n (Dollars in millions, except per share amounts)\n 2020 Estimated Adjusted EBITDA and Estimated Adjusted EPS to Estimated GAAP Net Income Reconciliation (*) \n Year Ended December 31, 2020\n Low\n High\n Net income attributable to Chemours\n $\n 405\n $\n 556\n Transaction costs\n 23\n 30\n Adjusted Net Income\n 428\n 586\n Interest expense, net\n 215\n 220\n Depreciation and amortization\n 309\n 309\n Provision for income taxes\n 98\n 135\n Adjusted EBITDA\n $\n 1,050\n $\n 1,250\n Weighted-average number of common shares outstanding - basic (1)\n 163.5\n 163.5\n Dilutive effect of the Company's employee compensation plans (1,2)\n 1.4\n 1.4\n Weighted-average number of common shares outstanding - diluted (1,2)\n 164.9\n 164.9\n Basic earnings per share of common stock\n $\n 2.48\n $\n 3.40\n Diluted earnings per share of common stock (2)\n 2.46\n 3.37\n Adjusted basic earnings per share of common stock\n 2.62\n 3.58\n Adjusted diluted earnings per share of common stock (2)\n 2.60\n 3.55\n (1) \n The Company’s estimates for the weighted-average number of common shares outstanding - basic and diluted reflect results for the three months ended December 31, 2019, which are carried forward for the projection period. \n (2) \n Diluted earnings per share is calculated using net income available to common shareholders divided by diluted weighted-average common shares outstanding during each period, which includes unvested restricted shares. Diluted earnings per share considers the impact of potentially dilutive securities except in periods in which there is a loss because the inclusion of the potential common shares would have an anti-dilutive effect.\n (*) \n The Company’s estimates reflect its current visibility and expectations based on market factors, such as currency movements, macro-economic factors, and end-market demand. Actual results could differ materially from these current estimates.\n EXHIBIT 99.1\n The Chemours Company \n Reconciliation of Non-GAAP Financial Measures to GAAP Financial Measures (Unaudited)\n (Dollars in millions)\n Free Cash Flows to GAAP Cash Flow Provided by Operating Activities Reconciliation \n Free Cash Flows is defined as cash flow provided by (used for) operating activities, less purchases of property, plant, and equipment as shown in the consolidated statements of cash flows.\n Three Months Ended\n Year Ended\n December 31,\n September 30,\n December 31,\n 2019\n 2018\n 2019\n 2019\n 2018\n Cash flow provided by operating activities\n $\n 400\n $\n 259\n $\n 288\n $\n 650\n $\n 1,140\n Less: Purchases of property, plant, and equipment\n (96\n )\n (154\n )\n (128\n )\n (481\n )\n (498\n )\n Free Cash Flows\n $\n 304\n $\n 105\n $\n 160\n $\n 169\n $\n 642\n 2020 Estimated Free Cash Flow to GAAP Cash Flow Provided by Operating Activities Reconciliation (*) \n (Estimated)\n Year Ended December 31,\n 2020\n Cash flow provided by operating activities\n $\n >750\n Less: Purchases of property, plant, and equipment\n ~(400)\n Free Cash Flows\n $\n >350\n (*) \n The Company’s estimates reflect its current visibility and expectations based on market factors, such as currency movements, macro-economic factors, and end-market demand. Actual results could differ materially from these current estimates.\n Return on Invested Capital Reconciliation \n Return on Invested Capital (“ROIC”) is defined as Adjusted EBITDA, less depreciation and amortization (“Adjusted EBIT”), divided by the average of invested capital, which amounts to net debt, or debt less cash and cash equivalents, plus equity.\n Year Ended December 31,\n 2019\n 2018\n Adjusted EBITDA (1)\n $\n 1,020\n $\n 1,740\n Less: Depreciation and amortization (1)\n (311\n )\n (284\n )\n Adjusted EBIT\n 709\n 1,456\n Total debt\n 4,160\n 3,972\n Total equity\n 695\n 1,020\n Less: Cash and cash equivalents\n (943\n )\n (1,201\n )\n Invested capital, net\n $\n 3,912\n $\n 3,791\n Average invested capital (2)\n $\n 4,102\n $\n 3,717\n Return on Invested Capital\n 17\n %\n 39\n %\n (1) \n Based on amounts for the year ended December 31, 2019 and 2018. Reconciliations of Adjusted EBITDA to net income (loss) attributable to Chemours are provided on a quarterly basis. See the preceding table for the reconciliation of Adjusted EBITDA to net income attributable to Chemours for the years ended December 31, 2019 and 2018.\n (2) \n Average invested capital is based on a five-quarter trailing average of invested capital, net.\n",
@@ -36,7 +39,394 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000156459020004616__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001564590-19-039879",
+   "filingDate": "2019-11-04",
+   "reportDate": "2019-11-04",
+   "form": "8-K",
+   "local_gz": "000156459019039879__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "Vergnano concluded, \"Looking ahead, we anticipate softer economic activity as we head into 2020, but are actively monitoring trade and other issues, which could change the dynamic."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2020-02-14",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 72,
+   "has_qna": true,
+   "n_chars": 44148,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, thank you for standing by. And welcome to The Chemours Company Fourth Quarter 2019 Earnings Conference Call. At this time, all participants are in a listen-only mode. After the speakers' presentation, there will be a question-and-answer session. [Operator Instructions] I would now like to hand the conference over to Jonathan Lock, Vice President of Corporate Development and Investor Relations. Thank you. Please go ahead, sir."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Jonathan Lock",
+     "content": "Good morning. And welcome to The Chemours Company's full year 2019 earnings conference call. I'm joined today by Mark Vergnano, President and Chief Executive Officer; Mark Newman, Senior Vice President and Chief Operating Officer; and Sameer Ralhan, Senior Vice President and Chief Financial Officer. Before we start, I’d like to remind you that comments made on this call as well as the supplemental information provided in our presentation and on our website, contain forward-looking statements that involve risks and uncertainties, including those described in the documents Chemours has filed with the SEC. These forward-looking statements are not guarantees of future performance and are based on certain assumptions and expectations of future events that may not be realized. Actual results may differ, and Chemours undertakes no duty to update any forward-looking statements as a result of future developments or new information. During the course of this call, management will refer to certain non-GAAP financial measures that we believe are useful to investors evaluating the Company's performance. A reconciliation of non-GAAP terms and adjustments are included in our release and at the end of this presentation. I will now turn the call over to our CEO, Mark Vergnano, who will review the highlights from the quarter and the year. Mark?"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Mark Vergnano",
+     "content": "Thank you, Jonathan, and thank you, everyone, for joining us on this Valentine's Day 2020. As I look back on 2019, I'm encouraged by the results we delivered in the fourth quarter, and proud of the resilience we showed as a business throughout the year. These past 12 months have been among the most challenging we've had as a young Company. However, as we've done in the past, my fellow colleagues at Chemours pulled together to deliver a solid set of results, consistent with our updated guidance of a full year. I'd like to recognize our commercial teams, operations staff, functions, as well as our support teams around the world for making the best of a challenging year. On chart three, for the full year 2019, we delivered adjusted EBITDA of $1.02 billion. Free cash flow conversion was better than anticipated, leading to a full year free cash flow of $169 million. We had a strong fourth quarter, leading to free cash flow significantly higher than our updated guidance. Our results reflect the ability of Chemours to generate strong free cash flow, despite significant market and operating headwinds. The cost and working capital actions we implemented in 2019 began to have an impact late in the year and point the way to better results as the cycle turns. We've come a long way since our spin in 2015. I believe this resolve is somewhat unappreciated by the market, and I know that we will continue to demonstrate our ability to deliver solid results in the face of changing market conditions. Across the business in 2019, we achieved a number of commercial wins, which I wanted to highlight. It starts with hitting our 50% volume target for AVA contracts in our Titanium Technologies segment. We transitioned from a difficult first half characterized by heavy destocking to a stronger second half as we fully utilized all three of our sales channels, AVA contracts, flex and distribution to work with customers and begin restoring our share position. I'm happy to report another quarter of stable volumes, stable sequential pricing and share regains in our TT segments. You'll also recall that last quarter we announced the launch of a new pigment product for ink grades. We are excited to be bringing that product to the market and increasing our participation in specialty TiO2 in the coming years. On the Fluoroproducts side, Opteon continues to displace high GWP legacy refrigerants in automobiles. And as you know, Europe fully converted to HFOs in 2017. We expect to reach 100% penetration with automotive OEMs in the U.S. by 2021 and in Japan by 2023. On the stationary front, we are increasing our investment in countermeasures to control the flow of illegal imports into Europe, which are depriving the world of the environmental benefits of HFO technology. We strongly believe that our Opteon blends are the refrigerant of the future for stationary applications worldwide. In 2019, we also delivered on three large scale engineering programs designed to set the foundation for our future growth. First, we completed the startup and commissioning of our Corpus Christi Opteon site. It's a world class, world scale facility, appropriately built in the great state of Texas. Second, we completed work on the thermal oxidizer at our facility in Fayetteville, North Carolina. It's another unique facility designed to control air emissions of fluorinated compounds at the site. We are confident that the plant will succeed in its mission to allow Chemours to lead on the issue of fluorinated emissions. Finally, we completed work on our new Chemours' Discovery Hub at the University of Delaware STAR Campus. Our new R&D lab is a great story, not just for Chemours, but for the state of Delaware. We are committed to reinvesting in our home state and keeping these great R&D jobs close to home. Last but not least, 2019 was a year in which we continued our efforts to refresh the portfolio. In 2019, we acquired Southern Ionics Minerals, a leading mineral sand operator in Georgia. In December, we completed the sale of our Methylamines and Methylamides business to the Cornerstone Chemical Company. While modest in size, these deals demonstrate our commitment to taking action to strengthen the business and drive greater profitability across the portfolio. As you just heard, we have positives to build on. And we're forging ahead to improve our performance on many fronts. I'll be back at the end of our call to discuss how we're thinking about the year and provide our full 2020 guidance. Right now, I'll turn things over to Sameer to go over our financial results."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Sameer Ralhan",
+     "content": "Thanks, Mark. I'll begin my comments on slide four. Full year net sales of $5.5 billion were down $1.1 billion versus 2018, reflecting volume and price headwinds across the businesses. GAAP net income was negative $52 million while adjusted net income was $419 million. GAAP earnings per share was negative $0.32 while adjusted earnings per share was $2.51. GAAP figures include two one-time charges in the quarter. First, a non-cash charge of $380 million, it is related to the transfer of a non-active portion of our Netherlands Pension Plan obligations to a third-party asset manager. This transfer represents the settlement and de-risking of our largest pension obligation from the spin. It results in our ability to move the vested non-active portion of our Netherlands plan and associated liabilities off the balance sheet. As a result of the transaction, we will also recognize ongoing savings from reduced pension administration costs. This was a big win for Chemours and plan participants. We were excited to be able to take advantage of the surplus in the plan to decrease this liability. Second, a $132 million charge related to onsite remediation at our Fayetteville site. This accrual includes potential cost to address legacy ground water remediation at the site along with a provision for long-term operating expenses to be spent over 20 years. These projects are the basis of further work we are doing connected to the consent order with the state of North Carolina and therefore subject to change. Adjusted EBITDA of $1.02 billion resulted in EBITDA margin of 18%. Free cash flow generation of $169 million was higher than our updated guidance from the second quarter. This result was driven by stronger operating cash flow in the fourth quarter as a result of improved working capital management. Let's move to slide five to review our fourth quarter results. Net sales of over $1.4 billion compared to $1.5 billion in last year's fourth quarter. The drop in revenue was driven by lower volumes and prices of refrigerants and lower Ti-Pure pigment sales. Fourth quarter GAAP net income of negative $317 million and GAAP earnings per share of negative $1.94 reflect the charges discussed previously. Adjusted net income came in at $92 million resulting in adjusted earnings per share of $0.56. Adjusted EBITDA of $227 million was impacted by lower margins across the two main segments. Free cash flow was a bright spot in the quarter coming in at $304 million compared to $105 million from the fourth quarter of last year. This was run by solid cash flow from operations of $400 million and CapEx of $96 million. Turning the page, fourth quarter adjusted EBITDA was $227 million compared to $341 million from the same period a year ago. Results were driven by lower global refrigerant prices and lower contractual pass-through prices in some Chemical Solutions products. TiO2 prices declined modestly in the fourth quarter relative to this fourth quarter of 2018, mostly due to channel, customer and product mix. Lower volume accounted for additional $16 million headwind in the quarter. This was primarily due to lower volumes in our Titanium Technology segment on a year-over-year basis. Cost and other was a $30 million headwind in the quarter, impacted by three main factors. First, fixed cost under-absorption Titanium Technologies due to lower volumes produced during the year; second, continued impact from lost F-Gas quota sales due to HFC illegal imports into the EU; and third, increased cost and inventory related to the operational issues in Fluoroproducts, as communicated in the previous quarter. These effects were partially offset by increased productivity from the successful ramp-up of the new Corpus Christi Opteon site. Now, on to liquidity on the next slide. Chemours continues to maintain a strong balance sheet with solid liquidity. We have managed cash and working capital well in the fourth quarter and over the course of 2019. I believe we are well-positioned as we move out of the bottom of the business cycle. Cash at the end of 2019 was $943 million, up $249 million on the third quarter of 2019. The business generated $400 million of operating cash flow in the quarter, a combination of seasonal working capital unwind, normalizing TiO2 volumes and strong overall working capital management. CapEx was $96 million, primarily related to the completion of the thermal oxidizer project at Fayetteville and the lab at the STAR campus. Free cash flow for the year was $169 million. Net leverage remains stable at 3.2 times adjusted EBITDA on a trailing basis. Debt net of cash stood at $3.3 billion at the end of the year. I continue to have confidence in our balance sheet with well-spaced and longer dated maturities. I believe we're well-positioned heading into 2020, having weathered the tough conditions here in 2019. I'll now turn things over to Mark Newman to cover segment performance."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Mark Newman",
+     "content": "Thanks, Sameer. I'd like to start with Fluoroproducts on the next slide. As we move through the fourth quarter, we continue to experience the negative impact of illegal HFC imports into the EU. While there have been significant ongoing efforts, this continues to be a strong headwind, working against the adoption of our Opteon stationery blends in Europe. As we approach the 2021 quota step-down, we are working with the EU member states to help accelerate the implementation of mechanisms and enforcement actions to stop illegal imports. This includes stepping up underground investigation and enforcement, as well as raising public awareness of this very-serious issue. I hope that as the year moves on, we can report positive progress. Moving on to the results. Net sales in the fourth quarter and full year were $614 million and $2.6 billion respectively. Relative to the full year, pricing and volumes were 2% and 4% headwinds respectively as HFC illegal imports, slowed Opteon stationery blend adoption and impacted global refrigerant prices. Adjusted EBITDA for the fourth quarter and full year were $117 million and $578 million, respectively. In the fourth quarter, the benefit from the ramp-up of the production of Opteon at our Corpus Christi site was offset by the impact of operating issues at other sites, which occurred in prior periods. We will drive better operational discipline and execution in 2020. As we look ahead, we continue to build momentum with stationary equipment OEMs. These partnerships are important to enable the full conversion of the stationary market to HFOs. We will continue our drive for adoption across the mobile air conditioning sector, with a focus on moving the U.S. and Japan to full adoption for the coming years. Finally, in polymers, we are focusing application development around 5G and membrane technologies, where we have proprietary intellectual property and unique materials to help enable new market development. On chart nine, let's review the results from our Chemical Solutions business. On the Q3 call, I said we were looking to close the year strong in Chemical Solutions, and the team really stepped up in Q4. We delivered record profitability in the fourth quarter, and for the full year 2019 on the back of strong commercial and operating performance from the business. This came despite some top line erosion due to lower contractual pass-through pricing in our Performance Chemicals and Intermediates business. Fourth quarter and full year revenue were $129 million and $533 million, respectively. The drop-off in these figures from 2018 was primarily due to lower pass-through pricing in the Performance Chemicals and Intermediates business as raw material costs came down in 2019. This change was earnings neutral to the business. As such, adjusted EBITDA for the full year was a record $80 million, up 25% from last year. Fourth quarter adjusted EBITDA was $25 million, up 79% from the prior year period. Adjusted EBITDA margin was 19% in the fourth quarter, moving up toward portfolio average and in line with our expectations for the segment. We remain very well-positioned with our mining solutions business in North America. Our world class sodium cyanide technology enables us to efficiently and safely serve customers across the Americas. And we continue to see strong demand across the region. Gold prices, which have moved up over the past year, provide an additional tailwind as our customers look to serve rising demand. I'm proud of the investments Ed and the team have made in the business over the past several years, spending capital wisely to improve productivity and asset quality. Finally, in the quarter, we sold our MAP business to an affiliate of Cornerstone Chemical Company. This was a positive transaction both sides, as Chemours found a great operating partner for the business with significant synergies, while both parties were able to work with the state of West Virginia to save 60 jobs. My sincere thanks to Jonathan, Ed and the entire team for forging ahead through the holidays to get this deal over the finish line. On chart 10, I'll cover our Titanium Technologies segment. Net sales in the fourth quarter and full year were $610 million, and $2.3 billion, respectively. The team has skillfully leveraged all our channels including the flex portal to begin the process of regaining share with our plastics customers. Revenue was stable on a sequential basis with price and volume remaining in line with third quarter. Annual prices for 2019 on a year-over-year basis were down approximately 1%, a product of our TVS strategy, and recognition of the value in use of our Ti-Pure pigment. While we don't have all the data to finish the analysis at this point, we believe we have regained additional care globally as we exit 2019. On a regional basis, volume and buying patterns were stable across most of the globe. Europe showed some improvement after a very slow start to the year. Adjusted EBITDA in the fourth quarter and full year came in at $115 million and $505 million, respectively. The fourth quarter was down 42% from 2018. Margins of 19% reflect the impact of low fixed cost absorption across the circuit due to low production volumes and raw material inflation. However, we expect these will begin to normalize into the mid-20s as production volumes increase across our circuit. With that, I'll turn things back to Mark."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Mark Vergnano",
+     "content": "Thanks, Mark. Turning to Chart 11. As I said at the beginning of the call, we are moving forward in 2020 with some pockets of momentum and looking to build on the results we achieved in the fourth quarter. Starting at the top of the chart, we expect to generate between $1.05 billion and $1.25 billion of adjusted EBITDA in 2020. At the midpoint, this represents a 13% improvement over our 2019 results and in our estimation, reflects a good midline case for our combined business, given the current global market context. CapEx will come down from 2019 levels to $400 million. As a result, we project that free cash flow for 2020 will more than double from 2019 levels to greater than $350 million. Our discipline of steady return of free cash flow to shareholders will continue. The majority of our free cash flow will go back to shareholders in the form of a stable dividend, and via share repurchases. As Sameer said earlier, we believe that our leverage remains prudent based on our projections. Turning to Chart 12. As I mentioned on the last chart, our CapEx in 2020 will decline by roughly 20% from 2019 levels as we move past some sustainability and onetime work. Our CapEx for 2020 starts with the base capital required to run and maintain our assets of about $200 million. We will also spend $75 million on regulatory and sustainability projects. Finally, we have earmarked $125 million for several high-return growth projects focused on Titanium Technologies and Fluoroproducts. We believe that this mix of projects strikes the right balance between returns and growth, as well as investment in the near and long term. As a management team, we remain focused on efficient capital spend with transparency to our investors on priority uses of capital across the portfolio. Turning to the last chart, I'd like to end our prepared remarks with a quick summary of our priorities for 2020, which I previewed with you on our last call. In 2020, we are going to renew our focus and discipline here at Chemours. In addition to growing our top-line, we must double down on all the things that are under our control, operating uptime, costs, supply chain inventory and working capital management. Free cash flow conversion will be the number one priority as we look to highlight the power of our portfolio to generate cash through any cycle. We are actively engaging on the regulatory issues we face at our sites in the U.S. and with the governments in Europe who are leading the way on climate change and the phase-out of legacy refrigerants. Finally, we will work diligently to ensure we continue to make progress against our 2030 corporate responsibility commitments. Our investment here is a cornerstone of Chemours and critical to the long-term success of this Company. 2019 was a difficult year, but we are working hard to make 2020 a better one for Chemours. I have challenged and will continue to challenge everyone across the Company to dig deep this year to find ways we can get better at everything we do. The three of us in the entire leadership team have clear targets and are focused on executing this plan. We will make 2020 a great year for the Company. With that operator, please open the line up for questions."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] And our first question today comes from the line of Duffy Fischer from Barclays."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Duffy Fischer",
+     "content": "Yes. Good morning, guys. First question is just to round the PFAS charge that you took down in North Carolina. One, can you talk about what's in that? What’s been spent already? What’s still to be spent? And then, can we use that to extrapolate again with a wide range, what might need to happen at other plants?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. Sure, Duffy. It’s Mark. If you go back and think about the consent order we have with the North Carolina DEQ, there are really four elements of that at Fayetteville. One was for process water emissions; the second was air emissions; the third was off-site, residential water treatment and the fourth was on-site remediation, think of that as primarily groundwater. We already have dealt with the process water emission. So obviously, we have a charge that we have to keep water from going into the Cape Fear River. Air emissions is our TO, our thermal oxidizers that we put in place at the end of December. That was $100 million we spent on CapEx to do that. So, that's been taken care of. The off-site residential water treatment was a charge we did earlier in the year in ‘19, and that is handled. And the last leg of this was really this on-site remediation. So, think of this charge as really pump and treat primarily, operate and maintain. So, this is a charge that is for 20 years of operating and maintenance costs. So, it's not a single charge, you're not going to see that cash flow out in the single bucket. It’s going to be over a 20-year period as we operate that facility. To the second part of your question, so this really covers everything that we have in the current consent agreement with the state. Other sites, we already have this already in place at all our other sites. So, we already are in compliance with all our other sites. I will say that as you’ve seen in our CapEx that we're spending, the $75 million on our, what we call our corporate responsibility commitment spend is really well-beyond compliance. That is the area that we said we want to eliminate 99% of our air and water emissions of our fluoro operations across the world. That's well beyond compliance because we think that's the right thing to do. But, this charge, number one, we believe sorts out everything we have in the consent order with the state. And two, it’s not any charges you're going to have to see at the rest of our sites because we're already in compliance."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Duffy Fischer",
+     "content": "And then, maybe one just on the fluoro gases, primarily in Europe. When you talk to distributors over there, there doesn't seem to be any reductions so far in the Chinese HFC that’s making its way in. What's the prognosis for that this year? What are the mile markers we should look for? And a year from now, are we still going to be talking about this as a headwind or will we see an inflection point sometime this year, do you believe?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Mark Newman",
+     "content": "Hi, Duffy. It's Mark Newman. So, there's a very concerted effort with an industry consortium of refrigerant manufacturers really on raising the game around enforcement and building public awareness on what is really a very negative environmental impact. We are starting to see some indication of traction on enforcement. I think last week, there was a fairly large seizure in Italy by the anti-fraud agency OLAF. And for 2020, our assumption is relatively stable performance, in terms of the underlying fundamentals of Opteon blends, on the basis that there's not enough enforcement yet to really change the ground game. Remember though that there will be a fairly significant step-down in quotas as we go into 2021. So, our view is a stable year in terms of the underlying business, a year in which, in 2020, there will be limited quota sales, which is different than what we had in ‘19. But, as we go into 2021, our view is, if there's enough progress in 2020, we'll start to see the inflection point towards the end of this year and as we move into 2021. Obviously, this is a setback to our Opteon franchise. But, we still see this as a decade-long growth play here both on the mobile air conditioning side in the U.S. and Japan in the next few years. And then, there's a lot of work going on with the stationary OEMs around using our blends in their future products. So, we're encouraged by the long game here. Obviously we’re also encouraged by some of the traction we're seeing on enforcement. And we're going to continue to build public awareness for what is the equivalent of four coal-fired plants in Europe with all these imported illegal refrigerants."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of John McNulty from BMO Capital Markets. Your line is open."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "John McNulty",
+     "content": "So, with regard to the TiO2 markets, it looks like things are settling down a little bit. We're actually even starting to see some price hike announcements in North America. I guess, with that, can you speak to the demand that you're seeing for contracts or for customers looking to use your values, your AVA position and locking in long-term contracts. Is that -- has the demand for that part of your portfolio, has it started to pick up in a noticeable way?"
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Mark Newman",
+     "content": "So, John, Mark Newman again. We really like where we are on TVS. And from a market perspective, our long-term indicators have been positive -- in the positive territory for several months now. And we're starting to see more of that across multiple geographies. So, I would say we're feeling really positive about the year from a demand perspective. Obviously, a lot of the work we did in the second half of '19 was around regaining share. Recall, our Q3 volumes were up 10%. And, our Q4 volumes are up slightly in a quarter that is usually seasonally down. So, we're really encouraged by the market signs that we're seeing. And we're really encouraged by the response of our customers to our TVS offering both in terms of our AVA contracts, which represent 50% or more of our volume, as well as our flex volumes and response to different programs that we've introduced, being the only producer today with a really great ecommerce channel. So, overall, I think we're feeling very positive about where we are."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Mark Vergnano",
+     "content": "And John, this is Mark. Just to add to Mark's comment. We had said before that we had a lot of traction with our coating customers around AVA contracts, which continues to be the case. But, we’re now getting traction with the plastic and laminate customers where you're seeing us get our market share back with our flex portal. That portal is really working for them. And we're extremely encouraged by the share gain that we believe we’ll be able to demonstrate in the fourth quarter and as we go into 2020."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "John McNulty",
+     "content": "Great, thanks for the color on that. And then, just with regard to the cash flow. So, you clearly unlocked a decent amount of working capital in the fourth quarter. I guess, as you look to 2020, how much more improvement do you expect to see? Is there a way to quantify how much more free cash flow can be unlocked out of working capital as we look through 2020?"
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Sameer Ralhan",
+     "content": "Yes. John, this is Sameer. I'll take this one. Clearly, as you saw in Q4, right, as we kind of went through a lot of the payables as the volumes came down, we took the payables hit in Q3 and Q2 last year, and really started unwinding on the inventory and the receivable side in Q4. So from our point of view, we fully intend to maintain the same kind of working capital operating discipline as we look into 2020. And you're going to strong performance from us on the cash flow side. And that's really reflected in the guide that Mark talked about."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Mark Newman",
+     "content": "Perhaps from an operational perspective, the biggest area that we've talked about on prior calls is our focus on some of our ore inventory. So, maybe that probably is another area we’ll remain focused as we go through the year."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "John McNulty",
+     "content": "Got it. Thanks very much for the color."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of Don Carson from Susquehanna Financial. Your line is open."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Don Carson",
+     "content": "With customer destocking apparently coming to a close in TiO2, how do you see the year-over-year shipment comparisons evolving in Q1 and the rest of 2020? And once you eat through your higher cost finished goods inventory, do you see margins getting back to that 30% plus level in the second half of the year?"
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. John, as we look at the year, I think we're going to see normal seasonality. I think, we're going to see normal seasonality across the Company, but especially in TiO2. I think, we're back to the normal seasonality kind of a look. I will say that the first quarter will probably be our weakest quarter, primarily because we still have some high cost inventory flowing through. So, remember, our rates were not very high as we finished 2019. So, that cost has to be carried through. But that'll pass through in the first quarter. And I think you'll see it returning to mid-20s as the year progresses, and eventually beyond that going forward. So, yes, we see ourselves heading to our higher margin area but probably mid-20s, by the middle of the year."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Don Carson",
+     "content": "And then just again the situation in China, are you seeing any issues in exporters getting TiO2 out of China into Europe in particular and could that tighten up the market as we get into Q2?"
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. It's a real hard one for us to call right now. I'd say that it's hard for us to see that specifically obviously from our perspective. We're not necessarily seeing customers getting nervous about that so far. But we are seeing some solid volume coming into the books right now. So, I can't tell you it's related to that. But we are very happy with the order book that we're seeing in the first quarter."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Laurence Alexander from Jefferies."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Dan Rizzo",
+     "content": "This is Dan Rizzo on for Laurence. I just want to know within Titanium Technologies, if the rebound you're expecting or is predicated upon a rebound and macro trends, particularly in Europe, are we expecting the environment to get better to kind of hit these targets?"
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Mark Newman",
+     "content": "It's Mark Newman again. As I said earlier, I think, the indicators that we look at are both -- have been positive for a while and are more while-spread. And we did feel like Europe started in '19 a lot weaker than it finished the year. So, I'd say, in particular, we're encouraged there."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Dan Rizzo",
+     "content": "And then, you mentioned before that the step-down in Opteon in 2021. I'm sorry, could you just put a little color on what you're referring to? You said, it was going to reflect at the end of the year and then grow from there, but I was just wonder what you meant by step-down? I'm sorry for the confusion."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Mark Newman",
+     "content": "There's an F-Gas quota arrangement in Europe. And then, next quota step-down takes effect in calendar year 2021. And it's about a 20% step-down. So, fairly meaningful step down in terms of -- from a CO2 quota perspective."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Mark Vergnano",
+     "content": "And, Dan, just to give you the color around that a little bit. Is that the mechanism that the F-Gas regulation has as it moves down quotas -- HFC quotas, if you will, at periods of time, the next step-down being beginning of 2021, as Mark mentioned, and that sort of drives perhaps faster adoption of the HFO technology. So, that's just the mechanism that the European Union uses in their F-Gas regulation."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Mark Newman",
+     "content": "Yes. And I said it wrong. It's a 30% step down in 2021, not 20%."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Arun Viswanathan from RBC."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Arun Viswanathan",
+     "content": "I'm just curious, there's been some announcements on the TiO2 side of price increases. Maybe you can just characterize what you're seeing on the inventory side from both your perspective and your customers’ perspective. Do you think we've reached the bottom? And then also, could you highlight the Asian export situation as well? Has there been any disruption in exports out of China, post coronavirus? I guess, we've been reading that exports out of China were elevated going into the beginning of the year. I just wanted to get your thoughts on that."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. I think, as we've said before, we think that the destocking side obviously is over with our customers. Obviously -- I'd say inventories are fairly low levels or to normal levels. Remember, the whole point of our AVA contracts was for our customers not to have to worry about destocking-restocking. Right? That's one of the value propositions of our AVA contracts is to give them surety from that standpoint. But, we would expect that -- an uptick in the market will create a pull that probably is a little bit higher than the normal growth that you're seeing in the marketplace. In terms of the Asia side, again, from a corporate point of view, about 10% of our revenue is in China, most of our production is really -- in China is really for fluoropolymer production. That is used for China. So, that production is used in country. So, we're not seeing a whole lot of disruption in our supply chains from that standpoint. And again, our TiO2 production that goes into China is primarily coming out of Taiwan. So, from that standpoint, we feel that we're insulated, if you will, from that in some ways. So, we're not seeing any disruption as a Chemours Company. And it's hard for us to see anything else from others, to be honest with us. We just don't have that kind of visibility at this point."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Arun Viswanathan",
+     "content": "And then, just maybe I can get your thoughts on fluoro. Has there been any impact from the production slowdown in automotive, or maybe what's been the impact there on your fluoro business?"
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. And Mark can add any color to this. But yes, we've seen, I'd say on our fluoropolymers business, we are off to a bit of a slow start that continued from the end of 2019 in two major segments, automotive as well as semicon. Those are the two areas, two large areas for us from a marketplace standpoint. Automotive continues to be weak. We expect semicon to pick up as we come out of the first quarter. But right now, I'd say those markets are definitely weak, both of them."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Josh Spector from UBS."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Josh Spector",
+     "content": "Just a couple questions and some of the puts and takes on fluoro going into first half next year. So, I mean, I imagine there is still a headwind from the quota sales. And if I look at first half of '20, it was maybe a $40 million benefit. Do you assume that all goes away in '20? And kind of an offsetting factor, Opteon ramp, was that around $20 million benefit in the quarter that maybe offset some of those quota sales? How do you think about those as you look at 2020?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Mark Newman",
+     "content": "So, it's Mark Newman again. Obviously, quota sales are easy to track as we report them in our other income. So, they're fully disclosed. And they're episodic. And so, yes, I would say that's a headwind for the full year and based on the timing will be a headwind in a particular quarter. We don't sort of give guidance of our individual product lines. But, the way I think about our F-chem businesses, Opteon will continue to grow on a volume basis. We do have committed price downs and we are also in a very weak F-chem market on both blends as well as our base F-chem business as a result of illegal imports, which we will have all year. On the plus side of the ledger, as we go through the year, obviously, we had some operational issues last year that we don't plan to repeat this year. And then, we'll have the ramp-up of our Corpus Christi facility, which will provide real benefit from a cost perspective this year. But, a lot of that benefit is really being offset by weaker F-chem prices across the portfolio."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Josh Spector",
+     "content": "Okay, thanks. Yes. That's helpful. And just coming back to the TiO2 volume side. I mean, you talked about normal seasonality. Where do you say your current operating rates are at? Are they kind of in the mid-70% range? And I guess, if that's right, are you kind of happy with that level into 2020, or do you expect that to pick up more over the next couple of years?"
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Mark Vergnano",
+     "content": "Yes, we had -- as we said, we were operating at -- we don't obviously -- don't disclose our rates specifically, but we're operating at lower rates as we ended 2019. Those will ramp up throughout the year. We're very confident that as we get into the first quarter here, in the second quarter, we'll see our ramp -- we'll see the ramp-up in our in our rates. That'll make a very significant difference on our costs. I think, that's one of the things that people were a little bit surprised that last year is when we were down in terms of our rates, how much that really added to the cost of the business. So, these assets are made to run at higher rates, and we're going to get them back there as we move through the year."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Josh Spector",
+     "content": "Okay, thanks."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Jeff Zekauskas from JP Morgan. Your line is open."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Jeff Zekauskas",
+     "content": "Thanks very much. Did your Opteon volumes or sales grow about 5% in 2019 or did they grow more or less, or how do you do?"
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Mark Newman",
+     "content": "So, Jeff, I think we've always said that our Opteon YF, the mobile air conditioning part of our business is growing at double digit rates from a volume perspective. With the automotive OEMs, obviously we've alluded to it before, we have price downs, contractual price downs. And as we've said, the overall tone of the market with illegals is depressing price on the bend side. So, I'd say, the way you ought to think about it is volume is growing double digit or certainly was in 2019. They will start to taper down lower as we get fuller saturation in the mobile market. And price is probably in the mid single digits headwind in the year."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Jeff Zekauskas",
+     "content": "Okay, great. And you've made progress in getting 50% of your titanium dioxide volume over AVA contracts. So, my understanding of the theory of contracts is that you get some kind of normal, positive inflationary pricing. So, why aren't your average prices going up, if you’ve signed so many contracts? Is it that 50% of your portfolio is going up 2% and the other 50% is going down 5%, or is there a turning point so we see positive pricing in 2020 because of the nature of the contracts?"
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. I think, it's a combination, Jeff -- it's Mark again, a combination of -- one, we have twice a year when the AVA contract pricing gets reset, based on PPI. And then you're also seeing on the other side, our flex pricing, right, which has been counter to that. So, I think as you go through the year, you'll see probably a net price improvement going forward. But remember, these price resets happen at very specific times, twice a year, the AVA contracts. And then, the flex pricing moves daily in terms of what we see the market look like at the time."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Vincent Andrews from Morgan Stanley."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "UnidentifiedAnalyst",
+     "content": "[Technical Difficulty]"
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Mark Vergnano",
+     "content": "You're breaking up, Vincent. We can't really hear the question. I'm sorry."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "UnidentifiedAnalyst",
+     "content": "Hi. This is Steve on for Vincent. [Technical Difficulty]"
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Mark Newman",
+     "content": "A little better. Yes."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Mark Vergnano",
+     "content": "If you’re on speaker, you might want to jump off."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "UnidentifiedAnalyst",
+     "content": "Yes. I’m on my headset. I know right. But anyway. So, there was -- on the cash side of things, you had a receivables securitizations facility that you entered into the third quarter. So, I just wanted to clarify -- on the working capital side, is this benefiting your working capital at all? And then, are you expecting any further benefit in 2020 in your cash bridge from this facility?"
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Sameer Ralhan",
+     "content": "Yes. Our AR securitization facility is on balance sheet. So, it does not impact the free cash flow, the way it would traditionally look like. I think, I just want to make a distinction right. Off-balance sheet, we will do it. But our securitization facility is on balance sheet facility."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of P.J. Juvekar from Citi."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Eric Petrie",
+     "content": "It's Eric Petrie for P.J. You earmarked a $125 million for growth CapEx. Of that -- does that include expenses for your 10% circuit expansion in TiO2, as well as any additional pigment grades that you intend to introduce to market?"
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Mark Newman",
+     "content": "Yes. If you look at the growth CapEx that we have, just a couple features around that. One is, it's a good balance between Fluoroproducts and TT. It's a good balance between top-line growth opportunities, as well as improving cost position. And all of these projects are well above 20% IRR. So, they're all good projects. And yes, they do include some of the capacity work that we've talked about in the past, moving that along. So that is part of the portfolio of capital projects we have within the TT side."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Eric Petrie",
+     "content": "And for my follow-up question, earlier this year, you announced that you were going to halt a few grades of high GWP refrigerants. Of those customers that were impacted in the EU, how many of those have converted to Opteon substitutes?"
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Mark Vergnano",
+     "content": "Obviously, that was the intent there. I mean, this was a very small product line from that standpoint. It was the highest GWP product line we have in the portfolio. So, most of those customers have already made the bridge over to Opteon and HFOs, going forward. So, I don't believe this is going to hurt anyone from that standpoint. And obviously, it's just part of the pruning we continue to do on our portfolio as high GWP refrigerants become dinosaurs and move out of the portfolio."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Operator",
+     "content": "And our final question today will come from the line of Jim Sheehan from SunTrust."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Jim Sheehan",
+     "content": "Could you please provide an update on the litigation with DuPont? Is the process going as expected? And any sense of timing for when that might be resolved?"
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. So, Jim, obviously, we don't comment a whole lot on legal issues. I will say, we did have our time with the magistrate. We thought we presented a very strong point of view and a strong case. And that is now in his hands. And we're hopeful that in the next couple months, we'll hear back from him."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Jim Sheehan",
+     "content": "And on Chemical Solutions, you really executed well in 2019, your margins have moved up, you obviously had record performance. How sustainable is your second half and your fourth quarter margin level? What kind of margins do you expect to generate in 2020?"
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Mark Newman",
+     "content": "Yes. We've been working to really get this business back to closer to our portfolio business. And Ed and his team have really done a nice job there. And we expect to say, with a double-digit EBITDA margins as we ended the year as we go into '19, really on the basis of our continued growth in our mining solutions business, as we approach the year."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Mark Vergnano",
+     "content": "And, I just want to remind you and everyone that when we spun we talked about this portfolio, and we said that with the hard work, focusing on the growth of mining solutions, and really looking at the other parts of the portfolio that weren't additive in terms of margin that we would get this segment to be up to the average of the rest of the Company. And we booked a 20% EBITDA margin, you saw in the fourth quarter. We think that's the right margin for this business going forward, lots of hard work to do that. And the sale of the Methylamines business was part of that. That was not additive to us from an EBITDA perspective. And so that helps there. So, the pruning of the portfolio and the focus on growing the mining solutions play really is something we've talked about for the last several years and now you see the results of a lot of hard work by that team."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Jim Sheehan",
+     "content": "Great. If I could ask one more thing about -- there's a competitor that's talked about rationalizing some sulfate TiO2 capacity in Europe at the end of the year. What kind of impact do you think that might have on supply-demand in the region?"
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Mark Vergnano",
+     "content": "Yes. Hard for us to give a sense. Obviously, there's certain of those end users we intercept and some of those we don't. Obviously, less capacity anywhere is going to probably make the market conditions a little bit tighter. But really, we haven't seen any impact currently around that."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Mark Newman",
+     "content": "I’ll just add, we really like the market where we see it this year. And as we said earlier, I think we fully intend to continue to regain our capacity share as we see market conditions improve. So, we're really encouraged by what we see here."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Operator",
+     "content": "I would now like to turn the call back over to Mark Vergnano, President and CEO of Chemours."
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Mark Vergnano",
+     "content": "Well, thank you, Lisa. And to everyone, as I mentioned throughout the call, we're all very encouraged by our progress as we ended 2019. Our leadership team is fully dedicated to deliver the commitments that we set for 2020. So for all of you, Happy Valentine's Day. And as always, thank you all for your interest in Chemours."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, this concludes today's conference call. Thank you for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +437,8 @@
    "reportDate": "2019-12-31",
    "accession": "0001564590-20-004829",
    "url": "https://www.sec.gov/Archives/edgar/data/1627223/000156459020004829/cc-10k_20191231.htm",
-   "local_gz": "000156459020004829__annual.txt.gz"
+   "local_gz": "000156459020004829__annual.txt.gz",
+   "n_lines": 12123
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +446,8 @@
    "reportDate": "2019-09-30",
    "accession": "0001564590-19-040478",
    "url": "https://www.sec.gov/Archives/edgar/data/1627223/000156459019040478/cc-10q_20190930.htm",
-   "local_gz": "000156459019040478__q0.txt.gz"
+   "local_gz": "000156459019040478__q0.txt.gz",
+   "n_lines": 8212
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +455,106 @@
    "reportDate": "2019-06-30",
    "accession": "0001564590-19-028394",
    "url": "https://www.sec.gov/Archives/edgar/data/1627223/000156459019028394/cc-10q_20190630.htm",
-   "local_gz": "000156459019028394__q1.txt.gz"
+   "local_gz": "000156459019028394__q1.txt.gz",
+   "n_lines": 7883
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2019-11-05",
   "n_rows": 8,
@@ -83,6 +569,68 @@
     "ocf": 196000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 992000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1016000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1434000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 4155000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 102000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 70000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 297000000.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.58,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 188333197.0,
+      "filed": "2018-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +641,68 @@
     "ocf": 343000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1013000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1010000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1217000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3973000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 126000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 72000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 281000000.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.53,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 183821241.0,
+      "filed": "2018-08-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +713,68 @@
     "ocf": 342000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1086000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 925000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1275000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3999000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 116000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 71000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 275000000.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.51,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 181877125.0,
+      "filed": "2018-11-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +785,63 @@
     "ocf": 259000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1147000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 790000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 6000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1201000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3972000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 154000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 71000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 142000000.0,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.81,
+      "filed": "2019-02-15",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +852,68 @@
     "ocf": -44000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1218000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 776000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 7000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 697000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3978000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 133000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 76000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 94000000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.55,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 172060900.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +924,68 @@
     "ocf": 6000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1250000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 808000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 630000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 4208000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 124000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 78000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 96000000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.57,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 166941626.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +996,63 @@
     "ocf": 288000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1223000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 758000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 694000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 128000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 78000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 76000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.46,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165140863.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1063,27 @@
     "ocf": 400000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 943000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 96000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": -1.94,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 1353000000.0,
     "revenue_xbrl_for_reference": 1353000000.0
@@ -166,148 +1097,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2800",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 490,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABEO",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ACAD",
-   "ACB",
-   "ACET",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACRS",
-   "ADIL",
-   "ADMA",
-   "ADPT",
-   "ADXN",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALEC",
-   "ALKS",
-   "ALLO",
-   "ALNY",
-   "ALT",
-   "ALTO",
-   "AMGN",
-   "AMPH",
-   "AMRN",
-   "AMRX",
-   "AMTX",
-   "ANAB",
-   "ANIP",
-   "ANIX",
-   "ANVS",
-   "APD",
-   "APRE",
-   "APVO",
-   "AQST",
-   "ARCT",
-   "ARDX",
-   "ARGX",
-   "ARMP",
-   "ARQ",
-   "ARQT",
-   "ARTL",
-   "ARVN",
-   "ARWR",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AUTL",
-   "AVD",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "BAK",
-   "BBIO",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BCYC",
-   "BDRX",
-   "BDTX",
-   "BEAM",
-   "BHC",
-   "BIIB",
-   "BIOX",
-   "BLRX",
-   "BMRA",
-   "BMRN",
-   "BMY",
-   "BNTX",
-   "BTAI",
-   "BYSI",
-   "CABA",
-   "CANF",
-   "CAPR",
-   "CATX",
-   "CBIO",
-   "CBT",
-   "CBUS",
-   "CDXS",
-   "CE",
-   "CELU",
-   "CELZ",
-   "CF",
-   "CGC",
-   "CGEN",
-   "CHD",
-   "CHRS",
-   "CL",
-   "CLDX",
-   "CLLS",
-   "CLRB",
-   "CLX",
-   "CMMB",
-   "CNSP",
-   "COCP",
-   "COGT",
-   "COLL",
-   "CORT",
-   "COTY",
-   "CPHI",
-   "CPIX",
-   "CRBP"
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 11,
+  "peer_list_all_tickers": [
+   "FMC",
+   "OLN"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000014272",
-    "name": "BRISTOL MYERS SQUIBB CO",
-    "ticker": "BMY",
-    "sic2": "28"
+    "entity_id": "0000037785",
+    "name": "FMC CORP",
+    "ticker": "FMC",
+    "sic4": "2800",
+    "sic3": "280",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2019-02-28",
+    "accn": "0000037785-19-000039",
+    "local_gz": "000003778519000039__peer10k.txt.gz",
+    "capex_excerpt": [
+     "t facility, $50 million of which is available for the issuance of letters of credit for the account of the Borrowers, with an option, subject to certain conditions and limitations, to increase the aggregate amount of the revolving credit commitments to $600 million (the “Revolving Credit Facility”). The issuance of letters of credit and the proceeds of revolving credit loans made pursuant to the Revolving Credit Facility are available, and will be used, for general corporate purposes, including capital expenditures and permitted acquisitions, of the Borrowers and their subsidiaries. Amounts under the Revolving Credit Facility may be borrowed, repaid and re-borrowed from time to time until th",
+     "vestiture costs associated with the sale of FMC Health and Nutrition, which was completed on November 1, 2017. Cash provided (required) by investing activities of continuing operations was $(115.9) million , $(1,349.5) million and $(100.8) million for 2018 , 2017 and 2016 , respectively. Cash required in 2018 is primarily due to the sale of product portfolios of approximately $88.0 million that were required to complete the DuPont Crop Protection Business Acquisition, fully offset by higher capital expenditure spending in 2018 as well as incremental capitalizable corporate level spending associated with the implementation of a new SAP system. The change in cash required by investing activiti",
+     "rm debt during the year. 2019 outlook and other potential liquidity needs In 2019 , we expect a continued improvement in cash generation. In aggregate, we expect operating cash flow (Non-GAAP) to increase driven by higher earnings, including the continued benefits from the integration of the DuPont Crop Protection Business, partially offset by higher working capital requirements in 2019 . Our cash needs for 2019 outside of costs to separate FMC Lithium include operating cash requirements, capital expenditures, scheduled mandatory payments of long-term debt, dividend payments, share repurchases, contributions to our pension plans, environmental and asset retirement obligation spending and res"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000200406",
-    "name": "JOHNSON & JOHNSON",
-    "ticker": "JNJ",
-    "sic2": "28",
+    "entity_id": "0000074303",
+    "name": "OLIN Corp",
+    "ticker": "OLN",
+    "sic4": "2800",
+    "sic3": "280",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2019-02-20",
-    "accn": "0000200406-19-000009",
-    "local_gz": "000020040619000009__peer10k.txt.gz",
-    "capex_excerpt": []
+    "filingDate": "2019-02-25",
+    "accn": "0000074303-19-000018",
+    "local_gz": "000007430319000018__peer10k.txt.gz",
+    "capex_excerpt": [
+     "e or provincial and local standards to regulate air, water and land quality affect substantially all of our manufacturing locations around the world. Laws providing for regulation of the manufacture, transportation, use and disposal of hazardous and toxic substances, and remediation of contaminated sites have imposed additional regulatory requirements on industry, particularly the chemicals industry. In addition, implementation of environmental laws has required and will continue to require new capital expenditures and will increase operating costs. We are a party to various government and private environmental actions associated with former waste disposal sites and past manufacturing facili",
+     "owing as of December 31, 2018 because we had issued $3.5 million of letters of credit. As of December 31, 2018 , our indebtedness represented 53.3% of our total capitalization. At December 31, 2018 , $125.9 million of our indebtedness was due within one year. Despite our level of indebtedness, we expect to continue to have the ability to borrow additional debt. Our indebtedness could have important consequences, including but not limited to: • limiting our ability to fund working capital, capital expenditures, and other general corporate purposes; • limiting our ability to accommodate growth by reducing funds otherwise available for other corporate purposes and to compete, which in turn coul",
+     "the case of chemicals, unintentional releases into the environment. Environmental laws may have a significant effect on the costs of use, transportation and storage of raw materials and finished products, as well as the costs of storage, transportation and disposal of wastes. In addition, we are party to various government and private environmental actions associated with past manufacturing facilities and former waste disposal sites. We have incurred, and expect to incur, significant costs and capital expenditures in complying with environmental laws and regulations. 18 Table of Contents The ultimate costs and timing of environmental liabilities are difficult to predict. Liabilities under en"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -329,7 +1164,16 @@
   "latest_data_date": "2020-02-14",
   "cutoff": "2020-02-14",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2020-02-14",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2020-02-18",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

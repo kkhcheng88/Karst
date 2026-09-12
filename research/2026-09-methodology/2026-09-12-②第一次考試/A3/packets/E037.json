@@ -1,6 +1,7 @@
 {
  "event_id": "E037",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E037",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "QTWO",
  "cik": "0001410384",
  "name": "Q2 Holdings, Inc.",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2019-08-08(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E037",
   "event_id": "E037",
   "ticker": "QTWO",
   "cik": "0001410384",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001410384-19-000111",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1410384/000141038419000111/q220198k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1410384/000141038419000111/q220198k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n q22019exhibit991.htm\n EXHIBIT 99.1\n Exhibit \n Exhibit 99.1 \n Q2 Holdings, Inc. Announces Second Quarter 2019 Financial Results \n Total second quarter revenue of $77.6 million, up 33 percent year-over-year, and up 9 percent from the previous quarter. \n AUSTIN, Texas (August 7, 2019) - Q2 Holdings, Inc. (NYSE:QTWO), a leading provider of digital banking and lending solutions, today announced results for its second quarter ending June 30, 2019. \n Second Quarter 2019 Results \n • \n Revenue for the second quarter of $77.6 million, up 33 percent year-over-year and up 9 percent from the previous quarter. \n • \n GAAP gross margin for the second quarter of 48.4 percent, down from 50.0 percent one year ago. Non-GAAP gross margin for the second quarter of 52.8 percent, down from 53.3 percent one year ago. The year-over-year decline is primarily attributable to investment in the Cloud Lending and Gro acquisitions closed in the fourth quarter of 2018. \n • \n GAAP net loss for the second quarter of $17.3 million, which compares to $8.6 million for the second quarter of 2018, and $19.3 million for the first quarter of 2019. Adjusted EBITDA for the second quarter of $3.2 million, down from $5.1 million one year ago and up from $0.3 million for the first quarter of 2019. The year-over-year decline is a result of investment in the acquisitions which were closed in the fourth quarter of 2018. \n “We closed out the first half of the year on a strong note,” said Matt Flake, CEO of Q2. “We hosted another record client conference in May, and continued to see cross-pollination among our digital banking, Cloud Lending and Q2 Open platforms, helping us out-perform with respect to bookings relative to our expectations for the first two quarters. Given our sales execution, we plan to continue investing in integration, innovation and delivering successful client outcomes.” \n Second Quarter Highlights \n • \n Signed three Tier 1 banks in the quarter, including a $26 billion bank holding company in the Northeast. \n • \n Signed digital lending contracts utilizing the Cloud Lending platform with two current Q2 platform clients, including a $14 billion bank on the West Coast. \n • \n Exited the quarter with approximately 13.6 million registered users on the Q2 platform, representing 4 percent sequential and 19 percent year-over-year growth. \n • \n Completed concurrent convertible note and common stock offerings, raising net proceeds of approximately $462 million. \n “We ended the quarter with cash, cash equivalents and investments of $617.7 million as a result of the capital raises in the quarter,” said Jennifer Harris, CFO of Q2. “With our continued strong bookings and revenue performance, we are raising our full year revenue guidance and intend to invest the overachievement in the business in order to capitalize on the opportunity we see in front of us.” \n Financial Outlook \n Q2 Holdings is providing guidance for its third quarter 2019 as follows: \n • \n Total revenue of $78.6 million to $79.6 million, which would represent year-over-year growth of 30 percent to 31 percent. \n • \n Adjusted EBITDA of $5.0 million to $5.5 million. GAAP net loss is the most comparable GAAP measure to adjusted EBITDA. Adjusted EBITDA differs from GAAP net loss in that it excludes things such as depreciation and amortization, stock-based compensation, acquisition-related costs, interest, income taxes and unoccupied lease charges. Q2 Holdings is unable to predict with reasonable certainty the ultimate outcome of these exclusions without unreasonable effort. Therefore, Q2 Holdings has not provided \n guidance for GAAP net loss or a reconciliation of the foregoing forward-looking adjusted EBITDA guidance to GAAP net loss. \n Q2 Holdings is providing guidance for the full-year 2019 as follows: \n • \n Total revenue of $313.0 million to $315.0 million, which would represent year-over-year growth of 30 percent to 31 percent. \n • \n Adjusted EBITDA of $20.0 million to $22.0 million. Adjusted EBITDA differs from GAAP net loss in that it excludes things such as depreciation and amortization, stock-based compensation, acquisition-related costs, interest, income taxes and unoccupied lease charges. Q2 Holdings is unable to predict with reasonable certainty the ultimate outcome of these exclusions without unreasonable effort. Therefore, Q2 Holdings has not provided guidance for GAAP net loss or a reconciliation of the foregoing forward-looking adjusted EBITDA guidance to GAAP net loss. \n Conference Call Details \n Date: \n August 8, 2019 \n Time: \n 8:30 a.m. EDT \n Hosts: \n Matt Flake, CEO and President / Jennifer Harris, CFO \n Dial in: \n US toll free: 1-833-241-4254 \n International: 1-647-689-4205 \n Conference ID: \n 7649659 \n Please join the conference call at least 10 minutes early to ensure the line is connected. A live webcast of the conference call and financial results will be accessible from the investor relations section of the Q2 website at http://investors.q2ebanking.com/ . \n An archived replay of the webcast will be available at this website on a temporary basis shortly after the call. \n About Q2 Holdings, Inc. \n Q2, a financial experience company headquartered in Austin, Texas, builds stronger communities by strengthening financial institutions that serve them. We empower banks, credit unions and other financial services providers to be the ever-present companion on an account holder’s financial journey-helping our customers unlock new opportunities, grow their businesses and improve efficiencies. To learn more about Q2, visit www.q2ebanking.com . \n Use of Non-GAAP Measures \n Q2 uses the following non-GAAP financial measures: adjusted EBITDA; non-GAAP gross margin; non-GAAP gross profit; non-GAAP sales and marketing expense; non-GAAP research and development expense; non-GAAP general and administrative expense; non-GAAP operating loss; and, non-GAAP net loss. Management believes that these non-GAAP financial measures are useful measures of operating performance because they exclude items that Q2 does not consider indicative of its core performance. \n In the case of adjusted EBITDA, Q2 adjusts net loss for such things as interest, taxes, depreciation and amortization, stock-based compensation, acquisition-related costs, amortization of technology and intangibles, and unoccupied lease charges. In the case of non-GAAP gross margin and non-GAAP gross profit, Q2 adjusts gross profit and gross margin for stock-based compensation and amortization of acquired technology. In the case of non-GAAP sales and marketing expense, non-GAAP research and development expense, and non-GAAP general and administrative expense, Q2 adjusts the corresponding GAAP expense to exclude stock-based compensation. In the case of non-GAAP operating loss and non-GAAP net loss, Q2 adjusts operating loss and net loss, respectively, for stock-based compensation, acquisition related-costs, amortization of acquired technology, amortization of acquired intangibles, and unoccupied lease charges. \n These non-GAAP measures should be considered in addition to, not as a substitute for or superior to, the closest GAAP measures, or other financial measures prepared in accordance with GAAP. A reconciliation to the closest \n GAAP measures of these non-GAAP measures is contained in tabular form on the attached unaudited condensed consolidated financial statements. \n Q2’s management uses these non-GAAP measures as measures of operating performance; to prepare Q2’s annual operating budget; to allocate resources to enhance the financial performance of Q2’s business; to evaluate the effectiveness of Q2’s business strategies; to provide consistency and comparability with past financial performance; to facilitate a comparison of Q2’s results with those of other companies, many of which use similar non-GAAP financial measures to supplement their GAAP results; and in communication with our board of directors concerning Q2’s financial performance. \n Forward-looking Statements \n This press release contains forward-looking statements, including statements about positive sales and bookings momentum, Q2’s ability to capitalize on such momentum to invest in integration, innovation and delivering successful client outcomes, optimism about Q2’s performance in 2019, the opportunities presented by the Cloud Lending and Gro acquisitions and Q2’s ability to capitalize on them, including through accelerated investment, anticipated margins for the remainder of 2019 and Q2’s quarterly and annual financial guidance. The forward-looking statements contained in this press release are based upon Q2’s historical performance and its current plans, estimates and expectations and are not a representation that such plans, estimates or expectations will be achieved. Factors that could cause actual results to differ materially from those described herein include risks related to: (a) the risk of increased competition in its existing markets and as it enters new sections of the market with Tier 1 customers, new markets with Alt-FIs and FinTechs and new products and services; (b) the risk that the market for Q2’s solutions does not grow as anticipated, in particular with respect to Tier 1 customers and Alt-FI and FinTech customers; (c) the risk that Q2’s increased focus on selling to larger Tier 1 customers may result in greater uncertainty and variability in Q2’s business and sales results; (d) the risk that changes in Q2’s market, business or sales organization negatively impacts its ability to sell its products and services; (e) the challenges and costs associated with selling, implementing and supporting Q2’s solutions, particularly for larger customers with more complex requirements and longer implementation processes; (f) the risk that errors, interruptions or delays in Q2’s products or services or Web hosting negatively impacts Q2’s business and sales; (g) risks associated with data breaches and breaches of security measures within Q2’s products, systems and infrastructure and the resultant harm to Q2’s business and its ability to sell its products and services; (h) the impact that a slowdown in the economy, financial markets, and credit markets may have on Q2’s customers and Q2’s business sales cycles, prospects and customers’ spending decisions and timing of implementation decisions, particularly in regions where a significant number of Q2’s customers are concentrated; (i) the difficulties and risks associated with developing and selling complex new solutions and enhancements with the technical and regulatory specifications and functionality required by customers and governmental authorities; (j) the risks inherent in technology and implementation partnerships that could cause harm to Q2’s business; (k) the difficulties and costs Q2 may encounter with complex implementations of its solutions and the resulting impact on reputation and the timing of its revenue from any delayed implementations; (l) the risk that Q2 will not be able to maintain historical contract terms such as pricing and duration; (m) the risks associated with managing growth and the challenges associated with improving operations and hiring, retaining and motivating employees to support such growth; (n) the risk that modifications or negotiations of contractual arrangements will be necessary during Q2’s implementations of its solutions or the general risks associated with the complexity of Q2’s customer arrangements; (o) the risks associated with integrating acquired companies and successfully selling and maintaining their solutions; (p) the risks associated with anticipated higher operating expenses in 2019 and beyond; (q) litigation related to intellectual property and other matters and any related claims, negotiations and settlements; (r) the risks associated with further consolidation in the financial services industry; (s) risks associated with selling our solutions internationally; and (t) the risk that our debt repayment obligations may adversely affect our financial condition and cash flows from operations in the future and that we in the future we may not be able to obtain capital when desired on favorable terms. \n Additional information relating to the uncertainty affecting the Q2 business are contained in Q2’s filings with the Securities and Exchange Commission. These documents are available on the SEC Filings section of the Investor Relations section of Q2’s website at http://investors.q2ebanking.com/ . These forward-looking statements represent Q2’s expectations as of the date of this press release. Subsequent events may cause these expectations to change, and Q2 disclaims any obligations to update or alter these forward-looking statements in the future, whether as a result of new information, future events or otherwise. \n Q2 Holdings, Inc. \n Condensed Consolidated Balance Sheets \n (in thousands) \n June 30, 2019 \n December 31, 2018 \n (unaudited) \n (unaudited) \n Assets \n Current assets: \n Cash and cash equivalents \n $ \n 582,889 \n $ \n 108,341 \n Restricted cash \n 2,158 \n 1,815 \n Investments \n 34,810 \n 68,979 \n Accounts receivable, net \n 26,591 \n 19,668 \n Contract assets, current portion \n 771 \n 598 \n Prepaid expenses and other current assets \n 5,526 \n 3,983 \n Deferred solution and other costs, current portion \n 12,726 \n 10,501 \n Deferred implementation costs, current portion \n 4,400 \n 4,427 \n Total current assets \n 669,871 \n 218,312 \n Property and equipment, net \n 39,732 \n 34,994 \n Right of use assets \n 24,444 \n — \n Deferred solution and other costs, net of current portion \n 22,618 \n 16,761 \n Deferred implementation costs, net of current portion \n 13,238 \n 9,948 \n Intangible assets, net \n 57,213 \n 63,296 \n Goodwill \n 107,857 \n 107,907 \n Contract assets, net of current portion \n 13,277 \n 10,272 \n Other long-term assets \n 3,532 \n 2,230 \n Total assets \n $ \n 951,782 \n $ \n 463,720 \n Liabilities and stockholders' equity \n Current liabilities: \n Accounts payable and accrued liabilities \n $ \n 46,933 \n $ \n 31,150 \n Deferred revenues, current portion \n 46,023 \n 42,531 \n Lease liabilities, current portion \n 6,725 \n — \n Total current liabilities \n 99,681 \n 73,681 \n Convertible notes, net of current portion \n 413,890 \n 182,723 \n Deferred revenues, net of current portion \n 25,317 \n 23,063 \n Deferred rent, net of current portion \n — \n 8,151 \n Lease liabilities, net of current portion \n 26,533 \n — \n Other long-term liabilities \n 499 \n 17,202 \n Total liabilities \n 565,920 \n 304,820 \n Stockholders' equity: \n Common stock \n 5 \n 4 \n Additional paid-in capital \n 594,757 \n 331,355 \n Accumulated other comprehensive income/(loss) \n 164 \n (37 \n ) \n Accumulated deficit \n (209,064 \n ) \n (172,422 \n ) \n Total stockholders' equity \n 385,862 \n 158,900 \n Total liabilities and stockholders' equity \n $ \n 951,782 \n $ \n 463,720 \n Q2 Holdings, Inc. \n Condensed Consolidated Statements of Comprehensive Loss \n (in thousands, except per share data) \n Three Months Ended June 30, \n Six Months Ended June 30, \n 2019 \n 2018 \n 2019 \n 2018 \n (unaudited) \n (unaudited) \n (unaudited) \n (unaudited) \n Revenues \n $ \n 77,646 \n $ \n 58,574 \n $ \n 148,942 \n $ \n 113,382 \n Cost of revenues (1) (2) \n 40,052 \n 29,303 \n 77,236 \n 56,280 \n Gross profit \n 37,594 \n 29,271 \n 71,706 \n 57,102 \n Operating expenses: \n Sales and marketing (1) \n 15,866 \n 12,108 \n 31,671 \n 23,074 \n Research and development (1) \n 19,118 \n 11,756 \n 36,775 \n 22,913 \n General and administrative (1) \n 14,079 \n 10,798 \n 27,939 \n 21,094 \n Acquisition related costs \n 1,977 \n 258 \n 4,695 \n 514 \n Amortization of acquired intangibles \n 905 \n 368 \n 2,120 \n 736 \n Unoccupied lease charges (3) \n — \n 658 \n — \n 658 \n Total operating expenses \n 51,945 \n 35,946 \n 103,200 \n 68,989 \n Loss from operations \n (14,351 \n ) \n (6,675 \n ) \n (31,494 \n ) \n (11,887 \n ) \n Other income (expense), net \n (3,217 \n ) \n (2,105 \n ) \n (5,424 \n ) \n (3,128 \n ) \n Loss before income taxes \n (17,568 \n ) \n (8,780 \n ) \n (36,918 \n ) \n (15,015 \n ) \n Benefit from income taxes \n 237 \n 153 \n 276 \n 340 \n Net loss \n $ \n (17,331 \n ) \n $ \n (8,627 \n ) \n $ \n (36,642 \n ) \n $ \n (14,675 \n ) \n Other comprehensive loss: \n Unrealized gain (loss) on available-for-sale investments \n 97 \n 2 \n 210 \n (22 \n ) \n Foreign currency translation adjustment \n (22 \n ) \n — \n (10 \n ) \n — \n Comprehensive loss \n $ \n (17,256 \n ) \n $ \n (8,625 \n ) \n $ \n (36,442 \n ) \n $ \n (14,697 \n ) \n Net loss per common share: \n Net loss per common share, basic and diluted \n $ \n (0.39 \n ) \n $ \n (0.20 \n ) \n $ \n (0.83 \n ) \n $ \n (0.35 \n ) \n Weighted average common shares outstanding, basic and diluted \n 44,978 \n 42,605 \n 44,382 \n 42,389 \n (1) \n Includes stock-based compensation expenses as follows: \n Three Months Ended June 30, \n Six Months Ended June 30, \n 2019 \n 2018 \n 2019 \n 2018 \n Cost of revenues \n $ \n 1,428 \n $ \n 1,065 \n $ \n 2,976 \n $ \n 2,080 \n Sales and marketing \n 1,596 \n 1,428 \n 3,402 \n 2,654 \n Research and development \n 2,473 \n 1,566 \n 4,485 \n 2,922 \n General and administrative \n 4,072 \n 2,945 \n 7,602 \n 5,443 \n Total stock-based compensation expenses \n $ \n 9,569 \n $ \n 7,004 \n $ \n 18,465 \n $ \n 13,099 \n (2) \n Includes amortization of acquired technology of $1.9 million and $0.9 million for the three months ended June 30, 2019 and 2018 , respectively, and $3.6 million and $1.8 million for the six months ended June 30, 2019 and 2018 , respectively. \n (3) Unoccupied lease charges include costs related to the early exit from a portion of our south Austin facility, partially offset by anticipated sublease income from that facility. \n Q2 Holdings, Inc. \n Condensed Consolidated Statements of Cash Flows \n (in thousands) \n Six Months Ended June 30, \n 2019 \n 2018 \n (unaudited) \n (unaudited) \n Cash flows from operating activities: \n Net loss \n $ \n (36,642 \n ) \n $ \n (14,675 \n ) \n Adjustments to reconcile net loss to net cash used in operating activities: \n Amortization of deferred implementation, solution and other costs \n 6,056 \n 4,265 \n Depreciation and amortization \n 11,796 \n 7,752 \n Amortization of debt issuance costs \n 545 \n 346 \n Amortization of debt discount \n 5,230 \n 3,089 \n Amortization of premiums on investments \n 183 \n 21 \n Stock-based compensation expenses \n 19,040 \n 13,099 \n Deferred income taxes \n (347 \n ) \n (61 \n ) \n Other non-cash charges \n (112 \n ) \n 696 \n Changes in operating assets and liabilities \n (24,428 \n ) \n (35,816 \n ) \n Cash used in operating activities \n (18,679 \n ) \n (21,284 \n ) \n Cash flows from investing activities: \n Net redemptions (purchases) of investments \n 34,196 \n (60,331 \n ) \n Purchases of property and equipment \n (10,864 \n ) \n (11,154 \n ) \n Business combinations and asset acquisitions, net of cash acquired \n — \n (150 \n ) \n Purchases of intangible assets \n (288 \n ) \n — \n Cash provided by (used in) investing activities \n 23,044 \n (71,635 \n ) \n Cash flows from financing activities: \n Proceeds from issuance of common stock, net of issuance costs \n 195,581 \n — \n Proceeds from issuance of convertible notes, net of issuance costs \n 307,288 \n 223,185 \n Purchase of capped call transactions \n (40,765 \n ) \n — \n Purchase of convertible notes bond hedge \n — \n (41,699 \n ) \n Proceeds from issuance of warrants \n — \n 22,379 \n Proceeds from exercise of stock options to purchase common stock \n 8,422 \n 7,831 \n Net cash provided by financing activities \n 470,526 \n 211,696 \n Net increase in cash, cash equivalents, and restricted cash \n 474,891 \n 118,777 \n Cash, cash equivalents, and restricted cash, beginning of period \n 110,156 \n 60,276 \n Cash, cash equivalents, and restricted cash, end of period \n $ \n 585,047 \n $ \n 179,053 \n Q2 Holdings, Inc. \n Reconciliation of GAAP to Non-GAAP Measures \n (in thousands, except per share data) \n Three Months Ended June 30, \n Six Months Ended June 30, \n 2019 \n 2018 \n 2019 \n 2018 \n (unaudited) \n (unaudited) \n (unaudited) \n (unaudited) \n GAAP gross profit \n $ \n 37,594 \n $ \n 29,271 \n $ \n 71,706 \n $ \n 57,102 \n Stock-based compensation \n 1,428 \n 1,065 \n 2,976 \n 2,080 \n Amortization of acquired technology \n 1,941 \n 912 \n 3,573 \n 1,822 \n Acquisition related costs \n 71 \n — \n 71 \n — \n Non-GAAP gross profit \n $ \n 41,034 \n $ \n 31,248 \n $ \n 78,326 \n $ \n 61,004 \n Non-GAAP gross margin: \n Non-GAAP gross profit \n $ \n 41,034 \n $ \n 31,248 \n $ \n 78,326 \n $ \n 61,004 \n GAAP revenue \n 77,646 \n 58,574 \n 148,942 \n 113,382 \n Non-GAAP gross margin \n 52.8 \n % \n 53.3 \n % \n 52.6 \n % \n 53.8 \n % \n GAAP sales and marketing expense \n $ \n 15,866 \n $ \n 12,108 \n $ \n 31,671 \n $ \n 23,074 \n Stock-based compensation \n (1,596 \n ) \n (1,428 \n ) \n (3,402 \n ) \n (2,654 \n ) \n Non-GAAP sales and marketing expense \n $ \n 14,270 \n $ \n 10,680 \n $ \n 28,269 \n $ \n 20,420 \n GAAP research and development expense \n $ \n 19,118 \n $ \n 11,756 \n $ \n 36,775 \n $ \n 22,913 \n Stock-based compensation \n (2,473 \n ) \n (1,566 \n ) \n (4,485 \n ) \n (2,922 \n ) \n Non-GAAP research and development expense \n $ \n 16,645 \n $ \n 10,190 \n $ \n 32,290 \n $ \n 19,991 \n GAAP general and administrative expense \n $ \n 14,079 \n $ \n 10,798 \n $ \n 27,939 \n $ \n 21,094 \n Stock-based compensation \n (4,072 \n ) \n (2,945 \n ) \n (7,602 \n ) \n (5,443 \n ) \n Non-GAAP general and administrative expense \n $ \n 10,007 \n $ \n 7,853 \n $ \n 20,337 \n $ \n 15,651 \n GAAP operating loss \n $ \n (14,351 \n ) \n $ \n (6,675 \n ) \n $ \n (31,494 \n ) \n $ \n (11,887 \n ) \n Stock-based compensation \n 9,569 \n 7,004 \n 18,465 \n 13,099 \n Acquisition related costs \n 2,048 \n 258 \n 4,766 \n 514 \n Amortization of acquired technology \n 1,941 \n 912 \n 3,573 \n 1,822 \n Amortization of acquired intangibles \n 905 \n 368 \n 2,120 \n 736 \n Unoccupied lease charges \n — \n 658 \n — \n 658 \n Non-GAAP operating income (loss) \n $ \n 112 \n $ \n 2,525 \n $ \n (2,570 \n ) \n $ \n 4,942 \n GAAP net loss \n $ \n (17,331 \n ) \n $ \n (8,627 \n ) \n $ \n (36,642 \n ) \n $ \n (14,675 \n ) \n Stock-based compensation \n 9,569 \n 7,004 \n 18,465 \n 13,099 \n Acquisition related costs \n 2,048 \n 258 \n 4,766 \n 514 \n Amortization of acquired technology \n 1,941 \n 912 \n 3,573 \n 1,822 \n Amortization of acquired intangibles \n 905 \n 368 \n 2,120 \n 736 \n Unoccupied lease charges \n — \n 658 \n — \n 658 \n Amortization of debt discount and issuance costs \n 3,227 \n 2,213 \n 5,774 \n 3,435 \n Non-GAAP net income (loss) \n $ \n 359 \n $ \n 2,786 \n $ \n (1,944 \n ) \n $ \n 5,589 \n Reconciliation from diluted weighted-average number of common shares as reported to pro forma diluted weighted average number of common shares \n Diluted weighted-average number of common shares, as reported \n 44,978 \n 42,605 \n 44,382 \n 42,389 \n Weighted-average effect of potentially dilutive shares \n 2,628 \n 2,389 \n — \n 2,200 \n Pro forma diluted weighted-average number of common shares \n 47,606 \n 44,994 \n 44,382 \n 44,589 \n Calculation of non-GAAP income (loss) per share: \n Non-GAAP net income (loss) \n $ \n 359 \n $ \n 2,786 \n $ \n (1,944 \n ) \n $ \n 5,589 \n Pro forma diluted weighted-average number of common shares \n 47,606 \n 44,994 \n 44,382 \n 44,589 \n Non-GAAP net income (loss) per share \n $ \n 0.01 \n $ \n 0.06 \n $ \n (0.04 \n ) \n $ \n 0.13 \n Reconciliation of GAAP net loss to adjusted EBITDA: \n GAAP net loss \n $ \n (17,331 \n ) \n $ \n (8,627 \n ) \n $ \n (36,642 \n ) \n $ \n (14,675 \n ) \n Depreciation and amortization \n 5,975 \n 3,874 \n 11,796 \n 7,752 \n Stock-based compensation \n 9,569 \n 7,004 \n 18,465 \n 13,099 \n Benefit from income taxes \n (237 \n ) \n (153 \n ) \n (276 \n ) \n (340 \n ) \n Interest (income) expense, net \n 3,173 \n 2,105 \n 5,351 \n 3,128 \n Acquisition related costs \n 2,048 \n 258 \n 4,766 \n 514 \n Unoccupied lease charges \n — \n 658 \n — \n 658 \n Adjusted EBITDA \n $ \n 3,197 \n $ \n 5,119 \n $ \n 3,460 \n $ \n 10,136 \n MEDIA CONTACT: \n INVESTOR CONTACT: \n Emma Chase \n Josh Yankovich \n Red Fan Communications \n Q2 Holdings, Inc. \n O: (512) 551-9253 / C: (512) 917-4319 \n O: (512) 682-4463 \n emma@redfancommunications.com \n josh.yankovich@q2ebanking.com \n ### \n",
@@ -36,6 +39,25 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000141038419000111__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001410384-19-000072",
+   "filingDate": "2019-05-07",
+   "reportDate": "2019-05-07",
+   "form": "8-K",
+   "local_gz": "000141038419000072__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 3,
+   "guidance_sentences": [
+    "Financial Outlook \"We are pleased to have delivered first quarter revenue which exceeded the high end of our guidance,\" said Jennifer Harris, CFO of Q2.",
+    "This accelerated investment, along with the timing of payroll taxes and our annual client conference in the second quarter, will result in margins being relatively muted in the first half of the year with approximately 80 percent of the adjusted EBITDA coming in the back half of the year.\" Q2 Holdings is providing guidance for its second quarter 2019 as follows: • Total revenue of $75.5 million to $76.5 million, which would represent year-over-year growth of 29 percent to 31 percent.",
+    "Q2 Holdings is providing guidance for the full-year 2019 as follows: • Total revenue of $308.8 million to $311.8 million, which would represent year-over-year growth of 28 percent to 29 percent."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +69,8 @@
    "reportDate": "2018-12-31",
    "accession": "0001410384-19-000015",
    "url": "https://www.sec.gov/Archives/edgar/data/1410384/000141038419000015/a181231qtwo10k.htm",
-   "local_gz": "000141038419000015__annual.txt.gz"
+   "local_gz": "000141038419000015__annual.txt.gz",
+   "n_lines": 5746
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +78,8 @@
    "reportDate": "2019-06-30",
    "accession": "0001410384-19-000113",
    "url": "https://www.sec.gov/Archives/edgar/data/1410384/000141038419000113/q2201910q.htm",
-   "local_gz": "000141038419000113__q0.txt.gz"
+   "local_gz": "000141038419000113__q0.txt.gz",
+   "n_lines": 4587
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +87,106 @@
    "reportDate": "2019-03-31",
    "accession": "0001410384-19-000075",
    "url": "https://www.sec.gov/Archives/edgar/data/1410384/000141038419000075/q1201910q.htm",
-   "local_gz": "000141038419000075__q1.txt.gz"
+   "local_gz": "000141038419000075__q1.txt.gz",
+   "n_lines": 2471
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2019-05-08",
   "n_rows": 8,
@@ -83,6 +201,48 @@
     "ocf": 11603000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 15768000.0,
+      "filed": "2017-11-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 40505000.0,
+      "filed": "2017-11-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 40140000.0,
+      "filed": "2017-11-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3754000.0,
+      "filed": "2017-11-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3822000.0,
+      "filed": "2017-11-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -5782000.0,
+      "filed": "2017-11-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +253,48 @@
     "ocf": 8129000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 13203000.0,
+      "filed": "2018-02-16",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 38379000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 57961000.0,
+      "filed": "2018-02-16",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 936000.0,
+      "filed": "2018-02-16",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3897000.0,
+      "filed": "2018-02-16",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -5521000.0,
+      "filed": "2018-02-16",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +305,48 @@
     "ocf": -7103000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 16897000.0,
+      "filed": "2018-05-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 38344000.0,
+      "filed": "2018-05-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 255411000.0,
+      "filed": "2018-05-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 5396000.0,
+      "filed": "2018-05-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3878000.0,
+      "filed": "2018-05-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -6048000.0,
+      "filed": "2018-05-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +357,48 @@
     "ocf": -14181000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 26996000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 33159000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 176738000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 5758000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3874000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -8627000.0,
+      "filed": "2018-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +409,48 @@
     "ocf": 17424000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 23121000.0,
+      "filed": "2018-11-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 34799000.0,
+      "filed": "2018-11-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 211779000.0,
+      "filed": "2018-11-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1020000.0,
+      "filed": "2018-11-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3689000.0,
+      "filed": "2018-11-07",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -8859000.0,
+      "filed": "2018-11-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +461,48 @@
     "ocf": 8455000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 19668000.0,
+      "filed": "2019-02-19",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 42531000.0,
+      "filed": "2019-02-19",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 108341000.0,
+      "filed": "2019-02-19",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1111000.0,
+      "filed": "2019-02-19",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5361000.0,
+      "filed": "2019-02-19",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -11863000.0,
+      "filed": "2019-02-19",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +513,48 @@
     "ocf": -10886000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 19549000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 45246000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 110542000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 5545000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5821000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -19311000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +565,21 @@
     "ocf": -7793000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -17331000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 77600000.0,
     "revenue_xbrl_for_reference": 77646000.0
@@ -166,152 +593,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "7372",
   "sic2": "73",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 316,
-  "peer_list_all_same_sic2_tickers": [
-   "ABM",
-   "ACIW",
-   "ACN",
-   "ADBE",
-   "ADP",
-   "ADSK",
-   "ADT",
-   "AER",
-   "AEYE",
-   "AGMH",
-   "AGYS",
-   "AHG",
-   "AIFF",
-   "AKAM",
-   "ALAR",
-   "ALLE",
-   "ALRM",
-   "AMN",
-   "ANGI",
-   "APPF",
-   "APPN",
-   "ARLO",
-   "ASPS",
-   "ASUR",
-   "ATHM",
-   "ATXG",
-   "AWRE",
-   "BABA",
-   "BAND",
-   "BB",
-   "BBSI",
-   "BGSF",
-   "BIDU",
-   "BILI",
-   "BKYI",
-   "BL",
-   "BLIN",
-   "BLKB",
-   "BOX",
-   "BR",
-   "CACI",
-   "CARG",
-   "CARS",
-   "CASS",
-   "CBZ",
-   "CCLD",
-   "CCO",
-   "CDLX",
-   "CDNS",
-   "CEVA",
-   "CHGA",
-   "CHKP",
-   "CHR",
-   "CLPS",
-   "CLVT",
-   "CMCM",
-   "CNDT",
-   "CNET",
-   "CPAY",
-   "CREX",
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 100,
+  "peer_list_all_tickers": [
    "CRM",
-   "CRTO",
-   "CRWD",
-   "CSGP",
-   "CSPI",
-   "CTOS",
-   "CTSH",
-   "CVLT",
-   "DAVA",
-   "DBX",
-   "DDD",
-   "DFIN",
-   "DHX",
-   "DLHC",
-   "DOCU",
-   "DOMO",
-   "DOX",
-   "DOYU",
-   "DSGX",
-   "DT",
-   "DTST",
-   "DUOT",
-   "DVLT",
-   "DXC",
-   "EBAY",
-   "EFOR",
-   "EFX",
-   "EGAN",
-   "EGHT",
-   "EPAM",
-   "ESTC",
-   "ETSY",
-   "EVER",
-   "EVTC",
-   "EXLS",
-   "FDS",
-   "FICO",
-   "FIS",
-   "FISV",
-   "FIVN",
-   "FLNT",
-   "FLUT",
-   "FNGR",
-   "FORTY",
-   "FRSX",
-   "FSLY",
-   "FTAI",
-   "FTDR",
-   "FTFT",
-   "FVRR",
-   "GDDY",
-   "GDS",
-   "GDYN",
-   "GEN",
-   "GIGM",
-   "GLOB",
-   "GOOG",
-   "GPN",
-   "GRPN",
-   "GRVY"
+   "MSFT"
   ],
   "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0001577552",
-    "name": "Alibaba Group Holding Ltd",
-    "ticker": "BABA",
-    "sic2": "73",
-    "form": "20-F",
-    "filingDate": "2019-06-05",
-    "accn": "0001047469-19-003492",
-    "local_gz": "000104746919003492__peer10k.txt.gz",
-    "capex_excerpt": [
-     "ease of RMB8,237 million in prepayments, receivables and other assets. Cash Flows from Investing Activities Cash used in investing activities was RMB151,060 million (US$22,509 million) in fiscal year 2019 and was primarily attributable to RMB119,766 million (US$17,846 million) in acquisition of investment securities and equity investments mainly held for strategic purposes, including Focus Media and ZTO Express, and cash paid for business combinations, net of cash acquired, including Ele.me, capital expenditures of RMB49,643 million (US$7,396 million) primarily in connection with the purchase of computer equipment and licensed copyrights, as well as our investments in data centers and infras",
-     "diaries, equity investees and investment securities of RMB10,329 million (US$1,539 million). Cash used in investing activities was RMB83,764 million in fiscal year 2018 and was primarily attributable to RMB66,129 million in acquisition of investment securities and equity investments mainly held for strategic purposes, including Sun Art Group Limited, Ele.me, Wanda Film, Easyhome and Tokopedia, and cash paid for business combinations, net of cash acquired, including Intime and Cainiao Network, capital expenditures of RMB29,836 million primarily in connection with the purchase of computer equipment and licensed copyrights, as well as the continued expansion of our corporate campuses, partially",
-     "rtially offset by proceeds from disposal of subsidiaries, equity investees and investment securities of RMB13,381 million. Cash used in investing activities was RMB79,579 million in fiscal year 2017 and was primarily attributable to RMB77,554 million in acquisition of investment securities and equity investments mainly held for strategic purposes, including Suning, Ele.me, Didi Chuxing, Paytm and Weibo, and cash paid for business combinations, net of cash acquired, including Youku and Lazada, capital expenditures of RMB17,546 million primarily in connection 153 Table of Contents with the purchase of computer equipment and licensed copyrights, as well as the continued expansion of our corpora"
-    ]
-   },
    {
     "entity_id": "0000789019",
     "name": "MICROSOFT CORP",
     "ticker": "MSFT",
-    "sic2": "73"
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2019-08-01",
+    "accn": "0001564590-19-027952",
+    "local_gz": "000156459019027952__peer10k.txt.gz",
+    "capex_excerpt": [
+     "nancing increased $3.3 billion to $36.9 billion for fiscal year 2019, mainly due to an $8.8 billion increase in common stock repurchases and a $1.1 billion increase in dividends paid, offset in part by a $6.2 billion decrease in repayments of debt, net of proceeds from issuance of debt. Cash used in investing increased $9.7 billion to $15.8 billion for fiscal year 2019, mainly due to a $6.0 billion decrease in cash from net investment purchases, sales, and maturities, a $2.3 billion increase in additions to property and equipment, and a $1.5 billion increase in cash used for acquisitions of companies, net of cash acquired, and purchases of intangible and other assets. 43 PART II Item 7 Fisca",
+     "uisitions of companies, net of cash acquired, and purchases of intangible and other assets, and a $19.1 billion increase in cash from net investment purchases, sales, and maturities. Debt We issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating and the low interest rate environment. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. Refer to Note 11 – Debt of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K) for furt",
+     "e. ( f ) We have excluded long-term tax contingencies, other tax liabilities, and deferred income taxes of $14.2 billion from the amounts presented as the timing of these obligations is uncertain. We have also excluded unearned revenue and non-cash items. Other Planned Uses of Capital We will continue to invest in sales, marketing, product support infrastructure, and existing and advanced areas of technology, as well as continue making acquisitions that align with our business strategy. Additions to property and equipment will continue, including new facilities, datacenters, and computer systems for research and development, sales and marketing, support, and administrative staff. We expect c"
+    ],
+    "capex_status": "ok"
+   },
+   {
+    "entity_id": "0001108524",
+    "name": "Salesforce, Inc.",
+    "ticker": "CRM",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2019-03-08",
+    "accn": "0001108524-19-000009",
+    "local_gz": "000110852419000009__peer10k.txt.gz",
+    "capex_excerpt": [
+     "nts, which are not reflected on our consolidated balance sheets, as well as a financing obligation for a leased facility of which we are deemed the owner for accounting purposes. In April 2018, we amended and restated our revolving credit facility under which we can draw down up to $1.0 billion. Maintenance of our indebtedness and contractual commitments and any additional issuances of indebtedness could: • impair our ability to obtain additional financing in the future for working capital, capital expenditures, acquisitions, general corporate or other purposes; • cause us to dedicate a substantial portion of our cash flows from operations towards debt service obligations and principal repay",
+     "ded on the balance sheet, and unbilled amounts that are not recorded on the balance sheet, that will be recognized as revenue in future periods. We believe our existing cash, cash equivalents, marketable securities, cash provided by operating activities and, if necessary, our borrowing capacity under our Credit Facility and unbilled amounts related to contracted non-cancelable subscription agreements, which is not reflected on the balance sheet, will be sufficient to meet our working capital, capital expenditure and debt repayment needs over the next 12 months. 48 Table of Contents In the future, we may enter into arrangements to acquire or invest in complementary businesses, services and te",
+     "0 billion . In addition, we have senior secured notes outstanding related to our loan on 50 Fremont due in 2023 with a total carrying value of $196 million . We were in compliance with all debt covenants as of January 31, 2019 . We maintain a revolving loan credit agreement that provides for $1.0 billion unsecured financing (\"Credit Facility\") that matures in April 2023. We may use the proceeds of future borrowings under the Credit Facility for refinancing other indebtedness, working capital, capital expenditures and other general corporate purposes, including permitted acquisitions. There were no outstanding borrowings under the Credit Facility as of January 31, 2019 . As of January 31, 201"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -333,7 +660,16 @@
   "latest_data_date": "2019-08-08",
   "cutoff": "2019-08-08",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2019-08-09",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

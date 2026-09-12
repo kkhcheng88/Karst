@@ -1,6 +1,7 @@
 {
  "event_id": "E057",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E057",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "CVX",
  "cik": "0000093410",
  "name": "CHEVRON CORP",
@@ -9,10 +10,11 @@
  "bucket": "能源原材料公用",
  "evidence_cutoff": "T1 = 2022-07-29(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E057",
   "event_id": "E057",
   "ticker": "CVX",
   "cik": "0000093410",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0000093410-22-000062",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/93410/000009341022000062/cvx-20220729.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/93410/000009341022000062/cvx-20220729.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a06302022ex9918-k.htm\n EX-99.1\n Document \n news release \n EXHIBIT 99.1 \n FOR RELEASE AT 3:15 AM PT \n JULY 29, 2022 \n Chevron Announces Second Quarter 2022 Results \n • Reported earnings of $11.6 billion; adjusted earnings of $11.4 billion \n • Cash flow from operations of $13.8 billion; free cash flow of $10.6 billion \n • Completed acquisition of Renewable Energy Group, Inc. \n San Ramon, Calif., July 29, 2022 – Chevron Corporation (NYSE: CVX) today reported earnings of $11.6 billion ($5.95 per share - diluted) for second quarter 2022, compared with $3.1 billion ($1.60 per share - diluted) in second quarter 2021. Included in the current quarter were charges associated with an early contract termination of $600 million, pension settlement costs of $11 million, and a gain on asset sales of $200 million. Foreign currency effects increased earnings by $668 million. Adjusted earnings of $11.4 billion ($5.82 per share - diluted) in second quarter 2022 compares to adjusted earnings of $3.3 billion ($1.71 per share - diluted) in second quarter 2021. \n Sales and other operating revenues in second quarter 2022 were $65 billion, compared to $36 billion in the year-ago period. \n Earnings Summary \n Three Months\nEnded June 30 Six Months \nEnded June 30 \n Millions of dollars \n 2022 2021 2022 2021 \n Earnings by business segment \n Upstream \n $8,558 $3,178 $15,492 $5,528 \n Downstream \n 3,523 839 3,854 844 \n All Other \n (459) (935) (1,465) (1,913) \n Total (1)(2) \n $11,622 $3,082 $17,881 $4,459 \n (1) Includes foreign currency effects \n $668 $43 $450 $41 \n (2) Net income attributable to Chevron Corporation (See Attachment 1) \n “Second quarter financial performance improved as we delivered a return on capital employed of 26 percent,” said Mike Wirth, Chevron’s chairman and chief executive officer. The company also strengthened its balance sheet, lowering its debt ratio to under 15 percent, and increased the top end of its annual share repurchase guidance range to $15 billion. \n “We more than doubled investment compared to last year to grow both traditional and new energy business lines,” Wirth added. “With Permian production more than 15 percent higher than a year ago and now as one of the leading renewable fuel producers in the United States, Chevron is increasing energy supplies to help meet the challenges facing global markets,” Wirth concluded. \n -MORE- \n -2- \n This investment includes total capital and exploratory and acquisition-related expenditures as Chevron closed its acquisition of Renewable Energy Group, Inc. and completed the formation of a renewable fuels joint venture with Bunge North America, Inc. Also during the second quarter, the company sanctioned the Ballymore project in the deepwater U.S. Gulf of Mexico, which is expected to require a gross investment of approximately $1.6 billion. The field is planned to be produced through an existing facility with allocated capacity of 75,000 barrels of crude oil per day. \n The company also advanced its carbon capture and storage (CCS) business this quarter by launching a CCS project aimed at reducing the carbon intensity of its upstream operations in California and forming an expanded joint venture to develop the Bayou Bend CCS hub in Texas, with the goal of it becoming one of the first offshore CCS projects in the United States. \n Further, leveraging the company’s growing U.S. natural gas production and its global liquefied natural gas (LNG) value chain, Chevron signed agreements to export 4 million tonnes per year of LNG out of the U.S. Gulf Coast, commencing in 2026. \n UPSTREAM \n Worldwide net oil-equivalent production was 2.90 million barrels per day in second quarter 2022. International production decreased 13 percent primarily due to the end of concessions in Thailand and Indonesia, while U.S. production increased 3 percent compared to the same period a year ago mainly in the Permian Basin. \n U.S. Upstream \n Three Months\nEnded June 30 Six Months \nEnded June 30 \n Millions of dollars 2022 2021 2022 2021 \n Earnings \n $3,367 $1,446 $6,605 $2,387 \n U.S. upstream operations earned $3.37 billion in second quarter 2022, compared with $1.45 billion a year earlier. The improvement was primarily due to higher realizations, partially offset by higher operating expenses largely due to an early contract termination. \n The company’s average sales price per barrel of crude oil and natural gas liquids was $89 in second quarter 2022, up from $54 a year earlier. The average sales price of natural gas was $6.22 per thousand cubic feet in second quarter 2022, up from $2.16 in last year’s second quarter. \n Net oil-equivalent production of 1.17 million barrels per day in second quarter 2022 was up 36,000 barrels per day from a year earlier. The increase was primarily due to net production increases in the Permian Basin. The net liquids component of oil-equivalent production in second quarter 2022 increased 4 percent to 888,000 barrels per day, and net natural gas production increased 2 percent to 1.71 billion cubic feet per day, compared to last year’s second quarter. \n International Upstream \n Three Months\nEnded June 30 Six Months \nEnded June 30 \n Millions of dollars \n 2022 2021 2022 2021 \n Earnings* \n $5,191 $1,732 $8,887 $3,141 \n *Includes foreign currency effects $603 $78 $459 $26 \n International upstream operations earned $5.19 billion in second quarter 2022, compared with $1.73 billion a year ago. The increase in earnings was primarily due to higher realizations and \n -MORE- \n -3- \n asset sale gains, partially offset by lower sales volumes. Foreign currency effects had a favorable impact on earnings of $525 million between periods. \n The average sales price for crude oil and natural gas liquids in second quarter 2022 was $102 per barrel, up from $62 a year earlier. The average sales price of natural gas was $9.23 per thousand cubic feet in the second quarter, up from $4.92 in last year’s second quarter. \n Net oil-equivalent production of 1.72 million barrels per day in second quarter 2022 was down 266,000 barrels per day from second quarter 2021. The decrease was primarily due to the absence of production following expiration of the Erawan concession in Thailand and Rokan concession in Indonesia, and unfavorable entitlement effects due to higher prices. The net liquids component of oil-equivalent production decreased 19 percent to 799,000 barrels per day in second quarter 2022, while net natural gas production decreased 7 percent to 5.55 billion cubic feet per day compared to last year’s second quarter. \n DOWNSTREAM \n U.S. Downstream \n Three Months\nEnded June 30 Six Months \nEnded June 30 \n Millions of dollars \n 2022 2021 2022 2021 \n Earnings \n $2,440 $776 $2,926 $646 \n U.S. downstream operations reported earnings of $2.44 billion in second quarter 2022, compared with earnings of $776 million a year earlier. The increase was mainly due to higher margins on refined product sales, partially offset by lower earnings from the 50 percent-owned Chevron Phillips Chemical Company and higher operating expenses. \n Refinery crude oil input in second quarter 2022 decreased 8 percent to 881,000 barrels per day from the year-ago period, primarily due to planned turnarounds. \n Refined product sales of 1.21 million barrels per day were up 4 percent from the year-ago period, mainly due to higher jet fuel demand as travel restrictions associated with the pandemic continue to ease. \n International Downstream \n Three Months\nEnded June 30 Six Months \nEnded June 30 \n Millions of dollars \n 2022 2021 2022 2021 \n Earnings* \n $1,083 $63 $928 $198 \n *Includes foreign currency effects $145 $1 $168 $60 \n International downstream operations reported earnings of $1.08 billion in second quarter 2022, compared with $63 million a year earlier. The increase was mainly due to higher margins on refined product sales and a $144 million favorable swing in foreign currency impacts between periods. \n Refinery crude oil input of 634,000 barrels per day in second quarter 2022 increased 9 percent from the year-ago period as refinery runs increased due to higher demand. \n Refined product sales of 1.34 million barrels per day in second quarter 2022 increased 4 percent from the year-ago period, mainly due to higher demand for jet fuel as restrictions from the pandemic continue to ease. \n ALL OTHER \n Three Months\nEnded June 30 Six Months \nEnded June 30 \n Millions of dollars \n 2022 2021 2022 2021 \n Net Charges* \n $(459) $(935) $(1,465) $(1,913) \n *Includes foreign currency effects \n $(80) $(36) $(177) $(45) \n All Other consists of worldwide cash management and debt financing activities, corporate administrative functions, insurance operations, real estate activities and technology companies. \n Net charges in second quarter 2022 were $459 million, compared to $935 million a year earlier. The decrease in net charges between periods was mainly due to lower employee benefit costs, pension expenses and interest expense, partially offset by an unfavorable swing in foreign currency effects. \n CASH FLOW FROM OPERATIONS \n Cash flow from operations in the first six months of 2022 was $21.8 billion, compared with $11.2 billion in 2021. Excluding working capital effects, cash flow from operations in the first six months of 2022 was $22.2 billion, compared with $12.2 billion in 2021. \n TOTAL CAPITAL AND EXPLORATORY EXPENDITURES \n Capital and exploratory expenditures, including equity affiliates (Total C&E) in the first six months of 2022 were $6.7 billion, compared with $5.3 billion in 2021. The amounts included $1.5 billion in 2022 and $1.5 billion in 2021 for the company’s share of expenditures by affiliates, which did not require cash outlays by the company. Expenditures for upstream represented 79 percent of the company-wide total in 2022. Total C&E for 2022 includes $700 million of inorganic spend largely associated with the formation of the Bunge joint venture. The acquisition of Renewable Energy Group, Inc. is not included in the company’s Total C&E. \n Chevron is one of the world’s leading integrated energy companies. We believe affordable, reliable and ever-cleaner energy is essential to achieving a more prosperous and sustainable world. Chevron produces crude oil and natural gas; manufactures transportation fuels, lubricants, petrochemicals and additives; and develops technologies that enhance our business and the industry. We are focused on lowering the carbon intensity in our operations and growing lower carbon businesses along with our traditional business lines. More information about Chevron is available at www.chevron.com . \n # # # \n Contact: Tyler Kruzich -- +1 925-549-8686 \n -MORE- \n -4- \n NOTICE \n Chevron’s discussion of second quarter 2022 earnings with security analysts will take place on Friday, July 29, 2022, at 8:00 a.m. PT. A webcast of the meeting will be available in a listen-only mode to individual investors, media, and other interested parties on Chevron’s website at www.chevron.com under the “Investors” section. Prepared remarks for today’s call, additional financial and operating information and other complementary materials will be available prior to the call at approximately 3:30 a.m. PT and located under “Events and Presentations” in the “Investors” section on the Chevron website. \n As used in this news release, the term “Chevron” and such terms as “the company,” “the corporation,” “our,” “we,” “us” and “its” may refer to Chevron Corporation, one or more of its consolidated subsidiaries, or to all of them taken as a whole. All of these terms are used for convenience only and are not intended as a precise description of any of the separate companies, each of which manages its own affairs. \n Please visit Chevron’s website and Investor Relations page at www.chevron.com and www.chevron.com/investors, LinkedIn: www.linkedin.com/company/chevron, Twitter: @Chevron, Facebook: www.facebook.com/chevron, and Instagram: www.instagram.com/chevron, where Chevron often discloses important information about the company, its business, and its results of operations. \n Key Performance Indicator - Capital and exploratory expenditures, including equity affiliates (Total C&E), is a key performance indicator for the company and provides a comprehensive view of its share of investment levels. This metric includes additions to fixed asset or investment accounts, or to exploration expense, for consolidated companies and our share of these expenditures by equity affiliates. Management uses this metric to manage allocation of capital across its entire portfolio, funding requirements and ultimately shareholder distributions. The calculation of Total C&E is shown in Attachment 2. \n Non-GAAP Financial Measures - This news release includes adjusted earnings/(loss), which reflect earnings or losses excluding significant non-operational items including impairment charges, write-offs, severance costs, gains on asset sales, unusual tax items, effects of pension settlements and curtailments, foreign currency effects and other special items. We believe it is useful for investors to consider this measure in comparing the underlying performance of our business across periods. The presentation of this additional information is not meant to be considered in isolation or as a substitute for net income (loss) as prepared in accordance with U.S. GAAP. A reconciliation to net income (loss) attributable to Chevron Corporation is shown in Attachment 5. \n This news release also includes cash flow from operations excluding working capital, free cash flow and free cash flow excluding working capital. Cash flow from operations excluding working capital is defined as net cash provided by operating activities less net changes in operating working capital, and represents cash generated by operating activities excluding the timing impacts of working capital. Free cash flow is defined as net cash provided by operating activities less cash capital expenditures and generally represents the cash available to creditors and investors after investing in the business. Free cash flow excluding working capital is defined as net cash provided by operating activities excluding working capital less cash capital expenditures and generally represents the cash available to creditors and investors after investing in the business excluding the timing impacts of working capital. The company believes these measures are useful to monitor the financial health of the company and its performance over time. A reconciliation of cash flow from operations excluding working capital, free cash flow and free cash flow excluding working capital are shown in Attachment 3. \n This news release also includes net debt ratio. Net debt ratio is defined as total debt less cash and cash equivalents and marketable securities as a percentage of total debt less cash and cash equivalents and marketable securities, plus Chevron Corporation stockholders’ equity, which indicates the company’s leverage, net of its cash balances. The company believes this measure is useful to monitor the strength of the company’s balance sheet. A reconciliation of net debt ratio is shown in Attachment 2. \n -MORE- \n -5- \n CAUTIONARY STATEMENTS RELEVANT TO FORWARD-LOOKING INFORMATION FOR THE PURPOSE OF “SAFE HARBOR” PROVISIONS OF THE PRIVATE SECURITIES LITIGATION REFORM ACT OF 1995 \n This news release contains forward-looking statements relating to Chevron’s operations and energy transition plans that are based on management’s current expectations, estimates and projections about the petroleum, chemicals and other energy-related industries. Words or phrases such as “anticipates,” “expects,” “intends,” “plans,” “targets,” “advances,” “commits,” “drives,” “aims,” “forecasts,” “projects,” “believes,” “approaches,” “seeks,” “schedules,” “estimates,” “positions,” “pursues,” “may,” “can,” “could,” “should,” “will,” “budgets,” “outlook,” “trends,” “guidance,” “focus,” “on track,” “goals,” “objectives,” “strategies,” “opportunities,” “poised,” “potential,” “ambitions,” “aspires” and similar expressions are intended to identify such forward-looking statements. These statements are not guarantees of future performance and are subject to certain risks, uncertainties and other factors, many of which are beyond the company’s control and are difficult to predict. Therefore, actual outcomes and results may differ materially from what is expressed or forecasted in such forward-looking statements. The reader should not place undue reliance on these forward-looking statements, which speak only as of the date of this news release. Unless legally required, Chevron undertakes no obligation to update publicly any forward-looking statements, whether as a result of new information, future events or otherwise. \n Among the important factors that could cause actual results to differ materially from those in the forward-looking statements are: changing crude oil and natural gas prices and demand for the company’s products, and production curtailments due to market conditions; crude oil production quotas or other actions that might be imposed by the Organization of Petroleum Exporting Countries and other producing countries; technological advancements; changes to government policies in the countries in which the company operates; public health crises, such as pandemics (including coronavirus (COVID-19)) and epidemics, and any related government policies and actions; disruptions in the company’s global supply chain, including supply chain constraints and escalation of the cost of goods and services; changing economic, regulatory and political environments in the various countries in which the company operates; general domestic and international economic, market and political conditions, including the military conflict between Russia and Ukraine and the global response to such conflict; changing refining, marketing and chemicals margins; actions of competitors or regulators; timing of exploration expenses; timing of crude oil liftings; the competitiveness of alternate-energy sources or product substitutes; development of large carbon capture and offset markets; the results of operations and financial condition of the company’s suppliers, vendors, partners and equity affiliates, particularly during the COVID-19 pandemic; the inability or failure of the company’s joint-venture partners to fund their share of operations and development activities; the potential failure to achieve expected net production from existing and future crude oil and natural gas development projects; potential delays in the development, construction or start-up of planned projects; the potential disruption or interruption of the company’s operations due to war, accidents, political events, civil unrest, severe weather, cyber threats, terrorist acts, or other natural or human causes beyond the company’s control; the potential liability for remedial actions or assessments under existing or future environmental regulations and litigation; significant operational, investment or product changes undertaken or required by existing or future environmental statutes and regulations, including international agreements and national or regional legislation and regulatory measures to limit or reduce greenhouse gas emissions; the potential liability resulting from pending or future litigation; the company’s future acquisitions or dispositions of assets or shares or the delay or failure of such transactions to close based on required closing conditions; the potential for gains and losses from asset dispositions or impairments; government mandated sales, divestitures, recapitalizations, taxes and tax audits, tariffs, sanctions, changes in fiscal terms or restrictions on scope of company operations; foreign currency movements compared with the U.S. dollar; material reductions in corporate liquidity and access to debt markets; the receipt of required Board authorizations to implement capital allocation strategies, including future stock repurchase programs and dividend payments; the effects of changed accounting rules under generally accepted accounting principles promulgated by rule-setting bodies; the company’s ability to identify and mitigate the risks and hazards inherent in operating in the global energy industry; and the factors set forth under the heading “Risk Factors” on pages 20 through 25 of the company's 2021 Annual Report on Form 10-K and in subsequent filings with the U.S. Securities and Exchange Commission. Other unpredictable or unknown factors not discussed in this news release could also have material adverse effects on forward-looking statements. \n -MORE- \n -6- \n CHEVRON CORPORATION - FINANCIAL REVIEW Attachment 1 \n (Millions of Dollars, Except Per-Share Amounts) \n (unaudited) \n CONSOLIDATED STATEMENT OF INCOME \n Three Months \nEnded June 30 Six Months \nEnded June 30 \n REVENUES AND OTHER INCOME 2022 2021 2022 2021 \n Sales and other operating revenues $ 65,372 $ 36,117 $ 117,686 $ 67,193 \n Income (loss) from equity affiliates 2,467 1,442 4,552 2,353 \n Other income (loss) 923 38 897 80 \n Total Revenues and Other Income 68,762 37,597 123,135 69,626 \n COSTS AND OTHER DEDUCTIONS \n Purchased crude oil and products 40,003 20,629 72,652 38,197 \n Operating expenses * \n 7,168 6,160 13,837 12,454 \n Exploration expenses 196 113 405 199 \n Depreciation, depletion and amortization 3,700 4,522 7,354 8,808 \n Taxes other than on income 1,563 1,566 3,565 2,986 \n Interest and debt expense 129 185 265 383 \n Total Costs and Other Deductions 52,759 33,175 98,078 63,027 \n Income (Loss) Before Income Tax Expense 16,003 4,422 25,057 6,599 \n Income tax expense (benefit) 4,288 1,328 7,065 2,107 \n Net Income (Loss) 11,715 3,094 17,992 4,492 \n Less: Net income (loss) attributable to noncontrolling interests 93 12 111 33 \n NET INCOME (LOSS) ATTRIBUTABLE TO \n CHEVRON CORPORATION $ 11,622 $ 3,082 $ 17,881 $ 4,459 \n PER SHARE OF COMMON STOCK \n Net Income (Loss) Attributable to Chevron Corporation \n - Basic $ 5.98 $ 1.61 $ 9.21 $ 2.33 \n - Diluted $ 5.95 $ 1.60 $ 9.17 $ 2.32 \n Weighted Average Number of Shares Outstanding (000's) \n - Basic 1,947,703 1,917,536 1,941,719 1,915,243 \n - Diluted 1,957,109 1,921,958 1,950,860 1,918,940 \n EARNINGS BY MAJOR OPERATING AREA Three Months \nEnded June 30 Six Months \nEnded June 30 \n 2022 2021 2022 2021 \n Upstream \n United States $ 3,367 $ 1,446 $ 6,605 $ 2,387 \n International 5,191 1,732 8,887 3,141 \n Total Upstream 8,558 3,178 15,492 5,528 \n Downstream \n United States 2,440 776 2,926 646 \n International 1,083 63 928 198 \n Total Downstream 3,523 839 3,854 844 \n All Other (459) (935) (1,465) (1,913) \n NET INCOME (LOSS) ATTRIBUTABLE TO \n CHEVRON CORPORATION $ 11,622 $ 3,082 $ 17,881 $ 4,459 \n * Includes operating expense, selling, general and administrative expense, and other components of net periodic benefit costs \n -MORE- \n -7- \n CHEVRON CORPORATION - FINANCIAL REVIEW Attachment 2 \n (Millions of Dollars) \n (unaudited) \n SELECTED BALANCE SHEET ACCOUNT DATA (Preliminary) Jun 30, 2022 Dec 31, 2021 \n Cash and cash equivalents $ 12,029 $ 5,640 \n Marketable securities $ 341 $ 35 \n Total assets $ 257,936 $ 239,535 \n Total debt $ 26,235 $ 31,369 \n Total Chevron Corporation stockholders' equity $ 153,554 $ 139,067 \n SELECTED FINANCIAL RATIOS \n Total debt plus total stockholders’ equity $ 179,789 $ 170,436 \n Debt ratio (Total debt / Total debt plus stockholders’equity) \n 14.6 % 18.4 % \n Adjusted debt (Total debt less cash and cash equivalents and marketable securities) \n $ 13,865 $ 25,694 \n Adjusted debt plus total stockholders’ equity $ 167,419 $ 164,761 \n Net debt ratio (Adjusted debt / Adjusted debt plus total stockholders’ equity) \n 8.3 % 15.6 % \n Three Months \nEnded June 30 Six Months \nEnded June 30 \n TOTAL C&E 2022 2021 2022 2021 \n Capital Expenditures $ 3,184 $ 1,797 $ 5,144 $ 3,543 \n Expensed exploration expenditures 97 98 171 180 \n Capital lease obligations and other (167) 42 (169) 40 \n Capital and exploratory expenditures, excl. affiliates 3,114 1,937 5,146 3,763 \n Company’s share of expenditures by affiliates 809 849 1,534 1,527 \n Total C&E 3,923 2,786 6,680 5,290 \n Acquisition of businesses, net of cash received 2,862 — 2,862 — \n Total C&E plus acquisitions (investment) $ 6,785 $ 2,786 $ 9,542 $ 5,290 \n Three Months \nEnded June 30 Six Months \nEnded June 30 \n TOTAL C&E BY SEGMENT* 2022 2021 2022 2021 \n United States \n Upstream $ 1,573 $ 1,074 $ 2,873 $ 2,123 \n Downstream 884 264 1,130 506 \n Other 86 31 128 83 \n Total United States 2,543 1,369 4,131 2,712 \n International \n Upstream 1,296 1,237 2,414 2,296 \n Downstream 79 174 129 272 \n Other 5 6 6 10 \n Total International 1,380 1,417 2,549 2,578 \n Worldwide $ 3,923 $ 2,786 $ 6,680 $ 5,290 \n * Includes interest in affiliates: \n United States $ 167 $ 80 $ 292 $ 166 \n International 642 769 1,242 1,361 \n Total $ 809 $ 849 $ 1,534 $ 1,527 \n -MORE- \n -8- \n CHEVRON CORPORATION - FINANCIAL REVIEW Attachment 3 \n (Billions of Dollars) \n (unaudited) \n SUMMARIZED STATEMENT OF CASH FLOWS (Preliminary) (1) \n Three Months \nEnded June 30 \n Six Months \nEnded June 30 \n OPERATING ACTIVITIES 2022 2022 2021 \n Net Income (Loss) $ 11.7 $ 18.0 $ 4.5 \n Adjustments \n Depreciation, depletion and amortization 3.7 7.4 8.8 \n Distributions more (less) than income from equity affiliates (1.7) (3.2) (1.4) \n Loss (gain) on asset retirements and sales (0.4) (0.5) (0.1) \n Net foreign currency effects (0.5) (0.2) 0.2 \n Deferred income tax provision 0.7 1.3 (0.2) \n Net decrease (increase) in operating working capital 0.5 (0.4) (1.0) \n Other operating activity (0.3) (0.6) 0.4 \n Net Cash Provided by Operating Activities $ 13.8 $ 21.8 $ 11.2 \n INVESTING ACTIVITIES \n Acquisition of businesses, net of cash acquired (2.9) (2.9) — \n Capital expenditures (3.2) (5.1) (3.5) \n Proceeds and deposits related to asset sales and returns of investment 1.1 2.3 0.4 \n Other investing activity (2) \n — — — \n Net Cash Used for Investing Activities $ (5.0) $ (5.6) $ (3.1) \n FINANCING ACTIVITIES \n Net change in debt (3.7) (5.7) (1.3) \n Cash dividends — common stock (2.8) (5.5) (5.0) \n Shares issued for share-based compensation 0.8 5.5 0.4 \n Shares repurchased (2.5) (3.8) — \n Distributions to noncontrolling interests — — — \n Net Cash Provided by (Used for) Financing Activities $ (8.1) $ (9.5) $ (6.0) \n EFFECT OF EXCHANGE RATE CHANGES ON CASH, CASH EQUIVALENTS AND RESTRICTED CASH (0.1) (0.1) (0.1) \n NET CHANGE IN CASH, CASH EQUIVALENTS AND RESTRICTED CASH $ 0.6 $ 6.6 $ 2.0 \n RECONCILIATION OF NON-GAAP MEASURES (1) \n Net Cash Provided by Operating Activities $ 13.8 $ 21.8 $ 11.2 \n Less: Net decrease (increase) in operating working capital 0.5 (0.4) (1.0) \n Cash Flow from Operations Excluding Working Capital $ 13.3 $ 22.2 $ 12.2 \n Net Cash Provided by Operating Activities $ 13.8 $ 21.8 $ 11.2 \n Less: Capital expenditures 3.2 5.1 3.5 \n Free Cash Flow $ 10.6 $ 16.7 $ 7.6 \n Less: Net decrease (increase) in operating working capital 0.5 (0.4) (1.0) \n Free Cash Flow Excluding Working Capital $ 10.1 $ 17.1 $ 8.6 \n (1) Totals may not match sum of parts due to presentation in billions. \n (2) Primarily (borrowings) repayments of loans by equity affiliates. \n -MORE- \n -9- \n CHEVRON CORPORATION - FINANCIAL REVIEW Attachment 4 \n (unaudited) \n OPERATING STATISTICS (1) \n Three Months \nEnded June 30 Six Months \nEnded June 30 \n NET LIQUIDS PRODUCTION (MB/D): (2) \n 2022 2021 2022 2021 \n United States 888 857 884 829 \n International 799 990 828 1,008 \n Worldwide 1,687 1,847 1,712 1,837 \n NET NATURAL GAS PRODUCTION (MMCF/D): (3) \n United States 1,705 1,678 1,766 1,660 \n International 5,548 5,993 5,832 6,060 \n Worldwide 7,253 7,671 7,598 7,720 \n TOTAL NET OIL-EQUIVALENT PRODUCTION (MB/D): (4) \n United States 1,172 1,136 1,178 1,106 \n International 1,724 1,990 1,800 2,018 \n Worldwide 2,896 3,126 2,978 3,124 \n SALES OF NATURAL GAS (MMCF/D): \n United States 4,364 3,776 4,412 3,843 \n International 4,537 4,756 4,705 5,092 \n Worldwide 8,901 8,532 9,117 8,935 \n SALES OF NATURAL GAS LIQUIDS (MB/D): \n United States 295 215 298 207 \n International 224 180 220 166 \n Worldwide 519 395 518 373 \n SALES OF REFINED PRODUCTS (MB/D): \n United States 1,210 1,159 1,214 1,105 \n International (5) \n 1,337 1,282 1,332 1,274 \n Worldwide 2,547 2,441 2,546 2,379 \n REFINERY INPUT (MB/D): \n United States 881 956 898 918 \n International 634 580 626 559 \n Worldwide 1,515 1,536 1,524 1,477 \n (1) Includes interest in affiliates; totals may not match sum of parts due to rounding. \n (2) Includes net production of synthetic oil: \n Canada 39 54 39 57 \n (3) Includes natural gas consumed in operations (MMCF/D): \n United States 57 45 57 45 \n International 496 525 523 541 \n (4) Oil-equivalent production is the sum of net liquids production, net natural gas production and synthetic production. The oil-equivalent gas conversion ratio is 6,000 cubic feet of natural gas = 1 barrel of crude oil. \n (5) Includes share of affiliate sales (MB/D): 383 342 368 341 \n -MORE- \n -10- \n CHEVRON CORPORATION - FINANCIAL REVIEW Attachment 5 \n (Millions of Dollars) \n (unaudited) \n RECONCILIATION OF NON-GAAP MEASURES \n Three Months Ended June 30, 2022 Three Months Ended June 30, 2021 Six Months Ended \nJune 30, 2022 Six Months Ended \nJune 30, 2021 \n REPORTED EARNINGS Pre-\nTax Income Tax After-Tax Pre-Tax Income Tax After-Tax Pre-\nTax Income Tax After-Tax Pre-Tax Income Tax After-Tax \n U.S. Upstream $ 3,367 $ 1,446 $ 6,605 $ 2,387 \n Int'l Upstream 5,191 1,732 8,887 3,141 \n U.S. Downstream 2,440 776 2,926 646 \n Int'l Downstream 1,083 63 928 198 \n All Other (459) (935) (1,465) (1,913) \n Net Income (Loss) Attributable to Chevron $ 11,622 $ 3,082 $ 17,881 $ 4,459 \n SPECIAL ITEMS \n U.S. Upstream \n Remediation charge $ — $ — $ — $ (158) $ 38 $ (120) $ — $ — $ — $ (158) $ 38 $ (120) \n Early contract termination (765) 165 (600) — — — (765) 165 (600) — — — \n Int'l Upstream \n Asset sale gains 328 (128) 200 — — — 328 (128) 200 — — — \n U.S. Downstream \n Legal reserves — — — — — — — — — (140) 30 (110) \n All Other \n Pension settlement costs (12) 1 (11) (151) 36 (115) (98) 21 (77) (468) 112 (356) \n Total Special Items $ (449) $ 38 $ (411) $ (309) $ 74 $ (235) $ (535) $ 58 $ (477) $ (766) $ 180 $ (586) \n FOREIGN CURRENCY EFFECTS \n Int'l Upstream $ 603 $ 78 $ 459 $ 26 \n Int'l Downstream 145 1 168 60 \n All Other (80) (36) (177) (45) \n Total Foreign Currency Effects $ 668 $ 43 $ 450 $ 41 \n ADJUSTED EARNINGS/(LOSS) * \n U.S. Upstream $ 3,967 $ 1,566 $ 7,205 $ 2,507 \n Int'l Upstream 4,388 1,654 8,228 3,115 \n U.S. Downstream 2,440 776 2,926 756 \n Int'l Downstream 938 62 760 138 \n All Other (368) (784) (1,211) (1,512) \n Total Adjusted Earnings/(Loss) $ 11,365 $ 3,274 $ 17,908 $ 5,004 \n Total Adjusted Earnings/(Loss) per share $ 5.82 $ 1.71 $ 9.18 $ 2.61 \n * Adjusted Earnings/(Loss) is defined as Net Income (loss) attributable to Chevron Corporation excluding special items and foreign currency effects. \n",
@@ -36,7 +39,469 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000009341022000062__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0000093410-22-000023",
+   "filingDate": "2022-04-29",
+   "reportDate": "2022-04-29",
+   "form": "8-K",
+   "local_gz": "000009341022000023__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "Permian Basin unconventional production grew to a record 692,000 barrels of oil equivalent per day in the first quarter, as the company raised its 2022 guidance to 700,000 - 750,000 barrels per day, an increase of over 15 percent from 2021."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2022-07-29",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 87,
+   "has_qna": false,
+   "n_chars": 55285,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Good morning. My name is Katie and I will be your conference facilitator today. Welcome to Chevron’s Second Quarter 2022 Earnings Conference Call. [Operator Instructions] As a reminder, this conference call is being recorded. I will now turn the conference over to the General Manager of Investor Relations of Chevron Corporation, Mr. Roderick Green. Please go ahead."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Roderick Green",
+     "content": "Thank you, Katie. Welcome to Chevron’s second quarter 2022 earnings conference call and webcast. I am Roderick Green, GM of Investor Relations. Our CFO, Pierre Breber; and EVP of Upstream, Jay Johnson, are on the call with me today. We will refer to the slides and prepared remarks that are available on Chevron’s website. Before we get started, please be reminded that this presentation contains estimates, projections and other forward-looking statements. Please review the cautionary statement on Slide 2. Now, I will turn it over to Pierre."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Pierre Breber",
+     "content": "Thank you, Roderick, and thanks everyone for joining us today. We delivered another strong quarter, another quarter of strong financial results with ROCE over 25%, the highest since 2008. Special items this quarter include asset sale gains of $200 million and a $600 million charge to terminate early a long-term LNG regas contract at Sabine Pass. C&E for the quarter was nearly $4 billion, including inorganic spend to form our JV with Bunge. With the acquisition of REG, our total investment was $6.8 billion, more than double last year’s quarter. Strong cash flow enabled us to fund this higher level of investment, pay down debt for the fifth consecutive quarter and returned more than $5 billion to our shareholders through dividends and buybacks. Adjusted second quarter earnings were up more than $8 billion versus last year. Adjusted upstream earnings increased mainly on higher realizations partially offset by lower liftings from the end of concessions in Indonesia and Thailand. Adjusted downstream earnings increased primarily on higher refining margins. Compared with last quarter, adjusted earnings were up nearly $5 billion. Adjusted upstream earnings increased primarily on higher realizations, partially offset by tax and other items, including higher withholding taxes on TCO dividends and cash repatriations. Adjusted downstream earnings increased primarily on higher refining margins and a favorable swing in timing effects. The All Other segment was up due in part to a favorable change in the valuation of stock-based compensation. I will now turn it over to Jay."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Jay Johnson",
+     "content": "Thanks, Pierre. Second quarter oil equivalent production decreased about 7% year-on-year due to expiration of our contracts in both Indonesia and Thailand, the sale of our Eagle Ford asset and CPC curtailments impacting TCO during April. This was partially offset by shale and tight growth, primarily in the Permian. In the Permian, we are delivering on our objectives of higher returns and lower carbon. Our development costs are down about 25% since 2019 and we expect to keep them flat this year by offsetting inflation with productivity improvements. An example of simul-frac where we perform completion activities on 4 wells at a time reducing cycle time by a quarter. We continue to design, construct and operate facilities to limit methane emissions. Two of our Midland Basin sites recently earned the highest ratings from Project Canary’s independent certification program. Production is at record levels and growing in line with guidance with our royalty position, providing a distinct financial advantage for our shareholders. At TCO, the drilling program is complete and the final metering station is online. We expect to complete construction by year-end with remaining project activities, primarily focused on systems completion, commissioning and startup. Total project cost guidance is unchanged. WPMP startup is expected in the second half of next year and FGP expected timing remains first half of 2024. TCO’s operations continue to generate strong cash flow, enabling a midyear dividend with project spend decreasing we are expecting higher dividends going forward. In Australia, we shipped 87 LNG cargoes from Gorgon and Wheatstone in the first half of this year, up over 10% from last year. Our reliability benchmarks in the first quartile and we intend to stay there with an ongoing focus on operational excellence. Gorgon Stage 2, the first backfill project is on track to deliver first gas in September. Our Gulf of Mexico projects are progressing well with Ballymore receiving FID as a tieback to Blind Faith, an example of leveraging our existing infrastructure to improve returns. The Anchor hull is currently sailing from Korea and work on its top sites continues in Texas. Lastly, we recently signed agreements to export 4 million tons a year of LNG from the U.S. Gulf Coast with 1.5 million tons a year expected to start in 2026. These agreements leverage our growing U.S. natural gas production and expand our value chains in Atlantic Basin markets. Now, back to you, Pierre."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Pierre Breber",
+     "content": "Thanks, Jay. We closed the REG acquisition last month and integration is going very well. We are pleased to welcome REG’s talented employees to Chevron and CJ Warner to our Board. Our teams have already identified further commercial opportunities and we quickly acted to lower insurance and financing costs. In May, we launched our joint venture with Bunge. The JV is operating two existing crushers and evaluation work is underway to expand crush capacity and add pretreatment facilities. In carbon capture and storage, we closed on the expanded JV to develop the Bayou Bend CCS hub. The lease held by the JV is in Texas State Waters near large industrial emitters and we believe it is the first U.S. offshore lease dedicated to CCS. Also, we recently filed for a conditional use permit in Kern County, California to store CO2 emissions from one of our cogeneration plants. Now, looking ahead, in the third quarter, we expect turnarounds and downtime to reduce production in a number of locations. In downstream, planned turnarounds are primarily at our California refineries. We do not expect significant dividends from TCO or Angola LNG until the fourth quarter. Our full year guidance for affiliate dividends is unchanged, with upside potential beyond the top of the range depending on commodity prices. Also, we increased the top end of our share buyback guidance range to $15 billion per year and expect to be at that rate during the third quarter. In closing, we are executing our plans, increasing investment to grow both traditional and new energy supplies and delivering value to our stakeholders. Although commodity markets maybe volatile, our actions are consistent through the cycle and focus on our objectives to deliver higher returns and lower carbon. Back to you, Roderick."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Roderick Green",
+     "content": "That concludes our prepared remarks. We are now ready to take your questions. Please limit yourself to one question and one follow-up. We will do our best to get all your questions answered. Katie, please open the lines."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "Thank you. [Operator Instructions] Our first question comes from Devin McDermott with Morgan Stanley."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Devin McDermott",
+     "content": "Good morning. Thanks for taking my question."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Jay Johnson",
+     "content": "Good morning."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Devin McDermott",
+     "content": "Good morning. So Jay, I wanted to congratulate you on the retirement plans and take advantage of having you here on the call. My first one is on TCO and it’s great to see the project progress there. And with the WPMP portion of the project largely complete, I was wondering if you could talk a little bit more about the remaining milestones for that second phase FGP as you progress toward that first half 2024 startup?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Jay Johnson",
+     "content": "Thank you, Devin, for both the retirement wishes and the question. For TCO, we have been just steadily making progress here and we had a very strong period in the first half of this year. We had the unrest in January, of course and then the team responded well after that even with some of the Omicron impacts. As we are finishing construction, we expect to finish construction on everything this year and be largely into the commissioning phase and this is largely putting together doing the pressure testing, filling with fluids, cleaning systems and preparing them for eventual startup. The WPMP that we expect in the second half of next year will be around enabling us to boost the pressure from the field up to the facilities. So we don’t expect to see a material change in our production at that point in time, but it enables us then to move into the phase of startup for FGP, where we will start to see incremental production coming through the plant. And some of the big milestones we have already accomplished. All 40 production wells are already now produced and completed and actually producing into the plant that helps us with the transition from the high pressure to the low pressure phase. We have got the injection wells already completed, so we can begin the FGP startup. Field facilities are well underway in terms of the new gathering system. We will have about all the metering stations have to be converted to high pressure to low pressure. They will be done kind of one at a time, so we can maintain production through that period. So those are the – you won’t see a lot of outward signs other than progress on the commissioning, the number of subsystems completed and that’s really what we are moving into. Rather than percent complete, we are 93% complete overall now, what’s going to be more important are just the rundown curves as we bring each system to completion."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Devin McDermott",
+     "content": "Great. Thank you. Very helpful and great progress there. And sticking with TCO in that part of your portfolio, there has been a lot of headlines around the CPC pipeline in recent weeks and months. I was just wondering if you could give us a status update on where things stand there? And then also to the extent that there were to be any further disruptions to flows on that pipe, can you talk a little bit about the impacts to operations for your base existing production in that area?"
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Jay Johnson",
+     "content": "The CPC continues to be an important export route for us. It handles the majority of crude that’s being exported to Western markets. And it represents an important supply to the world. It’s about 1.4 million barrels of oil a day coming through that. The oil that we put into the line from Kazakhstan carries a certificate of origin from Kazakhstan. And we have done a lot of work in Washington and Brussels to make sure people understand the importance of the pipeline to world supplies. And we have seen the reliability overall still in the capacity to be able to maintain at the levels we need. The interruptions that we have seen have been managed. We have gotten through those. And as we look forward, we just continue to work with the Kazakh government and with the International Consortium that owns and operates the CPC pipeline to maintain this important source of – or export route for the crude. There are some alternate export routes being developed, but CPC remains the primary and most important route for us."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Devin McDermott",
+     "content": "Got it. Just to clarify, at the moment, operationally, at normal nameplate and flow rates through the pipe?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Jay Johnson",
+     "content": "Yes, we are at full capacity both at TCO and through the CPC pipeline. They actually work quite well with us when they do have to take the pipeline down for ongoing maintenance, which all pipelines have to do from time to time. They coordinate with the producers. They are often coordinated with turnarounds that the producing facilities are undergoing. So, the recent downtime for CPC is they were dealing with some of the results of the survey work around the terminal was coordinated with the NCOC turnaround activities, so that it didn’t have any impact at all on TCO’s production."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Devin McDermott",
+     "content": "Great. Thanks so much."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Neil Mehta with Goldman Sachs."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Neil Mehta",
+     "content": "Yes, good morning, team. And Jay, thank you for all the insights over the years and wish you well in your retirement, sir."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Jay Johnson",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Neil Mehta",
+     "content": "The first question is on capital returns and you guys raised the top end of the buyback guidance here. So just talk about the math that went into it and how you think about the optimal return of capital formation, whether it is through buybacks or dividend growth?"
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Pierre Breber",
+     "content": "Thanks, Neil. It’s Pierre. I will take that. I will go through our financial priorities. They have been consistent for decades literally. The first financial priority is to grow the dividend. We have done that for 35 consecutive years, increased it 6% earlier this year. It’s up 20% since right before COVID and it’s doubled since 2010. The second is to invest and grow both traditional and new energy and you saw that our total investments first half of the year were up 80% versus a year ago. The third is to maintain a strong balance sheet. For the fifth consecutive quarter, we paid down debt. Our net debt ratio is at 8%. That’s well below our mid-cycle guidance of 20% to 25%. And when we have cash in excess of those first three priorities, we buyback shares and we intend to do it ratably over the cycle. We have repurchased shares, 50 now last 19 years. We bought back almost $60 billion during that time at an average price around $90 a share, very close to the weighted average price during that whole time. And as you said, we just increased the guidance to – we just increased the top of the range of our guidance to $15 billion a year. That represents about 1% of our shares each quarter. The $15 billion annual rate is based on our current outlook. It was tested against a number of scenarios. The rate is consistent with our Investor Day upside leverage case, which was a $75 Brent flat nominal price over 5 years. As we have said with previous buyback rates, we intend to maintain buybacks at this annual rate for a number of years across the commodity cycle. As a reminder, our net debt is well below our mid-cycle guidance range. So we will continue buybacks even when the commodity cycle turns down and we will lever back up our balance sheet closer to that 20% to 25% guidance range."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Neil Mehta",
+     "content": "Fair. The follow-up is just on the Permian. Can you just talk about how you are thinking about the growth profile there relative to what you guided at the beginning of the year, does the upward drift in commodity prices change the way you are thinking about prosecuting that asset?"
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Jay Johnson",
+     "content": "Neil, I will start out with that and then Pierre can finish if he has got any other thoughts. The Permian – our approach to the Permian, as you know, for many years, has been to be very disciplined, very focused on generating the returns and the efficiency that allow us to be profitable regardless of the prices. And so we are not responding to short-term price, but we are increasing our activity levels since the turndown during COVID. And so we have seen our investment go up this year, it’s $1 billion higher than it was last year. And we also see the number of wells that we are putting on production going up, we expect to do over 200 POPs this year. And so we are looking for about a 15% increase in our Permian production. We have increased 2 additional rigs in July. So we are running now with a fleet of 10 rigs across the Permian in the current time and we expect to maintain that through the second half. But I will remind you also one of our rigs today drills the equivalent of what two rigs could do in 2018. So using just rig counts is a little bit of a you have to be careful, because we are so much more efficient with our rigs. And each frac crew today is also completing roughly double the work they were doing back in 2018. So we are much more efficient than we were just 4 years ago. We expect to see our investment continue to grow. We have given you guidance of increasing our investment rate up to about $4 billion a year by 2024. And then I would expect to see it relatively flat after that as we just maintain an efficient operation across the Permian. We also have non-operated activity and we currently have about 9 net rigs running on the non-op side. And so that also contributes significantly to our production profile. Our guidance remains unchanged. We would expect to see about 1.2 million to 1.5 million barrels a day of production ultimately is our plateau. But as we continue to gain insights and knowledge and as we look at our efficiency, as we look at our portfolio and world demand that can change as we go forward. That’s our guidance as we see it today and we will continue to update you as we move forward in time."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Pierre Breber",
+     "content": "My only add is it’s also among our most carbon-efficient barrels in the portfolio. And as Jay has said, it’s a demonstration of our – delivering on our objectives of higher returns and lower carbon. Thanks, Neil."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Jeanine Wai with Barclays."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Jeanine Wai",
+     "content": "Hi, good morning everyone. Thanks for taking our questions. Jay, we would also like to wish you well and thank you for all your time over the years and we’ll stick to two upstream questions just so we can get to last in before you leave. Our first one is on LNG. This week, there was an announcement that Chevron along with a couple of other partners that you guys reached FID on development that will help boost Angola LNG plant volumes. So can you talk about how you’re viewing expansion opportunities in Angola and also hit on Equatorial Guinea where you also have kind of an equity position that feeds an LNG plant there? And is there a preference on how your involvement evolves with LNG plants because you have some ownership – some equity ownership, but we also know that you had a Cheniere agreement that you announced recently that was more just on the marketing front. So just wondering how you’re seeing your role there on new opportunities."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Jay Johnson",
+     "content": "That was pretty good, Jeanine. I think you got three questions in there, and I’m going to try and merge through those."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Jeanine Wai",
+     "content": "No. That’s just one."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Jay Johnson",
+     "content": "I know. I’m allowed to do that. I’m the upstream guy. Look, on the LNG in Angola, you’re right. We just took FID in the new gas consortium. There are two primary sources of gas for Angola LNG. Traditionally, it was built for the associated gas that’s produced along with the oil resources in Angola. And that’s been the main source of gas for Angola LNG up to this point. And we continue to develop new oil resources with our 20-year extension, just secured really good terms on both the oil and the gas. It encourages investment in that country. There is a lot of oil still in Block 0. So that continues unabated. And actually, the investment will move forward. The non-associated gas, in other words, drilling and developing reservoirs that are gas only is a new investment mode, and we’re doing that through the consortium you mentioned. And that’s designed to be supplemental gas so that we can keep the Angola LNG facilities full. And so the ongoing effort to keep that plant running, it’s really economic because it builds on existing infrastructure that’s already been built, the investments have already been made. And importantly, it’s supplying needed LNG into the European market and also gives us exposure to that Atlantic Basin. So that’s been a good project for us, and we’re pleased to take that FID. In EG, again, we have exposure now to the Atlantic Basin through that project. We continue to produce there. There is not much more I can say other than that’s also been a profitable area for us and it came to us through the Noble acquisition. So it was kind of one of those more hidden jewels. We talk about Eastern Med. We talk about the DJ Basin in particular. But EG is supplying a very good return to us through those gas and LNG facilities. In terms of our focus on ownership versus commercial, we’re really pretty agnostic. We’re looking for the returns and the scale that we can build out of the business. We’re looking for multiple points of supply so that we can maintain an active and profitable portfolio. And so where we can do commercial deals and not have to use capital but to really be able to leverage other facilities, that’s always a nice way for us to go, and I’m pleased to get that exposure out of the Gulf Coast into both European and potentially Asian markets. It gives us an access for a lot of our produced gas in North America to access those markets rather than just U.S. But where it makes sense, we will also make investments as we have in other places and own the facilities or run them through joint venture facilities or non-operated facilities. We really look at what gives us the best to generate the returns we’re looking for."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Jeanine Wai",
+     "content": "Great. Thank you. We won’t sneak in our unrelated follow-up since that was very fulsome response. Thank you."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Jay Johnson",
+     "content": "Okay, thanks, Jeanine."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Pierre Breber",
+     "content": "Thanks, Jeanine."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Operator",
+     "content": "We will take our next question from Doug Leggate with Bank of America."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Doug Leggate",
+     "content": "Thank you. 41 years in one place, Jay, that’s pretty impressive. Congratulations."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Jay Johnson",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Doug Leggate",
+     "content": "I wonder if I could take maybe two questions for you, actually. Maybe Pierre might prefer the second one. I want to go to the Permian first. You have about half year production operated and half non-operated. Can you parse between the inflationary pressures between your operated and non-operated from what you’re seeing currently?"
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Jay Johnson",
+     "content": "It’s difficult for me to really do that definitively. What I can say, though, is I think we have a competitive advantage in the Permian. We have a couple of things working in our favor. We maintain a global supply chain and we’re able to tap suppliers of both equipment and materials, goods and services over a much broader range than maybe some of our competitors. We also do multiyear contracts and other mechanisms commercially that allow us to mitigate some of the inflationary pressures that we see today. And then, of course, our focus on driving for improved productivity, improved efficiency has really helped us continue to counter the inflationary pressures. I think the other area that we have a distinct advantage is we’ve been building out our infrastructure in the Permian. And so just as a proof point, the last 800 wells over the last 5 years, to produce those 800 wells, we had to build 40 central tank batteries. As we look forward, the next 800 wells, we only need to build an additional four central tank batteries. So while others are having to invest in this high inflationary period, we’re largely using infrastructure that was built over the past 5 years with very small incremental surface facilities required. And I think that’s going to be hard for others to match."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Doug Leggate",
+     "content": "So that’s a very clear answer. Thank you. Pierre, I don’t know quite hard to ask this question. I’m going to try and get a party and a part of you perhaps, I’ll be respectful. Mike was interviewed recently talking about the tightness in the global oil market. I think you said something like I know to put words in his mouth, but any weakness in oil prices is going to be fleeting because of the under investment. And you guys obviously have stepped up your spending from COVID levels, but you’re still well below pre-COVID levels ‘16 through ‘19, let’s say. With your balance sheet where it is in the depth of opportunities that you obviously have that you’re not funding, how should we think about your continued commitment to the current CapEx level? Or do we see Chevron reengage in organic growth at some point?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Pierre Breber",
+     "content": "You should think that there is no change in our guidance. There is – our 2022 capital is on track. It’s likely to end up below our $15 billion budget. We’ve been ramping up during the course of the first half of the year, and I think you’ll see us higher in the second half of the year, but likely end the year below our $15 billion budget. Our guidance that we shared at our March Investor Day is $15 billion to $17 billion of organic capital investments through 2026. Our budget this year is around $15 billion. So we have $2 billion of room to increase activity and investment within the guidance. And then as Jay just described, our major capital project in Kazakhstan is winding down, it will decrease spending by about $1 billion, and that opens up another $1 billion. So we have – we will increase investment in activity next year. I expect that we’re doing that work right now. We will share the details in December when it’s finalized and approved by the Board. But we will increase it within the guidance. And that guidance enables us to sustain and grow the Upstream business, as we’ve talked about, 3% compounded annual growth rate between now and 2026. Add to our refinery capacity. We bought a refinery in Pasadena, Texas in 2019, kept all of our U.S. refineries through COVID and are making investment in that Pasadena refinery that was just recently FID. And of course, all the activities we’re doing to grow new energies. We can do all of that within the guidance. And as we recognize, Jay, one of the things he deserves a lot of credit for is our upstream business is much more capital efficient than it’s ever been. And has a mindset of how do we deliver business results with less capital. And if we do that, there is more free cash flow for shareholders."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from John Royall with JPMorgan."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "John Royall",
+     "content": "Hey, good morning. Thanks for taking my question. Can you talk about your growth in the Gulf of Mexico in the upstream? You’re leaning in there with number of brownfield projects. So can you just speak broadly on how you view on within your portfolio? And how the returns look on those bolt-ons relative to your other options globally in the upstream? And then what does the service inflation picture look like in that part of your system relative to, say, the Permian?"
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Jay Johnson",
+     "content": "Thank you, John. I’ll start this and let Pierre add in. But we’re really quite pleased with the portfolio we maintain in the Gulf of Mexico. It’s a good area of exploration for us. And it has some of the lowest carbon intensity in the world. It’s about 6 kilograms of equivalent per barrel produced. So on a world scale, and even our company scale, which is already top quartile, it’s right at the bottom end of that range. So this is a great area to develop for future production and carbon efficiency. When we look at the queue of projects we have, we’ve got the Anchor project that is expecting to have first half in 2024. We’ve got Whale is coming through. We expect in 2024. We’ve been expanding our existing facilities. We’re starting up the Waterflood at St. Malo, which is part of the Jack St. Malo complex. We’ve installed our multiphase pumps and are commissioning those. That’s going to be an important milestone technologically and our ability to step out further and further. We just took FID at Ballymore. And Ballymore is an interesting one because it was a nice size discovery, but we could really capitalize and get a much higher return by taking three wells back to a host facility, at Blind Faith and be able to develop that. So we’re pleased to be able to see that higher return coming from Blind Faith. And it also helps our existing production at Blind Faith. As we continue to work forward, I think we’re going to see growth in our Gulf of Mexico production, but it’s going to be important that we continue to be able to lease and acquire additional acreage in that basin, along with others because there is still, I think, room for continual exploration and tie back to this great chain of infrastructure that we have, be able to produce this lower carbon fuel."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Pierre Breber",
+     "content": "Only add is our rigs were largely contracted when rates are lower. So clearly, offshore rigs have increased, but we’re largely contracted at prior rates. Thanks, John."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "John Royall",
+     "content": "Great, thank you. Yes. So on the downstream I just had a question on particularly California, just kind of your go-forward views there. Product balance is not quite as tight as they are in other parts of the country. But then we’re seeing some capacity come out due to RD conversions there. And so just looking for maybe your medium-term view on refining and California specifically?"
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Pierre Breber",
+     "content": "On the downstream side, we had a strong quarter. Well, good execution, reliable operations, high refinery utilization, and I’m talking generally now, U.S. West Coast and Gulf Coast, good cost control, and we’re able to capture the margins in the marketplace. We had a slight benefit in the second quarter because the Richmond turnaround was deferred. So it was a little bit less of an impact than what we had guided to on the first quarter call. And timing effects really weren’t a driver right, timing is more of the absence of timing effects that you saw. In terms of these markets, they are volatile right now. I mean, we’ve seen margins come off from where they were before. In the second quarter, we saw a demand response. On gasoline, probably around the mid-single digits across the U.S., a little bit higher on the West Coast, a little bit lower in the Gulf Coast. I didn’t really see much on the diesel side. And Jet is really tied to the recovery of travel. So we will just see where the market takes us, whether it’s West Coast or Gulf Coast, we’re focused on safe, reliable operations, continuing to have good cost control and delivering products that our customers are demanding. Thanks, John."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Jason Gabelman with Cowen."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Jason Gabelman",
+     "content": "Hi, thanks for taking my questions. I have one on the upstream portfolio and then one on the financials. On the upstream, can you just talk about your other gas opportunities that you have available in the queue. Specifically, I am thinking about the Eastern Med. I know you’re delineating some acreage there and it seems like there is a lot of gas available to exploit. And then also, I believe you have a Haynesville position. I am not sure if that’s in the money or not and that’s what’s that you are looking at? And then I’ll ask my follow-up after. Thanks."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Jay Johnson",
+     "content": "Okay, thank you. We have a lot of gas opportunities, and we’ve got a lot of infrastructure to build those opportunities on, which is really important because it gives us an advantage from a return standpoint. In the Eastern Med, which I’ll add is one of the lowest carbon intensity areas from a Scope 1 and Scope 2. We’re at 2 kilograms of carbon equivalent per barrel produced. We have, of course, supplied a lot of gas into the Israeli market and that opportunity continues to grow as coal is displaced. We also take that gas into Jordan for conversion to electric power. And now we’re taking it into Egypt, work and supply, both domestic needs in Egypt, but also potentially access some of the hullage that exists in the LNG facilities that are already existing in Egypt. We’re considering floating LNG as well. As you know, there are very benign conditions, Med Ocean conditions in the Mediterranean that lend themselves to floating LNG. So it represents a viable option for us. Developing additional gas capacity at Leviathan and Tamar is well within the scope of those projects and would allow us to access these additional marketing opportunities through the LNG and the flexibility that provides. We continue to have some upside potential in additional fields through EG. And then we’ve got access, as you pointed out, in the United States. We are ramping up our drilling activity in the Haynesville, and we expect to see rigs there starting later this year. They will be working in that area. It was very profitable even at the low prices, it’s profitable now. So again, our focus is going to be on discipline on continuing to drive for those efficiencies, but we really are excited to get Haynesville underway and add that to our portfolio in that part of the country. Thank you."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Jason Gabelman",
+     "content": "Great, thanks. And my follow-up is just on the share count. I believe it went up again this quarter despite the buyback. And it’s gone up since the buyback started. I think if you back out the shares issued for Noble, it’s been flattish. So can you just discuss exactly what’s going on there and your expectations for their share count moving forward with the higher buyback but also at a higher share price? Thanks."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Pierre Breber",
+     "content": "Yes. The share count is going down and will go down. What you see in the earnings press release is a weighted average during the course of the quarter, not necessarily the end of the quarter. So you’ll see in our Q that the share count at the end of second quarter is, in fact, lower than the first quarter, which you’d expect as we bought back 2.5 billion shares and issued 0.8. The first quarter, we had these very large issuances for our employees and retirees exercising stock options. And so we started the year with a lower share count, issued those for our employee retiree stock options, therefore, started second quarter at a higher rate and then worked our way down. So the math does work. It is going down. It’s – you have to look at end of quarter to end of quarter. But what you see in terms of earnings per share, it’s an average over the quarter, and it’s kind of a quirk that second quarter average was higher than the first quarter, but just the nature of the pattern during the quarter. Share counts are going down. Thanks, Jason."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Manav Gupta with Credit Suisse."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Manav Gupta",
+     "content": "Thank you, guys. My first question here is – I wanted to take expertise from Jay again. This was a heavy turnaround quarter for you. But even then, some of the things where you were turning around were very high-margin barrels for you, so whether it was TCO, Angola or Wheatstone. And help us understand, like in terms of opportunity cost, if this volume was somewhere in the lower margin business versus some of your higher-margin business because you’re trying to say upstream results were good, but they could have been even better because some of the higher margin barrels were actually in a turnaround?"
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Jay Johnson",
+     "content": "I appreciate the question. Manav, one of the things that’s really important to us is that we operate safely and reliably. And so we look and we schedule our turnarounds and they are predominantly to ensure asset integrity and ongoing reliable performance. And when we schedule those, we don’t like to shift those because of market conditions. And so we tend to want to execute those on time. What’s important is that we execute them within the time frames that we expected so that our production is in accordance with our planning. And both Wheatstone and Angola LNG were done really, really well. I was proud of our teams, they went in, they did the turnaround. This means now in Australia, all five trains have been through the first round of turnarounds. And so that’s an important milestone, an important accomplishment. This work that we do, while it may seem like we’re giving up some opportunities in the near-term, it allows us to continue to drive higher and higher reliability, which means our overall production will be higher and our costs will be lower and our safety will be higher. And so that’s really how we think about this."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Manav Gupta",
+     "content": "Thank you. And I have a quick policy question. About 1.5 months ago, things got a little heated between the oil companies and the White House. But as we understand, when the actual executive meetings happen between you guys and all the others and the Secretary of Energy, those are pretty cordial and you guys are looking for solutions out there. Help us understand what happened in the meeting with Energy Secretary and how did those go?"
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Pierre Breber",
+     "content": "Manav, we won’t comment on the specifics of our engagements. I think you’re right that we’re – it’s constructive and productive. I’ll point out our U.S. oil and gas production in the first half of the year was up 7% versus last year. Our U.S. refined product sales up 10% versus last year. The administration wants energy supplies to increase, we’re doing that. Our investment globally, up 80% first half of the year. If you look at the U.S., more than double when you include REG, so Chevron is growing energy supply, increasing investment and we are engaging constructively with Congress and this administration. Thanks, Manav."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Biraj Borkhataria with RBC."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Biraj Borkhataria",
+     "content": "Hi. Thanks for taking my questions. Just one for me on Australia. I mean there is gas shortages in many geographies and Europe, in particular, but there has been some talk about or noise around that in Australia. I wanted to understand whether we should expect any export issues at Gorgon and Wheatstone? Are you in discussions with the government around proportion of gas going to domestic market versus what’s being exported or anything like that? So, any color would be great. Thank you."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Jay Johnson",
+     "content": "Thanks Biraj. The shortages that you have heard about in Australia are all on the East Coast, and there are no pipelines connecting the West Coast and the East Coast. So, actually, the only way that we could supply any gas to the East Coast of Australia is in the form of LNG. So, we are under long-term contract with customers throughout Asia. We also sell into the spot markets with those facilities. We have interest in Northwest Shelf as well as, of course, Wheatstone and Gorgon. The Western Australian market is well supplied. It’s a part of our agreements for that supply. And so there really are no issues. I don’t see any impact to our export capabilities in Australia."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Biraj Borkhataria",
+     "content": "Okay. Understood. And just a follow-up on the same topic. A couple of years ago, I think I had a conversation with Pierre around the potential for increasing nameplate capacity at Gorgon and Wheatstone over time. And as you go through the various debottlenecking exercises, are you able to provide an update on whether that’s still in the works, where you are? And what kind of timeline that would be on, if that’s possible?"
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Jay Johnson",
+     "content": "Yes. We continue to focus on incremental capacity increases at both Gorgon and Wheatstone. And that can happen through expansion of debottlenecking where we actually expand the capacity of the facilities. But importantly, it also happens as we increase the reliability of facilities and their utilization is higher. If you just look at this year, we have supplied 87 cargoes. As I said, that’s up 10% on production from last year even with the turnaround that we had. So, you can see the improvement happening there. We have seen capacity increases at both Wheatstone and Gordon, and I would expect those to continue as we move forward."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Sam Margolin with Wolfe Research."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Sam Margolin",
+     "content": "Hi. Good morning."
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Pierre Breber",
+     "content": "Good morning Sam."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Sam Margolin",
+     "content": "I wanted to revisit the LNG topic and maybe specifically to the Permian. Because there is just a lot of resource in the Permian that’s not commercial, and that’s – that includes different zones of what you are already developing plus areas that are not on your development calendar in the near-term. And LNG didn’t historically help with that because it’s expensive, but obviously, things have changed now. And so I would just love your perspective on what happens to your Permian resource or your overall opportunity there or the duration of it in an environment where you can add some extra capital or even commit to a spread, but monetize gas for a double-digit price."
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Jay Johnson",
+     "content": "Look, I would characterize it what determines our pace of activity in the Permian is a balance on what we can accomplish efficiently. We have a factory model all the way from land acquisition. We do deals all the time to fill in the checkerboards and ensure an efficient development plan. As an example, just since 2017, we have executed over 260 transactions that have added 3,500 long laterals. That’s allowed us to drive for this efficiency and the higher returns. Our activity levels really aren’t determined by how much we can export from the United States. All these projects that we have would be economic at much lower prices. So, it’s really not the price that’s unlocking the Permian, it’s developing the infrastructure for export from the basin into the markets that we supply, both domestic and international. So, it’s all done in a coordinated fashion. We do it. So, we stay within the capability of the organization to execute efficiently and safely. And that’s really what drives the Permian. So, it’s nice to have access to these additional markets and the optionality they provide. We have an advantage in working closely with our midstream group who has great capability, both again for the domestic off-take and setting up potential for international export, but it’s really not what I would view as the limiting factor on our pace. We determine that based on our overall balance of free cash flow, the returns and our resource and reserve replenishment."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Sam Margolin",
+     "content": "Okay. And then, I mean maybe just to follow-up, like, are there any ancillary factors that might be a consideration like an opportunity to fit another CCUS project on a facility or what it might contribute to like a flaring mitigation effort or anything besides just, like you said, a price signal?"
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Jay Johnson",
+     "content": "As Pierre said earlier, the Permian actually has very good carbon intensity on the Scope 1 and 2 basis. We are at 15 kilograms of CO2 across the basin. We are now benchmarking our facilities and achieving certification of platinum status on most facilities with Project Canary which then provides independent third-party certification of our methane emissions and the performance that we have been talking about. We are working with both our Chevron Technology Ventures, which is our venture capital arm and our New Energies segment on the carbon capture and sequestration. And carbon capture in particular, is critically important for not just us, but the world. And so we have three pilots going on at San Joaquin Valley operations to capture the CO2 that’s coming off of our cogen units there. And then of course, we are gaining experience at Gorgon and Quest [ph] up in Canada, where we learn more and more about what it takes to effectively and efficiently sequester CO2 into storage. So, these are all going on. The beauty of having a portfolio like we do is we can put these pilot projects and we can put these demonstration projects wherever it makes the most sense, both from a regulatory, fiscal and return standpoint and develop these technologies that we are all going to need going forward."
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Pierre Breber",
+     "content": "Thanks Sam."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Irene Himona with Societe Generale."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Irene Himona",
+     "content": "Thank you. Good morning and congratulations on the strong quarter. I wanted to ask, first of all, about what you are seeing on the ground in terms of any signs of persistent demand destruction at retail, but also at industrial customer level, please?"
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Pierre Breber",
+     "content": "Irene, I said it very quickly earlier, I mean we have seen, I would call it, demand response to higher prices that in the second quarter was about in the mid-single digits in the U.S. on gasoline. Again, a little higher on the West Coast, a little lower on the U.S. Gulf Coast. And I think we have seen some recovery since because prices have come off, so we will see where our third quarter ends up. On diesel, it’s very hard to see, not price sensitive, it’s tied to commercial industrial activity, maybe a little bit of a response at retail diesel. And then jet is largely tied to the recovery in air travel. I think people are wanting to get out and see people in places. Asia, where we also have retail is a little more variable because there has been still COVID restrictions and so it’s hard to kind of see the data. I mean what’s interesting is there is obviously concerns around the recession. In terms of tailwinds, we still have very low unemployment, and we have a consumer that wants to spend money to go out and do things they haven’t been able to do for a couple of years. When prices were higher in the second quarter, they made some choices. And if you look at that demand response on gasoline, that’s in line or even higher than some past recession. So, it’s not clear. I guess what I would say is demand, I think will be much more recession resilient going forward just because we have seen a little bit of that response in the second quarter. And again, diesel will be tied to underlying commercial activity. And I think jet will really depend on if the airlines can get all the flights scheduled and have pilots and all the rest and some of the challenges that have been happening over there. So, that’s a little bit of a sense of the demand. We saw a response second quarter, seeing some of it come back here early third quarter, and we will just see where it goes from here."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Irene Himona",
+     "content": "Thank you, Pierre. For my follow-up, and as you mentioned you are launching some new carbon capture projects. I wanted to go back to Australia and ask if you can possibly talk around the recent performance at the Gorgon carbon capture project. Is utilization improving? And is there any read through perhaps on the technical side from that project to the ones you are launching now? Thank you."
+    },
+    {
+     "paragraph_number": 73,
+     "speaker": "Jay Johnson",
+     "content": "Thanks, Irene. At Gorgon, we have now stored successfully about 6.6 million tons of CO2 into that reservoir. The – ironically, the biggest issue we are having currently is just the ability to remove water at a sufficient rate from the storage reservoir to create the space for the CO2 to enter. We have already demonstrated the capacity and capability to inject full CO2 rates into that reservoir, but the water that we are producing has some solids in it and some other contaminants, ironically, oil and gas because it’s an oil and gas basin. And we need the surface facilities that can just remove those before that water is injected into a third reservoir. These are not new or particularly high technology challenges at all. It’s what we deal with in everyday life around the world. So, it’s just, it’s compounded a little bit because Gordon sequestration is in a Class A nature reserve, so it’s a very cumbersome process to approve additional facilities and additional wells. But these problems are solvable. And they do not represent, in my view, any kind of a restriction on the viability of carbon sequestration as a means of storing CO2 for long periods. What I would expect is that and we said this before, as we learn, as we go through this, what it’s teaching us is that there are uncertainty ranges on any reservoir, whether you are producing from it or injecting into it and having sufficient contingencies and mitigations, depending on where you find yourself in those uncertainty ranges when you actually put the facility into operation is important, and we will need to keep these in mind as we develop sequestration projects around the world. So, the science is good. The technology works. It’s just the basic issues that we face on reservoirs around the world that we now need to overcome."
+    },
+    {
+     "paragraph_number": 74,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our next question from Paul Cheng with Scotiabank."
+    },
+    {
+     "paragraph_number": 75,
+     "speaker": "Paul Cheng",
+     "content": "Hi guys. Good morning. And Jay may I add my congratulation and thank you for the help over the years. Really, I appreciate it."
+    },
+    {
+     "paragraph_number": 76,
+     "speaker": "Jay Johnson",
+     "content": "Thanks Paul."
+    },
+    {
+     "paragraph_number": 77,
+     "speaker": "Paul Cheng",
+     "content": "Two questions. First, you touched on the inflation in different parts of your business. But can you give an over or given your footprint, can you give us an overall view that what is sure on expectation on the inflation for next year? I know it’s still early for your budget, but are we talking about 10%, 15%? Some of your largest suppliers seems to suggest that everything is all used up in terms of manpower and equipment. , I don’t know whether that you agree with that assessment. And if you can tell us that where you see along the supply chain, is the biggest maybe pass upon and where that you see the least inflationary pressure? So, that’s the first question. The second question on Mexico and Brazil. You guys entered I think a couple of years ago and had some block over there. But I haven’t heard you guys talk too much about those. So, where those rank within your portfolio today? And what is the next step in those? Thank you."
+    },
+    {
+     "paragraph_number": 78,
+     "speaker": "Pierre Breber",
+     "content": "Thanks Paul. I will take the first, and then I will hand it to Jay on the second. On the onshore U.S., we have seen cost inflation this year in the single digits. We have been able to mitigate a part of that through good planning, smart procurement and good relationships with suppliers. And as Jay pointed out, we have been able to also get more efficient with our drilling and completion operations, which also partially offsets it. Outside of the U.S., we are seeing much more modest inflation, and we talked about our Gulf of Mexico offshore rigs, which are contracted at a time when the rig rates were lower. As we are looking towards 2023, we are doing that work right now. We are confident that we will be able to secure all the goods and services that were needed for our program. Again, our program will be a higher activity program next year, and that includes the Permian. And we will share estimates of what we are seeing in terms of COGS inflation when we disclosed our CapEx budget in December. We are just in the middle of that work right now, I feel very good that we will have all the goods and services that we need, and we are finalizing our plans. Jay?"
+    },
+    {
+     "paragraph_number": 79,
+     "speaker": "Jay Johnson",
+     "content": "Yes. Thanks. And Paul, in terms of Mexico and Brazil, we have not had exploration – significant discoveries there. We are turning our attention, I would say, towards Egypt, where we have a very nice exploration position. We are shooting seismic. These are in areas that have been unexplored before because they have been in restricted areas and now available to us as well as in Suriname. So, as we do an exploration, we are always going through and looking for the next opportunities, but I would say our focus primarily is shifting now towards Egypt and Suriname. Thanks for the question."
+    },
+    {
+     "paragraph_number": 80,
+     "speaker": "Operator",
+     "content": "Thank you. We will take our last question from Ryan Todd with Piper Sandler."
+    },
+    {
+     "paragraph_number": 81,
+     "speaker": "Ryan Todd",
+     "content": "Thanks. Maybe first one on the biofuel side. Closed both the REGI and the Bunge deals within that business. Can you talk a little more about what you are seeing in those markets? And whether you can elaborate at all about the broad types of commercial opportunities that you see that you mentioned in your prepared remarks?"
+    },
+    {
+     "paragraph_number": 82,
+     "speaker": "Pierre Breber",
+     "content": "Thanks Ryan. We are really excited to welcome REG’s people to Chevron and CJ Warner to our Board. She is already participated in our first Board meeting, is fantastic, has great knowledge of traditional and new energy businesses, and it’s just a great add to our Board. As I have said, we had some sort of early wins. I won’t get into the details of the commercial opportunities, but what we saw in the combination, the strength that REG has in terms of feedstock acquisition primarily of waste oils, and then combining that with our retail and marketing footprint. And just bringing two great teams together, we are seeing, as you would expect, one plus one is more than two. We have got our renewable fuels business headquartered in Ames, Iowa. And we are very excited about it. We closed in mid-June, just a comment on the accounting. There were no results in our second quarter results because we chose a convenience day of June 30th. So, all you will see and all you saw in our earnings release and you will see in the Q is just the purchase accounting starting in third quarter, then we will see REG in our results. REG had a good second quarter. Margins have been bouncing around, but the results are largely in line with expectations and Geismar continues on track. And same thing with Bunge, operating two crushers, very excited to be part of that, invested in CoverCres [ph] jointly, which is a crop that won’t compete with food. So, lots of work in this space as we work to get our renewable fuels capability up to 100,000 barrels a day. Still working, still on track to convert a diesel hydrotreater at El Segundo to have renewable fuel capability and work across other parts of Chevron systems. So, the combination of REG, our Bunge joint venture and our own assets, along with our customer relationships, we are all putting that together to have what we think will be a very successful, viable renewable fuels business."
+    },
+    {
+     "paragraph_number": 83,
+     "speaker": "Ryan Todd",
+     "content": "Thanks Pierre. Maybe the final one for Jay. Congrats on the retirement. I wanted to kind of a higher level question on upstream project development and technology. And there has been a pretty significant shift over the last 5 years to 10 years in the way that you have approached project development, more standardization, oftentimes smaller and more capital-efficient style projects. Ballymore is a great example of this. It’s lowered the cost of supply a lot, especially in the deepwater. As you pass the baton and look forward kind of into the next 10 years, are there things that you can see on the horizon either strategically or technologies that may continue to drive, changes in project development and technology that may drive things forward even further, whether it’s 20,000 kit in the deepwater sort of from flow line improvements and allow longer tiebacks. And what could this mean for the future of your resource development portfolio?"
+    },
+    {
+     "paragraph_number": 84,
+     "speaker": "Jay Johnson",
+     "content": "Thanks for the question, and it’s pretty exciting. I mean the one bad thing about retirement is you don’t get to be part of the next steps, and I am excited about them. I would start by just saying, I think we have accomplished a mindset shift in Chevron, and this is throughout our workforce, being very focused on returns, not chasing a production target, but continuing to run this as a business and thinking about the returns we can get. Scale is important, but it’s an outcome of the opportunity set that we have and the investments and capital that we choose to invest. Getting more focused, the factory model has been really important to us. And ironically, the started where we drilled lots of wells in places like [indiscernible] and San Joaquin. We have now successfully transferred that into our unconventional plays in Permian, in the DJ, in Argentina. And now we are actually taking that factory model into places like the Gulf of Mexico, where we do what we call urban planning, and we try and have a steady progression of projects, and we are developing the capability for further and further reach. I mentioned earlier that Jack St. Malo is now putting into service multiphase pumps. And these multiphase pumps sit on the sea floor, but they allow us to reach 30 miles, 40 miles and even maybe 50 miles out from the host facility, which really gives us great capacity to make even smaller accumulation economic, and give us the returns we are looking for while extending the life of these major hubs. I think the Gulf of Mexico will continue to be an important proving ground for some of these technologies that can then be exported around the world. So, our focus on standardization, our focus on minimum viable facilities, our focus on capital efficiency over just scale and NPV, all these together are resulting in and aligning with our technology center so that we continue to develop the technologies that are giving us the returns that we are going to need going forward. And with the resource base that we have today, and the team of people that we have in our technology groups and in our businesses, I am really excited."
+    },
+    {
+     "paragraph_number": 85,
+     "speaker": "Pierre Breber",
+     "content": "Hey Ryan, thanks for that question. We will miss Jay, but his legacy will live on, and you will see it in the performance at the upstream has been delivering and will continue to deliver."
+    },
+    {
+     "paragraph_number": 86,
+     "speaker": "Roderick Green",
+     "content": "Thanks Ryan. I would like to thank everyone for your time today. We appreciate your interest in Chevron and everyone’s participation on today’s call. Please stay safe and healthy. Katie, back to you."
+    },
+    {
+     "paragraph_number": 87,
+     "speaker": "Operator",
+     "content": "Thank you. This concludes Chevron’s second quarter 2022 conference call. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +512,8 @@
    "reportDate": "2021-12-31",
    "accession": "0000093410-22-000019",
    "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341022000019/cvx-20211231.htm",
-   "local_gz": "000009341022000019__annual.txt.gz"
+   "local_gz": "000009341022000019__annual.txt.gz",
+   "n_lines": 3509
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +521,8 @@
    "reportDate": "2022-03-31",
    "accession": "0000093410-22-000026",
    "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341022000026/cvx-20220331.htm",
-   "local_gz": "000009341022000026__q0.txt.gz"
+   "local_gz": "000009341022000026__q0.txt.gz",
+   "n_lines": 1134
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +530,106 @@
    "reportDate": "2021-09-30",
    "accession": "0000093410-21-000046",
    "url": "https://www.sec.gov/Archives/edgar/data/93410/000009341021000046/cvx-20210930.htm",
-   "local_gz": "000009341021000046__q1.txt.gz"
+   "local_gz": "000009341021000046__q1.txt.gz",
+   "n_lines": 1220
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2022-05-04",
   "n_rows": 8,
@@ -83,6 +644,58 @@
     "ocf": 3537000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 5681000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 8100000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 7791000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1630000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4017000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -207000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.12,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 1853533000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +706,48 @@
     "ocf": 2238000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 5676000000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 9500000000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": {
+      "value": 45367000000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2067000000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4486000000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 13637000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +758,58 @@
     "ocf": 4196000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 5620000000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 12200000000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 8264000000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1746000000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4286000000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 1377000000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.72,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 1915889000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +820,53 @@
     "ocf": 6954000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 6239000000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 13900000000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1797000000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4522000000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 3082000000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.6,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 1921958000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +877,53 @@
     "ocf": 8579000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 6129000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 14600000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1907000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4304000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 6111000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 3.19,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 1921095000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +934,58 @@
     "ocf": 9458000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 6305000000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 16400000000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": {
+      "value": 36059000000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2606000000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4813000000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 5055000000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.630000000000001,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 334000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +996,53 @@
     "ocf": 8055000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 6525000000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 20300000000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1960000000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3654000000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 6259000000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 3.22,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 1944542000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1053,21 @@
     "ocf": 13782000000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": 5.95,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 68762000000.0,
     "revenue_xbrl_for_reference": 68762000000.0
@@ -166,33 +1081,24 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2911",
   "sic2": "29",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 16,
-  "peer_list_all_same_sic2_tickers": [
-   "BP",
+  "bucket": "能源原材料公用",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 14,
+  "peer_list_all_tickers": [
    "COP",
-   "CVI",
-   "DK",
-   "EQNR",
-   "IEP",
-   "IMO",
-   "KWR",
-   "MPC",
-   "PBF",
-   "PSX",
-   "SU",
-   "SUN",
-   "VLO",
-   "VVV",
-   "YPF"
+   "VLO"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0001163165",
     "name": "CONOCOPHILLIPS",
     "ticker": "COP",
-    "sic2": "29",
+    "sic4": "2911",
+    "sic3": "291",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2022-02-17",
     "accn": "0001562762-22-000031",
@@ -201,13 +1107,16 @@
      "ise the regulations governing the emission of GHG and volatile organic compounds from new oil and gas production facilities, and emission guidelines for states to use when revising Clean Air Act implementation plans to limit GHG emissions from existing oil and gas facilities. Although the company supports the direct federal regulation of methane from new and existing sources, the final form and substance of any regulations are not currently known and could result in additional capital expenditures and compliance, operating and maintenance costs, any of which may have an adverse effect on our business and results of operations. Additionally, in 2021, the U.S. joined the international communit",
      "ies around the world which are party to the Paris Agreement. The implementation of current agreements and regulatory measures, as well as any future agreements or measures addressing climate change and GHG emissions, may adversely impact the demand for our products, impose taxes on our products or operations or require us to purchase emission credits or reduce emission of GHGs from our operations. As a result, we may experience declines in commodity prices or incur substantial capital expenditures and compliance, operating, maintenance and remediation costs, any of which may have an adverse effect on our business and results of operations. In September 2021, we announced an improvement to ou",
      "ing in up to eight cash distributions to shareholders throughout the year; however, the amount of the VROC is variable and will depend upon the above factors, and our Board of Directors may determine not to pay a VROC in a quarter or may cease declaring a VROC at any time. In addition, our Board of Directors may reduce our ordinary dividend or cease declaring dividends at any time, including if it determines that our net cash provided by operating activities, after deducting capital expenditures and investments, are not sufficient to pay our desired levels of dividends to our stockholders or to pay dividends to our stockholders at all. Risk Factors Table of Contents ConocoPhillips 2021 10-K "
-    ]
+    ],
+    "capex_status": "ok"
    },
    {
     "entity_id": "0001035002",
     "name": "VALERO ENERGY CORP/TX",
     "ticker": "VLO",
-    "sic2": "29",
+    "sic4": "2911",
+    "sic3": "291",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2022-02-22",
     "accn": "0001035002-22-000007",
@@ -216,7 +1125,8 @@
      "n line with the demand for gasoline. GOVERNMENT REGULATIONS We incorporate by reference into this Item the disclosures on government regulations, including environmental regulations, contained in the following sections of this report: • —OUR COMPREHENSIVE LIQUID FUELS STRATEGY— Regulations, Policies, and Standards Driving Low-Carbon Fuel Demand ”; • “ITEM 1A. RISK FACTORS—Legal, Governmental, and Regulatory Risks”; and • “ITEM 3. LEGAL PROCEEDINGS—ENVIRONMENTAL ENFORCEMENT MATTERS.” Capital Expenditures Attributable to Compliance with Government Regulations Compliance with government regulations, including environmental regulations, did not have a material effect on our capital expenditures ",
      "ned in the following sections of this report: • —OUR COMPREHENSIVE LIQUID FUELS STRATEGY— Regulations, Policies, and Standards Driving Low-Carbon Fuel Demand ”; • “ITEM 1A. RISK FACTORS—Legal, Governmental, and Regulatory Risks”; and • “ITEM 3. LEGAL PROCEEDINGS—ENVIRONMENTAL ENFORCEMENT MATTERS.” Capital Expenditures Attributable to Compliance with Government Regulations Compliance with government regulations, including environmental regulations, did not have a material effect on our capital expenditures in 2021, and we currently do not expect that compliance with these regulations will have material effects on our capital expenditures in 2022. Other Because our business is heavily regulate",
      "ng Low-Carbon Fuel Demand ”; • “ITEM 1A. RISK FACTORS—Legal, Governmental, and Regulatory Risks”; and • “ITEM 3. LEGAL PROCEEDINGS—ENVIRONMENTAL ENFORCEMENT MATTERS.” Capital Expenditures Attributable to Compliance with Government Regulations Compliance with government regulations, including environmental regulations, did not have a material effect on our capital expenditures in 2021, and we currently do not expect that compliance with these regulations will have material effects on our capital expenditures in 2022. Other Because our business is heavily regulated, our costs for compliance with government regulations are significant and can be material, especially costs associated with the Re"
-    ]
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -238,7 +1148,16 @@
   "latest_data_date": "2022-07-29",
   "cutoff": "2022-07-29",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2022-07-29",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2022-08-01",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

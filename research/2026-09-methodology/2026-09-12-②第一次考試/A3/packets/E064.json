@@ -1,6 +1,7 @@
 {
  "event_id": "E064",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E064",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "AZTA",
  "cik": "0000933974",
  "name": "Azenta, Inc.",
@@ -9,10 +10,11 @@
  "bucket": "製造與工業",
  "evidence_cutoff": "T1 = 2022-11-15(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E064",
   "event_id": "E064",
   "ticker": "AZTA",
   "cik": "0000933974",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,5.02,9.01",
   "accessionNumber": "0001558370-22-017810",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/933974/000155837022017810/azta-20221111x8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/933974/000155837022017810/azta-20221111x8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n azta-20221111xex99d1.htm\n EX-99.1\n Exhibit 99.1 \n ​ \n Azenta Reports Fourth Quarter and Full Year Fiscal 2022 Results, Authorizes $1.5 Billion Share Repurchase Program\n ​ \n ● Delivered on Expected Q4’22 Revenue of $138 million \n ● Strong Double-Digit Organic Growth Excluding COVID for Q4 and Full Fiscal Year \n ● Plan to Repurchase at Least $1 Billion of Common Stock Over the Coming Year, Including $500 Million Accelerated Share Repurchase Program \n ● 30% Total Revenue Growth Expected in Fiscal 2023 \n CHELMSFORD, Mass., November 14, 2022 (PR Newswire) – Azenta, Inc. (Nasdaq: AZTA) today reported financial results for the fourth quarter and fiscal year ended September 30, 2022. \n ​ \n ​ \n ​ \n Quarter Ended \n ​ \n Year Ended \n ​ \n ​ \n Dollars in millions, except per share data \n ​ \n September 30, \n ​ \n September 30, \n ​ \n ​ \n ​ \n ​ \n September 30, \n ​ \n September 30, \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n 2022 \n ​ \n 2021 \n ​ \n Change \n ​ \n 2022 \n ​ \n 2021 \n ​ \n Change \n ​ \n ​ \n Revenue from Continuing Operations\n $\n 138 \n $\n 137 \n 0 \n %\n $\n 555 \n $\n 514 \n ​ \n 8 \n %\n ​ \n ​ \n Organic growth ex-COVID impacts \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n 12 \n %\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n 17 \n %\n ​ \n ​ \n Life Sciences Products\n ​ \n $\n 48 \n ​ \n $\n 53 \n ​ \n (9) \n %\n ​ \n $\n 199 \n ​ \n $\n 200 \n ​ \n 0 \n %\n ​ \n ​ \n Life Sciences Services\n ​ \n $\n 89 \n ​ \n $\n 84 \n ​ \n 6 \n %\n ​ \n $\n 356 \n ​ \n $\n 314 \n ​ \n 13 \n %\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Diluted EPS Continuing Operations\n ​ \n $\n (0.07) \n ​ \n $\n (0.30) \n ​ \n 76 \n %\n ​ \n $\n (0.15) \n ​ \n $\n (0.39) \n ​ \n 61 \n %\n ​ \n ​ \n Diluted EPS Total\n ​ \n $\n (0.28) \n ​ \n $\n 0.29 \n ​ \n (195) \n %\n ​ \n $\n 28.48 \n ​ \n $\n 1.49 \n ​ \n nm\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Non-GAAP Diluted EPS Continuing Operations\n ​ \n $\n 0.16 \n ​ \n $\n 0.12 \n ​ \n 34 \n %\n ​ \n $\n 0.51 \n ​ \n $\n 0.48 \n ​ \n 6 \n %\n ​ \n ​ \n Adjusted EBITDA Continuing Operations\n ​ \n $\n 9 \n ​ \n $\n 21 \n ​ \n (55) \n %\n ​ \n $\n 62 \n ​ \n $\n 86 \n ​ \n (27) \n %\n ​ \n ​ \n ​ \n ​ \n Management Comments\n Steve Schwartz, President and CEO, stated, “We exit fiscal 2022 having successfully transformed into a standalone life sciences business with significant opportunities ahead of us. We achieved strong double-digit organic growth of 12% in the quarter and 17% in the fiscal year, excluding estimated COVID impacts. In the fourth quarter of fiscal 2022, we regained momentum in our genomics business and saw sustained strength in large-automated stores, which posted another record bookings quarter. We remain focused on execution and on driving broader adoption of our unique offerings. \n “We’re also pleased to announce that our Board has authorized a new $1.5 billion share repurchase program and we intend to repurchase at least $1 billion of common stock over the coming year, beginning with a $500 million accelerated share repurchase. This program is a testament to our commitment to returning value to \n shareholders. It underscores our strong capital position, and our view that we have significant upside opportunity. Even with this meaningful repurchase of shares, we expect to have sufficient capital available to deploy for additional growth investment consistent with our long-term strategy, and we will continue to generate value for shareholders as we pursue opportunities to extend our industry leading position. \n “We also announced that as part of our ongoing transformation we are nominating two new directors to our board. Both are outstanding life sciences executives with track records of creating value who will stand for election at our next annual shareholder meeting. These nominees will replace two of our directors who will not be standing for re-election.” \n Summary of Fourth Quarter and Full Year Fiscal 2022 Results\n Revenue excludes revenue from the Semiconductor Automation business which was sold on February 1, 2022. Profits related to this business are included in discontinued operations. The Company has referenced in the explanation of revenue the estimated impact of COVID. Estimated impact of COVID includes the estimated revenue contribution from products delivered and services rendered to support COVID testing and research, and estimated constraints on the business due to disruptions in customer demand or the Company’s ability to deliver in the COVID environment. \n Fourth Quarter, Fiscal 2022\n Summary of GAAP Results\n ● Revenue was $138 million, flat year over year and up 4% sequentially. Year over year organic growth was 2%, which excludes over 4 percentage points of headwind from foreign exchange and a 3 percentage point contribution from the acquisition of Barkey Holding GmBH (“Barkey”) completed on July 1, 2022. \n ● Organic growth was 12% year over year when excluding the COVID impact in both periods. The estimated COVID impact was approximately $1 million in the fourth quarter of fiscal 2022 compared to a $12 million contribution in the prior year period. \n ● Life Sciences Products revenue declined 9% year over year mainly due to lower revenue in the consumables and instruments (“C&I”) business, partially offset by strong high-teens growth in our large-automated stores business. The acquisition of Barkey contributed $4 million to revenue. Organic revenue declined 10% year over year and was up 13% excluding COVID impacts in both periods. \n ● Life Sciences Services revenue grew 6% year over year, with 9% growth in sample repository solutions (“SRS”) driven by revenue from stored samples and 6% growth in genomics driven by next-generation and sanger sequencing. Organic growth was 10% year over year and up 11% excluding COVID impacts in both periods. \n ● Operating loss was $15 million, a $7 million improvement year over year primarily due to the retirement of tradenames related to the rebranding of the Life Sciences business that took place in the fourth quarter of 2021. Gross margin was 42.3%, down 600 basis points year over year. \n ● Diluted EPS from continuing operations was ($0.07) compared to ($0.30) in fourth quarter of fiscal 2021. Total diluted EPS of ($0.28) includes ($0.21) of diluted EPS primarily from tax adjustments in discontinued operations related to the sale of the Semiconductor Automation business. Other income included $10 million of net interest income versus a $0.4 million expense in the prior year period. \n ​ \n Fourth quarter 2021 non-operating expenses included $16 million of charges for the release of a tax indemnification asset, which was offset within the tax expense with the reduction of tax liability. \n Summary of Non-GAAP Results\n ● Operating income was $2 million and operating margin was 1.5%, down 670 basis points year over year. Gross margin was 43.8%, down 580 basis points year over year. Operating expense in the quarter was $58 million, up $1 million year over year. Inflation, foreign exchange and product mix as well as incremental strategic investments for growth added pressure to the Company’s margin performance in the fourth quarter of fiscal 2022. \n ● Diluted EPS for the fourth quarter of fiscal 2022 was $0.16, up $0.04 versus one year ago. \n ● Adjusted EBITDA, which excludes stock-based compensation, was $9 million and Adjusted EBITDA margin was 6.9%, down 860 basis points year over year. \n Full Year, Fiscal 2022\n Summary of GAAP Results\n ● Revenue for fiscal 2022 was $555 million, up 8% year over year. Organic growth was 9%, which excludes a 2 percentage point headwind from foreign exchange and a 2 percentage point contribution from acquisitions. \n ● Organic growth was 17% year over year when excluding the estimated COVID impact in both periods. The COVID impact was $22 million in fiscal 2022 compared to $53 million the prior year. \n ● Life Sciences Products revenue was $199 million, flat year over year driven by lower C&I revenue offset by increases across all other business lines and the addition of Barkey in July 2022. Organic revenue declined 1% year over year and was up 13% excluding estimated COVID impacts in both periods. \n ● Life Sciences Services revenue was $356 million, up 13% year over year, with 18% growth in SRS driven by stored samples and 11% growth in genomics with expansion across all major business lines. Organic growth was 15% year over year and was 18% excluding COVID impacts in both periods. \n ● Operating loss was $25 million, a $6 million improvement year over year primarily due to the retirement of tradenames related to the rebranding of the Life Sciences business and a charge related to liabilities for tariffs related to imports in prior fiscal years that took place during fiscal 2021 and did not repeat in fiscal 2022, partially offset by inflation and investment in the business. Gross margin was 46.0%, down 150 basis points year over year. \n ● Diluted EPS from continuing operations was ($0.15) compared to ($0.39) in fiscal 2021. Total diluted EPS of $28.48 includes $28.63 of diluted EPS from discontinued operations related to the sale of the Semiconductor Automation business. Other income included $16 million of net interest income versus a $1 million expense in the prior year. \n Summary of Non-GAAP Results\n ● Operating income was $28 million and operating margin was 5.1%, down 400 basis points year over year. Gross margin was 47.3% down 280 basis points year over year. Operating expense was $234 million, up $24 million year over year. Full year margins were impacted by inflation and strategic \n ​ \n ​ \n investments for growth as well as unfavorable foreign exchange and product mix weighing on second half results. \n ● Diluted EPS for fiscal 2022 was $0.51, up $0.03 versus fiscal 2021. \n ● Adjusted EBITDA, which excludes stock-based compensation, was $62 million and Adjusted EBITDA margin was 11.3%, down 550 basis points year over year. \n Cash and Liquidity as of September 30, 2022\n ● The Company ended fiscal year 2022 with a total balance of cash, cash equivalents, restricted cash and marketable securities of $2.3 billion. \n Subsequent Events\n ● On October 3, 2022, the Company completed the acquisition of B Medical Systems S.a.r.l (“B Medical”), a global leader in temperature-controlled storage and transportation solutions for approximately $422 million in cash, which includes an adjustment for cash acquired and other items. Additional cash consideration, up to approximately $50 million, may be paid upon achievement of certain future performance milestones. \n ● Following the completion of the B Medical acquisition, the Company had a total balance of cash, cash equivalents, restricted cash and marketable securities of approximately $1.9 billion. \n New Share Repurchase Program\n The Company’s Board of Directors has approved a share repurchase authorization of $1.5 billion in common stock. The Company intends to repurchase at least $1 billion in common stock over the next year, including an accelerated share repurchase (ASR) program to repurchase approximately $500 million in common stock. Azenta intends to enter into an ASR agreement in the coming days. \n Repurchases of the Company’s common stock may be made in the open market or through privately negotiated transactions (including the ASR program), or by other means, including through the use of trading plans intended to qualify under Rule 10b5-1 under the Securities Exchange Act of 1934, subject to market and business conditions, legal requirements, and other factors. This share repurchase authorization does not obligate Azenta to acquire any particular amount of common stock, and share repurchases may be commenced or suspended at any time at the Company’s discretion. \n Board of Directors Nominations\n Today the Company announced that Tina S. Nova, Ph.D. and Dorothy E. Puhy have been nominated for election to its Board of Directors at the Company’s 2023 Annual General Meeting. Current directors Mark Wrighton, Ph.D. and Alfred Woollacott, III have stated their intention to retire from the Board and not to stand for re-election. Please refer to the Company’s separate press release for further information. \n ​ \n ​ \n Guidance for Continuing Operations for First Quarter and Full Year Fiscal 2023\n The Company announced guidance for continuing operations for the first quarter and full year fiscal 2023. \n For the first quarter, revenue is expected to be in the range of $175 to $190 million and non-GAAP diluted earnings per share is expected to be in the range of $0.08 to $0.16. GAAP diluted earnings per share from continuing operations is expected to be in the range of ($0.20) to ($0.12). \n For the full year, total revenue is expected to grow approximately 30%. \n Conference Call and Webcast\n Azenta management will webcast its fourth quarter and full year fiscal 2022 earnings conference call today at 4:30 p.m. Eastern Time. During the call, Company management will respond to questions concerning, but not limited to, the Company’s financial performance, business conditions and industry outlook. Management’s responses could contain information that has not been previously disclosed. \n The call will be broadcast live over the Internet and, together with presentation materials referenced on the call, will be hosted at the Investor Relations section of Azenta’s website at https://investors.azenta.com/events, and will be archived online on this website for convenient on-demand replay. In addition, you may call 800-936-4761 (US & Canada only) or +1-212-231-2922 for international callers to listen to the live webcast. \n Regulation G – Use of Non-GAAP financial Measures\n The Company supplements its GAAP financial measures with certain non-GAAP financial measures to provide investors a better perspective on the results of business operations, which the Company believes is more comparable to the similar analyses provided by its peers. These measures are not presented in accordance with, nor are they a substitute for, U.S. generally accepted accounting principles, or GAAP. These measures should always be considered in conjunction with appropriate GAAP measures. A reconciliation of non-GAAP measures to the most nearly comparable GAAP measures is included at the end of this release following the consolidated balance sheets, statements of operations and statements of cash flows. \n “Safe Harbor Statement” under Section 21E of the Securities Exchange Act of 1934\n Some statements in this release are forward-looking statements made under Section 21E of the Securities Exchange Act of 1934. These statements are neither promises nor guarantees but involve risks and uncertainties, both known and unknown, that could cause Azenta’s financial and business results to differ materially from our expectations. They are based on the facts known to management at the time they are made. Other forward-looking statements include but are not limited to statements about our revenue and earnings expectations, our focus and execution and adoption of our offerings, our ability to improve or retain our market position, and our ability to deliver financial success in the future and otherwise related to future operating or financial performance and opportunities. Factors that could cause results to differ from our expectations include the following: the impact of the COVID-19 global pandemic on the markets we serve, including our supply chain, and on the global economy generally; the volatility of the life sciences markets the Company serves; our possible inability to meet demand for our products due to difficulties in obtaining components and materials from our suppliers in required quantities and of required quality; the inability of customers to make payments to us when due; price competition; disputes concerning intellectual property; \n ​ \n uncertainties in global political and economic conditions; our ability to successfully invest the cash proceeds from the sale of our Semiconductor Automation business; and other factors and other risks, including those that we have described in our filings with the Securities and Exchange Commission, including but not limited to our Annual Report on Form 10-K, Current Reports on Form 8-K and our Quarterly Reports on Form 10-Q. As a result, we can provide no assurance that our future results will not be materially different from those projected. Azenta expressly disclaims any obligation or undertaking to release publicly any updates or revisions to any such statement to reflect any change in our expectations or any change in events, conditions, or circumstances on which any such statement is based. Azenta undertakes no obligation to update the information contained in this press release. \n About Azenta Life Sciences \n Azenta, Inc. (Nasdaq: AZTA) is a leading provider of life sciences solutions worldwide, enabling impactful breakthroughs and therapies to market faster. Azenta provides a full suite of reliable cold-chain sample management solutions and genomic services across areas such as drug development, clinical research and advanced cell therapies for the industry’s top pharmaceutical, biotech, academic and healthcare institutions globally. \n Azenta is headquartered in Massachusetts, with operations in North America, Europe and Asia. For more information, please visit www.azenta.com . \n AZENTA INVESTOR CONTACTS: \n Sara Silverman \n Head of Investor Relations \n 978.262.2635 \n ​ \n ir@azenta.com \n Sherry Dinsmore \n 978.262.2400 \n sherry.dinsmore@azenta.com \n ​ \n ​ \n AZENTA, INC.\n CONSOLIDATED STATEMENTS OF OPERATIONS\n (unaudited)\n (In thousands, except per share data)\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Three Months Ended \n ​ \n ​ \n Year Ended \n ​ \n ​ \n ​ \n ​ \n September 30, \n ​ \n ​ \n September 30, \n ​ \n ​ \n ​ \n ​ \n 2022 \n ​ \n 2021 \n ​ \n ​ \n 2022 \n ​ \n 2021 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Revenue\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Products\n ​ \n ​ \n $\n 42,944 \n $\n 53,115 \n ​ \n ​ \n $\n 180,950 \n $\n 181,036 \n ​ \n Services\n ​ \n ​ \n 94,624 \n ​ \n 83,824 \n ​ \n ​ \n 374,548 \n ​ \n 332,667 \n ​ \n Total revenue\n ​ \n ​ \n 137,568 \n ​ \n 136,939 \n ​ \n ​ \n 555,498 \n ​ \n 513,703 \n ​ \n Cost of revenue\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Products\n ​ \n ​ \n 26,478 \n ​ \n 25,118 \n ​ \n ​ \n 100,044 \n ​ \n 96,678 \n ​ \n Services\n ​ \n ​ \n 52,973 \n ​ \n 45,678 \n ​ \n ​ \n 199,870 \n ​ \n 173,216 \n ​ \n Total cost of revenue\n ​ \n ​ \n 79,451 \n ​ \n 70,796 \n ​ \n ​ \n 299,914 \n ​ \n 269,894 \n ​ \n Gross profit\n ​ \n ​ \n 58,117 \n ​ \n 66,143 \n ​ \n ​ \n 255,584 \n ​ \n 243,809 \n ​ \n Operating expenses\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Research and development\n ​ \n ​ \n 7,647 \n ​ \n 6,599 \n ​ \n ​ \n 27,542 \n ​ \n 22,412 \n ​ \n Selling, general and administrative\n ​ \n ​ \n 64,704 \n ​ \n 80,453 \n ​ \n ​ \n 252,065 \n ​ \n 252,101 \n ​ \n Restructuring charges\n ​ \n ​ \n 393 \n ​ \n 332 \n ​ \n ​ \n 712 \n ​ \n 385 \n ​ \n Total operating expenses\n ​ \n ​ \n 72,744 \n ​ \n 87,384 \n ​ \n ​ \n 280,319 \n ​ \n 274,898 \n ​ \n Operating loss\n ​ \n ​ \n (14,627) \n ​ \n (21,241) \n ​ \n ​ \n (24,735) \n ​ \n (31,089) \n ​ \n Interest income\n ​ \n ​ \n 10,353 \n ​ \n 129 \n ​ \n ​ \n 20,286 \n ​ \n 632 \n ​ \n Interest expense\n ​ \n ​ \n (478) \n ​ \n (552) \n ​ \n ​ \n (4,589) \n ​ \n (2,037) \n ​ \n Loss on extinguishment of debt\n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n (632) \n ​ \n —\n ​ \n Other income (expenses), net\n ​ \n ​ \n 1,352 \n ​ \n (16,212) \n ​ \n ​ \n (266) \n ​ \n (16,475) \n ​ \n Income (loss) before income taxes\n ​ \n ​ \n (3,400) \n ​ \n (37,877) \n ​ \n ​ \n (9,936) \n ​ \n (48,969) \n ​ \n Income tax provision (benefit)\n ​ \n ​ \n $\n 1,910 \n ​ \n $\n (15,480) \n ​ \n ​ \n $\n 1,350 \n ​ \n $\n (20,100) \n ​ \n Loss from continuing operations\n ​ \n ​ \n ​ \n (5,310) \n ​ \n ​ \n (22,397) \n ​ \n ​ \n ​ \n (11,286) \n ​ \n ​ \n (28,869) \n ​ \n (Loss) income from discontinued operations, net of tax\n ​ \n ​ \n $\n (15,454) \n ​ \n $\n 44,202 \n ​ \n ​ \n $\n 2,144,145 \n ​ \n $\n 139,616 \n ​ \n Net (loss) income \n ​ \n ​ \n ​ \n (20,765) \n ​ \n ​ \n 21,805 \n ​ \n ​ \n ​ \n 2,132,859 \n ​ \n ​ \n 110,747 \n ​ \n Basic net (loss) income per share:\n ​ \n ​ \n $\n ​ \n ​ \n $\n ​ \n ​ \n ​ \n $\n ​ \n ​ \n $\n ​ \n ​ \n Loss from continuing operations\n ​ \n ​ \n ​ \n (0.07) \n ​ \n ​ \n (0.30) \n ​ \n ​ \n ​ \n (0.15) \n ​ \n ​ \n (0.39) \n ​ \n (Loss) income from discontinued operations, net of tax\n ​ \n ​ \n $\n (0.21) \n ​ \n $\n 0.59 \n ​ \n ​ \n $\n 28.63 \n ​ \n $\n 1.88 \n ​ \n Basic net (loss) income per share \n ​ \n ​ \n ​ \n (0.28) \n ​ \n ​ \n 0.29 \n ​ \n ​ \n ​ \n 28.48 \n ​ \n ​ \n 1.49 \n ​ \n Diluted net (loss) income per share:\n ​ \n ​ \n $\n ​ \n ​ \n $\n ​ \n ​ \n ​ \n $\n ​ \n ​ \n $\n ​ \n ​ \n Loss from continuing operations\n ​ \n ​ \n ​ \n (0.07) \n ​ \n ​ \n (0.30) \n ​ \n ​ \n ​ \n (0.15) \n ​ \n ​ \n (0.39) \n ​ \n (Loss) income from discontinued operations, net of tax\n ​ \n ​ \n $\n (0.21) \n ​ \n $\n 0.59 \n ​ \n ​ \n $\n 28.63 \n ​ \n $\n 1.88 \n ​ \n Diluted net (loss) income per share \n ​ \n ​ \n ​ \n (0.28) \n ​ \n ​ \n 0.29 \n ​ \n ​ \n ​ \n 28.48 \n ​ \n ​ \n 1.49 \n ​ \n Weighted average shares used in computing net income per share:\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Basic\n ​ \n ​ \n 75,010 \n ​ \n 74,330 \n ​ \n ​ \n 74,897 \n ​ \n 74,229 \n ​ \n Diluted\n ​ \n ​ \n ​ \n 75,010 \n ​ \n 74,532 \n ​ \n ​ \n 74,897 \n ​ \n 74,455 \n ​ \n ​ \n ​ \n ​ \n AZENTA, INC.\n CONSOLIDATED BALANCE SHEETS\n (unaudited)\n (In thousands, except share and per share data)\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n September 30, \n ​ \n September 30, \n ​ \n 2022 \n ​ \n 2021 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Assets\n ​ \n ​ \n ​ \n ​ \n ​ \n Current assets\n ​ \n ​ \n ​ \n ​ \n ​ \n Cash and cash equivalents\n $\n 658,274 \n $\n 227,427 \n Short-term Marketable securities\n 911,764 \n ​ \n 81 \n Accounts receivable, net\n 163,759 \n ​ \n 119,877 \n Inventories\n 85,544 \n ​ \n 60,398 \n Derivative asset\n ​ \n 124,789 \n ​ \n —\n Short-term restricted cash\n ​ \n 382,596 \n ​ \n 7,146 \n Prepaid expenses and other current assets\n 132,620 \n ​ \n 51,052 \n Current assets held for sale\n ​ \n —\n ​ \n ​ \n 311,385 \n Total current assets\n 2,459,346 \n ​ \n 777,366 \n Property, plant and equipment, net\n 154,470 \n ​ \n 130,719 \n Long-term marketable securities\n 352,020 \n ​ \n 3,598 \n Long-term deferred tax assets\n 1,169 \n ​ \n 10,043 \n Goodwill\n 513,623 \n ​ \n 469,356 \n Intangible assets, net\n 178,401 \n ​ \n 186,534 \n Other assets\n 57,093 \n ​ \n 58,068 \n Non-current assets held for sale\n —\n ​ \n 183,828 \n Total assets\n $\n 3,716,122 \n ​ \n $\n 1,819,512 \n Liabilities and Stockholders’ Equity\n ​ \n ​ \n ​ \n ​ \n ​ \n Current liabilities\n ​ \n ​ \n ​ \n ​ \n ​ \n Accounts payable\n $\n 38,654 \n ​ \n $\n 42,360 \n Deferred revenue\n ​ \n 39,748 \n ​ \n 25,724 \n Accrued warranty and retrofit costs\n ​ \n 2,890 \n ​ \n 2,330 \n Accrued compensation and benefits\n 41,898 \n ​ \n 33,183 \n Accrued income taxes payable\n 28,419 \n ​ \n 8,711 \n Accrued expenses and other current liabilities\n 78,937 \n ​ \n 103,841 \n Current liabilities held for sale\n —\n ​ \n 128,939 \n Total current liabilities\n 230,546 \n ​ \n 345,088 \n Long-term debt\n ​ \n —\n ​ \n ​ \n 49,677 \n Long-term tax reserves\n 1,684 \n ​ \n 1,973 \n Long-term deferred tax liabilities\n 64,555 \n ​ \n 13,030 \n Long-term pension liabilities\n 261 \n ​ \n 705 \n Long-term operating lease liabilities\n ​ \n 49,227 \n ​ \n ​ \n 45,088 \n Other long-term liabilities\n 6,463 \n ​ \n 6,173 \n Non-current liabilities held for sale\n ​ \n —\n ​ \n ​ \n 32,444 \n Total liabilities\n 352,736 \n ​ \n 494,178 \n Stockholders’ Equity\n ​ \n ​ \n ​ \n ​ \n ​ \n Preferred stock, $0.01 par value - 1,000,000 shares authorized, no shares issued or outstanding\n —\n ​ \n —\n Common stock, $0.01 par value - 125,000,000 shares authorized, 88,482,125 shares issued and 75,020,256 shares outstanding at September 30, 2022, 87,808,922 shares issued and 74,347,053 shares outstanding at September 30, 2021\n 885 \n ​ \n 878 \n Additional paid-in capital\n 1,992,017 \n ​ \n 1,976,112 \n Accumulated other comprehensive income\n (83,916) \n ​ \n 19,351 \n Treasury stock at cost - 13,461,869 shares\n (200,956) \n ​ \n (200,956) \n Retained earnings (accumulated deficit)\n 1,655,356 \n ​ \n (470,051) \n Total stockholders’ equity\n ​ \n 3,363,386 \n ​ \n ​ \n 1,325,334 \n Total liabilities and stockholders’ equity\n $\n 3,716,122 \n ​ \n $\n 1,819,512 \n ​ \n ​ \n ​ \n AZENTA, INC.\n CONSOLIDATED STATEMENTS OF CASH FLOWS\n (unaudited)\n (In thousands, except share and per share data)\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Year Ended \n ​ \n ​ \n September 30, \n ​ \n ​ \n 2022 \n ​ \n 2021 \n ​ \n Cash flows from operating activities\n ​ \n ​ \n ​ \n ​ \n ​ \n Net income \n $\n 2,132,859 \n $\n 110,747 \n ​ \n Adjustments to reconcile net income to net cash provided by operating activities:\n ​ \n ​ \n ​ \n ​ \n ​ \n Depreciation and amortization\n 53,702 \n ​ \n 65,333 \n ​ \n Impairment of intangible assets\n ​ \n —\n ​ \n ​ \n 13,364 \n ​ \n Stock-based compensation\n 10,666 \n ​ \n 27,456 \n ​ \n Amortization of premium on marketable securities and deferred financing costs\n (1,894) \n ​ \n 225 \n ​ \n Deferred income taxes\n ​ \n 24,469 \n ​ \n ​ \n (17,265) \n ​ \n Loss on extinguishment of debt\n ​ \n 632 \n ​ \n ​ \n —\n ​ \n (Gain) loss on disposals of property, plant and equipment\n (21) \n ​ \n 260 \n ​ \n (Gain) loss on sale of divestiture, net of tax\n ​ \n (2,130,265) \n ​ \n ​ \n 948 \n ​ \n Fees paid stemming from divestiture\n ​ \n (52,461) \n ​ \n ​ \n —\n ​ \n Taxes paid stemming from divestiture\n ​ \n (431,600) \n ​ \n ​ \n —\n ​ \n Changes in operating assets and liabilities, net of acquisitions and divestiture:\n ​ \n ​ \n ​ \n ​ \n Accounts receivable\n (31,397) \n ​ \n (69,643) \n ​ \n Inventories\n (66,629) \n ​ \n (50,443) \n ​ \n Accounts payable\n (3,926) \n ​ \n 30,967 \n ​ \n Deferred revenue\n 16,599 \n ​ \n (3,939) \n ​ \n Accrued warranty and retrofit costs\n ​ \n 303 \n ​ \n 54 \n ​ \n Accrued compensation and tax withholdings\n ​ \n 11,404 \n ​ \n 7,298 \n ​ \n Other current assets and liabilities\n ​ \n 1,513 \n ​ \n ​ \n 34,495 \n ​ \n Net cash (used in) provided by operating activities\n (466,046) \n ​ \n $\n 149,857 \n ​ \n Cash flows from investing activities\n ​ \n ​ \n ​ \n ​ \n ​ \n Purchases of property, plant and equipment\n ​ \n (73,435) \n ​ \n ​ \n (52,805) \n ​ \n Purchases of technology intangibles\n (4,000) \n ​ \n —\n ​ \n Purchases of marketable securities\n ​ \n (1,975,599) \n ​ \n ​ \n (151) \n ​ \n Sales and maturities of marketable securities\n 705,384 \n ​ \n 121 \n ​ \n Proceeds from divestiture, net of cash transferred\n ​ \n 2,939,116 \n ​ \n ​ \n —\n ​ \n Acquisitions / dispositions, net of cash acquired\n ​ \n (125,876) \n ​ \n ​ \n (93,712) \n ​ \n Adjustment from proceeds from divestiture\n —\n ​ \n (1,802) \n ​ \n Settlement (issuance) of note receivables\n —\n ​ \n 2,000 \n ​ \n Net cash provided by (used in) investing activities\n ​ \n 1,465,590 \n ​ \n $\n (146,349) \n ​ \n Cash flows from financing activities\n ​ \n ​ \n ​ \n ​ \n Proceeds from issuance of common stock\n 5,245 \n ​ \n 5,812 \n ​ \n Principal payments on debt\n (49,725) \n ​ \n (828) \n ​ \n Payments of finance leases\n (388) \n ​ \n (1,164) \n ​ \n Payment for contingent consideration related to acquisition\n (10,400) \n ​ \n —\n ​ \n Common stock dividends paid\n (7,494) \n ​ \n (29,726) \n ​ \n Net cash used in financing activities\n $\n (62,762) \n ​ \n $\n (25,906) \n ​ \n Effects of exchange rate changes on cash and cash equivalents\n ​ \n (180,819) \n ​ \n ​ \n 5,205 \n ​ \n Net increase (decrease) in cash, cash equivalents and restricted cash\n ​ \n 755,963 \n ​ \n ​ \n (17,193) \n ​ \n Cash, cash equivalents and restricted cash, beginning of period\n ​ \n 285,333 \n ​ \n ​ \n 302,526 \n ​ \n Cash, cash equivalents and restricted cash, end of period\n ​ \n 1,041,296 \n ​ \n $\n 285,333 \n ​ \n Supplemental disclosures:\n ​ \n ​ \n ​ \n ​ \n Cash paid for interest\n ​ \n 469 \n ​ \n ​ \n 1,435 \n ​ \n Cash paid for income taxes, net\n $\n 482,090 \n ​ \n $\n 38,020 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n September 30, \n ​ \n ​ \n September 30, \n ​ \n ​ \n 2022 \n ​ \n ​ \n 2021 \n Cash and cash equivalents of continuing operations\n ​ \n 658,274 \n ​ \n ​ \n 227,427 \n ​ \n Cash and cash equivalents included in assets held for sale\n ​ \n —\n ​ \n ​ \n 45,000 \n ​ \n Short-term restricted cash \n ​ \n 382,595 \n ​ \n ​ \n 7,145 \n ​ \n Long-term restricted cash included in other assets\n ​ \n 427 \n ​ \n ​ \n 5,761 \n ​ \n Total cash, cash equivalents and restricted cash shown in the consolidated statements of cash flows\n $\n 1,041,296 \n ​ \n $\n 285,333 \n ​ \n ​ \n ​ \n Notes on Non-GAAP Financial Measures\n Non-GAAP financial measures are used in addition to and in conjunction with results presented in accordance with GAAP and should not be relied upon to the exclusion of GAAP financial measures. Management adjusts the GAAP results for the impact of amortization of intangible assets, restructuring charges, purchase price accounting adjustments and charges related to M&A to provide investors better perspective on the results of operations which the Company believes is more comparable to the similar analysis provided by its peers. Management also excludes special charges and gains, such as impairment losses, gains and losses from the sale of assets, certain tax benefits and charges, as well as other gains and charges that are not representative of the normal operations of the business. Management strongly encourages investors to review our financial statements and publicly filed reports in their entirety and not rely on any single measure.\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Quarter Ended \n ​ \n ​ \n September 30, 2022 \n ​ \n June 30, 2022 \n ​ \n September 30, 2021 \n ​ \n ​ \n ​ \n ​ \n per diluted \n ​ \n ​ \n ​ \n per diluted \n ​ \n ​ \n ​ \n per diluted \n Dollars in thousands, except per share data \n ​ \n $ \n ​ \n share \n ​ \n $ \n ​ \n share \n ​ \n $ \n ​ \n share \n Net loss from continuing operations\n $\n (5,310) \n $\n (0.07) \n $\n (7,015) \n $\n (0.09) \n $\n (22,397) \n $\n (0.30) \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of intangible assets\n ​ \n 8,801 \n ​ \n 0.12 \n ​ \n 7,557 \n ​ \n 0.10 \n ​ \n 9,515 \n ​ \n 0.13 \n Impairment of intangible assets\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n ​ \n ​ \n 0.18 \n Restructuring charges\n ​ \n 393 \n ​ \n 0.01 \n ​ \n 23 \n ​ \n 0.00 \n ​ \n 332 \n ​ \n 0.00 \n Merger and acquisition costs\n ​ \n 6,959 \n ​ \n 0.09 \n ​ \n 1,662 \n ​ \n 0.02 \n ​ \n 8,427 \n ​ \n 0.11 \n Rebranding and transformation costs\n ​ \n ​ \n 536 \n ​ \n ​ \n 0.01 \n ​ \n ​ \n 289 \n ​ \n ​ \n 0.00 \n ​ \n ​ \n 827 \n ​ \n ​ \n 0.01 \n Indemnification asset release\n ​ \n —\n ​ \n —\n ​ \n —\n ​ \n —\n ​ \n 16,007 \n ​ \n 0.21 \n Tax adjustments (1) \n ​ \n ​ \n 2,510 \n ​ \n ​ \n 0.03 \n ​ \n ​ \n 8,417 \n ​ \n ​ \n 0.11 \n ​ \n ​ \n (10,345) \n ​ \n ​ \n (0.14) \n Tax effect of adjustments \n ​ \n ​ \n (2,130) \n ​ \n (0.03) \n ​ \n (2,143) \n ​ \n (0.03) \n ​ \n ​ \n (6,967) \n ​ \n ​ \n (0.09) \n Non-GAAP adjusted net income from continuing operations \n ​ \n $ \n 11,759 \n ​ \n $ \n 0.16 \n ​ \n $ \n 8,790 \n ​ \n $ \n 0.12 \n ​ \n $ \n 8,763 \n ​ \n $ \n 0.12 \n Stock based compensation, pre-tax \n ​ \n (49) \n ​ \n (0.00) \n ​ \n 3,485 \n ​ \n 0.05 \n ​ \n 5,138 \n ​ \n 0.07 \n Tax rate \n ​ \n 15 \n %\n — \n ​ \n 15 \n %\n — \n ​ \n 15 \n %\n —\n Stock-based compensation, net of tax\n ​ \n (42) \n ​ \n (0.00) \n ​ \n 2,962 \n ​ \n 0.04 \n ​ \n 4,367 \n ​ \n 0.06 \n Non-GAAP adjusted net income excluding stock-based compensation - continuing operations\n ​ \n $\n 11,717 \n ​ \n $\n 0.16 \n ​ \n $\n 11,752 \n ​ \n $\n 0.16 \n ​ \n $\n 13,131 \n ​ \n $\n 0.18 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Shares used in computing non-GAAP diluted net income per share\n ​ \n —\n ​ \n 75,010 \n ​ \n —\n ​ \n 74,989 \n ​ \n —\n ​ \n 74,532 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Year Ended \n ​ \n ​ \n ​ \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n ​ \n ​ \n ​ \n ​ \n per diluted \n ​ \n ​ \n ​ \n per diluted \n Dollars in thousands, except per share data \n ​ \n ​ \n $ \n ​ \n share \n ​ \n $ \n ​ \n share \n Net loss from continuing operations\n $\n (11,286) \n $\n (0.15) \n $\n (28,869) \n $\n (0.39) \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of intangible assets\n ​ \n ​ \n 32,289 \n ​ \n 0.43 \n ​ \n 37,372 \n ​ \n ​ \n 0.50 \n Restructuring charges\n ​ \n ​ \n 712 \n ​ \n ​ \n 0.01 \n ​ \n ​ \n 385 \n ​ \n ​ \n 0.01 \n Tariff adjustment\n ​ \n ​ \n (484) \n ​ \n (0.01) \n ​ \n 5,497 \n ​ \n ​ \n 0.07 \n Merger and acquisition costs\n ​ \n ​ \n 17,929 \n ​ \n 0.24 \n ​ \n 20,662 \n ​ \n ​ \n 0.28 \n Impairment of intangible assets\n ​ \n ​ \n —\n ​ \n —\n ​ \n 13,364 \n ​ \n ​ \n 0.18 \n Rebranding and transformation costs\n ​ \n ​ \n ​ \n 2,741 \n ​ \n ​ \n 0.04 \n ​ \n ​ \n 827 \n ​ \n ​ \n 0.01 \n Indemnification asset release\n ​ \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 16,007 \n ​ \n ​ \n 0.21 \n Loss on extinguishment of debt\n ​ \n ​ \n ​ \n 632 \n ​ \n ​ \n 0.01 \n ​ \n ​ \n —\n ​ \n ​ \n —\n Other adjustments\n ​ \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (83) \n ​ \n ​ \n (0.00) \n Tax adjustments (1) \n ​ \n ​ \n ​ \n 5,744 \n ​ \n ​ \n 0.08 \n ​ \n ​ \n (11,919) \n ​ \n ​ \n (0.16) \n Tax effect of adjustments\n ​ \n ​ \n ​ \n (10,078) \n ​ \n ​ \n (0.13) \n ​ \n ​ \n (17,314) \n ​ \n ​ \n (0.23) \n Non-GAAP adjusted net income from continuing operations \n ​ \n ​ \n $\n 38,199 \n ​ \n $\n 0.51 \n ​ \n $\n 35,929 \n ​ \n $\n 0.48 \n Stock-based compensation, pre-tax \n ​ \n ​ \n 12,443 \n ​ \n 0.17 \n ​ \n 20,051 \n ​ \n ​ \n 0.27 \n Tax rate \n ​ \n ​ \n 15 \n %\n — \n ​ \n 15 \n %\n ​ \n — \n Stock-based compensation, net of tax\n ​ \n ​ \n 10,577 \n ​ \n $\n 0.14 \n ​ \n 17,043 \n ​ \n ​ \n 0.23 \n Non-GAAP adjusted net income excluding stock-based compensation - continuing operations\n ​ \n ​ \n $\n 48,776 \n ​ \n $\n 0.65 \n ​ \n $\n 52,972 \n ​ \n $\n 0.71 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Shares used in computing non-GAAP diluted net income per share\n ​ \n ​ \n —\n ​ \n 74,897 \n ​ \n —\n ​ \n ​ \n 74,455 \n ​ \n (1) Tax adjustments during all periods include adjustments to tax benefits related to stock compensation windfalls. These benefits are recognized in the period of vesting for US GAAP but included in the annual effective tax rate for Non-GAAP reporting. Tax adjustments \n ​ \n for the quarter ended September 30, 2022, include a $4.1M increase to expense related to the exclusion of allocations between continuing operations and discontinued operations. \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Quarter Ended \n ​ \n Year Ended \n ​ \n ​ \n September 30, \n ​ \n June 30, \n ​ \n September 30, \n ​ \n September 30, \n ​ \n September 30, \n Dollars in thousands \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2021 \n GAAP net (loss) income\n $\n (20,765) \n $\n (9,570) \n $\n 21,805 \n $\n 2,132,859 \n $\n 110,747 \n Less: Income from discontinued operations\n ​ \n ​ \n 15,454 \n ​ \n ​ \n 2,555 \n ​ \n ​ \n (44,201) \n ​ \n ​ \n (2,144,145) \n ​ \n ​ \n (139,616) \n GAAP net (loss) income from continuing operations\n ​ \n ​ \n (5,310) \n ​ \n ​ \n (7,015) \n ​ \n ​ \n (22,397) \n ​ \n ​ \n (11,286) \n ​ \n ​ \n (28,869) \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Less: Interest income\n ​ \n (10,353) \n ​ \n (6,822) \n ​ \n (129) \n ​ \n (20,286) \n ​ \n (632) \n Add: Interest expense\n ​ \n 478 \n ​ \n 2,101 \n ​ \n 552 \n ​ \n 4,589 \n ​ \n 2,037 \n Add / Less: Income tax provision (benefit)\n ​ \n 1,910 \n ​ \n 7,293 \n ​ \n (15,480) \n ​ \n 1,350 \n ​ \n (20,100) \n Add: Depreciation\n ​ \n 6,087 \n ​ \n 5,253 \n ​ \n 5,055 \n ​ \n 21,864 \n ​ \n 19,488 \n Add: Amortization of completed technology\n ​ \n 1,901 \n ​ \n 1,810 \n ​ \n 1,873 \n ​ \n 7,325 \n ​ \n 8,073 \n Add: Amortization of customer relationships and acquired intangible assets\n ​ \n 6,900 \n ​ \n 5,745 \n ​ \n 7,642 \n ​ \n 24,956 \n ​ \n 29,299 \n Add: Loss on extinguishment of debt\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 632 \n ​ \n ​ \n —\n Earnings before interest, taxes, depreciation and amortization - Continuing operations\n ​ \n $\n 1,613 \n ​ \n $\n 8,365 \n ​ \n $\n (22,884) \n ​ \n $\n 29,144 \n ​ \n $\n 9,296 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Quarter Ended \n ​ \n Year Ended \n ​ \n ​ \n September 30, \n ​ \n June 30, \n ​ \n September 30, \n ​ \n September 30, \n ​ \n September 30, \n Dollars in thousands \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2021 \n Earnings before interest, taxes, depreciation and amortization - Continuing operations\n $\n 1,613 \n $\n 8,365 \n $\n (22,884) \n $\n 29,144 \n $\n 9,296 \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Add: Stock-based compensation\n ​ \n (49) \n ​ \n 3,485 \n ​ \n 5,138 \n ​ \n 12,443 \n ​ \n 20,051 \n Add: Restructuring charges\n ​ \n 393 \n ​ \n 23 \n ​ \n 332 \n ​ \n 712 \n ​ \n 385 \n Add: Merger and acquisition costs\n ​ \n 6,959 \n ​ \n 1,664 \n ​ \n 8,427 \n ​ \n 17,929 \n ​ \n 20,662 \n Add: Tariff adjustment\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (484) \n ​ \n ​ \n 5,497 \n Impairment of intangible assets\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n Add: Rebranding and transformation costs\n ​ \n ​ \n 536 \n ​ \n ​ \n 289 \n ​ \n ​ \n 827 \n ​ \n ​ \n 2,741 \n ​ \n ​ \n 827 \n Indemnification asset release\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 16,007 \n ​ \n ​ \n —\n ​ \n ​ \n 16,007 \n Less: Other adjustments\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (83) \n Adjusted earnings before interest, taxes, depreciation and amortization - Continuing operations\n ​ \n $\n 9,452 \n ​ \n $\n 13,826 \n ​ \n $\n 21,211 \n ​ \n $\n 62,485 \n ​ \n $\n 86,006 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Quarter Ended \n ​ \n Dollars in thousands \n ​ \n September 30, 2022 \n ​ \n ​ \n June 30, 2022 \n ​ \n ​ \n September 30, 2021 \n ​ \n GAAP gross profit \n $\n 58,117 \n 42.2\n %\n $\n 59,600 \n 44.9\n %\n $\n 66,143 \n 48.3\n % \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n 1,901 \n 1.4 \n ​ \n ​ \n 1,812 \n 1.4 \n ​ \n ​ \n 1,873 \n 1.4\n ​ \n Other adjustment \n ​ \n ​ \n 289 \n ​ \n 0.2 \n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n Non-GAAP adjusted gross profit\n ​ \n $\n 60,307 \n 43.8 \n % \n ​ \n $\n 61,412 \n 46.3 \n % \n ​ \n $\n 68,016 \n 49.7 \n % \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Life Sciences Products \n Life Sciences Services \n ​ \n Quarter Ended \n Quarter Ended \n Dollars in thousands \n September 30, 2022 \n ​ \n June 30, 2022 \n ​ \n September 30, 2021 \n ​ \n September 30, 2022 \n ​ \n June 30, 2022 \n ​ \n September 30, 2021 \n ​ \n GAAP gross profit\n $\n 19,068 \n 39.4 \n %\n $\n 21,026 \n 44.4 \n %\n $\n 25,329 \n 47.7 \n %\n $\n 39,057 \n 43.8 \n %\n $\n 38,564 \n 45.2 \n %\n $\n 40,815 \n 48.7 \n %\n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n 401 \n ​ \n 0.8 \n ​ \n ​ \n 251 \n ​ \n 0.5 \n ​ \n ​ \n 132 \n ​ \n 0.2 \n ​ \n ​ \n 1,500 \n ​ \n 1.7 \n ​ \n ​ \n 1,562 \n ​ \n 1.8 \n ​ \n ​ \n 1,741 \n ​ \n 2.1 \n ​ \n Other adjustment\n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n 289 \n ​ \n 0.3 \n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n Non-GAAP adjusted gross profit\n ​ \n $\n 19,469 \n ​ \n 40.3 \n %\n ​ \n $\n 21,277 \n ​ \n 44.9 \n %\n ​ \n $\n 25,461 \n ​ \n 47.9 \n %\n ​ \n $\n 40,846 \n ​ \n 45.8 \n %\n ​ \n $\n 40,126 \n ​ \n 47.0 \n %\n ​ \n $\n 42,556 \n ​ \n 50.8 \n %\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Year Ended \n ​ \n Dollars in thousands \n ​ \n September 30, 2022 \n ​ \n ​ \n September 30, 2021 \n ​ \n GAAP gross profit\n $\n 255,584 \n 46.0\n % \n $\n 243,809 \n 47.5\n % \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n ​ \n 7,325 \n 1.3\n ​ \n ​ \n 8,073 \n 1.6\n ​ \n Other adjustment\n ​ \n ​ \n 289 \n ​ \n 0.0\n ​ \n ​ \n ​ \n (83) \n ​ \n 0.0\n ​ \n Tariff adjustment\n ​ \n ​ \n (484) \n ​ \n (0.1) \n ​ \n ​ \n ​ \n 5,497 \n ​ \n 1.1\n ​ \n Non-GAAP adjusted gross profit\n ​ \n $\n 262,714 \n 47.3\n % \n ​ \n $\n 257,296 \n 50.1\n % \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Life Sciences Products \n Life Sciences Services \n ​ \n ​ \n Year Ended \n Year Ended \n Dollars in thousands \n ​ \n September 30, 2022 \n ​ \n September 30, 2021 \n September 30, 2022 \n ​ \n September 30, 2021 \n GAAP gross profit\n ​ \n $\n 89,074 \n 44.7 \n %\n ​ \n $\n 92,560 \n 46.4 \n %\n $\n 166,523 \n 46.7 \n %\n ​ \n $\n 151,246 \n 48.2 \n %\n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n 1,122 \n ​ \n 0.6 \n ​ \n ​ \n 1,117 \n ​ \n 0.6 \n ​ \n 6,202 \n ​ \n 1.7 \n ​ \n ​ \n 6,957 \n ​ \n 2.2 \n ​ \n Other adjustment\n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n 289 \n ​ \n 0.1 \n ​ \n ​ \n ​ \n (83) \n ​ \n (0.0) \n ​ \n Tariff adjustment\n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n ​ \n —\n ​ \n —\n ​ \n ​ \n (484) \n ​ \n (0.1) \n ​ \n ​ \n ​ \n 5,497 \n ​ \n 1.8 \n ​ \n Non-GAAP adjusted gross profit\n ​ \n $\n 90,196 \n ​ \n 45.2 \n %\n ​ \n $\n 93,677 \n ​ \n 46.9 \n %\n $\n 172,530 \n ​ \n 48.4 \n %\n ​ \n $\n 163,617 \n ​ \n 52.1 \n %\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Life Sciences Products \n ​ \n Life Sciences Services \n ​ \n ​ \n Quarter Ended \n ​ \n Quarter Ended \n ​ \n ​ \n September 30, \n ​ \n June 30, \n ​ \n September 30, \n September 30, \n June 30, \n ​ \n September 30, \n Dollars in thousands \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n GAAP operating loss \n $\n (141) \n $\n 1,965 \n $\n 6,470 \n ​ \n $\n 12 \n $\n 688 \n $\n 2,602 \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n 401 \n ​ \n 251 \n ​ \n 132 \n ​ \n 1,500 \n ​ \n 1,562 \n ​ \n 1,741 \n Other adjustment\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 339 \n ​ \n ​ \n —\n ​ \n ​ \n —\n Tariff adjustment\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n Non-GAAP adjusted operating profit\n ​ \n $\n 260 \n ​ \n $\n 2,216 \n ​ \n $\n 6,602 \n ​ \n $\n 1,851 \n ​ \n $\n 2,250 \n ​ \n $\n 4,343 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Total Segments \n ​ \n Corporate \n ​ \n Total \n ​ \n ​ \n Quarter Ended \n ​ \n Quarter Ended \n ​ \n Quarter Ended \n ​ \n ​ \n September 30, \n ​ \n June 30, \n ​ \n September 30, \n ​ \n September 30, \n ​ \n June 30, \n ​ \n September 30, \n ​ \n September 30, \n ​ \n June 30, \n ​ \n September 30, \n Dollars in thousands \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2022 \n ​ \n 2021 \n GAAP operating profit (loss)\n $\n (129) \n $\n 2,654 \n $\n 9,072 \n $\n (14,490) \n $\n (7,736) \n $\n (30,313) \n $\n (14,619) \n $\n (5,082) \n $\n (21,241) \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n —\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n ​ \n 1,901 \n ​ \n ​ \n 1,813 \n ​ \n ​ \n 1,873 \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 1,901 \n ​ \n ​ \n 1,813 \n ​ \n ​ \n 1,873 \n Amortization of customer relationships and acquired intangible assets\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 6,900 \n ​ \n ​ \n 5,745 \n ​ \n ​ \n 7,642 \n ​ \n ​ \n 6,900 \n ​ \n ​ \n 5,745 \n ​ \n ​ \n 7,642 \n Restructuring charges\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 393 \n ​ \n ​ \n 22 \n ​ \n ​ \n 333 \n ​ \n ​ \n 393 \n ​ \n ​ \n 22 \n ​ \n ​ \n 333 \n Tariff adjustment\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n Rebranding and transformation costs\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 536 \n ​ \n ​ \n 289 \n ​ \n ​ \n 827 \n ​ \n ​ \n 536 \n ​ \n ​ \n 289 \n ​ \n ​ \n 827 \n Other adjustment\n ​ \n ​ \n 339 \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (339) \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n Merger and acquisition costs\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 6,959 \n ​ \n ​ \n 1,662 \n ​ \n ​ \n 8,427 \n ​ \n ​ \n 6,959 \n ​ \n ​ \n 1,662 \n ​ \n ​ \n 8,427 \n Non-GAAP adjusted operating profit (loss) \n ​ \n $\n 2,111 \n ​ \n $\n 4,467 \n ​ \n $\n 10,945 \n ​ \n $\n (41) \n ​ \n $\n (18) \n ​ \n $\n 280 \n ​ \n $\n 2,070 \n ​ \n $\n 4,449 \n ​ \n $\n 11,225 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Life Sciences Products \n ​ \n Life Sciences Services \n ​ \n ​ \n Year Ended \n ​ \n Year Ended \n Dollars in thousands \n September 30, \n September 30, \n September 30, \n September 30, \n ​ \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2021 \n GAAP operating profit \n ​ \n $\n 11,033 \n ​ \n $\n 21,971 \n ​ \n $\n 10,784 \n ​ \n $\n 10,289 \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n 1,122 \n ​ \n 1,117 \n ​ \n 6,202 \n ​ \n 6,957 \n Other adjustment\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 345 \n ​ \n ​ \n (83) \n Tariff adjustment\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (484) \n ​ \n ​ \n 5,497 \n Non-GAAP adjusted operating profit\n ​ \n $\n 12,155 \n ​ \n $\n 23,088 \n ​ \n $\n 16,847 \n ​ \n $\n 22,659 \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Total Segments \n ​ \n Corporate \n ​ \n Total \n ​ \n ​ \n Year Ended \n ​ \n Year Ended \n ​ \n Year Ended \n Dollars in thousands \n September 30, \n September 30, \n September 30, \n September 30, \n September 30, \n September 30, \n ​ \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2021 \n ​ \n 2022 \n ​ \n 2021 \n GAAP operating profit (loss)\n ​ \n $\n 21,817 \n ​ \n $\n 32,260 \n ​ \n $\n (46,552) \n ​ \n $\n (63,349) \n ​ \n $\n (24,735) \n ​ \n $\n (31,089) \n Adjustments: \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Amortization of completed technology\n ​ \n ​ \n 7,324 \n ​ \n ​ \n 8,073 \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 7,324 \n ​ \n ​ \n 8,073 \n Amortization of customer relationships and acquired intangible assets\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 24,965 \n ​ \n ​ \n 29,299 \n ​ \n ​ \n 24,965 \n ​ \n ​ \n 29,299 \n Restructuring charges\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 712 \n ​ \n ​ \n 385 \n ​ \n ​ \n 712 \n ​ \n ​ \n 385 \n Tariff adjustment\n ​ \n ​ \n (484) \n ​ \n ​ \n 5,497 \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (484) \n ​ \n ​ \n 5,497 \n Impairment of intangible assets\n ​ \n ​ \n —\n ​ \n ​ \n ​ \n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n ​ \n ​ \n —\n ​ \n ​ \n 13,364 \n Rebranding and transformation costs\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 2,741 \n ​ \n ​ \n 827 \n ​ \n ​ \n 2,741 \n ​ \n ​ \n 827 \n Other adjustment\n ​ \n ​ \n 345 \n ​ \n ​ \n (83) \n ​ \n ​ \n (345) \n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n (83) \n Merger and acquisition costs\n ​ \n ​ \n —\n ​ \n ​ \n —\n ​ \n ​ \n 17,929 \n ​ \n ​ \n 20,662 \n ​ \n ​ \n 17,929 \n ​ \n ​ \n 20,662 \n Non-GAAP adjusted operating profit (loss) \n ​ \n $\n 29,002 \n ​ \n $\n 45,747 \n ​ \n $\n (550) \n ​ \n $\n 1,188 \n ​ \n $\n 28,452 \n ​ \n $\n 46,935 \n ​ \n ​ \n The Company has referenced in the explanation of revenue the estimated impact of COVID. Estimated impact of COVID includes the estimated revenue contribution from products delivered and services rendered to support COVID testing and research, and estimated constraints on the business due to disruptions in customer demand or the Company’s ability to deliver in the COVID environment. \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Life Sciences Products \n ​ \n Life Sciences Services \n ​ \n Azenta Total \n ​ \n ​ \n Year Ended \n ​ \n Year Ended \n ​ \n Year Ended \n Dollars in millions \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n Change \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n Change \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n Change \n Revenue \n ​ \n $\n 199 \n ​ \n $\n 200 \n ​ \n (0) \n %\n ​ \n $\n 356 \n ​ \n $\n 314 \n ​ \n 13 \n %\n ​ \n $\n 555 \n ​ \n $\n 514 \n ​ \n 8 \n %\n Acquisitions/divestitures\n ​ \n 7 \n ​ \n —\n ​ \n (4) \n %\n ​ \n 1 \n ​ \n —\n ​ \n —\n %\n ​ \n 8 \n ​ \n —\n ​ \n (2) \n %\n Currency exchange rates\n ​ \n (6) \n ​ \n —\n ​ \n 3 \n %\n ​ \n (5) \n ​ \n —\n ​ \n 2 \n %\n ​ \n (11) \n ​ \n —\n ​ \n 2 \n %\n Organic revenue \n ​ \n ​ \n 198 \n ​ \n ​ \n 200 \n ​ \n (1) \n %\n ​ \n ​ \n 360 \n ​ \n ​ \n 314 \n ​ \n 15 \n %\n ​ \n ​ \n 558 \n ​ \n ​ \n 514 \n ​ \n 9 \n %\n Estimated impact of COVID\n ​ \n ​ \n 22 \n ​ \n ​ \n 45 \n ​ \n 14 \n %\n ​ \n ​ \n (1) \n ​ \n ​ \n 8 \n ​ \n 3 \n %\n ​ \n ​ \n 22 \n ​ \n ​ \n 53 \n ​ \n 8 \n %\n Organic revenue ex COVID \n ​ \n $\n 176 \n ​ \n $\n 155 \n ​ \n 13 \n %\n ​ \n $\n 361 \n ​ \n $\n 306 \n ​ \n 18 \n %\n ​ \n $\n 537 \n ​ \n $\n 461 \n ​ \n 17 \n %\n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n ​ \n Life Sciences Products \n ​ \n Life Sciences Services \n ​ \n Azenta Total \n ​ \n ​ \n Quarter Ended \n ​ \n Quarter Ended \n ​ \n Quarter Ended \n Dollars in millions \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n Change \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n Change \n September 30, 2022 \n ​ \n September 30, 2021 \n ​ \n Change \n Revenue \n ​ \n $\n 48 \n ​ \n $\n 53 \n ​ \n (9) \n %\n ​ \n $\n 89 \n ​ \n $\n 84 \n ​ \n 6 \n %\n ​ \n $\n 138 \n ​ \n $\n 137 \n ​ \n 0 \n %\n Acquisitions/divestitures\n ​ \n 4 \n ​ \n —\n ​ \n (8) \n %\n ​ \n —\n ​ \n —\n ​ \n —\n %\n ​ \n 4 \n ​ \n —\n ​ \n (3) \n %\n Currency exchange rates\n ​ \n (3) \n ​ \n —\n ​ \n 7 \n %\n ​ \n (3) \n ​ \n —\n ​ \n 3 \n %\n ​ \n (6) \n ​ \n —\n ​ \n 4 \n %\n Organic revenue \n ​ \n ​ \n 48 \n ​ \n ​ \n 53 \n ​ \n (10) \n %\n ​ \n ​ \n 92 \n ​ \n ​ \n 84 \n ​ \n 10 \n %\n ​ \n ​ \n 139 \n ​ \n ​ \n 137 \n ​ \n 2 \n %\n Estimated impact of COVID\n ​ \n ​ \n —\n ​ \n ​ \n 11 \n ​ \n 23 \n %\n ​ \n ​ \n 1 \n ​ \n ​ \n 2 \n ​ \n 1 \n %\n ​ \n ​ \n 1 \n ​ \n ​ \n 12 \n ​ \n 10 \n %\n Organic revenue ex COVID \n ​ \n $\n 48 \n ​ \n $\n 42 \n ​ \n 13 \n %\n ​ \n $\n 91 \n ​ \n $\n 82 \n ​ \n 11 \n %\n ​ \n $\n 139 \n ​ \n $\n 125 \n ​ \n 12 \n %\n ​ \n ​ \n",
@@ -36,7 +39,234 @@
   "same_day_8k_items": "2.02,5.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000155837022017810__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001558370-22-012914",
+   "filingDate": "2022-08-09",
+   "reportDate": "2022-08-09",
+   "form": "8-K",
+   "local_gz": "000155837022012914__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "​ Guidance for Continuing Operations for Fourth Quarter Fiscal 2022 The Company announced revenue and earnings guidance for continuing operations for the fourth quarter of fiscal 2022."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2022-11-14",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 40,
+   "has_qna": false,
+   "n_chars": 57123,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Greetings, and welcome to the Azenta Q4 2022 Financial Results. [Operator Instructions]. As a reminder, this conference is being recorded Monday, November 14, 2022. I will now turn the conference over to Sara Silverman, Head of Investor Relations."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Sara Silverman",
+     "content": "Thank you, operator, and good afternoon to everyone on the line today. We would like to welcome you to our earnings conference call for the fourth quarter of fiscal year 2022. Our fourth quarter earnings press release was issued after the close of the market today, and is available on our Investor Relations website located at investors.azenta.com in addition to the supplementary PowerPoint slides that will be used during the prepared remarks today.  I would like to remind everyone that during the course of the call, we will be making a number of forward-looking statements within the meaning of the Private Litigation Securities Act of 1995. There are many factors that may cause actual financial results or other events to differ from those identified in such forward-looking statements. I would refer you to the section of our earnings release titled Safe Harbor Statement, the safe harbor slide on our aforementioned PowerPoint presentation on our website and our various filings with the SEC, including our annual reports on Form 10-K and our quarterly reports on Form 10-Q. We make no obligation to update these statements should future financial data or events occur that differ from the forward-looking statements presented today.  We may refer to a number of non-GAAP financial measures, which are used in addition to and in conjunction with results presented in accordance with GAAP. We believe the non-GAAP measures provide an additional way of viewing aspects of our operations and performance, but when considered with GAAP financial results and the reconciliation of GAAP measures, they provide an even more complete understanding of the Azenta business.  Non-GAAP measures should not be relied upon to the exclusion of the GAAP measures themselves. In addition, we may refer to certain estimates of COVID-based impacts. These figures are estimated based on our insights to the customer applications and/or product types indicating such demand or constraints on regional demand or ability to deliver.  On the call with me today is our President and Chief Executive Officer, Steve Schwartz; and our Chief Financial Officer, Lindon Robertson. We will open the call with remarks from Steve on highlights of the fourth quarter. Then Lindon will provide a more detailed outlook into our financial results and our outlook. We will then take your questions at the end of the prepared remarks.  With that, I would like to turn the call over to our CEO, Steve Schwartz."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Stephen Schwartz",
+     "content": "Thank you, Sara. Good afternoon, everyone, and thank you for joining us today.  As we report on results from the final quarter of fiscal 2022, it's an appropriate time to discuss the very different company we are now compared to when we entered the fiscal year. In the space of just 1 year, we've completed the dramatic pivot from a company that was a life sciences arm of Brooks Automation, who's a stand-alone publicly traded life sciences company. There was no small task to separate into 2 companies, and our results show today that it's been successful. And though we realize we have more work to do, today's announcements are evidence of the decisive actions we're taking to continue to drive value for Azenta shareholders.  Over the past decade, we transformed a small cyclical semiconductor capital equipment components business into a global market leader. And as we did so, we leveraged the core technologies and cash flow from that business to create a unique world-class life sciences business that meaningfully outgrew the life sciences market over the past 5 years. Today, our revenues are 4x greater than they were 5 years ago.  Now following the successful sale of the semiconductor business, we see this as the right time to reassess our approach to capturing the significant opportunity that lies in front of us and to make certain that we're doing all that we should to realize our purpose and in doing so, deliver exceptional shareholder value.  So today, I report on 2 key initiatives that we're taking opportunistically to deliver that value and ensure the long-term success of the company. Today, we announced a significant near-term return of capital to shareholders and a meaningful realignment of our operations to recapture growth rates ahead of market growth.  First, I'll talk about capital allocation. Over the past decade, we built our successful Life Sciences business by focused execution with organic and inorganic growth, including 10 acquisitions at the cost of approximately $1 billion. Nine months ago, we completed the sale of the semiconductor automation business which delivered a substantial return for our company and our shareholders. The resulting net cash balance of more than $2.5 billion ensured our ability to accelerate our growth ambitions as a stand-alone life sciences company.  Toward that end, over the last 4 months, we continued our methodology of finding and acquiring precious assets that add to our valuable sample management solutions by acquiring Barkey and B Medical Systems. Both companies possess the characteristics of each of our most valuable acquisitions in that they strategically add to our technology and product and services portfolio, they're accretive to earnings in the first year as part of Azenta and are led by talented energetic management teams with proven track records of success.  In addition, in the case of Barkey and B Medical, they also both provide sales synergy opportunities for other Azenta products and services and they expand our offerings to sizable new markets.  But even with these 2 new companies in our portfolio and the success we've had, at this point, we find ourselves faced with the reality that our shares are significantly undervalued. So much so that at this time, it's difficult to find any target acquisition that would give us a higher return as can be achieved by the repurchase of our own shares.  So we believe it's in the best interest of our shareholders for us to return excess cash. Toward that end, today, we announced the Board has authorized a $1.5 billion share repurchase program. We'll be aggressive in our share purchases with a target to return the first $500 million with an approximately 6 months through a committed accelerated share repurchase program. It's our intention to repurchase a total of at least $1 billion worth of shares in the next year.  It's important to note that this does not imply that we won't be acquisitive. We intend to continue to make both organic and inorganic investments as acquisitions are a powerful component of our growth strategy. Rather this move is recognized that until we identify valuable targets that would require more substantial capital, we believe the cash should be in the hands of our investors rather than on our balance sheet.  I'll now turn to the second initiative which underscores the operational adjustments we're implementing. Over the period 2016 through 2021, we had cumulative revenue growth of more than 20% per year, more than twice the market growth rate. As we finished the year, even a Q4 growth rate of 12% ex COVID feels too close to the market growth rate and considerably below our expectation and our capability. In a year of tremendous change, we believe we got most things right as we're now a fully functioning stand-alone life sciences company.  In retrospect, we also think that the magnitude of the changes we made in our go-to-market approach caused some misalignment with customers that manifested in a slower growth rate of sales. Our branding initiative was first rate, but the restructuring of sales and customer contact points has caused some disruption in our sales channel.  Fortunately, the fixes are straightforward, and we have the right team in place to implement them. They'll just take some time to gain traction. But rest assured, we're full speed ahead and encouraged by our progress even over the past months.  Since we recently separated from our Chief Operating and Chief Commercial Officers, Lindon and I are back in our positions of responsibility to be more directly involved in the daily operations of Azenta from product and service development to sales and customer satisfaction. We've hired new sales leadership and we've dedicated more product and services experts, the sales effort. Genomics has made scientists selling to scientists and in products that focuses on automated storage systems and consumables and instruments.  The sales organization has signed up to specific operational deliverables for 2023 with the expectation that we'll see reinvigoration of growth as we move through the year. Our portfolio of best-in-class capabilities, there's no reason why we shouldn't be growing well above market growth rates.  In the context of these changes that we're implementing to prepare for our next acceleration, I want to comment on one additional change that's consistent with our next phase of growth, and that relates to Board governance. As we're now at the end of 1 full year as a stand-alone life sciences company, the Board sees this as an opportune time to further enhance the governance team by nominating 2 new outstanding independent directors who are known value creators in the life sciences space.  We're excited to have announced that Dorothy Puhy and Dr. Tina Nova have been nominated for election to our Board. They bring a combined 50-plus years of experience in the life sciences space and have proven track records of outperformance and value creation with experiences, including sales of companies and leading boards. Their invaluable perspectives will further enhance Azenta's strong momentum as we execute on our long-term strategy.  As part of this transition, Dorothy and Tina will replace 2 of our directors who have elected not to stand for reelection at the next annual meeting. On behalf of the entire Board of Directors at Azenta, I would like to thank Dr. Mark Wrighton and Mr. Al Woollacott for their service and contributions. Over their tenure, they've been exceptional stewards of the company over the period of significant transformation and value creation and have been instrumental in transforming Azenta into a global world-class life sciences business. Timing for this transition is ideal, and we'll continue to evolve the board as we accelerate into the future as a life sciences powerhouse.  Before I turn the call to Lindon, I'd like to give some additional information about B Medical Systems, which we introduced on our last call. We're incredibly excited about B Medical Systems for many reasons. First, it's a great purpose-driven business. Saving lives for more than 40 years through innovations in cold chain products, they're market leaders because they're technology leaders, and we believe the world hasn't yet begun to fully take advantage of the sophistication of their offerings.  Our attraction to the B Medical business is multifold. First, we believe there's tremendous value yet to be delivered to regions with the distribution of vaccines still far behind need and demand. This is a multiyear source of opportunity and one that B Medical is positioned to serve better than any other company. And in doing so, not only do the products align perfectly with our Azenta portfolio, but the operational performance is also very consistent with ours.  Specifically, we currently forecast that B Medical will generate revenue of at least €130 million in fiscal '23, a growth rate of approximately 25% from the equivalent period in 2022. And gross margins from the business are in the mid-40s, taking B Medical's contributions to Azenta accretive to growth and earnings in fiscal 2023. A solid business and financially, a positive contributor to Azenta.  In addition to this forecast, we anticipate sales synergies by penetrating sales of B Medical's ultra-cold freezers and blood management systems into the target-rich North American market, where they have essentially 0 presence today. This is a young initiative, but one with a lot of internal support, and we believe we'll see measurable expansion by the second half of the fiscal year.  The second part of our value creation thesis deals with what's made uniquely possible for Azenta because of the addition of B Medical Systems to our portfolio. There's an opportunity to bring Azenta offerings to a vast population and fast-growing emerging markets where demand for biorepositories is just awakening, but still in need of a real solution.  All of us in the Western world are familiar with the value of bio sample collections and bio repositories as sources for research into population studies and treatments of specific disease types. Collection sites are plentiful as clinics and hospital networks and there's adequate cold chain infrastructure in place to ensure that samples can be collected and transported without degradation.  The same is not true for most fast-growing emerging markets where there's no consistent means for biological samples to be retrieved and brought to a research center. This is the opportunity for B Medical and Azenta to team up. As we assess this opportunity, we note that there are 3 key elements necessary to enable a foundation of high-quality biosamples that are essential for human health studies. First, the ability to source samples from a broad swath of the population. Second, the ability to securely transport these samples to a secure biorepository without degradation, that is cold chain transportation. Finally, a reliable biorepository with secure cold chain redundancy, informatics capability and operating procedures that ensure the sustained value of these samples over long periods of time.  The combination of B Medical and Azenta can play an enabling role in the fulfillment of this necessary capability. The B Medical distribution network consists of more than 150 distributors who have relationships in countries. This is a well-functioning network for sales in countries that is enviable for anyone looking to get started in these fast-growing economies that represent approximately 3 billion people.  B Medical has an installed base of tens of thousands of vaccine cold chain systems, and they deliver thousands of new systems every quarter, establishing a last-mile connection to millions of first-time patients each quarter. This last mile cold chain capability that's in place to preserve a vaccine dose that has to remain cold in transport is the same mechanism that can be used in the opposite direction to retrieve a blood sample from a patient and return it in the same cold transport carrier back to the cold chain box to be stored safely until it can be retrieved and moved to a biorepository.  The potential from samples collected in this fashion is game-changing as the samples can be from a much more diverse swath of the population compared to just cities. Samples will have known cold chain care and hence, be more usable and more valuable. Finally, the value of a collection from a biorepository will increase exponentially and hence, the care taken to protect and preserve these samples will be worthy of real investment in infrastructure and process.  We're pleased to be gaining traction on our first conversations as a unified solutions team, and we like what we're learning from very engaged principles who understand the value of this approach. This is incredibly exciting because it has the potential to enhance human health initiatives for heretofore underrepresented populations and it allows the expansion of our Azenta offerings to serve the new population of billions of individuals.  We'll report progress as we move forward, but we're excited about the capabilities that are enabled by B Medical and is an essential driver of the next level of health care in new markets.  As we embark on fiscal 2023, we're energized about our prospects for the future. Our portfolio of capabilities positioned as never before to address a global opportunity that's not only expanding rapidly, but in ever more need of our scientific and technology solutions. We've significantly expanded the breadth of our offerings and the size of our market opportunity, both through products and geographic exposure. We've refocused our go-to-market activities and alignment around customer capture, and we believe this will be a potent combination that drives faster and sustained growth.  Additionally, we're taking actions to drive near-term shareholder value while we preserve adequate capacity to make meaningful organic and inorganic investments to fulfill our strategic objectives. We're now a company of nearly 4,000 employees ready to address the ever-increasing needs of our customers. We're driven by our purpose to enable health breakthroughs faster. We're enthusiastic about our work in support of our customers' missions, and we're committed to delivering on the promise of enabling world-class performance for our customers and their patients.  We very much look forward to reporting our progress to you over the coming quarters as we accelerate into 2023, and we thank you for your interest and support as we work to deliver value to our customers and shareholders.  I'll now turn the call over to Lindon."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Lindon Robertson",
+     "content": "Thank you, Steve.  As Steve discussed, with the successful transformation into a life sciences company behind us, we are focused and well positioned to take advantage of the growth opportunities ahead of us to create significant shareholder value. We continue to build our business and when we peel back the estimated impacts of COVID, we see clear signs of healthy organic growth, both in the Q4 and for the full year 2022 results.  As I go through the financials, this will be a key focus to ensure you see the total reported results and the strong growth indicators, excluding COVID impacts. I now refer you back to the slide deck available on our website, turning to Slide 3 for some highlights.  First, performance was strong in the quarter and full year. Fourth quarter revenue was $138 million, up $5 million or 4% sequentially. I'll say more in a few minutes, but this is up 12% on an organic year-over-year basis when adjusted to remove the estimated COVID impacts. On a sequential basis, growth in the quarter was notable in large automated stores, Sample Repository Solutions and in all areas of genomics. We also added Barkey to the business contributing to the sequential growth. I will provide more details in my segment remarks.  Earnings per share improvement was evident on a GAAP and non-GAAP basis. Non-GAAP earnings per share was $0.16, up $0.04 year-over-year and sequentially. Adjusted EBITDA margin at 6.9% is reflecting investments and the softer gross margins. For the full year, revenue was up 8% as reported and on an organic basis excluding the impact of COVID, was up 17%.  Over this past year, we completed the transformation into a stand-alone life science business, and we are well established as a global market leader in our space. There's nobody else that provides the breadth and depth of sample management solutions and genomic analysis, which we bring to market.  The forward momentum we are observing in our business lines looks much like the Azenta our shareholders have seen in the past and reaffirms our position for future growth as we uniquely address the demanding needs for sample management and genetic analysis for our customers. And of course, the addition of B Medical, which closed October 3, will bring further acceleration to the top line and is expected to be accretive to non-GAAP earnings per share in FY 2023.  After putting $0.5 billion of capital to work on acquisitions, the company has announced a plan for a substantial return of capital to our shareholders with a $1.5 billion repurchase authorization and we plan to return $1 billion to shareholders over the next year, starting with a $500 million accelerated share repurchase program in the coming days. With all of this in motion, our balance sheet still has more than $400 million of additional cash resources available for investment and growth.  And finally, while I will provide more color on the guidance later, in summary, fiscal 2023 is expected to grow approximately 30% compared to fiscal 2022.  Let's move on to Slide 4 to address Q4 results. Revenue of $138 million, above our midpoint of expectations, was flat year-over-year and up 4% versus Q3. Excluding estimated COVID-related revenues, the business grew 12% year-over-year on an organic basis. To the right, we have provided a table to provide steps from the flat reported revenue to the adjusted 12% growth, excluding COVID impacts.  From reported revenue, we removed 4 points of foreign exchange headwinds and 3 points of M&A tailwinds, which provides the organic growth of 2%. From there, we removed the impacts of COVID which was an estimated $12 million of revenue in Q4 of 2021 and was approximately $1 million in this quarter. On a year-over-year basis, organic growth when adjusted to remove the estimated COVID-related revenue from each period was strong at 12%.  Looking at the P&L on the left side, total GAAP earnings per share was a loss of $0.07, $0.02 better than Q3. The primary differences in the quarter compared to the third fiscal quarter were driven by M&A expenses related to the acquisition of B Medical and Barkey and which was offset by improved interest income.  Getting deeper into quarterly performance, let's look at the non-GAAP P&L to the right. Revenue increase of $5 million quarter-to-quarter carried lower gross margin, primarily driven by the product segment results. The softer gross margin combined with investments in operating expense translates into 7% adjusted EBITDA margin while increased interest income supported an improvement in the earnings per share.  Turn to Slide 5 for results of our continuing operations on a full year basis. Organic growth was 9%, again, adjusting only for foreign exchange impacts and removing the benefit of the Barkey acquisition. In fiscal 2022, we faced a meaningful COVID headwind primarily in the consumables and instruments business. In total, we saw an estimated $22 million in COVID benefit in 2022 compared to a $53 million benefit in 2021. Organic growth, when adjusted to remove the estimated COVID impact from each period was 17% year-over-year.  On the left side of the chart, GAAP earnings per share improved $0.24 year-over-year quarter with top line growth and the interest income on investments. On the right side, we see improvement of $0.03 year-over-year in non-GAAP earnings per share. Again, supported by expansion in the top line and interest income. Profit profile reflects gross margins of 47.3% with pressures from labor inflation across the business as well as lower leverage in the products business. This flows through to the operating margins as does the investment we put into the business for continued growth.  The full year non-GAAP tax rate was 12.9%, culminating in full year non-GAAP earnings per share of $0.51, which is up $0.03 versus fiscal 2021. On a continuing operations basis, full year adjusted EBITDA margin was 11.3%.  Now please turn over to Slide 6 for a review of our Life Science Products segment results. Product segment revenue totaled $48 million for the quarter, consistent with expectations. As you can see, fourth quarter revenue was 9% lower year-over-year on a reported basis and 10% lower on an organic basis. This organic rate removed 7 points of headwind from currency and 8 points of benefit with the acquisition of Barkey. The driver of this decrease is mainly attributable to the 30% decline in consumables and instruments, which was impacted by the dramatic drop of COVID-related revenue, just as we expected.  Fourth quarter organic growth for the segment, when adjusted to remove the estimated COVID-related revenue from each period, was 13% year-over-year. This double-digit growth is in the range that we have long described for the Products business. This was supported by large automated systems and services, both of which grew double digits year-over-year in the quarter. Notably, our large automated systems posted another record bookings quarter.  Life Science Products Q4 gross margin was 40.2%. Pressures on the margins are driven by numerous factors, including under-absorbed costs in the automated systems area due in part to our recent investments for volume capability in the future. Also, a weaker margin mix as the consumables and instrument business has dropped and the effect of cost headwinds from inflation and to some extent, from foreign exchange. The operating income line is breakeven for the quarter, reflecting softer revenue on the base business, an incremental expense structure with the addition of Barkey.  Next, please turn over to Slide 7 for a review of our Life Science Services segment results. Services business generated fourth quarter revenue of $89 million an increase of 6% year-over-year and up 4% on a sequential basis. Organic growth for the quarter was 10%, reflecting 9% growth in genomics and 10% growth in sample repository solutions. Both businesses expanded sequentially with genomics expanding 6% and SRS 2% on a reported basis.  The genomic services 9% year-to-year organic growth was supported by a return to double-digit growth at constant currency in the U.S. and China. Across the offerings, business growth at constant currency was led by NGS at 14% and nicely supported with Sanger growth of 8%.  Gene Synthesis business was 3% lower year-over-year with the China business actually growing 11% and the other regions declining. As our synthesis samples are generated and shipped out of China, we have extended our commitment time lines to customers due to logistics challenges. That said, the local China business is not affected by this. We have initiatives in place to address this challenge over the coming months.  Sample Repository Solutions organic growth of 10% year-over-year was driven by the storage revenue, which continues to expand our recurring revenue base. Excluding estimated COVID-related impacts in the fourth quarter year-over-year, organic growth rate for the Services segment was 11%.  The Services business delivered 45.8% gross margin with a drop quarter-to-quarter and year-to-year driven by labor inflation, which continues to weigh on us as well as margin headwinds in the Gene Synthesis business. The NGS and Sanger businesses are relatively stable.  Q4 operating margin was 2.1%, down year-over-year, driven by the gross margin trend, partially offset with the efficiency of operating expense. The adjusted EBITDA was approximately 8%.  Let's turn over to Slide 8 for a summary of cash flow for the quarter. Capital expenditures for the fourth quarter were $14 million, which included laboratory equipment for our Genomics business, additional storage equipment and freezers as well as investments to expand our SRS footprint in Indianapolis and our genomics lab here in the Boston area. For the full year, capital expenditures were $73 million, including $19 million for the new China building.  Let's turn to Slide 9 to review the balance sheet. As of September 30, we had $2.3 billion of cash, restricted cash and marketable securities with no debt outstanding. Now following the close of our year, we finalized the B Medical acquisition on October 3, leaving approximately $1.9 billion in cash. This enables us to return the capital to shareholders through the $1.5 billion authorization and in continuing to invest for growth both organically and inorganically.  Our working capital increase was driven substantially by the change in other current assets. This was primarily related to the fair value adjustment of the net investment hedge.  Let's turn to Slide 10 for our guidance on the first fiscal quarter and full year 2023. Revenue is expected to be in the range of $175 million to $190 million, with a midpoint supporting growth of approximately 30% year-over-year. This includes an organic growth rate excluding COVID of approximately 9% at the midpoint. We estimate the foreign exchange impact to be a headwind of 5 points and the revenue from acquisitions would be a total of approximately $49 million. That is $4 million from Barkey, and we expect B Medical Systems to contribute approximately $45 million.  Within our base business of Products and Services, both segments are projected to be stable sequentially. We expect products, including the $4 million from Barkey, be in the range of $46 million to $50 million reflecting a high-teens organic growth rate when excluding the impact of COVID. We expect Services to be in the range of $86 million to $93 million, which is approximately 6% year-to-year organic growth, excluding COVID.  As we move through the year, we believe the business is set for a higher year-over-year growth in the second half. To complete the equation, our range around B medical expectations is $43 million to $47 million in the first quarter. We will determine during this quarter if this is to be a part of the Product segment or reported as a new segment. As you think about your models for next year and begin to incorporate B Medical, I would urge you to keep in mind that this business will likely be seasonal on a quarter-to-quarter basis and tends to have the strongest quarter in our first fiscal quarter.  Adjusted EBITDA is anticipated to be $13 million to $21 million. Non-GAAP earnings per share is expected to be $0.08 to $0.16. For the full year, we expect reported revenue growth of approximately 30% year-over-year. We expect that the B Medical revenue will reach at least $130 million for the year. Excluding all acquisition revenue and a foreign exchange headwind of 4 points, we foresee an organic growth for the year being high single digits.  Excluding the COVID impacts in each year, this sets expectations for low double-digit growth for the year. As indicated, this begins with approximately 9% ex COVID organic growth in the first quarter and we expect to see a return to high teens growth in the second half.  Regarding the profit profile, we have confidence in our gross margin improving a couple of points this year. We will have additional operating expense driven by variable compensation levels returning to a par level accrual and some continued investments.  For adjusted EBITDA, keeping in mind that our Q4 adjusted EBITDA was 7%, we expect to see this metric move up past 10% through the year for an average of approximately 10% for fiscal 2023. We'll likely see fluctuation between Q1 and Q2 adjusted EBITDA given B Medical's seasonally strong Q1. However, the trend from the first half to the second half will follow the improvement I just described.  We estimate the non-GAAP tax rate will be in the range of 22% to 25%. We expect capital expenditures to be approximately $65 million to $75 million. This completes the guidance discussion.  In conclusion, we have an incredibly diverse profile for a company of our size and a profile aligned for higher growth. We are currently tracking to double-digit growth rates when excluding currency and COVID impacts. As these effects are expected to be significantly out of the comparison periods in the second half of 2023, we expect to see higher as-reported growth rates by that time.  As we execute toward our fiscal 2023 goals, we are committed to return substantial capital to our shareholders with our $1.5 billion share repurchase authorization in place. As Steve mentioned, this will not slow down our M&A efforts as we will retain a healthy capacity to invest for strategic growth.  As always, we will continue to provide updates on our progress throughout the year. This concludes our prepared remarks. I will turn the call back over to the operator to take your questions."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Operator",
+     "content": "[Operator Instructions]. And your first question comes from the line of Vijay Kumar with Evercore ISI."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Vijay Kumar",
+     "content": "And congrats on the print and the ASR announcement. I guess you -- I had a couple of questions. One, I mean, let's start with the organic for the base business here. Double-digit -- low double-digit organic. You guys just had 12% Q4. Maybe talk about the macro situation, why perhaps organic, can be a little bit better? And when do you think we can get back to that LRP organic of high-teens here?"
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Stephen Schwartz",
+     "content": "So Vijay, thanks for the question. It's an important one for us. So I'll give you a couple. We think we've done a pretty good job to understand where we are in the market. We're making -- it's not a uniform macro environment. So I'll give you a couple of pieces here. We had a record quarter for Sanger business has been in for 20 years. We had a record there. We saw a nice balance in the NGS business.  India, we're still having -- we're still having softness in our synthesis business. And Lindon mentioned, we have some issues associated with our ability from a logistics standpoint in China. And frankly, our ability to get the products to customers quickly enough has caused us some issues with customers.  So we think the market is healthy enough. We think the opportunities are there. And again, so I wouldn't call those macro, we're an aggressive enough player where we're doing things for customers. We think we can satisfy it and get the growth rates back. We have some logistic things to work. It will take us a couple of quarters probably on the synthesis side, just to get there. But NGS, we're pretty aggressive, Sanger continues to go strong.  On the Product side, the bookings for the large automated stores are particularly strong, and that's a 2023 story as we get toward the back half, but the bookings have been record bookings for the large stores, but we'll start to see more revenue from that as we get to the second half of '23.  And then on the consumables and instruments, that's -- we're finding the bottom there. And what I mean by that is when we get out of the COVID environment, we think we're probably to a run rate with sustained customers buying from us, and we'll have to get that growth back up. We had a really good automation move during the COVID environment, which is here to stay, and we need to make sure that, that continues to sustain.  But when COVID is down and some market share gains are up, it's tough to see where we are. But we think we're getting to the bottom there. And on the cryo business, we just continue to make good penetration. So that's a good, healthy business and the signs from customers are that the adoption of the automated systems is going to continue. And the ability for them to take the CryoPods and the charging systems, we think, are really telling us that they're changing the way that they manage the workflow in cell and gene therapy.  So I'll say that it feels like we're getting close to the close to the bottom. The growth rates are lower here in the fourth quarter, lower in the first quarter than we anticipate, but we think all the things that we're doing are going to help us as we get to the second half of the year, we'll get back into consistent double-digit growth. And we think all those things are in motion. So I'd say, as we exit 2023, we got to be back on growth rates that we've been accustomed to and you have as well."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Vijay Kumar",
+     "content": "That's helpful commentary, Steve. And maybe the ASR and the share rebook here, that's a pretty big commitment, $1 billion for a company of your size. Does that perhaps seems to suggest, again, another way of getting back toward the bottom here in terms of growth rates? Maybe just talk about the timing of ASR and share report here last year."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Lindon Robertson",
+     "content": "Yes. Maybe I'll comment. Just as a reminder for everybody, the ASR itself is about $500 million. So we have -- we announced an authorization for $1.5 billion with a plan to execute a full $1 billion within the next year. But the $500 million ASR will launch in the coming days. And depending on where prices are, it will kind of set the pace for what we can accomplish how fast.  Overall, I'll highlight to you that I think the market, according to our bankers, the market is going to be -- we'll be in a good spot to do $500 million. It will take a few months in most estimations based on our average daily trading volume. And that's why we give 1 year to do a full $1 billion. So Vijay, let me offer back to you if you want to come back with another question there, but trying to portray the characteristics we're seeing."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Vijay Kumar",
+     "content": "Understood. And Lindon, maybe one last one, if I may. If I just look at the guidance here for the year, 30% on the top line, inclusive of the acquisition, just some back of the envelope math, it looks like share count is going to be 15% below. And if I go back to your original margin commitment, I think back at the Analyst Day, it was 200, 300 basis points. And I understand it's a different environment, but assuming some margin expansion, we should be looking at least 50% EPS growth for fiscal '23. Does it seem right to you?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Lindon Robertson",
+     "content": "Well, I think that's probably a little aggressive. However, I'm not putting out an objective on the EPS. We'll watch how effective the market is in terms of taking shares back off the market. However, what I would highlight, bring you back to the EBITDA commentary we provided, that is as we leave the second half of this year, and I should just kind of emphasize what we're very cognizant of is we finished the year weaker than the second half.  So our 7% that were coming off on the EBITDA basis is kind of our starting point of the fourth quarter. As we move through the year, we expect this to pass up through 10% midyear and an average about 10% for the year at least. So that's what we're focused on. This first step going into this next quarter, we see a couple of points of -- we have confidence in a couple of points of gross margin improvement in the first quarter, and we see some additional operating expenses.  We return, you can imagine this year wasn't our best performance against our plans. And so in the first quarter, we'll be picking up some variable compensation accruals that we had foregone in the latter part of this year. So that will somewhat offset the gross margin. That's where -- that's why the EBITDA pickup will start off slower. But as we move through the year with the revenue ramp that Steve described, I think you'll see that pass through to 10%, and we'll finish the year up above that and averaged 10% for the year."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of David Saxon with Needham."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "David Saxon",
+     "content": "Yes. Maybe starting with genomics. I mean, you called out a rebound there, which is nice to hear. What are you seeing that gives you confidence that this can be a sustained recovery?"
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Stephen Schwartz",
+     "content": "Yes. So we hope it's a sustained recovery, David. So let me just give it a try. We really are readjusting our go-to-market capabilities to make sure that we're out getting the new customers that we used to get. So we spent a lot of time in the academic world, getting new opportunities, new customers and then we would grow go into all the small startups and making sure that the people we've been serving at other companies or at university, we're still purchasing from us.  And we got away from that a little bit going after some larger opportunities. But we're really confident that we need to be doing both. We're going to continue to serve the large customers with good account coverage, and we're going to go and make sure we're calling on the individual scientists. And that's really what's always fueled the business and we got away from that a little bit.  So we think that's a good long-term strategy for the company and that's one that we'll get back to. And we really had -- we've got away from that for just a little bit. But we think the opportunities are out there. We think the -- you can see the growth in Sanger is pretty strong, but we think ours is growing more than the market. So we continue to gain share for people who are no longer doing that work themselves. So we think there's good sustained growth there.  We think the technologies that we have in the NGS world are allowing us to continue to capture more business. So we feel really confident about that. As I mentioned, on the synthesis side, we're not quite as confident about our ability to ramp that yet, but we think we're at the bottom and with a good chance to turn that on. And the customers that we serve, we're going to win because we turn things very quickly in high quality, and that's what we're going to sustain our focus on.  So we think there's plenty of market opportunity and certainly tons of capability. Just making sure we're connected to the customers that we can bring that in and really challenge the lab capacity and manufacturing capacity we have in the company."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "David Saxon",
+     "content": "Okay. That's helpful. And then, Steve, another one for you. In the script, you called out sales synergies with B Medical and Barkey. Maybe can you give a little more color there? C.an you quantify kind of what -- how you're thinking about those synergies?"
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Stephen Schwartz",
+     "content": "Sure. So I'll give you a few. When we talk about B Medical at €130 million, at least for 2023, we don't include some of these synergies for the ultra-cold freezers that they have for the blood management systems. So we think those are big opportunities, for example, in North America, where we have the most significant sales coverage and opportunities to take this capability to hospitals or clinics or to blood banks.  So there are a number of touch points that we have because we're in the sample management business that allows us to also promote their capabilities where we have sales coverage. And from the standpoint of Barkey, the fact that they're thawing -- where we have now blood management systems and we have plasma-thawing devices, we think this is a great synergy.  So wherever there's a place for blood management, there's a place for Barkey. Where there is a place for cryogenics to store the cell and gene therapy applications, there's a place for Barkey. So we're working on those synergies today where we have touch points or call points. We have one more thing in the portfolio that's offered to those same customers."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "David Saxon",
+     "content": "Great. And congrats on the quarter."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Operator",
+     "content": "[Operator Instructions]. Your next question comes from the line of Jacob Johnson with Stephens."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Jacob Johnson",
+     "content": "Congrats on a really nice quarter. Maybe first just on the buyback, $1.5 billion is a pretty big number. Obviously, you've got a lot of cash. Why was that the right number? And then I think the inevitable question is M&A seems like something you're still interested in? Can you just talk about if something were to come along, what are your options to finance something like that?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Stephen Schwartz",
+     "content": "Yes. So we have a lot of opportunity for sure. But it's tough, Jacob, for us to be secure on some of that's going to take that kind of cash. So from the standpoint of what's the right number, we've been really successful when we've had $100 million, $200 million, now $500 million to put to work, we feel really confident that, that's a good number for us. . The thing that we don't want to do is sit on cash for a long period of time. So we've had this much cash on the balance sheet now for 9 months. We evaluate the prospects, and we think that it will be a really adequate cash position that we have $500 million that we can put to work based on the landscape out there and the number of things that we've gone after.  We also believe that success over these next couple of years, if we needed to have access to capital to a large deal that would be available to us. But right now, we think it's better for the shareholders to have it and allow us a chance to come back if we need it another time, if there's something larger than come present, we'd be all over it. And $500 million still a nice -- is a nice sum of money to do the kinds of things that we're doing about building a high-value portfolio here."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Jacob Johnson",
+     "content": "Yes. Just having $500 million, enviable position, for sure. And then I think in the last week or so, there's been some who've called out some headwinds from the macro environment on kind of large ticket freezer purchases. Does it sound like you're seeing that in the storage business or maybe in cryo either, but maybe just give you the opportunity to talk about kind of the macro backdrop from freezers and how we should think about growth in that offering in 2023."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Stephen Schwartz",
+     "content": "Yes. It's -- we heard the commentary. And again, sometimes we just have different customers, a different customer base. We're not seeing that. At present, the business still feels pretty healthy. And we most of -- for example, most of our cryo systems go to people who are doing cell and gene therapy work on a pretty large scale. So we have a large number of customers with repeat orders and they've changed the means by which they handle those materials and they manage them and they go to manufacturer and those have moved now towards automation.  And we think that's something that's pretty sustainable. But -- and as we talked about, the large automated stores are in -- by far, the strongest order position that we've ever had as a company. And so we see that continuing to grow. Now that we're in the ultra-cold freezer business a little bit with B Medical, we'll learn about that. So I can't comment yet, but we'll learn about that here in the coming quarters."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Yuan Zhi with B. Riley."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Yuan Zhi",
+     "content": "Congrats on the quarter. We have a couple of them. First, maybe somewhat repetitive here. So can you articulate the challenges you are facing right now and the plans that you guys have in place to address them?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Stephen Schwartz",
+     "content": "I'm sorry, would you mind to repeat? We just -- we had a little connection issue on our side, please."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Yuan Zhi",
+     "content": "Yes. So can you articulate the challenges you guys are facing in different business segments and the plans you guys have in place to address them?"
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Lindon Robertson",
+     "content": "Maybe let me comment a little bit because we addressed some of the momentum, and we highlighted a little bit of the headwind and yet this still remains. But in the products business, definitely, the C&I is where we've had the biggest headwind on the COVID demands. And I would say even as Steve said, maybe we're finding bottom, but inventories are still out there.  And I would say while it's -- while we're taking orders, it's a little bit of a slower rate than what we had seen in the past years pre COVID. So I wouldn't say it's back fully. But aside from that, and this really goes on the heels of the last question from the previous analyst. The automated store systems, the cryo business really has shown nothing but steam.  When I say that, our cryo product line expanded 30% year-over-year for the year. Our automated large stores, we've seen -- we've reported now a couple of quarters this year, record bookings, and it's got a lot of momentum. And that represents significant infrastructure investment on our customers' part as well as the relevance and the importance of the reliable infrastructure that we provide to them in that market. And that's at their site.  Meanwhile, if I shift from there over to the services space and sample repository solutions, as we highlighted double-digit growth there already, we've seen steady wins and steady volumes still coming in. So we think that's been a steady grower of the recurring revenue business. Now I'm back over to genomics.  In genomics, we still -- we did see some nice turnaround there in terms of -- I should say turnaround is probably the wrong word. Some improvement in the growth rates back into the double digits. Frankly, even in China, we were up double digits year-over-year in the quarter. And I think everybody recognizes the challenging environment that they've had in the lockdowns.  But in the rest of the world, we've seen growth. Europe is still a touch slower in the genomics space than what we would like to see. So Yuan, I think that's still a focus for us. Still growing. But it's in the lower single digits in this quarter. But the Americas and China has really expanded in all in the double digits in the quarter. So we've seen good momentum there.  Now in terms of the actions, we've highlighted a few. Some of them are in our own structure and how we're managing the business. Steve and I are very much reengaged in all areas of the business currently. We are looking at deploying marketing more at the product level rather than at the Azenta brand level, making sure that we're driving the fuel behind each area.  But obviously, we think there's tremendous value in the Azenta brand, and we'll keep building on that. When you take all of those initiatives, and there's more, but you take those and combine with it, the acquisitions of Barkey and B Medical, we'll fuel those businesses, but we'll be looking at the synergies that Steve highlighted. And we think those are the additional action focus from our side.  So some repair done in terms of seeing some momentum in the growth rates in the quarter. We have some confidence that we'll be seeing our growth rates move from -- into the high single -- or higher growth rates in the latter part of the year to give us a low double-digit for the year growth on an organic basis.  But then when you add that Medical and Barkey, and you got 30% growth plan for this year. So let me pause there and see if that helps."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Yuan Zhi",
+     "content": "Yes. That's super helpful. And maybe one follow-up there is, like you mentioned, you are going to expand the product offering for B Medical in North America and then in ex-U.S. or in the territory of B Medical, you will your other part of the services. Just want to hear your thoughts on the OpEx investment on this different territory? And how should we think about the OpEx over the next 12 to 18 months?"
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Stephen Schwartz",
+     "content": "So Yuan, this is Steve. So I'll comment on the things that we're doing from an OpEx standpoint. We have pretty good sales coverage. We're going to continue to add more sales people to make sure that we cover not just the accounts but also the specific technologies, products and services that we have with those accounts. So you see our spending up just a little bit, but we're pretty close to where we need to be from the standpoint of sales coverage for those added capabilities.  So that's -- those investments are for the most part in place. In terms of -- anyway, those are the things that are in place already. So I'll let Lindon take it with a follow-up."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Lindon Robertson",
+     "content": "Yes. On the operating expense, let me just give a little color. We said we'll be adding some in our base business partly because of significant return to accruing for variable comp and stock comp for our teammates on the beginning of a fiscal year. We had taken most of those accruals out of the fourth quarter to rightsize the year for the payouts on a poor performance.  But on a new year, you start accruing. When you take that and combine with the addition of B Medical, you're going to see some operating expansion. And I'll highlight to you that we see -- I think of it as roughly about $15 million from B Medical added in the first quarter of operating expense that we'll be spending on that business. Now as we go through the year, we'll be supporting that further partly around the G&A structure as we highlighted previously.  We put some of that investment in already, but B Medical extends in a public company environment, a little more structural requirements that we'll have that they didn't necessarily have in a compliance sense. So we're in good shape there, but I'd highlight that for your modeling. That's a significant jump."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Operator",
+     "content": "And your next question is a follow-up from the line of Vijay Kumar with Evercore."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Vijay Kumar",
+     "content": "One just on the COVID assumptions for the guidance. What is the total COVID guidance -- excuse me, COVID headwinds that the guidance is assuming for fiscal '23 in the base business? And the B Medical revenues of $130 million, Lindon, does that include any COVID revenues?"
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Lindon Robertson",
+     "content": "Yes. So the headwind that we'll have roughly think of 2022 as having $22 million of revenue for the full year. Most of that's in the first half. We only had modest amounts. And frankly, it was even more modest because we had the headwinds that we are constraints in the China market in Q3 and a little bit in Q4. But in the first half, we had, if you recall, $10 million to $11 million each quarter for C&I. So that's the biggest headwind.  Once we get through first half, you're going to see this become pretty much just modest noise level. So with that said, going forward, we really have very modest expectations. Think of about $1 million a quarter, plus or minus going forward, depending on whether we have any more disruptions in China. That might hold us back a little bit.  But in our positive revenue that we'll be carrying, we still have some vaccine management going forward. We're doubtful that we'll see much in the C&I space. This quarter, it was just very, very modest in the C&I space.  And by the way, Vijay, I'll point out to you and the other investors listening in. When you look at our chart deck this quarter, with the aim towards just giving a lot more clarity on this growth capability peeling out the COVID, on the very last page of our chart deck, we did provide a table to give you the historical by quarter, the breakout of the FX, the M&A and then the COVID impacts by quarter. So you'll have a good historical base that baseline to use."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Vijay Kumar",
+     "content": "That's helpful, Lindon. And sorry, on the B Medical guidance of $130 million, is there any COVID revenue in that $130 million?"
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Lindon Robertson",
+     "content": "They'd be modest. In this current quarter, they have highlighted a couple of mix. So that's a good point. When I was referring to $1.25 million, that is -- that's a number on our base business, and B Medical did highlight that at the $45 million that we're looking at this quarter, there will be a couple of million.  And I'll highlight that we don't foresee it's going to be more than that in the quarters going forward. Of course, that business will move around. It's lumpy, as we said, a little bit unpredictable in terms of what kind of orders may come in on projects. But they don't foresee that COVID is the driver in 2022 nor 2023, I should say, predict on '23 as it was in 2022."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Vijay Kumar",
+     "content": "Understood. And if I could just squeeze a quick 30 second, Lindon. On the margins, your 10% EBITDA margins, can you talk about what's the impact from FX, inflation, pricing, maybe acquisitions, perhaps being a drag? Because I think if I go back to the LRP model, we were expecting triple-digit margin expansion, right? Is that mostly a function of lower revenues, volume leverage being lower? Or do you have some additional impact from inflation and FX heading into '23?"
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Lindon Robertson",
+     "content": "So it depends if you're looking at a year-over-year basis, just keep in mind that from first half '22 to second half '22, we had the decline that you've seen. So we're coming off of a lower point at the end of 2022. And as I said, we'll see a couple of -- we're pretty confident that we'll have a couple of points of gross margin improvement in the first quarter. And as we move through the year, we do expect that, that will sustain and continue.  It will -- I will highlight that the B Medical business will have a higher skew in this December quarter. And when they typically will have a little lower revenue in the follow-on quarters, and that will bring down their leverage a little bit. But the rest of our business will -- we expect some stability in increasing.  Now the FX impacts, we do anticipate a bit in our year-over-year headwinds of 2 to 3 points for the year. And in that context, we'll report on that as we move through the year. That's just based on where the rates sit currently."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Operator",
+     "content": "And there are no further questions. I'll turn the call back to Lindon Robertson for closing remarks. Thank you."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Lindon Robertson",
+     "content": "Thanks, operator. Everybody, this was certainly an exciting year for us in a lot of regards. We -- while we had headwinds in the middle of the year, and we were certainly in action and a little bit of recovery mode in Q4, we feel like we've turned the corner there in many regards. We still have work to be done. Transformation's behind us. We're into a stand-alone life science business like nobody has seen before, centered around infrastructure services around the sample.  And we couldn't be more excited about the portfolio we have, but also about the prospects we have. Not just with what we have ran in 2022, but what we've acquired and the teammates that have joined us at B Medical and at Barkey already proving tremendous value as we look into this quarter. With that said, we look forward to seeing you out on the street, so to speak. We'll be at conference just about each week for the next 3 weeks. And we look forward to engaging with you and meeting with you and seeing you at the end of the quarter.  Thank you for being with us today and your interest in the company."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Operator",
+     "content": "And all, that does conclude the Azenta Q4 2022 financial results call. We thank you very much for your participation. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +277,8 @@
    "reportDate": "2021-09-30",
    "accession": "0001558370-21-016314",
    "url": "https://www.sec.gov/Archives/edgar/data/933974/000155837021016314/brks-20210930x10k.htm",
-   "local_gz": "000155837021016314__annual.txt.gz"
+   "local_gz": "000155837021016314__annual.txt.gz",
+   "n_lines": 8786
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +286,8 @@
    "reportDate": "2022-06-30",
    "accession": "0001558370-22-012931",
    "url": "https://www.sec.gov/Archives/edgar/data/933974/000155837022012931/azta-20220630x10q.htm",
-   "local_gz": "000155837022012931__q0.txt.gz"
+   "local_gz": "000155837022012931__q0.txt.gz",
+   "n_lines": 8433
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +295,106 @@
    "reportDate": "2022-03-31",
    "accession": "0001558370-22-009015",
    "url": "https://www.sec.gov/Archives/edgar/data/933974/000155837022009015/azta-20220331x10q.htm",
-   "local_gz": "000155837022009015__q1.txt.gz"
+   "local_gz": "000155837022009015__q1.txt.gz",
+   "n_lines": 8361
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2022-08-09",
   "n_rows": 8,
@@ -83,6 +409,68 @@
     "ocf": 43730000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 123917000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 196679000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 35661000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 308517000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 50043000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 15227000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15746000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 26028000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.35,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 74283000.0,
+      "filed": "2021-02-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +481,68 @@
     "ocf": 34212000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 127987000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 225389000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 36793000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 320105000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 50067000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 10304000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15797000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 23748000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.32,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 74414000.0,
+      "filed": "2021-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +553,63 @@
     "ocf": 44803000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 154720000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 234079000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 35421000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 269862000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 9075000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 17141000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 39166000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.53,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 74495000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +620,63 @@
     "ocf": 27112000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 60398000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 119877000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 25724000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 227427000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 18199000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 16649000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 21805000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.29,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 35000.0,
+      "filed": "2021-11-24",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +687,63 @@
     "ocf": 15618000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 70143000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 126001000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 28483000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 215168000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 18409000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 12883000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 43320000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.58,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 74866000.0,
+      "filed": "2022-02-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +754,63 @@
     "ocf": -71357000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 77752000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 137578000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30700000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1936291000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 25917000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 13122000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 2119874000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 28.28,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 74958000.0,
+      "filed": "2022-05-16",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +821,63 @@
     "ocf": -419941000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 81213000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 150274000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 33132000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1474189000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 15404000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 12808000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -9570000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.13,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 74989000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +888,18 @@
     "ocf": 9634000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 138000000.0,
     "revenue_xbrl_for_reference": 137567000.0
@@ -166,157 +913,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3559",
   "sic2": "35",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 154,
-  "peer_list_all_same_sic2_tickers": [
-   "AAON",
-   "AAPL",
-   "ACLS",
-   "ACMR",
-   "AGCO",
-   "AIMD",
-   "AIRJ",
-   "ALG",
-   "ALLT",
-   "ALOT",
-   "ANET",
-   "AP",
-   "ARTW",
+  "bucket": "製造與工業",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 12,
+  "peer_list_all_tickers": [
    "ASML",
-   "ASTE",
-   "ASYS",
-   "ATEN",
-   "ATS",
-   "AZ",
-   "BC",
-   "BKR",
-   "BOSC",
-   "BWXT",
-   "CARR",
-   "CAT",
-   "CECO",
-   "CHRN",
-   "CIIT",
-   "CMCO",
-   "CMI",
-   "CNH",
-   "CRCT",
-   "CRSR",
-   "CSCO",
-   "CVR",
-   "CVV",
-   "CW",
-   "CYD",
-   "DCI",
-   "DE",
-   "DELL",
-   "DGII",
-   "DNOW",
-   "DOV",
-   "DTI",
-   "EFXT",
-   "EPAC",
-   "ERII",
-   "ESAB",
-   "ETN",
-   "EVLV",
-   "EXTR",
-   "FET",
-   "FFIV",
-   "FLS",
-   "FTEK",
-   "FTI",
-   "FTNT",
-   "GENC",
-   "GGG",
-   "GHM",
-   "GPUS",
-   "GRC",
-   "GTEC",
-   "GTES",
-   "HAYW",
-   "HPE",
-   "HPQ",
-   "HTOO",
-   "HUBC",
-   "HY",
-   "IBM",
-   "IEX",
-   "IMMR",
-   "INTZ",
-   "INVE",
-   "INVX",
-   "IR",
-   "ITT",
-   "ITW",
-   "JBTM",
-   "JCI",
-   "KAI",
-   "KITT",
-   "KMT",
-   "KRNT",
-   "LECO",
-   "LII",
-   "LINK",
-   "LIQT",
-   "LNN",
-   "LOGI",
-   "LRCX",
-   "LTRX",
-   "MIDD",
-   "MITK",
-   "MOG-A",
-   "MTW",
-   "MYND",
-   "NDSN",
-   "NNBR",
-   "NOV",
-   "NTAP",
-   "NTGR",
-   "NVT",
-   "OIS",
-   "OMCL",
-   "OSS",
-   "OUST",
-   "P",
-   "PANW",
-   "PAR",
-   "PBI",
-   "PLOW",
-   "PNR",
-   "PPIH",
-   "PSIX",
-   "QMCO",
-   "RBC",
-   "RDCM"
+   "LRCX"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000320193",
-    "name": "Apple Inc.",
-    "ticker": "AAPL",
-    "sic2": "35",
+    "entity_id": "0000707549",
+    "name": "LAM RESEARCH CORP",
+    "ticker": "LRCX",
+    "sic4": "3559",
+    "sic3": "355",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2022-10-28",
-    "accn": "0000320193-22-000108",
-    "local_gz": "000032019322000108__peer10k.txt.gz",
-    "capex_excerpt": []
+    "filingDate": "2022-08-24",
+    "accn": "0000707549-22-000107",
+    "local_gz": "000070754922000107__peer10k.txt.gz",
+    "capex_excerpt": [
+     "r strategic relevance with our customers; our ability to scale our operations to respond to changes in our business; the value of our patents; the materiality of potential losses arising from legal proceedings; the probability of making payments under our guarantees; the impact of the COVID-19 pandemic, and the sufficiency of our financial resources or liquidity to support future business activities (including but not limited to operations, investments, debt service requirements, dividends, and capital expenditures). Such statements are based on current expectations and are subject to risks, uncertainties, and changes in condition, significance, value, and effect, including without limitatio",
+     "alth and safety, conflict minerals, human trafficking, the management of hazardous materials, and carbon emissions, among others. Each of these regulations imposes costs on our business and has the potential to divert our management’s time and attention from revenue-generating and other profit maximizing activities to those associated with compliance. Efforts to comply with new and changing regulations have resulted in, and are likely to continue to result in, decreased net income and increased capital expenditures. If we are alleged or found by a court or regulatory agency not to be in compliance with regulations, we may be subject to fines, restrictions on our actions, reputational damage,",
+     "ive to incorporate environmental, social and governance (\"ESG\") consi derations into everything we do – from our operations and workplace practices, to how we source our materials and design our products. Our ESG report for calendar year 2021 details, among other items, a number of ESG goals. One such goal is to achieve net zero emissions by 2050, which we intend to achieve in part by meeting a number of interim targets related to our environmental impact. There have been no material impacts to capital expenditures or our results of operations associated with this goal, and there are no material cash commitments associated with the goal as of fiscal year ended June 26, 2022. Information cont"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000858877",
-    "name": "CISCO SYSTEMS, INC.",
-    "ticker": "CSCO",
-    "sic2": "35",
-    "form": "10-K",
-    "filingDate": "2022-09-08",
-    "accn": "0000858877-22-000013",
-    "local_gz": "000085887722000013__peer10k.txt.gz",
+    "entity_id": "0000937966",
+    "name": "ASML HOLDING NV",
+    "ticker": "ASML",
+    "sic4": "3559",
+    "sic3": "355",
+    "has_annual": true,
+    "form": "20-F",
+    "filingDate": "2022-02-09",
+    "accn": "0000937966-22-000013",
+    "local_gz": "000093796622000013__peer10k.txt.gz",
     "capex_excerpt": [
-     "tion offerings where revenue is recognized over time • Variations in sales channels, product costs, mix of products sold, or mix of direct sales and indirect sales 14 Table of Contents • The timing, size, and mix of orders from customers • Manufacturing and customer lead times • Fluctuations in our gross margins, and the factors that contribute to such fluctuations • The ability of our customers, channel partners, contract manufacturers and suppliers to obtain financing or to fund capital expenditures, especially during a period of global credit market disruption or in the event of customer, channel partner, contract manufacturer or supplier financial problems • Actual events, circumstances,",
-     "1 137 104 Total $ 19,267 $ 24,518 $ (5,251) The net decrease in cash and cash equivalents and investments from fiscal 2021 to fiscal 2022 was primarily driven by cash returned to stockholders in the form of repurchases of common stock of $7.7 billion under the stock repurchase program and cash dividends of $6.2 billion, net decrease in debt of $2.5 billion, changes in unrealized losses of our investments and other of $0.9 billion, net increase in restricted cash equivalents of $0.8 billion, capital expenditures of $0.5 billion and net cash paid for acquisitions and divestitures of $0.4 billion. These uses of cash were partially offset by cash provided by operating activities of $13.2 billion",
-     "tainty could adversely affect our liquidity and capital resources in the future. Based on past performance and current expectations, we believe our cash and cash equivalents, investments, cash generated from operations, and ability to access capital markets and committed credit lines will satisfy, through at least the next 12 months, our liquidity requirements, both in total and domestically, including the following: working capital needs (including inventory and other supply related payments), capital expenditures, investment requirements, stock repurchases, cash dividends, contractual obligations, commitments, principal and interest payments on debt, pending acquisitions, future customer f"
-    ]
+     "rm Act of 1995. You can generally identify these statements by the use of words like \"may\", \"will\", \"could\", \"should\", \"project\", \"believe\", \"anticipate\", \"expect\", \"plan\", \"estimate\", \"forecast\", \"potential\", \"intend\", \"continue\" and variations of these words or comparable words. They appear in a number of places throughout this Annual Report and include statements with respect to our expected trends and outlook, strategies, corporate priorities, expected semiconductor industry trends, R&D and capital expenditures and 2030 market opportunities and roadmap and revenue potential and other statements under the section titled “Semiconductor industry trends and opportunities”, expected trends in",
+     "es, corporate priorities, expected semiconductor industry trends, R&D and capital expenditures and 2030 market opportunities and roadmap and revenue potential and other statements under the section titled “Semiconductor industry trends and opportunities”, expected trends in markets served by our customers, expected market growth and drivers of such trends and growth, expected financial results, including expected sales, service revenue, expected trends in working capital, gross margin, expected capital expenditures, R&D and SG&A expenses, cash conversion cycle, target and expected effective annualized tax rate, sales targets and outlook for 2022 and other statements under \"-Trend Information",
+     "in the growth and continuity of large industrial complexes and the importance of the semiconductor industry is likely only going to increase, governments have turned their attention to securing sufficient semiconductor supply to support their local industries, creating higher levels of technological sovereignty and planning significant investments in the semiconductor industry. The US, China and the EU, as well as Japan and South Korea, are expected to nearly double the industry’s (2021) annual capital expenditures (CAPEX) of $150 billion based on external source data. We are aware that this has created concerns about potential oversupply. However, we believe that the significant growth pros"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -338,7 +980,16 @@
   "latest_data_date": "2022-11-15",
   "cutoff": "2022-11-15",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2022-11-14",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2022-11-16",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

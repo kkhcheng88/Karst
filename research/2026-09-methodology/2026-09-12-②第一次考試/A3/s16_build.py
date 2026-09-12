@@ -130,6 +130,8 @@ def main() -> None:
     picks = json.loads((CACHE / "picks_final.json").read_text(encoding="utf-8"))
     final = picks["final"]
     plan = json.loads((CACHE / "enrich_plan.json").read_text(encoding="utf-8"))
+    cp = CACHE / "capex_extra.json"
+    CAPEX_EXTRA = json.loads(cp.read_text(encoding="utf-8")) if cp.exists() else {}
     pop = pd.read_parquet(CACHE / "population_improvement.parquet")
     meta = pop.set_index("accessionNumber")
     meta["accessionNumber"] = meta.index
@@ -148,7 +150,8 @@ def main() -> None:
 
     stat = {k: 0 for k in
             ["peer_sic4", "peer_sic3", "peer_insufficient", "peer_capex_empty",
-             "peer_no_annual", "prior_ok", "prior_missing", "prelim_true",
+             "peer_no_annual", "prior_ok", "prior_missing", "prior_fallback",
+             "prelim_true",
              "transcript_injected", "transcript_missing", "packets", "mask_bad"]}
     extra_cov = {k: 0 for k in L.EXTRA_ITEMS}
     extra_signal = {k: 0 for k in L.EXTRA_ITEMS}
@@ -206,17 +209,27 @@ def main() -> None:
                     if s and s not in seen:
                         seen.add(s)
                         sents.append(s)
+                method = "s6_improve_text.parse_guidance"
+                if not sents:
+                    # 解析器交白卷而上游已證其漏率過半(52.5%):補一道保守標記掃描,
+                    # 照樣只給原句、不給解析結果,並在 method 欄講明來源不同。
+                    sents = L.guidance_fallback(ptxt)
+                    if sents:
+                        method = "後備標記掃描(解析器零收穫時啟用)"
                 prior_out = {
                     "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
                     "accessionNumber": pri["accn"], "filingDate": pri["filingDate"],
                     "reportDate": pri.get("reportDate", ""), "form": "8-K",
                     "local_gz": pfn if (L.DOCS / pfn).exists() else "",
+                    "method": method,
                     "n_guidance_records": len(recs), "n_sentences": len(sents[:20]),
                     "guidance_sentences": sents[:20],
-                    "note": "照 A3/s6_improve_text.py 的 parse_guidance 逐句找出的指引句,"
-                            "**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);"
-                            "單句長度上限 600 字元(解析器本身的上限),最多列 20 句"}
+                    "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);"
+                            "單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"}
+                if not sents:
+                    prior_out["status"] = "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
                 stat["prior_ok"] += 1
+                stat["prior_fallback"] += int(method != "s6_improve_text.parse_guidance")
             else:
                 stat["prior_missing"] += 1
                 prior_out = {"status": "查不到",
@@ -370,10 +383,22 @@ def main() -> None:
                     o["local_gz"] = fn
                     txt = L.read_doc(fn)
                     exc = L.capex_excerpt(txt) if txt else []
-                    o["capex_excerpt"] = exc
-                    o["capex_status"] = "ok" if exc else "查不到"
-                    if not exc:
-                        stat["peer_capex_empty"] += 1
+                    if exc:
+                        o["capex_excerpt"] = exc
+                        o["capex_status"] = "ok"
+                    else:
+                        # 年報本文無資本開支(40-F 封面式、或以引註併入):改看同一申報的附件
+                        alt = CAPEX_EXTRA.get(it["accn"], {})
+                        if alt.get("status") == "ok":
+                            o["capex_excerpt"] = alt["capex_excerpt"]
+                            o["capex_status"] = "ok(附件 %s)" % alt["doc"]
+                            o["capex_local_gz"] = alt["local_gz"]
+                        else:
+                            # 一律用字串「查不到」,不留空陣列
+                            o["capex_excerpt"] = "查不到"
+                            o["capex_status"] = "查不到"
+                            o["note"] = "年報本文與同申報附件皆無可摘錄的資本開支句"
+                            stat["peer_capex_empty"] += 1
                 else:
                     o["capex_excerpt"] = "查不到"
                     o["capex_status"] = "查不到"

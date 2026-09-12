@@ -1,6 +1,7 @@
 {
  "event_id": "E050",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E050",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "ILMN",
  "cik": "0001110803",
  "name": "ILLUMINA, INC.",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2021-02-12(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E050",
   "event_id": "E050",
   "ticker": "ILMN",
   "cik": "0001110803",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001110803-21-000012",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1110803/000111080321000012/ilmn-20210211.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1110803/000111080321000012/ilmn-20210211.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a4q20earningsrelease.htm\n EX-99.1\n Document \n Investors: \n Juliet Cunningham \n +1.858.200.6583 \n ir@illumina.com \n Media: \n Dr. Karen Birmingham \n +1.646.355.2111 \n kbirmingham@illumina.com \n Illumina Reports Financial Results for Fourth Quarter and Fiscal Year 2020 \n San Diego -- (BUSINESS WIRE) - February 11, 2021 - Illumina, Inc. (NASDAQ: ILMN) today announced its financial results for the fourth quarter and fiscal year 2020. \n Record fourth quarter revenue reflects a strong close to 2020: \n • Revenue of $953 million, an increase of 20% compared to the third quarter of 2020 and $0.5 million higher compared to the prior year period \n • GAAP net income attributable to Illumina stockholders for the quarter of $257 million, or $1.75 per diluted share, compared to $239 million, or $1.61 per diluted share, for the prior year period \n • Non-GAAP net income attributable to Illumina stockholders for the quarter of $179 million, or $1.22 per diluted share, compared to $252 million, or $1.70 per diluted share, for the prior year period. Non-GAAP net income excludes net gains from mark-to-market adjustments on our strategic investments, primarily from our marketable equity securities (see the “Reconciliation Between GAAP and Non-GAAP Net Income Attributable to Illumina Stockholders” table for a reconciliation of these GAAP and non-GAAP financial measures) \n • Cash flow from operations of $406 million compared to $443 million in the prior year period \n • Free cash flow (cash flow from operations less capital expenditures) of $344 million for the quarter compared to $386 million in the prior year period \n “Illumina delivered a strong finish to 2020 with record fourth quarter revenue exceeding our expectations,” said Francis deSouza, Chief Executive Officer. “We also had record orders in the quarter, including record sequencing instrument orders and the second highest quarter for NovaSeq instrument orders. Our business delivered strong sequential growth in the second half of 2020 and we expect continued recovery from the pandemic in 2021.” \n Gross margin in the fourth quarter of 2020 was 66.1% compared to 69.5% in the prior year period. Excluding amortization of acquired intangible assets and expenses related to COVID-19, non-GAAP gross margin was 66.9% for the fourth quarter of 2020 compared to 70.2% in the prior year period. \n Research and development (R&D) expenses for the fourth quarter of 2020 were $200 million compared to $161 million in the prior year period. Non-GAAP R&D expenses as a percentage of revenue were 20.9% compared to 16.8% in the prior year period. \n Selling, general and administrative (SG&A) expenses for the fourth quarter of 2020 were $298 million compared to $233 million in the prior year period. Excluding acquisition-related expenses, expenses related to COVID-19, and gain on litigation, non-GAAP SG&A expenses as a percentage of revenue were 25.1% compared to 22.2% in the prior year period. \n Depreciation and amortization expenses were $50 million and capital expenditures for free cash flow purposes were $62 million during the fourth quarter of 2020. At the close of the quarter, the company held $3.5 billion in cash, cash equivalents and short-term investments, compared to $3.4 billion as of December 29, 2019. \n Fiscal year 2020 results : \n • Revenue of $3,239 million, a 9% decrease compared to $3,543 million in fiscal 2019 \n • GAAP net income attributable to Illumina stockholders of $656 million, or $4.45 per diluted share, compared to $1,002 million, or $6.74 per diluted share, in fiscal 2019 \n • Non-GAAP net income attributable to Illumina stockholders of $664 million, or $4.50 per diluted share, compared to $976 million, or $6.57 per diluted share, in fiscal 2019 (see the “Itemized Reconciliation Between GAAP and Non-GAAP Net Income Attributable to Illumina Stockholders” table for a reconciliation of these GAAP and non-GAAP financial measures) \n • Cash flow from operations of $1,080 million compared to $1,051 million in fiscal 2019 \n • Free cash flow (cash flow from operations less capital expenditures) of $891 million, compared to $842 million in fiscal 2019 \n Gross margin for fiscal 2020 was 68.0% compared to 69.6% in the prior year. Excluding amortization of acquired intangible assets, expenses and income related to COVID-19, and restructuring, non-GAAP gross margin was 69.0% for fiscal 2020 compared to 70.6% in the prior year period. \n R&D expenses for fiscal 2020 were $682 million compared to $647 million in the prior year. Excluding expenses and income related to COVID-19, non-GAAP R&D expenses as a percentage of revenue were 21.0% compared to 18.2% in the prior year period. \n SG&A expenses for fiscal 2020 were $941 million compared to $835 million in the prior year period. Excluding amortization of acquired intangible assets, acquisition-related expenses, expenses and income related to COVID-19, gain on litigation, and restructuring, non-GAAP SG&A expenses as a percentage of revenue were 24.6% compared to 22.0% in the prior year period. \n Updates since our last earnings release: \n • Expanded NextSeq 2000 flow cell offering with launch of the P3 Reagent Kit and started shipping the NextSeq 1000 \n • Announced TSO 500 partnerships with Bristol Myers Squibb, Kura Oncology, Myriad Genetics, and Merck to advance comprehensive genomic profiling \n • Launched Illumina Connected Analytics enabling customers to manage, analyze, and explore large volumes of multi-omic data in a secure, scalable, and flexible environment \n • Partnered with Harvard Pilgrim Health Care to expand access to whole-genome sequencing for genetic disease testing \n • Won patent infringement suit against BGI in the United Kingdom \n • Repurchased approximately $280 million of common stock in the fourth quarter with $15 million remaining for repurchase under our current plan \n • Announced a collaboration with Sequoia Capital China to catalyze the genomic startup ecosystem in China \n Financial outlook and guidance \n The non-GAAP financial guidance discussed below reflects certain pro forma adjustments to assist in analyzing and assessing our core operational performance. Please see our Reconciliation of Non-GAAP Financial Guidance included in this release for a reconciliation of the GAAP and non-GAAP financial measures. \n For fiscal 2021, the company expects year-over-year revenue growth in the range of 17% to 20%, and expects GAAP earnings per diluted share of $4.76 to $5.01 and non-GAAP earnings per diluted share of $5.10 to $5.35. This guidance excludes the potential impact from the pending acquisition of GRAIL, which we expect to close in the second half of 2021. \n Quarterly conference call information \n The conference call will begin at 2:00 pm Pacific Time (5:00 pm Eastern Time) on Thursday, February 11, 2021. Interested parties may access the live teleconference through the Investor Info section of Illumina’s website under the “Company” tab at www.illumina.com. Alternatively, individuals can access the call by dialing 1 (866) 211-4597 or 1 (647) 689-6853 outside North America, both with conference ID 3809129. \n A replay of the conference call will be posted on Illumina’s website after the event and will be available for at least 30 days following. \n Statement regarding use of non-GAAP financial measures \n The company reports non-GAAP results for diluted net income per share, net income, gross margins, operating expenses, operating margins, other income, and free cash flow in addition to, and not as a substitute for, or superior to, financial measures calculated in accordance with GAAP. The company’s financial measures under GAAP include substantial charges such as amortization of acquired intangible assets, non-cash interest expense associated with the company’s convertible debt instruments that may be settled in cash, and others that are listed in the itemized reconciliations between GAAP and non-GAAP financial measures included in this press release. Management has excluded the effects of these items in non-GAAP measures to assist investors in analyzing and assessing past and future operating performance. Additionally, non-GAAP net income attributable to Illumina stockholders and diluted earnings per share attributable to Illumina stockholders are key components of the financial metrics utilized by the company’s board of directors to measure, in part, management’s performance and determine significant elements of management’s compensation. \n The company encourages investors to carefully consider its results under GAAP, as well as its supplemental non-GAAP information and the reconciliation between these presentations, to more fully understand its business. Reconciliations between GAAP and non-GAAP results are presented in the tables of this release. \n Use of forward-looking statements \n This release may contain forward-looking statements that involve risks and uncertainties. Among the important factors to which our business is subject that could cause actual results to differ materially from those in any forward-looking statements are: (i) the impact to our business and operating results of the COVID-19 pandemic; (ii) changes in the rate of growth in the markets we serve; (iii) the volume, timing and mix of customer orders among our products and services; (iv) our ability to adjust our operating expenses to align with our revenue expectations; (v) the outcome of the pending acquisition of GRAIL, Inc.; (vi) our ability to manufacture robust instrumentation and consumables; (vii) the success of products and services competitive with our own; (viii) challenges inherent in developing, manufacturing, and launching new products and services, including expanding or modifying manufacturing operations and reliance on third-party suppliers for critical components; (ix) the impact of recently launched or pre-announced products and services on existing products and services; (x) our ability to further develop and commercialize our instruments and consumables, to deploy new products, services, and applications, and to expand the markets for our technology platforms; (xi) our ability to obtain regulatory clearance for our products from government agencies; (xii) our ability to successfully partner with other companies and organizations to develop new products, expand markets, and grow our business; (xiii) our ability to successfully identify and integrate acquired technologies, products, or businesses; and (xiv) the application of generally accepted accounting principles, which are highly complex and involve many subjective assumptions, estimates, and judgments, together with other factors detailed in our filings with the Securities and Exchange Commission, including our most recent filings on Forms 10-K and 10-Q, or in information disclosed in public conference calls, the date and time of which are released beforehand. We undertake no obligation, and do not intend, to update these forward-looking statements, to review or confirm analysts’ expectations, or to provide interim reports or updates on the progress of the current quarter. \n About Illumina \n Illumina is improving human health by unlocking the power of the genome. Our focus on innovation has established us as the global leader in DNA sequencing and array-based technologies, serving customers in the research, clinical and applied markets. Our products are used for applications in the life sciences, oncology, reproductive health, agriculture and other emerging segments. To learn more, visit www.illumina.com and connect with us on Twitter, Facebook, LinkedIn, Instagram, and YouTube. \n # # # \n Illumina, Inc. \n Condensed Consolidated Balance Sheets \n (In millions) \n January 3,\n2021 December 29,\n2019 \n ASSETS (unaudited) \n Current assets: \n Cash and cash equivalents $ 1,810 $ 2,042 \n Short-term investments 1,662 1,372 \n Accounts receivable, net 487 573 \n Inventory 372 359 \n Prepaid expenses and other current assets 152 105 \n Total current assets 4,483 4,451 \n Property and equipment, net 922 889 \n Operating lease right-of-use assets 532 555 \n Goodwill 897 824 \n Intangible assets, net 142 145 \n Deferred tax assets, net 20 64 \n Other assets 589 388 \n Total assets $ 7,585 $ 7,316 \n LIABILITIES AND STOCKHOLDERS’ EQUITY \n Current liabilities: \n Accounts payable $ 192 $ 149 \n Accrued liabilities 541 516 \n Long-term debt, current portion 511 — \n Total current liabilities 1,244 665 \n Operating lease liabilities 671 695 \n Long-term debt 673 1,141 \n Other long-term liabilities 303 202 \n Stockholders’ equity 4,694 4,613 \n Total liabilities and stockholders’ equity $ 7,585 $ 7,316 \n Illumina, Inc. \n Condensed Consolidated Statements of Income \n (In millions, except per share amounts) \n (unaudited) \n Three Months Ended Year Ended \n January 3,\n2021 December 29,\n2019 January 3,\n2021 December 29,\n2019 \n Revenue: \n Product revenue $ 831 $ 812 $ 2,735 $ 2,929 \n Service and other revenue 122 141 504 614 \n Total revenue 953 953 3,239 3,543 \n Cost of revenue: \n Cost of product revenue (a) \n 254 230 788 802 \n Cost of service and other revenue (a) \n 62 55 220 240 \n Amortization of acquired intangible assets 7 6 28 34 \n Total cost of revenue 323 291 1,036 1,076 \n Gross profit 630 662 2,203 2,467 \n Operating expense: \n Research and development (a) \n 200 161 682 647 \n Selling, general and administrative (a) \n 298 233 941 835 \n Total operating expense 498 394 1,623 1,482 \n Income from operations 132 268 580 985 \n Other income, net 166 1 276 133 \n Income before income taxes 298 269 856 1,118 \n Provision for income taxes 41 30 200 128 \n Consolidated net income 257 239 656 990 \n Add: Net loss attributable to noncontrolling interests — — — 12 \n Net income attributable to Illumina stockholders $ 257 $ 239 $ 656 $ 1,002 \n Earnings per share attributable to Illumina stockholders: \n Basic $ 1.76 $ 1.63 $ 4.48 $ 6.81 \n Diluted $ 1.75 $ 1.61 $ 4.45 $ 6.74 \n Shares used in computing earnings per common share: \n Basic 146 147 147 147 \n Diluted 147 148 148 149 \n (a) Includes stock-based compensation expense for stock-based awards: \n Three Months Ended Year Ended \n January 3,\n2021 December 29,\n2019 January 3,\n2021 December 29,\n2019 \n Cost of product revenue $ 8 $ 5 $ 21 $ 19 \n Cost of service and other revenue 1 1 4 4 \n Research and development 26 16 74 66 \n Selling, general and administrative 44 28 95 105 \n Stock-based compensation expense before taxes (1) \n $ 79 $ 50 $ 194 $ 194 \n (1) Includes stock-based compensation of $1.5 million for Helix in fiscal year 2019. \n Illumina, Inc. \n Condensed Consolidated Statements of Cash Flows \n (In millions) \n (unaudited) \n Three Months Ended Year Ended \n January 3,\n2021 December 29,\n2019 January 3,\n2021 December 29,\n2019 \n Net cash provided by operating activities $ 406 $ 443 $ 1,080 $ 1,051 \n Net cash (used in) provided by investing activities (33) (104) (554) 745 \n Net cash used in financing activities (331) (115) (766) (897) \n Effect of exchange rate changes on cash and cash equivalents 7 3 8 (1) \n Net increase (decrease) in cash and cash equivalents 49 227 (232) 898 \n Cash and cash equivalents, beginning of period 1,761 1,815 2,042 1,144 \n Cash and cash equivalents, end of period $ 1,810 $ 2,042 $ 1,810 $ 2,042 \n Calculation of free cash flow: \n Net cash provided by operating activities (b) \n $ 406 $ 443 $ 1,080 $ 1,051 \n Purchases of property and equipment (62) (57) (189) (209) \n Free cash flow (a) \n $ 344 $ 386 $ 891 $ 842 \n (a) Free cash flow, which is a non-GAAP financial measure, is calculated as net cash provided by operating activities reduced by purchases of property and equipment. Free cash flow is useful to management as it is one of the metrics used to evaluate our performance and to compare us with other companies in our industry. However, our calculation of free cash flow may not be comparable to similar measures used by other companies. \n (b) Net cash provided by operating activities in fiscal 2019 included an $84 million payment of the accreted debt discount related to the conversions of our 2019 Notes. \n Illumina, Inc. \n Results of Operations - Non-GAAP \n (In millions, except per share amounts) \n (unaudited) \n RECONCILIATION BETWEEN GAAP AND NON-GAAP EARNINGS PER SHARE ATTRIBUTABLE TO ILLUMINA STOCKHOLDERS: \n Three Months Ended Year Ended \n January 3,\n2021 December 29,\n2019 January 3,\n2021 December 29,\n2019 \n GAAP earnings per share attributable to Illumina stockholders - diluted $ 1.75 $ 1.61 $ 4.45 $ 6.74 \n Cost of revenue (b) \n 0.05 0.04 0.21 0.23 \n Research and development costs (b) \n — 0.01 0.01 0.02 \n Selling, general and administrative costs (b) \n 0.40 0.14 0.98 0.36 \n Other (income) expense, net (b) \n (0.99) 0.08 (1.60) (0.47) \n Incremental non-GAAP tax expense (c) \n 0.07 (0.09) 0.02 (0.11) \n Income tax benefit (d) \n (0.06) (0.09) (0.18) (0.20) \n Tax expense related to increase in valuation allowance (e) \n — — 0.42 — \n Tax expense related to cost-sharing arrangement (f) \n — — 0.19 — \n Non-GAAP earnings per share attributable to Illumina stockholders - diluted (a) \n $ 1.22 $ 1.70 $ 4.50 $ 6.57 \n RECONCILIATION BETWEEN GAAP AND NON-GAAP NET INCOME ATTRIBUTABLE TO ILLUMINA STOCKHOLDERS: \n Three Months Ended Year Ended \n January 3,\n2021 December 29,\n2019 January 3,\n2021 December 29,\n2019 \n GAAP net income attributable to Illumina stockholders $ 257 $ 239 $ 656 $ 1,002 \n Cost of revenue (b) \n 8 6 32 34 \n Research and development costs (b) \n — 1 1 3 \n Selling, general and administrative costs (b) \n 59 21 145 54 \n Other (income) expense, net (b) \n (146) 13 (236) (70) \n Incremental non-GAAP tax expense (c) \n 10 (14) 3 (16) \n Income tax benefit (d) \n (9) (14) (27) (31) \n Tax expense related to increase in valuation allowance (e) \n — — 62 — \n Tax expense related to cost-sharing arrangement (f) \n — — 28 — \n Non-GAAP net income attributable to Illumina stockholders (a) \n $ 179 $ 252 $ 664 $ 976 \n All amounts in tables are rounded to the nearest millions, except as otherwise noted. As a result, certain amounts may not recalculate using the rounded amounts provided. \n (a) Non-GAAP net income attributable to Illumina stockholders and diluted earnings per share attributable to Illumina stockholders exclude the effect of the pro forma adjustments as detailed above. Non-GAAP net income attributable to Illumina stockholders and diluted earnings per share attributable to Illumina stockholders are key components of the financial metrics utilized by the company’s board of directors to measure, in part, management’s performance and determine significant elements of management’s compensation. Management has excluded the effects of these items in these measures to assist investors in analyzing and assessing our past and future core operating performance. \n (b) Refer to our “Itemized Reconciliation between GAAP and Non-GAAP Results of Operations as a Percent of Revenue,” below, for the components of these amounts. \n (c) Incremental non-GAAP tax expense reflects the tax impact of the non-GAAP adjustments listed. \n (d) Amounts represent tax deductions taken in excess of stock compensation cost. \n (e) Amount represents tax expense related to the valuation allowance established against the deferred tax asset for California research and development credits. \n (f) Amount represents tax expense related to the finalization of the Altera court case which determined stock-based compensation must be included in intercompany cost sharing payments. \n Illumina, Inc. \n Results of Operations - Non-GAAP (continued) \n (Dollars in millions) \n (unaudited) \n ITEMIZED RECONCILIATION BETWEEN GAAP AND NON-GAAP RESULTS OF OPERATIONS AS A PERCENT OF REVENUE: \n Three Months Ended Year Ended \n January 3,\n2021 December 29,\n2019 January 3,\n2021 December 29,\n2019 \n GAAP gross profit (b) $ 630 66.1 % $ 662 69.5 % $ 2,203 68.0 % $ 2,467 69.6 % \n Amortization of acquired intangible assets 7 0.7 % 6 0.7 % 28 0.9 % 34 1.0 % \n Expenses related to COVID-19 (c) \n 1 0.1 % — — 6 0.2 % — — \n Income related to COVID-19 (d) \n — — — — (4) (0.1) % — — \n Restructuring (e) \n — — — — 2 — — — \n Non-GAAP gross profit (a) \n $ 638 66.9 % $ 668 70.2 % $ 2,235 69.0 % $ 2,501 70.6 % \n GAAP research and development expense $ 200 20.9 % $ 161 16.9 % $ 682 21.1 % $ 647 18.3 % \n Expenses related to COVID-19 (c) \n — — — — (4) (0.1) % — — \n Income related to COVID-19 (d) \n — — — — 3 — — — \n Restructuring (e) \n — — (1) (0.1) % — — (3) (0.1) % \n Non-GAAP research and development expense $ 200 20.9 % $ 160 16.8 % $ 681 21.0 % $ 644 18.2 % \n GAAP selling, general and administrative expense $ 298 31.2 % $ 233 24.4 % $ 941 29.0 % $ 835 23.5 % \n Amortization of acquired intangible assets — — (1) (0.1) % (1) — (2) — \n Acquisition-related expenses (f) \n (52) (5.4) % (12) (1.3) % (158) (4.8) % (43) (1.2) % \n Expenses related to COVID-19 (c) \n (9) (0.9) % — — (18) (0.5) % — — \n Gain on litigation (g) \n 2 0.2 % — — 27 0.9 % — — \n Income related to COVID-19 (d) \n — — — — 3 — — — \n Restructuring (e) \n — — (8) (0.8) % 2 — (9) (0.3) % \n Non-GAAP selling, general and administrative expense $ 239 25.1 % $ 212 22.2 % $ 796 24.6 % $ 781 22.0 % \n GAAP operating profit $ 132 13.9 % $ 268 28.1 % $ 580 17.9 % $ 985 27.8 % \n Cost of revenue 8 0.9 % 6 0.7 % 32 1.0 % 34 1.0 % \n Research and development costs — — 1 0.1 % 1 — 3 0.1 % \n Selling, general and administrative costs 59 6.1 % 21 2.1 % 145 4.5 % 54 1.5 % \n Non-GAAP operating profit (a) \n $ 199 20.9 % $ 296 31.0 % $ 758 23.4 % $ 1,076 30.4 % \n GAAP other income, net $ 166 17.4 % $ 1 0.1 % $ 276 8.5 % $ 133 3.8 % \n Non-cash interest expense (h) \n 12 1.3 % 11 1.2 % 43 1.3 % 49 1.4 % \n Strategic investment related (gain) loss, net (i) \n (159) (16.7) % 2 0.1 % (300) (9.2) % (66) (1.9) % \n Loss on derivative assets (j) \n — — — — 25 0.8 % — — \n Bridge facility fees (k) \n 3 0.3 % — — 3 — — — \n (Gain) loss on contingent value right (l) \n (2) (0.2) % — — (7) (0.2) % 1 — \n Gains on deconsolidation (m) \n — — — — — — (54) (1.5) % \n Non-GAAP other income, net (a) \n $ 20 2.1 % $ 14 1.4 % $ 40 1.2 % $ 63 1.8 % \n All amounts in tables are rounded to the nearest millions, except as otherwise noted. As a result, certain amounts may not recalculate using the rounded amounts provided. \n (a) Non-GAAP gross profit, included within non-GAAP operating profit, is a key measure of the effectiveness and efficiency of manufacturing processes, product mix and the average selling prices of our products and services. Non-GAAP operating profit, and non-GAAP other income, net, exclude the effects of the pro forma adjustments as detailed above. Management has excluded the effects of these items in these measures to assist investors in analyzing and assessing past and future operating performance. \n (b) Reconciling amounts are recorded in cost of revenue. \n (c) Amounts consist of direct and incremental expenses incurred due to the COVID-19 pandemic, primarily a one-time allowance paid to employees working remotely to help with additional expenses, write-off of unused COVID-19 lab equipment, premium pay for onsite essential workers, employee testing, incremental cleaning, and personal protective equipment. \n (d) Amounts consist of direct and incremental income due to the COVID-19 pandemic, primarily payroll-related credits earned in Singapore. \n (e) Amounts consist primarily of employee costs, net of adjustments, related to restructuring. \n (f) Amount for Q4 2020 consists primarily of acquisition-related expenses related to the pending acquisition of GRAIL. Amount for fiscal year 2020 consists primarily of expenses related to the Continuation Advances and Reverse Termination Fee paid to Pacific Biosciences and expenses related to the pending acquisition of GRAIL. Amounts for Q4 and fiscal year 2019 consist primarily of expenses related to the Pacific Biosciences acquisition which was terminated on January 2, 2020. \n (g) Amount consists of a gain related to a patent litigation judgement. \n (h) Non-cash interest expense is calculated in accordance with the authoritative accounting guidance for convertible debt instruments that may be settled in cash. \n (i) Amounts consist primarily of mark-to-market adjustments and impairments from our strategic investments. \n (j) Amounts consist of fair value adjustments on our derivative assets related to the terminated acquisition with Pacific Biosciences. \n (k) Amounts consist of expenses related to the bridge facility commitment obtained in advance of the acquisition of GRAIL. \n (l) Amounts consist of fair value adjustments related to our contingent value right received from Helix. \n (m) Amount consists of the $39 million gain recognized as a result of the Helix deconsolidation and a $15 million gain that resulted from the settlement of a contingency related to the deconsolidation of GRAIL in 2017. \n Illumina, Inc. \n Reconciliation of Non-GAAP Financial Guidance \n (unaudited) \n Our future performance and financial results are subject to risks and uncertainties, and actual results could differ materially from the guidance set forth below. Some of the factors that could affect our financial results are stated above in this press release. More information on potential factors that could affect our financial results is included from time to time in the public reports filed with the Securities and Exchange Commission, including Form 10-K for the fiscal year ended December 29, 2019 filed with the SEC on February 10, 2020, Form 10-Q for the fiscal quarter ended March 29, 2020, Form 10-Q for the fiscal quarter ended June 28, 2020, and Fo rm 10-Q for the fiscal quarter ended September 27, 2020. We assume no obligation to update any forward-looking statements or information. \n Fiscal Year \n2021 \n GAAP diluted earnings per share (a) $4.76 - $5.01 \n Amortization of acquired intangible assets 0.18 \n Non-cash interest expense (b) \n 0.24 \n Incremental non-GAAP tax expense (c) \n (0.08) \n Non-GAAP diluted earnings per share (a) \n $5.10 - $5.35 \n (a) Guidance excludes the potential impact of the pending acquisition of GRAIL, which is expected to close in the second half of 2021. \n (b) Non-cash interest expense is calculated in accordance with the authoritative accounting guidance for convertible debt instruments that may be settled in cash. \n (c) Incremental non-GAAP tax expense reflects the tax impact related to the non-GAAP adjustments listed. \n",
@@ -36,7 +39,259 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000111080321000012__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001110803-21-000003",
+   "filingDate": "2021-01-12",
+   "reportDate": "2021-01-11",
+   "form": "8-K",
+   "local_gz": "000111080321000003__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 16,
+   "guidance_sentences": [
+    "P1 adds a lower-throughput option to support applications such as pathogen surveillance and targeted sequencing for tumor profiling.",
+    "The major population initiatives are on track to grow in 2021, and we expect the number of whole genome equivalent sequenced in 2021 to increase by about 50% to approximately 450,000.",
+    "With landmark decisions from Aetna and UnitedHealthcare in 2020 and additional coverage expected, we anticipate an additional 1.1 million pregnancies to be covered for NIPT in 2021, a 50% increase from 2019.",
+    "Comprehensive Genomic Profiling, CGP, is an NGS test that enables a single companion diagnostic for the 55 and growing targeted oncology therapies.",
+    "Turning now to 2021 guidance, which excludes GRAIL.",
+    "We expect recovery from the global pandemic to continue through the first half of the year and a return to normal by the second half of 2021.",
+    "We expect revenue of $3.79 billion to $3.88 billion, representing approximately 17% to 20% growth.",
+    "At the midpoint of our guidance, sequencing growth is projected to be approximately 20% in 2021.",
+    "We expect operating margin to be approximately 24% and non-GAAP earnings per share of between $5.10 and $5.35 per share for 2021.",
+    "Our 2021 EPS guidance reflects modest improvement in operating margin, onetime costs associated with stock-based compensation plan adjustments and lower interest income.",
+    "We expect Q1 2021 revenues to be flat to slightly up compared to Q1 of 2020.",
+    "We expect early cancer detection and recurrence monitoring will be the largest genomic applications over the next decade by far, representing a $60 billion addressable market.",
+    "As Francis said, stock-based compensation is a onetime adjustment that will happen in '21, that's factored into our guidance, which reflects the fact that for those plans that vest in '21 and '22, which have been heavily impacted by the pandemic, there will be a catch-up expense related to those as we adjust their performance metrics.",
+    "We expect our margins to go back to above the 70% as we get out of the pandemic and volumes increase and we start to get to normalcy in terms of just in general and freight costs return to normal.",
+    "And as you saw in the guidance as well, we're guiding to 33% at the midpoint in terms of instrument growth; and overall sequencing, 20% at the midpoint.",
+    "Beyond the 5 years, though, we expect the COGS and the gross margin from GRAIL, so gross margin, to start actually be at our overall gross margin, if not better, because of the fact that volumes will ramp up and because of the fact that we have innovations that reduce the cost of sequencing for both GRAIL and our other customers as well."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2021-02-11",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 42,
+   "has_qna": true,
+   "n_chars": 54465,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Good day, ladies and gentlemen, and welcome to the Fourth Quarter 2020 Illumina Earnings Conference Call. [Operator Instructions] Please be advised that today’s conference is being recorded. [Operator Instructions] I would now like to introduce your host for today's conference call, Ms. Juliet Cunningham, VP, Illumina Investor Relations."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Juliet Cunningham",
+     "content": "Good afternoon everyone, and welcome to our earnings call for the fourth quarter and full year 2020. During the call today, we will review the financial results released after the close of the market, and offer commentary on our commercial activity, after which we will host a question-and-answer session. If you have not had a chance to review the earnings release, it can be found in the Investor Relations section of our website at illumina.com. Participating for Illumina today will be Francis deSouza, CEO; and Sam Samad, CFO. Francis will provide an update on the state of Illumina’s business and Sam will review our financial results. The call today is being recorded and the audio portion will be archived in the Investor section of our website. It is our intent that all forward-looking statements regarding our financial results and commercial activity made during today’s call will be protected under the Private Securities Litigation Reform Act of 1995. Forward-looking statements are subject to risks and uncertainties. Actual events or results may differ materially from those projected or discussed. All forward-looking statements are based upon current available information, and Illumina assumes no obligation to update these statements. To better understand the risks and uncertainties that could cause actual results to differ, we refer you to the documents that Illumina files with the Securities and Exchange Commission, including Illumina's most recent forms 10-Q and 10-K. With that, I will now turn the call over to Francis."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Francis deSouza",
+     "content": "Thank you, Juliet. Good afternoon everyone. Illumina had a strong finish to 2020, with both revenue and orders setting new records. Fourth quarter revenue of $953 million, was up 20% sequentially from the third quarter. Sequencing Instruments grew 29% quarter-over-quarter. We also booked the second highest NovaSeq units during the fourth quarter, primarily driven by the August launch of our V1.5 reagents. V1.5 resulted in higher new customer growth, as well as additional HiSeq conversions. NovaSeq continues to be the market-leading sequencer as it enters its fifth year since launch. Full year 2020 revenue of $3.2 billion declined 9% year-over-year with the largest impact from the pandemic in the second quarter. Our business accelerated in the second half of the year, growing 17% compared to the first half. In 2020, we shipped more than 2,000 sequencing systems, set another record for mid-throughput shipments and added more than 700 new customers, which exceeded our expectations. I’d like to share some fourth quarter highlights by platform, starting with our high-throughput systems. NovaSeq consumable pull-through was at its highest level of the year at over $1.2 million per instrument. We expect NovaSeq pull-through to continue at pre-pandemic levels of $1.1 to $1.2 million per year in 2021. The NovaSeq v1.5 reagent introduction is catalyzing a new wave of high-throughput customers as the $600 genome became a reality for labs of any size. In fact, over half of our NovaSeq system orders in 2020 were to new high throughput customers. This includes customers like Argentina’s Ministry of Health, who purchased NovaSeq for infectious disease research. The V 1.5 introduction also accelerated the purchasing timeline for CellCarta, a contract research organization and a new-to-high throughput customer, who plans to use their NovaSeq to support oncology clinical trials. The V 1.5 reagents are also strengthening the economic case for legacy HiSeq customers to upgrade, like the University of Oregon, who is using NovaSeq for large, single cell and epigenetics studies. We ended the year with about 1,000 active HiSeq units and in 2021, we expect continued HiSeq to NovaSeq adoption among the 320 customers yet to transition. Moving to mid-throughput, 2020 marked the second consecutive year of record placements, and the mid-throughput segment continues to provide durable growth in our core business. Fourth quarter strength was primarily driven by the successful launches of NextSeq 1000 and 2000, which also drove an increase in mid-throughput consumable revenue for the full year. Looking ahead, we expect continued NextSeq expansion in 2021, particularly in the clinical segment. Notably, we received NMPA approval in China for NextSeq Dx, driving demand in local hospitals in applications like oncology and infectious disease testing. We expect this approval to drive NextSeq Dx placements and further increase our clinical presence in 2021. We added more than 500 new low-throughput customers in 2020, bringing our total to more than 6,100 customers worldwide. Our platforms hold the largest set of flow cell configurations and enable the most expansive set of supported methods with run times as fast as five hours. In the fourth quarter, we had record low-throughput consumable revenue driven by customers like Invitae, who has products in development using the MiSeq Dx. I’ll now provide updates on our Clinical and Research and Applied segments. Total sequencing consumables revenue of $2 billion was down 2% year-over-year, reflecting the impact of the pandemic on academic and research institutions. By the fourth quarter of 2020, clinical sequencing run-rates actually exceeded pre-pandemic levels and research run-rates also returned to normalized pre-pandemic volumes. It was great to see how our customers successfully rebounded under these challenging circumstances. More than 43% of our sequencing consumable shipments in 2020 were to clinical customers, which includes testing for oncology, reproductive health, and genetic disease. Clinical testing proved durable during the pandemic with clinical consumables growing about 8% year-over-year to approximately $890 million in 2020. And in the fourth quarter, clinical consumables growth accelerated to over 20% year-over-year. In clinical, I’ll highlight first the tremendous progress made in market access and reimbursement. We believe recent landmark coverage decisions will drive greater adoption of next-generation sequencing to new levels over the next several years. In oncology, 205 million lives are now covered for tumor comprehensive genomic profiling in the U.S., and with an increasing number of targeted oncology therapies, we expect CGP to grow to be a $1 billion plus market by 2026. Additionally, Germany recently started covering tumor CGP and whole exome and whole genome for rare and undiagnosed genetic disease without restrictions. This means that 73 million lives will have better access to CGP and whole exome and whole genome testing. In reproductive health, with multiple large payors expanding coverage for all pregnancies, we expect NIPT coverage in the U.S. to exceed three million pregnancies by the end of 2021. And finally, whole genome sequencing coverage for genetic disease testing increased 10-fold in 2020 and we expect WGS to become the standard of care in genetic disease as awareness and reimbursement continues to grow. With these positive reimbursement trends as a backdrop, I’ll now discuss our clinical focus areas in a little more detail. Oncology testing continues to represent approximately 20% of total sequencing consumables, and it grew year-over-year driven by companies like Guardant Health, who expanded its mobile phlebotomy services to help patients access its Guardant360 liquid biopsy test during the pandemic. This also includes Genomic Hubs in the NHS that adopted NovaSeq comprehensive genomic profiling as the standard of care in the UK, and oncology centers like Florida Cancer Specialists, a private community oncology and hematology practice with nearly 100 offices throughout Florida. Florida Cancer Specialists purchased multiple NextSeq Dx systems in 2020 to run Illumina’s Trusight Oncology 500 assay in its new lab. Reproductive health represented about 12% of sequencing consumables, with revenue and samples for our end-to-end VeriSeq NIPT solution growing over 20% in 2020. Lastly, about 10% of our sequencing consumables revenue is related to genetic disease testing. Customers continue to choose Illumina’s highly accurate and scalable sequencers as their platform of choice in this area. For example, the recent collaboration between Weill Cornell Medicine and New York-Presbyterian Hospital, in partnership with the New York Genome Center, will use Illumina technology for clinical WGS in areas like cardiovascular, metabolic and neurodegenerative diseases. Turning to our Research and Applied segment, revenue of approximately $1.2 billion represented just under 57% of our sequencing consumable shipments and was lower by about 6% year-over-year as customers were impacted by the pandemic. Research accelerated in the second half, growing 20% compared to the first half as researchers returned to their labs. This segment includes research in oncology and genetic disease, as well as population genomic and research initiatives. Our sequencers enable programs like KDNA, a large scale Korean project aiming to sequence 1 million genomes by 2030. A service provider consortium, standardized on Illumina technology, won the competitive tender based on NovaSeq’s superior technical evaluation. The program plans to complete its 7,500-genome Phase 1 by the end of the year. The NHS commenced a phased rollout for whole genome sequencing in the fourth quarter for selected rare disease and cancer patients as part of their routine care. Once this live clinical testing phase is complete, we expect the whole genome sequencing service to further ramp in the spring. We expect the All of Us program to continue to scale this year, and the NIH anticipates releasing de-identified data from 100,000 sequenced and array genotyped samples to its research portal by the end of 2021. Finally, as a leading innovator, Illumina remains steadfast in the defense of our intellectual property globally. We received injunctions against BGI for patent infringement in the U.S., Germany, UK, Spain, Sweden and Finland. We remain confident that our IP portfolio affords strong protection for Illumina’s innovations now and well into the future. And now, I’ll turn it over to Sam."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Sam Samad",
+     "content": "Thank you, Francis. As Francis discussed, we had record fourth quarter revenue that grew slightly year-over-year to $953 million, driven by 1% growth in sequencing offset by an 8% decline in microarrays. Total sequencing revenue reached a record of $846 million, which represented 89% of total revenue in the fourth quarter of 2020 and grew 19% sequentially. Sequencing consumables revenue grew 5% compared to the prior year period and 20% sequentially. Sequencing instruments revenue was roughly flat year-over-year and grew 29% sequentially and sequencing service and other was down 15% compared to the prior year period due to IVD partnership revenue recognized last year. Moving to regional results, the Americas revenue grew 14% sequentially. Revenue in the region was 2% lower compared to the prior year quarter, which was primarily driven by one-time technology access fees for an IVD partnership and lower DTC revenue. These items were partially offset by sequencing consumables. The Americas had record sequencing product revenue in the fourth quarter, driven by clinical customers. EMEA delivered record revenue of $285 million, representing 34% sequential growth and 2% growth year-over-year driven by strong instrument revenue from NovaSeq. We also saw certain customers in emerging countries taking their first NovaSeq shipments. Greater China grew 16% sequentially and 3% year-over-year to $96 million and had its highest sequencing instrument revenue quarter since 2017, driven in part by growing demand in hospitals. Subsequent to Q4, we also announced the Sequoia Capital China Genomics Incubator, which builds on our other incubator efforts in Silicon Valley and the U.K. together. We will partner with leading entrepreneurs in China to build genomics startup companies to create breakthrough genomics applications and clinical sequencing solutions. Finally, APJ revenue of $77 million was up 24% sequentially and up 5% from the prior year period. For the full year, the region was roughly flat compared to 2019 with full year growth in sequencing consumables. Moving to gross margin and operating expenses, I will highlight non-GAAP results which include stock-based compensation. I encourage you to review the GAAP reconciliation of these non-GAAP measures which can be found in today’s release and the supplementary data available on our website. Please note that all subsequent references to net income and earnings per share refer to the results attributable to Illumina shareholders. As expected, non-GAAP gross margin of 66.9% decreased approximately 50 basis points sequentially. Year-over-year, fourth quarter non-GAAP gross margin was down 330 basis points primarily due to a one-time inventory write down in Q4, one-time IVD partnership revenue in the year ago quarter, and higher freight costs related to COVID-19. Non-GAAP operating expenses of $439 million were up $74 million sequentially, as expected, reflecting the extra week in the fourth quarter, variable compensation expenses and other investments. Non-GAAP operating margin was 20.9%, down from 21.4% in the third quarter. Non-GAAP other income of $20 million was $13 million higher sequentially due to gains on short term investments sold as we repositioned our investment portfolio for the anticipated funding of the GRAIL acquisition. The non-GAAP tax rate of 18.4% was up from last quarter due to a discrete charge related to a tax structure initiative in the fourth quarter. The sequential increase of our tax rate in Q4 was also impacted by discrete tax benefits in the third quarter of 2020 related to prior year return adjustments. For the fourth quarter of 2020, GAAP net income was $257 million, or $1.75 per diluted share, and non-GAAP net income was $179 million, or $1.22 per diluted share. Moving to cash flow and balance sheet items: Cash flow from operations was $406 million. DSO of 50 days compared to 53 days last quarter driven by revenue linearity. Fourth quarter capital expenditures were $62 million and free cash flow was $344 million. We repurchased $280 million of stock in the fourth quarter. We ended the year with approximately $3.5 billion in cash, cash equivalents, and short-term investments. Our weighted average diluted share count for the quarter was 147 million. Moving now to 2021 guidance: We expect full year 2021 revenue to grow in the range of 17% to 20% or $3.79 billion to $3.89 billion representing an increase of approximately $599 million at the midpoint. For the full year 2021, at the midpoint of our revenue guidance range, we expect sequencing revenue to grow approximately 20%; this includes sequencing consumable growth of around 20%; we expect sequencing system revenue to grow 33% year-over-year driven by placements of NovaSeq due to continued HiSeq conversions, and the adoption of V 1.5 reagents, as well as placements of NextSeq due to NextSeq 2000 and Dx demand; and Arrays to grow approximately 5% compared to 2020. We expect full year non-GAAP gross margin to modestly improve from 2020 reflecting increased leverage from higher volumes and cost saving initiatives partially offset by product mix, and IVD partnership revenue in the first quarter of 2020. We expect 2021 operating margin to be approximately 24%. As volumes increase and freight charges normalize, we expect both gross and operating margins to improve in the second half of 2021 and be above the full year average. We expect other income to be about $40 million lower than 2020 due to the gains in the fourth quarter of 2020, lower interest rates, and shorter duration investments in anticipation of the close of the GRAIL acquisition. We expect GAAP earnings per share to be in the range of $4.76 to $5.01, and non-GAAP earnings per share in the range of $5.10 to $5.35. And we expect diluted shares outstanding in 2021 to be approximately 147 million. Moving to the first quarter of 2021: We are raising our previous expectations, and we now expect high-single digit revenue growth compared to the first quarter of 2020. We expect sequential improvement in non-GAAP gross margin; sequential decline in non-GAAP operating expenses similar to historical seasonality; non-GAAP other income to be significantly lower compared to the fourth quarter of 2020 due to the one-time gain on short term investments previously discussed; and as a result, we expect non-GAAP EPS to be slightly higher compared to the fourth quarter of 2020. I’ll hand the call back over to Francis for his final remarks."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Francis deSouza",
+     "content": "We’re off to a strong start in 2021. We’re seeing strength in our core business and are playing an essential role in the emerging surveillance effort necessary to fight the pandemic. In the past couple of months, as new, more dangerous SARS-Cov-2 variants have emerged, there has been a growing recognition of the need for COVID surveillance around the globe, with countries like U.K., Australia, Canada and Germany leading the way in deploying national surveillance infrastructures. In the U.S., the proposed budget package, contains $1.75 billion for the CDC to conduct, expand, and improve activities to sequence genomes, identify mutations, and survey the transmission of viruses including SARS-CoV-2. Sequencing-based surveillance is one of the key elements in the fight against this pandemic, and it’s also becoming clear that sequencing and surveillance are becoming mainstream in the defense against infectious disease. This global surveillance infrastructure being built right now will be instrumental in identifying future outbreaks – including coronaviruses, antimicrobial resistance and bioterrorism. Illumina is proud to be at the forefront of this important work. We’d also like to congratulate Nobel Laureate and Illumina Board member, Dr. Frances Arnold, who was named as CoChair of the U.S. President’s Council of Advisors on Science and Technology. We believe the recent appointments of highly experienced scientists signal the Administration’s focus on science, including genomics, to improve life in the U.S. for everyone. Finally, we continue to expect to close the GRAIL acquisition in the second half of this year, enabling us to help accelerate the adoption of early cancer detection screening, and open up the largest application for genomics by far. We are looking forward to GRAIL launching Galleri in Q2. We see a vast number of opportunities ahead of us and there has never been a more exciting time to be in genomics at Illumina. Now, I’ll invite the operator to open for Q&A."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Your first question comes from Dan Brennan with UBS."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Dan Brennan",
+     "content": "Great. Thanks for taking the question. I have a two-part question, Francis. I guess the first one really for Sam was just on the earnings guidance for next year. It includes a substantial amount of OpEx spending and really not getting much leverage. So I'm hoping you can walk through that a little bit because the initial guide kind of surprised us. And then secondarily, I was hoping that you could walk through in terms of your sequencing guidance for next year, Francis, in terms of the NovaSeq success that you've had thus far. Of the remaining HiSeq existing customers that haven't converted, can you give a little more color kind of what's baked in, in terms of the new V1.5 launch? And how many of those you expect to convert? And that's kind of what's impacted in your guidance? Thank you."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Sam Samad",
+     "content": "Yes. Thanks, Dan. So this is Sam. Hope you are doing well. So let me talk a little bit about the EPS guide of [indiscernible] for this year. Basically, we're expecting roughly 24% operating margin. So there is an element of OpEx growth in there. And part of that is a one time also impact related to stock-based compensation. We talked about at JPMorgan when we provided the guide, which is related to two plans for the 19 and 20 plans that were significantly impacted by the pandemic. And that we are modifying the targets on those plans. So that has a one-time catch up expense in 2021 of approximately $50 million to $55 million. And that's really a significant portion of the OpEx growth. Beyond that, we're continuing to invest behind our platforms, behind our technologies, behind our assays. So which we are committed to R&D is a big commitment for us. As we look forward Dan, our goal is to continue to improve in terms of the leverage on our operating margin to get back to traditional operating margin levels that we had back in 2019, which were close to 30%, that will take some time to get back to, but that's a commitment that we have is to continue to drive operating leverage by making sure that we're very actively focused on G&A investments and reducing or making sure that those continue to grow beyond the rate of growth in revenues. But then we continue to invest in R&D and to some extent, commercial as well. But we are committed over the long-term to get back into operating leverage. And in fact, in the second half as well of the year, as we get past the pandemic, the second half, we expect to see an improvement in terms of both gross margin and operating margin versus the first half and definitely higher than the full year as well for gross margin and operating margin."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Francis deSouza",
+     "content": "Super. Thanks, Sam. So Dan I'll take your question about NovaSeq this year and touch specifically also on the remaining HiSeq customers and how we're thinking about it this year. So I'll start by saying that, look, we're entering this year with a lot of momentum on NovaSeq. The version 1.5 NovaSeq reagents that we released in August really did a nice job in terms of unlocking the elasticity of demand in that high throughput segment of the market. And so as we talked about coming into this year, we're coming off Q4 where in our first quarter of selling the version 1.5 reagents. NovaSeq consumables had a record quarter, growing in the mid-teens year-over-year. So really strong from consumables perspective. And we talked about the fact that in Q4 we also had our second highest order in terms of bookings orders for NovaSeq and the first highest was when we first launched NovaSeq back in 2017. So both from a – an instruments perspective and a consumables perspective, we're coming off a really strong Q4, and we're walking into this year with a really strong pipeline and a strong backlog following the orders that came in Q4. So as we think about this year Dan, there are two sources of demand we see for NovaSeq. One, and we talked about this in Q4 also that we're seeing – because of 1.5, really an unlocking demand from new to high throughput customers. And if you think about in Q4, over half the bookings went to new to high throughput customers. So again that new pricing is opening up the market for new customers to come in. And the other source of demand for NovaSeq coming into this year is the remaining HiSeq customers. And as we pointed out, there are – of our original HiSeq base, we still have 320 customers that have yet to begin the upgrade cycle. And now with the lower pricing on 1.5, these typically smaller core labs now have a NovaSeq accessible to them. And if you look at the pricing now, all it takes for a HiSeq 2,500 customer is for them to run about four high output gets a month, and they can justify the list price of a NovaSeq in a year. In addition, with the 1.5 release, we extended the shelf life of the consumables from three months to six months, so they don't have to sequence as frequency to justify the upgrade. And then finally, the new 35 cycles as four kits also enables counting methods now on the NovaSeq, which was important to those labs. So you add all those in, and we're walking into this year with strong momentum on the NovaSeq side, and that's what we expect to drive orders this year. In fact, we're expecting another strong year of NovaSeq orders coming into 2021."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Operator",
+     "content": "Your next question is from Tycho Peterson with JPMorgan."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Tycho Peterson",
+     "content": "Hey, thanks. A couple of quick ones here. On the fourth quarter, was there any consumable stocking? We just hear about that your peers last night. And then how much of the record order book was catch up spending versus, Francis, what you just talked about, the acceleration and adoption driven by the flow sale? And then I'm curious why margins were so soft. You did have the price adjustments, the inventory write-down, stock-based comp, but it seems like maybe there was more there. I'm curious if you're kind of pulling forward any spending. And then secondly, shifting to the outlook, it's good to see you're stepping up the first quarter guidance here versus what you gave at our conference. I'm just curious if there was something that changed in your outlook, the original guidance down 9% to 10% obviously, didn't really make a ton of sense. So this is more of what I think people had been expecting anyway. But I'm curious what drove that. And then Francis, more broadly, I'm wondering if you can comment on the surveillance opportunity. Just how material you think that could be? And how much of that do you think ends up getting done on short versus long rate? Thanks."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Sam Samad",
+     "content": "Yes, so may be I will cover a couple of the points that you mentioned upfront Tycho, and I'll let Francis talk about the surveillance aspect. So I think there's a lot there. So hopefully, I'll capture everything here. But in terms of Q4 stocking, we had a very strong quarter in Q4. We did not see any unusual stocking beyond what you see traditionally at the year end. I mean, there's usually a reset of budgets at the end of Q4, academic budgets at the end of the year. So beyond what we usually see every year, we have not seen any unusual stocking in Q4. And we validate this by looking at basically activity on our sequencers. We look at the activity, the data that we have, looking at all the active sequencers that we have that are connected. And in fact, we saw a strong increase in terms of activity levels in Q4 in terms of clinical, getting back and showing growth pre-pandemic levels, and in terms of research now going basically at pre-pandemic levels. So pleased to see that and – which validates that there wasn't any unusual stocking at the end of Q4. In terms of gross margin, I think we talked about the drivers, Tycho. I mean we're still impacted by the pandemic. Freight is still a factor for us in Q4. We did have the onetime write-down on certain inventory, which was approximately a percentage point impact negatively on gross margin. And mix was an impact as well in Q4 because we had strong instruments in the quarter as well. So those are the things that impacted margins in Q4. We expect margins to improve in Q1, to progressively improve across 2021. And in the second half in fact to be, as I said earlier, above the full year average. And starting to get back to our – what we call our normal levels of 70% plus – not quite at 70%, but close to that in the second half. So we definitely see that as we start to get out of the constraints driven by the pandemic, and which resulted in higher freight and other higher expenses. With regards to Q1 outlook, we are pleased to be raising our Q1 outlook based on what we're seeing. We're seeing strength in the business. We're seeing strength in activity levels. Again, too early to comment specifically, it's been four weeks since the start of the year. But everything that we're seeing in terms of orders is really encouraging. So we are pleased with where the business has started."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Francis deSouza",
+     "content": "Yes. Let me build on – yes let me build on Sam's remark. So you're right, Tycho, this is a significant raise for us in terms of what we were expecting for Q1, given what we shared at JPMorgan. Now JPMorgan what we shared was very typical for our business and other players in our business, which is sequentially from Q4 to Q1 because of the capital cycle, you expect a decrease in revenue. And that's what we called. And we said, look, you should expect us to be flat to Q1 of last year. But we're seeing a lot more strength even in the first few weeks of the quarter. And that strength is coming from our core business, as Sam said, and we're monitoring both – not just orders, but we're monitoring activity levels. And exiting Q4 and into Q1 we are seeing strong activity levels both from the clinical side of the business, but also on the research side of the business. And so as we stand here, it's become clear to us that instead of being flat to a year ago, we're going to be up high single digits. And so we're coming pretty close to where we were in Q4. That's unusual in this business, but it really speaks to the strength that we're seeing in terms of orders coming in. Obviously, there's a lot of the year left. And so we're leaving the year guidance intact, but certainly strength in Q1. In terms of surveillance, surveillance is something we've been talking about now for about a year. And the idea is that, in addition to rolling out testing infrastructure to fight this pandemic, you will need surveillance infrastructure to understand how the virus is spreading geographically and how it's mutating. And that information about mutations are essential to understand that the tools we're using to fight the pandemic, the diagnostics, the vaccines, the therapies will continue to be effective. And really once the outbreak we started to see around Christmas of the B117 variants in the U.K. and then the South African variants that started to really get people realized that we do need the surveillance infrastructure. So then contribute much in terms of revenue in Q4 and we only built in a modest amount in Q1, but you can see the activity, right? You can see the activity in CoG-UK, you can see the activity in countries around the world, in France, in Germany, Italy, and Spain and Greece, sort of around the world. And we expect that to continue over the course of this year, as countries build out these surveillance infrastructures, and that's going to be a durable surveillance infrastructure. We’re going to need it in the future to warn us of the next pandemic, to warn us of bioterrorist attacks, anti-microbial resistance. And what's interesting is that Illumina's technology is uniquely well-suited for this need. And the reason for that is because, we have unmatched accuracy, we can deliver with the highest scale, we can deliver the price point per sample that's necessary and we also have the first cleared product for customers to use. And so those things came together and you'll see that playing out in the numbers, right. So right at the very beginning, we were the sequencer used in Wuhan and then in Shanghai to publish the first viral genome. It was the Illumina sequencing data that was used by the vaccine developers to develop the vaccines, the MRA vaccines are being used today. And that was because of the accuracy of the Illumina sequencing. And now, as you look at the large-scale initiatives, CoG-UK, and some of the other ones, it's Illumina’s sequencers that's being used because of the scale that we can achieve, and the throughput, and the turnaround time. And so, you look at the numbers of the genomes in Jessa, for example, and you will see that the vast majority of the data, and Jessa, the vast majority of the genomes that have been sequenced have been done on Illumina sequencers. And so very exciting, very important, starting now."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Operator",
+     "content": "Your next question is from Doug Schenkel with Cowen."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Doug Schenkel",
+     "content": "Hey, good afternoon, everybody. Thank you for taking my questions. Let me just rattle through them real quick. On NovaSeq utilization, NovaSeq consumables pulled through on an annualized basis, I believe, was above 1.2 million in the fourth quarter. I believe your expectation for 2021, at least in terms of what’s embedded into guidance is 1.1 to 1.2 per box. I'm just wondering, what's driving the assumption for slightly lower utilization versus Q4, keeping in mind that there was no abnormal stocking in Q4? There's a couple of things I could think of, maybe it's just early in the year, uncertainty, especially as we're coming out of the pandemic. Maybe it's the expectation for a lot more boxes being placed, which can pressure pull through at least initially on an average basis. And/or it could have something to do with the v1.5 reagent pricing having an impact. So, some detail on that assumption would be helpful. And then the second thing I wanted to talk about was just GRAIL. Do you expect PATHFINDER data in Q1, is that still the case? When would you expect to initiate registration studies? And can you share anything in terms of progress being made with self-insured employers, closed healthcare systems and/or concierge systems? Thank you."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Sam Samad",
+     "content": "Yes, thank you, Doug. This is Sam. Maybe I'll start with your pull-through question and then I'll let Francis talk to GRAIL. Yes, I think you hit the nail on the head with the comments that you made around pull through. I mean, we had a very, very, I would say, strong pull-through in Q4 in terms of $1.2 million per instrument, we were back to above pre-pandemic levels, actually at the high end of the guidance range in terms of pre-pandemic levels. We do expect with the v1.5 that you will have – that it will catalyze significant HiSeq conversion with those 320 remaining HiSeq customers. So those will start to also transition to NovaSeq. That has, I would say, a very modest impact on pull-through, on the downside, but also you have the large centers that will drive, pull-through higher on the upside.  But as you said, we're still in a pandemic year. The first six months of the year are expected to still be basically a pandemic reality, so to speak. And at this point, I think, it's prudent that the guidance that we have and the expectation that we have is the $1.1 million to $1.2 million range. We're very encouraged by what we saw in Q4."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Francis deSouza",
+     "content": "Yes, now if I could add on the GRAIL side. So, no new update. So that means GRAIL is on track, with its PATHFINDER results, as they said at JP Morgan in their announcement for Q1 and they are on track for a gallery launch in Q2. We know they are making progress with both health systems and self-insured employers. They haven't announced anything yet, but I know, for example, we are marching down the path at Illumina to make the GRAIL test available to our employees in the second half of this year. And as part of that process, our team has been engaged with other employers that are also in process with them. The big announcement, obviously from the health system side was the announcement around the NHS and that's tracking for the pilot to be launched this year. And as a reminder, that's 165,000 tests that they've committed to doing with the intent, then assuming that goes well, to do a million tests in 2024, and then do a population wide rollout."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Operator",
+     "content": "Your next question is from Puneet Souda with SVB Leerink."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Puneet Souda",
+     "content": "20% sequencing consumable growth this year, just trying to understand a little bit in terms of – you are pointing out number of growth drivers here, easy comps obviously, new chemistry, $600 genome discount that we saw in the fourth quarter, that's obviously driving elastic demand here, as you would have expected. There is increase in COVID sequencing, COVID variance, that's coming in, there's post-pandemic instrumentation buys and cancer patients potentially returning back as they get vaccinated in 2021 here. And MRD and screening, and those trials are ramping up too. So just wanting to understand sort of why the conservatism is at 20% given all that of a backdrop? And then I also wanted to understand – well, first of all, I appreciate you providing the roadmap details in terms of product improvements that you expect. But wondering how should we look at that in light of a customer event that you have coming up there? And then lastly, if I could also touch on MRD that's been a new focus area for GRAIL. So, there are already two competitors in the place in the market there. So how do you position into that market? And also, how do you – what's your expectation in terms of those other competitors are obviously, they are running samples on Illumina sequencers too. So, what's your expectation for the MRD market here, acceleration over the next one to three years? I appreciate you taking these questions. Thank you."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Sam Samad",
+     "content": "Yes, thanks Puneet. Hope you're doing well. So, this is Sam. I'll start with the sequencing consumable question, and then I'll let Francis comment on the roadmap question in the MRD one as well. So, we are expecting 20% sequencing consumable growth this year for a number of reasons there are some very good tailwinds in the business and strengthen in the core business that drive us to that. As you mentioned, additional market access and coverage for both on the NIPT side, on the genetic disease side, we're seeing definitely growth in the comprehensive genomic profiling on the oncology side, the v1.5 is a great introduction. The COVID variance part Puneet, we have not really assumed a significant impact of that in our guides, that's something that we're really encouraged by in terms of the surveillance aspect. We are seeing definitely strength from that, but again, a bit early to really size that for the full year. So that's not significantly included in our guide, I would say. And then, remember one other thing as well is we're still – and again, I don't want to sound like a broken record on this, but we are still in a pandemic year and we still have an expectation here that for the first six months of the year that we are in a pandemic. I would not call this a normal year, but in the second half we hope to be coming out of the pandemic definitely with the progress that's being made around vaccination rates as well. But all good points that you made, but hopefully this gives you some additional background."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Francis deSouza",
+     "content": "Yes, so now I will talk about two things. I'll talk about the customer event; I talk about the roadmap and I'll talk about the GRAIL MRD test. So, we do have a customer event, it's going to be sort of our first global this year virtual customer event that we will have at the tail end of April. It’s shaping up to be a terrific event, and we have some fabulous speakers and we have tracks for different segments of our customer base. So, they will be track, for example, on population sequencing, where we will convene some of the largest population sequencing initiatives around the world to come together, share best practices and learn from each other. And we'll do the same thing for oncology testing, and so on.  I suspect whether you were going ask, Puneet was, so are we going to announce anything at the customer event. And I've been on the record of saying, I'd love to announce products in front of customers rather than in front of bankers. But obviously I can't say what we're going to do in terms of product roadmaps as a company, we don't preannounce products. What we did announce recently the P1 one flow cell. On the NextSeq, we announced, ICA the connected analytics platform at JP Morgan, which is seeing really nice traction in population sequencing efforts. And obviously we did the v1.5. So, you’ll just have to stay tuned in terms of what we announced when. In terms of the GRAIL just MRD in general, and then the GRAIL MRD tests, we are very excited about the impact on patients' lives from having an MRD test. We think that that will improve life for cancer patients, enable them to catch a recurrence earlier and that's going to be an important market. And there's a big opportunity there. As you said, there are two customers already of ours that have MRD tests. We will support them. We want to make sure they are hugely successful because this is an important segment and a large segment of the genomics application as well. So, we'll continue to do everything we can to make sure they are successful. We're also excited about GRAIL MRD test. And GRAIL has a little bit of a different take on their approach on MRD. And the difference between what GRAIL is trying to do and what some of the other players are trying to do is that, some of the tests that exist in the market today are patient-specific tests. And so, the way it works is, you do a tumor profile on a particular patient's cancer, and you – based on that tissue sample, you take from that patient, and then you create the test for that cancer patient, and you run that as a blood test then going forward. So terrific test, very important, very groundbreaking. But because you are taking a tissue sample and you are building a patient specific test; it does take some time. GRAIL is using a different approach. They're basing their MRD test on their screening tests, which means it isn't patient specific but it's the single blood test that they use for screening that they are using for MRD as well. That should significantly compress the timeframe in terms of having that test available for a patient and doesn't require a tissue biopsy. And so, we think to have a differentiated view on the market. And we’re excited about bringing that to the market as well, and giving patients the choice. Over the last few weeks GRAIL announced some important partnerships. So, at JP Morgan, we talked about the fact that GRAIL announced partnerships with Amgen, AstraZeneca, Bristol-Myers Squibb, as partners for its MRD test. Obviously, a terrific set of partners. And continues to show good momentum around the development of that test with GRAIL."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Operator",
+     "content": "Your next question is from Derik De Bruin with Bank of America."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Derik De Bruin",
+     "content": "Hi, good afternoon."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Francis deSouza",
+     "content": "Hey Derik."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Sam Samad",
+     "content": "Hey Derik."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Derik De Bruin",
+     "content": "Hey, so two questions. So, first one, I would just want to talk about is, can you talk a little bit about the culture expectations for the mid-range instruments for the NextSeq and MiSeq as you look into 2021? I appreciate the color on the NovaSeq, but some commentary there would be helpful, particularly I think on the NextSeq, as you're sort of placing more instruments on the 2000 and 1000 side. And then on the other side, the other question is a follow-on Doug's. Can you talk a little bit on GRAIL in terms of thinking about how your – do I need to do a sales and marketing plan here and how you're going to address customers? I mean, do you need to go out and build or buy more primary care of sales force, given where your current business is not exactly targeting that market. I'm just sort of curious in terms about your commercialization plans and how you think about the go-to-market strategy? Thanks."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Sam Samad",
+     "content": "So maybe I will start with the pull-through question and thanks Derik, by the way. And Francis can talk about GRAIL. With regards to pull-through on the mid-throughput and low throughput, Derik, so starting with NextSeq, we will not yet give a pull-through expectation for NextSeq. There's a lot of moving parts there, as you know, with regards to NextSeq 2000, the introduction being fairly recently, at the end of Q1 of last year with the NextSeq 1000 coming into the mix as well, late in the year. And so those will have an impact on NextSeq 550 and we're still evaluating what the potential pull-through would look like in terms of NextSeq 2000. So it would be premature right now to give a guidance range around what the pull-through expectation is there. With regards to low throughput, MiSeq and MiniSeq as well. MiSeq was impacted by the pandemic in 2020. So usually we give a guidance range of 40,000 to 45,000 per box on MiSeq. It was impacted by the pandemic in 2020. So it was well below that. And then it started to approach that lower end of the range towards the end of 2020 in terms of the high 30s. So right now, we're expecting somewhere for MiSeq close to 35,000 to 40,000 in terms of MiSeq pull-through per box for 2021. With regards to MiniSeq, usually, the range is 20 to 25 and we are expecting to be on the low end of that range for MiniSeq."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Francis deSouza",
+     "content": "Thanks, Sam. So let me pick up then on the commercialization plan for GRAIL. So let me start by saying that post-acquisition, the intent is to run GRAIL as a separate division. So it's going to have its own sort of end-to-end infrastructure. The go-to-market plan for GRAIL and you've started to see glimpses of this, is not going to be, to build this big direct-to-physician sales force necessarily. The initial plan for GRAIL is to sell to – it's a B2B model, right, to sell to health systems, national health systems, like the deal they talked about with the NHS, for example, but also integrated health systems in the U.S. to sell to concierge health systems and to sell to self-insured employers. And so that's an enterprise sale, B2B sale so similar to what we do at Illumina, obviously, a little bit different, but we also have an enterprise sales force. And so that's the intent with GRAIL going forward. And while there might be some patient advocacy and some education, I think one of the advantages that GRAIL have, relative to some of the tests in the market today is that it's a blood test. And it doesn't require a lot of pushing to get people to be compliant with the test that they have to take home, for example. And so it's a little bit of a different model that they're using, again they are using that model today. So they have sort of an IDE from the FDA and they are returning results to patients in some really top tier health care systems like the Cleveland and so on. And so that's the model that they are refining, that's the model that's going to be rolled out to the NHS. And so that's the model they expect to continue going forward."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Operator",
+     "content": "Your next question is from Patrick Donnelly with Citi."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Patrick Donnelly",
+     "content": "Great. Thanks for taking the questions, guys. Had a couple just on China, you guys saw the highest instrument revenue in a few years there in the fourth quarter. I think you talked about seeing some more adoption in the hospital side. Can you just provide a bit more color on what you're seeing in that region also would be great to get an update on the competitive landscape? Have you seen any changes in China in terms of competitive behavior? And then lastly, probably for Sam, just on the guidance, what are you assuming for China in terms of the outlook?"
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Sam Samad",
+     "content": "Maybe I'll start with the last part because it's easy. So we are expecting revenue growth for China that exceeds our overall revenue growth as a company. So I would say, slightly above our overall revenue growth. And we're seeing very encouraging things in China as evidenced by the performance in Q4 and the instrument number that you talked about. But I'll let maybe Francis give some additional color."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Francis deSouza",
+     "content": "Yes. So let me pick up on that. So we are obviously very bullish on China. Sam said, we expect China to go faster than the overall company in 2021. So what's driving that, a few things, one, we're now starting to see sort of the next wave of adoption in the clinical market in China. And so we're seeing more hospitals embrace sequencing in their own hospital labs. And so that's sort of a wave that started to grow last year and certainly sort of picking up as we entered this year. That was part of the reason why this last quarter in Q4 was the highest score we've had for instruments since 2017 when we launched NovaSeq. And that was driven partially by hospitals, starting to embrace sequencing and sort of bringing it into their labs. We are seeing COVID drive some purchasing of sequencing. We talked about the fact that again, we got called into Wuhan in December 2019. We've been involved since then as part of their pandemic fighting efforts. That's a part of this business. And again, it's part of a durable surveillance infrastructure that's being built out. And then, we continue to be long-term excited about the opportunity in China. And you saw us, for example, announced the partnership with one of the top venture capital firms in China, Sequoia Capital China, to launch a genomic incubator in China to catalyze the next-generation of exciting genomics applications that leverage Illumina sequencing technology."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Operator",
+     "content": "Your next question is from Sung Ji Nam with BTIG."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Sung Ji Nam",
+     "content": "Hi, thanks for taking the questions. Just a couple of quick ones. One is just going back to the surveillance opportunity for COVID and other applications in the future. I don't know, if it's too early, but would you be able to kind of talk about what that the market potential might be going forward? And if not, is this something – is this an infrastructure that come to scale that the flu surveillance infrastructure might be currently, or is it a much larger scale kind of effort? And then the second question is, you guys talked about the improvement on the flow cell, the order of magnitude improvement leading to roughly 90% of cost savings for the flow cell. What does that translate into in terms of the total all-in cost per genome? Thank you."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Francis deSouza",
+     "content": "So maybe I'll start and talk about the surveillance opportunity. It's too early to size the surveillance opportunity. I think is sort of the short answer. But in terms of how to think about this, I think it's done right. It's significantly bigger than what we have today with the flu. And obviously, this pandemic was sort of a wake up moment from so many perspectives. I'll give you one example. We were talking to officials from the U.S. government at some point in sort of late Q1, early Q2. And there was a realization that we have the coronavirus spreading in the U.S. for weeks and people were dying maybe months, and we didn't even know that we had it. And that's a huge wake-up call because that's important, not just for a coronavirus pandemic, but it has implications around surveillance for bio-terrorism, for example. And so, the wake up call is to say, look, we need the surveillance infrastructure, and we need a global surveillance infrastructure. It's got to be genomics based, and it's got to watch for emerging anti-microbial resistance, new pathogens, bio-terrorism. The scope of that is significantly bigger than flu tracking that happens today. The other interesting dynamic that's playing out is, this is absolutely a public health infrastructure, essential for public health, absolutely. But it's also a defense infrastructure and the two are funded very differently, right. So public health, as you know, goes from panic to starvation, right. So there's a panic infrastructure gets built and then maybe doesn't always get the funding follow through. Defense is not like that. And so this is going to be a combination of both. It's going to be a public health infrastructure and is going to be a part of the national defense infrastructure. So you think about this long-term, it's definitely got a scope that's significantly bigger in terms of thinking than what we do with flu today."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Sam Samad",
+     "content": "Yes. And Sung Ji, with regards to the 90% reduction, I mean, Francis introduced some really exciting innovation roadmap and technology roadmap items at JP Morgan. And the 90% reduction in terms of costs, it's really talking about not a product that we have today, but really the roadmap that we have and the technologies that we have today that will become a product that takes us to the $100 genome and below that even in terms of a cost per genome."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Operator",
+     "content": "Your final question is from Tejas Savant with Morgan Stanley."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Tejas Savant",
+     "content": "Hey guys. Appreciate the time here. One quick cleanup on COVID surveillance, Francis, on the P1 flow cell, I believe it's shipping in the second half of the year. Is there anything you can do to pull that forward in terms of the launch timeline, given the focus on surveillance, both in the U.S. and abroad and this need for a lower throughput NextSeq option? And then my second question is on GRAIL. In the past, you sort of alluded to the possibility of potentially, some sort of a risk sharing structure and sort of Illumina being on the hook for or other players being on the hook for a rise in overall diagnostic testing costs, following gallery deployment in order to encourage customers to participate in pilots. Have you sort of like chopped any wood in terms of implementing those sort of arrangements just yet? Or is it still too early?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Francis deSouza",
+     "content": "Got it. So let me answer the P1 question and then pick up on the sort of, I guess, the partnerships. I'll start by saying, now you know, how I feel right, in the sense that we have this incredible portfolio of products that our engineering team is building. And every one of them, I wish we could get earlier, because when I think about the impact and 18% of our revenue, we spend in R&D and it's a breathtaking set of products that the team is building. They are going as fast as they can to get the product out with the quality they need, especially given, the important work that our customers do with our product. So while I'd love to, the reality is, we can't pull P1 forward, although I know people really, really want it. And that's true across our entire portfolio. And I think you're right, it will actually have – it will have a really an important role to play even in surveillance. I think your second question was around, the partnerships that we were looking to do with other customers in the oncology diagnostic space. And we're looking to get into screening and we're making progress with those customers. We've signed supply agreements, long-term supply agreements with some of those customers and continuing dialogue with the remaining customers. And so, our commitment is to continue to supply them with the technology they need and make sure that they have all equal access to the technologies that we commercialize going forward. In some cases, those are agreements that are over a decade long and that's great for our customers. That's great for us too."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Operator",
+     "content": "And there are no further questions at this time, your closing remarks, please."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Juliet Cunningham",
+     "content": "Yes. Thank you so much, everyone for the great questions. As a reminder, there's a replay of this call that will be available tomorrow on our website on the Investor Relations page. We look forward to updating you on our progress after the close of Q1. Take care."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, this concludes today's conference call. Thank you for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +302,8 @@
    "reportDate": "2019-12-29",
    "accession": "0001110803-20-000018",
    "url": "https://www.sec.gov/Archives/edgar/data/1110803/000111080320000018/form10-k2019classic.htm",
-   "local_gz": "000111080320000018__annual.txt.gz"
+   "local_gz": "000111080320000018__annual.txt.gz",
+   "n_lines": 6564
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +311,8 @@
    "reportDate": "2020-09-27",
    "accession": "0001110803-20-000060",
    "url": "https://www.sec.gov/Archives/edgar/data/1110803/000111080320000060/ilmn-20200927.htm",
-   "local_gz": "000111080320000060__q0.txt.gz"
+   "local_gz": "000111080320000060__q0.txt.gz",
+   "n_lines": 954
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +320,106 @@
    "reportDate": "2020-06-28",
    "accession": "0001110803-20-000051",
    "url": "https://www.sec.gov/Archives/edgar/data/1110803/000111080320000051/ilmn-20200628.htm",
-   "local_gz": "000111080320000051__q1.txt.gz"
+   "local_gz": "000111080320000051__q1.txt.gz",
+   "n_lines": 893
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2020-10-30",
   "n_rows": 8,
@@ -83,6 +434,63 @@
     "ocf": 198000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 412000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 457000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 169000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 2270000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1743000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 56000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 233000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.57,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 149000000.0,
+      "filed": "2019-04-26",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +501,58 @@
     "ocf": 143000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 420000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 470000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 167000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1943000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 47000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 296000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.99,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 149000000.0,
+      "filed": "2019-07-31",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +563,63 @@
     "ocf": 267000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 417000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 541000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 161000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1815000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1131000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 49000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 234000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.58,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 148000000.0,
+      "filed": "2019-10-25",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +630,63 @@
     "ocf": 443000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 359000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 573000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 167000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 2042000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1141000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 57000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 188000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 239000000.0,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.61,
+      "filed": "2020-02-11",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +697,63 @@
     "ocf": 281000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 384000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 472000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 158000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1991000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1151000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 40000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 173000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.17,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 148000000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +764,63 @@
     "ocf": 240000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 435000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 385000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 153000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1770000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1162000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 39000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 47000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.32,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 148000000.0,
+      "filed": "2020-08-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +831,63 @@
     "ocf": 153000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 415000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 464000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 154000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1761000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1173000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 48000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 179000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.21,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 148000000.0,
+      "filed": "2020-10-30",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +898,30 @@
     "ocf": 406000000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": {
+      "value": 62000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "depreciation_amortization": {
+      "value": 50000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "net_income": {
+      "value": 257000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 1.75,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 953000000.0,
     "revenue_xbrl_for_reference": 953000000.0
@@ -166,152 +935,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3826",
   "sic2": "38",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 199,
-  "peer_list_all_same_sic2_tickers": [
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 18,
+  "peer_list_all_tickers": [
    "A",
-   "AEHR",
-   "AEMD",
-   "ALC",
-   "ALGN",
-   "ALNT",
-   "AME",
-   "ANGO",
-   "ANIK",
-   "AORT",
-   "APT",
-   "APYX",
-   "ARAY",
-   "ASTC",
-   "ATEC",
-   "ATRC",
-   "AVTR",
-   "AXGN",
-   "BAX",
-   "BCHT",
-   "BDX",
-   "BFLY",
-   "BIO",
-   "BLFS",
-   "BMI",
-   "BNGO",
-   "BRKR",
-   "BSX",
-   "BVS",
-   "BWAY",
-   "CAMT",
-   "CERS",
-   "CGNX",
-   "CLGN",
-   "CLIR",
-   "CLPT",
-   "CNMD",
-   "CNSY",
-   "CODA",
-   "CODX",
-   "COHR",
-   "COHU",
-   "COO",
-   "CTSO",
-   "DAIO",
-   "DCTH",
-   "DHR",
-   "DRIO",
-   "DRS",
-   "DXCM",
-   "ECOR",
-   "ELMD",
-   "ENOV",
-   "ESTA",
-   "EW",
-   "EYE",
-   "EYPT",
-   "FCUV",
-   "FEED",
-   "FEIM",
-   "FOCL",
-   "FOSL",
-   "FTV",
-   "GCTK",
-   "GEOS",
-   "GKOS",
-   "GMED",
-   "GPRO",
-   "GRMN",
-   "HAE",
-   "HBIO",
-   "HURC",
-   "HYPR",
-   "IART",
-   "ICUI",
-   "IMAX",
-   "INBS",
-   "INFU",
-   "INGN",
-   "INMD",
-   "INSP",
-   "INTT",
-   "IRIX",
-   "IRMD",
-   "IRTC",
-   "ISRG",
-   "ITGR",
-   "ITRI",
-   "IVF",
-   "KEQU",
-   "KEYS",
-   "KIDS",
-   "KLAC",
-   "KODK",
-   "KRMD",
-   "LAKE",
-   "LFWD",
-   "LHX",
-   "LIVN",
-   "LMAT",
-   "LNSR",
-   "LUNG",
-   "MASS",
-   "MBAI",
-   "MBOT",
-   "MDT",
-   "MDXG",
-   "MIND",
-   "MIR",
-   "MKSI",
-   "MLAB",
-   "MLSS",
-   "MMM",
-   "MMSI",
-   "MOV",
-   "MSA",
-   "MTD",
-   "MYO",
-   "NAUT",
-   "NDRA"
+   "BNGO"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000097745",
-    "name": "THERMO FISHER SCIENTIFIC INC.",
-    "ticker": "TMO",
-    "sic2": "38",
+    "entity_id": "0001411690",
+    "name": "Bionano Genomics, Inc.",
+    "ticker": "BNGO",
+    "sic4": "3826",
+    "sic3": "382",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2020-02-26",
-    "accn": "0000097745-20-000009",
-    "local_gz": "000009774520000009__peer10k.txt.gz",
+    "filingDate": "2020-03-10",
+    "accn": "0001411690-20-000006",
+    "local_gz": "000141169020000006__peer10k.txt.gz",
     "capex_excerpt": [
-     "s and technologies through strategic acquisitions. Our ability to make scheduled payments, refinance our obligations or obtain additional financing will depend on our future operating performance and on economic, financial, competitive and other factors beyond our control. Our business may not generate sufficient cash flow to meet our obligations. If we are unable to service our debt, refinance our existing debt or obtain additional financing, we may be forced to delay strategic acquisitions, capital expenditures or research and development expenditures. 20 THERMO FISHER SCIENTIFIC INC. Risk Factors (continued) Additionally, the agreements governing our debt require that we maintain certain ",
-     "interest or other expense/income, net to its segments. F-25 THERMO FISHER SCIENTIFIC INC. NOTES TO CONSOLIDATED FINANCIAL STATEMENTS (Continued) (In millions) 2019 2018 2017 Total Assets Life Sciences Solutions $ 18,306 $ 18,774 $ 19,063 Analytical Instruments 9,896 9,907 9,960 Specialty Diagnostics 5,867 6,663 7,095 Laboratory Products and Services 21,761 19,051 19,181 Corporate/Other (c) 2,551 1,837 1,370 Consolidated total assets $ 58,381 $ 56,232 $ 56,669 Capital Expenditures Life Sciences Solutions $ 151 $ 107 $ 118 Analytical Instruments 64 85 56 Specialty Diagnostics 83 103 87 Laboratory Products and Services 554 374 178 Corporate/Other 74 89 69 Consolidated capital expenditures $ 926",
-     "6 $ 18,774 $ 19,063 Analytical Instruments 9,896 9,907 9,960 Specialty Diagnostics 5,867 6,663 7,095 Laboratory Products and Services 21,761 19,051 19,181 Corporate/Other (c) 2,551 1,837 1,370 Consolidated total assets $ 58,381 $ 56,232 $ 56,669 Capital Expenditures Life Sciences Solutions $ 151 $ 107 $ 118 Analytical Instruments 64 85 56 Specialty Diagnostics 83 103 87 Laboratory Products and Services 554 374 178 Corporate/Other 74 89 69 Consolidated capital expenditures $ 926 $ 758 $ 508 (c) Corporate assets consist primarily of cash and cash equivalents and property and equipment at the company's corporate offices. Geographical Information (In millions) 2019 2018 2017 Revenues (d) United "
-    ]
+     "ted to increased headcount across all business segments, increased professional fees to support ongoing business operations and to comply with obligations associated with being a publicly-traded company, and increased investments in marketing and promotions. These increases are partly offset by lower facilities expense as a result of us subleasing one of our leased facilities in the fourth quarter of 2018. Investing Activities Historically, our primary investing activities have consisted of capital expenditures for the purchase of capital equipment to support our expanding infrastructure. We expect to continue to incur additional costs for capital expenditures related to these efforts in fut",
+     "ns associated with being a publicly-traded company, and increased investments in marketing and promotions. These increases are partly offset by lower facilities expense as a result of us subleasing one of our leased facilities in the fourth quarter of 2018. Investing Activities Historically, our primary investing activities have consisted of capital expenditures for the purchase of capital equipment to support our expanding infrastructure. We expect to continue to incur additional costs for capital expenditures related to these efforts in future periods. We did not use a significant amount of cash in investing activities during the year ended December 31, 2019 as well as for the same period ",
+     "ts issued for services — 165,000 Other items — 115,464 Changes in operating assets and liabilities: Accounts receivable (2,374,497 ) (900,119 ) Inventory (3,641,017 ) (418,984 ) Prepaid expenses and other current assets (245,046 ) 152,012 Accounts payable 1,362,397 (954,377 ) Accrued expenses and contract liabilities (73,910 ) (247,402 ) Net cash used in operating activities (29,529,720 ) (19,943,847 ) Investing activities: Purchases of property and equipment (61,056 ) (331,716 ) Net cash used in investing activities (61,056 ) (331,716 ) Financing activities: Proceeds from issuance of debt, net of issuance costs 19,134,424 23,830,489 Proceeds from borrowing from line of credit 5,113,072 — Re"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000313616",
-    "name": "DANAHER CORP /DE/",
-    "ticker": "DHR",
-    "sic2": "38"
+    "entity_id": "0001090872",
+    "name": "AGILENT TECHNOLOGIES, INC.",
+    "ticker": "A",
+    "sic4": "3826",
+    "sic3": "382",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2020-12-18",
+    "accn": "0001090872-20-000020",
+    "local_gz": "000109087220000020__peer10k.txt.gz",
+    "capex_excerpt": [
+     "f tariffs and foreign currency movements, our future effective tax rate, tax valuation allowance and unrecognized tax benefits, the impact of local government regulations on our ability to pay vendors or conduct operations, our ability to satisfy our liquidity requirements, including through cash generated from operations, the potential impact of adopting new accounting pronouncements, indemnification, source and supply of materials used in our products, our sales, our purchase commitments, our capital expenditures, the integration and effects of our acquisitions and other transactions, our stock repurchase program and dividends and the potential or anticipated direct or indirect impact of C",
+     "f tariffs and foreign currency movements, our future effective tax rate, tax valuation allowance and unrecognized tax benefits, the impact of local government regulations on our ability to pay vendors or conduct operations, our ability to satisfy our liquidity requirements, including through cash generated from operations, the potential impact of adopting new accounting pronouncements, indemnification, source and supply of materials used in our products, our sales, our purchase commitments, our capital expenditures, the integration and effects of our acquisitions and other transactions, our stock repurchase program and dividends and the potential or anticipated direct or indirect impact of C",
+     "by the higher sales volume, combined with efficiency gains across the service delivery operations, order fulfillment processes and other operations. 47 Financial Condition Liquidity and Capital Resources We believe our cash and cash equivalents, cash generated from operations, and ability to access capital markets and credit lines will satisfy, for at least the next twelve months, our liquidity requirements, both globally and domestically, including the following: working capital needs, capital expenditures, business acquisitions, stock repurchases, cash dividends, contractual obligations, commitments, principal and interest payments on debt, and other liquidity requirements associated with "
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -333,7 +1002,16 @@
   "latest_data_date": "2021-02-12",
   "cutoff": "2021-02-12",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2021-02-11",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2021-02-16",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

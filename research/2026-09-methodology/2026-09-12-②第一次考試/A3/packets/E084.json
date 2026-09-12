@@ -1,6 +1,7 @@
 {
  "event_id": "E084",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E084",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "PAR",
  "cik": "0000708821",
  "name": "PAR TECHNOLOGY CORP",
@@ -9,10 +10,11 @@
  "bucket": "製造與工業",
  "evidence_cutoff": "T1 = 2025-02-28(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E084",
   "event_id": "E084",
   "ticker": "PAR",
   "cik": "0000708821",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,7.01,8.01,9.01",
   "accessionNumber": "0000708821-25-000010",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/708821/000070882125000010/par-20250228.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/708821/000070882125000010/par-20250228.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n aex991earningsreleasexq420.htm\n EX-99.1\n Document \n Exhibit 99.1 \n FOR RELEASE: \n CONTACT: \n New Hartford, NY, February 28, 2025 \n Christopher R. Byrnes (315) 743-8376 \n chris_byrnes@partech.com, www.partech.com \n PAR TECHNOLOGY CORPORATION ANNOUNCES FOURTH QUARTER AND FULL YEAR 2024 RESULTS \n • Annual Recurring Revenue (ARR) (1) grew to $276.0 million - total growth of 102% inclusive of organic growth of 21% from $136.9 million reported in Q4 '23 \n • Quarterly subscription service revenues increased 95% year-over-year, inclusive of organic growth of 25% from Q4 '23 \n • PAR acquired Delaget, LLC (\"Delaget\"), a leading provider of restaurant analytics and business intelligence solutions \n New Hartford, NY - February 28, 2025 -- PAR Technology Corporation (NYSE: PAR) (“PAR Technology” or the “Company”) today announced its financial results for the fourth quarter and year ended December 31, 2024. \n PAR CEO, Savneet Singh commented, \"We delivered a strong fourth quarter, with 21% organic ARR growth year-over-year and our second consecutive quarter of positive Adjusted EBITDA, proving out our better together thesis. 2024 was a milestone year for PAR with what I believe is our best organic execution yet. That execution, combined with the addition of accretive modules, sets our company up to keep our flywheel moving aggressively for years to come. We continue to be confident in our ability to drive further long-term growth and deliver shareholder value.\" \n Q4 2024 Financial Highlights (2) \n (in millions, except % and per share amounts) GAAP Non-GAAP (1) \n Q4 2024 Q4 2023 vs. Q4 2023 Q4 2024 Q4 2023 vs. Q4 2023 \n Revenue $105.0 $69.9 better 50.2% \n Net Loss from Continuing Operations/Adjusted EBITDA $(25.3) $(21.5) worse $3.8 million \n $5.8 $(7.4) better $13.1 million \n Diluted Net Loss Per Share from Continuing Operations $(0.68) $(0.77) better $0.09 \n $(0.00) $(0.43) better $0.43 \n Subscription Service Gross Margin Percentage 53.2% 48.1% better 5.1% \n 64.7% 65.3% worse 0.6% \n Full Year 2024 Financial Highlights (2) \n (in millions, except % and per share amounts) GAAP Non-GAAP (1) \n 2024 2023 vs. 2023 2024 2023 vs. 2023 \n Revenue $350.0 $276.7 better 26.5% \n Net Loss from Continuing Operations/Adjusted EBITDA $(89.9) $(81.6) worse $8.3 million \n $(6.4) $(38.4) better $32.0 million \n Diluted Net Loss Per Share from Continuing Operations $(2.63) $(2.96) better $0.33 \n $(0.73) $(1.96) better $1.23 \n Subscription Service Gross Margin Percentage 53.5% 48.0% better 5.5% \n 65.9% 66.4% worse 0.5% \n (1) See “Key Performance Indicators and Non-GAAP Financial Measures” for reconciliations and descriptions of non-GAAP financial measures to corresponding GAAP financial measures. Amounts presented in the reconciliations and other tables presented herein may not sum due to rounding. \n (2) Results exclude historical results from our Government segment which are reported as discontinued operations. \n 1 \n The Company's key performance indicators ARR and Active Sites (1) are presented as two subscription service product lines: \n • Engagement Cloud consisting of Punchh, PAR Retail, PAR Ordering, and Plexure product offerings. \n • Operator Cloud consisting of PAR POS, PAR Payment Services, PAR Pay, PAR OPS (Data Central and Delaget), and TASK product offerings. \n Highlights of Engagement Cloud - Fourth Quarter 2024 (1) : \n • ARR at end of Q4 '24 totaled $159.1 million \n • Active Sites as of December 31, 2024 totaled 119.7 thousand \n Highlights of Operator Cloud - Fourth Quarter 2024 (1) : \n • ARR at end of Q4 '24 totaled $116.8 million \n • Active Sites as of December 31, 2024 totaled 54.8 thousand \n (1) See “Key Performance Indicators and Non-GAAP Financial Measures” below. \n Earnings Conference Call . \n There will be a conference call at 9:00 a.m. (Eastern) on February 28, 2025, during which management will discuss the Company's financial results for the fourth quarter ended December 31, 2024. The earnings conference call will be webcast live. To access the webcast, please visit the PAR Technology Investor Relations website at www.partech.com/investor-relations/ . A recording of the webcast will be available on this site after the event. \n About PAR Technology Corporation . \n For over four decades, PAR Technology Corporation (NYSE: PAR) has been at the forefront of technology innovation in foodservice, helping businesses create exceptional guest experiences and connections. PAR’s comprehensive suite of software and hardware solutions, including point-of-sale, digital ordering, loyalty, back-office management, and payments, serves a diverse range of hospitality and retail clients across more than 110 countries. With its “Better Together” ethos, PAR continues to deliver unified solutions that drive customer engagement, efficiency, and growth, all to make it easier for PAR’s customers to manage their operations. To learn more, visit partech.com or connect with us on LinkedIn , X (formerly Twitter) , Facebook , and Instagram . T he Company's Environmental, Social, and Governance report can be fou nd at https://www.partech.com/company/ESG . \n Key Performance Indicators and Non-GAAP Financial Measures. \n We monitor certain key performance indicators and non-GAAP financial measures in the evaluation and management of our business; certain key performance indicators and non-GAAP financial measures are provided in this press release because we believe they are useful in facilitating period-to-period comparisons of our business performance. Key performance indicators and non-GAAP financial measures do not reflect and should be viewed independently of our financial performance determined in accordance with GAAP. Key performance indicators and non-GAAP financial measures are not forecasts or indicators of future or expected results and should not have undue reliance placed upon them by investors. \n Where non-GAAP financial measures are included in this press release, the most directly comparable GAAP financial measures and a detailed reconciliation between GAAP and non-GAAP financial measures is included in this press release under “Non-GAAP Financial Measures”. \n Unless otherwise indicated, financial and operating data included in this press release is as of December 31, 2024. \n 2 \n As used in this press release, \n “Annual Recurring Revenue” or “ARR” is the annualized revenue from subscription services, including subscription fees for our SaaS solutions and related software support, managed platform development services, and transaction-based payment processing services. We generally calculate ARR by annualizing the monthly subscription service revenue for all Active Sites as of the last day of each month for the respective reporting period. Our reported ARR is based on a constant currency, using the exchange rates established at the beginning of the year and consistently applied throughout the period and to comparative periods presented. For acquisitions made during each period, the constant currency rate applied is the exchange rate at the date of each acquisition's closure. There was no impact on our prior period ARR as a result of applying a constant currency as the exchange rate effects only began with the TASK Group Acquisition in 2024. \n “Active Sites” represent locations active on PAR’s subscription services as of the last day of the respective reporting period. \n Trademarks. \n “PAR ® ,” “PAR POS ® ” (formerly “Brink POS ® ”), “Punchh ® ,” “PAR Ordering TM ” (formerly “MENU TM ”), \"PAR OPS TM ,\" “Data Central ® ,\" “Delaget TM ,” \"PAR Retail TM \", \"PAR ® Pay”, “PAR ® Payment Services”, and other trademarks identifying our products and services appearing in this press release belong to us. \n Forward-Looking Statements . \n This press release contains forward-looking statements made pursuant to the safe harbor provisions of Section 21E of the Securities Exchange Act of 1934, as amended, Section 27A of the Securities Act of 1933, as amended, and the Private Securities Litigation Reform Act of 1995, the accuracy of such statements is necessarily subject to risks, uncertainties and assumptions as to future events that may not prove to be accurate. These statements include, but are not limited to, express or implied forward-looking statements relating to the plans, strategies and objectives of management relating to PAR's growth, results of operations, and financial performance, including service and product offerings, the development, demand, market share, and competitive performance of our products and services, continued growth of our business, our ability to achieve and sustain profitability, acceleration or improvement of financial results, annual recurring revenue (ARR) growth, active sites, future efficiencies and scale economics, customer retention, capital investment and re-investment, expanding our addressable markets, cross-selling efforts, and anticipated benefits of acquisitions, divestitures, and capital markets transactions. These statements are neither promises nor guarantees but are subject to a variety of risks and uncertainties, many of which are beyond our control, which could cause actual results to differ materially from those contemplated in these forward-looking statements. \n Factors, risks, trends and uncertainties that could cause actual results to differ materially from those expressed or implied by forward-looking statements include our ability to successfully develop or acquire and transition new products and services and enhance existing products and services to meet evolving customer needs and respond to emerging technological trends, including artificial intelligence (AI); our ability to successfully integrate acquisitions into our operations, and realize the anticipated benefits; macroeconomic trends, such as a recession or slowed economic growth, fluctuating interest rates, inflation, and changes in consumer confidence and discretionary spending; our ability to successfully expand our business or products into new markets or industries; geopolitical events, such the Russia-Ukraine war, tensions with China and between China and Taiwan, hostilities in the Middle East, including the Israel conflict(s), and uncertainty relating to new or increased tariffs or other trade restrictions implemented by the U.S. or retaliatory trade measures or tariffs implemented by other countries; and the other factors discussed in our most recent Annual Report on Form 10-K and our other filings with the Securities and Exchange Commission. Undue reliance should not be placed on the forward-looking statements in this press release, which are based on information available to us on the date hereof. We undertake no obligation to update or revise any forward-looking statements, whether as a result of new information, future events, or otherwise, except as may be required under applicable securities law. \n ### \n 3 \n PAR TECHNOLOGY CORPORATION \n CONSOLIDATED BALANCE SHEETS \n (unaudited, in thousands, except share amounts) \n Assets December 31, 2024 December 31, 2023 \n Current assets: \n Cash and cash equivalents $ 108,117 $ 37,183 \n Cash held on behalf of customers 13,428 10,170 \n Short-term investments 524 37,194 \n Accounts receivable – net 59,726 42,679 \n Inventories 21,861 23,560 \n Other current assets 14,390 8,123 \n Current assets of discontinued operations — 21,690 \n Total current assets 218,046 180,599 \n Property, plant and equipment – net 14,107 15,524 \n Goodwill 887,459 488,918 \n Intangible assets – net 237,333 93,969 \n Lease right-of-use assets 8,221 3,169 \n Other assets 15,561 17,642 \n Noncurrent assets of discontinued operations — 2,785 \n Total Assets $ 1,380,727 $ 802,606 \n Liabilities and Shareholders’ Equity \n Current liabilities: \n Accounts payable $ 34,784 $ 25,599 \n Accrued salaries and benefits 22,487 14,128 \n Accrued expenses 13,938 3,533 \n Customers payable 13,428 10,170 \n Lease liabilities – current portion 2,256 1,120 \n Customer deposits and deferred service revenue 24,944 9,304 \n Current liabilities of discontinued operations — 16,378 \n Total current liabilities 111,837 80,232 \n Lease liabilities – net of current portion 6,053 2,145 \n Long-term debt 368,355 377,647 \n Deferred service revenue – noncurrent 1,529 4,204 \n Other long-term liabilities 21,243 3,603 \n Noncurrent liabilities of discontinued operations — 1,710 \n Total liabilities 509,017 469,541 \n Shareholders’ equity: \n Preferred stock, $.02 par value, 1,000,000 shares authorized, none outstanding \n — — \n Common stock, $.02 par value, 116,000,000 shares authorized; 40,187,671 and 29,386,234 shares issued, 38,717,366 and 28,029,915 outstanding at December 31, 2024 and December 31, 2023, respectively 798 584 \n Additional paid in capital 1,085,473 625,154 \n Equity consideration payable 108,182 — \n Accumulated deficit (279,943) (274,956) \n Accumulated other comprehensive loss (20,951) (939) \n Treasury stock, at cost, 1,470,305 and 1,356,319 shares at December 31, 2024 and December 31, 2023, respectively \n (21,849) (16,778) \n Total shareholders’ equity 871,710 333,065 \n Total Liabilities and Shareholders’ Equity $ 1,380,727 $ 802,606 \n See notes to consolidated financial statements included in the Company's annual report on Form 10-K for the year ended December 31, 2024 (the “Annual Report”). \n 4 \n PAR TECHNOLOGY CORPORATION \n CONSOLIDATED STATEMENTS OF OPERATIONS \n (unaudited, in thousands, except per share amounts) \n Three Months Ended December 31, Year Ended \nDecember 31, \n 2024 2023 2024 2023 \n Revenues, net: \n Subscription service $ 64,262 $ 32,897 $ 207,422 $ 122,597 \n Hardware 26,048 24,400 87,040 103,391 \n Professional service 14,695 12,603 55,520 50,726 \n Total revenues, net 105,005 69,900 349,982 276,714 \n Cost of sales: \n Subscription service 30,095 17,080 96,519 63,735 \n Hardware 19,336 17,317 65,923 80,319 \n Professional service 10,567 11,289 41,416 43,214 \n Total cost of sales 59,998 45,686 203,858 187,268 \n Gross margin 45,007 24,214 146,124 89,446 \n Operating expenses: \n Sales and marketing 10,471 9,508 41,708 38,513 \n General and administrative 31,002 19,213 108,898 72,139 \n Research and development 17,432 14,493 67,258 58,356 \n Amortization of identifiable intangible assets 2,875 465 8,452 1,858 \n Adjustment to contingent consideration liability — (1,700) (600) (9,200) \n Gain on insurance proceeds (348) — (495) (500) \n Total operating expenses 61,432 41,979 225,221 161,166 \n Operating loss (16,425) (17,765) (79,097) (71,720) \n Other income (expense), net 2,856 (369) 1,146 (485) \n Loss on extinguishment of debt (6,560) (635) (6,560) (635) \n Interest expense, net (3,412) (1,779) (10,167) (6,931) \n Loss from continuing operations before income taxes (23,541) (20,548) (94,678) (79,771) \n Benefit from (provision for) income taxes (1,752) (975) 4,768 (1,848) \n Net loss from continuing operations (25,293) (21,523) (89,910) (81,619) \n Net income from discontinued operations 4,236 2,894 84,923 11,867 \n Net loss $ (21,057) $ (18,629) $ (4,987) $ (69,752) \n Net income (loss) per share (basic and diluted): \n Continuing operations $ (0.68) $ (0.77) $ (2.63) $ (2.96) \n Discontinued operations 0.11 0.10 2.49 0.43 \n Total $ (0.57) $ (0.67) $ (0.14) $ (2.53) \n Weighted average shares outstanding (basic and diluted) 37,197 27,968 34,155 27,552 \n See notes to consolidated financial statements included in the Annual Report. \n 5 \n PAR TECHNOLOGY CORPORATION \n SUPPLEMENTAL INFORMATION \n (unaudited) \n Non-GAAP Financial Measures \n In addition to disclosing financial results in accordance with GAAP, this press release contains references to the non-GAAP financial measures below. We believe these non-GAAP financial measures provide investors with useful supplemental information about our operating performance, enable comparison of financial trends and results between periods where certain items may vary independent of business performance, and allow for greater transparency with respect to key metrics used by management in operating our business and measuring our performance. The income tax effect of the below adjustments, with the exception of non-recurring income taxes, were not tax-effected due to the valuation allowance on all of our net deferred tax assets. \n Our non-GAAP financial measures should not be considered a substitute for, or superior to, financial measures calculated in accordance with GAAP, and the financial results calculated in accordance with GAAP and reconciliations from these results should be carefully evaluated. Additionally, these measures may not be comparable to similarly titled measures disclosed by other companies. \n Non-GAAP Measure or Adjustment Definition Usefulness to management and investors \n Non-GAAP subscription service gross margin percentage Represents subscription service gross margin percentage adjusted to exclude amortization from acquired and internally developed software, stock-based compensation, and severance. \n We believe that non-GAAP subscription service gross margin percentage and adjusted EBITDA provide useful perspectives with respect to the Company's core operating performance and ongoing cash earnings by adjusting for certain non-cash and non-recurring charges that may not be indicative of our financial performance. \n Adjusted EBITDA Represents net loss before income taxes, interest expense and depreciation and amortization adjusted to exclude certain non-cash and non-recurring charges that may not be indicative of our financial performance. \n Non-GAAP diluted net loss per share Represents net loss per share excluding amortization of acquired intangible assets and certain non-cash and non-recurring charges that may not be indicative of our financial performance. \n We believe that adjusting our diluted net loss per share to remove non-cash and non-recurring charges provides a useful perspective with respect to the Company's operating performance as well as comparisons to past and competitor operating results. \n Stock-based compensation Consists of non-cash charges related to our employee equity incentive plans. We exclude stock-based compensation because management does not view these non-cash charges as part of our core operating performance. This adjustment facilitates a useful evaluation of our current operating performance as well as comparisons to past and competitor operating results. \n Contingent consideration Adjustment reflects a non-cash reduction to the fair market value of the contingent consideration liability related to our acquisition of MENU Technologies AG (the \"MENU Acquisition\"). We exclude changes to the fair market value of our contingent consideration liability because management does not view these non-cash, non-recurring charges as part of our core operating performance. This adjustment facilitates a useful evaluation of our current operating performance as well as comparisons to past and competitor operating results. \n 6 \n Non-GAAP Measure or Adjustment Definition Usefulness to management and investors \n Transaction costs Adjustment reflects non-recurring professional fees incurred in transaction due diligence and integration, including costs incurred in the acquisitions of Stuzo Blocker, Inc., Stuzo Holdings, LLC and their subsidiaries (the \"Stuzo Acquisition\"), TASK Group Holdings Limited, and Delaget (the \"Delaget Acquisition\") We exclude professional fees incurred in corporate development and integration because management does not view these non-recurring charges, which are inconsistent in size and are significantly impacted by the timing and valuation of our transactions, as part of our core operating performance. This adjustment facilitates a useful evaluation of our current operating performance, comparisons to past and competitor operating results, and additional means to evaluate expense trends. \n Gain on insurance proceeds Adjustment reflects the gain on insurance proceeds due to the settlement of legacy claims. We exclude these non-recurring adjustments because management does not view these costs as part of our core operating performance. These adjustments facilitate a useful evaluation of our current operating performance as well as comparisons to past and competitor operating results. \n Severance Adjustment reflects severance tied to non-recurring restructuring events included in cost of sales, sales and marketing expense, general and administrative expense, and research and development expense. \n Litigation expense Adjustment reflects the release of a loss contingency and settlement expenses for legal matters. \n Loss on extinguishment of debt Adjustment reflects loss on extinguishment of debt related to the conversion of the 4.500% Convertible Senior Notes due 2024 and a portion of the 2.875% Convertible Senior Notes due 2026. \n Discontinued operations Adjustment reflects income from discontinued operations related to the disposition of our Government segment. \n Impairment loss Adjustment reflects impairment loss related to the discontinuance of the Brink POS trademark and the impairment of internally developed software costs not meeting the general release threshold as a result of acquiring go-to-market software in the MENU Acquisition. \n Other (income) expense, net Adjustment reflects foreign currency transaction gains and losses and other non-recurring income and expenses recorded in other (income) expense, net in the accompanying statements of operations. \n Non-recurring income taxes Adjustment reflects a partial release of our deferred tax asset valuation allowance resulting from the Stuzo Acquisition and Delaget Acquisition. We exclude these non-cash and non-recurring adjustments for purposes of calculating non-GAAP diluted net loss per share because management does not view these costs as part of our core operating performance. These adjustments facilitate a useful evaluation of our current operating performance, comparisons to past and competitor operating results, and additional means to evaluate expense trends. \n Non-cash interest Adjustment reflects non-cash amortization of issuance costs and discount related to the Company's long-term debt. \n Acquired intangible assets amortization Adjustment reflects amortization expense of acquired developed technology included within cost of sales and amortization expense of other acquired intangible assets. \n 7 \n The tables below provide reconciliations between net loss and adjusted EBITDA, diluted net loss per share and non-GAAP diluted net loss per share, and subscription service gross margin percentage and non-GAAP subscription service gross margin percentage. \n (in thousands) Three Months Ended December 31, Year Ended \nDecember 31, \n Reconciliation of Net Loss to Adjusted EBITDA 2024 2023 2024 2023 \n Net loss $ (21,057) $ (18,629) $ (4,987) $ (69,752) \n Discontinued operations (4,236) (2,894) (84,923) (11,867) \n Net loss from continuing operations (25,293) (21,523) (89,910) (81,619) \n Provision for (benefit from) income taxes 1,752 975 (4,768) 1,848 \n Interest expense, net 3,412 1,779 10,167 6,931 \n Depreciation and amortization 11,205 6,881 37,907 27,014 \n Stock-based compensation 7,905 3,747 24,487 14,291 \n Contingent consideration — (1,700) (600) (9,200) \n Litigation expense — (808) — (808) \n Transaction costs 2,351 2,273 8,454 2,273 \n Gain on insurance proceeds (348) — (495) (500) \n Severance 1,088 — 2,769 253 \n Loss on extinguishment of debt 6,560 635 6,560 635 \n Impairment loss — — 225 — \n Other (income) expense, net (2,856) 369 (1,146) 485 \n Adjusted EBITDA $ 5,776 $ (7,372) $ (6,350) $ (38,397) \n (in thousands, except per share amounts) Three Months Ended December 31, Year Ended \nDecember 31, \n Reconciliation between GAAP and Non-GAAP diluted net loss per share 2024 2023 2024 2023 \n Diluted net loss per share $ (0.57) $ (0.67) $ (0.14) $ (2.53) \n Discontinued operations (0.11) (0.10) (2.49) (0.43) \n Diluted net loss per share from continuing operations (0.68) (0.77) (2.63) (2.96) \n Non-recurring income taxes 0.03 — (0.19) — \n Non-cash interest 0.02 0.02 0.07 0.08 \n Acquired intangible assets amortization 0.24 0.16 0.84 0.66 \n Stock-based compensation 0.21 0.13 0.72 0.52 \n Contingent consideration — (0.06) (0.02) (0.33) \n Litigation expense — (0.03) — (0.03) \n Transaction costs 0.06 0.08 0.25 0.08 \n Gain on insurance proceeds (0.01) — (0.01) (0.02) \n Severance 0.03 — 0.08 0.01 \n Loss on extinguishment of debt 0.18 0.02 0.19 0.02 \n Impairment loss — — 0.01 — \n Other (income) expense, net (0.08) 0.01 (0.03) 0.02 \n Non-GAAP diluted net loss per share $ (0.00) $ (0.43) $ (0.73) $ (1.96) \n Diluted weighted average shares outstanding 37,197 27,968 34,155 27,552 \n 8 \n Three Months Ended December 31, Year Ended \nDecember 31, \n Reconciliation between GAAP and Non-GAAP \nSubscription Service Gross Margin Percentage 2024 2023 2024 2023 \n Subscription Service Gross Margin Percentage 53.2 % 48.1 % 53.5 % 48.0 % \n Depreciation and amortization 11.3 % 16.9 % 12.2 % 18.1 % \n Stock-based compensation 0.1 % 0.3 % 0.1 % 0.3 % \n Severance 0.1 % — % 0.1 % — % \n Non-GAAP Subscription Service Gross Margin Percentage 64.7 % 65.3 % 65.9 % 66.4 % \n 9 \n",
@@ -36,7 +39,398 @@
   "same_day_8k_items": "2.02,7.01,8.01,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000070882125000010__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0000708821-24-000111",
+   "filingDate": "2024-11-08",
+   "reportDate": "2024-11-08",
+   "form": "8-K",
+   "local_gz": "000070882124000111__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 0,
+   "n_sentences": 0,
+   "guidance_sentences": [],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出",
+   "status": "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2025-02-28",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 73,
+   "has_qna": true,
+   "n_chars": 63810,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "AI Insights",
+     "content": ""
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Operator",
+     "content": "Good day, and thank you for standing by. Welcome to the PAR Technology Corporation 2024 Fourth Quarter and Year-End Financial Results Conference Call. At this time, all participants are in a listen-only mode. After the speaker's presentation, there will be a question and answer session. To ask a question during this session, you will need to press star one one on your telephone. You will then hear an automated message advising your hand is raised. To withdraw your question, please press star one one again. Please be advised that today's conference is being recorded. I would now like to hand the conference over to your speaker today, Christopher Byrnes, Senior Vice President of Investor Relations and Business Development. Please go ahead."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Christopher Byrnes",
+     "content": "Thank you, Daniel. Good morning, everyone, and thank you for joining us today for PAR Technology Corporation's 2024 Fourth Quarter and Year-End Financial Results Call. Earlier this morning, we released our Q4 financial results. The earnings release is available on the investor relations page of our website at partech.com. You can also find the Q4 financials presentation as well. It's in our related Form 8-K furnished to the SEC. During our call today, we will reference non-GAAP financial measures, which we believe to be useful to investors and exclude the impact of certain items. A description and timing of these items along with a reconciliation of non-GAAP measures to the most comparable GAAP measures can be found in our earnings release. I'd also like to remind participants that this conference call may include forward-looking statements that reflect management's expectations based on currently available data. However, actual results are subject to future events and uncertainties. The information on this conference call related to projections or other forward-looking statements may be relied upon and is subject to the Safe Harbor statement included in our earnings release this morning, and in our annual and quarterly filings with the SEC. Finally, I'd like to remind everyone that this call is being recorded. It will be made available for replay via a link available on the investor relations section of our website. Joining me on the call today is our CEO and President, Savneet Singh, and Bryan Menar, PAR Technology Corporation's Chief Financial Officer. I'd now like to turn the call over to Savneet Singh for the formal remarks portion of the call which will be followed by general Q&A. Savneet?"
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Savneet Singh",
+     "content": "Thanks, Christopher Byrnes, and good morning, everyone. We reported $105 million in revenues in Q4, an increase of more than 50% year over year. Subscription services ARR more than doubled to $276 million from last year, with 21% organic growth when compared to Q4 of 2023. Alongside this revenue growth, our non-capitalized profit grew organically 30% year over year. Adjusted EBITDA came in at $5.8 million, more than doubling the sequential previous quarter, continuing to show the long-term margin expansion potential. The growth in profitability in the quarter was driven by both Operator and Engagement Cloud. Operator Cloud ARR grew organically by 26% in Q4 when compared to the same period last year. ARR for this business unit now totals approximately $117 million, including Delegate. Operator Cloud growth is being driven by increased new customer wins, upsells, and bookings from planned rollouts with existing customers. PAR POS signed eight new customer logos in the fourth quarter, with all of those new customers selecting multiple products from PAR Technology Corporation. This continues to validate our better together thesis while increasing our LTV per customer meaningfully with no additional cost to acquire. We are excited about the projected velocity for Burger King as well in 2025 across both POS and PAR Ops. Having recently expanded our partnership with Burger King to include our PAR Ops product line, we are working closely with BK and using Q1 to fine-tune the sequencing of rollouts between both products to enable a combined and mutually agreed-upon implementation rollout for 2025. We expect significant and accelerated implementations from Q2 onwards. This is an exciting change as it demonstrates our better together thesis working at one of our largest POS customers. We currently have approximately 1,500 BK sites in backlog, with a robust white space ensuring excellent 2025 visibility, acceleration, and potential. While combining a second product to the BK rollout temporarily slows our PAR POS rollout in Q1, adding a second module dramatically increases our LTV. We would make this trade every time. And importantly, a combined rollout is the right thing for franchisees as well. We will never sacrifice customer success for short-term gain. Partnership is what drives our long-term strategy. At the very end of the quarter, we announced the acquisition of Delegate, and we immediately kicked off a rebrand of our back-office initiative into the new PAR Ops, which includes the Delegate and Data Central product modules. Our integration with Delegate and the team has been better than expected, and we are seeing strong customer interest, including among marquee tier-one accounts. As we continue to build out our PAR Data Platform, Delegate not only boasts a highly synergistic product offering that will accelerate cross-sell, but it also affords entry into more than 25,000 sites covering 40 of the top 50 restaurant concepts. Further, it comes with a seasoned management team now driving the combined PAR Ops business. It's important to note that Data Central finished up the year with a strong Q4 through targeted cross-sell growth across our customer base. Growth will accelerate as we are forecasting PAR Ops to have its strongest growth year yet in 2025. We have begun the work on product unification efforts with Delegate that includes single sign-on and real-time data flow, a big step in building towards our data platform. This initiative is highly strategic and underscores our continued drive towards a better together platform that is not replicated anywhere else in the enterprise market. We will be sharing additional details as the year progresses on this exciting initiative. Now to report on our payments business. As we exit 2024, our payment services continue to drive high transaction counts and processing volumes across our customer base, and we look to take more stores live while driving better payment processing economics. Notably, we continue to see strong interest in our Punch Wallet with more customers onboarding every quarter, including Paris Baguette, Gold Star Chili, and Runza in Q4. Additionally, we successfully cross-sold a tier-one customer with approximately 1,000 locations on our payment services. This customer's conversion will positively impact our results over the coming quarters and is a further example of our better together project wins. As our customers continue to unify through a bus store and in-store processing with PAR Pay, the scale of our datasets across loyalty, ordering, and POS product puts PAR Technology Corporation in a unique position to leverage tokenized information to drive actionable insights mapping known and unknown customers, and personalizing communications to drive higher ROI and increased lifetime value. We are the only company in the enterprise who can link off-premise and on-premise tokenized data with loyalty data all the way to the back of house. This is a moat that is hard to replicate. There's a growing trend in the industry towards disjointed multi-vendor solutions that attempt to stitch together guest data, payments, and ordering across multiple third parties. But integrations alone don't create intelligence. First-party data does. Many attempt to take pieces of payment data and combine them with external systems because PAR Technology Corporation owns the full technology stack, everything we do is first-party, ensuring true data integrity. Some would have you believe that restaurant technology should be run outside the POS, fragmenting operations across multiple platforms. We see it differently. POS is and will always be the true control center of the restaurant. After all, 80% of transactions still happen at the POS, where real-time transactions, menu data, and guest interactions all converge. Payments, loyalty, and ordering are not separate systems. They are part of a restaurant's mission-critical platform. That's what makes our approach fundamentally different from the rest. Rather than layering on third-party processors and intermediaries, we are removing inefficiencies, giving our customers lower processing costs, higher authorization rates, and full control over the guest relationship. Looking ahead for the year, our pipeline remains robust for our payment offering across both PAR Clouds, ensuring we capture new growth opportunities. Moving to our Engagement Cloud, Engagement Cloud ARR reported 15% organic growth in Q4 when compared to the same quarter last year. ARR now stands at approximately $159 million for the Engagement Cloud and includes Plexure and PAR Retail. Our strong execution in this business has led to several new tier-one customer wins. Our Engagement Cloud continues to exceed standards and dominate the loyalty offers and engagement market with consistently strong interest from existing and new customers. With increasing customer headwinds in 2025, many brands are doubling down on digital technology to drive increased consumer frequency and retention, notably through enhanced investments in loyalty programs. Punch is seeing continued product and sales consistency by delivering growth, with new customers and expansion with existing brands. Punch is a market leader for restaurant loyalty and delivers stability and innovation to our customers. This quarter, we achieved multiple large customer winbacks who had previously churned from Punch for pure guest data platforms but then returned back to Punch. Most notably, a tier-one table service chain and two well-known casual dining enterprises are part of this transition back to Punch. Moving to PAR Retail. In the convenience and fuel industry, our team executed the launch of a major multi-thousand unit brand and additional major upsells with our largest customer in Q4. We brought to market the first fully integrated major oil and branded retailer program in the industry. Beyond our exciting customer wins, the PAR Retail product continues to expand to serve the fuel and convenience industry. In Q4, we successfully launched gamification, updated unified e-receipts, enhanced punch card functionality, and optimized member surveys with our focus on developing features that drive incremental outcomes like more visits, more gallons, and bigger baskets that continue to deliver value for our customers. Our customers look to us to expand our platform into the industry-specific white space, and we are looking to accelerate innovation efforts in the retail vertical through M&A. We are targeting strategic opportunities in the near term that will add additional value to our customers and their members. Moreover, we're beginning to see our integration synergy efforts begin to flourish as we have streamlined our efforts across the retail and restaurant space. We've seen already that this is allowing us to focus our R&D and sales efforts each between industries to maximize profitability, accelerate innovation, all while improving customer satisfaction. Briefly touching on hardware. I'm pleased to report that we have reversed recent trends and increased our hardware revenues by 7% in Q4 versus the same quarter last year. Several key global brands have approved our newest platform, the PAR Wave, and we are seeing increases in both domestic and global sales. Also contributing to the turnaround was our new PAR Clear drive-through solution that is setting the standard for drive-through comps. An open architecture that will enable users to leverage the power of AI for the drive-through, PAR Clear is positioned to be not only the industry leader in QSR drive-through systems today but also the preferred platform for the future. Our hardware and POS software divisions are partnering closely on product to ensure that PAR Clear adds to our strategy of better together innovation. To summarize, we remain very bullish about the future of foodservice technology and PAR Technology Corporation's continued role as a leading enterprise provider. In 2025, we foresee our ability to execute on both our historical growth rates and deliver on the biggest M&A pipeline we've seen to date. We view this time as a great opportunity for us to make bold bets and strengthen our market position. I'm confident in our ability to consistently innovate and provide value to our customers for years to come. Persistence trumps everything, and I believe we'll come out as a winner in the enterprise. Raising the bar for execution, investing in our products and teams for the long term, we are well-positioned to drive durable growth in the category. The opportunity will continue to grow for the foreseeable future. Bryan will now review the numbers in more detail. Bryan?"
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Bryan Menar",
+     "content": "Thank you, Savneet Singh. Good morning. We closed out 2024 with another successful quarter for PAR Technology Corporation. Subscription services continue to fuel our organic growth while our team continues to execute with fiscal responsibility. As a result, adjusted EBITDA for the quarter improved $3.4 million sequentially from Q3 and $13.1 million compared to Q4 prior year. This positive movement is indicative of our ability to continue to drive growth with profitability. Now to the financial details. Total revenues were $105 million for Q4 2024, an increase of 50% compared to the same period in 2023, driven by subscription services revenue growth of 95% inclusive of 25% organic growth. Net loss from continuing operations for the fourth quarter of 2024 was $25 million or $0.68 loss per share, compared to a net loss from continuing operations of $22 million or $0.77 loss per share reported for the same period in 2023. Non-GAAP net loss for the quarter of 2024 was $37,000 or effectively $0.00 per share, a significant improvement compared to non-GAAP net loss of $12 million or $0.43 loss per share for the prior year. Now for more details on revenue. Subscription services revenue was reported at $64 million, an increase of $31 million or 95% from the $33 million reported in the prior year and now represents 61% of our core revenue. Excluding core retail and Task Group, organic subscription services revenue grew 25% compared to the prior year. ARR exiting the quarter was $276 million, an increase of 102% from last year's Q4, with Engagement Cloud up 150% and Operator Cloud up 60%. Excluding PAR Retail, Task Group, and Delegate, total organic annual recurring revenue was up 21% year over year. Hardware revenue in the quarter was $26 million, an increase of $2 million or 7% from the $24 million reported in the prior year. Sequentially, compared to Q3 this year, hardware was up $3 million or 15% driven by an increase in volume attached to our software customers. Professional service revenue was reported at $15 million, an increase of $2 million or 17% from the $13 million reported in the prior year. The growth was driven by recurring revenue service contracts. $9 million of the professional services revenue in the quarter consisted of recurring revenue, a 25% increase versus the prior year. Now turning to margins. Gross margin was $45 million, an increase of $21 million or 86% from the $24 million reported in the prior year. The increase was driven by subscription services with a gross margin of $34 million, an increase of $18 million or 116% from the $16 million reported in the prior year. Subscription services margin for the quarter was 53%, compared to 48% reported in Q4 of the prior year. The increase in margin is driven by continued focus on efficiency improvements with our hosting and customer support costs as well as accretive margin contributions from recent acquisitions. Excluding the amortization of intangible assets, stock-based compensation, and severance, total non-GAAP subscription services margin for Q4 2024 was 64.7% compared to 65.3% for Q4 of 2023. The modest tick down was driven by a shift in product mix post-2024 acquisitions. Gross margin continues to improve across our products and we expect total non-GAAP subscription services margin to continue to improve in this current baseline. Hardware margin for the quarter was 26% versus 29% in the prior year. Hardware margin in Q4 2023 was positively affected by one-time inventory adjustments. Our focus on demonstrating value for our price with improved operational efficiency has allowed us to improve hardware margins during the year and finish 2024 with full-year hardware margin at 24%. Professional service margin for the quarter was 28%, compared to 10% reported in the prior year. The increase primarily consists of increases in margins for field operations and repair services, substantially driven by improved cost management and reductions in third-party spending. In regard to operating expenses, GAAP sales and marketing was $10.5 million, an increase of $1 million from the $9.5 million reported for the prior year. The increase was primarily driven by inorganic increases related to our acquisition, while organic sales and marketing expenses decreased $0.3 million year over year. GAAP G&A was $31 million, an increase of $12 million from the $19 million reported in the prior year. The increase was primarily driven by non-GAAP adjustment items for M&A transaction fees and stock-based compensation, as well as inorganic increases related to our acquisitions. GAAP R&D was $17 million, an increase of $3 million from the $14 million recorded in the prior year. The increase was primarily driven by inorganic increases related to our acquisitions, while organic R&D expenses decreased $0.5 million year over year. Our team was able to effectively drive cost efficiency and properly prioritize resource allocation, which enabled us to continue to drive innovative outcomes without incremental cost during 2024. Operating expenses excluding non-GAAP adjustments were $47 million, an increase of $9 million or 25% versus Q4 2023. Excluding inorganic growth, organic operating expenses increased a modest 2%. The organic increase was primarily driven by variable compensation and benefits. Exiting Q4, non-GAAP OpEx as a percent of revenue was 45%, a 900 basis point improvement from 54% in Q4 prior year. Now to provide information on the company's cash flow and balance sheet position. As of December 31, 2024, we had cash and cash equivalents of $108 million and short-term investments of $59 million. For the year ended December 31, cash used in operating activities from continuing operations was $21 million versus $32 million for the prior year, representing an improvement of $11 million. Cash flow metrics improved throughout 2024, and we exited the year with positive operating cash flow of $3 million for the fourth quarter. Cash used in investing activities was $180 million for the year ended December 31, versus $8 million for the prior year. Investing activities included $309 million of net cash consideration in connection with our recent acquisitions and capital expenditures of $6 million for developed technology costs associated with software platforms, partially offset by $96 million of cash consideration received in connection with the disposition of PAR Government and $37 million of proceeds from net sales of short-term investments. Cash provided by financing activities was $279 million for the year ended December 31, compared to cash used of $2 million for the prior year. Financing activities were substantially driven by a private placement of common stock to fund the Stuzo acquisition and a credit facility entered into to fund the Task acquisition. Subsequent to the 2024 fiscal year-end, the company issued $115 million of convertible notes and utilized the net proceeds from this offering to repay in full the credit facility. These transactions enhanced our capital structure by extending our debt maturity profile and significantly reducing our go-forward cash interest expense. I would now like to take a moment to reiterate and thank our PAR Technology Corporation team on how they managed a successful and action-packed year, both from an operational and business development point of view. We pride ourselves on making accretive capital allocation decisions, and through our focus on operational execution, position PAR Technology Corporation for sustained growth and success. As a result, the PAR Technology Corporation exiting 2024 is an improved and better-positioned organization than when we entered the year. This is clearly demonstrated by some key financial metrics. ARR more than doubled during the year, increasing 102%. Locations utilizing our SaaS solutions doubled to over 140,000 locations at the end of 2024. Non-GAAP consolidated gross margin increased by 720 basis points to 50.3%. Q4 non-GAAP OpEx as a percent of revenue improved by 900 basis points compared to the prior year. And Q4 adjusted EBITDA improved by $13.1 million compared to Q4 prior year. We are proud of what we have been able to achieve, but we are by no means content with where we stand and look forward to continuing to execute our strategy as we progress through 2025. I'll now turn the call back over to Savneet Singh for closing remarks prior to moving to Q&A."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Savneet Singh",
+     "content": "Thanks, Bryan Menar. Let me wrap up with a few key messages before we open the call for Q&A. We're pleased to have closed on a positive note with a strong Q4 performance and maintaining category leadership in food service tech. We had a key objective in 2024, and that was to grow sustainably and efficiently to build our business for the long term. To this end, our team executed on three main areas. First, we focused on driving organic ARR growth and sustained momentum in our software business. We worked on initiatives to improve our products and operations, cross-sell our entire software portfolio, and sign new customers. As we spoke about earlier, all of our POS deals in the quarter were multiproduct deals, and equally important was our upsell into our biggest POS customer. Our flywheel continues to expand through our better together strategy, which is based on product innovation and ROI, not predatory pricing tactics. Second, we executed on a targeted and meaningful acquisition strategy to strengthen our product offerings, expand our TAM, and build out a global capability to serve food service enterprises. Our expansion into C-stores and international markets has created a truly new TAM for us, and our acquisition of Delegate is already accelerating our flywheel for existing customers, including our largest and most strategic. We also divested our legacy government business, which now enables us to 100% focus on our core markets. M&A is core to our product strategy, and our integration efforts are what drive our robust cross-sell. PAR Technology Corporation has over many years invested in building a deep leadership bench that can digest and optimize investments. As companies join, they become part of a cohesive, culturally aligned PAR Technology Corporation where we add to, not detract from, their project aspirations and go-to-market motions. We cross-pollinate leaders quickly and unite core operating structures, and this synergistic approach to M&A is what sets us apart from other food service technology companies or sector investors who operate a collection of siloed entities and masquerade as multiproduct, while really just being single-threaded multiple times over. Better together is what we live every day at PAR Technology Corporation, and I'm extremely proud that the vast majority of our executive leadership team has risen through the ranks at PAR Technology Corporation over many years in multiple roles. This is our key to turning inorganic growth into sustained future organic growth. We are a team of seasoned operators with a holistic view of our business and industry. Finally, we remain fanatical about managing our operating expenses by continually optimizing our cost structure. As a result, we maintained top-line revenue growth and have now delivered two quarters of strong adjusted EBITDA growth. I'm extremely proud of our revenue expansion. I'm equally proud that non-GAAP gross profit grew organically by 30% this quarter, and our adjusted EBITDA well more than doubled quarter over quarter. Today, our sales and marketing and R&D expenses are now well within our long-term goals of 15% and 25% respectively, far ahead of schedule, and I believe this shows the upside of our long-term margin goals for the company. With 2024 firmly in the rearview mirror, we look towards 2025 with confidence and optimism. For 2025, we feel confident in committing to continue to grow our business at 20% plus annual rates for the year. Our growth quarter to quarter will never be linear, but I feel confident that over the course of the year, we'll continue to hit our targets while continuing to drive EBITDA. What's more, we see a number of key levers that create upside to our year. There's still a lot of work ahead of us, but we are confident that our balance sheet, cost discipline, and execution strategies will enable us to continue to grow our business sustainably. As always, I want to thank my PAR Technology Corporation teammates for their hard work in driving these results. Our shared belief that today is day one drives our collective hunger and ambition. I also want to express deep appreciation to our customers, partners, and shareholders. Thank you for your time this morning, and we will now open the call up to questions. Operator?"
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "As a reminder, to ask a question, press star one one on your telephone. Wait for your name to be announced. To withdraw your question, please press star one one again. Our first question comes from Mayank Tandon with Needham. Your line is open."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Mayank Tandon",
+     "content": "Thank you. Good morning. Congrats, Savneet Singh, Christopher Byrnes, and Bryan Menar on the quarter. Savneet Singh, I wanted to start with the upsell into BK. Does this change the timeline of the rollout? I believe the rollout was expected to be completed sometime in spring of 2026. Does this, in any way, change the timeline of the 7,000 plus locations? And also, does it change the ARR opportunity, which I believe was something in the order of low twenties millions? Is that going to be meaningfully different based on the upsell?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Savneet Singh",
+     "content": "Yes. Yes. Go ahead. So it'll probably push us out the quarter, quarter and a half. You know, Q1, as I referenced, we're sequencing the rollout so that starting in Q2, we can do a combined rollout. So while it'll slow down, call it Q1, just a pure POS rollout, it'll really accelerate Q2 onward. As I mentioned, it's a trade we would do all day long, because to your second point, it significantly adds to the ARR in that opportunity. As you know, we disclosed that your POS deal was around, you know, low twenties. This adds to that pretty meaningfully. We haven't disclosed that number quite yet. But, you know, we feel really excited. It, you know, as I said, while it pushes out the rollout a little bit, it dramatically increases the LTV and operating cash flow that this deal will generate over time."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Mayank Tandon",
+     "content": "Got it. And then maybe as a follow-up, I would just ask around the quarterly cadence. I get it. You said it's not going to be linear. There'll be some volatility, but any color you can provide in terms of the various revenue buckets, how we should think about the quarterly cadence and also the same question around margins, you know, should we expect sequential improvement? Or are there other factors we should consider as we're modeling up at 2025?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Savneet Singh",
+     "content": "Yeah. So I think that you should see, you know, meaningful margin expansion in the second half of the year, as well as acceleration of revenue. I'm here. Hi to this partly to this Burger King question you just asked. You remember, we're going from one product to two products, so it's a lot more revenue opportunity. And in a condensed period of time, so you'll see that. So Q1 and Q2, we'll be investing, you know, aggressively to make sure we can knock that rollout out. And again, you should take it and everyone else should take it. The fact that we're expanding our relationship is a hugely positive sign that we're doing a hopefully, doing a good job in earning their trust. So you'll see in the back end more revenue growth, more significantly more EBITDA expansion because of that roll accelerating. Plus, as we mentioned on the call, we have a large payment services deal rolling out that also hits the second half. As well as the convenience store deal that I mentioned on the call. These are all really exciting things, very forecastable. These aren't sort of like, let's hope. These are all in forecast. And as I mentioned, you know, we've already booked, you know, we're 1,500 BKs and, you know, we're in January. Right? So or February rather. So there's a lot of room for excitement second half of the year."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Mayank Tandon",
+     "content": "Great. That's all good to hear. Congrats on the quarter."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Savneet Singh",
+     "content": "Thanks, Mayank Tandon."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question comes from Stephen Sheldon with William Blair. Your line is open."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Stephen Sheldon",
+     "content": "Hey. Thanks for taking my questions, and I had a lot seems like to be excited about. Just want to follow-up on Burger King. Can you just remind us what all is included in that contract? So I think it's initially PAR POS potentially MenuLink. I think you're saying now the contract includes PAR Ops. Obviously, as you talked about, very encouraging expansion. But when you say PAR Ops, I mean, are they adding both Data Central and Delegate, or just maybe just talk about all the products that they're actually going to be picking."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Savneet Singh",
+     "content": "Sure. So our core deals for POS and, you know, historically, parts of MenuLink, but POS is the vast majority of it. And our expansion into PAR Ops is on Data Central, but, you know, without question, you know, we're sixty days into the Delegate acquisition. You know, we'll certainly be trying to bring that opportunity into that as well. No guarantee it happens, but I think, you know, the better together point is resonating with them and, obviously, all of our customers given the attachment rates right now. So it's still start with one and hopefully, we can add more if we do a good job."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Stephen Sheldon",
+     "content": "Got it. That's helpful. And then just on 2025, yeah. I appreciate the commentary that you're confident in 20% annual growth rates. But just is there any way to roughly frame how you're thinking about organic ARR next year, just given what you can see in the pipeline, you know, and kind of current implementation schedules. Just any way to refine that a little bit more?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Savneet Singh",
+     "content": "Yeah. I mean, I think from what we see today, like I said, the second half will have, you know, sort of higher growth rates in the first half, partly because of the three deals I mentioned, the payment services deal going live, Burger King, acceleration from, you know, end of Q4. And then it's the convenience store deal that goes live as well. So we have a lot of visibility into the second half for that acceleration. And so, you know, the way I think about it is, you know, 20% plus you should have higher than that in Q4, lower than that in Q1. And, again, Q1 being the slowest one because of the Burger King coordination we talked about. But in aggregate, we feel really, really good about the year. We have never had so much visibility when it comes to the rollout of, you know, these deals that I mentioned. So we feel super confident in the year. With the visibility we have today. And as I mentioned, you know, those three deals that I mentioned that are key for the second half of the year, these are signed, committed, booked. These aren't sort of pipeline."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Stephen Sheldon",
+     "content": "Got it. That's helpful. Thank you."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question comes from Will Nance with Goldman Sachs. Your line is open."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Will Nance",
+     "content": "Hey, guys. Good morning. Congrats on all the good things you guys have going on. I wanted to ask just on the restaurant space more broadly. There's been a lot of focus on the consumer and specifically the trends in restaurant sales, and you guys obviously have a very differentiated look into the different pockets of the restaurant space. What are you guys seeing on the ground? And, you know, what does it tell you about the health of the consumer?"
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Savneet Singh",
+     "content": "You know, I'd say it's not categorical. We see sort of a wide disparity of outcomes. In the full-service dining space, we see a slowdown. Ironically, that's been really helpful in our Punch business because those firms are really investing in loyalty and as I think you heard me say, we had a couple of people that had previously left Punch to try consumer data platform type products come back to Punch. I think that's a direct result of what's happening in that sort of full-service dining market. And then, you know, in our kind of core QSR fast-casual space, it's certainly seeing a slowdown. You know, it's not what it was but, you know, we're not seeing negative comps across our base. In fact, our base, you know, is still up, you know, low single digits. So, you know, we sort of been lucky in that the customers we sell to have tended to outperform the restaurant industry in aggregate. So in general, our base is still growing. You know, there are bankruptcies happening, but they're a very small portion of our base. And, again, that's just a little bit of luck in the makeup of our current customer base. Where we see the most disruption, and I would say it's significant, is in, you know, single stores and small chains. You know, we see numerous chains kind of sub-thirty units, forty units. Again, we don't play a ton here. We see that space. And there are a lot of those ones that are experiencing tremendous pain. I think the reason why is that when you're at that size, you don't yet have a big enough brand to sort of have those sticky customers journey around a lot long enough generally. And then two, I don't think you have the investments in technology to fight back. So the larger brands, I think, are going to do better because they have the ability to invest in, and Punch is an example. They have the ability to invest in our data platform to bring customers back in. So, you know, in aggregate, our base is still growing, you know, single digits, which is great, low single digits. So it's better than restaurants, but there's a lot of disparity amongst the chains."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Will Nance",
+     "content": "That's super helpful. I appreciate all the possible detail there. And maybe a quick follow-up on the hardware inflection that you guys saw. You know, we heard from one of your competitors yesterday. It sounds like they're expecting around a 20% drop in hardware revenues. So I guess what have you guys been able to do differently to reaccelerate that business? Are any of the momentum that you're seeing competitive, like, competitive wins and just how are you thinking about the hardware refresh cycle?"
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Savneet Singh",
+     "content": "So I think there's two parts to it. So one is, you know, we sell to enterprise, and I'd like to say, enterprise is a product business. You gotta have a better product. And so I think, you know, if you look at the data, you know, we think our products are winning because they are stand-alone best-in-class products. And so I think that really helps us, specifically, we had really strong attachments. Our hardware product to our software customers. So even, you know, I won't name it, but, you know, even, you know, a large dealer to where that we're not picking for hardware have now started to adopt more and more for hardware. And it's that better together functionality I mentioned, the idea that your hardware company is also your software company, so it's also your service company, your call center, it makes life a lot easier. So it's the same better together fun thing that's happening and so we continue to see, you know, call it attachment into the, you know, our core software customers drove it. On the legacy non-software customer side, you know, it's not been a big change, but we have made some real investments into our drive-through product, and as you probably read in all the restaurant companies, you know, there's a big move to voice AI in the drive-through, and so we, you know, we believe we'll be the preferred partner there. Given that we are a software company that sells hardware now. And so I think that will be a nice driver of hardware growth going forward. Bryan, anything else?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Bryan Menar",
+     "content": "Yeah. I was just gonna add in regards to the software attachment, the fact that our location size has doubled has then given us that much larger audience to be able to have that attachment to. And so that's happening as where some of the hardware-only type of competitors are actually seeing a downturn. Maybe in certain areas, we actually continue to have a larger white space to be able to support that. So that's been able to help us against what you're seeing in other areas."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Will Nance",
+     "content": "Awesome. Appreciate all the color, guys. Nice job today."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Savneet Singh",
+     "content": "Thanks."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Operator",
+     "content": "Thank you. As a reminder to ask a question, please press star one one on your telephone. Again, that is star one one to ask a question. Our next question comes from Samad Samana with Jefferies. Your line is open."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Samad Samana",
+     "content": "Hey. Good morning. Thanks for taking my question. Savneet Singh, first just know you mentioned the drive-through hardware and how it's kind of a leading class, and all your customers will leverage AI. My ears perked up a little bit about that. Is that AI that you guys have homegrown that will be embedded in that? Is that you guys working with third-party platforms that enable it? And then maybe help me understand the path modernization there through APIs, or is it your own product that you're providing? And then I have one follow-up."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Savneet Singh",
+     "content": "Yeah. Fantastic question. So for yeah. So what we're we build the drive-through hardware that so think of that as the headsets, the base stations. But we are also, you know, in the PAR Clear, it's a cloud offering. So we will be charging subscription software to allow you to manage your drive-through. Now why that's important is that through that, to your point, there'll be an API that allows the voice AI companies, which there are dozens of them out there, to plug in directly to the base station so that they can run their tech. So we aren't going we aren't yet going to be the company that's sort of selling voice AI technology directly and trying to be an ordering company there yet. Might be something we explore in time, acquisition or not, but we're kinda watching carefully. However, you know, if you're plugging into our base station, you're gonna be paying us fees to do that and to enable that. And so it's a way for us to, you know, make money on the potential growth, but importantly, we're giving them a service that makes it a lot easier for them to run their platforms at these restaurants."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Samad Samana",
+     "content": "Great. And then maybe just switching gears a little bit. On the Punch side, it's great to hear about the customers boomeranging back. Maybe could you give a little bit of color of maybe what made them churn in the first place? And with that context in mind, what convinced them to come back? Right? Just putting those pieces together. I think, would be very helpful."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Savneet Singh",
+     "content": "So, you know, we had a couple of customers about I don't exactly wanna be a year ago, two years ago. So say, hey. We don't wanna do loyalty program. We wanna use something more like a, you know, a CDP system or a guest data platform. Idea being you know, we'll be targeting customers directly. We always see customers are, you know, 20% of our base. We wanna target everybody else. And, you know, candidly, those are really good sales pitches. But in reality, they don't they're not yet developed enough to drive the ROI loyalty program today. And in the end, I think brands need both. I think you need an awesome CDP system that can target customers on a very personalized level, but still need these loyalty programs that build really engendered loyalty. Loyal customers are, you know, repeat visitors, they're high margin, they are the advocates of your brand, you know, everywhere you go. And so I think what those brands realized is, hey. We thought we're gonna You know, we're gonna have loyalty across our entire set of customers, so why do we need just a loyalty product? And they ended up moving back realizing, you know, one, products that exist today that are trying that to build that promise aren't yet ready. And two, candidly, ROI went down dramatically. And so it really was validating that the Punch product creates real true ROI back to the customer. Then I think those customers continue to evolve data platforms, they'll end up taking the PAR Data Platform because when you can combine their loyalty first-party loyalty and PAR, plus their sort of called tokenized data in a data platform, plus all the operations back office we have, you know, that sort of point that I was making. It's I think it's a real moat we have that nobody will be able to compete with."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Samad Samana",
+     "content": "Great. I mean, as squeeze the third one in here. Any type of information you give us on Delegate's financial profiles, maybe growth rate, margin structure, and how you're thinking about it through 2025."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Savneet Singh",
+     "content": "Sure. So when we closed the deal, it was about $19 million of recurring revenue. Historically, the business had grown, you know, well over 30%. I wanna say mid-thirties, and so it's been it's been a really fast-paced grower. It exited 2024 marginally profitable. And, you know, we're, you know, hoping for this year, obviously, for that too. To be, you know, our fastest-growing product outside of payments and ordering. And we, you know, will certainly drive meaningful EBITDA. So you know, it's kind of exciting to have the product that we think we can push through quickly. And as you've kind of seen, when we acquire business, we tend to ramp up revenue quickly. Exciting about Delegate is that it's so synergistic that, you know, once we figure out single sign-on real-time data flow, it will be hard for customers to say no. So you know, I'm not saying it's gonna keep growing 35%, but it will be I certainly believe it will be additive to our growth rate."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Samad Samana",
+     "content": "Great. Congrats on that. I'm really transformative 2024."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Savneet Singh",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Bryan Menar",
+     "content": "Thanks a lot."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question comes from Eric Martinuzzi with Lake Street Capital Markets. Your line is open."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Eric Martinuzzi",
+     "content": "I wanted to ask about the subscription service gross margin. That non-GAAP number was 64.7%. It was below what we were forecasting for Q4. In your commentary, it sounds like you expect that to be a trough, but I was just curious where do you expect it either for the full year 2025 or a year from, you know, for Q4 2025?"
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Bryan Menar",
+     "content": "Yeah. Eric Martinuzzi, appreciate the question. Yeah. You're correct. If there was a came down from a year ago. It was really driven by our most recent acquisitions and kind of absorbing that in. But across our products, we continue to see the margin improvement in driving towards, so nothing operationally changed. It may have it may have then kind of reset a baseline and as we kind of grow off of that. So how you've been seeing the margin improve quarter over quarter, you know, not significant amounts, but call it your fifty to a hundred and fifty basis points. We expect that to continue as we move forward here in the near to medium term."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Eric Martinuzzi",
+     "content": "Okay. And then just a housekeeping item here. Your pro forma share count you finished out Q4 with 37.2 million of diluted weighted average shares. What is that post Delegate?"
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Bryan Menar",
+     "content": "Yeah. We're just north of forty, Eric Martinuzzi."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Eric Martinuzzi",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question comes from Adam Wyden with ADW Capital. Your line is open."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Adam Wyden",
+     "content": "Hey, guys. Really, really, really good profit. So just a couple of things. On the gross margin again, Bryan Menar, so some of this is from the purchase. You expect so if you expect that gross margins are gonna improve fifty to a hundred and fifty basis points per quarter, you would expect your incremental gross margin rate to be materially higher on your subscription software, you know, pretty much every quarter throughout the year. Is that right?"
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Bryan Menar",
+     "content": "Correct. And that's gonna be so both top line. Right? Services being our growth driver right now, it's 61% of our total revenue. And as Savneet Singh mentioned, you know, we expect that each, you know, call the twenty percent plus, you know, improve it increase year over year. Within the margin actual improving itself, would actually have a multiplier effect in regards to the gross profit margin increase."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Adam Wyden",
+     "content": "Right. Yeah. I mean, look, I would think that payments and Delegate and all these things I mean, Stuzo, that you don't have a ton of, like, piloting and hosting. I mean, I would think that your incremental gross margins on some of these I don't know Cash very well, but I would think the incremental gross margins on a lot of these products should be, you know, seventy, seventy-five, eighty, maybe even more. Something like MenuLink also, you know, you're sort of getting you leveraging all the R&D. And as you ramp MenuLink, I would think you'd have really high gross margins on a lot of these on the organic, you know, sort of prospectively. So I know last couple of quarters, you've had some sort of purchase accounting stuff, and I know you had something with Stuzo that lowered gross margin that was sort of a purchase accounting thing. But I would think, like, sort of prospectively, as you ramp twenty percent organic ARR or plus, you would get high incremental gross margins going forward."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Bryan Menar",
+     "content": "Yeah. There and it's not gonna be, like, a significant increase from what we've seen trended over time. Right? It's a nice it's I wouldn't say it's modest. It's something we kind of pride ourselves on how we improve it. And as you know, it varies also depending upon the kind of types of products. Right? Generally, a POS kind of product might have a little bit heavy in R&D and a back office. You can see that across the industry. Right? But we focus on each of our areas to make sure that we see and push the teams in each of the areas to incrementally improve their margins."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Adam Wyden",
+     "content": "Okay. Great. And then my second question is back on M&A. Obviously, we've seen some other companies buying stuff, I guess, smaller stuff, but you know, when I look at sort of other companies that sort of know, are sort of one of one assets in enterprise, I don't I guess, you know, maybe one example would be, like, ServiceTitan, although, you know, they're sort of a sort of a vertical stack software for small businesses. They sort of are the only game in town, you know, sort of the vertical sort of end-to-end product. You know, those companies are sort of growing high teens, and they're trading at, like, twelve times revenue. I'm sort of curious how you think about sort of doing M&A in the context of, you know, where your cost of capital is. I mean, on our math, I mean, obviously, going into today, you guys were sort of in the fives on an EV to ARR basis depending on how you value the hardware business. I mean, it doesn't feel like you have a ton of spread on the companies that you're buying. I'm just curious, like, you know, how do you think about sort of getting your cost of capital up to do M&A? Is it you know, do you think that you're gonna get your multiple back up, you know, maybe comment on that and just sort of, you know, the duration of the growth that it's not just about twenty percent ARR growth this year, but that you have a multiyear runway to it. I mean, I'd love to sort of see how you think about sort of those two sort of concepts together because the multiple structurally hasn't really expanded over the course of the last twelve months. Right? I mean, if you really think about where the business was, it sixteen or whatever, fourteen months ago, pre-government, pre-task, pre, you know, pre-delegate, your ARR per share has grown meaningfully faster than sort of the multiple. So I'm just curious."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Savneet Singh",
+     "content": "Yeah. Let me just jump in because we got three more four more calls after. So short answer is, in the end, numbers matter more than anything else. You know, accounting is the language of business, and our numbers will dictate how our stock performs. I think our numbers are great and strong and getting better and better, and I believe that markets reward the durability of revenue ostensibly believe in the durability of cash flow, and I think we are continuing to demonstrate that over and over again. And I believe the multiple we will get rewarded for that. You know, in the end, software companies' multiples should contract when growth slows, when your TAM gets to the end of it, and you become, you know, your rule of forty flips to, you know, all cash flow versus growth. We don't have that situation here. In fact, you heard in my commentary, while our growth won't be linear, like, there's a lot of really nice upside here in the second half of the year that will also happen the following year. And so I think that I don't I don't know how you get to the five number, but I think we feel really confident that we're one of the few software companies in our size that will be able to continue to grow at, you know, rates that are higher well above the median, if you will. Continue to drive, you know, impressive profit numbers. So the multiple rewarded, the numbers numbers went in the end. It doesn't matter what I say or do and the numbers matter and we'll get there. Specifically, to your point on M&A, you know, you and I have talked about this extensively, but when you're using, you know, multiples, it's a relative game. So if we're trading at, I don't know, seven times, you know, current ARR, you know, we will set the benchmark for the market, and there are very few companies that have metrics as good as ours, and so I suspect that we will buy them at a discount to that multiple. Now are there certain assets that we might not be able to buy because we're not trading at a while multiple? For sure, but there's not a lot of those. And not a lot of that we want and not a lot of that would make sense in our flywheel. So as I said in the script, you know, we've got a really strong M&A pipeline. You know, every time I've said that, you know, we've executed upon that. I think you'll see us continue to do that. And the critical part, you know, in my script was, you know, M&A for us is a product strategy. It's not a, you know, let's go buy some bunch of revenue. It's how do we create add a product to increase our organic growth and then our long-term, you know, profitability. And so we feel really good about that today. If I didn't, I would tell you, hey, M&A is not gonna be part of our strategy, but, you know, we're on the first call of the year and, you know, we're talking about here. So I think you can take that as feel the multiples holding us back from being acquisitive right now."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Adam Wyden",
+     "content": "Yeah. I was just gonna clarify on the ARR multiple, like, when you look at sort of ServiceTitan and then even Agilisys post sell-off, those companies are still trading at, like, double-digit sales multiples on this year. And I was talking about, you know, sort of a five, five and a half times on twenty-six. And, you know, when you look at the company on a twenty-six ARR, or twenty-six EBITDA, I mean, it's there's a massive gap between companies like Toast and ServiceTitan, and even Agilisys post a forty percent decline. So I'm just highlighting the fact that, like, we're executing, you know, on many levels better than these other companies from a growth incremental margin perspective, but we continue to trade at a discount. So you know, I hope we can figure out a way to narrow that discount because I think this is a best-in-class company."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Savneet Singh",
+     "content": "And let the numbers drive that. So, you know, our numbers will drive it in, and I'm so confident we'll get there. Alright. Thanks, Adam Wyden."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question comes from Andrew Hart with BTIG. Your line is open."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Andrew Hart",
+     "content": "Hey. Thanks for the question. So, Savneet Singh, obviously, I think a big message today was the better together that you were pushing on. I guess as, you know, ARR's doubled the past year, business has scaled much more robust platform right now. Can you just discuss a little bit how some of your conversations with these larger enterprise CTOs have evolved just from a brand perspective and sales pipeline perspective?"
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Savneet Singh",
+     "content": "Absolutely. Listen. You thank you for pulling out the script. You know, listen, like I said, we signed eight POS deals in the quarter, which is impressive in the enterprise space. All of them picked multiple products. We upsold our largest customer another product. You know, clearly the flywheel that I've talked about is working, and Delegate is really going to accelerate it. You know, Adam Wyden or sorry, the caller before Adam Wyden talked about it, but, you know, it's a beautiful thing when that it's working. You know, my conversations with these organizations, you know, I think we're setting up for a really interesting outcome. As consumers, you know, there's consumer uncertainty right now, so restaurants are now really focusing on digital efforts because they're trying to create efficiencies in the back of house and pull you in the front end. And so they're creating more investments in technology. However, they're making those investments in technology without increasing their staff. In fact, many restaurant companies, you know, are flat staffed, particularly in operations and IT space. And so how are they gonna do that? Probably don't wanna add three more vendors. They probably wanna attach it into PAR Technology Corporation. And so I've had, you know, a couple of sales processes I've been a part of where, you know, it's very clear that the reason why they love us is not just because their products are best in class, it's because they can just trust the existing core relationship. And so, you know, we've spent an incredible amount of time and effort rejiggering our teams focusing on that account management side so that we can bring in those products. And I just wanna be clear, we do not win because we bundle, we win because the products work better together. And, you know, my push to the Delegate team that now runs combined PAR Technology Corporation Data Central is the win for here us is not is that a year from now or six months from now, a customer looks and says, oh, when I had Delegate in PAR Technology Corporation, as two separate vendors, it was a different experience than when I had it under one roof at PAR Technology Corporation. That and I can't stress you how powerful that is to the end customer. And we've had a lot of amazing examples of how we're winning deals by just showing that in a demo saying, hey, what happens if you've got Punch and Brink, look at this unique functionality you can have with POS that others can't. So it really is a theme, you know, I think candidly we're probably really too early on this thesis, you know, we've been talking about it for a long time, but it's certainly playing out and again, you know, I never would have dreamt that all of our deals in a quarter were multiproduct deals, you know. That's a really exciting change rep."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Andrew Hart",
+     "content": "Thanks. And then thinking about 2025, you know, you talked about the Burger King expansion, the payments deal, the convenience deal. There's a lot of moving pieces. You know, another one is, I guess, Stuzo gets layered into organic and Task gets layered into organic. So can you maybe talk about some of the things that can, you know, drive, you know, much higher than 20% growth, some of the things that you really have to execute on. And when you think about your staff in two Task and Stuzo getting layered into organic, how have those, you know, businesses been coming along as we get ready for 2025?"
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Savneet Singh",
+     "content": "Great question. So one is getting our become organic will certainly help us. Stuzo, I suspect, will grow faster than 20% a year. I, you know, the Task Task has two businesses Task and Plexure Task itself will grow greater than 20% a year. Plexure might will be sort of closer to the Engagement Cloud growth rates. Then Delegate will go well above the 20%. So as we lap the acquisitions, you will have faster organic revenue growth because the acquisitions in general, we look to buy stuff that's growing faster than us. So that's just mathematically a nice part of it if that happens. And actually, I did mention on the other question, but that will also help the back half of the year as those as we update acquisition. Second though, and listen more importantly, it's our ability to execute upon the deals that we have in place. So to be up, you know, our plan, if you will, to get to 20% plus growth assumes a relatively conservative rollout at our largest POS customer. We wanna blow through that, and I know our partners at that company we can do even double of what we're gonna do. And so that's number one. Can we execute on that? Number two is in PAR Retail, you know, the team has done an incredible job, you know, I really, you know, leadership there has done a great job of driving that business, but we have tremendous levers in driving real upside to our deals there. Because in certain deals in PAR Retail, our pricing increases based on our performance. And so, as we have great performance, the pricing goes up quite meaningfully there. And then third, is our ability to execute and get deals live and earlier than we expect. And that's something that I think our team is feeling really good about today. We'll see as it progresses, but there are a couple of really meaningful levers there to sort of that I think I see us out there. And then, you know, the last thing I'd say is that as we, you know, fold in these acquisitions, they do create an accelerated go-to-market motion because now we can pull in Data Central because the customer already uses Delegate as an example. We can pull in stuff faster and it's just short in our sales cycle. That might not be the big lever, but I think over time, it creates a nice ability to shorten sales cycle, though, also."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Andrew Hart",
+     "content": "Thanks, again."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Operator",
+     "content": "Thank you. Next question comes from Charles Nabhan with Stephens. Your line is open."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Charles Nabhan",
+     "content": "Hi. Good morning, and thank you for taking my question. I wanted to drill into the previous question a little further. Specifically around Task and the international opportunity. Clearly, that expands your TAM. It sounds like it's growing in excess of 20%, but wondering if you could speak more broadly about the international opportunity, how you see that playing out, and, you know, any more specific color around Task would be helpful as well."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Savneet Singh",
+     "content": "Absolutely. And give us another quarter because we're gonna we're making a lot of investments and changes there. We'll just kinda talk about the next quarter or so. But, you know, I think right now, core markets we're focusing on are sort of, you know, the APAC region where we've got a really strong foothold. You know, we are winning the sort of marquee brands in Australia, New Zealand, and that part of the world, and we've got a long, you know, a really nice pipeline to get executed on. So what we're really kinda helping the team is operationalize that part of the business so that they can become as programmatic as we can about getting sites out the door. A small business, so it hasn't gone through that scaling, if you will, of how do you add a thousand sites a quarter or something like that. And so we're working to kinda implement that took one of our best leaders at PAR Technology Corporation, and, you know, put him in charge of Task. And he is driving that. And so we're gonna focus on that region first. Pull that forward, do a great job. We have already, you know, I think, brought in one or two really high-quality brands that are US brands that want to expand to that region to partner with us there. That's crazy exciting for us because then obviously we can grow them, you know, in other parts around the globe. But we're trying to master that one region, and then we'll kind of expand out how to that."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Charles Nabhan",
+     "content": "Got it. As a follow-up, I wanted to ask about the hardware, Mark. Nice little uptick this quarter. Apologize if you touched on this already, but you maybe talk about the drivers of that expansion during the fourth quarter as well as how we should think about that margin within hardware going forward. Are we sort of at peak margins within that business or could we potentially see more expansion as we move through 2025?"
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Bryan Menar",
+     "content": "So we've been in both the hardware and some of the professional service actually linked to the hardware, we've been able to increase margin, percent year over year as you saw. Now, like, in the mid-twenties for hardware. Which we're, you know, we're proud of. Right? Some of the best hardware products are out there, like, in the low thirties. So we would like to continue to increase. We understand we'd only be modest work where we're gonna get from that. And then from the actual professional services, as you saw, we went up from a ten percent last year to a twenty-eight percent. And so now we've been consistently in the mid to upper twenties on professional services. And that's correlated as we continue to grow some of our hardware business that that would also increase from a revenue and then it's recurring revenue. So it gives consistent margins below that. But I would not expect this to have significant margin improvement in both in the hardware and professional services, but we are proud of how we've improved that for the past couple of years."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Charles Nabhan",
+     "content": "Got it. Appreciate all the color, guys. Nice quarter. Thank you."
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Savneet Singh",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question comes from Anja Soderstrom with Sidoti. Your line is open."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Anja Soderstrom",
+     "content": "Hi. Thank you for taking the question. Most of them have been addressed already, and congrats on the great year here. I have one question in terms of the tier-one pipeline. Have you seen that expanded? And how are you talking to those potential customers in terms of upselling as well? And how are you gonna be able to take on a tier-one customer in the near future given the expanded rollout with BK?"
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Savneet Singh",
+     "content": "So tier-one pipeline remains strong. I think what the change we've seen is clearly the mid-market is really picking up for us. So it's kinda nice to see that. You know, as far as being able to roll out additional concepts, we feel very good about that. You know, with BK, you know, this rollout and plan, the additional part of the rollout is a new module, a new product. So it won't impact kind of the core POS pipeline that's been strong for some time here. So I don't think it'll have an impact. And, you know, as I said, in Q1 and Q2, we're making some real investments to, you know, make sure we don't have any stumble there. You know, I think it's, you know, one of the mistakes I see our peers making we used to make years ago is you spend all this time getting software. Right? But then you get the rollout because you didn't, you know, hire enough bodies or training. And so we're, you know, we over-invest in that now because I think getting that right, you know, pulls revenue in faster and, you know, you make it up in spades down the road."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Anja Soderstrom",
+     "content": "Okay. Thank you. That was all for me."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Savneet Singh",
+     "content": "Thanks, Anja Soderstrom."
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Operator",
+     "content": "Thank you. I'm showing no further questions at this time. I would now like to turn it back to Christopher Byrnes for closing remarks."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Christopher Byrnes",
+     "content": "Thank you, Daniel, and thank you to everyone for joining us today. We look forward to updating you further in the coming weeks and days. Have a nice day and a great weekend. Thank you."
+    },
+    {
+     "paragraph_number": 73,
+     "speaker": "Operator",
+     "content": "This concludes today's conference call. Thank you for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +441,8 @@
    "reportDate": "2023-12-31",
    "accession": "0000708821-24-000014",
    "url": "https://www.sec.gov/Archives/edgar/data/708821/000070882124000014/par-20231231.htm",
-   "local_gz": "000070882124000014__annual.txt.gz"
+   "local_gz": "000070882124000014__annual.txt.gz",
+   "n_lines": 2020
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +450,8 @@
    "reportDate": "2024-09-30",
    "accession": "0000708821-24-000113",
    "url": "https://www.sec.gov/Archives/edgar/data/708821/000070882124000113/par-20240930.htm",
-   "local_gz": "000070882124000113__q0.txt.gz"
+   "local_gz": "000070882124000113__q0.txt.gz",
+   "n_lines": 1235
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +459,106 @@
    "reportDate": "2024-06-30",
    "accession": "0000708821-24-000078",
    "url": "https://www.sec.gov/Archives/edgar/data/708821/000070882124000078/par-20240630.htm",
-   "local_gz": "000070882124000078__q1.txt.gz"
+   "local_gz": "000070882124000078__q1.txt.gz",
+   "n_lines": 1188
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2024-11-08",
   "n_rows": 8,
@@ -83,6 +573,63 @@
     "ocf": -16748000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 32454000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 66494000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 9099000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 48659000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 823000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 6933000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -15905000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.58,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 27344000.0,
+      "filed": "2023-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +640,68 @@
     "ocf": 3953000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 26512000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 62894000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 11353000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 44162000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 390246000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3836000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 6882000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -19702000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.72,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 27357000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +712,68 @@
     "ocf": -5693000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 24193000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 66441000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 10066000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 43136000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 390786000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2943000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 6665000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -15516000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.56,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 27472000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +784,53 @@
     "ocf": 1413000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 23594000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 63382000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 9304000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 37369000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 496000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7001000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 140000.0,
+      "filed": "2024-02-27",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +841,63 @@
     "ocf": -23576000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 25054000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 69958000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 14710000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 50780000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 45000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7226000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -18288000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.62,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29516000.0,
+      "filed": "2024-05-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +908,63 @@
     "ocf": -13846000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 25526000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 50203000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 14294000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 114928000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 362000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 8901000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 54190000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.6,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 34015000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +975,63 @@
     "ocf": 8801000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 23915000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 60298000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30444000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 105804000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 384000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 10575000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -19832000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.56,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 35865000.0,
+      "filed": "2024-11-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1042,18 @@
     "ocf": 3375000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 105000000.0,
     "revenue_xbrl_for_reference": 105005000.0
@@ -166,157 +1067,50 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3578",
   "sic2": "35",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 173,
-  "peer_list_all_same_sic2_tickers": [
-   "AAON",
+  "bucket": "製造與工業",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic3",
+  "n_listed_peers": 54,
+  "peer_list_all_tickers": [
    "AAPL",
-   "ACLS",
-   "ACMR",
-   "AGCO",
-   "AIMD",
-   "AIRJ",
-   "ALG",
-   "ALLT",
-   "ALOT",
-   "ANET",
-   "AP",
-   "ARTW",
-   "ASML",
-   "ASTE",
-   "ASYS",
-   "ATEN",
-   "ATS",
-   "AZ",
-   "AZTA",
-   "BC",
-   "BKR",
-   "BOSC",
-   "BWXT",
-   "CARR",
-   "CAT",
-   "CECO",
-   "CHRN",
-   "CIIT",
-   "CMCO",
-   "CMI",
-   "CNH",
-   "CRCT",
-   "CRSR",
-   "CSCO",
-   "CVR",
-   "CVV",
-   "CW",
-   "CYD",
-   "DBD",
-   "DCI",
-   "DE",
-   "DELL",
-   "DGII",
-   "DNOW",
-   "DOV",
-   "DTI",
-   "EFXT",
-   "EPAC",
-   "ERII",
-   "ESAB",
-   "ETN",
-   "EVLV",
-   "EXTR",
-   "FET",
-   "FFIV",
-   "FLOC",
-   "FLS",
-   "FOXX",
-   "FTEK",
-   "FTI",
-   "FTNT",
-   "GENC",
-   "GGG",
-   "GHM",
-   "GPUS",
-   "GRC",
-   "GTEC",
-   "GTES",
-   "HAYW",
-   "HLP",
-   "HPE",
-   "HPQ",
-   "HSAI",
-   "HTOO",
-   "HUBC",
-   "HY",
-   "IBM",
-   "IEX",
-   "IMMR",
-   "INLF",
-   "INTZ",
-   "INVE",
-   "INVX",
-   "IR",
-   "ITT",
-   "ITW",
-   "JBTM",
-   "JCI",
-   "KAI",
-   "KITT",
-   "KMT",
-   "KRNT",
-   "LBGJ",
-   "LECO",
-   "LII",
-   "LINK",
-   "LIQT",
-   "LNN",
-   "LOGI",
-   "LRCX",
-   "LSE",
-   "LTRX",
-   "MIDD",
-   "MITK",
-   "MOG-A",
-   "MTW",
-   "MYND",
-   "NATL",
-   "NDSN",
-   "NNBR",
-   "NOV",
-   "NTAP",
-   "NTGR",
-   "NVT",
-   "OIS",
-   "OMCL",
-   "OSS",
-   "OUST",
-   "P"
+   "SMCI"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000320193",
     "name": "Apple Inc.",
     "ticker": "AAPL",
-    "sic2": "35",
+    "sic4": "3571",
+    "sic3": "357",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2024-11-01",
     "accn": "0000320193-24-000123",
     "local_gz": "000032019324000123__peer10k.txt.gz",
-    "capex_excerpt": []
+    "capex_excerpt": [
+     "1,046 ) ( 1,618 ) 1,484 Other current and non-current assets ( 11,731 ) ( 5,684 ) ( 6,499 ) Accounts payable 6,020 ( 1,889 ) 9,448 Other current and non-current liabilities 15,552 3,031 6,110 Cash generated by operating activities 118,254 110,543 122,151 Investing activities: Purchases of marketable securities ( 48,656 ) ( 29,513 ) ( 76,923 ) Proceeds from maturities of marketable securities 51,211 39,686 29,917 Proceeds from sales of marketable securities 11,135 5,828 37,446 Payments for acquisition of property, plant and equipment ( 9,447 ) ( 10,959 ) ( 10,708 ) Other ( 1,308 ) ( 1,337 ) ( 2,086 ) Cash generated by/(used in) investing activities 2,935 3,705 ( 22,354 ) Financing activities:"
+    ],
+    "capex_status": "ok"
    },
    {
     "entity_id": "0001375365",
     "name": "Super Micro Computer, Inc.",
     "ticker": "SMCI",
-    "sic2": "35",
+    "sic4": "3571",
+    "sic3": "357",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2025-02-25",
     "accn": "0001375365-25-000004",
     "local_gz": "000137536525000004__peer10k.txt.gz",
     "capex_excerpt": [
      "vironment; • Fluctuations in availability and costs associated with key components, particularly semiconductors, memory, storage solutions, and other materials needed to satisfy customer requirements; • The timing of the introduction of new products by leading microprocessor vendors and other suppliers; • Fluctuations based upon seasonality, with the quarters ending March 31 and September 30 typically being weaker; • The ability of our customers and suppliers to obtain financing or fund capital expenditures; • Fluctuations in the timing and size of large customer orders, including with respect to changes in sales and implementation cycles of our products into our customers’ spending plans an",
-     "ertible Notes that implemented the amendments to the 2029 Convertible Notes and we executed an indenture related to the 2028 Convertible Notes and issued the 2028 Convertible Notes pursuant to the terms of such indenture. Refer to Note 16, “Subsequent Events,” in the Notes to the Consolidated Financial Statements in this Annual Report for further information on the issuance of the 2028 Convertible Notes and the amendment of the terms of the 2029 Convertible Notes. SMCI | 2024 Form 10-K | 60 Capital Expenditure Requirements We anticipate our capital expenditures for the fiscal year 2025 will be in range of $140.0 million to $150.0 million, relating primarily to costs associated with our globa",
-     "2029 Convertible Notes and we executed an indenture related to the 2028 Convertible Notes and issued the 2028 Convertible Notes pursuant to the terms of such indenture. Refer to Note 16, “Subsequent Events,” in the Notes to the Consolidated Financial Statements in this Annual Report for further information on the issuance of the 2028 Convertible Notes and the amendment of the terms of the 2029 Convertible Notes. SMCI | 2024 Form 10-K | 60 Capital Expenditure Requirements We anticipate our capital expenditures for the fiscal year 2025 will be in range of $140.0 million to $150.0 million, relating primarily to costs associated with our global manufacturing capabilities, including tooling for n"
-    ]
+     "scal years 2024 and 2023, respectively. In fiscal year 2024, net increase in cash, cash equivalents and restricted cash of $1,229.3 million, comprised of $3,911.7 million provided by financing activities primarily due to proceeds from our offerings of common stock and sale of our 2029 Convertible Notes offset by $2,486.0 million used in operating activities primarily due to cash required for working capital, and $194.2 million cash used in investing activities primarily due to $124.3 million in purchases of property and equipment. Critical Accounting Estimates General Our discussion and analysis of our financial condition and results of operations are based upon our consolidated financial st",
+     "in equity securities of early stage companies of $67.3 million. Increase in property, plant and equipment is primarily related to the acquisition of previously leased real estate in San Jose, California, for $80 million. Net cash used in investing activities was $39.5 million and $46.3 million for fiscal years 2023 and 2022, respectively, as we invested in our Green Computing Park in San Jose to expand our manufacturing capacity and office space, expanded our Bade Facility in Taiwan and made purchases of property, plant and equipment. Financing Activities Net cash provided by financing activities increased by $4,360.0 million for fiscal year 2024 as compared to fiscal year 2023. The increase"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -338,7 +1132,16 @@
   "latest_data_date": "2025-02-28",
   "cutoff": "2025-02-28",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2025-02-28",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2025-03-03",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

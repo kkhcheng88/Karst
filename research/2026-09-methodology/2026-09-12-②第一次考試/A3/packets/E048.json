@@ -1,6 +1,7 @@
 {
  "event_id": "E048",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E048",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "WCC",
  "cik": "0000929008",
  "name": "WESCO INTERNATIONAL INC",
@@ -9,10 +10,11 @@
  "bucket": "製造與工業",
  "evidence_cutoff": "T1 = 2020-11-05(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E048",
   "event_id": "E048",
   "ticker": "WCC",
   "cik": "0000929008",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,7.01,9.01",
   "accessionNumber": "0000929008-20-000084",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/929008/000092900820000084/wcc-20201105.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/929008/000092900820000084/wcc-20201105.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n wcc-3q2020earnings.htm\n EX-99.1\n Document \n NEWS RELEASE \n WESCO International, Inc. / Suite 700, 225 West Station Square Drive / Pittsburgh, PA 15219 \n WESCO International, Inc. Reports Third Quarter 2020 Results \n Third quarter summary: \n • Net sales of $4.1 billion, up 93% due to the Anixter merger \n • Operating profit of $178.1 million; operating margin of 4.3% \n – Adjusted operating profit of $200.5 million; adjusted operating margin of 4.8% \n • Earnings per diluted share of $1.31 \n – Adjusted earnings per diluted share of $1.66 \n • Operating cash flow of $286.3 million \n – Free cash flow of $307.4 million, or 315% of adjusted net income \n • Leverage of 5.3x; improved 0.4x sequentially \n – Net debt reduction of $280 million \n PITTSBURGH, November 5, 2020 /PRNewswire/ -- WESCO International, Inc. (NYSE: WCC), a leading provider of business-to-business distribution, logistics services and supply chain solutions, announces its results for the third quarter of 2020. \n Mr. John J. Engel, WESCO's Chairman, President and CEO, commented, “We delivered very strong results in the third quarter and exceeded our sales, margin, profit and cash generation expectations. This was our first full quarter of results after completing the merger with Anixter and clearly highlights the value creation potential of this transformational combination. Business momentum improved through the quarter as we took market share and built an all-time record third quarter backlog. We aggressively managed our business and executed significant cost reduction, margin improvement and cash management actions, which enabled us to deliver profit growth in the third quarter. Free cash flow generation was exceptional at over 300% of net income and demonstrates our resilient business model and strength through the cycle. Notably, net debt was reduced by $280 million thereby reducing our financial leverage consistent with our capital allocation priorities. Again this quarter, I would like to recognize and thank all of our associates for their inspirational dedication, commitment and hard work in effectively managing in this COVID-19 driven environment.\" \n Mr. Engel continued, \"We accelerated our integration planning, execution and synergy realization efforts, and made outstanding progress in the third quarter. The strong cultural alignment between WESCO and Anixter is proving to be a key driver of our initial success. We realized $15 million of cost synergies in the third quarter, and have already initiated actions to deliver 100% of our year one cost synergy target of $68 million after just four months since closing the acquisition. I could not be more pleased with the integration team’s execution of our plan. As a result, we are raising our year 1, 2 and 3 cost synergy targets to $100 million, $180 million, and $250 million, respectively. Our initial integration progress gives us confidence that we will revisit our synergy targets as we build success upon success. We are also realizing initial sales synergies through leveraging our expanded global footprint and cross-selling our broader product and services portfolio. We believe our sales synergy efforts will support incremental revenue growth in the years ahead. As a result, we are building on these early successes and are increasingly confident in our ability to achieve significant upside potential and exceed our three year cost savings, sales growth, margin expansion, and cash generation synergy targets.” \n Mr. Engel added, “WESCO’s new era is off to an exceptional start. As the premier electrical, communications and utility distribution and supply chain solutions company in the world, we are very well positioned to capitalize on the accelerating secular trends of electrification, increased bandwidth demand driven by higher voice, data, video and mobile usage, and the digitization of our B2B value chain. Building on our positive momentum, we are looking forward to entering 2021 with accelerating results. As we look to the future, we are more bullish than ever in the substantial value creation that this transformational combination will create for our customers, supplier partners, employees, investors, and the communities in which we operate.\" \n 1 \n The following are results for the three months ended September 30, 2020 compared to the three months ended September 30, 2019: \n • Net sales were $4.1 billion for the third quarter of 2020 compared to $2.1 billion for the third quarter of 2019, an increase of 92.8% due to the merger with Anixter that was completed on June 22, 2020, partially offset by the weakened demand impact from the COVID-19 pandemic. \n • Cost of goods sold for the third quarter of 2020 was $3.4 billion compared to $1.7 billion for the third quarter of 2019, and gross profit was $785.5 million and $400.2 million, respectively. As a percentage of net sales, gross profit was 19.0% and 18.6% for the third quarter of 2020 and 2019, respectively. Gross profit as a percentage of net sales for the third quarter of 2020 was 19.6% excluding the effect of merger-related fair value adjustments of $28.0 million. \n • Selling, general and administrative expenses were $562.0 million, or 13.6% of net sales, for the third quarter of 2020, compared to $290.9 million, or 13.5% of net sales, for the third quarter of 2019. SG&A expenses for the third quarter of 2020 include merger-related costs of $14.2 million, as well as a gain on the sale of an operating branch in the U.S. of $19.8 million. Adjusted for these amounts, SG&A expenses were $567.6 million, or 13.7% of net sales, for the third quarter of 2020, reflecting the favorable impact of cost reduction actions taken in response to the COVID-19 pandemic. \n • Operating profit was $178.1 million for the third quarter of 2020, compared to $93.7 million for the third quarter of 2019. Operating profit as a percentage of net sales was 4.3% for the current quarter, compared to 4.4% for the third quarter of the prior year. As adjusted for the merger-related costs and gain on the sale of a U.S. operating branch, operating profit was $200.5 million for the third quarter of 2020, or 4.8% of net sales. \n • Net interest expense for the third quarter of 2020 was $74.5 million, compared to $14.3 million for the third quarter of 2019. The increase in interest expense was driven by financing activity related to the Anixter merger. \n • The effective tax rate for the third quarter of 2020 was 23.3%, compared to 19.8% for the third quarter of 2019. The higher effective tax rate in the current quarter is primarily due to costs incurred to complete the merger with Anixter. \n • Net income attributable to common stockholders was $66.2 million for the third quarter of 2020, compared to $64.5 million for the third quarter of 2019. As adjusted, net income attributable to common stockholders was $83.6 million for the third quarter of 2020. \n • Earnings per diluted share for the third quarter of 2020 was $1.31, based on 50.5 million diluted shares, compared to $1.52 for the third quarter of 2019, based on 42.4 million diluted shares. As adjusted, earnings per diluted share for the third quarter of 2020 was $1.66. \n • Operating cash flow for the third quarter of 2020 was $286.3 million, compared to $125.4 million for the third quarter of 2019. Free cash flow for the third quarter of 2020 was $307.4 million, or 315% of adjusted net income, compared to $116.5 million, or 181% of net income, for the third quarter of 2019. \n The following are results for the nine months ended September 30, 2020 compared to the nine months ended September 30, 2019: \n • Net sales were $8.2 billion for the first nine months of 2020 compared to $6.3 billion for the first nine months of 2019, an increase of 31.0% due to the merger with Anixter that was completed on June 22, 2020, partially offset by the weakened demand impact from the COVID-19 pandemic. \n • Cost of goods sold for the first nine months of 2020 was $6.6 billion and gross profit was $1.6 billion, compared to $5.1 billion and $1.2 billion, respectively, for the first nine months of 2019. As a percentage of net sales, gross profit was 19.0% for the first nine months of 2020 and 2019. Gross profit as a percentage of net sales for the first nine months of 2020 was 19.3% excluding the effect of merger-related fair value adjustments of $28.0 million. \n • Selling, general and administrative expenses were $1.2 billion, or 14.9% of net sales, for the first nine months of 2020, compared to $883.2 million, or 14.1% of net sales, for the first nine months of 2019. SG&A expenses for the first nine months of 2020 include merger-related costs of $92.1 million, as well as a gain on the sale of an operating branch in the U.S. of $19.8 million. Adjusted for these amounts, SG&A expenses were $1.1 billion, or 14.0% of net sales, for the first nine months of 2020, reflecting the favorable impact of cost reduction actions taken in response to the COVID-19 pandemic. \n • Operating profit was $254.3 million for the first nine months of 2020, compared to $262.4 million for the first nine months of 2019. Operating profit as a percentage of net sales was 3.1% for the current nine month period, compared to 4.2% for the prior nine month \n 2 \n period. As adjusted for the merger-related costs and gain on the sale of a U.S. operating branch, operating profit was $354.6 million for the first nine months of 2020, or 4.3% of net sales. \n • Net interest expense for the first nine months of 2020 was $152.3 million, compared to $49.3 million for the first nine months of 2019. The increase in interest expense was driven by financing activity related to the Anixter merger. \n • The effective tax rate for the first nine months of 2020 was 22.9%, compared to 21.0% for the first nine months of 2019. The higher effective tax rate in the current nine month period is primarily due to costs incurred to complete the merger with Anixter. \n • Net income attributable to common stockholders was $64.8 million for the first nine months of 2020, compared to $170.3 million for the first nine months of 2019. As adjusted, net income attributable to common stockholders was $143.0 million for the nine months ended September 30, 2020. \n • Earnings per diluted share for the first nine months of 2020 was $1.44, based on 45.1 million diluted shares, compared to $3.88 for the first nine months of 2019, based on 43.9 million diluted shares. As adjusted, earnings per diluted share for the current nine month period was $3.17. \n • Operating cash flow for the first nine months of 2020 was $418.9 million, compared to $116.7 million for the first nine months of 2019. Free cash flow for the first nine months of 2020 was $462.1 million, or 292% of adjusted net income, compared to $86.3 million, or 51% of net income, for the first nine months of 2019. \n Segment Results \n In the third quarter of 2020, in connection with the acquisition of Anixter, the Company identified new segments, which have been organized around three strategic business units consisting of Electrical & Electronic Solutions (\"EES\"), Communications & Security Solutions (\"CSS\") and Utility & Broadband Solutions (\"UBS\"). \n Corporate expenses are incurred to obtain and coordinate financing, tax, information technology, legal and other related services. Segment results include depreciation expense or other allocations related to various corporate assets. Interest expense and other non-operating items are not allocated to the segments or reviewed on a segment basis. Corporate expenses are not directly identifiable with our reportable segments and are reported in the tables below to reconcile the reportable segments to the consolidated financial statements. \n The following are results by segment for the three months ended September 30, 2020 compared to the three months ended September 30, 2019: \n • EES reported net sales of $1.7 billion for the third quarter of 2020, compared to $1.3 billion for the third quarter of 2019, an increase of 32.3%. Operating profit was $105.5 million for the third quarter of 2020, compared to $72.0 million for the third quarter of 2019. Adjusted EBITDA was $107.9 million for the third quarter of 2020, or 6.5% of net sales, compared to $78.7 million for the third quarter of 2019, or 6.3% of net sales. \n • CSS reported net sales of $1.4 billion for the third quarter of 2020, compared to $235.9 million for the third quarter of 2019, an increase of 488.7%. Operating profit was $89.6 million for the third quarter of 2020, compared to $10.6 million for the third quarter of 2019. Adjusted EBITDA was $120.5 million for the third quarter of 2020, or 8.7% of net sales, compared to $12.4 million for the third quarter of 2019, or 5.2% of net sales. \n • UBS reported net sales of $1.1 billion for the third quarter of 2020, compared to $662.1 million for the third quarter of 2019, an increase of 66.0%. Operating profit was $74.1 million for the third quarter of 2020, compared to $43.8 million for the third quarter of 2019. Adjusted EBITDA was $85.7 million for the third quarter of 2020, or 7.8% of net sales, compared to $47.3 million for the third quarter of 2019, or 7.1% of net sales. \n The following are results by segment for the nine months ended September 30, 2020 compared to the nine months ended September 30, 2019: \n • EES reported net sales of $3.8 billion for the first nine months of 2020, compared to $3.6 billion for the first nine months of 2019, an increase of 5.1%. Operating profit was $194.6 million for the first nine months of 2020, compared to $198.8 million for the first nine months of 2019. Adjusted EBITDA was $212.0 million for the first nine months of 2020, or 5.6% of net sales, compared to $219.6 million for the first nine months of 2019, or 6.1% of net sales. \n • CSS reported net sales of $2.0 billion for the first nine months of 2020, compared to $681.1 million for the first nine months of 2019, an increase of 186.9%. Operating profit was $127.5 million for the first nine months of 2020, compared to $32.5 million for the first nine months of 2019. Adjusted EBITDA was $164.3 million for the first nine months of 2020, or 8.4% of net sales, compared to $38.0 million for the first nine months of 2019, or 5.6% of net sales. \n 3 \n • UBS reported net sales of $2.4 billion for the first nine months of 2020, compared to $2.0 billion for the first nine months of 2019, an increase of 24.6%. Operating profit was $167.7 million for the first nine months of 2020, compared to $134.4 million for the first nine months of 2019. Adjusted EBITDA was $187.0 million for the first nine months of 2020, or 7.7% of net sales, compared to $144.7 million for the first nine months of 2019, or 7.4% of net sales. \n Webcast and Teleconference Access \n WESCO will conduct a webcast and teleconference to discuss the third quarter of 2020 earnings as described in this News Release on Thursday, November 6, 2020, at 10:00 a.m. E.T. The call will be broadcast live over the internet and can be accessed from the Investor Relations page of the Company's website at www.wesco.investorroom.com . The call will be archived on this internet site for seven days. \n WESCO International, Inc. (NYSE: WCC), a publicly traded FORTUNE 500® company headquartered in Pittsburgh, Pennsylvania, is a leading provider of business-to-business distribution, logistics services and supply chain solutions. Pro forma 2019 annual sales were over $17 billion, including Anixter International Inc., which it acquired in June 2020. WESCO offers a best-in-class product and services portfolio of Electrical and Electronic Solutions, Communications and Security Solutions, and Utility and Broadband Solutions. The Company employs over 18,000 people, maintains relationships with over 30,000 suppliers, and serves more than 150,000 customers worldwide. With nearly 1.5 million products, end-to-end supply chain services, and leading digital capabilities, WESCO provides innovative solutions to meet customer needs across commercial and industrial businesses, contractors, government agencies, institutions, telecommunications providers, and utilities. WESCO operates nearly 800 branch and warehouse locations in over 50 countries, providing a local presence for customers and a global network to serve multi-location businesses and multi-national corporations. \n Forward-Looking Statements \n All statements made herein that are not historical facts should be considered as forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. Such statements involve known and unknown risks, uncertainties and other factors that may cause actual results to differ materially. These statements include, but are not limited to, statements regarding the process to divest the legacy WESCO Utility and Datacom businesses in Canada, including the expected length of the process, the expected benefits and costs of the transaction between WESCO and Anixter International Inc., including anticipated future financial and operating results, synergies, accretion and growth rates, and the combined company's plans, objectives, expectations and intentions, statements that address the combined company's expected future business and financial performance, and other statements identified by words such as \"anticipate,\" \"plan,\" \"believe,\" \"estimate,\" \"intend,\" \"expect,\" \"project,\" \"will\" and similar words, phrases or expressions. These forward-looking statements are based on current expectations and beliefs of WESCO's management, as well as assumptions made by, and information currently available to, WESCO's management, current market trends and market conditions and involve risks and uncertainties, many of which are outside of WESCO's and WESCO's management's control, and which may cause actual results to differ materially from those contained in forward-looking statements. Accordingly, you should not place undue reliance on such statements. \n Those risks, uncertainties and assumptions include the risk of any unexpected costs or expenses resulting from the transaction, the risk of any litigation or post-closing regulatory action relating to the transaction, the risk that the transaction could have an adverse effect on the ability of the combined company to retain customers and retain and hire key personnel and maintain relationships with its suppliers, customers and other business relationships and on its operating results and business generally, the risk that problems may arise in successfully integrating the businesses of the companies or that the combined company could be required to divest one or more businesses, which may result in the combined company not operating as effectively and efficiently as expected, the risk that the combined company may be unable to achieve synergies or other anticipated benefits of the proposed transaction or it may take longer than expected to achieve those synergies or benefits, the risk that the leverage of the company may be higher than anticipated, the impact of natural disasters, health epidemics and other outbreaks, especially the outbreak of COVID-19 since December 2019, which may have a material adverse effect on the combined company's business, results of operations and financial conditions, the risk that the divesture of the legacy WESCO Utility and Datacom businesses in Canada may take longer than expected and other important factors that could cause actual results to differ materially from those projected. All such factors are difficult to predict and are beyond each company's control. Additional factors that could cause results to differ materially from those described above can be found in WESCO's Annual Report on Form 10-K for the fiscal year ended December 31, 2019 and WESCO's other reports filed with the U.S. Securities and Exchange Commission (\"SEC\"). \n Contact Information: \n Will Ruthrauff \n Director, Investor Relations and Corporate Communications \n (412) 454-4220 \n http://www.wesco.com \n 4 \n WESCO INTERNATIONAL, INC. \n CONDENSED CONSOLIDATED STATEMENTS OF INCOME \n (dollar amounts in thousands, except per share amounts) \n (Unaudited) \n Three Months Ended \n September 30, 2020 September 30, 2019 \n Net sales $ 4,141,801 $ 2,148,110 \n Cost of goods sold (excluding 3,356,259 81.0 % 1,747,913 81.4 % \n depreciation and amortization) \n Selling, general and administrative expenses 561,971 13.6 % 290,852 13.5 % \n Depreciation and amortization 45,476 15,612 \n Income from operations 178,095 4.3 % 93,733 4.4 % \n Interest expense, net 74,540 14,306 \n Other, net (777) (798) \n Income before income taxes 104,332 2.5 % 80,225 3.7 % \n Income tax expense 24,294 15,886 \n Net income 80,038 1.9 % 64,339 3.0 % \n Net loss attributable to noncontrolling interests (640) (156) \n Net income attributable to WESCO International, Inc. 80,678 1.9 % 64,495 3.0 % \n Preferred stock dividends 14,511 — \n Net income attributable to common stockholders $ 66,167 1.6 % $ 64,495 3.0 % \n Earnings per share attributable to common stockholders $ 1.31 $ 1.52 \n Weighted-average common shares outstanding and common \n share equivalents used in computing earnings \n per diluted common share (in thousands) 50,487 42,378 \n Reportable Segments \n Net sales: \n Electrical & Electronic Solutions $ 1,653,726 $ 1,250,079 \n Communications & Security Solutions 1,388,791 235,921 \n Utility & Broadband Solutions 1,099,284 662,110 \n $ 4,141,801 $ 2,148,110 \n Income from operations: \n Electrical & Electronic Solutions $ 105,508 $ 72,007 \n Communications & Security Solutions 89,634 10,555 \n Utility & Broadband Solutions 74,092 43,811 \n Corporate (91,139) (32,640) \n $ 178,095 $ 93,733 \n 5 \n WESCO INTERNATIONAL, INC. \n CONDENSED CONSOLIDATED STATEMENTS OF INCOME \n (dollar amounts in thousands, except per share amounts) \n (Unaudited) \n Nine Months Ended \n September 30, 2020 September 30, 2019 \n Net sales $ 8,197,154 $ 6,259,465 \n Cost of goods sold (excluding 6,641,438 81.0 % 5,067,799 81.0 % \n depreciation and amortization) \n Selling, general and administrative expenses 1,221,114 14.9 % 883,222 14.1 % \n Depreciation and amortization 80,324 46,035 \n Income from operations 254,278 3.1 % 262,409 4.2 % \n Interest expense, net 152,281 49,293 \n Other, net (1,463) (1,359) \n Income before income taxes 103,460 1.3 % 214,475 3.4 % \n Income tax expense 23,707 44,970 \n Net income 79,753 1.0 % 169,505 2.7 % \n Net loss attributable to noncontrolling interests (825) (824) \n Net income attributable to WESCO International, Inc. 80,578 1.0 % 170,329 2.7 % \n Preferred stock dividends 15,787 — \n Net income attributable to common stockholders $ 64,791 0.8 % $ 170,329 2.7 % \n Earnings per share attributable to common stockholders $ 1.44 $ 3.88 \n Weighted-average common shares outstanding and common \n share equivalents used in computing earnings \n per diluted common share (in thousands) 45,104 43,901 \n Reportable Segments \n Net sales: \n Electrical & Electronic Solutions $ 3,811,498 $ 3,626,423 \n Communications & Security Solutions 1,953,967 681,087 \n Utility & Broadband Solutions 2,431,689 1,951,955 \n $ 8,197,154 $ 6,259,465 \n Income from operations: \n Electrical & Electronic Solutions $ 194,643 $ 198,774 \n Communications & Security Solutions 127,502 32,501 \n Utility & Broadband Solutions 167,651 134,431 \n Corporate (235,518) (103,297) \n $ 254,278 $ 262,409 \n 6 \n WESCO INTERNATIONAL, INC. \n CONDENSED CONSOLIDATED BALANCE SHEETS \n (dollar amounts in thousands) \n (Unaudited) \n September 30,\n2020 December 31,\n2019 \n Assets \n Current Assets \n Cash and cash equivalents $ 352,249 $ 150,902 \n Trade accounts receivable, net 2,492,248 1,187,359 \n Inventories 2,357,634 1,011,674 \n Other current assets 395,319 190,476 \n Total current assets 5,597,450 2,540,411 \n Other assets 6,270,889 2,477,224 \n Total assets $ 11,868,339 $ 5,017,635 \n Liabilities and Stockholders' Equity \n Current Liabilities \n Accounts payable $ 1,830,877 $ 830,478 \n Short-term borrowings and current portion of long-term debt 28,844 26,685 \n Other current liabilities 681,214 226,896 \n Total current liabilities 2,540,935 1,084,059 \n Long-term debt, net 4,878,124 1,257,067 \n Other noncurrent liabilities 1,236,056 417,838 \n Total liabilities 8,655,115 2,758,964 \n Stockholders' Equity \n Total stockholders' equity 3,213,224 2,258,671 \n Total liabilities and stockholders' equity $ 11,868,339 $ 5,017,635 \n 7 \n WESCO INTERNATIONAL, INC. \n CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS \n (dollar amounts in thousands) \n (Unaudited) \n Nine Months Ended \n September 30,\n2020 September 30,\n2019 \n Operating Activities: \n Net income $ 79,753 $ 169,505 \n Add back (deduct): \n Depreciation and amortization 80,324 46,035 \n Deferred income taxes (8,261) 4,621 \n Change in trade receivables, net 3,584 (122,903) \n Change in inventories 77,681 (1,500) \n Change in accounts payable 80,489 46,902 \n Other 105,368 (25,996) \n Net cash provided by operating activities 418,938 116,664 \n Investing Activities: \n Capital expenditures (42,562) (30,323) \n Other (1) \n (3,681,335) (23,167) \n Net cash used in investing activities (3,723,897) (53,490) \n Financing Activities: \n Debt borrowings, net (2) \n 3,606,339 148,387 \n Equity activity, net (2,565) (152,735) \n Other (3) \n (96,454) (13,734) \n Net cash provided by (used in) financing activities 3,507,320 (18,082) \n Effect of exchange rate changes on cash and cash equivalents (1,014) (3,275) \n Net change in cash and cash equivalents 201,347 41,817 \n Cash and cash equivalents at the beginning of the period 150,902 96,343 \n Cash and cash equivalents at the end of the period $ 352,249 $ 138,160 \n (1) Includes payments to acquire Anixter of $3,707.6 million, net of cash acquired of $103.4 million. \n (2) Primarily includes the net proceeds from the issuance of senior unsecured notes of $2,815.0 million, as well as borrowings under the Company's asset-based revolving credit facility and accounts receivable securitization facility. These cash inflows were used to fund the merger with Anixter. \n (3) Includes approximately $79.9 million of costs associated with the debt financing used to fund a portion of the merger with Anixter, and $15.8 million of dividends paid to holders of Series A preferred stock. \n 8 \n NON-GAAP FINANCIAL MEASURES \n In addition to the results provided in accordance with U.S. Generally Accepted Accounting Principles (\"U.S. GAAP\") above, this earnings release includes certain non-GAAP financial measures. These financial measures include gross profit, adjusted gross profit gross margin, adjusted gross margin, earnings before interest, taxes, depreciation and amortization (EBITDA), adjusted EBITDA, adjusted EBITDA margin, pro forma adjusted EBITDA, financial leverage, pro forma financial leverage, free cash flow, adjusted income from operations, adjusted operating margin, adjusted provision for income taxes, adjusted net income, adjusted net income attributable to WESCO International, Inc., adjusted net income attributable to common stockholders, and adjusted earnings per diluted share. The Company believes that these non-GAAP measures are useful to investors as they provide a better understanding of sales performance, and the use of debt and liquidity on a comparable basis. Additionally, certain non-GAAP measures either focus on or exclude transactions impacting comparability of results, allowing investors to more easily compare the Company's financial performance from period to period. Management does not use these non-GAAP financial measures for any purpose other than the reasons stated above. \n 9 \n WESCO INTERNATIONAL, INC. \n RECONCILIATION OF NON-GAAP FINANCIAL MEASURES \n (dollar amounts in thousands, except per share data) \n (Unaudited) \n Three Months Ended Nine Months Ended \n Gross Profit: September 30, 2020 September 30, 2019 September 30, 2020 September 30, 2019 \n Net sales $ 4,141,801 $ 2,148,110 $ 8,197,154 $ 6,259,465 \n Cost of goods sold (excluding depreciation and amortization) 3,356,259 1,747,913 6,641,438 5,067,799 \n Gross profit $ 785,542 $ 400,197 $ 1,555,716 $ 1,191,666 \n Adjusted gross profit (1) \n $ 813,561 $ 400,197 $ 1,583,735 $ 1,191,666 \n Gross margin 19.0 % 18.6 % 19.0 % 19.0 % \n Adjusted gross margin (1) \n 19.6 % 18.6 % 19.3 % 19.0 % \n Note: Gross profit is a financial measure commonly used within the distribution industry. Gross profit is calculated by deducting cost of goods sold, excluding depreciation and amortization, from net sales. Gross margin is calculated by dividing gross profit by net sales. \n (1) Adjusted gross profit and adjusted gross margin exclude the effect of merger-related fair value adjustments to inventory of $28.0 million for the three and nine months ended September 30, 2020. \n Three Months Ended Nine Months Ended \n Adjusted Income from Operations: September 30, 2020 September 30, 2019 September 30, 2020 September 30, 2019 \n Income from operations $ 178,095 $ 93,733 $ 254,278 $ 262,409 \n Merger-related costs 14,175 — 92,127 — \n Merger-related fair value adjustments 28,019 — 28,019 — \n Gain on sale of asset (19,816) — (19,816) — \n Adjusted income from operations $ 200,473 $ 93,733 $ 354,608 $ 262,409 \n Three Months Ended Nine Months Ended \n Adjusted Provision for Income Taxes: September 30, 2020 September 30, 2019 September 30, 2020 September 30, 2019 \n Provision for income taxes $ 24,294 $ 15,886 $ 23,707 $ 44,970 \n Income tax effect of adjustments to income from operations (1) \n 4,923 — 22,073 — \n Adjusted provision for income taxes $ 29,217 $ 15,886 $ 45,780 $ 44,970 \n (1) The adjustments to income from operations have been tax effected at a rate of 22%. \n 10 \n WESCO INTERNATIONAL, INC. \n RECONCILIATION OF NON-GAAP FINANCIAL MEASURES \n (dollar amounts in thousands, except per share data) \n (Unaudited) \n Three Months Ended Nine Months Ended \n Adjusted Earnings per Diluted Share: September 30, 2020 September 30, 2019 September 30, 2020 September 30, 2019 \n Adjusted income from operations $ 200,473 $ 93,733 $ 354,608 $ 262,409 \n Interest expense, net 74,540 14,306 152,281 49,293 \n Other, net (777) (798) (1,463) (1,359) \n Adjusted income before income taxes 126,710 80,225 203,790 214,475 \n Adjusted provision for income taxes 29,217 15,886 45,780 44,970 \n Adjusted net income 97,493 64,339 158,010 169,505 \n Net loss attributable to noncontrolling interests (640) (156) (825) (824) \n Adjusted net income attributable to WESCO International, Inc. 98,133 64,495 158,835 170,329 \n Preferred stock dividends 14,511 — 15,787 — \n Adjusted net income attributable to common stockholders $ 83,622 $ 64,495 $ 143,048 $ 170,329 \n Diluted shares 50,487 42,378 45,104 43,901 \n Adjusted earnings per diluted share $ 1.66 $ 1.52 $ 3.17 $ 3.88 \n Note: Income from operations, the provision for income taxes and earnings per diluted share for the three and nine months ended September 30, 2020 have been adjusted to exclude merger-related costs and fair value adjustments, gain on sale of an operating branch in the U.S. and the related income tax effects. These non-GAAP financial measures provide a better understanding of the Company's financial results on a comparable basis. \n 11 \n WESCO INTERNATIONAL, INC. \n RECONCILIATION OF NON-GAAP FINANCIAL MEASURES \n (dollar amounts in thousands, except per share data) \n (Unaudited) \n Three Months Ended September 30, 2020 \n EBITDA and Adjusted EBITDA by Segment: EES CSS UBS Corporate Total \n Net income attributable to common stockholders $ 107,192 $ 90,585 $ 73,924 $ (205,534) $ 66,167 \n Net loss attributable to noncontrolling interests (270) — — (370) (640) \n Preferred stock dividends — — — 14,511 14,511 \n Income tax expense — — — 24,294 24,294 \n Interest expense, net — — — 74,540 74,540 \n Depreciation and amortization 10,411 18,536 7,550 8,979 45,476 \n EBITDA $ 117,333 $ 109,121 $ 81,474 $ (83,580) $ 224,348 \n Other, net (1,414) (951) 168 1,420 (777) \n Stock-based compensation expense 141 6 77 5,778 6,002 \n Merger-related costs — — — 14,175 14,175 \n Merger-related fair value adjustments 11,695 12,344 3,980 — 28,019 \n Gain on sale of asset (19,816) — — — (19,816) \n Adjusted EBITDA $ 107,939 $ 120,520 $ 85,699 $ (62,207) $ 251,951 \n Adjusted EBITDA margin % 6.5 % 8.7 % 7.8 % 6.1 % \n Three Months Ended September 30, 2019 \n EBITDA and Adjusted EBITDA by Segment: EES CSS UBS Corporate Total \n Net income attributable to common stockholders $ 72,163 $ 10,555 $ 43,811 $ (62,034) $ 64,495 \n Net loss attributable to noncontrolling interests (156) — — — (156) \n Income tax expense — — — 15,886 15,886 \n Interest expense, net — — — 14,306 14,306 \n Depreciation and amortization 7,171 1,811 3,396 3,234 15,612 \n EBITDA $ 79,178 $ 12,366 $ 47,207 $ (28,608) $ 110,143 \n Other, net (798) — — — (798) \n Stock-based compensation expense 279 19 58 4,070 4,426 \n Adjusted EBITDA $ 78,659 $ 12,385 $ 47,265 $ (24,538) $ 113,771 \n Adjusted EBITDA margin % 6.3 % 5.2 % 7.1 % 5.3 % \n 12 \n WESCO INTERNATIONAL, INC. \n RECONCILIATION OF NON-GAAP FINANCIAL MEASURES \n (dollar amounts in thousands, except per share data) \n (Unaudited) \n Nine Months Ended September 30, 2020 \n EBITDA and Adjusted EBITDA by Segment: EES CSS UBS Corporate Total \n Net income attributable to common stockholders $ 196,665 $ 128,295 $ 167,483 $ (427,652) $ 64,791 \n Net loss attributable to noncontrolling interests (664) — — (161) (825) \n Preferred stock dividends — — — 15,787 15,787 \n Income tax expense — — — 23,707 23,707 \n Interest expense, net — — — 152,281 152,281 \n Depreciation and amortization 24,638 24,393 15,153 16,140 80,324 \n EBITDA $ 220,639 $ 152,688 $ 182,636 $ (219,898) $ 336,065 \n Other, net (1,358) (793) 168 520 (1,463) \n Stock-based compensation expense 849 54 221 14,405 15,529 \n Merger-related costs — — — 92,127 92,127 \n Merger-related fair value adjustments 11,695 12,344 3,980 — 28,019 \n Gain on sale of asset (19,816) — — — (19,816) \n Adjusted EBITDA $ 212,009 $ 164,293 $ 187,005 $ (112,846) $ 450,461 \n Adjusted EBITDA margin % 5.6 % 8.4 % 7.7 % 5.5 % \n Nine Months Ended September 30, 2019 \n EBITDA and Adjusted EBITDA by Segment: EES CSS UBS Corporate Total \n Net income attributable to common stockholders $ 199,598 $ 32,501 $ 134,431 $ (196,201) $ 170,329 \n Net loss attributable to noncontrolling interests (824) — — — (824) \n Income tax expense — — — 44,970 44,970 \n Interest expense, net — — — 49,293 49,293 \n Depreciation and amortization 21,343 5,453 10,118 9,121 46,035 \n EBITDA $ 220,117 $ 37,954 $ 144,549 $ (92,817) $ 309,803 \n Other, net (1,359) — — — (1,359) \n Stock-based compensation expense 837 57 173 13,174 14,241 \n Adjusted EBITDA $ 219,595 $ 38,011 $ 144,722 $ (79,643) $ 322,685 \n Adjusted EBITDA margin % 6.1 % 5.6 % 7.4 % 5.2 % \n Note: EBITDA and Adjusted EBITDA are non-GAAP financial measures that provide indicators of the Company's performance and its ability to meet debt service requirements. EBITDA is defined as earnings before interest, taxes, depreciation and amortization. Adjusted EBITDA is defined as EBITDA before other, net, non-cash stock-based compensation, costs and fair value adjustments associated with the merger with Anixter, and gain on sale of an operating branch in the U.S. \n 13 \n WESCO INTERNATIONAL, INC. \n RECONCILIATION OF NON-GAAP FINANCIAL MEASURES \n (dollar amounts in thousands, except per share data) \n (Unaudited) \n Pro Forma Reported \n Twelve Months Ended Twelve Months Ended \n Financial Leverage: September 30,\n2020 December 31, 2019 \n Net income attributable to common stockholders $ 264,116 $ 223,426 \n Net loss attributable to noncontrolling interests (1,229) (1,228) \n Preferred stock dividends 15,787 — \n Income tax expense 40,051 59,863 \n Interest expense, net 216,699 64,156 \n Depreciation and amortization 145,471 62,107 \n EBITDA $ 680,895 $ 408,324 \n Other, net 2,365 614 \n Stock-based compensation 43,868 19,062 \n Merger-related costs and fair value adjustments 166,849 3,130 \n Gain on sale of asset (19,816) — \n Adjusted EBITDA $ 874,161 $ 431,130 \n September 30,\n2020 December 31,\n2019 \n Short-term borrowings and current portion of long-term debt $ 28,844 $ 26,685 \n Long-term debt 4,878,124 1,257,067 \n Debt discount and debt issuance costs (1) \n 92,343 8,876 \n Fair value adjustments to Anixter Notes due 2023 and 2025 (1) \n (1,824) — \n Total debt 4,997,487 1,292,628 \n Less: cash and cash equivalents 352,249 150,902 \n Total debt, net of cash $ 4,645,238 $ 1,141,726 \n Financial leverage ratio 5.3 2.6 \n (1) Long-term debt is presented in the condensed consolidated balance sheets net of debt discount and debt issuance costs, and includes adjustments to record the long-term debt assumed in the merger with Anixter at its acquisition date fair value. \n Note: Financial leverage measures the use of debt. Financial leverage ratio is calculated by dividing total debt, excluding debt discount, debt issuance costs and fair value adjustments, net of cash, by adjusted EBITDA. EBITDA is defined as the trailing twelve months earnings before interest, taxes, depreciation and amortization. Adjusted EBITDA is defined as the trailing twelve months EBITDA before foreign exchange and other non-operating expenses, non-cash stock-based compensation, costs and fair value adjustments associated with the merger with Anixter, and gain on sale of an operating branch in the U.S. Pro forma financial leverage ratio is calculated by dividing total debt, excluding debt discount and debt issuance costs, net of cash, by pro forma adjusted EBITDA. Pro forma EBITDA and pro forma adjusted EBITDA gives effect to the combination of WESCO and Anixter as if it had occurred at the beginning of the respective trailing twelve month period. \n 14 \n WESCO INTERNATIONAL, INC. \n RECONCILIATION OF NON-GAAP FINANCIAL MEASURES \n (dollar amounts in thousands, except per share data) \n (Unaudited) \n Three Months Ended Nine Months Ended \n Free Cash Flow: September 30, 2020 September 30, 2019 September 30, 2020 September 30, 2019 \n Cash flow provided by operations $ 286,250 $ 125,439 $ 418,938 $ 116,664 \n Less: Capital expenditures (15,399) (8,921) (42,562) (30,323) \n Add: Merger-related expenditures 36,591 — 85,674 — \n Free cash flow $ 307,442 $ 116,518 $ 462,050 $ 86,341 \n Percentage of adjusted net income 315 % 181 % 292 % 51 % \n Note: Free cash flow is a measure of liquidity. Capital expenditures are deducted from operating cash flow to determine free cash flow. Free cash flow is available to fund investing and financing activities. For the three and nine months ended September 30, 2020, the Company paid certain fees, expenses and other costs to consummate the merger with Anixter. Such expenditures have been added back to cash flow provided by operations to determine free cash flow for such periods. \n 15 \n",
@@ -36,6 +39,23 @@
   "same_day_8k_items": "2.02,7.01,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000092900820000084__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0000929008-20-000063",
+   "filingDate": "2020-08-13",
+   "reportDate": "2020-08-13",
+   "form": "8-K",
+   "local_gz": "000092900820000063__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "We are off to an excellent start in our first six weeks since closing, and have already completed actions to deliver over 50% of our year one cost synergy target of $68 million."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +67,8 @@
    "reportDate": "2019-12-31",
    "accession": "0000929008-20-000013",
    "url": "https://www.sec.gov/Archives/edgar/data/929008/000092900820000013/wcc-form10k2019.htm",
-   "local_gz": "000092900820000013__annual.txt.gz"
+   "local_gz": "000092900820000013__annual.txt.gz",
+   "n_lines": 6595
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +76,8 @@
    "reportDate": "2020-06-30",
    "accession": "0000929008-20-000067",
    "url": "https://www.sec.gov/Archives/edgar/data/929008/000092900820000067/wcc-20200630.htm",
-   "local_gz": "000092900820000067__q0.txt.gz"
+   "local_gz": "000092900820000067__q0.txt.gz",
+   "n_lines": 1133
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +85,106 @@
    "reportDate": "2020-03-31",
    "accession": "0000929008-20-000029",
    "url": "https://www.sec.gov/Archives/edgar/data/929008/000092900820000029/wcc-20200331.htm",
-   "local_gz": "000092900820000029__q1.txt.gz"
+   "local_gz": "000092900820000029__q1.txt.gz",
+   "n_lines": 707
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2020-08-17",
   "n_rows": 8,
@@ -83,6 +199,63 @@
     "ocf": 122261000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 948726000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1166607000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 11800000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 96343000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1192740000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 12461000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15676000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 58133000.0,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.26,
+      "filed": "2019-02-27",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +266,68 @@
     "ocf": 28869000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1001353000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1268565000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8800000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 106100000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1215435000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 10828000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15242000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 42369000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.93,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 45491000.0,
+      "filed": "2019-05-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +338,68 @@
     "ocf": -37644000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1004127000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1355541000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 10400000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 87218000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1399882000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 10574000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15182000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 63464000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.45,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 43816000.0,
+      "filed": "2019-08-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +410,68 @@
     "ocf": 125439000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 961997000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1315026000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 11000000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 138160000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1346671000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8921000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15612000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 64495000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.52,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42378000.0,
+      "filed": "2019-11-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +482,63 @@
     "ocf": 107703000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1011674000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1187359000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 12300000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 150902000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1257497000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 13744000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 16072000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 53098000.0,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.26,
+      "filed": "2020-02-24",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +549,68 @@
     "ocf": 31528000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 950521000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1214331000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 9900000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 342560000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1542981000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 15762000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 16093000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 34407000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.82,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42075000.0,
+      "filed": "2020-05-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +621,68 @@
     "ocf": 101160000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 2368827000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 2454262000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30600000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 265222000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 5096245000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 11401000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 18755000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -34506000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.84,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42775000.0,
+      "filed": "2020-08-17",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +693,21 @@
     "ocf": 286250000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": 1.31,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 4141801000.0,
     "revenue_xbrl_for_reference": 4141801000.0
@@ -166,62 +721,24 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "5063",
   "sic2": "50",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 45,
-  "peer_list_all_same_sic2_tickers": [
-   "ACH",
-   "AIT",
-   "ALTG",
+  "bucket": "製造與工業",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic3",
+  "n_listed_peers": 6,
+  "peer_list_all_tickers": [
    "ARW",
-   "ASLE",
-   "ASPN",
-   "AVT",
-   "BCC",
-   "BGMS",
-   "BXC",
-   "CAPS",
-   "CLMB",
-   "CLWT",
-   "CNXN",
-   "DSGR",
-   "DXPE",
-   "FSTR",
-   "GDC",
-   "GIC",
-   "GNLN",
-   "GOLD",
-   "GPC",
-   "GWAV",
-   "GWW",
-   "HDSN",
-   "HSIC",
-   "ITRN",
-   "JXG",
-   "LKQ",
-   "MSM",
-   "OLOX",
-   "PLUS",
-   "POOL",
-   "QXO",
-   "RELL",
-   "REZI",
-   "RS",
-   "RYZ",
-   "SCSC",
-   "SITE",
-   "SNX",
-   "TEL",
-   "UUU",
-   "WLFC",
-   "WSO"
+   "TEL"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0001385157",
     "name": "TE Connectivity plc",
     "ticker": "TEL",
-    "sic2": "50",
+    "sic4": "5065",
+    "sic3": "506",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2019-11-12",
     "accn": "0001558370-19-010758",
@@ -230,22 +747,26 @@
      "nt and former manufacturing sites to investigate and remediate environmental contamination resulting from past operations. Based upon our experience, available information, and applicable laws, as of fiscal year end 2019, we concluded that we would incur investigation and remediation costs at these sites in the reasonably possible range of $15 million to $43 million, and we accrued $18 million as the probable loss, which was the best estimate within this range. We do not anticipate any material capital expenditures during fiscal 2020 for environmental control facilities or other costs of compliance with laws or regulations relating to greenhouse gas emissions. Available Information All perio",
      "illion and $393 million, respectively. We do not expect a significant change in our income tax payments as a result of Swiss Tax Reform. See Note 15 to the Consolidated Financial Statements for additional information regarding Swiss Tax Reform. Pension contributions in fiscal 2019 and 2018, were $45 million and $54 million, respectively. We expect pension contributions to be $68 million in fiscal 2020, before consideration of any voluntary contributions. Cash Flows from Investing Activities Capital expenditures were $749 million and $935 million in fiscal 2019 and 2018, respectively. We expect fiscal 2020 capital spending levels to be approximately 5-6% of net sales. We believe our capital f",
      "t liabilities ​ ( 15 ) ​ 5 ​ 224 ​ Income taxes ​ ( 135 ) ​ 54 ​ ( 1 ) ​ Other ​ ( 44 ) ​ 30 ​ 123 ​ Net cash provided by continuing operating activities ​ 2,454 ​ 2,301 ​ 2,273 ​ Net cash provided by (used in) discontinued operating activities ​ ( 32 ) ​ 150 ​ 48 ​ Net cash provided by operating activities ​ 2,422 ​ 2,451 ​ 2,321 ​ Cash flows from investing activities: ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ Capital expenditures ​ ( 749 ) ​ ( 935 ) ​ ( 679 ) ​ Proceeds from sale of property, plant, and equipment ​ 43 ​ 23 ​ 19 ​ Acquisition of businesses, net of cash acquired ​ ( 283 ) ​ ( 153 ) ​ ( 250 ) ​ Proceeds from divestiture of discontinued operation, net of cash retained by sold operation ​ ​ 297 ​ ​ "
-    ]
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000945841",
-    "name": "POOL CORP",
-    "ticker": "POOL",
-    "sic2": "50",
+    "entity_id": "0000007536",
+    "name": "ARROW ELECTRONICS, INC.",
+    "ticker": "ARW",
+    "sic4": "5065",
+    "sic3": "506",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2020-02-27",
-    "accn": "0000945841-20-000041",
-    "local_gz": "000094584120000041__peer10k.txt.gz",
+    "filingDate": "2020-02-13",
+    "accn": "0001775474-20-000003",
+    "local_gz": "000177547420000003__peer10k.txt.gz",
     "capex_excerpt": [
-     "in 2018. Earnings per share increased 14% to a record $6.40 per diluted share compared to $5.62 per diluted share in 2018. Excluding the impact from ASU 2016-09 in both periods, earnings per diluted share increased 11% to $5.83 in 2019 compared to $5.26 in 2018. Financial Position and Liquidity Cash provided by operations was $298.8 million in 2019, which helped fund the following initiatives: • quarterly cash dividend payments to shareholders, totaling $83.8 million for the year; • net capital expenditures of $33.4 million; • share repurchases, totaling $23.2 million for the year; • growth in net working capital of $14.2 million; and • payments of $8.9 million for acquisitions. Total net re",
-     "s supplemented by bank borrowings, which have historically been sufficient to support our growth and finance acquisitions. The same principle applies to funds used for capital expenditures and share repurchases. We prioritize our use of cash based on investing in our business, maintaining a prudent capital structure, including a modest amount of debt, and returning cash to our shareholders through dividends and share repurchases. Our specific priorities for the use of cash are as follows: • capital expenditures primarily for maintenance and growth of our sales center structure, technology-related investments and fleet vehicles; • strategic acquisitions executed opportunistically; • payment o",
-     "e as follows: • capital expenditures primarily for maintenance and growth of our sales center structure, technology-related investments and fleet vehicles; • strategic acquisitions executed opportunistically; • payment of cash dividends as and when declared by our Board of Directors (Board); • repayment of debt to maintain an average total leverage ratio (as defined below) between 1.5 and 2.0; and • repurchases of our common stock under our Board authorized share repurchase program. Capital expenditures were 1.0% of net sales in 2019, 1.1% of net sales in 2018 and 1.4% of net sales in 2017. Our higher capital spending in 2017 related to expanding our facilities and purchasing delivery vehicl"
-    ]
+     "iscovery of contamination for which the company is responsible, the enactment of new laws and regulations, or changes in how existing regulations are enforced, could require the company to incur costs for compliance or subject it to unexpected liabilities. The company may not have adequate or cost-effective liquidity or capital resources. The company requires cash or committed liquidity facilities for general corporate purposes, such as funding its ongoing working capital, acquisitions, and capital expenditure needs, as well as to refinance indebtedness. At December 31, 2019 , the company had cash and cash equivalents of $300.1 million . In addition, the company currently has access to commi",
+     "gment, and the fair value of the eInfochips reporting unit exceeded their carrying values by approximately 3% , 110% , 509% , 221% , and 6% , respectively. As a result of the second quarter impairment within Americas components and the recent acquisition in 2018 of eInfochips, these reports units are highly sensitive to changes in the assumptions used in the income approach which include forecasted revenues, gross profit margins, operating income margins, working capital cash flow, forecasted capital expenditures, perpetual growth rates, and long-term discount rates, among others, all of which require significant judgments by management. As the Americas components and eInfochips reporting un",
+     "company generates strong cash flow in periods of decreased demand. Working capital, as a percentage of sales, which the company defines as accounts receivable, net, plus inventory, net, less accounts payable, divided by annualized sales, was 16.7% and 16.4% in 2019 and 2018 , respectively. Cash Flows from Investing Activities The net amount of cash used for investing activities during 2019 was $173.6 million . The primary use of cash for investing activities included $143.2 million for capital expenditures, $13.1 million of cash payments related to the disposition of businesses, and $7.6 million related to the acquisition of a customer relationship intangible asset. Capital expenditures in 2"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -267,7 +788,16 @@
   "latest_data_date": "2020-11-05",
   "cutoff": "2020-11-05",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2020-11-06",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

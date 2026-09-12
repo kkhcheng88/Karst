@@ -1,6 +1,7 @@
 {
  "event_id": "E060",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E060",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "VISN",
  "cik": "0001517228",
  "name": "Vistance Networks, Inc.",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2022-05-05(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E060",
   "event_id": "E060",
   "ticker": "VISN",
   "cik": "0001517228",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,5.02,9.01",
   "accessionNumber": "0000950170-22-007576",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1517228/000095017022007576/comm-20220504.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1517228/000095017022007576/comm-20220504.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n comm-ex99_1.htm\n EX-99.1\n EX-99.1 \n Exhibit 99.1 \n CommScope Reports First Quarter 2022 Results \n • First quarter net sales increased 8% year-over-year for consolidated company \n • Core CommScope first quarter net sales increased 10% year-over-year* \n • Momentum builds in Connectivity and Cable Solutions and Outdoor Wireless Networks as net sales increased 24% and 20% year-over-year, respectively \n First Quarter Highlights \n • Net sales of $2.229 billion \n • Core net sales of $1.733 billion* \n • GAAP net loss of $139.9 million \n • Non-GAAP adjusted EBITDA of $253.3 million \n • Core adjusted EBITDA of $230.0 million* \n • Cash flow used in operations of $(14.6) million and non-GAAP adjusted free cash flow of $(24.1) million \n * References to certain supplementary “Core” financial measures reflect the results of the Connectivity and Cable Solutions, Outdoor Wireless Networks, Networking, Intelligent Cellular and Security Solutions and Access Network Solutions segments, in the aggregate. Core financial measures exclude the results and performance of the Home Networks segment. See the first quarter segment comparison tables below showing the aggregation of the Core financial measures. \n HICKORY, NC, May 5, 2022 — CommScope Holding Company, Inc. (NASDAQ: COMM), a global leader in network connectivity solutions, today reported results for the quarter ended March 31, 2022. \n Summary of Consolidated Results \n Q1 \n Q1 \n % Change \n 2022 \n 2021 \n YOY \n (in millions, except per share amounts) \n Net sales \n $ \n 2,228.6 \n $ \n 2,072.0 \n 7.6 \n % \n Core net sales (1) \n 1,732.9 \n 1,571.0 \n 10.3 \n GAAP net loss \n (139.9 \n ) \n (97.6 \n ) \n 43.3 \n GAAP net loss per share \n (0.75 \n ) \n (0.55 \n ) \n 35.5 \n Non-GAAP adjusted EBITDA (2) \n 253.3 \n 289.7 \n (12.6 \n ) \n Core adjusted EBITDA (1) \n 230.0 \n 270.3 \n (14.9 \n ) \n Non-GAAP adjusted net income \n per diluted share (2) \n 0.26 \n 0.36 \n (27.8 \n ) \n (1) “Core” financial measures reflect the results of the Connectivity and Cable Solutions, Outdoor Wireless Networks, Networking, Intelligent Cellular and Security Solutions and Access Network Solutions segments, in the aggregate. Core financial measures exclude the results of the Home Networks segment. See the first quarter segment comparison tables below showing the aggregation of the Core financial measures. \n (2) See description of Non-GAAP Financial Measures and Reconciliation of GAAP Measures to Non-GAAP Adjusted Measures below \n “I am pleased to share that we delivered Core net sales of $1.73 billion and Core adjusted EBITDA of $230 million for the first quarter of 2022. We are encouraged by the strong top-line performance delivered by Core CommScope, growing net sales 10% from the prior year. While margins remained under pressure during the quarter, our CommScope team remains focused on the pricing initiatives that are underway to recover inflation, and we expect to see margin improvement for the Core portfolio in the second half of the year. Our growth is a testament to the solid demand we continue to see in many of our end markets and our dedication to advancing CommScope NEXT to strengthen our business,” said Chuck Treadway, President and Chief Executive Officer. \n Treadway added, “Through the transformational initiatives of CommScope NEXT, we are committed to unlocking additional capacity for connectivity and cabling to fuel organic growth. In addition, we are driving growth through our investments in innovative products such as our NOVUX ™ product line of fiber connectivity, our next- generation XGS-PON suite, MOSAIC ™ , ONECELL ®, and DOCSIS ® 4.0. As we continue to execute our strategy, we are enabling greater efficiency through our general management structure and new segment alignment to drive value for shareholders.” \n “We are encouraged by the progress we have made on CommScope NEXT and are re-affirming our commitment to full year 2022 Core adjusted EBITDA between $1.15 - $1.25 billion,” said Kyle Lorentzen, Chief Financial Officer. “We are excited to see our recent actions and pending initiatives deliver improved performance through the remainder of the year. CommScope is well positioned to deliver on our top-line momentum and deliver sustained success over the near and long term.” \n CommScope NEXT \n In 2021, CommScope announced a transformation initiative called CommScope NEXT designed to drive shareholder value through three pillars: profitable growth, operational efficiency and portfolio optimization. As a step toward optimizing its portfolio through CommScope NEXT, as of January 1, 2022, the Company reorganized its internal management and reporting structure to align its portfolio of products and solutions more closely with the markets it serves and bring better performance clarity with its competitive peer set. As a result, the Company is reporting financial performance for the 2022 year based on the following operating segments: (i) Connectivity and Cable Solutions, (ii) Outdoor Wireless Networks, (iii) Networking, Intelligent Cellular and Security Solutions, (iv) Access Network Solutions and (v) Home Networks. All prior period amounts have been recast to reflect these operating segment changes. \n Also as a step in the CommScope NEXT transformation plan, in 2021, the Company announced a plan to separate the Home Networks business via a spin-off transaction. Due to the impact of the uncertain supply chain environment on the Home Networks business, the Company delayed its separation plan, but it continues to analyze the financial results of its \"Core\" business separately from Home Networks. As such, in this comparison discussion, reference is made to certain supplementary Core financial measures, which reflect the results of the Connectivity and Cable Solutions, Outdoor Wireless Networks, Networking, Intelligent Cellular and Security Solutions and Access Network Solutions segments, in the aggregate. Core financial measures exclude the results of the Home Networks segment. These metrics represent the business segments as reported by CommScope. However, the ultimate definition of the Home Networks business that CommScope expects to separate may vary, and future results may differ materially.\n COVID-19 Update \n The negative impacts of COVID-19 on CommScope's financial performance have receded as the Company is seeing a recovery in demand for its products over the past year, but this has created negative indirect consequences such as inflation, shortages in materials and components and increased logistic costs. Prices for certain commodities that it uses have experienced significant volatility as a result of changes in the levels of global demand, supply disruptions and other factors. As a result, the Company has seen a significant increase in costs that has negatively impacted its results of operations. CommScope is also experiencing limited supply of memory devices, capacitors and silicon chips, which has increased its costs and has impacted its ability to deliver on a timely basis due to extended lead times. The Company is trying to mitigate the increasing component and logistics costs by implementing higher prices on its products and services. CommScope is also mitigating certain shortages by purchasing components in advance and maintaining higher levels of inventory or finding alternate vendors for some components. The Company believes the global supply chain challenges and their adverse impact on its business and financial results will persist, at least through the remainder of 2022, and may extend into periods thereafter. \n First Quarter Results and Comparison \n Net sales in the first quarter of 2022 increased 7.6% year-over-year to $2.23 billion. Core net sales increased 10.3% year-over-year primarily due to higher net sales in the Connectivity and Cable Solutions and Outdoor Wireless Networks segments. \n Net loss of $(139.9) million, or $(0.75) per share, in the first quarter of 2022, increased 43.3% compared to the prior year period's net loss of $(97.6) million, or $(0.55) per share. Non-GAAP adjusted net income for the first quarter of 2022 was $64.4 million, or $0.26 per share, versus $88.3 million, or $0.36 per share, in the first quarter of 2021. \n Non-GAAP adjusted EBITDA decreased 12.6% to $253.3 million in the first quarter of 2022 compared to the same period last year. Non-GAAP adjusted EBITDA as a percentage of net sales decreased to 11.4% in the first quarter of 2022 compared to 14.0% in the same prior year period. Core segment adjusted EBITDA decreased 14.9% to $230.0 million in the first quarter of 2022 compared to the same prior year period. Core segment adjusted EBITDA as a percentage of net sales decreased to 13.3% in the first quarter of 2022 compared to 17.2% in the same prior year period. \n Reconciliations of the reported GAAP results to non-GAAP adjusted results are included below. \n First Quarter Comparisons \n Sales by Region \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n United States \n $ \n 1,347.1 \n $ \n 1,191.9 \n 13.0 \n % \n Europe, Middle East and Africa \n 406.4 \n 385.7 \n 5.4 \n Asia Pacific \n 203.4 \n 225.4 \n (9.8 \n ) \n Caribbean and Latin America \n 162.3 \n 192.1 \n (15.5 \n ) \n Canada \n 109.4 \n 76.9 \n 42.3 \n Total net sales \n $ \n 2,228.6 \n $ \n 2,072.0 \n 7.6 \n % \n Segment Net Sales \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n Connectivity and Cable Solutions \n $ \n 838.0 \n $ \n 676.9 \n 23.8 \n % \n Outdoor Wireless Networks \n 390.1 \n 324.2 \n 20.3 \n Networking, Intelligent Cellular and Security Solutions \n 188.0 \n 191.2 \n (1.7 \n ) \n Access Network Solutions \n 316.8 \n 378.7 \n (16.3 \n ) \n Core net sales \n 1,732.9 \n 1,571.0 \n 10.3 \n Home Networks \n 495.7 \n 501.0 \n (1.1 \n ) \n Total net sales \n $ \n 2,228.6 \n $ \n 2,072.0 \n 7.6 \n % \n Segment Operating Income (Loss) \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n Connectivity and Cable Solutions \n $ \n 37.3 \n $ \n 26.1 \n 42.9 \n % \n Outdoor Wireless Networks \n 52.9 \n 50.8 \n 4.1 \n Networking, Intelligent Cellular and Security Solutions \n (43.0 \n ) \n (60.4 \n ) \n (28.8 \n ) \n Access Network Solutions \n (6.6 \n ) \n 23.9 \n (127.6 \n ) \n Core operating income \n 40.6 \n 40.4 \n 0.5 \n Home Networks \n (13.8 \n ) \n (31.5 \n ) \n (56.2 \n ) \n Total operating income \n $ \n 26.8 \n $ \n 8.9 \n 201.1 \n % \n Segment Adjusted EBITDA (See Description of Non-GAAP Financial Measures) \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n Connectivity and Cable Solutions \n $ \n 98.6 \n $ \n 106.0 \n (7.0 \n ) \n % \n Outdoor Wireless Networks \n 71.0 \n 73.7 \n (3.7 \n ) \n Networking, Intelligent Cellular and Security Solutions \n (13.8 \n ) \n (17.4 \n ) \n (20.7 \n ) \n Access Network Solutions \n 74.2 \n 108.0 \n (31.3 \n ) \n Core adjusted EBITDA \n 230.0 \n 270.3 \n (14.9 \n ) \n Home Networks \n 23.3 \n 19.4 \n 20.1 \n Total segment adjusted EBITDA \n $ \n 253.3 \n $ \n 289.7 \n (12.6 \n ) \n % \n Connectivity and Cable Solutions \n • Net sales of $838.0 million, increased 23.8% from the prior year period driven by growth in outdoor and indoor connectivity and cabling businesses. \n Outdoor Wireless Networks \n • Net sales of $390.1 million, increased 20.3% from the prior year period driven by growth across all businesses. \n Networking, Intelligent Cellular and Security Solutions \n • Net sales of $188.0 million, decreased 1.7% from the prior year period driven by a decline in RUCKUS Networks, partially offset by growth in DAS and Small Cell. \n Access Network Solutions \n • Net sales of $316.8 million, decreased 16.3% from the prior year period driven by declines across all product lines. \n Home Networks \n • Net sales of $495.7 million, decreased 1.1% from the prior year period primarily driven by declines in Video Solutions that were mostly offset by growth in Broadband Home Solutions. \n Cash Flow and Balance Sheet \n • GAAP cash flow used in operations was $(14.6) million. \n • Non-GAAP adjusted free cash flow was $(24.1) million after adjusting operating cash flow for $27.4 million of additions to property, plant and equipment, $7.9 million of cash paid for restructuring costs and $10.0 million of cash paid for transaction, transformation and integration costs. \n • Ended the quarter with $314.7 million in cash and cash equivalents. \n • As of March 31, 2022, the Company had no outstanding borrowings under its asset-based revolving credit facility and had availability of $715.6 million, after giving effect to borrowing base limitations and outstanding letters of credit. The Company ended the quarter with total liquidity of approximately $1.03 billion. \n Conference Call, Webcast and Investor Presentation \n As previously announced, CommScope will host a conference call today at 8:30 a.m. ET in which management will discuss first quarter 2022 results. The conference call will also be webcast. \n The live, listen-only audio of the call will be available through a link on the Events and Presentations page of CommScope’s Investor Relations website. \n A webcast replay will be archived on CommScope’s website for a limited period of time following the conference call. \n During the conference call, the Company may discuss and answer questions concerning business and financial developments and trends that have occurred after quarter-end, including questions relating to the planned separation of the Home Networks business. The Company’s responses to questions, as well as other matters discussed during the conference call, may contain or constitute information that has not been disclosed previously. \n About CommScope: \n CommScope (NASDAQ: COMM) is pushing the boundaries of technology to create the world’s most advanced wired and wireless networks. Our global team of employees, innovators and technologists empower customers to anticipate what’s next and invent what’s possible. Discover more at www.commscope.com . \n Follow us on Twitter and LinkedIn and like us on Facebook . \n Sign up for our press releases and blog posts . \n Investor Contact: \n Michael McCloskey, CommScope\n+1 828-431-9874\n Michael.McCloskey@commscope.com \n News Media Contact: \n publicrelations@commscope.com \n Non-GAAP Financial Measures \n CommScope management believes that presenting certain non-GAAP financial measures enhances an investor’s understanding of our financial performance. CommScope management further believes that these financial measures are useful in assessing CommScope’s operating performance from period to period by excluding certain items that we believe are not representative of our core business. CommScope management also uses certain of these financial measures for business planning purposes and in measuring CommScope’s performance relative to that of its competitors. CommScope management believes these financial measures are commonly used by investors to evaluate CommScope’s performance and that of its competitors. However, CommScope’s use of certain non-GAAP terms may vary from that of others in its industry. Non-GAAP financial measures should not be considered as alternatives to operating income (loss), net income (loss), cash flow from operations or any other performance measures derived in accordance with U.S. GAAP as measures of operating performance, operating cash flows or liquidity. A reconciliation of each of the non-GAAP measures discussed herein to their most comparable GAAP measures is below. \n Core Measures \n CommScope believes that presenting Core financial measures enhances the investor’s understanding of the financial performance of the Company’s core businesses. Core financial measures are the aggregate of the Connectivity and Cable Solutions, Access Network Solutions, Networking, Intelligent Cellular and Security Solutions and Outdoor Wireless Networks segments. They do not include the results of the Home Networks segment. The Core segments and the Home Networks segment represent the business segments as currently managed and reported by CommScope. Future results and the composition of any business divested in the future may vary and differ materially from the presentation of the Core financial measures. \n Forward Looking Statements \n This press release or any other oral or written statements made by us or on our behalf may include forward-looking statements that reflect our current views with respect to future events and financial performance. These statements may discuss goals, intentions or expectations as to future plans, trends, events, results of operations or financial condition or otherwise, in each case, based on current beliefs and expectations of management, as well as assumptions made by, and information currently available to, management. These forward-looking statements are generally identified by their use of such terms and phrases as “intend,” “goal,” “estimate,” “expect,” “project,” “projections,” “plans,” “potential,” “anticipate,” “should,” “could,” “designed to,” “foreseeable future,” “believe,” “think,” “scheduled,” “outlook,” “target,” “guidance” and similar expressions, although not all forward-looking statements contain such terms. This list of indicative terms and phrases is not intended to be all-inclusive. \n These forward-looking statements are subject to various risks and uncertainties, many of which are outside our control, including, without limitation, risks related to the successful execution of CommScope NEXT; changes in cost and availability of key raw materials, components and commodities and the potential effect on customer pricing and timing of delivery of products to customers; risks associated with our dependence on a limited number of key suppliers for certain raw materials and components; potential difficulties in realigning global manufacturing capacity and capabilities among our global manufacturing facilities or those of our contract manufacturers that may affect our ability to meet customer demands for products; possible future restructuring actions; the risk that our manufacturing operations, including our contract manufacturers that we rely on, encounter capacity, production, quality, financial or other difficulties causing difficulty in meeting customer demands; substantial indebtedness and restrictive debt covenants; our ability to incur additional indebtedness; our ability to generate cash to service our indebtedness; the potential separation of the Home Networks business or any other potential separation, divestiture or discontinuance of a business or product line, including uncertainty regarding the timing of the separation, achieving the expected benefits and the potential disruption to the business; our ability to integrate and fully realize anticipated benefits from prior or future divestitures, acquisitions or equity investments; our dependence on customers’ capital spending on data and communication systems; concentration of sales among a limited number of customers and channel partners; risks associated with our sales through channel partners; changes to the regulatory environment in which we and our customers operate; changes in technology; industry competition and the ability to retain customers through product innovation, introduction, and marketing; possible future impairment charges for fixed or intangible assets, including goodwill; our ability to attract and retain qualified key employees; labor unrest; product quality or performance issues, including those associated with our suppliers or contract manufacturers, and associated warranty claims; our ability to maintain effective management information technology systems and to successfully implement major systems initiatives; cyber-security incidents, including data security breaches, ransomware or computer viruses; the use of open standards; the long-term impact of climate change; significant international operations exposing us to economic risks like variability in foreign exchange rates and inflation as well as political and other risks, including the impact of wars, regional conflicts and terrorism; the potential impact of higher than normal inflation; our ability to comply with governmental anti-corruption laws and regulations and export and import controls and sanctions worldwide; our ability to compete in international markets due to export and import controls to which we may be subject; changes in the laws \n and policies in the United States affecting trade, including the risk and uncertainty related to tariffs or potential trade wars and potential changes to laws and policies, that may impact our products; cost of protecting or defending intellectual property; costs and challenges of compliance with domestic and foreign environmental laws; the impact of litigation and similar regulatory proceedings that we are involved in or may become involved in, including the costs of such litigation; the scope, duration and impact of disease outbreaks and pandemics, such as COVID-19, on our business including employees, sites, operations, customers, supply chain and the global economy; income tax rate variability and ability to recover amounts recorded as deferred tax assets; and other factors beyond our control. These and other factors are discussed in greater detail in our 2021 Annual Report on Form 10-K, and may be updated from time to time in our annual reports, quarterly reports, current reports and other filings we make with the Securities and Exchange Commission. \n Although the information contained in this press release represents our best judgment as of the date of this release based on information currently available and reasonable assumptions, we can give no assurance that the expectations will be attained or that any deviation will not be material. Given these uncertainties, we caution you not to place undue reliance on these forward-looking statements, which speak only as of the date made. We are not undertaking any duty or obligation to update this information to reflect developments or information obtained after the date of this press release, except as otherwise may be required by law. \n END \n CommScope Holding Company, Inc. \n Condensed Consolidated Statements of Operations \n (Unaudited -- In millions, except per share amounts) \n Three Months Ended \n March 31, \n 2022 \n 2021 \n Net sales \n $ \n 2,228.6 \n $ \n 2,072.0 \n Cost of sales \n 1,592.3 \n 1,399.8 \n Gross profit \n 636.3 \n 672.2 \n Operating expenses: \n Selling, general and administrative \n 286.0 \n 292.7 \n Research and development \n 170.7 \n 171.5 \n Amortization of purchased intangible assets \n 140.7 \n 154.7 \n Restructuring costs, net \n 12.1 \n 44.4 \n Total operating expenses \n 609.5 \n 663.3 \n Operating income \n 26.8 \n 8.9 \n Other income, net \n — \n 1.0 \n Interest expense \n (136.5 \n ) \n (137.5 \n ) \n Interest income \n 0.7 \n 0.5 \n Loss before income taxes \n (109.0 \n ) \n (127.1 \n ) \n Income tax (expense) benefit \n (30.9 \n ) \n 29.5 \n Net loss \n (139.9 \n ) \n (97.6 \n ) \n Series A convertible preferred stock dividends \n (14.5 \n ) \n (14.3 \n ) \n Net loss attributable to common stockholders \n $ \n (154.4 \n ) \n $ \n (111.9 \n ) \n Loss per share: \n Basic \n $ \n (0.75 \n ) \n $ \n (0.55 \n ) \n Diluted (a) \n $ \n (0.75 \n ) \n $ \n (0.55 \n ) \n Weighted average shares outstanding: \n Basic \n 205.4 \n 201.7 \n Diluted (a) \n 205.4 \n 201.7 \n (a) Calculation of diluted loss per share: \n Net loss (basic and diluted) \n $ \n (154.4 \n ) \n $ \n (111.9 \n ) \n Weighted average shares (basic) \n 205.4 \n 201.7 \n Dilutive effect of equity-based awards \n — \n — \n Denominator (diluted) \n 205.4 \n 201.7 \n See notes to unaudited condensed consolidated financial statements included in our Form 10-Q. \n CommScope Holding Company, Inc. \n Condensed Consolidated Balance Sheets \n (In millions, except share amounts) \n Unaudited \nMarch 31, 2022 \n December 31, 2021 \n Assets \n Cash and cash equivalents \n $ \n 314.7 \n $ \n 360.3 \n Accounts receivable, less allowance for doubtful accounts \n of $64.8 and $63.7, respectively \n 1,590.1 \n 1,532.6 \n Inventories, net \n 1,507.5 \n 1,435.8 \n Prepaid expenses and other current assets \n 231.1 \n 251.0 \n Total current assets \n 3,643.4 \n 3,579.7 \n Property, plant and equipment, net of accumulated depreciation \n of $806.0 and $787.4, respectively \n 646.1 \n 656.3 \n Goodwill \n 5,220.5 \n 5,231.7 \n Other intangible assets, net \n 2,884.4 \n 3,027.3 \n Other noncurrent assets \n 724.9 \n 764.5 \n Total assets \n $ \n 13,119.3 \n $ \n 13,259.5 \n Liabilities and Stockholders' Deficit \n Accounts payable \n $ \n 1,272.6 \n $ \n 1,160.7 \n Accrued and other liabilities \n 917.3 \n 989.8 \n Current portion of long-term debt \n 32.0 \n 32.0 \n Total current liabilities \n 2,221.9 \n 2,182.5 \n Long-term debt \n 9,476.3 \n 9,478.5 \n Deferred income taxes \n 201.0 \n 208.2 \n Other noncurrent liabilities \n 463.6 \n 490.8 \n Total liabilities \n 12,362.8 \n 12,360.0 \n Commitments and contingencies \n Series A convertible preferred stock, $0.01 par value \n 1,070.7 \n 1,056.1 \n Stockholders' deficit: \n Preferred stock, $0.01 par value: Authorized shares: 200,000,000; \n Issued and outstanding shares: 1,070,666 and 1,056,144, respectively,\nSeries A convertible preferred stock \n — \n — \n Common stock, $0.01 par value: Authorized shares: 1,300,000,000; \n Issued and outstanding shares: 207,052,122 and 204,567,294,\n respectively \n 2.2 \n 2.2 \n Additional paid-in capital \n 2,542.8 \n 2,540.7 \n Accumulated deficit \n (2,355.2 \n ) \n (2,215.3 \n ) \n Accumulated other comprehensive loss \n (215.6 \n ) \n (206.4 \n ) \n Treasury stock, at cost: 12,201,824 shares and \n 10,970,585 shares, respectively \n (288.4 \n ) \n (277.8 \n ) \n Total stockholders' deficit \n (314.2 \n ) \n (156.6 \n ) \n Total liabilities and stockholders' deficit \n $ \n 13,119.3 \n $ \n 13,259.5 \n See notes to unaudited condensed consolidated financial statements included in our Form 10-Q. \n CommScope Holding Company, Inc. \n Condensed Consolidated Statements of Cash Flows \n (Unaudited -- In millions) \n Three Months Ended \n March 31, \n 2022 \n 2021 \n Operating Activities: \n Net loss \n $ \n (139.9 \n ) \n $ \n (97.6 \n ) \n Adjustments to reconcile net loss to net cash used in operating activities: \n Depreciation and amortization \n 180.2 \n 199.2 \n Equity-based compensation \n 16.5 \n 23.5 \n Deferred income taxes \n 2.3 \n (53.4 \n ) \n Changes in assets and liabilities: \n Accounts receivable \n (60.5 \n ) \n (164.2 \n ) \n Inventories \n (73.7 \n ) \n (10.7 \n ) \n Prepaid expenses and other assets \n 29.6 \n 4.1 \n Accounts payable and other liabilities \n 23.5 \n (23.9 \n ) \n Other \n 7.4 \n (1.0 \n ) \n Net cash used in operating activities \n (14.6 \n ) \n (124.0 \n ) \n Investing Activities: \n Additions to property, plant and equipment \n (27.4 \n ) \n (26.4 \n ) \n Proceeds from sale of property, plant and equipment \n — \n 1.0 \n Other \n 11.4 \n — \n Net cash used in investing activities \n (16.0 \n ) \n (25.4 \n ) \n Financing Activities: \n Long-term debt repaid \n (93.0 \n ) \n (8.0 \n ) \n Long-term debt proceeds \n 85.0 \n — \n Dividends paid on Series A convertible preferred stock \n — \n (14.3 \n ) \n Proceeds from the issuance of common shares under equity-based compensation plans \n 0.1 \n 3.9 \n Tax withholding payments for vested equity-based compensation awards \n (10.6 \n ) \n (24.3 \n ) \n Other \n 1.3 \n — \n Net cash used in financing activities \n (17.2 \n ) \n (42.7 \n ) \n Effect of exchange rate changes on cash and cash equivalents \n 2.2 \n (3.9 \n ) \n Change in cash and cash equivalents \n (45.6 \n ) \n (196.0 \n ) \n Cash and cash equivalents at beginning of period \n 360.3 \n 521.9 \n Cash and cash equivalents at end of period \n $ \n 314.7 \n $ \n 325.9 \n See notes to unaudited condensed consolidated financial statements included in our Form 10-Q. \n CommScope Holding Company, Inc. \n Reconciliation of GAAP Measures to Non-GAAP Adjusted Measures \n (Unaudited -- In millions, except per share amounts) \n Three Months Ended \n March 31, \n 2022 \n 2021 \n Net loss, as reported \n $ \n (139.9 \n ) \n $ \n (97.6 \n ) \n Income tax expense (benefit), as reported \n 30.9 \n (29.5 \n ) \n Interest income, as reported \n (0.7 \n ) \n (0.5 \n ) \n Interest expense, as reported \n 136.5 \n 137.5 \n Other income, as reported \n — \n (1.0 \n ) \n Operating income, as reported \n $ \n 26.8 \n $ \n 8.9 \n Adjustments: \n Amortization of purchased intangible assets \n 140.7 \n 154.7 \n Restructuring costs, net \n 12.1 \n 44.4 \n Equity-based compensation \n 16.5 \n 23.5 \n Transaction, transformation and integration costs \n 15.6 \n 15.7 \n Acquisition accounting adjustments \n 2.0 \n 3.3 \n Patent claims and litigation settlements \n 1.2 \n 1.5 \n Reserve for Russian accounts receivable \n 5.4 \n — \n Depreciation \n 33.0 \n 37.7 \n Total adjustments to operating income \n 226.5 \n 280.8 \n Non-GAAP adjusted EBITDA \n $ \n 253.3 \n $ \n 289.7 \n Net loss, as reported \n $ \n (139.9 \n ) \n $ \n (97.6 \n ) \n Adjustments: \n Total pretax adjustments to adjusted EBITDA \n 193.5 \n 243.1 \n Pretax amortization of debt issuance costs and OID (1) \n 6.4 \n 6.8 \n Tax effects of adjustments and other tax items (2) \n 4.5 \n (64.0 \n ) \n Non-GAAP adjusted net income \n $ \n 64.4 \n $ \n 88.3 \n GAAP EPS, as reported (3) \n $ \n (0.75 \n ) \n $ \n (0.55 \n ) \n Non-GAAP adjusted diluted EPS (4) \n $ \n 0.26 \n $ \n 0.36 \n (1) Included in interest expense. \n (2) The tax rates applied to adjustments reflect the tax expense or benefit based on the tax jurisdiction of the entity generating the adjustment. There are certain items for which we expect little or no tax effect. \n (3) For all periods presented, GAAP EPS was calculated using net loss attributable to common stockholders in the numerator, which includes the impact of the Series A convertible preferred stock dividend. \n (4) The Company’s definition of non-GAAP adjusted diluted EPS is non-GAAP adjusted net income, excluding the Series A convertible preferred stock dividend, divided by weighted average shares outstanding assuming the if-converted method, which reflects the conversion of the Series A convertible preferred stock. \n Note: Components may not sum to total due to rounding \n See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n Sales by Region \n (Unaudited -- In millions) \n Sales by Region \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n United States \n $ \n 1,347.1 \n $ \n 1,191.9 \n 13.0 \n % \n Europe, Middle East and Africa \n 406.4 \n 385.7 \n 5.4 \n Asia Pacific \n 203.4 \n 225.4 \n (9.8 \n ) \n Caribbean and Latin America \n 162.3 \n 192.1 \n (15.5 \n ) \n Canada \n 109.4 \n 76.9 \n 42.3 \n Total net sales \n $ \n 2,228.6 \n $ \n 2,072.0 \n 7.6 \n % \n CommScope Holding Company, Inc. \n Segment Information \n (Unaudited -- In millions) \n Segment Net Sales \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n Connectivity and Cable Solutions \n $ \n 838.0 \n $ \n 676.9 \n 23.8 \n % \n Outdoor Wireless Networks \n 390.1 \n 324.2 \n 20.3 \n Networking, Intelligent Cellular and Security Solutions \n 188.0 \n 191.2 \n (1.7 \n ) \n Access Network Solutions \n 316.8 \n 378.7 \n (16.3 \n ) \n Core net sales (1) \n 1,732.9 \n 1,571.0 \n 10.3 \n Home Networks \n 495.7 \n 501.0 \n (1.1 \n ) \n Total net sales \n $ \n 2,228.6 \n $ \n 2,072.0 \n 7.6 \n % \n Segment Adjusted EBITDA (2) \n % Change \n Q1 2022 \n Q1 2021 \n YOY \n Connectivity and Cable Solutions \n $ \n 98.6 \n $ \n 106.0 \n (7.0 \n ) \n % \n Outdoor Wireless Networks \n 71.0 \n 73.7 \n (3.7 \n ) \n Networking, Intelligent Cellular and Security Solutions \n (13.8 \n ) \n (17.4 \n ) \n (20.7 \n ) \n Access Network Solutions \n 74.2 \n 108.0 \n (31.3 \n ) \n Core adjusted EBITDA (1) \n 230.0 \n 270.3 \n (14.9 \n ) \n Home Networks \n 23.3 \n 19.4 \n 20.1 \n Total segment adjusted EBITDA \n $ \n 253.3 \n $ \n 289.7 \n (12.6 \n ) \n % \n (1) “Core” financial measures reflect the results or otherwise pertain to the performance of the Connectivity and Cable Solutions, Outdoor Wireless Networks, Networking, Intelligent Cellular and Security Solutions and Access Network Solutions segments, in the aggregate. Core financial measures exclude the results of our Home Networks segment. \n (2) See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n Reconciliation of GAAP to Segment Adjusted EBITDA \n (Unaudited -- In millions) \n First Quarter 2022 Segment Adjusted EBITDA Reconciliation \n Connectivity \nand Cable \nSolutions \n Outdoor\nWireless \nNetworks \n Networking, Intelligent Cellular and Security Solutions \n Access \nNetwork \nSolutions \n Home \nNetworks \n Total \n Operating income (loss), as reported \n $ \n 37.3 \n $ \n 52.9 \n $ \n (43.0 \n ) \n $ \n (6.6 \n ) \n $ \n (13.8 \n ) \n $ \n 26.8 \n Amortization of purchased intangible assets \n 29.4 \n 8.1 \n 15.5 \n 61.7 \n 26.0 \n 140.7 \n Restructuring costs, net \n 2.9 \n 2.2 \n 3.6 \n 2.6 \n 0.8 \n 12.1 \n Equity-based compensation \n 4.0 \n 1.9 \n 3.6 \n 4.2 \n 2.9 \n 16.5 \n Transaction, transformation and integration \n costs \n 4.4 \n 1.8 \n 1.2 \n 5.5 \n 2.6 \n 15.6 \n Acquisition accounting adjustments \n — \n — \n 0.6 \n 0.8 \n 0.4 \n 2.0 \n Patent claims and litigation settlements \n 1.6 \n — \n — \n — \n (0.4 \n ) \n 1.2 \n Reserve for Russian accounts receivable \n 4.9 \n 0.1 \n 0.4 \n — \n — \n 5.4 \n Depreciation \n 14.0 \n 3.8 \n 4.4 \n 6.0 \n 4.8 \n 33.0 \n Segment adjusted EBITDA \n $ \n 98.6 \n $ \n 71.0 \n $ \n (13.8 \n ) \n $ \n 74.2 \n $ \n 23.3 \n $ \n 253.3 \n Segment adjusted EBITDA % of sales \n 11.8 \n % \n 18.2 \n % \n (7.3 \n %) \n 23.4 \n % \n 4.7 \n % \n 11.4 \n % \n First Quarter 2021 Segment Adjusted EBITDA Reconciliation \n Connectivity \nand Cable \nSolutions \n Outdoor\nWireless \nNetworks \n Networking, Intelligent Cellular and Security Solutions \n Access \nNetwork \nSolutions \n Home \nNetworks \n Total \n Operating income (loss), as reported \n $ \n 26.1 \n $ \n 50.8 \n $ \n (60.4 \n ) \n $ \n 23.9 \n $ \n (31.5 \n ) \n $ \n 8.9 \n Amortization of purchased intangible assets \n 40.2 \n 8.8 \n 18.0 \n 61.7 \n 26.0 \n 154.7 \n Restructuring costs, net \n 16.7 \n 5.8 \n 11.2 \n 4.8 \n 5.9 \n 44.4 \n Equity-based compensation \n 5.7 \n 2.5 \n 5.1 \n 6.3 \n 3.9 \n 23.5 \n Transaction, transformation and integration \n costs \n 4.2 \n 1.9 \n 1.4 \n 2.2 \n 6.0 \n 15.7 \n Acquisition accounting adjustments \n — \n — \n 1.5 \n 1.2 \n 0.5 \n 3.3 \n Patent claims and litigation settlements \n — \n — \n 0.3 \n — \n 1.2 \n 1.5 \n Executive severance \n — \n — \n — \n — \n — \n — \n Depreciation \n 13.0 \n 3.9 \n 5.5 \n 7.8 \n 7.5 \n 37.7 \n Segment adjusted EBITDA \n $ \n 106.0 \n $ \n 73.7 \n $ \n (17.4 \n ) \n $ \n 108.0 \n $ \n 19.4 \n $ \n 289.7 \n Segment adjusted EBITDA % of sales \n 15.7 \n % \n 22.7 \n % \n (9.1 \n %) \n 28.5 \n % \n 3.9 \n % \n 14.0 \n % \n Components may not sum to total due to rounding \n See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n Adjusted Free Cash Flow \n (Unaudited -- In millions) \n Adjusted Free Cash Flow \n Q1\n2021 \n Q2\n2021 \n Q3\n2021 \n Q4 \n2021 \n Q1 \n2022 \n Cash flow from operations \n $ \n (124.0 \n ) \n $ \n 191.6 \n $ \n 67.1 \n $ \n (12.4 \n ) \n $ \n (14.6 \n ) \n Capital expenditures \n (26.4 \n ) \n (33.8 \n ) \n (36.0 \n ) \n (35.1 \n ) \n (27.4 \n ) \n Free cash flow \n (150.4 \n ) \n 157.8 \n 31.1 \n (47.5 \n ) \n (42.0 \n ) \n Transaction, transformation and integration costs \n 8.2 \n 15.2 \n 26.3 \n 16.9 \n 10.0 \n Restructuring costs, net \n 7.2 \n 24.8 \n 6.9 \n 3.7 \n 7.9 \n Adjusted free cash flow \n $ \n (135.0 \n ) \n $ \n 197.8 \n $ \n 64.3 \n $ \n (26.9 \n ) \n $ \n (24.1 \n ) \n See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n Quarterly Adjusted Gross Profit and Adjusted Operating Expense \n (Unaudited -- In millions) \n GAAP to Non-GAAP Adjusted Gross Profit \n Q1 2021 \n Q2 2021 \n Q3 2021 \n Q4 2021 \n Q1 2022 \n Gross profit, as reported \n $ \n 672.2 \n $ \n 673.3 \n $ \n 653.0 \n $ \n 685.8 \n $ \n 636.3 \n Equity-based compensation \n 3.9 \n 2.7 \n 3.5 \n 3.0 \n 2.2 \n Acquisition accounting adjustments \n 3.3 \n 3.0 \n 2.8 \n 2.4 \n 2.0 \n Patent claims and litigation settlements \n 1.5 \n 40.0 \n 5.0 \n (14.8 \n ) \n 1.2 \n Adjusted gross profit \n $ \n 680.9 \n $ \n 719.0 \n $ \n 664.3 \n $ \n 676.4 \n $ \n 647.1 \n Adjusted gross profit as % of sales \n 32.9 \n % \n 32.9 \n % \n 31.6 \n % \n 30.4 \n % \n 29.1 \n % \n GAAP to Non-GAAP Adjusted Operating Expense \n Q1 2021 \n Q2 2021 \n Q3 2021 \n Q4 2021 \n Q1 2022 \n Selling, general and administrative, as reported \n $ \n 292.7 \n $ \n 302.3 \n $ \n 314.3 \n $ \n 324.6 \n $ \n 286.0 \n Research and development, as reported \n 171.5 \n 176.3 \n 167.8 \n 167.6 \n 170.7 \n Operating expenses \n $ \n 464.2 \n $ \n 478.6 \n $ \n 482.1 \n $ \n 492.2 \n $ \n 456.7 \n Equity-based compensation \n 19.6 \n 13.7 \n 17.5 \n 15.6 \n 14.3 \n Transaction, transformation and integration costs \n 15.7 \n 21.0 \n 26.2 \n 27.6 \n 11.8 \n Reserve for Russian accounts receivable \n — \n — \n — \n — \n 5.4 \n Adjusted operating expense \n $ \n 428.9 \n $ \n 443.9 \n $ \n 438.4 \n $ \n 449.0 \n $ \n 425.2 \n Adjusted operating expense as % of sales \n 20.7 \n % \n 20.3 \n % \n 20.8 \n % \n 20.2 \n % \n 19.1 \n % \n Components may not sum to total due to rounding \n See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n New Segment Information (1) \n (Unaudited -- In millions) \n Segment Net Sales \n Full Year \n Full Year \n Q1 2021 \n Q2 2021 \n Q3 2021 \n Q4 2021 \n 2021 \n 2020 \n Cable and Connectivity Solutions \n $ \n 676.9 \n $ \n 783.4 \n $ \n 787.6 \n $ \n 805.9 \n $ \n 3,053.9 \n $ \n 2,551.7 \n Outdoor Wireless Networks \n 324.2 \n 360.1 \n 357.5 \n 375.3 \n 1,417.1 \n 1,250.4 \n Networking, Indoor Cellular &\n Security Solutions \n 191.2 \n 223.7 \n 207.1 \n 239.9 \n 861.9 \n 847.1 \n Access Network Solutions \n 378.7 \n 361.6 \n 338.0 \n 326.3 \n 1,404.6 \n 1,379.1 \n Home Networks \n 501.0 \n 456.5 \n 415.1 \n 476.7 \n 1,849.3 \n 2,407.5 \n Total net sales \n $ \n 2,072.0 \n $ \n 2,185.3 \n $ \n 2,105.3 \n $ \n 2,224.1 \n $ \n 8,586.7 \n $ \n 8,435.9 \n Segment Adjusted EBITDA (2) \n Full Year \n Full Year \n Q1 2021 \n Q2 2021 \n Q3 2021 \n Q4 2021 \n 2021 \n 2020 \n Cable and Connectivity Solutions \n $ \n 106.0 \n $ \n 124.5 \n $ \n 121.1 \n $ \n 97.3 \n $ \n 448.9 \n $ \n 447.6 \n Outdoor Wireless Networks \n 73.7 \n 79.6 \n 60.3 \n 53.2 \n 266.8 \n 277.3 \n Networking, Indoor Cellular &\n Security Solutions \n (17.4 \n ) \n 4.5 \n (8.6 \n ) \n 6.3 \n (15.3 \n ) \n 12.8 \n Access Network Solutions \n 108.0 \n 84.5 \n 101.8 \n 96.8 \n 391.1 \n 346.3 \n Home Networks \n 19.4 \n 14.6 \n (15.5 \n ) \n 7.0 \n 25.5 \n 131.3 \n Total segment adjusted EBITDA \n $ \n 289.7 \n $ \n 307.7 \n $ \n 259.1 \n $ \n 260.6 \n $ \n 1,117.0 \n $ \n 1,215.2 \n (1) Represents our recasting of net sales and segment adjusted EBITDA to conform to our new segment reporting structure effective January 1, 2022. \n (2) See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n Reconciliation of GAAP to Segment Adjusted EBITDA - New Segments \n (Unaudited -- In millions) \n First Quarter 2021 Segment Adjusted EBITDA Reconciliation \n Connectivity \nand Cable \nSolutions \n Outdoor\nWireless \nNetworks \n Networking, Intelligent Cellular and Security Solutions \n Access \nNetwork \nSolutions \n Home \nNetworks \n Total \n Operating income (loss) \n $ \n 26.1 \n $ \n 50.8 \n $ \n (60.4 \n ) \n $ \n 23.9 \n $ \n (31.5 \n ) \n $ \n 8.9 \n Amortization of purchased intangible assets \n 40.2 \n 8.8 \n 18.0 \n 61.7 \n 26.0 \n 154.7 \n Restructuring costs, net \n 16.7 \n 5.8 \n 11.2 \n 4.8 \n 5.9 \n 44.4 \n Equity-based compensation \n 5.7 \n 2.5 \n 5.1 \n 6.3 \n 3.9 \n 23.5 \n Transaction, transformation and integration costs \n 4.2 \n 1.9 \n 1.4 \n 2.2 \n 6.0 \n 15.7 \n Acquisition accounting adjustments \n — \n — \n 1.5 \n 1.2 \n 0.5 \n 3.3 \n Patent claims and litigation settlements \n — \n — \n 0.3 \n — \n 1.2 \n 1.5 \n Depreciation \n 13.0 \n 3.9 \n 5.5 \n 7.8 \n 7.5 \n 37.7 \n Segment adjusted EBITDA \n $ \n 106.0 \n $ \n 73.7 \n $ \n (17.4 \n ) \n $ \n 108.0 \n $ \n 19.4 \n $ \n 289.7 \n Second Quarter 2021 Segment Adjusted EBITDA Reconciliation \n Connectivity \nand Cable \nSolutions \n Outdoor\nWireless \nNetworks \n Networking, Intelligent Cellular and Security Solutions \n Access \nNetwork \nSolutions \n Home \nNetworks \n Total \n Operating income (loss) \n $ \n 5.5 \n $ \n 63.4 \n $ \n (21.7 \n ) \n $ \n (12.3 \n ) \n $ \n (53.4 \n ) \n $ \n (18.4 \n ) \n Amortization of purchased intangible assets \n 40.2 \n 8.3 \n 18.0 \n 61.7 \n 26.0 \n 154.2 \n Restructuring costs, net \n 57.4 \n 0.5 \n (2.6 \n ) \n 1.8 \n 1.9 \n 58.9 \n Equity-based compensation \n 4.1 \n 1.8 \n 3.6 \n 4.3 \n 2.8 \n 16.4 \n Transaction, transformation and integration costs \n 3.9 \n 1.8 \n 1.3 \n 2.0 \n 11.8 \n 21.0 \n Acquisition accounting adjustments \n — \n — \n 1.3 \n 1.2 \n 0.5 \n 3.0 \n Patent claims and litigation settlements \n — \n — \n — \n 20.0 \n 20.0 \n 40.0 \n Depreciation \n 13.3 \n 3.8 \n 4.5 \n 5.9 \n 5.1 \n 32.6 \n Segment adjusted EBITDA \n $ \n 124.5 \n $ \n 79.6 \n $ \n 4.5 \n $ \n 84.5 \n $ \n 14.6 \n $ \n 307.7 \n Third Quarter 2021 Segment Adjusted EBITDA Reconciliation \n Connectivity \nand Cable \nSolutions \n Outdoor\nWireless \nNetworks \n Networking, Intelligent Cellular and Security Solutions \n Access \nNetwork \nSolutions \n Home \nNetworks \n Total \n Operating income (loss) \n $ \n 61.9 \n $ \n 42.9 \n $ \n (38.8 \n ) \n $ \n 23.4 \n $ \n (68.4 \n ) \n $ \n 21.0 \n Amortization of purchased intangible assets \n 39.1 \n 8.2 \n 18.0 \n 61.7 \n 26.0 \n 153.0 \n Restructuring costs, net \n (4.6 \n ) \n 0.4 \n (0.1 \n ) \n 1.0 \n 0.2 \n (3.1 \n ) \n Equity-based compensation \n 5.1 \n 2.2 \n 4.6 \n 5.6 \n 3.5 \n 21.0 \n Transaction, transformation and integration costs \n 5.8 \n 2.7 \n 2.0 \n 3.0 \n 12.8 \n 26.2 \n Acquisition accounting adjustments \n — \n — \n 1.0 \n 1.2 \n 0.5 \n 2.8 \n Patent claims and litigation settlements \n — \n — \n — \n — \n 5.0 \n 5.0 \n Depreciation \n 13.7 \n 3.9 \n 4.7 \n 6.0 \n 5.0 \n 33.2 \n Segment adjusted EBITDA \n $ \n 121.1 \n $ \n 60.3 \n $ \n (8.6 \n ) \n $ \n 101.8 \n $ \n (15.5 \n ) \n $ \n 259.1 \n Fourth Quarter 2021 Segment Adjusted EBITDA Reconciliation \n Connectivity \nand Cable \nSolutions \n Outdoor\nWireless \nNetworks \n Networking, Intelligent Cellular and Security Solutions \n Access \nNetwork \nSolutions \n Home \nNetworks \n Total \n Operating income (loss) \n $ \n 44.9 \n $ \n 40.2 \n $ \n (22.6 \n ) \n $ \n 36.2 \n $ \n (61.5 \n ) \n $ \n 37.1 \n Amortization of purchased intangible assets \n 37.2 \n 8.2 \n 18.0 \n 61.7 \n 26.0 \n 151.0 \n Restructuring costs, net \n (7.4 \n ) \n (3.1 \n ) \n (0.1 \n ) \n 1.7 \n 0.6 \n (8.3 \n ) \n Equity-based compensation \n 4.6 \n 2.0 \n 4.1 \n 4.8 \n 3.1 \n 18.6 \n Asset impairments \n — \n — \n — \n — \n 13.7 \n 13.7 \n Transaction, transformation and integration costs \n 4.5 \n 2.1 \n 1.5 \n 2.3 \n 17.2 \n 27.6 \n Acquisition accounting adjustments \n — \n — \n 0.8 \n 1.2 \n 0.5 \n 2.4 \n Patent claims and litigation settlements \n — \n — \n — \n (17.2 \n ) \n 2.3 \n (14.8 \n ) \n Depreciation \n 13.6 \n 3.9 \n 4.6 \n 6.0 \n 5.1 \n 33.2 \n Segment adjusted EBITDA \n $ \n 97.3 \n $ \n 53.2 \n $ \n 6.3 \n $ \n 96.8 \n $ \n 7.0 \n $ \n 260.6 \n Components may not sum to total due to rounding \n See Description of Non-GAAP Financial Measures \n CommScope Holding Company, Inc. \n Reconciliation of GAAP to Segment Adjusted EBITDA \n (Unaudited -- In millions) \n Year Ended December 31, 2020 Segment Adjusted EBITDA Reconciliation \n Connectivity and Cable Solutions \n Outdoor\nWireless Networks \n Networking, Intelligent Cellular and Security Solutions \n Access Network Solutions \n Home Networks \n Total \n Operating income (loss), as reported \n $ \n 169.3 \n $ \n 179.3 \n $ \n (136.7 \n ) \n $ \n 11.6 \n $ \n (275.4 \n ) \n $ \n (51.8 \n ) \n Amortization of purchased intangible assets \n 161.6 \n 45.8 \n 72.2 \n 247.0 \n 103.9 \n 630.5 \n Restructuring costs, net \n 25.9 \n 15.7 \n 8.0 \n 8.8 \n 30.0 \n 88.4 \n Equity-based compensation \n 28.6 \n 13.8 \n 22.6 \n 27.8 \n 22.1 \n 115.0 \n Asset impairments \n — \n — \n — \n — \n 206.7 \n 206.7 \n Transaction, transformation and integration costs \n 7.9 \n 4.2 \n 2.5 \n 4.1 \n 6.2 \n 24.9 \n Acquisition accounting adjustments \n — \n — \n 7.3 \n 11.4 \n 1.9 \n 20.6 \n Patent claims and litigation settlements \n (1.3 \n ) \n — \n 15.0 \n 3.0 \n (0.3 \n ) \n 16.3 \n Executive severance \n 1.7 \n 1.2 \n 0.8 \n 1.5 \n 1.2 \n 6.3 \n Depreciation \n 54.0 \n 17.2 \n 21.0 \n 31.1 \n 35.1 \n 158.3 \n Segment adjusted EBITDA \n $ \n 447.6 \n $ \n 277.3 \n $ \n 12.8 \n $ \n 346.3 \n $ \n 131.3 \n $ \n 1,215.2 \n Components may not sum to total due to rounding \n See Description of Non-GAAP Financial Measures \n",
@@ -36,6 +39,23 @@
   "same_day_8k_items": "2.02,5.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000095017022007576__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0000950170-22-001385",
+   "filingDate": "2022-02-17",
+   "reportDate": "2022-02-16",
+   "form": "8-K",
+   "local_gz": "000095017022001385__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "We expect to see continued improvement from the first quarter and confirm that we still anticipate our 2022 Core Adjusted EBITDA to be within the range of $1.15 billion to $1.25 billion, as presented at our Strategic Transformation Update in December.”"
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +67,8 @@
    "reportDate": "2021-12-31",
    "accession": "0000950170-22-001374",
    "url": "https://www.sec.gov/Archives/edgar/data/1517228/000095017022001374/comm-20211231.htm",
-   "local_gz": "000095017022001374__annual.txt.gz"
+   "local_gz": "000095017022001374__annual.txt.gz",
+   "n_lines": 6174
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +76,8 @@
    "reportDate": "2022-03-31",
    "accession": "0000950170-22-007469",
    "url": "https://www.sec.gov/Archives/edgar/data/1517228/000095017022007469/comm-20220331.htm",
-   "local_gz": "000095017022007469__q0.txt.gz"
+   "local_gz": "000095017022007469__q0.txt.gz",
+   "n_lines": 3097
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +85,106 @@
    "reportDate": "2021-09-30",
    "accession": "0000950170-21-002878",
    "url": "https://www.sec.gov/Archives/edgar/data/1517228/000095017021002878/comm-20210930.htm",
-   "local_gz": "000095017021002878__q1.txt.gz"
+   "local_gz": "000095017021002878__q1.txt.gz",
+   "n_lines": 4430
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2022-02-17",
   "n_rows": 8,
@@ -83,6 +199,68 @@
     "ocf": 209000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1038400000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1649300000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 122000000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 823400000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9978800000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 23800000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 203500000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -321100000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -1.71,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 195900000.0,
+      "filed": "2020-08-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +271,68 @@
     "ocf": 172200000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1104500000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1497200000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 99000000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 582800000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9621300000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 25800000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 209900000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -116300000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.66,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 196900000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +343,68 @@
     "ocf": 97700000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 1088900000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1487400000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 90000000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 521900000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9520600000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 47700000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 204500000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 23900000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.05999999999999961,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 900000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +415,68 @@
     "ocf": -124000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1093500000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1639200000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 118900000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 325900000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9518700000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 26400000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 199200000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -97600000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.55,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 201700000.0,
+      "filed": "2021-05-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +487,68 @@
     "ocf": 191600000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1150200000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1653900000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 121000000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 446200000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9516800000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 33800000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 193600000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -153800000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.82,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 204100000.0,
+      "filed": "2021-08-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +559,68 @@
     "ocf": 67100000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1252200000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1506200000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 108200000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 411500000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9513000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 36000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 203000000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -124200000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.68,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 204200000.0,
+      "filed": "2021-11-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +631,58 @@
     "ocf": -12400000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 1435800000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1532600000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 94600000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 360300000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 9510500000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 35200000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 190500000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 300000.0,
+      "filed": "2022-02-17",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +693,33 @@
     "ocf": -14600000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 314700000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 27400000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -139900000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": -0.75,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": {
+      "value": 205.4,
+      "source": "EX-99.1 稿內文字"
+     }
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 2229000000.0,
     "revenue_xbrl_for_reference": 2228600000.0
@@ -166,161 +733,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3663",
   "sic2": "36",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 226,
-  "peer_list_all_same_sic2_tickers": [
-   "AAOI",
-   "ADI",
-   "ADSE",
-   "ADTN",
-   "AEIS",
-   "AIOT",
-   "AIP",
-   "AIRG",
-   "ALGM",
-   "AMAT",
-   "AMBA",
-   "AMD",
-   "AMKR",
-   "AMPG",
-   "AMSC",
-   "AOS",
-   "AOSL",
-   "APH",
-   "ARRY",
-   "ASX",
-   "ATER",
-   "ATKR",
-   "ATOM",
-   "AUDC",
-   "AVGO",
-   "AVNW",
-   "AXTI",
-   "AYI",
-   "BE",
-   "BEEM",
-   "BELFA",
-   "BHE",
-   "BKSY",
-   "BKTI",
-   "BLDP",
-   "BLNK",
-   "BYRN",
-   "BZAI",
-   "CAE",
-   "CHPT",
-   "CIEN",
-   "CLFD",
-   "CLRO",
-   "CLS",
-   "CMTL",
-   "COOK",
-   "CRDO",
-   "CRNT",
-   "CRUS",
-   "CSIQ",
-   "CTS",
-   "DFLI",
-   "DIOD",
-   "DQ",
-   "EAF",
-   "EFOI",
-   "ELTK",
-   "ELVA",
-   "EMR",
-   "ENPH",
-   "ENR",
-   "ENS",
-   "ENVX",
-   "EOSE",
-   "EPOW",
-   "ERIC",
-   "ESE",
-   "ESP",
-   "FCEL",
-   "FELE",
-   "FIEE",
-   "FKWL",
-   "FLEX",
-   "FLNC",
-   "FLUX",
-   "FN",
-   "FORM",
-   "FSLR",
-   "FTCI",
-   "FXHO",
-   "GCTS",
-   "GE",
-   "GFS",
-   "GILT",
-   "GNRC",
-   "GNSS",
-   "GSIT",
-   "GWH",
-   "HBB",
-   "HELE",
-   "HIMX",
-   "HLIT",
-   "HUBB",
-   "ICHR",
-   "IMOS",
-   "IMTE",
-   "INDI",
-   "INSG",
-   "INTC",
-   "IPGP",
-   "IPWR",
-   "JBL",
-   "JKS",
-   "KE",
-   "KLIC",
-   "KN",
-   "KOPN",
-   "KOSS",
-   "KSCP",
-   "KTCC",
-   "KULR",
-   "KUST",
-   "LASR",
-   "LEDS",
-   "LFUS",
-   "LGL",
-   "LITE",
-   "LPL",
-   "LPTH",
-   "LSCC"
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 19,
+  "peer_list_all_tickers": [
+   "MSI",
+   "QCOM"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0001045810",
-    "name": "NVIDIA CORP",
-    "ticker": "NVDA",
-    "sic2": "36",
+    "entity_id": "0000804328",
+    "name": "QUALCOMM INC/DE",
+    "ticker": "QCOM",
+    "sic4": "3663",
+    "sic3": "366",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2022-03-18",
-    "accn": "0001045810-22-000036",
-    "local_gz": "000104581022000036__peer10k.txt.gz",
+    "filingDate": "2021-11-03",
+    "accn": "0001728949-21-000076",
+    "local_gz": "000172894921000076__peer10k.txt.gz",
     "capex_excerpt": [
-     "d where regulatory challenges prevent the completion of an acquisition could have a material impact on our business. On February 8, 2022, we announced the termination of the Share Purchase Agreement by which we would have acquired Arm due to significant regulatory challenges preventing the completion of the transaction and expect to incur a $1.36 billion charge in the first quarter of fiscal year 2023. Compliance with laws, rules, and regulations has not otherwise had a material effect upon our capital expenditures, results of operations, or competitive position and we do not currently anticipate material capital expenditures for environmental control facilities. Compliance with existing or ",
-     "ss. On February 8, 2022, we announced the termination of the Share Purchase Agreement by which we would have acquired Arm due to significant regulatory challenges preventing the completion of the transaction and expect to incur a $1.36 billion charge in the first quarter of fiscal year 2023. Compliance with laws, rules, and regulations has not otherwise had a material effect upon our capital expenditures, results of operations, or competitive position and we do not currently anticipate material capital expenditures for environmental control facilities. Compliance with existing or future governmental regulations, including, but not limited to, those pertaining to IP ownership and infringement",
-     "sion of risks and uncertainties we face related to ESG. Climate Change In the area of sustainability, we address our climate impacts across our product lifecycle and assess risks, including current and emerging regulations and market impacts. In our CSR Report, we report several metrics related to our environmental impact, our most recent full reporting year being fiscal year 2021, with our fiscal year 2022 metrics expected to be published in May 2022. There has been no material impact to capital expenditures, our results of operations or competitive position associated with global sustainability regulations, compliance, or costs from sourcing renewable energy. By the end of fiscal year 2025"
-    ]
+     "nt practices, policies or procedures and may divert management time and attention to compliance activities. 37 There are risks associated with our debt. Our outstanding debt and any additional debt we incur may have negative consequences on our business, including, among others: requiring us to use cash to pay the principal of and interest on our debt, thereby reducing the amount of cash available for other purposes; limiting our ability to obtain additional financing for working capital, capital expenditures, acquisitions, stock repurchases, dividends, general corporate or other purposes; and limiting our flexibility in planning for, or reacting to, changes in our business, industries or th",
+     "grated circuit products under multi-year capacity commitments), $430 million increase in marketable securities resulting from initial public offerings of certain non-marketable equity investments, $347 million in proceeds from the issuance of common stock (primarily under our Employee Stock Purchase Plan) and $320 million in proceeds from other investments, partially offset by $3.4 billion in payments to repurchase shares of our common stock, $3.0 billion in cash dividends paid, $1.9 billion in capital expenditures, $1.4 billion in cash paid for acquisitions and other investments (primarily related to the acquisition of NUVIA) and $737 million in payments of tax withholdings related to the v",
+     "ast the next 12 months based on our current business plans. Recent and expected working and other capital requirements, in addition to the above matters, also include the items described below: • Our purchase obligations at September 26, 2021 , which primarily relate to purchase commitments with certain suppliers of our integrated circuit products, including those under multi-year capacity commitments, and certain other expenses, some of which relate to research and development activities and capital expenditures, totaled $23.5 billion, of which, $12.9 billion is expected to be paid in the next 12 months. We expect an increase in operating cash outflows as compared to fiscal 2021 as we make "
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000002488",
-    "name": "ADVANCED MICRO DEVICES INC",
-    "ticker": "AMD",
-    "sic2": "36",
+    "entity_id": "0000068505",
+    "name": "Motorola Solutions, Inc.",
+    "ticker": "MSI",
+    "sic4": "3663",
+    "sic3": "366",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2022-02-03",
-    "accn": "0000002488-22-000016",
-    "local_gz": "000000248822000016__peer10k.txt.gz",
+    "filingDate": "2022-02-16",
+    "accn": "0000068505-22-000010",
+    "local_gz": "000006850522000010__peer10k.txt.gz",
     "capex_excerpt": [
-     "cape of the markets in which AMD participates; international sales will continue to be a significant portion of total sales in the foreseeable future; that AMD’s cash, cash equivalents and short-term investment balances, together with the availability under that certain revolving credit facility (the Revolving Credit Facility) made available to AMD and certain of its subsidiaries under the Credit Agreement, and our cash flows from operations will be sufficient to fund AMD’s operations including capital expenditures and purchase commitments over the next 12 months; AMD’s ability to obtain sufficient external financing on favorable terms, or at all; AMD’s expectation that based on the informat",
-     "emand for our products, as we are currently experiencing across our business, the worldwide economic environment remains uncertain due to COVID-19 and such demand may not be sustainable over the longer term. COVID-19 has also led to a disruption and volatility in the global capital and financial markets. While we believe our cash, cash equivalents and short-term investments along with our Revolving Credit Facility and cash flows from operations will be sufficient to fund operations, including capital expenditures and purchase commitments, over the next 12 months and beyond, to the extent we may require additional funding to finance our operations and capital expenditures and such funding may",
-     "d may not be sustainable over the longer term. COVID-19 has also led to a disruption and volatility in the global capital and financial markets. While we believe our cash, cash equivalents and short-term investments along with our Revolving Credit Facility and cash flows from operations will be sufficient to fund operations, including capital expenditures and purchase commitments, over the next 12 months and beyond, to the extent we may require additional funding to finance our operations and capital expenditures and such funding may not be available to us as a result of contracting capital and financial markets resulting from COVID-19, it may have an adverse effect on our business. 16 The e"
-    ]
+     "ng those governing the discharge of pollutants into the ground, air and water, the management and disposal of hazardous substances and wastes, and the cleanup of contaminated sites, as well as relating to the protection of the environment. Certain products of ours are subject to various federal, state, local and international laws governing chemical substances in electronic products. Compliance with these U.S. federal, state and local and international laws did not have a material effect on our capital expenditures or competitive position in 2019 through 2021. Our operations and supply chain are expected to become increasingly subject to federal, state, local and foreign laws, regulations an",
+     "urrency fluctuations, inflation, and the related impact on operating results, (iv) cybersecurity risk, especially in managed services contracts with public safety and commercial customers that process data, and (v) political risk, especially related to the contracts with government customers. In addition, multi-year awards from governmental customers may often only receive partial funding initially and may typically be cancellable on short notice with limited penalties. Recovery of front-loaded capital expenditures in long-term managed services contracts is dependent on the continued viability of such 21 customers. The termination of funding for a government program or insolvency of commerci",
+     "of higher income tax payments; partially offset by • improvements in working capital. Investing Activities The increase in net cash used by investing activities from 2020 to 2021 was primarily due to: • $234 million increase in acquisitions and investments, driven by acquisitions of $521 million in 2021 compared to $287 million in 2020; • $50 million decrease in proceeds from the sale of property, plant and equipment in 2020 that did not recur in 2021; and • $26 million increase in capital expenditures in 2021 compared to 2020 due to higher expenditures for the Airwave and ESN networks. The decrease in net cash used by investing activities from 2019 to 2020 was primarily due to: • $422 milli"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -342,7 +800,16 @@
   "latest_data_date": "2022-05-05",
   "cutoff": "2022-05-05",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2022-05-06",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

@@ -1,6 +1,7 @@
 {
  "event_id": "E025",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E025",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "INGN",
  "cik": "0001294133",
  "name": "Inogen Inc",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2018-05-01(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E025",
   "event_id": "E025",
   "ticker": "INGN",
   "cik": "0001294133",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "兩者",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001564590-18-009821",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1294133/000156459018009821/ingn-8k_20180430.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1294133/000156459018009821/ingn-8k_20180430.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n ingn-ex991_6.htm\n EX-99.1\ningn-ex991_6.htm\n Exhibit 99.1\n FOR IMMEDIATE RELEASE\n Inogen Announces Record First Quarter 2018 Financial Results and Increases 2018 Guidance\n - Q1 2018 Sales Revenue up 60.1% Over the Same Period in 2017 -\n Goleta, California, April 30, 2018 — Inogen, Inc. (NASDAQ: INGN ), a medical technology company offering innovative respiratory products for use in the homecare setting, today reported financial results for the three-month period ended March 31, 2018. \n First Quarter 2018 Highlights \n • \n Record total revenue of $79.1 million, up 50.6% over the same period in 2017 \n ▪ \n Record sales revenue of $73.6 million, up 60.1% over the same period in 2017 \n ▪ \n Rental revenue of $5.5 million, down 16.3% from the same period in 2017 \n • \n GAAP net income of $10.8 million, reflecting an 81.4% increase over the same period in 2017 and a 13.6% return on revenue \n • \n Adjusted EBITDA of $15.5 million, representing 42.7% growth over the same period in 2017 and a 19.6% return on revenue (see accompanying table for reconciliation of GAAP and non-GAAP measures) \n • \n Total units sold were 45,400, an increase of 19,800, or 77.3%, over the same period in 2017 \n “In what is historically a seasonally slower quarter, we were able to generate record revenues driven by strong sales in both our domestic direct-to-consumer and domestic business-to-business channels,” said Chief Executive Officer, Scott Wilkinson. “We are executing on our strategic initiatives and remain focused on increasing adoption of our best-in-class oxygen product offerings across all of our sales channels. We are currently ahead of schedule to meet our plan of hiring 240 Cleveland-based employees by 2020. We believe we should see strong sales growth in 2018 as portable oxygen concentrator penetration increases worldwide.” \n First Quarter 2018 Financial Results \n Total revenue for the three months ended March 31, 2018 rose 50.6% to $79.1 million from $52.5 million in the same period in 2017. Direct-to-consumer sales rose 67.8% over the same period in 2017, ahead of expectations primarily due to increased sales representative headcount and associated consumer marketing. Domestic business-to-business sales exceeded expectations and grew 60.4% over the same period in 2017, primarily driven by continued strong demand from the Company’s private label partner and traditional home medical equipment providers. International business-to-business sales in the first quarter of 2018 increased 48.0% over the comparative period in 2017. In spite of sizable unit orders from South Korea in the first quarter of 2017 that did not repeat in the first quarter of 2018, international sales of $16.9 million were strong versus the first quarter of 2017, primarily due to continued adoption from our European partners and favorable current rates. Sales in Europe represented 89.5% of international sales in the first quarter of 2018, up from 73.2% in the first quarter of 2017. Rental revenue in the first quarter of 2018 was $5.5 million compared to $6.5 million in the first quarter of 2017, \n representing a decline of 16.3 % from the same period in the prior year. The decrease in rental revenue was primarily due to our continued focus on direct-to-consumer sales versus rentals, and a $0.2 million Cures Act benefit received in the first quarter of 2017, representing a rental revenue headwind of 2.6 % in the first quarter of 2018 . Rental revenue declined to 6.9 % of total revenue in the first quarter of 2018 from 12.4 % of total revenue in the first quarter of 2017. \n Total gross margin was 47.7% in the first quarter of 2018 versus 49.0% in the comparative period in 2017. The decrease in total gross margin was primarily due to lower sales revenue per unit and lower rental gross margins, partially offset by lower cost of sales revenue per unit. Sales gross margin was 49.8% in the first quarter of 2018 versus 52.3% in the first quarter of 2017 . The sales gross margin percentage declined primarily due to increased volume leading to lower average selling prices in the business-to-business channel. This was partially offset by increased mix towards direct-to-consumer sales and lower average cost of sales revenue per unit. Rental gross margin was 20.0% in the first quarter of 2018 versus 25.9% in the first quarter of 2017. The decrease in rental gross margin was primarily due to the $0.2 million Cures Act benefit received in the first quarter of 2017 which lifted rental margins by 2.3%, in addition to increased logistics costs in the first quarter of 2018. This was partially offset by lower depreciation costs. \n Total operating expense increased to $29.0 million, or 36.7% of revenue, in the first quarter of 2018 versus $20.2 million, or 38.4% of revenue, in the first quarter of 2017 as the Company continued to make investments it expects will increase future revenue growth. \n Operating expense included research and development expense of $1.4 million in the first quarter of 2018, which was up slightly from $1.3 million in the comparative period in 2017, primarily due to increased personnel-related expenses. Sales and marketing expense increased to $18.0 million in the first quarter of 2018 versus $10.5 million in the comparative period in 2017, primarily due to increased personnel-related expenses as we continued to hire inside sales representatives at our Cleveland facility, in addition to increased advertising expenditures. General and administrative expense increased to $9.6 million in the first quarter of 2018 versus $8.3 million in the comparative period in 2017, primarily due to increased personnel-related expenses, but partially offset by a decrease in patent defense costs.\n The Company reported an income tax benefit of $1.1 million in the first quarter of 2018, up from $0.1 million reported in the first quarter of 2017. The Company’s income tax benefit in the first quarter of 2018 included a $3.3 million decrease in provision for income taxes related to excess tax benefits recognized from stock-based compensation compared to $2.2 million in the first quarter of 2017. Excluding the stock-based compensation benefit, the Company’s non-GAAP effective tax rate in the first quarter of 2018 was 22.5% versus 36.7% in the first quarter of 2017, primarily due to the impacts of the U.S. federal tax reform. \n In the first quarter of 2018, the Company reported net income of $10.8 million, compared to net income of $5.9 million in the first quarter of 2017. Earnings per diluted common share was $0.48 in the first quarter of 2018 versus $0.27 in the first quarter of 2017, an increase of 77.8%. \n Adjusted EBITDA for the three months ended March 31, 2018 rose 42.7% to $15.5 million, or 19.6% of revenue, from $10.9 million, or 20.7% of revenue, in the first quarter of 2017. \n Cash, cash equivalents, and marketable securities were $188.3 million as of March 31, 2018 compared to $173.9 million as of December 31, 2017, an increase of $14.4 million in the first quarter of 2018. \n Financial Outlook for 2018 \n Inogen is increasing its full year 2018 total revenue guidance range to $310 to $320 million, up from $298 to $308 million, representing growth of 24.3% to 28.3% versus 2017 full year results. The Company continues to expect direct-to-consumer sales to be its fastest growing channel, domestic business-to-business sales to have a solid growth rate, and international business-to-business sales to have a modest growth rate, where the 2018 strategy will continue to be heavily focused on the European markets. Inogen now expects rental revenue to be down approximately 10% in 2018 compared to 2017 as the Company continues to focus on sales versus rentals. \n Further, the Company is also increasing its full year 2018 GAAP net income and non-GAAP net income guidance range to $38 to $41 million, up from $36 to $39 million, representing growth of 80.9% to 95.2% compared to 2017 GAAP net income of $21.0 million and growth of 33.0% to 43.5% compared to 2017 non-GAAP net income of $28.6 million. The Company still estimates that the decrease in provision for income taxes related to excess tax benefits recognized from stock-based compensation will lead to a decrease in provision for income taxes of approximately $8.0 million in 2018 based on forecasted stock activity, which would lower its effective tax rate as compared to the U.S. statutory rate. Excluding the estimated $8.0 million decrease in provision for income taxes expected in 2018, the Company expects a non-GAAP effective tax rate of approximately 25%. The Company expects its effective tax rate including stock-based compensation deductions to vary quarter-to-quarter depending on the amount of pre-tax net income and on the timing and size of stock option exercises. \n Inogen is also increasing its guidance range for full year 2018 Adjusted EBITDA to $62 to $67 million, up from $60 to $64 million, representing 22.0% to 31.8% growth compared to 2017 results.\n Inogen also expects net positive cash flow for 2018 with no additional equity capital required to meet its current operating plan. \n Conference Call \n Individuals interested in listening to the conference call today at 1:30pm PT/4:30pm ET may do so by dialing (855) 238-8123 for domestic callers or (412) 317-5217 for international callers. Please reference Inogen (INGN) to join the call. To listen to a live webcast, please visit the Investor Relations section of Inogen's website at: http://investor.inogen.com/. \n A replay of the call will be available beginning April 30, 2018 at 3:30pm PT/6:30pm ET through 3:30pm PT/6:30pm ET on May 7, 2018. To access the replay, dial (877) 344-7529 or (412) 317-0088 and reference Access Code: 10118964. The webcast will also be available on Inogen's website for one year following the completion of the call.\n Inogen has used, and intends to continue to use, its Investor Relations website, http://investor.inogen.com/ , as a means of disclosing material non-public information and for complying with its disclosure obligations under Regulation FD. For more information, visit http://investor.inogen.com/ .\n About Inogen \n Inogen is innovation in oxygen therapy. We are a medical technology company that develops, manufactures and markets innovative oxygen concentrators used to deliver supplemental long-term oxygen therapy to patients suffering from chronic respiratory conditions.\n For more information, please visit www.inogen.com . \n Cautionary Note Concerning Forward-Looking Statements\n This press release contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995, including, among others, statements regarding anticipated growth opportunities; hiring expectations; expectations for all revenue channels for full year 2018; the expected impact of the decrease in provision for income taxes related to excess tax benefits recognized from stock-based compensation for full year 2018; and financial guidance for 2018, including revenue, GAAP net income, Adjusted EBITDA, non-GAAP net income, net cash flow, effective tax rates, and the need for equity financing. Forward-looking statements are subject to numerous risks and uncertainties that could cause actual results to differ materially from currently anticipated results, including but not limited to, risks arising from the possibility that Inogen will not realize anticipated revenue; the impact of reduced reimbursement rates, including private payor reductions and reductions in connection with competitive bidding and the Center for Medicare and Medicaid Services (CMS) rules; the possible loss of key employees, customers, or suppliers; and intellectual property risks if Inogen is unable to secure and maintain patent or other intellectual property protection for the intellectual property used in its products. In addition, Inogen's business is subject to numerous additional risks and uncertainties, including, among others, risks relating to market acceptance of its products; competition; its sales, marketing and distribution capabilities; its planned sales, marketing, and research and development activities; interruptions or delays in the supply of components or materials for, or manufacturing of, its products; risks related to the recent data security incident, remediation measures, and potential claims; seasonal variations; unanticipated increases in costs or expenses; and risks associated with international operations. Information on these and additional risks, uncertainties, and other information affecting Inogen’s business operating results are contained in its Annual Report on Form 10-K for the year ended December 31, 2017 and in its other filings with the Securities and Exchange Commission. Additional information will also be set forth in Inogen’s Quarterly Report on Form 10-Q for the quarter ended March 31, 2018 to be filed with the Securities and Exchange Commission. These forward-looking statements speak only as of the date hereof. Inogen disclaims any obligation to update these forward-looking statements except as may be required by law.\n Use of Non-GAAP Financial Measures \n Inogen has presented certain financial information in accordance with U.S. GAAP and also on a non-GAAP basis for the three months ended March 31, 2018 and March 31, 2017. Management believes that non-GAAP financial measures, taken in conjunction with U.S. GAAP financial measures, provide useful information for both management and investors by excluding certain non-cash and other expenses that are not indicative of Inogen's core operating results. Management uses non-GAAP measures to compare Inogen's performance relative to forecasts and strategic plans, to benchmark Inogen's performance externally against competitors, and for certain compensation decisions. Non-GAAP information is not prepared under a comprehensive set of accounting rules and should only be used to supplement an understanding of Inogen's operating results as reported under U.S. GAAP. Inogen encourages investors to carefully consider its results under U.S. GAAP, as well as its supplemental non-GAAP information and the reconciliation between these presentations, to more fully understand its business. Reconciliations between U.S. GAAP and non-GAAP results are presented in the accompanying table of this release. For future periods, Inogen is unable to provide a reconciliation of non-GAAP measures without unreasonable effort as a result of the uncertainty regarding, and the potential variability of, the amounts of interest income, interest expense, depreciation and amortization, stock-based compensation, provision (benefit) for income taxes, and certain other infrequently occurring items, such as acquisition related costs, that may be incurred in the future.\n Investor Relations Contact: \n Matt Bacso, CFA\n mbacso@inogen.net \n 805-879-8205\n Media Contact:\n Byron Myers\n 805-562-0503\n -- Financial Tables Follow --\n Consolidated Balance Sheets\n (amounts in thousands)\n March 31,\n December 31,\n 2018\n 2017\n (unaudited)\n Assets\n Current assets\n Cash and cash equivalents\n $\n 154,284\n $\n 142,953\n Marketable securities\n 34,012\n 30,991\n Accounts receivable, net\n 35,089\n 31,444\n Inventories, net\n 22,965\n 18,842\n Deferred cost of revenue\n 335\n 361\n Income tax receivable\n 591\n 1,313\n Prepaid expenses and other current assets\n 3,778\n 2,584\n Total current assets\n 251,054\n 228,488\n Property and equipment, net\n 20,898\n 20,103\n Goodwill\n 2,430\n 2,363\n Intangible assets, net\n 4,456\n 4,717\n Deferred tax asset - noncurrent\n 20,434\n 18,636\n Other assets\n 610\n 765\n Total assets\n $\n 299,882\n $\n 275,072\n Liabilities and stockholders' equity\n Current liabilities\n Accounts payable and accrued expenses\n $\n 24,760\n $\n 20,626\n Accrued payroll\n 6,607\n 6,877\n Warranty reserve - current\n 2,829\n 2,505\n Deferred revenue - current\n 3,152\n 3,533\n Income tax payable\n 319\n 345\n Total current liabilities\n 37,667\n 33,886\n Warranty reserve - noncurrent\n 4,416\n 3,666\n Deferred revenue - noncurrent\n 10,391\n 9,402\n Deferred tax liability - noncurrent\n 358\n 348\n Other noncurrent liabilities\n 713\n 729\n Total liabilities\n 53,545\n 48,031\n Stockholders' equity\n Common stock\n 21\n 21\n Additional paid-in capital\n 226,635\n 218,109\n Retained earnings\n 19,397\n 8,639\n Accumulated other comprehensive income\n 284\n 272\n Total stockholders' equity\n 246,337\n 227,041\n Total liabilities and stockholders' equity\n $\n 299,882\n $\n 275,072\n Consolidated Statements of Comprehensive Income\n (unaudited)\n (amounts in thousands, except share and per share amounts)\n Three months ended\n March 31,\n 2018\n 2017\n Revenue\n Sales revenue\n $\n 73,584\n $\n 45,966\n Rental revenue\n 5,467\n 6,534\n Total revenue\n 79,051\n 52,500\n Cost of revenue\n Cost of sales revenue\n 36,948\n 21,913\n Cost of rental revenue, including depreciation of $2,165 and $2,689 respectively\n 4,376\n 4,843\n Total cost of revenue\n 41,324\n 26,756\n Gross profit\n 37,727\n 25,744\n Operating expense\n Research and development\n 1,416\n 1,309\n Sales and marketing\n 18,038\n 10,529\n General and administrative\n 9,573\n 8,335\n Total operating expense\n 29,027\n 20,173\n Income from operations\n 8,700\n 5,571\n Other income (expense)\n Interest income\n 543\n 101\n Other income\n 444\n 207\n Total other income, net\n 987\n 308\n Income before benefit for income taxes\n 9,687\n 5,879\n Benefit for income taxes\n (1,071\n )\n (53\n )\n Net income\n $\n 10,758\n $\n 5,932\n Other comprehensive income (loss), net of tax\n Change in foreign currency translation adjustment\n 108\n —\n Change in net unrealized gains (losses) on foreign currency hedging\n (249\n )\n 54\n Less: reclassification adjustment for net (gains) losses included in net income\n 172\n (57\n )\n Total net change in unrealized gains (losses) on foreign currency hedging\n (77\n )\n (3\n )\n Change in net unrealized gains (losses) on available-for-sale investments\n (19\n )\n 64\n Total other comprehensive income, net of tax\n 12\n 61\n Comprehensive income\n $\n 10,770\n $\n 5,993\n Basic net income per share attributable to common stockholders (1) \n $\n 0.51\n $\n 0.29\n Diluted net income per share attributable to common stockholders (1) \n $\n 0.48\n $\n 0.27\n Weighted-average number of shares used in calculating net income\n per share attributable to common stockholders:\n Basic common shares\n 21,026,154\n 20,489,532\n Diluted common shares\n 22,295,213\n 21,579,721\n (1) Reconciliations of net income attributable to common stockholders basic and diluted can be found in Inogen’s Quarterly Report on Form 10-Q to be filed with the Securities and Exchange Commission.\n Supplemental Financial Information\n (unaudited)\n (in thousands, except units and patients)\n Three months ended\n March 31,\n 2018\n 2017\n Revenue by region and category\n Business-to-business domestic sales\n $\n 28,016\n $\n 17,461\n Business-to-business international sales\n 16,906\n 11,423\n Direct-to-consumer domestic sales\n 28,662\n 17,082\n Direct-to-consumer domestic rentals\n 5,467\n 6,534\n Total revenue\n $\n 79,051\n $\n 52,500\n Additional financial measures\n Units sold\n 45,400\n 25,600\n Net rental patients as of period-end\n 29,600\n 32,600\n Reconciliation of U.S. GAAP to Other Non-GAAP Financial Measures\n (unaudited)\n (in thousands)\n Three months ended\n March 31,\n Non-GAAP EBITDA and Adjusted EBITDA\n 2018\n 2017\n Net income\n $\n 10,758\n $\n 5,932\n Non-GAAP adjustments:\n Interest income\n (543\n )\n (101\n )\n Benefit for income taxes\n (1,071\n )\n (53\n )\n Depreciation and amortization\n 2,993\n 3,204\n EBITDA (non-GAAP)\n 12,137\n 8,982\n Stock-based compensation\n 3,381\n 1,891\n Adjusted EBITDA (non-GAAP)\n $\n 15,518\n $\n 10,873\n Three months ended\n March 31,\n Non-GAAP net income\n 2018\n 2017\n Net income\n $\n 10,758\n $\n 5,932\n Non-GAAP adjustments:\n 2017 U.S. tax reform (1) \n —\n —\n Non-GAAP net income\n $\n 10,758\n $\n 5,932\n Three months ended\n March 31,\n Non-GAAP provision (benefit) for income taxes and effective tax rate\n 2018\n 2017\n Income before benefit for income taxes\n $\n 9,687\n $\n 5,879\n Benefit for income taxes\n (1,071\n )\n (53\n )\n Effective tax rate\n -11.1\n %\n -0.9\n %\n Benefit for income taxes\n $\n (1,071\n )\n $\n (53\n )\n Non-GAAP adjustments:\n Excess tax benefits from stock-based compensation\n 3,252\n 2,213\n 2017 U.S. tax reform (1) \n —\n —\n Provision for income taxes (non-GAAP)\n $\n 2,181\n $\n 2,160\n Income before provision for income taxes\n $\n 9,687\n $\n 5,879\n Provision for income taxes (non-GAAP)\n 2,181\n 2,160\n Effective tax rate (non-GAAP)\n 22.5\n %\n 36.7\n %\n (1) On December 22, 2017, the Tax Cuts and Jobs Act (TCJA) was enacted into law, which significantly changes existing U.S. tax law and includes numerous provisions that affect the Company. During the fourth quarter of 2017, the Company recorded an estimated one-time net charge due to the impact of changes in the tax rate, primarily on deferred tax assets. There were no related charges during the first quarter of 2018.\n",
@@ -36,7 +39,233 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000156459018009821__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "status": "查不到",
+   "note": "找到上一份 8-K,但其 EX-99.1 抓不到(該申報無 EX-99 附件)"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2018-04-30",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 42,
+   "has_qna": true,
+   "n_chars": 40324,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Executives",
+     "content": "Matt Bacso - Investor Relations Manager Scott Wilkinson - Chief Executive Officer Ali Bauerlein - Chief Financial Officer and Co-Founder"
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Analysts",
+     "content": "Roby Marcus - JP Morgan Margaret Kaczor - William Blair Danielle Antalffy - Leerink Partners Mike Matson - Needham and Company J.P. McKim - Piper Jaffray"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Operator",
+     "content": "Good afternoon. And welcome to the Inogen 2018 First Quarter Financial Results Conference Call. All participants will be in listen-only mode [Operator Instructions]. After today's presentation, there will be an opportunity to ask questions [Operator Instructions]. Please note this event is being recorded. I would now like to turn the conference over to Matt Bacso, Investor Relations Manager. Please go ahead."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Matt Bacso",
+     "content": "Thank you for participating in today's call. Joining me from Inogen is CEO, Scott Wilkinson and CFO and Co-Founder, Ali Bauerlein. Earlier today, Inogen released financial results for the first quarter of 2018. The earnings release and Inogen's corporate presentation are currently available in the Investor Relations section of the Company's Web site. As a reminder, the information presented today will include forward-looking statements, including statements about our growth prospects and strategy for 2018 and beyond, hiring expectations, marketing expectations, direct-to-consumer pricing trials, international growth, manufacturing developments, the impact of CMS rate adjustments and potential legislative measures and financial guidance for 2018. The forward-looking statements in this call are based on information currently available to us. These forward-looking statements are only predictions and involve risks and uncertainties that are set forth in more detail in our most recent periodic reports filed with the Securities and Exchange Commission. Actual results may vary, and we disclaim any obligation to update these forward-looking statements except as maybe required by law. We have posted historical financial statements in our first quarter investor presentation in the Investor Relations section of the Company's Web site. Please refer to these files for more detailed information. During the call, we will also present certain financial information on a non-GAAP basis. Management believes that non-GAAP financial measures taken in conjunction with U.S. GAAP financial measures provide useful information for both management and investors by excluding certain non-cash items and other expenses that are not indicative of Inogen's core operating results. Management uses non-GAAP measures internally to understand, manage and evaluate our business and make operating decisions. Reconciliations between U.S. GAAP and non-GAAP results are presented in tables within our earnings release. For future periods, we are unable to provide a reconciliation of our non-GAAP guidance to the most directly comparable GAAP measures without unreasonable effort as discussed in more detail in our earnings release. With that, I'll turn the call over to Inogen's President and CEO, Scott Wilkinson. Scott?"
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Scott Wilkinson",
+     "content": "Thanks, Matt. Good afternoon. And thank you for joining our first quarter 2018 conference call. And what is historically a seasonally slower quarter, I am very proud to say 2018 got off to a great start as we generated total revenue of $79.1 million in the first quarter. Our record direct-to-consumer sales of $28.7 million in the first quarter of 2018 exceeded our expectations, primarily due to increased sales representative headcount and associated consumer spending. We are currently ahead of schedule to meet our plan of hiring 240 Cleveland based employees by 2020, with the majority of those being sales reps. Given our recent success, our strategy is to steadily to hire additional sales representatives throughout 2018 and continue to invest in marketing activities to increase consumer awareness as we believe this is still our most effective means to drive growth of the direct-to-consumer sales. In fact, we expect to release a new TV commercial to showcase the benefits of our portable oxygen concentrators in the second quarter. Further, we initiated a direct-to-consumer pricing trial in the second quarter of 2018 to ensure our products are optimally priced. We expect to provide an update on this trial on our next earnings call. First quarter of 2018 domestic business to business sales of $28 million was a record for us and exceeded our expectations, primarily due to continued success with our private label partner and traditional home medical equipment providers. While we are very proud of the success in the first quarter and remain optimistic within the domestic business-to-business channel, it is important to remember that this business can be lumpy quarter-to-quarter. While we believe the conversion to non-delivery technology is underway, we think this will take seven to 10 years due to the inherent challenges providers are facing both from an infrastructure and financial perspective. While sizeable South Korean unit orders in the first quarter of 2017 did not repeat in the first quarter of 2018, international revenue of $16.9 million was still strong versus the first quarter of 2017. Despite the absence of major tender activity, growth was primarily due to continued adoption from our European partners and favorable currency rates. We believe we remain the preferred provider of portable oxygen concentrators in Europe, and we expect to see long term opportunity for growth ahead as the market transitions from tank and liquid oxygen systems to non-delivery solutions. We are also proud of our operations team and supply chain for continuing to steadily to increase output to meet our customers’ demand. We have signed a new release in Richardson, Texas to expand our manufacturing and operations footprint by approximately 23,000 square feet. Our current Texas manufacturing facility is approximately 37,000 square feet. So this additional space should provide for significant capacity expansion. Transitioning to the subject to propose 25% tariff on roughly 1,300 imported Chinese materials and products. We are currently evaluating the potential impact to our supply chain. While aluminum and steel have received a sizable amount of attention with regard to proposed tariffs, there is not a large quantity of either in our products. We would also like to point out that the majority of aluminum in our product is sourced domestically, so we not expect there would be a significant impact on our raw material costs associated with any tariffs on aluminum. However, there are components in our products, such as lithium-ion batteries and prudent circuit-board components that are currently proposed to be subject to this tariff. We will continue to monitor these proposals and economic policy changes and take the necessary steps to protect our financial interest and reduce our supply chain risks. On the topic of competitive bidding around 2019, we have nothing new to report and await information from CMS on the next round of competitive bidding. Also, we wanted to comment on the recent proposal by CMS to remove HCPC code E1390 for stationary concentrators from the master list of potential medical devices subject to prior authorization requirements. In short, there is no change to the actual billing practices based on this announcement. But this announcement confirms that code E1390 will not be subject to a prior authorizational requirement given that reimbursement rates are under the $100 per month threshold. Lastly, there has been no update on either HR4229 or the interim final rule that would provide retroactive reimbursement relieve in non-competitive bid areas. Looking ahead, I am very proud of our Inogen associates and the progress made in what has historical been a seasonally slower quarter. But we’ve been engaged in multiple initiatives to fuel future growth, we’ve accelerated current growth, especially in the domestic direct-to-consumer and business-to-business sales channels. I am very pleased with the increased adoption in these markets with are best-in-class and patient preferred products. Looking at 2018, we are increasing our full year revenue guidance range to $310 million to $320 million, up from $298 million to $308 million, and expect to continue to invest heavily in our sales force, marketing efforts and operations in order to drive portable oxygen concentrator adoption worldwide. With that, I will now turn the call over to our CFO, Ali Bauerlein. Aly?"
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Ali Bauerlein",
+     "content": "Thanks, Scott and good afternoon everyone. During my prepared remarks, I will review our first quarter of 2018 financial performance and then provide details on our increased 2018 guidance. As Scott noted, total revenue for the first quarter of 2018 was $79.1 million, representing 50.6% growth over the first quarter of 2017. Looking at each of our revenue streams and turning first to our sales revenue. Total sales revenue of $73.6 million represented 93.1% of total revenue in the first quarter of 2018, and reflected 60.1% growth over the same quarter of the prior year. Total units sold increased to 45,400 in Q1 2018, up 77.3% from 25,600 in Q1 2017. Direct-to-consumer sales for the first quarter of 2018 were a record $28.7 million, representing 67.8% growth over the first quarter of 2017, primarily due to increased sales representative headcount and increased marketing expenditures. Record domestic business-to-business sales of $28 million in Q1 2018 reflected 60.4% growth over Q1 2017 with strong demand from our private label partner and traditional HME providers as more and more providers are adopting portable oxygen concentrators instead of paying to service their oxygen paychecks. International business-to-business sales of $16.9 million in Q1 2018 increased 48% from Q1 2017 and which driven mostly by strong European volumes and favorable currency rates. We are proud of this result, especially since the first quarter of 2018 included sizeable unit orders from South Korea that did not repeat in the first quarter of 2018. Sales in Europe represented 89.5% of international sales in the first quarter of 2018, up from 73.2% in the first quarter of 2017. Average business-to-business selling prices declined for the same period in the prior year, primarily due to mix related to increased volume from our private label partners and secondarily associated with pricing discounts associated with increased volumes worldwide. Rental revenue represented 6.9% of total revenue in the first quarter of 2018 versus 12.4% in the first quarter of 2017. Rental revenue in the first quarter of 2018 was $5.5 million compared to $6.5 million in the first quarter of 2017, representing a decline of 16.3% from the same period in the prior year, primarily due to our continued focus on direct-to-consumer sales versus rentals and a $0.2 million Cures Act benefit in the first quarter of 2017 that did not repeat in the first quarter of 2018. Rental revenue in the first quarter of 2018 was flat sequentially versus rental revenue in the fourth quarter of 2017. We note that the first quarter of 2018 represents our most difficult comparable in 2018 given the $0.2 million Cures Act benefits received in the first quarter of 2017, representing a rental revenue headwind of 2.6% in the first quarter of 2018. Further, net rental patients on service declined 9.2% compared to the first quarter of 2017. Lastly, rental revenue was negatively impacted by the 1.2% decline in Medicare reimbursement rates or stationary oxygen in non-competitive bid areas effective January 1, 2018 due to the updated Medicare fee schedule. Turning to gross margin. For the first quarter of 2018, total gross margin was 47.7% compared to 49% in the first quarter of 2017. The decrease in total gross margin was primarily due to lower sales revenue per unit sold and lower rental gross margins, which was partially offset by lower average cost of sales revenue per unit. Our sales gross margin was 49.8% in the first quarter of 2018 versus 52.3% in the first quarter of 2017. The sales gross margin decline was due to a lower consolidated average selling price in the business-to-business channel due to increased sales volume to our private label partner and traditional home medical equipment providers, but was partially offset by increased mix towards direct-to-consumer sales and lower cost of sales revenue. Rental gross margin was 20% in the first quarter of 2018 versus 25.9% in the first quarter of 2017. The decrease in rental gross margin was primarily due to the $0.2 million Cures Act benefit received in the first quarter of 2017, which lifted rental margins by 2.3% in that quarter and increased logistics costs in the first quarter of 2018, partially offset by lower depreciation costs. As for operating expense, total operating expense increased to $29 million in the first quarter of 2018 or 36.7% of revenue versus $20.2 million or 38.4% of revenue in the first quarter of 2017. We are proud of this operating expense leverage we are showing in spite the significant investments being made in our sales and marketing infrastructure. Research and development expense was $1.4 million in the first quarter of 2018 compared to $1.3 million recorded in the first quarter of 2017, primarily due to increased personnel-related expenses. Sales and marketing expense increased to $18 million in the first quarter of 2018 versus $10.5 million in the comparative period in 2017, primarily due to increased personnel-related expenses as we continued to hire inside sales representatives at our Cleveland facility in addition to increased advertising expenditures. In the first quarter of 2018, we spent $4.8 million in advertising as compared to $2 million in Q1 2017. General and administrative expense increased to $9.6 million in the first quarter of 2018 versus $8.3 million in the first quarter of 2017, primarily due to increased personnel-related expenses, but partially offset by a decrease in patent defense costs. In the first quarter of 2018, we’ve reported an income tax benefit of $1.1 million, up from $0.1 million benefit in the first quarter of 2017. Our income tax benefit in the first quarter of 2018 included $3.3 million decrease in provision for income taxes related to excess tax benefits recognized from stock-based compensation compared to $2.2 million in the first quarter of 2017. Excluding the stock-based compensation benefit, our non-GAAP effective tax rate in the first quarter of 2018 was 22.5% versus 36.7% in the first quarter of 2017, primarily due to the impact of U.S. federal tax reform. In the first quarter of 2018, we’ve reported net income of $10.8 million compared to net income of $5.9 million in the first quarter of 2017. Earnings per diluted common share was $0.48 in the first quarter of 2018 versus $0.27 in the first quarter of 2017, an increase of 77.8%. Adjusted EBITDA for the first quarter of 2018 was $15.5 million, which represented a 19.6% return on revenue. Adjusted EBITDA increased 42.7% in the first quarter of 2018 versus the first quarter of 2017 where adjusted EBITDA was $10.9 million or 20.7% return on revenue. Cash, cash equivalents and marketable securities were $188.3 million, an increase of $14.4 million compared to $173.9 million as of December 31, 2017. Turning to guidance, we are increasing our full year 2018 guidance range for total revenue to $310 million to $320 million, up from $298 million to $308 million, representing growth of 24.3% to 28.3% versus 2017 full year results. We expect direct-to-consumer sales to be our fastest growing channel, domestic business-to-business sales to have a significant growth rate and international business-to-business sales to have a modest growth rate, where the strategy will still be focused on the European market. We now expect rental revenue to be down approximately 10% in 2018 compared to 2017 due to our continued focus on sales versus rentals. As stated previously, the only known changes to Medicare reimbursement rates in 2018 are roughly 1.2% decline in monthly stationary rates in non-competitive bidding areas due to the C-schedule adjustment. Additionally, we are increasing our full year 2018 GAAP net income and non-GAAP net income guidance range to $38 million to $41 million, up from $36 million to $39 million, representing growth of 80.9% to 95.2% compared to 2017 GAAP net income of $21 million and growth of 33% to 43.5% compared to 2017 non-GAAP net income of $28.6 million. We are also increasing our guidance range for full year 2017 adjusted EBITDA to $62 million to $67 million, up from $60 million to $64 million, representing growth of 22% to 31.8% versus 2017 full year results. We still estimate that the decrease in provision for income taxes related excess tax benefits recognized from stock-based compensation will lead to a decrease in provision for income taxes of approximately $8 million in 2018 based on forecast of stock activity, which would further lower our effective tax rate as compared to the U.S. statutory rates. Excluding the benefit from the estimated $8 million decrease in provision for income taxes expected in 2018 from stock based compensation deductions, we expect a non-GAAP effective tax rate of approximately 25%. We expect our effective tax rate, including stock compensation deductions, to vary quarter-to-quarter depending on the amount of pre-tax net income and on the timing and size of stock option exercises. Lastly, we expect net positive cash flow for 2018 with no additional equity capital required to meet our current operating plan. With that, Scott and I will be happy to take questions."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "We will now begin the question-and-answer session [Operator Instructions]. The first question comes from Roby Marcus with JP Morgan. Please go ahead."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Roby Marcus",
+     "content": "Maybe I can start with getting some more details at if you on what drove to be. The DTC growth we’ve seen over the past few quarters has been creeping up from 30%, to 40% to 50% year-over-year growth, now to 60%. But the one that really stood out was U.S. B2B, which capped up from the low to mid $20 million range up to $28 million in the first quarter. So can you give us a little more color on what exactly you’re seeing there in both U.S. B2B, but also if you could tough on B2C as well?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Scott Wilkinson",
+     "content": "On the B2B front, we had commented middle of last year that while a lot of the B2B players said they were trailing POCs, we said look they’ve gone down the path far enough, enough of the track record that we felt like really a conversion was underway even if some players didn’t even realize they were converting. You can only call it a trial so long. I think that’s exactly what we’re seeing, the reimbursement pressures on providers continues to force that conversion. We saw providers again and I’ve made this comment in the past, but it was true this time around really in all shapes and sizes continue to increase the purchase. So we continue to have some confidence that the conversion is underway. And as I’ve said in the past too, if you do the math and you say this is seven to 10-year conversion cycle then the rate of adoption has to increase somewhere along that timeline, or you just don’t get there in seven to 10 years. So we are seeing the volumes pick-up. We’re seeing a few new players to the game, the same old players buying a little bit more. It’s good news. What we like is that it’s fairly well diversified across the customers. So we’re pleased. But there is no real secret or [indiscernible] other than that people are progressing down that curve to convert their business. Now, as I said in my opening remarks, it’s still going to be lumpy and there are starts and stops. There is inherent barriers and hurdles for the B2B community to convert their business and some run into cash flow issues during a conversion or they hit a credit crunch. So we expect this will continue to be lumpy. We’re pleased with what we saw. But we continue to be cautious about our expectations, because we don’t want to left holding the bag. So I think you’ll see as continue to be a little on the cautious side in our estimates, but we do feel there is a conversion taking place. Now, on the direct-to-consumer side, the results are driven by our increased hiring. I’ve mentioned that the hiring in Cleveland is going, I’ll say not according to plan, but ahead of plan. We found that it’s a great market. We’re very pleased with the talent that we’re finding there. So it has allowed us to hire. If you were to compare our three year plan, we’re ahead of that plan, if you look at it on a linear basis. And we hired pretty heavily at the end of last year. Those people are now contributing, as you go into the first quarter, you’ve got a very first people we hired are actually are seasoned reps and as far as they are end of curve, the people hired at the very end of the year are still relatively new in the first quarter, but they climb that curve, so primarily the results are based on our hiring increase. There’s some productivity improvement in there. But if you looked at the contribution of productivity versus headcount and sales capacity, sales capacity is the bigger driver."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Roby Marcus",
+     "content": "And may be just a follow up, Ali, I look at the first quarter number and I look at guidance. You beat the Street by $16 million. You raised guidance by $12 million. You did 50% growth in the first quarter. And if I look at the midpoint of guidance, it implies 20% growth for the balance of the year. So maybe you could help talk about your philosophy on guidance and maybe what the discrepancy is from the very strong first quarter growth rates and what’s factored into the rest of guidance? Thanks."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Ali Bauerlein",
+     "content": "As we’ve said before and as Scott just said, we don’t want to get ahead of this market conversion. And we know that there are underlying fundamentals that make it difficult for the B2B community to continue to adopt POCs. And because of that, we just want to make sure that we’re cautious with the guidance that we put out there on the B2B side of the business. International obviously is a lumpy business. Q4 was pretty weak for us and Q1 obviously rebounded quite nicely. But just given the fact that that business can be driven by tenders and the timing of purchases again, we don’t want to get ahead of our European partners and their use of POCs. Obviously, there was an additional headwind on the rental side of the business as we’ve continued to focus the team on cash sales. You will see we do expect rentals to now decline, so we did factor that into the guidance as well. And so the direct-to-consumer sales, obviously, was fantastic start to the year. And we feel great about how that segment has been performing. But again, it’s down to how many people can we hire, particularly in Cleveland where the majority of the growth is coming and making sure that we put out achievable guidance."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Operator",
+     "content": "The next question comes from Margaret Kaczor with William Blair. Please go ahead."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Margaret Kaczor",
+     "content": "First from me on the DTC side. Can you give us any flavor for how quickly the reps are ramping relative to reps in the past? And as we have seen that maybe more reps were hired later in the year, which I think you guys just said and earlier than this year rather than the very early classes. Why shouldn’t we look at Q2 and continue to see a lot of the same growth as we saw in Q1, particularly as you launch the CTC TV commercial. And maybe I can follow up on that in the next question."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Scott Wilkinson",
+     "content": "We’ve always measured the curve on our new sales reps and we’ve said it’s about a four to six month timeframe for them to get to the end of curve steady state in all of the locations where we hire new classes. We measure against that curve. So all the reps that we hire in a given class their first month we measure against what would be the normal month one, month two, three, four, et cetera. So you have pretty good data around that. I am pleased to say the folks in Cleveland are at or little better than the historical curve. I’ve also said in past couple of calls, we've invested pretty heavily in training, which has helped us to improve that on-boarding curve a little bit. So certainly we’re at least at par if not a little better on that four to six month end of curve journey. Now, your second question on the second quarter, you do have to remember that the comps in the second quarter are a little tougher than the first quarter comps. So that’s where we’ve landed where we did, that’s with respect to looking at the baseline and not all baselines are equal. So hopefully that makes sense to you."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Ali Bauerlein",
+     "content": "Just to expand on that a little bit. I mean, particularly in the back half of 2017, we saw accelerating growth on that direct-to-consumer sales line. And we ended the year with four quarter of 2017 being up almost 58% compared to the fourth quarter of 2016. So the comps do get tougher for us throughout the year versus our traditional seasonality where the second and the third quarter are tougher. So the first quarter was certainly the easiest comp for us on the direct-to-consumer sales channel where growth in the previous year was only up about 28%."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Margaret Kaczor",
+     "content": "And then you guys had talked about potentially running a DTC TV commercial yourself, and I know others have done the same. But what have you learned from them, how many geographies are you going launch those TV activities in? Anything in terms of how much spend and contribution from the activity that’s in guidance?"
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Scott Wilkinson",
+     "content": "Margaret, we actually have always run our own direct-to-consumer commercial. So that’s no different. We are going to launch a new version of the commercial in the second quarter of this year. We've been running our own -- we tweak them to refresh them, sometimes you can wear out a commercial. So throughout our past really 10 year history, we always refresh the commercial every so often just to piece it different, just like we run in some different stations and different programming from time-to-time to keep it fresh. But that’s really what we've done and we’ll continue to do that. But you should see a new commercial here before the end of the second quarter that's what the plan is right now and that’s all done by us."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Margaret Kaczor",
+     "content": "So the spend isn’t changing then?"
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Scott Wilkinson",
+     "content": "Well, the spend will continue to ramp as we hire new people. So we’ve always matched our spend to our sales capacity. So as we hire more reps, you’ve got to have more leads or else you choke the reps off and starve them. So that goes back to that -- remember market penetration our best estimate that we use precious Medicare data in that roughly 10% range. So being a long way from saturation, we’ve shown that we can continue to add sales capacity and continue to increase the spend to drive more leads and keep those new sales reps fully loaded. So we’ll continue to do that. You’ll see the spend increase as we hire reps and as an aside, newer reps tend to queue up even more leads. They don’t really have a pipeline so they’ve got to generate a pipeline. So an existing rep in any given month they may work X number of leads that are already in their bucket and then Y number of new leads, brand new reps to come on board, it’s all new leads, you have to load them up and the spend tends to be a little higher to feed them until they get the steady state."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Ali Bauerlein",
+     "content": "And just to clarify on the cost side, the cost of the commercial development get capitalized and then it will be amortized over the expected life of the commercial."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Margaret Kaczor",
+     "content": "And then I’ll sneak one last one in here and let you guys scale. But on the B2B domestic side as you think about the quarter’s results, I know you touched on it. But how much of that do you think was market conversion versus share gains. And are you doing anything to target certainty any more than others perhaps, so you can end up driving more growth? Thanks."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Scott Wilkinson",
+     "content": "Yes, as you know if you look at historical POC growth and again, we’ve used the Medicare data to estimate that. The annual POC growth has been in the high-teens. So while I don’t have any newer data, I am using the same precious data as 2016. I think with the growth rate that we saw that certainly should be higher than the market growth rate, so it would lead you to conclude that we have strengthened our share position in the quarter."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Operator",
+     "content": "The next question comes from Danielle Antalffy with Leerink Partners. Please go ahead."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Danielle Antalffy",
+     "content": "Just to follow-up on the line of questioning around guidance, I just want to make sure I understand how we’re thinking about the back -- I guess back start of the year -- two-thirds of the year. And it looks like your guidance is implying something in the 20% growth range on average, but you just put up 51% growth quarter, your seasonally generally weaker quarter. So I appreciate the conservatism but I also want to make sure I am not missing any overlying dynamics like, for example, it looks like pricing maybe took a little bit of the step down this quarter. Is there something we should be thinking about as an impact, and as we move throughout the year there? And your competitor did say they were in a controlled roll out of their POC last week on their earnings call. So I just want to make sure I am understanding all the drivers of guidance for the rest of the year and particularly as you think about the B2C business and even back these reps you’re ramping a little faster. Why not get even more bullish, I guess is my question?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Ali Bauerlein",
+     "content": "So I’ll take that one, Danielle. Certainly, as we’ve seen overtime, we do have pricing pressure, particularly on the B2B side of the business. We expect that to continue with volume increases throughout 2018. So that is factored into guidance as it has been previously. And it really will come down to what level of volume increases are we seeing to justify the ASP declines that we expect in those areas. When we look at it really -- I mean it just comes down to this market is we do believe that they are in a conversion process. However, we do think that we don’t want to get out ahead of that, and we want to make sure that our guidance is very achievable. On the direct-to-consumer side certainly, we’re continuing to invest in the sales force and continuing to grow that team. We still expect 2018 to be an investment year for us, and how that investments have performed so far in expanding the sales team, that has performed very nicely. I just want to point you again to the fact that throughout the year, our comps get harder on the direct-to-consumer side of the business and that against the normal seasonality that we see in the business. So looking at Q2 versus Q3 and Q4, Q2 is an easier comp for us on the direct-to-consumer side than Q3 or Q4 versus our typical seasonality in the business. So certainly, I think that all those things should be factored into guidance and particularly on the direct-to-consumer side of the business."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Danielle Antalffy",
+     "content": "And then just another higher level longer term question, I mean B2B is growing very quickly. It feels like you mentioned these HMEs are converting. And I am just curious of how you’re looking about the long-term mix of the business between B2B and direct-to-consumer. And what that means for the price versus -- a price decline versus volume growth? And what’s your strategy to help support pricing if in fact B2B becomes a much -- as it’s been becoming a bigger piece of the business? Thanks so much."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Ali Bauerlein",
+     "content": "So when you look at that, while certainly B2B has a lower gross margin profile, it also has much lower operating expenses associated with it. So when we look at the market opportunity, we look to capture share both on the B2B side and the direct to consumer side, because we’re relatively agnostic on the bottom-line. What we have been doing though is continuing to invest in the B2C side, because we’re still very early in the market penetration curve, as Scott said earlier, 9% or so penetration in the last data as of the end of 2016. We still have a long ramp to go to continue to take share, both on the direct-to-consumer side, as well as the business to business side away from the tank-based business model. So our focus really is to make sure that we maintain a market leadership position, and that we continue to grow the market both on direct-to-consumer side and the B2B side and not to drive a specific mix in our business. Now, inherent in guidance in 2018 is that direct-to-consumer sales would be the fastest growing channel. So that would actually be a tailwind to gross margin expansion over the course of the year."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Operator",
+     "content": "The next question comes from Mike Matson with Needham and Company. Please go ahead."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Mike Matson",
+     "content": "Just given the level of growth that we saw in the quarter, I just want to ask about your production capacity and manufacturing side of things. If you were to sustain this type of growth, do you feel like you’ve got adequate capacity there to continue to meet demand?"
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Scott Wilkinson",
+     "content": "If you recall last year, we engaged Foxconn as a manufacturing partner. So they are now producing our G3 products for European demand. And what that did is it offloaded considerable demand from our domestic facility at Richardson, Texas so that immediately freed up capacity of that site. And then as I mentioned in the opening, we have signed an additional lease for 23,000 toward fee increased footprint, it’s in Richardson, Texas, as well just around the corner from our current site. So that gives significant space for expansions. So certainly, over the next at least couple of few years, I’ll say, we’re in pretty good shape from a capacity standpoint. It is relatively easy for us to expand our capacities, probably more of a challenge if anything on the supply chain side not on the footprint side for manufacturing. So manufacturing sales are relatively easy to replicate and we’ve got a good job with our ops team of driving productivity increases year-over-year to increase our capacity as well. But the real work that you don’t see on the supply chain side and we’ve got a team all over that, because we don’t want to miss the opportunity if the market accelerates in growth. And as I said, estimating a seven to 10 year conversion, mathematically if you do see that come to fruition then there would be an adoption acceleration. So we’re prepared for that and that’s why we’re watching so closely."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Mike Matson",
+     "content": "And then your sales gross margin was down as you noted, Ali. But I guess what I’m wondering is that we you split that into two parts, the B2B sales and then B2C sales, and look at those individually. Were those gross margins in each of those businesses stable or are those down independently? In other words, was this purely a mix issue or were the two separate businesses you’ve seen decline as well?"
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Ali Bauerlein",
+     "content": "So when you look at the sales gross margin for the direct-to-consumer side of the business, ASP has been relatively flat year-over-year. So there actually with comps coming down, you see a slight expansion of that gross margin over time, because your ASP is flat. Now remember, we are doing a pricing trail in the second quarter in the direct-to-consumer channel. So that will determine what’s the optimal price for us going forward. But just looking at the first quarter, certainly, that direct-to-consumer sales gross margin performs nicely with COGS coming down overall and ASP being relatively flat. When we look at the B2B side, there is always mix even within B2B depending on the customers that buy. Obviously, our distributor, our private label partner has lower prices in order for them to sell on through the HME community. So mix between them and also other large HME providers versus the smaller HME providers that buy smaller quantities, and as a result have higher prices. Mix within that also is a contributing factor. So when we outline those impacts, the first was just the mix within the customer and then secondarily was overall price declines associated with the volume increase."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Mike Matson",
+     "content": "And then were there any one-time factors that drove your revenue this quarter that won’t be repeated? I mean, I don't think you called anything out. But I guess just given the amount of upside or mixture that there’s not anything here that isn’t indicative of longer term demand I guess?"
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Ali Bauerlein",
+     "content": "There were no one-time orders, like for example, the South Korean order that we had in the first quarter of 2017. There was no large international order like that where it was a new country. And certainly, we stopped providers continuing to adopt worldwide. But there was nothing that we would call one-time in nature or driven by a specific tender or a new market opportunity."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] The next question comes from J.P. McKim with Piper Jaffray. Please go ahead."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "J.P. McKim",
+     "content": "I wanted to start first just more broadly on DTC, and how do you think about that strategically going forward. Scott or Ali, do you feel that there is a real opportunity to accelerate the market growth from a volume standpoint if you do take maybe a boarder price cut? Or are you more or less looking at the DTC side maybe is there a premium given all the brand that you guys have built in the market?"
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Scott Wilkinson",
+     "content": "As I said, the biggest barriers to conversion is really the fixed infrastructure that’s already in place with the providers that have driven a delivery model since really their existence. You’ve got -- to make this non-delivery model work you’ve got to phase the delivery structure out. And that takes time and it takes money. So reducing prices really doesn’t help grease the skits. The other issue as I mentioned is just credit line. So people run into crediting and cash flow constraints, I suppose you can argue that low price reduction helps that a little bit but you can’t reduce the price enough that it makes that go away. So no, I don’t see reducing prices would significantly increase the adoption in the HME community."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "J.P. McKim",
+     "content": "And then my second question is just on international. I think from what I heard is there was no real big tenders, you didn’t have South Korean order, it was just a broad based strong order from just your checking along. So is there -- so why haven’t we -- why can’t we call an inflection there. Has your visibility got better now that you have more of a direct presence with Foxconn and you’re and distributor you bought there last year? Do you have better visibility there, or is there any reason that that you can point to the call out that acceleration?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Scott Wilkinson",
+     "content": "In the European market really international overall we should just look at it as one bucket. It is the channel where we are still the farthest probably end user. So we have limited visibility. It’s not a lot better than it’s been in the past. Really Foxconn doesn’t give us any better visibility just by shipping from one point versus Texas. It does improve our service significantly, and the customers are extremely happy what we’ve done with Foxconn, but it doesn’t improve our visibility. European markets are very fragmented. You’ve got different reimbursement in every country, some countries are tender driven, some are not. And that’s why we said the international sales are what we would call the lumpiest in most unpredictable bucket of all. We had a quarter end of the year that things were a little slow and then this quarter they jump ahead. If you look at it on average it levels out but that’s why we’re always very careful about making predictions on a market like that where we know inherently that sales are less predictable than anywhere else."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Operator",
+     "content": "This concludes our question-and-answer session. I would like to turn the conference back over to Scott Wilkinson for any closing remarks."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Scott Wilkinson",
+     "content": "I’d like to close with a few comments on our strategy for 2018. We expect to continue to seek ways to accelerate the global adoption of portable oxygen concentrators. We’re supporting providers worldwide to convert to a non-delivery model, increasing our direct-to-consumer investments in the United States and pursuing product registration in new and emerging markets. At the same time, we’re still focused on developing innovative auction concentrators to stay at the forefront of patient preference and further reduce our product costs as we gain additional scale. We’re excited about the future of oxygen therapy, what we see portable auction concentrators continuing to grow and becoming the standard-of-care for ambulatory patients in the next seven to 10 years. Thank you for your interest in Inogen."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "The conference has now concluded. Thank you for attending today’s presentation. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +276,8 @@
    "reportDate": "2017-12-31",
    "accession": "0001564590-18-003518",
    "url": "https://www.sec.gov/Archives/edgar/data/1294133/000156459018003518/ingn-10k_20171231.htm",
-   "local_gz": "000156459018003518__annual.txt.gz"
+   "local_gz": "000156459018003518__annual.txt.gz",
+   "n_lines": 6191
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +285,8 @@
    "reportDate": "2018-03-31",
    "accession": "0001564590-18-009839",
    "url": "https://www.sec.gov/Archives/edgar/data/1294133/000156459018009839/ingn-10q_20180331.htm",
-   "local_gz": "000156459018009839__q0.txt.gz"
+   "local_gz": "000156459018009839__q0.txt.gz",
+   "n_lines": 3333
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +294,106 @@
    "reportDate": "2017-09-30",
    "accession": "0001564590-17-022249",
    "url": "https://www.sec.gov/Archives/edgar/data/1294133/000156459017022249/ingn-10q_20170930.htm",
-   "local_gz": "000156459017022249__q1.txt.gz"
+   "local_gz": "000156459017022249__q1.txt.gz",
+   "n_lines": 4009
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2018-02-27",
   "n_rows": 8,
@@ -83,6 +408,63 @@
     "ocf": 12020000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 12514000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 27837000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2318000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 84500000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3469000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3404000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 5142000.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.25,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 20925613.0,
+      "filed": "2016-08-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +475,63 @@
     "ocf": 9055000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 16499000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 29717000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2035000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 86009000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1888000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3388000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 3455000.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.16,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 21100725.0,
+      "filed": "2016-11-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +542,63 @@
     "ocf": 5182000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 14343000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 30828000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2239000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 92851000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": -4353000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3268000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 5260000.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.25,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 21362513.0,
+      "filed": "2017-02-28",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +609,63 @@
     "ocf": 13212000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 13961000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 30927000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2760000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 105105000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 593000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3204000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 5932000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.27,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 21579721.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +676,63 @@
     "ocf": 16899000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 15920000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 34803000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3585000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 114711000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 376000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2992000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 8338000.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.38,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 21848359.0,
+      "filed": "2017-08-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +743,63 @@
     "ocf": 17375000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 16855000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 34699000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3646000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 129693000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1114000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2835000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 7338000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.33,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 21998660.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +810,63 @@
     "ocf": 13008000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 18842000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 31444000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3533000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 142953000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 831000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3045000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -606000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.03,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 22167358.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +877,27 @@
     "ocf": 12240000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 10758000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.48,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": {
+      "value": 22295213.0,
+      "source": "EX-99.1 稿內文字"
+     }
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 79100000.0,
     "revenue_xbrl_for_reference": 79051000.0
@@ -166,148 +911,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3842",
   "sic2": "38",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 153,
-  "peer_list_all_same_sic2_tickers": [
-   "A",
-   "AEHR",
-   "AEMD",
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 15,
+  "peer_list_all_tickers": [
    "ALGN",
-   "ALNT",
-   "AME",
-   "ANGO",
-   "ANIK",
-   "AORT",
-   "APT",
-   "ARAY",
-   "ASTC",
-   "ATEC",
-   "ATRC",
-   "AXGN",
-   "BAX",
-   "BCHT",
-   "BDX",
-   "BIO",
-   "BLFS",
-   "BMI",
-   "BRKR",
-   "BSX",
-   "CAMT",
-   "CERS",
-   "CGNX",
-   "CLGN",
-   "CLIR",
-   "CLPT",
-   "CNMD",
-   "CNSY",
-   "CODA",
-   "CODX",
-   "COHR",
-   "COHU",
-   "COO",
-   "CTSO",
-   "DAIO",
-   "DHR",
-   "DRIO",
-   "DXCM",
-   "ELMD",
-   "ENOV",
-   "EW",
-   "EYE",
-   "EYPT",
-   "FCUV",
-   "FEED",
-   "FEIM",
-   "FOCL",
-   "FOSL",
-   "FTV",
-   "GCTK",
-   "GEOS",
-   "GKOS",
-   "GMED",
-   "GPRO",
-   "GRMN",
-   "HAE",
-   "HBIO",
-   "HURC",
-   "IART",
-   "ICUI",
-   "ILMN",
-   "IMAX",
-   "INFU",
-   "INTT",
-   "IRIX",
-   "IRMD",
-   "IRTC",
-   "ISRG",
-   "ITGR",
-   "ITRI",
-   "KEQU",
-   "KEYS",
-   "KIDS",
-   "KLAC",
-   "KODK",
-   "KRMD",
-   "LAKE",
-   "LFWD",
-   "LHX",
-   "LIVN",
-   "LMAT",
-   "MBAI",
-   "MBOT",
-   "MDT",
-   "MDXG",
-   "MIND",
-   "MKSI",
-   "MLAB",
-   "MLSS",
-   "MMM",
-   "MMSI",
-   "MOV",
-   "MSA",
-   "MTD",
-   "MYO",
-   "NDRA",
-   "NEPH",
-   "NMTC",
-   "NOC",
-   "NSPR",
-   "NUWE",
-   "NVCR",
-   "NVMI",
-   "OFIX",
-   "OPXS",
-   "OSUR",
-   "PACB",
-   "PAVM",
-   "PDEX",
-   "PEN",
-   "PHG",
-   "PLSE",
-   "POCI",
-   "PODD",
-   "PRPO",
-   "QTRX",
-   "RMD"
+   "ISRG"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000066740",
-    "name": "3M CO",
-    "ticker": "MMM",
-    "sic2": "38"
+    "entity_id": "0001035267",
+    "name": "INTUITIVE SURGICAL INC",
+    "ticker": "ISRG",
+    "sic4": "3842",
+    "sic3": "384",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2018-02-02",
+    "accn": "0001035267-18-000013",
+    "local_gz": "000103526718000013__peer10k.txt.gz",
+    "capex_excerpt": [
+     "n cash used by operating activities. The unfavorable impact of these items on cash provided by operating activities was partly offset by a $21.5 million increase in accrued compensation and employee benefits and an $8.2 million increase of deferred revenue. Investing Activities Net cash provided by investing activities for the year ended December 31, 2017 , consisted of proceeds from the sales and maturities of investments (net of purchases of investments) of $569.4 million partly offset by purchases of property, plant, and equipment of $190.7 million . Net cash used in investing activities for the year ended December 31, 2016, consisted of purchases of investments (net of the proceeds from ",
+     "ng Activities Net cash provided by investing activities for the year ended December 31, 2017 , consisted of proceeds from the sales and maturities of investments (net of purchases of investments) of $569.4 million partly offset by purchases of property, plant, and equipment of $190.7 million . Net cash used in investing activities for the year ended December 31, 2016, consisted of purchases of investments (net of the proceeds from the sales and maturities of investments) of $1.2 billion and purchases of property, plant, and equipment for $53.9 million. Net cash used in investing activities for the year ended December 31, 2015, consisted of purchases of investments (net of the proceeds from t",
+     "quipment of $190.7 million . Net cash used in investing activities for the year ended December 31, 2016, consisted of purchases of investments (net of the proceeds from the sales and maturities of investments) of $1.2 billion and purchases of property, plant, and equipment for $53.9 million. Net cash used in investing activities for the year ended December 31, 2015, consisted of purchases of investments (net of the proceeds from the sales and maturities of investments) of $768.5 million and purchases of property, plant, and equipment for $81.0 million. We invest predominantly in high quality, fixed income securities. Our investment portfolio may at any time contain investments in U.S. treasu"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0001613103",
-    "name": "Medtronic plc",
-    "ticker": "MDT",
-    "sic2": "38",
+    "entity_id": "0001097149",
+    "name": "ALIGN TECHNOLOGY INC",
+    "ticker": "ALGN",
+    "sic4": "3842",
+    "sic3": "384",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2017-06-27",
-    "accn": "0001613103-17-000018",
-    "local_gz": "000161310317000018__peer10k.txt.gz",
-    "capex_excerpt": []
+    "filingDate": "2018-02-28",
+    "accn": "0001097149-18-000010",
+    "local_gz": "000109714918000010__peer10k.txt.gz",
+    "capex_excerpt": [
+     "curities of $390.2 million , property, plant and equipment purchases of $195.7 million for additional manufacturing capacity and to purchase our new headquarters, $ 30.0 million of loan advances to equity investee, net of repayments and $12.8 million related to our equity interest investment in SmileDirectClub, LLC (\"SDC\"). These outflows were partially offset by maturities and sales of marketable securities of $388.8 million . For 2018, we expect to invest $200.0 million to $230.0 million on capital expenditures primarily related to operational expansion and ongoing growth of the business. Net cash provided by investing activities was $72.8 million for the year ended December 31, 2016, whic",
+     "1 ) (7,663 ) (3,563 ) Prepaid expenses and other assets (8,669 ) (9,390 ) (3,726 ) Accounts payable 8,175 (3,395 ) 7,575 Accrued and other long-term liabilities 24,235 30,007 12,532 Long-term income tax payable 68,958 7,622 6,930 Deferred revenues 79,662 60,656 41,854 Net cash provided by operating activities 438,539 247,654 237,997 CASH FLOWS FROM INVESTING ACTIVITIES: Acquisition, net of cash acquired (8,953 ) — — Purchase of property, plant and equipment (195,695 ) (70,576 ) (53,451 ) Purchase of marketable securities (390,244 ) (405,612 ) (447,092 ) Proceeds from maturities of marketable securities 349,240 387,873 304,125 Purchase of equity method investments (12,764 ) (46,745 ) — Procee",
+     "we entered into a purchase agreement with one of our existing single source suppliers. Under the terms of the agreement, we are required to purchase a minimum approximately $305.2 million of aligner materials over the next 4 years. Off-Balance Sheet Arrangements As of December 31, 2017 , we had no material off-balance sheet arrangements that have, or are reasonably likely to have, a current or future material effect on our consolidated financial condition, results of operations, liquidity, capital expenditures or capital resources other than certain items disclosed in Other Commitments section above. Indemnification Provisions In the normal course of business to facilitate transactions in ou"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -329,7 +978,16 @@
   "latest_data_date": "2018-05-01",
   "cutoff": "2018-05-01",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2018-04-30",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2018-05-02",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

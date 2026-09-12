@@ -1,6 +1,7 @@
 {
  "event_id": "E011",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E011",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "ESI",
  "cik": "0001590714",
  "name": "Element Solutions Inc",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2016-11-04(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E011",
   "event_id": "E011",
   "ticker": "ESI",
   "cik": "0001590714",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001590714-16-000245",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1590714/000159071416000245/a8kearningsrelease2016930.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1590714/000159071416000245/a8kearningsrelease2016930.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a8kearningsreleaseex991201.htm\n EXHIBIT 99.1 - PRESS RELEASE\n Exhibit \n EXHIBIT 99.1 \n Platform Specialty Products Corporation \n Announces Third Quarter of 2016 Financial Results \n • \n Net sales of $891 million , an increase of 49.1% \n • \n Organic sales* increase of 3.0% \n • \n Reported net income attributable to common stockholders of $105 million \n • \n GAAP basic EPS of $0.45 or ( $0.15 ) fully diluted \n • \n Adjusted EPS* of $0.14 , an increase of $0.03 \n • \n Adjusted EBITDA* of $190 million , an increase of 67.3% \n • \n Improved full year adjusted EBITDA* guidance to range of $750 million to $765 million \n West Palm Beach, Fla., November 4, 2016 -- Platform Specialty Products Corporation (NYSE: PAH) (“Platform” or the “Company”), a global, diversified specialty chemicals company, today announced its financial results for the three and nine months ended September 30, 2016 . \n For the three months ended September 30, 2016 : \n • \n Net sales on a reported basis for the third quarter of 2016 were $891 million , an increase of 49.1% . On a comparable basis over the third quarter of 2015, excluding the impact of currency changes, metals prices and divestitures, organic sales increased 3.0% year-over-year; \n ◦ \n MacDermid Performance Solutions (the Performance Solutions segment): Net sales were $455 million , an increase of 153.1% compared to the same period of 2015. On a comparable basis, excluding the impact of currency changes and metals prices, organic sales increased 1.8% year-over-year; \n ◦ \n Arysta Lifescience (the Agricultural Solutions segment): Net sales were $436 million , an increase of 4.3% over the same period of 2015. On a comparable basis, excluding the impact of currency changes and divestitures, organic sales increased 4.3% year-over-year; \n • \n Reported net income attributable to common stockholders was $105 million , compared to a net loss of $140 million for the same period in 2015. Basic earnings per share were $0.45 and diluted loss per share was $0.15 on a GAAP basis compared to both a basic and diluted loss of $0.66 in the same period of 2015; \n • \n Adjusted earnings per share* were $0.14 compared to comparable adjusted earnings per share* of $0.11 in the same period of 2015; \n • \n Adjusted EBITDA* for the third quarter of 2016 was $190 million , an increase of 14.4% on a comparable basis over the third quarter of 2015. Adjusted EBITDA increased 12.9% on a comparable constant currency basis; \n ◦ \n MacDermid Performance Solutions: Adjusted EBITDA* was $110 million , an increase of 6.5% from comparable adjusted EBITDA in the third quarter of 2015. On a comparable constant currency basis, adjusted EBITDA for this segment increased 9.2% ; \n ◦ \n Arysta Lifescience Adjusted EBITDA* was $80 million , an increase of 27.3% from comparable adjusted EBITDA in the third quarter of 2015. On a comparable constant currency basis, adjusted EBITDA for this segment increased 18.9% ; \n ◦ \n Adjusted EBITDA margin for the combined company was 21.3% compared to comparable Adjusted EBITDA margin of 19.2% in the third quarter of 2015; \n • \n Additional cost synergies of $13 million were reported in the third quarter of 2016 from the ongoing integrations in both the Agricultural Solutions and Performance Solutions segments. The businesses realized $39 million of new synergies in the nine months ended September 30, 2016 and expect to achieve more than the initially estimated $40 million of cost synergies in 2016. \n * See VI. Non-GAAP Measures . \n CEO Comment \n Chief Executive Officer Rakesh Sachdev said, “Platform's businesses demonstrated strong performance in the third quarter. While many of our key end-markets are experiencing pressure, our businesses have continued to prove resilient as we are gaining share, launching products successfully and managing cost prudently. Both our business segments grew organic sales, adjusted EBITDA and adjusted EBITDA margins. Our Ag business grew volumes in most regions and effectively managed price in Latin America despite meaningful pressure from the weaker U.S. Dollar. The Performance Solutions business benefited primarily from a modest market recovery and share gains in electronics-related businesses, although this was partially offset by continued weakness in oil and gas markets. We believe we are growing faster than our end-markets and expect similar positive growth in the fourth quarter. Our integrations continue to progress ahead of plan, and the savings are clearly apparent in this quarter's results. Our earnings performance through the third quarter has given us the confidence to improve our full year adjusted EBITDA guidance range to $750 million to $765 million .” \n Sachdev continued, “Platform is committed to improving its balance sheet and returning to its target leverage ratio of 4.5x net debt to EBITDA. To that end, we recently took steps in the right direction. We negotiated a settlement to our Series B Preferred Share obligations saving the company over $100 million, raised nearly $400 million in equity capital, and repriced and extended nearly $2 billion of our term loans which will save us over $10 million a year in annual interest payments. The cash flow characteristics of our business are robust, and we expect to see continued improvement in quarters to come.” \n Conference Call \n Platform will host a webcast/dial-in conference call to discuss its third quarter of 2016 financial results at 8:30 a.m. (Eastern Time) on Friday, November 4, 2016 . Participants on the call will include Rakesh Sachdev, Chief Executive Officer; Sanjiv Khattri, Chief Financial Officer; and Benjamin Gliklich, Executive Vice President - Operations and Strategy. \n To listen to the call by telephone, please dial (855) 357-3116 (domestic) or (484) 365-2867 (international) and provide the Conference ID: 8615823. The call will be simultaneously webcast at www.platformspecialtyproducts.com . A replay of the webcast will be available for three weeks shortly after completion of the live call at www.platformspecialtyproducts.com . \n About Platform \n Platform is a global, diversified producer of high-technology specialty chemicals and provider of technical services. The business involves the formulation of a broad range of solutions-oriented specialty chemicals, which are sold into multiple industries, including agricultural, animal health, electronics, graphic arts, plating, and offshore oil and gas production and drilling. More information on Platform is available at www.platformspecialtyproducts.com . \n Forward-Looking Statements \n This release is intended to qualify for the safe harbor from liability established by the Private Securities Litigation Reform Act of 1995 as it contains \"forward-looking statements\" within the meaning of the federal securities laws. These statements will often contain words such as \"expect,\" \"anticipate,\" \"project,\" \"will,\" \"should,\" \"believe,\" \"intend,\" \"plan,\" \"estimate\" and similar expressions, and relate, without limitations, to Platform's adjusted EBITDA and adjusted earnings per share, expected or estimated net sales, meeting financial and/or strategic goals and objectives, segment earnings, net interest expense, income tax provision, cash flow from operations, full year cash taxes, capital expenditures, restructuring costs and other non-cash charges, the outlook for the Company's markets and the demand for its products, consistent profitable growth, free cash flows, future net sales, gross, operating and EBITDA margin requirements and expansion, organic sales growth, performance trends, extending into new markets, bank leverage ratios, the success of new product introductions, growth in costs and expenses, the impact of commodities and currencies costs, and the Company's ability to manage its risk in these areas, the anticipated settlement of the Company's obligations relating to its Series B preferred stock pursuant to the alternative settlement agreement, the Company’s ability to identify, hire and retain executives and other qualified employees, the Company’s assessment over its internal control over financial reporting, and the impact of acquisitions, divestitures, restructurings, and other unusual items, including the Company's ability to raise new debt and equity and to integrate and obtain the anticipated benefits, results and synergies from its consummated acquisitions. These projections and statements are based on management's estimates and assumptions with respect to future events and financial performance, and are believed to be reasonable, though are inherently uncertain and difficult to predict. Actual results could differ materially from those projected as a result of certain factors. A discussion of factors that could cause results to vary is included in Platform's periodic and other reports filed with the Securities and Exchange Commission, including Platform's annual report on Form 10-K for the fiscal year ended December 31, 2015 and quarterly reports on Form 10-Q for the fiscal quarters ended March 31, 2016 and June 30, 2016. Platform undertakes no obligation to update any forward-looking statements, whether as a result of new information, future events or otherwise. \n -FINANCIAL TABLES TO FOLLOW- \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS \n (Unaudited) \n Three Months Ended September 30, \n Nine Months Ended September 30, \n (amounts in millions, except per share amounts) \n 2016 \n 2015 \n 2016 \n 2015 \n Net sales \n $ \n 891 \n $ \n 597 \n $ \n 2,636 \n $ \n 1,807 \n Cost of sales \n 515 \n 355 \n 1,524 \n 1,089 \n Gross profit \n 375 \n 243 \n 1,112 \n 719 \n Operating expenses: \n Selling, technical, general and administrative \n 274 \n 195 \n 824 \n 593 \n Research and development \n 21 \n 17 \n 61 \n 48 \n Total operating expenses \n 295 \n 211 \n 885 \n 641 \n Operating profit \n 80 \n 31 \n 227 \n 78 \n Other (expense) income: \n Interest expense, net \n (99 \n ) \n (53 \n ) \n (290 \n ) \n (143 \n ) \n Loss on derivative contracts \n (1 \n ) \n (47 \n ) \n (12 \n ) \n (50 \n ) \n Foreign exchange loss \n (10 \n ) \n (37 \n ) \n (57 \n ) \n (19 \n ) \n Other income, net \n 117 \n 1 \n 120 \n 20 \n Total other income (expense) \n 6 \n (136 \n ) \n (238 \n ) \n (193 \n ) \n Income (loss) before income taxes and non-controlling interests \n 86 \n (104 \n ) \n (11 \n ) \n (115 \n ) \n Income tax expense \n (20 \n ) \n (35 \n ) \n (66 \n ) \n (60 \n ) \n Net income (loss) \n 66 \n (140 \n ) \n (77 \n ) \n (175 \n ) \n Net loss (income) attributable to the non-controlling interests \n 6 \n (1 \n ) \n 5 \n (4 \n ) \n Net income (loss) attributable to stockholders \n 72 \n (140 \n ) \n (72 \n ) \n (179 \n ) \n Gain on amendment of Series B Convertible Preferred Stock \n 33 \n — \n 33 \n — \n Net income (loss) attributable to common stockholders \n $ \n 105 \n $ \n (140 \n ) \n $ \n (39 \n ) \n $ \n (179 \n ) \n Income (loss) per share \n Basic \n $ \n 0.45 \n $ \n (0.66 \n ) \n $ \n (0.17 \n ) \n $ \n (0.89 \n ) \n Diluted \n $ \n (0.15 \n ) \n $ \n (0.66 \n ) \n $ \n (0.71 \n ) \n $ \n (0.89 \n ) \n Weighted average shares outstanding \n Basic \n 234 \n 211 \n 231 \n 199 \n Diluted \n 265 \n 211 \n 253 \n 199 \n NOTE: Totals may not foot due to rounding \n 3 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n CONDENSED CONSOLIDATED BALANCE SHEETS \n (Unaudited) \n September 30, \n December 31, \n (amounts in millions) \n 2016 \n 2015 \n Assets \n Cash and cash equivalents \n $ \n 714 \n $ \n 432 \n Restricted cash \n 1 \n — \n Accounts receivable, net of allowance for doubtful accounts of $29\nand $14 at September 30, 2016 and December 31, 2015, respectively \n 1,141 \n 1,023 \n Inventories \n 564 \n 518 \n Note receivable \n — \n 125 \n Prepaid expenses and other current assets \n 180 \n 173 \n Total current assets \n 2,601 \n 2,271 \n Property, plant and equipment, net \n 473 \n 492 \n Goodwill \n 4,366 \n 4,022 \n Intangible assets, net \n 3,393 \n 3,314 \n Other assets \n 94 \n 92 \n Total assets \n $ \n 10,927 \n $ \n 10,190 \n Liabilities & Stockholders' Equity \n Accounts payable \n $ \n 395 \n $ \n 450 \n Current installments of long-term debt and revolving credit facilities \n 81 \n 55 \n Accrued salaries, wages and employee benefits \n 78 \n 78 \n Accrued income taxes payable \n 101 \n 65 \n Preferred stock redemption liability \n 504 \n — \n Accrued expenses and other current liabilities \n 409 \n 414 \n Total current liabilities \n 1,568 \n 1,062 \n Long-term debt and capital lease obligations \n 5,197 \n 5,174 \n Long-term retirement benefits, less current portion \n 76 \n 81 \n Long-term deferred income taxes \n 697 \n 679 \n Long-term contingent consideration \n 75 \n 71 \n Other long-term liabilities \n 254 \n 205 \n Total liabilities \n 7,866 \n 7,271 \n Redeemable preferred stock - Series B \n — \n 646 \n Stockholders' Equity \n Preferred stock - Series A \n — \n — \n Common stock 400 shares authorized, 278 and 229 shares issued and outstanding at September 30, 2016 and December 31, 2015, respectively \n 3 \n 2 \n Additional paid-in capital \n 3,921 \n 3,520 \n Accumulated deficit \n (572 \n ) \n (533 \n ) \n Accumulated other comprehensive loss \n (464 \n ) \n (886 \n ) \n Total stockholders equity \n 2,888 \n 2,104 \n Non-controlling interests \n 172 \n 169 \n Total equity \n 3,060 \n 2,273 \n Total liabilities, redeemable preferred shares and stockholders' equity \n $ \n 10,927 \n $ \n 10,190 \n NOTE: Totals may not foot due to rounding \n 4 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS \n (Unaudited) \n Three Months Ended \n Nine Months Ended \n (amounts in millions) \n March 31, 2016 \n June 30, 2016 \n September 30, 2016 \n September 30, 2016 \n September 30, 2015 \n Cash flows from operating activities: \n Net (loss) income \n $ \n (134 \n ) \n $ \n (8 \n ) \n $ \n 66 \n $ \n (77 \n ) \n $ \n (175 \n ) \n Reconciliation of net (loss) income to net cash flows (used in) provided by operating activities: \n Depreciation and amortization \n 83 \n 85 \n 87 \n 255 \n 176 \n Deferred income taxes \n (14 \n ) \n (10 \n ) \n (34 \n ) \n (58 \n ) \n (52 \n ) \n Manufacturer's profit in inventory adjustment \n 12 \n — \n — \n 12 \n 58 \n Foreign exchange loss (gain) \n 62 \n (28 \n ) \n 14 \n 48 \n 58 \n Other, net \n 20 \n 8 \n (81 \n ) \n (54 \n ) \n 26 \n Changes in assets & liabilities, net of acquisitions: \n Accounts receivable \n (103 \n ) \n 12 \n 29 \n (62 \n ) \n (69 \n ) \n Inventories \n (87 \n ) \n 45 \n 7 \n (34 \n ) \n (63 \n ) \n Accounts payable and accrued expenses \n (53 \n ) \n (15 \n ) \n 11 \n (57 \n ) \n 196 \n Other changes in assets and liabilities, net \n 4 \n 8 \n (11 \n ) \n 3 \n (24 \n ) \n Net cash flows (used in) provided by operating activities \n (210 \n ) \n 97 \n 89 \n (24 \n ) \n 131 \n Cash flows from investing activities: \n Change in restricted cash \n (1 \n ) \n — \n — \n (1 \n ) \n 600 \n Capital expenditures \n (12 \n ) \n (11 \n ) \n (10 \n ) \n (33 \n ) \n (32 \n ) \n Investment in registrations of products \n (8 \n ) \n (8 \n ) \n (7 \n ) \n (22 \n ) \n (26 \n ) \n Proceeds from disposal of property, plant and equipment \n 2 \n 10 \n — \n 13 \n 12 \n Acquisition of businesses, net of acquired cash \n (1 \n ) \n 3 \n — \n 1 \n (2,858 \n ) \n Other, net \n (1 \n ) \n (4 \n ) \n 9 \n 4 \n (1 \n ) \n Net cash flows used in investing activities \n (20 \n ) \n (10 \n ) \n (7 \n ) \n (38 \n ) \n (2,306 \n ) \n Cash flows from financing activities: \n Debt proceeds, net of discount and premium \n 1 \n (2 \n ) \n 1 \n — \n 2,086 \n Change in revolving credit facilities, net \n 133 \n (28 \n ) \n (85 \n ) \n 19 \n 5 \n Repayments of borrowings \n (9 \n ) \n (9 \n ) \n (9 \n ) \n (26 \n ) \n (16 \n ) \n Proceeds from issuance of common stock, net \n — \n — \n 391 \n 392 \n 470 \n Payment of debt financing fees \n — \n (1 \n ) \n — \n (1 \n ) \n (46 \n ) \n Change in factored liabilities \n (4 \n ) \n (33 \n ) \n (9 \n ) \n (46 \n ) \n (17 \n ) \n Other, net \n (1 \n ) \n — \n — \n (1 \n ) \n (1 \n ) \n Net cash flows provided by (used in) financing activities \n 121 \n (73 \n ) \n 290 \n 337 \n 2,481 \n Effect of exchange rate changes on cash and cash equivalents \n 7 \n (2 \n ) \n 1 \n 6 \n (22 \n ) \n Net (decrease) increase in cash and cash equivalents \n (103 \n ) \n 12 \n 372 \n 282 \n 285 \n Cash and cash equivalents at beginning of period \n 432 \n 330 \n 342 \n 432 \n 397 \n Cash and cash equivalents at end of period \n $ \n 330 \n $ \n 342 \n $ \n 714 \n $ \n 714 \n $ \n 682 \n Non-cash Investing Activities \n Settlement of Note Receivable in exchange for OMG Malaysia \n $ \n 125 \n $ \n — \n $ \n — \n $ \n 125 \n $ \n — \n OMG Malaysia Acquisition through the settlement of Note Receivable \n $ \n (125 \n ) \n $ \n — \n $ \n — \n $ \n (125 \n ) \n $ \n — \n NOTE: Totals may not foot due to rounding \n 5 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n RECONCILIATION OF NET LOSS ATTRIBUTABLE TO COMMON STOCKHOLDERS TO \n COMPARABLE ADJUSTED EARNINGS PER SHARE \n (Unaudited) \n Three Months Ended \n Nine Months Ended \n (amounts in millions, except per share amounts) \n September 30, 2016 \n September 30, 2015 \n September 30, 2016 \n September 30, 2015 \n Net income (loss) attributable to common stockholders \n $ \n 105 \n $ \n (140 \n ) \n $ \n (39 \n ) \n $ \n (179 \n ) \n Pre-acquisition activity of acquired companies: \n (1) \n Net sales \n — \n 268 \n — \n 907 \n Cost of sales \n — \n (158 \n ) \n — \n (542 \n ) \n Selling, technical, general and administrative expense \n — \n (71 \n ) \n — \n (244 \n ) \n Research and development expense \n — \n (8 \n ) \n — \n (27 \n ) \n Other (expense) income, net \n — \n (3 \n ) \n — \n 2 \n — \n 28 \n — \n 96 \n Adjustments: \n Interest expense for pre-acquisition periods \n (1) \n — \n (34 \n ) \n — \n (115 \n ) \n Reversal of amortization expense \n (1, 2) \n 68 \n 52 \n 199 \n 156 \n Adjustment for investment in registration of products \n (1, 2) \n (7 \n ) \n (12 \n ) \n (22 \n ) \n (27 \n ) \n Long-term compensation issued in connection with acquisitions \n (3) \n — \n (2 \n ) \n 1 \n — \n Restructuring expenses \n (4) \n 7 \n 19 \n 20 \n 35 \n Manufacturer's profit in inventory purchase accounting adjustments \n (5) \n — \n 1 \n 12 \n 58 \n Acquisition and integration costs \n (6) \n 3 \n 15 \n 27 \n 70 \n Non-cash change in fair value of contingent consideration \n (7) \n — \n 3 \n 4 \n 6 \n Gain on legal settlement \n — \n — \n (3 \n ) \n (16 \n ) \n Foreign exchange loss on foreign denominated external and internal debt \n (1, 8) \n 12 \n 36 \n 59 \n 30 \n Adjustment to reverse loss on derivative contract \n (9) \n — \n 48 \n — \n 48 \n Gain on settlement agreement related to Series B Convertible Preferred Stock \n (10) \n (103 \n ) \n — \n (103 \n ) \n — \n Non-cash change in fair value of preferred stock redemption liability \n (10) \n (6 \n ) \n — \n (6 \n ) \n — \n Other expenses (income), net \n (11) \n 5 \n — \n 7 \n (3 \n ) \n Adjustment to estimated effective tax rate \n (12) \n (3 \n ) \n 17 \n 2 \n (18 \n ) \n Gain on amendment of Series B Convertible Preferred Stock \n (10) \n (33 \n ) \n — \n (33 \n ) \n — \n Adjustment to reverse loss attributable to certain non-controlling interests \n (13) \n (6 \n ) \n (1 \n ) \n (8 \n ) \n — \n (63 \n ) \n 142 \n 156 \n 224 \n Comparable adjusted net income attributable to common stockholders \n $ \n 43 \n $ \n 32 \n $ \n 116 \n $ \n 141 \n Comparable adjusted earnings per share \n (14) \n $ \n 0.14 \n $ \n 0.11 \n $ \n 0.39 \n $ \n 0.47 \n Adjusted shares outstanding (in millions) \n 299 \n 299 \n 299 \n 299 \n (1) The Company adjusts for the results of operations of Alent plc (\"Alent\") and the businesses of OM Group, Inc. (the \"OMG Businesses\"), prior to their acquisition, adjusted to conform with the Company’s accounting policies and adjustments described herein, in order to facilitate comparison against prior and future results. The Company also adjusts interest expense to represent the additional interest expense that the Company would have incurred had the acquisition-related debt existed at the beginning of the periods presented in order to be consistent with the inclusion of these results of operations. \n (2) The Company eliminates amortization related to (i) intangible assets recognized in purchase accounting for acquisitions and (ii) costs capitalized in connection with obtaining regulatory approval of its products (“registration rights”) as part of ongoing operations, and deducts capital expenditures associated with obtaining these registration rights. The Company believes this adjustment provides insight with respect to the cash flows necessary to maintain and enhance the Company's product portfolio. \n (3) Adjustment for the portion of long-term compensation plans associated with the acquisitions of Alent (the \"Alent Acquisition\") and the OMG Businesses (the \"OMG Acquisition,\" and together with the Alent Acquisition, the \"Performance Solutions Acquisitions\") for \n NOTE: Totals may not foot due to rounding \n 6 \n 2016 and the acquisitions of Arysta LifeScience Limited (the \"Arysta Acquisition\") and the Chemtura AgroSolutions business of Chemtura Corporation (the \"CAS Acquisition,\" and together with the Arysta Acquisition, the \"Agricultural Solutions Acquisitions\") for 2015. The Company adjusts these costs because they are not reflective of ongoing operations. The Company does not adjust for the cost of ongoing non-acquisition related long-term compensation plans. \n (4) Adjusted for cost of restructuring acquired businesses in both the Agricultural Solutions and Performance Solutions segments. The Company adjusts these costs because they are not reflective of ongoing operations. \n (5) Adjustment for purchase accounting fair value adjustment to inventory associated with acquisitions charged to cost of sales primarily related to the Performance Solutions Acquisitions in 2016 and the Agricultural Solutions Acquisitions in 2015. The Company adjusts these costs because they are not reflective of ongoing operations. \n (6) The Company adjusts for costs associated with acquisitions, including costs of obtaining related financing such as investment banking, legal, and accounting fees, and transfer taxes for 2016 and 2015. 2016 adjustments also include the costs associated with an investigation related to certain past business practices of Arysta, an acquired company, and costs of integrating acquisitions. 2015 adjustments also include a bonus paid to a management member of an acquired company which was tied to the completion the Arysta Acquisition. The Company adjusts these costs because they are not reflective of ongoing operations. \n (7) The Company adjusts for the change in fair value of the contingent consideration in connection with the acquisition of MacDermid, Incorporated (the \"MacDermid Acquisition\"). The Company adjusts these costs because they are not reflective of ongoing operations. \n (8) The Company adjusts foreign exchanges gains and losses on intercompany and third-party long-term debt because these currencies are out of its control, are expected to offset on a long-term basis and, due to their long-term nature, are not fully realized. The Company does not exclude foreign exchange gains and losses on short-term intercompany and third-party payables and receivables with third parties. \n (9) The company recorded a loss on a derivative contract used to mitigate foreign currency exposure related to the Alent acquisition. \n (10) The Company accounted for the settlement agreement as an amendment to the Series B convertible preferred stock (the \"Series B Convertible Preferred Stock\") and, as a result, recognized gains in net income of $103 million and income available to common stockholders of $33 million related to the amendment. Further, the Company recognized a gain of $6 million related to the adjustment of the Series B Preferred Stock to fair value subsequent to the amendment. The Company adjusted these gains because they are not representative of ongoing operations. These gains were included in income available to common stockholders for the computation of GAAP basic earnings per share; however, these gains were excluded for purposes of the computation of GAAP diluted earnings per share. \n (11) 2016 adjustments primarily corresponds to the write down of certain assets, as well as a gain on the disposal of an equity investment. 2015 adjustment reflects the gain related to the expiration of a put option on Platform's common stock issued in connection with an acquisition during 2014. The Company adjusts these costs because they are not reflective of ongoing operations. \n (12) The Company adjusts the effective tax rate to 35%. This adjustment does not reflect the Company’s current or near-term tax structure, including limitations on its ability to utilize net operating losses and foreign tax credits in certain jurisdictions. These factors would increase the effective tax rate above 35%. As a result of current tax structure, the Company’s effective tax rate in accordance with GAAP was 23.6% for the three months ended September 30, 2016 . The Company adjusts to the effective tax rate to provide a meaningful comparison of its performance between periods. \n (13) The Company adjusts for the non-controlling interest expense or income related to the non-controlling interest created at the time of the MacDermid Acquisition because holders of such equity interest are expected to convert their holdings into shares of Platform's common stock. Further, the Company adjusts for the adjustments in footnote 11 above that are attributable to non-controlling interests. The Company adjusts these costs because they are not reflective of ongoing operations. \n (14) The Company defines \"Adjusted shares\" as the outstanding shares of Platform's common stock at September 30, 2016 plus the number of shares that would be issued if all convertible stock were converted to Platform's common stock, vested stock options were exercised, and awarded equity granted were vested as of September 30, 2016 . The Company adjusts the outstanding shares of Platform's common stock for this calculation to provide an understanding of the Company’s results of operations on a per share basis. \n CALCULATION OF NON-GAAP ADJUSTED SHARES AT SEPTEMBER 30, 2016 (Unaudited) \n Outstanding shares (millions) \n 278 \n Number of shares issuable upon conversion of Series B Convertible Preferred Stock \n 6 \n Number of shares issuable upon conversion of PDH Common Stock \n 8 \n Number of shares issuable upon conversion of Series A Preferred Stock \n 2 \n Stock options \n 1 \n Equity awards granted \n 4 \n Adjusted shares \n 299 \n NOTE: Totals may not foot due to rounding \n 7 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n RECONCILIATION OF ADJUSTED NET INCOME ATTRIBUTABLE TO COMMON STOCKHOLDERS TO \n COMPARABLE ADJUSTED EBITDA \n (Unaudited) \n Three Months Ended September 30, \n Nine Months Ended September 30, \n (amounts in millions) \n 2016 \n 2015 \n 2016 \n 2015 \n Comparable adjusted net income attributable to common stockholders \n $ \n 43 \n $ \n 32 \n $ \n 116 \n $ \n 141 \n Net income attributable to the non-controlling interests \n — \n 2 \n 4 \n 4 \n Adjusted net income attributable to stockholders \n 43 \n 34 \n 119 \n 145 \n Adjustments to reconcile to comparable adjusted EBITDA: \n Income tax expense \n 23 \n 18 \n 64 \n 78 \n Interest expense, net \n 99 \n 86 \n 290 \n 259 \n Depreciation expense \n 19 \n 16 \n 56 \n 49 \n Investment in registration of products \n 7 \n 12 \n 22 \n 27 \n Comparable Adjusted EBITDA \n $ \n 190 \n $ \n 166 \n $ \n 551 \n $ \n 558 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n RECONCILIATION OF NET INCOME (LOSS) ATTRIBUTABLE TO COMMON STOCKHOLDERS TO ADJUSTED EBITDA \n (Unaudited) \n Three Months Ended September 30, \n Nine Months Ended September 30, \n (amounts in millions) \n 2016 \n 2015 \n 2016 \n 2015 \n Net income (loss) attributable to common stockholders \n $ \n 105 \n $ \n (140 \n ) \n $ \n (39 \n ) \n $ \n (179 \n ) \n Gain on amendment of Series B Convertible Preferred Stock \n (10) \n (33 \n ) \n — \n (33 \n ) \n — \n Net (loss) income attributable to the non-controlling interests \n (6 \n ) \n 1 \n (5 \n ) \n 4 \n Income tax expense \n 20 \n 35 \n 66 \n 60 \n Income (loss) before income taxes and non-controlling interests \n 86 \n (104 \n ) \n (11 \n ) \n (115 \n ) \n Adjustments to reconcile to Adjusted EBITDA: \n Interest expense, net \n 99 \n 53 \n 290 \n 143 \n Depreciation expense \n 19 \n 12 \n 56 \n 34 \n Amortization expense \n 68 \n 50 \n 199 \n 143 \n Long-term compensation issued in connection with acquisitions \n (3) \n — \n (2 \n ) \n 1 \n — \n Restructuring expenses \n (4) \n 7 \n 5 \n 20 \n 18 \n Manufacturer's profit in inventory purchase accounting adjustments \n (5) \n — \n 1 \n 12 \n 58 \n Acquisition and integration costs \n (6) \n 3 \n 15 \n 27 \n 70 \n Non-cash change in fair value of contingent consideration \n (7) \n — \n 3 \n 4 \n 6 \n Legal settlements \n — \n — \n (3 \n ) \n (16 \n ) \n Foreign exchange loss on foreign denominated external and internal debt \n (8) \n 12 \n 33 \n 59 \n 27 \n Fair value loss on foreign exchange forward contract \n (9) \n — \n 48 \n — \n 48 \n Gain on settlement agreement related to Series B Convertible Preferred Stock \n (10) \n (103 \n ) \n — \n (103 \n ) \n — \n Non-cash change in fair value of preferred stock redemption liability \n (10) \n (6 \n ) \n — \n (6 \n ) \n — \n Other income (expense), net \n (11) \n 5 \n — \n 7 \n (3 \n ) \n Adjusted EBITDA \n $ \n 190 \n $ \n 114 \n $ \n 551 \n $ \n 413 \n * See footnote descriptions below the Comparable Adjusted Earnings Per Share table. \n NOTE: Totals may not foot due to rounding \n 8 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n RECONCILIATION OF ORGANIC SALES GROWTH \n (Unaudited) \n Three Months Ended September 30, 2016 \n (amounts in millions) \n Performance Solutions \n Agricultural Solutions \n Total \n Change in net comparable sales \n $ \n 7 \n 1.6 \n % \n $ \n 18 \n 4.4 \n % \n $ \n 25 \n 2.9 \n % \n Dispositions \n — \n — \n 9 \n 2.3 \n 9 \n 1.1 \n Foreign exchange impacts \n 8 \n 1.8 \n (10 \n ) \n (2.4 \n ) \n (2 \n ) \n (0.2 \n ) \n Impact of metal prices \n (7 \n ) \n (1.6 \n ) \n — \n — \n (7 \n ) \n (0.8 \n ) \n Organic sales growth \n $ \n 8 \n 1.8 \n % \n $ \n 18 \n 4.3 \n % \n $ \n 26 \n 3.0 \n % \n Nine Months Ended September 30, 2016 \n (amounts in millions) \n Performance Solutions \n Agricultural Solutions \n Total \n Change in net comparable sales \n $ \n (48 \n ) \n (3.5 \n )% \n $ \n (30 \n ) \n (2.3 \n )% \n $ \n (78 \n ) \n (2.9 \n )% \n Acquisitions \n 3 \n 0.2 \n — \n — \n 3 \n 0.1 \n Dispositions \n — \n — \n 24 \n 1.8 \n 24 \n 0.9 \n Foreign exchange impacts \n 35 \n 2.6 \n 47 \n 3.5 \n 82 \n 3.1 \n Organic sales growth \n $ \n (10 \n ) \n (0.7 \n )% \n $ \n 40 \n 3.0 \n % \n $ \n 30 \n 1.1 \n % \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n RECONCILIATION OF REPORTED SEGMENT SALES TO COMPARABLE SEGMENT SALES \n (Unaudited) \n (amounts in millions) \n Three Months Ended September 30, 2015 \n Nine Months Ended September 30, 2015 \n Performance Solutions \n $ \n 180 \n $ \n 542 \n Acquisitions: \n Alent \n 227 \n 695 \n OM \n 41 \n 124 \n Performance Solutions Comparable Sales \n 448 \n 1,361 \n Agricultural Solutions \n 418 \n 1,266 \n Acquisitions: \n Arysta \n — \n 87 \n Agricultural Solutions Comparable Sales \n 418 \n 1,353 \n Total Comparable Sales \n $ \n 866 \n $ \n 2,714 \n NOTE: Totals may not foot due to rounding \n 9 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n RECONCILIATION OF REPORTED SEGMENT ADJUSTED EBITDA TO \n COMPARABLE SEGMENT ADJUSTED EBITDA \n (Unaudited) \n (amounts in millions) \n Three Months Ended September 30, 2015 \n Nine Months Ended September 30, 2015 \n Performance Solutions \n $ \n 58 \n $ \n 165 \n Acquisitions: \n Alent \n 42 \n 117 \n OM \n 11 \n 24 \n Corporate cost allocation \n (7 \n ) \n (16 \n ) \n Performance Solutions Comparable Adj. EBITDA \n 103 \n 290 \n Agricultural Solutions \n 70 \n 281 \n Acquisitions: \n Arysta \n — \n 3 \n Corporate cost allocation \n (7 \n ) \n (16 \n ) \n Agricultural Solutions Comparable Adj. EBITDA \n 63 \n 268 \n Total Comparable Adjusted EBITDA \n $ \n 166 \n $ \n 558 \n NOTE: Totals may not foot due to rounding \n 10 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n ADDITIONAL FINANCIAL INFORMATION \n (Unaudited) \n I. \n Unaudited Financial Performance \n Three Months Ended September 30, \n Nine Months Ended September 30, \n (amounts in millions) \n 2016 \n 2015 \n 2016 \n 2015 \n Net Sales \n Performance Solutions \n $ \n 455 \n $ \n 180 \n $ \n 1,313 \n $ \n 542 \n Agricultural Solutions \n 436 \n 418 \n 1,323 \n 1,266 \n Total \n $ \n 891 \n $ \n 597 \n $ \n 2,636 \n $ \n 1,807 \n Adjusted EBITDA \n Performance Solutions \n $ \n 110 \n $ \n 54 \n $ \n 291 \n $ \n 157 \n Agricultural Solutions \n 80 \n 59 \n 261 \n 257 \n Total \n $ \n 190 \n $ \n 114 \n $ \n 551 \n $ \n 413 \n Adjusted EBITDA Margin \n Performance Solutions \n 24.2 \n % \n 30.1 \n % \n 22.1 \n % \n 29.0 \n % \n Agricultural Solutions \n 18.4 \n % \n 14.2 \n % \n 19.7 \n % \n 20.3 \n % \n Total \n 21.3 \n % \n 19.0 \n % \n 20.9 \n % \n 22.9 \n % \n II. \n Unaudited Comparable Financial Performance \n Three Months Ended September 30, \n Nine Months Ended September 30, \n (amounts in millions) \n 2016 \n 2015 \n 2016 \n 2015 \n Net Sales \n Performance Solutions \n $ \n 455 \n $ \n 448 \n $ \n 1,313 \n $ \n 1,361 \n Agricultural Solutions \n 436 \n 418 \n 1,323 \n 1,353 \n Total \n $ \n 891 \n $ \n 866 \n $ \n 2,636 \n $ \n 2,714 \n Adjusted EBITDA (1) \n Performance Solutions \n $ \n 110 \n $ \n 103 \n $ \n 291 \n $ \n 290 \n Agricultural Solutions \n 80 \n 63 \n 261 \n 268 \n Total \n $ \n 190 \n $ \n 166 \n $ \n 551 \n $ \n 558 \n Adjusted EBITDA Margin \n Performance Solutions \n 24.2 \n % \n 23.0 \n % \n 22.1 \n % \n 21.3 \n % \n Agricultural Solutions \n 18.4 \n % \n 15.1 \n % \n 19.7 \n % \n 19.8 \n % \n Total \n 21.3 \n % \n 19.2 \n % \n 20.9 \n % \n 20.6 \n % \n (1) Includes reallocations of corporate overhead costs. \n NOTE: Totals may not foot due to rounding \n 11 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n ADDITIONAL FINANCIAL INFORMATION (continued) \n (Unaudited) \n III. \n Unaudited Comparable Constant Currency Financial Performance \n Three Months Ended September 30, \n Nine Months Ended September 30, \n (amounts in millions) \n 2016 \n 2015 \n 2016 \n 2015 \n Net Sales \n Performance Solutions \n $ \n 463 \n $ \n 448 \n $ \n 1,348 \n $ \n 1,361 \n Agricultural Solutions \n 426 \n 418 \n 1,370 \n 1,353 \n Total \n $ \n 889 \n $ \n 866 \n $ \n 2,718 \n $ \n 2,714 \n Adjusted EBITDA \n Performance Solutions \n $ \n 113 \n $ \n 103 \n $ \n 302 \n $ \n 290 \n Agricultural Solutions \n 75 \n 63 \n 265 \n 268 \n Total \n $ \n 188 \n $ \n 166 \n $ \n 567 \n $ \n 558 \n Adjusted EBITDA Margin \n Performance Solutions \n 24.3 \n % \n 23.0 \n % \n 22.4 \n % \n 21.3 \n % \n Agricultural Solutions \n 17.6 \n % \n 15.1 \n % \n 19.4 \n % \n 19.8 \n % \n Total \n 21.1 \n % \n 19.2 \n % \n 20.9 \n % \n 20.6 \n % \n IV. \n Unaudited Capital Structure \n (amounts in millions) \n Maturity \n Coupon \n September 30, 2016 \n Instrument \n Corporate Revolver ($500M) \n 6/7/2019 \n $ \n — \n Term Loan B3 - USD \n 6/7/2020 \n L + 450 \n 1,033 \n Term Loan B4 - USD (*) \n 6/7/2023 \n L + 400 \n 1,475 \n Term Loan C2 - EUR \n 6/7/2020 \n E + 450 \n 334 \n Term Loan C3 - EUR (*) \n 6/7/2023 \n E + 375 \n 487 \n Other Debt \n 62 \n Total First Lien Debt \n $ \n 3,390 \n 10.375% Senior Notes due 2021 \n 5/1/2021 \n 10.375% \n $ \n 500 \n 6.5% Senior Notes due 2022 \n 2/1/2022 \n 6.5% \n 1,100 \n 6.0% Senior Notes due 2023 (Euro) \n 2/1/2023 \n 6.0% \n 393 \n Total Unsecured Debt \n $ \n 1,993 \n Total Debt \n $ \n 5,384 \n Cash Balance as of 9/30/16 \n 714 \n Net Debt \n $ \n 4,670 \n Series B Make-Whole (2) \n 460 \n Market Capitalization (4) (assumes 299 shares outstanding (3) ) \n 2,421 \n Total Capitalization \n $ \n 7,551 \n (*) \n Tranches presented as adjusted for the October term loan refinancing. Adjustment were made to currency mix, maturity and borrowing rates. Maturity extended to 6/7/2023: provided that if the 6.50% USD senior notes due 2022 have not been prepaid, redeemed or refinanced in full by 11/2/2021, the maturity date will be 11/2/2021. \n (1) \n Platform has swapped certain amounts of its floating term loans to fixed rate including $1.2 billion of its USD tranches and €282 million of its Euro tranches. At September 30, 2016, approximately 35% of debt was floating and 65% was fixed. \n (2) \n Based on the settlement alternative announced on 9/12/16, which provides the option until 12/15/16 to settle all Series B obligations for 5.5 million shares and $460 million in cash (instead of 22.1 million shares and a make whole payment of $421 million (based on the 9/30/16 closing price of $8.11). \n (3) \n See \"Calculation of Non-GAAP Adjusted Shares at September 30, 2016 (unaudited)\" below the Comparable Adjusted Earnings Per Share table.\n (4) \n Based on Platform's closing price of $8.11 at September 30, 2016. \n NOTE: Totals may not foot due to rounding \n 12 \n PLATFORM SPECIALTY PRODUCTS CORPORATION \n ADDITIONAL FINANCIAL INFORMATION (continued) \n (Unaudited) \n V. \n Selected Financial Data \n (amounts in millions) \n Three Months Ended September 30, 2016 \n Nine Months Ended September 30, 2016 \n Book Interest Expense \n $ \n 99 \n $ \n 294 \n Cash Interest Paid \n 103 \n 286 \n Book Income Tax Expense \n 20 \n 66 \n Cash Income Taxes Paid \n 32 \n 86 \n Capital Expenditures \n 10 \n 33 \n Investments in Product Registrations \n 7 \n 22 \n VI. Non-GAAP Measures \n For purposes of Regulation G, a non-GAAP financial measure is a numerical measure of a company’s historical or future financial performance, financial position or cash flows that excludes amounts, or is subject to adjustments that have the effect of excluding amounts, that are included in the most directly comparable measure calculated and presented in accordance with GAAP in the statements of operations, balance sheets, or statements of cash flows of the company; or includes amounts, or is subject to adjustments that have the effect of including amounts, that are excluded from the most directly comparable measure so calculated and presented. \n To supplement the financial measures prepared in accordance with GAAP, Platform has provided in this release the following non-GAAP financial measures: adjusted EBITDA, adjusted EBITDA margin, adjusted EBITDA guidance, comparable net sales, comparable adjusted earnings per share, comparable adjusted EBITDA, comparable adjusted EBITDA margin and organic sales. Platform also evaluates and presents its results of operations on a comparable constant currency basis. Management believes that these measures provide useful information to investors by excluding certain items that it believes are not representative of the Company's business and including other items that it believes are useful in evaluating the Company's business; thereby providing a more complete understanding of the Company's operational results and a meaningful comparison of the Company's performance between periods and to its peers. When reconciled to the corresponding GAAP measures, these non-GAAP measures also help the Company's investors to understand the long-term profitability trends of the Company's businesses. Finally, these non-GAAP measures address questions the Company routinely receives from securities analysts, investors and other interested parties in the evaluation of companies in its industry and, in order to assure that all investors have access to the same data, the Company has determined that it is appropriate to make this data available to all. Non-GAAP financial measures are however not prepared in accordance with GAAP, as they exclude certain items as described herein, and may not be indicative of the results that the Company expects to recognize for future periods. In addition, these non-GAAP financial measures may differ from measures that other companies may use. As a result, these non-GAAP financial measures should be considered in addition to, and not a substitute for, financial information prepared in accordance with GAAP. Investors are encouraged to review the reconciliation of these non-GAAP measures to their most directly comparable GAAP financial measures included herein. \n A reconciliation of GAAP to non-GAAP financial measures has been provided in the financial tables as part of this release. The Company only provides Adjusted EBITDA guidance, organic sales growth and synergy potential on a non-GAAP basis and does not provide reconciliations of such forward-looking non-GAAP measures to GAAP, due to the inherent difficulty in forecasting and quantifying certain amounts that are necessary for such reconciliations, including adjustments that could be made for restructuring, integration and acquisition-related expenses, share-based compensation amounts, adjustments to inventory and other charges reflected in our reconciliation of historic numbers, the amount of which, based on historical experience, could be significant. \n Adjusted EBITDA: \n Adjusted EBITDA is defined as earnings before interest, taxes, depreciation and amortization, as further adjusted for additional items included in earnings that are not representative or indicative of our ongoing business as described in the footnotes to the non-GAAP measures reconciliations. Management believes Adjusted EBITDA provides investors with a more complete understanding of the long-term profitability trends of Platform’s business, and facilitates comparisons of its profitability to prior and future periods. \n NOTE: Totals may not foot due to rounding \n 13 \n Comparable Adjusted EBITDA: \n Comparable adjusted EBITDA is defined as Adjusted EBITDA adjusted to reflect acquisitions and the related financings as though they had occurred on January 1, 2015 without the impact of purchase accounting. Adjusted EBITDA and comparable adjusted EBITDA are key metrics used by management to measure operating performance and trends. In particular, the exclusion of certain expenses in calculating adjusted EBITDA and comparable adjusted EBITDA facilitates operating performance comparisons on a period-to-period basis. Management believes comparable Adjusted EBITDA provides investors with a more complete understanding of the long-term profitability trends of Platform’s business, and facilitates comparisons of its profitability to prior and future periods. \n Comparable Adjusted Earnings Per Share: \n Comparable adjusted earnings per share is defined as net loss attributable to common stockholders adjusted to reflect acquisitions and the related financings as though they had occurred on January 1, 2015 without the impact of purchase accounting, as well as other adjustments consistent with our definition of Adjusted EBITDA. Additionally, we eliminate the amortization associated with (i) intangibles assets recognized in purchase accounting for acquisitions and (ii) costs capitalized in connection with obtaining regulatory approval of our products (“registration rights”) as part of ongoing operations, and deduct capital expenditures associated with obtaining these registration rights. Further, we adjust the effective tax rate to 35% as described in the notes to the reconciliation. The resulting comparable adjusted net income available to stockholders is divided by the number of shares of outstanding common stock as of September 30, 2016 plus the number of shares that would be issued if all convertible stock were converted to common stock, vested stock options were exercised, and awarded equity granted were vested as of September 30, 2016. Comparable adjusted earnings per share is a key metric used by management to measure operating performance and trends. In particular, the exclusion of certain expenses in calculating comparable adjusted earnings per share facilitates operating performance comparisons on a period-to-period basis. \n Comparable Constant Currency: \n Our constant currency presentation excludes the impact of fluctuations in foreign currency exchange rates. Constant currency percentages are calculated by converting our current-period local currency financial results into U.S. Dollar using the prior period's exchange rates and comparing these adjusted amounts to our prior period reported results. The comparable constant currency presentation includes actual results adjusted to reflect acquisitions and related financings as though they had occurred on January 1, 2015 adjusted for the effects of purchase accounting on actual results. Management believes that this presentation provides a more complete understanding of the Company's operational results and a meaningful comparison of its performance between periods. However, this comparable financial information is provided for informational purposes only and is not necessarily, and should not be assumed to be, an indication of the results that would have been achieved had the Company's acquisitions been completed as of the dates indicated, or that may be achieved in the future \n Comparable Net Sales \n Comparable net sales is defined as net sales adjusted for the sales of our acquisitions as though they had occurred on January 1, 2015. Management believes this measure provides investors with a more complete understanding of net sales trends by providing sales on a more consistent basis. \n Organic Sales \n Organic sales is defined as comparable net sales excluding the impact of currency, metals price, divestitures and acquisitions, as applicable. Management believes this measure provides investors with a more complete understanding of the underlying net sales trends by providing comparable sales over differing periods on a consistent basis. \n CONTACT: \n Investor Relations Contact: \n Carey Dorman \n Director - Corporate Development \n Platform Specialty Products Corporation \n 1-561-406-8465 \n Media Contact: \n Liz Cohen \n Weber Shandwick \n 1-212-445-8044 \n 14 \n",
@@ -36,7 +39,394 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000159071416000245__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001590714-16-000199",
+   "filingDate": "2016-08-08",
+   "reportDate": "2016-08-08",
+   "form": "8-K",
+   "local_gz": "000159071416000199__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "Increasing lower-end of full year adjusted EBITDA* guidance to range of $735 million to $775 million"
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2016-11-04",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 72,
+   "has_qna": true,
+   "n_chars": 48431,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Good day, ladies and gentlemen, and welcome to the Platform Specialty Products Third Quarter Earnings Call. [Operator Instructions] As a reminder, this conference is being recorded. I would like to introduce your host for today's conference, Carey Dorman. You may begin."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Carey Dorman",
+     "content": "Good morning, everyone, and thank you for participating on our third quarter 2016 earnings call. Joining me this morning are our Chairman, Martin Franklin; our CEO, Rakesh Sachdev; CFO, Sanjiv Khattri; Ben Gliklich, our EVP of Operations and Strategy; Scot Benson, President of Performance Solutions; and Diego Lopez Casanello, President of Agricultural Solutions. Please note that in accordance with Regulation FD or Fair Disclosure, we are webcasting this conference call. Any redistribution, retransmission or rebroadcast of this call in any form without the express written consent of Platform is strictly prohibited.  Before we begin, please take note of Platform's cautionary statement regarding forward-looking statements in the press release and supplemental slides issued and posted today in connection with this conference call. Some of the statements made today will be considered forward-looking. All forward-looking statements are based on currently available information, and Platform's reported results could differ materially from those predicted. Platform undertakes no obligation to update such statements as a result of new information, future events or otherwise. Please refer to Platform's SEC filings for a more detailed description of the risk factors that may affect Platform's results.  Please note that in the press release and supplemental slides, Platform has provided financial information that has not been prepared in accordance with U.S. GAAP. In accordance with Regulation G, Platform is providing reconciliation to these non-GAAP measures to comparable GAAP measures in both the press release and the supplemental slides, which can be found on Platform's website at www.platformspecialtyproducts.com in the Investor Relations section under Events and Presentations.  As a reminder, for the purposes of this call, Platform will be comparing the same period of 2016 and 2015 on a comparable and comparable constant currency basis as management believes that these figures provide a better comparison and understanding of the underlying business results for its operations. Comparable information assumes full period contribution of all Platform's acquired businesses to date. Please review the press release and the supplemental slides for further information.  It is now my pleasure to introduce Rakesh Sachdev, Platform's CEO, for opening remarks. Rakesh? "
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Rakesh Sachdev",
+     "content": "Thank you, Carey, and good morning, everyone. I'm happy to report a very strong third quarter for Platform. Both of our business segments saw solid organic sales growth and constant currency EBITDA growth, which led to a meaningful cash flow generation for the company. Margins also improved, driven by the ongoing success of our integration efforts and synergy realization. We achieved these results despite a continued difficult macro environment for many of our end markets, which only reinforces the quality of our businesses and the teams we have managing them. Platform had a productive quarter on multiple fronts. In September, we announced a settlement agreement with Permira with respect to our Series B convertible preferred stock obligations. We had felt the Series B was an overhang on the balance sheet and our resolution of this issue and the savings it implies was a meaningful step forward. If exercised, which we expect to do before year-end, our negotiated settlement option would reduce the number of underlying shares issuable to Permira from 22 million to only 5.5 million shares and reduce the total value payable to Permira by over $100 million.  Next, in order to delever the balance sheet, we raised approximately $400 million in an equity offering in September. The dilution from this offering is meaningfully offset by the reduced number of shares that would be issued to Permira, as I just mentioned.  On the back of this balance sheet improvement and healthy debt capital markets, we extended and favorably repriced about $2 billion of our term loans, which will generate savings of approximately $11 million in interest expense annually. Given our current tax footprint, this should translate nearly dollar for dollar into free cash flow.  Subject to certain conditions, we also successfully extended the maturities of that debt by 3 years. The resulting net adjusted EPS dilution from the settlement, the equity raise and the repricing was in the mid-single digits. We are thoughtful about issuing equity and we think this small dilution was a modest price to pay for significant enhancements to our capital structure.  Finally, as you saw earlier this morning in our press release, we have further improved our full year adjusted EBITDA guidance to a new range of $750 million to $765 million. We will discuss the guidance revision in further details shortly.  Now before we dive into the business results, I would like to spend a moment on Slide 5, reviewing a few key takeaways from our Investor Day held this past September. And I'd like to thank all of you on this call who attended that day in person or via webcast. It was great to meet with many of our key stakeholders and get the opportunity to share many of the initiatives we are working on, and I hope you will all agree that there is a lot to be excited of -- about at Platform.  The bulk of the Investor Day presentation was focused on our strategic objectives, our plans for Platform as a company and the specific strategies for each of the business units. We also introduced long-term financial objectives that we expect to achieve as we execute our plan. For the Performance Solutions business, our strategy focuses on becoming integral to our customers' supply chain by selling our portfolio of solutions, which we believe is one of the broadest in the industry, to both OEMs and applicators. We are leveraging the breadth and depth of our specialty chemical products and the different components of the supply chain to work directly with the OEMs to innovate new products while also focusing on providing best-in-class technical service to the applicators who are using our products every day.  As many of you know, our Performance Solutions business serves a diverse set of industries globally including electronics, automotive, packaging, oil and gas and other industrial markets.  In our Agricultural Solutions business, we plan to focus on fast-growing niche specialty segments where we know Arysta has differentiated innovative solutions and a strong presence. We plan to expand our existing library of active ingredients by becoming partner of choice for research-based agricultural chemical companies.  Our pipeline of new products is robust, with over $700 million of peak potential sales value as of last year. This potential value number has already grown meaningfully, and this pipeline aligns nicely with the core priority segments we outlined at our Investor Day. We believe our strategies will enable above-market growth rates for the business units over the medium term, leading to a blended top line target of mid-single-digit organic growth.  Coupling this organic growth with the committed focus on continuous improvement in our cost footprint should lead to a high single-digit adjusted EBITDA growth for Platform. We expect that combining this earnings performance with continued emphasis on optimizing taxes, interest, capital expenditures and working capital should result in even stronger cash flow growth. We think this result is achievable and we are committed to using this cash flow to reduce balance sheet leverage to our 4.5x target of net debt to EBITDA, which we expect to achieve within the next 3 years. We also plan to be flexible, opportunistic and creative about accelerating this time line.  Now let's review the results. Slide 6 of the web deck shows highlights from our third quarter financial performance. Platform reported third quarter 2016 net sales of $891 million and an adjusted EBITDA of $190 million, which represents 21% of sales. These results were above our expectations for the quarter. September, in particular, was strong due to early buying patterns in certain markets. Net sales grew 49% year-over-year, driven largely by our acquisitions. Excluding the impact of currency movements, metal pricing and a small divestiture in our Ag business, we grew sales organically by 3% in the quarter. Both businesses grew well organically, with electronics and Alpha assembly contributing in Performance Solutions and volume growth in most regions contributing in Ag Solutions. This is an encouraging result in the context of the challenged macro environment we are facing.  Our comparable constant currency adjusted EBITDA grew 13% in the third quarter versus a year ago. There were a handful of drivers of this earnings growth. We believe we continued to gain share in certain key Performance Solutions markets like Asian electronics and automotive and also benefited from positive mix improvements. We also believe the combination of our acquired businesses is opening up the opportunity for additional markets to enter, and we are encouraged.  In our Ag Solutions business, we benefited both from a supply chain leverage to negotiate procurement savings and solid pricing management in Latin America. We also benefited from mix improvement in this business as we focus more in higher-margin specialty products like seed treatments, niche insecticides and bio-solutions. Finally, corporate costs were relatively flat this quarter year-over-year.  You will see on Slide 7 our Performance Solutions segment reported third quarter net sales of $455 million and an adjusted EBITDA of $110 million. Organic sales increased 2%, excluding the positive impact of metals price and the negative impact of currency translation, primarily from the Chinese yuan and the British pound. It is important to note that nearly all of the currency impacts in this business are translational as our costs are pretty well matched to our sales. Every vertical of our Performance Solutions segment saw growth this quarter, excluding our Offshore Solutions business, which continues to see the impact of reduced capital expenditures by oil and gas producers. Growth in electronics and Alpha assembly came primarily from Asian smartphone manufacturers. This growth came more from share gains and new product launches than from overall market growth, although we do believe the overall market was modestly improved, both year-over-year and sequentially.  While you're beginning to see some softness in Western automotive production and the rise of inventories in the channel, we still saw modest growth in the industrial vertical. Share gains, particularly in Asia, are a great example of how the combination of Enthone and MacDermid are improving our ability to win new business. This performance also demonstrates our business' ability to grow sales despite pressure in the market. We expect this trend to continue for a couple of reasons. First, our globally consistent product in an otherwise local and fragmented market offers share gain opportunities with our global customers. Second, the increasing content per vehicle of electronics and both functional and decorative finishes is continuing to trend upwards.  Our graphics business was up slightly in the quarter as we launched new programs with several large global accounts. The success of these programs was largely offset by slowdowns and price competition in parts of Europe.  Lastly, as you might expect, the challenges in our offshore business continue, and although there is modest optimism about 2017 in the marketplace, we remain cautious at this time.  Comparable constant currency adjusted EBITDA for our Performance Solutions business increased 9% in the quarter versus a year ago. This led to margin improvement on a comparable constant currency basis, driven by positive mix as well as synergy realization and business efficiencies. And this is the type of operating leverage we expect out of this business and a testament to the continued positive progress of our integration efforts.  On Slide 8, the Agricultural Solutions segment reported third quarter 2016 net sales of $436 million and adjusted EBITDA of $80 million. Currency has positively impacted sales by 2% in the quarter as we began to lap the devaluations in the real and other currencies that were a big translational detriment to our Ag business over the previous 4 quarters. Excluding the impact of currency movements and the small divestiture we have mentioned before, organic sales grew 4%. Sales growth this quarter was mainly driven by increased volume and share gains in most regions and new product introductions in Latin America. Sales of our high bio-solutions products also continue to grow well into the double digits year-to-date. While the ag industry as a whole continues to see difficult market conditions, we believe our results this quarter once again demonstrates the success of our specialty strategy.  Asia was a big contributor to sales growth in Ag this quarter. In China, we saw growth in several seed treatment and specialty crop protection products. We also executed a strategy change to focus on more proprietary brands which helps support the growth, despite lower commodity prices in key crops like rice. Europe benefited from increased sales of fungicides in the northern and eastern countries. Sales in France were also up as our herbicides for weed resistance management, which is a key part of our growth strategy, continue to gain traction. Meanwhile, good weather across the Africa and Middle East regions drove volume increases for our businesses there.  Latin America, which typically sees its biggest sales in the third and fourth quarters, demonstrated resilience in quite a weak market. As we expected, the rapid weakening of the dollar in the quarter, primarily against the Brazilian real, created pricing headwinds for the industry and some of our largest products as well. We, however, fared well through effective price management and raw material price savings, allowing us to capture a good part of the translational benefit on sales to improve margins. While we expect increasing pricing pressure in Brazil for the rest of the year, we are comfortable with its impact in Q4 relative to our updated guidance. I'm pleased to report that in North America, a challenging market for us in recent quarters, we began to see signs of stabilization. We grew in the region, although modestly, as the third quarter is generally a slow one in North America. Specialty crop sales were an important driver of this growth and our new commercial strategy is starting to gain momentum. We have had positive feedback from our distribution partners on the changes we have made and are cautiously optimistic that these trends will continue.  In our Ag business, comparable constant currency adjusted EBITDA grew 19% in the quarter versus a year ago. Meaningful drivers of this growth were favorable mix of from specialty crop and bio-solutions sales, supply chain synergies and price management in Latin America. It is encouraging to see margin expansion in this type of market environment. Our ability to take out cost and be nimble with our sourcing is a key tenet of our asset-lite formulation-based business model, and we'll continue to pursue these improvements in both weak and strong markets.  Turning to Slide 9. I would like to review our new full year 2016 adjusted EBITDA guidance. We have improved our adjusted EBITDA guidance to a new range of $750 million to $765 million for the full year. We previously indicated that the second half will be a larger contributor of earnings in the first half which has been borne out thus far. We expect translational FX benefits to continue in Q4, primarily with the real, based on September 30 exchange rates. I would note, however, that FX was not entirely a good story as some currencies have strengthened and we have had to give up price in certain instances. And the Chinese yuan and the British pound continue to weaken, hurting our translational results. FX is still expected to be a headwind in our Performance Solutions business in the fourth quarter.  Finally, with regard to synergies, we expect incremental savings, primarily in the Performance Solutions segment. We remain comfortable with our overall expectations for the second half, and as a result, we have raised our guidance modestly.  And now I'll turn the call over to Ben Gliklich to review our integration successes this quarter. Ben? "
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Benjamin Gliklich",
+     "content": "Thank you, Rakesh. Good morning, everyone. As you just heard, our integration efforts are evidenced in the results this quarter from both the sales and margin perspective. On Slide 10, you can see that we reported $13 million of new cost synergies into our P&L year-over-year. This is composed of $5 million from our Ag business, primarily from the supply chain and G&A actions we took in previous quarters, and another $8 million of new cost synergies in our Performance business from a variety of actions, including organizational design, procurement and supply chain. We've already achieved $39 million of the $40 million of cost synergies we guided to for 2016. We're happy with this result, and we are confident to exceed the initial estimate for the year, pulling forward some savings from 2017 and 2018. On a run rate basis, we have achieved $74 million of cost synergies from the Ag integration, very close to the $80 million total estimate we provided when we closed the Arysta acquisition. As we have said before, we do not intend to raise this estimate further, but instead to move from talking about synergies to continuous improvement in the Ag business. We do believe there's room for more costs to be taken out here.  In the Performance segment, we have achieved $39 million of run rate savings, more than half of our initial estimate, and we are less than 10 months into the integration. You've also heard that the combined businesses have been taking market share in some of our key markets. We're successfully executing on both goals of our integration plans here.  We've begun implementing the first phase of our facility rationalizations, which we expect will be an important contributor to the realized cost savings next year. The legacy Performance business historically demonstrated an ability to manage cost well in both strong and weak markets and the synergy achievement to date is another testament to that skill.  Slide 11 provides integration highlights from both businesses. As has been the case for several quarters now, we are heavily focused on both cost and revenue synergy opportunities in both segments. The combination of businesses we have created is allowing our teams to execute against the exciting growth plans we highlighted at our Investor Day. Importantly, everything we have done to date has kept the customer as priority #1, and we believe the top line story is proof that we've not disrupted our commercial operations. Rather, we believe we have enhanced them through our integration efforts.  With that, I'll turn the call over to Sanjiv to take you through financial results in more detail. "
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Sanjiv Khattri",
+     "content": "Thank you, Ben, and good morning, everybody. Thank you again for joining our Q3 call today. As I'm sure you would have read, we had a solid quarter of performance. I'm going to review our financial performance in the quarter and provide some more detail on the balance sheet initiative we took recently. Like the last quarter, we are providing numbers on an actual but also on a comparable basis. Comparable is the same calculation we did when we used the term pro forma but we have renamed the metric to avoid any confusion with other SEC-defined terms. We had no acquisition activity in the current quarter but comparable Q3 of 2015 assumes that we own the Alent and the OMG businesses for the whole third quarter. We also compare certain results on a comparable constant currency basis in order to illustrate the impact that translational currency movements had on our financial performance.  Finally, as we indicated in the footnote on Slide 6 of the web deck, we use certain non-GAAP measures to provide what we believe is useful industry information for you as you analyze our results. We believe these non-GAAP metrics provide better insight into the business. We discussed the adjustments in significant detail and provide all appropriate reconciliations in the appendix of this presentation and in our earnings release that we filed this morning.  Now onto the numbers on Slide 13. As Rakesh highlighted, both of our business segments performed well this quarter, despite a challenging macro backdrop. Organic sales, a key focus of Platform, showed strong 3% growth year-over-year. Year-to-date, organic growth is approximately 1%, below our mid-single-digit long-term expectations but the trends have been positive.  A quick comment on our EPS and share count this quarter. These metrics are impacted by 2 discrete items. One is the successful equity raise of approximately 49 million shares in September. The second is the settlement option negotiated with Permira for the Series B preferred. This settlement option resulted in a large accounting gain that has been normalized out in our non-GAAP adjusted metrics, our adjusted EPS and adjusted EBITDA. To calculate our adjusted EPS, we have been using a non-GAAP share count for the last several quarters made up of our fully diluted share balance and adjusted for the impact of the PDH shares, the Series A founder shares and the Series B shares. We feel this is a better representation of the total claims on our per share earnings. With the activities in the third quarter, this amount is now 299 million shares, up from 266 million in the second quarter. We have shown a reconciliation on Slide 19 of the web deck to walk you through this number. Essentially, this share count assumes first that we exercise our option under the settlement agreement with Permira, thereby issuing only 5.5 million shares of common stock instead of the 22.1 million shares that they are currently entitled to receive, and that was previously accounted for in the 266 million number.  Second, it assumes that the shares we issued in September have been issued at the beginning of the quarter. As the alternative settlement is the most likely outcome for us to take, we believe looking at EPS this way is helpful. Using this share count for the quarter, adjusted EPS of $0.14 is a year-over-year improvement of $0.03 from the fully comparable 2015 performance.  And lastly, as Rakesh mentioned, we also narrowed our adjusted EBITDA guidance to a range of $750 million to $765 million for the full year 2016, a modest improvement since the last update. This is based on September 30 exchange rates. Please note that year-to-date, we have recorded $2.6 billion in net sales and $551 million in adjusted EBITDA.  In terms of cash flow impacts, the only gain you will see on the chart is to our CapEx guidance. CapEx of $55 million through the first 3 quarters is trending lower than the previous outlook of approximately $100 million for the full year. Q4 is typically a heavier CapEx quarter for the business due to increased Ag registration spend. Nevertheless, we have updated our guidance to be between $75 million and $100 million due to some spending that moved into 2017. You can see that our cash interest is in line with our revised plan, although the Term Loan repricing should have a small impact even on our 2016 cash interest expense.  We have provided by quarter details of our cash flow statement in the earnings release. Q3 was a strong quarter for free cash flow. We improved working capital by approximately $48 billion, primarily driven by better receivables management. This is consistent with the full year outlook we have previously provided. We are still anticipating a large working capital increase in the fourth quarter. The magnitude of this increase will vary to some degree, depending on both our overall sales performance and the residual mix of Ag sales in the fourth quarter. We also expect to fund the Permira settlement in this quarter which, of course, would be a nonoperating cash flow.  Slide 14 shows our sales bridge, walking Q3 2015 comparable sales to Q3 2016 comparable sales. Volume and mix increases were the biggest driver of growth in comparable sales year-over-year. The $14 million of pricing headwind here is all from our Ag business. This number would have been higher if not for the pricing management initiatives we have in place. The translation FX number also deserves some attention. Overall, the company saw a modest tailwind. Ag benefited from a strong real, but the Performance business suffered from a weaker pound and Chinese yuan. We have reconciled organic sales for you in the appendix on Slide 12 -- 21, excuse me.  On Slide 15, you can see our adjusted EBITDA bridge. This is the same format and presentation we have made in previous quarters, and we have reconciled it to GAAP in the appendix. Again, volume and mix improvements, as well as synergies, are the biggest contributors to the year-over-year increase. The FX impact to adjusted EBITDA in the quarter was fairly modest when considering both translational and transactional pieces. Transactional FX, primarily in the Ag business, was still a modest headwind, and some of the products sold this quarter was still purchased at less favorable exchange rates. Top line pricing headwinds, again, primarily in the Ag business, were largely offset by reduced cost of sales.  Slide 16 shows our current capital structure. As of September 30, 2016, Platform's net debt was $4.7 billion, which includes $714 million of cash, $460 million of which may be used to pay Permira under the terms of our alternative settlement. You will also note that our revolver was fully undrawn at quarter end. This cash balance and revolver balance were facilitated both by strong operating cash flow in the quarter and the roughly $390 million of net proceeds from the last September equity raise.  The capital structure we are providing here is modified to show the positive impact of the recent favorable term loan repricing and extension we did in October. We extended $1.95 billion of debt by another 3 years, subject to certain conditions, and reduced our interest expense by approximately $11 million a year. We also moved more than $150 million of debt to Europe, which is much better from a global capital planning perspective. This was all on the back of the Permira settlement and equity raise, 3 solid steps to improve our balance sheet.  I'm happy with the improvements we are making on both cash flow and balance sheet management items. I look forward to reporting further progress in the coming quarters. It is now my pleasure to turn the call back to Rakesh for closing remarks. Rakesh? "
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Rakesh Sachdev",
+     "content": "Thanks, Sanjiv. I just want to correct something that Sanjiv may have -- just misheard accidentally. I think Sanjiv said that we expect in Q4 our working capital to increase significantly. Actually, we expect working capital in Q4 to decrease significantly. So anyway, thanks. So in conclusion, I'd like to revisit our 2016 priorities on Slide 17. This is the third quarter where we have shown this slide and we are pleased with our progress against each of these year-to-date. Integration is going well. Our businesses are growing. And perhaps more importantly, they have formulated strategies that should enable them to continue to grow. We have settled into a more steady operating rhythm, and we are demonstrating positive earnings momentum.  Finally, we are generating free cash flow and expect a strong fourth quarter in that regard.  Before I turn the call over to questions, I'd like to recognize the hard work of our teams who have been doing double duty as both operators and integrators. This has been a transformational year so far and no one knows that more than our people.  With regard to 2017, while we are still in the midst of our budgeting process, the outlook remains the same as outlined in our last call: high single-digit adjusted EBITDA growth in 2017. In this context, barring any alternative uses of cash flow, we expect to have reduced our leverage ratio of net debt to adjusted EBITDA in the high 5s by the end of next year. And we're really excited about our progress and we look forward to continuing to build it in 2017.  So now operator, we'll open up the call for questions. Thank you. "
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] And our first question comes from the line of Daniel Jester from Citi."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Daniel Jester",
+     "content": "So just starting in Performance. I think you mentioned this very briefly in your prepared remarks, but can you just give us an insight on what your customers are thinking about in terms of the North American and Western European audit cycle? It seems like we've seen some reports of slowing production rates. So just wanted to hear what your -- the latest is there."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Rakesh Sachdev",
+     "content": "Yes, I'm going to just ask Scot to make a couple of remarks here. But it seems the automotive production is still very strong in North America. It may have flattened out, but we continue to see growth in Asia, which is where we are gaining share. And as I said, the electronic content for the cars, and it's not just the electronic content, we sell our chemicals for nonelectronic components as well for plastic components where we provide the finish, and we have seen growth there. Scot, can you add some color?"
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Scot Benson",
+     "content": "Sure, sure. Daniel, the -- a lot of this is happening -- has happened fairly recently, but we have seen a build of inventories in both North America and in Europe. And of course, it's been reported that incentives are high, et cetera, et cetera, and there have been some manufacturing slowdowns, primarily in North America. So we still continue to see some very aggressive capital spending for expansion plans, particularly in Mexico, in North America, which we think is going to continue to help us mitigate any of these -- what we view as temporary slowdowns. So -- and on the back of Rakesh's comments, we're confident in continued increase in content that we supply within the supply chain. And although big growth rates have slowed, we don't see it as a sign of any real trouble in the near future."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Daniel Jester",
+     "content": "Okay, that's helpful. And then moving to Ag. Could you just give us a little bit more color about what specific end market, potentially in Brazil, that you're seeing the most price pressure? And if you have any updated comments on either your inventory levels or maybe the industry inventory levels for chemicals in Brazil, that would be helpful as well."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Diego Casanello",
+     "content": "Yes, it's Diego here. With respect to pricing in Brazil, overall, since we have combined our former legacies, what we see is that our pricing power has increased. And what you see in this quarter is a reflection of that. We have seen a very strong pricing performance in Brazil for Arysta. Overall, the market remains a challenge in Brazil because, of course, what you have is an appreciation of the real. And in such a situation, farmers are asking you for reductions in prices in U.S. dollars. The game here is to really resist that -- the pressure. I think we're doing a good job in Q3. We will see in Q4, of course, increased pressure, but we're confident in the job we're making in Brazil right now."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Rakesh Sachdev",
+     "content": "And just to add to that, I think we have been also very successful in getting the benefits from suppliers, especially in Latin America, to get reduction in prices quite significantly. So while we have had to get some pricing in Q3 and we think we'll have to get some pricing in Q4, but net-net, from the benefits we're getting from our supply base as well as the transactional benefits we get, I think we're doing pretty well."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of Ian Bennett from Bank of America Merrill Lynch."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Ian Bennett",
+     "content": "So it seems the outlook and results for revenue and adjusted EBITDA has been improving and that's evident in the results reported and the outlook for fourth quarter, but cash flow from operations has not been improving. Can you comment on why that is and what are the priorities for the next 12 months?"
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Sanjiv Khattri",
+     "content": "Consistent with the correction that Rakesh made in my script, our cash flow is very seasonal. It was driven by -- primarily by the Ag sector because working capital is a big use. And consistent with the outlook that we've been discussing with you, we expect Q4 to be very positive cash flow quarter. Even in Q3, our cash flow from operations was in excess of $90 million. And in Q4, with the way the seasonality works, both in North America and LatAm, consistent with our plan, we would expect to generate -- we could then end up in full year being up a solid positive number for the full year in terms of cash flow from operations."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Rakesh Sachdev",
+     "content": "And this is no different than what we saw last year in 2015 as well."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Sanjiv Khattri",
+     "content": "That's correct."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Ian Bennett",
+     "content": "Okay. And then for 2017, just directionally, and -- any notable items that you'd call out in kind of the bridge from adjusted EBITDA down to cash flow from operations that you expect to recur or improve?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Sanjiv Khattri",
+     "content": "So again, if you step back, we have a fairly unique tax position. We've talked to you about this in previous quarters. So if I step back, the first of -- Rakesh has been talking consistently about organic sales growth, increase in organic sales growth, better cost management will lead to a higher EBITDA. So that's sort of the starting number. We will expect to have a decent cash tax bond. Our CapEx, we've been giving you guidance throughout the year, so you know what's happening in CapEx. Working capital management is a key priority for us. And then as we continue to reduce our debt burden and improve our debt structure, you will see some savings in interest expense. In addition, we have some nonoperating expenses, but net-net, that is a good walk of what you should expect. And consistent with our goals to reduce our leverage over time, you would expect this cash to be allocated to reducing the debt levels in the balance sheet."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Rakesh Sachdev",
+     "content": "But if I can just add, I think when you look at 2017, we clearly expect what's going to drive even more enhanced cash is our earnings growth. As I said, we expect our earnings to grow in the high single digits. That's going to be a significant provider. We are going to be very focused on working capital, not that we have not been, but I think we are beginning to really drive all our teams to be far more efficient in managing our working capital. And as I said, I think we expect our net debt to EBITDA by next year-end to be in the high 5s, which is a fairly significant move that we would have made into our net debt ratios."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of John Roberts from UBS."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "John Roberts",
+     "content": "Do you think some of the share gains at MacDermid may be coming from distractions at the #1 and #2 players? I mean, Dow's in the middle of an antitrust review and Total's recent deal for Saft has generated speculation that they could exit your market. So do you think some of that's behind it?"
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Scot Benson",
+     "content": "John, this is Scot. Actually, I think that, that potentially provides us some additional growth in the future. I don't think that the activity that we've had to date could be directly tied to that. I think what we've experienced to date has more been a result of the combination and the integration of our teams and the broader product portfolio that we offer. Our customer base has responded positively to the fact that we have such a broad product range. So as far as it relates to distractions, I think that we might see some more benefit from that in the future than we've seen year-to-date."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "John Roberts",
+     "content": "Okay. And then secondly, when do you lap the weakness in hydraulic fluids for subsea well controls?"
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Scot Benson",
+     "content": "That's a terrific question. That is going to depend on the CapEx investments, of course, from the major oil companies going forward. We've definitely seen a positive or a stabilization of oil pricing, which is helpful. I think we still need to see some appreciation in oil before we see significant increased capital investment in either exploration or additional production capacity."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Duffy Fischer from Barclays."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Duffy Fischer",
+     "content": "First question is just around Ag. Brazil gets a lot of commentary, but Argentina seems to be the market that might be moving the most with the new government down there. Can you talk about your business in Argentina and what that market looks like from a growth perspective for you guys over the next couple of years?"
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Diego Casanello",
+     "content": "Sure. Yes, that's a good question. I think we are in a good timing in Argentina because we are changing our go-to-market in Argentina to have a more direct access to the market. We are registering products from the different legacies that were not in that market before. We're building a team. We have a great strategy in that country and just in time for what we expect will be a rebound in that market. I mean, we see this already happening. We see much more corn in Argentina already due to the different policy of the government to reduce the export taxes for those crops. So obviously, weather is going to play a role. Political stability moving forward is going to play a role. But we are confident that we will see growth for our business in the coming years."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Duffy Fischer",
+     "content": "Okay. And then just on the commentary around high single-digit EBITDA growth next year, when you look at the segment, should both basically equally contribute to that? Or would one or another pull greater weight in getting you there?"
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Rakesh Sachdev",
+     "content": "Yes, we're still finalizing our numbers there. I would say directionally, we would expect the growth in both the businesses in the high single digits. I think performance -- just to be clear, Performance Solutions has a bigger synergy story in 2017 because the Alent acquisition happened more recently. Ag has already produced a lot of the synergies. So you probably will see a little more growth on the performance side, but I think, hopefully, we will bring to you pretty impressive numbers on both businesses."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of Jon Tanwanteng from CJS Securities."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Jonathan Tanwanteng",
+     "content": "Can you touch on the North American Ag market, where you're seeing the improvements specifically? And can you give an update on the inventory over there, what's burning off? And is it doing better than planned?"
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Rakesh Sachdev",
+     "content": "Sure, I'll turn it to Diego, but we had a good quarter in North America. As you know, we had a tough second quarter in North America. And even though Q3 is a low quarter for North America, we actually saw growth and so we were pleased. I think Diego can talk about some of the steps we have taken in stabilizing our business in the region, but we are very -- we are cautiously hopeful. We're going into a quarter  in Q4 where we expect North America to be fairly strong for us and so that's important. Diego?"
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Diego Casanello",
+     "content": "Yes, the market, I mean, remains difficult, as you know. We see farmer income still low. Commodity prices are not helping. However, we have worked. We have done our homework over the last couple of months, specifically in the second half of last year and the first half of this year, destocking the channel. So this was the first step that we took. But secondly, I think most importantly, moving forward, is really the changes that we're making on our commercial policy and our commercial strategy. We have established a key account management organization in North America that is fully focused on our key accounts, aligning the objectives of the customer with our objectives, aligning the activities on the field. We are putting a focus on the right products. I think this is very important, really emphasizing those products that bring us a higher margin. And we're putting a great team together. We have made good changes over the last 2 years in the team and I'm confident that we have the right team in place to start seeing now the stabilization and growth in the coming quarters."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Jonathan Tanwanteng",
+     "content": "Got it, that's helpful. And then just following the refi of some of your term loans. Are there further opportunities for refinancing and lowering the interest expense on your outstanding debt in the near term?"
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Sanjiv Khattri",
+     "content": "As you know, we have built a fairly flexible capital structure. And in light of the market, our term loan debt has fairly modest call protection. So we are always opportunistically looking for opportunities to refinance the debt and to mix it. So this is something we are nimble about. I don't want to specifically talk about any plans, but I do think having a big term loan structure gives us flexibility. Even our high-yield debt, as we generate cash, as we go through the period -- callback periods, we will have some flexibility with that also in the next couple of years."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Jonathan Tanwanteng",
+     "content": "Great. And then just finally, on the currency move since the end of the quarter, how much of a tailwind or headwind should we be expecting just since you gave guidance based on September 30?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Rakesh Sachdev",
+     "content": "Yes, so I think currency was -- didn't have a big impact in Q3. In Q4, we will have some tailwind in -- from currency, mostly in the Ag business. But relative to the guidance we gave you at the last quarter, the currency picture really hasn't changed for us in the second half much. So it's really not a factor in our guidance."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Benjamin Gliklich",
+     "content": "And in the period since the end of Q3 from our -- that our guidance is based on, it really hasn't changed too materially."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Sanjiv Khattri",
+     "content": "And real has weakened a bit but not by much."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of Jim Sheehan from SunTrust."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Matthew Stevenson",
+     "content": "This is Matthew Stevenson on for Jim. Question about the -- your credit situation in Latin America. Is that impacting volumes?"
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Rakesh Sachdev",
+     "content": "On the contrary, as we've reviewed how we are doing on collections in Latin America, our experience has actually improved. In fact, when we look at how we are collecting, how we did in Q3, our performance improved from even the prior quarters."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Sanjiv Khattri",
+     "content": "That's correct. Diego, anything to add?"
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Diego Casanello",
+     "content": "No. I think we -- obviously, we have been very selective when it comes to the customers we're serving. Our teams are very focused on this. Our sales organization is measured by collected sales. All this helps manage the risk there. So we know credit availability is an issue in Brazil but we are confident about how we are managing the business over there."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Matthew Stevenson",
+     "content": "And then a follow-up there is, as was mentioned several times, there's a lot of M&A going on in the Ag space and there's likely to be product divestitures going on over the course of, say, the next year. You also have a very full portfolio, given the 3 different businesses that have now been combined. Are you likely to participate either as a buyer or a seller in the product -- individual product acquisitions and divestitures?"
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Benjamin Gliklich",
+     "content": "So for starters, certainly not as a seller. This is Ben Gliklich speaking, by the way. Certainly not as a seller. And with regard to regulatory filed assets that have -- that look like they're going to come loose in the context of consolidation, we've certainly seen a few things. None of them have piqued our interest. We're going to be super disciplined in that regard, looking for things that could fit our strategy, which Diego has articulated. If something fits right, we'll consider it. But right now, we're on the sidelines."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of Aleksey Yefremov from Nomura Securities."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Aleksey Yefremov",
+     "content": "I was going to ask about synergy expectation for next year. On Slide 20 of the presentation, you list $73 million add-back to EBITDA for prospective synergies. Is it a good proxy for the next 12 months, next year?"
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Benjamin Gliklich",
+     "content": "So some of the synergies will be 2018 synergies from the Performance business. Recall, we're in the first year of integration of the Performance Solutions acquisition. And as we noted, we pulled some synergy forward into 2016 as we're going to exceed our initial expectation for synergies for the year. But the balance, sort of the preponderance of that number, will come through next year."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Aleksey Yefremov",
+     "content": "And if we think about the cost of achieving those synergies, should they flow sort of in a similar fashion? Or are you expecting to maybe prefund the achievement on those costs earlier or later?"
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Benjamin Gliklich",
+     "content": "So we've historically said that synergies cost about $0.75 per dollar realized in the P&L that year. That having been said, we're running a bit inside of that to date, but there shouldn't be too much of a lag in that regard as you think about cash flow modeling."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Aleksey Yefremov",
+     "content": "And turning to corporate cost. You've been flat this quarter. Is there an opportunity to reduce this excess corporate cost over the next 12 to 24 months? And then in the short term, would you expect corporate cost to remain similar over the next couple of quarters as well?"
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Rakesh Sachdev",
+     "content": "So as I said in our last call, we have -- we believe that corporate costs have peaked. So this quarter, we had, year-over-year, the corporate costs were flat. Clearly, we will see an opportunity to start reducing these corporate costs starting in 2017. As I said before, today, we have relied on third parties for a lot of services at corporate because we became large very quickly. I think we're getting our own people now to develop the expertise in-house. We are putting the infrastructure. We're investing in IT. And I think we will start seeing that in 2017 and going into 2018."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Sanjiv Khattri",
+     "content": "Exactly."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Operator",
+     "content": "And our next question comes from the line of Roger Spitz from Bank of America Merrill Lynch."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Roger Spitz",
+     "content": "Regarding Q4 of '16 release of cash from working capital, I wonder if you might put some very broad brackets of guidance, what it could look like. For instance, would it be closer to $50 million release, $100 million, $150 million, compare it to say anything?"
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Sanjiv Khattri",
+     "content": "I'm sort of reluctant to give a specific number, but if you look 2 play at things [ph]. One is the seasonality of earnings. The second is the impact of FX. So if you look at nominal working capital in terms of specific numbers, we were over our $200 million negative in Q1. We had a solid positive in Q2, a solid positive in Q3, and we expect to have a much bigger number. I'm reluctant to give you exactly what."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Rakesh Sachdev",
+     "content": "I think it's fair to say, Sanjiv, we'll been in excess of $100 million."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Sanjiv Khattri",
+     "content": "Yes, that's fair, Rakesh, definitely."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Rakesh Sachdev",
+     "content": "We will be in excess of $100 million."
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Roger Spitz",
+     "content": "That's what I'm looking for. And lastly, you show a benefit of $14 million for volume this quarter. How -- can you give any split of Ag versus Performance? It sounds like it was mostly Ag, but I just wondered if you have -- can split that out a little bit?"
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Rakesh Sachdev",
+     "content": "Sorry, can you just repeat the question again?"
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Roger Spitz",
+     "content": "Yes. In Q3, the volume mix on the EBITDA bridge, that was a $14 million for volume mix. It sounds like most of the volume was in Ag. But I was wondering if you can say whether most of it was Ag or almost all of it was Ag or 75% was Ag or some other number."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Sanjiv Khattri",
+     "content": "It was mostly Ag."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Benjamin Gliklich",
+     "content": "It was mostly Ag. So if you look through the presentation we've provided, you can see that the Ag business grew organically close to 4%. The Performance business grew close to 2%. So clearly, it's mostly Ag contributing to that growth but performance also was a contributor."
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Roger Spitz",
+     "content": "Okay. And just lastly, the slides in the Ag talk about share gains, driven in part by price. I just want to make sure, does that mean you are reducing price to gain share? Or how should I read that sentence?"
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Diego Casanello",
+     "content": "No, no, definitely not. So the share gains that we are mentioning here is through geographic expansion, most of the time. So we are extending our reach in Eastern Europe. We are growing in some countries in Latin America, in Asia, specifically through cross-selling opportunities of bringing products from legacies into markets where other legacies were stronger. This is really what is driving our share gains in this case."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Operator",
+     "content": "At this time, this does conclude the Q&A portion. I would like to turn the call over to Rakesh for closing remarks."
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Rakesh Sachdev",
+     "content": "Thank you. Again, I appreciate everybody joining in this morning. Again, we are very pleased with the way the business is performing and how we did in Q3, and I'm pretty confident that we'll continue the story in Q4 and 2017. So we look forward to updating all of you the next time we meet. Thank you for joining the call."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, thank you for your participation in today's conference. This does conclude the program, and you may now disconnect. Everyone, have a great day."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +437,8 @@
    "reportDate": "2015-12-31",
    "accession": "0001590714-16-000097",
    "url": "https://www.sec.gov/Archives/edgar/data/1590714/000159071416000097/pah10-k20151231document.htm",
-   "local_gz": "000159071416000097__annual.txt.gz"
+   "local_gz": "000159071416000097__annual.txt.gz",
+   "n_lines": 9767
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +446,8 @@
    "reportDate": "2016-06-30",
    "accession": "0001590714-16-000202",
    "url": "https://www.sec.gov/Archives/edgar/data/1590714/000159071416000202/pah10-q2016630document.htm",
-   "local_gz": "000159071416000202__q0.txt.gz"
+   "local_gz": "000159071416000202__q0.txt.gz",
+   "n_lines": 4954
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +455,106 @@
    "reportDate": "2016-03-31",
    "accession": "0001590714-16-000153",
    "url": "https://www.sec.gov/Archives/edgar/data/1590714/000159071416000153/pah10-q2016331document.htm",
-   "local_gz": "000159071416000153__q1.txt.gz"
+   "local_gz": "000159071416000153__q1.txt.gz",
+   "n_lines": 3656
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2016-08-09",
   "n_rows": 8,
@@ -83,6 +569,43 @@
     "ocf": 18700000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 205800000.0,
+      "filed": "2015-03-30",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 327300000.0,
+      "filed": "2015-03-30",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 397300000.0,
+      "filed": "2015-03-30",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1415900000.0,
+      "filed": "2015-03-30",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 30800000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +616,63 @@
     "ocf": -70000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 460900000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1054100000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 297300000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3445200000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 20800000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 47900000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -26700000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.14,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 191900000.0,
+      "filed": "2015-05-15",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +683,63 @@
     "ocf": 170300000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 470000000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1050100000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 672200000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3418400000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8500000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 66100000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -12200000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.06,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 192800000.0,
+      "filed": "2015-08-14",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +750,63 @@
     "ocf": 30800000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 466900000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 943400000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 682000000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 3417500000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2800000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 62000000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -122300000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.58,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 210900000.0,
+      "filed": "2015-11-16",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +817,43 @@
     "ocf": 189800000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 517500000.0,
+      "filed": "2016-03-11",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1023000000.0,
+      "filed": "2016-03-11",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 432200000.0,
+      "filed": "2016-03-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 5228300000.0,
+      "filed": "2016-03-11",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 4600000.0,
+      "filed": "2016-03-11",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +864,58 @@
     "ocf": -210400000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 612500000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1172800000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 329700000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 5407300000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 11600000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -134800000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.59,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 229500000.0,
+      "filed": "2016-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +926,58 @@
     "ocf": 97100000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 572700000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1181700000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 341700000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 5348700000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 11000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -8800000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.04,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 229600000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +988,21 @@
     "ocf": 89300000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": -0.15,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 891000000.0,
     "revenue_xbrl_for_reference": 890500000.0
@@ -166,143 +1016,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2890",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 359,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABEO",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ACAD",
-   "ACB",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACRS",
-   "ADMA",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALKS",
-   "ALNY",
-   "ALTO",
-   "AMGN",
-   "AMPH",
-   "AMRN",
-   "AMTX",
-   "ANIP",
-   "ANIX",
-   "APD",
-   "APVO",
-   "ARDX",
-   "ARMP",
-   "ARQ",
-   "ARWR",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AVD",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "BAK",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BDRX",
-   "BHC",
-   "BIIB",
-   "BLRX",
-   "BMRA",
-   "BMRN",
-   "BMY",
-   "CANF",
-   "CAPR",
-   "CATX",
-   "CBIO",
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 6,
+  "peer_list_all_tickers": [
    "CBT",
-   "CC",
-   "CDXS",
-   "CE",
-   "CELZ",
-   "CF",
-   "CGEN",
-   "CHD",
-   "CHRS",
-   "CL",
-   "CLDX",
-   "CLLS",
-   "CLRB",
-   "CLX",
-   "COCP",
-   "COLL",
-   "CORT",
-   "COTY",
-   "CPHI",
-   "CPIX",
-   "CRBP",
-   "CRDF",
-   "CRIS",
-   "CRMD",
-   "CRSP",
-   "CRVO",
-   "CRVS",
-   "CSBR",
-   "CSW",
-   "CTMX",
-   "CTXR",
-   "CVM",
-   "CYRX",
-   "CYTK",
-   "DARE",
-   "DBVT",
-   "DCOY",
-   "DD",
-   "DMAC",
-   "DYAI",
-   "EBS",
-   "ECL",
-   "EDIT",
-   "EDSA",
-   "EL",
-   "ELDN",
-   "ELF",
-   "EMN",
-   "ENLV",
-   "ENTA",
-   "ENVB",
-   "EPC",
-   "ERNA"
+   "FTK"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000080424",
-    "name": "PROCTER & GAMBLE Co",
-    "ticker": "PG",
-    "sic2": "28"
+    "entity_id": "0000016040",
+    "name": "CABOT CORP",
+    "ticker": "CBT",
+    "sic4": "2890",
+    "sic3": "289",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2015-11-25",
+    "accn": "0001564590-15-011128",
+    "local_gz": "000156459015011128__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ts; the cost savings we expect to achieve from our restructuring plans; when we expect to cease manufacturing operations at our carbon black plant in Merak, Indonesia; the amount expected to be received from the sale of land by our carbon black joint venture in Malaysia; the sufficiency of our cash on hand, cash provided from operations and cash available under our credit and commercial paper facilities to fund our cash requirements; anticipated capital spending, including environmental-related capital expenditures; cash requirements and uses of available cash, including future cash outlays associated with long-term contractual obligations, restructurings, contributions to employee benefit p",
+     "quirements”). These SH&E Requirements include requirements to obtain and comply with various environmental-related permits for constructing any new facilities and operating all of our existing facilities and for product registrations. We have expended and will continue to expend considerable sums to construct, maintain, operate, and improve facilities for safety, health and environmental protection and to comply with SH&E Requirements. We spent approximately $17 million in environmental-related capital expenditures at existing facilities in fiscal 2015 and anticipate spending approximately $34 million for such matters in fiscal 2016. In recognition of the importance of compliance with SH&E R",
+     "of the reporting unit. If the implied fair value of the reporting unit’s goodwill is determined to be less than its carrying amount, an impairment is recognized for the difference. The fair value of a reporting unit is based on discounted estimated future cash flows. The fair value is also benchmarked against a market approach using the guideline public companies method. The assumptions used to estimate fair value include management’s best estimates of future growth rates, operating cash flows, capital expenditures and discount rates over an estimate of the remaining operating period at the reporting unit level. Should the fair value of any of our reporting units decline below its carrying a"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000200406",
-    "name": "JOHNSON & JOHNSON",
-    "ticker": "JNJ",
-    "sic2": "28"
+    "entity_id": "0000928054",
+    "name": "FLOTEK INDUSTRIES INC/CN/",
+    "ticker": "FTK",
+    "sic4": "2890",
+    "sic3": "289",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2016-01-27",
+    "accn": "0000928054-16-000079",
+    "local_gz": "000092805416000079__peer10k.txt.gz",
+    "capex_excerpt": [
+     "h equivalents totaled $2.2 million at December 31, 2015 . During 2015 , the Company generated $26.7 million of cash inflows from operations (net of $1.4 million expended in working capital), received proceeds of $6.5 million for borrowings of debt, net of repayments , and received $4.2 million in proceeds related to lost-in-hole and asset sales activity. Offsetting these cash inflows, the Company paid $1.3 million associated with the purchase of 100% of the assets of IAL, used $20.5 million for capital expenditures, $9.7 million to repurchase common stock, and $6.3 million for purchases of treasury stock for tax withholding purposes related to the vesting of restricted stock awards and the e",
+     "les activity. Offsetting these cash inflows, the Company paid $1.3 million associated with the purchase of 100% of the assets of IAL, used $20.5 million for capital expenditures, $9.7 million to repurchase common stock, and $6.3 million for purchases of treasury stock for tax withholding purposes related to the vesting of restricted stock awards and the exercise of non-qualified stock options. Liquidity The Company plans to spend between $20 million and $25 million for committed and planned capital expenditures in 2016 , inclusive of approximately $7 million for completion of its Global Research & Innovation headquarters. During 2016 , the Company plans to use internally generated funds and,",
+     "purposes related to the vesting of restricted stock awards and the exercise of non-qualified stock options. Liquidity The Company plans to spend between $20 million and $25 million for committed and planned capital expenditures in 2016 , inclusive of approximately $7 million for completion of its Global Research & Innovation headquarters. During 2016 , the Company plans to use internally generated funds and, if necessary, borrowings under the revolving line of credit to fund operations and capital expenditures and make required payments on the term loan. Any excess cash generated may be used to pay down the level of debt, repurchase company stock, or be retained for future use. The Company m"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -324,7 +1083,16 @@
   "latest_data_date": "2016-11-04",
   "cutoff": "2016-11-04",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2016-11-04",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2016-11-07",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

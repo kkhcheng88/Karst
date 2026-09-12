@@ -1,6 +1,7 @@
 {
  "event_id": "E036",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E036",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "UI",
  "cik": "0001511737",
  "name": "Ubiquiti Inc.",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2019-02-08(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E036",
   "event_id": "E036",
   "ticker": "UI",
   "cik": "0001511737",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02",
   "accessionNumber": "0001511737-19-000007",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173719000007/form8-kforq219earnings.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173719000007/form8-kforq219earnings.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n exhibit991-12312018nex.htm\n EXHIBIT 99.1\n Document \n Exhibit 99.1 \n UBIQUITI NETWORKS REPORTS SECOND QUARTER FISCAL 2019 FINANCIAL RESULTS \n ~ Record Revenues of $307.3 million ~ \n New York, NY - February 8, 2019 - Ubiquiti Networks, Inc. (NASDAQ: UBNT) (“Ubiquiti\" or the \"Company”) today announced results for the second quarter fiscal 2019 , ended December 31, 2018 . \n Second Quarter Fiscal 2019 Financial Highlights \n • Revenues of $307.3 million , increasing 22.5% year-over-year \n • GAAP diluted EPS of $1.09 \n • Non-GAAP diluted EPS of $1.33 , increasing 7 5.0 % year-over-year \n Additional H ighlights \n • T he Company r epurchased and retired 356,576 shares of common stock for $34.7 million at an average price of $97.31 per share between November 8, 201 8 and February 7, 2 01 9. \n • The Company has $178 .2 million of availability remaining under the $200 million share rep urchase program announced on November 9, 2018. \n • The Company's Board of Directors declared a $0.25 per share cash divid end payable on February 25 , 2019 to shareholders of record at the close of business on February 18 , 2019. \n F inancial Highlights ($, in millions, except per share data) \n Income statement highlights F2Q19 F1Q19 F2Q18 \n Revenues 307.3 282.9 250.8 \n Service Provider Technology 113.2 105.0 119.9 \n Enterprise Technology 194.1 177.9 131.0 \n Gross profit 140.2 131.6 96.9 \n Gross Profit (%) 45.6% 46.5% 38.6% \n Total Operating Expenses 48.6 32.0 30.8 \n Income from Operations 91.7 99.6 66.1 \n GAAP Net Income 77.8 85.7 (51.5) \n GAAP EPS (diluted) 1.09 1.16 (0.66) \n Non-GAAP Net Income 95.1 86.2 59.6 \n Non-GAAP EPS (diluted) 1.33 1.17 0.76 \n 1 \n Ubiquiti Networks, Inc.\nRevenues by Product Type (In thousands)\n(Unaudited) \n Three Months Ended December 31, Six Months Ended December 31, \n 2018 2017 2018 2017 \n Service Provider Technology $ 113,222 $ 119,852 $ 218,179 $ 239,767 \n Enterprise Technology 194,054 130,959 372,002 256,912 \n Total revenues $ 307,276 $ 250,811 $ 590,181 $ 496,679 \n Ubiquiti Networks, Inc. \n Revenues by Geographical Area \n (In thousands) \n (Unaudited) \n Three Months Ended December 31, Six Months Ended December 31, \n 2018 2017 2018 2017 \n North America $ 121,234 $ 94,957 $ 240,605 $ 191,127 \n South America 20,907 20,746 35,083 51,799 \n Europe, the Middle East and Africa 134,392 102,026 259,323 195,340 \n Asia Pacific 30,743 33,082 55,170 58,413 \n Total revenues $ 307,276 $ 250,811 $ 590,181 $ 496,679 \n Income Statement Items \n Gross Margins \n During the second quarter fiscal 2019 , GAAP gross profit was $140.2 million . GAAP gross margin of 45.6% increased v ersus the comparable prior year period GAAP g ross margin o f 38.6% and decreased versus th e prior quarter GAAP gross margin of 46.5% . Second quarter fiscal 2018 GAAP g ross margin incl u ded $18. 6 million in provisions for obsolete inventory, vendor deposits and loss on purchase commitments. On a sequential basis, margins were negatively impacted by higher tariffs on products sold in the U.S. \n We incur tariff costs on certain products imported into the U.S. from China and we expect our costs to increase if additional tar iffs are imposed on such imports. We t herefore anticipate near-term gross margins to range between 42% and 45%. However, we anticipate mitigating the effect of the tariffs in the long-term and therefore our long-term gross margins are expected to remain between 45% to 50%. \n Research and Development \n During the second quarter fiscal 2019 , research and development (R&D) expenses were $20.0 million . This reflects a de crease versus the R&D expenses of $20.5 million in the comparable prior year period and a n in crease sequentially versus the prior quarter R&D expenses of $18.2 million . \n Increased costs in second quarter fiscal 201 9 versus the pri or quarter were primarily driven by higher staffing levels. R&D expenses represent ed 6.5% of revenues in the second fiscal quarter 2019, which is in line with the Company's target model ra nge of 6% to 8%. \n Sales, General and Administrative \n The Company’s selling, general and administrative (“SG&A”) expenses for the second quarter w ere $10.6 million ver sus the SG&A expenses of $10.4 million in the compara b le prior year period and the prior quarter SG&A expenses of $13.8 million . The decrease in SG&A c osts versus the prior quarter are primar ily related to lower professional fees. SG&A expenses represented 3.4% of revenues in the second quarter fiscal 2019 , which is in line with the Company’s target model range of 3% to 5%. \n 2 \n Litigation Settlement \n On February 3, 2017, Synopsys, Inc. (“Synopsys”) filed a complaint against the Company, one of our subsidiaries and an employee in the United States District Court for the Northern District of California, alleging claims under the Digital Millennium Copyright Act. On January 17, 2019, the Company and Synopsys entered into a settlement pursuant to which the Company paid $18 million to Synopsys and agreed to a permanent injunction to prevent any unlicensed use of S ynopsys’s software. As a result of the settlement, the litigation with Synopsys was dismissed. The settlement does not contain any admission of liability, wrongdoing, or responsibility by any of the parties. \n Taxes \n The GAAP effective tax rate was 12.0% for the second quarter fiscal 2019 . For long-term planning purposes, we assume a target effective tax rate of 11% to 14%. \n Net Income \n During the second quarter fiscal 2019, GAAP net income was $77.8 million and GAAP income per diluted share was $1.09 . Non-GAAP net income during the quarter was $95.1 million and non-GAAP income per diluted share was $1.33 . Comparing the second quarter fiscal 2019 with second quarter fiscal 201 8, the 5 9. 6 % increase in non-GAAP net income and 7 5 % increase in non-GAAP diluted EPS was primarily driven by a 22.5% increase in revenues , lower inventory obsolescence charges, as well as a 7.4 million reduction in non-GAAP diluted share count. \n Balance Sheet Items \n Cash and Investments \n Total cash and cash equivalent s were $293.3 million as of December 31, 2018 compared with $666.7 million as of June 30, 2018 . In addition , as of December 31, 2018 , we held $145.8 million in avai lable -for-sale securities . During the second quarter fiscal 2019, the Company repurchased 2,287,975 shares of common stock for $206.3 million at an average price of $90.17 per share . \n DSOs \n This quarter the Company experienced a decline in days sales outstanding in accounts receivable (“DSO”) to 52 days, compared with 54 days in the first quarter fiscal 201 9 . The Company expects DSO’s to fluctuate as the mix of the Company’s distributors evolves . \n Inventory \n Finished goods inventory at the end of the quarter increased by $155.0 million to $251.7 million on a year - over - year basis and increased $ 116.8 million from the prior qu arter. F inished good s inventor y increased versus the pr ior year and prior quarter primarily due to the timing of production deliver y and ex pected growth in demand. We will continue to manage inventory levels to reduce lead times , secure supply and meet demand. \n Cash Flow Statement Items \n The Company’s net cash flow from operations for the six months ended December 31, 2018 was $144.6 million , compared with a net cash flow from operations of $165.7 million for the s ame period last year . The $21.1 million decrease in operating cash flow for the si x months ended Decembe r 31 , 2018 as compared with the same period last year was primarily driven by the net impact of increased invent ory and the corresponding payables. F or the s ix months ended December 31, 2018, the Company used $361.8 million of cash related to financing activities, which was driven by $313.1 million i n stock repurchases, $36.1 million in cash dividend payments and $12.5 million in debt repayments . \n Outlook \n Based on recent business trends, the Company expects to achieve results wi thin the guidance range previously provided for the full fiscal year ending June 30, 2019. \n About Ubiquiti Networks \n Ubiquiti Networks is focused on democratizing network technology on a global scale — aggregate shipments of nearly 85 million devices play a key role in creating networking infrastructure in over 200 countries and territories around the world. \n 3 \n Our professional networking products are powered by our UNMS and UniFi software platforms to provide high-capacity distributed Internet access and unified information technology management, respectively. \n Ubiquiti and the U logo are trademarks or registered tradema rk s of Ubiquiti and/or its affiliates in the United States and other countries. For more information, please visit www.ubnt.com. \n Investor Relations Contact \n Laura Kiernan \n SVP, Investor Relations \n Ubiquiti Networks, Inc. \n laura.kiernan@ubnt.com \n Ph. 1-914-598-7733 \n Safe Harbor for Forward Looking Statements \n Certain statements in this press release are forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended. Statements other than statements of historical fact including words such as “look”, \"will\", “anticipate”, “believe”, “estimate”, “expect”, \"forecast\", “consider” and “plan” and statements in the future tense are forward looking statements. The statements in this press release that could be deemed forward-looking statements include statements regarding expectations for financial results for the full fiscal year 2019 , and statements regarding expectations of the impact of tariffs, expected impact of taxes on our liquidity and results of operations, our cash position, expenses, DSOs, number of distributors and resellers, shipments, the introduction of new consumer products, Gross Margins, R&D, SG&A, tax rates, inventory turns, growth opportunities, demand and long term global environment for our products, new products, and financial performance estimates including revenues and GAAP diluted EPS for the Company's full fiscal year 2019 , and any statements or assumptions underlying any of the foregoing. \n Forward-looking statements are subject to certain risks and uncertainties that could cause our actual future results to differ materially or cause a material adverse impact on our results. Potential risks and uncertainties include, but are not limited to, the impact of U.S. tariffs on results, fluctuations in our operating results; varying demand for our products due to the financial and operating condition of our distributors and their customers, and distributors' inventory management practices; political and economic conditions and volatility affecting the stability of business environments, economic growth, currency values, commodity prices and other factors that may influence the ultimate demand for our products in particular geographies or globally; impact of counterfeiting and our ability to contain such impact; our reliance on a limited number of distributors; inability of our contract manufacturers and suppliers to meet our demand; our dependence on Qualcomm Atheros for chipsets without a short-term alternative; as we move into new markets competition from certain of our current or potential competitors who may be more established in such markets; our ability to keep pace with technological and market developments; success and timing of new product introductions by us and the performance of our products generally; our ability to effectively manage the significant increase in our transactional sales volumes; we may become subject to warranty claims, product liability and product recalls; that a substantial majority of our sales are into countries outside the United States and we are subject to numerous U.S. export control and economic sanctions laws; costs related to responding to government inquiries related to regulatory compliance; our reliance on the Ubiquiti Community; our reliance on certain key members of our management team, including our founder and chief executive officer, Robert J. Pera; adverse tax-related matters such as tax audits, changes in our effective tax rate or new tax legislative proposals; whether the final determination of our income tax liability may be materially different from our income tax provisions; the impact of any intellectual property litigation and claims for indemnification; litigation related to U.S. Securities laws; and economic and political conditions in the United States and abroad. We discuss these risks in greater detail under the heading “Risk Factors” and elsewhere in our Annual Report on Form 10-K for the year ended June 30, 2018 , and subsequent filings filed with the U.S. Securities and Exchange Commission (the “SEC”), which are available at the SEC's website at www.sec.gov. Copies may also be obtained by contacting the Ubiquiti Networks Investor Relations Department, by email at IR@ubnt.com or by visiting the Investor Relations section of the Ubiquiti Networks website, http://ir.ubnt.com. \n Given these uncertainties, you should not place undue reliance on these forward-looking statements. Also, forward-looking statements represent our management's beliefs and assumptions only as of the date made. Except as required by law, Ubiquiti Networks undertakes no obligation to update information contained herein. You should review our SEC filings carefully and with the understanding that our actual future results may be materially different from what we expect. \n 4 \n Ubiquiti Networks, Inc. \n Condensed Consolidated Statement s of Operations and Comprehensive Income (Loss) \n (In thousands, except per share data) \n (Unaudited) \n Three Months Ended December 31, Six Months Ended December 31, \n 2018 2017 2018 2017 \n Revenues $ 307,276 $ 250,811 $ 590,181 $ 496,679 \n Cost of revenues 167,045 153,911 318,344 288,123 \n Gross profit $ 140,231 $ 96,900 $ 271,837 $ 208,556 \n Operating expenses: \n Research and development 19,977 20,468 38,199 37,396 \n Sales, general and administrative 10,597 10,352 24,363 18,017 \n Litigation settlement 18,000 — 18,000 — \n Total operating expenses 48,574 30,820 80,562 55,413 \n Income from operations 91,657 66,080 191,275 153,143 \n Interest expense and other, net (3,212) (2,492) (5,739) (3,853) \n Income before income taxes 88,445 63,588 185,536 149,290 \n Provisions for income taxes 10,649 115,047 22,037 125,824 \n Net income (loss) $ 77,796 $ (51,459) $ 163,499 $ 23,466 \n Net income (loss) per share of common stock: \n Basic $ 1.09 $ (0.66) $ 2.26 $ 0.30 \n Diluted $ 1.09 $ (0.66) $ 2.25 $ 0.29 \n Weighted average shares used in computing net income (loss) per share of common stock: \n Basic 71,225 77,654 72,499 78,895 \n Diluted 71,406 77,654 72,686 80,494 \n Other comprehensive income (loss): \n Unrealized (loss) on available-for-sale securities (2) — (148) — \n Comprehensive income $ 77,794 $ (51,459) $ 163,351 $ 23,466 \n 5 \n Ubiquiti Networks, Inc. \n Reconciliation of GAAP Net Income to Non-GAAP Net Income \n (In thousands, except per share data) \n (Unaudited) \n Three Months Ended Six Months Ended December 31, \n December 31, 2018 September 30, 2018 December 31, 2017 2018 2017 \n Net Income $ 77,796 $ 85,703 $ (51,459) $ 163,499 $ 23,466 \n Stock-based compensation: \n Cost of revenues 261 33 40 294 285 \n Research and development 497 467 370 964 826 \n Sales, general and administrative 21 275 370 296 581 \n Net Tax Benefits related to Equity Awards Exercises and Vesting — — (194) — (769) \n Tax Reform Transition Tax 2,765 — 110,708 2,765 112,798 \n Litigation settlement 18,000 — — 18,000 — \n Tax effect of Non-GAAP adjustments (4,200) (240) (242) (4,440) (607) \n Non-GAAP net income $ 95,140 $ 86,238 $ 59,593 $ 181,378 $ 136,580 \n Non-GAAP diluted EPS $ 1.33 $ 1.17 $ 0.76 $ 2.50 $ 1.71 \n Shares outstanding (Diluted) 71,406 73,963 79,235 72,686 80,494 \n Share adjustment (ASU 2016-09 Adoption) — — (471) — (474) \n Weighted-average shares used in Non-GAAP diluted EPS 71,406 73,963 78,764 72,686 80,020 \n Use of Non-GAAP Financial Information \n To supplement our condensed consolidated financial results prepared under generally accepted accounting principles, or GAAP, we use non-GAAP measures of net income and earnings per diluted share that are adjusted to exclude certain costs, expenses and gains such as stock-based compensation expense, net tax benefits related to equity awards exercises and vesting, unusual litigation settlements , Tax Reform Transition Tax and the tax effects of these non-GAAP adjustments. \n Reconciliations of the adjustments to GAAP results for the periods presented are provided above. In addition, an explanation of the ways in which management uses non-GAAP financial information to evaluate its business, the substance behind management's decision to use this non-GAAP financial information, material limitations associated with the use of non-GAAP financial information, the manner in which management compensates for those limitations, and the substantive reasons management believes that this non-GAAP financial information provides useful information to investors is included under the paragraphs below. \n A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis due to the high variability and low visibility with respect to the charges which are excluded from these non-GAAP measures. For example, share-based compensation expense is impacted by the Company’s future price at which the Company’s stock will trade in those future periods. The items that are being excluded are difficult to predict and a reconciliation could result in disclosure that would be imprecise or potentially misleading. Material changes to any one of these items could have a significant effect on our guidance and future GAAP results. Certain exclusions, such as share-based compensation expenses, are generally incurred each quarter, but the amounts have historically and may continue to vary significantly from quarter to quarter. \n About our Non-GAAP Net Income and Non-GAAP Earnings per Diluted Share \n We believe that the presentation of non-GAAP net income and non-GAAP earnings per diluted share provides important supplemental information regarding non-cash expenses, significant items that we believe are important to understanding our financial, and business trends relating to our financial condition and results of operations. Non-GAAP net income and non-GAAP earnings per diluted share are among the primary indicators used by management as a basis for planning and forecasting future periods and by management and our board of directors to determine whether our operating performance has met specified targets and thresholds. Management uses non-GAAP net income and non-GAAP earnings per diluted share when evaluating operating performance because it believes that the exclusion of the items described \n 6 \n below, for which the amounts or timing may vary significantly depending upon the Company's activities and other factors, facilitates comparability of the Company's operating performance from period to period. We have chosen to provide this information to investors so they can analyze our operating results in the same way that management does and use this information in their assessment of our business and the valuation of our Company. \n Use and Economic Substance of Non-GAAP Financial Measures used by Ubiquiti Networks \n We compute non-GAAP net income and non-GAAP earnings per diluted share by adjusting GAAP net income and GAAP earnings per diluted share to remove the impact of certain adjustments and the tax effect of those adjustments. Items excluded from net income are: \n • Stock-based compensation expense \n • Net Tax Benefits related to Equity Awards Exercises and Vesting \n • Litigation settlement \n • Tax Reform Transition Tax \n • Tax effect of non-GAAP adjustments, applying the principles of ASC 740 \n Usefulness of Non-GAAP Financial Information to Investors \n These non-GAAP measures are not in accordance with, or an alternative to, GAAP and may be materially different from other non-GAAP measures, including similarly titled non-GAAP measures used by other companies. The presentation of this additional information should not be considered in isolation from, as a substitute for, or superior to, net income or earnings per diluted share prepared in accordance with GAAP. Non-GAAP financial measures have limitations in that they do not reflect certain items that may have a material impact upon our reported financial results. \n For more information on the non-GAAP adjustments, please see the table captioned “Reconciliation of GAAP Net Income to Non-GAAP Net Income” included in this press release. \n 7 \n Ubiquiti Networks, Inc. \n Condensed Consolidated Balance Sheets \n (In thousands, except share amounts) \n (Unaudited) \n December 31, 2018 June 30, 2018 (1) \n Assets \n Current assets: \n Cash and cash equivalents $ 293,334 $ 666,681 \n Investments — short-term 103,489 — \n Accounts receivable, net 174,327 174,521 \n Inventories 255,778 102,220 \n Vendor deposits 24,753 39,029 \n Prepaid expenses and other current assets 14,236 18,901 \n Total current assets 865,917 1,001,352 \n Property and equipment, net 13,243 14,328 \n Deferred tax assets — long-term 3,106 3,106 \n Investments — long-term 42,296 — \n Other long-term assets 11,750 3,791 \n Total assets $ 936,312 $ 1,022,577 \n Liabilities and Stockholders’ Equity \n Current liabilities: \n Accounts payable $ 136,454 $ 14,098 \n Income taxes payable 6,524 5,780 \n Debt — short-term 24,425 24,425 \n Other current liabilities 64,694 68,613 \n Total current liabilities 232,097 112,916 \n Income taxes payable — long-term 122,344 127,719 \n Debt — long-term 448,154 460,352 \n Other long-term liabilities 8,381 5,842 \n Total liabilities 810,976 706,829 \n Stockholders’ equity: \n Common Stock 71 74 \n Additional paid–in capital — 393 \n Accumulated other comprehensive income (loss) (148) — \n Retained earnings 125,413 315,281 \n Total stockholders’ equity 125,336 315,748 \n Total liabilities and stockholders’ equity $ 936,312 $ 1,022,577 \n (1) Derived from audited consolidated financial statements as of and for the year ended June 30, 2018 . \n 8 \n Ubiquiti Networks, Inc. \n Condensed Consolidated Cash Flows \n (In thousands) \n (Unaudited) \n Six Months Ended December 31, \n 2018 2017 \n Cash Flows from Operating Activities: \n Net income $ 163,499 $ 23,466 \n Adjustments to reconcile net income to net cash provided by operating activities: \n Depreciation and amortization 3,550 3,286 \n Amortization of debt issuance costs 562 129 \n Premium amortization and (discount accretion), net (356) — \n Provision for inventory obsolescence 936 3,151 \n Provision/(recovery) for loss on vendor deposits (431) 16,187 \n Stock-based compensation 1,554 1,692 \n Deferred Taxes — 2,253 \n Other, net (142) 410 \n Changes in operating assets and liabilities: \n Accounts receivable 258 (18,613) \n Inventories (154,470) 39,533 \n Vendor deposits 15,356 (11,153) \n Prepaid income taxes — 2,419 \n Prepaid expenses and other assets 4,361 (2,147) \n Accounts payable 122,465 (36,888) \n Income taxes payable (4,631) 113,166 \n Deferred revenues 6,265 1,207 \n Accrued and other liabilities (14,193) 27,568 \n Net cash provided by operating activities 144,583 165,666 \n Cash Flows from Investing Activities: \n Purchase of property and equipment and other long-term assets (5,610) (6,195) \n Private equity investment (5,000) — \n Purchase of investments (167,822) — \n Proceeds from sale of investments 7,598 — \n Proceeds from maturities of investments 14,721 — \n Net cash (used in) investing activities (156,113) (6,195) \n Cash Flows from Financing Activities: \n Proceeds from borrowing under the Amended Credit Facility- Revolver — 218,500 \n Repayment against Credit Facility (12,500) (7,500) \n Repurchases of common stock (313,079) (151,255) \n Payment of common stock cash dividends (36,139) — \n Proceeds from exercise of stock options 380 849 \n Tax withholdings related to net share settlements of restricted stock units (479) (487) \n Net cash (used in) provided by financing activities (361,817) 60,107 \n Net (decrease) increase in cash and cash equivalents (373,347) 219,578 \n Cash and cash equivalents at beginning of period 666,681 604,198 \n Cash and cash equivalents at end of period $ 293,334 $ 823,776 \n Supplemental Disclosure of Cash Flow Information: \n Income taxes paid, net of refunds $ 26,437 $ 7,850 \n Interest paid $ 13,287 $ 4,843 \n Non-Cash Investing and Financing Activities: \n Unpaid stock repurchases $ 6,000 $ — \n Unpaid property and equipment and other long-term assets $ 36 $ 288 \n 9 \n Net unsettled investment purchases, sales and maturities $ 74 $ — \n 10 \n",
@@ -36,6 +39,28 @@
   "same_day_8k_items": "2.02",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000151173719000007__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001511737-18-000027",
+   "filingDate": "2018-11-09",
+   "reportDate": "2018-11-06",
+   "form": "8-K",
+   "local_gz": "000151173718000027__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 6,
+   "guidance_sentences": [
+    "from China and therefore we anticipate near-term gross margins to range between 42% and 45%.",
+    "However, we anticipate mitigating the effect of the tariffs in the long-term and therefore our long-term gross margins are expected to remain between 45% to 50%.",
+    "R&D expenses represented 6.4% of revenues in the first fiscal quarter 2019, which is in line with the Company’s target model range of 6% to 8%.",
+    "SG&A expenses represented 4.9% of revenues in the first quarter fiscal 2019, which is in line with the Company’s target model range of 3% to 5%.",
+    "For long-term planning purposes, we assume a target effective tax rate of 11% to 14%.",
+    "Outlook Based on recent business trends, the Company believes that it will achieve the guidance previously provided for the full fiscal year ending June 30, 2019."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +72,8 @@
    "reportDate": "2018-06-30",
    "accession": "0001511737-18-000012",
    "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173718000012/ubnt-06302018x10k.htm",
-   "local_gz": "000151173718000012__annual.txt.gz"
+   "local_gz": "000151173718000012__annual.txt.gz",
+   "n_lines": 4138
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +81,8 @@
    "reportDate": "2018-12-31",
    "accession": "0001511737-19-000006",
    "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173719000006/wfx-20181231.htm",
-   "local_gz": "000151173719000006__q0.txt.gz"
+   "local_gz": "000151173719000006__q0.txt.gz",
+   "n_lines": 1209
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +90,106 @@
    "reportDate": "2018-09-30",
    "accession": "0001511737-18-000026",
    "url": "https://www.sec.gov/Archives/edgar/data/1511737/000151173718000026/ubnt-9302018x10qxq12019.htm",
-   "local_gz": "000151173718000026__q1.txt.gz"
+   "local_gz": "000151173718000026__q1.txt.gz",
+   "n_lines": 2236
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2018-11-09",
   "n_rows": 8,
@@ -83,6 +204,68 @@
     "ocf": -9776000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 132512000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 125341000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4733000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 533944000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 226000000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2868000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1967000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 64432000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.77,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 83317000.0,
+      "filed": "2017-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +276,63 @@
     "ocf": 46141000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 142048000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 140561000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5254000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 604198000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 257250000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 1528000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2029000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 60678000.0,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.74,
+      "filed": "2017-08-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +343,68 @@
     "ocf": 96920000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 122263000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 128589000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 6559000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 631810000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 298500000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2932000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1655000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 74925000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.92,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 81748000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +415,68 @@
     "ocf": 68746000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 98893000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 159153000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 6415000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 823776000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 468250000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3263000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1760000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -51459000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.66,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 77654000.0,
+      "filed": "2018-02-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +487,68 @@
     "ocf": 119443000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 92772000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 158439000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 6744000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 690806000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 493750000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 1123000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1654000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 102739000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.32,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 77953000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +559,63 @@
     "ocf": 46938000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 102220000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 174521000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8509000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 666681000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 487500000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 1797000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2241000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 70085000.0,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.94,
+      "filed": "2018-08-24",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +626,68 @@
     "ocf": 93941000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 139926000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 165294000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 10455000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 480812000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 481250000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 4035000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1794000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 85703000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.16,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 73963000.0,
+      "filed": "2018-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +698,27 @@
     "ocf": 50642000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 293334000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 77796000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 1.09,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 307300000.0,
     "revenue_xbrl_for_reference": 307276000.0
@@ -166,152 +732,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3663",
   "sic2": "36",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 174,
-  "peer_list_all_same_sic2_tickers": [
-   "AAOI",
-   "ADI",
-   "ADTN",
-   "AEIS",
-   "AIRG",
-   "AMAT",
-   "AMBA",
-   "AMD",
-   "AMKR",
-   "AMSC",
-   "AOS",
-   "AOSL",
-   "APH",
-   "ASX",
-   "ATKR",
-   "ATOM",
-   "AUDC",
-   "AVGO",
-   "AVNW",
-   "AXTI",
-   "AYI",
-   "BE",
-   "BEEM",
-   "BELFA",
-   "BHE",
-   "BKTI",
-   "BLDP",
-   "BLNK",
-   "BYRN",
-   "CAE",
-   "CIEN",
-   "CLFD",
-   "CLRO",
-   "CLS",
-   "CMTL",
-   "CRNT",
-   "CRUS",
-   "CSIQ",
-   "CTS",
-   "DIOD",
-   "DQ",
-   "EAF",
-   "EFOI",
-   "ELTK",
-   "EMR",
-   "ENPH",
-   "ENR",
-   "ENS",
-   "ERIC",
-   "ESE",
-   "ESP",
-   "FCEL",
-   "FELE",
-   "FIEE",
-   "FKWL",
-   "FLEX",
-   "FN",
-   "FORM",
-   "FSLR",
-   "GE",
-   "GILT",
-   "GNRC",
-   "GNSS",
-   "GSIT",
-   "HBB",
-   "HELE",
-   "HIMX",
-   "HLIT",
-   "HUBB",
-   "ICHR",
-   "IMOS",
-   "IMTE",
-   "INSG",
-   "INTC",
-   "IPGP",
-   "IPWR",
-   "JBL",
-   "JKS",
-   "KE",
-   "KLIC",
-   "KN",
-   "KOPN",
-   "KOSS",
-   "KTCC",
-   "KULR",
-   "KUST",
-   "LASR",
-   "LEDS",
-   "LFUS",
-   "LGL",
-   "LITE",
-   "LPL",
-   "LPTH",
-   "LSCC",
-   "LYTS",
-   "MCHP",
-   "MEI",
-   "MPWR",
-   "MRAM",
-   "MRCY",
-   "MSI",
-   "MSN",
-   "MTSI",
-   "MU",
-   "MVIS",
-   "MX",
-   "MXL",
-   "NEON",
-   "NNDM",
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 15,
+  "peer_list_all_tickers": [
    "NOK",
-   "NOVT",
-   "NSSC",
-   "NSYS",
-   "NVDA",
-   "NVEC",
-   "NXPI",
-   "OESX",
-   "OLED",
-   "ON",
-   "OSIS"
+   "QCOM"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0001045810",
-    "name": "NVIDIA CORP",
-    "ticker": "NVDA",
-    "sic2": "36"
+    "entity_id": "0000804328",
+    "name": "QUALCOMM INC/DE",
+    "ticker": "QCOM",
+    "sic4": "3663",
+    "sic3": "366",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2018-11-07",
+    "accn": "0001728949-18-000095",
+    "local_gz": "000172894918000095__peer10k.txt.gz",
+    "capex_excerpt": [
+     "gs assigned to our debt securities by credit rating agencies, our borrowing costs, our ability to access debt in the future and/or the terms of such debt could be adversely affected. We have implemented a stock repurchase program to repurchase up to $30 billion of our outstanding common stock. This stock repurchase program has significantly reduced and will continue to reduce the amount of cash that we have available to fund our operations, including research and development, working capital, capital expenditures, acquisitions, investments, dividends and other corporate purposes; and increases our exposure to adverse economic, market, industry and competitive conditions and developments, and",
+     ",895 5,001 (1,106 ) (22 %) Net cash provided by investing activities 4,381 18,463 (14,082 ) (76 %) Net cash (used) provided by financing activities (31,487 ) 5,571 (37,058 ) N/M N/M = Not meaningful The net decrease in cash, cash equivalents and marketable securities was primarily due to $22.6 billion in payments to repurchase shares of our common stock, $5.5 billion in repayment of long-term debt, $3.5 billion in cash dividends paid and $784 million in capital expenditures, partially offset by net cash provided by operating activities and the release of the restriction on $2.0 billion of deposits used to collateralize the letters of credit related to our proposed acquisition of NXP upon ter",
+     "cheduled to occur in August 2019 but may occur earlier in certain circumstances. At September 30, 2018 , $8.9 billion remained authorized for repurchase under our stock repurchase program. Since September 30, 2018 , we repurchased and retired 8.5 million shares of common stock for $542 million . Our stock repurchase program has significantly reduced and will continue to reduce the amount of cash that we have available to fund our operations including research and development, working capital, capital expenditures, acquisitions, investments, dividends and other corporate purposes; and increases our exposure to adverse economic, market, industry and competitive conditions and developments, and"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000002488",
-    "name": "ADVANCED MICRO DEVICES INC",
-    "ticker": "AMD",
-    "sic2": "36",
-    "form": "10-K",
-    "filingDate": "2019-02-08",
-    "accn": "0000002488-19-000011",
-    "local_gz": "000000248819000011__peer10k.txt.gz",
+    "entity_id": "0000924613",
+    "name": "NOKIA CORP",
+    "ticker": "NOK",
+    "sic4": "3663",
+    "sic3": "366",
+    "has_annual": true,
+    "form": "20-F",
+    "filingDate": "2018-03-22",
+    "accn": "0001558370-18-002320",
+    "local_gz": "000155837018002320__peer10k.txt.gz",
     "capex_excerpt": [
-     "nal sales will continue to be a significant portion of total sales in the foreseeable future; that other unrecognized tax benefits will not materially change in the next 12 months; that AMD’s cash and cash equivalents balances together with the availability under that certain secured revolving line of credit (Secured Revolving Line of Credit) made available to AMD and certain of its subsidiaries under the Amended and Restated Loan Agreement, will be sufficient to fund AMD’s operations including capital expenditures over the next 12 months; AMD’s ability to obtain sufficient external financing on favorable terms, or at all; AMD’s expectation that based on the information presently known to ma",
-     "financial position and prevent us from implementing our strategy or fulfilling our contractual obligations. Our total debt as of December 29, 2018 was $1.3 billion, net of unamortized debt issuance costs and unamortized debt discount associated with the 2.125% Notes. Our large indebtedness may: • make it difficult for us to satisfy our financial obligations, including making scheduled principal and interest payments; • limit our ability to borrow additional funds for working capital, capital expenditures, acquisitions and general corporate and other purposes; 18 • limit our ability to use our cash flow or obtain additional financing for future working capital, capital expenditures, acquisiti",
-     "debt issuance costs and unamortized debt discount associated with the 2.125% Notes. Our large indebtedness may: • make it difficult for us to satisfy our financial obligations, including making scheduled principal and interest payments; • limit our ability to borrow additional funds for working capital, capital expenditures, acquisitions and general corporate and other purposes; 18 • limit our ability to use our cash flow or obtain additional financing for future working capital, capital expenditures, acquisitions or other general corporate purposes; • require us to use a substantial portion of our cash flow from operations to make debt service payments; • place us at a competitive disadvant"
-    ]
+     "cash equivalents; current available-for-sale investments, liquid assets; and investments at fair value through profit and loss, liquid assets) equaled EUR 8 280 million, a decrease of EUR 1 047 million, compared to EUR 9 327 million as of December 31, 2016. The decrease was primarily attributable to shareholder distributions, including payment of dividends of EUR 970 million and repurchases of shares of EUR 785 million; EUR 394 million cash outflow related to the acquisitions of businesses, and capital expenditures of EUR 601 million. The decrease was partially offset by EUR 1 811 million positive cash flow from operating activities, including EUR 597 million total cash inflows from net work",
+     "ion, mainly related to the acquisition of Comptel, compared to EUR 5 819 million cash inflow in 2016, which included cash and cash equivalents acquired as part of the acquisition of Alcatel Lucent. In 2017, cash outflow from acquisition of businesses was offset by proceeds from maturities and sale of current available-for-sale investments, liquid assets of EUR 3 265 million partially offset by purchase of current available-for-sale investments, liquid assets of EUR 2 729 million. In 2017, our capital expenditure equaled EUR 601 million, an increase of EUR 124 million compared to EUR 477 million in 2016. Major items of capital expenditure in 2017 included investments in R&D equipment, test eq",
+     "sh equivalents acquired as part of the acquisition of Alcatel Lucent. In 2017, cash outflow from acquisition of businesses was offset by proceeds from maturities and sale of current available-for-sale investments, liquid assets of EUR 3 265 million partially offset by purchase of current available-for-sale investments, liquid assets of EUR 2 729 million. In 2017, our capital expenditure equaled EUR 601 million, an increase of EUR 124 million compared to EUR 477 million in 2016. Major items of capital expenditure in 2017 included investments in R&D equipment, test equipment, hardware for telco and cloud environment, plants, buildings and construction for transformation projects, and repair or"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -333,7 +799,16 @@
   "latest_data_date": "2019-02-08",
   "cutoff": "2019-02-08",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2019-02-11",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

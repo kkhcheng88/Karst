@@ -1,332 +1,1103 @@
 {
- "event_id": "E070",
- "schema": "②第一次考試取證包 v1",
- "ticker": "CRM",
- "cik": "0001108524",
- "name": "Salesforce, Inc.",
+ "event_id": "B034",
+ "slot_id": "E070",
+ "schema": "②第一次考試取證包 v1(補強版)",
+ "ticker": "U",
+ "cik": "0001810806",
+ "name": "Unity Software Inc.",
  "sic": "7372",
  "sic2": "73",
  "bucket": "科技與軟件",
- "evidence_cutoff": "T1 = 2023-11-30(反應日收市)",
+ "evidence_cutoff": "T1 = 2023-05-11(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
-  "event_id": "E070",
-  "ticker": "CRM",
-  "cik": "0001108524",
-  "T0_公布時間_美東": "2023-11-29T16:05:29",
-  "T0_UTC": "2023-11-29T21:05:29.000Z",
-  "t0_source": "稿頭",
-  "EX-99.1_稿頭日期": "2023-11-29",
-  "公開時段": "after_close",
-  "signal_date_反應日": "2023-11-30",
-  "T1_分析截止": "2023-11-30 收市",
-  "T2_可成交": "2023-12-01 開市",
-  "fiscal_quarter": "2023Q4",
-  "improvement_type_機械": "指引",
+  "slot_id": "E070",
+  "event_id": "B034",
+  "ticker": "U",
+  "cik": "0001810806",
+  "T0_公布時間_美東": "2023-05-10T16:06:01",
+  "T0_UTC": "2023-05-10T20:06:01.000Z",
+  "t0_source": "8-K",
+  "EX-99.1_稿頭日期": "",
+  "公開時段": "after_close_8k",
+  "signal_date_反應日": "2023-05-11",
+  "T1_分析截止": "2023-05-11 收市",
+  "T2_可成交": "2023-05-12 開市",
+  "fiscal_quarter": "2023Q1",
+  "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
-  "accessionNumber": "0001108524-23-000046",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852423000046/crm-20231129.htm"
+  "accessionNumber": "0001810806-23-000057",
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080623000057/unity-20230510.htm",
+  "swapped_in": {
+   "replaced_slot": "E070",
+   "replaced_event_id": "E070",
+   "replaced_accessionNumber": "0001108524-23-000046",
+   "reason": "指引上調人手核不過(上調的是經營利潤率)"
+  }
  },
  "2_觸發資料": {
-  "ex991_full_text": " \n EX-99.1\n 2\n crm-q3fy24xexhibit991.htm\n EX-99.1\n Document \n Exhibit 99.1 \n Salesforce Announces Strong Third Quarter Fiscal 2024 Results \n SAN FRANCISCO, Calif. - November 29, 2023 - Salesforce (NYSE: CRM), the #1 AI CRM, today announced results for its third quarter fiscal 2024 ended October 31, 2023. \n • Third Quarter Revenue of $8.72 Billion, up 11% Year-Over-Year (\"Y/Y\"), up 10% in Constant Currency (\"CC\") \n • Third Quarter GAAP Operating Margin of 17.2% and non-GAAP Operating Margin of 31.2% \n • Current Remaining Performance Obligation of $23.9 Billion, up 14% Y/Y, 13% CC \n • Third Quarter GAAP Diluted Earnings per Share (\"EPS\") of $1.25 and non-GAAP Diluted EPS of $2.11 \n • Returned $1.9 Billion to Stockholders in the Third Quarter in the Form of Share Repurchases \n • Initiates Fourth Quarter FY24 Revenue Guidance of $9.18 Billion to $9.23 Billion, up 10% Y/Y \n • Narrows Full Year FY24 Revenue Guidance to $34.75 Billion to $34.8 Billion, up 11% Y/Y \n • Raises Full Year FY24 GAAP Operating Margin Guidance to 14.5% and non-GAAP Operating Margin Guidance to 30.5% \n • Raises Full Year FY24 Operating Cash Flow Growth Guidance to 30% to 33% Y/Y \n “We had another strong quarter of executing on our profitable growth plan we set in motion last year, delivering $8.7 billion in revenue and again raising our operating margin guidance for this fiscal year,” said Marc Benioff, Chair and CEO, Salesforce. “We're now the third largest enterprise software company by revenue, the number one AI CRM and the number one enterprise apps company. Most importantly, we're bringing CRM, data, AI and trust together in a single, integrated platform, leading our customers into a new era of incredible productivity and growth.” \n “Over the last year we have transformed the company, enabling us to deliver another quarter of strong profitable growth with GAAP operating margin of 17.2% and non-GAAP operating margin of 31.2%,” said Amy Weaver, President and CFO of Salesforce. “We remain focused on driving shareholder value as we deliver innovation to our customers as the #1 AI CRM.” \n Salesforce delivered the following results for its fiscal third quarter: \n Revenue : Total third quarter revenue was $8.72 billion, an increase of 11% Y/Y and 10% CC. Subscription and support revenues were $8.14 billion, an increase of 13% Y/Y. Professional services and other revenues were $0.58 billion, a decrease of (4)% Y/Y. \n Operating Margin: Third quarter GAAP operating margin was 17.2%. Third quarter non-GAAP operating margin was 31.2%. Restructuring negatively impacted third quarter GAAP operating margin by (60) bps. \n Earnings per Share : Third quarter GAAP diluted EPS was $1.25, and non-GAAP diluted EPS was $2.11. Losses on the Company’s strategic investments negatively impacted GAAP diluted EPS by $(0.06) based on a U.S. tax rate of 25% and non-GAAP diluted EPS by $(0.06) based on a non-GAAP tax rate of 23.5%. Restructuring negatively impacted third quarter GAAP diluted EPS by $(0.06). \n Cash Flow : Cash generated from operations for the third quarter was $1.53 billion, an increase of 389% Y/Y. Free cash flow was $1.37 billion, an increase of 1088% Y/Y. Restructuring negatively impacted third quarter operating cash flow growth by (3,600) bps. \n Remaining Performance Obligation : Remaining performance obligation ended the third quarter at $48.3 billion, an increase of 21% Y/Y. Current remaining performance obligation ended at $23.9 billion, an increase of 14% Y/Y, and 13% CC. \n Forward Looking Guidance \n As of November 29, 2023, the Company is initiating its fourth quarter GAAP and non-GAAP diluted EPS guidance, current remaining performance obligation growth guidance, and revenue guidance. The Company is updating its full year FY24 revenue guidance and raising its GAAP and non-GAAP diluted EPS guidance, GAAP and non-GAAP operating margin guidance, and operating cash flow growth guidance. \n Our guidance assumes no change to the value of the Company's strategic investment portfolio as it is not possible to forecast future gains and losses. In addition, the guidance below is based on estimated GAAP tax rates that reflect the Company’s currently available information, and excludes forecasted discrete tax items such as excess tax benefits from stock-based compensation. The GAAP tax rates may fluctuate due to discrete tax items and related effects in conjunction with certain provisions in the Tax Cuts and Jobs Act, future acquisitions or other transactions. \n Q4 FY24 \n Guidance \n Full Year FY24 \n Guidance \n Revenue \n $9.18 - $9.23 Billion $34.75 - $34.8 Billion \n Y/Y Growth \n 10% 11% \n FX Impact (1) \n No impact ($50M) Y/Y FX \n GAAP Operating Margin N/A 14.5% \n Non-GAAP Operating Margin (2) \n N/A 30.5% \n GAAP Diluted Earnings per Share (2) \n $1.26 - $1.27 $3.99 - $4.00 \n Non-GAAP Diluted Earnings per Share (2) \n $2.25 - $2.26 $8.18 - $8.19 \n Operating Cash Flow Growth (Y/Y) (3) \n N/A 30% - 33% \n Current Remaining Performance Obligation Growth (Y/Y) 10% N/A \n FX Impact (4) \n (~1 pt) N/A \n (1) Revenue FX impact is calculated by taking the current period rates compared to the prior period average rates. \n (2) Non-GAAP operating margin and non-GAAP EPS are non-GAAP financial measures. See below for an explanation of non-GAAP financial measures. The Company's shares used in computing GAAP Diluted EPS guidance and non-GAAP Diluted EPS guidance excludes any impact to share count from potential Q4 FY24 repurchase activity under our share repurchase program. \n (3) Operating Cash Flow Growth guidance includes an estimated 14% - 16% headwind from charges associated with our restructuring plan announced on January 4, 2023 (the \"Restructuring Plan\"). \n (4) Current Remaining Performance Obligation FX impact is calculated by taking the current period rates compared to the prior period ending rates. \n The following is a reconciliation of GAAP operating margin guidance to non-GAAP operating margin guidance for the full year: \n Full Year FY24 \nGuidance \n GAAP operating margin (1) \n ~14.5% \n Plus \n Amortization of purchased intangibles (2) \n 5.4% \n Stock-based compensation expense (2)(3) \n 8.0% \n Restructuring (2)(3) \n 2.6% \n Non-GAAP operating margin (1) \n ~30.5% \n (1) GAAP operating margin is the proportion of GAAP income from operations as a percentage of GAAP revenue. Non-GAAP operating margin is the proportion of non-GAAP income from operations as a percentage of GAAP revenue. \n (2) The percentages shown above have been calculated based on the midpoint of the low and high ends of the revenue guidance for full year FY24. \n (3) The percentages shown in the restructuring line have been calculated based on charges associated with the Restructuring Plan. Stock-based compensation expense included in the full year FY24 guidance GAAP to non-GAAP reconciliation table excludes stock-based compensation expense related to the Restructuring Plan, which is included in the restructuring line. \n The following is a per share reconciliation of GAAP diluted EPS to non-GAAP diluted EPS guidance for the next quarter and the full year: \n Fiscal 2024 \n Q4 \n FY24 \n GAAP diluted earnings per share range (1)(2) \n $1.26 - $1.27 $3.99 - $4.00 \n Plus \n Amortization of purchased intangibles $ 0.47 $ 1.90 \n Stock-based compensation expense $ 0.69 $ 2.82 \n Restructuring (3) \n $ 0.09 $ 0.91 \n Less \n Income tax effects and adjustments (4) \n $ (0.26) $ (1.44) \n Non-GAAP diluted earnings per share (2) \n $2.25 - $2.26 $8.18 - $8.19 \n Shares used in computing basic net income per share (millions) (5) \n 973 975 \n Shares used in computing diluted net income per share (millions) (5) \n 984 985 \n (1) The Company's GAAP tax provision is expected to be approximately 26% for the three months ended January 31, 2024, and approximately 21% for the year ended January 31, 2024. The GAAP tax rates may fluctuate due to discrete tax items and related effects in conjunction with certain provisions in the Tax Cuts and Jobs Act, future acquisitions or other transactions. \n (2) The Company's projected GAAP and non-GAAP diluted EPS assumes no change to the value of our strategic investment portfolio as it is not possible to forecast future gains and losses. The impact of future gains or losses from the Company’s strategic investment portfolio could be material. \n (3) The estimated impact to GAAP diluted EPS is in connection with the Restructuring Plan. \n (4) The Company’s non-GAAP tax provision uses a long-term projected tax rate of 23.5%, which reflects currently available information and could be subject to change. \n (5) The Company's shares used in computing GAAP EPS guidance and non-GAAP EPS guidance excludes any impact to share count from Q4 FY24 repurchase activity under our share repurchase program. \n For additional information regarding non-GAAP financial measures see the reconciliation of results and related explanations below. \n Management will provide further commentary around these guidance assumptions on its earnings call. \n Product Releases and Enhancements \n Three times a year Salesforce delivers new product releases, services, or enhancements to current products and services. These releases are a result of significant research and development investments made over multiple years, designed to help customers drive cost savings, boost efficiency, and build trust. \n To view our major product releases and other highlights as part of the Winter 2024 Product Release, visit: www.salesforce.com/products/innovation/winter-24-release. \n Quarterly Conference Call \n Salesforce plans to host a conference call at 2:00 p.m. (PT) / 5:00 p.m. (ET) to discuss its financial results with the investment community. A live webcast and replay details of the event will be available on the Salesforce Investor Relations website at www.salesforce.com/investor. \n About Salesforce \n Salesforce empowers companies of every size and industry to connect with their customers through the power of AI + data + CRM. For more information about Salesforce (NYSE: CRM), visit: www.salesforce.com. \n Mike Spencer \n Salesforce \n Investor Relations \n 415-536-6250 \n investor@salesforce.com \n Carolyn Guss \n Salesforce \n Public Relations \n 415-536-4966 \n pr@salesforce.com \n ### \n \"Safe harbor\" statement under the Private Securities Litigation Reform Act of 1995: This press release contains forward-looking statements about the Company's financial and operating results and guidance, which include, but are not limited to, expected GAAP and non-GAAP financial and other operating and non-operating results, including revenue, net income, earnings per share, operating cash flow growth, operating margin, expected revenue growth, expected foreign currency exchange rate impact, expected current remaining performance obligation growth, expected tax rates or provisions, stock-based compensation expenses, amortization of purchased intangibles, shares outstanding, market growth, strategic investments, expected restructuring expense or charges, and expected timing of product releases and enhancements. The achievement or success of the matters covered by such forward-looking statements involves risks, uncertainties and assumptions. If any such risks or uncertainties materialize or if any of the assumptions prove incorrect, the Company’s results or outcomes could differ materially from those expressed or implied by the forward-looking statements it makes. \n The risks and uncertainties referred to above include -- but are not limited to -- risks associated with: our ability to maintain security levels and service performance that meet the expectations of our customers, and the resources and costs required to avoid unanticipated downtime and prevent, detect and remediate performance degradation and security breaches; the expenses associated with our data centers and third-party infrastructure providers; our ability to secure additional data center capacity; our reliance on third-party hardware, software and platform providers; uncertainties regarding AI technologies and its integration into our product offerings; the effect of evolving domestic and foreign government regulations, including those related to the provision of services on the Internet, those related to accessing the Internet, and those addressing data privacy, cybersecurity, cross-border data transfers and import and export controls; current and potential litigation involving us or our industry, including litigation involving acquired entities, and the resolution or settlement thereof; regulatory developments and regulatory investigations involving us or affecting our industry; our ability to successfully introduce new services and product features, including any efforts to expand our services; the success of our strategy of acquiring or making investments in complementary businesses, joint ventures, services, technologies and intellectual property rights; our ability to complete, on a timely basis or at all, announced transactions; our ability to realize the benefits from acquisitions, strategic partnerships, joint ventures and investments, and successfully integrate acquired businesses and technologies; our ability to compete in the markets in which we participate; the success of our business strategy and our plan to build our business, including our strategy to be a leading provider of enterprise cloud computing applications and platforms; our ability to execute our business plans; our ability to continue to grow unearned revenue and remaining performance obligation; the pace of change and innovation in enterprise cloud computing services; the seasonal nature of our sales cycles; our ability to limit customer attrition and costs related to those efforts; the success of our international expansion strategy; the demands on our personnel and infrastructure resulting from significant growth in our customer base and operations, including as a result of acquisitions; our ability to preserve our workplace culture, including as a result of our decisions regarding our current and future office environments or remote work policies; our dependency on the development and maintenance of the infrastructure of the Internet; our real estate and office facilities strategy and related costs and uncertainties; fluctuations in, and our ability to predict, our operating results and cash flows; the variability in our results arising from the accounting for term license revenue products; the performance and fair value of our investments in complementary businesses through our strategic investment portfolio; the impact of future gains or losses from our strategic investment portfolio, including gains or losses from overall market conditions that may affect the publicly traded companies within our strategic investment portfolio; our ability to protect our intellectual property rights; our ability to maintain and enhance our brands; the impact of foreign currency exchange rate and interest rate fluctuations on our results; the valuation of our deferred tax assets and the release of related valuation allowances; the potential availability of additional tax assets in the future; the impact of new accounting pronouncements and tax laws; uncertainties affecting our ability to estimate our tax rate; uncertainties regarding our tax obligations in connection with potential jurisdictional transfers of intellectual property, including the tax rate, the timing of transfers and the value of such transferred intellectual property; uncertainties regarding the effect of general economic, business and market conditions, including inflationary pressures, general economic downturn or recession, market volatility, increasing interest rates, changes in monetary policy and the prospect of a shutdown of the U.S. federal government; the potential impact of financial institution instability; the impact of geopolitical events, including the war \n in Ukraine and the Israel-Hamas war; uncertainties regarding the impact of expensing stock options and other equity awards; the sufficiency of our capital resources; our ability to execute our share repurchase program; our ability to comply with our debt covenants and lease obligations; the impact of climate change, natural disasters and actual or threatened public health emergencies; expected benefits of and timing of completion of the restructuring plan and the expected costs and charges of the restructuring plan, including, among other things, the risk that the restructuring costs and charges may be greater than we anticipate, our restructuring efforts may adversely affect our internal programs and ability to recruit and retain skilled and motivated personnel, our restructuring efforts may be distracting to employees and management, our restructuring efforts may negatively impact our business operations and reputation with or ability to serve customers, and our restructuring efforts may not generate their intended benefits to the extent or as quickly as anticipated; and our ability to achieve our aspirations, goals and projections related to our environmental, social and governance (“ESG”) initiatives, including our ability to comply with evolving legal standards and federal and state regulations concerning ESG matters. \n Further information on these and other factors that could affect the Company’s actual results or outcomes is included in the reports on Forms 10-K, 10-Q and 8-K and in other filings it makes with the Securities and Exchange Commission from time to time. These documents are available on the SEC Filings section of the Financials section of the Company’s website at http://investor.salesforce.com/financials/. \n Salesforce, Inc. assumes no obligation and does not intend to update these forward-looking statements, except as required by law. \n © 2023 Salesforce, Inc. All rights reserved. Salesforce and other marks are trademarks of Salesforce, Inc. Other brands featured herein may be trademarks of their respective owners. \n # \n Salesforce, Inc. \n Condensed Consolidated Statements of Operations \n (in millions, except per share data) \n (Unaudited) \n 3 Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Revenues: \n Subscription and support $ 8,141 $ 7,233 $ 23,789 $ 21,232 \n Professional services and other 579 604 1,781 1,736 \n Total revenues 8,720 7,837 25,570 22,968 \n Cost of revenues (1)(2): \n Subscription and support 1,571 1,451 4,596 4,381 \n Professional services and other 584 637 1,797 1,879 \n Total cost of revenues 2,155 2,088 6,393 6,260 \n Gross profit 6,565 5,749 19,177 16,708 \n Operating expenses (1)(2): \n Research and development 1,204 1,280 3,631 3,927 \n Marketing and sales 3,173 3,345 9,440 10,141 \n General and administrative 632 664 1,902 1,967 \n Restructuring (3) 55 0 815 0 \n Total operating expenses 5,064 5,289 15,788 16,035 \n Income from operations 1,501 460 3,389 673 \n Gains (losses) on strategic investments, net (72) 23 (242) 75 \n Other income (expense) 58 (8) 158 (121) \n Income before provision for income taxes 1,487 475 3,305 627 \n Provision for income taxes (263) (265) (615) (321) \n Net income $ 1,224 $ 210 $ 2,690 $ 306 \n Basic net income per share $ 1.26 $ 0.21 $ 2.76 $ 0.31 \n Diluted net income per share $ 1.25 $ 0.21 $ 2.73 $ 0.31 \n Shares used in computing basic net income per share 972 997 976 995 \n Shares used in computing diluted net income per share 981 1,000 985 1,001 \n (1) Amounts include amortization of intangible assets acquired through business combinations, as follows: \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Cost of revenues $ 245 $ 250 $ 743 $ 785 \n Marketing and sales 223 224 668 693 \n (2) Amounts include stock-based compensation expense, as follows: \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Cost of revenues $ 109 $ 130 $ 324 $ 372 \n Research and development 238 287 735 863 \n Marketing and sales 275 330 815 947 \n General and administrative 71 96 223 288 \n Restructuring 0 0 16 0 \n (3) In January 2023, the Company announced a restructuring plan (the \"Restructuring Plan”) intended to reduce operating costs, improve operating margins, and continue advancing the Company's ongoing commitment to profitable growth. The Restructuring Plan includes a reduction of the Company's workforce and select real estate exits and office space reductions within certain markets. \n Salesforce, Inc. \n Condensed Consolidated Statements of Operations \n (As a percentage of total revenues) \n (Unaudited) \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Revenues: \n Subscription and support 93 % 92 % 93 % 92 % \n Professional services and other 7 8 7 8 \n Total revenues 100 100 100 100 \n Cost of revenues (1)(2): \n Subscription and support 18 19 18 19 \n Professional services and other 7 8 7 8 \n Total cost of revenues 25 27 25 27 \n Gross profit 75 73 75 73 \n Operating expenses (1)(2): \n Research and development 14 16 14 17 \n Marketing and sales 36 43 37 44 \n General and administrative 7 8 8 9 \n Restructuring 1 0 3 0 \n Total operating expenses 58 67 62 70 \n Income from operations 17 6 13 3 \n Gains (losses) on strategic investments, net (1) 0 (1) 0 \n Other income (expense) 1 0 1 0 \n Income before provision for income taxes 17 6 13 3 \n Provision for income taxes (3) (3) (2) (2) \n Net income 14 % 3 % 11 % 1 % \n (1) Amounts include amortization of intangible assets acquired through business combinations as a percentage of total revenues, as follows: \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Cost of revenues 3 % 3 % 3 % 3 % \n Marketing and sales 2 3 3 3 \n (2) Amounts include stock-based compensation expense as a percentage of total revenues, as follows: \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Cost of revenues 1 % 2 % 1 % 2 % \n Research and development 3 4 3 4 \n Marketing and sales 3 4 3 4 \n General and administrative 1 1 1 1 \n Restructuring 0 0 0 0 \n Salesforce, Inc. \n Condensed Consolidated Balance Sheets \n (in millions) \n October 31, 2023 January 31, 2023 \n Assets (unaudited) \n Current assets: \n Cash and cash equivalents $ 6,453 $ 7,016 \n Marketable securities 5,410 5,492 \n Accounts receivable, net 4,850 10,755 \n Costs capitalized to obtain revenue contracts, net 1,757 1,776 \n Prepaid expenses and other current assets 1,732 1,356 \n Total current assets 20,202 26,395 \n Property and equipment, net 3,807 3,702 \n Operating lease right-of-use assets, net 2,518 2,890 \n Noncurrent costs capitalized to obtain revenue contracts, net 2,194 2,697 \n Strategic investments 4,774 4,672 \n Goodwill 48,614 48,568 \n Intangible assets acquired through business combinations, net 5,737 7,125 \n Deferred tax assets and other assets, net 3,176 2,800 \n Total assets $ 91,022 $ 98,849 \n Liabilities and stockholders’ equity \n Current liabilities: \n Accounts payable, accrued expenses and other liabilities $ 5,308 $ 6,743 \n Operating lease liabilities, current 523 590 \n Unearned revenue 12,564 17,376 \n Debt, current 999 1,182 \n Total current liabilities 19,394 25,891 \n Noncurrent debt 8,426 9,419 \n Noncurrent operating lease liabilities 2,764 2,897 \n Other noncurrent liabilities 2,348 2,283 \n Total liabilities 32,932 40,490 \n Stockholders’ equity: \n Common stock 1 1 \n Treasury stock, at cost (10,004) (4,000) \n Additional paid-in capital 58,149 55,047 \n Accumulated other comprehensive loss (331) (274) \n Retained earnings 10,275 7,585 \n Total stockholders’ equity 58,090 58,359 \n Total liabilities and stockholders’ equity $ 91,022 $ 98,849 \n Salesforce, Inc. \n Condensed Consolidated Statements of Cash Flows \n (in millions) \n (Unaudited) \n 3 Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Operating activities: \n Net income $ 1,224 $ 210 $ 2,690 $ 306 \n Adjustments to reconcile net income to net cash provided by operating activities: \n Depreciation and amortization (1) 862 941 3,006 2,754 \n Amortization of costs capitalized to obtain revenue contracts, net 482 423 1,428 1,225 \n Stock-based compensation expense 693 843 2,113 2,470 \n (Gains) losses on strategic investments, net 72 (23) 242 (75) \n Changes in assets and liabilities, net of business combinations: \n Accounts receivable, net 550 471 5,905 5,486 \n Costs capitalized to obtain revenue contracts, net (300) (375) (906) (1,279) \n Prepaid expenses and other current assets and other assets (407) (63) (750) (359) \n Accounts payable and accrued expenses and other liabilities 172 (309) (1,607) (1,205) \n Operating lease liabilities (139) (173) (474) (561) \n Unearned revenue (1,677) (1,632) (4,816) (4,439) \n Net cash provided by operating activities 1,532 313 6,831 4,323 \n Investing activities: \n Business combinations, net of cash acquired (82) 0 (82) (439) \n Purchases of strategic investments (103) (44) (390) (475) \n Sales of strategic investments 80 98 102 181 \n Purchases of marketable securities (661) (408) (2,827) (4,132) \n Sales of marketable securities 315 500 1,117 1,392 \n Maturities of marketable securities 563 585 1,810 1,752 \n Capital expenditures (166) (198) (589) (580) \n Net cash provided by (used in) investing activities (54) 533 (859) (2,301) \n Financing activities: \n Repurchases of common stock (1,925) (1,677) (5,928) (1,677) \n Proceeds from employee stock plans 274 233 1,085 688 \n Principal payments on financing obligations (114) (233) (506) (349) \n Repayments of debt 0 (1) (1,182) (3) \n Net cash used in financing activities (1,765) (1,678) (6,531) (1,341) \n Effect of exchange rate changes (32) (23) (4) (69) \n Net increase (decrease) in cash and cash equivalents (319) (855) (563) 612 \n Cash and cash equivalents, beginning of period 6,772 6,931 7,016 5,464 \n Cash and cash equivalents, end of period $ 6,453 $ 6,076 $ 6,453 $ 6,076 \n (1) Includes amortization of intangible assets acquired through business combinations, depreciation of fixed assets and \n amortization and impairment of right-of-use assets. \n Salesforce, Inc. \n Additional Metrics \n (Unaudited) \n October 31, 2023 July 31, \n2023 April 30, 2023 January 31, 2023 October 31, 2022 \n Full time equivalent headcount 70,843 70,456 72,970 79,390 79,824 \n Supplemental Revenue Analysis \n Remaining Performance Obligation \n Remaining performance obligation (\"RPO\") represents contracted revenue that has not yet been recognized, which includes unearned revenue and unbilled amounts that will be recognized as revenue in future periods. RPO is influenced by several factors, including seasonality, the timing of renewals, the timing of software license deliveries, average contract terms and foreign currency exchange rates. Remaining performance obligation is also impacted by acquisitions. Unbilled portions of RPO denominated in foreign currencies are revalued each period based on the period end exchange rates. The portion of RPO that is unbilled is not recorded on the consolidated balance sheets. \n RPO consisted of the following (in billions): \n Current Noncurrent Total \n As of October 31, 2023 $ 23.9 $ 24.4 $ 48.3 \n As of July 31, 2023 24.1 22.5 46.6 \n As of April 30, 2023 24.1 22.6 46.7 \n As of January 31, 2023 24.6 24.0 48.6 \n As of October 31, 2022 20.9 19.1 40.0 \n Unearned Revenue \n Unearned revenue represents amounts that have been invoiced in advance of revenue recognition and is recognized as revenue when transfer of control to customers has occurred or services have been provided. The change in unearned revenue was as follows (in millions): \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Unearned revenue, beginning of period $ 14,237 $ 12,825 $ 17,376 $ 15,628 \n Billings and other (1) 6,876 6,142 20,536 18,354 \n Contribution from contract asset 167 63 218 175 \n Revenue recognized over time (8,249) (7,473) (24,264) (21,865) \n Revenue recognized at a point in time (471) (364) (1,306) (1,103) \n Unearned revenue from business combinations 4 0 4 4 \n Unearned revenue, end of period $ 12,564 $ 11,193 $ 12,564 $ 11,193 \n (1) Other includes, for example, the impact of foreign currency translation. \n Disaggregation of Revenue \n Subscription and Support Revenue by the Company's service offerings \n Subscription and support revenues consisted of the following (in millions): \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Sales $ 1,906 $ 1,717 $ 5,611 $ 5,044 \n Service 2,074 1,856 6,087 5,445 \n Platform and Other 1,686 1,513 4,891 4,410 \n Marketing and Commerce 1,230 1,129 3,638 3,339 \n Data (1) 1,245 1,018 3,562 2,994 \n $ 8,141 $ 7,233 $ 23,789 $ 21,232 \n (1) Data is comprised of revenue from Analytics, which includes Tableau, and Integration, which includes Mulesoft. \n Total Revenue by Geographic Locations \n Revenues by geographical region consisted of the following (in millions): \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Americas $ 5,862 $ 5,361 $ 17,113 $ 15,593 \n Europe 1,998 1,745 5,923 5,228 \n Asia Pacific 860 731 2,534 2,147 \n $ 8,720 $ 7,837 $ 25,570 $ 22,968 \n Constant Currency Growth Rates \n Subscription and support revenues constant currency growth rates by the Company's service offerings were as follows: \n Three Months Ended\nOctober 31, 2023\nCompared to Three Months\nEnded October 31, 2022 Three Months Ended\nJuly 31, 2023\nCompared to Three Months\nEnded July 31, 2022 Three Months Ended\nOctober 31, 2022\nCompared to Three Months\nEnded October 31, 2021 \n Sales 10% 12% 17% \n Service 11% 12% 16% \n Platform and Other 11% 11% 22% \n Marketing and Commerce 8% 10% 18% \n Data (1) 22% 16% 16% \n (1) Data is comprised of revenue from Analytics, which includes Tableau, and Integration, which includes Mulesoft. \n Revenue constant currency growth rates by geographical region were as follows: \n Three Months Ended\nOctober 31, 2023\nCompared to Three Months\nEnded October 31, 2022 Three Months Ended\nJuly 31, 2023\nCompared to Three Months\nEnded July 31, 2022 Three Months Ended\nOctober 31, 2022\nCompared to Three Months\nEnded October 31, 2021 \n Americas 9% 10% 16% \n Europe 10% 11% 23% \n Asia Pacific 21% 24% 30% \n Total growth 10% 11% 19% \n Current remaining performance obligation constant currency growth rates were as follows: \n October 31, 2023\nCompared to\nOctober 31, 2022 July 31, 2023\nCompared to\nJuly 31, 2022 October 31, 2022\nCompared to\nOctober 31, 2021 \n Total growth 13% 11% 15% \n Salesforce, Inc. \n GAAP Results Reconciled to non-GAAP Results \n The following tables reflect selected GAAP results reconciled to non-GAAP results. \n (in millions, except per share data) \n (Unaudited) \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Non-GAAP income from operations \n GAAP income from operations $ 1,501 $ 460 $ 3,389 $ 673 \n Plus: \n Amortization of purchased intangibles (1) 468 474 1,411 1,478 \n Stock-based compensation expense (2)(3) 693 843 2,097 2,470 \n Restructuring 55 0 815 0 \n Non-GAAP income from operations $ 2,717 $ 1,777 $ 7,712 $ 4,621 \n Non-GAAP operating margin as a percentage of revenues \n Total revenues $ 8,720 $ 7,837 $ 25,570 $ 22,968 \n GAAP operating margin (4) 17.2 % 5.9 % 13.3 % 2.9 % \n Non-GAAP operating margin (4) 31.2 % 22.7 % 30.2 % 20.1 % \n Non-GAAP net income \n GAAP net income $ 1,224 $ 210 $ 2,690 $ 306 \n Plus: \n Amortization of purchased intangibles (1) 468 474 1,411 1,478 \n Stock-based compensation expense (2)(3) 693 843 2,097 2,470 \n Restructuring 55 0 815 0 \n Income tax effects and adjustments (372) (129) (1,177) (686) \n Non-GAAP net income $ 2,068 $ 1,398 $ 5,836 $ 3,568 \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Non-GAAP diluted net income per share \n GAAP diluted net income per share $ 1.25 $ 0.21 $ 2.73 $ 0.31 \n Plus: \n Amortization of purchased intangibles 0.48 0.47 1.43 1.48 \n Stock-based compensation expense 0.71 0.84 2.13 2.47 \n Restructuring 0.06 0.00 0.83 0.00 \n Income tax effects and adjustments (0.39) (0.12) (1.19) (0.70) \n Non-GAAP diluted net income per share $ 2.11 $ 1.40 $ 5.93 $ 3.56 \n Shares used in computing Non-GAAP diluted net income per share 981 1,000 985 1,001 \n (1) Amortization of purchased intangibles was as follows: \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Cost of revenues $ 245 $ 250 $ 743 $ 785 \n Marketing and sales 223 224 668 693 \n $ 468 $ 474 $ 1,411 $ 1,478 \n (2) Stock-based compensation expense, excluding stock-based compensation expense related to restructuring, was as follows: \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Cost of revenues $ 109 $ 130 $ 324 $ 372 \n Research and development 238 287 735 863 \n Marketing and sales 275 330 815 947 \n General and administrative 71 96 223 288 \n $ 693 $ 843 $ 2,097 $ 2,470 \n (3) Stock-based compensation expense included in the GAAP to non-GAAP reconciliation tables above for the nine months ended October 31, 2023 excludes stock-based compensation expense related to the Restructuring Plan of $16 million, which is included in the Restructuring line. \n (4) GAAP operating margin is the proportion of GAAP income from operations as a percentage of GAAP revenue. Non-GAAP operating margin is the proportion of non-GAAP income from operations as a percentage of GAAP revenue. Non-GAAP income from operations excludes the impact of the amortization of purchased intangibles, stock-based compensation expense and charges related to the Restructuring Plan. \n Salesforce, Inc. \n Computation of Basic and Diluted GAAP and non-GAAP Net Income Per Share \n (in millions, except per share data) \n (Unaudited) \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n GAAP Basic Net Income Per Share \n Net income $ 1,224 $ 210 $ 2,690 $ 306 \n Basic net income per share $ 1.26 $ 0.21 $ 2.76 $ 0.31 \n Shares used in computing basic net income per share 972 997 976 995 \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Non-GAAP Basic Net Income Per Share \n Non-GAAP net income $ 2,068 $ 1,398 $ 5,836 $ 3,568 \n Non-GAAP basic net income per share $ 2.13 $ 1.40 $ 5.98 $ 3.59 \n Shares used in computing Non-GAAP basic net income per share 972 997 976 995 \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n GAAP Diluted Net Income Per Share \n Net income $ 1,224 $ 210 $ 2,690 $ 306 \n Diluted net income per share $ 1.25 $ 0.21 $ 2.73 $ 0.31 \n Shares used in computing diluted net income per share 981 1,000 985 1,001 \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n Non-GAAP Diluted Net Income Per Share \n Non-GAAP net income $ 2,068 $ 1,398 $ 5,836 $ 3,568 \n Non-GAAP diluted net income per share $ 2.11 $ 1.40 $ 5.92 $ 3.56 \n Shares used in computing Non-GAAP diluted net income per share 981 1,000 985 1,001 \n Supplemental Cash Flow Information \n Computation of Free Cash Flow, a Non-GAAP Measure \n (in millions) \n (Unaudited) \n Three Months Ended October 31, Nine Months Ended October 31, \n 2023 2022 2023 2022 \n GAAP net cash provided by operating activities $ 1,532 $ 313 $ 6,831 $ 4,323 \n Capital expenditures (166) (198) (589) (580) \n Free cash flow $ 1,366 $ 115 $ 6,242 $ 3,743 \n Non-GAAP Financial Measures: This press release includes information about non-GAAP operating margin, non-GAAP earnings per share, non-GAAP tax rates, free cash flow, constant currency revenue and constant currency current remaining performance obligation growth rates (collectively the “non-GAAP financial measures”). These non-GAAP financial measures are measurements of financial performance that are not prepared in accordance with U.S. generally accepted accounting principles and computational methods may differ from those used by other companies. Non-GAAP financial measures are not meant to be considered in isolation or as a substitute for comparable GAAP measures and should be read only in conjunction with the Company’s consolidated financial statements prepared in accordance with GAAP. Management uses both GAAP and non-GAAP measures when planning, monitoring and evaluating the Company’s performance. \n The primary purpose of using non-GAAP measures is to provide supplemental information that may prove useful to investors and to enable investors to evaluate the Company’s results in the same way management does. Management believes that supplementing GAAP disclosure with non-GAAP disclosure provides investors with a more complete view of the Company’s operational performance and allows for meaningful period-to-period comparisons and analysis of trends in the Company’s business. Further to the extent that other companies use similar methods in calculating non-GAAP measures, the provision of supplemental non-GAAP information can allow for a comparison of the Company’s relative performance against other companies that also report non-GAAP operating results. \n Non-GAAP Operating Margin is the proportion of non-GAAP income from operations as a percentage of GAAP revenue. Non-GAAP income from operations excludes the impact of the following items: stock-based compensation expense, amortization of acquisition-related intangibles, and charges related to the Restructuring Plan. Non-GAAP operating margin for Q1 FY25 reflects our operating priorities, not specific guidance. A reconciliation of non-GAAP operating margin for Q1 FY25 is not available without unreasonable efforts and has been omitted in accordance with SEC rules. Non-GAAP earnings per share excludes, to the extent applicable, the impact of the following items: stock-based compensation expense, amortization of purchased intangibles, charges related to the Restructuring Plan, and income tax adjustments. These items are excluded because the decisions that give rise to them are not made to increase revenue in a particular period, but instead for the Company’s long-term benefit over multiple periods. \n As described above, the Company excludes or adjusts for the following in its non-GAAP results and guidance: \n • Stock-Based Compensation Expense: The Company’s compensation strategy includes the use of stock-based compensation expense to attract and retain employees and executives. It is principally aimed at aligning their interests with those of our stockholders and at long-term employee retention, rather than to motivate or reward operational performance for any particular period. Thus, stock-based compensation expense varies for reasons that are generally unrelated to operational decisions and performance in any particular period. \n • Amortization of Purchased Intangibles: The Company views amortization of acquisition-related intangible assets, such as the amortization of the cost associated with an acquired company’s research and development efforts, trade names, customer lists and customer relationships, and in some cases, acquired lease intangibles, as items arising from pre-acquisition activities determined at the time of an acquisition. While these intangible assets are continually evaluated for impairment, amortization of the cost of purchased intangibles is a static expense, which is not typically affected by operations during any particular period. Although the Company excludes the amortization of purchased intangibles from these non-GAAP measures, management believes that it is important for investors to understand that such intangible assets were recorded as part of purchase accounting and contribute to revenue generation. \n • Restructuring: Restructuring charges are costs associated with a formal restructuring plan and may include employee notice period costs and severance payments, lease or contract termination costs, asset impairments, accelerated depreciation and amortization, and other related expenses. The Company excludes these restructuring charges because they are distinct from ongoing operational costs and it does not believe they are reflective of current and expected future business performance and operating results. \n • Gains on Strategic Investments, net: The Company records all fair value adjustments to its equity securities held within the strategic investment portfolio through the statement of operations. As it is not possible to forecast future gains and losses, the Company assumes no change to the value of its strategic investment portfolio in its GAAP and non-GAAP estimates for future periods, including its guidance. Gains on Strategic Investments, net, are included in its GAAP financial statements. \n • Income Tax Effects and Adjustments: The Company utilizes a fixed long-term projected non-GAAP tax rate in order to provide better consistency across the interim reporting periods by eliminating the effects of items such as changes in \n the tax valuation allowance and tax effects of acquisition-related costs, since each of these can vary in size and frequency. When projecting this long-term rate, the Company evaluated a three-year financial projection that excludes the direct impact of the following non-cash items: stock-based expenses and the amortization of purchased intangibles. The projected rate also considers factors including the Company’s expected tax structure, its tax positions in various jurisdictions and key legislation in major jurisdictions where the Company operates. For fiscal 2023, the Company used a projected non-GAAP tax rate 22.0%. For fiscal 2024, the Company uses a projected non-GAAP tax rate of 23.5%, which reflects currently available information, as well as other factors and assumptions. The non-GAAP tax rate could be subject to change for a variety of reasons, including the rapidly evolving global tax environment, significant changes in the Company’s geographic earnings mix due to acquisition activity, or other changes to the Company’s strategy or business operations. The Company will re-evaluate its long-term rate as appropriate. \n The Company presents constant currency information to provide a framework for assessing how the Company's underlying business performed excluding the effect of foreign currency rate fluctuations. To present constant currency revenue growth rates, current and comparative prior period results for entities reporting in currencies other than United States dollars are converted into United States dollars at the weighted average exchange rate for the quarter being compared to rather than the actual exchange rates in effect during that period. To present current remaining performance obligation growth rates on a constant currency basis, current remaining performance obligation balances in local currencies in previous comparable periods are converted using the United States dollar currency exchange rate as of the most recent balance sheet date. \n The Company defines the non-GAAP measure free cash flow as GAAP net cash provided by operating activities, less capital expenditures. \n",
-  "ex991_chars": 42924,
+  "ex991_full_text": " \n EX-99.1\n 2\n a2023q1shareholderletter.htm\n EX-99.1\n a2023q1shareholderletter \n S H A R E H O L D E R L E T T E R Q 1 2 0 2 3   |   M A Y 1 0 , 2 0 2 3 \n © 2023 Unity Technologies — 2 T H E W O R L D I S A B E T T E R P L A C E W I T H M O R E C R E A T O R S I N I T Unity delivered a strong first quarter, ahead of expectations. We are focused on execution to deliver our strategic imperatives and enable sustainable and profitable growth. We are excited about the rate of adoption of AI tools, which we expect to be tailwinds for many years to come. As a result of these factors, we are raising the low-end of our full-year revenue and adjusted EBITDA guidance ranges. \n © 2023 Unity Technologies — 3 Unity had a strong start to 2023, with first quarter revenue of $500 million, up +56% year-over-year and down -2% on a pro-forma basis. In the first quarter, we exceeded the revenue guidance that we provided during our previous earnings call of $470 to $480 million. GAAP net loss was $254 million. Adjusted EBITDA of $32 million also came in ahead of guidance of $7 to $12 million and is an improvement of $55 million year-over-year. For the balance of 2023, we expect revenue to grow faster than the markets in which we compete, with steady and meaningful continued progress on profitability. We provide creators with best of breed solutions holistically integrated into our end-to-end platform. Innovation, productivity and execution are three pillars that position Unity as a stronger company going forward. A S T R O N G S T A R T I N 2 0 2 3 $500 $400 $300 $200 $100 $0 $ i n m ill io n s → Financial overview $320 36% $323 13% $451 43% $500 56% $297 9% 9% (2%) ($23) Net loss ($178) ($204) ($250) ($288) ($254) ($31) $21 $32 ($38) Q1 2022 Q2 2022 Q3 2022 Q4 2022 Q1 2023 Total revenue (Y/Y%) Adjusted EBITDA Pro Forma (Y/Y%) Pro forma percentages reflect the consolidated results giving effect to the ironSource merger as if it had occurred on January 1, 2021 as disclosed in our Form 10-K for fiscal year 2022, combining the historical financial results of ironSource with ours, with adjustments to give effect to pro forma events that are directly attributable to the acquisition, including for intercompany revenue and amortization for intangible assets acquired . The amounts used to calculate the pro forma percentages are consistent with disclosure required under GAAP. Such percentages are provided for illustrative purposes only and not necessarily indicative of future periods and do not give effect to the potential impact of current financial conditions, future revenues, regulatory matters, or any anticipated synergies, operating efficiencies, or cost savings that may be associated with the ironSource merger. Create Solutions first quarter revenue of $187 million is up 14% year-over-year. As noted in our last shareholder letter, Create Solutions now includes Unity Gaming Services and Strategic Partnerships. Given that our Strategic Partnership quarterly revenue is impacted by the timing of large deals, we are also providing our Create Solutions revenue excluding Strategic Partnerships, which was $170 million, up 17% year-over-year. This rate of growth is slower than our recent performance, as Weta is now in the base, and a slower rate of growth in Professional Services (PS) as we reduce our reliance on PS to drive adoption of digital twins. We expect Create Solutions revenue to accelerate throughout the year behind the Editions price increase, adoption of digital twins and acceleration in China. \n © 2023 Unity Technologies — 4 Grow Solutions revenue of $313 million is up 101% year-on-year and down -9% on a pro-forma basis compared to strong, COVID elevated, performance in the first quarter of 2022. We estimate that we performed better than the market with share of wallet gains in Unity LevelPlay, our mediation platform, and in our Ad Networks. We continue to see strong engagement in games and a stable ads market compared to the back-half of 2022. We expect Grow Solutions revenue to accelerate throughout the year mainly from share gains as we apply best practices, capabilities and data between our ad networks. For example, we are transitioning the ironSource ads network to the more advanced Unity ML/AI model, and the Unity ad network is adopting ironSource’s bidding models. This quarter we celebrated several customer key wins within games. This includes Unity’s partnership with Outfit7, the company behind the Talking Tom & Friends brand, which boasts up to 470 million MAU and over 20 billion downloads. Another strong Unity partnership, Second Dinner’s MARVEL SNAP passed 18 million downloads in the first quarter. Games made with Unity continue to be celebrated as IMMORTALITY was among the winners in the 2023 British Academy Game Awards. Unity also showed up strong at the Game Developers Conference (GDC) this March in San Francisco, with 40 mostly creator-led sessions, demos of our latest UGC open beta, HRDP enhancements, DevOps and over 800 customer sales meetings. The conference generated nearly 10,000 leads and contacts, and tens of millions of dollars in sales pipeline. Beyond gaming, our customers continue to see digital twins and real-time 3D capabilities as a strategic priority across industries. This quarter we signed deals with Cincinnati Children’s Hospital to co-develop a virtual reality-based metaverse platform to plan pediatric cardiac surgeries, Booz Allen Hamilton to bring digital twin capabilities to federal agencies, and two luxury watch manufacturers to showcase their products for their omnichannel commerce platforms. To support our growing digital twins business, this quarter we launched Unity Industry, an optimized offering for enterprises. Customers across industries can leverage this offering to build and deploy interactive real-time experiences, reducing time to market and optimizing resources. Unity Industry provides enterprises with essential tools to accelerate their digital transformation and build the next generation of digital twins and immersive experiences. Everyone at Unity is focused on execution of this year’s action plans which are based on our long- term strategies and must-win goals. This focus on execution is what enabled us to deliver a strong first quarter with revenue and adjusted EBITDA ahead of expectations. Last week we announced the efforts to be more productive, streamlined and nimble as we continue to position Unity for long-term and profitable growth in an evolving economic environment. These actions will shape how Unity works and strengthen our culture. First, we are reducing approximately 600 roles or 8% of our workforce as we restructure specific teams. Second, we are reducing the number of managerial layers to make us more agile and effective. Third, we are reducing the number of Unity offices over time to concentrate people and teams together and make it easier to collaborate and solve problems for our customers. We expect these decisions will make Unity stronger, and set us up for even stronger long-term profitable growth. E X C E L L E N C E I N E X E C U T I O N \n © 2023 Unity Technologies — 5 Our expectation is that AI will be accretive to both our growth and profitability as we embed these technologies throughout the company. We believe that Unity is well-positioned to benefit from AI given four structural and sustainable competitive advantages: the Unity Editor, the Unity runtime, the Unity Network, and our Data Advantage. The Unity Editor is a widely-adopted workflow and tool set for the creation of real-time experiences, for games and digital twins. We believe that the power of AI technologies accessed from inside the Unity Editor will enable Unity’s creators to be more productive and expand the total number of creators by abstracting away the complexity of creation tool chains, making it easier for creators to build real-time 3D content and experiences. We believe that creators will use a combination of natural language and deterministic tools in the Unity Editor. This dynamic approach will be far more powerful and efficient than working with just one or the other. Just like a journalist that uses GPT to create the first draft of an article and then uses deterministic tools (which always provide the same outputs for the same input) like Word or Google Docs to edit that draft, we believe real-time 3D creators will use natural language generative AI tools alongside deterministic tools to develop the first draft of the content or experience they are creating. This includes creating code, animations, physical effects, sounds, and other real-time content. The creation process will be iterative and collaborative with teams of writers, level designers, artists, and many others collaborating inside the Unity Editor to build content, evaluate performance, and develop experiences before considering their work completed, and even then, we believe that creators will continue to use our tools to update and improve their applications. The Unity Runtime is a widely-distributed real-time application across the world, running on more than 4 billion devices. The runtime is included in all applications built in Unity and it is downloaded billions of times every month. It is Unity’s runtime that transforms the content built by our customers into being real-time, with each frame (typically 30 or 60 frames per second) rendered in response to user input. It is the Unity runtime that makes 3D content interactive, real time and available on any device, responsive to user input, physics simulations, lighting, and more. We have been working on project Barracuda for five years. Barracuda brings an inference engine, an important part of generative AI capabilities, to the Unity runtime. Barracuda will enable creators to do things that were considered impossible up to now. One example is populating game worlds with non-player characters that seem alive and capable of dynamic, responsive language dialogue with player characters and behaving in ways that will seem “real”, alive and not scripted. Because Barracuda allows trained data science models to run locally on devices, creators can imagine and deliver these experiences without worrying about cloud compute costs or latency. Unity’s runtime is also essential and compelling in industries outside of gaming. The combination of Barracuda and the Unity runtime allow real-time digital twins with active intelligence to be deployed throughout an enterprise. Instead of a complex user interface, natural language integrates live data with simulated outcomes: “What aisles of the store were least crowded at lunchtime yesterday?”, “What were the most common options in the car configurator where user’s abandoned the process?”, “Simulate the manufacturing line for three full shifts given last month’s actuals.” These are the type of solutions that real-time 3D + AI aims to solve for our customers. G E N - A I : T A I L W I N D T O U N I T Y \n © 2023 Unity Technologies — 6 The Unity runtime and Barracuda fundamentally reframe the opportunity for AI tools and techniques, making AI available at runtime and economically by delivering inference on device. The Unity Network – Unity’s analytics tools, ad networks, publishing systems, and cloud services reach more than 4B+ devices already equipped with the Unity runtime, each yielding data (permitted by the user) that we use to help customers find new users, increase user engagement, or build revenue per user. For over three years, Unity has been using the power of neural networks to help enable increasingly advantaged systems to enable our customers in these critical areas. Games using Unity’s AI/ML-powered services and monetization tools find success more easily and more sustainably, increasing opportunity for both our creators and for Unity. Training Data – Current AI tools, large language models and generative AI tools need to train on data to be smart and create content. Most content in the world today is linear – a photo, a set of film frames, a scholarly article, or a rendering of a building floor plan. An AI algorithm needs to ingest the data to train the associated algorithm. What Unity enables is the training of models based on unique datasets captured at the creation and operation of real-time 3D experiences that we have available. Within Unity, we can train algorithms for full 3D worlds, and the underlying instructions that create these worlds, in real-time. This includes training on the underlying code and instructions, making it far more useful than training on just the language or visual output. Through this training, we can create ever richer services built on top of Unity and can provide extraordinary capabilities to our partners to leverage Unity as a data creation, simulation, and training engine for their own needs. Unity’s training increases the amount of proprietary data available to us, while reducing the cost to acquire it both for Unity and our customers. G U I D A N C E For the second quarter, we are guiding revenue to $510 to $520 million, an increase of 72% to 75% year-over year and 6% to 8% on a pro-forma basis. Our assumption is that the ads market will be relatively flat quarter-over-quarter and that we will continue to gain share and perform ahead of the market. We are guiding adjusted EBITDA from $50 to $60 million, which takes into account the restructuring announced last week and represents another significant profitability increase from the -$38 million delivered in the second quarter of 2022. For the year, we are taking into account our stronger than expected first quarter and the ongoing uncertain economic environment. We are increasing the low-end of our revenue guide by $30 million and the low-end of our adjusted EBITDA guide by $20 million. Our revenue guide is $2.08 to $2.2 billion, an increase of 50% to 58% year-over year and 3% to 9% on a pro-forma basis, and our adjusted EBITDA guide is $250 to $300M. We remain committed to our goal to reach $1B adjusted EBITDA run-rate by the end of 2024. \n © 2023 Unity Technologies — 7 Q2 2023 FY 2023 Total Revenue $510 – 520 million $2.08 – 2.20 billion Adjusted EBITDA1 $50 – 60 million $250 – 300 million Adjusted EBITDA margin 10% – 12% 12% – 14% (1) A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future and cannot be reasonably determined or predicted at this time, although it is important to note that these factors could be material to Unity’s results computed in accordance with GAAP. We expect 382 million shares outstanding and 478 million fully diluted shares at the end of the quarter, and 390 million shares outstanding and 490 million fully diluted shares at the end of the year. Our shares estimates do not include the impact of any additional share buyback. We are encouraged with the start in 2023 and optimistic about the full year as we execute with excellence. We embraced AI years ago and see the adoption of AI tools as an accelerant to our business based on our structural and sustainable competitive advantages. C L O S I N G \n © 2023 Unity Technologies — 8 A P P E N D I X Cautionary Statement Regarding Forward-Looking Statements This shareholder letter and the earnings call referencing this shareholder letter contain “forward-looking statements,” as that term is defined under federal securities laws, including, but not limited to, statements regarding Unity’s second quarter and full-year 2023 outlook and future financial performance, including the growing demand for real-time 3D solutions and services; expectations for success, including our ability to create value for creators and our shareholders; and our attainment of sustainable and profitable long-term growth; the impacts of AI on our operations and financial results, including that it will be accretive to both our growth and profitability; our workforce and resources, including our plans and ability to manage costs, improve margins and become more productive, streamlined and efficient and to strengthen our culture; the expected profitability and ability to generate positive free cash flow, including as a result of the ironSource merger; business plans, priorities and objectives, potential market and growth opportunities; product features, functionality, and expected benefits to the business and Unity’s customers; competitive position; product strategies and future product and platform features; technological or market trends; and our industry environment, including regarding the ads market; and our expectation that our revenue will grow faster than the market; our expectations regarding increased adoption of digital twins and improved performance in China; and our ability expectation to accelerate revenue build market share in both Create Solutions and Grow Solutions throughout the year and build market share in Grow Solutions. The words “aim,” “believe,” “may,” “will,” “estimate,” “continue,” “intend,” “expect,” “plan,” “project,” and similar expressions are intended to identify forward- looking statements. These forward-looking statements are subject to risks, uncertainties, and assumptions. If the risks materialize or assumptions prove incorrect, actual results could differ materially from the results implied by these forward-looking statements. Risks include, but are not limited to: (i) the impact of macroeconomic conditions, such as inflation and actions taken by central banks to counter inflation, liquidity concerns and failures of banks and other financial institutions, and potential economic recession, on our business, as well as our customers, prospects, partners, and service providers; (ii) our ability to achieve and sustain profitability; (iii) our ability to retain existing customers–including ironSource customers–and expand the use of our platform; (iv) our ability to further expand into new industries and attract new customers; (v) the impact of any changes of terms of service, policies or technical requirements from operating system platform providers or application stores which may result in changes to our or our customers’ business practices; (vi) our ability to maintain favorable relationships with hardware, operating system, device, game console and other technology providers; (vii) our ability to compete effectively in the markets in which we participate; (viii) breaches in our security measures, unauthorized access to our platform, our data, or our customers’ or other users’ personal data; (ix) our ability to manage growth effectively; (x) the rapidly changing and increasingly stringent laws, regulations, contractual obligations and industry standards that relate to privacy, data security and the protection of children; (xi) our ability to successfully integrate ironSource’s technology and business and realize the intended benefits from the ironSource merger, and related costs and expenses; (xii) the effectiveness of the reduction of employee roles in positioning the company for future growth; and (xiii) Unity’s ability to leverage its offerings as a result of the rise of generative AI technologies; and (xiv) Unity’s expectation that AI will be accretive to both its growth and profitability . Further information on these and additional risks that could affect Unity’s results is included in our filings with the Securities and Exchange Commission (SEC), including our Annual Report on Form 10-K for the year ended December 31, 2022, filed with the SEC on February 27, 2023, and our future reports that we may file with the SEC from time to time, which could cause actual results to vary from expectations. Copies of reports filed with the SEC are available on the Unity Investor Relations website. Statements herein speak only as of the date of this release, and Unity assumes no obligation to, and does not currently intend to, update any such forward- looking statements after the date of this release except as required by law. \n © 2023 Unity Technologies — 9 837 888 973 1,052 1,083 1,085 1,075 1,340 1,322 → Fully Diluted Shares Outstanding Detail → Customer Metrics: $100K Customers and Net Dollar Expansion Rate 175% 150% 125% 100% 75% 50% 25% 0% 1,500 1,250 1,000 750 500 250 0 Customers > $100K Dollar-Based Net Expansion Rate Q1 2021 140% 140% 135% 121% 111% 116% 107% 142% 142% Q2 2021 Q3 2021 Q4 2021 Q1 2022 Q2 2022 Q3 2022 Q4 2022 Q1 2023 Shares Outstanding 2022 2023 Q1 Q2 Q3 Q4 Q1 Q2 Q4 Estimate Estimate Basic Shares Outstanding 295,847 298,028 300,587 374,243 378,374 382,000 390,000 Stock Options Outstanding 28,067 27,187 26,822 35,719 34,461 RSUs and PVUs 15,629 16,852 29,943 38,105 36,079 2026 Convertible Notes 5,588 5,588 5,588 5,588 5,588 2027 Convertible Notes - - - 20,453 20,453 Fully Diluted Shares Outstanding 345,130 347,654 362,941 474,108 474,953 478,000 490,000 Shares in thousands; end of period. About Non-GAAP Financial Measures To supplement our consolidated financial statements prepared and presented in accordance with generally accepted accounting principles in the United States (GAAP) we use certain non-GAAP financial measures, as described below, to evaluate our ongoing operations and for internal planning and forecasting purposes. We believe the following non-GAAP measures are useful in evaluating our operating performance. We are presenting these non- GAAP financial measures because we believe, when taken collectively, they may be helpful to investors because they provide consistency and comparability with past financial performance. In the future, we may also exclude non- recurring expenses and other expenses that do not reflect our overall operating results. However, non-GAAP financial measures have limitations in their usefulness to investors because they have no standardized meaning prescribed by GAAP and are not prepared under any comprehensive set of accounting rules or principles. In addition, other companies, including companies in our industry, may calculate similarly-titled non-GAAP financial measures differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of our non-GAAP financial measures as tools for comparison. As a result, our non- GAAP financial measures are presented for supplemental informational purposes only and should not be considered in isolation or as a substitute for our consolidated financial statements presented in accordance with GAAP. We define adjusted EBITDA as net income or loss excluding benefits or expenses associated with stock- based compensation, acquisitions, restructurings and reorganizations, depreciation, amortization of acquired intangible assets, interest, income tax, and other non- operating activities, which primarily consist of foreign exchange rate gains or losses. \n © 2023 Unity Technologies — 10 Adjusted EBITDA Reconciliation 2022 2023 Q1 Q2 Q3 Q4 Q1 Revenue $ 320,126 $ 297,043 $ 322,884 $ 450,975 $ 500,361 GAAP net loss (177,555) (204,158) (250,021) (287,754) (253,703) Add: Stock-based compensation expense 103,427 105,995 154,479 173,917 163,028 Amortization of intangible assets expense 32,702 33,131 33,419 73,299 97,920 Depreciation of property and equipment 8,770 9,505 10,071 10,679 11,640 Restructuring and reorganization costs 2,330 7,950 909 5,957 14,130 Acquisition-related costs 1,081 3,437 9,576 27,371 729 Legal settlement costs - - - 3,250 - Interest expense 1,111 1,123 1,135 4,035 6,129 Interest income and other expense, net (941) 3,058 (2,208) (7,101) (13,615) Income tax expense 6,224 2,311 11,468 17,060 6,205 Adjusted EBITDA GAAP Net Loss margin Adjusted EBITDA margin (22,851) (55%) (7%) (37,648) (69%) (13%) (31,172) (77%) (10%) 20,713 (64%) 5% 32,463 (51%) 6% $ in thousands \n © 2023 Unity Technologies — 11 Three Months Ended March 31, 2023 2022 GAAP gross profit $ 338,397 $ 226,293 Add: Stock-based compensation expense 18,849 8,794 Amortization of intangible assets expense 34,265 7,555 Depreciation expense 2,364 1,238 Restructuring and reorganization costs 119 — Adjusted gross profit $ 393,994 $ 243,880 GAAP gross margin 68% 71% Adjusted gross margin 79% 76% Operating expenses reconciliation Research and development GAAP research and development expense $ 280,480 $ 221,040 Stock-based compensation expense (76,483) (55,253) Amortization of intangible assets expense (18,233) (18,105) Depreciation expense (4,820) (4,362) Restructuring and reorganization costs (7,980) — Non-GAAP research and development expense $ 172,964 $ 143,320 GAAP research and development expense as a percentage of revenue 56% 69% Non-GAAP research and development expense as a percentage of revenue 35% 45% Sales and marketing GAAP sales and marketing expense $ 216,127 $ 103,939 Stock-based compensation expense (35,517) (23,834) Amortization of intangible assets expense (45,422) (7,042) Depreciation expense (1,960) (1,914) Restructuring and reorganization costs (3,049) — Non-GAAP sales and marketing expense $ 130,179 $ 71,149 GAAP sales and marketing expense as a percentage of revenue 43% 32% Non-GAAP sales and marketing expense as a percentage of revenue 26% 22% UNITY SOFTWARE INC. Non-GAAP Reconciliation (In thousands) \n © 2023 Unity Technologies — 12 Three Months Ended March 31, 2023 2022 General and administrative GAAP general and administrative expense $ 96,774 $ 72,475 Stock-based compensation expense (32,179) (15,546) Depreciation expense (2,496) (1,256) Acquisition-related costs (729) (1,081) Restructuring and reorganization costs (2,982) (2,330) Non-GAAP general and administrative expense $ 58,388 $ 52,262 GAAP general and administrative expense as a percentage of revenue 19% 23% Non-GAAP general and administrative expense as a percentage of revenue 12% 16% GAAP net loss $ (253,703) $ (177,555) Add: Stock-based compensation expense 163,028 103,427 Amortization of intangible assets expense 97,920 32,702 Depreciation expense 11,640 8,770 Acquisition-related costs 729 1,081 Restructuring and reorganization costs 14,130 2,330 Interest expense 6,129 1,111 Interest income and other expense, net (13,615) (941) Income tax expense 6,205 6,224 Adjusted EBITDA $ 32,463 $ (22,851) UNITY SOFTWARE INC. Non-GAAP Reconciliation (In thousands) \n © 2023 Unity Technologies — 13 As of March 31, 2023 December 31, 2022 Assets Current assets: Cash and cash equivalents $ 1,593,946 $ 1,485,084 Short-term investments — 101,711 Accounts receivable, net 612,763 633,775 Prepaid expenses and other 136,653 144,070 Total current assets 2,343,362 2,364,640 Property and equipment, net 129,050 121,863 Goodwill 3,200,955 3,200,955 Intangible assets, net 1,824,313 1,922,234 Other assets 237,053 224,293 Total assets $ 7,734,733 $ 7,833,985 Liabilities and stockholders’ equity Current liabilities: Accounts payable $ 28,222 $ 20,221 Accrued expenses and other 321,234 326,339 Publisher payables 417,866 445,622 Deferred revenue 212,925 218,102 Total current liabilities 980,247 1,010,284 Convertible notes 2,708,300 2,707,171 Long-term deferred revenue 90,407 103,442 Other long-term liabilities 264,107 258,959 Total liabilities 4,043,061 4,079,856 Commitments and contingencies Redeemable noncontrolling interests 225,376 219,563 Unity Software Inc. Stockholders’ equity: Common stock, $0.000005 par value: Authorized shares - 1,000,000 and 1,000,000 Issued and outstanding shares - 378,374 and 374,243 2 2 Additional paid-in capital 5,962,358 5,779,776 Accumulated other comprehensive income (loss) 490 (1,691) Accumulated deficit (2,502,850) (2,249,819) Total Unity Software Inc. stockholders’ equity 3,460,000 3,528,268 Noncontrolling interest 6,296 6,298 Total stockholders’ equity 3,466,296 3,534,566 Total liabilities and stockholders’ equity $ 7,734,733 $ 7,833,985 UNITY SOFTWARE INC. CONDENSED CONSOLIDATED BALANCE SHEETS (In thousands, except par value) (Unaudited) \n © 2023 Unity Technologies — 14 Three Months Ended March 31, 2023 2022 Revenue $ 500,361 $ 320,126 Cost of revenue 161,964 93,833 Gross profit 338,397 226,293 Operating expenses Research and development 280,480 221,040 Sales and marketing 216,127 103,939 General and administrative 96,774 72,475 Total operating expenses 593,381 397,454 Loss from operations (254,984) (171,161) Interest expense (6,129) (1,111) Interest income and other expense, net 13,615 941 Loss before income taxes (247,498) (171,331) Provision for income taxes 6,205 6,224 Net loss (253,703) (177,555) Net loss attributable to noncontrolling interest and redeemable noncontrolling interests (672) — Net loss attributable to Unity Software Inc. (253,031) (177,555) Net loss (253,703) (177,555) Other comprehensive income (loss), net of taxes: Change in foreign currency translation adjustment 3,157 19 Change in unrealized losses on short-term investments — (4,428) Change in unrealized gains on derivative instruments (327) — Comprehensive loss $ (250,873) $ (181,964) Comprehensive income attributable to noncontrolling interest and redeemable noncontrolling interests: Net loss attributable to noncontrolling interest and redeemable noncontrolling interests (672) — Foreign currency translation attributable to noncontrolling interest and redeemable noncontrolling interests 649 — Comprehensive loss attributable to noncontrolling interest and redeemable noncontrolling interests (23) — Comprehensive loss attributable to Unity Software Inc. $ (250,850) $ (181,964) Basic and diluted net loss per share attributable to Unity Software Inc. $ (0.67) $ (0.60) Weighted-average shares used in computation of basic and diluted net loss per share 375,909 294,341 UNITY SOFTWARE INC. CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS AND COMPREHENSIVE LOSS (In thousands, except per share data) (Unaudited) \n © 2023 Unity Technologies — 15 Three Months Ended March 31, 2023 2022 Operating activites Net loss $ (253,703) $ (177,555) Adjustments to reconcile net loss to net cash used in operating activities: Depreciation and amortization 109,560 41,472 Stock-based compensation expense 163,028 103,427 Other 379 3,260 Changes in assets and liabilities, net of effects of acquisitions: Accounts receivable, net 21,013 7,532 Prepaid expenses and other 7,589 (9,116) Other assets 11,169 4,868 Accounts payable 7,450 38 Accrued expenses and other (7,305) (29,646) Publisher payables (27,756) (23,780) Other long-term liabilities (18,302) (8,614) Deferred revenue (18,221) 189,414 Net cash provided by (used in) operating activities (5,099) 101,300 Investing activities Purchases of short-term investments (212) (82,777) Proceeds from principal repayments and maturities of short-term investments 102,673 100,883 Purchases of non-marketable investments — (15,000) Purchases of property and equipment (14,350) (14,929) Business acquisitions, net of cash acquired — (23,637) Net cash provided by (used in) investing activities 88,111 (35,460) Financing activities Proceeds from issuance of common stock from employee equity plans 21,971 30,216 Net cash provided by financing activities 21,971 30,216 Effect of foreign exchange rate changes on cash, cash equivalents, and restricted cash 3,151 37 Increase in cash, cash equivalents, and restricted cash 108,134 96,093 Cash and restricted cash, beginning of period 1,505,688 1,066,599 Cash, cash equivalents, and restricted cash, end of period $ 1,613,822 $ 1,162,692 UNITY SOFTWARE INC. CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS (In thousands) (Unaudited) \n unity.com \n",
+  "ex991_chars": 31555,
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
-  "local_8k": "000110852423000046__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "local_8k": "000181080623000057__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001810806-23-000010",
+   "filingDate": "2023-02-22",
+   "reportDate": "2023-02-22",
+   "form": "8-K",
+   "local_gz": "000181080623000010__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "(NYSE: U), the world’s leading platform for creating and growing real-time 3D (RT3D) content, today announced fourth quarter 2022 revenue of $451 million, which is up 43% from the same period in 2021 and ahead of guidance."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2023-05-10",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 73,
+   "has_qna": true,
+   "n_chars": 45143,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Welcome to Unity’s First Quarter 2023 Earnings Call. After the closing of the market today, we issued our shareholders letter, the material is now available on our investor website at investors.unity.com. Today, I am joined by John Riccitiello, our CEO, President and Chairman; and by Luis Visoso, our CFO. Now before we begin, I want to note that today’s discussion contains forward-looking statements, including statements about goals, business outlook, industry trends, market opportunities, expectations for future financial performance and similar items, all of which are subject to risks, uncertainties and assumptions. You can find more information about these risks and uncertainties in the Risk Factors section of our filings at sec.gov. Actual results may vary and we take no obligation to revise or update any forward-looking statements. As in prior quarters, we are providing both GAAP and non-GAAP financial measures. And unless otherwise noted, we will be speaking to the non-GAAP financial measures when describing our results. The shareholder letter and our filings on sec.gov provide full GAAP to non-GAAP reconciliations."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Richard Davis",
+     "content": "Okay. Great. Thank you. So first let me turn the call over to John for just some brief highlights of our results. John?"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "John Riccitiello",
+     "content": "So look we are very pleased with our Q1 results and happy about our guide. And I want to start by just thanking all of our colleagues at Unity, they have done a fantastic job to get us off to a great start in 2023. Now I have to say that our results, these strong numbers reflect great synergy between our two main businesses, Create and Grow. We are a true platform. And by platform, what I really mean is that our customers get every day from us something that is more than the sum of the parts. They get more value than they would from individual products and that’s being proven truer and truer by the day. And it’s from this that our customers win and Unity wins. Now all of this allows us to put Unity and a place where we can serve our creators in a great way and to be on a strong path towards continued profitable growth. Now I think it’s obvious that there is a subject that’s on everybody’s mind. It’s certainly every other question you read or every press article, AI. And I know you saw in our shareholder letter, a long conversation about AI. And I have to tell you, I am excited about it. We have been working on it for several years at Unity. We have got the advanced products that we have been deploying for years now and more coming and we have announced a number of beta products. But here I want to make a couple of key points so it’s not lost. First, I think, AI is positive for our industry and positive for our creators. Second, Unity has sustainable competitive advantages in and around AI, not just because of what we are building in AI because of the very nature of our platform. The very nature of our platform will benefit from AI tools and content creation and we are uniquely able to enable creators to make things where worlds come alive or digital twins coming live and waste were never possible for. These things to us seem like a strong tailwind in quarters and years to come and we couldn’t be more excited about our future. So, thank you, everyone, and thanks for being here."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "A - Richard Davis",
+     "content": "Great, John. So like always, we are going to open up the call in just a bit, but maybe to get things rolling, let me kick off the question-and-answer session with like a couple of questions that are on investor’s minds. The first one would be for Luis. And look, with a strong first quarter in the books, how does the balance of the year look?"
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Luis Visoso",
+     "content": "Hey. Thank you, Richard. You are right. It was a strong first quarter. And frankly, as John said, it was driven by strong execution by the Unity team. We beat the high end of the revenue guide by $20 million. We beat the high end of the EBITDA guide by $20 million as well. And if you compare this to the first quarter of 2022, that’s a $55 million EBITDA improvement. We are also pleased with the Unity and ironSource integration. The teams are working very well together and we are starting to share and reapply best practices between teams and we believe that we are performing better than the market. So, yes, it was a very good first quarter. But back to your question, so how does the balance of the year look? Well, we expect growth and profitability to accelerate throughout the year. We are guiding Q2 above consensus for both revenue and EBITDA. And for the full year, we are being prudent, I mean, we all read the same news and the economic environment is still volatile and uncertain. So what we did is we raised the low end of the revenue guide by $30 million and we raised the low end of the EBITDA guide by $20 million and we expect to continue to perform better than the market. And while you did not ask, we are still committed to our $1 billion EBITDA run rate by the end of 2024. So, with that, I will turn it back to you, Richard."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Richard Davis",
+     "content": "Great. And then John, you did touch on it a bit in your introduction kind of summary. But maybe if you just unpack a little bit, discuss how kind of Unity sees the emergence of tools and platforms? And then we will open it up to a full Q&A for everyone."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "John Riccitiello",
+     "content": "Sure. So, in general, at least as I see it, AI in the world we live in, we real-time 3D has some important provable points. In general, I think, you could break it down to two ideas. What you can do with the Editor and what you can do in content creation, it’s going to be faster and cheaper. So developers will do more on our platform and that applies to the game development side and the digital twin side. We are seeing a lot of interest in our platform and part of that is because of AI. We have always seen that interest is strong, obviously, our shares are very strong across the Board. So it’s developers embracing AI to produce better content, faster, better, cheaper. That’s always a good thing in our world. The second aspect of this is that, they can do things that were never before possible. And this is where it gets really exciting. It’s when non-player characters and games speak to you like they do in a ChatGPT, they are intelligent. They have ambitions. They are not just scripted dialogues from a writer and their actions also are freer. And what that results heat, I think, is worlds to the gaming side, they are going to be so compelling that it’s going to drive an inflection point in growth in gaming. The second aspect of this is that same idea applies to digital twins and we have always felt that real-time digital twins was a big advantage. Real-time makes a difference. What we get to now is AI-enhanced real-time and we wrote about that in our shareholder letter. What that gives you is, a digital twin, which is just not catching you up to the moment, but helping you do next, what is necessary to run your factory better, to design a better building, to teach people in a better way, to run a better airport or at least a smarter airport, all the things people are using us for now gets better, faster and more future looking in a way that really enhances their business. So we feel great about AI. We are going to be able to help developers do more bigger, better, faster and we are going to enable them to do things were never possible before."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Richard Davis",
+     "content": "Great. Well, thank you very much, John. So now let’s move on to the Q&A session. As with previous quarters, remember, please raise your virtual hand and we will call on you at which time unmute, obviously, unmute your microphone and turn on your video. And I think the first question came from Matt Cost, if we can pin him into the process here."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Matt Cost",
+     "content": "Yeah. Hi. Can you hear me?"
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Richard Davis",
+     "content": "Yeah. Yeah."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Matt Cost",
+     "content": "Okay. Great. Thanks for taking the question, everyone. So I guess just two questions. The first one is on Create, and I apologize if I misunderstood in the shareholder letter, but there was a reference to the reason that Create decelerated and was down quarter-on-quarter having to do with strategic partnerships. But I guess just to put it simply, what was lower inside of Create that cause it to decline quarter-on-quarter? And then I have one follow-up. Thank you."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Luis Visoso",
+     "content": "Yeah. Matt, what we tried to do in the shareholder letter is provide you a few numbers. So 14% is the growth of Create, including strategic partnerships. As we said, we are looking at the businesses together. But we also provide you a perspective of what would Create be the without partnerships and that 17%. And then we explained to you why that number is a little bit lower than what we have seen in the past and that’s really driven by we are reducing our reliance on Professional Services as we drive digital twins. We have talked about that and we are actually super excited about the launch of industry -- the industry SKU, which will enable us to drive that business even faster. So that’s really the reason, Matt. I want to make sure we are clear on a few points. One is we are seeing a very low churn rate. It’s actually improving over time. So that is not an issue at all and we are seeing the pricing benefits exactly as we expected."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "John Riccitiello",
+     "content": "Let me add a little bit on that one. So if you -- ex-strategic side of the business 17% growth. One of the reason that number is just a little bit lower than it has been in previous quarters is, frankly, a simple issue of denominators and numerators. So we now have what are fully in the denominator in the base period and we are still growing 17%. It would be measurably higher without that in the base. The second thing is we have talked a lot about introducing ratable revenue streams associated with cloud, associated with AI service, et cetera, those are yet to kick in. The new SKU is yet to kick in, whether you find a new customers, which is a key part of Create. So we are very optimistic. 17% standalone the way we reported is a good quarter. We are excited about accelerating from here on the basis of all the things that are coming in front of us in the next couple of quarters."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Matt Cost",
+     "content": "Great. Thank you so much for that. And then just a second one on Grow. I think you mentioned in the letter that you expected to accelerate throughout the year. Are there any specific strategic initiatives that you would call out there? And in particular, I am curious about LevelPlay. Is that an area where you see the ability maybe to invest in signing up new customers upfront to sort of gain market share?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Luis Visoso",
+     "content": "Yeah. Your question is on Grow, Matt?"
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "John Riccitiello",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Matt Cost",
+     "content": "That’s right."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Luis Visoso",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "John Riccitiello",
+     "content": "Let me take the top of that. I think we have a poor network today, because I am watching Luis break up a little bit today, hopefully you are not seeing the same on year-end. Look, strategic initiatives. One is the combination of ironSource and Unity has brought more data, more data is enhanced the performance of both networks. Earlier, I had mentioned that we were seeing synergies between Create and Grow, which we are. But we are also seeing synergy between what was the Unity operate and is now Grow as ironSource and Unity networks work together. A couple of really important ones. The strength we are getting out of neural networks, an AI tool and the system we have been using for a couple of years now on the Unity side is being applied network-wide. And we are also seeing enhancements from what we are getting from great strengths and understanding of header bidding that is part of the ironSource historical technology stack. So there’s a whole bunch of initiatives, but the thing that’s driving us right now were gains in mediation, benefits as a result of increased onto data and then technology transitions around the best of what ironSource used to do is now applied to the rest of Unity and what Unity used to do is applied to that, which was previously ironSource. These are all growth drivers, and as we have mentioned, we expect to see Q2 at least so far, we feel very good about Q2 and the balance of the year, because these are driving market share gains for us. We are gaining in a market that’s essentially at this point, treading water and we feel great about that. There’s nothing about gaining market share that makes me feel any other way than great."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Luis Visoso",
+     "content": "And Matt, these things that John mentioned are happening already now. We are not expecting them to happen in a few quarters. We are already starting to see the benefits, as John mentioned."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Matt Cost",
+     "content": "Okay. Great. Thank you, both."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Richard Davis",
+     "content": "Clark Lampen."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Clark Lampen",
+     "content": "Hi, guys. Can you hear me?"
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "John Riccitiello",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Luis Visoso",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Clark Lampen",
+     "content": "Okay. Great. I wanted to follow up, John, on your comments around AI, and hopefully, it won’t sound sort of too myopic posing this question. But at a point where AI technology is proliferating and sort of being adopted at a rapid rate and the velocity of development isn’t really slowing down. what leaves you comfortable right now when it comes to the sort of potential for new entrants or threats to your position in the engine market? And if I could ask for maybe a sort of more specific point on product, is there a time line or have you guys thought about sort of releasing low or no code versions of the product for lower end developer segments in the market?"
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "John Riccitiello",
+     "content": "So a couple of things. So one observation is, I think, most professional game development in both professional digital twin development, is going to use a blend of deterministic tools and AI tools or natural language tools. Let me unpack that a little bit. It’s possible that somebody out there must around with ChatGPT or you mess around with some of the generative Arc tools that are out there. What you get sometimes is our first draft. You don’t get the newspaper, or call it, you are going to publish. You go back and forth between word, the deterministic tool and what you prompted and got from a natural language tool to synergize around what you think is an edited publishable product. What happens in the Unity Editor is the character designers and the level designers and the animators and the lighting people and the physics people and the dialogue people. They work in concert to produce a product. And what you can see us -- what you will see us doing, and I mean, this year, in the near-term is introducing natural language interface within the Editor to allow people to go back and forth between using a relatively complex tool that is deterministic where they have to work with it to yield an outcome and natural language was to give them a first draft and what they are trying to do. In some cases, the deterministic tool will be easier to use. If you are trying to create apology for the development lesson here, but if you try to create something like volumetric fog inside of a digital twin or inside of a game. You see all that atmospheric stuff that is so typical of movies and games, et cetera. Personally, I find it easier to take the sliders, because I don’t even know how to describe volume at per clock, how dense it should be, how viscous it should be, how reflective it should be, how rapidly it would be moving, a couple of sliders you get what you want. If I was trying to create another effect, it might be easier to start with something natural language. I want a Lion or on a fence or a house or a window or a door or if it’s in your inventory that is being built by the team that’s working on the digital twin. I want this particular manufacturing piece that we manufacture, I want it right here. That will be much easier on a natural language interface and I expect people to work back and forth. So that was just 1 part of our advantage that I mentioned is that, we are obviously, by far, the leading platform for this type of content creation. And what we expect is people to use both, because just using natural language is really almost impossible and it’s likely to be impossible for a very long time to be able to create something that benefits from team production processes and get something that is consumer ready. Now in addition to that, you can -- we are definitely going to build applications that lead to the end or connected to the Editor for people that are entirely non-technical so they can use natural language to impact content inside the Editor. That is relatively easy for us to do, it’s worked well advanced and I feel very good about that. But that is net new users and there’s a large, large number of net users available to us. So what I expect from this and just looking at the Editor alone, one piece of what we are talking about, I expect to see more usage to be edited by professional, because they will be more productive using the combination of deterministic and natural language tools. They can use that for scripting C-Sharp scripting, for example, we are using copilot and then added inside of Unity. The other side of this is new users coming to the platform because the most prolific and most widely used tool on the planet for professionals gets easier and easier to use for non-professionals or artists that just don’t want to interact with the developer’s tool. So we feel great about AI. I don’t want to take the 45 minutes and speak to all of the points that I’d like to talk about and go through our roadmap, but that’s just tip of the iceberg and it’s positive."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Clark Lampen",
+     "content": "That’s super helpful. And if I could maybe sort of dovetail on the comments around sort of the lower end of the market for a moment. Maybe on pricing for Create, you guys just took price when I think the industry might have been at its weakest point, and it sounds like from a lot of our checks that there was basically no developer attrition. And I think at a high level, that sort of suggests that the price value relationship probably still sits in the developer’s favor. I am curious how you guys think about maybe striking more of a balance and then specifically addressing the low end of the market where a lot of your users are still unpaid? Is that something that you guys would think about exploring over the course of the year, next year, anything specific you could say on that front would be appreciated?"
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "John Riccitiello",
+     "content": "So, yes, and your observation is correct. We still have pricing flexibility and we didn’t get a lot of negative feedback when we took pricing recently around our new pricing approach for the Editor, a stiffer glasses of users [ph]. Here’s what I would tell you is, what I expect right now to go from here. How do we get paid? I will use the game industry. We get paid because of our Grow business, which is the larger of the two businesses today, same customers paying us. We paid SaaS revenue on the tools today and then we get paid for UGS more usage. What I expect AI does is it causes a lot of workload in the cloud, a lot of workload on Unity’s servers. But in addition to that, cloud services that we are building around Weta tools, for example, or others within the Unity tool, like, tool place like SpeedTree, for example. So I see a lot of opportunity for us to add ratable revenue as our developers start to use more AI tools and to build more complex and richer, more advanced world. So what I expect pricing will kick in later this year as our customers come off their prior contracts onto the new pricing level. That will lift revenues in the balance of this year, added cloud revenue for more usage. And while I didn’t speak to this yet, the run time represents opportunity for us as well and here we have an advantage. Almost all AI work that’s cross-platform is going to end up being done on the server side and that’s expensive for our customers. We have announced Barracuda, which is a tool set that enables an inference engine to be run on the handheld device or a computer or a PC or console. We think there’s opportunity in there. Of course, we want them to use our servers, but they can run local is a big advantage for Unity over all other alternatives for this type of AI work."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Clark Lampen",
+     "content": "Thanks a lot."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Richard Davis",
+     "content": "Great. Okay. We will turn to Dylan Becker at William Blair."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Dylan Becker",
+     "content": "Yeah. Hey, guys. I appreciate it. Maybe to give you another couple of minutes on that AI headstone platform, John, and you called out the Barracuda piece. I wonder, are there any parallels that you guys can kind of call out, as you have seen, again, creation tools moving from static 2D to interactive 3D, now embedding these within generative AI, maybe more personalized efforts and what that can mean for content delivery, but some of the lessons and learnings as you guys kind of already have led this transition in one form or the other?"
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "John Riccitiello",
+     "content": "Wow! I could talk about that for an hour or more. And so let me just make some observations. So how do either the current art tools that are out there that allow you to degenerative or the large language models work. They study lots of examples for things, and then based on prompts, they give you a best fit or 5 best fits or 10 best fits that either represent an answer to what you asked for a girl on a bike and a wheat field and the style of band go, you get a picture of that or you describe a poly me want or a dialogue you want or a script if you want and it’s not very hard to imagine. For example, these models, both on the content side or the frames and art side and the dialogue side for bringing that together. And if you look at a film, for example, television and film is typically 20 frames a second. And it’s not impossible, it’s actually quite easy to scan every frame, scan the dialogues, scan the sound, you have to listen to it, we get to play it. And in some future, future just in place, we are going to see the possibility where you are going to see not just the sort of the miserable examples of doctor video has come out so far. You are going to see some decent work that comes out of the film side. Now the observation I would make for you here, these games are really different, games are very different. So if you are calling -- if you are applying a game with me and you hit the Xbox and shoot me in the shoulder and we are playing a shooter. And I hit the triangle button and duck, but I duck just a little bit too late. So I get it -- I get wind in the shoulder and I spin around and I fall to the ground and there’s blood and all the rest of it that goes on in the video game. Now what’s actually happening there is different than what you can scan. You can scan that outcome. But what you need to be able to scan if you are going to think that, is your input, my input, the frames and the sound, the physics and the lighting and the code that drove the light in the physics. Because those frames are never going to be repeated again. They are unique to where you hit may. They are unique to the timing of you getting the X button, they are unique to the timing of me hitting the triangle button. And so the challenge around this is, where can you try and to do that, where can you try to create an outcome that advances content creation. Now in the Editor, I am guessing a bunch of you haven’t opened the Editor, but we are at the open the Editor. You would see a screen that is your creation screen where you are dragging dropping and putting stuff up there, you would see a run time screen, which is how it would look if you provided those types of triangle and text inputs, that’s a run time screen. There’s only one place you can try on that inside the Unity Editor. You can read the code. You can read the run time screen. You can read the input that the creator used. So content creation in the gaming world, which is not the artifact can be scanned. It’s happening in real time. Now I have no doubt that pure natural language we will be able to produce really simple games as long as enough rules are put into the tool to create it. But the rich content that we have gotten used to is going to be harder to try and now it doesn’t mean it won’t get trying, but companies like Unity are going to be deeply involved in that process and others are going to be outside looking at. And so I feel very confident in our position as Unity, where by way of example, in terms of third-party tools outside of Asia, north of 70% of games are built in Unity. Our next largest Western competitor is less than 1%. And so we are in this position where we are -- if you will the de facto tool for doing this kind of work and as we bring these tools, these AI capabilities into the Editor, I think, we can win for our customers and win for ourselves. I think, though, that AI is going to have a profound effect on the industry. First, it’s going to lead to inflection up in growth as game types are built that we were not previously possible. And secondly, we are going to see, I believe some of the crazy expense that goes on in some high-end production come down some. It’s a favorable part for the game industry for growth and this going to be very favorable for Unity as we drive some of these changes to the industry."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Dylan Becker",
+     "content": "Got it. I appreciate the depth of the answer there. Maybe one quick clarification for Luis. On the financial side, looking at the balance sheet here. I guess thinking about capital allocation. I know you guys have the buyback in place. You have got about a $3 billion roughly in converts out there. I guess, as we are ramping the margin profile, just kind of any thoughts on capital allocation? Thanks."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Luis Visoso",
+     "content": "Yeah. Dylan, similar to what we talked last time, we are looking at the market and there is a credit crunch out there. So we are happy with $1.6 billion that we have in the bank. We would be generating cash this year, but we want to be very prudent. So don’t expect anything dramatic there."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Dylan Becker",
+     "content": "Thanks, guys."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Richard Davis",
+     "content": "Okay. Yeah. So let’s go to Gili at Goldman Sachs, please."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Gili Naftalovich",
+     "content": "Hi, everyone. Thanks. Yeah. Gili on for Kash. Congrats on the results and thanks for taking my question. I will give you guys a break around AI, even though I agree with everybody on the call that it’s very exciting and it’s -- we are all waiting to tune into what you guys do. But my question is more around the health of the industry or the non-gaming selling motion. Given that tight budgets and let us continue to be a common headline across industries in 1Q, any color you can provide around new business or renewal trends in that part of the business would be great?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "John Riccitiello",
+     "content": "So, first off, we are really proud of our digital twin business and new customers coming to our platform literally every week and we have made a number of announcements. I wish more than we are further in the development process, because we could show you the beautiful and incredible things that they are building. But again, we have made announcements in the shareholder letter and they keep coming. And they come to us for a variety of things, whether it’s high-end watch companies around the manufacturing process, the marketing process, the auto industry around manufacturing process, large facilities, including cities like Orlando and airports in terms of how to run safely and effectively in a large environment, buildings, architecture, engineering, construction, also in the energy field. Now the fundamental advantage Unity brings versus most tools that are out there is that we are real-time. And what that means is, instead of looking in the rearview mirror, you are looking at exactly where you are today. It’s more of a, like, the dashboard of your car, which is another place Unity is increasingly used today in terms of plays in cars. But you are looking at the present and that is a huge advantage, a huge advantage relative to the traditional companies that compete in the digital twin rate, which is why we are getting so much interest. Now I have to admit and I am glad you asked the question, that when I greenlit the Barracuda project five years ago to be able to do this. I did not anticipate that we would have a scaled digital twin business in the way that we do, and I frankly didn’t anticipate the actual use case. So I thought AI on device was going to be really, really cool, and I didn’t -- me and my team and one of my colleagues, Savio [ph], that put this in place, he ran labs at the time. We knew there would be something cool. We didn’t know exactly what it is. I am very glad we did it. And this allows us to not look at the present. It allows us to run a massive amount of simulation in the cloud, but then run on device. So all of these people that work on the factory floor and a large auto company can get -- they can anticipate what they should do next based on what’s happening in the present, run simulation for lots of different scenarios and it can propose and advance the workflow in virtually any environment. And I think that’s actually going to be a deciding point for digital twins going forward at a massive scale, because right now, what they do is they largely look backwards and they try to come to their own intelligence and then change things. We are going to be able and can use data in the present to help shape the future and I think that’s always been the promise of digital twins. It’s just a promise as of yet, not delivered and Unity has the advantage of being able to do that on device. So most digital wins today sadly are constrained on a big manufacturing floor. The manager that’s up in the booth overseeing thousands of people in the manufacturing facility. Where we are carrying this is it’s on a device that every person on the factory floor has it and is using it to enhance what they are doing in the present. The guy in the factory look overlooking the factory, that’s the past. We are in the present and as we bring AI to these people on the factory floor or in any other environment, they are looking into tomorrow. They are getting something better than they have ever had before and that’s really an unlock of, I think, huge value. And the other angle of this is when I talk to customers on the digital twin side to say, but isn’t that going to give me a staggering phone bill. In other words, my -- aren’t going to have to pay the various cloud providers in an enormous way. I read about OpenAI spending so much money on training their algorithms that it’s frightening to imagine what the cost will be, and we say, well, it might, but this allows you to run it on device. Having a large number of people that are training on device, on the cell phones or tablets or other things they are using to interact with this data, they can run it for free and that’s a big advantage. We have all seen that you can aggregate a bunch of PCs to replicate a supercomputer. This is a similar thesis. You can do things on device in a way that makes that load less expensive. And I think that’s another competitive advantage for Unity and we are unique in having built that. So I feel great about this side of the business as well. And we are in the process of using for scaling on that side of the business and you will see more about that in the course of the next weeks."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Gili Naftalovich",
+     "content": "Great. Thank you so much."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Richard Davis",
+     "content": "We will go to Stephen Ju, Credit Suisse."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Stephen Ju",
+     "content": "All right. Great. So I want to get us back on the AI train here. I just wanted to follow up on your comments."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "John Riccitiello",
+     "content": "I think we should have had this call run by ChatGPT. To answering questions about AI."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Stephen Ju",
+     "content": "Yeah. Yeah."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "John Riccitiello",
+     "content": "All right. Stephen, I will give it back to you."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Stephen Ju",
+     "content": "All right. So around the Unity Editor and I get that we are not going to get there all at once, but what you are describing here makes us want to think about the potential for a one-man game development company, which is the verbal prompts from the rider driving all the content creation. It does sound like longer term this has the potential to increase the number of creators, but maybe also decrease the number of developers who can interact with Create. So versus sort of a historical 1.5 million people that we have been thinking about, can you think about the puts and takes here, because thinking about this as just a positive, net positive just seems too good to be true. And also, can you help us think about what this does for -- to your earlier commentary about digital twins and 3D content creation outside the game industry, does this help you significantly expand the addressable market sooner? So maybe longer term, the puts and takes just inside the game sector maybe just does not matter. And I guess, Luis, bringing this back down to earth a little bit and the present, I think, you recently announced a reduction in force. So can you talk about the dollar impact to OpEx and EBITDA for the year? Thank you."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "John Riccitiello",
+     "content": "So, I think, that’s the longest question we have had there in for several quarters."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Stephen Ju",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "John Riccitiello",
+     "content": "So, thanks, Stephen, for that one. Puts and takes, so first off, there are already lots of single person game development organizations out there. And I can -- Flappy Bird as an example was made by one person. And some of the most successful sort of runner type games and puzzle games are built by one, two, sometimes three people. A lot of hyper casual games are today built by one, two or three people. So that already exists as a phenomenon. And they are pleasantly almost always using Unity, which is something we make -- we are very happy about. The second thing is, once you get up from that the single player -- the single person making this stuff. My expectation, just need to think about for a minute is, whether you are making a movie or a game or anything. The primary issue is whether you are successful or not, the revenue is supposed to exceed cost by a lot and it’s a very competitive market for high quality product that’s out there. And I don’t foresee a place for a time where an individual that is great at level design is likely to be greater character sign, it likely to be greater animation or lighting or physics or all of the things that yield balance in a game, et cetera. That doesn’t mean that a developer isn’t going to get a crisp choice here and I believe they will. Do I want to make a game twice as good with the same number of people or do I want to make a game just as good with half the people and that is definitely going to be a choice? Now how does that frame up against Unity? We are already two-thirds of our revenue is from one level or another is usage of games, the play of games, the interactions on a server from games. So as an observation, that’s not necessary for us, it might be good for us if that’s where it goes. The second thing I would tell you is I think that, a lot of developers, I think, are going to opt for the same number of more developers making better products, because the prices are huge. I think if you look at the marketplace today and say, what entertainment products have ever generated $10 billion in revenue, in the first, I don’t know, 25 things you would come up with are all games. It is a very lucrative market for people to produce better and more differentiated products. And the third thing is we have been talking a lot at Unity about and with all of you, is a lot of our revenue that we see revenue growth in Unity is going to come from cloud-based usage, how the tools are used, how the rendering works, how the build process works and less than seats. We believe most of our revenue and revenue growth from Unity is more around usage than it is around seats. So the gaming side, I think, you can do puts and takes and you can have your own window on what you might think those things balance out to, I think, they are pretty positive for Unity’s revenue streams, very positive, which is why we are confident enough in a world where this is all happening to raise our guidance and should not lower it. The second point on digital twins. This is an industry that is much larger than the game industry, with large, looking over the entirety of it and we are uniquely positioned to deliver AI-enhanced run time to enable real-time 3Ds that are driven real-time simulation that’s driven off device, which is a huge positive. I can see nothing there but it’s not just pure positive. And here, one of the reasons we built the usage-based platform, one is it solves a problem for our customers. But secondly, we anticipated that we wanted the majority of our revenue if not almost the entirety of our revenue in time to come from usage based, not from seats. Because we don’t see a major luxury watch company having 50 developers and sustaining that. They might have 50 watch designers, but they are not going to have people doing like what you do in the game industry. So I don’t see this as much any other way than positive and I think it’s positive short- and long-term."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Luis Visoso",
+     "content": "Stephen, to your second question and thanks for inviting me into the conversation. We -- if you were to isolate this effect, it’s about $18 million for full quarter."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Stephen Ju",
+     "content": "Got you. All right. Thank you."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Luis Visoso",
+     "content": "Sure."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Richard Davis",
+     "content": "Okay. We will turn it over to Bernie McTernan."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Bernie McTernan",
+     "content": "Great. Thanks for taking the question. Again, sticking on AI, I think, I know the answer just wanted to clarify a point on it. Are there opportunities to upsell some of these capabilities as far as the goal to really make the more ubiquitous and continue to democratize the technology?"
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "John Riccitiello",
+     "content": "I didn’t if I catch that question. I am sorry, I had a blip in my network."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Bernie McTernan",
+     "content": "Yeah. Just all the different AI, different products that you are rolling out, do you think those about upsell opportunities or opportunities to charge more for your service or is the goal just to continue to democratize the tools in AI is just another example of that?"
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "John Riccitiello",
+     "content": "Right. So if I were to do a quick lifting. One is AI is already driving outperformance on our ad network. That’s a positive. I think it is going to democratize and bring more people into the tool set. We typically capture the majority of the developers on a smaller portion of the artists. Natural language will be artist into the tool. I refine web app approach I talked about before or directly into the Editor using natural language. So I think it’s a positive there and that, I think, fits up the notion of democratization. And then the area I am most excited about and one I think is probably the biggest growth driver for us is the fact that our run time, while it was a massively pervasive tool that’s being used on 4 billion devices today gets increasingly powerful to enable a game play or digital twins that are more advanced than maybe Gene Roddenberry saw it coming, but not many people did. I am so excited about that. I think it’s going to drive users to our platform in a huge way and it’s uniquely ours. So I feel great about it."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Bernie McTernan",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Richard Davis",
+     "content": "Great. Parker Lane."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Parker Lane",
+     "content": "Hi, guys. Can you hear me okay?"
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Luis Visoso",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "John Riccitiello",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Parker Lane",
+     "content": "Perfect. John, I will skip AI for this one. I want to go back to last quarter’s theme, which was synergies and you just discussed it a little bit there, Luis. But when we think about synergies in the context of the adjusted EBITDA ramp here, how far along are we in the identification and execution against the synergies post IS?"
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "John Riccitiello",
+     "content": "How far along? 25%, I don’t know, it’d been, okay, less than half, a lot more to go. But I can say, with no hesitation that it’s driving revenue now. We just add a plus big to get AB, we are getting more than we had in the combination and that’s mostly on the Grow side. But we are also seeing the Create side enable revenue streams better on the Grow side and we are seeing uptick in tool usage from Grow from the endorsement of Unity and for being part of the Editor. There are so many things I’d like to tell you about, but we tend not to describe what’s going to happen the day after tomorrow or the month after next. But there are some really substantial programs under development in Unity that will generate increased synergy for our customers and increase revenue for Unity because of the combination. And so here’s what I hold you to. Ask me in the December, I guess, end of November, December call about synergies, because right now, I am describing great performance today because of it with more to come and in December, that’s going to be a much more fun conversation to have based on work we have underway and product we have coming to market."
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Parker Lane",
+     "content": "Got it. I will make sure to circle back later this year. If I could sneak one more in here on digital twins. I noticed you guys talked about reducing your reliance on Professional Services to drive adoption there. Can you dive into that dynamic a little bit more and the implications of that and the go-to-market strategy?"
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "John Riccitiello",
+     "content": "Luis, you or me."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Luis Visoso",
+     "content": "Yeah. Go ahead, John."
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "John Riccitiello",
+     "content": "All right. So, first off, let me just describe the life cycle of a digital twin customer with Unity. And the life cycle is, they usually start with what feels a bit like an RFP process, where they say, I want a digital twin. They might even not call it a digital twin. I want automation here, I want something, but it always fits into our rubber of digital twin, which is bringing the physical world into a digital world, simulating driven by data, typically IoT data, significant real-time adjusted data to yield out for them. So the first innings are about scoping it. It’s amazing how much science fiction these people consume, because they have always got ideas that are amazingly ambitious. The next stage is building it. Now this is where digital twin customers differ from game customers. When we talk to Activision or in Japan to Square, we talk to, Ruby Soft, we talk to any of the major mobile publishers out there, King, et cetera, and Zynga. They have already got an army of developers, they typically got thousands of developers in their company using Unity. So we are talking to them about what they might do next and adding to that. Inside of the City of Orlando or the airports where we do business with the car companies, they might have a couple of dozen developers, but they don’t have a lot. And so what typically starts our relationship is a Professional Services agreement, where we build for them with their people on our team, the first cut at that digital twin. And then as that digital twin gets built, it gives way to an ongoing usage-based revenue stream from our -- from the cloud side of our business, where we ingest the digital twin data, the IoT data in order to run that application for them. And so -- and then we always keep seats because they want to be able to mess with it over time. But when Luis said in the prepared remarks or in the response to one of the questions, we want less reliant on Professional Services. We never ambitioned or theorized that we were going to grow our Professional Services business to $1 billion business someday. It doesn’t mean that it might not be there when the Unity is a $15 billion company. But it’s not how we saw this going. We have always seen this going where the lion’s share of our digital twin business is cloud-based ratable revenue for operating the digital twin, not Professional Services revenue for creating the digital twin. It doesn’t mean Professional Services goes away. It’s still a growth line for us. But we are not emphasizing that as a growth vector, which is one of the reasons we signed partnerships with people like Booz Allen and with Capgemini. We are very happy to allow them to do the building of that digital twin, one, Booz more in the government side of things and Capgemini across a number of sectors in energy, as an example. And so we are very happy to have these integrators work towards creating cloud-based high margin revenue for Unity. And so what we see happening on the digital twin side is, we have a lot of demand at the top of the funnel, and frankly, we have to turn away business at the top of the funnel, because we don’t intend to scale our Professional Services business as rapidly as we otherwise could, getting our use case was out there and then shifting each one to ongoing ratable revenue, which because it’s fundamental to their workflows and fundamental to how they operate their businesses, they look to me, like, the closest thing to permanent revenue that I can see. So I feel very good about this transformation. Add AI to that and you have the opportunity for more revenue on the ratable side. And secondly, greater and more positive differentiation versus traditional tools."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Parker Lane",
+     "content": "Really great feedback. Thanks, John."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Richard Davis",
+     "content": "All right. Well, we have like in a football game or a hockey game where the Bruins losing overtime, I had to throw in a Boston sports. We come to the end of this call. But thank you all so much. Thank you for your interest. Thank you for your very good questions. We really appreciate it. And I will turn it over to John to finish it up, but we will see you again soon, I am sure."
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "John Riccitiello",
+     "content": "All right. So thanks for sticking with us. You definitely beat my estimation on AI questions. I thought it was going to be half the call. It didn’t occur to me that it might be three quarters of the call. But, look, I feel very good about Unity. We had a great first quarter. We are guiding for more great quarters for the balance of the year. We feel really good about our business, because we are a platform, because we are generating strong synergy. There is massive energy inside this company to serve our creators in ways that they haven’t even imagined yet, part of that is AI. And I believe AI is going to be positive for the industries we compete in and it’s going to be positive for Unity’s market share in those industries and it’s going to be positive for the revenue that we yield from those market share point gains. So we feel good about where we are and thanks for your patience today. I appreciate all the good questions."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Luis Visoso",
+     "content": "Thank you, everyone."
+    },
+    {
+     "paragraph_number": 73,
+     "speaker": "Richard Davis",
+     "content": "Thanks."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
  "3_截止前文件": {
-  "最近 10-K/20-F": "查不到",
+  "最近 10-K/20-F": {
+   "form": "10-K",
+   "filingDate": "2023-02-27",
+   "reportDate": "2022-12-31",
+   "accession": "0001810806-23-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080623000016/unity-20221231.htm",
+   "local_gz": "000181080623000016__annual.txt.gz",
+   "n_lines": 2078
+  },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
-   "filingDate": "2023-11-30",
-   "reportDate": "2023-10-31",
-   "accession": "0001108524-23-000048",
-   "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852423000048/crm-20231031.htm",
-   "local_gz": "000110852423000048__q0.txt.gz"
+   "filingDate": "2023-05-10",
+   "reportDate": "2023-03-31",
+   "accession": "0001810806-23-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080623000059/unity-20230331.htm",
+   "local_gz": "000181080623000059__q0.txt.gz",
+   "n_lines": 1181
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
-   "filingDate": "2023-08-31",
-   "reportDate": "2023-07-31",
-   "accession": "0001108524-23-000040",
-   "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852423000040/crm-20230731.htm",
-   "local_gz": "000110852423000040__q1.txt.gz"
+   "filingDate": "2022-11-09",
+   "reportDate": "2022-09-30",
+   "accession": "0001810806-22-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080622000084/unity-20220930.htm",
+   "local_gz": "000181080622000084__q1.txt.gz",
+   "n_lines": 1408
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
-  "hist_src_latest_filed": "2023-08-31",
+  "hist_src_latest_filed": "2023-02-27",
   "n_rows": 8,
   "n_rows_first_filed_after_T1": 0,
   "year_end_derived_note": "標 `revenue_year_end_derived=true` 的季是**推算**而來:該季無 80–100 日的單季 duration,由年報(340–380 日)減同期 9 個月累計(255–285 日)得出(票 A″ 第 3 步同一條)。",
   "quarters": [
    {
-    "period_end": "2022-01-31",
-    "revenue": 7326000000.0,
-    "gross_profit": 5312000000.0,
+    "period_end": "2021-06-30",
+    "revenue": 273562000.0,
+    "gross_profit": 215837000.0,
+    "operating_income": -149184000.0,
+    "ocf": -26681000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 340716000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 123461000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1012767000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 6807000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7561000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -148342000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.53,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 280374000.0,
+      "filed": "2021-08-11",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2021-09-30",
+    "revenue": 286328000.0,
+    "gross_profit": 222811000.0,
+    "operating_income": -126750000.0,
+    "ocf": 43623000.0,
+    "revenue_xbrl_first_filed_after_T1": false,
+    "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 301035000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 129294000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 766252000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 9408000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7976000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -115152000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.41,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 283714000.0,
+      "filed": "2021-11-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
+    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
+   },
+   {
+    "period_end": "2021-12-31",
+    "revenue": 315864000.0,
+    "gross_profit": 242210000.0,
     "operating_income": null,
-    "ocf": 1982000000.0,
+    "ocf": -39509000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 340491000.0,
+      "filed": "2022-02-22",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 140528000.0,
+      "filed": "2022-02-22",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1055776000.0,
+      "filed": "2022-02-22",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 13979000.0,
+      "filed": "2022-02-22",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 25345000.0,
+      "filed": "2022-02-22",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 2115000.0,
+      "filed": "2022-02-22",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
-    "period_end": "2022-04-30",
-    "revenue": 7411000000.0,
-    "gross_profit": 5366000000.0,
-    "operating_income": 20000000.0,
-    "ocf": 3676000000.0,
+    "period_end": "2022-03-31",
+    "revenue": 320126000.0,
+    "gross_profit": 226293000.0,
+    "operating_income": -171161000.0,
+    "ocf": 101300000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 332958000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 200218000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1162692000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 14929000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 41472000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -177555000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.6,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 294341000.0,
+      "filed": "2022-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
-    "period_end": "2022-07-31",
-    "revenue": 7720000000.0,
-    "gross_profit": 5593000000.0,
-    "operating_income": 193000000.0,
-    "ocf": 334000000.0,
+    "period_end": "2022-06-30",
+    "revenue": 297043000.0,
+    "gross_profit": 200207000.0,
+    "operating_income": -197666000.0,
+    "ocf": -42870000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 322332000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 202990000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1173140000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 15428000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 42636000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -204158000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.69,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 296849000.0,
+      "filed": "2022-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
-    "period_end": "2022-10-31",
-    "revenue": 7837000000.0,
-    "gross_profit": 5749000000.0,
-    "operating_income": 460000000.0,
-    "ocf": 313000000.0,
+    "period_end": "2022-09-30",
+    "revenue": 322881000.0,
+    "gross_profit": 210978000.0,
+    "operating_income": -239626000.0,
+    "ocf": -68800000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 316337000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 202984000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1250092000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 11987000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 43490000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -250021000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.84,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 299062000.0,
+      "filed": "2022-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
-    "period_end": "2023-01-31",
-    "revenue": 8384000000.0,
-    "gross_profit": 6284000000.0,
-    "operating_income": 357000000.0,
-    "ocf": 2788000000.0,
+    "period_end": "2022-12-31",
+    "revenue": 450974000.0,
+    "gross_profit": 311046000.0,
+    "operating_income": null,
+    "ocf": -49061000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 633775000.0,
+      "filed": "2023-02-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 218102000.0,
+      "filed": "2023-02-27",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 1485084000.0,
+      "filed": "2023-02-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 14794000.0,
+      "filed": "2023-02-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 83978000.0,
+      "filed": "2023-02-27",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 13736000.0,
+      "filed": "2023-02-27",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
-    "period_end": "2023-04-30",
-    "revenue": 8247000000.0,
-    "gross_profit": 6122000000.0,
-    "operating_income": 412000000.0,
-    "ocf": 4491000000.0,
+    "period_end": "2023-03-31",
+    "revenue": 500361000.0,
+    "gross_profit": 338397000.0,
+    "operating_income": -254984000.0,
+    "ocf": -5099000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
-    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
-   },
-   {
-    "period_end": "2023-07-31",
-    "revenue": 8603000000.0,
-    "gross_profit": 6490000000.0,
-    "operating_income": 1476000000.0,
-    "ocf": 808000000.0,
-    "revenue_xbrl_first_filed_after_T1": false,
-    "revenue_year_end_derived": false,
-    "revenue_source": "XBRL 首報值(稿內未逐季列出)"
-   },
-   {
-    "period_end": "2023-10-31",
-    "revenue": 8720000000.0,
-    "gross_profit": 6565000000.0,
-    "operating_income": 1501000000.0,
-    "ocf": 1532000000.0,
-    "revenue_xbrl_first_filed_after_T1": false,
-    "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": -0.67,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
-    "revenue_ex991": 8720000000.0,
-    "revenue_xbrl_for_reference": 8720000000.0
+    "revenue_ex991": 500000000.0,
+    "revenue_xbrl_for_reference": 500361000.0
    }
   ],
-  "signal_q_end": "2023-10-31",
-  "g0_signal_q_yoy": 0.112671,
-  "g0_xbrl_for_reference": 0.112671,
-  "prev_q_yoy": 0.114378,
-  "accel_pp": -0.1708,
+  "signal_q_end": "2023-03-31",
+  "g0_signal_q_yoy": 0.561885,
+  "g0_xbrl_for_reference": 0.563013,
+  "prev_q_yoy": 0.427747,
+  "accel_pp": 13.4138,
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "7372",
   "sic2": "73",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 527,
-  "peer_list_all_same_sic2_tickers": [
-   "ABM",
-   "ABNB",
-   "ACIW",
-   "ACN",
-   "ACVA",
-   "ADBE",
-   "ADP",
-   "ADSK",
-   "ADT",
-   "ADV",
-   "AER",
-   "AEYE",
-   "AGMH",
-   "AGYS",
-   "AHG",
-   "AI",
-   "AIFF",
-   "AISP",
-   "AIXI",
-   "AKAM",
-   "ALAR",
-   "ALIT",
-   "ALKT",
-   "ALLE",
-   "ALRM",
-   "AMN",
-   "AMPL",
-   "AMST",
-   "AMWL",
-   "ANGI",
-   "APG",
-   "API",
-   "APLD",
-   "APP",
-   "APPF",
-   "APPN",
-   "ARBB",
-   "ARBE",
-   "ARLO",
-   "ARQQ",
-   "ASAN",
-   "ASPS",
-   "ASUR",
-   "ATGL",
-   "ATHM",
-   "ATXG",
-   "AUID",
-   "AUR",
-   "AUUD",
-   "AVPT",
-   "AWRE",
-   "BABA",
-   "BAER",
-   "BAND",
-   "BAOS",
-   "BB",
-   "BBAI",
-   "BBSI",
-   "BGSF",
-   "BIDU",
-   "BILI",
-   "BILL",
-   "BIRD",
-   "BKYI",
-   "BL",
-   "BLIN",
-   "BLKB",
-   "BLND",
-   "BLZE",
-   "BMBL",
-   "BMR",
-   "BNAI",
-   "BOX",
-   "BR",
-   "BRAG",
-   "BRZE",
-   "BSY",
-   "BTLN",
-   "BZ",
-   "CACI",
-   "CARG",
-   "CARS",
-   "CART",
-   "CASS",
-   "CBZ",
-   "CCC",
-   "CCLD",
-   "CCO",
-   "CCSI",
-   "CDLX",
-   "CDNS",
-   "CERT",
-   "CEVA",
-   "CGNT",
-   "CHGA",
-   "CHKP",
-   "CHR",
-   "CINT",
-   "CIRC",
-   "CLBT",
-   "CLPS",
-   "CLVT",
-   "CMCM",
-   "CMRC",
-   "CNDT",
-   "CNET",
-   "CNXC",
-   "COUR",
-   "CPAY",
-   "CREX",
-   "CRNC",
-   "CRTO",
-   "CRWD",
-   "CSGP",
-   "CSPI",
-   "CTEV",
-   "CTOS",
-   "CTSH",
-   "CVLT",
-   "CXAI"
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 185,
+  "peer_list_all_tickers": [
+   "CRM",
+   "MSFT"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000789019",
     "name": "MICROSOFT CORP",
     "ticker": "MSFT",
-    "sic2": "73",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2023-07-27",
-    "accn": "0000950170-23-035122",
-    "local_gz": "000095017023035122__peer10k.txt.gz",
+    "filingDate": "2022-07-28",
+    "accn": "0001564590-22-026876",
+    "local_gz": "000156459022026876__peer10k.txt.gz",
     "capex_excerpt": [
-     "properties 0 (0.44 ) * Adjusted diluted earnings per share (non-GAAP) $ 9.81 $ 9.21 7% * Not meaningful. 49 PART II Item 7 LIQUIDITY AND CAPITAL RESOURCES We expect existing cash, cash equivalents, short-term investments, cash flows from operations, and access to capital markets to continue to be sufficient to fund our operating activities and cash commitments for investing and financing activities, such as dividends, share repurchases, debt maturities, material capital expenditures, and the transition tax related to the Tax Cuts and Jobs Act (“TCJA”), for at least the next 12 months and thereafter for the foreseeable future. Cash, Cash Equivalents, and Investments Cash, cash equivalents, an",
-     "2 billion decrease in cash from net investment purchases, sales, and maturities, and a $4.2 billion increase in additions to property and equipment. 50 PART II Item 7 Debt Proceeds We issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating and the low interest rate environment. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. Refer to Note 11 – Debt of the Notes to Financial Statements (Part II, Item 8 of this Form 10-K) for further dis",
-     "ment through October 18, 2023 to allow for additional time to resolve remaining regulatory concerns. We will continue to invest in sales, marketing, product support infrastructure, and existing and advanced areas of technology, as well as acquisitions that align with our business strategy. Additions to property and equipment will continue, including new facilities, datacenters, and computer systems for research and development, sales and marketing, support, and administrative staff. We expect capital expenditures to increase in coming years to support growth in our cloud offerings and our investments in AI infrastructure. We have operating and finance leases for datacenters, corporate office"
-    ]
+     "on withholding taxes 0 (0.08 ) * Adjusted diluted earnings per share (non-GAAP) $ 9.21 $ 7.97 16% * Not meaningful. 48 PART II Item 7 LIQUIDITY AND CAPITAL RESOURCES We expect existing cash, cash equivalents, short-term investments, cash flows from operations, and access to capital markets to continue to be sufficient to fund our operating activities and cash commitments for investing and financing activities, such as dividends, share repurchases, debt maturities, material capital expenditures, and the transition tax related to the TCJA, for at least the next 12 months and thereafter for the foreseeable future. Cash, Cash Equivalents, and Investments Cash, cash equivalents, and short-term in",
+     "d to suppliers and employees. Cash used in financing increased $10.4 billion to $58.9 billion for fiscal year 2022, mainly due to a $5.3 billion increase in common stock repurchases and a $5.3 billion increase in repayments of debt. Cash used in investing increased $2.7 billion to $30.3 billion for fiscal year 2022, mainly due to a $13.1 billion increase in cash used for acquisitions of companies, net of cash acquired, and purchases of intangible and other assets, and a $3.3 billion increase in additions to property and equipment, offset in part by a $15.6 billion increase in cash from net investment purchases, sales, and maturities. 49 PART II Item 7 Debt Proceeds We issue debt to take adva",
+     "ncrease in additions to property and equipment, offset in part by a $15.6 billion increase in cash from net investment purchases, sales, and maturities. 49 PART II Item 7 Debt Proceeds We issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating and the low interest rate environment. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. In March 2021 and June 2020, we exchanged a portion of our existing debt at a premium for cash and new debt "
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0001326801",
-    "name": "Meta Platforms, Inc.",
-    "ticker": "META",
-    "sic2": "73"
+    "entity_id": "0001108524",
+    "name": "Salesforce, Inc.",
+    "ticker": "CRM",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2023-03-08",
+    "accn": "0001108524-23-000011",
+    "local_gz": "000110852423000011__peer10k.txt.gz",
+    "capex_excerpt": [
+     "strategies, expectations or plans regarding our investments, including strategic investments or future acquisitions, our beliefs or expectations regarding our competition, our intentions regarding use of future earnings or dividends, our expectations regarding attrition rates, our expectations regarding the Restructuring Plan, including with respect to timing or costs, our expectations regarding investing in human capital and technology or our beliefs or expectations regarding working capital, capital expenditures, debt maintenance or commitments. These forward-looking statements are based on current expectations, estimates and forecasts, as well as the beliefs and assumptions of our managem",
+     "ntinue to be affected by various risks and uncertainties, including, but not limited to, the risks detailed in Part I, Item 1A titled “Risk Factors.” We believe our existing cash, cash equivalents, marketable securities, cash provided by operating activities, unbilled amounts related to contracted non-cancelable subscription agreements, which is not reflected on the balance sheet, and, if necessary, our borrowing capacity under our Credit Facility will be sufficient to meet our working capital, capital expenditure and debt maintenance needs over the next 12 months. 48 Table of Contents In the future, we may enter into arrangements to acquire or invest in complementary businesses, services an",
+     "djusted for non-cash items including $3.3 billion of depreciation and amortization and $2.8 billion related to stock-based expense offset by $1.2 billion related to gains on strategic investments. Cash provided by operating activities during fiscal 2022 was further benefited by the change in unearned revenue of $2.6 billion, partially offset by accounts receivable, net of $1.8 billion. Investing Activities The net cash used in investing activities during fiscal 2023 was primarily related to capital expenditures of $798 million, net outflows of $557 million from marketable securities activity, cash consideration for acquisitions of approximately $439 million and net outflows of $195 million f"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
  "6_價格狀態": {
-  "ret_6m_skip1m": 0.036060658937899115,
-  "ret_12m_skip1m": 0.23193461429690942,
-  "rank_6m_pct_in_universe": 0.6705461056401074,
-  "rank_12m_pct_in_universe": 0.8235159817351598,
-  "dist_from_52w_high": 0.0,
-  "reaction_day_return": 0.09355329510020827,
-  "reaction_day_rel_spy": 0.08961586788501585,
-  "reaction_day_rel_sic2_median": 0.09579113958583596
+  "ret_6m_skip1m": -0.08599428977311963,
+  "ret_12m_skip1m": -0.6812217546681563,
+  "rank_6m_pct_in_universe": 0.32876085962505713,
+  "rank_12m_pct_in_universe": 0.10608533457682444,
+  "dist_from_52w_high": -0.44484353674035526,
+  "reaction_day_return": 0.12943630281767948,
+  "reaction_day_rel_spy": 0.13118048487923517,
+  "reaction_day_rel_sic2_median": 0.13359970110321828
  },
  "7_共識": {
   "analyst_consensus": "查不到",
   "note": "倉內無歷史共識資料;不得憑記憶補"
  },
  "masking_check": {
-  "latest_data_date": "2023-11-30",
-  "cutoff": "2023-11-30",
+  "latest_data_date": "2023-05-11",
+  "cutoff": "2023-05-11",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2023-05-10",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2023-05-12",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

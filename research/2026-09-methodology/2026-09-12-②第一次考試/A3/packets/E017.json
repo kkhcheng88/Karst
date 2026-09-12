@@ -1,6 +1,7 @@
 {
  "event_id": "E017",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E017",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "FTK",
  "cik": "0000928054",
  "name": "FLOTEK INDUSTRIES INC/CN/",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2017-02-09(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E017",
   "event_id": "E017",
   "ticker": "FTK",
   "cik": "0000928054",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001193125-17-034965",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/928054/000119312517034965/d267742d8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/928054/000119312517034965/d267742d8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n d267742dex991.htm\n EXHIBIT 99.1\n Exhibit 99.1 \n Exhibit 99.1 \n FLOTEK INDUSTRIES, INC. ANNOUNCES 2016 FINANCIAL AND OPERATING RESULTS AND CONFERENCE CALL INFORMATION\n HOUSTON, FEBRUARY 8, 2017 — Flotek Industries, Inc. (“Flotek” or the “Company”) (NYSE: FTK) today\nannounced results for the three- and twelve-months ended December 31, 2016. \n Results Highlights: \n • \n As part of our strategic repositioning, we are executing a plan to divest our Drilling Technologies and Production Technologies segments. Effective December 31, 2016, Flotek has classified the assets, liabilities,\nand results of operations for these two segments as “Discontinued Operations” for all periods presented. \n The following\ndiscussion points relate to Flotek’s continuing operations. \n • \n Flotek announced 2016 annual revenue of $262.8 million, a decrease of 2.7% from 2015 levels. Fourth quarter revenue of $70.6 million was 10.5% higher than fourth quarter 2015 revenue and 9.8% higher than third\nquarter 2016—a remarkable outcome in the face of a 43% drop in completion activity, according to the U.S. EIA. \n • \n Sales volumes of Flotek’s Complex nano-Fluid ® (CnF ® ) suite of completion chemistries increased 14.7%\nin 2016 when compared to 2015 levels. Fourth quarter volumes increased 12.4% sequentially. Year-over-year revenues were up 11.6% while fourth quarter revenues grew 21.4% sequentially. \n • \n Consumer & Industrial Chemistry Technologies (CICT) reported record revenue of $74.6 million for the full year 2016, up 32.3% year-over-year. \n • \n Flotek is continuing to expand its global footprint across Asia, Middle East and Eastern Europe, improving international revenues by 21.2% compared to the prior year period. \n • \n For the twelve months ended December 31, 2016, Flotek reported net income from continuing operations of $1.9 million or $0.03 per common share (fully diluted). For the three months ended December 31,\n2016, Flotek reported net income from continuing operations of $3.9 million, or $0.07 per common share (fully diluted). \n • \n Michelle Adams, worldwide vice president of IBM Watson Platform, has joined Flotek’s Board of Directors, effective January 30, 2017, joining the Governance Committee. \n • \n Flotek’s acquisition of International Polymerics Inc. (IPI) in August continues to provide a strategically-located staging center in the Permian Basin that will help our cost curve as we serve the many independent\nand innovative E&P companies in the fast-changing and most active area in the U.S. shale industry. \n • \n The innovative virtual Flotek Store provides a more direct communication with exploration & production operating companies to help better serve their needs, while significantly reducing costs for our clients.\n • \n In our commitment to innovation and research, Flotek has filed or are pending the receipt of more than 70 patents, including over 40 unique CnF ® formulations.\n “The demand for Flotek’s suite of consumer and industrial chemistry products and our clients’\ntrust in our CnF ® technology led to a stronger than expected fourth quarter,” said John Chisholm, Flotek’s Chairman, President and Chief Executive Officer. “With numerous shale\noil producers and oilfield service suppliers now forecasting a low double-digit growth rate in 2017, Flotek is well positioned to capture opportunities through existing and prospective drillers seeking to improve their well output.” \n “As we announced in January, Michelle Adams, worldwide vice president of IBM Watson Platform, has joined Flotek’s Board of Directors, bringing a\nwealth of first class expertise in innovation, entrepreneurship and sustainability. We are excited to have her on our team and expect to leverage her unique background in technology and cognitive learning.” \n Full-Year 2016 Results \n As reported in the Form 10-K filed with the U.S. Securities and Exchange Commission, Flotek reported revenue for the year ended December 31, 2016 of $262.8 million, a decrease of $7.2 million, or 2.7%, compared to the year\nended December 31, 2015. Reduced demand from oilfield market activity contributed to the annual decline, but was partially offset by increased citrus terpene prices in our CICT business. \n Flotek reported net income from continuing operations for the year ended December 31, 2016 of $1.9 million, a decrease of $5.3 million, or\n73.4%, compared to net income from continuing operations for the year ended December 31, 2015. \n The company recorded an income tax expense of\n$1.2 million, yielding an effective tax rate of 39.3% for the year ended December 31, 2016, compared to an income tax expense of $3.5 million yielding an effective tax rate of 32.7% in 2015. \n For the year ended December 31, 2016 and excluding the impact of discontinued operations, the company reported a net income of $1.9 million or $0.03\nper share (fully diluted), compared to net income of $7.2 million or $0.13 per share (fully diluted) for the year ended December 31, 2015. \n Adjusted Earnings Before Interest, Taxes, Depreciation and Amortization, or Adjusted EBITDA (a non-GAAP measure of\nfinancial performance), excluding the impact of discontinuing operations for the year ended December 31, 2016, was $15.6 million, compared to $20.9 million for the year ended December 31, 2015. Flotek recognized a one-time gain of $12.7 million related to disgorgement of potential short-swing trading profits from a stockholder. \n For the year ended December 31, 2016, Flotek’s non-cash share-based compensation expense, excluding the\nimpact of discontinuing operations, was approximately $11.9 million, compared to $12.9 million for the year ended December 31, 2015. \n A\npresentation of non-cash share based compensation and a reconciliation of GAAP net income to EBITDA can be found at the conclusion of this release. \n Consolidated gross margin decreased to 34.5% for the year ended December 31, 2016, from 35.7% in 2015, primarily attributable to increased inventory\ncosts and direct costs associated with manufacturing in the Consumer and Industrial Chemistry Technologies segment, partially offset by higher volumes of all CnF ® products sold in Energy\nChemistry Technologies. \n A complete review of the Company’s year-end financial position can be found in the\nCompany’s annual report filed with the U.S. Securities and Exchange Commission this afternoon. \n Fourth Quarter 2016 Results \n For the three months ended December 31, 2016, Flotek posted revenue of $70.6 million, an increase of $6.7 million, or 10.5%, compared to\n$63.9 million in the same period of 2015. Revenue increased $6.3 million, or 9.8%, compared to third quarter 2016. \n Flotek reported Loss from\nOperations for the three months ended December 31, 2016 of $5.6 million, an increase of $7.5 million, compared to Income from Operations of $1.9 million in the same period of 2015. Income from Operations declined\n$3.3 million compared to third quarter 2016. \n In the fourth quarter, 2016 Flotek recorded an income tax expense of $2.6 million, compared to an\nincome tax expense of $0.2 million in the fourth quarter of 2015. \n On a GAAP basis, Flotek reported earnings per share (fully diluted) for the three\nmonths ended December 31, 2016 of $0.07 compared to earnings per share (fully diluted) of $0.02 for the three months ended December 31, 2015. \n Earnings Before Interest, Taxes, Depreciation and Amortization, or EBITDA, for the three months ended December 31, 2016, was $10.0 million, a\nincrease of $5.9 million, compared to $4.1 million for the three months ended December 31, 2015. The 2016 result includes a one-time gain of $12.7 million related to disgorgement of\npotential short-swing trading profits from a stockholder \n For the quarter ended December 31, 2016, Flotek’s\n non-cash share-based compensation expense was approximately $3.4 million, compared to $3.7 million for the quarter ended December 31, 2015. \n Consolidated gross margins for the three months ended December 31, 2016, were 32.3% compared to 38.5% in the same period of 2015 and 34.7% in the third\nquarter 2016. \n A summary income statement reflecting fourth quarter results can be found at the conclusion of this release. \n Full Year 2016 - Continuing Operation Segment Results \n 2016 \n 2015 \n % Change \n $ Change \n Energy Chemistry Technology \n Revenue\n $188.2 million \n $213.6 million \n (11.9%) \n ($25.4 million) \n Gross Margin\n 39.6% \n 38.4% \n Income from Operations\n $29.0 million \n $43.9 million \n (33.9%) \n ($14.9 million) \n Consumer and Industrial Chemical Technologies (“CICT”) \n Revenue\n $74.6 million \n $56.4 million \n 32.3% \n $18.2 million \n Gross Margin\n 21.6% \n 25.5% \n Income from Operations\n $9.7 million \n $8.7 million \n 11.5% \n $1.0 million \n Energy Chemical Technologies revenue of $188.2 million for the year-ended December 31, 2016, a decrease of\n$25.4 million or 11.9%, compared to 2015 levels. Segment gross margin increased to 39.6% for the year ended December 31, 2016, compared to 38.4% in 2015. Income from Operations of $29.0 million for the year ended December 31,\n2016, representing a decrease $14.9 million, or 33.9%, from year ago levels.\n Consumer and Industrial Chemical Technologies (“CICT”) revenue\nof $74.6 million for the year ended December 31, 2016, an increase of $18.2 million or 32.3%, compared to 2015 levels. Segment gross margin decreased to 21.6% for the year ended December 31, 2016, compared to 25.5% in 2015.\nIncome from Operations of $9.7 million for the year ended December 31, 2016, representing an increase of $0.9 million, or 10.5%, from year ago levels. \n Discontinued Operation Results \n Drilling Technologies revenue of $27.6 million for the year ended December 31, 2016, a decrease of $24.5 million or 47.0%, compared to 2015\nlevels. Segment gross margin increased to 32.4% for the year ended December 31, 2016, compared to 32.1% in 2015. Loss from Operations for the year-ended December 31, 2016 increased by $17.2 million from 2015, primarily resulting from\nfirst quarter 2016 impairment charges. Loss from Operations, excluding the impairment, for the year ended December 31, 2016, increased by $0.2 million from 2015, primarily due to reductions in revenue and pricing pressure that resulted in\nclient price concessions. \n Production Technologies revenue of $8.3 million for the year ended December 31, 2016, a decrease of $4.0 million\nor 32.5%, compared to 2015 levels, primarily due to decreased sales of rod pump equipment and older technology ESP equipment. Segment gross margin decreased to 5.0% for the year ended December 31, 2016, compared to 17.1% in 2015. Loss from\nOperations for the year-ended December 31, 2016 increased by $4.7 million versus the year-ended 2015. Loss from Operations, excluding the impairment, for the year ended December 31, 2016, increased by $1.6 million from 2015.\nThese losses are primarily due to lower revenue volume and lower margins due to pricing pressure. \n Full Year 2016 - Financial Metrics \n Accounts receivable, net of the allowance for doubtful accounts, at December 31, 2016, $47.2 million, compared to $35.5 million\nDecember 31, 2015. The Company’s allowance for doubtful accounts was 1.4% of accounts receivable at December 31, 2016. \n Depreciation and\namortization expense not included in gross margin, for the year ended December 31, 2016 increased by $1.4 million, or 20.0% from 2015. This increase was primarily attributable to the completion and equipping of the Global\nResearch & Innovation Center in August 2016, along with other improvements to manufacturing facilities. \n Interest and other expense increased\n$0.6 million for the year ended December 31, 2016, compared to 2015. \n Fourth Quarter 2016 – Segment Results \n 4Q 2016 \n 3Q 2016 \n % Change \n 4Q 2015 \n % Change \n Energy Chemistry Technology \n Revenue\n $55.1 million \n $45.0 million \n 22.4% \n $50.3 million \n 9.5% \n Gross Margin\n 36.2% \n 40.4% \n 42.1% \n Income from Operations\n $7.2 million \n $6.2 million \n 16.1% \n $10.9 million \n (33.9%) \n Consumer and Industrial Chemical Technologies (“CICT”) \n Revenue\n $15.5 million \n $19.3 million \n (19.7%) \n $13.6 million \n 14.0% \n Gross Margin\n 18.3% \n 21.6% \n 25.5% \n Income from Operations\n $1.2 million \n $2.4 million \n (50.0%) \n $1.9 million \n (36.8%) \n Flotek Outlook \n In\ncommenting about Flotek’s outlook, Mr. Chisholm added, “For the first quarter 2017, we are anticipating continued improvement in completion activity. In addition, we are experiencing continued strong demand in Energy Chemistry and are\nfocused on delivering improved margins through strategic pricing increases and process efficiency. In Consumer and Industrial Chemistry, we continue to expect \nyearly growth in our net revenue and gross margins, and expect to make substantial progress on the divestment of Drilling Technologies and Production Technologies segments this quarter. As\nalways, we are focused on maintaining strong liquidity to fund our business.” \n Conference Call Details \n Flotek will host a conference call on Thursday, February 9, 2016, at 7:30 AM CDT (8:30 AM EDT) to discuss its operating results for the three- and\ntwelve-months ended December 31, 2016. To participate in the call, participants should dial 800-698-6149 approximately 5 minutes prior to the start of the call.\n The call can also be accessed from Flotek’s website at www.flotekind.com. \n About Flotek Industries, Inc. \n Flotek is a developer and\ndistributor of prescriptive chemistry-based technology, including specialty chemicals, to clients in the energy, consumer industrials and food & beverage industries. Flotek’s inspired chemists draw from the power of solvents and oils\nof oranges to deliver solutions that enhance energy production, cleaning products, foods & beverages and fragrances. In the oil and gas sector, Flotek serves large and independent energy producers and oilfield service companies, both\ndomestic and international. Flotek Industries, Inc. is a publicly traded company headquartered in Houston, Texas, and its common shares are traded on the New York Stock Exchange under the ticker symbol “FTK.” For additional information,\nplease visit Flotek’s web site at www.flotekind.com. \n Forward-Looking Statements \n Certain statements set forth in this Press Release constitute forward-looking statements (within the meaning of Section 27A of the Securities Act of 1933 and\nSection 21E of the Securities Exchange Act of 1934) regarding Flotek Industries, Inc.‘s business, financial condition, results of operations and prospects. Words such as expects, anticipates, intends, plans, believes, seeks, estimates and\nsimilar expressions or variations of such words are intended to identify forward-looking statements, but are not the exclusive means of identifying forward-looking statements in this Press Release. \n Although forward-looking statements in this Press Release reflect the good faith judgment of management, such statements can only be based on facts and\nfactors currently known to management. Consequently, forward-looking statements are inherently subject to risks and uncertainties, and actual results and outcomes may differ materially from the results and outcomes discussed in the forward-looking\nstatements. Factors that could cause or contribute to such differences in results and outcomes include, but are not limited to, demand for oil and natural gas drilling services in the areas and markets in which the Company operates, competition,\nobsolescence of products and services, the Company’s ability to obtain financing to support its operations, environmental and other casualty risks, and the impact of government regulation. \n Further information about the risks and uncertainties that may impact the Company are set forth in the Company’s most recent filings on Form 10-K (including without limitation in the “Risk Factors” Section), and in the Company’s other SEC filings and publicly available documents. Readers are urged not to place undue reliance on these\nforward-looking statements, which speak only as of the date of this Press Release. The Company undertakes no obligation to revise or update any forward-looking statements in order to reflect any event or circumstance that may arise after the date of\nthis Press Release. \n Flotek Industries, Inc. \n Reconciliation of Non-GAAP Items and Non-Cash Items Impacting\nEarnings \n Three Months Ended \n Twelve Months Ended \n 12/31/2016 \n 12/31/2015 \n 12/31/2016 \n 12/31/2015 \n (in thousands, except per share data) \n GAAP Net Income and Reconciliation to EBITDA\n (Non-GAAP) \n Net Income (GAAP) \n $ \n 3,917 \n $ \n 1,315 \n $ \n 1,907 \n $ \n 7,158 \n Interest Expense\n 443 \n 397 \n 1,979 \n 1,521 \n Income Tax Expense\n 2,586 \n 170 \n 1,237 \n 3,476 \n Depreciation and Amortization\n 3,048 \n 2,232 \n 10,429 \n 8,735 \n EBITDA (Non-GAAP) \n $ \n 9,994 \n $ \n 4,114 \n $ \n 15,552 \n $ \n 20,890 \n Select Non-Cash Items Impacting\nEarnings \n Stock Compensation Expense \n $ \n 3,433 \n $ \n 3,680 \n $ \n 11,906 \n $ \n 12,927 \n Less income tax effect at 35%\n (1,201 \n ) \n (1,288 \n ) \n (4,167 \n ) \n (4,524 \n ) \n Stock Compensation Expense, net of tax\n $ \n 2,232 \n $ \n 2,392 \n $ \n 7,739 \n $ \n 8,403 \n Weighted Average Shares Outstanding (Fully Diluted) \n 58,138 \n 54,897 \n 56,350 \n 54,992 \n Stock Compensation Expense Per Share (Fully Diluted) \n $ \n 0.04 \n $ \n 0.04 \n $ \n 0.14 \n $ \n 0.15 \n Flotek Industries, Inc. \n Unaudited Consolidated Balance Sheets \n December 31, \n 2016 \n 2015 \n ASSETS \n Current assets:\n Cash and cash equivalents\n $ \n 4,823 \n $ \n 2,208 \n Accounts receivable, net of allowance for doubtful accounts of $664 and $709 at December 31,\n2016 and 2015, respectively\n 47,152 \n 35,511 \n Inventories\n 58,283 \n 50,870 \n Deferred tax assets, net\n 52 \n 2,649 \n Income taxes receivable\n 12,752 \n 4,700 \n Assets held for sale\n 43,900 \n 48,855 \n Other current assets\n 21,708 \n 6,949 \n Total current assets\n 188,670 \n 151,742 \n Property and equipment, net\n 74,691 \n 60,006 \n Goodwill\n 56,660 \n 55,798 \n Deferred tax assets, net\n 16,215 \n 17,229 \n Other intangible assets, net\n 50,352 \n 51,198 \n Assets held for sale\n — \n 67,117 \n TOTAL ASSETS \n $ \n 386,588 \n $ \n 403,090 \n LIABILITIES AND EQUITY \n Current liabilities:\n Accounts payable\n $ \n 29,960 \n $ \n 17,221 \n Accrued liabilities\n 12,170 \n 10,480 \n Income taxes payable\n — \n 2,263 \n Interest payable\n 24 \n 111 \n Liabilities held for sale\n 4,961 \n 4,637 \n Current portion of long-term debt\n 40,566 \n 32,291 \n Deferred tax liabilities, net\n 3,373 \n — \n Total current liabilities\n 91,054 \n 67,003 \n Long-term debt, less current portion\n 7,833 \n 18,255 \n Deferred tax liabilities, net\n — \n 23,823 \n Total liabilities\n 98,887 \n 109,081 \n Commitments and contingencies\n Equity:\n Cumulative convertible preferred stock, $0.0001 par value, 100,000 shares authorized; no shares\nissued and outstanding\n — \n — \n Common stock, $0.0001 par value, 80,000,000 shares authorized; 59,684,669 shares issued and\n56,972,580 shares outstanding at December 31, 2016; 56,220,214 shares issued and 53,536,101 shares outstanding at December 31, 2015\n 6 \n 6 \n Additional paid-in capital\n 318,392 \n 273,451 \n Accumulated other comprehensive income (loss)\n (956 \n ) \n (1,237 \n ) \n Retained earnings (accumulated deficit)\n (9,830 \n ) \n 39,300 \n Treasury stock, at cost; 2,028,847 and 1,784,897 shares at December 31, 2016 and 2015,\nrespectively\n (20,269 \n ) \n (17,869 \n ) \n Flotek Industries, Inc. stockholders’ equity\n 287,343 \n 293,651 \n Noncontrolling interests\n 358 \n 358 \n Total equity\n 287,701 \n 294,009 \n TOTAL LIABILITIES AND EQUITY \n $ \n 386,588 \n $ \n 403,090 \n Flotek Industries, Inc. \n Unaudited Consolidated Statements of Operations \n Three Months Ended \n Twelve Months Ended \n 12/31/2016 \n 12/31/2015 \n 12/31/2016 \n 12/31/2015 \n (in thousands, except per share data) \n (in thousands, except per share data) \n Revenue \n $ \n 70,604 \n $ \n 63,863 \n $ \n 262,832 \n $ \n 269,966 \n Cost of revenue \n 47,792 \n 39,254 \n 172,154 \n 173,660 \n Gross profit\n 22,812 \n 24,609 \n 90,678 \n 96,306 \n Expenses: \n Selling, general and administrative\n 22,873 \n 19,011 \n 80,150 \n 70,276 \n Depreciation and amortization\n 2,506 \n 1,827 \n 8,530 \n 7,108 \n Research and development\n 2,998 \n 1,884 \n 9,320 \n 6,657 \n Gain on disposal of long-lived assets\n 10 \n — \n (18 \n ) \n (13 \n ) \n Total expenses\n 28,387 \n 22,722 \n 97,982 \n 84,028 \n (Loss) income from operations \n 5,575 \n 1,887 \n (7,304 \n ) \n 12,278 \n Other income (expense): \n Interest expense\n (443 \n ) \n (398 \n ) \n (1,979 \n ) \n (1,521 \n ) \n Gain on legal settlement\n 12,730 \n — \n 12,730 \n — \n Other (expense) income, net\n (209 \n ) \n (5 \n ) \n (303 \n ) \n (123 \n ) \n Total other income (expense)\n 12,078 \n (403 \n ) \n 10,448 \n (1,644 \n ) \n Income before income taxes \n 6,503 \n 1,484 \n 3,144 \n 10,634 \n Income tax expense\n (2,586 \n ) \n (170 \n ) \n (1,237 \n ) \n (3,476 \n ) \n Income from continuing operations \n 3,917 \n 1,314 \n 1,907 \n 7,158 \n (Loss) income from discontinued operations, net of tax \n (17,836 \n ) \n (2,689 \n ) \n 1,907 \n (20,620 \n ) \n Net (loss) income \n $ \n (13,919 \n ) \n $ \n (1,375 \n ) \n $ \n 1,907 \n $ \n (13,462 \n ) \n Basic earnings (loss) per common share: \n Continuing operations\n $ \n 0.07 \n $ \n 0.02 \n $ \n 0.03 \n $ \n 0.13 \n Discontinued operations, net of tax\n (0.31 \n ) \n (0.05 \n ) \n (0.91 \n ) \n (0.38 \n ) \n Basic earnings (loss) per common share\n $ \n (0.24 \n ) \n $ \n (0.03 \n ) \n $ \n (0.88 \n ) \n $ \n (0.25 \n ) \n Diluted earnings (loss) per common share: \n Continuing operations\n $ \n 0.07 \n $ \n 0.02 \n $ \n 0.03 \n $ \n 0.13 \n Discontinued operations, net of tax\n (0.31 \n ) \n (0.05 \n ) \n (0.91 \n ) \n (0.37 \n ) \n Diluted earnings (loss) per common share\n $ \n (0.24 \n ) \n $ \n (0.03 \n ) \n $ \n (0.88 \n ) \n $ \n (0.24 \n ) \n Weighted average common shares: \n Weighted average common shares used in computing basic earnings (loss) per common share\n 57,768 \n 54,544 \n 56,087 \n 54,459 \n Weighted average common shares used in computing diluted earnings (loss) per common share\n 58,138 \n 54,897 \n 56,350 \n 54,992 \n Flotek Industries, Inc. \n Unaudited Consolidated Statements of Cash Flows \n Twelve Months Ended \n 12/31/2016 \n 12/31/2015 \n Cash flows from operating activities: \n Net (loss) income\n $ \n (49,130 \n ) \n $ \n (13,462 \n ) \n (Loss) income from discontinued operations, net of tax\n (51,037 \n ) \n (20,620 \n ) \n Income from continuing operations\n 1,907 \n 7,158 \n Adjustments to reconcile income from continuing operations to net cash provided by operating\nactivities:\n Depreciation and amortization\n 10,429 \n 8,735 \n Amortization of deferred financing costs\n 424 \n 346 \n Provision for doubtful accounts\n 558 \n 367 \n Provision for inventory reserves and market adjustments\n 0 \n 0 \n Gain on sale of assets\n (18 \n ) \n (12 \n ) \n Stock compensation expense\n 12053 \n 13083 \n Deferred income tax (benefit) provision\n (19,681 \n ) \n (7,929 \n ) \n Reduction in (excess) tax benefit related to share-based awards\n 2,510 \n (1,273 \n ) \n Changes in current assets and liabilities:\n Accounts receivable\n (11,544 \n ) \n 13,676 \n Inventories\n (6,528 \n ) \n (9,905 \n ) \n Income taxes receivable\n (8,189 \n ) \n (4,700 \n ) \n Other current assets\n (14,489 \n ) \n 167 \n Accounts payable\n 12,653 \n (7,653 \n ) \n Accrued liabilities\n 23,946 \n 9,552 \n Income taxes payable\n (1,890 \n ) \n 3,842 \n Interest payable\n (87 \n ) \n 18 \n Net cash provided by operating activities\n 2,054 \n 25,472 \n Cash flows from investing activities: \n Capital expenditures\n (13,960 \n ) \n (16,391 \n ) \n Proceeds from sale of assets\n 115 \n 13 \n Payments for acquisitions, net of cash acquired\n (7,863 \n ) \n 0 \n Purchase of patents and other intangible assets\n (573 \n ) \n (627 \n ) \n Net cash used in investing activities\n (22,281 \n ) \n (17,005 \n ) \n Cash flows from financing activities: \n Repayments of indebtedness\n (15,564 \n ) \n (10,143 \n ) \n Borrowings on revolving credit facility\n 338,460 \n 382,666 \n Repayments on revolving credit facility\n (325,043 \n ) \n (366,018 \n ) \n Debt issuance costs\n (1,199 \n ) \n (10 \n ) \n (Reduction in) excess tax benefit related to share-based awards\n (2,510 \n ) \n 1,273 \n Purchase of treasury stock\n (2,350 \n ) \n (6,345 \n ) \n Proceeds from sale of common stock\n 30,923 \n 879 \n Repurchase of common stock\n 0 \n (9,697 \n ) \n Proceeds from exercise of stock options\n 134 \n 39 \n Proceeds from exercise of warrants\n 0 \n 0 \n Proceeds from noncontrolling interest\n 0 \n 7 \n Net cash provided by (used in) financing activities\n 22,851 \n (7,349 \n ) \n Discontinued operations: \n Net cash provided by operating activities\n 12 \n 1,199 \n Net cash used in investing activities\n (18 \n ) \n (1,199 \n ) \n Net cash flows used in discontinued operations\n (6 \n ) \n 0 \n Effect of changes in exchange rates on cash and cash equivalents\n (3 \n ) \n (176 \n ) \n Net increase (decrease) in cash and cash equivalents \n 2,615 \n 942 \n Cash and cash equivalents at beginning of year\n 2,208 \n 1,266 \n Cash and cash equivalents at end of year \n $ \n 4,823 \n $ \n 2,208 \n",
@@ -36,6 +39,22 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000119312517034965__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001193125-16-757633",
+   "filingDate": "2016-11-03",
+   "reportDate": "2016-11-02",
+   "form": "8-K",
+   "local_gz": "000119312516757633__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 0,
+   "n_sentences": 0,
+   "guidance_sentences": [],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出",
+   "status": "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +66,8 @@
    "reportDate": "2016-12-31",
    "accession": "0000928054-17-000017",
    "url": "https://www.sec.gov/Archives/edgar/data/928054/000092805417000017/ftk_10kx2016.htm",
-   "local_gz": "000092805417000017__annual.txt.gz"
+   "local_gz": "000092805417000017__annual.txt.gz",
+   "n_lines": 5135
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +75,8 @@
    "reportDate": "2016-09-30",
    "accession": "0000928054-16-000152",
    "url": "https://www.sec.gov/Archives/edgar/data/928054/000092805416000152/ftk_2016093010q.htm",
-   "local_gz": "000092805416000152__q0.txt.gz"
+   "local_gz": "000092805416000152__q0.txt.gz",
+   "n_lines": 2588
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +84,106 @@
    "reportDate": "2016-06-30",
    "accession": "0000928054-16-000134",
    "url": "https://www.sec.gov/Archives/edgar/data/928054/000092805416000134/ftk_2016063010q.htm",
-   "local_gz": "000092805416000134__q1.txt.gz"
+   "local_gz": "000092805416000134__q1.txt.gz",
+   "n_lines": 2550
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2016-11-02",
   "n_rows": 8,
@@ -83,6 +198,63 @@
     "ocf": 6458000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 98162000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 56011000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 2499000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 48030000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 5590000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4570000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -1515000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.03,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 54448000.0,
+      "filed": "2015-04-22",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +265,63 @@
     "ocf": 5002000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 84601000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 56466000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 2475000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 52159000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3373000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4610000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -12547000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.23,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 54264000.0,
+      "filed": "2015-07-22",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +332,63 @@
     "ocf": 6336000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 84421000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 52069000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 2998000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 47768000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2115000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4433000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 1975000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.04,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 54947000.0,
+      "filed": "2015-10-21",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +399,63 @@
     "ocf": 8875000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 85492000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 49197000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 2208000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 50546000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 9390000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4411000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -1375000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.03,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 29000.0,
+      "filed": "2016-01-27",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +466,63 @@
     "ocf": -6552000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 81084000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 45631000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 2480000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 61235000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 4213000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4289000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -30185000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.55,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 54744000.0,
+      "filed": "2016-05-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +533,63 @@
     "ocf": 3198000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 78253000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 45528000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 3840000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 64912000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 4743000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3230000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -2280000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.04,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 54910000.0,
+      "filed": "2016-07-26",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +600,63 @@
     "ocf": 2439000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 73986000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 53652000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 3474000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 42562000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2665000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3549000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -2746000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.05,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 56899000.0,
+      "filed": "2016-11-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +667,24 @@
     "ocf": 2969000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 47152000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": -0.24,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 70600000.0,
     "revenue_xbrl_for_reference": 70604000.0
@@ -166,143 +698,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2890",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 363,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABEO",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ACAD",
-   "ACB",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACRS",
-   "ADMA",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALKS",
-   "ALNY",
-   "ALTO",
-   "AMGN",
-   "AMPH",
-   "AMRN",
-   "AMTX",
-   "ANAB",
-   "ANIP",
-   "ANIX",
-   "APD",
-   "APVO",
-   "ARDX",
-   "ARMP",
-   "ARQ",
-   "ARWR",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AVD",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "BAK",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BDRX",
-   "BHC",
-   "BIIB",
-   "BLRX",
-   "BMRA",
-   "BMRN",
-   "BMY",
-   "CANF",
-   "CAPR",
-   "CATX",
-   "CBIO",
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 6,
+  "peer_list_all_tickers": [
    "CBT",
-   "CC",
-   "CDXS",
-   "CE",
-   "CELZ",
-   "CF",
-   "CGEN",
-   "CHD",
-   "CHRS",
-   "CL",
-   "CLDX",
-   "CLLS",
-   "CLRB",
-   "CLX",
-   "COCP",
-   "COLL",
-   "CORT",
-   "COTY",
-   "CPHI",
-   "CPIX",
-   "CRBP",
-   "CRDF",
-   "CRIS",
-   "CRMD",
-   "CRSP",
-   "CRVO",
-   "CRVS",
-   "CSBR",
-   "CSW",
-   "CTMX",
-   "CTXR",
-   "CVM",
-   "CYPH",
-   "CYRX",
-   "CYTK",
-   "DARE",
-   "DBVT",
-   "DCOY",
-   "DD",
-   "DMAC",
-   "DYAI",
-   "EBS",
-   "ECL",
-   "EDIT",
-   "EDSA",
-   "EL",
-   "ELDN",
-   "ELF",
-   "EMN",
-   "ENLV",
-   "ENTA",
-   "ENVB"
+   "ESI"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000078003",
-    "name": "PFIZER INC",
-    "ticker": "PFE",
-    "sic2": "28"
+    "entity_id": "0001590714",
+    "name": "Element Solutions Inc",
+    "ticker": "ESI",
+    "sic4": "2890",
+    "sic3": "289",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2016-03-11",
+    "accn": "0001590714-16-000097",
+    "local_gz": "000159071416000097__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ar Tranche B-2 Term Loan Tranche B-2 term loans denominated in U.S. Dollars in an aggregate principal amount of $500 million borrowed by Platform in connection with the Arysta Acquisition. ASC Accounting Standard Codification. ASU Accounting Standards Update. Asset-Lite, High-Touch Platform’s philosophy and business model focused on dedicating extensive resources to research and development and highly technical customer service teams, while limiting investments in fixed assets and capital expenditures. Board Platform’s board of directors. Bribery Act The United Kingdom Bribery Act 2010. CAS Chemtura Agricultural Solutions business of Chemtura. CAS Acquisition Acquisition of a 100% interest i",
+     "egree of correlation between sales patterns and unpredictable weather conditions makes drawing conclusions from quarterly sales difficult. Competitive Strengths We believe the following competitive strengths differentiate us from our competitors and contribute to our ongoing success: • “Asset-Lite, High-Touch” Business Model. We are building our business through the acquisition and integration of “Asset-Lite, High-Touch” businesses. These are businesses evidenced by high margins and low capital expenditures which translates into high cash flow returns on capital. Over 40% of our employees are in either technological innovation or sales and services areas; hence “high-touch.” Our commitment t",
+     "versely affect our cash flow and our ability to operate our business and fulfill our obligations under our indebtedness. Our substantial indebtedness could have important consequences. As of December 31, 2015 , our total indebtedness was approximately $5.23 billion . Such substantial indebtedness could: • require us to dedicate a substantial portion of our cash flow from operations to payments on our indebtedness, thereby reducing the availability of our cash flow to fund working capital, capital expenditures, dividends, research and development efforts and other general corporate purposes; • increase the amount of our interest expense, because our borrowings include instruments with variabl"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000200406",
-    "name": "JOHNSON & JOHNSON",
-    "ticker": "JNJ",
-    "sic2": "28"
+    "entity_id": "0000016040",
+    "name": "CABOT CORP",
+    "ticker": "CBT",
+    "sic4": "2890",
+    "sic3": "289",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2016-11-23",
+    "accn": "0001564590-16-029604",
+    "local_gz": "000156459016029604__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ng our future business performance and overall prospects; demand for our products; when we expect construction of the fumed silica plant in Wuhai, China by our new joint venture to be completed and when we expect to open our new Asia Technology Center in Shanghai, China; the sufficiency of our cash on hand, cash provided from operations and cash available under our credit and commercial paper facilities to fund our cash requirements; anticipated capital spending, including environmental-related capital expenditures; cash requirements and uses of available cash, including future cash outlays associated with long-term contractual obligations, restructurings, contributions to employee benefit p",
+     "quirements”). These SH&E Requirements include requirements to obtain and comply with various environmental-related permits for constructing any new facilities and operating all of our existing facilities and for product registrations. We have expended and will continue to expend considerable sums to construct, maintain, operate, and improve facilities for safety, health and environmental protection and to comply with SH&E Requirements. We spent approximately $30 million in environmental-related capital expenditures at existing facilities in fiscal 2016. We anticipate spending approximately $48 million for such matters in fiscal 2017, a significant portion of which will be for the installatio",
+     "of the reporting unit. If the implied fair value of the reporting unit’s goodwill is determined to be less than its carrying amount, an impairment is recognized for the difference. The fair value of a reporting unit is based on discounted estimated future cash flows. The fair value is also benchmarked against a market approach using the guideline public companies method. The assumptions used to estimate fair value include management’s best estimates of future growth rates, operating cash flows, capital expenditures and discount rates over an estimate of the remaining operating period at the reporting unit level. Should the fair value of any of our reporting units decline below its carrying a"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -324,7 +765,16 @@
   "latest_data_date": "2017-02-09",
   "cutoff": "2017-02-09",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2017-02-10",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

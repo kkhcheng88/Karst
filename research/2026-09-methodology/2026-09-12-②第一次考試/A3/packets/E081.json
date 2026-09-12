@@ -1,6 +1,7 @@
 {
  "event_id": "E081",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E081",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "HALO",
  "cik": "0001159036",
  "name": "HALOZYME THERAPEUTICS, INC.",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2025-05-07(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E081",
   "event_id": "E081",
   "ticker": "HALO",
   "cik": "0001159036",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001159036-25-000025",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000025/halo-20250506.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000025/halo-20250506.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n ex991q120258-k.htm\n EX-99.1\n Document \n Exhibit 99.1 \n HALOZYME RAISES 2025 FINANCIAL GUIDANCE RANGES AND REPORTS STRONG FIRST QUARTER 2025 RESULTS \n Announcing New $250M Share Repurchase \n Total Revenue Increased 35% YOY to $265 million and Royalty Revenue Increased 39% YOY to $168 million \n Net Income Increased 54% YOY to $118 million; Adjusted EBITDA Increased 40% YOY to $162 million; GAAP Diluted EPS Increased 55% YOY to $0.93; non-GAAP Diluted EPS Increased 41% YOY to $1.11 1 \n Raising 2025 Financial Guidance Ranges for Total Revenue to $1,200 - $1,280 million, Representing YOY Growth of 18% - 26%, Adjusted EBITDA to $790 - $840 million, Representing YOY Growth of 25% - 33% and non-GAAP Diluted EPS to $5.30 - $5.70, Representing YOY Growth of 25% - 35% 1 \n SAN DIEGO, May 6, 2025 -- Halozyme Therapeutics, Inc. (NASDAQ: HALO) (“Halozyme” or the “Company”) today reported its financial and operating results for the first quarter ended March 31, 2025, provided an update on its recent corporate activities and raised its 2025 financial guidance. \n “2025 is off to a strong start with our current three blockbuster brands, Darzalex SC, Phesgo and VYVGART Hytrulo, continuing to demonstrate strong growth in their currently approved indications. Our four recently launched products, Ocrevus Zunovo in U.S. and Europe, Tecentriq Hybreza in U.S. and Europe, Opdivo Qvantig in U.S. and Rybrevant SC in Europe are just beginning their contributions as our partners focus on gaining and expanding coverage and reimbursement. This broadened portfolio is resulting in an unprecedented set of 11 additional growth catalysts that have happened recently or are expected to happen in the coming months. These opportunities include multiple new European and U.S. product approvals, multiple new indication approvals and multiple key reimbursement milestones supporting access for an even greater number of patients, all creating new near and longer-term growth opportunity. As a result of this momentum, I am pleased to announce we are increasing our full year 2025 financial guidance ranges and a new $250 million share buyback,” said Dr. Helen Torley, president and chief executive officer, of Halozyme. \n “In addition, our long-term growth prospects have never been better with additional growth opportunities projected to result from our pipeline, where two products, BMS’ nivolumab plus relatlimab SC and Takeda’s 20% immune globulin SC, continue in Phase 3 and where ViiV and Acumen announced development progress and data in the quarter. I am also pleased to announce that we have signed our first HVAI development agreement with a current ENHANZE partner and that a different ENHANZE partner is now moving our SVAI into clinical testing,” concluded Dr. Torley. \n First Quarter and Recent Corporate Highlights: \n • On May 6, Halozyme announced a second $250 million share repurchase under the $750 million approved program from February 2024. \n • In April 2025, Halozyme filed a patent infringement lawsuit against Merck Sharp & Dohme Corp. (“Merck”) in the U.S. District Court in New Jersey alleging that Merck is using Halozyme’s patented MDASE™ subcutaneous drug delivery technology to develop Subcutaneous (“SC”) Keytruda. Halozyme is seeking damages and injunctive relief to stop Merck’s infringement of Halozyme’s MDASE™ intellectual property. \n • In March 2025, Halozyme completed the first $250 million Accelerated Share Repurchase of its common stock under the $750 million approved program from February 2024. \n First Quarter and Recent Partner Highlights: \n • In April 2025, Roche received a positive opinion from the European Medicines Agency’s Committee for Medicinal Products for Human Use (“CHMP”) recommending an update to the European Union (“EU”) label for Phesgo ® for human epidermal growth factor receptor 2 (“HER2”)-positive breast cancer. Administration of Phesgo ® outside of a clinical setting (such as in a person’s home) by a healthcare professional will be possible, once safely established in a clinical setting. \n • In April 2025, argenx received a positive opinion from the CHMP recommending European Commission approval of VYVGART ® 1000mg (efgartigimod alfa) developed with ENHANZE ® for SC injection as a monotherapy for the treatment of adult patients with progressive or relapsing active chronic inflammatory demyelinating polyneuropathy (“CIDP”) after prior treatment with corticosteroids or immunoglobulins. \n • In April 2025, argenx received U.S. Food and Drug Administration (“FDA”) approval of VYVGART ® Hytrulo prefilled syringe for self-injection for the treatment of adult patients with generalized myasthenia gravis who are anti-acetylcholine receptor antibody positive and adult patients with CIDP. \n • In April 2025, Janssen received European Commission marketing authorization of the SC formulation of RYBREVANT ® (amivantamab) with ENHANZE ® , in combination with LAZCLUZE ® (lazertinib), for the first-line treatment of adult patients with advanced non-small cell lung cancer (“NSCLC”) with epidermal growth factor receptor (“EGFR”) exon 19 deletions or exon 21 L858R substitution mutations. Additionally, RYBREVANT ® (amivantamab) is approved as a monotherapy for adult patients with advanced NSCLC with activating EGFR exon 20 insertion mutations after the failure of platinum-based therapy. This represents the 10th partner product with ENHANZE ® to be commercialized. \n • In April 2025, Janssen received European Commission approval for an indication extension of DARZALEX ® SC in combination with bortezomib, lenalidomide, and dexamethasone for the treatment of adult patients with newly diagnosed multiple myeloma regardless of transplant eligibility. \n • In March 2025, Bristol Myers Squibb received a positive CHMP opinion recommending approval of Opdivo ® (nivolumab) with ENHANZE ® across multiple solid tumor indications. \n • In March 2025, Acumen announced top-line results from a Phase 1 study of sabirnetug (ACU193) with ENHANZE ® comparing the pharmacokinetics between SC and intravenous administrations in healthy volunteers that demonstrated weekly SC administration of sabirnetug was well-tolerated with systematic exposure supporting further clinical development. \n • In March 2025, ViiV announced results from a Phase 2b study demonstrated N6LS administered every four months SC with ENHANZE ® in combination with cabotegravir successfully maintained viral suppression in adults living with HIV who were already stable on treatment. \n • In March 2025, Takeda announced Health Canada expanded the marketing authorization for HYQVIA ® to include CIDP as a maintenance therapy after stabilization with intravenous immunoglobulin to prevent relapse of neuromuscular disability and impairment in adults. \n First Quarter 2025 Financial Highlights: \n • Revenue was $264.9 million, compared to $195.9 million in the first quarter of 2024. The 35% year-over-year increase was primarily driven by royalty revenue growth and an increase in sales of bulk rHuPH20. Revenue for the quarter included $168.2 million in royalties, an increase of 39% compared to $120.6 million in the first quarter of 2024, primarily attributable to increases in revenue of VYVGART ® Hytrulo, DARZALEX ® SC, and Phesgo ® . \n • Cost of sales was $48.4 million, compared to $28.3 million in the first quarter of 2024. The increase in cost of sales was primarily due to an increase in product sales. \n • Amortization of intangibles expense remained flat at $17.8 million, compared to the first quarter of 2024. \n • Research and development expense was $14.8 million, compared to $19.1 million in the first quarter of 2024. The decrease in research and development expense was primarily due to lower compensation expense driven by resource optimization and labor allocation initiatives, and timing of planned investments in ENHANZE ® related to the development of our new high-yield rHuPH20 manufacturing process. \n • Selling, general and administrative expense was $42.4 million, compared to $35.1 million in the first quarter of 2024. The increase was primarily due to an increase in consulting and professional service fees and compensation expense. \n • Operating income was $141.5 million, compared to $95.5 million in the first quarter of 2024. \n • Net income was $118.1 million, compared to $76.8 million in the first quarter of 2024. \n • EBITDA and Adjusted EBITDA were $162.0 million, compared to $115.7 million in the first quarter of 2024. 1 \n • GAAP diluted earnings per share was $0.93, compared to $0.60 in the first quarter of 2024. Non-GAAP diluted earnings per share was $1.11, compared to $0.79 in the first quarter of 2024. 1 \n • Cash, cash equivalents and marketable securities were $747.9 million on March 31, 2025, compared to $596.1 million on December 31, 2024. The increase was primarily a result of cash generated from operations. \n Financial Outlook for 2025 \n The Company is raising its financial guidance for 2025. Note that the guidance reflects tariffs that are currently implemented. \n For the full year 2025, the Company expects: \n • Total revenue of $1,200 million to $1,280 million, representing growth of 18% to 26% over 2024 total revenue, primarily driven by increases in royalty revenue. Revenue from royalties of $750 million to $785 million, representing growth of 31% to 37% over 2024. \n • Adjusted EBITDA of $790 million to $840 million, representing growth of 25% to 33% over 2024. \n • Non-GAAP diluted earnings per share of $5.30 to $5.70, representing growth of 25% to 35% over 2024. The Company’s earnings per share guidance does not consider the impact of potential future share repurchases. \n Table 1. 2025 Financial Guidance \n Previous Guidance Range \n New Guidance Range \n Total Revenue $1,150 to $1,225 million \n $1,200 to $1,280 million \n Royalty Revenue $725 to $750 million \n $750 to $785 million \n Adjusted EBITDA $755 to $805 million \n $790 to $840 million \n Non-GAAP Diluted EPS $4.95 to $5.35 \n $5.30 to $5.70 \n 1 Adjusted EBITDA and non-GAAP Diluted EPS are non-GAAP financial measures. See “ Note Regarding Use of Non-GAAP Financial Measures ” below for an explanation of these measures. \n Webcast and Conference Call \n Halozyme will host its Quarterly Update Conference Call for the first quarter ended March 31, 2025 today, Tuesday, May 6, 2025, at 1:30 p.m. PT/4:30 p.m. ET. The conference call may be accessed live with pre-registration via link: https://registrations.events/direct/Q4I7813723 . The call will also be webcast live through the “Investors” section of Halozyme’s corporate website and a recording will be made available following the close of the call. To access the webcast and additional documents related to the call, please visit Halozyme.com. \n About Halozyme \n Halozyme is a biopharmaceutical company advancing disruptive solutions to improve patient experiences and outcomes for emerging and established therapies. As the innovators of ENHANZE ® drug delivery technology with the proprietary enzyme rHuPH20, Halozyme’s commercially-validated solution is used to facilitate the subcutaneous delivery of injected drugs and fluids, with the goal of improving the patient experience with rapid subcutaneous delivery and reduced treatment burden. Having touched one million patient lives in post-marketing use in ten commercialized products in at least one major region and across more than 100 global markets, Halozyme has licensed its ENHANZE ® technology to leading pharmaceutical and biotechnology companies including Roche, Takeda, Pfizer, Janssen, AbbVie, Eli Lilly, Bristol-Myers Squibb, argenx, ViiV Healthcare, Chugai Pharmaceutical and Acumen Pharmaceuticals. \n Halozyme also develops, manufactures and commercializes, for itself or with partners, drug-device combination products using its advanced auto-injector technologies that are designed to provide commercial or functional advantages such as improved convenience, reliability and tolerability, and enhanced patient comfort and adherence. The Company has two commercial proprietary products, Hylenex ® and XYOSTED ® , partnered commercial products and ongoing product development programs with Teva Pharmaceuticals and McDermott Laboratories Limited, an affiliate of Viatris Inc. \n Halozyme is headquartered in San Diego, CA and has offices in Ewing, NJ and Minnetonka, MN. Minnetonka is also the site of its operations facility. \n For more information visit www.halozyme.com and connect with us on LinkedIn and Twitter. \n Note Regarding Use of Non-GAAP Financial Measures \n In addition to disclosing financial measures prepared in accordance with U.S. generally accepted accounting principles (“GAAP”), this press release and the accompanying tables contain certain non-GAAP financial measures. The Company reports earnings before interest, taxes, depreciation, and amortization (“EBITDA”), adjusted EBITDA, Non-GAAP diluted earnings per share, Non-GAAP diluted shares, and guidance with respect to those measures, in addition to, and not as a substitute for, or superior to, financial measures calculated in accordance with GAAP. The Company calculates non-GAAP diluted earnings per share excluding share-based compensation expense, amortization of debt discounts, intangible asset amortization, one-time changes, if any, such as changes in contingent liabilities, inventory adjustments, impairment charges, and certain adjustments to income tax expense. The Company calculates non-GAAP diluted shares excluding the dilutive impact of convertible notes \n which is used in calculating non-GAAP diluted earnings. The Company calculates EBITDA excluding interest, taxes, depreciation and amortization. The Company calculates adjusted EBITDA excluding one-time items, if any, such as changes in contingent liabilities, inventory adjustments, impairment charges and transaction costs for business combinations. Reconciliations between GAAP and Non-GAAP financial measures are included at the end of this press release. The Company does not provide reconciliations of forward-looking adjusted measures to GAAP due to the inherent difficulty in forecasting and quantifying certain amounts that are necessary for such reconciliation, including adjustments that could be made for changes in share-based compensation expense and the effects of any discrete income tax items. For the same reasons, the Company is unable to address the probable significance of the unavailable information. The Company provides non-GAAP financial measures that it believes will be achieved; however, it cannot accurately predict all of the components of the adjusted calculations and the U.S. GAAP measures may be materially different than the non-GAAP measures. \n The Company evaluates other items of income and expense on an individual basis for potential inclusion in the calculation of Non-GAAP financial measures and considers both the quantitative and qualitative aspects of the item, including (i) its size and nature, (ii) whether or not it relates to the Company’s ongoing business operations and (iii) whether or not the Company expects it to occur as part of the Company’s normal business on a regular basis. Non-GAAP financial measures do not have any standardized meaning and are therefore unlikely to be comparable to similarly titled measures presented by other companies. These non-GAAP financial measures are not meant to be considered in isolation and should be read in conjunction with the Company’s consolidated financial statements prepared in accordance with GAAP, and are not prepared under any comprehensive set of accounting rules or principles. In addition, from time to time in the future there may be other items that the Company may exclude for purposes of its non-GAAP financial measures, and the Company may in the future cease to exclude items that it has historically excluded for purposes of its non-GAAP financial measures. \n The Company considers these non-GAAP financial measures to be important because they provide useful measures of the operating performance of the Company, exclusive of factors that do not directly affect what the Company considers to be its core operating performance, as well as unusual events. The non-GAAP measures also allow investors and analysts to make additional comparisons of the operating activities of the Company’s core business over time and with respect to other companies, as well as assessing trends and future expectations. The Company uses non-GAAP financial information in assessing what it believes is a meaningful and comparable set of financial performance measures to evaluate operating trends, as well as in establishing portions of our performance-based incentive compensation programs. \n Safe Harbor Statement \n In addition to historical information, the statements set forth in this press release include forward-looking statements including, without limitation, statements concerning the Company’s financial performance (including the Company’s expected financial outlook for 2025) and expectations for future growth, profitability, total revenue, royalty revenue, EBITDA, Adjusted EBITDA, and non-GAAP diluted earnings-per-share and potential share repurchases under its share repurchase program. Forward-looking statements regarding the Company’s ENHANZE ® drug delivery technology may include the possible benefits and attributes of ENHANZE ® , its potential application to aid in the dispersion and absorption of other injected therapeutic drugs and facilitating more rapid delivery and administration of higher volumes of injectable medications through subcutaneous delivery and the expected expiration date of our ENHANZE ® patent in Europe. Forward-looking statements regarding the Company’s business may include potential growth and receipt of royalty and milestone payments driven by our partners’ development and commercialization efforts, potential new clinical trial study starts and clinical data, regulatory submissions and product launches, the size and growth prospects of our partners’ drug franchises, potential new or expanded collaborations (including potential HVAI and SVAI collaborations) and collaborative targets and regulatory review, and potential approvals of new partnered or proprietary products, and the potential timing of these events. These forward-looking statements are typically, but not always, identified through use of the words “expect,” “believe,” \n “enable,” “may,” “will,” “could,” “intends,” “estimate,” “anticipate,” “plan,” “predict,” “probable,” “potential,” “possible,” “should,” “continue,” and other words of similar meaning and involve risk and uncertainties that could cause actual results to differ materially from those in the forward-looking statements. Actual results could differ materially from the expectations contained in these forward-looking statements as a result of several factors, including unexpected levels of revenues, expenditures and costs, unexpected delays in the execution of the Company’s share repurchase program, unexpected results or delays in the growth of the Company’s business, or in the development, regulatory review or commercialization of the Company’s partnered or proprietary products, regulatory approval requirements, uncertainties in tariffs and trade policies, unexpected adverse events or patient outcomes and competitive conditions. In addition, there can be no assurance as to developments related to the litigation referred to in this press release, the outcome of the litigation or any remedies that could be awarded in connection with the litigation. These and other factors that may result in differences are discussed in greater detail in the Company’s most recent Annual Report on Form 10-K and Quarterly Report on Form 10-Q filed with the Securities and Exchange Commission. Except as required by law, the Company undertakes no duty to update forward-looking statements to reflect events after the date of this release. \n Contacts: \n Tram Bui \n VP, Investor Relations and Corporate Communications \n 609-333-7668 \n tbui@halozyme.com \n Samantha Gaspar \n Teneo \n 212-886-9356 \n samantha.gaspar@teneo.com \n Footnotes: \n 1. Reconciliations between GAAP reported and non-GAAP financial information for actual results are provided at the end. \n Halozyme Therapeutics, Inc. \n Condensed Consolidated Statements of Operations \n (Unaudited) \n (In thousands, except per share amounts) \n Three Months Ended March 31, \n 2025 2024 \n Revenues \n Royalties $ 168,192 $ 120,593 \n Product sales, net 78,041 58,583 \n Revenues under collaborative agreements 18,628 16,703 \n Total revenues 264,861 195,879 \n Operating expenses \n Cost of sales 48,403 28,329 \n Amortization of intangibles 17,762 17,763 \n Research and development 14,799 19,111 \n Selling, general and administrative 42,362 35,134 \n Total operating expenses 123,326 100,337 \n Operating income 141,535 95,542 \n Other income (expense) \n Investment and other income, net 6,818 4,993 \n Interest expense (4,525) (4,507) \n Income before income tax expense 143,828 96,028 \n Income tax expense 25,733 19,205 \n Net income $ 118,095 $ 76,823 \n Earnings per share \n Basic $ 0.96 $ 0.61 \n Diluted $ 0.93 $ 0.60 \n Weighted average common shares outstanding \n Basic 123,215 126,941 \n Diluted 126,644 128,887 \n Halozyme Therapeutics, Inc. \n Condensed Consolidated Balance Sheets \n (Unaudited) \n (In thousands) \n March 31,\n2025 December 31,\n2024 \n ASSETS \n Current assets \n Cash and cash equivalents $ 176,328 $ 115,850 \n Marketable securities, available-for-sale 571,594 480,224 \n Accounts receivable, net and contract assets 304,621 308,455 \n Inventories 164,868 141,860 \n Prepaid expenses and other current assets 44,617 38,951 \n Total current assets 1,262,028 1,085,340 \n Property and equipment, net 72,816 75,035 \n Prepaid expenses and other assets 55,609 80,596 \n Goodwill 416,821 416,821 \n Intangible assets, net 384,068 401,830 \n Deferred tax assets, net 5,190 3,855 \n Total assets $ 2,196,532 $ 2,063,477 \n LIABILITIES AND STOCKHOLDERS’ EQUITY \n Current liabilities \n Accounts payable $ 20,074 $ 10,249 \n Accrued expenses 130,305 128,851 \n Total current liabilities 150,379 139,100 \n Long-term debt, net 1,507,447 1,505,798 \n Other long-term liabilities 56,436 54,758 \n Total liabilities 1,714,262 1,699,656 \n Stockholders’ equity \n Common stock 123 123 \n Additional paid-in capital 7,596 — \n Accumulated other comprehensive income (loss) \n (3,413) 3,829 \n Retained earnings 477,964 359,869 \n Total stockholders’ equity 482,270 363,821 \n Total liabilities and stockholders’ equity $ 2,196,532 $ 2,063,477 \n Halozyme Therapeutics, Inc. \n GAAP to Non-GAAP Reconciliations \n EBITDA \n (Unaudited) \n (In thousands) \n Three Months Ended March 31, \n 2025 2024 \n GAAP Net Income $ 118,095 $ 76,823 \n Adjustments \n Investment and other income, net (6,819) (4,993) \n Interest expense 4,525 4,507 \n Income tax expense 25,733 19,205 \n Depreciation and amortization 20,449 20,206 \n EBITDA 161,983 115,748 \n Adjustments — — \n Adjusted EBITDA $ 161,983 $ 115,748 \n Halozyme Therapeutics, Inc. \n GAAP to Non-GAAP Reconciliations \n Diluted EPS \n (Unaudited) \n (In thousands, except per share amounts) \n Three Months Ended March 31, \n 2025 2024 \n GAAP Diluted EPS $ 0.93 $ 0.60 \n Adjustments \n Share-based compensation 0.08 0.08 \n Amortization of debt discount 0.01 0.01 \n Amortization of intangible assets 0.14 0.14 \n Income tax effect of above adjustments (1) \n (0.07) (0.04) \n Non-GAAP Diluted EPS $ 1.11 $ 0.79 \n GAAP Diluted Shares 126,644 128,887 \n Adjustments \n Adjustment for dilutive impact of Senior 2028 Convertible Notes (2) \n (458) — \n Non-GAAP Diluted Shares 126,186 128,887 \n Dollar amounts, as presented, are rounded. Consequently, totals may not add up. \n (1) Adjustments relate to taxes for the reconciling items, as well as excess benefits or tax deficiencies from share-based compensation, and the quarterly impact of other discrete items. \n (2) Adjustment made for the dilutive effect of our Convertible Senior Notes due 2028 when the effect is not the same on a GAAP and non-GAAP basis for the reporting period. \n",
@@ -36,7 +39,261 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000115903625000025__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001159036-25-000008",
+   "filingDate": "2025-02-18",
+   "reportDate": "2025-02-18",
+   "form": "8-K",
+   "local_gz": "000115903625000008__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 6,
+   "n_sentences": 3,
+   "guidance_sentences": [
+    "HALOZYME REPORTS FULL YEAR 2024 RECORD REVENUE of $1.015 BILLION AND EXCEEDS ITS FINANCIAL GUIDANCE FOR ROYALTY REVENUE, ADJUSTED EBITDA and NON-GAAP DILUTED EPS",
+    "Record Full Year 2024 Total Revenue Increased 22% YOY to $1,015 million and Record Royalty Revenue Exceeded Guidance Increasing 27% YOY to $571 million",
+    "Full Year 2024 Net Income Increased 58% YOY to $444 million; GAAP EPS Increased 63% YOY to $3.43; Adjusted EBITDA Increased 48% YOY to $632 million and non-GAAP EPS Increased 53% YOY to $4.23 1 , Both Exceeding Guidance"
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2025-05-06",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 45,
+   "has_qna": true,
+   "n_chars": 41908,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "AI Insights",
+     "content": ""
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Operator",
+     "content": "Good afternoon. My name is Bailey, and I will be your conference operator today. At this time, I would like to welcome everyone to Halozyme's First Quarter 2025 Financial and Operating Results Conference Call. All lines have been placed on mute to prevent any background noise. After the speakers' remarks, there will be a question-and-answer session. [Operator Instructions] Please note, this event is being recorded. I will now turn the call over to Tram Bui, Halozyme's Vice President of Investor Relations and Corporate Communications. Please go ahead."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Tram Bui",
+     "content": "Thank you, operator. Good afternoon, and welcome to our first quarter 2025 financial and operating results conference call. In addition to the press release issued today after the market closed, you could find a supplementary slide presentation that would be referenced during today's call in the Investor Relations section of our website. Leading the call will be Dr. Helen Torley, Halozyme's President and Chief Executive Officer, who will provide an update on our business, and Nicole LaBrosse, our Chief Financial Officer, who will review our financial results, as well as our outlook. On today's call, we will be making forward-looking statements as outlined on Slide 2. I would also refer you to our SEC filings for a full list of risks and uncertainties. During the call, both GAAP and non-GAAP financial measures will be discussed. Certain non-GAAP or adjusted financial measures are reconciled with the comparable GAAP financial measures in our earnings press release and slide presentation. I will now turn the call over to Dr. Helen Torley."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Helen Torley",
+     "content": "Good afternoon, everyone, and thank you for joining us today. It really has been a tremendous start to 2025. Before I describe the many events and successes in the first quarter, let me begin by thanking the many shareholders and sell-side analysts who participated in our investor feedback interviews earlier this year. We really appreciate your feedback and it has been invaluable. Your feedback helped us understand more granularly the role that we are playing in different investor portfolios, and we're very pleased to be considered your consistent stock grower. Not surprisingly, each of you recognize our leadership in drug delivery for biologics and how this foundation can be expanded to additional areas of drug delivery. All investors agreed on key themes about Halozyme. For example, no investor wants Halozyme to invest in drug development binary risk. We agree. All investors want to make sure that we maximize the organic growth represented by ENHANZE and our auto-injectors by fully investing where there are opportunities. Again, we agree. And later this year, we will schedule an update about potential new ENHANZE uses and the opportunity. All investors encourage us to also seek to grow inorganically through M&A. While opinions differ about the exact destination for our M&A, all investors want us to remain disciplined about our net leverage. And we listen to your feedback. With this in mind, I am pleased to reiterate our strategy. Our goal, said simply, is to grow organically and through serial acquisitions, excelling in licensing disruptive drug delivery platform technologies that improve the patient treatment experience and result in better outcomes. With the strategy, we aim to deliver strong and durable revenue and EBITDA growth well into the next decade. We will achieve this performance by continuing to focus first and foremost on organic growth. We will continue to invest in and grow ENHANZE and our auto-injector businesses, for we are absolutely the best positioned company to capitalize on the growing pharma and patient priority for at-home patient delivered treatment. We will also seek to grow inorganically through M&A. Our focus here is on identifying new drug delivery platforms where the business model results in long, durable revenue streams, such as through royalties, and where we see the opportunity to license to multiple pharma partners. We heard you in leverage, and we will be seeking deals that can be accomplished without the need for significant increase in net debt to EBITDA leverage. And we heard how much our shared buybacks are appreciated by our investors given the high IRR they have delivered. I am pleased to announce that we are planning to continue this in 2025, announcing today the plan to repurchase $250 million in shares. Let me now move to the Q1 performance beginning on Slide 3. Now, here's how I'd like you to think about our business, our performance and our future. Firstly, we have three blockbusters that are driving our current growth. We'll go into more detail on those in a moment. Secondly, we have 11 new growth catalysts that have either just happened or will happen in the next month. These catalysts will drive our growth for multiple years to come. And thirdly, we have several products in our development pipeline plus our auto-injector technology that will drive additional future growth. As an example, today, we are pleased to announce our very first high volume auto-injector agreement. Turning now to Slide 4, let me briefly highlight the strong first quarter results. Total revenue increased 35% year-over-year to $265 million, with royalty revenue increasing by 39% to $168 million, primarily driven by the three blockbusters DARZALEX subcutaneous, Phesgo and VYVGART Hytrulo. Adjusted EBITDA increased to $162 million and non-GAAP EPS increased to $1.11, both representing approximately 40% year-over-year growth. Net income also grew an impressive 54% in the quarter to $118 million. Let me now expand on the three blockbusters that are key revenue drivers and that are projected to keep growing for years to come, DARZALEX FASPRO, Phesgo and VYVGART Hytrulo. I'll begin with DARZALEX like shown on Slide 5. In the first quarter, Johnson & Johnson reported another strong quarter of growth for DARZALEX, which increased 22% year-over-year on an operational basis to $3.2 billion. The growth was primarily driven by continued share gains of approximately 3 points across all lines of therapy and approximately 5 points in the front-line setting, as well as through market growth. DARZALEX subcutaneous with ENHANZE, which is marketed as DARZALEX FASPRO in the United States, accounts for approximately 95% of all DARZALEX sales in the United States and commands a similarly high proportion of share in the major ex-US markets. And DARZALEX continues to set the standard in multiple myeloma treatment, with Johnson & Johnson's commitment to its clinical advancement continuing to solidify its role as the backbone of treatment across front- and second-line patients. Moving now to the first of the 11 new growth catalysts, which is the recent European approval of a DARZALEX-based quadruplet regimen for patients with newly diagnosed multiple myeloma, regardless of transplant eligibility, further support near-term growth, and the analysts' estimates for DARZALEX to reach $17 billion in sales in 2028, with the subcutaneous formulation driving this growth and the vast majority of the sales. We project royalties in DARZALEX subcutaneous through 2032. Let me move now to Slide 6 and Roche's Phesgo, which is the combined therapy of Perjeta, Herceptin and ENHANZE. Phesgo continues to demonstrate strong adoption and commercial success. In the first quarter, Phesgo was the #1 growth driver in Roche's pharmaceutical portfolio with sales increasing 52% to approximately $675 million with strong performance in international regions. Our second new growth catalyst is Phesgo gaining national reimbursement drug listing in China, with Roche commenting on their Q1 call that the growth in China is accelerating noticeably following the listing, which happened earlier this year. Conversion from Perjeta to Phesgo is ongoing, reaching 47% in the 58 launch countries in the first quarter, with expectations for conversion to reach more than 50% across global markets in 2025. In April of 2025, the CHMP recommendation in Europe to expand the Phesgo label to allow administration outside of a clinical setting is our third growth catalyst. Availability of this option will deliver on patient preference for at-home administration. We see this also as an important step in freeing up cancer care capacity in the clinical settings. Sales of Phesgo are projected to reach approximately $3.3 billion by 2028, entirely from the ENHANZE-enabled subcutaneous formulation, where we earn a mid-single-digit royalty on net sales through 2030. The product's strong growth and broad geographic uptake underscore the commercial success possible with ENHANZE-enabled therapies. Let me now move to argenx's VYVGART and VYVGART Hytrulo, which is the subcutaneous version enabled by ENHANZE. These are shown in Slide 7. Today VYVGART Hytrulo is approved for two indications in the United States, generalized myasthenia gravis and chronic inflammatory demyelinating polyneuropathy, and for one indication, generalized myasthenia gravis in Europe. In the United States, VYVGART Hytrulo with ENHANZE has played a pivotal role in adding new prescribers and new patients in the first approved indication, generalized myasthenia gravis, reaching patients earlier in the treatment paradigm, and accessing new-to-brand patients. Moving on to the second approved US indication, CIDP, VYVGART Hytrulo was approved as a subcutaneous-only treatment recently in September of 2024. argenx has reported initial strong demand from patients and physicians highlighting the unmet need for safe and effective treatment alternatives. As reported in February of 2025, more than 1,000 CIDP patients were in therapy. For CIDP, argenx has stated that they have attained favorable or highly favorable coverage for 90% of US lives. They further commented that their recent sales force expansion has contributed to deeper community reach, noting that 25% of prescribers for CIDP are new to VYVGART. In Europe, VYVGART Hytrulo was approved for generalized myasthenia gravis in November of 2023. VYVGART total sales reached $2.2 billion in 2024 with continued strong growth, especially of VYVGART Hytrulo, projected in 2025. Turning now to Slide 8, I'll comment on the growth catalyst number five, six and seven. In April of 2025, the FDA approved the new option for patients to self-inject argenx's VYVGART Hytrulo pre-filled syringe, which contains the same VYVGART, which is co-formulated with ENHANZE as is in the vial and where Halozyme receives the same mid-single-digit royalty on net sales. This FDA approval of the pre-filled syringe is our fifth new growth catalyst. The VYVGART Hytrulo pre-filled syringe is approved as a 20 to 30 second subcutaneous injection, which is administered by a patient, a caregiver or a healthcare professional, and will contribute to VYVGART Hytrulo's strong growth trajectory for 2025 and beyond. The pre-filled syringe also received a positive recommendation in Europe for use in generalized myasthenia gravis patients in February of this year. This is projected to result in approval in the second quarter of 2025 and is our sixth growth catalyst. In April of 2025, argenx received a positive opinion for VYVGART Hytrulo from the CHMP in Europe for the indication of chronic inflammatory demyelinating polyneuropathy. With approval expected to occur mid-year 2025 following the CHMP opinion, this new indication, which we expect to be for the vial and for the pre-filled syringe, will significantly expand the opportunity and add new growth. And this is our seventh new growth catalyst in 2025. VYVGART is just starting its journey of innovation. As you will see on Slide 9, argenx has multiple active subcutaneous programs in development with ENHANZE, including for ocular myasthenia gravis and for thyroid eye disease, which will further fuel the revenue growth. With Halozyme earning royalties through the early 2040s, VYVGART Hytrulo represents one of the most significant and durable contributors to our long-term financial performance. Continue to expand the new growth catalyst, I'll now move to Slide 10 and the four additional recently launched products that are just warming up and are at the start of what promised to be exciting launches. Let me begin with Ocrevus Zunovo with ENHANZE, which was approved last year for multiple sclerosis as an approximately 10-minute subcutaneous injection. This compares with multiple hours that is typically required for the intravenous administration. Importantly, and the eighth new growth catalyst, Roche recently reported that Ocrevus Zunovo received its permanent J-code in the US on April 1, which they stated will help accelerate uptake in the second half of 2025. Outside the United States, work continues to gain that all important reimbursement in each country. Roche reported that 50% of patients who started on Ocrevus Zunovo were naive to the brand, providing Roche with confidence that Zunovo will open up new patient populations to Ocrevus and not simply cannibalize existing share. Roche believes that Ocrevus Zunovo could represent an incremental approximately $2 billion opportunity for the brand through this expansion, resulting in an approximately $10 billion analyst projection for IV and subcutaneous Ocrevus in 2028. Ocrevus Zunovo is projected to earn Halozyme royalties at its full mid-single-digit rate until 2030 and at a step down rate until at least 2034. I'll move now to Roche's Tecentriq Hybreza with ENHANZE, which gained FDA and EMA approval in 2024. The approvals were for all of the intravenous indications, offering patients the convenience of an approximately seven-minute subcutaneous injection. With a permanent J-code in place and work continuing to gain reimbursement in all countries, the strategy is to convert IV Tecentriq patients to Tecentriq Hybreza. Halozyme will earn royalties on Tecentriq Hybreza at the full mid-single-digit rate until the 2040. Moving now to Bristol Myers Squibb Opdivo Qvantig, the subcutaneous formulation of nivolumab with ENHANZE, which was granted FDA approval at the end of 2024 in the United States. CMS is focused on continuing to increase Bristol prescribing in both the community and academic settings. And the permanent J-code, our ninth new growth catalyst, is expected on July 1. The J-code is expected to drive adoption of the subcutaneous formulation in the second half of the year. BMS recently commented that they're receiving promising early feedback from practices and patients on the subcutaneous formulation, which is a three to five minute subcutaneous injection. Use is predominantly happening in the community setting and is occurring across multiple tumor types. In April of 2025, BMS announced the positive CHMP opinion for Opdivo subcutaneous with ENHANZE, representing our 10th new growth catalyst. We anticipate European approval in mid-2025. I'll move now to subcutaneous Rybrevant, which is Johnson & Johnson's innovative EGFR-cMet inhibitor. Johnson & Johnson gained European approval of subcutaneous Rybrevant co-formulated with ENHANZE in April of 2025 for use in combination with lazertinib in the first-line treatment of adult patients with advanced EGFR mutated non-small cell lung cancer. Subcutaneous Rybrevant represents a more convenient patient-friendly formulation, reducing administration time from multiple hours required for the IV to just five minutes for the subcutaneous. Importantly, there is a five-fold reduction in infusion-related reactions compared to the IV formulation. Work is now underway to get reimbursement for subcutaneous Rybrevant in each country. And our eleventh new growth catalyst is a potential US approval of Rybrevant subcutaneous. J&J is continuing to work on gaining this approval in 2025. I wanted to also highlight recent data on Rybrevant. Very excitingly, the results of the Phase 3 MARIPOSA trial were presented at the European Lung Cancer Congress in March of 2025. The combination of Rybrevant and lazertinib significantly reduced the risk of death by 25% versus Tagrisso, which is considered by many to be the current standard of care in patients with newly diagnosed EGFR-mutated non-small cell lung cancer. With a projected -- improvement projected of more than 12-month survival benefit over this current standard of care, this is certainly a potentially important advance for patients with this type of cancer, where only 20% of patients survive beyond five years today. With our now 10 launched products, which are shown on Slide 11, we remain on track to deliver over $1 billion in royalty revenue in 2027, with all products continuing to generate royalties to at least 2030, and many expected to continue to the 2040s. I'll move now to Slide 12 and to some highlights on our pipeline that represent potential new growth drivers, the royalty revenues of which are not included in our multiyear guidance. During the first quarter, Acumen reported top-line results for sabirnetug subcutaneous with ENHANZE for Alzheimer's disease, which support further clinical development for the subcutaneous formulation with ENHANZE. ViiV also reported positive Phase 2 data for N6LS subcutaneous with ENHANZE in combination with cabotegravir. The study demonstrated the promise of an every-four month treatment in combination with cabotegravir. This is another terrific example of how ENHANZE can support a more extended dosing interval, reducing the treatment burden for patients. And we were also very hard at work during the quarter, continuing discussions with several companies and entering into discussions with multiple new companies with regard to new deals. I'm pleased to announce that we have signed our first development agreement with a current ENHANZE partner for development of our high volume auto-injector. The majority of the ongoing discussions continue to focus on ENHANZE alone and ENHANZE with the high volume auto-injector if the volume is between two to 10 ml. I can update that we are progressing through the multi-step review and decision-making committees in several of these discussions. And turning to our small volume auto-injector business, I'm pleased to say that one of our current partners is progressing now to test the small volume auto-injector in a Phase 1 study. There has not been a time in Halozyme history when we have been in such a strong position in terms of having 10 de-risked proven approved subcutaneous products with 11 recent or soon to happen events that are catalysts to expand opportunity, adoption and growth. The underlying continued strength of DARZALEX subcutaneous, Phesgo and VYVGART Hytrulo, plus these new growth catalysts have resulted in the increased 2025 guidance, which Nicole will review in a moment after she discusses our first quarter results in more detail. Nicole?"
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Nicole LaBrosse",
+     "content": "Thank you, Helen. The first quarter of 2025 represented a strong start to the year, and we're excited to raise our full year expectations based on these strong results. We grew revenue by 35%, with EBITDA growth of 40% as we continue to drive leverage on our high margin royalty revenue, contributing $153 million in free cash flow in the quarter. Let me start on Slide 13. In the first quarter, we completed the $250 million ASR announced in December of 2024. Since 2019, we have repurchased $1.55 billion of shares, which is on average $250 million each year at an average price of $33.72. Due to the strong performance to date, we are announcing an additional $250 million of share repurchases to be executed during the remainder of the year. As Helen mentioned, we continue to evaluate M&A opportunities to complement our organic growth expectations. Let me now turn to our detailed first quarter results on Slide 14. Revenue grew 35% to $264.9 million compared to $195.9 million in the prior-year period. This includes higher-than-expected revenue in all categories. Royalty revenue of $168.2 million increased by 39% from $120.6 million in the prior-year and was higher than our original expectations. The continued commercial success of subcutaneous DARZALEX and Phesgo and the robust growth of VYVGART Hytrulo exceeded our expectations for the quarter, driving an increase in our full year guidance. Product sales of $78 million increased by 33% from $58.6 million in the prior-year period, mainly driven by higher API sales than originally estimated due to an increase in partner orders. We have an increase in partner orders in later quarters of 2025, which is also a driver of the increase in our full year guidance. Collaboration revenue of $18.6 million, an increase of 12% from $16.7 million in the prior-year period was also higher-than-expected due to the achievement of VYVGART Hytrulo sales milestone one quarter earlier than originally projected. Research and development expenses were $14.8 million compared to $19.1 million in the prior-year period. The decrease was primarily due to lower compensation expense, driven by resource optimization and improved labor allocations to COGS and the timing of planned investments in ENHANZE related to the development of our new high-yield rHuPH20 manufacturing process. Selling, general and administrative expenses were $42.4 million in the quarter, up from $35.1 million in the prior-year period, primarily due to increased compensation expense and consulting and professional service fees. Adjusted EBITDA increased 40% to $162 million from $115.7 million last year. GAAP diluted earnings per share was $0.93 and non-GAAP diluted earnings per share was $1.11. This is compared with GAAP diluted earnings per share of $0.60 and non-GAAP diluted earnings per share of $0.79 in the first quarter of 2024. We continue to maintain a strong balance sheet with cash, cash equivalents and marketable securities of $747.9 million on March 31, 2025 compared to $596.1 million on December 31, 2024. The increase was primarily a result of cash generated from operations. Our net debt position was $777 million with a net leverage ratio of 1 time. As a result of our strong first quarter performance, we are raising our guidance, as you can see on Slide 15. We now expect total revenues of $1.2 billion to $1.28 billion, representing year-over-year growth of 18% to 26%, driven by increased projections in all three revenue categories: royalties, product sales, and collaboration revenue. Royalty revenues of $750 million to $785 million, representing year-over-year growth of 31% to 37%. We continue to expect VYVGART Hytrulo with ENHANZE to be the largest royalty dollar growth driver. Product sales of $340 million to $365 million, driven by higher partner demand for rHuPH20 in the year. Collaboration revenue of $110 million to $130 million, driven by the EU approval of Rybrevant SC in April, for which a milestone will be recognized in the second quarter. Adjusted EBITDA of between $790 million to $840 million, representing year-over-year growth of 25% to 33%, reflecting high-margin royalty growth coupled with flat operating expenses from our continued focus on operational efficiency. And non-GAAP diluted EPS of $5.30 to $5.70, representing year-over-year growth of 25% to 35%, which does not include the impact of future share repurchases, including the $250 million announced today. As you refine your model, I'd like to reiterate the following. While we achieved VYVGART Hytrulo milestone one quarter earlier than expected in the first quarter, we continue to expect collaboration revenue for the year to be more weighted in the second half of 2025. We continue to expect product sales to be weighted in the second half of the year with the second quarter flat with the first quarter. For royalties, we continue to expect quarterly sequential growth for the remaining quarters in the year. With that, I'll now turn the call back over to Helen."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Helen Torley",
+     "content": "Thank you, Nicole. Our strong first quarter performance, particularly of DARZALEX subcutaneous, Phesgo and VYVGART Hytrulo, plus our 11 new growth catalysts gave us the confidence to raise the full year 2025 financial guidance ranges. With 10 products now approved and launched in at least one major region, we have durable revenue streams that will continue to support our conviction in the future success of Halozyme. Our robust pipeline, along with our ability to defend our intellectual property, further strengthens our confidence in delivering sustainable growth and profitability well into the future. This is an incredibly exciting time of growth for Halozyme, and this would not have been possible without our terrific partners and our dedicated and expert Halozyme team. And I'd like to say a sincere thank you to everybody who has contributed. Operator, with that, we are now ready to open the call for questions. Thank you."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Your first question comes from the line of Mohit Bansal with Wells Fargo. Your line is open."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Sadia Rahman",
+     "content": "Hi. Sorry about that. I was on mute. Hi. This is Sadia Rahman on for Mohit. Thanks for taking the questions. So, on the IP case with Merck, had a question about that. Can you comment on the expected timelines for the PGR decisions and what action you could take if the PGR goes in Merck's favor?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Helen Torley",
+     "content": "Yeah. Thanks for that. With regard to the PGR, the first decision by the patent office on institution will be in early June. And if there is institution, that will mean that the case will be reviewed about 12 months from then. They also can decide not to pick up the case, in which case, it would not proceed."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Sadia Rahman",
+     "content": "Got it. And just related to that, is there a possibility that that PGR case and your patent infringement lawsuit could be tied together, or is that not possible due to logistical reasons?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Helen Torley",
+     "content": "Yeah. Not logistical, but two very different approaches that are going on there. Obviously, the PGR we consider to be frankly a little bit of a sideshow. PGRs tend to be filed when companies are concerned that they are infringing and they seek to invalidate the patents. We feel very confident in our ability to prevail in those PGRs. And even if they were to win one or two of the PGRs because there are several in place, we do not believe that will have any impact at all on our infringement at case where we have multiple additional claims that are not subject to the PGR that are the basis of that infringement case. So, two very separate things. The most important one is actually the actual lawsuit that we filed. I'd keep your attention on that one."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Sadia Rahman",
+     "content": "Got it. Thanks so much."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Sean Laaman with Morgan Stanley. Your line is open."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Sean Laaman",
+     "content": "Thank you, operator. Hello, Helen. Hope you're well, and congratulations on a nice set of numbers. What's the -- beat on number today and you've upgraded guidance, but there -- is there one particular area of strength that surprised you during the quarter and is driving the upgrade, or is it more broad-based?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Helen Torley",
+     "content": "Yeah. I will say it's our three blockbuster products that have been performing for us for the last several years and frankly are expected to continue to have this excellent performance. So, it's across the board with DARZALEX subcutaneous, Phesgo and also VYVGART Hytrulo. And so, one of the other things we mentioned, not just the royalties, but that we achieved a milestone on VYVGART Hytrulo one quarter earlier than we had anticipated as well, and that was a commercial sales attainment milestone. So, they are just continuing to perform very, very well, Sean. Behind them, we're obviously excited about the other four launch products that are really just at the very beginning. But just based on the performance, comments from the partners and our estimates, we're going to continue to see strong growth from all of those products for many years to come."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Sean Laaman",
+     "content": "Great. Thank you. And on the small volume auto-injector, when might you be in a position to tell us who the partner is? And how do the economics of that deal compare to the high volume auto-injector partnerships? And when do you ultimately see commercialization might be a reality?"
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Helen Torley",
+     "content": "Yeah. The -- with regard to when that might become public, that really will be a partner who will be in control of that. I would take an estimate and guess that when it enters clinical studies, it might be public that it's our small volume auto-injector, but for competitive reasons, we're seeing again that our partners don't want to be signaling to their competition exactly what they're doing to continue to evolve their product offering and differentiate it for patients. The small volume and the high volume auto-injector agreements are both development agreements, Sean. They really lay out exactly how we will work together to create a auto-injector for use in clinical development. We have yet to move forward to the commercial licensing, supply agreement, sorry, where the actual financial terms will be there. But I would expect in both instances, what you're going to see is going to be where we have a price per device that is based on the cost of manufacturing and the time it takes us to manufacture and some cost plus benefit for Halozyme, but more to come in that later. We're just incredibly excited that we're now moving forward with two of our partners to be using and testing our auto-injectors in the future in their clinical studies."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Sean Laaman",
+     "content": "Great. Thank you, Helen. That's all I have for now."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Helen Torley",
+     "content": "Thanks, Sean."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Michael DiFiore with Evercore ISI. Your line is open."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Michael DiFiore",
+     "content": "Thanks a lot. Hey, guys. Thanks for taking my question and congrats on all the continued progress. Two questions from me, centering on the Merck-Halozyme litigation. Number one, do you guys see AstraZeneca's Alteogen deal as evidence that large pharma companies are willing to accept patent litigation risk rather than sign ENHANZE deals? And if so, how do you counter that narrative? Second question is, have any ENHANZE partners paused new target add-ons or renegotiations while they watch this litigation play out? And if so, how material could that be to long-term growth? Thank you."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Helen Torley",
+     "content": "Yeah. I'll tackle the second one first, Mike. And no, we have not heard from any partner, who is a current partner or even conversations we're having with potential future partners, where anything is being paused to evaluate the outcome of the Merck litigation. And I don't expect that really to happen at all. I think it's very clear ENHANZE has seen as the market leader here where the most derisked, the most validated with a million patients treated. And I can say that for all of the people who are looking at hyaluronidase, including all of the ones who have signed deals with, Alteogen, all of them have come to Halozyme first and perhaps found that the target they were intending or wanting to use it for was not available. And I think we're going to continue to see that pattern. With regard to your specific question on AstraZeneca, again, I don't want to speculate on what AstraZeneca is thinking with regard to the litigation, but I'll come back to the comment I made a moment ago. All of the people that have moved forward with a deal with Alteogen have actually discussed specific targets with Halozyme that were taken by other of our current partners. And I think, again, that is the trend that we have seen to date."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Michael DiFiore",
+     "content": "Very helpful. Thank you."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Jessica Fye with JPMorgan. Your line is open."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Unidentified Analyst",
+     "content": "Hello. This is Adam on for Jess. Thank you for taking our question. I just wanted to ask, how are you thinking about the implications of the ENHERTU front-line breast cancer data for Phesgo sales and royalties? Thank you."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Helen Torley",
+     "content": "Obviously, we're keeping a close watch on that. What we are seeing with Phesgo is with the great long-term data and there's more long-term data, as you know, that's going to be coming out on Phesgo this year as well, together with the very convenient patient administration in just five to seven minutes for it, we believe that the Phesgo is going to continue to demonstrate this very strong market adoption and uptake where there is incredibly high patient satisfaction for it. So, not just the clinical benefits, the administration benefits, but also the patient satisfaction. So, we're not concerned with regard to the ENHERTU data that will be emerging. Delighted to see the strong uptake continues for Phesgo. We mentioned on the call, 47% share now in the 58 launch markets, expected to get to more than 50% this year. And we've seen with our products that when a patient has moved to the subcu version of the products, they tend to be very sticky. So, we are projecting continued strong growth of Phesgo for multiple years to come."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Mitchell Kapoor with H.C. Wainwright. Your line is open."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Mitchell Kapoor",
+     "content": "Hey, everyone. Thanks for taking the question. Wanted to ask a little bit about your views in the future of the changing proportion of the mix of royalty revenues as your pipeline evolves. Just kind of trying to understand when we could get to more even proportions versus the three blockbusters serving as the heavyweights for the royalty revenues?"
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Helen Torley",
+     "content": "All right. It's -- when you have such great products, Mitch, it's an embarrassment of riches. And we do expect several of our products that are currently just starting their launch trajectories to also be meaningful contributors. There was a time where people were very focused on DARZALEX and it's having a very large proportion of our sales. It will continue to be a very important contributor to us for many years to come, but products like VYVGART Hytrulo, Phesgo, Ocrevus, others are going to be very important contributors as well. I think Nicole mentioned that this year, the larger dollar growth is actually VYVGART Hytrulo, which shows you how our portfolio is broadening. So, we're going to have multiple very high-impact blockbusters like DARZALEX in -- frankly, by the end of this year, next year. Let me see if Nicole would add anything to that."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Nicole LaBrosse",
+     "content": "Yeah. And we don't break out our royalties by products, but we have shared the buckets as we think about our royalty projections. We shared DARZALEX and Phesgo in total the contribution that they're expected to have in the long-term. And then, the next wave of our products, so comparing it to DARZALEX and Phesgo having a $20 billion market opportunity in 2028, and then looking at the next wave of our products in totality having $35 billion market opportunity in 2028, I think that gives you that good sense for how over the next few years, those products will start contributing very meaningfully and taking up a good proportion of our royalty revenue."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Mitchell Kapoor",
+     "content": "Thank you. That's very helpful. And one more from me, just talking about the M&A activity and the expectations for future activity in that space. Could you talk a little bit about what you're looking for in your next BD deal there and how that contrasts with your strategy with Evotec? And then, if you could just talk about timing on when you would like to execute on one of those transactions? Is there kind of a timeline for that and kind of the size, larger or smaller, multiple smaller ones? Any clarity around those particular aspects of the M&A strategy?"
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Helen Torley",
+     "content": "Yeah. Thanks, Mitch. With regard to M&A, we're very focused on seeking to find opportunities in the drug delivery space, where there are platform technologies that can result in long durable revenues, including and particularly for royalties. Obviously, we like that model. But I will say we are not in a hurry to do it and we're going to be carefully evaluating and being thoughtful as we've always been to identify something that we believe would be needed and required by multiple pharma companies and result in a very positive contribution to Halozyme long-term growth. So, think drug delivery, think licensing business, that is where we are evaluating today. No specific timeline. And as we're still evaluating, Mitch, it should be premature to comment on the size, but it's, so I can't comment on that, at this period of time. So that's where we're going to be focused. And we're excited to try to create new platforms and create just great businesses like ENHANZE, and that we've done so successfully with that."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Mitchell Kapoor",
+     "content": "Great. Thank you all very much for taking the questions."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Your next question comes from the line of Brendan Smith with TD Cowen. Your line is open."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Brendan Smith",
+     "content": "Great. Thanks for taking the questions guys, and congrats on all the great updates. Maybe just another one kind of regarding the litigation, for Keytruda. Just kind of in point blank terms, can you just confirm first, that whatever the outcome for your litigation against Merck, that the decision will have no impact on your actual core ENHANZE business? And then, on the flip side, kind of same question regarding the PGR suit from Merck, or is the one from them a little bit more targeted to ENHANZE itself? Just trying to kind of understand the relative potential impact down the line."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Helen Torley",
+     "content": "That's great, Brendan. And to be very clear, what is going on in the MDASE, which is a separate and distinct set of patents from ENHANZE, will have absolutely no impact whatsoever on our ENHANZE business, our guidance that we have provided or our future growth of ENHANZE. Think of the MDASE as future upside opportunity that has been identified as we are finding that companies are infringing our intellectual property and we're seeking to have those companies take licenses from us. So that's it, bottom line with regard to what would happen. So, specifically with the outcome of the PGRs, yes, absolutely no impact on our ENHANZE business. And, same with the infringement case, no impact on the ENHANZE business. All potential upside if we were to win either a license with Merck or win compensatory damages as we're seeking in the litigation. So, two very distinct things where, MDASE is just a potential upside coming from great innovation and inventions that Halozyme has created over the years."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Brendan Smith",
+     "content": "Got it. Okay, great. Thank you. And then maybe just a quick one on tariffs just because we do get a lot of questions about this. Can you just speak really quickly to how we should be thinking about the potential impact of pharma and maybe EU tariffs? And if you've had any conversations with any of your partners about them, I guess particularly relevant for DARZALEX in regards to given their global footprint? Thank you."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Helen Torley",
+     "content": "Yeah. I'll start with Halozyme's manufacturing, where we've been very deliberate ourselves in establishing our manufacturing in the United States. And we also have been seeking to assure we can source all or virtually all of our components and materials needed in the United States too. And so, I can confirm that from the Halozyme point of view for the products we produce and our API, there is very, very limited exposure to the currently imposed tariffs, and any small impact is already contemplated in our guidance. With regard to the pharma tariffs, I can say that based on our agreements, if the pharma tariffs were implemented for products being imported into the US, Halozyme will not see or should not see any impact on our royalty revenues. And so, it's based on our agreements and based on what we're aware of with regard to the manufacturing of our partner products and importantly also US distribution and how that works. So, we should not see any impact with regard to tariffs."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Brendan Smith",
+     "content": "All right, great. Thank you."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Operator",
+     "content": "And your next question comes from the line of David Risinger with Leerink Partners. Your line is open."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "David Risinger",
+     "content": "Thanks very much, and congrats Helen and team on the very strong financial progress. I have two questions. The first is with respect to external acquisitions, are you also considering broadening your royalty streams by considering acquiring royalty companies? And then, with respect to potential new customer deals, could you just talk about the gating factors for new business announcements? For example, are some customers awaiting FDA guidance -- or sorry, CMS guidance for IRA negotiations in coming months for 2028 under the new administration? Thanks very much."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Helen Torley",
+     "content": "All right. So, with regard to external acquisitions, David, I mentioned that we really are focused on creating new platform businesses that can result in durable long revenue streams such as we've created for in ENHANZE. And so, think drug delivery platforms as being our primary focus in terms of where we are evaluating opportunities today. On the new customer deals and specifically for ENHANZE, and I've talked about this before, what we do see in companies is there's a multi-step review process and then a multi-step decision process. And so, really, what we're doing at the moment is working through that process in each company, where each company has a slightly different process. Now, you do get to the end of it, as we've seen very nicely by announcing our small volume auto-injector deal last quarter, the high volume one. And we are in several discussions going through that process on ENHANZE. So, simply, it's more a question of getting through the internal decision making processes in the pharma and biotech companies that will result in an ENHANZE deal. And I remain confident we will sign a deal on ENHANZE this year. It's been interesting on CMS, and people are awaiting the IRA. I would not say that's a gate at all. It just is a question of interest to see whether the CMS will continue to recognize that a product that is two active ingredients is a separate drug from the single ingredients. And so, if anything that might bring us some additional new opportunities, David, but it hasn't been holding anyone back waiting to see that, that is confirmed. Much more focused on the strong differentiation that ENHANZE is able to bring for their patients and their mission for improving the patient treatment experience."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "David Risinger",
+     "content": "Got it. Thank you."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Helen Torley",
+     "content": "Thanks very much."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Operator",
+     "content": "And there are no further questions at this time. This does conclude today's conference call. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +304,8 @@
    "reportDate": "2024-12-31",
    "accession": "0001159036-25-000010",
    "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000010/halo-20241231.htm",
-   "local_gz": "000115903625000010__annual.txt.gz"
+   "local_gz": "000115903625000010__annual.txt.gz",
+   "n_lines": 2373
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +313,8 @@
    "reportDate": "2025-03-31",
    "accession": "0001159036-25-000026",
    "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903625000026/halo-20250331.htm",
-   "local_gz": "000115903625000026__q0.txt.gz"
+   "local_gz": "000115903625000026__q0.txt.gz",
+   "n_lines": 1150
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +322,106 @@
    "reportDate": "2024-09-30",
    "accession": "0001159036-24-000050",
    "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903624000050/halo-20240930.htm",
-   "local_gz": "000115903624000050__q1.txt.gz"
+   "local_gz": "000115903624000050__q1.txt.gz",
+   "n_lines": 1165
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2025-02-18",
   "n_rows": 8,
@@ -83,6 +436,68 @@
     "ocf": 66842000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 132406000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 221689000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 842000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 221165000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1495998000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": -1623000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2800000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 74754000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.56,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 133543000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +508,68 @@
     "ocf": 132411000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 128921000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 213987000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 667000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 274227000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1497621000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2944000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2700000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 81837000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.61,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 134083000.0,
+      "filed": "2023-11-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +580,63 @@
     "ocf": 102354000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 127601000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 233254000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4048000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 118370000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1499248000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2596000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2931000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 85388000.0,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.6500000000000001,
+      "filed": "2024-02-20",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +647,63 @@
     "ocf": 129427000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 168541000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 185313000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4595000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 164627000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3545000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2443000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 76823000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.6,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 128887000.0,
+      "filed": "2024-05-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +714,63 @@
     "ocf": 55794000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 159312000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 210416000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4856000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 187864000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 2582000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2600000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 93245000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.72,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 129222000.0,
+      "filed": "2024-08-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +781,63 @@
     "ocf": 115376000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 131412000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 273062000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 9126000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 154318000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1517000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2600000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 137011000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.05,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 130134000.0,
+      "filed": "2024-10-31",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +848,63 @@
     "ocf": 178467000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 141860000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 288204000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 10343000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 115850000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1505798000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3052000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 2653000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 137012000.0,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.06,
+      "filed": "2025-02-18",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +915,24 @@
     "ocf": 154221000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 118095000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.93,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 265000000.0,
     "revenue_xbrl_for_reference": 264861000.0
@@ -166,160 +946,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2836",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 772,
-  "peer_list_all_same_sic2_tickers": [
-   "AAPG",
-   "AARD",
-   "ABBV",
-   "ABCL",
-   "ABEO",
-   "ABOS",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ABVX",
-   "ACAD",
-   "ACB",
-   "ACET",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACOG",
-   "ACRS",
-   "ACRV",
-   "ACTU",
-   "ACXP",
-   "ADAG",
-   "ADCT",
-   "ADIL",
-   "ADMA",
-   "ADPT",
-   "ADUR",
-   "ADXN",
-   "AEON",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKAN",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALEC",
-   "ALGS",
-   "ALKS",
-   "ALLO",
-   "ALLR",
-   "ALMS",
-   "ALNY",
-   "ALT",
-   "ALTO",
-   "ALVO",
-   "ALXO",
-   "ALZN",
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 152,
+  "peer_list_all_tickers": [
    "AMGN",
-   "AMLX",
-   "AMPH",
-   "AMRN",
-   "AMRX",
-   "AMTX",
-   "ANAB",
-   "ANIP",
-   "ANIX",
-   "ANL",
-   "ANNX",
-   "ANRO",
-   "ANTX",
-   "ANVS",
-   "APD",
-   "APGE",
-   "APLM",
-   "APRE",
-   "APVO",
-   "AQST",
-   "ARCT",
-   "ARDX",
-   "ARGX",
-   "ARMP",
-   "ARQ",
-   "ARQT",
-   "ARTL",
-   "ARTV",
-   "ARVN",
-   "ARWR",
-   "ASBP",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ASPI",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AURA",
-   "AUTL",
-   "AVBP",
-   "AVD",
-   "AVIR",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXIL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "AZTR",
-   "BAK",
-   "BBIO",
-   "BBOT",
-   "BCAB",
-   "BCAX",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BCYC",
-   "BDRX",
-   "BDTX",
-   "BEAM",
-   "BFRG",
-   "BFRI",
-   "BGM"
+   "GILD"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000059478",
-    "name": "ELI LILLY & Co",
-    "ticker": "LLY",
-    "sic2": "28",
+    "entity_id": "0000882095",
+    "name": "GILEAD SCIENCES, INC.",
+    "ticker": "GILD",
+    "sic4": "2836",
+    "sic3": "283",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2025-02-19",
-    "accn": "0000059478-25-000067",
-    "local_gz": "000005947825000067__peer10k.txt.gz",
+    "filingDate": "2025-02-28",
+    "accn": "0000882095-25-000006",
+    "local_gz": "000088209525000006__peer10k.txt.gz",
     "capex_excerpt": [
-     "nces that such capacity increases that we expect will be needed to meet future demand will be realized as expected or that we will meet demand in launched markets in the future. Delays or challenges in operationalizing additional manufacturing capacity could limit our ability to capitalize on demand for our products. Conversely, unexpected events that limit demand for our products or anticipated demand for product candidates would undermine our ability to realize the full benefit of significant capital expenditures that we have incurred, and expect to continue to incur, to augment manufacturing capacity, may render built or in process manufacturing capacity unnecessary, and may also subject ",
-     "ices, quality assurance, safety signals, evolving standards, and increased scrutiny around excipients and potential impurities such as nitrosamines, and similar regulations and standards (and comparable foreign regulations and standards) for our products in some cases lead to regulatory and legal actions, product recalls and seizures, fines and penalties, interruption of production leading to product shortages, import bans or denials of import certifications, inability to realize the benefit of capital expenditures, or delays or denials in new product approvals, line extensions or supplemental approvals of current products pending resolution of the issues, or other negative impacts, any of w",
-     "nnual Report on Form 10-K for the year ended December 31, 2023. 50 FINANCIAL CONDITION AND LIQUIDITY We believe our available cash and cash equivalents, together with our ability to generate operating cash flow and our access to short-term and long-term borrowings, are sufficient to fund our existing and planned capital requirements, which include: • working capital requirements, including related to employee payroll and benefits, clinical trials, manufacturing materials, and taxes; • capital expenditures; • share repurchases and dividends; • repayment of outstanding short-term and long-term borrowings; • milestone and royalty payments; • potential business development activities, including "
-    ]
+     "o sufficiently decarbonize or comply with climate-related requirements may threaten our ability to operate in certain geographies and negatively affect our business. Our suppliers and third-party manufacturers and corporate partners face similar transition risks that could have an adverse effect on our business. While costs related to compliance with environmental regulations cannot be predicted with certainty, we do not currently anticipate that these costs will have a material effect on our capital expenditures, earnings and competitive position. For more information, see Item 1A. Risk Factors “Climate change and natural disasters, as well as legal, regulatory, or market measures to addres",
+     "• payments of outstanding borrowings, including interest on long-term debt (see Note 11. Debt and Credit Facilities); • income tax payments, including the remaining obligations for the one-time repatriation transition tax from the Tax Cuts and Jobs Act, as well as potential payments related to uncertain tax positions (see Note 16. Income Taxes); • payments of operating lease obligations (see Note 12. Leases); • payments related to certain unconditional inventory purchase obligations and capital expenditures. There were no changes to such commitments in the current year that would have a material impact on our ability to meet short- or long-term cash requirements; • payments related to our ac",
+     "er liabilities 108 458 ( 775 ) Net cash provided by operating activities 10,828 8,006 9,072 Investing Activities: Purchases of marketable debt securities ( 244 ) ( 1,930 ) ( 1,770 ) Proceeds from sales of marketable debt securities 2,265 510 412 Proceeds from maturities of marketable debt securities 327 1,334 1,590 Acquisitions, including in-process research and development, net of cash acquired ( 4,840 ) ( 1,152 ) ( 1,797 ) Purchases of equity securities ( 492 ) ( 442 ) ( 172 ) Capital expenditures ( 523 ) ( 585 ) ( 728 ) Other 58 ( 1 ) ( 1 ) Net cash used in investing activities ( 3,449 ) ( 2,265 ) ( 2,466 ) Financing Activities: Proceeds from debt financing, net of issuance costs 3,464 1,"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000200406",
-    "name": "JOHNSON & JOHNSON",
-    "ticker": "JNJ",
-    "sic2": "28",
+    "entity_id": "0000318154",
+    "name": "AMGEN INC",
+    "ticker": "AMGN",
+    "sic4": "2836",
+    "sic3": "283",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2025-02-13",
-    "accn": "0000200406-25-000038",
-    "local_gz": "000020040625000038__peer10k.txt.gz",
+    "filingDate": "2025-02-14",
+    "accn": "0000318154-25-000010",
+    "local_gz": "000031815425000010__peer10k.txt.gz",
     "capex_excerpt": [
-     "tinued Operations Before Provision for Taxes on Income 22,134 2,366 Provision for taxes on income 307 795 Net earnings from Discontinued Operations $ 21,827 1,571 (1) The Company ceased consolidating the results of the Consumer Health business on August 23, 2023, the date of the exchange offer, but continued to reflect any separation costs incurred as part of discontinued operations through the end of the fiscal fourth quarter. The following table presents depreciation, amortization and capital expenditures of the discontinued operations related to Kenvue: (Dollars in Millions) 2023 (1) 2022 Depreciation and Amortization $ 383 641 Capital expenditures $ 162 303 106 Report of Independent Regi",
-     "1,827 1,571 (1) The Company ceased consolidating the results of the Consumer Health business on August 23, 2023, the date of the exchange offer, but continued to reflect any separation costs incurred as part of discontinued operations through the end of the fiscal fourth quarter. The following table presents depreciation, amortization and capital expenditures of the discontinued operations related to Kenvue: (Dollars in Millions) 2023 (1) 2022 Depreciation and Amortization $ 383 641 Capital expenditures $ 162 303 106 Report of Independent Registered Public Accounting Firm To the Board of Directors and Shareholders of Johnson & Johnson Opinions on the Financial Statements and Internal Control"
-    ]
+     "al paper market and several borrowers were unable to obtain funding at normal rates or maturities, which resulted in a significant increase in draws of corporate credit lines with banks. Similarly, the bond markets experienced extreme volatility in terms of interest rates and credit spreads, with several days without new issuances of corporate bonds. While we have historically accessed capital markets to supplement our existing funds and cash generated from operations to satisfy our needs for capital expenditures, debt service requirements, to pay dividends and repurchase stock, and engage in other business initiatives, including acquisitions and licensing activities, in 2023, we substantial",
+     "Product Candidates, and Part I, Item 1. Business—Significant Developments. Total product sales increased in 2024, primarily driven by volume growth of 23%, partially offset by declines in net selling price of 2%. Product sales from acquired Horizon products contributed $4.2 billion in 2024 compared to $954 million in 2023, with volume growth from our other brands of 11%. Cash flows from operating activities in 2024 totaled $11.5 billion, which supported investment in our business, including capital expenditures of $1.1 billion to enhance and expand our manufacturing network, and allowed us to both reduce our debt outstanding and return capital to shareholders through the payment of cash divi",
+     "of stock repurchases and quarterly dividend payments, we had an accumulated deficit as of December 31, 2024 and 2023. Our accumulated deficit is not anticipated to affect our future ability to operate, repurchase stock, pay dividends or repay our debt given our expected continued profitability and strong financial position. 73 We believe that existing funds, cash generated from operations and existing sources of and access to financing are adequate to satisfy our needs for working capital, capital expenditure and debt service requirements as well as our plans to reduce debt, pay dividends and repurchase stock, and other business initiatives we plan to strategically pursue, including acquisit"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -341,7 +1013,16 @@
   "latest_data_date": "2025-05-07",
   "cutoff": "2025-05-07",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2025-05-06",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2025-05-08",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

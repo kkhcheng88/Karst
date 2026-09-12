@@ -1,6 +1,7 @@
 {
  "event_id": "E026",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E026",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "KODK",
  "cik": "0000031235",
  "name": "EASTMAN KODAK CO",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2018-03-16(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E026",
   "event_id": "E026",
   "ticker": "KODK",
   "cik": "0000031235",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001157523-18-000569",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/31235/000115752318000569/a51773946.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/31235/000115752318000569/a51773946.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a51773946ex99_1.htm\n EXHIBIT 99.1\n Exhibit 99.1 \n Kodak\n Reports Fourth-Quarter and Full-Year 2017 Financial Results \n ROCHESTER, N.Y.--(BUSINESS WIRE)--March 15, 2018--Eastman Kodak Company\n (NYSE:KODK) today reported financial results for the fourth quarter and\n full year 2017, delivering net earnings for the year of $94 million on\n revenues of $1.5 billion and continued growth in key product areas.\n Highlights include:\n GAAP net earnings of $94 million for the year ended December 31, 2017.\n GAAP net earnings for the year includes a tax benefit of $101 million\n due to the release of a valuation allowance in the fourth quarter of\n 2017 as a result of increased profits in a location outside the U.S.\n Operational EBITDA for the year of $57 million.\n Revenues for 2017 of $1.5 billion, a decline of $112 million compared\n with the same period in 2016.\n Key product lines achieved strong year-over-year growth for the full\n year 2017:\n Volume for KODAK FLEXCEL NX Plates grew by 17 percent.\n Volume for KODAK SONORA Process Free Plates grew by 21 percent.\n Annuity revenues for the KODAK PROSPER inkjet platform grew by 13\n percent.\n The company ended the year with a cash balance of $344 million.\n 2018 Guidance\n 2018 guidance is for revenues of $1.5 billion to $1.6 billion and\n Operational EBITDA of $60 million to $70 million. Beginning in 2018\n Operational EBITDA will only include the service cost component of\n pension income in conjunction with the adoption of a new accounting\n standard. 1 If this change were made in 2017 Operational\n EBITDA would have been $49 million.\n “2017 was a year of investment in our strategic growth priorities which\n bodes well for the future,” said Jeff Clarke, Kodak Chief Executive\n Officer. “We also eliminated several business initiatives while\n continuing to reduce cost and drive greater efficiency in the company.\n We enter 2018 with a stronger growth profile and more productive\n operations.”\n _________________________________\n 1 \n Refer to Appendix A of this press release for additional information.\n Revenues for the full year 2017 were $1.5 billion, down 7 percent from\n 2016. The revenue decline was driven by volume and pricing declines\n within the company’s commercial print business and volume declines in\n the company’s consumer inkjet and industrial film and chemicals\n businesses.\n The company’s cash balance was $344 million at the end of 2017, compared\n with $434 million at the end of 2016. The company used cash to invest in\n strategic growth businesses, fund working capital needs, meet legacy\n cash obligations and service and prepay debt.\n “Our use of cash in 2017 included meaningful investments in the\n ULTRASTREAM inkjet platform, FLEXCEL NX packaging, SONORA X plates,\n advanced materials and brand licensing which will contribute to growth,”\n said David Bullwinkle, Kodak Chief Financial Officer. “In the fourth\n quarter of 2017, we reprioritized our investments to focus on shorter\n payback periods and reduced costs which will improve our ability to\n generate cash in 2018 and beyond.”\n Print Systems Division (PSD) , Kodak’s largest division, had Q4\n revenues of $261 million, a 6 percent decline compared with Q4 in 2016.\n Operational EBITDA for the quarter was $16 million, compared with $39\n million for the same period a year ago. Print Systems Division had\n full-year 2017 revenues of $942 million, a 7 percent decline compared\n with 2016. Full-year Operational EBITDA was $58 million, a decline of\n $48 million compared with the prior year. The decline was due primarily\n to industry pricing pressures, higher aluminum costs and an overall\n commercial print industry slowdown.\n PSD’s environmentally-advantaged KODAK SONORA Process Free Plates had\n continued strong performance, delivering 21 percent year-over-year\n growth in unit sales. SONORA Plates now account for 19 percent of the\n division’s total plate unit sales.\n Enterprise Inkjet Systems Division (EISD) , including the KODAK\n PROSPER and KODAK VERSAMARK businesses and the investment in ULTRASTREAM\n inkjet technology, had fourth-quarter revenues of $39 million, down from\n $43 million in the same period in 2016. Operational EBITDA was $3\n million, an increase of $1 million compared with the fourth quarter of\n 2016.\n For the full year 2017, EISD revenues were $144 million, compared with\n $166 million in 2016. Operational EBITDA for the full year 2017\n increased by $21 million from 2016 to $5 million in 2017. The results\n reflect the positive impact of cost control actions and continued strong\n growth in PROSPER annuities.\n The company continues to invest in the development of KODAK ULTRASTREAM,\n the next-generation inkjet writing system, which is scheduled for launch\n in 2019.\n Flexographic Packaging Division (FPD) includes KODAK FLEXCEL NX\n Systems and Plates as well as other packaging businesses, such as analog\n flexographic plates and letterpress plates, proofing products and\n services. Revenues for Q4 were $41 million, up $7 million compared with\n the same period a year ago. Operational EBITDA for Q4 was $10 million,\n an improvement of $3 million compared with the fourth quarter of 2016.\n For the full year 2017, revenues were $145 million, compared with $132\n million in the prior year, or a 10 percent improvement. Full-year\n Operational EBITDA of $31 million is an improvement of $7 million\n compared with the prior year.\n FLEXCEL NX products continue to deliver strong growth. Year over year,\n FLEXCEL NX plate volume increased 13% for the quarter and 17% for the\n full year. The division continues to invest in new product development\n and infrastructure, including a total investment of $16 million to build\n a plate manufacturing line in Weatherford, Oklahoma.\n Software and Solutions Division (SSD) revenues for Q4 were $21\n million, a $3 million decline compared with the same period last year.\n Operational EBITDA declined $1 million compared with the prior-year\n quarter. For the full year, SSD revenues were $85 million, down from $90\n million last year. Full-year Operational EBITDA remained flat compared\n with the prior year.\n Consumer and Film Division (CFD) revenues for the fourth quarter\n were $47 million, flat compared with Q4 of 2016. Operational EBITDA\n declined from negative $2 million to negative $6 million.\n For the year, revenues for CFD were $198 million, down from $221 million\n in 2016. Operational EBITDA for the division was down $32 million for\n the year, driven by the continued expected decline in the consumer\n inkjet business and higher film manufacturing costs associated with a\n vendor transition.\n CFD’s brand licensing business had continued growth in 2017, adding\n twelve brand licensing partners including the key areas of instant film\n photography and 3D printing for the educational market.\n Advanced Materials and 3D (AM3D) had Operational EBITDA for the\n full year of negative $26 million, flat with the prior year. The\n division took significant cost actions in Q4 and sharpened its focus on\n investments in light-blocking particles, printed electronics and\n advanced materials.\n Eastman Business Park Division (EBPD) had full-year 2017 revenues\n of $16 million, an increase of $1 million from the prior year.\n Operational EBITDA was $4 million, an increase of $2 million compared\n with 2016. The division increased the number of tenants in the Park from\n 94 in 2016 to 104 in 2017.\n Revenue and Operational EBITDA Q4 2017 vs. Q4 2016 \n ($ millions) \n Q4 2017 Actuals \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n 261 \n $ \n 39 \n $ \n 41 \n $ \n 21 \n $ \n 47 \n $ \n 1 \n $ \n 4 \n $ \n 414 \n Operational EBITDA * \n $ \n 16 \n $ \n 3 \n $ \n 10 \n $ \n 1 \n $ \n (6 \n ) \n $ \n (5 \n ) \n $ \n 1 \n $ \n 20 \n Q4 2016 Actuals \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n 279 \n $ \n 43 \n $ \n 34 \n $ \n 24 \n $ \n 47 \n $ \n 1 \n $ \n 4 \n $ \n 432 \n Operational EBITDA * \n $ \n 39 \n $ \n 2 \n $ \n 7 \n $ \n 2 \n $ \n (2 \n ) \n $ \n (5 \n ) \n $ \n - \n $ \n 43 \n Q4 2017 Actuals vs. Q4 2016 Actuals \n B/(W) \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n (18 \n ) \n $ \n (4 \n ) \n $ \n 7 \n $ \n (3 \n ) \n $ \n - \n $ \n - \n $ \n - \n $ \n (18 \n ) \n Operational EBITDA * \n $ \n (23 \n ) \n $ \n 1 \n $ \n 3 \n $ \n (1 \n ) \n $ \n (4 \n ) \n $ \n - \n $ \n 1 \n $ \n (23 \n ) \n Q4 2017 Actuals on constant currency ** vs. Q4 2016 Actuals \n B/(W) \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n (27 \n ) \n $ \n (5 \n ) \n $ \n 5 \n $ \n (3 \n ) \n $ \n (1 \n ) \n $ \n - \n $ \n - \n $ \n (31 \n ) \n Operational EBITDA * \n $ \n (25 \n ) \n $ \n - \n $ \n 2 \n $ \n (1 \n ) \n $ \n (5 \n ) \n $ \n - \n $ \n 1 \n $ \n (28 \n ) \n * \n Total Operational EBITDA is a non-GAAP financial measure. The\n reconciliation between GAAP and non-GAAP measures is provided in\n Appendix A of this press release. \n ** \n The impact of foreign exchange represents the 2017 foreign\n exchange impact using average foreign exchange rates for the three\n months ended December 31, 2016, rather than the actual exchange\n rates in effect for the three months ended December 31, 2017. \n Revenue and Operational EBITDA FY 2017 vs. FY 2016 \n ($ millions) \n FY 2017 Actuals \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n 942 \n $ \n 144 \n $ \n 145 \n $ \n 85 \n $ \n 198 \n $ \n 1 \n $ \n 16 \n 1,531 \n Operational EBITDA * \n $ \n 58 \n $ \n 5 \n $ \n 31 \n $ \n 1 \n $ \n (16 \n ) \n $ \n (26 \n ) \n $ \n 4 \n $ \n 57 \n FY 2016 Actuals \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n 1,018 \n $ \n 166 \n $ \n 132 \n $ \n 90 \n $ \n 221 \n $ \n 1 \n $ \n 15 \n 1,643 \n Operational EBITDA * \n $ \n 106 \n $ \n (16 \n ) \n $ \n 24 \n $ \n 1 \n $ \n 16 \n $ \n (26 \n ) \n $ \n 2 \n $ \n 107 \n FY 2017 Actuals vs. FY 2016 Actuals \n B/(W) \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n (76 \n ) \n $ \n (22 \n ) \n $ \n 13 \n $ \n (5 \n ) \n $ \n (23 \n ) \n $ \n - \n $ \n 1 \n $ \n (112 \n ) \n Operational EBITDA * \n $ \n (48 \n ) \n $ \n 21 \n $ \n 7 \n $ \n - \n $ \n (32 \n ) \n $ \n - \n $ \n 2 \n $ \n (50 \n ) \n FY 2017 Actuals on constant currency** vs. FY 2016 Actuals \n B/(W) \n PSD \n EISD \n FPD \n SSD \n CFD \n AM3D \n EBPD \n Total EK \n Revenue \n $ \n (81 \n ) \n $ \n (21 \n ) \n $ \n 12 \n $ \n (4 \n ) \n $ \n (23 \n ) \n $ \n - \n $ \n 1 \n $ \n (116 \n ) \n Operational EBITDA * \n $ \n (50 \n ) \n $ \n 22 \n $ \n 5 \n $ \n - \n $ \n (32 \n ) \n $ \n - \n $ \n 2 \n $ \n (53 \n ) \n * \n Total Operational EBITDA is a non-GAAP financial measure. The\n reconciliation between GAAP and non-GAAP measures is provided in\n Appendix A of this press release. \n ** \n The impact of foreign exchange represents the 2017 foreign\n exchange impact using average foreign exchange rates for the\n twelve months ended December 31, 2016, rather than the actual\n exchange rates in effect for the twelve months ended December 31,\n 2017. \n About Kodak \n Kodak is a technology company focused on imaging. We provide – directly\n and through partnerships with other innovative companies – hardware,\n software, consumables and services to customers in graphic arts,\n commercial print, publishing, packaging, electronic displays,\n entertainment and commercial films, and consumer products markets. With\n our world-class R&D capabilities, innovative solutions portfolio and\n highly trusted brand, Kodak is helping customers around the globe to\n sustainably grow their own businesses and enjoy their lives. For\n additional information on Kodak, visit us at kodak.com, follow us on\n Twitter @Kodak, or like us on Facebook at Kodak.\n Cautionary Statement Regarding Forward-Looking Statements \n This press release includes “forward-looking statements” as that term is\n defined under the Private Securities Litigation Reform Act of 1995.\n Forward-looking statements include statements concerning Kodak’s plans,\n objectives, goals, strategies, future events, future revenue or\n performance, capital expenditures, liquidity, investments, financing\n needs and business trends and other information that is not historical\n information. When used in this press release, the words “estimates,”\n “expects,” “anticipates,” “projects,” “plans,” “intends,” “believes,”\n “predicts,” “forecasts,” “strategy,” “continues,” “goals,” “targets” or\n future or conditional verbs, such as “will,” “should,” “could,” or\n “may,” and similar expressions, as well as statements that do not relate\n strictly to historical or current facts, are intended to identify\n forward-looking statements. All forward-looking statements, including\n management’s examination of historical operating trends and data, are\n based upon Kodak’s expectations and various assumptions.\n Future events or results may differ from those anticipated or expressed\n in the forward-looking statements. Important factors that could cause\n actual events or results to differ materially from the forward-looking\n statements include, among others, the risks and uncertainties described\n in more detail in Kodak’s Annual Report on Form 10-K for the year ended\n December 31, 2017 under the headings “Business,” “Risk Factors,” “Legal\n Proceedings” and/or “Management’s Discussion and Analysis of Financial\n Condition and Results of Operations—Liquidity and Capital Resources,”\n and in other filings Kodak makes with the U.S. Securities and Exchange\n Commission from time to time, as well as the following: Kodak’s ability\n to improve and sustain its operating structure, cash flow, profitability\n and other financial results; the ability of Kodak to achieve cash\n forecasts, financial projections and projected growth; Kodak’s ability\n to achieve the financial and operational results contained in its\n business plans; Kodak’s ability to comply with the covenants in its\n various credit facilities; Kodak’s ability to fund continued\n investments, capital needs and restructuring payments and service its\n debt and Series A Preferred Stock; Kodak’s ability to discontinue, sell\n or spin-off certain businesses or operations or otherwise monetize\n assets; changes in foreign currency exchange rates, commodity prices and\n interest rates; Kodak’s ability to effectively anticipate technology\n trends and develop and market new products, solutions and technologies;\n Kodak’s ability to effectively compete with large, well-financed\n industry participants; continued sufficient availability of borrowings\n and letters of credit under Kodak’s revolving credit facility, Kodak’s\n ability to obtain additional financing if and as needed and Kodak’s\n ability to provide or facilitate financing for its customers; the\n performance by third parties of their obligations to supply products,\n components or services to Kodak; and the impact of the global economic\n environment on Kodak.\n There may be other factors that may cause Kodak’s actual results to\n differ materially from the forward-looking statements. All\n forward-looking statements attributable to Kodak or persons acting on\n its behalf apply only as of the date of this press release and are\n expressly qualified in their entirety by the cautionary statements\n included or referenced in this press release. Kodak undertakes no\n obligation to update or revise forward-looking statements to reflect\n events or circumstances that arise after the date made or to reflect the\n occurrence of unanticipated events.\n APPENDICES \n A. NON-GAAP MEASURES \n In this fourth quarter and full year 2017 financial results news\n release, reference is made to the following non-GAAP financial measures:\n Operational EBITDA;\n Revenues and Operational EBITDA on a constant currency basis;\n Operational EBITDA excluding the amortization of prior service credit\n component of pension income.\n Kodak believes that these non-GAAP measures represent important internal\n measures of performance. Accordingly, where they are provided, it is to\n give investors the same financial data management uses with the belief\n that this information will assist the investment community in properly\n assessing the underlying performance of Kodak, its financial condition,\n results of operations and cash flow.\n Kodak’s segment measure of profit and loss is an adjusted earnings\n before interest, taxes, depreciation and amortization (“Operational\n EBITDA”). The change in revenues and Operational EBITDA on a constant\n currency basis, as presented in this financial results news release, is\n calculated by using average foreign exchange rates for the three or\n twelve months ended December 31, 2016, rather than the actual exchange\n rates in effect for the three or twelve months ended December 31, 2017.\n This press release also contains a forward-looking estimate of full-year\n 2018 Operational EBITDA. Kodak is unable to provide a reconciliation of\n full-year 2018 Operational EBITDA to a forward-looking estimate of GAAP\n net income / loss because projected GAAP net income / loss for the full\n year would require inclusion of the projected impact of future excluded\n items, including items that are not currently determinable or dependent\n on future events which may be uncertain or outside of Kodak’s control,\n such as assets sales, asset impairments, foreign exchange gains /\n losses, changes in the fair value of the conversion option derivative\n liability, unanticipated items not reflective of ongoing operations, or\n other items. Due to the uncertainty of the likelihood, amount and timing\n of any such items, Kodak does not have information available to provide\n a quantitative reconciliation of full-year 2018 projected net income /\n loss to an Operational EBITDA projection.\n The following table reconciles the most directly comparable GAAP measure\n of Net Earnings Attributable to Eastman Kodak Company to Operational\n EBITDA and Operational EBITDA on a constant currency basis for the three\n months ended December 31, 2017 and 2016, respectively:\n (in millions)\n Q4 2017 \n Q4 2016 \n $ Change \n % Change \n Net Earnings Attributable to Eastman Kodak Company (GAAP basis) \n $ \n 129 \n $ \n 10 \n $ \n 119 \n 1190 \n % \n Net loss attributable to noncontrolling interests (1)\n -\n 1\n (1\n )\n -100\n %\n Net earnings\n $\n 129\n $\n 11\n $\n 118\n 1073\n %\n All Other (2)\n -\n (1\n )\n 1\n -100\n %\n Corporate components of pension and OPEB income (3)\n (36\n )\n (40\n )\n 4\n -10\n %\n Depreciation and amortization\n 18\n 23\n (5\n )\n -22\n %\n Restructuring costs and other (4)\n 9\n 3\n 6\n 200\n %\n Stock based compensation\n 2\n 2\n -\n 0\n %\n Consulting and other costs (5)\n 2\n 1\n 1\n 100\n %\n Idle costs (6)\n 1\n 1\n -\n 0\n %\n Manufacturing costs originally planned to be absorbed by silver\n metal mesh touch screen production (7)\n -\n 1\n (1\n )\n -100\n %\n Other operating (income) expense, net (1)\n (4\n )\n 14\n (18\n )\n -129\n %\n Interest expense (1)\n 8\n 12\n (4\n )\n -33\n %\n Loss on early extinguishment of debt, net (1)\n -\n 4\n (4\n )\n -100\n %\n Other (income) charges, net (1)\n (4\n )\n 1\n (5\n )\n -500\n %\n Reorganization items, net (1)\n -\n (6\n )\n 6\n -100\n %\n (Benefit) provision for income taxes (1)\n (104\n )\n 17\n (121\n )\n -712\n %\n Earnings from discontinued operations, net of income taxes (1)\n (1\n )\n -\n (1\n )\n n/a\n Operational EBITDA \n $ \n 20 \n $ \n 43 \n $ \n (23 \n ) \n -53 \n % \n Impact of foreign exchange (8)\n (5\n )\n -\n (5\n )\n Operational EBITDA on a constant currency basis \n $ \n 15 \n $ \n 43 \n $ \n (28 \n ) \n -65 \n % \n The following table reconciles the most directly comparable GAAP measure\n of Net Earnings Attributable to Eastman Kodak Company to Operational\n EBITDA and Operational EBITDA on a constant currency basis for the\n twelve months ended December 31, 2017 and 2016, respectively.\n (in millions)\n FY 2017 \n FY 2016 \n $ Change \n % Change \n Net Earnings Attributable to Eastman Kodak Company (GAAP basis) \n $ \n 94 \n $ \n 15 \n $ \n 79 \n 527 \n % \n Net loss attributable to noncontrolling interests (1)\n -\n 1\n (1\n )\n -100\n %\n Net earnings\n $\n 94\n $\n 16\n $\n 78\n 488\n %\n All Other (2)\n -\n (3\n )\n 3\n -100\n %\n Corporate components of pension and OPEB income (3)\n (144\n )\n (161\n )\n 17\n -11\n %\n Depreciation and amortization\n 80\n 105\n (25\n )\n -24\n %\n Restructuring costs and other (4)\n 38\n 16\n 22\n 138\n %\n Stock based compensation\n 9\n 8\n 1\n 13\n %\n Consulting and other costs (5)\n 5\n 7\n (2\n )\n -29\n %\n Idle costs (6)\n 3\n 3\n -\n 0\n %\n Manufacturing costs originally planned to be absorbed by silver\n metal mesh touch screen production (7)\n -\n 3\n (3\n )\n -100\n %\n Other operating expense, net (1)\n 28\n 16\n 12\n 75\n %\n Goodwill impairment loss (1)\n 56\n -\n 56\n n/a\n Interest expense (1)\n 32\n 60\n (28\n )\n -47\n %\n Loss on early extinguishment of debt, net (1)\n -\n 4\n (4\n )\n -100\n %\n Other (income) charges, net (1)\n (37\n )\n 4\n (41\n )\n -1025\n %\n Reorganization items, net (1)\n -\n (6\n )\n 6\n -100\n %\n (Benefit) provision for income taxes (1)\n (110\n )\n 33\n (143\n )\n -433\n %\n Equity in loss of equity method investment, net of income taxes (1)\n 1\n -\n 1\n n/a\n Loss from discontinued operations, net of income taxes (1)\n 2\n 2\n -\n 0\n %\n Operational EBITDA \n $ \n 57 \n $ \n 107 \n $ \n (50 \n ) \n -47 \n % \n Impact of foreign exchange (8)\n (3\n )\n (3\n )\n Operational EBITDA on a constant currency basis \n $ \n 54 \n $ \n 107 \n $ \n (53 \n ) \n -50 \n % \n The following table reconciles the most directly comparable GAAP measure\n of Net Earnings Attributable to Eastman Kodak Company to Operational\n EBITDA excluding the amortization of prior service credit component of\n pension income for the twelve months ended December 31, 2017.\n (in millions)\n FY 2017 \n Net Earnings Attributable to Eastman Kodak Company (GAAP basis) \n $ \n 94 \n Net loss attributable to noncontrolling interests (1)\n -\n Net earnings\n $\n 94\n All Other (2)\n -\n Corporate components of pension and OPEB income (3)\n (144\n )\n Depreciation and amortization\n 80\n Restructuring costs and other (4)\n 38\n Stock based compensation\n 9\n Consulting and other costs (5)\n 5\n Idle costs (6)\n 3\n Other operating expense, net (1)\n 28\n Goodwill impairment loss (1)\n 56\n Interest expense (1)\n 32\n Other (income) charges, net (1)\n (37\n )\n (Benefit) provision for income taxes (1)\n (110\n )\n Equity in loss of equity method investment, net of income taxes (1)\n 1\n Loss from discontinued operations, net of income taxes (1)\n 2\n Operational EBITDA \n $ \n 57 \n Amortization of prior service credit component of pension income (9)\n (8\n )\n Operational EBITDA excluding amortization of prior service credit\n component of pension income \n $ \n 49 \n Footnote Explanations:\n (1)\n As reported in the Consolidated Statement of Operations.\n (2)\n RED utilities variable interest entity, which was deconsolidated on\n December 31, 2016 (interest and depreciation of RED are included in\n the respective lines in the table).\n (3)\n Composed of interest cost, expected return on plan assets,\n amortization of actuarial gains and losses, and curtailment and\n settlement components of pension and other postretirement benefit\n expenses.\n (4)\n Restructuring costs and other as reported in the Consolidated\n Statement of Operations plus $7 million of inventory write-downs\n included in cost of revenues for the twelve months ended December\n 31, 2017.\n (5)\n Consulting and other costs are professional services and internal\n costs associated with certain corporate strategic initiatives.\n (6)\n Consists of third party costs such as security, maintenance, and\n utilities required to maintain land and buildings in certain\n locations not used in any Kodak operations.\n (7)\n Consists of manufacturing costs originally planned to be absorbed by\n silver metal mesh touch screen production that are excluded from the\n segment measure of profit and loss.\n (8)\n The impact of foreign exchange represents the foreign exchange\n impact using average foreign exchange rates for the three or twelve\n months ended December 31, 2016, rather than the actual exchange\n rates in effect for the three or twelve months ended December 31,\n 2017.\n (9)\n Kodak adopted Accounting Standards Update (“ASU”) 2017-07,\n Compensation – Retirement Benefits (Topic 715): Improving the\n Presentation of Net Periodic Pension Cost and Net Periodic\n Postretirement Benefit Cost as of January 1, 2018. Among other\n provisions, ASU 2017-07 requires entities to report the service cost\n component of net benefit costs in the same line item(s) as other\n compensation costs arising from services rendered during the period\n and to report all other components of net benefit costs outside a\n subtotal of income from operations. As of January 1, 2018, Kodak’s\n segment earnings measure of Operational EBITDA will exclude all\n components of net benefit costs except for service costs. Prior to\n January 1, 2018 Operational EBITDA excludes all components of net\n benefit costs except for service cost and amortization of prior\n service costs.\n B. FINANCIAL STATEMENTS \n EASTMAN KODAK COMPANY \n CONSOLIDATED STATEMENT OF OPERATIONS \n (in millions) \n Year Ended December 31, \n 2017 \n 2016 \n 2015 \n Revenues\n Sales\n $\n 1,232\n $\n 1,320\n $\n 1,452\n Services\n 299\n 323\n 351\n Total net revenues\n 1,531\n 1,643\n 1,803\n Cost of revenues\n Sales\n 981\n 1,028\n 1,175\n Services\n 195\n 212\n 247\n Total cost of revenues\n 1,176\n 1,240\n 1,422\n Gross profit\n 355\n 403\n 381\n Selling, general and administrative expenses\n 205\n 198\n 226\n Research and development costs\n 53\n 60\n 61\n Restructuring costs and other\n 31\n 16\n 38\n Other operating expense (income), net\n 28\n 16\n (6\n )\n Goodwill impairment loss\n 56\n —\n 8\n (Loss) earnings from continuing operations before interest expense,\n loss on\n early extinguishment of debt, net, other charges, net,\n reorganization items,\n net and income taxes\n (18\n )\n 113\n 54\n Interest expense\n 32\n 60\n 63\n Loss on early extinguishment of debt\n —\n 4\n —\n Other (income) charges, net\n (37\n )\n 4\n 21\n Reorganization items, net\n —\n (6\n )\n 5\n (Loss) earnings from continuing operations before income taxes\n (13\n )\n 51\n (35\n )\n (Benefit) provision for income taxes\n (110\n )\n 33\n 32\n Equity in loss of equity method investment, net of income\n taxes\n 1\n —\n —\n Earnings (loss) from continuing operations\n 96\n 18\n (67\n )\n Loss from discontinued operations, net of income taxes\n (2\n )\n (2\n )\n (8\n )\n NET EARNINGS (LOSS)\n 94\n 16\n (75\n )\n Less: Net income attributable to non-controlling interests\n —\n 1\n 5\n NET EARNINGS (LOSS) ATTRIBUTABLE TO EASTMAN KODAK COMPANY\n $\n 94\n $\n 15\n $\n (80\n )\n The notes accompanying the Company’s financial statements contained in\n its Annual Report on Form 10-K for the year ended December 31, 2017, are\n an integral part of these consolidated financial statements.\n EASTMAN KODAK COMPANY \n CONSOLIDATED STATEMENT OF FINANCIAL POSITION \n (in millions) \n As of December 31, \n 2017 \n 2016 \n ASSETS \n Cash and cash equivalents\n $\n 344\n $\n 434\n Trade receivables, net of allowances of $9 and $8, respectively\n 282\n 277\n Inventories, net\n 276\n 271\n Other current assets\n 56\n 57\n Total current assets\n 958\n 1,039\n Property, plant and equipment, net of accumulated depreciation of\n $394 and $344, respectively\n 314\n 342\n Goodwill\n 32\n 88\n Intangible assets, net\n 86\n 121\n Restricted cash\n 17\n 36\n Deferred income taxes\n 188\n 35\n Other long-term assets\n 112\n 115\n TOTAL ASSETS \n $ \n 1,707 \n $ \n 1,776 \n LIABILITIES, REDEEMABLE, CONVERTIBLE PREFERRED STOCK AND EQUITY\n (DEFICIT) \n Accounts payable, trade\n $\n 198\n $\n 200\n Short-term borrowings and current portion of long-term debt\n 4\n 6\n Other current liabilities\n 217\n 211\n Total current liabilities\n 419\n 417\n Long-term debt, net of current portion\n 399\n 405\n Pension and other postretirement liabilities\n 466\n 603\n Other long-term liabilities\n 202\n 268\n Total liabilities\n 1,486\n 1,693\n Commitments and contingencies (Note 10)\n Redeemable, convertible Series A preferred stock, no par value, $100\n per share liquidation preference\n 164\n 156\n Equity (Deficit) \n Common stock, $0.01 par value\n —\n —\n Additional paid in capital\n 631\n 641\n Treasury stock, at cost\n (9\n )\n (8\n )\n Accumulated deficit\n (174\n )\n (268\n )\n Accumulated other comprehensive loss\n (391\n )\n (438\n )\n Total equity (deficit)\n 57\n (73\n )\n TOTAL LIABILITIES, REDEEMABLE CONVERTIBLE PREFERRED STOCK AND\n EQUITY (DEFICIT) \n $ \n 1,707 \n $ \n 1,776 \n The notes accompanying the Company’s financial statements contained in\n its Annual Report on Form 10-K for the year ended December 31, 2017, are\n an integral part of these consolidated financial statements.\n CONTACT:\n Media : \nKodak\nNick Rangel, +1\n 585-615-0549\n nicholas.rangel@kodak.com \nor\n Investor : \nKodak\nBill\n Love, +1 585-724-4053\n shareholderservices@kodak.com \n",
@@ -36,7 +39,191 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000115752318000569__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001157523-17-003063",
+   "filingDate": "2017-11-08",
+   "reportDate": "2017-11-08",
+   "form": "8-K",
+   "local_gz": "000115752317003063__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 3,
+   "guidance_sentences": [
+    "The company maintained its range for 2017 full year revenue of $1.5 billion to $1.6 billion and adjusted its forecast for 2017 Operational EBITDA to be within a range of $60 million to $65 million.",
+    "Several factors are impacting the Company’s 2017 outlook, including: A slowdown in the commercial printing industry and higher costs adversely impacting Print Systems Division, Software and Solutions Division and Enterprise Inkjet Systems Division.",
+    "“We expect to generate cash in the fourth quarter of 2017,” said David Bullwinkle, Kodak Chief Financial Officer."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2018-03-15",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 31,
+   "has_qna": true,
+   "n_chars": 32980,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Executives",
+     "content": "Bill Love – Treasurer and Director-Investor Relations Jeff Clarke – Chief Executive Officer David Bullwinkle – Chief Financial Officer"
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Analysts",
+     "content": "Craig Carlozzi – Bulwark Gary Ribe – MACRO Consulting Amer Tiwan – Cowen"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Operator",
+     "content": "Good day, ladies and gentlemen, and welcome to the Eastman Kodak Q4 2017 Earnings Conference Call. At this time, all participants are in a listen-only mode. Later we will conduct a question-and-answer session and instructions will follow at that time. [Operator Instructions] As a reminder, this conference is being recorded. I would now like to introduce your host for today's conference, Bill Love. You may begin."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Bill Love",
+     "content": "Thank you, Gigi, and good afternoon, everyone. My name is Bill Love, and I am Eastman Kodak Company's Treasurer and Director of Investor Relations. Welcome to the fourth quarter 2017 Kodak earnings call. At 4:15 p.m. this afternoon, Kodak filed its annual report on Form 10-K and issued its release on financial results for 2017. You may access the presentation and webcast for today's call on our Investor Center at investor.kodak.com. During today's call, we will be making certain forward-looking statements as defined by the Private Securities Litigation Reform Act of 1995. All forward-looking statements are based upon Kodak's expectations and various assumptions. Future events or results may differ from those anticipated or expressed in the forward-looking statements. Important factors that could cause actual events or results to differ materially from these forward-looking statements include, among others, the risks, uncertainties and other factors described in more detail in Kodak's filings with the U.S. Securities and Exchange Commission from time to time. There may be other factors that may cause Kodak's actual results to differ materially from the forward-looking statements. All forward-looking statements attributable to Kodak or persons acting on its behalf apply only as of the date of this presentation and are expressly qualified in their entirety by the cautionary statements included or referenced in this presentation. In addition, the release just issued and the presentation provided contains certain measures that are deemed non-GAAP measures. Reconciliations to the most directly comparable GAAP measures have been provided with the release and within the presentation on our website in our Investor Center at investor.kodak.com. Speakers on today's call are Jeff Clarke, Chief Executive Officer of Kodak; and David Bullwinkle, Chief Financial Officer of Kodak. Jeff will provide some opening remarks, a review of Kodak's financial results, individual performance for 2017 and guidance for 2018. Then Dave will summarize results for the fourth quarter of 2017, provide an update on cost reductions and a review of 2017 cash performance and provide a cash outlook for 2018 before we open it up for questions. I will now turn the call over to Kodak's CEO, Jeff Clarke."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Jeff Clarke",
+     "content": "Thanks, Bill. Welcome everyone and thank you for joining the Q4 investor call for Kodak. On the call today, I will talk about the company, individual results for the full year 2017. I will also discuss some highlights for the year, challenges we faced and strategies we are taking. For 2017, Kodak delivered GAAP net income of $129 million in the fourth quarter and $94 million for the year. For the year, we delivered $57 million of operational EBITDA. We ended 2017 with cash of $344 million, down from $434 million at year-end 2016. In 2017, we experienced headwinds in our PSD business, associated with macroeconomic conditions with the price of aluminum, overall slowdowns in the commercial print industry and competitive pricing pressures. We're also impacted by a decline in our industrial film business. On the Q3 investor call, we outlined decisive actions to address these business factors. Our Print Systems Division announced in September a 4% to 9% worldwide plate price increase. We reduced investments in AM3D to focus on areas where we have existing proven commercialization or supplier agreements in place. We continued accelerating cost actions across the company. We have executed on these actions, and we'll begin to see the benefits in 2018. I'd like to highlight our achievements and actions in 2017, which are summarized on Slide 5. First, our packaging business continues to perform exceptionally well as demonstrated by strong growth in market share with FLEXCEL NX Plate volume growth of 17% compared to the prior year. On a constant currency basis, FLEXCEL NX revenues grew 14% and operational EBITDA grew 21%. The packaging business is well positioned for continued double-digit growth in both revenue and EBITDA for 2018. Second, we achieved profitability in EISD and delivered 13% PROSPER annuity growth. Third, in 2017, we made meaningful investments in our ULTRASTREAM Inkjet platform, FLEXCEL NX packaging, SONORA X Plates, advanced materials and brand licensing to improve growth and profitability in 2018 and beyond. Fourth, improvements have been made in our overall cost structure, and we reprioritized investments to focus on those with shorter payback periods and improve productivity across the company. We are in multiple processes with strategic and financial buyers to achieve monetizations, which will sharpen our focus and deleverage Kodak. Based on a sensitive nature of negotiations and confidentiality, we are not able to comment further on specific businesses, partners or time lines related to these strategic activities. On January 8, at CES, we announced a brand licensing partnership with WENN Digital for their launch of their KODAKOne image rights platform and KODAKCoin, a photo-centric crypto currency to empower photographers and agencies to take greater control in image rights management. This brand license partnership demonstrates our strategy to monetize and grow the Kodak brand in new ways and our belief at innovative blockchain technology will have a significant impact on image rights management. As consideration for the license, we received royalties on transactions across the KODAKOne blockchain, three million of the KODAKCoin cryptocurrency with the right to receive 3% of KODAKCoins in excess of 100 million coins issued by WENN Digital and a minority stake in WENN Digital. Kodak is not an issuer in the ICO, and we'll not receive proceeds from the offering. During the remainder of the call today, I'll talk about Kodak full company and divisional results for 2017 as well as our guidance for 2018. Dave will then follow with more details on the fourth quarter, updates and cost reductions and cash flow performance, after which, we'll welcome your questions. Moving to Slide 6. Please note that year-over-year results comparisons will be discussed on a constant currency basis as shown on the bottom section of this slide. For the full year 2017, Kodak revenue was $1.531 billion, down 7% from 2016. Operational EBITDA was $57 million, down 50% from 2016. Starting with the Print Systems Division. Full year revenues were $942 million, a decrease of $81 million or 8% compared to 2016. Operational EBITDA for the Print Systems Division decreased by $50 million or 47% compared to the prior year. As illustrated on Slide 7, the decrease in operational EBITDA for PSD was driven by $28 million related to plate pricing pressure, $12 million due to aluminum prices, $8 million related to traditional process plate volumes, and $8 million of other. Partially offsetting these declines is an increase of $6 million related to SONORA Plate volumes and $2 million of favorable foreign exchange impacts. Overall, plate volume was down 2% year-over-year, in line with the overall market decline. We continue to see solid volume growth in our environmentally advantaged process-free SONORA Plates, which grew by 21% for the year. SONORA now accounts for 19% of our total plate unit sales, and we expect continued growth in 2018. Price erosion for the year was 4%. As expected, increased aluminum prices had a negative impact on 2017 results, dragging a decline of $12 million on a year-over-year basis. As stated earlier, we've implemented new pricing strategies to mitigate the expected impact of $22 million of higher aluminum cost in 2018. Moving to Slide 8, the Enterprise Inkjet Systems Division had revenues of $144 million, a 13% decline over 2016 primarily due to a reduced level of PROSPER Press placements. Operational EBITDA for 2017 was $5 million, which represents an improvement of $22 million. The increase in operational EBITDA is primarily the result of $20 million of operating cost reductions. The increased operational EBITDA was partially offset by $4 million of increased ULTRASTREAM investment. We're pleased with the EISD performance, and note that this strong EBITDA improvement was achieved while investing $15 million in the ULTRASTREAM platform during 2017. ULTRASTREAM remains on-track and we'll see the benefit beginning in 2019. Turning to Slide 9. Flexographic Packaging Division revenues were $145 million, an improvement of 9% from 2016. Operational EBITDA was $31 million, an improvement of $5 million compared to the prior year, driven by $8 million of FLEXCEL NX, CTP and plates growth, partially offset by $3 million of incremental OpEx investment made to continue to drive growth in this high-performing division. I am particularly pleased with our continued growth in Kodak's FLEXCEL NX, which is our strongest performing product set. Based on data from Smithers Pira, a packaging and paper print industry market research the flexible packaging markets is expected to grow at 4% annually from 2017 to 2022. Kodak's 2017 FLEXCEL NX consumable volume growth of 17% is four times this market projection. Back to Slide 6. Software and Solutions Division had revenues of $85 million down $4 million versus last year. Operational EBITDA remain constant at $1 million when compared to prior year. Revenues for the division were also impacted by $2 million related to the divestiture of our design to launch in Kodak security solutions businesses during 2016. The Consumer and Film Division had revenues of $198 million, down 10% from the prior year. On Slide 10, we break out the changes in revenue and operational EBITDA for CFD versus the prior year. Operational EBITDA was down $32 million for the year, driven by a decline in consumer inkjet of $12 million and industrial film and chemicals of $15 million. Motion picture decline of $6 million and higher film manufacturing cost of $6 million associated with the vendor transition. These impacts were partially offset by $7 million of growth in brand licensing and consumer products. We will continue to see variability in CFD business results due to the timing of motion picture film productions, industrial film orders, consumer product releases and our brand licensing business, which also varies due to the scalability of new licensees. In 2017, we invested in CFD resources to support future growth in brand licensing. During 2017, we successfully added 12 brand licensing partners, including in the key areas of instant film photography and a 3D printing solution for the education market. Returning to Slide 7. Advanced Materials and 3D Printing Technology Division operational EBITDA was unchanged compared to 2016 at a negative $26 million. During the fourth quarter, we sharpened our focus on investments in technologies, which are closer to commercialization with shorter payback periods. AM3D will now focus on light-blocking particles, printed electronics and advanced materials. We will now operate AM3D with approximately 65% lower employee cost in 2017. Continuing to our final division, Eastman Business Park. 2017 revenues increased by $1 million, and operational EBITDA increased by $2 million compared with the prior year. We've made progress in improving the financial profile of this division. By the end of 2017, we increased our total tenants in the Business Park to 104 from 94 at the end of 2016. We are experiencing growth with high-tech companies in the photonics, food and agriculture and biopharma space. Now to update you with our 2018 financial targets. On Slide 11, we're providing our 2018 guidance of revenues of $1.5 billion to $1.6 billion and our operational EBITDA of $60 million to $70 million, which represents a 22% to 43% increase after adjusting for the impacts of the pension accounting changes, which Dave will describe later. On Slide 12, I'll provide some additional details on our 2018 divisional outlook. PSD will continue to benefit from growth in SONORA and SONORA X. We also expect plate price increases we announced in 2017 to partially mitigate the impact of higher aluminum prices – or, excuse me, higher aluminum cost. For EISD, we expect continued growth in PROSPER annuities to partially offset the decline in the VERSAMARK product line. We will continue to invest in ULTRASTREAM technology this year and expect to bring the product to market in 2019. FPD will continue to be a high-growth business with significant volume growth in FLEXCEL NX. We will invest in SG&A and new products and continue the growth in the division. For SSD, we expect to see growth in both Workflow Software and Kodak Technology Solutions. In CFD, the growth in our brand licensing and motion picture film business, which will offset the expected declines in our consumer inkjet products. In AM3D, we'll see market growth in light-blocking materials, printed electronics and advanced materials, and we will have cost improvements that will benefit our profitability. Finally, EBP will continue to improve occupancy and utility usage by attracting new tenants. I'll now turn it over to Dave to discuss Q4 performance, updates on cost reductions and cash flow."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "David Bullwinkle",
+     "content": "Thanks, Jeff, and good afternoon. Today, the company filed its Form 10-K for the year ended December 31, 2017 with the Securities and Exchange Commission. As always, I recommend you read this filing in its entirety. First, some important updates and notable items in the 10-K filing and impacts on 2018 and forward. As I'm sure you are aware, new federal tax reform legislation was enacted in the United States, resulting in significant changes from previous tax law, including the reduction in the federal corporate income tax rate from 35% to 21%, effective January 1, 2018. Upon enactment, there is a onetime deemed repatriation tax on undistributed foreign earnings and profits, which is referred to as the transition tax. We recognized tax expense of $14 million related to the transition tax in 2017, which was fully offset by our foreign tax credits, resulting in no cash or P&L impacts. As Jeff noted in the 2018 guidance he provided, an accounting change has been made, which impacts Kodak's measure of operational EBITDA going forward. The change reclassifies the amortization of prior service credits out of operating results. This change will result in higher expense and operational EBITDA related to pensions in the amount of approximately $8 million. We have reflected this in our guidance for 2018, and we'll recast prior periods for comparability as we progress through the year. The impact on 2017 would have been approximately $8 million of additional expense in operational EBITDA. There was no cash impact from this accounting change. I will now share further details on the full company results and update on our cost structure initiatives and cash flow performance and the 2018 cash flow outlook. Starting on Slide 14. Net earnings for the full year 2017 on a GAAP basis were $94 million compared to net earnings of $16 million in 2016, an increase of $78 million. Included in these results is a non-cash tax benefit of $101 million due to a release of a valuation allowance as the result of increased profits in a location outside the U.S. Consistent with previous quarters, our net earnings are also impacted by other non-cash items, such as pension income, goodwill and asset impairments or remeasurements, reduction and depreciation and amortization expense and changes in the fair value of the embedded derivative associated with the Series A preferred stock. Turning to Slide 15. We are presenting our divisional results for the fourth quarter ending December 31, 2017, and 2016 on a constant currency basis as reflected at the bottom section of the slide. As we report in our earnings release, revenue for the fourth quarter was $414 million compared to $432 million in the fourth quarter of 2016, a decline of $18 million. On a constant currency basis, revenue declined $31 million or 7%. Operational EBITDA was $20 million compared to $43 million in the prior year period. On a constant currency basis, operational EBITDA declined by $28 million. The decline in operational EBITDA is driven by reductions in PSD and CFD, which I will describe in more detail later, as well as non-cash impacts in the fourth quarter of 2016 of $12 million related to reductions in workers' compensation reserves and incentive compensation accruals in the prior year. The year-over-year reduction in the Print Systems Division operational EBITDA was driven primarily by plate price erosion, higher aluminum cost and volume declines, partially offset by cost reduction activities and good growth in SONORA Plates. The year-over-year decline of $5 million in the Consumer and Film Division operational EBITDA was due to lower volume in industrial film and chemicals, the expected decline in the consumer inkjet business and higher cost in motion picture film, driven by vendor transition impacts, partially offset by higher brand licensing revenues. Partially offsetting the declines in PSD and CFD, revenues in the Flexographic Packaging Division grew by 15% and operational EBITDA for the division improved by 29%, which is driven by the continued growth of FLEXCEL NX. As we indicated on our Q3 earnings call, we have taken steps to improve the profitability of the company. As presented on Slide 16, in the fourth quarter, we accelerated our cost reduction actions across the company to eliminate approximately 425 positions for a savings of approximately $45 million on a run-rate basis. Currently, 260 positions have been eliminated with an annual cost-savings of $20 million. Actions have been taken to eliminate an additional 155 positions in 2018, which, combined with other employee-related actions will result in a savings of $18 million. We will continue to execute on position eliminations in the first half of 2018 to deliver the targeted savings. Our total headcount will be approximately 5,600 after these reductions. We will continue to achieve higher levels of efficiency in 2018 through cost opportunities and business process simplification and relentless focus on shortening the payback periods on investments. Moving on to the company cash performance presented on Slide 17. Cash and cash equivalents reported on the balance sheet as of December 31, 2017, were $344 million, an increase of $2 million from September 30, 2017, and down $90 million from the year. For the full year ending December 31, 2017, cash used in operating activities was $67 million, driven primarily by negative cash earnings of $19 million and other balance sheet changes of $48 million, which includes working capital use of $7 million. The working capital change was primarily due to the reduction in accounts payable related to product volume reductions in PSD and CFD. For the full year ending December 31, 2017, the company used $24 million of cash for investing activities. Capital expenditures of $38 million, which includes our investment in the new flexographic plate manufacturing line in Weatherford, Oklahoma, were partially offset by proceeds from asset sales and marketable securities. Cash used in financing activities for the full year ending December 31, 2017, was $29 million, which included $10 million in preferred stock dividends, a $7 million payment to Kodak Alaris for continued consideration from the business sale in 2013, and repayment of debt of $7 million. Currency favorably impacted cash by $11 million. On a year-over-year basis, the company used $54 million more cash, excluding debt repayments for the full year ending December 31, 2017, than the prior year. This was primarily driven by lower cash earnings of $31 million and a higher cash usage from balance sheet changes of $21 million. When we last spoke in November, I indicated an expected cash use for 2017 between $60 million and $70 million before debt payments. For the year ended December 31, 2017, we used $83 million of cash, excluding debt repayments. The increased usage was due to more cash used and working capital and higher CapEx due to accelerated build of the flexographic packaging manufacturing line. Throughout 2017, the company has continued to invest in growth areas. In AM3D, $26 million was invested in new technologies. We continue to invest at ULTRASTREAM within EISD for $15 million. We also invested $7 million in our capacity expansion for packaging. In addition, we continue to develop new products, spending approximately $100 million on SONORA X and NEXFINITY, which were launched earlier this month as well as the Super 8 camera, which will be introduced later in 2018. The slowdown we saw on the commercial printing industry impacted our cash flow in the second half of the year and our ability to continue to invest at these levels. As I previously discussed, we have taken actions to improve profitability heading into 2018. These actions will also improve our cash flow in 2018, along with our continued focus on improving efficiency and simplification of our businesses and processes. We remain in compliance with our covenants under our credit agreements. The company's EBITDA used in the secured leverage ratio as calculated under the first lien term loan credit agreement exceeded the EBITDA necessary to satisfy the covenant ratio by $26 million. To summarize, the company's 2017 performance reflects good execution and growth in our packaging business, headwinds and the impacts of the commercial printing industry dynamics in PSD, volume reductions in supplier cost in CFD, strategic investments made to improve longer-term profitability, particularly in our growth areas of FLEXCEL NX packaging, the next-generation SONORA Plates and ULTRASTREAM inkjet technology. Turning to 2018. We expect continued growth and full year revenues and earnings for Kodak's growth areas as well as productivity and cost improvements across our business. Like in 2017, we expect seasonality to drive stronger performance to the second half of the year in revenue, operational EBITDA and cash. In the first half of 2016 and 2017, we generated approximately one-third of our operational EBITDA and had a higher cash use rate than the second half of the year. For 2018, we expect approximately 30% of operational EBITDA to be generated in the first half of the year. As a result, we expect the cash used in the first half of 2018 offset by cash generated in the second half of the year. As shown on Slide 18, our cash outlook for the full year 2018 is a range of $20 million to $30 million on an unlevered basis and breakeven to a use of $20 million on a levered basis. The sources of cash generation and operational EBITDA of $60 million to $70 million, proceeds from a couple idle buildings and small asset sales totaling $17 million, and a source of cash from working capital of approximately $9 million. We expect cash to be used for legacy items of $47 million, which includes foreign pension and workers’ compensation payments. $29 million of these uses of cash are included in our operational EBITDA as expense. Therefore, the incremental amounts of $18 million has been presented as an adjustment to operational EBITDA. Interest and dividend payments or used of cash of $36 million, capital expenditures of $35 million, net cash income taxes outside the U.S. of $13 million, and restructuring payments of $13 million. Turning to Slide 19. I would like to highlight the opportunities and risks associated with our 2018 plan. First, we see the following opportunities for 2018: we continue to see accelerated customer adoption of our process-free technologies, which may result in higher SONORA X Plate volumes. Based on our current hedge position of approximately two-thirds of our annual usage, a reduction in the price of aluminum would also benefit our PSD results by approximately $1 million for every 2% change in the price. Higher FLEXCEL NX Plate volumes, a more rapid conversion of our brand licensing pipeline. In addition, we see upside to our plans as we make working capital improvements, explore monetization of certain assets and pursue strategic transactions. Second, our plan – our 2018 plan has the following risks: a further slowdown in the commercial print industry would impact our business results. Conversely, the aforementioned opportunities related to aluminum costs and brand licensing pipeline conversion could result in negative impacts versus our plan. Timing of planned tax settlements and new product launches could also have a negative impact to the 2018 plan. Overall, this is a balanced plan, and we expect to deliver these results for 2018. We will now open the call to your questions. Gigi, please remind participants of the instructions to ask questions."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] And our first question is from Craig Carlozzi from Bulwark. Your line is now open."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Craig Carlozzi",
+     "content": "Hey, guys. Thanks for the opportunity to ask a question. So I was just – pertaining to your capital structure, it looks like your term loan is pretty much due in 18 months from now. So I was wondering if you can walk me through how you’re thinking about addressing the maturity, and if the maturity solution has anything to do with either the monetization of assets or strategic transactions that you guys are working on? Thank you."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Jeff Clarke",
+     "content": "Yes. As we said in the past, we intend to refinance in – before the September 2019 maturity of the first lien debt. We are looking for several monetizations, and we would do those regardless of the debt structure and the timing. So we're pursuing those for strategic reasons. We do believe that we should deleverage the company and the timing is – those actions are irrespective of the timing."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Craig Carlozzi",
+     "content": "And then regarding those actions, I realized there's a number of statements going on, and we certainly can't talk about them in great detail due to competitive reasons and otherwise, but are they – would you say, relative to three months ago, are they moving as expected? Have they been pushed out? Have they been more underwhelming? Or are you increasingly excited about the aggregate proceeds generated?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Jeff Clarke",
+     "content": "They are proceeding as expected."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Craig Carlozzi",
+     "content": "Okay. Thank you."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Operator",
+     "content": "Thank you. [Operator Instructions] And our next question is from Gary Ribe from MACRO Consulting. Your line is now open."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Gary Ribe",
+     "content": "Hi, guys. How are you? Given that you guys used so much cash on the front end of the year, do you have an estimate of how much cash you expect from the front end?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Jeff Clarke",
+     "content": "We are not going to provide any quarterly guidance. We do expect, in the first half of the year, used cash similar to what we saw in 2017 and to generate cash in the back half of 2018."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Gary Ribe",
+     "content": "Got it. And then as it relates to the covenant, I guess, would you expect to get a waiver?"
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Jeff Clarke",
+     "content": "No. Well, we've got $26 million of covenant headroom, as Dave stated, in Q4. We're sitting with $344 million of cash. We expect the performance of the company from both an operational EBITDA perspective and a cash perspective to improve over prior year. And as such, we are projecting that we're going to stay within covenants."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Gary Ribe",
+     "content": "Okay. Great. That’s all for me."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Operator",
+     "content": "Thank you. Our next question is from Amer Tiwana from Cowen. Your line is now open."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Amer Tiwana",
+     "content": "Hi, guys. How are you? My first question is regarding the plates business. This year, in terms of price, seems like a pretty meaningful move. And you mentioned you have sort of taken action to sort of mitigate that. And, I think, if I'm correct, you said 4% to 9% or 4% to 7% increase? In terms of the guidance that you're providing, what is the assumption that you're using on the price increase embedded in the guidance?"
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Jeff Clarke",
+     "content": "So first of all, we're not going to give divisional guidance. That said, we are pleased with the results to date of the 4% to 9%, and that's 4% to 9%, not 4% to 7%, 4% to 9% price increase that we've announced back in November. As you – as we noted on Slide 7 and to our remarks, that in 2017, we saw price erosion of 4%. So we expect to see it meaningfully better than that. We're not going to give specific guidance, but you should, in general, expect us to be able to mitigate most of the price erosion based on our price increase strategy."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Amer Tiwana",
+     "content": "Got it. The next question I have is around PROSPER. Can you give us the installed base number for how many are out there now?"
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Jeff Clarke",
+     "content": "Yes, we're around 65 systems out there. We expect that will grow this year, and it may even grow a little bit more into 2019. But in 2019, we will have the ULTRASTREAM technology available. And while that addresses a broader market, it will, because of the speed of it on a relative basis, and quality, it will provide an alternative to PROSPER. So that base of 65 will grow probably another 10 to 15 systems over the next two years, and we are looking and focusing, as I talked about in the November call, into very specific applications. Very high-performance applications for those presses as we're going for more broad-based performance coming out of the new ULTRASTREAM technologies."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Amer Tiwana",
+     "content": "Understood. Just two more quick ones. One, on aluminum price, that seems to be a headwind. Have you guys hedged for 2018? Or how are you thinking about that? Are you expecting some relief on that front?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "David Bullwinkle",
+     "content": "Sure. So we're hedged about 2/3 of annual volume – purchase volume. It's 2/3 hedged at this point in time, which is typical of where we are at any point in time in history. We hedge primarily through forward-purchase contracts with specific suppliers. And therefore, we're relatively locked on the $22 million headwind, which we see in 2018 versus 2017 on aluminum cost increase."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Amer Tiwana",
+     "content": "Understood. And my last question is around the CFD business. My understanding was that this was sort of – you guys have agreed certain contract situations, but this was a cost-plus type business at this point, seeing where the numbers eventually shook out for 2017, it seems like it’s starting to be a negative contribution. What are the plans around this business? And do you expect in 2018 to turn this around or."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Jeff Clarke",
+     "content": "So the CFD business, we’re not – just for those items – we’ll put back Slide 10 up. The CFD business has many components. It’s about $200 million in revenue and, as you can see, it had an EBITDA loss of $16 million. We expect that this division will have a meaningful improvement in 2018, in part because of the decline that’s been going on for years in our consumer inkjet business, I’ll remind investors that, that business, we stopped selling the printers about five years ago, and so we’ve been having the benefit of the annuity coming out of the cartridges. However, that goes down each year by about 40%. So it won’t have as much of a difficult compare on a year-over-year basis as it’s had in the past. We also had several compare issues and several vendor issues that are now behind us in 2017. So we’re quite optimistic that, that business, going into next year, will have a meaningful better performance, and we’ll continue to do what it does in terms of covering some of our fixed legacy cost around Eastman Business Park. So I think you can look at 2016 – I’m sorry, 2017 as really a low point in that business, and we’ll see growth in brand licensing, we’ll see improvements in motion picture, we’ll see our vendor issues behind us, we’ll see a lower decline in our consumer inkjet and relative to the industrial films and chemicals, that one will continue to be one, we’ll be working hard to turnaround, but that will continue to provide an operating loss for us. So overall, it’s going to be a pretty significant improvement over a low-water mark in 2017."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Amer Tiwana",
+     "content": "Understood. That’s all I have. Thank you very much for your answers."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Operator",
+     "content": "Thank you. There are no further questions at this time."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Jeff Clarke",
+     "content": "I want to thank everyone for joining us. I want to Just to summarize, the company was profitable on a GAAP basis in 2017. We’re executing well in the SONORA Plates, FLEXCEL NX and PROSPER business. We continue to invest in the growth areas that we have noted, but we are much more focused in our prioritization than in prior years. And 2018 is a year where we expect to have a year-on-year improvements on a comparable operational EBITDA basis and on the cash flow basis as well as continuing strong market share growth and revenue growth in FLEXCEL NX, SONORA and PRINERGY. I want to thank everyone for their time."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen. Thank you for your participation in today’s conference. This concludes the program. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +234,8 @@
    "reportDate": "2017-12-31",
    "accession": "0001564590-18-005857",
    "url": "https://www.sec.gov/Archives/edgar/data/31235/000156459018005857/kodk-10k_20171231.htm",
-   "local_gz": "000156459018005857__annual.txt.gz"
+   "local_gz": "000156459018005857__annual.txt.gz",
+   "n_lines": 7495
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +243,8 @@
    "reportDate": "2017-09-30",
    "accession": "0001564590-17-022748",
    "url": "https://www.sec.gov/Archives/edgar/data/31235/000156459017022748/kodk-10q_20170930.htm",
-   "local_gz": "000156459017022748__q0.txt.gz"
+   "local_gz": "000156459017022748__q0.txt.gz",
+   "n_lines": 3363
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +252,106 @@
    "reportDate": "2017-06-30",
    "accession": "0001564590-17-016962",
    "url": "https://www.sec.gov/Archives/edgar/data/31235/000156459017016962/kodk-10q_20170630.htm",
-   "local_gz": "000156459017016962__q1.txt.gz"
+   "local_gz": "000156459017016962__q1.txt.gz",
+   "n_lines": 3180
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2017-11-08",
   "n_rows": 8,
@@ -83,6 +366,63 @@
     "ocf": -21000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 286000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 268000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 24000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 513000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 5000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 30000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -18000000.0,
+      "filed": "2016-05-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.43,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42100000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +433,63 @@
     "ocf": -9000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 286000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 268000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 24000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 513000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 7000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 27000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 7000000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.16,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42600000.0,
+      "filed": "2016-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +500,63 @@
     "ocf": -2000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 280000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 265000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 24000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 489000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 14000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 25000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 16000000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.37,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42800000.0,
+      "filed": "2016-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +567,58 @@
     "ocf": 19000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 236000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 266000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 28000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 433000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 15000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 23000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 10000000.0,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.16,
+      "filed": "2017-03-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +629,63 @@
     "ocf": -53000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 308000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 251000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 31000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 378000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 7000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 19000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 7000000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.05,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42700000.0,
+      "filed": "2017-05-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +696,63 @@
     "ocf": -21000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 313000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 259000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 370000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 10000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 22000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 4000000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.02,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42700000.0,
+      "filed": "2017-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +763,63 @@
     "ocf": -3000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 316000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 263000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 30000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 342000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 11000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 21000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -46000000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -1.2,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42500000.0,
+      "filed": "2017-11-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +830,21 @@
     "ocf": 10000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 344000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 414000000.0,
     "revenue_xbrl_for_reference": 414000000.0
@@ -166,150 +858,14 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3861",
   "sic2": "38",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 153,
-  "peer_list_all_same_sic2_tickers": [
-   "A",
-   "AEHR",
-   "AEMD",
-   "ALGN",
-   "ALNT",
-   "AME",
-   "ANGO",
-   "ANIK",
-   "AORT",
-   "APT",
-   "ARAY",
-   "ASTC",
-   "ATEC",
-   "ATRC",
-   "AXGN",
-   "BAX",
-   "BCHT",
-   "BDX",
-   "BIO",
-   "BLFS",
-   "BMI",
-   "BRKR",
-   "BSX",
-   "CAMT",
-   "CERS",
-   "CGNX",
-   "CLGN",
-   "CLIR",
-   "CLPT",
-   "CNMD",
-   "CNSY",
-   "CODA",
-   "CODX",
-   "COHR",
-   "COHU",
-   "COO",
-   "CTSO",
-   "DAIO",
-   "DHR",
-   "DRIO",
-   "DXCM",
-   "ELMD",
-   "ENOV",
-   "EW",
-   "EYE",
-   "EYPT",
-   "FCUV",
-   "FEED",
-   "FEIM",
-   "FOCL",
-   "FOSL",
-   "FTV",
-   "GCTK",
-   "GEOS",
-   "GKOS",
-   "GMED",
-   "GPRO",
-   "GRMN",
-   "HAE",
-   "HBIO",
-   "HURC",
-   "IART",
-   "ICUI",
-   "ILMN",
-   "IMAX",
-   "INFU",
-   "INGN",
-   "INTT",
-   "IRIX",
-   "IRMD",
-   "IRTC",
-   "ISRG",
-   "ITGR",
-   "ITRI",
-   "KEQU",
-   "KEYS",
-   "KIDS",
-   "KLAC",
-   "KRMD",
-   "LAKE",
-   "LFWD",
-   "LHX",
-   "LIVN",
-   "LMAT",
-   "MBAI",
-   "MBOT",
-   "MDT",
-   "MDXG",
-   "MIND",
-   "MKSI",
-   "MLAB",
-   "MLSS",
-   "MMM",
-   "MMSI",
-   "MOV",
-   "MSA",
-   "MTD",
-   "MYO",
-   "NDRA",
-   "NEPH",
-   "NMTC",
-   "NOC",
-   "NSPR",
-   "NUWE",
-   "NVCR",
-   "NVMI",
-   "OFIX",
-   "OPXS",
-   "OSUR",
-   "PACB",
-   "PAVM",
-   "PDEX",
-   "PEN",
-   "PHG",
-   "PLSE",
-   "POCI",
-   "PODD",
-   "PRPO",
-   "QTRX",
-   "RMD"
-  ],
-  "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0000066740",
-    "name": "3M CO",
-    "ticker": "MMM",
-    "sic2": "38"
-   },
-   {
-    "entity_id": "0001613103",
-    "name": "Medtronic plc",
-    "ticker": "MDT",
-    "sic2": "38",
-    "form": "10-K",
-    "filingDate": "2017-06-27",
-    "accn": "0001613103-17-000018",
-    "local_gz": "000161310317000018__peer10k.txt.gz",
-    "capex_excerpt": []
-   }
-  ]
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "insufficient",
+  "n_listed_peers": 0,
+  "peer_list_all_tickers": [],
+  "peer_annual_reports_2_largest": "同業資料不足"
  },
  "6_價格狀態": {
   "ret_6m_skip1m": -0.19999999999999996,
@@ -329,7 +885,16 @@
   "latest_data_date": "2018-03-16",
   "cutoff": "2018-03-16",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2018-03-15",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2018-03-19",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

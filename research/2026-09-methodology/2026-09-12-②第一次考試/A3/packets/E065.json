@@ -1,6 +1,7 @@
 {
  "event_id": "E065",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E065",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "KNX",
  "cik": "0001492691",
  "name": "Knight-Swift Transportation Holdings Inc.",
@@ -9,10 +10,11 @@
  "bucket": "能源原材料公用",
  "evidence_cutoff": "T1 = 2023-10-20(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E065",
   "event_id": "E065",
   "ticker": "KNX",
   "cik": "0001492691",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001492691-23-000084",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1492691/000149269123000084/knx-20231019.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1492691/000149269123000084/knx-20231019.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n exhibit99109302023.htm\n KNIGHT-SWIFT HOLDINGS INC ANNOUNCES FINANCIAL RESULTS FOR THIRD QUARTER 2023\n Document \n Exhibit 99.1 \n October 19, 2023 \n Phoenix, Arizona \n Knight-Swift Transportation Holdings Inc. Reports Third Quarter 2023 Revenue and Earnings \n Knight-Swift Transportation Holdings Inc. (NYSE: KNX) (\"Knight-Swift\" or \"the Company\"), one of the largest and most diversified freight transportation companies, operating the largest full truckload fleet in North America, today reported third quarter 2023 net income attributable to Knight-Swift of $60.2 million and Adjusted Net Income Attributable to Knight-Swift 1 of $67.2 million. GAAP earnings per diluted share for the third quarter of 2023 were $0.37, compared to $1.21 for the third quarter of 2022. The Adjusted EPS was $0.41 for the third quarter of 2023, compared to $1.27 for the third quarter of 2022. \n Key Financial Highlights \n During the third quarter of 2023, consolidated total revenue was $2.0 billion, which is a 6.5% increase from the third quarter of 2022. Consolidated operating income was $81.1 million, reflecting a decrease of 69.5%, as compared to the same quarter last year. Consolidated Net Income Attributable to Knight-Swift decreased by 69.1% to $60.2 million. \n • Truckload — 94.9% Adjusted Operating Ratio, with a 21.9% year-over-year increase in revenue, excluding fuel surcharge and intersegment transactions driven by the inclusion of the truckload business of U.S. Xpress Enterprises, Inc. (\"U.S. Xpress\"), acquired effective July 1, 2023. This inclusion also negatively impacted the Adjusted Operating Ratio by 340 basis points. \n • LTL — 84.9% Adjusted Operating Ratio, essentially flat year-over-year, while revenues, excluding fuel surcharge and intersegment transactions, increased 6.9% year-over-year. These results represent a sequential improvement in both revenue and operating income, which is counter to the typical seasonal trends. \n • Logistics — 93.3% Adjusted Operating Ratio with a gross margin of 18.0% while load count decreased 10.3% year-over-year. Excluding the results of the U.S. Xpress logistics business, there was a 29.7% decline in load count. The Adjusted Operating Ratio was negatively impacted by 90 basis points due to the inclusion of the U.S. Xpress logistics business. \n • Intermodal — 104.5% operating ratio, as revenue per load declined 26.6%, partially offset by load count growth of 5.5% year-over year. \n • Non-reportable Segments — Operating loss narrowed sequentially to $5.4 million in the current quarter from $7.1 million in the prior quarter. Our third-party insurance business operating loss for the current quarter increased slightly to $15.9 million (or $0.08 per diluted share) from a $15.0 million operating loss (or $0.07 per diluted share) in the second quarter of 2023. \n • Tax Rate Impact of U.S. Xpress Acquisition — As of the acquisition closing, U.S. Xpress had a valuation allowance associated with net operating loss (\"NOL\") and tax credit carryforward benefits that was partially released post-closing due to the ability of Knight-Swift to utilize those tax attributes, which had the effect of reducing the consolidated effective tax rate of Knight-Swift to (2.1)% for the current quarter. Our Adjusted EPS of $0.41 is calculated using a normalized 23.2% effective tax rate for the quarter and excludes the $0.09 per diluted share benefit of the lower tax rate. \n Quarter Ended September 30, 1 \n 2023 2022 Change \n (Dollars in thousands, except per share data) \n Total revenue $ 2,019,936 $ 1,896,839 6.5 % \n Revenue, excluding truckload and LTL fuel surcharge $ 1,775,249 $ 1,649,982 7.6 % \n Operating income $ 81,056 $ 265,441 (69.5) % \n Adjusted Operating Income 2 \n $ 109,499 $ 279,055 (60.8) % \n Net income attributable to Knight-Swift $ 60,194 $ 194,795 (69.1) % \n Adjusted Net Income Attributable to Knight-Swift 2 \n $ 67,162 $ 204,967 (67.2) % \n Earnings per diluted share $ 0.37 $ 1.21 (69.4) % \n Adjusted EPS 2 \n $ 0.41 $ 1.27 (67.7) % \n 1 For information regarding comparability of the reported results due to acquisitions, refer to footnote 1 of the Condensed Consolidated Statements of Comprehensive Income in the schedules following this release. \n 2 See GAAP to non-GAAP reconciliation in the schedules following this release. \n Our GAAP and non-GAAP results for the quarter included certain positive and negative items that impact the comparability of year-over-year results. These items included a positive impact of $14.6 million in income tax (benefit) expense for the partial release of the tax benefit valuation allowance. The positive impact was more than offset by the $20.4 million increase in net interest expense and the $22.0 million reduction in operating income in our Iron Truck insurance program. Severance and acquisition-related expenses of $10.2 million are also excluded from our non-GAAP results. \n David Jackson, CEO of Knight-Swift, commented, \"Freight demand remains stable at low levels in the truckload market and relatively strong in the less-than-truckload market (\"LTL\"). Considerable truckload rate and cost pressure continue to mount as the truckload over-supply continues to rationalize and the industry approaches equilibrium. With truckload pricing resets now largely realized across our book of business combined with the recent climb in fuel prices serving as sequential headwinds to operating margins, our efforts to cut additional costs helped to improve the operating ratio slightly from the second quarter in our truckload business prior to the inclusion of U.S. Xpress. While this truckload business navigates an extremely difficult trough environment, the benefits of our diversification into the LTL industry shined. Our LTL segment grew revenue excluding fuel surcharge nearly 7.0% and Adjusted Operating Income nearly 4.0% year-over-year, with improvements in volumes and pricing building throughout the quarter. We remain excited about the future of this business and continue to work on growing organically and through strategic opportunities. As of the end of the third quarter, we have opened 14 new LTL service centers in the nearly two years since acquiring AAA Cooper and MME and have acquired several additional properties with the intention of bringing more service centers online. Logistics continues to maintain a low 90's operating ratio in a very weak demand environment, navigating rates that are falling faster than purchased transportation costs. Our intermodal business made progress and reached breakeven in September with what we believe to be further opportunity moving forward. \n \"The team at U.S. Xpress has made immediate improvement and continues to execute on cost and revenue opportunities while running ahead of the pace on our projected path to reach an operating profit in the first half of next year. Measurable progress is being made on implementing a decentralized operating model, improving pricing and freight selection, enhancing driver support and development, and capturing cost and revenue synergies, having already reached a $100 million annualized run rate of realized improvement. We are pleased with the ongoing progress, especially given the difficult operating environment, and we are excited for how this consequential truckload business is positioning for the future.\" \n Other Income (Expense), net — We recorded $11.4 million of income within \"Other income (expense), net\" in the condensed consolidated statement of comprehensive income in the third quarter of 2023, as compared to $8.5 million of income in the third quarter of 2022. \n Income Taxes — The effective tax rate was (2.1)% for the third quarter of 2023, compared to 25.2% for the third quarter of 2022. We expect the fourth quarter 2023 effective tax rate to be approximately 26%. \n 2 \n Dividend — On July 27, 2023, our board of directors declared a quarterly cash dividend of $0.14 per share of our common stock. The dividend was payable to the Company's stockholders of record as of September 8, 2023 and was paid on September 25, 2023. \n Segment Financial Performance \n Truckload Segment 1 \n Quarter Ended September 30, \n 2023 2022 Change \n (Dollars in thousands) \n Revenue, excluding fuel surcharge and intersegment transactions $ 1,179,978 $ 967,769 21.9 % \n Operating income $ 48,361 $ 175,802 (72.5 %) \n Adjusted Operating Income 2 \n $ 60,148 $ 176,126 (65.8 %) \n Operating ratio 96.5 % 84.9 % 1,160 bps \n Adjusted Operating Ratio 2 \n 94.9 % 81.8 % 1,310 bps \n 1 For information regarding comparability of the reported results due to acquisitions, refer to footnote 1 of the Condensed Consolidated Statements of Comprehensive Income in the schedules following this release. \n 2 See GAAP to non-GAAP reconciliation in the schedules following this release. \n Our diverse Truckload segment consists of our irregular route truckload, dedicated truckload, refrigerated, expedited, flatbed, and cross-border operations across our brands with approximately 17,000 irregular route tractors and nearly 7,200 dedicated tractors. \n The Truckload segment continues to experience an extremely difficult environment, operating with a 94.9% Adjusted Operating Ratio as ongoing soft demand and a sustained increase in fuel prices were headwinds during the quarter. The Adjusted Operating Ratio of the truckload business, excluding U.S. Xpress that was acquired at the beginning of the quarter, was slightly improved from the second quarter of 2023 as a result of our cost reduction efforts, while the inclusion of U.S. Xpress negatively impacted the Adjusted Operating Ratio by 340 basis points. Revenue per loaded mile, excluding fuel surcharge and intersegment transactions, declined 14.0% year-over-year (11.8% before including the U.S. Xpress truckload business) as the spring bid activity is now fully realized. Excluding U.S. Xpress, miles per tractor increased 1.0%, which represents the first year-over-year increase in 2023. Revenue, excluding fuel surcharge and intersegment transactions, was $1.2 billion, an increase of 21.9% year-over-year, reflecting a 15.5% decline in the existing truckload business prior to the inclusion of U.S. Xpress. Excluding U.S. Xpress, revenue, excluding fuel surcharge, per tractor decreased 11.2% year-over-year as the decline in rates outweighed the improvement in miles per tractor. \n 3 \n LTL Segment \n Quarter Ended September 30, \n 2023 2022 Change \n (Dollars in thousands) \n Revenue, excluding fuel surcharge $ 239,984 $ 224,443 6.9 % \n Operating income $ 32,275 $ 30,859 4.6 % \n Adjusted Operating Income 1 \n $ 36,195 $ 34,891 3.7 % \n Operating ratio 88.6 % 88.9 % (30 bps) \n Adjusted Operating Ratio 1 \n 84.9 % 84.5 % 40 bps \n 1 See GAAP to non-GAAP reconciliation in the schedules following this release. \n Our LTL segment operated well, producing an 84.9% Adjusted Operating Ratio during the third quarter of 2023, as revenue, excluding fuel surcharge, grew 6.9% and Adjusted Operating Income increased 3.7% year-over-year. Volumes built throughout the quarter as a result of the disruption in the industry, though the operating leverage benefits of the incremental volumes were partially offset by the annual wage increase at the beginning of the quarter and the additional labor costs to maintain service levels as volume grew throughout the quarter. Shipments per day increased 4.8% year-over-year, reversing the trend of declines seen in the first half of the year. Revenue per hundredweight increased 10.7% excluding fuel surcharge, while revenue per shipment increased by 9.8%, excluding fuel surcharge, reflecting a 1.0% decrease in weight per shipment. We expect our connected LTL network and the expanding use of shipment dimensioning technology will provide additional opportunities for revenue growth. We remain encouraged by the strong performance within our LTL segment, and we continue to look for both organic and inorganic opportunities to geographically expand our footprint within the LTL market. \n Logistics Segment 1 \n Quarter Ended September 30, \n 2023 2022 Change \n (Dollars in thousands) \n Revenue, excluding intersegment transactions $ 158,601 $ 209,964 (24.5 %) \n Operating income $ 10,364 $ 27,459 (62.3 %) \n Adjusted Operating Income 2 \n $ 10,699 $ 27,794 (61.5 %) \n Operating ratio 93.5 % 87.0 % 650 bps \n Adjusted Operating Ratio 2 \n 93.3 % 86.8 % 650 bps \n 1 For information regarding comparability of the reported results due to acquisitions, refer to footnote 1 of the Condensed Consolidated Statements of Comprehensive Income in the schedules following this release. \n 2 See GAAP to non-GAAP reconciliation in the schedules following this release. \n The Logistics segment Adjusted Operating Ratio was 93.3%, with a gross margin of 18.0% in the third quarter of 2023, down from 20.9% in the third quarter of 2022 as pressure on top-line pricing is no longer being offset by corresponding reductions in purchased transportation costs. The logistics business effectively managed cost and navigated this challenging environment to maintain a low-90s Adjusted Operating Ratio before the inclusion of the U.S. Xpress logistics business. The U.S. Xpress logistics business is already improving its Adjusted Operating Ratio on a sequential basis since the acquisition, closing to within approximately 300 basis points of our existing logistics business as we improve our cost structure and pricing despite a difficult environment. The brokerage space continues to endure soft demand, causing our legacy logistics load count to decline by 29.7% year-over-year, before the addition of U.S. Xpress logistics volumes reduced the deficit year-over-year. The soft demand resulted in revenue per load decreasing by 15.8% year-over-year. W e continue to leverage our network of trailers as we build out our power-only service. We continue to innovate with technology intended to remove friction and allow seamless connectivity, leading to services that we expect will capture new opportunities for revenue growth. \n 4 \n Intermodal Segment \n Quarter Ended September 30, \n 2023 2022 Change \n (Dollars in thousands) \n Revenue, excluding intersegment transactions $ 101,219 $ 130,777 (22.6 %) \n Operating (loss) income $ (4,524) $ 12,834 (135.3 %) \n Operating ratio 104.5 % 90.2 % 1,430 bps \n The Intermodal segment operated with a 104.5% operating ratio while total revenue decreased 22.6% to $101.2 million. While load count increased year-over-year by 5.5%, revenue per load declined 26.6% as a result of soft demand and competitive truck capacity. Improved rail partner pricing went into effect during the quarter, helping to offset the volume and price declines and improve operating margin slightly from the second quarter. This business reached breakeven in September, and we expect modest profitability in the fourth quarter. We remain focused on growing our load count and improving the efficiency of our assets as Intermodal continues to provide value to our customers and is complementary to the many services we offer. \n Non-reportable Segments \n Quarter Ended September 30, \n 2023 2022 Change \n (Dollars in thousands) \n Total revenue $ 119,677 $ 139,435 (14.2 %) \n Operating (loss) income $ (5,420) $ 18,487 (129.3 %) \n The non-reportable segments include support services provided to our customers and third-party carriers, including insurance, equipment maintenance, equipment leasing, warehousing, trailer parts manufacturing, and warranty services. Our non-reportable segments also include certain corporate expenses (such as legal settlements and accruals, as well as $12.0 million in quarterly amortization of intangibles related to the 2017 merger between Knight and Swift and certain acquisitions). \n Revenue declined 14.2% year-over-year, largely as a result of our actions to address the recent challenges within our third-party insurance program, including significantly reducing exposures. The $5.4 million operating loss within our non-reportable segments is modestly improved from the $7.1 million operating loss in the second quarter as improvement within other services provided greater offset to the ongoing losses in the third-party insurance business. We are evaluating strategic alternatives for the insurance business, including potential reinsurance strategies for the outstanding liabilities, in order to help insulate our business from the volatility primarily arising from prior years. \n As noted previously, it will take some time for these changes in the insurance business to fully materialize in the results, but we are making progress raising premiums and improving the quality of risk as we work to mitigate volatility. \n 5 \n Consolidated Liquidity, Capital Resources, and Earnings Guidance \n Cash Flow Sources (Uses) 1 \n Year-to-Date September 30, \n 2023 2022 Change \n (In thousands) \n Net cash provided by operating activities $ 873,502 $ 1,099,195 $ (225,693) \n Net cash used in investing activities (1,088,030) (358,626) (729,404) \n Net cash provided by (used in) financing activities 286,090 (748,829) 1,034,919 \n Net increase (decrease) in cash, restricted cash, and equivalents 2 \n $ 71,562 $ (8,260) $ 79,822 \n Net capital expenditures $ (638,443) $ (356,692) $ (281,751) \n 1 For information regarding comparability of the reported results due to acquisitions, refer to footnote 1 of the Condensed Consolidated Statements of Comprehensive Income in the schedules following this release. \n 2 \"Net increase in cash, restricted cash, and equivalents\" is derived from changes within \"Cash and cash equivalents,\" \"Cash and cash equivalents – restricted,\" and the long-term portion of restricted cash included in \"Other long-term assets\" in the condensed consolidated balance sheets. \n Liquidity and Capitalization — As of September 30, 2023, we had a balance of $1.0 billion of unrestricted cash and available liquidity and $7.1 billion of stockholders' equity. The face value of our debt, net of unrestricted cash (\"Net Debt\") was $2.5 billion as of September 30, 2023. Free Cash Flow 3 for the year-to-date period ended September 30, 2023 was $235.1 million. During the year-to-date period ending September 30, 2023, we generated $873.5 million in operating cash flows, paid down $44.4 million in finance lease liabilities and $68.1 million on our operating lease liabilities. We obtained financing of $250.0 million in new long-term debt and $257.0 million from net borrowings on our revolving credit facilities and assumed $337.9 million in liabilities related to the U.S. Xpress acquisition. \n Equipment and Capital Expenditures — Gain on sale of revenue equipment was $11.4 million in the third quarter of 2023, compared to $15.6 million in the same quarter of 2022. The average age of the tractor fleet within our Truckload segment was 2.5 years in the third quarter of 2023, compared to 2.8 years in the same quarter of 2022. The average age of the tractor fleet within our LTL segment was 4.3 years in the third quarter of 2023 compared to 4.3 years in the same quarter of 2022. Cash capital expenditures, net of disposal proceeds, were $638.4 million for year-to-date September 30, 2023. We expect net cash capital expenditures will be in the range of $700 million – $750 million for full-year 2023. Our net cash capital expenditures primarily represent replacements of existing tractors and trailers, modest expansion of the U.S Xpress trailer fleet, and investments in our terminal network, driver amenities, and technology, and excludes acquisitions. \n ________ \n 3 See GAAP to non-GAAP reconciliations in the schedules following this release. \n 6 \n Guidance — We now expect that Adjusted EPS 1 for full-year 2023 will range from $2.10 to 2.20. This is an update from our previously disclosed range of $2.10 to $2.30. Our expected Adjusted EPS 1 range is based on the current truckload, LTL, and general market conditions, recent trends, and the current beliefs, assumptions, and expectations of management, as follows: \n • Truckload rates stabilize at current levels for the fourth quarter, \n • Truckload tractor count down modestly sequentially \n • Excluding the results of U.S. Xpress, miles per tractor increase low single digits year-over-year in the fourth quarter, \n • LTL revenue, excluding fuel surcharge increases mid-teens year-over-year in the fourth quarter with a similar margin profile, \n • LTL shipment count and revenue per hundredweight, excluding fuel surcharge improve high single digit percent year-over-year in the fourth quarter, \n • U.S. Xpress Adjusted EPS dilutive impact in the fourth quarter expected to be approximately ($0.05) as performance continues to improve, \n • Logistics volume and revenue per load stabilize in the fourth quarter, with an operating ratio in the low 90s, \n • Intermodal Operating Ratio slightly profitable with volumes stable sequentially, \n • Non-reportable operating income to decline roughly $10 million - $15 million sequentially as third-party insurance losses are expected to be $10 million - $15 million and our other businesses experience their typical seasonal slowdown, \n • Equipment gains to be in the range of $8 million to $12 million in the fourth quarter, \n • Minimal increase in interest expense from the third quarter, \n • Net cash capital expenditures for the full year 2023 expected range of $700 million - $750 million, \n • Expected tax rate of approximately 26% for the fourth quarter of 2023. \n The factors described under \"Forward-Looking Statements,\" among others, could cause actual results to materially vary from this guidance. Further, we cannot estimate on a forward-looking basis, the impact of certain income and expense items on our earnings per share, because these items, which could be significant, may be infrequent, are difficult to predict, and may be highly variable. As a result, we do not provide a corresponding GAAP measure for, or reconciliation to, our Adjusted EPS 1 guidance. \n ________ \n 1 Our calculation of Adjusted EPS starts with GAAP diluted earnings per share and adds back the after-tax impact of intangible asset amortization (which is expected to be approximately $0.35 for full-year 2023), as well as noncash impairments and certain other unusual items, if any. \n Conference Call \n Knight-Swift will host a live conference call with analysts and investors to discuss the earnings release, the results of operations, and other matters following its earnings press release on Thursday, October 19, 2023, at 5:30 p.m. EDT. The conference dial in information is +1 (888) 886-7786 (Conference ID: 87226411). Please note that since the call is expected to begin promptly as scheduled, you will need to join a few minutes before that time. Slides to accompany this call will be posted on the Company’s website and will be available to download just before the scheduled conference call. To view the presentation, please visit https://investor.knight-swift.com/, \"Third Quarter 2023 Conference Call Presentation.\" \n 7 \n Other Information \n About Knight-Swift \n Knight-Swift Transportation Holdings Inc. is one of North America's largest and most diversified freight transportation companies, providing multiple full truckload, LTL, intermodal, and logistics services. Knight-Swift uses a nationwide network of business units and terminals in the United States and Mexico to serve customers throughout North America. In addition to operating one of the country's largest tractor fleet, Knight-Swift also contracts with third-party equipment providers to provide a broad range of transportation services to our customers while creating quality driving jobs for our driving associates and successful business opportunities for independent contractors. \n Investor Relations Contact Information \n David A. Jackson, President and Chief Executive Officer, or Adam W. Miller, Chief Financial Officer: (602) 606-6349 \n 8 \n Forward-Looking Statements \n This press release contains statements that may constitute forward-looking statements, which are based on information currently available, usually identified by words such as \"anticipates,\" \"believes,\" \"estimates,\" \"plans,'' \"projects,\" \"expects,\" \"hopes,\" \"intends,\" \"strategy,\" ''focus,\" \"outlook,\" \"foresee,\" \"will,\" \"could,\" \"should,\" \"may,\" \"feel\", \"goal,\" \"continue,\" or similar expressions, which speak only as of the date the statement was made. Such statements are forward-looking statements and are within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, and such statements are subject to the safe harbor created by those sections and the Private Securities Litigation Reform Act of 1995. All statements, other than statements of historical or current fact, are statements that could be deemed forward-looking statements, including without limitation: any projections of or guidance regarding earnings, earnings per share, revenues, cash flows, dividends, share repurchases, leverage ratio, capital expenditures, or other financial items; any statement of plans, strategies, and objectives of management for future operations; any statements concerning proposed acquisition plans, new services or developments; any statements regarding future economic, industry, or Company conditions or performance, including, without limitation, expectations regarding future supply or demand, volume, or truckload capacity, and any statements of belief and any statement of assumptions underlying any of the foregoing. In this press release, such statements include, but are not limited to, statements concerning: \n • any projections of or guidance regarding earnings, earnings per share, Adjusted EPS, revenues, cash flows, dividends, share repurchases, capital expenditures, or other financial items, \n • expected freight environment, including freight demand, capacity, volumes, rates, costs, seasonality, and shipper inventory levels, \n • future dividends, \n • future effective tax rates, \n • future performance or growth of our reportable segments, including expected network, technology, door count, and revenue within our LTL segment; expected load volumes, demand, gross margin, and technology with our Logistics segment; and expected asset efficiency and volumes within our Intermodal segment, \n • future performance of our insurance businesses, including underwriting profitability, premium rates, and claims development, \n • future capital structure, capital allocation, growth strategies and opportunities, costs, inflation, and liquidity, \n • future capital expenditures, including nature and funding of capital expenditures, and \n • the U.S. Xpress transaction, including future integration efforts and synergies and future operating performance and profitability. \n Such forward-looking statements are inherently uncertain, and are based upon the current beliefs, assumptions, and expectations of management and current market conditions, which are subject to significant risks and uncertainties as set forth in the Risk Factors section of Knight-Swift's Quarterly Report on Form 10-Q for the quarter ended March 31, 2023, Annual Report on Form 10-K for the year ended December 31, 2022, and various disclosures in our press releases, stockholder reports, and Current Reports on Form 8-K. \n 9 \n Financial Statements \n Condensed Consolidated Statements of Comprehensive Income (Unaudited) 1 \n Quarter Ended September 30, Year-to-Date September 30, \n 2023 2022 2023 2022 \n (In thousands, except per share data) \n Revenue: \n Revenue, excluding truckload and LTL fuel surcharge $ 1,775,249 $ 1,649,982 $ 4,615,990 $ 4,992,391 \n Truckload and LTL fuel surcharge 244,687 246,857 593,857 692,568 \n Total revenue 2,019,936 1,896,839 5,209,847 5,684,959 \n Operating expenses: \n Salaries, wages, and benefits 710,543 559,849 1,780,522 1,645,861 \n Fuel 272,376 231,128 628,435 678,763 \n Operations and maintenance 142,913 115,918 343,604 318,525 \n Insurance and claims 148,865 116,493 424,210 316,769 \n Operating taxes and licenses 30,506 26,628 84,728 85,869 \n Communications 8,411 5,095 20,344 16,709 \n Depreciation and amortization of property and equipment 176,613 150,363 488,960 442,889 \n Amortization of intangibles 18,907 16,254 51,595 48,635 \n Rental expense 50,401 15,216 81,542 42,109 \n Purchased transportation 330,683 364,394 869,671 1,135,750 \n Impairments — — — 810 \n Miscellaneous operating expenses 48,662 30,060 116,363 62,965 \n Total operating expenses 1,938,880 1,631,398 4,889,974 4,795,654 \n Operating income 81,056 265,441 319,873 889,305 \n Other (expenses) income: \n Interest income 5,542 1,221 16,099 2,357 \n Interest expense (39,354) (14,679) (86,799) (30,704) \n Other income (expense), net 11,433 8,488 30,815 (31,493) \n Total other (expenses) income, net (22,379) (4,970) (39,885) (59,840) \n Income before income taxes 58,677 260,471 279,988 829,465 \n Income tax (benefit) expense (1,220) 65,679 53,474 206,943 \n Net income 59,897 194,792 226,514 622,522 \n Net loss attributable to noncontrolling interest 297 3 1,290 102 \n Net income attributable to Knight-Swift $ 60,194 $ 194,795 $ 227,804 $ 622,624 \n Other comprehensive income (loss) 152 243 1,772 (1,991) \n Comprehensive income $ 60,346 $ 195,038 $ 229,576 $ 620,633 \n Earnings per share: \n Basic $ 0.37 $ 1.21 $ 1.41 $ 3.82 \n Diluted $ 0.37 $ 1.21 $ 1.41 $ 3.80 \n Dividends declared per share: $ 0.14 $ 0.12 $ 0.42 $ 0.36 \n Weighted average shares outstanding: \n Basic 161,332 160,665 161,124 162,785 \n Diluted 161,888 161,572 161,782 163,720 \n _________ \n 1 The reported results do not include the results of operations of U.S. Xpress and its subsidiaries prior to its acquisition by Knight-Swift on July 1, 2023 in accordance with the accounting treatment applicable to the transaction. \n 10 \n Condensed Consolidated Balance Sheets (Unaudited) 1 \n September 30, 2023 December 31, 2022 \n (In thousands) \n ASSETS \n Current assets: \n Cash and cash equivalents $ 193,372 $ 196,770 \n Cash and cash equivalents – restricted 259,979 185,792 \n Restricted investments, held-to-maturity, amortized cost 1,028 7,175 \n Trade receivables, net of allowance for doubtful accounts of $29,144 and $22,980, respectively \n 971,175 842,294 \n Contract balance – revenue in transit 12,122 15,859 \n Prepaid expenses 132,594 108,081 \n Assets held for sale 77,008 40,602 \n Income tax receivable 60,211 58,974 \n Other current assets 53,684 38,025 \n Total current assets 1,761,173 1,493,572 \n Property and equipment, net 4,504,459 3,835,043 \n Operating lease right-of-use assets 505,795 192,358 \n Goodwill and intangible assets, net 5,921,678 5,295,908 \n Other long-term assets 147,176 134,785 \n Total assets $ 12,840,281 $ 10,951,666 \n LIABILITIES AND STOCKHOLDERS' EQUITY \n Current liabilities: \n Accounts payable $ 299,039 $ 220,849 \n Accrued payroll and purchased transportation 183,450 171,381 \n Accrued liabilities 228,465 81,528 \n Claims accruals – current portion 442,014 311,822 \n Finance lease liabilities and long-term debt – current portion \n 434,863 71,466 \n Operating lease liabilities – current portion 142,543 36,961 \n Total current liabilities 1,730,374 894,007 \n Revolving line of credit 300,000 43,000 \n Long-term debt – less current portion \n 1,261,711 1,024,668 \n Finance lease liabilities – less current portion 320,270 344,377 \n Operating lease liabilities – less current portion 394,921 149,992 \n Accounts receivable securitization 361,681 418,561 \n Claims accruals – less current portion 310,075 201,838 \n Deferred tax liabilities 959,306 907,893 \n Other long-term liabilities 72,142 12,049 \n Total liabilities 5,710,480 3,996,385 \n Stockholders’ equity: \n Common stock 1,613 1,607 \n Additional paid-in capital 4,418,981 4,392,266 \n Accumulated other comprehensive loss (664) (2,436) \n Retained earnings 2,693,568 2,553,567 \n Total Knight-Swift stockholders' equity 7,113,498 6,945,004 \n Noncontrolling interest 16,303 10,277 \n Total stockholders’ equity 7,129,801 6,955,281 \n Total liabilities and stockholders’ equity $ 12,840,281 $ 10,951,666 \n _______ \n 1 The reported balances include U.S. Xpress and its subsidiaries as of September 30, 2023. \n 11 \n Segment Operating Statistics (Unaudited) \n Quarter Ended September 30, Year-to-Date September 30, \n 2023 2022 Change 2023 2022 Change \n Truckload 1 \n Average revenue per tractor 2 \n $ 48,842 $ 53,186 (8.2 %) $ 155,081 $ 159,959 (3.0 %) \n Non-paid empty miles percentage 13.6 % 14.8 % (120 bps) 14.5 % 14.5 % — bps \n Average length of haul (miles) 400 398 0.5 % 393 395 (0.5 %) \n Miles per tractor 20,384 19,391 5.1 % 62,781 57,853 8.5 % \n Average tractors 24,159 18,196 32.8 % 20,054 18,072 11.0 % \n Average trailers 3 \n 95,976 75,432 27.2 % 85,125 73,476 15.9 % \n LTL 4 \n Shipments per day 19,712 18,809 4.8 % 18,771 19,083 (1.6 %) \n Weight per shipment (pounds) 1,042 1,052 (1.0 %) 1,053 1,072 (1.8 %) \n Average length of haul (miles) 562 512 9.8 % 548 519 5.6 % \n Revenue per shipment $ 196.59 $ 188.18 4.5 % $ 191.36 $ 186.05 2.9 % \n Revenue xFSC per shipment $ 165.80 $ 151.07 9.8 % $ 161.74 $ 151.14 7.0 % \n Revenue per hundredweight $ 18.86 $ 17.89 5.4 % $ 18.17 $ 17.35 4.7 % \n Revenue xFSC per hundredweight $ 15.91 $ 14.37 10.7 % $ 15.36 $ 14.09 9.0 % \n Average tractors 5 \n 3,206 3,223 (0.5 %) 3,177 3,147 1.0 % \n Average trailers 6 \n 8,496 8,472 0.3 % 8,445 8,392 0.6 % \n Logistics 1 \n Revenue per load 7 \n $ 1,671 $ 1,985 (15.8 %) $ 1,680 $ 2,310 (27.3 %) \n Gross margin 18.0 % 20.9 % (290 bps) 19.0 % 21.8 % (280) bps \n Intermodal \n Average revenue per load 7 \n $ 2,714 $ 3,699 (26.6 %) $ 2,889 $ 3,608 (19.9 %) \n Load count 37,292 35,354 5.5 % 109,430 103,343 5.9 % \n Average tractors 677 628 7.8 % 647 612 5.7 % \n Average containers 12,669 12,138 4.4 % 12,780 11,552 10.6 % \n 1 Refer to Condensed Consolidated Statements of Comprehensive Income — footnote 1. \n 2 Computed with revenue, excluding fuel surcharge and intersegment transactions. In order to improve comparability, average tractors of 18,541 is used as the denominator in the average revenue per tractor and total miles per tractor calculations for year-to-date 2023, reflecting the pro-rata portion of the year for which U.S. Xpress' results of operations were reported following the close of the U.S. Xpress acquisition. \n 3 Third quarter 2023 and 2022 includes 8,432 and 7,952 trailers, respectively, related to leasing activities recorded within our non-reportable operating segments. \n The year-to-date period ending September 30, 2023 and 2022 includes 8,599 and 7,282 trailers, respectively, related to leasing activities recorded within our non-reportable operating segments. \n 4 Operating statistics within the LTL segment exclude dedicated and other businesses. \n 5 Our LTL tractor fleet includes 609 and 720 tractors from ACT's and MME's dedicated and other businesses for the third quarter of 2023 and 2022, respectively. Our LTL tractor fleet includes 610 and 705 tractors from ACT's and MME's dedicated and other businesses for the year-to-date period ending September 30, 2023 and 2022, respectively. \n 6 Our LTL trailer fleet includes 777 and 999 trailers from ACT's and MME's dedicated and other businesses for the third quarter of 2023 and 2022, respectively. Our LTL trailer fleet includes 778 and 956 trailers from ACT's and MME's dedicated and other businesses for the year-to-date period ending September 30, 2023 and 2022, respectively. \n 7 Computed with revenue, excluding intersegment transactions. \n 12 \n Non-GAAP Financial Measures and Reconciliations \n The terms \"Adjusted Net Income Attributable to Knight-Swift,\" \"Adjusted Operating Income,\" \"Adjusted EPS,\" \"Adjusted Operating Ratio,\" and \"Free Cash Flow,\" as we define them, are not presented in accordance with GAAP. These financial measures supplement our GAAP results in evaluating certain aspects of our business. We believe that using these measures improves comparability in analyzing our performance because they remove the impact of items from our operating results that, in our opinion, do not reflect our core operating performance. Management and the board of directors focus on Adjusted Net Income Attributable to Knight-Swift, Adjusted EPS, Adjusted Operating Income, and Adjusted Operating Ratio as key measures of our performance, all of which are reconciled to the most comparable GAAP financial measures and further discussed below. Management and the board of directors use Free Cash Flow as a key measure of our liquidity. Free Cash Flow does not represent residual cash flow available for discretionary expenditures. We believe our presentation of these non-GAAP financial measures is useful because it provides investors and securities analysts the same information that we use internally for purposes of assessing our core operating performance. \n Adjusted Net Income Attributable to Knight-Swift, Adjusted Operating Income, Adjusted EPS, Adjusted Operating Ratio, and Free Cash Flow, are not substitutes for their comparable GAAP financial measures, such as net income, cash flows from operating activities, operating margin, or other measures prescribed by GAAP. There are limitations to using non-GAAP financial measures. Although we believe that they improve comparability in analyzing our period to period performance, they could limit comparability to other companies in our industry if those companies define these measures differently. Because of these limitations, our non-GAAP financial measures should not be considered measures of income generated by our business or discretionary cash available to us to invest in the growth of our business. Management compensates for these limitations by primarily relying on GAAP results and using non-GAAP financial measures on a supplemental basis. \n 13 \n Non-GAAP Reconciliation (Unaudited): \n Adjusted Operating Income and Adjusted Operating Ratio 1 2 \n Quarter Ended September 30, Year-to-Date September 30, \n 2023 2022 2023 2022 \n GAAP Presentation (Dollars in thousands) \n Total revenue $ 2,019,936 $ 1,896,839 $ 5,209,847 $ 5,684,959 \n Total operating expenses (1,938,880) (1,631,398) (4,889,974) (4,795,654) \n Operating income $ 81,056 $ 265,441 $ 319,873 $ 889,305 \n Operating ratio 96.0 % 86.0 % 93.9 % 84.4 % \n Non-GAAP Presentation \n Total revenue $ 2,019,936 $ 1,896,839 $ 5,209,847 $ 5,684,959 \n Truckload and LTL fuel surcharge (244,687) (246,857) (593,857) (692,568) \n Revenue, excluding truckload and LTL fuel surcharge 1,775,249 1,649,982 4,615,990 4,992,391 \n Total operating expenses 1,938,880 1,631,398 4,889,974 4,795,654 \n Adjusted for: \n Truckload and LTL fuel surcharge (244,687) (246,857) (593,857) (692,568) \n Amortization of intangibles 3 \n (18,907) (16,254) (51,595) (48,635) \n Impairments 4 \n — — — (810) \n Legal accruals 5 \n (150) 2,640 (1,150) (415) \n Transaction fees 6 \n — — (6,868) — \n Other acquisition related expenses 7 \n (6,546) — (6,546) — \n Severance expense 8 \n (3,699) — (5,151) — \n Change in fair value of deferred earnout 9 \n 859 — 3,359 — \n Adjusted Operating Expenses 1,665,750 1,370,927 4,228,166 4,053,226 \n Adjusted Operating Income $ 109,499 $ 279,055 $ 387,824 $ 939,165 \n Adjusted Operating Ratio 93.8 % 83.1 % 91.6 % 81.2 % \n 1 Pursuant to the requirements of Regulation G, this table reconciles consolidated GAAP operating ratio to consolidated non-GAAP Adjusted Operating Ratio. \n 2 Refer to Condensed Consolidated Statements of Comprehensive Income — footnote 1. \n 3 \"Amortization of intangibles\" reflects the non-cash amortization expense relating to intangible assets identified in the 2017 Merger, the ACT acquisition, the U.S. Xpress acquisition, and other acquisitions. \n 4 \"Impairments\" reflects the non-cash impairment of building improvements (within our non-reportable segments). \n 5 \"Legal accruals\" are included in \"Miscellaneous operating expenses\" in the condensed consolidated statements of comprehensive income and reflect the following: \n • During the second and third quarters of 2023, legal expense reflects the increased estimated exposures for various accrued legal matters based on recent settlement agreements. First quarter 2023 legal expense reflects a decrease in the estimated exposure related to an accrued legal matter previously identified as probable and estimable in prior periods based on a recent settlement agreement. \n • During the second and third quarters of 2022, the company decreased the estimated exposure related to an accrued legal matter previously identified as probable and estimable in prior periods based on a recent settlement agreement. Additional 2022 legal costs relate to certain lawsuits arising from employee and contract related matters. \n 6 \"Transaction fees\" reflects certain legal and professional fees associated with the July 1, 2023 acquisition of U.S. Xpress. The transaction fees are primarily included within \"Miscellaneous operating expenses\" and \"Salaries, Wages, and benefits\" and with smaller amounts included in other line items in the condensed statements of comprehensive income. \n 7 \"Other acquisition related expenses\" represents one-time expenses associated with the U.S. Xpress acquisition, including certain severance expense, including the acceleration of stock compensation as well as other operating expenses. These are primarily included within \"Salaries, wages, and benefits\" in the condensed statements of comprehensive income. \n 14 \n 8 \"Severance expense\" is included within \"Salaries, wages, and benefits\" in the condensed statements of comprehensive income. \n 9 \"Change in fair value of deferred earnout\" reflects the benefits for the change in fair value of deferred earnouts related to various acquisitions in the prior years, which are recorded in \"Miscellaneous operating expenses.\" \n 15 \n Non-GAAP Reconciliation (Unaudited): \n Adjusted Net Income Attributable to Knight-Swift and Adjusted EPS 1 2 \n Quarter Ended September 30, Year-to-Date September 30, \n 2023 2022 2023 2022 \n (Dollars in thousands, except per share data) \n GAAP: Net income attributable to Knight-Swift $ 60,194 $ 194,795 $ 227,804 $ 622,624 \n Adjusted for: \n Income tax (benefit) expense attributable to Knight-Swift (1,220) 65,679 53,474 206,943 \n Income before income taxes attributable to Knight-Swift 58,974 260,474 281,278 829,567 \n Amortization of intangibles 3 \n 18,907 16,254 51,595 48,635 \n Impairments 4 \n — — — 810 \n Legal accruals 5 \n 150 (2,640) 1,150 415 \n Transaction fees 6 \n — — 6,868 — \n Other acquisition related expenses 7 \n 6,546 — 6,546 — \n Severance expense 8 \n 3,699 — 5,151 — \n Change in fair value of deferred earnout 9 \n (859) — (3,359) — \n Adjusted income before income taxes 87,417 274,088 349,229 879,427 \n Provision for income tax expense at effective rate 10 \n (20,255) (69,121) (84,958) (219,408) \n Non-GAAP: Adjusted Net Income Attributable to Knight-Swift $ 67,162 $ 204,967 $ 264,271 $ 660,019 \n Note: Because the numbers reflected in the table below are calculated on a per share basis, they may not foot due to rounding. \n Quarter Ended September 30, Year-to-Date September 30, \n 2023 2022 2023 2022 \n GAAP: Earnings per diluted share $ 0.37 $ 1.21 $ 1.41 $ 3.80 \n Adjusted for: \n Income tax (benefit) expense attributable to Knight-Swift (0.01) 0.41 0.33 1.26 \n Income before income taxes attributable to Knight-Swift 0.36 1.61 1.74 5.07 \n Amortization of intangibles 3 \n 0.12 0.10 0.32 0.30 \n Impairments 4 \n — — — — \n Legal accruals 5 \n — (0.02) 0.01 — \n Transaction fees 6 \n — — 0.04 — \n Other acquisition related expenses 7 \n 0.04 — 0.04 — \n Severance expense 8 \n 0.02 — 0.03 — \n Change in fair value of deferred earnout 9 \n (0.01) — (0.02) — \n Adjusted income before income taxes 0.54 1.70 2.16 5.37 \n Provision for income tax expense at effective rate 10 \n (0.13) (0.43) (0.53) (1.34) \n Non-GAAP: Adjusted EPS $ 0.41 $ 1.27 $ 1.63 $ 4.03 \n 1 Pursuant to the requirements of Regulation G, these tables reconcile consolidated GAAP net income attributable to Knight-Swift to non-GAAP consolidated Adjusted Net Income Attributable to Knight-Swift and consolidated GAAP diluted earnings per share to non-GAAP consolidated Adjusted EPS. \n 2 Refer to Condensed Consolidated Statements of Comprehensive Income — footnote 1. \n 3 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 3. \n 4 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 4 . \n 5 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 5. \n 6 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 6. \n 7 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 7. \n 8 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 8. \n 9 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 9. \n 10 For the third quarter and year-to-date of 2023, an effective tax rate of 23.2% and 24.3%, respectively was applied in our Adjusted EPS calculation to exclude the tax benefit from the partial release of the pre-acquisition allowance associated with the U.S. Xpress net operating loss and tax credit carryforward benefits. \n 16 \n Non-GAAP Reconciliation (Unaudited): \n Segment Adjusted Operating Income and Adjusted Operating Ratio 1 \n Quarter Ended September 30, Year-to-Date September 30, \n Truckload Segment 2 \n 2023 2022 2023 2022 \n GAAP Presentation (Dollars in thousands) \n Total revenue $ 1,380,781 $ 1,160,735 $ 3,346,685 $ 3,430,075 \n Total operating expenses (1,332,420) (984,933) (3,114,514) (2,842,860) \n Operating income $ 48,361 $ 175,802 $ 232,171 $ 587,215 \n Operating ratio 96.5 % 84.9 % 93.1 % 82.9 % \n Non-GAAP Presentation \n Total revenue $ 1,380,781 $ 1,160,735 $ 3,346,685 $ 3,430,075 \n Fuel surcharge (200,503) (192,685) (469,771) (538,277) \n Intersegment transactions (300) (281) (1,583) (1,016) \n Revenue, excluding fuel surcharge and intersegment transactions 1,179,978 967,769 2,875,331 2,890,782 \n Total operating expenses 1,332,420 984,933 3,114,514 2,842,860 \n Adjusted for: \n Fuel surcharge (200,503) (192,685) (469,771) (538,277) \n Intersegment transactions (300) (281) (1,583) (1,016) \n Amortization of intangibles 3 \n (2,605) (324) (3,247) (971) \n Other acquisition related expenses 4 \n (6,546) — (6,546) — \n Severance 5 \n (2,636) — (2,636) — \n Adjusted Operating Expenses 1,119,830 791,643 2,630,731 2,302,596 \n Adjusted Operating Income $ 60,148 $ 176,126 $ 244,600 $ 588,186 \n Adjusted Operating Ratio 94.9 % 81.8 % 91.5 % 79.7 % \n 1 Pursuant to the requirements of Regulation G, this table reconciles GAAP operating ratio to non-GAAP Adjusted Operating Ratio. \n 2 Refer to Condensed Consolidated Statements of Comprehensive Income — footnote 1. \n 3 \"Amortization of intangibles\" reflects the non-cash amortization expense relating to intangible assets identified in historical Knight acquisitions and the U.S. Xpress acquisition. \n 4 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 7. \n 5 Refer to Non-GAAP Reconciliation (Unaudited): Adjusted Operating Income and Adjusted Operating Ratio – footnote 8. \n 17 \n Non-GAAP Reconciliation (Unaudited): \n Segment Adjusted Operating Income and Adjusted Operating Ratio 1 — (Continued) \n Quarter Ended September 30, Year-to-Date September 30, \n LTL Segment 2023 2022 2023 2022 \n GAAP Presentation (Dollars in thousands) \n Total revenue $ 284,168 $ 278,615 $ 806,577 $ 817,587 \n Total operating expenses (251,893) (247,756) (717,482) (716,584) \n Operating income $ 32,275 $ 30,859 $ 89,095 $ 101,003 \n Operating ratio 88.6 % 88.9 % 89.0 % 87.6 % \n Non-GAAP Presentation \n Total revenue $ 284,168 $ 278,615 $ 806,577 $ 817,587 \n Fuel surcharge (44,184) (54,172) (124,086) (154,291) \n Revenue, excluding fuel surcharge 239,984 224,443 682,491 663,296 \n Total operating expenses 251,893 247,756 717,482 716,584 \n Adjusted for: \n Fuel surcharge (44,184) (54,172) (124,086) (154,291) \n Amortization of intangibles 2 \n (3,920) (4,032) (11,760) (11,972) \n Adjusted Operating Expenses 203,789 189,552 581,636 550,321 \n Adjusted Operating Income $ 36,195 $ 34,891 $ 100,855 $ 112,975 \n Adjusted Operating Ratio 84.9 % 84.5 % 85.2 % 83.0 % \n 1 Pursuant to the requirements of Regulation G, this table reconciles GAAP operating ratio to non-GAAP Adjusted Operating Ratio. \n 2 \"Amortization of intangibles\" reflects the non-cash amortization expense relating to intangible assets identified in the ACT and MME acquisitions. \n 18 \n Non-GAAP Reconciliation (Unaudited): \n Segment Adjusted Operating Income and Adjusted Operating Ratio 1 — (Continued) \n Quarter Ended September 30, Year-to-Date September 30, \n Logistics Segment 2 \n 2023 2022 2023 2022 \n GAAP Presentation (Dollars in thousands) \n Total revenue $ 159,489 $ 210,673 $ 417,715 $ 741,374 \n Total operating expenses (149,125) (183,214) (384,965) (630,565) \n Operating income $ 10,364 $ 27,459 $ 32,750 $ 110,809 \n Operating ratio 93.5 % 87.0 % 92.2 % 85.1 % \n Non-GAAP Presentation \n Total revenue $ 159,489 $ 210,673 $ 417,715 $ 741,374 \n Intersegment transactions (888) (709) (4,555) (3,920) \n Revenue, excluding intersegment transactions 158,601 209,964 413,160 737,454 \n Total operating expenses 149,125 183,214 384,965 630,565 \n Adjusted for: \n Intersegment transactions (888) (709) (4,555) (3,920) \n Amortization of intangibles 3 \n (335) (335) (1,003) (1,003) \n Adjusted Operating Expenses 147,902 182,170 379,407 625,642 \n Adjusted Operating Income $ 10,699 $ 27,794 $ 33,753 $ 111,812 \n Adjusted Operating Ratio 93.3 % 86.8 % 91.8 % 84.8 % \n Quarter Ended September 30, Year-to-Date September 30, \n Intermodal Segment 2023 2022 2023 2022 \n GAAP Presentation (Dollars in thousands) \n Total revenue $ 101,219 $ 130,777 $ 316,118 $ 372,870 \n Total operating expenses (105,743) (117,943) (322,172) (330,694) \n Operating (loss) income $ (4,524) $ 12,834 $ (6,054) $ 42,176 \n Operating ratio 104.5 % 90.2 % 101.9 % 88.7 % \n Non-GAAP Presentation \n Total revenue $ 101,219 $ 130,777 $ 316,118 $ 372,870 \n Intersegment transactions — — — (47) \n Revenue, excluding intersegment transactions 101,219 130,777 316,118 372,823 \n Total operating expenses 105,743 117,943 322,172 330,694 \n Adjusted for: \n Intersegment transactions — — — (47) \n Adjusted Operating Expenses 105,743 117,943 322,172 330,647 \n Adjusted Operating (Loss) Income $ (4,524) $ 12,834 $ (6,054) $ 42,176 \n Adjusted Operating Ratio 104.5 % 90.2 % 101.9 % 88.7 % \n 1 Pursuant to the requirements of Regulation G, this table reconciles GAAP operating ratio to non-GAAP Adjusted Operating Ratio. \n 2 Refer to Condensed Consolidated Statements of Comprehensive Income — footnote 1. \n 3 \"Amortization of intangibles\" reflects the non-cash amortization expense relating to intangible assets identified in the UTXL acquisition. \n 19 \n Non-GAAP Reconciliation (Unaudited): \n Free Cash Flow 1 2 \n Year-to-Date September 30, 2023 \n GAAP: Cash flows from operations $ 873,502 \n Adjusted for: \n Proceeds from sale of property and equipment, including assets held for sale 214,234 \n Purchases of property and equipment (852,677) \n Non-GAAP: Free cash flow $ 235,059 \n 1 Pursuant to the requirements of Regulation G, this table reconciles GAAP cash flows from operations to non-GAAP Free Cash Flow. \n 2 Refer to Condensed Consolidated Statements of Comprehensive Income — footnote 1. \n 20 \n",
@@ -36,7 +39,389 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000149269123000084__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001492691-23-000066",
+   "filingDate": "2023-07-20",
+   "reportDate": "2023-07-20",
+   "form": "8-K",
+   "local_gz": "000149269123000066__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "We expect net cash capital expenditures will be in the range of $700 million – $750 million for full-year 2023, which now includes U.S."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2023-10-19",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 71,
+   "has_qna": true,
+   "n_chars": 51046,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Good afternoon, my name is Ludie and I'll be your conference operator today. At this time, I would like to welcome everyone to the Knight-Swift Transportation Third Quarter 2023 Earnings Conference Call. All lines have been placed on mute to prevent any background noise. [Operator Instructions] Speakers from today's call will be Dave Jackson, President and CEO; and Adam Miller, CFO. Mr. Miller, the meeting is now yours."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Adam Miller",
+     "content": "Thank you, Ludie. Appreciate that. Good afternoon, everyone, and thank you for joining our third quarter 2023 earnings call. Today, we plan to discuss topics related to the results of the quarter, provide an update on current market conditions, and update our 2023 guidance. We have slides to accompany this call, which are posted on our investor website. Our call is scheduled to last one hour today and following our commentary, we'll answer as -- we'll answer questions related to these topics. In order to get to as many participants as possible, we're going to limit the questions to one per participant. If you have a second question or a follow-up, please feel free to get back into the queue, we'll answer as many questions as possible. If we're not able to get to your question due to time restrictions, you may call 602-606-6349 following the call and we'll answer as many questions as possible at that point. So to begin, I'll first refer you to the disclosures on Slide 2 of the presentation and I’ll also note the following. This conference call and presentation may contain forward-looking statements made by the company that involve risks, assumptions, and uncertainties that are difficult to predict. Investors are directed to the information contained in Item 1A, Risk Factors, or Part 1 of the company's annual report on Form 10-K filed with the United States SEC for a discussion of the risks that may affect the company's future operating results. Actual results may differ. Before we get into the slides, I want to turn the call over to Dave for a few opening remarks. David Jackson Thank you, Adam. And hello, everyone, and thank you for joining our call today. As has been widely reported, we continue to be in a depressed truckload freight market where rate expectations from shippers are often close to, if not, below operating cost. Spot rates are at or not at sustainable levels and are proving not to be survivable for those that are dependent on that type of freight. When we did our last call a quarter ago, there were rumors of Yellow closing. Obviously, since that call, that has indeed taken place and the already resilient LTL market has seen more strength. On the truckload side, the announcements of failures and rumors of more seem to be increasing by the week as of late. It's taken a lot to get to this point, so deep along the bottom of this current cycle. But the market is beginning to show signs of sensitivity to when supply leave suddenly or our provider cannot perform with freight lanes that were awarded by offering the cheapest price and shipper may find themselves quickly seeking a quality provider at a higher price than the original award. However, we are not seeing enough of that kind of activity or enough supply leave and/or enough strength in volumes to move rates to a meaningful inflection position right now. But it does appear that the stage has been set for positive rate pressure in the next bid season. In the meanwhile, here at Knight-Swift, we are focused on three specific objectives. The first one is, improving the performance of our truckload businesses. There is much in our control that we can do, including being better at cost, running more miles safely, and in hiring and retaining driving associates. Our people are digging in, working hard. We're grateful for that. The truckload operating ratio excluding US Xpress was a 91.5% and we are just simply not comfortable with an OR that starts with the nine and our people are working with urgency to do all that we can. Another objective is to grow our LTL network, AAA Cooper and Midwest Motor Express seamlessly operate on one operating network, while maintaining their local identities. We've opened 14 LTL service centers organically since the acquisition of AAA Cooper and MME in 2021. We've already purchased 11 additional terminals that have not yet been launched their service centers and we'll continue to pursue acquiring additional terminals that fit our nationwide plan in addition to other strategic forms of growth for LTL. We have found synergies between LTL and Truckload business, while not getting in one another's way. And the third objective that I would point out is the turnaround of US Xpress. We feel like we had good momentum going into the close of the transaction with the goal of being able to hit the ground running and it feels like that's what's happened. We've had positive sequential rate improvement, while lowering cost per mile in the first quarter of our ownership despite strong market pressure in the contrary. Still long ways to go, but we are ahead of schedule. The people at US Xpress have been great and we're so excited for where that business is headed and with some help from the market, we will get there even sooner. Now, we'll turn our overview to Slide 3. The charts on slide three compare our consolidated third-quarter revenue and earnings results on a year-over-year basis. These results now include the results of US Xpress for the full quarter. Revenue excluding fuel surcharge increased 7.6%, while our adjusted operating income declined by 60.8%. Market conditions in the LTL business were strong while soft demand continues in the truckload space. GAAP earnings per diluted share for the third quarter of 2023 were $0.37 per share and our adjusted EPS came in at $0.41 per share. These results were negatively impacted on a year-over-year basis by a $20.4 million increase in interest expense and the $22 million reduction in operating income in our third-party insurance business with the non-reportable segments. Also, the third-quarter GAAP results were positively impacted by a $14.6 million income tax benefit from the partial release of a tax benefit valuation allowance held by US Xpress associated with net operating losses and the tax credit carry-forward benefit at the time of the acquisition. This benefit was recognized post-closing due to the ability of Knight-Swift to utilize those tax attributes, which had the effect of reducing the consolidated effective tax rate at Knight-Swift to negative 2.1% for the current quarter. Our adjusted EPS of $0.41 is calculated using a normalized 23.2% effective tax rate for the quarter and excludes the $0.09 per share benefit of the lower tax rate. Now on to Slide 4. This slide illustrates revenue and adjusted operating income for each of our segments. Freight demand in the third quarter remains stable at soft levels for truckload but fairly strong and building in LTL. The truckload seasonal build usually seen in the late third quarter was subdued and this has continued thus far in early October. Our insurance business performed worse than expected. But this was largely offset by LTL in US Xpress performing ahead of our plan in the quarter, while our existing truckload businesses were largely in line. Contractual bid rates are largely baked in at this point for the 2024-2023 in the truckload business, while project opportunities are less prevalent than a normal peak season but are continuing to materialize. After generally falling for much of the past few quarters, fuel prices increased throughout the third quarter, providing a new headwind to operating margins for truckload and intermodal, though our efforts to reduce costs largely offset the impact. Our existing logistics business did a great job navigating significant declines in volume and revenue per load year-over-year to maintain a low-90s adjusted operating ratio excluding US Xpress logistics. I'll now turn it over to Adam to discuss each segment's operating performance, starting with truckload on Slide 5."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Adam Miller",
+     "content": "Thanks, Dave. For the Truckload segment, the ongoing soft demand, further rate pressure, and a recent sustained increase in fuel prices were headwinds to operating margins in the third quarter. However, our actions to reduce costs offset these challenges to produce a slight sequential improvement in adjusted operating ratio for our existing truckload business, excluding the results of US Xpress. The inclusion of US Xpress negatively impacted the adjusted operating ratio for this segment by 340 basis points. On a year-over-year basis, our truckload revenue excluding fuel surcharge, increased 21.9%, reflecting a 15.5% decline in the existing truckload business prior to the inclusion of US Xpress. Revenue per loaded mile fell 14% in total or 11.8% before including the US Xpress truckload business as the spring bid activity is now fully realized. Excluding the results of US Xpress, miles per tractor increased 1% for the first year-over-year increase in 2023. Including the results of US Xpress, miles per tractor increased 5.1% year-over-year. The decline in rates, partially offset by the improvement in miles per tractor produced an 8.2% decrease in revenue per tractor year-over-year. Now we'll move to Slide 6. The benefits of our diversification into LTL really stood out as this segment continues to perform well, aided by the recent disruption in the industry. Our LTL business grew revenue excluding fuel surcharge nearly 7% year-over-year and delivered an 84.9% adjusted operating ratio. Pricing growth strengthened as revenue per hundredweight, excluding fuel surcharge increased 10.7% year-over-year. Volumes built throughout the quarter as shipments per day increased 4.8% year-over-year, which reversed the trend of decline seen in the first half of the year. As Dave mentioned, we've brought on 14 new service centers online since entering the business in late 2021 and efforts are underway to continue growing this number with properties in various stages of procurement, development, or reconditioning. Filling out a super-regional network in the short-term and creating a national network in the long-term will allow us to participate in more freight and enable us to find opportunities to further support our existing truckload customers with LTL capacity. This remains a key strategic priority for us. Now on to Slide 7. The logistics market is in a difficult phase, where freight demand has been soft for over a year is producing topline price pressure that is no longer being offset by corresponding declines in purchased transportation costs. Despite these challenges, our existing logistics business remained disciplined and nimble, maintained a low-90s adjusted operating ratio before the inclusion of US Xpress. The US Xpress logistics business is already showing sequential improvement in adjusted operating ratio since the acquisition, closing it within 300 basis points of our existing logistics business, as we improve the cost structure and pricing even in a difficult environment. Overall, revenue was down 24.5% year-over-year as revenue per load declined 15.8% and load count declined 10.3%. Excluding the US Xpress logistics volumes, load count was down 29.7% year-over-year in the existing business. Now if you move to Slide 8. I'll cover our intermodal segment. Revenue declined 22.6%, which was driven by a 26.6% decrease in revenue per load, which was partially offset by an increase of 5.5% in load count. The operating ratio improved 190 basis points since the second quarter as a result of cost reductions, which offset a slight sequential reduction in revenue per load. This business improved during the quarter, reaching breakeven in September and we expect modest profitability in the fourth quarter. Now on to Slide 9. This slide illustrates our non-reportable segment, which includes insurance, maintenance, and equipment sales and rentals under the Iron Truck services brand, as well as equipment leasing and warehousing activities. For the quarter, revenue declined 14.2% year-over-year, largely as a result of our actions to address the recent challenges within our third-party insurance program, including significantly reducing the exposure basis. The $5.4 million operating loss within the non-reportable segment is modestly improved from the $7.1 million operating loss in the second quarter as improvement within other services provided greater offset to the ongoing losses within the third-party insurance business. We are evaluating strategic alternatives for the insurance business, including potential reinsurance strategies for the outstanding liabilities in order to help insulate our business from the volatility primarily arising from prior loss year's. As noted previously, it will take some time for the changes in the insurance business to fully materialize in the results, but we are making progress, raising premiums and improving the quality of risk as we work to mitigate volatility. Now, I will turn it over to Dave for an update on the progress of US Xpress."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "David Jackson",
+     "content": "Thanks, Adam. The team at US Xpress has really rallied around the goal of making significant improvements to this business and is currently running ahead of plan, as previously mentioned, on our projected path to reach an operating profit within the first half of next year. As noted in previous slides, the US Xpress Truckload and Logistics businesses have already made meaningful progress improving their operating ratios. Coming out of the third quarter, we have already reached a $100 million annualized run rate of realized synergies with a target of increasing that to $120 million run rate by the end of this year. We highlight some of the progress on this slide. You'll notice these are fundamental areas of the business, some of which are the most critical levers to pull-through cycles. Ultimately as we lower cost per mile, and increase rate per mile, we will make operating ratio progress and that has begun. US Xpress is rolling out a decentralized terminal-based operating model similar to Knight-Swift where there is P&L accountability at the local level with far more personal driver interaction. Nine out of the 10 locations have been converted from places to park to operating terminals. Understanding where rates need to be for a proper return has led to the elimination of brokers as the business is now dealing directly with shippers, while significantly reducing exposure to spot rates versus contract rates, which has improved from approximately 45% at the beginning of the year to approximately 15% today. This is an uphill battle as we close this transaction at the end of the spring bid cycle in July, but the team has made progress and we'll continue as we will soon begin the 2024 bid season. We are excited for this early progress and for how this consequential truckload business is positioning for the future. We have been impressed with the effort and attitude of our new fellow teammates at U.S. Xpress and appreciate their hard work. Next to Slide 11 for our outlook. Slide 11 contains our updated outlook on market conditions for the remainder of 2023. The LTL market should continue to see solid demand as the recent capacity disruption in the industry continues to be sorted out over the next several months. This should support further yield improvement and as the new business is increasingly repriced through bid activity. In the truckload space, we believe we are moving past inventory destocking. Those shippers caution about the direction of the US consumer behaviors governing freight demand for the time being it feels. We continue to expect a modest peak season, including a return of some typical seasonal activity and project opportunities with opportunities continuing to materialize. Spot rates seem to have bottomed, but have yet to inflect positively. As a result, contract rates continue to be pressured. The soft demand, unsustainably low rates, ongoing inflation, and restrictive financing conditions will keep pressure on carriers, especially smaller and less well-capitalized carriers. These factors should serve to accelerate the ongoing capacity attrition and limit immediate capacity expansion upon recovery. The pace of cost inflation should ease, though plentiful work alternatives in the general economy will pressure hiring and utilization until freight conditions improve. New equipment availability continues to improve and the used equipment market weakens further as small carriers struggle in capacity exits. I will now turn it back to Adam to cover our 2023 guidance on Slide 12."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Adam Miller",
+     "content": "All right. Thanks, Dave, and this will be our final slide. For the full-year 2023, we now expect adjusted EPS to be in the range of $2.10 to $2.20 per share, which is an update from our previous guidance of $2.10 to $2.30 per share. This is based on our expectation that truckload rates have stabilized at current levels for the fourth quarter. The truckload tractor count will be down modestly with miles declining sequentially similar to prior year in the absence of a strong peak. The LTL revenue excluding fuel surcharge increases in the mid-teens year-over-year, with a relatively stable sequential margin profile. The LTL shipment count in revenue excluding fuel surcharge per hundredweight improve at high single-digit percentage year-over-year. The U.S. Xpress EPS estimated dilutive impact in the fourth quarter expected at less than or around $0.05, I believe, as performance continues to improve. Logistics volumes and revenue per load remain under pressure in Q4 with OR stable in the low 90s. The intermodal operating ratio is slightly profitable with volume stable sequentially. The non-reportable op income decline roughly $10 million to $15 million sequentially as third-party insurance stabilizes and other businesses experienced their typical seasonal slowdown in the fourth quarter. We expect some easing cost pressure in the fourth quarter as we realize further cost-containment efforts on some of our cost initiatives. We expect gain on-sale to range from $8 million to $12 million, which includes now disposals at U.S. Xpress. And we expect minimal increase in interest expense from Q3, assuming the rate hiking cycle is largely complete. And our net cap -- cash CapEx is expected to be between $770 million -- $750 million for the full year 2023 and that we expect our tax rate to be approximately 26% for the fourth quarter. So that now concludes our prepared remarks. And so Ludie will now turn it to you to open the line for questions."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Operator",
+     "content": "Thank you. [Operator Instructions] Your first question comes from the line of Ravi Shanker from Morgan Stanley. Your line is open."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Ravi Shanker",
+     "content": "Thanks. Good evening, everyone. So, Dave, I think you said at the top of the call that you do expect to see some positive pricing momentum going into 2024. It seems hard to fathom with spot and contract rates where they are right now, but you also have spoken of cost inflation a fair bit. Can you unpack that a little bit more kind of what's the early signs on bid season looking like? Are we looking at flat first half and a positive second half or something even better than that?"
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "David Jackson",
+     "content": "Yes. I would say that, that comment is largely based on the economic position of the providers of full truckload transportation today. I think, we've seen in the reports between second quarter and what we've already seen reported out for third quarter, I mean, you have really record-tight margins in the full truckload space. And this is all while driver wages, which are by far our largest expense have not increased since 2021. And we likely will have some pent-up increase to work through as perhaps truckload is losing pace in recruiting vocational labor in the economy. And so, it feels like, we don't have the benefit or opportunity to be aggressive in pricing. In fact, we need a little bit of help. And as we noted last quarter, this is a unique freight recession or trough of a freight cycle, in that normally when we've seen it so prolonged, so pronounced, we're in a broader economic recession. And so, we naturally get cost concessions in the areas of fuel and labor and equipment. And in this case, we've seen the opposite. And now, fuel is kind of turned from being more neutral into now being more of a headwind on the truckload side. So that's how this is being set up. It feels like there are and what I referenced in my comment is, we've seen some situations where it appears that pricing lanes are meaningful bid awards were awarded to carriers at levels that we just don't understand how that would be possible from a rate perspective. And what we have found is, some of that has made its way back through -- often it's done through a mini bid as we call them, where perhaps the service level wasn't where it needed to be or they just couldn't deliver on it. And so we're starting to see some of those signs. That tells us that maybe things have been pushed to the limit. And so, we're here hunkered down, just working as hard as we can to be as efficient as we can. We have virtually no margin for error on the truckload side of the business right now. And we don't think that we're alone in that. Now I would guess that the -- our optimism of what could happen and what would need to happen in a bid season might not be the same as shippers might view right now. Truckload doesn't do cost-based pricing. That's more covered in the LTL space as we've learned. But it isn't the case for truckload, but that really is what's driving us. This is not elective, this is just the essential. And so we'll have to see how it plays out. If the bid season began right now today, we would really have a tough time, seeing it to be positive. But as things continue to materialize, I think that natural conditions are going to lead us in that direction."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Adam Miller",
+     "content": "And Ravi, I'd just add to that. Again, the bid season hasn't kicked off, we had so maybe just early discussions with some of the shippers that would have a bid coming out in the next quarter or so. The sentiment is, a lot of our customers have enjoyed the low rates that they've had in the spot markets, even some of the contract rates. And I think they probably moved a disproportionate amount of their volume than they historically have to brokers where they're able to capture some of that discount. And our shippers know just like carriers know that the market if not it will turn, it's when. And they -- they're concerned about ensuring that they're going to have sustainable capacity. And so, some of the commentary is even though the market may not bare today, they know six months, they could be in a tough position if they don't have capacity with asset-based carriers, especially in light of some of the failures that we've seen as of recently. So we're in dialog with our customers, we want it. We're partners with them. We know we need for a sustainable capacity, and we feel like we'll be able to work through what we believe would be fair rates moving forward."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Ravi Shanker",
+     "content": "Very helpful. A very quick follow-up. Kind of speaking of failures on the logistics side, we did hear headlines that a large digital player may have paused or stopped operations today. What kind of impact do you think that has in the marketplace? And kind of what do you think this tells us about where we are in the cycle and kind of what the brokerage model going forward? Like it was a good thing or a bad thing, kind of -- yeah, what does it mean for the industry?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Adam Miller",
+     "content": "So [indiscernible] we will answer that Ravi, because I think everybody on the call would like to appreciate the comment, but it's one question because I think last fall, we had the first -- the first analyst asked two, then everyone decided to ask two. So one question."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "David Jackson",
+     "content": "Ravi, I'm [indiscernible] to that and if we don't jump in that queue, we will answer that question. Thanks, Ravi."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Ravi Shanker",
+     "content": "Understood. Thanks guys."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Operator",
+     "content": "Thank you. And your next question comes from the line of Scott Group from Wolfe Research. Your line is open."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Scott Group",
+     "content": "Hey, thanks. Good afternoon, guys. So can you just give us some color on the revenue and OR for U.S. Xpress in the quarter? And where that goes from here? And how important is the market? How important is it for the market to get better and pricing to get better to get the U.S. Xpress OR better? Or can you do it without -- like can you get to the profitability that you want without getting the pricing up for the market?"
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Adam Miller",
+     "content": "Scott, just given where that business started once we finalized the acquisition. I mean, there is going to need to be improvement in both the cost side and the revenue side of the business. Now on the cost side, we don't really have to wait for the markets to change. We can move forward on a lot of activities there. On the procurement side, we're working on building out the terminal network that we expect will help safety, turnover, recruiting, and those all can be -- have a meaningful impact to the cost side of the business. Now we've made -- probably I think we said mid-single-digit improvement in our cost per mile, which we're excited for. We know that there is more there. On the revenue side, it's low-single digits and that's in a market where most are taking hits on the revenue per mile front and we haven't had a bid season to be able to address where the current rates are for U.S. Xpress. To get to the long-term profitability, that -- dollar of accretion, we're going to need both revenue and cost to support that. But I think that's just a matter of time before we have an opportunity to be able do what we need to do on the revenue front to really close the gap from a rate perspective between U.S. Xpress and our other brands."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "David Jackson",
+     "content": "Yeah. Maybe, Scott, I'll just add. The logistics business is in a good place, it's contributing earnings. The dedicated business is contributing earnings. The subsidiary total is contributing some earnings. And the wildcard is that, over-the-road component and it's made dramatic progress. And some of the things that we outlined on that slide, those are things that we have experienced that seen driver turnover go down, we have experienced seeing revenue on a per-truck basis improve and we have experienced and seen a P&L accountability on the cost side drive to lower cost to improve margin. And so we -- they are not very far. As you could tell by the earnings for this quarter, they were not nearly the drag that frankly we would have expected and this early on. And so the idea of getting to breakeven without any help from the market that is definitely within reach. And so -- of course, that's not the goal. But to take them from the state, as Adam alluded to, the state they were in coming out of the second quarter and into this. This has been dramatic and faster than we would have expected."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Scott Group",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "David Jackson",
+     "content": "Thanks, Scott."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Jack Atkins from JTK [Sic] [Stephens]. Your line is open."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Jack Atkins",
+     "content": "Okay, great. Thanks very much. Jack Atkins from Stephens. But I guess, Dave and Adam, I'd love to maybe ask you about the LTL business for a moment. You said it exceeded your expectations in the quarter. There has been further market disruption in October. Just sort of curious, how did operating ratio trend in that business relative to normal seasonality? Did you incur any additional expenses as you were trying to sort of onboard some of the market share that was probably moving around? And I guess just would be curious, the opportunity to maybe grab some of the real estate that's up for auction here with the Yellow estate over the next couple of weeks. I know it's a lot of questions in one, Adam. So if you could excuse, just kind of [indiscernible] I would be curious if you could expand on that for a minute."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "David Jackson",
+     "content": "Yes. Adam, the enforcer might shut this down before we get started with all those questions."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Jack Atkins",
+     "content": "That's okay."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "David Jackson",
+     "content": "But it is not typical at least in the experience with the two LTL franchises that we own to see that sequential improvement from the second into a third. But we did, it was slight, but we saw slight improvement sequentially from second to third quarter. In terms of bearing an additional cost burden, I don't know that was so much the issue. I think in the LTL space, as our customers had found themselves with some immediate need, our LTL group just jumped in to get those things covered. It's more of handling those shipments and preserving the service than it is immediately talking about price. It works a little differently in the truckload space, when there is projects or things that are out of the norm. And so, some of that volume that we've picked up, some of that volume that I think is in the process of being disbursed long-term throughout the LTL providers, that will be addressed in these bids that have already started and that will continue to happen to make sure that we price it appropriately as you kind of know-how it fits the network. So I wouldn't say that, that was a -- there was a cost headwind there. I would say that, that sequential improvement was a very positive sign for us of where things are. And the fact that we are seeing shipments turn positive on a year-over-year basis and to be able to see revenue, excluding fuel per hundredweight up in the double-digits, continue that's a -- those are very positive signs for us."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Jack Atkins",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "David Jackson",
+     "content": "Thanks, Jack."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Todd [Sic] [Tom] Wadewitz from UBS. Your line is open."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Tom Wadewitz",
+     "content": "Yeah. Hey Dave, Adam, it's Tom Wadewitz here. I wanted to ask you a little bit about kind of cycle view. Dave, you offered some thoughts of kind of constructive and bid season. Do you need to see spot rates move up first in order to really see that improvement in contract? It continues to be a widespread between contract and spot and I think the brokers take advantage of that and compete against you guys. So I'm just wondering, is the kind of optimism on contract rates next year really contingent on seeing some momentum in spot rates ahead of that? And I don't know if you have a thought on just capacity exiting, and when you get enough of that to take place to tighten the market as well. So, thank you."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "David Jackson",
+     "content": "Yes. I would just -- I'll jump in, and then Adam can finish this off. I think that historically, through these cycles, it's worked where that spot rate starts to climb. And if you were to graph out spot rates and contract rates, you find that intersection. And when they intersect, that is the tale-tale sign that spot rates are just getting going and that is -- the curve of the contractual rate is now about to bend and turn to positive again. And so, we have not seen that. We've really seen spot rates just kind of move sideways, as time just gone on. One disadvantage we have from cycle to cycle is the dataset that we look at is constantly evolving. And it seems like increasingly the dataset that we look at is a magnifying glass into just broker and the smallest of carriers. That isn't necessarily where the majority of freight moves or how it moves. But nonetheless, we've got that corner of the market with a telescope right now, it feels like. So, it's hard to always compare that to previous years. It's hard to think that we wouldn't see that kind of -- generally speaking, that kind of mechanic happen again, where spot rates increase to a point where they intersect contract, and then now you know you're off to a different part of the cycle. The piece about that is hard to predict is that, it always -- it happens so fast and it happens unexpectedly. And there is always a catalyst or a multitude of catalysts to bring it to bear, whether it'd be weather, whether it'd be fuel prices. It feels like the extreme aggressiveness that we have seen out of non-asset-based players. It has reached a level to where it's not only unsustainable but when you add how expensive financing is and what might subsidize and allow that to happen, it becomes -- it blows up. And now all of a sudden, you had a lot of small carriers who were dependent on some kind of a model like that, that now are maybe in a little bit of trouble. So I think we're starting to see some of this. I mean, we are hearing of asset-based carriers that are closing the doors. Here, just -- I mean, just this month, we continued to hear. I think there was another one just heard about today to say nothing for a non-asset-based player that seems to be stopping operations or something. So there -- things are breaking right now. I don't know if that is enough to be this catalyst, where you start to see this happen, but inevitably, it is almost impossible to predict. And when it does change, it's always been many, many, many months, if not, many, many, quarters in the making. So it doesn't just turn around all of a sudden. So that feels like we're right, we're pushing up against that level. Adam, any thoughts?"
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Adam Miller",
+     "content": "Yes. I mean, I think, you know, as you see some of these disruptions from the operations that are seasoning, we see immediate reactions in our business, they may be short-term, some may be longer-term, and I will see how it plays out. But I think that tells us there is not much slack in the supply chain right now. And so, any type of lift in demand or exaggerated decline in capacity, I think we'll see the market turn very quickly. And again, we're predicting that will happen in 2024, it's just a matter of when. And so as we approach bids, we're looking at rates that we believe will be sustainable as the market shifts. And those are the type of conversations we're having with our customers, rather than just waiting for the spot market to turn, which would then dictate that rates -- contract rates should follow."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Operator",
+     "content": "Thank you. Your next question comes from the line of Chris Wetherbee from Citigroup. Your line is open."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Chris Wetherbee",
+     "content": "Hey, thanks, good afternoon guys. I wanted to ask about the U.S. ex-fleet and how you think about that relative to some of the cost synergies that you're realizing. So I think you said about $100 million run-rate maybe moving up to $120 million by year-end. Is there a relationship between getting that cost synergy and then ultimately profit synergy? And the size of that fleet, I guess, in other words, do you need to color a little bit more to be able to generate profitability? What do you think kind of you'll be able to net hold onto over the course of maybe one year, or maybe that 2026 target you have out there?"
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "David Jackson",
+     "content": "Yes. We don't think we have to shrink into profitability. There is -- there are a few hurdles that they had already overcome that we haven't on the Swift merger. On the Swift merger, we had -- post the deal, we adopted hair follicle drug testing, for example, and we also made some adjustments to the owner-operator program. In this case, we didn't have either one of those, and so we are really battling to hold on to that fleet and to help them -- and to help them be more profitable on a per truck basis. If I look at just sequentially, we've only owned them for a quarter here. But if I look at it, the fleet size has remained -- it's down just slightly, but it's almost the same. And so, there is not a -- there is not a plan to call the fleet."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Chris Wetherbee",
+     "content": "Okay. Appreciate the color. Thank you."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "David Jackson",
+     "content": "Thanks, Chris."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Ken Hoexter from Bank of America. Your line is open."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Ken Hoexter",
+     "content": "Great. Good evening, and thanks for the thoughts on the -- up against the wall on the rates. Hopefully, I think we've all been watching that waiting for the capacity to leave to get that rate up there. So hopefully that follows through. Maybe just Dave, your thoughts on intermodal, you kind of talked about it getting to profitability. What -- what's the confidence there? Is that the same thing? Is that just about rate and getting that up there? Is it about going through a bid season? What -- what's operationally going on with intermodal that you've been losing money that you see a flip there?"
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "David Jackson",
+     "content": "I'm going to let Adam answer that."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Adam Miller",
+     "content": "Yes, I think it's a combination of multiple things, just like any business that's operating at that level. It's not one thing that you have to get done. I think there's going to be some opportunity to pick up some additional volume in the bid season, as we've got our rates with our rail partners adjusted based on the way our contract is structured with them. So I think that puts us in a better position to be aggressive there. I think we've got some operational efficiencies, we need to work through in terms of how we manage chassis. And I think we've made some progress there. And we started the quarter out on a rough start, but we saw that sequential progress all the way through, till we got to a level of profitability, just slightly in September, and we expect to continue that momentum. But it will be something that just takes time to work through and service is improving at both the West and the East. I think customers that had moved freight off of the rail to the truckload because of the issues with service are looking at that again as an option. And I think we've got some great relationships on the truckload side, that we still don't do much with on the intermodal side, that I think we'll be able to open up those doors. So it's going to be a combination of all those factors, Ken that we think will get us to a good position where that's a business that can compete with the top providers there and generate a margin in there. Hopefully, high-single-digit, low-double-digit depending on where we're at in the cycle."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Ken Hoexter",
+     "content": "But, I don't know if I can just clarify, it sounds like those were working with customers that -- is that longer-term or because you said you're going to get the profitability fourth-quarter or did I miss something or is that bid season that already happened, that's going to happen quickly?"
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Adam Miller",
+     "content": "I said, as we got to slight profitability at the end of the third quarter and we expect that to continue into the fourth quarter. So to be profitable there, but not where we -- not where we're targeting to be. I mean, that's going to take a few more quarters as we work through the operational efficiencies we need to pick up, as well as work through the bid season to pick up more volume and address rate."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Ken Hoexter",
+     "content": "Thanks for that clarification. Appreciate it guys. Thanks."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "David Jackson",
+     "content": "Thanks, Ken."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Allison Poliniak from Wells Fargo. Your line is open."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "David Jackson",
+     "content": "Hi, Allison."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Unidentified Analyst",
+     "content": "Hey guys, it's James on for Allison. Just wanted to actually kind of go back to some question on the truckload rate. Like, basically it seems -- you said they are still under pressure, you're still seeing costs elevated, but there is a sort of an amount of capacity that's still out there. Just wanted to get your thoughts on what you thought was allowing that capacity to stay in there and sort of when do you think it might exit or if there is a particular type of event that needs to happen for it to exit? Just wanted to kind of get your thoughts on sort of the pace of capacity and exits."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "David Jackson",
+     "content": "Yes. Well. I appreciate the question, James. I think we're -- what we're seeing is a pretty extreme resourcefulness on the part of small carriers to survive. And it's hard to say if it's the fact that the used equipment market hasn't completely collapsed like sometimes it does at this stage of the cycle, perhaps it's kept folks on the financing side maybe willing to make some accommodations. Don't know to what degree that is the case. But there could be that for sure. You have individuals who if -- if it is one or two truck operation, that might be temporarily living out of a truck. And just to get by through the bottom part here. We know through our exposure to small carriers that they are under extreme pressure and juggling kind of cost and low on cash-flow. And in many cases, deferring maintenance for example just routine oil change maintenance. And so it just feels like there is a lot of folks out there that are just barely getting by with credit cards maxed out, hoping that they don't have to buy a tire over the road or have any other kind of mechanical failure. And so that's what it feels like, it's -- to be honest, we're a little puzzled as to why we haven't seen more capacity come out because if you look at spot rates on an absolute basis, these levels on an absolute basis were enough to send the market in 2017 into a strengthening position because of the atrophy of supply. And so if you compare the cost structure and what inflation has done, it's hard to imagine that you could have the same absolute spot rate and yet have higher-cost and still get buy, so it feels like more survival than anything else. James, but we're watching anxiously and trying to understand that better ourselves."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Unidentified Participant",
+     "content": "Got it. Small follow-up, is there anything at the end-of-the year like maintenance events, insurance renewals, or anything else that might be sort of a catalyst over in the fourth quarter for exits? Thank you for the time."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "David Jackson",
+     "content": "Yeah. I don't know that there is one event. I mean I -- they -- those kind of renewals and registrations happen routinely. It does feel like they do get a little bit bunched up towards the end and beginning of the year, but I don't really have a place that could point to validate that, that's just kind of a feeling, but I don't think there is one event like that."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Operator",
+     "content": "Thank you. Your next question comes from the line of Bruce Chan from Stifel. Your line is open."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Bruce Chan",
+     "content": "Hey, good evening, gents. Maybe just wanted to ask one here on core demand. I know you've got a pretty diverse base of customers, but is there anything that you've been seeing in terms of end-markets that may be worth calling out, especially anything around food and bev and what, at least one big shipper talked about with regard to lower spending due to Ozempic, anything related to industrial, NTL or LTL related to the UAW, anything there just maybe be material enough to affect your outlook for the rest of the year."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "David Jackson",
+     "content": "Adam and I are looking to each other and both kind of shaking our heads like no. So, I think what's been a little different this year is we have seen some -- a little more seasonality through the beverage season and a little bit of produce in the second quarter that we saw none of last year, seen a little bit around the holidays, which is more of a food and beverage play but haven't seen any."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Adam Miller",
+     "content": "Yes. I think there is maybe some specific customers who maybe, had made more progress on inventory than others that might see a different demand pattern than others, but I think that's more specific to their strategy versus something that's broader to a certain sector."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Bruce Chan",
+     "content": "Perfect, good news. Thank you."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Jon Chappell from Evercore ISI. Your line is open."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Q – Jon Chappell",
+     "content": "Thank you. Good afternoon. Adam, maybe better-for-you. I know it's not a core business, but it does tend to move the needle pretty significantly, the insurance business. Just looking for a little bit of clarity there and if we take the midpoint, what you've kind of guided to for the fourth quarter, and that looks like $40 million EBIT drag. I know you're evaluating strategic alternatives. But as we think about how that plays into 2024, it seems like it's pretty cycle-independent first and foremost, is that a business that goes back to kind of breakeven in 2024? Is it a first-half drag that maybe you get a bit of a second-half recovery or is it just kind of a lesser loss line item for 2024?"
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Adam Miller",
+     "content": "Yes. So that's a business that obviously has been challenging over the last, I think, now four quarters and we're working on what we can do to kind of mitigate those losses. And there's several things that we're working on. It's probably improving or tightening our underwriting standards in the near term. We're looking at some reinsurance opportunities that could help, which is eliminating some of the volatility or the outstanding liabilities we have currently on the balance sheet. So that is underway. And really, I think everything's on the table to be able to kind of work through mitigating our losses there. And do we expect to see a lesser loss into the 2024? Certainly from where we are and I think there is measures we've taken to do that, but we needed to move a bit quicker than it currently is. And we -- in a difficult cycle, this is the last thing that we need is a business that has been a bit challenging for us and we've got a lot of people working towards that and looking at every different alternative to approach it and we think we'll see some progress here, both in the fourth-quarter and as we get into 2024. And if we find some of these strategies that help us eliminate that liability sooner rather than later with the reinsurance option, we'll move quickly on that, if we find it to be appealing."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Jon Chappell",
+     "content": "Got it. Thanks, Adam."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Amit Mehrotra from Deutsche Bank. Your line is open."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Amit Mehrotra",
+     "content": "Thanks, operator. Hi David. Hi Adam, excuse me. I guess, there is an expectation that earnings can be up meaningfully next year and I know you guys do an exceptional job kind of pivoting to where maybe the opportunities present themselves. So there is obviously that opportunity or potential next year. But I guess the question, David, I want to understand how you're thinking about how expectations are calibrated for next year? How you think the slope of the recovery from here? Can it be more muted? Is there an opportunity to see gaps higher if you think those opportunities are likely to show up? We're just kind of late in this year now and demand doesn't seem to be there and I'm just trying to understand kind of getting your head a little bit and how you're thinking about the recovery path from where we are today."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Adam Miller",
+     "content": "Yes. Well, thanks, Amit. As you know and I think we've referenced in previous calls that these kind of recoveries on the truckload side start with some volume increases and then volume begets a little bit of rate improvement and then volume and rate improvement beget earnings. And so this will be a gradual process, our comparisons to start the year are not going to be as easy, but they -- they'll get a little bit easier as we go in to -- we hope into next year on the truckload side. Now if you look at our business, so we've got this LTL business that's going to continue to chug away, we expect that to be very predictable, we expect that to be very positive. And then we've got this, maybe large call option, if you will on the truckload space with U.S. Xpress, the business that's very close to breakeven. And that as there's some -- as we have another bid season to work with, to work on the network and a little bit of strength, all of a sudden that does give us quite a significant sale if you will if the wind decides to blow that we have not had in the past. And so, I think, as we mentioned a couple of quarters ago this is somewhat of a try and make sure that our -- we're trying to make sure that our cycles, that our peaks in the cycle in terms of earnings performance, outperformed the previous cycle. And so, as far as the timing to predict, that's a little bit beyond our control and very difficult to do so in the truckload space. But for us, we're just heads-down preparing ourselves to be ready for that, to be ready in terms of how our business is committed, the kind of relationships we have on the truckload side and just kind of where the operation is. So we're -- this next quarter, we'll put out our guidance for 2024. And I'm grateful that we can do that in three months, and I don't have to do it today, because a lot could change, frankly in the next three months. Now our posture in terms of running the business is, hey, we're going to -- we're heads-down, working hard as if nothing is going to change and nothing is going to be given to us and we're not going to have any wind at our back. We're just not going to wait for that to happen to try and control what we can control. But we will be prepared to move when the market -- when the wind blows, we'll be prepared. So it’s the best I could answer that right now for you, Amit."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Amit Mehrotra",
+     "content": "Yes, that's very fair. Thank you, wish you guys the best. Thank you."
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "David Jackson",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Adam Miller",
+     "content": "Thanks, Amit."
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Operator",
+     "content": "Your next question comes from the line of Bascome Majors from Susquehanna. Your line is open."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Bascome Majors",
+     "content": "Yes. Going back to the insurance business and the boom-and-bust cycle you've managed through there. What have you learned from that both about how you would incubate a future business at Knight and grow it internally? And also just dealing with some of your small trucking competitors, as customers there, what have you learned about the market that will help you manage cyclically going forward? Thank you."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Adam Miller",
+     "content": "Well, Bascome a few things. For one, it's -- it is difficult to find small carriers who care about safety, the way that we do and are willing to do things to change behavior such as, you know, hair follicle, drug testing, to have cameras in the vehicles that track your scoring that then indicate whether you're a safe driver or not. It's difficult to find a carrier who is willing to do that at a consistent level. And that's part of the underwriting process and I think what we found is we had to be more disciplined on the compliance around some of those factors. I think we also found that you know, this is a difficult environment and so one of the first bills that may not get paid maybe the monthly insurance bill. And so, we have to do a better job getting, you know, probably a couple of months or some larger deposit on the front end to protect ourselves from any bad debt that we may incur, should you have a carrier that doesn't make payments appropriately. And I think we weren't quite a bit of just how we manage claims, what the development looks like and when, when you know that and understand it and understand how different it is, then company drivers or owner-operators that operate for us, we can be more effective at how we price that business. So I think we made some -- I think some missteps in terms of assuming that claims develop the same way they do with our own business and maybe price the business as effectively as we should. So we're in the process of moving pricing up as quickly as we can. And that affects any renewals, we're not writing any new business now until we can really understand what the right mix of carrier is and what the underwriting qualification should be and will determine to that process, whether we think it's a business that we can grow and develop profitably. So there's still more that we're working through in this process, it's relatively new to us. And -- hey, we're again open to a lot of different approaches to make this business work if we can."
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Bascome Majors",
+     "content": "Thank you, Adam."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Operator",
+     "content": "And this ends our Q&A session. I would like to turn it back to our speakers for closing remarks."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "David Jackson",
+     "content": "Okay, well, thank you. Thank you, Ludie. We are grateful for your interest today. I think we hit a record number of questions today. So if we did not get to your question, please feel free to call us at 602-606-6349. Thanks for joining the call today, take care."
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Operator",
+     "content": "And ladies and gentlemen, this concludes today's conference call. Thank you for participating, you may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +432,8 @@
    "reportDate": "2022-12-31",
    "accession": "0001492691-23-000019",
    "url": "https://www.sec.gov/Archives/edgar/data/1492691/000149269123000019/knx-20221231.htm",
-   "local_gz": "000149269123000019__annual.txt.gz"
+   "local_gz": "000149269123000019__annual.txt.gz",
+   "n_lines": 3426
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +441,8 @@
    "reportDate": "2023-06-30",
    "accession": "0001492691-23-000076",
    "url": "https://www.sec.gov/Archives/edgar/data/1492691/000149269123000076/knx-20230630.htm",
-   "local_gz": "000149269123000076__q0.txt.gz"
+   "local_gz": "000149269123000076__q0.txt.gz",
+   "n_lines": 1735
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +450,106 @@
    "reportDate": "2023-03-31",
    "accession": "0001492691-23-000051",
    "url": "https://www.sec.gov/Archives/edgar/data/1492691/000149269123000051/knx-20230331.htm",
-   "local_gz": "000149269123000051__q1.txt.gz"
+   "local_gz": "000149269123000051__q1.txt.gz",
+   "n_lines": 1607
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2023-08-02",
   "n_rows": 8,
@@ -83,6 +564,48 @@
     "ocf": 372629000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 911336000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 261001000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 156352000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 254616000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.52,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 124000.0,
+      "filed": "2022-02-24",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +616,48 @@
     "ocf": 456860000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 939704000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 242860000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 161210000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 208337000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.25,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 166499000.0,
+      "filed": "2022-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +668,48 @@
     "ocf": 263124000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 1010768000.0,
+      "filed": "2022-08-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 198021000.0,
+      "filed": "2022-08-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 163697000.0,
+      "filed": "2022-08-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 219492000.0,
+      "filed": "2022-08-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.35,
+      "filed": "2022-08-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 163166000.0,
+      "filed": "2022-08-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +720,48 @@
     "ocf": 379211000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 944060000.0,
+      "filed": "2022-11-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 194082000.0,
+      "filed": "2022-11-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 166617000.0,
+      "filed": "2022-11-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 194795000.0,
+      "filed": "2022-11-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.21,
+      "filed": "2022-11-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 161572000.0,
+      "filed": "2022-11-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +772,43 @@
     "ocf": 336658000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 842294000.0,
+      "filed": "2023-02-23",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 196770000.0,
+      "filed": "2023-02-23",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 168300000.0,
+      "filed": "2023-02-23",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 148701000.0,
+      "filed": "2023-02-23",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.9300000000000006,
+      "filed": "2023-02-23",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +819,48 @@
     "ocf": 345159000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 800415000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 191245000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 172149000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 104284000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.64,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 161900000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +871,48 @@
     "ocf": 377031000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 712197000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 228957000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 172886000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 63326000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.39,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 161940000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +923,24 @@
     "ocf": 151312000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 60194000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.37,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 2023000000.0,
     "revenue_xbrl_for_reference": 2019936000.0
@@ -166,48 +954,24 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "4213",
   "sic2": "42",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 16,
-  "peer_list_all_same_sic2_tickers": [
-   "ARCB",
-   "CVLG",
-   "HTLD",
+  "bucket": "能源原材料公用",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 12,
+  "peer_list_all_tickers": [
    "JBHT",
-   "LSTR",
-   "MRTN",
-   "ODFL",
-   "PAMT",
-   "SAIA",
-   "SFWL",
-   "SNDR",
-   "TFII",
-   "ULH",
-   "UPS",
-   "WERN",
-   "ZTO"
+   "ODFL"
   ],
   "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0001090727",
-    "name": "UNITED PARCEL SERVICE INC",
-    "ticker": "UPS",
-    "sic2": "42",
-    "form": "10-K",
-    "filingDate": "2023-02-21",
-    "accn": "0001090727-23-000006",
-    "local_gz": "000109072723000006__peer10k.txt.gz",
-    "capex_excerpt": [
-     "Risks – A significant data breach or information technology system disruption could materially adversely affect us”. Health and Safety We are subject to numerous federal, state and local laws and regulations governing employee health and safety, both in the U.S and in other countries. Compliance with changing laws and regulations from time to time, including those promulgated by the U.S. Occupational Safety and Health Administration, could result in materially increased operating costs and capital expenditures, and negatively impact our ability to attract and retain employees. For additional information on governmental regulations and their potential impact on us generally, see “Risk Factors",
-     "ned and balanced approach to capital allocation, including returns to shareowners through dividends and share repurchases. As of December 31, 2022, we had $7.6 billion in cash, cash equivalents and marketable securities. We believe that these positions, expected cash from operations, access to commercial paper programs and capital markets and other available liquidity options will be adequate to fund our material short- and long-term cash requirements, including our business operations, planned capital expenditures and pension contributions, transformation strategy costs, debt obligations and planned shareowner returns. We regularly evaluate opportunities to optimize our capital structure, i",
-     "r total worldwide holdings of cash, cash equivalents and marketable securities were held by foreign subsidiaries. The amount of cash, cash equivalents and marketable securities held by our U.S. and foreign subsidiaries fluctuates throughout the year due to a variety of factors, including the timing of cash receipts and disbursements in the normal course of business. Cash provided by operating activities in the U.S. continues to be our primary source of funds to finance domestic operating needs, capital expenditures, share repurchases, pension contributions and dividend payments to shareowners. All cash, cash equivalents and marketable securities held by foreign subsidiaries are generally ava"
-    ]
-   },
    {
     "entity_id": "0000878927",
     "name": "OLD DOMINION FREIGHT LINE, INC.",
     "ticker": "ODFL",
-    "sic2": "42",
+    "sic4": "4213",
+    "sic3": "421",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2023-02-22",
     "accn": "0000950170-23-003783",
@@ -216,7 +980,25 @@
      "cient capacity among suppliers to help ensure an uninterrupted supply of equipment to support our operations. Recent supply chain challenges, however, have adversely impacted our equipment manufacturers. We may periodically utilize third-party transportation providers in our linehaul network to supplement our equipment or maintain older equipment that would have otherwise been replaced based on our normal equipment cycle, in order to support our equipment needs. The table below sets forth our capital expenditures for tractors and trailers for the years ended December 31, 2022 and 2021. For more information concerning our capital expenditures, see Item 7, “Management’s Discussion and Analysis",
      "hallenges, however, have adversely impacted our equipment manufacturers. We may periodically utilize third-party transportation providers in our linehaul network to supplement our equipment or maintain older equipment that would have otherwise been replaced based on our normal equipment cycle, in order to support our equipment needs. The table below sets forth our capital expenditures for tractors and trailers for the years ended December 31, 2022 and 2021. For more information concerning our capital expenditures, see Item 7, “Management’s Discussion and Analysis of Financial Condition and Results of Operations – Liquidity and Capital Resources” in this report. Year Ended December 31, In tho",
      "scharge or retention of storm water. Under specific environmental laws, we could also be held responsible for any costs relating to contamination at our past or present facilities and at third-party waste disposal sites, as well as costs associated with clean-up of accidents involving our vehicles. We do not believe that the cost of future compliance with current environmental laws or regulations will have a material adverse effect on our operations, financial condition, competitive position or capital expenditures for fiscal year 2023. However, future changes to laws or regulations may adversely affect our operations and could result in unforeseen costs to our business. Available Informatio"
-    ]
+    ],
+    "capex_status": "ok"
+   },
+   {
+    "entity_id": "0000728535",
+    "name": "HUNT J B TRANSPORT SERVICES INC",
+    "ticker": "JBHT",
+    "sic4": "4213",
+    "sic3": "421",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2023-02-24",
+    "accn": "0001437749-23-004530",
+    "local_gz": "000143774923004530__peer10k.txt.gz",
+    "capex_excerpt": [
+     "10, 2023. We currently intend to continue paying cash dividends on a quarterly basis. However, no assurance can be given that future dividends will be paid. Liquidity Our need for capital has typically resulted from the acquisition of containers and chassis, trucks, tractors and trailers required to support our growth and the replacement of older equipment as well as periodic business acquisitions. We are frequently able to accelerate or postpone a portion of equipment replacements or other capital expenditures depending on market and overall economic conditions. However, we do anticipate that the current challenges related to timely delivery of ordered equipment will continue due to supply ",
+     ",950 ) ( 382,216 ) ( 109,758 ) Income taxes receivable or payable ( 69,025 ) ( 30,633 ) 57,851 Other current assets ( 83,892 ) ( 15,252 ) ( 18,038 ) Trade accounts payable ( 23,838 ) 140,295 ( 5,482 ) Claims accruals 117,887 35,051 ( 9,072 ) Accrued payroll and other accrued expenses ( 75,170 ) ( 16,848 ) 69,932 Net cash provided by operating activities 1,776,882 1,223,898 1,122,859 Cash flows from investing activities: Additions to property and equipment ( 1,540,796 ) ( 947,563 ) ( 738,545 ) Proceeds from sale of equipment 108,901 70,545 137,776 Business acquisition ( 118,175 ) - ( 12,136 ) Change in other assets - - ( 52 ) Net cash used in investing activities ( 1,550,070 ) ( 877,018 ) ( 6"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -238,7 +1020,16 @@
   "latest_data_date": "2023-10-20",
   "cutoff": "2023-10-20",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2023-10-19",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2023-10-23",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

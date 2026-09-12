@@ -1,6 +1,7 @@
 {
  "event_id": "E022",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E022",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "DAR",
  "cik": "0000916540",
  "name": "DARLING INGREDIENTS INC.",
@@ -9,10 +10,11 @@
  "bucket": "消費與零售",
  "evidence_cutoff": "T1 = 2017-03-01(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E022",
   "event_id": "E022",
   "ticker": "DAR",
   "cik": "0000916540",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0000916540-17-000006",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/916540/000091654017000006/dar-20170228x8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/916540/000091654017000006/dar-20170228x8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n exh991-pressreleaseq42016.htm\n EXHIBIT 99.1 PRESS RELEASE\n Exhibit \n EXHIBIT 99.1 \n News Release \n DARLING INGREDIENTS INC. REPORTS FOURTH QUARTER \n AND FISCAL 2016 FINANCIAL RESULTS: \n Executed De-Levering and Growth Strategy \n February 28, 2017 - IRVING, TEXAS - Darling Ingredients Inc. (NYSE: DAR), a global developer and producer of sustainable natural ingredients from edible and inedible bio-nutrients, creating a wide range of ingredients and customized specialty solutions for customers in the pharmaceutical, food, pet food, feed, industrial, fuel, bioenergy, and fertilizer industries, today announced financial results for the fiscal 2016 fourth quarter and year ended December 31, 2016. \n Fourth Quarter 2016 Overview \n • \n Net income of $40.5 million, or $0.25 per GAAP diluted share \n • \n Revenue of $887.3 million \n • \n Adjusted EBITDA of $112.8 million \n • \n Strong global raw material volumes \n • \n Global fats pricing steady while ample protein supplies pressured prices \n Fiscal 2016 Overview \n • \n Net income of $102.3 million, or $0.62 per GAAP diluted share \n • \n Consolidated revenue of $3.4 billion \n • \n Food segment normalized led by Rousselot while Fuel Segment margins improved on strong performance \n • \n Feed segment supported by strong global fat demand and pricing while global proteins remained weak \n • \n Commissioned four new facilities \n • \n Solid cash flow generation with full year debt reduction of $169.7 million \n For the fourth quarter of 2016, the Company reported net sales of $887.3 million, as compared with net sales of $809.7 million for the fourth quarter of 2015. Net income attributable to Darling for the three months ended December 31, 2016 was $40.5 million, or $0.25 per diluted share, compared to a net income of $84.4 million, or $0.52 per diluted share, for the fourth quarter of 2015. The decrease in net income for the fourth quarter 2016 is primarily attributable to the inclusion of the blenders tax credit entirely in the fourth quarter of 2015, whereas for fiscal 2016, the blenders tax credit was reported in each quarter as earned. \n Net Income attributable to Darling for the fiscal year ended December 31, 2016 was $102.3 million, or $0.62 per diluted share, as compared to a net income of $78.5 million, or $0.48 per diluted share, for the fiscal year ended January 2, 2016. The increase is primarily attributable to increased margins and volumes in both the Food and Fuel Ingredients segments, higher raw material volumes in the Feed and Food Ingredients segments and lower selling, general and administrative expense. \n Comments on the Fourth Quarter and Fiscal 2016 Year End \n Randall C. Stuewe, Chairman and Chief Executive Officer of Darling Ingredients Inc., said, “We closed out 2016 with a solid performance across all product lines. We executed on our strategy of de-levering and growing, paying down $169.7 million in debt while commissioning four new factories and expanding five others. We carry nice momentum and a larger platform into 2017.” \n News Release \n February 28, 2017 \n Page 2 \n Operational Update by Segment \n • \n Feed Ingredients - Segment leveraged higher global fat prices and drove higher sales volumes, sustaining margins and offsetting lower protein markets. Raw material volumes were strong around the globe, up 7 percent year over year. Our two new U.S. rendering plants are on line and meeting expectations. Weak protein pricing pressured USA rendering results in the quarter, but first quarter pricing is improving. \n • \n Food Ingredients - Segment recovered during the fourth quarter and posted solid performance in China. Rousselot drove consistent year-over-year performance. Margins improved slightly due to production efficiencies in the North and South American markets as well as the European gelatin business. Sonac edible fat earnings normalized due to firm palm oil pricing. CTH casings business delivered consistent performance on growing supply source and improved supply chain. \n • \n Fuel Ingredients - Segment maintained consistent and improving performance during the quarter, which included a final settlement on the business interruption insurance claim related to the bio-phosphate plant fire that occurred in December 2015. Rendac delivered improved performance on strong volumes. Canada Biodiesel sequentially weaker but delivered overall solid annual results with a full year of production. \n • \n Diamond Green Diesel Joint Venture - Solid execution and strong earnings. Engineering and construction planning is progressing with long lead time equipment ordered on the DGD facility major expansion, which at full capacity increases annual production from 160 million gallons to 275 million gallons of renewable diesel. Total cost estimated at $190.0 million with construction completion and commissioning expected in Q2 2018. \n Financial Update by Segment \n Feed Ingredients \n Three Months Ended \n Fiscal Year Ended \n ($ thousands) \n December 31, 2016 \n January 2, 2016 \n December 31, 2016 \n January 2, 2016 \n Net Sales \n $ \n 538,606 \n $ \n 472,192 \n $ \n 2,089,145 \n $ \n 2,074,333 \n Depreciation and amortization \n 48,735 \n 44,468 \n 178,845 \n 165,854 \n Segment operating income \n 25,282 \n 10,031 \n 115,794 \n 116,453 \n EBITDA* \n $ \n 74,017 \n $ \n 54,499 \n $ \n 294,639 \n $ \n 282,307 \n *EBITDA calculated by adding depreciation and amortization to segment operating income. \n • \n Feed Ingredients operating income for the three months ended December 31, 2016 was $25.3 million, an increase of $15.3 million as compared to the three months ended January 2, 2016. Earnings for the Feed Ingredients segment were higher due to an increase in raw material volumes and finished fat prices that more than offset lower protein finished product prices and higher depreciation and amortization due to placing new plants into production. \n • \n Feed Ingredients operating income for the fiscal year 2016 was $115.8 million, a decrease of $0.7 million as compared to fiscal year 2015. Earnings in the Feed Ingredients segment were down slightly from prior year due to lower protein finished product prices and higher depreciation and amortization due to placing new plants into production which were offset by higher fat finished product prices and reduced selling, general and administrative expense. \n News Release \n February 28, 2017 \n Page 3 \n Food Ingredients \n Three Months Ended \n Fiscal Year Ended \n ($ thousands) \n December 31, 2016 \n January 2, 2016 \n December 31, 2016 \n January 2, 2016 \n Net Sales \n $ \n 279,898 \n $ \n 272,177 \n $ \n 1,061,912 \n $ \n 1,094,918 \n Depreciation and amortization \n 18,297 \n 15,691 \n 70,120 \n 66,817 \n Segment operating income \n 11,738 \n 23,317 \n 61,212 \n 61,238 \n EBITDA* \n $ \n 30,035 \n $ \n 39,008 \n $ \n 131,332 \n $ \n 128,055 \n *EBITDA calculated by adding depreciation and amortization to segment operating income. \n • \n Food Ingredients operating income was $11.7 million for the three months ended December 31, 2016, a decrease of $11.6 million as compared to the three months ended January 2, 2016. The decrease in operating income was primarily attributable to lower earnings in the gelatin business in North America, South America and China, increased depreciation and higher selling, general and administrative costs which offset improvements in our European gelatin, edible fats, and casings businesses. \n • \n Food Ingredients operating income for both fiscal year 2016 and fiscal 2015 was $61.2 million. During fiscal 2016, the gelatin business earnings reflected strong profitability in the Company’s North American, South American and European operations, which offset lower sales prices and volumes in China. The European edible fats earnings improved due to stable fat finished product prices. The Company’s casing business profitability improved as compared to the same period in the prior year due to higher sales prices and volumes. Selling, general and administrative expense was reduced by $7.1 million, which included gains on currency hedges while depreciation and amortization increased. \n Fuel Ingredients \n Three Months Ended \n Fiscal Year Ended \n ($ thousands) \n December 31, 2016 \n January 2, 2016 \n December 31, 2016 \n January 2, 2016 \n Net Sales \n $ \n 68,773 \n $ \n 65,306 \n $ \n 247,058 \n $ \n 228,195 \n Depreciation and amortization \n 7,532 \n 6,752 \n 28,531 \n 26,711 \n Segment operating income \n 10,486 \n 12,382 \n 29,166 \n 17,159 \n EBITDA* \n $ \n 18,018 \n $ \n 19,134 \n $ \n 57,697 \n $ \n 43,870 \n *EBITDA calculated by adding depreciation and amortization to segment operating income. \n • \n Exclusive of the DGD Joint Venture, Fuel Ingredients operating income for the three months ended December 31, 2016 was $10.5 million, a decrease of $1.9 million as compared to the three months ended January 2, 2016. The decrease in earnings is primarily due to the blenders tax credit for 2015 having been collected entirely in the fourth quarter of 2015 for our Canadian biodiesel facility which more than offset the higher volumes in Rendac. \n • \n Exclusive of the DGD Joint Venture, Fuel Ingredients operating income for fiscal year 2016 was $29.2 million, an increase of $12.0 million as compared to fiscal 2015. The increase in earnings is due to improved Rendac performance, full year productivity and higher RIN values at the Canadian biodiesel plant and increasing sales volumes and finished product pricing at Ecoson. Also contributing to the increase in earnings was lower selling, general and administrative expense and an insurance settlement on the Ecoson fire which occurred in 2015. \n News Release \n February 28, 2017 \n Page 4 \n Darling Ingredients Inc. and Subsidiaries \n Condensed Consolidated Balance Sheets \n December 31, 2016 and January 2, 2016 \n (in thousands) \n December 31, \n January 2, \n 2016 \n 2016 \n ASSETS \n Current assets: \n Cash and cash equivalents \n $ \n 114,564 \n $ \n 156,884 \n Restricted cash \n 293 \n 331 \n Accounts receivable, net \n 388,397 \n 371,392 \n Inventories \n 330,815 \n 344,583 \n Prepaid expenses \n 29,984 \n 36,175 \n Income taxes refundable \n 7,479 \n 11,963 \n Other current assets \n 21,770 \n 10,460 \n Total current assets \n 893,302 \n 931,788 \n Property, plant and equipment, less accumulated depreciation, net \n 1,515,575 \n 1,508,167 \n Intangible assets, less accumulated amortization, net \n 711,927 \n 782,349 \n Other assets: \n Goodwill \n 1,225,893 \n 1,233,102 \n Investment in unconsolidated subsidiaries \n 292,717 \n 247,238 \n Other assets \n 43,613 \n 41,623 \n Deferred income taxes \n 14,990 \n 16,352 \n Total assets \n $ \n 4,698,017 \n $ \n 4,760,619 \n LIABILITIES AND STOCKHOLDERS' EQUITY \n Current liabilities: \n Current portion of long-term debt \n $ \n 23,247 \n $ \n 45,166 \n Accounts payable, principally trade \n 180,895 \n 149,998 \n Income taxes payable \n 4,913 \n 6,679 \n Accrued expenses \n 242,796 \n 239,825 \n Total current liabilities \n 451,851 \n 441,668 \n Long-term debt, net of current portion \n 1,727,696 \n 1,885,851 \n Other non-current liabilities \n 96,114 \n 97,809 \n Deferred income taxes \n 346,134 \n 360,681 \n Total liabilities \n 2,621,795 \n 2,786,009 \n Commitments and contingencies \n Total Darling's stockholders' equity \n 1,972,994 \n 1,870,709 \n Noncontrolling interests \n 103,228 \n 103,901 \n Total stockholders' equity \n 2,076,222 \n 1,974,610 \n $ \n 4,698,017 \n $ \n 4,760,619 \n News Release \n February 28, 2017 \n Page 5 \n Darling Ingredients Inc. and Subsidiaries \n Consolidated Operating Results \n For the Periods Ended December 31, 2016 and January 2, 2016 \n (in thousands, except per share data) \n (Fourth Quarter Unaudited) \n Three Months Ended \n Fiscal Year Ended \n $ Change \n $ Change \n December 31, \n January 2, \n Favorable \n December 31, \n January 2, \n Favorable \n 2016 \n 2016 \n (Unfavorable) \n 2016 \n 2016 \n (Unfavorable) \n Net sales \n $ \n 887,277 \n $ \n 809,675 \n $ \n 77,602 \n $ \n 3,398,115 \n $ \n 3,397,446 \n $ \n 669 \n Costs and expenses: \n Cost of sales and operating expenses \n 694,559 \n 629,907 \n (64,652 \n ) \n 2,641,734 \n 2,654,025 \n 12,291 \n Selling, general and administrative expenses \n 79,870 \n 76,623 \n (3,247 \n ) \n 314,005 \n 322,574 \n 8,569 \n Depreciation and amortization \n 77,468 \n 69,934 \n (7,534 \n ) \n 289,908 \n 269,904 \n (20,004 \n ) \n Acquisition and integration costs \n — \n 492 \n 492 \n 401 \n 8,299 \n 7,898 \n Total costs and expenses \n 851,897 \n 776,956 \n (74,941 \n ) \n 3,246,048 \n 3,254,802 \n 8,754 \n Operating income \n 35,380 \n 32,719 \n 2,661 \n 152,067 \n 142,644 \n 9,423 \n Other expense: \n Interest expense \n (22,439 \n ) \n (23,308 \n ) \n 869 \n (94,187 \n ) \n (105,530 \n ) \n 11,343 \n Foreign currency gain/(loss) \n 387 \n (1,612 \n ) \n 1,999 \n (1,854 \n ) \n (4,911 \n ) \n 3,057 \n Other income/(expense), net \n 1,819 \n (6,135 \n ) \n 7,954 \n (3,866 \n ) \n (6,839 \n ) \n 2,973 \n Total other expense \n (20,233 \n ) \n (31,055 \n ) \n 10,822 \n (99,907 \n ) \n (117,280 \n ) \n 17,373 \n Equity in net income of unconsolidated subsidiaries \n 32,746 \n 83,073 \n (50,327 \n ) \n 70,379 \n 73,416 \n (3,037 \n ) \n Income before income taxes \n 47,893 \n 84,737 \n (36,844 \n ) \n 122,539 \n 98,780 \n 23,759 \n Income taxes expense/(benefit) \n 6,213 \n (1,138 \n ) \n (7,351 \n ) \n 15,315 \n 13,501 \n (1,814 \n ) \n Net income \n 41,680 \n 85,875 \n (44,195 \n ) \n 107,224 \n 85,279 \n 21,945 \n Net income attributable to noncontrolling interests \n (1,139 \n ) \n (1,446 \n ) \n 307 \n (4,911 \n ) \n (6,748 \n ) \n 1,837 \n Net income attributable to Darling \n $ \n 40,541 \n $ \n 84,429 \n $ \n (43,888 \n ) \n $ \n 102,313 \n $ \n 78,531 \n $ \n 23,782 \n Basic income per share: \n $ \n 0.24 \n $ \n 0.52 \n $ \n (0.28 \n ) \n $ \n 0.62 \n $ \n 0.48 \n $ \n 0.14 \n Diluted income per share: \n $ \n 0.25 \n $ \n 0.52 \n $ \n (0.27 \n ) \n $ \n 0.62 \n $ \n 0.48 \n $ \n 0.14 \n News Release \n February 28, 2017 \n Page 6 \n Darling Ingredients Inc. and Subsidiaries \n Consolidated Statement of Cash Flows \n Fiscal Years Ended December 31, 2016 and January 2, 2016 \n (in thousands) \n Fiscal Year Ended \n December 31, \n January 2, \n Cash flows from operating activities: \n 2016 \n 2016 \n Net income \n $ \n 107,224 \n $ \n 85,279 \n Adjustments to reconcile net income to net cash provided by operating activities: \n Depreciation and amortization \n 289,908 \n 269,904 \n Deferred income taxes \n (11,532 \n ) \n 7,807 \n Loss/(gain) on sale of assets \n 1,744 \n 1,311 \n Gain on insurance proceeds from insurance settlement \n (356 \n ) \n (561 \n ) \n Increase/(decrease) in long-term pension liability \n (430 \n ) \n (4,811 \n ) \n Stock-based compensation expense \n 10,330 \n 8,995 \n Write-off deferred loan costs \n 528 \n 10,633 \n Deferred loan cost amortization \n 11,171 \n 10,155 \n Equity in net income of unconsolidated subsidiaries \n (70,379 \n ) \n (73,416 \n ) \n Distributions of earnings from unconsolidated subsidiaries \n 26,317 \n 26,589 \n Changes in operating assets and liabilities, net of effects from acquisitions: \n Accounts receivable \n (22,796 \n ) \n 8,214 \n Income taxes refundable/payable \n 2,839 \n 12,377 \n Inventories and prepaid expenses \n 15,343 \n 34,536 \n Accounts payable and accrued expenses \n 39,286 \n (11,449 \n ) \n Other \n (8,161 \n ) \n 35,396 \n Net cash provided by operating activities \n 391,036 \n 420,959 \n Cash flows from investing activities: \n Capital expenditures \n (243,523 \n ) \n (229,848 \n ) \n Acquisitions, net of cash acquired \n (8,511 \n ) \n (377 \n ) \n Gross proceeds from sale of property, plant and equipment and other assets \n 7,329 \n 3,840 \n Proceeds from insurance settlement \n 1,537 \n 561 \n Payments related to routes and other intangibles \n (23 \n ) \n (3,845 \n ) \n Net cash used by investing activities \n (243,191 \n ) \n (229,669 \n ) \n Cash flows from financing activities: \n Proceeds from long-term debt \n 36,327 \n 590,745 \n Payments on long-term debt \n (204,428 \n ) \n (609,255 \n ) \n Borrowings from revolving credit facility \n 99,276 \n 78,244 \n Payments on revolving credit facility \n (104,028 \n ) \n (166,755 \n ) \n Net cash overdraft financing \n 1,071 \n (1,261 \n ) \n Deferred loan costs \n (3,879 \n ) \n (17,310 \n ) \n Issuance of common stock \n 188 \n 171 \n Repurchase of common stock \n (5,000 \n ) \n (5,912 \n ) \n Minimum withholding taxes paid on stock awards \n (1,843 \n ) \n (4,874 \n ) \n Excess tax benefits from stock-based compensation \n — \n — \n Addition/(deductions) of noncontrolling interest \n — \n (87 \n ) \n Distributions to noncontrolling interests \n (1,552 \n ) \n (3,295 \n ) \n Net cash used by financing activities \n (183,868 \n ) \n (139,589 \n ) \n Effect of exchange rate changes on cash \n (6,297 \n ) \n (3,601 \n ) \n Net increase/(decrease) in cash and cash equivalents \n (42,320 \n ) \n 48,100 \n Cash and cash equivalents at beginning of period \n 156,884 \n 108,784 \n Cash and cash equivalents at end of period \n $ \n 114,564 \n $ \n 156,884 \n Supplemental disclosure of cash flow information: \n Accrued capital expenditures \n $ \n (937 \n ) \n $ \n 5,325 \n Cash paid during the period for: \n Interest, net of capitalized interest \n $ \n 82,094 \n $ \n 78,979 \n Income taxes, net of refunds \n $ \n 23,220 \n $ \n (3,035 \n ) \n Non-cash financing activities \n Debt issued for assets \n $ \n 10 \n $ \n 2,591 \n Contribution of assets to unconsolidated subsidiary \n $ \n 2,674 \n $ \n — \n News Release \n February 28, 2017 \n Page 7 \n Diamond Green Diesel Joint Venture \n Operating Financial Results \n Three Months and Fiscal Year Ended December 31, 2016 and December 31, 2015 \n Three Months Ended \n Fiscal Year Ended \n $ Change \n $ Change \n December 31, \n December 31, \n Favorable \n December 31, \n December 31, \n Favorable \n 2016 \n 2015 \n (Unfavorable) \n 2016 \n 2015 \n (Unfavorable) \n Revenues: \n Operating revenues \n $ \n 182,020 \n $ \n 95,886 \n $ \n 86,134 \n $ \n 527,670 \n $ \n 475,934 \n $ \n 51,736 \n Expenses: \n Total costs and expenses less depreciation, amortization and accretion expense \n 108,579 \n (77,211 \n ) \n (185,790 \n ) \n 353,222 \n 298,946 \n (54,276 \n ) \n Depreciation, amortization and accretion expense \n 7,451 \n 4,790 \n (2,661 \n ) \n 27,821 \n 19,714 \n (8,107 \n ) \n Operating income \n 65,990 \n 168,307 \n (102,317 \n ) \n 146,627 \n 157,274 \n (10,647 \n ) \n Other income \n 352 \n 27 \n 325 \n 551 \n 120 \n 431 \n Interest and debt expense, net \n (1,206 \n ) \n (2,975 \n ) \n 1,769 \n (7,354 \n ) \n (13,604 \n ) \n 6,250 \n Net income \n $ \n 65,136 \n $ \n 165,359 \n $ \n (100,223 \n ) \n $ \n 139,824 \n $ \n 143,790 \n $ \n (3,966 \n ) \n News Release \n February 28, 2017 \n Page 8 \n Darling Ingredients Inc. reports Adjusted EBITDA results, which is a non-GAAP financial measure, as a complement to results provided in accordance with generally accepted accounting principles (GAAP) (for additional information, see “Use of Non-GAAP Financial Measures” included later in this media release). The Company believes that Adjusted EBITDA provides additional useful information to investors. Adjusted EBITDA, as the Company uses the term, is calculated below: \n Reconciliation of Net Income to (Non-GAAP) Adjusted EBITDA and (Non-GAAP) Pro forma Adjusted EBITDA Fourth Quarter 2016 as compared to Fourth Quarter 2015 \n Three Months Ended - Year over Year \n Adjusted EBITDA \n December 31, \n January 2, \n (U.S. dollars in thousands) \n 2016 \n 2016 \n Net income attributable to Darling \n $ \n 40,541 \n $ \n 84,429 \n Depreciation and amortization \n 77,468 \n 69,934 \n Interest expense \n 22,439 \n 23,308 \n Income tax expense/(benefit) \n 6,213 \n (1,138 \n ) \n Foreign currency loss/(gain) \n (387 \n ) \n 1,612 \n Other expense/(income), net \n (1,819 \n ) \n 6,135 \n Equity in net (income) of unconsolidated subsidiary \n (32,746 \n ) \n (83,073 \n ) \n Net income attributable to noncontrolling interests \n 1,139 \n 1,446 \n Adjusted EBITDA \n $ \n 112,848 \n $ \n 102,653 \n Acquisition and integration-related expenses \n — \n 492 \n Pro forma Adjusted EBITDA (Non-GAAP) \n $ \n 112,848 \n $ \n 103,145 \n Foreign currency exchange impact (1) \n 747 \n — \n Pro forma Adjusted EBITDA to Foreign Currency (Non-GAAP) \n $ \n 113,595 \n $ \n 103,145 \n DGD Joint Venture Adjusted EBITDA (Darling's share) \n $ \n 36,721 \n $ \n 86,548 \n (1) The average rates assumption used in this calculation was the actual fiscal average rate for the three months ended January 2, 2016 of \n €1.00:USD$1.093 and CAD$1.00:USD$0.74 as compared to the average rate for the three months ended December 31, 2016 of \n €1.00:USD$1.077 and CAD$1.00:USD$0.75, respectively. \n News Release \n February 28, 2017 \n Page 9 \n Reconciliation of Net Income to (Non-GAAP) Adjusted EBITDA and (Non-GAAP) Pro forma Adjusted EBITDA Fourth Quarter 2016 as compared on a sequential basis to Third Quarter 2016 \n Three Months Ended - Sequential \n Adjusted EBITDA \n December 31, \n October 1, \n (U.S. dollars in thousands) \n 2016 \n 2016 \n Net income attributable to Darling \n $ \n 40,541 \n $ \n 28,694 \n Depreciation and amortization \n 77,468 \n 70,653 \n Interest expense \n 22,439 \n 23,867 \n Income tax expense/(benefit) \n 6,213 \n (744 \n ) \n Foreign currency (gain) \n (387 \n ) \n (354 \n ) \n Other expense/(income), net \n (1,819 \n ) \n 2,007 \n Equity in net (income) of unconsolidated subsidiary \n (32,746 \n ) \n (18,138 \n ) \n Net income attributable to noncontrolling interests \n 1,139 \n 196 \n Adjusted EBITDA \n $ \n 112,848 \n $ \n 106,181 \n Acquisition and integration-related expenses \n — \n — \n Pro forma Adjusted EBITDA (Non-GAAP) \n $ \n 112,848 \n $ \n 106,181 \n Foreign currency exchange impact (1) \n 2,481 \n — \n Pro forma Adjusted EBITDA to Foreign Currency (Non-GAAP) \n $ \n 115,329 \n $ \n 106,181 \n DGD Joint Venture Adjusted EBITDA (Darling's share) \n $ \n 36,721 \n $ \n 22,543 \n (1) The average rates assumption used in this calculation was the actual fiscal average rate for the three months ended October 1, 2016 \n of €1.00: USD$1.117 and CAD$1.00:USD$0.767 as compared to the average rate for the three months ended December 31, 2016 \n of €1.00: USD$1.077 and CAD$1.00:USD$0.75, respectively. \n News Release \n February 28, 2017 \n Page 10 \n Reconciliation of Net Income to (Non-GAAP) Adjusted EBITDA and (Non-GAAP) Pro forma Adjusted EBITDA - \n Fiscal Year 2016 as compared to Fiscal 2015 \n Fiscal Year Ended \n Adjusted EBITDA \n December 31, \n January 2, \n (U.S. dollars in thousands) \n 2016 \n 2016 \n Net income attributable to Darling \n $ \n 102,313 \n $ \n 78,531 \n Depreciation and amortization \n 289,908 \n 269,904 \n Interest expense \n 94,187 \n 105,530 \n Income tax expense \n 15,315 \n 13,501 \n Foreign currency loss \n 1,854 \n 4,911 \n Other expense, net \n 3,866 \n 6,839 \n Equity in net (income) of unconsolidated subsidiary \n (70,379 \n ) \n (73,416 \n ) \n Net income attributable to noncontrolling interests \n 4,911 \n 6,748 \n Adjusted EBITDA \n $ \n 441,975 \n $ \n 412,548 \n Acquisition and integration-related expenses \n 401 \n 8,299 \n Pro forma Adjusted EBITDA (Non-GAAP) \n $ \n 442,376 \n $ \n 420,847 \n Foreign currency exchange impact (1) \n 1,980 \n — \n Pro forma Adjusted EBITDA for Foreign Currency (Non-GAAP) \n $ \n 444,356 \n $ \n 420,847 \n DGD Joint Venture Adjusted EBITDA (Darling's share) \n $ \n 87,224 \n $ \n 88,494 \n (1) The average rates assumption used in this calculation was the actual fiscal average rate for the fiscal year ended December 31, 2016 \n of €1.00:USD$1.106 and CAD$1.00:USD$0.76 as compared to the average rate for the fiscal year ended January 2, 2016 \n of €1.00:USD$1.108 and CAD$1.00:USD$0.77, respectively. \n About Darling \n Darling Ingredients Inc. is the world’s largest publicly-traded developer and producer of sustainable natural ingredients from edible and inedible bio-nutrients, creating a wide range of ingredients and specialty products for customers in the pharmaceutical, food, pet food, feed, technical, fuel, bioenergy, and fertilizer industries. With operations on five continents, the Company collects and transforms all aspects of animal by-product streams into broadly used and specialty ingredients, such as gelatin, edible fats, feed-grade fats, animal proteins and meals, plasma, pet food ingredients, organic fertilizers, yellow grease, fuel feedstocks, green energy, natural casings and hides. The Company also recovers and converts used cooking oil and commercial bakery residuals into valuable feed and fuel ingredients. In addition, the Company provides grease trap services to food service establishments, environmental services to food processors and sells restaurant cooking oil delivery and collection equipment. For additional information, visit the Company's website at http://www.darlingii.com . \n Darling Ingredients Inc. will host a conference call to discuss the Company’s fourth quarter and fiscal year end 2016 financial results at 8:30 am Eastern Time (7:30 am Central Time) on Wednesday, March 1, 2017. To listen to the conference call, participants calling from within North America should dial 844-868-8847 ; international participants should dial 412-317-6593 . Please refer to access code 10100099 . Please call approximately ten minutes before the start of the call to ensure that you are connected. \n News Release \n February 28, 2017 \n Page 11 \n The call will also be available as a live audio webcast that can be accessed on the Company website at http://ir.darlingii.com . Beginning one hour after its completion, a replay of the call can be accessed through March 8, 2017, by dialing 877-344-7529 (U.S. callers), 855-669-9658 (Canada) and 412-317-0088 (international callers). The access code for the replay is 10100099 . The conference call will also be archived on the Company’s website. \n Use of Non-GAAP Financial Measures: \n Adjusted EBITDA is not a recognized accounting measurement under GAAP; it should not be considered as an alternative to net income, as a measure of operating results, or as an alternative to cash flow as a measure of liquidity, and is not intended to be a presentation in accordance with GAAP. Adjusted EBITDA is presented here not as an alternative to net income, but rather as a measure of the Company’s operating performance. Since EBITDA (generally, net income plus interest expenses, taxes, depreciation and amortization) is not calculated identically by all companies, this presentation may not be comparable to EBITDA or Adjusted EBITDA presentations disclosed by other companies. Adjusted EBITDA is calculated in this presentation and represents, for any relevant period, net income/(loss) plus depreciation and amortization, goodwill and long-lived asset impairment, interest expense, (income)/loss from discontinued operations, net of tax, income tax provision, other income/(expense) and equity in net loss of unconsolidated subsidiary. Management believes that Adjusted EBITDA is useful in evaluating the Company’s operating performance compared to that of other companies in its industry because the calculation of Adjusted EBITDA generally eliminates the effects of financing, income taxes and certain non-cash and other items that may vary for different companies for reasons unrelated to overall operating performance. \n As a result, the Company’s management uses Adjusted EBITDA as a measure to evaluate performance and for other discretionary purposes. In addition to the foregoing, management also uses or will use Adjusted EBITDA to measure compliance with certain financial covenants under the Company’s Senior Secured Credit Facilities and 5.375% Notes and 4.75% Notes that were outstanding at December 31, 2016. However, the amounts shown in this presentation for Adjusted EBITDA differ from the amounts calculated under similarly titled definitions in the Company’s Senior Secured Credit Facilities and 5.375% Notes and 4.75% Notes, as those definitions permit further adjustments to reflect certain other non-recurring costs, non-cash charges and cash dividends from the DGD Joint Venture. Additionally, the Company evaluates the impact of foreign exchange impact on operating cash flow, which is defined as segment operating income (loss) plus depreciation and amortization. \n Cautionary Statements Regarding Forward-Looking Information: \n {This media release contains “forward-looking” statements regarding the business operations and prospects of Darling Ingredients Inc., including its Diamond Green Diesel joint venture, and industry factors affecting it. These statements are identified by words such as “believe,” “anticipate,” “expect,” “estimate,” “intend,” “could,” “may,” “will,” “should,” “planned,” “potential,” “continue,” “momentum,” “assumption,” and other words referring to events that may occur in the future. These statements reflect Darling Ingredient’s current view of future events and are based on its assessment of, and are subject to, a variety of risks and uncertainties beyond its control, each of which could cause actual results to differ materially from those indicated in the forward-looking statements. These factors include, among others, existing and unknown future limitations on the ability of the Company's direct and indirect subsidiaries to make their cash flow available to the Company for payments on the Company's indebtedness or other purposes; global demands for bio-fuels and grain and oilseed commodities, which have exhibited volatility, and can impact the cost of feed for cattle, hogs and poultry, thus affecting available rendering feedstock and selling prices for the Company’s products; reductions in raw material volumes available to the Company due to weak margins in the meat production industry as a result of higher feed costs, reduced consumer demand or other factors, reduced volume from food service establishments, or otherwise; reduced demand for animal feed; reduced finished product prices, including a decline in fat and used cooking oil finished product prices; changes to worldwide government policies relating to renewable fuels and greenhouse gas emissions that adversely affect programs like the Renewable Fuel Standards Program (RFS2), low carbon fuel standards (LCFS) and tax credits for biofuels both in the Unites States and abroad; possible product recall resulting from developments relating to the discovery of unauthorized adulterations to food or food additives; the occurrence of Bird Flu including, but not limited to H5N1 flu, bovine spongiform encephalopathy (or \"BSE\"), porcine epidemic diarrhea (\"PED\") or other diseases associated with animal origin in the United States or elsewhere; unanticipated costs and/or reductions in raw material volumes related to the Company’s compliance with the existing or unforeseen new U.S. or foreign regulations (including, without limitation, China) affecting the industries in which the Company operates or its value added products (including new or modified animal feed, Bird Flu, PED or BSE or similar or unanticipated regulations); risks associated with the renewable diesel plant in Norco, Louisiana owned and operated by a joint venture between Darling Ingredients and Valero Energy Corporation, including possible unanticipated operating disruptions and issues related to the announced expansion project; difficulties or a significant disruption in our information systems or failure to implement new systems and software successfully, including our ongoing enterprise resource planning project; risks relating to possible third party claims of intellectual property infringement; increased contributions to the Company’s pension and benefit plans, including multiemployer and employer-sponsored defined benefit pension plans as required by legislation, regulation or other applicable U.S. or foreign law or resulting from a U.S. mass withdrawal event; bad debt write-offs; loss of or failure to obtain necessary permits and registrations; continued or escalated conflict in the Middle East, North Korea, Ukraine or elsewhere; uncertainty regarding the likely exit of the U.K. from the \n European Union; and/or unfavorable export or import markets. These factors, coupled with volatile prices for natural gas and diesel fuel, climate conditions, currency exchange fluctuations, general performance of the U.S. and global economies, disturbances in world financial, credit, commodities and stock markets, \n News Release \n February 28, 2017 \n Page 12 \n and any decline in consumer confidence and discretionary spending, including the inability of consumers and companies to obtain credit due to lack of liquidity in the financial markets, among others, could negatively impact the Company's results of operations. Among other things, future profitability may be affected by the Company’s ability to grow its business, which faces competition from companies that may have substantially greater resources than the Company. The Company’s announced share repurchase program may be suspended or discontinued at any time and purchases of shares under the program are subject to market conditions and other factors, which are likely to change from time to time. Other risks and uncertainties regarding Darling Ingredients Inc., its business and the industries in which it operates are referenced from time to time in the Company’s filings with the Securities and Exchange Commission. Darling Ingredients Inc. is under no obligation to (and expressly disclaims any such obligation to) update or alter its forward-looking statements whether as a result of new information, future events or otherwise.} \n For More Information, contact: \n Melissa A. Gaither, VP IR and Global Communications \n 251 O’Connor Ridge Blvd., Suite 300 Irving, Texas 75038 \n Email : mgaither@darlingii.com \n Phone : 972-717-0300 \n",
@@ -36,7 +39,278 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000091654017000006__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0000916540-16-000057",
+   "filingDate": "2016-11-10",
+   "reportDate": "2016-11-10",
+   "form": "8-K",
+   "local_gz": "000091654016000057__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 0,
+   "n_sentences": 0,
+   "guidance_sentences": [],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出",
+   "status": "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2017-03-01",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 49,
+   "has_qna": true,
+   "n_chars": 41947,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Executives",
+     "content": "Melissa Gaither - VP of IR and Global Communications Randall Stuewe - Chairman and CEO Patrick Lynch - EVP and CAO John Bullock - EVP, Chief Strategy Officer"
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Analysts",
+     "content": "Chip Moore - Canaccord Adam Samuelson - Goldman Sachs Tom Palmer - JPMorgan Heather Jones - Vertical Group Jeff Gates - Gates Craig Irwin - ROTH Capital Partners David Cook - Wells Fargo"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Operator",
+     "content": "Good morning everyone and welcome to the Darling Ingredients Inc. conference call to discuss the Company's Fourth Quarter and Year-End 2016 Financial Results. With us today are Mr. Randall Stuewe, Chairman and Chief Executive Officer of Darling Ingredients; and Mr. Patrick Lynch, Executive Vice President and Chief Administrative Officer. After the speakers’ opening remarks there will be a question and answer period and instructions to ask a question will be given at that time. Today's call is being recorded. I would now like to turn the call over to Melissa Gaither, Vice President of Investor Relations and Global Communications for Darling Ingredients. Please go ahead."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Melissa Gaither",
+     "content": "Thank you, Andrea. Good morning everyone, and thank you for joining us to discuss Darling's earnings results for the fourth quarter and fiscal year 2016 ended December 31, 2016. To augment management's formal presentation, please refer to the presentation section of our IR website for the earnings slide presentation. Randall Stuewe, our Chairman and CEO, will begin today's call with an overview of our fourth quarter and full-year operational and financial performance and discuss some of the trends impacting our business. Patrick Lynch, Executive Vice President and Chief Administrative Officer will then provide additional details about our financial results. Please see the full disclosure of our non-US GAAP measures in both our earnings release, at the end of the earnings slide presentation. Finally, Randy will conclude the prepared portion of the call with some general remarks about the business and year ahead, after which we will be happy to answer your questions. Now for the Safe Harbor statement. This conference call will contain forward-looking statements regarding Darling Ingredients' business opportunities and anticipated results of operations. Please bear in mind that forward-looking information is subject to many risks and uncertainties and actual results may differ materially from what is projected. Many of these risks and uncertainties are described in Darlings' annual report on Form 10-K for the year ended December 31, 2016, our recent press release announced yesterday and our other filings with the SEC. Forward-looking statements in this conference call are based on our current expectations and beliefs. And we do not undertake any duty to update any of the forward-looking statements made in this conference call or otherwise. With that, I would like to turn the call over to Randy."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Randall Stuewe",
+     "content": "Thanks, Melissa. Good morning everyone, and thanks for joining us. Before we begin, I'd like to formally introduce Patrick Lynch and welcome him to the Darling family and his first earnings call. Patrick was recruited by me and is a seasoned and successful public company CFO. As a public company CFO for nearly 15 years, Patrick brings a robust set of skills to compliment our company. He has global experience and has exposure to many commodity ingredients and inputs. Some of you have may already have spoken to Patrick, but as you know he joins our team as part of our CFO succession planning when John retires here in about eight hours. We're currently indebted to John’s 20 years of dedicated service, he was instrumental in building, rebranding and making Darling a global powerhouse in natural and sustainable ingredients. He has been a friend, a mentor and a dynamic business leader for the last 14 years we have been together. We will miss you, but also recognize that it is time to close one chapter and begin another. On behalf of our employees and our directors, we wish you all the best in your retirement. Okay. For 2016, we refined our model, grew our operating platform and significantly deleveraged the company, strengthening and positioning it to grow and capitalize on a world of opportunities in the future. Our model continued to navigate choppy waters around the globe and delivered consistent and improving earnings across all segments. We achieved a number of impressive and fundamentally important milestones that reflect positive momentum for the coming years. Let me recap. We grew tonnage by 7% year over year to an all-time high in our rendering business. We commissioned four new factories and quietly expanded five others. We managed our costs appropriately and we were able to make further reductions in our SG&A. Our balance sheet improved and debt was reduced by 169 million. We lowered our total debt ratio from 4.32 to 3.69. We amended and expanded our credit agreement giving us the needed flexibility and position us to grow when the opportunity presents itself. And we deployed 243.5 million in capital with an additional four projects receiving funding late in the year. We have underway major plant expansions in Los Angeles; Dublin, Georgia; Wahoo, Nebraska; and San Francisco along with the already announced Greenfield construction of a blood plant in Mering, Germany and an Ecoson factory in Denderleeuw, Belgium. Now looking at the fourth quarter and some segment highlights, we delivered consistent earnings as we predicted during our Q3 call. In feed segment, tonnage remained strong in the global rendering business. Global fat remained robust with prices remaining steady to firming in Europe. Global protein demand is strong but we are dealing with ample supplies driven by strong global slaughter and the record global grain and oilseed crops. Global protein prices dropped significantly in the fourth quarter, but has since bounced nicely into early Q1. Overall, Europe and Canada delivered consistently quarter over quarter while the softness in the segment reflected the weakness in the US meat and bone meal prices. In the food segment, Rousselot our four continent gelatin business executed a steady performance year over year with recovery from the third quarter inventory write-down in China. The Sonac edible fat business and our global casings business delivered consistent performances and saw steady to slightly improving margins. In the fuel segment, margins expanded on strong volumes within our Ecoson and Rendac business units. In the quarter, we also received an insurance settlement for business interruption due to the fire in our bio phosphate plant in Son, Netherlands in December 2015. While not in the segment, but part of our fuel strategy, Diamond Green Diesel delivered outstanding earnings for the quarter. Margins remained strong throughout the quarter and we carry good momentum into 2017 even without a prospective blenders tax credit. We should mention that DGD will be down taking a 16 to 18 day turnaround in March to change out the - scheduled catalyst change out. As previously announced, our expansion to process 270 or to expand Diamond Green Diesel 275 million gallons is well underway. Engineering is proceeding, permits are in process and long lead equipment has been ordered. We anticipate the current schedule to reflect the 45 day shutdown in 2018 with full commissioning anticipated in late second quarter 2018. Now let me turn to 2017 and the current operating environment. Our model has proven and effective. We have a good momentum into 2017 and remain optimistic about global fat, protein, food and fuel demand. We will focus on running our core business and managing our margins and cost. Our balance sheet remains strong and we have received the $25 million dividend from DGD in early February to assist in the further deleveraging. Now I’d like to comment about 2017 and the political environment. We have received numerous questions from the investment community about the potential impact the new administration may or could have on our business. First off, the renewable fuel standard while President Trump ordered an administrative stray of potential regulations during Obama's last term, thereby stating the implementation of the 2017 RFS required volume mandates for 60 days, we fully anticipate business as usual. In a recent letter to the Renewable Fuels Association, President Trump reaffirmed his commitment to the RFS and the role of renewable fuels. For 2017, we are estimating Diamond Green Diesel will earn between $0.60 and $0.80 per gallon margin before the most likely reinstatement of the blenders tax credit. While we believe that the blenders tax credit will be retroactive by year-end as it has been in the past, doing the math you can see we are predicting EBITDA and DGD at the entity level of between 100 and 260 million this year. Either way we delivered DGD rapidly and set the company up for meaningful dividends in 2018 and beyond. In tax reform, it is very difficult to truly get a perfect read on what may be promulgated as clearly the GOP hasn't fully agreed on their approach. At this time we see few negatives to the company in their approach on border taxes as we are a major exporter. From a capital deployment perspective, the US corporate tax rate or if the US corporate tax rate drops is rumored to 15% to 20% then capital deployment will begin to favor US investments. With that I'd like to turn it over to Patrick to address a few financial highlights and I'll come back with a few closing remarks. Patrick?"
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Patrick Lynch",
+     "content": "Thanks Randy. For fiscal 2016 we continued to focus on five areas of improvement; debt reduction, reducing working capital, cost reductions in both operating and SG&A expenses, monitoring CapEx deployment and gross margin improvement. We achieved the following results in fiscal 2016. On debt reduction, we paid down an additional 61.6 million of debt in the fourth quarter, year-to-date we paid down 169.7 million ahead of our debt reduction target for 2016 of 150 million. We are committed to reducing working capital in our business for fiscal 2016 versus 2015 levels, we focused on lowering inventories, managing payables and receivables. For fiscal 2016, we improved working capital by 31.8 million which was better than our target of $20 million improvement. For Q4 2016 SG&A expenses were 79.9 million. In fiscal 2016 SG&A expenses were 314 million compared to fiscal 2015 SG&A levels at 322.6 million, a reduction of 8.6 million on a year over year basis. Our CapEx spending for fiscal 2016 was 243.5 million as compared to CapEx spending of 229.8 million in fiscal 2015. The 13.6 million increase in CapEx spending related primarily to two new US rendering plants. Our gross margin improved in fiscal 2016 to 22.3% compared to 21.9% in fiscal 2015. Our gross margin was flat to improved in all three business segments. Now let's take a look at the effective tax rate, cash taxes and depreciation and amortization. The company reported income tax expense of 15.3 million for 2016 compared to 13.5 million in 2015. The effective tax rate for 2016 was 12.5% and 13.7% for 2015. As you know, the biofuel tax incentive expired in December 31, 2016. Excluding that biofuel tax incentive, the company's effective tax rate for 2016 and 2015 is 35.7% and 42.2% respectively. Cash taxes were 23.2 million in 2016 compared to a net refund of 3 million in 2015. For ’17, we are projecting cash taxes of approximately 30 million and an effective tax rate of approximately 39% without tax reform and excluding the biofuel tax incentive. Although minimal details have been provided by either President Trump or the House GOP, we expect the company's effective tax rate to be much lower under either tax reform plan or a combination thereof. We're closely monitoring tax reform deployments and expect to be in a position to take advantage of our opportunities that may arise. Depreciation and amortization for 2017 should be in the 70 to 72.5 million range on a quarterly basis or about the same as fiscal 2016. SG&A again should be in the 82 to 83 million range on a quarterly basis for fiscal 2017 as well. Now I’d like turn the call back over to Randy."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Randall Stuewe",
+     "content": "Thanks Patrick. Overall, we see 2000 [ph] starting up to be a good year with our focus on managing our margins, constructing several new factories and preparing for the new cash generation from Diamond Green Diesel in 2018 and the growth - and the potential growth that this will fuel for us. With that let's open it up to questions. Andrea?"
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Our first question comes from Chip Moore of Canaccord. Please go ahead."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Chip Moore",
+     "content": "I guess first just like to say thanks to John for all the help over the years and Patrick, good to see on board. If we can talk a little bit about capital deployment next year given some of your comments on uncertain policies. Do we take sort of a wait and see approach or how are you thinking about prioritizing projects at this point?"
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Randall Stuewe",
+     "content": "Yeah, I mean remember a significant portion of our capital goes back into maintenance and environment and manual approach there. So we've always called that number around 185 - 175, 185 and that goes out normally, it speeds up in the second quarter as the weather improves around the country and the world. So that would be pretty typical. Some of the projects, Chip, will slow down and then watch and make sure we get everything right, but everything that we have on the expansionary phases I talked about it Los Angeles, Dublin, Wahoo, San Francisco. Those are all well underway in the Mering, Germany and Denderleeuw, Belgium plants were basically approved and in a sense funded last year. So the spending will be this year but those are all underway, so it's pretty much business as usual. Relative to additional deals or things we're looking at out there, yeah, that’s a wait and see make sure we get it right approach here."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Chip Moore",
+     "content": "On RFS and the political spectrum, you sound pretty confident that things shake out okay. Can you just parse that out a little more on how you see impacts, whether we get blenders obligation or something else like that. Thanks folks."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "John Bullock",
+     "content": "Yeah, this is John Bullock. I think you know we've always seen associated with biofuels policy, a lot of volatility because it's complex and there's a lot of people that have an interest in this particular area. At the end of the day while you see a lot of noise with the new administration coming in, our view is based that the structural politics that support biofuels in relationship to foreign policy, energy policy, American job. That’s still all in place and so I don't exactly know how this year is going to play out in relationship to what's going to happen in Washington DC, but there's really nothing changed out there on the standpoint of the driver for the biofuel policy in America and I think there will be days where there's lots of news, but at the end of the day we expect ourselves to be in pretty well the same position from a biofuel policy that we were last year and the year before that and the year before that. So a lot of volatility, but at the end of the day we kind of end up in the same place. So we're comfortable that nothing's changed in the structural politics supporting biofuels."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Operator",
+     "content": "Our next question comes from Adam Samuelson of Goldman Sachs. Please go ahead."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Adam Samuelson",
+     "content": "Let me echo the comments on John, congratulations of the retirement, hope you success as well. Maybe to start, I wanted to continue on the RFS discussion a little bit, maybe this is a good question for John Bullock. Can you talk about how changes in the point of obligation would actually impact Diamond Green and the bio diesel industry specifically gets a lot of focus for ethanol but the dynamics are diesel fuel are a little bit different. How would you see a change in point of obligation impacting where you play in the renewable fuels spectrum?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "John Bullock",
+     "content": "At the end of the day, our view is that the blend of obligation is not the primary thing that drives rent values, it’s the supply and demand of rents. So the point of obligation is an extremely technical rule. As long as we have the proper mandates coming through from the EPA associated with RFS 2. As long as we remain the low cost producer at Diamond Green Diesel which we believe we are, while again you know when they change something like this it creates some uncertainty while the change is going on, but fundamentally we see Diamond Green Diesel being in exactly the same position at the end of all this and it was at the beginning of all this. So the point of obligation from our standpoint I think it means a lot more on the ethanol side than it does on the biodiesel side or the renewable diesel side. We’re comfortable that if they do change the point of obligation that Diamond Green Diesel and our biodiesel businesses will continue to be in a good position."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Adam Samuelson",
+     "content": "And then maybe switching gears to the more base business. I think in the prepared remarks and the slides there was some more optimistic comment on how the first quarter has started the year, certainly the commodity price environment is pretty resilient. But Randy, can you maybe talk through some of the pieces especially in the feed business in terms of the protein markets are covering, the fat markets and what is normally a slower pet spread and maybe the bakery business with corn actually [indiscernible] how that’s reforming."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Randall Stuewe",
+     "content": "I think we came out of third quarter, I think if I remember right about a 106 EBITDA, we thought that fourth quarter would operate pretty close to that level. We saw meat and bone meal kind of drop off, we saw fats kind of seasonally back off. There's developing out there, Adam, a couple different fat markets probably three of them in the world, one is you're seeing real strength in Europe both in the inedible and the edible fats as palm oil remain very firm around the world. And also you're seeing the movement of the rendering fats now into the - what they call the HVO or the renewable diesel businesses in Europe. So their fat markets were very strong. In the US, you've got the low carbon markets that are now starting to differentiate between the different feedstocks and so we saw some pretty good demand in the sense and also some premiums for some of the products we make while there was some softness still seasonally in some of the animal fats there. So overall as I tried to point out was that it's good momentum, the good news with your tonnage being up or our tonnage being up 7% year over year is you got to remember that a lot of - it makes protein and then there's just a lot of protein available in the world. I think I was reading several articles this morning, they’re starting to refer to the world as a meat glut right now and tonnage through the rendering plants and the reason we're expanding four factories in the US right now is because we're out of capacity and in my 14 years that's the first time I can make that statement with a straight face, we’re full almost every day right now around the horn. With that comes the production of a lot more material for us and that's put some pressure especially on the meat and bone meal market because meat and bone meal has very limited uses and that's where the pressure is coming from limited uses meaning limited demand, obviously it doesn't go into cattle feed, but it goes into primarily chicken and hog feed. The pet spreads continue to be pressured a little bit by the amount or the slaughter strength within the poultry industry that I'm sure you're even more familiar with than we are, but the availability of raw material from the chicken slaughter business is never been higher in this country, it's backed off a little bit in Europe but overall it stayed strong. Canada remains strong.  In the food segment, typically January, February turn out to be pretty strong months in the Rousselot business but you also add Chinese New Year here this year at the end of January. It seems like we've come out of the blocks pretty strong in the food segment with demand around the world. We're seeing in China back off a little bit on the pork , they were pulling different parts and cheap cuts out of both Canada and the European continent that we're going to rendering. They're coming back to us, so supply is picking up a little bit there. And then in the fuel segment both Ecoson and Rendac typically have pretty good first quarter with their business model. So overall we're setting up pretty good there. Diamond Green clearly weaker without the tax credit into the end of the quarter and then also with the turnaround coming down to change out a little bit of catalyst. But I think we carry pretty good momentum into the quarter here and the weather - the good news is we didn't really carry a super hard winter in the Midwest into our business but overall it looks pretty good right now."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Operator",
+     "content": "Our next question comes from Tom Palmer of JPMorgan. Please go ahead."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Tom Palmer",
+     "content": "Good morning, thanks for taking my questions and congratulations to you John. Given the pending facility expansion on the Diamond Green Diesel side, I was a little surprised to see the 25 million dividend, was this just related to profitability in that segment being really strong today and the expectation that even without the blenders tax credit you can finance most of the facility or are you kind of changing tactic in terms of how you're looking at the facility construction and maybe looking on the debt side or something else?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Randall Stuewe",
+     "content": "You answered a lot of your own questions, but I think it's a great point, Tom, this is Randy. I think what you're seeing is out of us a confidence of what we see right now as the margin structure or the underlying margin structure within the business. We've built a lot of cash in that facility, our partner is somebody that likes to have cash in there, our agreement with them. As we always remind people, Valero was there to provide the financing to the venture when the Department of Energy wasn't, so we're indebted to them and we’re thankful they did, it's been a great investment. So we built cash, as we said we're looking at a $0.60 to $0.80 margin, without $1 a gallon going for 2017 that's 100 to 260 million, remember if the tax credit which has been typically made retro somewhere between Thanksgiving and middle December the last several years, then you would file it and that would not be received until either late Q1 ’18 or maybe even April of ’18. So you've got a lot of moving parts like John Bullock referred to, but what the common theme out of all of it is when you run a cash mass balance and you take out what we're going to spend for the turnaround, what we're going to spend for the expansion, you still see that the facility is completely de-levered under the current margin structure in early ’18. So at that point in time, in a sense, it becomes completely transparent to the base business model and we then have the potential or the ability to then begin to pull out dividends as cash builds probably on a quarterly basis.  So that's what we're looking at. So, I mean what we're seeing evolve in the business is we're seeing, number one, the facility has been up on its third year here, fourth year, three-and-a-half, and at the end of the day, it had road fuel contracts that were through the pipeline as we’ve tried to remind shareholders most of those contracts, if not all of them, expire here at the end of ’17 and we begin to move more and more tonnage to the low carbon fuel markets and low carbon fuel markets are defined as both here and abroad. And so those margins today are much nicer than road fuel and we're also bringing on line here in Q1 with our partner Valero the new ability at Diamond Green Diesel to basically load out a very high percentage of our production by rail to go to California.  So all of that, when you piece that altogether, that says -- that answers how can you have margins in Diamond Green Diesel when the biodiesel industry is operating at zero. It's because we have the ability to use the cheapest feedstock in the world, the lowest operating costs of any plant in North America and our ability now to access the low carbon fuel markets coming on. Also to be topped of, if the blender’s tax credit is put back in and then once that's put in, as we believe, it will be in ’18 and you start -- you have the potential to pull meaningful dividends."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Operator",
+     "content": "Our next question comes from Heather Jones of Vertical Group. Please go ahead."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Heather Jones",
+     "content": "Good morning and John thanks for all your help over the years. I understand the business and hope you enjoy your retirement. I just had a detailed question first. On the expansions, can you give us a sense of how much that will increase fee capacity in the US?"
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Randall Stuewe",
+     "content": "I'd prefer not to answer that, Heather, but I mean let’s put all kind of walk around the horn here. San Francisco was an old factory that was basically a city plant running raw material. We've seen an expansion of poultry in California and so we converted that plant here in January to what we call an all-white meat plant, meaning it runs only poultry and makes pet grade. It’s a pet grade conversion plant now for the West Coast. So that's a conversion of existing capacity and a modernization and a little bit of creep of capacity to handle the product. In Turlock, California, we're adding an additional feather system in order to be able to take more of the feathers into that facility.  In Los Angeles, there's a modernization to replace a smaller cooker with a larger line to give us enough capacity for many years to come out there. So we would operate two very large systems in Los Angeles, giving us the chance to go after additional business. As I said, we were full before double in Georgia as the addition of a new cooker and in the Southeast United States, we were full as you follow the poultry industry, we were full down there and needed additional capacity there. So the addition and it's basically the addition of two to three new cookers for us of all different sizes."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Heather Jones",
+     "content": "Okay. And as far as going to your comments about the low carbon markets and the differentiated fats markets right now, so as you pointed out, fats prices in Europe is surging. So I was wondering given that the BTC hasn’t been renewed and given that fats prices in other parts of the world are higher, can you give us a sense of what you think your competitive advantage is against other exporters to the US like a Neste and all, I mean do you believe you have a meaningful cost advantage, given these divergent fat prices?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "John Bullock",
+     "content": "Yeah. This is John Bullock. We think we do and I think that kind of the numbers over the past two or three years have demonstrated that the fact the matter is the key to the low carbon fuel standard is being to able to originate fats that have a low CI value or in essence that reduce greenhouse gas emissions on a lifecycle basis the most and of course that’s the beautiful marriage between Darling and having being proud owners of Diamond Green Diesel is that in essence, if you think about it in oil terms, we own the oil field in terms of the fats that make the low carbon fuel standards the most meaningful as a producer and we are located geographically, extremely close and the US is one of the most major producers of the types of fats that create the low carbon fuel standards. So when you combine our location being in the United States with our location to fat and the competitive advantages we feel we have from a processing standpoint with our location next to the Valero refinery, the combination of all those things mean that on a landed cost basis, we think we have a significant competitive advantage over anybody else in the industry."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Heather Jones",
+     "content": "And how meaningful is this saying that where CARB’s changed the pathway for distiller’s corn oil and so it increased its CI score, like how big of a deal is that for Yellow Grease or UCO demand in California, like how can we think about what that could do to pricing for your production there in California."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "John Bullock",
+     "content": "Well, obviously and I don't know I ever follow this stuff as detailed as you do, but CARB did change their CI value late last year and it used to be that distiller’s corn oil had a significant competitive advantage on a CI basis. They were like a 4 and 8 and used cooking oil and animal fats were 29, 30s in that type of an area. Now, used cooking oil is around 17 and distiller’s corn oil is up in the high-20s as far as the CI. I think what that does is obviously to the extent that that CI has gone up on distiller’s corn oil is it means that the same gallons produce less of a benefit in terms of meeting the standards and goals that are established by the state of California and ultimately should be beneficial in terms of raising the overall LCFS prices. So I think it's -- we used distiller’s corn oil at Diamond Green Diesel, it’s one of the feedstocks that we use. Overall, we think the pathway changes that the California Air Resource Board make just mean the competitive suite of fats that we utilize at Diamond Green Diesel are even more competitive."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Heather Jones",
+     "content": "Thanks. And my final questions is on newbuild of RD facilities. So I think if I remember correctly, Neste on its last call talked about considering new build. So I was just wondering if you could give us a sense of, if they chose North America -- or they or anyone chose North America, like, how long of a process do you think it would be from a permitting perspective, et cetera."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Randall Stuewe",
+     "content": "Well, it depends on what the build obviously. They try to go on the West Coast of the United States, I can tell you that any plant that is cited on the West Coast of the United States faces significant permitting sequel issues associated with that, particularly a large plant like that. I think one of the things we've seen over the years and noted in the oil industry is and renewable diesel processing is an oil type of a process. It’s essentially hydro trading and isomerization. Those types of processes are extremely difficult to permit in the state of California. So it's my guess, but I'm guessing that if anybody wanted to be out there, they would be hard pressed to be in the two year range and are probably looking at three to four years on a Greenfield basis."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Operator",
+     "content": "Okay. Thank you so much. Our next question comes from Gareth Webin of Gates. Please go ahead."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Jeff Gates",
+     "content": "Hi. This is Jeff. First, John, I also would like to say how much we appreciate your contribution over the years and wish you well on the next chapter. Just a couple of quick question. First, Randy, how are you guys looking at core rendering profitability, especially with regards to some normalization of the yellow grease prices and bakery profitability versus peak or more normalized levels over the course of the cycle versus what you reported in 2016, number one. Number two, can you talk about the four new plants that you've added, how much capital you put in. What contribution you've got in ’16 and what those assets might generate in ’17 on a EBITDA basis? And then the third question is that $0.60 to $0.80 margin range for Diamond Green Diesel, are you assuming that the other folks in the industry run for fun and also expecting to get the tax credit retroactively and therefore the rent values are still somewhat depressed for the entire year to get that $0.60 to $0.80 margin?"
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Randall Stuewe",
+     "content": "Yeah. Jeff, this is Randy and John will help me here if I don't say -- John Bullock will, if I don't say it right. I mean, yeah, the industry is running for fun. We participate in the biodiesel industry in Canada and Butler, Kentucky and to a degree we're running for fun there or hope on the dollar a gallon there. Rents have not reacted to where they should be, if the dollar isn't coming and that'll be once again a big surprise if it doesn't come to the industry, but for now, it's a rewind of the movie that we've seen before. Go on forward there. In the $0.60 to $0.80 as we said is just really the competitive advantage of the mix of feedstock that we have, the operating cost advantage relative to biodiesel and then the ability to hit more and more, a greater portion of our production hitting into the low carbon markets and I think we want to be clear that that will grow over the course of the year as we're able to work out of our arbitrage and in some of the road fuel contracts.  In the base business, I mean, when you look at ’16 versus -- or ’15 versus ’16, most of the improvement there came out of volume. Margins within the global rendering business were pretty steady around the world. I mean, they're very consistent quarter-over-quarter in Europe and also in Canada. In the US, as you’ve known the business for many years, you have the non-formula piece, which is the -- typically would be your route business in the city as a small portion and then the, what we call, the fallen stock or the dead animal business in the Midwest. The dead animal business is the one that probably weighed on as the most here in Q4 in the US, because in that business, you're putting a small charge to pick up an animal and you're hoping to -- to have three earning stream out of that animal, the fat, the protein, and the hide.  Hide values continue to be depressed around the world as China and Mexico are the largest consumers or buyers of untanned hides for the leather industry and that industry has kind of been in the doldrums with kind of a global economic slowdown for about a year. So we see pretty much business as usual in the rendering business going forward for the year. Bakery had a good year from ’15 to ’16. We made some fundamental improvements about how we procure the tonnage there, we also had a very effective margin management business that John Bullock was able to manage there, use and derivatives and we carry pretty good momentum into next year.  The other big change that’s hidden in the segment as you know is the used cooking oil business and with John Bullock's leadership and Todd Mathes, we've been able to, in the USA and North America, go back and widen our margins and change how we go to market with both tanks, people and infrastructure in that business and we were able to put some pretty good money back in the feed segment. I see that as only improving in ’17 here and bakery being pretty close to steady, maybe down just a little bit, but corn came back sharply here the last day, day-and-a-half."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Operator",
+     "content": "Our next question comes from Craig Irwin of ROTH Capital Partners. Please go ahead."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Craig Irwin",
+     "content": "Hi. Good morning and thank you for taking my questions. So first, John, congratulations on your retirement and I guess it's good to end on a strong point, congratulations for the strong finish to 2016. So my first question is about the biodiesel tax credit. We're hearing that the conversation in DC is sort of heading towards five year reinstatement as a producer’s credit, but a ramp down on the value of that credit where it would probably be eliminated at the back end of the five years. So can you maybe talk about what a potential ramp down would do for Diamond Green Diesel as a low cost producer, $0.50 plus below everyone else in the market and what we do see is an ideal solution for the reinstatement and maybe phase out of the biodiesel tax credit over the next number of years?"
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "John Bullock",
+     "content": "Yeah. This is John Bullock. I think our view on the tax credit and we've talked about this I think many times out there, we've built Diamond Green Diesel on the basis of the carbon concept, which is really RFS2 and ultimately as it evolved the low carbon fuel standards. The existence of the tax credit is really just an element of the green premium. What drives the value of our product for the mandates both here and around the world? So when the biodiesel is in effect, it simply allows those mandates to work more effectively. The difficulty we've had with the tax credit is that Congress has dealt with it in such a herky jerky fashion, where sometimes it's there, sometimes it's not there or sometimes it's there retroactively.  It always ends up being there, but the way they deal with it is, I think, in one of the earlier questions somebody said is the industry running for fun right now and the answer is the biodiesel industry basically is, there's not much margin out there on biodiesel today. Everybody's running on the anticipation that Congress will retroactively reinstate the biodiesel tax credit, because they've trained us to believe that that's what's going to happen since they’ve done it two or three other times in history. If Congress will provide us with some steady road forward, a path that we can all define, so that we understand when the tax credit is going to be in effect for how much and for how long. Diamond Green Diesel’s natural competitive environment and what will happen with rents and LCF which will adjust around whether the tax credit is there or not or what the tax credit level is.  Diamond Green Diesel’s margins are going to be just fine. We can survive and make good money at Diamond Green Diesel without a tax credit as long as Congress has provided us with certainty as to whether it's going to be there or not be there. We believe that it should be there. We think it's good policy for America and we fully support the extension of the biodiesel tax credit, but if Congress decides that they're going to give us a five year path and they're going to define that path at various levels, from our standpoint, that’s the type of certainty that we look forward to and that we would be able to structure and run our Diamond Green Diesel and our biodiesel businesses in a much more normalized basis than we've been able to operate in an environment, which Congress passes in and out of the tax credit on a proactive retroactive basis."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Craig Irwin",
+     "content": "Great. Thank you for that. So I think we hosted a meeting for clients with Secretary Vilsack and one of the things that kind of surprised me in the conversation was how constructive he really is on aviation biofuels and I guess it's fair to ask the airlines that pay their fair share when we are going to put ethanol in our gas tanks and people using green diesel in their trucks. But can you maybe discuss whether or not there's been a change in tempo on the conversation that Diamond Green about potentially participating in the aviation fuel market, whether or not this is something where you're taking a closer look at the potential for Darling to provide feedstocks and if you see this as a credible growth opportunity over the next number of years?"
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "John Bullock",
+     "content": "Yes. This is John Bullock again. Yeah, I think we will see aviation fuel as yet another driver for the renewable diesel demand, both in the United States and around the world. We see almost every major airline looking into the possible use and many have now started to incorporate one [indiscernible] renewable diesel into their field fleet. The fundamental issue with jet renewable diesel is that, it has to present itself as a economic proposition that is as viable as producing road feel for the LCFS markets. And as of this point in time, that pricing structure simply does not exist or it’s not enough of a premium associated with jet fuel to deal with what is a yield loss that happens inside a renewable diesel refinery.  I believe at some point in time, that probably will happen. We don't believe at Diamond Green Diesel, at this point in time that we need to do anything other than produce for the LCFS markets, which is our target markets on a road fuel basis. But we are closely monitoring that and that may be an opportunity in the future. I'm sure that there will be demand for renewable fuel, diesel jet fuel being created by the airline industry. So there's a lot of buzz on that out there right now. That is just another demand for renewable diesel from our perspective and another demand for the types of fats that that we produce."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Operator",
+     "content": "Our next question comes from David Cook of Wells Fargo. Please go ahead."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "David Cook",
+     "content": "Good morning. Actually, all of my questions have been asked. Thank you."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "David Cook",
+     "content": "Our next question comes from William Baldwin of Baldwin Anthony Securities. Please go ahead."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "William Baldwin",
+     "content": "Good morning. Looking at the realizations per gallon out of your Diamond Green Diesel plant there in the fourth quarter, it was up substantially more versus the third quarter than the ultra-low sulfur diesel spot prices were up. What factors went into significantly improving the realizations per gallon there in the fourth quarter?"
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "John Bullock",
+     "content": "Yeah. This is John Bullock. We had strong rent prices and we were starting to ship a greater portion of our product to the LCFS markets in the fourth quarter and we had diesel fuel prices that had become stronger as the year went along last year. So a combination of various factors that led to an excellent margin environment for Diamond Green Diesel and of course the biodiesel tax credit was still going to factor in that quarter."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "William Baldwin",
+     "content": "Right. Should we expect then going forward, as we go through 2017 that we’ll be shipping on a consistent basis product into the low carbon fuel markets next year?"
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "John Bullock",
+     "content": "I'm sorry. Say that again, sir."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "William Baldwin",
+     "content": "I said looking at the shipment levels here in the fourth quarter into the low carbon fuel market out to California, should we anticipate that that will continue as 2017 progresses and perhaps increase as 2017 progresses?"
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "John Bullock",
+     "content": "We don't talk specifically about one of them marketing our product, but I think Randy has said in the past that starting in 2016, we were able to start just laying a gradually greater percentage of our product to the LCFS markets and yes, it would be fair to think that during the course of 2017, we can see that trend continue and then as we get into 2018, we anticipate virtually all of our product going to LCFS type markets."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Operator",
+     "content": "This concludes our question-and-answer session. I would like to turn the conference back over to Mr. Randall Stuewe for any closing remarks."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Randall Stuewe",
+     "content": "Thanks, Andrea. Thanks everybody for joining us and look forward to catching up with you guys and give you the first quarter review here in May. Thank you."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Operator",
+     "content": "The conference has now concluded. Thank you for attending today's presentation. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +321,8 @@
    "reportDate": "2016-12-31",
    "accession": "0000916540-17-000005",
    "url": "https://www.sec.gov/Archives/edgar/data/916540/000091654017000005/dar-2016123110xk.htm",
-   "local_gz": "000091654017000005__annual.txt.gz"
+   "local_gz": "000091654017000005__annual.txt.gz",
+   "n_lines": 9353
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +330,8 @@
    "reportDate": "2016-10-01",
    "accession": "0000916540-16-000058",
    "url": "https://www.sec.gov/Archives/edgar/data/916540/000091654016000058/dar-20161001x10q.htm",
-   "local_gz": "000091654016000058__q0.txt.gz"
+   "local_gz": "000091654016000058__q0.txt.gz",
+   "n_lines": 5571
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +339,106 @@
    "reportDate": "2016-07-02",
    "accession": "0000916540-16-000052",
    "url": "https://www.sec.gov/Archives/edgar/data/916540/000091654016000052/dar-20160702x10q.htm",
-   "local_gz": "000091654016000052__q1.txt.gz"
+   "local_gz": "000091654016000052__q1.txt.gz",
+   "n_lines": 5508
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2016-11-10",
   "n_rows": 8,
@@ -83,6 +453,63 @@
     "ocf": 59240000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 398179000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 376968000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 112131000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 2090730000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 50838000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 66398000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 109000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165146000.0,
+      "filed": "2015-05-14",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +520,63 @@
     "ocf": 128310000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 396423000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 368434000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 126020000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 2045301000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 47884000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 66245000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 3080000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.02,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165298000.0,
+      "filed": "2015-08-13",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +587,63 @@
     "ocf": 109104000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 366775000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 379093000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 148886000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 2024378000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 63542000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 67327000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -9087000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.06,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165195000.0,
+      "filed": "2015-11-12",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +654,63 @@
     "ocf": 124694000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 344583000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 371392000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 156884000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1960000000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 67584000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 69934000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 84429000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.51,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 33000.0,
+      "filed": "2016-03-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +721,63 @@
     "ocf": 45043000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 372616000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 376346000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 147326000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1970984000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 53375000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 72256000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 1079000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.01,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 164553000.0,
+      "filed": "2016-05-12",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +788,63 @@
     "ocf": 123190000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 364362000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 399877000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 157815000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1905334000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 56031000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 69531000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 31999000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.19,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165474000.0,
+      "filed": "2016-08-11",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +855,63 @@
     "ocf": 112329000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 359095000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 382857000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 148585000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1845530000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 58818000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 70653000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 28694000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.17,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165436000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +922,24 @@
     "ocf": 110474000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 40541000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.25,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 887300000.0,
     "revenue_xbrl_for_reference": 887277000.0
@@ -166,87 +953,14 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2070",
   "sic2": "20",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 55,
-  "peer_list_all_same_sic2_tickers": [
-   "ABEV",
-   "ADM",
-   "AKO-A",
-   "BF-A",
-   "BGS",
-   "BRFH",
-   "BRID",
-   "BUD",
-   "CAG",
-   "CCEP",
-   "CCU",
-   "CELH",
-   "COKE",
-   "CPB",
-   "DEO",
-   "FIZZ",
-   "FLO",
-   "FMX",
-   "FRPT",
-   "GIS",
-   "HAIN",
-   "HRL",
-   "HSY",
-   "INGR",
-   "JBSS",
-   "JJSF",
-   "JVA",
-   "KDP",
-   "KHC",
-   "KO",
-   "KOF",
-   "LW",
-   "LWAY",
-   "MDLZ",
-   "MED",
-   "MKC",
-   "MNST",
-   "MZTI",
-   "NOMD",
-   "PEP",
-   "PLAG",
-   "POST",
-   "PPC",
-   "REED",
-   "RMCF",
-   "SAM",
-   "SENEA",
-   "SJM",
-   "SOWG",
-   "SRXH",
-   "STZ",
-   "TAP",
-   "TR",
-   "TSN",
-   "WVVI"
-  ],
-  "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0000021344",
-    "name": "COCA COLA CO",
-    "ticker": "KO",
-    "sic2": "20"
-   },
-   {
-    "entity_id": "0000077476",
-    "name": "PEPSICO INC",
-    "ticker": "PEP",
-    "sic2": "20",
-    "form": "10-K",
-    "filingDate": "2017-02-15",
-    "accn": "0000077476-17-000010",
-    "local_gz": "000007747617000010__peer10k.txt.gz",
-    "capex_excerpt": [
-     "aries are subject to environmental remediation obligations arising in the normal course of business, as well as remediation and related indemnification obligations in connection with certain historical activities and contractual obligations, including those of businesses acquired by us or our subsidiaries. While these environmental remediation and indemnification obligations cannot be predicted with certainty, such obligations have not had, and are not expected to have, a material impact on our capital expenditures, earnings or competitive position. In addition to the discussion in this section, see also “Item 1A. Risk Factors.” Employees As of December 31, 2016 , we and our consolidated sub"
-    ]
-   }
-  ]
+  "bucket": "消費與零售",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "insufficient",
+  "n_listed_peers": 0,
+  "peer_list_all_tickers": [],
+  "peer_annual_reports_2_largest": "同業資料不足"
  },
  "6_價格狀態": {
   "ret_6m_skip1m": -0.261723712568358,
@@ -266,7 +980,16 @@
   "latest_data_date": "2017-03-01",
   "cutoff": "2017-03-01",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2017-03-01",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2017-03-02",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

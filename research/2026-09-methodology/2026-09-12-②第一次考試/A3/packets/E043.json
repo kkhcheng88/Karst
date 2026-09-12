@@ -1,6 +1,7 @@
 {
  "event_id": "E043",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E043",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "ALRM",
  "cik": "0001459200",
  "name": "Alarm.com Holdings, Inc.",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2020-11-06(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E043",
   "event_id": "E043",
   "ticker": "ALRM",
   "cik": "0001459200",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001459200-20-000028",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1459200/000145920020000028/alrm-20201105.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1459200/000145920020000028/alrm-20201105.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n ex991earningsreleasese.htm\n EXHIBIT 99.1 PRESS RELEASE DATED NOVEMBER 5, 2020\n Document \n Exhibit 99.1 \n Alarm.com Reports Third Quarter 2020 Results \n -- Third quarter SaaS and license revenue increased 17.9% year-over-year to $100.1 million -- \n -- Third quarter total revenue increased 24.2% year-over-year to $158.9 million -- \n -- Third quarter GAAP net income attributable to common stockholders of $36.1 million, compared to $17.7 million for the third quarter of 2019 -- \n -- Third quarter non-GAAP adjusted EBITDA increased 31.1% year-over-year to $34.5 million, compared to $26.3 million for the third quarter of 2019 -- \n TYSONS, VA., November 5, 2020 -- Alarm.com Holdings, Inc. (Nasdaq: ALRM), the leading platform for the intelligently connected property, today reported financial results for its third quarter ended September 30, 2020. Alarm.com also provided its financial outlook for SaaS and license revenue for the fourth quarter of 2020 and increased its guidance for the full year of 2020. \n “We are pleased to report strong results this quarter,” said Steve Trundle, President and CEO of Alarm.com. “Our more than 9,000 service provider partners have been able to operate very effectively around the challenges posed by the pandemic and have been successfully activating new subscribers with an increasing range of connected property services. Our team also delivered innovative new products that will enhance our service providers’ competitive position. While there continue to be challenges, we feel we are well positioned to manage through the uncertainty caused by the pandemic.” \n Third Quarter 2020 Financial Results as Compared to Third Quarter 2019 \n • SaaS and license revenue increased 17.9% to $100.1 million, compared to $84.9 million. \n • Total revenue increased 24.2% to $158.9 million, compared to $127.9 million. \n • GAAP net income attributable to common stockholders was $36.1 million, or $0.71 per diluted share, compared to $17.7 million, or $0.35 per diluted share. \n • Non-GAAP adjusted EBITDA increased to $34.5 million, compared to $26.3 million. \n • Non-GAAP adjusted net income attributable to common stockholders increased to $24.8 million, or $0.49 per diluted share, compared to $18.6 million or $0.37 per diluted share. \n Balance Sheet and Cash Flow \n • Total cash and cash equivalents increased to $247.2 million as of September 30, 2020, compared to $119.6 million as of December 31, 2019. \n • For the quarter ended September 30, 2020, cash flows from operations was $18.6 million and free cash flow was $15.1 million, compared to cash flows from operations of $1.0 million and negative free cash flow of $4.0 million for the quarter ended September 30, 2019. \n Recent Business Highlights \n • Launched Flex I/O: Flex I/O is a versatile, completely wireless device that extends security and awareness across a property and to assets in any location. The battery-powered device leverages LTE CAT-M capabilities to create new security applications that existing hub-connected sensors cannot address. It’s easily installed on a backyard gate, detached garage, remote storage unit, or tethered to other assets like a boat, tractor or lawn mower. The Flex I/O sensor seamlessly integrates with Alarm.com powered systems, acting as just another sensor in the system even though it may be physically located many miles away, and it triggers notifications to subscribers as well as video recordings when activity is detected, or an asset is moved. \n • EnergyHub Expands Customer Base: In an expanded partnership, National Grid will now manage commercial and industrial demand response programs through EnergyHub’s Mercury DERMS platform. With a single platform, NationalGrid can manage an expanding ecosystem of energy resources for both commercial and industrial and residential assets that includes in-home batteries and electric vehicles. \n EnergyHub also announced a new partnership with the Los Angeles Department of Water and Power, or LADWP, the largest municipal utility in the country, to manage their thermostat-based demand response program. The EnergyHub platform will allow LADWP to flexibly manage peak demand and contribute to addressing regional distribution constraints and climate goals. \n • Launched Smart Water Valve + Meter to Security Channel Service Providers: Smart Water Valve + Meter is part of a comprehensive water management solution that monitors usage and responds to a range of sensors to quickly protect properties from damage caused by water leaks and floods. The innovative new device enables an additional service plan. Developed by Building36 for its plumbing and HVAC service provider partners, Smart Water Valve + Meter is now also available for Alarm.com’s service providers. \n 1 \n • Award Winning Technology: Alarm.com’s Smart Gateway won the IoT Evolution Product of the Year. Smart Gateway is a cloud-managed access point that provides a dedicated Wi-Fi network for Alarm.com video cameras, and is designed to significantly reduce support intensity for service providers. \n Highlights, an animated summary of important activity in a subscribers’ home, won an ESX Innovation Award in the category of consumer mobile apps. Highlights complements Alarm.com’s video analytics service and enhances the overall user experience while increasing routine engagement with the Alarm.com mobile app. \n Wellcam™, the first smart home video solution designed to connect families and empower healthy, independent living, won New Product of the Year from Security Today. Wellcam helps families, medical professionals and others monitor the activity and well-being of loved ones or patients in both at-home or healthcare settings. \n Financial Outlook \n At this time, the general economic situation remains fluid and it remains challenging to predict the full scope and duration of the impacts of the COVID-19 pandemic. Alarm.com is providing guidance for the fourth quarte r of 2020 an d increasing its g uidance for the full year of 2020 based upon what it currently sees in its markets. \n For the fourth quarter of 2020: \n • SaaS and license revenue is expected to be in the range of $101.2 million to $101.4 million. \n For the full year of 2020: \n • SaaS and license revenue is expected to be in the range of $389.0 million to $389.2 million. \n • Total revenue is expected to be in the range of $594.0 million to $604.2 million, which includes anticipated hardware and other revenue in the range of $205.0 million to $215.0 million. \n • Non-GAAP adjusted EBITDA is expected to be in the range of $113.0 million to $115.0 million. \n • Non-GAAP adjusted net income attributable to co mmon stockholders is expected to be in the range of $ 80.0 million to $ 81.5 million, based on an estimated tax rate of 21.0%. \n • Based on an expected 51.0 million weighted average diluted shares outstanding, non-GAAP adjusted net income attributable to common stockholders is expected to be $1.57 to $1.60 per diluted share. \n The guidance provided above is forward-looking in nature. Actual results may differ materially. See the cautionary note regarding “Forward-Looking Statements” below. The guidance provided above is based on expectations as of the date of this press release and Alarm.com undertakes no obligation to update guidance after such date. \n Conference Call and Webcast Information \n Alarm.com will host a conference call to discuss its third quarter 2020 financial results and its outlook for the fourth quarter and full year of 2020. A live audio webcast is scheduled to begin at 4:30 p.m. ET on November 5, 2020. To participate on the live call, analysts and investors should dial 866.588.3290 (U.S./Canada) or 262.558.6169 (International) at least ten minutes prior to the start time of the call. A telephonic replay of the call will be available through November 13, 2020 by dialing 855.859.2056 (U.S./Canada) or 404.537.3406 (International) and providing Conference ID: 6882929. Alarm.com will also offer a live and archived webcast of the conference call a ccessible on Alarm.com’s Investor Relations web site at http://investors.alarm.com. \n About Alarm.com Holdings, Inc. \n Alarm.com is the leading platform for the intelligently connected property. Millions of consumers and businesses depend on Alarm.com's technology to manage and control their property from anywhere. Our platform integrates with a growing variety of Internet of Things (IoT) devices through our apps and interfaces. Our security, video, access control, intelligent automation, energy management, and wellness solutions are available through our network of thousands of professional service providers in North America and around the globe. Alarm.com's common stock is traded on Nasdaq under the ticker symbol ALRM. For more information, please visit www.alarm.com. \n 2 \n Non-GAAP Financial Measures \n To supplement our consolidated selected financial data presented on a basis consistent with GAAP, this press release contains certain non-GAAP financial measures, including adjusted EBITDA, non-GAAP adjusted income before income taxes, non-GAAP adjusted net income, non-GAAP adjusted income attributable to common stockholders before income taxes, non-GAAP adjusted net income attributable to common stockholders, non-GAAP adjusted net income attributable to common stockholders per share and free cash flow. We have included non-GAAP measures in this press release because they are financial, operating or liquidity measures used by our management to (i) understand and evaluate our core operating performance and trends and generate future operating plans, (ii) make strategic decisions regarding the allocation of capital and investments in initiatives that are focused on cultivating new markets for our solutions and (iii) provide useful information to management about the amount of cash generated by the business after necessary capital expenditures. We also use certain non-GAAP financial measures, including adjusted EBITDA, as performance measures under our executive bonus plan. Further, we believe that these non-GAAP measures of our financial results provide useful information to investors and others in understanding and evaluating our results of operations, business trends and financial condition. While we believe the use of these non-GAAP measures provides useful information to investors and management in analyzing our financial performance, non-GAAP measures have inherent limitations in that they do not reflect all of the amounts and transactions that are included in our financial statements prepared in accordance with GAAP. Non-GAAP measures do not serve as an alternative to GAAP nor do we consider our non-GAAP measures in isolation, accordingly we present non-GAAP financial measures only in connection with GAAP results. We urge investors to consider non-GAAP measures only in conjunction with our GAAP financials and to review the reconciliation of our non-GAAP financial measures to the comparable GAAP financial measures, which are included in this press release. \n We consider free cash flow to be a liquidity measure, which we define as cash flows from operating activities less purchases of property and equipment. \n With respect to our expectations under “Financial Outlook” above, reconciliation of adjusted EBITDA and adjusted net income guidance to the closest corresponding GAAP measure is not available without unreasonable efforts on a forward-looking basis due to the high variability, complexity and low visibility with respect to the charges excluded from these non-GAAP measures, in particular, non-ordinary course litigation expense, acquisition-related (benefit) / expense and tax windfall adjustments can have unpredictable fluctuations based on unforeseen activity that is out of our control and/or cannot reasonably be predicted. We expect the above charges to have a significant and potentially highly variable impact on our future GAAP financial results. \n We exclude one or more of the following items from non-GAAP financial and operating measures: \n Stock-based compensation expense: We exclude stock-based compensation expense, which relates to stock options and other forms of equity incentives primarily awarded to employees of Alarm.com, because they are non-cash charges that we do not consider when assessing the operating performance of our business. Additionally, the determination of stock-based compensation expense can be calculated using various methodologies and is dependent upon subjective assumptions and other factors that vary on a company-by-company basis. Therefore, we believe that excluding stock-based compensation expense from our non-GAAP financial measures improves the comparability of our results to the results of other companies in our industry. \n Secondary offering expense : We exclude secondary offering expense because we do not consider costs associated with the secondary offering to be indicative of our core operating performance and we believe that the exclusion of this expense allows us to better provide meaningful information about our operating performance, facilitates comparisons to our historical operating results and improves the comparability of our results to the results of other companies in our industry. \n Litigation expense: We exclude non-ordinary course litigation expense because we do not consider legal costs and settlement fees incurred in litigation and litigation-related matters of non-ordinary course lawsuits and other disputes, particularly costs incurred in ongoing intellectual property litigation, to be indicative of our core operating performance. We do not adjust for ordinary course legal expenses, including those expenses resulting from maintaining and enforcing our intellectual property portfolio and license agreements. \n Acquisition-related (benefit) / expense: Included in operating expenses are incremental costs directly related to business and asset acquisitions as well as changes in the fair value of contingent consideration liabilities, when applicable. We exclude acquisition-related (benefit) / expense from our non-GAAP financial measures because we believe that the exclusion of this expense allows us to better provide meaningful information about our operating performance, facilitates comparisons to our historical operating results, improves the comparability of our results to the results of other companies in our industry, and ultimately, we believe helps investors better understand the acquisition-related (benefit) / expense and the effects of the transaction on our results of operations. \n Depreciation expense: We record depreciation primarily for investments in property and equipment. We exclude depreciation in calculating adjusted EBITDA because we do not consider depreciation when we evaluate our ongoing business operations. For non-GAAP adjusted net income, non-GAAP adjusted net income attributable to common stockholders and non-GAAP adjusted net income attributable to common stockholders per share, basic and diluted, we do not exclude depreciation. \n 3 \n Amortization expense: GAAP requires that operating expenses include the amortization of acquired intangible assets, which principally include acquired customer relationships, developed technology and trade names. We exclude amortization of intangibles from our non-GAAP financial measures because we do not consider amortization expense when we evaluate our ongoing business operations, nor do we factor amortization expense into our evaluation of potential acquisitions, or our measurement of the performance of those acquisitions. We believe that the exclusion of amortization expense enables the comparison of our performance to other companies in our industry as other companies may be more or less acquisitive than us and therefore, amortization expense may vary significantly by company based on their acquisition history. \n Interest expense: We record interest expense primarily related to our debt facility. We exclude interest expense in calculating our adjusted EBITDA calculation. For non-GAAP adjusted net income, non-GAAP adjusted net income attributable to common stockholders and non-GAAP adjusted net income attributable to common stockholders per share, basic and diluted, we do not exclude interest expense. \n Interest income and other income, net: We exclude interest income and other income, net from our non-GAAP financial measures because we do not consider it part of our ongoing results of operations. \n Income taxes : We exclude the impact related to our provision for income taxes from our adjusted EBITDA calculation. We do not consider this tax adjustment to be part of our ongoing results of operations. \n Forward-Looking Statements \n This press release includes forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. These forward-looking statements may be identified by their use of terms and phrases such as “anticipate,” “believe,” “continue,” “designed,” “enable,” “ensure,” “expect,” “intend,” “will,” and other similar terms and phrases, and such forward-looking statements include, but are not limited to, the statements regarding the Company’s positioning, the benefits of recently launched offerings, and the Company’s guidance for the fourth quarter and full year of 2020 described under “Financial Outlook” above and key assumptions related thereto. The events described in these forward-looking statements involve known and unknown risks, uncertainties and other factors that could cause actual results to differ materially from the results anticipated by these forward-looking statements, including, but not limited to: the Company's results and business operations may be negatively impacted by the COVID-19 pandemic, the Company’s actual operating results may differ significantly from any guidance provided, certain precautions the Company is taking due to the COVID-19 pandemic could harm its business, the Company’s quarterly results may fluctuate, downturns in general economic and market conditions, including due to the COVID-19 pandemic, may reduce demand, the reliability of the Company’s network operations centers, the Company’s ability to retain service provider partners and residential and commercial subscribers and sustain its growth rate, the Company’s ability to manage growth and execute on its business strategies, the effects of increased competition and evolving technologies, the Company’s ability to integrate acquired assets and businesses and to manage service provider partners, customers and employees, consumer demand for interactive security, video monitoring, intelligent automation, energy management and wellness solutions, the Company’s reliance on its service provider network to attract new customers and retain existing customers, the Company's dependence on its suppliers, the reliability of the Company’s hardware and wireless network suppliers and enhanced United States tax, tariff, import/export restrictions, or other trade barriers, particularly tariffs from China as well as other risks and uncertainties discussed in the “Risk Factors” section of the Company’s Quarterly Report on Form 10-Q filed with the Securities and Exchange Commission on August 5, 2020 and other subsequent filings the Company makes with the Securities and Exchange Commission from time to time, including its Form 10-Q for the quarter ended September 30, 2020. In addition, the forward-looking statements included in this press release represent the Company’s views and expectations as of the date hereof and are based on information currently available to the Company. The Company anticipates that subsequent events and developments may cause the Company’s views to change. However, while the Company may elect to update these forward-looking statements at some point in the future, the Company specifically disclaims any obligation to do so except as required by law. These forward-looking statements should not be relied upon as representing the Company’s views as of any date subsequent to the date hereof. \n Investor Relations: \n David Trone \n Alarm.com \n dtrone@alarm.com \n Media Relations: \n Matthew Zartman \n Alarm.com \n mzartman@alarm.com \n 4 \n ALARM.COM HOLDINGS, INC. \n Consolidated Statements of Operations \n (in thousands, except share and per share data) \n (unaudited) \n Three Months Ended\nSeptember 30, Nine Months Ended\nSeptember 30, \n 2020 2019 2020 2019 \n Revenue: \n SaaS and license revenue $ 100,126 $ 84,924 $ 287,780 $ 247,313 \n Hardware and other revenue 58,725 42,956 164,647 114,562 \n Total revenue 158,851 127,880 452,427 361,875 \n Cost of revenue: \n Cost of SaaS and license revenue 14,344 12,438 39,673 37,428 \n Cost of hardware and other revenue 46,839 35,085 128,495 93,601 \n Total cost of revenue 61,183 47,523 168,168 131,029 \n Operating expenses: \n Sales and marketing 18,410 14,533 52,405 43,392 \n General and administrative 17,410 18,701 55,634 51,785 \n Research and development 36,914 29,461 113,280 84,375 \n Amortization and depreciation 6,878 5,467 20,023 15,833 \n Total operating expenses 79,612 68,162 241,342 195,385 \n Operating income 18,056 12,195 42,917 35,461 \n Interest expense (556) (715) (2,069) (2,322) \n Interest income 118 2,703 734 4,317 \n Other income, net 24,753 6,380 24,910 6,468 \n Income before income taxes 42,371 20,563 66,492 43,924 \n Provision for income taxes 6,546 2,873 5,471 3,428 \n Net income 35,825 17,690 61,021 40,496 \n Net loss attributable to redeemable noncontrolling interest 259 — 865 — \n Net income attributable to common stockholders $ 36,084 $ 17,690 $ 61,886 $ 40,496 \n Per share information attributable to common stockholders: \n Net income per share: \n Basic $ 0.74 $ 0.36 $ 1.27 $ 0.84 \n Diluted $ 0.71 $ 0.35 $ 1.22 $ 0.81 \n Weighted average common shares outstanding: \n Basic 49,007,343 48,518,041 48,842,333 48,360,927 \n Diluted 50,979,679 50,152,807 50,673,752 50,238,409 \n Stock-based compensation expense included in operating expenses: Three Months Ended\nSeptember 30, Nine Months Ended\nSeptember 30, \n 2020 2019 2020 2019 \n Sales and marketing $ 734 $ 534 $ 2,263 $ 1,385 \n General and administrative 2,154 1,714 6,033 4,762 \n Research and development 4,560 2,787 12,605 8,574 \n Total stock-based compensation expense $ 7,448 $ 5,035 $ 20,901 $ 14,721 \n 5 \n ALARM.COM HOLDINGS, INC. \n Consolidated Balance Sheets \n (in thousands, except share and per share data) \n (unaudited) \n September 30,\n2020 December 31,\n2019 \n Assets \n Current assets: \n Cash and cash equivalents $ 247,176 $ 119,629 \n Accounts receivable, net of allowance for credit losses of $2,400 and $2,584, respectively, and net of allowance for product returns of $1,341 and $1,075, respectively 81,883 76,373 \n Inventory, net 40,199 34,168 \n Other current assets, net of allowance for credit losses of $30 and $16, respectively 17,854 13,504 \n Total current assets 387,112 243,674 \n Property and equipment, net 42,639 38,548 \n Intangible assets, net 91,384 103,438 \n Goodwill 105,662 104,963 \n Deferred tax assets 20,749 19,137 \n Operating lease right-of-use assets 33,899 30,523 \n Other assets, net of allowance for credit losses of $66 and $0, respectively 16,600 17,516 \n Total assets $ 698,045 $ 557,799 \n Liabilities, redeemable noncontrolling interest and stockholders’ equity \n Current liabilities: \n Accounts payable, accrued expenses and other current liabilities $ 50,029 $ 48,727 \n Accrued compensation 18,918 16,342 \n Deferred revenue 4,411 3,043 \n Operating lease liabilities 9,470 7,683 \n Total current liabilities 82,828 75,795 \n Deferred revenue 8,461 7,455 \n Long-term debt 111,000 63,000 \n Operating lease liabilities 38,605 37,199 \n Other liabilities 7,724 7,489 \n Total liabilities 248,618 190,938 \n Redeemable noncontrolling interest 10,711 11,210 \n Stockholders’ equity \n Preferred stock, $0.001 par value, 10,000,000 shares authorized; no shares issued and outstanding as of September 30, 2020 and December 31, 2019 — — \n Common stock, $0.01 par value, 300,000,000 shares authorized; 49,256,397 and 48,700,963 shares issued; and 49,109,244 and 48,700,713 shares outstanding as of September 30, 2020 and December 31, 2019, respectively 493 487 \n Additional paid-in capital 392,765 365,627 \n Treasury stock, at cost; 147,153 and 0 shares as of September 30, 2020 and December 31, 2019, respectively (5,149) — \n Retained earnings / (accumulated deficit) 50,607 (10,463) \n Total stockholders’ equity 438,716 355,651 \n Total liabilities, redeemable noncontrolling interest and stockholders’ equity $ 698,045 $ 557,799 \n 6 \n ALARM.COM HOLDINGS, INC. \n Consolidated Statements of Cash Flows \n (in thousands) \n (unaudited) \n Nine Months Ended\nSeptember 30, \n Cash flows from operating activities: 2020 2019 \n Net income $ 61,021 $ 40,496 \n Adjustments to reconcile net income to net cash from operating activities: \n Provision for / (recovery of) credit losses on accounts receivable (237) 722 \n Reserve for product returns 1,491 (105) \n Recovery of credit losses on notes receivable (368) (3,319) \n Provision for excess and obsolete inventory 1,178 15 \n Amortization on patents and tooling 604 506 \n Amortization and depreciation 20,023 15,833 \n Amortization of debt issuance costs 81 81 \n Amortization of operating leases 6,562 5,570 \n Deferred income taxes (1,480) 1,502 \n Change in fair value of contingent liability (2,593) — \n Stock-based compensation 20,901 14,721 \n Gain on notes receivable — (6,931) \n Acquired in-process research and development 3,297 850 \n Gain on sale of investment (24,737) — \n Impairment of investment — 605 \n Changes in operating assets and liabilities: \n Accounts receivable (7,131) (16,004) \n Inventory (7,209) 1,997 \n Other current and non-current assets (5,549) (3,131) \n Accounts payable, accrued expenses and other current liabilities 5,897 (22,457) \n Deferred revenue 2,374 (1,153) \n Operating lease liabilities (7,427) (6,139) \n Other liabilities (28) 188 \n Cash flows from operating activities 66,670 23,847 \n Cash flows from / (used in) investing activities: \n Additions to property and equipment (10,677) (10,660) \n Purchases of in-process research and development (3,297) (850) \n Issuances or purchases of notes receivable (600) (26,074) \n Receipt of payment on notes receivable 2,023 31,695 \n Proceeds from sale of investment 25,687 — \n Purchases of patents and patent licenses (900) — \n Cash flows from / (used in) investing activities 12,236 (5,889) \n Cash flows from financing activities: \n Proceeds from credit facility 50,000 — \n Repayments of credit facility (2,000) (3,000) \n Payments of deferred consideration for business acquisitions (819) — \n Purchases of treasury stock (5,149) — \n Issuances of common stock from equity-based plans 6,609 3,304 \n Cash flows from financing activities 48,641 304 \n Net increase in cash and cash equivalents 127,547 18,262 \n Cash and cash equivalents at beginning of the period 119,629 146,061 \n Cash and cash equivalents at end of the period $ 247,176 $ 164,323 \n 7 \n ALARM.COM HOLDINGS, INC. \n Reconciliation of Non-GAAP Measures \n (in thousands) \n (unaudited) \n Three Months Ended\nSeptember 30, Nine Months Ended\nSeptember 30, \n 2020 2019 2020 2019 \n Adjusted EBITDA: \n Net income $ 35,825 $ 17,690 $ 61,021 $ 40,496 \n Adjustments: \n Interest expense, interest income and other income, net (24,315) (8,368) (23,575) (8,463) \n Provision for income taxes 6,546 2,873 5,471 3,428 \n Amortization and depreciation expense 6,878 5,467 20,023 15,833 \n Stock-based compensation expense 7,448 5,035 20,901 14,721 \n Secondary offering expense — — 543 — \n Acquisition-related (benefit) / expense (304) 1,590 2,044 1,590 \n Litigation expense 2,418 2,033 6,467 10,682 \n Total adjustments (1,329) 8,630 31,874 37,791 \n Adjusted EBITDA $ 34,496 $ 26,320 $ 92,895 $ 78,287 \n Adjusted net income: \n Net income, as reported $ 35,825 $ 17,690 $ 61,021 $ 40,496 \n Provision for income taxes 6,546 2,873 5,471 3,428 \n Income before income taxes 42,371 20,563 66,492 43,924 \n Adjustments: \n Less: interest income and other income, net (24,871) (9,083) (25,644) (10,785) \n Amortization expense 4,084 3,404 12,209 10,338 \n Stock-based compensation expense 7,448 5,035 20,901 14,721 \n Secondary offering expense — — 543 — \n Acquisition-related (benefit) / expense (304) 1,590 2,044 1,590 \n Litigation expense 2,418 2,033 6,467 10,682 \n Non-GAAP adjusted income before income taxes 31,146 23,542 83,012 70,470 \n Income taxes 1 \n (6,541) (4,944) (17,433) (14,799) \n Non-GAAP adjusted net income $ 24,605 $ 18,598 $ 65,579 $ 55,671 \n 1 Income taxes are calculated using a rate of 21.0% for each of the three and nine months ended September 30, 2020 and 2019. The 21.0% effective tax rate for each of the three and nine months ended September 30, 2020 and 2019 exclude the income tax effect on the non-GAAP adjustments and reflect the estimated long-term corporate tax rate. \n 8 \n ALARM.COM HOLDINGS, INC. \n Reconciliation of Non-GAAP Measures - continued \n (in thousands, except share and per share data) \n (unaudited) \n Three Months Ended\nSeptember 30, Nine Months Ended\nSeptember 30, \n 2020 2019 2020 2019 \n Adjusted net income attributable to common stockholders: \n Net income attributable to common stockholders, as reported $ 36,084 $ 17,690 $ 61,886 $ 40,496 \n Provision for income taxes 6,546 2,873 5,471 3,428 \n Income attributable to common stockholders before income taxes 42,630 20,563 67,357 43,924 \n Adjustments: \n Less: interest income and other income, net (24,871) (9,083) (25,644) (10,785) \n Amortization expense 4,084 3,404 12,209 10,338 \n Stock-based compensation expense 7,448 5,035 20,901 14,721 \n Secondary offering expense — — 543 — \n Acquisition-related (benefit) / expense (304) 1,590 2,044 1,590 \n Litigation expense 2,418 2,033 6,467 10,682 \n Non-GAAP adjusted income attributable to common stockholders before income taxes 31,405 23,542 83,877 70,470 \n Income taxes 1 \n (6,595) (4,944) (17,614) (14,799) \n Non-GAAP adjusted net income attributable to common stockholders $ 24,810 $ 18,598 $ 66,263 $ 55,671 \n Three Months Ended\nSeptember 30, Nine Months Ended\nSeptember 30, \n 2020 2019 2020 2019 \n Adjusted net income attributable to common stockholders per share: \n Net income attributable to common stockholders per share - basic, as reported $ 0.74 $ 0.36 $ 1.27 $ 0.84 \n Provision for income taxes 0.13 0.06 0.11 0.08 \n Income attributable to common stockholders before income taxes 0.87 0.42 1.38 0.92 \n Adjustments: \n Less: interest income and other income, net (0.51) (0.18) (0.52) (0.22) \n Amortization expense 0.09 0.07 0.25 0.21 \n Stock-based compensation expense 0.15 0.10 0.43 0.30 \n Secondary offering expense — — 0.01 — \n Acquisition-related (benefit) / expense (0.01) 0.03 0.04 0.03 \n Litigation expense 0.05 0.04 0.13 0.22 \n Non-GAAP adjusted income before income taxes 0.64 0.48 1.72 1.46 \n Income taxes 1 \n (0.13) (0.10) (0.36) (0.31) \n Non-GAAP adjusted net income attributable to common stockholders per share - basic $ 0.51 $ 0.38 $ 1.36 $ 1.15 \n Non-GAAP adjusted net income attributable to common stockholders per share - diluted $ 0.49 $ 0.37 $ 1.31 $ 1.11 \n Weighted average common shares outstanding: \n Basic, as reported 49,007,343 48,518,041 48,842,333 48,360,927 \n Diluted, as reported 50,979,679 50,152,807 50,673,752 50,238,409 \n 1 Income taxes are calculated using a rate of 21.0% for each of the three and nine months ended September 30, 2020 and 2019. The 21.0% effective tax rate for each of the three and nine months ended September 30, 2020 and 2019 exclude the income tax effect on the non-GAAP adjustments and reflect the estimated long-term corporate tax rate. \n 9 \n ALARM.COM HOLDINGS, INC. \n Reconciliation of Non-GAAP Measures - continued \n (in thousands) \n (unaudited) \n Three Months Ended\nSeptember 30, Nine Months Ended\nSeptember 30, \n 2020 2019 2020 2019 \n Free cash flow: \n Cash flows from operating activities $ 18,622 $ 980 $ 66,670 $ 23,847 \n Additions to property and equipment (3,561) (4,952) (10,677) (10,660) \n Non-GAAP free cash flow $ 15,061 $ (3,972) $ 55,993 $ 13,187 \n 10 \n",
@@ -36,7 +39,331 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000145920020000028__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001459200-20-000020",
+   "filingDate": "2020-08-05",
+   "reportDate": "2020-08-05",
+   "form": "8-K",
+   "local_gz": "000145920020000020__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 3,
+   "guidance_sentences": [
+    "Alarm.com also provided its financial outlook for SaaS and license revenue for the third quarter of 2020 an d increased its guidance for the full year of 2020.",
+    "1 Financial Outlook At this time, it remains challenging to predict the full scope and duration of the impacts driven by the COVID-19 pandemic.",
+    "Alarm.com is providing guidance for the third quarter of 2020 and increasing its guidance for the full year of 2020 based upon what it currently sees in its markets."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2020-11-06",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 59,
+   "has_qna": true,
+   "n_chars": 45144,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Executives",
+     "content": "David M. Trone - Alarm.com Holdings, Inc. Stephen S. Trundle - Alarm.com Holdings, Inc. Steve Valenzuela - Alarm.com Holdings, Inc."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Analysts",
+     "content": "Adam Tindle - Raymond James & Associates, Inc. Nikolay Beliov - BofA Securities, Inc. Jeffrey Ted Kessler - Imperial Capital LLC David Robinson - William Blair & Co. LLC Darren Aftahi - ROTH Capital Partners LLC Jack Vander Aarde - Maxim Group LLC"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, thank you for standing by, and welcome to the Alarm.com Third Quarter 2020 Earnings Conference Call. At this time, all participant lines are in a listen-only mode. After the speakers' presentation, there will be a question-and-answer session. Please be advised that today's conference is being recorded. I would now like to hand the conference over to your speaker today, Mr. David Trone, Vice President, Investor Relations. Please go ahead, sir."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "David M. Trone - Alarm.com Holdings, Inc.",
+     "content": "Thank you. Good afternoon, everyone, and welcome to Alarm.com's third quarter 2020 earnings conference call. As a reminder, this call is being recorded. Joining us today from Alarm.com are Steve Trundle, President and CEO; and Steve Valenzuela, CFO. Before we begin, a quick reminder to our listeners. Management's discussion during the call today will include forward-looking statements, which include projected financial performance for the fourth quarter 2020 and full year 2020 as well as early thoughts on 2021; emerging market dynamics and trends on our business and on anticipated market demand for our offerings; possible impact of the global economic uncertainty caused by the COVID-19 pandemic; our business strategies, plans and objectives for future operations including expectations regarding our future relationship with ADT; continued enhancements to our platform and offerings; opportunities for growth in our current markets; and other forward-looking statements. These forward-looking statements are based on our current expectations and beliefs and on information currently available to us. Statements containing words such as began, believe, continue, estimate, expect, forecast, may, project, trend, will and other similar words are intended to identify such forward-looking statements. These statements are subject to risks and uncertainties including the risks that any anticipated developments in respect of ADT may not occur or may unfold differently than we anticipate, and those contained in the Risk Factors section of our most recent Annual Report on Form 10-Q (sic) [Form 10-K] (00:02:28) filed with the Securities and Exchange Commission on February 26, 2020 and in subsequent reports that we file with the Securities and Exchange Commission from time-to-time including the updated Risk Factors section of our Quarterly Report on Form 10-Q that we intend to file with the Securities and Exchange Commission shortly after this call, that could cause actual results to differ materially from those contained in the forward-looking statements. Please note that the forward-looking statements made during this conference call speak only as of today's date and Alarm.com undertakes no obligation to update these statements to reflect subsequent events or circumstances, except to the extent required by law. Also during this call, management's commentary will include non-GAAP financial measures and provide non-GAAP guidance. Management believes that the use of these non-GAAP financial measures provides an additional tool for investors to use in understanding the company's performance and trends, but notes that the presentation of non-GAAP financial information is not meant to be considered in isolation or as a substitute for the directly comparable financial measures prepared in accordance with GAAP. Reconciliations between GAAP and non-GAAP metrics for our reported results can be found in the financial statement tables of our earnings press release, which we have posted to our investor relations website at investors.alarm.com. This conference call is being webcast and is also available on our investor relations website. The webcast of this call will be archived and a telephone replay will also be available on our website. So, with these formalities out of the way, I'd now like to turn the call over to Steve Trundle, you may begin."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Thank you, David. Good afternoon, and welcome to everyone. We are very pleased to report strong third quarter results. Our SaaS and license revenue in the third quarter was $100.1 million, up 17.9% over the same period last year. Our adjusted EBITDA in the third quarter was $34.5 million. I want to thank our service provider partners and the Alarm.com team for their continued strong performance as we navigate these challenging times. During the third quarter, we've seen ongoing strength in the professionally serviced smart home market in the US and Canada. The commercial market, while not fully recovered to pre-COVID levels, also began showing some positive momentum in the third quarter. The strength of the recovery and the overall performance of our service provider partners, particularly in the residential segment, exceeded our expectations and drove the strong results. On today's call, I will highlight the new products we've recently launched and review the progress we've made against our growth initiatives and their contributions to our overall business. I'll begin with our product initiatives. We recently launched an innovative new device called Flex I/O. Flex I/O is a security sensor that does not require a connection to a control panel or a hub or a Wi-Fi network. It can stand on its own or be fully integrated into an existing multi-sensor control panel environment. The sensor is integrated with an LTE CAT-M cellular communication capability and is battery powered so it can be deployed anywhere it may be needed. We designed Flex I/O for outdoor applications where we can extend security and awareness to any location on a property or even to other very distant properties. Flex I/O addresses an entire set of new security use cases where existing sensors and devices that are directly connected to the control panel via low voltage wires or RF connectivity are not enough. For example, residential subscribers can monitor driveway gates or pool gates, detached garages, remote storage units, barns or mobile items such as boats, tractors, RVs or lawnmowers. In the commercial market, we see a strong fit with industrial facilities and other properties with diverse physical footprint. Flex I/O sends data to our cloud and allows subscribers to create customized alerts or to use the sensor's event data to trigger Alarm.com automation scenes and video recordings. The device enables a new service plan with an incremental subscription fee and will allow our professional service providers to extend the breadth of solutions that they can bring to their customers. We also released our Smart Water Valve + Meter solution this quarter, which had been announced earlier in the year at CES. This solution can automatically shut off the property's water supply when its two onboard flow sensors detect burst pipes, major leaks and even slow persistent drips. Unlike standalone water valve devices, our solution also works with water sensors deployed anywhere in the property to provide a whole home water safety solution. After a positive introduction to the Building36 service provider partners, who are primarily HVAC and plumbing companies, the solution is now also available to all Alarm.com service providers. Another strategic area focus for our R&D program is intelligent integration with central monitoring stations. Over the last few years, we've been working closely with our monitoring station partners to improve service efficiency, reduce or eliminate false alarms and false dispatches and differentiate the monitoring services provided by systems powered by Alarm.com. I wanted to update you on the positive results of one of the products we've introduced. In 2019, we introduced a capability called Smart Signal, which allows subscribers to easily cancel or verify alarms from our mobile app. This capability received several industry awards when it was released, including Security Product of the Year at CES. Rapid Response is a longtime central monitoring station partner of ours and they moved aggressively to introduce Smart Signal to their Alarm.com service providers. Rapid Response recently reported to us by enabling the Smart Signal capability for a dealer has reduced dispatched alarm events by 25% to 30%. Next, I want to talk about the progress we're making against some of our key growth initiatives. As I have discussed on prior calls, we have been investing in video and video analytics, the commercial security vertical, international markets and then adjacent IoT application opportunities in order to fully capitalize on the growth opportunities we see. I'm pleased with the overall progress we've made. These growth initiatives accounted for 22.5% of our SaaS revenue in the third quarter and grew 42% year-over-year. We continued to see strong growth in residential video. During the third quarter, 40% of our new subscribers opted to include video services with their systems. The growing contribution from video is the result of lots of hard work and investment to advance every aspect of our video service. We have a strong product and engineering team in place to continue to advance and differentiate our video capabilities. As the commercial market continues to recover, we're making good progress expanding our service provider base and tailoring our commercial platform to service an even wider diversity of property types, customer requirements and opportunities. In the last 12 months, about 50% of our service provider partners have created a new account with an Alarm.com commercial service plan. In addition, Alarm.com service providers are beginning to bring OpenEye's enterprise grade video monitoring solution to a growing number of sales opportunities. Meanwhile, EnergyHub continue to grow its network of energy utility partners this quarter. They recently announced that over 50 utilities now use the Mercury platform to manage distributed energy resource programs that include thermostats, electric vehicle chargers, batteries, solar inverters, water heaters and for commercial and industrial sites and aggregators. According to a recent report from Wood Mackenzie, a global research firm, EnergyHub manages the largest portfolio of flexible customer-owned load of any distributed energy resource management system provider in the United States. One of EnergyHub's recent utility additions the Los Angeles Department of Water and Power, the largest municipal utility in the country. This past summer, EnergyHub's Mercury platform managed their thermostat-driven demand response program and initiated seven demand response events to offset peaking requirements during the summer heat waves in California. As I said, the combination of the initiatives I just covered, now constitutes 22.5% of our SaaS and license revenue, and each of these areas shows continuing promise. I believe that the R&D investments that we are making in these areas are serving the company very well. Before I hand things over to Steve Valenzuela, I also want to provide an update on ADT. Since the announcement of a $450 million investment by Google in August, we have been in discussions with ADT. These discussions have recently matured into a renewal of our agreement, which will extend our partnership. I would like to highlight some of the terms of this extended agreement as well as our expectations. Under the extended agreement, ADT will continue to promote and install their highly successful Command and Control offering to nearly all new professionally installed smart security subscribers until early 2023. Under the terms, we will support ADT with the integration of certain specified Google products into the Command and Control platform in early 2021. After the extended period ends, ADT has indicated that in 2023, they intend to begin activating professionally installed accounts in their residential business on a software platform that they are developing in concert with Google. We have agreed to support this initiative with a royalty-bearing IP license. We see no material changes in our business in 2021 or 2022 under this plan. And it's important to note that our agreement with ADT also anticipates that Alarm.com will continue to provide service to all existing ADT subscribers on both of the Alarm.com software platforms for the full service life of the subscriber accounts. Overall, we're excited to resolve this uncertainty by extending our agreement with ADT until 2023 and we expect to continue to support ADT and millions of ADT subscribers who are serviced by our software platforms over the next decade. We have a strong and positive working relationship with ADT and expect that to continue for many years and on many fronts. In summary, I'm pleased with our third quarter financial results and the work we have done this quarter on both the product side and commercial side of the business in the face of a pandemic. I want to thank our service provider partners, our ecosystem partners and the Alarm.com team for their hard work and our investors for their trust in our business. And with that, let me turn things over to Steve Valenzuela. Steve?"
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Steve Valenzuela - Alarm.com Holdings, Inc.",
+     "content": "Thanks, Steve. I'll start with a review of our third quarter 2020 financial results and then provide guidance for the fourth quarter as well as our raised outlook for the full year of 2020. I'll conclude with our initial thoughts on 2021 before opening the call for questions. SaaS and license revenue in the third quarter grew 17.9% from the same quarter last year to $100.1 million. This includes Connect software license revenue of approximately $9.5 million for the third quarter, down as expected from $10.8 million in the year ago quarter. Our SaaS and license revenue visibility remains high with a revenue renewal rate of 94% in the third quarter, at the high end of our historical range of 92% to 94%, and consistent with levels prior to the COVID pandemic. This high retention rate contributes to our favorable SaaS metrics with a very positive LTV to CAC ratio of approximately 3.9 due to our long lifetime customer value. Hardware and other revenue in the third quarter was $58.7 million, up 36.7% over Q3 2019. We continue to see strong sales of our video cameras, which primarily accounted for a large increase in hardware sales. Total revenue of $158.9 million for the third quarter grew 24.2% from Q3 2019. SaaS and license gross margin for the third quarter was 85.7%, up approximately 30 basis points from the same quarter last year. Hardware gross margin was 20.2% for the third quarter compared to 18.3% for the same quarter last year primarily due to product mix. Total gross margin was 61.5% for the third quarter compared to 62.8% for the same quarter last year, mainly due to higher hardware revenue. Turning to operating expenses. R&D expenses in the third quarter were $36.9 million compared to $29.5 million in the third quarter of 2019. We ended the third quarter with 750 employees in R&D and total head count of 1,361 employees, up from 582 in R&D and total head count of 1,043 in the year ago quarter. Sales and marketing expenses in the third quarter were $18.4 million or 11.6% of total revenue, compared to $14.5 million or 11.4% of revenue in the same quarter last year. Our G&A expenses in the third quarter were $17.4 million, down from $18.7 million in the year ago quarter. G&A expense in the third quarter includes expenses that we exclude from our measurement of our non-GAAP financial performance, which we refer to as adjusted measures. These include non-ordinary course litigation expense of $2.4 million compared to $2 million for Q3 2019. In Q3, we also booked a gain of $24.7 million as a result of the payment we received when an unrelated third-party acquired an entity where we had an investment. The gain from this investment is reflected in our GAAP P&L as other income; however, it's excluded from operating income in our non-GAAP financial results as this gain is not related to our operating performance. Non-GAAP adjusted EBITDA in the third quarter was $34.5 million, up 31.1% from $26.3 million in Q3 2019. In the third quarter, GAAP net income was $36.1 million compared to GAAP net income of $17.7 million for Q3 2019. Non-GAAP adjusted net income increased to $24.6 million in the third quarter, up 32.3% from $18.6 million for the third quarter of 2019. Turning to our balance sheet. We ended the third quarter with $247.2 million of cash and cash equivalents. Our DSOs in Q3 were 46 days, which improved from 49 days in Q2 2020 and are flat compared to a year ago when our DSOs were also 46 days. We continue to have a strong balance sheet and a cash flow positive business model. In the third quarter, we generated approximately $18.6 million in cash flow from operations, up from $1 million cash flow in the third quarter of 2019. Our free cash flow for the third quarter was $15.1 million compared to a negative $4 million for the same quarter last year. On a year-to-date basis, through the first nine months of 2020, our operating cash flow was $66.7 million and free cash flow was $56 million, up significantly from the same period in 2019. Next, I will review our outlook for the fourth quarter and full year 2020. For the fourth quarter of 2020, we expect SaaS and license revenue of $101.2 million to $101.4 million. For all of 2020, we expect SaaS and license revenue to be between $389 million to $389.2 million, up from our prior guidance of $382.7 million to $383.1 million. We are raising our guidance for total revenue for 2020 to $594 million to $604.2 million, up from our prior guidance of $552.7 million to $563.1 million, which includes estimated hardware and other revenue of $205 million to $215 million. We are raising our guidance for non-GAAP adjusted EBITDA for 2020 to $113 million to $115 million, up from our prior guidance of $106 million to $107 million. Non-GAAP net income for 2020 is estimated to be $80 million to $81.5 million, or $1.57 to a $1.60 per diluted share, up from our prior guidance of $74.2 million to $74.9 million, or $1.46 to $1.47 per diluted share. We expect our non-GAAP tax rates remain at 21% for 2020 and EPS is based on an estimate of 51 million weighted average diluted shares outstanding. We expect full year 2020 stock-based compensation expense of $28 million to $29 million. Finally, while we are in the initial planning stages, I will provide some early thoughts on 2021 with a caveat that we cannot forecast the impact if additional COVID shutdowns or other economic upheaval were to occur, including the impact on our service providers or our supply chain, among other factors. With that said, we currently believe our SaaS and license revenue for 2021 will around $435 million. Total revenue is currently expected to be between $640 million and $650 million, with hardware and other revenue of about $205 million to $215 million. At this time, non-GAAP adjusted EBITDA for 2021 is estimated to be around $120 million. We will provide our initial guidance for 2021 when we report our fourth quarter 2020 results in February next year. In summary, we are pleased how well our service provider partners and our Alarm.com teams are performing in this environment. We will continue to work hard to support our 9,000-plus service provider partners and their customers during these challenging times. And with that, operator, please open the call for Q&A."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "Thank you. Our first question comes from Adam Tindle of Raymond James. Your line is now open."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Adam Tindle - Raymond James & Associates, Inc.",
+     "content": "Okay. Thanks. Good afternoon. Steve, I first want to acknowledge the strong results. I'm afraid the focus is largely going to be on ADT. So, I wanted to ask a couple around that. I think you – thanks commentary there. It was helpful. You said you anticipate Alarm.com will provide service to all existing customers on both platforms for the full service life of the subscriber. What is the full service life of the subscriber, what are you expecting? I know they're going after this with a lot of marketing dollars, but may not make sense to truck roll. So, I'm just trying to (00:25:34) trying to understand that case cadence of the runoff and the service life of the subscriber."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Sure, Adam. Yeah. We're – so, when we say service life, normally you activate a subscriber and I think what we see if that's on the Alarm.com platform or on the Command and Control platform as that subscriber typically will have lower attrition than a normal industry subscriber. But that attrition rate can be anywhere from 10% to 15% depending on a number of factors. And what we would expect therefore is when a customer is activated that if you had a 1,000 customers, 15% – or 12% or so would probably attrit in the first couple of years and then you get to sort of a 10% to 15% steady rate. So, average customer life tends to be around eight years, eight, nine years, something like that, is what I would think of as normal and – as a normal customer life. It depends on how well the service provider is doing. And I think in this case, the exciting thing as we started the quarter with a lot of uncertainty ahead a contract that was terminating in the middle part of next year and solved for that, extended that contract. So, we know what's occurring in 2021, we know what's occurring in 2022, and there'll be subscribers coming on and then they'll run for their full life."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Adam Tindle - Raymond James & Associates, Inc.",
+     "content": "Okay. That's helpful. I think you also mentioned that after it ends, you'll still support via a royalty or IP license agreement. Is there a way for us to maybe think about as that occurs – that transition occurs, just kind of a change in economics, generally speaking?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Well, it's obviously less. And I can't really go into the exact – unfortunately, I can't really communicate exactly the terms of our agreement there. But I think what I will say is it's a reasonable recurring royalty agreement and it includes a lot of incentives for different types of performance by our customer in different areas. So, it has some variability in it depending on how those incentives are going and – but I can't really give you the dollar number there, no."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Adam Tindle - Raymond James & Associates, Inc.",
+     "content": "Okay, then maybe I'll try one last one then – instead. Each company there is I think investing like an additional $150 million on top of the $450 million. It's a pretty expensive pursuit relative to your enterprise value given you're already scaled, you have over 9,000 dealers. I'm just, bigger picture, trying to understand how you think about chess moves and strategic alternatives, the optionality this creates, maybe the pros and cons to your partnering with a bigger entity, just kind of bigger picture strategic chess moves."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Yeah. So, I think the first was the decision to make – to support a certain set of Google products with ADT in their Command and Control offering, and we chose to do that. I think that enables our customer to market that set of products to new customers for the next couple of years as well as upgrade existing customers as that may make sense. So, that's how we sort of looked at that. And in terms of longer term, I guess what I would say is we have a dynamic where if a customer that's roughly 15% of our revenue, that's probably slightly trending down, already was, primarily because of the growth that we have and some of the initiatives I talked about during our – during my prepared remarks. We've got a set of things that now represent 22%, 23% of our revenue and we're growing 40%. So, we already had a little bit of a natural decline in that number. We I think got a nice healthy runway here and we'll continue to look at areas where we can focus that that we think will create durable long-term and diversified revenue stream. So, that's probably how I look at it. At the same time, I'm sort of relieved and happy that we have a clear plan here and clear runway for more than a couple of years."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Adam Tindle - Raymond James & Associates, Inc.",
+     "content": "Understood. Thanks, and congrats again on the results."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Nikolay Beliov of Bank of America. Your line is now open."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Nikolay Beliov - BofA Securities, Inc.",
+     "content": "Hi. Thanks for taking my questions. Steve, last quarter you spoke about COVID potentially being a durable positive secular shift to the business on the residential side. Do you have any more data points over the last three months to confirm or maybe disprove that?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Yeah. Good question, Nikolay. I think we have been surprised and we're not – I can't 100% say it's all COVID induced, but almost from top to bottom, we've been surprised by the performance of our service providers over the last three or four months. And I think that what we're hearing from our service providers are that customers are home, they're ready to take meetings, they want to invest in their home because they're not traveling. So, they have a bit more discretionary income and some of them were adding second homes for which they need monitoring and that sort of thing and automation obviously (00:31:41) all the things we do so. So, it appears – it's just appeared much stronger than what we expected. That's great. Commercial has not quite been as strong as I indicated, but has now gotten closer to sort of the pre-COVID levels. And the real question is, is this a long-term trend? Is suburbanization sort of an ongoing thing or are we looking at some short-term benefits here? I think that the nature of our business is one where you add a customer and you essentially hope to keep that customer for life and it may be life across several properties, but you really do hope that you can add enough value and convenience to their lifestyle that they remain with you or with your service provider for a long period of time. So, I think we're probably seeing something that will have some long-term benefits to our business and our service providers because we're grabbing more ground right now. It may be induced by COVID, it may be something else going on, but we're grabbing more turf and more subscribers than what we anticipated at the beginning of the (00:32:48) year. And I think that will give us kind of perpetual optionality to bring in additional products like the Flex I/O or like the Smart Water Valve + Meter and hopefully create an expectation for convenience in the eyes of the subscriber that will last forever. So, I think it's positive."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Nikolay Beliov - BofA Securities, Inc.",
+     "content": "I personally find the Flex I/O product quite interesting, and in my opinion, probably one of your most important innovations over the last few years. Is it in the marketplace? What has been customer reception so far from the beta proof of concept, what use case is do you think customers will gravitate towards and what's the price uplift from a customer deploying Flex I/O?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Yeah. So, it is just going into the market really this – as we speak right now, this month, and it has been in beta for a long time. We're using new cellular technology there. So, we wanted to make sure that the reliability and – we're in in life safety at times (00:33:56), so we want to make sure that we have industrial grade sort of life safety caliber reliability with that connectivity. It's battery powered, so you have a lot of testing of power management in different types of climate environments. So, we've been testing it for a long time with a set of marquee service providers. And the feedback is variable, but I will say – not variable in a bad way, I mean, we have some folks that really think it's a game changer and are excited to use it for just a whole myriad of purposes. I think particularly if you're in an area where it's sort of a more spread out suburb where people are living on 3, 4, 5 acre types of lots and they have detached garages and they may have some equipment , some capital equipment that they use to maintain the property. They may have, I mean, even weird things. We've heard of people installing this thing on their chicken coop, for example, to make sure they didn't leave the door open on that. So, pretty much anything you may have as a hobby, Flex I/O now allows us to add some value to, it allows us to monitor. If you have a second home, a cabin, a barn, a gate – gate has been a very heavy use case and people that have a gate either coming into their home or coming into their second property or into a farm. So, it's got a super wide set of use cases. It's difficult for us to predict just sort of how broad the distribution will be. I think some of that will be on us, how many different distribution engines do we create to enable us to maximally leverage that product. But the feedback has been very strong. In terms of incremental subscription rates, with our service providers, there obviously are wholesale rates, wholesale costs that are between us and the service provider, then there is what (00:35:59) the service provider may charge the subscriber. And I'll start with what we think the consumer price is. We're thinking that if you have nothing else other than a Flex I/O system, so suppose you want to have – you have a barn and in that barn you're storing your favorite Massey Ferguson tractor and you just want to know if someone goes into the barn, that's about $9 to the end customer. Our dealer will obviously make margin on that and much cheaper to the dealer. If it's in addition to your existing Alarm.com system, so hypothetically, I want to add a device, if I have a swimming pool and my swimming pool is too far from my home to sort of monitor with RF connectivity and I want to know if someone opens the gate, if the child goes into the swimming pool or whatever, then I'm just adding it to my existing Alarm.com system. It's already supported by a control panel and I'm already paying Alarm.com some type of subscription fee there. To the consumer, we think that's sort of a $3.5, $4 additional fee that the dealer will charge them. And as I said before, the dealer will then make money on that incremental (00:37:13) and on the hardware sale itself."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Nikolay Beliov - BofA Securities, Inc.",
+     "content": "Got it. Thanks so much."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "And you may add like 5 or 6 of them, it really depends on the use cases. So."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Nikolay Beliov - BofA Securities, Inc.",
+     "content": "Got it. Thank you."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Operator",
+     "content": "Thank you. And the next question comes from Jeff Kessler of Imperial Capital. Your line is now open."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Jeffrey Ted Kessler - Imperial Capital LLC",
+     "content": "Yeah. So, I have couple of questions about the growth of your other business. It seems that for quite a period of time it was in the 8% to 10% area of revenue and now all of a sudden it is quite a bit higher. Can you talk a little bit about what areas are really – are really driving – are driving this? I know that you've been – you've probably been strong in South America. You've probably been strong – these new data points you're giving us in EnergyHub. I know it's a very wide range of areas that we're talking about. But if you could just give us some color around why this has become such a bigger part of the company in a fairly short period of time?"
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Yeah. Jeff, it's a good question and a data point I was excited to toss out (00:38:32) there this quarter when we did the analysis. What we were looking at – last quarter, someone asked us how do we measure sort of return on investment around some of the R&D investments we're making. So, we looked at the domains where we're really kicking in and kicking into gear with a lot of R&D and those domains were commercial, international, video and our subsidiary businesses. And we put the revenue coming from those categories and as the numerator and denominator is all SaaS and license revenue, all. We excluded anything from ADT in the numerator, but we left everything from ADT in the denominator and we looked at how much is that. And as I said, it's around 23% right now. And the growth in those categories year-over-year is around 40%. So, it's a pretty quickly growing part of the business. Each one has different drivers, and we can go through them one by one, but I'd cover them at different points and different conference calls. I think EnergyHub is reaching a new level of maturity, expanding the platform to shift from sort of a solely a demand response platform, but being to – being more of a software platform that allows the utility to manage all of the edge resources including batteries, and therefore, getting to sort of a larger and more important position with their customers. Commercial, it's really a game where we're bringing the same ease and convenience that our platform affords to our service providers and, in some cases, teaching them how to go after the commercial and access control market. In other cases, they're already very well studied there and we're sort of just getting some additional wallet share. International is a slog, but it's a slog where we're doing well and we've been continuing to make investments and getting to sort of a point where it's more mature now. And instead of people running pilots and tests, salespeople went out there (00:40:34) every day and selling Alarm.com in 40 different countries. So, a lot of these things are reaching a maturity that makes them more relevant and that maturity is sort of confirmatory of the investments we've been making for the last two or three years and showing nice return."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Jeffrey Ted Kessler - Imperial Capital LLC",
+     "content": "All right. Second question is, you know my long-term interest in the problem and the potential fix is for false alarms verification. You decide something that you were doing obviously with Rapid Response. There aren't that many really great independent monitoring companies that are out there. But Rapid Response obviously is one of them. Is this the type of business that you can – if you demonstrate it at some place like Rapid Response and it works, you can get out in front of other providers as well? I mean, clearly (00:41:45) been talking about the stuff it's been doing with (00:41:49) now for a while. And I'm just wondering what you are – not just what was your relationship there is, but also what are you doing with the universe of potential users to start cutting down on false alarms and fines and increasing (00:42:08) decreasing response times?"
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Right. No, great question. So, yeah, you're correct about Rapid Response. I think the industry does watch that central monitoring station, and you and I probably both know Russ. They're very high quality operators. And I was up there a few months ago and looking at all the different things they were doing. And in those conversations, we talked about Smart Signal and what its impact had been on, what we call, the false dispatch rate. False dispatch is obviously better – bad for everyone, bad for first responders, bad for the subscriber. It means that you had an alarm that was false and we dispatched on it or we and our partner did. So, we looked at the impact there of our work together on Smart Signal and obviously on their side there's education of the service provider and there's a lot of technology they bring to bear to make all this work with us. And the impact was very, very meaningful. If you're cutting down false dispatches by 25% with a capability like that that we've embedded in the consumer's mobile app, huge savings downstream, huge savings. So, we were excited about that. We're continuing to do a lot more in this domain, every – across all elements of the offering, everything from AI in terms of the way we interpret different events coming in to much more sophisticated video analytics to more user control. And I think that working with our partners, I think everyone will – it's in the entire industry's interest and will continue to be in our interest to make sure the consumer has a great convenient experience and that we reduce all of the downstream costs we're generating. And so, I think you'll see people follow here."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Jeffrey Ted Kessler - Imperial Capital LLC",
+     "content": "Is your dream team of objects, video guys involved in this?"
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "They are definitely involved in the initiative, yes."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Jeffrey Ted Kessler - Imperial Capital LLC",
+     "content": "Yeah. Okay. Okay. Thank you very much."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from David Robinson of William Blair. Your line is now open."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "David Robinson - William Blair & Co. LLC",
+     "content": "Hey, guys, just a quick question on Flex I/O product. So, I realize this is kind of really days and has just been released. But I guess I was kind of wondering how long does it take for the service providers to kind of get ramped up on the product and then take it from there to kind of selling into the residential customers? And then, in terms of I guess growth rates and expectations, I was just curious what you're thinking, how you're pitching this (00:44:53) product kind of progressing relative to the success you've seen in video analytics category?"
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Okay. Yeah, good question. So, on the uptake, meaning that the complexity that service provider has to deal with, it's actually in this case very modest. We've eliminated the need for a power supply, if you don't have a power supply. It's cellular. It's sort of a put the battery and connect it and let it register and it works. So, for its most simple use case – simple use case is in terms of installability would be things that look and feel like what we've traditionally called a contact sensor where you have a sensor that's monitoring a door that opens or you have a tether sensor where you have a loop looks like a bicycle chain almost and you loop something into that bicycle chain and when the chain opens, you know that you had activity there. So, those are really pretty simple installs. And any of our service providers that are already familiar with the overall backend system of Alarm.com can add that very quickly. And then, probably the heavy lift will be getting their sales teams to be aware of the types of solutions they now can render to the market. Technical impedance, very little. There's always a certain amount of educational impedance and education of sales teams particularly since these are third-party sales teams on how to find those use cases, how to present them to the subscriber. So, I think putting that together, it will look something – maybe not quite as quick as analytics, analytics is going very well. But I think we'll see kind of a similar dynamic where first six, nine months, we're seeing steady progress in terms of adoption, but we're not seeing it be sort of dollar moving (00:46:44) moving progress in our P&L. And then, once you get a year and a half or so out, you've got enough people trained, enough education, enough experience selling and installing that it becomes a part of the daily arsenal of 9,000 service providers and then it kicks in and begins to really contribute."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "David Robinson - William Blair & Co. LLC",
+     "content": "Awesome. Thanks for that."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Sure."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Darren Aftahi of ROTH Capital Partners (00:47:14). Your line is now open."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Darren Aftahi - ROTH Capital Partners LLC",
+     "content": "Hi, guys. Thanks for taking my questions, and congrats on the quarter. Hope you're well. Curious to – first, the percentage of subs, new subs in the quarter, what percentage of those were from existing subs? Meaning, Steve, you talked a little about people buying second home, I'm just kind of curious on that. And then, can you give what the other revenue was in the quarter, please? Thanks."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "So, I will unfortunately have to acknowledge that I don't actually know the percentage of our – it's a great question. The percentage of our new subs, who are taking the offering for second homes, the other heavy situation there is your commercial enterprise and you have 80 different stores and you start with five in the 80 (00:48:01). I bet that's a pretty good number, but I don't know it and it's one we should check. And it's hard for us to totally know because our service providers are in charge of the subscriber. But oftentimes, if you have multiple properties or multiple stores, your tying those two user expenses together in the mobile app and (00:48:20) we could check that growth rate (00:48:23). I just don't have it on the top of my stack. I'm going to let Steve answer the second question, though."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Steve Valenzuela - Alarm.com Holdings, Inc.",
+     "content": "Yeah. Darren, so the other segment revenue was $7.3 million in Q3 and it was up 46% year-over-year. That includes EnergyHub, PointCentral, Building36 where we announced the Smart Water Valve + Meter that we came out with this quarter. Of course, it's not in the sales numbers yet, but it's just been released."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Darren Aftahi - ROTH Capital Partners LLC",
+     "content": "So, if I could just sneak one more in. So, as we think about your – I think you said $435 million for 2021 SaaS revenue. Like, how should we think about that other segment in terms of the growth profile maybe relative to the overall business? Thank you."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "The other segment has been growing. Depending upon the quarter and there is some seasonality within EnergyHub and timing differences, but generally, the other segment has been growing anywhere from 30% to 40% year-over-year. We don't see any reason why that would change in 2021. Operator?"
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Operator",
+     "content": "Thank you. And our..."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Darren Aftahi - ROTH Capital Partners LLC",
+     "content": "Thanks."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Operator",
+     "content": "...next question comes from Jack Vander Aarde. Your line is now open."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Hi, Jack."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Jack Vander Aarde - Maxim Group LLC",
+     "content": "Hi. Great. Thanks. Hi, Steve T. Hi, Steve V. Excellent quarter."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Jack Vander Aarde - Maxim Group LLC",
+     "content": "Thanks for taking my questions. A lot of analysts have already touched on some of the stuff I wanted to ask. But let me revisit this topic. Maybe Steve T, you initially responded to an earlier question of the average customer life – or consistent customer life, I guess, is eight or nine years maybe for single property and you hope to maintain that customer though for the entire life as they move properties. So, either Steve T or Steve Valenzuela, do you have any data points or metrics you can maybe share on the total number of subscribers that have deactivated because they're moving properties and then have actually gone on to reactivate Alarm's properties? Any data points or metrics you have that would provide evidence of that?"
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Well, we do have a revenue retention rate that we – it's been pretty consistent at the high end of 94%. But I will say, based on our past experience, moves is probably one of the main reasons for attrition. Now, with the – obviously people expanding and adding second homes, generally people have not been moving as much though. They've been adding the second homes and adding other properties. They've been moving out of cities where generally you have apartments where typically you don't have an alarm system in your apartment. So, I think we've been benefiting from that trend and I think overall – but, yeah, movies is certainly one of the reasons why you have attrition."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Steve Valenzuela - Alarm.com Holdings, Inc.",
+     "content": "There is a metric, Jack, in the industry and others report it that you may want to look at. We don't keep it because we don't always know if there's, what we call, a re-sign (00:51:34). But service providers that are public oftentimes report their re-signs and they report attrition net of re-sign. And the larger you are as a service provider, the more advantages you have when people move because you can re-sign them in a new market they may have moved in. But some of the service providers do report that. I don't think we have it right now. We could just probably find anecdotal examples by talking to folks."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Jack Vander Aarde - Maxim Group LLC",
+     "content": "Okay. That's helpful. That's helpful. And then, let me shift gears. There's a lot of talk – some talk on international, I'm hoping explicitly or specifically to get an update maybe on the partnership you announced last quarter on the latest developments and progress with your partnership with Johnson Controls and the countries and regions you're going after with Global Interactive Services?"
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Sure. Yeah. I think that partnership is going well. I think they've done a great job. I just would say in that case we had a time bound objective to upgrade a lot of existing subscribers that they were servicing internationally in several different markets. And it was a hard project and they executed on it very well. We obviously worked with them on that. So, we upgraded quite a few customers throughout the first nine months of the year there. But we also got the sales teams conditioned, the installers conditioned, and now have a nice – I would say both parties are now enjoy the fruits of that labor. We have a nice engine that is producing subscribers every day in Chile and Argentina and in many Latin American markets as well as UK and Australia. So, that's going well. We're happy with it. We're continuing to upgrade the platform. But we're at this point up in about 40 different countries and have a whole litany or a whole set of service providers that we're at various stages with and still are working through some kinks market by market and in the technology, but are getting I think more mature. And overall, the segment – so, international was hit, I think I indicated last quarter, it took a little bit more of a dive with COVID than the US market and it was slower to come out of that. But we're just getting back to pre-COVID levels now internationally. We hope [Technical Difficulty] (00:54:17) doesn't reverse that. But it's come back and now we're back sort of into – beginning to get into the green growth area again in terms of daily installations."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Jack Vander Aarde - Maxim Group LLC",
+     "content": "Okay. Fantastic. That's it for me, guys. Again, great quarter..."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Jack Vander Aarde - Maxim Group LLC",
+     "content": "...and a solid guidance."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Steve Valenzuela - Alarm.com Holdings, Inc.",
+     "content": "Thanks, Jack."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Stephen S. Trundle - Alarm.com Holdings, Inc.",
+     "content": "Thank you very much."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Operator",
+     "content": "Thank you. And ladies and gentlemen, this does conclude our question-and-answer session. Thank you for participating on today's conference call. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +374,8 @@
    "reportDate": "2019-12-31",
    "accession": "0001459200-20-000005",
    "url": "https://www.sec.gov/Archives/edgar/data/1459200/000145920020000005/alarmcom10-kdecember31.htm",
-   "local_gz": "000145920020000005__annual.txt.gz"
+   "local_gz": "000145920020000005__annual.txt.gz",
+   "n_lines": 7955
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +383,8 @@
    "reportDate": "2020-09-30",
    "accession": "0001459200-20-000030",
    "url": "https://www.sec.gov/Archives/edgar/data/1459200/000145920020000030/alrm-20200930.htm",
-   "local_gz": "000145920020000030__q0.txt.gz"
+   "local_gz": "000145920020000030__q0.txt.gz",
+   "n_lines": 1664
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +392,106 @@
    "reportDate": "2020-06-30",
    "accession": "0001459200-20-000022",
    "url": "https://www.sec.gov/Archives/edgar/data/1459200/000145920020000022/alrm-20200630.htm",
-   "local_gz": "000145920020000022__q1.txt.gz"
+   "local_gz": "000145920020000022__q1.txt.gz",
+   "n_lines": 1651
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2020-08-05",
   "n_rows": 8,
@@ -83,6 +506,68 @@
     "ocf": 25732000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 22990000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 49510000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3356000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 146061000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 67000000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 1698000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5567000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 7928000.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.16,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 98266.0,
+      "filed": "2019-03-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +578,68 @@
     "ocf": -1187000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 25714000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 56123000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3698000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 122442000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 66000000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2962000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5228000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 9010000.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.18,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 50172818.0,
+      "filed": "2019-05-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +650,68 @@
     "ocf": 24054000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 23895000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 60021000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3560000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 150851000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 65000000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2746000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5138000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 13796000.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.27,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 50283990.0,
+      "filed": "2019-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +722,68 @@
     "ocf": 980000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 20978000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 64897000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3063000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 164323000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 64000000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 4952000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5467000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 17690000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.35,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 50152807.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +794,68 @@
     "ocf": 23265000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 34168000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 76373000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3043000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 119629000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 63000000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8664000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 6301000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 13035000.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.26,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 35480.0,
+      "filed": "2020-02-26",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +866,68 @@
     "ocf": 12900000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 36841000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 81894000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4028000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 171732000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 113000000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3719000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 6422000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 8807000.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.18,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 50246987.0,
+      "filed": "2020-05-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +938,68 @@
     "ocf": 35148000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 50406000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 76591000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3542000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 205827000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 112000000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3397000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 6723000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 16995000.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.34,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 50551632.0,
+      "filed": "2020-08-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1010,30 @@
     "ocf": 18622000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 247176000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 36084000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.71,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": {
+      "value": 50979679.0,
+      "source": "EX-99.1 稿內文字"
+     }
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 158900000.0,
     "revenue_xbrl_for_reference": 158851000.0
@@ -166,151 +1047,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "7372",
   "sic2": "73",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 362,
-  "peer_list_all_same_sic2_tickers": [
-   "ABM",
-   "ACIW",
-   "ACN",
-   "ADBE",
-   "ADP",
-   "ADSK",
-   "ADT",
-   "ADV",
-   "AER",
-   "AEYE",
-   "AGMH",
-   "AGYS",
-   "AHG",
-   "AIFF",
-   "AKAM",
-   "ALAR",
-   "ALIT",
-   "ALLE",
-   "AMN",
-   "AMST",
-   "AMWL",
-   "ANGI",
-   "APG",
-   "API",
-   "APPF",
-   "APPN",
-   "ARLO",
-   "ASAN",
-   "ASPS",
-   "ASUR",
-   "ATHM",
-   "ATXG",
-   "AVPT",
-   "AWRE",
-   "BABA",
-   "BAND",
-   "BB",
-   "BBSI",
-   "BGSF",
-   "BIDU",
-   "BILI",
-   "BILL",
-   "BKYI",
-   "BL",
-   "BLIN",
-   "BLKB",
-   "BOX",
-   "BR",
-   "BSY",
-   "CACI",
-   "CARG",
-   "CARS",
-   "CASS",
-   "CBZ",
-   "CCC",
-   "CCLD",
-   "CCO",
-   "CDLX",
-   "CDNS",
-   "CEVA",
-   "CHGA",
-   "CHKP",
-   "CHR",
-   "CLPS",
-   "CLVT",
-   "CMCM",
-   "CMRC",
-   "CNDT",
-   "CNET",
-   "CPAY",
-   "CREX",
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 123,
+  "peer_list_all_tickers": [
    "CRM",
-   "CRNC",
-   "CRTO",
-   "CRWD",
-   "CSGP",
-   "CSPI",
-   "CTEV",
-   "CTOS",
-   "CTSH",
-   "CVLT",
-   "DAVA",
-   "DBX",
-   "DDD",
-   "DDOG",
-   "DFIN",
-   "DHX",
-   "DLHC",
-   "DOCU",
-   "DOMO",
-   "DOX",
-   "DOYU",
-   "DSGX",
-   "DT",
-   "DTST",
-   "DUOT",
-   "DVLT",
-   "DXC",
-   "EBAY",
-   "EFOR",
-   "EFX",
-   "EGAN",
-   "EGHT",
-   "EPAM",
-   "ESTC",
-   "ETSY",
-   "EVER",
-   "EVTC",
-   "EXLS",
-   "FDS",
-   "FICO",
-   "FIRY",
-   "FIS",
-   "FISV",
-   "FIVN",
-   "FLNT",
-   "FLUT",
-   "FNGR",
-   "FORTY",
-   "FOUR"
+   "MSFT"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000789019",
     "name": "MICROSOFT CORP",
     "ticker": "MSFT",
-    "sic2": "73",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2020-07-30",
     "accn": "0001564590-20-034944",
     "local_gz": "000156459020034944__peer10k.txt.gz",
     "capex_excerpt": [
-     "se in additions to property and equipment, and a $1.5 billion increase in cash used for acquisitions of companies, net of cash acquired, and purchases of intangible and other assets. Debt We issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating and the low interest rate environment. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. In June 2020, we exchanged a portion of our existing debt at premium for cash and new debt with longer ma",
-     "r 2026. During fiscal year 2020, we also paid $3.7 billion related to the transfer of intangible properties that occurred in the fourth quarter of fiscal year 2019. 49 PART II Item 7 We expect existing cash, cash equivalents, short-term investments, cash flows from operations, and access to capital markets to continue to be sufficient to fund our operating activities and cash commitments for investing and financing activities, such as dividends, share repurchases, debt maturities, material capital expenditures, and the transition tax related to the TCJA, for at least the next 12 months and thereafter for the foreseeable future. RECENT ACCOUNTING GUIDANCE Refer to Note 1 – Accounting Policies"
-    ]
+     "reased $9.1 billion to $46.0 billion for fiscal year 2020, mainly due to a $3.4 billion cash premium on our debt exchange, a $3.4 billion increase in common stock repurchases, a $1.5 billion increase in repayments of debt, and a $1.3 billion increase in dividends paid. Cash used in investing decreased $3.6 billion to $12.2 billion for fiscal year 2020, mainly due to a $6.4 billion increase in cash from net investment purchases, sales, and maturities, offset in part by a $1.5 billion increase in additions to property and equipment and $1.2 billion in other investing to facilitate the purchase of components. 47 PART II Item 7 Fiscal Year 2019 Compared with Fiscal Year 2018 Cash from operations",
+     "nancing increased $3.3 billion to $36.9 billion for fiscal year 2019, mainly due to an $8.8 billion increase in common stock repurchases and a $1.1 billion increase in dividends paid, offset in part by a $6.2 billion decrease in repayments of debt, net of proceeds from issuance of debt. Cash used in investing increased $9.7 billion to $15.8 billion for fiscal year 2019, mainly due to a $6.0 billion decrease in cash from net investment purchases, sales, and maturities, a $2.3 billion increase in additions to property and equipment, and a $1.5 billion increase in cash used for acquisitions of companies, net of cash acquired, and purchases of intangible and other assets. Debt We issue debt to t",
+     "se in additions to property and equipment, and a $1.5 billion increase in cash used for acquisitions of companies, net of cash acquired, and purchases of intangible and other assets. Debt We issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating and the low interest rate environment. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. In June 2020, we exchanged a portion of our existing debt at premium for cash and new debt with longer ma"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0001326801",
-    "name": "Meta Platforms, Inc.",
-    "ticker": "META",
-    "sic2": "73"
+    "entity_id": "0001108524",
+    "name": "Salesforce, Inc.",
+    "ticker": "CRM",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2020-03-05",
+    "accn": "0001108524-20-000014",
+    "local_gz": "000110852420000014__peer10k.txt.gz",
+    "capex_excerpt": [
+     "s. Additionally, we have significant contractual commitments, such as commitments with infrastructure service providers, which are not reflected on our consolidated balance sheets. In April 2018, we amended and restated our revolving credit facility under which we can draw down up to $1.0 billion. Maintenance of our indebtedness and contractual commitments and any additional issuances of indebtedness could: • impair our ability to obtain additional financing in the future for working capital, capital expenditures, acquisitions, general corporate or other purposes; • cause us to dedicate a substantial portion of our cash flows from operations towards debt service obligations and principal rep",
+     "ed as revenue in future periods. 42 Table of Contents We believe our existing cash, cash equivalents, marketable securities, cash provided by operating activities and, if necessary, our borrowing capacity under our revolving loan credit agreement that provides for $1.0 billion unsecured financing (\"Credit Facility\") and unbilled amounts related to contracted non-cancelable subscription agreements, which is not reflected on the balance sheet, will be sufficient to meet our working capital, capital expenditure and debt repayment needs over the next 12 months. In the future, we may enter into arrangements to acquire or invest in complementary businesses, services and technologies, and intellect",
+     "d senior unsecured debt outstanding due in 2023 and 2028 with a total carrying value of $2.5 billion. In addition, we had senior secured notes outstanding related to our loan on 50 Fremont due in 2023 with a total carrying value of $193 million. We were in compliance with all debt covenants as of January 31, 2020. We maintain a Credit Facility that matures in April 2023. We may use the proceeds of future borrowings under the Credit Facility for refinancing other indebtedness, working capital, capital expenditures and other general corporate purposes, including permitted acquisitions. There were no outstanding borrowings under the Credit Facility as of January 31, 2020. We do not have any spe"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -332,7 +1114,16 @@
   "latest_data_date": "2020-11-06",
   "cutoff": "2020-11-06",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2020-11-06",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2020-11-09",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

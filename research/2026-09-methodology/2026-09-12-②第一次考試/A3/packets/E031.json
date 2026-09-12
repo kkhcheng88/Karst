@@ -1,6 +1,7 @@
 {
  "event_id": "E031",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E031",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "MIDD",
  "cik": "0000769520",
  "name": "MIDDLEBY Corp",
@@ -9,10 +10,11 @@
  "bucket": "製造與工業",
  "evidence_cutoff": "T1 = 2018-08-08(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E031",
   "event_id": "E031",
   "ticker": "MIDD",
   "cik": "0000769520",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001157523-18-001761",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/769520/000115752318001761/a51849833.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/769520/000115752318001761/a51849833.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a51849833ex99_1.htm\n EXHIBIT 99.1\n Exhibit 99.1 \n The\n Middleby Corporation Reports Second Quarter Results \n ELGIN, Ill.--(BUSINESS WIRE)--August 8, 2018--The Middleby Corporation\n (NASDAQ: MIDD), a leading worldwide manufacturer of equipment for the\n commercial foodservice, food processing, and residential kitchen\n industries, today reported net sales and earnings for the second quarter\n ended June 30, 2018. Net earnings for the second quarter were $84.0\n million or $1.51 diluted earnings per share on net sales of $668.1\n million as compared to the prior year second quarter net earnings of\n $77.6 million or $1.35 diluted earnings per share on net sales of $579.3\n million.\n 2018 Second Quarter Financial Highlights \n Net sales increased 15.3% in the second quarter over the comparative\n prior year period. Sales related to recent acquisitions added $84.1\n million or 14.5%, in the second quarter. The impact of foreign\n exchange rates on foreign sales translated into U.S. Dollars increased\n net sales by approximately $6.7 million during the second quarter. The\n adoption of ASC 606 increased net sales by approximately $0.4 million\n during the second quarter. Excluding the impacts of acquisitions,\n foreign exchange rates and the adoption of ASC 606, sales decreased\n 0.4% during the second quarter.\n Net sales at the company’s Commercial Foodservice Equipment Group\n increased $80.3 million, or 24.1%, to $414.1 million in the second\n quarter as compared to $333.8 million in the prior year second\n quarter. During fiscal 2017, the company completed the acquisitions of\n Sveba Dahlen, QualServ, L2F and Globe. During fiscal 2018, the company\n completed the acquisitions of Josper, Firex, and Taylor. Excluding the\n impact of these acquisitions, sales increased 5.0% in the second\n quarter, or increased 4.3% excluding the benefit of foreign exchange\n rates.\n Net sales at the company’s Residential Kitchen Equipment Group\n increased $7.2 million, or 4.7%, to $160.4 million in the second\n quarter as compared to $153.2 million in the prior year second\n quarter. Excluding the impact of foreign exchange rates, sales\n increased 2.1% during the second quarter. Sales at Viking increased by\n approximately 24% during the quarter. Additionally, the consolidating\n of distribution of our premium brands through company owned operations\n and terminating certain third party distributors generated modest\n growth domestically. This was more than offset by lower sales at AGA\n and non-core brands.\n Net sales at the company’s Food Processing Equipment Group increased\n $1.2 million, or 1.3%, to $93.6 million in the second quarter as\n compared to $92.4 million in the prior year second quarter. During\n fiscal 2017, the company completed the acquisitions of Burford, CVP\n Systems, and Scanico. During fiscal 2018, the company completed the\n acquisitions of Hinds-Bock and Ve.Ma.C. Excluding the impact of these\n acquisitions, sales decreased 20.8% in the second quarter. Excluding\n the impacts of acquisitions, foreign exchange rates and the adoption\n of ASC 606, net sales decreased $20.2 million, or 21.9%.\n Gross profit in the second quarter increased to $250.8 million from\n $234.6 million reflecting the impact of increased sales from\n acquisitions. The gross margin rate decreased from 40.5% to 37.5%. The\n decrease in the gross margin rate for the quarter reflects lower\n margins at recent acquisitions. Additionally, the gross margin rate\n was impacted by lower volumes and unfavorable product mix at the Food\n Processing Equipment Group. Excluding the impact of acquisitions, the\n gross margin rate would have been 39.2% in the second quarter.\n Operating income amounted to $111.3 million in the second quarter as\n compared to $113.5 million in the prior year quarter. Operating income\n during the 2018 second quarter included $4.4 million of restructuring\n charges as compared to $11.5 million in the 2017 second quarter.\n Professional fees increased in the 2018 second quarter related to\n Taylor transaction costs and legal costs of approximately $4.5\n million. Additionally, the gain on sale of plant in the amount of\n $12.0 million added to operating income for the 2017 second quarter.\n Operating income included $20.0 million of non-cash expenses during\n the second quarter, comprised of $8.5 million of depreciation expense,\n $9.8 million of intangible amortization and $1.7 million of share\n based compensation.\n The provision for income taxes in the second quarter amounted to $26.6\n million at a 24.0% effective rate in comparison to $38.6 million at a\n 33.2% effective rate in the prior year quarter. The tax rate in the\n second quarter was favorably impacted by the reduction in the federal\n tax rate from 35% to 21%.\n Net earnings per share amounted to $1.51 in the second quarter as\n compared to $1.35 in the prior year quarter. The impact of\n restructuring expenses and professional fees reduced earnings per\n share by $0.12 in the 2018 second quarter period. In the second\n quarter of 2017, restructuring expenses and the gain on sale of a\n manufacturing facility resulted in no net impact to earnings per share.\n Operating cash flows increased to $146.6 million during the second\n quarter as compared to $86.0 million in the prior year quarter related\n to lower cash paid for taxes and working capital needs.\n Net debt, defined as debt less cash, at the end of 2018 fiscal second\n quarter amounted to $1,974.3 million as compared to $939.2 million at\n the end of fiscal 2017. Second quarter debt reflected the funding of\n the Taylor acquisition for approximately $1.0 billion, as well as for\n V.eMa.C, Firex, and Josper acquisitions completed in the second\n quarter.\n Selim A. Bassoul, Chairman and Chief Executive Officer, commented, “At\n the Commercial Foodservice Equipment Group, we are seeing the efforts of\n the initiatives implemented over the past year realized with solid sales\n growth in the quarter. We remain excited about the strategic changes in\n our sales organization that were completed in the first quarter of 2018.\n We are beginning to see the benefits in the marketplace of aligning with\n the strongest sales representatives in the industry, which now carry our\n complete portfolio of leading brands and expanding pipeline of new\n product innovations. We added several new customers and reported sales\n growth amongst our major restaurant chain accounts, with continued\n adoption of our new technologies. As a result, we anticipate improving\n sales trends as we progress through the remainder of the year.”\n Mr. Bassoul continued, “At our Residential Kitchen Equipment Group, we\n are very pleased to gain momentum at Viking which we expect will\n continue throughout 2018 and into 2019. We are well positioned with the\n exciting new lineup of Viking products introduced under Middleby’s\n ownership. The on-going investments in new product displays at our\n dealer partners are continuing to generate positive response in the\n marketplace. We are also seeing the benefits of our long-term strategy\n to consolidate the sales and distribution organizations for our premium\n brands, including Viking, Marvel, Lynx, LaCornue and AGA, through\n company owned operations. As anticipated, the transitional impact of the\n changes were largely completed this quarter, and we recognized modest\n growth in brands other than Viking domestically in the second quarter.\n The AGA businesses continue to be adversely impacted by challenging\n market conditions in the UK with the growing uncertainty of Brexit.\n Restructuring actions are on-going at non-core residential businesses as\n we focus on profit improvements at those entities amidst a decline in\n revenues.”\n “At the Food Processing Equipment Group, we have suffered from continued\n headwinds as several anticipated orders had not yet materialized. The\n decline in revenues reflects the significance of large projects on this\n business segment, which has historically resulted in quarterly sales\n volatility. We are optimistic that the improvement seen in recent orders\n will lead to growth in upcoming quarters for this segment.”\n Mr. Bassoul added, “We are excited to have completed the milestone\n acquisition of Taylor in the second quarter. The acquisition is highly\n strategic for Middleby and significantly bolsters our overall position\n as an industry leader in commercial foodservice. Taylor’s leading\n positions in beverage, frozen dessert and grilling broadens our presence\n in these categories. Along with our other recent acquisitions, we are\n well positioned for growth as customers continue to invest in and expand\n their beverage offerings. We have received very positive feedback from\n our customers and believe there are substantial growth opportunities,\n which should be further enhanced by technology synergies amongst Taylor\n and our existing related businesses.”\n “In addition to Taylor, we were pleased to announce the acquisition and\n addition of several other new brands to the portfolio this quarter.\n Firex is a leader in steam cooking equipment, as is Josper in charcoal\n cooking equipment. They further extend our portfolio of leading cooking\n brands and product innovation in the commercial foodservice industry. In\n both cases, these companies are well positioned to benefit from growing\n foodservice trends related to steam, sous-vide, and charcoal cooking.\n JoeTap, a leader in nitro-brew and cold-brew coffee dispensing\n equipment, further adds to our beverage and coffee platform. Cold-brew\n and nitro-brew are quickly gaining momentum and we have seen significant\n interest in these products from our existing customers.”\n Conference Call \n A conference call will be held at 10 a.m. Central Time on Wednesday,\n August 8, 2018 and can be accessed by dialing (888) 391-6937 or (315)\n 625-3077 and providing conference code 4189566#. The conference call is\n also accessible through the Investor Relations section of the company\n website at www.middleby.com . A replay of the conference call will\n be available two hours after the conclusion of the call by dialing (855)\n 859-2056 and entering conference code 4189566#.\n Statements in this press release or otherwise attributable to the\n company regarding the company's business which are not historical fact\n are forward-looking statements made pursuant to the safe harbor\n provisions of the Private Securities Litigation Reform Act of 1995. The\n company cautions investors that such statements are estimates of future\n performance and are highly dependent upon a variety of important factors\n that could cause actual results to differ materially from such\n statements. Such factors include variability in financing costs;\n quarterly variations in operating results; dependence on key customers;\n international exposure; foreign exchange and political risks affecting\n international sales; changing market conditions; the impact of\n competitive products and pricing; the timely development and market\n acceptance of the company’s products; the availability and cost of raw\n materials; and other risks detailed herein and from time-to-time in the\n company’s SEC filings.\n The Middleby Corporation is a global leader in the foodservice equipment\n industry. The company develops, manufactures, markets and services a\n broad line of equipment used in the commercial foodservice, food\n processing, and residential kitchen equipment industries. The company's\n leading equipment brands serving the commercial foodservice industry\n include Anets®, Bear Varimixer®, Beech®, Blodgett®, Blodgett Combi®,\n Blodgett Range®, Bloomfield®, Britannia®, Carter-Hoffmann®, Celfrost®,\n Concordia®, CookTek®, CTX®, Desmon®, Doyon®, Eswood®, frifri®, Firex®,\n Follett®, Giga®, Globe®, Goldstein®, Holman®, Houno®, IMC®, Induc®,\n Jade®, JoeTap®, Josper®, L2F®, Lang®, Lincat®, MagiKitch'n®, Market\n Forge®, Marsal®, Middleby Marshall®, MPC®, Nieco®, Nu-Vu®, PerfectFry®,\n Pitco Frialator®, QualServ®, Southbend®, Star®, Sveba Dahlen®, Taylor®,\n Toastmaster®, TurboChef®, Wells® and Wunder-Bar®. The company’s leading\n equipment brands serving the food processing industry include Alkar®,\n Armor Inox®, Auto-Bake®, Baker Thermal Solutions®, Burford®, Cozzini®,\n CVP Systems®, Danfotech®, Drake®, Emico®, Glimek®, Hinds-Bock®,\n Maurer-Atmos®, MP Equipment®, RapidPak®, Scanico®, Spooner Vicars®,\n Stewart Systems®, Thurne® and VeMa.C.®. The company’s leading equipment\n brands serving the residential kitchen industry include AGA®, AGA\n Cookshop®, Brigade®, Fired Earth®, Grange®, Heartland®, La Cornue®,\n Leisure Sinks®, Lynx®, Marvel®, Mercury®, Rangemaster®, Rayburn®,\n Redfyre®, Sedona®, Stanley®, TurboChef®, U-Line® and Viking®.\n For more information about The Middleby Corporation and the company\n brands, please visit www.middleby.com .\n THE MIDDLEBY CORPORATION \n CONDENSED CONSOLIDATED STATEMENTS OF EARNINGS \n (Amounts in 000’s, Except Per Share Information) \n (Unaudited) \n Three Months Ended\n Six Months Ended\n 2nd Qtr, 2018\n 2nd Qtr, 2017\n 2nd Qtr, 2018\n 2nd Qtr, 2017\n Net sales\n $\n 668,128\n $\n 579,343\n $\n 1,252,928\n $\n 1,109,640\n Cost of sales\n 417,369\n 344,735\n 790,536\n 665,582\n Gross profit\n 250,759\n 234,608\n 462,392\n 444,058\n Selling, general and administrative\n 135,008\n 121,632\n 257,956\n 236,616\n Restructuring expenses\n 4,441\n 11,494\n 6,134\n 13,219\n Gain on sale of plant\n —\n (12,042\n )\n —\n (12,042\n )\n Income from operations\n 111,310\n 113,524\n 198,302\n 206,265\n Interest expense and deferred financing amortization, net\n 10,404\n 5,702\n 19,227\n 11,507\n Net periodic pension benefit (other than service costs)\n (9,116\n )\n (8,612\n )\n (18,821\n )\n (16,950\n )\n Other (income) expense, net\n (542\n )\n 302\n 631\n 2,169\n Earnings before income taxes\n 110,564\n 116,132\n 197,265\n 209,539\n Provision for income taxes\n 26,576\n 38,563\n 47,857\n 61,268\n Net earnings\n $\n 83,988\n $\n 77,569\n $\n 149,408\n $\n 148,271\n Net earnings per share:\n Basic\n $\n 1.51\n $\n 1.35\n $\n 2.69\n $\n 2.59\n Diluted\n $\n 1.51\n $\n 1.35\n $\n 2.69\n $\n 2.59\n Weighted average number of shares\n Basic\n 55,576\n 57,299\n 55,575\n 57,201\n Diluted\n 55,576\n 57,299\n 55,575\n 57,201\n THE MIDDLEBY CORPORATION \n CONDENSED CONSOLIDATED BALANCE SHEETS \n (Amounts in 000’s, Except Per Share Information) \n (Unaudited) \n Jun 30, 2018\n Dec 30, 2017\n ASSETS\n Cash and cash equivalents\n $\n 92,284\n $\n 89,654\n Accounts receivable, net\n 400,266\n 328,421\n Inventories, net\n 493,667\n 424,639\n Prepaid expenses and other\n 48,890\n 55,427\n Prepaid taxes\n 45,350\n 33,748\n Total current assets\n 1,080,457\n 931,889\n Property, plant and equipment, net\n 317,150\n 281,915\n Goodwill\n 1,824,755\n 1,264,810\n Other intangibles, net\n 1,292,771\n 780,426\n Long-term deferred tax assets\n 40,807\n 44,565\n Other assets\n 46,263\n 36,108\n Total assets\n $\n 4,602,203\n $\n 3,339,713\n LIABILITIES AND STOCKHOLDERS' EQUITY\n Current maturities of long-term debt\n $\n 6,297\n $\n 5,149\n Accounts payable\n 188,256\n 146,333\n Accrued expenses\n 361,501\n 322,171\n Total current liabilities\n 556,054\n 473,653\n Long-term debt\n 2,060,328\n 1,023,732\n Long-term deferred tax liability\n 102,636\n 87,815\n Accrued pension benefits\n 309,573\n 334,511\n Other non-current liabilities\n 72,456\n 58,854\n Stockholders' equity\n 1,501,156\n 1,361,148\n Total liabilities and stockholders' equity\n $\n 4,602,203\n $\n 3,339,713\n CONTACT:\nThe Middleby Corporation\nDarcy Bretz, 847-429-7756\nInvestor\n and Public Relations\nor\nTim FitzGerald, 847-429-7744\nChief\n Financial Officer\n",
@@ -36,6 +39,24 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000115752318001761__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001157523-18-001049",
+   "filingDate": "2018-05-09",
+   "reportDate": "2018-05-09",
+   "form": "8-K",
+   "local_gz": "000115752318001049__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 2,
+   "guidance_sentences": [
+    "Incoming orders outpaced first quarter sales at a double digit growth rate and we anticipate consistent growth throughout the remainder of 2018.",
+    "We anticipate revenues will be impacted for the upcoming quarters due to the delay in a number of larger projects.” “We are pleased to announce the acquisition and addition of several new brands to the portfolio early in 2018."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +68,8 @@
    "reportDate": "2017-12-30",
    "accession": "0000769520-18-000003",
    "url": "https://www.sec.gov/Archives/edgar/data/769520/000076952018000003/midd-2017123017x10kq4.htm",
-   "local_gz": "000076952018000003__annual.txt.gz"
+   "local_gz": "000076952018000003__annual.txt.gz",
+   "n_lines": 5018
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +77,8 @@
    "reportDate": "2018-03-31",
    "accession": "0000769520-18-000006",
    "url": "https://www.sec.gov/Archives/edgar/data/769520/000076952018000006/middleby10-qq12018.htm",
-   "local_gz": "000076952018000006__q0.txt.gz"
+   "local_gz": "000076952018000006__q0.txt.gz",
+   "n_lines": 2071
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +86,106 @@
    "reportDate": "2017-09-30",
    "accession": "0000769520-17-000012",
    "url": "https://www.sec.gov/Archives/edgar/data/769520/000076952017000012/middleby10-qq32017.htm",
-   "local_gz": "000076952017000012__q1.txt.gz"
+   "local_gz": "000076952017000012__q1.txt.gz",
+   "n_lines": 2166
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2018-05-10",
   "n_rows": 8,
@@ -83,6 +200,63 @@
     "ocf": 79415000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 385444000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 329066000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 61780000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 833321000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 5691000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 13169000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 75851000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.33,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 57022000.0,
+      "filed": "2016-11-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +267,63 @@
     "ocf": 119013000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 368243000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 325868000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 68485000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 732126000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 6018000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 13825000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 80936000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.41,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 53000.0,
+      "filed": "2017-03-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +334,63 @@
     "ocf": 46880000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 396194000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 307439000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 76576000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 728605000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8276000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 14057000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 70702000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.24,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 57103000.0,
+      "filed": "2017-05-11",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +401,63 @@
     "ocf": 39156000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 421934000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 327148000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 64873000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 803274000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 23432000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 18258000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 77569000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.35,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 57299000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +468,63 @@
     "ocf": 118856000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 425932000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 336805000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 81726000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 950708000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 10726000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 16961000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 74671000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.31,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 56810000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +535,63 @@
     "ocf": 99563000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 424639000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 328421000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 31069000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 89654000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1028881000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 12059000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 20498000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 75186000.0,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.35,
+      "filed": "2018-02-28",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +602,68 @@
     "ocf": 44748000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 459151000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 331609000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 51276000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 103290000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1048998000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 16657000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 20024000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 65420000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.18,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 55573000.0,
+      "filed": "2018-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +674,21 @@
     "ocf": 101887000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": 1.51,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 668100000.0,
     "revenue_xbrl_for_reference": 668128000.0
@@ -166,151 +702,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3580",
   "sic2": "35",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 133,
-  "peer_list_all_same_sic2_tickers": [
-   "AAON",
-   "AAPL",
-   "ACLS",
-   "ACMR",
-   "AGCO",
-   "ALG",
-   "ALLT",
-   "ALOT",
-   "ANET",
-   "AP",
-   "ARTW",
-   "ASML",
-   "ASTE",
-   "ASYS",
-   "ATEN",
-   "ATS",
-   "AZTA",
-   "BC",
-   "BKR",
-   "BOSC",
-   "BWXT",
-   "CAT",
-   "CECO",
-   "CHRN",
-   "CIIT",
-   "CMCO",
-   "CMI",
-   "CNH",
-   "CSCO",
-   "CVR",
-   "CVV",
-   "CW",
-   "CYD",
-   "DCI",
-   "DE",
-   "DELL",
-   "DGII",
-   "DNOW",
-   "DOV",
-   "EPAC",
-   "ERII",
-   "ETN",
-   "EXTR",
-   "FET",
-   "FFIV",
-   "FLS",
-   "FTEK",
-   "FTI",
-   "FTNT",
-   "GENC",
-   "GGG",
-   "GHM",
-   "GPUS",
-   "GRC",
-   "GTEC",
-   "GTES",
-   "HPE",
-   "HPQ",
-   "HY",
-   "IBM",
-   "IEX",
-   "IMMR",
-   "INTZ",
-   "INVE",
-   "INVX",
-   "IR",
-   "ITT",
-   "ITW",
-   "JBTM",
+  "bucket": "製造與工業",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic3",
+  "n_listed_peers": 6,
+  "peer_list_all_tickers": [
    "JCI",
-   "KAI",
-   "KMT",
-   "KRNT",
-   "LECO",
-   "LII",
-   "LINK",
-   "LIQT",
-   "LNN",
-   "LOGI",
-   "LRCX",
-   "LTRX",
-   "MITK",
-   "MOG-A",
-   "MTW",
-   "MYND",
-   "NDSN",
-   "NNBR",
-   "NOV",
-   "NTAP",
-   "NTGR",
-   "NVT",
-   "OIS",
-   "OMCL",
-   "OSS",
-   "P",
-   "PANW",
-   "PAR",
-   "PBI",
-   "PLOW",
-   "PNR",
-   "PPIH",
-   "PSIX",
-   "QMCO",
-   "RBC",
-   "RDCM",
-   "RRX",
-   "SCKT",
-   "SEI",
-   "SILC",
-   "SMCI",
-   "SOTK",
-   "SPXC",
-   "SSYS",
-   "STX",
-   "SXI",
-   "TACT",
-   "TAYD",
-   "TEX",
-   "TGEN",
-   "TKR"
+   "LII"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0000320193",
-    "name": "Apple Inc.",
-    "ticker": "AAPL",
-    "sic2": "35",
+    "entity_id": "0000833444",
+    "name": "Johnson Controls International plc",
+    "ticker": "JCI",
+    "sic4": "3585",
+    "sic3": "358",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2017-11-03",
-    "accn": "0000320193-17-000070",
-    "local_gz": "000032019317000070__peer10k.txt.gz",
+    "filingDate": "2017-11-21",
+    "accn": "0000833444-17-000060",
+    "local_gz": "000083344417000060__peer10k.txt.gz",
     "capex_excerpt": [
-     "net of sales and maturities, of $30.6 billion and cash used to acquire property, plant and equipment of $12.7 billion . Cash used in financing activities of $20.5 billion during 2016 consisted primarily of cash used to repurchase common stock of $29.7 billion , cash used to pay dividends and dividend equivalents of $12.2 billion and cash used to repay term debt of $2.5 billion , partially offset by proceeds from the issuance of term debt, net of $25.0 billion . Capital Assets The Company’s capital expenditures were $14.9 billion during 2017 . The Company anticipates utilizing approximately $16.0 billion for capital expenditures during 2018 , which includes product tooling and manufacturing p",
-     "Cash used in financing activities of $20.5 billion during 2016 consisted primarily of cash used to repurchase common stock of $29.7 billion , cash used to pay dividends and dividend equivalents of $12.2 billion and cash used to repay term debt of $2.5 billion , partially offset by proceeds from the issuance of term debt, net of $25.0 billion . Capital Assets The Company’s capital expenditures were $14.9 billion during 2017 . The Company anticipates utilizing approximately $16.0 billion for capital expenditures during 2018 , which includes product tooling and manufacturing process equipment; data centers; corporate facilities and infrastructure, including information systems hardware, softwar"
-    ]
+     "ments in this document that are forward-looking and therefore are subject to risks and uncertainties. All statements in this document other than statements of historical fact are, or could be, \"forward-looking statements\" within the meaning of the Private Securities Litigation Reform Act of 1995. In this document, statements regarding Johnson Controls' future financial position, sales, costs, earnings, cash flows, other measures of results of operations, synergies and integration opportunities, capital expenditures and debt levels are forward-looking statements. Words such as \"may,\" \"will,\" \"expect,\" \"intend,\" \"estimate,\" \"anticipate,\" \"believe,\" \"should,\" \"forecast,\" \"project\" or \"plan\" and",
+     "ormal enforcement actions or proceedings for noncompliance with environmental laws and worker safety laws or for the remediation of Company-related substances released into the environment. Such matters typically are resolved with regulatory authorities through commitments to compliance, abatement or remediation programs and, in some cases, payment of penalties. See Item 3, \"Legal Proceedings,\" of this report for a discussion of the Company’s potential environmental liabilities. Environmental Capital Expenditures The Company’s ongoing environmental compliance program often results in capital expenditures. Environmental considerations are a part of all significant capital expenditure decision",
+     "afety laws or for the remediation of Company-related substances released into the environment. Such matters typically are resolved with regulatory authorities through commitments to compliance, abatement or remediation programs and, in some cases, payment of penalties. See Item 3, \"Legal Proceedings,\" of this report for a discussion of the Company’s potential environmental liabilities. Environmental Capital Expenditures The Company’s ongoing environmental compliance program often results in capital expenditures. Environmental considerations are a part of all significant capital expenditure decisions; however, expenditures in fiscal 2017 related solely to environmental compliance were not mat"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000858877",
-    "name": "CISCO SYSTEMS, INC.",
-    "ticker": "CSCO",
-    "sic2": "35"
+    "entity_id": "0001069202",
+    "name": "LENNOX INTERNATIONAL INC",
+    "ticker": "LII",
+    "sic4": "3585",
+    "sic3": "358",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2018-02-16",
+    "accn": "0001069202-18-000004",
+    "local_gz": "000106920218000004__peer10k.txt.gz",
+    "capex_excerpt": [
+     ".6 $ 3,467.4 $ 3,367.4 $ 3,199.1 Operating Income 494.5 429.4 305.4 334.7 289.0 Income From Continuing Operations 307.1 278.6 187.2 208.1 179.9 Net Income 305.7 277.8 186.6 205.8 171.8 Basic Earnings Per Share From Continuing Operations 7.28 6.41 4.17 4.35 3.61 Diluted Earnings Per Share From Continuing Operations 7.17 6.34 4.11 4.28 3.55 Cash Dividends Declared Per Share 1.96 1.65 1.38 1.14 0.92 Other Data: Capital Expenditures $ 98.3 $ 84.3 $ 69.9 $ 88.4 $ 78.3 Research and Development Expenses 73.6 64.6 62.3 60.7 53.7 Balance Sheet Data at Period End: Total Assets $ 1,891.5 $ 1,760.3 $ 1,677.4 $ 1,764.3 $ 1,626.7 Total Debt 1,004.0 868.2 741.1 925.6 400.4 Stockholders' Equity 50.1 38.0 10",
+     "realized and unrealized gains and losses on futures contracts are a component of Losses and other expenses, net in the accompanying Consolidated Statements of Operations. See Note 8 of the Notes to Consolidated Financial Statements for more information on our derivatives and Note 18 of the Notes to the Consolidated Financial Statements for more information on our segments and for a reconciliation of segment profit to operating income. Liquidity and Capital Resources Our working capital and capital expenditure requirements are generally met through internally generated funds, bank lines of credit and an asset securitization arrangement. Working capital needs are generally greater in the first",
+     "ivities (98.1 ) (84.1 ) (69.8 ) Net cash used in financing activities (218.3 ) (274.6 ) (271.1 ) Net Cash Provided by Operating Activities - Net cash provided by operating activities decreased $49 million to $325 million in 2017 compared to $374 million in 2016 . This decrease was primarily attributable to the increases in working capital, partially offset by a reduction in pension contributions and an increase in net income. Net Cash Used in Investing Activities - Capital expenditures were $98 million , $84 million and $70 million in 2017 , 2016 and 2015 , respectively. Capital expenditures in 2017 were primarily related to an expansion of manufacturing capacity and equipment, investments i"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -332,7 +769,16 @@
   "latest_data_date": "2018-08-08",
   "cutoff": "2018-08-08",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2018-08-09",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

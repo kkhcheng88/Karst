@@ -1,6 +1,7 @@
 {
  "event_id": "E049",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E049",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "AMRN",
  "cik": "0000897448",
  "name": "AMARIN CORP PLC\\UK",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2021-08-05(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E049",
   "event_id": "E049",
   "ticker": "AMRN",
   "cik": "0000897448",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0000950170-21-000843",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/897448/000095017021000843/amrn-20210805.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/897448/000095017021000843/amrn-20210805.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n amrn-20210805ex99_1.htm\n EX-99.1\n EX-99.1 \n Exhibit 99.1 \n Amarin Reports Second Quarter and Six Month 2021 Financial Results and Provides Business Update \n Commercial Launch of VAZKEPA in Europe on Track to Commence in September in Germany \n Filed Several Market Access Dossiers in Europe with Proposed Pricing of approximately €200 per Month \n New CEO, Karim Mikhail, to Host Conference Call Today at 7:30 a.m. ET \n DUBLIN, Ireland and BRIDGEWATER, N.J., August 5, 2021 -- Amarin Corporation plc (NASDAQ:AMRN), today announced financial results for the second quarter and six months ended June 30, 2021 and provided an update on company operations. \n Recent Key Amarin Highlights: \n  Second Quarter Revenue: Net total revenue in the second quarter of 2021 was $154.5 million, an increase of 14% when compared with $135.3 million in total net revenue during the prior year period. Net product revenue for the three months ended June 30, 2021 was $153.8 million, an increase of 15% when compared with the net product revenue in the prior year's second quarter. In the U.S., based on data from Symphony Health, Amarin retained approximately 89% of the icosapent ethyl market in the first half of 2021, with approximately eight months of generic presence in the market. \n  On Track for European Launch: Amarin plans to launch VAZKEPA in Germany in September and has filed several market access dossiers in Europe with proposed pricing of approximately €200 per month. \n  Received Marketing Authorization for VAZKEPA in Great Britain: Amarin received market authorization from the Medicines and Healthcare Products Regulatory Agency (MHRA) for VAZKEPA in Great Britain as a treatment to reduce the risk of cardiovascular (CV) events in high CV risk statin-treated adult patients. \n  Executing Global Expansion Strategy: Amarin plans to initiate regulatory approval processes in approximately 20 additional countries in order to reach the top 50 cardiometabolic markets in the world. \n  VASCEPA®/VAZKEPA Added to Four Medical Societies’ Clinical Treatment Guidelines or Position Statements: VASCEPA is now included in 19 medical societies’ clinical treatment guidelines or position statements, including the recent addition of VASCEPA to the \"2021 Expert Consensus Decision Pathway on the Management of Patients with Persistent Hypertriglyceridemia for Atherosclerotic Cardiovascular Disease (ASCVD) Risk Reduction\" issued by the American College of Cardiology. Click here for more information on the guidelines. \n  New Senior Leadership to Support Further Growth: As of August 1, 2021, Karim Mikhail succeeded to the president and chief executive officer position following the planned retirement of his predecessor, John F. Thero. In addition, the company appointed Laurent Abuaf as senior vice president, president of Europe. \n  Strong Balance Sheet: Ended second quarter 2021 with $523.1 million in total cash and investments and no debt. \n 1 \n Management Commentary \n “Amarin enters the second half of 2021 well positioned to deliver on our goals to reignite growth of branded VASCEPA in the U.S., to successfully launch VAZKEPA in Europe and to undertake initiatives to expand its growth in other important geographies,” stated Karim Mikhail, president and chief executive officer of Amarin. “We believe that this additional expansion represents an incremental market potential in excess of $1 billion that we are confident we can access as there are millions of at-risk patients who could benefit from VASCEPA/VAZKEPA.” \n “There continues to be a steady flow of scientific and clinical evidence in support of the cardioprotective benefits of VASCEPA/VAZKEPA presented at key global medical meetings. Later this month, we look forward to the European Society of Cardiology, where VAZKEPA will be featured in a series of oral and poster presentations by key opinion leaders before an audience of leading cardiologists. We are particularly pleased that our product launch in Germany will take place shortly after this important congress. \n “Our strategy for reducing the occurrence of the debilitating and deadly effects of cardiovascular disease is sound and we are executing our global plans to efficiently reach physicians, payors, pharmacists and patients. We are transforming our go-to-market model to enhance customer engagement while executing a variety of promotional and educational programs to increase awareness of the cardiovascular risk reduction benefits of our unique therapy. We expect these efforts will build demand for and drive adoption of VASCEPA/VAZKEPA in the U.S. and Europe,” concluded Mr. Mikhail. \n U.S. Prescription Growth \n Normalized prescriptions for VASCEPA (prescription of 120 grams of VASCEPA representing a one-month supply) in the United States were flat according to data from Symphony Health and increased by approximately 2% during the second quarter 2021 compared to the same period in 2020 based on data from IQVIA. Estimated normalized VASCEPA prescriptions, based on data from Symphony Health and IQVIA, totaled approximately 1,086,000 and 1,015,000 in the second quarter of 2021, respectively, compared with 1,089,000 and 998,000 in the second quarter of 2020, respectively. The icosapent ethyl market in aggregate, consisting of branded and generic product, increased for the three months ended June 30, 2021 by approximately 13% as compared to the three months ended June 30, 2020, based on data from Symphony Health. Revenue recognition, which is based on control of the product transferring to customers, and levels of prescriptions as estimated by third parties, often do not directly correlate, particularly over relatively short periods of time such as a fiscal quarter. \n Amarin remains confident that the patient need for VASCEPA in the United States remains high and that, as the negative impact of COVID-19 on patient visits and lab tests recedes, VASCEPA growth will be positioned to accelerate as more patients seek routine doctor visits and lab tests and as our promotional activities become less restricted. \n Two generic versions of VASCEPA have launched in the United States, both of which are indicated only as an adjunct to diet for lowering triglyceride levels in adult patients with severe hypertriglyceridemia (TG ≥ 500 mg/dL), which represents a limited patient population. Amarin has filed a lawsuit to defend its cardiovascular risk reduction patent rights against what it believes to be unlawful infringement by a company sponsoring a generic product and a healthcare insurance company that the Company believes has likewise infringed on its rights. Based on data from Symphony Health, VASCEPA captured approximately 88% of the total icosapent ethyl normalized prescriptions for the three months ended June 30, 2021. \n Europe \n 2 \n After receiving marketing authorization for VAZKEPA in Europe by the European Commission and in Great Britain by the MHRA, Amarin has filed market access dossiers in four out of ten planned first wave European country submissions. The dossiers were filed in the United Kingdom, France, Italy and Denmark. The German dossier is ready for submission just prior to the launch date in September 2021. These dossiers are an important component for successful product launch as they support pricing and reimbursement, a key determining factor in market penetration. The submitted filings include data demonstrating the uniqueness of VAZKEPA from a scientific perspective, various country-specific demographic data sets to define the eligible patient population based on the drug's approved label, and proposed pricing of approximately €200 per month. Amarin is seeking pricing it believes is well justified based on the demonstrated clinical effectiveness of VAZKEPA and the high economic burden of heart attacks, strokes and other cardiovascular events, which VAZKEPA can help avoid. \n Global Market Expansion \n Amarin’s goal is to unlock the potential of VASCEPA by bringing the cardioprotective benefits of VASCEPA/VAZKEPA to patients worldwide. The Company plans to access 20 additional countries to ensure that patients in the top 50 cardiometabolic markets worldwide can benefit from VASCEPA. In these territories which include Australia, New Zealand, key Latin American markets, and select Asian markets, Amarin will initiate regulatory filing processes in the coming months and year. With approvals in the U.S. and Europe and backed by the global REDUCE-IT study outcomes, Amarin has the clinical data to support these filings and expects regulatory submissions and approval decision times to range from six to eighteen months depending on the region. This expansion has the potential to add a significant number of patients who can benefit from VASCEPA, which Amarin believes represents a market opportunity in excess of $1 billion. \n In early 2021, in Mainland China, the Chinese National Medical Products Administration (NMPA) accepted for review the New Drug Application (NDA) for VASCEPA. In addition, the medical guidelines of the Chinese Society of Cardiology were updated to recommend use of icosapent ethyl in China as a treatment consideration to further lower ASCVD in the appropriate patient population. Edding, Amarin's marketing partner in China, expects to receive a decision on the NDA in Mainland China and separately, in Hong Kong, near the end of 2021. Following approval, Edding will undertake the process to ensure that this unique therapy is reimbursed in the major provinces of Mainland China as the first and only drug for its important potential indication for use based on VASCEPA’s demonstrated clinical results. \n New Leadership to Support Further Growth \n Amarin significantly enhanced its senior leadership team with the promotion of Mr. Mikhail to president and chief executive officer on August 1, 2021. Mr. Mikhail has a successful track-record of leading significant growth of cardiovascular and other franchises with Merck for 22 years, where he served in leadership roles in seven countries across three continents and where he led Merck's multibillion-dollar lipid franchise among other senior management positions. \n In addition, the Company announced the appointment of Laurent Abuaf as the new senior vice president and president of Europe to fill the opening left by Mr. Mikhail’s promotion to president and chief executive officer. He will join Amarin and assume the role on August 23, 2021. Mr. Abuaf joins Amarin with nearly 20 years of global pharmaceutical commercialization experience, primarily with AstraZeneca, where he most recently served as President, United Kingdom. He brings a wealth of European marketing management experience across small, medium and large markets. Mr. Abuaf has significant cardiometabolic launch experience having contributed to the successful launch of Crestor® and Farxiga®. He also has significant entrepreneurial and strategic project management experience, having led and managed commercial activities in multiple countries in Asia. Prior to his career in pharmaceuticals, Mr. Abuaf spent nearly five years with Boston Consulting Group. \n 3 \n Financial Update \n Net total revenue for the three and six months ended June 30, 2021 were $154.5 million and $296.7 million, respectively, compared to $135.3 million and $290.3 million in the corresponding periods of 2020, respectively, indicating increases of 14% and 2%, respectively. Net product revenue for the three and six months ended June 30, 2021 were $153.8 million and $295.2 million, respectively, compared to $133.7 million and $285.9 million in the corresponding periods of 2020, respectively, indicating increases of 15% and 3%, respectively. The increase in net product revenue and net total revenue was driven primarily by increased volume of VASCEPA sales to customers in the United States. \n In addition, net total revenue includes licensing and royalty revenue of approximately $1.5 million and $4.4 million in the six months ended June 30, 2021 and 2020, respectively, under agreements for the commercialization of VASCEPA outside the United States. \n Cost of goods sold for the three and six months ended June 30, 2021 was $32.2 million and $60.5 million, respectively, compared to $28.8 million and $63.6 million in the corresponding periods of 2020, respectively. Amarin’s overall gross margin on net product revenue for the three and six months ended June 30, 2021 and was 79% and 80%, respectively, compared to 78% for both the three and six months ended June 30, 2020. \n Selling, general and administrative (SG&A) expense for the three and six months ended June 30, 2021 were $107.2 million and $213.0 million, respectively, compared to $92.4 million and $226.3 million, respectively, in the corresponding periods of 2020, representing an increase of 16% for the same three month period and a decrease of 6% for the same six month period. The increase for the same three month period in 2021 and 2020, was due primarily to personnel costs related to preparation for expansion into the European market as well as increased promotional activity in connection with the resumption of marketing and direct-to-consumer promotions. The decrease for the same six month period in 2021 and 2020, was due primarily to a decrease in promotional activity as a result of the COVID-19 pandemic, which included reduced marketing and direct-to-consumer promotions, travel, and a slower hiring process to replace open positions due to ordinary turnover. \n Research and development (R&D) expense for the three and six months ended June 30, 2021 were $6.4 million and $15.7 million, respectively, compared to $10.0 million and $20.2 million, respectively, in the corresponding periods of 2020, representing decreases of 36% and 22%, respectively. These decreases were primarily driven by the completion of certain analyses performed beyond the REDUCE-IT cardiovascular outcomes trial and the reversal of expense for certain performance-based awards that were no longer deemed probable. \n Under U.S. GAAP, Amarin reported net income of $7.8 million in the three months ended June 30, 2021, or basic and diluted earnings per share of $0.02. This net income included $2.5 million in non-cash stock-based compensation expense. Amarin reported net income of $4.4 million in the second quarter of 2020, or basic and diluted earnings per share of $0.01. This net income included $12.1 million in non-cash stock-based compensation expense. The company expects financial results regarding net income or net loss to be variable through the balance of 2021. \n Under U.S. GAAP, Amarin reported net income of $6.2 million in the six months ended June 30, 2021, or basic and diluted earnings per share of $0.02. This net income included $16.4 million in non-cash stock-based compensation expense. For the six months ended June 30, 2020, Amarin reported a net loss of $16.1 million, or basic and diluted loss per share of $0.04. This net loss included $22.7 million in non-cash stock-based compensation expense. \n 4 \n Excluding non-cash gains or losses for stock-based compensation, non-GAAP adjusted net income was $10.3 million for the second quarter of 2021, or non-GAAP adjusted basic and diluted earnings per share of $0.03, compared to non-GAAP adjusted net income of $16.5 million for the second quarter of 2020, or non-GAAP adjusted basic and diluted earnings per share of $0.04. \n Excluding non-cash gains or losses for stock-based compensation, non-GAAP adjusted net income was $22.6 million for the six months ended June 30, 2021, or non-GAAP adjusted basic and diluted earnings per share of $0.06, compared to non-GAAP adjusted net income of $6.6 million for the six months ended June 30, 2020, or non-GAAP adjusted basic and diluted earnings per share of $0.02. \n As of June 30, 2021, Amarin reported aggregate cash and investments of $523.1 million, consisting of cash and cash equivalents of $327.0 million and liquid short-term and long-term investments of $181.9 million and $14.2 million, respectively. The Company believes its current resources are sufficient to fund projected operations including ongoing promotion of VASCEPA in the U.S. and a successful commercial launch of VAZKEPA in Europe. \n As of June 30, 2021, Amarin had approximately 395.2 million American Depository Shares (ADSs) and ordinary shares outstanding approximately 19.7 million equivalent shares underlying stock options at a weighted-average exercise price of $7.54 and 10.4 million equivalent shares underlying restricted or deferred stock units. \n Conference Call and Webcast Information: \n Amarin will host a conference call August 5, 2021, at 7:30 a.m. ET to discuss this information. The conference call can be heard live on the investor relations section of the company's website at www.amarincorp.com, or via telephone by dialing 888-506-0062 within the United States, 973-528-0011 from outside the United States, and referencing conference ID 401474. A replay of the call will be made available for a period of two weeks following the conference call. To hear a replay of the call, dial 877-481-4010, PIN: 42077. A replay of the call will also be available through the company's website shortly after the call. \n Use of Non-GAAP Adjusted Financial Information \n Included in this press release are non-GAAP adjusted financial information as defined by U.S. Securities and Exchange Commission Regulation G. The GAAP financial measure most directly comparable to each non-GAAP adjusted financial measure used or discussed, and a reconciliation of the differences between each non-GAAP adjusted financial measure and the comparable GAAP financial measure, is included in this press release after the condensed consolidated financial statements. \n Non-GAAP adjusted net income was derived by taking GAAP net income (loss) and adjusting it for non-cash stock-based compensation expense. Management uses these non-GAAP adjusted financial measures for internal reporting and forecasting purposes, when publicly providing its business outlook, to evaluate the company’s performance and to evaluate and compensate the company’s executives. The company has provided these non-GAAP financial measures in addition to GAAP financial results because it believes that these non-GAAP adjusted financial measures provide investors with a better understanding of the company’s historical results from its core business operations. \n While management believes that these non-GAAP adjusted financial measures provide useful supplemental information to investors regarding the underlying performance of the company’s business operations, investors are reminded to consider these non-GAAP measures in addition to, and not as a substitute for, financial performance measures prepared \n 5 \n in accordance with GAAP. Non-GAAP measures have limitations in that they do not reflect all of the amounts associated with the company’s results of operations as determined in accordance with GAAP. In addition, it should be noted that these non-GAAP financial measures may be different from non-GAAP measures used by other companies, and management may utilize other measures to illustrate performance in the future. \n About Amarin \n Amarin is an innovative pharmaceutical company leading a new paradigm in cardiovascular disease management. From our scientific research foundation to our focus on clinical trials, and now our commercial expansion, we are evolving and growing rapidly. Amarin primarily has offices in Bridgewater, New Jersey in the United States, Dublin in Ireland, and Zug in Switzerland as well as commercial partners and suppliers around the world. We are committed to rethinking cardiovascular risk through the advancement of scientific understanding of the impact on society of significant residual risk that exists beyond traditional therapies, such as statins for cholesterol management. \n About Cardiovascular Risk \n Cardiovascular disease is the number one cause of death in the world. In the United States alone, cardiovascular disease results in 859,000 deaths per year. 2 And the number of deaths in the United States attributed to cardiovascular disease continues to rise. In addition, in the United States there are 605,000 new and 200,000 recurrent heart attacks per year (approximately 1 every 40 seconds). Stroke rates are 795,000 per year (approximately 1 every 40 seconds), accounting for 1 of every 19 U.S. deaths. In aggregate, in the United States alone, there are more than 2.4 million major adverse cardiovascular events per year from cardiovascular disease or, on average, 1 every 13 seconds. \n Controlling bad cholesterol, also known as LDL-C, is one way to reduce a patient’s risk for cardiovascular events, such as heart attack, stroke or death. However, even with the achievement of target LDL-C levels, millions of patients still have significant and persistent risk of cardiovascular events, especially those patients with elevated triglycerides. Statin therapy has been shown to control LDL-C, thereby reducing the risk of cardiovascular events by 25-35%. 3 Significant cardiovascular risk remains after statin therapy. People with elevated triglycerides have 35% more cardiovascular events compared to people with normal (in range) triglycerides taking statins. 4,5,6 \n About REDUCE-IT \n REDUCE-IT was a global cardiovascular outcomes study designed to evaluate the effect of VASCEPA in adult patients with LDL-C controlled to between 41-100 mg/dL (median baseline 75 mg/dL) by statin therapy and various cardiovascular risk factors including persistent elevated triglycerides between 135-499 mg/dL (median baseline 216 mg/dL) and either established cardiovascular disease (secondary prevention cohort) or diabetes mellitus and at least one other cardiovascular risk factor (primary prevention cohort). \n REDUCE-IT, conducted over seven years and completed in 2018, followed 8,179 patients at over 400 clinical sites in 11 countries with the largest number of sites located within the United States. REDUCE-IT was conducted based on a special protocol assessment agreement with FDA. The design of the REDUCE-IT study was published in March 2017 in Clinical Cardiology. 7 The primary results of REDUCE-IT were published in The New England Journal of Medicine in November 2018. 8 The total events results of REDUCE-IT were published in the Journal of the American College of Cardiology in March 2019. 9 These and other publications can be found in the R&D section on the company’s website at www.amarincorp.com . \n 6 \n About VASCEPA® (icosapent ethyl) Capsules \n VASCEPA (icosapent ethyl) capsules are the first-and-only prescription treatment approved by the U.S. Food and Drug Administration (FDA) comprised solely of the active ingredient, icosapent ethyl (IPE), a unique form of eicosapentaenoic acid. VASCEPA was launched in the United States in January 2020 as the first and only drug approved by the U.S. FDA for treatment of the studied high-risk patients with persistent cardiovascular risk after statin therapy. VASCEPA was initially launched in the United States in 2013 based on the drug’s initial FDA approved indication for use as an adjunct therapy to diet to reduce triglyceride levels in adult patients with severe (≥500 mg/dL) hypertriglyceridemia. Since launch, VASCEPA has been prescribed over ten million times. VASCEPA is covered by most major medical insurance plans. In addition to the United States, VASCEPA is approved and sold in Canada, Lebanon and the United Arab Emirates. In Europe, in March 2021 marketing authorization was granted to icosapent ethyl in the European Union for the reduction of risk of cardiovascular events in patients at high cardiovascular risk, under the brand name VAZKEPA. \n Indications and Limitation of Use (in the United States) \n VASCEPA is indicated: \n  As an adjunct to maximally tolerated statin therapy to reduce the risk of myocardial infarction, stroke, coronary revascularization and unstable angina requiring hospitalization in adult patients with elevated triglyceride (TG) levels (≥ 150 mg/dL) and \n o established cardiovascular disease or \n o diabetes mellitus and two or more additional risk factors for cardiovascular disease. \n  As an adjunct to diet to reduce TG levels in adult patients with severe (≥ 500 mg/dL) hypertriglyceridemia. \n The effect of VASCEPA on the risk for pancreatitis in patients with severe hypertriglyceridemia has not been determined. \n Important Safety Information \n  VASCEPA is contraindicated in patients with known hypersensitivity (e.g., anaphylactic reaction) to VASCEPA or any of its components. \n  VASCEPA was associated with an increased risk (3% vs 2%) of atrial fibrillation or atrial flutter requiring hospitalization in a double-blind, placebo-controlled trial. The incidence of atrial fibrillation was greater in patients with a previous history of atrial fibrillation or atrial flutter. \n  It is not known whether patients with allergies to fish and/or shellfish are at an increased risk of an allergic reaction to VASCEPA. Patients with such allergies should discontinue VASCEPA if any reactions occur. \n  VASCEPA was associated with an increased risk (12% vs 10%) of bleeding in a double-blind, placebo-controlled trial. The incidence of bleeding was greater in patients receiving concomitant antithrombotic medications, such as aspirin, clopidogrel or warfarin. \n  Common adverse reactions in the cardiovascular outcomes trial (incidence ≥3% and ≥1% more frequent than placebo): musculoskeletal pain (4% vs 3%), peripheral edema (7% vs 5%), constipation (5% vs 4%), gout (4% vs 3%), and atrial fibrillation (5% vs 4%). \n  Common adverse reactions in the hypertriglyceridemia trials (incidence > 1% more frequent than placebo): arthralgia (2% vs 1%) and oropharyngeal pain (1% vs 0.3%). \n  Adverse events may be reported by calling 1-855-VASCEPA or the FDA at 1-800-FDA-1088. \n  Patients receiving VASCEPA and concomitant anticoagulants and/or anti-platelet agents should be monitored for bleeding. \n Key clinical effects of VASCEPA on major adverse cardiovascular events are included in the Clinical Studies section of the \n 7 \n prescribing information for VASCEPA as set forth below: \n Effect of VASCEPA on Time to First Occurrence of Cardiovascular Events in Patients with \n Elevated Triglyceride levels and Other Risk Factors for Cardiovascular Disease in REDUCE-IT \n VASCEPA \n Placebo \n VASCEPA \nvs Placebo \n N = 4089 \n n (%) \n Incidence Rate \n(per 100 patient years) \n N = 4090 \n n (%) \n Incidence Rate \n(per 100 patient years) \n Hazard Ratio (95% CI) \n Primary composite endpoint \n Cardiovascular death, myocardial infarction, stroke, coronary revascularization, hospitalization for unstable angina (5-point MACE) \n 705 \n (17.2) \n 4.3 \n 901 \n (22.0) \n 5.7 \n 0.75 \n (0.68, 0.83) \n Key secondary composite endpoint \n Cardiovascular death, myocardial infarction, stroke (3-point MACE) \n 459 \n (11.2) \n 2.7 \n 606 \n (14.8) \n 3.7 \n 0.74 \n (0.65, 0.83) \n Other secondary endpoints \n Fatal or non-fatal myocardial infarction \n 250 \n (6.1) \n 1.5 \n 355 \n (8.7) \n 2.1 \n 0.69 \n (0.58, 0.81) \n Emergent or urgent coronary revascularization \n 216 \n (5.3) \n 1.3 \n 321 \n (7.8) \n 1.9 \n 0.65 \n (0.55, 0.78) \n Cardiovascular death [1] \n 174 \n (4.3) \n 1.0 \n 213 \n (5.2) \n 1.2 \n 0.80 \n (0.66, 0.98) \n Hospitalization for unstable angina [2] \n 108 \n (2.6) \n 0.6 \n 157 \n (3.8) \n 0.9 \n 0.68 \n (0.53, 0.87) \n Fatal or non-fatal stroke \n 98 \n (2.4) \n 0.6 \n 134 \n (3.3) \n 0.8 \n 0.72 \n (0.55, 0.93) \n [1] Includes adjudicated cardiovascular deaths and deaths of undetermined causality. \n [2] Determined to be caused by myocardial ischemia by invasive/non-invasive testing and requiring emergent hospitalization. \n FULL U.S. FDA-APPROVED VASCEPA PRESCRIBING INFORMATION CAN BE FOUND AT WWW.VASCEPA.COM . \n Forward-Looking Statements \n This press release contains forward-looking statements which are made pursuant to the safe harbor provisions of the Private Securities Litigation Reform Act of 1995, including beliefs about the world-wide market potential for VASCEPA; expectations regarding financial metrics and performance such as prescription growth, revenue growth, operating expenses, inventory purchases, and managed care coverage for VASCEPA, including the impact of the COVID-19 pandemic, the disappointing outcome of patent litigation and the launch of generic competition on these metrics; beliefs that Amarin is well positioned to deliver on its goals to grow VASCEPA in the U.S. and beyond; beliefs about patient needs for VASCEPA; effects of the COVID-19 pandemic on Amarin's operations and on the healthcare industry more broadly, which effects \n 8 \n continue to be fluid; beliefs that Amarin's strategy for reducing the effects of cardiovascular disease is sound and that Amarin is efficiently reaching physicians, payors, pharmacists and patients; plans for Amarin's go-to-market model; the timing and outcome of regulatory reviews, recommendations and approvals and related reimbursement decisions and commercial launches in Europe, the China region and elsewhere; plans for Amarin's expected launch of VASCEPA directly in major markets in Europe, directly and indirectly; beliefs about the cardioprotective and other benefits of VASCEPA; beliefs about the strength of data in market access dossiers and other reports; expectations for the timing, effectiveness and outcome of promotional activities, including patient-oriented campaigns, conference and posted presentations and education of healthcare professionals; commercial and international expansion, prescription growth and revenue growth and future revenue levels, including the contributions of sales representatives and the new leadership team; beliefs that Amarin's current resources are sufficient to fund projected operations; ongoing patent litigation efforts; and the impact of the COVID-19 pandemic on all of the forgoing. These forward-looking statements are not promises or guarantees and involve substantial risks and uncertainties. Amarin's ability to effectively commercialize VASCEPA and maintain or grow market share will depend in part on Amarin’s ability to continue to effectively finance its business, VASCEPA approval in geographies outside the U.S., efforts of third parties, Amarin’s ability to create and increase market demand for VASCEPA through education, marketing and sales activities, to achieve broad market acceptance of VASCEPA, to receive adequate levels of reimbursement from third-party payers, to develop and maintain a consistent source of commercial supply at a competitive price, to comply with legal and regulatory requirements in connection with the sale and promotion of VASCEPA and to secure, maintain and defend its patent protection for VASCEPA. Among the factors that could cause actual results to differ materially from those described or projected herein include the following: the possibility that VASCEPA may not receive regulatory approval in the China region or other geographies on the expected timelines or at all, the risk that additional generic versions of VASCEPA will enter the market and that generic versions of VASCEPA will achieve greater market share and more commercial supply than anticipated, particularly in light of the recent and disappointing outcome of Amarin's litigation against two generic drug companies and subsequent requests for appeal; the risk that the scope and duration of the COVID-19 pandemic will continue to impact access to and sales of VASCEPA; the risk that Amarin has overestimated the market potential for VASCEPA in the U.S., Europe and other geographies; risks associated with Amarin's expanded enterprise; uncertainties associated generally with research and development, clinical trials and related regulatory approvals; the risk that sales may not meet expectations and related cost may increase beyond expectations; the risk that patents may be determined to not be infringed or not be valid in patent litigation and applications may not result in issued patents sufficient to protect the VASCEPA franchise. A further list and description of these risks, uncertainties and other risks associated with an investment in Amarin can be found in Amarin's filings with the U.S. Securities and Exchange Commission, including Amarin’s quarterly report on Form 10-Q for the quarter ended June 30, 2021, filed on or about the date hereof. Existing and prospective investors are cautioned not to place undue reliance on these forward-looking statements, which speak only as of the date they are made. Amarin undertakes no obligation to update or revise the information contained in its forward looking statements, whether as a result of new information, future events or circumstances or otherwise. Amarin’s forward-looking statements do not reflect the potential impact of significant transactions the company may enter into, such as mergers, acquisitions, dispositions, joint ventures or any material agreements that Amarin may enter into, amend or terminate. \n Availability of Other Information About Amarin \n Investors and others should note that Amarin communicates with its investors and the public using the company website ( www.amarincorp.com ), the investor relations website ( investor.amarincorp.com ), including but not limited to investor presentations and investor FAQs, Securities and Exchange Commission filings, press releases, public conference calls and webcasts. The information that Amarin posts on these channels and websites could be deemed to be material information. As a result, Amarin encourages investors, the media, and others interested in Amarin to review the information that is \n 9 \n posted on these channels, including the investor relations website, on a regular basis. This list of channels may be updated from time to time on Amarin’s investor relations website and may include social media channels. The contents of Amarin’s website or these channels, or any other website that may be accessed from its website or these channels, shall not be deemed incorporated by reference in any filing under the Securities Act of 1933. \n Amarin Contact Information \n Investor Inquiries: \n Investor Relations \n Amarin Corporation plc \n In U.S.: +1 (908) 719-1315 \n investor.relations@amarincorp.com (investor inquiries) \n Solebury Trout \n amarinir@troutgroup.com \n Media Inquiries: \n Communications \n Amarin Corporation plc \n In U.S.: +1 (908) 892-2028 \n PR@amarincorp.com (media inquiries) \n AMARIN, REDUCE-IT, VASCEPA and VAZKEPA are trademarks of Amarin Pharmaceuticals Ireland Limited. VAZKEPA is a registered trademark in Europe and other countries and regions and is pending registration in the United States. \n Crestor® and Farxiga® are registered trademarks of AstraZeneca group of companies. \n 10 \n CONSOLIDATED BALANCE SHEET DATA \n (U.S. GAAP) \n Unaudited \n June 30, 2021 \n December 31, 2020 \n (in thousands) \n ASSETS \n Current Assets: \n Cash and cash equivalents \n $ \n 327,016 \n $ \n 186,964 \n Restricted cash \n 3,917 \n 3,915 \n Short-term investments \n 181,910 \n 313,969 \n Accounts receivable, net \n 182,259 \n 154,574 \n Inventory \n 272,455 \n 188,864 \n Prepaid and other current assets \n 28,426 \n 30,947 \n Total current assets \n 995,983 \n 879,233 \n Property, plant and equipment, net \n 1,713 \n 2,016 \n Long-term investments \n 14,158 \n 62,469 \n Operating lease right-of-use asset \n 7,861 \n 8,054 \n Other long-term assets \n 456 \n 432 \n Intangible asset, net \n 24,820 \n 13,817 \n TOTAL ASSETS \n $ \n 1,044,991 \n $ \n 966,021 \n LIABILITIES AND STOCKHOLDERS’ EQUITY \n Current Liabilities: \n Accounts payable \n 141,251 \n 105,876 \n Accrued expenses and other current liabilities \n 226,545 \n 198,641 \n Current deferred revenue \n 2,643 \n 2,926 \n Total current liabilities \n 370,439 \n 307,443 \n Long-Term Liabilities: \n Long-term deferred revenue \n 14,825 \n 15,706 \n Long-term operating lease liability \n 8,875 \n 9,153 \n Other long-term liabilities \n 5,528 \n 6,214 \n Total liabilities \n 399,667 \n 338,516 \n Stockholders’ Equity: \n Common stock \n 292,782 \n 290,115 \n Additional paid-in capital \n 1,834,548 \n 1,817,649 \n Treasury stock \n (59,011 \n ) \n (51,082 \n ) \n Accumulated deficit \n (1,422,995 \n ) \n (1,429,177 \n ) \n Total stockholders’ equity \n 645,324 \n 627,505 \n TOTAL LIABILITIES AND STOCKHOLDERS’ EQUITY \n $ \n 1,044,991 \n $ \n 966,021 \n 11 \n CONSOLIDATED STATEMENTS OF OPERATIONS DATA \n (U.S. GAAP) \n Unaudited \n Three months ended June 30, \n Six months ended June 30, \n (in thousands, except per share amounts) \n (in thousands, except per share amounts) \n 2021 \n 2020 \n 2021 \n 2020 \n Product revenue, net \n $ \n 153,773 \n $ \n 133,724 \n $ \n 295,156 \n $ \n 285,928 \n Licensing and royalty revenue \n 715 \n 1,593 \n 1,502 \n 4,382 \n Total revenue, net \n 154,488 \n 135,317 \n 296,658 \n 290,310 \n Less: Cost of goods sold \n 32,155 \n 28,797 \n 60,481 \n 63,604 \n Gross margin \n 122,333 \n 106,520 \n 236,177 \n 226,706 \n Operating expenses: \n Selling, general and administrative (1) \n 107,203 \n 92,395 \n 213,001 \n 226,332 \n Research and development (1) \n 6,357 \n 9,969 \n 15,734 \n 20,247 \n Total operating expenses \n 113,560 \n 102,364 \n 228,735 \n 246,579 \n Operating income (loss) \n 8,773 \n 4,156 \n 7,442 \n (19,873 \n ) \n Interest income, net \n 285 \n 151 \n 756 \n 1,359 \n Other (expense) income, net \n (191 \n ) \n 108 \n (333 \n ) \n 17 \n Income (loss) from operations before taxes \n 8,867 \n 4,415 \n 7,865 \n (18,497 \n ) \n Income tax (provision) benefit \n (1,059 \n ) \n - \n (1,683 \n ) \n 2,359 \n Net income (loss) \n $ \n 7,808 \n $ \n 4,415 \n $ \n 6,182 \n $ \n (16,138 \n ) \n Earnings (loss) per share: \n Basic \n $ \n 0.02 \n $ \n 0.01 \n $ \n 0.02 \n $ \n (0.04 \n ) \n Diluted \n $ \n 0.02 \n $ \n 0.01 \n $ \n 0.02 \n $ \n (0.04 \n ) \n Weighted average shares: \n Basic \n 395,899 \n 384,663 \n 395,272 \n 373,300 \n Diluted \n 401,767 \n 399,664 \n 402,778 \n 373,300 \n (1) Excluding non-cash stock-based compensation, selling, general and administrative expenses were $104,550 and $82,035 for the three months ended June 30, 2021 and 2020, respectively, and research and development expenses were $6,531 and $8,198, respectively, for the same periods. \n 12 \n RECONCILIATION OF NON-GAAP NET INCOME (LOSS) \n Unaudited \n Three months ended June 30, \n Six months ended June 30, \n (in thousands, except per share amounts) \n (in thousands, except per share amounts) \n 2021 \n 2020 \n 2021 \n 2020 \n Net income (loss) for EPS 1 - GAAP \n 7,808 \n 4,415 \n 6,182 \n (16,138 \n ) \n Non-cash stock-based compensation expense \n 2,479 \n 12,131 \n 16,403 \n 22,722 \n Adjusted net income for EPS 1 - non-GAAP \n $ \n 10,287 \n $ \n 16,546 \n $ \n 22,585 \n $ \n 6,584 \n 1 basic and diluted \n Earnings per share: \n Basic - non-GAAP \n $ \n 0.03 \n $ \n 0.04 \n $ \n 0.06 \n $ \n 0.02 \n Diluted - non-GAAP \n $ \n 0.03 \n $ \n 0.04 \n $ \n 0.06 \n $ \n 0.02 \n Weighted average shares: \n Basic \n 395,899 \n 384,663 \n 395,272 \n 373,300 \n Diluted \n 401,767 \n 399,664 \n 402,778 \n 402,033 \n 1 Cardiovascular Branch of Chinese Medical Association, Cardiac Prevention and Rehabilitation Professional Committee of Chinese Rehabilitation Medicine Association, Chinese Gerontology and Elderly Cardiology Committee of the National Medical Association, et al. Guidelines for Primary Prevention of Cardiovascular Diseases in China. Chinese Journal of Cardiovascular Diseases. 2020;48(12):1000-1038. \n 2 American Heart Association. Heart Disease and Stroke Statistics—2020 Update: A Report From the American Heart \n Association. Circulation. 2020;141:e139–e596. \n 3 Ganda OP, Bhatt DL, Mason RP, et al. Unmet need for adjunctive dyslipidemia therapy in hypertriglyceridemia \n management. J Am Coll Cardiol. 2018;72(3):330-343. \n 4 Budoff M. Triglycerides and triglyceride-rich lipoproteins in the causal pathway of cardiovascular disease. Am J Cardiol. \n 2016;118:138-145. \n 5 Toth PP, Granowitz C, Hull M, et al. High triglycerides are associated with increased cardiovascular events, medical costs, \n and resource use: A real-world administrative claims analysis of statin-treated patients with high residual cardiovascular \n risk. J Am Heart Assoc. 2018;7(15):e008740. \n 6 Nordestgaard BG. Triglyceride-rich lipoproteins and atherosclerotic cardiovascular disease - New insights from \n epidemiology, genetics, and biology. Circ Res. 2016;118:547-563. \n 7 Bhatt DL, Steg PG, Brinton E, et al., on behalf of the REDUCE-IT Investigators. Rationale and Design of REDUCE‐IT: Reduction of Cardiovascular Events with Icosapent Ethyl–Intervention Trial. Clin Cardiol . 2017;40:138-148. \n 8 Bhatt DL, Steg PG, Miller M, et al., on behalf of the REDUCE-IT Investigators. Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia. N Engl J Med . 2019;380:11-22. \n 9 Bhatt DL, Steg PG, Miller M, et al., on behalf of the REDUCE-IT Investigators. Reduction in first and total ischemic events with icosapent ethyl across baseline triglyceride tertiles. J Am Coll Cardiol . 2019;74:1159-1161. \n 13 \n",
@@ -36,7 +39,183 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000095017021000843__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001564590-21-021567",
+   "filingDate": "2021-04-29",
+   "reportDate": "2021-04-28",
+   "form": "8-K",
+   "local_gz": "000156459021021567__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 0,
+   "n_sentences": 0,
+   "guidance_sentences": [],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出",
+   "status": "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2021-08-05",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 30,
+   "has_qna": false,
+   "n_chars": 47289,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Welcome to Amarin Corporation's conference call to discuss its Second Quarter and Six Months 2021 Financial Results and Operational Updates. This conference call is being recorded today, August 5, 2021. I would like to turn the conference call over to Michael Kalb, Chief Financial Officer at Amarin."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Michael Kalb",
+     "content": "Good morning, everyone, and thank you for joining us. Turning to Slide 2 of the presentation accompanying today's call, which can be found in the Investor Relations section of our website at www.AmarinCorp.com. Please be aware that this conference will contain forward-looking statements that are intended to be covered under the safe harbor provided by the Private Securities Litigation Reform Act. Examples of such statements include, but are not limited to - these statements are based on information available to us today, August 5, 2021. We may not achieve our goals, carry out our plans or intentions or meet the expectations disclosed in our forward-looking statements. Actual results or events could differ materially, so you should not place undue reliance on these statements. We assume no obligation to update these statements as circumstances change. Our forward-looking statements do not reflect the potential impact of significant transactions we may enter into, such as mergers, acquisitions, dispositions, joint ventures or any material agreements that we may enter into, amend or terminate. For additional information concerning the factors that could cause actual results to differ materially, please see the Risk Factors section of our quarterly report on Form 10-Q for the quarter ended June 30, 2021, and our Annual Report on Form 10-K for the year-ended December 31, 2020, which have been filed with the SEC and are available through the Investor Relations sections of our website, at www.AmarinCorp.com. We encourage everyone to read these documents. This call is intended for investors in Amarin and is not intended to promote the use of VASCEPA outside its approved indications. An archive of this call will be posted on Amarin's website within the Investor Relations section. Karim Mikhail, Amarin's President and Chief Executive Officer will lead our discussion and I will provide a more detailed review of our financial results. After prepared remarks, we will open the call to your questions. I remind you that multiple audiences typically listen to calls of this nature, including existing investors, potential new investors, employees, current and potential collaborators, and current and potential competitors. As always, in this call, we will attempt to provide constructive information without compromising our competitive and strategic positioning. I now turn the call over to Karim Mikhail for a review of the business."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Karim Mikhail",
+     "content": "Good morning and thank you all for joining us this morning. I'm particularly pleased to be addressing you for the first time as the President and CEO of Amarin. Following John Thero's planned retirement, which officially took place earlier this week. On behalf of the entire Amarin team, I'd like to thank John for his considerable contributions to the company and to patient care around the world. We wish him much success and happiness as he embarks on this retirement, following his distinguished career as the President and CEO of Amarin. I joined Amarin as Senior Vice President and Head of Commercial for Europe, approximately 1 year ago, because I was attracted by the magnitude of the evidence in the REDUCE-IT study and excited by the tremendous European opportunity we have that changed the treatment paradigm in preventative cardiovascular care. Turn to Slide 3 please. Developing and commercializing cardiometabolic acids is a daunting mission and many companies stepped away from this space due to 2 main challenges. First, for numerous indications you need cardiovascular outcomes data, which take years to generate and are a challenge to fund. And second, in order to ensure that as many patients can benefit from the new CV drug, you need to reach a broad prescribing audience. With the REDUCE-IT study, Amarin has already succeeded in developing the first and only approved medication for reducing cardiovascular risk beyond LDL lowering therapies in high-risk statin-treated patients. This foundational scientific trigger is the main driver for the consistent recognition of 19 global medical societies with the latest addition of the American College of Cardiology. In terms of broad prescriber reach, Amarin has established a go-to-market model in Europe that allows us to reach larger prescribing audiences through efficient omnichannel engagements that amplify our essential field-force efforts and Amarin is leading the way in terms of innovation in this space. Our overarching goal for this exciting and new chapter of Amarin's future is to drive our profitable growth, primarily by unlocking the vast potential of VASCEPA, VAZKEPA, to reduce cardiovascular risk worldwide. But before I share with you my vision and our plans for the future, let me first update you on our progress in general, and more specifically in the U.S., Europe and the rest of the world. Turning to Slide number 4, starting with our revenue growth, during the quarter, as you saw in our press release this morning, we reported a net total revenue for the second quarter of 2021 of $154.5 million, compared to $135.3 million in the same period in 2020. The bulk of this revenue is from U.S. product sales of VASCEPA. Importantly, and as Mike will discuss later in this call, our U.S. VASCEPA franchise is profitable, and along with our strong balance sheet continues to support our growth and expansion plans. Now, more specifically in the U.S., we remain focused on execution and driving VASCEPA growth in the U.S. as there continues to be millions of at-risk patients, whose cardiovascular risk is untreated and who are candidates for the cardioprotective benefits of VASCEPA. The sales increase this quarter is encouraging and a good start toward reinvigorating VASCEPA growth in the U.S. A May 2021 Harris Poll survey of more than 2,500 people, including subsets of people with diabetes and/or heart disease, as well as cardiologists, primary-care physicians and pharmacists, conducted on behalf of Amarin, showed that COVID-19 pandemic has reduced the prevalence of in-person check-ins with healthcare professionals, with approximately 1/3rd of the general adult population, adult diabetes patients and heart disease patients, avoiding seeing healthcare professionals due to the fear of contracting COVID-19. And while in-person visits have increased after the introduction of vaccines, the poll results shows that 62% of cardiologists and 70% of PCPs say that they are seeing fewer patients in person than before the pandemic. As vaccinations take hold in the U.S. and COVID-19 recedes, with the hope that market recovery will not be further disrupted by the COVID-19 resurgence driven by the Delta variant, we see a significant opportunity to generate additional awareness. We never had the chance to build with the pandemic hitting during our first launch quarter and to drive the much needed demand for VASCEPA in the cardiovascular risk reduction indication. Due to possible lasting changes that COVID-19 brought to the market, we are planning to achieve our objectives in a different and new way moving forward. While technological advances over the past several years have provided the tools to modernize sales and marketing activities to enhance their impact and efficiency, the COVID-19 pandemic has accelerated the adoption of such technologies. And those advances are now playing a central role in pharmaceutical sales and marketing. And we believe they will continue to do so after the covid 19 pandemic is behind us. Moving forward, we intend to significantly increase the use and integration of these robust digital omnichannel platforms to enhance our reach and customer engagement, and improve efficiencies, as we advance our branded and unbranded educational and promotional efforts to drive HCP and patient use of branded VASCEPA in the U.S. Turning to Slide 5, please. to address our unique market challenges in the U.S. We must engage effectively and efficiently with all 4 key stakeholders in the market. Firstly physicians, we continue to inform and reinforce the unprecedented REDUCE-IT results, the broad managed care access that branded VASCEPA is the only available product FDA approved for cardiovascular risk reduction in at-risk patients with elevated triglyceride, that generics do not have an approval for the cardiovascular risk reduction indication, and that the FDA revoke the indication of older triglyceride lowering classes, such as fenofibrates with statin to reduce cardiovascular risk. Secondly with payors, we continue to make inroads with additional favorable managed care wins and enhancements that help to validate VASCEPA value proposition in persistent cardiovascular risk. Thirdly, pharmacists, we have been working with major national and regional chains to ensure that CV risk patients obtain proper FDA approved VASCEPA. Many of these major chains have confirmed significant difficulties and disruption as a result of limited inconsistent supply of generic IPE. This disruption has not only caused patients to leave the pharmacy without needed medication, but the pharmacy retailers have faced lost sales. In addition, we are working diligently within the total prescribing ecosystem to ensure that all references such as the key compendia retail pharmacy systems and e-prescribing platforms used by HCPs accurately reflect the VASCEPA cardiovascular risk reduction indication. And importantly, understand that the generic products do not share this indication, and are limited to lowering triglyceride in patients with triglycerides equal to or above 500 milligram per deciliter, which is effectively less than 10% of the patients in need of VASCEPA. Finally, with persistent CV risk patients, we are working to efficiently educate patients about the benefits of VASCEPA to drive patients to ask their doctor about VASCEPA, especially when they search out information on statins triglyceride CV risk reduction. We also inform them that VASCEPA is widely covered by Medicare and commercial providers, and that our $9 for 90-day supply copay program for commercially insured patients is still available to them. We remain confident in the potential for growth of VASCEPA in the U.S. even with the entry of generic competition. Thus far, generic penetration in the market is around 12% of the IPE market, not your expected generic erosion, which at this point, if VASCEPA with a typical product with generic entry would have exceeded 90% months ago. We believe we have the opportunity, and that is our obligation to continue to educate the market about the benefits of VASCEPA and continue to drive demand. I will share more about how we will do this differently later in the call, when I discuss my vision and future plans. Looking now to our very exciting opportunity in Europe. Turning to Slide 6, please. As in the U.S., the need for effective cardiovascular preventative care across Europe is significant. We see the European market opportunity at least as equal to or potentially larger than the U.S. It's usually takes an agile biopharma company 2 to 3 years to establish itself in Europe and prepare for a product launch. The Amarin team established its presence in 15 European countries in what I consider a record time. And we now have employees covering 10 of the top 15 markets with the very large majority of our team based in Germany as we prepare for our first country launch. Outside of Germany, we have a limited core team in each large country or cluster of countries focusing on market access success and scientific engagement mission. Moving forward, we will not be adding additional commercial roles in any country, until we see the green light for reimbursement on the horizon. This stage rollout allows us to control the timing of our investment as to when and where we can have immediate impact to drive revenue. We believe this model will best position us to achieve our goal to maximize VAZKEPA reach in Europe and to become profitable on a country-by-country basis as soon as possible. Despite the limited time we have to prepare the market, we expect to have strong sequenced country launches and over time solid adoption as we continue to educate European audiences on the value of VAZKEPA. Its broad label and the fact that it's the only approved medication for cardiovascular risk reduction beyond LDL treatments in Europe. We previously communicated that our goal is to file 10 market access dossiers by year-end, and I'm proud to report that we submitted these dossiers in 4 important markets. The markets are the United Kingdom, France, Italy and Denmark. The German dossier is ready for submission just prior to the launch date in September 2021. This was a big accomplishment in a short period of time. These submissions are extensive and include the data demonstrating the uniqueness of VAZKEPA from a scientific perspective, various country specific demographic datasets to define the eligible patient population based on the label and the targeted list pricing of approximately €200 or $240 monthly. This price is proposed based on a value-based strategy, and we believe is justified based on the demonstrated clinical effectiveness of VAZKEPA. The high economic burden and societal cost of heart attacks, strokes and other cardiovascular events that VAZKEPA can help avoid. After the first 10 countries submissions for market access, we plan to pursue a second wave of reimbursement filings in other European countries. We also plan to implement an agency distributorship model in most Central and Eastern European markets. What it does not make business sense for us to have our own Amarin presence. Now that you have the big picture for Europe, let me share more details about our German launch. In preparation for this launch, we have hired the seasoned German team, and have deployed the field force of approximately 150 sales reps to advance prelaunch disease and brand awareness initiatives. As a reminder, based on EMA rules, Amarin could not promote the product nor mentioned the trade name until the EC approval date in April 2021. Additionally and similar to the U.S., access to German physician is still limited, as the fight against COVID-19 continues despite increasing vaccination rates. Our team is making every effort to reach our target audience both physically and virtually as we prepare for the launch. We are ready to officially launch in September, where we will debut our rollout with a dynamic launch event. The event will be led by 9 leading key opinion leaders, who will highlight the scientific underpinnings and clinical benefits of VAZKEPA to reduce cardiovascular risk before an audience of approximately 200 German specialists in Berlin. This is the maximum attendance allowed by current German guideline for in-person events. In addition, the event will be offered as a live broadcast with the possibility to reach 1,000s of physicians in Germany and across Europe. The timing of our German launch falls immediately on the heels of the European Society of Cardiology Annual Meeting taking place the last week of August and into early September. This global meeting will provide a great backdrop for us to highlight VAZKEPA's benefit through a series of scientific and clinical presentations. In addition, Amarin will have a considerable presence at this virtual meeting, where our digital platforms for engagement will be showcased in our exhibit booth, product theater and more. The combination of the ESC meeting and the launch event provide an ideal opportunity to amplify our messages before audiences of leading cardiologist in our target markets with compelling clinical data in support of the use of VAZKEPA to reduce cardiovascular risk. As we developed our European omni-channel engagement go-to-market model, we will be complementing all efforts by intensifying our digital channels to accelerate and enhance customer engagement, and ultimately to drive awareness of the need to treat CV risk and the benefits of VAZKEPA to reduce it. As we are launching in the last few months of 2021, 2022 will be the first launch year where we will have 1-year of German revenue and hopefully multiple additional countries joining the European launch league. This is an exciting opportunity for Amarin to make a difference in the lives of the many millions of patients throughout Europe, who are at-risk of a cardiovascular event. I'm also excited to announce that Laurent Abuaf will be succeeding me as Senior Vice President and President for Europe. Laurent is a seasoned leader with significant cardiometabolic experience from his time at AstraZeneca. He has experience in large, medium and small size markets in both Europe and Asia. And I'm confident that he is the right leader to pick-up the baton and lead Amarin for a big win in Europe. Finally, let me turn your attention to the rest of the world. In China, our partner Edding has made progress and still expects to receive approval of VASCEPA in Mainland China and Hong Kong near the end of 2021. With these approvals, Edding plans to launch in these territories in 2022, as in the U.S. and Europe, VASCEPA will launch with the support of the 2 key Chinese cardiology societies. With the burden of CV disease in China, and with 2 branded statins collectively selling more than $1 billion, that is a significant medical need and a meaningful market opportunity for VASCEPA in China. Turning now to Slide 7, let me share with you my vision for Amarin, and a glimpse of our plans. As I officially assumed my new leadership role only 5 days ago, these are still early days. That said, I am keen to share my excitement about the potential opportunities for growth and my confidence in Amarin's ability to deliver on these objectives. I envision Amarin growth will be delivered through 3 main directions on Slide 7. Firstly, the breadth dimension or geographic expansion, we launched the cardiovascular risk reduction indication in the U.S. in the first quarter of 2020. Our first country launch in Europe is planned toward the end of the third quarter 2021. So we have already embarked of this journey of global expansion. But now we want to take this to a different level. Our vision is to bring the cardioprotective benefits of VASCEPA/VAZKEPA to patients worldwide, specifically to what most pharma company consider to be the top 50 global cardiometabolic markets. Currently, we have access to approximately 30 of these, between our North American, European and Chinese efforts. A new key priority moving forward is to ensure that we unlock the potential of VASCEPA in the balance of these markets, including Australia, New Zealand, select Latin American and additional Asian markets. We plan to initiate the regulatory filing processes in a number of these markets in the coming months. We have the clinical data to support the submissions and expect the regulatory review and approval times to range from 6 to 18 months from submission depending on the market. In many of these markets, we may not choose to be present ourselves and have already received requests for agency distributorship partnerships. Such collaborations have the advantage of giving us control over the marketing authorization of our product, and providing optionality as we grow the business globally. Collectively, this international expansion gives us access to another billion dollar market opportunity for Amarin to leverage, while making a difference in the lives of many millions of patients across the globe. Secondly, the height dimension or diversification, with our strong presence in the U.S. and the global expansion of VASCEPA underway, Amarin has invested in building commercial infrastructure across the globe, which has created a great commercial asset for our company. We believe this asset makes Amarin an extremely attractive candidate for commercial partnerships, while our primary focus is squarely on growing branded VASCEPA in the U.S., building VAZKEPA in Europe and globally expanding the opportunity for VASCEPA in other international markets. We plan not to waste any opportunity that will allow us to leverage the investment in our global commercial infrastructure. The first work stream we are prioritizing is our own lifecycle planning for VASCEPA. Icosapent ethyl has proven to be a beneficial molecule in a number of clinical settings. And we are actively evaluating other potential research settings in which to further explore and characterize the drugs activity. And these efforts will align with clinical and commercial needs across individual and global markets for the brand. The second work stream we are prioritizing is our business development effort. We have been active in the BD space, but we intend to intensify accelerate and bolster our BD program. This is an opportunity to capitalize on the commercial and R&D infrastructure and expertise we already have in house. Let me remind you that such efforts require time both because there are few true value creating opportunities, and because we need to be very selective as to where we focus to ensure we continue to drive shareholder value. Thirdly, the depth dimension or go-to-market and operational evolution, the pharmaceutical market has been evolving for several years. And now with COVID-19, we arrived at the tipping point. Access to physicians is becoming more and more limited via traditional channels. And the significance and impact of payors is increasing. The role of the pharmacist is becoming more central with the complexity of care delivery. And more importantly, patients need support to seek and adhere to therapies and solutions that will impact their health positively. So it is critical for us to rethink our go-to-market model. And to continue to evolve it, we need to ensure that we are both effective and efficient in the way we run our operation, prioritize our choices among various key stakeholders and the different channels we use to engage with our customers. Earnestly revisiting what we are doing, why we are doing it, and how are we doing it is key to this effort. Our evolved orchestrated engagement model provides us with the breadth and depth of interaction we need to drive awareness, adoption and consistent usage in order to deliver growth. Finally, let me share some perspective on the timelines for executing on our 3 growth dimensions. Evolving the go-to-market model is immediate, and the model we implemented in Europe is already aligned with this vision. When we look at our global expansion efforts, some of these are short-term, such as our imminent launch in Germany. Many other European countries along with our international expansion plans discussed today will be more medium-term. Finally, although our diversification effort is very active and ongoing, these initiatives tend to take more time and require substantial diligence to ensure they will add true shareholder value. With this overview of our vision and plans for the future, let me turn the call over to Mike Kalb, our CFO, for a more added detailed discussion of our financials. Mike?"
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Michael Kalb",
+     "content": "Thanks, Karim. Turning now to Slide 8. During the second quarter of 2021, we reported net product revenue of $153.8 million, an increase of 15% compared with the second quarter of 2020 and we achieved $295.2 million for the first 6 months of 2021, an increase of 3% over the same period in 2020. As Karim noted, these increases were largely driven by increased U.S. VASCEPA sales and occurred despite the ongoing impact of the COVID-19 pandemic and the impact of generic products for VASCEPA's initial indication. We expect that net selling price may slightly decline in the second half of 2021 as we continue to be opportunistic in protecting and expanding our managed care access in light of generic availability. Signs of growth are encouraging and plans to selectively increase promotional spend in the second half of the year should drive increased revenue growth. Absent the reversal of certain non-cash charges, we were approximately breakeven in the second quarter of 2021. We are pleased that we were able to achieve this with our continued expense management and despite the limitations to our potential revenue growth, resulting from the continuing impact of the COVID-19 pandemic and the resulting reduction in patient visits to their physicians which impact new prescriptions. While a second generic launch in June, we remain confident in our ability to grow VASCEPA in the U.S. as this is an atypical generic market. We believe the growth in revenue in the second quarter of 2021 emphasizes the need for VASCEPA in the U.S. and the continued potential opportunity for Amarin in this market. This also further shows that we have the cash flow and profitability through our U.S. operations to support the expansion into Europe and other geographies around the world. However, due to variability of spend related to go-to-market initiatives in the U.S. and expansion into Europe, our overall profitability in the short-term may fluctuate. As of June 30, 2021, Amarin reported aggregate cash investments of $523.1 million consisting of cash and cash equivalents of $327 million and liquid short-term and long-term investments of $181.9 million and $14.2 million, respectively. We believe our current resources are sufficient to fund our projected operations, including a successful commercial launch in Europe. With that financial overview, I will now turn the call back to Karim for closing remarks. Karim?"
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Karim Mikhail",
+     "content": "Thanks, Mike, for that financial overview. Turning now to Slide 9, our vision is clear and our strategy is set. Our focus moving forward remains firmly on executing these plans, with the return to growth of VASCEPA in the U.S., the successful launch of VAZKEPA in Europe, and the global expansion as our top priorities. In closing, let me say that I'm honored and humbled to serve as Amarin's new CEO, and to work alongside the dedicated and talented Amarin team to advance our mission. I greatly appreciate the overwhelmingly positive welcome I have received from many of our loyal shareholders and analysts and will work diligently to earn your ongoing support, as together we work to create value, and lead a new paradigm in preventative cardiovascular care. With that, operator, we are ready to open the call for questions."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Operator",
+     "content": "Thank you. Ladies and gentlemen, the floor is now open for questions. [Operator Instructions] The first question is coming from Ken Cacciatore from Cowen. Ken, your line is live."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Ken Cacciatore",
+     "content": "Great. Thanks so much. Congratulations on all the progress and congratulations to John in all his contribution. Just wanted to follow up on the disclosure of the proposed list price, can you just talk us through mechanically when we know that we've secured it kind of in the various regions, so just timing around that, and maybe a little bit of the back-and-forth interaction that you have as you negotiate this? And then, in the U.S., just wondering, obviously, it's been a wonderful defense and generics have peaked out. Can you give us the balance? Is it the raw material issues that you've cited previously? Or is it the label defense that you're articulating, that is capping the generics? And then, maybe lastly, it does look like Teva has removed their NDA or there is language suggesting it's such on the FDA website. Can you just talk about future generics and expectations and timing? Thank you."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Karim Mikhail",
+     "content": "Thanks, Ken. So let me start by talking about the proposed price in Europe. Clearly, this is the list price that we are making public at this point in time. This was submitted currently to a number of countries as the initial step to start the negotiation. So you should think of this really as the first starting point of that journey. Now, we believe that we set this in a way to ensure that the different countries see the value in the price, and that they see that it's well justified within the patient population that we are targeting, and more importantly, the value that we are bringing. Now, the specific mechanics by country, in a country like Germany, this price is really going to be the price that we're going to be selling with minus 2 mandated single-digit rebates. But that's going to be the net price for the first year. After that first year, we're going to have an update of that price based on the negotiation. And in the other countries, that negotiation is already ongoing on the price. So when we will launch, we will launch with a fully negotiated final price. Now, I remind you that price structure and price negotiation in Europe is very different than in the U.S. rebates. And the markups are very, very different. So comparisons between list price in Europe and WAC in the U.S. may not be that useful at this stage. However, we stay true to what we disclosed earlier, which is our net price in Europe will be at the same level or higher than our net price in the U.S. Now, talking about the U.S. performance and how are we performing versus generics, I want to start by saying, I mean, clearly, this is a very unique situation and the fact that the team in the U.S. is able to retain 88% of the market despite 2 generics, and despite the many months is a very, very significant achievement. Now, to account that to 1, 2 or 3 different variables is very difficult, right? It is not one thing that is driving this level of retaining a business. Obviously, first reason is the fact that it seems that generic suppliers are not able to supply the market and they are inconsistent. However, we clearly see that today they have 12% of the scripts, which we believe is higher than what is truly legally indicated as VHTG. Theoretically, if this was on on-indication promotion, they would have had 7%. So that's the first reason. The second and most importantly is the effort that the team has been doing over time. And we try to articulate this in the effort implemented at the physician level, at the payor level, at the pharmacy level and at the patient level. There is not going to be one silver bullet that will solve this problem once and for all. We have to pursue the legal route as we are, and as you know, we are pursuing the legal route of making sure that generics do not go beyond what is legally approved in their indication. But we also pursue every other route to ensure that we educate the key stakeholders on the appropriate usage of VASCEPA and its indication, which is not shared by the generics. Now, in terms of Teva remove their ANDA and other elements, as you know, this is typical, if a generic company has not used, that has not launched their product within 6 months of their approval, it basically gets delisted, but they're able to be listed back if they decide to launch. So we have no further comments on that. Thank you. Next question."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Operator",
+     "content": "Thank you. And the next question is coming from Yasmeen Rahimi, from Piper Sandler. Yasmeen, your line is live."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Yasmeen Rahimi",
+     "content": "Hi, Karim, thank you so much for your thoughtful prepared remarks. I wanted to understand a little bit more on the additional 4 dossiers that have been filed. I think, if you could just help us understand the timing of those to be put into place and the additional 6 in terms of filing. And then, also when we think about pricing outside of Germany, are certain geographies that are a little bit more, I guess, easier to negotiate versus other countries? So just kind of give us a little bit of color on timing, heterogeneity from the different 10 countries. That'd be very helpful. And thank you for taking my question."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Karim Mikhail",
+     "content": "Thank you, Yasmeen. So, we have submitted up to now 4 country dossiers, which is the UK, France, Italy and Denmark. And German dossier is ready for submission, has been ready for submission for a couple of months now. We're only basically keeping it until the right moment for a commercial launch, because if we submitted too early, it means we have to sell early. And because of the limitation of COVID and the limited access we have, we don't believe that it's the right moment. We believe that September is the right moment to launch in Germany after the summer vacation. Now, each one of these countries and the additional files that we will submit has a different negotiation timeline. There is a group of countries that has a pre-determined clock. So if you look at a country like the UK, which most of the discussions, negotiations, is actually public, so you can go on the NICE website and see what type of interactions we have with NICE, you will see that this is a process that will take from a HDA perspective, somewhere between 12 to 15 months, taking into account 2 or 3 back and forth committees to negotiate the price. Now, there are products that did that, who are delivered earlier than this timeline. It really depends on the evidence that you have, the appetite of the reimbursement body to say, yes, I need this. Specifically in the UK, we've seen that the market has been far more sensitive to the need for cardiovascular products in the UK recently. So we believe that that's a positive note. Having said that, it's a significant budget impact for the UK. So they will take all the time they need to negotiate the access and the price for that population. However, scientifically speaking, they recognize the value. Now, as I said, different countries have different timelines, there are countries in the Nordics that have a 90-day clock. There are countries that have a 180-day clock. And you've seen us not going in a sequence to have a submit, meaning we don't submit the UK, and say, let's get the UK done, and then let's move to Italy. No, no, we are submitting in parallel a number of countries, because we know that the negotiation will evolve very differently in the different countries, and we have to pursue all of them at the same time. I also want to add that we are not going to leave one stone unturned in getting earlier access before complete national reimbursement. So there may be a couple of countries where we can go for what is called an individual reimbursement. So this is - you could see this almost as a pre-authorization patient-by-patient basis, so it will give us access. It's not very critical in terms of revenue generating, but what it does, it gets the physicians and the patients in the habit of prescribing the product, so it is a strategic value. And we will pursue in every country where this is an opportunity to actually do that. So that's in terms of what we submitted. Obviously, over the next 6 months, we are planning to submit the 5 additional countries, so these are Spain, Sweden, Norway, and the Netherland. So - and once we have that we're also prepared for the other wave that we submit. As you can see, we are prioritizing countries by the size of the opportunity and by the likelihood of us achieving the targeted price, the fastest possible. And, of course, we know that there are certain markets that take far longer than others, a country like France is very much known that we - in the 15 to 18 months. That's why we submitted very early to ensure that we get enough time to negotiate with them. So that's really - I hope this has provided enough detail and granularity on the pricing and the filing at the European level. Thank you. Next question?"
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Yasmeen Rahimi",
+     "content": "Thank you. Thanks. That's very helpful."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Operator",
+     "content": "Thank you. The next question is coming from Louise Chen from Cantor. Louise, your line is live."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Louise Chen",
+     "content": "Hi, thanks for taking my questions here. So first question I had for you was, can you provide more color on where the $1 billion of incremental revenues are going to come from? Can you break it out maybe between EU and the rest of the world? And then how should we think about sales in the second half of this year in light of the EU launch in Germany, and then also competition from generics here in the U.S., and there's been an additional competitor? And the last question is, have you had any discussions with EU partners recently? And what type of partner are you looking for here? I think you had mentioned that you can keep all the options open. So just curious your most updated thoughts. Thank you."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Karim Mikhail",
+     "content": "Thank you, Louise. So let me first clarify the $1 billion. So the $1 billion that we quoted in the discussion just a few minutes ago, was really an incremental $1 billion outside of the U.S. and outside of Europe, right? This is a new incremental revenue stream by pursuing additional 20 countries on top of the 30 where we are. So if you look at North American between U.S. and Canada, you add Europe, right, 27, you add China, that's around 30 markets out of the top 50. There are remaining 20 countries where we believe we can have access and generates revenue. If you look at these countries, I think the most important one would be countries like Australia and New Zealand. If you look at what other products have delivered within the cardiometabolic space in Australia and New Zealand, you'll see that these - this is a country that usually delivers a revenue size of a big 5 in Europe, so as a Germany or as a Spain or a France size. In these countries, we need to initiate the regulatory approval process. We are going to initiate that within the next month. And some of these countries have a rapid process, example, Australia, New Zealand, for example, where it's really 6 months, but some others, it takes far longer time. And to be specific on where those countries are, if you look at Latin America countries like Mexico, Brazil; if you look at Asia countries like Korea are very important countries from a lipid market perspective and a cardiovascular perspective. And in these countries, we believe we do not need to go ourselves to build an infrastructure. We can partner in a different evolved model that will allow us to sort of maintain our marketing authorization, maintain optionality and continue to sort of drive our performance at a global level. So that's the answer on the incremental $1 billion outside of U.S. and Europe. Now thoughts on the second half of the year, today, we are really trying to accelerate every effort for our growth in the second half. Having said that, there are a number of unknowns, right? We don't know where the delta variant is going to take us by year-end, and whether this is going to impact access. Access in the U.S. today to physician has been stagnant at 50% to 60% of physicians, not more than that, and also the impact on the patients visiting is still the same. We don't see that increasing in the very short-term. So all the growth that we can drive is really by our own effort to accelerate and do more. And we intend to continue to drive through our field force efforts, our managed care team, but also amplify our efforts by additional digital omni-channel efforts to ensure we reach more physicians. That's the challenge today, right? The market is more or less 50% close. And we need to find ways of accessing those physicians and to drive the business. Discussions on partners are mostly around what we discussed for Central, Eastern Europe, and for partnerships in the rest of the world international markets, and there are more in the agency distributor type model, but we cannot comment further at this stage. But there is no discussion, for example, partnering Europe at this stage, because the plane is on the runway, we already submitted our prices. Actually, anything we do today may potentially be disruptive unless it's done in a very, very particular way. And we feel confident that we are on our way to a successful launch in Europe. Thank you."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Louise Chen",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Karim Mikhail",
+     "content": "Next question?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Operator",
+     "content": "Thank you. The next question is coming from Michael Yee from Jefferies. Michael, your line is live."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Dennis Ding",
+     "content": "Hi, good morning. This is Mike on for - sorry, this is Dennis on for Mike. Good morning. I just have 2 quick questions. Dr. Reddy's seems to be ramping up, and they said they aren't seeing any supply constraints. Do you feel like you have a good hold on your own supply chain? And can you comment on what you're seeing overall on the supply landscape? And then as a follow-up, how should we think about expenses in the U.S.? And can these be right size in the second half and 2022 as generics continue to ramp up? Thank you."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Karim Mikhail",
+     "content": "Thank you. So on DRL and the comments that they have no supply issues, well, if a generic company stays true to the size of the indication of VHTG of that 7% really of the total market. So that would not be an unexpected statement to make, if you are trying to communicate that you are not infringing on somebody else's patents and rights. Now to the reality of the supply, we definitely don't have information what we see is that supply from Hikma and from DRL is very sporadic and inconsistent, it's focused on where we are selling. And that's really the disruption that is creating today that's the fight we are having. The challenge is not very much in the through substitution we're having it, only 12% of the business is substituted. Our challenge is that this is creating a significant disruption in the market, because the patient goes to the pharmacy, he or she does not get his VASCEPA branded. They're told to wait a couple of days for a generic to be available in 2 days, so to wait another 2 days. And at the end of the day, we lose many of ongoing continuing patients. If you look at the new to brand business, we are driving the new to brand that are more new patients that are using VASCEPA. Our challenge is, is that we're losing from these refill of the continuing business. But we believe we have the supply needed, we made every effort over the many years to have enough supply for the U.S., for Europe. And today, as you can see, we have a plan beyond Europe, which by the way, if you look at prior disclosures is not new, we have always communicated that we will go international outside of the U.S. and outside of the Europe, once we have the price set in Europe. And since the price is set in Europe, and we communicated in publicly due to a number of other countries already, it is the time to go. And we believe we have the supply needed to successfully launch in these markets. Now looking at expenses, towards the end of the year and next year, we are making every effort to be very selective with our investments, right? If you see that the market is already closed, and you have limited access, you're not going to continue to repeat the same type of investments, because it's not going to drive further growth. So today, the question is not just the magnitude of the investment, not how much money. It's how we spend the money, right? So we could stay with the same level of expense, but with a different mix. We believe we can drive growth. So we are very conscious that we need to look at our profitability, simply because we want to continue to be able to finance our growth plan, right? So we keep balancing the act between U.S., Europe, ex-U.S. to ensure we continue to be well funded that we would not need to go beyond our own capabilities in terms of financing, to drive it further. Now, how things evolve in 2022, I mean, it's too early to judge at this point in time. If we have early access in a number of European countries, as I said, we intend to try to be profitable in many of these countries on a country-by-country basis early enough. But we continue to be excited and energized about the opportunity in the U.S. We still hold a very large majority of the business. Our number one priority is to drive growth of IP, right? If that growth is back and generics continue to have a similar share or even slightly higher, we would still be very profitable in the U.S. and we will continue to drive that business. Thank you for your question."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Operator",
+     "content": "Thank you. And the next question is coming from Jessica Fye from J.P. Morgan. Jessica, your line is live."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Jessica Fye",
+     "content": "Hey, guys, good morning. Can you just elaborate a little on the comments that net selling price might decline in the back half as you aim to protect managed care access? Is that something we should also think about continuing into 2022 and beyond? I guess, what's the latest payor dynamic you're seeing that's driving this need to protect access? So kind of thought previously you had indicated that wouldn't really be necessary based on VASCEPA's already low net price in the U.S."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Karim Mikhail",
+     "content": "Thanks, Louise. So just commenting on the net price, if you look at our net price over the last many years, you'll see that the net price has been very much stable. And we made sure that over time we protected that. Today there is a slightly different dynamic. And you see we're going to be, we said opportunistic, because that's not going to be an overarching strategy. We're only going to do that when we believe it is business meaningful and will drive access to a meaningful business opportunity. I don't believe that that's going to be significant at this stage, simply because we are retaining and even improving our access despite having the 2 generics available. In fact, many players recognize the lower net cost benefit of VASCEPA. And for the moment, we have very good coverage at the market level. We don't see this as a continuing consistent trend. We say we may need to do this from an opportunistic perspective in a number of plans. But that's it, and we'll have to see how things evolve. We're also conscious to ensure that we keep prices similar between different parts of the world. As in Europe we have European reference pricing. So we will try to maintain our price is level, as close as possible to each other and not lose a lot of our value in terms of price."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Jessica Fye",
+     "content": "Okay, great. And maybe just one more. I appreciate the kind of comments on how you're thinking about spend. Just to be clear, do you still expect OpEx to be in the guidance range that you provided earlier this year?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Karim Mikhail",
+     "content": "So, today, as you've seen from the first 2 quarters, numbers have changed over time, because we have to react to where the market is going and when is the right time to invest. The first half of the year, we felt we needed to hold a little bit on some of our investments, because we felt like it was not the right time. We believe that the second half seems to open up better. So we believe we're going to have more investments, both in the U.S., but outside of U.S. also. And again, we continue to monitor the market situation and evolve our investment choices quarter by quarter."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Jessica Fye",
+     "content": "Great, thank you."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Karim Mikhail",
+     "content": "Thanks, Louise."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Operator",
+     "content": "Thank you. And that's all the time we have for questions today. I would now like to turn the call back to Karim Mikhail for any closing remarks."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Karim Mikhail",
+     "content": "So I just want to thank you all for the warm welcome for the first quarter and the first earnings call. We look forward to continue to working together and answering your questions, whether it's quarterly calls or one-on-one. Thank you, [Cole] [ph], and thank you, all, and have a great day."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Operator",
+     "content": "Thank you, ladies and gentlemen. This does conclude today's conference call. You may disconnect your phone lines at this time and have a wonderful day. Thank you for your participation."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +226,8 @@
    "reportDate": "2020-12-31",
    "accession": "0001564590-21-008382",
    "url": "https://www.sec.gov/Archives/edgar/data/897448/000156459021008382/amrn-10k_20201231.htm",
-   "local_gz": "000156459021008382__annual.txt.gz"
+   "local_gz": "000156459021008382__annual.txt.gz",
+   "n_lines": 5843
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +235,8 @@
    "reportDate": "2021-06-30",
    "accession": "0000950170-21-000845",
    "url": "https://www.sec.gov/Archives/edgar/data/897448/000095017021000845/amrn-20210630.htm",
-   "local_gz": "000095017021000845__q0.txt.gz"
+   "local_gz": "000095017021000845__q0.txt.gz",
+   "n_lines": 2482
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +244,106 @@
    "reportDate": "2021-03-31",
    "accession": "0001564590-21-021572",
    "url": "https://www.sec.gov/Archives/edgar/data/897448/000156459021021572/amrn-10q_20210331.htm",
-   "local_gz": "000156459021021572__q1.txt.gz"
+   "local_gz": "000156459021021572__q1.txt.gz",
+   "n_lines": 3170
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2021-04-29",
   "n_rows": 8,
@@ -83,6 +358,63 @@
     "ocf": 21750000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 54557000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 103583000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 1962000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 673207000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 60044000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 1313000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -3462000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.01,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 350994000.0,
+      "filed": "2019-11-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +425,58 @@
     "ocf": -8936000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 76769000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 116430000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2342000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 644588000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 364000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 7068000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.02,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 5600000.0,
+      "filed": "2020-02-25",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +487,58 @@
     "ocf": 4137000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 92121000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 158288000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4288000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 329045000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 251000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -20553000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.06,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 361136000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +549,58 @@
     "ocf": 1587000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 124844000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 124985000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5706000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 214007000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 0.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 4415000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.01,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 399664000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +611,58 @@
     "ocf": 10853000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 148531000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 147292000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5706000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 207207000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -6788000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.02,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 389699000.0,
+      "filed": "2020-11-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +673,58 @@
     "ocf": -38323000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 188864000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 154574000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2926000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 186964000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 0.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 4926000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.009999999999999995,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 2989000.0,
+      "filed": "2021-02-25",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +735,53 @@
     "ocf": -18704000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 230892000.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 151275000.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2773000.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 290994000.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -1626000.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 394638000.0,
+      "filed": "2021-04-29",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +792,24 @@
     "ocf": -15053000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 7808000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.02,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 154500000.0,
     "revenue_xbrl_for_reference": 154488000.0
@@ -166,143 +823,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2834",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 634,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABCL",
-   "ABEO",
-   "ABOS",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ACAD",
-   "ACB",
-   "ACET",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACRS",
-   "ACXP",
-   "ADAG",
-   "ADCT",
-   "ADIL",
-   "ADMA",
-   "ADPT",
-   "ADXN",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALEC",
-   "ALGS",
-   "ALKS",
-   "ALLO",
-   "ALNY",
-   "ALT",
-   "ALTO",
-   "ALXO",
-   "ALZN",
-   "AMGN",
-   "AMPH",
-   "AMRX",
-   "AMTX",
-   "ANAB",
-   "ANIP",
-   "ANIX",
-   "ANNX",
-   "ANVS",
-   "APD",
-   "APRE",
-   "APVO",
-   "AQST",
-   "ARCT",
-   "ARDX",
-   "ARGX",
-   "ARMP",
-   "ARQ",
-   "ARQT",
-   "ARTL",
-   "ARVN",
-   "ARWR",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AUTL",
-   "AVD",
-   "AVIR",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "BAK",
-   "BBIO",
-   "BCAB",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BCYC",
-   "BDRX",
-   "BDTX",
-   "BEAM",
-   "BGM",
-   "BHC",
-   "BHST",
-   "BIIB",
-   "BIOX",
-   "BIVI",
-   "BLRX",
-   "BMEA",
-   "BMRA",
-   "BMRN",
-   "BMY",
-   "BNKK",
-   "BNTC",
-   "BNTX",
-   "BOLT",
-   "BON",
-   "BRNS",
-   "BTAI",
-   "BTMD",
-   "BYSI",
-   "CABA",
-   "CADL",
-   "CANF",
-   "CAPR",
-   "CATX",
-   "CBIO",
-   "CBT",
-   "CBUS",
-   "CC",
-   "CCCC",
-   "CDXS"
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 386,
+  "peer_list_all_tickers": [
+   "JNJ",
+   "PFE"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0001682852",
-    "name": "Moderna, Inc.",
-    "ticker": "MRNA",
-    "sic2": "28"
+    "entity_id": "0000200406",
+    "name": "JOHNSON & JOHNSON",
+    "ticker": "JNJ",
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2021-02-22",
+    "accn": "0000200406-21-000008",
+    "local_gz": "000020040621000008__peer10k.txt.gz",
+    "capex_excerpt": [
+     "le laws and regulations, and commercial production restarted in 2015. Under the Consent Decree, after receiving notice from the FDA of being in compliance with applicable laws and regulations, each of the three facilities is subject to a five-year audit period by a third-party cGMP expert. A third-party expert continued to reassess the sites at various times through 2020. McNEIL-PPC is awaiting FDA inspections of the facilities which have been delayed due to COVID-19. Segment information on additions to property, plant and equipment is contained in Note 17 “Segments of Business and Geographic Areas” of the Notes to Consolidated Financial Statements included in Item 8 of this Report. 14 Item ",
+     "rrent assets (1.2) contingent consideration reversal (related to the timing of certain developmental milestones associated with the Auris Health acquisition) and rounding $ 23.5 Cash Flow from operations Investing activities use of $20.8 billion of cash was primarily used for: (Dollars In Billions) $ (7.3) primarily related to the acquisitions of Momenta, bermekimab and related assets from XBiotech Inc. as well as the acquisition of all outstanding shares in Verb Surgical Inc. (3.3) additions to property, plant and equipment (9.0) net purchases of investments (1.0) Credit support agreements activity, net 0.3 proceeds from the disposal of assets/businesses, net (0.5) other (primarily licenses",
+     "ts from acquisitions and divestitures: Decrease/(Increase) in accounts receivable 774 ( 289 ) ( 1,185 ) Increase in inventories ( 265 ) ( 277 ) ( 644 ) Increase in accounts payable and accrued liabilities 5,141 4,060 3,951 Increase in other current and non-current assets ( 3,704 ) ( 1,054 ) ( 275 ) Increase/(Decrease) in other current and non-current liabilities 744 1,425 ( 1,844 ) Net cash flows from operating activities 23,536 23,416 22,201 Cash flows from investing activities Additions to property, plant and equipment ( 3,347 ) ( 3,498 ) ( 3,670 ) Proceeds from the disposal of assets/businesses, net 305 3,265 3,203 Acquisitions, net of cash acquired (Note 18) ( 7,323 ) ( 5,810 ) ( 899 ) P"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000080424",
-    "name": "PROCTER & GAMBLE Co",
-    "ticker": "PG",
-    "sic2": "28"
+    "entity_id": "0000078003",
+    "name": "PFIZER INC",
+    "ticker": "PFE",
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2021-02-25",
+    "accn": "0000078003-21-000038",
+    "local_gz": "000007800321000038__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ctivities, criminal charges, warning letters, product recalls or seizures, delays in product approvals, exclusion from participation in government programs or contracts as well as limitations on conducting business in applicable jurisdictions, and could result in harm to our reputation and business. For additional information, see Note 16A. Compliance with these laws and regulations may be costly, and may require significant technical expertise and capital investment to ensure compliance. While capital expenditures or operating costs for compliance with government regulations cannot be predicted with certainty, we do not currently anticipate they will have a material effect on our capital ex",
+     "s on conducting business in applicable jurisdictions, and could result in harm to our reputation and business. For additional information, see Note 16A. Compliance with these laws and regulations may be costly, and may require significant technical expertise and capital investment to ensure compliance. While capital expenditures or operating costs for compliance with government regulations cannot be predicted with certainty, we do not currently anticipate they will have a material effect on our capital expenditures or competitive position. In the United States Drug and Biologic Regulation . The FDA, pursuant to the FFDCA, the Public Health Service Act and other federal statutes and regulatio",
+     "MATTERS Our operations are affected by national, state and/or local environmental laws. We have made, and intend to continue to make, the expenditures necessary for compliance with applicable laws. We also are cleaning up environmental contamination from past industrial activity at certain sites. We incurred capital and operational expenditures in 2020 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: $42 million in environment-related capital expenditures and $120 million in other environment-related expenses. While capital expenditures or operating costs for environmental compliance cannot be predicted with certainty, we do not curre"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -324,7 +890,16 @@
   "latest_data_date": "2021-08-05",
   "cutoff": "2021-08-05",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2021-08-05",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2021-08-06",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

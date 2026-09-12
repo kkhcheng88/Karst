@@ -112,8 +112,26 @@ def read_doc(fn: str) -> str:
 _ROW_CACHE: dict[str, list[dict]] = {}
 
 
+SUB_EXTRA = CACHE / "peer_submissions"
+
+
+def _blob_rows(blob: dict) -> list[dict]:
+    # 主檔是 {"filings": {"recent": {...}}};更舊分片本身就是那個欄式物件
+    r = blob.get("filings", {}).get("recent", blob) if "filings" in blob else blob
+    n = len(r.get("form", []))
+    return [dict(form=r["form"][i], filingDate=r["filingDate"][i],
+                 reportDate=r["reportDate"][i],
+                 accn=r["accessionNumber"][i], doc=r["primaryDocument"][i],
+                 items=(r.get("items", [""] * n)[i] or "")) for i in range(n)]
+
+
 def filing_rows(cik: str) -> list[dict]:
-    """本地 submissions 的 filings.recent,新到舊。"""
+    """本地 submissions 的 filings.recent,新到舊;併入 s18 補抓的更舊分片(如有)。
+
+    本地快照只存 `filings.recent`(上限約 1000 筆),申報量大的發行人窗口短,
+    年報/前兩份季報會落到未下載的 `filings.files` 分片裡;分片抓到
+    `cache/peer_submissions/` 後由本函式一併讀入(按 accessionNumber 去重)。
+    """
     if cik in _ROW_CACHE:
         return _ROW_CACHE[cik]
     p = SUB / ("CIK%s.json" % cik)
@@ -123,16 +141,26 @@ def filing_rows(cik: str) -> list[dict]:
             d = json.loads(p.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             d = {}
-        r = d.get("filings", {}).get("recent", {})
-        n = len(r.get("form", []))
-        for i in range(n):
-            out.append(dict(form=r["form"][i], filingDate=r["filingDate"][i],
-                            reportDate=r["reportDate"][i],
-                            accn=r["accessionNumber"][i], doc=r["primaryDocument"][i],
-                            items=(r.get("items", [""] * n)[i] or "")))
-        out.sort(key=lambda x: x["filingDate"], reverse=True)
-    _ROW_CACHE[cik] = out
-    return out
+        out.extend(_blob_rows(d.get("filings", {}).get("recent", {})))
+        for f in d.get("filings", {}).get("files", []):
+            q = SUB_EXTRA / f["name"]
+            if not q.exists():
+                continue
+            try:
+                e = json.loads(q.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                continue
+            out.extend(_blob_rows(e))
+    seen = set()
+    uniq = []
+    for x in out:
+        if x["accn"] in seen:
+            continue
+        seen.add(x["accn"])
+        uniq.append(x)
+    uniq.sort(key=lambda x: x["filingDate"], reverse=True)
+    _ROW_CACHE[cik] = uniq
+    return uniq
 
 
 def pick_filings(rows: list[dict], cutoff: str) -> dict:
@@ -429,9 +457,50 @@ SHARE_CTX = re.compile(r"(?i)(diluted|shares outstanding|weighted average)")
 
 # ---------------------------------------------------------------- 同業
 
+GUIDE_RX = re.compile(
+    r"(?i)\b(guidance|outlook|we expect|we anticipate|we forecast|we project|"
+    r"(?:financial |long-term )?targets?|full[- ]year (?:revenue|earnings|eps)|"
+    r"fiscal (?:year )?20\d\d (?:revenue|earnings|eps))")
+GUIDE_NOISE = re.compile(
+    r"(?i)(will (?:host|hold|report|release|webcast)|expects? to (?:report|release|host)|"
+    r"conference call|webcast|replay|dial[- ]in|safe harbor|forward[- ]looking|"
+    r"about [A-Z][A-Za-z]+ [A-Z]|\(NYSE|\(NASDAQ|\(Nasdaq)")
+"""指引句後備掃描:只在 A3 的 parse_guidance 交白卷時用,所以刻意保守 ——
+要同時(一)有指引字眼、(二)句內有數字、(三)不是「幾時開業績會」一類公告句。"""
+
+
+def guidance_fallback(txt: str, limit: int = 20) -> list[str]:
+    sents = re.split(r"(?<=[.!?])\s+|\n(?=[A-Z])", txt)
+    out, seen = [], set()
+    for s in sents:
+        s = re.sub(r"\s+", " ", s).strip()
+        if not (12 <= len(s) <= 600) or not re.search(r"\d", s):
+            continue
+        if not GUIDE_RX.search(s) or GUIDE_NOISE.search(s):
+            continue
+        if s in seen:
+            continue
+        seen.add(s)
+        out.append(s)
+        if len(out) >= limit:
+            break
+    return out
+
+
+CAPEX_RX = re.compile(
+    r"(?i)capital expenditure"
+    r"|purchases? of property"
+    r"|payments? for (?:the )?acquisition[s]? of property"
+    r"|acquisition of property, plant"
+    r"|additions? to property"
+    r"|investment in property, plant")
+"""資本開支的標準寫法。刻意不收「property and equipment, at cost」一類資產負債表字眼,
+免生「摘錄到的是資產總額、不是資本開支」的假陽性。"""
+
+
 def capex_excerpt(txt: str, n: int = 3) -> list[str]:
     hits = []
-    for m in re.finditer(r"(?i)capital expenditure", txt):
+    for m in CAPEX_RX.finditer(txt):
         a, b = max(0, m.start() - 500), min(len(txt), m.end() + 500)
         w = re.sub(r"\s+", " ", txt[a:b]).strip()
         if re.search(r"\d", w):

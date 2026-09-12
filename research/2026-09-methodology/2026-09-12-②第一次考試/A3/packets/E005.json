@@ -1,6 +1,7 @@
 {
  "event_id": "E005",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E005",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "AMN",
  "cik": "0001142750",
  "name": "AMN HEALTHCARE SERVICES INC",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2015-08-05(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E005",
   "event_id": "E005",
   "ticker": "AMN",
   "cik": "0001142750",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001193125-15-276550",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1142750/000119312515276550/d21365d8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1142750/000119312515276550/d21365d8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n d21365dex991.htm\n EX-99.1\n EX-99.1 \n Exhibit 99.1 \n Contact: \n Amy C. Chang \n Vice President, Investor Relations \n 866.861.3229 \n AMN HEALTHCARE ANNOUNCES SECOND\nQUARTER 2015 RESULTS \n Quarterly revenue increases to record high $350 million; reports EPS of $0.32 \n SAN DIEGO – (August 4, 2015) – AMN Healthcare Services, Inc. (NYSE: AHS), healthcare’s leader and innovator in workforce solutions and staffing\nservices, today announced second quarter 2015 financial results that exceeded the Company’s guidance for revenue and adjusted EBITDA. Second quarter financial highlights are as follows: \n Dollars in millions, except per share amounts. \n Q2 2015 \n % Change \n Q2 2014 \n YTD June 30,\n2015 \n % Change YTD\nJune 30, 2014 \n Revenue\n $ \n 350.1 \n 40 \n % \n $ \n 677.7 \n 38 \n % \n Gross profit\n $ \n 110.1 \n 43 \n % \n $ \n 211.6 \n 40 \n % \n Net income\n $ \n 15.9 \n 121 \n % \n $ \n 28.1 \n 89 \n % \n Diluted EPS\n $ \n 0.32 \n 113 \n % \n $ \n 0.58 \n 87 \n % \n Adjusted diluted EPS*\n $ \n 0.38 \n 81 \n % \n $ \n 0.69 \n 73 \n % \n Adjusted EBITDA*\n $ \n 39.4 \n 69 \n % \n $ \n 72.7 \n 64 \n % \n * See “Non-GAAP Measures” below for a discussion of our use of non-GAAP items and the table entitled\n“Supplemental Financial and Operating Data” for a reconciliation of non-GAAP items. \n • \n Consolidated revenue increased 40% year-over-year, driven by organic growth of 24% and the remainder from acquisitions. \n • \n Gross margin of 31.4% represented an improvement of 60 basis points year-over-year and 40 basis points from the prior quarter. \n • \n Adjusted EBITDA margin of 11.2% reflected a 190 basis point year-over-year improvement, driven primarily by the gross margin improvement and operating leverage. \n • \n Adjusted diluted EPS of $0.38 grew 81% year-over-year. \n • \n AMN Healthcare’s differentiated strategy of serving healthcare providers through a diverse portfolio of innovative workforce solutions and staffing services continues to drive industry leading performance.\n “All business segments are executing very strongly amid continued robust market conditions,\nwhich drove better than anticipated revenue and profitability growth in the second quarter,” said Susan R. Salka, President and Chief Executive Officer of AMN Healthcare. “Our recently acquired Avantas, Onward Healthcare, Locum Leaders and\nMedefis companies are also performing very well and the majority of our integration activities have been successfully completed. With the continuing favorable market environment, our outlook remains optimistic as we stay focused on delivering\nsuperior service to our clients and healthcare professionals, improving the efficiency of our operations, and developing or acquiring additional innovative workforce solutions and recruitment strategies.” \n Second Quarter 2015 Results \n For\nthe second quarter of 2015, consolidated revenue was $350 million, an increase of 40% from the same quarter last year and 7% sequentially. Second quarter revenue for the Nurse and Allied Healthcare Staffing segment was $240 million, up 45%\n(27% excluding acquisitions) from the same quarter last year and 5% sequentially. Locum Tenens Staffing segment revenue in the second quarter was $97 million, an increase of 31% (19% excluding acquisitions) from the same quarter last year and\nup 12% sequentially. Second quarter Physician Permanent Placement Services segment revenue was $13 million, an increase of 19% from the same quarter last year and up 8% sequentially. \n Second quarter gross margin of 31.4% was higher by 60 basis points than the same quarter last year and higher by 40 basis points sequentially.\nThe year-over-year gross margin improvement was driven by an increased revenue mix of our higher-margin workforce solutions businesses. \n SG&A expenses for the second quarter were $75 million, representing 21.3% of revenue, compared to 22.1% in the same quarter last year and\n21.8% in the prior quarter. The year-over-year improvement in SG&A expenses as a percentage of revenue was due primarily to operating leverage and a favorable professional liability actuarial adjustment. The favorable professional liability\nadjustment in the second quarter was $3.3 million, compared to a favorable adjustment of $1.6 million in the same quarter last year. On a sequential basis, the lower SG&A percentage was driven by the favorable professional liability actuarial\nadjustment, which more than offset the growth in employee expenses to support the revenue growth. \n 2 \n Second quarter net income was $16 million and net income per diluted share was $0.32. Excluding\namortization of intangible assets of $3 million and acquisition and integration costs of $2 million, adjusted net income per diluted share was $0.38. Second quarter adjusted EBITDA was $39.4 million, a year-over-year increase of 69% and sequential\nincrease of 18%. Second quarter adjusted EBITDA margin of 11.2% represented a 190 basis point increase year-over-year and 100 basis point increase sequentially.\n At June 30, 2015, cash and cash equivalents totaled $14 million. Second quarter cash flow from operations was $25 million and capital\nexpenditures were $8 million. The Company ended the second quarter with total debt outstanding of $226 million, with a leverage ratio of 1.9 to 1. \n Business Trends and Outlook \n The\nCompany expects consolidated third quarter 2015 revenue of $360 to $365 million. Gross margin is expected to be 31.0% to 31.5%. SG&A expenses as a percentage of revenue are expected to be approximately 22.0%, which includes integration-related\nexpenses of approximately $0.7 million. Adjusted EBITDA margin is expected to be approximately 10.0% to 10.5%. \n About AMN Healthcare \n AMN Healthcare is the leader and innovator in healthcare workforce solutions and staffing services to healthcare facilities across the\nnation. AMN Healthcare’s workforce solutions – including managed services programs, vendor management systems, recruitment process outsourcing and consulting services – enable providers to successfully reduce complexity,\nincrease efficiency and improve patient outcomes within the rapidly evolving healthcare environment. The Company provides unparalleled access to the most comprehensive network of quality healthcare professionals through its innovative recruitment\nstrategies and breadth of career opportunities. Clients include acute-care hospitals, community health centers and clinics, physician practice groups, retail and urgent care centers, home health facilities, and many other healthcare settings. AMN\nHealthcare disseminates news and information about the Company through its website, which can be found at www.amnhealthcare.com. \n 3 \n Conference Call on August 4, 2015 \n AMN Healthcare Services, Inc.’s second quarter 2015 conference call will be held on Tuesday, August 4, 2015, at 5:00 p.m. Eastern\nTime. A live webcast of the call can be accessed through AMN Healthcare’s website at http://amnhealthcare.investorroom.com/presentations. Please log in at least 10 minutes prior to the conference call in order to download the applicable audio\nsoftware. Interested parties may participate live via telephone by dialing (800) 288-8974 in the U.S. or (612) 332-0335 internationally. Following the conclusion of the call, a replay of the webcast will be available at the Company’s\nwebsite. A telephonic replay of the call will be available at 7:30 p.m. Eastern Time on August 4, 2015, and can be accessed until 11:59 p.m. Eastern Time on August 18, 2015, by calling (800) 475-6701 in the U.S. or\n(320) 365-3844 internationally, with access code 363829. \n Non-GAAP Measures \n This earnings release contains certain non-GAAP financial information, which the Company provides as additional information, and not as an alternative, to the\nCompany’s condensed consolidated financial statements presented in accordance with GAAP. These non-GAAP financial measures include (1) adjusted EBITDA, (2) adjusted EBITDA margin, and (3) adjusted diluted EPS. The Company\nprovides such non-GAAP financial measures because management believes that they are useful both to management and investors as a supplement, and not as a substitute, when evaluating the Company’s operating performance. Additionally, management\nbelieves that adjusted EBITDA, adjusted EBITDA margin and adjusted diluted EPS serve as industry-wide financial measures. The Company uses adjusted EBITDA for making financial decisions and allocating resources. The non-GAAP measures in this release\nare not in accordance with, or an alternative to, GAAP, and may be different from non-GAAP measures, or may be calculated differently than other similarly title-captioned non-GAAP measures, reported by other companies. They should not be used in\nisolation to evaluate the Company’s performance. A reconciliation of non-GAAP measures identified in this release, along with further detail about the use and limitations of certain of these non-GAAP measures, may be found below in the\ntable entitled “Supplemental Financial and Operating Data” under the caption entitled “Reconciliation of Non-GAAP Items” or on the Company’s website at http://amnhealthcare.investorroom.com/financialreports .\nAdditionally, from time to time, additional information regarding non-GAAP financial measures, including pro forma measures, may be made available on the Company’s website. \n 4 \n Forward-Looking Statements \n This press release contains “forward-looking statements” within the meaning of Section 27A of the Securities Act of 1933, as amended, and\nSection 21E of the Securities Exchange Act of 1934, as amended. Such statements include expectations regarding the 2015 outlook and third quarter revenue, gross margin, SG&A expenses and adjusted EBITDA margin. The Company based these\nforward-looking statements on its current expectations, estimates and projections about future events and the industry in which it operates using information currently available to it. Actual results could differ materially from those discussed in,\nor implied by, these forward-looking statements. Forward-looking statements are identified by words such as “believe,” “anticipate,” “expect,” “intend,” “plan,” “will,” “may,”\n“estimates,” variations of such words and other similar expressions. In addition, any statements that refer to expectations, projections or other characterizations of future events or circumstances are forward-looking statements. Factors\nthat could cause actual results to differ from those implied by the forward-looking statements contained in this press release are set forth in the Company’s Annual Report on Form 10-K for the year ended December 31, 2014 and its other\nperiodic reports as well as the Company’s current and other reports filed from time to time with the Securities and Exchange Commission. Be advised that developments subsequent to this press release are likely to cause these statements to\nbecome outdated with the passage of time. \n Contact: \n Amy C. Chang \n Vice President, Investor Relations \n 866.861.3229 \n 5 \n AMN Healthcare Services, Inc. \n Condensed Consolidated Statements of Comprehensive Income \n (in thousands, except per share amounts) \n (unaudited) \n Three Months Ended \n Six Months Ended \n June 30, \n March 31, \n June 30, \n 2015 \n 2014 \n 2015 \n 2015 \n 2014 \n Revenue\n $ \n 350,144 \n $ \n 250,913 \n $ \n 327,510 \n $ \n 677,654 \n $ \n 491,794 \n Cost of revenue\n 240,026 \n 173,754 \n 226,078 \n 466,104 \n 340,679 \n Gross profit\n 110,118 \n 77,159 \n 101,432 \n 211,550 \n 151,115 \n 31.4 \n % \n 30.8 \n % \n 31.0 \n % \n 31.2 \n % \n 30.7 \n % \n Operating expenses:\n Selling, general and administrative\n 74,727 \n 55,567 \n 71,552 \n 146,279 \n 110,234 \n 21.3 \n % \n 22.1 \n % \n 21.8 \n % \n 21.6 \n % \n 22.4 \n % \n Depreciation and amortization\n 5,232 \n 4,010 \n 5,095 \n 10,327 \n 7,830 \n Total operating expenses\n 79,959 \n 59,577 \n 76,647 \n 156,606 \n 118,064 \n Income from operations\n 30,159 \n 17,582 \n 24,785 \n 54,944 \n 33,051 \n Interest expense, net, and other\n 1,977 \n 4,629 \n 1,807 \n 3,784 \n 6,475 \n Income before income taxes\n 28,182 \n 12,953 \n 22,978 \n 51,160 \n 26,576 \n Income tax expense\n 12,312 \n 5,760 \n 10,769 \n 23,081 \n 11,753 \n Net income\n $ \n 15,870 \n $ \n 7,193 \n $ \n 12,209 \n $ \n 28,079 \n $ \n 14,823 \n Other comprehensive income (loss):\n Foreign currency translation\n (80 \n ) \n (37 \n ) \n 68 \n (12 \n ) \n (46 \n ) \n Unrealized gain on cash flow hedge, net of income taxes\n 36 \n 0 \n 0 \n 36 \n 0 \n Other comprehensive income (loss)\n (44 \n ) \n (37 \n ) \n 68 \n 24 \n (46 \n ) \n Comprehensive income\n $ \n 15,826 \n $ \n 7,156 \n $ \n 12,277 \n $ \n 28,103 \n $ \n 14,777 \n Net income per common share:\n Basic\n $ \n 0.33 \n $ \n 0.15 \n $ \n 0.26 \n $ \n 0.59 \n $ \n 0.32 \n Diluted\n $ \n 0.32 \n $ \n 0.15 \n $ \n 0.25 \n $ \n 0.58 \n $ \n 0.31 \n Weighted average common shares outstanding:\n Basic\n 47,573 \n 46,479 \n 47,146 \n 47,361 \n 46,416 \n Diluted\n 48,863 \n 47,836 \n 48,364 \n 48,615 \n 47,876 \n 6 \n AMN Healthcare Services, Inc. \n Supplemental Financial and Operating Data \n (dollars in thousands, except per share data) \n (unaudited) \n Three Months Ended \n Six Months Ended \n June 30, \n March 31, \n June 30, \n 2015 \n 2014 \n 2015 \n 2015 \n 2014 \n Revenue\n Nurse and allied healthcare staffing\n $ \n 240,016 \n $ \n 165,894 \n $ \n 229,046 \n $ \n 469,062 \n $ \n 329,344 \n Locum tenens staffing\n 97,388 \n 74,309 \n 86,692 \n 184,080 \n 141,180 \n Physician permanent placement services\n 12,740 \n 10,710 \n 11,772 \n 24,512 \n 21,270 \n $ \n 350,144 \n $ \n 250,913 \n $ \n 327,510 \n $ \n 677,654 \n $ \n 491,794 \n Reconciliation of Non-GAAP Items: \n Segment operating income (1)\n Nurse and allied healthcare staffing\n $ \n 35,395 \n $ \n 22,032 \n $ \n 31,901 \n $ \n 67,296 \n $ \n 42,004 \n Locum tenens staffing\n 11,711 \n 7,818 \n 9,110 \n 20,821 \n 14,691 \n Physician permanent placement services\n 3,277 \n 2,187 \n 3,271 \n 6,548 \n 4,318 \n 50,383 \n 32,037 \n 44,282 \n 94,665 \n 61,013 \n Unallocated corporate overhead\n 11,006 \n 8,694 \n 10,960 \n 21,966 \n 16,562 \n Adjusted EBITDA (2)\n 39,377 \n 23,343 \n 33,322 \n 72,699 \n 44,451 \n Adjusted EBITDA margin (3)\n 11.2 \n % \n 9.3 \n % \n 10.2 \n % \n 10.7 \n % \n 9.0 \n % \n Depreciation and amortization\n 5,232 \n 4,010 \n 5,095 \n 10,327 \n 7,830 \n Share-based compensation\n 2,153 \n 1,751 \n 2,377 \n 4,530 \n 3,570 \n Acquisition and integration costs\n 1,833 \n 0 \n 1,065 \n 2,898 \n 0 \n Interest expense, net, and other\n 1,977 \n 4,629 \n 1,807 \n 3,784 \n 6,475 \n Income before income taxes\n 28,182 \n 12,953 \n 22,978 \n 51,160 \n 26,576 \n Income tax expense\n 12,312 \n 5,760 \n 10,769 \n 23,081 \n 11,753 \n Net income\n $ \n 15,870 \n $ \n 7,193 \n $ \n 12,209 \n $ \n 28,079 \n $ \n 14,823 \n GAAP diluted net income per share (EPS)\n $ \n 0.32 \n $ \n 0.15 \n $ \n 0.25 \n $ \n 0.58 \n $ \n 0.31 \n Adjustments (net of tax):\n Debt extinguishment costs\n 0.00 \n 0.04 \n 0.00 \n 0.00 \n 0.04 \n Amortization of intangible assets\n 0.04 \n 0.02 \n 0.04 \n 0.07 \n 0.05 \n Acquisition and integration costs\n 0.02 \n 0.00 \n 0.01 \n 0.04 \n 0.00 \n Adjusted diluted EPS (4)\n $ \n 0.38 \n $ \n 0.21 \n $ \n 0.30 \n $ \n 0.69 \n $ \n 0.40 \n 7 \n Three Months Ended \n Six Months Ended \n June 30, \n March 31, \n June 30, \n 2015 \n 2014 \n 2015 \n 2015 \n 2014 \n Gross Margin\n Nurse and allied healthcare staffing\n 30.7 \n % \n 29.1 \n % \n 29.8 \n % \n 30.2 \n % \n 29.0 \n % \n Locum tenens staffing\n 29.2 \n % \n 29.8 \n % \n 29.4 \n % \n 29.3 \n % \n 29.8 \n % \n Physician permanent placement services\n 63.1 \n % \n 63.5 \n % \n 65.7 \n % \n 64.4 \n % \n 63.3 \n % \n Operating Data: \n Nurse and allied healthcare staffing\n Average healthcare professionals on assignment (5)\n 7,227 \n 5,565 \n 7,223 \n 7,225 \n 5,599 \n Locum tenens staffing\n Days filled (6)\n 59,844 \n 49,049 \n 54,260 \n 114,104 \n 93,798 \n As of June 30, \n As of March 31, \n 2015 \n 2014 \n 2015 \n Leverage ratio (7)\n 1.9 \n 1.9 \n 2.2 \n 8 \n AMN Healthcare Services, Inc. \n Condensed Consolidated Balance Sheets \n (dollars in thousands) \n (unaudited) \n June 30,\n2015 \n March 31,\n2015 \n December 31,\n2014 \n Assets\n Current assets:\n Cash and cash equivalents\n $ \n 14,474 \n $ \n 11,633 \n $ \n 13,073 \n Accounts receivable, net\n 229,999 \n 221,001 \n 186,274 \n Accounts receivable, subcontractor\n 36,909 \n 34,191 \n 28,443 \n Deferred income taxes, net\n 27,362 \n 26,466 \n 27,330 \n Prepaid and other current assets\n 34,624 \n 29,065 \n 27,550 \n Total current assets\n 343,368 \n 322,356 \n 282,670 \n Restricted cash, cash equivalents and investments\n 21,698 \n 19,772 \n 19,567 \n Fixed assets, net\n 41,621 \n 36,674 \n 32,880 \n Other assets\n 45,210 \n 44,117 \n 39,895 \n Goodwill\n 197,325 \n 197,254 \n 154,387 \n Intangible assets, net\n 176,930 \n 179,877 \n 152,517 \n Total assets\n $ \n 826,152 \n $ \n 800,050 \n $ \n 681,916 \n Liabilities and stockholders’ equity\n Current liabilities:\n Accounts payable and accrued expenses\n $ \n 101,578 \n $ \n 92,081 \n $ \n 78,993 \n Accrued compensation and benefits\n 76,581 \n 72,237 \n 67,995 \n Current portion of revolving credit facility\n 30,000 \n 30,000 \n 18,000 \n Current portion of notes payable\n 7,500 \n 7,500 \n 7,500 \n Deferred revenue\n 5,505 \n 3,137 \n 3,177 \n Other current liabilities\n 10,466 \n 2,662 \n 2,630 \n Total current liabilities\n 231,630 \n 207,617 \n 178,295 \n Revolving credit facility\n 55,500 \n 65,500 \n 0 \n Notes payable\n 133,125 \n 135,000 \n 136,875 \n Deferred income taxes, net\n 37,221 \n 37,198 \n 32,491 \n Other long-term liabilities\n 80,638 \n 83,972 \n 77,674 \n Total liabilities\n 538,114 \n 529,287 \n 425,335 \n Commitments and contingencies\n Stockholders’ equity\n 288,038 \n 270,763 \n 256,581 \n Total liabilities and stockholders’ equity\n $ \n 826,152 \n $ \n 800,050 \n $ \n 681,916 \n 9 \n AMN Healthcare Services, Inc. \n Summary Condensed Consolidated Statements of Cash Flows \n (dollars in thousands) \n (unaudited) \n Three Months Ended \n Six Months Ended \n June 30, \n March 31 \n June 30, \n 2015 \n 2014 (8) \n 2015 \n 2015 \n 2014 (8) \n Net cash provided by operating activities\n $ \n 25,000 \n $ \n 6,177 \n $ \n 8,687 \n $ \n 33,687 \n $ \n 7,041 \n Net cash used in investing activities\n (9,516 \n ) \n (1,100 \n ) \n (85,350 \n ) \n (94,866 \n ) \n (5,809 \n ) \n Net cash provided by (used in) financing activities\n (12,563 \n ) \n (8,808 \n ) \n 75,155 \n 62,592 \n (11,265 \n ) \n Effect of exchange rates on cash\n (80 \n ) \n (37 \n ) \n 68 \n (12 \n ) \n (46 \n ) \n Net increase (decrease) in cash and cash equivalents\n 2,841 \n (3,768 \n ) \n (1,440 \n ) \n 1,401 \n (10,079 \n ) \n Cash and cash equivalents at beginning of period\n 11,633 \n 9,269 \n 13,073 \n 13,073 \n 15,580 \n Cash and cash equivalents at end of period\n $ \n 14,474 \n $ \n 5,501 \n $ \n 11,633 \n $ \n 14,474 \n $ \n 5,501 \n (1) \n Segment operating income represents net income plus interest expense (net of interest income) and other, income tax expense, depreciation and amortization, unallocated corporate overhead, acquisition and integration\ncosts and share-based compensation. \n (2) \n Adjusted EBITDA represents net income plus interest expense (net of interest income) and other, income tax expense, depreciation and amortization, acquisition and integration costs and share-based compensation.\nManagement believes that adjusted EBITDA provides an effective measure of the Company’s results, as it excludes certain items that management believes are not indicative of the Company’s operating performance and is a measure used in\ncredit facilities. Adjusted EBITDA is not intended to represent cash flows for the period, nor has it been presented as an alternative to income from operations or net income as an indicator of operating performance. Although management believes\nthat some of the items excluded from adjusted EBITDA are not indicative of the Company’s operating performance, these items do impact the statement of comprehensive income, and management therefore utilizes adjusted EBITDA as an operating\nperformance measure in conjunction with GAAP measures such as net income. \n (3) \n Adjusted EBITDA margin represents adjusted EBITDA divided by revenue. \n (4) \n Adjusted diluted EPS represents GAAP diluted EPS excluding the impact of 1) amortization of intangible assets; 2) acquisition and integration costs; and 3) other non-recurring costs, such as debt extinguishment\ncosts, in each case, net of tax. Adjusted diluted EPS for the three and six months ended June 30, 2014 have been restated to conform to the current year presentation. Management included this non-GAAP measure to provide investors and\nprospective investors with an alternative method for assessing the Company’s operating results in a manner that is focused on its operating performance and to provide a more consistent basis for comparison between periods. However, investors\nand prospective investors should note that this non-GAAP measure involves judgment by management (in particular, judgment as to what is classified as a special item to be excluded from adjusted diluted EPS). Management believes the items excluded\nfrom adjusted diluted EPS are not indicative of the Company’s operating performance. These items do impact the statement of comprehensive income, and management, therefore, utilizes adjusted diluted EPS as an operating performance measure in\nconjunction with GAAP measures such as GAAP diluted EPS. \n (5) \n Average healthcare professionals on assignment represents the average number of nurse and allied healthcare professionals on assignment during the period presented. \n (6) \n Days filled is calculated by dividing the locum tenens hours filled during the period by eight hours. \n 10 \n (7) \n Leverage ratio represents the ratio of the consolidated funded indebtedness (as calculated per the Company’s credit agreement) at the end of the period to the consolidated adjusted EBITDA (as calculated per the\nCompany’s credit agreement) for the last twelve months. \n (8) \n Certain reclassifications have been made to the condensed consolidated statements of cash flows for the three and six months ended June 30, 2014 to conform to the current year presentation. \n 11 \n",
@@ -36,7 +39,474 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000119312515276550__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001193125-15-175053",
+   "filingDate": "2015-05-07",
+   "reportDate": "2015-05-06",
+   "form": "8-K",
+   "local_gz": "000119312515175053__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "Company expects consolidated second quarter 2015 revenue of $335 to $340 million."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2015-08-05",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 88,
+   "has_qna": true,
+   "n_chars": 54196,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Executives",
+     "content": "Amy Chang - VP of IR Susan Salka - President and CEO Brian Scott - CFO Ralph Henderson - President of Healthcare Staffing Dan White - President of Workforce Solutions"
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Analysts",
+     "content": "A.J. Rice - UBS Tobey Sommer - SunTrust Henry Chen - BMO Capital Markets Tim McHugh - William Blair Mitra Ramgopal - Sidoti Randy Reece - Avondale Partners Mark Marcon - RW Baird"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, thank you for standing by, and welcome to the AMN Healthcare Second Quarter 2015 Earnings Conference Call. At this time, all participants are in a listen-only mode. Later we will conduct a question-and-answer session and instructions will be given at that time. [Operator Instructions] As a reminder, today's conference is being recorded. And I’d now like to turn the conference over to the Vice President of Investor Relations, Ms. Amy Chang. Please go ahead."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Amy Chang",
+     "content": "Thank you, Brad. Good afternoon, everyone. Welcome to AMN Healthcare’s second quarter 2015 earnings call. A replay of this webcast will be available until August 18, 2016, at amnhealthcare.investorroom.com. Details for the audio replay of the conference call can be found in our earnings press release. Regarding our policy on forward-looking statements various remarks and characterizations we make during this call about future expectations, projections, plans, prospects, events or circumstances constitute forward-looking statements. Forward-looking statements are identified by words such as believe, anticipate, expect, intend, plan, will, should, would, project, may, variations of such words and other similar expressions. It is possible that our actual results may differ materially from those indicated by these forward-looking statements as a result of various important factors, including those identified in our annual report on Form 10-K for the year-ended December 31, 2014, and our other filings with the SEC, which are publicly available. The results reported in this call may not be indicative of results for future quarters. These statements reflect the Company’s current beliefs and are based upon information currently available to it. Developments subsequent to this call may cause these statements to become outdated. The company does not intend however, to update the guidance provided today prior to its next earnings release. This call may also contain certain non-GAAP financial information. We make available additional information regarding non-GAAP financial measures in the earnings release and on the Company’s website. On the call today are Susan Salka, our President and Chief Executive Officer; as well as Brian Scott, our Chief Financial Officer. Ralph Henderson, our President of Healthcare Staffing and Dan White, our President of Workforce Solutions will be joining us during the Q&A session. I will now turn the call over to Susan."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Susan Salka",
+     "content": "Thank you so much, Amy. Good afternoon, everyone, and welcome to AMN Healthcare's second quarter 2015 earnings conference call. Our teams continued to execute extremely well and market conditions remained strong, resulting in better than anticipated revenue and profitability across all business segments. Demand for our healthcare staffing and workforce solutions are at very high levels as a combination of macroeconomic, demographic and healthcare reform trends have driven stronger patient volumes and higher clinician turnover. At the same time, healthcare providers have firm financial breeding room with a reduction of uncompensated care, which enables them to ensure they are adequately staffed. Clients are increasingly seeking strategic solutions to address their staffing challenges as they strive to deliver improved patient care and achieve greater efficiencies. These macro drivers appear unlikely to change in the near-term and we anticipate demand could further increase in the long-term as the U.S. population ages and clinician shortages become even more severe. In the second quarter, consolidated revenue grew 40% year-over-year to $350 million, a record high for AMN, and 3% above the high-end of our guidance. Excluding the impact of our recent acquisitions, second quarter revenue grew 24% year-over-year. The strong year-over-year organic revenue growth was across all staffing and placement business lines as well as our RPO and VMS businesses. Additionally, the recently acquired Avantas, Onward Healthcare, Locum Leaders and Medefis companies performed very well and the majority of our integration activities have been successfully completed. With the acquired Nurse and Allied Staffing businesses now merged on our [indiscernible], this will be the last quarter that we are able to report legacy organic growth numbers. Consolidated adjusted EBITDA grew 69% with an adjusted EBITDA margin of 11.2%, representing an increase of 190 basis points over prior year. The adjusted EBITDA margin improvement was driven by the combination of an improved overall growth margin and favorable operating leverage associated with the revenue growth. As Brian will describe later, we did have a favorable adjustment for our professional liability expense during the quarter. But even without this benefit, adjusted EBITDA margin would have been 10.3%, which was very strong and above our expectation. Now, let’s review the second quarter results and outlook for each of our three business segments. In our largest segment of Nurse and Allied Staffing, second quarter revenue rose 45% year-over-year and 5% sequentially. On an organic basis, year-over-year revenue growth was 27% for this segment. A significant contributor for this performance was the travel nurse staffing business, which experienced a second quarter revenue increase year-over-year of 40%, driven largely by organic growth of 29%. The remainder came from the recent acquisition of Onward Healthcare, which has also performed exceptionally well. Order levels continue to be more than double compared to prior year. And the good news is that our supply of new candidates is also growing. A few years ago, we began making investments in our marketing technology, which has proven to be a wise decision. These improved capabilities have enabled us to grow our supply of healthcare professionals and increase recruiter productivity at this critical time of high demand. We continue to add to our sales and recruitment team as well as deploy innovative marketing approaches to build our pipeline of healthcare professionals. For the third quarter, we expect travel nurse staffing revenue to be up approximately 35% year-over-year. In our allied staffing business, second quarter revenue grew 63% year-over-year with impressive organic growth of 31%. The remainder came from the acquisition of Onward, which has also performed extremely well. In the second quarter, allied staffing contributed the most to our sequential revenue growth for the entire Nurse and Allied segment. Demand is roughly double compared with prior year and continues to be up across all allied health specialties. For the third quarter, we expect allied staffing to continue performing very well and be up over 50% year-over-year. Our ShiftWise, Medefis, Avantas and RPO businesses, which are also included in this segment, are also experiencing strong growth. While relatively small in revenue, these strategic workforce solutions enable AMN to create deeper, longer-term relationships with our clients. Their growth and EBITDA margins are also higher, which is lifting our overall margins as these business continue to grow. Overall, for the Nurse and Allied Staffing segment, we expect third quarter revenues to be up approximately 45% year-over-year. Now, turning to Locum Tenens. Second quarter revenue was up 31% year-over-year, driven by 19% organic growth. The remainder came from the acquisition of Locum Leader, which is also performing very well. The year-over-year growth was broad-based across most specialties with hospitalist and emergency room making up the largest portion. Locum's NSP continues to see momentum with several additional opportunities in the pipeline. While profitability remain strong for this business, we still believe we have room for further margin expansion in the future. For the third quarter, we expect Locum’s revenues will be up approximately 25% year-over-year. The team has its sight set on achieving its first $100 million revenue quarter. In our Physician Perm Placement segment, second quarter revenue was up 19% year-over-year and 8% sequentially. This is the highest year-over-year revenue growth this segment had ever experienced. The strong year-over-year growth was driven mainly by increased new search volume, driven by growth in traditional clients but also increased momentum with larger health systems. Performance remains strong going into the third quarter and revenue is expected to be up approximately 10% year-over-year. Our number one priority in today’s market is ensuring we are doing all we can to execute well for our clients. Supply of candidates is tight for everyone and we are partnering very closely to pull every lever to get their jobs filled. In addition to using innovative marketing and recruitment techniques, bill rate increases have continued to be important in attracting new supply for our clients. We have also been hiring additional back office team members to support our rapid growth and maintain service excellence. Even if we focus on our everyday strong execution, we are also positioning AMN to continue evolving to serve our clients well in the future. We are making good progress on our internal investments to streamline our process and technology infrastructure. This will be essential to further differentiate AMN to our clients and to drive additional SG&A efficiency. We also remain focused on our long-term differentiated strategy to provide a broad spectrum of innovative workforce solutions to our clients. Our improved profitability and healthy balance sheet give us the ability to continue making opportunistic investments. As our clients undergo dramatic transformation in their care delivery models, their appetite to adopt strategic outsourced services continues to grow. More than ever, they are using multiple workforce management solutions and staffing services, thus increasing the value that we can create for them. While the market environment is favorable, AMN’s inventory leading performance is the direct result of the exceptional passion, drive and execution of our team members and then hitting on all cylinders to perform within strong demand environment and successfully integrate our newly acquired companies. For this, I thank the entire AMN team for their commitment and dedication to serve our clients and healthcare professionals with excellence every single day. I’ll come back to you in our Q&A session along with Ralph and Dan, but for now, I will turn the call over to Brian."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Brian Scott",
+     "content": "Thank you, Susan, and good afternoon everyone. The Company’s second quarter reported revenue of $350.1 million was up 39.5% from last year and 6.9% from last quarter. Our gross margin for the quarter was 31.4%, up 60 basis points from last year and 40 basis points from last quarter. The year-over-year improvement was due in large part to an increase in mix of our higher margin workforce solutions, particularly RPO and the recently acquired Medefis VMS and Avantas businesses. SG&A expenses in the quarter totaled $74.7 million or 21.3% of revenue compared to $55.6 million in the same quarter last year and $71.6 million in the prior quarter. The year-over-year increase in SG&A was due primarily to approximately $8 million of additional SG&A from the recent acquisitions as well as higher variable expenses to drive and support our growth. Partially offsetting this increase was an actuarial based $3.3 million reduction in our professional liability reserve which compares to $1.6 million reduction in the prior-year quarter. The sequential increase in SG&A was due primarily to hiring additional sales and service team members to support revenue growth. SG&A expenses in the quarter also included approximately $1.8 million of acquisition and integration costs, which compares to about $1.1 million last quarter. Our second quarter Nurse and Allied segment revenue increased 44.7% from the prior year and 4.8% sequentially to $240 million. Volume of 7,227 average healthcare professionals on assignment was higher by 29.9% year-over-year. Of this volume increase about 13% was organic growth, with remainder coming from the Onward acquisition. The average bill rate for the segment was higher by approximately 7% over last year. Nurse and Allied gross margin of 30.7% was higher year-over-year by 160 basis points. Most of this year-over-year improvement was due to the previously noted increase in the mix of our higher margin workforce solutions with our staffing gross margins running relatively stable. Second quarter Nurse and Allied segment operating margin of 14.7% was 140 basis points higher year-over-year and 80 basis points higher than the prior quarter. The improvements resulted from the gross margin expansion and $1.9 million favorable professional liability adjustment in this segment. Second quarter Locum Tenens segment revenue of $97.4 million was up 31.1% from the prior year and 12.3% sequentially. The year-over-year growth was driven by an approximately 8% increase in the average bill rate and 22% increase in the number of days filled during the quarter. The days filled volume growth came from 12% organic growth with the balance from the acquisition of Locum Leaders. Locum Tenens gross margin of 29.2% was lower year-over-year by 60 basis points. Second quarter Locum Tenens segment operating margin of 12% was higher by 150 basis points both year-over-year and sequentially. The improvement was a result of operating leverage and the professional liability benefit of $1.4 million. Our second quarter Physician Permanent Placement segment revenue of $12.7 million was up 19% year-over-year and up 8.2% sequentially. Gross margin of 63.1% was lower by 40 basis points from the prior year and lower by 250 basis points from the prior quarter. The lower sequential margin is primarily a result of the prior quarter including more high margin project work. Physician Permanent Placement second quarter operating margin of 25.7% was higher by 530 basis points year-over-year and lower by 210 basis points from the prior quarter. The year-over-year improvement was due primarily to operating leverage associated with the revenue growth. Interest expense in the second quarter was $2 million, which compares to $4.6 million last year and $1.8 million last quarter. The year-over-year decrease is primarily due to prior year $3.1 million write-off deferred financing fees, probably offset by additional interest associated with higher debt balance as a result of the recent acquisitions. Our tax rate in the second quarter was 43.7%. Our projected tax rate for the third quarter is 43%. You may recall that on our balance sheet we have a reserve for uncertain tax position. In July, we reached a settlement with the IRS related to an audit of 2007 to 2010 tax years. This settlement included a payment of $5.8 million plus interest which was less than the amount reserved. As a result, we will reverse approximately $12 million of tax reserves in the third quarter. We reported net income of $15.9 million and diluted earnings per share of $0.32 for the second quarter. Excluding $1.8 million of acquisitions and integration expenses as well as $2.9 million of intangible assets amortization, adjusted earnings per share was $0.38. This compares to an adjusted earnings per share of $0.21 in the prior-year quarter. Cash provided by operations was $25 million for the quarter. Day sales outstanding were 50 [ph] days compared to 61 [ph] days last quarter and 55 days last year. Capital expenditures for the second quarter were $8.2 million which include approximately $1.5 million related to migrating the acquired companies onto our infrastructure and systems. Another $1.5 million was related to expanded facilities and technologies to support our growth. As of June 30, our cash and equivalents totaled $14.5 million and our total debt outstanding was $226 million. The quarter end levered ratio was calculated for our credit agreement was 1.9 times to 1 compared to 2.2 times at the end of the prior year. Now let's turn to our third quarter 2015 guidance. The Company expects consolidated revenue of $360 million to $365 million. Gross margin is expected to be 31.0% to 31.5%. SG&A expenses as a percentage of revenue are expected to be 22%. Included in SG&A is approximately $700,000 of integration expenses. Adjusted EBITDA margin is expected to be approximately 10.0% to 10.5%. And with that we’d like to open the call for questions."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Our first question today comes from the line of A.J. Rice with UBS. Please go ahead."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "A.J. Rice",
+     "content": "Hi everybody thanks for the question. First of all, Brian you have given a lot of helpful statistics but maybe a little too fast for my hands. The bill rate increase in the travel-nursing or in the nursing generally, what was that?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Brian Scott",
+     "content": "For the segment, it was about 7% increase on a year-over-year basis."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "A.J. Rice",
+     "content": "I know as you get into an environment where you get tightening supply and hospitals are scrambling a little bit to get access to the nurses they need, they often will come to you and say, hey, if we pay more can we get it, are we in that environment now or is that still in front of you a little you think?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Ralph Henderson",
+     "content": "Hey A.J., this is Ralph I’ll handle that one. In this environment, we are seeing price increases in the nursing business, which makes up quite a bit of that segment; we’re up about 8% on a year-over-year basis. There is a kind of corresponding amount in the billings to that traveler as you attract them back into the industry and get them out on assignment. And so, kind of the net effect is our spreads remain about the same. So we’re in an environment from a pricing standpoint that is good I guess for attracting supply but it doesn’t have a really material impact on our gross margin."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "A.J. Rice",
+     "content": "Okay, but it’s not, I mean I’m just trying to gauge how far into really a tightening supply environment we’re in, are we in a situation where you’re sort of seeing across the board things coming to you proactively and saying we need to do this or it is still sort of an orderly ways, I don’t know if there is a easy way to describe what I’m looking for but just trying to get a feel for that in the marketplace?"
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Ralph Henderson",
+     "content": "Yeah, I mean, it’s really kind of on a market-by-market skill-by-skill basis that we take a look at it and it’s both proactive as going to clients to talk them about where we are at and if it’s taking as longer to fill an order we can often get them to implement a temporary increase. In other cases right, it’s long-term skill based issue, labor and delivery is a good example of that where it takes us a long time might attract supply there, there is not much supply that really travels in labor and delivery, so we put more in long-term price increases with them, we’d also have customers coming to us and offering signing bonuses or completion bonuses and things like that. So I’d say it’s a probably good mix, a healthy mix of us initiating those conversations and customers coming to us looking for more supply."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "A.J. Rice",
+     "content": "Okay and then in hindsight, it looks very smart invested heavily on the recruiter side in the last year really and boosted your recruiter base and there was some sense of that was exerting a drag on the margins until those people become fully productive. Where are we at in terms of, of how that’s having an impact and how that investment in recruiters in the last 6 to 12 months has matured out? And is there any thought given the robustness of the demand and doing another round of expanding, your recruiter force more?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Susan Salka",
+     "content": "Hi, A.J. it’s Susan. I’ll answer that but I also want to go back to your prior questions to add something on. So I think you see the benefit of the hires that we made as you say within retrospect a very smart investment to make and because of the training approach that we’re taking to get them ramped up quickly, Landry Seedig has just done and he is the President of the Nursing Division, he’s done an outstanding job of ramping up those new recruiters quickly with the team. In addition to that, the acquisition of Onward Healthcare helped us immediately add some very experienced tenured recruiters who were already very productive and so we didn’t probably feel as much of a drag as you might have thought because we were able to get the benefit of our existing recruiters being more productive. Onward recruiters coming on board and already being very productive, and then getting our new recruiters ramp it very quickly. So we probably felt the brunt of that more in the second half of last year, now it’s probably a bit more steady state. As we go into the second half of this year, we absolutely will be continuing to hire but probably at a slightly less velocity or quantity because now that the Onward recruiters are on our systems, we would expect that that will help them further increase their productivity, it’s typically what we see as we’ve integrated these acquisitions into the Company. So I won’t really expect us to be talking about a drag on margins going forward but that doesn’t mean we won’t be continuing to hire except that these high revenue and margin levels already, you’re probably not going to notice it as much and then we’ll get more productivity out the existing people. Going back to your prior question, one thing I wanted to add on is that when -- while having conversations with clients about the market environment, first remember, we’ve got vast amount of information more than anyone to share with them about what’s happening across country in terms of demand and supply of candidates and that’s really across all clinicians and that can also led to conversations about our other workforce solutions. So if they’re having challenges with their own permanent recruitment and retention, we can then be talking with them about our recruitment process outsourcing services. And as I mentioned during our prepared remarks, the RPO business is doing exceptionally well and I really do believe that it’s a byproduct of one of the team, who has just done an exceptional job and also the cross selling that we’ve been able to do in bringing multiple solutions to the table and not just serving up a short-term solutions but trying to help them take a longer term more holistic approach to their staffing problems."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "A.J. Rice",
+     "content": "Okay, that’s great. Thanks a lot."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Susan Salka",
+     "content": "Thanks, A.J."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Operator",
+     "content": "And we do have a question from the line of Tobey Sommer with SunTrust. Please go ahead."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Tobey Sommer",
+     "content": "Thanks very much. I was wondering if you could give us an update on the MSP wins and some color about kind of where you think the adoption of the different workforce solutions are across the segments and where they are going over the next kind of the medium term. Thanks."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Dan White",
+     "content": "Thanks, Tobey, this is Dan. So I will give you a little bit of an update. But as I do that I just want to say we are having more meetings with clients on prospects at higher executive levels than we ever had before and as Susan was mentioning, really coming to the table with this overall message of workforce optimization. We have really three tools in the toolkit now where you have Avantas for predictive modeling and scheduling of resources that really have the right mix and you have RPO that can deliver core staff and MSP that can deliver contingent staff in orderly and consistent way. And so for us, the balance where you have somebody that isn’t getting a lot of MSP orders filled, we can go to them and say, hey, you probably should consider at least having more core staff in the mix and even bringing the consulting team to tell them just about how many per should be. So it’s a very powerful set of tools that our clients can use. So to answer your question, in the quarter we had five new MSP deals closed. One medium sized one and four small which is about the same number as we had last quarter. And so I feel good about the consistency of our sales team. The mix of disciplines also was very strong. Locum’s -- one of those was a Locum steel, three of them were nursing and allied combined and then one that was allied specific, a new category for us dental. And so for me I just want to say that partnership especially with just back on allied team has been very strong. On the MSP side allowing us not only to penetrate much deeper into our MSPs, but also add new offerings at the same time.  A - Susan Salka And I think you also had in there, Tobey, kind of the longer term question, where can the penetration go for workforce solutions. On TPM perspective, we got both MSP and VMS services and actually have about the same amount of gross spend under management in our MSP program as we do in our VMS. It’s now approaching $1.4 billion in terms of the amount of gross spend under management that we have in either VMS or MSP. And that penetration continues to grow. If you look at Locum tenens, for example, we are running at about 17% and growing pretty fast from quarter to quarter. It was up a percentage just from the first quarter and almost a double from prior. Allied staffing is now running north of 25% of their revenue coming from MSP types of contracts and nursing has been running kind of between 45% to 50% for a while now. So we don’t see any reason why all of those business lines and segments of the industry couldn’t approach 50% or more. That’s absolutely what you see in commercial staffing. And then if you again add into that the fact that for those clients that prefer a vendor neutral technology only solution, we have the absolute best in the industry with ShiftWise and Medefis. We think it gives us the opportunity to approach 70% in terms of market penetration as an industry of how many clients you need in some sort of solution. So I think we’ve got ways to go in this, you might see a little bit of such a strong demand environment, a little bit of wobbling from quarter to quarter, but going forward I would expect one, two, three years from now we are going to be looking at higher numbers."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Tobey Sommer",
+     "content": "Thank you very much. Brian, the cash flow was strong in the quarter. How should we think about other cash from operations or free cash flow this year?"
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Brian Scott",
+     "content": "The cash flow typically is lower in the first quarter, in the last two years and it strengthens as we go through the year, part of this is the seasonality on some early year outflows. So for the second half of the year you should expect that our operating cash flow would be likely equal to or greater than what we saw in the first half of the year. For the second quarter it may not be quite strong each of the next few quarters, but that’s more indicative when we see if we are able to continue at the same level of revenue growth and it keep our DSO either flat or ideally move that down a couple of more days, that would be additive as well. So that would be your normal course for the year, that’s lower Q1 and a stronger build for the year."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Tobey Sommer",
+     "content": "And, Susan, my last question has to do with kind of leverage in your strategic thinking of capital development, because the leverage ratio isn’t that high given the growth in the probably the prospects for relatively higher levels of profitability for a while. How do you think about trying to make the balance sheet efficient and still kind of put some more money to work here in the coming quarters?"
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Susan Salka",
+     "content": "I think we definitely have room to put more money to work, but we are going to be very disciplined about that as I think you would agree we’ve also been and we are also investing pretty heavily in our existing business to make sure that we are evolving with our processes, our technology and the capabilities that we have to get more operating leverage as we go forward. We really haven’t seen the benefits of the technology investments that we are making. Sort of as you recall we have a multi-year project of getting all of our businesses on a common platform and we would expect to see particularly back office efficiencies that offer some revenue synergies and efficiencies from that. And those won’t really start to happen until 2016 or beyond, but for now we are investing heavily to make sure that that occurs. And then beyond that we are looking at acquisitions and we have been very disciplined, valuations are high out there and so we want to make sure that the valuations that we put on the table makes sense for us. The pipeline is good. We were just talking about it this morning. We have more deals that we’ve looked and have evaluated than I’ve seen in a long time. So I think it’s actually a good time to be a buyer as long as you are disciplined in what the valuation run into your company."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Tobey Sommer",
+     "content": "Thank you very much."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Susan Salka",
+     "content": "Thank you, Tobey."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Operator",
+     "content": "And we do have a question from the line of Jeff Selder with BMO Capital Markets. Please go ahead."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Henry Chen",
+     "content": "Hey, good afternoon. It’s Henry Chen calling in for Jeff. I just had a question on gross margins. Is there any way that you may be able to break out the contribution from the staffing business versus the RPO or the ShiftWise type business? I am just looking at your gross margin, it looks like it’s probably going to reach – it’s probably the highest it’s ever been in the company’s history. Just trying to understand how far that can go and what contribution is from some of the software businesses. Thanks."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Brian Scott",
+     "content": "Sure. This is Brian. I may talk on a year-over-year basis, note that our margin was – gross margins at 60 basis points, it really -- all of that came from the contribution from the growth in our existing business of RPO and ShiftWise, but then it was aided additionally by the acquisitions of Medefis and Avantas as well, so they are really the primary driver over the last year in our gross margin expansion. But as I noted our [indiscernible] our staffing business the margins are pretty stable for the last several quarters, which we have been pleased with as we are really trying to do everything we can to attract more supplier, we will try to maintain those margins to drive more volume into the business. And our locums market was actually down a little bit year-over-year. We think we are on the right track to move that back up again to the levels we are at earlier last year, so kind of the net of all of that is I think if you look to the next several quarters, it will likely be that continued growth in those workforce solutions that will drive the margin and if it does continue to go up, it will be even more of that than anything else."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Henry Chen",
+     "content": "And on the physician side, was there anything in particular that drove the pretty sharp acceleration in the quarter and any reason why that is trending down or tapering a little bit in your guidance for next quarter?"
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Susan Salka",
+     "content": "So I will take the Physician Permanent Placement business and then maybe Ralph can talk about the locums business which is also doing exceptionally well. So within Physician Permanent Placement it was really the underlying fundamentals which is a great new story. The number of searches that they are engaging rose considerably on both a year-over-year and sequential basis. And it’s form our traditional clients that you would expect also the team has really done an outstanding job of building stronger relationships and contractual arrangements with the larger healthcare systems. And so I think that we are starting to see the benefits from more of those larger scale opportunity. When we think about it, we talk about nurse attritions and job openings a lot, but it’s just big of a problem on the physician side. Physician attrition has been running between 10% to 15% over the last five years and that does not appear to be slowing down at all. And if you are a large system that’s employing or contracting with 500 physicians, which isn’t really that large, then you are going to have at least 50 job openings just to stay, even that doesn’t include the number of people that might want to expand the scope of practice. And so there is a pretty huge demand that has really grown, I think particularly as we see more physicians employee as well as having their practices owned by the hospitals who now have a vested interested in ensuring that they are properly staffed. So I would expect to see more momentum going forward. In terms of the year-over-year delta, the 19% versus 10%, I think it has more to do with the cost from last year. We don’t really see the business flowing. Second quarter was really just exceptional. And so I think it was a combination of an exceptionally highly number of searches coming in and the year-over-year comp being a little bit easier in Q2 versus Q3. So, Ralph, why don’t you to talk about locum?"
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Ralph Henderson",
+     "content": "Sure. Our locums business which is run by Sean Ebner who we added to the team about three years ago, an excellent person, got the business turnaround, I think it’s our 10th consecutive quarter of year-over-year growth. Our growth for the quarter at 31%, we guided for 25%, which may make it seem like a deceleration. And probably just like Susan mentioned before, it’s a little bit of lapping a more difficult time. And then also our second quarter is also particularly strong quarter for the business and we are just not anticipating as much many good guides I guess in this quarter as we had anything in the second quarter, but organic growth by the way was 19%, so the team is performing really, really well on the margin, but the pricing has been very favorable, up about 8% on year-over-year basis on pricing, so there is a lot of good things going there, primarily driven by our hospital and emergency room business, which are the two of our best performing segments and some of the most highest demand or days available using our demand trends."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Henry Chen",
+     "content": "Thanks so much for the color."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Operator",
+     "content": "And we do have a question from the line of Tim McHugh with William Blair. Please go ahead."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Tim McHugh",
+     "content": "Thanks. Just want to follow-up on some of the numbers again you have given earlier, I think you said that the nursing business to hours organically increased 13% and then you said that later that the bill rate was up 8%, I am just trying to bridge towards the organic growth number that you gave for that segment of 27%, I am not sure, if I am comparing apples and oranges, I guess but can you help reconcile?"
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Brian Scott",
+     "content": "This is Brian. [indiscernible] the 13% I was actually talking about are volume growth, the organic volume growth for the Nurse and Allied business, so that was a – hours, we didn’t really touch on, but hours are up as you would expect with the type of environment that our clients are working their course out for hours to cover higher patient volumes and they are also using our healthcare professionals more as well. So we typically expect to see the hours trending up and we’ve definitely seen that over the last several quarters."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Tim McHugh",
+     "content": "When you said volume, that’s the number of nurses I guess, so I mean, everything – a gap between 13 plus eight and then the 27 you talked about would be kind of the number of hours each nurses work on average."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Brian Scott",
+     "content": "Yeah, and then also the Onward part of the business as well, so – and while the other part -- that’s the whole segment, Tim, so the other part is really our other workforce solutions, so that’s where RPO and ShiftWise and Medefis, all those in this reportable segment, so the majority of that difference is actually the growth we saw in those other business lines."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Tim McHugh",
+     "content": "Okay, all right. Fair enough. And then I guess, you only got one quarter and there has been enough I guess secular or I guess, cyclical swings, whichever one it is, but typically as we think about a fourth quarter, what would be – without asking for specific guidance, what would be the directional trend as you would think about the end of the year, I guess if you’re comfortable giving some sort of perspective on how to think about that at this point."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Brian Scott",
+     "content": "Sure, this is Brian again and you’re right, every year has a little bit different depending on what’s going on in the industry. We’d typically look at the fourth quarter being relatively flat to the third quarter. Our nursing business has been generally up sequentially, but we normally see allied and our physician businesses down in the fourth quarter due to normal seasonality. This third quarter we do have – you see that the guidance we gave with a nice pickup in revenue that’s definitely good underlying trend. We also have a pretty decent EMR project in the third quarter and so that will – most of that work will be done during the third quarter, so it wouldn’t be completely surprising if our fourth quarter revenue is down a little bit this year sequentially and again, largely that’s because of the project in the third quarter rather than any other trend going on."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Tim McHugh",
+     "content": "Can you quantify how much that’s supposed to – that will help your third quarter, the EMR project?"
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Susan Salka",
+     "content": "Hi, it’s – I don’t know that it’s easy to say specifically for the third quarter because we would expect to have some EMR in every quarter, so how much more it’s extra in this quarter, probably in the $4 million, to maybe $5 million range. The EMR staffing has definitely picked up this year, we thought it was going to slow down, but it’s picked up a little bit, particularly in the second half and we have one particular large client, happened to be an MSP client, so we have a great relationship there who wanted us to step in and help with their EMR project and most of that’s falling in the third quarter. So I don’t know if that helps you from a quantity standpoint, but you might have anywhere around $5 million extra in the third quarter due to the size of that deal versus what normal deals might look like. And then remember, fourth quarter for EMR is always low, you will always see a slowdown because nobody wants to have their staff going through a major conversion like that over the holiday."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Tim McHugh",
+     "content": "All right, okay. And then I guess there are some M&A in the industry, I guess service providers to the hospitals I guess, is there any implications as we think about that for you, I think you’ve historically served, you will be a sub-contractor to some of those outsourced physician businesses, does that hurt you or I guess, could it help you, how do you think about the implications of that?"
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Susan Salka",
+     "content": "We think it typically would have no impact on us because you’re right, we do work with really all of the major contract management companies as well as most all of the GPO companies, and so you might see some movement and consolidation around the industry. We haven’t typically seen it have a negative or positive effect on us, because we already work with them. If you’re talking about the TeamHealth-IPC acquisition, we work with both of them. All right, it’s not a material number to our business, but it’s certainly one that we would expect to continue as a combined organization and we continue doing business with them.  Likewise, if you are to see some movement around GPOs, we wouldn’t expect that it would impact us because we are already a strong partner with the net assets of the world, the paragons of the world and so we would be pleased to work with their facilities even if they change their GPO provider."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Tim McHugh",
+     "content": "Okay, great thank you."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Susan Salka",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Operator",
+     "content": "And we do have a question from the line of Mitra Ramgopal with Sidoti. Please go ahead."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Mitra Ramgopal",
+     "content": "Yes, hi, good afternoon. Just a couple of questions. First, I was just wondering looking back at the second quarter, obviously it was a tremendous across the board, if there was anything in particular that clearly surprised you and you would start to continue going forward."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Susan Salka",
+     "content": "I’d be quite surprised of how exceptionally well all of the businesses did that would be revenue outside really came across the board, there wasn’t any one thing where we said, wow, we didn’t except that to happen. As a result of the demand trend remains strong, really exceptional execution by the team across the board. I just can’t say enough about the strengths of our teams, starting with the leadership team, but really running throughout the organization is interesting to have this kind of high demand, fairly intense environment really attracting people and actually brings out the best in them in many ways. So it’s been really that’s a situation where we have the stronger team we have ever had in my 25 years with this business and we have a phenomenal market opportunity and they are doing everything they can to make sure that we are delivering to our clients. I know that might sound like a fairly easy answer, but believe me it’s not easy to pull off."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Mitra Ramgopal",
+     "content": "No, that’s fair and not to get too far ahead, but again, if you had to say, look out over the next few years, would you say – as you look at the company today and where you’re headed and all the favorable macro trends you’re seeing whether it’s healthcare reform, demographics, the shortage of physicians, nurses et cetera that in the event of another economic downturn, you’re much better placed today to sort of withstand that and continue to grow?"
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Susan Salka",
+     "content": "We absolutely, it’s not by chance, part of our rationale in evolving our strategy to be the innovator in work force solutions in addition to being the leader in healthcare staffing provides a less sensitive economic model. And when we see orders decline at some point in the future, I don’t know when that will be, but it will happen someday I suppose then we will be better protected by having MSP relationship, having our VMS businesses, the advantage business and additional workforce solution like RPO that will help us be a more holistic partner and so we would expect that. Whenever that next cycle hits that we will be in a much better position for our shareholders."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Mitra Ramgopal",
+     "content": "Hey, thanks for taking the questions."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Susan Salka",
+     "content": "Thanks, Mitra."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Operator",
+     "content": "And we do have a question from the line of Randy Reece with Avondale Partners. Please go ahead."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Randy Reece",
+     "content": "Good afternoon. I was wondering if you have a feel for how much of your performance has market share growth versus market growth."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Susan Salka",
+     "content": "That’s a tough one to answer. So I am going to have Ralph to answer."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Ralph Henderson",
+     "content": "Hey, Randy, this is Ralph. I thought that will ease her job."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Randy Reece",
+     "content": "I am offloading [ph] it on to you."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Ralph Henderson",
+     "content": "There is a lot of demand and I am guessing that a lot people are growing right now and they should all be growing kind of in the double-digits. So I would expect that everyone is having a very good performance and will have going forward. There doesn’t seem to be any changes in the marketplace, the job cliffs are still at very high numbers, job openings are I think about 25% of – around last year, hospitals were having trouble filling those jobs. Interpreting market share, I mean, we take a look at it internally at how well we fill jobs versus how our subcontractors do, we outperform pretty solidly there. It’s probably one of our best benchmarks, it doesn’t give you an exact percentage, but it does feel good. Occasionally, we’ll get data from somebody else who uses multiple services. We generally here were a, if not the top performer, one of the top two performers in all skills, that’s in our allied and nursing and our physician business and really performing very, very well from a fulfillment standpoint. And I also think our recruitment and [indiscernible] our recruitment has gotten fine-tuned over the last few years, our supply on a number applications, which is kind of our traditional measurement is up in the double-digits, which is good, but because of technology and some other things that we have been doing we are able to now to only measure how many applications, but with our conversion rate on applications and then what percentage of our practitioners are actually first time practitioners, and we’re seeing very strong increases in first time practitioners, which probably means a couple of things. Our recruitment efforts are great, but also that the increases in build rates are starting to track supply back in to the marketplace. And I don’t see others doing what we’re doing from a recruitment standpoint, making those kind of investments, so my two sense what is worth is that we probably are taking market share."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Randy Reece",
+     "content": "On the recruitment side, how have your sources of candidates performed on efficiency measures through this year and are you making any adjustments on the fly to try to improve performance?"
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Ralph Henderson",
+     "content": "Yeah. This is Ralph, I’ll handle that one too. It’s hard for us, which is that, yeah, we’ve not been able to measure where they came from, except our referrals which is always our best source and that continues to be one of our best sources, which again is a good indicator of candidate satisfaction with our products, but we’re constantly moving in new sources.  Right now, actually kind of interestingly, we’ve been moving our existing database, what we call lapse travelers to bring people back in to the industry who may have exited and when things were a little bit softer, so we implemented a marketing automation tool which helps us target those individuals, send them very specific jobs that they might be interested in, and then we actually monitor their activity, if they open up emails, if they look at jobs on the website and we get the recruiters that information. So the first thing in the morning, we can contact those individuals and that’s just only one example of how we’re using technology different. So application is still a good measure, but not the absolute measure, kind of constantly juggling different sources, not only give up, that is something that might help somebody, so it will tell you what’s good and what’s bad, but yeah, we’re constantly evaluating all of our sources on an efficiency and a cost per hire basis."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Randy Reece",
+     "content": "Very good. Thank you very much."
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Susan Salka",
+     "content": "Thanks, Randy."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Operator",
+     "content": "And we do have a question from the line of Mark Marcon with RW Baird. Please go ahead."
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Q - Mark Marcon",
+     "content": "Good afternoon and congratulations. On nursing and allied, what percentage of nursing allied is workforce solutions in terms of RPO, MSP, ATS?"
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Susan Salka",
+     "content": "That’s a great question. It’s a small portion of revenue, about 5% of that segment’s revenue comes from the combination of our VMS solutions, Avantas and RPO, but a little more than 10% of the profitability comes from those solutions, which speaks to how much more profitable they are."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Mark Marcon",
+     "content": "It’s great. And obviously that’s growing faster organically as well?"
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Susan Salka",
+     "content": "Yeah."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Mark Marcon",
+     "content": "Great. And then with regards to the fulfillment, it sounds like things are tracking really well, this with the shortages out there, are there any large contracts where it’s become challenging to meet the fill rates that were contracted?"
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Susan Salka",
+     "content": "I think as Ralph described, it’s an environment where everyone has challenges still in their job, which is why our client see our services even more, but I think that we are better positioned than most to be able to help and meet their needs. So while it’s challenging, it is taking a little longer to get the jobs filled and we have to make sure we’re having healthy conversations with our clients about, is there build rate at the appropriate level, are they interviewing quickly, what are the things that we can do from a recruitment standpoint to help get them the right candidates faster and we’ll get in to all the techniques, but there are some very specific things that we’ve done in California and Washington and are going to be doing in Maryland to make sure that we’re trying to move those candidates along as quickly as possible, but at the end of the day, I believe we have better fill rates than any other organization, clients know that. And so while it might be taking a little longer to get jobs filled, because of our program and our huge network of associate vendors and a court where we can sell, then I think we’re in pretty good shape."
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Mark Marcon",
+     "content": "Great. And then did you have the candidate database basically increase by double digits this last quarter year-over-year?"
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Susan Salka",
+     "content": "No. Ralph was talking about the number of new applications coming and being up double digits. But the database has grown as well, and as he described, the team has really done an outstanding job of re-engaging that candidate data base, clinicians who might have applied with us a year or two or three years ago and never worked with us, but now, the market is different, the opportunities are different and so, we’re marketing those candidates and still actually are best fit in our first and least expensive bet to go after and that’s where the investments we’ve made as well as hiring new recruiters that can help us go after that existing database is important, but on top of that, of course, we have to get new applications in the door and they’re doing a terrific job of driving that."
+    },
+    {
+     "paragraph_number": 73,
+     "speaker": "Mark Marcon",
+     "content": "Great. And then with regards to those first time practitioners that are working as travelers now, what is the general experience in terms of them going for a second or a third contract, how should we think about that?"
+    },
+    {
+     "paragraph_number": 74,
+     "speaker": "Ralph Henderson",
+     "content": "Yeah. Our average assignment length is about 2.5 as I mentioned travel nursing is longer than that in allied, I don’t have that physician number in front of me, but the rebook rates and things like that are very solid, extending assignment is actually happening more frequently than it had happened in the past, because if you can’t do the full time job, you have to extend that, individually have on assignments. So those numbers are all very solid."
+    },
+    {
+     "paragraph_number": 75,
+     "speaker": "Mark Marcon",
+     "content": "Great. And then the build rats on nursing allied were up 7%, is that what you’re assuming for the balance of the year roughly?"
+    },
+    {
+     "paragraph_number": 76,
+     "speaker": "Ralph Henderson",
+     "content": "Probably in a reasonable ballpark, yeah, progress this year, because they really started to see the traction on build rates late in 2014, so just kind of natural, maybe the fourth quarter, the comp will get a little bit tougher, but that rate is about right."
+    },
+    {
+     "paragraph_number": 77,
+     "speaker": "Mark Marcon",
+     "content": "Great. And then on Locum tenants, the gross margins were down just a little bit, would you and you’re under market there, would you expect them to bounce back in the very near term?"
+    },
+    {
+     "paragraph_number": 78,
+     "speaker": "Ralph Henderson",
+     "content": "Yeah. I think the main issue there is just changes in the mix that occur and settle that we weren’t too concerned about that at small change in their margin on a year over year basis. We do expect margins to improve, when you look at it on a specialty by specialty basis, it’s kind of 10 or 12 specialties that are performing above market and we have four or five dragging us back.  So sometimes it’s the government business, the percentage of government that makes that change, shifts a little bit, but the team has done a really good job and they have tools in place to help them improve that margin over time and I think like Susan was talking about just our access to information and data about what happened in the marketplace was just greater because of all of our workforce solutions, our sister companies. So that helps us get back to what we think is industry margins are a little bit higher than where we’re at, maybe 32ish percent, I think we’ve said in the past."
+    },
+    {
+     "paragraph_number": 79,
+     "speaker": "Mark Marcon",
+     "content": "Great. And then the last question, I’ll jump back in the queue. With regards to the EMR business, it sounds like it’s trending stronger than what you would have expected this year, how do you think it will turn for next year?"
+    },
+    {
+     "paragraph_number": 80,
+     "speaker": "Susan Salka",
+     "content": "It’s really hard to say, Mark. We though again this year would be less than 14 and it’s ended up being more. What we do see are organizations coming back to implement sort of a second third round to improve the usability and efficiency of the systems that they put in. Some are actually switching systems. So I could be wrong and you could start to see this whole another wave of a pickup, but we’re not really integrated that, and quite honestly in any given year, it doesn’t have a material impact on our overall performance, so while we love the business and our team’s done an outstanding job of delivering when the opportunity is there, it’s not something that we want to particularly count on as a growth area from year-to-year."
+    },
+    {
+     "paragraph_number": 81,
+     "speaker": "Mark Marcon",
+     "content": "Great. I appreciate the color. Thank you."
+    },
+    {
+     "paragraph_number": 82,
+     "speaker": "Susan Salka",
+     "content": "Thanks, Mark."
+    },
+    {
+     "paragraph_number": 83,
+     "speaker": "Operator",
+     "content": "And we do have a follow up question from the line of Tobey Sommer with SunTrust. Please go ahead."
+    },
+    {
+     "paragraph_number": 84,
+     "speaker": "Tobey Sommer",
+     "content": "Thank you. I was wondering if you could talk about the rent expense in the change that you’re seeing there and maybe to the extent you are willing to offer some other kind of color on tax rate, interest expense, shares, anything that would help us out towards -- getting towards the end of bottom of the income statement. Thanks."
+    },
+    {
+     "paragraph_number": 85,
+     "speaker": "Brian Scott",
+     "content": "Sure. No problem. This is Brian. So on the rent side, as I mentioned earlier, it predominantly affects our nursing allied and our margins there have been stable overall, so as we’ve been negotiating the increases, always the attracting supply but also consideration of our other direct costs that we manage and obviously how things went about.  So the rare environment I think hasn’t changed a whole lot in the several quarters, it’s still a very tight rental market and rental rates have been going up anywhere kind of 4% to 5%, and we’re generally feeling that same increase in our direct costs and so again as we look at our bill rate increases, we’re in part using that to ensure that we are a little bit covered in those costs as well.  As we look out the rest of the season, I think it would be somewhere in that 4% to 5% range for the next couple of quarters, there is a lot of the – even look externally lot of data, talks a lot of inventory coming on, what is coming on right now is to absorb very quickly, but I think it’s more units come on line in the next couple of years that will start to have some moderation on the rent increases as well.  As for the other inputs from, depreciation expense for next quarter would be about $2.5 million, stock comp comparable toQ2 at about $2.1 million, the amortization expense will be about the same at $2.9 million, interest expect about $1.9 million to $2 million as well, share count 48.9, and I think those are the main ones. Attach rate, I had mentioned earlier, was 43."
+    },
+    {
+     "paragraph_number": 86,
+     "speaker": "Operator",
+     "content": "And at this time, there are no further questions in queue. Please continue."
+    },
+    {
+     "paragraph_number": 87,
+     "speaker": "Susan Salka",
+     "content": "Great, well, thank you everyone for joining us today and certainly thank you for your continued support of AMN. We look forward to updating you on our progress next quarter."
+    },
+    {
+     "paragraph_number": 88,
+     "speaker": "Operator",
+     "content": "And ladies and gentlemen, that does conclude your conference for today. Thank you for your participation and for using the AT&T Executive Teleconference service. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +517,8 @@
    "reportDate": "2014-12-31",
    "accession": "0001142750-15-000003",
    "url": "https://www.sec.gov/Archives/edgar/data/1142750/000114275015000003/ahs-20141231x10k.htm",
-   "local_gz": "000114275015000003__annual.txt.gz"
+   "local_gz": "000114275015000003__annual.txt.gz",
+   "n_lines": 3375
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +526,8 @@
    "reportDate": "2015-03-31",
    "accession": "0001142750-15-000006",
    "url": "https://www.sec.gov/Archives/edgar/data/1142750/000114275015000006/ahs-20150331x10q.htm",
-   "local_gz": "000114275015000006__q0.txt.gz"
+   "local_gz": "000114275015000006__q0.txt.gz",
+   "n_lines": 1006
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +535,106 @@
    "reportDate": "2014-09-30",
    "accession": "0001142750-14-000013",
    "url": "https://www.sec.gov/Archives/edgar/data/1142750/000114275014000013/ahs-20140930x10q.htm",
-   "local_gz": "000114275014000013__q1.txt.gz"
+   "local_gz": "000114275014000013__q1.txt.gz",
+   "n_lines": 1153
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2015-05-08",
   "n_rows": 8,
@@ -83,6 +649,53 @@
     "ocf": 26577000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 144933000.0,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 31653000.0,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1099000.0,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3317000.0,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 8615000.0,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.18,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 47810000.0,
+      "filed": "2013-11-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +706,63 @@
     "ocf": 15538000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 147477000.0,
+      "filed": "2014-02-21",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 1373000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 15580000.0,
+      "filed": "2014-02-21",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 158672000.0,
+      "filed": "2014-02-21",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 2600000.0,
+      "filed": "2014-02-21",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3698000.0,
+      "filed": "2014-02-21",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 8356000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.17,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 11000.0,
+      "filed": "2014-02-21",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +773,53 @@
     "ocf": 991000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 150840000.0,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 9269000.0,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 5843000.0,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 3820000.0,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 7630000.0,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.16,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 47917000.0,
+      "filed": "2014-05-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +830,53 @@
     "ocf": 6159000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 151505000.0,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 5501000.0,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 4033000.0,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4010000.0,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 7193000.0,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.15,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 47836000.0,
+      "filed": "2014-08-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +887,53 @@
     "ocf": 15489000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 164078000.0,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 9663000.0,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 4411000.0,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4086000.0,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 8499000.0,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.18,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 48122000.0,
+      "filed": "2014-11-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +944,58 @@
     "ocf": 5039000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 186274000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3177000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 13073000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 4847000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4077000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 9895000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.2,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 127000.0,
+      "filed": "2015-02-25",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +1006,58 @@
     "ocf": 8687000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 221001000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3137000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 11633000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 6370000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5095000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 12209000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.25,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 48364000.0,
+      "filed": "2015-05-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1068,27 @@
     "ocf": 25000000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 14474000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 15870000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.32,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 350000000.0,
     "revenue_xbrl_for_reference": 350144000.0
@@ -166,143 +1102,50 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "7363",
   "sic2": "73",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 219,
-  "peer_list_all_same_sic2_tickers": [
-   "ABM",
-   "ACIW",
-   "ACN",
-   "ADBE",
-   "ADP",
-   "ADSK",
-   "AER",
-   "AEYE",
-   "AGYS",
-   "AIFF",
-   "AKAM",
-   "ALLE",
-   "ALRM",
-   "APPF",
-   "ASPS",
-   "ASUR",
-   "ATHM",
-   "AWRE",
-   "BABA",
-   "BB",
-   "BBSI",
-   "BGSF",
-   "BIDU",
-   "BKYI",
-   "BLIN",
-   "BLKB",
-   "BOX",
-   "BR",
-   "CACI",
-   "CASS",
-   "CBZ",
-   "CCLD",
-   "CCO",
-   "CDNS",
-   "CEVA",
-   "CHKP",
-   "CMCM",
-   "CNET",
-   "CPAY",
-   "CREX",
-   "CRM",
-   "CRTO",
-   "CSGP",
-   "CSPI",
-   "CTSH",
-   "CVLT",
-   "DDD",
-   "DHX",
-   "DLHC",
-   "DOX",
-   "DSGX",
-   "DTST",
-   "EBAY",
-   "EFOR",
-   "EFX",
-   "EGAN",
-   "EGHT",
-   "EPAM",
-   "ETSY",
-   "EVTC",
-   "EXLS",
-   "FDS",
-   "FICO",
-   "FIS",
-   "FISV",
-   "FIVN",
-   "FLNT",
-   "FLUT",
-   "FORTY",
-   "FTAI",
-   "FTFT",
-   "GDDY",
-   "GEN",
-   "GIGM",
-   "GLOB",
-   "GPN",
-   "GRPN",
-   "GRVY",
-   "GWRE",
-   "HGBL",
-   "HHS",
-   "HQI",
-   "HQY",
-   "HRI",
-   "HSTM",
-   "HUBS",
-   "IA",
-   "IDN",
-   "INFY",
-   "INLX",
-   "INOD",
-   "INSE",
-   "INTU",
-   "INUV",
-   "IPDN",
-   "IPM",
-   "IVDA",
-   "IZEA",
-   "JKHY",
-   "JOB",
-   "JOYY",
-   "KELYA",
-   "KFRC",
-   "KFY",
-   "LDOS",
-   "LPSN",
-   "LQDT",
-   "MA",
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 14,
+  "peer_list_all_tickers": [
    "MAN",
-   "MANH",
-   "MCHX",
-   "MCO",
-   "MELI",
-   "META",
-   "MGNI",
-   "MGRC",
-   "MMS",
-   "MNDO",
-   "MOMO",
-   "MRDN"
+   "RHI"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0001326801",
-    "name": "Meta Platforms, Inc.",
-    "ticker": "META",
-    "sic2": "73"
+    "entity_id": "0000871763",
+    "name": "ManpowerGroup Inc.",
+    "ticker": "MAN",
+    "sic4": "7363",
+    "sic3": "736",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2015-02-20",
+    "accn": "0000871763-15-000008",
+    "local_gz": "000087176315000008__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ore, the volatility of currencies may make year-over-year comparability difficult. We maintain debt that could adversely affect our operating flexibility and put us at a competitive disadvantage. As of December 31, 2014, we had $469.1 million of total debt. Our level of debt and the limitations imposed on us by our credit agreements could have important consequences for investors, including the following: • we may not be able to obtain additional debt financing for future working capital, capital expenditures or other corporate purposes or may have to pay more for such financing; • borrowings under our revolving credit facilities are at a variable interest rate, making us more vulnerable to "
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0000789019",
-    "name": "MICROSOFT CORP",
-    "ticker": "MSFT",
-    "sic2": "73"
+    "entity_id": "0000315213",
+    "name": "ROBERT HALF INC.",
+    "ticker": "RHI",
+    "sic4": "7363",
+    "sic3": "736",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2015-02-13",
+    "accn": "0001628280-15-000736",
+    "local_gz": "000162828015000736__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ues, in 2012 . Provision for income taxes. The provision for income taxes was 36.6% and 39.0% for the years ended December 31, 2013 and 2012 , respectively. The 2013 decrease is primarily due to foreign restructuring, improving foreign results, and increased federal tax credits . Liquidity and Capital Resources The change in the Company’s liquidity during the years ended December 31, 2014 , 2013 and 2012 , is primarily the net effect of funds generated by operations and the funds used for capital expenditures, repurchases of common stock and payment of dividends. Cash and cash equivalents were $287 million , $276 million and $288 million at December 31, 2014 , 2013 and 2012 , respectively. O",
+     "n adjusted for non-cash items of $74 million , offset by net cash used in changes in working capital of $17 million . Net cash provided by operating activities for the year ended December 31, 2012 , was composed of net income of $210 million adjusted for non-cash items of $74 million , and net cash provided by changes in working capital of $5 million . Investing activities—Cash used in investing activities for the year ended December 31, 2014 , was $89 million . This was primarily composed of capital expenditures of $63 million and deposits to trusts for employee deferred compensation plans of 21 $26 million . Cash used in investing activities for the year ended December 31, 2013 , was $98 m",
+     "sted for non-cash items of $74 million , and net cash provided by changes in working capital of $5 million . Investing activities—Cash used in investing activities for the year ended December 31, 2014 , was $89 million . This was primarily composed of capital expenditures of $63 million and deposits to trusts for employee deferred compensation plans of 21 $26 million . Cash used in investing activities for the year ended December 31, 2013 , was $98 million . This was primarily composed of capital expenditures of $54 million and deposits to trusts for employee deferred compensation plans of $44 million . Cash used in investing activities for the year ended December 31, 2012 , was $73 million "
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -324,7 +1167,16 @@
   "latest_data_date": "2015-08-05",
   "cutoff": "2015-08-05",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2015-08-05",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2015-08-06",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

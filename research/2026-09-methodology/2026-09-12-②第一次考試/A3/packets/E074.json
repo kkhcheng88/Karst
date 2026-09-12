@@ -1,6 +1,7 @@
 {
  "event_id": "E074",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E074",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "ARDX",
  "cik": "0001437402",
  "name": "ARDELYX, INC.",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2024-05-03(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E074",
   "event_id": "E074",
   "ticker": "ARDX",
   "cik": "0001437402",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001628280-24-019986",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1437402/000162828024019986/ardx-20240502.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1437402/000162828024019986/ardx-20240502.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n ardx-20240331xexhibit991.htm\n EX-99.1\n Document \n Exhibit 99.1 \n Ardelyx Reports First Quarter 2024 Financial Results and Provides Business Update \n Company reports $45.6 million in Q1 product-related revenue, including $28.4 million in net product sales revenue for IBSRELA and $15.2 million in net product sales revenue for XPHOZAH \n Company ends Q1 with approximately $203 million in cash and investments \n Conference call scheduled for 4:30 PM Eastern Time \n WALTHAM, Mass., May 2, 2024 - Ardelyx, Inc. (Nasdaq: ARDX), a biopharmaceutical company founded with a mission to discover, develop and commercialize innovative, first-in-class medicines that meet significant unmet medical needs, today reported financial results for the first quarter ended March 31, 2024 and provided a business update. \n “The first quarter of 2024 marked an important milestone for Ardelyx as a commercial company. We continued to execute our disruptive approach to commercializing IBSRELA and XPHOZAH by targeting patients in established therapeutic areas who continue to have unmet treatment needs that can be addressed with our first-in-class medicines,” said Mike Raab, president and chief executive officer of Ardelyx. “We drove substantial topline growth as a result of the continued commercial performance of IBSRELA and the incredibly strong launch of XPHOZAH. At the same time, we thoughtfully managed our expenses, ending the quarter with a strong cash position enabling us to invest in expanding our market position.” \n IBSRELA® (tenapanor) records $28.4 million in net product sales revenue in Q1 2024 \n U.S. net product sales revenue for IBSRELA during the first quarter of 2024 was $28.4 million, reflecting significant year-over-year growth as well as quarter-over-quarter growth. Demand for IBSRELA continued during the quarter, including new and refill prescription growth along with expansion of new and repeat writing healthcare providers. \n Ardelyx currently expects full-year 2024 U.S. net product sales revenue for IBSRELA to be between $140.0 and $150.0 million. \n XPHOZAH ® (tenapanor) launch progresses, records $15.2 million net product sales revenue during Q1 2024 \n Following approval by the U.S. Food and Drug Administration of XPHOZAH in October 2023, Ardelyx continued to see a strong response from the nephrology community. U.S. net product sales revenue during Q1 2024 was $15.2 million, the first full quarter of sales following the product’s launch in November 2023. Spherix Global Insights, a premier market research firm that publishes independent, syndicated monthly tracking research, reports high levels of awareness, intent to adopt and satisfaction with XPHOZAH in the April 2024 LaunchDynamix report. Among the 77 nephrologists surveyed, 98% rate XPHOZAH as an advance over currently available hyperphosphatemia therapies. 56% of surveyed nephrologists report initiating a patient on XPHOZAH, and among those reported users, 98% report satisfaction with treatment. \n Other Corporate Developments \n • In March, the company announced the appointment of veteran biopharma executive Mike Kelliher as Executive Vice President, Corporate Development and Strategy. \n First Quarter 2024 Financial Results \n • Cash Position: As of March 31, 2024, the company had total cash, cash equivalents and short-term investments of $202.6 million, as compared to total cash, cash equivalents and short-term investments of $184.3 million as of December 31, 2023. During the quarter ended March 31, 2024, the company drew $49.8 million in net proceeds under its term loan with SLR Investment Corp. \n • Revenues: Total revenue for the quarter ended March 31, 2024 was $46.0 million, compared to $11.4 million in total revenue during the quarter ended March 31, 2023, primarily reflecting increased net product sales and product supply revenue. \n – IBSRELA U.S. net product sales revenue was $28.4 million, compared to $11.4 million during the same period of 2023. \n – XPHOZAH U.S. net product sales revenue was $15.2 million, with no comparable revenue during the same period of 2023. \n – Product supply revenue was $2.1 million, compared to $2 thousand during the same period of 2023. \n – Licensing revenue was $17 thousand, compared to $12 thousand during the same period of 2023. \n – Non-cash royalty revenue related to the sale of future royalties was $0.4 million, with no comparable revenue during the same period of 2023. \n • R&D Expenses : Research and development expenses were $10.6 million for the quarter ended March 31, 2024, compared to $9.1 million for the quarter ended March 31, 2023. \n • SG&A Expenses: Selling, general and administrative expenses were $53.0 million for the quarter ended March 31, 2024, an increase of $26.2 million compared to $26.8 million for the quarter ended March 31, 2023. The increase in selling, general and administrative expenses was primarily due to increased costs associated with the ongoing commercialization of IBSRELA and XPHOZAH. \n • Net Loss: Net loss for the quarter ended March 31, 2024 was $26.5 million, or $(0.11) per share, compared to net loss of $26.8 million, or $(0.13) per share, for the quarter ended March 31, 2023. The net loss for the first quarter of 2024 included share-based compensation expense of $7.6 million and non-cash interest expense related to the sale of future royalties of $1.7 million. \n Conference Call Details \n The company will host a conference call today, May 2, 2024, at 4:30 PM ET to discuss today’s announcement. To participate in the conference call, please dial (844) 481-2838 (domestic) or (412) 317-1858 (international) and ask to be joined into the Ardelyx call. A webcast of the call can also be accessed by visiting the Investor page of the company's website, www.ardelyx.com, and will be available on the website for 30 days following the call. \n IMPORTANT SAFETY INFORMATION (IBSRELA) \n WARNING: RISK OF SERIOUS DEHYDRATION IN PEDIATRIC PATIENTS \n IBSRELA is contraindicated in patients less than 6 years of age; in nonclinical studies in young juvenile rats administration of tenapanor caused deaths presumed to be due to dehydration. Avoid use of IBSRELA in patients 6 years to less than 12 years of age. The safety and effectiveness of IBSRELA have not been established in patients less than 18 years of age. \n CONTRAINDICATIONS \n • IBSRELA is contraindicated in patients less than 6 years of age due to the risk of serious dehydration. \n • IBSRELA is contraindicated in patients with known or suspected mechanical gastrointestinal obstruction. \n WARNINGS AND PRECAUTIONS \n Risk of Serious Dehydration in Pediatric Patients \n • IBSRELA is contraindicated in patients below 6 years of age. The safety and effectiveness of IBSRELA in patients less than 18 years of age have not been established. In young juvenile rats (less than 1 week old; approximate human age equivalent of less than 2 years of age), decreased body weight and deaths occurred, presumed to be due to dehydration, following oral administration of tenapanor. There are no data available in older juvenile rats (human age equivalent 2 years to less than 12 years). \n • Avoid the use of IBSRELA in patients 6 years to less than 12 years of age. Although there are no data in older juvenile rats, given the deaths in younger rats and the lack of clinical safety and efficacy data in pediatric patients, avoid the use of IBSRELA in patients 6 years to less than 12 years of age. \n Diarrhea \n Diarrhea was the most common adverse reaction in two randomized, double-blind, placebo-controlled trials of IBS-C. Severe diarrhea was reported in 2.5% of IBSRELA-treated patients. If severe diarrhea occurs, suspend dosing and rehydrate patient. \n MOST COMMON ADVERSE REACTIONS \n The most common adverse reactions in IBSRELA-treated patients (incidence ≥2% and greater than placebo) were: diarrhea (16% vs 4% placebo), abdominal distension (3% vs <1%), flatulence (3% vs 1%) and dizziness (2% vs <1%). \n INDICATION \n IBSRELA (tenapanor) is indicated for the treatment of Irritable Bowel Syndrome with Constipation (IBS-C) in adults. \n Please see full Prescribing Information, including Boxed Warning, for additional risk information. \n IMPORTANT SAFETY INFORMATION (XPHOZAH) \n CONTRAINDICATIONS \n XPHOZAH is contraindicated in: \n • Pediatric patients under 6 years of age \n • Patients with known or suspected mechanical gastrointestinal obstruction \n WARNINGS AND PRECAUTIONS \n Diarrhea \n Patients may experience severe diarrhea. Treatment with XPHOZAH should be discontinued in patients who develop severe diarrhea. \n MOST COMMON ADVERSE REACTIONS \n Diarrhea, which occurred in 43-53% of patients, was the only adverse reaction reported in at least 5% of XPHOZAH-treated patients with CKD on dialysis across trials. The majority of diarrhea events in the XPHOZAH-treated patients were reported to be mild-to-moderate in severity and resolved over time, or with dose reduction. Diarrhea was typically reported soon after initiation but could occur at any time during treatment with XPHOZAH. Severe diarrhea was reported in 5% of XPHOZAH-treated patients in these trials. \n INDICATION \n XPHOZAH (tenapanor), 30 mg BID, is indicated to reduce serum phosphorus in adults with chronic kidney disease (CKD) on dialysis as add-on therapy in patients who have an inadequate response to phosphate binders or who are intolerant of any dose of phosphate binder therapy. \n For additional safety information, please see full Prescribing Information. \n About Ardelyx \n Ardelyx was founded with a mission to discover, develop and commercialize innovative, first-in-class medicines that meet significant unmet medical needs. Ardelyx has two commercial products approved in the United States, IBSRELA ® (tenapanor) and XPHOZAH ® (tenapanor) as well as early stage pipeline candidates. Ardelyx has agreements for the development and commercialization of tenapanor outside of the U.S. Kyowa Kirin commercializes PHOZEVEL ® (tenapanor) for hyperphosphatemia in Japan. A New Drug Application for tenapanor for hyperphosphatemia has been submitted in China with Fosun Pharma. Knight Therapeutics commercializes IBSRELA in Canada. For more information, please visit https://ardelyx.com/ and connect with us on X (formerly known as Twitter), LinkedIn and Facebook. \n Forward Looking Statements \n To the extent that statements contained in this press release are not descriptions of historical facts regarding Ardelyx, they are forward-looking statements reflecting the current beliefs and expectations of management made pursuant to the safe harbor of the Private Securities Reform Act of 1995, including Ardelyx’s current expectation for U.S. net product sales revenue for IBSRELA for full year 2024. Such forward-looking statements involve substantial risks and uncertainties that could cause Ardelyx's future results, performance or achievements to differ significantly from those expressed or implied by the forward-looking statements. Such risks and uncertainties include, among others, uncertainties associated with the development of, regulatory process for, and commercialization of drugs in the U.S. and internationally. Ardelyx undertakes no obligation to update or revise any forward-looking statements. For a further description of the risks and uncertainties that could cause actual results to differ from those expressed in these forward-looking statements, as well as risks relating to Ardelyx's business in general, please refer to Ardelyx's Annual Report on Form 10-K filed with the Securities and Exchange Commission on May 2, 2024, and its future current and periodic reports to be filed with the Securities and Exchange Commission. \n Investor and Media Contacts: \n Caitlin Lowie \n clowie@ardelyx.com \n Ardelyx, Inc. \n Condensed Balance Sheets \n (In thousands) \n March 31, 2024 December 31, 2023 \n (Unaudited) (1) \n Assets \n Cash and cash equivalents $ 36,147 $ 21,470 \n Investments 166,431 162,829 \n Accounts receivable 28,162 22,031 \n Prepaid commercial manufacturing 5,519 18,925 \n Prepaid commercial manufacturing, non-current 4,235 4,235 \n Inventory, current 9,813 12,448 \n Inventory, non-current 69,045 37,039 \n Property and equipment, net 1,019 1,009 \n Right-of-use assets 4,641 5,589 \n Prepaid and other assets 17,370 12,004 \n Total assets $ 342,382 $ 297,579 \n Liabilities and stockholders' equity \n Accounts payable $ 17,277 $ 11,138 \n Accrued compensation and benefits 6,727 12,597 \n Current portion of operating lease liability 4,314 4,435 \n Deferred revenue 18,689 15,826 \n Accrued expenses and other liabilities 21,991 15,041 \n Operating lease liability, net of current portion 778 1,725 \n Long-term debt, net of current portion 99,834 49,822 \n Deferred royalty obligation related to the sale of future royalties 21,881 20,179 \n Stockholders' equity 150,891 166,816 \n Total liabilities and stockholders' equity $ 342,382 $ 297,579 \n (1) Derived from the audited financial statements included in the Company’s Annual Report on Form 10-K for the year ended December 31, 2023. \n Ardelyx, Inc. \n Condensed Statements of Operations \n (Unaudited) \n (In thousands, except share and per share amounts) \n Three Months Ended March 31, \n 2024 2023 \n Revenues: \n Product sales, net: \n IBSRELA $ 28,361 $ 11,355 \n XPHOZAH 15,151 — \n Total product sales, net 43,512 11,355 \n Product supply revenue 2,126 2 \n Licensing revenue 17 12 \n Non-cash royalty revenue related to the sale of future royalties 368 — \n Total revenues 46,023 11,369 \n Cost of goods sold: \n Cost of product sales 1,013 372 \n Other cost of revenue 6,115 1,165 \n Total cost of goods sold 7,128 1,537 \n Operating expenses: \n Research and development 10,579 9,093 \n Selling, general and administrative 52,994 26,803 \n Total operating expenses 63,573 35,896 \n Loss from operations (24,678) (26,064) \n Interest expense (2,356) (1,028) \n Non-cash interest expense related to the sale of future royalties (1,702) (969) \n Other income, net 2,339 1,302 \n Loss before provision for income taxes (26,397) (26,759) \n Provision for income taxes 121 14 \n Net loss $ (26,518) $ (26,773) \n Net loss per share of common stock - basic and diluted $ (0.11) $ (0.13) \n Shares used in computing net loss per share - basic and diluted 233,065,960 207,023,127 \n",
@@ -36,7 +39,303 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000162828024019986__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001628280-24-006321",
+   "filingDate": "2024-02-22",
+   "reportDate": "2024-02-22",
+   "form": "8-K",
+   "local_gz": "000162828024006321__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 0,
+   "n_sentences": 0,
+   "guidance_sentences": [],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出",
+   "status": "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2024-05-02",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 54,
+   "has_qna": true,
+   "n_chars": 40826,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Good day, and welcome to the Ardelyx First Quarter 2024 Earnings Call. [Operator Instructions]. Please note, this event is being recorded. I would now like to turn the conference over to Caitlin Lowie, Vice President of Corporate Communications and Investor Relations at Ardelyx. Please go ahead. "
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Caitlin Lowie",
+     "content": "Thank you. Good afternoon, and welcome to our first quarter 2024 financial results call. During this call, we will refer to the press release issued earlier today, which is available on the Investors section of the company's website at ardelyx.com. During this call, we will be making forward-looking statements that are subject to risks and uncertainties. Our actual results may differ materially from those described. We encourage you to review the risk factors in our most recent quarterly report on Form 10-Q that was filed today and can be found on our website at ardelyx.com. While we may elect to update these forward-looking statements in the future, we specifically disclaim any obligation to do so even if our views change.  Our President and CEO, Mike Raab, will begin today's call with opening remarks and an overview of the company's progress during the first quarter of 2024. Next, Susan Rodriguez, Chief Commercial Officer, will provide an update on the performance of IBSRELA and XPHOZAH. Justin Renz, Chief Financial and Operations Officer, will conclude today's prepared remarks with a review of the company's financial performance during the first quarter ended March 31, 2024, before we open the call to questions.  With that, let me pass the call over to Mike. "
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Michael Raab",
+     "content": "Good afternoon, everyone, and thank you for joining us on this call. Q1 earnings always seem to come quickly after we report our Q4 results. And yet, as usual, a lot has happened since we last provided you an update. First, XPHOZAH's performance out of the gate following the launch in November continues at a remarkable pace. This is a first-in-class product in a therapeutic area that has seen no innovation in decades. The response from the prescribing community clearly demonstrates the significant unmet need among this patient population. XPHOZAH is an important new option for physicians to help patients whose serum phosphorus remains elevated despite best efforts. All demand indicators are favorable. Prescribers are eager to learn more about XPHOZAH's blocking mechanism and are working to identify potential candidates for therapy. Like IBSRELA, Ardelyx assist in supporting prior authorizations and helping patients take advantage of our affordability programs. Patients are accessing the drug and the feedback is that patients are seeing sustained reductions in their serum phosphorus. We are focused on ensuring prescribers are aware and educated on XPHOZAH and ensuring patients have access to treatment. As you can see by our performance, it's going very well.  IBSRELA continues to perform strongly, providing an important option to again address the large unmet need among IBS-C patients. We believe that this can be a $1 billion product and on the path to achieving that piece, we expect full year net sales revenue for 2024 to be between $140 million and $150 million. As I consider the first quarter performance, the underlying demand metrics and fundamentals of the business are robust and continue to demonstrate growth in new and repeat riders and new and refill prescriptions.  Our reported revenue reflects demand growth, offset by the impact of seasonality, which is standard across the industry that we experienced during this first quarter. Importantly, our cash position remains strong, resulting from our revenue, the third tranche of debt from our partnership with SLR and thoughtful management of our expenses. We are at an exciting time in our evolution as a company, and our top priority is to build upon the growth momentum of IBSRELA and XPHOZAH. Now I will turn the call over to Susan to discuss first quarter performance for both of our products. Susan? "
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Susan Rodriguez",
+     "content": "Thank you, Mike. It is great to be here today to discuss the commercial performance for IBSRELA and XPHOZAH. Our performance reflects strong execution of our disruptive commercial approach for both first-in-class products, which centers on targeting the high-volume writers in our disease areas, driving identification of patients in need of a novel treatment option as their response to existing treatment options is deemed to be inadequate. And enabling patient access and affordability with favorable coverage policies that define the path to access prior authorization support and patient support programs. Let me begin with IBSRELA. Our confidence in this product is driven by the strength of the fundamentals driving IBSRELA's performance. HCPs are evolving their treatment practice now that they have expanded treatment options for their IBS-C patients following the launch of IBSRELA. Based on the favorable clinical response they are seeing and confidence in the path to access, HCPs are increasingly identifying patients in need of a novel treatment option.  During the first quarter, we saw increases across all key demand parameters for the product, including growth in new writers and repeat writers, as well as growth in new prescriptions and refill prescriptions. We are very encouraged by the continued growth of these key demand metrics despite IBSRELA being impacted by first quarter seasonality that is commonly seen across the industry linked to insurance plan resets and prior authorization renewal processes.  During the first quarter, we began the process to expand the IBSRELA dedicated salesforce footprint from 64 territories to 124 territories. We experienced a strong response to the job posting, attracting sales talent with extensive GI experience who are motivated and enthusiastic to join the IBSRELA sales team and be part of disrupting the IBS-C market with an innovative therapy.  Hiring, training and full deployment of this team is on track to be completed by the end of the second quarter. This salesforce footprint puts us in a strong position to capitalize on the promotion sensitivity we have seen across our high-riding HCP targets to further drive increases in new writers as well as drive expanded use across our growing writer base who are continuously broadening their view of patients who are candidates for IBSRELA. The fundamental drivers behind IBSRELA are strong, and we anticipate continued quarter-over-quarter growth with our expectations for the 2024 performance consistent with our stated guidance.  Turning to XPHOZAH. We are extremely pleased with the nephrology community's response to this first-in-class phosphate absorption inhibitor. It is clear that patients have been in need of a new option to manage their phosphorus when binders were insufficient or not well tolerated. Our dedicated nephrology sales team, comprehensive blocking messaging campaign, speaker and promotional programs, and omnichannel initiatives are driving high interest and early uptake of XPHOZAH. Nephrologists are responding favorably to the novel blocking mechanism and clinical data profile are pleased with their early clinical experience, encouraged by the defined coverage policies and increasingly integrating this novel blocking mechanism product into the therapeutic regimen for their patients.  The feedback we regularly receive from the field is that physicians are seeing that their XPHOZAH treated patients, many of whom have been continuously outside of target ranges, are reflecting consistent improvement in serum phosphorus levels and that these levels are being maintained. We are also hearing that patients are responding favorably to the dosing profile and that HCPs are pleased with the flexibility they have in adapting the patient's treatment regimen where they can add XPHOZAH to the patient's existing binder regimen or they can add XPHOZAH and reduce the patient's binder regimen or they can add XPHOZAH and fully discontinue the patients binder regimen. HCPs are adopting XPHOZAH and are adapting regimens based on the needs of the patients.  We are very pleased with the $15.2 million in sales we reported for XPHOZAH during the first quarter. This performance is consistent with the uptick indicators we are seeing in the field. Our salesforce is experiencing highly engaged meaningful discussions with our target HCPs who are eager to learn about XPHOZAH. Nephrology HCPs are rapidly identifying patients who they believe can benefit from therapy, reporting to us that they may have many patients outside of target ranges despite treatment with binders or are intolerant of binders therapy.  HCPs are pleased with the clinical response they are seeing and patients are responding favorably to the treatment experience. Coverage policies are being defined that outline a path to access by our prior authorization attesting to the fact that the patient has been treated with binders and inadequately responding or unable to tolerate the therapy. HCPs are seeing that when prior authorizations are submitted for patients meeting the criteria, patients are gaining access to XPHOZAH.  Nephrology HCPs and their office staff are responding favorably to our specialty pharmacy distribution network as well as to our comprehensive patient services offering, Ardelyx Assist that further enable patient access through prior authorization support and patient engagement with the affordability programs available to them.  Our own internal metrics are supported by external research conducted by Spherix who is tracking the launch of XPHOZAH. According to the April 2024 launch dynamics report, nearly all of the 77 surveyed nephrologists, 98% rate XPHOZAH as an advance over currently available hyperphosphatemia therapy. In addition, 56% of the surveyed nephrologists reported using XPHOZAH and of those, again, 98% report satisfaction with treatment. The research demonstrates that awareness is high among the nephrology community, interest and intent to adopt is high, and satisfaction with the treatment is high among users.  We will continue to build upon our launch momentum, capitalizing on the high nephrology awareness of the number of patients that are in need of a new treatment option despite treatment with binders and their intent to adopt XPHOZAH for these patients.  Our go-to-market strategy is working. We have established a strong presence in nephrology offices across the country and HCPs are responding favorably to the novel blocking mechanism and clinical data profile. They are identifying patients that could benefit from XPHOZAH therapy and with coverage policies in place, patients are gaining access and responding favorably to treatment. We are pleased with the performance thus far and our focused on continuing this growth momentum.  We have several exciting months ahead as we will have strong commercial and clinical presence across key annual medical conferences for both IBSRELA and XPHOZAH, where we'll have the opportunity to present more clinical trial data on our products, connect with the prescribing community and deepen our relationship with patients. I look forward to continuing to share updates with you in the future.  With that, I will hand it to Justin. "
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Justin Renz",
+     "content": "Thank you, Susan. I'm very pleased to be with you today to discuss the first quarter performance we reported, which included meaningful progress towards our IBSRELA net sales revenue guidance, a strong launch of XPHOZAH, careful management of our finances and a strong cash position. Let's start with revenue. As you saw in this afternoon's release, we reported significant year-over-year growth, bringing our total first quarter product-related revenue to $45.6 million compared to $11.4 million in the first quarter of 2023. Net product sales revenue for IBSRELA was $28.4 million during the first quarter of 2024, more than doubling the $11.4 million in revenue we reported during the same period in 2023 and 1% quarter-over-quarter growth compared to the fourth quarter of last year.  Volume demand grew for IBSRELA during the first quarter, which was offset by deductions associated with the reset of annual prescription drug plans. Most notably, this was related to our commercial co-pay program. The impact of the commercial co-pay program is most significant in the first quarter when most commercial healthcare plans reset and patients have higher out-of-pocket requirements.  As patients fill prescriptions throughout the year and begin meeting their deductible requirements, our expenses related to the commercial co-pay program declined. Our gross to net deduction for IBSRELA during the first quarter was in line with our expectations at 33.5% and comparable to the 33.7% we saw in the first quarter of 2023. We expect this percentage to improve as the year progresses as it did last year.  In addition, we saw the anticipated impact of the prior authorization renewal process that occurs at the start of the calendar year for many healthcare plans. The strong demand and expected improvement in gross to net deductions reinforce our confidence in the ongoing performance of IBSRELA. As such, we continue to expect that full year U.S. IBSRELA net product sales revenue will be between $140 million and $150 million.  XPHOZAH had an exceptional first full quarter performance as we are reporting $15.2 million in net sales revenue, driven by the meaningful demand for this product. Our gross to net deduction came in favorably for XPHOZAH at 23.8%. As we progress into the launch of XPHOZAH and learn more about the patient mix that drives the associated gross to net deduction, we will share more.  In addition, we had $2.5 million in combined licensing and product supply revenue. We are very pleased with our top line results during the quarter, which demonstrated the growth momentum Mike and Susan both spoke to. At the same time, we continue to be thoughtful on how we manage our expenses. Research and development expenses were $10.6 million compared to $9.1 million during the first quarter of 2023. Selling, general and administrative expenses were $53 million for the first quarter compared to $26.8 million for the same period of 2023. The increase was related to launch activities for XPHOZAH as well as continued investments to grow IBSRELA, which we made throughout last year.  Importantly, our costs were comparable to our spending in the fourth quarter of 2023. We expect to complete the current expansion of the IBSRELA salesforce that Susan previously mentioned by the end of the second quarter. Substantial top line growth, combined with thoughtful cost management, resulted in a net loss of approximately $26.5 million or $0.11 per share in the first quarter of 2024, compared to a net loss of $26.8 million or $0.13 per share in the same period of 2023.  The net loss for the first quarter of 2024 included $9.3 million in combined noncash expenses from share-based compensation and noncash interest expense related to the sale of future royalties. As of March 31, 2024, we had total cash, cash equivalents and short-term investments of $202.6 million as compared to $184.3 million at the end of 2023. This includes $49.8 million in net proceeds that we drew in March from our term loan agreement with SLR Capital.  We are very pleased with our performance during the first quarter, driving top line growth across all reported revenue lines, planning for success, investing in our supply chain, managing our operating expenses and strengthening our cash position. We will continue to be thoughtful with how we deploy capital while focusing on maximizing shareholder value.  And with that, I'll turn it back to Mike. "
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Michael Raab",
+     "content": "Thanks, Justin. I hope that what you took away from our performance during the first quarter is at, one, we continue to have high expectations for IBSRELA, including $140 million to $150 million in net sales revenue this year and on the path to at least 10% market share and $1 billion in annual revenue. Two, XPHOZAH's launch progress is exceptional, and it is already beginning to disrupt the hyperphosphatemia market where there remains significant unmet needs among patients. And finally, we're in a strong cash position to invest in growth. We have a lot of important work ahead of us, and we have the team in place who is able to deliver. I look forward to sharing our progress with you over the coming quarters. And I will now open the call to questions. Operator? "
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] The first question comes from Chris Raymond with Piper Sandler."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Christopher Raymond",
+     "content": "And congrats on the great success here with XPHOZAH. Just -- maybe one question on that and a follow-up as well. So I know you guys are early in the launch, and you've already established sort of a cadence here for guidance after having a number of quarters that you've set with IBSRELA. But just -- but the magnitude of the speed is obviously more than any --  the expected. Can you provide maybe any sort of color here? I think everybody sees the script data and if folks were following that, they're even surprised. Those who have been following the script data closely are surprised by the number. Any sort of color in terms of the uptake in what we should be thinking in terms of the implications for the next several quarters -- a couple of quarters anyway?  And then maybe the follow-up is, I know, Mike, you're not in the business of predicting legislation, but in the absence of sort of any progress in terms of pushing the phosphate binders into the bundle, pushing that off, at what point do you start maybe planning for that as a reality? "
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Michael Raab",
+     "content": "So Chris, thank you for the questions. I guess, first of all, I hope by now you can tell that we're not quitters, and that we see what we're doing for patients and the uptick that we see with XPHOZAH is and has been absolutely worth the fight that we're fighting. I think as you see with what we've done with IBSRELA, these IBS-C patients as well deserve the attention that we're giving them. What you saw with IBSRELA is we need and we expect to have roughly 4 quarters under our belts before we give guidance. We don't want to get over our skis. We're excited and thrilled by this performance. The anticipation for the drug out there, the enthusiasm our [ABDs] are seeing in the field is remarkable. The ability that we have in helping people through the prior authorization process through Ardelyx Assist is working extraordinarily well based on so many learnings that we got through with IBSRELA. So although I would like to give you a clear answer on both of those, I'm sorry, I'm sure you understand that I can't. "
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Operator",
+     "content": "The next question comes from Yigal with Citi."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Yigal Nochomovitz",
+     "content": "Congrats as well on a very strong launch. Susan, I just had a few questions on the commercial franchise. Regarding IBSRELA, can you comment on the percent that were new writers versus repeat writers in the quarter? And then with the almost doubling in the territories, how do you expect that to scale in terms of the size of the base of the prescribing physician community? And then with XPHOZAH, you nicely articulated 3 buckets, the ones where you add XPHOZAH and get them to go, and ones where you can add and then reduce the binder and then you can add XPHOZAH and potentially remove the binder altogether. Do you have any anecdotal or early evidence or data to discuss sort of roughly what percent fall into each of those 3 scenarios? "
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Susan Rodriguez",
+     "content": "Thanks, Yigal. Thanks for the question. In terms of the new and repeat writing, we have not disclosed the specifics in terms of those percentages. But what I can tell you, that's a really important metric to track, is just the persistence of new writers being generated weekly, monthly, quarterly. And what we're seeing since launch is that this has been persistent with new writers being generated constantly on a weekly, monthly and quarterly basis. So seeing that persist, really gives us great confidence in the momentum and our guidance for this year. In terms of repeat writing, what's important to note there is that now that we're several quarters into launch, we have the data to show that new writers write again. So we're seeing that repeat writing is also persistent where the growth opportunity is, is in continuing to drive that new writer growth but then also amongst that growing writer base, really growing depth of writing.  So these repeat writers could write more often and for more patients. And what our salesforce is executing on is really driving that broader view based on the foundation of positive experience they've had to date of patients that now really need to be considered as candidates for IBSRELA because they do have persistent systems, have been tried on other things, and now physicians have seen that there is a path to access and that patients are responding well. So they're broadening their view on potential candidates, and that's really an important growth opportunity for us as well.  In terms of the salesforce impact, that's exactly why we believe it was critical to continue to invest in our salesforce footprint because our experience to date shows that the space is quite promotion sensitive. So the more we call on doctors, the more they write IBSRELA, we see that relationship. The more they engage in all of our omnichannel initiatives and in our program, the more IBSRELA they write.  So expanding our footprint from 64 to 124 really gives us an opportunity to get those -- get into those HCP offices more frequently to continue to drive that expanded writing and really capitalizing on the fact that they are broadening their view on patients who are candidates for XPHOZAH. And at the same time, can also continue to penetrate our target space and generate new writers. So really being able to execute -- to achieve both. "
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Yigal Nochomovitz",
+     "content": "Okay. Great. And then if you could comment on the XPHOZAH question, if you have any data there regarding the way it's bucketing and reducing the binder versus..."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes, not specifically from a percentage standpoint, Yigal. But what we're hearing persistently is that all nephrology -- in general, nephrologists are just commenting on the flexibility. And that's what's really exciting because that means that, that patient group that they identify, that they believe is inadequately managed on binders or don't tolerate binders, they see XPHOZAH because of its complementary MOA, blocking mechanism of action as a drug that, that patient could benefit from. And they don't have an ingoing concern around how it gets integrated because they can be flexible on initiating therapy and then perhaps some of them are initiating, tracking and then taking them off, some of the binders. Some of them just cut the binders right away. Some of the time, they just eliminate it entirely, as I mentioned in my narrative. So what we hear more is just that with each doctor is actually using the drug with this level of flexibility and that they see that as a way to really be able to realize the benefits of novel mechanism XPHOZAH across their patients that they see are inadequately managed. "
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Michael Raab",
+     "content": "Yigal, it's Mike. Just one additional comment with that is, I think, as we spoke of earlier in other calls is you never had multiple mechanisms like you do with some many other diseases to manage what the drugs are trying to address. So it's not going to be a static ratio in any given patient. There's going to be an intern intrapatient variability depending upon their serum phosphorus. There's now flexibility and tools for these physicians to finally get phosphorus in the target range that they're looking for. So I think that's an evolve. And as we understand that better in the coming quarters, we'll certainly share it."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Operator",
+     "content": "The next question comes from Louise Chen with Cantor."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Louise Chen",
+     "content": "Congratulations on the progress this quarter. So first question I wanted to ask you about was XPHOZAH and the $15.2 million. Is that all demand sales? Or is there any stocking in there? And secondly, just back on the Buddy Carter bill, if it doesn't move through, then is that $1 billion of peak sales you have for IBSRELA at risk or that is regardless of whether or not Buddy Carter happens?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Michael Raab",
+     "content": "Yes. I mean, there are two different product lines in different patient populations. So our guidance with IBSRELA is independent of that. But thanks for asking that. As it relates to stocking, let me ask Justin to address that."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Justin Renz",
+     "content": "Thank you, Louise. It has been really just in time, if you will, approach with XPHOZAH. So through our network, we've seen very low inventory rates since launch in November. So I would say, this is absolutely demand of the patients and not allow any stocking, very limited to roughly between 1 and 2 weeks at max in the channel."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Operator",
+     "content": "The next question comes from Ryan Deschner with Raymond James."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Ryan Deschner",
+     "content": "Congrats on the stong early XPHOZAH launch. Two good questions from me. At this point, I was wondering what the breakdown is looking like so far between patients getting access to XPHOZAH through Medicare versus non-Medicare? And then comparing the how much of XPHOZAH's strong start are you attributing to the differences in market dynamics versus differences in your commercialization strategy? In other words, is your commercialization strategy for XPHOZAH markedly different from that of the early IBSRELA launch? Or is the main driver more related to differences and things like unmet need, patient visit rate, et cetera? "
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Michael Raab",
+     "content": "Yes. Ryan, thanks for the question. The easy answer is, of course, it's our very, very unique and disruptive commercialization approach. No kidding, I think what we do here and Susan can address it in greater detail, it truly is one about having really good drugs that are making a difference for these patients, having a commercial team that knows how to communicate that to the omnichannel initiatives and remarkable sales team with feet on the ground, talking to physicians about what these drugs can do for their patients because these drugs work. Susan?"
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes. So I would say exactly to Mike's point, our go-to-market strategy, actually, there are really very important parallels between IBSRELA and XPHOZAH and the novel MOA and the fact that there's limited options and the fact that there's patients in need of novel options. So where I see -- what's an important distinction is that for XPHOZAH, we went into the market with a very, very ingoing high level of awareness of XPHOZAH across the nephrology target base and high interest and intent to adopt and high level of awareness on the range of -- the patients that they see that they have challenges in managing serum phosphorus on binder therapy. So I think there was a higher level of market awareness about both the product and the unmet need. Whereas with IBSRELA, while it's a parallel situation where patients have limited options and are inadequately managed and in need of a novel option in our go-to-market approach, it's really our promotion and our education on our target base that really got them to begin to identify, wow, yes, patients are inadequately managed. We never had another option.  Now that we have another option, we're increasingly identifying these patients, we're actually engaging in dialogue with these patients. And now we're expanding the way we treat and using IBSRELA for those patients inadequately managed. So there was a little bit more market need education required on the IBSRELA side. And those are the only differences, path to access is the same and the coverage policy that they're being defined have also been favorable on both sides. "
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Ryan Deschner",
+     "content": "Got it. And then on the Medicare versus non-Medicare breakdown for the first quarter?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Michael Raab",
+     "content": "Susan?"
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes. Thank you, Mike. Yes, so right now, it's actually really interesting being on the market now for a full quarter that we can see from our IQVIA data what the percent mix is for the XPHOZAH prescription. And on average, between 55% and 60% is Medicare and the remainder is non-Medicare."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Operator",
+     "content": "The next question comes from Dennis Ding with Jefferies."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Unknown Analyst",
+     "content": "Congrats on the quarter. Few questions from me, if I may. On gross to net for XPHOZAH, this was definitely better than what people expected in the first quarter. So how does this evolve through the year and we should use the 23.8% as the new base going forward? And then secondly, I want to take another stab at this question. But on HR-5074, if the bill is to be signed into law in the first half of '25, XPHOZAH would need to go into TDAPA. But then, if the bill gets signed, XPHOZAH would need to come back out of TDAPA. Can you perhaps shed some light on that process and some of the logistics around that? "
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Michael Raab",
+     "content": "Dennis. Yes, let me just address that quickly. Currently, I think as we've said, our intent is to enter TDAPA. I think the specifics of what you're just describing, that's going to play out over time. But our current intent is to go through the process and as we hope and the work that we're doing and what Buddy Carter is doing and others on the [hill], is understanding how important this medicine is for patients. This is a good policy. It's the right thing to do to ensure that patients get access to a drug that's already beginning to make a difference in many, many lives of dialysis patients. So the work continues and the specifics about how things come in and out based upon these next 6 months or more, we'll get that to you as we also learn.  And Justin, if you can address the gross to net. "
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Justin Renz",
+     "content": "Thanks, Mike. Dennis, in the first quarter, XPHOZAH's gross to net deduction was 23.8%. It obviously is very early in the launch and also the first quarter of the calendar year. So as Susan articulated, our Medicare and non-Medicare split is around 55% to 60% Medicare, and the rest non-Medicare. We're still awarding the patient mix. This is going to drive the gross-to-net ratio through the course of the year. So as a reminder, like I said, it's our first full quarter. We're currently estimating that maybe it will slightly increase over the next few quarters. But in general, we believe for the rest of this year, it will be in the mid-20s range. And we will obviously comment more for you to have greater clarity. "
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Operator",
+     "content": "The next question comes from Roanna Ruiz with Leerink Partners."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Roanna Clarissa Ruiz",
+     "content": "One for XPHOZAH, could you talk a bit about what the early adopter patients look like in terms of their main features? And what's really encouraging physicians to find them and identify them as optimal candidates for XPHOZAH?"
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Michael Raab",
+     "content": "Yes, I'll ask Susan to address it, but the realities are, they are not that hard to find. When we know that patients are out of range. And they've been waiting for something like this. So it [indiscernible]. As you asked the question, do you have patients above? The answer is, of course, yes, and then we move forward.. Susan, sorry, I took the... "
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes. No, no, you're absolutely right. But I think in terms of -- I appreciate your question on who are these early patients we're getting. And I think to Mike's point, first of all, important to know that these phosphorus lovers are tracked very closely. So nephrologists have like an ongoing understanding of their patient base and where their phosphoruses are. So what we're seeing in terms of the patients that are being initiated on XPHOZAH right away are those that the nephrologists had in mind that they know historically, they've really had challenges in keeping them in target ranges. That's who we're getting now. And what's really important as we continue to execute is now that the XPHOZAH is available to really make sure that the nephrologist begins to adapt their behavior and turn to XPHOZAH when possible looking at their patients that are outside of target ranges. "
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Operator",
+     "content": "The next question comes from Laura Chico with Wedbush."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Laura Chico",
+     "content": "Just 2 from me. First on XPHOZAH, what needs to happen to hit the high end of the guidance range now for 2024? And then I just wanted to follow up on XPHOZAH, the conversation around the current Medicare, Medicaid mix. Does that -- is that where you're projecting at a steady-state level, you remain kind of roughly even split between Medicare and non-Medicare patients? And I'm just kind of thinking ahead in terms of the revenue that might be more exposed to TDAPA environment versus not. If you could just share any color in terms of where you see that payer mix split ending up over time? That would be helpful. "
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Michael Raab",
+     "content": "No to just briefly address the IBSRELA question, it's execution and everything that we have been doing is what we need to continue doing. Expanded footprint certainly is going to be a benefit as we said, trained in the field by the end of the quarter. So that's certainly a big part of it, too. But it's execution. The patients are there, they're waiting, and when you ask the right questions, if physicians identify, then we help them go through the prior authorization process. Susan, do you want to address the first question? "
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes, sure. So I think just as anything regarding XPHOZAH at this moment, only having one full quarter under our belt, it's hard to predict, Laura. I don't want to give you the impression that this is exactly steady state. However, it is not unexpected when you just understanding the patient mix in the dialysis setting and the mix that we've seen even for -- in the IQVIA data for the binder therapies, this is not unexpected. But we need few more quarters before we can tell you for certain. One thing that's important is just understanding that the coverage policies have been defined across all the payer segments. So -- and I think that's really what driving the ultimate outcome in terms of the profile. So that is established and will be consistent as we move into the -- as we proceed through this quarter and going forward since we have nice coverage policies in place across all those segments. "
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Operator",
+     "content": "The next question comes from Joseph Thome with TD Cowen."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Joseph Thome",
+     "content": "Congrats on the strong launch. Maybe on XPHOZAH, can you give us a little bit of idea of the proportion of patients that are on free drug or using the patient assistance program as they weigh coverage? And maybe how long does it take to navigate that prior authorization process from a physician writing script to actually getting the drug? And then second, Mike, you mentioned the cash balance, maybe what's your appetite to invest in R&D, either internally in the pipeline or maybe externally and bring something in? "
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Michael Raab",
+     "content": "Let me address both the first and the last question. It's early days for us to be sharing what's on the patient assistance program. So we're going to wait until we've got more experience under our belts with that. And as you saw just under 1.5 months ago, we hired Mike Kelleher as our Executive Vice President, Corporate Development and Strategy. That should be the signal to your question, our willingness to invest in pipeline opportunities with its organic development or opportunities we may find outside as I think what we are demonstrating is that the approach that we take to commercialization of drugs is clearly unique. Our ability to attract remarkable performers in the field, I think, is evidence of what you see in both IBSRELA and XPHOZAH performance. So leveraging that and bringing Mike on board, certainly is a big part of us going in that direction."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "The next question comes from Ed Arce with H.C. Wainwright."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Unknown Analyst",
+     "content": "This is Thomas asking a couple of questions for Ed. Congrats on the strong early traction for XPHOZAH. Perhaps first question, can you discuss how many patients are on XPHOZAH therapy to date? And among these patients what's the split between GI gastro and then PCP prescribers? And then I have a follow-up question as well."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Michael Raab",
+     "content": "Yes, it's a little bit hard to hear the question, but I think you're asking about the split of patients in GIs versus PCP. I think as Susan has spoken about our targets, it's high writing GIs and high writing PCPs who act as other GIs and have big practices. I don't know, Susan, if you want to add anything more to that? "
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes, exactly. So we identify -- our target audience is 9,000 HCPs that account for 50% of the total IBS-C indicated market. So even though so many doctors write IBS-C scripts, the opportunity of really targeting this concentrated group that accounts for 50% is really what drives the IBSRELA opportunity for us. And as Mike mentioned, what we find is that there really isn't a distinction between a PCP and a GI. What we have is the high-writing GIs and then we have high-writing non-GI that actually behave like GIs and just decide to take an interest in treating IBS-C and using the IBS-C indicated drugs to manage their patients. So it's really not a distinction that's relevant in our go-to-market approach. "
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Unknown Analyst",
+     "content": "Got it. And also, can you discuss how many patients are on XPHOZAH therapy [indiscernible] and also the script data could be a reasonable indicator for underlying demand of growth?"
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Michael Raab",
+     "content": "I think you're asking how many people are on 60-day versus 30-day scripts. I think, again, it's early days for us to be sharing that kind of information."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Operator",
+     "content": "The next question comes from Matt Kaplan with Ladenburg Thalmann."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Matthew Kaplan",
+     "content": "Nice out of the gate launch for XPHOZAH. Congrats there. Just wanted to dig in a little bit more to XPHOZAH's performance during the quarter, I guess, what that could mean for demand in 2024 and beyond, but I guess, especially given the high levels of interest you're seeing in the Spherix survey. Were these initial doctors kind of -- adopters that really take on new therapies and then -- will it be more difficult to get additional adopters down the line because these are the early new therapy interest there?"
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Michael Raab",
+     "content": "A quick comment and then I'll let Susan to address in more detail, is, nephrologists have been trying their entire careers with these patients to get their serum phosphorous levels in check. And they have been woefully unable to do a single mechanism of action of binders irrespective of the type of binder that it is. Patients don't want to take that amount of material. Low phosphorous foods are unpalatable. It's really a difficult life. And when a new mechanism of action just comes in and as Susan spoke in her opening statement about how this is being utilized along exactly what the votes were in our Adcomm, it's really heartening. And I think physicians see the opportunity to finally have a tool in their toolkit that may help their patients get into the target range that they've been trying to do. And as Susan said also in our opening comments that we are hearing from patients and from physicians that these effects are sustained. That's heartening and extraordinarily rewarding that we're going to have that kind of impact on patients.  It is early days. You always are going to have early adopters, right? That's not an uncommon phenomenon. But the difference here is there's not one nephrologist out there that has not struggled with, nor one patient out that has not struggled with how to manage their serum phosphorus.  Susan, anything to add? "
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Susan Rodriguez",
+     "content": "Yes. I would just say, the Spherix data did report a 56% user base, and that's data that was generated in April. So -- and what we're seeing in the field is that nephrologists really want to spend time with our sales team. We're getting into these offices, they're learning about it. And they do have patients in mind once they are detailed on XPHOZAH. So I think it's more around -- it's not around an early adopter profile as much as every doctor, to Mike's point, has been managing this challenge of getting these phosphorus levels within target ranges with the limited options they have and now are very open to incorporating XPHOZAH into the treatment regimen to try to do better. So I think that's pretty common across all nephrologists. Where it's going to be important to continue to move the uptake is to expand their thinking where it's not just that patients that they've always had in mind has been so challenging. But now that you have a new tool, as you see these phosphoruses every month, don't wait for multiple reads or try to make everything work for them on diet or other things, the things that they've struggled with. Now they should treat these patients because of the expanded treatment armamentarium they have with exposure.  So that's what's going to be important is just moving beyond that first cohort of patients that they clearly were waiting for something new and now adapting their practice to having a blocking mechanism drug like XPHOZAH. "
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Operator",
+     "content": "This concludes our question-and-answer session. I would like to turn the conference back over to President and CEO, Mike Raab, for any closing remarks."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Michael Raab",
+     "content": "Thank you, everyone, for joining us this evening, including our investors who've been on this journey with us, the employees who drive our success, our partners who support us and the patients that we serve. With that, we can close the call. Thank you, operator."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Operator",
+     "content": "The conference has now concluded. Thank you for attending today's presentation. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +346,8 @@
    "reportDate": "2023-12-31",
    "accession": "0001628280-24-006393",
    "url": "https://www.sec.gov/Archives/edgar/data/1437402/000162828024006393/ardx-20231231.htm",
-   "local_gz": "000162828024006393__annual.txt.gz"
+   "local_gz": "000162828024006393__annual.txt.gz",
+   "n_lines": 2191
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +355,8 @@
    "reportDate": "2024-03-31",
    "accession": "0001628280-24-019990",
    "url": "https://www.sec.gov/Archives/edgar/data/1437402/000162828024019990/ardx-20240331.htm",
-   "local_gz": "000162828024019990__q0.txt.gz"
+   "local_gz": "000162828024019990__q0.txt.gz",
+   "n_lines": 1311
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +364,106 @@
    "reportDate": "2023-09-30",
    "accession": "0001628280-23-035597",
    "url": "https://www.sec.gov/Archives/edgar/data/1437402/000162828023035597/ardx-20230930.htm",
-   "local_gz": "000162828023035597__q1.txt.gz"
+   "local_gz": "000162828023035597__q1.txt.gz",
+   "n_lines": 1357
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2024-02-22",
   "n_rows": 8,
@@ -83,6 +478,63 @@
     "ocf": -31281000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 4529000.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 5623000.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 53408000.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 26373000.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 0.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 275000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -26938000.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.19,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 145544372.0,
+      "filed": "2022-08-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +545,68 @@
     "ocf": -25427000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 9774000.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 5208000.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4003000.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 61628000.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 26541000.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 0.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 297000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -22893000.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.14,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 165104789.0,
+      "filed": "2022-11-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +617,63 @@
     "ocf": 14284000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 28346000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 7733000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4211000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 96140000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 55000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 109000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 10695000.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.11000000000000004,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 11370265.0,
+      "filed": "2023-03-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +684,63 @@
     "ocf": -44795000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 44947000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 12120000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5545000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 92487000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 14000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": -3000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -26773000.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.13,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 207023127.0,
+      "filed": "2023-05-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +751,63 @@
     "ocf": -14737000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 47912000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 9109000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5959000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 30058000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 93000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 642000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -17121000.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.08,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 214951127.0,
+      "filed": "2023-08-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +818,63 @@
     "ocf": -21467000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 47498000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 43263000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 4072000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 33767000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 194000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 291000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 6629000.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.03,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 227894335.0,
+      "filed": "2023-10-31",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +885,53 @@
     "ocf": -8718000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 49487000.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 22031000.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 7182000.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 21470000.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 43000.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 362000.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": {
+      "value": 4354698.0,
+      "filed": "2024-02-22",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +942,27 @@
     "ocf": -35722000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -26518000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": -0.11,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": {
+      "value": 233065960.0,
+      "source": "EX-99.1 稿內文字"
+     }
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 46000000.0,
     "revenue_xbrl_for_reference": 46023000.0
@@ -166,137 +976,24 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2834",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 737,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABCL",
-   "ABEO",
-   "ABOS",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ABVX",
-   "ACAD",
-   "ACB",
-   "ACET",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACRS",
-   "ACRV",
-   "ACXP",
-   "ADAG",
-   "ADCT",
-   "ADIL",
-   "ADMA",
-   "ADPT",
-   "ADXN",
-   "AEON",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKAN",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALEC",
-   "ALGS",
-   "ALKS",
-   "ALLO",
-   "ALLR",
-   "ALNY",
-   "ALT",
-   "ALTO",
-   "ALVO",
-   "ALXO",
-   "ALZN",
-   "AMGN",
-   "AMLX",
-   "AMPH",
-   "AMRN",
-   "AMRX",
-   "AMTX",
-   "ANAB",
-   "ANIP",
-   "ANIX",
-   "ANL",
-   "ANNX",
-   "ANRO",
-   "ANTX",
-   "ANVS",
-   "APD",
-   "APGE",
-   "APLM",
-   "APRE",
-   "APVO",
-   "AQST",
-   "ARCT",
-   "ARGX",
-   "ARMP",
-   "ARQ",
-   "ARQT",
-   "ARTL",
-   "ARVN",
-   "ARWR",
-   "ASBP",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ASPI",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AURA",
-   "AUTL",
-   "AVBP",
-   "AVD",
-   "AVIR",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXIL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "AZTR",
-   "BAK",
-   "BBIO",
-   "BBOT",
-   "BCAB",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BCYC",
-   "BDRX",
-   "BDTX",
-   "BEAM",
-   "BFRG",
-   "BFRI",
-   "BGM",
-   "BHC",
-   "BHST",
-   "BHVN",
-   "BIIB",
-   "BIOX",
-   "BIVI",
-   "BKHA",
-   "BLRX",
-   "BLTE"
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 452,
+  "peer_list_all_tickers": [
+   "JNJ",
+   "LLY"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000059478",
     "name": "ELI LILLY & Co",
     "ticker": "LLY",
-    "sic2": "28",
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2024-02-21",
     "accn": "0000059478-24-000065",
@@ -305,22 +1002,26 @@
      "d while maintaining flexibility to reallocate manufacturing capacity to improve efficiency and respond to changes in supply and demand. To maintain supply of our products, we use a variety of techniques, including comprehensive quality systems, inventory management, and back-up sites. 19 However, pharmaceutical production processes are complex, highly regulated, and vary widely from product to product. Shifting or adding manufacturing capacity is a very lengthy process requiring significant capital expenditures, process modifications, and regulatory approvals. Accordingly, developments such as unanticipated demand, unplanned plant shutdowns, manufacturing or quality assurance difficulties at",
      "Despite our ongoing efforts to meet significant expected demand by obtaining additional internal and contracted manufacturing capacity, there can be no assurances that such capacity increases will be realized as expected. Delays or challenges in operationalizing additional manufacturing capacity would limit our ability to capitalize on demand for our products. Conversely, unexpected events that limit demand for our products would undermine our ability to realize the full benefit of significant capital expenditures that we have incurred, and expect to continue to incur, to augment manufacturing capacity and may also subject us to contractual payment obligations, which may be significant. The ",
      "ices, quality assurance, safety signals, evolving standards, and increased scrutiny around excipients and potential impurities such as nitrosamines, and similar regulations and standards (and comparable foreign regulations and standards) for our products in some cases lead to regulatory and legal actions, product recalls and seizures, fines and penalties, interruption of production leading to product shortages, import bans or denials of import certifications, inability to realize the benefit of capital expenditures, or delays or denials in new product approvals, line extensions or supplemental approvals of current products pending resolution of the issues, or other negative impacts, any of w"
-    ]
+    ],
+    "capex_status": "ok"
    },
    {
     "entity_id": "0000200406",
     "name": "JOHNSON & JOHNSON",
     "ticker": "JNJ",
-    "sic2": "28",
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2024-02-16",
     "accn": "0000200406-24-000013",
     "local_gz": "000020040624000013__peer10k.txt.gz",
     "capex_excerpt": [
      "o the Company's success in all areas of its business. The competitive environment requires substantial investments in continuing research. Environment The Company is subject to a variety of environmental laws and regulations in the United States and other jurisdictions. The Company believes that its operations comply in all material respects with applicable environmental laws and regulations. The Company’s compliance with these requirements is not expected to have a material effect upon its capital expenditures, cash flows, earnings or competitive position. 2023 Annual Report 3 Regulation The Company’s businesses are subject to varying degrees of governmental regulation in the countries in w",
-     "s Before Provision for Taxes on Income 22,134 2,366 3,598 Provision for taxes on income 307 795 521 Net earnings from Discontinued Operations $ 21,827 1,571 3,077 (1) The Company ceased consolidating the results of the Consumer Health business on August 23, 2023, the date of the exchange offer, but continued to reflect any separation costs incurred as part of discontinued operations through the end of the fiscal fourth quarter. The following table presents depreciation, amortization and capital expenditures of the discontinued operations related to Kenvue: (Dollars in Millions) 2023 (1) 2022 2021 Depreciation and Amortization $ 383 641 739 Capital expenditures $ 162 303 314 2023 Annual Repor",
-     "77 (1) The Company ceased consolidating the results of the Consumer Health business on August 23, 2023, the date of the exchange offer, but continued to reflect any separation costs incurred as part of discontinued operations through the end of the fiscal fourth quarter. The following table presents depreciation, amortization and capital expenditures of the discontinued operations related to Kenvue: (Dollars in Millions) 2023 (1) 2022 2021 Depreciation and Amortization $ 383 641 739 Capital expenditures $ 162 303 314 2023 Annual Report 103 Details of assets and liabilities of discontinued operations were as follows: January 1, 2023 Assets Cash and cash equivalents $ 1,238 Accounts receivable"
-    ]
+     "ring facilities discussed above, the Company maintains numerous office and warehouse facilities throughout the world. The Company's subsidiaries generally seek to own, rather than lease, their manufacturing facilities, although some, principally in non-U.S. locations, are leased. Office and warehouse facilities are often leased. The Company also engages contract manufacturers. The Company is committed to maintaining all of its properties in good operating condition. Segment information on additions to property, plant and equipment is contained in Note 17 Segments of business and geographic areas of the Notes to Consolidated Financial Statements included in Item 8 of this Report. Item 3. Lega",
+     "ion, asset write-downs and charge for purchase of in process research and development assets 5.6 an increase in current and non-current liabilities (3.5) an increase in other current and non-current assets 2.3 an increase in accounts payable and accrued liabilities (1.9) an increase in accounts receivable and inventories $22.8 Cash flow from operations 2023 Annual Report 33 Cash flow from investing activities of $0.9 billion was primarily due to: (Dollars in billions) $(4.5) additions to property, plant and equipment 0.4 proceeds from the disposal of assets/businesses, net (0.5) purchases of in-process research and development assets 8.5 net sales of investments (3.0) credit support agreemen"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -342,7 +1043,16 @@
   "latest_data_date": "2024-05-03",
   "cutoff": "2024-05-03",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2024-05-02",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2024-05-06",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

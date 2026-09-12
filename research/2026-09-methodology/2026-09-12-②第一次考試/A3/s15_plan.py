@@ -96,11 +96,9 @@ def main() -> None:
         i = low.find("preliminar")
         plan["prelim"][slot] = dict(chars=len(txt), first_prelim_pos=i)
 
-    # 換入三宗的建包前置文件
+    # 建包前置文件(全部 84 槽:補抓更舊分片後,原本看不到的年報/季報可能新露出來)
     extra_docs = []
     for f in final:
-        if not f["swapped"]:
-            continue
         m = meta.loc[f["acc"]]
         rows = L.filing_rows(m["cik"])
         pf = L.pick_filings(rows, m["reaction_date"])

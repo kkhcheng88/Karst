@@ -1,6 +1,7 @@
 {
  "event_id": "E080",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E080",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "SLVM",
  "cik": "0001856485",
  "name": "Sylvamo Corp",
@@ -9,10 +10,11 @@
  "bucket": "製造與工業",
  "evidence_cutoff": "T1 = 2024-08-09(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E080",
   "event_id": "E080",
   "ticker": "SLVM",
   "cik": "0001856485",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001856485-24-000021",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1856485/000185648524000021/syl-20240809.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1856485/000185648524000021/syl-20240809.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n sylvamoex9912024secondquar.htm\n EX-99.1\n Document \n Exhibit 99.1 \n NEWS RELEASE \n Sylvamo Quarterly Results Exceed Outlook \n MEMPHIS, Tenn. – Aug. 9, 2024 – Sylvamo (NYSE: SLVM), the world’s paper company, is releasing second quarter 2024 earnings. \n Financial Highlights – Second Quarter vs. First Quarter \n • Net income of $83 million ($1.98 per diluted share) vs. $43 million ($1.02 per diluted share) \n • Adjusted operating earnings 1 of $83 million ($1.98 per diluted share) vs. $45 million ($1.07 per diluted share) \n • Adjusted EBITDA 2 of $164 million (18% margin) vs. $118 million (13% margin) \n • Cash provided by operating activities of $115 million vs. $27 million \n • Free cash flow 3 of $62 million vs. $(33) million \n Commercial and Operational Highlights – Second Quarter vs. First Quarter \n • Price and mix improved by $26 million due to pulp and paper price realizations in all regions and a better mix in Latin America \n • Volume increased by $8 million due to seasonally stronger demand in Latin America \n • Operations and other costs improved by $10 million due primarily to solid operations and seasonally lower costs \n • Planned maintenance outage expenses increased by $4 million \n • Input and transportation costs decreased by $6 million, driven primarily by North America \n Third Quarter Outlook \n • Adjusted EBITDA of $170 million to $185 million \n • Compared to the second quarter: \n ◦ Price and mix are expected to be slightly unfavorable up to $5 million due to mix \n ◦ Volume is projected to increase by $10 million to $15 million, driven by Latin America and North America \n ◦ Operations and other costs are expected to increase by $10 million to $15 million due primarily to higher unabsorbed fixed costs from economic downtime \n ◦ Input and transportation costs are projected to increase by $5 million to $10 million due to fiber in Latin America and energy in North America \n ◦ Total planned maintenance outage expenses are expected to decrease by $28 million \n 1 \n Management Summary from Chairman and Chief Executive Officer Jean-Michel Ribiéras \n In the second quarter, price and mix were favorable and input costs largely remained stable compared to last quarter. Uncoated freesheet conditions improved in the first half of the year, with year-over-year demand up in Europe and North America and down slightly in Latin America. After successfully completing our heaviest planned maintenance outage quarter of 2024, we have more than 70% of our annual planned maintenance outages behind us. \n On July 31, we refinanced long-term debt to extend our debt maturity profile and take advantage of a favorable financing market. We also sent notice for the redemption of all outstanding 7% notes and will use a new term loan facility with a 2031 maturity to pay for it. Our long-term debt balance remains stable. The terms, conditions and credit spreads are generally consistent with those in place before refinancing. Our strong balance sheet provides us the flexibility to address macro conditions and downside risks while investing in high-return opportunities through the cycle. \n We continue to allocate capital to generate long-term shareowner value. This year, we repurchased $30 million of our shares and have $120 million remaining on our $150 million share repurchase authorization from September 2023. Our board of directors declared a 50% dividend increase for the third quarter from $0.30 per share to $0.45 per share, which we paid July 29. This was the third dividend increase in the last two years. As of today, we have distributed $43 million through three quarterly dividends in 2024. We are committed to return at least 40% of our free cash flow to shareowners this year through share repurchases and dividends. \n We continue to develop a pipeline of more than $200 million of high-return capital projects, which will allow us to grow our earnings and cash flows as we reinvest in our business in the coming years. \n We are making good progress with Project Horizon, our structural cost reduction program to streamline overhead, manufacturing and supply chain costs. Before inflation, we are on target to achieve run rate savings of $110 million by the end of 2024. \n 1 Adjusted Operating Earnings (non-GAAP) are net income (GAAP), net of tax and net special items. Management uses this measure to focus on ongoing operations and believes it is useful to investors because it enables them to perform meaningful comparisons of past and present combined operating results. The Company believes that using this information, along with net income, provides for a more complete analysis of the results of operations. Net income is the most directly comparable GAAP measure. For more information regarding net special items, see the information under the heading Effects of Net Special Items and the Condensed Consolidated Statement of Operations and related notes included later in this release. \n 2 Adjusted EBITDA (non-GAAP) is net income (GAAP), net of tax, plus the sum of income taxes, net interest expense (income), depreciation, amortization and cost of timber harvested, stock-based compensation, and, when applicable for the periods reported, net special items. Management uses this measure in managing the operating performance of our business and believes that Adjusted EBITDA and Adjusted EBITDA Margin provide investors and analysts meaningful insights into our operating performance and Adjusted EBITDA is a relevant metric for the third-party debt. The Company believes that using this information, along with net income, provides for a more complete analysis of the results of its operations. Net income is the most directly comparable GAAP measure. For more information regarding net special items, see the information under the heading Effects of Net Special Items and the Condensed Consolidated Statement of Operations and related notes included later in this release. \n 3 Free Cash Flow is a non-GAAP measure and the most directly comparable GAAP measure is cash provided by operating activities. Management utilizes this measure in connection with managing our business and believes that Free Cash Flow is useful to investors as a liquidity measure because it measures the amount of cash generated that is available, after reinvesting in the business, to maintain a strong balance sheet and service debt, and return cash to shareowners. It should not be inferred that the entire Free Cash Flow amount is available for discretionary expenditures. Free Cash Flow also enables investors to perform meaningful comparisons between past and present periods. \n 2 \n Select Financial Measures \n (In millions) Second Quarter 2024 First Quarter 2024 Second Quarter 2023 \n Net Sales $ 933 $ 905 $ 919 \n Net Income 83 43 49 \n Business Segment Operating Profit 122 72 82 \n Adjusted Operating Earnings 83 45 49 \n Adjusted EBITDA \n 164 118 124 \n Cash Provided By Operating Activities 115 27 77 \n Free Cash Flow \n 62 (33) 33 \n Segment Information \n Sylvamo uses business segment operating profit to measure the earnings performance of its businesses and is calculated as set forth in footnote (e) under the \"Sales and Earnings by Business Segment\" table (page 7). Second quarter 2024 net sales by business segment and operating profit by business segment compared with the first quarter of 2024 and the second quarter of 2023 are as follows: \n Business Segment Results \n (In millions) Second Quarter 2024 First Quarter 2024 Second Quarter 2023 \n Net Sales by Business Segment \n Europe $ 206 $ 207 $ 210 \n Latin America 245 216 250 \n North America 493 490 474 \n Inter-segment Sales (11) (8) (15) \n Net Sales $ 933 $ 905 $ 919 \n Operating Profit by Business Segment \n Europe $ 8 $ (4) $ (11) \n Latin America 37 14 48 \n North America 77 62 45 \n Business Segment Operating Profit $ 122 $ 72 $ 82 \n Operating profits in the second quarter of 2024: \n Europe - $8 million compared with $(4) million in the first quarter of 2024. Earnings were higher due to higher price and mix and lower operating and input costs which more than offset higher unabsorbed costs due to economic downtime. \n Latin America - $37 million compared with $14 million in the first quarter of 2024. Earnings were higher due to higher price and mix, higher volumes, lower operating costs and lower planned maintenance outages which more than offset higher input costs. \n North America - $77 million compared with $62 million in the first quarter of 2024. Earnings were higher due to higher price and mix and lower operating and input costs which more than offset higher planned maintenance outages. \n Effective Tax Rate \n The reported effective tax rate for the second quarter of 2024 was 27%, compared to 28% for the first quarter of 2024. The higher rate for the first quarter was due to the mix of earnings in our regions. \n Excluding net special items, the effective tax rate for the second quarter of 2024 was 27%, compared with 28% for the first quarter of 2024. \n 3 \n The effective tax rate excluding net special items is a non-GAAP financial measure and is calculated by adjusting the income tax provision and rate to exclude the tax effect at the applicable statutory rate of net special items. Management believes that this presentation provides useful information to investors by providing a more meaningful comparison of the income tax rate between past and present periods. \n Effects of Net Special Items \n Net special items in the second quarter of 2024 amounted to a net after-tax charge of $0 million ($0.00 per diluted share), compared with a net after-tax charge of $2 million ($0.05 per diluted share) in the first quarter of 2024. \n Earnings Webcast \n The company will host an audio webcast at 10 a.m. EDT / 9 a.m. CDT. All interested parties are invited to listen at investors.sylvamo.com . \n Parties who wish to participate should call +1-844-867-6169 (U.S.) or +1-409-207-6975 (international) and use access code 4990882. Participants should call in no later than 9:45 a.m. EDT / 8:45 a.m. CDT. \n Replays are available at investors.sylvamo.com for one year and by phone for 90 days, beginning at approximately 2 p.m. EDT / 1 p.m. CDT the day of the call. To listen to the replay by phone, call +1-866-207-1041 (U.S.) or +1-402-970-0847 (international) and use access code 8081310. \n Investor Contact: Hans Bjorkman, 901-519-8030, hans.bjorkman@sylvamo.com \n Media Contact: Adam Ghassemi, 901-519-8115, adam.ghassemi@sylvamo.com \n About Sylvamo \n Sylvamo Corporation (NYSE: SLVM) is the world's paper company with mills in Europe, Latin America and North America. Our vision is to be the employer, supplier and investment of choice. We transform renewable resources into papers that people depend on for education, communication and entertainment. Headquartered in Memphis, Tennessee, we employ more than 6,500 colleagues. Net sales for 2023 were $3.7 billion. For more information, please visit Sylvamo.com . \n Forward-Looking Statements \n This news release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934, including the information under the headings \"Third Quarter Outlook\" and \"Management Summary from Chairman and Chief Executive Officer Jean-Michel Ribiéras.\" Any or all forward-looking statements may turn out to be incorrect, and our actual actions and results could differ materially from what they express or imply, because they involve known and unknown risks, uncertainties and other factors, many of which are beyond our control. These risks, uncertainties, and other factors include those disclosed in the heading \"Risk Factors\" in our Annual Report on Form 10-K for the year ended Dec. 31, 2023, filed with the U.S. Securities and Exchange Commission (SEC) and in our subsequent filings with the SEC, available on our website, Sylvamo.com. These forward-looking statements reflect our current expectations, and we undertake no obligation to publicly update any forward-looking statements, whether because of new information, future events or otherwise. \n 4 \n SYLVAMO CORPORATION \n Condensed Consolidated Statement of Operations \n Preliminary and Unaudited \n (In millions, except per share amounts) \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Net Sales $ 933 $ 919 $ 905 $ 1,838 $ 1,860 \n Costs and Expenses \n Cost of products sold 684 (a) 721 716 (c) 1,400 1,390 (e) \n Selling and administrative expenses 82 (b) 76 74 (d) 156 (b) 159 (f) \n Depreciation, amortization and cost of timber harvested 37 34 39 76 69 \n Taxes other than payroll and income taxes 8 6 7 15 12 \n Interest expense (income), net 9 12 9 18 19 (g) \n Income Before Income Taxes 113 70 60 173 211 \n Income tax provision 30 21 17 47 65 \n Net Income $ 83 $ 49 $ 43 $ 126 $ 146 \n Earnings Per Share \n Basic $ 2.02 $ 1.16 $ 1.04 $ 3.06 $ 3.44 \n Diluted $ 1.98 $ 1.14 $ 1.02 $ 3.00 $ 3.40 \n Average Shares of Common Stock Outstanding - Diluted 42 43 42 42 43 \n The accompanying notes are an integral part of this condensed consolidated statement of operations. \n Three Months and Six Months Ended June 30, 2024 \n (a) Includes pre-tax gain of $1 million ($1 million after taxes) for the three months ended June 30, 2024, to adjust the recognition of a foreign value-added tax refund in Brazil. \n (b) Includes pre-tax loss of $1 million ($1 million after taxes) for the three and six months ended June 30, 2024, for certain severance costs related to our salaried workforce and a pre-tax loss of $2 million ($1 million after taxes) for the six months ended June 30, 2024, for integration costs related to the Nymölla acquisition. \n Three Months Ended March 31, 2024 \n (c) Includes pre-tax loss of $1 million ($1 million after taxes) for other charges. \n (d) Includes pre-tax loss of $2 million ($1 million after taxes) for integration costs related to the Nymölla acquisition. \n Six Months Ended June 30, 2023 \n (e) Includes incremental expense of $9 million ($7 million after taxes) related to the impact of the step-up of acquired Nymölla inventory sold during the first quarter. \n (f) Includes a pre-tax loss of $4 million ($3 million after taxes) for transaction costs related to the Nymölla acquisition and a pre-tax loss of $4 million ($3 million after taxes) for professional and legal fees related to negotiations resulting in a shareholder cooperation agreement. \n (g) Includes $9 million ($6 million after taxes) of interest income related to tax settlements and a pre-tax loss of $5 million ($4 million after taxes) related to debt extinguishment costs. \n 5 \n SYLVAMO CORPORATION \n Reconciliation of Net Income to Adjusted Operating Earnings \n Preliminary and Unaudited \n (In millions, except per share amounts) \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Net Income $ 83 $ 49 $ 43 $ 126 $ 146 \n Add back: Net special items expense (income) — — 2 2 11 \n Adjusted Operating Earnings $ 83 $ 49 $ 45 $ 128 $ 157 \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Diluted Earnings Per Common Share as Reported $ 1.98 $ 1.14 $ 1.02 $ 3.00 $ 3.40 \n Add back: Net special items expense (income) — — 0.05 0.05 0.25 \n Adjusted Operating Earnings Per Share $ 1.98 $ 1.14 $ 1.07 $ 3.05 $ 3.65 \n 6 \n SYLVAMO CORPORATION \n Sales and Earnings by Business Segment \n Preliminary and Unaudited \n (In millions) \n Net Sales by Business Segment \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Europe $ 206 $ 210 $ 207 $ 413 $ 440 \n Latin America 245 250 216 461 472 \n North America 493 474 490 983 979 \n Inter-segment Sales (11) (15) (8) (19) (31) \n Net Sales $ 933 $ 919 $ 905 $ 1,838 $ 1,860 \n Operating Profit by Business Segment \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Europe $ 8 $ (11) $ (4) $ 4 $ 12 \n Latin America 37 48 14 51 94 \n North America 77 45 62 139 142 \n Business Segment Operating Profit $ 122 $ 82 $ 72 $ 194 $ 248 \n Income Before Income Taxes $ 113 $ 70 $ 60 $ 173 $ 211 \n Interest expense (income), net 9 12 9 18 19 (c) \n Net special items expense (income) — (a) — 3 (b) 3 (a) 18 (d) \n Business Segment Operating Profit (e) $ 122 $ 82 $ 72 $ 194 $ 248 \n Three and Six Months Ended June 30, 2024 \n (a) Includes pre-tax loss of $1 million ($1 million after taxes) for the three and six months ended June 30, 2024, for certain severance costs related to our salaried workforce and a pre-tax loss of $2 million ($1 million after taxes) for the six months ended June 30, 2024, for integration costs related to the Nymölla acquisition. Also includes pre-tax gain of $1 million ($1 million after taxes) for the three months ended June 30, 2024, to adjust the recognition of a foreign value-added tax refund in Brazil. \n Three Months Ended March 31, 2024 \n (b) Includes pre-tax loss of $2 million ($1 million after taxes) for integration costs related to the Nymölla acquisition and pre-tax loss of $1 million ($1 million after taxes) for other charges. \n Six Months Ended June 30, 2023 \n (c) Includes $9 million ($6 million after taxes) of interest income related to tax settlements and a pre-tax loss of $5 million ($4 million after taxes) related to debt extinguishment costs. \n (d) Includes pre-tax loss of $4 million ($3 million after taxes) for integration costs related to the Nymölla acquisition, a pre-tax loss of $4 million ($3 million after taxes) for professional and legal fees related to negotiations resulting in a shareholder cooperation agreement and incremental expense of $9 million ($7 million after taxes) related to the impact of the step-up of acquired Nymölla inventory sold during the first quarter. \n (e) As set forth in the chart above, business segment operating profit is defined as income before income taxes, but excluding net interest expense (income) and net special items. Business segment operating profit is a measure reported to our management for purposes of making decisions about allocating resources to our business segments and assessing the performance of our business segments. \n 7 \n Reconciliation of Net Income to Adjusted EBITDA and Adjusted EBITDA Margin \n Preliminary and Unaudited \n (In millions) \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Net Income $ 83 $ 49 $ 43 $ 126 $ 146 \n Adjustments: \n Income tax provision 30 21 17 47 65 \n Interest expense (income), net 9 12 9 18 19 \n Depreciation, amortization and cost of timber harvested 37 34 39 76 69 \n Stock-based compensation 5 8 7 12 15 \n Net special items expense (income) — — 3 3 18 \n Adjusted EBITDA $ 164 $ 124 $ 118 $ 282 $ 332 \n Net Sales $ 933 $ 919 $ 905 $ 1,838 $ 1,860 \n Adjusted EBITDA Margin 17.6% 13.5% 13.0% 15.3% 17.8% \n Adjusted EBITDA and Adjusted EBITDA Margin by Business Segment \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Adjusted EBITDA \n Europe $ 17 $ (3) $ 5 $ 22 $ 28 \n Latin America 55 67 34 89 130 \n North America 92 60 79 171 174 \n Total Business Segment Adjusted EBITDA $ 164 $ 124 $ 118 $ 282 $ 332 \n Net Sales (excluding inter-segment sales eliminations) \n Europe $ 206 $ 210 $ 207 $ 413 $ 440 \n Latin America 245 250 216 461 472 \n North America 493 474 490 983 979 \n Total Business Segment Net Sales $ 944 $ 934 $ 913 $ 1,857 $ 1,891 \n Adjusted EBITDA Margin \n Europe 8% (1)% 2% 5% 6% \n Latin America 22% 27% 16% 19% 28% \n North America 19% 13% 16% 17% 18% \n 8 \n SYLVAMO CORPORATION \n Condensed Consolidated Balance Sheet \n Preliminary and Unaudited \n (In millions) \n June 30, 2024 December 31, 2023 \n Assets \n Current Assets \n Cash and temporary investments $ 145 $ 220 \n Restricted cash 60 60 \n Accounts and notes receivable, net 411 428 \n Contract assets 32 27 \n Inventories 412 404 \n Other current assets 40 54 \n Total Current Assets 1,100 1,193 \n Plants, Properties and Equipment, Net 955 1,002 \n Forestlands 346 364 \n Goodwill 121 139 \n Right of Use Assets 59 58 \n Deferred Charges and Other Assets 110 116 \n Total Assets $ 2,691 $ 2,872 \n Liabilities and Equity \n Current Liabilities \n Accounts payable $ 389 $ 421 \n Notes payable and current maturities of long-term debt 28 28 \n Accrued payroll and benefits 65 63 \n Other current liabilities 172 183 \n Total Current Liabilities 654 695 \n Long-Term Debt 894 931 \n Deferred Income Taxes 162 189 \n Other Liabilities 151 156 \n Equity \n Common stock, $1 par value, 200.0 shares authorized, 44.9 shares and 44.5 shares issued and 41.0 shares and 41.2 shares outstanding at June 30, 2024 and December 31, 2023, respectively 45 45 \n Paid-In Capital 60 48 \n Retained Earnings 2,317 2,222 \n Accumulated Other Comprehensive Loss (1,397) (1,256) \n 1,025 1,059 \n Less: Common stock held in treasury, at cost, 3.9 shares and 3.3 shares at June 30, 2024 and December 31, 2023, respectively (195) (158) \n Total Equity 830 901 \n Total Liabilities and Equity $ 2,691 $ 2,872 \n 9 \n Condensed Consolidated Statement of Cash Flows \n Preliminary and Unaudited \n (In millions) \n Six Months Ended\nJune 30, \n 2024 2023 \n Operating Activities \n Net income $ 126 $ 146 \n Depreciation, amortization, and cost of timber harvested 76 69 \n Deferred income tax provision (benefit), net — 4 \n Stock-based compensation 12 15 \n Changes in operating assets and liabilities and other \n Accounts and notes receivable (7) 91 \n Inventories (20) (60) \n Accounts payable and accrued liabilities (26) (147) \n Other (19) 22 \n Cash Provided By Operating Activities 142 140 \n Investment Activities \n Invested in capital projects (113) (105) \n Acquisition of business, net of cash acquired — (167) \n Cash Provided By (Used for) Investment Activities (113) (272) \n Financing Activities \n Dividends paid (25) (21) \n Issuance of debt 16 437 \n Reduction of debt (54) (443) \n Repurchases of common stock (30) (40) \n Other (2) (6) \n Cash Provided By (Used for) Financing Activities (95) (73) \n Effect of Exchange Rate Changes on Cash (9) 9 \n Change in Cash, Temporary Investments and Restricted Cash (75) (196) \n Cash, Temporary Investments and Restricted Cash \n Beginning of the period 280 360 \n End of the period $ 205 $ 164 \n 10 \n SYLVAMO CORPORATION \n Reconciliation of Cash Provided by Operations to Free Cash Flow \n Preliminary and Unaudited \n (In millions) \n Three Months Ended \n June 30, \n Three Months Ended \n March 31, \n 2024 \n Six Months Ended \n June 30, \n 2024 2023 2024 2023 \n Cash Provided By Operating Activities $ 115 $ 77 $ 27 $ 142 $ 140 \n Adjustments: \n Cash invested in capital projects (53) (44) (60) (113) (105) \n Free Cash Flow $ 62 $ 33 $ (33) $ 29 $ 35 \n SYLVAMO CORPORATION \n Reconciliation of Net Income to Adjusted EBITDA - Third Quarter 2024 Outlook \n Estimates \n (In millions) \n Three Months Ended \n September 30, \n 2024 \n Net Income $84 - $94 \n Adjustments: \n Income tax provision 33 - 38 \n Interest expense (income), net 10 \n Depreciation, amortization and cost of timber harvested 37 \n Stock-based compensation 6 \n Adjusted EBITDA $170 - $185 \n The non-GAAP financial measures presented in this release have limitations as analytical tools and should not be considered in isolation or as a substitute for an analysis of our results calculated in accordance with GAAP. In addition, because not all companies use identical calculations, the Company’s presentation of non-GAAP measures in this release may not be comparable to similarly titled measures disclosed by other companies, including companies in the same industry as Sylvamo. \n Management believes certain non-U.S. GAAP financial measures, when used in conjunction with information presented in accordance with U.S. GAAP, can facilitate a better understanding of the impact of various factors and trends on the Company’s financial condition and results of operations. Management also uses these non-U.S. GAAP financial measures in making financial, operating and planning decisions and in evaluating the Company’s performance. \n 11 \n",
@@ -36,6 +39,24 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000185648524000021__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001856485-24-000014",
+   "filingDate": "2024-05-10",
+   "reportDate": "2024-05-10",
+   "form": "8-K",
+   "local_gz": "000185648524000014__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 2,
+   "guidance_sentences": [
+    "EX-99.1 2 sylvamoex9912024firstquart.htm EX-99.1 Document Exhibit 99.1 NEWS RELEASE Sylvamo First Quarter Results Meet Expectations, Strong Second Quarter Outlook Reflects Improving Conditions MEMPHIS, Tenn.",
+    "Before inflation, we are on target to meet run rate savings of $110 million by the end of 2024."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +68,8 @@
    "reportDate": "2023-12-31",
    "accession": "0001856485-24-000008",
    "url": "https://www.sec.gov/Archives/edgar/data/1856485/000185648524000008/syl-20231231.htm",
-   "local_gz": "000185648524000008__annual.txt.gz"
+   "local_gz": "000185648524000008__annual.txt.gz",
+   "n_lines": 2265
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +77,8 @@
    "reportDate": "2024-06-30",
    "accession": "0001856485-24-000024",
    "url": "https://www.sec.gov/Archives/edgar/data/1856485/000185648524000024/syl-20240630.htm",
-   "local_gz": "000185648524000024__q0.txt.gz"
+   "local_gz": "000185648524000024__q0.txt.gz",
+   "n_lines": 846
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +86,106 @@
    "reportDate": "2024-03-31",
    "accession": "0001856485-24-000015",
    "url": "https://www.sec.gov/Archives/edgar/data/1856485/000185648524000015/syl-20240331.htm",
-   "local_gz": "000185648524000015__q1.txt.gz"
+   "local_gz": "000185648524000015__q1.txt.gz",
+   "n_lines": 784
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2024-05-10",
   "n_rows": 8,
@@ -83,6 +200,63 @@
     "ocf": 121000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 338000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 458000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 1000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 163000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1229000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 30000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 57000000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.28,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 44600000.0,
+      "filed": "2022-11-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +267,63 @@
     "ocf": 142000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 364000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 430000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 0.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 360000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1032000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 130000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 31000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 94000000.0,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.12,
+      "filed": "2023-02-22",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +334,63 @@
     "ocf": 63000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 506000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 416000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 191000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 998000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 35000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 97000000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.25,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 43100000.0,
+      "filed": "2023-05-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +401,63 @@
     "ocf": 77000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 486000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 416000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 13000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 164000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 998000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 34000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 49000000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.14,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42800000.0,
+      "filed": "2023-08-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +468,63 @@
     "ocf": 197000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 456000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 403000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 254000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 989000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 36000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 58000000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.37,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42400000.0,
+      "filed": "2023-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +535,63 @@
     "ocf": 167000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 404000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 404000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 280000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 959000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 210000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 38000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 49000000.0,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.1600000000000001,
+      "filed": "2024-02-21",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +602,63 @@
     "ocf": 27000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 407000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 393000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 209000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 949000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": "查不到",
+     "depreciation_amortization": {
+      "value": 39000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 43000000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.02,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 42100000.0,
+      "filed": "2024-05-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +669,24 @@
     "ocf": 115000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 83000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 1.98,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 933000000.0,
     "revenue_xbrl_for_reference": 933000000.0
@@ -166,61 +700,14 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2621",
   "sic2": "26",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 18,
-  "peer_list_all_same_sic2_tickers": [
-   "AVY",
-   "CLW",
-   "DSS",
-   "DSY",
-   "GPK",
-   "IP",
-   "ITP",
-   "KMB",
-   "MAGN",
-   "MATV",
-   "MERC",
-   "PACK",
-   "PKG",
-   "REYN",
-   "RYAM",
-   "SON",
-   "SUZ",
-   "SW"
-  ],
-  "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0000055785",
-    "name": "KIMBERLY CLARK CORP",
-    "ticker": "KMB",
-    "sic2": "26",
-    "form": "10-K",
-    "filingDate": "2024-02-08",
-    "accn": "0000055785-24-000018",
-    "local_gz": "000005578524000018__peer10k.txt.gz",
-    "capex_excerpt": [
-     "greenhouse gas emissions along our value chain, with goals approved by the Science Based Targets initiative (\"SBTi\"); and building resilience to water risk at our facilities and in our communities in water-stressed regions around the world. We have aligned our goals with the United Nations' Sustainable Development Goals framework. Progress on our strategy is outlined in our Global Sustainability reports. 2 KIMBERLY-CLARK CORPORATION - 2023 Annual Report For 2024 and 2025, we expect total capital expenditures for voluntary environmental controls or controls necessary to comply with legal requirements relating to the protection of the environment at our facilities to average approximately $50 ",
-     "total capital expenditures for voluntary environmental controls or controls necessary to comply with legal requirements relating to the protection of the environment at our facilities to average approximately $50 on an annual basis. Total operating expenses for environmental compliance, including pollution control equipment operation and maintenance costs, governmental fees, and research and engineering costs, are expected to be approximately $100 in 2024 and $110 in 2025. Total environmental capital expenditures and operating expenses are not expected to have a material effect on our total capital and operating expenditures, consolidated earnings or competitive position. Current environment",
-     "on our behalf share our commitment to compliance, and we have policies and procedures in place to manage these relationships, though they inherently involve a lesser degree of control over operations and governance. We monitor each of these areas for new or changed regulatory requirements, particularly in the rapidly evolving area of data privacy and protection. We have made, and plan to continue making, necessary expenditures for compliance with applicable laws and regulations; however, total capital expenditures and operating expenses related to compliance are not expected to have a material effect on our total capital and operating expenditures, consolidated earnings or competitive positi"
-    ]
-   },
-   {
-    "entity_id": "0000051434",
-    "name": "INTERNATIONAL PAPER CO /NEW/",
-    "ticker": "IP",
-    "sic2": "26",
-    "form": "10-K",
-    "filingDate": "2024-02-16",
-    "accn": "0000051434-24-000024",
-    "local_gz": "000005143424000024__peer10k.txt.gz",
-    "capex_excerpt": [
-     "Our continuing objectives include: (1) controlling emissions and discharges from our facilities to avoid adverse impacts on the environment, and (2) maintaining compliance with applicable laws and regulations. The Company spent approximately $40 million in 2023 for capital projects to control environmental releases into the air and water, and to assure environmentally sound management and disposal of waste. We expect to spend approximately $35 million in 2024 for environmental capital projects. Capital expenditures on environmental projects for 2025 and 2026, respectively, are anticipated to be approximately $40 million and $35 million. It is possible that our capital expenditure assumptions",
-     "ce with applicable laws and regulations. The Company spent approximately $40 million in 2023 for capital projects to control environmental releases into the air and water, and to assure environmentally sound management and disposal of waste. We expect to spend approximately $35 million in 2024 for environmental capital projects. Capital expenditures on environmental projects for 2025 and 2026, respectively, are anticipated to be approximately $40 million and $35 million. It is possible that our capital expenditure assumptions, estimates and project completion dates may change, and our projections are subject to change due to items such as the finalization of ongoing engineering projects, var",
-     "nts RISKS RELATED TO OUR INDEBTEDNESS THE LEVEL OF OUR INDEBTEDNESS COULD ADVERSELY AFFECT OUR FINANCIAL CONDITION AND IMPAIR OUR ABILITY TO OPERATE OUR BUSINESS. As of December 31, 2023, we had approximately $5.6 billion of outstanding indebtedness. The level of our indebtedness could have important consequences to our financial condition, operating results and business, including the following: • it may limit our ability to obtain additional debt or equity financing for working capital, capital expenditures, product development, dividends, share repurchases, debt service requirements, acquisitions and general corporate or other purposes; • a portion of our cash flows from operations will b"
-    ]
-   }
-  ]
+  "bucket": "製造與工業",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "insufficient",
+  "n_listed_peers": 0,
+  "peer_list_all_tickers": [],
+  "peer_annual_reports_2_largest": "同業資料不足"
  },
  "6_價格狀態": {
   "ret_6m_skip1m": 0.4284682388116825,
@@ -240,7 +727,16 @@
   "latest_data_date": "2024-08-09",
   "cutoff": "2024-08-09",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2024-08-12",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

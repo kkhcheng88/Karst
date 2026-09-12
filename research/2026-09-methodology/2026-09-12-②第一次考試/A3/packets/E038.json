@@ -1,6 +1,7 @@
 {
  "event_id": "E038",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E038",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "DIN",
  "cik": "0000049754",
  "name": "Dine Brands Global, Inc.",
@@ -9,10 +10,11 @@
  "bucket": "消費與零售",
  "evidence_cutoff": "T1 = 2019-02-21(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E038",
   "event_id": "E038",
   "ticker": "DIN",
   "cik": "0000049754",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,5.02,7.01,8.01,9.01",
   "accessionNumber": "0001193125-19-046137",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/49754/000119312519046137/d709303d8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/49754/000119312519046137/d709303d8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 3\n d709303dex991.htm\n EX-99.1\n EX-99.1 \n Exhibit 99.1 \n News Release \n Investor Contact \n Ken Diptee \n Executive Director, Investor Relations \n Dine Brands\nGlobal, Inc. \n 818-637-3632 \n Media Contact \n Thien Ho \n Executive Director, Communications \n Dine Brands Global,\nInc. \n 818-549-4238 \n Dine Brands Global, Inc. Reports Strong Fourth Quarter and Fiscal 2018 Results \n Applebee’s Fourth Quarter Same-Restaurant Sales Increase 3.5% \n IHOP Fourth Quarter Same-Restaurant Sales Increase 3.0% \n Company Declares and Raises First Quarter 2019 Dividend \n New Share Repurchase Authorization of $200 Million \n GLENDALE, Calif., February 21, 2019 – Dine Brands Global, Inc. (NYSE: DIN), the parent company of Applebee’s Neighborhood Grill +\nBar ® and IHOP ® restaurants, today announced financial results for the fourth\nquarter and fiscal 2018. \n “Dine Brand’s strong performance in the fourth quarter and throughout 2018 is the result of a clear strategic vision and\nunwavering commitment to sustainable growth. Both Applebee’s and IHOP have outperformed their respective categories by delivering on comprehensive efforts to drive their businesses and delight guests. The momentum we are seeing is bolstered by\nmeaningful improvements in the in-restaurant experience, ongoing investment in guest-facing technologies, breakthrough marketing and further extending our off-premise \nplatforms for both brands. I am very proud of the Dine teams, our franchisees and their operators and team members for their contributions, hard work and commitment to a multi-pronged strategy and our collective success,” said Steve Joyce,\nChief Executive Officer of Dine Brands Global, Inc. \n Mr. Joyce continued, “As we head into 2019, we are very encouraged by our outlook and growth\nopportunities. We have the right strategies in place to drive long-term momentum and create additional value for our shareholders.” \n Key Highlights\n ● \n Applebee’s comparable same-restaurant sales increased 3.5% for the fourth quarter of fiscal 2018, achieving the fifth\nconsecutive quarter of sales growth. \n ● \n IHOP’s comparable same-restaurant sales increased 3.0% for the fourth quarter of fiscal 2018, achieving the fourth\nconsecutive quarter of sales growth. \n Page\n 2\n of 16 \n ● \n IHOP’s reported system-wide sales for the fourth quarter of fiscal 2018 increased 4.5% year-over-year to\n$863.7 million. \n ● \n Gross profit for the fourth quarter of fiscal 2018 increased 41.9% year-over-year to $98.4 million.\n ● \n GAAP earnings per diluted share of $1.47 for the fourth quarter of fiscal 2018 compares to $3.82 for the fourth quarter of\nfiscal 2017. The decline was primarily due to a tax benefit of $58.8 million in the fourth quarter of fiscal 2017, partially offset by a $29.0 million increase in gross profit. \n ● \n Adjusted earnings per diluted share increased to $1.70 for the fourth quarter of fiscal 2018 compared to $0.48 in the\nfourth quarter of fiscal 2017. (See “Non-GAAP Financial Measures” below.) \n ● \n GAAP net income for the fourth quarter of fiscal 2018 was $27.0 million. \n ● \n Consolidated adjusted EBITDA for the fourth quarter of fiscal 2018 increased 66.7% year-over-year to $65.0 million.\n(See “Non-GAAP Financial Measures” and reconciliation of GAAP net income to consolidated adjusted EBITDA.) \n ● \n IHOP franchisees and area licensees developed 34 net new domestic restaurants in fiscal 2018, marking at least a decade of\nconsecutive net domestic development. \n ● \n For the twelve-month period ended December 31, 2018, the Company repurchased 478,839 shares of its common stock for a\ntotal cost of approximately $34.9 million and paid quarterly cash dividends totaling approximately $51.1 million. \n Fourth Quarter of\nFiscal 2018 Financial Highlights \n ● \n GAAP net income available to common stockholders was $26.1 million, or earnings per diluted share of $1.47, for the\nfourth quarter of fiscal 2018. This compares to net income available to common stockholders of $67.8 million, or earnings per diluted share of $3.82, for the fourth quarter of fiscal 2017. The decrease in net income was primarily due to a tax\nbenefit of $58.8 million in the fourth quarter of fiscal 2017. The tax benefit was mainly a result of the revaluation of our deferred tax assets and liabilities due to a future reduction in our corporate tax rate following the enactment of the\nTax Cuts and Jobs Act tax legislation in December 2017. There was no similar tax benefit from the revaluation of our deferred tax assets and liabilities in the fourth quarter of fiscal 2018. This item was partially offset by an increase in gross\nprofit of $29.0 million, which was due to lower bad debt expense and cash collections of previously unrecognized royalty revenues, a lower advertising fund deficit, increases in Applebee’s and IHOP domestic system-wide comparable\nsame-restaurant sales and IHOP restaurant development. \n ● \n Adjusted net income available to common stockholders was $30.3 million, or adjusted earnings per diluted share of\n$1.70, for the fourth quarter of fiscal 2018. This compares to adjusted net income available to common stockholders of $8.6 million, or adjusted earnings per diluted share of $0.48, for the fourth quarter of fiscal 2017. The increase in\nadjusted net income was mainly due to higher franchise segment profit as the result of increases in Applebee’s and IHOP domestic system-wide comparable same-restaurant sales, lower bad debt expense and cash collections of previously\nunrecognized royalty revenues. These items were partially offset by an increase in general and administrative expenses. (See “Non-GAAP Financial Measures” below.) \n ● \n General and administrative expenses were $45.3 million for the fourth quarter of fiscal 2018 compared to\n$40.0 million for the fourth quarter of fiscal 2017. The increase was primarily due to \n Page\n 3\n of 16 \nhigher personnel-related costs and business acquisition costs related to 69 Applebee’s restaurants acquired by the Company in December 2018. These items were partially offset by a decline in\ncosts related to conferences and professional services. \n Fiscal 2018 Financial Highlights \n ● \n GAAP net income available to common stockholders was $77.6 million, or earnings per diluted share of $4.37, for fiscal\n2018. This compares to a net loss available to common stockholders of $336.0 million, or a net loss per diluted share of $18.96, for fiscal 2017. The increase in net income was primarily due to non-cash \nimpairment charges totaling $531.6 million in fiscal 2017 related to the write-downs of Applebee’s goodwill and other intangible assets as well as higher gross profit. The non-cash impairment charges\nwere partially offset by a tax benefit of $85.6 million in 2017 primarily because of a fourth-quarter revaluation of our deferred tax assets and liabilities due to a future reduction in our corporate tax rate. \n ● \n Consolidated adjusted EBITDA for fiscal 2018 was $230.6 million. This compares to adjusted EBITDA for fiscal 2017 of $221.3\nmillion. (See “Non-GAAP Financial Measures” and reconciliation of GAAP net income to consolidated adjusted EBITDA.) \n ● \n Adjusted net income available to common stockholders was $95.5 million, or adjusted earnings per diluted share of\n$5.37, for fiscal 2018. This compares to adjusted net income available to common stockholders of $72.5 million, or adjusted earnings per diluted share of $4.09, for fiscal 2017. The increase in adjusted net income was mainly due to lower income\ntax expense, as well as higher franchise segment profit, driven by increases in Applebee’s and IHOP domestic system-wide comparable same-restaurant sales, lower bad debt expense and cash collections of previously unrecognized royalty revenues.\nThese items were partially offset by an increase in general and administrative expenses. (See “Non-GAAP Financial Measures” below.) \n ● \n General and administrative expenses were $166.7 million for fiscal 2018 compared to $165.7 million for fiscal\n2017. The increase was due to higher costs of stock-based and other incentive compensation, partially offset by a decline in professional services costs. \n ● \n Cash flows from operating activities were $140.3 million for fiscal 2018 compared to $65.7 million for fiscal\n2017. Adjusted free cash flow was $140.9 million for fiscal 2018 compared to $63.0 million for fiscal 2017. (See “Non-GAAP Financial Measures” below.) \n Fiscal 2018 Same-Restaurant Sales Performance \n ● \n Applebee’s domestic system-wide comparable same-restaurant sales increased 5.0% for fiscal 2018.\n ● \n IHOP’s domestic system-wide comparable same-restaurant sales increased 1.5% for fiscal 2018. \n GAAP Effective Tax Rate \n Our effective tax rates for the fourth quarter and\nfiscal 2018 were 15.8% and 27.4%, respectively. The fourth quarter effective tax rate was 15.8% primarily due to the revaluation of state deferred taxes due to the December 2018 acquisition of Applebee’s 69 restaurants in North Carolina and\nSouth Carolina and state legislative changes enacted in 2018. The effective tax rates were impacted by the Tax Cuts and Jobs Act (the “Tax Act”) enacted in December 2017, which lowered the federal statutory corporate tax rate from 35% to\n21%, beginning in 2018. \n During fiscal, 2018, we increased our tax provision by $5.1 million related to adjustments resulting from IRS audits for tax years\n2011 through 2013. This increased our effective tax rate from what would have been an estimated combined federal and state rate of 25% (reflecting the reduction in the federal tax rate from the Tax Act) to approximately 27.4% for fiscal 2018.\nCompletion of the IRS audits for tax years 2011 through 2013 will allow us to accelerate the collection of certain tax benefits recognized in prior years. As a result, we expect to receive a cash refund of approximately $12.5 million within the\nnext 12 months. \n Page\n 4\n of 16 \n Capital Allocation \n The\nCompany’s board of directors approved a 10% increase in its quarterly cash dividend to $0.69 per share of common stock. The dividend for the first quarter of fiscal 2019 will be payable on April 5, 2019 to the Company’s stockholders\nof record at the close of business on March 20, 2019. \n The board of directors also approved replacing the Company’s existing share repurchase\nauthorization for its common stock, effective immediately, with an authorization of up to $200 million. \n Financial Performance\nGuidance for Fiscal 2019 \n The following financial performance guidance for fiscal 2019 is based on management’s expectations as of February 21, 2019.\nThe projections are as of this date, and the Company assumes no obligation to update or supplement these estimates. \n ● \n Applebee’s domestic system-wide comparable same-restaurant sales performance is expected to range between\npositive 2.0% and positive 4.0%. \n ● \n IHOP’s domestic system-wide comparable same-restaurant sales performance is expected to range between positive 2.0%\nand positive 4.0%. \n ● \n Development activity by Applebee’s franchisees is expected to result in net closures between 20 and 30 restaurants\nglobally, the majority of which are expected to be domestic closures. \n ● \n IHOP franchisees and area licensees are expected to develop between 35 and 55 net new restaurants globally, the majority of\nwhich are expected to be domestic openings. \n ● \n Total segment profit, excluding the company restaurants segment, is expected to be between approximately $373 million\nand $394 million. \n ● \n General and administrative expenses are expected to range between approximately $165 million and approximately\n$170 million, including non-cash stock-based compensation expense and depreciation totaling approximately $40 million. This projection includes approximately $6 million of general and\nadministrative expenses related to the company restaurants segment. \n ● \n GAAP net income is expected to range between approximately $104 million and approximately $113 million.\n ● \n Consolidated adjusted EBITDA is expected to range between approximately $268 million and approximately\n$277 million. This projection includes company restaurants segment EBITDA, which is expected to be between approximately $9 million and approximately $11 million. (See “Non-GAAP Financial\nMeasures” and reconciliation of GAAP net income to consolidated adjusted EBITDA.) \n ● \n GAAP earnings per diluted share is expected to range from $6.15 to $6.45. \n ● \n Adjusted earnings per diluted share is expected to range from $6.90 to $7.20. (See\n “Non-GAAP Financial Measures” and reconciliation of GAAP earnings per diluted share to adjusted earnings per diluted share.) \n Page\n 5\n of 16 \n 2019 Diluted Net Income Available to Common Stockholders Per Share (1) , As Adjusted \n Reconciliation Guidance Table \n Net income available to common stockholders per diluted share\n $6.15 – $6.45 \n Closure and impairment charges\n 0.14 \n Amortization of intangible assets\n 0.61 \n Non-cash interest expense\n 0.27 \n Income tax provision for above adjustments at 26%\n (0.27) \n Diluted net income available to common stockholders per \n share, as adjusted \n $6.90 – $7.20 \n (1) The adjustments to net income available to common stockholders per diluted share are midpoint estimates. \n 2019 Net Income to Consolidated Adjusted EBITDA Reconciliation Guidance Table (1) ($ in millions) \n Net income\n $104 – $113 \n Interest charges\n 74 \n Income tax provision\n 38 \n Depreciation and amortization\n 36 \n Non-cash stock-based compensation\n 14 \n Impairment and closure charges\n 2 \n Consolidated adjusted EBITDA (Non-GAAP) \n $268 – 277 \n (1) The adjustments to net income are midpoint estimates. \n Fourth Quarter and Fiscal 2018 Conference Call Details \n Dine Brands will host a conference call to discuss its results on February 21, 2019 at 6:00 a.m. Pacific Time/9:00 a.m. Eastern Time. To participate on the\ncall, please dial (888) 771-4371 and reference passcode 48199137. International callers, please dial (847) 585-4405 and reference passcode 48199137. \n A live webcast of the call will be available on www.dinebrands.com and may be accessed by visiting Events and Presentations under the site’s Investors\nsection. Participants should allow approximately ten minutes prior to the call’s start time to visit the site and download any streaming media software needed to listen to the webcast. A telephonic replay of the call may be accessed\nfrom 8:30 a.m. Pacific Time/11:30 a.m. Eastern Time on February 21, 2019 through 8:59 p.m. Pacific Time/11:59 p.m. Eastern Time on February 28, 2019 by dialing (888)\n 843-7419 and referencing passcode 48199137#. International callers, please dial (630) 652-3042 and reference passcode 48199137#. An online archive of the\nwebcast will also be available on Events and Presentations under the Investors section of the Company’s website. \n About Dine Brands Global, Inc.\n Based in Glendale, California, Dine Brands Global, Inc. (NYSE: DIN), through its subsidiaries, franchises restaurants under both the Applebee’s\nNeighborhood Grill & Bar and IHOP brands. With approximately 3,700 restaurants combined in 18 countries and approximately 380 franchisees, Dine Brands is one of the largest full-service restaurant companies in the world. For more\ninformation on Dine Brands, visit the Company’s website located at www.dinebrands.com. \n Page\n 6\n of 16 \n Forward-Looking Statements \n Statements contained in this press release may constitute forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended,\nand Section 21E of the Securities Exchange Act of 1934, as amended. You can identify these forward-looking statements by words such as “may,” “will,” “would,” “should,” “could,”\n“expect,” “anticipate,” “believe,” “estimate,” “intend,” “plan,” “goal” and other similar expressions. These statements involve known and unknown risks, uncertainties and other\nfactors, which may cause actual results to be materially different from those expressed or implied in such statements. These factors include, but are not limited to: general economic conditions; our level of indebtedness; compliance with the terms\nof our securitized debt; our ability to refinance our current indebtedness or obtain additional financing; our dependence on information technology; potential cyber incidents; the implementation of restaurant development plans; our dependence on our\nfranchisees; the concentration of our Applebee’s franchised restaurants in a limited number of franchisees; the financial health our franchisees; our franchisees’ and other licensees’ compliance with our quality standards and\ntrademark usage; general risks associated with the restaurant industry; potential harm to our brands’ reputation; possible future impairment charges; the effects of tax reform; trading volatility and fluctuations in the price of our stock; our\nability to achieve the financial guidance we provide to investors; successful implementation of our business strategy; the availability of suitable locations for new restaurants; shortages or interruptions in the supply or delivery of products from\nthird parties or availability of utilities; the management and forecasting of appropriate inventory levels; development and implementation of innovative marketing and use of social media; changing health or dietary preference of consumers; risks\nassociated with doing business in international markets; the results of litigation and other legal proceedings; third-party claims with respect to intellectual property assets; our ability to attract and retain management and other key employees;\ncompliance with federal, state and local governmental regulations; risks associated with our self-insurance; natural disasters or other series incidents; our success with development initiatives outside of our core business; the adequacy of our\ninternal controls over financial reporting and future changes in accounting standards; and other factors discussed from time to time in the Company’s Annual and Quarterly Reports on Forms 10-K and 10-Q and in the Company’s other filings with the Securities and Exchange Commission. The forward-looking statements contained in this release are made as of the date hereof and the Company does not intend to,\nnor does it assume any obligation to, update or supplement any forward-looking statements after the date hereof to reflect actual results or future events or circumstances. \n Non-GAAP Financial Measures \n This\npress release includes references to the Company’s non-GAAP financial measure “adjusted net income available to common stockholders”, “adjusted earnings per diluted share (Adjusted\nEPS)”, “Adjusted EBITDA” and “Adjusted free cash flow.” Adjusted EPS is computed for a given period by deducting from net income or loss available to common stockholders for such period the effect of any closure and\nimpairment charges, any gain or loss related to debt extinguishment, any intangible asset amortization, any non-cash interest expense, any gain or loss related to the disposition of assets, and other items\ndeemed not reflective of current operations. This is presented on an aggregate basis and a per share (diluted) basis. Adjusted EBITDA is computed for a given period by deducting from net income or loss for such period the effect of any closure\nand impairment charges, any interest charges, any income tax provision or benefit, any non-cash stock-based compensation, any depreciation and amortization, any gain or loss related to the disposition of\nassets and other items deemed not reflective of current operations. “Adjusted free cash flow” for a given period is defined as cash provided by operating activities, plus receipts from notes and equipment contracts receivable, less capital\nexpenditures. Management may use certain of these non-GAAP financial measures along with the corresponding U.S. GAAP measures to evaluate the performance of the business and to make certain business decisions.\nManagement uses adjusted free cash flow in its periodic assessments of, among other things, the amount of cash dividends per share of common stock and repurchases of common stock and we believe it is important for investors to have the same measure\nused by management for that purpose. Adjusted free cash flow does not represent residual cash flow available for discretionary purposes. Additionally, adjusted EPS is one of the metrics used in determining payouts under the Company’s\nannual cash incentive plan. Management believes that these non-GAAP financial measures provide additional \n Page\n 7\n of 16 \nmeaningful information that should be considered when assessing the business and the Company’s performance compared to prior periods and the marketplace. Adjusted EPS and adjusted free\ncash flow are supplemental non-GAAP financial measures and should not be considered in isolation or as a substitute for measures of performance prepared in accordance with U.S. GAAP. \n Page\n 8\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Consolidated Statements of Comprehensive Income (Loss) \n (In thousands, except per share amounts) \n Three Months Ended \n Twelve Months Ended \n December 31, \n December 31, \n (unaudited) \n 2018 \n 2017 \n 2018 \n 2017 \n (as adjusted) \n (as adjusted) \n Revenues: \n Franchise revenues:\n Royalties, franchise fees and other\n $ \n 99,865 \n $ \n 88,266 \n $ \n 375,640 \n $ \n 360,253 \n Advertising revenue\n 74,737 \n 55,785 \n 268,294 \n 234,165 \n Total Franchise revenues\n 174,602 \n 144,051 \n 643,934 \n 594,418 \n Rental revenues\n 30,642 \n 30,585 \n 121,934 \n 121,437 \n Financing revenues\n 1,870 \n 2,072 \n 7,979 \n 8,352 \n Company restaurant sales\n 7,084 \n — \n 7,084 \n 7,518 \n Total revenues\n 214,198 \n 176,708 \n 780,931 \n 731,725 \n Cost of revenues: \n Franchise expenses:\n Advertising expenses\n 76,033 \n 64,716 \n 269,590 \n 243,096 \n Other franchise expenses\n 11,429 \n 19,549 \n 61,029 \n 50,890 \n Total Franchise expenses\n 87,462 \n 84,265 \n 330,619 \n 293,986 \n Rental expenses\n 22,345 \n 22,927 \n 90,756 \n 90,592 \n Financing expenses\n 148 \n 149 \n 597 \n 598 \n Company restaurant expenses\n 5,872 \n 31 \n 5,872 \n 7,838 \n Total cost of revenues\n 115,827 \n 107,372 \n 427,844 \n 393,014 \n Gross profit \n 98,371 \n 69,336 \n 353,087 \n 338,711 \n Impairment of goodwill and intangible assets\n — \n — \n — \n 531,634 \n General and administrative expenses\n 45,260 \n 39,978 \n 166,683 \n 165,679 \n Interest expense\n 15,576 \n 15,483 \n 61,686 \n 61,979 \n Amortization of intangible assets\n 2,592 \n 2,502 \n 10,105 \n 10,009 \n Closure and other impairment charges\n 1,988 \n 162 \n 2,107 \n 3,968 \n Debt refinancing costs\n (9) \n — \n 2,523 \n — \n Loss (gain) on disposition of assets\n 910 \n 138 \n (625) \n (6,249) \n Income (loss) before income tax (provision) benefit\n 32,054 \n 11,073 \n 110,608 \n (428,309) \n Income tax (provision) benefit\n (5,073) \n 58,827 \n (30,254) \n 85,559 \n Net income (loss) \n $ \n 26,981 \n $ \n 69,900 \n $ \n 80,354 \n $ \n (342,750) \n Net income (loss) available to common stockholders: \n Net income (loss)\n $ \n 26,981 \n $ \n 69,900 \n $ \n 80,354 \n $ \n (342,750) \n Less: Net (income) loss allocated to unvested participating restricted stock\n (917) \n (2,095) \n (2,711) \n 6,768 \n Net income (loss) available to common stockholders\n $ \n 26,064 \n $ \n 67,805 \n $ \n 77,643 \n $ \n (335,982) \n Net income (loss) available to common stockholders per share: \n Basic\n $ \n 1.49 \n $ \n 3.82 \n $ \n 4.43 \n $ \n (18.96) \n Diluted\n $ \n 1.47 \n $ \n 3.82 \n $ \n 4.37 \n $ \n (18.96) \n Weighted average shares outstanding: \n Basic\n 17,446 \n 17,745 \n 17,533 \n 17,725 \n Diluted\n 17,785 \n 17,764 \n 17,789 \n 17,740 \n Dividends declared per common share \n $0.63 \n $0.97 \n $2.52 \n $3.88 \n Dividends paid per common share \n $0.63 \n $0.97 \n $2.86 \n $3.88 \n Page\n 9\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Consolidated Balance Sheets \n (In thousands, except share and per share amounts) \n December 31, 2018 \n December 31, 2017 \n (as adjusted) \n Assets \n Current assets:\n Cash and cash equivalents\n $ \n 137,164 \n $ \n 117,010 \n Receivables, net\n 137,504 \n 140,188 \n Restricted cash\n 48,515 \n 31,436 \n Prepaid gift card costs\n 38,195 \n 40,725 \n Prepaid income taxes\n 17,402 \n 43,654 \n Other current assets\n 3,410 \n 12,615 \n Total current assets\n 382,190 \n 385,628 \n Long-term receivables, net\n 103,102 \n 126,570 \n Other intangible assets, net\n 585,889 \n 582,787 \n Goodwill\n 345,314 \n 339,236 \n Property and equipment, net\n 240,264 \n 199,585 \n Deferred rent receivable\n 77,069 \n 82,971 \n Non-current restricted cash\n 14,700 \n 14,700 \n Other non-current assets, net\n 26,152 \n 4,135 \n Total assets\n $ \n 1,774,680 \n $ \n 1,735,612 \n Liabilities and Stockholders’ Deficit \n Current liabilities:\n Current maturities of long-term debt\n $ \n 25,000 \n $ \n 12,965 \n Accounts payable\n 43,468 \n 55,028 \n Gift card liability\n 160,438 \n 164,441 \n Dividends payable\n 11,389 \n 17,748 \n Current maturities of capital lease and financing obligations\n 14,031 \n 14,193 \n Accrued employee compensation and benefits\n 27,479 \n 13,547 \n Deferred franchise revenue, short-term\n 10,138 \n 11,001 \n Other accrued expenses\n 24,243 \n 16,001 \n Total current liabilities\n 316,186 \n 304,924 \n Long-term debt, less current maturities\n 1,274,087 \n 1,269,849 \n Capital lease obligations, less current maturities\n 87,762 \n 61,895 \n Financing obligations, less current maturities\n 38,482 \n 39,200 \n Deferred income taxes, net\n 105,816 \n 117,669 \n Deferred franchise revenue, long-term\n 64,557 \n 70,432 \n Deferred rent payable\n 62,744 \n 69,112 \n Other non-current liabilities\n 27,319 \n 18,071 \n Total liabilities\n 1,976,953 \n 1,951,152 \n Commitments and contingencies\n Stockholders’ deficit:\n Common stock, $0.01 par value; shares: 40,000,000 authorized; December 31, 2018 - 24,984,898 issued, 17,644,267\noutstanding; December 31, 2017 - 25,022,312 issued, 17,993,124 outstanding\n 250 \n 250 \n Additional paid-in-capital \n 237,726 \n 276,408 \n Retained earnings (accumulated deficit)\n 10,414 \n (69,940) \n Accumulated other comprehensive loss\n (60) \n (105) \n Treasury stock, at cost; shares: December 31, 2018 - 7,340,631; December 31, 2017 - 7,029,188\n (450,603) \n (422,153) \n Total stockholders’ deficit\n (202,273) \n (215,540) \n Total liabilities and stockholders’ deficit\n $ \n 1,774,680 \n $ \n 1,735,612 \n Page\n 10\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Consolidated Statements of Cash Flows \n (In thousands) \n Twelve Months Ended \n December 31, \n 2018 \n 2017 \n (as adjusted) \n Cash flows from operating activities: \n Net income (loss)\n $ \n 80,354 \n $ \n (342,750) \n Adjustments to reconcile net income (loss) to cash flows provided by operating\nactivities:\n Impairment of goodwill and intangible assets\n — \n 531,634 \n Deferred income taxes\n (11,847) \n (136,127) \n Depreciation and amortization\n 32,175 \n 30,648 \n Non-cash interest expense\n 3,792 \n 3,364 \n Closure and other impairment charges\n 2,038 \n 3,834 \n Non-cash stock-based compensation expense\n 10,546 \n 10,752 \n Gain on disposition of assets\n (623) \n (6,285) \n Other\n (6,526) \n (10,980) \n Changes in operating assets and liabilities:\n Accounts receivable, net\n 3,149 \n (8,430) \n Current income tax receivables and payables\n 8,119 \n (8,490) \n Gift card receivables and payables\n (1,488) \n (3,322) \n Other current assets\n 10,425 \n (8,247) \n Accounts payable\n (9,940) \n 7,208 \n Accrued employee compensation and benefits\n 13,183 \n (1,126) \n Other current liabilities\n 6,989 \n 4,050 \n Cash flows provided by operating activities\n 140,346 \n 65,733 \n Cash flows from investing activities: \n Principal receipts from notes, equipment contracts and other long-term receivables\n 25,771 \n 20,486 \n Proceeds from sale of property and equipment\n 655 \n 1,100 \n Acquisition of business\n (20,155) \n — \n Additions to property and equipment\n (14,279) \n (13,370) \n Additions to long-term receivables\n (6,500) \n — \n Other\n (293) \n (541) \n Cash flows (used in) provided by investing activities\n (14,801) \n 7,675 \n Cash flows from financing activities: \n Borrowings from revolving credit facilities\n 75,000 \n — \n Repayments of revolving credit facilities\n (50,000) \n — \n Repayment of long-term debt\n (13,000) \n (3,250) \n Dividends paid on common stock\n (51,125) \n (69,790) \n Repurchase of Dine Brands Global common stock\n (33,603) \n (10,003) \n Principal payments on capital lease and financing obligations\n (13,907) \n (12,949) \n Payment of debt issuance costs\n (3,633) \n — \n Proceeds from stock options exercised\n 3,928 \n 2,635 \n Tax payments for restricted stock upon vesting\n (1,972) \n (2,396) \n Cash flows used in financing activities\n (88,312) \n (95,753) \n Net change in cash, cash equivalents and restricted cash\n 37,233 \n (22,345) \n Cash, cash equivalents and restricted cash at beginning of period\n 163,146 \n 185,491 \n Cash, cash equivalents and restricted cash at end of period\n $ \n 200,379 \n $ \n 163,146 \n Page\n 11\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Non-GAAP Financial Measures \n (In thousands, except per share amounts) \n (Unaudited) \n Reconciliation of net income\n(loss) available to common stockholders to net income (loss) available to common stockholders, as adjusted for the following items: closure and other impairment charges; executive separation costs; amortization of intangible assets; non-cash interest expense; gain or loss on disposition of assets; debt financing costs; business acquisition costs; the combined tax effect of the preceding adjustments; and other\n tax-related adjustments, as well as related per share data: \n Three Months Ended \n Twelve Months Ended \n December 31, \n December 31, \n 2018 \n 2017 \n 2018 \n 2017 \n (as adjusted) \n (as adjusted) \n Net income (loss) available to common stockholders, as reported\n $ \n 26,064 \n $ \n 67,805 \n $ \n 77,643 \n $ \n (335,982) \n Impairment of goodwill and intangible assets\n — \n — \n — \n 531,634 \n Closure and other impairment charges\n 1,988 \n 162 \n 2,107 \n 3,968 \n Executive separation costs\n — \n — \n — \n 8,782 \n Amortization of intangible assets\n 2,592 \n 2,502 \n 10,105 \n 10,009 \n Non-cash interest expense\n 1,103 \n 855 \n 3,792 \n 3,364 \n Loss (gain) on disposition of assets\n 910 \n 138 \n (625) \n (6,249) \n Debt refinancing costs\n (9) \n — \n 2,523 \n — \n Business acquisition costs\n 1,114 \n — \n 1,114 \n — \n Income tax provision\n (2,001) \n (1,390) \n (4,944) \n (73,444) \n Deferred tax impact of tax rate change\n — \n (66,519) \n — \n (66,519) \n Income tax adjustments (1) \n (1,310) \n 3,207 \n 4,434 \n 5,426 \n Net (income) loss allocated to unvested participating restricted stock\n (154) \n 1,828 \n (631) \n (8,508) \n Net income (loss) available to common stockholders, as adjusted\n $ \n 30,297 \n $ \n 8,588 \n $ \n 95,518 \n $ \n 72,481 \n Diluted net income (loss) available to common stockholders per share:\n Net income (loss) available to common stockholders, as reported\n $ \n 1.47 \n $ \n 3.82 \n $ \n 4.37 \n $ \n (18.96) \n Impairment of goodwill and intangible assets\n — \n — \n — \n 26.25 \n Closure and other impairment charges\n 0.08 \n 0.01 \n 0.09 \n 0.14 \n Executive separation costs\n — \n — \n — \n 0.31 \n Amortization of intangible assets\n 0.11 \n 0.09 \n 0.42 \n 0.35 \n Non-cash interest expense\n 0.05 \n 0.03 \n 0.16 \n 0.12 \n Loss (gain) on disposition of assets\n 0.04 \n 0.00 \n (0.03) \n (0.22) \n Debt refinancing costs\n (0.00) \n — \n 0.10 \n — \n Business acquisition costs\n 0.05 \n — \n 0.05 \n — \n Deferred tax impact of tax rate change\n — \n (3.74) \n — \n (3.75) \n Income tax adjustments (1) \n (0.07) \n 0.18 \n 0.25 \n 0.31 \n Net (income) loss allocated to unvested participating restricted stock \n (0.01) \n 0.10 \n (0.04) \n (0.48) \n Rounding\n (0.02) \n (0.01) \n — \n 0.02 \n Diluted net income (loss) available to common stockholders per share, as adjusted \n $ \n 1.70 \n $ \n 0.48 \n $ \n 5.37 \n $ \n 4.09 \n Numerator for basic EPS-income available to common stockholders, as adjusted \n $ \n 30,297 \n $ \n 8,588 \n $ \n 95,518 \n $ \n 72,481 \n Effect of unvested participating restricted stock using the\n two-class method\n 12 \n — \n 25 \n — \n Numerator for diluted EPS-income available to common\nstockholders after assumed conversions, as adjusted\n $ \n 30,309 \n $ \n 8,588 \n $ \n 95,543 \n $ \n 72,481 \n Denominator for basic EPS-weighted-average shares\n 17,446 \n 17,745 \n 17,533 \n 17,725 \n Dilutive effect of stock options\n 339 \n 19 \n 256 \n 15 \n Denominator for diluted EPS-weighted-average shares and assumed conversions \n 17,785 \n 17,764 \n 17,789 \n 17,740 \n (1) \n 2018: Charges related to adjustments resulting from IRS audits for tax years 2011 through 2013; 2017:\nUnrecognized tax benefits related to domestic manufacturing deduction taken in years prior to 2017. \n Page\n 12\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Non-GAAP Financial Measures \n (Unaudited) \n Reconciliation of the\nCompany’s cash provided by operating activities to “adjusted free cash flow” (cash provided by operating activities, plus receipts from notes and equipment contracts receivable, less additions to property and equipment). Management\nuses this liquidity measure in its periodic assessments of, among other things, the amount of cash dividends per share of common stock and repurchases of common stock. We believe it is important for investors to have the same measure used by\nmanagement for that purpose. Adjusted free cash flow does not represent residual cash flow available for discretionary purposes. \n Twelve Months Ended\nDecember 31, \n 2018 \n 2017 \n (In millions) \n Cash flows provided by operating activities\n $ \n 140.3 \n $ \n 65.7 \n Receipts from notes and equipment contracts receivable\n 14.9 \n 10.6 \n Additions to property and equipment\n (14.3) \n (13.3) \n Adjusted free cash flow \n 140.9 \n 63.0 \n Dividends paid on common stock\n (51.1) \n (69.8) \n Repurchase of Dine Brands Global common stock\n (33.6) \n (10.0) \n $ \n 56.2 \n $ \n (16.8) \n Page\n 13\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Non-GAAP Financial Measures \n (Unaudited) \n Reconciliation of the\nCompany’s net income (loss) to “adjusted EBITDA.” The Company defines adjusted EBITDA as net income (loss), adjusted for the effect of any closure and impairment charges, any interest charges, any income tax provision or benefit, any non-cash stock-based compensation, any depreciation and amortization, any gain or loss related to the disposition of assets, other non-income based taxes and other items\ndeemed not reflective of current operations. Management may use certain non-GAAP measures along with the corresponding U. S. GAAP measures to evaluation the performance of the company and to make certain\nbusiness decisions. \n Three Months Ended\nDecember 31, \n Twelve Months Ended\nDecember 31, \n 2018 \n 2017 \n 2018 \n 2017 \n (as adjusted) \n (as adjusted) \n Net income (loss), as reported\n $ \n 26,981 \n $ \n 69,900 \n $ \n 80,354 \n $ \n (342,750) \n Interest charges\n 17,929 \n 17,906 \n 71,537 \n 72,281 \n Income tax provision (benefit)\n 5,073 \n (58,827) \n 30,254 \n (85,559) \n Depreciation and amortization\n 8,445 \n 7,595 \n 32,175 \n 30,648 \n Non-cash stock-based compensation\n 2,530 \n 1,926 \n 10,546 \n 10,752 \n Impairment of goodwill and intangible assets\n — \n — \n — \n 531,634 \n Closure and other impairment charges\n 1,988 \n 162 \n 2,107 \n 3,968 \n Loss (gain) on disposition of assets\n 910 \n 138 \n (625) \n (6,249) \n Cash executive separation costs\n — \n — \n — \n 5,901 \n Debt refinancing costs\n — \n — \n 2,523 \n — \n Business acquisition costs\n 1,114 \n — \n 1,114 \n — \n Other taxes\n 57 \n 218 \n 605 \n 677 \n Adjusted EBITDA\n $ \n 65,027 \n $ \n 39,018 \n $ \n 230,590 \n $ \n 221,303 \n Page\n 14\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Restaurant Data \n (Unaudited) \n The following\ntable sets forth, for the three and twelve months ended December 31, 2018 and 2017, the number of “Effective Restaurants” in the Applebee’s and IHOP systems and information regarding the percentage change in sales at those\nrestaurants compared to the same periods in the prior year and, as such, the percentage change in sales at Effective Restaurants is based on non-GAAP sales data. Sales at restaurants that are owned by\nfranchisees and area licensees are not attributable to the Company. However, we believe that presentation of this information is useful in analyzing our revenues because franchisees and area licensees pay us royalties and advertising fees that are\ngenerally based on a percentage of their sales, and, where applicable, rental payments under leases that partially may be based on a percentage of their sales. Management also uses this information to make decisions about future plans for the\ndevelopment of additional restaurants as well as evaluation of current operations. \n Three Months Ended\nDecember 31, \n Twelve Months Ended\nDecember 31, \n 2018 \n 2017 \n 2018 \n 2017 \n Applebee’s \n Effective Restaurants(a) \n Franchise\n 1,835 \n 1,936 \n 1,883 \n 1,970 \n Company\n 11 \n — \n 3 \n — \n Total\n 1,846 \n 1,936 \n 1,886 \n 1,970 \n System-wide (b) \n Domestic sales percentage change (c) \n 0.3 % \n (1.1)% \n 2.3 % \n (6.8)% \n Domestic same-restaurant sales percentage\nchange (d) \n 3.5 % \n 1.3 % \n 5.0 % \n (5.3)% \n Franchise (b) \n Domestic sales percentage change (c) \n (0.4)% \n (1.1)% \n 2.1 % \n (6.8)% \n Domestic same-restaurant sales percentage\nchange (d) \n 3.4 % \n 1.3 % \n 4.9 % \n (5.3)% \n Average weekly domestic unit sales (in thousands)\n $ \n 46.5 \n $ \n 44.2 \n $ \n 46.7 \n $ \n 43.6 \n IHOP \n Effective Restaurants (a) \n Franchise\n 1,649 \n 1,598 \n 1,633 \n 1,576 \n Area license\n 159 \n 164 \n 162 \n 164 \n Company\n — \n — \n — \n 5 \n Total\n 1,808 \n 1,762 \n 1,795 \n 1,745 \n System-wide (b) \n Sales percentage change (c) \n 4.5 % \n 3.1% \n 3.9% \n 0.7% \n Domestic same-restaurant sales percentage\nchange (d) \n 3.0 % \n (0.4)% \n 1.5 % \n (1.9)% \n Franchise (b) \n Sales percentage change (c) \n 5.2 % \n 3.1 % \n 4.4 % \n 1.2 % \n Domestic same-restaurant sales percentage\nchange (d) \n 3.0 % \n (0.4)% \n 1.5 % \n (1.9)% \n Average weekly unit sales (in thousands)\n $ \n 37.0 \n $ \n 36.3 \n $ \n 36.6 \n $ \n 36.3 \n Area License (b) \n Sales percentage change (c) \n (3.1)% \n 9.0 % \n 0.5 % \n (0.7)% \n Page\n 15\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Restaurant Data \n (a) \n “Effective Restaurants” are the weighted average number of restaurants open in a given fiscal period,\nadjusted to account for restaurants open for only a portion of the period. Information is presented for all Effective Restaurants in the Applebee’s and IHOP systems, which includes restaurants owned by franchisees and area licensees as well as\nthose owned by the Company. \n (b) \n “System-wide” sales are retail sales at domestic Applebee’s restaurants operated by franchisees\nand IHOP restaurants operated by franchisees and area licensees, as reported to the Company, in addition to retail sales at company-operated restaurants. Sales at restaurants that are owned by franchisees and area licensees are not attributable\nto the Company. An increase or decrease in franchisees’ reported sales will result in a corresponding increase or decrease in our royalty revenue. Unaudited reported sales for Applebee’s domestic franchise restaurants, IHOP franchise\nrestaurants and IHOP area license restaurants for the three and twelve months ended December 31, 2018 and 2017 and sales by company-operated restaurants were as follows: \n Three Months Ended\nDecember 31, \n Twelve Months Ended\nDecember 31, \n 2018 \n 2017 \n 2018 \n 2017 \n (In millions) \n Reported sales \n Applebee’s domestic franchise restaurant sales\n $ \n 1,020.6 \n $ \n 1,024.8 \n $ \n 4,204.1 \n $ \n 4,117.1 \n Applebee’s company-operated restaurants\n 7.1 \n — \n 7.1 \n — \n IHOP franchise restaurant sales\n 793.9 \n 754.3 \n 3,106.7 \n 2,974.6 \n IHOP area license restaurant sales\n 69.8 \n 72.0 \n 282.0 \n 280.6 \n IHOP company-operated restaurants\n — \n — \n — \n 7.5 \n Total\n $ \n 1,891.4 \n $ \n 1,851.1 \n $ \n 7,599.9 \n $ \n 7,379.8 \n (c) \n “Sales percentage change” reflects, for each category of restaurants, the percentage change in sales\nin any given fiscal period compared to the prior fiscal period for all restaurants in that category. \n (d) \n “Domestic same-restaurant sales percentage change” reflects the percentage change in sales, in any\ngiven fiscal period, compared to the same weeks in the prior year for domestic restaurants that have been operated throughout both fiscal periods that are being compared and have been open for at least 18 months. Because of new unit openings\nand restaurant closures, the domestic restaurants open throughout both fiscal periods being compared may be different from period to period. Same-restaurant sales percentage change does not include data on IHOP area license restaurants located in\nFlorida. \n Page\n 16\n of 16 \n Dine Brands Global, Inc. and Subsidiaries \n Restaurant Data \n (Unaudited) \n The following\ntable summarizes our restaurant development activity: \n Three Months Ended\nDecember 31, \n Twelve Months Ended\nDecember 31, \n 2018 \n 2017 \n 2018 \n 2017 \n Applebee’s Restaurant Development Activity \n Summary - beginning of period: \n 1,856 \n 1,945 \n 1,936 \n 2,016 \n Franchise restaurants opened:\n Domestic\n — \n 3 \n 2 \n 10 \n International\n 2 \n 3 \n 5 \n 9 \n Total franchise restaurants opened\n 2 \n 6 \n 7 \n 19 \n Franchise restaurants closed:\n Domestic\n (14) \n (12) \n (91) \n (86) \n International\n (7) \n (3) \n (15) \n (13) \n Total franchise restaurants closed\n (21) \n (15) \n (106) \n (99) \n Net franchise restaurant reduction \n (19) \n (9) \n (99) \n (80) \n Refranchised from Company restaurants\n (69) \n — \n (69) \n — \n Net franchise restaurant decrease \n (88) \n (9) \n (168) \n (80) \n Summary - end of period: \n Franchise\n 1,768 \n 1,936 \n 1,768 \n 1,936 \n Company\n 69 \n — \n 69 \n — \n Total Applebee’s restaurants, end of period \n 1,837 \n 1,936 \n 1,837 \n 1,936 \n Domestic\n 1,693 \n 1,782 \n 1,693 \n 1,782 \n International\n 144 \n 154 \n 144 \n 154 \n IHOP Restaurant Development Activity \n Summary - beginning of period: \n Franchise\n 1,652 \n 1,596 \n 1,622 \n 1,556 \n Area license\n 162 \n 165 \n 164 \n 167 \n Company\n — \n — \n — \n 10 \n Total IHOP restaurants, beginning of period \n 1,814 \n 1,761 \n 1,786 \n 1,733 \n Franchise/area license restaurants opened:\n Domestic franchise\n 19 \n 17 \n 51 \n 48 \n Domestic area license\n — \n — \n 3 \n 1 \n International franchise\n 3 \n 10 \n 17 \n 28 \n Total franchise/area license restaurants opened\n 22 \n 27 \n 71 \n 77 \n Franchise/area license restaurants closed:\n Domestic franchise\n (5) \n — \n (15) \n (11) \n Domestic area license\n — \n (1) \n (5) \n (3) \n International franchise\n — \n (1) \n (6) \n (8) \n International area license\n — \n — \n — \n (1) \n Total franchise/area license restaurants closed\n (5) \n (2) \n (26) \n (23) \n Net franchise/area license restaurant development \n 17 \n 25 \n 45 \n 54 \n Refranchised from Company restaurants\n — \n — \n 1 \n 9 \n Franchise restaurants reacquired by the Company\n — \n — \n (1) \n — \n Net franchise/area license restaurant additions \n 17 \n 25 \n 45 \n 63 \n Summary - end of period \n Franchise\n 1,669 \n 1,622 \n 1,669 \n 1,622 \n Area license\n 162 \n 164 \n 162 \n 164 \n Company\n — \n — \n — \n — \n Total IHOP restaurants, end of period \n 1,831 \n 1,786 \n 1,831 \n 1,786 \n Domestic\n 1,705 \n 1,671 \n 1,705 \n 1,671 \n International\n 126 \n 115 \n 126 \n 115 \n",
@@ -36,7 +39,321 @@
   "same_day_8k_items": "2.02,5.02,7.01,8.01,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000119312519046137__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001193125-18-312871",
+   "filingDate": "2018-10-31",
+   "reportDate": "2018-10-31",
+   "form": "8-K",
+   "local_gz": "000119312518312871__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 3,
+   "guidance_sentences": [
+    "As a result, we expect to receive a cash refund of approximately $12 million within the next 12 months.",
+    "Financial Performance Guidance for Fiscal 2018 Dine Brands reiterates its financial performance guidance for fiscal 2018 contained in the press release issued on October 31, 2018 and the Form 8-K filed on the same day, except for the revisions noted below.",
+    "We expect the closure of approximately 30 to 40 restaurants, or on a full-year net development basis, a range of 35 to 55 incremental restaurants."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2019-02-21",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 57,
+   "has_qna": true,
+   "n_chars": 50208,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Welcome to the Fourth Quarter 2018 Dine Brands Global Incorporated Earnings Conference Call. My name is Paulette and I will be your operator for today's call. At this time, all participants are in a listen-only mode. Later, we will conduct a question-and-answer session. [Operator Instructions] Please note that this conference is being recorded. I will now turn the call over to Ken Diptee, Executive Director of Investor Relations. You may begin."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Ken Diptee",
+     "content": "Good morning and welcome to Dine Brands fourth quarter and fiscal 2018 conference call. I'm joined by Steve Joyce, CEO; Tom Song CFO; Darren Rebelez, President of IHOP; John Cywinski, President of Applebee's; and Greg Kalvin, our Corporate Controller will be available during Q&A as well. Before I turn the call over to Steve, please remember our safe harbor regarding forward-looking information. During the call, management may discuss information that are forward-looking and involves known and unknown risks, uncertainties and other factors, which may cause the actual results to be different than those expressed or implied. Please evaluate the forward-looking information in the context of these factors, which are detailed in today's press release and 10-Q filing. The forward-looking statements are as of today and assumes no obligation to update these statements. We may also refer certain non-GAAP financial measures, which are described in our press release and available on our website. With that, I'll now turn the call over to Steve."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Steve Joyce",
+     "content": "Thanks, Ken. Good morning everyone and thank you for participating today. In our press release issued this morning, you saw that we finished a strong year with a very solid fourth quarter results. We continued to deliver year-over-year double-digit growth across key metrics including total revenues, gross profit, adjusted EPS, as well as adjusted EBITDA. My initial full year as CEO of Dine Brands was a transformative year for the company. We stayed the course and executed against a multi-pronged strategy focused on returning Dine Brands to a growth company. With the performance-driven value-based culture firmly in place, I'm very confident in our go-forward plans. Following our transitional period in 2017, this year was dedicated to enhancing brand relevance and building momentum at Applebee's and IHOP, while driving growth. To that end, I'm pleased to report that both brands achieved positive comp sales growth for 2018 and this momentum continued into January. While Darren and John will go into more brand-specific details a little later, I'd like to highlight several of our notable achievements this past year. First of all, we returned to nurturing a winning leadership team and trusted franchises. We increased investments in research and consumer insight; we are enhancing guest and team member engagement through consumer-facing technology and CRM; we have a focus on traffic-generating menu innovation and abundant value and giving everyone a reason to visit of our restaurants; we are accelerating restaurant unit growth; and we are also accelerating in big numbers on all premises business. On the Applebee's front, there was a marked improvement in overall Applebee's franchisee financial health and nearly all Applebee's franchisees agreed to temporarily increase their advertising contribution rate by 75 basis points to 4.25%. Additionally, Applebee's achieved the highest quarterly comp sales increase in 14 years in the third quarter posting growth of 7.7%. Turning to IHOP, our franchisees and area licenses developed 34 net new unit domestic restaurants, marking at least a decade of consecutive net development growth. IHOP returned to positive comp sales in 2018 and ended the year with a very, very solid quarter. The brand also took innovation in the next level creating the most Buzzworthy media campaign in its history with the ultimate state burger launch. Additionally, both Applebee's and IHOP reached all-time highs in their overall guest satisfaction scores. And lastly, both brands experienced strong growth in their off-premise business. Regarding Dine overall, our highly franchised model produced stable and robust adjusted EBITDA margins of approximately 45%, excluding advertising revenues. There was a substantial year-over-year decline in bad debt expense compared to 2017 and we significantly upsized our VFN to $225 million from $100 million, which gives us much more financial flexibility. These accomplishments to name a few have helped to better position us for long-term success and provide a very solid foundation for us to build on. We have a plan in place, which we believe will sustain our current trajectory. Looking forward, we are very encouraged about 2019 and the years ahead. Importantly this year, we will provide a better picture of our untapped potential as it reflects a cleaner slate for several reasons, when we have a little bit of color. Notably, the $30 million contribution that we made to Applebee's national advertising fund was completed in the first half of last year and it is non-recurring. We have improved visibility into royalty collections. Additionally, we've reached a favorable settlement in December with one of our largest Applebee's franchisees, the terms among other things required the franchisee to pay us approximately $12.5 million for past due royalties and advertising fees in total. This plus the other resolutions have successfully resolved all of our franchisees issues for Applebee's. With the positive momentum of both brands, we are in a even better position to drive accelerated profitable growth with the continued strong support from our franchisees. We will focus on growth platforms, which are gaining traction. These include exploring significant opportunities developed in urban and rural areas, as well as leveraging non-traditional in small formats to penetrate higher cost trade areas and further embracing technology to enhance the guest experience. We believe our all-premise businesses at both brands can produce continued strong growth. For 2018, Applebee's and IHOP's off-premise comp sales increased by approximately 32% and 30% respectively, driven mainly by double-digit traffic growth. We also view of our international operations as a potential growth engine. Approximately 7% of our restaurants are outside of the U.S. The interest in our brands internationally remains healthy, primarily on the IHOP side. Most recently the brand expanded its presence into Thailand and announced plans to grow its footprint in South America under separate franchise agreements to build 25 restaurants in Peru and 12 restaurants in Ecuador. With that, I'm going to turn the call over to Tom to provide a little more detail on the numbers."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Tom Song",
+     "content": "Great. Thank you, Steve. Good morning everyone. Our highly-franchise business model continue to produce impressive results. I'll provide a brief review of the highlights for the fourth quarter and full year, but before I do, I'd like to provide you with my perspective on our performance. Dine Brands finished very strong in 2018 with our adjusted EPS results exceeding the high end of our guidance by $0.12 per share. We have both brands performing at the top of their categories and near the top of the industry. We have prioritized the return of capital to shareholders, while our leverage has decreased. Later, I will review our guidance for 2019, which reflects the strong finish to 2018, their continued confidence in our company. I will start with the notable changes on the income statement. For the fourth quarter, adjusted EPS was $1.70 compared to $0.48 for the same quarter of 2017. The increase was primarily due to a 46% increase in the franchise segment profit, which is mainly driven by comp sales growth at both brands, a decline in bad debt expense compared to the fourth quarter of 2017, the collection of previously unrecognized royalties. For fiscal 2018, adjusted EPS was $5.37 compared to $4.09 in 2017. The increase was mainly due to lower income tax expense and higher franchise segment profit, which is primarily due to the higher comp sales at both brands and the favorable resolution of certain franchisee financial health issues, which resulted in lower bad debt expense and cash collections of previously unrecognized royalty revenues. I'm pleased to report that bad debt declined by approximately $13 million for 2018 compared to the prior year due to the marked improvement in Applebee's performance and the favorable resolution of these franchisees financial health issues just discussed. Importantly, for 2019, we anticipate that bad debt will now return to historical levels, which is a not meaningful level. Turning to G&A. Our G&A for the fourth quarter of 2018 was approximately $45.3 million compared to approximately $40 million for the same period of last year. The increase was primarily due to higher personnel-related costs, costs related to the acquisition of 69 Applebee's restaurants announced in December and increased legal expenses. The increase in personnel-related costs were related to performance-based incentive compensation. G&A for fiscal 2018 was approximately $167 million compared to approximately $166 million in 2017. As a reminder, there were some reprioritization at technology project during 2018 that also contributed to higher G&A. These items were offset by declines in severance costs and professional services costs. Regarding our tax rate. Our GAAP effective tax rate for fiscal 2018 was 27.4% compared to 20% for fiscal 2017. During 2018, we increased our tax provision by approximately $5.1 million related to adjustments resulting from IRS audits for tax years 2011 through 2013. This action increased our effective tax rate from what would have been an estimated combined federal and state tax rate of approximately 25%. Turning to cash flow statement. Our highly franchise model generated strong adjusted free cash flow for 2018 of approximately $141 million compared to approximately $66 million for 2017. The favorable variance was due to the increase in cash from operations due to higher net income, favorable changes in working capital and an increase in receipt from notes and equipment contracts receivable compared to 2017. Consolidated adjusted EBITDA for 2018 was $230.6 million compared to $221.3 million for 2017. The increase was primarily due to higher franchise revenues and gross profit in 2018 compared to 2017. I would like to highlight that both brands contributed to solid performance in 2018. The return of capital to our shareholders remains a top priority. In 2018, we returned a combined total of over $84 million to shareholders. To provide some color, we paid $51 million in quarterly cash dividends and repurchased nearly 479,000 shares of our common stock at a total cost of approximately $34.9 million. As you saw in our press release today, we increased our quarterly cash dividend by 10% to $0.69 per common share. The increase further reflects confidence in our business model, which generates stable and predictable cash flow. Additionally, our Board of Directors approved replacing our existing share repurchase authorization with a new authorization of up to $200 million. Now I would like to briefly comment on the implementation of ASC's 842 regarding new lease accounting guidance. We are required to adopt the new guidance effective in 2019. As a result and liability and an offsetting asset on the balance sheet, there will not be any net changes on the P&L and we do not anticipate any geography changes. Finally, I'll discuss the highlights of our financial performance guidance for fiscal 2019. Please see the press release we issued today for complete details on our guidance. We expect comp sales at Applebee's to range positive between 2% and positive 4%. At IHOP, we expect comp sales to be between 2% and positive 4%. Our comp sales guidance for both brands reflects the continued implementation of sales and traffic driving initiatives to drive continued momentum. Total segment profit, which excludes the company restaurant segment is expected to be between approximately $373 million and $394 million. Consolidated EBITDA is expected to be approximately between $268 million and $277 million inclusive of company restaurant segment EBITDA, which is as expected to be a range between approximately $9 million and $11 million. We expect net closures of between 20 and 30 Applebee's restaurants globally, the majority of which were expected to be domestic closures. Please note that these closures are part of our system-wide analysis to continue to improve the health of our franchises. At IHOP we expect our franchisees to continue to have development appetite with projected net openings to range between 35 and 55 new restaurants globally the majority of which are expected to be domestic openings. G&A is expected to range between approximately $165 million and $170 million including noncash stock-based compensation expense and depreciation of approximately $40 million. I would like to highlight that this range is inclusive of approximately $6 million of G&A related to the company restaurant sector. Lastly adjusted earnings per share per diluted share for 2019 is expected to be between $6. 90 and $7.20. To close 2018 was a very solid year for our brands. Looking ahead we will continue to focus on the execution of several strategies to deliver top line and bottom line growth operating value to our growth initiatives and return of capital to shareholders. So with that I will now turn the call over to John."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "John Cywinski",
+     "content": "Thanks Tom and good morning everyone. We are certainly very pleased with Applebee's momentum as Q4 represented our fifth quarter of positive comp sales growth. Applebee's plus 3.5% performance on top of our prior year's plus 1.3% performance resulted in a healthy plus 4.8% two-year comp sales increase for Q4. And once again according to Black Box Applebee's has outperformed every category of the restaurant industry on comp sales including QSR casual family dining casual dining upscale casual and fine dining. From my perspective this is yet another indicator that the Applebee's business model is stable predictable and very capable of lapping prior year's successes. Most notably 2018 was a milestone year for Applebee's as our plus 5% full year comp sales increased representing the best annual performance Applebee's has posted in 25 years. This result can be attributed to our truly exceptional franchise partners and our very talented and committed Applebee's team. Together we reestablished Applebee's as a vibrant and innovative brand with clear strategic vision and a commitment to sustain growth. Without question Neighborhood remains the center piece of our success. This brand position is both differentiating and relevant as it embodies who we are and what we for Applebee's and its authenticity clearly resonates with all of our guests. Most importantly Eatin' Good drives our strategy drives our strategy around operations culinary beverage off-premise neighborhood activation and of course our advertising which we continue to believe is best-in-class in the restaurant industry. I'm also proud of our restaurant excellence as we continue to surprise with our guests with a consistently great experience. This is evident in all key operating metrics from guest satisfaction to value for the money. Our culinary strategy remains focused on abundant and indulgent value with a focus on mainstream recipes and flavors that our restaurants teams can execute at a consistently high level. Innovation here will be smart selective and fully validated as was the case with our very successful pasta and introduction in Q4. Now beverage and off-premise continue to be meaningful drivers of innovation and results. Each business segment represents the distinct occasion for us with very specific guest profiles in each states that we leverage in our messaging and our execution. While not yet fully optimized we view beverage and off-premise as incremental growth engines for the brand. And Applebee's advertising continues to connect emotionally with our guests. There is no better example of this engagement that our very relatable run around our most recent to go ahead which I hope you have had a chance to see on air over the past few weeks. Applebee's business grew at a rate of approximately 30% in 2018 substantially outperforming casual dining again according to Black Box. While remains our top off-premise priority our focus in 2019 we continue to optimize and expand both delivery and catering. Now on the portfolio front as Steve highlighted we acquired 69 restaurants franchise restaurants in North and South Carolina in mid-December. We have been for running for this company-owned operations for a while now and we are very encouraged with team's early leadership and execution. At present this geography currently outpacing the system from a comp sales perspective. In fact this is a trend we see at Applebee's as our new franchisees and new owners now rank 1 2 and 3 in year-to-date comp sales performance across the system. And after only two months of ownership we remain confident in achieving all business goals related to this portfolio and we will certainly keep you informed as we progress here. Turning to our full U.S. restaurant base as previously outlined Applebee's closures will low in 2019 as we approach and normalize closure rate of approximately 1% in 2020 and beyond. Another important sign very important sign of brand health is that ad front and royalty delinquencies which represented a significant challenge in 2017 and 2018 have essentially disappeared here in 2019. Finally we simply love our position in this market. We set a goal to become the most improved restaurant brand in America in 2018 and we absolutely delivered on that goal. Applebee's business fundamentals are now sound our restaurant execution is significantly enhanced our franchise partnership is stronger than ever and we remain confident in our ability to sustain this momentum moving forward. With that I'll turn it to Darren."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Darren Rebelez",
+     "content": "All right. Thanks John. Good morning everyone. Over the last year at IHOP we focused on executing against a broad strategy underpinned with specific measurable actions intended to generate immediate results and to fuel future growth. Serving as a road map this strategy includes four key pillars: Significantly enhancing the guest experience running great restaurants driving traffic and being where the guest is. The significant work done under each pillar has played an integral role in the success we are experiencing today and has addressed all aspects of the guest experience both in our restaurants and off-premise. I'm very pleased to report that this holistic approach has produced another outstanding quarter for the brand and our best in 2018. IHOP's comp sales for the fourth quarter solid 3% which represent fourth consecutive quarter of positive comp sales growth. Not only was this our top quarter of the year but it was our highest quarterly comp sales increase since the third quarter of 2015. This also marks the fourth consecutive quarter that IHOP outperformed the family dining category based on comp sales. On a full year basis comp sales grew 1. 5% and total revenue grew 3. 9% both of which have been the brand's best performance since 2015. This is quite an accomplishment and clearly demonstrates the strength our strategic plan and the love people have our iconic brand. I couldn't be proud of our team members and franchisees for everything they have done to achieve these results. Based on large parts of these efforts in the past year we believe there are several drivers that will contribute to sustainable positive sales. First we successfully changed the narrative regarding lunch and dinner occasions at IHOP with strongest day parts for both the fourth quarter and full year. With abundant value and variety on our menu we proved that we can attract guests any time of the day. While breakfast will always be our focus the continue to represent largely untapped white space for us to grow. Consistent with that theme our ultimate for the platform continues to help drive positive results. Burger sales remained strong in the fourth quarter and are still more than double the levels we had before the burger launch. Second we are seeing solid growth in our off-premise business which is primarily driven by traffic. For the fourth quarter comp sales increased by a strong 23% and to-go comp traffic rose by approximately 13%. Online orders represent a significant opportunity for us as the average check for online orders is approximately 31% higher than all other to-go orders. With the increasing relevance of online ordering we believe there is significant upside potential. Our online ordering system enhanced website and new mobile app have all created a complete omnichannel experience for our guests. And best of all online ordering isn't just more efficient it's more profitable. To address the of our guests we launched our initial national-wide delivery program in partnership with DoorDash last July. In just six months we've tripled the number of participating IHOP restaurants from DoorDash bringing our total to more than 1000 restaurants currently and another 300 restaurants expected to be added to the DoorDash platform by the end of the year. This year our focus will be on expanding our relationships with another leading delivery service providers as well as increasing marketing efforts aimed specifically at building awareness around our IHOP and Go program and driving new and repeat off-premise business. We believe delivery will provide even further upside to our already strong to-go business which accounts for 8% of overall sales an increase of 200 basis points from the fourth quarter last year. Another component to being where the guest is putting more IHOP restaurants where our guests won't go. I'm happy to report that we had another strong year with new restaurant development. We ended the year with a net increase of 34 IHOP restaurants domestically and another 11 internationally. This is in stark contrast with the rest of the industry and we expect this positive development trend to continue for IHOP in 2019. Turning to the third driver the remodel program which plays an important part in shaping guest perceptions for the brand. Our guests were in modern comfortable restaurants that exceeds their expectations and we gave it to them with a Rise N' Shine remodel. We are currently testing the second of the Rise N' Shine remodel which includes new guest-facing technology that enhances the overall dining experience. Such as our tool to provide more accurate wait times tablets to increase order efficiency and accuracy and wireless credit card devices to allow guests to easily pay while retaining possession of their credit card. This year we completed another 275 remodels bringing the total number of restaurants with the Rise N' Shine image to over 1000 when combined with new restaurants openings. Fourth we sharpened our focus on all aspects of the guest experience and operational improvement. We achieved the highest scores among our peer group for overall guest satisfaction and revisit intent thanks to our renewed focus on our I-hospitality service program. In fact we achieved an all-time high overall guest satisfaction score in October which indicates our guests are seeing the tangible efforts of our results. Lastly our strong brand equity with consumers enables us to leverage enticing promotions to drive guests into our restaurants. Such as our popular breakfast combo and our award winning limited time offer which universally below the entertainment property with menu items and free value offer. To close we want to be excited about IHOP. We're heading into the new year with a lot of brave momentum and our efforts around menu innovation expansion off-premise initiatives and developments that help accelerate our growth by continuing to focus on our broad-based plan and delivering against our four key pillars will continue to expand family dining. It was an incredible year for IHOP with several notable highlights including our 50th anniversary creating a media buzz with the IHOP name change campaign to launch our Ultimate Steakburgers platform and opening our 1700 domestic IHOP. I'm confident that 2019 will be yet another successful year for the brand. And with that I'll turn the call back over to Steve for his closing comments. Steve?"
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Steve Joyce",
+     "content": "Thanks Darren. To recap we had a strong year and we continued to make significant progress in returning Dine Brands to a growth company. While we have done a great deal of heavy lifting to get to this point we still have a lot of work ahead of us. We have the right plans in place and we are executing on a multipronged strategy that has produced positive results. With the headwinds of 2017 behind us we are in a significantly stronger position headed into 2019. We have a lot of compelling attributes such as robust adjusted EBITDA margins and an attractive adjusted free cash flow profile due to our highly franchise model which and I'll continue to repeat our No.1 priority is return of capital to shareholders. Now we would be pleased to open up the call for questions. Operator?"
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Operator",
+     "content": "And our first question comes from Michael Gallo from CLK."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Michael Gallo",
+     "content": "Steve you have been there a year now I guess my question is John as well. Obviously there was some low-hanging fruit in getting the Applebee's system back on its feet. But I was wondering if you could speak to kind of bigger untapped opportunity that you start to think about Applebee's think about the potential analyze data or things that you haven't really done in the past? And really you kind of progressed the brand forward over the next few years. I'm not sure if there is a new remodel package or things that you look at but again if you could just speak to some of the longer-term opportunities as you kind of get to the low-hanging fruit?"
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Steve Joyce",
+     "content": "Yes. So I'll direct this mostly to John but let me just head it off. Our view is we have righted the. We have moved back into a very profitable area for our franchisees. We are very excited about the traffic the growth that we have seen. We are excited about expanded opportunities both in off-premise as well as returning to growth. We are looking at starting to add new units by hopefully the end of the year. We are starting to have conversations with our franchisees as we speak. And so what we got is a robust brand which is has been around for a while but as you have seen our demographics has high 40% and climbing 34 under customers in our restaurants. So think we've got a brand with a history that people love and we've returned to its roots which is what people wanted us to do. But we have also got a strong new component to our demographics that leads to a very favorable long-term future. And we think we got a lot of opportunities to grow this brand both domestically and internationally. On the domestic side we expect to start seeing some real development. I just came back from a large franchisee investment conference out here in California and the interest in our brand was a remarkable. I got at the end of the conference to speak but three people from previous panels had already talked about Applebee's success in terms. There was really nothing left for me to say. So we are pretty excited about that opportunity. John why don't you fill in with color."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "John Cywinski",
+     "content": "Sure. Thanks Steve. Michael I think let's call 2017 the foundational year or transitional year 2018 was the return to relevance in growth and it was critically important we demonstrate our ability to consistently and predictably generate results. We are in that position right now. And so as I look at the brand I feel we have an extraordinarily unique partnership and business model with our franchisees. We have 32 partners. They are large operators with deep experience and significant know-how in restaurant industry in particularly casual dining. And that partnership unlocks strategic opportunities. We had healthy debate back in 2017 and partially in 2018. We put a new team in place of exceptional leaders. Their partnership with franchisees works well. We meet on an every other month basis. We're now dealing as we look at 2019 with kind of a full deck. We closed our underperforming restaurants. We leveraged with some really great insight our consumer teams. So we location based markers. We take distinct occasions. We look at the -- we understand drivers and motivations and we mark it accordingly. We are very selective and disciplined in our innovation both on the culinary front and beverage front and we will continue to see that selectively from the team. Our off-premise business has three components. We are primarily focused on to-go call it 11-plus percent of our business today. It will get up to 20%-or-so over the next three years but there are two other emerging components catering and delivery whilst secondary priorities at the moment we got a footprint of about 1000 1100 restaurants activated delivery internationally or locally and catering remains very low-hanging fruit for a brand that is fundamentally in variety based brands. So we think we're positioned well. You add all that up probably most significant business opportunity and that is restaurant excellence and we are very well positioned. Our team under the leadership of Kevin Carroll and our franchisees have really made tremendous progress. The variability has narrowed our guests to experiencing probably what they did Applebee's in our heyday a terrific one hour 1.5-hour experience and to-go experience is equally satisfying. So you add all that Mike and we are well positioned in 2019 and beyond and we are candidly very excited about our future."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Operator",
+     "content": "Our next question comes from Brian Vaccaro from Raymond James."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Brian Vaccaro",
+     "content": "Couple of quick clarifications and a follow-up question. John I think you just mentioned delivery in covering 1 100 Applebee's units. I was looking through the a few minutes ago and I think I saw a little under 800. So I guess that it implies that you rolled another 300 quarter-to-date. Am I interpreting that currently?"
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "John Cywinski",
+     "content": "Yes. Brian including that both national providers where we have a formal contract as well as local providers we have handful local providers as well. But yes I anticipate eventually getting up to 1500 units there from a delivery perspective."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Brian Vaccaro",
+     "content": "Okay. That's great. And circling back to the improvements that you've made at Applebee's to the in-restaurant experience can you provide a little more color on where you've seen the most improvement in the last three to six months? And where you see opportunities for further improvement into 2019?"
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "John Cywinski",
+     "content": "From the restaurant operations perspective Brian."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Brian Vaccaro",
+     "content": "Yes."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "John Cywinski",
+     "content": "Number one would be variability. Meaning when I stepped in 2017 the variability between our bottom performers and our top performers was large. And so that's been tightened dramatically. Our percentage of guests experiencing a problem which we quantify on a daily basis has moved dramatically south to the point where it's about 4% which is a very low defect rate if you will. And then we placed a significant premium on guest satisfaction and value for the money. And those are two and they are both very strongly correlated. Our accelerated performance is tightly correlated to overall comp sales improvements. And frankly we have very tough standards. We hold our franchisees accountable. And interestingly they want to be held accountable. And they applauded the actions that we have taken over the past two years to encourage underperforming units and underperforming operators to exit the system. And so those are a few highlights and that's where we are focused operationally. And I would also add that we are pleased with the unit economic progress in the individual restaurant profitability. Both brands have a restaurant profitability improvement initiatives underway. We captured substantial savings in 2018 anticipate doing so in 2019 and '20 probably on a perpetual basis."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Brian Vaccaro",
+     "content": "All right. That's great. And then just one if I could Tom. Looking to the 10-K a little bit question. On the Applebee's franchise segment you obviously put the annual numbers in so back into the fourth quarter. Just had two questions. On the Applebee's franchise revenue I wanted to just confirm that I think it was around $49 million if my footing is right. That includes that $6 million of collection of past two royalties within that $49 million if you could confirm that. And then on the expense side it looks like it was in the mid-$4 million range on franchise expense. Can you walk through the puts and takes? I think bad debt expense was down. Just walk through the puts and takes of the that franchise expense in Q4 please?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Steve Joyce",
+     "content": "Tom why don't you start off."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Tom Song",
+     "content": "Sure. So on the Applebee's franchise segment revenue you're right. It doesn't include the collection at the end of the year. So hopefully that answers that question. With respect to expenses just again are you speaking specifically to Applebee's franchise segment so you are."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Brian Vaccaro",
+     "content": "Yes. I'm speaking specifically to the Applebee's franchise segment which looks to be about $4.5 million for the quarter. And I'm just trying to kind of I know there is movements. We can follow-up off-line on it absolutely but just bad debt I think was down $3 million but we can follow-up off-line if it makes sensitive."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Tom Song",
+     "content": "Yes. You have some so you have if you recall for the year you have about a little over $3 million of bad debt expenses in there. And that's the bulk of it Brian. So that gets you it's about $3.2 million actually."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Brian Vaccaro",
+     "content": "Okay. And I guess if you think about 2019 the Applebee's segment profitability it seems the message is we see a normal 'normal' royalty collection rate going forward and bad debt I'm sorry the franchise expense line we should expect something a normal run rate or something a $2 million a quarter going forward so the volatility dampens going forward?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Steve Joyce",
+     "content": "Yes. That's absolutely right. So you're going to have both brands back to the norms with respect to bad debt expense."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Operator",
+     "content": "Our next question comes from Nick Setyan from Wedbush Securities."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Nick Setyan",
+     "content": "The guidance obviously is phenomenal above anyone's expectation. So that begs the question. What drives that confidence into the 2% to 4% comp at both brands? And any commentary quarter-to-date would be extremely helpful to maybe at least have some kind of foundation from which we can start in terms of how to think about that comp?"
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Steve Joyce",
+     "content": "Yes. So I think, if you start with the brand performance and the comp numbers, it really Darren and John it really gets to a multipronged strategy. So there are several different pieces we're employing. Obviously, one of the big ones is providing growth, which we think we'll provide growth for the next couple of years is off-premise. So we talked a lot about it. We've put a lot of investment into technology. We've got we think leading ways of delivering our product with integrity into people's homes and offices and catering another opportunities because we invested in the containers that we shipped in. So our product not only is being available electronically, it's also available you could receive it in store in any restaurant. And so I think people are recognizing that. We haven't even really scratched the surface of the catering opportunity in both brands. So we just think that's a big opportunity for us. Secondly, on the technology side, we are investing significant dollars in lots of things that are customers friction points or restaurant profitability enhancing option. So we talked about it, there are no wait options, you bring your own device options, the tablet options. First we are taking to the kitchen to simplify, but it also innovate the menu. So it is a we are in categories that are healthy. We have got leadership position of growth in 11 years run. And I think as long as we continue to lead, these numbers are possible. Now what that assumes is we got a healthy environment that we're operating in. So you don't believe in consumer confidence lasting through the year that numbers changed a little. But we're simply looking at what our trajectory is the things that we know we have in store for this year which on both brands are incredibly exciting and probably the most I have been involved in this company since 2012. It's the best plan that we have had ever from the standpoint of things that we are going to do to excite guests to give them reasons to come into the restaurants to provide a wider variety of options both healthy both sensitive to people's needs sensitive to advocacy groups as well as exciting menu options just to turn people on to come to our restaurants. So we gave a pretty wide range because we wanted their we obviously are not new to the operating environment. But right now we think we really hit the sweet spot in both brands in terms of putting things out to drive traffic exciting kind of things promotions but the food options that we're bringing to Applebee's are going to be several surprises this year that are going to be really fun. On the IHOP side we are following we follow the burger campaign with the pancheeza campaign which we took over national. And I think people are seeing that we are having fun with this. And I think it makes us an interesting set of brand. And I think people feel for these brands. There is a strong royalty on both sides. And I think we are now delivering on that but in a way that's fun it's a little edgy at times but it's always innovative and we don't take ourselves too seriously. And I think that's resonating with the 99% of the American public that we represent. In both brands we have 60 million visitors come to our restaurants every year. The more we know about them the more we tap into that the more we are able to market to them the more valuable this company becomes. But we're starting from such an incredible advantage of not only our demographics but also the size of these brands franchise business scale maps. Our job here is to grow that scale. So we improved profitability from franchises for the company and we also provide a more interesting and innovative restaurant on both the IHOP and the Applebee's side going forward. But we built the right teams they're doing the right things every time including our guests. The restaurants have never been run better. We have never had a better group of franchisees. There has never been a better working relationship. It just we're just. I have been in this business for a long time almost 40 years. And this is as good a situation as I have seen. And so our job is to make sure we continue to build on that that we accelerate the growth of these brands as well as potentially others that we accelerate international growth which is a great year we signed over 70 restaurant deals last year. So that's a great start. But we just think the opportunity is huge and we're now in a position where the foundation is in place we're putting the tools that we need we're learning more about our customers every day and we think this is fit."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Nick Setyan",
+     "content": "You mentioned the trajectory of a bid there. Even the low end of the comp guidance implies a significant uptick in two-year trends which we have already been seeing. And so I mean there is a current trajectory at least in terms of what you have seen Q1 kind of indicate that we will continue to see this acceleration on a two-year basis?"
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Steve Joyce",
+     "content": "Well last year was a remarkable year for Applebee's. I have had a great year. So you can expect that the trajectory that we are on fits into the guidance we gave."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Nick Setyan",
+     "content": "Perfect. The other question I want to ask about is on free cash flow. It looks like the annual adjusted free cash flow exceeded the guidance that I had seen out there by about $30 million. I think we are at $151-million-plus in terms of adjusted free cash flow. First is that correct? And second how should we think about free cash flow in 2019?"
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Steve Joyce",
+     "content": "So I think that it is correct, but remember that a lot of that is coming from the -- we're not making another $30 million contribution to the Applebee's that advertising front. So that's a lot of that increase. But yes, so we're returning to what will be a robust cash flow position, which as if you think about this business model, it's a cash machine right. The franchise system particularly with more scale provides incredible margins, will provide enormous amount of cash flow with the difference in EBITDA and cash flow is the same right. So we're going to continue to do that and then as I mentioned at the end of the call, our primary goal is return of capital to shareholders. So you saw this quarter, you saw what we're doing with the dividend. Now the dividend increase quite frankly, we're not going to increase 10% every year. We wanted to be -- we set our guidance is somewhere between 30% and 45% of our cash flow. That increase gets us to right above 30% of free cash flow. So we are very comfortable with dividend. Obviously we believe investing in our stock is a good investment. We will continue to see that from us. But it also brings us other opportunities to invest in the brands and look potentially for new brands to add."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Tom Song",
+     "content": "I'll just add that if you really think about our business model the flow through from EBITDA to free cash flow is very very strong. Typically our CapEx figure is well south of 10% of EBITDA. And so that's in sharp contrast to other business models that are predominantly or more significantly company operated."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Nick Setyan",
+     "content": "Just a follow-up. Were there any onetime thing in 2018 or towards the tailwind of 2018 aside from bad funds. I mean if I think about ad fund contribution that should be on top of this $150 million in 2019. Is that correct or I'm I wrong on that? And were there any kinds of anything onetime in nature in 2018 that we should think about when we're thinking about the 2019 cash flow?"
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Tom Song",
+     "content": "Yes. So one thing just to highlight is on with respect to G&A I think on the last earnings call I had mentioned that we did have a little bit of an increase on G&A with respect to a few different items. One was and this continued in Q4 one was with respect to employee compensation. It was very specifically performance-related incentive compensation that drove the number up a little bit. But the second piece was increased litigation cost which is expected. We obviously came to a favorable resolution on a significant litigation case. And so that number went up a little bit. And then finally I had mentioned that there was reallocation of dollars as we headed into the final half of the year. And it continued in Q4 with respect to IT. Some of the development activity was reprioritized and it hence became G&A dollars. And so that's again just a function of some movement that we had in IT towards development. As the year progresses they make better decisions on how they're allocating IT dollars."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Nick Setyan",
+     "content": "Perfect. On the unit growth at Applebee's is it still first half we should get sort of Q1 Q2 something like 20-plus closures? And then in the back half I guess that implies positive net unit growth in the second half of 2019 at Applebee's?"
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Steve Joyce",
+     "content": "I wouldn't say second half. I would say that we believe that we are we will hopefully be on course to be starting to open up units towards the end of the year. So those conversations are just starting with our franchises obviously because we are focused on making sure that the brand had both a performance and a prototype that was compelling for franchisees to build. We believe we are going to do that start that this year and it will start bearing fruit towards the end of the year. And I think the way to think about it probably you will see a lot more signings than you will actually see openings. But it will be a combination because one of the things we are going to encourage franchisees to do given that we got a lot of struggling brands in this category is conversions are very attractive for to grow as well and a number of franchisees are already doing looking at options for that. So we just think that we think that performance of the brand combined with the opportunity for potentially restaurant space that is at a least level that's very affordable for our conversion opportunity and quite frankly new builds as well. But we think there will be a combination of those opportunities in our franchisees and we are bringing that dialogue as well as very strong demand for folks that are not franchisees that want to buy into this system and build new restaurants with us."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Nick Setyan",
+     "content": "Got it. And then last question. It would be really helpful if you gave us some numbers around the franchisee profitability at Applebee's. I know I'm sure that's a question you guys often get but any kind of reminder on where the franchisee profitability at Applebee's is would be very helpful?"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Steve Joyce",
+     "content": "Yes. So we obviously monitor that closely and we're very focused on their profitability. But I think the way to think about it is at an average unit volume of about 2.5 the profitability can vary obviously from where they are operating labor cost and all this. The interesting thing though is we believe and our franchisees are proving that we are actually even in the phase of fairly steep labor cost increases we are seeing in most cases margin improvement and that's because of the changes our franchisees are making in their office model as well as a lot of work that we are doing with them in the kitchen. We're actually expecting our product cost to decline slightly this year which will be a real boost for us. We've talked before about we have done an internal study and now made it permanent in terms of looking at ways to reduce cost and improve operations both in the kitchen and front of the house that are bearing fruit. We think that could be worth over the next several years up to 300 basis points and potential profitability improvement. And we're going to need that to offset labor costs at this point as the markets obviously are tight. As we talk about here we do represent 99%. So it's a 2-edge sword for us. Those people going back to work are our customers. So there is benefit as well as cost in the higher labor pressure and that obviously is exacerbated in some market versus some others. But we think in general where they are now is getting close to where they were in 2016 which is it can range on an average unit volume as I mentioned 2.5 you're in the double-digits and it can range into the high-teens depending on how intense the revenues are."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Nick Setyan",
+     "content": "And that's after royalties after that some contribution?"
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Steve Joyce",
+     "content": "Yes yes."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "Our next question comes from Stephen Anderson from Maxim Group."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Stephen Anderson",
+     "content": "Just a couple of follow-up questions. First in your EPS guidance what can you quantify the impact from the ownership of the 69 locations. That is all I have?"
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Steve Joyce",
+     "content": "John."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "John Cywinski",
+     "content": "Yes. So if you think about it we expect this so we gave obviously consolidated adjusted EBITDA guidance that and when you take the component the contribution of the company restaurants which is about $10 million for the year it flows through to be slightly accretive but we're talking about relatively modest numbers Steven."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Steve Joyce",
+     "content": "Well I think the real answer is we are just getting to the restaurants. We obviously did some due diligence before we made the acquisition. But we think there is significant upside to them and we are in the process of so pulling all of that together optimizing the structure. We are very happy with the performance today on the revenue side. We think there is upside of revenues. We think the cost picture will obviously shake out over the next 30 to 60 days. We will share more about it in the first quarter call. But it's immediately accretive and we think that will grow."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Stephen Anderson",
+     "content": "And my final question is in terms of concept on this call but I just want to see if you with that and if you have discussed with any of the franchisees?"
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Steve Joyce",
+     "content": "I'm sorry can you repeat that?"
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Tom Song",
+     "content": "Third restaurant concept."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Steve Joyce",
+     "content": "I have said now within the next 18 months at some point they will be ready. So we are looking for something very specific okay. We are not looking for major acquisition you're not going to see a big purchase by us. We are looking for a tuck-in acquisition call it sub-$100 million. So think about what that means. That means restaurant a concept with 40 to 80 units. That's a regional concept for the most part that we can grow nationally and there are several key components to that. One is it's got to be immediately accretive equity. So we're not going this. Two it has a come with a management team that is self-contained because we are not going to distract from our major brands bringing a new brand. So we needed a founder and the team that's coming in and that wants to grow their concept nationally with us. What we provide is franchising expertise capital and obviously franchisees. So the other part of that picture is we are only going to look at brand our franchises want to build. So we got built-in audience. Franchise business that scale. The more we can add to the scale the better off will be the better our margins will be the better our franchisees margin will be because our returns will be better. So we are looking for a very specific set of circumstances. We to afford at this point but I can tell you we're looking at lots of things and but when we announce something it will fit those criteria or we will not announce."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Operator",
+     "content": "Our next question comes from Brian Vaccaro with Raymond James. Please go ahead."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Brian Vaccaro",
+     "content": "Just one more just quick clarification. On the acquired units you clearly mentioned $9 million to $11 million in the press release. The question is that burdened with the $6 million of G&A. so that's sort of a true clear EBITDA number or is that before the G&A allocation?"
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Tom Song",
+     "content": "That is burden."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Steve Joyce",
+     "content": "We would like to say enhanced revenue growth value add."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Operator",
+     "content": "I will now turn the call back over to Steve Joyce CEO for closing comments."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Steve Joyce",
+     "content": "Okay. Well thanks again for your time today. We are scheduled to report results for the first quarter on May 1 and we look forward to speaking with you there. Have a great day."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Operator",
+     "content": "Thank you ladies and gentlemen. This concludes today's conference. Thank you for your participation. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +364,8 @@
    "reportDate": "2018-12-31",
    "accession": "0000049754-19-000004",
    "url": "https://www.sec.gov/Archives/edgar/data/49754/000004975419000004/din-12312018x10k.htm",
-   "local_gz": "000004975419000004__annual.txt.gz"
+   "local_gz": "000004975419000004__annual.txt.gz",
+   "n_lines": 6789
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +373,8 @@
    "reportDate": "2018-09-30",
    "accession": "0000049754-18-000018",
    "url": "https://www.sec.gov/Archives/edgar/data/49754/000004975418000018/din-2018930x10q.htm",
-   "local_gz": "000004975418000018__q0.txt.gz"
+   "local_gz": "000004975418000018__q0.txt.gz",
+   "n_lines": 3078
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +382,106 @@
    "reportDate": "2018-06-30",
    "accession": "0000049754-18-000014",
    "url": "https://www.sec.gov/Archives/edgar/data/49754/000004975418000014/din-2018630x10q.htm",
-   "local_gz": "000004975418000014__q1.txt.gz"
+   "local_gz": "000004975418000014__q1.txt.gz",
+   "n_lines": 3001
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2018-10-31",
   "n_rows": 8,
@@ -83,6 +496,48 @@
     "ocf": 19543000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 129249000.0,
+      "filed": "2017-05-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 2997000.0,
+      "filed": "2017-05-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7706000.0,
+      "filed": "2017-05-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 14363000.0,
+      "filed": "2017-05-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.79,
+      "filed": "2017-05-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 17737000.0,
+      "filed": "2017-05-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +548,48 @@
     "ocf": 1351000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 112346000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3948000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7700000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 21280000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.18,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 17725000.0,
+      "filed": "2017-08-10",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +600,48 @@
     "ocf": 10106000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 104212000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 2663000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7600000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -451718000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -24.98,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 17742000.0,
+      "filed": "2017-11-09",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +652,63 @@
     "ocf": 34733000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 94200000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 11001000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 117010000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1282814000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3762000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7595000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 85536000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 4.67,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 22000.0,
+      "filed": "2018-02-20",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +719,58 @@
     "ocf": 16468000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": {
+      "value": 79432000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 96399000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1280433000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3488000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7940000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 17073000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.92,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 17845000.0,
+      "filed": "2018-05-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +781,58 @@
     "ocf": 9324000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": {
+      "value": 10765000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 95718000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1298058000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3851000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7900000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 12713000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.69,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 17803000.0,
+      "filed": "2018-08-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +843,58 @@
     "ocf": 35834000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": {
+      "value": 10641000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 102667000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1296528000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3679000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 7900000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 23587000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.29,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 17738000.0,
+      "filed": "2018-10-31",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +905,21 @@
     "ocf": 78720000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": 1.47,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 214198000.0,
     "revenue_xbrl_for_reference": 214198000.0
@@ -166,65 +933,24 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "5812",
   "sic2": "58",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 33,
-  "peer_list_all_same_sic2_tickers": [
-   "ARCO",
-   "ARKR",
-   "ARMK",
-   "BDL",
-   "BH",
-   "BJRI",
-   "BLMN",
-   "CAKE",
-   "CBRL",
+  "bucket": "消費與零售",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 29,
+  "peer_list_all_tickers": [
    "CMG",
-   "CNNE",
-   "DRI",
-   "EAT",
-   "GTIM",
-   "JACK",
-   "LOCO",
-   "LVO",
-   "MCD",
-   "NATH",
-   "NDLS",
-   "PLAY",
-   "PZZA",
-   "QSR",
-   "RICK",
-   "RRGB",
-   "SBUX",
-   "SHAK",
-   "STKS",
-   "TXRH",
-   "WEN",
-   "WING",
-   "YUM",
-   "YUMC"
+   "MCD"
   ],
   "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0000829224",
-    "name": "STARBUCKS CORP",
-    "ticker": "SBUX",
-    "sic2": "58",
-    "form": "10-K",
-    "filingDate": "2018-11-16",
-    "accn": "0000829224-18-000052",
-    "local_gz": "000082922418000052__peer10k.txt.gz",
-    "capex_excerpt": [
-     "Securities SHAREHOLDER INFORMATION MARKET INFORMATION AND DIVIDEND POLICY Starbucks common stock is traded on NASDAQ, under the symbol “SBUX.” As of November 9, 2018 , we had approximately 18,100 shareholders of record. This does not include persons whose stock is in nominee or “street name” accounts through brokers. Future decisions to pay cash dividends continue to be at the discretion of the Board of Directors and will be dependent on our operating performance, financial condition, capital expenditure requirements and other factors that the Board of Directors considers relevant. ISSUER PURCHASES OF EQUITY SECURITIES The following table provides information regarding repurchases of our com",
-     "ncontrolling interests (2) 4,518.0 2,884.9 2,818.9 2,759.3 2,067.7 Net earnings/(loss) attributable to noncontrolling interests (0.3 ) 0.2 1.2 1.9 (0.4 ) Net earnings attributable to Starbucks (2) 4,518.3 2,884.7 2,817.7 2,757.4 2,068.1 EPS — diluted (2) 3.24 1.97 1.90 1.82 1.35 Cash dividends declared per share 1.32 1.05 0.85 0.68 0.55 Net cash provided by operating activities (3) 11,937.8 4,251.8 4,697.9 3,881.5 722.2 Capital expenditures (additions to property, plant and equipment) 1,976.4 1,519.4 1,440.3 1,303.7 1,160.9 Balance Sheet Total assets $ 24,156.4 $ 14,365.6 $ 14,312.5 $ 12,404.1 $ 10,745.0 Long-term debt (including current portion) 9,440.1 3,932.6 3,585.2 2,335.3 2,041.3 Share",
-     "97 in fiscal 2017. The increase was primarily driven by the gains from the acquisition of our East China joint venture and the sale of our Tazo brand. Additionally, the net favorable impact from the Tax Cuts and Jobs Act (the “Tax Act”) also contributed to the increase. • Cash flows from operations were $11.9 billion in fiscal 2018 compared to $4.3 billion in fiscal 2017 . The change was primarily due to receipt of the upfront payment from Nestlé related to the Global Coffee Alliance. • Capital expenditures were $2.0 billion in fiscal 2018 compared to $1.5 billion in fiscal 2017 . • We returned $8.9 billion to our shareholders in fiscal 2018 through share repurchases and dividends compared t"
-    ]
-   },
    {
     "entity_id": "0000063908",
     "name": "MCDONALDS CORP",
     "ticker": "MCD",
-    "sic2": "58",
+    "sic4": "5812",
+    "sic3": "581",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2018-02-23",
     "accn": "0000063908-18-000010",
@@ -233,7 +959,26 @@
      "urance McDonald's Corporation 2017 Annual Report 3 that these initiatives will be successful and, if they are not, our financial results could be adversely impacted. Activities relating to our refranchising and cost savings initiatives remain ongoing and entail various risks. Our previously announced refranchising and cost saving initiatives remain ongoing. As we continue on those initiatives, the existing risks we face in our business may be intensified. Our efforts to reduce costs and capital expenditures depend, in part, upon our refranchising efforts, which, in turn, depend upon our selection and integration of capable third parties. Our cost savings initiatives also depend upon a variet",
      "nts 10,101 9,327 8,925 9,272 9,231 8,964 Total revenues 22,820 24,622 25,413 27,441 28,106 27,567 Operating income 9,553 7,745 7,146 7,949 8,764 8,605 Net income 5,192 4,687 4,529 4,758 5,586 5,465 Consolidated Statement of Cash Flows Data Cash provided by operations $ 5,551 $ 6,060 $ 6,539 $ 6,730 $ 7,121 $ 6,966 Cash used for (provided by) investing activities (562 ) 982 1,420 2,305 2,674 3,167 Capital expenditures 1,854 1,821 1,814 2,583 2,825 3,049 Cash used for (provided by) financing activities 5,311 11,262 (735 ) 4,618 4,043 3,850 Treasury stock purchases (1) 4,651 11,142 6,182 3,175 1,810 2,605 Common stock dividends 3,089 3,058 3,230 3,216 3,115 2,897 Financial Position Total assets",
      "of the financial health of the franchisee base. • ROIIC is a measure reviewed by management over one-year and three-year time periods to evaluate the overall profitability of the markets, the effectiveness of capital deployed and the future allocation of capital. The return is calculated by dividing the change in operating income plus 14 McDonald's Corporation 2017 Annual Report depreciation and amortization (numerator) by the cash used for investing activities (denominator), primarily capital expenditures. The calculation uses a constant average foreign exchange rate over the periods included in the calculation. • Free cash flow, defined as cash provided by operations less capital expenditu"
-    ]
+    ],
+    "capex_status": "ok"
+   },
+   {
+    "entity_id": "0001058090",
+    "name": "CHIPOTLE MEXICAN GRILL INC",
+    "ticker": "CMG",
+    "sic4": "5812",
+    "sic3": "581",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2019-02-08",
+    "accn": "0001058090-19-000007",
+    "local_gz": "000105809019000007__peer10k.txt.gz",
+    "capex_excerpt": [
+     "omparable restaurant sales increases and sales trends we expect for 2019; estimates of restructuring and restaurant closure costs and accelerated depreciation to be recognized in 2019; forecasts of the number of restaurants we expect to open; forecasts of trends in general and administrative expenses, restaurant development costs, and other expenses for 2019; estimates of expected effective tax rates for the year; statements about possible repurchases of our common stock; projections of planned capital expenditures; and other statements of our expectations and plans. We have used words such as “may,” “will,” “should,” “expect,” “intend,” “plan,” “anticipate,” “believe,” “think,” “estimate,” ",
+     "of December 31, 2018, there was $57.6 million remaining available under previously-announced stock repurchase authorizations approved by our Board of Directors. We announced $100 million in additional repurchase authorizations in February 2019. Under the repurchase authorizations, shares may be purchased from time to time in open market transactions, subject to market conditions. We believe that cash from operations, together with our cash and investment balances, will be enough to meet ongoing capital expenditures, working capital requirements and other cash needs for the foreseeable future. We have not required significant working capital because customers generally pay using cash or credi",
+     "nerally pay using cash or credit and debit cards and because our operations do not require significant receivables, nor do they require significant inventories due, in part, to our use of various fresh ingredients. In addition, we generally have the right to pay for the purchase of food, beverage and supplies some time after the receipt of those items, generally within ten days, thereby reducing the need for incremental working capital to support our growth. 36 Table of Contents Our total capital expenditures for 2018 were $287.4 million. In 2018, we spent on average about $0.9 million in development and construction costs per new restaurant, or about $0.8 million net of landlord reimburseme"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -255,7 +1000,16 @@
   "latest_data_date": "2019-02-21",
   "cutoff": "2019-02-21",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2019-02-21",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2019-02-22",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

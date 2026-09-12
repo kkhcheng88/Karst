@@ -1,6 +1,7 @@
 {
  "event_id": "E052",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E052",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "WK",
  "cik": "0001445305",
  "name": "WORKIVA INC",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2021-08-04(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E052",
   "event_id": "E052",
   "ticker": "WK",
   "cik": "0001445305",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "兩者",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001445305-21-000107",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1445305/000144530521000107/wk-20210803.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1445305/000144530521000107/wk-20210803.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n q22021exhibit991.htm\n EX-99.1\n Document \n Workiva Inc. Announces Second Quarter 2021 Financial Results \n • Increased Q2 2021 Subscription & Support Revenue by 29.0% over Q2 2020 \n • Generated Total Q2 2021 Revenue of $105.6 Million, up 25.9% over Q2 2020 \n • Achieved 46% YOY Growth of Customers with Annual Contract Value Over $150K \n • Raises Full-Year 2021 Revenue Guidance \n AMES, Iowa - August 3, 2021 – Workiva Inc. (NYSE:WK), the company that simplifies complex work, today announced financial results for its second quarter ended June 30, 2021. \n \"Our results continue to build on our market leadership and the increased demand for regulatory reporting and fit-for-purpose solutions to support digital transformations,\" said Marty Vanderploeg, Chief Executive Officer. \"Our strong bookings from existing customers reflect our enhanced ability to cross-sell multiple solutions.\" \n \"The entire Workiva team is focused on growing the business through new logos, maintaining high customer retention, and account expansion,\" Vanderploeg added. \n \"We beat guidance for revenue and operating results,\" said Jill Klindt, Chief Financial Officer. \"Due to continued broad-based demand and the resulting top-line growth, we are raising our full-year revenue guidance range to $430 million to $432 million. \" \n Second Quarter 2021 Financial Highlights \n • Revenue: Total revenue for the second quarter of 2021 reached $105.6 million, an increase of 25.9% from $83.9 million in the second quarter of 2020. Subscription and support revenue contributed $91.2 million, up 29.0% versus the second quarter of 2020. Professional services revenue was $14.4 million, an increase of 9.3% compared to the same quarter in the prior year. \n • Gross Profit: GAAP gross profit for the second quarter of 2021 was $81.0 million compared with $61.6 million in the same quarter of 2020. GAAP gross margin was 76.7% versus 73.5% in the second quarter of 2020. Non-GAAP gross profit for the second quarter of 2021 was $82.0 million, an increase of 31.4% compared with the prior year's second quarter, and non-GAAP gross margin was 77.7% compared to 74.4% in the second quarter of 2020. \n • Results from Operations: GAAP loss from operations for the second quarter of 2021 was $5.7 million compared with a loss of $16.7 million in the prior year's second quarter. Non-GAAP income from operations was $5.3 million, compared with non-GAAP loss from operations of $1.8 million in the second quarter of 2020. \n • GAAP Net Loss: GAAP net loss for the second quarter of 2021 was $9.5 million compared with a net loss of $19.6 million for the prior year's second quarter. GAAP net loss per basic and diluted share was $0.19 compared with a net loss per basic and diluted share of $0.41 in the second quarter of 2020. \n • Non-GAAP Net Income/Loss: Non-GAAP net income for the second quarter of 2021 was $3.8 million compared with net loss of $2.5 million in the prior year's second quarter. Non-GAAP net income per basic and diluted share was $0.07, compared with net loss per basic and diluted share of $0.05 in the second quarter of 2020. \n • Liquidity: As of June 30, 2021, Workiva had cash, cash equivalents and marketable securities totaling $551.6 million, compared with $530.0 million as of December 31, 2020. Workiva had $345.0 million \n aggregate principal amount of 1.125% convertible senior notes due in 2026 and $17.5 million of finance lease obligations outstanding as of June 30, 2021. \n Key Metrics and Recent Business Highlights \n • Customers: Workiva had 3,949 customers as of June 30, 2021, a net increase of 437 customers from June 30, 2020. \n • Revenue Retention Rate: As of June 30, 2021, Workiva's revenue retention rate (excluding add-on revenue) was 96.0%, and the revenue retention rate including add-on revenue was 111.6%. Add-on revenue includes changes in both solutions and pricing for existing customers. \n • Large Contracts: As of June 30, 2021, Workiva had 952 customers with an annual contract value (ACV) of more than $100,000, up 33% from 716 customers at June 30, 2020. Workiva had 500 customers with an ACV of more than $150,000, up 46% from 342 customers in the second quarter of 2020. \n • On July 30, 2021, we acquired all of the equity interest in OneCloud, Inc., an integration platform as a service (iPaaS) company, in order to extend our integration and data preparation capabilities. \n Financial Outlook \n As of August 3, 2021, Workiva is providing guidance as follows: \n Third Quarter 2021 Guidance : \n • Total revenue is expected to be in the range of $108.0 million to $109.0 million. \n • GAAP loss from operations is expected to be in the range of $17.6 million to $16.6 million. \n • Non-GAAP loss from operations is expected to be in the range of $5.5 million to $4.5 million. \n • GAAP net loss per basic and diluted share is expected to be in the range of $0.40 to $0.38. \n • Non-GAAP net loss per basic share is expected to be in the range of $0.12 to $0.10. \n • Net loss per basic share is based on 51.5 million weighted-average shares outstanding. \n Full Year 2021 Guidance: \n • Total revenue is expected to be in the range of $430.0 million to $432.0 million. \n • GAAP loss from operations is expected to be in the range of $47.7 million to $45.7 million. \n • Non-GAAP income from operations is expected to be in the range of break-even to $2.0 million. \n • GAAP net loss per basic and diluted share is expected to be in the range of $1.19 to $1.15. \n • Non-GAAP net loss per basic and diluted share is expected to be in the range of $0.08 to $0.04. \n • Net income (loss) per basic and diluted share is based on 51.2 million weighted-average shares outstanding. \n Workiva has factored into its guidance the expected impacts of COVID-19 on its business and results of operations based on currently available information. Significant variation from these assumptions could cause the company to change its guidance, and it undertakes no obligation to update its assumptions, expectations or guidance. These statements are forward-looking, and actual results may differ materially, as further discussed below under the heading \"Safe Harbor Statement\". \n Quarterly Conference Call \n Workiva will host a conference call today at 5:00 p.m. ET to review the Company’s financial results for the second quarter, in addition to discussing the Company’s outlook for the third quarter and full year 2021. To access this call, dial 833-968-1977 (U.S. domestic) or 647-689-6649 (international). The conference ID is 1817158. A live webcast of the conference call will be accessible in the \"Investor Relations\" section of Workiva’s website at www.workiva.com. A replay of this conference call can also be accessed through August 10, 2021, at 800-585-8367 (U.S. domestic) or 416-621-4642 (international). The replay pass code is 1817158. An archived webcast of this conference call will also be available an hour after the completion of the call in the \"Investor Relations\" section of the Company’s website at www.workiva.com. \n About Workiva \n Workiva Inc. (NYSE: WK) simplifies complex work for thousands of organizations worldwide. Customers trust Workiva’s open, intelligent and intuitive platform to connect data, documents and teams. The results: more efficiency, greater transparency and less risk. Learn more at workiva.com. \n Read the Workiva blog: www.workiva.com/blog \n Follow Workiva on LinkedIn: www.linkedin.com/company/workiva \n Like Workiva on Facebook: www.facebook.com/workiva \n Follow Workiva on Twitter: www.twitter.com/workiva \n Non-GAAP Financial Measures \n The non-GAAP adjustments referenced herein relate to the exclusion of stock-based compensation and non-cash interest expense. A reconciliation of GAAP to non-GAAP historical financial measures has been provided in Table I at the end of this press release. A reconciliation of GAAP to non-GAAP guidance has been provided in Table II at the end of this press release. \n Workiva believes that the use of non-GAAP gross profit and gross margin, non-GAAP income (loss) from operations, non-GAAP net income (loss) and non-GAAP net income (loss) per share is helpful to its investors. These measures, which are referred to as non-GAAP financial measures, are not prepared in accordance with generally accepted accounting principles in the United States, or GAAP. Non-GAAP gross profit is calculated by excluding stock-based compensation expense attributable to cost of revenues from gross profit. Non-GAAP gross margin is the ratio calculated by dividing non-GAAP gross profit by revenues. Non-GAAP income (loss) from operations is calculated by excluding stock-based compensation expense from loss from operations. Non-GAAP net income (loss) is calculated by excluding stock-based compensation expense, net of tax, and non-cash interest expense related to our convertible senior notes from net loss. Non-GAAP net income (loss) per share is calculated by dividing non-GAAP net income (loss) by the weighted- average shares outstanding as presented in the calculation of GAAP net loss per share. Because of varying available valuation methodologies, subjective assumptions and the variety of equity instruments that can impact a company’s non-cash expenses, Workiva believes that providing non-GAAP financial measures that exclude stock-based compensation expense allows for more meaningful comparisons between its operating results from period to period. Under GAAP, certain convertible debt instruments that may be settled in cash on conversion are required to be accounted for as separate liability and equity components in a manner that reflects our non-convertible debt borrowing rate. This results in the debt component being treated as though it was issued at a discount, with the debt discount being accreted as additional non-cash interest expense over the term of the notes using the effective interest method. As a result, we believe that excluding this non-cash interest expense attributable to the debt discount in calculating our non-GAAP measures is useful because this interest expense does not represent a cash outflow and is not indicative of our ongoing operational performance. Workiva’s management uses these non-GAAP financial measures as tools for financial and operational decision making and for evaluating Workiva’s own operating results over different periods of time. \n Non-GAAP financial measures may not provide information that is directly comparable to that provided by other companies in Workiva’s industry, as other companies in the industry may calculate non-GAAP financial results differently. In addition, there are limitations in using non-GAAP financial measures because the non-GAAP financial measures are not prepared in accordance with GAAP, may be different from non-GAAP financial measures used by other companies and exclude expenses that may have a material impact on Workiva’s reported financial results. Further, stock-based compensation expense has been and will continue to be for the foreseeable future a significant recurring expense in Workiva’s business and an important part of the compensation provided to its employees. The presentation of non-GAAP financial information is not meant to be considered in isolation or as a substitute for the directly comparable financial measures prepared in accordance with GAAP. Investors should review the reconciliation of non-GAAP financial measures to the comparable GAAP financial measures included below, and not rely on any single financial measure to evaluate Workiva’s business. \n Safe Harbor Statement \n Certain statements in this press release are \"forward-looking statements\" within the meaning of Section 21E of the Securities Exchange Act of 1934, as amended, and are subject to the safe harbor created thereby. These statements relate to future events or the Company’s future financial performance and involve known and unknown risks, uncertainties and other factors that may cause the actual results, levels of activity, performance or achievements of the Company or its industry to be materially different from those expressed or implied by any forward-looking statements. In particular, statements about the Company’s expectations, beliefs, plans, objectives, assumptions, future events or future performance contained in this press release are forward-looking statements. In some cases, forward-looking statements can be identified by terminology such as \"may,\" \"will,\" \"could,\" \"would,\" \"should,\" \"expect,\" \"plan,\" \"anticipate,\" \"intend,\" \"believe,\" \"estimate,\" \"predict,\" \"potential,\" \"outlook,\" \"guidance\" or the negative of those terms or other comparable terminology. \n Please see the Company’s documents filed or to be filed with the Securities and Exchange Commission, including the Company’s annual reports filed on Form 10-K and quarterly reports on Form 10-Q, and any amendments thereto for a discussion of certain important risk factors that relate to forward-looking statements contained in this report. The Company has based these forward-looking statements on its current expectations, assumptions, estimates and projections. While the Company believes these expectations, assumptions, estimates and projections are reasonable, such forward-looking statements are only predictions and involve known and unknown risks and uncertainties, many of which are beyond the Company’s control. These and other important factors may cause actual results, performance or achievements to differ materially from those expressed or implied by these forward-looking statements. Any forward-looking statements are made only as of the date hereof, and unless otherwise required by applicable securities laws, the Company disclaims any intention or obligation to update or revise any forward-looking statements, whether as a result of new information, future events or otherwise. \n ### \n Investor Contact: \n Media Contact: \n Adam Terese Kevin McCarthy \n Workiva Inc. \n Workiva Inc. \n investor@workiva.com \n press@workiva.com \n (515) 663-4493 \n (515) 663-4471 \n 1 \n WORKIVA INC.\nCONSOLIDATED STATEMENTS OF OPERATIONS\n(in thousands, except share and per share amounts) \n Three months ended June 30, Six months ended June 30, \n 2021 2020 2021 2020 \n (unaudited) \n Revenue \n Subscription and support $ 91,205 $ 70,696 $ 176,141 $ 139,057 \n Professional services 14,382 13,164 33,668 30,604 \n Total revenue 105,587 83,860 209,809 169,661 \n Cost of revenue \n Subscription and support (1) \n 14,098 12,098 27,300 24,251 \n Professional services (1) \n 10,493 10,146 20,967 20,389 \n Total cost of revenue 24,591 22,244 48,267 44,640 \n Gross profit 80,996 61,616 161,542 125,021 \n Operating expenses \n Research and development (1) \n 27,830 23,508 54,464 46,502 \n Sales and marketing (1) \n 41,525 35,270 82,560 71,387 \n General and administrative (1) \n 17,384 19,553 34,405 32,922 \n Total operating expenses 86,739 78,331 171,429 150,811 \n Loss from operations (5,743) (16,715) (9,887) (25,790) \n Interest income 255 655 615 2,361 \n Interest expense (3,502) (3,489) (6,987) (6,967) \n Other (expense) income, net (156) (68) (540) 650 \n Loss before provision (benefit) for income taxes (9,146) (19,617) (16,799) (29,746) \n Provision (benefit) for income taxes 368 (5) 39 284 \n Net loss $ (9,514) $ (19,612) $ (16,838) $ (30,030) \n Net loss per common share: \n Basic and diluted $ (0.19) $ (0.41) $ (0.33) $ (0.63) \n Weighted-average common shares outstanding - basic and diluted 51,065,867 48,171,552 50,657,264 47,858,628 \n (1) Includes stock-based compensation expense as follows: \n Three months ended June 30, Six months ended June 30, \n 2021 2020 2021 2020 \n (unaudited) \n Cost of revenue \n Subscription and support $ 597 $ 436 $ 1,093 $ 867 \n Professional services 409 365 776 790 \n Operating expenses \n Research and development 2,417 2,040 4,848 3,623 \n Sales and marketing 2,837 2,944 6,386 5,680 \n General and administrative 4,792 9,109 9,572 13,870 \n 2 \n WORKIVA INC.\nCONSOLIDATED BALANCE SHEETS\n(in thousands) \n June 30, 2021 December 31, 2020 \n (unaudited) \n Assets \n Current assets \n Cash and cash equivalents $ 322,194 $ 322,831 \n Marketable securities 229,419 207,207 \n Accounts receivable, net 65,908 68,922 \n Deferred costs 26,646 21,923 \n Other receivables 2,750 3,155 \n Prepaid expenses and other 12,045 9,047 \n Total current assets 658,962 633,085 \n Property and equipment, net 28,922 29,365 \n Operating lease right-of-use assets 15,558 15,844 \n Deferred costs, non-current 28,797 23,421 \n Intangible assets, net 1,516 1,583 \n Other assets 5,127 3,708 \n Total assets $ 738,882 $ 707,006 \n Liabilities and Stockholders’ Equity \n Current liabilities \n Accounts payable $ 3,704 $ 2,843 \n Accrued expenses and other current liabilities 76,682 68,256 \n Deferred revenue 224,952 208,990 \n Finance lease obligations 1,752 1,705 \n Total current liabilities 307,090 281,794 \n Convertible senior notes, net 294,040 289,490 \n Deferred revenue, non-current 32,219 35,894 \n Other long-term liabilities 1,338 1,680 \n Operating lease liabilities, non-current 16,355 17,209 \n Finance lease obligations, non-current 15,774 16,662 \n Total liabilities 666,816 642,729 \n Stockholders’ equity \n Common stock 50 49 \n Additional paid-in-capital 503,350 478,698 \n Accumulated deficit (431,538) (414,700) \n Accumulated other comprehensive income 204 230 \n Total stockholders’ equity 72,066 64,277 \n Total liabilities and stockholders’ equity $ 738,882 $ 707,006 \n 3 \n WORKIVA INC.\nCONSOLIDATED STATEMENTS OF CASH FLOWS\n(in thousands) \n Three months ended June 30, Six months ended June 30, \n 2021 2020 2021 2020 \n (unaudited) \n Cash flows from operating activities \n Net loss $ (9,514) $ (19,612) $ (16,838) $ (30,030) \n Adjustments to reconcile net loss to net cash provided by operating activities: \n Depreciation and amortization 1,097 1,052 2,151 2,115 \n Stock-based compensation expense 11,052 14,894 22,675 24,830 \n Provision for (recovery of) doubtful accounts 17 319 (101) 359 \n Amortization of premiums and discounts on marketable securities, net 763 112 1,388 213 \n Amortization of debt discount and issuance costs 2,284 2,213 4,550 4,410 \n Deferred income tax 362 (131) 16 (131) \n Changes in assets and liabilities: \n Accounts receivable (12,106) 3,847 3,159 18,112 \n Deferred costs (9,018) (2,166) (10,077) (1,563) \n Operating lease right-of-use asset 977 875 1,921 1,973 \n Other receivables 585 58 424 (195) \n Prepaid expenses 722 (890) (3,025) (2,845) \n Other assets (110) (609) (683) (683) \n Accounts payable (1,172) (1,692) 736 (3,074) \n Deferred revenue 11,900 (3,640) 12,079 (4,868) \n Operating lease liability (1,202) (1,178) (2,278) (2,323) \n Accrued expenses and other liabilities 16,123 13,737 8,166 5,716 \n Net cash provided by operating activities 12,760 7,189 24,263 12,016 \n Cash flows from investing activities \n Purchase of property and equipment (811) (696) (1,660) (1,384) \n Purchase of marketable securities (51,217) (16,457) (94,872) (37,289) \n Sale of marketable securities 250 — 250 11,423 \n Maturities of marketable securities 30,206 13,062 70,792 26,037 \n Purchase of intangible assets (52) (74) (123) (151) \n Other (750) — (750) — \n Net cash used in investing activities (22,374) (4,165) (26,363) (1,364) \n Cash flows from financing activities \n Proceeds from option exercises 1,480 6,664 5,618 9,458 \n Taxes paid related to net share settlements of stock-based compensation awards (731) (732) (7,877) (2,111) \n Proceeds from shares issued in connection with employee stock purchase plan — — 4,237 3,660 \n Principal payments on finance lease obligations (424) (404) (841) (802) \n Net cash provided by financing activities 325 5,528 1,137 10,205 \n Effect of foreign exchange rates on cash 310 135 326 (478) \n Net (decrease) increase in cash and cash equivalents (8,979) 8,687 (637) 20,379 \n Cash and cash equivalents at beginning of period 331,173 393,434 322,831 381,742 \n Cash and cash equivalents at end of period $ 322,194 $ 402,121 $ 322,194 $ 402,121 \n 4 \n TABLE I\nWORKIVA INC.\nRECONCILIATION OF NON-GAAP INFORMATION\n(in thousands, except share and per share) \n Three months ended June 30, Six months ended June 30, \n 2021 2020 2021 2020 \n Gross profit, subscription and support $ 77,107 $ 58,598 $ 148,841 $ 114,806 \n Add back: Stock-based compensation 597 436 1,093 867 \n Gross profit, subscription and support, non-GAAP $ 77,704 $ 59,034 $ 149,934 $ 115,673 \n As a percentage of subscription and support revenue, non-GAAP 85.2 % 83.5 % 85.1 % 83.2 % \n Gross profit, professional services $ 3,889 $ 3,018 $ 12,701 $ 10,215 \n Add back: Stock-based compensation 409 365 776 790 \n Gross profit, professional services, non-GAAP $ 4,298 $ 3,383 $ 13,477 $ 11,005 \n As a percentage of professional services revenue, non-GAAP 29.9 % 25.7 % 40.0 % 36.0 % \n Gross profit $ 80,996 $ 61,616 $ 161,542 $ 125,021 \n Add back: Stock-based compensation 1,006 801 1,869 1,657 \n Gross profit, non-GAAP $ 82,002 $ 62,417 $ 163,411 $ 126,678 \n As percentage of revenue, non-GAAP 77.7 % 74.4 % 77.9 % 74.7 % \n Cost of revenue, subscription and support $ 14,098 $ 12,098 $ 27,300 $ 24,251 \n Less: Stock-based compensation 597 436 1,093 867 \n Cost of revenue, subscription and support, non-GAAP $ 13,501 $ 11,662 $ 26,207 $ 23,384 \n As percentage of revenue, non-GAAP 12.8 % 13.9 % 12.5 % 13.8 % \n Cost of revenue, professional services $ 10,493 $ 10,146 $ 20,967 $ 20,389 \n Less: Stock-based compensation 409 365 776 790 \n Cost of revenue, professional services, non-GAAP $ 10,084 $ 9,781 $ 20,191 $ 19,599 \n As percentage of revenue, non-GAAP 9.6 % 11.7 % 9.6 % 11.6 % \n Research and development $ 27,830 $ 23,508 $ 54,464 $ 46,502 \n Less: Stock-based compensation 2,417 2,040 4,848 3,623 \n Research and development, non-GAAP $ 25,413 $ 21,468 $ 49,616 $ 42,879 \n As percentage of revenue, non-GAAP 24.1 % 25.6 % 23.6 % 25.3 % \n Sales and marketing $ 41,525 $ 35,270 $ 82,560 $ 71,387 \n Less: Stock-based compensation 2,837 2,944 6,386 5,680 \n Sales and marketing, non-GAAP $ 38,688 $ 32,326 $ 76,174 $ 65,707 \n As percentage of revenue, non-GAAP 36.6 % 38.5 % 36.3 % 38.7 % \n 5 \n TABLE I\nWORKIVA INC.\nRECONCILIATION OF NON-GAAP INFORMATION\n(in thousands, except share and per share) \n Three months ended June 30, Six months ended June 30, \n 2021 2020 2021 2020 \n General and administrative $ 17,384 $ 19,553 $ 34,405 $ 32,922 \n Less: Stock-based compensation 4,792 9,109 9,572 13,870 \n General and administrative, non-GAAP $ 12,592 $ 10,444 $ 24,833 $ 19,052 \n As percentage of revenue, non-GAAP 11.9 % 12.5 % 11.8 % 11.2 % \n Loss from operations $ (5,743) $ (16,715) $ (9,887) $ (25,790) \n Add back: Stock-based compensation 11,052 14,894 22,675 24,830 \n Income from operations, non-GAAP $ 5,309 $ (1,821) $ 12,788 $ (960) \n As percentage of revenue, non-GAAP 5.0 % (2.2) % 6.1 % (0.6) % \n Net loss $ (9,514) $ (19,612) $ (16,838) $ (30,030) \n Add back: Stock-based compensation 11,052 14,894 22,675 24,830 \n Add back: Non-cash interest expense related to convertible senior notes 2,284 2,213 4,550 4,410 \n Net income (loss), non-GAAP $ 3,822 $ (2,505) $ 10,387 $ (790) \n As percentage of revenue, non-GAAP 3.6 % (3.0) % 5.0 % (0.5) % \n Net loss per basic and diluted share: $ (0.19) $ (0.41) $ (0.33) $ (0.63) \n Add back: Stock-based compensation 0.22 0.31 0.45 0.52 \n Add back: Non-cash interest expense related to convertible senior notes 0.04 0.05 0.09 0.09 \n Net income (loss) per basic share, non-GAAP $ 0.07 $ (0.05) $ 0.21 $ (0.02) \n Net income (loss) per diluted share, non-GAAP $ 0.07 $ (0.05) $ 0.19 $ (0.02) \n Weighted-average common shares outstanding - basic, non-GAAP 51,065,867 48,171,552 50,657,264 47,858,628 \n Weighted-average common shares outstanding - diluted, non-GAAP 55,064,895 48,171,552 55,081,027 47,858,628 \n 6 \n TABLE II\nWORKIVA INC.\nRECONCILIATION OF NON-GAAP GUIDANCE\n(in thousands, except share and per share data) \n Three months ending September 30, 2021 Year ending December 31, 2021 \n Loss from operations, GAAP range $ (17,600) - $ (16,600) $ (47,700) - $ (45,700) \n Add back: Stock-based compensation \n 12,100 12,100 47,700 47,700 \n Income (loss) from operations, non-GAAP range $ (5,500) - $ (4,500) $ — - $ 2,000 \n Net loss per share, GAAP range $ (0.40) - $ (0.38) $ (1.19) - $ (1.15) \n Add back: Stock-based compensation \n 0.23 0.23 0.93 0.93 \n Add back: Non-cash interest expense related to convertible senior notes 0.05 0.05 0.18 0.18 \n Net loss per share, non-GAAP range $ (0.12) - $ (0.10) $ (0.08) - $ (0.04) \n Weighted-average common shares outstanding - basic 51,500,000 51,500,000 51,200,000 51,200,000 \n 7 \n",
@@ -36,7 +39,243 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000144530521000107__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001445305-21-000073",
+   "filingDate": "2021-05-04",
+   "reportDate": "2021-05-04",
+   "form": "8-K",
+   "local_gz": "000144530521000073__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 5,
+   "guidance_sentences": [
+    "Announces First Quarter 2021 Financial Results • Increased Q1 2021 Subscription & Support Revenue by 24.2% over Q1 2020 • Generated Total Q1 2021 Revenue of $104.2 Million, up 21.5% over Q1 2020 • Achieved 48% YOY Growth of Customers with Annual Contract Value Over $150K • Expands Total Addressable Market with Launch of ESG Solution • Raises Full-Year 2021 Revenue Guidance AMES, Iowa - May 4, 2021 – Workiva Inc.",
+    "Financial Outlook As of May 4, 2021, Workiva is providing guidance as follows: Second Quarter 2021 Guidance : • Total revenue is expected to be in the range of $101.0 million to $102.0 million.",
+    "Full Year 2021 Guidance: • Total revenue is expected to be in the range of $418.0 million to $420.0 million.",
+    "Workiva has factored into its guidance the expected impacts of COVID-19 on its business and results of operations based on currently available information.",
+    "ET to review the Company’s financial results for the first quarter, in addition to discussing the Company’s outlook for the second quarter and full year 2021."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2021-08-03",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 41,
+   "has_qna": true,
+   "n_chars": 31622,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Good afternoon, ladies and gentlemen. My name is Rachel, and I will be your host operator on this call. [Operator Instructions] Please note that this call is being recorded on August 3, 2021, at 5:00 p.m. Eastern Time. I'd now like to turn the meeting over to your host for today's call, Adam Terese, Director of Investor Relations at Workiva. Please go ahead."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Adam Terese",
+     "content": "Good afternoon, and thank you for joining us for Workiva's Second Quarter 2021 Conference Call. Today's call has been prerecorded and will include comments from our Chief Executive Officer, Marty Vanderploeg; followed by our Chief Financial Officer, Jill Klindt. We'll then open the call up for a live Q&A session. Julie Iskow, our Chief Operating Officer is also on the call. A replay of this webcast will be available until August 10, 2021. Information to access the replay is listed in today's press release, which is available on our website under the Investor Relations section. Before we begin, I would like to remind everyone that during today's call, we'll be making forward-looking statements regarding future events and financial performance, including guidance for the third quarter and full fiscal year 2021. These forward-looking statements are subject to known and unknown risks and uncertainties. Workiva cautions that these statements are not guarantees of future performance. All forward-looking statements made today reflect our current expectations only, and we undertake no obligation to update any statements to reflect the events that occur after this call. Please refer to the Company's annual report on Form 10-K and subsequent filings for factors that could cause our actual results to differ materially from any forward-looking statements. Also, during the course of today's call, we will refer to certain non-GAAP financial measures. Reconciliations of non-GAAP to GAAP measures and certain additional information are also included in today's press release. With that, we'll begin by turning the call over to our CEO, Marty Vanderploeg."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Marty Vanderploeg",
+     "content": "Hello and thank you for joining today's call. The Workiva team delivered another strong quarter beating second quarter guidance for revenue and operating income. The past quarter reflected our steady execution with the addition of 149 net new customers growing our customer base to almost 4,000. Our results continue to build on our market leadership and the increased demand for regulatory reporting and fit-for-purpose solutions to support digital transformations. We are very pleased that nearly all of our solutions exceeded plan and contributed to our broad based growth. Our strong bookings from existing customers reflect the breadth of our platform and our enhanced ability to cross-sell multiple solutions. This resulted in Q2 year-over-year growth of 29% in subscription and support revenue, and almost 26% in total revenue. We target being a low to mid 20% growth company. And for the first half of 2021 we delivered total revenue growth of 23.7%. Other highlights of the quarter included posting strong operating cash flow, our third highest in company history, achieving our highest revenue retention rate in 2.5 years and continuing to grow the percentage of customers with an annual contract value of over $100,000 and $150,000. Due to continued broad based demand and resulting top line growth we are raising full year guidance. Jill will provide further details about our financial results and outlook. A strong IPO and SPAC market propelled sales of our capital markets solution. This solution continued to exceed our revenue contribution plans in the second quarter. Capital Markets is a great source of new logos which fuels are SEC integrated risk and management reporting solutions. We will continue to model the incremental contribution of capital markets as an upside to our plan given its limited predictability. The EMEA team continued to build a strong new local pipeline with a focus on ESEF and other use cases. We are pleased with our incremental performance in the ESEF market. We believe it is still early days and that the market has a long tail. We remain optimistic about the opportunity and are expanding our selling organization to capture the market as it reopens. Our ESG solution pipeline is growing. We are pleased with the customer traction we are achieving and remain optimistic about the markets potential and expanding Tam. We are also accelerating our own corporate wide ESG efforts as we work towards strengthening our company and ultimately promoting a better world. Two recent corporate ESG highlights include, first, we recently received an MSCI ESG AA rating. We performed at a leader level and mark 30 deal in the top 23% of 140 SaaS companies with strong performance in governance, privacy and data security and human capital management. And second, Workiva has joined the UN Global Compact CFO Task Force. We're the first SaaS Company to join and Jill will participate and work alongside her peers to shape credible goals that are aligned with corporate sustainability strategies. We continue to strengthen our partner ecosystem. In the second quarter, we signed a number of large deals where our partners played a significant role. A few examples include working in partnership with a big four advisory firm, a large global auto manufacturer chose Workiva to manage their global statutory reporting transformation for over 500 legal entities. We worked with our partner on the joint RFP response, and the partner will deliver the services to implement our platform. Another key partner related when was with a large healthcare company, the customer invested in the Workiva platform purchasing four solutions geared towards privately held companies, including financial reporting, management reporting, internal controls and policy management. Expanding our partner ecosystem is powered growth in our multi solution opportunities. We also continue to expand our footprint with partners utilizing Workiva as part of their managed service delivery. We close four opportunities in the second quarter with new and existing partners. Three of the big four advisory firms have now invested in the Workiva platform to support the delivery of managed services. We are pleased with the investment that our partners are making in growing their Workiva practices and the impact they have had in delivering transformative results for our customers. Last week, we launched our new marketplace offering over 200 templates, services, and no code third party connectors. Customers can now streamline existing processes and reporting and solve new business problems all within our platforms connected and secure ecosystem. Our partners played a crucial role in the launch of the marketplace by contributing content and services that are readily available for customers to add to their workspaces. All four tenets of our company strategy are now fully in motion. We expect fit-for-purpose solutions, along with our modern platform, marketplace, and partner ecosystem to drive our growth. Our company's strategy enabled us to make thoughtful and deliberate decisions aligning and focusing the organization and exposing and mitigating risks through rigor and discipline. Yesterday, we announced the strategic tuck-in acquisition of OneCloud, a pioneer in iPaaS technology; we acquired OneCloud to extend our platform capabilities and data integration and preparation. OneCloud has been an OEM partner of ours since July of 2019. Their technology expanded the Workiva platform enabling our customers to connect data from third party sources such as ERP, GRC, HCM and CRM systems, as well as other third party cloud and on- premise applications. We believe connecting, harmonizing and controlling data across multiple disparate source systems further differentiates the Workiva platform from its competition. By acquiring OneCloud, we now fully own the complete end to end technology of our platform. We expect the smooth integration given the successful history that our two companies have shared and we welcome the OneCloud employees to Workiva. We are proud of the extraordinary talent that is driving our outstanding customer experience and values based culture. Recently, we were honored to be named once again to Fortune magazine's list of best workplaces for millennials. Approximately 70% of our employees are millennials, making this recognition even more meaningful. We also were renamed as a best workplace in both Chicago and New York. In closing, we delivered strong quarterly results driven by the focused execution of our strategy. We are growing the business through new logos, maintaining high customer retention and account expansion and investing in our people, tools and technology. It continues to be an exciting time for Workiva. The world is changing at a rapid pace and we believe we are well positioned to capitalize on the increasing opportunities to power transparent reporting for a better world. With that, I will now turn the call over to Jill."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Jill Klindt",
+     "content": "Thank you, Marty, and good afternoon, everyone. We saw strong performance during Q2 with new logo and add on sale contributions as well as continued robust performance across our solution portfolio. The team skillfully executed on our strategy and operating plans. I will talk about our results and guidance on a non-GAAP basis. Refer to our press release for a reconciliation of our non- GAAP and GAAP results and guidance. We continued to see broad based demand for our solutions in Q2. As a result, we are raising guidance for 2021 revenue and operating income which I will discuss later. I'll address our performance against Q2 guidance first. We beat Q2, 2021 revenue guidance at the midpoint by $4.1 million. Higher subscription revenue accounted for the majority of the beat. We beat guidance on Q2 operating income at the midpoint by $4.8 million. The revenue beat mentioned above coupled with lower T&E versus forecast make up the operating income. Turning to Q2 2021 results versus Q2 the year before. We generated total revenue in the second quarter of $105.6 million showing growth of 25.9% from Q2 2020. Breaking out revenue by reporting line item, subscription and support revenue was $91.2 million, up 29% from Q2, 2020. New logos and new solutions helped drive strong revenue growth in Q2, 2021, 63% of the increase in SMS revenue in Q2 came from new customers and in the last 12 months. Higher capital markets revenue was also a factor. Professional Services revenue was $14.4 million in Q2 2021, up 9.3% from the same quarter last year. This was largely due to higher XBRL services revenue. Turning to our supplemental metrics, we finished Q2 with 3,949 customers, a net growth of 437 customers from Q2, 2020 and the net growth of 149 customers from Q1, 2021. Our revenue retention rates improved. Our subscription and support revenue retention rate was 96% for the second quarter of 2021, an increase compared to 94.5% for the same period last year. With add-on, our subscription and support revenue retention rate improved to 111.6% for the second quarter of 2021 compared to 107.9% in Q2, 2020. The number of larger subscription contracts continues to show impressive growth. In the second quarter of 2021, we had 952 contracts valued at over $100,000 per year, up 33% from Q2 the prior year. The number of contracts valued at over $150,000 total 500 customers in the second quarter, up 46% from Q2, 2020. Moving down the P&L; gross profit totaled $82 million in Q2, up 31.4% from the same quarter a year ago. Consolidated gross margin was 77.7% in the latest quarter versus 74.4% in Q2, 2020, a net expansion of 330 basis points. Breaking out gross profit, subscription and support gross profit totaled $77.7 million, equating to a gross margin of 85.2% on SMS revenue, an expansion of 170 basis points compared to Q2, 2020, primarily driven by higher SMS revenue. Professional Services gross profit in the second quarter was $4.3 million, up 27% versus Q2, 2020. Gross margin was 29.9%, an expansion of 420 basis points. Research and Development expense in Q2 totaled $25.4 million, up 18.4% from Q2, 2020 due to new headcount investment. R&D expense as a percentage of revenue improved to 24.1% in Q2, 2021 from 25.6% in Q2, 2020. Sales and Marketing expense for the quarter increased 19.7% from Q2, 2020 to $38.7 million as we invest in the growth of our business. General and administrative expenses totaled $12.6 million in Q2, up $2.1 million compared to Q2 2020. G&A expenses as a percentage of revenue improved to 11.9% from 12.5% in Q2, 2020. We posted an operating profit of $5.3 million in Q2, 2021, compared to an operating loss of $1.8 million in Q2, 2020. Turning to our balance sheet and cash flow statement; at June 30, 2021, cash, cash equivalents and marketable securities totaled $552 million, an increase of $11 million compared to the balance at March 31, 2021. Net cash provided from operating activities in Q2, 2021 totaled $12.8 million, compared with cash provided of $7.2 million in the same quarter a year ago. Turning to our guidance, we are factoring in the expected impact of the COVID-19 pandemic on our business and results of operations based on information available to us today. For the third quarter of 2021, we expect total revenue to range from $108 million to $109 million. We expect subscription revenue will continue to grow at a faster rate than services revenue in Q3. We expect non-GAAP operating loss to range from $4.5 million to $5.5 million. For the full year 202, we are raising guidance for revenue; we now expect total revenue to range from $430 million to $432 million. We expect non-GAAP operating income to range from breakeven to $2 million. We are modeling higher travel costs and investments in growth opportunities and hiring through the remainder of 2021. And in 2021, we expect to post positive free cash flow for the fifth consecutive year. I am proud of our team's performance this quarter. And we'd like to thank all our employees for their hard work and incredible dedication. We will now take your questions. Operator, we are ready to begin the Q&A session."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Our next question comes from the line of Matthew Stotler from William Blair."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "MatthewStotler",
+     "content": "Hey, everybody thanks for taking the questions. I guess to start off, great to see the tuck-in acquisition here, the OneCloud acquisition. Would love to get maybe some color on how that came about? I mean this is a close partner of yours for a couple of years. So could you just share some of the thoughts that led to the decision to buy versus continuing to partner in this case?"
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "MartyVanderploeg",
+     "content": "Yes, sure. We had been working with them since July of 2019. OEM and your product, as you alluded to, and from our point of view, connecting disparate data systems is a very important part of what we do. We had a lot of use of that OEM and a lot of customers using those connectors. And I firmly believe that if it's strategic technology, you own it, it's just a lot safer, and you can do better integrations can be more aligned with our security. And we'd worked well together really bright group of people in OneCloud, very good people. And so it was as a tuck-in strategic technology by I would say always own was strategic. And the team wanted to join and that's another good thing. So we expect the integration to go really smoothly. We've worked with them for so long."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "MatthewStotler",
+     "content": "Got it. That's helpful. And then maybe just one more on ESG and maybe this one is for Julie. The last time we heard - I guess, the first time we talked about this on our last earnings call, it was about a week after you kind of officially announced the product and they're still kind of figuring out some things on the go-to-market front. Any progress that you can share in terms of the packaging pricing go-to-market around this product and how it's progressing?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "MartyVanderploeg",
+     "content": "Well what I would say is that we've made really good progress on understanding the market. We've seen some good progress in terms of growing pipeline; we've closed a few deals. And Julie's team, I'll let her comment on that are working real hard to optimize the product. So we're seeing, you see out in the press pretty clearly that everyone's talking a lot about it. And even though a lot of the regulations aren't approved yet or fully baked, you can see the writing on the wall. The reason we know that the customers are calling us in overseeing that type of draw. But in terms of optimizing our product, I'll turn that over to Julie."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "JulieIskow",
+     "content": "Sure, as Marty said, we're so pleased with the momentum and how the solution is performing. We've been having prospect conversations pipeline is building those conversations, help us refine, define the solution for the market, and the technology capabilities that we need to lead in this market."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Alex Sklar from Raymond James."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "AlexanderSklar",
+     "content": "Alright, thank you, Marty or Julie, on the new marketplace, some really impressive templates and connectors available at get go. I had two questions around this; first on the connectors and all the data integrations, can you just remind the strategy there relative to the W data solution, those just kind of light versions versus much greater functionality with W data? And then second, what are the important KPIs you're going to be tracking in terms of success of the marketplace? And opening up the platform over the next couple of years? Is it based on how many partners are building customer usages or any other color that would be great?"
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "JulieIskow",
+     "content": "Sure. As far as the metrics, we're in process of defining those now, but they'll be classic metrics for marketplace success, in terms of usage, download, adoption, engagement, and so forth. And the connectors are starting points for customers who want to begin using the capabilities of W data in our broader offerings with respect to the data platform."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "AlexanderSklar",
+     "content": "Okay, great. And then just a follow up for Jill, on the revenue growth, the 63% coming from new customers in the last 12 months, I think that implies you're landing much larger with new customers. Can you just help parse out what's driving those higher deal sizes? Is it coming from the partner influence deals? I know Marty mentioned four solution win. Is a Europe successful and another higher price solutions like global staff, any other color that would be helpful? Thank you."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "JillKlindt",
+     "content": "Yes, and thanks for the question. And it’s actually a combination of not only larger deals, but also continued add-on deals to those new customers. So it could be that they're coming in the door is one solution, and then pulling in other solutions on ways. So is this a combination of a lot of different, very strong activities that we're seeing across all our solution."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Tom Roderick of Stifel."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "ThomasRoderick",
+     "content": "Great, hi, everybody. Thanks for taking my questions. Marty, let me start with you. I mean, I think you've been pretty clear so far in this call that it would be in saying that it's a little too early to suspect that the results we're looking at in front of us are driven by ESG. But I'd love to understand what's really kind of behind the pickup in customer activity. We look at these metrics that are accelerating on kind of all key metrics. They're blowing away the expectations. And yet some of the things that perhaps your investors you're talking about the most might not even be happening just yet. If I think ESEF and ESG. And some of that excitement, so help me to understand what you're seeing that's driving a pickup and activity, maybe it's pickup on win rates, where it's happening, is still predominantly US, or are we in fact seeing Europe kicking into these numbers now? And is just the talk around ESG creating new deal activities, even if they're not pursuing ESG solution, or is that still too often -- they are too far off in the future?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "MartyVanderploeg",
+     "content": "Hey, Tom thanks. That's the question I could go on for quite a while. But I would start by saying that the performance has been very broad base. I mean I mentioned that and I've always talked about a portfolio approach. We have a number of different solutions, management reporting, SEC, integrated risk, annual and interim reporting GSR, ESEF. I can -- there's quite a lengthy list and the thing that we've always been very successful in that portfolio approach. And each solution can have some noise in it from time to time, a little weaker quarter than a very strong quarter, just depending on how deals close and things. And it's always given us a really smooth bookings trajectory, when you average all those out.  And this quarter almost all of them produced really good sales. And so it was pretty broad based, we keep saying that broad base. And I would agree with you 100%, that ESEF and ESG are upside. We did do as expected in ESEF, is tracking the SEC business that we started 10 years ago. And that has a long tail of solid growth ahead for us. And then the same thing I would say about ESG, we'll see some revenue from this year, but it's not going to be that material to our business. And all the upside there is that 2022 and 2023. That's when the activity will really pick up. Now, as I mentioned we're very pleased with the ESEF sales to date. It's back loaded because it's an annual report, and we're seeing the pipeline grow very nicely. And so yes, I think the good news for investors to hear is that all that upside ahead of us, and we're just, our core business is performing really well. Is that partially because of COVID? I think partially, but I think that's a long tail too. And we talked about Europe being a bigger and bigger percentage. It's trying to be it's growing faster. But North America is growing faster too. So pretty much across the board, broad base, this solid performance, everybody in the company getting better what they do. So that's and more demand. So those are sort of the core drivers of it. And there's not one that you would say, cap markets was stronger than normal. That's for sure. But in general it is very broad based."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "ThomasRoderick",
+     "content": "Excellent. Okay. There's a lot to be excited about. So we'll keep checking in on the new items. But that's great. Thanks for that detail. Jill, a follow up for you much simpler question. I apologize if I missed it. But is there any impact from OneCloud in the guidance?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "JillKlindt",
+     "content": "So Marty has mentioned earlier in the call about OneCloud being a smaller, it's more of a strategic acquisition. And so it's immaterial to our total results, we have modeled into our forecasts, and it is included in our guidance, anything -- any of the operational results related to OneCloud, but they really are not a big impact on our -- or it's not a part of the growth. Our guidance raised it's not being driven by that acquisition."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "ThomasRoderick",
+     "content": "So no material revenue is what you're saying."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "JillKlindt",
+     "content": "Correct, yes, that's excellent."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Andrew DeGasperi from Berenberg."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "AndrewDeGasperi",
+     "content": "Hi, everyone. Thanks for taking my question. My first one, I'd like to ask on ESEF. I know it's still early days, but one of the things we've heard from the advisory firms there is that usually the customers or the issuers have three options. They can either do it themselves; use a third-party software solution like Workiva; or outsource it. But that - even if 2021, which is one of the other solutions that wouldn't be a final mile software, they could eventually move in that direction because of the expense or the resources needed to do it themselves. Is that the type of conversations you're hearing? And would you agree that's why you feel it's a long-tailed opportunity?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "MartyVanderploeg",
+     "content": "Yes, I think you hit the nail on the head. I think that same thing happened in North America. We entered the market late, invested heavily and built a really sophisticated, powerful tool. And when we got in the market, most of the customers were either outsourcing it or bought some other sort of bolt-on applications. And they were 20% of the cost of our solution. But you saw the end result when you put a really good product out there that minimize risk for the customer produces really high quality output in terms of their disclosures and reports, you win that battle. So I was clear a call or two ago that we didn't expect just to take this whole market by storm. With a premium solution, people sort of have to learn what they have to do and learn the pain associated with it. And then there's more and more requirements, as you go on, they have to do more different types of tagging the following year, every time the hurdle gets higher for the bolt-on solutions. And so yes, we expect to see a really long tail, it's very similar to the SEC market, we've gone through in North America, we have that advantage, having watched that, meanwhile, we're closing really good business in ESEF in terms of the quality of the customer, the deal size, and each country is a little different how we're doing, but we have a really good plan. And the pipe is building really nicely. As you recall, most of the countries delayed ESEF. So a lot of the countries are just seriously for the first time in the second half of this year. But I think you've got a real good handle on what's going on."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "AndrewDeGasperi",
+     "content": "Thanks. That's helpful. And then maybe on the - Jill, if you can help on this. In terms of the contribution from capital markets. I mean you mentioned it was stronger. Can you maybe give us directionally, if not quantitatively, what that contribution is? I mean, has it sequentially become bigger in Q2?"
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "JillKlindt",
+     "content": "So we don't disclose that deal size or that as a separate solution. But it did have -- we did have an upside in Q2 related to that, there'll be some amounts that we will still be closing to the end of the year that will be completing to the end of the year. But that's included in our guidance, updated guidance. And so what we would say is that there's a potential for more upside depending on that market, but there's just too many variables for us to really know how that's going to go through."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "MartyVanderploeg",
+     "content": "I would add that when we manage the business, we're pretty conservative. And we model cap markets is upside. Every quarter, when it outperforms, obviously, it's good for the business. We do the same with ESEF; we have very, very moderate models for ESEF. And if and when it takes off, that's also all upside. So we model all these different solutions conservatively knowing numbers that we can reach in general. And yes, I mean, cap markets did outperform. But remember, we have a very small percentage of that market, that market is still pretty much dominated by the printers, the for a bunch of structural reasons that are not anything about our services or software. It's just how legal firms work. And so even though we did outperform it's not like a big part of our business by any means."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Terry Tillman from Truist."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "UnidentifiedAnalyst",
+     "content": "Hey, team, this is Connor [Indiscernible] for Terry Tillman, thanks for taking my questions. First one from me. We've been hearing from customers looking at the ESG solution, that there are numerous data collection elements and frameworks to be addressed there. I was just wondering what are the implications of the OneCloud technology as it relates to ESG reporting going forward."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "MartyVanderploeg",
+     "content": "Well, I think that of all the solutions we deal with, it will have as much connectivity as any of them and possibly more, all the different parts of ESG have also other little solutions people use. And so we're going to pull data in from a lot of different places and do prep work on it. So clearly, that was a big part of our motivation that OneCloud would play a big role in that, especially the connecting, and preparation, the data as it comes in, the frameworks, we're looking at different ways to deal with that we have several different database attempts that we were looking and using for existing customers, trying to optimize and see there's several frameworks. And I think the whole world including us is hoping that the planet settled on one or two of those frameworks to be able to support so many, but we're -- we can do that we're prepared to do it.  The data collection is another obviously nuance of all this and there's work you have to do, there's questionnaires, there's audit work that has to be done, and we have an audit solution to fit over that. And then as I've talked about before, we're working in a lot of workflows stop that will start to come out of the pipeline, at the end of this year, it's already starting to come out some of our data collection stuff. So we're really well positioned to address all of those different needs of ESG. And they're not dramatically different with the exception of the frameworks, then a lot of the stuff we're doing already."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "UnidentifiedAnalyst",
+     "content": "Great. And then just a quick follow up from a just curious on hiring goals and thoughts on sales capacity moving forward, thank you."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "MartyVanderploeg",
+     "content": "Well, you say hiring goals; I'll take some leeway of what's your mean. I mean, we are surprisingly, finding good talent, we're very pleased with -- our talent acquisition team is just knocking ball out of the park. And we're adding heads primarily in sales, quota carrying and also inside sales people. And then we're also adding heads in R&D, we have a lot of things we want to do with the product. And I knew I always talk about durable growth. And I believe that for durable growth, and we think we can grow this company for an extended period of time. We need to have high value products that enable us to charge more and that are sticky. And so we're investing in the product because we see the markets that we can serve, there are some really big markets that we can address. And so that's where the heads are being added. And we're having good luck of filling those heads. It always takes time. We're very picky. And we really focus on high level talent. But we're doing really well there in terms of meeting our objectives. In terms of what our objectives are, we really don't comment on that. That'll be pretty clear as we move along. Hello, the operator still there?"
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Operator",
+     "content": "Yes, I'm still here. I'm sorry about that. And our next question comes from the line of Mike Grondahl from Northland Security."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "MichaelPochucha",
+     "content": "This is Michael on for Mike. Maybe just on those - hey. Just on those partner deals, were those completely new logos for that automaker and the health care company? Or are those - you already had some existing solutions in there?"
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "MartyVanderploeg",
+     "content": "Well, I know the auto solution. We already had existing solutions in there, healthcare provider, I think it wasn't in logo but I'm not 100% sure."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "MichaelPochucha",
+     "content": "Got it. And then maybe just on the marketplace, can you talk maybe on the strategy of this, is it more --"
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "MartyVanderploeg",
+     "content": "Did you cut out I just heard is it more -- well let's talk about the strategy, the market --"
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "JillKlindt",
+     "content": "So, yes, the initial phases of the marketplace, focusing on easier and faster adoption for solutions on our platform, faster time to use some value for users, customers, and engagement with our partner ecosystem. So indirect monetization, showing customers the possibility of what can be done with our platform, will evolve the marketplace and move towards enabling third party builders again in later phases, and move towards direct monetization and capture that network effect to really grow adoption. So the strategy is to initially start out with targeting customers, easier, faster adoption, so forth, but evolve it to a full performing marketplace. There are no further questions on the queue. And this concludes our question-and-answer session and speakers if you have any remarks."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Marty Vanderploeg",
+     "content": "No, I think we're done."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Operator",
+     "content": "Thank you very much. This concludes today's conference call. Thank you all for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +286,8 @@
    "reportDate": "2020-12-31",
    "accession": "0001445305-21-000035",
    "url": "https://www.sec.gov/Archives/edgar/data/1445305/000144530521000035/wk-20201231.htm",
-   "local_gz": "000144530521000035__annual.txt.gz"
+   "local_gz": "000144530521000035__annual.txt.gz",
+   "n_lines": 1989
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +295,8 @@
    "reportDate": "2021-06-30",
    "accession": "0001445305-21-000108",
    "url": "https://www.sec.gov/Archives/edgar/data/1445305/000144530521000108/wk-20210630.htm",
-   "local_gz": "000144530521000108__q0.txt.gz"
+   "local_gz": "000144530521000108__q0.txt.gz",
+   "n_lines": 937
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +304,106 @@
    "reportDate": "2021-03-31",
    "accession": "0001445305-21-000074",
    "url": "https://www.sec.gov/Archives/edgar/data/1445305/000144530521000074/wk-20210331.htm",
-   "local_gz": "000144530521000074__q1.txt.gz"
+   "local_gz": "000144530521000074__q1.txt.gz",
+   "n_lines": 867
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2021-05-04",
   "n_rows": 8,
@@ -83,6 +418,48 @@
     "ocf": 4697000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 43590000.0,
+      "filed": "2019-11-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 156352000.0,
+      "filed": "2019-11-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 389124000.0,
+      "filed": "2019-11-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 663000.0,
+      "filed": "2019-11-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1058000.0,
+      "filed": "2019-11-06",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -16051000.0,
+      "filed": "2019-11-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +470,48 @@
     "ocf": 1987000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 60228000.0,
+      "filed": "2020-02-20",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 173617000.0,
+      "filed": "2020-02-20",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 381742000.0,
+      "filed": "2020-02-20",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 244000.0,
+      "filed": "2020-02-20",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1228000.0,
+      "filed": "2020-02-20",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -16298000.0,
+      "filed": "2020-02-20",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +522,58 @@
     "ocf": 4749000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 45522000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 172369000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 393434000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 688000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1142000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -10573000.0,
+      "filed": "2020-04-30",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.22,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 47545703.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +584,58 @@
     "ocf": 7113000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 41470000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 171378000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 402121000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 696000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1131000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -19765000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.41,
+      "filed": "2021-08-03",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 48171552.0,
+      "filed": "2021-08-03",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +646,48 @@
     "ocf": 7799000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 55571000.0,
+      "filed": "2020-11-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 182700000.0,
+      "filed": "2020-11-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 426132000.0,
+      "filed": "2020-11-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 379000.0,
+      "filed": "2020-11-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1160000.0,
+      "filed": "2020-11-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -10507000.0,
+      "filed": "2020-11-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +698,48 @@
     "ocf": 13582000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 68922000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 208990000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 322831000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 110000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 863000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -8013000.0,
+      "filed": "2021-02-17",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +750,58 @@
     "ocf": 11503000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": {
+      "value": 53754000.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 212025000.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 331173000.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 849000.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 1054000.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -7324000.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.15,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 50244120.0,
+      "filed": "2021-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +812,27 @@
     "ocf": 12760000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -9514000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": -0.19,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": {
+      "value": 51065867.0,
+      "source": "EX-99.1 稿內文字"
+     }
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 105600000.0,
     "revenue_xbrl_for_reference": 105587000.0
@@ -166,151 +846,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "7372",
   "sic2": "73",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 452,
-  "peer_list_all_same_sic2_tickers": [
-   "ABM",
-   "ABNB",
-   "ACIW",
-   "ACN",
-   "ACVA",
-   "ADBE",
-   "ADP",
-   "ADSK",
-   "ADT",
-   "ADV",
-   "AER",
-   "AEYE",
-   "AGMH",
-   "AGYS",
-   "AHG",
-   "AI",
-   "AIFF",
-   "AISP",
-   "AKAM",
-   "ALAR",
-   "ALIT",
-   "ALKT",
-   "ALLE",
-   "ALRM",
-   "AMN",
-   "AMST",
-   "AMWL",
-   "ANGI",
-   "APG",
-   "API",
-   "APP",
-   "APPF",
-   "APPN",
-   "ARBE",
-   "ARLO",
-   "ARQQ",
-   "ASAN",
-   "ASPS",
-   "ASUR",
-   "ATHM",
-   "ATXG",
-   "AUID",
-   "AUR",
-   "AUUD",
-   "AVPT",
-   "AWRE",
-   "BABA",
-   "BAND",
-   "BAOS",
-   "BB",
-   "BBAI",
-   "BBSI",
-   "BGSF",
-   "BIDU",
-   "BILI",
-   "BILL",
-   "BKYI",
-   "BL",
-   "BLIN",
-   "BLKB",
-   "BLND",
-   "BMBL",
-   "BNAI",
-   "BOX",
-   "BR",
-   "BSY",
-   "BTLN",
-   "BZ",
-   "CACI",
-   "CARG",
-   "CARS",
-   "CASS",
-   "CBZ",
-   "CCC",
-   "CCLD",
-   "CCO",
-   "CDLX",
-   "CDNS",
-   "CERT",
-   "CEVA",
-   "CGNT",
-   "CHGA",
-   "CHKP",
-   "CHR",
-   "CLBT",
-   "CLPS",
-   "CLVT",
-   "CMCM",
-   "CMRC",
-   "CNDT",
-   "CNET",
-   "CNXC",
-   "COUR",
-   "CPAY",
-   "CREX",
-   "CRM",
-   "CRNC",
-   "CRTO",
-   "CRWD",
-   "CSGP",
-   "CSPI",
-   "CTEV",
-   "CTOS",
-   "CTSH",
-   "CVLT",
-   "CXAI",
-   "CXM",
-   "DASH",
-   "DAVA",
-   "DBX",
-   "DCBO",
-   "DDD",
-   "DDOG",
-   "DFIN",
-   "DHX",
-   "DLHC",
-   "DLO",
-   "DOCN",
-   "DOCS",
-   "DOCU"
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 160,
+  "peer_list_all_tickers": [
+   "MSFT",
+   "XYZ"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000789019",
     "name": "MICROSOFT CORP",
     "ticker": "MSFT",
-    "sic2": "73",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2021-07-29",
     "accn": "0001564590-21-039151",
     "local_gz": "000156459021039151__peer10k.txt.gz",
     "capex_excerpt": [
+     "due to a $4.4 billion increase in common stock repurchases and a $1.4 billion increase in dividends paid, offset in part by a $1.8 billion decrease in repayments of debt and a $1.7 billion decrease in cash premium paid on debt exchange. Cash used in investing increased $15.4 billion to $27.6 billion for fiscal year 2021, mainly due to a $6.4 billion increase in cash used for acquisitions of companies, net of cash acquired, and purchases of intangible and other assets, a $5.2 billion increase in additions to property and equipment, and a $4.1 billion decrease in cash from net investment purchases, sales, and maturities. Debt We issue debt to take advantage of favorable pricing and liquidity i",
      "intangible and other assets, a $5.2 billion increase in additions to property and equipment, and a $4.1 billion decrease in cash from net investment purchases, sales, and maturities. Debt We issue debt to take advantage of favorable pricing and liquidity in the debt markets, reflecting our credit rating and the low interest rate environment. The proceeds of these issuances were or will be used for general corporate purposes, which may include, among other things, funding for working capital, capital expenditures, repurchases of capital stock, acquisitions, and repayment of existing debt. In March 2021 and June 2020, we exchanged a portion of our existing debt at a premium for cash and new de",
-     ".7 billion, which included $1.5 billion for fiscal year 2021. The remaining transition tax of $13.6 billion is payable over the next five years with a final payment in fiscal year 2026. We expect existing cash, cash equivalents, short-term investments, cash flows from operations, and access to capital markets to continue to be sufficient to fund our operating activities and cash commitments for investing and financing activities, such as dividends, share repurchases, debt maturities, material capital expenditures, and the transition tax related to the TCJA, for at least the next 12 months and thereafter for the foreseeable future. 51 PART II Item 7 RECENT ACCOUNTING GUIDANCE Refer to Note 1 "
-    ]
+     "ash transaction valued at $19.7 billion, inclusive of Nuance’s net debt. The acquisition has been approved by Nuance’s shareholders, and we expect it to close by the end of calendar year 2021, subject to the satisfaction of certain regulatory approvals and other customary closing conditions. We will continue to invest in sales, marketing, product support infrastructure, and existing and advanced areas of technology, as well as continue making acquisitions that align with our business strategy. Additions to property and equipment will continue, including new facilities, datacenters, and computer systems for research and development, sales and marketing, support, and administrative staff. We e"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0001326801",
-    "name": "Meta Platforms, Inc.",
-    "ticker": "META",
-    "sic2": "73"
+    "entity_id": "0001512673",
+    "name": "Block, Inc.",
+    "ticker": "XYZ",
+    "sic4": "7372",
+    "sic3": "737",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2021-02-23",
+    "accn": "0001512673-21-000008",
+    "local_gz": "000151267321000008__peer10k.txt.gz",
+    "capex_excerpt": [
+     "million of convertible senior notes that mature on November 1, 2027 (2027 Notes) with a 0.25% coupon interest rate. The 2026 Notes and 2027 Notes will mature on each of its respective dates, unless earlier converted or repurchased. The 2027 Notes will bear interest at a rate of 0.25% payable semi-annually on May 1 and November 1 of each year beginning on May 1, 2021. We intend to use the net proceeds from our 2025, 2026 and 2027 Notes offerings for general corporate purposes, which may include capital expenditures, investments, working capital, and potential acquisitions and strategic transactions. Impact of COVID-19 on Current Trends and Outlook By March 2020, the World Health Organization ",
+     "ssued under the 2020 Credit Facility. See Note 13, Indebtedness , of the Notes to the Consolidated Financial Statements for more details on these transactions. We believe that our existing cash and cash equivalents, investment in marketable debt securities, and availability under our line of credit will be sufficient to meet our working capital needs, including any expenditures related to strategic transactions and investment commitments that we may from time to time enter into, and planned capital expenditures for at least the next 12 months. From time to time, we may seek to raise additional capital through equity, equity-linked, and debt financing arrangements. We cannot provide assurance",
+     "action and loan losses, depreciation and amortization, and non-cash interest and other expenses largely driven by growth and expansion of our business activities, offset in part by the gain on sale of Caviar of $373.4 million in the fourth quarter. The cash generated from operating activities was negatively affected by a net outflow from changes in other assets and liabilities of $110.8 million. Cash Flows from Investing Activities Cash flows used in investing activities primarily relate to capital expenditures to support our growth, investments in marketable debt securities, investment in privately held entity, and business acquisitions. For the year ended December 31, 2020, cash used in in"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -332,7 +913,16 @@
   "latest_data_date": "2021-08-04",
   "cutoff": "2021-08-04",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2021-08-03",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2021-08-05",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

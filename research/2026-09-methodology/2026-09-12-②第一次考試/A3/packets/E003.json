@@ -1,6 +1,7 @@
 {
  "event_id": "E003",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E003",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "GERN",
  "cik": "0000886744",
  "name": "GERON CORP",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2015-05-01(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E003",
   "event_id": "E003",
   "ticker": "GERN",
   "cik": "0000886744",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001206774-15-001512",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/886744/000120677415001512/geroncorp_8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/886744/000120677415001512/geroncorp_8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n exhibit99_1.htm\n PRESS RELEASE DATED APRIL 30, 2015\n EXHIBIT 99.1\n Press Release Dated April\n30, 2015 \n Geron Corporation Reports\nFirst Quarter 2015 Financial Results and Recent Events \n Upcoming Investor\nConference and Annual Stockholders Meeting Also Announced \n MENLO PARK,\nCalif., April 30, 2015 -- Geron Corporation (Nasdaq: GERN) today reported\nfinancial results and recent events for the first quarter ended March 31, 2015.\n First Quarter 2015 Results\n For the first quarter of 2015,\nthe company reported operating revenues of $537,000 and operating expenses of\n$10.0 million compared to $474,000 and $9.2 million, respectively, for the\ncomparable 2014 period. Operating expenses in the first quarter of 2015 included\nrestructuring charges of $406,000. Net loss for the first quarter of 2015 was\n$9.3 million, or $0.06 per share, compared to $8.4 million, or $0.06 per share,\nfor the comparable 2014 period. The company ended the first quarter of 2015 with\n$163.8 million in cash and investments. \n Revenues for the first quarter of 2015\nand 2014 included royalty and license fee revenues under various agreements.\nInterest and other income for the first quarter of 2015 was $149,000 compared to\n$83,000 for the comparable 2014 period. The increase in interest and other\nincome in 2015 compared to 2014 was due to higher cash and investment balances\nin 2015. \n Research and development\nexpenses for the first quarter of 2015 were $5.0 million compared to $5.2\nmillion for the comparable 2014 period. The decrease in research and development\nexpenses was primarily the net result of lower manufacturing costs for\nimetelstat drug product, partially offset by increased costs for the development\nof imetelstat for hematologic myeloid malignancies in collaboration with Janssen\nBiotech, Inc. (Janssen). The company expects research and development expenses\nto increase during the remainder of the year as the development of imetelstat\ncontinues in collaboration with Janssen. \n General and administrative\nexpenses for the first quarter of 2015 were $4.6 million compared to $4.0\nmillion for the comparable 2014 period. The increase in general and\nadministrative expenses was primarily the result of higher non-cash stock-based\ncompensation expense, increased legal fees for the defense against the\nsecurities class action and derivative lawsuits filed against the company and\nhigher consulting costs in connection with business development activities to\nidentify potential new product candidates. \n Recent Company Events\n Status of Imetelstat\nCollaboration with Janssen. In March 2015, the company transferred its investigational new drug\napplication (IND) for imetelstat to Janssen, as required by the collaboration\nagreement with them. In addition, in March 2015, the company transferred the IND\nfor the study in patients with myelofibrosis being conducted at Mayo Clinic to\nJanssen, whereupon Janssen assumed responsibility as the sponsor for the\nstudy. \n The company expects Janssen to\ninitiate a Phase 2 study in patients with myelofibrosis in mid-2015, followed by\na Phase 2 study in patients with myelodysplastic syndromes at the end of 2015.\nAs part of the study start-up activities, study design information for the Phase\n2 study in patients with myelofibrosis was posted on clinicaltrials.gov. The\nlist of participating clinical trial sites, including multiple sites in the\nUnited States and Europe, will be uploaded on an ongoing basis. The study is not\nyet open for enrollment. \n Organizational\nResizing. Given projected\nreduced operational demands as a result of the collaboration with Janssen, in\nMarch 2015 the company announced an organizational resizing to reduce its\nworkforce from 39 to 21 positions. The company expects the majority of the\nreduction in its workforce to be completed by the end of the second quarter of\n2015. In connection with this action, the company expects to incur aggregate\nrestructuring charges of approximately $1.7 million, the majority of which will\nbe recognized in the first half of 2015. Approximately $1.4 million of these\ncharges is expected to be paid in cash, the majority of which is expected to be\npaid during 2015. The company expects the resizing to reduce the company’s\npersonnel-related costs by approximately $5.0 million on an annualized basis.\n Upcoming Investor\nConference and Annual Stockholders Meeting \n Geron is scheduled to present\nat the Bank of America Merrill Lynch 2015 Healthcare Conference in Las Vegas,\nNevada at 3:40 p.m. Pacific Time on Wednesday, May 13. The presentation will\ninclude a review of the study design for the planned Phase 2 clinical trial of\nimetelstat in myelofibrosis patients to be conducted by Janssen. A live webcast\nof the presentation will be available through the Investor Relations pages of\nGeron’s website or at\nhttp://www.veracast.com/webcasts/baml/healthcare2015/id75213371347.cfm.\nFollowing the live presentation, the webcast will be archived and available for\nreplay at the same address for a period of 30 days. \n Geron’s annual stockholders\nmeeting will be held on Monday, May 18, 2015 at 3:00 p.m. Pacific Time. All\nstockholders are invited to attend the meeting in person at the Westin San\nFrancisco Airport, One Old Bayshore Highway, Millbrae, California 94030 or via\nconference call by dialing 877-303-9139 (U.S.); 760-536-5195 (international).\nThe passcode is 10445504. A live audio-only webcast will also be available at\nhttp://edge.media-server.com/m/p/bu3nq8gw/lan/en. \n Given these upcoming events,\nthe company will not be hosting a first quarter earnings call. \n About Geron \n Geron is a clinical stage\nbiopharmaceutical company focused on the collaborative development of a\nfirst-in-class telomerase inhibitor, imetelstat, in hematologic myeloid\nmalignancies. For more information about Geron, visit www.geron.com. \n Use of Forward-Looking\nStatements \n Except for the historical\ninformation contained herein, this press release contains forward-looking\nstatements made pursuant to the “safe harbor” provisions of the Private\nSecurities Litigation Reform Act of 1995. Investors are cautioned that\nstatements in this press release regarding: (i) Geron’s potential receipt of\ndevelopment, regulatory and sales milestones, as well as royalties on potential\nfuture sales of imetelstat commercialized under the collaboration agreement with\nJanssen; (ii) timing of planned and potential clinical trials of imetelstat to\nbe conducted under the collaboration agreement with Janssen, including the Phase\n2 study in myelofibrosis and the Phase 2 study in myelodysplastic syndromes, and\nother potential activities under the collaboration agreement with Janssen; (iii)\nthe safety and efficacy of imetelstat; (iv) financial projections and\nexpectations, including incurring aggregate restructuring charges of\napproximately $1.7 million, cash expenditures of approximately $1.4 million,\nprojected reduction in personnel-related costs by approximately $5.0 million on\nan annualized basis and recognition of revenue from the $35 million upfront\npayment from Janssen; (v) intellectual property protection; and (vi) other\nstatements that are not historical facts, constitute forward-looking statements.\nThese statements involve risks and uncertainties that can cause actual results\nto differ materially from those in such forward-looking statements. These risks\nand uncertainties, include, without limitation, risks and uncertainties related\nto: (i) receiving approval from regulatory authorities to proceed with the\npreliminary design of the Phase 2 clinical trial in myelofibrosis; (ii) the\nuncertain, time-consuming and expensive product development and regulatory\nprocess, including whether Geron and Janssen will succeed in overcoming all of\nthe clinical safety and efficacy, technical, scientific, manufacturing and\nregulatory challenges in the development and commercialization of imetelstat;\n(iii) the fact that Geron may not receive any milestone, royalty or other\npayments from Janssen because Janssen may terminate the collaboration agreement\nfor any reason; (iv) the ability of Geron and Janssen to protect and maintain\nintellectual property rights for imetelstat; (v) Geron’s dependence on Janssen\nfor the development, regulatory approval, manufacture and commercialization of\nimetelstat, including the risks that if Janssen were to breach or terminate the\ncollaboration agreement or otherwise fail to successfully develop and\ncommercialize imetelstat and in a timely manner, or at all, Geron would not\nobtain the anticipated financial and other benefits of the collaboration\nagreement with Janssen and the clinical development or commercialization of\nimetelstat could be delayed or terminated; (vi) whether imetelstat is safe and\nefficacious, and whether any future efficacy or safety results may cause the\nbenefit-risk profile of imetelstat to become unacceptable; (vii) whether\nimetelstat can be applied to any or to multiple hematologic malignancies; (viii)\nunanticipated expenses or charges resulting from the resizing; (ix) completion\nof technology transfer-related activities under the collaboration agreement to\ntrigger revenue recognition; and (x) the need for future capital. Additional\ninformation on the above risks and uncertainties and additional risks,\nuncertainties and factors that could cause actual results to differ materially\nfrom those in the forward-looking statements are contained in Geron’s periodic\nreports filed with the Securities and Exchange Commission under the heading\n“Risk Factors,” including Geron’s annual report on Form 10-K for the year ended\nDecember 31, 2014. Undue reliance should not be placed on forward-looking\nstatements, which speak only as of the date they are made, and the facts and\nassumptions underlying the forward-looking statements may change. Except as\nrequired by law, Geron disclaims any obligation to update these forward-looking\nstatements to reflect future information, events or circumstances. \n CONTACT: \n Kevin Eng,\nPh.D.\n Investor and Media\nRelations\n650-473-7765\ninvestor@geron.com\nmedia@geron.com \n Financial table\nfollows. \n GERON\nCORPORATION\n CONDENSED\nSTATEMENTS OF OPERATIONS\n(UNAUDITED) \n Three Months Ended March\n 31, \n (In thousands, except share and per share data) \n 2015 \n 2014 \n Revenues: \n License fees and\n royalties \n $ \n 537 \n $ \n 474 \n Operating expenses: \n Research and\n development \n 4,987 \n 5,211 \n Restructuring charges \n 406 \n — \n General and\n administrative \n 4,600 \n 3,994 \n Total operating expenses \n 9,993 \n 9,205 \n Loss\n from operations \n (9,456 \n ) \n (8,731 \n ) \n Unrealized gain on derivatives \n 16 \n 224 \n Interest and other income \n 149 \n 83 \n Interest and other expense \n (24 \n ) \n (16 \n ) \n Net\n loss \n $ \n (9,315 \n ) \n $ \n (8,440 \n ) \n Basic and diluted net loss per\n share: \n Net loss per share \n $ \n (0.06 \n ) \n $ \n (0.06 \n ) \n Shares\n used in computing net loss per share \n 157,547,568 \n 143,465,818 \n CONDENSED BALANCE SHEETS\n March 31, \n December 31, \n (In thousands) \n 2015 \n 2014 \n (Unaudited) \n (Note 1) \n Current assets: \n Cash, cash\n equivalents and restricted cash \n $ \n 10,448 \n $ \n 43,062 \n Current\n marketable securities \n 135,655 \n 108,645 \n Other\n current assets \n 1,794 \n 1,699 \n Total current assets \n 147,897 \n 153,406 \n Noncurrent marketable securities \n 17,739 \n 18,932 \n Property and equipment, net \n 171 \n 173 \n $ \n 165,807 \n $ \n 172,511 \n Current liabilities (Note\n 2) \n $ \n 40,632 \n $ \n 41,799 \n Stockholders’ equity \n 125,175 \n 130,712 \n $ \n 165,807 \n $ \n 172,511 \n Note 1: \n Derived from audited\n financial statements included in the company’s annual report on Form 10-K\n for the year ended December 31, 2014. \n Note\n 2: \n Current liabilities\n balance as of March 31, 2015 and December 31, 2014 includes $35 million in\n deferred revenue resulting from the upfront payment received under the\n collaboration with Janssen in December 2014. The company expects to fully\n recognize the $35 million upfront payment as license fee revenue upon the\n completion of technology transfer-related activities which is anticipated\n to occur by September 30, 2015. \n ### \n",
@@ -36,6 +39,22 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000120677415001512__8k.txt.gz",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001206774-15-000720",
+   "filingDate": "2015-03-03",
+   "reportDate": "2015-02-25",
+   "form": "8-K",
+   "local_gz": "000120677415000720__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 0,
+   "n_sentences": 0,
+   "guidance_sentences": [],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出",
+   "status": "查不到(該份 EX-99.1 內找不到指引句,該期可能本來就沒給指引)"
+  },
   "earnings_call_transcript": "查不到",
   "going_concern_hit": 0,
   "going_concern_snippet": ""
@@ -47,7 +66,8 @@
    "reportDate": "2014-12-31",
    "accession": "0001047469-15-001989",
    "url": "https://www.sec.gov/Archives/edgar/data/886744/000104746915001989/a2223360z10-k.htm",
-   "local_gz": "000104746915001989__annual.txt.gz"
+   "local_gz": "000104746915001989__annual.txt.gz",
+   "n_lines": 8334
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +75,8 @@
    "reportDate": "2014-09-30",
    "accession": "0001104659-14-077082",
    "url": "https://www.sec.gov/Archives/edgar/data/886744/000110465914077082/a14-19712_110q.htm",
-   "local_gz": "000110465914077082__q0.txt.gz"
+   "local_gz": "000110465914077082__q0.txt.gz",
+   "n_lines": 1851
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +84,106 @@
    "reportDate": "2014-06-30",
    "accession": "0001104659-14-059373",
    "url": "https://www.sec.gov/Archives/edgar/data/886744/000110465914059373/a14-13977_110q.htm",
-   "local_gz": "000110465914059373__q1.txt.gz"
+   "local_gz": "000110465914059373__q1.txt.gz",
+   "n_lines": 1856
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2015-03-11",
   "n_rows": 8,
@@ -83,6 +198,33 @@
     "ocf": -7927000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 8834000.0,
+      "filed": "2013-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 22000.0,
+      "filed": "2013-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -8947000.0,
+      "filed": "2013-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +235,33 @@
     "ocf": -5725000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 9591000.0,
+      "filed": "2013-11-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 0.0,
+      "filed": "2013-11-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -8254000.0,
+      "filed": "2013-11-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +272,33 @@
     "ocf": -6801000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 12990000.0,
+      "filed": "2014-03-17",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": -53000.0,
+      "filed": "2014-03-17",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -9281000.0,
+      "filed": "2014-03-17",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +309,28 @@
     "ocf": -9505000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 11324000.0,
+      "filed": "2014-05-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -8440000.0,
+      "filed": "2014-05-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +341,28 @@
     "ocf": -5150000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 9520000.0,
+      "filed": "2014-08-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -8734000.0,
+      "filed": "2014-08-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +373,33 @@
     "ocf": -4472000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 7600000.0,
+      "filed": "2014-11-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 12000.0,
+      "filed": "2014-11-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -9549000.0,
+      "filed": "2014-11-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +410,33 @@
     "ocf": 28477000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 42796000.0,
+      "filed": "2015-03-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 119000.0,
+      "filed": "2015-03-11",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -8947000.0,
+      "filed": "2015-03-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +447,24 @@
     "ocf": -7705000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": {
+      "value": 35000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -9315000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 537000.0,
     "revenue_xbrl_for_reference": 537000.0
@@ -166,143 +478,50 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2834",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 312,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABEO",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ACAD",
-   "ACHV",
-   "ACNT",
-   "ADMA",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALKS",
-   "ALNY",
-   "ALTO",
-   "AMGN",
-   "AMPH",
-   "AMRN",
-   "AMTX",
-   "ANIP",
-   "ANIX",
-   "APD",
-   "ARDX",
-   "ARMP",
-   "ARQ",
-   "ARWR",
-   "ASMB",
-   "ASND",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "AUPH",
-   "AVD",
-   "AVNT",
-   "AVXL",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "BAK",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BHC",
-   "BIIB",
-   "BLRX",
-   "BMRA",
-   "BMRN",
-   "BMY",
-   "CANF",
-   "CAPR",
-   "CATX",
-   "CBIO",
-   "CBT",
-   "CDXS",
-   "CE",
-   "CF",
-   "CGEN",
-   "CHD",
-   "CHRS",
-   "CL",
-   "CLDX",
-   "CLLS",
-   "CLRB",
-   "CLX",
-   "COCP",
-   "CORT",
-   "COTY",
-   "CPHI",
-   "CPIX",
-   "CRBP",
-   "CRDF",
-   "CRIS",
-   "CRMD",
-   "CRVO",
-   "CSBR",
-   "CTXR",
-   "CVM",
-   "CYRX",
-   "CYTK",
-   "DARE",
-   "DBVT",
-   "DCOY",
-   "DMAC",
-   "DYAI",
-   "EBS",
-   "ECL",
-   "EDSA",
-   "EL",
-   "ELDN",
-   "EMN",
-   "ENLV",
-   "ENTA",
-   "EPC",
-   "ERNA",
-   "ESI",
-   "EVGN",
-   "EVO",
-   "EXEL",
-   "FATE",
-   "FBIO",
-   "FF",
-   "FLNA",
-   "FMC",
-   "FSI",
-   "FTK",
-   "FTLF",
-   "FUL",
-   "GALT",
-   "GEVO",
-   "GILD",
-   "GLMD",
-   "GMAB",
-   "GPRE",
-   "GRCE"
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 186,
+  "peer_list_all_tickers": [
+   "JNJ",
+   "PFE"
   ],
   "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0000882095",
-    "name": "GILEAD SCIENCES, INC.",
-    "ticker": "GILD",
-    "sic2": "28"
-   },
    {
     "entity_id": "0000078003",
     "name": "PFIZER INC",
     "ticker": "PFE",
-    "sic2": "28"
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2015-02-27",
+    "accn": "0000078003-15-000014",
+    "local_gz": "000007800315000014__peer10k.txt.gz",
+    "capex_excerpt": [
+     "ue to make, the expenditures necessary for compliance with applicable laws. We also are cleaning up environmental contamination from past industrial activity at certain sites. See the Notes to Consolidated Financial Statements— Note 17. Commitments and Contingencies in our 2014 Financial Report. As a result, we incurred capital and operational expenditures in 2014 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: • environment-related capital expenditures—$19 million; and • other environment-related expenses—$160 million. 15 While capital expenditures or operating costs for environmental compliance, including compliance with laws relat",
+     "nmental contamination from past industrial activity at certain sites. See the Notes to Consolidated Financial Statements— Note 17. Commitments and Contingencies in our 2014 Financial Report. As a result, we incurred capital and operational expenditures in 2014 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: • environment-related capital expenditures—$19 million; and • other environment-related expenses—$160 million. 15 While capital expenditures or operating costs for environmental compliance, including compliance with laws related to climate change, cannot be predicted with certainty, we have no reason to believe they will have a ma",
+     "tional expenditures in 2014 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: • environment-related capital expenditures—$19 million; and • other environment-related expenses—$160 million. 15 While capital expenditures or operating costs for environmental compliance, including compliance with laws related to climate change, cannot be predicted with certainty, we have no reason to believe they will have a material effect on our capital expenditures or competitive position. Climate change presents risks to our operations, including potential physical risks to our facilities and supply chain due to more frequent and severe weather events "
+    ],
+    "capex_status": "ok"
+   },
+   {
+    "entity_id": "0000200406",
+    "name": "JOHNSON & JOHNSON",
+    "ticker": "JNJ",
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2015-02-24",
+    "accn": "0000200406-15-000004",
+    "local_gz": "000020040615000004__peer10k.txt.gz",
+    "capex_excerpt": [
+     "e found under the heading “Government Proceedings - McNeil Consumer Healthcare” in Note 21 “Legal Proceedings” under “Notes to Consolidated Financial Statements” of the Annual Report, filed as Exhibit 13 to this Report on Form 10-K. 5 Table of Contents For information regarding lease obligations, see Note 16 “Rental Expense and Lease Commitments” under “Notes to Consolidated Financial Statements” of the Annual Report, filed as Exhibit 13 to this Report on Form 10-K. Segment information on additions to property, plant and equipment is contained in Note 18 “Segments of Business and Geographic Areas” under “Notes to Consolidated Financial Statements” of the Annual Report, filed as Exhibit 13 to"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -324,7 +543,16 @@
   "latest_data_date": "2015-05-01",
   "cutoff": "2015-05-01",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": null,
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2015-05-04",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

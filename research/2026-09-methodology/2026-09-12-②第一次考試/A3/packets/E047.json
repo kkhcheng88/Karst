@@ -1,6 +1,7 @@
 {
  "event_id": "E047",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E047",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "SHOO",
  "cik": "0000913241",
  "name": "STEVEN MADDEN, LTD.",
@@ -9,10 +10,11 @@
  "bucket": "製造與工業",
  "evidence_cutoff": "T1 = 2020-10-27(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E047",
   "event_id": "E047",
   "ticker": "SHOO",
   "cik": "0000913241",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,7.01,9.01",
   "accessionNumber": "0001019056-20-000540",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/913241/000101905620000540/smadden_8k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/913241/000101905620000540/smadden_8k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n ex99_1.htm\n EXHIBIT 99.1\n Exhibit 99.1 \n Steve Madden\nAnnounces Third Quarter 2020 Results \n LONG\nISLAND CITY, N.Y., October 27, 2020 – Steve Madden (Nasdaq: SHOO), a leading designer and marketer of fashion-forward footwear,\naccessories and apparel for women, men and children, today announced financial results for the third quarter ended September 30,\n2020. \n Amounts\nreferred to as “Adjusted” exclude the items that are described under the heading “Non-GAAP Adjustments.”\n The Company\nreclassified commission and licensing fee income to Total Revenue and reclassified its respective expenses into Operating Expenses\nfrom previously labeled Commission and Licensing Fee Income - Net on the Company’s Consolidated Statement of Operations for each\nperiod provided. \n Third\nQuarter 2020 Review \n · Revenue\n decreased 30.9% to $346.9 million compared to $502.1 million in the same period\n of 2019. \n · Gross\n margin increased 130 basis points to 40.3% compared to 39.0% in the same period of 2019. \n · Operating\n expenses as a percentage of revenue were 31.7% compared to 25.5% in the same period of\n 2019. Adjusted operating expenses as a percentage of revenue were 27.0% compared to 24.6%\n in the same period of 2019. \n · Loss\n from operations totaled ($3.0) million, or (0.9%) of revenue, compared to income from\n operations of $68.0 million, or 13.6% of revenue, in the same period of 2019. Adjusted\n income from operations was $46.2 million, or 13.3% of revenue, compared to Adjusted income\n from operations of $72.3 million, or 14.4% of revenue, in the same period of 2019. \n · Net\n loss attributable to Steven Madden, Ltd. was ($6.9) million, or ($0.09) per diluted share,\n compared to net income attributable to Steven Madden, Ltd. of $52.5 million, or $0.63\n per diluted share, in the same period of 2019. Adjusted net income attributable to Steven\n Madden, Ltd. was $31.8 million, or $0.39 per diluted share, compared to Adjusted net\n income attributable to Steven Madden, Ltd. of $56.0 million, or $0.67 per diluted share,\n in the same period of 2019. \n Edward Rosenfeld,\nChairman and Chief Executive Officer, commented, “While the COVID-19 pandemic continues to have a negative impact on our\nbusiness, we were pleased to deliver third quarter revenue and earnings that significantly exceeded our expectations. The swift\nactions we took to address the rapidly changing marketplace – adjusting our merchandise mix, accelerating our digital commerce\ninitiatives and right-sizing our expense structure – have positioned us to continue to navigate the crisis and also to capitalize\non market share opportunities going forward. We remain confident that our strong brands, pristine balance sheet and proven business\nmodel will enable us to drive sustainable revenue and earnings growth as conditions normalize.” \n Third\nQuarter 2020 Segment Results \n Revenue\nfor the wholesale business decreased 32.7% to $283.8 million in the third quarter of 2020, including a 32.5% decline in wholesale\nfootwear and a 33.3% decline in wholesale accessories/apparel. Gross margin in the wholesale business increased 70 basis points\nto 34.6% compared to 33.9% in the third quarter of 2019. \n Retail\nrevenue decreased 22.1% to $59.0 million in the third quarter of 2020 due to a significant decline in the brick-and-mortar business,\npartially offset by strong growth in the e-commerce business. Retail gross margin rose 50 basis points to 63.8% compared to 63.3%\nin the third quarter of 2019. \n The Company\nended the quarter with 221 company-operated retail stores, including eight internet stores, as well as 17 company-operated concessions\nin international markets. \n The Company’s\neffective tax rate for the third quarter of 2020 was (145.6%) compared to 23.0% in the third quarter of 2019. On an Adjusted basis,\nthe effective tax rate for the third quarter of 2020 was 29.3% compared to 22.6% in the third quarter of 2019. \n Balance\nSheet \n As of\nSeptember 30, 2020, cash, cash equivalents and short-term investments totaled $257.2 million, and the Company had no outstanding\nborrowings. \n Fiscal Year\n2020 Outlook \n Given the continued\ndisruption and uncertainty related to the COVID-19 pandemic, the Company is not providing guidance at this time. \n Non-GAAP\nAdjustments \n Amounts\nreferred to as “Adjusted” exclude the items below. \n For the\nthird quarter 2020: \n · $8.7\n million pre-tax ($6.7 million after-tax) expense in connection with payments and a provision\n for early lease termination charges, included in operating expenses. \n · $4.6\n million pre-tax ($3.5 million after-tax) expense associated with the impairment of store\n fixed assets, included in operating expenses. \n · $2.3\n million pre-tax ($1.7 million after-tax) expense in connection with the impairment of\n lease right-of-use assets, included in operating expenses. \n · $1.0\n million pre-tax ($0.7 million after-tax) expense in connection with restructuring and\n related charges, included in operating expenses. \n · $0.4\n million pre-tax ($0.3 million after-tax) benefit in connection with the change in valuation\n of contingent considerations, included in operating expenses. \n · $33.0\n million pre-tax ($25.2 million after-tax) expense associated with the impairment of certain\n trademarks. \n · $1.2\n million loss in connection with the impairment of store fixed assets, impairment of lease\n right-of-use assets, restructuring and related charges attributable to noncontrolling\n interest. \n · $2.4\n million tax expense in connection with deferred and foreign uncertain tax position adjustments. \n For the\nthird quarter 2019: \n · $3.1\n million pre-tax ($2.3 million after-tax) expense in connection with a provision for early\n lease termination charges, included in operating expenses. \n · $1.1\n million pre-tax ($0.8 million after-tax) expense in connection with the acquisitions\n of GREATS and BB Dakota, included in operating expenses. \n · $0.4\n million tax expense in connection with deferred adjustments. \n Reconciliations\nof amounts on a GAAP basis to Adjusted amounts are presented in the Non-GAAP Reconciliation tables at the end of this release\nand identify and quantify all excluded items. \n Conference\nCall Information \n Interested stockholders\nare invited to listen to the third quarter earnings conference call scheduled for today, October 27, 2020, at 8:30 a.m. Eastern\nTime. The call will be broadcast live over the Internet and can be accessed by logging onto https://investor.stevemadden.com .\nAn online archive of the broadcast will be available within two hours of the conclusion of the call and will remain available\nfor 12 months following the live call. \n About Steve\nMadden \n Steve Madden\ndesigns, sources and markets fashion-forward footwear, accessories and apparel for women, men and children. In addition to marketing\nproducts under its own brands including Steve Madden®, Dolce Vita®, Betsey Johnson®, Blondo®, Report®, Brian\nAtwood®, Cejon®, GREATS®, BB Dakota®, Mad Love® and Big Buddha®, Steve Madden is a licensee of various\nbrands, including Anne Klein®, Superga® and DKNY®. Steve Madden also designs and sources products under private label\nbrand names for various retailers. Steve Madden’s wholesale distribution includes department stores, specialty stores, luxury\nretailers, national chains, mass merchants and online retailers. Steve Madden also operates 221\n retail stores (including eight internet stores). Steve Madden licenses certain of its brands to third parties for the marketing\nand sale of certain products, including ready-to-wear, outerwear, eyewear, hosiery, jewelry, fragrance, luggage and bedding and\nbath products. For local store information and the latest Steve Madden booties, pumps, men’s and women’s boots, fashion\nsneakers, slippers, dress shoes, sandals and more, visit http://www.stevemadden.com . \n Safe Harbor\nStatement Under the U.S. Private Securities Litigation Reform Act of 1995 \n This press release\ncontains “forward-looking statements” within the meaning of the safe harbor provisions of the U.S. Private Securities\nLitigation Reform Act of 1995. Examples of forward-looking statements include, among others, statements regarding revenue and\nearnings guidance, plans, strategies, objectives, expectations and intentions . Forward-looking\nstatements can be identified by words such as: “may”, “will”, “expect”,\n“believe”, “should”, “anticipate”, “project”, “predict”, “plan”,\n“intend”, or “estimate”, and similar expressions or the negative of these expressions. Forward-looking\nstatements are neither historical facts nor assurances of future performance. Instead, they represent the Company’s current\nbeliefs, expectations and assumptions regarding anticipated events and trends affecting its business and industry based on information\navailable as of the time such statements are made. Investors are cautioned that such forward-looking statements are inherently\nsubject to risks and uncertainties, many of which cannot be predicted with accuracy and some of which may be outside of the Company’s\ncontrol. The Company’s actual results and financial condition may differ materially from those indicated in these forward-looking\nstatements. As such, investors should not rely upon them. Important risk factors include: \n · the\n Company’s ability to maintain adequate liquidity when negatively impacted by unforeseen\n events such as an epidemic or pandemic (COVID-19), which may cause disruption to the\n Company’s business operations and temporary closure of Company-operated and wholesale\n partner retail stores, resulting in a significant reduction in revenue for an indeterminable\n period of time; \n · the\n Company’s ability to accurately anticipate fashion trends and promptly respond\n to consumer demand; \n · the\n Company’s ability to compete effectively in a highly competitive market; \n · the\n Company’s ability to adapt its business model to rapid changes in the retail industry; \n · the\n Company’s dependence on the retention and hiring of key personnel; \n · the\n Company’s ability to successfully implement growth strategies and integrate acquired\n businesses; \n · the\n Company’s reliance on independent manufacturers to produce and deliver products\n in a timely manner, especially when faced with adversities such as work stoppages, transportation\n delays, public health emergencies, social unrest, changes in local economic conditions,\n and political upheavals as well as meet the Company’s quality standards; \n · changes\n in trade policies and tariffs imposed by the United States government and the governments\n of other nations in which the Company manufactures and sells products; \n · disruptions\n to product delivery systems and the Company’s ability to properly manage inventory; \n · the\n Company’s ability to adequately protect its trademarks and other intellectual property\n rights; \n · legal,\n regulatory, political and economic risks that may affect the Company’s sales in\n international markets; \n · changes\n in U.S. and foreign tax laws that could have an adverse effect on the Company’s\n financial results; \n · additional\n tax liabilities resulting from audits by various taxing authorities; \n · the\n Company’s ability to achieve operating results that are consistent with prior financial\n guidance; and \n · other\n risks and uncertainties indicated from time to time in the Company’s filings with\n the Securities and Exchange Commission. \n The Company\ndoes not undertake any obligation to publicly update any forward-looking statement, including, without limitation, any guidance\nregarding revenue or earnings, whether as a result of new information, future developments or otherwise. \n STEVEN MADDEN,\nLTD. AND SUBSIDIARIES \n CONDENSED\nCONSOLIDATED STATEMENT OF OPERATIONS DATA \n (In thousands,\nexcept per share amounts) \n (Unaudited) \n Three Months Ended \n Nine Months Ended \n September 30, \n2020 \n September 30, \n2019 \n September 30, \n2020 \n September 30,\n 2019 \n Net sales \n $ 342,830 \n $ 497,308 \n $ 839,877 \n $ 1,353,222 \n Commission and licensing fee income \n 4,037 \n 4,806 \n 8,970 \n 14,309 \n Total revenue \n 346,867 \n 502,114 \n 848,847 \n 1,367,531 \n Cost of sales \n 206,990 \n 306,277 \n 519,618 \n 839,849 \n Gross profit \n 139,877 \n 195,837 \n 329,229 \n 527,682 \n Operating expenses \n 109,865 \n 127,796 \n 339,649 \n 366,298 \n Impairment of intangibles \n 33,010 \n — \n 42,528 \n 4,050 \n (Loss) / income from operations \n (2,998 ) \n 68,041 \n (52,948 ) \n 157,334 \n Interest and other income, net \n 88 \n 961 \n 1,491 \n 3,415 \n (Loss) / income before provision for income taxes \n (2,910 ) \n 69,002 \n (51,457 ) \n 160,749 \n Provision / (benefit) for income taxes \n 4,236 \n 15,886 \n (9,366 ) \n 36,257 \n Net (loss) / income \n (7,146 ) \n 53,116 \n (42,091 ) \n 124,492 \n Less: net (loss) / income attributable to noncontrolling interest \n (195 ) \n 653 \n (1,103 ) \n 932 \n Net (loss) / income attributable to Steven Madden, Ltd. \n $ (6,951 ) \n $ 52,463 \n $ (40,988 ) \n $ 123,560 \n Basic net (loss) / income per share \n $ (0.09 ) \n $ 0.66 \n $ (0.52 ) \n $ 1.55 \n Diluted net (loss) / income per share \n $ (0.09 ) \n $ 0.63 \n $ (0.52 ) \n $ 1.48 \n Basic weighted average common shares outstanding \n 78,560 \n 79,092 \n 78,650 \n 79,854 \n Diluted weighted average common shares outstanding \n 78,560 \n 83,106 \n 78,650 \n 83,740 \n Cash dividends declared per common share \n $ — \n $ 0.14 \n $ 0.15 \n $ 0.42 \n STEVEN\nMADDEN, LTD. AND SUBSIDIARIES \n CONDENSED\nCONSOLIDATED BALANCE SHEET DATA \n (In thousands) \n As of \n September 30,\n 2020 \n December 31,\n 2019 \n September 30,\n 2019 \n (Unaudited) \n (Unaudited) \n Cash and cash equivalents \n $ 223,820 \n $ 264,101 \n $ 167,492 \n Short-term investments \n 33,332 \n 40,521 \n 27,452 \n Accounts receivable, net \n 266,402 \n 254,637 \n 335,503 \n Inventories \n 109,683 \n 136,896 \n 148,053 \n Other current assets \n 14,597 \n 22,724 \n 28,586 \n Property and equipment, net \n 43,130 \n 65,504 \n 60,662 \n Operating lease right-of-use assets \n 111,732 \n 155,700 \n 162,385 \n Goodwill and intangibles, net \n 283,094 \n 334,058 \n 334,341 \n Other assets \n 18,620 \n 4,506 \n 17,991 \n Total assets \n $ 1,104,410 \n $ 1,278,647 \n $ 1,282,465 \n Accounts payable \n $ 65,666 \n $ 61,706 \n $ 90,278 \n Operating leases (current & non-current) \n 144,185 \n 171,796 \n 177,772 \n Other current liabilities \n 116,194 \n 180,941 \n 124,356 \n Contingent payment liability \n 1,420 \n 9,124 \n 9,770 \n Other long-term liabilities \n 9,205 \n 13,856 \n 30,053 \n Total Steven Madden, Ltd. stockholders’ equity \n 756,120 \n 828,501 \n 838,738 \n Noncontrolling interest \n 11,620 \n 12,723 \n 11,498 \n Total liabilities and stockholders’ equity \n $ 1,104,410 \n $ 1,278,647 \n $ 1,282,465 \n STEVEN\nMADDEN, LTD. AND SUBSIDIARIES \n CONDENSED\nCONSOLIDATED CASH FLOW DATA \n (In thousands) \n (Unaudited) \n Nine Months Ended \n September 30, \n2020 \n September 30,\n 2019 \n Net cash provided by operating activities \n $ 607 \n $ 83,158 \n Investing Activities \n Capital expenditures \n (5,496 ) \n (9,211 ) \n Maturity / sale of marketable securities and short-term investments, net \n 6,020 \n 40,331 \n Acquisitions, net of cash acquired \n — \n (36,753 ) \n Net cash provided by / (used in) investing activities \n 524 \n (5,633 ) \n Financing Activities \n Common stock purchased for treasury \n (29,796 ) \n (76,505 ) \n Investment of noncontrolling interest \n 359 \n 1,283 \n Distribution of noncontrolling interest earnings \n — \n (1,113 ) \n Proceeds from exercise of stock options \n 960 \n 2,606 \n Cash dividends paid \n (12,459 ) \n (35,805 ) \n Net cash (used in) financing activities \n (40,936 ) \n (109,534 ) \n Effect of exchange rate changes on cash and cash equivalents \n (476 ) \n (530 ) \n Net (decrease) in cash and cash equivalents \n (40,281 ) \n (32,539 ) \n Cash and cash equivalents - beginning of period \n 264,101 \n 200,031 \n Cash and cash equivalents - end of period \n $ 223,820 \n $ 167,492 \n STEVEN\nMADDEN, LTD. AND SUBSIDIARIES \n NON-GAAP\nRECONCILIATION \n (In thousands,\nexcept per share amounts) \n (Unaudited) \n The Company\nuses non-GAAP financial information to evaluate its operating performance and in order to represent the manner in which the Company\nconducts and views its business. Additionally, the Company believes the information assists investors in comparing the Company’s\nperformance across reporting periods on a consistent basis by excluding items that are not indicative of its core business. The\nnon-GAAP financial information is provided in addition to, and not as an alternative to, the Company’s reported results\nprepared in accordance with GAAP. \n Table 1 - Reconciliation of GAAP operating expenses to Adjusted\n operating expenses \n Three Months Ended \n Nine Months Ended \n September 30, \n2020 \n September 30, \n2019 \n September 30, \n2020 \n September 30, \n2019 \n GAAP operating expenses \n $ 109,865 \n $ 127,796 \n 339,649 \n $ 366,298 \n Expense in connection with payments / provision for early lease termination charges \n (8,746 ) \n (3,131 ) \n (8,888 ) \n (5,424 ) \n Expense in connection with impairment of store fixed assets \n (4,585 ) \n — \n (16,597 ) \n — \n Expense in connection with impairment of lease right-of-use assets \n (2,312 ) \n — \n (20,299 ) \n — \n Expense in connection with restructuring and related charges \n (978 ) \n — \n (6,392 ) \n — \n Benefit in connection with the change in valuation of contingent considerations \n 409 \n — \n 5,020 \n — \n Expense in connection with benefits provided to furloughed employees \n — \n — \n (1,991 ) \n — \n Expense in connection with loan receivable \n — \n — \n (697 ) \n — \n Net benefit in connection with the change in a contingent liability and the acceleration of amortization related to the termination of the Kate Spade license agreement \n — \n — \n — \n 1,868 \n Expense in connection with the acquisitions of GREATS and BB Dakota \n — \n (1,078 ) \n — \n (1,078 ) \n Net recovery in connection with the Payless ShoeSource bankruptcy \n — \n — \n — \n 259 \n Expense in connection with a divisional headquarters relocation \n — \n — \n — \n (669 ) \n Adjusted operating expenses \n $ 93,653 \n $ 123,587 \n $ 289,805 \n $ 361,254 \n Table 2 - Reconciliation of GAAP (loss) / income from operations to Adjusted income from operations \n Three Months Ended \n Nine Months Ended \n September 30,\n 2020 \n September 30,\n 2019 \n September 30,\n 2020 \n September 30, \n2019 \n GAAP (loss) / income from operations \n $ (2,998 ) \n $ 68,041 \n $ (52,948 ) \n $ 157,334 \n Expense in connection with payments / provision for early lease termination charges \n 8,746 \n 3,131 \n 8,888 \n 5,424 \n Expense in connection with impairment of store fixed assets \n 4,585 \n — \n 16,597 \n — \n Expense in connection with impairment of lease right-of-use assets \n 2,312 \n — \n 20,298 \n — \n Expense in connection with restructuring and related charges \n 978 \n — \n 6,391 \n — \n Benefit in connection with the change in valuation of contingent considerations \n (409 ) \n — \n (5,020 ) \n — \n Expense in connection with benefits provided to furloughed employees \n — \n — \n 1,991 \n — \n Expense in connection with loan receivable \n — \n — \n 697 \n — \n Net benefit in connection with the change in a contingent liability and the acceleration of amortization related to the termination of the Kate Spade license agreement \n — \n — \n — \n (1,868 ) \n Expense in connection with the acquisitions of GREATS and BB Dakota \n — \n 1,078 \n — \n 1,078 \n Net recovery in connection with the Payless ShoeSource bankruptcy \n — \n — \n — \n (259 ) \n Expense in connection with a divisional headquarters relocation \n — \n — \n — \n 669 \n Impairment of certain trademarks \n 33,010 \n — \n 42,528 \n 4,050 \n Adjusted income from operations \n $ 46,224 \n $ 72,250 \n $ 39,422 \n $ 166,428 \n Table 3 - Reconciliation of GAAP provision / (benefit) for income taxes to Adjusted provision for income taxes \n Three Months Ended \n Nine Months Ended \n September 30,\n 2020 \n September 30,\n 2019 \n September 30,\n 2020 \n September 30,\n 2019 \n GAAP provision / (benefit) for income taxes \n $ 4,236 \n $ 15,886 \n $ (9,366 ) \n $ 36,257 \n Tax effect of expense in connection with payments / provision for early lease termination charges \n 2,071 \n 786 \n 2,105 \n 1,361 \n Tax effect of expense in connection with impairment of store fixed assets \n 1,128 \n — \n 4,038 \n — \n Tax effect of expense in connection with impairment of lease right-of-use assets \n 574 \n — \n 4,907 \n — \n Tax effect of expense in connection with restructuring and related charges \n 232 \n — \n 1,284 \n — \n Tax effect of benefit in connection with the change in valuation of contingent considerations \n (97 ) \n — \n (1,189 ) \n — \n Tax effect of expense in connection with benefits provided to furloughed employees \n — \n — \n 472 \n — \n Tax effect of expense in connection with provision for loan receivable \n — \n — \n 165 \n — \n Tax effect of net benefit in connection with the change in a contingent liability and the acceleration of amortization related to the termination of the Kate Spade license agreement \n — \n — \n — \n (469 ) \n Tax effect of expense in connection with the acquisitions of GREATS and BB Dakota \n — \n 271 \n — \n 271 \n Tax effect of net recovery in connection with the Payless ShoeSource bankruptcy \n — \n — \n — \n 85 \n Tax effect of expense in connection with a divisional headquarters relocation \n — \n — \n — \n 168 \n Tax effect of impairment of certain trademarks \n 7,817 \n — \n 10,071 \n 1,017 \n Tax expense in connection with deferred and foreign uncertain tax position adjustments \n (2,393 ) \n (383 ) \n (2,393 ) \n (383 ) \n Adjusted provision for income taxes \n $ 13,568 \n $ 16,560 \n $ 10,094 \n $ 38,307 \n Table 4 - Reconciliation of\n GAAP net (loss) / income attributable to noncontrolling interest to Adjusted net income attributable to noncontrolling\n interest \n Three Months Ended \n Nine Months Ended \n September 30,\n 2020 \n September 30,\n 2019 \n September 30,\n 2020 \n September 30,\n 2019 \n GAAP net (loss) / income attributable to noncontrolling interest \n $ (195 ) \n $ 653 \n $ (1,103 ) \n $ 932 \n Net loss in connection with impairment of store fixed assets, impairment of lease right-of-use assets, restructuring and related charges \n 1,161 \n — \n 1,631 \n — \n Adjusted net income attributable to noncontrolling interest \n $ 966 \n $ 653 \n $ 923 \n $ 932 \n Table 5 - Reconciliation of GAAP (loss) / income attributable\n to Steven Madden, Ltd. to Adjusted net income attributable to Steven Madden, Ltd. \n Three Months Ended \n Nine Months Ended \n September 30,\n 2020 \n September 30,\n 2019 \n September 30,\n 2020 \n September 30,\n 2019 \n GAAP net (loss) / income attributable to Steven Madden, Ltd. \n $ (6,951 ) \n $ 52,463 \n $ (40,988 ) \n $ 123,560 \n After-tax impact of expense in connection with payments / provision for early lease termination charges \n 6,675 \n 2,345 \n 6,784 \n 4,062 \n After-tax impact of expense in connection with impairment of store fixed assets \n 3,457 \n — \n 12,559 \n — \n After-tax impact of expense in connection with impairment of lease right-of-use assets \n 1,737 \n — \n 15,390 \n — \n After-tax impact of expense in connection with restructuring and related charges \n 746 \n — \n 4,876 \n — \n After-tax impact of benefit in connection with the change in valuation of contingent considerations \n (312 ) \n — \n (3,831 ) \n — \n After-tax impact of expense in connection with benefits provided to furloughed employees \n — \n — \n 1,520 \n — \n After-tax impact of expense in connection with provision for loan receivable \n — \n — \n 532 \n — \n After-tax impact of net benefit in connection with the change in a contingent liability and the acceleration of amortization related to the termination of the Kate Spade license agreement \n — \n — \n — \n (1,399 ) \n After-tax impact of expense in connection with the acquisitions of GREATS and BB Dakota \n — \n 808 \n — \n 808 \n After-tax impact of net recovery in connection with the Payless ShoeSource bankruptcy \n — \n — \n — \n (344 ) \n After-tax impact of expense in connection with a divisional headquarters relocation \n — \n — \n — \n 501 \n After-tax impact of impairment of certain trademarks \n 25,193 \n — \n 32,458 \n 3,033 \n Tax expense in connection with deferred and foreign uncertain tax position adjustments \n 2,393 \n 383 \n 2,393 \n 383 \n Less: Net loss in connection with impairment of store fixed assets, impairment of lease right-of-use assets, restructuring and related charges attributable to noncontrolling interest \n (1,161 ) \n — \n (1,631 ) \n — \n Adjusted net income attributable to Steven Madden, Ltd. \n $ 31,777 \n $ 55,999 \n $ 30,062 \n $ 130,604 \n GAAP diluted (loss) / income per share \n $ (0.09 ) \n $ 0.63 \n $ (0.52 ) \n $ 1.48 \n GAAP diluted weighted average shares outstanding \n 78,560 \n 83,106 \n 78,650 \n 83,740 \n Adjusted diluted income per share \n $ 0.39 \n $ 0.67 \n $ 0.37 \n $ 1.56 \n Adjusted diluted weighted average shares outstanding \n 80,701 \n 83,106 \n 81,047 \n 83,740 \n Contact \n Steven Madden, Ltd. \n Director of Corporate Development\n& Investor Relations \n Danielle McCoy \n 718-308-2611 \n InvestorRelations@stevemadden.com \n",
@@ -36,7 +39,479 @@
   "same_day_8k_items": "2.02,7.01,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000101905620000540__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001019056-20-000431",
+   "filingDate": "2020-07-29",
+   "reportDate": "2020-07-29",
+   "form": "8-K",
+   "local_gz": "000101905620000431__EX991.txt.gz",
+   "method": "後備標記掃描(解析器零收穫時啟用)",
+   "n_guidance_records": 0,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "Year 2020 Outlook Given the continued disruption and uncertainty related to the COVID-19 pandemic, the Company is not providing guidance at this time."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2020-10-27",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 89,
+   "has_qna": true,
+   "n_chars": 46320,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, thank you for standing by, and welcome to the Q3 2020 Steven Madden Limited Earnings Conference Call. [Operator Instructions] I would now like to hand the conference over to your speaker today, Director of Corporate Development and Investor Relations, Danielle McCoy. Thank you. Please go ahead, madam."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Danielle McCoy",
+     "content": "Thanks, Susan, and good morning, everyone. Thank you for joining our third quarter 2020 earnings call and webcast. Before we begin, I'd like to remind you that during our call, we may make certain forward-looking statements as defined in the federal securities laws regarding our expectations or predictions about the future. Generally, these statements relate to projections involving anticipated revenues, earnings or other aspects of the company's operating results. Because these statements are based on current assumptions and expectations, they involve known and unknown risks, uncertainties and factors not within the company's control. And as such, our actual performance and results may differ materially from these statements. Our annual report and other reports filed with the SEC from time to time include detailed discussions of the risk the company faces, and we urge you to refer to these. Specifically, the COVID-19 pandemic has had and is currently having a significant impact on the company's business operations and results. Such forward-looking statements with respect to the COVID-19 pandemic include, without limitation, statements with respect to the company's plans in response to this pandemic. At this time, there is significant uncertainty about the duration and extent of the impact of the COVID-19 pandemic. Due to the dynamic nature of these circumstances, statements made on this call regarding the company's response to the COVID-19 pandemic could change at any time. Any forward-looking statements represent our judgment as of the time of this call and cannot be relied upon as current after today's date. We disclaim any intent or obligation to publicly update or revise any forward-looking statements, whether as a result of new information, future events or otherwise, except as required under applicable law. The financial results discussed are on an adjusted basis, unless otherwise noted. A reconciliation to the most directly comparable GAAP financial measure and other associated disclosures are contained in our earnings release. Joining the call today is Ed Rosenfeld, the Chairman and CEO of Steve Madden. With that, I'll turn it over to Ed. Ed?"
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Ed Rosenfeld",
+     "content": "Thanks, Danielle. Good morning, everybody, and thank you for joining us to review Steve Madden's third quarter 2020 results. While the COVID-19 pandemic continues to have a negative impact on our business, I'm pleased with the progress we made in the third quarter, delivering revenue and earnings that significantly exceeded our expectations and also executing on initiatives that position the company to take market share and drive profitable growth going forward. At Steve Madden, it all starts with product. And Steve and our design teams continue to execute on what they do better than anybody in our industry, identifying new trends quickly, creating product that reflects those trends and getting that product to market ahead of the competition. During this period of rapidly changing consumer preferences, we have leaned on our proven test and react model and industry-leading speed to market capability to quickly adjust our merchandise assortments, to align with what our customers are looking for now, expanding growing categories like slippers and slides while reducing the penetration of down-trending categories like dress shoes. We also continue to make great progress in advancing our digital commerce growth agenda. We have accelerated our investments in talent, digital marketing and new e-commerce and omnichannel initiatives. Investments that position us for continued strong growth in this critically important channel going forward. While we've invested in digital, we've also looked for ways to reduce and rightsize our expense base in other areas of the company, including making the difficult decision that we discussed on the last call to terminate about 250 corporate employees in the third quarter, which will resolve in annual savings of approximately $25 million. Finally, we've moved quickly to manage our inventories and to dispose off the excess stock created by the COVID-19 store closures and cancellations. As of today, our inventories are in line with sales trends. And we have disposed off or have orders for more than 95% of the excess inventory created by COVID-19 disruption, positioning us to play offense as we move forward. We are confident that these actions combined with our strong brands, pristine balance sheet and proven business model will enable us to continue to navigate the crisis and to thrive once conditions normalize. Now let's turn to our results for the quarter. Consolidated revenue declined 31% and diluted EPS was down 42% compared to last year's third quarter. Obviously, these are numbers we are not accustomed to it at Steve Madden, and we don't plan on having get used to them. That said, given the unique circumstances, we are pleased with where we came out for the quarter, with results that exceeded our forecast on both the top and bottom lines. In wholesale footwear, revenue declined 32% compared to our expectation of down 35%. Our core Steve Madden Women's Division declined mid-teens on a percentage basis, coming in significantly ahead of forecast as we reacted to early reads -- to stronger early reads on boots, particularly lug bottom styles and accelerated boot shipments to key wholesale customers into September. Our Steve Madden Europe business was also a standout in the quarter with revenue increasing from the prior year, driven by strong gains with e-commerce customers, Zalando and ASOS. In wholesale accessories and apparel, revenue decreased 33% compared to our forecast of a 40% decline. We have been pleasantly surprised by the relative strength we are seeing in the handbag category compared to our expectations. Both branded and private label handbags are trending ahead of forecast, with private label recording a year-over-year sales increase in Q3, driven by gains in the mass channel. Apparel also contributed to the overachievement to plan. The co-branded BB Dakota Steve Madden product hit stores and websites in August, including Nordstrom, REVOLVE, Bloomingdale's and Shopbop as well as stevemadden.com, of course. And we have seen strong initial sell-throughs, particularly in dresses and sweaters. Looking ahead, while our wholesale business will continue to be under pressure due to the impact of the pandemic, we do expect to see nice sequential improvement in Q4 compared to Q3, driven primarily by continued recovery in our flagship Steve Madden brand in both footwear and handbags. We expect fourth quarter wholesale revenue to decline high teens on a percentage basis compared to the prior year period. In our retail segment, revenue declined 22% compared to our expectation of a 25% decrease. Our e-commerce business, particularly on stevemadden.com remains a bright spot. Revenue on stevemadden.com increased 82% for the quarter on top of a 72% increase in last year's third quarter. This was our second consecutive quarter of greater than 80% year-over-year growth in that business. We continue to see robust returns on our increased investment in digital marketing and strong consumer reception to our new initiatives like try before you buy. With respect to brick-and-mortar, we started the quarter with just over 50% of our U.S. stores open. While we reopened almost all the balance in July, we had to reclose 14 stores in California from mid-July to the end of September due to reimposed government restrictions. Outside the U.S. our stores were open throughout the quarter with the exception of 2 stores in Mexico which reopened in August and 21 stores in Israel which reclosed in September and remained closed due to the reimposed lockdown. Hours of operation in our stores have been reduced by 25% to 30% on average. We are planning on increasing hours of operation in the majority of our stores beginning in November. Traffic in sales and reopened stores have shown some improvement over the last 2 months, but the store business remains under significant pressure. Looking ahead, we expect fourth quarter retail segment revenue to decline in the high teens under percentage basis compared to the prior year. Overall, our operating margin for the quarter was 13.3%, compared to 14.4% in the same period last year. Consolidated gross margin increased 130 basis points, driven by our e-commerce business, which had higher margins and accounted for a significantly higher percentage of our total mix compared to the prior year. As expected, operating expenses deleveraged versus last year due to the decline in revenue, but we mitigated the impact through cost-cutting measures, which drove operating expenses down 24% compared to the prior year. Looking ahead, we expect fourth quarter operating expenses to decline approximately 10% compared to the prior year. Overall, we were pleased with our execution in an extremely challenging quarter. As we move forward, we are clear-eyed about the challenges we will continue to face in the near term, but we are also excited about the opportunities ahead of us. With our strong brands, powerful business model, rock-solid financial foundation, and most of all, our exceptionally talented and dedicated employees, we are well positioned to capitalize on market share opportunities and drive sustainable growth in the years to come. And with that, I'll turn it over to Danielle to walk you through the details of our financial performance in the quarter."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Danielle McCoy",
+     "content": "Thanks, Ed. Given the challenging retail landscape, we were pleased with our third quarter results that came in significantly ahead of our expectations. In the third quarter, our total revenue decreased 30.9% to $346.9 million compared to prior year total revenue of $502.1 million. Our wholesale segment declined 32.7% to $283.8 million compared to $421.6 million in the prior year period, including a decline in wholesale footwear of 32.5% to $213.3 million and a decline in wholesale accessories and apparel of 33.3% to $70.5 million. In our retail segment, revenue decreased 22.1% to $59 million as our brick-and-mortar business remained under significant pressure during the quarter. In our e-commerce business, performance remained strong despite the reopening of our stores. Digital sales rose 63.3% in the quarter, including 81.8% growth on stevemadden.com. We ended the quarter with 221 company-operated retail stores, including 67 outlets and 8 e-commerce stores, as well as 17 company-operated concessions in international markets. Turning to our Licensing and First Cost segments. Our Licensing royalty income which is now included in total revenue, was $2.6 million in the quarter compared to $2.9 million in last year's third quarter. First Cost commission income which is also now included in total revenue, was $1.5 million in the third quarter of 2020 compared to $1.9 million last year. Consolidated gross margin in the quarter increased 130 basis points to 40.3% compared to 39% in the prior year period. Wholesale gross margin rose 70 basis points to 34.6% compared to 33.9% last year, driven by an increase in wholesale accessories and apparel. Retail gross margin rose 50 basis points to 63.8% compared to 63.3% in 2019 due to stronger margin in e-commerce. Operating expenses for the quarter decreased 24.2% to 97-point -- excuse me, $93.7 million, compared to $123.6 million in the prior year's third quarter, reflecting the actions taken to reduce payroll and scale back on nonessential operating expenses. Operating income for the quarter totaled $46.2 million, compared to last year's third quarter operating income of $72.3 million. Our effective tax rate for the quarter was 29.3%, compared to 22.6% in the same period last year. Finally, net income attributable to Steve Madden Limited for the quarter was $31.8 million or $0.39 per diluted share compared to net income of $56 million or $0.67 per diluted share in the third quarter of 2019. Moving to the balance sheet. Our financial foundation remains strong. As of September 30, 2020, we had $257.2 million of cash, cash equivalents and short-term investments and no debt. Inventory totaled $109.7 million, down 25.9% compared to the prior year figure of $148.1 million. CapEx in the quarter was $1.2 million. Last, given the significant uncertainty related to the COVID-19 pandemic, we are not providing earnings guidance at this time. Now I'd like to turn it over to the operator for questions."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Our first question comes from the line of Paul Lejuez from Citi."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Paul Lejuez",
+     "content": "Curious if you can maybe talk a little bit about how you're planning the first half of '21, maybe speak to what your order book looks like this time? And just from talking to your wholesale partners, are they holding off pricing orders to a later date? And then also kind of related to that, can you maybe talk a little bit about your private label business performance in the mass channel? What that might look like as a percent of total as you think about F '21 versus where you were, let's say, in F '19?"
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "EdRosenfeld",
+     "content": "Sure. Yes. In terms of how the wholesale customers are thinking about spring, I think that overall, they're taking a fairly conservative approach. And most folks are planning that business down to -- if you want to compare to '19 or compare it to what the plans look like for '20 at this time last year, I think that on average, the plans are probably down 15% to 20%. Again, this is for their overall businesses. Not at this point, going to provide exactly what we think it's going to look like for us. But that's -- those are the types of numbers we're hearing from the wholesale customers. And then in terms of private label, yes, we feel fortunate that we have this private label business with the mass merchants that's very significant for us. It's close to $300 million business between the 2 big mass merchants. And we're doing well with them. And we're in a lot of discussions with them about new initiatives, and that business should grow for us in '21. And so yes, I do anticipate that it will make up a more significant percentage of the mix next year."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Paul Lejuez",
+     "content": "Got it. Just one follow-up. Can you maybe talk a little bit about what you're seeing from an e-comm perspective just in terms of the average order size online during this period versus, let's say, last year, average order size, UPT return rates? Maybe if you can just speak to what you're seeing on that direct business?"
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Ed Rosenfeld",
+     "content": "Sure. Yes. Well, certainly, over this summer, we saw a decline in the AUR. We were more promotional on our own website than we were a year ago as we were utilizing that channel to clear through some of the excess inventory created by all the COVID-19 disruption. We're also selling some lower AUR items like masks. But as we come into fall here, we're seeing that AUR creep back up. And I think going forward, it should be more in line with what we've seen historically. In terms of UPT, on the other hand, that was up over the summer and that was helping us to counteract some of the decrease in the AUR. And also, as we've used -- I think we've talked in the past about the success that we've had with our installment payment program, which we modified over the summer to add this try before you buy concept. And we've talked about how that drives a significant percentage of our checkout now. And on those orders, we see a very nice lift in the average order value compared to the balance of our orders. So that's also helping to drive average order value up."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Paul Lejuez",
+     "content": "Anything on return rates, Ed."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "EdRosenfeld",
+     "content": "I'm sorry. Yes, return rates have not moved significantly from where they've been historically."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Operator",
+     "content": "Next question comes from the line of Camilo Lyon from BTIG."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Camilo Lyon",
+     "content": "Ed, in the past, you mentioned the disparity between full price wholesale partners and the off-price channel. Can you talk about if that disparity in that gap is still present? And when do you anticipate that gap from an ordering perspective to close?"
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. Good question. So definitely, in Q3, we saw that our sales to those full price accounts were considerably better than what we saw in selling into the off-price channel. This is I'm talking about our shipments, not our sell-through. But we're going to see that start to get much better in Q4. And I think it should be -- the channel should be more aligned going forward."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Camilo Lyon",
+     "content": "That's great. And then I think shifting gears a little bit towards the market share comments that you've been making, we've seen that as well given your newness and the products you've been bringing to market. Is it -- have you started to see that reflected in your order patterns? Or is it still a little bit too early so that it's actually materialized in whether it's at-once orders, reorders or even spring orders?"
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. No. I mean, look, we've got some strong selling products and we're seeing the retailers react to it, and we've certainly chased into some items here for fourth quarter, particularly in the boot category. I mentioned, I think, the lug boots in the prepared remarks, and those are doing great for us. So yes, we are starting to see the retailers react to that."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Camilo Lyon",
+     "content": "Great. And just the last one for me is on gross margin. You didn't give any color on where you thought Q4 gross margins would shake out. But just judging by the last 2 quarters, margins have been up about 130 basis points. And with Q4 being a bigger DTC quarter, it's safe to say that, that's at least where we should shake out for Q4 margins?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Ed Rosenfeld",
+     "content": "I don't know, I would say, at least, but I definitely do think that we can see some year-over-year gross margin improvement. You commented on the DTC issue. That's one thing, but also -- just our inventories are very well controlled. You saw that they were down 26% at the end of Q3 and we've guided revenue to down high teens in both wholesale and retail. So obviously, very well controlled inventories, and I think that we should be able to drive a little bit of gross margin improvement in Q4."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Erinn Murphy from Piper Sandler."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Ed Rosenfeld",
+     "content": "Operator, can we move on and come back to her?"
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Operator",
+     "content": "That is noted. Next question comes from the line of Janine Stichter from Jefferies."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Janine Stichter",
+     "content": "I know you touched a bit on AUR trends for the e-commerce business. Just wanted to ask about broader AUR trends. You mentioned some puts and takes in terms of products with some of the boots performing well, but then also, I think, slippers and slides trending. So are there any implications for how we should think about AUR just from product mix in the fourth quarter?"
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. I think that you hit on it, which is that we've got some -- we've got slippers, which is only about 1% of the women's mix in last year's fourth quarter, and it'll be about 9% this year. So that's obviously a lower AUR item. But on the other hand, boots and booties, they're making up a bigger percentage of the mix. I think that was about 44% last year, and it's going to be more like 50% this year. So I don't -- the net effect is pretty modest. I don't think there's going to be a big swing in AUR in Q4."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Janine Stichter",
+     "content": "Great. And then just a follow-up on gross margin. I think you mentioned that e-commerce gross margin was better. Was that just a function of -- I think you mentioned last quarter, you were shipping more from the warehouse. Was there anything like that going on? Or anything going on in terms of promotional levels that drove that?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Ed Rosenfeld",
+     "content": "Well, e-commerce relative to the bricks-and-mortar, as we've talked about historically, is always higher than bricks-and-mortar, and we continue to not be super promotional in e-commerce. As I said, we were slightly more promotional, particularly early in the summer than we were a year ago. But as we've gone through third quarter and certainly in the fourth quarter, we've dialed back on that. And even at the tail end of third quarter, we still had a lot of some promotional messaging that referred to the fact that -- the products that we had in the clearance buckets. It's a relatively small percentage of the overall stuff on the site, and we were still driving a lot of full price selling there."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Matthew Degulis from KeyBanc Capital Markets."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Matthew Degulis",
+     "content": "So I'm wondering how the growth of e-comm will intersect with wholesale maybe next year. So with the growth of e-comm -- your owned e-comm and I know you've used your own e-comm to test product in the past. I'm wondering how maybe a higher end, meaning you might now sell more test product online and give more eyeballs on it, might help your case and increase initial inventory order size from your wholesalers and help you take shelf space from your wholesalers moving forward?"
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Ed Rosenfeld",
+     "content": "I'm sorry, you were cutting out at the beginning of that question. Could you please repeat that?"
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Matthew Degulis",
+     "content": "Yes. So I just know you guys test online. And now with your e-commerce growing so quickly, you get more eyeballs on your test product. I'm wondering how that maybe helps your case with your wholesale customers moving forward and maybe helps you take shelf space next year?"
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes, it's an interesting question. Look, I think that we had plenty big enough sample size on our test products, whether we were testing it in stores or online, even previous to what we're seeing now. So I honestly don't think that, that makes any significant difference."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Matthew Degulis",
+     "content": "Got it. Okay. And one separate question. You mentioned lug boots a bit, but can you comment a bit more on the overall boots and booties category this winter? How maybe the higher AUR will flow through the revenue and gross margin? I ask because I think the case can be made that people want to spend a lot of time outside when it's slushy this winter, which could provide a nice tailwind to a brand like Blondo, but I'd like to hear your thoughts."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. Look, we're seeing some -- we're seeing nice trends in the boot category. It was -- I think we were sort of pleasantly surprised about how it started selling early. We initially went into the season assuming that the spring/summer stuff was going to really sell late in the season. But boots really came on quite early. And as we indicated earlier, we were able to chase into some of that product, move some shipments up into Q3 and then chase to some more boot business for Q4. I mentioned these lug styles. I think that's interesting because it's a casual boot and comfortable, which obviously plays into the broader trends that we're seeing right now. But it also has the 90s fashion trend element to it as well. So we're seeing -- we're feeling very good about that. And overall, we're just -- as I mentioned, we're seeing that drive a bigger penetration in the overall business. So that's baked into the sales forecast that we've provided."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Sam Poser from Susquehanna."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Will Gaertner",
+     "content": ""
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Ed Rosenfeld",
+     "content": "Sure. Yes. Well, you hit on a couple of the ones that are tougher, frankly. If you look at our overall performance, clearly, Steve Madden Women's is outperforming our overall business. Kids is also outperforming. Men's is a category that's tougher. I think that we're seeing what pretty much everybody else is, that's not a big athletic player is seeing, which is if you historically have had success in the dress and dress casual, part of the men's market, that's obviously not doing as well right now. And so we're in the process of trying to not trying. We are changing our -- modifying the merchandise assortment there to get more casual and introduce more slides and slippers even in casual products. Anne Klein also clearly has a little bit of the winded space given its historical positioning of being more career and having more dress product, but the team, I think, has done a great job of again, getting some great new casual styles in going forward. And so looking forward to that business getting better in spring. Madden Girl, I feel good about what we're seeing there in terms of sell-through over the spring/summer period. They had a really nice position in the footbed category that's been important for them for the last few years. So that obviously aligns with what we're seeing in the COVID-19 world. And they're -- and like Steve Madden, they're doing quite well with boots, some lug boots, combat styles, et cetera. So I think that pretty much covers them."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Operator",
+     "content": "Our next question comes from the line of Jay Sole from UBS."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Jay Sole",
+     "content": "Ed, can you talk about what you're seeing from your customers in terms of if the trends you're seeing are due to the stay-at-home trend or more to the casual trend, or is it just sort of an economic thing where obviously, there's somewhat of a recessionary environment out there. Can you sort of talk about what you think the biggest driver is?"
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Ed Rosenfeld",
+     "content": "The -- in terms of what we're seeing in terms of product trends, no, I definitely think that the stay-at-home, work-from-home, casualization, I think that's a very big driver of what we're seeing now and probably the most significant factor."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Jay Sole",
+     "content": "What are the signs that you're going to look forward to decide like what next year is going to look like if we're going to see -- do you think people want to come back to work? Have you done any studies of that? Or any thoughts on what we might see next year in terms of how consumers might respond?"
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Ed Rosenfeld",
+     "content": "Are you talking about in terms of what products would be good or what the numbers will look like?"
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Jay Sole",
+     "content": "No, just in terms of like stay-at-home, are people going to continue to want to stay at home and wear casual? Or do you think we'll see a reversal back to some of the more traditional dress, footwear styles?"
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "EdRosenfeld",
+     "content": "Look, I mean, what we -- as you know, what we do is we let the customer tell us. We're constantly testing new products and then chasing into the ones that the customer responds to. So I don't think I'm going to make any predictions about what the world is going to look like. Obviously, what happens with the virus is going to be the biggest determinant of that. I think that there's a good bet that whenever things do clear up with the virus that there's going to be some pent-up demand to -- for folks who want to get out and do stuff and probably wear some dress shoes. And -- but when exactly that will happen, I don't have any more insight into that than you do."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Jay Sole",
+     "content": "Okay. Then maybe one more. Can you just elaborate a little bit on some of the accelerated investments you're making in e-comm and digital, sort of what -- where you're focused and what the goals are?"
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. Well, look, we're pulling back on expenses throughout the business, but not in that area, in that area we're really investing. I think it starts with talent in the organization. And we've brought on some very high level talent that we're very excited about over the last couple of months. We talked about the digital marketing investments that we're making. Our digital marketing spend is up dramatically this year versus last year, and we're getting returns on that, whether -- that's across all the normal channels, paid social e-mail, text, influencer, paid search, et cetera. We also -- we just launched a new app about a month ago, which we're excited about. We're rolling out a lot of new initiatives. I mentioned, try before you buy. We're -- I'm also excited, I think, longer term, about the enhanced delivery options. You may recall that a couple of years ago when we introduced free 2-day shipping, that was -- that really was very successful for us, and we want to up the ante even further. And so earlier this year, we started testing free 1-day shipping and same-day delivery. And obviously, we offer that where we can do it cost effectively, where we have stores that can facilitate the delivery there. And that's in a handful of stores. Now, I think about 17 stores now, and we'll roll that out to the balance of the chain going forward. And there's a whole bunch of other initiatives that we're working on that we're not ready to unveil yet. But it's certainly the #1 focus area for our company, and we're excited about the momentum that we have there."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Jay Sole",
+     "content": "It sounds great. If I can actually sneak one more in. Just if you could clarify your comments on handbags little bit. Was it just really in the mass channel where you saw the surprising strength? Or was it sort of across all your channels? And is the guidance for high teens, down high teens 4Q sales, does that apply to the wholesale accessories business as well?"
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. So we're actually also pleasantly surprised about what we're seeing in the branded side. And particularly in what we're looking at in terms of our orders for Q4, we've seen a really nice recovery in our branded handbag business, particularly the Steve Madden brand. And so, yes, in terms of that down high teens forecast for Q4 in wholesale, I actually think, in this case, wholesale accessories and apparel will actually be better than that. So wholesale accessories and apparel should even be a little bit better than wholesale footwear in Q4."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Operator",
+     "content": "The next question comes from the line of Laura Champine from Loop Capital."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Laura Champine",
+     "content": "It's really a follow-up on what you just said, Ed. So with a lot of retailers obviously trying to move holiday season earlier for a variety of reasons this year, do you actually have better visibility into Q4 trends than you normally would at the end of October?"
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Ed Rosenfeld",
+     "content": "I don't know I would say that. Yes, I think we do obviously anticipate or are aware that everybody is going to try to start their promotions really, I think, for the whole month of November this year and try to elongate the holiday season, but I can't say that we have better visibility. And certainly, if you think about surging COVID-19 cases recently and the uncertainty that, that creates, I still think it's a pretty volatile and uncertain environment."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Operator",
+     "content": "Next question comes from the line of Dana Telsey from Telsey Advisory."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Dana Telsey",
+     "content": "It’s Dana. As you think about fulfillment and the fulfillment options, what are you thinking and how you're planning on shipping and surcharges that are expected, whether it's the holiday season or go forward? And then I have a follow-up."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Ed Rosenfeld",
+     "content": "Sure. Yes. Well, so historically, with our e-commerce business, we've actually fulfilled the majority of our orders from our stores. This year, we've done a lot more out of the warehouse. Given the COVID-19 disruption, we would like to swing some of that back to the stores, but it's a bit of a moving target. And one thing that we did have to suspend, which I probably should have mentioned earlier when I alluded to free 2-day shipping, was that we have suspended free 2-day shipping this year, and that originally was due to some of the disruption. But now it's really primarily due to the fact that the shipping carriers are not willing to commit to their normal levels of service given the overwhelming demand that they have right now. So we look forward to being able to get back to that early next year. And then you mentioned the surcharges. Obviously, we're aware of that issue and have baked that into our internal forecast here for Q4. The good news is we do have some contractual protection that with -- in our contracts with them that caps how much we can get hurt by that, but certainly, it will impact us."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Dana Telsey",
+     "content": "Got it. And then as you think about the e-commerce margins given the strength there, are e-commerce margins accelerating as you're scaling the e-commerce business? And is there any penetration rate that you're looking at as we hopefully get to the other side sometime next year, is what percent of the business should be e-commerce as a result of this?"
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. We continue to see profit margins increase in e-commerce. So over the last few years, we've driven this very strong sales growth, but each year, the growth in profitability has been in excess of the growth in top line as we continue to drive that profit margin up. So we're pleased about that. We still think we have some potential for continued improvement in the profit contribution margins from e-comm. In terms of where I think the penetration will be, look, if we're putting the whole thing together, wholesale and retail, we were at about 20% in 2019 e-comm. This year, it's going to be close to double that. I don't know exactly where we'll come in, but it's up dramatically. And I think, certainly, at some point, we're going to probably see 50%."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Dana Telsey",
+     "content": "Got it. And are there other expense benefits that you're benefiting from, like lease renegotiations? And are you seeing outlet versus full-line stores as typically outlets done a little bit better for you. What are you seeing there?"
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Ed Rosenfeld",
+     "content": "Sure. So in terms of the lease negotiations, yes, we have -- we've reached agreement with a number of our landlords and we've taken kind of a custom approach based on the lease. So we've done a few new different things. In some cases, we've restructured the leases. In essence, buying out of the current obligation and replacing it with a percentage rent structure going forward. And we've -- in other cases, we've just gotten current period abatements. We also bought out some leases outright. And so we've done a handful of things, but we've also -- a number of those negotiations remain ongoing. So we're continuing to work with our landlord partners on that. And then -- I'm sorry, what was the second question..."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Dana Telsey",
+     "content": "Outlets versus the full line stores."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Ed Rosenfeld",
+     "content": "Oh, that's right. Yes, yes. Outlets continue to perform better than full line stores. That's not surprising that people are more comfortable going to what are primarily outdoor centers compared to enclosed malls. But on average, outlets have been, I don't know, 1,000 basis points better than full-price stores or even more, maybe more like 1,200 basis points better."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Operator",
+     "content": "Next question comes from the line of Susan Anderson from B. Riley Securities."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Susan Anderson",
+     "content": "I'm curious if you could talk about the usage of Afterpay on your website and I guess, what percent of sales is coming from Afterpay? And if you could maybe talk about conversion and basket size there, if that helps with that?"
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Ed Rosenfeld",
+     "content": "Well, I know I can't give you the actual number, but I think we've been pretty clear that it's a very significant percentage of checkout, and they were getting a very significant lift in the AOV on those items. But I don't think I can get any more granular than that."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Susan Anderson",
+     "content": "Okay. And then also, I was wondering if you had an update on China sourcing exposures, potentially we could get some sort of change there with the election?"
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. So as you know, we were working diligently to shift production out of China back in spring. If you look just at our landed goods, excluding the First Cost business, we were in the low 60s out of China, which was down from the 90s a couple of years ago. I think we've talked on previous calls about the fact that for fall, we really suspended that process of continuing to move out of China because in the COVID-19 environment, since the beginning, when obviously there was some disruption in China, China has been the most reliable place to be. And we were -- that was the place where we were the most confident that we'd be able to get the goods for fall given the -- what's going on in a lot of the other countries that we were sourcing from. So for fall, most of the stuff is still coming from China. But I think for spring, you're going to see us start to continue to diversify out of China again. And that will include countries like Mexico, Cambodia, Brazil, Vietnam, et cetera."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Susan Anderson",
+     "content": "Great. And then I guess, lastly, as we look out to next year and maybe even the back half of next year, how are you thinking about the mix of casual, which I know you've worked hard to mix more into. But I guess, at what point in time do you think you'll think about kind of reversing that and going back into fashion?"
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Ed Rosenfeld",
+     "content": "Well, we're going to let the customer dictate what the category mix looks like. And that's what we've always done. We test and we react to what the customer wants. And we adjust our merchandise mix based on consumer preferences. And the last thing I'll just say is I just want to be clear that casual is fashion. So there's casual shoes and dress shoes, but our customers still want fashion and even the folks that want more -- even as we see more casualization, folks still -- our customers still want casual products that are fashionable. So a lot of these -- the styles that we're selling and one of the things that -- the big trends that we're seeing right now really across our business is how strong we're doing with novelty products and sort of wow type styles that maybe used to be more fringe kind of styles, but now are really becoming your biggest sellers. So folks are really gravitating. Even if they're buying a slipper or a slide or a sneaker, they're gravitating towards exaggerated embellishment, ornamentation, et cetera, customers really want that emotional product. And it's -- I think it doesn't hurt that these are the types of products that really pop online as well. But again, just the point I'm making is that we're -- even when we're doing casual products, we're still -- they're still fashion forward."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Operator",
+     "content": "Next question comes from the line of Tom Nikic from Wells Fargo."
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Tom Nikic",
+     "content": "I wanted to ask about the cost structure of the business. So I know, Ed, you have the $25 million that you're saving from the headcount reduction that you did in Q3. Are there any other cost saves when we kind of think about, I guess, the sort of more normalized OpEx structure of the business? Should we think that store operating hours will sort of be less than they were pre-COVID? Are there any other sort of cost saves that we should think about as we model in 2021 and beyond?"
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Ed Rosenfeld",
+     "content": "Well, alluded to the negotiations with the landlords, and we have made significant progress there. And we've been able to restructure a number of leases. We've gotten out of some bad leases. And so we will have significant savings in '21 and beyond compared to where we were prior. And I think given that we have a couple of the big conversations ongoing there, I'd prefer to wait to quantify that until we resolve those. But that's a significant number as well. And look, we're taking a hard look at every expense line item. A lot of the discretionary expenses that we took out this year, I think we'll be able to continue to see savings in those buckets going forward. And we're going to continue to really control it. Again, we were down 24% in Q3. We said we think we'll be down about 10% in Q4."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Operator",
+     "content": "Next question comes from the line of Chris Svezia from Wedbush."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "ChrisSvezia",
+     "content": "Nice job on the quarter. I have a couple of things. I guess, number one, just go back to the gross margin on wholesale footwear and accessories, the improvement. You mentioned that it was driven largely by the accessories and apparel piece. Maybe unpack a little bit of color about what happened on footwear? I think you were going to be selling a lot of the product you took reserves for earlier in the year. Just maybe unpack maybe where that footwear wholesale margins stand at this point? And do they really start to accelerate in Q4 and beyond? Or is there still more pressure there?"
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. So wholesale footwear was down about 100 basis points in Q3, and that was better than we had anticipated. We were clearing through a lot of that COVID-19 inventory. But we did better than we anticipated that we would on the clearance of that. So we -- so the teams did a great job, and we got a better recovery from the folks that we sold it to than we thought we would. And we also worked with our factory partners to get some concessions on that end. So overall, we did not take the hit that we expected on clearing that merchandise. And there's some of that that's going to go out in Q4 as well. But again, I think that margins in wholesale footwear could be flat to even modestly up in Q4."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Chris Svezia",
+     "content": "Okay. That's helpful. And I want to go back to the comment you made earlier in the Q&A. When you look at the marketplace, first half of 2021, and overall, you said down this 15% to 20% for the industry, are you just looking across all channels, in line, mass -- across all channels? Is that what looks like? Or is that just more the in-line channels?"
+    },
+    {
+     "paragraph_number": 73,
+     "speaker": "Ed Rosenfeld",
+     "content": "That's really the branded channels. I think the mass channel should be considerably better than that."
+    },
+    {
+     "paragraph_number": 74,
+     "speaker": "Chris Svezia",
+     "content": "Okay. And then just -- I'm curious, the off-price channels. Just where does that stand? It seems like they would have inventory packaway product or just shifting into other categories, you think about first half of that starting to open up more? Or is that still a pressure point in terms of -- I know that's typically an opportunity to be very profitable for you guys, I'm just curious how you think about that, how you think about that down 15% to 20%?"
+    },
+    {
+     "paragraph_number": 75,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. I'm glad you asked that question because I realized that I neglected to talk about spring when I addressed the off-price versus full price question earlier. So yes, we have seen -- after off-price trailing full price by a pretty wide margin in Q3, we have seen off-price opening up and coming back for Q4. And again, it's better than we anticipated for spring of '21. However, I think you raised a really good point, which is that there is a lot of pack and hold inventory that -- of spring/summer products that were sold into those folks that they'll be able to put out for spring of '21, and that definitely will impact their appetite for upfront. And so that's just something for us to be cognizant of as we look at spring '21."
+    },
+    {
+     "paragraph_number": 76,
+     "speaker": "Chris Svezia",
+     "content": "Okay. That's helpful. And just on the reminders we get on private label, that seems to be the growth engine for you guys, doing really well there. Just from a profit perspective, maybe how we maybe think about that relative to the core in line or even the off-price business, is that in line? Is it slightly less? Just sort of where does that fall in the mix?"
+    },
+    {
+     "paragraph_number": 77,
+     "speaker": "Ed Rosenfeld",
+     "content": "Reminding that gross margins are considerably lower in that business. It also has a lower operating expense structure. But even so, the operating margins are lower there. It's a nice business because we do it with no inventory risk or investment because we do it on a first cost basis primarily, but the operating margins are lower."
+    },
+    {
+     "paragraph_number": 78,
+     "speaker": "ChrisSvezia",
+     "content": "Okay. Final thing for me. Just when you think about your stores, and I know, I think you said in aggregate between the digital and the retail piece down in this, I think, high teens, how do we think about just stores and the potential for additional closures as we kind of move through the fourth quarter on holiday? Are you sort of factoring in kind of stays where it is? Or are you factoring it gets -- I don't know, how are you thinking about that in terms of how that moves around?"
+    },
+    {
+     "paragraph_number": 79,
+     "speaker": "Ed Rosenfeld",
+     "content": "Well, we certainly have not factored in any improvement from where we are today. And I think we could even soften a little bit and hit that number."
+    },
+    {
+     "paragraph_number": 80,
+     "speaker": "Operator",
+     "content": "Next question comes from the line of Erinn Murphy from Piper Sandler."
+    },
+    {
+     "paragraph_number": 81,
+     "speaker": "Erinn Murphy",
+     "content": "I guess I had a follow-up, Ed, for you, just on one of the earlier questions around shipping surcharges. Are you seeing any pressure build in terms of ocean freight or anything that's starting to bubble up at the ports at this point just given people trying to get ahead of the holiday season?"
+    },
+    {
+     "paragraph_number": 82,
+     "speaker": "Ed Rosenfeld",
+     "content": "Yes. So there's -- I think there's 2 issues there. There's -- one is just there's delays, and then there's also the -- what it costs. So I think there have been delays sort of throughout the supply chain for us and for just about everybody else. I think there was sort of a limited supply or a challenge getting containers and vessels, which slowed things down overseas. There has been a little bit of port congestion. And then even when you get it into the warehouses here, both our warehouses and the warehouses, in particular, of our wholesale customers have been slower just due to some labor shortages and other disruption due to COVID. So that has been an issue. It's probably added a couple of weeks to the whole process of getting shoes from the factory to the store. But the other thing is that we have seen increases in freight rates. The big dramatic increase has been in air freight. That's up about basically double from where it was earlier in the year. So we're having to be pretty judicious about what we put out an airplane. But even ocean rates are up 25%, 30%."
+    },
+    {
+     "paragraph_number": 83,
+     "speaker": "Erinn Murphy",
+     "content": "Got it. Okay. That's helpful. And then, sorry if I missed this, but just with the second or I guess third wave in some parts of the U.S. kind of hitting across, has traffic -- consumer traffic decelerated even further as we've moved into October?"
+    },
+    {
+     "paragraph_number": 84,
+     "speaker": "Ed Rosenfeld",
+     "content": "At this point, we have not seen a further deceleration, but we have seen stagnation in terms of the improvement. September was considerably better than what we saw in July and August, and October has sort of flat to September."
+    },
+    {
+     "paragraph_number": 85,
+     "speaker": "Erinn Murphy",
+     "content": "Okay. That's helpful. And then just last question, just going back to private label and just thinking about target and Walmart in particular, how big do you feel like those businesses could be over time? And is there a way that you're trying to balance them but they're not, I mean, so big but you're seeking to kind of still keep your first market or first tier kind of branded product in the focus?"
+    },
+    {
+     "paragraph_number": 86,
+     "speaker": "Ed Rosenfeld",
+     "content": "Look, I don't have a forecast for how big they can be. I guess, what I would say is, I think it's a strength of our company that we have the position that we do with them because they do have the wind at their backs right now, and those customers, they are taking share across a lot of categories, including shoes, accessories and apparel. And so we want to continue to grow with them. I don't necessarily think about -- we think about it in terms of what's the percentage compared to everything else, we just -- we want to figure out how to grow our branded business as well, and we're committed to doing that, whether it's in digital channels or otherwise. But we need to -- we definitely -- we're not going to constrain the growth of the mass channels, let's put it that way."
+    },
+    {
+     "paragraph_number": 87,
+     "speaker": "Operator",
+     "content": "I'm showing no further questions at this time. I would now like to turn the conference back to Ed Rosenfeld."
+    },
+    {
+     "paragraph_number": 88,
+     "speaker": "Ed Rosenfeld",
+     "content": "Okay. Well, great. Well, thanks, everybody, for joining us, and hope you have a great day, and I look forward to speaking with you on the fourth quarter call. Bye-bye."
+    },
+    {
+     "paragraph_number": 89,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, this concludes today's conference call. Thank you for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +522,8 @@
    "reportDate": "2019-12-31",
    "accession": "0001628280-20-002674",
    "url": "https://www.sec.gov/Archives/edgar/data/913241/000162828020002674/shoo-20191231x10k.htm",
-   "local_gz": "000162828020002674__annual.txt.gz"
+   "local_gz": "000162828020002674__annual.txt.gz",
+   "n_lines": 5566
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +531,8 @@
    "reportDate": "2020-06-30",
    "accession": "0001628280-20-011503",
    "url": "https://www.sec.gov/Archives/edgar/data/913241/000162828020011503/shoo-20200630.htm",
-   "local_gz": "000162828020011503__q0.txt.gz"
+   "local_gz": "000162828020011503__q0.txt.gz",
+   "n_lines": 976
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +540,106 @@
    "reportDate": "2020-03-31",
    "accession": "0001628280-20-009108",
    "url": "https://www.sec.gov/Archives/edgar/data/913241/000162828020009108/shoo-20200331.htm",
-   "local_gz": "000162828020009108__q1.txt.gz"
+   "local_gz": "000162828020009108__q1.txt.gz",
+   "n_lines": 838
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2020-08-04",
   "n_rows": 8,
@@ -83,6 +654,53 @@
     "ocf": 107909000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 137247000.0,
+      "filed": "2019-02-28",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 241395000.0,
+      "filed": "2019-02-28",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 200031000.0,
+      "filed": "2019-02-28",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 4286000.0,
+      "filed": "2019-02-28",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5313000.0,
+      "filed": "2019-02-28",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 12490000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.15,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +711,58 @@
     "ocf": -15754000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 115260000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 264518000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 160256000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3399000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5350000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 34525000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.41,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 84255000.0,
+      "filed": "2019-05-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +773,58 @@
     "ocf": 75515000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 146120000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 285227000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 212664000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 2815000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5413000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 36572000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.44,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 83869000.0,
+      "filed": "2019-08-05",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +835,58 @@
     "ocf": 23397000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 148053000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 297722000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 167492000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 2997000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5424000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 52463000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.63,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 83106000.0,
+      "filed": "2019-11-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +897,53 @@
     "ocf": 150622000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 136896000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 216471000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 264101000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 9100000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 5150000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 17751000.0,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.21,
+      "filed": "2020-03-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +954,58 @@
     "ocf": -39609000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 102265000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 231408000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 211138000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 3301000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4996000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -17451000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.22,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 78875000.0,
+      "filed": "2020-06-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +1016,58 @@
     "ocf": 97476000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 103282000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 123496000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 318101000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 1019000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 4248000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -16586000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.21,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 78517000.0,
+      "filed": "2020-08-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1078,21 @@
     "ocf": -57260000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": {
+      "value": -0.09,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 346900000.0,
     "revenue_xbrl_for_reference": 346867000.0
@@ -166,50 +1106,14 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3140",
   "sic2": "31",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 7,
-  "peer_list_all_same_sic2_tickers": [
-   "CAL",
-   "CPRI",
-   "RCKY",
-   "TLF",
-   "TPR",
-   "VRA",
-   "WWW"
-  ],
-  "peer_annual_reports_2_largest": [
-   {
-    "entity_id": "0001116132",
-    "name": "TAPESTRY, INC.",
-    "ticker": "TPR",
-    "sic2": "31",
-    "form": "10-K",
-    "filingDate": "2020-08-13",
-    "accn": "0001116132-20-000022",
-    "local_gz": "000111613220000022__peer10k.txt.gz",
-    "capex_excerpt": [
-     "ements on a timely and cost-effective basis on terms favorable to us. We have incurred a substantial amount of indebtedness, which could restrict our ability to engage in additional transactions or incur additional indebtedness. As of June 27, 2020 , our consolidated indebtedness was approximately $2.3 billion. We also have the capacity to borrow an additional $200 million of additional indebtedness under our revolving credit facility, which may be used to finance our working capital needs, capital expenditures, permitted investments, share purchases, dividends and other general corporate purposes. This substantial level of indebtedness could have important consequences to our business inclu",
-     "Period, the leverage ratio covenant. Non-compliance with these terms would constitute an event of default under our credit facility, which may result in acceleration of payment to the lenders. In the event of an acceleration of payment to the lenders, this would result in a cross default of the Company’s Senior Notes, causing the Company’s outstanding borrowings to also become due and payable on demand. Our ability to make payments on and to refinance our debt obligations and to fund planned capital expenditures depends on our ability to generate cash from our operations. This, to a certain extent, is subject to general economic, financial, competitive, legislative, regulatory and other fact",
-     "om our operations. This, to a certain extent, is subject to general economic, financial, competitive, legislative, regulatory and other factors that are beyond our control, including the financial impact of the Covid-19 pandemic on our business. We cannot guarantee that our business will generate sufficient cash flow from our operations or that future borrowings will be available to us in an amount sufficient to enable us to make payments of our debt, fund other liquidity needs and make planned capital expenditures. In addition, our ability to access the credit and capital markets in the future as a source of funding, and the borrowing costs associated with such financing, is dependent upon "
-    ]
-   },
-   {
-    "entity_id": "0001530721",
-    "name": "Capri Holdings Ltd",
-    "ticker": "CPRI",
-    "sic2": "31",
-    "form": "10-K",
-    "filingDate": "2020-07-08",
-    "accn": "0001530721-20-000062",
-    "local_gz": "000153072120000062__peer10k.txt.gz",
-    "capex_excerpt": [
-     "ver time to create operational efficiencies, as well as to achieve a common platform across the Company. During Fiscal 2020, we embarked on a multi-year ERP implementation, to conform the majority of our processes onto one global system that would support finance and accounting, procurement, inventory control, and store replenishment. The implementation of the ERP required a significant investment in human and financial resources. As a result of COVID-19 and our need to significantly reduce our capital expenditures in order to protect our liquidity and cash flows, we temporarily suspended our ERP project. See Item 1A. “Risk Factors” - “A material delay or disruption in our information techno",
-     "estrict our ability to incur additional indebtedness or engage in additional transactions. As of March 28, 2020, our consolidated indebtedness was approximately $2.2 billion, net of debt issuance costs and discount amortization. Our total borrowings as of March 28, 2020 included $681 million outstanding under our 2018 Revolving Credit Facility, senior notes of $450 million and term loans of $1.0 billion. Our ability to make payments on and to refinance our debt obligations and to fund planned capital expenditures depends on our ability to generate cash from our operations. This, to a certain extent, is subject to general economic, financial, competitive, legislative, regulatory and other fac",
-     "credit to disregard certain COVID-19 pandemic-related impacts. Notwithstanding this additional facility and the modifications to our 2018 Credit Facility, our substantial level of indebtedness could have negative consequences to our business and we cannot guarantee that our business will generate sufficient cash flow from our operations or that future borrowings will be available to us in an amount sufficient to enable us to make payments of our debt, fund other liquidity needs, make necessary capital expenditures or pursue certain business opportunities. 15 Table of Contents In addition, our ability to access the credit and capital markets in the future as a source of funding, and the borro"
-    ]
-   }
-  ]
+  "bucket": "製造與工業",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "insufficient",
+  "n_listed_peers": 0,
+  "peer_list_all_tickers": [],
+  "peer_annual_reports_2_largest": "同業資料不足"
  },
  "6_價格狀態": {
   "ret_6m_skip1m": -0.1429196737734163,
@@ -229,7 +1133,16 @@
   "latest_data_date": "2020-10-27",
   "cutoff": "2020-10-27",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2020-10-27",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2020-10-28",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

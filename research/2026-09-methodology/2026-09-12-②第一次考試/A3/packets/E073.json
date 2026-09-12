@@ -1,6 +1,7 @@
 {
  "event_id": "E073",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E073",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "UGI",
  "cik": "0000884614",
  "name": "UGI CORP /PA/",
@@ -9,10 +10,11 @@
  "bucket": "能源原材料公用",
  "evidence_cutoff": "T1 = 2024-11-22(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E073",
   "event_id": "E073",
   "ticker": "UGI",
   "cik": "0000884614",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,7.01,9.01",
   "accessionNumber": "0000884614-24-000079",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/884614/000088461424000079/ugi-20241121.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/884614/000088461424000079/ugi-20241121.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n ugisept2024ex991.htm\n EX-99.1\n Document \n Press Release \n UGI Reports Strong Fiscal 2024 Results \n Issues Fiscal 2025 Guidance \n November 21, 2024 \n VALLEY FORGE, PA - UGI Corporation (NYSE: UGI) today reported financial results for the fiscal year ended September 30, 2024 and provided guidance for fiscal year 2025. \n HEADLINES \n • GAAP net income of $269 million and adjusted net income of $658 million compared to GAAP net loss of $(1,502) million and adjusted net income of $613 million in the prior year. \n • GAAP diluted earnings per share (“EPS”) of $1.25 and adjusted diluted EPS of $3.06 compared to GAAP diluted (loss) EPS of $(7.16) and adjusted diluted EPS of $2.84 in the prior year. \n • Solid growth in reportable segments earnings before interest expense and income tax 1 (\"EBIT\"), delivering $1,178 million compared to $1,158 million in the prior year. \n • Achieved $75 million reduction in operating and administrative expenses across all segments, when compared to the prior year. \n • Deployed ~$900 million of capital with 80% allocated in aggregate to the regulated utilities, primarily for infrastructure replacement and betterment, and the Midstream and Marketing segment. \n • Paid dividends for the 140 th consecutive year, delivering a 10-year compound annual growth rate of 6%. \n • Issues fiscal 2025 adjusted diluted EPS guidance range of $2.75 - $3.05 2 . \n “Fiscal 2024 was a pivotal year for UGI as we embarked on a multi-year journey to unlock greater value for shareholders,\" said Mario Longhi, Board Chair of UGI Corporation. \"Strong execution against our strategy led to record EBIT from our natural gas businesses, sustainable reductions in operating and administrative expenses, disciplined capital deployment, improved liquidity, and greater financial flexibility within our balance sheet. We have laid a solid foundation and with Bob's leadership, I am confident in UGI’s ability to create further value for our customers, employees and shareholders.\" \n Robert Flexon, President and Chief Executive Officer of UGI Corporation said, \"Looking ahead, fiscal 2025 will be an important year as we continue to reset the business and better position UGI to advance on its value creation strategy. We must leverage our highly attractive asset base and build on operational capabilities and strengths to drive meaningful improvement in the company's financial profile. I am excited to work with the team to create a culture that embodies high performance, operational excellence, superior customer service and a relentless desire for sustainable growth. \n 2025 OUTLOOK \n UGI provides an adjusted EPS guidance range of $2.75 - $3.05 2 per diluted share for the fiscal year ending September 30, 2025. This guidance range assumes normal weather and the current tax regime. \n EARNINGS CALL and WEBCAST \n UGI Corporation will hold a live Internet Audio Webcast of its conference call to discuss Fiscal 2024 earnings and other current activities at 9:00 AM ET on Friday, November 22, 2024. Interested parties may listen to the audio webcast both live and in replay on the Internet at https://www.ugicorp.com/investors/financial-reports/presentations or by visiting the company website https://www.ugicorp.com and clicking on Investors and then Presentations. A replay of the webcast will be available after the event through to 11:59 PM ET November 21, 2025. \n CONTACT INVESTOR RELATIONS \n Tel: +1 610-337-1000 \n Tameka Morris, ext. 6297 \n 1 \n Arnab Mukherjee, ext. 7498 \n ABOUT UGI \n UGI Corporation (NYSE: UGI) is a distributor and marketer of energy products and services in the US and Europe. UGI offers safe, reliable, affordable, and sustainable energy solutions to customers through its subsidiaries, which provide natural gas transmission and distribution, electric generation and distribution, midstream services, propane distribution, renewable natural gas generation, distribution and marketing, and energy marketing services. \n Comprehensive information about UGI Corporation is available on the Internet at https://www.ugicorp.com . \n USE OF NON-GAAP MEASURES \n Management uses “adjusted net income attributable to UGI Corporation” and \"adjusted diluted earnings per share,\" both of which are non-GAAP financial measures, when evaluating UGI's overall performance. Management believes that these non-GAAP measures provide meaningful information to investors about UGI’s performance because they eliminate the impacts of (1) gains and losses on commodity and certain foreign currency derivative instruments not associated with current-period transactions and (2) other significant discrete items that can affect the comparison of period-over-period results. Volatility in net income attributable to UGI can occur as a result of gains and losses on commodity and certain foreign currency derivative instruments not associated with current-period transactions but included in earnings in accordance with U.S. generally accepted accounting principles (\"GAAP\"). \n Non-GAAP financial measures are not in accordance with, or an alternative to, GAAP and should be considered in addition to, and not as a substitute for, the comparable GAAP measures. \n Tables on the last page of this press release reconcile net income attributable to UGI Corporation, the most directly comparable GAAP measure, to adjusted net income attributable to UGI Corporation, and diluted earnings per share, the most comparable GAAP measure, to adjusted diluted earnings per share, to reflect the adjustments referred to above. \n 1 Reportable segments' EBIT represents an aggregate of our reportable operating segment level EBIT as determined in accordance with GAAP. \n 2 Because we are unable to predict certain potentially material items affecting diluted earnings per share on a GAAP basis, principally mark-to-market gains and losses on commodity and certain foreign currency derivative instruments, we cannot reconcile the fiscal year 2025 adjusted diluted earnings per share, a non-GAAP measure, to diluted earnings per share, the most directly comparable GAAP measure, in reliance on the “unreasonable efforts” exception set forth in SEC rules. \n USE OF FORWARD-LOOKING STATEMENTS \n This press release contains statements, estimates and projections that are forward-looking statements (as defined in Section 21E of the Securities Exchange Act of 1934, as amended, and Section 27A of the Securities Act of 1933, as amended). Such statements use forward-looking words such as “believe,” “plan,” “anticipate,” “continue,” “estimate,” “expect,” “may,” or other similar words and terms of similar meaning, although not all forward-looking statements contain such words. These statements discuss plans, strategies, events or developments that we expect or anticipate will or may occur in the future. Management believes that these are reasonable as of today’s date only. Actual results may differ significantly because of risks and uncertainties that are difficult to predict and many of which are beyond management’s control; accordingly, there is no assurance that results will be realized. You should read UGI’s Annual Report on Form 10-K for a more extensive list of factors that could affect results. We undertake no obligation (and expressly disclaim any obligation) to update publicly any forward-looking statement, whether as a result of new information or future events, except as required by the federal securities laws. \n 2 \n SEGMENT RESULTS ($ in millions, except where otherwise indicated) \n Utilities \n For the year ended September 30, 2024 2023 Increase (Decrease) \n Revenues $ 1,598 $ 1,854 $ (256) (14) % \n Total margin (a) $ 924 $ 877 $ 47 5 % \n Operating and administrative expenses $ 363 $ 368 $ (5) (1) % \n Operating income $ 394 $ 357 $ 37 10 % \n Earnings before interest expense and income taxes $ 400 $ 365 $ 35 10 % \n Gas Utility system throughput - billions of cubic feet \n Core market 93 96 (3) (3) % \n Total 378 375 3 1 % \n Natural gas heating degree days - % warmer than normal (16.0) % (11.7) % \n Capital expenditures $ 482 $ 563 $ (81) (14) % \n • Temperatures were 16% warmer than normal and 5% warmer than the prior-year period. \n • Core market volumes slightly declined as the effect of warmer weather was largely offset by growth in core market customers. \n • Total margin increased $47 million primarily due to higher gas and electric base rates, higher Distribution System Improvement Charge (DSIC) benefits, and continued customer growth. \n • Operating and administrative expenses decreased $5 million reflecting reduced uncollectible accounts expenses. \n • Operating income increased $37 million due to the higher total margin ($47 million) and lower operating and administrative expenses, partially offset by higher depreciation expense ($14 million) from continued distribution system capital expenditure activity. \n (a) Total margin represents total revenue less total cost of sales. In the case of the Utilities, total margin is also reduced by certain revenue-related taxes. \n Midstream & Marketing \n For the year ended September 30, 2024 2023 Increase (Decrease) \n Revenues $ 1,369 $ 1,847 $ (478) (26) % \n Total margin (a) $ 505 $ 487 $ 18 4 % \n Operating and administrative expenses $ 125 $ 133 $ (8) (6) % \n Operating income $ 301 $ 285 $ 16 6 % \n Earnings before interest expense and income taxes $ 313 $ 291 $ 22 8 % \n Heating degree days - % warmer than normal (13.3) % (11.0) % \n Capital expenditures $ 150 $ 130 $ 20 15 % \n • Temperatures were 13% warmer than normal and 5% warmer than the prior-year period. \n • Total margin increased $18 million reflecting increased margins from capacity management due to higher basis and storage values ($31 million), partially offset by lower margin from renewable energy marketing activities ($8 million) and natural gas gathering contracts ($7 million). \n • Operating and administrative expenses decreased $8 million reflecting lower salaries and benefits and maintenance expenses. \n • Operating income increased $16 million due to higher total margin and reduced operating and administrative expenses, partially offset by lower other operating income ($10 million) primarily from storage farmout contracts. \n • EBIT increased $22 million due to an increase in operating income and higher income from equity method investments ($5 million) largely associated with the Pine Run midstream natural gas gathering system. \n 3 \n UGI International \n For the year ended September 30, 2024 2023 Increase (Decrease) \n Revenues $ 2,279 $ 2,965 $ (686) (23) % \n Total margin (a) $ 978 $ 920 $ 58 6 % \n Operating and administrative expenses $ 578 $ 623 $ (45) (7) % \n Operating income $ 311 $ 215 $ 96 45 % \n Earnings before interest expense and income taxes $ 323 $ 234 $ 89 38 % \n LPG retail gallons sold (millions) 725 729 (4) (1) % \n Heating degree days - % warmer than normal (11.8) % (10.5) % \n Capital expenditures $ 87 $ 129 $ (42) (33) % \n Base-currency results are translated into U.S. dollars based upon exchange rates experienced during the reporting periods. The functional currency of a significant portion of our UGI International results is the euro and, to a much lesser extent, the British pound sterling. During Fiscal 2024 and Fiscal 2023, the average unweighted euro-to-dollar translation rates were $1.08 and $1.07, respectively, and the average unweighted British pound sterling-to-dollar translation rate were $1.27 and $1.23, respectively. \n • Temperatures were 12% warmer than normal and 2% warmer than the prior-year period. \n • Retail gallons were comparable as the effects of warmer weather were partially offset by higher volumes from natural gas to LPG conversions and autogas customers. \n • Total margin increased $58 million reflecting higher LPG unit margins, the translation effects of the stronger foreign currencies ($20 million) and, to a much lesser extent, increased total margin from energy marketing operations. \n • Operating and administrative expenses decreased $45 million primarily due to the effect of exiting the non-core energy marketing business and lower personnel-related, maintenance and advertising expenses. These decreases were partially offset by the translation effects of the stronger foreign currencies ($12 million). \n • Operating income increased $96 million due to higher total margin ($58 million), lower operating and administrative expenses ($45 million) and higher gain from asset sales ($4 million), partially offset by lower foreign currency transaction gains ($6 million) and lower cylinder deposit income ($6 million). \n • Earnings before interest expense and income taxes increased $89 million reflecting higher operating income partially offset by lower realized gains on foreign currency exchange contracts ($4 million). \n AmeriGas Propane \n For the year ended September 30, 2024 2023 (Decrease) increase \n Revenues $ 2,271 $ 2,581 $ (310) (12) % \n Total margin (a) $ 1,212 $ 1,331 $ (119) (9) % \n Operating and administrative expenses $ 933 $ 950 $ (17) (2) % \n Operating income / earnings before interest expense and income taxes $ 142 $ 268 $ (126) (47) % \n Retail gallons sold (millions) 737 823 (86) (10) % \n Heating degree days - % colder (warmer) than normal (8.0) % 0.5 % \n Capital expenditures $ 86 $ 134 $ (48) (36) % \n • Temperatures were 8% warmer than normal and the prior-year period. \n • Retail gallons sold decreased 10% largely due to the continuation of customer attrition and the effects of the warmer weather. \n • Total margin decreased $119 million reflecting lower retail volumes sold. \n • Operating and administrative expenses decreased $17 million reflecting, among other things, lower compensation expenses and advertising expenses. \n • Operating income and EBIT decreased $126 million due to lower total margin and a decrease in other income ($23 million) associated with lower gains on asset sales, partially offset by reduced operating and administrative expenses . \n 4 \n REPORT OF EARNINGS - UGI CORPORATION \n (Millions of dollars, except per share)\nUnaudited Three Months Ended\nSeptember 30, Twelve Months Ended\nSeptember 30, \n 2024 2023 2024 2023 \n Revenues: \n Utilities $ 202 $ 210 $ 1,598 $ 1,854 \n Midstream & Marketing 239 261 1,369 1,847 \n UGI International 426 529 2,279 2,965 \n AmeriGas Propane 402 434 2,271 2,581 \n Corporate & Other (a) (27) (30) (307) (319) \n Total revenues $ 1,242 $ 1,404 $ 7,210 $ 8,928 \n (Loss) earnings before interest expense and income taxes: \n Utilities $ — $ (2) $ 400 $ 365 \n Midstream & Marketing 15 38 313 291 \n UGI International 18 18 323 234 \n AmeriGas Propane (40) 28 142 268 \n Total reportable segments (7) 82 1,178 1,158 \n Corporate & Other (a) (249) 173 (444) (2,616) \n Total (loss) earnings before interest expense and income taxes (256) 255 734 (1,458) \n Interest expense: \n Utilities (24) (20) (93) (82) \n Midstream & Marketing (12) (12) (41) (45) \n UGI International (11) (11) (44) (37) \n AmeriGas Propane (34) (41) (156) (163) \n Corporate & Other, net (a) (17) (14) (60) (52) \n Total interest expense (98) (98) (394) (379) \n (Loss) income before income taxes (354) 157 340 (1,837) \n Income tax benefit (expense ) 81 (26) (71) 335 \n Net (loss) income attributable to UGI Corporation (273) 131 269 (1,502) \n (Loss) earnings per share attributable to UGI Corporation shareholders: \n Basic $ (1.27) $ 0.62 $ 1.27 $ (7.16) \n Diluted $ (1.27) $ 0.61 $ 1.25 $ (7.16) \n Weighted Average common shares outstanding (thousands): \n Basic 214,905 209,767 211,309 209,806 \n Diluted 215,368 215,371 215,271 209,806 \n Supplemental information: \n Net (loss) income attributable to UGI Corporation: \n Utilities $ (17) $ (15) $ 237 $ 219 \n Midstream & Marketing 4 28 238 193 \n UGI International 49 22 262 172 \n AmeriGas Propane (40) (16) (23) 71 \n Corporate & Other (a) (269) 112 (445) (2,157) \n Total net (loss) income attributable to UGI Corporation $ (273) $ 131 $ 269 $ (1,502) \n (a) Corporate & Other includes specific items attributable to our reportable segments that are not included in profit measures used by our chief operating decision maker in assessing our reportable segments' performance or allocating resources. These specific items are shown in the section titled \"Non-GAAP Financial Measures - Adjusted Net Income Attributable to UGI and Adjusted Diluted Earnings Per Share\" below. Corporate & Other also includes the elimination of certain intercompany transactions. \n 5 \n Non-GAAP Financial Measures - Adjusted Net Income Attributable to UGI and Adjusted Diluted Earnings Per Share \n (unaudited) \n The following tables reconcile net income attributable to UGI Corporation, the most directly comparable GAAP measure, to adjusted net income attributable to UGI Corporation, and reconcile diluted earnings per share, the most comparable GAAP measure, to adjusted diluted earnings per share, to reflect the adjustments referred to previously: \n Fiscal Year Ended September 30, 2024 2023 \n Adjusted net income (loss) attributable to UGI Corporation (millions): \n Net income (loss) attributable to UGI Corporation $ 269 $ (1,502) \n Net (gains) losses on commodity derivative instruments not associated with current-period transactions (net of tax of $17 and $(419), respectively) \n (60) 1,225 \n Unrealized losses on foreign currency derivative instruments (net of tax of $(9) and $(11), respectively) \n 22 27 \n Loss associated with impairment of AmeriGas Propane goodwill (net of tax of $(3) and $4, respectively) \n 192 660 \n Loss on extinguishment of debt (net of tax of $(3) and $(2), respectively) \n 6 7 \n Business transformation expenses (net of tax of $0 and $(3), respectively) \n — 7 \n AmeriGas operations enhancement for growth project (net of tax of $(6) and $(6), respectively) \n 19 18 \n Restructuring costs (net of tax of $(20) and $0, respectively) \n 56 — \n Costs associated with exit of the UGI International energy marketing business (net of tax of $(15) and $(67), respectively) \n 69 181 \n Net gain on sale of UGI headquarters building (net of tax of $0 and $4, respectively) \n — (10) \n Loss on disposal of UGID (net of tax of $(11) and $0, respectively) \n 55 — \n Impairment of equity method investments and assets (net of tax of $(3) and $0, respectively) \n 30 — \n Total adjustments (1) (2) 389 2,115 \n Adjusted net income attributable to UGI Corporation $ 658 $ 613 \n Adjusted diluted earnings per share: \n UGI Corporation earnings (loss) per share - diluted (3) $ 1.25 $ (7.16) \n Net losses (gains) losses on commodity derivative instruments not associated with current-period transactions (0.28) 5.77 \n Unrealized losses on foreign currency derivative instruments 0.10 0.13 \n Loss associated with impairment of AmeriGas Propane goodwill 0.89 3.14 \n Loss on extinguishment of debt 0.03 0.03 \n Business transformation expenses — 0.03 \n AmeriGas operations enhancement for growth project 0.09 0.09 \n Restructuring costs 0.26 — \n Cost associated with exit of the UGI International energy marketing business 0.32 0.86 \n Net gain on sale of UGI headquarters building — (0.05) \n Loss on disposal of UGID 0.26 — \n Impairment of equity method investments and assets 0.14 — \n Total adjustments (1) 1.81 10.00 \n Adjusted diluted earnings per share (3) $ 3.06 $ 2.84 \n (1) Corporate & Other includes certain adjustments made to our reporting segments in arriving at net income attributable to UGI Corporation. These adjustments have been excluded from the segment results to align with the measure used by our chief operating decision maker in assessing segment performance and allocating resources. \n (2) Income taxes associated with pre-tax adjustments determined using statutory business unit tax rates. \n (3) The loss per share for Fiscal 2023, was determined excluding the effect of 6.13 million dilutive shares as the impact of such shares would have been antidilutive due to the net loss for the period, while the adjusted earnings per share for Fiscal 2023, was determined based upon fully diluted shares of 215.94 million. \n 6 \n",
@@ -36,7 +39,164 @@
   "same_day_8k_items": "2.02,7.01,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000088461424000079__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0000884614-24-000070",
+   "filingDate": "2024-08-08",
+   "reportDate": "2024-08-07",
+   "form": "8-K",
+   "local_gz": "000088461424000070__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "• Continue to expect to be within the fiscal 2024 adjusted diluted EPS guidance range of $2.70 - $3.00 2 per share."
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2024-11-22",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 26,
+   "has_qna": true,
+   "n_chars": 25185,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Welcome to the UGI Corporation Q4 2024 Earnings Conference Call. At this time, all participants are in a listen-only mode. After the speaker's presentation, there will be a question-and-answer session. [Operator Instructions] Please be advised that today's conference is being recorded. I would now like to hand the conference over to Tameka Morris. Please go ahead."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Tameka Morris",
+     "content": "Good morning, everyone. Thank you for joining our fiscal 2024 fourth quarter earnings call. With me today are Mario Longhi, UGI's Board Chair; Bob Flexon, President and CEO; and Sean O'Brien, CFO. On today's call, we will review our fiscal 2024 financial results and key accomplishments as well as the strategic priorities and financial outlook for fiscal 2925 before concluding with a question-and-answer session. Before we begin, let me remind you that our comments today include certain forward-looking statements, which management believes to be reasonable as of today's date only. Actual results may differ significantly because of risks and uncertainties that are difficult to predict. Please read our earnings release and our annual report for an extensive list of factors that could affect results. We assume no duty to update or revise forward-looking statements to reflect events or circumstances that are different from expectations. We will also describe our business using certain non-GAAP financial measures. Reconciliation of these measures to the comparable GAAP measures are available within our presentation. And with that, I'll turn the call over to Mario."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Mario Longhi",
+     "content": "Thank you, Tameka, and good morning, everyone. Fiscal 2024 was a pivotal year for UGI as we embarked on a multi-year journey to enhance our financial profile. Strong execution against our strategy led to the company realizing the highest adjusted diluted EPS in its history. We took decisive actions to strengthen the leadership team, create greater operational efficiencies, and improve our balance sheet. I'm proud of our people who have come together and worked diligently to achieve these results. Now, I'm pleased that Bob has taken the role as President and CEO of UGI. Bob brings strong leadership, extensive experience, and in-depth knowledge of the energy industry. He has a proven track record of leading companies to create significant value. And with his leadership, I'm confident that UGI can be better positioned to meet the needs of our stakeholders. And now, I'll hand the call over to Bob so he can share his opening remarks."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Bob Flexon",
+     "content": "Thanks, Mario. And good morning to all of you. Let me start by saying that I'm honored to rejoin UGI with its rich history and a solid reputation for integrity, excellence, and a deep commitment to customers and the communities in which we serve. I also want to express my gratitude to Mario for his strong leadership and contribution as Interim President and CEO, and for the effective and efficient transition that has taken place. Over the past few weeks, I have been getting up to speed by engaging, listening, and learning more about our customers, our operations, and strategies for each of our businesses. Post our call today, I hold the opportunity to engage more closely with our business partners and shareholders to gain alignment as we drive the company forward, focusing on what matters, leveraging our competitive advantages and to generate greater shareholder value. Later in the call, I will share with you the strategic priorities for the current year. But now I'll hand it over to Sean to cover UGI's fiscal 2024 accomplishments."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Sean O'Brien",
+     "content": "Thanks, Bob, and good morning. As Mario mentioned, UGI had a strong fiscal 2024, delivering record adjusted EPS of $3.06 and a five-year EPS CAGR of 6%. Three of our business segments delivered their strongest EBIT on record due to higher margins and sustainable cost savings. These benefits helped offset the impact of lower financial results at AmeriGas as the business continue to experience volume decline. Earlier in the year, we shared several key areas of focus with you. One was to achieve permanent cost savings of $70 million to $100 million by the end of fiscal 2025. As noted on the slide, we achieved a $75 million reduction in operating and administrative expenses this year, accelerating the previously anticipated timeline. These cost savings were achieved through right-sizing operations and driving efficiencies within our business processes. Next, a key priority was to realign our capital allocation model to the business strategy. In fiscal 2024, we returned approximately $320 million to shareholders through dividend payments, building a 140-year history of consecutively paying dividends. Over the past 10 years, UGI has provided a dividend CAGR of 6%. We were disappointed deploying capital. Of the roughly $900 million of capital, 80% was allocated to the natural gas businesses. Specifically, at our regulated utilities, we deployed approximately $500 million, primarily in infrastructure replacement and betterment, where we replaced roughly 109 miles of pipe and made noteworthy updates to our infrastructure. At the midstream businesses, we completed construction of the Moody Project, which is expected to produce up to 300 MMCF of RNG per year, once fully operational. The team also began construction of the [Carlisle] (ph) LNG storage and vaporization facility that is expected to come online at the end of calendar 2025. The facility is backed by a 15-year contract with the gas utility with margin underpinned by take or pay arrangements. Similarly, expansion of LNG liquefaction capacity at the Manning facility is on track for completion in late fiscal 2025. We see increasing demand for natural gas, and with this expansion, we will double our liquefaction capacity at the facility to 20,000 dekatherms per day. And now this brings me to our focus on strengthening the balance sheet, which is crucial to sustaining operations and driving earnings growth. At AmeriGas, we reduced absolute debt by approximately $460 million and replaced the pre-existing revolver, which had more restrictive debt covenant metrics. This action was important to provide the business with runway to drive better performance. Additionally, we completed over $2.5 billion of debt financing actions across the enterprise to support our ongoing operations and improve liquidity. And finally, as Bob mentioned, UGI has a deep commitment to the communities in which we operate. It is important that we do our part in helping to improve the lives and well-being of those around us. To that effect, we are proud of our employees who volunteered over 40,000 hours, serving and partnering with various organizations to meet the needs within our community. Now let me walk you through the year-over-year financial performance. As I mentioned earlier, for fiscal 2024, UGI delivered adjusted diluted EPS of $3.06 in comparison to $2.84 in the prior year. The utility segment was up $0.09 due to higher gas and electric base rates and increased disc revenues. Midstream and marketing had an increase of $0.22 in adjusted EPS, largely due to higher capacity management margins and approximately $0.07 of year-over-year increase in investment tax credits associated with the Moody RNG facility that was placed in service this year. At UGI International, there was significant improvement in year-over-year results led by higher LPG unit margins, lower operating and administrative expenses, and lower taxes through a favorable change in regulation that allowed us to utilize a previously expensed valuation allowance. AmeriGas was down $0.44, as the effects of lower volumes were partially offset by lower operating and administrative expenses. Lastly, Corporate and Other was down $0.07, primarily due to higher interest expense. Now, before I walk through the key drivers for each reportable segment, I also want to note that we recorded a non-cash pre-taxed goodwill impairment charge of approximately $195 million to reduce the carrying values of AmeriGas, reflecting lower growth expectation. Turning to the next slide, at our regulated utilities, EBIT was up $35 million over the prior year, largely due to higher gas and electric base rates, incremental benefits from the DISC program, as well as continued customer growth. During the year, we added over 12,000 residential heating and commercial customers, increasing our utility's customer base to roughly 962,000 customers in Pennsylvania, West Virginia, and Maryland. Core market volume was slightly lower than the prior year, as the effects of warmer weather were partially offset by customer growth. Operating and administrative expenses were down $5 million, reflecting lower uncollectible accounts expenses. In our Midstream and Marketing segment, for the second year in a row, we saw record results, with EBIT of $313 million, up $22 million over the prior year. The segment benefited from its highly fee-based portfolio and the optimization of its peaking assets during a cold snap that occurred in January. These benefits were partially offset by lower margins from renewable energy marketing activities and reduced natural gas gathering earnings. Operating and administrative expenses were down $8 million, reflecting lower salaries and benefits from cost reduction actions taken, as well as lower maintenance expenses. Turning to the global LPG businesses, UGI International delivered record EBIT of $323 million, up $89 million over the prior year, largely due to higher LPG unit margins, lower operating and administrative expenses, and the effect of substantially exiting the non-core energy marketing business. LPG volumes were comparable to the prior year as the effect of warmer weather was partially offset by additional volume from autogas customers and small industrial customers converting from natural gas to LPG. Operating and administrative expenses were down $45 million, reflecting lower costs from exiting the non-core energy marketing business and lower personnel, maintenance, and advertising expenses. Lastly, at AmeriGas, LPG volumes were down 10% due to continuing customer attrition and the effects of warmer weather. And this led to a $119 million reduction in total margin. Operating and administrative expenses were down $17 million due to lower personnel and advertising expenses, while the business reported lower gains from asset sales during the year. Turning to liquidity in the balance sheet, at the end of the fiscal year, UGI had available liquidity of $1.5 billion, inclusive of cash and cash equivalents, and available borrowing capacity on our revolving credit facilities. In fiscal 2024, we completed over $2.5 billion of debt financing to support ongoing operations and improve liquidity. Subsequent to the fiscal year end, we were pleased to fully address the 2025 maturities at UGI Corporation by entering into a new $475 million revolving credit facility and a 2027 $400 million term loan. As of today, upcoming maturities within the next 12 months is limited to the $218 million outstanding at AmeriGas Propane. Finally, earlier this month, we also increased the borrowing capacity on AmeriGas's revolver from $200 million to $300 million, providing additional liquidity for the business. Looking ahead, we will continue to focus on improving our free cash flow generation and reducing absolute debt through operational actions, monetization of LPG assets, and disciplined capital allocation. And that takes me to the fiscal 2025 outlook. Yesterday we announced our fiscal 2025 guidance range for adjusted diluted EPS of $2.75 to $3.05, which assumes normal weather based on a 10-year average in the current tax regime. Other core assumptions reflected in the guidance range include continued actions to stabilize AmeriGas and subsequently drive greater financial performance, additional interest expense associated with recent financing activities, and incremental tax benefits from RNG plans being placed in service. We have taken into account additional distribution costs of $0.05 to $0.08 at UGI International due to the previously mentioned damage to a supply port in France. As we mentioned on the Q3 earnings call, repairs to this facility are expected to take up to 18 months, which necessitates a change to our supply and logistics plan for fiscal 2025. We anticipate that all capital expenditure will be covered by our insurance policy. However, the incremental distribution costs may not be fully recoverable. Lastly, I'm excited as we build off the strong execution in fiscal 2024 and use 2025 as a critical rebuilding year to better position the company for long-term growth and value creation. And with that, I'll turn the call over to Bob."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Bob Flexon",
+     "content": "Thanks, Sean. Before we open the line for questions, I want to highlight our key priorities for fiscal 2025. When I look at the pathway to improving UGI's overall performance, at the core is understanding our talent and acting on identified gaps. We need to establish the environment or culture that drives the desired performance and outcomes. We must be relentless in the accountability for executing against the strategy. This will likely result in assessing and redesigning our core business processes, our ways of working, to drive operational excellence, strategic alignment, and greater efficiencies. At AmeriGas, fundamental change is needed to reduce customer churn, win back customers, and drive performance in that business, assuring we remain customer focused. We must get back to where customers want to do business with us, and we are their propane provider of choice. While the company is taking action in some of these areas, we are in the early stages, and so fiscal 2025 will be an important year to drive stability and subsequently better business performance. Next is focusing on optimizing our overall LPG portfolio, pursuing opportunities where the economics make sense to monetize assets, and moving the company to become more heavily weighted to natural gas. With the execution of these priorities and the continued focus on right sizing our balance sheet, the intent is to improve UGI's financial profile for the benefit of our stakeholders. In closing, I'm excited for this opportunity in driving the company forward. There's a lot of work to do, but the progress is well underway, and I look forward to providing more updates as we progress. We appreciate your time with us today, and now we will open the line for questions."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Operator",
+     "content": "Certainly. [Operator Instructions] One moment for our first question, which will come from Julien Dumoulin-Smith of Jefferies, your line is open Julien."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Julien Dumoulin-Smith",
+     "content": "Hey, good morning, team. Thank you guys very much. Hope you guys are all well and Bob, congratulations again on the role. Nice to see you back in the seat here."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Bob Flexon",
+     "content": "Yes, thanks."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Julien Dumoulin-Smith",
+     "content": "Absolutely, nice to chat with you guys. So maybe just following up on a couple things here. I mean, obviously you continue to highlight some of the challenges of AmeriGas. Maybe just to kick it off there first, how do you think about your mandate in coming into the firm here, specifically as it pertains to the strategic direction of AmeriGas? I mean, obviously, there was perhaps a former strategy here, how is that -- how did your point and then how do you think about the opportunity exists within AmeriGas at this point?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Bob Flexon",
+     "content": "Thank you, Julien. And then focusing specifically just on AmeriGas on your question, that the immediate action for AmeriGas is really to solidify the business, bring stabilization to it. We've had a good running start of fixing a lot of the past practices that were contributing to the churn of customers. Long way to go, but we've got teams mobilized and there'll be some supplemental talent coming in as well, but right out of the gate, what we need to do is to stabilize that business. I operate under the principle that from a capital allocation standpoint, each business needs to support itself. So AmeriGas needs to support itself. You're not going to see funds going from the parent company down to AmeriGas. So AmeriGas has to perform. AmeriGas has to work on their balance sheet. And a AmeriGas has to work on providing excellent customer service and really fix our business processes that have gone array over the past few years. So that's where I see spending a lot of my time will be on AmeriGas to really focus on those things and getting the performance up stabilization and driving the cash flow there."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Julien Dumoulin-Smith",
+     "content": "Right. So it sounds -- just to make sure I'm hearing that right, so no further equity going into AmeriGas at this point, and no specific timeline on any kind of strategic action to potentially review for an investment at this point. Sounds like more internal focus, turn around the metrics first before going back to any kind of conversation about what to do with it, right?"
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Bob Flexon",
+     "content": "Yeah, so I'll reiterate that. So no equity going down to AmeriGas. It has to support itself. It has to manage its own balance sheet and that's -- I can really expand that to the entire LPG business and then I would also say that what we can control right now is to make that business perform better. Strategic spots and actions and opportunities may arise and I’m not ruling anything out in that from that standpoint but what we can control right now is making that business perform better and that's where the focus is to do that. I think that will drive the most value for our shareholders to get this thing stabilized as quickly as we can. And like I said, a lot of good things have been happening over the past year, and we're going to keep that momentum going and expand the improvements."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Julien Dumoulin-Smith",
+     "content": "Awesome. Excellent. Thank you. And then just, if I can follow up more strategically -- more holistically here rather, as you think about the balance of the businesses here, how do you think about the opportunity for more of a review from a cost perspective or otherwise strategically around the balance of businesses here?"
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Bob Flexon",
+     "content": "Well, Julian, when you take a look at -- and I know you know this quite well. When you take a look at the utility and the overall natural gas business with energy services as well, I mean the utility, particularly when you benchmark it across the country, it's the best-in-class. And you know I look at our trading multiple of 8 times and you think where the UGI utility natural gas business, where that multiple should be dramatically higher. It should be best-in-class given the construct of the regulatory environment in Pennsylvania, the low risk, the pretty deep capital program that provides plenty of opportunity for investment. So that's really just a top-desk style utility in this country. And Energy Services brings great synergy to that business. It's a great customer and supplier to the utility. And when you think about the demand of what's happening in PGM for natural gas and the opportunities that energy services has to be involved in that given the footprint of that business, the demand for power, the demand for additional natural gas is going to provide opportunities for energy services. So the overall natural gas business is really sitting in just a fabulous situation. When I was here back in 2011, energy services did not have the physical assets behind it like it does today. So it's really a dramatically -- it dramatically evolved business that has great synergies not only for the utility, but then also allows you to experience excellent upside with market demand whether that's for additional power that's coming via the investment in data centers or weather driven when you have spikes in cold weather. So it really is a strong franchise on the natural gas side. So I think that actually -- they run very well. They've got great opportunities. So, again, when I think of allocating my own time, it's got to be to make sure that we're running the LPG side of the business really, really well, and we'll think about opportunities how to maximize value longer term."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Julien Dumoulin-Smith",
+     "content": "Awesome. All right. I'll leave it there, guys. Thank you so very much. Best of luck to you and the team, okay?"
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Bob Flexon",
+     "content": "Thank you, Julian."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Operator",
+     "content": "[Operator Instructions] Our next question will be coming from Gabriel Moreen of Mizuho. Your line is open."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Gabriel Moreen",
+     "content": "Good morning, everyone, and welcome, Bob. Look forward to working with you. A couple questions if I could maybe on guidance both near and near long term. Just around AmeriGas, I know you're assuming normal weather, but can you speak to maybe what you're assuming around stemming customer attrition going into fiscal 2025, how that may compare year-on-year?"
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Sean O'Brien",
+     "content": "Yes, I can take that Gabe. AmeriGas going into 2025 on the volume metric side, there's still work to be done, if you listen to some of Bob's comments. So we are assuming continued volume declines from 2024 to 2025 as the team really works on turning that business around and stabilizing it. So you would expect if you're modeling that to see volume declines continue. On the positive side, if you looked at the 2024 results on the AmeriGas side of the equation, there was -- we were able to drive some efficiencies in costs. I think costs were down $17 million. And then on the capital conservation side regarding AmeriGas, I believe capital was down about $50 million. So we're trying to make sure that we're controlling the levers while the business is really focused on volumes and really getting that under, as you said, you heard Bob say stabilized. So for 2025, continued volume declines as the business stabilizes. We're pulling all the levers we can to make sure that the variable nature of cost and capital that we see those efficiencies as we continue to turn the business around."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Gabriel Moreen",
+     "content": "Great. Thanks, Sean. And then maybe if I can ask on midstream, and I appreciate some of the additional disclosures in this morning's presentation. One, [indiscernible] guide for next year. When you think about some of the marketing uplift you experienced in 2024, I'm wondering kind of what you are not slotting in for 2025? And then also kind of thinking bigger picture longer term to Bob's comments earlier about, I think some of the value in these midstream services. Can you just talk to how you're pricing these services currently? And whether you think over the medium to long term there will just be a natural uplift maybe in terms of some of the pricing behind some of these peaking services in particular?"
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Sean O'Brien",
+     "content": "Yeah, sure. The first one – I'll cover the first one on the -- I mean, when you look at Q2, Gabe, Q2 was incredibly strong, right? We saw some pockets, and Bob was alluding to it earlier, where you had some cold weather spikes, and our capacity business that takes advantage of various basis points and our access to gas had an incredibly strong Q2, if you go back and look at it, it really stood out. So we would not -- in a normal forecast, a normal budget, we would take that back down to normal levels. But it's a great opportunity if we continue -- this year we see similar opportunities like that for that business to really set up well for those types of opportunities. In terms of growth, maybe I'll just highlight some of the growth that we have in play. We've got two LNG facilities, Carlisle and Manning. I think Carlisle comes online in Q1 of 2026. Manning will be Q3 of this year. So it'll have some impact on this year, but we are -- even though we've been very capital disciplined, we have applied capital to that midstream energy services business. On the RNG front you have three facilities coming in fiscal year 2025, one in Q2 and Q1 and one in Q3. So we have kept a little bit of the growth engine going there. In terms of future opportunities, I think Bob hit it. You've got PJM really looking to control power costs and to add some increased generation, which will drive gas demand. You have the potential. We're in a very good spot in Pennsylvania and West Virginia for data centers. So all this should have some favorable impact on future contract and future pricing. And I think we're set up very well to play a role in that increased demand as it goes forward. But in 2025, I'll be clear, we don't have -- outside of the growth I mentioned, there is none of that in the forecast. So that would be post 2025 potential upside for the company."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Gabriel Moreen",
+     "content": "Thanks, Sean. Appreciate it."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Operator",
+     "content": "And I would now like to turn the call back to Bob Flexon, President and CEO for closing remarks."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Bob Flexon",
+     "content": "Thank you, LaTonya. I appreciate the attendance at the call today. I'm thrilled to be back at UGI. I want to thank Mario for the work that he's done over the past year on stabilizing the company and getting improvements launched underway. So this is a handoff in flight. So we have great progress already and that will be certainly my focus over the balance of the new fiscal years to bring that stabilization and improvements to the business so we can generate the right level of cash flow, get the right valuation on our stock, which seems to be dramatically undervalued given the multiple that we trade at. And we have lots of opportunity here. And like I said, I'm thrilled to be back and look forward to engaging with all of you as we go forward. And with that, LaTanya, we'll end today's call."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Operator",
+     "content": "Certainly. This concludes today's conference. Thank you for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +207,8 @@
    "reportDate": "2023-09-30",
    "accession": "0000884614-23-000104",
    "url": "https://www.sec.gov/Archives/edgar/data/884614/000088461423000104/ugi-20230930.htm",
-   "local_gz": "000088461423000104__annual.txt.gz"
+   "local_gz": "000088461423000104__annual.txt.gz",
+   "n_lines": 3475
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +216,8 @@
    "reportDate": "2024-06-30",
    "accession": "0000884614-24-000072",
    "url": "https://www.sec.gov/Archives/edgar/data/884614/000088461424000072/ugi-20240630.htm",
-   "local_gz": "000088461424000072__q0.txt.gz"
+   "local_gz": "000088461424000072__q0.txt.gz",
+   "n_lines": 1766
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +225,106 @@
    "reportDate": "2024-03-31",
    "accession": "0000884614-24-000055",
    "url": "https://www.sec.gov/Archives/edgar/data/884614/000088461424000055/ugi-20240331.htm",
-   "local_gz": "000088461424000055__q1.txt.gz"
+   "local_gz": "000088461424000055__q1.txt.gz",
+   "n_lines": 1652
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2024-08-08",
   "n_rows": 8,
@@ -83,6 +339,68 @@
     "ocf": -240000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 618000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1578000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 143000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 317000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6725000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 210000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 131000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -954000000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -4.54,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 209934000.0,
+      "filed": "2023-02-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +411,68 @@
     "ocf": 664000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 433000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1487000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 126000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 321000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6764000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 204000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 132000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 110000000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.51,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 216120000.0,
+      "filed": "2023-05-04",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +483,68 @@
     "ocf": 433000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 410000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 955000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 133000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 260000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6635000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 256000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 134000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -789000000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -3.76,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 209706000.0,
+      "filed": "2023-08-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +555,63 @@
     "ocf": 250000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 433000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 878000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 232000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 241000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6600000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 304000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 135000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 131000000.0,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.6200000000000001,
+      "filed": "2023-11-29",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +622,68 @@
     "ocf": 119000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 441000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1188000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 153000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 204000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6823000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 156000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 137000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 94000000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.44,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 215570000.0,
+      "filed": "2024-02-01",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +694,68 @@
     "ocf": 522000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 375000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 1192000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 126000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 263000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6784000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 169000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 138000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 496000000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.3,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 215245000.0,
+      "filed": "2024-05-02",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +766,68 @@
     "ocf": 390000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 379000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 827000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 116000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 183000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 6574000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 205000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 139000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": -48000000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.23,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 210679000.0,
+      "filed": "2024-08-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +838,18 @@
     "ocf": 151000000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": "查不到",
+     "diluted_eps": "查不到",
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 1242000000.0,
     "revenue_xbrl_for_reference": 1242000000.0
@@ -166,161 +863,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "4932",
   "sic2": "49",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 142,
-  "peer_list_all_same_sic2_tickers": [
-   "AEE",
-   "AES",
-   "AM",
-   "AQN",
-   "AROC",
-   "ARTNA",
-   "ATO",
-   "AVA",
-   "AWK",
-   "AWR",
-   "AWX",
-   "BEP",
-   "BEPC",
-   "BESS",
-   "BIPC",
-   "BKH",
-   "CDTG",
-   "CDZI",
-   "CEG",
-   "CEPU",
-   "CETY",
-   "CIG",
-   "CLH",
-   "CLNE",
-   "CMS",
-   "CNP",
-   "CPK",
-   "CQP",
-   "CTRI",
-   "CWCO",
-   "CWEN",
-   "CWST",
-   "CWT",
-   "D",
-   "DTB",
-   "DTM",
+  "bucket": "能源原材料公用",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic3",
+  "n_listed_peers": 23,
+  "peer_list_all_tickers": [
    "DUK",
-   "ED",
-   "EDN",
-   "EE",
-   "EIX",
-   "ELC",
-   "ELLO",
-   "ELPC",
-   "EMA",
-   "ENIC",
-   "ENJ",
-   "ENLT",
-   "EPD",
-   "ES",
-   "ET",
-   "ETR",
-   "EVRG",
-   "EXC",
-   "FE",
-   "FTS",
-   "GFL",
-   "GNE",
-   "GPJA",
-   "GRDX",
-   "GWRS",
-   "HDRN",
-   "HE",
-   "HNRG",
-   "HTO",
-   "IDA",
-   "KEN",
-   "KEP",
-   "KGS",
-   "KMI",
-   "KNTK",
-   "LNG",
-   "LNT",
-   "MGEE",
-   "MNTK",
-   "MSEX",
-   "NEE",
-   "NEXT",
-   "NFE",
-   "NFG",
-   "NGG",
-   "NGL",
-   "NI",
-   "NJR",
-   "NNE",
-   "NRG",
-   "NWE",
-   "NWN",
-   "OGE",
-   "OGS",
-   "OIO",
-   "OKE",
-   "OKLO",
-   "OPAL",
-   "OPTT",
-   "ORA",
-   "OTTR",
-   "PAM",
-   "PCG",
-   "PCYO",
-   "PEG",
-   "PESI",
-   "PNW",
-   "POR",
-   "PPL",
-   "QRHC",
-   "RENX",
-   "RGCO",
-   "RNW",
-   "RSG",
-   "SBS",
-   "SKYQ",
-   "SLNG",
-   "SMC",
-   "SO",
-   "SPRU",
-   "SR",
-   "SRE",
-   "SWX",
-   "TAC"
+   "PCG"
   ],
   "peer_annual_reports_2_largest": [
    {
-    "entity_id": "0001692819",
-    "name": "Vistra Corp.",
-    "ticker": "VST",
-    "sic2": "49",
+    "entity_id": "0001326160",
+    "name": "Duke Energy CORP",
+    "ticker": "DUK",
+    "sic4": "4931",
+    "sic3": "493",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2024-02-29",
-    "accn": "0001692819-24-000012",
-    "local_gz": "000169281924000012__peer10k.txt.gz",
+    "filingDate": "2024-02-23",
+    "accn": "0001326160-24-000037",
+    "local_gz": "000132616024000037__peer10k.txt.gz",
     "capex_excerpt": [
-     "ORWARD-LOOKING STATEMENTS This annual report on Form 10-K contains forward-looking statements that involve risk and uncertainties. All statements, other than statements of historical facts, that are included in this report, or made in presentations, in response to questions or otherwise, that address activities, events or developments that may occur in the future, including (without limitation) such matters as activities related to our financial or operational projections, capital allocation, capital expenditures, liquidity, dividend policy, business strategy, competitive strengths, goals, future acquisitions or dispositions, development or operation of power generation assets, market and in",
-     "ion of total indebtedness and approximately $10.9 billion of indebtedness net of cash. Our debt could have negative consequences for our financial condition including: • increasing our vulnerability to general economic and industry conditions; • requiring a significant portion of our cash flows from operations to be dedicated to the payment of principal and interest on our indebtedness, therefore reducing our ability to pay dividends to holders of our common stock or to fund our operations, capital expenditures and future business opportunities; • limiting our ability to enter into long-term power sales or fuel purchases which require credit support; • limiting our ability to fund operations",
-     "nvironment has undergone significant changes in the last several years due to state and federal policies affecting wholesale and retail competition and the creation of incentives for the addition of large amounts of new renewable generation. For example, changes to, or development of, legislation that requires the use of clean renewable and alternate fuel sources or mandate the implementation of energy conservation programs that require the implementation of new technologies, could increase our capital expenditures and/or impact our financial condition. Changes enacted by the Texas Legislature through Senate Bill 2627, the Powering Texas Forward Act, to administer Texas Energy Fund (TEF) pro"
-    ]
+     "rectors Bison Bison Insurance Company Limited Board of Directors Duke Energy Board of Directors Brookfield Brookfield Renewable Partners L.P. Brunswick Brunswick Nuclear Plant Cardinal Cardinal Pipeline Company, LLC Catawba Catawba Nuclear Station CC Combined Cycle CCR Coal Combustion Residuals CCR Rule A 2015 EPA rule establishing national regulations to provide a comprehensive set of requirements for the management and disposal of CCR from coal-fired power plants CEP Capital Expenditure Program Cinergy Cinergy Corp. (collectively with its subsidiaries) Citrus County CC Citrus County Combined Cycle Facility CO 2 Carbon Dioxide Coal Ash Act North Carolina Coal Ash Management Act of 2014 the ",
+     "air the public perception of the non-price attributes of natural gas could erode our competitive advantage. These factors in turn could decrease the demand for natural gas, impair our ability to attract new customers and cause existing customers to switch to other forms of energy or to bypass our systems in favor of alternative competitive sources. This could result in slow or no customer growth and could cause customers to reduce or cease using our product, thereby reducing our ability to make capital expenditures and otherwise grow our business, adversely affecting our earnings. Natural Gas Investments Duke Energy, through its GU&I segment, has a 7.5% equity ownership interest in Sabal Tra",
+     "and integrity programs. Piedmont has withdrawn from the Tennessee IMR mechanism subsequent to the authorization of the Tennessee Annual Review Mechanism effective January 2022. The following table summarizes information related to the recently approved IMR filing. Cumulative Annual Effective (in millions) Investment Revenues Date Piedmont 2022 IMR Filing – North Carolina $ 213 $ 20 December 2022 In Ohio, GU&I has a CEP Rider designed to recover costs between rate cases on PUCO approved capital expenditures. Duke Energy Ohio submits a filing each year for incremental investments to increase the revenue requirement up to the approved annual residential rate cap increase. The cumulative investm"
+    ],
+    "capex_status": "ok"
    },
    {
-    "entity_id": "0001868275",
-    "name": "Constellation Energy Corp",
-    "ticker": "CEG",
-    "sic2": "49",
+    "entity_id": "0001004980",
+    "name": "PG&E Corp",
+    "ticker": "PCG",
+    "sic4": "4931",
+    "sic3": "493",
+    "has_annual": true,
     "form": "10-K",
-    "filingDate": "2024-02-27",
-    "accn": "0001868275-24-000014",
-    "local_gz": "000186827524000014__peer10k.txt.gz",
+    "filingDate": "2024-02-22",
+    "accn": "0001004980-24-000014",
+    "local_gz": "000100498024000014__peer10k.txt.gz",
     "capex_excerpt": [
-     "As part of its Reactor Oversight Process, the NRC continuously assesses unit performance indicators and inspection results and communicates its assessment on a semi-annual basis. The NRC may modify, suspend, or revoke operating licenses and impose violations and/or 16 Table of Contents civil penalties for failure to comply with the Atomic Energy Act, NRC regulations, or the terms of the operating licenses or orders. Changes in requirements by the NRC may require a substantial increase in capital expenditures and/or operating costs for our nuclear generating facilities. NRC regulations also require that licensees of nuclear generating facilities demonstrate reasonable assurance that funds wil",
-     "t be able to meet their funding commitments to us if they experience shortages of capital and liquidity or if they experience excessive volumes of borrowing requests within a short period of time. The inability to access capital markets or credit facilities, and longer-term disruptions in the capital and credit markets as a result of uncertainty, changing or increased regulation, reduced alternatives or failures of significant financial institutions could result in the deferral of discretionary capital expenditures, affect our ability to effectively hedge our generation portfolio, require changes to our hedging strategy in order to reduce collateral posting requirements, or require a reducti",
-     "ict when or whether legislative and regulatory proposals could become law or what their effect would be. See Note 3 — Regulatory Matters and Note 7 — Early Plant Retirements of the Combined Notes to Consolidated Financial Statements for additional information. NRC actions could negatively affect the operations and profitability of our nuclear generating fleet. Regulatory Risk. A change in the Atomic Energy Act or the applicable regulations or licenses could require a substantial increase in capital expenditures or could result in increased operating or decommissioning costs. Events at nuclear plants owned by others, as well as those owned by us, could cause the NRC to initiate such actions. "
-    ]
+     "rrent and former officers and directors, the Wildfire-Related Non-Bankruptcy Securities Claims, and other third-party claims, as well as potential indemnity obligations to underwriters for certain of the Utility’s note offerings, including the extent to which related costs can be recovered through insurance, rates, or from other third parties; • the ability of PG&E Corporation and the Utility to use securitization to finance the recovery of the remaining $1.385 billion of fire risk mitigation capital expenditures that were or will be incurred by the Utility; • whether PG&E Corporation or the Utility undergoes an “ownership change” within the meaning of Section 382 of the IRC, as a result of ",
+     "ectors of PG&E Corporation reinstated the dividend on PG&E Corporation common stock, declaring a dividend of $21 million, or approximately 1 cent per share, which was paid by January 16, 2024. The Boards of Directors of PG&E Corporation and the Utility had suspended quarterly cash dividends in 2017 on both PG&E Corporation’s and the Utility’s common stock, as well as the Utility’s preferred stock. For more information, see “Liquidity and Financial Resources - Dividends” in Item 7. MD&A. Total capital expenditures recorded in 2023 were $9.8 billion. The Utility’s total capital expenditures (including accruals) are forecasted to be $10.4 billion for 2024, $12.7 billion for 2025, $11.5 billion ",
+     "stock, declaring a dividend of $21 million, or approximately 1 cent per share, which was paid by January 16, 2024. The Boards of Directors of PG&E Corporation and the Utility had suspended quarterly cash dividends in 2017 on both PG&E Corporation’s and the Utility’s common stock, as well as the Utility’s preferred stock. For more information, see “Liquidity and Financial Resources - Dividends” in Item 7. MD&A. Total capital expenditures recorded in 2023 were $9.8 billion. The Utility’s total capital expenditures (including accruals) are forecasted to be $10.4 billion for 2024, $12.7 billion for 2025, $11.5 billion for 2026, $13.6 billion for 2027, and $14.0 billion for 2028. The Utility has "
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -342,7 +930,16 @@
   "latest_data_date": "2024-11-22",
   "cutoff": "2024-11-22",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2024-11-22",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2024-11-25",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

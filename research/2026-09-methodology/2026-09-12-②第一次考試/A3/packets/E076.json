@@ -1,6 +1,7 @@
 {
  "event_id": "E076",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E076",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "AVGO",
  "cik": "0001730168",
  "name": "Broadcom Inc.",
@@ -9,10 +10,11 @@
  "bucket": "科技與軟件",
  "evidence_cutoff": "T1 = 2024-12-13(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E076",
   "event_id": "E076",
   "ticker": "AVGO",
   "cik": "0001730168",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "兩者",
   "8-K_items": "2.02,8.01,9.01",
   "accessionNumber": "0001730168-24-000125",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000125/avgo-20241212.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000125/avgo-20241212.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n avgo-11032024x8kxex99.htm\n EX-99.1\n Document \n Exhibit 99.1 \n Broadcom Inc. Announces Fourth Quarter and Fiscal Year 2024 Financial Results and Quarterly Dividend \n • Revenue of $14,054 million for the fourth quarter, up 51 percent from the prior year period \n • GAAP net income of $4,324 million for the fourth quarter; Non-GAAP net income of $6,965 million for the fourth quarter \n • Adjusted EBITDA of $9,089 million for the fourth quarter, or 65 percent of revenue \n • GAAP diluted EPS of $0.90 for the fourth quarter; Non-GAAP diluted EPS of $1.42 for the fourth quarter \n • Cash from operations of $5,604 million for the fourth quarter, less capital expenditures of $122 million, resulted in $5,482 million of free cash flow, or 39 percent of revenue \n • Quarterly common stock dividend increased by 11 percent from the prior quarter to $0.59 per share \n • First quarter fiscal year 2025 revenue guidance of approximately $14.6 billion, an increase of 22 percent from the prior year period \n • First quarter fiscal year 2025 Adjusted EBITDA guidance of approximately 66 percent of projected revenue (1) \n PALO ALTO, Calif. – December 12, 2024 – Broadcom Inc. (Nasdaq: AVGO), a global technology leader that designs, develops and supplies semiconductor and infrastructure software solutions, today reported financial results for its fourth quarter and fiscal year ended November 3, 2024, provided guidance for its first quarter of fiscal year 2025 and announced its quarterly dividend. \n “Broadcom’s fiscal year 2024 revenue grew 44% year-over-year to a record $51.6 billion, as infrastructure software revenue grew to $21.5 billion, on the successful integration of VMware,” said Hock Tan, President and CEO of Broadcom Inc. “Semiconductor revenue was a record $30.1 billion driven by AI revenue of $12.2 billion. AI revenue which grew 220 percent year-on-year was driven by our leading AI XPUs and Ethernet networking portfolio.” \n “In fiscal year 2024 adjusted EBITDA increased 37% year-over-year to a record $31.9 billion, and free cash flow excluding restructuring was strong at $21.9 billion,” said Kirsten Spears, CFO of Broadcom Inc. “Based on increased cash flows in fiscal year 2024, we are increasing our quarterly common stock dividend by 11% to $0.59 per share for fiscal year 2025. The target fiscal year 2025 annual common stock dividend of $2.36 per share is a record, and the fourteenth consecutive increase in annual dividends since we initiated dividends in fiscal 2011.” \n ________________________________ \n (1) The Company is not readily able to provide a reconciliation of the projected non-GAAP financial information presented to the relevant projected GAAP measure without unreasonable effort. \n 1 \n Fourth Quarter Fiscal Year 2024 Financial Highlights \n GAAP Non-GAAP \n (Dollars in millions, except per share data) Q4 24 Q4 23 Change Q4 24 Q4 23 Change \n Net revenue $ 14,054 $ 9,295 +51 % $ 14,054 $ 9,295 +51 % \n Net income $ 4,324 $ 3,524 +$800 $ 6,965 $ 4,810 +$2,155 \n Earnings per common share - diluted * \n $ 0.90 $ 0.83 +$0.07 $ 1.42 $ 1.11 +$0.31 \n (Dollars in millions) Q4 24 Q4 23 Change \n Cash flow from operations $ 5,604 $ 4,828 +$776 \n Adjusted EBITDA $ 9,089 $ 6,048 +$3,041 \n Free cash flow $ 5,482 $ 4,723 +$759 \n Net revenue by segment \n (Dollars in millions) Q4 24 Q4 23 Change \n Semiconductor solutions $ 8,230 59 % $ 7,326 79 % +12 % \n Infrastructure software 5,824 41 1,969 21 +196 % \n Total net revenue $ 14,054 100 % $ 9,295 100 % \n * On July 12, 2024, the Company completed a ten-for-one forward stock split. All per share amounts presented reflect the stock split. \n The Company’s cash and cash equivalents at the end of the fiscal quarter were $9,348 million, compared to $9,952 million at the end of the prior quarter. \n During the fourth fiscal quarter, the Company generated $5,604 million in cash from operations and spent $122 million on capital expenditures. The Company paid $1,204 million of withholding taxes related to net settled equity awards that vested in the quarter (resulting in the elimination of 7.4 million shares). \n On September 30, 2024, the Company paid a cash dividend on a split adjusted basis of $0.53 per share, totaling $2,484 million. \n The differences between the Company’s GAAP and non-GAAP results are described generally under “Non-GAAP Financial Measures” below and presented in detail in the financial reconciliation tables attached to this release. \n 2 \n Fiscal Year 2024 Financial Highlights \n GAAP Non-GAAP \n (Dollars in millions, except per share data) FY 24 FY 23 Change FY 24 FY 23 Change \n Net revenue $ 51,574 $ 35,819 +44 % $ 51,574 $ 35,819 +44 % \n Net income $ 5,895 $ 14,082 -$8,187 $ 23,733 $ 18,378 +$5,355 \n Earnings per common share - diluted * \n $ 1.23 $ 3.30 -$2.07 $ 4.87 $ 4.22 +$0.65 \n (Dollars in millions) FY 24 FY 23 Change \n Cash flow from operations $ 19,962 $ 18,085 +$1,877 \n Adjusted EBITDA $ 31,897 $ 23,213 +$8,684 \n Free cash flow $ 19,414 $ 17,633 +$1,781 \n Net revenue by segment \n (Dollars in millions) FY 24 FY 23 Change \n Semiconductor solutions $ 30,096 58 % $ 28,182 79 % +7 % \n Infrastructure software 21,478 42 7,637 21 +181 % \n Total net revenue $ 51,574 100 % $ 35,819 100 % \n * On July 12, 2024, the Company completed a ten-for-one forward stock split. All per share amounts presented reflect the stock split. \n First Quarter Fiscal Year 2025 Business Outlook \n Based on current business trends and conditions, the outlook for the first quarter of fiscal year 2025, ending February 2, 2025, is expected to be as follows: \n • First quarter revenue guidance of approximately $14.6 billion; and \n • First quarter Adjusted EBITDA guidance of approximately 66 percent of projected revenue. \n The guidance provided above is only an estimate of what the Company believes is realizable as of the date of this release. The Company is not readily able to provide a reconciliation of projected Adjusted EBITDA to projected net income without unreasonable effort. Actual results will vary from the guidance and the variations may be material. The Company undertakes no intent or obligation to publicly update or revise any of these projections, whether as a result of new information, future events or otherwise, except as required by law. \n Quarterly Dividends \n The Company’s Board of Directors has approved a quarterly cash dividend of $0.59 per share. The dividend is payable on December 31, 2024 to stockholders of record at the close of business (5:00 p.m. Eastern Time) on December 23, 2024. \n Financial Results Conference Call \n Broadcom Inc. will host a conference call to review its financial results for the fourth quarter and fiscal year 2024 and to discuss the business outlook today at 2:00 p.m. Pacific Time. \n To Listen via Internet: The conference call can be accessed live online in the Investors section of the Broadcom website at https://investors.broadcom.com/. \n 3 \n Replay: An audio replay of the conference call can be accessed for one year through the Investors section of Broadcom’s website at https://investors.broadcom.com/. \n Non-GAAP Financial Measures \n The non-GAAP measures should not be considered as a substitute for, or superior to, measures of financial performance prepared in accordance with GAAP. A reconciliation between GAAP and non-GAAP financial data is included in the supplemental financial data attached to this press release. Broadcom believes non-GAAP financial information provides additional insight into the Company’s on-going performance. Therefore, Broadcom provides this information to investors for a more consistent basis of comparison and to help them evaluate the results of the Company’s on-going operations and enable more meaningful period to period comparisons. \n In addition to GAAP reporting, Broadcom provides investors with net income, operating income, gross margin, operating expenses, cash flow and other data on a non-GAAP basis. This non-GAAP information excludes amortization of acquisition-related intangible assets, stock-based compensation expense, restructuring and other charges, acquisition-related costs, including integration costs, non-GAAP tax reconciling adjustments, and other adjustments. Management does not believe that these items are reflective of the Company’s underlying performance. Internally, these non-GAAP measures are significant measures used by management for purposes of evaluating the core operating performance of the Company, establishing internal budgets, calculating return on investment for development programs and growth initiatives, comparing performance with internal forecasts and targeted business models, strategic planning, evaluating and valuing potential acquisition candidates and how their operations compare to the Company’s operations, and benchmarking performance externally against the Company’s competitors. The exclusion of these and other similar items from Broadcom’s non-GAAP financial results should not be interpreted as implying that these items are non-recurring, infrequent or unusual. \n Free cash flow measures have limitations as they omit certain components of the overall cash flow statement and do not represent the residual cash flow available for discretionary expenditures. Investors should not consider presentation of free cash flow measures as implying that stockholders have any right to such cash. Broadcom’s free cash flow may not be calculated in a manner comparable to similarly named measures used by other companies. \n About Broadcom \n Broadcom Inc. (NASDAQ: AVGO) is a global technology leader that designs, develops, and supplies a broad range of semiconductor, enterprise software and security solutions. Broadcom’s category-leading product portfolio serves critical markets including cloud, data center, networking, broadband, wireless, storage, industrial, and enterprise software. Our solutions include service provider and enterprise networking and storage, mobile device and broadband connectivity, mainframe, cybersecurity, and private and hybrid cloud infrastructure. Broadcom is a Delaware corporation headquartered in Palo Alto, CA. For more information, go to www.broadcom.com. \n Cautionary Note Regarding Forward-Looking Statements \n This announcement contains forward-looking statements (including within the meaning of Section 21E of the United States Securities Exchange Act of 1934, as amended, and Section 27A of the United States \n 4 \n Securities Act of 1933, as amended) concerning Broadcom. These statements include, but are not limited to, statements that address our expected future business and financial performance, and other statements identified by words such as “will,” “expect,” “believe,” “anticipate,” “estimate,” “should,” “intend,” “plan,” “potential,” “predict,” “project,” “aim,” and similar words, phrases or expressions. These forward-looking statements are based on current expectations and beliefs of Broadcom’s management, current information available to Broadcom’s management, and current market trends and market conditions and involve risks and uncertainties that may cause actual results to differ materially from those contained in forward-looking statements. Accordingly, undue reliance should not be placed on such statements. \n Particular uncertainties that could materially affect future results include risks associated with: global economic conditions and concerns; government regulations and administrative proceedings, trade restrictions and trade tensions; global political and economic conditions; our acquisition of VMware, Inc., including our ability to realize the expected benefits; any acquisitions or dispositions we may make, such as delays, challenges and expenses associated with receiving governmental and regulatory approvals and satisfying other closing conditions, and with integrating acquired businesses with our existing businesses and our ability to achieve the benefits, growth prospects and synergies expected by such acquisitions; dependence on and risks associated with distributors and resellers of our products; dependence on senior management and our ability to attract and retain qualified personnel; our ability to protect against cyber security threats and a breach of security systems; any loss of our significant customers and fluctuations in the timing and volume of significant customer demand; cyclicality in the semiconductor industry or in our target markets; our dependence on contract manufacturing and outsourced supply chain; our dependency on a limited number of suppliers; prolonged disruptions of our or our contract manufacturers’ manufacturing facilities, warehouses or other significant operations; our ability to accurately estimate customers’ demand and adjust our manufacturing and supply chain accordingly; our ability to continue achieving design wins with our customers, as well as the timing of any design wins; our ability to improve our manufacturing efficiency and quality; involvement in legal proceedings; ability of our software products to manage and secure IT infrastructures and environments; demand for our data center virtualization products and market acceptance of our products and services; compatibility of our software products with operating environments, platforms or third-party products; our ability to enter into satisfactory software license agreements; availability of third-party software used in our products; use of open source software in our products; sales to government customers; our ability to manage products and services lifecycles; quarterly and annual fluctuations in operating results; our competitive performance; our ability to maintain or improve gross margin; our ability to protect our intellectual property and the unpredictability of any associated litigation expenses; any expenses or reputational damage associated with resolving customer product warranty and indemnification claims, or other undetected defects or bugs; our ability to sell to new types of customers and to keep pace with technological advances; our compliance with privacy and data security laws; our provision for income taxes and overall cash tax costs; our ability to maintain tax concessions in certain jurisdictions; potential tax liabilities as a result of acquiring VMware; our significant indebtedness and the need to generate sufficient cash flows to service and repay such debt; and other events and trends on a national, regional, industry-specific and global scale, including those of a political, economic, business, competitive and regulatory nature. \n Our filings with the SEC, which are available without charge at the SEC’s website at https://www.sec.gov, discuss some of the important risk factors that may affect our business, results of operations and financial condition. Actual results may vary from the estimates provided. We undertake no intent or obligation to publicly update or revise any of the estimates and other forward-looking \n 5 \n statements made in this announcement, whether as a result of new information, future events or otherwise, except as required by law. \n Contact: \n Ji Yoo \n Broadcom Inc. \n Investor Relations \n 650-427-6000 \n investor.relations@broadcom.com \n (AVGO-Q) \n 6 \n BROADCOM INC. \n CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS — UNAUDITED \n (IN MILLIONS, EXCEPT PER SHARE DATA) \n Fiscal Quarter Ended Fiscal Year Ended \n November 3,\n2024 August 4,\n2024 October 29,\n2023 November 3,\n2024 October 29,\n2023 \n Net revenue $ 14,054 $ 13,072 $ 9,295 $ 51,574 $ 35,819 \n Cost of revenue: \n Cost of revenue 3,399 3,133 2,449 12,788 9,272 \n Amortization of acquisition-related intangible assets 1,602 1,525 438 6,023 1,853 \n Restructuring charges 51 58 1 254 4 \n Total cost of revenue 5,052 4,716 2,888 19,065 11,129 \n Gross margin 9,002 8,356 6,407 32,509 24,690 \n Research and development 2,234 2,353 1,388 9,310 5,253 \n Selling, general and administrative 1,010 1,100 418 4,959 1,592 \n Amortization of acquisition-related intangible assets 813 812 348 3,244 1,394 \n Restructuring and other charges 318 303 13 1,533 244 \n Total operating expenses 4,375 4,568 2,167 19,046 8,483 \n Operating income 4,627 3,788 4,240 13,463 16,207 \n Interest expense (916) (1,064) (405) (3,953) (1,622) \n Other income, net 52 82 132 406 512 \n Income from continuing operations before income taxes 3,763 2,806 3,967 9,916 15,097 \n Provision for (benefit from) income taxes (442) 4,238 443 3,748 1,015 \n Income (loss) from continuing operations 4,205 (1,432) 3,524 6,168 14,082 \n Income (loss) from discontinued operations, net of income taxes 119 (443) — (273) — \n Net income (loss) $ 4,324 $ (1,875) $ 3,524 $ 5,895 $ 14,082 \n Basic income (loss) per share (1) : \n Income (loss) per share from continuing operations $ 0.89 $ (0.31) $ 0.85 $ 1.33 $ 3.39 \n Income (loss) per share from discontinued operations 0.03 (0.09) — (0.06) — \n Net income (loss) per share $ 0.92 $ (0.40) $ 0.85 $ 1.27 $ 3.39 \n Diluted income (loss) per share (1) : \n Income (loss) per share from continuing operations $ 0.87 $ (0.31) $ 0.83 $ 1.29 $ 3.30 \n Income (loss) per share from discontinued operations 0.03 (0.09) — (0.06) — \n Net income (loss) per share $ 0.90 $ (0.40) $ 0.83 $ 1.23 $ 3.30 \n Weighted-average shares used in per share calculations (1) : \n Basic 4,679 4,663 4,133 4,624 4,149 \n Diluted 4,828 4,663 4,268 4,778 4,272 \n Stock-based compensation expense included in continuing operations: \n Cost of revenue $ 159 $ 174 $ 62 $ 664 $ 210 \n Research and development 839 877 448 3,460 1,513 \n Selling, general and administrative 316 330 128 1,546 448 \n Total stock-based compensation expense $ 1,314 $ 1,381 $ 638 $ 5,670 $ 2,171 \n (1) Reflects a ten-for-one forward stock split on July 12, 2024. \n BROADCOM INC. \n FINANCIAL RECONCILIATION: GAAP TO NON-GAAP — UNAUDITED \n (IN MILLIONS) \n Fiscal Quarter Ended Fiscal Year Ended \n November 3,\n2024 August 4,\n2024 October 29,\n2023 November 3,\n2024 October 29,\n2023 \n Gross margin on GAAP basis $ 9,002 $ 8,356 $ 6,407 $ 32,509 $ 24,690 \n Amortization of acquisition-related intangible assets 1,602 1,525 438 6,023 1,853 \n Stock-based compensation expense 159 174 62 664 210 \n Restructuring charges 51 58 1 254 4 \n Acquisition-related costs — — — 9 — \n Gross margin on non-GAAP basis $ 10,814 $ 10,113 $ 6,908 $ 39,459 $ 26,757 \n Research and development on GAAP basis $ 2,234 $ 2,353 $ 1,388 $ 9,310 $ 5,253 \n Stock-based compensation expense 839 877 448 3,460 1,513 \n Acquisition-related costs — 2 — 3 — \n Research and development on non-GAAP basis $ 1,395 $ 1,474 $ 940 $ 5,847 $ 3,740 \n Selling, general and administrative expense on GAAP basis $ 1,010 $ 1,100 $ 418 $ 4,959 $ 1,592 \n Stock-based compensation expense 316 330 128 1,546 448 \n Acquisition-related costs 86 79 69 537 252 \n Selling, general and administrative expense on non-GAAP basis $ 608 $ 691 $ 221 $ 2,876 $ 892 \n Total operating expenses on GAAP basis $ 4,375 $ 4,568 $ 2,167 $ 19,046 $ 8,483 \n Amortization of acquisition-related intangible assets 813 812 348 3,244 1,394 \n Stock-based compensation expense 1,155 1,207 576 5,006 1,961 \n Restructuring and other charges 318 303 13 1,533 244 \n Acquisition-related costs 86 81 69 540 252 \n Total operating expenses on non-GAAP basis $ 2,003 $ 2,165 $ 1,161 $ 8,723 $ 4,632 \n Operating income on GAAP basis $ 4,627 $ 3,788 $ 4,240 $ 13,463 $ 16,207 \n Amortization of acquisition-related intangible assets 2,415 2,337 786 9,267 3,247 \n Stock-based compensation expense 1,314 1,381 638 5,670 2,171 \n Restructuring and other charges 369 361 14 1,787 248 \n Acquisition-related costs 86 81 69 549 252 \n Operating income on non-GAAP basis $ 8,811 $ 7,948 $ 5,747 $ 30,736 $ 22,125 \n Interest expense on GAAP basis $ (916) $ (1,064) $ (405) $ (3,953) $ (1,622) \n Loss on debt extinguishment 52 83 — 157 — \n Interest expense on non-GAAP basis $ (864) $ (981) $ (405) $ (3,796) $ (1,622) \n Other income, net on GAAP basis $ 52 $ 82 $ 132 $ 406 $ 512 \n (Gains) losses on investments 30 6 24 12 (11) \n Other — — (1) — (1) \n Other income, net on non-GAAP basis $ 82 $ 88 $ 155 $ 418 $ 500 \n Fiscal Quarter Ended Fiscal Year Ended \n November 3,\n2024 August 4,\n2024 October 29,\n2023 November 3,\n2024 October 29,\n2023 \n Provision for (benefit from) income taxes on GAAP basis $ (442) $ 4,238 $ 443 $ 3,748 $ 1,015 \n Non-GAAP tax reconciling adjustments (1) \n 1,506 (3,303) 244 (123) 1,610 \n Provision for income taxes on non-GAAP basis $ 1,064 $ 935 $ 687 $ 3,625 $ 2,625 \n Net income (loss) on GAAP basis $ 4,324 $ (1,875) $ 3,524 $ 5,895 $ 14,082 \n Amortization of acquisition-related intangible assets 2,415 2,337 786 9,267 3,247 \n Stock-based compensation expense 1,314 1,381 638 5,670 2,171 \n Restructuring and other charges 369 361 14 1,787 248 \n Acquisition-related costs 86 81 69 549 252 \n Loss on debt extinguishment 52 83 — 157 — \n (Gains) losses on investments 30 6 24 12 (11) \n Other — — (1) — (1) \n Non-GAAP tax reconciling adjustments (1) \n (1,506) 3,303 (244) 123 (1,610) \n (Income) loss from discontinued operations, net of income taxes (119) 443 — 273 — \n Net income on non-GAAP basis $ 6,965 $ 6,120 $ 4,810 $ 23,733 $ 18,378 \n Net income (loss) on GAAP basis $ 4,324 $ (1,875) $ 3,524 $ 5,895 $ 14,082 \n Non-GAAP Adjustments: \n Amortization of acquisition-related intangible assets 2,415 2,337 786 9,267 3,247 \n Stock-based compensation expense 1,314 1,381 638 5,670 2,171 \n Restructuring and other charges 369 361 14 1,787 248 \n Acquisition-related costs 86 81 69 549 252 \n Loss on debt extinguishment 52 83 — 157 — \n (Gains) losses on investments 30 6 24 12 (11) \n Other — — (1) — (1) \n Non-GAAP tax reconciling adjustments (1) \n (1,506) 3,303 (244) 123 (1,610) \n (Income) loss from discontinued operations, net of income taxes (119) 443 — 273 — \n Other Adjustments: \n Interest expense 864 981 405 3,796 1,622 \n Provision for income taxes on non-GAAP basis 1,064 935 687 3,625 2,625 \n Depreciation 156 149 124 593 502 \n Amortization of purchased intangibles and right-of-use assets 40 38 22 150 86 \n Adjusted EBITDA $ 9,089 $ 8,223 $ 6,048 $ 31,897 $ 23,213 \n Weighted-average shares used in per share calculations - diluted on GAAP basis (2) \n 4,828 4,663 4,268 4,778 4,272 \n Non-GAAP adjustment (3) \n 77 254 82 99 81 \n Weighted-average shares used in per share calculations - diluted on non-GAAP basis 4,905 4,917 4,350 4,877 4,353 \n Net cash provided by operating activities $ 5,604 $ 4,963 $ 4,828 $ 19,962 $ 18,085 \n Purchases of property, plant and equipment (122) (172) (105) (548) (452) \n Free cash flow $ 5,482 $ 4,791 $ 4,723 $ 19,414 $ 17,633 \n Fiscal Quarter Ending \n February 2, \n Expected average diluted share count: 2025 \n Weighted-average shares used in per share calculation - diluted on GAAP basis (2) \n 4,828 \n Non-GAAP adjustment (3) \n 68 \n Weighted-average shares used in per share calculation - diluted on non-GAAP basis 4,896 \n (1) Non-GAAP tax reconciling adjustments included a one-time discrete non-cash tax provision of $4.5 billion from the impact of an intra-group transfer of certain IP rights to the United States as a result of supply chain realignment for the fiscal quarter ended August 4, 2024 and the fiscal year ended November 3, 2024. \n (2) Reflects a ten-for-one forward stock split on July 12, 2024. \n (3) Non-GAAP adjustment for the number of shares used in the diluted per share calculations excludes the impact of stock-based compensation expense expected to be incurred in future periods and not yet recognized in the financial statements, which would otherwise be assumed to be used to repurchase shares under the GAAP treasury stock method. For the fiscal quarter ended August 4, 2024, non-GAAP adjustment included the dilutive effect of the equity awards that were antidilutive on a GAAP basis. \n BROADCOM INC. \n CONDENSED CONSOLIDATED BALANCE SHEETS — UNAUDITED \n (IN MILLIONS) \n November 3,\n2024 October 29,\n2023 \n ASSETS \n Current assets: \n Cash and cash equivalents $ 9,348 $ 14,189 \n Trade accounts receivable, net 4,416 3,154 \n Inventory 1,760 1,898 \n Other current assets 4,071 1,606 \n Total current assets 19,595 20,847 \n Long-term assets: \n Property, plant and equipment, net 2,521 2,154 \n Goodwill 97,873 43,653 \n Intangible assets, net 40,583 3,867 \n Other long-term assets 5,073 2,340 \n Total assets $ 165,645 $ 72,861 \n LIABILITIES AND EQUITY \n Current liabilities: \n Accounts payable $ 1,662 $ 1,210 \n Employee compensation and benefits 1,971 935 \n Current portion of long-term debt 1,271 1,608 \n Other current liabilities 11,793 3,652 \n Total current liabilities 16,697 7,405 \n Long-term liabilities: \n Long-term debt 66,295 37,621 \n Other long-term liabilities 14,975 3,847 \n Total liabilities 97,967 48,873 \n Stockholders’ equity: \n Preferred stock — — \n Common Stock 5 4 \n Additional paid-in capital 67,466 21,095 \n Retained earnings — 2,682 \n Accumulated other comprehensive income 207 207 \n Total stockholders' equity 67,678 23,988 \n Total liabilities and equity $ 165,645 $ 72,861 \n BROADCOM INC. \n CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS — UNAUDITED \n (IN MILLIONS) \n Fiscal Quarter Ended Fiscal Year Ended \n November 3,\n2024 August 4,\n2024 October 29,\n2023 November 3,\n2024 October 29,\n2023 \n Cash flows from operating activities: \n Net income (loss) $ 4,324 $ (1,875) $ 3,524 $ 5,895 $ 14,082 \n Adjustments to reconcile net income (loss) to net cash provided by operating activities: \n Amortization of intangible and right-of-use assets 2,455 2,375 808 9,417 3,333 \n Depreciation 156 149 124 593 502 \n Stock-based compensation 1,314 1,388 638 5,741 2,171 \n Deferred taxes and other non-cash taxes (868) 3,638 639 1,965 (501) \n Loss on debt extinguishment 52 83 — 157 — \n Non-cash interest expense 91 115 34 427 132 \n Other 138 158 27 404 9 \n Changes in assets and liabilities, net of acquisitions and disposals: \n Trade accounts receivable, net 249 835 (231) 2,327 (187) \n Inventory 134 (52) (56) 150 27 \n Accounts payable (85) 373 215 121 209 \n Employee compensation and benefits 196 291 103 78 (279) \n Other current assets and current liabilities (1,410) (1,345) (694) (5,323) (628) \n Other long-term assets and long-term liabilities (1,142) (1,170) (303) (1,990) (785) \n Net cash provided by operating activities 5,604 4,963 4,828 19,962 18,085 \n Cash flows from investing activities: \n Acquisitions of businesses, net of cash acquired — (2) (36) (25,978) (53) \n Proceeds from sale of business — 3,485 — 3,485 — \n Purchases of property, plant and equipment (122) (172) (105) (548) (452) \n Purchases of investments (30) (73) (58) (175) (346) \n Sales of investments 20 5 154 156 228 \n Other — 2 (79) (10) (66) \n Net cash provided by (used in) investing activities (132) 3,245 (124) (23,070) (689) \n Cash flows from financing activities: \n Proceeds from long-term borrowings 4,969 4,975 — 39,954 — \n Payments on debt obligations (7,472) (9,202) (143) (19,608) (403) \n Payments of dividends (2,484) (2,452) (1,904) (9,814) (7,645) \n Repurchases of common stock - repurchase program — — (123) (7,176) (5,824) \n Shares repurchased for tax withholdings on vesting of equity awards (1,204) (1,350) (454) (5,216) (1,861) \n Issuance of common stock 126 — 59 190 122 \n Other (11) (36) (5) (63) (12) \n Net cash used in financing activities (6,076) (8,065) (2,570) (1,733) (15,623) \n Net change in cash and cash equivalents (604) 143 2,134 (4,841) 1,773 \n Cash and cash equivalents at beginning of period 9,952 9,809 12,055 14,189 12,416 \n Cash and cash equivalents at end of period $ 9,348 $ 9,952 $ 14,189 $ 9,348 $ 14,189 \n Supplemental disclosure of cash flow information: \n Cash paid for interest $ 738 $ 816 $ 397 $ 3,250 $ 1,503 \n Cash paid for income taxes $ 832 $ 585 $ 191 $ 3,155 $ 1,782 \n",
@@ -36,7 +39,341 @@
   "same_day_8k_items": "2.02,8.01,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000173016824000125__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001730168-24-000095",
+   "filingDate": "2024-09-05",
+   "reportDate": "2024-09-05",
+   "form": "8-K",
+   "local_gz": "000173016824000095__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 3,
+   "n_sentences": 3,
+   "guidance_sentences": [
+    "• Fourth quarter fiscal year 2024 revenue guidance of approximately $14.0 billion including contribution from VMware, an increase of 51 percent from the prior year period",
+    "We expect revenue from AI to be $12 billion for fiscal year 2024 driven by Ethernet networking and custom accelerators for AI data centers,” said Hock Tan, President and CEO of Broadcom Inc.",
+    "• Fourth quarter revenue guidance of approximately $14.0 billion; and"
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2024-12-12",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 61,
+   "has_qna": true,
+   "n_chars": 36994,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Welcome to the Broadcom Inc. Fourth Quarter and Fiscal Year 2024 Financial Results Conference call. At this time, for opening remarks and introductions, I would like to turn the call over to Ji Yoo, Head of Investor Relations of Broadcom, Inc."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Ji Yoo",
+     "content": "Thank you, Cherie, and good afternoon, everyone. Joining me on today's call are Hock Tan, President and CEO; Kirsten Spears, Chief Financial Officer; and Charlie Kawwas, President Semiconductor Solutions Group. Broadcom distributed a press release and financial tables after the market closed describing our financial performance for the fourth quarter and fiscal year 2024. If you did not receive a copy, you may obtain the information from the Investor section of Broadcom's website at broadcom.com. This conference call is being webcast live and then audio replay of the conference call can be accessed for one year through the investor section of Broadcom's website. During the prepared comments, Hock and Kirsten will be providing details of our fourth quarter and fiscal year 2024 results, guidance for our first quarter of fiscal year 2025, as well as commentary regarding the business environment. We'll take questions after the end of our prepared comments. Please refer to our press release today and our recent filings with the SEC for information on the specific risk factors that could cause our actual results to differ materially from the forward-looking statements made on this call. In addition to U.S. GAAP reporting, Broadcom reports certain financial measures on a non-GAAP basis. A reconciliation between GAAP and non-GAAP measures is included in the tables attached to today's press release. Comments made during today's call will primarily refer to our non-GAAP financial results. I will now turn the call over to Hock."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Hock Tan",
+     "content": "Thank you, Ji. And thank you everyone for joining us today. Well, this has been a transformative year for Broadcom. Our fiscal year 2024 consolidated revenue grew 44% year-over-year to a record $51.6 billion. Now, excluding VMware, our revenue grew over 9% organically. So fiscal 2024 operating profit, excluding transition costs grew 42% year-over-year. And we returned a record $22 billion in cash to our shareholders, up 45% year-on-year through dividends, buyback and eliminations. There were two significant drivers of this transformation this year. First, we closed the acquisition of VMware in the early weeks of fiscal 2024 and have focused VMware on its technology leadership in data center virtualization. The integration of VMware is largely complete. Revenue is on a growth trajectory and operating margin reached 70% exiting 2024. We are well on the path to delivering incremental adjusted EBITDA at a level that significantly exceeds the $8.5 billion we communicated when we announced the deal. We are planning to achieve this much earlier than our initial target of three years. The second driver in 2024 was AI. Our AI revenue, which came from strength in custom AI accelerators or XPUs and networking, grew 220% from $3.8 billion in fiscal 2023 to $12.2 billion in fiscal 2024 and represented 41% of our semiconductor revenue. This drove semiconductor revenue up to a record $30.1 billion during the year. Okay, now let's move on to the fourth quarter and give you more color. Consolidated net revenue of $14.1 billion was up 51% year-on-year, excluding VMware. Organic growth was 11%, and operating profit of $8.8 billion was up 53% year-on-year. For the details on infrastructure software in Q4, this infrastructure software segment revenue was $5.8 billion, up 196% year-on-year, flat sequentially, even as multiple deals slip over into Q1. In VMware, we booked $21 million total CPU costs in a quarter versus $19 million a quarter ago. Of these, about 70% represented VMware Cloud Foundation or VCF, the full software stack virtualizing the entire data center. And this translated into Annualized Booking Value, or ABV as we call it, of $2.7 billion for VMware in Q4 up from 2.5 billion in Q3. Since closing the acquisition just over a year ago, we've signed up over 4,500 of our largest 10,000 customers for VCF. VCF enabled customers to deploy private cloud environments on-prem, as an alternative to running their applications in the public cloud. And in doing all this, we continued to drive down spending in VMware. We brought spending down to $1.2 billion in Q4, down from $1.3 billion in Q3. By reference, VMware spending was averaging over $2.4 billion per quarter prior to the acquisition with operating margin less than 30%. Moving on to Q1 outlook for infrastructure software, we expect Q1 revenue to grow to $6.5 billion, up 11% sequentially and 41% up year-on-year. For VMware, ABV is expected to exceed $3 billion compared to $2.7 billion in the preceding quarter. Turning to semiconductors, let me give you more details by end markets. Networking Q4 revenue of $4.5 billion grew 45% year-on-year. AI networking revenue, which represented 76% of networking, grew 158% year-on-year. This was driven by a doubling of our AI XPU shipments to our three hyperscale customers and 4 times growth in AI connectivity revenue driven by our Tomahawk and Jericho shipments globally. In Q1, We expect the momentum in AI connectivity to be as strong as more hyperscalers deploy Jericho3-AI in their fabrics. Our next generation XPUs are in 3 nanometers and will be the first of its kind to market in that process node. We are on track for volume shipment at our hyperscale customers in the second half of fiscal 2025. Turning on to server storage. From its bottom six months ago, Q4 server storage connectivity revenue has recovered some 20% to $992 million. And in Q4, we expect server storage revenue to continue to grow. Turning to wireless, as we expected, seasonal launch by our North American customer drove Q4 wireless revenue to $2.2 billion, up 30% sequentially. This was up 7% year-on-year because of higher content. We continue to be very engaged with this customer in multi-year roadmaps across various technologies we have leadership in, including RF, WiFi, Bluetooth, sensing, and touch. In Q1, reflecting seasonality, we expect wireless to be down sequentially, but still be flat year-on-year. In Q4, Broadband reached bottom at $465 million, down 51% year-on-year. We have seen significant orders across multiple service providers during this quarter. And reflecting this trend, we now expect broadband to show recovery beginning in Q1. Finally, on to industrial, which only represents 1% of the total revenues. Measure on resales, Q4 industrial resales of $173 million declined 27% year-on-year. We only expect a recovery in the second half 2025. Before I sum up and provide you Q1 fiscal 2025 guidance. Let me outline a longer-term perspective on how we see our semiconductor business evolving over the next three years. On the broad portfolio of non-AI semiconductors with its multiple end-markets, we saw a cyclical bottom in fiscal 2024 at $17.8 billion. We expect a recovery from this level at the industry's historical growth rate of mid-single digits. In sharp contrast, we see our opportunity over the next three years in AI as massive. Specific hyperscalers have begun their respective journeys to develop their own custom AI accelerators or XPUs, as well as network these XPUs with open and scalable Ethernet connectivity. For each of them, this represents a multi-year, not a quarter-to-quarter journey. As you know, we currently have three hyper-scale customers who have developed their own multi-generational AI XPU roadmap to be deployed at varying rates over the next three years. In 2027, we believe each of them plans to deploy 1 million XPU clusters across a single fabric. We expect this to represent an AI revenue Serviceable Addressable Market, or SAM, for XPUs and network in the range of $60 billion to $90 billion in fiscal 2027 alone. We are very well positioned to achieve a leading market share in this opportunity and expect this will drive a strong ramp from our 2024 AI revenue base of $12.2 billion. Keep in mind though, this will not be a linear ramp. We'll show quarterly variability. To compound this, we have been selected by two additional hyperscalers and are in advanced development for their own next generation AI XPUs. We have line of sight to develop these prospects into revenue generating customers before 2027 and could therefore expand the SAM significantly. So the reality going forward for this company is that the AI semiconductor business will rapidly outgrow the non-AI semiconductor business. Recognizing this, we will now shift to guiding our semiconductor business by AI and non-AI revenue segments. So summarizing Q4. Semiconductor revenue of $8.2 billion grew 12% year-on-year and 13% sequentially. Q4 AI revenue grew a strong 150% year-on-year to $3.7 billion. Non-AI semiconductor revenue declined by 23% year-on-year to $4.5 billion, but still a 10% recovery from the bottom of six months ago. Now moving on to our outlook for Q1. We expect semiconductor revenue to grow approximately 10% year-on-year to $8.1 billion. AI demand remained strong and we expect AI revenue to grow 65% year-on-year to $3.8 billion. We expect non-AI semiconductor revenue to be down about mid-teens percent year-on-year. And so in total, summing this all up, we're guiding consolidated Q1 revenue to be approximately $14.6 billion, up 22% year-on-year, and we expect this will drive Q1 adjusted EBITDA to approximately 66% of revenue. With that, let me turn this call over to Kirsten."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Kirsten Spears",
+     "content": "Thank you, Hock. Let me now provide additional detail on our Q4 financial performance. Consolidated revenue was $14.1 billion for the quarter, up 51% from a year ago. Excluding the contribution from VMware and -- Q4 revenue increased 11% year-on-year. Gross margins were 76.9% of revenue in the quarter, up 260 basis points from the year ago quarter. R&D was $1.4 billion, and consolidated operating expenses were $2 billion, up year-on-year primarily due to the acquisition and consolidation of VMware. Q4 operating income was $8.8 billion and was up 53% from a year ago, with operating margin at 63% of revenue. Adjusted EBITDA was $9.1 billion or 65% of revenue. This figure excludes $156 million of depreciation. Now a review of the P&L for our two segments, starting with semiconductors. Revenue for our Semiconductor Solutions segment was $8.2 billion and represented 59% of total revenue in the quarter. This was up 12% year-on-year. Gross margins for our Semiconductor Solutions segment were approximately 67%, down 220 basis points year-on-year, driven primarily by a higher mix of AI XPUs. Operating expenses increased 11% year-on-year to $914 million on increased investment in R&D, resulting in semiconductor operating margins of 56%. The -- now moving on to infrastructure software. Revenue for infrastructure software was $5.8 billion, up 196% year-on-year primarily due to the contribution of VMware and represented 41% of revenue. Gross margins for infrastructure software were 91% in the quarter and operating expenses were $1.1 billion in the quarter, resulting in infrastructure software operating margin of 72%. Excluding transition costs, operating margin was 73%. Moving on to cash flow. Free cash flow in the quarter was $5.5 billion and represented 39% of revenues. Excluding cash used for restructuring and integration of $506 million, free cash flows of $6 billion were up 22% year-on-year and represented 43% of revenue. Free cash flow as a percentage of revenue has declined from the same quarter a year ago, due to higher cash interest expense from debt related to the VMware acquisition, higher cash taxes due to a higher mix of U.S. taxable income, the continued delay in the reenactment of Section 174 and -- and recent proposed regulations on corporate AMT. We spent $122 million on capital expenditures. Days sales outstanding were 29 days in the fourth quarter compared to 31 days a year ago. We ended the fourth quarter with inventory of $1.8 billion, down 7% sequentially. We continue to remain disciplined on how we manage inventory across the ecosystem. We ended the fourth quarter with $9.3 billion of cash and $69.8 billion of gross principal debt. During the quarter, we replaced $5 billion of floating rate debt with new senior notes. We use cash on hand to pay a mix of senior notes, which came due in Q4 and additional floating rate debt, reducing debt by $2.5 billion. Following these actions, the weighted average coupon rate and years to maturity of our $56 billion in fixed rate debt is 3.7% and 7.6 years, respectively. The weighted average coupon rate and years to maturity of our $14 billion in floating rate debt is 5.9% and 3.2 years, respectively. We expect to repay approximately $495 million of fixed rate senior notes coming due in Q1. Now let me recap our financial performance for fiscal year 2024. Our revenue hit a record $51.6 billion, growing 44% year-on-year, including VMware, and 9% organically, excluding VMware. Semiconductor revenue was $30.1 billion, up 7% year-over-year. Infrastructure software revenue was $21.5 billion up 181% year-on-year and up 90% year-on-year, excluding VMware. Fiscal 2024 adjusted EBITDA was $31.9 billion and represented 62% of revenue. Free cash flow grew 10% year-on-year to $19.4 billion and up 22% year-on-year to $21.9 billion, excluding restructuring and integration costs. Turning to capital allocation. For fiscal 2024, we spent $22.2 billion, consisting of $9.8 billion in the form of cash dividends and $12.4 billion in share repurchases and eliminations. Aligned with our ability to generate increased cash flows in the preceding year and off of a larger share count base from the acquisition of VMware, we are announcing an increase in our quarterly common stock cash dividend in Q1 fiscal 2025 to $0.59 per share on a split-adjusted basis, an increase of 11% from the prior quarter. We intend to maintain this target quarterly dividend throughout fiscal '25, subject to quarterly board approval. This implies that our fiscal 2025 annual common stock dividend to be a record $2.36 per share on a split-adjusted basis, an increase of 12% year-on-year. I would like to highlight that this represents the 14th consecutive increase in annual dividends, since we initiated dividends in fiscal 2011. Now moving on to guidance. From a year-on-year comparable basis, keep in mind that Q1 of fiscal '24 was a 14-week quarter and Q1 of fiscal '25 is a 13-week quarter. As we are now past one year following the close of the VMware acquisition starting in Q1 of fiscal 2025, we will no longer break out VMware revenue and costs on a stand-alone basis. We will continue to report infrastructure software segment revenue and profitability which includes Brocade Fibre Channel SAN, CA Mainframe Enterprise Security and VMware. Our guidance for Q1 is for consolidated revenue of $14.6 billion, with semiconductor revenue of $8.1 billion, up approximately 10% year-on-year and infrastructure software revenue of $6.5 billion, up 41% year-on-year. We expect Q1 adjusted EBITDA to be a record 66% and Q1 non-GAAP diluted share count to be approximately 4.9 billion shares. For modeling purposes, we expect Q1 consolidated gross margins to be up 100 basis points sequentially on the higher revenue mix of infrastructure software and product mix within semiconductors. Note that consolidated gross margins through the year will be impacted by the revenue mix of infrastructure software and semiconductors and product mix within semiconductors. We expect the non-GAAP tax rate in fiscal year 2025 to be approximately 14.5% as tax deductions related to interest expense are reduced, as we pay down and refinance debt under more favorable interest terms. GAAP net income and cash flows in Q1 will be impacted by higher taxes, restructuring and integration-related cash costs due to the VMware acquisition. That concludes my prepared remarks. Operator, please open up the call for questions."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Operator",
+     "content": "Thank you. [Operator Instructions]. And our first question will come from the line of Blayne Curtis with Jefferies. Your line is open."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Blayne Curtis",
+     "content": "Hi, thanks so much for taking my question. It's kind of a clarification question. I thought I heard you say that AI networking revenue was 76% of networking. I just couldn't get that math right, but maybe the broader question is you've seen growth off that low point in April in AI. Can you just talk about ASIC strength versus networking, the trends you're seeing in kind of October into January?"
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Hock Tan",
+     "content": "Well, that's a very interesting question. Both were growing, not at the same rate, but we've been shipping, I believe a lot more of network AI connectivity, networking components in the back half of this year, compared to the first half of this fiscal year. And we suspect a lot of that will continue in the first half of next fiscal year before more XPUs, as I indicated, more of the new generation of 3-nanometer XPUs will start ramping very much in the back half of '25."
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Blayne Curtis",
+     "content": "Very clear. Thanks a lot."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Operator",
+     "content": "Thank you. One moment for our next question, and that will come from the line of CJ Muse with Cantor Fitzgerald. Your line is open."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "CJ Muse",
+     "content": "Yeah, good afternoon. Thank you for taking my question. I guess, Hock I wanted to hit on the $60 billion to $90 billion revenue range for fiscal '27 for AI. I was hoping you could speak to the mix you see there between XPU and networking. And within that construct, are you including all kind of the customers that you see out there in hyperscale and vertically integrated consumers? Or any sort of help in terms of what you're including in that potential mix would be very helpful. Thank you."
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Hock Tan",
+     "content": "Thank you. Well, thanks for the question. Give me an opportunity here to clarify and be very specific. First, on the total dollars, [Indiscernible] revenue, by the way, is the revenue opportunity for us is what I call Serviceable Addressable Market, as we all term SAM. Not TAM, SAM, and is Serviceable Addressable Market for three of our hyperscale customers. That's it. It's a very narrow Serviceable Addressable Market we're talking about. And we're talking about XPUs and AI connectivity at that scale, AI connectivity could probably – we estimate to run approximately close to 15% to 20% of the dollar content."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Operator",
+     "content": "Thank you. One moment for our next question. And that will come from the line of Joe Moore with Morgan Stanley. Your line is open."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Joseph Moore",
+     "content": "Great. Thank you. I wonder if you could talk to the XPU market. How are your customers sort of reacting to some of the rack scale products from your -- the merchant competitor from NVIDIA, how do they sort of get the connectivity to multiple XPUs inside the rack, just how does that present a competitive dynamic for you? Thanks."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Hock Tan",
+     "content": "Well, everybody is trying to figure out when you start -- when you connect a cluster on a single fabric of 10,000 XPUs or GPU, a GPU and scale it up to 100,000 and on to 500,000 and 1 million is a whole new game in terms of architecture. And so you guys hear the differences of when you do these racks, you have what you call scale up. And then you have joining rack to rack because you have no choice, you can’t get to 1 million or for that matter 100,000 otherwise, you call it scale out. And that's a continuing, evolving architecture. But I think each of these hyperscale customers of ours have, at this point kind of figured out how to get there. Hence, a road map that will keep growing from 100,000 to 1 million XPU cluster. On pretty much, similar architecture basis over the next three years, four years."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Joseph Moore",
+     "content": "Great. Thank you."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Operator",
+     "content": "Thank you. One moment for our next question. And that will come from the line of Harlan Sur with JPMorgan. Your line is open."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Harlan Sur",
+     "content": "Hi, good afternoon. Thanks for taking my question. Hock, I know the team has been putting out an AI guide for fiscal '25. And I appreciate the multi-year sort of SAM opportunity outlook. But for this year, can we look at what your customers on the networking and custom accelerators are thinking about from a data center CapEx spending perspective? So for example, our latest roll up is that the top four cloud and hyperscalers are going to grow their CapEx, 35%, 40% in fiscal '25. I would expect that your AI business would sort of closely mirror this trend, maybe even think about it as a base case when we think about Ethernet taking share from InfiniBand, ASICs growing faster than merchant GPUs, maybe the profile of your AI business can go even faster than the CapEx trend, either way, plus or minus, is that how we should think about the growth in the AI business roughly in-line with CapEx growth trends of your large cloud and hyperscale customers?"
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Hock Tan",
+     "content": "Harlan. No, it doesn't. I mean, I think the hyperscalers tend to give you an overall CapEx numbers. I'm not sure they really break out between what's AI and what's non-AI out there. And clearly, the spend in AI outstrips the spend in non-AI even on the CapEx. And so no, I won't necessarily stop at that."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Harlan Sur",
+     "content": "Okay. Thank you Hock."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Operator",
+     "content": "Thank you. One moment for our next question, and that will come from the line of Stacy Rasgon with Bernstein. Your line is open."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Stacy Rasgon",
+     "content": "Hi, guys. Thanks for taking my question. I have a more tactical question. So you have software pushouts into Q1, which is elevating it. Should we think about that -- those pushouts are rolling off as we get into Q2 and the back half of the year? And like what are the implications on the shape of software for the year as well as gross margins? Because I guess maybe in the back half, you'll have like software a little weaker versus Q2 as well as the XPU stronger. So should we be thinking about the gross margin trajectory of the current elevated base kind of like easing as we get in the back half. So just anything you can tell us around the shape of the software around the pushouts and implications for revenues and gross margins."
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Hock Tan",
+     "content": "Well, number one, it's a slip. And I think you're overthinking this whole project. It's just a slip, pick it up, and you see the differences between Q4 growth and Q1 reacceleration. That's all it is. One --."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Stacy Rasgon",
+     "content": "Should Q2 be lower because you had push out into Q1 is what I'm asking."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Hock Tan",
+     "content": "No, it doesn't. Not Q2. No. I don't -- it won't have a material impact on the rest of the fiscal '25."
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Stacy Rasgon",
+     "content": "Do you think software can kind of hold at these levels or even grow off of these like $6.5 billion levels as we go through the year?"
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Hock Tan",
+     "content": "I'm not giving guidance. I might remind you for the rest of the year. I'm just giving you a guidance for Q1. but I'm just telling you your analysis is kind of defective."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Stacy Rasgon",
+     "content": "I've been told that before. Okay, thank you Hock."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "Hock Tan",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Operator",
+     "content": "Thank you. And one moment for our next question. and that will come from Benjamin Reitzes with Melius. Your line is open."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "Ben Reitzes",
+     "content": "Hi, thanks a lot. And nice quarter there, Hock. I wanted to ask you about the $60 billion to $90 billion with a little more clarity. Previously, you've talked about a cumulative TAM from your customers. So -- and that -- is this a run rate TAM or a cumulative TAM? Kind of meaning do we take the $12.2 million, then add some growth for the next two years and then think of it that way? Or do we think of we take a share of like a $75 billion TAM and what your revenue yield is? And then I just also was hoping you could clarify, you're not including those two new customers. Do those two customers have the same $20 billion to $30 billion TAM each that the current three do? Or do you think they're smaller or bigger? Sorry about the multipart question there."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Hock Tan",
+     "content": "No. I think you asked -- the first part was very similar to an earlier question, but I'd be pleased to clarify. No, the $60 billion to $90 billion, it is not -- we are not talking cumulative SAM or TAM anymore. We are putting for you a destination, so to speak, a milestone which happens to be three years hence, 2027, possibly slip a bit part of '28, but 2027. We are seeing a destination 2027 or milestone, better one, where the deployment of those large-scale AI clusters each on single fabric pretty much to run those large LLM models, will come to $60 billion to $90 billion in that one-year period and collectively, all three of them. And to answer the second part too. Possibly, yes, at least one of them, we believe, yes. But you know what I don't want you adding one plus one equals two here. Those are not validated in our view and our model as customers. So, please don't do your addition to the $60 million to $90 million SAM that I have postulated in my remarks."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Ben Reitzes",
+     "content": "Thank you so much."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Operator",
+     "content": "One moment for our next question, and that will come from the line of Ross Seymore with Deutsche Bank. Your line is open."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Ross Seymore",
+     "content": "Hi, thanks for letting me ask a question. I want to talk about the cash return side of things, a great job on the dividend increase. The other 50%, is fiscal '25 a year where you're going to still be paying down debt? Share repurchases in the mix? Or Hock, you mentioned that VMware, the integration is largely now behind you? Usually that puts you on the prowl looking for deals. Is that something we should, in general, think about or the regulatory issues that are still a concern? Just trying to figure out what that other 50% is going to go towards this year."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Hock Tan",
+     "content": "Well -- to start with, yes, the other 50% of cash that is -- will be generated that will not use -- that is beyond dividends, we only one use or two uses for it, we’ve always say, one is [Indiscernible] balance sheet for the opportunity to buy someone else. But in reality, we're buying big enough companies you almost say that 50% cash is sitting there, it's not adequate. So the likely use of that 50% cash is, as Kirsten indicated in her prepared remarks, pay down debt. We do intend to use part of that 50% free cash flow that's not used for dividends to go delever ourselves, given the size of the debt we are taking on -- or we have taken on since we acquired VMware."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Kirsten Spears",
+     "content": "Yes, Ross, it's Kirsten. We want to focus on reducing interest expense. So we'll go after those term loans. So yes, the focus will be on paying down debt."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Ross Seymore",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Operator",
+     "content": "And one moment for our next question. That will come from the line of Vivek Arya with Bank of America. Your line is open."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Vivek Arya",
+     "content": "Thanks for taking my question. Hock back to AI. What do you think is the SAM in 2024, so we can get a baseline view of what your $12.2 billion in sales represent and is your assumption that you maintain the share, right? You grow it? Or what happens to that share over time? And then sort of related question to that is what happens to your semiconductor gross margins if AI grows, right to such an extent? Because you gave us a mid-single digit for non-AI and I'm wondering if AI gets to be such a big part of semis, what happens to gross margin. So both kind of the baseline of what SAM was this year and what happens to your share and margins over time?"
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Hock Tan",
+     "content": "Okay. That's a very insightful question on the first one, which -- on the first one, anyway, where we are saying what is the baseline on the $60 billion to $90 billion in three years' time, where we are specifying down to these three customers of ours. And I would estimate this 2024 for that to be about less than $20 billion -- $15 billion to $20 billion at this point, in 2024, $15 billion to $20 billion going to $60 billion to $90 billion right? And in terms of margins, well don't get too hung up about gross margin, please, Vivek, because you're not wrong -- gross margin in semiconductors will dilute you aren’t saying that. But see, the game here is the revenue will leverage so much on the spending we have to do to generate it that the operating margin will improve from where we are today."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Vivek Arya",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "Thank you. One moment for our next question. And that will come from the line of Harsh Kumar with Piper Sandler. Your line is open."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "Harsh Kumar",
+     "content": "Yes. Hi. First of all, guys, huge congratulations on successfully integrating VMware so much ahead of your time frame. And Hock, I had a two part question. Is there a simple dollar metric that we can think of for network attached to XPUs, for example, is $1 of networking to $1 of XPUs. And then for my question, in one of your posts, you talked about sovereign data centers and VMware. I guess my question is, is there a play for Broadcom outside of the software piece? In other words, are you noticing that sovereign guys are wanting to use XPUs or are they strictly sticking to merchant silicon?"
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Hock Tan",
+     "content": "Let me answer your question backwards, the easiest one first. Sovereign guys are like most -- most of the -- it's pretty much like enterprise market. which is simply merchant. Sovereign guys do not have the capability necessarily to create first the hardware, but more importantly, the software stack to enable transistors in hardware to translate itself into high-level language which then the LLM, AP application -- large language models, and AI applications can operate on. So don't stick to what's available, which is merchant silicon and available ecosystem of software -- software layers that allow that translation. So it will be done very much that way on XPUs. And on your first question of what's the ratio between AI connectivity, networking that is you're saying to XPUs to compute. Well, it's a changing number as the cluster expense. Though there are some ratios to be looked at. And the simple ratio to look at is there is scale up and there is scale's out. And as we expand into a single fabric cluster of XPUs or GPU that grows bigger and bigger. Guess what is more important. Scale up becomes more and more important. And the ratio we are talking about as we move up increases almost exponentially, which is why I'm saying from probably networking, as a percent of AI content in silicon today of between 5% to 10%, you're going up to 15% to 20% by the time you hit 500,000 to 1 million XPU GPU clusters."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "Harsh Kumar",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Operator",
+     "content": "One moment for our next question. And that will come from the line of Toshiya Hari with Goldman Sachs. Your line is open."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Toshiya Hari",
+     "content": "Hi, good afternoon. Thank you so much for taking the question. The $60 billion to $90 billion SAM forecast for fiscal '27, Hock, I'm curious if you guys have a view on the TAM. So just want to know how big the SAM is as a percentage of the total opportunity set? And then my main question is you talked about going for leading market share within your SAM, which makes sense. I assume you're not assuming 100% share. So, the value of that $60 billion to $90 billion that you won't be capturing, is that a function of some of your hyperscale customers wanting to capture value internally? Or is that always having a backup or a second source? Is there a low-margin business that you just simply won't pursue? How should we think about the part of the $60 billion to $90 billion that you won't be going after or won't be capturing? Thank you."
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Hock Tan",
+     "content": "Okay. First, to answer the bigger overarching question. I don't know the TAM. I don't make any part -- I don't think too far and hard about them. We don't think in macro approaches, we're looking at line of sight here. So I got customers, I try to figure out how much volume the -- where the road map of the customer is, not just product, technology, but what they are building up, what is their consumption pattern like, that's how we create our SAM. Actually, in a way, bottoms up, then top down. So I have no idea what the TAM is beyond customers we are serving closely, collaborating closely. So let's make it clear. In terms of market share, I don't know. But as you all can see, it's a very large, substantial market opportunity. There's room for many players. All we are going to do is gain our fair share. We're just very well positioned today having the best technology, very relevant in this space. We have, by far, one of the best technology -- combination technology out there to do XPUs and to connect those XPUs. The silicon technology that enables it, we have it here in Broadcom by the boatloads, which is why we are very well positioned with these three customers of ours. So we -- based on that, we are -- and based on the depth of our engagement today, this didn't just start. This has been going on now for a while in terms of deep engagement with engineering teams from the other side -- each of the other side, we are very-well positioned, well underway to creating a multiyear road map for -- to enable these few customers of ours to get to when their ambition leads them to be in. And it's because of the great technology we have, where we are actually enabling in the areas we're very good at. We're talking about silicon design, packaging design and optical technology."
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Toshiya Hari",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Operator",
+     "content": "One moment for our next question. And that will come from the line of William Stein with Truist Securities. Your line is open."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "William Stein",
+     "content": "Great. Thanks for taking my question. I want to add my congrats to all the great results this year and for the quarter and outlook. But Hock, this is sort of a stunning turn of events in the last year with what we've been accustomed to thinking of as a sort of mature, slow growth business at its core with all the M&A tacked on to it. And I wonder with the sudden acceleration of the organic business, given your exposure to these capabilities in ASICs to bring AI technologies to customers, does that change your interest level in M&A? And does it change your focus area of potential M&A going forward? Thank you."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Hock Tan",
+     "content": "No, it doesn't. We are open -- still open, always open because that's been a core part of our strategy, business model of this company for the last 10 years, which is we're always interested in adding to our portfolio, very good franchise assets, be they in semiconductors or be they in infrastructure software. As long as they always say, they meet the criteria, the fairly demanding criteria we look for, we would always be open to acquiring these assets and adding into our portfolio. So no, it hasn't changed our thinking at all."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "William Stein",
+     "content": "Great. Thank you."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Operator",
+     "content": "One moment for our next question. And that will come from the line of Vijay Rakesh with Mizuho. Your line is open."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Vijay Rakesh",
+     "content": "Hi, Hock. Great results here. Just a question back on the AI custom silicon side. I guess it looks like of the $17.5 billion TAM here -- SAM here, you have about 70% share. So assuming that 70% looking out to '27, your custom silicon AI revenue should be like $50 billion in fiscal '27. So -- do we have a good line of sight into fiscal '26, showing a pretty nice ramp to hit those numbers, maybe with our [Indiscernible] that to do the 1 million XPUs, how do you see that? Thank you."
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Hock Tan",
+     "content": "I don't have -- we don't have really a good enough line of sign to want to share it with you, nor for that matter, do we have a policy of giving you guidance beyond what we're doing one quarter a year, but we do want to give you a sense of where this journey is headed. We want to give you a sense of where this could lead us this company in terms of its AI -- semiconductor AI revenue trajectory. Given that we now made it very open official almost that we're going forward only are guiding AI revenue versus non-AI revenue, we forget -- at least give you a sense of what the AI trajectory is. On a non-AI you have known it with us for a long time. It's mature, stable, evolving, growing mid-single-digit GDP plus. AI will never give you that. So that's why we take the step now unprecedented in some ways of laying that road map in terms of potential market for AI. Now only market we have is the customers we have and the end-markets we serve. So we create this SAM and the clarity we see is, to some extent in 2027. How that journey progresses with each of our [technical difficulty] customers is somewhat variable. It's the rate of the adoption and of their own XPUs and will be very much a part of that journey. But because of that, we expect to see a situation where there could be quarter-to-quarter variability, given the only three customers, and the fact that deployment comes in big chunks, typically. So my best answer to you is I can't give you any clarity beyond what I've given so far."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Vijay Rakesh",
+     "content": "Got it. And the other 2 CSPs, when do you see them ramping?"
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Hock Tan",
+     "content": "Well, first of all, I got to get into production, they got to get into production. So why do we cross that bridge when we get to it. We are working very hard with them to get it production stage. We're pretty deeply engaged with tape-out chips. And -- but they've got to get their software ready, they got to get it tested and they got to get going on it. So now I'm not sure – but definitely over the next three years."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Operator",
+     "content": "And thank you. That is all the time we have for our question-and-answer session. I would now like to turn the call back over to Ji Yoo, Head of Investor Relations for closing remarks."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Ji Yoo",
+     "content": "Thank you, Sheri. Broadcom currently plans to report its earnings for the first quarter of fiscal year 2025 after close of market on Thursday, March 6, 2024. A public webcast of Broadcom's earnings conference call will follow at 2:00 p.m. Pacific Time. That will conclude our earnings call today. Thank you all for joining. Operator, you may end the call."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Operator",
+     "content": "This concludes today's program. Thank you all for participating. You may now disconnect."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +384,8 @@
    "reportDate": "2023-10-29",
    "accession": "0001730168-23-000096",
    "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016823000096/avgo-20231029.htm",
-   "local_gz": "000173016823000096__annual.txt.gz"
+   "local_gz": "000173016823000096__annual.txt.gz",
+   "n_lines": 2694
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +393,8 @@
    "reportDate": "2024-08-04",
    "accession": "0001730168-24-000099",
    "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000099/avgo-20240804.htm",
-   "local_gz": "000173016824000099__q0.txt.gz"
+   "local_gz": "000173016824000099__q0.txt.gz",
+   "n_lines": 1857
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +402,106 @@
    "reportDate": "2024-05-05",
    "accession": "0001730168-24-000080",
    "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016824000080/avgo-20240505.htm",
-   "local_gz": "000173016824000080__q1.txt.gz"
+   "local_gz": "000173016824000080__q1.txt.gz",
+   "n_lines": 1845
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2024-09-11",
   "n_rows": 8,
@@ -83,6 +516,63 @@
     "ocf": 4036000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1899000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 3234000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3109000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 12647000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 39244000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 103000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 3774000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 8.8,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 429000000.0,
+      "filed": "2023-03-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +583,63 @@
     "ocf": 4502000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1886000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 3031000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 3427000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 11553000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 39271000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 122000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 3481000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 8.15,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 427000000.0,
+      "filed": "2023-06-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +650,63 @@
     "ocf": 4719000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1842000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 2914000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2941000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 12055000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 39299000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 122000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 3303000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 7.74,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 427000000.0,
+      "filed": "2023-09-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +717,58 @@
     "ocf": 4828000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": {
+      "value": 1898000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 3154000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 2487000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 14189000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 39184000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 105000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 3524000000.0,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 8.249999999999996,
+      "filed": "2023-12-14",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +779,63 @@
     "ocf": 4815000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1920000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 4969000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 9593000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 11864000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 75842000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 122000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 1325000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.84,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 467000000.0,
+      "filed": "2024-03-14",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +846,63 @@
     "ocf": 4580000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1842000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 5500000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 10519000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 9809000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 73964000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 132000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 2121000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 4.42,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 480000000.0,
+      "filed": "2024-06-13",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +913,63 @@
     "ocf": 4963000000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 1894000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 4665000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 9789000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 9952000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 69915000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 172000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": -1875000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": -0.4,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 4663000000.0,
+      "filed": "2024-09-11",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +980,30 @@
     "ocf": 5604000000.0,
     "revenue_xbrl_first_filed_after_T1": true,
     "revenue_year_end_derived": true,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": {
+      "value": 9348000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "total_debt": "查不到",
+     "capex": {
+      "value": 122000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 4324000000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 0.8999999999999999,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 14054000000.0,
     "revenue_xbrl_for_reference": 14054000000.0
@@ -166,137 +1017,24 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "3674",
   "sic2": "36",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 258,
-  "peer_list_all_same_sic2_tickers": [
-   "AAOI",
-   "ADI",
-   "ADSE",
-   "ADTN",
-   "AEIS",
-   "AIOT",
-   "AIP",
-   "AIRG",
-   "ALAB",
-   "ALGM",
-   "ALMU",
-   "AMAT",
-   "AMBA",
+  "bucket": "科技與軟件",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 93,
+  "peer_list_all_tickers": [
    "AMD",
-   "AMKR",
-   "AMPG",
-   "AMPX",
-   "AMSC",
-   "AOS",
-   "AOSL",
-   "APH",
-   "ARM",
-   "ARRY",
-   "ASTI",
-   "ASX",
-   "ATER",
-   "ATKR",
-   "ATOM",
-   "AUDC",
-   "AVNW",
-   "AXTI",
-   "AYI",
-   "BE",
-   "BEEM",
-   "BELFA",
-   "BHE",
-   "BKSY",
-   "BKTI",
-   "BLDP",
-   "BLNK",
-   "BYRN",
-   "BZAI",
-   "CAE",
-   "CCTG",
-   "CHPT",
-   "CIEN",
-   "CLFD",
-   "CLRO",
-   "CLS",
-   "CMTL",
-   "COOK",
-   "CRDO",
-   "CRNT",
-   "CRUS",
-   "CSIQ",
-   "CTS",
-   "DFLI",
-   "DIOD",
-   "DQ",
-   "EAF",
-   "EFOI",
-   "ELPW",
-   "ELTK",
-   "ELVA",
-   "EMR",
-   "ENPH",
-   "ENR",
-   "ENS",
-   "ENVX",
-   "EOSE",
-   "EPOW",
-   "ERIC",
-   "ESE",
-   "ESP",
-   "FCEL",
-   "FEBO",
-   "FELE",
-   "FIEE",
-   "FKWL",
-   "FLEX",
-   "FLNC",
-   "FLUX",
-   "FN",
-   "FORM",
-   "FSLR",
-   "FTCI",
-   "FXHO",
-   "GAUZ",
-   "GCTS",
-   "GE",
-   "GEV",
-   "GFS",
-   "GILT",
-   "GNRC",
-   "GNSS",
-   "GSIT",
-   "GWH",
-   "HBB",
-   "HELE",
-   "HIMX",
-   "HLIT",
-   "HUBB",
-   "ICG",
-   "ICHR",
-   "IMOS",
-   "IMTE",
-   "INDI",
-   "INSG",
-   "INTC",
-   "IPGP",
-   "IPWR",
-   "JBL",
-   "JKS",
-   "KE",
-   "KLIC",
-   "KN",
-   "KOPN",
-   "KOSS",
-   "KSCP",
-   "KTCC"
+   "NVDA"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0001045810",
     "name": "NVIDIA CORP",
     "ticker": "NVDA",
-    "sic2": "36",
+    "sic4": "3674",
+    "sic3": "367",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2024-02-21",
     "accn": "0001045810-24-000029",
@@ -305,13 +1043,16 @@
      "esiliency and redundancy of our supply chain, which is currently concentrated in the Asia-Pacific region, new and existing export controls or changes to existing export controls could limit alternative manufacturing locations and negatively impact our business. Refer to “Item 1A. Risk Factors – Risks Related to Regulatory, Legal, Our Stock and Other Matters” for a discussion of this potential impact. Compliance with laws, rules, and regulations has not otherwise had a material effect upon our capital expenditures, results of operations, or competitive position and we do not currently anticipate material capital expenditures for environmental control facilities. Compliance with existing or fu",
      "existing export controls or changes to existing export controls could limit alternative manufacturing locations and negatively impact our business. Refer to “Item 1A. Risk Factors – Risks Related to Regulatory, Legal, Our Stock and Other Matters” for a discussion of this potential impact. Compliance with laws, rules, and regulations has not otherwise had a material effect upon our capital expenditures, results of operations, or competitive position and we do not currently anticipate material capital expenditures for environmental control facilities. Compliance with existing or future governmental regulations, including, but not limited to, those pertaining to IP ownership and infringement, t",
      "sion of risks and uncertainties we face related to sustainability. Climate Change In the area of environmental sustainability, we address our climate impacts across our product lifecycle and assess risks, including current and emerging regulations and market impacts. In May 2023, we published metrics related to our environmental impact for fiscal year 2023. Fiscal year 2024 metrics are expected to be published in the first half of fiscal year 2025. There has been no material impact to our capital expenditures, results of operations or competitive position associated with global environmental sustainability regulations, compliance, or costs from sourcing renewable energy. By the end of fiscal"
-    ]
+    ],
+    "capex_status": "ok"
    },
    {
     "entity_id": "0000002488",
     "name": "ADVANCED MICRO DEVICES INC",
     "ticker": "AMD",
-    "sic2": "36",
+    "sic4": "3674",
+    "sic3": "367",
+    "has_annual": true,
     "form": "10-K",
     "filingDate": "2024-01-31",
     "accn": "0000002488-24-000012",
@@ -320,7 +1061,8 @@
      "e of the markets in which AMD participates; international sales will continue to be a significant portion of total sales in the foreseeable future; that AMD’s cash, cash equivalents and short-term investment balances together with the availability under that certain revolving credit facility (the Revolving Credit Agreement) made available to AMD and certain of its subsidiaries, our commercial paper program, and our cash flows from operations will be sufficient to fund AMD’s operations including capital expenditures and purchase commitments over the next 12 months and beyond; AMD’s ability to obtain sufficient external financing on favorable terms, or at all; AMD’s expectation that based on m",
      "pliance with changes to existing or new regulations may have a material adverse impact on our future capital expenditures, results of operations or competitive position. In addition, the failure to comply with government laws and regulations may subject us to consequences including fines, limits on our ability to sell our products, suspension of certain of our business activities, reputational damage, criminal and civil liabilities, and sanctions, which may have a material adverse effect on our capital expenditures, results of operations or competitive position. For additional information about government regulations applicable to our business, and their potential impacts see Risk Factors in",
      "ve sufficient assets to repay those borrowings. Our indebtedness could adversely affect our financial position and prevent us from implementing our strategy or fulfilling our contractual obligations. Our total debt principal amount outstanding as of December 30, 2023 was $2.5 billion. Our indebtedness may make it difficult for us to satisfy our financial obligations, including making scheduled principal and interest payments; limit our ability to borrow additional funds for working capital, capital expenditures, acquisitions and general corporate and other purposes; limit our ability to use our cash flow or obtain additional financing for future working capital, capital expenditures, acquisi"
-    ]
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -342,7 +1084,16 @@
   "latest_data_date": "2024-12-13",
   "cutoff": "2024-12-13",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2024-12-12",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2024-12-16",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }

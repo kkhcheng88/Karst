@@ -1,6 +1,7 @@
 {
  "event_id": "E034",
- "schema": "②第一次考試取證包 v1",
+ "slot_id": "E034",
+ "schema": "②第一次考試取證包 v1(補強版)",
  "ticker": "JAZZ",
  "cik": "0001232524",
  "name": "Jazz Pharmaceuticals plc",
@@ -9,10 +10,11 @@
  "bucket": "醫療",
  "evidence_cutoff": "T1 = 2019-05-08(反應日收市)",
  "provenance": {
-  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項(門檻、時點、資料三路修訂);原口徑 v1 第二節;提示詞——改善驅動可持續性判斷-v1.md 第二節",
+  "rule": "執行口徑——②第一次考試-v1.2(修訂頁)第 1–10 項 + 補充四;提示詞——改善驅動可持續性判斷-v1.1 第二節輸入表;KARST-232 補強(同業規則、加十項財務數列、歷史稿指引句、preliminary 標籤、逐字稿注入、遮罩重掃)",
   "frozen": "2026-09-13"
  },
  "1_事件識別": {
+  "slot_id": "E034",
   "event_id": "E034",
   "ticker": "JAZZ",
   "cik": "0001232524",
@@ -28,7 +30,8 @@
   "improvement_type_機械": "加速",
   "8-K_items": "2.02,9.01",
   "accessionNumber": "0001232524-19-000025",
-  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252419000025/a1q19form8-k.htm"
+  "edgar_8k_url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252419000025/a1q19form8-k.htm",
+  "swapped_in": null
  },
  "2_觸發資料": {
   "ex991_full_text": " \n EX-99.1\n 2\n a1q19financialpr.htm\n EXHIBIT 99.1\n Exhibit \n Exhibit 99.1 \n JAZZ PHARMACEUTICALS ANNOUNCES FIRST QUARTER 2019 \n FINANCIAL RESULTS \n Total Revenues Increased 14% to $508 Million \n GAAP Diluted EPS of $1.47 ; Adjusted Diluted EPS of $3.67 \n Received FDA Approval of Sunosi for Excessive Daytime Sleepiness (EDS) Associated with Narcolepsy or Obstructive Sleep Apnea (OSA) \n Announced Positive Top-line Results from Phase 3 Study of JZP-258 in Adult Narcolepsy Patients with Cataplexy and EDS \n Launched Xyrem for Pediatric Narcolepsy \n DUBLIN, May 7, 2019 -- Jazz Pharmaceuticals plc (Nasdaq: JAZZ) today announced financial results for the first quarter of 2019 and reaffirmed 2019 financial guidance. \n \"In the first quarter of 2019, we delivered strong top- and bottom-line growth and continued our efforts to bring innovative and life-changing medicines to patients, with FDA approval of Sunosi for EDS associated with narcolepsy or OSA, launch of Xyrem in pediatric narcolepsy and announcement of positive top-line results from our Phase 3 study of JZP-258,” said Bruce Cozadd, chairman and chief executive officer of Jazz Pharmaceuticals. “As the year progresses, we are continuing to invest in our business to support the successful launch of Sunosi in the U.S. and pre-launch activities in the EU, to generate data for our existing products and to fuel further advancement and diversification of our pipeline.” \n Financial Highlights \n Three Months Ended\nMarch 31, \n (In thousands, except per share amounts and percentages) \n 2019 \n 2018 \n Change \n Total revenues \n $ \n 508,186 \n $ \n 444,613 \n 14 \n % \n GAAP net income \n $ \n 85,201 \n $ \n 45,991 \n 85 \n % \n Adjusted net income \n $ \n 213,173 \n $ \n 182,371 \n 17 \n % \n GAAP EPS \n $ \n 1.47 \n $ \n 0.75 \n 96 \n % \n Adjusted EPS \n $ \n 3.67 \n $ \n 2.98 \n 23 \n % \n GAAP net income for the first quarter of 2019 was $85.2 million , or $1.47 per diluted share, compared to $46.0 million , or $0.75 per diluted share, for the first quarter of 2018 . \n Adjusted net income for the first quarter of 2019 was $213.2 million , or $3.67 per diluted share, compared to $182.4 million , or $2.98 per diluted share, for the first quarter of 2018 . Reconciliations of applicable GAAP reported to non-GAAP adjusted information are included at the end of this press release. \n Key Regulatory/R&D Updates \n In March 2019, the company announced that the U.S. Food and Drug Administration (FDA) approved Sunosi TM (solriamfetol) to improve wakefulness in adult patients with EDS associated with narcolepsy or \n 1 \n OSA. Sunosi is the first and only dual-acting dopamine and norepinephrine reuptake inhibitor approved by the FDA for this indication and was approved with strengths of 75 mg and 150 mg for patients with narcolepsy and 37.5 mg, 75 mg, and 150 mg for patients with OSA. \n In March 2019, the company announced positive top-line results from the global, double-blind, placebo-controlled, randomized-withdrawal, multi-center Phase 3 study evaluating the efficacy and safety of JZP-258 for the treatment of cataplexy and EDS in adult patients with narcolepsy. JZP-258 is a novel oxybate product candidate with a 92% reduction in sodium content compared to Xyrem. \n In March 2019, positive results from DEFIFrance, an observational, multi-center, post-marketing study in adult and pediatric patients treated with defibrotide at hematopoietic stem cell transplant centers in France, were presented at the European Society for Blood and Marrow Transplant (EBMT) meeting. \n Select 2019 Milestones \n Programs \n 2019 Milestones* \n Xyrem® (sodium oxybate) oral solution \n a \n Launched in March for the treatment of cataplexy or EDS in pediatric narcolepsy \n JZP-258 \n a \n Announced positive top-line results in March from the Phase 3 narcolepsy study \n = \n Expect to submit top-line results from the Phase 3 narcolepsy study to a fall medical meeting \n = \n Pre-New Drug Application (NDA) meeting with FDA \n = \n Goal to submit NDA as early as year-end \n Sunosi™ (solriamfetol) \n a \n FDA approval on March 20 for EDS in narcolepsy or OSA \n = \n Drug Enforcement Administration (DEA) scheduling decision by late second quarter \n = \n Initiate Sunosi launch following DEA scheduling decision \n = \n Announce new Phase 3 development program mid-year \n = \n Obtain EU approval for EDS in narcolepsy or OSA as early as year-end \n Vyxeos® (daunorubicin and cytarabine) liposome for injection \n = \n Presentation by Children's Oncology Group at the American Society of Clinical Oncology (relapsed/refractory pediatric acute myeloid leukemia (AML) study data) \n = \n Potential interim combination data results from MD Anderson collaboration \n = \n Finalized protocol for Phase 1/2 study (low-dose Vyxeos in combination with venetoclax); patient enrollment is expected to begin in the second half of the year \n Defitelio® (defibrotide sodium) / defibrotide \n a \n Presentation of positive results from DEFIFrance study at EBMT in March \n = \n Conduct interim analysis of the Phase 3 study for prevention of hepatic veno-occlusive disease (VOD) \n = \n Complete enrollment in prevention of acute graft-vs-host disease Phase 2 study \n = \n Initiate exploratory Phase 2 study in chimeric antigen receptor t-cell therapy associated neurotoxicity \n = \n Initiate Phase 2 study in transplant-associated thrombotic microangiopathy \n Asparaginase \n = \n Provide informational update on early-stage recombinant crisantaspase program later this year \n CombiPlex® \n = \n Continue Investigational New Drug enabling activities for one solid tumor combination and progress exploratory activities for other hematology/oncology candidates \n * Milestones denoted as a have been completed; all other milestones are planned or expected in 2019. \n 2 \n Other Developments \n In March 2019, the company launched Xyrem to treat cataplexy and EDS in pediatric narcolepsy patients following receipt of FDA approval in October 2018 after completing implementation of the Risk Evaluation and Mitigation Strategy to include pediatric patients and their caregivers. \n In April 2019, the company announced the finalization of the settlement agreement with the U.S. Department of Justice (DOJ) related to the company’s support of charitable organizations that provide financial assistance to Medicare patients. In 2018, the company had announced an agreement in principle and recorded a total expense of $58.2 million related to this matter, including related interest. Under the settlement agreement, in April 2019, the company paid $57.0 million plus interest and entered into a five-year corporate integrity agreement with the Office of Inspector General of the Department of Health and Human Services . \n Total Revenues \n Three Months Ended\nMarch 31, \n (In thousands) \n 2019 \n 2018 \n Xyrem® (sodium oxybate) oral solution \n $ \n 368,317 \n $ \n 316,777 \n Erwinaze® / Erwinase® (asparaginase Erwinia chrysanthemi ) \n 60,899 \n 50,627 \n Defitelio® (defibrotide sodium) / defibrotide \n 41,500 \n 35,061 \n Vyxeos® (daunorubicin and cytarabine) liposome for injection \n 28,943 \n 26,228 \n Other \n 3,672 \n 12,154 \n Product sales, net \n 503,331 \n 440,847 \n Royalties and contract revenues \n 4,855 \n 3,766 \n Total revenues \n $ \n 508,186 \n $ \n 444,613 \n Total revenues increased 14% in the first quarter of 2019 compared to the same period in 2018. \n Xyrem net product sales increased 16% in the first quarter of 2019 compared to the same period in 2018. \n Erwinaze/Erwinase net product sales increased 20% in the first quarter of 2019 due to an increase in product availability compared to the same period in 2018. The company continues to expect supply disruptions throughout 2019 which will cause inter-quarter variability in Erwinaze net sales. \n Defitelio/defibrotide net product sales increased 18% in the first quarter of 2019 compared to the same period in 2018 due to increased use by transplant centers that treat adult and pediatric patients. VOD is an ultra-rare disease and, as a result, the company continues to expect inter-quarter variability in Defitelio net sales. \n Vyxeos net product sales increased 10% in the first quarter of 2019 compared to the same period in 2018 primarily due to the rolling launch in the EU initiated in September 2018. The company continues its education and outreach initiatives and its efforts to generate data to support Vyxeos' potential use across broader patient populations in AML and other hematological malignancies. \n 3 \n Operating Expenses \n Three Months Ended\nMarch 31, \n (In thousands, except percentages) \n 2019 \n 2018 \n GAAP: \n Cost of product sales \n $ \n 33,506 \n $ \n 33,919 \n Gross margin \n 93.3 \n % \n 92.3 \n % \n Selling, general and administrative \n $ \n 167,947 \n $ \n 207,213 \n % of total revenues \n 33.0 \n % \n 46.6 \n % \n Research and development \n $ \n 60,105 \n $ \n 62,667 \n % of total revenues \n 11.8 \n % \n 14.1 \n % \n Acquired in-process research and development \n $ \n 56,000 \n $ \n — \n Income tax provision \n $ \n 29,116 \n $ \n 19,146 \n Effective tax rate \n 25.3 \n % \n 29.2 \n % \n Three Months Ended\nMarch 31, \n (In thousands, except percentages) \n 2019 \n 2018 \n Non-GAAP adjusted: \n Cost of product sales \n $ \n 31,847 \n $ \n 32,225 \n Gross margin \n 93.7 \n % \n 92.7 \n % \n Selling, general and administrative \n $ \n 147,577 \n $ \n 131,979 \n % of total revenues \n 29.0 \n % \n 29.7 \n % \n Research and development \n $ \n 54,582 \n $ \n 47,292 \n % of total revenues \n 10.7 \n % \n 10.6 \n % \n Income tax provision \n $ \n 52,714 \n $ \n 38,693 \n Effective tax rate \n 19.8 \n % \n 17.5 \n % \n Operating expenses changed over the prior year period primarily due to the following: \n • \n Selling, general and administrative (SG&A) expenses on a GAAP basis decreased in the first quarter of 2019 compared to the same period in 2018 primarily due to a $57.0 million loss contingency recorded in 2018 related to the DOJ matter described above. SG&A expenses on a GAAP basis, excluding the impact of the loss contingency, and on a non-GAAP adjusted basis increased in the first quarter of 2019 compared to the same period in 2018 primarily due to higher expenses related to the planned launch of Sunosi in the U.S. and an increase in headcount and compensation-related expenses to support expansion of the business. \n • \n Research and development (R&D) expenses on a GAAP basis decreased in the first quarter of 2019 compared to the same period in 2018 primarily due to milestone payments of $11.0 million related to FDA acceptance for filing of the company's solriamfetol NDA recorded in 2018. R&D expenses on a GAAP basis, excluding the impact of milestone payments, and on a non-GAAP adjusted basis increased in the first quarter of 2019 compared to the same period in 2018 primarily due to expenses related to the company's pre-clinical and clinical development programs, including partner programs, regulatory activities and related headcount increases to support these efforts. \n 4 \n Cash Flow and Balance Sheet \n As of March 31, 2019 , cash, cash equivalents and investments were $832.5 million and the outstanding principal balance of the company’s long-term debt was $1.8 billion . During the first quarter of 2019, the company generated $202.3 million of cash from operations, made an upfront payment of $56.0 million to Codiak BioSciences, Inc. under a collaboration agreement and used $111.2 million to repurchase shares. \n In the first quarter of 2019, the company repurchased approximately 858,000 ordinary shares under the company's share repurchase program at an average cost of $129.66 per ordinary share. As of March 31, 2019, the remaining amount authorized for share repurchases was $267.9 million . \n 2019 Financial Guidance \n Jazz Pharmaceuticals is reaffirming its full year 2019 financial guidance as follows (in millions, except per share amounts and percentages): \n Revenues 1 \n $2,050 - $2,130 \n Total net product sales 1 \n $2,035 - $2,110 \n -Xyrem net sales \n $1,530 - $1,570 \n -Erwinaze/Erwinase net sales \n $160 - $195 \n -Defitelio/defibrotide net sales \n $155 - $180 \n -Vyxeos net sales \n $120 - $150 \n GAAP gross margin % \n 94% \n Non-GAAP adjusted gross margin % 2,6 \n 94% \n GAAP SG&A expenses \n $702 - $740 \n Non-GAAP adjusted SG&A expenses 3,6 \n $620 - $650 \n GAAP R&D expenses \n $257 - $326 \n GAAP Acquired in-process research and development expenses \n $56 \n Non-GAAP adjusted R&D expenses 4,6 \n $235 - $265 \n GAAP effective tax rate \n 17% - 21% \n Non-GAAP adjusted effective tax rate 5,6 \n 17% - 19% \n GAAP net income per diluted share \n $6.80 - $8.50 \n Non-GAAP adjusted net income per diluted share 6 \n $14.30 - $15.00 \n ____________________________ \n 1. \n Includes minimal net sales contribution from Sunosi in the U.S., assuming launch in mid-2019. \n 2. \n Excludes $6-$8 million of share-based compensation expense from estimated GAAP gross margin. \n 3. \n Excludes $82-$90 million of share-based compensation expense from estimated GAAP SG&A expenses. \n 4. \n Excludes $0-$34 million of milestone payments and $22-$27 million of share-based compensation expense from estimated GAAP R&D expenses. \n 5. \n Excludes the income tax effect of adjustments between GAAP reported and non-GAAP adjusted net income. \n 6. \n See “Non-GAAP Financial Measures” below. Reconciliations of non-GAAP adjusted guidance measures are included above and in the table titled \"Reconciliation of GAAP to Non-GAAP Adjusted 2019 Net Income Guidance\" at the end of this press release. \n Conference Call Details \n Jazz Pharmaceuticals will host an investor conference call and live audio webcast today at 4:30 p.m. EDT (9:30 p.m. IST) to provide a business and financial update and discuss its 2019 first quarter results. The live webcast may be accessed from the Investors section of the company’s website at www.jazzpharmaceuticals.com . Please connect to the website prior to the start of the conference call to ensure adequate time for any software downloads that may be necessary. Investors may participate in \n 5 \n the conference call by dialing +1 855 353 7924 in the U.S., or +1 503 343 6056 outside the U.S., and entering passcode 6667859. \n A replay of the conference call will be available through May 14, 2019 by dialing +1 855 859 2056 in the U.S., or +1 404 537 3406 outside the U.S., and entering passcode 6667859. An archived version of the webcast will be available for at least one week in the Investors section of the company's website at www.jazzpharmaceuticals.com . \n About Jazz Pharmaceuticals plc \n Jazz Pharmaceuticals plc (Nasdaq: JAZZ), a global biopharmaceutical company, is dedicated to developing life-changing medicines for people with limited or no options. As a leader in sleep medicine and with a growing hematology/oncology portfolio, Jazz has a diverse portfolio of products and product candidates in development, and is focused on transforming biopharmaceutical discoveries into novel medicines. Jazz Pharmaceuticals markets Xyrem® (sodium oxybate) oral solution, Erwinaze® (asparaginase Erwinia chrysanthemi ), Defitelio® (defibrotide sodium) and Vyxeos® (daunorubicin and cytarabine) liposome for injection in the U.S. and markets Erwinase®, Defitelio® (defibrotide) and Vyxeos® 44 mg/100 mg powder for concentrate for solution for infusion in countries outside the U.S. For country-specific product information, please visit https://www.jazzpharma.com/medicines . For more information, please visit www.jazzpharmaceuticals.com and follow us on Twitter at @JazzPharma . \n Non-GAAP Financial Measures \n To supplement Jazz Pharmaceuticals’ financial results and guidance presented in accordance with U.S. generally accepted accounting principles (GAAP), the company uses certain non-GAAP (also referred to as adjusted or non-GAAP adjusted) financial measures in this press release and the accompanying tables. In particular, the company presents non-GAAP adjusted net income (and the related per share measure) and its line item components, as well as certain non-GAAP adjusted financial measures derived therefrom, including non-GAAP adjusted gross margin percentage and non-GAAP adjusted effective tax rate. Non-GAAP adjusted net income (and the related per share measure) and its line item components exclude from reported GAAP net income (and the related per share measure) and its line item components certain items, as detailed in the reconciliation tables that follow, and in the case of non-GAAP adjusted net income (and the related per share measure), adjust for the income tax effect of non-GAAP adjustments. In this regard, the components of non-GAAP adjusted net income, including non-GAAP cost of product sales, non-GAAP SG&A expenses and non-GAAP R&D expenses, are income statement line items prepared on the same basis as, and therefore components of, the overall non-GAAP adjusted net income measure. \n The company believes that each of these non-GAAP financial measures provides useful supplementary information to, and facilitates additional analysis by, investors and analysts. In particular, the company believes that each of these non-GAAP financial measures, when considered together with the company’s financial information prepared in accordance with GAAP, can enhance investors’ and analysts' ability to meaningfully compare the company’s results from period to period and to its forward-looking guidance, and to identify operating trends in the company’s business. In addition, these non-GAAP financial measures are regularly used by investors and analysts to model and track the company’s financial performance. Jazz Pharmaceuticals’ management also regularly uses these non-GAAP financial measures internally to understand, manage and evaluate the company’s business and to make operating decisions, and compensation of executives is based in part on certain of these non-GAAP financial measures. Because these non-GAAP financial measures are important internal measurements for Jazz Pharmaceuticals’ management, the company also believes that these non-GAAP financial measures are useful to investors and analysts since these measures allow for greater transparency with respect to key financial metrics the company uses in assessing its own operating performance and making operating decisions. \n These non-GAAP financial measures are not meant to be considered in isolation or as a substitute for comparable GAAP measures; should be read in conjunction with the company’s consolidated financial \n 6 \n statements prepared in accordance with GAAP; have no standardized meaning prescribed by GAAP; and are not prepared under any comprehensive set of accounting rules or principles. In addition, from time to time in the future there may be other items that the company may exclude for purposes of its non-GAAP financial measures; and the company has ceased, and may in the future cease, to exclude items that it has historically excluded for purposes of its non-GAAP financial measures. Likewise, the company may determine to modify the nature of its adjustments to arrive at its non-GAAP financial measures. Because of the non-standardized definitions of non-GAAP financial measures, the non-GAAP financial measures as used by Jazz Pharmaceuticals in this press release and the accompanying tables have limits in their usefulness to investors and may be calculated differently from, and therefore may not be directly comparable to, similarly titled measures used by other companies. \n “Safe Harbor” Statement under the Private Securities Litigation Reform Act of 1995 \n This press release contains forward-looking statements, including, but not limited to, statements related to Jazz Pharmaceuticals’ future financial and operating results, including its 2019 financial guidance, the company’s planned or expected 2019 milestones and the timing thereof, the company’s continuing investments to support a successful launch of Sunosi in the U.S. and EU pre-launch activities, to generate data for its existing products and to fuel further advancement and diversification of its pipeline, the company’s expectations of further Erwinaze supply disruptions and inter-quarter variability in Erwinaze and Defitelio net sales, the company's plans to generate data to support existing products, including Vyxeos’ potential use across broader patient populations in AML and other hematological malignancies, and other statements that are not historical facts. These forward-looking statements are based on the company’s current plans, objectives, estimates, expectations and intentions and inherently involve significant risks and uncertainties. Actual results and the timing of events could differ materially from those anticipated in such forward-looking statements as a result of these risks and uncertainties, which include, without limitation, risks and uncertainties associated with: maintaining or increasing sales of and revenue from Xyrem; effectively commercializing the company’s other products and product candidates, including the risk of a potential delay in the commercial launch of Sunosi in the U.S. due to the DEA scheduling review or otherwise; the time-consuming and uncertain regulatory approval process, including the risk that the company’s regulatory submissions, including the Sunosi marketing authorization application in the EU, may not be approved by applicable regulatory authorities in a timely manner or at all; costly and time-consuming pharmaceutical product development and the uncertainty of clinical success, including risks related to failure or delays in initiating or completing clinical trials; protecting and enhancing the company’s intellectual property rights; delays or problems in the supply or manufacture of the company’s products and product candidates; complying with applicable U.S. and non-U.S. regulatory requirements; government investigations and other actions; obtaining and maintaining adequate coverage and reimbursement for the company’s products; identifying and acquiring, in-licensing or developing additional products or product candidates, financing these transactions and successfully integrating acquired businesses; the ability to achieve expected future financial performance and results and the uncertainty of future tax and other provisions and estimates; and other risks and uncertainties affecting the company, including those described from time to time under the caption “Risk Factors” and elsewhere in Jazz Pharmaceuticals plc’s Securities and Exchange Commission filings and reports (Commission File No. 001-33500), including the company’s Annual Report on Form 10-K for the year ended December 31, 2018 and future filings and reports by the company, including the company's Quarterly Report on Form 10-Q for the quarter ended March 31, 2019. Other risks and uncertainties of which the company is not currently aware may also affect the company’s forward-looking statements and may cause actual results and the timing of events to differ materially from those anticipated. \n 7 \n JAZZ PHARMACEUTICALS PLC \n CONDENSED CONSOLIDATED STATEMENTS OF INCOME \n (In thousands, except per share amounts) \n (Unaudited) \n Three Months Ended\nMarch 31, \n 2019 \n 2018 \n Revenues: \n Product sales, net \n $ \n 503,331 \n $ \n 440,847 \n Royalties and contract revenues \n 4,855 \n 3,766 \n Total revenues \n 508,186 \n 444,613 \n Operating expenses: \n Cost of product sales (excluding amortization of intangible assets) \n 33,506 \n 33,919 \n Selling, general and administrative \n 167,947 \n 207,213 \n Research and development \n 60,105 \n 62,667 \n Intangible asset amortization \n 56,885 \n 53,007 \n Acquired in-process research and development \n 56,000 \n — \n Total operating expenses \n 374,443 \n 356,806 \n Income from operations \n 133,743 \n 87,807 \n Interest expense, net \n (17,922 \n ) \n (20,605 \n ) \n Foreign exchange loss \n (611 \n ) \n (1,728 \n ) \n Income before income tax provision and equity in loss of investees \n 115,210 \n 65,474 \n Income tax provision \n 29,116 \n 19,146 \n Equity in loss of investees \n 893 \n 337 \n Net income \n $ \n 85,201 \n $ \n 45,991 \n Net income per ordinary share: \n Basic \n $ \n 1.49 \n $ \n 0.77 \n Diluted \n $ \n 1.47 \n $ \n 0.75 \n Weighted-average ordinary shares used in per share calculations - basic \n 57,206 \n 59,928 \n Weighted-average ordinary shares used in per share calculations - diluted \n 58,081 \n 61,178 \n 8 \n JAZZ PHARMACEUTICALS PLC \n CONDENSED CONSOLIDATED BALANCE SHEETS \n (In thousands) \n (Unaudited) \n March 31, \n2019 \n December 31, \n2018 \n ASSETS \n Current assets: \n Cash and cash equivalents \n $ \n 547,466 \n $ \n 309,622 \n Investments \n 285,000 \n 515,000 \n Accounts receivable, net of allowances \n 320,485 \n 263,838 \n Inventories \n 60,707 \n 52,956 \n Prepaid expenses \n 28,974 \n 25,017 \n Other current assets \n 62,985 \n 67,572 \n Total current assets \n 1,305,617 \n 1,234,005 \n Property, plant and equipment, net \n 113,006 \n 200,358 \n Operating lease assets \n 147,365 \n — \n Intangible assets, net \n 2,679,393 \n 2,731,334 \n Goodwill \n 919,972 \n 927,630 \n Deferred tax assets, net \n 65,090 \n 57,879 \n Deferred financing costs \n 9,056 \n 9,589 \n Other non-current assets \n 40,736 \n 42,696 \n Total assets \n $ \n 5,280,235 \n $ \n 5,203,491 \n LIABILITIES AND SHAREHOLDERS’ EQUITY \n Current liabilities: \n Accounts payable \n $ \n 42,669 \n $ \n 40,602 \n Accrued liabilities \n 292,390 \n 264,887 \n Current portion of long-term debt \n 33,387 \n 33,387 \n Income taxes payable \n 40,833 \n 1,197 \n Deferred revenue \n 4,720 \n 5,414 \n Total current liabilities \n 413,999 \n 345,487 \n Deferred revenue, non-current \n 8,401 \n 9,581 \n Long-term debt, less current portion \n 1,565,277 \n 1,563,025 \n Operating lease liabilities, less current portion \n 154,066 \n — \n Deferred tax liabilities, net \n 296,148 \n 309,097 \n Other non-current liabilities \n 111,897 \n 218,879 \n Total shareholders’ equity \n 2,730,447 \n 2,757,422 \n Total liabilities and shareholders’ equity \n $ \n 5,280,235 \n $ \n 5,203,491 \n 9 \n JAZZ PHARMACEUTICALS PLC \n SUMMARY OF CASH FLOWS \n (In thousands) \n (Unaudited) \n Three Months Ended\nMarch 31, \n 2019 \n 2018 \n Net cash provided by operating activities \n $ \n 202,253 \n $ \n 167,359 \n Net cash provided by (used in) investing activities \n 166,052 \n (52,149 \n ) \n Net cash used in financing activities \n (130,349 \n ) \n (47,575 \n ) \n Effect of exchange rates on cash and cash equivalents \n (112 \n ) \n (501 \n ) \n Net increase in cash and cash equivalents \n $ \n 237,844 \n $ \n 67,134 \n JAZZ PHARMACEUTICALS PLC \n RECONCILIATIONS OF GAAP REPORTED TO NON-GAAP ADJUSTED INFORMATION \n (In thousands, except per share amounts) \n (Unaudited) \n Three Months Ended\nMarch 31, \n 2019 \n 2018 \n GAAP reported net income \n $ \n 85,201 \n $ \n 45,991 \n Intangible asset amortization \n 56,885 \n 53,007 \n Share-based compensation expense \n 27,552 \n 24,303 \n Loss contingency \n — \n 57,000 \n Upfront and milestone payments \n 56,000 \n 11,000 \n Non-cash interest expense \n 11,133 \n 10,617 \n Income tax effect of above adjustments \n (23,598 \n ) \n (19,547 \n ) \n Non-GAAP adjusted net income \n $ \n 213,173 \n $ \n 182,371 \n GAAP reported net income per diluted share \n $ \n 1.47 \n $ \n 0.75 \n Non-GAAP adjusted net income per diluted share \n $ \n 3.67 \n $ \n 2.98 \n Weighted-average ordinary shares used in diluted per share calculations \n 58,081 \n 61,178 \n 10 \n JAZZ PHARMACEUTICALS PLC \n RECONCILIATIONS OF GAAP REPORTED TO NON-GAAP ADJUSTED INFORMATION \n CERTAIN LINE ITEMS AND OTHER INFORMATION \n (In thousands, except per share amounts and percentages) \n (Unaudited) \n Three Months Ended \n March 31, 2019 \n March 31, 2018 \n GAAP Reported \n Adjustments \n Non-GAAP Adjusted \n GAAP Reported \n Adjustments \n Non-GAAP Adjusted \n Total revenues \n $ \n 508,186 \n $ \n — \n $ \n 508,186 \n $ \n 444,613 \n $ \n — \n $ \n 444,613 \n Cost of product sales (excluding amortization of intangible assets) \n 33,506 \n (1,659 \n ) \n (a) \n 31,847 \n 33,919 \n (1,694 \n ) \n (a) \n 32,225 \n Selling, general and administrative \n 167,947 \n (20,370 \n ) \n (b) \n 147,577 \n 207,213 \n (75,234 \n ) \n (b) \n 131,979 \n Research and development \n 60,105 \n (5,523 \n ) \n (c) \n 54,582 \n 62,667 \n (15,375 \n ) \n (c) \n 47,292 \n Intangible asset amortization \n 56,885 \n (56,885 \n ) \n — \n 53,007 \n (53,007 \n ) \n — \n Acquired in-process research and development \n 56,000 \n (56,000 \n ) \n — \n — \n — \n — \n Interest expense, net \n 17,922 \n (11,133 \n ) \n (d) \n 6,789 \n 20,605 \n (10,617 \n ) \n (d) \n 9,988 \n Foreign exchange loss \n 611 \n — \n 611 \n 1,728 \n — \n 1,728 \n Income before income tax provision and equity in loss of investees \n 115,210 \n 151,570 \n (e) \n 266,780 \n 65,474 \n 155,927 \n (e) \n 221,401 \n Income tax provision \n 29,116 \n 23,598 \n (f) \n 52,714 \n 19,146 \n 19,547 \n (f) \n 38,693 \n Effective tax rate (g) \n 25.3 \n % \n 19.8 \n % \n 29.2 \n % \n 17.5 \n % \n Equity in loss of investees \n 893 \n — \n 893 \n 337 \n — \n 337 \n Net income \n $ \n 85,201 \n $ \n 127,972 \n (h) \n $ \n 213,173 \n $ \n 45,991 \n $ \n 136,380 \n (h) \n $ \n 182,371 \n Net income per diluted share \n $ \n 1.47 \n $ \n 3.67 \n $ \n 0.75 \n $ \n 2.98 \n _____________________________ \n Explanation of Adjustments and Certain Line Items (in thousands): \n (a) \n Share-based compensation expense of $1,659 and $1,694 for the three months ended March 31, 2019 and 2018, respectively . \n (b) \n Share-based compensation expense of $20,370 and $18,234 and loss contingency of $0 and $57,000 for the three months ended March 31, 2019 and 2018, respectively . \n (c) \n Share-based compensation expense of $5,523 and $4,375 and upfront and milestone payments of $0 and $11,000 for the three months ended March 31, 2019 and 2018, respectively . \n (d) \n Non-cash interest expense associated with debt discount and debt issuance costs for the respective three-month period. \n (e) \n Sum of adjustments (a) through (d) plus the adjustments for intangible asset amortization and acquired in-process research and development, as applicable, for the respective three-month period. \n (f) \n Income tax adjustments related to the income tax effect of adjustments between GAAP reported and non-GAAP adjusted net income for the respective three-month period. \n (g) \n Income tax provision divided by income before income tax provision and equity in loss of investees for the respective three-month period. \n (h) \n Net of adjustments (e) and (f) for the respective three-month period. \n 11 \n JAZZ PHARMACEUTICALS PLC \n RECONCILIATION OF GAAP TO NON-GAAP ADJUSTED 2019 NET INCOME GUIDANCE \n (In millions, except per share amounts) \n (Unaudited) \n GAAP net income \n $395 - $495 \n Intangible asset amortization* \n 240 - 260 \n Share-based compensation expense \n 110 - 125 \n Upfront and milestone payments \n 56 - 90 \n Non-cash interest expense \n 40 - 50 \n Income tax effect of adjustments \n (75) - (95) \n Non-GAAP adjusted net income \n $835 - $875 \n GAAP net income per diluted share \n $6.80 - $8.50 \n Non-GAAP adjusted net income per diluted share \n $14.30 - $15.00 \n Weighted-average ordinary shares used in per share calculations \n 58 \n ____________________________ \n * Updated May 7, 2019. \n Contacts: \n Investors: \n Kathee Littrell \n Vice President, Investor Relations \n Jazz Pharmaceuticals plc \n Ireland, + 353 1 634 7887 \n U.S., +1 650 496 2717 \n Media: \n Jacqueline Kirby \n Vice President, Corporate Affairs & Government Relations \n Jazz Pharmaceuticals plc \n Ireland, +353 1 697 2141 \n U.S., +1 215 867 4910 \n 12 \n",
@@ -36,7 +39,459 @@
   "same_day_8k_items": "2.02,9.01",
   "same_day_8k_other_items_note": "同日 8-K 其他項目見上欄 items;本體全文見 local_8k",
   "local_8k": "000123252419000025__8k.txt.gz",
-  "earnings_call_transcript": "查不到",
+  "preliminary_release": false,
+  "preliminary_release_rule": "只認「稿頭即初步業績」(EX-99.1 首 600 字元內出現 preliminary);免責句、表頭、非 GAAP 說明一律為假",
+  "prior_release_guidance": {
+   "source": "訊號季前一季的 8-K(Item 2.02)所附 EX-99.1",
+   "accessionNumber": "0001232524-19-000011",
+   "filingDate": "2019-02-26",
+   "reportDate": "2019-02-26",
+   "form": "8-K",
+   "local_gz": "000123252419000011__EX991.txt.gz",
+   "method": "s6_improve_text.parse_guidance",
+   "n_guidance_records": 1,
+   "n_sentences": 1,
+   "guidance_sentences": [
+    "2019 Full Year Revenue Guidance of $2.05 to $2.13 Billion"
+   ],
+   "note": "指引句,**原文照抄,只給句子,不給解析結果**(不寫指標、期間、新舊值);單句長度上限 600 字元;最多列 20 句。method 欄講明句子由哪一支找出"
+  },
+  "earnings_call_transcript": {
+   "report_date": "2019-05-08",
+   "source": "defeatbeta stock_earning_call_transcripts",
+   "dataset": "defeatbeta/yahoo-finance-data",
+   "n_segments": 85,
+   "has_qna": true,
+   "n_chars": 50067,
+   "note": "照 A3/transcripts/<來源 event_id>.json 注入;只取 segments 與日期,不含抓取時間等 T1 之後的欄位",
+   "segments": [
+    {
+     "paragraph_number": 1,
+     "speaker": "Operator",
+     "content": "Welcome to the Jazz Pharmaceuticals Plc First Quarter 2019 Earnings Conference Call. Following an introduction from the company, we will open the call to questions.  At this time, all participants are in a listen-only mode. [Operator Instructions]. As a reminder, this conference call is being recorded. I will now turn the call over to Kathee Littrell, Head of Investor Relations at Jazz Pharmaceuticals."
+    },
+    {
+     "paragraph_number": 2,
+     "speaker": "Katherine Littrell",
+     "content": "Thank you, Joelle. And thanks to those of you joining our investor call. Today, we reported our first quarter 2019 financial results and reaffirmed our financial guidance for 2019. The press release and the slide presentation accompanying this call are available on the Investors section of our website. On the call today are Bruce Cozadd, CEO, and Matt Young, CFO. Joining for the Q&A session are Dan Swisher, President; Mike Miller, our Executive Vice President, U.S. Commercial; Allen Yang, Head of Clinical Development and Acting CMO; and Jed Black, Senior Vice President, Sleep and CNS Medicine. I'd like to remind you that some of the statements we will make on this call relate to future events and performance rather than historical facts and are forward looking. Examples of forward-looking statements include those related to our future financial and operating results including 2019 financial guidance and goals, future growth and growth strategy, product sales and volumes, supply challenges, product launches, regulatory approvals, ongoing and future clinical trials, and other product development activities and corporate development efforts. These forward-looking statements involve risks and uncertainties that could cause actual events, performance and results to differ materially. They are identified and described in today's press release and the accompanying slide presentation and under risk factors in our Form 10-K for the year ended December 31, 2018 and our Form 10-Q for the quarter ended March 31, 2019 which we will file shortly. We undertake no duty or obligation to update our forward-looking statements. On this call, we discuss non-GAAP financial measures. We believe these measures are helpful in understanding our past financial performance and potential future results. They are not meant to be considered in isolation or as a substitute for comparable reported GAAP measures. Reconciliations of GAAP to non-GAAP financial measures discussed on this call are included in today's press release and slide presentation available on our website. I'll now turn the call over to Bruce."
+    },
+    {
+     "paragraph_number": 3,
+     "speaker": "Bruce Cozadd",
+     "content": "Good afternoon, everyone, and thank you for joining us. The first quarter of 2019 was highlighted by clinical, regulatory and operational progress. In March, FDA approved Sunosi for the treatment of excessive daytime sleepiness or EDS in patients with narcolepsy or obstructive sleep apnea. We're looking forward to bringing this novel, differentiated therapy to these underserved and undertreated narcolepsy and OSA patient populations. We launched Xyrem for the pediatric indication in March following our successful implementation of the Xyrem REMS for pediatric patients and their caregivers. On the R&D front, we were pleased to announce positive topline results from our JZP-258 Phase III study in narcolepsy patients and we look forward to submitting data for presentation at a Fall 2019 medical meeting and discussing our planned NDA submission with FDA. In addition to these significant accomplishments, we delivered strong top and bottom line growth, while continuing to make substantial investments in global R&D and commercial operations to advance our pipeline, support multiple product launches and growing strength in our commercial portfolio. After providing details on some of our key commercial, regulatory and R&D activities, I'll turn the call over to Matt to update you on our financials. In March, we received FDA approval of Sunosi or solriamfetol, the first dual-acting dopamine and norepinephrine reuptake inhibitor to treat EDS associated with narcolepsy or OSA. Sunosi's approval is an important milestone for Jazz as we continue to develop and bring to patients new treatment options for chronic and often debilitating sleep disorders. We are preparing to launch Sunosi midyear following a DEA scheduling decision. Launch preparation activities are in full swing our sales force expansion is complete. Our sleep sales representatives will promote Xyrem and Sunosi following launch. We are actively engaged with payers to communicate the value of Sunosi as we work to achieve insurance coverage for patients. Payer consolidation has continued and has led to a reduction in the percentage of individuals who have open commercial payer plans to what we believe is currently in the 10% and 15% range. Around the time of the Sunosi launch, we plan to host investor update call and we look forward assuring additional details surrounding our launch plans and commercial initiatives on that call. Our ongoing efforts to educate health professionals and consumers about EDS and OSA continue. Our disease awareness program, EDSandOSA.com launched last June, educates clinicians on emerging science that suggests EDS may result from brain alterations caused by OSA and that these structural changes are associated with neurocognitive and functional impairment. This program encourages clinicians to screen their OSA patients for EDS and reinforces that treatment options are available. Over the past few months, live educational programs to keep congresses and virtual broadcasts have reached nearly 1,000 clinicians who treat OSA patients. A Different Kind of Tired, our consumer campaign, seeks to raise awareness of EDS associated with OSA. Many people do not associate their daytime sleepiness with their sleep apnea. Through this campaign in the first quarter alone, we've been able to reach more than 5 million unique individuals with education and resources to encourage conversations with their doctors. We're making progress in Europe and planning for the sleep marketplace by adding key sleep leadership and progressing through the regulatory process. On the clinical front, the results of our Phase II proof-of-concept study, evaluating solriamfetol for the treatment of EDS and Parkinson's disease is being presented later this afternoon at the American Academy of Neurology Meeting. The safety profile, which was the the primary objective evaluated in this study, was in line with previous solriamfetol studies. And while we observed activity on the Epworth Sleepiness Scale and maintenance of wakefulness test, we do not plan to move forward with a Phase III study in Parkinson's disease. We have evaluated multiple development program opportunities in a broad range of diseases where we believe solriamfetol has the potential to be an important treatment option. We look forward to announcing our plans for a new Phase III development program midyear. We're pleased to report another strong quarter for Xyrem, with bottle volume growth of 5% compared to the same period in 2018. The average number of active Xyrem patients increased to 14,575, up 6% compared to the same period last year. We continue to see strong patient enrollment and first-time fillers during the quarter. Additionally, our field-based sales and market access team, along with the simple pharmacy, successfully managed the typical first-quarter industrywide payer churn. Our updated disease awareness program has been highly effective in generating visits to the morethantired.com website. In first quarter 2019, we saw symptom screener completion and specialist finder searches increase by over 250% compared to first quarter 2018. Our disease awareness program will continue throughout the year and we believe our education efforts can help more patients receive a proper narcolepsy diagnosis and motivate patients with existing diagnoses to actively seek treatment. In March, we launched Xyrem for pediatric narcolepsy, and initial physician feedback has been very positive. Even physicians who only manage adult narcolepsy patients have expressed interest in learning about the efficacy and safety data in the pediatric population. We look forward to continuing to educate caregivers on the appropriate use of Xyrem in younger patients and to inform clinicians about Xyrem's safety and efficacy profile. We are pleased that almost all payers with age-restrictive policies have already transitioned to policies reflecting the new Xyrem label. In March, we announced positive topline results from our Phase III study of JZP-258, our novel oxybate product candidate with a 92% less sodium than Xyrem in adult narcolepsy patients with cataplexy and EDS. We're excited to be one step closer to bringing what we believe to be an important product innovation to narcolepsy patients who are more likely to suffer from cardiovascular comorbidities than the general population. The Phase III study in adult narcolepsy patients demonstrated highly, statistically significant differences in the primary endpoint that measured the change in the weekly number of cataplexy attacks and the key secondary endpoint of change in Epworth Sleepiness Scale scores with JZP-258 as compared to placebo. Patients randomized JZP-258 showed clinically meaningful maintenance of efficacy for both cataplexy and EDS and a statistically significant worsening for both endpoints in the placebo group. The data demonstrated an adverse event profile consistent with sodium oxybate. We're looking forward to submitting the data for presentation at a fall medical meeting and we expect to meet with FDA to discuss our NDA, with a goal of submitting as early as the end of this year. Now, on to our hem/onc therapeutic area. We delivered another sequential quarter increase in Vyxeos sales in the first quarter of 2019 over the fourth quarter of 2018. In the US, we continue to target key academic and community accounts with education and outreach initiatives focused on the strong overall efficacy profile of Vyxeos, including the increased opportunity for stem cell and resulting favorable outcomes in secondary AML patients. In the US, despite an increase in competitive promotional activities in the AML marketplace, we continue to see interest from new accounts with community hospitals representing the majority of new accounts ordering Vyxeos. Our EU team has been successful in securing EU pricing and reimbursement and we now have final approved pricing in England, Wales, Scotland, Denmark and the Netherlands. In the first quarter, we received health technology assessment recommendations for the value of Vyxeos from France HAS of four/important [ph], Italy of innovative status and Germany GBA of substantial. The multidisciplinary evidence-based health technology assessment process uses stringent criteria and takes into account numerous factors, including safety and efficacy, to determine the overall health economic value of our therapy. We're pleased with Vyxeos' strong efficacy and value has been recognized by multiple EU country health systems. Continuing to generate data from our multipronged development activities will be important to facilitate physician understanding of the benefit and value of Vyxeos for the treatment of AML and MDS. Through our collaboration with MD Anderson, we have ongoing studies of Vyxeos in combination with both gemtuzumab and venetoclax. And this quarter, we expect to start a Phase I attenuated dose-finding study of Vyxeos in higher-risk MDS patients. The protocol for a Jazz sponsored Phase I/II study evaluating low-dose Vyxeos in combination with venetoclax in first-line unfit AML has been finalized and site selection is underway. We expect to begin patient enrollment in the second half of this year. Finally, we're pleased that the Children's Oncology Group has notified us that the Phase II 1421 study of Vyxeos in younger patients, ages 1 through 21, with relapsed refractory AML has been accepted for oral presentation at ASCO. ASCO abstracts will be released on May 15. Turning to Defitelio, we experienced our strongest quarter yet, primarily driven by growth in use by transplant centers to treat both adult and pediatric patients. We believe clinician knowledge and confidence in Defitelio is increasing and is leading to more vigilant monitoring of patients with risk factors for VOD, earlier diagnosis of VOD and quicker initiation of treatment with Defitelio, particularly in adult patients. At the EBMT meeting last month, positive results were presented from DEFIFrance, an observational, multicenter, postmarketing study of defibrotide in adult and pediatric patients from HSCT centers in France. Interim findings were consistent with prior registry trials and provided supportive evidence of the efficacy and safety of defibrotide for the treatment of VOD post HSCT. Defibrotide use was associated with a day 100 survival rate of 85% among patients with severe VOD versus 32% in those who had progressed to very severe disease. This research highlights the potential importance of treating with Defitelio earlier in the disease to reduce VOD-related mortality. In addition, we anticipate that the proposed US VOD diagnostic criteria and grading which were presented at the 2019 Transplantation and Cellular Therapy Meeting and are expected to be published in the next year, will be an important tool to address clinician uncertainty around VOD diagnosis and could reduce treatment delays. We're excited about the progress in our global defibrotide development program and expect to reach several milestones this year. We plan to initiate a Phase II exploratory study evaluating the prevention of CAR-T associated neurotoxicity, complete the interim analysis for the prevention of VOD study to determine final study enrollment sizing, initiate a Phase II study for the treatment of TA-TMA and complete enrollment in the Phase II prevention of acute GVHD study. For Erwinaze, despite several out-of-stock periods in the first quarter, sales increased as a result of higher availability of product compared to prior periods. Significant supply disruptions are impacting our ability to deliver Erwinaze to patients and we expect further supply disruptions throughout 2019. Our work towards developing new crisantaspase product candidates continues and is focus on a reliable supply chain and a potential improved target product profile. We look forward to providing an update on our program later this year. To wrap up, we're building on the momentum of our highly productive first quarter to advance our commercial, regulatory and R&D initiatives. We continue to invest significant resources in the expected midyear US launch of Sunosi, intensive education and outreach initiatives across our key commercial products and the advancement and expansion of our R&D pipeline. We also look forward to continuing our geographic expansion efforts. In the first quarter, we received marketing approval for Defitelio in Brazil and Vyxeos is now commercially available to patients in nine European countries. We're planning for the launch of solriamfetol in the EU following receipt of marketing approval, the expected approval of Defitelio in Japan this year and a new drug submission for solriamfetol in Canada. Finally, we believe our corporate development efforts will lead to further additions to our portfolio of products and R&D programs. Matt, now I'll turn the call over to you."
+    },
+    {
+     "paragraph_number": 4,
+     "speaker": "Matthew Young",
+     "content": "Thanks, Bruce. And good afternoon, everyone. In the first quarter, we continued to deliver strong top and bottom line growth, in line with our current expectations. Revenues increased 14% to $508 million compared to $445 million in the first quarter of 2018 due to the strong growth of our key sleep and hem/onc products. As a reminder, first quarter 2018 net sales included Prialt, which we invested last September. Xyrem net sales for the quarter were $368 million, up 16% from $317 million last year. For 2019, we are maintaining our Xyrem net sales guidance in the range of $1.53 billion to $1.57 billion and our expectation for mid-single digit volume growth.  Turning to Erwinaze, net sales for the quarter were $61 million, an increase of 20% compared to the same period in 2018. We expect significantly reduced product availability in the second quarter, as well as further supply disruptions throughout 2019, creating quarterly variability depending on the timing and extent of those disruptions. We are maintaining our Erwinaze net sales guidance for 2019 in the range of $160 million to $195 million. First quarter Defitelio net sales were $42 million, up 18% from $35 million in the same period of 2018. We're maintaining our guidance for Defitelio net sales for this year in the range of $155 million to $180 million. Vyxeos first quarter net sales were $29 million, an increase of 10% over the first quarter of 2018 and an increase of 13% sequentially from the fourth quarter, primarily due to the contribution from EU sales. We are maintaining our Vyxeos net sales guidance for this year in the range $120 million to $150 million. This guidance assumes our commercial initiative successfully lead to increased growth in the US in the latter half of the year. We're encouraged by the EU launch performance and growing EU sales contribution. We are maintaining our total revenue guidance for 2019 in the range of $2.05 billion to $2.13 billion. Turning to operating expenses, we are continuing to invest on the R&D and commercial front to further diversify our growing R&D pipeline and product portfolio as part of our business model that is focused on sustainable growth. Adjusted SG&A expenses for the first quarter increased 12% to $148 million or 29% of total revenues compared to $132 million or 30% of total revenues in the first quarter of 2018.  First quarter 2019 included increased expenses related to the planned launch of Sunosi in the US and the rolling launch of Vyxeos in the EU. For Sunosi, a significant portion of our initial investment in 2019 is focused on building the OSA market through disease awareness as well as other educational efforts. Sunosi-related launch expenses are expected to ramp up further in the second quarter. For 2019, our guidance for adjusted SG&A expenses remains in the range of $620 million to $650 million, 29% to 31% of revenue guidance. Adjusted R&D expenses for the first quarter of 2019 were $55 million compared to $47 million in the first quarter of 2018 or 11% of total revenues in both periods. The increase in adjusted R&D expenses in the quarter reflects our growing investments in our internal programs, including our JZP-258, Vyxeos, defibrotide and asparaginase programs as well as our partner programs and our IND-enabling work with the CombiPlex platform. For 2019, our guidance for adjusted R&D expenses remains in the range of $235 million to $265 million or approximately 11% to 13% of revenue guidance. The adjusted effective tax rate of 19.8% in the first quarter included a one-time impact from the remeasurement of the deferred tax liability associated with the reduced estimated useful life of the Erwinaze intangible asset following receipt of the PBL contract termination notice in February. We're maintaining our 2019 adjusted effective tax rate guidance in the range of 17% to 19%.  Adjusted net income for the first quarter increased 17% to $213 million compared to $182 million in the first quarter of 2018 and adjusted net income per diluted share increased 23% to $3.67 compared to $2.98 in the first quarter of 2018.  As a reminder, first quarter 2019 adjusted EPS was positively impacted by the significant share repurchase we made in the fourth quarter of 2018. Please note that we are maintaining our 2019 non-GAAP adjusted EPS guidance range of $14.30 to $15 and our guidance for weighted average diluted shares outstanding of approximately 58 million. In the first quarter of 2019, we generated $202 million in cash from operations versus $167 million in the first quarter of 2018. We used $111 million to repurchase shares and had 268 million remaining under our share repurchase program as of March 31. During the quarter, we made an upfront payment of 56 million to Codiak BioSciences under our collaboration agreement. As of March 31, we had $832 million cash, cash equivalents and investments, borrowing capacity under our revolver of $1.6 billion and $1.8 billion in outstanding principal balance of our long-term debt. Our early accomplishments in 2019 has set the stage for exciting year as we launch Sunosi. We continue to make substantial investments to support our key growth initiatives and to identify opportunities to further expand and diversify our commercial and development portfolios with a focus on providing novel medicines to patients and meaningful returns to shareholders. Thank you for joining the call today and I'll now turn the call back over to Kathee."
+    },
+    {
+     "paragraph_number": 5,
+     "speaker": "Katherine Littrell",
+     "content": "Thank you, Matt. We kindly request that you limit yourself to one question and a follow-on on the same topic during this call, so that everyone has an opportunity to ask a question today. We will gladly address any additional questions after the call or you can reenter the queue. With that said, operator, please open the line for questions."
+    },
+    {
+     "paragraph_number": 6,
+     "speaker": "Operator",
+     "content": "Thank you. [Operator Instructions]. Our first question comes from Brandon Folkes with Cantor Fitzgerald. Your line is now open."
+    },
+    {
+     "paragraph_number": 7,
+     "speaker": "Brandon Folkes",
+     "content": "Hi. Thanks for taking my question. On Sunosi, could you share some of the feedback you've had from your initial engagement with payers to date?"
+    },
+    {
+     "paragraph_number": 8,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah. Brandon, we're probably not going to have a lot to say on that. Maybe Mike can tell you a little bit about what we're trying to accomplish in those discussions, but we're probably not going to say a lot in detail. Go ahead, Mike."
+    },
+    {
+     "paragraph_number": 9,
+     "speaker": "Michael Miller",
+     "content": "Yeah, Bruce. As you said, we are in early discussions with the payers. Our goal really is to create access. There is about 10%, 15% open live count right now with about a six to nine-month moratorium by most payers. But I think, importantly, meanwhile, while we're working with the payers to gain access, we'll be offering a suite of services that will allow really engineering successful trial with these patients and Sunosi."
+    },
+    {
+     "paragraph_number": 10,
+     "speaker": "Brandon Folkes",
+     "content": "Okay. And maybe just one follow-up on that. Maybe if I frame it a different way, would you characterize your discussions so far as in line with what you would have expected?"
+    },
+    {
+     "paragraph_number": 11,
+     "speaker": "Michael Miller",
+     "content": "As I said, I discussions are early and we will give you an update, I think, of the Sunosi investor call later on."
+    },
+    {
+     "paragraph_number": 12,
+     "speaker": "Brandon Folkes",
+     "content": "Okay, fair enough. Thank you."
+    },
+    {
+     "paragraph_number": 13,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Umer Raffat with Evercore. Your line is now open."
+    },
+    {
+     "paragraph_number": 14,
+     "speaker": "Umer Raffat",
+     "content": "Thanks so much for taking my question, guys. My question is on pipeline, but I'll have a question and a follow-up on two different things. My first one is on – an easy one – solriamfetol. Can you maybe just lay out for us the efficacy relative to modafinil or armodafinil just so we sort of have a sense for that, especially as we head into launch? I don't know there's a clear answer to that, but I just want to hear it from you. And the second one was on the CD123 bispecific that Macrogenics has, they noticed that in AML setting, they don't have any responses if it's relapsed AML and they pointed to low CD123 receptor density as being a reasons. So, when they put their bispecific again, they didn't see much responses. What I was curious about is in the dose expansion that's happening with your ABC, it all appears to be happening in relapsed AML setting. And I just wanted to understand that better and have you seen responses in relapsed AML as the CNS is going into that expansion cohort? Thank you."
+    },
+    {
+     "paragraph_number": 15,
+     "speaker": "Bruce Cozadd",
+     "content": "Okay. Umer, maybe I'll have Jed take the first part of your question, which is really around solriamfetol efficacy, what we see and maybe a comment about modafinil efficacy. Just as a reminder, we've not run head to head trials. We're talking about trials in similar patient populations with similar endpoints."
+    },
+    {
+     "paragraph_number": 16,
+     "speaker": "Jed Black",
+     "content": "Yeah. The question is something of course that we have been interested in from the time we started looking at it. And it was the efficacy profile of solriamfetol in the concept study and the follow-up study that really got us excited about it. And we've seen those data now replicated in the pivotal trials very nicely. And so, as Bruce noted, there's no head-to-head data. I would refer you to the literature on modafinil, look at the endpoints with modafinil and armodafinil versus solriamfetol. And I think that that tells the story."
+    },
+    {
+     "paragraph_number": 17,
+     "speaker": "Bruce Cozadd",
+     "content": "But, again, our trials and typically trials of other agents have measured both objective endpoints like the maintenance of wakefulness tests, they've measured subjective endpoints like the Epworth Sleepiness Scale. And in our trials, we see, for solriamfetol, really strong efficacy across the endpoints, across time of the day from early in the day to late in the day and we see that effect sustained when we do longer-term follow-up studies with patients."
+    },
+    {
+     "paragraph_number": 18,
+     "speaker": "Jed Black",
+     "content": "And a very consistent dose-response profile."
+    },
+    {
+     "paragraph_number": 19,
+     "speaker": "Bruce Cozadd",
+     "content": "So, with that, maybe I'll take the second part of the question and direct it over to Allen Yang. Just as a reminder, the antibody drug conjugate program we're referring to is an ImmunoGen program. We do have a relationship with ImmunoGen. We have the option to opt into to one or more of three programs they have, two of which have been identified. But just as a reminder, we're not running these programs ourselves. Alan, do you want to comment on the question."
+    },
+    {
+     "paragraph_number": 20,
+     "speaker": "Allen Yang",
+     "content": "Sure, Bruce. Thanks. So, Umer, I think I'll take your second question first and comment on additional data. Again, as Bruce alluded to, this is an ImmunoGen program that we're collaborating with them. They've been excellent collaborators. They've given an update of their data at the most recent ASH meeting for both of their programs. And I think the question – your first question alludes to CD33 expression levels compared to CD123. As you know, there's been multiple agents directed to both of those antibodies, antibody drug conjugates bispecifics, et cetera. And CD33 is more highly expressed.  If you look at all of the data in aggregate from different molecules, it's very interesting that CD123 seems to be a very exciting target. Whether it's less amenable to relapse refractory disease because it's expressed at lower levels compared to CD33, I think that that data is still immature, especially with the ImmunoGen compound or overall in the field. I think it's challenging. If you look at Mylotarg and CD33, it took fairly large studies to prove its benefit in upfront disease, although they could see responses in relapse refractory. And I think the same thing is true of CD123. overall we're very happy with both of these ADC conjugates. I think they have single-agent activities and there is a pathway to approval for both of these agents. They are single agents because there's precedence for that, but then there's a possibility of combinations. And those combinations could include hypomethylating agents, which is traditionally done, or combinations with Vyxeos. And I think that's why we're so excited about these programs."
+    },
+    {
+     "paragraph_number": 21,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Jason campaign with Bank of America Merrill Lynch. Your line is now open/"
+    },
+    {
+     "paragraph_number": 22,
+     "speaker": "Jason Gerberry",
+     "content": "Hey, there. Thanks for taking my questions. Just a couple on JZP-258 regulatory strategy. Would you anticipate getting orphan drug status? I know that Avadel got orphan drug status. So, I would think that the population parameters would enable you to get orphan status, but just curios where that stands? Do you intend to use the priority review voucher for this application and are there any issues with getting your REMS sorted out before you can actually file this product? Any color you can just provide on those regulatory elements of 258 would be really appreciated."
+    },
+    {
+     "paragraph_number": 23,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah. Jason, good questions. I don't think we're going to comment in any great detail upon our regulatory strategy. Obviously, we studied JZP-258 in the same patient population as sodium oxybate or Xyrem, which does have orphan drug exclusivity. On the PRV, we haven't said which program of our current programs or programs we could bring in the future through corp dev would be the best use of that asset. So, no comment at the moment. And in terms of REMS, we certainly are working to make sure we submit as part of our NDA the best REMS to ensure that physicians and patients understand how to access this new medicine and that we make that as seamless as possible as we can for our prescribers and patients, given our long experience including some improvements to our REMS over the years. So, we want to get that right. I wouldn't describe that as issues. I would just describe that as making sure we thought it all through before we submit to FDA."
+    },
+    {
+     "paragraph_number": 24,
+     "speaker": "Jason Gerberry",
+     "content": "Bruce, can you at least comment, would the specialty pharmacy that you use for 258 be the same for Xyrem?"
+    },
+    {
+     "paragraph_number": 25,
+     "speaker": "Bruce Cozadd",
+     "content": "No comment at this time."
+    },
+    {
+     "paragraph_number": 26,
+     "speaker": "Jason Gerberry",
+     "content": "Okay."
+    },
+    {
+     "paragraph_number": 27,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from David Amsellem with Piper Jaffray. Your line is now open."
+    },
+    {
+     "paragraph_number": 28,
+     "speaker": "David Amsellem",
+     "content": "Thanks. So, just on Xyrem, I believe you have said in the past that contribution from ped is in the guidance. Is it possible for you to talk about how much contribution either qualitatively or quantitatively will be there? And then, just remind us how you're thinking about the opportunity. That's number one. And then, on Sunosi, I know you're talking about additional indications down the road. Are you exploring any indication that's outside of the sort of wakefulness promoting agent realm? Thanks."
+    },
+    {
+     "paragraph_number": 29,
+     "speaker": "Bruce Cozadd",
+     "content": "So, David, on Xyrem peds, we haven't broken out how much of our guidance is specific to that. And there are a number of reasons for that, including the fact that, of course, we were aware that some pediatric patients were being treated before we got the formal indication from FDA last year. So, there is some pediatric business in there already. And, obviously, we're early in this launch, but we're very excited to get this data out. People haven't had data before that gave them a good sense of how this drug performs in this specific population and we know there are a significant number of pediatric patients who are undiagnosed and we hope now successfully treated with narcolepsy. So, no specific guidance, but we think could be very meaningful these patients and provide some growth in the future. On Sunosi, we're obviously aware that agents like this, although ours is a new mechanism of action. Have successfully been explored in conditions outside of wakefulness and we're contemplating that and what our best path forward is. As I said, our intent is to come back midyear with an indication of where we're going next as we continue to explore the full potential of solriamfetol."
+    },
+    {
+     "paragraph_number": 30,
+     "speaker": "David Amsellem",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 31,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Ami Fadia with SVB Leerink. Your line is now open."
+    },
+    {
+     "paragraph_number": 32,
+     "speaker": "Ami Fadia",
+     "content": "Good afternoon. Thanks for the question. I had two follow-ups to topics that were discussed. First, just with regards to Sunosi, you've mentioned the 6 to 9 month timeframe before which payers got to cover products. How should we think about the launch trajectory of the product in context of that? And when should we start to expect meaningful revenues into next year? And then, just with regards to JZP-258, can you compare and contrast maybe the potential for – the risk benefit around switching patients from Xyrem to 258 depending upon whether or not you use a separate specialty pharmacy to launch 258? Yeah, I think that summarizes the question. Thank you."
+    },
+    {
+     "paragraph_number": 33,
+     "speaker": "Bruce Cozadd",
+     "content": "So, on the first part of the question, Ami, the 6 to 9 month moratorium was something we built into our thoughts for guidance for this year. Recall that when asked about Sunosi guidance, we said minimal revenues in 2019. There are a lot of other things we need to accomplish earlier than launch to make sure people are aware of this treatment option, its benefits and to do some education particularly in the OSA market about the importance of recognizing and treating EDS. And at the time of our investor call around launch, we'll want to give you some more insight into metrics you can use and we'll be using to gauge early progress in that launch. On the JZP-258 question, I'm quite sure I followed what the question is. You'll recall in the study that we just conducted, we included patients who were naïve to oxybate who then went on to JZP-258. We included patients who were on Xyrem already and were switching to 258. And, obviously, one of the things we're trying to learn, although this was not the primary objective of the study was how patients could, in fact, move from Xyrem to 258 and we'll take all that learning into account as we figure out again our launch plans, our REMS plans, our distribution plans. But I don't view that as a significant concern. Just, again, something where we want to provide good information."
+    },
+    {
+     "paragraph_number": 34,
+     "speaker": "Ami Fadia",
+     "content": "All right, thank you."
+    },
+    {
+     "paragraph_number": 35,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Gary Nachman with BMO Capital Markets. Your line is now open."
+    },
+    {
+     "paragraph_number": 36,
+     "speaker": "Gary Nachman",
+     "content": "Hi. Good afternoon. On Vyxeos, could you give us a split between the US and EU in the first quarter? It sounds like more of the growth is coming from the EU. So, how's the market forming there? And talk about why you're confident you'll be able to return to growth in the US over the course of the year. Are you getting more traction with reimbursement, use in the community setting? Just some more detail on that. Thanks."
+    },
+    {
+     "paragraph_number": 37,
+     "speaker": "Bruce Cozadd",
+     "content": "So, Matt, I don't know if we're providing a specific breakdown. Remember, we're showing significant growth in Europe, in part because we're comparing back to the periods where it was on the market or it was just becoming available. So, not surprising we're seeing growth there, although I have to say we're very pleased with how things are going early on. Matt, anything else you want to say on that."
+    },
+    {
+     "paragraph_number": 38,
+     "speaker": "Matthew Young",
+     "content": "No, I think we said early on in our guidance that Europe to represent up to 10% [ph] of the contribution. It's running a little ahead of pace. And so, I think we feel good about the contribution from the EU thus far in the quarter and, in particular, also against the health technology assessments and, ultimately, on our path to secure reimbursement across a bunch of geographies that were executing well as it relates to that. so, dynamics are setting up well for success in Europe, but we did see growth in both markets."
+    },
+    {
+     "paragraph_number": 39,
+     "speaker": "Bruce Cozadd",
+     "content": "And, Mike, maybe you can comment a little bit about what your expectations are for progress across the year."
+    },
+    {
+     "paragraph_number": 40,
+     "speaker": "Michael Miller",
+     "content": "Yeah. So, we continue to target the academic centers and have expanded our reach into the community where about 40% AML maltreatment exists today. And most of our new account growth is actually coming out of the community area. The AML market is more noisy than it has been in terms of promotional activity, but we feel very good about where we sit as the standard of care for fit secondary AML where we have an OS benefit against 7 plus 3 [ph] and we can derive meaningful complete responses that translate to good transplant outcomes."
+    },
+    {
+     "paragraph_number": 41,
+     "speaker": "Gary Nachman",
+     "content": "Okay, thank you."
+    },
+    {
+     "paragraph_number": 42,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from David Risinger with Morgan Stanley. Your line is now open."
+    },
+    {
+     "paragraph_number": 43,
+     "speaker": "David Risinger",
+     "content": "Thanks very much and thanks for all the details. I'm just curious about your expectations and plans to compete with the [indiscernible]. So, are you expecting that product to launch later this year? And if so, do you need to do anything with your commercial efforts to ensure your rate of [indiscernible] starts is high and so on and so forth? Thank you."
+    },
+    {
+     "paragraph_number": 44,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah, David. I don't think we've got any particular insight into [indiscernible] regulatory progress other than the company that has the rights to the drug has said they intend to get approval and launch this year. In terms of our commercial efforts, I think we remain focused as we have them on ensuring people understand the benefits and risks of our product, how to use it safely. As you know, we've continued to grow the product many years after initial introduction. We've continued to study the drug whether that's through the recent pediatric trial, studying oxybate in new and we think better form with the lower sodium content both in narcolepsy and, of course, we have an idiopathic hypersomnia trial going as well. And we want to make sure people understand what makes our drug so efficacious. We know that narcolepsy is underdiagnosed and undertreated. A different treatment option being available for patients may expand treatment, could even lead to improved diagnosis of narcolepsy, and I think that's a good thing for narcolepsy patients."
+    },
+    {
+     "paragraph_number": 45,
+     "speaker": "David Risinger",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 46,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Greg Fraser with SunTrust. Your line is now open."
+    },
+    {
+     "paragraph_number": 47,
+     "speaker": "Greg Fraser",
+     "content": "Thanks very much. It's Greg Fraser on for Gregg Gilbert. Vyxeos, are you still anticipating interim data from the collaborative study with MD Anderson this year and how are you thinking about the potential importance of that data?"
+    },
+    {
+     "paragraph_number": 48,
+     "speaker": "Bruce Cozadd",
+     "content": "Allen, you want to take that?"
+    },
+    {
+     "paragraph_number": 49,
+     "speaker": "Allen Yang",
+     "content": "Sure, Bruce. Thanks. Yeah, again, I think the challenge here, Greg, is that we don't control that data. That's an MD Anderson study with collaboration. Our hope is that they enroll very quickly, but again the final decision to present the data or not in an interim form rests with MD Anderson. In terms of importance, I think it's incremental. I think they are doing two very important combination studies for us. The combination with Mylotarg and a combination with venetoclax. There will be other studies that will be coming online as well. But, again, combination data is just part of our strategy. We plan to make Vyxeos the backbone of AML therapy. So, there will be other additional studies that we'll have to do looking at younger patients and sort of lower-risk patients as well."
+    },
+    {
+     "paragraph_number": 50,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Ken Cacciatore with Cowen and Company. Your line is now open."
+    },
+    {
+     "paragraph_number": 51,
+     "speaker": "Ken Cacciatore",
+     "content": "Thanks, guys. I just want to drill down a little bit on the Sunosi opportunity. Let's say, wondering if you have any data on the percent utilization of Provigil and Nuvigil in that market? And then, also maybe your sense from speaking with clinicians on the failure rates of Provigil and Nuvigil. So, as you go through managed care, obviously, we want the best tiering possible, but I would think that just getting on formulary if there is high rates of failure in the first line agent would still be not bad positioning for you. So, can you give us a little bit of context around that. Thank you."
+    },
+    {
+     "paragraph_number": 52,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah. Ken, I think your question was specific to OSA, but I'll just say slightly different characteristics of the narcolepsy in the OSA opportunities. We see a fairly high treatment rate, but also a fairly high abandonment or failure rate with other agents. In the OSA market, I think the biggest thing to take into account is that most patients are not treated. Those that are may, in fact, have stepped through other therapies and not have the impact they'd like, but I think the bigger driver there is a lot of patients with EDS that's either unrecognized or recognized, but not drug treated. And in terms of your comments on managed care and access, I think we've been consistent in saying for years we wouldn't be surprised if patients stepped through a generic drug that's available before they get to Sunosi. And one of the things that made us excited about this opportunity is the high rate of patients that have voiced dissatisfaction with existing therapies, primarily for not having enough efficacy; in some cases, tolerability issues. As I think Jed so well said earlier, this led us to our interest in this agent in the first place. It was recognizing there was a real market opportunity for a differentiated agent with, hopefully, answers to some of the problems patients have been describing."
+    },
+    {
+     "paragraph_number": 53,
+     "speaker": "Ken Cacciatore",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 54,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Jessica Fye with J.P. Morgan. Your line is now open."
+    },
+    {
+     "paragraph_number": 55,
+     "speaker": "Jessica Fye",
+     "content": "Great. Thanks so much for taking my question. Quick one on Xyrem net price this quarter. I think the deck has volume was up 5% percent and sales grew 16%, which implies a healthy price contribution, but I think it might be somewhat more than the list price increase. Is there anything that you can kind of offer in terms of what would explain that?"
+    },
+    {
+     "paragraph_number": 56,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah. Jess, nothing really to say. There are not any big wide swings in gross to nets. You know our price action earlier in the year. So, the rest of what you're seeing is just differences in terms of Q1 results. So, nothing really more to say there."
+    },
+    {
+     "paragraph_number": 57,
+     "speaker": "Michael Miller",
+     "content": "Yeah. Jess, this is Mike. I would say that, in this most recent quarter, we did – I think our field reimbursement folks and our central pharmacy did a really good job of getting through the payer churn. So, I think when you use the comparator of Q1 2018, that may explain some of the lift. We also grew patients about 6%. So, all the math works."
+    },
+    {
+     "paragraph_number": 58,
+     "speaker": "Jessica Fye",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 59,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Liav Abraham with Citi. Your line is now open."
+    },
+    {
+     "paragraph_number": 60,
+     "speaker": "Liav Abraham",
+     "content": "Good afternoon. Bruce, can you just update us on what you're seeing on the business development front. I think, last year, you said you would be disappointed if you didn't execute on a transaction. Maybe talk a little bit about your outlook this year as you are almost in the middle of the year both from a supply perspective as well as pricing dynamics in the market? Thank you."
+    },
+    {
+     "paragraph_number": 61,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah. Maybe I can do this in conjunction with Matt. I'll just say we're busy and we're busy across the board. We're looking at opportunities across sleep and adjacent areas and hem/onc and adjacent areas. We're looking at things across market or near-market products back to earlier development. We're looking at things across geographies as we continue to expand our geographic footprint. So, there is a lot out there to look at and we're honestly excited by a number of the opportunities we see. I think it would be a good complement to our capabilities and what would fit with our sustainable growth strategy. Matt, maybe I can ask you to comment a little bit on price and how that translates into actionable deals."
+    },
+    {
+     "paragraph_number": 62,
+     "speaker": "Matthew Young",
+     "content": "Sure, yeah. Just at a high level, valuations in many pockets do remain high, depending on where you're looking. And it's our job to navigate through that and we believe we can still find value in that regard. We continue to see, as Bruce alluded to, interesting [indiscernible] at all stages across our key franchises as well as in some spaces between them. And, obviously, also want to be thoughtful about how we feather in potential deals from an operational perspective just to make sure we can execute on our existing business, but we continue to be hard work and our expectations remain favorable that we can complete successful transactions this year."
+    },
+    {
+     "paragraph_number": 63,
+     "speaker": "Liav Abraham",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 64,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Irina Koffler with Mizuho. Your line is open."
+    },
+    {
+     "paragraph_number": 65,
+     "speaker": "Irina Koffler",
+     "content": "Hi. Thank you for taking the questions. Can you give us an update on the PBL agreement on Erwinaze and whether there has been any progress in renewing anything? And the second question is on Xyrem REMS for pediatric. Just wanted to verify that you've enrolled all of the remaining pediatric patients that you were going to enroll or is there still a process underway that could lead to some potential disruption in the enrollment? Thanks."
+    },
+    {
+     "paragraph_number": 66,
+     "speaker": "Bruce Cozadd",
+     "content": "So, maybe I'll take the second question first and then ask Dan to comment a little bit about PBL. On the pediatric REMS, I think we did a really spectacular job of planning to make that as seamless as possible for patients, caregivers and prescribers, and I think we're largely through that transition of patients who are already on the Xyrem. So, we do not anticipate that that will cause any perturbation in sales growth. Dan, do you want to talk about pediatrics?"
+    },
+    {
+     "paragraph_number": 67,
+     "speaker": "Daniel Swisher",
+     "content": "Sure, yeah. So, with PBL, we remain very focused on operational issues, near-term [indiscernible], very kind of batch to batch. We can get those batches out. And as you know, even without any kind of renewal, we've got rights to the program through 2020 and inventory beyond. We continue to think we are the best partner for this program. We've got the relationship with the ALL doctors and look forward to engaging and putting our best foot forward. In terms of updates to the process, it's really PBL's process, so we can't comment on so status and timing. It's up to them to provide those updates."
+    },
+    {
+     "paragraph_number": 68,
+     "speaker": "Irina Koffler",
+     "content": "Thank you."
+    },
+    {
+     "paragraph_number": 69,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Annabel Samimy with Stifel. Your  line is now open."
+    },
+    {
+     "paragraph_number": 70,
+     "speaker": "Nick Rubino",
+     "content": "Good afternoon everyone. This is Nick Rubino on for Annabel. Thanks for taking our question. We just have a quick one. Now that the data are out on the low-sodium products, have you had any further discussions with those physician population regarding the number of patients they believe could benefit from having this option available?"
+    },
+    {
+     "paragraph_number": 71,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah, I would say we put out a quick top line release just to let you know that our primary and key secondary endpoints were highly statistically significant, positive to generally comment on the AE profile. But I would say we have not yet made data public. We'll do that in an appropriate medical meeting this fall. That'll give us a lot more opportunity to engage with folks about what it means. I think the data we have released has made it easier for us to say we believe the product works and will be an important new treatment and improvement for patients, but I think let's wait until we have more data to share to have additional conversations. And then, in terms of a number of patients, I think there's no patient who is benefiting from the high-sodium load of the existing Xyrem products. We think this would be an improved product for all patients currently taking sodium oxybate. And we've said historically, we know there are patients who don't get Xyrem therapy because their physicians are concerned in the case of those patients about the high-sodium content. And so, we do believe that moving to JZP-258 may open up additional opportunity for a broader patient population."
+    },
+    {
+     "paragraph_number": 72,
+     "speaker": "Nick Rubino",
+     "content": "All right, thank you."
+    },
+    {
+     "paragraph_number": 73,
+     "speaker": "Operator",
+     "content": "Thank you. And our next question comes from Akash Tewari with Wolfe Research. Your line is now open."
+    },
+    {
+     "paragraph_number": 74,
+     "speaker": "Akash Tewari",
+     "content": "Hey, thanks so much for taking my question. This is more just generally focused on why the low end of guidance wasn't kind of up given the beat that we saw on Xyrem. Just digging into the low end of guidance and if you compare the product specific low end of guidance and compare that to the low end of the guided total product revenues, we're seeing about a gap of $70 million. And if you can assume that about $20 million of that is other, what is explaining that additional $50 million gap given that there is a limited amount of JZP-110 baked into 2019 numbers? Thanks so much."
+    },
+    {
+     "paragraph_number": 75,
+     "speaker": "Bruce Cozadd",
+     "content": "So, Akash, I'll take the second part of your question and I'll ask Matt to handle the more product specific one. Just in general, when we provide guidance ranges, if you're a fan of Monte Carlo simulations, it's unlikely with independent variables you're going to get all of the low-end or all of the upper end, and so that gives us the ability to narrow our sort of top end and bottom end guidance a little bit more than if you just added up the low-end and the high end of every revenue number or every expense number. So, I think that's most of the explanation for the narrower bottom end. But, Matt, maybe you can comment on the product guidance."
+    },
+    {
+     "paragraph_number": 76,
+     "speaker": "Matthew Young",
+     "content": "Yeah, just as it relates to Xyrem specifically and overall individual product guidance, which we've maintained, really, again, while we've had a strong first quarter, it's relatively early in the year, the guidance we've provide in February. We now are here in early May. So, at this juncture, we feel it's prudent to maintain our posture despite a really successful first quarter across the product portfolio. But, again, at least calling out one specifically, we mentioned the timing variability related to Erwinaze supply. So, we certainly had a strong quarter there, but are anticipating a weaker one to follow as it relates to that specifically. So, again, taking into consideration just how we're running through the year, at this juncture, we thought it was appropriate to maintain guidance."
+    },
+    {
+     "paragraph_number": 77,
+     "speaker": "Akash Tewari",
+     "content": "Great. That's super helpful. Thanks."
+    },
+    {
+     "paragraph_number": 78,
+     "speaker": "Operator",
+     "content": "Operator, this will be our last question coming up."
+    },
+    {
+     "paragraph_number": 79,
+     "speaker": "Operator",
+     "content": "Thank you. And our last question comes from David Maris with Wells Fargo."
+    },
+    {
+     "paragraph_number": 80,
+     "speaker": "David Maris",
+     "content": "Thank you for fitting me in. The stock's about where it was on average last quarter when you spent $100 million on the buyback, and so it would seem that you maybe have another couple quarters to go on the current authorization. So, what are your thoughts and how should investors consider the ability and expectation for buying back stock beyond the current authorization in light of the clearly palpable excitement that management has about the panoply of potential deal targets? Thank you."
+    },
+    {
+     "paragraph_number": 81,
+     "speaker": "Bruce Cozadd",
+     "content": "Yeah. So, David, a good question. I can't speak for the whole board and preannounce what we're going to do at the end, but I think we've got a good track record over the last few years as we come up on using up our authorization. You've seen us increase that authorization multiple times. And I think we've got a great cash generation in the company, a strong balance sheet and that gives us the capability to both invest in new assets through corp dev, continue to grow our existing business and be buyers of our own stock when we think it's at levels that make that a good move for our shareholders. And we certainly have felt and continue to feel, at current levels, that it's a pretty easy decision for us to be buyers of our own stock. So, my anticipation, although it will be a full board decision, is that we feel similarly that we'd want to balance our desire to buy back stock when we feel it doesn't reflect full value, while maintaining great flexibility to do corp dev which we think can diversify our growth drivers moving forward."
+    },
+    {
+     "paragraph_number": 82,
+     "speaker": "David Maris",
+     "content": "Great, thank you."
+    },
+    {
+     "paragraph_number": 83,
+     "speaker": "Operator",
+     "content": "Thank you. I'm not showing any further questions at this time. I would now like to turn the call back over to Kathee Littrell for any closing remarks."
+    },
+    {
+     "paragraph_number": 84,
+     "speaker": "Katherine Littrell",
+     "content": "Thank you, Joelle. Thank you all again for joining us today. We will be participating in the upcoming Bank of America and RBC healthcare conferences and hope to see many of you there. This now ends our call."
+    },
+    {
+     "paragraph_number": 85,
+     "speaker": "Operator",
+     "content": "Ladies and gentlemen, thank you for participating in today's conference. This does conclude today's program. And you may all disconnect. Everyone, have a wonderful day."
+    }
+   ]
+  },
   "going_concern_hit": 0,
   "going_concern_snippet": ""
  },
@@ -47,7 +502,8 @@
    "reportDate": "2018-12-31",
    "accession": "0001232524-19-000013",
    "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252419000013/jazz1231201810k.htm",
-   "local_gz": "000123252419000013__annual.txt.gz"
+   "local_gz": "000123252419000013__annual.txt.gz",
+   "n_lines": 5876
   },
   "最近 10-Q/6-K(1)": {
    "form": "10-Q",
@@ -55,7 +511,8 @@
    "reportDate": "2019-03-31",
    "accession": "0001232524-19-000026",
    "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252419000026/jazz2019q1doc.htm",
-   "local_gz": "000123252419000026__q0.txt.gz"
+   "local_gz": "000123252419000026__q0.txt.gz",
+   "n_lines": 3133
   },
   "最近 10-Q/6-K(2)": {
    "form": "10-Q",
@@ -63,12 +520,106 @@
    "reportDate": "2018-09-30",
    "accession": "0001232524-18-000192",
    "url": "https://www.sec.gov/Archives/edgar/data/1232524/000123252418000192/jazz2018q3doc.htm",
-   "local_gz": "000123252418000192__q1.txt.gz"
+   "local_gz": "000123252418000192__q1.txt.gz",
+   "n_lines": 3409
   }
  },
  "4_財務數列": {
   "source": "訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值",
-  "source_by_row": "見 quarters[].revenue_source",
+  "extra_items_rule": "加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。",
+  "extra_items_legend": {
+   "inventory": {
+    "label": "存貨",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "InventoryNet",
+     "InventoryGross"
+    ]
+   },
+   "accounts_receivable": {
+    "label": "應收帳",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "AccountsReceivableNetCurrent",
+     "ReceivablesNetCurrent",
+     "AccountsReceivableGrossCurrent"
+    ]
+   },
+   "deferred_revenue": {
+    "label": "遞延收入(合約負債)",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "ContractWithCustomerLiabilityCurrent",
+     "ContractWithCustomerLiability",
+     "DeferredRevenueCurrent",
+     "DeferredRevenue"
+    ]
+   },
+   "cash_and_equivalents": {
+    "label": "現金及等價物",
+    "unit": "USD",
+    "kind": "instant",
+    "tags": [
+     "CashAndCashEquivalentsAtCarryingValue",
+     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"
+    ]
+   },
+   "total_debt": {
+    "label": "總債務(長短期借款合計)",
+    "unit": "USD",
+    "kind": "instant_sum",
+    "tags": [
+     "LongTermDebtCurrent+LongTermDebtNoncurrent(不足者退 LongTermDebt)"
+    ]
+   },
+   "capex": {
+    "label": "資本開支",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "PaymentsToAcquirePropertyPlantAndEquipment",
+     "PaymentsToAcquireProductiveAssets"
+    ]
+   },
+   "depreciation_amortization": {
+    "label": "折舊攤銷",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "DepreciationDepletionAndAmortization",
+     "DepreciationAndAmortization",
+     "DepreciationAmortizationAndAccretionNet"
+    ]
+   },
+   "net_income": {
+    "label": "淨利潤",
+    "unit": "USD",
+    "kind": "duration",
+    "tags": [
+     "NetIncomeLoss",
+     "ProfitLoss"
+    ]
+   },
+   "diluted_eps": {
+    "label": "攤薄 EPS",
+    "unit": "USD/shares",
+    "kind": "duration",
+    "tags": [
+     "EarningsPerShareDiluted"
+    ]
+   },
+   "diluted_shares": {
+    "label": "攤薄股數",
+    "unit": "shares",
+    "kind": "duration",
+    "tags": [
+     "WeightedAverageNumberOfDilutedSharesOutstanding"
+    ]
+   }
+  },
   "hist_quarters_public_by_T1": true,
   "hist_src_latest_filed": "2019-02-26",
   "n_rows": 8,
@@ -83,6 +634,63 @@
     "ocf": 135091000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 39658000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 238752000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8575000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 239213000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1671894000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8151000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 105604000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.72,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 61463000.0,
+      "filed": "2017-08-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -93,6 +701,63 @@
     "ocf": 188897000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 41344000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 258616000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8618000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 252615000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1579913000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8347000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 63526000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.03,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 61436000.0,
+      "filed": "2017-11-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -103,6 +768,63 @@
     "ocf": 204559000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 43245000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 224129000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 8618000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 386035000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1581038000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 8878000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 13100000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 232207000.0,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 3.79,
+      "filed": "2018-02-27",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -113,6 +835,63 @@
     "ocf": 162359000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 46384000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 281424000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 20618000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 453169000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1582161000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 7149000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 45991000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 0.75,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 61178000.0,
+      "filed": "2018-05-08",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -123,6 +902,63 @@
     "ocf": 191624000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 46156000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 278441000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 18744000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 485081000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1591701000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 4132000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 92321000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 1.5,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 61438000.0,
+      "filed": "2018-08-07",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -133,6 +969,63 @@
     "ocf": 220575000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 43435000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 279437000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5935000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 499018000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1593969000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 3940000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 149316000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.41,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": {
+      "value": 61857000.0,
+      "filed": "2018-11-06",
+      "source": "XBRL 首報值",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+     }
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -143,6 +1036,63 @@
     "ocf": 224346000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": {
+      "value": 52956000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "InventoryNet"
+     },
+     "accounts_receivable": {
+      "value": 263838000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "AccountsReceivableNetCurrent"
+     },
+     "deferred_revenue": {
+      "value": 5414000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "ContractWithCustomerLiabilityCurrent"
+     },
+     "cash_and_equivalents": {
+      "value": 309622000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "CashAndCashEquivalentsAtCarryingValue"
+     },
+     "total_debt": {
+      "value": 1596412000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "derived"
+     },
+     "capex": {
+      "value": 5149000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+     },
+     "depreciation_amortization": {
+      "value": 15200000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "DepreciationDepletionAndAmortization"
+     },
+     "net_income": {
+      "value": 159470000.0,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "NetIncomeLoss"
+     },
+     "diluted_eps": {
+      "value": 2.64,
+      "filed": "2019-02-26",
+      "source": "XBRL 首報值",
+      "tag": "EarningsPerShareDiluted"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "XBRL 首報值(稿內未逐季列出)"
    },
    {
@@ -153,6 +1103,24 @@
     "ocf": 202253000.0,
     "revenue_xbrl_first_filed_after_T1": false,
     "revenue_year_end_derived": false,
+    "extra": {
+     "inventory": "查不到",
+     "accounts_receivable": "查不到",
+     "deferred_revenue": "查不到",
+     "cash_and_equivalents": "查不到",
+     "total_debt": "查不到",
+     "capex": "查不到",
+     "depreciation_amortization": "查不到",
+     "net_income": {
+      "value": 85201000.0,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_eps": {
+      "value": 1.47,
+      "source": "EX-99.1 稿內文字"
+     },
+     "diluted_shares": "查不到"
+    },
     "revenue_source": "EX-99.1 稿內文字",
     "revenue_ex991": 508000000.0,
     "revenue_xbrl_for_reference": 508186000.0
@@ -166,143 +1134,52 @@
   "accel_rule": "稿內訊號季收入 ÷ XBRL 去年同季 − 1 = 稿內 g0;稿內 g0 − XBRL 上一季按年增速 ≥ 2pp 即加速(v1.2 第 7 項)"
  },
  "5_同業與行業": {
+  "sic4": "2834",
   "sic2": "28",
-  "peer_rule": "同一 SIC2 且反應日之前已有日線(已上市)的全部同業;「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值",
-  "n_listed_peers_same_sic2": 454,
-  "peer_list_all_same_sic2_tickers": [
-   "ABBV",
-   "ABEO",
-   "ABT",
-   "ABUS",
-   "ABVC",
-   "ACAD",
-   "ACB",
-   "ACET",
-   "ACHV",
-   "ACIU",
-   "ACNT",
-   "ACRS",
-   "ADIL",
-   "ADMA",
-   "AGEN",
-   "AGIO",
-   "AIM",
-   "AKBA",
-   "AKTX",
-   "ALB",
-   "ALDX",
-   "ALEC",
-   "ALKS",
-   "ALLO",
-   "ALNY",
-   "ALT",
-   "ALTO",
-   "AMGN",
-   "AMPH",
-   "AMRN",
-   "AMRX",
-   "AMTX",
-   "ANAB",
-   "ANIP",
-   "ANIX",
-   "APD",
-   "APVO",
-   "AQST",
-   "ARCT",
-   "ARDX",
-   "ARGX",
-   "ARMP",
-   "ARQ",
-   "ARVN",
-   "ARWR",
-   "ASIX",
-   "ASMB",
-   "ASND",
-   "ATHE",
-   "ATNM",
-   "ATOS",
-   "ATRA",
-   "ATYR",
-   "AUPH",
-   "AUTL",
-   "AVD",
-   "AVNT",
-   "AVTX",
-   "AVXL",
-   "AXSM",
-   "AXTA",
-   "AYTU",
-   "AZN",
-   "BAK",
-   "BCDA",
-   "BCPC",
-   "BCRX",
-   "BCTX",
-   "BDRX",
-   "BHC",
-   "BIIB",
-   "BIOX",
-   "BLRX",
-   "BMRA",
-   "BMRN",
-   "BMY",
-   "BTAI",
-   "BYSI",
-   "CANF",
-   "CAPR",
-   "CATX",
-   "CBIO",
-   "CBT",
-   "CBUS",
-   "CC",
-   "CDXS",
-   "CE",
-   "CELZ",
-   "CF",
-   "CGC",
-   "CGEN",
-   "CHD",
-   "CHRS",
-   "CL",
-   "CLDX",
-   "CLLS",
-   "CLRB",
-   "CLX",
-   "CMMB",
-   "COCP",
-   "COGT",
-   "COLL",
-   "CORT",
-   "COTY",
-   "CPHI",
-   "CPIX",
-   "CRBP",
-   "CRDF",
-   "CRDL",
-   "CRIS",
-   "CRMD",
-   "CRNX",
-   "CRON",
-   "CRSP",
-   "CRVO",
-   "CRVS",
-   "CSBR",
-   "CSW",
-   "CTMX",
-   "CTXR"
+  "bucket": "醫療",
+  "peer_rule": "同 SIC 四位數**且**同行業桶,且反應日之前已有日線(已上市);同 SIC4 上市同業不足 5 家退三位數;仍不足 5 家標「同業資料不足」。「兩個最大」按**反應日當日**的 60 日中位成交額排序,不用今日值。兩大同業的最近年報(申報日 ≤ T1)資本開支摘錄不得為空陣列。",
+  "peer_rule_applied": "sic4",
+  "n_listed_peers": 273,
+  "peer_list_all_tickers": [
+   "LLY",
+   "PFE"
   ],
   "peer_annual_reports_2_largest": [
    {
     "entity_id": "0000059478",
     "name": "ELI LILLY & Co",
     "ticker": "LLY",
-    "sic2": "28"
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2019-02-19",
+    "accn": "0000059478-19-000082",
+    "local_gz": "000005947819000082__peer10k.txt.gz",
+    "capex_excerpt": [
+     ",535.9 10,986.6 8,229.6 9,741.0 Property and equipment—net 8,919.5 8,826.5 8,252.6 8,053.5 7,963.9 Total assets 43,908.4 44,981.0 38,805.9 35,568.9 36,307.6 Long-term debt 11,639.7 9,940.5 8,367.8 7,972.4 5,332.8 Total equity 10,909.1 11,667.9 14,080.5 14,590.3 15,388.1 Supplementary Data Return on total equity 25.7 % (1.5 )% 18.5 % 16.1 % 13.7 % Return on assets 7.3 % (0.5 )% 7.5 % 6.8 % 6.8 % Capital expenditures $ 1,210.6 $ 1,076.8 $ 1,037.0 $ 1,066.2 $ 1,162.6 Depreciation and amortization 1,609.0 1,567.3 1,496.6 1,427.7 1,379.0 Effective tax rate (2) 14.9 % 109.3 % 18.9 % 13.7 % 20.3 % Revenue per employee $ 635,000 $ 563,000 $ 506,000 $ 484,000 $ 501,000 Number of employees 38,680 40,6",
+     "es in September 2023. See Note 10 to the consolidated financial statements for additional details. For the 133 rd consecutive year, we distributed dividends to our shareholders. Dividends of $2.25 per share and $2.08 per share were paid in 2018 and 2017 , respectively. In the fourth quarter of 2018 , effective for the dividend to be paid in the first quarter of 2019 , the quarterly dividend was increased to $0.645 per share, resulting in an indicated annual rate for 2019 of $2.58 per share. Capital expenditures of $1.21 billion during 2018 were $133.8 million more than in 2017 . In 2018 , we repurchased $4.15 billion of shares. We completed the $5.00 billion share repurchase program announce",
+     "ive January 1, 2018; therefore, repatriations of cash from our foreign subsidiaries to the U.S. provides us with additional liquidity in the U.S. without the requirement to pay U.S. taxes as existed prior to the enactment of the new tax law. We believe cash provided by operating activities, along with available cash and cash equivalents, should be sufficient to fund our normal operating needs, including installment payments of the Toll Tax, dividends paid to shareholders, share repurchases, and capital expenditures. Both domestically and abroad, we continue to monitor the potential impacts of the economic environment; the creditworthiness of our wholesalers and other customers, including for"
+    ],
+    "capex_status": "ok"
    },
    {
     "entity_id": "0000078003",
     "name": "PFIZER INC",
     "ticker": "PFE",
-    "sic2": "28"
+    "sic4": "2834",
+    "sic3": "283",
+    "has_annual": true,
+    "form": "10-K",
+    "filingDate": "2019-02-28",
+    "accn": "0000078003-19-000015",
+    "local_gz": "000007800319000015__peer10k.txt.gz",
+    "capex_excerpt": [
+     "licable laws. We also are cleaning up environmental contamination from past industrial activity at certain sites. See the Notes to Consolidated Financial Statements— Note 17 A3 . Contingencies and Certain Commitments — Legal Proceedings––Commercial and Other Matters in our 2018 Financial Report. As a result, we incurred capital and operational expenditures in 2018 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: • environment-related capital expenditures— $33 million ; and • other environment-related expenses— $162 million . While capital expenditures or operating costs for environmental compliance cannot be predicted with certainty, ",
+     "n sites. See the Notes to Consolidated Financial Statements— Note 17 A3 . Contingencies and Certain Commitments — Legal Proceedings––Commercial and Other Matters in our 2018 Financial Report. As a result, we incurred capital and operational expenditures in 2018 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: • environment-related capital expenditures— $33 million ; and • other environment-related expenses— $162 million . While capital expenditures or operating costs for environmental compliance cannot be predicted with certainty, we do not currently anticipate they will have a material effect on our capital expenditures or competitiv",
+     "nancial Report. As a result, we incurred capital and operational expenditures in 2018 for environmental compliance purposes and for the clean-up of certain past industrial activity as follows: • environment-related capital expenditures— $33 million ; and • other environment-related expenses— $162 million . While capital expenditures or operating costs for environmental compliance cannot be predicted with certainty, we do not currently anticipate they will have a material effect on our capital expenditures or competitive position. Climate change presents risks to our operations, including the potential for additional regulatory requirements and associated costs, and the potential for more fre"
+    ],
+    "capex_status": "ok"
    }
   ]
  },
@@ -324,7 +1201,16 @@
   "latest_data_date": "2019-05-08",
   "cutoff": "2019-05-08",
   "excluded": "T1 之後的價格、財報、公告整欄不入包",
-  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1` —— 那些非收入項目在 T1 那天尚未進入公開申報(多數屬該季 10-Q 才披露的項目),屬已知輕微越界,不影響收入方向的判斷(收入已改用稿內文字並另列 XBRL 值對照)。",
+  "known_leak_note": "財務數列的**收入**一律以稿內文字為準,不越界;其餘項目(毛利率、經營利潤、經營現金流)取 XBRL 首報值。逐列附布林 `revenue_xbrl_first_filed_after_T1`(不寫日期,免在包內留下 T1 之後的日子),凡為真者計入 `4_財務數列.n_rows_first_filed_after_T1`。加十項一律只收來源申報日 ≤ T1 的值,晚於 T1 者標「查不到」,不在包內放越界的日子。",
+  "transcript_date": "2019-05-08",
+  "iso_date_scan": {
+   "n_after_T1": 0,
+   "after_T1_dates": [],
+   "allowed_after_T1": [
+    "2019-05-09",
+    "2026-09-13"
+   ]
+  },
   "verified": true
  }
 }
