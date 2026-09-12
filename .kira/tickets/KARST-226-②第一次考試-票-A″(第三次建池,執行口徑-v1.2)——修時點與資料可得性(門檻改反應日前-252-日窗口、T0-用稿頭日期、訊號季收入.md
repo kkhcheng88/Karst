@@ -10,7 +10,7 @@ dependsOn: []
 claimedBy: exam2-A3b-ds
 epic: 方法論期(D-166)
 deliverable: KARST-D06
-raised: 指引解析器 40 句抽查錯誤率 52.5%、「收入上調」子集 55%,遠超執行口徑第 5 項的 15% 門檻——本場考試的入口池(1,802 宗,當中 190 宗靠指引)要不要先處置,才派判斷層?
+closed: 2026-09-13
 ---
 
 ## 工作內容
@@ -19,12 +19,12 @@ raised: 指引解析器 40 句抽查錯誤率 52.5%、「收入上調」子集 5
 
 ## 驗收條件
 
-- [ ] A3/thresholds.md 改為逐事件窗口門檻的描述統計(逐年的門檻中位、窗內事件數中位、用 504 日者數、門檻資料不足者數);反例:任何入池事件的門檻用到反應日當日或之後的事件,即不合格
-- [ ] A3/population.csv 每列有 t0_source(8-K/稿頭)、prior_day_abs_ret、signal_rev_in_text(真/假/容差內差值)、guidance_parse 各欄(metric/period/old_lo/old_hi/new_lo/new_hi/mid_change/raise_flag/eps_only)、applicability_reason(三類)與九個標籤欄;反例:任何入池事件 signal_rev_in_text 為假、或 guidance 只靠 raise 字眼而無舊新中點且未標「舊值缺」,即不合格
-- [ ] A3/guidance_audit.md 40 句抽查逐句列原句、解析結果、人核結果,錯誤率一數;> 15% 已舉手
-- [ ] A3/picks_before_results.md 主 84 + 後備 44、種子 20260912、每年每桶數、SHA-256;落檔時間早於 A3/packets/ 與 A3/controls_operating.csv 任何檔;最終訊息與票留言不含公司名或代號
-- [ ] A3/packets/ 84 包,任何一包含 T1 之後日期的資料即整批不合格;4_財務數列 訊號季一行標明來源=EX-99.1 稿內;控制檔另檔不入包
-- [ ] A3/執行紀錄——A3.md 含:v1.1 對 v1.2 的宇宙/入口池/抽樣差、290 宗無數列原因分類、adr_flag 成因、舊 Item 1.01 閘誤剔數、疑更早公開數、訊號季收入未在稿內數、適用性三類剔除數;A/ 與 A2/ git status 乾淨;不 commit
+- [x] A3/thresholds.md 改為逐事件窗口門檻的描述統計(逐年的門檻中位、窗內事件數中位、用 504 日者數、門檻資料不足者數);反例:任何入池事件的門檻用到反應日當日或之後的事件,即不合格
+- [x] A3/population.csv 每列有 t0_source(8-K/稿頭)、prior_day_abs_ret、signal_rev_in_text(真/假/容差內差值)、guidance_parse 各欄(metric/period/old_lo/old_hi/new_lo/new_hi/mid_change/raise_flag/eps_only)、applicability_reason(三類)與九個標籤欄;反例:任何入池事件 signal_rev_in_text 為假、或 guidance 只靠 raise 字眼而無舊新中點且未標「舊值缺」,即不合格
+- [x] A3/guidance_audit.md 40 句抽查逐句列原句、解析結果、人核結果,錯誤率一數;> 15% 已舉手
+- [x] A3/picks_before_results.md 主 84 + 後備 44、種子 20260912、每年每桶數、SHA-256;落檔時間早於 A3/packets/ 與 A3/controls_operating.csv 任何檔;最終訊息與票留言不含公司名或代號
+- [x] A3/packets/ 84 包,任何一包含 T1 之後日期的資料即整批不合格;4_財務數列 訊號季一行標明來源=EX-99.1 稿內;控制檔另檔不入包
+- [x] A3/執行紀錄——A3.md 含:v1.1 對 v1.2 的宇宙/入口池/抽樣差、290 宗無數列原因分類、adr_flag 成因、舊 Item 1.01 閘誤剔數、疑更早公開數、訊號季收入未在稿內數、適用性三類剔除數;A/ 與 A2/ git status 乾淨;不 commit
 
 ## 結果
 
@@ -48,3 +48,8 @@ raised: 指引解析器 40 句抽查錯誤率 52.5%、「收入上調」子集 5
 **要睇邊份稿**：
 - research/2026-09-methodology/2026-09-12-②第一次考試/A3/執行紀錄——A3.md
 - research/2026-09-methodology/2026-09-12-②第一次考試/A3/guidance_audit.md
+
+### agent:fable-main · 2026-09-13 04:10
+**裁決**：裁①的變體:鎖定清單不動、不重跑解析器、不改入口。只靠收入指引上調入池的事件(入口池 92 宗;主 84 與後備 44 之中各若干宗)由獨立核查者(KARST-230)逐宗人手核指引原句:指標是收入、期間相同、新中點高於舊中點且下限不降;核不過者屬預定的「資料資格」問題,按後備清單同年同桶順序補位並逐宗記錄——這是鎖定規則本來就容許的替換,不是第四次改入口。「兩者皆備」與「只靠加速」的事件不受解析器錯誤影響,不核。解析器 52.5% 的錯誤率記為日常掃描層的已知缺陷,主考試後另票修。另裁:(一)抓取用 12 條同時連線屬偏離指令,結果不受影響,記錄不追究;(二)財年末季由年報減九個月累計推算可用,包內已標;(三)取證包內嵌 EX-99.1 全文可以入庫——它是考試的凍結輸入,不是 D-134 所指的原文快取(edgar_cache 照舊不入庫);(四)guidance 欄每宗只放收入一條、容差內差值的界、包內不放逐列申報日期,三項照現狀;(五)宇宙內差 49 宗未追、併購正文未抓到 1,726 宗保守不剔、adr_flag 不用,三項記入執行口徑證據紀錄,不阻考試。
+
+**出處**：依用戶 2026-09-13 答覆(GPT 第三輪追問)「後備只能因預定的資料資格問題替換」「發現資料錯誤可以修,但要記錄哪些案例受影響、是否需要重鎖」推出;由主 agent(Fable)裁
