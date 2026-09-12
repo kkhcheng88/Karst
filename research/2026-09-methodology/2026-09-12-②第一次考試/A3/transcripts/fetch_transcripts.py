@@ -100,6 +100,14 @@ def d(s):
     return dt.date.fromisoformat(s[:10])
 
 
+def _parse_ok(s):
+    try:
+        d(s)
+        return True
+    except Exception:
+        return False
+
+
 # ---------------------------------------------------------------- selection
 def pick_row(rows, signal_q_end, t1, t0_date):
     """rows: [(fy, fq, report_date_str)] → (status, reason, chosen_row, days_late)
@@ -121,14 +129,13 @@ def pick_row(rows, signal_q_end, t1, t0_date):
         anchor = d(t0_date) if t0_date else win_hi
         chosen = min(inside, key=lambda r: (abs((r[3] - anchor).days), r[3]))
         return "有", "", chosen, 0
-    late = [r for r in parsed if win_hi < r[3] <= win_hi + dt.timedelta(days=14)]
+    # 越界窗取 45 日:電話會本身在 T0 開,但 Yahoo 的 report_date 是收錄日,
+    # 可以遲幾日到幾星期;45 日仍遠短於一季(91 日),不會撈到下一季的會。
+    late = [r for r in parsed if win_hi < r[3] <= win_hi + dt.timedelta(days=45)]
     if late:
         n = min(late, key=lambda r: r[3])
         return "越界", "有稿但 report_date 在 T1 之後", n, (n[3] - win_hi).days
-    near = [r for r in parsed if abs((r[3] - win_hi).days) <= 20]
-    if near:
-        return "缺", "財年對應不上(窗口前後 20 日內有稿但不在窗口內)", near[0], None
-    return "缺", "該季缺(公司有稿但窗口內外 20 日均無)", None, None
+    return "缺", "窗口 (signal_q_end, T1+45d] 內無稿", None, None
 
 
 # ---------------------------------------------------------------- main
@@ -150,10 +157,22 @@ def main():
                 except Exception:
                     continue
                 done[r["event_id"]] = r
+    FIELDS = ["event_id", "cohort", "year", "fq_a3", "signal_q_end", "T1", "status",
+              "reason", "def_fiscal_year", "def_fiscal_quarter", "report_date",
+              "days_from_T0", "n_segments", "n_chars", "has_qna",
+              "prev_tr_date", "next_tr_date", "err"]
+    for r in done.values():          # 舊行補齊新欄位
+        for k in FIELDS:
+            r.setdefault(k, "")
     prior = [r for r in done.values() if r["status"] != "錯誤"]
     maxn = None
     if "--max" in sys.argv:
         maxn = int(sys.argv[sys.argv.index("--max") + 1])
+    force = set()
+    if "--only" in sys.argv:
+        force = set(sys.argv[sys.argv.index("--only") + 1].split(","))
+    if force:
+        prior = [r for r in prior if r["event_id"] not in force]
 
     log = open(OUT_LOG, "a", encoding="utf-8")
     rows_out = list(prior)
@@ -170,7 +189,7 @@ def main():
             fq_a3=e["fq_a3"], signal_q_end=e["signal_q_end"], T1=e["t1"],
             status="", reason="", def_fiscal_year="", def_fiscal_quarter="",
             report_date="", days_from_T0="", n_segments="", n_chars="", has_qna="",
-            err="",
+            prev_tr_date="", next_tr_date="", err="",
         )
         try:
             if e["ticker"] not in tc:
@@ -229,6 +248,13 @@ def main():
                 rec["def_fiscal_year"], rec["def_fiscal_quarter"] = chosen[0], chosen[1]
                 rec["report_date"] = chosen[2]
                 rec["days_from_T0"] = days_late
+            else:  # 缺 —— 記最近的前後一稿,用來看是整段無稿還是單季漏洞
+                ds = sorted(d(rd) for _f, _q, rd in rows if _parse_ok(rd))
+                lo, hi = d(e["signal_q_end"]), d(e["t1"])
+                prevs = [x for x in ds if x <= lo]
+                nexts = [x for x in ds if x > hi]
+                rec["prev_tr_date"] = str(prevs[-1]) if prevs else ""
+                rec["next_tr_date"] = str(nexts[0]) if nexts else ""
         except Exception as ex:
             rec["status"] = "錯誤"
             rec["reason"] = type(ex).__name__
@@ -240,9 +266,9 @@ def main():
               f"{rec['reason']} seg={rec['n_segments']} ch={rec['n_chars']} "
               f"({round(time.time()-t0,1)}s)", flush=True)
 
-    cols = list(rows_out[0].keys())
+    rows_out.sort(key=lambda r: r["event_id"])
     with open(OUT_CSV, "w", encoding="utf-8", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=cols)
+        w = csv.DictWriter(fh, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(rows_out)
     log.close()
