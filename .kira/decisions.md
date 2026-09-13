@@ -389,3 +389,30 @@
   4. 兩臂處置(點值 DeepSeek、區間與核資料 Opus)降為待驗證配置,補區間寬度與成本後再定
 
 - 影響:地圖②格、能力卡 v1 證據與權限紀錄檔、報告第八節。
+
+## D-179 用戶定義產品(2026-09-14):第一版是可日常使用的投研工作台,不是研究品——以最強前沿模型、最新資料(不在訓練資料內)與強制紀律,對市場、價值鏈、基本面、然後技術面作完整分析,並按本人投資原則與大師知識所定的時間框架給出投資建議;能力考試只作系統品質改善,不作功能交付的前提;「已量度 / 未量度」逐格標籤否決
+- 類型:決策
+- 狀態:有效
+- 日期:2026-09-14
+
+- 出處:用戶 2026-09-14 原話(與 GPT 對話,原文 `research/2026-09-methodology/2026-09-13-②第五輪外部評論與新架構討論(原文).md`;三段原話見 quote 欄)。主 agent 兩次提案(「先跑一宗真實事件」、「每格標已量度/未量度」)均被用戶否決,本條記用戶裁決。
+
+- 背景:主 agent 於根基重整後提出第一版只做「資料來源正本、取證包管線、論點卡、一宗真實事件跑通」,並要求每格判斷標「已量度 / 未量度」。用戶指出:項目是投資項目不是學術研究,第一天起產物就要能被本人消費;「跑通一宗事件」不切實際(市場每日演變,鎖不住);TradingAgents 一類系統都是一套通用 agent team 適用於任何股票;逐格標籤只是把責任推回投資者,而且過去量度不代表未來。主 agent 立場(D-110):兩點都認錯——「一宗事件」把產品又寫成研究品;標籤是品管工具放錯了位置,正確形式是每格寫依據、關鍵假設、最強反證、缺哪項資料及其影響,品管紀錄留後台。補一句:②考試證明紀律與資料比模型更決定質素(兩模型點值只差 0.5 點,取證包錯位卻可翻轉結論),所以本定義的落點在資料層與版本控制,不在框架。
+
+- 決策:
+  1. 第一版交付通用的投資分析與追蹤工作台:三個入口(股票分析 / 觀察名單與持倉追蹤 / 今日市場),股票頁首屏六行(目前建議、主要理由、關鍵假設、最強反證、改變行動的條件、與上次相比),另含技術結構與動能、內在價值正向與反向及計算依據、前瞻投資計劃與風險回報
+  2. 分析紀律固定六層並有因果連結:市場與宏觀 → 產業與價值鏈 → 公司基本面 → 估值與預期 → 技術與市場行為 → 投資綜合;時間框架按本人原則作共同約束;各角色開工前讀同一份投資委託(目的與期限、偏好與風險、持倉與資金、買賣原則)
+  3. 負責關鍵判斷的強模型直接閱讀原始證據、自行補查、可挑戰上游摘要;便宜模型與程式只做去重、格式、計算(與 D-175 一致)
+  4. 資料按來源與維度分組,帶時間戳與差異,只重評受影響部分;產業與價值鏈層研究共用並傳到公司(用戶原話「the key architecture concept is actually on the version control of the stock related information and industry level information」);資料模型第一天設計
+  5. ②第一次考試與 84 宗回歸集只作系統品質改善與日後成效評估,不作逐格信任標籤,不作交付前提;實際使用中的每張卡連資料截止時間留存
+  6. 主 agent 附加立場(非用戶裁):引擎用 SQLite、同一套表結構日後可換;技術面只在進出場與風險回報層;WeKnora 與 TencentDB Agent Memory 第一版不接,待大量產業 PDF 需語義檢索時再評
+
+- **用戶原話(原文照錄)**
+
+  > but you know what, at the end of the day it is an investment oriented project but not a research for academic project. So I think from day 1 it should need to be leading to the objective is that the result can be easily consumed by me.
+  >
+  > I think if the agent state whatever 已量度 or not is stupid. As we are all investing on our latest recognition or knowledge to the market. […] it is only spining the responsibility to me and I always do accept as it is real money. And even if it is 已量度, it is the past and doesn't really mean the future right?
+  >
+  > The whole model or application, perhaps is not try to invention a way or a workflow that is guranteed can beat the market in the future. But at the least it can leverage the best capability of the latest front-tier LLM model with the highest intelligence, with the latest information (as it is not inside your training data) and forcing the disipline to provide the best investment advise which is not limited to the easier of data source which is Price, but also a complete analyssis of Not only from K Chart, but Market, Value-Chain, Fundmentals, then TA. And taking the correct timeframe which match with the investment principle of myself and the knowledge from the masters.
+
+- 影響:D12 改名「投研工作台 v1」;票序 資料與版本模型 → 投資委託與分析紀律 → 股票頁 → 觀察名單 → 今日市場;①估值計算器與價值鏈人手表由 tag 還原作種子;地圖 D12 格、② 對帳單 §十二 第 18–20 條。
