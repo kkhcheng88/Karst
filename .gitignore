@@ -29,3 +29,11 @@ research/2026-09-methodology/*/docs/
 research/2026-09-methodology/*/*/docs/
 research/2026-09-methodology/*/edgar_cache/
 research/2026-09-methodology/*/*/edgar_cache/
+# 2026-09-12: 票 A 的中間快取含申報原文摘句(判指引正則的窗),同樣不入庫
+research/2026-09-methodology/*/*/cache/
+
+# reset 2026-09-13: tool caches
+.pytest_cache/
+.ruff_cache/
+.skill-compass/
+__pycache__/
