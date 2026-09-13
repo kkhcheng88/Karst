@@ -38,6 +38,30 @@ EVENTS = ["E001", "E009", "E017", "E025", "E033", "E041", "E049", "E057", "E065"
 BAD_COMMA = {"E033", "E041", "E065"}       # 千分位逗號,E073 另法
 ARMS = [("ds", "DeepSeek 臂"), ("opus", "Opus 臂")]
 
+# 讀稿核實:逐份 Q+1／Q+2 業績稿讀指引方向(機械正則查不到「撤銷」,亦分不出上調)。
+# 只作敏感度;主口徑仍照執行口徑 v1 的機械正則。
+READ_GUIDE = {
+    "E001": {"Q+1": ("無", "標題只報第四季及全年業績"), "Q+2": ("重申", "Outlook Reaffirmed for Fiscal Year 2016")},
+    "E009": {"Q+1": ("修訂", "Full year 2016 guidance is revised;reducing LOE guidance(成本項)"),
+             "Q+2": ("非業績稿", "2017-01-31 井位與年末指標稿,非業績稿")},
+    "E017": {"Q+1": ("無", "只報第三季業績"), "Q+2": ("無", "只報第四季及全年業績")},
+    "E025": {"Q+1": ("無", "只報第三季業績"), "Q+2": ("無", "Q4 Revenue $377M, Up 13%")},
+    "E033": {"Q+1": ("上調", "ANNOUNCES SECOND-QUARTER 2019 RESULTS AND RAISES FULL-YEAR GUIDANCE"),
+             "Q+2": ("上調", "RAISES FULL-YEAR REVENUE AND ADJUSTED EBITDA GUIDANCE RANGES")},
+    "E041": {"Q+1": ("上調", "drove fourth quarter results above the top end of our guidance"),
+             "Q+2": ("無", "只報第一季業績")},
+    "E049": {"Q+1": ("無", "PRELIMINARY 3q21 results, provides business update"),
+             "Q+2": ("無", "PRELIMINARY 4q21 results, provides business update")},
+    "E057": {"Q+1": ("下修", "full year 2022 production is expected to be modestly below the low end of "
+                              "Talos's original guidance range"),
+             "Q+2": ("無", "Provides 2023 Guidance(開新財年指引)")},
+    "E065": {"Q+1": ("上調", "Net sales now expected +1~2%, previously −2%~+1%;support our decision to "
+                              "raise our fiscal year 2023 outlook"),
+             "Q+2": ("無", "Provides FY24 Outlook(開新財年指引)")},
+    "E073": {"Q+1": ("重申", "Reiterates Full Year Financial Guidance"),
+             "Q+2": ("下修", "Company temporarily withdraws guidance due to ongoing tariff uncertainty")},
+}
+
 sys.path.insert(0, str(A2))
 import finlib  # noqa: E402
 
@@ -234,10 +258,13 @@ def main() -> None:
                 gd_txt["Q+%d" % (k + 1)] = "查不到(%s)" % how
                 continue
             hits = guidance_down(txt)
-            gd_txt["Q+%d" % (k + 1)] = ("有下修" if hits else "無") + "(%s;%s)" % (acc, how)
+            head = re.sub(r"\s+", " ", txt).strip()[:110]
+            gd_txt["Q+%d" % (k + 1)] = "%s(%s;%s;%s)" % ("有下修" if hits else "無", acc, how, head)
             gd += hits
         guide = "有下修" if gd else ("無" if all(v.startswith("無") for v in gd_txt.values())
                                      else "查不到")
+        rg = READ_GUIDE[eid]
+        guide_read = "有下修" if any(v[0] == "下修" for v in rg.values()) else "無"
 
         # --- 兩臂機械版
         arm = {}
@@ -259,7 +286,9 @@ def main() -> None:
                "g0": g0, "guide_down": guide, "guide_detail": "; ".join(
                    "%s %s" % (k, v) for k, v in gd_txt.items()),
                "m1": m1, "m2": m2, "c1": c1, "c2": c2, "c3": c3,
-               "guide_snip": " || ".join(gd)[:400]}
+               "guide_read": guide_read,
+               "guide_read_detail": "; ".join(
+                   "%s %s(%s)" % (q, v[0], v[1]) for q, v in rg.items())}
         for i in range(4):
             row["q%d_end" % (i + 1)] = ends[i] or ""
             row["yoy%d" % (i + 1)] = yoys[i]
@@ -272,6 +301,10 @@ def main() -> None:
             if ok is not None and guide == "有下修":
                 ok = False
             row["persist_%s" % tag] = ok
+        row["persist_08_read"] = (None if m1 is None
+                                  else ((m1 >= 0.8 * g0) and guide_read != "有下修"))
+        row["persist_alt_read"] = (None if m1 is None
+                                   else ((m1 >= g0) and guide_read != "有下修"))
         no_dn = (guide != "有下修")
         row["m1_ge_0.8g0"] = None if m1 is None else (m1 >= 0.8 * g0)
         row["c2_predicts_persist"] = None if c2 is None else (c2 >= 0.8 * g0)
@@ -290,6 +323,24 @@ def main() -> None:
               "ds=", arm["ds"]["g2p"], arm["ds"]["persist"], "opus=", arm["opus"]["g2p"],
               arm["opus"]["persist"])
 
+    notes += [
+        "Q+1..Q+4 的期末按訊號季末加三、六、九、十二個月定位(±16 日),不用"
+        "「序列中接下來四個期末」——XBRL 單季列有缺口(CLX 缺 2023-06-30、SM 缺 2016-12-31、"
+        "AEHR 缺 2025-05-31 等),跳過缺口即把 Q+3 當成 Q+2。缺者由累計列相減補齊。",
+        "E009(SM Energy)的 M2 受報表口徑斷層污染:2017Q1 的 Revenues 首報值 372.7M、"
+        "2017Q2 只 120.7M(同一個 tag、同一份 10-Q 內 6 個月數 = 兩季之和),令 Q+3 出現 +160%、"
+        "Q+4 出現 −65% 兩格;M1 不受影響。",
+        "E009 Q+2 的指引檢查命中 2017-01-31 的井位與年末指標稿(非業績稿);該司第四季業績稿"
+        "在 population 的 signal_q_end 空白,已按日期窗認事件,認到的不是業績稿,該格標"
+        "「非業績稿」。",
+        "**C1 有一個明顯的數據缺陷(不在本票範圍,原檔不改,照報並註)**:E033 的 C1 = −37.2%,"
+        "與該司當日上調全年收入指引的方向相反。核 `A2/s8_controls.py` 的 `parse_guidance`:"
+        "它在「revenue」±320 字元的窗內把所有帶單位的金額取 (min+max)/2,同一段窗同時含"
+        "收入指引 $8.30–8.50B／$8.35–8.55B 與調整後 EBITDA 指引 $3.35–3.50B／$3.40–3.55B,"
+        "量級比 8.55/3.35 = 2.55 未過 3 倍的守閘,於是指引中值算成 (3.35+8.55)/2 = 5.95B。"
+        "只用收入重算,餘下三季度應為低單位正增長。這一格令 C1 的 MAE 全不可用。",
+    ]
+
     # ------------------------------------------------------------ 寫 CSV
     fields = ["event_id", "ticker", "cik", "signal_q_end", "t1", "g0", "q1_end", "q2_end",
               "q3_end", "q4_end", "yoy1", "yoy2", "yoy3", "yoy4", "m1", "m2", "guide_down",
@@ -300,7 +351,8 @@ def main() -> None:
                                                 "hit_g4")]
     fields += ["c1_err", "c2_err", "c3_err", "c1_hit2pp", "c2_hit2pp", "c3_hit2pp",
                "persist_08", "persist_alt", "persist_07", "persist_09", "m1_ge_0.8g0",
-               "c2_predicts_persist", "guide_snip"]
+               "c2_predicts_persist", "guide_read", "guide_read_detail", "persist_08_read",
+               "persist_alt_read"]
     with open(OUT_CSV, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
@@ -336,7 +388,8 @@ def main() -> None:
             sel = [r for r in rows_out if r["%s_persist" % key] == p]
             t = sum(1 for r in sel if r["persist_08"] is True)
             t2 = sum(1 for r in sel if r["persist_alt"] is True)
-            cross[(label, p)] = (t, t2, len(sel))
+            t3 = sum(1 for r in sel if r["persist_08_read"] is True)
+            cross[(label, p)] = (t, t2, t3, len(sel))
 
     # 分歧格
     div = []
@@ -354,8 +407,16 @@ def main() -> None:
                     sel.append(r)
             div.append((label, kind, sel))
 
+    # 敏感度:0.7／0.9 門檻的延續宗數(機械下修口徑)
+    sens = []
+    for thr in (0.7, 0.8, 0.9):
+        n = sum(1 for r in rows_out
+                if r["m1"] is not None and r["m1"] >= thr * r["g0"]
+                and r["guide_down"] != "有下修")
+        sens.append((thr, n))
+
     # ------------------------------------------------------------ 寫 MD
-    write_md(rows_out, summary, cross, div, notes, gd_txt)
+    write_md(rows_out, summary, cross, div, notes, gd_txt, sens)
     print("wrote", OUT_MD, OUT_CSV)
 
 
@@ -363,7 +424,11 @@ def pct(x, dash="—"):
     return dash if x is None else "%+.1f%%" % (100 * x)
 
 
-def write_md(rows, summary, cross, div, notes, gd_txt):
+def pp(x, dash="—"):
+    return dash if x is None else "%.1f%%" % (100 * x)
+
+
+def write_md(rows, summary, cross, div, notes, gd_txt, sens):
     L = []
     A = L.append
     A("# 結果對照——②十宗試跑 兩臂(DeepSeek／Opus)")
@@ -389,14 +454,16 @@ def write_md(rows, summary, cross, div, notes, gd_txt):
                 pct(r["%s_err_g2" % key]),
                 ("中" if r["%s_hit_g2" % key] else "否") if r["%s_hit_g2" % key] is not None else "—"))
     A("")
-    A("| 事件 | C1 指引隱含 | C2 趨勢延續 | C3 訊號持續 | C1 誤差 | C2 誤差 | C3 誤差 | 延續(0.8×g0) | 延續(M1≥g0) |")
-    A("|---|---|---|---|---|---|---|---|---|")
+    A("| 事件 | C1 指引隱含 | C2 趨勢延續 | C3 訊號持續 | C1 誤差 | C2 誤差 | C3 誤差 | "
+      "延續(0.8×g0) | 延續(M1≥g0) | 延續(讀稿下修) | C2 判延續? |")
+    A("|---|---|---|---|---|---|---|---|---|---|---|")
+    T = {True: "延續", False: "不延續", None: "—"}
     for r in rows:
-        A("| %s %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+        A("| %s %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
             r["event_id"], r["ticker"], pct(r["c1"]), pct(r["c2"]), pct(r["c3"]),
             pct(r["c1_err"]), pct(r["c2_err"]), pct(r["c3_err"]),
-            {True: "延續", False: "不延續", None: "—"}[r["persist_08"]],
-            {True: "延續", False: "不延續", None: "—"}[r["persist_alt"]]))
+            T[r["persist_08"]], T[r["persist_alt"]], T[r["persist_08_read"]],
+            T[r["c2_predicts_persist"]]))
     A("")
     A("## 二、彙總表")
     A("")
@@ -404,14 +471,20 @@ def write_md(rows, summary, cross, div, notes, gd_txt):
     A("|---|---|---|---|---|---|")
     for s in summary:
         A("| %s | %s | %s | %s | %d | %s |" % (
-            s[0], s[1], pct(s[2]), pct(s[3]), s[4], s[5]))
+            s[0], s[1], pp(s[2]), pp(s[3]), s[4], s[5]))
+    A("")
+    A("MAE 為絕對誤差(百分點),非方向性;區間命中 = 實際值落於該臂八成區間內。"
+      "C1 十宗之中只有兩宗有值(其餘八宗指引抓不到),C1 的 MAE 不可用 —— 見第六節缺失。")
     A("")
     A("### 持續性判級 × 延續二值(交叉表)")
     A("")
-    A("| 臂 | 判級 | 延續(0.8×g0) | 延續(M1≥g0) | n |")
-    A("|---|---|---|---|---|")
-    for (label, p), (t, t2, n) in cross.items():
-        A("| %s | %s | %d/%d | %d/%d | %d |" % (label, p, t, n, t2, n, n))
+    A("| 臂 | 判級 | 延續(0.8×g0) | 延續(M1≥g0) | 延續(0.8×g0,讀稿下修) | n |")
+    A("|---|---|---|---|---|---|")
+    for (label, p), (t, t2, t3, n) in cross.items():
+        A("| %s | %s | %d/%d | %d/%d | %d/%d | %d |" % (label, p, t, n, t2, n, t3, n, n))
+    A("")
+    A("敏感度(全池十宗,機械下修口徑):門檻 0.7 → %d 宗延續、0.8 → %d 宗、0.9 → %d 宗。"
+      % (sens[0][1], sens[1][1], sens[2][1]))
     A("")
     A("### 分歧格")
     A("")
@@ -426,7 +499,30 @@ def write_md(rows, summary, cross, div, notes, gd_txt):
                 label, nm, r["event_id"], r["ticker"], pct(r["m1"]),
                 {True: "延續", False: "不延續", None: "—"}[r["persist_08"]]))
     A("")
-    A("## 三、g0 為負的四宗(分開講)")
+    A("## 三、指引下修判準:機械正則與讀稿各是什麼結果")
+    A("")
+    A("執行口徑 v1 的判準是「lower／lowered／reduce／reduced／cut 與 guidance／outlook 相距"
+      " ≤130 字元」。照此跑,十宗之中三宗判「有下修」(E009／E033／E065);**逐份讀稿核實,"
+      "三宗之中兩宗其實是上調(E033／E065)、一宗只是成本指引下調(E009,收入指引方向未明)**。"
+      "反過來,兩宗真正的下修——E057「全年產量將略低於原指引下限」、E073「因關稅不確定"
+      "暫時撤回指引」——正則一條都認不出(「below the low end」「withdraws」不在詞表)。"
+      "**主表照預先寫死的機械口徑報數;讀稿一欄另列,當敏感度。**")
+    A("")
+    A("| 事件 | 季 | 機械口徑 | 讀稿核實 | 讀稿依據(原文) |")
+    A("|---|---|---|---|---|")
+    for r in rows:
+        rg = READ_GUIDE[r["event_id"]]
+        for q in ("Q+1", "Q+2"):
+            mm = re.search(re.escape(q) + r" (有下修|無|查不到)", r["guide_detail"])
+            mech = mm.group(1) if mm else "—"
+            lab, why = rg[q]
+            A("| %s %s | %s | %s | %s | %s |" % (
+                r["event_id"], r["ticker"], q, mech, lab, why[:150]))
+    A("")
+    A("受影響的三宗:**E033／E065** 機械口徑判不延續而讀稿判上調;**E073** 機械口徑判無下修"
+      "(正則只認 lower/reduce/cut,認不出 temporarily withdraws guidance)而讀稿判下修。")
+    A("")
+    A("## 四、g0 為負的四宗(分開講)")
     A("")
     neg = [r for r in rows if r["g0"] < 0]
     A("事件:%s。" % "、".join("%s(%s)g0=%s" % (r["event_id"], r["ticker"], pct(r["g0"]))
@@ -442,7 +538,7 @@ def write_md(rows, summary, cross, div, notes, gd_txt):
             pct(r["c2"]),
             "／".join("%s=%s" % (lab, r["%s_persist" % k]) for k, lab in ARMS)))
     A("")
-    A("## 四、還原步驟(DeepSeek 臂四行錯位;可重現)")
+    A("## 五、還原步驟(DeepSeek 臂四行錯位;可重現)")
     A("")
     A("四行原檔一字不改。還原在 `試跑/score_pilot.py` 的 `load_row()` 內:")
     A("")
@@ -457,7 +553,7 @@ def write_md(rows, summary, cross, div, notes, gd_txt):
       "`biggest_unknown`。切完 27 欄。")
     A("3. 還原後逐行斷言欄數 = 27,並核 `persistence_overall` 落於 {高,中,低,無法判斷}。")
     A("")
-    A("## 五、資料來源與缺失")
+    A("## 六、資料來源與缺失")
     A("")
     A("| 項 | 來源 |")
     A("|---|---|")
@@ -476,7 +572,38 @@ def write_md(rows, summary, cross, div, notes, gd_txt):
         for n in notes:
             A("- %s" % n)
         A("")
-    A("## 六、聲明")
+    A("## 七、小結(方向觀察,不是能力宣稱)")
+    A("")
+    arms_g2 = {s[0]: s for s in summary if s[1] == "兩季"}
+    A("1. **點值比兩個對照準,但其中一個對照本來就笨。** 兩季 MAE 中位:Opus %s、DeepSeek %s,"
+      "對 C2 趨勢延續 %s、C1 指引隱含 %s(只兩宗有值)。但**C3(=訊號季增速 g0 原封不動)**"
+      "中位只 %s,與兩臂同等 —— 即在十宗之中,「不用任何判斷、直接把訊號季增速當預測」"
+      "這個零成本基準已經和兩臂打平。兩臂真正贏 C3 的地方在**平均**:C3 平均 %s,兩臂 %s／%s。差異"
+      "全部來自 g0 極端那幾宗(E073 g0 −36％、E057 +71％、E009 −34％),C3 在那裡大錯而兩臂貼近。"
+      % (pp(arms_g2["Opus 臂"][2]), pp(arms_g2["DeepSeek 臂"][2]),
+         pp([s for s in summary if s[0] == "C2 趨勢延續"][0][2]),
+         pp([s for s in summary if s[0] == "C1 指引隱含"][0][2]),
+         pp([s for s in summary if s[0] == "C3 訊號持續(=g0)"][0][2]),
+         pp([s for s in summary if s[0] == "C3 訊號持續(=g0)"][0][3]),
+         pp(arms_g2["DeepSeek 臂"][3]), pp(arms_g2["Opus 臂"][3])))
+    A("2. **兩臂之間分不開。** Opus 中位 %s 對 DeepSeek %s,十宗不足以分勝負;"
+      "區間命中兩季 %s 對 %s、四季 %s 對 %s。"
+      % (pp(arms_g2["Opus 臂"][2]), pp(arms_g2["DeepSeek 臂"][2]),
+         arms_g2["Opus 臂"][5], arms_g2["DeepSeek 臂"][5],
+         [s for s in summary if s[0] == "Opus 臂" and s[1] == "四季"][0][5],
+         [s for s in summary if s[0] == "DeepSeek 臂" and s[1] == "四季"][0][5]))
+    A("3. **判級分不開。** DeepSeek 臂十宗全部判「中」,無高低可分。Opus 臂判高 1 宗"
+      "(E049,實際延續)、判低 4 宗(實際 2 宗延續、2 宗不延續)—— 判低組反而一半延續。"
+      "分歧格:Opus 判高而 C2 判不延續的一宗(E049)模型對;判低而 C2 判延續的兩宗一對一錯。")
+    A("4. **指引正則不可靠**,見第三節:三宗命中之中兩宗其實上調、一宗只是成本指引;"
+      "而兩宗真正的下修(E057、E073)一條都認不出。用 0.8×g0 定義時,三宗(M1 ≥ 0.8×g0 "
+      "卻被機械判成不延續)的解讀會整個反轉。")
+    A("5. **污染**:十宗反應日在 2015–2024,兩臂都可能記得結局。最值得警惕的是輸贏分佈"
+      "集中在 g0 極端的三宗 —— 那幾宗也正是最容易有記憶的知名事件。上面任何一條都不足以"
+      "支持或否定能力假說;主考試(84 宗)才按 `執行口徑——②第一次考試-v1.md` 第六節的"
+      "成敗定義判。")
+    A("")
+    A("## 八、聲明")
     A("")
     A("十宗事件的反應日全部在 2015–2024,模型訓練資料涵蓋其後結果,"
       "**受記憶污染**;而且只有十宗,不是隨機樣本。"
