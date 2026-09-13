@@ -1,0 +1,624 @@
+{
+ "E017": {
+  "n_diff_lines": 10,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': -0.083232, 'prev_q_yoy': -0.162186, 'accel_pp': 7.8954, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 7.8903 → 7.8954",
+   "4_財務數列.extra_items_rule: '加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。' → '加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」;KARST-236:同一期末跨 tag 取最早申報)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。'",
+   "4_財務數列.g0_signal_q_yoy: -0.083284 → -0.083232",
+   "4_財務數列.quarters[3].operating_income: None → -2053000.0",
+   "4_財務數列.quarters[7].ocf: 2969000.0 → None",
+   "4_財務數列.quarters[7].operating_income: -5575000.0 → 5575000.0",
+   "4_財務數列.quarters[7].revenue_ex991: 70600000.0 → 70604000.0",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",
+   "4_財務數列.source: '訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值' → '訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值(KARST-236:同一期末跨 tag 取最早申報,累計差分補缺格)'"
+  ],
+  "row_changes": [
+   {
+    "row": 3,
+    "period_end": "2015-12-31",
+    "col": "operating_income",
+    "before": null,
+    "after": -2053000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "ocf",
+    "before": 2969000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "operating_income",
+    "before": -5575000.0,
+    "after": 5575000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "revenue_ex991",
+    "before": 70600000.0,
+    "after": 70604000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "EX-99.1 稿內文字",
+     "operating_income": "EX-99.1 稿內文字",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 7.8903,
+  "accel_after": 7.8954,
+  "g0_before": -0.083284,
+  "g0_after": -0.083232,
+  "prev_before": -0.162186,
+  "prev_after": -0.162186,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "EX-99.1 稿內文字",
+   "operating_income": "EX-99.1 稿內文字",
+   "ocf": "查不到"
+  }
+ },
+ "E021": {
+  "n_diff_lines": 9,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': 0.095884, 'prev_q_yoy': 0.022387, 'accel_pp': 7.3497, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 7.342 → 7.3497",
+   "4_財務數列.g0_signal_q_yoy: 0.095808 → 0.095884",
+   "4_財務數列.n_rows_first_filed_after_T1: 1 → 0",
+   "4_財務數列.quarters[7].ocf: 112045000.0 → None",
+   "4_財務數列.quarters[7].revenue: 610065000.0 → 605342000.0",
+   "4_財務數列.quarters[7].revenue_ex991: 605300000.0 → 605342000.0",
+   "4_財務數列.quarters[7].revenue_xbrl_first_filed_after_T1: True → False",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}"
+  ],
+  "row_changes": [
+   {
+    "row": 7,
+    "period_end": "2017-03-31",
+    "col": "ocf",
+    "before": 112045000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2017-03-31",
+    "col": "revenue",
+    "before": 610065000.0,
+    "after": 605342000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2017-03-31",
+    "col": "revenue_ex991",
+    "before": 605300000.0,
+    "after": 605342000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2017-03-31",
+    "col": "revenue_xbrl_first_filed_after_T1",
+    "before": true,
+    "after": false
+   },
+   {
+    "row": 7,
+    "period_end": "2017-03-31",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "查不到",
+     "operating_income": "EX-99.1 稿內文字",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 7.342,
+  "accel_after": 7.3497,
+  "g0_before": 0.095808,
+  "g0_after": 0.095884,
+  "prev_before": 0.022387,
+  "prev_after": 0.022387,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "查不到",
+   "operating_income": "EX-99.1 稿內文字",
+   "ocf": "查不到"
+  }
+ },
+ "E022": {
+  "n_diff_lines": 12,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': 0.095843, 'prev_q_yoy': 0.00011, 'accel_pp': 9.5733, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 9.5762 → 9.5733",
+   "4_財務數列.extra_items_rule: '加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。' → '加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」;KARST-236:同一期末跨 tag 取最早申報)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。'",
+   "4_財務數列.g0_signal_q_yoy: 0.095872 → 0.095843",
+   "4_財務數列.quarters[4].revenue: 878510000.0 → 779641000.0",
+   "4_財務數列.quarters[5].revenue: 894930000.0 → 877341000.0",
+   "4_財務數列.quarters[6].revenue: 936262000.0 → 853856000.0",
+   "4_財務數列.quarters[7].ocf: 110474000.0 → None",
+   "4_財務數列.quarters[7].revenue: 952549000.0 → 887277000.0",
+   "4_財務數列.quarters[7].revenue_ex991: 887300000.0 → 887277000.0",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",
+   "4_財務數列.source: '訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值' → '訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值(KARST-236:同一期末跨 tag 取最早申報,累計差分補缺格)'"
+  ],
+  "row_changes": [
+   {
+    "row": 4,
+    "period_end": "2016-04-02",
+    "col": "revenue",
+    "before": 878510000.0,
+    "after": 779641000.0
+   },
+   {
+    "row": 5,
+    "period_end": "2016-07-02",
+    "col": "revenue",
+    "before": 894930000.0,
+    "after": 877341000.0
+   },
+   {
+    "row": 6,
+    "period_end": "2016-10-01",
+    "col": "revenue",
+    "before": 936262000.0,
+    "after": 853856000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "ocf",
+    "before": 110474000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "revenue",
+    "before": 952549000.0,
+    "after": 887277000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "revenue_ex991",
+    "before": 887300000.0,
+    "after": 887277000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2016-12-31",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "查不到",
+     "operating_income": "EX-99.1 稿內文字",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 9.5762,
+  "accel_after": 9.5733,
+  "g0_before": 0.095872,
+  "g0_after": 0.095843,
+  "prev_before": 0.00011,
+  "prev_after": 0.00011,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "查不到",
+   "operating_income": "EX-99.1 稿內文字",
+   "ocf": "查不到"
+  }
+ },
+ "E024": {
+  "n_diff_lines": 21,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': 0.053667, 'prev_q_yoy': -0.035935, 'accel_pp': 8.9602, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 9.2726 → 8.9602",
+   "4_財務數列.extra_items_rule: '加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。' → '加十項(XBRL 首報值,每一格的來源申報日 ≤ T1,晚於 T1 者一律「查不到」;KARST-236:同一期末跨 tag 取最早申報)。**訊號季那一行只認 EX-99.1 稿內有的數字**(數字匹配 + 附近要有該項的關鍵字),稿內沒有者標「查不到」。非訊號季者附 `filed` = 該值最早申報日(必 ≤ T1)。'",
+   "4_財務數列.g0_signal_q_yoy: 0.056791 → 0.053667",
+   "4_財務數列.n_rows_first_filed_after_T1: 1 → 0",
+   "4_財務數列.quarters[0].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[1].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[2].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[2].revenue: 952000000.0 → 987900000.0",
+   "4_財務數列.quarters[3].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[3].revenue: 1147000000.0 → 1088200000.0",
+   "4_財務數列.quarters[4].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[4].revenue: 1440000000.0 → 1352800000.0",
+   "4_財務數列.quarters[5].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[5].revenue: 1180000000.0 → 1064800000.0",
+   "4_財務數列.quarters[6].extra.accounts_receivable.tag: 'AccountsReceivableNetCurrent' → 'ReceivablesNetCurrent'",
+   "4_財務數列.quarters[7].ocf: 134800000.0 → None",
+   "4_財務數列.quarters[7].revenue_ex991: 1150000000.0 → 1146600000.0",
+   "4_財務數列.quarters[7].revenue_xbrl_first_filed_after_T1: True → False",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",
+   "4_財務數列.source: '訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值' → '訊號季收入 = EX-99.1 稿內文字(v1.2 第 4 項);其餘各季 = data/sec/companyfacts XBRL 首報值(KARST-236:同一期末跨 tag 取最早申報,累計差分補缺格)'"
+  ],
+  "row_changes": [
+   {
+    "row": 2,
+    "period_end": "2016-07-02",
+    "col": "revenue",
+    "before": 952000000.0,
+    "after": 987900000.0
+   },
+   {
+    "row": 3,
+    "period_end": "2016-10-01",
+    "col": "revenue",
+    "before": 1147000000.0,
+    "after": 1088200000.0
+   },
+   {
+    "row": 4,
+    "period_end": "2016-12-31",
+    "col": "revenue",
+    "before": 1440000000.0,
+    "after": 1352800000.0
+   },
+   {
+    "row": 5,
+    "period_end": "2017-04-01",
+    "col": "revenue",
+    "before": 1180000000.0,
+    "after": 1064800000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2017-09-30",
+    "col": "ocf",
+    "before": 134800000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2017-09-30",
+    "col": "revenue_ex991",
+    "before": 1150000000.0,
+    "after": 1146600000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2017-09-30",
+    "col": "revenue_xbrl_first_filed_after_T1",
+    "before": true,
+    "after": false
+   },
+   {
+    "row": 7,
+    "period_end": "2017-09-30",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "EX-99.1 稿內文字",
+     "operating_income": "EX-99.1 稿內文字",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 9.2726,
+  "accel_after": 8.9602,
+  "g0_before": 0.056791,
+  "g0_after": 0.053667,
+  "prev_before": -0.035935,
+  "prev_after": -0.035935,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "EX-99.1 稿內文字",
+   "operating_income": "EX-99.1 稿內文字",
+   "ocf": "查不到"
+  }
+ },
+ "E025": {
+  "n_diff_lines": 7,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': 0.505733, 'prev_q_yoy': 0.25439, 'accel_pp': 25.1343, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 25.2276 → 25.1343",
+   "4_財務數列.g0_signal_q_yoy: 0.506667 → 0.505733",
+   "4_財務數列.quarters[7].ocf: 12240000.0 → None",
+   "4_財務數列.quarters[7].revenue: 73584000.0 → 79051000.0",
+   "4_財務數列.quarters[7].revenue_ex991: 79100000.0 → 79051000.0",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}"
+  ],
+  "row_changes": [
+   {
+    "row": 7,
+    "period_end": "2018-03-31",
+    "col": "ocf",
+    "before": 12240000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2018-03-31",
+    "col": "revenue",
+    "before": 73584000.0,
+    "after": 79051000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2018-03-31",
+    "col": "revenue_ex991",
+    "before": 79100000.0,
+    "after": 79051000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2018-03-31",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "EX-99.1 稿內文字",
+     "operating_income": "EX-99.1 稿內文字",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 25.2276,
+  "accel_after": 25.1343,
+  "g0_before": 0.506667,
+  "g0_after": 0.505733,
+  "prev_before": 0.25439,
+  "prev_after": 0.25439,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "EX-99.1 稿內文字",
+   "operating_income": "EX-99.1 稿內文字",
+   "ocf": "查不到"
+  }
+ },
+ "E047": {
+  "n_diff_lines": 11,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': -0.310628, 'prev_q_yoy': -0.682312, 'accel_pp': 37.1684, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 37.6611 → 37.1684",
+   "4_財務數列.g0_signal_q_yoy: -0.302444 → -0.310628",
+   "4_財務數列.g0_xbrl_for_reference: -0.302511 → -0.310628",
+   "4_財務數列.n_rows_first_filed_after_T1: 1 → 0",
+   "4_財務數列.prev_q_yoy: -0.679055 → -0.682312",
+   "4_財務數列.quarters[7].ocf: -57260000.0 → None",
+   "4_財務數列.quarters[7].revenue_ex991: 346900000.0 → 342830000.0",
+   "4_財務數列.quarters[7].revenue_xbrl_first_filed_after_T1: True → False",
+   "4_財務數列.quarters[7].revenue_xbrl_for_reference: 346867000.0 → 342830000.0",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}"
+  ],
+  "row_changes": [
+   {
+    "row": 7,
+    "period_end": "2020-09-30",
+    "col": "ocf",
+    "before": -57260000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2020-09-30",
+    "col": "revenue_ex991",
+    "before": 346900000.0,
+    "after": 342830000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2020-09-30",
+    "col": "revenue_xbrl_first_filed_after_T1",
+    "before": true,
+    "after": false
+   },
+   {
+    "row": 7,
+    "period_end": "2020-09-30",
+    "col": "revenue_xbrl_for_reference",
+    "before": 346867000.0,
+    "after": 342830000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2020-09-30",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "EX-99.1 稿內文字",
+     "operating_income": "EX-99.1 稿內文字",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 37.6611,
+  "accel_after": 37.1684,
+  "g0_before": -0.302444,
+  "g0_after": -0.310628,
+  "prev_before": -0.679055,
+  "prev_after": -0.682312,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "EX-99.1 稿內文字",
+   "operating_income": "EX-99.1 稿內文字",
+   "ocf": "查不到"
+  }
+ },
+ "E057": {
+  "n_diff_lines": 11,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': 0.810006, 'prev_q_yoy': 0.683421, 'accel_pp': 12.6585, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 13.1305 → 12.6585",
+   "4_財務數列.g0_signal_q_yoy: 0.828923 → 0.810006",
+   "4_財務數列.g0_xbrl_for_reference: 0.828923 → 0.810006",
+   "4_財務數列.n_rows_first_filed_after_T1: 1 → 0",
+   "4_財務數列.prev_q_yoy: 0.697618 → 0.683421",
+   "4_財務數列.quarters[7].ocf: 13782000000.0 → 13800000000.0",
+   "4_財務數列.quarters[7].revenue_ex991: 68762000000.0 → 65372000000.0",
+   "4_財務數列.quarters[7].revenue_xbrl_first_filed_after_T1: True → False",
+   "4_財務數列.quarters[7].revenue_xbrl_for_reference: 68762000000.0 → 65372000000.0",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': '查不到', 'ocf': 'EX-99.1 稿內文字'}"
+  ],
+  "row_changes": [
+   {
+    "row": 7,
+    "period_end": "2022-06-30",
+    "col": "ocf",
+    "before": 13782000000.0,
+    "after": 13800000000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2022-06-30",
+    "col": "revenue_ex991",
+    "before": 68762000000.0,
+    "after": 65372000000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2022-06-30",
+    "col": "revenue_xbrl_first_filed_after_T1",
+    "before": true,
+    "after": false
+   },
+   {
+    "row": 7,
+    "period_end": "2022-06-30",
+    "col": "revenue_xbrl_for_reference",
+    "before": 68762000000.0,
+    "after": 65372000000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2022-06-30",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "查不到",
+     "operating_income": "查不到",
+     "ocf": "EX-99.1 稿內文字"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 13.1305,
+  "accel_after": 12.6585,
+  "g0_before": 0.828923,
+  "g0_after": 0.810006,
+  "prev_before": 0.697618,
+  "prev_after": 0.683421,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "查不到",
+   "operating_income": "查不到",
+   "ocf": "EX-99.1 稿內文字"
+  }
+ },
+ "E073": {
+  "n_diff_lines": 11,
+  "diffs": [
+   "1_事件識別.修正後(KARST-236): (無) → {'g0_signal_q_yoy': -0.099347, 'prev_q_yoy': -0.165432, 'accel_pp': 6.6085, 'entry_status': None, 'note': '訊號季那一行以 EX-99.1 稿內數字為準、其餘各季改為同一期末跨 tag 最早申報值後重算;逐格前後值見 A3/修正紀錄——235.md'}",
+   "4_財務數列.accel_pp: 5.2789 → 6.6085",
+   "4_財務數列.g0_signal_q_yoy: -0.115385 → -0.099347",
+   "4_財務數列.g0_xbrl_for_reference: -0.115385 → -0.124003",
+   "4_財務數列.n_rows_first_filed_after_T1: 1 → 0",
+   "4_財務數列.prev_q_yoy: -0.168174 → -0.165432",
+   "4_財務數列.quarters[7].ocf: 151000000.0 → None",
+   "4_財務數列.quarters[7].revenue: 1208000000.0 → 1242000000.0",
+   "4_財務數列.quarters[7].revenue_xbrl_first_filed_after_T1: True → False",
+   "4_財務數列.quarters[7].revenue_xbrl_for_reference: 1242000000.0 → 1208000000.0",
+   "4_財務數列.quarters[7].signal_row_sources: (無) → {'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': '查不到', 'ocf': '查不到'}"
+  ],
+  "row_changes": [
+   {
+    "row": 7,
+    "period_end": "2024-09-30",
+    "col": "ocf",
+    "before": 151000000.0,
+    "after": null
+   },
+   {
+    "row": 7,
+    "period_end": "2024-09-30",
+    "col": "revenue",
+    "before": 1208000000.0,
+    "after": 1242000000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2024-09-30",
+    "col": "revenue_xbrl_first_filed_after_T1",
+    "before": true,
+    "after": false
+   },
+   {
+    "row": 7,
+    "period_end": "2024-09-30",
+    "col": "revenue_xbrl_for_reference",
+    "before": 1242000000.0,
+    "after": 1208000000.0
+   },
+   {
+    "row": 7,
+    "period_end": "2024-09-30",
+    "col": "signal_row_sources",
+    "before": null,
+    "after": {
+     "revenue": "EX-99.1 稿內文字",
+     "gross_profit": "查不到",
+     "operating_income": "查不到",
+     "ocf": "查不到"
+    }
+   }
+  ],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 5.2789,
+  "accel_after": 6.6085,
+  "g0_before": -0.115385,
+  "g0_after": -0.099347,
+  "prev_before": -0.168174,
+  "prev_after": -0.165432,
+  "sig_row_sources": {
+   "revenue": "EX-99.1 稿內文字",
+   "gross_profit": "查不到",
+   "operating_income": "查不到",
+   "ocf": "查不到"
+  }
+ },
+ "E006": {
+  "n_diff_lines": 0,
+  "diffs": [],
+  "row_changes": [],
+  "entry_status_before": null,
+  "entry_status_after": null,
+  "accel_before": 8.1775,
+  "accel_after": 8.1775,
+  "g0_before": 0.081775,
+  "g0_after": 0.081775,
+  "prev_before": 0.0,
+  "prev_after": 0.0,
+  "sig_row_sources": null
+ }
+}

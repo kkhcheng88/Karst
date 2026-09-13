@@ -1,0 +1,72 @@
+﻿event_id,group,row,period_end,field,before,after,kind
+E017,row,3,2015-12-31,operating_income,,-2053000.0,歷史行
+E017,row,7,2016-12-31,ocf,2969000.0,,訊號季行
+E017,row,7,2016-12-31,operating_income,-5575000.0,5575000.0,訊號季行
+E017,row_aux,7,2016-12-31,revenue_ex991,70600000.0,70604000.0,訊號季行
+E017,row_aux,7,2016-12-31,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",訊號季行
+E017,metric,,,g0_signal_q_yoy,-0.083284,-0.083232,
+E017,metric,,,accel_pp,7.8903,7.8954,
+E021,row,7,2017-03-31,ocf,112045000.0,,訊號季行
+E021,row,7,2017-03-31,revenue,610065000.0,605342000.0,訊號季行
+E021,row_aux,7,2017-03-31,revenue_ex991,605300000.0,605342000.0,訊號季行
+E021,row_aux,7,2017-03-31,revenue_xbrl_first_filed_after_T1,True,False,訊號季行
+E021,row_aux,7,2017-03-31,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",訊號季行
+E021,metric,,,g0_signal_q_yoy,0.095808,0.095884,
+E021,metric,,,accel_pp,7.342,7.3497,
+E021,metric,,,n_rows_first_filed_after_T1,1,0,
+E022,row,4,2016-04-02,revenue,878510000.0,779641000.0,歷史行
+E022,row,5,2016-07-02,revenue,894930000.0,877341000.0,歷史行
+E022,row,6,2016-10-01,revenue,936262000.0,853856000.0,歷史行
+E022,row,7,2016-12-31,ocf,110474000.0,,訊號季行
+E022,row,7,2016-12-31,revenue,952549000.0,887277000.0,訊號季行
+E022,row_aux,7,2016-12-31,revenue_ex991,887300000.0,887277000.0,訊號季行
+E022,row_aux,7,2016-12-31,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",訊號季行
+E022,metric,,,g0_signal_q_yoy,0.095872,0.095843,
+E022,metric,,,accel_pp,9.5762,9.5733,
+E024,row,2,2016-07-02,revenue,952000000.0,987900000.0,歷史行
+E024,row,3,2016-10-01,revenue,1147000000.0,1088200000.0,歷史行
+E024,row,4,2016-12-31,revenue,1440000000.0,1352800000.0,歷史行
+E024,row,5,2017-04-01,revenue,1180000000.0,1064800000.0,歷史行
+E024,row,7,2017-09-30,ocf,134800000.0,,訊號季行
+E024,row_aux,7,2017-09-30,revenue_ex991,1150000000.0,1146600000.0,訊號季行
+E024,row_aux,7,2017-09-30,revenue_xbrl_first_filed_after_T1,True,False,訊號季行
+E024,row_aux,7,2017-09-30,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",訊號季行
+E024,metric,,,g0_signal_q_yoy,0.056791,0.053667,
+E024,metric,,,accel_pp,9.2726,8.9602,
+E024,metric,,,n_rows_first_filed_after_T1,1,0,
+E025,row,7,2018-03-31,ocf,12240000.0,,訊號季行
+E025,row,7,2018-03-31,revenue,73584000.0,79051000.0,訊號季行
+E025,row_aux,7,2018-03-31,revenue_ex991,79100000.0,79051000.0,訊號季行
+E025,row_aux,7,2018-03-31,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",訊號季行
+E025,metric,,,g0_signal_q_yoy,0.506667,0.505733,
+E025,metric,,,accel_pp,25.2276,25.1343,
+E047,row,7,2020-09-30,ocf,-57260000.0,,訊號季行
+E047,row_aux,7,2020-09-30,revenue_ex991,346900000.0,342830000.0,訊號季行
+E047,row_aux,7,2020-09-30,revenue_xbrl_first_filed_after_T1,True,False,訊號季行
+E047,row_aux,7,2020-09-30,revenue_xbrl_for_reference,346867000.0,342830000.0,訊號季行
+E047,row_aux,7,2020-09-30,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': 'EX-99.1 稿內文字', 'operating_income': 'EX-99.1 稿內文字', 'ocf': '查不到'}",訊號季行
+E047,metric,,,g0_signal_q_yoy,-0.302444,-0.310628,
+E047,metric,,,g0_xbrl_for_reference,-0.302511,-0.310628,
+E047,metric,,,prev_q_yoy,-0.679055,-0.682312,
+E047,metric,,,accel_pp,37.6611,37.1684,
+E047,metric,,,n_rows_first_filed_after_T1,1,0,
+E057,row,7,2022-06-30,ocf,13782000000.0,13800000000.0,訊號季行
+E057,row_aux,7,2022-06-30,revenue_ex991,68762000000.0,65372000000.0,訊號季行
+E057,row_aux,7,2022-06-30,revenue_xbrl_first_filed_after_T1,True,False,訊號季行
+E057,row_aux,7,2022-06-30,revenue_xbrl_for_reference,68762000000.0,65372000000.0,訊號季行
+E057,row_aux,7,2022-06-30,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': '查不到', 'ocf': 'EX-99.1 稿內文字'}",訊號季行
+E057,metric,,,g0_signal_q_yoy,0.828923,0.810006,
+E057,metric,,,g0_xbrl_for_reference,0.828923,0.810006,
+E057,metric,,,prev_q_yoy,0.697618,0.683421,
+E057,metric,,,accel_pp,13.1305,12.6585,
+E057,metric,,,n_rows_first_filed_after_T1,1,0,
+E073,row,7,2024-09-30,ocf,151000000.0,,訊號季行
+E073,row,7,2024-09-30,revenue,1208000000.0,1242000000.0,訊號季行
+E073,row_aux,7,2024-09-30,revenue_xbrl_first_filed_after_T1,True,False,訊號季行
+E073,row_aux,7,2024-09-30,revenue_xbrl_for_reference,1242000000.0,1208000000.0,訊號季行
+E073,row_aux,7,2024-09-30,signal_row_sources,,"{'revenue': 'EX-99.1 稿內文字', 'gross_profit': '查不到', 'operating_income': '查不到', 'ocf': '查不到'}",訊號季行
+E073,metric,,,g0_signal_q_yoy,-0.115385,-0.099347,
+E073,metric,,,g0_xbrl_for_reference,-0.115385,-0.124003,
+E073,metric,,,prev_q_yoy,-0.168174,-0.165432,
+E073,metric,,,accel_pp,5.2789,6.6085,
+E073,metric,,,n_rows_first_filed_after_T1,1,0,
