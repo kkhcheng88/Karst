@@ -10,6 +10,7 @@ dependsOn: []
 claimedBy: null
 epic: 方法論期(D-166)
 deliverable: KARST-D06
+closed: 2026-09-13
 ---
 
 ## 工作內容
@@ -18,11 +19,11 @@ deliverable: KARST-D06
 
 ## 驗收條件
 
-- [ ] B/rows/ 有 84 個單行 csv,event_id 與 A/picks_before_results.md 主清單(含補位後)一一對應;反例:任何一個 event_id 出現兩行、或缺行,即不合格
-- [ ] 每張卡含第一至八步全部節,第三步的兩季與四季點值與區間為數字;反例:persistence_overall 為「高」而 pred_g2_point < 0.8 × g0 且無解釋,即該卡退回
-- [ ] 每張卡引用的出處全部指向取證包或包內列出的本地文件;反例:出現 T1 之後日期的資料、分析員預期數字、或包外來源,即該卡作廢並記入執行紀錄
-- [ ] 執行紀錄——B.md 記模型名(claude-opus-5)、每子代理的事件清單、一次執行原則的落實、任何重跑與原因
-- [ ] 沒有讀 controls_operating.csv / population.csv / entry_pool.csv / data/;沒有改 strategy/ 與 A/;不 commit
+- [x] B/rows/ 有 84 個單行 csv,event_id 與 A/picks_before_results.md 主清單(含補位後)一一對應;反例:任何一個 event_id 出現兩行、或缺行,即不合格
+- [x] 每張卡含第一至八步全部節,第三步的兩季與四季點值與區間為數字;反例:persistence_overall 為「高」而 pred_g2_point < 0.8 × g0 且無解釋,即該卡退回
+- [x] 每張卡引用的出處全部指向取證包或包內列出的本地文件;反例:出現 T1 之後日期的資料、分析員預期數字、或包外來源,即該卡作廢並記入執行紀錄
+- [x] 執行紀錄——B.md 記模型名(claude-opus-5)、每子代理的事件清單、一次執行原則的落實、任何重跑與原因
+- [x] 沒有讀 controls_operating.csv / population.csv / entry_pool.csv / data/;沒有改 strategy/ 與 A/;不 commit
 
 ## 結果
 
