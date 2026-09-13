@@ -38,7 +38,7 @@
 
 ### `data/` 資料
 
-整個目錄不入 git,只有說明檔與清單入。原料:`sec/`(EDGAR 申報索引、財務事實、年報全文;D-134 唯一副本)、`prices/`(日線,yfinance)、`universe/`;休眠:`panel/`、`macro_snapshots/`、`vintage/`。逐層見 `data/README.md` 與 `strategy/資料來源.md`。
+整個目錄不入 git,只有說明檔與清單入。原料三層:`sec/`(EDGAR 申報索引、財務事實、年報全文;D-134 唯一副本)、`prices/`(日線,yfinance)、`universe/`。V1 期的衍生表與存檔已於 2026-09-14 全部刪除。逐層見 `data/README.md` 與 `strategy/資料來源.md`。
 
 ## 其他
 
