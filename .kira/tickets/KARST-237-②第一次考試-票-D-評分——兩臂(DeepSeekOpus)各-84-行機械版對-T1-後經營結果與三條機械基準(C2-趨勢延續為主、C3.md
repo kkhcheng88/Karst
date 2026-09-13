@@ -10,6 +10,7 @@ dependsOn: []
 claimedBy: score-ds
 epic: 方法論期(D-166)
 deliverable: KARST-D06
+closed: 2026-09-13
 ---
 
 ## 工作內容
