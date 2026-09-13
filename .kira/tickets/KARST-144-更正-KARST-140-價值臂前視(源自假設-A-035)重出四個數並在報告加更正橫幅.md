@@ -9,6 +9,8 @@ fits: yes
 dependsOn: []
 claimedBy: null
 deliverable: KARST-D02
+closed: 2026-09-14
+cancelReason: V1 期價值臂更正票;該線 2026-09 已收,結論只在 tag pre-reset-2026-09-13 保存
 ---
 
 ## 工作內容

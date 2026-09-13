@@ -10,6 +10,7 @@ dependsOn: []
 claimedBy: pilot-ds
 epic: 方法論期(D-166)
 deliverable: KARST-D06
+closed: 2026-09-14
 ---
 
 ## 工作內容
@@ -18,10 +19,10 @@ deliverable: KARST-D06
 
 ## 驗收條件
 
-- [ ] 試跑/ds/rows/ 與 試跑/opus/rows/ 各 10 個單行 csv,event_id 一一對應;反例:任何一臂缺行或一事件兩行即該臂不合格
-- [ ] 每臂 10 張卡含第一至八步;反例:出處指向包外來源或 T1 後資料,記入觀察報告的捏造/越界數
-- [ ] 觀察報告含六項指標並附每臂時間與費用;明寫「不比較準確度、結果未開、輸出不入主考試」
-- [ ] 兩臂互不讀對方輸出;不讀 controls/population/entry_pool/data/;不改 A/、A2/、A3/、strategy/;不 commit
+- [x] 試跑/ds/rows/ 與 試跑/opus/rows/ 各 10 個單行 csv,event_id 一一對應;反例:任何一臂缺行或一事件兩行即該臂不合格
+- [x] 每臂 10 張卡含第一至八步;反例:出處指向包外來源或 T1 後資料,記入觀察報告的捏造/越界數
+- [x] 觀察報告含六項指標並附每臂時間與費用;明寫「不比較準確度、結果未開、輸出不入主考試」
+- [x] 兩臂互不讀對方輸出;不讀 controls/population/entry_pool/data/;不改 A/、A2/、A3/、strategy/;不 commit
 
 ## 結果
 

@@ -9,6 +9,8 @@ fits: 一程做得完:網上盤點加對本倉 EDGAR 快取的抽樣驗證,不�
 dependsOn: []
 claimedBy: null
 deliverable: KARST-D04
+closed: 2026-09-14
+cancelReason: 公開供應鏈資料源盤點;隨根基重整併入 D09 資料來源盤點,將以新票重開(GPT 第五輪:value-chain 從第一版就要有可追查的關係模型)
 epic: 方法論期(D-166)
 ---
 

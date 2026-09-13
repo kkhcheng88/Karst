@@ -9,6 +9,8 @@ fits: yes
 dependsOn: []
 claimedBy: Claude Opus 5
 deliverable: KARST-D02
+closed: 2026-09-14
+cancelReason: 同 KARST-170:鏈層甲版補缺重跑舉手待裁,線隨根基重整作廢(D-177)
 raised: 甲版判「存在」,D-159 那道閘過了——但 KARST-170 掛住的四個選項是照舊結論「量不出」寫的,前提已變:下一張票應該花在哪裡?
 ---
 

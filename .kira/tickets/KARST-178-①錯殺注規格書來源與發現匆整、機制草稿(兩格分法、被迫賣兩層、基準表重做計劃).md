@@ -9,6 +9,8 @@ fits: 一程做得完:只寫規格,不跑回測;來源全在 library/ 已提煉�
 dependsOn: []
 claimedBy: spec189-opus
 deliverable: KARST-D05
+closed: 2026-09-14
+cancelReason: ①規格書票;①線 2026-09-12 第九輪外評後收線,能力卡 v1 封存為方法快照,不再寫規格書(D-177)
 epic: 方法論期(D-166)
 ---
 

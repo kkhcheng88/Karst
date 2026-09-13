@@ -10,6 +10,8 @@ dependsOn: []
 claimedBy: null
 epic: 方法論期(D-166)
 deliverable: KARST-D06
+closed: 2026-09-14
+cancelReason: ②第一次考試票 C 熊方;未派工,隨用戶 2026-09-13 裁停下重整根基作廢;熊方在新形態的流程裡重做
 ---
 
 ## 工作內容

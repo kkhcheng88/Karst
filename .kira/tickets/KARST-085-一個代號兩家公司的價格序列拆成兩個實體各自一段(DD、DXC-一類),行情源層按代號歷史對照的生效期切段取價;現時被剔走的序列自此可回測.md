@@ -11,6 +11,8 @@ dependsOn: [KARST-084]
 claimedBy: null
 epic: V1 建置
 deliverable: KARST-D03
+closed: 2026-09-14
+cancelReason: V1 引擎票;引擎已於 2026-09-13 重整刪除(tag pre-reset-2026-09-13),代號分段已落在 data/universe/ticker_periods.parquet,需要時在根基重整 D09 之下重開
 ---
 
 ## 工作內容

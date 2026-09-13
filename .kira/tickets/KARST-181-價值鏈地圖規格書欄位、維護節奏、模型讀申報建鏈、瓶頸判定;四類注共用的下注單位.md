@@ -9,6 +9,8 @@ fits: 一程做得完:只寫規格與欄位,不建資料庫;依 strategy/chains/
 dependsOn: [KARST-180]
 claimedBy: null
 deliverable: KARST-D04
+closed: 2026-09-14
+cancelReason: 價值鏈地圖規格書;隨根基重整押後至 D12 關鍵元素探索,先定論點物件與資料層再寫地圖規格
 epic: 方法論期(D-166)
 ---
 

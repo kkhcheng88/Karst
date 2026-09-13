@@ -12,7 +12,7 @@ experiments/*/data/
 # 板塊倍數版本存檔(KARST-124):存檔正本 readings.csv **要入 git**——它不可再生,
 # 今日不抄以後補不回,只住在一部機上等於隨時歸零。擋走的只是原始頁面那一堆,
 # 體積大而且可由正本的雜湊追溯。
-/vintage/*/raw/
+/data/vintage/*/raw/
 # 插件工作目錄,不屬項目內容
 .skill-compass/
 experiments/*/.venv/

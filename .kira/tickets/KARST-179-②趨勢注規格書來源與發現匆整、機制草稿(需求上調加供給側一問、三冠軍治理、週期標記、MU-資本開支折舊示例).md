@@ -9,6 +9,8 @@ fits: 一程做得完:只寫規格與一個示例計算,不跑回測
 dependsOn: []
 claimedBy: null
 deliverable: KARST-D06
+closed: 2026-09-14
+cancelReason: ②規格書票;由 ② 能力卡 v1、提示詞 v1.1、模組 v0 與第一次考試取代;新形態在根基重整 D12 之下另開(D-177)
 epic: 方法論期(D-166)
 ---
 

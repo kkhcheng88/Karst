@@ -11,6 +11,8 @@ dependsOn: []
 claimedBy: null
 epic: V1 建置
 deliverable: KARST-D03
+closed: 2026-09-14
+cancelReason: V1 快照說明檔小事;快照層已隨引擎刪除
 ---
 
 ## 工作內容
