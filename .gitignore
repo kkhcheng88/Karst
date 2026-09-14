@@ -37,3 +37,12 @@ research/2026-09-methodology/*/*/cache/
 .ruff_cache/
 .skill-compass/
 __pycache__/
+
+# workbench v1 (2026-09-14): evidence layer and user inbox are not versioned
+/evidence/*
+!/evidence/README.md
+!/evidence/manifest.jsonl
+/inbox/*
+!/inbox/README.md
+!/inbox/links.md
+/site/*.html
