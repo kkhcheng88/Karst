@@ -1,6 +1,6 @@
 # 可由固定種子重生的實驗數據,不入 git
 experiments/*/data/
-# 數據快照的單一快取根(D-026 第 5 條):parquet 與 sqlite 都是可重抓的數據,不入 git;
+# 大型原料不入 git;D-181:SQLite 的任務、游標、發布與模型帳本是持久狀態,不可當可重抓快取,須另備份;
 # 說明檔的範本住在 karst/data/manifest.py(單一定義),每個快照目錄裡那份是照它填出來的實例。
 # 只擋倉根那一個 data/,不要連 karst/data/(程式碼)一齊擋走
 /data/
@@ -46,3 +46,6 @@ __pycache__/
 !/inbox/README.md
 !/inbox/links.md
 /site/*.html
+
+# D-181: runtime DB / journals / model ledger are durable, backed up outside git
+/runtime/

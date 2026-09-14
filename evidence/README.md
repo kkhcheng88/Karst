@@ -1,28 +1,26 @@
-# evidence/ —— 證據層(工作台 v1;2026-09-14 建,KARST-240)
+# evidence/ —— 來源版本與原始證據
 
-只准追加,內容定址;除本 README 與 `manifest.jsonl` 外不入 git。每份證據一個檔,每檔在 `manifest.jsonl` 一行。
+只追加來源與修訂,不覆寫當時引用的內容。除本 README 與來源 manifest 外,大型內容不入 git。下列為 D-181 設計,實作依 KARST-240。
 
-## 目錄
+## 原始內容、來源與解析分開
 
-```
-evidence/
-  manifest.jsonl                 每份證據一行(欄位見下)
-  sec/<CIK>/<accession>.<form>.txt     申報純文本(8-K 的 EX-99.1、10-Q、10-K;HTML 去標籤)
-  transcripts/<CIK>/<call_date>.json   DefeatBeta 逐字稿(含 prepared remarks 與 Q&A 段落、report_date、取得時間)
-  financials/<CIK>/<source>-<UTC>.json DefeatBeta 或券商回傳的報表、收入拆分、股數
-  broker/<TICKER>/<source>-<tool>-<UTC>.json   富途 / Longbridge 每次呼叫的原始回傳
-  prices/<TICKER>-daily-<UTC>.csv      日線(來源欄標 local 或 defeatbeta 或 futu)
-  docs/<UTC>-<slug>.<ext>              用戶由 inbox 放進來的檔案(解析後文字另存 .txt)
-  packets/<TICKER>-<UTC>.json          一次分析的取證包索引:按類別列 ev_id、期間、截至時間
-```
+- 原始內容以完整 sha256 指紋識別;新內容可存 objects/<sha256前兩位>/<完整sha256>.<ext>。既有 data/ 唯一副本已存在且可核 hash 時直接登記路徑,不為換目錄再存一次(D-134)。
+- manifest.jsonl 每行是不可變來源版本事件,含 source_id、source_version_id、完整 hash、來源／作者／URL或工具、kind、entity／security、accession、published_at、published_at_basis、fetched_at、data_as_of、period_start/end、bytes、path、supersedes。
+- source_id 識別邏輯文件,source_version_id 識別一次內容版本;短 hash 可作顯示,不能只靠前12位當唯一身份。
+- 同一內容 hash 可由多個來源引用,共用 bytes 但各保留發布位置與來源鏈。相同來源重抓未變只更新觀測／游標,不新增研究版本。
+- 解析文本／表格存 derived/<原始hash>/<解析版本>/…,登記衍生 hash 及原文段落／頁碼映射。保留原始 HTML／PDF／JSON 回應,不能只留去標籤文本卻稱為原始文件。
+- 取證包是來源與衍生版本的清單及必讀紀錄,不用複製所有原文。模型引文能沿清單找到當時那份內容。
 
-## manifest.jsonl 欄位
+## 時點與完整性
 
-`ev_id`(`ev:<source>:<sha256 前 12 位>`)、`source`(edgar / defeatbeta / futu / longbridge / local-prices / user)、`kind`(10-K / 10-Q / 8-K-EX99.1 / transcript / consensus / …)、`cik`、`ticker`、`accession`(申報才有)、`published_at`(來源公開時間,含時區;未知留空並在 `published_at_basis` 寫依據或「未知」)、`fetched_at`(我們取得,UTC)、`period_start` / `period_end`(所述期間)、`data_as_of`(資料本身截至)、`sha256`、`bytes`、`path`、`tool`(MCP 工具名或函式名)、`note`。
+公開時間、取得時間、數據截至與財務期間分開。未知時間保留未知或標推斷依據,不回填到歷史。日常使用最新適用公開修訂,回顧保留原版本;更正或撤回用新事件記錄。
 
-## 規矩
+內容相同不等於來源獨立。原始證據、作者預測、用戶假設與系統推斷分開,帶來源 lineage。來源失敗、確定沒有更新及未覆蓋分開記錄。
 
-- 同一份內容只存一次(sha256 相同即跳過,manifest 記一次);修訂版另存並在 `note` 指向前一版 `ev_id`。
-- 取得時間與公開時間分開;推斷的公開時間標「推斷」。
-- 抓 EDGAR 前先查 `data/sec/10k_text/` 與 `data/sec/submissions/`(D-134);抓到的 8-K 與 10-Q 純文本存這裡,不另建第二份。
-- 不入 git 的原因:體積與版權;備份由用戶隨機器備份。
+## 隔離與持久化
+
+inbox 文件先分類與清理,私人帳戶資料不得進入研究可讀證據區。券商 adapter 只接公開市場回傳;公司公開機構持股不等於私人帳戶持倉。
+
+SQLite 的來源索引可由 manifest 重建,抓取游標、任務狀態與帳本不能全部由卡片重建。首次運行前需配置原始內容、manifest、發布包和持久 DB／日誌的備份;git 不代替未入 git 原文備份。已被發布引用的證據需保留,無引用重複快取按明定保留政策處理。
+
+完整物件、時間與發布契約見[設計計劃](../strategy/specs/獨立投研工作台設計與交付計劃-v1.md)。原84宗凍結資料與其時點協議不因本文件改寫。

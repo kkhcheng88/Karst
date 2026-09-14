@@ -1,34 +1,35 @@
-# karst/ —— 工作台程式(2026-09-14 建;規矩 D-180)
+# karst/ —— 通用工作台程式(D-180／D-181)
 
-## 硬規矩(用戶 2026-09-14 明令)
+所有生產程式從第一天可跨公司重用。代號、公司映射、日期、路徑、來源和模型由參數／配置傳入,不建立股票專用抓取或分析腳本。一次性探索與除錯碼放倉外 scratch,不 commit。
 
-**所有程式由第一日起必須通用。** 原話:「I see you are start making something like fetch_edgar_axti which is stock specific … you must at the end making tons of testing scripts. And the repo will be expanded to be uncontrollable. Can you do the script starting from now must be generic?」
+本檔列的是**計劃模組**,目前尚未實作。契約與驗收見 [設計計劃](../strategy/specs/獨立投研工作台設計與交付計劃-v1.md)。
 
-1. 程式只住在 `karst/` 套件內,以模組加參數運行,例如 `python -m karst.fetch --ticker AXTI`;代號、公司名、日期、路徑一律由參數或設定檔傳入,**檔名與程式碼內不准出現任何一隻股票的代號或名字**。
-2. 倉內不准有一次性腳本:沒有 `_tmp*.py`、`_peek*.py`、`fetch_<代號>.py`、`check_*.py` 之類;探索與除錯用的臨時碼放 session 的 scratchpad(倉外),用完即棄,不 commit。
-3. 測試(若有)只放 `karst/tests/`,同樣通用(用參數化的樣本,不寫死某隻股票的預期數字)。
-4. 每個模組一個職責:`fetch`(取證,按來源分子模組)、`manifest`(證據登記)、`packet`(取證包索引)、`ta`(技術結構)、`valuation`(估值算式)、`plan`(風險回報與計劃算式)、`page`(生成頁面)、`run`(一次分析的紀錄)。新增模組要先在本 README 登記用途。
-5. 派工指令必須把本規矩原文帶給工人;工人交回的任何股票專屬檔一律不收貨。
+## 模組分工
 
-## 佈局(第一版)
+| 模組 | 責任 |
+|---|---|
+| config、schema | 配置、身份／證券映射、版本化契約;憑證只讀環境,不寫入研究包 |
+| fetch/ | 按來源分 edgar、defeatbeta、broker、prices;先查快取,回傳標準來源觀测;broker 只允許公開市場方法 |
+| manifest | 來源版本、原始內容 hash、解析衍生物及定位;同內容去重但保留來源關係 |
+| store | SQLite schema／遷移、索引與持久狀態;單一提交者、交易與版本檢查 |
+| packet | 建允許清單中的研究輸入包、必讀與缺口;不載入私人／模型帳本或開發上下文 |
+| agents/ | 六角色任務、結構化輸出、有限補查、引用檢查;記實際模型與提示詞版本 |
+| ta/ | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視 |
+| valuation/ | 基本面情境到當日內在價值、估值敏感度、反向要求與有期限的目標價橋接 |
+| plan | 每股／百分比 R&R、條件執行與壓力情境;不讀私人淨值 |
+| publish、page/ | 不可變發布包、latest 視圖、HTML;發布前檢查依賴版本 |
+| events、jobs | 來源訂閱、新事件、依賴路由、去重、重試與期限覆核 |
+| model_portfolio/ | 自有模型委託、配置、紙上訂單與帳本;與研究輸入隔離 |
+| evaluate/ | 固定期限、發布後成交、總回報／成本／基準與錯誤歸因 |
+| run | 單股與批次共用協調入口、輸入 pinning、成本及執行紀錄 |
+| tests/ | 通用契約、隔離、時間、計算與失敗恢復的參數化測試 |
 
-```
-karst/
-  README.md
-  __init__.py
-  config.py        路徑、User-Agent、速率限制;讀 .env 或環境變數,不寫死金鑰
-  fetch/
-    edgar.py       按 CIK 取申報索引、10-K / 10-Q / 8-K 與附件,先查本地快取(D-134)
-    defeatbeta.py  逐字稿、報表、收入拆分、股數、日線
-    broker.py      富途 / Longbridge 回傳快照的落地與登記(呼叫由 agent 或 CLI 做)
-    prices.py      本地日線庫抽取與續抓合併
-  manifest.py      manifest.jsonl 讀寫、內容定址、去重
-  packet.py        取證包索引
-  ta/              結構計算(區域、200 日 SMA、通道、突破回踩狀態、ATR、相對強弱)
-  valuation/       正向三情境與現價反推
-  plan.py          風險回報、部位示例
-  page/            單檔 HTML 生成
-  run.py           run 紀錄(投資委託版本、提示詞版本、模型、證據清單、各層時間)
-```
+預計入口例如 python -m karst.run --ticker <代號> --as-of <時間>,批次由 --universe <設定檔> 呼叫同一核心;這是介面設計,目前不能當已存在指令運行。
 
-第一版尚未實作;本檔先定規矩與佈局,實作票開出後按此落地。
+## 通用性及隔離規矩
+
+1. 生產程式不寫死任何股票識別或公司特例;不同申報形式／會計口徑用明確資料與適用規則配置。來源 adapter 按來源,不按股票複製。
+2. 測試只在 karst/tests/。參數化 fixture 可以有代號、日期與可信預期數字;這是在驗證通用處理,不是以「不准股票專用腳本」禁止有效測試。大型84包保留原位置,測試以引用讀取。
+3. 正式研究 worker 的 context 和可用工具由 packet／執行器允許清單決定;不是把整個 repo 交給模型再要求忽略私人資料。MCP 全 server 可用不代表其所有方法可給研究角色。
+4. 強模型讀原文並判斷,程式計算;便宜模型轉換結果不能遮住原文。策略不依賴特定框架或無限 agent 辯論。
+5. 新模組先在本表登記;工作票按通用能力開,換第二股不新增一支程式。P1 只落實必要模組,P2/P3/P4 按設計漸進增加。

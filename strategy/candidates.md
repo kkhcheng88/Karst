@@ -1,5 +1,7 @@
 # 方法論候選登記表(2026-09-06,腦震盪稿,未驗證)
 
+> **現行工作台依 D-181**:策略與執行以 [投資決策模型](投資決策模型.md)、清理後委託及六層 v1.2 為準。下文保留歷史原話與研究材料;四類注／候選族不是當前全域篩選或產品交付前提。正式研究不自動載入本檔,只使用經核准的相關方法。
+
 > 依 D-165(開發暫停、先研究)與 D-166(四類注)開的第一份候選清單。**這裡全部是候選,不是結論**;每個候選要填齊五格才算入圍:①它聲稱什麼 ②服務哪一類注、答哪條問題 ③文獻怎樣講 ④延遲與成本 ⑤什麼結果會證明它沒用。填不出第五格的不入圍。日後驗證票只准從這張表上的入圍項開。用戶 2026-09-06 原話:「focus on the brainstorm of methodology before we back to any backtest […] explore more candidates to be able to validate later」「You can take the lead and think out of the box on this approach」。
 
 ## 零、先定問題,再找候選
