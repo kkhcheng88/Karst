@@ -1,0 +1,45 @@
+{
+  "source": "edgar",
+  "tool": "EDGAR Archives HTTP GET (urllib; User-Agent Karst research; <=4 req/s; retry once)",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "accession": "0001437749-26-027677",
+    "form": "10-Q",
+    "document": "axti20260630_10q.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926027677/axti20260630_10q.htm",
+    "kind": "primary"
+  },
+  "fetched_at": "2026-09-14T18:26:44+00:00",
+  "published_at": "2026-08-13T20:16:33.000Z",
+  "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC, verbatim). Not necessarily first public release time; 8-K press release may have been issued earlier (see 資料來源 §四 4)",
+  "filingDate": "2026-08-13",
+  "reportDate": "2026-06-30",
+  "items": "",
+  "period": {
+    "reportDate": "2026-06-30"
+  },
+  "files": {
+    "raw": {
+      "name": "0001437749-26-027677.10-Q.raw.htm.gz",
+      "bytes": 2170750,
+      "sha256": "c7238e7e10ecd099696e5bf724664f5c03e285090fe15e293983b87cc59abd2a",
+      "note": "verbatim EDGAR bytes, not truncated",
+      "compressed": "gzip (sha256/bytes refer to the decompressed verbatim EDGAR bytes)",
+      "gz_bytes": 174917
+    },
+    "text": {
+      "name": "0001437749-26-027677.10-Q.txt",
+      "chars": 60000,
+      "sha256_full_text": "1ad6d43d6b228f007cc26672b66e434715d14a066b1a66e04c43fffd1f9c05a0",
+      "derivation": "regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+    }
+  },
+  "truncated": {
+    "is_truncated": true,
+    "rule": "derived text cut to first 60000 chars",
+    "original_chars": 378737,
+    "kept_chars": 60000
+  },
+  "known_gaps": []
+}

@@ -1,0 +1,16 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_research_morningstar_report",
+  "params": {"symbol": "US.AXTI"},
+  "fetched_at": "2026-09-14T18:32:00Z",
+  "published_at": "2026-09-11",
+  "published_at_basis": "analyst_report_update_time / star_update_time epoch 1789160400 = 2026-09-11 (date precision as given by update_time_str); pdf_url _t=1789190060 is a later cache stamp",
+  "period": {"as_of": "2026-09-11"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "quantitative (model) rating only, rating_type=1; no human analyst report; bull_say/bear_say absent; fundamentals_content.context is empty string",
+    "ai_analysis block is Futu-generated text, not Morningstar's — author must be kept separate from source (資料來源 §四 9)",
+    "pdf_url not fetched (external, tokenised)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "source": "edgar",
+  "tool": "local file data/sec/submissions/CIK<10>.json (+ paged files); EDGAR submissions API snapshot",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "slice": 40,
+    "paged_files": [
+      {
+        "name": "CIK0001051627-submissions-001.json",
+        "found_locally": false
+      }
+    ]
+  },
+  "fetched_at": "2026-09-14T18:26:44+00:00",
+  "local_snapshot_mtime_utc": "2026-09-03T00:00:57+00:00",
+  "published_at": null,
+  "published_at_basis": "per-row filingDate (date precision) and acceptanceDateTime (EDGAR UTC, verbatim); no single publish time for the index",
+  "period": {
+    "from": "2026-05-06",
+    "to": "2026-08-19"
+  },
+  "truncated": {
+    "is_truncated": true,
+    "rule": "40 of 1000 filings"
+  },
+  "known_gaps": [
+    "items empty string for non-8-K forms as in source",
+    "reportDate empty for some forms as in source",
+    "local snapshot may lag EDGAR by days (see local_snapshot_mtime_utc)"
+  ]
+}

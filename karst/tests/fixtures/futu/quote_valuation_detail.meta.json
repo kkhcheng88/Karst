@@ -1,0 +1,19 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_valuation_detail",
+  "params": {"symbol": "US.AXTI", "valuation_type": 1, "interval_type": 3},
+  "fetched_at": "2026-09-14T18:35:00Z",
+  "published_at": "2026-09-14 14:34:56",
+  "published_at_basis": "last_update_time (epoch 1789410896) / last_update_time_str in market timezone (US/Eastern) — computed at request time, intraday",
+  "period": {"trend_from": "2025-09-15", "trend_to": "2026-09-14", "historical_items": 251, "valuation_type": "PE (TTM)", "interval": "1Y"},
+  "truncated": {"is_truncated": false, "note": "full 1Y trend returned; longer intervals (3Y/5Y) not fetched"},
+  "known_gaps": [
+    "PE TTM flips from about -115 (loss) to +1564 on 2026-07-30 (first profitable TTM after Q2 print) — the 1Y average (186.9) and ±1σ bands are meaningless across a sign change; average_value/percentile should not be used as-is",
+    "market_distribution.sections: last two buckets have end=0 (open-ended / unknown bucket encoding) and total 2977 vs ranking 2973",
+    "plate_distribution lists 30 stock_items but plate_stock_item_count=22 and plate_ranking=22 (count/rank inconsistency in source)",
+    "profit_growth_rate.profit_data jumps from 2023/Q1 to 2026/Q2 (missing periods; source gap kept)",
+    "forward_value 36.303 basis (consensus source, fiscal year) not stated",
+    "the plate peers include names that are not substrate peers (ASML, KLAC, LRCX): plate = Futu industry list, not comparables",
+    "response transcribed from MCP tool output by the agent; source escaped '&' as \\u0026"
+  ]
+}

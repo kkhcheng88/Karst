@@ -1,0 +1,16 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__quote",
+  "params": {"symbols": ["AXTI.US"]},
+  "fetched_at": "2026-09-14T18:41:34Z",
+  "published_at": "2026-09-14T18:41:34Z",
+  "published_at_basis": "response timestamp (RFC3339 UTC) of the last trade; taken DURING the regular session — last_done is intraday, not a confirmed close (資料來源 §四 10)",
+  "period": {"session_date": "2026-09-14", "state": "intraday"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "prices are decimal strings, volume is integer (mixed typing kept)",
+    "post_market block refers to the previous session (2026-09-11), overnight/pre_market to 2026-09-14 — the three sub-blocks are not the same day",
+    "post_market.volume 171640 vs Futu after_volume 259129 for the same session: venue coverage differs across brokers",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

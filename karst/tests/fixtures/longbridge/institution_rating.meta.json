@@ -1,0 +1,18 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__institution_rating",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:41:00Z",
+  "published_at": "2026-08-27",
+  "published_at_basis": "analyst.evaluate.start_date 2026-08-27T00:00:00Z with end_date '0' (= open-ended, current) and instratings.updated_at '2026 年 8 月 27 日' (localised Chinese date string)",
+  "period": {"as_of": "2026-08-27", "valid_until": "open"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "two rating vocabularies in one response: analyst.evaluate uses buy/over/hold/under/sell, instratings.evaluate uses strong_buy/buy/hold/sell/under — same 5 analysts, mapped differently",
+    "end_date '0' encodes open-ended; updated_at is a localised string not ISO",
+    "target 91.6 (mean) vs Futu average 90.75 on the same 5 analysts: aggregation/rounding differs by vendor",
+    "change 56.36 = implied upside % vs prev_close 64.77 (derived at request time)",
+    "industry_rank/mean/median semantics undocumented",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

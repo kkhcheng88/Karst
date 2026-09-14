@@ -1,0 +1,16 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_research_analyst_consensus",
+  "params": {"symbol": "US.AXTI"},
+  "fetched_at": "2026-09-14T18:32:00Z",
+  "published_at": "2026-08-31",
+  "published_at_basis": "response data.update_time (epoch seconds 1788215432) / update_time_str; timezone of the string not stated by source",
+  "period": {"as_of": "2026-08-31", "note": "current snapshot only; no history via MCP"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "aggregate only (5 analysts); strong_buy/hold/sell are percentages summing to 100, not counts; 'rating' scale (5) undocumented",
+    "num_of_target_analysts=5 vs total=5: which analysts contribute to average/high/low not separable",
+    "no point-in-time history; cannot be used as T1-available consensus for past events (資料來源 §四 6)",
+    "response transcribed from MCP tool output by the agent (no direct file write path from MCP); byte-identical to returned JSON as far as re-typed"
+  ]
+}

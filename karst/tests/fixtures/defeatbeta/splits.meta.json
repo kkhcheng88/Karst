@@ -1,0 +1,21 @@
+{
+  "source": "defeatbeta",
+  "params": {
+    "ticker": "AXTI"
+  },
+  "fetched_at": "2026-09-14T18:30:06+00:00",
+  "library_version": "0.0.60",
+  "cache_update_time_remote": null,
+  "published_at": null,
+  "published_at_basis": null,
+  "period": {
+    "count": 0
+  },
+  "truncated": {
+    "is_truncated": false
+  },
+  "known_gaps": [
+    "empty DataFrame returned by source (kept as empty records)"
+  ],
+  "tool": "Ticker.splits()"
+}

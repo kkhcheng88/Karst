@@ -1,0 +1,19 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__industry_valuation",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:54:00Z",
+  "published_at": null,
+  "published_at_basis": "scalar block = latest values at fetch (price_close 64.77 = 2026-09-11 close); history rows = first-of-month snapshots (RFC3339, US-Eastern midnight)",
+  "period": {"history_from": "2021-10-01", "history_to": "2026-09-01", "rows_per_symbol": 60, "peers": ["ASML.US", "LRCX.US"]},
+  "truncated": {"is_truncated": true, "rule": "AXTI.US block complete and verbatim (60 history rows); for the two peers the 'history' array was cut to first 2 + last 2 rows with a '_truncated' marker object in place of the 56 omitted rows (README 規矩 5: 券商回傳只取一家; peers kept for schema only). Peer scalar fields are verbatim"},
+  "known_gaps": [
+    "'industry' peers are ASML and Lam Research — equipment giants, not substrate comparables (same problem as Futu plate); peer set is a vendor industry bucket",
+    "numeric precision: strings with up to 22 decimal places (e.g. ASML eps '31.9302746483116120208379') — parser must not round to float32",
+    "AXTI scalar pe -198.12 (negative, presumably FY-basis) vs valuation tool PE +1095.48 (TTM) vs Futu 1954.33: three PE definitions across two vendors",
+    "AXTI pe history is monthly and stays negative through 2026-09-01 while daily TTM PE turned positive on 2026-07-30 — different earnings basis again",
+    "ASML history row 2024-01-01 in the original response carried pe 2753.99 (vendor artefact; omitted by truncation, recorded here)",
+    "'volume' scalar semantics undocumented (looks like a rolling total, not daily)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

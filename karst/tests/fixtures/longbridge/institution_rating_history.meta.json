@@ -1,0 +1,19 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__institution_rating_history",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:41:00Z",
+  "published_at": null,
+  "published_at_basis": "target_history: monthly timestamps as epoch-second STRINGS (first of month, 04:00/05:00 UTC = US-Eastern midnight); evaluate_history: start_date/end_date epoch-second strings = validity window of each rating distribution; the last window's end_date 1789411299 is the fetch moment (open-ended)",
+  "period": {"target_history": {"from": "2021-10-01", "to": "2026-09-01", "rows": 60}, "evaluate_history": {"from": "2021-10-28", "to": "open", "rows": 90}},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "all numbers are strings including counts ('3') and epochs ('1633060800')",
+    "target_history first row (2021-10-01) has empty high/low target strings (no coverage yet)",
+    "monthly close in target_history is the vendor's month-start close; last row close 58.605 differs from institutional_views.tlist 58.620 for the same date (two vendor endpoints, different capture time)",
+    "high/low target lag the actual notes by weeks (e.g. 2026-02 high 26 while Northland had 35 on 02-17): month-level snapshot, not event-level",
+    "evaluate_history has many consecutive identical windows (refresh without change) — de-duplicate before use",
+    "history starts 2021-10, confirming 資料來源 §三 note that monthly rating history is available from 2021-10",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

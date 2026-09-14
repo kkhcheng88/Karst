@@ -1,0 +1,16 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__fund_holder",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:45:00Z",
+  "published_at": null,
+  "published_at_basis": null,
+  "period": null,
+  "truncated": {"is_truncated": false},
+  "status": "FAILED",
+  "known_gaps": [
+    "tool returned error envelope {error_code 2101400, 'internal server error', recoverable 'none'} on first call; per the MCP server contract recoverable='none' means do not retry — not retried",
+    "the error envelope is itself a contract case: the fetch layer must distinguish 'fetch failed' from 'no funds hold this stock' (資料來源 §零: 取得失敗、未覆蓋和確定無變分開)",
+    "fund/ETF holders for this symbol therefore uncovered in this sample package"
+  ]
+}

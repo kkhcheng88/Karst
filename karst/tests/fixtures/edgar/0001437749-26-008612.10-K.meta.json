@@ -1,0 +1,53 @@
+{
+  "source": "edgar",
+  "tool": "EDGAR Archives HTTP GET (urllib; User-Agent Karst research; <=4 req/s; retry once)",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "accession": "0001437749-26-008612",
+    "form": "10-K",
+    "document": "axti20251231_10k.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926008612/axti20251231_10k.htm",
+    "kind": "primary"
+  },
+  "fetched_at": "2026-09-14T18:26:44+00:00",
+  "published_at": "2026-03-17T20:32:12.000Z",
+  "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC, verbatim). Not necessarily first public release time; 8-K press release may have been issued earlier (see 資料來源 §四 4)",
+  "filingDate": "2026-03-17",
+  "reportDate": "2025-12-31",
+  "items": "",
+  "period": {
+    "reportDate": "2025-12-31"
+  },
+  "files": {
+    "raw": {
+      "name": "0001437749-26-008612.10-K.raw.htm.gz",
+      "bytes": 3214726,
+      "sha256": "60cdba5e4ec368344e59247109a82e8f9d7cb418d023610a5726c7109fe471e1",
+      "note": "verbatim EDGAR bytes, not truncated",
+      "compressed": "gzip (sha256/bytes refer to the decompressed verbatim EDGAR bytes)",
+      "gz_bytes": 236735
+    },
+    "text": {
+      "name": "0001437749-26-008612.10-K.txt",
+      "chars": 60000,
+      "sha256_full_text": "66852493bbcc0e13dc568c1c8d2bf34cf6f3d470e2171d2cbf9eb203b2a4df3a",
+      "derivation": "regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+    }
+  },
+  "truncated": {
+    "is_truncated": true,
+    "rule": "derived text cut to first 60000 chars",
+    "original_chars": 514782,
+    "kept_chars": 60000
+  },
+  "known_gaps": [
+    "local 10k_text manifest has no entry for this CIK; fetched from EDGAR online instead",
+    "derived text begins with inline-XBRL hidden header values (ix:hidden) as they appear in the document body; not removed"
+  ],
+  "local_cache_check": {
+    "manifest": "data/sec/10k_text/manifest.jsonl",
+    "hit": false,
+    "hit_accession": null
+  }
+}

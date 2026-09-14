@@ -1,0 +1,18 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__forecast_eps",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:41:00Z",
+  "published_at": null,
+  "published_at_basis": "per item forecast_start_date / forecast_end_date (RFC3339, T00:00:00Z = date precision) = validity window of that consensus snapshot; the final item has end_date '0' (= current/open-ended)",
+  "period": {"from": "2019-01-14", "to": "open", "items": 112},
+  "truncated": {"is_truncated": false, "note": "items reformatted one-per-line for diff readability; values verbatim"},
+  "known_gaps": [
+    "institution_total/up/down are 0 on EVERY item — analyst counts are not populated for this symbol",
+    "fiscal target period of each EPS forecast is NOT stated (which FY the 1.58 refers to is unknown from this response; presumably next FY, rolling)",
+    "windows overlap and several items carry end_date 2079-06-06 (sentinel for 'never superseded' / dangling record) — 9 such items; cannot build a clean point-in-time series without de-duplication rules",
+    "some consecutive items are identical values with adjacent windows (snapshot refresh without change)",
+    "numbers are strings; negative values as '-0.08'",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

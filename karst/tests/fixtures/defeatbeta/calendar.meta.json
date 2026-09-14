@@ -1,0 +1,23 @@
+{
+  "source": "defeatbeta",
+  "params": {
+    "ticker": "AXTI"
+  },
+  "fetched_at": "2026-09-14T18:30:06+00:00",
+  "library_version": "0.0.60",
+  "cache_update_time_remote": null,
+  "published_at": null,
+  "published_at_basis": "per-row report_date (date precision)",
+  "period": {
+    "from": "2023-02-16",
+    "to": "2026-07-30",
+    "count": 15
+  },
+  "truncated": {
+    "is_truncated": false
+  },
+  "known_gaps": [
+    "'time' may be 'time-not-supplied'; future rows are scheduled not confirmed"
+  ],
+  "tool": "Ticker.calendar()"
+}

@@ -1,0 +1,17 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_financials_earnings_price_history",
+  "params": {"symbol": "US.AXTI"},
+  "fetched_at": "2026-09-14T18:35:08Z",
+  "published_at": null,
+  "published_at_basis": "per record: pub_time (epoch s) / pub_time_str (market timezone, 'yyyy-MM-dd HH:mm:ss') and pub_type. pub_type=2 rows carry 16:00:00/16:30:00 (after close); pub_type=0 rows (2021/Q2–2022 periods) carry 00:00:00 = time NOT known, do not read as midnight (資料來源 §四 4)",
+  "period": {"from": "2021/Q2", "to": "2026/Q2", "periods": 20, "records": 600, "records_per_period": 30, "schedule_delta_range": [-15, 14]},
+  "truncated": {"is_truncated": false, "note": "tool cannot restrict a range; all history returned; file written byte-verbatim from the saved MCP result (sha256 of raw response text 01b363abf4238a0992e9792a6faffa784ae57de49b5d44c26c3a05f2da907d42)"},
+  "known_gaps": [
+    "each period repeats the same disclosure-day fields 30 times; only schedule_delta and schedule_close_price vary per row (denormalised)",
+    "pub_type semantics undocumented (observed 0 = time unknown, 2 = after-market)",
+    "option_iv_crush / option_strike_date_iv_crush absent on older periods",
+    "fiscal_year/period_text are Futu's labels; align to company fiscal calendar before joining with EDGAR reportDate",
+    "prices appear split-adjusted? not stated; compare with daily slice before use"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_short_interest",
+  "params": {"symbol": "US.AXTI", "count": 30},
+  "fetched_at": "2026-09-14T18:35:00Z",
+  "published_at": null,
+  "published_at_basis": "per row timestamp/timestamp_str = settlement date of the bi-monthly FINRA short-interest report (market timezone date). FINRA publishes ~8–9 business days after settlement; publication time is NOT in the response",
+  "period": {"from": "2025-06-13", "to": "2026-08-31", "rows": 30, "cadence": "twice monthly (mid-month and month-end settlement)"},
+  "truncated": {"is_truncated": true, "rule": "count=30 (max 90); older rows not fetched"},
+  "known_gaps": [
+    "days_to_cover floors at 1 for most rows (source rounding/clipping)",
+    "short_percent denominator (float vs shares outstanding) undocumented",
+    "no publication timestamp: a row dated 2026-08-31 was not knowable on 2026-08-31 (資料來源 §四 1)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

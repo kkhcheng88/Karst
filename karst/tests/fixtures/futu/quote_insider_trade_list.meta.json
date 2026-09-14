@@ -1,0 +1,18 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_insider_trade_list",
+  "params": {"symbol": "US.AXTI", "limit": 50, "holder_id": 0},
+  "fetched_at": "2026-09-14T18:35:00Z",
+  "published_at": null,
+  "published_at_basis": "per row min/max_trade_date (epoch ms, UTC-midnight rendering of a date; date precision) = transaction date range, NOT the Form 4/144 filing date. Filing/acceptance time must come from EDGAR (Form 4/144 rows in edgar/ submissions slice)",
+  "period": {"from": "2025-11-24", "to": "2026-08-16", "rows": 50, "total_available": 81},
+  "truncated": {"is_truncated": true, "rule": "first page (limit 50 = tool max); pagination.has_more=true, next_key='50' (offset cursor) not followed"},
+  "known_gaps": [
+    "Form 144 'Proposed Sale' rows (intent) coexist with the later Form 4 'Sell' rows of the same lot — double counting risk if summed",
+    "security_holder_quantity absent on Form 144 rows; min/max_price absent on Form 3 and 'Other Disposition/Acquisition' rows (real gaps)",
+    "security_description mixes '普通股' and 'Class A' for the same issuer (source labelling inconsistency)",
+    "some Form 4 rows aggregate multiple days (min_trade_date != max_trade_date) with a price range",
+    "titles in Simplified Chinese / English mixed",
+    "response transcribed from MCP tool output by the agent; source escaped '&' as \\u0026"
+  ]
+}

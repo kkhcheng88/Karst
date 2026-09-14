@@ -1,0 +1,19 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__finance_calendar",
+  "params": {"category": "report", "market": "US", "start": "2026-09-15", "end": "2026-09-28"},
+  "fetched_at": "2026-09-14T18:45:00Z",
+  "published_at": null,
+  "published_at_basis": "per event 'datetime' (RFC3339 UTC) = scheduled release moment; ext.financial_report.market_time before/after/during is the session slot; 'date' string is a localised display in US-Eastern. Scheduled, not confirmed (資料來源 §四 1)",
+  "period": {"requested": "2026-09-15..2026-09-28", "returned_day_buckets": "2026-09-15..2026-09-29", "events": 45},
+  "truncated": {"is_truncated": false, "note": "tool doc warns ranges over ~2 weeks truncate; this 14-day window returned 10 day-buckets (2026-09-15..2026-09-29)"},
+  "known_gaps": [
+    "MARKET-WIDE, not symbol-specific: AXTI does not report in this window (next AXTI print ~late Oct per DefeatBeta calendar); this sample shows the event schema only",
+    "day-bucket 'date' is the UTC/HK calendar day, while each event's local_date is US-Eastern — several events sit under bucket 2026-09-16 with local_date 2026-09-15 (after-hours) — bucket key is NOT the US trading date",
+    "returned buckets include 2026-09-29 (outside requested end 2026-09-28) because a 09-28 after-hours event rolls to 09-29 UTC",
+    "LAES.US shows actual_revenue already populated ('11.15 百万') for a 09-15 event fetched on 09-14 — vendor pre-populated or stale; treat actual_* as unreliable before datetime",
+    "data_kv values are localised strings ('4.3 亿', '待公布', '--'); use value_raw (string decimal) — empty string = missing",
+    "content/industry/counter_name in Simplified Chinese (account locale); 'live' sub-object present only when a call is scheduled",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

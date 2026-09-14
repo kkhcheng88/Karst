@@ -1,0 +1,15 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_company_profile",
+  "params": {"symbol": "US.AXTI"},
+  "fetched_at": "2026-09-14T18:32:00Z",
+  "published_at": null,
+  "published_at_basis": "no update time in response; snapshot as of fetch",
+  "period": {"as_of": "fetch time"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "all values are strings (Issue Price, Employees, Listing Date as free text)",
+    "no CIK in profile; ISIN present",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}
