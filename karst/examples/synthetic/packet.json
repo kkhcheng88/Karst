@@ -1,0 +1,52 @@
+{
+  "contract_version": "0.1.0",
+  "packet_id": "demo-packet-1",
+  "previous_packet_id": null,
+  "security": {
+    "security_id": "demo-security",
+    "issuer_id": "demo-issuer",
+    "ticker": "DEMO",
+    "name": "合成公司 · 離線示範",
+    "currency": "USD",
+    "exchange": "SYNTHETIC"
+  },
+  "as_of": "2025-01-31T22:00:00Z",
+  "created_at": "2025-01-31T22:05:00Z",
+  "knowledge_basis": "system_observed",
+  "evidence_ids": [
+    "demo-e1",
+    "demo-e2"
+  ],
+  "dependencies": [
+    {
+      "kind": "evidence",
+      "id": "demo-e1",
+      "version": "1"
+    },
+    {
+      "kind": "evidence",
+      "id": "demo-e2",
+      "version": "1"
+    }
+  ],
+  "requirements": [
+    {
+      "kind": "transcript",
+      "status": "missing",
+      "evidence_ids": [],
+      "reason": "沒有逐字稿，無法核實管理層對庫存與需求的解釋；暫不形成完整基本面結論。"
+    }
+  ],
+  "supplement_requests": [
+    {
+      "request_id": "demo-request-1",
+      "layer": "L3",
+      "question": "客戶庫存增加是否包含提前採購？",
+      "reason": "會改變改善持續性與現金流假設。",
+      "status": "pending",
+      "evidence_ids": [],
+      "resolution": null
+    }
+  ],
+  "pending_updates": []
+}

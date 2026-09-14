@@ -1,0 +1,70 @@
+[
+  {
+    "contract_version": "0.1.0",
+    "evidence_id": "demo-e1",
+    "source_id": "demo-e1-source",
+    "source_version": "1",
+    "source": "synthetic-example",
+    "kind": "other_public",
+    "provenance": "synthetic",
+    "entity_ids": [
+      "demo-issuer"
+    ],
+    "source_url": null,
+    "tool": null,
+    "params": {},
+    "published_at": "2025-01-31T22:00:00Z",
+    "published_at_basis": "Invented example timestamp",
+    "fetched_at": "2025-01-31T22:00:00Z",
+    "data_as_of": "2025-01-31T22:00:00Z",
+    "period": {
+      "start": null,
+      "end": null
+    },
+    "truncated": false,
+    "known_gaps": [
+      "Synthetic; not a real API response."
+    ],
+    "media_type": "text/plain",
+    "artifact": {
+      "path": "source.txt",
+      "sha256": "144de13f42dc7534d662902833bb2a931032fc5d208820384d128c0dc71f2b88",
+      "bytes": 410
+    },
+    "supersedes": null
+  },
+  {
+    "contract_version": "0.1.0",
+    "evidence_id": "demo-e2",
+    "source_id": "demo-e2-source",
+    "source_version": "1",
+    "source": "synthetic-example",
+    "kind": "prices",
+    "provenance": "synthetic",
+    "entity_ids": [
+      "demo-issuer"
+    ],
+    "source_url": null,
+    "tool": null,
+    "params": {},
+    "published_at": "2025-01-31T22:00:00Z",
+    "published_at_basis": "Invented example timestamp",
+    "fetched_at": "2025-01-31T22:00:00Z",
+    "data_as_of": "2025-01-31T22:00:00Z",
+    "period": {
+      "start": null,
+      "end": null
+    },
+    "truncated": false,
+    "known_gaps": [
+      "Synthetic; not a real API response."
+    ],
+    "media_type": "application/json",
+    "artifact": {
+      "path": "prices.json",
+      "sha256": "b28a74a4a56f7dd471bcf9fc5cedff8514e70cd1ab8742b88d40c4e7041ebe7c",
+      "bytes": 38375
+    },
+    "supersedes": null
+  }
+]
