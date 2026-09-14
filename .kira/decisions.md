@@ -419,4 +419,27 @@
   >
   > The whole model or application, perhaps is not try to invention a way or a workflow that is guranteed can beat the market in the future. But at the least it can leverage the best capability of the latest front-tier LLM model with the highest intelligence, with the latest information (as it is not inside your training data) and forcing the disipline to provide the best investment advise which is not limited to the easier of data source which is Price, but also a complete analyssis of Not only from K Chart, but Market, Value-Chain, Fundmentals, then TA. And taking the correct timeframe which match with the investment principle of myself and the knowledge from the masters.
 
-- 影響:D12 為「投研工作台 v1」;首批股票頁與最低必要的資料／版本、投資紀律、產業背景及核心 TA 一起交付,再擴充觀察名單與每日差異、今日市場。WeKnora 試用與既有研究收尾並行,不阻塞首批。①估值計算器與價值鏈人手表可由 tag 還原作種子,核過再用;現行隊列與本輪修訂在地圖 D12、§二。
+- 影響:D12 為「投研工作台 v1」;首批股票頁與最低必要的資料／版本、投資紀律、產業背景及核心 TA 一起交付,再擴充觀察名單與每日差異、今日市場。
+
+## D-180 用戶明令(2026-09-14):工作台程式由第一日起必須通用——代號、日期、路徑由參數傳入,檔名與碼內不出現任何股票代號;倉內不准一次性測試或探索腳本(放倉外 scratchpad,不 commit);程式只住 `karst/` 套件;派工指令必須帶本規矩原文,工人交回的股票專屬檔不收貨。另:用戶提問不等於指示開工,要講明「開始」才派工或開實作票
+- 類型:決策
+- 狀態:有效
+- 日期:2026-09-14
+
+- 出處:用戶 2026-09-14 原話兩句(quote 欄)。起因:主 agent 為首批股票頁派出的取證子代理開始寫股票專屬的抓取碼(形如 fetch_edgar_axti),而且是在用戶只問相位與階段清單、未叫開工的情況下派出;②考試期間 A3 目錄亦累積了三十多個 `_fix*.py`、`_peek*.py` 一次性腳本。
+
+- 背景:主 agent 立場(D-110):用戶對,而且這兩件事同源——一次性腳本與股票專屬碼都是「先做完眼前這一隻」的產物,倉會隨股票數線性膨脹,換第二隻就要再寫一套;第一批驗收本來就寫「換股不改碼」,結構上要由套件與參數保證,不能靠事後檢查。已刪子代理留下的未登記證據檔;KARST-240 保持開票但不動,等用戶講明開始。
+
+- 決策:
+  1. 程式只住 `karst/` 套件,以模組加參數運行(例如 `python -m karst.fetch --ticker <代號>`);代號、公司名、日期、路徑一律由參數或設定檔傳入,檔名與程式碼內不准出現任何一隻股票的代號或名字
+  2. 倉內不准一次性腳本(`_tmp*`、`_peek*`、`fetch_<代號>`、`check_*` 之類);探索與除錯碼放 session 的 scratchpad(倉外),不 commit;測試只放 `karst/tests/` 且通用
+  3. 每個模組一個職責,新模組先在 `karst/README.md` 登記;派工指令必須帶本規矩原文,工人交回的股票專屬檔一律不收貨
+  4. 用戶提問、要清單、要文件供 GPT 討論,都不是開工指示;要用戶講明「開始」才派工或開實作票
+
+- **用戶原話(原文照錄)**
+
+  > I see you are start making something like fetch_edgar_axti which is stock specific. But this is another problem to me as you must at the end making tons of testing scripts. And the repo will be expanded to be uncontrollable. Can you do the script starting from now must be generic?
+  >
+  > I am asking you on the phases and stage but not asking you to start
+
+- 影響:CLAUDE.md 硬規則第 10、11 條;`karst/README.md` 規矩與佈局;KARST-240 驗收條件第五條(換股不改碼)由本決策的結構要求保證;日後每張實作票的派工指令帶本條原文。WeKnora 試用與既有研究收尾並行,不阻塞首批。①估值計算器與價值鏈人手表可由 tag 還原作種子,核過再用;現行隊列與本輪修訂在地圖 D12、§二。
