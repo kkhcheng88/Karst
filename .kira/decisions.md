@@ -2,6 +2,8 @@
 
 > 鐵律:本簿永遠只寫「現在的真相」;歷史由 git 保存。
 >
+> **工作台現行執行入口(2026-09-14)**:D-179 與 `strategy/投資委託.md`／`strategy/specs/六層分析紀律-v1.md` v1.1。較早研究階段的暫停開發、一宗事件先行及 A-043 預設不作現行產品前置條件;資金停手線按 `principles.md` §三 2026-09-11 回覆保持未定,1% 只是計算示例。原用戶引文保留,不以舊 agent 假設覆蓋較新用戶決定。
+>
 > **2026-09-14 重寫(D-177)**:根基重整時只保留現行有效的條目;V1 引擎期(D-001 至 D-126)與①研究期的其餘條目全部移出,全文在 git 歷史與 tag `pre-reset-2026-09-13`(備份亦在 `~/.claude/backups/decisions.md.2026-09-14.bak`)。條目次序按編號;新條目照舊格式接在末尾。
 
 ## D-127 用戶設定新總目標(2026-09-02):持續尋找任何可能的優勢、驗證並不斷改進策略;唯一原則是決策次序由上而下——市況(market)> 價值鏈(value-chain)> 個股(individual)> 技術觸發(TA triggers);方法論、工具、技術指標不設限,鼓勵跳出框框、大膽假設,先做初步存在性證明;之後交出找到的五個最佳策略與用戶討論
@@ -397,7 +399,7 @@
 
 - 出處:用戶 2026-09-14 原話(與 GPT 對話,原文 `research/2026-09-methodology/2026-09-13-②第五輪外部評論與新架構討論(原文).md`;三段原話見 quote 欄)。主 agent 兩次提案(「先跑一宗真實事件」、「每格標已量度/未量度」)均被用戶否決,本條記用戶裁決。
 
-- 背景:主 agent 於根基重整後提出第一版只做「資料來源正本、取證包管線、論點卡、一宗真實事件跑通」,並要求每格判斷標「已量度 / 未量度」。用戶指出:項目是投資項目不是學術研究,第一天起產物就要能被本人消費;「跑通一宗事件」不切實際(市場每日演變,鎖不住);TradingAgents 一類系統都是一套通用 agent team 適用於任何股票;逐格標籤只是把責任推回投資者,而且過去量度不代表未來。主 agent 立場(D-110):兩點都認錯——「一宗事件」把產品又寫成研究品;標籤是品管工具放錯了位置,正確形式是每格寫依據、關鍵假設、最強反證、缺哪項資料及其影響,品管紀錄留後台。補一句:②考試證明紀律與資料比模型更決定質素(兩模型點值只差 0.5 點,取證包錯位卻可翻轉結論),所以本定義的落點在資料層與版本控制,不在框架。
+- 背景:主 agent 於根基重整後提出第一版只做「資料來源正本、取證包管線、論點卡、一宗真實事件跑通」,並要求每格判斷標「已量度 / 未量度」。用戶指出:項目是投資項目不是學術研究,第一天起產物就要能被本人消費;「跑通一宗事件」不切實際(市場每日演變,鎖不住);TradingAgents 一類系統都是一套通用 agent team 適用於任何股票;逐格標籤只是把責任推回投資者,而且過去量度不代表未來。主 agent 立場(D-110):兩點都認錯——「一宗事件」把產品又寫成研究品;標籤是品管工具放錯了位置,正確形式是每格寫依據、關鍵假設、最強反證、缺哪項資料及其影響,品管紀錄留後台。補一句:②考試中的取證包錯位顯示資料完整性會左右判斷,因此資料與版本控制須落實;兩模型在單一指標的差距不足以推出「資料比模型普遍更重要」的定量結論。
 
 - 決策:
   1. 第一版交付通用的投資分析與追蹤工作台:三個入口(股票分析 / 觀察名單與持倉追蹤 / 今日市場),股票頁首屏六行(目前建議、主要理由、關鍵假設、最強反證、改變行動的條件、與上次相比),另含技術結構與動能、內在價值正向與反向及計算依據、前瞻投資計劃與風險回報
@@ -405,7 +407,9 @@
   3. 負責關鍵判斷的強模型直接閱讀原始證據、自行補查、可挑戰上游摘要;便宜模型與程式只做去重、格式、計算(與 D-175 一致)
   4. 資料按來源與維度分組,帶時間戳與差異,只重評受影響部分;產業與價值鏈層研究共用並傳到公司(用戶原話「the key architecture concept is actually on the version control of the stock related information and industry level information」);資料模型第一天設計
   5. ②第一次考試與 84 宗回歸集只作系統品質改善與日後成效評估,不作逐格信任標籤,不作交付前提;實際使用中的每張卡連資料截止時間留存
-  6. 主 agent 附加立場(非用戶裁):引擎用 SQLite、同一套表結構日後可換;技術面只在進出場與風險回報層;WeKnora 與 TencentDB Agent Memory 第一版不接,待大量產業 PDF 需語義檢索時再評
+  6. 實作安排(非額外投資偏好):工作台索引與狀態先用 SQLite,資料模型與來源版本獨立;技術面服務進出場與 R&R。WeKnora 的舊「第一版不接」立場已由後續對話改成有界整合試用,與股票頁並行,分開評檢索／Wiki 的品質、時間、模型費用與可省的自建維護;證據及發布快照獨立保留。Agent Memory 尚未列入實作。
+  7. 2026-09-14 本輪用戶授權 GPT 直接貢獻並提交修訂(原話:「you should have assess to directly contribute and commit the change to the repo」)。此輪修正委託與六層紀律、同步資料及進度正本,不表示取證器／股票頁已完成。
+  8. 同輪用戶澄清 TA 關心「key pivot points」「支撐 阻力, 200MA」,再問日週月線、上下行通道及突破回測的計劃。依此把核心定為關鍵區域與價量反應,日線管執行、週線管主要趨勢、月線管長期位置;通道與突破後回踩納入首版,SMC 作選用描述。200MA 實作預設 200 日 SMA,不冒充用戶指定 SMA 而非 EMA。
 
 - **用戶原話(原文照錄)**
 
@@ -415,4 +419,4 @@
   >
   > The whole model or application, perhaps is not try to invention a way or a workflow that is guranteed can beat the market in the future. But at the least it can leverage the best capability of the latest front-tier LLM model with the highest intelligence, with the latest information (as it is not inside your training data) and forcing the disipline to provide the best investment advise which is not limited to the easier of data source which is Price, but also a complete analyssis of Not only from K Chart, but Market, Value-Chain, Fundmentals, then TA. And taking the correct timeframe which match with the investment principle of myself and the knowledge from the masters.
 
-- 影響:D12 改名「投研工作台 v1」;票序 資料與版本模型 → 投資委託與分析紀律 → 股票頁 → 觀察名單 → 今日市場;①估值計算器與價值鏈人手表由 tag 還原作種子;地圖 D12 格、② 對帳單 §十二 第 18–20 條。
+- 影響:D12 為「投研工作台 v1」;首批股票頁與最低必要的資料／版本、投資紀律、產業背景及核心 TA 一起交付,再擴充觀察名單與每日差異、今日市場。WeKnora 試用與既有研究收尾並行,不阻塞首批。①估值計算器與價值鏈人手表可由 tag 還原作種子,核過再用;現行隊列與本輪修訂在地圖 D12、§二。

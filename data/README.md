@@ -1,14 +1,14 @@
 # data/ —— 資料層地圖(2026-09-07 建;2026-09-14 重整後只餘原料層)
 
-倉根 `data/` 整個目錄由 `.gitignore` 擋走(只有說明檔與清單入 git),因為裡面全部是**可以重抓或重算**的東西。資料層正本是 `strategy/資料來源.md`(含倉外接口與時點規則);本檔只管 `data/` 目錄。這一頁答三條問題:每一層由哪裡來、掉了要花多少功夫重建、有沒有入 git。
+倉根 `data/` 整個目錄由 `.gitignore` 擋走(只有說明檔與清單入 git),避免把大量原料放入 git;這不代表每個舊版本都能原樣重抓。已用於發布判斷的輸入快照、清單與解析版本須另行備份,不能以供應商今日可下載取代。資料層正本是 `strategy/資料來源.md`(含倉外接口與時點規則);本檔只管 `data/` 目錄。這一頁答三條問題:每一層由哪裡來、掉了要花多少功夫重建、有沒有入 git。
 
-分兩層看:**原料**是外面抓回來的、我們改不了的事實;**衍生**是原料經本倉的程式算出來的東西,原料在就重得出。
+分兩層看:**原料**是來源在某一時點提供的內容,其中可有陳述、預測及錯誤,不等於已核事實;**衍生**是本倉從指定原料版本產生的結果。重建還需相同解析／計算版本;LLM 生成結果不保證重新執行會逐字相同。
 
 ## 一、原料層
 
 | 目錄 | 是什麼 | 來源 | 大小 | 重建成本 | 入 git |
 |---|---|---|---|---|---|
-| `sec/` | 美國證監會申報快取(D-134):`submissions/` 申報索引、`companyfacts/` 財務標籤(5,335 家)、`10k_text/` 年報全文、`cik-lookup-data.txt` 與 `company_tickers.json` 代號對照 | EDGAR,免費 | 3.0 GB | 高:全宇宙重抓要一至兩日,受 EDGAR 速率限制;內容按申報日不變,重抓即得同一份 | 只有各層的 `README.md`、`manifest.csv`、`completeness.csv` 入 git |
+| `sec/` | 美國證監會申報快取(D-134):`submissions/` 申報索引、`companyfacts/` 財務標籤(5,335 家)、`10k_text/` 年報全文、`cik-lookup-data.txt` 與 `company_tickers.json` 代號對照 | EDGAR,免費 | 3.0 GB | 高:全宇宙重抓要一至兩日,受 EDGAR 速率限制;特定 accession 的文件可重取,但 companyfacts 聚合回傳與抽取器可改版;已採用的內容／解析版本須保留,重抓後核指紋 | 只有各層的 `README.md`、`manifest.csv`、`completeness.csv` 入 git |
 | `prices/daily/` | 美股日線 | 供應商 API | 442 MB | 中:跑一次取數腳本即重生;歷史價格會因拆股與供應商修訂而有微差 | 只有 `README.md`、`manifest.csv`、`failed.csv` |
 | `universe/` | 宇宙定義:`entities.parquet` 實體主檔、`ticker_periods.parquet` 代號分段、`universe_smallcap_v0/v1.csv` 小型股宇宙、`price_snapshot_*.csv` | 由 `sec/` 與 `prices/` 建成,但一經定版即當原料用(策略要按同一份宇宙比較) | 2.2 MB | 低:有腳本可重建,但**重建等於換宇宙**,不可在同一條實驗線中途做 | `RULES.md` 與 `universe_smallcap_v1.manifest.json` 入 git |
 
@@ -26,6 +26,10 @@
 
 ## 四、不在 data/ 裡的資料源
 
-- **DefeatBeta**(D-025/D-026 已收為來源,套件 `defeatbeta-api` v0.0.60 已裝):**沒有本機資料庫檔**。它是 HuggingFace 上的公開資料集 `defeatbeta/yahoo-finance-data`,由 DuckDB 的 httpfs 直接查遠端 parquet,本機只有一個 DuckDB 擴充與快取目錄 `C:\Users\Kaho\.duckdb`(約 55 MB,可刪可重建)。所以它既不在倉內、也不在 `data/` 下;要用就直接呼叫套件,不用先落檔。提供業績電話會逐字稿與逐季業績日曆。
+- **DefeatBeta**(D-025/D-026 已收為來源,套件 `defeatbeta-api` v0.0.60 已裝):**沒有本機資料庫檔**。它是 HuggingFace 上的公開資料集 `defeatbeta/yahoo-finance-data`,由 DuckDB 的 httpfs 直接查遠端 parquet,本機只有一個 DuckDB 擴充與快取目錄 `C:\Users\Kaho\.duckdb`(約 55 MB,可刪可重建)。所以它既不在倉內、也不在 `data/` 下;可直接呼叫套件作查詢;凡用於發布卡的逐字稿與數據必保存實際採用內容的版本及清單,不把 DuckDB 快取當可追溯的正式證據快照。提供業績電話會逐字稿與逐季業績日曆。
 - **富途 MCP**(用戶 2026-09-13 授權)與 **Longbridge**(plugin,D-165):現時報價、共識、評級、內部人、沽空、期權、業績公布時間等;清單見 `strategy/資料來源.md` §三。
 - ~~生產庫 `karst.sqlite`~~ 與 ~~倍數版本存檔 `vintage/`~~:已於 2026-09-13/14 隨重整刪除。
+
+## 五、工作台取數的現行口徑(2026-09-14 審查補充)
+
+日常用截至分析時可取得的最新適用修正資料;②歷史考試的首報值只用於原協議,不套到日常。未知公開時刻不由檔名或未來／過去日期猜成精確時間;截止前已發出的未來指引可以入包。日週月價量與 200 日 SMA 使用一致交易日曆、價格調整與收市確認。詳細規則及共識 C4 的可比條件以 `strategy/資料來源.md` §四為準。
