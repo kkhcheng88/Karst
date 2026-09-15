@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "karst-workbench"
-version = "0.2.1"
+version = "0.2.2"
 description = "File-based investment research contracts and offline publication core"
 requires-python = ">=3.11"
 dependencies = ["jsonschema==4.26.0", "referencing==0.37.0", "rfc3339-validator==0.1.4", "tzdata>=2025.2"]
@@ -16,4 +16,4 @@ karst = "karst.run:main"
 include = ["karst*"]
 
 [tool.setuptools.package-data]
-karst = ["contracts/v0_1/*.json", "contracts/v0_2/*.json", "page/*.css", "examples/synthetic/*.json", "examples/synthetic/*.txt"]
+karst = ["contracts/v0_1/*.json", "contracts/v0_2/*.json", "page/*.css", "agents/prompts/*.md", "examples/synthetic/*.json", "examples/synthetic/*.txt"]

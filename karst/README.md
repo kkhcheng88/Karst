@@ -30,6 +30,8 @@ python -m karst.fetch.broker --out <DIR> --source futu --tool <工具> --symbol 
 
 契約目前為 **0.2.0**，保留 0.1.0 讀取。第二輪接線要看 [契約的遷移表](contracts/README.md)：日期精度與時區、原始 coverage、error/empty 取得紀錄，以及手填判斷的 `integration_example` 模式。Windows 缺符號連結權限時只略過該項測試，路徑逃逸檢查照跑。
 
+步二新增 `fetch.registry.EvidenceRegistry`、`packet.build_packet`、六角色提示詞／輸入允許清單與 `agents.assemble`；核心版本 0.2.2，契約仍是 0.2.0。接線、片段欄位、補查與本地驗收見 [agents/README.md](agents/README.md)。
+
 發布目錄包括 `publication.json`、`index.html`、`calculations.json` 及 `inputs/`。後者保留該版 packet、research、evidence 登記與原始 bytes，可以再次交給同一入口重播。不要把產生的發布包或大批原始來源 commit。
 
 頁面只顯示來源登記與原始檔連結，原文不再內嵌。移動或分享頁面請保留整個發布目錄；只取走 `index.html` 會失去本地來源連結。程式／renderer 版本 0.2.1，契約仍為 0.2.0。

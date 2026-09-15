@@ -8,7 +8,77 @@ from pathlib import Path, PurePosixPath
 from uuid import uuid4
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from .schema import ContractError, decode, digest, validate
+from .schema import ContractError, canonical, decode, digest, validate
+
+
+def build_packet(evidence_records, as_of, security, *, created_at=None,
+                 knowledge_basis="system_observed", previous_packet_id=None,
+                 required_kinds=("filing", "transcript", "financials", "prices"),
+                 dependencies=(), supplement_requests=(), pending_updates=(), root=None):
+    """Build from an explicitly selected set, never silently filter late evidence.
+
+    Caller selects current applicable versions (including shared industry evidence),
+    resolves security IDs and registers supplements before rebuilding the packet.
+    root, when supplied, additionally verifies all source bytes before returning.
+    """
+    records = copy.deepcopy(list(evidence_records))
+    for record in records:
+        validate("evidence", record)
+        if record["contract_version"] != "0.2.0":
+            raise ContractError("build_packet requires contract 0.2.0 evidence")
+        _private_selectors(record["params"])
+    if len({r["evidence_id"] for r in records}) != len(records):
+        raise ContractError("Duplicate evidence_id")
+    usable = sorted((r for r in records if r["status"] == "ok"), key=lambda r: r["evidence_id"])
+    diagnostics = sorted(r["evidence_id"] for r in records if r["status"] != "ok")
+    kinds = sorted(set(required_kinds) | {"transcript"} | {r["kind"] for r in records})
+    requirements = []
+    for kind in kinds:
+        matching = [r for r in usable if r["kind"] == kind]
+        status = "missing" if not matching else (
+            "partial" if any(r["truncated"] for r in matching) else "available")
+        reason = {"missing": "No usable source supplied; inspect diagnostics or request a supplement.",
+                  "partial": "At least one supplied source is truncated; full coverage is not established.",
+                  "available": "Supplied source is not truncated; recency and required sections still need review."}[status]
+        requirements.append({"kind": kind, "status": status,
+                             "evidence_ids": [r["evidence_id"] for r in matching], "reason": reason})
+    extra = copy.deepcopy(list(dependencies))
+    if any(dep.get("kind") == "evidence" for dep in extra):
+        raise ContractError("Evidence dependencies are generated from exact selected versions")
+    packet = {"contract_version": "0.2.0", "packet_id": "packet-pending",
+              "previous_packet_id": previous_packet_id, "security": copy.deepcopy(security),
+              "as_of": as_of, "created_at": created_at or datetime.now(timezone.utc).isoformat(),
+              "knowledge_basis": knowledge_basis,
+              "evidence_ids": [r["evidence_id"] for r in usable], "diagnostic_ids": diagnostics,
+              "dependencies": [{"kind": "evidence", "id": r["evidence_id"], "version": r["source_version"]}
+                               for r in usable] + extra,
+              "requirements": requirements, "supplement_requests": copy.deepcopy(list(supplement_requests)),
+              "pending_updates": list(pending_updates)}
+    packet["packet_id"] = "packet-" + digest(canonical(packet))
+    validate("packet", packet)
+    if instant(packet["created_at"]) < instant(as_of):
+        raise ContractError("Packet cannot be created before its data cutoff")
+    for record in records:
+        check_observation_time(packet, record)
+        start, end = record["period"]["start"], record["period"]["end"]
+        if start and end and start > end:
+            raise ContractError("Normalized period start exceeds end")
+    usable_ids = set(packet["evidence_ids"])
+    request_ids = [r["request_id"] for r in packet["supplement_requests"]]
+    if len(set(request_ids)) != len(request_ids):
+        raise ContractError("Duplicate supplement request_id")
+    for request in packet["supplement_requests"]:
+        if not set(request["evidence_ids"]) <= usable_ids:
+            raise ContractError("Supplement references unselected evidence")
+        if request["status"] == "fulfilled" and (not request["evidence_ids"] or not request["resolution"]):
+            raise ContractError("Fulfilled supplement needs registered evidence and resolution")
+        if request["status"] != "fulfilled" and request["evidence_ids"]:
+            raise ContractError("Only fulfilled supplements can attach evidence")
+        if request["status"] != "pending" and not request["resolution"]:
+            raise ContractError("Resolved supplement needs a resolution")
+    if root is not None:
+        check_packet(packet, records, root)
+    return packet
 
 
 def instant(value):
