@@ -39,3 +39,12 @@ P1 同時落實最小來源 manifest、研究輸入允許清單、必要索引�
 
 ### agent:main-agent · 2026-09-15 02:40
 依 D-183 三步分工,本票定為**步二**:接真實來源與模型,首批第一隻完整分析,第二隻只換參數驗通用性;依賴步一 KARST-241(樣本包、四份契約、離線核心與可閱讀股票頁);步三為 KARST-242(更新一次)。驗收條件八條不變,第七條「第二股只換參數」與第八條回歸檢查在本票驗。實作等用戶講「開始」。
+
+### agent:main-agent · 2026-09-15 23:37
+步二開工(用戶 2026-09-15「yes please do」)。分工照 D-183:
+
+**GPT(分支加合併請求)**:(1) `karst/fetch/registry.py`——把 adapter 產出的 `<raw>` + `.meta.json`(形狀 = `karst/tests/fixtures/README.md` 規矩 4,另加 `status` ok/empty/error 與 `source_url`)映射成 0.2 證據記錄、寫入 `evidence/manifest.jsonl` 與內容定址物件;映射規則照 PR #1 第三輪評語(時間精度、期間只收 ISO、coverage 原樣、8-K 主文與附件各一條、錯誤信封入 diagnostic),對 fixtures 全部 48 份可測。(2) `karst/packet.py` 加 `build_packet(evidence_records, as_of, security)`:requirements(逐字稿 available/partial/missing 按 truncated)、diagnostic_ids、dependencies。(3) `karst/agents/`:六角色提示詞檔(產業與宏觀 L1+L2、公司與財務 L3、估值 L4、技術 L5、反方、綜合 L6)——每份含輸入(bundle 路徑、可讀證據清單、投資委託、六層紀律該層一節、情境模組問題)、輸出格式(research.schema 的 layer 片段 JSON,引用必帶 evidence_id 加 locator)、補查請求格式(packet supplement_requests);加 `assemble.py` 把六個片段合成 research.json 並驗證。反方只讀證據與各層片段,不讀綜合。
+
+**本地**:(1) `karst/fetch/` 四個 adapter(edgar、defeatbeta、prices、broker 落地),輸出 staging 目錄形狀 = fixtures;由 Opus 子代理以倉外 scratch-241 三支草稿為種子重寫成通用模組。(2) 首批第一隻:重抓完整逐字稿與申報四節 → registry → packet → 六角色以 Opus 直讀原文(Agent 工具,角色定義檔限工具,不給券商 MCP)→ assemble → publish;記 run(模型、提示詞版本、費用、耗時)。(3) 第二隻只換參數。(4) 券商 MCP 由取證角色呼叫,`broker.land()` 落地。
+
+接口:兩邊只靠 fixtures 的 raw+meta 形狀與 0.2 契約對接;不改契約版本。

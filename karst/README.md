@@ -16,6 +16,16 @@ python -m karst.run --bundle karst/examples/synthetic --output /tmp/karst-releas
 
 最後一行輸出 `index.html` 的絕對路徑，瀏覽器直接開啟。頁面不依賴網絡、前端伺服器或外部資源。`--validate-only` 可單獨驗證輸入；`--previous-publication-id <ID>` 可連結上版。換股票只換 bundle，不新增程式。
 
+四個來源適配器（KARST-240 本地部分）把原始回傳落到 `<out>/<source>/…`，每份旁邊一份同名 `.meta.json`（形狀 = `tests/fixtures`，另加 `status` ok/empty/error 與 `source_url`）；代號、CIK、日期一律由參數傳入：
+
+```bash
+set KARST_EDGAR_USER_AGENT=<name email>   # EDGAR 要求；先查本地 submissions 與 10-K 快取，其餘線上抓
+python -m karst.fetch.edgar --ticker <代號> --out <DIR>            # 或 --cik；10-K/10-Q/8-K(+EX-99.1)，失敗寫 status error 不捏造
+python -m karst.fetch.defeatbeta --ticker <代號> --out <DIR>       # 逐字稿清單與最新全文（預設不截短）、三張季表、拆分、股數、拆股、日曆、info
+python -m karst.fetch.prices --ticker <代號> --out <DIR>           # 本地 parquet 最近 400 日 + DefeatBeta 續抓，重疊日核收市價；--no-continue 只用本地
+python -m karst.fetch.broker --out <DIR> --source futu --tool <工具> --symbol <代號> --params '{}' --response-file <F>  # 只落地代理人已拿到的 MCP 回傳；不呼叫 MCP，帳戶／持倉／下單類鍵一律拒收
+```
+
 `examples/synthetic/` **全部是合成資料**，含虛構公司、日期、預測與價格；不屬於真實接口樣本，也不是投資建議。本地已提供的真實回傳在 [tests/fixtures/](tests/fixtures/README.md)，新增測試引用其期間形狀，未把轉錄數值當估值真值。本核心讀取已保存的 `research.json`，不會自行呼叫模型、生成評級或讀券商帳戶。
 
 契約目前為 **0.2.0**，保留 0.1.0 讀取。第二輪接線要看 [契約的遷移表](contracts/README.md)：日期精度與時區、原始 coverage、error/empty 取得紀錄，以及手填判斷的 `integration_example` 模式。Windows 缺符號連結權限時只略過該項測試，路徑逃逸檢查照跑。
@@ -40,7 +50,7 @@ python -m karst.run --bundle karst/examples/synthetic --output /tmp/karst-releas
 | 模組 | 責任 |
 |---|---|
 | config、schema | 配置、身份／證券映射、版本化契約;憑證只讀環境,不寫入研究包 |
-| fetch/ | 按來源分 edgar、defeatbeta、broker、prices;先查快取,回傳標準來源觀测;broker 只允許公開市場方法 |
+| fetch/ | **已實作(本地 adapter)**:按來源分 edgar、defeatbeta、prices、broker;`common.py` 共用 meta 寫入(固定欄序、UTC Z、sha256)、時間轉換(帶偏移轉 Z、只有日期原樣、無偏移回 None)、限速、HTML 轉文本、代號→CIK。edgar 先查本地 submissions 與 10-K 快取(D-134)再上 EDGAR;prices 本地 parquet 接 DefeatBeta 並核重疊;broker 只落地公開市場方法的回傳,帳戶／持倉／下單鍵拒收。正規化成契約與快取／SQLite 仍待接 |
 | manifest | 來源版本、原始內容 hash、解析衍生物及定位;同內容去重但保留來源關係 |
 | store | SQLite schema／遷移、索引與持久狀態;單一提交者、交易與版本檢查 |
 | packet | 建允許清單中的研究輸入包、必讀與缺口;不載入私人／模型帳本或開發上下文 |
