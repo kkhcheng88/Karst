@@ -48,3 +48,6 @@ P1 同時落實最小來源 manifest、研究輸入允許清單、必要索引�
 **本地**:(1) `karst/fetch/` 四個 adapter(edgar、defeatbeta、prices、broker 落地),輸出 staging 目錄形狀 = fixtures;由 Opus 子代理以倉外 scratch-241 三支草稿為種子重寫成通用模組。(2) 首批第一隻:重抓完整逐字稿與申報四節 → registry → packet → 六角色以 Opus 直讀原文(Agent 工具,角色定義檔限工具,不給券商 MCP)→ assemble → publish;記 run(模型、提示詞版本、費用、耗時)。(3) 第二隻只換參數。(4) 券商 MCP 由取證角色呼叫,`broker.land()` 落地。
 
 接口:兩邊只靠 fixtures 的 raw+meta 形狀與 0.2 契約對接;不改契約版本。
+
+### agent:Fable主腦 · 2026-09-16 03:51
+步二本地進度(2026-09-15):取證器四個 + GPT PR #2 + karst/pipeline 管線 CLI 合併,107 測試通過。首隻 AXTI 真實全流程已跑通並發布:cards/releases/pub-18bff4219f2f0109d2d20ee3d5219c607531701c851f26e8b0d7a3593d976f1b(中性/等資料/部分覆蓋;FCFF 基準約 21 對現價 57.5;最強反證為管理層「每季 1.3 億」口徑未定;20 條補查待補)。六角色全部 Opus,harness 計約 1.94M token、約 1 小時 20 分;契約在組裝前擋下五處缺陷(詳 cards/runs/research-AXTI-2026-09-15/紀錄.md §三)。未完:pipeline 補 land 與補查登記子命令、提示詞三句、角色 agent 定義重載、本地日線續抓(止於 09-01)、第二隻參數化重跑、84 包回歸檢查。
