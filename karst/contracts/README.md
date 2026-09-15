@@ -88,7 +88,9 @@ FCFF DCF 的 cashflows 是自 valuation_date 起每個**完整年度年末**的�
 
 ## 發布與演進
 
-發布把選定的來源 bytes、輸入、計算與 HTML 放在同一目錄。publication ID 由正規化輸入、schema hash、renderer/calculator 版本及上版 ID 計算；同輸入重跑不覆寫。新目標或假設產生新版，當時 target 與引用可保留。公開頁面只把來源當 escaped text，不執行報告或模型輸入中的 HTML。
+發布把選定的來源 bytes、輸入、計算與 HTML 放在同一目錄。publication ID 由正規化輸入、schema hash、renderer/calculator 版本及上版 ID 計算；同輸入重跑不覆寫。新目標或假設產生新版，當時 target 與引用可保留。
+
+Renderer 0.2.1 起，股票頁的來源區只呈現登記欄位、hash、路徑、大小及連結，不內嵌原始檔全文。`provenance` 決定「公開市場來源／合成資料來源」，有沒有外部 URL 不改變來源性質。下載連結以相對路徑指向發布包 `inputs/` 的原始檔；來源網站 URL 有則另列。文字欄位仍做 HTML 跳脫，本頁不執行原始檔中的 HTML。移動或分享時保留整個發布目錄，才能繼續開啟相對連結。此修訂沒有改 0.2.0 契約或來源 bytes。
 
 此步使用本地單一發布者、排他 lock、同檔案系統暫存目錄再 rename。一般例外會清理；進程被強制終止可能留下 lock／staging，須確認沒有程序後手動清理。這不是分散式交易或防惡意篡改的簽章，manifest 不對自身簽名；不保證斷電 durability。沒有自動 latest 別名，避免另加跨檔案狀態交易。
 

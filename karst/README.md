@@ -22,6 +22,8 @@ python -m karst.run --bundle karst/examples/synthetic --output /tmp/karst-releas
 
 發布目錄包括 `publication.json`、`index.html`、`calculations.json` 及 `inputs/`。後者保留該版 packet、research、evidence 登記與原始 bytes，可以再次交給同一入口重播。不要把產生的發布包或大批原始來源 commit。
 
+頁面只顯示來源登記與原始檔連結，原文不再內嵌。移動或分享頁面請保留整個發布目錄；只取走 `index.html` 會失去本地來源連結。程式／renderer 版本 0.2.1，契約仍為 0.2.0。
+
 ## 此步邊界與本地接線
 
 - 程式已提供：契約與來源 hash／引用／時間檢查、增量補查的 packet 版本、年末 FCFF DCF、每股與百分比 R&R、壓力價損失、SMA200、帶確認時間的局部轉折、日週月圖、不可變發布。

@@ -2,12 +2,12 @@
 from html import escape
 from importlib.resources import files
 import json
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 from ..calculations import sma
 from ..packet import confined
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 LAYERS = {"L1": "市場與宏觀", "L2": "產業與價值鏈", "L3": "公司基本面",
           "L4": "估值與預期", "L5": "技術與市場行為", "L6": "投資綜合"}
 HEADLINES = {"recommendation": "目前建議", "main_reason": "主要理由",
@@ -177,10 +177,16 @@ def render(packet, records, research, calculated, root):
     out.append('</section><section><h2>證據、原文與取得紀錄</h2>')
     for record in records:
         url = record["source_url"]
-        link = f'<a href="{e(url)}" target="_blank" rel="noopener noreferrer">來源網站</a>' if url and urlparse(url).scheme in ("http", "https") else "合成／離線來源"
+        provenance = {"public_market": "公開市場來源", "synthetic": "合成資料來源"}[record["provenance"]]
+        external = f' · <a href="{e(url)}" target="_blank" rel="noopener noreferrer">來源網站</a>' if url and urlparse(url).scheme in ("http", "https") else ""
+        artifact = record["artifact"]
+        confined(root, artifact["path"])
+        local_href = quote("inputs/" + artifact["path"], safe="/")
+        link = f'<a href="{e(local_href)}" download>下載原始檔</a>'
         out.append(f'<details id="source-{e(record["evidence_id"])}"><summary>{e(record["evidence_id"])} · {e(record["source"])} · {e(record["kind"])}</summary>'
-                   f'<p>{link} · 發布 {e(record["published_at"] or "未知")} · 取得 {e(record["fetched_at"])}<br>'
-                   f'版本 {e(record["source_version"])} · SHA256 {e(record["artifact"]["sha256"])}</p>')
+                   f'<p>{provenance}{external} · 發布 {e(record["published_at"] or "未知")} · 取得 {e(record["fetched_at"])}<br>'
+                   f'版本 {e(record["source_version"])} · SHA256 {e(artifact["sha256"])}</p>'
+                   f'<p>{link} · {artifact["bytes"]:,} bytes<br>inputs/{e(artifact["path"])}</p>')
         for field, label in (("published_at", "公開時間"), ("data_as_of", "資料截至")):
             precision = record.get(field + "_precision", "datetime" if record[field] else "unknown")
             zone = record.get(field + "_timezone")
@@ -193,12 +199,6 @@ def render(packet, records, research, calculated, root):
         if record.get("coverage") is not None:
             out.append('<p>來源原始期間／涵蓋描述</p><pre>' + e(json.dumps(record["coverage"], ensure_ascii=False, indent=2)) + '</pre>')
         out.append(''.join(f'<p>來源缺口：{e(g)}</p>' for g in record["known_gaps"]))
-        data = confined(root, record["artifact"]["path"]).read_bytes()
-        try:
-            text = data.decode("utf-8")
-            out.append('<pre>' + '\n'.join(f'{i:>4}  {e(line)}' for i, line in enumerate(text.splitlines(), 1)) + '</pre>')
-        except UnicodeDecodeError:
-            out.append('<p>二進位原檔保存在發布包 inputs/；本頁不解析其內容。</p>')
         out.append('</details>')
     out.append(f'</section><footer>Packet {e(packet["packet_id"])} · Research {e(research["research_id"])}<br>'
                f'策略 {e(research["strategy_version"])} · 方法 {e(research["method_version"])} · Renderer {VERSION}<br>'

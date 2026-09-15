@@ -1,15 +1,18 @@
 """Contract boundaries and economic invariants, using explicitly synthetic inputs."""
 import copy
 import json
+import re
 import shutil
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from urllib.parse import unquote
 
 from karst.calculations import calculate, confirmed_pivots, fcff_dcf, risk_reward, sma
 from karst.packet import add_request, check_packet, check_research, confined, load_bundle, read_json, resolve_request
 from karst.publish import publish, verify_release
+from karst.page.render import render
 from karst.schema import ContractError, canonical, decode, digest, validate
 
 EXAMPLE = Path(__file__).resolve().parents[1] / "examples" / "synthetic"
@@ -267,11 +270,12 @@ class PublicationTests(BundleCase):
             publish(self.bundle, output)
         self.assertTrue((output / ".publish.lock").exists())
 
-    def test_render_escapes_model_and_source_html(self):
+    def test_render_escapes_model_and_metadata_and_omits_source_body(self):
         attack = '<script>alert("unsafe")</script>'
         self.research["headline"]["recommendation"]["text"] = attack
+        self.records[0]["source"] = attack
         source = self.bundle / "source.txt"
-        source.write_text(source.read_text() + attack)
+        source.write_text(source.read_text() + '<script>source_only_attack()</script>')
         data = source.read_bytes()
         self.records[0]["artifact"].update(sha256=digest(data), bytes=len(data))
         self.write()
@@ -279,8 +283,53 @@ class PublicationTests(BundleCase):
         html = (release / "index.html").read_text()
         self.assertNotIn("<script>", html)
         self.assertIn("&lt;script&gt;", html)
+        self.assertNotIn("source_only_attack", html)
+        self.assertEqual((release / "inputs/source.txt").read_bytes(), data)
         for label in ("日線", "週線", "月線", "source-demo-e1", "六層研究", "非真實股票研究"):
             self.assertIn(label, html)
+
+    def test_large_source_stays_external_and_encoded_download_resolves(self):
+        relative = "assets/交易量 #1% &.json"
+        source = self.bundle / relative
+        source.parent.mkdir()
+        source.write_bytes((self.bundle / "source.txt").read_bytes())
+        self.records[0]["artifact"]["path"] = relative
+        self.write()
+        small = publish(self.bundle, self.root / "out")
+        small_size = (small / "index.html").stat().st_size
+
+        data = source.read_bytes() + b'\nSOURCE_ONLY_BODY\n' + b'x' * (3 * 1024 * 1024)
+        source.write_bytes(data)
+        self.records[0]["artifact"].update(sha256=digest(data), bytes=len(data))
+        self.write()
+        release = publish(self.bundle, self.root / "out")
+        html = (release / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("SOURCE_ONLY_BODY", html)
+        self.assertLess((release / "index.html").stat().st_size, small_size + 1024)
+        links = re.findall(r'href="([^"]+)" download', html)
+        self.assertIn("inputs/" + relative, [unquote(link) for link in links])
+        for link in links:
+            self.assertNotIn("#", link)
+            self.assertTrue((release / unquote(link)).is_file())
+        self.assertEqual((release / "inputs" / relative).read_bytes(), data)
+        manifest = verify_release(release)
+        asset = next(row for row in manifest["files"] if row["path"] == "inputs/" + relative)
+        self.assertEqual(asset["sha256"], digest(data))
+
+    def test_source_label_follows_provenance_with_or_without_external_url(self):
+        for provenance, label in (("public_market", "公開市場來源"), ("synthetic", "合成資料來源")):
+            for url in (None, "https://example.test/public-source"):
+                for record in self.records:
+                    record.update(provenance=provenance, source_url=url)
+                with self.subTest(provenance=provenance, url=url):
+                    html = render(self.packet, self.records, self.research,
+                                  calculate(self.research), self.bundle)
+                    self.assertIn(label, html)
+                    self.assertNotIn("合成／離線來源", html)
+                    if provenance == "public_market":
+                        self.assertNotIn("合成資料來源", html)
+                    self.assertEqual("來源網站" in html, url is not None)
+                    self.assertIn("下載原始檔", html)
 
 
 if __name__ == "__main__":
