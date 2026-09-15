@@ -1,0 +1,20 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__valuation_history",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:57:00Z",
+  "published_at": "2026-09-13",
+  "published_at_basis": "overview.date '2026 年 9 月 13 日' (localised Chinese date string); history list timestamps are epoch-second STRINGS (US-Eastern midnight), calendar-day series with carried-forward weekend values",
+  "period": {"from": "2025-09-14", "to": "2026-09-13", "points": 313, "indicator": "pb", "range": "1 (= 1Y)"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "returned PB only (indicator 'pb'); tool doc promises a 'detailed valuation history time series' — PE/PS not in this variant; no parameter to choose the indicator",
+    "three different timestamp encodings across sibling tools: epoch-second strings here, RFC3339 in `valuation`, epoch-second strings again in institution_rating_history — normalisation is a contract concern",
+    "PB drops from 8.74 to 3.41 on 2026-07-30 (Q2 print: book value jumps + revaluation) then diverges from Futu pb_ratio 4.351 vs 4.81 here on the same day (different book basis)",
+    "overview.circle/part (64.7700 / 13.4772) undocumented (appear to be price and book value per share); metric '4.81x' is a display string",
+    "aichat_data / ai_summary / desc are vendor UI + narrative payload (HTML fragments, Simplified Chinese) — not data",
+    "'symbols' block duplicates 'stocks' with mangled keys (a_x_t_i._u_s) — vendor serialisation artefact kept verbatim",
+    "layouts.pb.groups is a histogram bucketing (step 2) of 36 industry members; growth strings empty for many; names empty",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "source": "local-prices + defeatbeta",
+  "tool": "pandas.read_parquet(data/prices/daily/part_11.parquet)[entity_id==0001051627, series_role=='primary'].tail(400) + defeatbeta_api Ticker.price()[date>=2026-09-02]",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "shard": 11,
+    "n_local": 400,
+    "continuation_from": "2026-09-02",
+    "continuation_rule": "auto",
+    "ticket_nominal_continuation_from": "2026-09-03",
+    "note": "ticket said continue from 2026-09-03 but local library for this entity ends 2026-09-01, so continuation starts the next calendar day to avoid an artificial hole"
+  },
+  "fetched_at": "2026-09-14T18:31:58+00:00",
+  "published_at": null,
+  "published_at_basis": "per-row trading date (close is the session close; no timestamp). Local rows carry fetchedAt_source of the KARST-171 batch; defeatbeta rows carry our fetch time",
+  "period": {
+    "from": "2025-01-29",
+    "to": "2026-09-11",
+    "rows": 407,
+    "local_rows": 400,
+    "defeatbeta_rows": 7,
+    "local_library_first_date": "1998-05-21",
+    "local_library_last_date": "2026-09-01"
+  },
+  "columns": {
+    "date": "YYYY-MM-DD trading day",
+    "open/high/low/close": "local: split-adjusted, not dividend-adjusted (README); defeatbeta: as returned (adjustment basis not documented by source)",
+    "adj_close": "local only (split+dividend adjusted, rescaled on each dividend — README §五 1); null for defeatbeta rows",
+    "volume": "shares",
+    "ticker": "symbol the row came from",
+    "source": "local | defeatbeta",
+    "source_detail": "underlying fetch parameters",
+    "fetchedAt_source": "UTC ISO"
+  },
+  "truncated": {
+    "is_truncated": true,
+    "rule": "last 400 local trading days only"
+  },
+  "overlap_check": {
+    "overlap_days": 400,
+    "local_slice_days": 400,
+    "close_rel_diff_max": 5.707776462610046e-08,
+    "close_rel_diff_median": 2.239085654016038e-08,
+    "days_close_rel_diff_over_0.5pct": 0,
+    "examples_over_tol": [],
+    "volume_diff_days": 0,
+    "volume_rel_diff_max": 0.0,
+    "local_dates_missing_in_defeatbeta": [],
+    "defeatbeta_dates_missing_in_local_window": []
+  },
+  "local_manifest_rows": [
+    {
+      "entity_id": "0001051627",
+      "ticker": "AXTI",
+      "valid_from": "1998-03-17",
+      "valid_to": "2026-09-03",
+      "rows": "7114",
+      "first_date": "1998-05-21",
+      "last_date": "2026-09-01",
+      "status": "ok",
+      "error": NaN,
+      "series_role": "primary",
+      "alias_reason": NaN,
+      "head_gap_days": "65.0",
+      "tail_gap_days": "2.0",
+      "attempt": "1",
+      "batch": "batch_0037",
+      "fetchedAt": "2026-09-03T01:02:24+00:00"
+    }
+  ],
+  "local_entity_rows_by_role": {
+    "primary": 7114
+  },
+  "local_entity_rows_by_ticker": {
+    "AXTI": 7114
+  },
+  "duplicate_dates_in_merged": 0,
+  "known_gaps": [
+    "no adj_close for defeatbeta rows (source has none); stitching adjusted series across the seam requires re-derivation",
+    "local library last date for this entity is 2026-09-01 (library-wide nominal end 2026-09-02); continuation starts 2026-09-02",
+    "defeatbeta last row 2026-09-11 at fetch time; sessions after that not yet in dataset",
+    "defeatbeta price dataset refresh cadence unknown; last row may lag the latest session",
+    "neither source carries a trading calendar; missing rows = no quote that day (README §五 3)"
+  ]
+}

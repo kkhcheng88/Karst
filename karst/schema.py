@@ -9,7 +9,8 @@ from importlib.resources import files
 from jsonschema import Draft202012Validator, FormatChecker
 from referencing import Registry, Resource
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
+SCHEMA_DIRS = {"0.1.0": "v0_1", "0.2.0": "v0_2"}
 KINDS = ("evidence", "packet", "research", "publication")
 BASE = f"urn:karst:contract:{VERSION}:"
 
@@ -45,23 +46,25 @@ def decode(data: bytes):
         raise ContractError(f"Invalid JSON: {exc}") from exc
 
 
-@lru_cache(maxsize=1)
-def schemas():
+@lru_cache(maxsize=None)
+def schemas(version=VERSION):
+    if version not in SCHEMA_DIRS:
+        raise ContractError(f"Unknown contract version: {version}")
     return {kind: decode(files("karst").joinpath(
-        f"contracts/v0_1/{kind}.schema.json").read_bytes()) for kind in KINDS}
+        f"contracts/{SCHEMA_DIRS[version]}/{kind}.schema.json").read_bytes()) for kind in KINDS}
 
 
-def schema_hashes():
-    return {kind: digest(canonical(schema)) for kind, schema in schemas().items()}
+def schema_hashes(version=VERSION):
+    return {kind: digest(canonical(schema)) for kind, schema in schemas(version).items()}
 
 
-@lru_cache(maxsize=1)
-def validators():
+@lru_cache(maxsize=None)
+def validators(version=VERSION):
     registry = Registry().with_resources(
-        (BASE + kind, Resource.from_contents(schema)) for kind, schema in schemas().items()
+        (schema["$id"], Resource.from_contents(schema)) for schema in schemas(version).values()
     )
     result = {}
-    for kind, schema in schemas().items():
+    for kind, schema in schemas(version).items():
         Draft202012Validator.check_schema(schema)
         result[kind] = Draft202012Validator(
             schema, registry=registry, format_checker=FormatChecker()
@@ -76,7 +79,12 @@ def validate(kind, value):
         canonical(value)
     except (TypeError, ValueError) as exc:
         raise ContractError("Input must be finite JSON data") from exc
-    errors = sorted(validators()[kind].iter_errors(value),
+    if not isinstance(value, dict):
+        raise ContractError(f"{kind} must be an object")
+    version = value.get("contract_version")
+    if not isinstance(version, str) or version not in SCHEMA_DIRS:
+        raise ContractError(f"Unknown contract version: {version}")
+    errors = sorted(validators(version)[kind].iter_errors(value),
                     key=lambda error: str(list(error.absolute_path)))
     if errors:
         error = errors[0]

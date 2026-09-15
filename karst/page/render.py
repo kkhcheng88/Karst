@@ -1,12 +1,13 @@
 """Self-contained, escaped HTML. No scripts, remote assets, or model calls."""
 from html import escape
 from importlib.resources import files
+import json
 from urllib.parse import urlparse
 
 from ..calculations import sma
 from ..packet import confined
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 LAYERS = {"L1": "市場與宏觀", "L2": "產業與價值鏈", "L3": "公司基本面",
           "L4": "估值與預期", "L5": "技術與市場行為", "L6": "投資綜合"}
 HEADLINES = {"recommendation": "目前建議", "main_reason": "主要理由",
@@ -84,7 +85,9 @@ def render(packet, records, research, calculated, root):
     security, valuation, technical, plan = (packet["security"], research["valuation"],
                                            research["technical"], research["plan"])
     css = files("karst").joinpath("page/style.css").read_text(encoding="utf-8")
-    mode = "合成資料示範 · 非真實股票研究" if research["mode"] == "synthetic_demo" else "已保存研究重播 · 以列明截止時間為準"
+    mode = {"synthetic_demo": "合成資料示範 · 非真實股票研究",
+            "integration_example": "真實資料接線示例 · 判斷為測試輸入，非正式投研結論",
+            "offline_replay": "已保存研究重播 · 以列明截止時間為準"}[research["mode"]]
     base = calculated["valuation"].get("base", {}).get("fair_value_per_share")
     target = next((v["price"] for v in valuation["target_prices"] if v["name"] == "base"), None)
     out = [f'<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">'
@@ -109,6 +112,7 @@ def render(packet, records, research, calculated, root):
     gaps = list(research["open_questions"]) + list(packet["pending_updates"])
     gaps += [r["reason"] for r in packet["requirements"] if r["status"] in ("partial", "missing")]
     gaps += [r["question"] for r in packet["supplement_requests"] if r["status"] == "pending"]
+    gaps += [r["status_reason"] for r in records if r.get("status", "ok") != "ok"]
     if gaps:
         out.append('<aside><h3>仍需補查</h3><ul>' + ''.join(f'<li>{e(gap)}</li>' for gap in gaps) + '</ul></aside>')
     out.append(f'<section><h2>估值與市場預期</h2><p class="muted">內在價值日期 {e(valuation["valuation_date"])}；基準情境由假設推導，並非高低價的平均。</p>')
@@ -170,13 +174,24 @@ def render(packet, records, research, calculated, root):
     for module in research["modules"]:
         out.append(f'<h3>{e(module["name"])}</h3>{statement(module["activation_reason"])}<ul>'
                    + ''.join(f'<li>{e(q)}</li>' for q in module["questions"]) + '</ul>')
-    out.append('</section><section><h2>證據與原文</h2>')
+    out.append('</section><section><h2>證據、原文與取得紀錄</h2>')
     for record in records:
         url = record["source_url"]
         link = f'<a href="{e(url)}" target="_blank" rel="noopener noreferrer">來源網站</a>' if url and urlparse(url).scheme in ("http", "https") else "合成／離線來源"
         out.append(f'<details id="source-{e(record["evidence_id"])}"><summary>{e(record["evidence_id"])} · {e(record["source"])} · {e(record["kind"])}</summary>'
                    f'<p>{link} · 發布 {e(record["published_at"] or "未知")} · 取得 {e(record["fetched_at"])}<br>'
                    f'版本 {e(record["source_version"])} · SHA256 {e(record["artifact"]["sha256"])}</p>')
+        for field, label in (("published_at", "公開時間"), ("data_as_of", "資料截至")):
+            precision = record.get(field + "_precision", "datetime" if record[field] else "unknown")
+            zone = record.get(field + "_timezone")
+            out.append(f'<p>{label}：{e(record[field] or "未知")} · 精度 {e(precision)}'
+                       f' · 日期時區 {e(zone or "未提供／時刻內含偏移")}'
+                       f'<br>{e(record.get(field + "_basis", "未提供"))}</p>')
+        status = record.get("status", "ok")
+        if status != "ok":
+            out.append(f'<p><strong>{"取得失敗" if status == "error" else "查詢回空"}</strong>：{e(record["status_reason"])}。此紀錄不能作為公司事實引用。</p>')
+        if record.get("coverage") is not None:
+            out.append('<p>來源原始期間／涵蓋描述</p><pre>' + e(json.dumps(record["coverage"], ensure_ascii=False, indent=2)) + '</pre>')
         out.append(''.join(f'<p>來源缺口：{e(g)}</p>' for g in record["known_gaps"]))
         data = confined(root, record["artifact"]["path"]).read_bytes()
         try:

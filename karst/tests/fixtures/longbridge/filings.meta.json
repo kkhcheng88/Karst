@@ -1,0 +1,19 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__filings",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:45:00Z",
+  "published_at": null,
+  "published_at_basis": "per item publish_at (RFC3339 UTC). For most rows it equals EDGAR acceptanceDateTime (e.g. 8-K 2026-07-30T20:15:25Z matches edgar/ slice); BUT the 10-Q (2026-08-14T00:00:00Z vs EDGAR 2026-08-13T20:16:33Z) and 10-K and five 2026-04-24 rows carry T00:00:00Z = date-only precision, one day late for the 10-Q — do not treat as first-availability time",
+  "period": {"from": "2026-04-21", "to": "2026-08-19", "items": 50},
+  "truncated": {"is_truncated": true, "rule": "vendor returns the latest 50 only; older filings need EDGAR"},
+  "known_gaps": [
+    "tool doc promises items[]{id, title, type, language, filing_date, url}; actual schema is {id, title, description, file_name, file_urls[], publish_at} — no 'type' field; form type must be parsed from title text",
+    "title format inconsistent: 'AXT | 8-K - AXT INC (0001051627) (Filer)' vs 'AXT | AXT INC (Filer) - 10-K' vs 'AXT | AXT INC ( - 4' (truncated/garbled)",
+    "file_urls list exhibits (EX-99.1 etc.) but without exhibit type labels; the 8-K of 2026-04-21 lists six URLs unlabeled",
+    "Form 4 / 144 URLs point at the rendered XSL view (xslF345X06/rdgdoc.xml), not the raw XML",
+    "no accession number field; must be parsed from the URL path",
+    "cross-check: EDGAR local slice has the same 8-K/10-Q accessions — useful as a join test case",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

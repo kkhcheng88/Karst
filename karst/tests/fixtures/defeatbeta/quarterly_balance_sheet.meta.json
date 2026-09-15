@@ -1,0 +1,44 @@
+{
+  "source": "defeatbeta",
+  "params": {
+    "ticker": "AXTI"
+  },
+  "fetched_at": "2026-09-14T18:30:03+00:00",
+  "library_version": "0.0.60",
+  "cache_update_time_remote": null,
+  "published_at": null,
+  "published_at_basis": "column headers are period-end dates; filing/publication dates not provided by this interface",
+  "period": {
+    "period_end_columns": [
+      "2026-06-30",
+      "2026-03-31",
+      "2025-12-31",
+      "2025-09-30",
+      "2025-06-30",
+      "2025-03-31",
+      "2024-12-31",
+      "2024-09-30",
+      "2024-06-30",
+      "2024-03-31",
+      "2023-12-31",
+      "2023-09-30",
+      "2023-06-30",
+      "2023-03-31",
+      "2022-12-31",
+      "2022-09-30",
+      "2022-06-30"
+    ],
+    "has_TTM": false
+  },
+  "truncated": {
+    "is_truncated": false
+  },
+  "known_gaps": [
+    "'*' string means value not available in source (kept verbatim)",
+    "values are strings/objects mixed with floats as returned",
+    "some period columns entirely '*' (source gap)",
+    "currency/unit not embedded in table; see 'currency' field if available"
+  ],
+  "tool": "Ticker.quarterly_balance_sheet().data",
+  "currency": null
+}

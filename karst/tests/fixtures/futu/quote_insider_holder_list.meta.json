@@ -1,0 +1,17 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_insider_holder_list",
+  "params": {"symbol": "US.AXTI", "limit": 30},
+  "fetched_at": "2026-09-14T18:35:00Z",
+  "published_at": null,
+  "published_at_basis": "no as-of date in response; holdings reflect latest Form 3/4 per insider at fetch time",
+  "period": {"as_of": "fetch time", "insiders": 8},
+  "truncated": {"is_truncated": false, "note": "pagination.has_more=false, total=8"},
+  "known_gaps": [
+    "insider_bought_count/sold_count/total_count are identical (3/3/8) for every insider — looks like company-level statistics copied onto each row, not per-insider counts",
+    "Christine Russell row has no holder_pct/holder_quantity (real missing fields)",
+    "titles are mixed-language (Simplified Chinese for most, English for two) as returned",
+    "Leonard LeBlanc titled 前董事 (former director) still listed as insider",
+    "response transcribed from MCP tool output by the agent; source escaped '&' as \\u0026"
+  ]
+}

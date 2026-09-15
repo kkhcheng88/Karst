@@ -1,0 +1,19 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__shareholder",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:45:00Z",
+  "published_at": null,
+  "published_at_basis": "per row report_date (date precision): for 13F rows = quarter-end holdings date (2026-06-30), NOT the 13F filing date (which is up to 45 days later); for insider rows = Form 4 transaction/report date",
+  "period": {"from": "2026-03-20", "to": "2026-08-17", "rows": 27},
+  "truncated": {"is_truncated": false, "note": "'total': 0 in response despite 27 rows (field not populated)"},
+  "known_gaps": [
+    "MIXES two populations in one list: 13F institutions (report_date 2026-06-30) and individual insiders (Form 4 dates) — institution_type is '' for all, so they cannot be separated by field, only by name/date pattern",
+    "two rows have EMPTY shareholder_name with 2.74% and 4.91% (real anonymised/missing names)",
+    "shareholder_id is '0' for every row (no stable identifier)",
+    "no holding quantity — only percent_of_shares and shares_changed (strings)",
+    "'stocks' sub-array is the holder's own listed ticker with today's price change (irrelevant noise for the contract)",
+    "compare with Futu institutional (291 institutions, 73% held) — this list is top holders only, no total",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

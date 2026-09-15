@@ -1,0 +1,18 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_market_snapshot",
+  "params": {"code_list": ["US.AXTI"]},
+  "fetched_at": "2026-09-14T18:32:00Z",
+  "published_at": "2026-09-14T18:32:08.444Z",
+  "published_at_basis": "response update_time epoch ms 1789410728444 (converted); data_date 2026-09-14 is the US session date; taken DURING the regular session (14:32 ET) so last_price is intraday, NOT a confirmed close (資料來源 §四 10)",
+  "period": {"session_date": "2026-09-14", "state": "intraday"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "intraday snapshot: last_price/volume/turnover are partial-session values",
+    "listing_date=0 although company_profile says 1998-05-21 (source inconsistency kept)",
+    "pe_ratio negative and pe_ttm_ratio 1954.8 coexist (different earnings bases; undocumented)",
+    "pre-/after-/overnight sections refer to sessions around the prior close, not this session's",
+    "highest52weeks_price 143.16 vs Sep 2026 prices ~60 (implies large drawdown from a spike; verify against daily slice)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__institutional_views",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:41:00Z",
+  "published_at": null,
+  "published_at_basis": "elist: month-end date (RFC3339 with 04:00/05:00Z = US-Eastern midnight, i.e. date precision); last row is 2026-08-27 (the latest refresh, not a month-end). tlist: epoch-second strings at month start",
+  "period": {"elist": {"from": "2018-01-31", "to": "2026-08-27", "rows": 104}, "tlist": {"from": "2021-10-01", "to": "2026-09-01", "rows": 60}},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "rating distribution goes back to 2018-01 here but only to 2021-10 in institution_rating_history — two endpoints, different depth (資料來源 §三 '2021-10 起' is the conservative one)",
+    "tlist duplicates institution_rating_history.target_history except the last close (58.620 vs 58.605) and field names (high_price vs high_target_price) — same data, different schema",
+    "all values are strings",
+    "no analyst identities; distribution counts only; 'over'/'under' = overweight/underweight",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

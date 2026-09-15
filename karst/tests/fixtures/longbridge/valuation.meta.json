@@ -1,0 +1,18 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__valuation",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:54:00Z",
+  "published_at": null,
+  "published_at_basis": "per point timestamp (RFC3339; 04:00/05:00Z = US-Eastern midnight, date precision); series includes Sundays/holidays as carried-forward values (e.g. 2026-09-13, 2026-09-06) — calendar-day series, not trading-day",
+  "period": {"from": "2025-09-14", "to": "2026-09-13", "points": 313, "range": "1 (= 1Y)"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "only 'pe' metric returned for this US symbol (no pb/ps in this variant); tool doc says US accounts get an ai_summary + metrics.pe object — ai_summary absent here",
+    "desc is an HTML-fragment Simplified-Chinese sentence with <strong> tags: PE 1095.48 'above reasonable range', '6.92% of the past year cheaper', industry rank 27/36, industry median 41.17 — vendor narrative, not data",
+    "low/median/high (-254.69/-53.14/-9.10) computed across a sign flip (loss to profit on 2026-07-30) — statistically meaningless, same defect as Futu valuation_detail",
+    "PE values differ from Futu (Longbridge 1095.48 vs Futu 1954.33 on the same day): different TTM earnings base / share count; do not mix vendors",
+    "values are strings; weekend/holiday points repeat the prior value",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

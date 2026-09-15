@@ -1,0 +1,19 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__consensus",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:41:00Z",
+  "published_at": null,
+  "published_at_basis": "NO timestamps in the response at all: neither the estimate formation date nor the actual's release date. For released periods the 'estimate' is the pre-release consensus as stored by the vendor (point-in-time not verifiable); for unreleased periods it is the current consensus at fetch time (資料來源 §四 6/7)",
+  "period": {"from": "Q3 2024", "to": "Q1 2027", "periods": 11, "released": 8, "unreleased": 3, "current_period": "qf (quarterly); saf/af variants not fetched"},
+  "truncated": {"is_truncated": false, "note": "vendor returns eleven periods (eight released + three forward) — cannot page further"},
+  "known_gaps": [
+    "all numbers are decimal strings with 4 dp; empty string '' = missing (Q3 2025 normalized_net_income estimate, Q1 2025 net_income estimate)",
+    "no analyst count per metric; no high/low; only point estimate",
+    "labels/descriptions are Simplified Chinese as returned (account locale), key names are English",
+    "fiscal_period is a string ('1'..'4'); fiscal_year is a number",
+    "comp/comp_desc are vendor-derived beat/miss labels — do not treat as data",
+    "this is surprise data (estimate vs actual at release); cannot be used directly as C4 forward-growth target for past events (資料來源 §四 7)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

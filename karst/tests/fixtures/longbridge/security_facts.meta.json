@@ -1,0 +1,18 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__security_facts",
+  "params": {"symbol": "AXTI.US", "limit": 100, "begin_time": null, "end_time": null},
+  "fetched_at": "2026-09-14T18:54:55Z",
+  "published_at": null,
+  "published_at_basis": "per fact occur_time (RFC3339 UTC) = when the vendor's engine detected/created the fact, not the underlying event's own publication time; data_source[].url points at the vendor's news page when the fact is news-derived",
+  "period": {"from": "2026-01-07T20:57:08Z", "to": "2026-08-03T14:31:55Z", "facts": 34, "by_type": {"News": 19, "Fundamental": 10, "Technical": 5}},
+  "truncated": {"is_truncated": false, "note": "limit=100, 34 returned = all available; file written byte-verbatim from the saved MCP result (sha256 of raw response text d55595b6b3258ed7252a72140786a98babd8d772ed33b907093742c1b5b8f39b, 444,511 chars)"},
+  "known_gaps": [
+    "nl_info (title/sub_title/summary/eli_explain/invest_anal) is VENDOR-GENERATED narrative (1.4k–36k chars per fact) — model text, not source data; must be kept separate from the underlying evidence (資料來源 §四 9)",
+    "anomaly_detection sub-object is all empty strings on every factor (anomaly_result/significance_level/test_method/thresholds) — schema present, values absent",
+    "no facts after 2026-08-03 although the stock moved ±10% several times in Aug/Sep — coverage is sparse/irregular, not a complete event log",
+    "Technical facts carry data_source 'Nasdaq' with empty url; News facts carry 'Simplywall' with a longbridge.com news url — original article url not exposed",
+    "direction long/short is the vendor's label",
+    "ordering is newest-first"
+  ]
+}

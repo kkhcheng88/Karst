@@ -1,0 +1,18 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_shareholders_institutional",
+  "params": {"symbol": "US.AXTI", "limit": 10},
+  "fetched_at": "2026-09-14T18:35:00Z",
+  "published_at": null,
+  "published_at_basis": "update_time is Futu's refresh time (market timezone string), not the 13F filing time; period_text is Futu's label computed by advancing quarter-end ~45 days (tool doc) so '2026/Q3' actually reflects holdings reported for the quarter ended 2026-06-30",
+  "period": {"from": "2024/Q2", "to": "2026/Q3", "rows": 10},
+  "truncated": {"is_truncated": true, "rule": "first page only (limit 10); pagination.has_more=true, next_key='1711900799' (epoch cursor) not followed"},
+  "known_gaps": [
+    "period label offset: verify mapping period_text -> report quarter before joining with 13F dates",
+    "the latest period (2026/Q3) shows institution_quantity_change=0 and small holder change: likely an incomplete/in-progress reporting period",
+    "close_price/open_price/last_close_price per period appear to be period-end prices but basis undocumented",
+    "holder_pct >100% possible for other names (shares outstanding basis undocumented)",
+    "pagination cursor kept verbatim; older periods not fetched",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

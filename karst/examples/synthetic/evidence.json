@@ -1,6 +1,6 @@
 [
   {
-    "contract_version": "0.1.0",
+    "contract_version": "0.2.0",
     "evidence_id": "demo-e1",
     "source_id": "demo-e1-source",
     "source_version": "1",
@@ -31,10 +31,18 @@
       "sha256": "144de13f42dc7534d662902833bb2a931032fc5d208820384d128c0dc71f2b88",
       "bytes": 410
     },
-    "supersedes": null
+    "supersedes": null,
+    "coverage": null,
+    "status": "ok",
+    "status_reason": null,
+    "published_at_precision": "datetime",
+    "published_at_timezone": null,
+    "data_as_of_precision": "datetime",
+    "data_as_of_timezone": null,
+    "data_as_of_basis": "Invented example timestamp"
   },
   {
-    "contract_version": "0.1.0",
+    "contract_version": "0.2.0",
     "evidence_id": "demo-e2",
     "source_id": "demo-e2-source",
     "source_version": "1",
@@ -65,6 +73,14 @@
       "sha256": "b28a74a4a56f7dd471bcf9fc5cedff8514e70cd1ab8742b88d40c4e7041ebe7c",
       "bytes": 38375
     },
-    "supersedes": null
+    "supersedes": null,
+    "coverage": null,
+    "status": "ok",
+    "status_reason": null,
+    "published_at_precision": "datetime",
+    "published_at_timezone": null,
+    "data_as_of_precision": "datetime",
+    "data_as_of_timezone": null,
+    "data_as_of_basis": "Invented example timestamp"
   }
 ]

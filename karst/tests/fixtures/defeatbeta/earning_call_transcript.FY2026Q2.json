@@ -1,0 +1,562 @@
+{
+ "tool": "Ticker.earning_call_transcripts().get_transcript(fiscal_year, fiscal_quarter)",
+ "params": {
+  "fiscal_year": 2026,
+  "fiscal_quarter": 2
+ },
+ "report_date": "2026-07-30",
+ "columns": [
+  "paragraph_number",
+  "speaker",
+  "content"
+ ],
+ "paragraph_count_total": 107,
+ "speakers": [
+  "Charles Shi",
+  "Gary Fischer",
+  "Leslie Green",
+  "Matt Bryson",
+  "Morris Young",
+  "Operator",
+  "Richard Shannon",
+  "Tim Bettles",
+  "Tim Savageau"
+ ],
+ "records": [
+  {
+   "paragraph_number": 1,
+   "speaker": "Operator",
+   "content": "Good afternoon, everyone, and welcome to AXT's second quarter 2026 financial conference call. Leading the call today is Dr. Morris Young, Chief Executive Officer, and Gary Fischer, Chief Financial Officer. In addition, Tim Bettles, VP of Business Development, will be participating in the Q&A portion of the call. My name is Kenneth, and I will be your coordinator today. I would now like to turn the call over to Leslie Green, Investor Relations for AXT."
+  },
+  {
+   "paragraph_number": 2,
+   "speaker": "Leslie Green",
+   "content": "Thank you, Kenneth, and good afternoon, everyone. Before we begin, I would like to remind you that during the course of this conference call, including comments made in response to your questions, we will provide projections or make other forward-looking statements regarding, among other things, the future financial performance of the company, market conditions and trends, emerging applications using chips or devices fabricated on our substrates, our product mix, global economic and political conditions, including trade tariffs and import and export restrictions, ability to obtain China export permits, timing of receipt of export permits, and list our subsidiary, Tongmei, in Hong Kong, our ability to increase orders in succeeding quarters to control costs and expenses, to improve manufacturing yields and efficiencies, or to utilize our manufacturing capacity."
+  },
+  {
+   "paragraph_number": 3,
+   "speaker": "Leslie Green",
+   "content": "We wish to caution you that such statements deal with future events, are based on management's current expectations, and are subject to risks and uncertainties that could cause actual events and results to differ materially. In addition to the matters just listed, these uncertainties and risks include, but are not limited to, the financial performance of our partially owned supply chain companies and increased environmental regulations in China. In addition to the factors just mentioned that may be discussed on this call, we refer you to the company's periodic reports filed with the Securities and Exchange Commission. These are available online by link from our website and contain additional information on risk factors that could cause actual results to differ materially from our current expectations. This conference call will be available on our website at axt.com through July 30, 2027."
+  },
+  {
+   "paragraph_number": 4,
+   "speaker": "Leslie Green",
+   "content": "Also, I want to note that shortly following the close of the market today, we issued a press release reporting financial results for the second quarter of 2026. This information is available on the investor relations portion of our website. I would now like to turn the call over to Gary Fischer for a review of our second quarter 2026 results. Gary?"
+  },
+  {
+   "paragraph_number": 5,
+   "speaker": "Gary Fischer",
+   "content": "Thank you, Leslie, and good afternoon to everyone. Our Q2 financial results highlight an exciting inflection in our business trajectory and the beginnings of a multi-year growth phase for AXT. Revenue for the second quarter of 2026 is $47.6 million. This is the highest quarterly revenue in AXT's history, up nearly 77% from $26.9 million in the first quarter and up 164% from $18.0 million in the second quarter of 2025. To break down our Q2 2026 revenue for you by product category, indium phosphide was $30.7 million, also the highest in our company's history. Let me repeat that. Indium phosphide was $30.7 million, also the highest in our company's history, primarily from data center applications. Gallium arsenide was $6.6 million. Germanium substrates were $272,000. Finally, revenue from our consolidated raw material joint venture companies in Q2 was $10.0 million."
+  },
+  {
+   "paragraph_number": 6,
+   "speaker": "Gary Fischer",
+   "content": "The top five customers generated approximately 30% of total revenue, and no customers are over the 10% level. Gross margin showed a substantial improvement again in the second quarter, primarily driven by an increase in total volume and a favorable product mix. Non-GAAP gross margin was 45.0%, compared with 29.9% gross margin in Q1 of 2026 and 8.2% gross margin in Q2 of 2025. For those who prefer to track results on a GAAP basis, gross margin in the second quarter was 44.9%, compared with 29.6% in Q1 and 8.0% in Q2 of 2025. This is a huge positive change from Q1 of 2025. Moving to operating expenses. Our total non-GAAP operating expense in Q2 was $10.2 million, compared with $8.6 million in Q1 and $7.6 million in Q2 of 2025."
+  },
+  {
+   "paragraph_number": 7,
+   "speaker": "Gary Fischer",
+   "content": "On a GAAP basis, total operating expense in Q2 was $10.9 million, compared with $9.6 million in Q1 and $8.2 million in Q2 of last year. Our non-GAAP operating profit for the second quarter of 2026 is $11.2 million, compared with a non-GAAP operating loss in Q1 of $550,000 and a non-GAAP operating loss of $6.1 million in Q2 of 2025. For reference, our GAAP operating line for the second quarter of 2026 was."
+  },
+  {
+   "paragraph_number": 8,
+   "speaker": "Morris Young",
+   "content": "Kenneth?"
+  },
+  {
+   "paragraph_number": 9,
+   "speaker": "Operator",
+   "content": "Hello, Leslie, you disappeared for a second."
+  },
+  {
+   "paragraph_number": 10,
+   "speaker": "Morris Young",
+   "content": "Kenneth?"
+  },
+  {
+   "paragraph_number": 11,
+   "speaker": "Operator",
+   "content": "You're back now."
+  },
+  {
+   "paragraph_number": 12,
+   "speaker": "Morris Young",
+   "content": "Okay, great. Terrific. Continue, Gary."
+  },
+  {
+   "paragraph_number": 13,
+   "speaker": "Gary Fischer",
+   "content": "Am I just on the speaker on the cell phone now? Kenneth, can you hear me okay?"
+  },
+  {
+   "paragraph_number": 14,
+   "speaker": "Operator",
+   "content": "Loud and clear. You can continue."
+  },
+  {
+   "paragraph_number": 15,
+   "speaker": "Gary Fischer",
+   "content": "Okay. For the benefit of the people listening, it's afternoon where you are. We're in China right now, and we're at the conference room of the Tongmei headquarters, so we have a little bit of a hiccup on the phone equipment. All right. non-GAAP operating profit for the second quarter of 2026 was $11.2 million, compared with a non-GAAP operating loss in Q1 of 2026 of $550,000, and a non-GAAP operating loss of $6.1 million in Q2 of 2025. For reference, our GAAP operating line for the second quarter of 2026 was a profit of $10.4 million, compared with an operating loss of $1.6 million in Q1, and an operating loss of $6.7 million in Q2 of 2025. Non-operating other income and expense and other items below the operating line for the second quarter of 2026 was a net profit of $705,000."
+  },
+  {
+   "paragraph_number": 16,
+   "speaker": "Gary Fischer",
+   "content": "The details can be seen in the P&L included in our press release today. In Q2 2026, we returned the company to profitability. We are pleased to report a non-GAAP net profit of $11.9 million or $0.19 per diluted share. This compares with the non-GAAP net loss of $585,000 or $0.01 per share loss in the first quarter, and a non-GAAP net loss in Q2 of 2025 of $6.4 million or $0.15 per share loss. On a GAAP basis, net profit in Q2 is $11.1 million or $0.17 per diluted share. By comparison, net loss was $1.6 million or $0.03 per share in the first quarter, and a GAAP net loss in Q2 of last year of $7.0 million. The weighted average diluted shares outstanding in Q2 is 63.5 million."
+  },
+  {
+   "paragraph_number": 17,
+   "speaker": "Gary Fischer",
+   "content": "Cash, cash equivalents, and investments increased by $625.6 million to $748.8 million as of June 30th. This was primarily the result of our secondary public offering of common stock, which closed on April 22nd and generated approximately $632 million before expenses. By comparison, at March 31st, our cash was $123 million. Accounts receivable increased by $4.7 million. During Q2, we signed long-term supply agreements with Casela and Coherent. Under the terms of these agreements, we received prepayments for wafers of $22.3 million and $25.4 million respectively. These type of agreements with significant upfront cash are an additional signpost regarding the important use of indium phosphide for high-speed optical data transmission required in AI data centers. Morris is going to talk more about this in a moment."
+  },
+  {
+   "paragraph_number": 18,
+   "speaker": "Gary Fischer",
+   "content": "These prepayments are posted on our financial statements as a liability, and they will be converted to revenue, and the liability reduces, as we ship product against these agreements. Depreciation and amortization in the second quarter was $2.5 million. Total stock comp was $0.8 million. Net inventory was up approximately $6.2 million in the second quarter to $96.3 million. This concludes our report on financial numbers. Turning to our plan to list our subsidiary, Tongmei, in China. On June 26th, Tongmei notified the stock exchange that it was moving its applications for an initial public offering on the STAR Market. This was accepted in July. AXT and Tongmei will now instead transfer our efforts towards listing on the Hong Kong Exchange, which will likely take about a year to complete."
+  },
+  {
+   "paragraph_number": 19,
+   "speaker": "Gary Fischer",
+   "content": "We continue to believe that an IPO in China is a highly beneficial in expanding our capacity in China and the most efficient and effective way to support the rapidly evolving AI infrastructure build-out. This concludes our China development of its semiconductor supply chain to meet increased China-based demand for indium phosphide substrates. Tongmei's move to the Stock Exchange of Hong Kong creates a redemption right for the $49 million invested by the PE funds back in 2021. We've been in discussion with them, and currently, they all wish to continue their investment and not be redeemed. We have sufficient cash to redeem investments should they be requested. With that, I'll turn the call over to Dr. Morris Young for a review of our business and markets. Morris?"
+  },
+  {
+   "paragraph_number": 20,
+   "speaker": "Morris Young",
+   "content": "Thank you, Gary. This is an incredibly exciting time for AXT. As Gary mentioned, we have reached an inflection point in our business where the customer demand is extremely strong for our indium phosphide material. We are committed to doubling our indium phosphide capacity in 2026, I'm pleased to report that we are ahead of the schedule in that effort. More importantly, I can now report to you that our revenue opportunity for indium phosphide is on track to more than triple by the end of 2026, with continued significant expansion expected in 2027. This is happening as a result of three factors. First, we are being able to expand capacity at a faster rate than we expected. Second, we are making significant strides in driving our manufacturing productivity with new crystal growth furnace designs and increase our output."
+  },
+  {
+   "paragraph_number": 21,
+   "speaker": "Morris Young",
+   "content": "Third, our customers are moving to larger diameter substrates and higher value products, resulting in favorable pricing trends. The combination of these factors is driving a step function increase in our revenue in Q2. We recorded our highest quarterly revenue and highest indium phosphide revenue in our history, with backlog that continues to grow and now is well over $100 million. Customer demand continues to outpace supply, no matter how fast we add capacity. Broadly, the deployment of optical connectivity in AI data center is accelerating as hyperscalers scale GPU dense architectures and look for higher speed, lower power photonics to move data more efficiently. In the near term, we're seeing high demand from the industry migration to 800G and 1.6T transceivers modules, for which indium phosphide-based lasers and detectors are essential for higher performance optical links."
+  },
+  {
+   "paragraph_number": 22,
+   "speaker": "Morris Young",
+   "content": "Longer term, hyperscalers are advancing towards near-packaged and co-packaged optics, which will continue to drive increasing demand for our material. Overall, these trends point to a durable long-term build-out of denser optical infrastructure and a multi-year demand cycle for our indium phosphide. As many of you are aware, the competitive landscape for high-quality indium phosphide is limited to just a few players due to primarily the very high technical barrier to entry. Among our peers, we believe AXT is the strongest position to increase manufacturing capacity quickly and at the scale and quality needed to move the needle in our industry and meet our customers' requirements. Our team in China has done an outstanding job in bringing up new lines in our existing facilities, as well as innovating to drive higher productivity."
+  },
+  {
+   "paragraph_number": 23,
+   "speaker": "Morris Young",
+   "content": "In working closely with our direct customers, as well as our major end customers, to understand their expected demand and roadmaps, we are well into the planning process to double our capacity again in 2027 in an adjacent location. This will make AXT by far the largest indium phosphide producer in the world. In addition to growing our manufacturing footprint, we have also made great strides in development of our six-inch indium phosphide capability. Six-inch indium phosphide substrate are exponentially more difficult to produce in volume than three or four-inch wafers. I'm very pleased and proud of our team's progress towards this new offering. I also want to thank our customers who have partnered with us throughout this process. We're excited to support them as we move forward with our own capability."
+  },
+  {
+   "paragraph_number": 24,
+   "speaker": "Morris Young",
+   "content": "Partnership is a cornerstone of our business philosophy, through which we have been able to deliver game-changing innovation. This dates back to the formation of joint ventures that today make up a unique and vertically integrated supply chain. In the last 10 years, our work with two globally recognized indium phosphide customers helped us to raise the bar even further our manufacturing and business processes to be able to support the rigorous standards of some of the most prestigious companies in the world. Strong partnership lifts innovation and enables both partners to achieve more. That is why one of the most rewarding aspect of our unfolding chapter in our history is the extent to which we have been able to partner with leading customers around the world who are defining the next generation of data center connectivity. We recently signed strategic long-term supply agreement with Casela and Coherent."
+  },
+  {
+   "paragraph_number": 25,
+   "speaker": "Morris Young",
+   "content": "This week, we're very pleased to announce an agreement with Lumentum. These agreements deepens our relationship with these important customers, working shoulder to shoulder with them to help them deliver on their own vision and roadmaps. In addition, they gave us the even greater sense of conviction that our capacity build-out is merited and necessary. From a geographic perspective, the massive AI infrastructure build-out and the planned capacity, CapEx surround spending by cloud services and AI platform providers in the U.S. is the primary driver for EML and silicon photonics-based optical transceivers, as well as high-speed photodetectors. We believe that today our material are being used in multiple U.S. hyperscalers. We expect that end customer use will continue to broaden. We're also seeing huge growth in China as China moves to accelerate its capability throughout the AI supply chain."
+  },
+  {
+   "paragraph_number": 26,
+   "speaker": "Morris Young",
+   "content": "Our revenue related to indium phosphide-based lasers market in China more than doubled in Q2 from the prior quarter. We expect continued strong growth in Q3. This highlights China's increasing investment in AI infrastructure supply chain for the global market. This is a great opportunity for AXT as there's no permit required to ship our product within China. Turning to gallium arsenide, in Q2, demand for semiconducting wafers for industrial, robotics, and data center laser applications grew sequentially from the prior quarter. We also continue to see demand for semi-insulating wafers for wireless RF devices and believe that we have a strong opportunity for market share expansion. Finally, our raw material business continues to be highly strategic to our growth plan, also generated record third quarter revenue in Q2."
+  },
+  {
+   "paragraph_number": 27,
+   "speaker": "Morris Young",
+   "content": "As we reported last quarter, our subsidiary, Jinmei, is now refining high-purity indium, which gives us direct control of a guaranteed supply of yet another critical material for indium phosphide substrates. We're also investing to help Jinmei to expand their capability so that when AXT's demand for poly material grows, Jinmei will continue to provide a meaningful portion of our raw material requirements. Globally, there continues to be a great awareness of the importance of our raw material supply chain, and we are decades ahead of the curve in developing our unique integrated supply chain. We will continue to invest in our portfolio as we believe it is a major competitive differentiator. In summary, we believe AXT is entering one of the most consequential chapters in our company history."
+  },
+  {
+   "paragraph_number": 28,
+   "speaker": "Morris Young",
+   "content": "The investment we're making today in capacity, in technology, and in our unique integrated supply chain, position us to meet the extraordinary demand we see building across the optical and AI infrastructure markets. Our customer engagement is deepening, our visibility is improving, and our competitive differentiation is strong. While we remain disciplined and thoughtful in our execution, we're confident that the groundwork we are laying now will enable transformational growth in the years to come. With that, I turn the call back to Gary for our third quarter guidance. Gary?"
+  },
+  {
+   "paragraph_number": 29,
+   "speaker": "Gary Fischer",
+   "content": "Thank you, Morse. As of today, we have approximately $66 million in revenue that can be realized in Q3 across our substrate product lines and raw materials, for which we either already have a permit to ship or for which an export permit is not required. $66 million. We have a high degree of confidence in recognizing this revenue. We could see upside, even significant upside to this number in Q3 should we receive permits for additional orders for which we have the inventory to support. We do want to stress that we cannot predict the future timing of permits or success in obtaining them for any specific customer or individual order. We have delivered strong gross margin improvement over the past several quarters."
+  },
+  {
+   "paragraph_number": 30,
+   "speaker": "Gary Fischer",
+   "content": "Further improvement depends on a number of factors, including total revenue as it relates to the revenue mix by product, absorption of fixed costs, and our ability to continue to drive better manufacturing efficiency. With regards to OpEx, we expect that it will be approximately $10.5 million in Q3 on a non-GAAP basis, and approximately $11 million on a GAAP basis. With these factors in mind, we believe our non-GAAP net income will be in the range of $0.30 to $0.32, and GAAP net income in the range of $0.29 to $0.31. We estimate share count for Q3 will be approximately 66.5 million shares. Okay. This concludes our prepared comments. We're glad to answer your questions now. Kenneth?"
+  },
+  {
+   "paragraph_number": 31,
+   "speaker": "Operator",
+   "content": "Thank you so much. We will now begin the question answer session. Please limit yourself to one question and one follow-up. If you would like to ask a question, please press star one on your telephone keypad. To withdraw your question, press star one again. Please pick up your handset when asking a question. If you are muted locally, please remember to unmute your device. Please stand by while we compile the Q&A roster. Your first question comes from the line of Tim Savageau from Northland Capital Markets. Tim, your line is open. Please go ahead."
+  },
+  {
+   "paragraph_number": 32,
+   "speaker": "Tim Savageau",
+   "content": "Hey. Well, good afternoon from here at least. Wow, congrats on the results and the guide. My first question is about the comments on the call about, I guess, an increased target for indium phosphide capacity for this year, looks like, I assume most of the growth you're guiding to in Q3 comes from indium phosphide. I think we were looking at doubling from a $20 million type level as the original target, maybe $35 million-$40 million. Am I right to thinking the new sort of target exiting the year is something in the neighborhood of $60 million in quarterly indium phosphide capacity? I'll follow up from there."
+  },
+  {
+   "paragraph_number": 33,
+   "speaker": "Tim Bettles",
+   "content": "Yeah, that's about right, Tim. That's exactly what we're looking at here. About $60 million there, thereabouts."
+  },
+  {
+   "paragraph_number": 34,
+   "speaker": "Tim Savageau",
+   "content": "Great. Good answer. You're looking to double that still, I guess, exiting calendar 2027. Just confirmation on that. Around the Lumentum deal, I wonder if you could Obviously, you've got larger prepays, a longer term. I wonder if you could speak to maybe the overall size of that opportunity, from a baseline standpoint or upside or however you want to talk about it. Thanks, congrats again."
+  },
+  {
+   "paragraph_number": 35,
+   "speaker": "Tim Bettles",
+   "content": "Thank you, Tim. Yeah, next year, we're looking at doubling, slightly more than doubling again, take our revenue to somewhere in the region of about $130 million a quarter exiting the year. Yeah, thank you about the Lumentum deal. Clearly, we've got some prepayments on that, we're not discussing the total revenue impact of that deal at this moment."
+  },
+  {
+   "paragraph_number": 36,
+   "speaker": "Tim Savageau",
+   "content": "Okay, thanks. I'll pass it along."
+  },
+  {
+   "paragraph_number": 37,
+   "speaker": "Tim Bettles",
+   "content": "Yeah."
+  },
+  {
+   "paragraph_number": 38,
+   "speaker": "Morris Young",
+   "content": "Maybe let me add one point about the capacity expansion. We are planning at least to double next year, as you know, this target changes. In fact, I think this year we're going to more than double, it's because customer demand is just mounting. We are finding whatever ways to increase that capacity expansion. We are planning for double next year, depends about how the business develops in the second quarter, we could find another way to even better than that. Okay, in a way, it's a moving target, we think it's going to be more than double in 2027."
+  },
+  {
+   "paragraph_number": 39,
+   "speaker": "Morris Young",
+   "content": "The demand is moving faster than we can move. We're doing great to move fast, the demand is even stronger."
+  },
+  {
+   "paragraph_number": 40,
+   "speaker": "Tim Savageau",
+   "content": "Okay. Not much faster, but you guys are moving pretty fast. Okay, thanks. Appreciate it."
+  },
+  {
+   "paragraph_number": 41,
+   "speaker": "Operator",
+   "content": "Your next question comes from the line of Matt Bryson with Wedbush Securities. Matt, your line is open. Please go ahead."
+  },
+  {
+   "paragraph_number": 42,
+   "speaker": "Matt Bryson",
+   "content": "Thanks for taking my question, and congrats on the results and guide. Obviously, you're having a whole lot more success in getting permits. It seems like with the Coherent deal, you have to have certainty that you're going to get permits to ship out of China given the terms of that deal. I guess, can you talk about how the process has changed, and about how you have more confidence in getting these permits, or what has changed?"
+  },
+  {
+   "paragraph_number": 43,
+   "speaker": "Tim Bettles",
+   "content": "Yeah, sure. Thanks, Matt. Permits always remain a bit of an issue on the back of our minds. As Gary mentioned there, it's not something that we can absolutely predict, both the timing and the certainty of. We are seeing more regularity in the process, especially in certain geographic regions. That's great news. We're seeing increased demand in those geographic regions, too. We're focusing now even with greater intensity on capacity and allocation. Yeah, right now, the permits, as I say, we're seeing more regularity in certain geographic regions, and we're driving more and more permit applications through the Ministry of Commerce."
+  },
+  {
+   "paragraph_number": 44,
+   "speaker": "Matt Bryson",
+   "content": "Awesome. That's really helpful. Same question, Gary. My math has gross margins staying relatively stable in Q3. Is that roughly the right way to think about things? I guess, as part of that, given how tight indium phosphide seems, is there any more room for price appreciation in our models?"
+  },
+  {
+   "paragraph_number": 45,
+   "speaker": "Gary Fischer",
+   "content": "Well, it is a moving target. Of course, I know you guys are going to quote me that I would always say, \"Okay, you can go to 35%, but that's not management's target. Management's target is a number that begins with four.\" I'm delighted that we got here as fast as we did. I think I would recommend stick close to what we're at right now. I have to say again, management target is better than that. Let's see what we can do. When you add more volume, that helps on your gross margin because the fixed costs get absorbed over more units. Also, when you add more volume in manufacturing business, you get better at it. We're just experiencing a lot of positive influences right now to push this over 40% and stay at 45 for now. Put your seat belts on."
+  },
+  {
+   "paragraph_number": 46,
+   "speaker": "Morris Young",
+   "content": "Well, I can't help myself but make a comment here. I'm a CEO, but I know my number, okay? Look, everybody knows our indium phosphide business has better margin than the other two business, the gallium arsenide and JVs. Okay? As we grow for next quarter, it's obviously all the growth happening in indium phosphide. Just by simple math, the gross margin is going to be better."
+  },
+  {
+   "paragraph_number": 47,
+   "speaker": "Gary Fischer",
+   "content": "Right. Because the sales of indium phosphide is increasing, the other stuff is not increasing as fast. We're optimistic."
+  },
+  {
+   "paragraph_number": 48,
+   "speaker": "Matt Bryson",
+   "content": "No, that's really."
+  },
+  {
+   "paragraph_number": 49,
+   "speaker": "Gary Fischer",
+   "content": "Yeah. We try and be conservative on this kind of a discussion."
+  },
+  {
+   "paragraph_number": 50,
+   "speaker": "Tim Bettles",
+   "content": "Yeah, I want to add another point as well. The market is moving to larger diameters here, too. We're seeing a migration from 2-inch to 3-inch, 3-inch to 4-inch, and of course, now there's a big push towards 6-inch for the future. This gives us a great opportunity to increase our gross margins."
+  },
+  {
+   "paragraph_number": 51,
+   "speaker": "Morris Young",
+   "content": "Yeah, let's not spend all the."
+  },
+  {
+   "paragraph_number": 52,
+   "speaker": "Tim Bettles",
+   "content": "No"
+  },
+  {
+   "paragraph_number": 53,
+   "speaker": "Morris Young",
+   "content": "Let me give you another one. Because the demand is so strong, the whole indium phosphide line is fully utilized. Let me give you an example. In the past, some of the, let's say, smaller diameter, two-inch, they are not in favor, so they are not sold out. The big demand is on three-inch. Because the demand is so strong, the customer are forced or they want everything. Whatever we can produce, we can sell. That also will help us in terms of margins."
+  },
+  {
+   "paragraph_number": 54,
+   "speaker": "Matt Bryson",
+   "content": "All that makes perfect sense."
+  },
+  {
+   "paragraph_number": 55,
+   "speaker": "Gary Fischer",
+   "content": "Next question, please."
+  },
+  {
+   "paragraph_number": 56,
+   "speaker": "Matt Bryson",
+   "content": "Answers my question. Thank you so much."
+  },
+  {
+   "paragraph_number": 57,
+   "speaker": "Operator",
+   "content": "Your next question comes from the line of Richard Shannon with Craig-Hallum. Richard, your line is open. Please go ahead."
+  },
+  {
+   "paragraph_number": 58,
+   "speaker": "Richard Shannon",
+   "content": "Well, hi, guys. Thanks for taking my questions. I'll add congratulations on an excellent quarter. Keep up the great work here. I guess my first question is, the language you used for the backlog, maybe it was slightly different, but you used the same number of $100 billion. I think you're just saying a lot more than $100 billion. Wonder if you could clarify that number any more, and then specifically comment how much of your calendar 2027 is covered by backlog."
+  },
+  {
+   "paragraph_number": 59,
+   "speaker": "Gary Fischer",
+   "content": "I'm going to let Tim answer that. Go ahead, Tim."
+  },
+  {
+   "paragraph_number": 60,
+   "speaker": "Tim Bettles",
+   "content": "Yeah, I don't want to go into a lot of details about how big exactly our backlog is. I can tell you that it is growing, and I can tell you it continues to grow even as we ship more material. Demand just completely outpaces our ability to increase capacity, even though we've increased capacity, or we're about to increase capacity 3x this year. Just simply can't keep up with it. Backlog continues to grow, as I say, beyond $100 million right now. In terms of 2027, yeah, we're covered with backlog going out into 2027. Obviously, a lot of our customers, if we could deliver the majority of that today, they would take it today. That does cover going out into 2027. Of course, we have these Long-Term Supply Agreements that take us out into 2027 and beyond as well."
+  },
+  {
+   "paragraph_number": 61,
+   "speaker": "Tim Bettles",
+   "content": "We've got a lot of next year and beyond covered with LTSAs, and even in some cases, backlog."
+  },
+  {
+   "paragraph_number": 62,
+   "speaker": "Gary Fischer",
+   "content": "Look, I think the other answer why we're not giving out the backlog, perhaps, is that we are not taking orders if customer wants to place order. We are looking at whether we can deliver, because once we take the order, we're going to put them on the production queue. Right now it's full. It's difficult to know how much the backlog is. In fact, I think if we open up the floodgate, it's going to be huge. We're not counting on it. As far as 2027 is concerned, I think if we want to sign up a lot of Well, team is working on other long-term supply agreement. That doesn't mean that 2027 is all spoken of."
+  },
+  {
+   "paragraph_number": 63,
+   "speaker": "Gary Fischer",
+   "content": "That is, we are measuring how much we're expanding, how much we're willing to sign up for long-term supply agreement, and some of them we want to reserve for customers coming in. I think right now order is not a problem, mostly is how fast we can grow."
+  },
+  {
+   "paragraph_number": 64,
+   "speaker": "Richard Shannon",
+   "content": "Okay. I appreciate that perspective. Couple more questions from me. I'll jump on the line here. The next one is on indium phosphide here, and specifically how much of that was shipped into China versus rest of the world, and how do you see that going over the next, say, couple of years or so? I ask this because you've obviously signed up an agreement with a Chinese laser company, but then also two North American-based laser companies here. While I'm sure those aren't the only customers you're going to have for indium phosphide here, I'd love to get a sense of how this ratio changes over time. Kind of what's the peak from China, and what do you see as kind of that long-term stable share between China and the rest of the world?"
+  },
+  {
+   "paragraph_number": 65,
+   "speaker": "Tim Bettles",
+   "content": "That's a great question, Richard. There's certainly a lot of market opportunity in China right now. As we've said, we're doubling our capacity, actually tripling our capacity in 2026. China is definitely taking some of that capacity as we move forward. What we're seeing with the permits, and with the demand globally, this is a global market, remember. We are seeing growth across all sectors. China right now is definitely above 50% of our revenue in Q2. I would anticipate that we would see a revenue split moving forward somewhere in that 40%-60% range as we build up both capacity and we build up long-term supply agreements, both within China and throughout the rest of the world. I would kind of model that as China being 40%-60% of our revenue."
+  },
+  {
+   "paragraph_number": 66,
+   "speaker": "Richard Shannon",
+   "content": "Okay. Thanks for that, Tim. Last question for me is on the topic of gross margins. I know there was a previous question on this topic, I'm going to ask the question slightly different, Gary. I think even Morris commented today, and we've heard this many times in the past, where indium phosphide is a positive mix dynamic and only seemingly getting better given the pricing comments you've mentioned here. Also we're going to see from your capacity expansion some depreciation costs here. Would love to get a sense of, from the number you just reported in the second quarter, which is utterly fantastic, how much more can it go? Can you get to a number that starts with a five?"
+  },
+  {
+   "paragraph_number": 67,
+   "speaker": "Gary Fischer",
+   "content": "All right. Well, let's see. Can we get there? It would be a record for us, that's for sure. Yes, further increases in volume and improvements in productivity, as well as continued favorable mix, moving towards larger diameter substrates. We should definitely be targeting a number that begins with a five. I don't want you to, Richard, okay? Let's get there first."
+  },
+  {
+   "paragraph_number": 68,
+   "speaker": "Richard Shannon",
+   "content": "That's fine. I won't. I just want to know."
+  },
+  {
+   "paragraph_number": 69,
+   "speaker": "Gary Fischer",
+   "content": "Nope"
+  },
+  {
+   "paragraph_number": 70,
+   "speaker": "Richard Shannon",
+   "content": "we all think of"
+  },
+  {
+   "paragraph_number": 71,
+   "speaker": "Gary Fischer",
+   "content": "Don't race us to the finish line."
+  },
+  {
+   "paragraph_number": 72,
+   "speaker": "Richard Shannon",
+   "content": "I won't, and I never have, Gary. I just want to understand how close to the asymptote we are."
+  },
+  {
+   "paragraph_number": 73,
+   "speaker": "Gary Fischer",
+   "content": "Yeah. You've been with us for a long time to cover us, and obviously, this is, as Morris said, sort of more than an inflection point. This is a huge step up. We'll try and be as specific and accurate as we can. It's moving pretty fast. Yeah. We want to be careful what we tell you. Yeah, we're going to target something that begins with a five."
+  },
+  {
+   "paragraph_number": 74,
+   "speaker": "Richard Shannon",
+   "content": "Okay. Understood. Makes sense. That's all the questions from me. Thank you."
+  },
+  {
+   "paragraph_number": 75,
+   "speaker": "Gary Fischer",
+   "content": "Thanks, Richard. Kenneth, next."
+  },
+  {
+   "paragraph_number": 76,
+   "speaker": "Operator",
+   "content": "Your next question comes from the line of Charles Shi with Needham. Charles, your line is open. Please go ahead."
+  },
+  {
+   "paragraph_number": 77,
+   "speaker": "Charles Shi",
+   "content": "Hi. Good morning. I guess you guys are in China right now. The first question I have regarding the capacity exiting the year, raising from basically $35 million per quarter to $60 million, then next year basically raising from $17 million per quarter to $130 million per quarter. Are those numbers correct? I think previously, on the previous capacity numbers, you plan to spend, well, I'm looking at my numbers, $14 million CapEx this year, $100 million CapEx next year. What's the new CapEx number? It does look like the capacity growth has upsides a lot. I want to get some thoughts on CapEx. Thank you."
+  },
+  {
+   "paragraph_number": 78,
+   "speaker": "Tim Bettles",
+   "content": "Yeah. Thanks, Charles. The capacity is growing faster than we thought. Certainly, in terms of revenue, that comes out from a number of factors, as Maurice said. We've been able to accelerate the actual physical capacity that we have here. We are moving to larger diameter substrates, which, of course, helps the revenue. We're seeing greater productivity. As Gary mentioned, moving to larger and larger volumes increases the productivity of the facility. We've seen this time and time again. Part of the capacity increase that we're seeing here isn't just a CapEx spend, but it's a productivity and a product mix change here, and that's what's really allowing us to grow the revenue quicker than we anticipated. There's a lot going on here. Now, when you're looking at CapEx spend to get this additional capacity, there is actually not a lot of additional CapEx spend here."
+  },
+  {
+   "paragraph_number": 79,
+   "speaker": "Tim Bettles",
+   "content": "As I said, as we're gaining capacity through other factors rather than just hardware deployment, it means that we can gain capacity without huge additional CapEx spend on that."
+  },
+  {
+   "paragraph_number": 80,
+   "speaker": "Charles Shi",
+   "content": "Okay. Basically, sounds like you are reaffirming the CapEx plan you previously communicated. Is that right?"
+  },
+  {
+   "paragraph_number": 81,
+   "speaker": "Tim Bettles",
+   "content": "That's correct."
+  },
+  {
+   "paragraph_number": 82,
+   "speaker": "Morris Young",
+   "content": "That's correct."
+  },
+  {
+   "paragraph_number": 83,
+   "speaker": "Charles Shi",
+   "content": "Okay. The second question, once again, on backlog. Morris, if I understand what you said, you only want to book the order. That's what I heard. You only want to book the order. Only a booked order can be put in backlog when you can commit to ship to the customers, given that you are probably still trying to catch up with the demand by increasing supply. $100 million-plus backlog, but I think I'm looking at you are already shipping $30 million-plus this quarter. Looks like implied for September quarter, you probably will be able to ship a $50 million."
+  },
+  {
+   "paragraph_number": 84,
+   "speaker": "Charles Shi",
+   "content": "I wonder if you can give us a little bit more, how much more than $100 million you actually can see, because it sounds a little bit too low to me that your backlog only covers a little bit over two quarters of the next two quarters of the expected indium phosphide revenue at the implied Q3 run rate. I want to get some thoughts. What exactly is your visibility now, and why don't you book more orders? We would like to see maybe the backlog can be a little bit higher than what you just communicated. Thank you."
+  },
+  {
+   "paragraph_number": 85,
+   "speaker": "Tim Bettles",
+   "content": "The backlog, as I say, we're not giving actual backlog numbers out here. I can say that it's well over $100 million. It exceeds two quarters, for sure. I just don't want to give out too much information about that at this time. The backlog is also covered with a lot of long-term supply agreements that are in place. There's a lot of commitment going out well beyond two quarters, both in terms of backlog and long-term supply agreements. I really don't worry that this is a short-term thing. Remember, a lot of this backlog here is a factor of the permits, as we wait for permits, and it doesn't include a lot of the China business. We can turn the China business a lot quicker than we can turn the permitting business. As Gary said, permits are certainly getting freer."
+  },
+  {
+   "paragraph_number": 86,
+   "speaker": "Tim Bettles",
+   "content": "They're getting quicker, but it still takes time to apply for a permit, and we cannot apply for a permit without an order in place."
+  },
+  {
+   "paragraph_number": 87,
+   "speaker": "Morris Young",
+   "content": "Yeah."
+  },
+  {
+   "paragraph_number": 88,
+   "speaker": "Tim Bettles",
+   "content": "So."
+  },
+  {
+   "paragraph_number": 89,
+   "speaker": "Morris Young",
+   "content": "Let me comment on the backlog issue. The backlog, when our visibility was not good, then usually it's only one quarter or maybe two quarters issue. Right now, visibility is so good that it extend out three or four quarters. It's not a fair comparison in a way. The other thing is that we are actually, honestly, we're not taking orders. When customer give us the demand, we look at what we can plan the production capacity will be and talk to customers about, \"Okay, you can place this order because we have now planned capacity, we can accommodate this order.\" Beyond that, we are not taking orders. The backlog can be much bigger if we take all the orders, we're not expanding the capacity, so why are we taking an order? You understand what I'm saying?"
+  },
+  {
+   "paragraph_number": 90,
+   "speaker": "Morris Young",
+   "content": "It doesn't make any sense to give you, oh, we could have $150 million back order. It's not the same measure anymore."
+  },
+  {
+   "paragraph_number": 91,
+   "speaker": "Charles Shi",
+   "content": "Got it. Morris, just to clarify, backlog is not a quote-unquote issue. I think you've proven that's not an issue. Just want to clarify on that. Okay, there's maybe a third question I have, maybe a technology question, maybe for Maurice. Maurice, you guys also have a pretty strong gallium arsenide epitaxy line. I'm sure you've heard about potential use of VCSEL for scale up, rather than use indium phosphide for scale up. It's a shorter distance, and VCSEL probably has some advantages there. I wonder if you have any customer discussion around VCSEL, around maybe supplying them the gallium arsenide substrates there, and how are any of the conversations going so far? Thank you."
+  },
+  {
+   "paragraph_number": 92,
+   "speaker": "Morris Young",
+   "content": "Yeah. We have customers in China who are developing VCSEL solutions, and in fact, there's a U.S. customer also talking to us about using gallium arsenide for VCSEL solutions. Correct?"
+  },
+  {
+   "paragraph_number": 93,
+   "speaker": "Tim Bettles",
+   "content": "Yeah. Correct. We're currently a supplier to gallium arsenide VCSELs for two large data center companies, or laser companies. Yeah, we do have some visibility out there. We are seeing that these technologies coexist, right? The people that are deploying gallium arsenide VCSELs are also very strongly focused on indium phosphide as well. I'm seeing more focus on the indium phosphide side of the business than the VCSELs. As I say, the VCSEL technology has been out there for a long time, and I don't see it going away. I see an indium phosphide lasers, silicon photonics, and the gallium arsenide-based VCSELs coexisting in this marketplace."
+  },
+  {
+   "paragraph_number": 94,
+   "speaker": "Morris Young",
+   "content": "From what I understand, looks like it's the speed is the killer, or is in favor of indium phosphide. VCSEL, I think, is more difficult to reach 200G, both in terms of laser emitter as well as detectors. When you go to 200G, it has to be indium phosphide detectors and also indium phosphide laser work better. Well, I am in favor of the indium phosphide for sure. The reason is that indium phosphide, we got more margins out of the supply chain, and we are a dominant player in indium phosphide. That's the answer."
+  },
+  {
+   "paragraph_number": 95,
+   "speaker": "Charles Shi",
+   "content": "Yeah. Thanks, Maurice and Tim, for the insight. Thank you. Appreciate the answers."
+  },
+  {
+   "paragraph_number": 96,
+   "speaker": "Operator",
+   "content": "We have another question from Tim Savageau from Northland Capital Markets. Tim, your line is open. Please go ahead."
+  },
+  {
+   "paragraph_number": 97,
+   "speaker": "Tim Savageau",
+   "content": "Hey, thanks for the follow-up. Wanted to kind of stick with that one question, one follow-up thing before. I suppose that's somewhat of an outlier. The question is, maybe this sort of syncs up with your China commentary, to what extent were the new deals, long-term supply agreements you've announced in recent weeks, contributors either to the Q2 results or Q3 guide, or do we have a fair bit of that in front of us?"
+  },
+  {
+   "paragraph_number": 98,
+   "speaker": "Tim Bettles",
+   "content": "That's a great question, Tim. The latter is the answer. We have a fair bit of that in front of us. We're supplying materials to back up those long-term supply agreements to get qualified and get ready for them. They don't move the needle too much on Q2. We're going to see a bigger impact in Q3, then we're going to see further growth moving out through Q4 and into next year, beyond."
+  },
+  {
+   "paragraph_number": 99,
+   "speaker": "Morris Young",
+   "content": "And the Que cell deal-"
+  },
+  {
+   "paragraph_number": 100,
+   "speaker": "Tim Savageau",
+   "content": "Great"
+  },
+  {
+   "paragraph_number": 101,
+   "speaker": "Morris Young",
+   "content": "doesn't start until 2027."
+  },
+  {
+   "paragraph_number": 102,
+   "speaker": "Tim Bettles",
+   "content": "Right."
+  },
+  {
+   "paragraph_number": 103,
+   "speaker": "Morris Young",
+   "content": "That's a good point. That's not even happening right now in terms of that contract, even though we are selling stuff to them."
+  },
+  {
+   "paragraph_number": 104,
+   "speaker": "Tim Savageau",
+   "content": "Great. I probably should've known that, but anyway, appreciate that. Cheers."
+  },
+  {
+   "paragraph_number": 105,
+   "speaker": "Operator",
+   "content": "There are no further questions at this time. I will now turn the call back to Leslie Green for closing remarks."
+  },
+  {
+   "paragraph_number": 106,
+   "speaker": "Leslie Green",
+   "content": "Thank you for participating in our conference call. We will be participating in the Needham Virtual Investor Conference in August and the B. Riley Securities Consumer and TMT Conference in September. We hope to see many of you there. As always, feel free to contact us if you'd like to set up a call, and we look forward to speaking with you in the near future."
+  },
+  {
+   "paragraph_number": 107,
+   "speaker": "Operator",
+   "content": "This concludes today's call. Thank you for attending. You may now disconnect."
+  }
+ ]
+}

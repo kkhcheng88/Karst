@@ -1,0 +1,18 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_research_rating_summary",
+  "params": {"symbol": "US.AXTI", "limit": 20, "rating_dimension_type": 1},
+  "fetched_at": "2026-09-14T18:32:00Z",
+  "published_at": null,
+  "published_at_basis": "per rating item: recommendation_date (epoch ms; string always T05:00:00Z = date-only precision, likely US-midnight rendered in UTC) and update_time (when Futu synced the item from TipRanks). Neither is the broker note's own timestamp",
+  "period": {"from": "2025-10-29", "to": "2026-07-31", "institutions": 5, "rating_items": 34},
+  "truncated": {"is_truncated": false, "note": "pagination.has_more=false; total=5 institutions on one page"},
+  "known_gaps": [
+    "analyst_rating_summary_list is empty at dimension 1 (institution); dimension 2 not fetched",
+    "target_price absent on several items (real gap: rating reiterated without a target)",
+    "rating code scale undocumented in response (observed 3 = Buy, 2 = Hold from URL slugs)",
+    "sourced from TipRanks via Futu; institution_en_name null for B. Riley; institution_picture_url empty string for B. Riley",
+    "item-level update_time later than recommendation_date by days to months: the item was NOT necessarily visible on recommendation_date (資料來源 §四 6)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

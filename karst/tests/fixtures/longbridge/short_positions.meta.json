@@ -1,0 +1,17 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__short_positions",
+  "params": {"symbol": "AXTI.US", "count": 40},
+  "fetched_at": "2026-09-14T18:45:00Z",
+  "published_at": null,
+  "published_at_basis": "per row timestamp (RFC3339; 04:00/05:00Z = US-Eastern midnight, date precision) = FINRA settlement date of the bi-monthly report; publication (~8–9 business days later) not in response",
+  "period": {"from": "2025-01-15", "to": "2026-08-31", "rows": 40, "cadence": "twice monthly"},
+  "truncated": {"is_truncated": true, "rule": "count=40 (max 100); older rows not fetched"},
+  "known_gaps": [
+    "same underlying FINRA series as futu/quote_short_interest: shares_short identical on overlapping dates (e.g. 2026-08-31 9,192,428 both) but days_to_cover differs (Futu floors at 1.0; Longbridge 0.99) and Futu's short_percent 14.018 vs Longbridge rate 0.1402 — same number, different unit convention (percent vs decimal)",
+    "all numeric fields are strings",
+    "rate denominator (float vs outstanding) undocumented",
+    "'sources': 1 undocumented (source count)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

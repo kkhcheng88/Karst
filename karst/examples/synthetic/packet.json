@@ -1,5 +1,5 @@
 {
-  "contract_version": "0.1.0",
+  "contract_version": "0.2.0",
   "packet_id": "demo-packet-1",
   "previous_packet_id": null,
   "security": {
@@ -48,5 +48,6 @@
       "resolution": null
     }
   ],
-  "pending_updates": []
+  "pending_updates": [],
+  "diagnostic_ids": []
 }

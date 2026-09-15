@@ -1,0 +1,18 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_daily_short_volume",
+  "params": {"symbol": "US.AXTI", "count": 30},
+  "fetched_at": "2026-09-14T18:35:00Z",
+  "published_at": null,
+  "published_at_basis": "per row timestamp/timestamp_str = trading day (market timezone date); daily short-sale volume is published by FINRA/exchanges after the session (T+0 evening or T+1) — publication time not in response",
+  "period": {"from": "2026-07-31", "to": "2026-09-11", "rows": 30, "cadence": "trading days"},
+  "truncated": {"is_truncated": true, "rule": "count=30 (max 90); older days not fetched"},
+  "known_gaps": [
+    "last row 2026-09-11; 2026-09-14 session not yet present at fetch (intraday)",
+    "nasdaq_shares_short + nyse_shares_short = total_shares_short (two venues only; off-exchange/other venues not broken out)",
+    "short_percent = total_shares_short / volume ×100 (derived, ratio of short-sale volume not short interest)",
+    "daily_trade_avg_ratio semantics undocumented (looks like a rolling average ratio)",
+    "the 2026-07-31 row (earnings reaction day) shows volume 29.6M and short ratio 17.6% — matches earnings_price_history volume, useful as a cross-source check",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "source": "defeatbeta",
+  "params": {
+    "ticker": "AXTI",
+    "fiscal_year": 2026,
+    "fiscal_quarter": 2
+  },
+  "fetched_at": "2026-09-14T18:30:02+00:00",
+  "library_version": "0.0.60",
+  "cache_update_time_remote": null,
+  "published_at": "2026-07-30",
+  "published_at_basis": "report_date from transcripts list (date precision, call date); time the text became readable is unknown",
+  "period": {
+    "fiscal_year": 2026,
+    "fiscal_quarter": 2,
+    "report_date": "2026-07-30"
+  },
+  "truncated": {
+    "is_truncated": false,
+    "rule": "content chars cumulative <= 40000",
+    "original_chars": 38043,
+    "kept_paragraphs": 107,
+    "cut_at_paragraph_number": null,
+    "total_paragraphs": 107
+  },
+  "known_gaps": [
+    "source has no prepared-remarks vs Q&A section marker; only paragraph_number/speaker/content (split must be inferred, e.g. from Operator paragraphs)",
+    "speaker names as given by source (may lack titles/roles)"
+  ],
+  "tool": "Ticker.earning_call_transcripts().get_transcript"
+}

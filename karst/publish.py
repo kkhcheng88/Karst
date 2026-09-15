@@ -33,7 +33,7 @@ def publish(bundle, output, *, previous_publication_id=None):
     bundle, output = Path(bundle), Path(output)
     packet, records, research = load_bundle(bundle)
     calculated = calculations.calculate(research)
-    pinned_schemas = schema_hashes()
+    pinned_schemas = schema_hashes(packet["contract_version"])
     payload = {"packet": packet, "evidence": records, "research": research,
                "schema_hashes": pinned_schemas, "renderer": RENDERER_VERSION,
                "calculator": calculations.VERSION, "previous": previous_publication_id}
@@ -82,7 +82,7 @@ def publish(bundle, output, *, previous_publication_id=None):
                 data = path.read_bytes()
                 assets.append({"path": path.relative_to(staging).as_posix(),
                                "sha256": digest(data), "bytes": len(data)})
-        manifest = {"contract_version": "0.1.0", "publication_id": publication_id,
+        manifest = {"contract_version": packet["contract_version"], "publication_id": publication_id,
                     "created_at": datetime.now(timezone.utc).isoformat(),
                     "as_of": packet["as_of"], "target_date": research["target_date"],
                     "security": packet["security"], "mode": research["mode"],

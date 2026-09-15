@@ -1,0 +1,24 @@
+{
+  "source": "defeatbeta",
+  "params": {
+    "ticker": "AXTI"
+  },
+  "fetched_at": "2026-09-14T18:30:02+00:00",
+  "library_version": "0.0.60",
+  "cache_update_time_remote": null,
+  "published_at": null,
+  "published_at_basis": "per-row report_date only (date precision); transcript text availability time not provided by source (資料來源 §四 4)",
+  "period": {
+    "from": "2008-02-27",
+    "to": "2026-07-30",
+    "count": 61
+  },
+  "truncated": {
+    "is_truncated": false
+  },
+  "known_gaps": [
+    "list is not contiguous by quarter (source coverage gaps kept as-is)",
+    "no availability timestamp for transcript text"
+  ],
+  "tool": "Ticker.earning_call_transcripts().get_transcripts_list()"
+}

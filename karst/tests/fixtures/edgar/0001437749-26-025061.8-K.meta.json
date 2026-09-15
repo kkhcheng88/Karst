@@ -1,0 +1,98 @@
+{
+  "source": "edgar",
+  "tool": "EDGAR Archives HTTP GET (urllib; User-Agent Karst research; <=4 req/s; retry once)",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "accession": "0001437749-26-025061",
+    "form": "8-K",
+    "document": "axti20260609_8k.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k.htm",
+    "kind": "primary"
+  },
+  "fetched_at": "2026-09-14T18:26:45+00:00",
+  "published_at": "2026-07-30T20:15:25.000Z",
+  "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC, verbatim). Not necessarily first public release time; 8-K press release may have been issued earlier (see 資料來源 §四 4)",
+  "filingDate": "2026-07-30",
+  "reportDate": "2026-07-30",
+  "items": "2.02,9.01",
+  "period": {
+    "reportDate": "2026-07-30"
+  },
+  "files": {
+    "raw": {
+      "name": "0001437749-26-025061.8-K.raw.htm",
+      "bytes": 27036,
+      "sha256": "9339502bda5a731f3c8490403ba662e3642045ee2565ddf55ab10dc04ba13b18",
+      "note": "verbatim EDGAR bytes, not truncated"
+    },
+    "text": {
+      "name": "0001437749-26-025061.8-K.txt",
+      "chars": 4086,
+      "sha256_full_text": "5823d60eddc468fc98a062a35e951fe48db984f2f68ba7d3508ee1dcb4aa62e7",
+      "derivation": "regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+    }
+  },
+  "truncated": {
+    "is_truncated": false,
+    "original_chars": 4086
+  },
+  "known_gaps": [],
+  "index_page": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/0001437749-26-025061-index.htm",
+  "attachments_listed": [
+    {
+      "file": "axti20260609_8k.htm",
+      "description": "FORM 8-K",
+      "type": "8-K",
+      "href": "/ix?doc=/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k.htm"
+    },
+    {
+      "file": "ex_974537.htm",
+      "description": "EXHIBIT 99.1",
+      "type": "EX-99.1",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/ex_974537.htm"
+    },
+    {
+      "file": "axtlogo.jpg",
+      "description": "",
+      "type": "GRAPHIC",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/axtlogo.jpg"
+    },
+    {
+      "file": "0001437749-26-025061.txt",
+      "description": "Complete submission text file",
+      "type": "",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/0001437749-26-025061.txt"
+    },
+    {
+      "file": "axti-20260730.xsd",
+      "description": "XBRL TAXONOMY EXTENSION SCHEMA",
+      "type": "EX-101.SCH",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/axti-20260730.xsd"
+    },
+    {
+      "file": "axti-20260730_def.xml",
+      "description": "XBRL TAXONOMY EXTENSION DEFINITION LINKBASE",
+      "type": "EX-101.DEF",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/axti-20260730_def.xml"
+    },
+    {
+      "file": "axti-20260730_lab.xml",
+      "description": "XBRL TAXONOMY EXTENSION LABEL LINKBASE",
+      "type": "EX-101.LAB",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/axti-20260730_lab.xml"
+    },
+    {
+      "file": "axti-20260730_pre.xml",
+      "description": "XBRL TAXONOMY EXTENSION PRESENTATION LINKBASE",
+      "type": "EX-101.PRE",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/axti-20260730_pre.xml"
+    },
+    {
+      "file": "axti20260609_8k_htm.xml",
+      "description": "EXTRACTED XBRL INSTANCE DOCUMENT",
+      "type": "XML",
+      "href": "/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k_htm.xml"
+    }
+  ]
+}

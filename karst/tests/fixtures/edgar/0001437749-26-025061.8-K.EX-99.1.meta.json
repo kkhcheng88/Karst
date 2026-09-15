@@ -1,0 +1,44 @@
+{
+  "source": "edgar",
+  "tool": "EDGAR Archives HTTP GET (urllib; User-Agent Karst research; <=4 req/s; retry once)",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "accession": "0001437749-26-025061",
+    "form": "8-K",
+    "document": "ex_974537.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/ex_974537.htm",
+    "kind": "exhibit"
+  },
+  "fetched_at": "2026-09-14T18:26:45+00:00",
+  "published_at": "2026-07-30T20:15:25.000Z",
+  "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC, verbatim). Not necessarily first public release time; 8-K press release may have been issued earlier (see 資料來源 §四 4)",
+  "filingDate": "2026-07-30",
+  "reportDate": "2026-07-30",
+  "items": "2.02,9.01",
+  "period": {
+    "reportDate": "2026-07-30"
+  },
+  "files": {
+    "raw": {
+      "name": "0001437749-26-025061.8-K.EX-99.1.raw.htm",
+      "bytes": 215853,
+      "sha256": "49ee5b8458c4bd320855f3cf4e4b63673d9873a10723e1707b9ccddf6eaf47db",
+      "note": "verbatim EDGAR bytes, not truncated"
+    },
+    "text": {
+      "name": "0001437749-26-025061.8-K.EX-99.1.txt",
+      "chars": 14815,
+      "sha256_full_text": "5f4056196b0dc5a6a4e362ae39a5994e19ae337490b43b0798872ae7c20a8820",
+      "derivation": "regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+    }
+  },
+  "truncated": {
+    "is_truncated": false,
+    "original_chars": 14815
+  },
+  "known_gaps": [],
+  "exhibit_type": "EX-99.1",
+  "exhibit_description": "EXHIBIT 99.1",
+  "index_page": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/0001437749-26-025061-index.htm"
+}

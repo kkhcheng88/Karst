@@ -79,6 +79,7 @@ class ContractTests(BundleCase):
         self.packet["knowledge_basis"] = "public_as_of_replay"
         self.check()
         self.records[0]["published_at"] = None
+        self.records[0]["published_at_precision"] = "unknown"
         with self.assertRaisesRegex(ContractError, "known publication"):
             self.check()
 
@@ -87,12 +88,19 @@ class ContractTests(BundleCase):
         with self.assertRaisesRegex(ContractError, "hash/size"):
             self.check()
 
-    def test_paths_and_symlink_escape(self):
+    def test_path_escape(self):
         for path in ("../source.txt", "/tmp/source.txt", "a//b", "", "a/./b", "C:\\x"):
             with self.subTest(path=path), self.assertRaises(ContractError):
                 confined(self.bundle, path)
+
+    def test_symlink_escape(self):
         (self.root / "outside.txt").write_text("outside")
-        (self.bundle / "escape.txt").symlink_to(self.root / "outside.txt")
+        try:
+            (self.bundle / "escape.txt").symlink_to(self.root / "outside.txt")
+        except OSError as exc:
+            if getattr(exc, "winerror", None) == 1314:
+                self.skipTest("Windows requires symlink privilege or Developer Mode")
+            raise
         with self.assertRaises(ContractError):
             confined(self.bundle, "escape.txt")
 

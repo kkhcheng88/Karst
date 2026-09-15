@@ -1,0 +1,17 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__business_segments",
+  "params": {"symbol": "AXTI.US"},
+  "fetched_at": "2026-09-14T18:45:00Z",
+  "published_at": null,
+  "published_at_basis": "rpt_date '2026.04.30' in the response is WRONG for this period (Q2-2026 results were released 2026-07-30; 04-30 was the Q1 release) — vendor field not trustworthy as publish time; fp_start/fp_end give the fiscal period (2026.03.30–2026.06.30, dotted date format)",
+  "period": {"fiscal_period": "2026.Q2", "fp_start": "2026-03-30", "fp_end": "2026-06-30", "report_type": "qf"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "business breakdown is a single 100% bucket (半导体设备和服务) — no product-line split (InP / GaAs / Ge / raw materials) even though the 10-Q discloses it; DefeatBeta quarterly_revenue_by_breakdown returned EMPTY for the same company (two vendors, both without product mix)",
+    "regional names in Simplified Chinese; yoy strings with 14 dp; top-level yoy is empty string",
+    "regional total 47,589,000 = revenue (sums to 100.00%); matches DefeatBeta quarterly_income_statement Total Revenue 2026-06-30 and Longbridge consensus actual",
+    "date fields use three different formats in one object: '20260630', '2026.03.30', '2026.Q2'",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

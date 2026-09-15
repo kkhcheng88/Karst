@@ -1,0 +1,18 @@
+{
+  "source": "longbridge",
+  "tool": "mcp__plugin_longbridge_longbridge__history_candlesticks_by_date",
+  "params": {"symbol": "AXTI.US", "period": "week", "start": "2024-01-01", "end": null, "forward_adjust": false, "trade_sessions": "all"},
+  "fetched_at": "2026-09-14T18:57:00Z",
+  "published_at": null,
+  "published_at_basis": "per bar timestamp = Monday of the week (RFC3339, 04:00/05:00Z = US-Eastern midnight). The LAST bar (2026-09-14) is the CURRENT, UNFINISHED week captured intraday on Monday — not a closed weekly bar (資料來源 §四 10 未收週另標)",
+  "period": {"from": "2024-01-01", "to": "2026-09-14", "bars": 142, "last_bar_state": "in-progress (1 session, intraday)"},
+  "truncated": {"is_truncated": false, "note": "bars reformatted one-per-line; values verbatim"},
+  "known_gaps": [
+    "no adjustment (forward_adjust=false); no corporate-action markers — must cross-check with local adj_close / splits (DefeatBeta splits returned empty for this ticker)",
+    "trade_sessions='all' requested but every bar reports trade_session 'Intraday'; whether pre/post-market volume is included is not stated",
+    "volume is integer, turnover is decimal string; last bar turnover has 3-dp fraction while closed bars end in .000",
+    "week of 2024-02-19 shows volume 103.9M vs ~0.5M typical — real event (Feb-2024 earnings/AI narrative), kept",
+    "cross-check: week 2026-09-07 close 64.770 = daily slice 2026-09-11 close 64.77 (consistent)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}

@@ -3,15 +3,63 @@ from __future__ import annotations
 
 import copy
 import re
-from datetime import datetime
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path, PurePosixPath
 from uuid import uuid4
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from .schema import ContractError, decode, digest, validate
 
 
 def instant(value):
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def time_bounds(record, field):
+    """Availability interval, not an invented timestamp. A date's upper bound is exclusive."""
+    value = record[field]
+    precision = record.get(field + "_precision", "datetime" if value else "unknown")
+    if precision == "unknown":
+        return None, None
+    if precision == "datetime":
+        moment = instant(value)
+        return moment, moment
+    day = date.fromisoformat(value)
+    try:
+        tomorrow = day + timedelta(days=1)
+    except OverflowError as exc:
+        raise ContractError("Date has no representable availability upper bound") from exc
+    zone_name = record.get(field + "_timezone")
+    if zone_name is None:
+        # Unknown source zone: cover all offsets in [-14h, +14h]. Never assume UTC.
+        return (datetime.combine(day, time.min, timezone.utc) - timedelta(hours=14),
+                datetime.combine(tomorrow, time.min, timezone.utc) + timedelta(hours=14))
+    try:
+        zone = ZoneInfo(zone_name)
+    except (ZoneInfoNotFoundError, ValueError) as exc:
+        raise ContractError(f"Unknown IANA timezone: {zone_name}") from exc
+    return (datetime.combine(day, time.min, zone).astimezone(timezone.utc),
+            datetime.combine(tomorrow, time.min, zone).astimezone(timezone.utc))
+
+
+def check_observation_time(packet, record):
+    cutoff, created, fetched = map(instant, (packet["as_of"], packet["created_at"], record["fetched_at"]))
+    for field in ("published_at", "data_as_of"):
+        lower, _ = time_bounds(record, field)
+        if lower is not None and lower > cutoff:
+            raise ContractError(f"Evidence {record['evidence_id']}/{field} is after cutoff")
+    if fetched > created:
+        raise ContractError("Evidence was fetched after packet creation")
+    diagnostic = record.get("status", "ok") != "ok"
+    if packet["knowledge_basis"] == "system_observed" or diagnostic:
+        if fetched > cutoff:
+            raise ContractError("Evidence or diagnostic was not observed by system cutoff")
+        return
+    lower, upper = time_bounds(record, "published_at")
+    if lower is None:
+        raise ContractError("Public-as-of replay needs known publication time")
+    if upper > cutoff and fetched > cutoff:
+        raise ContractError("Publication date is ambiguous at the replay cutoff; actual observation or a later cutoff is required")
 
 
 def confined(root, relative):
@@ -51,32 +99,35 @@ def check_packet(packet, records, root):
     index = {}
     for record in records:
         validate("evidence", record)
+        if record["contract_version"] != packet["contract_version"]:
+            raise ContractError("Packet and evidence must use the same contract version")
         if record["evidence_id"] in index:
             raise ContractError("Duplicate evidence_id")
         _private_selectors(record["params"])
         index[record["evidence_id"]] = record
     selected = {}
-    for eid in packet["evidence_ids"]:
+    usable = set(packet["evidence_ids"])
+    diagnostics = set(packet.get("diagnostic_ids", []))
+    if usable & diagnostics:
+        raise ContractError("Evidence and diagnostic IDs must be disjoint")
+    for eid in packet["evidence_ids"] + packet.get("diagnostic_ids", []):
         if eid not in index:
             raise ContractError(f"Unregistered evidence: {eid}")
         record = index[eid]
-        for field in ("published_at", "data_as_of"):
-            if record[field] and instant(record[field]) > instant(packet["as_of"]):
-                raise ContractError(f"Evidence {eid}/{field} is after cutoff")
-        if instant(record["fetched_at"]) > instant(packet["created_at"]):
-            raise ContractError("Evidence was fetched after packet creation")
-        if packet["knowledge_basis"] == "system_observed":
-            if instant(record["fetched_at"]) > instant(packet["as_of"]):
-                raise ContractError("Evidence was not observed by system cutoff")
-        elif record["published_at"] is None:
-            raise ContractError("Public-as-of replay needs known publication time")
+        status = record.get("status", "ok")
+        if (eid in usable) != (status == "ok"):
+            raise ContractError("Only ok records are evidence; empty/error records belong in diagnostic_ids")
+        check_observation_time(packet, record)
+        start, end = record["period"]["start"], record["period"]["end"]
+        if start is not None and end is not None and start > end:
+            raise ContractError("Normalized period start exceeds end")
         artifact = record["artifact"]
         data = confined(root, artifact["path"]).read_bytes()
         if len(data) != artifact["bytes"] or digest(data) != artifact["sha256"]:
             raise ContractError(f"Evidence content hash/size mismatch: {eid}")
         selected[eid] = record
     for requirement in packet["requirements"]:
-        if not set(requirement["evidence_ids"]) <= selected.keys():
+        if not set(requirement["evidence_ids"]) <= usable:
             raise ContractError("Requirement references evidence outside packet")
         if requirement["status"] in ("available", "partial") and not requirement["evidence_ids"]:
             raise ContractError("Available requirement needs registered evidence")
@@ -90,7 +141,7 @@ def check_packet(packet, records, root):
     if not any(r["kind"] == "transcript" for r in packet["requirements"]):
         raise ContractError("Packet must explicitly report transcript availability")
     for request in packet["supplement_requests"]:
-        if not set(request["evidence_ids"]) <= selected.keys():
+        if not set(request["evidence_ids"]) <= usable:
             raise ContractError("Supplement references evidence outside packet")
         if request["status"] == "fulfilled" and not request["evidence_ids"]:
             raise ContractError("Fulfilled supplement must register evidence")
@@ -103,7 +154,7 @@ def check_packet(packet, records, root):
         raise ContractError("Duplicate supplement request_id")
     for dep in packet["dependencies"]:
         if dep["kind"] == "evidence":
-            if dep["id"] not in selected or selected[dep["id"]]["source_version"] != dep["version"]:
+            if dep["id"] not in usable or selected[dep["id"]]["source_version"] != dep["version"]:
                 raise ContractError("Evidence dependency version mismatch")
     return selected
 
@@ -161,6 +212,9 @@ def _citations(value):
 
 def check_research(packet, research, selected, root):
     validate("research", research)
+    if research["contract_version"] != packet["contract_version"]:
+        raise ContractError("Packet and research must use the same contract version")
+    usable = set(packet["evidence_ids"])
     if research["packet_id"] != packet["packet_id"]:
         raise ContractError("Research must use the exact packet version")
     if instant(research["created_at"]) < instant(packet["created_at"]):
@@ -183,7 +237,7 @@ def check_research(packet, research, selected, root):
         if any(r["status"] in ("partial", "missing") for r in packet["requirements"]):
             raise ContractError("Complete coverage contradicts missing requirements")
     for section in research["layers"].values():
-        if not set(section["read_evidence_ids"]) <= selected.keys():
+        if not set(section["read_evidence_ids"]) <= usable:
             raise ContractError("Read log references evidence outside packet")
         if instant(section["assessed_at"]) > instant(research["created_at"]):
             raise ContractError("Layer assessed after research creation")
@@ -192,7 +246,7 @@ def check_research(packet, research, selected, root):
     if not transcript_ids <= set(research["layers"]["L3"]["read_evidence_ids"]):
         raise ContractError("Fundamentals must record reading supplied transcripts")
     for citation in _citations(research):
-        if citation["evidence_id"] not in selected:
+        if citation["evidence_id"] not in usable:
             raise ContractError("Citation references evidence outside packet")
         locator = citation["locator"]
         match = re.fullmatch(r"L(\d+)(?:-L(\d+))?", locator)

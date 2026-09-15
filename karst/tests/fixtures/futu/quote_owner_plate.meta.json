@@ -1,0 +1,16 @@
+{
+  "source": "futu",
+  "tool": "mcp__futu__quote_owner_plate",
+  "params": {"symbol": "US.AXTI"},
+  "fetched_at": "2026-09-14T18:32:00Z",
+  "published_at": null,
+  "published_at_basis": "no update time in response; current plate membership as of fetch",
+  "period": {"as_of": "fetch time"},
+  "truncated": {"is_truncated": false},
+  "known_gaps": [
+    "'name'/'sc_name'/'tc_name' fields carry the stock name, not the plate name (source quirk kept)",
+    "only two plates returned (one industry plate_type OTHER, one CONCEPT); no membership history",
+    "source returned '&' as unicode escape \\u0026 in raw output; written here as '&' (JSON-equivalent)",
+    "response transcribed from MCP tool output by the agent"
+  ]
+}
