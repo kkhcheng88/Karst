@@ -1,0 +1,51 @@
+{
+ "tool": "quote",
+ "symbol": "AXTI.US",
+ "fetched_at": "2026-09-15T18:39:02Z",
+ "params": {
+  "symbols": [
+   "AXTI.US"
+  ]
+ },
+ "response": [
+  {
+   "symbol": "AXTI.US",
+   "last_done": "57.500",
+   "prev_close": "57.060",
+   "open": "57.920",
+   "high": "59.789",
+   "low": "57.179",
+   "timestamp": "2026-09-15T18:38:11Z",
+   "volume": 3325726,
+   "turnover": "193410787.351",
+   "trade_status": "Normal",
+   "post_market": {
+    "last_done": "58.350",
+    "timestamp": "2026-09-14T23:59:44Z",
+    "volume": 115002,
+    "turnover": "6591446.087",
+    "high": "58.450",
+    "low": "56.470",
+    "prev_close": "57.060"
+   },
+   "overnight": {
+    "last_done": "57.560",
+    "timestamp": "2026-09-15T08:00:00Z",
+    "volume": 68590,
+    "turnover": "3986075.000",
+    "high": "58.890",
+    "low": "57.210",
+    "prev_close": "57.060"
+   },
+   "pre_market": {
+    "last_done": "57.950",
+    "timestamp": "2026-09-15T13:30:00Z",
+    "volume": 139116,
+    "turnover": "8088968.661",
+    "high": "59.180",
+    "low": "57.240",
+    "prev_close": "57.060"
+   }
+  }
+ ]
+}

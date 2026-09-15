@@ -1,0 +1,117 @@
+{
+ "tool": "Ticker.calendar()",
+ "columns": [
+  "symbol",
+  "report_date",
+  "time",
+  "name",
+  "fiscal_quarter_ending"
+ ],
+ "records": [
+  {
+   "symbol": "AXTI",
+   "report_date": "2023-02-16",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2022-12-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2023-04-27",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2023-03-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2023-08-03",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2023-06-30"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2023-11-02",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2023-09-30"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2024-02-22",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2023-12-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2024-05-02",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2024-03-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2024-08-01",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2024-06-30"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2024-10-31",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2024-09-30"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2025-02-20",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2024-12-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2025-05-01",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2025-03-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2025-07-31",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2025-06-30"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2025-10-30",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2025-09-30"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2026-02-19",
+   "time": "time-after-hours",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2025-12-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2026-04-30",
+   "time": "time-not-supplied",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2026-03-31"
+  },
+  {
+   "symbol": "AXTI",
+   "report_date": "2026-07-30",
+   "time": "time-after-hours",
+   "name": "AXT Inc",
+   "fiscal_quarter_ending": "2026-06-30"
+  }
+ ]
+}

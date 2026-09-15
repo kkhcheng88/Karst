@@ -1,0 +1,46 @@
+{
+ "research_id": "research-AXTI-2026-09-15",
+ "created_at": "2026-09-15T19:48:51Z",
+ "mode": "offline_replay",
+ "strategy_version": "投資決策模型 v1 (2026-09-14)",
+ "mandate_version": "v1.2",
+ "method_version": "六層分析紀律 v1.2; prompts rev 1; contract 0.2.0",
+ "models": [
+  {
+   "role": "industry",
+   "provider": "anthropic",
+   "model_id": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction, tools not restricted at harness level)",
+   "prompt_version": "6e3cc80b9cfbf6e3ad485b365ffb227461d4ad88bd221cb018e7b9c6452adb8f"
+  },
+  {
+   "role": "company",
+   "provider": "anthropic",
+   "model_id": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction, tools not restricted at harness level)",
+   "prompt_version": "4c9c01b4affa3da75a58b80f6a855b22481037a313d01efd20d1ccb87154e5e3"
+  },
+  {
+   "role": "valuation",
+   "provider": "anthropic",
+   "model_id": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction, tools not restricted at harness level)",
+   "prompt_version": "f078f9f71477e6a9e7570488bd1d37eed51d310c6b0fd9ea54f638ad072ecccc"
+  },
+  {
+   "role": "technical",
+   "provider": "anthropic",
+   "model_id": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction, tools not restricted at harness level)",
+   "prompt_version": "2dc6a12bfc575f3c331d519b30920931ea47420cd1abef649a8ef6ade495ad06"
+  },
+  {
+   "role": "counter",
+   "provider": "anthropic",
+   "model_id": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction, tools not restricted at harness level)",
+   "prompt_version": "b9ad644e4235c8785d4ca60abc331c1b5865cf493bdb81e2ee197c914f420876"
+  },
+  {
+   "role": "synthesis",
+   "provider": "anthropic",
+   "model_id": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction, tools not restricted at harness level)",
+   "prompt_version": "415078a643cc8155753a042743614b7436b3bb3f2c2364011c09e252270957a7"
+  }
+ ]
+}

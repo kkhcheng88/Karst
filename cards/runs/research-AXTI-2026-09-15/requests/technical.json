@@ -1,0 +1,29 @@
+[
+  {
+    "request_id": "req-l5-daily-gap-2026-09",
+    "layer": "L5",
+    "question": "能否取得 AXTI 2026-09-02 至 2026-09-15 的日線 OHLCV(與現有本地數列同一 raw 口徑)?現有 packet 的日線止於 2026-09-01,defeatbeta 補抓回空表。",
+    "reason": "缺這九個交易日,200 日 SMA、20 日均量、最近已確認日線轉折與所有「現價距某位多少」都只能以 2026-09-01 為基準;入場、加減倉與失效價位無法寫成今日可執行的條件。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-l5-benchmark-series",
+    "layer": "L5",
+    "question": "能否取得 SPY 及一個界定清楚的同業籃(化合物半導體基板/晶圓)的日線,期間至少覆蓋最近 120 個交易日?",
+    "reason": "L5 紀律要求 20/60/120 日相對回報;現時 packet 內無任何基準數列,相對強弱一項只能留空,無法判斷這次回吐是個股獨有還是板塊共同。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-l5-monthly-bars",
+    "layer": "L5",
+    "question": "能否取得 AXTI 的月線 OHLCV(同一交易日曆聚合,至少回溯五年)?",
+    "reason": "月線負責長期位置與多年供需區;現時只能以週線與快照的 52 週/歷史高低代替,長期阻力位置無法定區,phases 的 M 維度只能列 candidate。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "request_id": "req-company-l3-q3-2026-print",
+    "layer": "L3",
+    "question": "2026年第三季(9月30日止)的業績公告全文、電話會逐字稿與10-Q,一經公布即取;在此之前,8月至9月期間有無任何8-K(包括與Lumentum長期供應協議的條款與金額、Tongmei香港上市或贖回權處置)?",
+    "reason": "本包最新已公布業績為第二季,而第三季正是驗證66百萬指引是否為下限、毛利率能否守住四字頭的關鍵一季;缺這一季,改善持續性的判斷只能停留在假設。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-company-l3-ltsa-terms",
+    "layer": "L3",
+    "question": "與Casela、Coherent、Lumentum三份長期供應協議的原文或8-K披露:合約期間、最低採購量或金額、預付款的收取時間表與可退還條件。",
+    "reason": "電話會口述的預付金額(22.3與25.4百萬)與10-Q披露的實收12.7百萬、剩餘履約義務98.5百萬存在口徑落差;協議的最低承諾量直接決定2027年收入的可見度,是敘事與帳面之間最大的一處缺口。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-company-l3-capex-and-mix",
+    "layer": "L3",
+    "question": "有無任何申報文件或投資者簡報披露:2026至2027年資本開支承諾、新廠土地或廠房取得進度,以及InP按尺寸(3吋/4吋/6吋)的出貨或收入拆分?",
+    "reason": "產能與尺寸升級是毛利率持續性的兩個主要機制,目前只有電話會口頭數字;上半年實際資本開支8.6百萬與口頭的30至40百萬有落差,原因未明,會直接影響L4的再投資與自由現金流情境。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-company-l3-upstream-industry",
+    "layer": "L3",
+    "question": "本任務的 upstream 上游片段為空物件,請補送 industry(L2)片段及其雜湊。",
+    "reason": "L3被要求先獨立建立公司理解,但涉及同業擴產、InP在光模組價值鏈的利潤分配與替代技術的判斷必須與產業層對照;缺上游片段會令敘事模組的「經濟傳導」與「供需轉變」兩問只能引用公司自述。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "request_id": "req-industry-l1-macro-series",
+    "layer": "L1",
+    "question": "可否提供宏觀與終端需求序列：美國政策利率與孳息曲線、USD/CNY、經濟日曆，以及 AI 資料中心相關的 hyperscaler 資本開支指引與 800G/1.6T 光模組出貨或滲透率的第三方預測？",
+    "reason": "本 packet 一份宏觀資料都沒有，L1 紀律要求的必用來源全缺；終端需求現時只有公司自述，無法獨立驗證「需求超過供給」這條起點假設，亦無法為 L4 建立可反證的收入情境。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-industry-l2-peer-capacity",
+    "layer": "L2",
+    "question": "可否取得磷化銦襯底同業（Sumitomo Electric、JX、Freiberger、Umicore、CCTC、Vital Materials）的產能、擴產計劃、價格或公開申報／產業報告？",
+    "reason": "資本週期與供給側的關鍵一問是新增供給何時到達。現時只見本公司三倍擴產，看不到行業供給反應，「持有期內供給追不上」只能成立於單一公司層面。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-industry-l2-ltsa-filings",
+    "layer": "L2",
+    "question": "可否取得與 Casela、Coherent、Lumentum 三份長期供應協議相關的 8-K 或協議摘要原文，包括期限、最低採購量、價格機制與出口許可條件？",
+    "reason": "預付款是本輪最硬的需求證據，但目前只有電話會口述金額；條款直接決定 L3/L4 的收入確認節奏與下行情境。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-industry-l1-policy-update",
+    "layer": "L1",
+    "question": "可否取得 2026-03-17 年報之後的出口管制與關稅更新，包括商務部許可批核情況、管制清單變動，以及美國在 IEEPA 關稅被推翻後改用的替代法源與稅率？",
+    "reason": "政策是這家公司最大的單一非需求變數，現有證據只到 2026-07-30 的定性描述；若在持有期內再變，地區組合與已許可收入比例會即時改變。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  }
+]
