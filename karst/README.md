@@ -2,7 +2,38 @@
 
 所有生產程式從第一天可跨公司重用。代號、公司映射、日期、路徑、來源和模型由參數／配置傳入,不建立股票專用抓取或分析腳本。一次性探索與除錯碼放倉外 scratch,不 commit。
 
-本檔列的是**計劃模組**,目前尚未實作。契約與驗收見 [設計計劃](../strategy/specs/獨立投研工作台設計與交付計劃-v1.md)。
+本分支落實 D-183／KARST-241 的離線部分：四份契約、檔案式取證包、補查版本、確定性計算與股票頁發布。下表仍是完整計劃，不代表每個模組都已存在。契約與驗收見 [契約說明](contracts/README.md) 及 [設計計劃](../strategy/specs/獨立投研工作台設計與交付計劃-v1.md)。
+
+## 現在可跑
+
+Python 3.11+，在倉根目錄建立虛擬環境後：
+
+```bash
+python -m pip install -e .
+python -m unittest discover -s karst/tests -v
+python -m karst.run --bundle karst/examples/synthetic --output /tmp/karst-releases
+```
+
+最後一行輸出 `index.html` 的絕對路徑，瀏覽器直接開啟。頁面不依賴網絡、前端伺服器或外部資源。`--validate-only` 可單獨驗證輸入；`--previous-publication-id <ID>` 可連結上版。換股票只換 bundle，不新增程式。
+
+`examples/synthetic/` **全部是合成資料**，含虛構公司、日期、預測與價格；不屬於真實接口樣本，也不是投資建議。本地已提供的真實回傳在 [tests/fixtures/](tests/fixtures/README.md)，新增測試引用其期間形狀，未把轉錄數值當估值真值。本核心讀取已保存的 `research.json`，不會自行呼叫模型、生成評級或讀券商帳戶。
+
+契約目前為 **0.2.0**，保留 0.1.0 讀取。第二輪接線要看 [契約的遷移表](contracts/README.md)：日期精度與時區、原始 coverage、error/empty 取得紀錄，以及手填判斷的 `integration_example` 模式。Windows 缺符號連結權限時只略過該項測試，路徑逃逸檢查照跑。
+
+發布目錄包括 `publication.json`、`index.html`、`calculations.json` 及 `inputs/`。後者保留該版 packet、research、evidence 登記與原始 bytes，可以再次交給同一入口重播。不要把產生的發布包或大批原始來源 commit。
+
+頁面只顯示來源登記與原始檔連結，原文不再內嵌。移動或分享頁面請保留整個發布目錄；只取走 `index.html` 會失去本地來源連結。程式／renderer 版本 0.2.1，契約仍為 0.2.0。
+
+## 此步邊界與本地接線
+
+- 程式已提供：契約與來源 hash／引用／時間檢查、增量補查的 packet 版本、年末 FCFF DCF、每股與百分比 R&R、壓力價損失、SMA200、帶確認時間的局部轉折、日週月圖、不可變發布。
+- 六層結論、情境假設、評級、目標價橋接、支撐阻力區域與相位，由已保存的研究輸出提供。程式不把這些當作已驗證的投資能力，也不聲稱已執行六個角色。引用檢查只證明存在及定位有效，不能證明論證成立。
+- 自動估值目前只算 FCFF DCF。銀行、資產重估、商業化前公司等不應硬套；填 `valuation.status=unavailable` 並交代缺口。方法選擇與替代估值可先呈現文字，增加新計算方法時擴充版本化契約及測試。反向 DCF、估值敏感度矩陣、通道與突破回測偵測尚待實作。
+- 首屏以依據與缺口幫助閱讀；沒有「已量度／未量度」格。只有合成／歷史重播的來源狀態提示，避免把舊包當即時分析。
+- 目前沒有部位配置或百分之一風險預算。R&R 是條件價格下的算術，退出參考不是最大可保證損失，壓力情境另列。
+- 本地 adapter 保留原始回傳和 `.meta.json`，再正規化成四份契約；未知時間、單位、缺頁不可補成已知。補查登記新來源版本後，用 `resolve_request` 產生新 packet，再重新產生對應的 research。
+- SQLite、快取、事件訂閱、依賴路由、並行 worker、真實模型 context 隔離與允許清單留待接線及 KARST-242。當前私密欄位守衛只檢查部分 selector；它不能代替 adapter 的工具權限限制或原始回傳清理。
+- 84 包考試原始目錄及抽取程式均未改。本測試集沒有重跑它，也不取代其回歸用途。
 
 ## 模組分工
 
@@ -24,7 +55,7 @@
 | run | 單股與批次共用協調入口、輸入 pinning、成本及執行紀錄 |
 | tests/ | 通用契約、隔離、時間、計算與失敗恢復的參數化測試 |
 
-預計入口例如 python -m karst.run --ticker <代號> --as-of <時間>,批次由 --universe <設定檔> 呼叫同一核心;這是介面設計,目前不能當已存在指令運行。
+未來即時入口可再加入 `--ticker`、`--as-of` 與 `--universe`；目前只支援上述 `--bundle`，避免把尚未接通的來源當作已可用。
 
 ## 通用性及隔離規矩
 

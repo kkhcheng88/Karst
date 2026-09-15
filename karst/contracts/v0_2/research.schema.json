@@ -1,0 +1,875 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:karst:contract:0.2.0:research",
+  "title": "Karst research contract 0.2.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "0.2.0"
+    },
+    "research_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "mode": {
+      "enum": [
+        "synthetic_demo",
+        "offline_replay",
+        "integration_example"
+      ]
+    },
+    "strategy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mandate_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "method_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "minLength": 1
+          },
+          "model_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prompt_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "provider",
+          "model_id",
+          "prompt_version",
+          "role"
+        ]
+      },
+      "minItems": 0
+    },
+    "coverage": {
+      "enum": [
+        "complete",
+        "partial",
+        "insufficient"
+      ]
+    },
+    "rating": {
+      "anyOf": [
+        {
+          "enum": [
+            "positive",
+            "neutral",
+            "negative"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "execution_state": {
+      "enum": [
+        "ready",
+        "wait_price",
+        "wait_confirmation",
+        "wait_evidence",
+        "avoid"
+      ]
+    },
+    "target_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "headline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "recommendation": {
+          "$ref": "#/$defs/statement"
+        },
+        "main_reason": {
+          "$ref": "#/$defs/statement"
+        },
+        "key_assumption": {
+          "$ref": "#/$defs/statement"
+        },
+        "strongest_counter": {
+          "$ref": "#/$defs/statement"
+        },
+        "change_conditions": {
+          "$ref": "#/$defs/statement"
+        },
+        "change_since_last": {
+          "$ref": "#/$defs/statement"
+        }
+      },
+      "required": [
+        "recommendation",
+        "main_reason",
+        "key_assumption",
+        "strongest_counter",
+        "change_conditions",
+        "change_since_last"
+      ]
+    },
+    "layers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "L1": {
+          "$ref": "#/$defs/layer"
+        },
+        "L2": {
+          "$ref": "#/$defs/layer"
+        },
+        "L3": {
+          "$ref": "#/$defs/layer"
+        },
+        "L4": {
+          "$ref": "#/$defs/layer"
+        },
+        "L5": {
+          "$ref": "#/$defs/layer"
+        },
+        "L6": {
+          "$ref": "#/$defs/layer"
+        }
+      },
+      "required": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6"
+      ]
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "enum": [
+              "potential_mispricing",
+              "improvement_trend",
+              "narrative_expectations"
+            ]
+          },
+          "activation_reason": {
+            "$ref": "#/$defs/statement"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "name",
+          "activation_reason",
+          "questions"
+        ]
+      },
+      "minItems": 0
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "minLength": 1
+          },
+          "timeframe": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "candidate",
+              "confirmed",
+              "unknown"
+            ]
+          },
+          "confirmed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "basis": {
+            "$ref": "#/$defs/statement"
+          }
+        },
+        "required": [
+          "dimension",
+          "timeframe",
+          "state",
+          "status",
+          "confirmed_at",
+          "basis"
+        ]
+      },
+      "minItems": 0
+    },
+    "market": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "price": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:karst:contract:0.2.0:evidence#/$defs/citation"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "price",
+        "at",
+        "currency",
+        "citations"
+      ]
+    },
+    "valuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "valuation_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "calculated",
+            "unavailable"
+          ]
+        },
+        "method_rationale": {
+          "$ref": "#/$defs/statement"
+        },
+        "top_assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statement"
+          },
+          "minItems": 0
+        },
+        "alternative_view": {
+          "$ref": "#/$defs/statement"
+        },
+        "change_attribution": {
+          "$ref": "#/$defs/statement"
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "enum": [
+                  "bear",
+                  "base",
+                  "bull"
+                ]
+              },
+              "rationale": {
+                "$ref": "#/$defs/statement"
+              },
+              "calculation": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "method": {
+                    "const": "fcff_dcf"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                  },
+                  "cashflows": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "minItems": 1
+                  },
+                  "discount_rate": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  },
+                  "terminal_growth": {
+                    "type": "number",
+                    "exclusiveMinimum": -1,
+                    "maximum": 1
+                  },
+                  "cash": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "nonoperating_assets": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "debt": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "other_claims": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "diluted_shares": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                },
+                "required": [
+                  "method",
+                  "currency",
+                  "cashflows",
+                  "discount_rate",
+                  "terminal_growth",
+                  "cash",
+                  "nonoperating_assets",
+                  "debt",
+                  "other_claims",
+                  "diluted_shares"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "rationale",
+              "calculation"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 3
+        },
+        "gap_reason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "implied_requirements": {
+          "$ref": "#/$defs/statement"
+        },
+        "target_prices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "enum": [
+                  "bear",
+                  "base",
+                  "bull"
+                ]
+              },
+              "price": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "rationale": {
+                "$ref": "#/$defs/statement"
+              }
+            },
+            "required": [
+              "name",
+              "price",
+              "rationale"
+            ]
+          },
+          "minItems": 0
+        },
+        "expected_distributions": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "valuation_date",
+        "status",
+        "method_rationale",
+        "top_assumptions",
+        "alternative_view",
+        "change_attribution",
+        "scenarios",
+        "gap_reason",
+        "implied_requirements",
+        "target_prices",
+        "expected_distributions"
+      ]
+    },
+    "technical": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "price_basis": {
+          "enum": [
+            "raw",
+            "split_adjusted",
+            "total_return_adjusted"
+          ]
+        },
+        "quote_to_bar_factor": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:karst:contract:0.2.0:evidence#/$defs/citation"
+          },
+          "minItems": 0
+        },
+        "views": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "D": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/bar"
+              },
+              "minItems": 0
+            },
+            "W": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/bar"
+              },
+              "minItems": 0
+            },
+            "M": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/bar"
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "D",
+            "W",
+            "M"
+          ]
+        },
+        "key_levels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "support",
+                  "resistance"
+                ]
+              },
+              "timeframe": {
+                "enum": [
+                  "D",
+                  "W",
+                  "M"
+                ]
+              },
+              "lower": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "upper": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "confirmed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "rationale": {
+                "$ref": "#/$defs/statement"
+              }
+            },
+            "required": [
+              "kind",
+              "timeframe",
+              "lower",
+              "upper",
+              "confirmed_at",
+              "rationale"
+            ]
+          },
+          "minItems": 0
+        },
+        "reading": {
+          "$ref": "#/$defs/statement"
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "price_basis",
+        "quote_to_bar_factor",
+        "citations",
+        "views",
+        "key_levels",
+        "reading",
+        "gaps"
+      ]
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entry_price": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "exit_price": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_price": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stress_price": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "round_trip_cost_per_share": {
+          "type": "number",
+          "minimum": 0
+        },
+        "execution_rule": {
+          "$ref": "#/$defs/statement"
+        },
+        "invalidators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statement"
+          },
+          "minItems": 0
+        },
+        "next_review_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "entry_price",
+        "exit_price",
+        "target_price",
+        "stress_price",
+        "round_trip_cost_per_share",
+        "execution_rule",
+        "invalidators",
+        "next_review_at"
+      ]
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "contract_version",
+    "research_id",
+    "packet_id",
+    "created_at",
+    "mode",
+    "strategy_version",
+    "mandate_version",
+    "method_version",
+    "models",
+    "coverage",
+    "rating",
+    "execution_state",
+    "target_date",
+    "headline",
+    "layers",
+    "modules",
+    "phases",
+    "market",
+    "valuation",
+    "technical",
+    "plan",
+    "open_questions"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "valuation": {
+            "properties": {
+              "status": {
+                "const": "calculated"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "valuation": {
+            "properties": {
+              "scenarios": {
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "top_assumptions": {
+                "minItems": 3,
+                "maxItems": 3
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "valuation": {
+            "properties": {
+              "scenarios": {
+                "maxItems": 0
+              },
+              "gap_reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "coverage": {
+            "const": "insufficient"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rating": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:karst:contract:0.2.0:evidence#/$defs/citation"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "text",
+        "citations"
+      ]
+    },
+    "layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "conclusion": {
+          "$ref": "#/$defs/statement"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/statement"
+          },
+          "minItems": 0
+        },
+        "strongest_counter": {
+          "$ref": "#/$defs/statement"
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "read_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "assessed_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "conclusion",
+        "assumptions",
+        "strongest_counter",
+        "gaps",
+        "read_evidence_ids",
+        "assessed_at"
+      ]
+    },
+    "bar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "open": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "high": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "low": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "close": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "volume": {
+          "type": "number",
+          "minimum": 0
+        },
+        "complete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "at",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "complete"
+      ]
+    }
+  }
+}
