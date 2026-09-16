@@ -83,6 +83,8 @@ context = prepare_inputs(
 
 補查可先交 `requests.json`（格式見 common.md），不必等產出完整 layer。runner 呼叫既有 add_request／resolve_request 或 build_packet 建立新版本；新證據先登記，再重建 packet 的 requirements／dependencies。最後片段只能保留 packet 中已有的 pending 請求；如果已解決，就從片段待辦移除，解決歷史留 packet。v1 的新 packet 要重新產出匹配 packet_id 的片段，沒有自動跨版本沿用審核。
 
+補查、局部重評、反方退回與沿用的後續規則見 [補查與增量重評路由 v1](../../strategy/specs/補查與增量重評路由-v1.md)。該文是設計，不表示目前已支援跨 packet 沿用。現在不能只重蓋片段的 packet_id、assessed_at 或上游雜湊來通過 assemble；派工原始輸入與模型原始輸出應封存。L6 若接受會推翻 L4 目標依據的挑戰，須退回 L4 修訂並重評下游，不能只清空 plan.target_price 而仍把未採納目標當首頁 KPI。
+
 ## 3. 合成及發布
 
 run.json 只含 research_id、created_at、mode、strategy_version、mandate_version、method_version、models。models 六列，role 取上表六個最終角色，記实际 provider、model_id、prompt_version；counter 第一／二步的獨立呼叫時間、費用、推理配置與輸入雜湊另外寫在本地 run log。模型簡稱不代替實際版本。prompt_version 可用 prepare_inputs 回傳的 prompt_sha256，另存委託／紀律版本及 task input hash。
