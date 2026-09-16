@@ -4,6 +4,19 @@
 
 > **現行主線是單主研究路徑（契約 0.3.0）**：`agents.protocol` ＋ `agents.research` ＋ `agents.review`，一份分析 payload 即可出頁，不需要六份片段，也不需要反方初判。做法見 [karst/README.md](../README.md#單主研究路徑03)。本頁保留給既有 0.2 bundle 的讀取與重播。
 
+## 0. 覆核流程（0.3 現行）
+
+1. **開票**：`service.request_review(store, subject=…, version_id=…, dispute=…, evidence_ids=[…], reviewer={…})`。爭議要具體；證據清單是這次准讀的來源，不是整包。
+2. **出任務**：`agents.review.build_review_task` 把指定 research 版本、爭議、准讀來源與其原文複製到一個**全新目錄**（`input.json`／`review.md`／`output.schema.json`）。目錄與 bundle 分開，覆核者看不到 bundle、倉或這條開發對話。
+3. **執行**：
+   - `execution='interactive'`：另一個客戶端 `claim_review` 領取，做完 `submit_review` 交回。
+   - `execution='api'`：`request_review` 直接呼叫 `agents/adapters/<provider>_adapter.py`。模型只有 `list_evidence()` 與 `read_evidence(evidence_id, offset, limit)` 兩個工具，由 adapter 在本機對該任務目錄執行；工具出錯回 `is_error` 結果給模型，不中斷任務。預設 12 回合／400k 累計 input／16k output，由 `budget` 覆寫。
+4. **收貨**：結果先過任務自己的 `output.schema.json`（即 `REVIEW_RESULT_SCHEMA`），再過 `validate_review`（挑戰要有層、主張、引用、嚴重程度；補查請求必須 pending；覆核者不給第二個評級）。
+5. **記帳**：`done`／`failed`／**`needs_check`（已送出、結果不明）** 三態；同一（research 版本, 爭議）不重複付費。用量記 input／cached／output 與起訖，`cost_usd` 留 null。
+6. **處置**：挑戰由**本次主研究者**採納、駁回或保留條件；覆核不改主研究。`get_research_context` 的 `latest_review` 給裁決與最強挑戰一句,供資料室頁與下一輪研究讀。
+
+憑證只由環境變數名稱引用（`ANTHROPIC_API_KEY`／`OPENAI_API_KEY`，倉根 `.env` 或環境），缺即報錯不呼叫；測試全部用注入 transport，不碰網絡。
+
 本地負責真實來源與 Opus 執行。本套件不呼叫模型、不讀帳戶；首批及第二隻都換參數／bundle，不新增股票專屬程式。
 
 ## 1. 登記來源

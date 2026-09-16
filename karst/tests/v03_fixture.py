@@ -7,9 +7,9 @@ from __future__ import annotations
 
 import copy
 import shutil
-from datetime import datetime, timezone
 from pathlib import Path
 
+from karst.fetch.common import utc_now
 from karst.fetch.registry import EvidenceRegistry
 from karst.packet import build_packet, confined
 from karst.pipeline import pair_staging
@@ -24,23 +24,31 @@ def _statement(text, citations=()):
     return {'text': text, 'citations': [copy.deepcopy(c) for c in citations]}
 
 
-def build_bundle(root, *, security=None):
-    """Register the fixture filings into a fresh 0.3 bundle; return (bundle, packet, records)."""
+def build_bundle(root, *, security=None, stage=None):
+    """Register the fixture filings into a fresh 0.3 bundle; return (bundle, packet, records).
+
+    ``stage`` receives the staging directory before registration, so a test can land
+    extra adapter output (prices, for example) through the ordinary adapter path.
+    """
     root = Path(root)
     bundle = root / 'bundle'
     staging = root / 'staging'
     shutil.copytree(FIXTURES / 'edgar', staging / 'edgar')
+    if stage is not None:
+        stage(staging)
     security = copy.deepcopy(security or SECURITY)
     registry = EvidenceRegistry(bundle)
     entity_ids = sorted({security['issuer_id'], security['security_id']})
     for meta_path, raws in pair_staging(staging):
         for raw in raws:
             registry.register(raw, meta_path, entity_ids=entity_ids)
-    # Evidence 0.3 differs from 0.2 only by the declared version; the adapter still
-    # writes 0.2 records, so the fixture restates the version rather than forking one.
-    records = [{**record, 'contract_version': '0.3.0'} for record in registry.records()]
+    # Evidence 0.3 differs from 0.2 only by the declared version; identity is computed
+    # on the 0.2 base either way, so restating the version keeps the same evidence IDs.
+    records = registry.records(contract_version='0.3.0')
     as_of = max(record['fetched_at'] for record in records)
-    created_at = max(datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'), as_of)
+    # Second precision: the service's own clock ticks in seconds, so a sub-second
+    # packet time would make every freshly intaken research look older than its packet.
+    created_at = max(utc_now(), as_of)
     packet = build_packet(records, as_of, security, created_at=created_at, root=bundle,
                           contract_version='0.3.0')
     (bundle / 'evidence.json').write_bytes(canonical(records))

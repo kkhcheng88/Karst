@@ -59,12 +59,12 @@ class ProtocolTests(ServiceCase):
 
 class RefreshTests(ServiceCase):
     def refresh(self, client):
-        return service.refresh_sources(self.staging, self.bundle, SECURITY, ["prices"],
-                                       since="2026-01-01", clients={"longbridge": client})
+        return service.refresh_sources(self.root, SECURITY, ["prices"], since="2026-01-01",
+                                       clients={"longbridge": client}, store=self.store)
 
     def test_unknown_kind_is_refused(self):
         with self.assertRaises(ContractError):
-            service.refresh_sources(self.staging, self.bundle, SECURITY, ["telepathy"])
+            service.refresh_sources(self.root, SECURITY, ["telepathy"])
 
     def test_same_bytes_are_unchanged_new_bytes_are_changed(self):
         first = self.refresh(FakeClient(last_done="10.00"))
@@ -81,8 +81,9 @@ class RefreshTests(ServiceCase):
         self.assertNotIn("longbridge", moved["adapter_errors"])
 
     def test_missing_credentials_lands_as_failed_not_silence(self):
-        result = service.refresh_sources(self.staging, self.bundle, SECURITY, ["prices"],
-                                         clients={"longbridge_factory": lambda: None})
+        result = service.refresh_sources(self.root, SECURITY, ["prices"],
+                                         clients={"longbridge_factory": lambda: None},
+                                         store=self.store)
         self.assertEqual(result["added"] + result["changed"] + result["unchanged"], [])
         self.assertEqual(len(result["failed"]), 4)
 
@@ -94,6 +95,7 @@ class EvidenceTests(ServiceCase):
     def test_excerpt_only_is_registered_as_truncated(self):
         record = self.ingest(url="https://example.invalid/note", excerpt="line one",
                              author="An Analyst", published_at="2026-03-04",
+                             source_type="broker_report",
                              note="paywalled; only the visible part")
         self.assertEqual(record["kind"], "industry_report")
         self.assertTrue(record["truncated"])
@@ -126,7 +128,8 @@ class EvidenceTests(ServiceCase):
             service.read_evidence(self.bundle, record["evidence_id"], 0, 0)
 
     def test_search_filters_and_reports_absence_honestly(self):
-        self.ingest(url="https://example.invalid/a", excerpt="alpha", author="Someone")
+        self.ingest(url="https://example.invalid/a", excerpt="alpha", author="Someone",
+                    published_at="2026-03-04", source_type="news")
         self.ingest(excerpt="beta")
         everything = service.search_evidence(self.bundle)
         self.assertEqual(everything["count"], 2)
@@ -217,10 +220,13 @@ class ResearchTests(ServiceCase):
 
 class ReviewTests(ServiceCase):
     def test_request_claim_submit(self):
+        # Interactive: the job waits for another client to claim it. The api path runs
+        # the adapter inside request_review and is covered in test_review_api.
         job = service.request_review(self.store, subject="XNAS:DEMO", version_id="rv-1",
                                      dispute="is the improvement durable?",
                                      evidence_ids=["ev-1"],
-                                     reviewer={"execution": "api", "provider": "anthropic",
+                                     reviewer={"execution": "interactive",
+                                               "provider": "anthropic",
                                                "model": "some-model"})
         self.assertEqual(job["status"], "pending")
         self.assertEqual(job["input_ref"]["dispute"], "is the improvement durable?")

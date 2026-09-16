@@ -1,0 +1,13 @@
+# Deployed service (see zeabur.md). Versions are the ones actually run locally.
+# Credentials never live here; only environment variable NAMES appear in docs.
+fastmcp==2.14.7
+mcp==1.27.0
+longport==4.3.7
+jsonschema==4.26.0
+referencing==0.37.0
+rfc3339-validator==0.1.4
+tzdata==2025.3
+httpx==0.28.1
+anthropic==0.105.2
+# Transcripts / quarterly statements adapter; pulls duckdb + pandas + pyarrow.
+defeatbeta-api==0.0.61

@@ -51,13 +51,13 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 
 模型交回的 payload **只有分析**：六層的 conclusion／assumptions／strongest_counter／gaps／實讀來源、估值、技術衍生數字（不交 K 線陣列）、計劃、首屏六句、相位、模組、覆蓋、評級、執行狀態、待答問題、補查請求。`research_id`、`packet_id`、`created_at`、各層 `assessed_at`、mode、策略／委託／方法版本、models 與上版關係一律由程式補；payload 內出現這些欄位會被拒收。收件時照樣跑 packet 版本、引用、實讀紀錄與行號檢查，不通過就拋 `ContractError`，不寫任何檔。
 
-覆核由 `agents.review` 處理：`build_review_task` 匯出針對指定 `research_id` 與指定爭議的任務，`REVIEW_RESULT_SCHEMA` 與 `validate_review` 收挑戰（針對層、主張、引用、嚴重程度）、對爭議的裁決與新補查請求；覆核者不給第二個評級、不覆蓋主研究。`agents/adapters/` 只寫介面、預算與用量紀錄形狀：沒有 transport 就明確拒絕，不會假裝 API 已接通。
+覆核由 `agents.review` 處理：`build_review_task` 匯出針對指定 `research_id` 與指定爭議的任務，`REVIEW_RESULT_SCHEMA` 與 `validate_review` 收挑戰（針對層、主張、引用、嚴重程度）、對爭議的裁決與新補查請求；覆核者不給第二個評級、不覆蓋主研究。`agents/adapters/` 已接 Anthropic Messages 與 OpenAI Responses 兩條實際呼叫路徑（回合迴圈、兩個本地證據工具、預算與用量），見下面〈覆核入口〉；缺憑證或缺 transport 一律明確報錯，不假裝已接通。
 
-發布時當次的價格陣列由參數傳入（`publish(..., bars=...)`），只用來畫圖與量度，**不寫入保存的 research.json**；發布包只複製被引用的證據原文，`evidence.json` 仍是完整索引。沒有陣列時頁面顯示衍生數字與資料截止，不畫空圖。契約對照見 [契約說明](contracts/README.md)。
+發布時當次的價格陣列由參數傳入（`publish(..., bars=...)`），只用來畫圖與量度，**不寫入保存的 research.json**；發布包只複製被引用的證據原文，`evidence.json` 仍是完整索引。沒有陣列時頁面顯示衍生數字與資料截止，不畫空圖。`service.publish_research` 不必逐次傳：沒給 `bars` 時它先由**已登記的日線證據**（`karst/bars.py`）組陣列，再退到 `bars_provider` 臨時取數（不登記、不保存）；晚於資料截止的 K 線一律拒收。契約對照見 [契約說明](contracts/README.md)。
 
 頁面只顯示來源登記與原始檔連結，原文不再內嵌。移動或分享頁面請保留整個發布目錄；只取走 `index.html` 會失去本地來源連結。renderer 版本 0.3.0、calculator 0.2.0。
 
-## 服務層(W1)
+## 服務層(W1 本地核心、W2 傳輸與公司證據倉)
 
 CLI、MCP 與日後的排程共用同一組函式:`service.py` 是操作入口,`store.py` 是持久狀態,
 `mcp_server.py` 只是薄包裝(每個工具一行呼叫 service)。服務層本身不呼叫任何模型;研究方法
@@ -67,12 +67,13 @@ CLI、MCP 與日後的排程共用同一組函式:`service.py` 是操作入口,`
 |---|---|
 | `store.init(<path>)` | SQLite(WAL):`entities` 公司／證券／產業節點、`sources` 證據索引(身份沿用 registry manifest)、`research_versions` 版本化研究與計算回執、`jobs` 覆核／研究／取數任務 |
 | `service.get_research_context` | 已有研究版本、來源索引、待補請求、待處理覆核;原文不內嵌 |
-| `service.refresh_sources` | 呼叫 edgar／defeatbeta／longbridge,登記後回新增／變更／無變／失敗／未覆蓋;變與不變按內容指紋,不按取得時間 |
-| `service.search_evidence`／`read_evidence` | 索引查詢與按行分頁讀原文(回 `L<起>-L<迄>` 定位);查不到只代表本地未登記 |
-| `service.ingest_source` | 登記用戶提供的報告、連結或實際讀到的摘錄;摘錄標 truncated,作者立場與本系統判斷分開記 |
+| `service.company_paths`／`ensure_company` | 每家公司一個證據倉(`<data>/companies/<證券ID>/bundle`)與發布目錄;同時 upsert 證券與公司節點 |
+| `service.refresh_sources` | 呼叫 edgar／defeatbeta／longbridge **落入該公司的證據倉**,暫存去 `<data>/tmp/<run>/`;登記後回新增／變更／無變／失敗／未覆蓋;變與不變按內容指紋,不按取得時間 |
+| `service.search_evidence`／`read_evidence` | 索引查詢與按行分頁讀原文(回 `L<起>-L<迄>` 定位);`text=` 走 SQLite FTS5 全文(回 snippet 與行號估計),無 FTS5 明確報錯不靜默退化;查不到只代表本地未登記 |
+| `service.ingest_source` | 登記用戶提供的報告、連結或實際讀到的摘錄;摘錄標 truncated,作者立場與本系統判斷分開記。**`kind=industry_report` 必須帶 `entity_ids`(`NASDAQ:XXX`／`cik:…`／`industry:<slug>`)、`author`、`published_at`、`source_type`**(broker_report／independent_research／news／user_note／other),缺哪一項就報哪一項 |
 | `service.calculate` | 包 `calculations`,回結果、單位、輸入回執與計算器版本;未知方法拒絕 |
-| `service.save_research`／`publish_research` | 先驗證後保存,撞版本回衝突不覆寫;發布先寫檔再記錄頁面位置 |
-| `service.request_review`／`claim_review`／`submit_review`／`get_job` | 覆核任務的開票、領取與交回;API 模式的實際呼叫留 W2 |
+| `service.save_research`／`publish_research` | 先驗證後保存,撞版本回衝突不覆寫;payload 的補查請求自動登記入新 packet(同 as_of／created_at)才收件;發布先寫檔、畫本次臨時日線、再記錄頁面位置並更新公司資料室 |
+| `service.request_review`／`claim_review`／`submit_review`／`get_job` | 覆核任務的開票、領取與交回;`execution='api'` 直接呼叫 adapter 並寫回結果(見〈覆核入口〉) |
 
 憑證放**倉根 `.env`,不 commit**(已在 `.gitignore`);系統環境變數已設的一律優先,`.env` 不覆蓋。
 Longbridge 公開行情用 `LONGPORT_APP_KEY`、`LONGPORT_APP_SECRET`、`LONGPORT_ACCESS_TOKEN`;
@@ -81,11 +82,70 @@ EDGAR 用 `KARST_EDGAR_USER_AGENT`。缺憑證時 `fetch/longbridge.py` 每個�
 
 ```bash
 python -m karst.fetch.longbridge --symbol <代號.US> --out <STAGING> --start <ISO> --end <ISO>
-python -m karst.mcp_server --store <DIR>/karst.sqlite3 --bundle <BUNDLE> --staging <STAGING>
+python -m karst.mcp_server --data-dir <DATA>                  # stdio,本地開發
+KARST_MCP_TOKEN=<token> python -m karst.mcp_server --http --host 0.0.0.0 --port 8080 --data-dir <DATA>
 ```
 
-MCP 預設 stdio;`--http` 是 W2 的遠端部署,現時明文拒絕。`--env-file` 可指定另一個憑證檔。
+`--data-dir`(或環境變數 `KARST_DATA_DIR`,預設 `./karst-data`)是唯一持久根:
+
+```
+<data>/karst.sqlite                       研究版本、來源索引、任務、FTS5 全文索引
+<data>/companies/<證券ID 安全化>/bundle/   該公司唯一證據倉(evidence/objects、manifest.jsonl、evidence.json、packet.json)
+<data>/companies/<證券ID 安全化>/releases/ 發布頁
+<data>/tmp/                               取數暫存與任務目錄,可清
+```
+
+`--http` 用 fastmcp 的 streamable-http,以 `KARST_MCP_TOKEN` 做 Bearer 驗證;**缺 token 拒絕起動 http**,
+stdio 不需要 token。`GET /healthz` 免驗證,回 `{status, version, data_dir}`。舊的 `--bundle`／`--staging`
+保留為相容選項(固定單一證據倉)。`--env-file` 可指定另一個憑證檔。備份:
+`python -m karst.store backup --data-dir <DATA> --out <ZIP>`(SQLite 一致快照 + 證據檔,`tmp/` 不備份)。
+
+**部署到 Zeabur、環境變數清單,以及 ChatGPT 自訂連接器與 `claude mcp add --transport http` 兩端連接步驟:
+見倉根 [zeabur.md](../zeabur.md)。**
+
 服務層只開公開市場方法,倉內沒有帳戶／持倉／下單類入口,manual 落地入口 `fetch/broker.py` 不變。
+
+## 覆核入口(W2)
+
+覆核有兩條路,同一份任務、同一份結果格式:
+
+| 模式 | 做法 |
+|---|---|
+| `execution='interactive'` | `request_review` 只開票;另一個客戶端 `claim_review` 領取、`submit_review` 交回 |
+| `execution='api'` | `request_review` 同時建任務目錄(`agents.review.build_review_task`)、呼叫 adapter、驗證結果並寫回同一張票 |
+
+```python
+job = service.request_review(store, subject=<SUBJECT>, version_id=<VERSION>,
+                             dispute="改善是否一次性？", evidence_ids=[...],
+                             reviewer={"execution": "api", "provider": "anthropic",
+                                       "model": <MODEL_ID>},
+                             bundle=<BUNDLE>, task_dir=<TASK_DIR>)   # transport 可注入
+```
+
+adapter(`agents/adapters/anthropic_adapter.py` 走 SDK Messages、`openai_adapter.py` 走 httpx
+對 Responses)只管線路格式;回合迴圈、預算、工具與結果驗證住在 `agents/adapters/__init__.py`。
+模型**只有兩個工具**:`list_evidence()` 與 `read_evidence(evidence_id, offset, limit)`,由 adapter
+在本機執行,**只讀該任務目錄**——沒有 bundle、沒有倉、沒有網絡、沒有帳戶入口。輸出必須是一個
+符合任務 `output.schema.json`(覆核即 `REVIEW_RESULT_SCHEMA`)的 JSON 物件,不符即拒收。
+
+預設預算 12 回合 / 400k 累計 input token / 16k output;`budget` 參數逐項覆寫。用量記
+input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價目表就不估價。憑證只由環境
+變數名稱引用(`ANTHROPIC_API_KEY`、`OPENAI_API_KEY`,倉根 `.env` 或環境),缺即明確報錯,不
+嘗試呼叫。
+
+票的收尾三態:結果通過 `validate_review` = `done`;結果不符或未送出即失敗 = `failed`;**已送出
+而結果不明(連線中斷、逾時)= `needs_check`**,由人對帳,程式不自動重發以免重複付費。同一
+(`version_id`, 爭議)已有非 failed 的票時,`request_review` 回舊票,不再付一次。
+`get_research_context` 另回 `latest_review`:裁決、最強挑戰(層、主張、嚴重程度)與新補查數目。
+
+## 資料室頁
+
+`page/render_company_index(store, bundle, security, releases)` 出一頁公司資料室:該公司的證據
+清單(來源、種類、公開／取得時間、狀態、被哪幾個研究版本引用)、研究版本清單(資料截止、
+評級、執行狀態、與上次相比一句、頁面連結)、待補請求與最新覆核摘要。`publish_research`
+成功後自動寫入 `<releases>/index.html`;無框架、無外部資源、明文可讀,與研究頁同一套 CSS。
+
+資料室只索引已保存的東西,不重算任何判斷;查不到只代表本地未登記。
 
 ## 此步邊界與本地接線
 

@@ -1,5 +1,6 @@
 """Provider-neutral review: task out, challenges back, no second rating."""
 import copy
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -16,12 +17,17 @@ from karst.tests.v03_fixture import ROLE_META, build_bundle, citable, payload
 BUDGET = {'max_output_tokens': 8000, 'max_cost_usd': 2.0, 'max_turns': 3}
 
 
-def fake_transport(request):
-    """Stands in for a real SDK client; the adapter itself never calls anything."""
-    assert request['prompt'] and request['input'] and request['output_schema']
-    return {'result': {'echoed_model': request['model_id']},
-            'usage': {'input_tokens': 1200, 'output_tokens': 300, 'cost_usd': None,
-                      'request_id': 'req-fake', 'started_at': None, 'finished_at': None}}
+def fake_transport(result):
+    """Stands in for a real client: one final answer, in both wire shapes at once."""
+    text = json.dumps(result, ensure_ascii=False)
+
+    def send(request):
+        assert request['instructions' if 'input' in request else 'system']
+        return {'id': 'fake-1', 'usage': {'input_tokens': 1200, 'output_tokens': 300},
+                'content': [{'type': 'text', 'text': text}],
+                'output': [{'type': 'message',
+                            'content': [{'type': 'output_text', 'text': text}]}]}
+    return send
 
 
 class ReviewTests(unittest.TestCase):
@@ -87,22 +93,25 @@ class ReviewTests(unittest.TestCase):
             build_review_task(self.research, 'd', ['ev-nope'], self.protocol,
                               bundle=self.bundle, destination=self.root / 'z')
 
-    def test_adapters_are_interfaces_only_until_a_transport_is_supplied(self):
+    def test_adapters_run_the_staged_task_and_refuse_without_credentials(self):
+        """The loop itself is covered in test_review_api; here: the task and the budget."""
         task = self.root / 'review-task'
         build_review_task(self.research, '改善是否一次性？', [self.evidence_id],
                           self.protocol, bundle=self.bundle, destination=task)
-        for module, provider in ((anthropic_adapter, 'anthropic'), (openai_adapter, 'openai')):
-            with self.subTest(provider=provider):
-                with self.assertRaisesRegex(ContractError, 'not wired'):
-                    module.run(task, 'model-under-test', BUDGET)
-                run = module.run(task, 'model-under-test', BUDGET, transport=fake_transport)
-                self.assertEqual(run['provider'], provider)
+        for module, variable in ((anthropic_adapter, 'ANTHROPIC_API_KEY'),
+                                 (openai_adapter, 'OPENAI_API_KEY')):
+            with self.subTest(variable=variable):
+                with self.assertRaisesRegex(ContractError, variable):
+                    module.run(task, 'model-under-test', BUDGET, environ={})
+                run = module.run(task, 'model-under-test', BUDGET,
+                                 transport=fake_transport(self.result))
                 self.assertEqual(run['execution'], 'api')
                 self.assertEqual(sorted(run['usage']), sorted(adapters.USAGE_KEYS))
                 self.assertIsNone(run['usage']['cost_usd'])  # unknown stays unknown
-                self.assertEqual(run['result']['echoed_model'], 'model-under-test')
+                self.assertEqual(run['result'], self.result)
         with self.assertRaisesRegex(ContractError, 'Budget'):
-            anthropic_adapter.run(task, 'm', {'max_turns': 1}, transport=fake_transport)
+            anthropic_adapter.run(task, 'm', {'max_turns': 0},
+                                  transport=fake_transport(self.result))
 
 
 if __name__ == '__main__':

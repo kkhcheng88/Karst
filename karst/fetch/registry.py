@@ -165,8 +165,13 @@ def _status(meta, raw, media_type):
                                                f'Adapter reported {status}; see raw response and known gaps')
 
 
-def map_record(raw_path, meta, *, entity_ids, artifact_path):
-    """Pure mapping; caller supplies resolved entity IDs, never guessed company IDs."""
+def map_record(raw_path, meta, *, entity_ids, artifact_path, contract_version='0.2.0'):
+    """Pure mapping; caller supplies resolved entity IDs, never guessed company IDs.
+
+    ``contract_version`` only restates the declared version at the end: identity is
+    always computed on the 0.2.0 base, so the same bytes keep the same evidence_id
+    whichever contract the caller is assembling.
+    """
     raw_path = Path(raw_path)
     raw = raw_path.read_bytes()
     meta = copy.deepcopy(meta)
@@ -253,6 +258,7 @@ def map_record(raw_path, meta, *, entity_ids, artifact_path):
             semantic['artifact'] = {'sha256': digest(body), 'bytes': len(body)}
     version = digest(canonical(semantic))
     record.update(source_version=version, evidence_id='ev-' + version, supersedes=None)
+    record['contract_version'] = contract_version
     validate('evidence', record)
     for field in ('published_at', 'data_as_of'):
         time_bounds(record, field)  # Validate IANA zones now, even before a packet exists.
@@ -290,16 +296,24 @@ class EvidenceRegistry:
         finally:
             temporary.unlink(missing_ok=True)
 
-    def records(self):
+    def records(self, contract_version=None):
+        """Manifest records; ``contract_version`` restates the declared version only.
+
+        Identity is unchanged by that restatement — the same record under 0.3.0 keeps
+        its 0.2.0-derived evidence_id, so a packet can be assembled at either version
+        without re-registering anything.
+        """
         path = confined(self.root, 'evidence/manifest.jsonl')
         if not path.exists():
             return []
         records = [validate('evidence', decode(line)) for line in path.read_bytes().splitlines()]
         if len({r['evidence_id'] for r in records}) != len(records):
             raise ContractError('Duplicate evidence IDs in manifest')
+        if contract_version is not None:
+            records = [{**record, 'contract_version': contract_version} for record in records]
         return records
 
-    def register(self, raw_path, meta_path=None, *, entity_ids=None):
+    def register(self, raw_path, meta_path=None, *, entity_ids=None, contract_version='0.2.0'):
         """raw_path=None registers a metadata-only adapter failure as diagnostic.
 
         The sidecar itself is the preserved failure envelope; no source body is
@@ -321,7 +335,8 @@ class EvidenceRegistry:
         if not re.fullmatch(r'(?:\.[A-Za-z0-9]+){0,2}', suffix):
             suffix = '.bin'
         relative = f'evidence/objects/{digest(raw)[:2]}/{digest(raw)}{suffix}'
-        record = map_record(raw_path, meta, entity_ids=entity_ids, artifact_path=relative)
+        record = map_record(raw_path, meta, entity_ids=entity_ids, artifact_path=relative,
+                            contract_version=contract_version)
         if record['artifact']['sha256'] != digest(raw):
             raise ContractError('Raw file changed while registering; retry a stable landed file')
         lock = confined(self.root, 'evidence/registry.lock')

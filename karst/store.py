@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import tempfile
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -78,6 +80,12 @@ CREATE TABLE IF NOT EXISTS jobs (
 CREATE INDEX IF NOT EXISTS jobs_by_status ON jobs(kind, status);
 """
 
+# Full text lives in its own FTS5 table: the source index row stays small and a
+# rebuild of the text index never touches the evidence identity.
+FTS_SCHEMA = "CREATE VIRTUAL TABLE IF NOT EXISTS evidence_text USING fts5(evidence_id UNINDEXED, text)"
+TEXT_SUFFIXES = (".txt", ".json", ".jsonl", ".csv", ".md", ".htm", ".html", ".xml")
+TEXT_MAX_BYTES = 2_000_000  # per artifact; raise per deployment if transcripts get bigger
+
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -100,6 +108,22 @@ def _row(row, json_fields=()):
     return result
 
 
+def _artifact_text(root, record, max_bytes=TEXT_MAX_BYTES):
+    """UTF-8 body of a text artifact, or None (binary, oversized, missing, undecodable)."""
+    relative = (record.get("artifact") or {}).get("path")
+    if not relative:
+        return None
+    path = Path(root) / relative
+    media = record.get("media_type") or ""
+    texty = path.suffix.lower() in TEXT_SUFFIXES or media.startswith("text/") or "json" in media
+    if not texty or not path.is_file() or path.stat().st_size > max_bytes:
+        return None
+    try:
+        return path.read_bytes().decode("utf-8")
+    except (UnicodeDecodeError, OSError):
+        return None
+
+
 class Store:
     """Thin SQLite wrapper. Every method opens its own short transaction."""
 
@@ -111,6 +135,14 @@ class Store:
         self.connection.execute("PRAGMA journal_mode=WAL")
         self.connection.execute("PRAGMA foreign_keys=ON")
         self.connection.executescript(SCHEMA)
+        try:
+            self.connection.execute(FTS_SCHEMA)
+        except sqlite3.OperationalError as exc:  # SQLite built without FTS5
+            self.fts5 = False
+            self.fts5_reason = str(exc)
+        else:
+            self.fts5 = True
+            self.fts5_reason = None
 
     def close(self):
         self.connection.close()
@@ -148,8 +180,13 @@ class Store:
 
     # --- sources ------------------------------------------------------------
 
-    def index_sources(self, records):
-        """Sync the query index from registry manifest records (identity stays the manifest's)."""
+    def index_sources(self, records, root=None, max_bytes=TEXT_MAX_BYTES):
+        """Sync the query index from registry manifest records (identity stays the manifest's).
+
+        With ``root`` (the bundle the artifact paths are relative to) every UTF-8
+        text artifact is also indexed for full-text search; binary, oversized and
+        undecodable artifacts are simply not indexed, never half-indexed.
+        """
         rows = []
         for record in records:
             period = record.get("period") or {}
@@ -162,7 +199,44 @@ class Store:
             "INSERT INTO sources(evidence_id, source_id, source, kind, published_at, fetched_at,"
             " period_start, period_end, status, artifact_path, entity_ids)"
             " VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(evidence_id) DO NOTHING", rows)
+        if root is not None:
+            for record in records:
+                self.index_text(record["evidence_id"],
+                                _artifact_text(root, record, max_bytes))
         return len(rows)
+
+    def index_text(self, evidence_id, text):
+        """Index one artifact's text; ``None`` text and a missing FTS5 build are both no-ops."""
+        if not text or not self.fts5:
+            return False
+        if self.connection.execute("SELECT 1 FROM evidence_text WHERE evidence_id=?",
+                                   (evidence_id,)).fetchone():
+            return False
+        self.connection.execute("INSERT INTO evidence_text(evidence_id, text) VALUES(?,?)",
+                                (evidence_id, text))
+        return True
+
+    def search_text(self, query, *, limit=20):
+        """FTS5 match -> evidence_id, snippet and the line the snippet starts on (1-based)."""
+        if not self.fts5:
+            raise ContractError(
+                "Full-text search needs SQLite compiled with FTS5; this build has none "
+                f"({self.fts5_reason}). Not falling back to a substring scan silently.")
+        try:
+            rows = self.connection.execute(
+                "SELECT evidence_id, snippet(evidence_text, 1, '', '', '…', 16) AS snippet, text"
+                " FROM evidence_text WHERE evidence_text MATCH ? ORDER BY rank LIMIT ?",
+                (query, limit)).fetchall()
+        except sqlite3.OperationalError as exc:
+            raise ContractError(f"Invalid full-text query {query!r}: {exc}") from exc
+        hits = []
+        for row in rows:
+            snippet = row["snippet"]
+            probe = snippet.strip("…").strip()[:40]
+            position = row["text"].find(probe) if probe else -1
+            hits.append({"evidence_id": row["evidence_id"], "snippet": snippet,
+                         "line": None if position < 0 else row["text"].count("\n", 0, position) + 1})
+        return hits
 
     def list_sources(self, *, kind=None, status=None, entity_id=None):
         sql, params = "SELECT * FROM sources WHERE 1=1", []
@@ -314,3 +388,54 @@ class Store:
 def init(path) -> Store:
     """Open (creating if needed) the SQLite state file at ``path``."""
     return Store(path)
+
+
+def backup(data_dir, out, db_name="karst.sqlite"):
+    """Zip a consistent snapshot: the SQLite file (online backup API) plus every company file.
+
+    ``tmp/`` is scratch for in-flight fetches and is deliberately left out.
+    """
+    data_dir, out = Path(data_dir), Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    database = data_dir / db_name
+    with tempfile.TemporaryDirectory() as scratch:
+        snapshot = Path(scratch) / db_name
+        if database.is_file():
+            source = sqlite3.connect(str(database))
+            target = sqlite3.connect(str(snapshot))
+            try:
+                with target:
+                    source.backup(target)
+            finally:
+                source.close()
+                target.close()
+        written = 0
+        with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as archive:
+            if snapshot.is_file():
+                archive.write(snapshot, db_name)
+                written += 1
+            for path in sorted((data_dir / "companies").rglob("*")):
+                if path.is_file():
+                    archive.write(path, str(path.relative_to(data_dir).as_posix()))
+                    written += 1
+    return {"archive": str(out.resolve()), "files": written,
+            "note": "tmp/ is scratch and is not backed up."}
+
+
+def main(argv=None) -> int:
+    import argparse  # noqa: PLC0415 - CLI only
+
+    parser = argparse.ArgumentParser(prog="python -m karst.store")
+    sub = parser.add_subparsers(dest="command", required=True)
+    snapshot = sub.add_parser("backup", help="zip the SQLite state and the evidence files")
+    snapshot.add_argument("--data-dir", required=True)
+    snapshot.add_argument("--out", required=True)
+    snapshot.add_argument("--db-name", default="karst.sqlite")
+    args = parser.parse_args(argv)
+    result = backup(args.data_dir, args.out, args.db_name)
+    print(json.dumps(result, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
