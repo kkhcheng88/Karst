@@ -57,3 +57,6 @@ P1 同時落實最小來源 manifest、研究輸入允許清單、必要索引�
 
 ### agent:Fable主腦 · 2026-09-16 22:54
 2026-09-16 票務映射(依《主研究Agent與資料服務-執行計劃-v1》角色可互換修訂,PR #4/#5 已合併):本票承接 W1 本地機械核心與單一主研究入口(store/service/mcp_server/fetch/longbridge;protocol/research intake/review 格式/契約 0.3/發布 0.3 路徑),取代原六角色步二收尾中的 land/補查登記子命令——六角色 assemble 路徑保留供舊包讀取,不再新增功能。W2 → 新票(兩客戶端共用 MCP、雙向覆核交接、Zeabur);W3 → 新票(第二股 INTU 頁);W4 → KARST-242。W1 已派兩位 Opus 工人並行實作,不 commit,交回後本地驗收合併。已知缺項:Longbridge OpenAPI 憑證(LONGPORT_APP_KEY/SECRET/ACCESS_TOKEN)本機未設——現有 ~/.longbridge 只是 MCP 的 CLI 授權,SDK 用不到;需用戶到 open.longbridge.com 建應用取得,並核 scope 只有行情。
+
+### agent:Fable主腦 · 2026-09-17 01:10
+2026-09-17 W1 本地核心交付並端到端驗收:store/service/mcp_server/fetch/longbridge + protocol/research intake/review 格式/契約 0.3.0/發布 0.3 路徑,160 測試;Longbridge 真憑證(.env)實測四工具 ok(修 pyo3 列舉序列化)。驗收運行:AXTI 單一主研究者(形態 B)以 90 份真實證據建 0.3 packet → 模型交分析 payload → service.save_research(程式補工程欄位、契約驗、計算器重算 28.03/13.88/53.45、SMA200 56.25 同值)→ publish_research → verify_release 通過 → 重開 SQLite 讀回同版。發布 cards/releases/pub-7b6f9f0…;紀錄 cards/runs/research-AXTI-2026-09-17-single/紀錄.md。合流修兩處接縫(role_meta 形狀、subject 型別)。留下:publish_research 未傳臨時日線畫圖;補查登記應入 save_research;registry 加 contract_version 參數;隔離仍靠指令。步二本票餘下:上述三項小修 + 84 包回歸檢查;之後 W2=KARST-243。
