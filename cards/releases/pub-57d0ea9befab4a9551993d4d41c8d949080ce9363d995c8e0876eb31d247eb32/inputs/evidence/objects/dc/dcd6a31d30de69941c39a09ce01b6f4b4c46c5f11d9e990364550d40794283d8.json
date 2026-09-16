@@ -1,0 +1,70 @@
+{
+  "source": "edgar",
+  "tool": "EDGAR index page",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "accession": "0001558370-20-013991",
+    "form": "8-K",
+    "document": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1051627/000155837020013991/0001558370-20-013991-index.htm",
+    "kind": "exhibit"
+  },
+  "fetched_at": "2026-09-16T11:59:16Z",
+  "published_at": "2020-11-19T21:10:44Z",
+  "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+  "period": {
+    "reportDate": "2020-11-13",
+    "filingDate": "2020-11-19"
+  },
+  "truncated": {
+    "is_truncated": false
+  },
+  "known_gaps": [
+    "no EX-99.1 exhibit listed on index page"
+  ],
+  "status": "empty",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000155837020013991/0001558370-20-013991-index.htm",
+  "filingDate": "2020-11-19",
+  "reportDate": "2020-11-13",
+  "items": "1.01",
+  "index_page": "https://www.sec.gov/Archives/edgar/data/1051627/000155837020013991/0001558370-20-013991-index.htm",
+  "attachments_listed": [
+    {
+      "file": "axti-20201113x8k.htm",
+      "description": "8-K",
+      "type": "8-K",
+      "href": "/ix?doc=/Archives/edgar/data/1051627/000155837020013991/axti-20201113x8k.htm"
+    },
+    {
+      "file": "0001558370-20-013991.txt",
+      "description": "Complete submission text file",
+      "type": "",
+      "href": "/Archives/edgar/data/1051627/000155837020013991/0001558370-20-013991.txt"
+    },
+    {
+      "file": "axti-20201113.xsd",
+      "description": "EX-101.SCH",
+      "type": "EX-101.SCH",
+      "href": "/Archives/edgar/data/1051627/000155837020013991/axti-20201113.xsd"
+    },
+    {
+      "file": "axti-20201113_lab.xml",
+      "description": "EX-101.LAB",
+      "type": "EX-101.LAB",
+      "href": "/Archives/edgar/data/1051627/000155837020013991/axti-20201113_lab.xml"
+    },
+    {
+      "file": "axti-20201113_pre.xml",
+      "description": "EX-101.PRE",
+      "type": "EX-101.PRE",
+      "href": "/Archives/edgar/data/1051627/000155837020013991/axti-20201113_pre.xml"
+    },
+    {
+      "file": "axti-20201113x8k_htm.xml",
+      "description": "EXTRACTED XBRL INSTANCE DOCUMENT",
+      "type": "XML",
+      "href": "/Archives/edgar/data/1051627/000155837020013991/axti-20201113x8k_htm.xml"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "request_id": "req-counter-initial-transcript-q2-2026",
+    "layer": "counter",
+    "question": "2026 年第二季業績電話會的完整文字紀錄(含 Q&A)是否可取得?當中關於「2027 年底每季約 1.3 億美元」的原話為何,口徑是磷化銦還是總收入,以及該速度的季度爬坡路徑有沒有說明?另請取同一場會議給出的第三季指引數字。",
+    "reason": "取證包內只有 8-K 與 EX-99.1,沒有電話會全文。缺此原話就無法判斷市場預期與公司說法的差距,亦無法檢查任何把單季速度換算成全年的推導是否成立。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-counter-initial-supply-agreements-exhibits",
+    "layer": "counter",
+    "question": "Coherent「Master Development and Supply Agreement」、Lumentum「Capacity Reservation Agreement」、Casela「長期供應協議」的全文(公司稱會作為 2026 年第二季 10-Q 的附件提交)是否可取得?重點是最低訂購量、每片價格或定價機制、產能承諾的計量單位,以及退款與罰款條款。",
+    "reason": "目前只有公司自己的摘要。9,850 萬剩餘履約義務攤至 2029 年上半年,與三份協議的公開規模對不上;不看全文無法判斷已簽約的經濟價值是被低估還是被高估,亦無法評估退款風險的實際大小。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-counter-initial-inp-competitor-capacity",
+    "layer": "counter",
+    "question": "同業(含日本、台灣及中國本地新進者)在磷化銦襯底,尤其六吋規格的擴產計劃、認證時程與已公布產能,有沒有可引用的公開來源?",
+    "reason": "本步的核心替代解釋是資本週期:今天 44.9% 的毛利率本身會引來供給。沒有同業產能資料,「高毛利可持續」與「高毛利是短缺租金」兩種解釋無法分辨。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-counter-initial-export-permit-status",
+    "layer": "counter",
+    "question": "截至分析截止日,磷化銦付運美國的出口許可有沒有獲批?公司等待許可的訂單佔在手訂單或收入的比例有沒有披露?北美收入佔比在 2026 年上半年是多少?",
+    "reason": "許可是本案最大的單一開關:許可放寬會同時解除收入上限與短缺租金,方向相反,兩種效果的淨額決定判斷。目前只知道 2024 年 8%、2025 年 2%,缺 2026 年數字。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-counter-initial-consensus-vintage",
+    "layer": "counter",
+    "question": "2026 至 2028 年的分析員收入與每股盈利共識,以及該共識的形成或截至時間為何?另請提供最近一次的預測修訂紀錄。",
+    "reason": "要衡量預期差,必須用有時點的共識,而不是用單季速度乘以倍數去推「市場低估多少」。沒有帶版本的共識,任何『市場低估幾成』的說法都不成立。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  },
+  {
+    "request_id": "req-counter-initial-tongmei-valuation-crosscheck",
+    "layer": "counter",
+    "question": "同美 2026 年 7 月 23 日股權轉讓的完整條款(總股數、每股作價、是否關聯方、有無附帶條件),以及同美申請香港上市的最新進度與十一家私募基金贖回權的處理結果。",
+    "reason": "由該筆轉讓推算的同美隱含股權值約 10.8 億美元,與母公司約 31 億美元的企業價值相差約三倍。這條線索若成立會直接改變估值判斷,若因少數股權、關聯方或約數而不成立,亦必須明寫排除理由。",
+    "status": "pending",
+    "evidence_ids": [],
+    "resolution": null
+  }
+]

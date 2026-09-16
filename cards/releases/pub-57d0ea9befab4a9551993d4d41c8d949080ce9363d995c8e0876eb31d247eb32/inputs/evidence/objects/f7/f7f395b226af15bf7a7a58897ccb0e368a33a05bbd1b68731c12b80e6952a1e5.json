@@ -1,0 +1,76 @@
+{
+  "source": "edgar",
+  "tool": "EDGAR index page",
+  "params": {
+    "ticker": "AXTI",
+    "cik": "0001051627",
+    "accession": "0001437749-26-022984",
+    "form": "8-K",
+    "document": null,
+    "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926022984/0001437749-26-022984-index.htm",
+    "kind": "exhibit"
+  },
+  "fetched_at": "2026-09-16T11:59:09Z",
+  "published_at": "2026-07-08T13:29:29Z",
+  "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+  "period": {
+    "reportDate": "2026-07-08",
+    "filingDate": "2026-07-08"
+  },
+  "truncated": {
+    "is_truncated": false
+  },
+  "known_gaps": [
+    "no EX-99.1 exhibit listed on index page"
+  ],
+  "status": "empty",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926022984/0001437749-26-022984-index.htm",
+  "filingDate": "2026-07-08",
+  "reportDate": "2026-07-08",
+  "items": "2.04",
+  "index_page": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926022984/0001437749-26-022984-index.htm",
+  "attachments_listed": [
+    {
+      "file": "axti20260629_8k.htm",
+      "description": "FORM 8-K",
+      "type": "8-K",
+      "href": "/ix?doc=/Archives/edgar/data/1051627/000143774926022984/axti20260629_8k.htm"
+    },
+    {
+      "file": "0001437749-26-022984.txt",
+      "description": "Complete submission text file",
+      "type": "",
+      "href": "/Archives/edgar/data/1051627/000143774926022984/0001437749-26-022984.txt"
+    },
+    {
+      "file": "axti-20260617.xsd",
+      "description": "XBRL TAXONOMY EXTENSION SCHEMA",
+      "type": "EX-101.SCH",
+      "href": "/Archives/edgar/data/1051627/000143774926022984/axti-20260617.xsd"
+    },
+    {
+      "file": "axti-20260617_def.xml",
+      "description": "XBRL TAXONOMY EXTENSION DEFINITION LINKBASE",
+      "type": "EX-101.DEF",
+      "href": "/Archives/edgar/data/1051627/000143774926022984/axti-20260617_def.xml"
+    },
+    {
+      "file": "axti-20260617_lab.xml",
+      "description": "XBRL TAXONOMY EXTENSION LABEL LINKBASE",
+      "type": "EX-101.LAB",
+      "href": "/Archives/edgar/data/1051627/000143774926022984/axti-20260617_lab.xml"
+    },
+    {
+      "file": "axti-20260617_pre.xml",
+      "description": "XBRL TAXONOMY EXTENSION PRESENTATION LINKBASE",
+      "type": "EX-101.PRE",
+      "href": "/Archives/edgar/data/1051627/000143774926022984/axti-20260617_pre.xml"
+    },
+    {
+      "file": "axti20260629_8k_htm.xml",
+      "description": "EXTRACTED XBRL INSTANCE DOCUMENT",
+      "type": "XML",
+      "href": "/Archives/edgar/data/1051627/000143774926022984/axti20260629_8k_htm.xml"
+    }
+  ]
+}
