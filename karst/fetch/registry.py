@@ -32,6 +32,7 @@ PUBLIC_KINDS = {
     'finance_calendar': 'calendar', 'fund_holder': 'ownership',
     'shareholder': 'ownership', 'short_positions': 'short_interest',
     'quote': 'prices', 'history_candlesticks_by_date': 'prices',
+    'static_info': 'profile', 'calc_indexes': 'prices',
     'industry_valuation': 'valuation', 'valuation': 'valuation',
     'valuation_history': 'valuation', 'security_facts': 'other_public',
     'institution_rating': 'ratings', 'institution_rating_history': 'ratings',

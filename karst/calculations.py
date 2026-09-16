@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from .schema import ContractError, canonical
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 
 def fcff_dcf(inputs):
@@ -75,19 +75,25 @@ def confirmed_pivots(bars, width=2):
     return result
 
 
-def calculate(research):
+def calculate(research, bars=None):
+    """bars, when given, are this run's transient price arrays: they are charted and
+    measured but never saved back into research.json (0.3). Without arrays the
+    already-derived numbers in research.technical.derived are reported as they stand."""
     valuation = research["valuation"]
     values = {row["name"]: fcff_dcf(row["calculation"])
               for row in valuation["scenarios"]}
     base = values.get("base", {}).get("fair_value_per_share")
     quote = research["market"]["price"]
-    factor = research["technical"]["quote_to_bar_factor"]
-    ma = sma(research["technical"]["views"]["D"])
+    technical = research["technical"]
+    factor = technical["quote_to_bar_factor"]
+    views = bars if bars is not None else technical.get("views") or {}
+    daily = views.get("D", [])
+    ma = sma(daily) if daily else (technical.get("derived") or {}).get("sma200")
     return {
         "calculator_version": VERSION, "valuation": values,
         "price_to_value_gap": 1 - quote / base if base is not None and base > 0 else None,
         "ma200": ma, "ma200_quote_basis": ma / factor if ma else None,
-        "confirmed_pivots": confirmed_pivots(research["technical"]["views"]["D"]),
+        "confirmed_pivots": confirmed_pivots(daily),
         "risk_reward": risk_reward(research["plan"], valuation["expected_distributions"]),
         "current_price_risk_reward": risk_reward(
             {**research["plan"], "entry_price": quote}, valuation["expected_distributions"]

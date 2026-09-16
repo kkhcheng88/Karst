@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:karst:contract:0.3.0:publication",
+  "title": "Karst publication contract 0.3.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "0.3.0"
+    },
+    "publication_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,100}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "target_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "security": {
+      "$ref": "urn:karst:contract:0.3.0:evidence#/$defs/security"
+    },
+    "mode": {
+      "enum": [
+        "synthetic_demo",
+        "offline_replay",
+        "integration_example",
+        "interactive_research",
+        "api_research"
+      ]
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "research_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "previous_publication_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "renderer_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "calculator_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "packet": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "research": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "publication": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "evidence",
+        "packet",
+        "research",
+        "publication"
+      ]
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:karst:contract:0.3.0:evidence#/$defs/dependency"
+      },
+      "minItems": 0
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "$ref": "urn:karst:contract:0.3.0:evidence#/$defs/asset"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "contract_version",
+    "publication_id",
+    "created_at",
+    "as_of",
+    "target_date",
+    "security",
+    "mode",
+    "packet_id",
+    "research_id",
+    "previous_publication_id",
+    "renderer_version",
+    "calculator_version",
+    "schema_hashes",
+    "dependencies",
+    "input_hash",
+    "files"
+  ]
+}

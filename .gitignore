@@ -49,3 +49,7 @@ __pycache__/
 
 # D-181: runtime DB / journals / model ledger are durable, backed up outside git
 /runtime/
+
+# local credentials (never commit)
+.env
+.env.*

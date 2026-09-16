@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import json
 import math
+import os
 import re
 import time
 from decimal import Decimal
@@ -16,6 +17,34 @@ META_ORDER = (
     "period", "truncated", "known_gaps", "status", "source_url",
 )
 STATUSES = ("ok", "empty", "error")
+
+
+def repo_root() -> Path:
+    return Path(__file__).resolve().parents[2]
+
+
+def load_env_file(path=None, environ=None) -> list[str]:
+    """Load ``KEY=VALUE`` lines from a ``.env`` into the environment; returns the keys set.
+
+    Credentials live in the repo-root ``.env`` (gitignored), not in the system
+    environment. A missing file is not an error, blank/``#`` lines are skipped, and
+    an already-set environment variable always wins over the file.
+    """
+    environ = os.environ if environ is None else environ
+    path = Path(path) if path else repo_root() / ".env"
+    if not path.is_file():
+        return []
+    loaded = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip().strip("'\"")
+        if key and not environ.get(key):
+            environ[key] = value
+            loaded.append(key)
+    return loaded
 
 
 def utc_now() -> str:

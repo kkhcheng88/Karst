@@ -14,7 +14,8 @@ from .schema import ContractError, canonical, decode, digest, validate
 def build_packet(evidence_records, as_of, security, *, created_at=None,
                  knowledge_basis="system_observed", previous_packet_id=None,
                  required_kinds=("filing", "transcript", "financials", "prices"),
-                 dependencies=(), supplement_requests=(), pending_updates=(), root=None):
+                 dependencies=(), supplement_requests=(), pending_updates=(), root=None,
+                 contract_version="0.2.0"):
     """Build from an explicitly selected set, never silently filter late evidence.
 
     Caller selects current applicable versions (including shared industry evidence),
@@ -24,8 +25,8 @@ def build_packet(evidence_records, as_of, security, *, created_at=None,
     records = copy.deepcopy(list(evidence_records))
     for record in records:
         validate("evidence", record)
-        if record["contract_version"] != "0.2.0":
-            raise ContractError("build_packet requires contract 0.2.0 evidence")
+        if record["contract_version"] != contract_version:
+            raise ContractError(f"build_packet requires contract {contract_version} evidence")
         _private_selectors(record["params"])
     if len({r["evidence_id"] for r in records}) != len(records):
         raise ContractError("Duplicate evidence_id")
@@ -45,7 +46,7 @@ def build_packet(evidence_records, as_of, security, *, created_at=None,
     extra = copy.deepcopy(list(dependencies))
     if any(dep.get("kind") == "evidence" for dep in extra):
         raise ContractError("Evidence dependencies are generated from exact selected versions")
-    packet = {"contract_version": "0.2.0", "packet_id": "packet-pending",
+    packet = {"contract_version": contract_version, "packet_id": "packet-pending",
               "previous_packet_id": previous_packet_id, "security": copy.deepcopy(security),
               "as_of": as_of, "created_at": created_at or datetime.now(timezone.utc).isoformat(),
               "knowledge_basis": knowledge_basis,
@@ -338,7 +339,8 @@ def check_research(packet, research, selected, root):
     for row in research["valuation"]["scenarios"]:
         if row["calculation"]["currency"] != currency:
             raise ContractError("Valuation currency differs from security")
-    for bars in research["technical"]["views"].values():
+    # 0.3 may omit the price arrays entirely; the derived numbers stay in `derived`.
+    for bars in (research["technical"].get("views") or {}).values():
         previous = None
         for bar in bars:
             at = instant(bar["at"])
@@ -349,6 +351,9 @@ def check_research(packet, research, selected, root):
             if not bar["low"] <= min(bar["open"], bar["close"]) <= max(bar["open"], bar["close"]) <= bar["high"]:
                 raise ContractError("OHLC range is inconsistent")
             previous = at
+    derived = research["technical"].get("derived")
+    if derived and instant(derived["data_as_of"]) > instant(packet["as_of"]):
+        raise ContractError("Technical data cutoff is after the packet cutoff")
     for level in research["technical"]["key_levels"]:
         if level["lower"] > level["upper"] or instant(level["confirmed_at"]) > instant(packet["as_of"]):
             raise ContractError("Key level is inverted or not yet confirmed")

@@ -7,7 +7,7 @@ from urllib.parse import quote, urlparse
 from ..calculations import sma
 from ..packet import confined
 
-VERSION = "0.2.1"
+VERSION = "0.3.0"
 LAYERS = {"L1": "市場與宏觀", "L2": "產業與價值鏈", "L3": "公司基本面",
           "L4": "估值與預期", "L5": "技術與市場行為", "L6": "投資綜合"}
 HEADLINES = {"recommendation": "目前建議", "main_reason": "主要理由",
@@ -81,13 +81,19 @@ def chart(bars, timeframe, levels):
     return '<svg viewBox="0 0 800 340" role="img" aria-label="價格、成交量及已確認關鍵區域">' + "".join(body) + '</svg>'
 
 
-def render(packet, records, research, calculated, root):
+def render(packet, records, research, calculated, root, bars=None):
+    """bars are this run's transient price arrays (0.3). Without them the page shows
+    the derived numbers and the data cutoff instead of drawing an empty chart."""
     security, valuation, technical, plan = (packet["security"], research["valuation"],
                                            research["technical"], research["plan"])
+    views = bars if bars is not None else technical.get("views") or {}
+    derived = technical.get("derived") or {}
     css = files("karst").joinpath("page/style.css").read_text(encoding="utf-8")
     mode = {"synthetic_demo": "合成資料示範 · 非真實股票研究",
             "integration_example": "真實資料接線示例 · 判斷為測試輸入，非正式投研結論",
-            "offline_replay": "已保存研究重播 · 以列明截止時間為準"}[research["mode"]]
+            "offline_replay": "已保存研究重播 · 以列明截止時間為準",
+            "interactive_research": "互動主研究 · 由研究客戶端執行並保存",
+            "api_research": "API 主研究 · 由自動執行器呼叫模型並保存"}[research["mode"]]
     base = calculated["valuation"].get("base", {}).get("fair_value_per_share")
     target = next((v["price"] for v in valuation["target_prices"] if v["name"] == "base"), None)
     out = [f'<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">'
@@ -143,8 +149,15 @@ def render(packet, records, research, calculated, root):
     out.append(statement(technical["reading"]))
     out.append(f'<p>200 日 SMA：{number(calculated["ma200"])}（K 線口徑）；報價口徑：{number(calculated["ma200_quote_basis"])}。</p>'
                f'<p class="muted">K 線口徑：{e(technical["price_basis"])} · 報價 × {number(technical["quote_to_bar_factor"])} = K 線價格。只畫已收定的 K 線；下方為成交量，藍線為日線 SMA200。</p>')
+    if derived:
+        counts = derived["bars_count"]
+        out.append(f'<p class="muted">價格資料截止 {e(derived["data_as_of"])} · 已取用 K 線數目 '
+                   f'日 {counts["D"]} / 週 {counts["W"]} / 月 {counts["M"]}。'
+                   '本次價格序列屬臨時輸入，只用來畫圖與量度，不隨研究保存。</p>')
     for timeframe, label in (("D", "日線"), ("W", "週線"), ("M", "月線")):
-        out.append(f'<details {"open" if timeframe == "D" else ""}><summary>{label}</summary>{chart(technical["views"][timeframe], timeframe, technical["key_levels"])}</details>')
+        if timeframe not in views:
+            continue
+        out.append(f'<details {"open" if timeframe == "D" else ""}><summary>{label}</summary>{chart(views[timeframe], timeframe, technical["key_levels"])}</details>')
     for level in technical["key_levels"]:
         out.append(f'<h3>{"支撐" if level["kind"] == "support" else "阻力"} {number(level["lower"])}–{number(level["upper"])} · {e(level["timeframe"])}</h3>'
                    f'{statement(level["rationale"])}<p class="muted">確認於 {e(level["confirmed_at"])}</p>')
@@ -180,9 +193,12 @@ def render(packet, records, research, calculated, root):
         provenance = {"public_market": "公開市場來源", "synthetic": "合成資料來源"}[record["provenance"]]
         external = f' · <a href="{e(url)}" target="_blank" rel="noopener noreferrer">來源網站</a>' if url and urlparse(url).scheme in ("http", "https") else ""
         artifact = record["artifact"]
-        confined(root, artifact["path"])
+        # 0.3 releases copy only the bytes the research actually read; the rest stay
+        # registered here with their hash and source, without a dead download link.
+        included = confined(root, artifact["path"]).is_file()
         local_href = quote("inputs/" + artifact["path"], safe="/")
-        link = f'<a href="{e(local_href)}" download>下載原始檔</a>'
+        link = (f'<a href="{e(local_href)}" download>下載原始檔</a>' if included
+                else '未隨本發布複製原文（未被本研究引用）；按來源版本與 SHA256 重取')
         out.append(f'<details id="source-{e(record["evidence_id"])}"><summary>{e(record["evidence_id"])} · {e(record["source"])} · {e(record["kind"])}</summary>'
                    f'<p>{provenance}{external} · 發布 {e(record["published_at"] or "未知")} · 取得 {e(record["fetched_at"])}<br>'
                    f'版本 {e(record["source_version"])} · SHA256 {e(artifact["sha256"])}</p>'

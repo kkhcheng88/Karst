@@ -10,7 +10,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 from referencing import Registry, Resource
 
 VERSION = "0.2.0"
-SCHEMA_DIRS = {"0.1.0": "v0_1", "0.2.0": "v0_2"}
+SCHEMA_DIRS = {"0.1.0": "v0_1", "0.2.0": "v0_2", "0.3.0": "v0_3"}
 KINDS = ("evidence", "packet", "research", "publication")
 BASE = f"urn:karst:contract:{VERSION}:"
 

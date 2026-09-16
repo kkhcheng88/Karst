@@ -1,6 +1,8 @@
 # KARST-240：adapter 到六角色再到股票頁
 
-本次核心版本 0.2.2；四份正本契約仍為 **0.2.0**，沒有新增或改寫契約欄位。角色片段的 `output.schema.json` 由既有 research／packet／evidence schema 動態產生，不另維護第二份研究契約。
+本次核心版本 0.2.2；本頁描述的六角色路徑用 **0.2.0** 契約，沒有新增或改寫契約欄位。角色片段的 `output.schema.json` 由既有 research／packet／evidence schema 動態產生，不另維護第二份研究契約。
+
+> **現行主線是單主研究路徑（契約 0.3.0）**：`agents.protocol` ＋ `agents.research` ＋ `agents.review`，一份分析 payload 即可出頁，不需要六份片段，也不需要反方初判。做法見 [karst/README.md](../README.md#單主研究路徑03)。本頁保留給既有 0.2 bundle 的讀取與重播。
 
 本地負責真實來源與 Opus 執行。本套件不呼叫模型、不讀帳戶；首批及第二隻都換參數／bundle，不新增股票專屬程式。
 

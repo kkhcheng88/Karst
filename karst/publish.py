@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import calculations
-from .packet import confined, load_bundle, read_json
+from .packet import _citations, confined, instant, load_bundle, read_json
 from .page.render import VERSION as RENDERER_VERSION, render
 from .schema import ContractError, canonical, digest, schema_hashes, validate
 
@@ -29,14 +29,40 @@ def verify_release(path):
     return manifest
 
 
-def publish(bundle, output, *, previous_publication_id=None):
+def cited_evidence_ids(research):
+    """What the research actually read or cited; 0.3 releases copy only these bytes."""
+    ids = set()
+    for layer in research["layers"].values():
+        ids.update(layer["read_evidence_ids"])
+    ids.update(citation["evidence_id"] for citation in _citations(research))
+    return ids
+
+
+def publish(bundle, output, *, previous_publication_id=None, bars=None):
+    """bars are this run's transient price arrays: charted and measured, never saved.
+
+    Under 0.3 the saved research.json carries derived numbers only, and the release
+    copies the referenced source bytes plus the full evidence index.
+    """
     bundle, output = Path(bundle), Path(output)
     packet, records, research = load_bundle(bundle)
-    calculated = calculations.calculate(research)
+    if bars is not None:
+        if research["technical"].get("views") or {}:
+            raise ContractError("Saved research already stores price arrays; do not pass transient bars")
+        # Transient does not mean unchecked: a newer quote cannot slip into an older plan.
+        for series in bars.values():
+            for bar in series:
+                if instant(bar["at"]) > instant(packet["as_of"]):
+                    raise ContractError("Transient price bar is after the research cutoff")
+    calculated = calculations.calculate(research, bars)
     pinned_schemas = schema_hashes(packet["contract_version"])
+    selective = packet["contract_version"] == "0.3.0"
+    referenced = cited_evidence_ids(research) if selective else {r["evidence_id"] for r in records}
     payload = {"packet": packet, "evidence": records, "research": research,
                "schema_hashes": pinned_schemas, "renderer": RENDERER_VERSION,
                "calculator": calculations.VERSION, "previous": previous_publication_id}
+    if bars is not None:
+        payload["bars"] = digest(canonical(bars))
     input_hash = digest(canonical(payload))
     publication_id = "pub-" + input_hash
     output.mkdir(parents=True, exist_ok=True)
@@ -62,6 +88,8 @@ def publish(bundle, output, *, previous_publication_id=None):
         reserved = {"packet.json", "research.json", "evidence.json"}
         for record in records:
             relative = record["artifact"]["path"]
+            if record["evidence_id"] not in referenced:
+                continue
             if relative.split("/")[0] in reserved:
                 raise ContractError("Source path collides with bundle metadata")
             destination = confined(inputs, relative)
@@ -75,7 +103,7 @@ def publish(bundle, output, *, previous_publication_id=None):
             (inputs / f"{name}.json").write_bytes(canonical(value))
         (staging / "calculations.json").write_bytes(canonical(calculated))
         (staging / "index.html").write_text(
-            render(packet, records, research, calculated, inputs), encoding="utf-8")
+            render(packet, records, research, calculated, inputs, bars), encoding="utf-8")
         assets = []
         for path in sorted(staging.rglob("*")):
             if path.is_file():

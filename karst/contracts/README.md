@@ -1,4 +1,4 @@
-# 四份契約 · 0.2.0
+# 四份契約 · 0.2.0（現行 0.3.0）
 
 D-183 的現行程式正本是 `v0_2/*.schema.json`，使用 JSON Schema Draft 2020-12。Python 與本地 adapter 共用同一份定義；不要另抄一份欄位清單作第二正本。`v0_1/` 保留原樣，舊 bundle 仍可讀，schema hash 按實際版本記錄。此次按 PR #1 第二輪真實样本回饋擴充，完整真實 bundle 仍待本地驗收。
 
@@ -10,6 +10,22 @@ D-183 的現行程式正本是 `v0_2/*.schema.json`，使用 JSON Schema Draft 2
 | 發布包 | publication.schema.json | 固定輸入、計算器／頁面／契約版本、來源及輸出檔 hash、上版 ID |
 
 共用的身份、時間、定位與資產定義在 evidence 的 `$defs`；研究內重複結構在 research 的 `$defs`。所有引用從內建 registry 解析，不去網絡下載 schema。完整時刻需带時區，adapter 建議統一 UTC；只有日期時保留日期，依下節精度規則處理。拒絕重複 JSON key、非有限數值、未知版本與未定義欄位。
+
+## 0.3.0：單主研究路徑的必要變更
+
+`v0_3/` 由 `v0_2/` 複製，只改下表列出的欄位，其餘四份契約一字不動；`v0_2/`、`v0_1/` 原樣保留，舊 bundle 與舊發布照讀照驗。同一 bundle 的 evidence、packet、research 仍必須同版，`karst/schema.py` 按每份物件自己的 `contract_version` 選對應目錄。
+
+| 物件 | 0.2.0 | 0.3.0 | 為什麼 |
+|---|---|---|---|
+| research / publication | `mode` 三值：synthetic_demo、offline_replay、integration_example | 加 `interactive_research`、`api_research` | 分開「互動客戶端的真實研究」與「API 執行器的真實研究」；手填示例仍叫 integration_example，不冒充真實執行 |
+| research | `models[]` 為六角色紀錄，`role` 是任意字串，可為空陣列 | `models[]` 是角色清單，每項 `{role: researcher｜reviewer, execution: interactive｜api, provider, model_id, prompt_version}`，至少一項 | 角色（責任）與執行方式（誰啟動維持）分開，長度不再固定六；角色與輸出不含固定供應商 |
+| research | `technical.views` 必填，D／W／M 三個陣列必填 | `technical.views` 可省略，內含的 D／W／M 亦可逐個省略 | 本次取得的價格陣列是臨時輸入，只用來畫圖與量度，不隨研究永久保存 |
+| research | 衍生數字散在計算結果，沒有保存位置 | 新增必填 `technical.derived`：`sma200`（不足 200 根為 null）、`bars_count` D／W／M、`data_as_of` | 沒有陣列時，頁與歷史版本仍答得出「用了多少 K 線、截至何時、SMA200 是多少」 |
+| research | 沒有上版關係欄位 | 新增必填 `previous_research_id`（可為 null） | 單主研究由程式補上版關係；舊 0.2 沿用 publication 的 `previous_publication_id` |
+
+其餘規則不變：引用仍要 `evidence_id` 加非空 `locator`，行號範圍照核；`derived.data_as_of` 與 K 線一樣不得晚於 packet cutoff；發布時傳入的臨時陣列同樣受 cutoff 檢查，**不能把較新的價格靜靜混進較舊的計劃**。0.3 發布只複製被引用（各層 `read_evidence_ids` 及所有引用）的原始 bytes，`evidence.json` 仍保留全部登記作索引；未複製原文的來源在頁上照列版本與 SHA256，但不給死連結。0.2 發布路徑照舊複製全部原始檔。
+
+Renderer 升至 0.3.0、calculator 升至 0.2.0（行為已改：無陣列時不畫空圖、只在有陣列時計 SMA200／轉折）。同一份舊 bundle 重新發布會因此得到新的 publication ID，這是版本規則要求的結果，已發布目錄本身不受影響。
 
 ## 0.2 接線與迁移
 
