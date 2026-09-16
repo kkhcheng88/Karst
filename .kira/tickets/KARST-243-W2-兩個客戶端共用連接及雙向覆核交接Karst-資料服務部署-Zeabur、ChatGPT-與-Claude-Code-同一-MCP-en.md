@@ -26,3 +26,6 @@ deliverable: KARST-D12
 ## 結果
 
 ## 留言
+
+### agent:Fable主腦 · 2026-09-17 04:03
+2026-09-17 W2 程式交付(本地驗通,未部署):MCP HTTP 傳輸(fastmcp streamable-http、KARST_MCP_TOKEN Bearer、/healthz 免驗);KARST_DATA_DIR 資料目錄與公司證據倉(同一公司多次研究共用一倉、只登記新增、變/不變按內容指紋);SQLite FTS5 全文搜尋、backup 命令;ingest_source 對產業報告四欄必填並寫入 entities;覆核 adapter 兩家(Anthropic Messages、OpenAI Responses;回合/預算上限;needs_check 不重複付費;去重);request_review api 模式即時執行;publish_research 由已登記日線組臨時 K 線畫圖、不保存陣列;save_research 自動登記補查請求;registry contract_version;公司資料室頁;Dockerfile/requirements.txt/zeabur.md。200 測試通過;本機 http 實測 healthz ok、無 token 401、有 token 200。未做:Zeabur 部署、ChatGPT/Claude Code 兩端連接、覆核 adapter 對真憑證實測、雙向交接驗收——待用戶完成 zeabur.md 步驟 1–5 後續。
