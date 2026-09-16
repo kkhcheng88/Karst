@@ -338,7 +338,7 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
         subject, research, expected_previous_version_id=expected_previous_version_id,
         as_of=packet["as_of"], calc_receipt=receipt, role=role_meta.get("role"),
         execution=role_meta.get("execution"), provider=role_meta.get("provider"),
-        model=role_meta.get("model"))
+        model=role_meta.get("model") or role_meta.get("model_id"))
     return saved
 
 
