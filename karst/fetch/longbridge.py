@@ -44,18 +44,34 @@ def credentials(environ=None, env_file=None):
     return values if all(values.values()) else None
 
 
-def _plain(value):
-    """SDK object -> JSON-safe dict/scalar. Unknown objects fall back to their text form."""
+def _plain(value, depth=0):
+    """SDK object -> JSON-safe dict/scalar. Unknown objects fall back to their text form.
+
+    Enum members expose every sibling member as a class attribute, so a naive
+    ``dir()`` walk recurses forever; enums become their name and nesting is capped.
+    """
     cleaned = clean_value(value)
     if isinstance(cleaned, (str, int, float, bool)) or cleaned is None:
         return cleaned
     if isinstance(cleaned, list):
-        return [_plain(item) for item in cleaned]
+        return [_plain(item, depth + 1) for item in cleaned]
     if isinstance(cleaned, dict):
-        return {str(key): _plain(item) for key, item in cleaned.items()}
-    fields = {name: getattr(value, name) for name in dir(value)
-              if not name.startswith("_") and not callable(getattr(value, name, None))}
-    return {name: _plain(item) for name, item in fields.items()} if fields else str(value)
+        return {str(key): _plain(item, depth + 1) for key, item in cleaned.items()}
+    fields = {}
+    for name in dir(value):
+        if name.startswith("_"):
+            continue
+        item = getattr(value, name, None)
+        if callable(item) or isinstance(item, type) or item is value:
+            continue
+        fields[name] = item
+    # pyo3 enums carry no .name/.value; their only public attributes are sibling
+    # members of the same type. Render such a member by its text form.
+    if fields and all(type(item) is type(value) for item in fields.values()):
+        return str(value).rsplit(".", 1)[-1]
+    if depth >= 6:
+        return str(value)
+    return {name: _plain(item, depth + 1) for name, item in fields.items()} if fields else str(value)
 
 
 class SdkClient:
