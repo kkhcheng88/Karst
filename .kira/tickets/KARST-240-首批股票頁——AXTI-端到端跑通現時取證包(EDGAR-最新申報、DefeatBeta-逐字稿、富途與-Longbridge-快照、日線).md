@@ -54,3 +54,6 @@ P1 同時落實最小來源 manifest、研究輸入允許清單、必要索引�
 
 ### agent:Fable主腦 · 2026-09-16 21:28
 2026-09-16 修訂版已發布:cards/releases/pub-57d0ea9befab4a9551993d4d41c8d949080ce9363d995c8e0876eb31d247eb32(指回 pub-18bff42…)。負面/避開/部分覆蓋;內在價值 10/23/37 對 09-15 收市 57.70;目標價全部清空;GPT 四點覆核(目標價未撤、乘四期間錯、RPO 口徑、悲觀溢價)全部處置;取證包 54→90 份(四月增發 424B5/8-K、三份協議 8-K、9 月日線、收市報價)。計算器首次擋住模型算術錯(反方重複扣少數股東,估值層 36.9 正確)。約 1.76M token、關鍵路徑約 95 分鐘。紀錄 cards/runs/research-AXTI-2026-09-16-rev1/紀錄.md。新提案 strategy/specs/資料服務層與研究形態提案-v1(供GPT評論).md 待 GPT 評論後開步二收尾與第二股票。未完:pipeline land/補查登記子命令、EX-10 附件取數、模型呼叫改 API、第二股。
+
+### agent:Fable主腦 · 2026-09-16 22:54
+2026-09-16 票務映射(依《主研究Agent與資料服務-執行計劃-v1》角色可互換修訂,PR #4/#5 已合併):本票承接 W1 本地機械核心與單一主研究入口(store/service/mcp_server/fetch/longbridge;protocol/research intake/review 格式/契約 0.3/發布 0.3 路徑),取代原六角色步二收尾中的 land/補查登記子命令——六角色 assemble 路徑保留供舊包讀取,不再新增功能。W2 → 新票(兩客戶端共用 MCP、雙向覆核交接、Zeabur);W3 → 新票(第二股 INTU 頁);W4 → KARST-242。W1 已派兩位 Opus 工人並行實作,不 commit,交回後本地驗收合併。已知缺項:Longbridge OpenAPI 憑證(LONGPORT_APP_KEY/SECRET/ACCESS_TOKEN)本機未設——現有 ~/.longbridge 只是 MCP 的 CLI 授權,SDK 用不到;需用戶到 open.longbridge.com 建應用取得,並核 scope 只有行情。
