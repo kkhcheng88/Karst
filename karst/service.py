@@ -312,13 +312,18 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
                   role_meta, intake=None):
     """Validate first, store second: a rejected payload leaves no half version behind."""
     bundle = Path(bundle)
+    # Callers may pass one role record or the full model list; intake wants the list,
+    # the store keeps the researcher's own fields.
+    roles = list(role_meta) if isinstance(role_meta, (list, tuple)) else [dict(role_meta)]
+    researcher = next((r for r in roles if r.get("role") == "researcher"), roles[0])
     if intake is None:
         try:
-            research = _intake(payload, bundle=bundle, role_meta=role_meta)
+            research = _intake(payload, bundle=bundle, role_meta=roles)
         except ImportError:
             research = payload
     else:
-        research = intake(payload, bundle=bundle, clock=utc_now, role_meta=role_meta)
+        research = intake(payload, bundle=bundle, clock=utc_now, role_meta=roles)
+    role_meta = researcher
     packet = read_json(bundle / "packet.json")
     records = read_json(bundle / "evidence.json")
     selected = check_packet(packet, records, bundle)
