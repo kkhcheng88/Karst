@@ -607,7 +607,7 @@ def calculate_tool(arguments):
     return calculate(arguments.get("method"), arguments.get("params"))
 
 
-def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store=None):
+def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store=None, title=None):
     """Month / week / day / recent charts + derived numbers for registered prices.
 
     The arrays are built from the registered candlestick evidence, charted, measured
@@ -641,7 +641,9 @@ def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store
         raise ContractError("No registered daily candlesticks to chart for this subject; "
                             "refresh the prices kind first")
     security = packet.get("security") or {}
-    title = " ".join(str(security[key]) for key in ("exchange", "ticker") if security.get(key))
+    # A company store that has never carried a packet still knows what it is: the
+    # caller's subject names the chart rather than a bare "price".
+    title = " ".join(str(security[key]) for key in ("exchange", "ticker") if security.get(key)) or title
     result = charts.render(series["D"], out_dir, as_of=as_of, source=source, title=title or None)
     if store is not None:
         for artifact in result["artifacts"]:

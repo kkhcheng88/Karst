@@ -145,7 +145,8 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
             service.company_paths(data_dir, subject)["company"] / "charts"
             if subject and bundle is None else Path(root) / "charts")
         return service.without_local_paths(
-            service.render_charts(one(subject), output_dir, as_of=as_of, store=state))
+            service.render_charts(one(subject), output_dir, as_of=as_of, store=state,
+                                  title=subject))
 
     @server.tool
     def read_chart(artifact_id: str) -> ToolResult:
