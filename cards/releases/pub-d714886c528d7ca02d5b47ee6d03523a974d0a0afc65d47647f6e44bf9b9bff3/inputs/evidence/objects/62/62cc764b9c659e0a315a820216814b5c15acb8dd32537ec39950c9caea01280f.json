@@ -1,0 +1,337 @@
+{
+ "tool": "Ticker.earning_call_transcripts().get_transcript",
+ "params": {
+  "fiscal_year": 2026,
+  "fiscal_quarter": 1
+ },
+ "report_date": "2026-04-30",
+ "columns": [
+  "paragraph_number",
+  "speaker",
+  "content"
+ ],
+ "paragraph_count_total": 62,
+ "speakers": [
+  "Charles Shi",
+  "Gary Fischer",
+  "Leslie Green",
+  "Matthew Bryson",
+  "Morris Young",
+  "Operator",
+  "Richard Shannon",
+  "Timothy Bettles",
+  "Timothy Savageaux"
+ ],
+ "records": [
+  {
+   "paragraph_number": 1,
+   "speaker": "Operator",
+   "content": "Good afternoon, everyone, and welcome to AXT's First Quarter 2026 Earnings Conference Call. Leading the call today is Dr. Morris Young, Chief Executive Officer; and Gary Fischer, Chief Financial Officer. In addition, Tim Bettles, VP of Business Development, will be participating in the Q&A portion of the call. My name is Tracy, and I will be your coordinator today.  [Operator Instructions] I would now like to turn the call over to Leslie Green, Investor Relations for AXT. Leslie, go ahead."
+  },
+  {
+   "paragraph_number": 2,
+   "speaker": "Leslie Green",
+   "content": "Thank you, Tracy, and good afternoon, everyone. Before we begin, I would like to remind you that during the course of this conference call, including comments made in response to your questions, we will provide projections or make other forward-looking statements regarding, among other things, the future financial performance of the company, market conditions and trends, emerging applications using chips or devices fabricated on our substrates, our product mix, global economic and political conditions, including trade tariffs and import and export restrictions, ability to obtain China export permits, timing of receipt of export permits, our plan to list our subsidiary, Tongmei in China, our ability to increase orders in succeeding quarters to control costs and expenses, to improve manufacturing yields and efficiencies or to utilize our manufacturing capacity.  We wish to caution you that such statements deal with future events are based on management's current expectations and are subject to risks and uncertainties that could cause actual events or results to differ materially. In addition to the matters just listed, these uncertainties and risks include, but are not limited to, the financial performance of our partially owned supply chain companies and increased environmental regulations in China.  In addition to the factors just mentioned or that may be discussed in this call, we refer you to the company's periodic reports filed with the Securities and Exchange Commission. These are available online by link from our website and contain additional information on risk factors that could cause actual results to differ materially from our current expectations. This conference call will be available on our website at axt.com through April 30, 2027. Also, I want to note that shortly following the close of market today, we issued a press release reporting financial results for the first quarter of 2026. This information is available on our website at axt.com.  I would now like to turn the call over to Gary Fischer for a review of our first quarter results. Gary?"
+  },
+  {
+   "paragraph_number": 3,
+   "speaker": "Gary Fischer",
+   "content": "Thank you, Leslie, and good afternoon to everyone. Revenue for the first quarter of 2026 was $26.9 million compared with $23.0 million in the fourth quarter of 2025 and $19.4 million in the first quarter of 2025 last year. To break down our Q1 '26 revenue for you by product category, Indium Phosphide was $13.6 million, primarily from data center applications. Gallium Arsenide was $5.4 million, Germanium substrates were $200,000. Finally, revenue from our consolidated raw material joint venture companies in Q1 was $7.6 million.  In the first quarter of 2026, revenue from Asia Pacific was 78%, Europe was 21% and North America was 1%. The top 5 customers generated approximately 32% of total revenue and no customers were over the 10% level. Gross margin showed a substantial improvement in the first quarter. Non-GAAP gross margin was 29.9% compared with 21.5% gross margin in Q4 of 2025 and a negative 6.1% gross margin in Q1 of 2025 last year. For those who prefer to track results on a GAAP basis, gross margin in the first quarter was 29.6% compared with 20.9% in Q4 and a negative 6.4% in Q1 of 2025.  Moving to operating expenses. Total non-GAAP operating expense in Q1 was $8.6 million compared with $7.5 million in Q4 and $8.5 million in Q1 of 2025. On a GAAP basis, total operating expenses in Q1 was $9.6 million compared with $8.7 million in Q4 of 2025 and $9.0 million in Q1 of 2025. Our non-GAAP operating loss for the first quarter of 2026 was $550,000 compared to a non-GAAP operating loss in Q4 of 2025 of $2.6 million and a non-GAAP operating loss of $9.6 million in Q1 of 2025.  For reference, our GAAP operating line for the first quarter of 2026 was a net loss of $1.6 million compared with an operating loss of $3.8 million in Q4 of 2025 and an operating loss of $10.3 million in Q1 of 2025. Nonoperating other income and expense and other items below the operating line for the first quarter of 2026 was a net loss of $35,000. The details can be seen in the P&L included in our press release today.  In Q1 of 2026, we made substantial progress towards profitability. We had a non-GAAP net loss of $585,000 or $0.01 per share compared with a non-GAAP net loss of $2.3 million or $0.05 per share in the fourth quarter and non-GAAP net loss in Q1 of 2025 of $8.2 million or $0.19 per share. On a GAAP basis, the net loss in Q1 was $1.6 million or $0.03 per share compared to a net loss of $3.6 million or $0.08 a share in the fourth quarter and $8.8 million or $0.20 per share last year in Q1 of 2025. The weighted average basic shares outstanding in Q1 of 2026 was 53.3 million.  Cash, cash equivalents and investments decreased by $5.1 million to $123 million as of March 31. By comparison, at December 31, it was $128.4 million. Accounts receivable increased by $5.2 million, almost exactly the same as the change in cash. Depreciation and amortization in the first quarter was $2.4 million. Total stock comp was $1.0 million. Net inventory was up approximately $8.5 million for the first quarter to $90.2 million. This concludes the discussion of our quarterly financial results.  Turning to our plan to list our subsidiary, Tongmei in China on the STAR market in Shanghai. We remain very interested in completing the IPO, particularly in light of the rapidly evolving AI infrastructure build-out in China and China's development of its semiconductor supply chain, which is fueling increased China-based demand for Indium Phosphide substrates.  We have continued to keep our IPO application current, and Tongmei remains in process as a part of a much more selective and smaller group of prospective listings than a few years ago. Though the current geopolitical environment is dynamic, Tongmei is considered a Chinese company and continues to be regarded in China as a good IPO candidate. We will keep you informed of any updates.  With that, I'll now turn the call over to Dr. Morris Young for a review of our business and markets. Morris?"
+  },
+  {
+   "paragraph_number": 4,
+   "speaker": "Morris Young",
+   "content": "Thank you, Gary. This is an incredibly exciting time for AXT. As many of you are aware, last week, we completed a capital raise for $632.5 million in support of Tongmei's Indium Phosphide capacity expansion as well as R&D investment in new products like 6-inch Indium Phosphide and other working capital needs. With our backlog of orders and customer forecast achieving record levels, we are laser-focused on adding capacity to support customer requirements. I'm pleased to report that we are running ahead of our plan to double our Indium Phosphide capacity this year from Q4 of 2025 levels. Our capability to scale up quickly is unique among our peers. Unlike our competitors, AXT designs and builds our own crystal growth furnaces, has our own supply of critical raw materials and has the manufacturing space in place to achieve our expansion goal this year.  As you can imagine, longer-term capacity planning is one of the most important discussions we're having today with customers and major supply chain players in our space. The message we are having for them is this. AXT is stepping up beyond our 2026 capacity expansion, we're planning to double our Indium Phosphide capacity again in 2027, with a new facility near our current one that we will be dedicated to Indium Phosphide wafer production.  Our 2028 planning is also underway, and we expect to expand again meaningfully. This is an industry in which scale matters. The barriers to entry are high even for most skilled manufacturers. As the market continues to grow, capacity has become a critical enabler. What we are hearing from the industry sources and echo from our customers is the expectation that the market for optical components will increase significantly in the coming years, driving a 4x to 6x increase in substrate market overall in the next three to five years, driven by both scale-out and scale-up applications.  Beyond pluggable transceivers, we are seeing a very large developing market for CPO, co-packaged optics. We are actively engaging in discussions with customers about their technical and timing requirements and believe this could represent another inflection point in our business beginning in late 2027 and beyond.  With this massive growth cycle ahead of us, we are actively working with a multitude of players from our direct customers to the end customers with whom we have not historically had direct relationships. We are there to understand their longer-term requirements and to align our growth and innovation plans accordingly. This will be a thoughtful and measured process, but we believe we are in a best position competitively to support and enable our industry in meeting its current and future needs. Over the last few quarters, the expansion of our Indium Phosphide customer base has been gratifying. We're now supporting nearly all leading customers in the optical space. This includes Tier 1 laser manufacturers and optical transceiver module makers, both around the globe and in China.  In alignment with our customers' technical requirements and roadmaps, we're making important progress on our 6-inch Indium Phosphide product for both iron doped and sulfur doped specifications. A significant part of our capacity expansion will be focused on 6-inch crystal growth technology to support the planned roadmap of 6-inch capability by our customers. We're excited to be able to demonstrate the technological advantage of our low EPD wafers as the market moves to optical devices with higher speeds and greater sophistication for both scale-up and scale-out applications.  Now turning to Q1. Export permits in our first quarter came in slightly better than our guidance and are off to a solid start in Q2. Gary will take you through our full guidance in a few minutes, but we're expecting to achieve sequential revenue growth in Q2, driven primarily by growth in Indium Phosphide. In fact, Q2 will be expected to be our largest quarter for Indium Phosphide in AXT's history. This derives from an Indium Phosphide backlog that has now reached a new high of over $100 million.  As we mentioned last quarter, customers are giving us more visibility into their expected demand and working closely with them in this supply-constrained environment to meet their need, as we continue to expand our capacity. From a geographic demand perspective, the massive AI infrastructure build-out and planned CapEx spending by cloud services and AI platform providers in the U.S. is the primary driver for EML and silicon photonics-based optical transceivers as well as high-speed photodetectors.  We believe that today, our material is being used in multiple U.S. hyperscalers. We expect that end customers' use will continue to broaden. We're also seeing significant growth in China, as China moves to accelerate its capability throughout the AI supply chain. Our revenue related to Indium Phosphide-based laser market in China more than doubled in Q1 from the prior quarter, and we expect them to double again in Q2. This highlights China's increasing investment in AI infrastructure supply chain for the global market. This is a great opportunity for AXT as there is no permit required to ship our product within China.  Turning to Gallium Arsenide. In Q1, demand for semiconducting wafers for industry robotics and data center lasers applications all held steady from the prior quarter. We continue to see demand for semi-insulating wafers for wireless RF devices and believe that we have a strong opportunity for market share expansion. However, this is gated primarily by our ability to obtain export license, which came in light in Q1.  Finally, our raw material business continue to be a crown jewel in our growth strategy. We're pleased to report that our subsidiary, JinMei, has begun to refine high-purity Indium, which gives us direct control of a guaranteed supply of another critical material for our Indium Phosphide substrates.  We're also investing to help JinMei expand its capability so that our AXT demand grows, JinMei will continue to provide a meaningful portion of our raw material requirements. Globally, there continues to be a greater awareness of the importance of earth materials, and we are decades ahead of the curve in developing our unique integrated supply chain. We continue to invest in our portfolio as we believe it's a major competitive differentiator.  In summary, we believe AXT is entering one of the most consequential chapters in our company's history. The investment we are making today in capacity, in technology and in our unique integrated supply chain positions us to meet the extraordinary demand we see building across the optical and AI infrastructure markets.  Our customer engagement is deepening our visibility, is improving and our competitive differentiation is strong. While we remain disciplined and thoughtful in our execution, we're confident that the groundwork laying out now will enable us for meaningful growth in the years to come.  With that, I turn the call back to Gary for our second quarter guidance. Gary?"
+  },
+  {
+   "paragraph_number": 5,
+   "speaker": "Gary Fischer",
+   "content": "Thank you, Morris. To reiterate a couple of key points from Morris's commentary, we are seeing a strong increase in our Indium Phosphide wafer demand related to AI and the ongoing data center upgrade cycle. Given the geopolitical complexity surrounding this market trend, our customer base is diversifying and expanding, and customers are placing longer-term orders and providing greater visibility into their needs.  With all of these positive market and AXT-specific growth drivers the most significant single factor to our growth in Q2 and beyond is the success and timing of getting export permits. Therefore, guiding for future revenue is somewhat tricky for us right now as we cannot predict future timing of permits or our success in obtaining them for any customer or individual order. But drawing on what we know and what we've experienced thus far in the export permitting process, we can offer the following insight into our expectations for Q2.  As of today, we have approximately $34 million in revenue that can be realized in Q2 across our substrate product lines and raw materials for which we either already have a permit to ship or for which an export permit is not required. We have a high degree of confidence in recognizing this revenue in Q2. We could see upside, even significant upside to this number in Q2, should we receive permits for additional orders for which we have the inventory to support. But we do not want to, but we do want to stress that the timing for permit issuance is not predictable nor in our control and doesn't align with our quarterly reporting.  We continue to focus on gross margin improvement. Further improvement depends on a number of factors, including total revenue as it relates to revenue mix by product, absorption of fixed costs and our ability to continue to drive better manufacturing efficiency.  With regards to OpEx, we expect that it will be approximately $9.3 million in Q2 on a non-GAAP basis and approximately $10 million on a GAAP basis. With these factors in mind, we expect to achieve profitability on both a GAAP and non-GAAP basis in Q2. We believe our non-GAAP net income will be in the range of $0.06 to $0.08, and our GAAP net income will be in the range of $0.05 to $0.07. We estimate share count for Q2 will be approximately 63.5 million shares.  Okay. This concludes our prepared comments. We'd be glad to answer your questions now. Tracy?"
+  },
+  {
+   "paragraph_number": 6,
+   "speaker": "Operator",
+   "content": "[Operator Instructions] Your first question comes from the line of Tim Savageaux with Northland Securities."
+  },
+  {
+   "paragraph_number": 7,
+   "speaker": "Timothy Savageaux",
+   "content": "Congrats on the step-up in backlog and the strong guidance for next quarter in Indium Phosphide. I guess my first question, you mentioned backlog and customer forecast at record levels, and we certainly saw that with $100 million in backlog. With regards to long-term capacity planning with customers, are you at the point of coming to any sort of long-term supply agreements with various customers? And if so, what's the kind of, what sort of timing might you'd expect on that?"
+  },
+  {
+   "paragraph_number": 8,
+   "speaker": "Gary Fischer",
+   "content": "Yes. Thanks, Tim. Yes, we are talking to a number of customers right now on long-term supply agreements as we build our capacity out and try and understand where their demand is going. Nearly all of the larger customers in this space are talking to long term, talking about long-term supply agreements with us. And we expect to come to resolution with some of those in the very near future."
+  },
+  {
+   "paragraph_number": 9,
+   "speaker": "Timothy Savageaux",
+   "content": "Great. And just following up on that, sorry, go ahead."
+  },
+  {
+   "paragraph_number": 10,
+   "speaker": "Gary Fischer",
+   "content": "No. I was just saying it's your turn now Tim."
+  },
+  {
+   "paragraph_number": 11,
+   "speaker": "Timothy Savageaux",
+   "content": "Okay. Just an update, you mentioned last quarter that you were developing some relationships with Tier 1 customers or Tier 1 suppliers who hadn't necessarily been close relationships or customers over time. I wonder if we can get an update on that. And I have one more follow-up after that."
+  },
+  {
+   "paragraph_number": 12,
+   "speaker": "Gary Fischer",
+   "content": "Yes. Thanks. That's going really well, actually. We've got qualification wafers in with a lot of customers, and we're finding paths and avenues to get wafers into a lot of these Tier 1 customers. We've, as we see this market grow, there's a lot of opportunity for us. And we've said in the past that we've really been focused on these next-generation technology products, that require high-quality material that, frankly, only AXT can build and can supply.  And of course, with emerging supply chain constraints with Indium Phosphide, we are in the strongest position to grow capacity. So, we're qualifying and we're supplying wafers to a lot of new Tier 1 customers in this field. So, it's exciting times for us."
+  },
+  {
+   "paragraph_number": 13,
+   "speaker": "Morris Young",
+   "content": "Yes. I want to add one point because I think Tim, you are the friend's soldier, you're talking to them. But from my perspective, I started to hear, let's say, three months ago was some of the Tier 1 customers. But now I'm starting to hear even add on to it, is the end hyperscalers we're hearing. In other words, the customers' customer, the end users are also interested in seeing how we develop the supply chain guarantee for their growth plan."
+  },
+  {
+   "paragraph_number": 14,
+   "speaker": "Timothy Bettles",
+   "content": "Yes, that's correct, Morris. That's a good point. So, there's been a lot of press releases out about long-term supply agreements into our customers from the hyperscalers and from the hardware companies. And there's been a lot of encouragement from those hyperscalers and hardware companies for their suppliers to enter into long-term supply agreements with AXT.  So that is actually driving a lot of the discussions, I think, that we're having on long-term supply agreements. And of course, it's given us a lot more visibility into what the market demands are at the hyperscaler side of things, and how that trickles down to demands for AXT. It also gives us a lot of visibility into technical demands as we move forward into high-end lasers and detectors in these new products."
+  },
+  {
+   "paragraph_number": 15,
+   "speaker": "Timothy Savageaux",
+   "content": "Great. And that makes sense and maybe somewhat related to those discussions. I'd be interested in an update on what you're seeing in terms of pricing for Indium Phosphide substrates."
+  },
+  {
+   "paragraph_number": 16,
+   "speaker": "Gary Fischer",
+   "content": "Yes, that's a good question. Again, thanks, Tim. So what we are doing is we are raising some of our prices. We're seeing some recent pricing increase in raw materials and specifically with Indium. So we're having conversations with our customers to align our costs and maintain gross margins, maintain or grow gross margins. We're also starting to globalize or we've been globalizing our pricing. Obviously, certain geographical regions have been more aggressive in the past on price targets, especially when we're looking at the lower-end markets such as GPON. So we're starting to globalize our markets so that it is more standardized across those geographical regions."
+  },
+  {
+   "paragraph_number": 17,
+   "speaker": "Morris Young",
+   "content": "Well, let me add on to that. I think, nevertheless, I think the pricing opportunity for us, I believe, is also the fact we're migrating more towards larger size. As you know, some of the smaller size, they are more traditional they are more price sensitive and they have more competitors who can fill that shoes. But when you get to 4-inch and 6-inch and then as well as higher specification requirement, then we can really demand that's where our product shines."
+  },
+  {
+   "paragraph_number": 18,
+   "speaker": "Operator",
+   "content": "Your next question comes from the line of Matt Bryson with Wedbush Securities."
+  },
+  {
+   "paragraph_number": 19,
+   "speaker": "Matthew Bryson",
+   "content": "Great results. I just wanted to hone in on the gross margins a bit. Obviously, you saw a pretty big uptick in Q1. I'm not quite getting to the peak you had in Q2, in Q2, I'm not quite getting the peak back in the COVID time frame, but I'm getting pretty close. I guess, could you talk a little bit about how much of that is higher utilization levels versus how much of it is increased pricing and whether my math is roughly accurate?"
+  },
+  {
+   "paragraph_number": 20,
+   "speaker": "Gary Fischer",
+   "content": "Well, for Q1, there is some that's a result of increased pricing, but it's the primary drivers are the traditional 2 drivers that we highlight. One is volume is up and the other is the mix is rich towards Indium Phosphide. As a matter of fact, if you look at it percentage-wise, Indium Phosphide was just a tad north over 50% of total revenue. So it's really helped in that. The pricing effects are being put in place, but we'll see them, we'll see the impact from your viewpoint, Matt, for your eyes, your eyes shall see that later this year."
+  },
+  {
+   "paragraph_number": 21,
+   "speaker": "Matthew Bryson",
+   "content": "Just Q2, Gary, if I said that the gross margins are coming in roughly around 40%. Is that in the ballpark? And again, can you just talk to how much that's mix versus utilization versus pricing?"
+  },
+  {
+   "paragraph_number": 22,
+   "speaker": "Gary Fischer",
+   "content": "Yes. I don't have your forecast in front of me, but I think that's too aggressive. And you know us, we like to take, be a little bit more conservative. So we're definitely going to be crossing the 30% threshold, which we said for several years, if we can get to $30 million in revenue and have a good mix, and we could be above 30% in gross margin. So, but I would. I think you're probably, it's up to you, but I'd encourage you to maybe knock that down a bit. We can talk about it maybe later. So, but having said that, we're both on the right direction. Gross margins should go up, and we feel very confident that they will. And how fast and what we calculate is to be determined. But all the indicators are exactly what I've been saying for many years now, and the mix is rich for Indium Phosphide and the volume is up. And so it's a unique sort of transition for us that's inside the company, we're very pleased, very pleased."
+  },
+  {
+   "paragraph_number": 23,
+   "speaker": "Morris Young",
+   "content": "Yes. I do want to add other point about this. I mean, obviously, Gary, you own the gross margin calculation. But I would argue the supply chain strategy will start to shine. I always say the AXT is like a choo-choo train with the locomotive. We're chugging along when we are accelerating all the box behind us, such as our JinMei, BoYu, which makes our crucibles, high-purity materials, et cetera, they all going to chug along with us. When we slow down, of course, they will crush against us. But right now, it's a good time. We're chugging along very strongly. So you're going to see their contribution to our ability to make profit will grow, too."
+  },
+  {
+   "paragraph_number": 24,
+   "speaker": "Matthew Bryson",
+   "content": "And then just my one follow-up is, I noticed going back to the last filing that you've got export licenses, I think, for every geography, except for the U.S. just any more thoughts on getting licenses for shipping in the U.S.? And how important is that in terms of being able to fully utilize that additional capacity you're bringing on?"
+  },
+  {
+   "paragraph_number": 25,
+   "speaker": "Morris Young",
+   "content": "I don't think we're giving up the United States. No. It's still pending."
+  },
+  {
+   "paragraph_number": 26,
+   "speaker": "Timothy Bettles",
+   "content": "Right. We're still Matt, we're still being encouraged to apply for export permits for U.S. customers, both in the U.S. and in other global regions. So at the moment, obviously, we're getting, are getting permits pretty readily for U.S. customers based in other global regions. But that as Morris said, that doesn't mean that we are completely stopping any work on trying to obtain permits for the U.S. We've been commented or we've been contacted by the Ministry of Commerce in China on a number of U.S. applications right now to submit more data that gives us an encouraging sign that they're still looking at U.S.-based permits, and there's still a possibility to get a permit for the U.S. in the near future. as I say. So we are definitely looking at that avenue.  And in the meantime, we are supplying wafers globally to other regions as well. So this is a very global supply chain, and it's a very global market. And I think we're taking advantage of all the avenues that we can."
+  },
+  {
+   "paragraph_number": 27,
+   "speaker": "Matthew Bryson",
+   "content": "Yes. And I didn't mean to intimate that you weren't getting, going to get a U.S. permit or were still working on it. I just want an update and that was an update."
+  },
+  {
+   "paragraph_number": 28,
+   "speaker": "Operator",
+   "content": "[Operator Instructions]. Your next question comes from the line of Charles Shi with Needham."
+  },
+  {
+   "paragraph_number": 29,
+   "speaker": "Charles Shi",
+   "content": "I want to ask you more about the capacity and the capacity build plan here. I think your last COVID high for Indium Phosphide quarterly record was $17.7 million. That was achieved in second quarter 2022. You're basically implying you're going to be at or above that level in this coming Q2. But I recall back in 2022, you probably also built above that 17.7 because back then, you thought you would have Indium Phosphide demand from the premium electronics company for smartphone applications. So, I want to ask you this, what's the max factory output for your existing factory today? How utilized is the existing factory? And what's the expected capacity factory output once you add the next 2 factories. I mean, I think that's something you talked about after the follow-on offering. And if you can provide any color on the numbers, that would be great."
+  },
+  {
+   "paragraph_number": 30,
+   "speaker": "Morris Young",
+   "content": "Yes. I usually take the last digit out. We usually say our highest Indium Phosphide revenue per quarter was $17 million. You have a very good memory, okay? And we did say in Q4, we said we have increased our capacity by about 25% in Q4 of 2025. And in 2026, we're going to double that, okay? So in my calculation, our own capacity planning, we think we're going to get about $35 million per quarter capability by the end of 2026. Okay? But don't forget, that's the end of 2026.  In other words, the capacity are increasing every month, every time as we talk about, look, I mean, in the next quarter, our Indium Phosphide revenue is going to be up and beyond the $17 million per quarter."
+  },
+  {
+   "paragraph_number": 31,
+   "speaker": "Gary Fischer",
+   "content": "Will be a new record."
+  },
+  {
+   "paragraph_number": 32,
+   "speaker": "Morris Young",
+   "content": "Will be a new record in Q2, okay? But the other capacity we also mentioned about is that we are acquiring other piece of land near our existing factory in Beijing right now, which is, we're in the process of negotiating buying the land and doing the design, and we're probably going to start building it. But because it's a greenfield, it will probably take us about a year, maybe 1.5 years to complete that expansion, okay? However, our capacity expansion is sort of in stages. For instance, our, sometimes the clean room is the most critical because if you don't have the clean room, you don't have no space to put in your machine. So that's very digital. And, but some of the crystal growth capacity is more incremental, okay? So right now, the clean room capacity is greater, much greater than our crystal growth capacity.  So as we speak now, we're increasing our capacity sort of gradually. So, but I think in the next year or so, once the greenfield is up for construction, then I think it would be more digital to expand our clean capacity. I mean, do you have anything to add, Tim?"
+  },
+  {
+   "paragraph_number": 33,
+   "speaker": "Timothy Bettles",
+   "content": "Yes. So I just want to add a little bit. Morris talked about doubling our capacity to a rate of $35 million per quarter in Indium Phosphide by the end of this year. Remember, that's in a brownfield site that was once a crystal growth facility used for Gallium Arsenide. And as we relocated gallium arsenide, we've been able to move into that. So we've been extremely fortunate that we're in a position, I think, that nobody else in the Indium Phosphide world is in that we can double our capacity so quickly.  Looking into the next growth, as Morris just mentioned, we are, we're acquiring a facility, which is right next door to us. Again, extremely fortunate., building is already there. And that allows us to double yet again. So by the time we've completed that expansion, which should be by the end of 2027, maybe early 2028, we should be at the region, of somewhere in the region of $65 million to $70 million of capacity per quarter. So that really takes us to the type of capacity that we're expecting to see in our existing locations.  And then as Morris mentioned again in his call or in his script, as we talked earlier, we're now looking at where we need to go from here. So we're looking at other opportunities and other ways to expand beyond that probably in a greenfield site somewhere else."
+  },
+  {
+   "paragraph_number": 34,
+   "speaker": "Morris Young",
+   "content": "Yes. And that's for 2028."
+  },
+  {
+   "paragraph_number": 35,
+   "speaker": "Timothy Bettles",
+   "content": "Correct."
+  },
+  {
+   "paragraph_number": 36,
+   "speaker": "Gary Fischer",
+   "content": "So let me be a bit more specific as sort of the detailed guide, but $17 million, which we've already achieved. By the end of this year, we'll be at $35 million."
+  },
+  {
+   "paragraph_number": 37,
+   "speaker": "Morris Young",
+   "content": "Per quarter."
+  },
+  {
+   "paragraph_number": 38,
+   "speaker": "Gary Fischer",
+   "content": "So that's times 4, $135, $140 million."
+  },
+  {
+   "paragraph_number": 39,
+   "speaker": "Morris Young",
+   "content": "Per quarter?"
+  },
+  {
+   "paragraph_number": 40,
+   "speaker": "Gary Fischer",
+   "content": "Per year. Yes. So we'll have that capacity at the end of 2026 to do $140 million."
+  },
+  {
+   "paragraph_number": 41,
+   "speaker": "Morris Young",
+   "content": "But you cannot do that because the capacity is continually increasing. You can't use that."
+  },
+  {
+   "paragraph_number": 42,
+   "speaker": "Gary Fischer",
+   "content": "It's analog. A year later, it will be $280 million. So it's double, double, double."
+  },
+  {
+   "paragraph_number": 43,
+   "speaker": "Charles Shi",
+   "content": "Maybe a follow-up on the capacity expansion, right? I think this is not like I come up with a question, but investors do ask this question. When you think about your capacity expansion, why can't you do the China plus 1 type of strategy like many companies in the global economic, electronic supply chain, like maybe you should continue to build in China, to satisfy China demand, but can you build outside of China, maybe to supply to the rest of the world?  And I know this is more, this is an easier step than done. There are policy reasons that may stop you from doing that. But is there anything you think from a business perspective that is preventing you from doing that and why?"
+  },
+  {
+   "paragraph_number": 44,
+   "speaker": "Timothy Bettles",
+   "content": "Well, there's certainly a lot of opportunity, both within China and outside of China for us to consider that. And as I said just now, we're looking to build more capacity in 2028 and beyond, which is going to be meaningful capacity expansion in 2028 and beyond. And as part of that plan, we are working closely with our customer base to understand the long-term requirements and aligning the plans globally, right?  So, our recent capital raise will be fundamental to expanding as we enter this next growth plan, which could include more capacity within China, potentially also with capacity outside of China."
+  },
+  {
+   "paragraph_number": 45,
+   "speaker": "Morris Young",
+   "content": "Yes. So, I do want to add one point. I know you don't want me to say this, okay? I tell you, important thing to answer to investors is that adding capacity versus able to deliver wafers is two different things. You're going to hear a lot of people who are going to say, I'm going to add capacity. Look, Indium Phosphide, I tell you, it's not easy. And one question a lot of investors are asking me is you're going to double your capacity, why don't you triple or quadruple. Our need is 10x. It's not easy."
+  },
+  {
+   "paragraph_number": 46,
+   "speaker": "Timothy Bettles",
+   "content": "Morris, that's a really good point. And that's really why our focus on the next two years has been focused on Beijing and increasing the capacity on our existing Beijing, Tongmei site. That is the minimum risk that we can absolutely take to get wafers out, not just to increase capacity."
+  },
+  {
+   "paragraph_number": 47,
+   "speaker": "Morris Young",
+   "content": "Well, not only that, it's also for the good of our customers. Their demand is so aggressive, the better way or the guaranteed way to satisfy that capacity and we're stretching, we're working very hard to answer their demand is to do now, okay? Do we have other plans? You bet. We do. We're stepping up, don't forget."
+  },
+  {
+   "paragraph_number": 48,
+   "speaker": "Charles Shi",
+   "content": "Yes. Thanks, Morris. Like I said, easier said than done. Just felt like that's a question so common that I have to ask. So maybe last question. You talked about 6-inch versus maybe 4-inch or below. What's the shipment or maybe shipment is a bad metric here. But what's in the backlog that you are seeing the mix between 6-inch and 4-inch or the low right now? And I want to get some thoughts around that. And if you can, also, we're kind of curious about the mix between Iron-doped and Sulfur-doped is for laser, the other is for photodetector. I want to get some thoughts on what's the mix expected mix within that $100 million plus backlog. That's the last question."
+  },
+  {
+   "paragraph_number": 49,
+   "speaker": "Morris Young",
+   "content": "So iron doped is coming up big time. we used to see about 10:1 in favor of sulfur doped prior to this. Right now, I would say the mix, especially the large diameter, it's almost like iron is 40%, 60%, correct, Tim?"
+  },
+  {
+   "paragraph_number": 50,
+   "speaker": "Timothy Bettles",
+   "content": "Yes. So when we look at backlog and we look at customer demand over the next few quarters into next year and beyond, what we can see is there's still a lot of 3-inch out there, specifically for the laser. So sulfur doped is still going strong on 3-inch. There is a transition to 4-inch on N-type material for the laser, whereas the high-speed detector, frankly, has pretty much all transitioned to 4-inch already. So we're seeing still a lot of 3-inch coming along, a lot of transitioning over to 4-inch. And as we look into the future, of course, 6-inch is incredibly important. And there's a lot of interest and a lot of opportunity out there for 6-inch.  But I'll say at this moment in time, a lot of the production that we're seeing and a lot of our capacity that we're seeing is still focused on the 3-inch and the 4-inch with a longer-term plan to transition to 6-inch within the next probably year or so."
+  },
+  {
+   "paragraph_number": 51,
+   "speaker": "Morris Young",
+   "content": "Yes. The signals are obviously very strong. A lot of customers are telling us, can we get more 4-inch, okay? And 6-inch is actually a little bit more out, but people are warning us it's coming, it's coming, okay? But 4-inch is real. And I would say the ratio for inch 3-inch and 6-inch right now is maybe 4:1 in favor of 3-inch. And I think going out in about 6 months to a year, it could be, I mean, as far as wafer number is concerned, it becomes probably 2:1 in favor of 3-inch. 3-inch is still the majority, the larger, the numbers. But because 4-inch is actually at a lower number right now, so it's going to grow very rapidly in the next coming quarters."
+  },
+  {
+   "paragraph_number": 52,
+   "speaker": "Operator",
+   "content": "Your next question comes from the line of Richard Shannon with Craig-Hallum."
+  },
+  {
+   "paragraph_number": 53,
+   "speaker": "Richard Shannon",
+   "content": "A couple of questions here. I'd love to understand how do we think about the CapEx requirements here for these capacity builds? You talked about a brownfield one this year that's doubling. And then a greenfield one, I think that's going to happen in '28 or maybe in '27, maybe going into '28 here that's more greenfield. Wonder if you could give us some numbers or at least some statistics to think about what that's going to require and over what period of time?"
+  },
+  {
+   "paragraph_number": 54,
+   "speaker": "Gary Fischer",
+   "content": "Well, for this year, it's mostly adding high-tech growth equipment for crystal growth. So furnaces, some back-end stuff for polishers. But as Tim and Morris have said, we have an existing footprint. That's one reason we think we have an advantage. Our current Indium Phosphide Crystal growth site has room for more furnaces. And as Tim explained, we're repurposing our gallium arsenide crystal growth that was in Beijing for even more. So this year, it's compared to the future years, it's probably going to be $35 million in CapEx, maybe $30 million, maybe $40 million, somewhere in that range. And to be honest, we'll spend as much as we can, as fast as we can because we're uniquely positioned to be able to add capacity quickly. So next year. Let's see. I think as we, it's depending on which things we're talking about. Tim, do you want to, you've got split up in your paperwork there, but."
+  },
+  {
+   "paragraph_number": 55,
+   "speaker": "Timothy Bettles",
+   "content": "Yes. I think as we go into next year and we look at building out this facility next door to us, obviously, buying a new facility, doubling our capacity again there and also building some capacity through our supply chains as well. I think we're looking somewhere in the region of about $100 million or so. And then beyond that, if we were to build a greenfield site somewhere else, I think we're looking at somewhere in the region of $220 million to $250 million, depending on obviously what capacity we put in that greenfield site. But again, I think if we're putting a meaningful capacity there, you're looking at $200-plus million."
+  },
+  {
+   "paragraph_number": 56,
+   "speaker": "Richard Shannon",
+   "content": "Fair enough. I want to ask on your Indium Phosphide business here by geography. You made a couple of interesting comments here. Last call, you said China was going to grow about 60% this first quarter, and then you said it actually was up 100%, if I caught you correctly, it's going to double again here in the second quarter. What kind of percentage of Indium Phosphide business in the second quarter is China going to be?"
+  },
+  {
+   "paragraph_number": 57,
+   "speaker": "Timothy Bettles",
+   "content": "That's a great question. So I think we're seeing a lot of growth in China, and it's not just because we're seeing data center growth in China, but we're seeing China enter the global supply chain market for optical transceivers and potentially co-packaged optics as we go forward. So again, remember, this is fully globalized and a lot of those transceiver companies that manufacture their transceivers within China are driving to a Chinese supply chain of laser diodes and photodetectors. So in Q2, we estimate that the Chinese demand is probably about 30% of the overall Indium Phosphide global market demand that we're seeing. And we're seeing that increasing through, certainly through Q3 and Q4 as well. So as we get into Q4, it could even be as high as something pushing up to 40% share of the total Indium Phosphide market."
+  },
+  {
+   "paragraph_number": 58,
+   "speaker": "Richard Shannon",
+   "content": "That is helpful, Tim. And I'll ask one last question and jump out of line here, and that's on the topic of gross margins. Gary, you've talked about in the past here, with hoping to get to 35% with kind of an upside goal of looking at 40%. But when you're talking about the pretty strong mix shift towards Indium Phosphide here and even about price increases here, I would imagine you maybe help us think about whether that could go higher at some point in time. I'm not asking for anytime soon, but are you looking for kind of a ceiling of gross margins that get us above that 40% level?"
+  },
+  {
+   "paragraph_number": 59,
+   "speaker": "Gary Fischer",
+   "content": "Well, internally, as a management team, we're definitely going to be targeting something that begins at the 4%, but it's far out. We don't know yet. And so, I'd still stick with my sense that somewhere in the 35% range is very, very reasonable. But that's for the outside world. It's a safe arrival landing point. But that doesn't mean that we're satisfied with it, and we think we can do better, but let's, we need to get it further down the road and prove that first."
+  },
+  {
+   "paragraph_number": 60,
+   "speaker": "Operator",
+   "content": "There are no further questions at this time. I will now turn the call back to Leslie Green, Investor Relations at AXT for closing remarks."
+  },
+  {
+   "paragraph_number": 61,
+   "speaker": "Leslie Green",
+   "content": "Thank you, Tracy, and thank you all for participating in our conference call. We will be participating in the B. Riley Securities 2026 Annual Investor Conference and the Craig-Hallum Institutional Conference in May as well as the Northland Virtual Conference in June. We hope to see many of you there. And as always, feel free to contact us if you'd like to set up a call. We look forward to speaking with you all in the near future. Thanks."
+  },
+  {
+   "paragraph_number": 62,
+   "speaker": "Operator",
+   "content": "This concludes today's call. Thank you for attending. You may now disconnect."
+  }
+ ]
+}

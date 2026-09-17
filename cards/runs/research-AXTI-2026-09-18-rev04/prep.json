@@ -1,0 +1,59 @@
+{
+ "previous_version_id": "rv-0fc78d5502baf4e3ca557b8850b98b7b25c8a3b782a645a87738d5c66d51eb9c",
+ "previous_research_id": "res-34e485beb41e6474e43b1392e8548302a5a2305ed3ef9a841eddc1305ae57973",
+ "old_packet_id": "packet-c42e5d6a7ee6b835c1622c8b313a552f2eb655ab1a9b649c2112ac0565a9dc99",
+ "new_packet_id": "packet-ca295016215a6f738ebbc8e90af0a680895864d666508f5ce0f9b74f771de43c",
+ "as_of": "2026-09-16T12:00:54Z",
+ "chart_as_of": "2026-09-16T03:59:00Z",
+ "evidence_count": 90,
+ "diagnostic_count": 10,
+ "supplement_pending": 8,
+ "prices_refresh": {
+  "added": [
+   "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+   "ev-79e169234b16601277de9649d9aef6e2e76a041e1bc18ea1a415647316f6db68",
+   "ev-7c5e5e6d72c6e62e4cdfcc98ce94dc80fcefe48e03cbbc45b868f525cddb820e"
+  ],
+  "changed": [
+   "ev-22a6cdc74281946e8e4f262dfdd70d0646911c6920473c0f8a05f2b19e754b83"
+  ],
+  "unchanged": [],
+  "failed": []
+ },
+ "charts": [
+  {
+   "artifact_id": "cha-f57d4ff70188b841ef7811e9eb01760b48ba42797b7a8bad70e71e1de672aa33",
+   "view": "M",
+   "bars_as_of": "2026-09-16T03:59:00Z"
+  },
+  {
+   "artifact_id": "cha-a6a78a98c86368c136c7ac0db0880573acbbfedf82208b65451eb39bb22cb7cf",
+   "view": "W",
+   "bars_as_of": "2026-09-16T03:59:00Z"
+  },
+  {
+   "artifact_id": "cha-18847f55103eb63e0ab696d4ba18c42ed2acf7bebdce6a1180710b87d959d722",
+   "view": "D",
+   "bars_as_of": "2026-09-16T03:59:00Z"
+  },
+  {
+   "artifact_id": "cha-900a45cca0598959c7d5bd6f1734ba51b7eb3797ef4aa032b499cfcf8c93d15b",
+   "view": "DR",
+   "bars_as_of": "2026-09-16T03:59:00Z"
+  }
+ ],
+ "derived_keys": [
+  "artifacts",
+  "charts_version",
+  "daily",
+  "data_as_of",
+  "files",
+  "note",
+  "parameters",
+  "params_digest",
+  "source",
+  "views"
+ ],
+ "protocol_digest": "d1cb2b0cd9b01a3cb2a43227b0714bcc5a5a8f5bc4d9539ef968c5c8130b2b0d",
+ "task_dir": "C:\\Users\\Kaho\\AppData\\Local\\Temp\\claude\\C--projects-Karst\\d2e5d32d-fb0a-455e-a4f0-b5414e1a7c69\\scratchpad\\rev-axti\\task"
+}

@@ -1,0 +1,61 @@
+{
+ "previous_version_id": "rv-f9347224828bcef7d3ecdc72bedd8abb020b7885923b70abbcd0acf5e2c603dd",
+ "previous_research_id": "res-c360d7703160045fb8480233809f6e18b8e28f00ef543e2f2d2117a2e3a5f7cb",
+ "old_packet_id": "packet-fdfbac9426ffac0a760e0af2a0c85786c0781854c31498bedd589c1bfb348d47",
+ "new_packet_id": "packet-74198ba74901953717b28c3d9f77931244b8c5becbe6b55536df027c5ad57751",
+ "as_of": "2026-09-16T19:40:06Z",
+ "chart_as_of": "2026-09-16T19:40:06Z",
+ "evidence_count": 60,
+ "diagnostic_count": 6,
+ "supplement_pending": 8,
+ "prices_refresh": {
+  "added": [
+   "ev-ce70af55d9852d048fe333be0952681c6c4507c4997e660e5b176f2ca22ac9b6"
+  ],
+  "changed": [
+   "ev-5af5c35bbc1d678a08c319329f43ccf5932db81a633a310dc8ce8e1e89bfb8fa",
+   "ev-d00b2fe7c7522b31dbc30b56e5b72db3738fc50a7d73658e9907b4b68c768c1a"
+  ],
+  "unchanged": [
+   "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5"
+  ],
+  "failed": []
+ },
+ "charts": [
+  {
+   "artifact_id": "cha-69cce32a25b311f06f3495fd07e7292ab04c06728e2b2f5a3969ef2f3be4d1e3",
+   "view": "M",
+   "bars_as_of": "2026-09-16T19:40:06Z"
+  },
+  {
+   "artifact_id": "cha-486612bfc5dd12ea43a2e54a9ba5eb49f231413799e6209aa49727d0e3b8b66a",
+   "view": "W",
+   "bars_as_of": "2026-09-16T19:40:06Z"
+  },
+  {
+   "artifact_id": "cha-afccb72a8e66991fe5bf7167b0dbd791988142d84f0c79be2f6dedf33bb4c48e",
+   "view": "D",
+   "bars_as_of": "2026-09-16T19:40:06Z"
+  },
+  {
+   "artifact_id": "cha-f035bd54123fabe5ee0e3f925cf4bbf0fe2e57f38875621aacde88f7005e7107",
+   "view": "DR",
+   "bars_as_of": "2026-09-16T19:40:06Z"
+  }
+ ],
+ "derived_keys": [
+  "artifacts",
+  "charts_version",
+  "daily",
+  "data_as_of",
+  "files",
+  "note",
+  "parameters",
+  "params_digest",
+  "source",
+  "views"
+ ],
+ "protocol_digest": "d1cb2b0cd9b01a3cb2a43227b0714bcc5a5a8f5bc4d9539ef968c5c8130b2b0d",
+ "task_dir": "C:\\Users\\Kaho\\AppData\\Local\\Temp\\claude\\C--projects-Karst\\d2e5d32d-fb0a-455e-a4f0-b5414e1a7c69\\scratchpad\\rev-be\\task",
+ "chart_restage_note": "first staging cut charts at 2026-09-16T23:59:59Z (after packet as_of); re-rendered at packet as_of 2026-09-16T19:40:06Z; old files ['daily-e94b39d911eb.png', 'daily_recent-297c50c378f8.png', 'derived.json', 'monthly-32fa7e369c31.png', 'weekly-327fb5144367.png']"
+}
