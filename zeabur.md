@@ -26,8 +26,8 @@
 | `LONGPORT_APP_SECRET` | 同上 | 同上 |
 | `LONGPORT_ACCESS_TOKEN` | 同上(會過期,要定期換) | 同上 |
 | `KARST_EDGAR_USER_AGENT` | EDGAR 要求的 `<名字 email>` | EDGAR 拒絕回應 |
-| `ANTHROPIC_API_KEY` | 自動覆核 adapter(Anthropic) | 自動覆核明確拒絕,不假裝已接通 |
-| `OPENAI_API_KEY` | 自動覆核 adapter(OpenAI) | 同上 |
+| `ANTHROPIC_API_KEY` | **可選。** 只供 `request_review` 的自動模式(服務自己呼叫模型 API 做覆核,無人值守)。第一版是手動互評——覆核由 ChatGPT 或 Claude Code 客戶端的模型做、經 MCP 寫回——服務端不呼叫任何 LLM,不填即可 | 自動模式明確拒絕,不假裝已接通;手動互評不受影響 |
+| `OPENAI_API_KEY` | 同上(OpenAI adapter) | 同上 |
 
 Token 換值 = 改這個變數再重啟,不用改程式;兩端的連接器要同步更新。
 
