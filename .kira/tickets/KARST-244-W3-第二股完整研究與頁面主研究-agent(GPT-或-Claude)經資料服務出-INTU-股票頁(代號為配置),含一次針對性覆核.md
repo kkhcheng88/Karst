@@ -26,3 +26,6 @@ deliverable: KARST-D12
 ## 結果
 
 ## 留言
+
+### agent:Fable主腦 · 2026-09-17 22:11
+2026-09-17 W3 形態先行樣本(用戶指定 BE,INTU 仍為本票預設):BE 首次研究經 W2 路徑全程運行——取數 66 份登記 → 單一主研究者(Opus)首版一次收件通過(補查自動登記)→ request_review 互動模式、覆核者判 challenges_research(6 條挑戰)→ 主研究者修訂、第二版收件(previous 對上、首版 superseded)→ 由已登記日線畫圖出頁 → verify 通過,公司資料室頁生成。結論:負面/避開;內在價值 15.65/50.37/98.64 對 265.29;覆核抓出終值口徑錯(非 GAAP 當 GAAP)令基準由 65 降至 50。成本約 77 萬 token、約 65 分鐘。發布 cards/releases/pub-8fc7e6c5…(指回 pub-15c257ec…);紀錄 cards/runs/research-BE-2026-09-17/紀錄.md。修一處:service._register_requests 允許研究者改寫自己仍 pending 的請求。INTU 待 W2 部署後由 GPT 端或 Claude 端跑。
