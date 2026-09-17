@@ -1,4 +1,4 @@
-# 四份契約 · 0.2.0（現行 0.3.0）
+# 四份契約 · 0.2.0（現行 0.4.0）
 
 D-183 的現行程式正本是 `v0_2/*.schema.json`，使用 JSON Schema Draft 2020-12。Python 與本地 adapter 共用同一份定義；不要另抄一份欄位清單作第二正本。`v0_1/` 保留原樣，舊 bundle 仍可讀，schema hash 按實際版本記錄。此次按 PR #1 第二輪真實样本回饋擴充，完整真實 bundle 仍待本地驗收。
 
@@ -26,6 +26,24 @@ D-183 的現行程式正本是 `v0_2/*.schema.json`，使用 JSON Schema Draft 2
 其餘規則不變：引用仍要 `evidence_id` 加非空 `locator`，行號範圍照核；`derived.data_as_of` 與 K 線一樣不得晚於 packet cutoff；發布時傳入的臨時陣列同樣受 cutoff 檢查，**不能把較新的價格靜靜混進較舊的計劃**。0.3 發布只複製被引用（各層 `read_evidence_ids` 及所有引用）的原始 bytes，`evidence.json` 仍保留全部登記作索引；未複製原文的來源在頁上照列版本與 SHA256，但不給死連結。0.2 發布路徑照舊複製全部原始檔。
 
 Renderer 升至 0.3.0、calculator 升至 0.2.0（行為已改：無陣列時不畫空圖、只在有陣列時計 SMA200／轉折）。同一份舊 bundle 重新發布會因此得到新的 publication ID，這是版本規則要求的結果，已發布目錄本身不受影響。
+
+## 0.4.0：估值方法分派（KARST-247）
+
+`v0_4/` 由 `v0_3/` 複製，**只改 research 的 `valuation` 一段**，evidence、packet、publication 三份除版本字串外一字不動；`v0_3/`、`v0_2/`、`v0_1/` 原樣保留，舊 bundle 與舊發布照讀照驗。`karst/schema.py` 仍按每份物件自己的 `contract_version` 選目錄；`agents.research.intake` 預設出 0.4，遇 0.3 的 packet 就按 0.3 收件（`SUPPORTED`）。
+
+| 物件 | 0.3.0 | 0.4.0 | 為什麼 |
+|---|---|---|---|
+| research | `scenarios[].calculation` 固定是年度期末 `fcff_dcf` 一種形狀 | `$defs/calculation` 是帶 `method` 判別的 oneOf：`fcff_dcf`（**原意不變**）、`fcff_dcf_dated`、`forward_pe`、`ev_multiple`、`sotp` | 生意的經濟結構決定方法；把倍數或不規則時點塞進 `fcff_dcf` 只會令同一個欄位有兩種意思 |
+| research | 無 | 每個 calculation 帶 `scale`（absolute／thousands／millions） | 尺度由輸入宣告；金額與股數同一尺度，每股值不因尺度改變，回傳金額一律絕對單位。0.3 沒有這個欄位＝absolute |
+| research | 資本項散在 `cash`／`debt`／`other_claims` 三格 | `$defs/bridge`：現金、非經營資產、債務、少數股東、可贖回權益、`convertibles_dilution`（可為 null 但必須在 `unsupported_claims` 寫明缺口）、攤薄股數、`sbc_treatment{basis, note}` | 「其他索償」把少數股東、可轉債與贖回權壓成一格，看不出漏了哪一樣；SBC 要講明在哪一邊入帳才知道有沒有雙扣 |
+| research | 無 | `forward_pe` 只有 `equity{diluted_shares, sbc_treatment}`，**schema 不容許它帶 bridge**；`ev_multiple` 反之 | 股權倍數的現金與債務已在盈利與股數之內，再加企業橋接就是雙計；兩邊各自宣告 `multiple_basis` |
+| research | 無 | `scenarios[].drivers[]`：名稱、期間、單位、值、`input_path`、引用 | 經營假設要指得出它餵哪一個計算輸入，改一項才追得到每股結果 |
+| research | `alternative_view` 是 statement | statement ＋ 可為 null 的 `calculation` | 替代視角可以真的算一次，不只是一句話 |
+| research | 無 | `sensitivities[]`（情境、改哪些 `input_path`、回執）與 `implied`（情境、目標價、求解變數、邊界、固定假設、`outcome`、值、回執），兩者皆可為空／null | 敏感度與反推要對得到它所屬的情境；`status != calculated` 時兩格必須是空與 null |
+
+回執欄 `receipt{calculator_version, method, inputs_digest, outputs}` 存的是模型當時呼叫計算工具所得。**發布時程式一律重算**，並比對 `inputs_digest` 與每股值；對不上的在頁上標明並只採用重算值。`packet.check_research` 另外擋「敏感度或反推指向一個沒有 calculation 的情境」。
+
+Renderer 升至 0.4.0（估值段按方法分別展示計算依據、driver、敏感度表與反推）、calculator 升至 0.3.0（方法分派、尺度、敏感度與反推）。舊 bundle 重新發布因此得到新的 publication ID；已發布目錄不受影響，`verify_release` 結果不變。0.2／0.3 的 `fcff_dcf` 算式與數值一字未改——五個既有發布用新計算器重算，每股值與原紀錄完全相同。
 
 ## 0.2 接線與迁移
 
@@ -96,7 +114,7 @@ research 必須引用補查完成後的精確 packet ID，不能拿上一包的�
 
 `research.mode` 支援 `synthetic_demo`、`integration_example` 和 `offline_replay`；前兩者分別是合成資料與真實資料接線示例。後者代表傳入已保存的研究，實際 provider/model/prompt 由 `models` 留存。真實即時執行記錄及模式在 KARST-240 與本地一起接入，不能先填假的模型執行紀錄。
 
-FCFF DCF 的 cashflows 是自 valuation_date 起每個**完整年度年末**的企業自由現金流，以同一幣別的絕對金額輸入；不是已折現值、不是 equity cashflow、不是「百萬」而未乘單位。股數為絕對攤薄股數；cash 及各種索償為同一估值日金額。年中折現、短首期、多幣別與不同會計模型不在這版。折現率須高於永續增長，終年 FCFF 須可正值正常化；不能以永續模型掩蓋缺少可終值的生意。
+FCFF DCF 的 cashflows 是自 valuation_date 起每個**完整年度年末**的企業自由現金流，以同一幣別的絕對金額輸入；不是已折現值、不是 equity cashflow、不是「百萬」而未乘單位。股數為絕對攤薄股數；cash 及各種索償為同一估值日金額。年中折現、短首期、多幣別與不同會計模型不在這版。折現率須高於永續增長，終年 FCFF 須可正值正常化；不能以永續模型掩蓋缺少可終值的生意。**0.4 起**：期中折現、首期 stub、前瞻 P/E、EV 倍數與 SOTP 各有自己的 method（見上節），`fcff_dcf` 的意義不變；多幣別仍不在這版。
 
 三情境分別計算，沒有先驗勝率；基準內在價值不是上下界平均。`target_prices` 是到 `target_date` 的獨立價格假設，需要解釋估值到市場定價的橋接。`plan.target_price` 是該計劃採用的退出目標，未必等於基準估值；必須在 execution_rule 解釋。R&R 按每股成本、預期分派、條件入場與退出價計算，沒有風險預算或私人淨值。
 

@@ -12,17 +12,20 @@ import sys
 
 from ...fetch.common import load_env_file
 from ...schema import ContractError
-from . import TOOLS, run_task
+from . import run_task, tools_for
 
 PROVIDER = "anthropic"
 API_KEY_ENV = "ANTHROPIC_API_KEY"
-API_TOOLS = [{"name": tool["name"], "description": tool["description"],
-              "input_schema": tool["schema"]} for tool in TOOLS]
+
+
+def api_tools(task):
+    return [{"name": tool["name"], "description": tool["description"],
+             "input_schema": tool["schema"]} for tool in tools_for(task)]
 
 
 def request(task, messages, model, budget):
     return {"model": model, "max_tokens": int(budget["max_output_tokens"]),
-            "system": task["prompt"], "tools": API_TOOLS, "messages": messages}
+            "system": task["prompt"], "tools": api_tools(task), "messages": messages}
 
 
 def parse(response):
@@ -41,11 +44,22 @@ def parse(response):
     }
 
 
+def _content(result):
+    """A tool result's content. An image goes back as a real image block inside the
+    tool_result — the model sees the picture, not a path it could only pretend to read."""
+    if not result.get("image"):
+        return result["content"]
+    return [{"type": "text", "text": result["content"]},
+            {"type": "image", "source": {"type": "base64",
+                                         "media_type": result["image"]["media_type"],
+                                         "data": result["image"]["data"]}}]
+
+
 def append(messages, turn, results):
     return messages + [
         {"role": "assistant", "content": turn["raw"]},
         {"role": "user", "content": [{"type": "tool_result", "tool_use_id": result["id"],
-                                      "content": result["content"],
+                                      "content": _content(result),
                                       "is_error": result["is_error"]} for result in results]},
     ]
 

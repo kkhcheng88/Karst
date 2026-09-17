@@ -27,7 +27,7 @@ def _result_schema():
         "$ref": contracts["evidence"]["$id"] + "#/$defs/citation"}}
     result = {
         "$schema": contracts["research"]["$schema"],
-        "title": "Karst review result 0.3.0",
+        "title": f"Karst review result {CONTRACT}",
         "type": "object", "additionalProperties": False,
         "properties": {
             "research_id": copy.deepcopy(contracts["research"]["properties"]["research_id"]),

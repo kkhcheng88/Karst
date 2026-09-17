@@ -1,16 +1,21 @@
-"""API execution of a staged task: shared turn loop, local evidence tools, usage record.
+"""API execution of a staged task: shared turn loop, local task tools, usage record.
 
 The provider modules own the wire format (``request`` / ``parse`` / ``append``); this
-module owns the loop, the budget, the two local tools and the schema check. A
-``transport`` is always injectable, so a test never touches a network, and the two
-tools are executed here, against the task directory only — the model gets no other
-file access, no bundle and no repo.
+module owns the loop, the budget, the local tools and the schema check. A
+``transport`` is always injectable, so a test never touches a network, and the tools
+are executed here, against the task directory only — the model gets no other file
+access, no bundle and no repo.
+
+A chart read here is a real image on the wire (an Anthropic tool_result image block,
+an OpenAI ``input_image``), not a filename the model then claims to have looked at;
+which image, which version and which period went out is recorded in the run.
 
 Credentials are named by environment variable in the provider modules and are never
 written into a task, a result or a usage record.
 """
 from __future__ import annotations
 
+import base64
 import json
 from pathlib import Path
 
@@ -18,7 +23,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 from ...fetch.common import utc_now
 from ...packet import confined, read_json
-from ...schema import ContractError
+from ...schema import ContractError, digest
 
 BUDGET_KEYS = ("max_output_tokens", "max_cost_usd", "max_turns", "max_input_tokens")
 DEFAULT_BUDGET = {"max_output_tokens": 16000, "max_cost_usd": None,
@@ -39,7 +44,28 @@ TOOLS = (
                                "offset": {"type": "integer", "minimum": 0},
                                "limit": {"type": "integer", "minimum": 1}},
                 "required": ["evidence_id"]}},
+    {"name": "read_chart",
+     "description": "按 artifact_id 開啟本任務已登記的圖(PNG),回真正圖像內容供視覺判讀;"
+                    "清單在 input.json 的 charts.artifacts,精確數字在 charts/derived.json。",
+     "schema": {"type": "object", "additionalProperties": False,
+                "properties": {"artifact_id": {"type": "string"}},
+                "required": ["artifact_id"]}},
+    {"name": "calculate",
+     "description": "確定性計算(估值、敏感度、反推、SMA、關鍵位、R&R),回輸入回執與計算器版本;"
+                    "方法與 params 形狀見任務提示詞,算式不由你重寫。",
+     "schema": {"type": "object", "additionalProperties": False,
+                "properties": {"method": {"type": "string"}, "params": {"type": "object"}},
+                "required": ["method", "params"]}},
 )
+# A tool that cannot do anything for this task is not offered: a task with no charts
+# staged would otherwise advertise a reading the worker can never actually make.
+CHART_TOOL = "read_chart"
+
+
+def tools_for(task):
+    """The tools this particular task can honestly offer."""
+    charts = (task["input"].get("charts") or {}).get("artifacts")
+    return [tool for tool in TOOLS if tool["name"] != CHART_TOOL or charts]
 
 
 class ResultUnknown(ContractError):
@@ -82,11 +108,13 @@ def load_task(task_dir):
 
 
 class TaskEvidence:
-    """The two tools, executed locally over ONE task directory. No bundle, no network."""
+    """The tools, executed locally over ONE task directory. No bundle, no network."""
 
     def __init__(self, task_dir):
         self.root = Path(task_dir)
-        self.records = load_task(task_dir)["input"]["evidence"]
+        staged = load_task(task_dir)["input"]
+        self.records = staged["evidence"]
+        self.charts = (staged.get("charts") or {}).get("artifacts") or []
 
     def _lines(self, record):
         data = confined(self.root, record["artifact"]["path"]).read_bytes()
@@ -125,6 +153,29 @@ class TaskEvidence:
                 "has_more": offset + len(window) < len(lines),
                 "text": "\n".join(window)}
 
+    def chart(self, artifact_id):
+        """One staged chart as real image bytes, checked against its registered hash.
+
+        The image travels in ``image``; the caller lifts it out and puts it on the
+        wire in the provider's own image format. What stays in the text is identity:
+        which artifact, which period, which cutoff, which source series.
+        """
+        artifact = next((c for c in self.charts if c["artifact_id"] == artifact_id), None)
+        if artifact is None:
+            raise ContractError(
+                f"Chart is not staged with this task: {artifact_id}. Staged charts: "
+                + ", ".join(f'{c["view"]}={c["artifact_id"]}' for c in self.charts))
+        data = confined(self.root, artifact["path"]).read_bytes()
+        if len(data) != artifact["bytes"] or digest(data) != artifact["sha256"]:
+            raise ContractError(f"Staged chart {artifact_id} does not match its registered hash")
+        identity = {key: artifact.get(key) for key in
+                    ("artifact_id", "view", "label", "period", "bars_as_of", "drawn_from",
+                     "drawn_to", "sha256", "bytes", "source_evidence_id")}
+        return identity | {"note": "圖已送出;精確數字讀 charts/derived.json。",
+                           "image": {"media_type": artifact.get("media_type", "image/png"),
+                                     "data": base64.b64encode(data).decode("ascii"),
+                                     "identity": identity}}
+
     def call(self, name, arguments):
         arguments = arguments or {}
         if name == "list_evidence":
@@ -132,17 +183,29 @@ class TaskEvidence:
         if name == "read_evidence":
             return self.read(arguments.get("evidence_id"), arguments.get("offset", 0),
                              arguments.get("limit", 200))
+        if name == "read_chart":
+            return self.chart(arguments.get("artifact_id"))
+        if name == "calculate":
+            from ...service import calculate_tool  # noqa: PLC0415 - one calculator, on use
+
+            return calculate_tool(arguments)
         raise ContractError(f"Unknown tool: {name}")
 
 
 def opening(task):
-    """The one user message: the task input plus what the two tools do and what to return."""
+    """The one user message: the task input plus what the tools do and what to return."""
+    tools = [tool["name"] for tool in tools_for(task)]
+    charts = ("read_chart(artifact_id) 開圖,回真正圖像;input.json 的 charts.artifacts 列出"
+              "各週期的 artifact_id,視覺判讀前必須實際開啟,精確數字仍讀 charts/derived.json。"
+              if CHART_TOOL in tools else
+              "本任務沒有圖像,視覺判讀請寫明未完成,不要從數字倒推圖形。")
     return "\n\n".join([
         "# 任務輸入(input.json)",
         json.dumps(task["input"], ensure_ascii=False, indent=1),
         "# 可用工具",
-        "list_evidence() 列出本任務的來源;read_evidence(evidence_id, offset, limit) 按行讀原文。"
-        "只有這兩個工具,只讀本任務目錄內已登記的來源;沒有其他檔案、網絡或帳戶入口。"
+        "list_evidence() 列出本任務的來源;read_evidence(evidence_id, offset, limit) 按行讀原文;"
+        "calculate(method, params) 做確定性計算。" + charts
+        + "只有這幾個工具,只讀本任務目錄內已登記的來源;沒有其他檔案、網絡或帳戶入口。"
         "引用時用 read_evidence 回的 L<起>-L<迄> 定位。",
         "# 輸出",
         "讀完所需原文後,最後一則訊息只輸出一個 JSON 物件,符合以下 schema,不要加說明文字:",
@@ -169,22 +232,28 @@ def parse_result(text, schema):
 
 
 def _tool_results(evidence, calls):
+    """Run the calls locally. An ``image`` in a result is lifted out of the text and
+    handed to the provider module, which puts it on the wire as image content."""
     results = []
     for call in calls:
         try:
             content = evidence.call(call["name"], call["input"])
             failed = False
-        except (ContractError, KeyError, TypeError, OSError) as exc:
+        except (ContractError, KeyError, TypeError, ValueError, OSError) as exc:
             content, failed = {"error": f"{type(exc).__name__}: {exc}"}, True
+        image = content.pop("image", None) if isinstance(content, dict) else None
         results.append({"id": call["id"], "name": call["name"], "is_error": failed,
-                        "content": json.dumps(content, ensure_ascii=False)})
+                        "content": json.dumps(content, ensure_ascii=False, default=str),
+                        "image": image})
     return results
 
 
 def run_task(wire, task_dir, model, budget=None, *, transport):
     """Drive one staged task to a validated result.
 
-    Returns {provider, model_id, execution, budget, usage, result}. Raises
+    Returns {provider, model_id, execution, budget, usage, images_sent, result}.
+    ``images_sent`` is the record of which chart, in which version and for which
+    period actually went to the model — a PNG in a directory proves nothing. Raises
     ``ResultUnknown`` when a request was sent and its outcome is unknown, and a plain
     ``ContractError`` when nothing was sent or the returned result does not hold up.
     """
@@ -196,8 +265,8 @@ def run_task(wire, task_dir, model, budget=None, *, transport):
     started = utc_now()
     messages = [{"role": "user", "content": opening(task)}]
     totals = {"input_tokens": 0, "cached_input_tokens": 0, "output_tokens": 0}
-    request_id, turn = None, None
-    for _ in range(int(budget["max_turns"])):
+    images, request_id, turn = [], None, None
+    for index in range(int(budget["max_turns"])):
         request = wire.request(task, messages, model, budget)
         try:
             response = transport(request)
@@ -215,12 +284,23 @@ def run_task(wire, task_dir, model, budget=None, *, transport):
                 f"{budget['max_input_tokens']}); no result was produced")
         if not turn["calls"]:
             break
-        messages = wire.append(messages, turn, _tool_results(evidence, turn["calls"]))
+        results = _tool_results(evidence, turn["calls"])
+        images += [dict(result["image"]["identity"], turn=index + 1, sent_at=utc_now())
+                   for result in results if result.get("image")]
+        messages = wire.append(messages, turn, results)
     else:
         raise ContractError(f"Turn limit reached ({budget['max_turns']}) before a result "
                             "was returned; raise max_turns or narrow the task")
+    # The task keeps its own record of what was actually put in front of the model.
+    # An empty list means the run saw no image, which is different from never running.
+    try:
+        (Path(task_dir) / "images_sent.json").write_text(
+            json.dumps({"provider": wire.PROVIDER, "model_id": model, "images": images},
+                       ensure_ascii=False, indent=1), encoding="utf-8")
+    except OSError:  # a paid run is not failed by a record that could not be written
+        pass
     return {"provider": wire.PROVIDER, "model_id": model, "execution": "api",
-            "budget": budget,
+            "budget": budget, "images_sent": images,
             "usage": usage_record({**totals, "request_id": request_id, "started_at": started,
                                    "finished_at": utc_now(), "cost_usd": None}),
             "result": parse_result(turn["text"], task["output_schema"])}

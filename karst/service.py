@@ -32,13 +32,42 @@ for _name, _module in ADAPTERS.items():
         if KIND_ADAPTERS.setdefault(_kind, _name) != _name:
             raise ContractError(f"Two adapters claim kind {_kind!r}: "
                                 f"{KIND_ADAPTERS[_kind]} and {_name}")
+# method -> (what it answers, the params it needs). For the valuation family `params`
+# IS the calculation object of contract 0.4 (its `method` key may be omitted); the
+# receipt it returns is the same one a saved scenario carries.
 CALCULATION_METHODS = {
-    "fcff_dcf": ("fair value per share", ("cashflows", "discount_rate", "terminal_growth",
-                                          "cash", "nonoperating_assets", "debt",
-                                          "other_claims", "diluted_shares")),
+    "fcff_dcf": ("annual end-of-year FCFF DCF, fair value per share (0.2/0.3 meaning)",
+                 ("cashflows", "discount_rate", "terminal_growth", "cash",
+                  "nonoperating_assets", "debt", "other_claims", "diluted_shares")),
+    "fcff_dcf_dated": ("dated multi-stage FCFF DCF: stub, mid/end period discounting and a "
+                       "terminal normalized apart from the last expansion year",
+                       ("model", "bridge")),
+    "forward_pe": ("forward P/E on per-share earnings; an equity multiple, so no "
+                   "enterprise bridge", ("model", "equity")),
+    "ev_multiple": ("EV/EBIT or EV/EBITDA with the full equity bridge",
+                    ("model", "bridge")),
+    "sotp": ("sum of the parts: enterprise value per part, one consolidated bridge",
+             ("parts", "bridge")),
+    "sensitivity": ("re-run one calculation with named inputs changed, both sides in "
+                    "one receipt", ("calculation", "changes")),
+    "solve_implied": ("what one input must be for this model to produce a target price; "
+                      "reports no solution and multiple solutions",
+                      ("calculation", "target_price", "solve_for", "bounds")),
     "risk_reward": ("per-share and percentage risk/reward", ("plan",)),
     "sma": ("simple moving average of complete bars", ("bars",)),
     "confirmed_pivots": ("confirmed local turning points", ("bars",)),
+}
+CALCULATION_UNITS = {
+    "fcff_dcf": "absolute currency units; fair_value_per_share per share",
+    "fcff_dcf_dated": "absolute currency units; fair_value_per_share per share",
+    "forward_pe": "per share; equity_value in absolute currency units",
+    "ev_multiple": "absolute currency units; fair_value_per_share per share",
+    "sotp": "absolute currency units; fair_value_per_share per share",
+    "sensitivity": "per share",
+    "solve_implied": "the unit of the solved input",
+    "risk_reward": "per share and ratio",
+    "sma": "price",
+    "confirmed_pivots": "price with confirmation timestamps",
 }
 DEFAULT_DATA_DIR = "./karst-data"
 DB_NAME = "karst.sqlite"
@@ -514,38 +543,82 @@ def _review_summary(reviews):
 # --- calculation ------------------------------------------------------------
 
 def calculate(method, params):
-    """Arithmetic only. Whether the inputs describe the right economics is the caller's problem."""
+    """Arithmetic only. Whether the inputs describe the right economics is the caller's problem.
+
+    The valuation family, its sensitivities and its reverse solve all return the same
+    ``receipt`` the saved research carries, so a number quoted by a model can be matched
+    against the scenario it claims to come from.
+    """
     if method not in CALCULATION_METHODS:
         raise ContractError(f"Unknown calculation method {method!r}; available: "
                             + ", ".join(sorted(CALCULATION_METHODS)))
     description, required = CALCULATION_METHODS[method]
-    if method == "risk_reward":
+    if not isinstance(params, dict):
+        raise ContractError(f"{method} params must be an object")
+    missing = [key for key in required if key not in params]
+    if missing:
+        raise ContractError(f"{method} needs: {missing}")
+    receipt = None
+    if method in calculations.METHODS:
+        receipt = calculations.calculate_valuation({**params, "method": method})
+    elif method == "sensitivity":
+        receipt = calculations.sensitivity(params["calculation"], params["changes"])
+    elif method == "solve_implied":
+        receipt = calculations.solve_implied(params["calculation"], params["target_price"],
+                                             params["solve_for"], params["bounds"])
+    elif method == "risk_reward":
         result = calculations.risk_reward(params["plan"], params.get("distributions", 0))
-        unit = "per share and ratio"
-    elif method == "fcff_dcf":
-        missing = [key for key in required if key not in params]
-        if missing:
-            raise ContractError(f"fcff_dcf needs: {missing}")
-        result = calculations.fcff_dcf(params)
-        unit = "absolute currency units; fair_value_per_share per share"
     elif method == "sma":
         result = {"sma": calculations.sma(params["bars"], params.get("window", 200)),
                   "window": params.get("window", 200)}
-        unit = "price"
     else:
         result = {"pivots": calculations.confirmed_pivots(params["bars"], params.get("width", 2))}
-        unit = "price with confirmation timestamps"
-    return {"method": method, "description": description, "result": result, "unit": unit,
-            "inputs": params, "calculator_version": calculations.VERSION}
+    if receipt is not None:
+        result = receipt["outputs"]
+    answer = {"method": method, "description": description, "result": result,
+              "unit": CALCULATION_UNITS[method], "inputs": params,
+              "calculator_version": calculations.VERSION}
+    return answer if receipt is None else {**answer, "receipt": receipt}
 
 
-def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None):
-    """Day / week / month charts + derived numbers for one subject's registered prices.
+# The one tool facade an API adapter mounts: a single dict in, a single dict out.
+# It reuses `calculate` above — there is no second copy of any formula.
+CALCULATE_TOOL = {
+    "name": "calculate",
+    "description": "用同一個計算器算數:估值方法分派、敏感度、反推、R&R、SMA 與轉折。"
+                   "回傳 receipt(calculator_version、method、inputs_digest、outputs),"
+                   "引用數字時引 receipt,不要自己心算。可用 method:"
+                   + "、".join(f"{name}（{text}）" for name, (text, _) in
+                               sorted(CALCULATION_METHODS.items())),
+    "schema": {"type": "object", "additionalProperties": False,
+               "properties": {"method": {"enum": sorted(CALCULATION_METHODS)},
+                              "params": {"type": "object"}},
+               "required": ["method", "params"]},
+}
+
+
+def calculate_tool(arguments):
+    """``{"method": ..., "params": {...}}`` -> the calculate result. For tool wiring."""
+    if not isinstance(arguments, dict):
+        raise ContractError("calculate arguments must be an object")
+    unknown = set(arguments) - {"method", "params"}
+    if unknown:
+        raise ContractError("Unknown calculate arguments: " + ", ".join(sorted(unknown)))
+    return calculate(arguments.get("method"), arguments.get("params"))
+
+
+def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store=None):
+    """Month / week / day / recent charts + derived numbers for registered prices.
 
     The arrays are built from the registered candlestick evidence, charted, measured
     and dropped: only the PNGs and ``derived.json`` land in ``out_dir``. Charting
     something that was never registered is not offered — a chart the researcher can
     cite has to come from evidence they can read.
+
+    Each PNG comes back as an **artifact**: a content-addressed id, its hash, the
+    cutoff it was drawn to and the evidence it came from. Given a ``store`` the
+    artifacts are registered there, which is what lets a remote client ask for the
+    image itself (``read_chart``) instead of a path it cannot open.
     """
     bundle = Path(bundle)
     if records is None:
@@ -553,17 +626,52 @@ def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None):
         evidence_path = bundle / "evidence.json"
         if not records and evidence_path.exists():
             records = read_json(evidence_path)
+    packet_path = bundle / "packet.json"
+    packet = read_json(packet_path) if packet_path.exists() else {}
     if as_of is None:
-        packet_path = bundle / "packet.json"
-        as_of = read_json(packet_path)["as_of"] if packet_path.exists() else utc_now()
-    series = bars_module.views(bars) if bars is not None else \
-        bars_module.from_evidence(bundle, records, as_of)
+        as_of = packet.get("as_of") or utc_now()
+    source = None
+    if bars is not None:
+        series = bars_module.views(bars)
+    else:
+        found = bars_module.series_from_evidence(bundle, records, as_of)
+        series = found["bars"] if found else None
+        source = found["source"] if found else None
     if not series or not series.get("D"):
         raise ContractError("No registered daily candlesticks to chart for this subject; "
                             "refresh the prices kind first")
-    result = charts.render(series["D"], out_dir, as_of=as_of)
+    security = packet.get("security") or {}
+    title = " ".join(str(security[key]) for key in ("exchange", "ticker") if security.get(key))
+    result = charts.render(series["D"], out_dir, as_of=as_of, source=source, title=title or None)
+    if store is not None:
+        for artifact in result["artifacts"]:
+            store.register_chart(artifact)
     return {"data_as_of": result["derived"]["data_as_of"], "files": result["files"],
-            "derived": result["derived"], "note": charts.NOTE}
+            "artifacts": result["artifacts"], "derived": result["derived"], "note": charts.NOTE}
+
+
+def without_local_paths(result):
+    """The same chart result, minus this host's file layout: a remote caller reads a
+    chart by artifact id, and a path it cannot open only invites a pretend read."""
+    return {key: value for key, value in result.items() if key != "files"} | {
+        "artifacts": [{k: v for k, v in artifact.items() if k != "path"}
+                      for artifact in result["artifacts"]]}
+
+
+def chart_artifact(store, artifact_id):
+    """One registered chart, verified against its recorded hash before it is served."""
+    record = store.get_chart(artifact_id)
+    if record is None:
+        raise ContractError(f"Unknown chart artifact: {artifact_id}. Render the charts "
+                            "first; only registered artifacts can be read.")
+    path = Path(record["path"])
+    if not path.is_file():
+        raise ContractError(f"Chart artifact {artifact_id} is registered but its file is gone")
+    data = path.read_bytes()
+    if digest(data) != record["sha256"]:
+        raise ContractError(f"Chart artifact {artifact_id} no longer matches its registered "
+                            "hash; re-render before reading it")
+    return record | {"data": data}
 
 
 # --- save / publish ---------------------------------------------------------

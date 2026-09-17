@@ -339,6 +339,14 @@ def check_research(packet, research, selected, root):
     for row in research["valuation"]["scenarios"]:
         if row["calculation"]["currency"] != currency:
             raise ContractError("Valuation currency differs from security")
+    # 0.4: a sensitivity or a reverse solve is an operation ON one scenario. Naming a
+    # scenario that carries no calculation would leave a number with nothing behind it.
+    attached = [row["scenario"] for row in research["valuation"].get("sensitivities") or []]
+    implied = research["valuation"].get("implied")
+    if implied:
+        attached.append(implied["scenario"])
+    if not set(attached) <= set(names):
+        raise ContractError("A sensitivity or reverse solve names a scenario without a calculation")
     # 0.3 may omit the price arrays entirely; the derived numbers stay in `derived`.
     for bars in (research["technical"].get("views") or {}).values():
         previous = None

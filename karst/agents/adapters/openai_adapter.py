@@ -13,18 +13,21 @@ import sys
 
 from ...fetch.common import load_env_file
 from ...schema import ContractError
-from . import TOOLS, run_task
+from . import run_task, tools_for
 
 PROVIDER = "openai"
 API_KEY_ENV = "OPENAI_API_KEY"
 ENDPOINT = "https://api.openai.com/v1/responses"
-API_TOOLS = [{"type": "function", "name": tool["name"], "description": tool["description"],
-              "parameters": tool["schema"]} for tool in TOOLS]
+
+
+def api_tools(task):
+    return [{"type": "function", "name": tool["name"], "description": tool["description"],
+             "parameters": tool["schema"]} for tool in tools_for(task)]
 
 
 def request(task, messages, model, budget):
     return {"model": model, "max_output_tokens": int(budget["max_output_tokens"]),
-            "instructions": task["prompt"], "tools": API_TOOLS, "input": messages}
+            "instructions": task["prompt"], "tools": api_tools(task), "input": messages}
 
 
 def parse(response):
@@ -51,9 +54,17 @@ def parse(response):
 
 
 def append(messages, turn, results):
+    """Responses function output is text only, so an image follows it as a user message
+    carrying a real ``input_image`` — the picture goes on the wire, not its filename."""
+    images = [{"role": "user", "content": [
+        {"type": "input_text", "text": f'chart {result["image"]["identity"]["artifact_id"]} '
+                                       f'({result["image"]["identity"]["view"]})'},
+        {"type": "input_image",
+         "image_url": f'data:{result["image"]["media_type"]};base64,{result["image"]["data"]}'}]}
+        for result in results if result.get("image")]
     return messages + list(turn["raw"]) + [
         {"type": "function_call_output", "call_id": result["id"], "output": result["content"]}
-        for result in results]
+        for result in results] + images
 
 
 def http_transport(environ=None, post=None):

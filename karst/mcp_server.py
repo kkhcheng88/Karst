@@ -12,9 +12,13 @@ here, and none exists to expose.
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 from fastmcp import FastMCP
+from fastmcp.tools.tool import ToolResult
+from fastmcp.utilities.types import Image
+from mcp.types import TextContent
 from starlette.responses import JSONResponse
 
 from . import __version__, service, store as store_module
@@ -108,21 +112,58 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
 
     @server.tool
     def calculate(method: str, params: dict) -> dict:
-        """Deterministic calculation with an input receipt and the calculator version."""
+        """Deterministic calculation with an input receipt and the calculator version.
+
+        method: fcff_dcf（年度期末,0.2/0.3 原意)、fcff_dcf_dated（估值日、各期日期、
+        期中/期末、stub、正常化終值)、forward_pe（股權倍數,不接企業橋接)、
+        ev_multiple（EV/EBIT 或 EBITDA,必須完整橋接)、sotp（分部組合,一次橋接)、
+        sensitivity（改指定輸入重算)、solve_implied（反推,回無解/多解)、
+        risk_reward、sma、confirmed_pivots。
+
+        params: 估值方法的 params 就是契約 0.4 的 calculation 物件（method 可省)；
+        sensitivity 要 {calculation, changes:[{input_path, value}]}；solve_implied 要
+        {calculation, target_price, solve_for, bounds:{lower, upper}}。金額與股數同用
+        params.scale（absolute／thousands／millions)宣告的尺度。回傳含 receipt:
+        {calculator_version, method, inputs_digest, outputs}；引用數字時引 receipt。
+        """
         return service.calculate(method, params)
 
     @server.tool
     def render_charts(subject: str, output_dir: str | None = None,
                       as_of: str | None = None) -> dict:
-        """Day / week / month charts of this subject's registered prices, plus their numbers.
+        """Month / week / day / recent charts of this subject's registered prices, plus numbers.
 
-        Returns the file paths and the derived JSON (SMA200, bar counts, key levels,
-        data cutoff). The price arrays are transient: they are charted and dropped.
+        Returns one **artifact** per view (artifact_id, view, period, hash, bytes, the
+        bar cutoff and the source evidence) and the derived JSON: exact moving
+        averages and their direction, ATR, volume ratio, and support / resistance
+        zones with the day each pivot formed and the later day it was confirmed.
+
+        Server-side file paths are not returned — read a chart with ``read_chart``.
+        The price arrays are transient: they are charted, measured and dropped.
         """
         output_dir = output_dir or str(
             service.company_paths(data_dir, subject)["company"] / "charts"
             if subject and bundle is None else Path(root) / "charts")
-        return service.render_charts(one(subject), output_dir, as_of=as_of)
+        return service.without_local_paths(
+            service.render_charts(one(subject), output_dir, as_of=as_of, store=state))
+
+    @server.tool
+    def read_chart(artifact_id: str) -> ToolResult:
+        """Read one rendered chart by artifact_id: the PNG itself, as image content.
+
+        Only artifacts this server registered can be read, and each one is checked
+        against its recorded hash before it is served — so what you see is that exact
+        version of that chart, not whatever is at some path now. There is no other
+        file access here. Precise figures stay in ``render_charts``' derived JSON.
+        """
+        record = service.chart_artifact(state, artifact_id)
+        meta = {key: record[key] for key in
+                ("artifact_id", "view", "media_type", "sha256", "bytes",
+                 "bars_as_of", "source_evidence_id")} | (record.get("meta") or {})
+        meta.pop("path", None)
+        image = Image(data=record["data"], format="png").to_image_content()
+        return ToolResult(content=[image, TextContent(
+            type="text", text=json.dumps(meta, ensure_ascii=False, default=str))])
 
     @server.tool
     def save_research(payload: dict, subject: str, role_meta: dict,

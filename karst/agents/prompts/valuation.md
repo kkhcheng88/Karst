@@ -8,6 +8,6 @@
 
 先核估值日及現金流時點、幣別尺度、再投資、SBC、少數股東與可轉債。終值由成熟經濟狀態推導，不機械延伸末年擴張現金流。主模型、替代、敏感度、反推都要工具運算及可定位輸入輸出；沒有算過就不報算出來的數字。
 
-0.2／0.3 現有 calculation 只支援年度期末 fcff_dcf：FCFF 配 WACC，資本橋接採同一尺度。不得把 FCFE、倍數、SOTP 或不規則時點包成 fcff_dcf。若主方法不支援，valuation.status=unavailable、scenarios=[]、gap_reason 明列工程限制及所需計算；仍交經營、條件估值與計劃。主方法可用但替代未算，只列替代的缺口，不把整份估值改不可用。已授權其他計算工具可供替代分析，運算定位放現有 statement.text；不擅加契約欄位或虛構回執。
+契約 0.4 起 calculation 帶 `method` 判別，計算工具支援：`fcff_dcf`（年度期末，0.2／0.3 原意）、`fcff_dcf_dated`（估值日、各期日期、期中／期末、stub、正常化終值）、`forward_pe`（股權倍數，不接企業橋接）、`ev_multiple`（EV/EBIT 或 EBITDA，完整橋接）、`sotp`（分部組合、一次橋接）；`sensitivity` 與 `solve_implied` 走同一計算器並回 receipt。金額與股數同用 `scale` 宣告的尺度；橋接分列現金、非經營資產、債務、少數股東、可贖回、可轉債稀釋（未能支持者寫進 `unsupported_claims`）與 SBC 處理。不得把 FCFE 或不規則時點硬包成 `fcff_dcf`。0.2／0.3 舊包仍只認年度期末 `fcff_dcf`。若主方法在該版本不支援，valuation.status=unavailable、scenarios=[]、gap_reason 明列工程限制及所需計算；仍交經營、條件估值與計劃。主方法可用但替代未算，只列替代的缺口，不把整份估值改不可用。已授權其他計算工具可供替代分析，運算定位放現有 statement.text；不擅加契約欄位或虛構回執。
 
 不改上游經營假設來保住原評級；需要更動就交回上游重評。不以主觀概率製造期望回報。最終運算值由程式產生。

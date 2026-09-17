@@ -7,7 +7,7 @@ from urllib.parse import quote, urlparse
 from ..calculations import sma
 from ..packet import confined
 
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 LAYERS = {"L1": "市場與宏觀", "L2": "產業與價值鏈", "L3": "公司基本面",
           "L4": "估值與預期", "L5": "技術與市場行為", "L6": "投資綜合"}
 HEADLINES = {"recommendation": "目前建議", "main_reason": "主要理由",
@@ -28,14 +28,107 @@ def percentage(value):
     return "未提供" if value is None else f"{value * 100:,.1f}%"
 
 
+def cites(citations):
+    return " ".join(f'<a class="cite" href="#source-{e(c["evidence_id"])}">'
+                    f'{e(c["evidence_id"])} · {e(c["locator"])}</a>' for c in citations)
+
+
 def statement(value):
-    links = " ".join(f'<a class="cite" href="#source-{e(c["evidence_id"])}">'
-                     f'{e(c["evidence_id"])} · {e(c["locator"])}</a>' for c in value["citations"])
-    return f'<p>{e(value["text"])} <span>{links}</span></p>'
+    return f'<p>{e(value["text"])} <span>{cites(value["citations"])}</span></p>'
 
 
 def statements(values):
     return "".join(statement(value) for value in values) or '<p class="muted">未提供</p>'
+
+
+BRIDGE_LABELS = (("cash", "現金"), ("nonoperating_assets", "非經營資產"), ("debt", "債務"),
+                 ("minority_interest", "少數股東權益"), ("redeemable_claims", "可贖回權益"),
+                 ("convertibles_dilution", "可轉債／認股權"))
+SBC_BASIS = {"expensed_in_fcff": "已在 FCFF 內支銷", "in_diluted_share_count": "已計入攤薄股數",
+             "both_documented": "兩邊都記錄，已核不重複扣減", "not_reflected": "未反映，屬缺口"}
+SCALE_LABELS = {"absolute": "絕對金額", "thousands": "千", "millions": "百萬"}
+METHOD_LABELS = {"fcff_dcf": "年度期末 FCFF 折現", "fcff_dcf_dated": "日期化多階段 FCFF 折現",
+                 "forward_pe": "前瞻 P/E（股權倍數）", "ev_multiple": "EV 倍數（企業價值）",
+                 "sotp": "分部加總"}
+TIMING_LABELS = {"end_of_period": "期末折現", "mid_period": "期中折現"}
+
+
+def bridge_html(bridge):
+    """One equity bridge, shown whole: every claim, the share count and the SBC note."""
+    rows = " · ".join(f"{label} {number(bridge[key])}" for key, label in BRIDGE_LABELS)
+    sbc = bridge["sbc_treatment"]
+    gaps = bridge["unsupported_claims"]
+    return (f'<p>企業價值到股權的橋接：{rows}<br>攤薄股數 {number(bridge["diluted_shares"])}；'
+            f'股權激勵處理：{e(SBC_BASIS.get(sbc["basis"], sbc["basis"]))} — {e(sbc["note"])}</p>'
+            + (f'<p class="muted">未支持的權益缺口：{e("；".join(gaps))}</p>' if gaps else ""))
+
+
+def _dated_html(model, value):
+    terminal = model["terminal"]
+    rows = "<br>".join(
+        f'{e(flow["date"])}{"（首期 stub）" if flow.get("is_stub") else ""}　'
+        f'{e(flow["label"])}：{number(flow["amount"])}　→　折現 {number(row["present_value"])}'
+        f'（{number(row["years"])} 年）'
+        for flow, row in zip(model["flows"], value.get("discounted_flows", [])))
+    step = value.get("normalization_step")
+    return (f'<p>估值日 {e(model["valuation_date"])} · {e(TIMING_LABELS.get(model["timing"], model["timing"]))}'
+            f' · 日數慣例 {e(model["day_count"])} · 折現率 {percentage(model["discount_rate"])}</p>'
+            f'<p>各期現金流（依日期折現）：<br>{rows}</p>'
+            f'<p>終值日 {e(terminal["date"])}（距估值日 {number(value.get("years_to_terminal"))} 年）：'
+            f'擴張末期 FCFF {number(terminal["final_expansion_fcff"])} vs 正常化終值 FCFF '
+            f'{number(terminal["normalized_fcff"])}'
+            f'{"（正常化倍數 " + number(step) + "×）" if step is not None else ""}，'
+            f'永續增長 {percentage(terminal["growth"])}。<br>終值口徑：{e(terminal["basis"])}</p>')
+
+
+def calculation_html(inp, value):
+    """The calculation behind one number, method by method. No shared template lies."""
+    method = inp["method"]
+    scale = inp.get("scale", "absolute")
+    head = (f'<p class="muted">方法：{e(METHOD_LABELS.get(method, method))} · 幣別 '
+            f'{e(inp["currency"])} · 輸入尺度 {e(SCALE_LABELS.get(scale, scale))}'
+            '（金額與股數同一尺度，每股值不因尺度改變）</p>')
+    if method == "fcff_dcf":
+        body = ('<p>年末 FCFF 折現 + 終值折現 = 企業價值；加現金與非經營資產，減債務與其他索償，再除攤薄股數。</p>'
+                f'<p>FCFF（逐年）：{e(", ".join(number(f) for f in inp["cashflows"]))}<br>'
+                f'WACC {percentage(inp["discount_rate"])} · 永續增長 {percentage(inp["terminal_growth"])}<br>'
+                f'現金 {number(inp["cash"])} · 非經營資產 {number(inp["nonoperating_assets"])} · '
+                f'債務 {number(inp["debt"])} · 其他索償 {number(inp["other_claims"])}<br>'
+                f'攤薄股數 {number(inp["diluted_shares"])}</p>')
+    elif method == "fcff_dcf_dated":
+        body = _dated_html(inp["model"], value) + bridge_html(inp["bridge"])
+    elif method == "ev_multiple":
+        model = inp["model"]
+        body = (f'<p>{e(model["metric"].upper())} {number(model["metric_value"])}'
+                f'（期間 {e(model["period"]["start"])} 至 {e(model["period"]["end"])}）× '
+                f'{number(model["multiple"])} 倍 = 企業價值 {number(value.get("enterprise_value"))}。'
+                f'倍數口徑：企業價值，不是股權倍數。<br>可比基礎：{e(model["comparable_basis"])}</p>'
+                + bridge_html(inp["bridge"]))
+    elif method == "forward_pe":
+        model = inp["model"]
+        body = (f'<p>每股盈利 {number(model["eps"])}（{e(model["eps_basis"])}，期間 '
+                f'{e(model["period"]["start"])} 至 {e(model["period"]["end"])}）× '
+                f'{number(model["multiple"])} 倍 = {e(model["applies_at"])} 的每股 '
+                f'{number(value.get("value_per_share_at_horizon"))}。'
+                f'{"按 " + percentage(model["discount_rate"]) + " 折回估值日 " + e(model["valuation_date"]) if model["discount_rate"] is not None else "未折現回估值日，數字屬期末口徑"}。'
+                f'<br>這是股權倍數：現金與債務已在盈利與股數之內，不再另加企業橋接。'
+                f'<br>攤薄股數 {number(inp["equity"]["diluted_shares"])} · 可比基礎：{e(model["comparable_basis"])}</p>')
+    elif method == "sotp":
+        rows = "<br>".join(
+            f'{e(part["name"])}（{e(METHOD_LABELS.get(part["kind"], part["kind"]))}，'
+            f'持股 {percentage(part["stake"])}）：企業價值 {number(part["enterprise_value"])}'
+            f' → 應佔 {number(part["attributable_enterprise_value"])}'
+            for part in value.get("parts", []))
+        body = (f'<p>各分部企業價值按持股比例加總，全公司只做一次橋接：<br>{rows}</p>'
+                + bridge_html(inp["bridge"]))
+    else:
+        body = '<p class="muted">此方法沒有對應的展示模板。</p>'
+    return head + body
+
+
+def receipt_html(receipt):
+    return (f'<p class="muted">計算回執：計算器 {e(receipt["calculator_version"])} · '
+            f'方法 {e(receipt["method"])} · 輸入指紋 {e(receipt["inputs_digest"][:12])}</p>')
 
 
 def chart(bars, timeframe, levels):
@@ -123,26 +216,71 @@ def render(packet, records, research, calculated, root, bars=None):
         out.append('<aside><h3>仍需補查</h3><ul>' + ''.join(f'<li>{e(gap)}</li>' for gap in gaps) + '</ul></aside>')
     out.append(f'<section><h2>估值與市場預期</h2><p class="muted">內在價值日期 {e(valuation["valuation_date"])}；基準情境由假設推導，並非高低價的平均。</p>')
     if calculated["valuation"]:
-        out.append('<div class="table"><table><thead><tr><th>情境</th><th>每股內在價值</th><th>期限目標價</th><th>終值 / 企業價值</th></tr></thead><tbody>')
+        out.append('<div class="table"><table><thead><tr><th>情境</th><th>方法</th><th>每股內在價值</th><th>期限目標價</th><th>終值佔企業價值</th></tr></thead><tbody>')
         for name, label in SCENARIOS.items():
             row = calculated["valuation"][name]
+            method = calculated["valuation_receipts"][name]["method"]
             target_row = next((r["price"] for r in valuation["target_prices"] if r["name"] == name), None)
-            out.append(f'<tr><td>{label}</td><td>{number(row["fair_value_per_share"])}</td><td>{number(target_row)}</td><td>{percentage(row["terminal_share_of_enterprise_value"])}</td></tr>')
+            out.append(f'<tr><td>{label}</td><td>{e(METHOD_LABELS.get(method, method))}</td>'
+                       f'<td>{number(row["fair_value_per_share"])}</td><td>{number(target_row)}</td>'
+                       f'<td>{percentage(row.get("terminal_share_of_enterprise_value"))}</td></tr>')
         out.append('</tbody></table></div>')
     else:
         out.append(f'<p>{e(valuation["gap_reason"])}</p>')
-    for label, key in (("方法為何適合", "method_rationale"), ("另一估值視角", "alternative_view"),
+    for label, key in (("方法為何適合", "method_rationale"),
                        ("相對上次的變化", "change_attribution"), ("現價要求什麼", "implied_requirements")):
         out.append(f'<h3>{label}</h3>{statement(valuation[key])}')
+    out.append('<h3>另一估值視角</h3>' + statement(valuation["alternative_view"]))
+    alternative = calculated.get("alternative_view")
+    if alternative:
+        out.append(f'<details><summary>另一視角：每股 {number(alternative["outputs"]["fair_value_per_share"])}</summary>'
+                   + calculation_html(valuation["alternative_view"]["calculation"], alternative["outputs"])
+                   + receipt_html(alternative) + '</details>')
     out.append('<h3>關鍵假設</h3>' + statements(valuation["top_assumptions"]))
     for row in valuation["scenarios"]:
-        inp, value = row["calculation"], calculated["valuation"][row["name"]]
-        out.append(f'<details><summary>{SCENARIOS[row["name"]]}情境：計算與假設</summary>{statement(row["rationale"])}'
-                   '<p>年末 FCFF 折現 + 終值折現 = 企業價值；加現金與非經營資產，減債務與其他索償，再除攤薄股數。</p>'
-                   f'<p>FCFF（逐年、{e(inp["currency"])}絕對金額）：{e(", ".join(number(f) for f in inp["cashflows"]))}<br>'
-                   f'WACC {percentage(inp["discount_rate"])} · 永續增長 {percentage(inp["terminal_growth"])}<br>'
-                   f'現金 {number(inp["cash"])} · 非經營資產 {number(inp["nonoperating_assets"])} · 債務 {number(inp["debt"])} · 其他索償 {number(inp["other_claims"])}<br>'
-                   f'攤薄股數 {number(inp["diluted_shares"])} · 企業價值 {number(value["enterprise_value"])} · 股權價值 {number(value["equity_value"])}</p></details>')
+        value = calculated["valuation"][row["name"]]
+        drivers = "".join(
+            f'<li>{e(driver["name"])}：{number(driver["value"])} {e(driver["unit"])}'
+            f'（{e(driver["period"]["start"])} 至 {e(driver["period"]["end"])}'
+            f'{"，輸入 " + e(driver["input_path"]) if driver["input_path"] else ""}）'
+            f'<span>{cites(driver["citations"])}</span></li>'
+            for driver in row.get("drivers", []))
+        out.append(f'<details><summary>{SCENARIOS[row["name"]]}情境：每股 {number(value["fair_value_per_share"])} 的計算依據</summary>'
+                   + statement(row["rationale"])
+                   + calculation_html(row["calculation"], value)
+                   + (f'<p>企業價值 {number(value.get("enterprise_value"))} · 股權價值 {number(value.get("equity_value"))}</p>'
+                      if value.get("equity_value") is not None else '')
+                   + (f'<h4>經營 driver</h4><ul>{drivers}</ul>' if drivers else '')
+                   + receipt_html(calculated["valuation_receipts"][row["name"]]) + '</details>')
+    sensitivities = calculated.get("sensitivities") or []
+    if sensitivities:
+        out.append('<h3>敏感度：改一項輸入，每股變多少</h3><div class="table"><table><thead>'
+                   '<tr><th>情境</th><th>改什麼</th><th>改前每股</th><th>改後每股</th><th>差額</th></tr>'
+                   '</thead><tbody>')
+        for row in sensitivities:
+            outputs = row["receipt"]["outputs"]
+            changes = "；".join(f'{e(c["input_path"])} → {number(c["value"])}'
+                                for c in outputs["changes"])
+            out.append(f'<tr><td>{SCENARIOS[row["scenario"]]}</td>'
+                       f'<td>{e(row["label"])}（{changes}）</td>'
+                       f'<td>{number(outputs["base_fair_value_per_share"])}</td>'
+                       f'<td>{number(outputs["fair_value_per_share"])}</td>'
+                       f'<td>{number(outputs["delta_per_share"])}</td></tr>')
+        out.append('</tbody></table></div>')
+        stale = [row["label"] for row in sensitivities if row["reported_matches"] is False]
+        if stale:
+            out.append(f'<p class="muted">以下敏感度所記的回執對不上本次情境輸入，頁上只採用重算值：{e("；".join(stale))}</p>')
+    implied = calculated.get("implied")
+    if implied:
+        source, outputs = valuation["implied"], implied["receipt"]["outputs"]
+        verdict = {"solved": f'需要 {e(outputs["solve_for"])} = {number(outputs["value"])}',
+                   "no_solution": "在指定範圍內無解",
+                   "multiple_solutions": "在指定範圍內多於一個解，不能作單一結論",
+                   "undefined": "在指定範圍內模型無法計算"}[outputs["outcome"]]
+        out.append(f'<h3>反推：現價 {number(outputs["target_price"])} 隱含什麼</h3>'
+                   f'<p>固定其餘 {SCENARIOS[implied["scenario"]]}情境假設，只解 {e(outputs["solve_for"])}'
+                   f'（範圍 {number(outputs["bounds"]["lower"])} 至 {number(outputs["bounds"]["upper"])}）：{verdict}。</p>'
+                   + statement(source["fixed_assumptions"]) + receipt_html(implied["receipt"]))
     for row in valuation["target_prices"]:
         out.append(f'<h3>{SCENARIOS[row["name"]]}目標價如何橋接</h3>{statement(row["rationale"])}')
     out.append('</section><section><h2>技術結構與關鍵價位</h2>')

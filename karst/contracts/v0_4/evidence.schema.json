@@ -1,0 +1,550 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:karst:contract:0.4.0:evidence",
+  "title": "Karst evidence contract 0.4.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "0.4.0"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "source_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "$ref": "#/$defs/kind"
+    },
+    "provenance": {
+      "enum": [
+        "public_market",
+        "synthetic"
+      ]
+    },
+    "entity_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+      },
+      "minItems": 1
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tool": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "params": {
+      "type": "object",
+      "description": "Only public-source selectors; cleaned by the local adapter."
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "published_at_basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_as_of": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "period": {
+      "$ref": "urn:karst:contract:0.4.0:evidence#/$defs/period"
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "known_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "media_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact": {
+      "$ref": "urn:karst:contract:0.4.0:evidence#/$defs/asset"
+    },
+    "supersedes": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverage": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Unmodified source period/coverage labels. No inferred fiscal dates or freshness."
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "empty",
+        "error"
+      ]
+    },
+    "status_reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "published_at_precision": {
+      "enum": [
+        "datetime",
+        "date",
+        "unknown"
+      ]
+    },
+    "published_at_timezone": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "IANA zone for date-only values; null when unknown. Datetime embeds its offset."
+    },
+    "data_as_of_precision": {
+      "enum": [
+        "datetime",
+        "date",
+        "unknown"
+      ]
+    },
+    "data_as_of_timezone": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "IANA zone for date-only values; null when unknown. Datetime embeds its offset."
+    },
+    "data_as_of_basis": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "contract_version",
+    "evidence_id",
+    "source_id",
+    "source_version",
+    "source",
+    "kind",
+    "provenance",
+    "entity_ids",
+    "source_url",
+    "tool",
+    "params",
+    "published_at",
+    "published_at_basis",
+    "fetched_at",
+    "data_as_of",
+    "period",
+    "truncated",
+    "known_gaps",
+    "media_type",
+    "artifact",
+    "supersedes",
+    "coverage",
+    "status",
+    "status_reason",
+    "published_at_precision",
+    "published_at_timezone",
+    "data_as_of_precision",
+    "data_as_of_timezone",
+    "data_as_of_basis"
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "evidence_id",
+        "locator"
+      ]
+    },
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "evidence",
+            "assumption",
+            "assessment",
+            "method"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version"
+      ]
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ]
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ]
+    },
+    "security": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "security_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+        },
+        "issuer_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$"
+        },
+        "ticker": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "exchange": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "security_id",
+        "issuer_id",
+        "ticker",
+        "name",
+        "currency",
+        "exchange"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "filing",
+        "transcript",
+        "financials",
+        "consensus",
+        "ratings",
+        "prices",
+        "industry_report",
+        "news",
+        "macro",
+        "other_public",
+        "ownership",
+        "short_interest",
+        "calendar",
+        "profile",
+        "valuation",
+        "filing_index"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "empty",
+              "error"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "status_reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "published_at_precision": {
+            "const": "datetime"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "published_at_timezone": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "published_at_precision": {
+            "const": "date"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "published_at": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "published_at_precision": {
+            "const": "unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "published_at": {
+            "type": "null"
+          },
+          "published_at_timezone": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "data_as_of_precision": {
+            "const": "datetime"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data_as_of": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "data_as_of_timezone": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "data_as_of_precision": {
+            "const": "date"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data_as_of": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "data_as_of_precision": {
+            "const": "unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data_as_of": {
+            "type": "null"
+          },
+          "data_as_of_timezone": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

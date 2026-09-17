@@ -49,14 +49,15 @@ def _bar(row, cutoff):
             "complete": when[:10] < cutoff.isoformat()[:10]}
 
 
-def from_evidence(bundle, records, as_of):
-    """Daily bars from the longest registered candlestick series, or None if there is none.
+def series_from_evidence(bundle, records, as_of):
+    """The longest registered candlestick series **and the record it came from**.
 
-    ``records`` are evidence records (the bundle's evidence.json). Rows that are not
-    complete OHLC candles, and rows after ``as_of``, are dropped rather than repaired.
+    Returns ``{"bars": {"D": [...]}, "source": {...}}`` or None. The source is what a
+    chart is stamped with: a picture nobody can trace back to one registered version
+    of one series is a picture nobody can check.
     """
     bundle, cutoff = Path(bundle), instant(as_of)
-    best = []
+    best, origin = [], None
     for record in records:
         if record.get("kind") != "prices" or record.get("status", "ok") != "ok":
             continue
@@ -69,11 +70,24 @@ def from_evidence(bundle, records, as_of):
             continue
         bars = [bar for bar in (_bar(row, cutoff) for row in rows) if bar is not None]
         if len(bars) > len(best):
-            best = bars
+            best, origin = bars, record
     if not best:
         return None
     unique = {bar["at"]: bar for bar in best}
-    return {"D": [unique[at] for at in sorted(unique)]}
+    return {"bars": {"D": [unique[at] for at in sorted(unique)]},
+            "source": {key: origin.get(key) for key in
+                       ("evidence_id", "source", "kind", "fetched_at", "source_url")}
+            | {"sha256": (origin.get("artifact") or {}).get("sha256")}}
+
+
+def from_evidence(bundle, records, as_of):
+    """Daily bars from the longest registered candlestick series, or None if there is none.
+
+    ``records`` are evidence records (the bundle's evidence.json). Rows that are not
+    complete OHLC candles, and rows after ``as_of``, are dropped rather than repaired.
+    """
+    found = series_from_evidence(bundle, records, as_of)
+    return None if found is None else found["bars"]
 
 
 def views(bars):

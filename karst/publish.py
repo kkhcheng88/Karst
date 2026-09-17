@@ -69,7 +69,7 @@ def publish(bundle, output, *, previous_publication_id=None, bars=None, snapshot
                     raise ContractError("Transient price bar is after the research cutoff")
     calculated = calculations.calculate(research, bars)
     pinned_schemas = schema_hashes(packet["contract_version"])
-    selective = packet["contract_version"] == "0.3.0"
+    selective = packet["contract_version"] in ("0.3.0", "0.4.0")
     referenced = cited_evidence_ids(research) if selective else {r["evidence_id"] for r in records}
     payload = {"packet": packet, "evidence": records, "research": research,
                "schema_hashes": pinned_schemas, "renderer": RENDERER_VERSION,

@@ -2,7 +2,7 @@
 
 本次核心版本 0.2.2；本頁描述的六角色路徑用 **0.2.0** 契約，沒有新增或改寫契約欄位。角色片段的 `output.schema.json` 由既有 research／packet／evidence schema 動態產生，不另維護第二份研究契約。
 
-> **現行主線是單主研究路徑（契約 0.3.0）**：`agents.protocol` ＋ `agents.research` ＋ `agents.review`，一份分析 payload 即可出頁，不需要六份片段，也不需要反方初判。做法見 [karst/README.md](../README.md#單主研究路徑03)。本頁保留給既有 0.2 bundle 的讀取與重播。
+> **現行主線是單主研究路徑（契約 0.4.0，0.3.0 照收）**：`agents.protocol` ＋ `agents.research` ＋ `agents.review`，一份分析 payload 即可出頁，不需要六份片段，也不需要反方初判。做法見 [karst/README.md](../README.md#單主研究路徑03)。本頁保留給既有 0.2 bundle 的讀取與重播。
 
 ## 0. 覆核流程（0.3 現行）
 
@@ -10,12 +10,26 @@
 2. **出任務**：`agents.review.build_review_task` 把指定 research 版本、爭議、准讀來源與其原文複製到一個**全新目錄**（`input.json`／`review.md`／`output.schema.json`）。目錄與 bundle 分開，覆核者看不到 bundle、倉或這條開發對話。
 3. **執行**：
    - `execution='interactive'`：另一個客戶端 `claim_review` 領取，做完 `submit_review` 交回。
-   - `execution='api'`：`request_review` 直接呼叫 `agents/adapters/<provider>_adapter.py`。模型只有 `list_evidence()` 與 `read_evidence(evidence_id, offset, limit)` 兩個工具，由 adapter 在本機對該任務目錄執行；工具出錯回 `is_error` 結果給模型，不中斷任務。預設 12 回合／400k 累計 input／16k output，由 `budget` 覆寫。
+   - `execution='api'`：`request_review` 直接呼叫 `agents/adapters/<provider>_adapter.py`。模型的工具是 `list_evidence()`、`read_evidence(evidence_id, offset, limit)`、`calculate(method, params)`，任務有圖時多一個 `read_chart(artifact_id)`（見 §0.1）；全部由 adapter 在本機對該任務目錄執行；工具出錯回 `is_error` 結果給模型，不中斷任務。預設 12 回合／400k 累計 input／16k output，由 `budget` 覆寫。
 4. **收貨**：結果先過任務自己的 `output.schema.json`（即 `REVIEW_RESULT_SCHEMA`），再過 `validate_review`（挑戰要有層、主張、引用、嚴重程度；補查請求必須 pending；覆核者不給第二個評級）。
 5. **記帳**：`done`／`failed`／**`needs_check`（已送出、結果不明）** 三態；同一（research 版本, 爭議）不重複付費。用量記 input／cached／output 與起訖，`cost_usd` 留 null。
 6. **處置**：挑戰由**本次主研究者**採納、駁回或保留條件；覆核不改主研究。`get_research_context` 的 `latest_review` 給裁決與最強挑戰一句,供資料室頁與下一輪研究讀。
 
 憑證只由環境變數名稱引用（`ANTHROPIC_API_KEY`／`OPENAI_API_KEY`，倉根 `.env` 或環境），缺即報錯不呼叫；測試全部用注入 transport，不碰網絡。
+
+## 0.1 研究者與覆核者怎樣看圖
+
+「目錄裡有 PNG」不等於模型看過圖，所以三條路徑都**送真正的圖像內容**，並記下送了哪一張、哪個版本、哪段週期：
+
+| 執行方式 | 怎樣讀圖 |
+|---|---|
+| 互動 Claude Code | 本地圖像工具直接開 `charts/` 內的 PNG（任務目錄內） |
+| 遠端 MCP（ChatGPT／另一個 Claude Code） | `render_charts` 回 artifact 清單（不回路徑），`read_chart(artifact_id)` 回 **ImageContent**（base64 PNG）＋一段身份 JSON；只讀已登記的 artifact，服務端先核 hash 才交，沒有任意檔案讀取 |
+| API worker（`agents/adapters/`） | `read_chart(artifact_id)` 在本機讀任務目錄內那張圖，Anthropic 走 tool_result 內的 `image` block、OpenAI 走 Responses 的 `input_image`；兩邊都是 base64 與 `image/png`，**只有檔名的 payload 不算看過圖** |
+
+任務的圖由 `research.export_task(..., charts=service.render_charts(...))` 帶進去：`input.json` 的 `charts.artifacts` 列出每張圖的 `artifact_id`、週期、`bars_as_of` 與 hash，`path` 是任務目錄內的相對路徑。`read_chart` 只認這份清單，未登記的 id 一律拒絕（錯誤訊息會列出有哪幾張）。任務沒有圖時，兩個 adapter 的工具表**不會**出現 `read_chart` —— 工具表誠實反映能力，不讓模型以為自己看得到圖。
+
+`run_task` 回的 `images_sent` 是這次實際送出的圖像紀錄（artifact_id、view、period、sha256、bars_as_of、第幾回合、送出時間），同一份亦寫入任務目錄的 `images_sent.json`（空清單＝跑過但沒看圖，與「未跑過」分得開）。現行契約未有圖像 receipt 欄位，所以研究側先在 `technical.reading.text` 寫實讀了哪張圖（識別、週期、時間範圍、bar 錨點）；圖像不可用時按 L5 記「視覺未完成」及影響，數字支持得到的判斷照樣交。精確價位、均線、斜率、量比與 ATR 一律讀 `charts/derived.json`，不從像素估。
 
 本地負責真實來源與 Opus 執行。本套件不呼叫模型、不讀帳戶；首批及第二隻都換參數／bundle，不新增股票專屬程式。
 
@@ -115,7 +129,7 @@ assemble 先驗片段擁有權、版本／雜湊、引用、補查、反方及�
 
 原有 publish 仍負責重算、封存輸入及來源可追查的 HTML。六個片段、counter_initial、task inputs、run log 由本地保存，不能只留最终頁面；它們不是新增的 publication 契約欄位。actual tool/model run、第二家公司只換參數與本地畫面驗收由本地完成。
 
-目前計算契約只支援 FCFF DCF；適用其他方法但程式尚未支援時，用 unavailable + gap_reason 說明，不能捏造 FCFF。非行號 locator 的語義及引文是否實際支持論據，需本地／研究覆核；程式只驗可登記來源、讀取紀錄與有效行號。
+0.2 那條路徑的計算契約只支援年度期末 FCFF DCF。**0.4 起**主線多了日期化 FCFF、前瞻 P/E、EV 倍數與 SOTP（見 [contracts/README.md](../contracts/README.md)）；仍然不適用的方法（銀行、FCFE 等）照舊用 unavailable + gap_reason 說明，不能捏造 FCFF。非行號 locator 的語義及引文是否實際支持論據，需本地／研究覆核；程式只驗可登記來源、讀取紀錄與有效行號。
 
 ## 4. 驗證與本地合併門檻
 

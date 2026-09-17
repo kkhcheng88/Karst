@@ -27,7 +27,7 @@ class IntakeTests(unittest.TestCase):
 
     def test_program_fills_every_engineering_field(self):
         research = self.take(previous_version_id='res-previous')
-        self.assertEqual(research['contract_version'], '0.3.0')
+        self.assertEqual(research['contract_version'], '0.4.0')
         self.assertEqual(research['packet_id'], self.packet['packet_id'])
         self.assertEqual(research['previous_research_id'], 'res-previous')
         self.assertEqual(research['created_at'], self.clock)
@@ -51,7 +51,7 @@ class IntakeTests(unittest.TestCase):
     def test_payload_carrying_ids_or_versions_is_refused(self):
         for key, value in (('research_id', 'res-模型自稱'), ('packet_id', 'packet-old'),
                            ('created_at', '2026-09-16T00:00:00Z'), ('mode', 'api_research'),
-                           ('models', []), ('contract_version', '0.3.0')):
+                           ('models', []), ('contract_version', '0.4.0')):
             bad = {**copy.deepcopy(self.payload), key: value}
             with self.subTest(key=key), self.assertRaisesRegex(ContractError, 'engineering fields'):
                 self.take(bad)

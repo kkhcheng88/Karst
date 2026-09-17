@@ -82,7 +82,24 @@ CREATE TABLE IF NOT EXISTS jobs (
     usage TEXT
 );
 CREATE INDEX IF NOT EXISTS jobs_by_status ON jobs(kind, status);
+CREATE TABLE IF NOT EXISTS chart_artifacts (
+    artifact_id TEXT PRIMARY KEY,
+    view TEXT NOT NULL,
+    path TEXT NOT NULL,
+    media_type TEXT NOT NULL,
+    sha256 TEXT NOT NULL,
+    bytes INTEGER NOT NULL,
+    bars_as_of TEXT,
+    source_evidence_id TEXT,
+    meta TEXT NOT NULL DEFAULT '{}',
+    created_at TEXT NOT NULL
+);
 """
+# Why charts get their own (small) table rather than a column on research_versions or a
+# job row: they are rendered *before* any research version exists, and the only thing
+# ``read_chart`` must do is turn an id into one registered file and refuse everything
+# else. Six columns and a primary key do that; hanging them off a row that does not
+# exist yet would not.
 
 # Full text lives in its own FTS5 table, rebuildable from the manifests at any time:
 # rebuilding the text index never touches evidence identity.
@@ -327,6 +344,34 @@ class Store:
         self.connection.execute("UPDATE research_versions SET publication_path=? WHERE version_id=?",
                                 (str(path), version_id))
         return self.get_research(version_id)
+
+    # --- chart artifacts ----------------------------------------------------
+
+    CHART_COLUMNS = ("artifact_id", "view", "path", "media_type", "sha256", "bytes",
+                     "bars_as_of", "source_evidence_id")
+
+    def register_chart(self, artifact):
+        """Register one rendered chart so it can be read back by id. Re-rendering the
+        same picture yields the same content-addressed id and simply refreshes the row."""
+        missing = [key for key in ("artifact_id", "view", "path", "media_type",
+                                   "sha256", "bytes") if not artifact.get(key)]
+        if missing:
+            raise ContractError(f"Chart artifact is missing: {missing}")
+        meta = {key: value for key, value in artifact.items() if key not in self.CHART_COLUMNS}
+        self.connection.execute(
+            "INSERT OR REPLACE INTO chart_artifacts(artifact_id, view, path, media_type,"
+            " sha256, bytes, bars_as_of, source_evidence_id, meta, created_at)"
+            " VALUES(?,?,?,?,?,?,?,?,?,?)",
+            (artifact["artifact_id"], artifact["view"], str(artifact["path"]),
+             artifact["media_type"], artifact["sha256"], artifact["bytes"],
+             artifact.get("bars_as_of"), artifact.get("source_evidence_id"),
+             _dump(meta), now()))
+        return self.get_chart(artifact["artifact_id"])
+
+    def get_chart(self, artifact_id):
+        row = self.connection.execute(
+            "SELECT * FROM chart_artifacts WHERE artifact_id=?", (artifact_id,)).fetchone()
+        return _row(row, ("meta",))
 
     # --- jobs ---------------------------------------------------------------
 

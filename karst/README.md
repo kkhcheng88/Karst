@@ -53,7 +53,7 @@ fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]
 
 `examples/synthetic/` **全部是合成資料**，含虛構公司、日期、預測與價格；不屬於真實接口樣本，也不是投資建議。本地已提供的真實回傳在 [tests/fixtures/](tests/fixtures/README.md)，新增測試引用其期間形狀，未把轉錄數值當估值真值。本核心讀取已保存的 `research.json`，不會自行呼叫模型、生成評級或讀券商帳戶。
 
-契約目前為 **0.3.0**（單主研究路徑），保留 0.2.0、0.1.0 讀取，舊 bundle 與舊發布不變。第二輪接線要看 [契約的遷移表](contracts/README.md)：日期精度與時區、原始 coverage、error/empty 取得紀錄，以及手填判斷的 `integration_example` 模式。Windows 缺符號連結權限時只略過該項測試，路徑逃逸檢查照跑。
+契約目前為 **0.4.0**（估值方法分派，KARST-247），保留 0.3.0、0.2.0、0.1.0 讀取，舊 bundle 與舊發布不變；收件預設出 0.4，0.3 的 packet 照它自己的版本收。第二輪接線要看 [契約的遷移表](contracts/README.md)：日期精度與時區、原始 coverage、error/empty 取得紀錄，以及手填判斷的 `integration_example` 模式。Windows 缺符號連結權限時只略過該項測試，路徑逃逸檢查照跑。
 
 步二新增 `fetch.registry.EvidenceRegistry`、`packet.build_packet`、六角色提示詞／輸入允許清單與 `agents.assemble`；核心版本 0.2.2。接線、片段欄位、補查與本地驗收見 [agents/README.md](agents/README.md)。**六份片段只是 0.2 那條路徑的做法，不是發布的前提**——現行單主研究路徑（0.3）一份 payload 就可以出頁，見下節；舊 bundle 仍由 `agents.assemble` 讀。
 
@@ -83,15 +83,40 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 `output.schema.json` / 提示詞、中途失敗整個刪掉)住在一處。`extra_files` 讓呼叫者多帶
 幾個檔(例如 `charts/`),提示詞檔名由呼叫者給(主研究 `prompt.md`、覆核 `review.md`)。
 
-**模型可讀的標準圖**(`karst/charts.py`,matplotlib Agg):
-`service.render_charts(bundle, out_dir)` 由**已登記的日線證據**組本次陣列,畫日／週／月
-三張 PNG(收市線、200 日 SMA、成交量、已確認 pivot 與最近關鍵位、資料截止日),同時寫
-`derived.json`(sma200、bars_count、first/last bar、關鍵位、資料截止)。**圖檔與 JSON
-都不含價格陣列**——陣列只活在這次呼叫的記憶體裡。`export_task(..., charts=…)` 把圖與
-衍生數字放進任務目錄的 `charts/`,提示詞加一句「圖只作參考,數字以 `derived.json` 為準」。
-MCP 工具 `render_charts(subject, output_dir=None, as_of=None)` 是同一個入口。
+**模型可讀的標準圖**(`karst/charts.py` 0.2.0,matplotlib Agg):
+`service.render_charts(bundle, out_dir, store=…)` 由**已登記的日線證據**組本次陣列,畫
+**四張 PNG**——月(長期位置)、週(主要趨勢)、日線全貌、近期放大(最後 90 根,足以看
+K 棒實體與影線)。每張都是 **OHLC 蠟燭 + 成交量**(另畫 20 根平均量),均線是**曲線**:
+200／50 日 SMA 與 20 日 EMA **先用完整歷史計算,再裁到該視窗**,所以放大圖照樣看得出
+200 日線的真實斜率;週／月圖映射的是同一條**日線**均線,圖例明寫 `200-day SMA`,不會
+變成 200 週／月。未收定的 K 棒加斜紋與 `unconfirmed bar` 標示,且不移動均線;價格軸按
+窗內高低比自動選線性或對數(`scale="log"/"linear"` 可指定),標題與說明帶標的(由參數
+傳入,碼內沒有代號)、週期、日期範圍、資料截止與來源 `evidence_id`。
 
-覆核由 `agents.review` 處理：`build_review_task` 匯出針對指定 `research_id` 與指定爭議的任務，`REVIEW_RESULT_SCHEMA` 與 `validate_review` 收挑戰（針對層、主張、引用、嚴重程度）、對爭議的裁決與新補查請求；覆核者不給第二個評級、不覆蓋主研究。`agents/adapters/` 已接 Anthropic Messages 與 OpenAI Responses 兩條實際呼叫路徑（回合迴圈、兩個本地證據工具、預算與用量），見下面〈覆核入口〉；缺憑證或缺 transport 一律明確報錯，不假裝已接通。
+支撐阻力畫成**有錨點的區域**:已確認 pivot 按容差(0.25×ATR14 與 0.4%×收市價取大者)
+歸成一條 band,每個錨點分開記**形成日**與較後的**確認日**,圖上用圓點與豎線分別標出;區域
+是支撐還是阻力按它與現價的相對位置定,band 由高點還是低點造(`pivots`)另記。
+
+`derived.json` 保留畫圖用的同一批數字:各均線精確值、與現價距離、**MA200 對前 20 個
+交易日的方向**(變動、百分比、rising／falling／flat)、**ATR(14,Wilder,算法與期間寫
+在 JSON 內)**、**量比**(尾根對前 20 根)、每個區域的錨點與確認時點、每個視圖的 bar 數
+／已收定數／窗口／座標,以及 `parameters` 與 `params_digest`。**圖檔與 JSON 都不含價格
+陣列**——陣列只活在這次呼叫的記憶體裡,JSON 亦不含本機路徑。
+
+每張圖同時回一個 **artifact**:`artifact_id`(= `cha-` + PNG 的 sha256)、view、period、
+hash、bytes、`bars_as_of`、`drawn_from`／`drawn_to`、來源 `evidence_id` 與參數指紋;同一
+批 bar、同一組參數畫出同一張圖,id 就是同一個。**檔名帶內容指紋**
+(`daily_recent-<12位>.png`,`derived-<12位>.json` 同理),所以明天再畫是落在旁邊而不是
+蓋住今天那張——承諾「當時看過那張圖仍取得回」就不能與下一版共用一個路徑;
+`derived.json` 本身是最新一次的指針。給了 `store=` 就登記到 `chart_artifacts`
+(見〈服務層〉),這是遠端能讀圖的前提。`service.without_local_paths(result)` 是回給遠端
+客戶端的形態(去掉本機路徑),`service.chart_artifact(store, artifact_id)` 取回圖檔並**先
+核 hash 才交**。`export_task(..., charts=…)` 把四張圖、`derived.json` 與 artifact 清單
+(`path` 換成任務目錄內的相對路徑)放進任務的 `charts/`。MCP 工具
+`render_charts(subject, output_dir=None, as_of=None)` 回 artifact 清單(不回路徑),
+`read_chart(artifact_id)` 回**真正的 ImageContent**(base64 PNG)加一段身份 JSON。
+
+覆核由 `agents.review` 處理：`build_review_task` 匯出針對指定 `research_id` 與指定爭議的任務，`REVIEW_RESULT_SCHEMA` 與 `validate_review` 收挑戰（針對層、主張、引用、嚴重程度）、對爭議的裁決與新補查請求；覆核者不給第二個評級、不覆蓋主研究。`agents/adapters/` 已接 Anthropic Messages 與 OpenAI Responses 兩條實際呼叫路徑（回合迴圈、本地工具 list_evidence／read_evidence／calculate／有圖時 read_chart、圖像以真正 image content 送出並記錄、預算與用量），見下面〈覆核入口〉；缺憑證或缺 transport 一律明確報錯，不假裝已接通。
 
 發布時當次的價格陣列由參數傳入（`publish(..., bars=...)`），只用來畫圖與量度，**不寫入保存的 research.json**；發布包只複製被引用的證據原文，`evidence.json` 仍是完整索引。沒有陣列時頁面顯示衍生數字與資料截止，不畫空圖。`service.publish_research` 不必逐次傳：沒給 `bars` 時它先由**已登記的日線證據**（`karst/bars.py`）組陣列，再退到 `bars_provider` 臨時取數（不登記、不保存）；晚於資料截止的 K 線一律拒收。契約對照見 [契約說明](contracts/README.md)。
 
@@ -105,14 +130,15 @@ CLI、MCP 與日後的排程共用同一組函式:`service.py` 是操作入口,`
 
 | 入口 | 做什麼 |
 |---|---|
-| `store.init(<path>)` | SQLite(WAL):`entities` 公司／證券／產業節點、`evidence_text` FTS5 全文索引(隨時可由 manifest 重建)、`research_versions` 版本化研究(連它當時的 packet 與證據索引)與計算回執、`jobs` 覆核／研究／取數任務。**證據登記本身不進 SQLite**:身份住在各公司證據倉的 manifest,倉內不留第二份 |
+| `store.init(<path>)` | SQLite(WAL):`entities` 公司／證券／產業節點、`evidence_text` FTS5 全文索引(隨時可由 manifest 重建)、`research_versions` 版本化研究(連它當時的 packet 與證據索引)與計算回執、`jobs` 覆核／研究／取數任務、`chart_artifacts` 已登記的圖(id→檔案、hash、週期、來源;圖在任何研究版本存在之前就畫好,所以不掛在版本或任務行上,`read_chart` 只認這張表)。**證據登記本身不進 SQLite**:身份住在各公司證據倉的 manifest,倉內不留第二份 |
 | `service.get_research_context` | 已有研究版本(帶前一版與各自發布編號)、來源、待補請求、待處理覆核;原文不內嵌。`as_of_version=` 切換兩種讀口(見下) |
 | `service.company_paths`／`ensure_company` | 每家公司一個證據倉(`<data>/companies/<證券ID>/bundle`)與發布目錄;同時 upsert 證券與公司節點 |
 | `service.refresh_sources` | 按 `KIND_ADAPTERS` 經**來源接口**呼叫對應 adapter(`clients[<adapter 名>]` 可注入 client)**落入該公司的證據倉**,暫存去 `<data>/tmp/<run>/`;只登記 adapter 報回的 LandedRecord;回新增／變更／無變／失敗／未覆蓋,變與不變按內容指紋,不按取得時間;某個來源爆掉只進 `adapter_errors`,不拖冧其餘 |
 | `service.search_evidence`／`read_evidence` | 索引查詢與按行分頁讀原文(回 `L<起>-L<迄>` 定位);`text=` 走 SQLite FTS5 全文(回 snippet 與行號估計),無 FTS5 明確報錯不靜默退化;`as_of_version=` 改問某版當時用了什麼,回傳的 `scope` 明寫答了哪一條;查不到只代表本地未登記 |
 | `service.ingest_source` | 登記用戶提供的報告、連結或實際讀到的摘錄;摘錄標 truncated,作者立場與本系統判斷分開記。**`kind=industry_report` 必須帶 `entity_ids`(`NASDAQ:XXX`／`cik:…`／`industry:<slug>`)、`author`、`published_at`、`source_type`**(broker_report／independent_research／news／user_note／other),缺哪一項就報哪一項 |
-| `service.calculate` | 包 `calculations`,回結果、單位、輸入回執與計算器版本;未知方法拒絕 |
-| `service.render_charts` | 由已登記日線組本次陣列,出日／週／月三張圖與 `derived.json`(見上);陣列不保存,沒有已登記日線就明報,不畫空圖 |
+| `service.calculate` | 包 `calculations`,回結果、單位、輸入回執與計算器版本;未知方法拒絕。方法見〈估值計算〉。`service.calculate_tool({"method":…,"params":…})` 是給 API adapter 掛的同一個函式,不是第二份算式 |
+| `service.render_charts` | 由已登記日線組本次陣列,出月／週／日／近期四張蠟燭圖、`derived.json` 與 artifact 清單(見上);`store=` 登記 artifact,陣列不保存,沒有已登記日線就明報,不畫空圖 |
+| `service.chart_artifact`／`without_local_paths` | 按 `artifact_id` 取回已登記的圖(先核 hash 才交,未登記或檔案不符一律拒);回遠端時去掉本機路徑,只留 artifact |
 | `service.bundle_for`／`bundles_for` | 「這個 subject 該寫哪個證據倉、該搜哪幾個」的單一規則;MCP 只把它的 `--bundle` 傳進來問 |
 | `service.save_research`／`publish_research` | 先驗證後保存,撞版本回衝突不覆寫;payload 的補查請求自動登記入新 packet(同 as_of／created_at)才收件;**保存時連當時的 packet 與證據索引一起凍結**,發布只用該版凍結的輸入、指回前一次發布、畫本次臨時日線,再記錄頁面位置並更新公司資料室 |
 | `service.request_review`／`claim_review`／`submit_review`／`get_job` | 覆核任務的開票、領取與交回;`execution='api'` 直接呼叫 adapter 並寫回結果(見〈覆核入口〉) |
@@ -234,9 +260,38 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
 
 ## 此步邊界與本地接線
 
-- 程式已提供：契約與來源 hash／引用／時間檢查、增量補查的 packet 版本、年末 FCFF DCF、每股與百分比 R&R、壓力價損失、SMA200、帶確認時間的局部轉折、日週月圖、不可變發布。
+- 程式已提供：契約與來源 hash／引用／時間檢查、增量補查的 packet 版本、五種估值方法與敏感度／反推（見下節）、每股與百分比 R&R、壓力價損失、SMA200、帶確認時間的局部轉折、日週月圖、不可變發布。
 - 六層結論、情境假設、評級、目標價橋接、支撐阻力區域與相位，由已保存的研究輸出提供。程式不把這些當作已驗證的投資能力，也不聲稱已執行六個角色。引用檢查只證明存在及定位有效，不能證明論證成立。
-- 自動估值目前只算 FCFF DCF。銀行、資產重估、商業化前公司等不應硬套；填 `valuation.status=unavailable` 並交代缺口。方法選擇與替代估值可先呈現文字，增加新計算方法時擴充版本化契約及測試。反向 DCF、估值敏感度矩陣、通道與突破回測偵測尚待實作。
+- 銀行、保險、資產重估、FCFE 等仍未有對應方法，不應硬套現有五種；填 `valuation.status=unavailable` 並交代缺口，或用有依據的方法算再在 `alternative_view` 講分歧。
+
+## 估值計算（契約 0.4，KARST-247）
+
+`calculations.calculate_valuation(calculation)` 按輸入宣告的 `method` 分派，回一份回執
+`{calculator_version, method, inputs_digest, outputs}`。**同一個計算器同時服務主模型、
+替代視角、敏感度與反推**，所以頁上任何一個數字都追得回產生它的那份輸入。
+
+| method | 算什麼 | 橋接 |
+|---|---|---|
+| `fcff_dcf` | 年度期末 FCFF 折現（0.2／0.3 原意，一字不改） | 舊欄位 cash／nonoperating_assets／debt／other_claims |
+| `fcff_dcf_dated` | 估值日、各期現金流日期、期中／期末、首期 stub、擴張末期 FCFF 與正常化終值 FCFF 分開、終值有自己的日期 | 共用橋接 |
+| `forward_pe` | 前瞻 P/E：每股盈利口徑、期間、倍數、適用日，可按折現率折回估值日 | **股權倍數，禁接企業橋接** |
+| `ev_multiple` | EV/EBIT 或 EV/EBITDA | 共用橋接 |
+| `sotp` | 各分部企業價值 × 持股比例加總 | 全公司只做一次共用橋接 |
+
+共用橋接：現金、非經營資產、債務、少數股東、可贖回權益、可轉債／認股權（**要留空就必須在
+`unsupported_claims` 寫明缺口，不准靜靜當零**）、攤薄股數、SBC 處理（哪一邊入帳加一句說明，
+不重複扣）。`scale`（absolute／thousands／millions）同時套在金額與股數上，所以每股值不因尺度改
+變，而回傳的金額一律絕對單位；0.2／0.3 沒有 `scale` 的輸入照舊當 absolute。
+
+- `sensitivity(calculation, changes)`：`changes` 用 `model.flows.2.amount` 這種點路徑指到
+  **已存在的數值**輸入；路徑打錯或指到整個物件會拋錯，不會靜靜無效。回執的 `inputs_digest`
+  是**未改動**那份計算的指紋，所以查得到它屬於哪個情境。
+- `solve_implied(calculation, target_price, solve_for, bounds)`：先在範圍內取樣再二分，
+  回 `solved`／`no_solution`／`multiple_solutions`／`undefined`，不會把多解硬報成一個答案。
+- 研究可在 `valuation.sensitivities[]` 與 `valuation.implied` 保存模型當時的回執；發布時程式
+  一律重算，回執對不上原情境的會在頁上標明並只採用重算值。
+- `service.calculate(method, params)` 與 `service.calculate_tool({"method", "params"})`
+  都只是上面這些函式的薄包裝；MCP 的 `calculate` 工具同樣。不准另寫第二份算式。
 - 首屏以依據與缺口幫助閱讀；沒有「已量度／未量度」格。只有合成／歷史重播的來源狀態提示，避免把舊包當即時分析。
 - 目前沒有部位配置或百分之一風險預算。R&R 是條件價格下的算術，退出參考不是最大可保證損失，壓力情境另列。
 - 本地 adapter 保留原始回傳和 `.meta.json`，再正規化成四份契約；未知時間、單位、缺頁不可補成已知。補查登記新來源版本後，用 `resolve_request` 產生新 packet，再重新產生對應的 research。
@@ -254,8 +309,8 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
 | service、mcp_server | **已實作(W1)**:CLI／MCP／排程共用的操作函式與薄包裝;不呼叫模型,研究方法轉介 agents/protocol |
 | packet | 建允許清單中的研究輸入包、必讀與缺口;不載入私人／模型帳本或開發上下文 |
 | agents/ | 六角色任務、結構化輸出、有限補查、引用檢查;記實際模型與提示詞版本 |
-| ta/、charts | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視;`charts.py` **已實作**日週月 PNG 與衍生數字,不保存陣列 |
-| valuation/ | 基本面情境到當日內在價值、估值敏感度、反向要求與有期限的目標價橋接 |
+| ta/、charts | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視;`charts.py` **已實作**月／週／日／近期四張蠟燭 PNG(成交量、歷史均線曲線、有錨點的支撐阻力區)與衍生數字(均線方向、ATR、量比、形成／確認時點),不保存陣列;圖經 artifact 登記,`read_chart` 送真正圖像 |
+| calculations | **已實作**:五種估值方法分派、共用股權橋接、敏感度與反推,全部留同一份回執;有期限的目標價橋接仍由研究輸出提供 |
 | plan | 每股／百分比 R&R、條件執行與壓力情境;不讀私人淨值 |
 | publish、page/ | 不可變發布包、latest 視圖、HTML;發布前檢查依賴版本 |
 | events、jobs | 來源訂閱、新事件、依賴路由、去重、重試與期限覆核 |
