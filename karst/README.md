@@ -16,7 +16,7 @@ python -m karst.run --bundle karst/examples/synthetic --output /tmp/karst-releas
 
 最後一行輸出 `index.html` 的絕對路徑，瀏覽器直接開啟。頁面不依賴網絡、前端伺服器或外部資源。`--validate-only` 可單獨驗證輸入；`--previous-publication-id <ID>` 可連結上版。換股票只換 bundle，不新增程式。
 
-四個來源適配器（KARST-240 本地部分）把原始回傳落到 `<out>/<source>/…`，每份旁邊一份同名 `.meta.json`（形狀 = `tests/fixtures`，另加 `status` ok/empty/error 與 `source_url`）；代號、CIK、日期一律由參數傳入：
+五個來源適配器（edgar／defeatbeta／longbridge／prices／broker）把原始回傳落到 `<out>/<source>/…`，每份旁邊一份同名 `.meta.json`（形狀 = `tests/fixtures`，另加 `status` ok/empty/error、`status_reason` 與 `source_url`）；代號、CIK、日期一律由參數傳入。CLI 照舊（longbridge 那條見〈服務層〉）：
 
 ```bash
 set KARST_EDGAR_USER_AGENT=<name email>   # EDGAR 要求；先查本地 submissions 與 10-K 快取，其餘線上抓
@@ -25,6 +25,31 @@ python -m karst.fetch.defeatbeta --ticker <代號> --out <DIR>       # 逐字稿
 python -m karst.fetch.prices --ticker <代號> --out <DIR>           # 本地 parquet 最近 400 日 + DefeatBeta 續抓，重疊日核收市價；--no-continue 只用本地
 python -m karst.fetch.broker --out <DIR> --source futu --tool <工具> --symbol <代號> --params '{}' --response-file <F>  # 只落地代理人已拿到的 MCP 回傳；不呼叫 MCP，帳戶／持倉／下單類鍵一律拒收
 ```
+
+### 來源接口(source port,KARST-246)
+
+每個 adapter 對外只有兩樣東西:`KINDS`(它負責哪幾種證據)與
+
+```python
+fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]
+```
+
+`LandedRecord` = `{kind, path, meta_path, published_at, fetched_at, period, coverage, status, status_reason}`。
+**種類由 adapter 明報**,登記器照用不反推;ok／empty／error 也只在落地時判一次,
+登記器認結果(舊 sidecar 沒有 status 時才走舊推斷)。供應商代號轉換留在 adapter 內
+(`longbridge.symbol_for`),CIK／代號由 `port.cik_for`／`ticker_for` 由 security 推。
+`client` 是該 adapter 要呼叫的東西(HTTP getter、SDK client、Ticker factory),或者一個
+選項 mapping(測試與重播用:fixture 目錄、注入的列)。`fetch` 不是插件框架,沒有註冊表掃描。
+
+**加一個來源要改幾處:一處。** 寫一個 `karst/fetch/<來源>.py`(`KINDS`、`kind_for`、`fetch`),
+在 `service.ADAPTERS` 加一行;`KIND_ADAPTERS` 由各 adapter 宣告的 `KINDS` 組成,
+`service._run_adapters` 對同一張表迭代,沒有 if/elif。(改動前要動的是:adapter、
+`service.KIND_ADAPTERS` 手寫表、`service._run_adapters` 的分支、`registry.PUBLIC_KINDS`
+或 `evidence_kind` 的推斷規則,共四處。)
+
+`fetch/broker.py` 是手動落地:它不呼叫 MCP,`KINDS` 是空的(`refresh_sources` 不會路由到它),
+`client` 是代理人已經拿到的回傳清單。`fetch/prices.py` 同樣不接 `refresh_sources`
+路由(日線由 longbridge 供),保留作 CLI 與重播入口。
 
 `examples/synthetic/` **全部是合成資料**，含虛構公司、日期、預測與價格；不屬於真實接口樣本，也不是投資建議。本地已提供的真實回傳在 [tests/fixtures/](tests/fixtures/README.md)，新增測試引用其期間形狀，未把轉錄數值當估值真值。本核心讀取已保存的 `research.json`，不會自行呼叫模型、生成評級或讀券商帳戶。
 
@@ -51,6 +76,21 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 
 模型交回的 payload **只有分析**：六層的 conclusion／assumptions／strongest_counter／gaps／實讀來源、估值、技術衍生數字（不交 K 線陣列）、計劃、首屏六句、相位、模組、覆蓋、評級、執行狀態、待答問題、補查請求。`research_id`、`packet_id`、`created_at`、各層 `assessed_at`、mode、策略／委託／方法版本、models 與上版關係一律由程式補；payload 內出現這些欄位會被拒收。收件時照樣跑 packet 版本、引用、實讀紀錄與行號檢查，不通過就拋 `ContractError`，不寫任何檔。
 
+**任務目錄只有一份落地實作**(`agents/staging.py` 的 `stage_task`,KARST-246):六角色
+(`agents.inputs.prepare_inputs`)、主研究(`research.export_task`)、覆核
+(`review.build_review_task`)三處只負責組自己的 context,隔離規則(目的地不得是 bundle
+或其上層、`mkdir(exist_ok=False)`、只複製允許的 artifact、`input.json` /
+`output.schema.json` / 提示詞、中途失敗整個刪掉)住在一處。`extra_files` 讓呼叫者多帶
+幾個檔(例如 `charts/`),提示詞檔名由呼叫者給(主研究 `prompt.md`、覆核 `review.md`)。
+
+**模型可讀的標準圖**(`karst/charts.py`,matplotlib Agg):
+`service.render_charts(bundle, out_dir)` 由**已登記的日線證據**組本次陣列,畫日／週／月
+三張 PNG(收市線、200 日 SMA、成交量、已確認 pivot 與最近關鍵位、資料截止日),同時寫
+`derived.json`(sma200、bars_count、first/last bar、關鍵位、資料截止)。**圖檔與 JSON
+都不含價格陣列**——陣列只活在這次呼叫的記憶體裡。`export_task(..., charts=…)` 把圖與
+衍生數字放進任務目錄的 `charts/`,提示詞加一句「圖只作參考,數字以 `derived.json` 為準」。
+MCP 工具 `render_charts(subject, output_dir=None, as_of=None)` 是同一個入口。
+
 覆核由 `agents.review` 處理：`build_review_task` 匯出針對指定 `research_id` 與指定爭議的任務，`REVIEW_RESULT_SCHEMA` 與 `validate_review` 收挑戰（針對層、主張、引用、嚴重程度）、對爭議的裁決與新補查請求；覆核者不給第二個評級、不覆蓋主研究。`agents/adapters/` 已接 Anthropic Messages 與 OpenAI Responses 兩條實際呼叫路徑（回合迴圈、兩個本地證據工具、預算與用量），見下面〈覆核入口〉；缺憑證或缺 transport 一律明確報錯，不假裝已接通。
 
 發布時當次的價格陣列由參數傳入（`publish(..., bars=...)`），只用來畫圖與量度，**不寫入保存的 research.json**；發布包只複製被引用的證據原文，`evidence.json` 仍是完整索引。沒有陣列時頁面顯示衍生數字與資料截止，不畫空圖。`service.publish_research` 不必逐次傳：沒給 `bars` 時它先由**已登記的日線證據**（`karst/bars.py`）組陣列，再退到 `bars_provider` 臨時取數（不登記、不保存）；晚於資料截止的 K 線一律拒收。契約對照見 [契約說明](contracts/README.md)。
@@ -65,14 +105,16 @@ CLI、MCP 與日後的排程共用同一組函式:`service.py` 是操作入口,`
 
 | 入口 | 做什麼 |
 |---|---|
-| `store.init(<path>)` | SQLite(WAL):`entities` 公司／證券／產業節點、`sources` 證據索引(身份沿用 registry manifest)、`research_versions` 版本化研究與計算回執、`jobs` 覆核／研究／取數任務 |
-| `service.get_research_context` | 已有研究版本、來源索引、待補請求、待處理覆核;原文不內嵌 |
+| `store.init(<path>)` | SQLite(WAL):`entities` 公司／證券／產業節點、`evidence_text` FTS5 全文索引(隨時可由 manifest 重建)、`research_versions` 版本化研究(連它當時的 packet 與證據索引)與計算回執、`jobs` 覆核／研究／取數任務。**證據登記本身不進 SQLite**:身份住在各公司證據倉的 manifest,倉內不留第二份 |
+| `service.get_research_context` | 已有研究版本(帶前一版與各自發布編號)、來源、待補請求、待處理覆核;原文不內嵌。`as_of_version=` 切換兩種讀口(見下) |
 | `service.company_paths`／`ensure_company` | 每家公司一個證據倉(`<data>/companies/<證券ID>/bundle`)與發布目錄;同時 upsert 證券與公司節點 |
-| `service.refresh_sources` | 呼叫 edgar／defeatbeta／longbridge **落入該公司的證據倉**,暫存去 `<data>/tmp/<run>/`;登記後回新增／變更／無變／失敗／未覆蓋;變與不變按內容指紋,不按取得時間 |
-| `service.search_evidence`／`read_evidence` | 索引查詢與按行分頁讀原文(回 `L<起>-L<迄>` 定位);`text=` 走 SQLite FTS5 全文(回 snippet 與行號估計),無 FTS5 明確報錯不靜默退化;查不到只代表本地未登記 |
+| `service.refresh_sources` | 按 `KIND_ADAPTERS` 經**來源接口**呼叫對應 adapter(`clients[<adapter 名>]` 可注入 client)**落入該公司的證據倉**,暫存去 `<data>/tmp/<run>/`;只登記 adapter 報回的 LandedRecord;回新增／變更／無變／失敗／未覆蓋,變與不變按內容指紋,不按取得時間;某個來源爆掉只進 `adapter_errors`,不拖冧其餘 |
+| `service.search_evidence`／`read_evidence` | 索引查詢與按行分頁讀原文(回 `L<起>-L<迄>` 定位);`text=` 走 SQLite FTS5 全文(回 snippet 與行號估計),無 FTS5 明確報錯不靜默退化;`as_of_version=` 改問某版當時用了什麼,回傳的 `scope` 明寫答了哪一條;查不到只代表本地未登記 |
 | `service.ingest_source` | 登記用戶提供的報告、連結或實際讀到的摘錄;摘錄標 truncated,作者立場與本系統判斷分開記。**`kind=industry_report` 必須帶 `entity_ids`(`NASDAQ:XXX`／`cik:…`／`industry:<slug>`)、`author`、`published_at`、`source_type`**(broker_report／independent_research／news／user_note／other),缺哪一項就報哪一項 |
 | `service.calculate` | 包 `calculations`,回結果、單位、輸入回執與計算器版本;未知方法拒絕 |
-| `service.save_research`／`publish_research` | 先驗證後保存,撞版本回衝突不覆寫;payload 的補查請求自動登記入新 packet(同 as_of／created_at)才收件;發布先寫檔、畫本次臨時日線、再記錄頁面位置並更新公司資料室 |
+| `service.render_charts` | 由已登記日線組本次陣列,出日／週／月三張圖與 `derived.json`(見上);陣列不保存,沒有已登記日線就明報,不畫空圖 |
+| `service.bundle_for`／`bundles_for` | 「這個 subject 該寫哪個證據倉、該搜哪幾個」的單一規則;MCP 只把它的 `--bundle` 傳進來問 |
+| `service.save_research`／`publish_research` | 先驗證後保存,撞版本回衝突不覆寫;payload 的補查請求自動登記入新 packet(同 as_of／created_at)才收件;**保存時連當時的 packet 與證據索引一起凍結**,發布只用該版凍結的輸入、指回前一次發布、畫本次臨時日線,再記錄頁面位置並更新公司資料室 |
 | `service.request_review`／`claim_review`／`submit_review`／`get_job` | 覆核任務的開票、領取與交回;`execution='api'` 直接呼叫 adapter 並寫回結果(見〈覆核入口〉) |
 
 憑證放**倉根 `.env`,不 commit**(已在 `.gitignore`);系統環境變數已設的一律優先,`.env` 不覆蓋。
@@ -83,27 +125,65 @@ EDGAR 用 `KARST_EDGAR_USER_AGENT`。缺憑證時 `fetch/longbridge.py` 每個�
 ```bash
 python -m karst.fetch.longbridge --symbol <代號.US> --out <STAGING> --start <ISO> --end <ISO>
 python -m karst.mcp_server --data-dir <DATA>                  # stdio,本地開發
-KARST_MCP_TOKEN=<token> python -m karst.mcp_server --http --host 0.0.0.0 --port 8080 --data-dir <DATA>
+KARST_AUTH_MODE=token KARST_MCP_TOKEN=<token> python -m karst.mcp_server --http --port 8080 --data-dir <DATA>
 ```
 
 `--data-dir`(或環境變數 `KARST_DATA_DIR`,預設 `./karst-data`)是唯一持久根:
 
 ```
-<data>/karst.sqlite                       研究版本、來源索引、任務、FTS5 全文索引
+<data>/karst.sqlite                       研究版本(連當時的 packet 與證據索引)、任務、FTS5 全文索引
 <data>/companies/<證券ID 安全化>/bundle/   該公司唯一證據倉(evidence/objects、manifest.jsonl、evidence.json、packet.json)
 <data>/companies/<證券ID 安全化>/releases/ 發布頁
 <data>/tmp/                               取數暫存與任務目錄,可清
+<data>/oauth-proxy/                       github 模式的授權狀態(客戶端註冊、加密後的上游 token)
 ```
 
-`--http` 用 fastmcp 的 streamable-http,以 `KARST_MCP_TOKEN` 做 Bearer 驗證;**缺 token 拒絕起動 http**,
-stdio 不需要 token。`GET /healthz` 免驗證,回 `{status, version, data_dir}`。舊的 `--bundle`／`--staging`
+`--http` 用 fastmcp 的 streamable-http,驗證由 `karst/auth.py` 的 `build_auth()` 按環境變數決定,
+**兩個模式都未設就拒絕起動 http**(stdio 不需要驗證):
+
+| 模式 | 怎樣開 | 用在哪 |
+|---|---|---|
+| `github` | `KARST_AUTH_MODE=github` 加 `KARST_GITHUB_CLIENT_ID`／`KARST_GITHUB_CLIENT_SECRET`／`KARST_BASE_URL`／`KARST_ALLOWED_GITHUB_USERS` | 遠端部署。fastmcp `OAuthProxy` 代理 GitHub 的授權碼 + PKCE,客戶端動態註冊、自己拿 token;ChatGPT 的自訂連接器沒有固定 token 欄位,只能行這條 |
+| `token` | `KARST_AUTH_MODE=token` 加 `KARST_MCP_TOKEN` | 本機或過渡;客戶端自己帶 `Authorization: Bearer` |
+
+`github` 模式的**允許清單是硬閘**:`KARST_ALLOWED_GITHUB_USERS` 以外的登入名,即使 GitHub 授權成功,
+每個請求一律 401(檢查住在 token 驗證器,不只擋工具呼叫);清單為空拒絕起動。回呼路徑是 fastmcp 的
+預設 `/auth/callback`,GitHub OAuth App 要填 `KARST_BASE_URL` 加這個路徑。授權狀態存在
+`<data>/oauth-proxy/`(加密,鑰匙由 client secret 推導),重啟之後兩端不用重新註冊。
+`GET /healthz` 兩個模式都免驗證,回 `{status, version, data_dir}`。舊的 `--bundle`／`--staging`
 保留為相容選項(固定單一證據倉)。`--env-file` 可指定另一個憑證檔。備份:
 `python -m karst.store backup --data-dir <DATA> --out <ZIP>`(SQLite 一致快照 + 證據檔,`tmp/` 不備份)。
 
-**部署到 Zeabur、環境變數清單,以及 ChatGPT 自訂連接器與 `claude mcp add --transport http` 兩端連接步驟:
-見倉根 [zeabur.md](../zeabur.md)。**
+**部署到 Zeabur、環境變數清單、GitHub OAuth App 建法,以及 ChatGPT 自訂連接器與
+`claude mcp add --transport http` 兩端連接步驟:見倉根 [zeabur.md](../zeabur.md)。**
 
 服務層只開公開市場方法,倉內沒有帳戶／持倉／下單類入口,manual 落地入口 `fetch/broker.py` 不變。
+
+## 版本綁定、兩種讀口與重用憑證(KARST-245)
+
+**一個研究版本擁有它自己的輸入。** `save_research` 把當時的 packet 與證據索引(該 packet 選中的
+記錄,packet 次序)一併存入 `research_versions`;`publish_research` 只用這份凍結輸入建發布,不讀
+公司證據倉當下的 `packet.json`。公司之後再登記新證據、packet 換號,舊版本照樣發布得到,而且
+**與首次發布逐位元相同**(同一 `input_hash` → 同一 `pub-…` 目錄)。證據**原文**仍住在公司證據倉:
+內容定址,指紋不變就是同一份檔;發布複製時逐個重算 hash,這一關沒有省掉。舊 DB 沒有這兩欄的
+版本讀回 `None`,發布退回讀當下 bundle 並在結果寫明 `inputs_from: "bundle"`,不假裝當時已釘住。
+
+**發布鏈在 service 這條路成立。** `previous_publication_id` 由 store 沿 `previous_version_id` 找最近
+一個已發布的前版取得(中間未發布的版本跳過),寫進 `publication.json`;`get_research_context` 每
+行版本另帶 `previous_version_id` 與自己的 `publication_id`,資料室頁因此印得出「指回 pub-…」。
+
+**兩種問法分開,不合成「永遠讀最新」。** `get_research_context` / `search_evidence` 不給
+`as_of_version` 就是**目前可用資料**(公司證據倉現況);給了就是**該版研究當時使用的資料**(版本
+自己的凍結索引)。回傳的 `sources_view` / `scope` 明寫答了哪一條;沒有凍結輸入的舊版本會明確
+報錯,不會用今日的登記冒充當時。
+
+**驗證規則只有一份。** `agents.research.intake` 通過 `check_packet`／`check_research` 之後,回一個
+`Verified`(dict 子類,行為與 dict 完全一樣)並附 `verified` 指紋:research 內容 digest、`packet_id`、
+證據(id + sha256)清單 digest 與契約版本。`save_research` 只在指紋與 bundle 現狀完全對得上時
+略過第二次檢查;改一個字、換一份 packet、重新登記過證據、或用注入的 intake(做不出憑證),
+一律重新驗足。**量度**(本機,真實已發布輸入):57 份記錄／3.76 MB 一輪
+`check_packet + check_research` 中位 112 ms、100 份記錄／6.36 MB 196 ms;指紋守門本身 ~1 ms。
+省的是同一次保存裡重複的那一輪,不是檢查本身。
 
 ## 覆核入口(W2)
 
@@ -134,18 +214,23 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
 嘗試呼叫。
 
 票的收尾三態:結果通過 `validate_review` = `done`;結果不符或未送出即失敗 = `failed`;**已送出
-而結果不明(連線中斷、逾時)= `needs_check`**,由人對帳,程式不自動重發以免重複付費。同一
+而結果不明(連線中斷、逾時)= `needs_check`**,由人對帳,程式不自動重發以免重複付費。三態都是
+終態。**狀態轉換只有一處**:`store.JOB_TRANSITIONS` 列明每個目標可以由哪些狀態到達,service 一律
+經 `store.transition(job_id, to, **欄位)`(單句條件 UPDATE,所以第二個領取者搶不到),非法轉換拋
+`ContractError` 並講出該票現在的狀態;`to=None` 只記欄位(例如補用量),不算轉換。同一
 (`version_id`, 爭議)已有非 failed 的票時,`request_review` 回舊票,不再付一次。
 `get_research_context` 另回 `latest_review`:裁決、最強挑戰(層、主張、嚴重程度)與新補查數目。
 
 ## 資料室頁
 
 `page/render_company_index(store, bundle, security, releases)` 出一頁公司資料室:該公司的證據
-清單(來源、種類、公開／取得時間、狀態、被哪幾個研究版本引用)、研究版本清單(資料截止、
-評級、執行狀態、與上次相比一句、頁面連結)、待補請求與最新覆核摘要。`publish_research`
-成功後自動寫入 `<releases>/index.html`;無框架、無外部資源、明文可讀,與研究頁同一套 CSS。
+清單(**目前可用資料**:來源、種類、公開／取得時間、狀態、被哪幾個研究版本引用)、研究版本
+清單(資料截止、評級、執行狀態、與上次相比一句、頁面連結、本版發布編號與它指回哪一個)、
+待補請求與最新覆核摘要。`publish_research` 成功後自動寫入 `<releases>/index.html`;無框架、無外部
+資源、明文可讀,與研究頁同一套 CSS。
 
-資料室只索引已保存的東西,不重算任何判斷;查不到只代表本地未登記。
+資料室只索引已保存的東西,不重算任何判斷;查不到只代表本地未登記。證據清單答的是「公司證據倉
+現在有什麼」;「某一版當時用了什麼」要按版本問(`as_of_version`),兩條問法不合成一條。
 
 ## 此步邊界與本地接線
 
@@ -163,13 +248,13 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
 | 模組 | 責任 |
 |---|---|
 | config、schema | 配置、身份／證券映射、版本化契約;憑證只讀環境,不寫入研究包 |
-| fetch/ | **已實作(本地 adapter)**:按來源分 edgar、defeatbeta、prices、broker;`common.py` 共用 meta 寫入(固定欄序、UTC Z、sha256)、時間轉換(帶偏移轉 Z、只有日期原樣、無偏移回 None)、限速、HTML 轉文本、代號→CIK。edgar 先查本地 submissions 與 10-K 快取(D-134)再上 EDGAR;prices 本地 parquet 接 DefeatBeta 並核重疊;broker 只落地公開市場方法的回傳,帳戶／持倉／下單鍵拒收。正規化成契約與快取／SQLite 仍待接 |
+| fetch/ | **已實作(本地 adapter)**:按來源分 edgar、defeatbeta、longbridge、prices、broker,共用 `port.py` 的來源接口(`LandedRecord`、`fetch(security, out_dir, *, since, client)`、一次過的 ok／empty／error 判定、`pair_staging`);`common.py` 共用 meta 寫入(固定欄序、UTC Z、sha256)、時間轉換(帶偏移轉 Z、只有日期原樣、無偏移回 None)、限速、HTML 轉文本、代號→CIK。edgar 先查本地 submissions 與 10-K 快取(D-134)再上 EDGAR;prices 本地 parquet 接 DefeatBeta 並核重疊;broker 只落地公開市場方法的回傳,帳戶／持倉／下單鍵拒收。正規化成契約與快取／SQLite 仍待接 |
 | manifest | 來源版本、原始內容 hash、解析衍生物及定位;同內容去重但保留來源關係 |
-| store | **已實作**:SQLite schema、索引與持久狀態;單一提交者、交易與版本檢查(撞版本回衝突不覆寫) |
+| store | **已實作**:SQLite schema、全文索引與持久狀態;單一提交者、交易與版本檢查(撞版本回衝突不覆寫);研究版本連它當時的 packet 與證據索引一起存;任務狀態轉換表只此一份。證據登記不在此,身份住 manifest |
 | service、mcp_server | **已實作(W1)**:CLI／MCP／排程共用的操作函式與薄包裝;不呼叫模型,研究方法轉介 agents/protocol |
 | packet | 建允許清單中的研究輸入包、必讀與缺口;不載入私人／模型帳本或開發上下文 |
 | agents/ | 六角色任務、結構化輸出、有限補查、引用檢查;記實際模型與提示詞版本 |
-| ta/ | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視 |
+| ta/、charts | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視;`charts.py` **已實作**日週月 PNG 與衍生數字,不保存陣列 |
 | valuation/ | 基本面情境到當日內在價值、估值敏感度、反向要求與有期限的目標價橋接 |
 | plan | 每股／百分比 R&R、條件執行與壓力情境;不讀私人淨值 |
 | publish、page/ | 不可變發布包、latest 視圖、HTML;發布前檢查依賴版本 |

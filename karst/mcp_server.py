@@ -1,7 +1,8 @@
 """MCP surface: one line per tool, all logic in ``karst.service``.
 
 stdio by default; ``--http`` serves Streamable HTTP for a remote deployment and
-requires a Bearer token in ``KARST_MCP_TOKEN`` (no token, no HTTP mode). ``/healthz``
+refuses to start without configured authentication — GitHub OAuth plus a login
+allowlist, or one fixed Bearer token; see ``karst.auth``. ``/healthz``
 is the only unauthenticated route. Paths arrive as launch arguments, so no ticker
 or bundle location is compiled in. Source credentials are read at startup from the
 repo-root ``.env`` (gitignored; an already-set environment variable wins) — nothing
@@ -11,17 +12,14 @@ here, and none exists to expose.
 from __future__ import annotations
 
 import argparse
-import os
 from pathlib import Path
 
 from fastmcp import FastMCP
-from fastmcp.server.auth.providers.jwt import StaticTokenVerifier
 from starlette.responses import JSONResponse
 
 from . import __version__, service, store as store_module
+from .auth import AuthConfigError, TOKEN_VARIABLE, build_auth, token_auth as bearer_auth  # noqa: F401
 from .fetch.common import load_env_file
-
-TOKEN_VARIABLE = "KARST_MCP_TOKEN"  # name only; the value never appears in the repo
 
 
 def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=None):
@@ -32,19 +30,21 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
     server = FastMCP("karst", auth=auth)
 
     def one(subject):
-        """The evidence bundle for a subject: the fixed --bundle, else the company store."""
-        if bundle is not None:
-            return bundle
-        if not subject:
-            raise service.ContractError("Supply a subject (security id) or launch with --bundle")
-        return service.company_paths(data_dir, subject)["bundle"]
+        return service.bundle_for(data_dir, subject, bundle)
 
     def many(subject):
-        return [bundle] if bundle is not None else service.company_bundles(data_dir, subject)
+        return service.bundles_for(data_dir, subject, bundle)
 
     @server.custom_route("/healthz", methods=["GET"])
     async def healthz(_request):  # unauthenticated on purpose: a probe, not a data route
         return JSONResponse({"status": "ok", "version": __version__, "data_dir": str(root)})
+
+    @server.custom_route("/.well-known/oauth-protected-resource", methods=["GET"])
+    async def protected_resource_alias(_request):
+        # RFC 9728 puts the metadata under the resource path (/.../oauth-protected-resource/mcp),
+        # which fastmcp serves; a client probing the bare path gets pointed there instead of 404.
+        from starlette.responses import RedirectResponse  # noqa: PLC0415
+        return RedirectResponse("/.well-known/oauth-protected-resource/mcp", status_code=307)
 
     @server.tool
     def get_research_protocol(mode: str, version: str | None = None) -> dict:
@@ -52,9 +52,16 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
         return service.get_research_protocol(mode, version)
 
     @server.tool
-    def get_research_context(subject: str, as_of: str | None = None) -> dict:
-        """Existing research versions, the source index and what is still open for a subject."""
-        return service.get_research_context(state, one(subject), subject, as_of)
+    def get_research_context(subject: str, as_of: str | None = None,
+                             as_of_version: str | None = None) -> dict:
+        """Existing research versions, the sources and what is still open for a subject.
+
+        Without ``as_of_version`` the sources are what the company store holds now;
+        with one they are what that version was validated against. ``sources_view``
+        in the result says which question was answered.
+        """
+        return service.get_research_context(state, one(subject), subject, as_of,
+                                            as_of_version=as_of_version)
 
     @server.tool
     def refresh_sources(security: dict, kinds: list[str], since: str | None = None) -> dict:
@@ -65,10 +72,15 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
     @server.tool
     def search_evidence(query: str | None = None, kind: str | None = None,
                         date_from: str | None = None, date_to: str | None = None,
-                        text: str | None = None, subject: str | None = None) -> dict:
-        """Search the registered evidence index (``text`` runs full text). A miss is not proof of absence."""
+                        text: str | None = None, subject: str | None = None,
+                        as_of_version: str | None = None) -> dict:
+        """Search the registered evidence index (``text`` runs full text). A miss is not proof of absence.
+
+        ``as_of_version`` searches what that research version used instead of what is
+        available now; ``scope`` in the result says which was searched.
+        """
         return service.search_evidence(many(subject), query, kind, date_from, date_to,
-                                       text=text, store=state)
+                                       text=text, store=state, as_of_version=as_of_version)
 
     @server.tool
     def read_evidence(evidence_id: str, offset: int = 0, limit_lines: int = 200,
@@ -98,6 +110,19 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
     def calculate(method: str, params: dict) -> dict:
         """Deterministic calculation with an input receipt and the calculator version."""
         return service.calculate(method, params)
+
+    @server.tool
+    def render_charts(subject: str, output_dir: str | None = None,
+                      as_of: str | None = None) -> dict:
+        """Day / week / month charts of this subject's registered prices, plus their numbers.
+
+        Returns the file paths and the derived JSON (SMA200, bar counts, key levels,
+        data cutoff). The price arrays are transient: they are charted and dropped.
+        """
+        output_dir = output_dir or str(
+            service.company_paths(data_dir, subject)["company"] / "charts"
+            if subject and bundle is None else Path(root) / "charts")
+        return service.render_charts(one(subject), output_dir, as_of=as_of)
 
     @server.tool
     def save_research(payload: dict, subject: str, role_meta: dict,
@@ -141,11 +166,6 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
     return server
 
 
-def bearer_auth(token):
-    """One static Bearer token. Rotation is a deployment action, not a code change."""
-    return StaticTokenVerifier({token: {"client_id": "karst-client", "scopes": []}})
-
-
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="python -m karst.mcp_server", description=__doc__)
     parser.add_argument("--data-dir", default=None,
@@ -161,11 +181,10 @@ def main(argv=None) -> int:
     load_env_file(args.env_file)
     auth = None
     if args.http:
-        token = os.environ.get(TOKEN_VARIABLE)
-        if not token:
-            parser.error(f"--http needs a Bearer token in {TOKEN_VARIABLE}; refusing to serve "
-                         "research writes on an unauthenticated port")
-        auth = bearer_auth(token)
+        try:
+            auth = build_auth(service.data_root(args.data_dir))
+        except AuthConfigError as problem:
+            parser.error(str(problem))
     server = build(args.data_dir, store_path=args.store, bundle=args.bundle,
                    staging=args.staging, auth=auth)
     if args.http:

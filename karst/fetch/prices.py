@@ -12,7 +12,13 @@ import statistics
 import sys
 from pathlib import Path
 
-from .common import clean_value, frame_records, ticker_to_cik, utc_now, write_meta
+from .common import clean_value, frame_records, repo_root, ticker_to_cik, utc_now, write_meta
+from .port import LandedRecord, cik_for, options_for, scan, ticker_for
+
+SOURCE = "prices"
+# Daily bars are routed to the longbridge adapter (live vendor); this local-library
+# path stays a CLI / replay entry, so it claims no kind for refresh_sources.
+KINDS = ()
 
 COLUMNS = ("date", "open", "high", "low", "close", "adj_close", "volume", "ticker", "source", "source_detail", "fetchedAt_source")
 CLOSE_TOL = 0.005
@@ -26,10 +32,6 @@ COLUMN_NOTES = {
     "volume": "shares", "ticker": "symbol the row came from", "source": "local | defeatbeta",
     "source_detail": "underlying fetch parameters", "fetchedAt_source": "UTC ISO",
 }
-
-
-def repo_root() -> Path:
-    return Path(__file__).resolve().parents[2]
 
 
 def shard_for(cik: str) -> int:
@@ -181,9 +183,31 @@ def fetch_daily(cik: str, ticker: str, out_dir, *, parquet_dir=None, days: int =
         local_entity_rows_by_role=local["roles"], local_entity_rows_by_ticker=local["tickers"],
         duplicate_dates_in_merged=merged["duplicate_dates"], continuation_error=vendor_error,
         known_gaps=gaps, status="ok" if rows else "empty", source_url=None,
+        status_reason=None if rows else
+        "no rows in the local library for this entity and no vendor continuation; not 'no trading'",
     )
     return {"path": str(csv_path), "rows": len(rows), "local_rows": merged["local_rows"], "defeatbeta_rows": merged["vendor_rows"],
             "overlap_check": merged["overlap_check"], "status": "ok" if rows else "empty"}
+
+
+def kind_for(meta) -> str:
+    """One landing, one kind: the merged daily series."""
+    if not str(meta.get("source") or "").startswith("local-prices"):
+        raise ValueError(f"not a local price landing: {meta.get('source')!r}")
+    return "prices"
+
+
+def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
+    """Land the local daily series (plus the vendor continuation) for this security.
+
+    ``client`` is an injection mapping for tests and replays — any keyword
+    ``fetch_daily`` accepts (``local``, ``vendor_rows``, ``parquet_dir``, ``days``,
+    ``continue_with_defeatbeta``). ``since`` is not a filter: the window is a row
+    count into the local library, not a date.
+    """
+    fetch_daily(cik_for(security), ticker_for(security), out_dir,
+                **options_for(client or {}, "vendor_rows"))
+    return scan(Path(out_dir) / SOURCE, kind_for)
 
 
 def main(argv=None) -> int:

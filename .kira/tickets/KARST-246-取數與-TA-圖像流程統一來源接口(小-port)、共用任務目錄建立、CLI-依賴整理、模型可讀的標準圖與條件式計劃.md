@@ -27,3 +27,6 @@ deliverable: KARST-D12
 ## 結果
 
 ## 留言
+
+### agent:Fable主腦 · 2026-09-18 01:33
+2026-09-18 交付並合併:fetch/port.py 定義 LandedRecord 與共同 fetch(security, out_dir, since, client) 形狀,五個 adapter 各自報 KINDS / kind_for,ok/empty/error 只在 adapter 落地時判一次,registry 認宣告不反推(舊 sidecar 無 status 才走推斷);service.ADAPTERS 表迭代取代 if/elif,KIND_ADAPTERS 由宣告組成;「加一個來源」由改四處減為一個模組加一行註冊。agents/staging.stage_task 一份取代三處落地;schema.embed_evidence_defs 一份取代兩份;pipeline 降為 CLI 殼(-84 行),sections_from_markdown / questions_from_model 入 protocol、pair_staging 入 port,repo_root 只剩一份,mcp one()/many() 回 service。charts.py:matplotlib Agg 出日/週/月 PNG 加 derived.json(不含價格陣列),service.render_charts 與 MCP 工具,export_task 可帶 charts/ 入任務目錄。31 個新測試,全套 264 通過;生產碼零代號。未做:「主研究者引用衍生數字產出條件式計劃」屬運行時驗收,待第二隻股票實跑;圖的 pivot 參數未經案例檢視;refresh_sources 只登記 adapter 報回的記錄(手動丟入 staging 的檔不再自動登記)。

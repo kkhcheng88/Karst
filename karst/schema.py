@@ -1,6 +1,7 @@
 """Canonical JSON Schema validation; references resolve only from packaged schemas."""
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 from functools import lru_cache
@@ -70,6 +71,31 @@ def validators(version=VERSION):
             schema, registry=registry, format_checker=FormatChecker()
         )
     return result
+
+
+def embed_evidence_defs(exported, contracts):
+    """Inline the evidence contract into a derived schema so it is usable offline.
+
+    A task directory has no network and no schema registry, so ``$ref`` into the
+    evidence URN cannot resolve there. The evidence resource is embedded once under
+    ``$defs/contract_evidence`` and every external reference is rewritten to point
+    at that one copy — not a second copy with a life of its own.
+    """
+    evidence = contracts["evidence"]
+    exported.setdefault("$defs", {})["contract_evidence"] = copy.deepcopy(evidence)
+
+    def rewrite(value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                if key == "$ref" and isinstance(child, str) and child.startswith(evidence["$id"] + "#"):
+                    value[key] = "#/$defs/contract_evidence" + child.split("#", 1)[1]
+                elif key != "contract_evidence":
+                    rewrite(child)
+        elif isinstance(value, list):
+            for child in value:
+                rewrite(child)
+    rewrite(exported)
+    return exported
 
 
 def validate(kind, value):

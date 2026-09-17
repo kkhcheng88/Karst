@@ -39,16 +39,16 @@ class IngestTagTests(unittest.TestCase):
             self.ingest(**{**COMPLETE, "entity_ids": [SUBJECT], "source_type": "a friend said so"})
         self.assertIn("broker_report", str(caught.exception))
 
-    def test_a_tagged_report_lands_in_the_source_index_and_the_entity_table(self):
+    def test_a_tagged_report_lands_in_the_registry_and_the_entity_table(self):
         record = self.ingest(**COMPLETE, entity_ids=[SUBJECT, INDUSTRY])
         self.assertEqual(record["kind"], "industry_report")
         self.assertEqual(record["source_type"], "broker_report")
         self.assertEqual(record["entity_ids"], sorted([SUBJECT, INDUSTRY]))
         self.assertEqual(self.store.get_entity(INDUSTRY)["kind"], "industry")
         self.assertEqual(self.store.get_entity(SUBJECT)["kind"], "security")
-        rows = self.store.list_sources(entity_id=INDUSTRY)
-        self.assertEqual([row["evidence_id"] for row in rows], [record["evidence_id"]])
-        self.assertEqual(rows[0]["published_at"], "2026-03-04")
+        registered = service.search_evidence(self.bundle)["results"]
+        self.assertEqual([row["evidence_id"] for row in registered], [record["evidence_id"]])
+        self.assertEqual(registered[0]["published_at"], "2026-03-04")
 
     def test_a_plain_excerpt_needs_no_report_tags(self):
         record = self.ingest(note="something the user read", entity_ids=[SUBJECT])

@@ -14,71 +14,13 @@ from pathlib import Path
 
 from .agents.assemble import LAYERS, ROLES, UPSTREAM, assemble
 from .agents.inputs import prepare_inputs
+from .agents.protocol import (COUNTER_PREFIX, DISCIPLINE_FILE, MANDATE_FILE, MODEL_FILE,
+                              questions_from_model, sections_from_markdown)
+from .fetch.port import pair_staging
 from .fetch.registry import EvidenceRegistry
 from .packet import build_packet, check_packet, instant, read_json
 from .publish import publish
 from .schema import ContractError, canonical
-
-REPO = Path(__file__).resolve().parents[1]
-MANDATE_FILE = REPO / 'strategy' / '投資委託.md'
-DISCIPLINE_FILE = REPO / 'strategy' / 'specs' / '六層分析紀律-v1.md'
-MODEL_FILE = REPO / 'strategy' / '投資決策模型.md'
-DISCIPLINE_PREFIXES = ('L1', 'L2', 'L3', 'L4', 'L5', 'L6', '反方')
-COUNTER_PREFIX = '反方'
-
-
-# --- pure helpers (unit-tested directly) ------------------------------------
-
-def sections_from_markdown(text, prefixes):
-    """``### <prefix>...`` headings -> {prefix: body}; a prefix matches at most one section."""
-    sections, current = {}, None
-    for line in text.splitlines():
-        if line.startswith('#'):
-            heading = line[4:].strip() if line.startswith('### ') else None
-            current = next((p for p in prefixes if heading and heading.startswith(p)), None)
-            if current is not None and current in sections:
-                raise ContractError(f'Discipline heading prefix is ambiguous: {current}')
-            if current is not None:
-                sections[current] = []
-        elif current is not None:
-            sections[current].append(line)
-    return {key: '\n'.join(body).strip() for key, body in sections.items() if ''.join(body).strip()}
-
-
-def _split_top_level(text, separator='、'):
-    parts, depth, start = [], 0, 0
-    for index, char in enumerate(text):
-        if char in '(（':
-            depth += 1
-        elif char in ')）':
-            depth = max(depth - 1, 0)
-        elif char == separator and depth == 0:
-            parts.append(text[start:index])
-            start = index + 1
-    parts.append(text[start:])
-    return [part.strip() for part in parts if part.strip()]
-
-
-def questions_from_model(text):
-    """The scenario questions the strategy names: each module's focus plus the五件事 list."""
-    questions = []
-    lines = text.splitlines()
-    for index, line in enumerate(lines):
-        cells = [cell.strip() for cell in line.strip().strip('|').split('|')]
-        if '攻什麼' not in cells:
-            continue
-        column = cells.index('攻什麼')
-        for row in lines[index + 2:]:
-            if not row.strip().startswith('|'):
-                break
-            values = [cell.strip() for cell in row.strip().strip('|').split('|')]
-            if len(values) > column and values[column]:
-                questions.append(values[column].replace('*', '').strip())
-        break
-    match = re.search(r'至少追查五件事[::](.+?)。', text, re.S)
-    if match:
-        questions.extend(_split_top_level(match[1].replace('\n', '')))
-    return [q for q in questions if q]
 
 
 # --- command helpers --------------------------------------------------------
@@ -105,26 +47,6 @@ def _entity_ids(args):
         return None  # Sidecars carry their own entity IDs.
     security = _security(args)
     return sorted({security['issuer_id'], security['security_id']})
-
-
-def pair_staging(staging):
-    """[(sidecar, [raw representations])]; the longest matching stem owns each landed file.
-
-    Exhibits land beside their parent document with a longer stem, so a plain
-    prefix test would give the parent both. Longest match keeps them apart.
-    """
-    metas = {path: path.name[: -len('.meta.json')]
-             for path in sorted(Path(staging).rglob('*.meta.json'))}
-    raws = {path: [] for path in metas}
-    for path in sorted(Path(staging).rglob('*')):
-        if not path.is_file() or path.name.endswith('.meta.json'):
-            continue
-        owner = max((meta for meta, stem in metas.items()
-                     if meta.parent == path.parent and path.name.startswith(stem + '.')),
-                    key=lambda meta: len(metas[meta]), default=None)
-        if owner is not None:
-            raws[owner].append(path)
-    return [(meta, raws[meta]) for meta in metas]
 
 
 def _latest_versions(records):

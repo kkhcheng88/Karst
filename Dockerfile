@@ -18,5 +18,5 @@ COPY strategy/ ./strategy/
 EXPOSE 8080
 VOLUME ["/data"]
 
-# KARST_MCP_TOKEN must be set, or the server refuses to serve HTTP.
+# Auth must be configured (github: KARST_GITHUB_CLIENT_ID/SECRET + KARST_BASE_URL + KARST_ALLOWED_GITHUB_USERS; or token: KARST_MCP_TOKEN), or the server refuses to serve HTTP.
 CMD ["python", "-m", "karst.mcp_server", "--http", "--host", "0.0.0.0", "--port", "8080", "--data-dir", "/data"]

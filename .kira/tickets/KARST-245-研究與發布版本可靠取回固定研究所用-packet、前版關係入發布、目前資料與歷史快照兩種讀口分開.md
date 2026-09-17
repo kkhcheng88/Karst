@@ -27,3 +27,6 @@ deliverable: KARST-D12
 ## 結果
 
 ## 留言
+
+### agent:Fable主腦 · 2026-09-18 01:33
+2026-09-18 交付並合併:研究版本保存時連同當時 packet 與證據快照(research_versions 加兩欄,migration 對既有 DB 安全);publish_research 只用凍結輸入(publish 加 snapshot 參數),舊版本無快照退回讀當下 bundle 並標 inputs_from;service 發布路徑傳 previous_publication_id(沿前版找最近已發布),資料室頁與 context 列前後版本;get_research_context / search_evidence 加 as_of_version(current 對 as_of_research,回傳標明 scope);intake 回 Verified 憑證(內容 digest + packet_id + 證據指紋 digest + 契約版本),指紋相符才略過重驗,發布逐檔 hash 保留;量度:一輪重驗 112–196 ms、指紋守門約 1 ms(寫入 README);store 刪 sources 表寫入 / list_sources / list_entities / interrupted,jobs 轉態收進 store.transition(合法轉換表 JOB_TRANSITIONS)。9 個新測試,全套 264 通過。未做:既有部署 DB 的 sources 表未 DROP(可重建資料不做破壞性 migration)。

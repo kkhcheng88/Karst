@@ -2,13 +2,12 @@
 from __future__ import annotations
 
 import copy
-import shutil
 from importlib.resources import files
-from pathlib import Path
 
-from ..packet import _private_selectors, check_packet, confined
+from ..packet import _private_selectors, check_packet
 from ..schema import ContractError, canonical, digest
 from .assemble import LAYERS, UPSTREAM, fragment_schema, validate_fragment
+from .staging import stage_task
 
 
 def prompt(role):
@@ -62,22 +61,6 @@ def prepare_inputs(role, packet, evidence_records, *, bundle_root, destination,
                'scenario_questions': scenario_questions, 'upstream': upstream,
                'input_hashes': {name: digest(canonical(value)) for name, value in upstream.items()},
                'prompt_sha256': digest(prompt(role).encode('utf-8'))}
-    canonical(context)
-    destination = Path(destination).resolve()
-    origin = Path(bundle_root).resolve()
-    if destination == origin or origin.is_relative_to(destination):
-        raise ContractError('Worker directory must be separate from its source bundle')
-    destination.mkdir(parents=True, exist_ok=False)
-    try:
-        for record in exported:
-            relative = record['artifact']['path']
-            target = confined(destination, relative)
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(confined(origin, relative), target)
-        (destination / 'input.json').write_bytes(canonical(context))
-        (destination / 'output.schema.json').write_bytes(canonical(fragment_schema(role)))
-        (destination / 'prompt.md').write_text(prompt(role), encoding='utf-8')
-    except Exception:
-        shutil.rmtree(destination)
-        raise
+    stage_task(bundle_root, exported, destination=destination, input_context=context,
+               prompt_text=prompt(role), output_schema=fragment_schema(role))
     return context

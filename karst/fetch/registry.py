@@ -13,31 +13,7 @@ from uuid import uuid4
 
 from ..packet import _private_selectors, confined, instant, time_bounds
 from ..schema import ContractError, canonical, decode, digest, validate
-
-
-# These are public tool names, NOT symbol-specific mappings. New adapters may
-# supply kind explicitly; broker tools still have to be on this public allowlist.
-PUBLIC_KINDS = {
-    'quote_company_profile': 'profile', 'quote_owner_plate': 'profile',
-    'quote_market_snapshot': 'prices', 'quote_daily_short_volume': 'short_interest',
-    'quote_short_interest': 'short_interest', 'quote_valuation_detail': 'valuation',
-    'quote_financials_earnings_price_history': 'financials',
-    'quote_insider_holder_list': 'ownership', 'quote_insider_trade_list': 'ownership',
-    'quote_shareholders_institutional': 'ownership',
-    'quote_research_analyst_consensus': 'consensus',
-    'quote_research_rating_summary': 'ratings',
-    'quote_research_morningstar_report': 'industry_report',
-    'business_segments': 'financials', 'consensus': 'consensus',
-    'forecast_eps': 'consensus', 'filings': 'filing_index',
-    'finance_calendar': 'calendar', 'fund_holder': 'ownership',
-    'shareholder': 'ownership', 'short_positions': 'short_interest',
-    'quote': 'prices', 'history_candlesticks_by_date': 'prices',
-    'static_info': 'profile', 'calc_indexes': 'prices',
-    'industry_valuation': 'valuation', 'valuation': 'valuation',
-    'valuation_history': 'valuation', 'security_facts': 'other_public',
-    'institution_rating': 'ratings', 'institution_rating_history': 'ratings',
-    'institutional_views': 'ratings',
-}
+from .port import PUBLIC_KINDS, LandedRecord
 
 
 def load_meta(path):
@@ -67,11 +43,15 @@ def load_meta(path):
     return meta, raw
 
 
-def evidence_kind(meta):
+def evidence_kind(meta, declared=None):
+    """The adapter's declared kind wins; the rest is the legacy path for sidecars
+    landed before the source port existed. The broker allowlist is checked either way."""
     source, tool = meta['source'], meta.get('tool') or ''
     method = tool.split('__')[-1]
     if source in ('futu', 'longbridge') and method not in PUBLIC_KINDS:
         raise ContractError(f'Broker tool is not on public allowlist: {tool}')
+    if declared:
+        return declared
     if meta.get('kind'):
         return meta['kind']
     if method in PUBLIC_KINDS:
@@ -132,40 +112,62 @@ def _time(value, basis, zone=None, *, strict=False):
     return None, 'unknown', None, f'{basis}; original value {value!r} has unproven time precision/timezone'
 
 
-def _status(meta, raw, media_type):
-    declared = meta.get('status')
-    if declared == 'FAILED':  # Historical fixture, new adapters use error.
-        declared = 'error'
-    if declared not in (None, 'ok', 'empty', 'error'):
-        raise ContractError('status must be ok, empty or error')
+def _infer_status(raw, media_type):
+    """Legacy path: read the envelope for a sidecar that never declared a status."""
     inferred, reason = ('empty', 'Raw response has no bytes') if not raw.strip() else ('ok', None)
     if 'json' in media_type and raw.strip():
         try:
             payload = decode(raw)
         except ContractError as exc:
-            inferred, reason = 'error', f'Invalid JSON response: {exc}'
-        else:
-            _private_selectors(payload)
-            envelope = payload if isinstance(payload, dict) else {}
-            response = envelope.get('response', payload)
-            if (envelope.get('error') or envelope.get('error_code') not in (None, 0, '0') or
-                    (isinstance(response, dict) and (response.get('ret_code') not in (None, 0, '0') or
-                     response.get('error') or response.get('error_code') not in (None, 0, '0')))):
-                inferred, reason = 'error', 'Source returned an error envelope; see preserved raw response'
-            elif response is None or response == [] or response == {}:
-                inferred, reason = 'empty', 'Source returned an empty response'
-            elif isinstance(response, dict):
-                for key in ('records', 'data'):
-                    if response.get(key) == []:
-                        inferred, reason = 'empty', f'Source returned {key}=[]'
-    if declared == 'ok' and inferred != 'ok':
-        raise ContractError('Declared ok contradicts empty/error raw response')
-    status = declared or inferred
+            return 'error', f'Invalid JSON response: {exc}'
+        _private_selectors(payload)
+        envelope = payload if isinstance(payload, dict) else {}
+        response = envelope.get('response', payload)
+        if (envelope.get('error') or envelope.get('error_code') not in (None, 0, '0') or
+                (isinstance(response, dict) and (response.get('ret_code') not in (None, 0, '0') or
+                 response.get('error') or response.get('error_code') not in (None, 0, '0')))):
+            inferred, reason = 'error', 'Source returned an error envelope; see preserved raw response'
+        elif response is None or response == [] or response == {}:
+            inferred, reason = 'empty', 'Source returned an empty response'
+        elif isinstance(response, dict):
+            for key in ('records', 'data'):
+                if response.get(key) == []:
+                    inferred, reason = 'empty', f'Source returned {key}=[]'
+    return inferred, reason
+
+
+def _status(meta, raw, media_type):
+    """ok / empty / error is judged once, by the adapter that landed it (KARST-246).
+
+    A sidecar that declares a status is taken at its word: two judgements of the
+    same bytes can disagree, and then nobody knows which one the researcher is
+    reading. Only a sidecar landed before the source port existed — one with no
+    status at all — is still read here. Two things stay checked either way: a
+    landed file is required for ok, and the body is scanned for private selectors.
+    """
+    declared = meta.get('status')
+    if declared == 'FAILED':  # Historical fixture, new adapters use error.
+        declared = 'error'
+    if declared not in (None, 'ok', 'empty', 'error'):
+        raise ContractError('status must be ok, empty or error')
+    if declared is None:
+        status, reason = _infer_status(raw, media_type)
+    else:
+        status, reason = declared, None
+        if 'json' in media_type and raw.strip():
+            try:
+                payload = decode(raw)
+            except ContractError:
+                payload = None  # unparseable bytes stay as landed; the adapter's status stands
+            if payload is not None:
+                _private_selectors(payload)  # privacy guard, not a status judgement
+        if status == 'ok' and not raw.strip():
+            raise ContractError('Declared ok contradicts an empty landed file')
     return status, None if status == 'ok' else (meta.get('status_reason') or reason or
                                                f'Adapter reported {status}; see raw response and known gaps')
 
 
-def map_record(raw_path, meta, *, entity_ids, artifact_path, contract_version='0.2.0'):
+def map_record(raw_path, meta, *, entity_ids, artifact_path, contract_version='0.2.0', kind=None):
     """Pure mapping; caller supplies resolved entity IDs, never guessed company IDs.
 
     ``contract_version`` only restates the declared version at the end: identity is
@@ -179,7 +181,7 @@ def map_record(raw_path, meta, *, entity_ids, artifact_path, contract_version='0
     if file_meta and file_meta.get('name') == raw_path.name:
         if file_meta.get('sha256') != digest(raw) or file_meta.get('bytes') != len(raw):
             raise ContractError('Landed raw file differs from sidecar file hash/size')
-    kind = evidence_kind(meta)
+    kind = evidence_kind(meta, kind)
     _private_selectors(meta['params'])
     if not isinstance(entity_ids, list) or not entity_ids:
         raise ContractError('Adapter must supply nonempty entity_ids')
@@ -314,11 +316,19 @@ class EvidenceRegistry:
         return records
 
     def register(self, raw_path, meta_path=None, *, entity_ids=None, contract_version='0.2.0'):
-        """raw_path=None registers a metadata-only adapter failure as diagnostic.
+        """Register one landed representation. ``raw_path`` may be a ``LandedRecord``.
 
-        The sidecar itself is the preserved failure envelope; no source body is
+        With a LandedRecord the adapter's declared kind is used as it stands — the
+        registry registers, it does not classify. Without one (a sidecar landed
+        before the port existed) the legacy inference in ``evidence_kind`` runs.
+        ``raw_path=None`` registers a metadata-only adapter failure as diagnostic:
+        the sidecar itself is the preserved failure envelope, no source body is
         invented, and status=ok is never accepted without a landed raw file.
         """
+        kind = None
+        if isinstance(raw_path, LandedRecord):
+            landed, raw_path = raw_path, raw_path.path
+            kind, meta_path = landed.kind, meta_path or landed.meta_path
         if raw_path is None and meta_path is None:
             raise ContractError('Supply a raw file or an explicit diagnostic sidecar')
         missing_raw = raw_path is None
@@ -336,7 +346,7 @@ class EvidenceRegistry:
             suffix = '.bin'
         relative = f'evidence/objects/{digest(raw)[:2]}/{digest(raw)}{suffix}'
         record = map_record(raw_path, meta, entity_ids=entity_ids, artifact_path=relative,
-                            contract_version=contract_version)
+                            contract_version=contract_version, kind=kind)
         if record['artifact']['sha256'] != digest(raw):
             raise ContractError('Raw file changed while registering; retry a stable landed file')
         lock = confined(self.root, 'evidence/registry.lock')

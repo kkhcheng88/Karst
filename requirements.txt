@@ -1,5 +1,7 @@
 # Deployed service (see zeabur.md). Versions are the ones actually run locally.
 # Credentials never live here; only environment variable NAMES appear in docs.
+# GitHub OAuth mode (karst/auth.py) needs nothing extra: the OAuth proxy, its disk
+# store (py-key-value-aio[disk]) and cryptography all arrive with fastmcp.
 fastmcp==2.14.7
 mcp==1.27.0
 longport==4.3.7
@@ -11,3 +13,6 @@ httpx==0.28.1
 anthropic==0.105.2
 # Transcripts / quarterly statements adapter; pulls duckdb + pandas + pyarrow.
 defeatbeta-api==0.0.61
+# Standard day/week/month charts for the researcher (karst/charts.py). Agg backend
+# only: no GUI, no display, nothing interactive on a server.
+matplotlib==3.10.9

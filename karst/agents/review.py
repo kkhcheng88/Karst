@@ -7,14 +7,14 @@ the challenges. Which model plays which role is configuration, not method.
 from __future__ import annotations
 
 import copy
-import shutil
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from ..packet import _private_selectors, check_packet, confined, read_json
-from ..schema import ContractError, canonical, schemas, validate
-from .research import CONTRACT, _embed_evidence_defs
+from ..packet import _private_selectors, check_packet, read_json
+from ..schema import ContractError, canonical, embed_evidence_defs, schemas, validate
+from .research import CONTRACT
+from .staging import stage_task
 
 LAYERS = ("L1", "L2", "L3", "L4", "L5", "L6")
 SEVERITIES = ("blocking", "material", "minor")
@@ -61,7 +61,7 @@ def _result_schema():
         "$defs": {},
     }
     result["required"] = sorted(result["properties"])
-    return _embed_evidence_defs(result, contracts)
+    return embed_evidence_defs(result, contracts)
 
 
 REVIEW_RESULT_SCHEMA = _result_schema()
@@ -107,22 +107,7 @@ def build_review_task(research_json, dispute, evidence_ids, protocol, *, bundle,
                "allowed_evidence_ids": wanted, "evidence": exported,
                "method": {"version": protocol["version"], "mode": protocol["mode"],
                           "steps": protocol["steps"], "text": protocol["text"]}}
-    canonical(context)
-    destination = Path(destination).resolve()
-    origin = bundle.resolve()
-    if destination == origin or origin.is_relative_to(destination):
-        raise ContractError("Review directory must be separate from its source bundle")
-    destination.mkdir(parents=True, exist_ok=False)
-    try:
-        for record in exported:
-            relative = record["artifact"]["path"]
-            target = confined(destination, relative)
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(confined(origin, relative), target)
-        (destination / "input.json").write_bytes(canonical(context))
-        (destination / "output.schema.json").write_bytes(canonical(protocol["output_schema"]))
-        (destination / "review.md").write_text(protocol["text"], encoding="utf-8")
-    except Exception:
-        shutil.rmtree(destination)
-        raise
+    stage_task(bundle, exported, destination=destination, input_context=context,
+               prompt_text=protocol["text"], output_schema=protocol["output_schema"],
+               prompt_name="review.md")
     return context

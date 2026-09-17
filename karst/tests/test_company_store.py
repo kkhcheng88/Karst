@@ -54,9 +54,12 @@ class CompanyStoreTests(unittest.TestCase):
         self.assertTrue(second["added"], "a second company starts with its own empty store")
         self.assertEqual(second["unchanged"], [])
         self.assertEqual(set(first["added"]) & set(second["added"]), set())
-        rows = self.store.list_sources(entity_id="XNYS:TEST")
-        self.assertEqual({row["evidence_id"] for row in rows}, set(second["added"]))
-        self.assertEqual([row["evidence_id"] for row in self.store.list_sources(entity_id="XNAS:DEMO")
+        # The registry in each bundle is the record of what that company holds; SQLite
+        # keeps no second copy of it.
+        theirs = service.search_evidence(second["bundle"])["results"]
+        self.assertEqual({row["evidence_id"] for row in theirs}, set(second["added"]))
+        ours = service.search_evidence(first["bundle"])["results"]
+        self.assertEqual([row["evidence_id"] for row in ours
                           if row["evidence_id"] in second["added"]], [])
 
     def test_changed_content_registers_as_changed_not_added(self):

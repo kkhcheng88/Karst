@@ -16,7 +16,12 @@ import time
 import urllib.request
 from pathlib import Path
 
-from .common import RateLimiter, html_to_text, sha256_bytes, ticker_to_cik, to_utc_z, write_json, write_meta
+from .common import (RateLimiter, html_to_text, repo_root, sha256_bytes, ticker_to_cik, to_utc_z,
+                     write_json, write_meta)
+from .port import LandedRecord, cik_for, options_for, scan
+
+SOURCE = "edgar"
+KINDS = ("filing", "filing_index")
 
 ARCHIVES = "https://www.sec.gov/Archives/edgar/data"
 ROW_FIELDS = (
@@ -36,10 +41,6 @@ ACCEPTANCE_BASIS = (
 FILING_DATE_BASIS = "EDGAR filingDate only (date precision; acceptanceDateTime absent in local index) — no time of day"
 INDEX_BASIS = "per-row filingDate (date precision) and acceptanceDateTime (EDGAR UTC); no single publish time for the index"
 TEXT_DERIVATION = "regex strip script/style/comments/tags, html.unescape, whitespace collapse"
-
-
-def repo_root() -> Path:
-    return Path(__file__).resolve().parents[2]
 
 
 class HttpGet:
@@ -232,6 +233,7 @@ def _land_document(out_dir: Path, base: str, filename: str, raw: bytes, meta: di
 
 def _land_error(out_dir: Path, base: str, meta: dict, error: str, gaps=()) -> dict:
     write_meta(out_dir / f"{base}.meta.json", **{**meta, "status": "error", "error": error,
+                                               "status_reason": f"fetch failed after retry: {error}",
                                                "known_gaps": list(gaps) + [f"fetch failed after retry: {error}"], "files": None})
     return {"base": base, "status": "error", "error": error}
 
@@ -320,7 +322,8 @@ def fetch_filings(cik: str, out_dir, *, forms=("10-K", "10-Q", "8-K"), n_10k=1, 
         exhibit = find_exhibit(attachments)
         if exhibit is None:
             write_meta(out / f"{ex_base}.meta.json", **_doc_meta(row, cik, ticker, None, "exhibit", "EDGAR index page", meta["index_page"]),
-                       **ex_meta_common, status="empty", known_gaps=["no EX-99.1 exhibit listed on index page"])
+                       **ex_meta_common, status="empty", status_reason="no EX-99.1 exhibit listed on this filing's index page",
+                       known_gaps=["no EX-99.1 exhibit listed on index page"])
             results.append({"base": ex_base, "status": "empty"})
             continue
         ex_url = archive_url(cik, accession, exhibit["file"])
@@ -330,6 +333,25 @@ def fetch_filings(cik: str, out_dir, *, forms=("10-K", "10-Q", "8-K"), n_10k=1, 
         results.append(_land_document(out, ex_base, exhibit["file"], raw, ex_meta, max_text_chars) if raw is not None
                        else _land_error(out, ex_base, ex_meta, err))
     return results
+
+
+def kind_for(meta) -> str:
+    """A filing document (primary or exhibit) or the submissions index slice."""
+    params = meta.get("params") or {}
+    return "filing" if (params.get("document") or params.get("kind") in ("primary", "exhibit")) \
+        else "filing_index"
+
+
+def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
+    """Land this security's newest filings. ``client`` is an HTTP getter (tests pass an offline map).
+
+    ``since`` is not a filter here: the selection is "the newest N of each form",
+    which is what a research packet needs; a date window would silently drop the
+    last 10-K when nothing was filed inside it.
+    """
+    fetch_filings(cik_for(security), out_dir, ticker=security.get("ticker"),
+                  **options_for(client, "http_get"))
+    return scan(Path(out_dir) / SOURCE, kind_for)
 
 
 def main(argv=None) -> int:

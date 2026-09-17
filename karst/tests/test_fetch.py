@@ -11,7 +11,8 @@ from pathlib import Path
 from karst.fetch import broker, common, defeatbeta, edgar, prices
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
-META_EXTRAS = {"status", "source_url", "file", "data_as_of", "error", "symbol", "continuation_error"}
+META_EXTRAS = {"status", "status_reason", "source_url", "file", "data_as_of", "error", "symbol",
+               "continuation_error"}
 
 
 def read_json(path):

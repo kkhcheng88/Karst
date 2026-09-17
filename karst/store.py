@@ -1,7 +1,11 @@
-"""SQLite state: entities, source index, research versions, jobs.
+"""SQLite state: entities, the evidence text index, research versions, jobs.
 
 One file, one writer at a time (WAL). Nothing here calls a model, the network
 or a broker. The path is always a parameter; no ticker or date is hard-coded.
+
+What is NOT here: a copy of the evidence manifest. The registry in each company
+bundle owns evidence identity; SQLite only holds what the files cannot — the
+full-text index, the research versions and the job board.
 """
 from __future__ import annotations
 
@@ -15,7 +19,20 @@ from pathlib import Path
 from .schema import ContractError, canonical, digest
 
 JOB_KINDS = ("review", "research", "refresh")
-JOB_STATUSES = ("pending", "claimed", "running", "done", "failed", "interrupted", "needs_check")
+# Destination -> the states it may be reached from. The legal moves live here once;
+# every caller asks this table instead of writing `status=` itself. done, failed and
+# needs_check are terminal: a finished job is reconciled by hand, never moved on.
+JOB_TRANSITIONS = {
+    "claimed": ("pending",),
+    "running": ("pending", "claimed"),
+    "done": ("claimed", "running"),
+    "failed": ("pending", "claimed", "running"),
+    "needs_check": ("claimed", "running"),
+}
+JOB_TERMINAL = ("done", "failed", "needs_check")
+JOB_STATUSES = ("pending", *JOB_TRANSITIONS)  # derived: a state nobody can reach is not a state
+JOB_FIELDS = {"claimed_by": False, "error": False, "finished_at": False,
+              "result_ref": True, "usage": True}  # True = stored as canonical JSON
 RESEARCH_STATUSES = ("latest", "superseded")
 
 SCHEMA = """
@@ -29,21 +46,6 @@ CREATE TABLE IF NOT EXISTS entities (
     extra TEXT NOT NULL DEFAULT '{}',
     updated_at TEXT NOT NULL
 );
-CREATE TABLE IF NOT EXISTS sources (
-    evidence_id TEXT PRIMARY KEY,
-    source_id TEXT NOT NULL,
-    source TEXT,
-    kind TEXT,
-    published_at TEXT,
-    fetched_at TEXT,
-    period_start TEXT,
-    period_end TEXT,
-    status TEXT,
-    artifact_path TEXT,
-    entity_ids TEXT NOT NULL DEFAULT '[]'
-);
-CREATE INDEX IF NOT EXISTS sources_by_source_id ON sources(source_id);
-CREATE INDEX IF NOT EXISTS sources_by_kind ON sources(kind);
 CREATE TABLE IF NOT EXISTS research_versions (
     version_id TEXT PRIMARY KEY,
     subject TEXT NOT NULL,
@@ -51,6 +53,8 @@ CREATE TABLE IF NOT EXISTS research_versions (
     as_of TEXT,
     status TEXT NOT NULL,
     payload TEXT NOT NULL,
+    packet TEXT,
+    evidence TEXT,
     calc_receipt TEXT,
     publication_path TEXT,
     role TEXT,
@@ -80,8 +84,8 @@ CREATE TABLE IF NOT EXISTS jobs (
 CREATE INDEX IF NOT EXISTS jobs_by_status ON jobs(kind, status);
 """
 
-# Full text lives in its own FTS5 table: the source index row stays small and a
-# rebuild of the text index never touches the evidence identity.
+# Full text lives in its own FTS5 table, rebuildable from the manifests at any time:
+# rebuilding the text index never touches evidence identity.
 FTS_SCHEMA = "CREATE VIRTUAL TABLE IF NOT EXISTS evidence_text USING fts5(evidence_id UNINDEXED, text)"
 TEXT_SUFFIXES = (".txt", ".json", ".jsonl", ".csv", ".md", ".htm", ".html", ".xml")
 TEXT_MAX_BYTES = 2_000_000  # per artifact; raise per deployment if transcripts get bigger
@@ -135,6 +139,7 @@ class Store:
         self.connection.execute("PRAGMA journal_mode=WAL")
         self.connection.execute("PRAGMA foreign_keys=ON")
         self.connection.executescript(SCHEMA)
+        self._migrate()
         try:
             self.connection.execute(FTS_SCHEMA)
         except sqlite3.OperationalError as exc:  # SQLite built without FTS5
@@ -143,6 +148,21 @@ class Store:
         else:
             self.fts5 = True
             self.fts5_reason = None
+
+    def _migrate(self):
+        """Additive only: a database written before a column existed keeps its rows.
+
+        A version saved by an older build has no packet/evidence snapshot; it reads
+        back as None and the caller falls back to the bundle instead of failing.
+        An older database may also still carry the dropped ``sources`` table — a
+        duplicate of the manifests that nothing reads. It is left where it is:
+        rebuildable data is not worth a destructive migration.
+        """
+        existing = {row["name"] for row in
+                    self.connection.execute("PRAGMA table_info(research_versions)")}
+        for column in ("packet", "evidence"):
+            if column not in existing:
+                self.connection.execute(f"ALTER TABLE research_versions ADD COLUMN {column} TEXT")
 
     def close(self):
         self.connection.close()
@@ -173,37 +193,22 @@ class Store:
             "SELECT * FROM entities WHERE entity_id=?", (entity_id,)).fetchone()
         return _row(row, ("symbols", "extra"))
 
-    def list_entities(self, kind=None):
-        sql = "SELECT * FROM entities" + (" WHERE kind=?" if kind else "") + " ORDER BY entity_id"
-        rows = self.connection.execute(sql, (kind,) if kind else ()).fetchall()
-        return [_row(row, ("symbols", "extra")) for row in rows]
-
     # --- sources ------------------------------------------------------------
 
     def index_sources(self, records, root=None, max_bytes=TEXT_MAX_BYTES):
-        """Sync the query index from registry manifest records (identity stays the manifest's).
+        """Index registered evidence for full-text search; identity stays the manifest's.
 
-        With ``root`` (the bundle the artifact paths are relative to) every UTF-8
-        text artifact is also indexed for full-text search; binary, oversized and
-        undecodable artifacts are simply not indexed, never half-indexed.
+        There is no second copy of the manifest in SQLite: the registry answers what
+        exists, this only builds the text index it cannot hold. With ``root`` (the
+        bundle the artifact paths are relative to) every UTF-8 text artifact is
+        indexed; binary, oversized and undecodable artifacts are simply not indexed,
+        never half-indexed.
         """
-        rows = []
-        for record in records:
-            period = record.get("period") or {}
-            rows.append((record["evidence_id"], record["source_id"], record.get("source"),
-                         record.get("kind"), record.get("published_at"), record.get("fetched_at"),
-                         period.get("start"), period.get("end"), record.get("status"),
-                         (record.get("artifact") or {}).get("path"),
-                         _dump(record.get("entity_ids") or [])))
-        self.connection.executemany(
-            "INSERT INTO sources(evidence_id, source_id, source, kind, published_at, fetched_at,"
-            " period_start, period_end, status, artifact_path, entity_ids)"
-            " VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(evidence_id) DO NOTHING", rows)
-        if root is not None:
-            for record in records:
-                self.index_text(record["evidence_id"],
-                                _artifact_text(root, record, max_bytes))
-        return len(rows)
+        if root is None:
+            return 0
+        return sum(self.index_text(record["evidence_id"],
+                                   _artifact_text(root, record, max_bytes))
+                   for record in records)
 
     def index_text(self, evidence_id, text):
         """Index one artifact's text; ``None`` text and a missing FTS5 build are both no-ops."""
@@ -238,20 +243,6 @@ class Store:
                          "line": None if position < 0 else row["text"].count("\n", 0, position) + 1})
         return hits
 
-    def list_sources(self, *, kind=None, status=None, entity_id=None):
-        sql, params = "SELECT * FROM sources WHERE 1=1", []
-        if kind:
-            sql += " AND kind=?"
-            params.append(kind)
-        if status:
-            sql += " AND status=?"
-            params.append(status)
-        rows = self.connection.execute(sql + " ORDER BY fetched_at, evidence_id", params).fetchall()
-        result = [_row(row, ("entity_ids",)) for row in rows]
-        if entity_id:
-            result = [row for row in result if entity_id in (row["entity_ids"] or [])]
-        return result
-
     # --- research versions --------------------------------------------------
 
     @staticmethod
@@ -260,11 +251,18 @@ class Store:
 
     def save_research_version(self, subject, payload, *, expected_previous_version_id=None,
                               as_of=None, calc_receipt=None, publication_path=None,
-                              role=None, execution=None, provider=None, model=None):
+                              role=None, execution=None, provider=None, model=None,
+                              packet=None, evidence=None):
         """Append a version. Returns ``{'conflict': ...}`` instead of overwriting a newer one.
 
         ``expected_previous_version_id`` must name the version that is currently
         latest for this subject (None when the subject has none yet).
+
+        ``packet`` and ``evidence`` freeze what this version was validated against.
+        The company's evidence store keeps growing; a version that carries its own
+        packet and evidence records can still be republished byte-identically after
+        it does. Evidence *bytes* stay in the company store (content-addressed, so
+        the same fingerprint is the same file); only the index is frozen here.
         """
         version_id = self.version_id(subject, payload)
         cursor = self.connection.cursor()
@@ -288,10 +286,12 @@ class Store:
                            " WHERE subject=? AND status='latest'", (subject,))
             cursor.execute(
                 "INSERT INTO research_versions(version_id, subject, previous_version_id, as_of,"
-                " status, payload, calc_receipt, publication_path, role, execution, provider,"
-                " model, created_at) VALUES(?,?,?,?,'latest',?,?,?,?,?,?,?,?)",
-                (version_id, subject, current_id, as_of, _dump(payload), _dump(calc_receipt),
-                 publication_path, role, execution, provider, model, now()))
+                " status, payload, packet, evidence, calc_receipt, publication_path, role,"
+                " execution, provider, model, created_at)"
+                " VALUES(?,?,?,?,'latest',?,?,?,?,?,?,?,?,?,?)",
+                (version_id, subject, current_id, as_of, _dump(payload), _dump(packet),
+                 _dump(evidence), _dump(calc_receipt), publication_path, role, execution,
+                 provider, model, now()))
             cursor.execute("COMMIT")
         except Exception:
             cursor.execute("ROLLBACK")
@@ -299,18 +299,22 @@ class Store:
         return self.get_research(version_id)
 
     def get_research(self, version_id):
+        """One version with its frozen packet and evidence index (None on pre-snapshot rows)."""
         row = self.connection.execute(
             "SELECT * FROM research_versions WHERE version_id=?", (version_id,)).fetchone()
-        return _row(row, ("payload", "calc_receipt"))
+        return _row(row, ("payload", "packet", "evidence", "calc_receipt"))
 
     def latest_research(self, subject):
         row = self.connection.execute(
             "SELECT * FROM research_versions WHERE subject=? AND status='latest'",
             (subject,)).fetchone()
-        return _row(row, ("payload", "calc_receipt"))
+        return _row(row, ("payload", "packet", "evidence", "calc_receipt"))
 
     def list_research(self, subject=None, *, limit=50):
-        sql = "SELECT * FROM research_versions"
+        """Directory rows: the frozen snapshots are left out, one version can be megabytes."""
+        sql = ("SELECT version_id, subject, previous_version_id, as_of, status, payload,"
+               " calc_receipt, publication_path, role, execution, provider, model, created_at"
+               " FROM research_versions")
         params = []
         if subject:
             sql += " WHERE subject=?"
@@ -339,33 +343,47 @@ class Store:
             (job_id, kind, role, execution, provider, model, _dump(input_ref), created))
         return self.get_job(job_id)
 
-    def claim_job(self, job_id, claimed_by):
-        """Atomic: only a pending job can be claimed; a second claimer gets None."""
-        cursor = self.connection.execute(
-            "UPDATE jobs SET status='claimed', claimed_by=?, started_at=?"
-            " WHERE job_id=? AND status='pending'", (claimed_by, now(), job_id))
-        return self.get_job(job_id) if cursor.rowcount else None
+    def transition(self, job_id, to=None, **fields):
+        """Move one job to ``to`` (``None`` only records fields), atomically and legally.
 
-    def update_job(self, job_id, *, status=None, result_ref=None, error=None, usage=None,
-                   finished_at=None):
-        if status is not None and status not in JOB_STATUSES:
-            raise ContractError(f"job status must be one of {JOB_STATUSES}: {status!r}")
-        sets, params = [], []
-        for column, value in (("status", status), ("error", error)):
-            if value is not None:
-                sets.append(f"{column}=?")
-                params.append(value)
-        for column, value in (("result_ref", result_ref), ("usage", usage)):
-            if value is not None:
-                sets.append(f"{column}=?")
-                params.append(_dump(value))
-        if status in ("done", "failed") or finished_at is not None:
-            sets.append("finished_at=?")
-            params.append(finished_at or now())
+        The move is a single conditional UPDATE, so two claimers cannot both win.
+        An illegal move raises instead of silently rewriting a finished job: the
+        caller is told the job's actual state. ``fields`` are ``JOB_FIELDS``.
+        """
+        unknown = sorted(set(fields) - set(JOB_FIELDS))
+        if unknown:
+            raise ContractError(f"Unknown job fields: {unknown}; allowed: {sorted(JOB_FIELDS)}")
+        sets = [f"{column}=?" for column in fields]
+        params = [_dump(value) if JOB_FIELDS[column] else value
+                  for column, value in fields.items()]
+        sources = ()
+        if to is not None:
+            if to not in JOB_TRANSITIONS:
+                raise ContractError(f"No job transition to {to!r}; targets: "
+                                    f"{sorted(JOB_TRANSITIONS)}")
+            sources = JOB_TRANSITIONS[to]
+            sets.append("status=?")
+            params.append(to)
+            if to == "claimed":
+                sets.append("started_at=?")
+                params.append(now())
+            if to in JOB_TERMINAL and "finished_at" not in fields:
+                sets.append("finished_at=?")
+                params.append(now())
         if not sets:
             return self.get_job(job_id)
-        self.connection.execute(f"UPDATE jobs SET {', '.join(sets)} WHERE job_id=?",
-                                params + [job_id])
+        where = "job_id=?"
+        if sources:
+            where += " AND status IN (%s)" % ",".join("?" * len(sources))
+        cursor = self.connection.execute(
+            f"UPDATE jobs SET {', '.join(sets)} WHERE {where}", params + [job_id, *sources])
+        if not cursor.rowcount:
+            current = self.get_job(job_id)
+            if current is None:
+                raise ContractError(f"Unknown job: {job_id}")
+            raise ContractError(
+                f"Job {job_id} is {current['status']}; a move to {to!r} is only legal from "
+                f"{list(sources)}")
         return self.get_job(job_id)
 
     def get_job(self, job_id):

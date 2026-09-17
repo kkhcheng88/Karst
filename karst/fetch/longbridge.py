@@ -20,10 +20,17 @@ import re
 import sys
 from pathlib import Path
 
-from .broker import refuse_private, response_status
+from .broker import refuse_private
 from .common import clean_value, load_env_file, utc_now, write_json, write_meta
+from .port import LandedRecord, options_for, response_status, scan
 
 SOURCE = "longbridge"
+# The kinds this adapter covers for refresh_sources. ``static_info`` also lands a
+# profile, but the profile kind is served by defeatbeta; routing stays single-valued.
+KINDS = ("prices", "quote")
+# tool -> evidence kind, declared here rather than inferred at registration.
+TOOL_KINDS = {"quote": "prices", "static_info": "profile", "calc_indexes": "prices",
+              "history_candlesticks_by_date": "prices"}
 ENV_KEYS = ("LONGPORT_APP_KEY", "LONGPORT_APP_SECRET", "LONGPORT_ACCESS_TOKEN")
 MISSING_CREDENTIALS = "credentials missing"
 SNAPSHOT_BASIS = ("現時快照 (snapshot at fetch time); the SDK return carries no publication "
@@ -158,12 +165,11 @@ def land(out_dir, tool, symbol, params, response, *, fetched_at=None, period=Non
     if response is None:
         status, path = status or "error", out / f"{name}.meta.json"
     else:
-        inferred, error = response_status(response)
+        inferred, error, reason = response_status(response)
         status = status or inferred
-        if error:
-            gaps.append("source returned an error envelope; a failed fetch is not 'no data'")
-        if status == "empty":
-            gaps.append("empty return: 'nothing to report' and 'not covered' are different")
+        if inferred != "ok":
+            gaps.append(reason)
+        status_reason = status_reason or (reason if status == inferred else None)
         path = out / f"{name}.json"
         write_json(path, {"tool": tool, "symbol": symbol, "fetched_at": fetched_at,
                           "params": params, "response": response})
@@ -231,6 +237,29 @@ def fetch_company(symbol, out_dir, *, start=None, end=None, period="Day", adjust
                history_candlesticks(out_dir, symbol, start, end, period=period,
                                     adjust=adjust, client=client)]
     return {result["tool"]: result["status"] for result in results}
+
+
+def kind_for(meta) -> str:
+    tool = str(meta.get("tool") or "")
+    if tool not in TOOL_KINDS:
+        raise ValueError(f"no declared kind for longbridge tool {tool!r}")
+    return TOOL_KINDS[tool]
+
+
+def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
+    """Land this security's public quote tools. The vendor symbol is derived here.
+
+    ``client`` is an SDK client or a zero-argument factory returning one (a test
+    passes ``lambda: None`` to exercise the credentials-missing path); without it
+    the default factory builds one, or lands ``error / credentials missing``.
+    """
+    options = options_for(client, "client")
+    given = options.get("client")
+    options["client"] = given() if callable(given) else (client_factory() if given is None else given)
+    # The client is already resolved here, so an injected "no client" stays no client.
+    options.setdefault("start", since)
+    fetch_company(symbol_for(security), out_dir, factory=lambda: None, **options)
+    return scan(Path(out_dir) / SOURCE, kind_for)
 
 
 def main(argv=None) -> int:

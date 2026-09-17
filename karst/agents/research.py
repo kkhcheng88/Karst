@@ -7,15 +7,15 @@ model record is written here by the program under contract 0.3.0.
 from __future__ import annotations
 
 import copy
-import shutil
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
 from ..packet import (_citations, _private_selectors, check_packet, check_research,
-                      confined, read_json)
-from ..schema import ContractError, canonical, digest, schemas, validate
+                      read_json)
+from ..schema import ContractError, canonical, digest, embed_evidence_defs, schemas, validate
 from .protocol import get_research_protocol
+from .staging import stage_task
 
 CONTRACT = "0.3.0"
 # Analysis the researcher owns. Everything else in the research contract is engineering
@@ -27,25 +27,32 @@ ENGINEERING_KEYS = ("contract_version", "research_id", "packet_id", "previous_re
                     "created_at", "mode", "strategy_version", "mandate_version",
                     "method_version", "models")
 MODE_BY_EXECUTION = {"interactive": "interactive_research", "api": "api_research"}
+# Staged charts are a reading aid, never a measurement: the numbers are in the JSON.
+CHARTS_NOTE = ("charts/ 內的日／週／月圖只作參考，數字一律以 charts/derived.json 為準"
+               "（SMA200、關鍵位、資料截止日）。圖與 JSON 都不含價格陣列。")
 
 
-def _embed_evidence_defs(result, contracts):
-    """Make the exported schema usable offline: no URN resolution, no second copy."""
-    evidence = contracts["evidence"]
-    result["$defs"]["contract_evidence"] = copy.deepcopy(evidence)
+class Verified(dict):
+    """A research object that already passed check_packet / check_research.
 
-    def rewrite(value):
-        if isinstance(value, dict):
-            for key, child in value.items():
-                if key == "$ref" and isinstance(child, str) and child.startswith(evidence["$id"] + "#"):
-                    value[key] = "#/$defs/contract_evidence" + child.split("#", 1)[1]
-                elif key != "contract_evidence":
-                    rewrite(child)
-        elif isinstance(value, list):
-            for child in value:
-                rewrite(child)
-    rewrite(result)
-    return result
+    It is an ordinary dict everywhere it matters (canonical JSON, the schema, the
+    store), and carries one extra attribute: what exactly was verified. The saver
+    re-runs the checks unless that fingerprint still matches the bundle, so the
+    rule lives in one place and an injected intake — which cannot set it — is
+    always verified the long way.
+    """
+
+    verified = None
+
+
+def fingerprint(research, packet, records):
+    """What a verification covered: this research, this packet, these exact bytes."""
+    evidence = sorted((record["evidence_id"], record["artifact"]["sha256"])
+                      for record in records)
+    return {"research_digest": digest(canonical(research)),
+            "packet_id": packet["packet_id"],
+            "evidence_digest": digest(canonical(evidence)),
+            "contract_version": packet["contract_version"]}
 
 
 def _analysis_schema():
@@ -65,7 +72,7 @@ def _analysis_schema():
               "type": "object", "additionalProperties": False, "properties": properties,
               "required": sorted(properties), "allOf": copy.deepcopy(source["allOf"]),
               "$defs": defs}
-    return _embed_evidence_defs(result, contracts)
+    return embed_evidence_defs(result, contracts)
 
 
 ANALYSIS_SCHEMA = _analysis_schema()
@@ -94,11 +101,15 @@ def _previous_summary(previous_research):
 
 
 def export_task(bundle, subject, destination, protocol, previous_research=None,
-                *, allowed_evidence_ids=None):
+                *, allowed_evidence_ids=None, charts=None):
     """Stage a NEW task directory: input.json, prompt.md, output.schema.json and sources.
 
     The worker gets this directory only — never the bundle, the repo or this
     conversation. Isolation is still the runner's job; this only limits what is staged.
+
+    ``charts`` is one ``service.render_charts`` result: the PNGs and their derived
+    numbers are copied into ``charts/`` so the researcher can read the day / week /
+    month picture and then quote the figure rather than the pixel.
     """
     bundle = Path(bundle)
     packet, records = read_json(bundle / "packet.json"), read_json(bundle / "evidence.json")
@@ -126,24 +137,19 @@ def export_task(bundle, subject, destination, protocol, previous_research=None,
                    "steps": protocol["steps"], "text": protocol["text"]},
         "previous_research": _previous_summary(previous_research),
     }
-    canonical(context)
-    destination = Path(destination).resolve()
-    origin = bundle.resolve()
-    if destination == origin or origin.is_relative_to(destination):
-        raise ContractError("Worker directory must be separate from its source bundle")
-    destination.mkdir(parents=True, exist_ok=False)
-    try:
-        for record in exported:
-            relative = record["artifact"]["path"]
-            target = confined(destination, relative)
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(confined(origin, relative), target)
-        (destination / "input.json").write_bytes(canonical(context))
-        (destination / "output.schema.json").write_bytes(canonical(protocol["output_schema"]))
-        (destination / "prompt.md").write_text(protocol["text"], encoding="utf-8")
-    except Exception:
-        shutil.rmtree(destination)
-        raise
+    extra, prompt_text = {}, protocol["text"]
+    if charts:
+        extra = {f"charts/{Path(path).name}": Path(path)
+                 for path in charts["files"].values()}
+        extra["charts/derived.json"] = canonical(charts["derived"])
+        context["charts"] = {"path": "charts/", "note": CHARTS_NOTE,
+                             "files": {view: f"charts/{Path(path).name}"
+                                       for view, path in charts["files"].items()},
+                             "derived": copy.deepcopy(charts["derived"])}
+        prompt_text += "\n\n## 圖\n\n" + CHARTS_NOTE
+    stage_task(bundle, exported, destination=destination, input_context=context,
+               prompt_text=prompt_text, output_schema=protocol["output_schema"],
+               extra_files=extra)
     return context
 
 
@@ -162,6 +168,8 @@ def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, proto
     """Validate one analysis payload and return a complete research.json.
 
     Raises ContractError without writing anything when the payload does not hold up.
+    The result carries a ``verified`` fingerprint of what these checks covered, so
+    the caller does not have to hash the same evidence a second time.
     """
     _validate_payload(payload)
     protocol = protocol or get_research_protocol("research")
@@ -201,4 +209,6 @@ def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, proto
     research["research_id"] = "res-" + digest(canonical(research))
     validate("research", research)
     check_research(packet, research, selected, bundle)
-    return research
+    result = Verified(research)
+    result.verified = fingerprint(research, packet, list(selected.values()))
+    return result

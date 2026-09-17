@@ -12,20 +12,26 @@ import tempfile
 from pathlib import Path
 from uuid import uuid4
 
-from . import calculations, publish as publish_module
-from .fetch import defeatbeta, edgar, longbridge
+from . import bars as bars_module, calculations, charts, publish as publish_module
+from .fetch import broker, defeatbeta, edgar, longbridge, prices
 from .fetch.common import utc_now, write_json, write_meta
 from .fetch.registry import EvidenceRegistry
 from .packet import check_packet, check_research, confined, read_json
 from .schema import ContractError, canonical, digest
 
-# kind -> adapter key. Kinds are evidence kinds (packet vocabulary), not tool names.
-KIND_ADAPTERS = {
-    "filing": "edgar", "filing_index": "edgar",
-    "transcript": "defeatbeta", "financials": "defeatbeta", "calendar": "defeatbeta",
-    "profile": "defeatbeta",
-    "prices": "longbridge", "quote": "longbridge",
-}
+# The source port: one entry per adapter module, each exposing KINDS and
+# fetch(security, out_dir, *, since, client). Adding a source is adding a module
+# and one row here — no if/elif anywhere downstream.
+ADAPTERS = {"edgar": edgar, "defeatbeta": defeatbeta, "longbridge": longbridge,
+            "prices": prices, "broker": broker}
+# kind -> adapter name, composed from what each adapter says it covers. Kinds are
+# evidence kinds (packet vocabulary), not tool names; two adapters must not claim one.
+KIND_ADAPTERS = {}
+for _name, _module in ADAPTERS.items():
+    for _kind in _module.KINDS:
+        if KIND_ADAPTERS.setdefault(_kind, _name) != _name:
+            raise ContractError(f"Two adapters claim kind {_kind!r}: "
+                                f"{KIND_ADAPTERS[_kind]} and {_name}")
 CALCULATION_METHODS = {
     "fcff_dcf": ("fair value per share", ("cashflows", "discount_rate", "terminal_growth",
                                           "cash", "nonoperating_assets", "debt",
@@ -92,6 +98,24 @@ def company_bundles(data_dir, subject=None):
     return sorted(path / "bundle" for path in companies.glob("*") if (path / "bundle").is_dir())
 
 
+def bundle_for(data_dir, subject, fixed=None):
+    """The one bundle to write to: a fixed launch bundle, else the subject's company store.
+
+    Which store a caller means is a service question, not an MCP question; the
+    server passes its ``--bundle`` through as ``fixed`` and asks here.
+    """
+    if fixed is not None:
+        return Path(fixed)
+    if not subject:
+        raise ContractError("Supply a subject (security id) or launch with a fixed bundle")
+    return company_paths(data_dir, subject)["bundle"]
+
+
+def bundles_for(data_dir, subject=None, fixed=None):
+    """The bundles to read across: the fixed one, else this subject's, else every company's."""
+    return [Path(fixed)] if fixed is not None else company_bundles(data_dir, subject)
+
+
 # --- research method (delegated) --------------------------------------------
 
 def get_research_protocol(mode, version=None):
@@ -129,20 +153,57 @@ def _records(bundle):
     return [record for root in roots for record in _registry(root).records()]
 
 
+def _frozen_version(store, version_id):
+    """One research version with the inputs it was validated against, or a clear refusal."""
+    if store is None:
+        raise ContractError("Reading a version's own sources needs the store that holds it")
+    version = store.get_research(version_id)
+    if version is None:
+        raise ContractError(f"Unknown research version: {version_id}")
+    if version["packet"] is None or version["evidence"] is None:
+        raise ContractError(
+            f"Research version {version_id} was saved before versions carried their inputs; "
+            "what it actually read cannot be reconstructed, so it is not guessed from the "
+            "current company sources")
+    return version
+
+
+def _source_view(bundle, store, as_of_version):
+    """The two questions, kept apart: what is available now, what that version used.
+
+    Returns ``(records, packet_or_None, view_name)``. Nothing merges them: answering
+    "what did version X read" with today's registry would quietly destroy versioning.
+    """
+    if as_of_version is None:
+        return _records(bundle), None, "current"
+    version = _frozen_version(store, as_of_version)
+    return version["evidence"], version["packet"], "as_of_research"
+
+
+VIEW_NOTES = {
+    "current": "Current sources: what the company evidence store holds now.",
+    "as_of_research": "As-of-research sources: exactly what this version was validated "
+                      "against; later registrations are deliberately not included.",
+}
+
+
 def search_evidence(bundle, query=None, kind=None, date_from=None, date_to=None, *,
-                    text=None, store=None, limit=20):
+                    text=None, store=None, limit=20, as_of_version=None):
     """Index search only. A miss means nothing was registered here, not that nothing exists.
 
     ``text`` runs the SQLite FTS5 index (built when sources are registered) and
     keeps the field filters; the other arguments alone never touch full text.
+    ``as_of_version`` switches the question from "what is available now" to "what did
+    that research version use"; ``scope`` in the result always says which was answered.
     """
     matches = None
     if text is not None:
         if store is None:
             raise ContractError("Full-text search needs the store that holds the FTS index")
         matches = {hit["evidence_id"]: hit for hit in store.search_text(text, limit=limit)}
+    records, _, view = _source_view(bundle, store, as_of_version)
     hits = []
-    for record in _records(bundle):
+    for record in records:
         if matches is not None and record["evidence_id"] not in matches:
             continue
         if kind and record["kind"] != kind:
@@ -162,11 +223,11 @@ def search_evidence(bundle, query=None, kind=None, date_from=None, date_to=None,
             hit = matches[record["evidence_id"]]
             summary.update(snippet=hit["snippet"], line=hit["line"])
         hits.append(summary)
-    note = "Registered evidence only; absence here is not absence in the world."
+    note = VIEW_NOTES[view] + " Registered evidence only; absence here is not absence in the world."
     if matches is not None:
         note += " Full text covers text artifacts that were indexed at registration time."
-    return {"count": len(hits), "results": sorted(hits, key=lambda row: row["evidence_id"]),
-            "note": note}
+    return {"scope": view, "as_of_version": as_of_version, "count": len(hits),
+            "results": sorted(hits, key=lambda row: row["evidence_id"]), "note": note}
 
 
 def read_evidence(bundle, evidence_id, offset=0, limit_lines=200):
@@ -277,13 +338,6 @@ def _index(store, bundle, records, entity_kinds=False):
 
 # --- refresh ----------------------------------------------------------------
 
-def _cik(security):
-    value = security.get("cik") or str(security.get("issuer_id", "")).split(":")[-1]
-    if not str(value).isdigit():
-        raise ContractError("Security must carry a CIK (cik or issuer_id 'cik:<digits>')")
-    return str(value).zfill(10)
-
-
 def _entity_ids(security):
     ids = {security[key] for key in ("issuer_id", "security_id") if security.get(key)}
     if not ids:
@@ -292,24 +346,20 @@ def _entity_ids(security):
 
 
 def _run_adapters(staging, security, adapters, since, clients):
-    """Land raw returns for the requested adapters; each failure stays a per-source diagnostic."""
-    failures = {}
+    """Land raw returns through the source port; each failure stays a per-source diagnostic.
+
+    Returns ``(landed, failures)``: the adapters' own LandedRecords (kind declared
+    by the adapter) and one message per adapter that raised. ``clients[<adapter>]``
+    is that adapter's injected client, if any.
+    """
+    landed, failures = [], {}
     for name in sorted(adapters):
         try:
-            if name == "edgar":
-                edgar.fetch_filings(_cik(security), staging, ticker=security.get("ticker"),
-                                    http_get=clients.get("edgar_http_get"))
-            elif name == "defeatbeta":
-                defeatbeta.fetch_company(security["ticker"], staging,
-                                         ticker_factory=clients.get("defeatbeta_ticker_factory"))
-            elif name == "longbridge":
-                longbridge.fetch_company(longbridge.symbol_for(security), staging, start=since,
-                                         client=clients.get("longbridge"),
-                                         factory=clients.get("longbridge_factory",
-                                                             longbridge.client_factory))
+            landed += ADAPTERS[name].fetch(security, staging, since=since,
+                                           client=clients.get(name))
         except Exception as exc:  # noqa: BLE001 - one broken source must not hide the others
             failures[name] = f"{type(exc).__name__}: {exc}"
-    return failures
+    return landed, failures
 
 
 def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=None,
@@ -321,8 +371,6 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     Every research of one company registers into the same bundle; the raw landing
     goes to ``<data>/tmp/<run>/`` and is scratch.
     """
-    from .pipeline import pair_staging  # noqa: PLC0415 - avoid an import cycle at module load
-
     clients = clients or {}
     unknown = sorted(set(kinds) - set(KIND_ADAPTERS))
     if unknown:
@@ -339,32 +387,33 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     known_ids = {record["evidence_id"] for record in registry.records()}
     known_sources = {record["source_id"] for record in registry.records()}
     adapters = {KIND_ADAPTERS[kind] for kind in kinds}
-    adapter_errors = _run_adapters(staging, security, adapters, since, clients)
+    landed, adapter_errors = _run_adapters(staging, security, adapters, since, clients)
 
     result = {"added": [], "changed": [], "unchanged": [], "failed": [], "uncovered": [],
               "adapter_errors": adapter_errors, "records": [], "bundle": str(bundle),
               "staging": str(staging)}
     entity_ids = _entity_ids(security)
     registered = []
-    for meta_path, raws in pair_staging(staging):
-        for raw in raws or [None]:
-            record = registry.register(raw, meta_path, entity_ids=entity_ids)
-            registered.append(record)
-            result["records"].append(_summary(record))
-            evidence_id = record["evidence_id"]
-            if record["status"] == "error":
-                bucket = "failed"
-            elif record["status"] == "empty":
-                bucket = "uncovered"
-            elif evidence_id in known_ids:
-                bucket = "unchanged"
-            elif record["source_id"] in known_sources:
-                bucket = "changed"
-            else:
-                bucket = "added"
-            result[bucket].append(evidence_id)
-            known_ids.add(evidence_id)
-            known_sources.add(record["source_id"])
+    # Only what the adapters reported: the registry registers their records, it
+    # does not go looking through the directory for files nobody claimed.
+    for item in landed:
+        record = registry.register(item, entity_ids=entity_ids)
+        registered.append(record)
+        result["records"].append(_summary(record))
+        evidence_id = record["evidence_id"]
+        if record["status"] == "error":
+            bucket = "failed"
+        elif record["status"] == "empty":
+            bucket = "uncovered"
+        elif evidence_id in known_ids:
+            bucket = "unchanged"
+        elif record["source_id"] in known_sources:
+            bucket = "changed"
+        else:
+            bucket = "added"
+        result[bucket].append(evidence_id)
+        known_ids.add(evidence_id)
+        known_sources.add(record["source_id"])
     for bucket in ("added", "changed", "unchanged", "failed", "uncovered"):
         result[bucket] = sorted(set(result[bucket]))
     if store is not None and registered:
@@ -383,40 +432,59 @@ def _headline(payload):
             if payload.get(key) is not None or summary.get(key) is not None}
 
 
-def get_research_context(store, bundle, subject, as_of=None):
-    """Directory, not content: existing versions, the source index, what is still open."""
+def get_research_context(store, bundle, subject, as_of=None, as_of_version=None):
+    """Directory, not content: existing versions, the sources, what is still open.
+
+    Two questions that must not be merged into "always read the latest":
+
+    * no ``as_of_version`` — **current sources**: what the company evidence store
+      holds now, and what is open against its current packet;
+    * with one — **as-of-research sources**: exactly what that version was validated
+      against, from its own frozen packet and evidence index.
+
+    ``sources_view`` names the answer either way. Each version row carries its
+    predecessor and its own publication id, so the chain reads in both directions.
+    """
     versions = []
     for row in store.list_research(subject):
         if as_of and (row["as_of"] or "") > as_of:
             continue
         versions.append({"version_id": row["version_id"], "as_of": row["as_of"],
                          "status": row["status"], "created_at": row["created_at"],
+                         "previous_version_id": row["previous_version_id"],
                          "publication_path": row["publication_path"],
+                         "publication_id": (publication_id_at(row["publication_path"])
+                                            if row["publication_path"] else None),
                          "role": row["role"], "execution": row["execution"],
                          "provider": row["provider"], "model": row["model"],
                          **_headline(row["payload"])})
-    records = _registry(bundle).records()
-    evidence_path = Path(bundle) / "evidence.json"
-    if not records and evidence_path.exists():  # a replayed bundle carries no manifest
-        records = read_json(evidence_path)
+    if as_of_version is None:
+        records = _registry(bundle).records()
+        evidence_path = Path(bundle) / "evidence.json"
+        if not records and evidence_path.exists():  # a replayed bundle carries no manifest
+            records = read_json(evidence_path)
+        packet_path = Path(bundle) / "packet.json"
+        packet = read_json(packet_path) if packet_path.exists() else None
+        view = "current"
+    else:
+        frozen = _frozen_version(store, as_of_version)
+        records, packet, view = frozen["evidence"], frozen["packet"], "as_of_research"
     sources = [_summary(record) for record in records]
-    packet_path = Path(bundle) / "packet.json"
-    pending = []
-    if packet_path.exists():
-        packet = read_json(packet_path)
-        pending = [request for request in packet["supplement_requests"]
-                   if request["status"] == "pending"]
+    pending = [request for request in (packet or {}).get("supplement_requests", [])
+               if request["status"] == "pending"]
     reviews = [{"job_id": job["job_id"], "status": job["status"], "input_ref": job["input_ref"],
                 "result_ref": job["result_ref"], "provider": job["provider"],
                 "model": job["model"]}
                for job in store.list_jobs(kind="review")
                if (job["input_ref"] or {}).get("subject") == subject]
-    return {"subject": subject, "as_of": as_of, "versions": versions,
+    return {"subject": subject, "as_of": as_of, "as_of_version": as_of_version,
+            "sources_view": view, "packet_id": (packet or {}).get("packet_id"),
+            "versions": versions,
             "latest_version_id": next((v["version_id"] for v in versions
                                        if v["status"] == "latest"), None),
             "sources": sources, "pending_supplements": pending, "reviews": reviews,
             "latest_review": _review_summary(reviews),
-            "note": "Source text is not inlined; read it with read_evidence."}
+            "note": VIEW_NOTES[view] + " Source text is not inlined; read it with read_evidence."}
 
 
 def _review_summary(reviews):
@@ -471,6 +539,33 @@ def calculate(method, params):
             "inputs": params, "calculator_version": calculations.VERSION}
 
 
+def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None):
+    """Day / week / month charts + derived numbers for one subject's registered prices.
+
+    The arrays are built from the registered candlestick evidence, charted, measured
+    and dropped: only the PNGs and ``derived.json`` land in ``out_dir``. Charting
+    something that was never registered is not offered — a chart the researcher can
+    cite has to come from evidence they can read.
+    """
+    bundle = Path(bundle)
+    if records is None:
+        records = _registry(bundle).records()
+        evidence_path = bundle / "evidence.json"
+        if not records and evidence_path.exists():
+            records = read_json(evidence_path)
+    if as_of is None:
+        packet_path = bundle / "packet.json"
+        as_of = read_json(packet_path)["as_of"] if packet_path.exists() else utc_now()
+    series = bars_module.views(bars) if bars is not None else \
+        bars_module.from_evidence(bundle, records, as_of)
+    if not series or not series.get("D"):
+        raise ContractError("No registered daily candlesticks to chart for this subject; "
+                            "refresh the prices kind first")
+    result = charts.render(series["D"], out_dir, as_of=as_of)
+    return {"data_as_of": result["derived"]["data_as_of"], "files": result["files"],
+            "derived": result["derived"], "note": charts.NOTE}
+
+
 # --- save / publish ---------------------------------------------------------
 
 def _intake(payload, *, bundle, role_meta):
@@ -519,9 +614,46 @@ def _register_requests(bundle, payload):
     return rebuilt
 
 
+def _selected(packet, records):
+    """The exact records this packet selected, in packet order. No bytes are read."""
+    index = {record["evidence_id"]: record for record in records}
+    chosen = []
+    for evidence_id in list(packet["evidence_ids"]) + list(packet.get("diagnostic_ids", [])):
+        if evidence_id not in index:
+            raise ContractError(f"Unregistered evidence: {evidence_id}")
+        chosen.append(index[evidence_id])
+    return chosen
+
+
+def _verify(bundle, packet, records, research):
+    """Run the contract checks, unless this exact research already passed them.
+
+    Reuse is fingerprint-gated: the same research bytes, the same packet and the same
+    evidence versions that ``intake`` verified a moment ago. A reworded packet, a
+    re-registered source, an edited conclusion or an injected intake (which cannot
+    produce a credential) all fall through to the full check. The byte-level guarantee
+    is not weakened: publication re-hashes every file it copies, every time.
+    """
+    credential = getattr(research, "verified", None)
+    selected = _selected(packet, records)
+    if credential is not None:
+        from .agents.research import fingerprint  # noqa: PLC0415 - only when one exists
+
+        if credential == fingerprint(research, packet, selected):
+            return selected
+    chosen = check_packet(packet, records, bundle)
+    check_research(packet, research, chosen, bundle)
+    return list(chosen.values())
+
+
 def save_research(store, bundle, payload, *, subject, expected_previous_version_id=None,
                   role_meta, intake=None):
-    """Validate first, store second: a rejected payload leaves no half version behind."""
+    """Validate first, store second: a rejected payload leaves no half version behind.
+
+    The stored version freezes the packet and the evidence index it was validated
+    against. The company's evidence store keeps growing after it; publishing this
+    version later must not silently pick up whatever arrived in the meantime.
+    """
     bundle = Path(bundle)
     if (bundle / "packet.json").exists():
         _register_requests(bundle, payload)
@@ -539,28 +671,28 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
     role_meta = researcher
     packet = read_json(bundle / "packet.json")
     records = read_json(bundle / "evidence.json")
-    selected = check_packet(packet, records, bundle)
-    check_research(packet, research, selected, bundle)
+    selected = _verify(bundle, packet, records, research)
     try:
         receipt = calculations.calculate(research)
     except (ContractError, KeyError, TypeError) as exc:
         # An unavailable receipt is a stated gap, never a silently empty field.
         receipt = {"calculator_version": calculations.VERSION, "status": "unavailable",
                    "reason": f"{type(exc).__name__}: {exc}"}
-    saved = store.save_research_version(
+    return store.save_research_version(
         subject, research, expected_previous_version_id=expected_previous_version_id,
         as_of=packet["as_of"], calc_receipt=receipt, role=role_meta.get("role"),
         execution=role_meta.get("execution"), provider=role_meta.get("provider"),
-        model=role_meta.get("model") or role_meta.get("model_id"))
-    return saved
+        model=role_meta.get("model") or role_meta.get("model_id"),
+        packet=packet, evidence=selected)
 
 
-def _publication_bars(bundle, packet, research, bars, bars_provider):
+def _publication_bars(bundle, packet, records, research, bars, bars_provider):
     """This run's price arrays: from registered candlesticks, else from a live provider.
 
     Either way they are transient — charted and measured, never registered and never
     written back into research.json (0.3). A provider that fails leaves the page with
-    its derived numbers; it does not fail the publication.
+    its derived numbers; it does not fail the publication. ``records`` are the version's
+    own evidence index, so republishing an old version does not chart newer prices.
     """
     from . import bars as bars_module  # noqa: PLC0415 - avoid an import cycle at load
 
@@ -570,8 +702,7 @@ def _publication_bars(bundle, packet, research, bars, bars_provider):
         return None
     if bars is not None:
         return bars_module.views(bars)
-    from_evidence = bars_module.from_evidence(bundle, read_json(bundle / "evidence.json"),
-                                              packet["as_of"])
+    from_evidence = bars_module.from_evidence(bundle, records, packet["as_of"])
     if from_evidence:
         return from_evidence
     if callable(bars_provider):
@@ -579,8 +710,40 @@ def _publication_bars(bundle, packet, research, bars, bars_provider):
     return None
 
 
+def publication_id_at(page_path):
+    """A release's own id, read from the manifest beside a recorded page path."""
+    directory = Path(page_path).parent
+    manifest = directory / "publication.json"
+    if manifest.is_file():
+        return read_json(manifest).get("publication_id")
+    return directory.name if directory.name.startswith("pub-") else None
+
+
+def previous_publication_id(store, version):
+    """The release this one follows: the nearest earlier version of the same subject
+    that was actually published. Unpublished versions in between are skipped, an
+    unbroken chain matters more than counting versions."""
+    rows = {row["version_id"]: row for row in store.list_research(version["subject"], limit=1000)}
+    current, seen = version["previous_version_id"], set()
+    while current and current not in seen:
+        seen.add(current)
+        row = rows.get(current)
+        if row is None:
+            return None
+        if row["publication_path"]:
+            return publication_id_at(row["publication_path"])
+        current = row["previous_version_id"]
+    return None
+
+
 def publish_research(store, bundle, version_id, output_dir, bars=None, bars_provider=None):
     """Write the release directory first, then record where it is.
+
+    The release is built from **this version's own** packet and evidence index, not
+    from whatever the company store holds today: republishing an old version after
+    the company gained new sources yields the same publication, byte for byte. Only
+    the source bytes come from the company store — they are content-addressed, so the
+    same fingerprint is the same file, and publication re-hashes every one it copies.
 
     ``bars`` (or whatever ``bars_provider`` returns) are this run's price arrays: they
     reach the chart and the measurements, not the saved research.
@@ -590,21 +753,33 @@ def publish_research(store, bundle, version_id, output_dir, bars=None, bars_prov
         raise ContractError(f"Unknown research version: {version_id}")
     bundle = Path(bundle)
     stored = version["payload"]
-    on_disk = read_json(bundle / "research.json") if (bundle / "research.json").exists() else None
-    if on_disk != stored:
-        (bundle / "research.json").write_bytes(canonical(stored))
+    packet, records = version["packet"], version["evidence"]
+    snapshot = (packet, records, stored)
+    inputs_from = "version_snapshot"
+    if packet is None or records is None:
+        # Saved before versions carried their inputs: fall back to the bundle as it
+        # stands, and say so rather than pretending the version was pinned.
+        inputs_from, snapshot = "bundle", None
+        packet = read_json(bundle / "packet.json")
+        records = read_json(bundle / "evidence.json")
+        on_disk = (read_json(bundle / "research.json")
+                   if (bundle / "research.json").exists() else None)
+        if on_disk != stored:
+            (bundle / "research.json").write_bytes(canonical(stored))
     from .page.company import render_company_index  # noqa: PLC0415 - it reads this module
 
-    packet = read_json(bundle / "packet.json")
     release = publish_module.publish(
-        bundle, output_dir, bars=_publication_bars(bundle, packet, stored, bars, bars_provider))
+        bundle, output_dir, snapshot=snapshot,
+        previous_publication_id=previous_publication_id(store, version),
+        bars=_publication_bars(bundle, packet, records, stored, bars, bars_provider))
     page = (Path(release) / "index.html").resolve()
     store.set_publication_path(version_id, page)
     index = Path(output_dir) / "index.html"
     index.write_text(render_company_index(store, bundle, packet["security"], Path(output_dir)),
                      encoding="utf-8")
     return {"version_id": version_id, "publication_dir": str(Path(release).resolve()),
-            "index_html": str(page), "company_index": str(index.resolve())}
+            "index_html": str(page), "company_index": str(index.resolve()),
+            "publication_id": Path(release).name, "inputs_from": inputs_from}
 
 
 # --- review jobs ------------------------------------------------------------
@@ -668,8 +843,8 @@ def _run_review(store, job, reviewer, *, bundle, task_dir, dispute, version_id,
     from .agents.adapters import ResultUnknown  # noqa: PLC0415
 
     job_id = job["job_id"]
-    store.claim_job(job_id, reviewer.get("provider") or "api")
-    store.update_job(job_id, status="running")
+    store.transition(job_id, "claimed", claimed_by=reviewer.get("provider") or "api")
+    store.transition(job_id, "running")
     try:
         adapter = _review_adapter(reviewer.get("provider"))
         if task_dir is None:
@@ -678,24 +853,21 @@ def _run_review(store, job, reviewer, *, bundle, task_dir, dispute, version_id,
             _stage_review_task(store, bundle, version_id, dispute, evidence_ids, task_dir)
         run = adapter.run(task_dir, reviewer.get("model"), budget, transport=transport)
     except ResultUnknown as exc:
-        return store.update_job(job_id, status="needs_check", error=str(exc))
+        return store.transition(job_id, "needs_check", error=str(exc))
     except Exception as exc:  # noqa: BLE001 - a failed review is a job outcome, not a crash
-        return store.update_job(job_id, status="failed", error=f"{type(exc).__name__}: {exc}")
+        return store.transition(job_id, "failed", error=f"{type(exc).__name__}: {exc}")
     try:
         submit_review(store, job_id, run["result"])
     except ContractError as exc:
-        return store.update_job(job_id, status="failed", usage=run["usage"],
+        return store.transition(job_id, "failed", usage=run["usage"],
                                 error=f"review result rejected: {exc}")
-    return store.update_job(job_id, usage=run["usage"])
+    return store.transition(job_id, usage=run["usage"])
 
 
 def claim_review(store, job_id, claimed_by):
-    job = store.claim_job(job_id, claimed_by)
-    if job is None:
-        current = store.get_job(job_id)
-        raise ContractError(
-            f"Job {job_id} is not pending (status: {current['status'] if current else 'unknown'})")
-    return store.update_job(job_id, status="running")
+    """Take a pending job, then start it. A second claimer is refused by the store."""
+    store.transition(job_id, "claimed", claimed_by=claimed_by)
+    return store.transition(job_id, "running")
 
 
 def submit_review(store, job_id, result):
@@ -712,7 +884,7 @@ def submit_review(store, job_id, result):
         pass
     else:
         result = validate_review(result)
-    return store.update_job(job_id, status="done", result_ref=result)
+    return store.transition(job_id, "done", result_ref=result)
 
 
 def get_job(store, job_id):

@@ -64,12 +64,20 @@ def render_company_index(store, bundle, security, releases):
     cited = _cited_by(store, subject)
     css = files("karst").joinpath("page/style.css").read_text(encoding="utf-8")
 
+    published = {row["version_id"]: row.get("publication_id") for row in context["versions"]}
     versions = []
     for row in context["versions"]:
         headline = row.get("headline") or {}
         change = (headline.get("change_since_last") or {}).get("text") if isinstance(headline, dict) else None
         href = _link(row["publication_path"], releases)
         page = f'<a href="{e(href)}">開啟</a>' if href else '<span class="muted">未發布</span>'
+        # The chain in both directions: which release this is, and which it points back to.
+        if row.get("publication_id"):
+            page += f'<br><span class="muted">{e(row["publication_id"][:16])}…</span>'
+        earlier = published.get(row.get("previous_version_id"))
+        page += (f'<br><span class="muted">指回 {e(earlier[:16])}…</span>' if earlier else
+                 '<br><span class="muted">無前版</span>' if not row.get("previous_version_id") else
+                 '<br><span class="muted">前版未發布</span>')
         versions.append([e(row["as_of"] or row["created_at"]), e(row.get("rating") or "未提供"),
                          e(row.get("execution_state") or "未提供"),
                          e(change or "未提供"), page,
@@ -96,7 +104,7 @@ def render_company_index(store, bundle, security, releases):
            f'研究版本 {len(context["versions"])} · 已登記來源 {len(context["sources"])}</p></header>']
 
     out.append('<section><h2>研究版本</h2>')
-    out.append(_table(("資料截止", "評級", "執行狀態", "與上次相比", "頁面", "狀態／模型"),
+    out.append(_table(("資料截止", "評級", "執行狀態", "與上次相比", "頁面／發布鏈", "狀態／模型"),
                       versions, "本公司未有已保存的研究版本。"))
     out.append('</section><section><h2>待補請求</h2>')
     if context["pending_supplements"]:
@@ -118,8 +126,10 @@ def render_company_index(store, bundle, security, releases):
         open_jobs = [row for row in context["reviews"] if row["status"] != "done"]
         pending = f"(尚有 {len(open_jobs)} 個未完成覆核任務)" if open_jobs else ""
         out.append(f'<p class="muted">未有已完成的覆核結果{pending}。</p>')
-    out.append('</section><section><h2>證據清單</h2>')
-    out.append('<p class="muted">此處只列登記索引與狀態;原文隨各版發布包保存,查不到只代表本地未登記。</p>')
+    out.append('</section><section><h2>證據清單(目前可用資料)</h2>')
+    out.append('<p class="muted">這裡答「公司證據倉現在有什麼」;「某一版研究當時用了什麼」是另一條問法,'
+               '見該版發布包內的登記。此處只列登記索引與狀態,原文隨各版發布包保存,'
+               '查不到只代表本地未登記。</p>')
     out.append(_table(("證據", "來源", "種類", "公開", "取得", "狀態", "被引用"),
                       sources, "本 bundle 未登記任何來源。"))
     out.append(f'</section><footer>資料室 Renderer {VERSION} · 主體 {e(subject)}<br>'

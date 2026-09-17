@@ -7,7 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import calculations
-from .packet import _citations, confined, instant, load_bundle, read_json
+from .packet import (_citations, check_packet, check_research, confined, instant,
+                     load_bundle, read_json)
 from .page.render import VERSION as RENDERER_VERSION, render
 from .schema import ContractError, canonical, digest, schema_hashes, validate
 
@@ -38,14 +39,26 @@ def cited_evidence_ids(research):
     return ids
 
 
-def publish(bundle, output, *, previous_publication_id=None, bars=None):
+def publish(bundle, output, *, previous_publication_id=None, bars=None, snapshot=None):
     """bars are this run's transient price arrays: charted and measured, never saved.
 
     Under 0.3 the saved research.json carries derived numbers only, and the release
     copies the referenced source bytes plus the full evidence index.
+
+    ``snapshot`` is ``(packet, records, research)`` frozen when the research was
+    saved. Given one, the bundle supplies bytes only: the same version publishes to
+    the same release however much the company's evidence store has grown since. The
+    contract checks are not skipped — they run against the frozen inputs, and every
+    copied file is hashed again on the way out.
     """
     bundle, output = Path(bundle), Path(output)
-    packet, records, research = load_bundle(bundle)
+    if snapshot is None:
+        packet, records, research = load_bundle(bundle)
+    else:
+        packet, records, research = snapshot
+        selected = check_packet(packet, records, bundle)
+        check_research(packet, research, selected, bundle)
+        records = list(selected.values())
     if bars is not None:
         if research["technical"].get("views") or {}:
             raise ContractError("Saved research already stores price arrays; do not pass transient bars")

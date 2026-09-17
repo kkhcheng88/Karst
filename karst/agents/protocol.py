@@ -11,12 +11,70 @@ import re
 from importlib.resources import files
 from pathlib import Path
 
-from ..pipeline import (DISCIPLINE_FILE, DISCIPLINE_PREFIXES, MANDATE_FILE, MODEL_FILE,
-                        questions_from_model, sections_from_markdown)
+from ..fetch.common import repo_root
 from ..schema import ContractError, canonical, digest
 
 DECLARED = "research-protocol-v1"
 MODES = ("research", "update", "review")
+# The strategy sources this method is assembled from. The CLI takes these as its
+# defaults; the method itself owns where its own content comes from.
+MANDATE_FILE = repo_root() / "strategy" / "投資委託.md"
+DISCIPLINE_FILE = repo_root() / "strategy" / "specs" / "六層分析紀律-v1.md"
+MODEL_FILE = repo_root() / "strategy" / "投資決策模型.md"
+DISCIPLINE_PREFIXES = ("L1", "L2", "L3", "L4", "L5", "L6", "反方")
+COUNTER_PREFIX = "反方"
+
+
+def sections_from_markdown(text, prefixes):
+    """``### <prefix>...`` headings -> {prefix: body}; a prefix matches at most one section."""
+    sections, current = {}, None
+    for line in text.splitlines():
+        if line.startswith("#"):
+            heading = line[4:].strip() if line.startswith("### ") else None
+            current = next((p for p in prefixes if heading and heading.startswith(p)), None)
+            if current is not None and current in sections:
+                raise ContractError(f"Discipline heading prefix is ambiguous: {current}")
+            if current is not None:
+                sections[current] = []
+        elif current is not None:
+            sections[current].append(line)
+    return {key: "\n".join(body).strip() for key, body in sections.items() if "".join(body).strip()}
+
+
+def _split_top_level(text, separator="、"):
+    parts, depth, start = [], 0, 0
+    for index, char in enumerate(text):
+        if char in "(（":
+            depth += 1
+        elif char in ")）":
+            depth = max(depth - 1, 0)
+        elif char == separator and depth == 0:
+            parts.append(text[start:index])
+            start = index + 1
+    parts.append(text[start:])
+    return [part.strip() for part in parts if part.strip()]
+
+
+def questions_from_model(text):
+    """The scenario questions the strategy names: each module's focus plus the五件事 list."""
+    questions = []
+    lines = text.splitlines()
+    for index, line in enumerate(lines):
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if "攻什麼" not in cells:
+            continue
+        column = cells.index("攻什麼")
+        for row in lines[index + 2:]:
+            if not row.strip().startswith("|"):
+                break
+            values = [cell.strip() for cell in row.strip().strip("|").split("|")]
+            if len(values) > column and values[column]:
+                questions.append(values[column].replace("*", "").strip())
+        break
+    match = re.search(r"至少追查五件事[：:](.+?)。", text, re.S)
+    if match:
+        questions.extend(_split_top_level(match[1].replace("\n", "")))
+    return [q for q in questions if q]
 
 
 def _declared_version(text):

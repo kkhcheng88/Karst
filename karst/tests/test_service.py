@@ -81,8 +81,10 @@ class RefreshTests(ServiceCase):
         self.assertNotIn("longbridge", moved["adapter_errors"])
 
     def test_missing_credentials_lands_as_failed_not_silence(self):
+        # A zero-argument factory is how "no client at all" is injected: a bare None
+        # would let the adapter build the real one from the machine's credentials.
         result = service.refresh_sources(self.root, SECURITY, ["prices"],
-                                         clients={"longbridge_factory": lambda: None},
+                                         clients={"longbridge": lambda: None},
                                          store=self.store)
         self.assertEqual(result["added"] + result["changed"] + result["unchanged"], [])
         self.assertEqual(len(result["failed"]), 4)

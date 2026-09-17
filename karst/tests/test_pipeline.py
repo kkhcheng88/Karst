@@ -5,28 +5,15 @@ import unittest
 from pathlib import Path
 
 from karst.agents.assemble import LAYERS, UPSTREAM
+from karst.fetch.port import pair_staging
 from karst.packet import check_packet, read_json
-from karst.pipeline import (DISCIPLINE_FILE, DISCIPLINE_PREFIXES, MODEL_FILE, main,
-                            pair_staging, questions_from_model, sections_from_markdown)
+from karst.pipeline import main
 from karst.schema import canonical
 from karst.tests import test_agents  # imported as a module so its cases are not re-collected
 
 FIXTURES = Path(__file__).resolve().parent / 'fixtures'
 SECURITY = {'security_id': 'FIXTURE:FIXTURE', 'issuer_id': 'cik:0000000000', 'ticker': 'FIXTURE',
             'name': 'Fixture issuer', 'currency': 'USD', 'exchange': 'FIXTURE'}
-
-
-class PureHelperTests(unittest.TestCase):
-    def test_discipline_sections_cover_six_layers_and_the_counter(self):
-        sections = sections_from_markdown(DISCIPLINE_FILE.read_text(encoding='utf-8'), DISCIPLINE_PREFIXES)
-        self.assertEqual(sorted(sections), sorted(DISCIPLINE_PREFIXES))
-        for key, body in sections.items():
-            self.assertTrue(body.strip(), key)
-
-    def test_scenario_questions_carry_the_modules_and_the_five_checks(self):
-        questions = questions_from_model(MODEL_FILE.read_text(encoding='utf-8'))
-        self.assertEqual(len(questions), 8)  # three module focuses + the five narrative checks
-        self.assertTrue(all(q.strip() and '|' not in q for q in questions))
 
 
 class RegisterTests(unittest.TestCase):

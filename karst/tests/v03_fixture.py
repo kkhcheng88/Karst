@@ -12,7 +12,7 @@ from pathlib import Path
 from karst.fetch.common import utc_now
 from karst.fetch.registry import EvidenceRegistry
 from karst.packet import build_packet, confined
-from karst.pipeline import pair_staging
+from karst.fetch.port import pair_staging
 from karst.schema import canonical
 
 FIXTURES = Path(__file__).resolve().parent / 'fixtures'

@@ -9,11 +9,21 @@ import argparse
 import contextlib
 import io
 import json
+import re
 import sys
 from pathlib import Path
 
 from .common import clean_value, frame_records, write_json, write_meta
+from .port import LandedRecord, options_for, scan, ticker_for
 
+SOURCE = "defeatbeta"
+# The kinds this adapter is the default source for (refresh_sources routing). It also
+# lands filing_index (the transcript catalogue) and prices (splits); those kinds are
+# routed to their own adapters.
+KINDS = ("transcript", "financials", "calendar", "profile")
+# tool text -> kind, in order; the first token that appears decides.
+TOOL_KIND_TOKENS = (("calendar", "calendar"), ("info", "profile"), ("shares", "financials"),
+                    ("splits", "prices"), ("quarterly_", "financials"), ("price", "prices"))
 DATASET_URL = "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data"
 STATEMENTS = ("quarterly_income_statement", "quarterly_balance_sheet", "quarterly_cash_flow")
 STATEMENT_GAPS = [
@@ -110,16 +120,19 @@ def fetch_company(ticker: str, out_dir, *, transcripts: int = 1, max_transcript_
             payload, meta = produce()
         except Exception as exc:  # noqa: BLE001 - recorded as status error, never invented as empty
             write_meta(out / f"{name}.meta.json", **{**base, "params": meta_params}, tool=tool, status="error",
+                       status_reason=f"source call failed: {type(exc).__name__}: {exc}",
                        error=f"{type(exc).__name__}: {exc}", known_gaps=[f"source call failed: {type(exc).__name__}: {exc}"])
             statuses[name] = "error"
             return None
         records = payload.get("records")
         status = "ok" if records else "empty"
-        gaps = list(meta.pop("known_gaps", []))
+        gaps, reason = list(meta.pop("known_gaps", [])), None
         if status == "empty":
+            reason = "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different"
             gaps.append("empty DataFrame returned by source (kept as empty records)")
         write_json(out / f"{name}.json", {"tool": tool, **payload})
-        write_meta(out / f"{name}.json", **{**base, "params": meta_params}, tool=tool, **meta, known_gaps=gaps, status=status)
+        write_meta(out / f"{name}.json", **{**base, "params": meta_params}, tool=tool, **meta, known_gaps=gaps,
+                   status=status, status_reason=reason)
         statuses[name] = status
         return payload
 
@@ -193,6 +206,29 @@ def fetch_company(ticker: str, out_dir, *, transcripts: int = 1, max_transcript_
 
     land("info", "Ticker.info()", _info)
     return statuses
+
+
+def kind_for(meta) -> str:
+    """Declared per tool. The transcript catalogue is an index, NOT transcript text."""
+    tool = str(meta.get("tool") or "")
+    if re.search(r"get_transcript(?:\(|$)", tool):
+        return "transcript"
+    if "earning_call_transcripts" in tool:
+        return "filing_index"
+    for token, kind in TOOL_KIND_TOKENS:
+        if token in tool:
+            return kind
+    raise ValueError(f"no declared kind for defeatbeta tool {tool!r}")
+
+
+def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
+    """Land this security's DefeatBeta tables. ``client`` is a ``ticker -> Ticker`` factory.
+
+    ``since`` is not a filter: the vendor returns whole tables, and the newest N
+    transcripts are selected by fiscal quarter, not by date.
+    """
+    fetch_company(ticker_for(security), out_dir, **options_for(client, "ticker_factory"))
+    return scan(Path(out_dir) / SOURCE, kind_for)
 
 
 def main(argv=None) -> int:

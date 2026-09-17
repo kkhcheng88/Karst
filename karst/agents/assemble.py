@@ -10,7 +10,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 
 from ..packet import (_citations, _private_selectors, check_packet, check_research,
                       confined, instant, read_json)
-from ..schema import ContractError, canonical, digest, schemas
+from ..schema import ContractError, canonical, digest, embed_evidence_defs, schemas
 
 
 LAYERS = {'industry': ('L1', 'L2'), 'company': ('L3',), 'valuation': ('L4',),
@@ -55,26 +55,9 @@ def fragment_schema(role):
         'supplement_requests': copy.deepcopy(schemas('0.2.0')['packet']['properties']['supplement_requests']),
     })
     result.update({'$schema': source['$schema'], '$defs': source['$defs']})
-    # Embed canonical dependencies so exported output.schema.json is usable
-    # offline by a local runner without resolving URNs or a second schema copy.
-    contracts = schemas('0.2.0')
-    # Evidence has local refs of its own; retain its resource ID so those refs
-    # resolve within the embedded canonical resource rather than the fragment.
-    result['$defs']['contract_evidence'] = copy.deepcopy(contracts['evidence'])
-    # Packet supplement requests refer only to evidence IDs. Other research
-    # fields use the same evidence resource (citation, id, datetime).
-    def rewrite_external(value):
-        if isinstance(value, dict):
-            for key, child in value.items():
-                if key == '$ref' and isinstance(child, str) and child.startswith(contracts['evidence']['$id'] + '#'):
-                    value[key] = '#/$defs/contract_evidence' + child.split('#', 1)[1]
-                elif key != 'contract_evidence':
-                    rewrite_external(child)
-        elif isinstance(value, list):
-            for child in value:
-                rewrite_external(child)
-    rewrite_external(result)
-    return result
+    # Embed canonical dependencies so exported output.schema.json is usable offline
+    # by a local runner without resolving URNs or keeping a second schema copy.
+    return embed_evidence_defs(result, schemas('0.2.0'))
 
 
 def validate_fragment(role, fragment, packet, selected, root):

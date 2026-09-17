@@ -3,8 +3,25 @@ import unittest
 
 from jsonschema import Draft202012Validator
 
-from karst.agents.protocol import DECLARED, MODES, get_research_protocol
+from karst.agents.protocol import (DECLARED, DISCIPLINE_FILE, DISCIPLINE_PREFIXES, MODEL_FILE,
+                                   MODES, get_research_protocol, questions_from_model,
+                                   sections_from_markdown)
 from karst.schema import ContractError
+
+
+class SourceReadingTests(unittest.TestCase):
+    """The method reads the strategy sources itself; the CLI is not in the way."""
+
+    def test_discipline_sections_cover_six_layers_and_the_counter(self):
+        sections = sections_from_markdown(DISCIPLINE_FILE.read_text(encoding='utf-8'), DISCIPLINE_PREFIXES)
+        self.assertEqual(sorted(sections), sorted(DISCIPLINE_PREFIXES))
+        for key, body in sections.items():
+            self.assertTrue(body.strip(), key)
+
+    def test_scenario_questions_carry_the_modules_and_the_five_checks(self):
+        questions = questions_from_model(MODEL_FILE.read_text(encoding='utf-8'))
+        self.assertEqual(len(questions), 8)  # three module focuses + the five narrative checks
+        self.assertTrue(all(q.strip() and '|' not in q for q in questions))
 
 
 class ProtocolTests(unittest.TestCase):

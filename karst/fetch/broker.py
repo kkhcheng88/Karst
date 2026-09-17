@@ -13,6 +13,11 @@ import sys
 from pathlib import Path
 
 from .common import utc_now, write_json, write_meta
+from .port import PUBLIC_KINDS, LandedRecord, response_status, scan
+
+# Manual landing: the agent already holds the MCP return, so this adapter covers
+# no kind automatically. ``refresh_sources`` never routes to it.
+KINDS = ()
 
 PRIVATE_KEYS = frozenset({
     "acc_id", "account", "account_id", "accounts", "position", "positions", "pl_ratio", "pl_val", "cost_price",
@@ -64,20 +69,12 @@ def refuse_private(tool: str, params, response) -> None:
         raise PrivateDataError(f"private keys refused for {tool!r}: {sorted(set(hits))}")
 
 
-def response_status(response) -> tuple[str, dict | None]:
-    """ok / empty / error by the shape of the return: error envelopes (error_code, error, ret_code != 0), then emptiness."""
-    if isinstance(response, dict):
-        if response.get("error_code") not in (None, 0, "0") or response.get("error"):
-            return "error", response.get("error") if isinstance(response.get("error"), dict) else response
-        if "ret_code" in response and response.get("ret_code") not in (0, "0", None):
-            return "error", response
-        body = response.get("data", response.get("result", response))
-        if body in (None, [], {}, ""):
-            return "empty", None
-        return "ok", None
-    if response in (None, [], "", ()):
-        return "empty", None
-    return "ok", None
+def kind_for(meta) -> str:
+    """The evidence kind this landing is. A broker tool off the public allowlist has none."""
+    method = str(meta.get("tool") or "").split("__")[-1]
+    if method not in PUBLIC_KINDS:
+        raise ValueError(f"broker tool is not on the public allowlist: {meta.get('tool')!r}")
+    return PUBLIC_KINDS[method]
 
 
 def land(out_dir, source: str, tool: str, symbol, params, response, *, fetched_at: str | None = None,
@@ -91,18 +88,37 @@ def land(out_dir, source: str, tool: str, symbol, params, response, *, fetched_a
     name = re.sub(r"[^A-Za-z0-9_.-]", "_", tool.rsplit("__", 1)[-1])
     path = out / f"{name}.json"
     write_json(path, {"tool": tool, "symbol": symbol, "fetched_at": fetched_at, "params": params, "response": response})
-    status, error = response_status(response)
+    status, error, reason = response_status(response)
     gaps = list(known_gaps) + ["response transcribed from MCP tool output by the agent; time fields inside the response not parsed"]
     if status == "error":
         gaps.append(f"tool returned an error envelope: {json.dumps(error, ensure_ascii=False, default=str)[:500]}; "
                     "fetch failed is not 'no data' (資料來源 §零)")
     if status == "empty":
-        gaps.append("empty return: distinguish 'nothing to report' from 'not covered' before treating as absence")
+        gaps.append(reason)
     meta_path = write_meta(path, source=source, tool=tool, params=params, fetched_at=fetched_at, published_at=None,
                            published_at_basis="現時快照 (snapshot at fetch time); the source gives no publication time for this return",
                            period=None, truncated={"is_truncated": False}, known_gaps=gaps, status=status, source_url=None,
-                           symbol=symbol, error=error)
-    return {"path": str(path), "meta": str(meta_path), "status": status}
+                           symbol=symbol, error=error, status_reason=reason)
+    return {"path": str(path), "meta": str(meta_path), "status": status, "status_reason": reason}
+
+
+def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
+    """Land returns the agent already holds; this module still calls no MCP.
+
+    ``client`` is that material: an iterable of ``{source, tool, symbol, params,
+    response}`` mappings (``fetched_at`` and ``known_gaps`` optional). Without it
+    nothing is landed and nothing is claimed. ``security`` supplies the default
+    symbol, ``since`` is not used: the agent decided the window when it called.
+    """
+    landed = set()
+    for call in client or ():
+        call = dict(call)
+        land(out_dir, call["source"], call["tool"], call.get("symbol") or security.get("ticker"),
+             call.get("params") or {}, call.get("response"),
+             fetched_at=call.get("fetched_at"), known_gaps=call.get("known_gaps") or ())
+        landed.add(call["source"])
+    # Only what this call landed: the longbridge adapter owns its own directory.
+    return [record for source in sorted(landed) for record in scan(Path(out_dir) / source, kind_for)]
 
 
 def main(argv=None) -> int:
