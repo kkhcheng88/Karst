@@ -487,17 +487,29 @@ def _register_requests(bundle, payload):
     from .packet import build_packet  # noqa: PLC0415 - avoid an import cycle at load
 
     packet = read_json(bundle / "packet.json")
-    known = {request["request_id"] for request in packet["supplement_requests"]}
-    fresh = [request for request in (payload.get("supplement_requests") or [])
-             if isinstance(request, dict) and request.get("request_id") not in known]
-    if not fresh:
+    known = {request["request_id"]: request for request in packet["supplement_requests"]}
+    incoming = [request for request in (payload.get("supplement_requests") or [])
+                if isinstance(request, dict) and request.get("request_id")]
+    # A researcher may reword a request it raised earlier; while it is still pending the
+    # owner's latest wording replaces the registered one. Resolved requests never change.
+    changed = False
+    merged = []
+    for request in packet["supplement_requests"]:
+        update = next((r for r in incoming if r["request_id"] == request["request_id"]), None)
+        if update is not None and update != request and request.get("status") == "pending":
+            merged.append(update)
+            changed = True
+        else:
+            merged.append(request)
+    fresh = [request for request in incoming if request["request_id"] not in known]
+    if not fresh and not changed:
         return packet
     rebuilt = build_packet(
         read_json(bundle / "evidence.json"), packet["as_of"], packet["security"],
         created_at=packet["created_at"], knowledge_basis=packet["knowledge_basis"],
         previous_packet_id=packet["previous_packet_id"],
         dependencies=[dep for dep in packet["dependencies"] if dep["kind"] != "evidence"],
-        supplement_requests=packet["supplement_requests"] + fresh,
+        supplement_requests=merged + fresh,
         pending_updates=packet["pending_updates"], root=bundle,
         contract_version=packet["contract_version"])
     (bundle / "packet.json").write_bytes(canonical(rebuilt))

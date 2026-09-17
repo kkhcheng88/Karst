@@ -1,0 +1,42 @@
+{
+ "tool": "institution_rating",
+ "symbol": "BE.US",
+ "fetched_at": "2026-09-16T19:39:49Z",
+ "params": {
+  "symbol": "BE.US"
+ },
+ "response": {
+  "analyst": {
+   "evaluate": {
+    "buy": 10,
+    "over": 5,
+    "hold": 12,
+    "under": 1,
+    "sell": 1,
+    "total": 31,
+    "start_date": "2026-09-14T00:00:00Z",
+    "end_date": "0",
+    "no_opinion": 2
+   },
+   "target": {
+    "highest_price": "390.000",
+    "lowest_price": "97.000",
+    "prev_close": "259.35",
+    "start_date": "2026-09-14T00:00:00Z",
+    "end_date": "0"
+   },
+   "industry_id": 87152,
+   "industry_name": "重型电气设备",
+   "industry_rank": 2,
+   "industry_total": 19,
+   "industry_mean": 9,
+   "industry_median": 5
+  },
+  "instratings": {
+   "updated_at": "2026 年 9 月 14 日",
+   "recommend": "buy",
+   "target": "280.23846",
+   "change": "6.63158175107492"
+  }
+ }
+}

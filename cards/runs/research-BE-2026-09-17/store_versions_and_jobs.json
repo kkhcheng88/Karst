@@ -1,0 +1,44 @@
+{
+ "research_versions": [
+  {
+   "version_id": "rv-b39ee27b0f3d4a464a5e500d6d1c421ec190553610a346dc54074216115f04fe",
+   "subject": "NYSE:BE",
+   "as_of": "2026-09-16T19:40:06Z",
+   "status": "superseded",
+   "previous_version_id": null,
+   "role": "researcher",
+   "execution": "interactive",
+   "provider": "anthropic",
+   "model": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction)",
+   "created_at": "2026-09-16T20:05:59.798518Z",
+   "publication_path": "C:\\Users\\Kaho\\AppData\\Local\\Temp\\claude\\C--projects-Karst\\d2e5d32d-fb0a-455e-a4f0-b5414e1a7c69\\scratchpad\\run-be\\releases\\pub-15c257ec4598b7a746821a326179d59b4910ae2c084e39a0c9d77afae1884d41\\index.html"
+  },
+  {
+   "version_id": "rv-f9347224828bcef7d3ecdc72bedd8abb020b7885923b70abbcd0acf5e2c603dd",
+   "subject": "NYSE:BE",
+   "as_of": "2026-09-16T19:40:06Z",
+   "status": "latest",
+   "previous_version_id": "rv-b39ee27b0f3d4a464a5e500d6d1c421ec190553610a346dc54074216115f04fe",
+   "role": "researcher",
+   "execution": "interactive",
+   "provider": "anthropic",
+   "model": "claude-opus (Claude Code Agent tool, model=opus; isolation by instruction)",
+   "created_at": "2026-09-17T14:07:59.217205Z",
+   "publication_path": "C:\\Users\\Kaho\\AppData\\Local\\Temp\\claude\\C--projects-Karst\\d2e5d32d-fb0a-455e-a4f0-b5414e1a7c69\\scratchpad\\run-be\\releases\\pub-8fc7e6c5c8384214dbe2558251129584ddfe77538aa9db5852a8f2b59a552bc9\\index.html"
+  }
+ ],
+ "jobs": [
+  {
+   "job_id": "job-e0ac895dafc51e170ee5f34f",
+   "kind": "review",
+   "status": "done",
+   "role": "reviewer",
+   "execution": "interactive",
+   "provider": "anthropic",
+   "model": "claude-opus (Claude Code Agent tool)",
+   "claimed_by": "claude-code-reviewer",
+   "started_at": "2026-09-16T20:06:47.513036Z",
+   "finished_at": "2026-09-16T20:14:45.412979Z"
+  }
+ ]
+}

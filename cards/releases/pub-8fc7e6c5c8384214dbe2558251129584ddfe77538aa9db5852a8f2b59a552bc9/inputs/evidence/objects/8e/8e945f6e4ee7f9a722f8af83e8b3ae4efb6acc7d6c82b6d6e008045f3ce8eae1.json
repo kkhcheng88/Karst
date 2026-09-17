@@ -1,0 +1,43 @@
+{
+ "tool": "quote",
+ "symbol": "BE.US",
+ "fetched_at": "2026-09-16T19:34:22Z",
+ "params": {
+  "symbols": [
+   "BE.US"
+  ]
+ },
+ "response": [
+  {
+   "high": "275.180",
+   "last_done": "265.291",
+   "low": "261.810",
+   "open": "268.390",
+   "overnight_quote": null,
+   "post_market_quote": {
+    "high": "260.250",
+    "last_done": "258.847",
+    "low": "258.000",
+    "prev_close": "259.350",
+    "timestamp": "2026-09-16T07:59:41",
+    "turnover": "23826643.460",
+    "volume": 91622
+   },
+   "pre_market_quote": {
+    "high": "270.001",
+    "last_done": "267.760",
+    "low": "262.000",
+    "prev_close": "259.350",
+    "timestamp": "2026-09-16T21:29:59",
+    "turnover": "54260028.892",
+    "volume": 202753
+   },
+   "prev_close": "259.350",
+   "symbol": "BE.US",
+   "timestamp": "2026-09-17T03:34:18",
+   "trade_status": "Normal",
+   "turnover": "2941445940.965",
+   "volume": 10937158
+  }
+ ]
+}

@@ -1,0 +1,149 @@
+{
+ "tool": "quote_short_interest",
+ "symbol": "US.BE",
+ "fetched_at": "2026-09-16T19:39:48Z",
+ "params": {
+  "symbol": "US.BE",
+  "count": 12
+ },
+ "response": {
+  "ret_code": 0,
+  "ret_msg": "success",
+  "data": {
+   "items": [
+    {
+     "avg_daily_share_volume": 11867000,
+     "avg_daily_short_volume": 1258898,
+     "close_price": 206.3,
+     "days_to_cover": 1.62,
+     "last_close_price": 210.77,
+     "shares_short": 19210585,
+     "short_percent": 6.522,
+     "timestamp": 1788148800000,
+     "timestamp_str": "2026-08-31"
+    },
+    {
+     "avg_daily_share_volume": 13480348,
+     "avg_daily_short_volume": 1718345,
+     "close_price": 229.94,
+     "days_to_cover": 1.35,
+     "last_close_price": 236.22,
+     "shares_short": 18260304,
+     "short_percent": 6.199,
+     "timestamp": 1786680000000,
+     "timestamp_str": "2026-08-14"
+    },
+    {
+     "avg_daily_share_volume": 20580978,
+     "avg_daily_short_volume": 1757348,
+     "close_price": 205.81,
+     "days_to_cover": 1,
+     "last_close_price": 207.12,
+     "shares_short": 20361513,
+     "short_percent": 6.913,
+     "timestamp": 1785470400000,
+     "timestamp_str": "2026-07-31"
+    },
+    {
+     "avg_daily_share_volume": 12958611,
+     "avg_daily_short_volume": 1041828,
+     "close_price": 239.38,
+     "days_to_cover": 1.48,
+     "last_close_price": 243.4,
+     "shares_short": 19185518,
+     "short_percent": 6.744,
+     "timestamp": 1784088000000,
+     "timestamp_str": "2026-07-15"
+    },
+    {
+     "avg_daily_share_volume": 17445244,
+     "avg_daily_short_volume": 1939186,
+     "close_price": 302.7,
+     "days_to_cover": 1.11,
+     "last_close_price": 275.01,
+     "shares_short": 19348027,
+     "short_percent": 6.802,
+     "timestamp": 1782792000000,
+     "timestamp_str": "2026-06-30"
+    },
+    {
+     "avg_daily_share_volume": 10590558,
+     "avg_daily_short_volume": 1485008,
+     "close_price": 274.5,
+     "days_to_cover": 2.81,
+     "last_close_price": 260.22,
+     "shares_short": 29780167,
+     "short_percent": 10.469,
+     "timestamp": 1781496000000,
+     "timestamp_str": "2026-06-15"
+    },
+    {
+     "avg_daily_share_volume": 10406884,
+     "avg_daily_short_volume": 1633060,
+     "close_price": 285,
+     "days_to_cover": 2.74,
+     "last_close_price": 290.01,
+     "shares_short": 28556389,
+     "short_percent": 10.039,
+     "timestamp": 1780027200000,
+     "timestamp_str": "2026-05-29"
+    },
+    {
+     "avg_daily_share_volume": 9697855,
+     "avg_daily_short_volume": 897513,
+     "close_price": 275.95,
+     "days_to_cover": 2.99,
+     "last_close_price": 303.41,
+     "shares_short": 28998320,
+     "short_percent": 10.194,
+     "timestamp": 1778817600000,
+     "timestamp_str": "2026-05-15"
+    },
+    {
+     "avg_daily_share_volume": 10797512,
+     "avg_daily_short_volume": 1094704,
+     "close_price": 283.36,
+     "days_to_cover": 2.42,
+     "last_close_price": 287.97,
+     "shares_short": 26163216,
+     "short_percent": 9.198,
+     "timestamp": 1777521600000,
+     "timestamp_str": "2026-04-30"
+    },
+    {
+     "avg_daily_share_volume": 10748236,
+     "avg_daily_short_volume": 1527873,
+     "close_price": 213.84,
+     "days_to_cover": 2.16,
+     "last_close_price": 219.03,
+     "shares_short": 23186341,
+     "short_percent": 8.158,
+     "timestamp": 1776225600000,
+     "timestamp_str": "2026-04-15"
+    },
+    {
+     "avg_daily_share_volume": 10623181,
+     "avg_daily_short_volume": 1350929,
+     "close_price": 135.49,
+     "days_to_cover": 2.31,
+     "last_close_price": 119.51,
+     "shares_short": 24510243,
+     "short_percent": 8.736,
+     "timestamp": 1774929600000,
+     "timestamp_str": "2026-03-31"
+    },
+    {
+     "avg_daily_share_volume": 10343327,
+     "avg_daily_short_volume": 1108602,
+     "close_price": 154.51,
+     "days_to_cover": 2.36,
+     "last_close_price": 157.17,
+     "shares_short": 24394733,
+     "short_percent": 8.695,
+     "timestamp": 1773374400000,
+     "timestamp_str": "2026-03-13"
+    }
+   ]
+  }
+ }
+}

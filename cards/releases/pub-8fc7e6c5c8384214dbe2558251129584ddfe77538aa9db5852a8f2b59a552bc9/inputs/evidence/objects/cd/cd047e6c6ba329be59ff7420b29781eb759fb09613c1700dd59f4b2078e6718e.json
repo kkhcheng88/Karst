@@ -1,0 +1,109 @@
+{
+ "tool": "quote_research_morningstar_report",
+ "symbol": "US.BE",
+ "fetched_at": "2026-09-16T19:39:47Z",
+ "params": {
+  "symbol": "US.BE"
+ },
+ "response": {
+  "ret_code": 0,
+  "ret_msg": "success",
+  "data": {
+   "ai_analysis": {
+    "analysis": "**Key Points**\n\n*   **Valuation & Rating**\n    *   Current stock price is 163.75 USD (as of Jul 29, 2026), trading at a massive premium with a Price/FVE ratio of 2.14, indicating it is priced for perfection and disconnected from fundamentals.\n    *   Economic Moat rating: None; Uncertainty rating: Extreme; Capital Allocation rating: Standard; Morningstar Star rating: ★★ (overvalued territory).\n*   **Recent Performance & Catalysts**\n    *   Q2 2026 revenue surged 166% year-over-year to $1.065 billion, and non-GAAP gross margin expanded by 604 basis points to 34.3%, driven by strong time-to-power data center demand.\n    *   Management lifted full-year 2026 guidance midpoints to $4.05 billion in revenue and $850 million in non-GAAP operating income, leveraging its delivery time arbitrage over traditional power equipment. \n*   **Core Strengths & Moat Sources**\n    *   Time-to-power arbitrage: Bloom's solid oxide fuel cell (SOFC) systems can be deployed in months, offering a crucial advantage over traditional gas turbines that take years to install, heavily appealing to capacity-constrained data centers.\n    *   Fuel flexibility and cost reduction: The Energy Servers can run on natural gas, biogas, or hydrogen, backed by a historical track record of lowering product costs by over 10% annually to encourage broader commercial adoption.\n*   **Main Risks**\n    *   Execution and supply chain opacity: The company faces significant scrutiny regarding inconsistent statements on its scandium supply chain and carries heavy execution risks as it attempts to rapidly scale its manufacturing capacity.\n    *   Customer concentration and competitive threats: Sales trajectories are heavily dependent on a handful of large AI data center deals and related-party bookings (e.g., Brookfield), while its fuel cells remain structurally more expensive than traditional natural gas turbines.",
+    "summary": "Morningstar believes that Bloom Energy's current share price is significantly overvalued; while the company benefits from time-to-power constraints in the AI data center market, extreme uncertainties regarding its supply chain transparency, high customer concentration, and the market's aggressive assumption of multidecade hypergrowth require caution."
+   },
+   "analyst_note_content": {
+    "context": "Bloom Energy's second-quarter revenue rose to $1.065 billion, up 166% year on year, while non-GAAP gross margin of 34.3% rose 604 basis points. Management lifted full-year guidance for revenue and non-GAAP operating income to midpoints of $4.05 billion and $850 million, respectively.\n\nWhy it matters: Bloom Energy's earnings print once again soared as it continues to benefit from time to power data center constraints. Whereas traditional gas power equipment takes years to deliver, Bloom can deliver its solid oxide fuel cell systems in months. This time arbitrage helps results. Still, we expect that some of these time to power constraints will eventually begin to ease for certain turbines, though the timing here is highly uncertain and depends on the manufacturing capacity of traditional equipment manufacturers. Evidence that a lot of upside is baked into Bloom's stock price can be gleaned from its reaction to a recent report on its scandium supply and the source of its supply. We don't have visibility into these questions, but we also don't think management has provided satisfactory answers to them.\n\nThe bottom line: We lift our fair value estimate for no-moat-rated Bloom Energy to $97 per share from $70 previously. Most of the change was due to our long-term view on the benefits from operating leverage, though higher guidance and a higher implied multiple from a revised discount rate drove the change. We retain our Extreme Uncertainty Rating as there are too many open questions related to Bloom's operations, including what could read like inconsistent statements on its supply chain, availability of critical supply, and a high concentration of sales booked to a related party in Brookfield. Even with the fair value change, we remain on the lower end of valuations from analysts as we think this is a name that's at best priced for perfection, and at worst, has become disconnected from fundamentals at times. At current prices, the stock now trades in 3-star territory.",
+    "update_time": 1785335736,
+    "update_time_str": "2026-07-29"
+   },
+   "analyst_note_title": {
+    "context": "Bloom Energy Earnings: Stock Looks Rich, but Questions Leave Us Taking No Side in the Debate Now",
+    "update_time": 1785335736,
+    "update_time_str": "2026-07-29"
+   },
+   "analyst_report_by_line": [
+    "Joshua Aguilar"
+   ],
+   "analyst_report_update_time": 1785335160,
+   "analyst_report_update_time_str": "2026-07-29",
+   "bear_say": [
+    {
+     "context": "Bloom's long-term sales trajectory is highly dependent on data center customers.",
+     "update_time": 1785335160,
+     "update_time_str": "2026-07-29"
+    },
+    {
+     "context": "The company has a limited profitability record and faces execution risk with scaling its manufacturing.",
+     "update_time": 1785335160,
+     "update_time_str": "2026-07-29"
+    },
+    {
+     "context": "Bloom's fuel cells remain more expensive than natural gas turbines.",
+     "update_time": 1785335160,
+     "update_time_str": "2026-07-29"
+    }
+   ],
+   "bull_say": [
+    {
+     "context": "Bloom is well positioned to meet the time to power needs of data center customers.",
+     "update_time": 1785335160,
+     "update_time_str": "2026-07-29"
+    },
+    {
+     "context": "Bloom has made strides in extending the life of its fuel cells, which should improve its service margins in coming years.",
+     "update_time": 1785335160,
+     "update_time_str": "2026-07-29"
+    },
+    {
+     "context": "Bloom's fuel cell technology benefits from long-term cost reductions, which should enable greater cost-competitiveness with natural gas turbines.",
+     "update_time": 1785335160,
+     "update_time_str": "2026-07-29"
+    }
+   ],
+   "capital_allocation_content": {
+    "context": "We assign Bloom a Standard Morningstar Capital Allocation Rating based on its balance sheet strength, investment record, and shareholder distribution policy.\n\nBloom's balance sheet appears to be in a fair position. Recourse debt outstanding totaled approximately $2.6 billion as of year-end 2025, consisting largely of convertible debt. In addition, the company has roughly $200 million of financing obligations associated with sale-leaseback financing structures. Given the company's limited size, we do not believe further increases in recourse debt would be prudent.\n\nWe assess Bloom's investment record as fair. The company has historically relied almost entirely on organic growth, with a limited history of acquisitions. Organic growth investment in the coming years is likely to focus on expanding its manufacturing capabilities. Bloom is amid an expansion of its fuel cell stack capabilities with an additional 1-gigawatt expansion in Fremont, California. The company has indicated it could envision adding a similar amount of capacity every two to three years at an approximate cost of $200 million per 1 GW of capacity.\n\nWe find Bloom's approach to equity distributions to be appropriate. Given the early nature of the business as well as its growth focus, we don't expect Bloom to pay a dividend or repurchase shares for the time being.\n\nFinally, we believe management's statement concerning the source of its supply chain merits scrutiny for what arguably appears as potentially inconsistent statements.",
+    "update_time": 1785335160,
+    "update_time_str": "2026-07-29"
+   },
+   "capital_allocation_label": "Standard",
+   "capital_allocation_type": 2,
+   "economic_moat_content": {
+    "context": "We don't believe Bloom Energy possesses an economic moat. Bloom has a relatively long record in solid oxide fuel cells, but we see a plethora of viable solutions from competing technologies.\n\nBloom's identity is as an innovative products company. Its primary product—the Bloom Energy Server—provides 24/7 baseload power for commercial and industrial customers using its SOFC technology. The company commercialized its first-generation Energy Server in 2008, creating a relatively long record compared with fuel cell peers. However, commercial shipments continue to be quite limited compared with the broader stationary power generation industry. Since 2008, Bloom has shipped 1.5 gigawatts of Energy Servers, including approximately 500 megawatts in 2025. This volume positions Bloom as a leading SOFC company, but it pales in comparison with broader stationary power. As such, we believe Bloom has an advantage today in SOFC technology but not in the broader stationary power market, where we see competition from linear generators (baseload applications) and polymer electrolyte membrane fuel cells (backup applications).\n\nBloom's solution exhibits an element of switching costs for customers, but not enough to warrant a moat. Customers typically purchase their systems via a long-term contract through a third party, with contracts as long as 15 years. This provides Bloom with upgrade potential as new product generations are introduced with repeatable service revenue (Bloom observes a 100% attachment rate of service contracts). Despite high service contract attachment, service profitability has been limited in the past (2025 service gross margin was 10% versus 35% product gross margin).\n\nAn additional consideration in our moat rating is Bloom's concentrated end markets. Energy Server sales have essentially been derived from four or five US states and South Korea to date. While rising demand from data centers is poised to diversify demand sources, it also brings about concentration risk, given the size of data center opportunities relative to Bloom's scale.",
+    "update_time": 1785335160,
+    "update_time_str": "2026-07-29"
+   },
+   "economic_moat_label": "None",
+   "economic_moat_type": 3,
+   "fair_value": 97,
+   "fair_value_content": {
+    "context": "We lift our fair value estimate for Bloom Energy to $94 per share from $70 previously. Most of the change was due to our long-term view on the benefits from operating leverage, though higher guidance and a higher implied multiple from a revised discount rate drove the change.\n\nBloom's largest profit driver is revenue growth and gross margins for its core power generation segment (sale of Energy Servers). We forecast a revenue compound annual growth rate of approximately 59% over the next three years on a higher shipment forecast. We expect gross margins to rise to over 40% by the end of our forecast, driven by fixed-cost leverage on higher shipments as well as improved service margins.\n\nOperating leverage from a higher revenue base, given Bloom's operating expense profile, is another material driver of our valuation. We expect non-GAAP operating expenses to decline as a percentage of revenue from 21% in 2024 to under 15% by 2026 as Bloom scales faster than we initially expected.",
+    "update_time": 1785335520,
+    "update_time_str": "2026-07-29"
+   },
+   "financial_health_content": {
+    "context": "We view Bloom's financial strength as fair.\n\nRecourse debt outstanding totaled approximately $2.6 billion as of year-end 2025 and consisted largely of convertible notes. We see this funding as positioning the company well to fund its future organic growth initiatives.\n\nFuture capital requirements consist largely of working capital and an expansion of the company's manufacturing operations. We expect continued working capital needs as the business grows and average project size increases relative to history.",
+    "update_time": 1785335160,
+    "update_time_str": "2026-07-29"
+   },
+   "investment_thesis_content": {
+    "context": "Bloom Energy's core product is its Energy Server, a distributed solution to meet commercial and industrial customers' 24/7 power needs. Customer use cases vary but typically prioritize reliability and emission reduction, and to a lesser extent, cost savings. The Energy Server is based on solid oxide fuel cell technology and runs on natural gas, biogas, or hydrogen. Natural gas has historically been the dominant fuel, but we expect greater emphasis on biogas and hydrogen in the coming years. In comparison with other fuel cell companies, Bloom's SOFC technology is best suited for stationary power applications.\n\nBloom's growth strategy for its Energy Server is to continually lower the cost of its product to allow for a broader customer base to adopt its solution. Historically, the vast majority of Bloom's sales have come from the US and South Korea. The company is looking to broaden its appeal both domestically and internationally. To achieve this, it must lower the cost of its product, which it has done successfully over time. The company expects cost reductions greater than 10% per year, in line with its historical record.\n\nPast product road maps included expanding into the hydrogen market with an electrolyzer and targeting adjacent end markets, such as marine. However, these initiatives have given way to the data center opportunity as developers look to secure additional power capacity. We see Bloom's key strategic initiatives as improving the power density of its fuel cells and adding additional functionality for data center customers, such as load following.\n\nBloom has historically eschewed inorganic investment, and we expect this should remain the case over the medium term as it focuses on organic growth, namely scaling its manufacturing capacity.",
+    "update_time": 1785335160,
+    "update_time_str": "2026-07-29"
+   },
+   "pdf_url": "https://foss-quote-hk-public-1321201288.cos.ap-hongkong.myqcloud.com/morningstar_rating_sync/prod/qualitative/76111115667965.pdf?_t=1785463280",
+   "rating_type": 2,
+   "star_rating": 2,
+   "star_update_time": 1789507200,
+   "star_update_time_str": "2026-09-15",
+   "uncertainty_content": {
+    "context": "We assign an Extreme Morningstar Uncertainty Rating to Bloom.\n\nThis rating is driven by Bloom's customer concentration and limited scale of commercial shipments, as well as multiple pathways as it scales. To date, Bloom has essentially sold its product in a handful of US states and South Korea. While rising demand from data centers is poised to diversify demand sources, it also brings about concentration risk, given the size of data center opportunities relative to Bloom's scale.\n\nBloom's Energy Servers have historically relied on natural gas as the primary fuel source. While the company has added biogas and hydrogen capabilities recently, we still expect natural gas to remain the dominant fuel for its sales in the near to medium term. Persistently high natural gas prices could result in a slowdown in Bloom's orders. We estimate approximately one-third of the total customer cost is fuel cost (natural gas).\n\nBloom's main environmental, social, and governance risk pertains to environmental restrictions relating to the use of natural gas. Increased environmental restrictions, particularly in a market such as California, could slow Bloom's sales.",
+    "update_time": 1785335160,
+    "update_time_str": "2026-07-29"
+   },
+   "uncertainty_label": "Extreme",
+   "uncertainty_type": 5
+  }
+ }
+}
