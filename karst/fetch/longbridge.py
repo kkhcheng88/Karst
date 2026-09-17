@@ -29,6 +29,35 @@ MISSING_CREDENTIALS = "credentials missing"
 SNAPSHOT_BASIS = ("現時快照 (snapshot at fetch time); the SDK return carries no publication "
                   "time for this version")
 DEFAULT_INDEXES = ("LastDone", "Volume", "Turnover", "TotalMarketValue", "TurnoverRate")
+US_EXCHANGES = {"NASDAQ", "NYSE", "NYSEARCA", "NYSEAMERICAN", "AMEX", "BATS", "CBOE",
+                "XNAS", "XNYS", "XASE", "ARCX", "BATS", "US"}
+HK_EXCHANGES = {"HKEX", "SEHK", "XHKG", "HK"}
+
+
+def symbol_for(security):
+    """The vendor symbol for a security record.
+
+    An explicit ``symbols.longbridge`` mapping wins. Otherwise the symbol is derived from
+    the exchange: US venues -> ``<ticker>.US``, Hong Kong -> ``<code>.HK``. A ticker that
+    already carries a market suffix is passed through. Anything else is refused rather
+    than guessed: a wrong symbol comes back from the vendor as "invalid symbol" with no
+    hint about which record produced it.
+    """
+    explicit = (security.get("symbols") or {}).get("longbridge")
+    if explicit:
+        return str(explicit)
+    ticker = str(security.get("ticker") or "").strip().upper()
+    if not ticker:
+        raise ValueError("security has no ticker; cannot derive a Longbridge symbol")
+    if "." in ticker:
+        return ticker
+    exchange = str(security.get("exchange") or "").strip().upper()
+    if exchange in US_EXCHANGES or exchange.startswith(("NYSE", "NASDAQ")):
+        return f"{ticker}.US"
+    if exchange in HK_EXCHANGES:
+        return f"{ticker.zfill(5) if ticker.isdigit() else ticker}.HK"
+    raise ValueError(f"cannot derive a Longbridge symbol for exchange {exchange!r}; "
+                     "set security.symbols.longbridge explicitly")
 
 
 def credentials(environ=None, env_file=None):

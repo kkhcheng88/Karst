@@ -116,7 +116,11 @@ def _summary(record):
             "source": record["source"], "kind": record["kind"], "status": record["status"],
             "published_at": record["published_at"], "fetched_at": record["fetched_at"],
             "period": record["period"], "truncated": record["truncated"],
-            "source_url": record["source_url"], "title": record["tool"]}
+            "source_url": record["source_url"], "title": record["tool"],
+            # A failed or empty fetch must say why through the same interface the
+            # researcher reads; otherwise "no data" and "fetch broke" look identical.
+            "status_reason": record.get("status_reason"),
+            "known_gaps": list(record.get("known_gaps") or [])}
 
 
 def _records(bundle):
@@ -299,8 +303,7 @@ def _run_adapters(staging, security, adapters, since, clients):
                 defeatbeta.fetch_company(security["ticker"], staging,
                                          ticker_factory=clients.get("defeatbeta_ticker_factory"))
             elif name == "longbridge":
-                symbol = (security.get("symbols") or {}).get("longbridge") or security["ticker"]
-                longbridge.fetch_company(symbol, staging, start=since,
+                longbridge.fetch_company(longbridge.symbol_for(security), staging, start=since,
                                          client=clients.get("longbridge"),
                                          factory=clients.get("longbridge_factory",
                                                              longbridge.client_factory))
