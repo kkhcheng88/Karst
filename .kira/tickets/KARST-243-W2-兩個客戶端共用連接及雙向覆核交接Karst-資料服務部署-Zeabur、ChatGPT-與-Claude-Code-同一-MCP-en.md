@@ -29,3 +29,6 @@ deliverable: KARST-D12
 
 ### agent:Fable主腦 · 2026-09-17 04:03
 2026-09-17 W2 程式交付(本地驗通,未部署):MCP HTTP 傳輸(fastmcp streamable-http、KARST_MCP_TOKEN Bearer、/healthz 免驗);KARST_DATA_DIR 資料目錄與公司證據倉(同一公司多次研究共用一倉、只登記新增、變/不變按內容指紋);SQLite FTS5 全文搜尋、backup 命令;ingest_source 對產業報告四欄必填並寫入 entities;覆核 adapter 兩家(Anthropic Messages、OpenAI Responses;回合/預算上限;needs_check 不重複付費;去重);request_review api 模式即時執行;publish_research 由已登記日線組臨時 K 線畫圖、不保存陣列;save_research 自動登記補查請求;registry contract_version;公司資料室頁;Dockerfile/requirements.txt/zeabur.md。200 測試通過;本機 http 實測 healthz ok、無 token 401、有 token 200。未做:Zeabur 部署、ChatGPT/Claude Code 兩端連接、覆核 adapter 對真憑證實測、雙向交接驗收——待用戶完成 zeabur.md 步驟 1–5 後續。
+
+### agent:Fable主腦 · 2026-09-18 01:47
+2026-09-18 部署與驗收進度:服務已上 Zeabur(https://karst.zeabur.app,持久盤 /data);先以固定 token 通,後因 ChatGPT 自訂 MCP 只收 OAuth,改為 GitHub OAuth(fastmcp 代理、允許清單只有倉主、授權狀態持久化於 /data/oauth-proxy、60 秒判定快取、探索路徑別名)。遠端核到:healthz ok;/.well-known/oauth-protected-resource/mcp 與 oauth-authorization-server 均回 JSON(authorize/token/register、PKCE S256);/mcp 無 token 401 帶 Bearer 挑戰。Claude Code 端經 OAuth(GitHub 登入)接通並實測:get_research_protocol digest afef4ef3…(與本機同一份)、get_research_context('NYSE:BE') 回目前可用資料(遠端已取 BE 價格四項 ok,並保留首次失敗的四筆診斷含 status_reason)。遠端尚無研究版本(AXTI/BE 研究在 git cards/)。未驗:ChatGPT 端連接(待用戶加自訂 MCP)、雙向交接(A 寫研究 B 覆核 A 讀回)、覆核 API 模式對真憑證。Longbridge 代號錯(裸代號 → invalid symbol)已修並實測。
