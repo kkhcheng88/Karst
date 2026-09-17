@@ -27,3 +27,6 @@ deliverable: KARST-D12
 ## 結果
 
 ## 留言
+
+### agent:Fable主腦 · 2026-09-18 02:46
+2026-09-18 交付並合併:契約 0.4.0(只改 research.valuation:calculation 帶 method 判別五支 fcff_dcf/fcff_dcf_dated/forward_pe/ev_multiple/sotp;scale;完整 bridge 含少數股東/可贖回/可轉債稀釋/SBC;drivers;alternative_view 可帶 calculation;sensitivities/implied 帶 receipt);計算器 0.3.0 方法分派、日期化 DCF(stub/期中期末/正常化終值,過去現金流拒收)、倍數橋接(EV 與股權倍數不混用,schema 與計算器兩層擋)、sensitivity 只改數值葉、solve_implied 回無解/多解;service.calculate 擴、CALCULATE_TOOL facade 供 adapter。29 個新測試。驗收:(a) 舊回歸 73.03084457399436 精確命中,scale 換算一致,五個既有發布重算同值;(b) 日期化 DCF 獨立手算通過;(c) 同版本三種方法並存、driver 可追、混用被拒;(d) 敏感度/反推程式面通過,**運行時真呼叫待實跑**;(e) 0.2/0.3 舊包照收照發布。留意:solve_implied 多解偵測靠 65 點取樣;day count 寫死 act/365。提示詞估值段由本地做事實同步(0.4 能力),方法規則未動,待 GPT 過目。

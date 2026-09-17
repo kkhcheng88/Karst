@@ -27,3 +27,6 @@ deliverable: KARST-D12
 ## 結果
 
 ## 留言
+
+### agent:Fable主腦 · 2026-09-18 02:46
+2026-09-18 交付並合併:charts 0.2.0——月/週/日/近期四視圖,OHLC 蠟燭+成交量(20 根均量),200/50 日 SMA 與 20 日 EMA 由完整歷史先計再裁窗成曲線(週月映射日線 MA、圖例標 200-day SMA),未收定 K 棒斜紋標示,線性/對數自選,標的/週期/範圍/截止/來源/價格基準齊;支撐阻力為有錨點區域(容差 0.25×ATR14 或 0.4% 取大),形成日與確認日分開;derived 含精確 MA 與距離、MA200 對前 20 交易日方向、ATR(14 Wilder)、量比、區域錨點、參數指紋;圖與 JSON 不含價格陣列、不含本機路徑。T2:render_charts 回 artifact 清單(cha-<sha256>);store 加 chart_artifacts 表;MCP 新工具 read_chart 回真正 ImageContent(hash 先核),只讀已登記 artifact;Anthropic adapter 以 tool_result image block、OpenAI adapter 以 input_image 送同一圖檔,並掛 calculate 工具;送出的圖像身份記入 run 與任務目錄。28 個測試。驗收:(1) 圖上 MA 序列與獨立計算一致,通過;(2) 三組合成數列 derived 標錨點與確認日,**模型列觸發/失效待實跑**;(3) 離線 ImageContent 與 adapter payload 通過,**兩端真讀圖待部署實跑**;(4) setup→觸發→失效→目標待實跑;(5) 換 security/as_of 不改程式、零代號。未做:page/render 技術段未顯示新衍生數字(待 0.4 欄位);區域參數未經真實個案校準;兩條 image 線路未經真 API 驗證(首跑先最小預算試 read_chart)。
