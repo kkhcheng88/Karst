@@ -14,6 +14,7 @@ When any is missing every output is a metadata-only ``status: error`` with
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import os
 import re
@@ -86,13 +87,20 @@ def _plain(value, depth=0):
     Enum members expose every sibling member as a class attribute, so a naive
     ``dir()`` walk recurses forever; enums become their name and nesting is capped.
     """
+    if isinstance(value, dt.datetime) and value.tzinfo is None:
+        # The SDK hands back naive datetimes in the *host's* local time (12:00 on a
+        # HK machine, 04:00 on a UTC server for the same US day bar). Attach that zone
+        # so the landed ISO string names one instant wherever it was fetched; a bar
+        # without a zone cannot be placed against a cutoff and is refused downstream.
+        value = value.astimezone()
+    # Containers are walked here, not by clean_value, so nested datetimes get the same treatment.
+    if isinstance(value, (list, tuple)):
+        return [_plain(item, depth + 1) for item in value]
+    if isinstance(value, dict):
+        return {str(key): _plain(item, depth + 1) for key, item in value.items()}
     cleaned = clean_value(value)
     if isinstance(cleaned, (str, int, float, bool)) or cleaned is None:
         return cleaned
-    if isinstance(cleaned, list):
-        return [_plain(item, depth + 1) for item in cleaned]
-    if isinstance(cleaned, dict):
-        return {str(key): _plain(item, depth + 1) for key, item in cleaned.items()}
     fields = {}
     for name in dir(value):
         if name.startswith("_"):
@@ -142,7 +150,6 @@ class SdkClient:
             list(symbols), [self._enum("CalcIndex", name) for name in indexes])
 
     def history_candlesticks_by_date(self, symbol, period, adjust, start, end):
-        import datetime as dt  # noqa: PLC0415
         parse = lambda value: dt.date.fromisoformat(value) if value else None  # noqa: E731
         return self.context.history_candlesticks_by_date(
             symbol, self._enum("Period", period), self._enum("AdjustType", adjust),

@@ -57,6 +57,26 @@ def read(path):
         return json.load(handle)
 
 
+class PlainTimestampTests(unittest.TestCase):
+    """The SDK returns naive datetimes in host-local time; the landed string must carry
+    that zone, or the bar reader (which refuses zoneless bars) drops every candle."""
+
+    def test_naive_datetime_lands_with_host_offset(self):
+        import datetime as dt
+        from karst import bars
+        naive = dt.datetime(2026, 9, 10, 12, 0)
+        text = longbridge._plain({"timestamp": naive})["timestamp"]
+        self.assertEqual(dt.datetime.fromisoformat(text), naive.astimezone())
+        row = {"timestamp": text, "open": "1", "high": "2", "low": "0.5", "close": "1.5"}
+        cutoff = dt.datetime(2026, 9, 17, tzinfo=dt.timezone.utc)
+        self.assertIsNotNone(bars._bar(row, cutoff))
+
+    def test_aware_datetime_is_kept(self):
+        import datetime as dt
+        aware = dt.datetime(2026, 9, 10, 4, 0, tzinfo=dt.timezone.utc)
+        self.assertEqual(longbridge._plain(aware), aware.isoformat())
+
+
 class EnvFileTests(unittest.TestCase):
     """Credentials live in a gitignored .env, not in the machine environment."""
 
