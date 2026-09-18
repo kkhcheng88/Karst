@@ -22,7 +22,7 @@
 
 ## 二、下一步
 
-**2026-09-18 公開閱讀層（GitHub Pages）**：用戶確認分析可公開、主要由 Agent 更新。已新增 `karst/reader` 通用靜態生成器、`cards/reader` 明確公開摘要與私有 provenance、Pages Actions。初版含總覽、BE 五段閱讀頁／乾淨日線圖、AI 電力延伸與更新歷史；只導出 HTML／CSS／被引用 PNG，不發布完整 repo。詳見 [發布程序與剩餘整合](cards/reader/README.md)。本輪 BE 為既有獨立重評的呈現投影，未經交叉覆核，雲端仍無對應正式研究版本，不取代已覆核發布。**部署狀態：本地生成與 8 項定向測試通過；遠端提交／Actions／Pages 啟用驗收接續核實。** 每次研究完成後仍需 Agent 明確追加閱讀摘要；尚未接自動 DB → GitHub，也未新增排程。
+**2026-09-18 公開閱讀層（GitHub Pages）**：用戶確認分析可公開、主要由 Agent 更新。已新增 `karst/reader` 通用靜態生成器、`cards/reader` 明確公開摘要與私有 provenance、Pages Actions。初版含總覽、BE 五段閱讀頁／乾淨日線圖、AI 電力延伸與更新歷史；只導出 HTML／CSS／被引用 PNG，不發布完整 repo。詳見 [發布程序與剩餘整合](cards/reader/README.md)。本輪 BE 為既有獨立重評的呈現投影，未經交叉覆核，雲端仍無對應正式研究版本，不取代已覆核發布。**部署狀態：已提交 master；本地及 GitHub Actions 的 8 項定向測試、7 頁建置與白名單產物上傳均成功。首次 deploy 因 Pages 尚未啟用而失敗（configure-pages: Not Found），網站尚未上線。用戶只需 Settings → Pages → Source 選 GitHub Actions，再於 [本次執行](https://github.com/kkhcheng88/Karst/actions/runs/35366618199) 重跑失敗工作。現有 GitHub 連接無 Pages 管理工具，瀏覽器未登入；未更改 repo 私有狀態。** 每次研究完成後仍需 Agent 明確追加閱讀摘要；尚未接自動 DB → GitHub，也未新增排程。
 
 **2026-09-18 對話呈現配置**：用戶確認先以對話交付研究；共用呈現規範 v1 寫入《投資委託》v1.3 第五節，由既有 get_research_protocol 三模式載入。完整分析五段，更新先講差異，追問直接答；基本面／估值／TA 分開，重要疑點融入判斷，研究反證與 JSON 契約仍完整保留。只重述不新存研究，不因讀呈現規範而跑研究；三模式及舊角色共用提示詞已對齊。六層 v1.4 只修呈現邊界，不改 v1.3 估值／TA 方法。部署後需讀回 protocol 核對；HTML renderer、圖表疊加與通知未在本次實作。
 
