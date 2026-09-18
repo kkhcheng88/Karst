@@ -1,12 +1,12 @@
 # Public research reader
 
-Scope: D12 / P1 human-facing delivery. The user approved public investment analysis on GitHub Pages, maintained by agents, with reading as the primary interaction. This does not authorize making the private repository public.
+Scope: D12 / P1 human-facing delivery. The user approved public investment analysis on GitHub Pages, maintained by agents, with reading as the primary interaction. The user subsequently made the repository public and explicitly accepted that visibility; confirmed via GitHub on 2026-09-18.
 
 ## Ownership and source of truth
 
 - Karst research versions, evidence and calculation receipts remain the agent-facing research record. The static site is a public reading projection, not a research engine or another database.
 - `reports/<kind>/<slug>/<publication-date>-r<N>.json` contains explicitly authored public prose. `kind` is `stocks`, `themes` or `market`. Each subject has a stable URL; dated editions remain available under `history/`.
-- `provenance/` is private agent material and never exported. Record the originating research version, source cutoff, review status and any limitations there. The initial BE independent reassessment has **no formal saved cloud research version**; do not imply otherwise. Its original calculations and cloud receipts are retained here for continuity.
+- `provenance/` is agent-facing material excluded from the reading-site export. Because the repository is now public, this material is also publicly readable through GitHub; exclusion from Pages is a presentation boundary, not access control. Record the originating research version, source cutoff, review status and any limitations there. The initial BE independent reassessment has **no formal saved cloud research version**; do not imply otherwise. Its original calculations and cloud receipts are retained here for continuity.
 - `assets/` contains public chart PNGs. Only files explicitly referenced by a validated report are copied. Do not place raw market data, screenshots with private account information, or engineering-marked images here.
 - Public HTML contains no research IDs, receipts, JSON payloads, credentials, internal paths, or developer appendices. Ordinary human-readable source links remain available in a collapsed section.
 
@@ -17,7 +17,7 @@ Scope: D12 / P1 human-facing delivery. The user approved public investment analy
 3. Write a new public summary edition. Stock sections are fixed: `judgment`, `fundamentals`, `valuation`, `technicals`, `plan`. Explain changes briefly in `change`; give the current action in `action`. Date the market price, valuation horizon and plan review date. Preserve the distinction between DCF value, conditional market multiples and technical support.
 4. Use the initial reports as schema examples. Text is plain text, not raw HTML or Markdown. Each paragraph is `{text, lead?}`; optional comparison rows are `{label, value, note}`. Unknown fields fail validation. A chart uses `{file, alt, caption}` and a public HTTPS source uses `{label, url}`. Related pages must exist.
 5. Add a new edition rather than editing or deleting a published one. Corrections explain what was wrong, its effect on the advice and the replacement conclusion. New chart versions get new filenames. Existing source editions are the content snapshot; navigation to latest and history may evolve when rebuilt.
-6. Build and inspect the output, then commit the new public summary, selected chart and private provenance. The Pages workflow publishes **only** the generated directory. A successful local build is not proof of a successful deployment; check Actions and the public URL.
+6. Build and inspect the output, then commit the new public summary, selected chart and agent provenance. The Pages workflow publishes **only** the generated directory. A successful local build is not proof of a successful deployment; check Actions and the public URL.
 
 ```bash
 python -m unittest karst.tests.test_reader -v
@@ -26,13 +26,13 @@ python -m karst.reader --content cards/reader --output /tmp/karst-reader-preview
 
 The output directory must be new or empty. The builder refuses to package an existing directory or copy the repo wholesale. It uses only the Python standard library and does not call a model, fetch new data or recalculate advice. There is no website server, login system, tracking script, external frontend dependency, scheduler or live quote feed.
 
-Optional chart generation uses `python -m karst.reader.chart --source <registered-snapshot.json> --config <chart-config.json> --output <public.png>` and requires matplotlib in the research environment. Explicitly select the correct registered daily snapshot and check the market-close timestamp before rendering. The renderer checks cutoff, close, OHLC consistency and sufficient moving-average history; it does not independently certify session completeness. Calculate averages before trimming the visible window. The initial chart configuration is retained with BE's private provenance.
+Optional chart generation uses `python -m karst.reader.chart --source <registered-snapshot.json> --config <chart-config.json> --output <public.png>` and requires matplotlib in the research environment. Explicitly select the correct registered daily snapshot and check the market-close timestamp before rendering. The renderer checks cutoff, close, OHLC consistency and sufficient moving-average history; it does not independently certify session completeness. Calculate averages before trimming the visible window. The initial chart configuration is retained with BE's agent provenance.
 
-## One-time GitHub Pages activation
+## Deployment status and recovery
 
 In the repository's **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. Then run **Publish research reader** from the Actions tab, or rerun the pending deployment after enabling Pages.
 
-The repository was private with `has_pages=false` when checked. Private-repository Pages requires an eligible GitHub plan. Do not change repository visibility or purchase a plan automatically if the account is ineligible; a separate public reader-only repository is an alternative that requires its own setup. Never expose the research repository to work around a Pages setting.
+The user enabled Pages and reran the workflow on 2026-09-18. Attempt 2 completed successfully for both build and deploy, including all eight tests. The public site is https://kkhcheng88.github.io/Karst/ . Browser acceptance confirmed the home page, the five-section BE report and loaded chart, the AI power topic, and dated report history. The user also made the repository public; GitHub reports `private=false` and `has_pages=true`. This is not a security audit or a claim that repository contents were checked for secrets.
 
 The workflow builds and uploads first, then checks Pages configuration and deploys with `pages: write` and `id-token: write`. The GitHub connector used for this delivery cannot administer Pages. `configure-pages` does not auto-enable it using `GITHUB_TOKEN`; no extra credentials are requested or stored in the repo.
 
@@ -40,7 +40,7 @@ Official setup: https://docs.github.com/en/pages/getting-started-with-github-pag
 
 ## Remaining integration (Claude Code / service)
 
-- Formal research publication does not yet automatically write a reader edition or push GitHub. For now the agent explicitly performs step 3–6. Successful content commits then trigger automatic site rebuild/deployment once Pages is enabled.
+- Formal research publication does not yet automatically write a reader edition or push GitHub. For now the agent explicitly performs step 3–6. Successful content commits then trigger automatic site rebuild/deployment with Pages enabled.
 - Add a narrow publication adapter later: consume the selected stored research version and its authored human summary, record provenance, then append a reader edition. Do not expose the service database, credentials or raw evidence to the browser; do not ask the renderer to invent investment conclusions.
 - Do not backfill the initial independent BE note with a fabricated research version ID. Use the retained calculations and evidence links when completing normal contract intake and review.
 - Market pages are supported by the same renderer but omitted until there is an actual market analysis. The AI power page is a scoped extension of BE research, not a completed sector universe or a valuation for unresearched peers.
