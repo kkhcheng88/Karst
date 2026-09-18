@@ -303,8 +303,10 @@ class ServiceChartTests(unittest.TestCase):
                  "ticker": "OTHER", "name": "Second fixture issuer", "currency": "USD",
                  "exchange": "FIXTURE2"}
         rows = candles(days=30, start_price=88.0)
-        self.build(stage_prices(rows), security=other)
         cutoff = rows[-1]["timestamp"]
+        # The snapshot was taken at the cutoff: prices fetched later are not read back
+        # into an earlier cutoff (KARST-250), so a replay states when it acquired them.
+        self.build(stage_prices(rows, fetched_at=cutoff), security=other)
         result = service.render_charts(self.bundle, self.root / "charts", as_of=cutoff)
         self.assertEqual(result["data_as_of"], cutoff)
         self.assertEqual(result["derived"]["views"]["D"]["bars_count"], len(rows))

@@ -45,7 +45,7 @@ class FakeClient:
         self._check("calc_indexes")
         return [{"symbol": symbol, **{name: 1 for name in indexes}} for symbol in symbols]
 
-    def history_candlesticks_by_date(self, symbol, period, adjust, start, end):
+    def history_candlesticks_by_date(self, symbol, period, adjust, start, end, sessions=None):
         self._check("history_candlesticks_by_date")
         return [{"symbol": symbol, "period": period, "adjust": adjust,
                  "close": Decimal(self.last_done), "timestamp": f"{start}T20:00:00Z"}

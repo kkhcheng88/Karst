@@ -30,11 +30,14 @@ from matplotlib.ticker import ScalarFormatter  # noqa: E402
 from .calculations import confirmed_pivots  # noqa: E402
 from .fetch.common import write_json  # noqa: E402
 from .schema import ContractError, canonical, digest  # noqa: E402
+from .structure import (ATR_MULTIPLE, ATR_PERIOD, EVENTS_KEPT, RECLAIM_WINDOW,  # noqa: E402
+                        atr_series)
+from .structure import events as structure_events  # noqa: E402
+from .structure import recent as structure_recent  # noqa: E402
 
 VERSION = "0.2.0"
 SMA_WINDOWS = (200, 50)
 EMA_SPAN = 20
-ATR_PERIOD = 14
 VOLUME_BASE = 20      # bars the last volume is compared against
 DIRECTION_BARS = 20   # trading days the 200-day average's direction is read over
 RECENT_BARS = 90      # the zoom: enough context to place a setup, few enough to see wicks
@@ -56,6 +59,10 @@ VIEWS = (
 OVERLAYS = {"sma200": ("200-day SMA", "#b4642a", 1.6),
             "sma50": ("50-day SMA", "#4c6fbf", 1.2),
             "ema20": ("20-day EMA", "#7a4fa3", 1.0)}
+STRUCTURE_RULES = ("D", "W")  # where structure is read: the two timeframes a plan is made on
+STRUCTURE_COLOUR = "#0f8b8d"  # deliberately not the zone colours: this is not a band
+STRUCTURE_LABEL = "structure: BOS/CHoCH, swing + prior high/low, sweep"
+STRUCTURE_SWEEPS_DRAWN = 3
 UP, DOWN = "#1a7f5a", "#b03030"
 NOTE = ("圖只作參考，數字以衍生 JSON（derived.json）為準。圖不保存價格陣列；"
         "本次陣列只存在於記憶體，發布只保存衍生數字與圖檔。")
@@ -132,18 +139,13 @@ def ema_series(bars, span):
 
 
 def atr(bars, period=ATR_PERIOD):
-    """Wilder's ATR over complete bars: the first ``period`` true ranges are averaged,
-    the rest smoothed by ((period-1)*prev + tr)/period. None when there are too few."""
-    closed = [bar for bar in bars if bar["complete"]]
-    ranges = [max(bar["high"] - bar["low"], abs(bar["high"] - previous["close"]),
-                  abs(bar["low"] - previous["close"]))
-              for previous, bar in zip(closed, closed[1:])]
-    if len(ranges) < period:
-        return None
-    value = sum(ranges[:period]) / period
-    for true_range in ranges[period:]:
-        value = (value * (period - 1) + true_range) / period
-    return value
+    """Wilder's ATR over complete bars, as it stands after the last one.
+
+    The running series lives in :mod:`karst.structure`, which needs the value *at*
+    each bar rather than only at the end; one definition, read at two points.
+    """
+    values = atr_series(bars, period)
+    return values[-1] if values else None
 
 
 def map_daily(daily, series, bars):
@@ -227,6 +229,15 @@ def key_levels(bars, width, tolerance):
             "containing": inside or None}
 
 
+def structure(bars, rule="D", *, width=None, **kwargs):
+    """Structure events for one resampled view: ``structure(daily, "W")`` reads the
+    weekly sequence off the same daily array the charts are drawn from, using that
+    view's pivot window. Everything else is :func:`karst.structure.events`."""
+    return structure_events(resample(bars, rule), timeframe=rule,
+                            width=width or {entry[1]: entry[5] for entry in VIEWS}[rule],
+                            **kwargs)
+
+
 # --- drawing ---------------------------------------------------------------
 
 def _nan(series):
@@ -284,7 +295,47 @@ def _zones(axis, zones, positions, last_close, span, right):
         axis.axhline(last_close, color="#333333", linewidth=0.6, linestyle="--", alpha=0.6)
 
 
-def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, scale):
+def _structure(axis, result, positions, right):
+    """Only the structure a decision turns on now: the latest break, the levels in
+    play, and the last few sweeps. The whole event history is in derived.json — drawn
+    on the picture it would be a wall of lines nobody reads."""
+    drawn, state = [], result["state"]
+    for event in [e for e in result["events"] if e["kind"] in ("bos", "choch")][-1:]:
+        start = positions.get(event["anchor_time"][:10], 0)
+        end = positions.get(event["confirmed_at"][:10], right)
+        axis.plot([start, end], [event["level"]] * 2, color=STRUCTURE_COLOUR, linewidth=1.5,
+                  solid_capstyle="butt", zorder=5)
+        axis.annotate(f'{event["kind"].upper()} {event["direction"]} {event["level"]:g} '
+                      f'({event["confirmed_at"][:10]}, {event["status"]})',
+                      # under the line: the zone captions sit above theirs
+                      xy=(end, event["level"]), xytext=(4, -12), textcoords="offset points",
+                      fontsize=7, color=STRUCTURE_COLOUR)
+        drawn.append(event["event_id"])
+    for name, level in (("swing high", state["swing_high"]), ("swing low", state["swing_low"]),
+                        ("prior high", state["prior_high"]), ("prior low", state["prior_low"])):
+        if not level:
+            continue
+        axis.axhline(level["price"], color=STRUCTURE_COLOUR, linewidth=0.9, linestyle="-.",
+                     alpha=0.85, zorder=4)
+        # On the right: the legend and the zone captions live on the left of the frame.
+        axis.annotate(f'{name} {level["price"]:g}', xy=(right, level["price"]),
+                      xytext=(-4, -10 - len(drawn) * 2), textcoords="offset points",
+                      fontsize=7, color=STRUCTURE_COLOUR, ha="right")
+        drawn.append(name)
+    for event in [e for e in result["events"]
+                  if e["kind"] == "sweep"][-STRUCTURE_SWEEPS_DRAWN:]:
+        at = positions.get(event["confirmed_at"][:10])
+        if at is not None:
+            axis.plot([at], [event["level"]], color=STRUCTURE_COLOUR, zorder=6, markersize=6,
+                      marker="v" if event["direction"] == "up" else "^")
+            drawn.append(event["event_id"])
+    if drawn:  # one proxy artist, so the legend says this is structure, not a price band
+        axis.plot([], [], color=STRUCTURE_COLOUR, linewidth=1.5, label=STRUCTURE_LABEL)
+    return drawn
+
+
+def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, scale,
+          structure=None):
     """Draw one view and return the series that were actually plotted.
 
     The returned overlays are read back off the axes, not off the caller's arrays: a
@@ -308,6 +359,7 @@ def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, 
     span = (low - margin, high + margin)
     positions = {bar["at"][:10]: index for index, bar in enumerate(bars)}
     _zones(price, zones, positions, last_close, span, len(bars) - 1)
+    marked = _structure(price, structure, positions, len(bars) - 1) if structure else []
     price.set_title(_ascii(title) + "\n" + _ascii(subtitle), fontsize=9)
     price.set_ylabel("price")
     if scale == "log":
@@ -317,6 +369,7 @@ def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, 
         span = (max(span[0], low * 0.9), span[1])  # a log axis has no room below zero
     price.set_ylim(*span)
     price.legend(loc="upper left", fontsize=8)
+    legend = list(price.get_legend_handles_labels()[1])
     price.grid(alpha=0.25)
     volumes = [bar.get("volume") or 0.0 for bar in bars]
     volume.bar(range(len(bars)), volumes, width=0.6,
@@ -334,7 +387,8 @@ def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, 
     figure.text(0.01, 0.002, _ascii(caption), fontsize=7, color="#555555")
     figure.savefig(path, dpi=120)
     plt.close(figure)
-    return {"overlays": lines, "volume_average": average}
+    return {"overlays": lines, "volume_average": average, "structure_drawn": marked,
+            "legend": legend}
 
 
 # --- assembly --------------------------------------------------------------
@@ -400,7 +454,8 @@ def _view(rule, bars, window, overlays, width, purpose, label):
     }
 
 
-def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, scale="auto"):
+def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, scale="auto",
+           events_kept=EVENTS_KEPT):
     """Write four PNGs + ``derived.json`` into ``out_dir``; return both, plus artifacts.
 
     ``bars`` is the transient daily array (``karst.bars.from_evidence``). ``source``
@@ -427,7 +482,9 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
                   "scale": scale, "log_scale_ratio": LOG_SCALE_RATIO,
                   "zone_tolerance": {"atr_share": ZONE_ATR_SHARE, "floor_pct": ZONE_FLOOR},
                   "moving_average_basis": "daily complete closes, mapped onto weekly / "
-                                          "monthly bars at each period's last trading day"}
+                                          "monthly bars at each period's last trading day",
+                  "structure": {"rules": list(STRUCTURE_RULES), "atr_multiple": ATR_MULTIPLE,
+                                "reclaim_window": RECLAIM_WINDOW, "events_kept": events_kept}}
     params_digest = digest(canonical(parameters))
     views, files, artifacts, plotted = {}, {}, [], {}
     for key, rule, name, limit, purpose, width, overlays in VIEWS:
@@ -439,6 +496,15 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
         cut = {name_: values[-limit:] if limit else values for name_, values in mapped.items()}
         measured = _view(rule, series, window, overlays, width, purpose, name)
         measured["scale"] = _scale(window, scale)
+        # Structure is read where a plan is made — the daily and weekly bars. The
+        # monthly view stays background: a break on it is a decision nobody takes
+        # inside this horizon.
+        found = (structure_events(series, width=width, timeframe=rule,
+                                  zones=measured["levels"]["zones"])
+                 if rule in STRUCTURE_RULES else None)
+        if found is not None:
+            measured["structure"] = {"state": found["state"],
+                                     "events": structure_recent(found, events_kept)}
         path = out / f"{name}.png"
         subtitle = (f"{measured['drawn_bars']} {rule} bars from {measured['drawn_from']} to "
                     f"{measured['last_bar']} | {measured['scale']} price scale | "
@@ -451,7 +517,8 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
         drawn = _draw(path, bars=window, overlays=cut, zones=measured["levels"]["zones"][:4],
                       last_close=measured["last_close"],
                       title=f"{title or 'price'} | {name} | {purpose}",
-                      subtitle=subtitle, caption=caption, scale=measured["scale"])
+                      subtitle=subtitle, caption=caption, scale=measured["scale"],
+                      structure=found)
         data = path.read_bytes()
         # The file is named after its own content, so tomorrow's render of the same
         # view lands beside this one instead of over it: an artifact promised to be

@@ -101,6 +101,22 @@ K 棒實體與影線)。每張都是 **OHLC 蠟燭 + 成交量**(另畫 20 根�
 歸成一條 band,每個錨點分開記**形成日**與較後的**確認日**,圖上用圓點與豎線分別標出;區域
 是支撐還是阻力按它與現價的相對位置定,band 由高點還是低點造(`pivots`)另記。
 
+**結構事件**(`karst/structure.py`,定義版本 `karst.structure/1`,KARST-251):沿用**同一套已確認
+pivot**(左右對稱窗口、嚴格比較、以右邊那根收市確認;**與 LuxAlgo 的 `leg(size)` 不同**,不聲稱
+逐點一致),標出 HH／HL／LH／LL 與趨勢狀態,再判**收線突破**最近一個已確認 swing level:順勢
+是 BOS,逆着已成立趨勢的第一次是 CHoCH;趨勢未明或結構尚未建立時只記 BOS,不硬標 CHoCH。
+另有前高／前低(已被突破那條,連同其後有沒有被回踩)、**等高等低**(相鄰同側 swing 相距在
+`atr_multiple`×ATR 之內)與 **liquidity sweep**(影線越過已確認 level、收市回到原側;突破後在
+`reclaim_window` 根之內收回原側則另記一次跨 bar 的 sweep,並把該次突破標為失效)。每個事件記
+`anchor_time`(價格極值形成)、`confirmed_at`(令它可知的那根收市)、方向、價位／區域、
+`definition` 與參數、`refs` 與失效條件,狀態只准向前走(provisional → confirmed → touched →
+invalidated)。**未收定的 bar 只出 provisional,不改任何狀態**;每根 bar 先對之前已可知的 level
+判突破與 sweep,再收下它自己確認的 pivot,所以同一根 bar 不會既確認一條 level 又突破它——
+逐根重播同一序列會重現同一段歷史,而不是事後重建的版本(`test_structure.py` 的 prefix replay)。
+日／週視圖在 `derived.json` 的 `views.<view>.structure` 帶 `state` 與最近 12 個事件
+(`render(..., events_kept=…)` 可調);圖上只疊最近一次 BOS／CHoCH、現時 swing 與前高低、最近
+三次 sweep,圖例與支阻區分開,月線不疊。`charts.structure(bars, "W")` 是同一套套在週線 bar 上。
+
 `derived.json` 保留畫圖用的同一批數字:各均線精確值、與現價距離、**MA200 對前 20 個
 交易日的方向**(變動、百分比、rising／falling／flat)、**ATR(14,Wilder,算法與期間寫
 在 JSON 內)**、**量比**(尾根對前 20 根)、每個區域的錨點與確認時點、每個視圖的 bar 數
@@ -313,7 +329,7 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
 | service、mcp_server | **已實作(W1)**:CLI／MCP／排程共用的操作函式與薄包裝;不呼叫模型,研究方法轉介 agents/protocol |
 | packet | 建允許清單中的研究輸入包、必讀與缺口;不載入私人／模型帳本或開發上下文 |
 | agents/ | 六角色任務、結構化輸出、有限補查、引用檢查;記實際模型與提示詞版本 |
-| ta/、charts | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視;`charts.py` **已實作**月／週／日／近期四張蠟燭 PNG(成交量、歷史均線曲線、有錨點的支撐阻力區)與衍生數字(均線方向、ATR、量比、形成／確認時點),不保存陣列;圖經 artifact 登記,`read_chart` 送真正圖像 |
+| ta/、charts、structure | 關鍵區域、200 日 SMA、日週月、通道與突破回踩,確認時點不前視;`charts.py` **已實作**月／週／日／近期四張蠟燭 PNG(成交量、歷史均線曲線、有錨點的支撐阻力區)與衍生數字(均線方向、ATR、量比、形成／確認時點),不保存陣列;圖經 artifact 登記,`read_chart` 送真正圖像。`structure.py` **已實作**已確認 swing／BOS／CHoCH／前高低／等高等低／sweep 的事件層(見上) |
 | calculations | **已實作**:五種估值方法分派、共用股權橋接、敏感度與反推,全部留同一份回執;有期限的目標價橋接仍由研究輸出提供 |
 | plan | 每股／百分比 R&R、條件執行與壓力情境;不讀私人淨值 |
 | publish、page/ | 不可變發布包、latest 視圖、HTML;發布前檢查依賴版本 |

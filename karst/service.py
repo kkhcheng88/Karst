@@ -631,16 +631,22 @@ def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store
     if as_of is None:
         as_of = packet.get("as_of") or utc_now()
     source = None
+    security = packet.get("security") or {}
+    # Which exchange's clock decides whether the last bar has closed: the packet's
+    # security, else the "EXCHANGE:TICKER" subject a company store was asked about.
+    exchange = security.get("exchange") or (str(title).split(":", 1)[0] if title and ":" in str(title) else None)
     if bars is not None:
         series = bars_module.views(bars)
     else:
-        found = bars_module.series_from_evidence(bundle, records, as_of)
+        found = bars_module.series_from_evidence(
+            bundle, records, as_of, session=bars_module.Session.for_exchange(exchange))
         series = found["bars"] if found else None
         source = found["source"] if found else None
     if not series or not series.get("D"):
-        raise ContractError("No registered daily candlesticks to chart for this subject; "
-                            "refresh the prices kind first")
-    security = packet.get("security") or {}
+        raise ContractError("No registered daily candlesticks to chart for this subject as of "
+                            f"{as_of}; refresh the prices kind first. A snapshot fetched after "
+                            "that cutoff is not read back into it (KARST-250): re-render at a "
+                            "cutoff the evidence existed at.")
     # A company store that has never carried a packet still knows what it is: the
     # caller's subject names the chart rather than a bare "price".
     title = " ".join(str(security[key]) for key in ("exchange", "ticker") if security.get(key)) or title

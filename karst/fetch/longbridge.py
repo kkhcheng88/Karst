@@ -149,11 +149,13 @@ class SdkClient:
         return self.context.calc_indexes(
             list(symbols), [self._enum("CalcIndex", name) for name in indexes])
 
-    def history_candlesticks_by_date(self, symbol, period, adjust, start, end):
+    def history_candlesticks_by_date(self, symbol, period, adjust, start, end, sessions=None):
         parse = lambda value: dt.date.fromisoformat(value) if value else None  # noqa: E731
+        extra = {} if sessions is None else {
+            "trade_sessions": self._enum("TradeSessions", sessions)}
         return self.context.history_candlesticks_by_date(
             symbol, self._enum("Period", period), self._enum("AdjustType", adjust),
-            parse(start), parse(end))
+            parse(start), parse(end), **extra)
 
 
 def client_factory():
@@ -224,17 +226,25 @@ def calc_indexes(out_dir, symbols, *, indexes=DEFAULT_INDEXES, client=None):
 
 
 def history_candlesticks(out_dir, symbol, start, end, *, period="Day", adjust="NoAdjust",
-                         client=None):
-    """``start``/``end`` are ISO dates (or None); ``period``/``adjust`` are SDK enum names."""
+                         sessions=None, client=None):
+    """``start``/``end`` are ISO dates (or None); ``period``/``adjust`` are SDK enum names.
+
+    ``sessions`` is the SDK ``TradeSessions`` name (Intraday / All). The landed params
+    always declare the bar length, the adjustment and the trading sessions, because a
+    series whose basis is not stated cannot be compared with, or extended by, another
+    one (KARST-250). Left unset, the SDK's own default applies and the params say
+    ``unknown`` rather than naming a session we did not ask for.
+    """
     params = {"symbol": symbol, "period": period, "adjust_type": adjust,
-              "start": start, "end": end}
+              "trade_session": sessions or "unknown", "start": start, "end": end}
     return _call(out_dir, client, "history_candlesticks_by_date", symbol, params,
-                 lambda c: c.history_candlesticks_by_date(symbol, period, adjust, start, end),
+                 lambda c: c.history_candlesticks_by_date(symbol, period, adjust, start, end,
+                                                          sessions),
                  period={"start": start, "end": end})
 
 
 def fetch_company(symbol, out_dir, *, start=None, end=None, period="Day", adjust="NoAdjust",
-                  indexes=DEFAULT_INDEXES, client=None, factory=client_factory):
+                  sessions=None, indexes=DEFAULT_INDEXES, client=None, factory=client_factory):
     """Land the four public quote tools for one symbol; returns {tool: status}."""
     if client is None:
         client = factory()
@@ -242,7 +252,7 @@ def fetch_company(symbol, out_dir, *, start=None, end=None, period="Day", adjust
                static_info(out_dir, [symbol], client=client),
                calc_indexes(out_dir, [symbol], indexes=indexes, client=client),
                history_candlesticks(out_dir, symbol, start, end, period=period,
-                                    adjust=adjust, client=client)]
+                                    adjust=adjust, sessions=sessions, client=client)]
     return {result["tool"]: result["status"] for result in results}
 
 

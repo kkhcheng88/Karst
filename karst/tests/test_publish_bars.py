@@ -31,10 +31,18 @@ def candles(days=8, end=None, start_price=10.0):
     return rows
 
 
-def stage_prices(rows):
+def stage_prices(rows, *, fetched_at=None, into=None, adjust='NoAdjust'):
+    """Land one candlestick snapshot the way the adapter does.
+
+    ``fetched_at`` pins when the snapshot was acquired (a research cutoff earlier than
+    that is a replay, and a replay does not read snapshots from its future);
+    ``into`` names a subdirectory so a bundle can hold several snapshots of one series.
+    """
     def stage(staging):
-        longbridge.land(staging, 'history_candlesticks_by_date', SYMBOL,
-                        {'symbol': SYMBOL, 'period': 'day'}, rows,
+        longbridge.land(Path(staging) / into if into else staging,
+                        'history_candlesticks_by_date', SYMBOL,
+                        {'symbol': SYMBOL, 'period': 'day', 'adjust_type': adjust,
+                         'trade_session': 'unknown'}, rows, fetched_at=fetched_at,
                         period={'start': rows[0]['timestamp'][:10],
                                 'end': rows[-1]['timestamp'][:10]})
     return stage
