@@ -22,6 +22,8 @@
 
 ## 二、下一步
 
+**2026-09-18 下一輪優先：SMC 與 TA 工具箱**：用戶要求先完成 SMC，並加入真正有用的指標；[Claude Code 執行計劃](strategy/specs/SMC與TA工具箱-ClaudeCode執行計劃-v1.md) 已寫好。順序：T0 修正選源／bar 完成時間 → T1 SMC 結構與無前視驗收 → T2a AVWAP／RS／量價與波動 → T3 跨股研究、讀圖與正式發布驗收；Volume Profile 視資料補上，不阻塞首輪。TradingView 官方 MCP 列入可選連線驗收，當前尚未接通，不假定可執行自訂 Pine。工具箱增加不等於每次研究強制套所有指標，判斷仍由 Agent 綜合。完成首輪後回 W3／INTU 與 W4 增量主線。**本次只提交設計／交接，未實作或部署上述新增能力。**
+
 **2026-09-18 公開閱讀層（GitHub Pages）**：用戶確認分析可公開、主要由 Agent 更新。已新增 `karst/reader` 通用靜態生成器、`cards/reader` 人類閱讀摘要與 Agent provenance、Pages Actions。初版含總覽、BE 五段閱讀頁／乾淨日線圖、AI 電力延伸與更新歷史；只導出 HTML／CSS／被引用 PNG，不發布完整 repo。詳見 [發布程序與剩餘整合](cards/reader/README.md)。本輪 BE 為既有獨立重評的呈現投影，未經交叉覆核，雲端仍無對應正式研究版本，不取代已覆核發布。**部署狀態：已上線並實測（2026-09-18）。用戶已啟用 GitHub Actions，重跑第二次 build／deploy 均成功；8 項測試與 7 頁生成通過。公開入口：https://kkhcheng88.github.io/Karst/ 。瀏覽器確認首頁、BE 五段、日線圖片、AI 電力延伸及歷史更新可讀。用戶另已將 repo 設為公開（API 核到 private=false、has_pages=true）；provenance 屬 Agent 用途且不進閱讀站，但 repo 內版本亦可公開讀取，不能再稱私有。** 每次研究完成後仍需 Agent 明確追加閱讀摘要；尚未接自動 DB → GitHub，也未新增排程。
 
 **2026-09-18 對話呈現配置**：用戶確認先以對話交付研究；共用呈現規範 v1 寫入《投資委託》v1.3 第五節，由既有 get_research_protocol 三模式載入。完整分析五段，更新先講差異，追問直接答；基本面／估值／TA 分開，重要疑點融入判斷，研究反證與 JSON 契約仍完整保留。只重述不新存研究，不因讀呈現規範而跑研究；三模式及舊角色共用提示詞已對齊。六層 v1.4 只修呈現邊界，不改 v1.3 估值／TA 方法。部署後需讀回 protocol 核對；HTML renderer、圖表疊加與通知未在本次實作。
