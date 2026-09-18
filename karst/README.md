@@ -4,6 +4,10 @@
 
 本分支落實 D-183／KARST-241 的離線部分：四份契約、檔案式取證包、補查版本、確定性計算與股票頁發布。下表仍是完整計劃，不代表每個模組都已存在。契約與驗收見 [契約說明](contracts/README.md) 及 [設計計劃](../strategy/specs/獨立投研工作台設計與交付計劃-v1.md)。
 
+## 公開閱讀頁（GitHub Pages）
+
+`python -m karst.reader --content cards/reader --output <新目錄>` 生成總覽、個股／主題、固定最新頁、歷史版與更新紀錄；僅 Python 標準庫，無服務或模型呼叫。Agent 程序、公開邊界與部署狀態見 [`cards/reader/README.md`](../cards/reader/README.md)。此模組不替代現有研究資料室或正式研究版本。
+
 ## 現在可跑
 
 Python 3.11+，在倉根目錄建立虛擬環境後：

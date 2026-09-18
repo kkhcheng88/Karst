@@ -1,0 +1,35 @@
+{
+  "record_type": "independent_reassessment_reader_projection",
+  "subject": "NYSE:BE",
+  "source_artifact": "BE-reassessment-2026-09-18.html",
+  "source_artifact_role": "Prior conversational reassessment; human content extracted and shortened, engineering appendix excluded from public site.",
+  "formal_karst_version_id": null,
+  "formal_review_completed": false,
+  "supersedes_formal_publication": false,
+  "market_cutoff": "2026-09-17 close",
+  "reference_price": 280.76,
+  "currency": "USD",
+  "market_pricing_horizon": "2027-03-18",
+  "plan_review_by": "2026-10-16",
+  "evidence": {
+    "daily_prices": "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+    "daily_prices_fetched_at": "2026-09-18T13:15:45Z",
+    "close_quote": "ev-6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de"
+  },
+  "agent_material": ["analysis-calculations.json", "cloud-calculations.json", "chart-config.json"],
+  "public_stock_summary": "reports/stocks/be/2026-09-18-r1.json",
+  "public_theme_summary": "reports/themes/ai-power/2026-09-18-r1.json",
+  "limitations": [
+    "This delivery preserves an existing independent judgment; it does not perform a new research run or cross-review.",
+    "Public sources and full calculation inputs/outputs are retained, but this is not a substitute for the full research contract or saved research version.",
+    "Cloud render_charts previously selected an older equal-length OHLCV snapshot. The public chart uses the explicitly selected registered close snapshot; cloud selection remains to be fixed.",
+    "The AI power topic is derived from this BE analysis and does not assign new ratings to peers."
+  ],
+  "cloud_chart_followup": {
+    "symptom": "Equal-length 1000-bar snapshots selected the older intraday source; a later cutoff incorrectly treated its final bar as complete.",
+    "required_checks": ["equal_length_old_new", "old_long_new_short", "intraday_snapshot_reused_next_day", "historical_cutoff_no_future_data"],
+    "expected_close": 280.76,
+    "expected_volume": 14236326,
+    "raw_ohlcv_policy": "Use the registered evidence for re-rendering; no raw broker payload is published or committed with this reader."
+  }
+}

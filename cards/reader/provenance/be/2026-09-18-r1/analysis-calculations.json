@@ -1,0 +1,2070 @@
+{
+  "as_of": "2026-09-17 close",
+  "reference_price": 280.76,
+  "price_basis": "USD; unadjusted regular-session close",
+  "target_date": "2027-03-18",
+  "rs": {
+    "as_of": "2026-09-17",
+    "basis": "unadjusted closing-price returns; excludes dividends; not IBD RS percentile",
+    "windows": {
+      "21": {
+        "start": "2026-08-18",
+        "end": "2026-09-17",
+        "BE": 0.3432850102865892,
+        "SPY": -0.006319629943318805,
+        "GEV": -0.07924103809741867,
+        "BE_vs_SPY_ratio_change": 0.3518280633942341,
+        "BE_vs_GEV_ratio_change": 0.45888887957271085
+      },
+      "63": {
+        "start": "2026-06-17",
+        "end": "2026-09-17",
+        "BE": -0.014842626057054664,
+        "SPY": 0.029205355214856343,
+        "GEV": -0.11815685601510206,
+        "BE_vs_SPY_ratio_change": -0.042798049046990805,
+        "BE_vs_GEV_ratio_change": 0.11715715052360465
+      },
+      "126": {
+        "start": "2026-03-18",
+        "end": "2026-09-17",
+        "BE": 0.7930770213309488,
+        "SPY": 0.15295647309617055,
+        "GEV": 0.07741679965520043,
+        "BE_vs_SPY_ratio_change": 0.5551992318632695,
+        "BE_vs_GEV_ratio_change": 0.6642371103780609
+      }
+    }
+  },
+  "dcf": {
+    "prior_same_date": {
+      "name": "base",
+      "assumptions": {
+        "product_revenue": [
+          5500,
+          8000,
+          10500,
+          13000,
+          15500,
+          18000,
+          20500,
+          22800,
+          24600,
+          26100
+        ],
+        "product_gm": [
+          0.34,
+          0.35,
+          0.36,
+          0.37,
+          0.37,
+          0.37,
+          0.365,
+          0.36,
+          0.355,
+          0.35
+        ],
+        "opex_ex_sbc": [
+          720,
+          900,
+          1080,
+          1260,
+          1440,
+          1620,
+          1800,
+          2000,
+          2170,
+          2330
+        ],
+        "service_gm": [
+          0.21,
+          0.23,
+          0.24,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "sbc_ratio": [
+          0.04,
+          0.035,
+          0.03,
+          0.0275,
+          0.025,
+          0.025,
+          0.025,
+          0.025,
+          0.025,
+          0.025
+        ],
+        "capex_ratio": [
+          0.035,
+          0.035,
+          0.035,
+          0.033,
+          0.03,
+          0.028,
+          0.027,
+          0.026,
+          0.025,
+          0.025
+        ],
+        "terminal_roic": 0.2,
+        "nwc_ratio": 0.1
+      },
+      "annual": [
+        {
+          "year": 2027,
+          "product": 5500,
+          "service": 421.0,
+          "installation": 137.5,
+          "electricity": 40.0,
+          "revenue": 6098.5,
+          "product_gm": 0.34,
+          "service_gm": 0.21,
+          "gross_profit": 1970.4100000000003,
+          "opex_ex_sbc": 720,
+          "sbc": 243.94,
+          "ebit": 1006.4700000000003,
+          "ebit_margin": 0.16503566450766585,
+          "tax_rate": 0.1,
+          "nopat": 905.8230000000002,
+          "depreciation": 79.28049999999999,
+          "capex": 213.44750000000002,
+          "delta_nwc": 204.85000000000002,
+          "fcff": 566.8060000000002
+        },
+        {
+          "year": 2028,
+          "product": 8000,
+          "service": 611.53,
+          "installation": 200.0,
+          "electricity": 40.0,
+          "revenue": 8851.53,
+          "product_gm": 0.35,
+          "service_gm": 0.23,
+          "gross_profit": 2952.6519,
+          "opex_ex_sbc": 900,
+          "sbc": 309.80355000000003,
+          "ebit": 1742.8483499999998,
+          "ebit_margin": 0.19689797695991537,
+          "tax_rate": 0.15,
+          "nopat": 1481.4210974999999,
+          "depreciation": 119.98740666666667,
+          "capex": 309.80355000000003,
+          "delta_nwc": 275.30300000000005,
+          "fcff": 1016.3019541666663
+        },
+        {
+          "year": 2029,
+          "product": 10500,
+          "service": 888.7229,
+          "installation": 262.5,
+          "electricity": 40.0,
+          "revenue": 11691.2229,
+          "product_gm": 0.36,
+          "service_gm": 0.24,
+          "gross_profit": 4005.293496,
+          "opex_ex_sbc": 1080,
+          "sbc": 350.736687,
+          "ebit": 2574.5568089999997,
+          "ebit_margin": 0.2202127896304158,
+          "tax_rate": 0.21,
+          "nopat": 2033.8998791099998,
+          "depreciation": 164.97614536666669,
+          "capex": 409.1928015000001,
+          "delta_nwc": 283.96929,
+          "fcff": 1505.7139329766662
+        },
+        {
+          "year": 2030,
+          "product": 13000,
+          "service": 1246.512297,
+          "installation": 325.0,
+          "electricity": 40.0,
+          "revenue": 14611.512297,
+          "product_gm": 0.37,
+          "service_gm": 0.25,
+          "gross_profit": 5133.62807425,
+          "opex_ex_sbc": 1260,
+          "sbc": 401.81658816749996,
+          "ebit": 3471.8114860825003,
+          "ebit_margin": 0.2376079501911191,
+          "tax_rate": 0.23,
+          "nopat": 2673.2948442835254,
+          "depreciation": 214.302180356,
+          "capex": 482.179905801,
+          "delta_nwc": 292.02893969999985,
+          "fcff": 2113.3881791385256
+        },
+        {
+          "year": 2031,
+          "product": 15500,
+          "service": 1679.25643621,
+          "installation": 387.5,
+          "electricity": 40.0,
+          "revenue": 17606.75643621,
+          "product_gm": 0.37,
+          "service_gm": 0.25,
+          "gross_profit": 6166.8141090525,
+          "opex_ex_sbc": 1440,
+          "sbc": 440.16891090524996,
+          "ebit": 4286.645198147249,
+          "ebit_margin": 0.2434659225098013,
+          "tax_rate": 0.23,
+          "nopat": 3300.7168025733818,
+          "depreciation": 268.01395908453003,
+          "capex": 528.2026930863,
+          "delta_nwc": 299.5244139209999,
+          "fcff": 2741.003654650612
+        },
+        {
+          "year": 2032,
+          "product": 18000,
+          "service": 2181.7084856753,
+          "installation": 450.0,
+          "electricity": 40.0,
+          "revenue": 20671.7084856753,
+          "product_gm": 0.37,
+          "service_gm": 0.25,
+          "gross_profit": 7217.427121418825,
+          "opex_ex_sbc": 1620,
+          "sbc": 516.7927121418825,
+          "ebit": 5080.634409276942,
+          "ebit_margin": 0.2457771892825224,
+          "tax_rate": 0.23,
+          "nopat": 3912.088495143246,
+          "depreciation": 326.1536227739881,
+          "capex": 578.8078375989083,
+          "delta_nwc": 306.49520494653007,
+          "fcff": 3352.9390753717958
+        },
+        {
+          "year": 2033,
+          "product": 20500,
+          "service": 2748.988891678029,
+          "installation": 512.5,
+          "electricity": 40.0,
+          "revenue": 23801.48889167803,
+          "product_gm": 0.365,
+          "service_gm": 0.25,
+          "gross_profit": 8181.747222919507,
+          "opex_ex_sbc": 1800,
+          "sbc": 595.0372222919508,
+          "ebit": 5786.710000627557,
+          "ebit_margin": 0.24312386619859006,
+          "tax_rate": 0.23,
+          "nopat": 4455.766700483219,
+          "depreciation": 388.75765189740787,
+          "capex": 642.6402000753068,
+          "delta_nwc": 312.97804060027306,
+          "fcff": 3888.906111705048
+        },
+        {
+          "year": 2034,
+          "product": 22800,
+          "service": 3376.5596692605673,
+          "installation": 570.0,
+          "electricity": 40.0,
+          "revenue": 26786.55966926057,
+          "product_gm": 0.36,
+          "service_gm": 0.25,
+          "gross_profit": 9064.139917315142,
+          "opex_ex_sbc": 2000,
+          "sbc": 669.6639917315142,
+          "ebit": 6394.475925583628,
+          "ebit_margin": 0.23871956699694183,
+          "tax_rate": 0.23,
+          "nopat": 4923.746462699393,
+          "depreciation": 452.3952299697341,
+          "capex": 696.4505514007748,
+          "delta_nwc": 298.50707775825396,
+          "fcff": 4381.184063510098
+        },
+        {
+          "year": 2035,
+          "product": 24600,
+          "service": 4052.2004924123275,
+          "installation": 615.0,
+          "electricity": 40.0,
+          "revenue": 29307.20049241233,
+          "product_gm": 0.355,
+          "service_gm": 0.25,
+          "gross_profit": 9758.050123103081,
+          "opex_ex_sbc": 2170,
+          "sbc": 732.6800123103083,
+          "ebit": 6855.370110792773,
+          "ebit_margin": 0.23391419158468024,
+          "tax_rate": 0.23,
+          "nopat": 5278.634985310435,
+          "depreciation": 511.2478308120818,
+          "capex": 732.6800123103083,
+          "delta_nwc": 252.064082315176,
+          "fcff": 4805.138721497032
+        },
+        {
+          "year": 2036,
+          "product": 26100,
+          "service": 4752.546457943465,
+          "installation": 652.5,
+          "electricity": 40.0,
+          "revenue": 31545.046457943463,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 10335.136614485866,
+          "opex_ex_sbc": 2330,
+          "sbc": 788.6261614485866,
+          "ebit": 7216.510453037279,
+          "ebit_margin": 0.22876842050806573,
+          "tax_rate": 0.23,
+          "nopat": 5556.713048838705,
+          "depreciation": 567.8108362429824,
+          "capex": 788.6261614485866,
+          "delta_nwc": 223.78459655311346,
+          "fcff": 5112.113127079987
+        },
+        {
+          "year": 2037,
+          "product": 27529.77073170732,
+          "service": 5463.868205887423,
+          "installation": 688.244268292683,
+          "electricity": 40.0,
+          "revenue": 33721.883205887425,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 11013.386807569417,
+          "opex_ex_sbc": 2490.7868807380446,
+          "sbc": 843.0470801471856,
+          "ebit": 7679.552846684186,
+          "ebit_margin": 0.22773202788815278,
+          "tax_rate": 0.23,
+          "nopat": 5913.255691946823,
+          "depreciation": 606.9938977059737,
+          "capex": 843.0470801471856,
+          "delta_nwc": 217.6836747943962,
+          "fcff": 5459.518834711215
+        },
+        {
+          "year": 2038,
+          "product": 28867.31471457466,
+          "service": 6182.588260743596,
+          "installation": 721.6828678643665,
+          "electricity": 40.0,
+          "revenue": 35811.58584318262,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 11661.207215287028,
+          "opex_ex_sbc": 2645.1378071628724,
+          "sbc": 895.2896460795655,
+          "ebit": 8120.779762044591,
+          "ebit_margin": 0.22676403657757946,
+          "tax_rate": 0.23,
+          "nopat": 6253.0004167743355,
+          "depreciation": 644.6085451772873,
+          "capex": 895.2896460795655,
+          "delta_nwc": 208.9702637295195,
+          "fcff": 5793.349052142537
+        },
+        {
+          "year": 2039,
+          "product": 30091.00722613395,
+          "service": 6904.499671074531,
+          "installation": 752.2751806533488,
+          "electricity": 40.0,
+          "revenue": 37787.782077861826,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 12269.977446915515,
+          "opex_ex_sbc": 2791.104852509958,
+          "sbc": 944.6945519465457,
+          "ebit": 8534.17804245901,
+          "ebit_margin": 0.2258449047068789,
+          "tax_rate": 0.23,
+          "nopat": 6571.317092693438,
+          "depreciation": 680.1800774015129,
+          "capex": 944.6945519465457,
+          "delta_nwc": 197.61962346792063,
+          "fcff": 6109.182994680485
+        },
+        {
+          "year": 2040,
+          "product": 31180.154902318896,
+          "service": 7624.824983144672,
+          "installation": 779.5038725579725,
+          "electricity": 40.0,
+          "revenue": 39624.48375802154,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 12831.260461597782,
+          "opex_ex_sbc": 2926.7684636090153,
+          "sbc": 990.6120939505386,
+          "ebit": 8913.87990403823,
+          "ebit_margin": 0.22495889053024476,
+          "tax_rate": 0.23,
+          "nopat": 6863.6875261094365,
+          "depreciation": 713.2407076443878,
+          "capex": 990.6120939505386,
+          "delta_nwc": 183.67016801597129,
+          "fcff": 6402.645971787315
+        },
+        {
+          "year": 2041,
+          "product": 32115.559549388465,
+          "service": 8338.293430417301,
+          "installation": 802.8889887347117,
+          "electricity": 40.0,
+          "revenue": 41296.741968540475,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 13337.019199890288,
+          "opex_ex_sbc": 3050.2858480485606,
+          "sbc": 1032.4185492135118,
+          "ebit": 9254.314802628216,
+          "ebit_margin": 0.22409309697307547,
+          "tax_rate": 0.23,
+          "nopat": 7125.822398023726,
+          "depreciation": 743.3413554337286,
+          "capex": 1032.4185492135118,
+          "delta_nwc": 167.2258210518936,
+          "fcff": 6669.519383192049
+        }
+      ],
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "day_count": "act/365",
+          "discount_rate": 0.11,
+          "timing": "mid_period",
+          "valuation_date": "2026-09-17",
+          "flows": [
+            {
+              "amount": 130.0,
+              "date": "2026-12-31",
+              "is_stub": true,
+              "label": "Remaining 105 days; normalized owner FCFF assumption"
+            },
+            {
+              "amount": 566.8060000000002,
+              "date": "2027-12-31",
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "amount": 1016.3019541666663,
+              "date": "2028-12-31",
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "amount": 1505.7139329766662,
+              "date": "2029-12-31",
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "amount": 2113.3881791385256,
+              "date": "2030-12-31",
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "amount": 2741.003654650612,
+              "date": "2031-12-31",
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "amount": 3352.9390753717958,
+              "date": "2032-12-31",
+              "is_stub": false,
+              "label": "FY2032"
+            },
+            {
+              "amount": 3888.906111705048,
+              "date": "2033-12-31",
+              "is_stub": false,
+              "label": "FY2033"
+            },
+            {
+              "amount": 4381.184063510098,
+              "date": "2034-12-31",
+              "is_stub": false,
+              "label": "FY2034"
+            },
+            {
+              "amount": 4805.138721497032,
+              "date": "2035-12-31",
+              "is_stub": false,
+              "label": "FY2035"
+            },
+            {
+              "amount": 5112.113127079987,
+              "date": "2036-12-31",
+              "is_stub": false,
+              "label": "FY2036"
+            },
+            {
+              "amount": 5459.518834711215,
+              "date": "2037-12-31",
+              "is_stub": false,
+              "label": "FY2037"
+            },
+            {
+              "amount": 5793.349052142537,
+              "date": "2038-12-31",
+              "is_stub": false,
+              "label": "FY2038"
+            },
+            {
+              "amount": 6109.182994680485,
+              "date": "2039-12-31",
+              "is_stub": false,
+              "label": "FY2039"
+            },
+            {
+              "amount": 6402.645971787315,
+              "date": "2040-12-31",
+              "is_stub": false,
+              "label": "FY2040"
+            },
+            {
+              "amount": 6669.519383192049,
+              "date": "2041-12-31",
+              "is_stub": false,
+              "label": "FY2041"
+            }
+          ],
+          "terminal": {
+            "basis": "Final-year normalized NOPAT less sustainable reinvestment g/ROIC",
+            "date": "2041-12-31",
+            "final_expansion_fcff": 6669.519383192049,
+            "growth": 0.03,
+            "normalized_fcff": 6056.949038320167
+          }
+        },
+        "bridge": {
+          "cash": 2666.859,
+          "nonoperating_assets": 28.09,
+          "debt": 2709.063,
+          "minority_interest": 28.673,
+          "redeemable_claims": 0,
+          "convertibles_dilution": 0,
+          "diluted_shares": 313.8357996994,
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "Future SBC is charged to earnings and never added back; current award dilution uses the disclosed Q2 reconciliation proxy. Small notes convert. Large note tested as debt and as shares, taking the lower common-equity value; not an option-pricing model."
+          },
+          "unsupported_claims": []
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "63d2429d03e91c5bd757dccbad3022276bf3a5ef494d1b945433fa3080458ac4",
+        "outputs": {
+          "pv_explicit_fcff": 23160605678.10858,
+          "pv_terminal": 15798711487.669277,
+          "terminal_value_at_terminal_date": 77983218868.37216,
+          "enterprise_value": 38959317165.777855,
+          "stub_years": 0.2876712328767123,
+          "years_to_terminal": 15.2986301369863,
+          "normalization_step": 0.9081537499665076,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.14383561643835616,
+              "present_value": 128063183.5124671
+            },
+            {
+              "date": "2027-12-31",
+              "years": 0.7876712328767124,
+              "present_value": 522077326.2923975
+            },
+            {
+              "date": "2028-12-31",
+              "years": 1.7890410958904108,
+              "present_value": 843214544.479351
+            },
+            {
+              "date": "2029-12-31",
+              "years": 2.7904109589041095,
+              "present_value": 1125311436.0160477
+            },
+            {
+              "date": "2030-12-31",
+              "years": 3.7904109589041095,
+              "present_value": 1422939903.502133
+            },
+            {
+              "date": "2031-12-31",
+              "years": 4.7904109589041095,
+              "present_value": 1662623521.7196348
+            },
+            {
+              "date": "2032-12-31",
+              "years": 5.791780821917808,
+              "present_value": 1831997610.2541077
+            },
+            {
+              "date": "2033-12-31",
+              "years": 6.793150684931507,
+              "present_value": 1913998679.83319
+            },
+            {
+              "date": "2034-12-31",
+              "years": 7.793150684931506,
+              "present_value": 1942596921.1751428
+            },
+            {
+              "date": "2035-12-31",
+              "years": 8.793150684931506,
+              "present_value": 1919438263.265326
+            },
+            {
+              "date": "2036-12-31",
+              "years": 9.794520547945204,
+              "present_value": 1839431455.070696
+            },
+            {
+              "date": "2037-12-31",
+              "years": 10.795890410958904,
+              "present_value": 1769507698.8155072
+            },
+            {
+              "date": "2038-12-31",
+              "years": 11.795890410958904,
+              "present_value": 1691627765.7387094
+            },
+            {
+              "date": "2039-12-31",
+              "years": 12.795890410958904,
+              "present_value": 1607071741.3286846
+            },
+            {
+              "date": "2040-12-31",
+              "years": 13.797260273972602,
+              "present_value": 1517143126.640028
+            },
+            {
+              "date": "2041-12-31",
+              "years": 14.7986301369863,
+              "present_value": 1423562500.4651568
+            }
+          ],
+          "equity_value": 38916530165.777855,
+          "fair_value_per_share": 124.00283907397788,
+          "terminal_share_of_enterprise_value": 0.4055181824784901
+        }
+      },
+      "alternative_bridge_receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "9ee965e8800e73a183cd9d9fe0f0ead9d5367396ccdecff5be1bcec61a1df4a5",
+        "outputs": {
+          "pv_explicit_fcff": 23160605678.10858,
+          "pv_terminal": 15798711487.669277,
+          "terminal_value_at_terminal_date": 77983218868.37216,
+          "enterprise_value": 38959317165.777855,
+          "stub_years": 0.2876712328767123,
+          "years_to_terminal": 15.2986301369863,
+          "normalization_step": 0.9081537499665076,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.14383561643835616,
+              "present_value": 128063183.5124671
+            },
+            {
+              "date": "2027-12-31",
+              "years": 0.7876712328767124,
+              "present_value": 522077326.2923975
+            },
+            {
+              "date": "2028-12-31",
+              "years": 1.7890410958904108,
+              "present_value": 843214544.479351
+            },
+            {
+              "date": "2029-12-31",
+              "years": 2.7904109589041095,
+              "present_value": 1125311436.0160477
+            },
+            {
+              "date": "2030-12-31",
+              "years": 3.7904109589041095,
+              "present_value": 1422939903.502133
+            },
+            {
+              "date": "2031-12-31",
+              "years": 4.7904109589041095,
+              "present_value": 1662623521.7196348
+            },
+            {
+              "date": "2032-12-31",
+              "years": 5.791780821917808,
+              "present_value": 1831997610.2541077
+            },
+            {
+              "date": "2033-12-31",
+              "years": 6.793150684931507,
+              "present_value": 1913998679.83319
+            },
+            {
+              "date": "2034-12-31",
+              "years": 7.793150684931506,
+              "present_value": 1942596921.1751428
+            },
+            {
+              "date": "2035-12-31",
+              "years": 8.793150684931506,
+              "present_value": 1919438263.265326
+            },
+            {
+              "date": "2036-12-31",
+              "years": 9.794520547945204,
+              "present_value": 1839431455.070696
+            },
+            {
+              "date": "2037-12-31",
+              "years": 10.795890410958904,
+              "present_value": 1769507698.8155072
+            },
+            {
+              "date": "2038-12-31",
+              "years": 11.795890410958904,
+              "present_value": 1691627765.7387094
+            },
+            {
+              "date": "2039-12-31",
+              "years": 12.795890410958904,
+              "present_value": 1607071741.3286846
+            },
+            {
+              "date": "2040-12-31",
+              "years": 13.797260273972602,
+              "present_value": 1517143126.640028
+            },
+            {
+              "date": "2041-12-31",
+              "years": 14.7986301369863,
+              "present_value": 1423562500.4651568
+            }
+          ],
+          "equity_value": 41416530165.777855,
+          "fair_value_per_share": 126.78854388175806,
+          "terminal_share_of_enterprise_value": 0.4055181824784901
+        }
+      },
+      "bridge_selected": "large note debt"
+    },
+    "revised_base": {
+      "name": "base",
+      "assumptions": {
+        "product_revenue": [
+          6100,
+          9000,
+          12000,
+          15000,
+          18000,
+          21000,
+          24000,
+          26800,
+          29000,
+          31000
+        ],
+        "product_gm": [
+          0.36,
+          0.37,
+          0.38,
+          0.38,
+          0.38,
+          0.375,
+          0.37,
+          0.365,
+          0.36,
+          0.35
+        ],
+        "opex_ex_sbc": [
+          720,
+          900,
+          1080,
+          1260,
+          1440,
+          1620,
+          1800,
+          2000,
+          2170,
+          2330
+        ],
+        "service_gm": [
+          0.21,
+          0.23,
+          0.24,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "sbc_ratio": [
+          0.04,
+          0.035,
+          0.03,
+          0.0275,
+          0.025,
+          0.025,
+          0.025,
+          0.025,
+          0.025,
+          0.025
+        ],
+        "capex_ratio": [
+          0.035,
+          0.035,
+          0.035,
+          0.033,
+          0.03,
+          0.028,
+          0.027,
+          0.026,
+          0.025,
+          0.025
+        ],
+        "terminal_roic": 0.2,
+        "nwc_ratio": 0.1
+      },
+      "annual": [
+        {
+          "year": 2027,
+          "product": 6100,
+          "service": 421.0,
+          "installation": 152.5,
+          "electricity": 40.0,
+          "revenue": 6713.5,
+          "product_gm": 0.36,
+          "service_gm": 0.21,
+          "gross_profit": 2296.41,
+          "opex_ex_sbc": 720,
+          "sbc": 268.54,
+          "ebit": 1307.87,
+          "ebit_margin": 0.19481194607879643,
+          "tax_rate": 0.1,
+          "nopat": 1177.0829999999999,
+          "depreciation": 87.2755,
+          "capex": 234.97250000000003,
+          "delta_nwc": 266.35,
+          "fcff": 763.0359999999997
+        },
+        {
+          "year": 2028,
+          "product": 9000,
+          "service": 635.53,
+          "installation": 225.0,
+          "electricity": 40.0,
+          "revenue": 9900.53,
+          "product_gm": 0.37,
+          "service_gm": 0.23,
+          "gross_profit": 3488.1719,
+          "opex_ex_sbc": 900,
+          "sbc": 346.51855000000006,
+          "ebit": 2241.6533499999996,
+          "ebit_margin": 0.22641750997168833,
+          "tax_rate": 0.15,
+          "nopat": 1905.4053474999996,
+          "depreciation": 134.20718444444444,
+          "capex": 346.51855000000006,
+          "delta_nwc": 318.7030000000001,
+          "fcff": 1374.3909819444439
+        },
+        {
+          "year": 2029,
+          "product": 12000,
+          "service": 951.0429,
+          "installation": 300.0,
+          "electricity": 40.0,
+          "revenue": 13291.0429,
+          "product_gm": 0.38,
+          "service_gm": 0.24,
+          "gross_profit": 4800.250296,
+          "opex_ex_sbc": 1080,
+          "sbc": 398.731287,
+          "ebit": 3321.519009,
+          "ebit_margin": 0.24990657497614427,
+          "tax_rate": 0.21,
+          "nopat": 2624.00001711,
+          "depreciation": 187.55138314444446,
+          "capex": 465.1865015000001,
+          "delta_nwc": 339.05129,
+          "fcff": 2007.3136087544449
+        },
+        {
+          "year": 2030,
+          "product": 15000,
+          "service": 1364.469897,
+          "installation": 375.0,
+          "electricity": 40.0,
+          "revenue": 16779.469897,
+          "product_gm": 0.38,
+          "service_gm": 0.25,
+          "gross_profit": 6053.11747425,
+          "opex_ex_sbc": 1260,
+          "sbc": 461.43542216749995,
+          "ebit": 4331.6820520824995,
+          "ebit_margin": 0.2581536889229713,
+          "tax_rate": 0.23,
+          "nopat": 3335.3951801035246,
+          "depreciation": 246.09889182266667,
+          "capex": 553.722506601,
+          "delta_nwc": 348.8426996999999,
+          "fcff": 2678.928865625191
+        },
+        {
+          "year": 2031,
+          "product": 18000,
+          "service": 1868.95700421,
+          "installation": 450.0,
+          "electricity": 40.0,
+          "revenue": 20358.95700421,
+          "product_gm": 0.38,
+          "service_gm": 0.25,
+          "gross_profit": 7319.2392510525,
+          "opex_ex_sbc": 1440,
+          "sbc": 508.97392510525,
+          "ebit": 5370.26532594725,
+          "ebit_margin": 0.2637790003111034,
+          "tax_rate": 0.23,
+          "nopat": 4135.104300979383,
+          "depreciation": 309.9085677307522,
+          "capex": 610.7687101262999,
+          "delta_nwc": 357.948710721,
+          "fcff": 3476.2954478628353
+        },
+        {
+          "year": 2032,
+          "product": 21000,
+          "service": 2458.1300139153,
+          "installation": 525.0,
+          "electricity": 40.0,
+          "revenue": 24023.1300139153,
+          "product_gm": 0.375,
+          "service_gm": 0.25,
+          "gross_profit": 8501.532503478826,
+          "opex_ex_sbc": 1620,
+          "sbc": 600.5782503478825,
+          "ebit": 6280.9542531309435,
+          "ebit_margin": 0.26145445033568593,
+          "tax_rate": 0.23,
+          "nopat": 4836.334774910827,
+          "depreciation": 379.0316068862192,
+          "capex": 672.6476403896284,
+          "delta_nwc": 366.41730097053005,
+          "fcff": 4176.301440436888
+        },
+        {
+          "year": 2033,
+          "product": 24000,
+          "service": 3126.060912941229,
+          "installation": 600.0,
+          "electricity": 40.0,
+          "revenue": 27766.06091294123,
+          "product_gm": 0.37,
+          "service_gm": 0.25,
+          "gross_profit": 9673.515228235306,
+          "opex_ex_sbc": 1800,
+          "sbc": 694.1515228235307,
+          "ebit": 7179.363705411775,
+          "ebit_margin": 0.25856615844509695,
+          "tax_rate": 0.23,
+          "nopat": 5528.110053167067,
+          "depreciation": 453.5123282447068,
+          "capex": 749.6836446494132,
+          "delta_nwc": 374.29308990259307,
+          "fcff": 4857.645646859767
+        },
+        {
+          "year": 2034,
+          "product": 26800,
+          "service": 3867.2366490353434,
+          "installation": 670.0,
+          "electricity": 40.0,
+          "revenue": 31377.236649035345,
+          "product_gm": 0.365,
+          "service_gm": 0.25,
+          "gross_profit": 10760.809162258836,
+          "opex_ex_sbc": 2000,
+          "sbc": 784.4309162258837,
+          "ebit": 7976.378246032953,
+          "ebit_margin": 0.2542090731332192,
+          "tax_rate": 0.23,
+          "nopat": 6141.811249445374,
+          "depreciation": 529.9266634059303,
+          "capex": 815.808152874919,
+          "delta_nwc": 361.1175736094116,
+          "fcff": 5494.812186366974
+        },
+        {
+          "year": 2035,
+          "product": 29000,
+          "service": 4668.530083602869,
+          "installation": 725.0,
+          "electricity": 40.0,
+          "revenue": 34433.53008360287,
+          "product_gm": 0.36,
+          "service_gm": 0.25,
+          "gross_profit": 11619.132520900717,
+          "opex_ex_sbc": 2170,
+          "sbc": 860.8382520900718,
+          "ebit": 8588.294268810645,
+          "ebit_margin": 0.24941660782262814,
+          "tax_rate": 0.23,
+          "nopat": 6612.986586984197,
+          "depreciation": 600.6738025695167,
+          "capex": 860.8382520900718,
+          "delta_nwc": 305.6293434567524,
+          "fcff": 6047.192794006889
+        },
+        {
+          "year": 2036,
+          "product": 31000,
+          "service": 5501.732977750668,
+          "installation": 775.0,
+          "electricity": 40.0,
+          "revenue": 37316.73297775067,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 12237.433244437667,
+          "opex_ex_sbc": 2330,
+          "sbc": 932.9183244437668,
+          "ebit": 8974.5149199939,
+          "ebit_margin": 0.24049572949874176,
+          "tax_rate": 0.23,
+          "nopat": 6910.376488395304,
+          "depreciation": 671.7011935995121,
+          "capex": 932.9183244437668,
+          "delta_nwc": 288.32028941477984,
+          "fcff": 6360.839068136269
+        },
+        {
+          "year": 2037,
+          "product": 32896.3448275862,
+          "service": 6356.611669308122,
+          "installation": 822.4086206896551,
+          "electricity": 40.0,
+          "revenue": 40115.36511758398,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 13114.8736069822,
+          "opex_ex_sbc": 2504.7423304633744,
+          "sbc": 1002.8841279395995,
+          "ebit": 9607.247148579227,
+          "ebit_margin": 0.23949045759446502,
+          "tax_rate": 0.23,
+          "nopat": 7397.580304406005,
+          "depreciation": 722.0765721165117,
+          "capex": 1002.8841279395995,
+          "delta_nwc": 279.8632139833309,
+          "fcff": 6836.909534599587
+        },
+        {
+          "year": 2038,
+          "product": 34652.32902734839,
+          "service": 7227.502645560002,
+          "installation": 866.3082256837097,
+          "electricity": 40.0,
+          "revenue": 42786.1398985921,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 13947.190820961936,
+          "opex_ex_sbc": 2671.5014420785096,
+          "sbc": 1069.6534974648025,
+          "ebit": 10206.035881418624,
+          "ebit_margin": 0.23853602838695107,
+          "tax_rate": 0.23,
+          "nopat": 7858.647628692341,
+          "depreciation": 770.1505181746578,
+          "capex": 1069.6534974648025,
+          "delta_nwc": 267.077478100812,
+          "fcff": 7292.067171301384
+        },
+        {
+          "year": 2039,
+          "product": 36231.99726783648,
+          "service": 8107.670621464738,
+          "installation": 905.799931695912,
+          "electricity": 40.0,
+          "revenue": 45285.467820997124,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 14720.116699108952,
+          "opex_ex_sbc": 2827.555672835415,
+          "sbc": 1132.1366955249282,
+          "ebit": 10760.424330748609,
+          "ebit_margin": 0.23761318693409667,
+          "tax_rate": 0.23,
+          "nopat": 8285.526734676429,
+          "depreciation": 815.1384207779483,
+          "capex": 1132.1366955249282,
+          "delta_nwc": 249.93279224050275,
+          "fcff": 7718.5956676889455
+        },
+        {
+          "year": 2040,
+          "product": 37601.316888717476,
+          "service": 8989.413568675667,
+          "installation": 940.032922217937,
+          "electricity": 40.0,
+          "revenue": 47570.76337961108,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 15419.814303220031,
+          "opex_ex_sbc": 2970.246048617917,
+          "sbc": 1189.269084490277,
+          "ebit": 11260.299170111837,
+          "ebit_margin": 0.2367062954246814,
+          "tax_rate": 0.23,
+          "nopat": 8670.430360986114,
+          "depreciation": 856.2737408329996,
+          "capex": 1189.269084490277,
+          "delta_nwc": 228.5295558613958,
+          "fcff": 8108.905461467441
+        },
+        {
+          "year": 2041,
+          "product": 38729.356395379,
+          "service": 9864.20729441707,
+          "installation": 968.233909884475,
+          "electricity": 40.0,
+          "revenue": 49601.79759968055,
+          "product_gm": 0.35,
+          "service_gm": 0.25,
+          "gross_profit": 16033.326561986918,
+          "opex_ex_sbc": 3097.0607334828383,
+          "sbc": 1240.0449399920137,
+          "ebit": 11696.220888512065,
+          "ebit_margin": 0.23580235907795796,
+          "tax_rate": 0.23,
+          "nopat": 9006.09008415429,
+          "depreciation": 892.8323567942499,
+          "capex": 1240.0449399920137,
+          "delta_nwc": 203.10342200694652,
+          "fcff": 8455.774078949578
+        }
+      ],
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "day_count": "act/365",
+          "discount_rate": 0.11,
+          "timing": "mid_period",
+          "valuation_date": "2026-09-17",
+          "flows": [
+            {
+              "amount": 130.0,
+              "date": "2026-12-31",
+              "is_stub": true,
+              "label": "Remaining 105 days; normalized owner FCFF assumption"
+            },
+            {
+              "amount": 763.0359999999997,
+              "date": "2027-12-31",
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "amount": 1374.3909819444439,
+              "date": "2028-12-31",
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "amount": 2007.3136087544449,
+              "date": "2029-12-31",
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "amount": 2678.928865625191,
+              "date": "2030-12-31",
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "amount": 3476.2954478628353,
+              "date": "2031-12-31",
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "amount": 4176.301440436888,
+              "date": "2032-12-31",
+              "is_stub": false,
+              "label": "FY2032"
+            },
+            {
+              "amount": 4857.645646859767,
+              "date": "2033-12-31",
+              "is_stub": false,
+              "label": "FY2033"
+            },
+            {
+              "amount": 5494.812186366974,
+              "date": "2034-12-31",
+              "is_stub": false,
+              "label": "FY2034"
+            },
+            {
+              "amount": 6047.192794006889,
+              "date": "2035-12-31",
+              "is_stub": false,
+              "label": "FY2035"
+            },
+            {
+              "amount": 6360.839068136269,
+              "date": "2036-12-31",
+              "is_stub": false,
+              "label": "FY2036"
+            },
+            {
+              "amount": 6836.909534599587,
+              "date": "2037-12-31",
+              "is_stub": false,
+              "label": "FY2037"
+            },
+            {
+              "amount": 7292.067171301384,
+              "date": "2038-12-31",
+              "is_stub": false,
+              "label": "FY2038"
+            },
+            {
+              "amount": 7718.5956676889455,
+              "date": "2039-12-31",
+              "is_stub": false,
+              "label": "FY2039"
+            },
+            {
+              "amount": 8108.905461467441,
+              "date": "2040-12-31",
+              "is_stub": false,
+              "label": "FY2040"
+            },
+            {
+              "amount": 8455.774078949578,
+              "date": "2041-12-31",
+              "is_stub": false,
+              "label": "FY2041"
+            }
+          ],
+          "terminal": {
+            "basis": "Final-year normalized NOPAT less sustainable reinvestment g/ROIC",
+            "date": "2041-12-31",
+            "final_expansion_fcff": 8455.774078949578,
+            "growth": 0.03,
+            "normalized_fcff": 7655.176571531146
+          }
+        },
+        "bridge": {
+          "cash": 2666.859,
+          "nonoperating_assets": 28.09,
+          "debt": 2709.063,
+          "minority_interest": 28.673,
+          "redeemable_claims": 0,
+          "convertibles_dilution": 0,
+          "diluted_shares": 313.8357996994,
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "Future SBC is charged to earnings and never added back; current award dilution uses the disclosed Q2 reconciliation proxy. Small notes convert. Large note tested as debt and as shares, taking the lower common-equity value; not an option-pricing model."
+          },
+          "unsupported_claims": []
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "ed7340d1ec0398ea1557c371ad6785f68803aef2a04419424763003240aee158",
+        "outputs": {
+          "pv_explicit_fcff": 29299000303.072952,
+          "pv_terminal": 19967466339.179867,
+          "terminal_value_at_terminal_date": 98560398358.4635,
+          "enterprise_value": 49266466642.25282,
+          "stub_years": 0.2876712328767123,
+          "years_to_terminal": 15.2986301369863,
+          "normalization_step": 0.905319430256362,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.14383561643835616,
+              "present_value": 128063183.5124671
+            },
+            {
+              "date": "2027-12-31",
+              "years": 0.7876712328767124,
+              "present_value": 702822120.3460188
+            },
+            {
+              "date": "2028-12-31",
+              "years": 1.7890410958904108,
+              "present_value": 1140317069.1795795
+            },
+            {
+              "date": "2029-12-31",
+              "years": 2.7904109589041095,
+              "present_value": 1500187326.5105958
+            },
+            {
+              "date": "2030-12-31",
+              "years": 3.7904109589041095,
+              "present_value": 1803717281.6475408
+            },
+            {
+              "date": "2031-12-31",
+              "years": 4.7904109589041095,
+              "present_value": 2108632934.6030633
+            },
+            {
+              "date": "2032-12-31",
+              "years": 5.791780821917808,
+              "present_value": 2281870945.6367846
+            },
+            {
+              "date": "2033-12-31",
+              "years": 6.793150684931507,
+              "present_value": 2390782160.3619633
+            },
+            {
+              "date": "2034-12-31",
+              "years": 7.793150684931506,
+              "present_value": 2436374523.6305428
+            },
+            {
+              "date": "2035-12-31",
+              "years": 8.793150684931506,
+              "present_value": 2415583379.982622
+            },
+            {
+              "date": "2036-12-31",
+              "years": 9.794520547945204,
+              "present_value": 2288745802.707929
+            },
+            {
+              "date": "2037-12-31",
+              "years": 10.795890410958904,
+              "present_value": 2215939613.7002325
+            },
+            {
+              "date": "2038-12-31",
+              "years": 11.795890410958904,
+              "present_value": 2129245654.9020061
+            },
+            {
+              "date": "2039-12-31",
+              "years": 12.795890410958904,
+              "present_value": 2030441221.2051723
+            },
+            {
+              "date": "2040-12-31",
+              "years": 13.797260273972602,
+              "present_value": 1921450950.0678942
+            },
+            {
+              "date": "2041-12-31",
+              "years": 14.7986301369863,
+              "present_value": 1804826135.0785408
+            }
+          ],
+          "equity_value": 49223679642.25282,
+          "fair_value_per_share": 156.84533023128822,
+          "terminal_share_of_enterprise_value": 0.4052952789201042
+        }
+      },
+      "alternative_bridge_receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "2b85fe988b419aa42ffaa141dc63176342cced1bde792601def71675b9da5bf1",
+        "outputs": {
+          "pv_explicit_fcff": 29299000303.072952,
+          "pv_terminal": 19967466339.179867,
+          "terminal_value_at_terminal_date": 98560398358.4635,
+          "enterprise_value": 49266466642.25282,
+          "stub_years": 0.2876712328767123,
+          "years_to_terminal": 15.2986301369863,
+          "normalization_step": 0.905319430256362,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.14383561643835616,
+              "present_value": 128063183.5124671
+            },
+            {
+              "date": "2027-12-31",
+              "years": 0.7876712328767124,
+              "present_value": 702822120.3460188
+            },
+            {
+              "date": "2028-12-31",
+              "years": 1.7890410958904108,
+              "present_value": 1140317069.1795795
+            },
+            {
+              "date": "2029-12-31",
+              "years": 2.7904109589041095,
+              "present_value": 1500187326.5105958
+            },
+            {
+              "date": "2030-12-31",
+              "years": 3.7904109589041095,
+              "present_value": 1803717281.6475408
+            },
+            {
+              "date": "2031-12-31",
+              "years": 4.7904109589041095,
+              "present_value": 2108632934.6030633
+            },
+            {
+              "date": "2032-12-31",
+              "years": 5.791780821917808,
+              "present_value": 2281870945.6367846
+            },
+            {
+              "date": "2033-12-31",
+              "years": 6.793150684931507,
+              "present_value": 2390782160.3619633
+            },
+            {
+              "date": "2034-12-31",
+              "years": 7.793150684931506,
+              "present_value": 2436374523.6305428
+            },
+            {
+              "date": "2035-12-31",
+              "years": 8.793150684931506,
+              "present_value": 2415583379.982622
+            },
+            {
+              "date": "2036-12-31",
+              "years": 9.794520547945204,
+              "present_value": 2288745802.707929
+            },
+            {
+              "date": "2037-12-31",
+              "years": 10.795890410958904,
+              "present_value": 2215939613.7002325
+            },
+            {
+              "date": "2038-12-31",
+              "years": 11.795890410958904,
+              "present_value": 2129245654.9020061
+            },
+            {
+              "date": "2039-12-31",
+              "years": 12.795890410958904,
+              "present_value": 2030441221.2051723
+            },
+            {
+              "date": "2040-12-31",
+              "years": 13.797260273972602,
+              "present_value": 1921450950.0678942
+            },
+            {
+              "date": "2041-12-31",
+              "years": 14.7986301369863,
+              "present_value": 1804826135.0785408
+            }
+          ],
+          "equity_value": 51723679642.25282,
+          "fair_value_per_share": 158.3418504591813,
+          "terminal_share_of_enterprise_value": 0.4052952789201042
+        }
+      },
+      "bridge_selected": "large note debt"
+    },
+    "sensitivity": [
+      {
+        "wacc": 0.1,
+        "g": 0.025,
+        "value": 180.44048954347693
+      },
+      {
+        "wacc": 0.1,
+        "g": 0.03,
+        "value": 184.10489956979941
+      },
+      {
+        "wacc": 0.1,
+        "g": 0.035,
+        "value": 188.30738415363297
+      },
+      {
+        "wacc": 0.11,
+        "g": 0.025,
+        "value": 154.56472650138733
+      },
+      {
+        "wacc": 0.11,
+        "g": 0.03,
+        "value": 156.84533023128822
+      },
+      {
+        "wacc": 0.11,
+        "g": 0.035,
+        "value": 159.41063538276623
+      },
+      {
+        "wacc": 0.12,
+        "g": 0.025,
+        "value": 134.40262948498523
+      },
+      {
+        "wacc": 0.12,
+        "g": 0.03,
+        "value": 135.85718290908068
+      },
+      {
+        "wacc": 0.12,
+        "g": 0.035,
+        "value": 137.46795339205838
+      }
+    ]
+  },
+  "market_scenarios": [
+    {
+      "name": "downside",
+      "revenue_2027": 5500,
+      "gross_margin_ex_sbc": 0.33,
+      "opex_ex_sbc": 700,
+      "operating_income_ex_sbc": 1115.0,
+      "net_interest_income": 20,
+      "effective_tax_rate": 0.1,
+      "minority_income": 20,
+      "diluted_shares": 335,
+      "adjusted_eps_2027": 2.9895522388059703,
+      "pe_2027": 40,
+      "target_date": "2027-03-18",
+      "price_scenario": 119.58208955223881,
+      "return_from_280_76": -0.5740771849542712,
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-17",
+          "applies_at": "2027-03-18",
+          "eps": 2.9895522388059703,
+          "multiple": 40,
+          "multiple_basis": "equity",
+          "discount_rate": null
+        },
+        "equity": {
+          "diluted_shares": 335
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "forward_pe",
+        "inputs_digest": "00ebcbc6c3c040dc159d02ca164abde8db21d80ad22eb84710111e3ab4512ff2",
+        "outputs": {
+          "eps": 2.9895522388059703,
+          "multiple": 40,
+          "value_per_share_at_horizon": 119.58208955223881,
+          "years_to_horizon": 0.4986301369863014,
+          "discounted": false,
+          "fair_value_per_share": 119.58208955223881,
+          "equity_value": 40060000000.0
+        }
+      }
+    },
+    {
+      "name": "base",
+      "revenue_2027": 6800,
+      "gross_margin_ex_sbc": 0.355,
+      "opex_ex_sbc": 710,
+      "operating_income_ex_sbc": 1704.0,
+      "net_interest_income": 40,
+      "effective_tax_rate": 0.05,
+      "minority_income": 25,
+      "diluted_shares": 335,
+      "adjusted_eps_2027": 4.871044776119403,
+      "pe_2027": 60,
+      "target_date": "2027-03-18",
+      "price_scenario": 292.26268656716417,
+      "return_from_280_76": 0.04096981965794333,
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-17",
+          "applies_at": "2027-03-18",
+          "eps": 4.871044776119403,
+          "multiple": 60,
+          "multiple_basis": "equity",
+          "discount_rate": null
+        },
+        "equity": {
+          "diluted_shares": 335
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "forward_pe",
+        "inputs_digest": "901782b7f40d7d7ec2671b22de3b831bd5154d0ee7b4126551db8d3ac9abc3a1",
+        "outputs": {
+          "eps": 4.871044776119403,
+          "multiple": 60,
+          "value_per_share_at_horizon": 292.26268656716417,
+          "years_to_horizon": 0.4986301369863014,
+          "discounted": false,
+          "fair_value_per_share": 292.26268656716417,
+          "equity_value": 97908000000.0
+        }
+      }
+    },
+    {
+      "name": "upside",
+      "revenue_2027": 8000,
+      "gross_margin_ex_sbc": 0.37,
+      "opex_ex_sbc": 800,
+      "operating_income_ex_sbc": 2160.0,
+      "net_interest_income": 40,
+      "effective_tax_rate": 0.07,
+      "minority_income": 30,
+      "diluted_shares": 340,
+      "adjusted_eps_2027": 5.929411764705882,
+      "pe_2027": 65,
+      "target_date": "2027-03-18",
+      "price_scenario": 385.4117647058823,
+      "return_from_280_76": 0.372744567266998,
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-17",
+          "applies_at": "2027-03-18",
+          "eps": 5.929411764705882,
+          "multiple": 65,
+          "multiple_basis": "equity",
+          "discount_rate": null
+        },
+        "equity": {
+          "diluted_shares": 340
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "forward_pe",
+        "inputs_digest": "b108d08886ffe6039675d5d31b039f81d418df18c22307c4646d964df11d8696",
+        "outputs": {
+          "eps": 5.929411764705882,
+          "multiple": 65,
+          "value_per_share_at_horizon": 385.4117647058823,
+          "years_to_horizon": 0.4986301369863014,
+          "discounted": false,
+          "fair_value_per_share": 385.4117647058823,
+          "equity_value": 131039999999.99998
+        }
+      }
+    }
+  ],
+  "base_eps_multiple_grid": {
+    "40": 194.84179104477613,
+    "50": 243.55223880597015,
+    "55": 267.90746268656716,
+    "60": 292.26268656716417,
+    "65": 316.6179104477612,
+    "70": 340.9731343283582
+  },
+  "market_pe_2027_consensus": 56.94929006085193,
+  "market_pe_2027_own": 57.638558646893,
+  "risk_reward": [
+    {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 292.26268656716417,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 260,
+        "planned_loss_per_share": 16.5,
+        "reward_per_share": 31.762686567164167,
+        "ratio": 1.9250113071008585,
+        "reward_return": 0.12216417910447756,
+        "planned_loss_return": 0.06346153846153846,
+        "stress_loss_per_share": 35.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 290,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 260,
+        "planned_loss_per_share": 16.5,
+        "reward_per_share": 29.5,
+        "ratio": 1.7878787878787878,
+        "reward_return": 0.11346153846153846,
+        "planned_loss_return": 0.06346153846153846,
+        "stress_loss_per_share": 35.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 300,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 260,
+        "planned_loss_per_share": 16.5,
+        "reward_per_share": 39.5,
+        "ratio": 2.393939393939394,
+        "reward_return": 0.1519230769230769,
+        "planned_loss_return": 0.06346153846153846,
+        "stress_loss_per_share": 35.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 320,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 260,
+        "planned_loss_per_share": 16.5,
+        "reward_per_share": 59.5,
+        "ratio": 3.606060606060606,
+        "reward_return": 0.22884615384615384,
+        "planned_loss_return": 0.06346153846153846,
+        "stress_loss_per_share": 35.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 350,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 260,
+        "planned_loss_per_share": 16.5,
+        "reward_per_share": 89.5,
+        "ratio": 5.424242424242424,
+        "reward_return": 0.34423076923076923,
+        "planned_loss_return": 0.06346153846153846,
+        "stress_loss_per_share": 35.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 263,
+        "exit_price": 244,
+        "target_price": 292.26268656716417,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 263,
+        "planned_loss_per_share": 19.5,
+        "reward_per_share": 28.762686567164167,
+        "ratio": 1.4750095675468804,
+        "reward_return": 0.10936382725157477,
+        "planned_loss_return": 0.0741444866920152,
+        "stress_loss_per_share": 38.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 263,
+        "exit_price": 244,
+        "target_price": 290,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 263,
+        "planned_loss_per_share": 19.5,
+        "reward_per_share": 26.5,
+        "ratio": 1.358974358974359,
+        "reward_return": 0.10076045627376426,
+        "planned_loss_return": 0.0741444866920152,
+        "stress_loss_per_share": 38.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 263,
+        "exit_price": 244,
+        "target_price": 300,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 263,
+        "planned_loss_per_share": 19.5,
+        "reward_per_share": 36.5,
+        "ratio": 1.8717948717948718,
+        "reward_return": 0.13878326996197718,
+        "planned_loss_return": 0.0741444866920152,
+        "stress_loss_per_share": 38.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 263,
+        "exit_price": 244,
+        "target_price": 320,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 263,
+        "planned_loss_per_share": 19.5,
+        "reward_per_share": 56.5,
+        "ratio": 2.8974358974358974,
+        "reward_return": 0.21482889733840305,
+        "planned_loss_return": 0.0741444866920152,
+        "stress_loss_per_share": 38.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 263,
+        "exit_price": 244,
+        "target_price": 350,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 263,
+        "planned_loss_per_share": 19.5,
+        "reward_per_share": 86.5,
+        "ratio": 4.435897435897436,
+        "reward_return": 0.3288973384030418,
+        "planned_loss_return": 0.0741444866920152,
+        "stress_loss_per_share": 38.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 280.76,
+        "exit_price": 244,
+        "target_price": 292.26268656716417,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 280.76,
+        "planned_loss_per_share": 37.25999999999999,
+        "reward_per_share": 11.002686567164176,
+        "ratio": 0.29529486224273155,
+        "reward_return": 0.03918893919064032,
+        "planned_loss_return": 0.1327112124234221,
+        "stress_loss_per_share": 56.25999999999999
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 280.76,
+        "exit_price": 244,
+        "target_price": 290,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 280.76,
+        "planned_loss_per_share": 37.25999999999999,
+        "reward_per_share": 8.740000000000009,
+        "ratio": 0.2345679012345682,
+        "reward_return": 0.031129790568457077,
+        "planned_loss_return": 0.1327112124234221,
+        "stress_loss_per_share": 56.25999999999999
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 280.76,
+        "exit_price": 244,
+        "target_price": 300,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 280.76,
+        "planned_loss_per_share": 37.25999999999999,
+        "reward_per_share": 18.74000000000001,
+        "ratio": 0.5029522275899091,
+        "reward_return": 0.06674739991451777,
+        "planned_loss_return": 0.1327112124234221,
+        "stress_loss_per_share": 56.25999999999999
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 280.76,
+        "exit_price": 244,
+        "target_price": 320,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 280.76,
+        "planned_loss_per_share": 37.25999999999999,
+        "reward_per_share": 38.74000000000001,
+        "ratio": 1.0397208803005908,
+        "reward_return": 0.13798261860663916,
+        "planned_loss_return": 0.1327112124234221,
+        "stress_loss_per_share": 56.25999999999999
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 280.76,
+        "exit_price": 244,
+        "target_price": 350,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 280.76,
+        "planned_loss_per_share": 37.25999999999999,
+        "reward_per_share": 68.74000000000001,
+        "ratio": 1.8448738593666136,
+        "reward_return": 0.24483544664482124,
+        "planned_loss_return": 0.1327112124234221,
+        "stress_loss_per_share": 56.25999999999999
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 288,
+        "exit_price": 244,
+        "target_price": 292.26268656716417,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 288,
+        "planned_loss_per_share": 44.5,
+        "reward_per_share": 3.7626865671641667,
+        "ratio": 0.08455475431829589,
+        "reward_return": 0.013064883913764468,
+        "planned_loss_return": 0.1545138888888889,
+        "stress_loss_per_share": 63.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 288,
+        "exit_price": 244,
+        "target_price": 290,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 288,
+        "planned_loss_per_share": 44.5,
+        "reward_per_share": 1.5,
+        "ratio": 0.033707865168539325,
+        "reward_return": 0.005208333333333333,
+        "planned_loss_return": 0.1545138888888889,
+        "stress_loss_per_share": 63.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 288,
+        "exit_price": 244,
+        "target_price": 300,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 288,
+        "planned_loss_per_share": 44.5,
+        "reward_per_share": 11.5,
+        "ratio": 0.25842696629213485,
+        "reward_return": 0.03993055555555555,
+        "planned_loss_return": 0.1545138888888889,
+        "stress_loss_per_share": 63.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 288,
+        "exit_price": 244,
+        "target_price": 320,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 288,
+        "planned_loss_per_share": 44.5,
+        "reward_per_share": 31.5,
+        "ratio": 0.7078651685393258,
+        "reward_return": 0.109375,
+        "planned_loss_return": 0.1545138888888889,
+        "stress_loss_per_share": 63.5
+      }
+    },
+    {
+      "plan": {
+        "entry_price": 288,
+        "exit_price": 244,
+        "target_price": 350,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      },
+      "receipt": {
+        "available": true,
+        "reference_price": 288,
+        "planned_loss_per_share": 44.5,
+        "reward_per_share": 61.5,
+        "ratio": 1.3820224719101124,
+        "reward_return": 0.21354166666666666,
+        "planned_loss_return": 0.1545138888888889,
+        "stress_loss_per_share": 63.5
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "public": true,
+  "kind": "themes",
+  "slug": "ai-power",
+  "name": "AI 電力價值鏈",
+  "published_at": "2026-09-18T16:02:00Z",
+  "as_of": "2026-09-17",
+  "revision": 1,
+  "review_status": "BE 研究延伸 · 尚未交叉覆核",
+  "verdict": "缺電支持重估，受惠程度要逐層看。",
+  "summary": "融資、機房建設、供電設備與電網各有瓶頸。敘事能擴散，訂單、利潤與估值卻不會平均分配。",
+  "change": "整理本次 BE 重評的產業脈絡，連接需求、融資及供給。這是個股研究的延伸，並非全市場評級或完整同業覆蓋。",
+  "action": "追蹤訂單、毛利及交付",
+  "metrics": [],
+  "sections": [
+    {
+      "key": "judgment",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "敘事可以由大客戶的資本開支向上游傳導，也可以由某家公司接到大單、突破供應瓶頸後，重新定價整條產業鏈。方向不是固定的；重點是誰真正取得收入、利潤和議價權。"
+        }
+      ]
+    },
+    {
+      "key": "transmission",
+      "title": "🔗 價值怎樣傳遞",
+      "paragraphs": [
+        {
+          "lead": "AI 機房 → 供電需求。",
+          "text": "電網接入與設備交付限制，令「可以較快供電」更有價值；對 BE 的影響要落到具體部署、交付及持續回報。"
+        },
+        {
+          "lead": "融資 → 專案落地。",
+          "text": "Brookfield 與 BE 的合作框架由 50 億擴至 250 億美元，有助部署能力，但不能全數視為 BE 已簽訂單或即將確認的收入。"
+        },
+        {
+          "lead": "設備短缺 → 新增供給。",
+          "text": "GE Vernova 的燃氣設備積壓訂單及產能預留反映需求強；供給逐步增加後，也可能壓縮其他供電方案的稀缺溢價。短期受惠不代表長期沒有競爭。"
+        }
+      ]
+    },
+    {
+      "key": "valuation",
+      "title": "💰 對估值的意義",
+      "paragraphs": [
+        {
+          "text": "先更新每家公司可取得的收入、毛利、資本投入與風險，再判斷市場是否願意給更高倍數。同業與上下游是交叉檢查的輸入，不能把某家龍頭的 P/E 直接套到整條價值鏈。"
+        }
+      ]
+    },
+    {
+      "key": "watch",
+      "title": "🧭 接下來留意",
+      "paragraphs": [
+        {
+          "text": "看融資是否變成實際部署、訂單是否轉成收入及現金流，以及新增供給會否改變議價權。股價的相對強弱有助判斷市場正在重估哪一層，仍需經營數據驗證。"
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "kind": "stocks",
+      "slug": "be",
+      "label": "BE：基本面、估值與交易計劃"
+    }
+  ],
+  "sources": [
+    {
+      "label": "Bloom Energy 第二季業績",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    },
+    {
+      "label": "Brookfield 與 Bloom Energy 合作公告",
+      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Brookfield-and-Bloom-Energy-Expand-AI-Infrastructure-Partnership-to-25-Billion-Fivefold-Increase-to-Build-and-Finance-Rapid-Power-for-AI-Infrastructure/default.aspx"
+    },
+    {
+      "label": "GE Vernova 第二季業績",
+      "url": "https://www.gevernova.com/news/articles/ge-vernova-releases-second-quarter-2026-financial-results"
+    }
+  ]
+}

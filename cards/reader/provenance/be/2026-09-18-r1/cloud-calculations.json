@@ -1,0 +1,522 @@
+[
+  {
+    "name": "dcf",
+    "method": "fcff_dcf_dated",
+    "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+    "result": {
+      "pv_explicit_fcff": 29299000303.072952,
+      "pv_terminal": 19967466339.179867,
+      "terminal_value_at_terminal_date": 98560398358.4635,
+      "enterprise_value": 49266466642.25282,
+      "stub_years": 0.2876712328767123,
+      "years_to_terminal": 15.2986301369863,
+      "normalization_step": 0.905319430256362,
+      "discounted_flows": [
+        {
+          "date": "2026-12-31",
+          "years": 0.14383561643835616,
+          "present_value": 128063183.5124671
+        },
+        {
+          "date": "2027-12-31",
+          "years": 0.7876712328767124,
+          "present_value": 702822120.3460188
+        },
+        {
+          "date": "2028-12-31",
+          "years": 1.7890410958904108,
+          "present_value": 1140317069.1795795
+        },
+        {
+          "date": "2029-12-31",
+          "years": 2.7904109589041095,
+          "present_value": 1500187326.5105958
+        },
+        {
+          "date": "2030-12-31",
+          "years": 3.7904109589041095,
+          "present_value": 1803717281.6475408
+        },
+        {
+          "date": "2031-12-31",
+          "years": 4.7904109589041095,
+          "present_value": 2108632934.6030633
+        },
+        {
+          "date": "2032-12-31",
+          "years": 5.791780821917808,
+          "present_value": 2281870945.6367846
+        },
+        {
+          "date": "2033-12-31",
+          "years": 6.793150684931507,
+          "present_value": 2390782160.3619633
+        },
+        {
+          "date": "2034-12-31",
+          "years": 7.793150684931506,
+          "present_value": 2436374523.6305428
+        },
+        {
+          "date": "2035-12-31",
+          "years": 8.793150684931506,
+          "present_value": 2415583379.982622
+        },
+        {
+          "date": "2036-12-31",
+          "years": 9.794520547945204,
+          "present_value": 2288745802.707929
+        },
+        {
+          "date": "2037-12-31",
+          "years": 10.795890410958904,
+          "present_value": 2215939613.7002325
+        },
+        {
+          "date": "2038-12-31",
+          "years": 11.795890410958904,
+          "present_value": 2129245654.9020061
+        },
+        {
+          "date": "2039-12-31",
+          "years": 12.795890410958904,
+          "present_value": 2030441221.2051723
+        },
+        {
+          "date": "2040-12-31",
+          "years": 13.797260273972602,
+          "present_value": 1921450950.0678942
+        },
+        {
+          "date": "2041-12-31",
+          "years": 14.7986301369863,
+          "present_value": 1804826135.0785408
+        }
+      ],
+      "equity_value": 49223679642.25282,
+      "fair_value_per_share": 156.84533023128822,
+      "terminal_share_of_enterprise_value": 0.4052952789201042
+    },
+    "unit": "absolute currency units; fair_value_per_share per share",
+    "inputs": {
+      "method": "fcff_dcf_dated",
+      "currency": "USD",
+      "scale": "millions",
+      "model": {
+        "day_count": "act/365",
+        "discount_rate": 0.11,
+        "timing": "mid_period",
+        "valuation_date": "2026-09-17",
+        "flows": [
+          {
+            "amount": 130,
+            "date": "2026-12-31",
+            "is_stub": true,
+            "label": "Remaining 105 days; normalized owner FCFF assumption"
+          },
+          {
+            "amount": 763.0359999999997,
+            "date": "2027-12-31",
+            "is_stub": false,
+            "label": "FY2027"
+          },
+          {
+            "amount": 1374.3909819444439,
+            "date": "2028-12-31",
+            "is_stub": false,
+            "label": "FY2028"
+          },
+          {
+            "amount": 2007.3136087544449,
+            "date": "2029-12-31",
+            "is_stub": false,
+            "label": "FY2029"
+          },
+          {
+            "amount": 2678.928865625191,
+            "date": "2030-12-31",
+            "is_stub": false,
+            "label": "FY2030"
+          },
+          {
+            "amount": 3476.2954478628353,
+            "date": "2031-12-31",
+            "is_stub": false,
+            "label": "FY2031"
+          },
+          {
+            "amount": 4176.301440436888,
+            "date": "2032-12-31",
+            "is_stub": false,
+            "label": "FY2032"
+          },
+          {
+            "amount": 4857.645646859767,
+            "date": "2033-12-31",
+            "is_stub": false,
+            "label": "FY2033"
+          },
+          {
+            "amount": 5494.812186366974,
+            "date": "2034-12-31",
+            "is_stub": false,
+            "label": "FY2034"
+          },
+          {
+            "amount": 6047.192794006889,
+            "date": "2035-12-31",
+            "is_stub": false,
+            "label": "FY2035"
+          },
+          {
+            "amount": 6360.839068136269,
+            "date": "2036-12-31",
+            "is_stub": false,
+            "label": "FY2036"
+          },
+          {
+            "amount": 6836.909534599587,
+            "date": "2037-12-31",
+            "is_stub": false,
+            "label": "FY2037"
+          },
+          {
+            "amount": 7292.067171301384,
+            "date": "2038-12-31",
+            "is_stub": false,
+            "label": "FY2038"
+          },
+          {
+            "amount": 7718.5956676889455,
+            "date": "2039-12-31",
+            "is_stub": false,
+            "label": "FY2039"
+          },
+          {
+            "amount": 8108.905461467441,
+            "date": "2040-12-31",
+            "is_stub": false,
+            "label": "FY2040"
+          },
+          {
+            "amount": 8455.774078949578,
+            "date": "2041-12-31",
+            "is_stub": false,
+            "label": "FY2041"
+          }
+        ],
+        "terminal": {
+          "basis": "Final-year normalized NOPAT less sustainable reinvestment g/ROIC",
+          "date": "2041-12-31",
+          "final_expansion_fcff": 8455.774078949578,
+          "growth": 0.03,
+          "normalized_fcff": 7655.176571531146
+        }
+      },
+      "bridge": {
+        "cash": 2666.859,
+        "nonoperating_assets": 28.09,
+        "debt": 2709.063,
+        "minority_interest": 28.673,
+        "redeemable_claims": 0,
+        "convertibles_dilution": 0,
+        "diluted_shares": 313.8357996994,
+        "sbc_treatment": {
+          "basis": "both_documented",
+          "note": "Future SBC is charged to earnings and never added back; current award dilution uses the disclosed Q2 reconciliation proxy. Small notes convert. Large note tested as debt and as shares, taking the lower common-equity value; not an option-pricing model."
+        },
+        "unsupported_claims": []
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "fcff_dcf_dated",
+      "inputs_digest": "e3474b209478ca963537749b6f0ea57f1287de0eb3b2fc1861c833399a08bc23",
+      "outputs": {
+        "pv_explicit_fcff": 29299000303.072952,
+        "pv_terminal": 19967466339.179867,
+        "terminal_value_at_terminal_date": 98560398358.4635,
+        "enterprise_value": 49266466642.25282,
+        "stub_years": 0.2876712328767123,
+        "years_to_terminal": 15.2986301369863,
+        "normalization_step": 0.905319430256362,
+        "discounted_flows": [
+          {
+            "date": "2026-12-31",
+            "years": 0.14383561643835616,
+            "present_value": 128063183.5124671
+          },
+          {
+            "date": "2027-12-31",
+            "years": 0.7876712328767124,
+            "present_value": 702822120.3460188
+          },
+          {
+            "date": "2028-12-31",
+            "years": 1.7890410958904108,
+            "present_value": 1140317069.1795795
+          },
+          {
+            "date": "2029-12-31",
+            "years": 2.7904109589041095,
+            "present_value": 1500187326.5105958
+          },
+          {
+            "date": "2030-12-31",
+            "years": 3.7904109589041095,
+            "present_value": 1803717281.6475408
+          },
+          {
+            "date": "2031-12-31",
+            "years": 4.7904109589041095,
+            "present_value": 2108632934.6030633
+          },
+          {
+            "date": "2032-12-31",
+            "years": 5.791780821917808,
+            "present_value": 2281870945.6367846
+          },
+          {
+            "date": "2033-12-31",
+            "years": 6.793150684931507,
+            "present_value": 2390782160.3619633
+          },
+          {
+            "date": "2034-12-31",
+            "years": 7.793150684931506,
+            "present_value": 2436374523.6305428
+          },
+          {
+            "date": "2035-12-31",
+            "years": 8.793150684931506,
+            "present_value": 2415583379.982622
+          },
+          {
+            "date": "2036-12-31",
+            "years": 9.794520547945204,
+            "present_value": 2288745802.707929
+          },
+          {
+            "date": "2037-12-31",
+            "years": 10.795890410958904,
+            "present_value": 2215939613.7002325
+          },
+          {
+            "date": "2038-12-31",
+            "years": 11.795890410958904,
+            "present_value": 2129245654.9020061
+          },
+          {
+            "date": "2039-12-31",
+            "years": 12.795890410958904,
+            "present_value": 2030441221.2051723
+          },
+          {
+            "date": "2040-12-31",
+            "years": 13.797260273972602,
+            "present_value": 1921450950.0678942
+          },
+          {
+            "date": "2041-12-31",
+            "years": 14.7986301369863,
+            "present_value": 1804826135.0785408
+          }
+        ],
+        "equity_value": 49223679642.25282,
+        "fair_value_per_share": 156.84533023128822,
+        "terminal_share_of_enterprise_value": 0.4052952789201042
+      }
+    }
+  },
+  {
+    "name": "downside",
+    "method": "forward_pe",
+    "description": "forward P/E on per-share earnings; an equity multiple, so no enterprise bridge",
+    "result": {
+      "eps": 2.9895522388059703,
+      "multiple": 40,
+      "value_per_share_at_horizon": 119.58208955223881,
+      "years_to_horizon": 0.4986301369863014,
+      "discounted": false,
+      "fair_value_per_share": 119.58208955223881,
+      "equity_value": 40060000000
+    },
+    "unit": "per share; equity_value in absolute currency units",
+    "inputs": {
+      "method": "forward_pe",
+      "currency": "USD",
+      "scale": "millions",
+      "model": {
+        "valuation_date": "2026-09-17",
+        "applies_at": "2027-03-18",
+        "eps": 2.9895522388059703,
+        "multiple": 40,
+        "multiple_basis": "equity",
+        "discount_rate": null
+      },
+      "equity": {
+        "diluted_shares": 335
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "forward_pe",
+      "inputs_digest": "00ebcbc6c3c040dc159d02ca164abde8db21d80ad22eb84710111e3ab4512ff2",
+      "outputs": {
+        "eps": 2.9895522388059703,
+        "multiple": 40,
+        "value_per_share_at_horizon": 119.58208955223881,
+        "years_to_horizon": 0.4986301369863014,
+        "discounted": false,
+        "fair_value_per_share": 119.58208955223881,
+        "equity_value": 40060000000
+      }
+    }
+  },
+  {
+    "name": "base",
+    "method": "forward_pe",
+    "description": "forward P/E on per-share earnings; an equity multiple, so no enterprise bridge",
+    "result": {
+      "eps": 4.871044776119403,
+      "multiple": 60,
+      "value_per_share_at_horizon": 292.26268656716417,
+      "years_to_horizon": 0.4986301369863014,
+      "discounted": false,
+      "fair_value_per_share": 292.26268656716417,
+      "equity_value": 97908000000
+    },
+    "unit": "per share; equity_value in absolute currency units",
+    "inputs": {
+      "method": "forward_pe",
+      "currency": "USD",
+      "scale": "millions",
+      "model": {
+        "valuation_date": "2026-09-17",
+        "applies_at": "2027-03-18",
+        "eps": 4.871044776119403,
+        "multiple": 60,
+        "multiple_basis": "equity",
+        "discount_rate": null
+      },
+      "equity": {
+        "diluted_shares": 335
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "forward_pe",
+      "inputs_digest": "901782b7f40d7d7ec2671b22de3b831bd5154d0ee7b4126551db8d3ac9abc3a1",
+      "outputs": {
+        "eps": 4.871044776119403,
+        "multiple": 60,
+        "value_per_share_at_horizon": 292.26268656716417,
+        "years_to_horizon": 0.4986301369863014,
+        "discounted": false,
+        "fair_value_per_share": 292.26268656716417,
+        "equity_value": 97908000000
+      }
+    }
+  },
+  {
+    "name": "upside",
+    "method": "forward_pe",
+    "description": "forward P/E on per-share earnings; an equity multiple, so no enterprise bridge",
+    "result": {
+      "eps": 5.929411764705882,
+      "multiple": 65,
+      "value_per_share_at_horizon": 385.4117647058823,
+      "years_to_horizon": 0.4986301369863014,
+      "discounted": false,
+      "fair_value_per_share": 385.4117647058823,
+      "equity_value": 131039999999.99998
+    },
+    "unit": "per share; equity_value in absolute currency units",
+    "inputs": {
+      "method": "forward_pe",
+      "currency": "USD",
+      "scale": "millions",
+      "model": {
+        "valuation_date": "2026-09-17",
+        "applies_at": "2027-03-18",
+        "eps": 5.929411764705882,
+        "multiple": 65,
+        "multiple_basis": "equity",
+        "discount_rate": null
+      },
+      "equity": {
+        "diluted_shares": 340
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "forward_pe",
+      "inputs_digest": "b108d08886ffe6039675d5d31b039f81d418df18c22307c4646d964df11d8696",
+      "outputs": {
+        "eps": 5.929411764705882,
+        "multiple": 65,
+        "value_per_share_at_horizon": 385.4117647058823,
+        "years_to_horizon": 0.4986301369863014,
+        "discounted": false,
+        "fair_value_per_share": 385.4117647058823,
+        "equity_value": 131039999999.99998
+      }
+    }
+  },
+  {
+    "name": "rr_292.26268656716417",
+    "method": "risk_reward",
+    "description": "per-share and percentage risk/reward",
+    "result": {
+      "available": true,
+      "reference_price": 260,
+      "planned_loss_per_share": 16.5,
+      "reward_per_share": 31.762686567164167,
+      "ratio": 1.9250113071008585,
+      "reward_return": 0.12216417910447756,
+      "planned_loss_return": 0.06346153846153846,
+      "stress_loss_per_share": 35.5
+    },
+    "unit": "per share and ratio",
+    "inputs": {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 292.26268656716417,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      }
+    },
+    "calculator_version": "0.3.0"
+  },
+  {
+    "name": "rr_300",
+    "method": "risk_reward",
+    "description": "per-share and percentage risk/reward",
+    "result": {
+      "available": true,
+      "reference_price": 260,
+      "planned_loss_per_share": 16.5,
+      "reward_per_share": 39.5,
+      "ratio": 2.393939393939394,
+      "reward_return": 0.1519230769230769,
+      "planned_loss_return": 0.06346153846153846,
+      "stress_loss_per_share": 35.5
+    },
+    "unit": "per share and ratio",
+    "inputs": {
+      "plan": {
+        "entry_price": 260,
+        "exit_price": 244,
+        "target_price": 300,
+        "round_trip_cost_per_share": 0.5,
+        "stress_price": 225
+      }
+    },
+    "calculator_version": "0.3.0"
+  }
+]

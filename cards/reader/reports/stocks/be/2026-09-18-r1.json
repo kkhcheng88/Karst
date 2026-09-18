@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "public": true,
+  "kind": "stocks",
+  "slug": "be",
+  "name": "Bloom Energy",
+  "symbol": "BE",
+  "published_at": "2026-09-18T16:02:00Z",
+  "as_of": "2026-09-17",
+  "revision": 1,
+  "review_status": "獨立重評 · 尚未交叉覆核",
+  "verdict": "業務前景正面；現價中性，等待回踩。",
+  "summary": "AI 電力需求與盈利改善支持重估，但股價已反映相當多增長。趨勢偏強，入場仍要看風報比。",
+  "change": "在現金流估值之外，加入 2027 年盈利、市場可能給予的倍數，以及 AI 電力價值鏈。判斷由單看估值偏貴，轉為業務正面、現價先等；這是獨立重評，未取代已覆核研究。",
+  "action": "等回踩，不追入",
+  "review_by": "2026-10-16",
+  "metrics": [
+    {
+      "label": "參考股價",
+      "value": "$280.76",
+      "note": "2026-09-17 收市 · 美元"
+    },
+    {
+      "label": "市場定價情境",
+      "value": "$268–317",
+      "note": "展望至 2027-03-18 · 有條件假設"
+    },
+    {
+      "label": "現金流估值基準",
+      "value": "$157",
+      "note": "敏感度約 $134–188；不是股價底線"
+    },
+    {
+      "label": "候選回踩區",
+      "value": "$255–263",
+      "note": "須先確認支撐及收回約 $260"
+    }
+  ],
+  "sections": [
+    {
+      "key": "judgment",
+      "paragraphs": [
+        {
+          "lead": "公司值得留意，現價不用急。",
+          "text": "BE 的收入、盈利及相對強弱均有改善，市場給較高倍數有其理由；但接近阻力時買入，距離基準目標的空間不算吸引。"
+        },
+        {
+          "text": "DCF 回答長期現金流值多少；市場定價回答在盈利上修、敘事及風險偏好維持下，股價可能交易在哪裏。兩者都要看，不能把 DCF 或 SMA200 當成保證守住的底線。"
+        }
+      ]
+    },
+    {
+      "key": "fundamentals",
+      "paragraphs": [
+        {
+          "lead": "增長有實績。",
+          "text": "第二季收入約 10.65 億美元，按年升 165.5%；調整後 EPS 為 $0.78。不過，約 3,740 萬美元的一次性關稅回收不應直接年化。"
+        },
+        {
+          "lead": "價值鏈支持需求，也帶來競爭。",
+          "text": "AI 機房缺電提高快速供電方案的價值；Brookfield 合作擴大有助融資，但框架金額不等於確定訂單。後續要看訂單轉收入、毛利和收款，同時留意燃氣輪機供給逐步增加。"
+        },
+        {
+          "text": "納入 S&P 500 可影響被動資金需求，但本身不增加公司的現金流。指數因素與經營改善應分開看。"
+        }
+      ]
+    },
+    {
+      "key": "valuation",
+      "paragraphs": [
+        {
+          "text": "市場定價基準約 $292：以本次估算的 2027 年調整後 EPS 約 $4.87，配 60 倍 P/E。這個倍數需要盈利持續上修、AI 電力需求及市場風險偏好支持。"
+        }
+      ],
+      "rows": [
+        {
+          "label": "現金流價值",
+          "value": "約 $157",
+          "note": "折現率 10–12%、永續增長 2.5–3.5% 的敏感度約 $134–188；不是完整牛熊區間。"
+        },
+        {
+          "label": "市場定價",
+          "value": "$268–317",
+          "note": "2027 EPS 約 $4.87 × 55–65 倍；展望至 2027-03-18。"
+        },
+        {
+          "label": "主要風險",
+          "value": "盈利與倍數雙重下修",
+          "note": "DCF 與調整後 EPS 的稅率、股酬及正常化口徑不同；市場區間不代表現金流價值同步升至該水平。"
+        }
+      ]
+    },
+    {
+      "key": "technicals",
+      "paragraphs": [
+        {
+          "lead": "長線向上，日線接近突破關口。",
+          "text": "月／週線看長期位置，日線同時用來判斷目前結構和入場時機。股價高於上行中的 200 日線；近一個月升約 34.3%，同期 SPY 約跌 0.6%，但近三個月仍落後 SPY。"
+        },
+        {
+          "text": "9 月 17 日高位為 $288，收市 $280.76，尚未確認站穩舊高。$249–253 是綜合前高、回踩低點與價格結構的判斷區；本次沒有套用完整 SMC 訊號。"
+        }
+      ],
+      "rows": [
+        {
+          "label": "支撐",
+          "value": "$249–253",
+          "note": "回踩是否守住，影響候選入場計劃。"
+        },
+        {
+          "label": "近期阻力",
+          "value": "$281–284",
+          "note": "進一步看能否收穩 $288 上方；單次盤中突破不足。"
+        },
+        {
+          "label": "上方關口",
+          "value": "$303–310；$320–323",
+          "note": "影響突破後的可用上行空間。"
+        },
+        {
+          "label": "200 日均線",
+          "value": "約 $198",
+          "note": "趨勢參考，不等於公司內在價值。"
+        }
+      ],
+      "figure": {
+        "file": "be-daily-2026-09-17.png",
+        "alt": "BE 日線蠟燭圖、成交量、50 與 200 日均線，標示 249 至 253 美元支撐及 281 至 284 美元阻力",
+        "caption": "截至 2026-09-17 收市，Longbridge 未復權日線；均線以完整歷史計算後顯示近半年。支阻為本次分析判斷。點圖可放大。"
+      }
+    },
+    {
+      "key": "plan",
+      "paragraphs": [
+        {
+          "lead": "未持有：先等。",
+          "text": "留意 $255–263 回踩，須見 $249–253 守住並重新收回約 $260，再評估入場。若直接升穿 $288，先觀察 $280–284 回測，重新計算風報比。"
+        },
+        {
+          "lead": "新回踩交易的參考。",
+          "text": "以 $260 入場、$244 失效、首段目標 $290–300；至基準 $292 的成本後風報比約 1.93，至 $300 約 2.39。$320 只屬強勢延伸情境。"
+        },
+        {
+          "lead": "波動不能忽略。",
+          "text": "ATR 約 $18.87，高於入場至退出的 $16 價差；跳空亦可能令實際損失超過計劃。$244 是這個新交易的退出參考，不是所有長線持倉的統一止蝕。"
+        },
+        {
+          "lead": "改變判斷的訊號。",
+          "text": "盈利預測持續上修、訂單轉收入與收款改善可支持更高目標；相反，毛利惡化、需求推遲或相對走勢轉弱，便要下修預期及重評計劃。"
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "kind": "themes",
+      "slug": "ai-power",
+      "label": "AI 電力：需求如何傳到不同公司"
+    }
+  ],
+  "sources": [
+    {
+      "label": "Bloom Energy 第二季業績",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    },
+    {
+      "label": "Bloom Energy 第二季 10-Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm"
+    },
+    {
+      "label": "市場盈利預測（本次研究於 9 月 18 日讀取）",
+      "url": "https://stockanalysis.com/stocks/be/forecast/"
+    },
+    {
+      "label": "Brookfield 與 Bloom Energy 合作公告",
+      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Brookfield-and-Bloom-Energy-Expand-AI-Infrastructure-Partnership-to-25-Billion-Fivefold-Increase-to-Build-and-Finance-Rapid-Power-for-AI-Infrastructure/default.aspx"
+    },
+    {
+      "label": "S&P 指數調整公告",
+      "url": "https://press.spglobal.com/2026-09-04-Bloom-Energy,-Illumina,-and-Everpure-Set-to-Join-S-P-500-Others-to-Join-S-P-100,-S-P-MidCap-400,-and-S-P-SmallCap-600"
+    }
+  ]
+}
