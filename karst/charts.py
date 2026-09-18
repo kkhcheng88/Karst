@@ -35,7 +35,7 @@ from .structure import (ATR_MULTIPLE, ATR_PERIOD, EVENTS_KEPT, RECLAIM_WINDOW,  
 from .structure import events as structure_events  # noqa: E402
 from .structure import recent as structure_recent  # noqa: E402
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"  # 0.3: derived.json views carry `structure` (KARST-251); bars completion per Session (KARST-250)
 SMA_WINDOWS = (200, 50)
 EMA_SPAN = 20
 VOLUME_BASE = 20      # bars the last volume is compared against
