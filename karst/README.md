@@ -356,3 +356,12 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
 3. 正式研究 worker 的 context 和可用工具由 packet／執行器允許清單決定;不是把整個 repo 交給模型再要求忽略私人資料。MCP 全 server 可用不代表其所有方法可給研究角色。
 4. 強模型讀原文並判斷,程式計算;便宜模型轉換結果不能遮住原文。策略不依賴特定框架或無限 agent 辯論。
 5. 新模組先在本表登記;工作票按通用能力開,換第二股不新增一支程式。P1 只落實必要模組,P2/P3/P4 按設計漸進增加。
+
+
+### 2026-09-19：雲端首次研究與讀回（0.2.3）
+
+- 正常 `refresh_sources` 登記後建立可驗證 working packet，回 `research_input`；失敗回 `packet_error`，不假裝研究已保存。已保存版本的輸入不變。
+- 新 `prepare_research(security, as_of?, evidence_ids?)` 可在補查入庫後明確建立選定快照；未知／重複 ID、截止後資料或身份不符會拒絕。`save_research` 沿用現有嚴格收件檢查。
+- `get_research_context(subject, as_of_version=...)` 回該版完整 `research` 與 `calculation_receipt`；平常目錄查詢仍簡短。跨 subject 版本會拒絕。
+- 更新保存會指回前次 research_id；逐層完整內容未變者保留原 assessed_at，有變者重新標時。目標日期不由程式自動延後。這不等於自動更新路由／排程已交付。
+- EDGAR 正常取數會讀最新 SEC submissions，沒有本機快取亦可工作。明傳 submissions_dir 的重播／fixture 預設維持離線；可用 refresh_index 改設定。線上失敗有可用快取時明記錯誤和快取時間；兩者皆無則回來源錯誤。申報全文的抽取與 10-K 本地副本優先規則未改。

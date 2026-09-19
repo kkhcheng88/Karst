@@ -16,7 +16,7 @@ from . import bars as bars_module, calculations, charts, publish as publish_modu
 from .fetch import broker, defeatbeta, edgar, longbridge, prices
 from .fetch.common import utc_now, write_json, write_meta
 from .fetch.registry import EvidenceRegistry
-from .packet import check_packet, check_research, confined, read_json
+from .packet import build_packet, check_packet, check_research, confined, read_json
 from .schema import ContractError, canonical, digest
 
 # The source port: one entry per adapter module, each exposing KINDS and
@@ -447,7 +447,63 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
         result[bucket] = sorted(set(result[bucket]))
     if store is not None and registered:
         _index(store, bundle, registered)
+    # Refresh is the mutation that advances the working evidence snapshot. Saved
+    # versions retain their own inputs; this never rewrites a research version.
+    if registered:
+        try:
+            result["research_input"] = prepare_research(bundle, security)
+        except ContractError as exc:
+            result["packet_error"] = str(exc)
     return result
+
+
+def prepare_research(bundle, security, *, as_of=None, evidence_ids=None):
+    """Freeze registered inputs for a research run, without invoking a model.
+
+    An explicit selection is supported, but unknown IDs and late observations fail
+    instead of silently disappearing. Diagnostics and missing requirements survive.
+    Older research versions remain immutable in the store.
+    """
+    from .agents.research import CONTRACT
+    from .schema import schemas
+
+    bundle = Path(bundle)
+    records = _registry(bundle).records(contract_version=CONTRACT)
+    if evidence_ids is not None:
+        ids = list(evidence_ids)
+        index = {r["evidence_id"]: r for r in records}
+        if len(ids) != len(set(ids)) or not set(ids) <= set(index):
+            raise ContractError("Evidence selection contains duplicates or unknown IDs")
+        records = [index[eid] for eid in ids]
+    if not records:
+        raise ContractError("No registered sources; refresh or ingest evidence first")
+    fields = schemas(CONTRACT)["evidence"]["$defs"]["security"]["properties"]
+    identity = {key: security[key] for key in fields if key in security}
+    previous_path = bundle / "packet.json"
+    previous = read_json(previous_path) if previous_path.exists() else None
+    if previous and previous["security"]["security_id"] != identity.get("security_id"):
+        raise ContractError("Research security differs from this bundle")
+    now = utc_now()
+    # Keep pending requests; resolved ones belong to the immutable prior snapshot.
+    requests = [r for r in (previous or {}).get("supplement_requests", [])
+                if r["status"] == "pending"]
+    packet = build_packet(
+        records, as_of or now, identity, created_at=now, root=bundle,
+        contract_version=CONTRACT,
+        previous_packet_id=(previous or {}).get("packet_id"),
+        dependencies=[d for d in (previous or {}).get("dependencies", [])
+                      if d["kind"] != "evidence"],
+        supplement_requests=requests)
+    # Validate completely before updating the working files. Each replacement is
+    # atomic; the stored research transaction independently checks the snapshot.
+    for name, value in (("evidence.json", records), ("packet.json", packet)):
+        temporary = bundle / (name + "." + uuid4().hex + ".tmp")
+        temporary.write_bytes(canonical(value))
+        temporary.replace(bundle / name)
+    return {"packet_id": packet["packet_id"], "as_of": packet["as_of"],
+            "security": identity, "evidence_ids": packet["evidence_ids"],
+            "diagnostic_ids": packet["diagnostic_ids"],
+            "requirements": packet["requirements"]}
 
 
 # --- research state ---------------------------------------------------------
@@ -497,6 +553,8 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None)
         view = "current"
     else:
         frozen = _frozen_version(store, as_of_version)
+        if frozen["subject"] != subject:
+            raise ContractError("Research version belongs to a different subject")
         records, packet, view = frozen["evidence"], frozen["packet"], "as_of_research"
     sources = [_summary(record) for record in records]
     pending = [request for request in (packet or {}).get("supplement_requests", [])
@@ -513,6 +571,8 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None)
                                        if v["status"] == "latest"), None),
             "sources": sources, "pending_supplements": pending, "reviews": reviews,
             "latest_review": _review_summary(reviews),
+            "research": frozen["payload"] if as_of_version is not None else None,
+            "calculation_receipt": frozen["calc_receipt"] if as_of_version is not None else None,
             "note": VIEW_NOTES[view] + " Source text is not inlined; read it with read_evidence."}
 
 
@@ -684,10 +744,12 @@ def chart_artifact(store, artifact_id):
 
 # --- save / publish ---------------------------------------------------------
 
-def _intake(payload, *, bundle, role_meta):
+def _intake(payload, *, bundle, role_meta, previous_research=None):
     """Default intake: contract validation only. ``karst.agents.research`` owns the real one."""
     from .agents.research import intake as research_intake  # noqa: PLC0415
-    return research_intake(payload, bundle=bundle, clock=utc_now, role_meta=role_meta)
+    return research_intake(payload, bundle=bundle, clock=utc_now, role_meta=role_meta,
+                           previous_research=previous_research,
+                           previous_version_id=(previous_research or {}).get("research_id"))
 
 
 def _register_requests(bundle, payload):
@@ -777,9 +839,14 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
     # the store keeps the researcher's own fields.
     roles = list(role_meta) if isinstance(role_meta, (list, tuple)) else [dict(role_meta)]
     researcher = next((r for r in roles if r.get("role") == "researcher"), roles[0])
+    previous = (store.get_research(expected_previous_version_id)
+                if expected_previous_version_id else None)
+    if previous and previous["subject"] != subject:
+        raise ContractError("Previous research belongs to a different subject")
     if intake is None:
         try:
-            research = _intake(payload, bundle=bundle, role_meta=roles)
+            research = _intake(payload, bundle=bundle, role_meta=roles,
+                               previous_research=previous["payload"] if previous else None)
         except ImportError:
             research = payload
     else:

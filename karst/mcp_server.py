@@ -167,6 +167,21 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
             type="text", text=json.dumps(meta, ensure_ascii=False, default=str))])
 
     @server.tool
+    def prepare_research(security: dict, as_of: str | None = None,
+                         evidence_ids: list[str] | None = None) -> dict:
+        """Freeze this run's registered evidence, security and cutoff before research.
+
+        Refresh prepares a snapshot automatically. Use this after supplemental
+        ingestion, for an explicit evidence selection, or an update cutoff.
+        No model runs and no research version is saved by this operation.
+        """
+        subject = security.get("security_id")
+        if not subject:
+            raise service.ContractError("security_id is required")
+        return service.prepare_research(one(subject), security, as_of=as_of,
+                                        evidence_ids=evidence_ids)
+
+    @server.tool
     def save_research(payload: dict, subject: str, role_meta: dict,
                       expected_previous_version_id: str | None = None) -> dict:
         """Validate and append a research version; a conflict is returned, never overwritten."""

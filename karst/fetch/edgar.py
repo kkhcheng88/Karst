@@ -245,20 +245,60 @@ def _fetch(http_get, url: str):
         return None, f"{type(exc).__name__}: {exc}"
 
 
+def submissions_index(cik, submissions_dir, http_get, *, refresh=False, out=None):
+    """Use a current SEC index in production; explicit fixture/cache reads stay offline.
+
+    A failed refresh may use a readable cache, with its old timestamp and the failure
+    stated. No cache and no remote index is an error, never an empty company.
+    """
+    cached = None
+    try:
+        cached = load_submissions(cik, submissions_dir)
+    except FileNotFoundError:
+        pass
+    if cached is not None and not refresh:
+        return cached
+    url = f"https://data.sec.gov/submissions/CIK{cik}.json"
+    try:
+        raw = http_get(url)
+        data = json.loads(raw)
+        if str(data.get("cik", "")).zfill(10) != cik:
+            raise ValueError("SEC submissions CIK does not match requested issuer")
+        if not isinstance(data.get("filings", {}).get("recent"), dict):
+            raise ValueError("SEC submissions has no recent filings table")
+        rows = _rows(data["filings"]["recent"])
+        rows.sort(key=lambda r: (r["filingDate"] or "", r["acceptanceDateTime"] or ""), reverse=True)
+        if out is not None:
+            (Path(out) / f"CIK{cik}.submissions.raw.json").write_bytes(raw)
+        return {"header": {"cik": cik, **{k: data.get(k) for k in HEADER_FIELDS}},
+                "rows": rows, "snapshot_mtime_utc": None,
+                "paged_files": [{"name": p["name"], "found_locally": False}
+                                for p in data["filings"].get("files", [])],
+                "online": True}
+    except Exception as exc:
+        if cached is None:
+            raise
+        return {**cached, "refresh_error": f"{type(exc).__name__}: {exc}"}
+
+
 def fetch_filings(cik: str, out_dir, *, forms=("10-K", "10-Q", "8-K"), n_10k=1, n_10q=2, n_8k=2,
                   user_agent: str | None = None, submissions_dir=None, tenk_cache_dir=None, rate: float = 4,
                   ticker: str | None = None, index_slice: int = 40, max_text_chars: int | None = None,
-                  eightk_items=("2.02",), http_get=None) -> list[dict]:
+                  eightk_items=("2.02",), http_get=None, refresh_index=None) -> list[dict]:
     """Land the newest filings of ``cik`` under ``<out_dir>/edgar/``. Returns one summary dict per document."""
     cik = str(cik).zfill(10)
     root = repo_root()
+    # An explicit directory is an offline/replay input by default. The production
+    # adapter has no directory and refreshes SEC even if an old cache is present.
+    if refresh_index is None:
+        refresh_index = submissions_dir is None
     submissions_dir = Path(submissions_dir or root / "data" / "sec" / "submissions")
     tenk_cache_dir = Path(tenk_cache_dir or root / "data" / "sec" / "10k_text")
     out = Path(out_dir) / "edgar"
     out.mkdir(parents=True, exist_ok=True)
     http_get = http_get or HttpGet(user_agent or os.environ.get("KARST_EDGAR_USER_AGENT", ""), rate=rate)
 
-    index = load_submissions(cik, submissions_dir)
+    index = submissions_index(cik, submissions_dir, http_get, refresh=refresh_index, out=out)
     rows = index["rows"]
     slice_rows = rows[:index_slice]
     index_name = f"CIK{cik}.submissions_slice.json"
@@ -266,14 +306,18 @@ def fetch_filings(cik: str, out_dir, *, forms=("10-K", "10-Q", "8-K"), n_10k=1, 
                                   "slice_rule": f"latest {index_slice} by filingDate desc, acceptanceDateTime desc; fields verbatim from submissions JSON",
                                   "filings": slice_rows})
     write_meta(out / index_name,
-               source="edgar", tool="local file data/sec/submissions/CIK<10>.json (+ paged files); EDGAR submissions API snapshot",
+               source="edgar", tool=("EDGAR submissions API live snapshot" if index.get("online") else
+                                      "local file data/sec/submissions/CIK<10>.json (+ paged files); EDGAR submissions API snapshot"),
                params={"ticker": ticker, "cik": cik, "slice": index_slice, "paged_files": index["paged_files"]},
                local_snapshot_mtime_utc=index["snapshot_mtime_utc"],
                published_at=None, published_at_basis=INDEX_BASIS,
                period={"from": slice_rows[-1]["filingDate"] if slice_rows else None, "to": slice_rows[0]["filingDate"] if slice_rows else None},
                truncated={"is_truncated": len(rows) > len(slice_rows), "rule": f"{len(slice_rows)} of {len(rows)} filings"},
                known_gaps=["items empty string for non-8-K forms as in source", "reportDate empty for some forms as in source",
-                           "local snapshot may lag EDGAR by days (see local_snapshot_mtime_utc)"]
+                           *( [] if index.get("online") else
+                              ["local snapshot may lag EDGAR by days (see local_snapshot_mtime_utc)"]),
+                           *(["SEC index refresh failed; using existing cache: " + index["refresh_error"]]
+                             if index.get("refresh_error") else [])]
                           + [f"paged index file {p['name']} not held locally" for p in index["paged_files"] if not p["found_locally"]],
                status="ok" if rows else "empty", source_url=f"https://data.sec.gov/submissions/CIK{cik}.json")
 

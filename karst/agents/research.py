@@ -180,14 +180,15 @@ def _models(role_meta):
     return models, MODE_BY_EXECUTION[execution]
 
 
-def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, protocol=None):
+def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, protocol=None,
+           previous_research=None):
     """Validate one analysis payload and return a complete research.json.
 
     Raises ContractError without writing anything when the payload does not hold up.
     The result carries a ``verified`` fingerprint of what these checks covered, so
     the caller does not have to hash the same evidence a second time.
     """
-    protocol = protocol or get_research_protocol("research")
+    protocol = protocol or get_research_protocol("update" if previous_research else "research")
     bundle = Path(bundle)
     packet, records = read_json(bundle / "packet.json"), read_json(bundle / "evidence.json")
     contract = packet["contract_version"]
@@ -213,8 +214,12 @@ def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, proto
     models, mode = _models(role_meta)
     now = clock() if callable(clock) else clock
     research = {key: copy.deepcopy(payload[key]) for key in PAYLOAD_KEYS}
-    for layer in research["layers"].values():
-        layer["assessed_at"] = now
+    if previous_research and previous_version_id != previous_research["research_id"]:
+        raise ContractError("Previous research identity does not match update reference")
+    for name, layer in research["layers"].items():
+        old = (previous_research or {}).get("layers", {}).get(name)
+        unchanged = old is not None and layer == {k: v for k, v in old.items() if k != "assessed_at"}
+        layer["assessed_at"] = old["assessed_at"] if unchanged else now
     research.update({
         "contract_version": contract, "packet_id": packet["packet_id"],
         "previous_research_id": previous_version_id, "created_at": now, "mode": mode,

@@ -111,6 +111,23 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(context['previous_research']['rating'], previous['rating'])
         self.assertNotIn('layers', context['previous_research'])
 
+    def test_update_preserves_only_identical_layers_and_links_previous_research(self):
+        import copy
+        from datetime import datetime, timedelta
+
+        previous = self.take()
+        update = copy.deepcopy(self.payload)
+        update['layers']['L5']['conclusion']['text'] = '價格結構有實質改變。'
+        later = (datetime.fromisoformat(self.clock.replace('Z', '+00:00')) +
+                 timedelta(hours=1)).isoformat()
+        result = intake(update, bundle=self.bundle, clock=later, role_meta=ROLE_META,
+                        previous_version_id=previous['research_id'], previous_research=previous)
+        self.assertEqual(result['previous_research_id'], previous['research_id'])
+        self.assertEqual(result['target_date'], previous['target_date'])
+        self.assertEqual(result['layers']['L3']['assessed_at'], previous['layers']['L3']['assessed_at'])
+        self.assertEqual(result['layers']['L5']['assessed_at'], later)
+        self.assertEqual(previous['layers']['L5']['assessed_at'], self.clock)
+
 
 if __name__ == '__main__':
     unittest.main()

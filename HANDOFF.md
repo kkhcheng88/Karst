@@ -22,6 +22,8 @@
 
 ## 二、下一步
 
+**2026-09-19 用戶已採納並授權開工（本段優先於下方舊 INTU 隊列）**：W3 先完成 BE 的實質研究問題及首個雲端保存／閱讀發布，再驗真實增量更新；INTU 不按舊驗收名單自動優先。Claude 額度耗盡，GPT 接手必要程式、測試及提交，覆核待另一模型可用，不冒稱已覆核。實跑發現雲端 EDGAR 只讀本地 submissions、MCP 首次刷新沒有建立 packet；本輪修通即繼續主研究，不擴指標。
+
 **2026-09-19 GPT 獨立讀圖補驗**：本對話 Karst MCP 連線、protocol／context／evidence、BE 最新取價及兩股四視圖均成功；GPT 實際讀到八張 PNG，read_chart 與 render_charts 的 artifact／sha metadata 一致（未另做 byte hash）。BE 用新收市快照，AXTI 沿用舊盤中快照且隔日仍標未完成。**連線及 charts 0.3.1 圖像傳輸已通過；正式投研仍未做。** 另有兩項具體修正：週／月 resample 要等下一期出現才確認，致 BE 週五收市後仍標未確認；標籤移位無引線，AXTI DR 的 56.90／61.86 字樣飄到遠高於實際價位的位置，影響視覺判讀。兩項不屬連線故障，也不應因讀圖成功而略過。工程回覆與回執見 [GPT驗收](cards/runs/engineering-acceptance-2026-09-19/GPT驗收.json)。本輪未新增研究版本、估值或投資建議；BE／AXTI 雲端 versions 仍為空。（主 agent 同日補記:兩項已修,charts 0.3.2,見下段。）
 
 **2026-09-18 最新取捨：Less is more**：用戶要求只加入有實際增量價值的能力。[Claude Code 執行計劃](strategy/specs/SMC與TA工具箱-ClaudeCode執行計劃-v1.md) 已收窄為 v1.1：T0 修正資料可靠性 → T1 最小 SMC 結構及增量用途驗收 → T3 正式研究／讀圖／發布。撤除 T2a 必做要求；AVWAP、Volume Profile、Squeeze、自動形態及新增 RS 引擎均為按缺口取用，SMC 的 internal／OB／FVG 亦不要求一次全建。兩套 FUTU 指標現不納入。TradingView 接入須有實際資料用途。先以既有工具交付分析，完成後回 W3／INTU 與 W4 增量主線；本次只改規劃與交接。
