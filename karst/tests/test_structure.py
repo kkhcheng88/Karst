@@ -35,7 +35,8 @@ def path(turns, *, leg=4, wick=0.6, start=date(2026, 1, 5), volume=1000.0,
     for index, (close, turn) in enumerate(zip(prices, turning)):
         rising = close >= previous
         top, bottom = max(previous, close), min(previous, close)
-        day = start + timedelta(days=index)
+        # weekdays only: a week that closed on Friday must not gain a Saturday bar
+        day = start + timedelta(days=index + 2 * (index // 5))
         bars.append({"at": f"{day.isoformat()}T20:00:00Z", "open": previous, "close": close,
                      "high": top + (wick if turn and rising else wick / 3),
                      "low": bottom - (wick if turn and not rising else wick / 3),

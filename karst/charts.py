@@ -36,7 +36,7 @@ from .structure import (ATR_MULTIPLE, ATR_PERIOD, EVENTS_KEPT, RECLAIM_WINDOW,  
 from .structure import events as structure_events  # noqa: E402
 from .structure import recent as structure_recent  # noqa: E402
 
-VERSION = "0.3.1"  # 0.3.1: zone tolerance is a share of price; captions do not overlap and
+VERSION = "0.3.2"  # 0.3.1: zone tolerance is a share of price; captions do not overlap and
                    # name the provider, not the evidence id
                    # 0.3: derived.json views carry `structure` (KARST-251); bars completion per Session (KARST-250)
 SMA_WINDOWS = (200, 50)
@@ -50,6 +50,7 @@ ZONE_ATR_SHARE = 0.25  # a support/resistance band is a quarter-ATR wide before 
 ZONE_FLOOR = 0.004    # ...and never narrower than 0.4% of the price it sits at
 ZONES_KEPT = 8        # zones nearest the last close that reach derived.json
 CAPTION_GAP = 11      # points between two edge captions before one sits on the other
+CAPTION_MAX_SHIFT = 4 * CAPTION_GAP  # further than this and the nearer free slot below wins
 # ponytail: the price axes is roughly this tall in points at this figure size. The real
 # transform is not settled until the y-limits are applied — which happens after the
 # captions are placed — so collisions are resolved in an approximate space. Upgrade path
@@ -95,14 +96,28 @@ def _period(bar, rule):
     return day.replace(day=1).isoformat()
 
 
+def _period_last_weekday(key, rule):
+    """The last weekday of the period that starts on ``key``: Friday of that week, or
+    the last Monday-to-Friday of that month. A holiday landing there is not known here,
+    so such a period stays unconfirmed until the next one starts — the safe error."""
+    start = dt.date.fromisoformat(key)
+    if rule == "W":
+        return (start + dt.timedelta(days=4)).isoformat()
+    following = (start.replace(day=28) + dt.timedelta(days=4)).replace(day=1)
+    last = following - dt.timedelta(days=1)
+    return (last - dt.timedelta(days=max(0, last.weekday() - 4))).isoformat()
+
+
 def resample(bars, rule):
     """Daily bars -> weekly (Monday-anchored) or monthly bars; the last one may be open.
 
     Every bar carries ``end``: the timestamp of the last daily bar inside it, which is
     where a daily moving average is read when it is mapped onto this period.
 
-    A period is complete only when every bar in it is complete AND a later period
-    has started: an unfinished week must not feed a moving average.
+    A period is complete only when every bar in it is complete AND either a later period
+    has started or its last bar falls on the period's last weekday: a week fetched after
+    Friday's close is finished on Friday night, not next Monday. An unfinished week must
+    not feed a moving average.
     """
     if rule == "D":
         return [{**bar, "end": bar["at"]} for bar in bars]
@@ -117,7 +132,9 @@ def resample(bars, rule):
                     "open": group[0]["open"], "close": group[-1]["close"],
                     "high": max(b["high"] for b in group), "low": min(b["low"] for b in group),
                     "volume": sum(b.get("volume") or 0.0 for b in group),
-                    "complete": index < len(keys) - 1 and all(b["complete"] for b in group)})
+                    "complete": all(b["complete"] for b in group) and
+                    (index < len(keys) - 1
+                     or group[-1]["at"][:10] == _period_last_weekday(key, rule))})
     return out
 
 
@@ -303,14 +320,22 @@ class _Captions:
         ceiling = CAPTION_AXIS_POINTS - CAPTION_GAP
         base = min(natural + (-CAPTION_GAP if below else 3), ceiling)
         wanted = self._free(base, CAPTION_GAP, used)
-        if wanted > ceiling:
-            wanted = self._free(base, -CAPTION_GAP, used)
+        if wanted > ceiling or wanted - base > CAPTION_MAX_SHIFT:
+            downward = self._free(base, -CAPTION_GAP, used)
+            if downward >= 0 and (wanted > ceiling or base - downward < wanted - base):
+                wanted = downward
         used.append(wanted)
+        shift = wanted - natural
+        # A caption pushed more than a line off its price gets a leader back to it,
+        # or the text reads as if it named whatever price it happens to sit beside.
+        leader = ({"arrowprops": {"arrowstyle": "-", "color": colour, "linewidth": 0.5,
+                                  "alpha": 0.7, "shrinkA": 0, "shrinkB": 0}}
+                  if abs(shift) > CAPTION_GAP else {})
         self.axis.annotate(text, xy=((self.right if side else 0) if x is None else x, price),
-                           xytext=(-4 if side else 4, wanted - natural),
+                           xytext=(-4 if side else 4, shift),
                            textcoords="offset points", fontsize=7, color=colour,
                            # over the bands and lines it describes, never under them
-                           ha="right" if side else "left", zorder=7)
+                           ha="right" if side else "left", zorder=7, **leader)
 
 
 def _candles(axis, bars):

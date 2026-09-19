@@ -262,10 +262,26 @@ class CompletionTests(ReliabilityCase):
         weekly = {week['at']: week['complete'] for week in charts.resample(daily, 'W')}
         self.assertEqual(weekly, {'2026-08-24': True, '2026-08-31': True,
                                   '2026-09-07': False,   # holds the unconfirmed Friday
-                                  '2026-09-14': False})  # the week still running
+                                  '2026-09-14': True})   # fetched after Friday's close
         monthly = {month['at']: month['complete'] for month in charts.resample(daily, 'M')}
         self.assertEqual(monthly, {'2026-08-01': True,     # every August day was confirmed
                                    '2026-09-01': False})   # September holds the open day
+
+
+class PeriodEndTests(unittest.TestCase):
+    def test_period_last_weekday(self):
+        self.assertEqual(charts._period_last_weekday('2026-09-14', 'W'), '2026-09-18')
+        self.assertEqual(charts._period_last_weekday('2026-09-01', 'M'), '2026-09-30')
+        self.assertEqual(charts._period_last_weekday('2026-05-01', 'M'), '2026-05-29')  # 31st is Sunday
+        self.assertEqual(charts._period_last_weekday('2026-02-01', 'M'), '2026-02-27')
+
+    def test_week_fetched_after_friday_close_is_complete_without_a_next_week(self):
+        daily = [{'at': f'{day}T00:00:00Z', 'open': 1.0, 'high': 1.0, 'low': 1.0, 'close': 1.0,
+                  'volume': 0.0, 'complete': True} for day in weekdays('2026-09-14', 5)]
+        self.assertTrue(charts.resample(daily, 'W')[-1]['complete'])
+        daily[-1]['complete'] = False  # Friday fetched mid-session
+        self.assertFalse(charts.resample(daily, 'W')[-1]['complete'])
+        self.assertFalse(charts.resample(daily[:-1], 'W')[-1]['complete'])  # ends Thursday
 
 
 if __name__ == '__main__':
