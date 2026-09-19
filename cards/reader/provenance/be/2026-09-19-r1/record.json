@@ -1,0 +1,61 @@
+{
+  "record_type": "engineering_end_to_end_sample",
+  "ticket": "KARST-252",
+  "subject": "NYSE:BE",
+  "label": "工程樣本、未經覆核、不是投資建議",
+  "is_investment_advice": false,
+  "rating_issued": null,
+  "formal_karst_version_id": null,
+  "formal_review_completed": false,
+  "supersedes_formal_publication": false,
+  "supersedes_reader_edition": null,
+  "public_stock_summary": "reports/stocks/be/2026-09-19-r1.json",
+  "agent_material": ["chart-derived.json", "refresh-sources.json"],
+  "service": {
+    "endpoint": "https://karst.zeabur.app/mcp",
+    "transport": "streamable HTTP over GitHub OAuth session",
+    "charts_version": "0.3.0",
+    "tools_called": ["get_research_context", "refresh_sources", "render_charts", "read_chart"]
+  },
+  "market_cutoff": {
+    "data_as_of": "2026-09-18T18:54:14Z",
+    "last_bar": "2026-09-18T04:00:00+00:00",
+    "last_bar_complete": false,
+    "reason": "the 2026-09-18 US regular session was still open at fetch time (about 14:54 US Eastern)"
+  },
+  "evidence": {
+    "daily_candles": "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+    "daily_candles_fetched_at": "2026-09-18T18:54:05Z",
+    "daily_candles_sha256": "0b5596635af6818fe639452d14c8aae663b0ae8ee4301e0428c4b2068000257b",
+    "price_basis": "adjust=NoAdjust period=Day session=unknown",
+    "quote": "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e"
+  },
+  "chart_artifacts": {
+    "M": "cha-c11d0cd49abe11143424cd9322c0d0c374fd843612542d83a90cb9f56bfa7ae0",
+    "W": "cha-b0195a482c1414f5cc57a46ce44473e94646a8c0d28f98b9a18996bd0fef0a59",
+    "D": "cha-d86909217af743aef960cf860267fff38642153effd6a0d34a1e9022919495f6",
+    "DR": "cha-23d16caf43c20c1b2db16d0655ceb03d4840b27febd5a56c94033e539aaaceec"
+  },
+  "public_asset": {
+    "file": "assets/be-daily-2026-09-19.png",
+    "from_artifact": "DR (daily_recent)",
+    "sha256_verified_against_server_record": true
+  },
+  "cross_check": {
+    "method": "python -m karst.fetch.longbridge --symbol BE.US --start 2026-09-10 (local .env credentials)",
+    "fetched_at": "2026-09-18T18:55:37Z",
+    "last_candle": {"date": "2026-09-18", "open": 284.81, "high": 285.10, "low": 266.72, "close": 270.31, "volume": 11401874},
+    "cloud_reading_90s_earlier": {"last_close": 270.94, "volume": 11369995},
+    "conclusion": "same bar, still moving; the divergence is the live session, and last_bar_complete=false is correct."
+  },
+  "limitations": [
+    "Prices only. No filings, transcripts, estimates or fundamentals were fetched, and no valuation was run.",
+    "No research version was created or saved; the local re-publication reused an existing stored version without changing it.",
+    "The published PNG is the cloud chart as served, and its footer text contains the source evidence id. Public HTML is scrubbed of such identifiers, but image pixels are not scanned by the reader builder.",
+    "GPT-side chart reading and research acceptance are outstanding; nothing here claims they passed."
+  ],
+  "defects_observed": [
+    "Re-publishing a stored version cannot rebuild its chart measurements: the version's own evidence index holds no long daily candle series, so karst.service._publication_bars falls back to an empty or 15-bar series and the release loses its confirmed pivots and MA200.",
+    "Structure and zone labels overlap into an unreadable block on the full-history D and W views."
+  ]
+}

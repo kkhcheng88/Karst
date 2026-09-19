@@ -802,6 +802,33 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
         packet=packet, evidence=selected)
 
 
+BARS_SHORTFALL = 0.9  # a rebuilt daily series under this share of the recorded one is a loss
+
+
+def _check_technical_basis(research, rebuilt, gaps, as_of):
+    """Refuse to publish a chart materially thinner than the one the version measured.
+
+    The version recorded how many daily bars its technical reading stood on. Rebuilding
+    that series from the version's own evidence can come up short — the series was never
+    registered, or the only snapshot that holds it was fetched after this cutoff and the
+    replay guard (KARST-250) will not read it back. Either way the page still renders:
+    fewer pivots, no 200-day average, and nothing on it saying so. A publication that
+    quietly loses figures somebody already read is worse than one that fails.
+    """
+    recorded = (((research.get("technical") or {}).get("derived") or {})
+                .get("bars_count") or {}).get("D") or 0
+    found = len((rebuilt or {}).get("D") or [])
+    if not recorded or found >= BARS_SHORTFALL * recorded:
+        return
+    cause = ("; ".join(gaps) if gaps else
+             f"no prices evidence in this version holds a daily series as of {as_of}")
+    raise ContractError(
+        f"This version's technical reading stands on {recorded} daily bars; rebuilding "
+        f"them from its own evidence yields {found}. Publishing would silently drop the "
+        f"pivots and averages behind the chart. Cause: {cause}. Pass bars= from a "
+        "registered series, or re-render at a cutoff the evidence existed at.")
+
+
 def _publication_bars(bundle, packet, records, research, bars, bars_provider):
     """This run's price arrays: from registered candlesticks, else from a live provider.
 
@@ -816,14 +843,18 @@ def _publication_bars(bundle, packet, records, research, bars, bars_provider):
         # An older saved research already carries its arrays; a second set would be
         # two sources of truth for the same chart.
         return None
-    if bars is not None:
+    if bars is not None:  # the caller vouched for these; nothing was rebuilt to compare
         return bars_module.views(bars)
-    from_evidence = bars_module.from_evidence(bundle, records, packet["as_of"])
-    if from_evidence:
-        return from_evidence
-    if callable(bars_provider):
-        return bars_module.views(bars_provider(packet["security"], packet["as_of"]))
-    return None
+    as_of = packet["as_of"]
+    session = bars_module.Session.for_exchange((packet.get("security") or {}).get("exchange"))
+    found = bars_module.series_from_evidence(bundle, records, as_of, session=session)
+    rebuilt = found["bars"] if found else None
+    if not rebuilt and callable(bars_provider):
+        rebuilt = bars_module.views(bars_provider(packet["security"], as_of))
+    _check_technical_basis(research, rebuilt,
+                           (found or {}).get("source", {}).get("gaps")
+                           or bars_module.refused_prices(records, as_of), as_of)
+    return rebuilt
 
 
 def publication_id_at(page_path):

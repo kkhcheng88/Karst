@@ -1,0 +1,61 @@
+{
+  "record_type": "engineering_end_to_end_sample",
+  "ticket": "KARST-252",
+  "subject": "NASDAQ:AXTI",
+  "label": "工程樣本、未經覆核、不是投資建議",
+  "is_investment_advice": false,
+  "rating_issued": null,
+  "formal_karst_version_id": null,
+  "formal_review_completed": false,
+  "supersedes_formal_publication": false,
+  "supersedes_reader_edition": null,
+  "public_stock_summary": "reports/stocks/axti/2026-09-19-r1.json",
+  "agent_material": ["chart-derived.json", "refresh-sources.json"],
+  "service": {
+    "endpoint": "https://karst.zeabur.app/mcp",
+    "transport": "streamable HTTP over GitHub OAuth session",
+    "charts_version": "0.3.0",
+    "tools_called": ["get_research_context", "refresh_sources", "render_charts", "read_chart"]
+  },
+  "market_cutoff": {
+    "data_as_of": "2026-09-18T18:54:23Z",
+    "last_bar": "2026-09-18T04:00:00+00:00",
+    "last_bar_complete": false,
+    "reason": "the 2026-09-18 US regular session was still open at fetch time (about 14:54 US Eastern)"
+  },
+  "evidence": {
+    "daily_candles": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+    "daily_candles_fetched_at": "2026-09-18T18:54:06Z",
+    "daily_candles_sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+    "price_basis": "adjust=NoAdjust period=Day session=unknown",
+    "quote": "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d"
+  },
+  "chart_artifacts": {
+    "M": "cha-1eb13e604e4088135a4c4b4ffbfca1496cc5aaca6b48f96deacc589c2fd8cf35",
+    "W": "cha-eb8acbe246b6626dc1e87efe67d3ad3787ff91b2ccaba41c3c21ea55b90c885f",
+    "D": "cha-fa899ff8e0ad46d2b3694f98f23862a78e3db2e050f3af2be1ba8af77d5ad1b3",
+    "DR": "cha-8645200b78ce37531ccc4737584fa6e79f739e15310ca159571064c6fe2d7db6"
+  },
+  "public_asset": {
+    "file": "assets/axti-daily-2026-09-19.png",
+    "from_artifact": "DR (daily_recent)",
+    "sha256_verified_against_server_record": true
+  },
+  "cross_check": {
+    "method": "python -m karst.fetch.longbridge --symbol AXTI.US --start 2026-09-10 (local .env credentials)",
+    "fetched_at": "2026-09-18T18:55:38Z",
+    "last_candle": {"date": "2026-09-18", "open": 70.18, "high": 71.08, "low": 67.67, "close": 69.56, "volume": 5551927},
+    "cloud_reading_90s_earlier": {"last_close": 69.38, "volume": 5527241},
+    "conclusion": "same bar, still moving; the divergence is the live session, and last_bar_complete=false is correct."
+  },
+  "limitations": [
+    "Prices only. No filings, transcripts, estimates or fundamentals were fetched, and no valuation was run.",
+    "No research version was created or saved; the local re-publication reused an existing stored version without changing it.",
+    "The published PNG is the cloud chart as served, and its footer text contains the source evidence id. Public HTML is scrubbed of such identifiers, but image pixels are not scanned by the reader builder.",
+    "GPT-side chart reading and research acceptance are outstanding; nothing here claims they passed."
+  ],
+  "defects_observed": [
+    "Re-publishing a stored version cannot rebuild its chart measurements: the version's evidence index yields only a 15-bar snippet, so the release reports 2 confirmed pivots instead of 253 and no MA200.",
+    "On the daily_recent view the structure and zone labels pile up in one price band and overlap; on the monthly view a single zone spans about $1.13 to $7.12 while price is near $69, which is not a usable level."
+  ]
+}

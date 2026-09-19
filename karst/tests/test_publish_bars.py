@@ -49,7 +49,7 @@ def stage_prices(rows, *, fetched_at=None, into=None, adjust='NoAdjust'):
 
 
 class PublicationBarTests(unittest.TestCase):
-    def build(self, stage=None):
+    def build(self, stage=None, bars_count=(0, 0, 0)):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
@@ -57,7 +57,8 @@ class PublicationBarTests(unittest.TestCase):
         self.evidence_id = citable(self.bundle, self.records)
         self.store = store_module.init(self.root / 'karst.sqlite3')
         self.addCleanup(self.store.close)
-        research = intake(payload(self.packet, self.evidence_id), bundle=self.bundle,
+        research = intake(payload(self.packet, self.evidence_id, bars_count=bars_count),
+                          bundle=self.bundle,
                           clock=self.packet['created_at'], role_meta=ROLE_META)
         (self.bundle / 'research.json').write_bytes(canonical(research))
         self.version = self.store.save_research_version(SUBJECT, research,
@@ -119,6 +120,30 @@ class PublicationBarTests(unittest.TestCase):
                        'close': 1.5, 'volume': 10, 'complete': True}]}
         with self.assertRaisesRegex(ContractError, 'after the research cutoff'):
             self.publish(bars=late)
+
+    def explicit_bars(self, days=3):
+        """Bars the caller vouches for, the way a runner hands over the series it charted."""
+        rows = candles(days=days,
+                       end=date.fromisoformat(self.packet['as_of'][:10]) - timedelta(days=1))
+        return [{'at': row['timestamp'], 'open': float(row['open']), 'high': float(row['high']),
+                 'low': float(row['low']), 'close': float(row['close']),
+                 'volume': row['volume'], 'complete': True} for row in rows]
+
+    def test_a_chart_thinner_than_the_version_measured_is_refused_not_published(self):
+        # The saved version stands on 300 daily bars. Its own evidence holds no series to
+        # rebuild them from, so the page would publish with no pivots and no 200-day
+        # average — and nothing on it saying a figure went missing.
+        self.build(bars_count=(300, 60, 15))
+        with self.assertRaisesRegex(ContractError, 'no prices evidence'):
+            self.publish()
+        released = self.publish(bars=self.explicit_bars())
+        self.assertIn('<svg', Path(released['index_html']).read_text(encoding='utf-8'))
+
+    def test_a_short_rebuilt_series_is_refused_as_loudly_as_none_at_all(self):
+        # The dangerous half: a handful of bars still draws a plausible-looking chart.
+        self.build(stage_prices(candles(days=6)), bars_count=(300, 60, 15))
+        with self.assertRaisesRegex(ContractError, '300 daily bars'):
+            self.publish()
 
     def test_rows_that_are_not_candles_are_dropped_not_repaired(self):
         self.build()

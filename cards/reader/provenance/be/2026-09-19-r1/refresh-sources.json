@@ -1,0 +1,91 @@
+{
+ "added": [
+  "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0"
+ ],
+ "changed": [
+  "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+  "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8"
+ ],
+ "unchanged": [
+  "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5"
+ ],
+ "failed": [],
+ "uncovered": [],
+ "adapter_errors": {},
+ "records": [
+  {
+   "evidence_id": "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+   "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+   "source": "longbridge",
+   "kind": "prices",
+   "status": "ok",
+   "published_at": null,
+   "fetched_at": "2026-09-18T18:54:04Z",
+   "period": {
+    "start": null,
+    "end": null
+   },
+   "truncated": false,
+   "source_url": null,
+   "title": "calc_indexes",
+   "status_reason": null,
+   "known_gaps": []
+  },
+  {
+   "evidence_id": "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+   "source_id": "src-ea9a35bec7cfb88abdaec8a78de5c58c3ae660a74b77b11e8f2a39773f33a0e7",
+   "source": "longbridge",
+   "kind": "prices",
+   "status": "ok",
+   "published_at": null,
+   "fetched_at": "2026-09-18T18:54:05Z",
+   "period": {
+    "start": null,
+    "end": null
+   },
+   "truncated": false,
+   "source_url": null,
+   "title": "history_candlesticks_by_date",
+   "status_reason": null,
+   "known_gaps": []
+  },
+  {
+   "evidence_id": "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+   "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+   "source": "longbridge",
+   "kind": "prices",
+   "status": "ok",
+   "published_at": null,
+   "fetched_at": "2026-09-18T18:54:04Z",
+   "period": {
+    "start": null,
+    "end": null
+   },
+   "truncated": false,
+   "source_url": null,
+   "title": "quote",
+   "status_reason": null,
+   "known_gaps": []
+  },
+  {
+   "evidence_id": "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+   "source_id": "src-57c3ec471428b73800fd7a27987ba7f0fe4d4dc0ac3a7e040d1889927fe3dcb6",
+   "source": "longbridge",
+   "kind": "profile",
+   "status": "ok",
+   "published_at": null,
+   "fetched_at": "2026-09-17T16:51:06Z",
+   "period": {
+    "end": null,
+    "start": null
+   },
+   "truncated": false,
+   "source_url": null,
+   "title": "static_info",
+   "status_reason": null,
+   "known_gaps": []
+  }
+ ],
+ "bundle": "/data/companies/NYSE_BE/bundle",
+ "staging": "/data/tmp/refresh-2026-09-18T185404Z-NYSE_BE-8d889a8a"
+}

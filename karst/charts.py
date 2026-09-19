@@ -19,6 +19,7 @@ identity arrives as a title, and where it lands arrives as a path.
 from __future__ import annotations
 
 import datetime as dt
+import math
 from pathlib import Path
 
 import matplotlib
@@ -35,7 +36,9 @@ from .structure import (ATR_MULTIPLE, ATR_PERIOD, EVENTS_KEPT, RECLAIM_WINDOW,  
 from .structure import events as structure_events  # noqa: E402
 from .structure import recent as structure_recent  # noqa: E402
 
-VERSION = "0.3.0"  # 0.3: derived.json views carry `structure` (KARST-251); bars completion per Session (KARST-250)
+VERSION = "0.3.1"  # 0.3.1: zone tolerance is a share of price; captions do not overlap and
+                   # name the provider, not the evidence id
+                   # 0.3: derived.json views carry `structure` (KARST-251); bars completion per Session (KARST-250)
 SMA_WINDOWS = (200, 50)
 EMA_SPAN = 20
 VOLUME_BASE = 20      # bars the last volume is compared against
@@ -44,8 +47,16 @@ RECENT_BARS = 90      # the zoom: enough context to place a setup, few enough to
 LOG_SCALE_RATIO = 4.0  # high/low ratio inside a window beyond which a log axis reads better
 FLAT_BAND = 0.001     # |change| under 0.1% over DIRECTION_BARS is called flat, not a trend
 ZONE_ATR_SHARE = 0.25  # a support/resistance band is a quarter-ATR wide before it is a line
-ZONE_FLOOR = 0.004    # ...and never narrower than 0.4% of the last close
+ZONE_FLOOR = 0.004    # ...and never narrower than 0.4% of the price it sits at
 ZONES_KEPT = 8        # zones nearest the last close that reach derived.json
+CAPTION_GAP = 11      # points between two edge captions before one sits on the other
+# ponytail: the price axes is roughly this tall in points at this figure size. The real
+# transform is not settled until the y-limits are applied — which happens after the
+# captions are placed — so collisions are resolved in an approximate space. Upgrade path
+# if a font or figure size ever makes this wrong: draw once, then place against the axes.
+CAPTION_AXIS_POINTS = 300
+DENSE_CAPTIONS = 2    # bands a full-history view names in words; the rest stay bands
+ZONE_CAPTIONS = 4     # ...the zoom names every band it draws
 
 # view key -> (resample rule, file stem, bars drawn (None = all), what the view is for,
 #              pivot half-width, overlays drawn on it)
@@ -184,6 +195,10 @@ def pivot_zones(bars, width, tolerance):
     A level is a zone, not a line: neighbouring pivots within ``tolerance`` join one
     band. Every anchor keeps the day the pivot **formed** and the later day it was
     **confirmed** apart, because only the second one was knowable at the time.
+
+    ``tolerance`` is a *share of the band's own floor*, not a cash amount. A band a
+    quarter-ATR wide at today's price is a band twenty times too wide four years ago,
+    which on a log multi-year view merges every early low into one meaningless slab.
     """
     zones = []
     for pivot in sorted(confirmed_pivots(bars, width=width), key=lambda p: p["price"]):
@@ -192,7 +207,7 @@ def pivot_zones(bars, width, tolerance):
         # Joined against the band's own floor, not its running top: chaining pivot to
         # pivot would let one "zone" creep across half the chart.
         zone = next((z for z in zones if z["pivots"] == pivot["kind"]
-                     and pivot["price"] <= z["lower"] + 2 * tolerance), None)
+                     and pivot["price"] <= z["lower"] * (1 + 2 * tolerance)), None)
         if zone is None:
             zones.append({"pivots": pivot["kind"], "lower": pivot["price"],
                           "upper": pivot["price"], "anchors": [anchor]})
@@ -220,9 +235,13 @@ def key_levels(bars, width, tolerance):
     inside = [z for z in zones if last is not None and z["lower"] <= last <= z["upper"]]
     nearest = sorted(zones, key=lambda z: min(abs(z["lower"] - last), abs(z["upper"] - last))
                      if last is not None else 0)[:ZONES_KEPT]
-    return {"last_close": last, "tolerance": tolerance,
-            "tolerance_method": (f"max({ZONE_ATR_SHARE} x ATR{ATR_PERIOD}, "
-                                 f"{ZONE_FLOOR} x last close)"),
+    return {"last_close": last, "tolerance_pct": tolerance,
+            # The cash width the share comes to at today's price, so the number stays
+            # readable next to the levels; the share is what the clustering used.
+            "tolerance": None if last is None else tolerance * last,
+            "tolerance_method": (f"share of price: max({ZONE_ATR_SHARE} x ATR{ATR_PERIOD} / "
+                                 f"last close, {ZONE_FLOOR}); a band takes pivots within "
+                                 "twice that of its own floor"),
             "zones_found": len(zones), "zones": nearest,
             "resistance": min(above, key=lambda z: z["lower"]) if above else None,
             "support": max(below, key=lambda z: z["upper"]) if below else None,
@@ -248,6 +267,52 @@ def _plain(values):
     return [None if value != value else float(value) for value in values]  # noqa: PLR0124
 
 
+class _Captions:
+    """Edge captions placed so that two of them never land on the same line.
+
+    Everything a chart says in words arrives here, so one stack of used positions covers
+    zones and structure alike: they compete for the same two margins, and a caption
+    placed by one of them has to be visible to the other.
+    """
+
+    def __init__(self, axis, span, scale, right):
+        self.axis, self.span, self.scale, self.right = axis, span, scale, right
+        self.used = ([], [])  # points already taken on the left / on the right
+
+    def _at(self, price):
+        low, high = self.span
+        if self.scale == "log" and low > 0 and price > 0:
+            low, high, price = math.log(low), math.log(high), math.log(price)
+        return (price - low) / ((high - low) or 1.0) * CAPTION_AXIS_POINTS
+
+    @staticmethod
+    def _free(start, step, used):
+        while any(abs(start - other) < CAPTION_GAP for other in used):
+            start += step
+        return start
+
+    def add(self, text, price, colour, side, *, x=None, below=False):
+        """One caption beside ``price``, nudged clear of the ones already there.
+
+        Upwards first, and downwards from the anchor when there is no room above: a
+        caption written off the top edge is as lost as one written under another, and
+        one marched to the far side of the frame no longer names the line it belongs to.
+        ``side`` 0 writes from the left frame, 1 from the right.
+        """
+        natural, used = self._at(price), self.used[side]
+        ceiling = CAPTION_AXIS_POINTS - CAPTION_GAP
+        base = min(natural + (-CAPTION_GAP if below else 3), ceiling)
+        wanted = self._free(base, CAPTION_GAP, used)
+        if wanted > ceiling:
+            wanted = self._free(base, -CAPTION_GAP, used)
+        used.append(wanted)
+        self.axis.annotate(text, xy=((self.right if side else 0) if x is None else x, price),
+                           xytext=(-4 if side else 4, wanted - natural),
+                           textcoords="offset points", fontsize=7, color=colour,
+                           # over the bands and lines it describes, never under them
+                           ha="right" if side else "left", zorder=7)
+
+
 def _candles(axis, bars):
     for index, bar in enumerate(bars):
         colour = UP if bar["close"] >= bar["open"] else DOWN
@@ -259,14 +324,19 @@ def _candles(axis, bars):
                  linewidth=0.4, hatch=None if bar["complete"] else "///",
                  alpha=1.0 if bar["complete"] else 0.55, zorder=3)
         if not bar["complete"]:
+            # The hatch, the dotted line and the subtitle already say it: a fourth notice,
+            # written where every right-edge caption lands, only hides one of them.
             axis.axvline(index, color="#777777", linewidth=0.8, linestyle=":", zorder=1)
-            axis.annotate("unconfirmed bar", xy=(index, bar["high"]), xytext=(-6, 6),
-                          textcoords="offset points", fontsize=7, color="#555555", ha="right")
 
 
-def _zones(axis, zones, positions, last_close, span, right):
+def _zones(axis, zones, positions, last_close, span, captions, wanted):
     """Zones that reach the drawn price range. One outside it would only stretch the
-    axis until the candles are a flat ribbon — the full list is in derived.json."""
+    axis until the candles are a flat ribbon — the full list is in derived.json.
+
+    ``wanted`` bands are named in words, nearest the price first; the others are drawn
+    as bands only. Naming all of them on a four-year view is a wall of text over the
+    candles, and the figures are in derived.json either way.
+    """
     low, high = span
     visible = [zone for zone in zones if low <= zone["upper"] and zone["lower"] <= high]
     for order, zone in enumerate(visible):
@@ -274,14 +344,19 @@ def _zones(axis, zones, positions, last_close, span, right):
                 "support" if zone["upper"] < last_close else "at price")
         colour = DOWN if role == "resistance" else UP if role == "support" else "#555555"
         axis.axhspan(zone["lower"], zone["upper"], color=colour, alpha=0.12, zorder=0)
-        side = order % 2  # alternate sides so neighbouring bands do not write over each other
-        axis.annotate(
-            f'{role} {zone["lower"]:g}-{zone["upper"]:g} '
-            f'({zone["touches"]} {zone["pivots"]}s, confirmed {zone["last_confirmed_at"][:10]})',
-            xy=(right if side else 0, zone["upper"]),
-            xytext=(-4 if side else 4, 3 + (order // 2) * 10),  # and stagger upwards
-            textcoords="offset points", fontsize=7, color=colour,
-            ha="right" if side else "left")
+        if order < wanted:
+            # The role is where the band sits *today*; what built it is a count of pivot
+            # highs or lows. Old highs now under the price is the interesting case, so the
+            # caption says both rather than letting one contradict the other.
+            where = {"resistance": "above", "support": "below"}.get(role, "at")
+            captions.add(
+                f'{role} {zone["lower"]:g}-{zone["upper"]:g} ({zone["touches"]} pivot '
+                f'{zone["pivots"]}{"" if zone["touches"] == 1 else "s"}, now {where} price, '
+                f'confirmed {zone["last_confirmed_at"][:10]})',
+                # Alternate margins once there are enough captions to crowd one. Two
+                # long ones on opposite margins at the same height meet in the middle,
+                # which the per-margin stacking cannot see.
+                zone["upper"], colour, order % 2 if wanted > DENSE_CAPTIONS else 0)
         for anchor in zone["anchors"]:
             formed = positions.get(anchor["formed_at"][:10])
             confirmed = positions.get(anchor["confirmed_at"][:10])
@@ -295,21 +370,29 @@ def _zones(axis, zones, positions, last_close, span, right):
         axis.axhline(last_close, color="#333333", linewidth=0.6, linestyle="--", alpha=0.6)
 
 
-def _structure(axis, result, positions, right):
+def _structure(axis, result, positions, right, captions, dense):
     """Only the structure a decision turns on now: the latest break, the levels in
     play, and the last few sweeps. The whole event history is in derived.json — drawn
-    on the picture it would be a wall of lines nobody reads."""
+    on the picture it would be a wall of lines nobody reads.
+
+    On a ``dense`` view — the whole daily history, or four years of weeks — the lines and
+    markers are drawn but only the latest break is named: four more captions stacked at
+    the right edge of a chart whose action is all in its last thirty bars is four captions
+    nobody can read.
+    """
     drawn, state = [], result["state"]
     for event in [e for e in result["events"] if e["kind"] in ("bos", "choch")][-1:]:
         start = positions.get(event["anchor_time"][:10], 0)
         end = positions.get(event["confirmed_at"][:10], right)
         axis.plot([start, end], [event["level"]] * 2, color=STRUCTURE_COLOUR, linewidth=1.5,
                   solid_capstyle="butt", zorder=5)
-        axis.annotate(f'{event["kind"].upper()} {event["direction"]} {event["level"]:g} '
-                      f'({event["confirmed_at"][:10]}, {event["status"]})',
-                      # under the line: the zone captions sit above theirs
-                      xy=(end, event["level"]), xytext=(4, -12), textcoords="offset points",
-                      fontsize=7, color=STRUCTURE_COLOUR)
+        captions.add(f'{event["kind"].upper()} {event["direction"]} {event["level"]:g} '
+                     f'({event["confirmed_at"][:10]}, {event["status"]})',
+                     # Under the line: the zone captions sit above theirs. A break
+                     # confirmed near the right edge reads leftwards, or it would be
+                     # written off the frame — which is where most breaks are.
+                     event["level"], STRUCTURE_COLOUR, 1 if end > right * 0.6 else 0,
+                     x=end, below=True)
         drawn.append(event["event_id"])
     for name, level in (("swing high", state["swing_high"]), ("swing low", state["swing_low"]),
                         ("prior high", state["prior_high"]), ("prior low", state["prior_low"])):
@@ -317,10 +400,8 @@ def _structure(axis, result, positions, right):
             continue
         axis.axhline(level["price"], color=STRUCTURE_COLOUR, linewidth=0.9, linestyle="-.",
                      alpha=0.85, zorder=4)
-        # On the right: the legend and the zone captions live on the left of the frame.
-        axis.annotate(f'{name} {level["price"]:g}', xy=(right, level["price"]),
-                      xytext=(-4, -10 - len(drawn) * 2), textcoords="offset points",
-                      fontsize=7, color=STRUCTURE_COLOUR, ha="right")
+        if not dense:  # on the right: the zone captions start on the left of the frame
+            captions.add(f'{name} {level["price"]:g}', level["price"], STRUCTURE_COLOUR, 1)
         drawn.append(name)
     for event in [e for e in result["events"]
                   if e["kind"] == "sweep"][-STRUCTURE_SWEEPS_DRAWN:]:
@@ -335,7 +416,7 @@ def _structure(axis, result, positions, right):
 
 
 def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, scale,
-          structure=None):
+          structure=None, dense=False):
     """Draw one view and return the series that were actually plotted.
 
     The returned overlays are read back off the axes, not off the caller's arrays: a
@@ -357,18 +438,28 @@ def _draw(path, *, bars, overlays, zones, last_close, title, subtitle, caption, 
     low, high = min(seen), max(seen)
     margin = (high - low) * 0.06 or max(high * 0.01, 1e-9)
     span = (low - margin, high + margin)
+    if scale == "log":
+        span = (max(span[0], low * 0.9), span[1])  # a log axis has no room below zero
+    # Settled before anything is captioned: a caption is placed against the range it
+    # will be read in, not against one the axis is about to leave behind.
     positions = {bar["at"][:10]: index for index, bar in enumerate(bars)}
-    _zones(price, zones, positions, last_close, span, len(bars) - 1)
-    marked = _structure(price, structure, positions, len(bars) - 1) if structure else []
-    price.set_title(_ascii(title) + "\n" + _ascii(subtitle), fontsize=9)
+    captions = _Captions(price, span, scale, len(bars) - 1)
+    _zones(price, zones, positions, last_close, span, captions,
+           DENSE_CAPTIONS if dense else ZONE_CAPTIONS)
+    marked = (_structure(price, structure, positions, len(bars) - 1, captions, dense)
+              if structure else [])
+    price.set_title(_ascii(title) + "\n" + _ascii(subtitle), fontsize=9, pad=26)  # room for the legend
     price.set_ylabel("price")
     if scale == "log":
         price.set_yscale("log")
         price.yaxis.set_major_formatter(ScalarFormatter())
         price.yaxis.set_minor_formatter(ScalarFormatter())
-        span = (max(span[0], low * 0.9), span[1])  # a log axis has no room below zero
     price.set_ylim(*span)
-    price.legend(loc="upper left", fontsize=8)
+    # Outside the frame, above it, in one row: inside the axes it sat exactly where a
+    # chart of a stock that moved puts both its candles and its captions.
+    price.legend(loc="lower left", bbox_to_anchor=(0, 1.0), borderaxespad=0.0,
+                 ncol=max(1, len(price.get_legend_handles_labels()[0])),
+                 fontsize=8, framealpha=0.55)
     legend = list(price.get_legend_handles_labels()[1])
     price.grid(alpha=0.25)
     volumes = [bar.get("volume") or 0.0 for bar in bars]
@@ -435,7 +526,8 @@ def _view(rule, bars, window, overlays, width, purpose, label):
     """Everything measured for one view: the same numbers its picture is drawn from."""
     period_atr = atr(bars)
     last = bars[-1]["close"]
-    tolerance = max(ZONE_ATR_SHARE * (period_atr or 0.0), ZONE_FLOOR * last)
+    # A share of price, not a cash amount: see pivot_zones.
+    tolerance = max(ZONE_ATR_SHARE * (period_atr or 0.0) / last if last else 0.0, ZONE_FLOOR)
     levels = key_levels(bars, width, tolerance)
     drawn = window if window else bars
     return {
@@ -480,7 +572,8 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
                   "atr_period": ATR_PERIOD, "volume_base": VOLUME_BASE,
                   "direction_bars": DIRECTION_BARS, "recent_bars": RECENT_BARS,
                   "scale": scale, "log_scale_ratio": LOG_SCALE_RATIO,
-                  "zone_tolerance": {"atr_share": ZONE_ATR_SHARE, "floor_pct": ZONE_FLOOR},
+                  "zone_tolerance": {"atr_share": ZONE_ATR_SHARE, "floor_pct": ZONE_FLOOR,
+                                     "basis": "share of price"},
                   "moving_average_basis": "daily complete closes, mapped onto weekly / "
                                           "monthly bars at each period's last trading day",
                   "structure": {"rules": list(STRUCTURE_RULES), "atr_multiple": ATR_MULTIPLE,
@@ -509,16 +602,23 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
         subtitle = (f"{measured['drawn_bars']} {rule} bars from {measured['drawn_from']} to "
                     f"{measured['last_bar']} | {measured['scale']} price scale | "
                     f"{'last bar unconfirmed' if not measured['last_bar_complete'] else 'all bars closed'}")
+        # Who the prices came from and when, not which record they are filed under: a
+        # PNG is published, and an internal id printed into pixels cannot be redacted
+        # later. The evidence id stays in derived.json and in the artifact record.
+        origin = ", ".join(part for part in (
+            (source or {}).get("source"),
+            f"fetched {source['fetched_at'][:10]}" if (source or {}).get("fetched_at") else None)
+            if part)
         # The basis is stated even when it is not known: a chart that quietly omits
         # whether its prices are adjusted invites the reader to assume one.
         caption = (f"{CAPTION} | data as of {data_as_of}"
-                   + (f" | source {source['evidence_id']}" if source else "")
+                   + (f" | source {origin}" if origin else "")
                    + f" | price basis {(source or {}).get('price_basis') or 'unstated - check the source record'}")
         drawn = _draw(path, bars=window, overlays=cut, zones=measured["levels"]["zones"][:4],
                       last_close=measured["last_close"],
                       title=f"{title or 'price'} | {name} | {purpose}",
                       subtitle=subtitle, caption=caption, scale=measured["scale"],
-                      structure=found)
+                      structure=found, dense=limit is None)
         data = path.read_bytes()
         # The file is named after its own content, so tomorrow's render of the same
         # view lands beside this one instead of over it: an artifact promised to be

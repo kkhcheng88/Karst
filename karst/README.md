@@ -87,19 +87,27 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 `output.schema.json` / 提示詞、中途失敗整個刪掉)住在一處。`extra_files` 讓呼叫者多帶
 幾個檔(例如 `charts/`),提示詞檔名由呼叫者給(主研究 `prompt.md`、覆核 `review.md`)。
 
-**模型可讀的標準圖**(`karst/charts.py` 0.2.0,matplotlib Agg):
+**模型可讀的標準圖**(`karst/charts.py` 0.3.1,matplotlib Agg):
 `service.render_charts(bundle, out_dir, store=…)` 由**已登記的日線證據**組本次陣列,畫
 **四張 PNG**——月(長期位置)、週(主要趨勢)、日線全貌、近期放大(最後 90 根,足以看
 K 棒實體與影線)。每張都是 **OHLC 蠟燭 + 成交量**(另畫 20 根平均量),均線是**曲線**:
 200／50 日 SMA 與 20 日 EMA **先用完整歷史計算,再裁到該視窗**,所以放大圖照樣看得出
 200 日線的真實斜率;週／月圖映射的是同一條**日線**均線,圖例明寫 `200-day SMA`,不會
-變成 200 週／月。未收定的 K 棒加斜紋與 `unconfirmed bar` 標示,且不移動均線;價格軸按
-窗內高低比自動選線性或對數(`scale="log"/"linear"` 可指定),標題與說明帶標的(由參數
-傳入,碼內沒有代號)、週期、日期範圍、資料截止與來源 `evidence_id`。
+變成 200 週／月。未收定的 K 棒加斜紋與虛線,且不移動均線(副題已明寫 `last bar
+unconfirmed`,圖內不另加標示——它落在右邊每句說明的位置上);價格軸按窗內高低比自動選
+線性或對數(`scale="log"/"linear"` 可指定),標題與說明帶標的(由參數傳入,碼內沒有代號)、
+週期、日期範圍、資料截止,以及**來源供應商名與取得日期**。圖是公開檔,像素抹不走,所以
+`evidence_id` 只留在 `derived.json` 與 artifact 紀錄,不印在圖上。
 
-支撐阻力畫成**有錨點的區域**:已確認 pivot 按容差(0.25×ATR14 與 0.4%×收市價取大者)
-歸成一條 band,每個錨點分開記**形成日**與較後的**確認日**,圖上用圓點與豎線分別標出;區域
-是支撐還是阻力按它與現價的相對位置定,band 由高點還是低點造(`pivots`)另記。
+支撐阻力畫成**有錨點的區域**:已確認 pivot 按容差歸成一條 band。**容差是價格的比例**
+(0.25×ATR14÷收市價與 0.4% 取大者),不是金額——金額容差在對數長圖上會把幾年前的低位併
+成一塊無意義的巨帶。每個錨點分開記**形成日**與較後的**確認日**,圖上用圓點與豎線分別標出;
+區域是支撐還是阻力按它與現價的相對位置定,band 由高點還是低點造(`pivots`)另記,圖上那
+句說明兩樣都寫(例:`support … (2 pivot highs, now below price)`)。
+
+圖上的文字說明按左右兩邊各自排開,不會疊在一起:全歷史的日線圖與週／月圖只寫最靠近現價
+的兩個區域與最近一次 BOS／CHoCH,其餘只畫線與區域;放大圖才逐項寫。圖例移到圖框之外(上方
+一行),不再蓋住 K 棒。數字一律以 `derived.json` 為準。
 
 **結構事件**(`karst/structure.py`,定義版本 `karst.structure/1`,KARST-251):沿用**同一套已確認
 pivot**(左右對稱窗口、嚴格比較、以右邊那根收市確認;**與 LuxAlgo 的 `leg(size)` 不同**,不聲稱
@@ -138,7 +146,7 @@ hash、bytes、`bars_as_of`、`drawn_from`／`drawn_to`、來源 `evidence_id` �
 
 覆核由 `agents.review` 處理：`build_review_task` 匯出針對指定 `research_id` 與指定爭議的任務，`REVIEW_RESULT_SCHEMA` 與 `validate_review` 收挑戰（針對層、主張、引用、嚴重程度）、對爭議的裁決與新補查請求；覆核者不給第二個評級、不覆蓋主研究。`agents/adapters/` 已接 Anthropic Messages 與 OpenAI Responses 兩條實際呼叫路徑（回合迴圈、本地工具 list_evidence／read_evidence／calculate／有圖時 read_chart、圖像以真正 image content 送出並記錄、預算與用量），見下面〈覆核入口〉；缺憑證或缺 transport 一律明確報錯，不假裝已接通。
 
-發布時當次的價格陣列由參數傳入（`publish(..., bars=...)`），只用來畫圖與量度，**不寫入保存的 research.json**；發布包只複製被引用的證據原文，`evidence.json` 仍是完整索引。沒有陣列時頁面顯示衍生數字與資料截止，不畫空圖。`service.publish_research` 不必逐次傳：沒給 `bars` 時它先由**已登記的日線證據**（`karst/bars.py`）組陣列，再退到 `bars_provider` 臨時取數（不登記、不保存）；晚於資料截止的 K 線一律拒收。契約對照見 [契約說明](contracts/README.md)。
+發布時當次的價格陣列由參數傳入（`publish(..., bars=...)`），只用來畫圖與量度，**不寫入保存的 research.json**；發布包只複製被引用的證據原文，`evidence.json` 仍是完整索引。沒有陣列時頁面顯示衍生數字與資料截止，不畫空圖。`service.publish_research` 不必逐次傳：沒給 `bars` 時它先由**已登記的日線證據**（`karst/bars.py`）組陣列，再退到 `bars_provider` 臨時取數（不登記、不保存）；晚於資料截止的 K 線一律拒收。**重組出來的日線比該版自己記下的技術基礎（`technical.derived.bars_count.D`）短一成以上就報錯,不靜靜出一張少了轉折點與 200 日線的圖**；錯誤會講明原因（被時點守則擋走的快照，或該版證據內根本沒有日線序列），要麼傳 `bars=`，要麼改用證據當時存在的截止時點。契約對照見 [契約說明](contracts/README.md)。
 
 頁面只顯示來源登記與原始檔連結，原文不再內嵌。移動或分享頁面請保留整個發布目錄；只取走 `index.html` 會失去本地來源連結。renderer 版本 0.3.0、calculator 0.2.0。
 

@@ -204,6 +204,33 @@ def _read_bars(bundle, record, cutoff, session):
     return [bars[day] for day in sorted(bars)]
 
 
+def _after_cutoff(record, cutoff, as_of):
+    """Why this snapshot may not be read back at ``as_of``, or None when it may be."""
+    fetched = _moment(record.get("fetched_at"))
+    if fetched is None or fetched <= cutoff:
+        return None
+    return (f"{record.get('evidence_id')} was fetched at {record.get('fetched_at')}, "
+            f"after the cutoff {as_of}: a snapshot that did not exist yet is not "
+            "truncated into one that did")
+
+
+def refused_prices(records, as_of):
+    """Every registered prices snapshot the replay guard keeps out of ``as_of``'s series.
+
+    :func:`series_from_evidence` reports these in its ``gaps`` — but only when it found a
+    series at all. A caller that got nothing back needs the same list to say why.
+    """
+    cutoff = instant(as_of)
+    reasons = []
+    for record in records:
+        if record.get("kind") != "prices" or record.get("status", "ok") != "ok":
+            continue
+        reason = _after_cutoff(record, cutoff, as_of)
+        if reason:
+            reasons.append(reason)
+    return reasons
+
+
 def series_from_evidence(bundle, records, as_of, *, session=None):
     """The candlestick series that was current at ``as_of`` **and the records it came from**.
 
@@ -223,12 +250,11 @@ def series_from_evidence(bundle, records, as_of, *, session=None):
     for record in records:
         if record.get("kind") != "prices" or record.get("status", "ok") != "ok":
             continue
-        fetched = _moment(record.get("fetched_at"))
-        if fetched is not None and fetched > cutoff:
-            gaps.append(f"{record.get('evidence_id')} was fetched at {record.get('fetched_at')}, "
-                        f"after the cutoff {as_of}: a snapshot that did not exist yet is not "
-                        "truncated into one that did")
+        refused = _after_cutoff(record, cutoff, as_of)
+        if refused:
+            gaps.append(refused)
             continue
+        fetched = _moment(record.get("fetched_at"))
         bars = _read_bars(bundle, record, cutoff, session)
         if not bars:  # quotes and calc results register as prices too; neither is a series
             continue
