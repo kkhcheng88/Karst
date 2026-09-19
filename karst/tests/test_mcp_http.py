@@ -30,11 +30,13 @@ class HttpTransportTests(unittest.TestCase):
         cls.data = Path(cls.directory.name) / "karst-data"
         cls.port = free_port()
         cls.url = f"http://127.0.0.1:{cls.port}/mcp"
-        server = mcp_server.build(cls.data, auth=mcp_server.bearer_auth(TOKEN))
+        def serve():
+            # Like production, create and use the SQLite connection on the server
+            # thread. Earlier transport tests called only the stateless calculator.
+            server = mcp_server.build(cls.data, auth=mcp_server.bearer_auth(TOKEN))
+            server.run(transport="http", host="127.0.0.1", port=cls.port, show_banner=False)
         cls.thread = threading.Thread(
-            target=server.run,
-            kwargs={"transport": "http", "host": "127.0.0.1", "port": cls.port,
-                    "show_banner": False},
+            target=serve,
             daemon=True)
         cls.thread.start()
         cls.health = f"http://127.0.0.1:{cls.port}/healthz"
@@ -74,10 +76,16 @@ class HttpTransportTests(unittest.TestCase):
                 names = {tool.name for tool in await client.list_tools()}
                 result = await client.call_tool(
                     "calculate", {"method": "sma", "params": {"bars": [], "window": 3}})
-                return names, result.data
-        names, result = asyncio.run(call())
+                watches = await client.call_tool("get_watchlist", {})
+                update = await client.call_tool("plan_update", {"subject": "FIXTURE:NEW"})
+                return names, result.data, watches.data, update.data
+        names, result, watches, update = asyncio.run(call())
         self.assertIn("search_evidence", names)
         self.assertIn("refresh_sources", names)
+        self.assertTrue({"get_watchlist", "set_watch", "plan_update", "record_update_check"} <= names)
+        self.assertEqual(watches, {"watches": []})
+        self.assertEqual(update["status"], "needs_reassessment")
+        self.assertIsNone(update["base_version_id"])
         self.assertEqual(names & {"submit_order", "account_balance", "stock_positions"}, set())
         self.assertEqual(result["method"], "sma")
 

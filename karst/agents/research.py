@@ -106,9 +106,10 @@ def _validate_payload(payload, contract=CONTRACT):
 def _previous_summary(previous_research):
     if previous_research is None:
         return None
+    # Incremental workers need the actual adopted assumptions and dates, not only
+    # yesterday's headline. This is explicitly previous analysis, not a new read log.
     return {key: copy.deepcopy(previous_research[key]) for key in
-            ("research_id", "created_at", "target_date", "rating", "execution_state",
-             "headline", "open_questions")}
+            ("research_id", "created_at", *PAYLOAD_KEYS)}
 
 
 def export_task(bundle, subject, destination, protocol, previous_research=None,
