@@ -45,3 +45,9 @@ Official setup: https://docs.github.com/en/pages/getting-started-with-github-pag
 - Do not backfill the initial independent BE note with a fabricated research version ID. Use the retained calculations and evidence links when completing normal contract intake and review.
 - Market pages are supported by the same renderer but omitted until there is an actual market analysis. The AI power page is a scoped extension of BE research, not a completed sector universe or a valuation for unresearched peers.
 - Scheduled scans, notifications, relation propagation and cloud chart source-selection fixes remain separate work; this delivery does not claim they are implemented.
+
+## First stored cloud research (2026-09-19)
+
+BE edition `2026-09-19-r2` is now tied to a stored cloud primary research version and its immutable calculation/input records. The initial saved version received a citation-only correction before publication; both remain in the cloud. Provenance under the matching edition records the version, publication, source cutoff and pending Claude review job. Independent review has **not** run. The human summary explicitly says so. Earlier standalone notes and engineering samples remain in history; they are not retrospectively relabelled as reviewed cloud research.
+
+The reading summary is still deliberately authored by the agent, then committed through the existing Pages workflow. This delivery does not add an unattended DB-to-GitHub publisher, an event router, or a scheduler.

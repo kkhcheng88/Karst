@@ -1,0 +1,72 @@
+{
+  "subject": "NYSE:BE",
+  "cloud_service_version": "0.2.3",
+  "version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+  "previous_version_id": "rv-cfd14390f42aa80e199904c7ebbf7b4229f4d6675c88f8997d6fc660be23c308",
+  "research_id": "res-34b2ada82b43e9242ee6ba12067f92557e42859ec8f855d962ff732f918e8aca",
+  "source_cutoff": "2026-09-19T15:38:48Z",
+  "created_at": "2026-09-19T15:48:37Z",
+  "publication": {
+    "version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+    "publication_dir": "/data/companies/NYSE_BE/releases/pub-9483a6037c7e446a6137aacbcb555d987fb08b0ac7bcbd639f95bd3493b6e997",
+    "index_html": "/data/companies/NYSE_BE/releases/pub-9483a6037c7e446a6137aacbcb555d987fb08b0ac7bcbd639f95bd3493b6e997/index.html",
+    "company_index": "/data/companies/NYSE_BE/releases/index.html",
+    "publication_id": "pub-9483a6037c7e446a6137aacbcb555d987fb08b0ac7bcbd639f95bd3493b6e997",
+    "inputs_from": "version_snapshot"
+  },
+  "review": {
+    "job_id": "job-a963355816ba4166fd81c5f5",
+    "kind": "review",
+    "status": "pending",
+    "role": "reviewer",
+    "execution": "interactive",
+    "provider": "anthropic",
+    "model": "Claude (pending availability)",
+    "input_ref": {
+      "dispute": "Independent review pending; do not auto-run or claim completed while Claude quota is unavailable. Challenge both bullish and bearish premises: (1) Base FCFF assumes 2031 revenue $20.36bn and long product/service margins; verify service cohorts, competitive cost/lead times and terminal reinvestment. (2) Separate Q2 tariff recovery, customer deposits and Oracle dilution/noncash customer consideration without double counting. Current shares/convertible settlement, minimum cash and NOL remain approximations. (3) Do EPS 4.87 and 60x as a March 18 2027 market scenario have an economic basis beyond AI narrative? (4) Check actual D/W/M charts: two failed breaks over 283.83, 249–253 analyst support, large rebalance volume and conditional 260/244 plan. Self-checks and corrected citations are not independent review.",
+      "dispute_digest": "a12549c0a989b2d362392d6d860b7dd71e9a601f5797897b9e43af816e112b05",
+      "evidence_ids": [
+        "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+        "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+        "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+        "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+        "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+        "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+        "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579"
+      ],
+      "subject": "NYSE:BE",
+      "task_dir": null,
+      "version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825"
+    },
+    "result_ref": null,
+    "claimed_by": null,
+    "created_at": "2026-09-19T15:49:17.057178Z",
+    "started_at": null,
+    "finished_at": null,
+    "error": null,
+    "usage": null
+  },
+  "independent_review_completed": false,
+  "blind_analysis": false,
+  "context_note": "Interactive reassessment, prior conversation and public note known; no private account or model-book inputs read.",
+  "read_scope": {
+    "transcript": "All 82 paragraphs",
+    "quarter": "Financial statements and relevant revenue, tariff, financing, stock/dilution, tax and subsequent-event notes",
+    "annual": "Business, competition, backlog and related risk sections, not all notes"
+  },
+  "replay_check": {
+    "old_layers_preserved": [
+      "L1",
+      "L2",
+      "L4"
+    ],
+    "citation_corrected_layers": [
+      "L3",
+      "L5",
+      "L6"
+    ],
+    "target_date_preserved": "2027-03-18"
+  },
+  "human_projection": "Agent-authored summary tied to this saved version; no automatic DB-to-GitHub publishing or scheduler added."
+}

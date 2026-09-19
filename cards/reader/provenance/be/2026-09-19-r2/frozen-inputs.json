@@ -1,0 +1,3400 @@
+{
+  "packet": {
+    "as_of": "2026-09-19T15:38:48Z",
+    "contract_version": "0.4.0",
+    "created_at": "2026-09-19T15:38:48Z",
+    "dependencies": [
+      {
+        "id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+        "kind": "evidence",
+        "version": "032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73"
+      },
+      {
+        "id": "ev-097b88321658dbd03e0065823556f0f633d006145b5b8aa2e19ea709f7211f47",
+        "kind": "evidence",
+        "version": "097b88321658dbd03e0065823556f0f633d006145b5b8aa2e19ea709f7211f47"
+      },
+      {
+        "id": "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+        "kind": "evidence",
+        "version": "0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e"
+      },
+      {
+        "id": "ev-0b3d0ee43e66d04091f8cb05ca47529cac19a8ae05798fc8eb38e2f8e6a3d74a",
+        "kind": "evidence",
+        "version": "0b3d0ee43e66d04091f8cb05ca47529cac19a8ae05798fc8eb38e2f8e6a3d74a"
+      },
+      {
+        "id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+        "kind": "evidence",
+        "version": "0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8"
+      },
+      {
+        "id": "ev-1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5",
+        "kind": "evidence",
+        "version": "1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5"
+      },
+      {
+        "id": "ev-3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365",
+        "kind": "evidence",
+        "version": "3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365"
+      },
+      {
+        "id": "ev-357c312c171c3760517fa15d92a282e02794c480e84defb7e395269e77a6ab99",
+        "kind": "evidence",
+        "version": "357c312c171c3760517fa15d92a282e02794c480e84defb7e395269e77a6ab99"
+      },
+      {
+        "id": "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+        "kind": "evidence",
+        "version": "36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8"
+      },
+      {
+        "id": "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+        "kind": "evidence",
+        "version": "3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0"
+      },
+      {
+        "id": "ev-3d4caf06ad61c288f4bf760dc2a3b309b16fde589595e0b89f6bebb0e777c471",
+        "kind": "evidence",
+        "version": "3d4caf06ad61c288f4bf760dc2a3b309b16fde589595e0b89f6bebb0e777c471"
+      },
+      {
+        "id": "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+        "kind": "evidence",
+        "version": "45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579"
+      },
+      {
+        "id": "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+        "kind": "evidence",
+        "version": "4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723"
+      },
+      {
+        "id": "ev-558ce676a69c3f0a1c63eba38be959ee04afc120ef58e8e13f020d2b86cee42b",
+        "kind": "evidence",
+        "version": "558ce676a69c3f0a1c63eba38be959ee04afc120ef58e8e13f020d2b86cee42b"
+      },
+      {
+        "id": "ev-591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb",
+        "kind": "evidence",
+        "version": "591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb"
+      },
+      {
+        "id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+        "kind": "evidence",
+        "version": "5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8"
+      },
+      {
+        "id": "ev-626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430",
+        "kind": "evidence",
+        "version": "626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430"
+      },
+      {
+        "id": "ev-6460fdb857a5d32f6e4219054389c228299a62d418c56d8fd21493e6e5983920",
+        "kind": "evidence",
+        "version": "6460fdb857a5d32f6e4219054389c228299a62d418c56d8fd21493e6e5983920"
+      },
+      {
+        "id": "ev-6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390",
+        "kind": "evidence",
+        "version": "6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390"
+      },
+      {
+        "id": "ev-6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de",
+        "kind": "evidence",
+        "version": "6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de"
+      },
+      {
+        "id": "ev-6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c",
+        "kind": "evidence",
+        "version": "6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c"
+      },
+      {
+        "id": "ev-74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179",
+        "kind": "evidence",
+        "version": "74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179"
+      },
+      {
+        "id": "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb",
+        "kind": "evidence",
+        "version": "75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb"
+      },
+      {
+        "id": "ev-7ec75402e4aab18d95a59c456a32258de24aba4b085097267c364538607ead2a",
+        "kind": "evidence",
+        "version": "7ec75402e4aab18d95a59c456a32258de24aba4b085097267c364538607ead2a"
+      },
+      {
+        "id": "ev-8d69c0bffebdf1a171a536fcb8a0ae26958e6379cec246247868d8fc386aeaae",
+        "kind": "evidence",
+        "version": "8d69c0bffebdf1a171a536fcb8a0ae26958e6379cec246247868d8fc386aeaae"
+      },
+      {
+        "id": "ev-9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef",
+        "kind": "evidence",
+        "version": "9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef"
+      },
+      {
+        "id": "ev-96648a2379c8d0606df4f96f988393d11dac12ccdc2034d7debac7a263b181c5",
+        "kind": "evidence",
+        "version": "96648a2379c8d0606df4f96f988393d11dac12ccdc2034d7debac7a263b181c5"
+      },
+      {
+        "id": "ev-9940af52286d8d6dc0073f702f66fe8cd1b9e6c28f36390fde2acd0e07a1eabd",
+        "kind": "evidence",
+        "version": "9940af52286d8d6dc0073f702f66fe8cd1b9e6c28f36390fde2acd0e07a1eabd"
+      },
+      {
+        "id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+        "kind": "evidence",
+        "version": "99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a"
+      },
+      {
+        "id": "ev-9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211",
+        "kind": "evidence",
+        "version": "9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211"
+      },
+      {
+        "id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+        "kind": "evidence",
+        "version": "a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f"
+      },
+      {
+        "id": "ev-ac5cdcf4513e526ef5759ca8f15a7760e725c9531cf1856dfb1d888535694174",
+        "kind": "evidence",
+        "version": "ac5cdcf4513e526ef5759ca8f15a7760e725c9531cf1856dfb1d888535694174"
+      },
+      {
+        "id": "ev-ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502",
+        "kind": "evidence",
+        "version": "ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502"
+      },
+      {
+        "id": "ev-ad49611b50ab18598f770a7f3cce226af89beab7157f3e450186597462b679ea",
+        "kind": "evidence",
+        "version": "ad49611b50ab18598f770a7f3cce226af89beab7157f3e450186597462b679ea"
+      },
+      {
+        "id": "ev-af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e",
+        "kind": "evidence",
+        "version": "af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e"
+      },
+      {
+        "id": "ev-b99f447d0ac943b5ca56f9527038e34b030a2d32a9e6e38be4d348b7356130c0",
+        "kind": "evidence",
+        "version": "b99f447d0ac943b5ca56f9527038e34b030a2d32a9e6e38be4d348b7356130c0"
+      },
+      {
+        "id": "ev-c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff",
+        "kind": "evidence",
+        "version": "c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff"
+      },
+      {
+        "id": "ev-ce639d1f64cfbef4337ec5c15a28c6e6982aad2db4f54dd45784dee0739b2ae6",
+        "kind": "evidence",
+        "version": "ce639d1f64cfbef4337ec5c15a28c6e6982aad2db4f54dd45784dee0739b2ae6"
+      },
+      {
+        "id": "ev-cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4",
+        "kind": "evidence",
+        "version": "cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4"
+      },
+      {
+        "id": "ev-d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15",
+        "kind": "evidence",
+        "version": "d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15"
+      },
+      {
+        "id": "ev-d665d23ae49d132e0b2f655b8c82b4b1229f2d0c7a9bcee33a283ab08a4b3279",
+        "kind": "evidence",
+        "version": "d665d23ae49d132e0b2f655b8c82b4b1229f2d0c7a9bcee33a283ab08a4b3279"
+      },
+      {
+        "id": "ev-db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218",
+        "kind": "evidence",
+        "version": "db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218"
+      },
+      {
+        "id": "ev-dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90",
+        "kind": "evidence",
+        "version": "dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90"
+      },
+      {
+        "id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "kind": "evidence",
+        "version": "df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d"
+      },
+      {
+        "id": "ev-e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4",
+        "kind": "evidence",
+        "version": "e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4"
+      },
+      {
+        "id": "ev-e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18",
+        "kind": "evidence",
+        "version": "e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18"
+      },
+      {
+        "id": "ev-e41678821af3d6fd4f417e79b2be8a0553b65987fe492803d06dafa0531cbf8c",
+        "kind": "evidence",
+        "version": "e41678821af3d6fd4f417e79b2be8a0553b65987fe492803d06dafa0531cbf8c"
+      },
+      {
+        "id": "ev-e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8",
+        "kind": "evidence",
+        "version": "e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8"
+      },
+      {
+        "id": "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+        "kind": "evidence",
+        "version": "e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71"
+      },
+      {
+        "id": "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+        "kind": "evidence",
+        "version": "f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5"
+      },
+      {
+        "id": "ev-f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822",
+        "kind": "evidence",
+        "version": "f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822"
+      },
+      {
+        "id": "ev-fc446d47c4b4ba3c15f89fab1607da1e63b34c812c5ea3682cfa0fad5cac3496",
+        "kind": "evidence",
+        "version": "fc446d47c4b4ba3c15f89fab1607da1e63b34c812c5ea3682cfa0fad5cac3496"
+      }
+    ],
+    "diagnostic_ids": [
+      "ev-02f45f148da5b950bcff0595a9e3eb2f0afc1eb0f7e1309db2c98b4b3902d899",
+      "ev-2064929ac065274e22ad0434cf5996b5c8fee87142beb46bd850474377d59b13",
+      "ev-427d033fa1ecf6996700b4dab33d5dd8da69b2c2e545a5529fc810e81e80168c",
+      "ev-7fc230a2a882ffc2fd7aac593b86122685c2985b76c5f1d4aa25776ed2b1461f",
+      "ev-e5ff324a95ce29bd6ec20dab09e42bd03a2e8960cad8f5cb3f0f1f209b7ac03c"
+    ],
+    "evidence_ids": [
+      "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+      "ev-097b88321658dbd03e0065823556f0f633d006145b5b8aa2e19ea709f7211f47",
+      "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+      "ev-0b3d0ee43e66d04091f8cb05ca47529cac19a8ae05798fc8eb38e2f8e6a3d74a",
+      "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+      "ev-1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5",
+      "ev-3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365",
+      "ev-357c312c171c3760517fa15d92a282e02794c480e84defb7e395269e77a6ab99",
+      "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+      "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+      "ev-3d4caf06ad61c288f4bf760dc2a3b309b16fde589595e0b89f6bebb0e777c471",
+      "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+      "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+      "ev-558ce676a69c3f0a1c63eba38be959ee04afc120ef58e8e13f020d2b86cee42b",
+      "ev-591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb",
+      "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+      "ev-626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430",
+      "ev-6460fdb857a5d32f6e4219054389c228299a62d418c56d8fd21493e6e5983920",
+      "ev-6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390",
+      "ev-6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de",
+      "ev-6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c",
+      "ev-74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179",
+      "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb",
+      "ev-7ec75402e4aab18d95a59c456a32258de24aba4b085097267c364538607ead2a",
+      "ev-8d69c0bffebdf1a171a536fcb8a0ae26958e6379cec246247868d8fc386aeaae",
+      "ev-9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef",
+      "ev-96648a2379c8d0606df4f96f988393d11dac12ccdc2034d7debac7a263b181c5",
+      "ev-9940af52286d8d6dc0073f702f66fe8cd1b9e6c28f36390fde2acd0e07a1eabd",
+      "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+      "ev-9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211",
+      "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+      "ev-ac5cdcf4513e526ef5759ca8f15a7760e725c9531cf1856dfb1d888535694174",
+      "ev-ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502",
+      "ev-ad49611b50ab18598f770a7f3cce226af89beab7157f3e450186597462b679ea",
+      "ev-af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e",
+      "ev-b99f447d0ac943b5ca56f9527038e34b030a2d32a9e6e38be4d348b7356130c0",
+      "ev-c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff",
+      "ev-ce639d1f64cfbef4337ec5c15a28c6e6982aad2db4f54dd45784dee0739b2ae6",
+      "ev-cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4",
+      "ev-d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15",
+      "ev-d665d23ae49d132e0b2f655b8c82b4b1229f2d0c7a9bcee33a283ab08a4b3279",
+      "ev-db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218",
+      "ev-dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90",
+      "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "ev-e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4",
+      "ev-e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18",
+      "ev-e41678821af3d6fd4f417e79b2be8a0553b65987fe492803d06dafa0531cbf8c",
+      "ev-e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8",
+      "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+      "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+      "ev-f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822",
+      "ev-fc446d47c4b4ba3c15f89fab1607da1e63b34c812c5ea3682cfa0fad5cac3496"
+    ],
+    "knowledge_basis": "system_observed",
+    "packet_id": "packet-ac0413319cdd3396f06f35f46ffe7768f1c14322c7a71fde55c3a832d917b344",
+    "pending_updates": [],
+    "previous_packet_id": "packet-88eca6e27d435df76e468ea4779fcc4764756f10f6b9cdb6a57d7e4101eb0e07",
+    "requirements": [
+      {
+        "evidence_ids": [
+          "ev-558ce676a69c3f0a1c63eba38be959ee04afc120ef58e8e13f020d2b86cee42b"
+        ],
+        "kind": "calendar",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+          "ev-0b3d0ee43e66d04091f8cb05ca47529cac19a8ae05798fc8eb38e2f8e6a3d74a",
+          "ev-1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5",
+          "ev-3d4caf06ad61c288f4bf760dc2a3b309b16fde589595e0b89f6bebb0e777c471",
+          "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+          "ev-6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c",
+          "ev-74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179",
+          "ev-7ec75402e4aab18d95a59c456a32258de24aba4b085097267c364538607ead2a",
+          "ev-9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef",
+          "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+          "ev-b99f447d0ac943b5ca56f9527038e34b030a2d32a9e6e38be4d348b7356130c0",
+          "ev-c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff",
+          "ev-e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18",
+          "ev-e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8",
+          "ev-fc446d47c4b4ba3c15f89fab1607da1e63b34c812c5ea3682cfa0fad5cac3496"
+        ],
+        "kind": "filing",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-96648a2379c8d0606df4f96f988393d11dac12ccdc2034d7debac7a263b181c5",
+          "ev-ad49611b50ab18598f770a7f3cce226af89beab7157f3e450186597462b679ea"
+        ],
+        "kind": "filing_index",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-6460fdb857a5d32f6e4219054389c228299a62d418c56d8fd21493e6e5983920",
+          "ev-9940af52286d8d6dc0073f702f66fe8cd1b9e6c28f36390fde2acd0e07a1eabd",
+          "ev-ac5cdcf4513e526ef5759ca8f15a7760e725c9531cf1856dfb1d888535694174",
+          "ev-ce639d1f64cfbef4337ec5c15a28c6e6982aad2db4f54dd45784dee0739b2ae6",
+          "ev-d665d23ae49d132e0b2f655b8c82b4b1229f2d0c7a9bcee33a283ab08a4b3279"
+        ],
+        "kind": "financials",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+          "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723"
+        ],
+        "kind": "other_public",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+          "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+          "ev-3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365",
+          "ev-357c312c171c3760517fa15d92a282e02794c480e84defb7e395269e77a6ab99",
+          "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+          "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+          "ev-591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb",
+          "ev-626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430",
+          "ev-6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390",
+          "ev-6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de",
+          "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb",
+          "ev-8d69c0bffebdf1a171a536fcb8a0ae26958e6379cec246247868d8fc386aeaae",
+          "ev-9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211",
+          "ev-ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502",
+          "ev-af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e",
+          "ev-cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4",
+          "ev-d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15",
+          "ev-db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218",
+          "ev-dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90",
+          "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "ev-e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4",
+          "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+          "ev-f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822"
+        ],
+        "kind": "prices",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-097b88321658dbd03e0065823556f0f633d006145b5b8aa2e19ea709f7211f47",
+          "ev-e41678821af3d6fd4f417e79b2be8a0553b65987fe492803d06dafa0531cbf8c",
+          "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5"
+        ],
+        "kind": "profile",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f"
+        ],
+        "kind": "transcript",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      }
+    ],
+    "security": {
+      "currency": "USD",
+      "exchange": "NYSE",
+      "issuer_id": "cik:0001664703",
+      "name": "Bloom Energy Corporation",
+      "security_id": "NYSE:BE",
+      "ticker": "BE"
+    },
+    "supplement_requests": [
+      {
+        "evidence_ids": [],
+        "layer": "L2",
+        "question": "取得同時間且同場景的 BE、燃機、往復引擎交期及全壽命成本，分開公司聲稱和獨立證據。",
+        "reason": "決定長期產品毛利及時間溢價能否保留。",
+        "request_id": "BE-20260919-peer-economics",
+        "resolution": null,
+        "status": "pending"
+      },
+      {
+        "evidence_ids": [],
+        "layer": "L3",
+        "question": "分解預收款、合約資產與項目融資取消／交付條款，核對下一季現金轉換。",
+        "reason": "避免把提前收款等同可持續 FCFF。",
+        "request_id": "BE-20260919-cash-quality",
+        "resolution": null,
+        "status": "pending"
+      },
+      {
+        "evidence_ids": [],
+        "layer": "L4",
+        "question": "更新期末股份與獎勵、7 月小額轉債結算、最低營運現金及 NOL 消耗；不重複扣 Oracle 已發行稀釋。",
+        "reason": "現行橋接為透明近似，待精煉並測量數值影響。",
+        "request_id": "BE-20260919-share-bridge",
+        "resolution": null,
+        "status": "pending"
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "artifact": {
+        "bytes": 703154,
+        "path": "evidence/objects/ca/caf29acffb2bb0bd5cae3f3a238a93f462e7095e5513ace58a5e270a2de3c040.txt",
+        "sha256": "caf29acffb2bb0bd5cae3f3a238a93f462e7095e5513ace58a5e270a2de3c040"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-02-09",
+        "reportDate": "2025-12-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+      "fetched_at": "2026-09-19T15:36:02Z",
+      "kind": "filing",
+      "known_gaps": [
+        "local 10k_text manifest has no entry for this accession; fetched from EDGAR online instead",
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-006516",
+        "cik": "0001664703",
+        "document": "be-20251231.htm",
+        "form": "10-K",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm"
+      },
+      "period": {
+        "end": "2025-12-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-02-09T22:16:15+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-194697992d5d5c2608ebc74e953ec34c1821795f459e66bdfa3e88cb1db3b46d",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+      "source_version": "032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 613,
+        "path": "evidence/objects/dd/dd246e9252a104981d0b386934efcce34193e71df9bbedf106e0ad3d284272aa.json",
+        "sha256": "dd246e9252a104981d0b386934efcce34193e71df9bbedf106e0ad3d284272aa"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-097b88321658dbd03e0065823556f0f633d006145b5b8aa2e19ea709f7211f47",
+      "fetched_at": "2026-09-17T18:55:50Z",
+      "kind": "profile",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-57c3ec471428b73800fd7a27987ba7f0fe4d4dc0ac3a7e040d1889927fe3dcb6",
+      "source_url": null,
+      "source_version": "097b88321658dbd03e0065823556f0f633d006145b5b8aa2e19ea709f7211f47",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+      "tool": "static_info",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 918,
+        "path": "evidence/objects/f9/f912765409661ab8daa48e099c5aaa0577b6c94258e86311141116516247829d.json",
+        "sha256": "f912765409661ab8daa48e099c5aaa0577b6c94258e86311141116516247829d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+      "fetched_at": "2026-09-18T18:54:04Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 213,
+        "path": "evidence/objects/9b/9bbb6b806aec008ed56a0e5fcc4179e8d85c5cd577c69a8fd5997b244597bc79.json",
+        "sha256": "9bbb6b806aec008ed56a0e5fcc4179e8d85c5cd577c69a8fd5997b244597bc79"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001664703",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-0b3d0ee43e66d04091f8cb05ca47529cac19a8ae05798fc8eb38e2f8e6a3d74a",
+      "fetched_at": "2026-09-19T15:11:35Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "Bloom Energy Corporation",
+        "source_type": "other",
+        "title": "Bloom Energy 2026 Q2 Form 10-Q",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: No publication time was supplied",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "user_document",
+      "source_id": "src-152ab0b927661cec72741e985b25a7656f19f80b3413e0ff2394660ab79bc2b7",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm",
+      "source_version": "0b3d0ee43e66d04091f8cb05ca47529cac19a8ae05798fc8eb38e2f8e6a3d74a",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "ingest_source",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 923,
+        "path": "evidence/objects/88/8848a82496f48015487b880d94ccbf79a05f534ba83c2685253551e034667e90.json",
+        "sha256": "8848a82496f48015487b880d94ccbf79a05f534ba83c2685253551e034667e90"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+      "fetched_at": "2026-09-19T03:41:58Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-0b171fe4392127e76a588a2c50044b3510985d72b59cd128162706ee1a3d5c7e",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 36554,
+        "path": "evidence/objects/9a/9a35370cb1b6bc29a885dba88290e8e9eced66f7199dce00edd4ac62f3dde234.htm",
+        "sha256": "9a35370cb1b6bc29a885dba88290e8e9eced66f7199dce00edd4ac62f3dde234"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-28",
+        "reportDate": "2026-04-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5",
+      "fetched_at": "2026-09-19T15:36:04Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-027913",
+        "cik": "0001664703",
+        "document": "be-20260428.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/be-20260428.htm"
+      },
+      "period": {
+        "end": "2026-04-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-28T20:07:03+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-0f7047762439f7032249851a4be7daa489c143d9b1df3e5ddb0c379bf7f571a9",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/be-20260428.htm",
+      "source_version": "1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 900,
+        "path": "evidence/objects/d5/d51a607e7865a24617c011cddcdc1e9cb31a6dcb80f9fa4faca90344e2a7726e.json",
+        "sha256": "d51a607e7865a24617c011cddcdc1e9cb31a6dcb80f9fa4faca90344e2a7726e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365",
+      "fetched_at": "2026-09-17T19:10:51Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 17180,
+        "path": "evidence/objects/d1/d1c9a7c5d434fbf1a1c08f06f8ea593b0a5bdd373759bf392c329d5dc6ecf4cd.json",
+        "sha256": "d1c9a7c5d434fbf1a1c08f06f8ea593b0a5bdd373759bf392c329d5dc6ecf4cd"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": "2026-06-01"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-357c312c171c3760517fa15d92a282e02794c480e84defb7e395269e77a6ab99",
+      "fetched_at": "2026-09-17T16:51:06Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": "2026-06-01",
+        "symbol": "BE.US"
+      },
+      "period": {
+        "end": null,
+        "start": "2026-06-01"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-329a13357996b9463c47594b9766ef56faee457d7538f5a3e59872b9634b7784",
+      "source_url": null,
+      "source_version": "357c312c171c3760517fa15d92a282e02794c480e84defb7e395269e77a6ab99",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1343,
+        "path": "evidence/objects/e9/e9ab87d5585806ea87ae40c489dd9e636e6d1daea2ac515917c3a5d45857345b.json",
+        "sha256": "e9ab87d5585806ea87ae40c489dd9e636e6d1daea2ac515917c3a5d45857345b"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+      "fetched_at": "2026-09-18T18:54:04Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 223916,
+        "path": "evidence/objects/0b/0b5596635af6818fe639452d14c8aae663b0ae8ee4301e0428c4b2068000257b.json",
+        "sha256": "0b5596635af6818fe639452d14c8aae663b0ae8ee4301e0428c4b2068000257b"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+      "fetched_at": "2026-09-18T18:54:05Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE.US",
+        "trade_session": "unknown"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ea9a35bec7cfb88abdaec8a78de5c58c3ae660a74b77b11e8f2a39773f33a0e7",
+      "source_url": null,
+      "source_version": "3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 4800,
+        "path": "evidence/objects/f9/f97b4a4128caa2e4c76ed9aadc6d1f265732a21dafc471f207116198dfa6ac68.txt",
+        "sha256": "f97b4a4128caa2e4c76ed9aadc6d1f265732a21dafc471f207116198dfa6ac68"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-28",
+        "reportDate": "2026-04-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-3d4caf06ad61c288f4bf760dc2a3b309b16fde589595e0b89f6bebb0e777c471",
+      "fetched_at": "2026-09-19T15:36:04Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-027913",
+        "cik": "0001664703",
+        "document": "be-20260428.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/be-20260428.htm"
+      },
+      "period": {
+        "end": "2026-04-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-28T20:07:03+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-9a55fec683e2899bc90ed81a40aa3b76b36a727300b273a4127bbe2d9d26a501",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/be-20260428.htm",
+      "source_version": "3d4caf06ad61c288f4bf760dc2a3b309b16fde589595e0b89f6bebb0e777c471",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 903,
+        "path": "evidence/objects/e9/e9e5ebb851d6ce1c243064795d347146eb06e1c58ac3bfad53591c869a7050a0.json",
+        "sha256": "e9e5ebb851d6ce1c243064795d347146eb06e1c58ac3bfad53591c869a7050a0"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703",
+        "industry:ai-power"
+      ],
+      "evidence_id": "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+      "fetched_at": "2026-09-19T15:37:31Z",
+      "kind": "other_public",
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "Bloom Energy / Brookfield",
+        "source_type": "primary",
+        "title": "Brookfield financing framework expansion — analyst factual extract",
+        "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Brookfield-and-Bloom-Energy-Expand-AI-Infrastructure-Partnership-to-25-Billion-Fivefold-Increase-to-Build-and-Finance-Rapid-Power-for-AI-Infrastructure/default.aspx"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-06-30",
+      "published_at_basis": "Supplied by the person who ingested it; not independently verified",
+      "published_at_precision": "date",
+      "published_at_timezone": null,
+      "source": "user_document",
+      "source_id": "src-6b67b3d2105c4041f9c7f4d29cbb5f13a8adff00e4d60ed44cd51b97d09eab49",
+      "source_url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Brookfield-and-Bloom-Energy-Expand-AI-Infrastructure-Partnership-to-25-Billion-Fivefold-Increase-to-Build-and-Finance-Rapid-Power-for-AI-Infrastructure/default.aspx",
+      "source_version": "45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "ingest_source",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 718,
+        "path": "evidence/objects/0d/0d06f01fc552381b4f71d779e7fd4ef971fbe1b150a2c95ec8f8ba5380a154ee.json",
+        "sha256": "0d06f01fc552381b4f71d779e7fd4ef971fbe1b150a2c95ec8f8ba5380a154ee"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703",
+        "industry:ai-power"
+      ],
+      "evidence_id": "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+      "fetched_at": "2026-09-19T15:37:22Z",
+      "kind": "other_public",
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "S&P Dow Jones Indices",
+        "source_type": "primary",
+        "title": "September 2026 index changes — analyst factual extract",
+        "url": "https://press.spglobal.com/2026-09-04-Bloom-Energy,-Illumina,-and-Everpure-Set-to-Join-S-P-500-Others-to-Join-S-P-100,-S-P-MidCap-400,-and-S-P-SmallCap-600"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-04",
+      "published_at_basis": "Supplied by the person who ingested it; not independently verified",
+      "published_at_precision": "date",
+      "published_at_timezone": null,
+      "source": "user_document",
+      "source_id": "src-449b8dcc4e494b53e3a46132134ade3f1b8d4ccef0e01d21f46dbe7905259df9",
+      "source_url": "https://press.spglobal.com/2026-09-04-Bloom-Energy,-Illumina,-and-Everpure-Set-to-Join-S-P-500-Others-to-Join-S-P-100,-S-P-MidCap-400,-and-S-P-SmallCap-600",
+      "source_version": "4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "ingest_source",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 2550,
+        "path": "evidence/objects/2d/2dca25fb077d9a7c9558f7a14af14465e6b2caf7b9db37c71a1435676bf94b8c.json",
+        "sha256": "2dca25fb077d9a7c9558f7a14af14465e6b2caf7b9db37c71a1435676bf94b8c"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 14,
+        "from": "2023-02-09",
+        "to": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-558ce676a69c3f0a1c63eba38be959ee04afc120ef58e8e13f020d2b86cee42b",
+      "fetched_at": "2026-09-18T13:12:26Z",
+      "kind": "calendar",
+      "known_gaps": [
+        "'time' may be 'time-not-supplied'; future rows are scheduled not confirmed"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": "2026-07-28",
+        "start": "2023-02-09"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-647764e9dd34d2b17fdbf924a6371c649f89265ed5dd877902d1d4e04f7275b6",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "558ce676a69c3f0a1c63eba38be959ee04afc120ef58e8e13f020d2b86cee42b",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.calendar()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 899,
+        "path": "evidence/objects/19/19dcb19823fd90b5a23c07e236e2d8c0bb813b69a51ed9e40ef01e0921cb2f13.json",
+        "sha256": "19dcb19823fd90b5a23c07e236e2d8c0bb813b69a51ed9e40ef01e0921cb2f13"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb",
+      "fetched_at": "2026-09-17T16:51:06Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 226981,
+        "path": "evidence/objects/e9/e95ae3f6771a202e70b14edd27e45f395bd96c94c053b201921e43cf1c215f74.txt",
+        "sha256": "e95ae3f6771a202e70b14edd27e45f395bd96c94c053b201921e43cf1c215f74"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-28",
+        "reportDate": "2026-06-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+      "fetched_at": "2026-09-19T15:36:02Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-050247",
+        "cik": "0001664703",
+        "document": "be-20260630.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm"
+      },
+      "period": {
+        "end": "2026-06-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-28T21:27:03+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-7f59b8f221dede96433a5fabec8a0f502e9e11c07009da2048470d1ad04be62c",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm",
+      "source_version": "5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 918,
+        "path": "evidence/objects/4c/4c19de76fc7b3a563fbe2c8ce5f52727303ecd99275c644c67b8cd93cbd374be.json",
+        "sha256": "4c19de76fc7b3a563fbe2c8ce5f52727303ecd99275c644c67b8cd93cbd374be"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430",
+      "fetched_at": "2026-09-18T13:15:45Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "626b63ae4a1185d0286cb09b6d1d564fc0de677d0435f31a9cd4fba279705430",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 36478,
+        "path": "evidence/objects/96/96804883e7c8890cda4ed10b8c0351c25f9692e714cb78114a84b5e430b97fca.json",
+        "sha256": "96804883e7c8890cda4ed10b8c0351c25f9692e714cb78114a84b5e430b97fca"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": true,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-6460fdb857a5d32f6e4219054389c228299a62d418c56d8fd21493e6e5983920",
+      "fetched_at": "2026-09-18T13:12:12Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-acea72b0cd45f361aee47a93508f38600f7a48f7fa39ebc0c655d4345f143b65",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "6460fdb857a5d32f6e4219054389c228299a62d418c56d8fd21493e6e5983920",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_cash_flow().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1343,
+        "path": "evidence/objects/dc/dc7e209e67eb98ee8a0b7c1850500b7cc2cacd7af9f2a33af3bf94a8852836e7.json",
+        "sha256": "dc7e209e67eb98ee8a0b7c1850500b7cc2cacd7af9f2a33af3bf94a8852836e7"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390",
+      "fetched_at": "2026-09-17T19:18:57Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 918,
+        "path": "evidence/objects/b5/b56ad956b05c0df20523ca954a06272f826920a93f4ce56332bea2b11f7b1860.json",
+        "sha256": "b56ad956b05c0df20523ca954a06272f826920a93f4ce56332bea2b11f7b1860"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de",
+      "fetched_at": "2026-09-18T13:12:32Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "6cc3d4b45b6ac04dfc35269a78cc627a7cb4628ab44ca518b1746edfdcb103de",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 555512,
+        "path": "evidence/objects/b8/b802201564f115126ff047cf682d88a62279ea0b9d2dedb35f8692e900c156ca.htm",
+        "sha256": "b802201564f115126ff047cf682d88a62279ea0b9d2dedb35f8692e900c156ca"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-28",
+        "reportDate": "2026-04-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c",
+      "fetched_at": "2026-09-19T15:36:04Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-027913",
+        "cik": "0001664703",
+        "document": "ex991_q126financialresults.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm"
+      },
+      "period": {
+        "end": "2026-04-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-28T20:07:03+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-4f7477bc574eb5da8eefee7c9302e58959367d1c03d61f6e98d8b7948996c1d9",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm",
+      "source_version": "6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 303341,
+        "path": "evidence/objects/17/17c0136a535a9f0e8873f396625e489722c7c76acc8cd7d96289467b9f66de3b.htm.gz",
+        "sha256": "17c0136a535a9f0e8873f396625e489722c7c76acc8cd7d96289467b9f66de3b"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-02-09",
+        "reportDate": "2025-12-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179",
+      "fetched_at": "2026-09-19T15:36:02Z",
+      "kind": "filing",
+      "known_gaps": [
+        "local 10k_text manifest has no entry for this accession; fetched from EDGAR online instead"
+      ],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-006516",
+        "cik": "0001664703",
+        "document": "be-20251231.htm",
+        "form": "10-K",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm"
+      },
+      "period": {
+        "end": "2025-12-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-02-09T22:16:15+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-3f8445918bf196902462a7498a92c0ddad546837623a61eb724e4d07aa6fa55d",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm",
+      "source_version": "74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 223879,
+        "path": "evidence/objects/67/6760b56e7602c67e5337a8ae6e353823ffa6062fc1ddac94684a38b1741fa45e.json",
+        "sha256": "6760b56e7602c67e5337a8ae6e353823ffa6062fc1ddac94684a38b1741fa45e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb",
+      "fetched_at": "2026-09-17T19:18:58Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE.US"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-3c2d7fb0462bddb0bac6e2a00adeb784ce223d97c2583f1e256c5290c4639cdb",
+      "source_url": null,
+      "source_version": "75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90",
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 4748,
+        "path": "evidence/objects/d0/d0833ece851df7f4e550ecb64b406c9f4fce2e8cbe5e6b18bba5e91818ef6d22.txt",
+        "sha256": "d0833ece851df7f4e550ecb64b406c9f4fce2e8cbe5e6b18bba5e91818ef6d22"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-28",
+        "reportDate": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-7ec75402e4aab18d95a59c456a32258de24aba4b085097267c364538607ead2a",
+      "fetched_at": "2026-09-19T15:36:03Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-050150",
+        "cik": "0001664703",
+        "document": "be-20260728.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/be-20260728.htm"
+      },
+      "period": {
+        "end": "2026-07-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-28T20:07:21+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-9e5d50b78f62752241a7d3f5e72e2c49ac2920798b6f768e272f6a9c89b748bc",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/be-20260728.htm",
+      "source_version": "7ec75402e4aab18d95a59c456a32258de24aba4b085097267c364538607ead2a",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 152825,
+        "path": "evidence/objects/f5/f5e272ca78413ed089e3b601cef020b22ff82edd8db10a22c637911b6c73f952.json",
+        "sha256": "f5e272ca78413ed089e3b601cef020b22ff82edd8db10a22c637911b6c73f952"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": "2024-01-01"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-8d69c0bffebdf1a171a536fcb8a0ae26958e6379cec246247868d8fc386aeaae",
+      "fetched_at": "2026-09-18T13:12:32Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": "2024-01-01",
+        "symbol": "BE.US"
+      },
+      "period": {
+        "end": null,
+        "start": "2024-01-01"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-e268b62691801e689dbe71d53d21b0d3b478ead185ebe4aa8ac1c4a21aa46a89",
+      "source_url": null,
+      "source_version": "8d69c0bffebdf1a171a536fcb8a0ae26958e6379cec246247868d8fc386aeaae",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 134462,
+        "path": "evidence/objects/22/22cda4fcc2b561acf9b42afcf26639dbf9e7e423914fba5d60b128825d3e3ce0.htm.gz",
+        "sha256": "22cda4fcc2b561acf9b42afcf26639dbf9e7e423914fba5d60b128825d3e3ce0"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-28",
+        "reportDate": "2026-06-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef",
+      "fetched_at": "2026-09-19T15:36:02Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-050247",
+        "cik": "0001664703",
+        "document": "be-20260630.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm"
+      },
+      "period": {
+        "end": "2026-06-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-28T21:27:03+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-2cb8126494c8dc50969fa65eb94691006c3fd323706c9f8ffd4cfa2a54f864d9",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm",
+      "source_version": "9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 3917,
+        "path": "evidence/objects/11/11863de008d37c1b14bb3366b0f03da39c78cafbec4a7f96762cfe3e9d6ea71e.json",
+        "sha256": "11863de008d37c1b14bb3366b0f03da39c78cafbec4a7f96762cfe3e9d6ea71e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 35,
+        "from": "2007-10-23",
+        "to": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-96648a2379c8d0606df4f96f988393d11dac12ccdc2034d7debac7a263b181c5",
+      "fetched_at": "2026-09-18T13:12:07Z",
+      "kind": "filing_index",
+      "known_gaps": [
+        "list may not be contiguous by quarter (source coverage gaps kept as-is)",
+        "no availability timestamp for transcript text"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": "2026-07-28",
+        "start": "2007-10-23"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date only (date precision); transcript text availability time not provided by source (資料來源 §四 4)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-f45938ab55738350389197323ac9153ec2b1fe64aa33957605364651f0a340cb",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "96648a2379c8d0606df4f96f988393d11dac12ccdc2034d7debac7a263b181c5",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.earning_call_transcripts().get_transcripts_list()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 9523,
+        "path": "evidence/objects/4d/4d7f443cb0eda4374475ff5b843820effb5c6ddea51c21af12b439bb1f3b37cf.json",
+        "sha256": "4d7f443cb0eda4374475ff5b843820effb5c6ddea51c21af12b439bb1f3b37cf"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 99,
+        "from": "2015-12-31",
+        "to": "2026-06-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-9940af52286d8d6dc0073f702f66fe8cd1b9e6c28f36390fde2acd0e07a1eabd",
+      "fetched_at": "2026-09-18T13:12:22Z",
+      "kind": "financials",
+      "known_gaps": [
+        "shares_outstanding dates are source report dates, not filing cover dates"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": "2026-06-30",
+        "start": "2015-12-31"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-ef19ae4e6929f9cea55ece23e551c96c392c92c54fd70fe3080bc12bcc456212",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "9940af52286d8d6dc0073f702f66fe8cd1b9e6c28f36390fde2acd0e07a1eabd",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.shares()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 42116,
+        "path": "evidence/objects/f5/f539092345cefcca79f4f44c4462338b6efbe586d06f6bf265a20b29330ae186.txt",
+        "sha256": "f539092345cefcca79f4f44c4462338b6efbe586d06f6bf265a20b29330ae186"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-28",
+        "reportDate": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+      "fetched_at": "2026-09-19T15:36:03Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-050150",
+        "cik": "0001664703",
+        "document": "ex991_q226financialresults.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+      },
+      "period": {
+        "end": "2026-07-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-28T20:07:21+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-88520465ba311ee32a6c2f0b9a17d6fe49b3020bdb3827e5a83584343202cf0a",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm",
+      "source_version": "99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 900,
+        "path": "evidence/objects/d6/d6b9f9e3c23492a0ed13bef35a6cb922a15d8ceab9cb3840642425684b2b4b2f.json",
+        "sha256": "d6b9f9e3c23492a0ed13bef35a6cb922a15d8ceab9cb3840642425684b2b4b2f"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211",
+      "fetched_at": "2026-09-17T18:55:50Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "9dca826fec7af0917388d01f50a71a40a918ac89119651fe573ff548dc6c2211",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-591f6b264153f9688213e31a3cee8015ead49fe58f0ec9144afc02b82e3ff0fb",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 53196,
+        "path": "evidence/objects/69/6940ebd03ebd5adde9575eeb3f42737b451625b3e23d521479b2aac069e7b01d.json",
+        "sha256": "6940ebd03ebd5adde9575eeb3f42737b451625b3e23d521479b2aac069e7b01d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "fiscal_quarter": 2,
+        "fiscal_year": 2026,
+        "report_date": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+      "fetched_at": "2026-09-18T13:12:08Z",
+      "kind": "transcript",
+      "known_gaps": [
+        "source has no prepared-remarks vs Q&A section marker; only paragraph_number/speaker/content (split must be inferred, e.g. from Operator paragraphs)",
+        "speaker names as given by source (may lack titles/roles)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "fiscal_quarter": 2,
+        "fiscal_year": 2026,
+        "ticker": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: report_date from transcripts list (date precision, call date); time the text became readable is unknown",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-5c115a3ed187554838dfe3d3ec3b835b5349caf5d797182d1531a45d7bbaf598",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.earning_call_transcripts().get_transcript",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 68658,
+        "path": "evidence/objects/1b/1be115fd773f8d8c54bc60b9cdab2480a748d3a0e0a0a6eaaec3d00b30575f7a.json",
+        "sha256": "1be115fd773f8d8c54bc60b9cdab2480a748d3a0e0a0a6eaaec3d00b30575f7a"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 244,
+        "from": "2021-03-31",
+        "to": "2026-06-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-ac5cdcf4513e526ef5759ca8f15a7760e725c9531cf1856dfb1d888535694174",
+      "fetched_at": "2026-09-18T13:12:17Z",
+      "kind": "financials",
+      "known_gaps": [
+        "segment/geography breakdown may be absent for this ticker"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": "2026-06-30",
+        "start": "2021-03-31"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-190ac249c2dfe3fa2613775212af4cac51affc878dda4ab8b1eb78dcd7ba0436",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "ac5cdcf4513e526ef5759ca8f15a7760e725c9531cf1856dfb1d888535694174",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_revenue_by_breakdown()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1342,
+        "path": "evidence/objects/53/53c4e7dc6b2a6107376e32bbac0ec74962de0f6ddac424ad6cf6e0c414a72326.json",
+        "sha256": "53c4e7dc6b2a6107376e32bbac0ec74962de0f6ddac424ad6cf6e0c414a72326"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502",
+      "fetched_at": "2026-09-17T16:51:06Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 14016,
+        "path": "evidence/objects/27/275e4847cede0e2ce8c29c95347397b15208dc670aedf61b91d3a714e33e7741.json",
+        "sha256": "275e4847cede0e2ce8c29c95347397b15208dc670aedf61b91d3a714e33e7741"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "from": "2026-06-16",
+        "to": "2026-09-18"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-ad49611b50ab18598f770a7f3cce226af89beab7157f3e450186597462b679ea",
+      "fetched_at": "2026-09-19T15:36:02Z",
+      "kind": "filing_index",
+      "known_gaps": [
+        "items empty string for non-8-K forms as in source",
+        "reportDate empty for some forms as in source",
+        "paged index file CIK0001664703-submissions-001.json not held locally"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "cik": "0001664703",
+        "paged_files": [
+          {
+            "found_locally": false,
+            "name": "CIK0001664703-submissions-001.json"
+          }
+        ],
+        "slice": 40,
+        "ticker": "BE"
+      },
+      "period": {
+        "end": "2026-09-18",
+        "start": "2026-06-16"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "per-row filingDate (date precision) and acceptanceDateTime (EDGAR UTC); no single publish time for the index",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-a652d47dfe74db2956d1d8614b92de0d4a4b31155f3c87a03f5ee9d31340d6de",
+      "source_url": "https://data.sec.gov/submissions/CIK0001664703.json",
+      "source_version": "ad49611b50ab18598f770a7f3cce226af89beab7157f3e450186597462b679ea",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR submissions API live snapshot",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 1343,
+        "path": "evidence/objects/a8/a8282e85a3354a89c90dd16d3913f75cc078945008caccc4c1c0615f6ab55185.json",
+        "sha256": "a8282e85a3354a89c90dd16d3913f75cc078945008caccc4c1c0615f6ab55185"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e",
+      "fetched_at": "2026-09-17T18:55:50Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-ad26f27381379ed845479cecc4efbfed710f6c3b1c485ea5cac5ddc0bfe8e502",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 180722,
+        "path": "evidence/objects/4c/4c8daf037d082f6cbd90ebeaa2b4e82905702ae3c69f4e5cf73d6f96bc8145bf.txt",
+        "sha256": "4c8daf037d082f6cbd90ebeaa2b4e82905702ae3c69f4e5cf73d6f96bc8145bf"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-29",
+        "reportDate": "2026-03-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-b99f447d0ac943b5ca56f9527038e34b030a2d32a9e6e38be4d348b7356130c0",
+      "fetched_at": "2026-09-19T15:36:03Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-028021",
+        "cik": "0001664703",
+        "document": "be-20260331.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026028021/be-20260331.htm"
+      },
+      "period": {
+        "end": "2026-03-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-28T21:33:30+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-0008ad8bc5363cbe9dfc5736e38bbf0da7a5874ea05e4ae0248c0ce361efd2f8",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026028021/be-20260331.htm",
+      "source_version": "b99f447d0ac943b5ca56f9527038e34b030a2d32a9e6e38be4d348b7356130c0",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 559741,
+        "path": "evidence/objects/c9/c9e06a5daac90de55a0684a5fd39a2d1eb19bcdf4432914c5c764428dc9d7e6a.htm",
+        "sha256": "c9e06a5daac90de55a0684a5fd39a2d1eb19bcdf4432914c5c764428dc9d7e6a"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-28",
+        "reportDate": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff",
+      "fetched_at": "2026-09-19T15:36:03Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-050150",
+        "cik": "0001664703",
+        "document": "ex991_q226financialresults.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+      },
+      "period": {
+        "end": "2026-07-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-28T20:07:21+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-07f87841ab94e2b0ebbcb12ba9bab37de371b25dd8e309dc331978c0e4a43933",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm",
+      "source_version": "c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 31586,
+        "path": "evidence/objects/9e/9ee362deb106ac811f8378bb6c2f6d913b251e6453091c24fd0c4adc3dffcaa6.json",
+        "sha256": "9ee362deb106ac811f8378bb6c2f6d913b251e6453091c24fd0c4adc3dffcaa6"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": true,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-ce639d1f64cfbef4337ec5c15a28c6e6982aad2db4f54dd45784dee0739b2ae6",
+      "fetched_at": "2026-09-18T13:12:12Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-657343eac365c459af305d51cc6c045cc8a3faf2be9a538fdb4620eb5b54c532",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "ce639d1f64cfbef4337ec5c15a28c6e6982aad2db4f54dd45784dee0739b2ae6",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_income_statement().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1343,
+        "path": "evidence/objects/8c/8c97ecde94ddf5695472f1bfa017f4331462d8e65309426550d5d7a617cbe584.json",
+        "sha256": "8c97ecde94ddf5695472f1bfa017f4331462d8e65309426550d5d7a617cbe584"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4",
+      "fetched_at": "2026-09-17T19:10:51Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "cfc0a4949cb2ada0aead72ca30803dc642e0c9994a833e732b214a17a8adecf4",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-af83e40faf60e1100926d35cdf800a95e739cb298504c1bfc3c7e9e0c4cf812e",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1343,
+        "path": "evidence/objects/e7/e79dac1467d8eb47d61bb66546cf390fd09c38f07490ac1a0324314516530b7a.json",
+        "sha256": "e79dac1467d8eb47d61bb66546cf390fd09c38f07490ac1a0324314516530b7a"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15",
+      "fetched_at": "2026-09-18T13:12:32Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "d406ff9998876fee90c7d5ba29099dafe29eaa0dddff0019446d5bf6398eae15",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-6c23334aa3cca0d972eed15b6b854ffc0d69ad31d88b29b4ce548be246bfa390",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 54329,
+        "path": "evidence/objects/b7/b796f69d33835b6543ad4937051aa4c1fb8916e13f9c931be6263ae3ac3295e7.json",
+        "sha256": "b796f69d33835b6543ad4937051aa4c1fb8916e13f9c931be6263ae3ac3295e7"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": false,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-d665d23ae49d132e0b2f655b8c82b4b1229f2d0c7a9bcee33a283ab08a4b3279",
+      "fetched_at": "2026-09-18T13:12:12Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-377798795e7b4f0dea85989d3dc5c511bd37be9a13e26f6232c44c12893720ec",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "d665d23ae49d132e0b2f655b8c82b4b1229f2d0c7a9bcee33a283ab08a4b3279",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_balance_sheet().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 918,
+        "path": "evidence/objects/6d/6d5ae03af15f5f26b2fc3cfba4dd097b598589c3a08268711ff579634dffa776.json",
+        "sha256": "6d5ae03af15f5f26b2fc3cfba4dd097b598589c3a08268711ff579634dffa776"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218",
+      "fetched_at": "2026-09-17T19:18:57Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+      "source_url": null,
+      "source_version": "db7afe40bd4c894c6faaf10226645b8da00777470b51dbce5c4ab4f0e46ac218",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-3134b155c3a305fd6e59a88ba3ba18962ba4f201abca1343f02838c6fbf0d365",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 217879,
+        "path": "evidence/objects/ee/eef6b0fd8a83504933a50ebb7ce01fac1f63ea0c31e8882c87484ddaa2a2a370.json",
+        "sha256": "eef6b0fd8a83504933a50ebb7ce01fac1f63ea0c31e8882c87484ddaa2a2a370"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90",
+      "fetched_at": "2026-09-17T19:10:52Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE.US"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-3c2d7fb0462bddb0bac6e2a00adeb784ce223d97c2583f1e256c5290c4639cdb",
+      "source_url": null,
+      "source_version": "dba17b9a177a89e23a9484f7967de00ab03e5e411784b8c3353cedf930469c90",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4",
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 223917,
+        "path": "evidence/objects/db/db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437.json",
+        "sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "fetched_at": "2026-09-19T03:41:58Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE.US",
+        "trade_session": "unknown"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ea9a35bec7cfb88abdaec8a78de5c58c3ae660a74b77b11e8f2a39773f33a0e7",
+      "source_url": null,
+      "source_version": "df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-3d1fa2e8cf8283a92e83eead264fad77d5e875e31b350e033f757137afb524c0",
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 217879,
+        "path": "evidence/objects/d8/d851d01820b2af35677248b7b2620b07e7a118b6208c25a11dd405df65d818fb.json",
+        "sha256": "d851d01820b2af35677248b7b2620b07e7a118b6208c25a11dd405df65d818fb"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "BE",
+        "NYSE:BE"
+      ],
+      "evidence_id": "ev-e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4",
+      "fetched_at": "2026-09-17T18:55:50Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE.US"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-3c2d7fb0462bddb0bac6e2a00adeb784ce223d97c2583f1e256c5290c4639cdb",
+      "source_url": null,
+      "source_version": "e0a769c4885efd4d5bdfe46a9027209644178d652e3d1fd071c91b2bd99454a4",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 36726,
+        "path": "evidence/objects/6f/6f455fc5491bcb6761f7330201d42abeae9e8cc925581aa59979c62be36dd14a.htm",
+        "sha256": "6f455fc5491bcb6761f7330201d42abeae9e8cc925581aa59979c62be36dd14a"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-28",
+        "reportDate": "2026-07-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18",
+      "fetched_at": "2026-09-19T15:36:03Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-050150",
+        "cik": "0001664703",
+        "document": "be-20260728.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/be-20260728.htm"
+      },
+      "period": {
+        "end": "2026-07-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-28T20:07:21+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-4b2b8615964aae26ab08e4a19956b943380898908050ca883471f3c5bdb6907c",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/be-20260728.htm",
+      "source_version": "e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1446,
+        "path": "evidence/objects/58/589ad8c2c72dc42168bc1eac56a806b8f5eba74e0d4a20e94329131d85009d24.json",
+        "sha256": "589ad8c2c72dc42168bc1eac56a806b8f5eba74e0d4a20e94329131d85009d24"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-e41678821af3d6fd4f417e79b2be8a0553b65987fe492803d06dafa0531cbf8c",
+      "fetched_at": "2026-09-18T13:12:31Z",
+      "kind": "profile",
+      "known_gaps": [
+        "snapshot of current metadata; no as-of history"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-02fb284b63e1c95497cbf42bc8ff8857039cecc87446e897e8918d9dbdbf2dd6",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "e41678821af3d6fd4f417e79b2be8a0553b65987fe492803d06dafa0531cbf8c",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.info()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 107247,
+        "path": "evidence/objects/31/31f3c66a97f9e2fff21b300a38fd4be3ad3a0d1cdb7d42e90b9cda794100505c.htm.gz",
+        "sha256": "31f3c66a97f9e2fff21b300a38fd4be3ad3a0d1cdb7d42e90b9cda794100505c"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-29",
+        "reportDate": "2026-03-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8",
+      "fetched_at": "2026-09-19T15:36:03Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001628280-26-028021",
+        "cik": "0001664703",
+        "document": "be-20260331.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026028021/be-20260331.htm"
+      },
+      "period": {
+        "end": "2026-03-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-28T21:33:30+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-48a626214205ae901db44ca4ca42dae125064521c2f2b31838ed9300ead8ff92",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026028021/be-20260331.htm",
+      "source_version": "e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 223879,
+        "path": "evidence/objects/94/9477e383d6187823a57c7ab0dc197558b9e8be3a7d4de6c493e816ba51669fc8.json",
+        "sha256": "9477e383d6187823a57c7ab0dc197558b9e8be3a7d4de6c493e816ba51669fc8"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+      "fetched_at": "2026-09-18T13:15:45Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE.US"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-3c2d7fb0462bddb0bac6e2a00adeb784ce223d97c2583f1e256c5290c4639cdb",
+      "source_url": null,
+      "source_version": "e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb",
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 613,
+        "path": "evidence/objects/04/0449174f3d5e0183ee573d3534dcf4dbd57331dd677600a55d60ab9414e672d0.json",
+        "sha256": "0449174f3d5e0183ee573d3534dcf4dbd57331dd677600a55d60ab9414e672d0"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+      "fetched_at": "2026-09-17T16:51:06Z",
+      "kind": "profile",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-57c3ec471428b73800fd7a27987ba7f0fe4d4dc0ac3a7e040d1889927fe3dcb6",
+      "source_url": null,
+      "source_version": "f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "static_info",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1345,
+        "path": "evidence/objects/11/115ca623f3839bd63c62b48b644dbc5aa758897b44ab455fba848278f6491d52.json",
+        "sha256": "115ca623f3839bd63c62b48b644dbc5aa758897b44ab455fba848278f6491d52"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822",
+      "fetched_at": "2026-09-19T03:41:58Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+      "source_url": null,
+      "source_version": "f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-36a5d2c228873c68bb381d0e584f9a94bd7924bd147e36831224620698b4d1c8",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 40906,
+        "path": "evidence/objects/0a/0a5457eefebc5ee62ec97db5212ea4c6300bfc8143f49dfa7c086010be7c6be8.txt",
+        "sha256": "0a5457eefebc5ee62ec97db5212ea4c6300bfc8143f49dfa7c086010be7c6be8"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-28",
+        "reportDate": "2026-04-28"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-fc446d47c4b4ba3c15f89fab1607da1e63b34c812c5ea3682cfa0fad5cac3496",
+      "fetched_at": "2026-09-19T15:36:04Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001628280-26-027913",
+        "cik": "0001664703",
+        "document": "ex991_q126financialresults.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "BE",
+        "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm"
+      },
+      "period": {
+        "end": "2026-04-28",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-28T20:07:03+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-e3a2398812d35ddb5b1acbd784da16db63a2bd817c40eea68890a51f954921da",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026027913/ex991_q126financialresults.htm",
+      "source_version": "fc446d47c4b4ba3c15f89fab1607da1e63b34c812c5ea3682cfa0fad5cac3496",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 712,
+        "path": "evidence/objects/c1/c1a449ef70dd96582fdb28b010a9900a58b77b94a71af8857fc0edea239d91dd.json",
+        "sha256": "c1a449ef70dd96582fdb28b010a9900a58b77b94a71af8857fc0edea239d91dd"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-02f45f148da5b950bcff0595a9e3eb2f0afc1eb0f7e1309db2c98b4b3902d899",
+      "fetched_at": "2026-09-17T16:35:31Z",
+      "kind": "prices",
+      "known_gaps": [
+        "SDK call failed; no response body was received",
+        "No raw document landed; artifact is the adapter diagnostic sidecar itself."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-93aa7883f16cf95c40ad0d259aa267b79fa758c2da036beb0b913e2a7575cba7",
+      "source_url": null,
+      "source_version": "02f45f148da5b950bcff0595a9e3eb2f0afc1eb0f7e1309db2c98b4b3902d899",
+      "status": "error",
+      "status_reason": "OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301600, trace_id=) invalid symbol",
+      "supersedes": null,
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 144,
+        "path": "evidence/objects/8a/8a59667ec3101fbf76186c8adb129229a98e95b7b72dcdddffbd8f401b9cd689.json",
+        "sha256": "8a59667ec3101fbf76186c8adb129229a98e95b7b72dcdddffbd8f401b9cd689"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-2064929ac065274e22ad0434cf5996b5c8fee87142beb46bd850474377d59b13",
+      "fetched_at": "2026-09-17T16:35:31Z",
+      "kind": "profile",
+      "known_gaps": [
+        "empty return: 'nothing to report' and 'not covered' are different"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-5a4437db9cecf1d96c94993ae16825fd8626311b15a0628e1e6ef30c71047506",
+      "source_url": null,
+      "source_version": "2064929ac065274e22ad0434cf5996b5c8fee87142beb46bd850474377d59b13",
+      "status": "empty",
+      "status_reason": "adapter reported empty; see known gaps and the preserved envelope",
+      "supersedes": null,
+      "tool": "static_info",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 138,
+        "path": "evidence/objects/16/16366a4ec1ae71cb939f1810f6fd025cf0fa04084fede8a7ecc51277fff4cf17.json",
+        "sha256": "16366a4ec1ae71cb939f1810f6fd025cf0fa04084fede8a7ecc51277fff4cf17"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-427d033fa1ecf6996700b4dab33d5dd8da69b2c2e545a5529fc810e81e80168c",
+      "fetched_at": "2026-09-17T16:35:31Z",
+      "kind": "prices",
+      "known_gaps": [
+        "empty return: 'nothing to report' and 'not covered' are different"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "BE"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-1a6d26f36250ad98fc0c132293fdbddafe497825157c9466b2f88a8a3eab358e",
+      "source_url": null,
+      "source_version": "427d033fa1ecf6996700b4dab33d5dd8da69b2c2e545a5529fc810e81e80168c",
+      "status": "empty",
+      "status_reason": "adapter reported empty; see known gaps and the preserved envelope",
+      "supersedes": null,
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 249,
+        "path": "evidence/objects/85/85851e23feec4d1c2413529a4cc6a4deda14bcc20c97a2180baa76f2568b322f.json",
+        "sha256": "85851e23feec4d1c2413529a4cc6a4deda14bcc20c97a2180baa76f2568b322f"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-7fc230a2a882ffc2fd7aac593b86122685c2985b76c5f1d4aa25776ed2b1461f",
+      "fetched_at": "2026-09-17T16:35:31Z",
+      "kind": "prices",
+      "known_gaps": [
+        "empty return: 'nothing to report' and 'not covered' are different"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "BE"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-9cc1192cd1343a36cbb29899186c7593c038a67bba498ed9bbd4822544729fad",
+      "source_url": null,
+      "source_version": "7fc230a2a882ffc2fd7aac593b86122685c2985b76c5f1d4aa25776ed2b1461f",
+      "status": "empty",
+      "status_reason": "adapter reported empty; see known gaps and the preserved envelope",
+      "supersedes": null,
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 111,
+        "path": "evidence/objects/dd/dd0c157bd782d03a6ade420be39145fff1600d3ec45a381ff273a4eedf9c3dda.json",
+        "sha256": "dd0c157bd782d03a6ade420be39145fff1600d3ec45a381ff273a4eedf9c3dda"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 0
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NYSE:BE",
+        "cik:0001664703"
+      ],
+      "evidence_id": "ev-e5ff324a95ce29bd6ec20dab09e42bd03a2e8960cad8f5cb3f0f1f209b7ac03c",
+      "fetched_at": "2026-09-18T13:12:24Z",
+      "kind": "prices",
+      "known_gaps": [
+        "empty DataFrame returned by source (kept as empty records)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "BE"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-ffd2cc90f0ac3a23d90842800dd588af6126dc7387cceea93aed392e75e80d5f",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "e5ff324a95ce29bd6ec20dab09e42bd03a2e8960cad8f5cb3f0f1f209b7ac03c",
+      "status": "empty",
+      "status_reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different",
+      "supersedes": null,
+      "tool": "Ticker.splits()",
+      "truncated": false
+    }
+  ]
+}

@@ -1,0 +1,2138 @@
+{
+  "data_as_of": "2026-09-19T15:38:48Z",
+  "artifacts": [
+    {
+      "artifact_id": "cha-ca9cb674ba073f9ee3b4c64185530ffa182b390963a2b75ecbd183c07dcb137a",
+      "view": "M",
+      "label": "monthly",
+      "file": "monthly-ca9cb674ba07.png",
+      "media_type": "image/png",
+      "sha256": "ca9cb674ba073f9ee3b4c64185530ffa182b390963a2b75ecbd183c07dcb137a",
+      "bytes": 106862,
+      "bars_as_of": "2026-09-19T15:38:48Z",
+      "period": "M",
+      "drawn_from": "2022-09-01",
+      "drawn_to": "2026-09-01",
+      "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+      "charts_version": "0.3.2",
+      "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+    },
+    {
+      "artifact_id": "cha-e871acc210b78f0b1371cce97ac8ea6e1f8ec2438868dc067a8e20d830ce61e0",
+      "view": "W",
+      "label": "weekly",
+      "file": "weekly-e871acc210b7.png",
+      "media_type": "image/png",
+      "sha256": "e871acc210b78f0b1371cce97ac8ea6e1f8ec2438868dc067a8e20d830ce61e0",
+      "bytes": 131422,
+      "bars_as_of": "2026-09-19T15:38:48Z",
+      "period": "W",
+      "drawn_from": "2022-09-19",
+      "drawn_to": "2026-09-14",
+      "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+      "charts_version": "0.3.2",
+      "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+    },
+    {
+      "artifact_id": "cha-cdbe8e81faa406b8d1c7da1422e6cb191b55c83f75bfffa2909b0546e1ed87d5",
+      "view": "D",
+      "label": "daily",
+      "file": "daily-cdbe8e81faa4.png",
+      "media_type": "image/png",
+      "sha256": "cdbe8e81faa406b8d1c7da1422e6cb191b55c83f75bfffa2909b0546e1ed87d5",
+      "bytes": 170973,
+      "bars_as_of": "2026-09-19T15:38:48Z",
+      "period": "D",
+      "drawn_from": "2022-09-22",
+      "drawn_to": "2026-09-18",
+      "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+      "charts_version": "0.3.2",
+      "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+    },
+    {
+      "artifact_id": "cha-af13eac3bdb11d89aecb665917d971e339a494e05483c0e86ee7584de43999d2",
+      "view": "DR",
+      "label": "daily_recent",
+      "file": "daily_recent-af13eac3bdb1.png",
+      "media_type": "image/png",
+      "sha256": "af13eac3bdb11d89aecb665917d971e339a494e05483c0e86ee7584de43999d2",
+      "bytes": 161300,
+      "bars_as_of": "2026-09-19T15:38:48Z",
+      "period": "D",
+      "drawn_from": "2026-05-12",
+      "drawn_to": "2026-09-18",
+      "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+      "charts_version": "0.3.2",
+      "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+    }
+  ],
+  "derived": {
+    "charts_version": "0.3.2",
+    "data_as_of": "2026-09-19T15:38:48Z",
+    "note": "圖只作參考，數字以衍生 JSON（derived.json）為準。圖不保存價格陣列；本次陣列只存在於記憶體，發布只保存衍生數字與圖檔。",
+    "parameters": {
+      "sma_windows": [
+        200,
+        50
+      ],
+      "ema_span": 20,
+      "atr_period": 14,
+      "volume_base": 20,
+      "direction_bars": 20,
+      "recent_bars": 90,
+      "scale": "auto",
+      "log_scale_ratio": 4,
+      "zone_tolerance": {
+        "atr_share": 0.25,
+        "floor_pct": 0.004,
+        "basis": "share of price"
+      },
+      "moving_average_basis": "daily complete closes, mapped onto weekly / monthly bars at each period's last trading day",
+      "structure": {
+        "rules": [
+          "D",
+          "W"
+        ],
+        "atr_multiple": 0.25,
+        "reclaim_window": 2,
+        "events_kept": 12
+      }
+    },
+    "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+    "source": {
+      "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+      "source": "longbridge",
+      "kind": "prices",
+      "fetched_at": "2026-09-19T03:41:58Z",
+      "source_url": null,
+      "sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+      "price_basis": "adjust=NoAdjust period=Day session=unknown",
+      "segments": [
+        {
+          "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "source": "longbridge",
+          "fetched_at": "2026-09-19T03:41:58Z",
+          "sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+          "first_bar": "2022-09-23",
+          "last_bar": "2026-09-18",
+          "bars": 1000
+        },
+        {
+          "evidence_id": "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+          "source": "longbridge",
+          "fetched_at": "2026-09-18T13:15:45Z",
+          "sha256": "9477e383d6187823a57c7ab0dc197558b9e8be3a7d4de6c493e816ba51669fc8",
+          "first_bar": "2022-09-22",
+          "last_bar": "2022-09-22",
+          "bars": 1
+        }
+      ],
+      "gaps": [
+        "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb covers BE.US on a different basis (adjust=NoAdjust period=Day session=unknown) and was not merged into the charted series"
+      ]
+    },
+    "daily": {
+      "bars_count": 1001,
+      "last_close": 265.63,
+      "last_bar": "2026-09-18T04:00:00+00:00",
+      "last_bar_complete": true,
+      "moving_averages": {
+        "sma200": {
+          "basis": "200-day SMA on complete daily closes",
+          "value": 198.83915000000002,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 66.79084999999998,
+          "distance_pct": 0.33590392032957284,
+          "direction": {
+            "bars": 20,
+            "value_now": 198.83915000000002,
+            "value_before": 186.2791,
+            "change": 12.560050000000018,
+            "change_pct": 0.06742597532412395,
+            "label": "rising"
+          }
+        },
+        "sma50": {
+          "basis": "50-day SMA on complete daily closes",
+          "value": 225.4282,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 40.20179999999999,
+          "distance_pct": 0.17833527482364664,
+          "direction": {
+            "bars": 20,
+            "value_now": 225.4282,
+            "value_before": 242.8872,
+            "change": -17.459000000000003,
+            "change_pct": -0.07188110365634748,
+            "label": "falling"
+          }
+        },
+        "ema20": {
+          "basis": "20-day EMA on complete daily closes",
+          "value": 248.86942957098154,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 16.760570429018458,
+          "distance_pct": 0.0673468431133204,
+          "direction": {
+            "bars": 20,
+            "value_now": 248.86942957098154,
+            "value_before": 219.30677925722551,
+            "change": 29.562650313756023,
+            "change_pct": 0.13480043988554458,
+            "label": "rising"
+          }
+        }
+      },
+      "atr": 18.960073178020558,
+      "volume": {
+        "last": 73471747,
+        "bars_compared": 20,
+        "average": 13217115.55,
+        "ratio": 5.558833674568276,
+        "method": "last bar volume / mean of the previous 20 bars (target 20)"
+      }
+    },
+    "views": {
+      "M": {
+        "rule": "M",
+        "label": "monthly",
+        "purpose": "long-term position",
+        "bars_count": 49,
+        "complete_bars": 48,
+        "first_bar": "2022-09-01",
+        "last_bar": "2026-09-01",
+        "last_bar_complete": false,
+        "last_close": 265.63,
+        "drawn_bars": 49,
+        "drawn_from": "2022-09-01",
+        "pivot_width": 1,
+        "atr": {
+          "value": 56.1521186270802,
+          "period": 14,
+          "bars": "M",
+          "method": "Wilder: mean of the first 14 true ranges, then ((13*prev)+tr)/14"
+        },
+        "volume": {
+          "last": 243666718,
+          "bars_compared": 20,
+          "average": 224990446,
+          "ratio": 1.0830091780874997,
+          "method": "last bar volume / mean of the previous 20 bars (target 20)"
+        },
+        "overlays": [
+          "sma200"
+        ],
+        "levels": {
+          "last_close": 265.63,
+          "tolerance_pct": 0.052848058038512405,
+          "tolerance": 14.03802965677005,
+          "tolerance_method": "share of price: max(0.25 x ATR14 / last close, 0.004); a band takes pivots within twice that of its own floor",
+          "zones_found": 15,
+          "zones": [
+            {
+              "pivots": "high",
+              "lower": 180.9,
+              "upper": 180.9,
+              "anchors": [
+                {
+                  "price": 180.9,
+                  "formed_at": "2026-02-01",
+                  "confirmed_at": "2026-03-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-03-01"
+            },
+            {
+              "pivots": "high",
+              "lower": 351.28,
+              "upper": 351.28,
+              "anchors": [
+                {
+                  "price": 351.28,
+                  "formed_at": "2026-06-01",
+                  "confirmed_at": "2026-07-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-07-01"
+            },
+            {
+              "pivots": "low",
+              "lower": 157.334,
+              "upper": 157.334,
+              "anchors": [
+                {
+                  "price": 157.334,
+                  "formed_at": "2026-07-01",
+                  "confirmed_at": "2026-08-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-08-01"
+            },
+            {
+              "pivots": "high",
+              "lower": 147.86,
+              "upper": 147.86,
+              "anchors": [
+                {
+                  "price": 147.86,
+                  "formed_at": "2025-11-01",
+                  "confirmed_at": "2025-12-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2025-12-01"
+            },
+            {
+              "pivots": "low",
+              "lower": 116.505,
+              "upper": 116.505,
+              "anchors": [
+                {
+                  "price": 116.505,
+                  "formed_at": "2026-03-01",
+                  "confirmed_at": "2026-04-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-04-01"
+            },
+            {
+              "pivots": "low",
+              "lower": 75.7,
+              "upper": 75.7,
+              "anchors": [
+                {
+                  "price": 75.7,
+                  "formed_at": "2025-12-01",
+                  "confirmed_at": "2026-01-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-01-01"
+            },
+            {
+              "pivots": "high",
+              "lower": 29.825,
+              "upper": 29.825,
+              "anchors": [
+                {
+                  "price": 29.825,
+                  "formed_at": "2025-01-01",
+                  "confirmed_at": "2025-02-01"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2025-02-01"
+            },
+            {
+              "pivots": "high",
+              "lower": 26.548,
+              "upper": 28.7,
+              "anchors": [
+                {
+                  "price": 26.548,
+                  "formed_at": "2023-02-01",
+                  "confirmed_at": "2023-03-01"
+                },
+                {
+                  "price": 28.7,
+                  "formed_at": "2024-11-01",
+                  "confirmed_at": "2024-12-01"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2024-12-01"
+            }
+          ],
+          "resistance": {
+            "pivots": "high",
+            "lower": 351.28,
+            "upper": 351.28,
+            "anchors": [
+              {
+                "price": 351.28,
+                "formed_at": "2026-06-01",
+                "confirmed_at": "2026-07-01"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-07-01"
+          },
+          "support": {
+            "pivots": "high",
+            "lower": 180.9,
+            "upper": 180.9,
+            "anchors": [
+              {
+                "price": 180.9,
+                "formed_at": "2026-02-01",
+                "confirmed_at": "2026-03-01"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-03-01"
+          },
+          "containing": null
+        },
+        "scale": "log",
+        "overlay_endpoints": {
+          "sma200": {
+            "first_drawn": null,
+            "last_drawn": 198.83915000000002
+          }
+        },
+        "artifact_id": "cha-ca9cb674ba073f9ee3b4c64185530ffa182b390963a2b75ecbd183c07dcb137a",
+        "file": "monthly-ca9cb674ba07.png"
+      },
+      "W": {
+        "rule": "W",
+        "label": "weekly",
+        "purpose": "primary trend and structure",
+        "bars_count": 209,
+        "complete_bars": 209,
+        "first_bar": "2022-09-19",
+        "last_bar": "2026-09-14",
+        "last_bar_complete": true,
+        "last_close": 265.63,
+        "drawn_bars": 209,
+        "drawn_from": "2022-09-19",
+        "pivot_width": 1,
+        "atr": {
+          "value": 49.815497777591,
+          "period": 14,
+          "bars": "W",
+          "method": "Wilder: mean of the first 14 true ranges, then ((13*prev)+tr)/14"
+        },
+        "volume": {
+          "last": 126783395,
+          "bars_compared": 20,
+          "average": 65314596.4,
+          "ratio": 1.9411188614494754,
+          "method": "last bar volume / mean of the previous 20 bars (target 20)"
+        },
+        "overlays": [
+          "sma200"
+        ],
+        "levels": {
+          "last_close": 265.63,
+          "tolerance_pct": 0.04688429185106257,
+          "tolerance": 12.45387444439775,
+          "tolerance_method": "share of price: max(0.25 x ATR14 / last close, 0.004); a band takes pivots within twice that of its own floor",
+          "zones_found": 31,
+          "zones": [
+            {
+              "pivots": "high",
+              "lower": 253.31,
+              "upper": 253.31,
+              "anchors": [
+                {
+                  "price": 253.31,
+                  "formed_at": "2026-08-10",
+                  "confirmed_at": "2026-08-17"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-08-17"
+            },
+            {
+              "pivots": "low",
+              "lower": 230.605,
+              "upper": 247.74,
+              "anchors": [
+                {
+                  "price": 241.75,
+                  "formed_at": "2026-05-18",
+                  "confirmed_at": "2026-05-25"
+                },
+                {
+                  "price": 230.605,
+                  "formed_at": "2026-06-08",
+                  "confirmed_at": "2026-06-15"
+                },
+                {
+                  "price": 247.74,
+                  "formed_at": "2026-06-22",
+                  "confirmed_at": "2026-06-29"
+                }
+              ],
+              "touches": 3,
+              "last_confirmed_at": "2026-06-29"
+            },
+            {
+              "pivots": "high",
+              "lower": 322.83,
+              "upper": 351.28,
+              "anchors": [
+                {
+                  "price": 322.83,
+                  "formed_at": "2026-05-18",
+                  "confirmed_at": "2026-05-25"
+                },
+                {
+                  "price": 351.28,
+                  "formed_at": "2026-06-22",
+                  "confirmed_at": "2026-06-29"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-06-29"
+            },
+            {
+              "pivots": "low",
+              "lower": 185.93,
+              "upper": 185.93,
+              "anchors": [
+                {
+                  "price": 185.93,
+                  "formed_at": "2026-08-24",
+                  "confirmed_at": "2026-08-31"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-08-31"
+            },
+            {
+              "pivots": "high",
+              "lower": 169.09,
+              "upper": 180.9,
+              "anchors": [
+                {
+                  "price": 176.49,
+                  "formed_at": "2026-02-02",
+                  "confirmed_at": "2026-02-09"
+                },
+                {
+                  "price": 180.9,
+                  "formed_at": "2026-02-23",
+                  "confirmed_at": "2026-03-02"
+                },
+                {
+                  "price": 169.09,
+                  "formed_at": "2026-03-16",
+                  "confirmed_at": "2026-03-23"
+                }
+              ],
+              "touches": 3,
+              "last_confirmed_at": "2026-03-23"
+            },
+            {
+              "pivots": "low",
+              "lower": 157.334,
+              "upper": 157.334,
+              "anchors": [
+                {
+                  "price": 157.334,
+                  "formed_at": "2026-07-27",
+                  "confirmed_at": "2026-08-03"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-08-03"
+            },
+            {
+              "pivots": "high",
+              "lower": 147.86,
+              "upper": 147.86,
+              "anchors": [
+                {
+                  "price": 147.86,
+                  "formed_at": "2025-11-10",
+                  "confirmed_at": "2025-11-17"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2025-11-17"
+            },
+            {
+              "pivots": "low",
+              "lower": 131,
+              "upper": 132.5,
+              "anchors": [
+                {
+                  "price": 131,
+                  "formed_at": "2026-02-09",
+                  "confirmed_at": "2026-02-16"
+                },
+                {
+                  "price": 132.5,
+                  "formed_at": "2026-03-09",
+                  "confirmed_at": "2026-03-16"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-03-16"
+            }
+          ],
+          "resistance": {
+            "pivots": "high",
+            "lower": 322.83,
+            "upper": 351.28,
+            "anchors": [
+              {
+                "price": 322.83,
+                "formed_at": "2026-05-18",
+                "confirmed_at": "2026-05-25"
+              },
+              {
+                "price": 351.28,
+                "formed_at": "2026-06-22",
+                "confirmed_at": "2026-06-29"
+              }
+            ],
+            "touches": 2,
+            "last_confirmed_at": "2026-06-29"
+          },
+          "support": {
+            "pivots": "high",
+            "lower": 253.31,
+            "upper": 253.31,
+            "anchors": [
+              {
+                "price": 253.31,
+                "formed_at": "2026-08-10",
+                "confirmed_at": "2026-08-17"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-08-17"
+          },
+          "containing": null
+        },
+        "scale": "log",
+        "structure": {
+          "state": {
+            "timeframe": "W",
+            "definition": "karst.structure/1",
+            "parameters": {
+              "definition": "karst.structure/1",
+              "pivot_width": 1,
+              "pivot_rule": "symmetric confirmed pivot, strict, right-bar close (karst.calculations.confirmed_pivots); not LuxAlgo leg(size)",
+              "break_rule": "close of a complete bar beyond the most recent confirmed swing level",
+              "atr_multiple": 0.25,
+              "atr_period": 14,
+              "reclaim_window": 2
+            },
+            "trend": "up",
+            "trend_since": "2026-09-07",
+            "swing_high": null,
+            "swing_low": {
+              "price": 185.93,
+              "formed_at": "2026-08-24",
+              "confirmed_at": "2026-08-31",
+              "label": "HL",
+              "status": "confirmed",
+              "event_id": "st-c0bbba5d98df"
+            },
+            "prior_high": {
+              "price": 253.31,
+              "formed_at": "2026-08-10",
+              "broken_at": "2026-09-07",
+              "retested_at": "2026-09-14",
+              "event_id": "st-a40b8fb66dbd"
+            },
+            "prior_low": {
+              "price": 247.74,
+              "formed_at": "2026-06-22",
+              "broken_at": "2026-07-06",
+              "retested_at": "2026-07-13",
+              "event_id": "st-3e20dd6b73ec"
+            },
+            "atr": 49.815497777591,
+            "last_bar": "2026-09-14",
+            "last_bar_complete": true,
+            "swings_count": 86,
+            "events_count": 75
+          },
+          "events": [
+            {
+              "event_id": "st-de3e26b90ea5",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-05-18",
+              "confirmed_at": "2026-05-25",
+              "level": 241.75,
+              "zone": null,
+              "status": "touched",
+              "status_at": "2026-06-08",
+              "invalidation": "a complete bar closes below 241.75",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-1a277437be3c"
+              ],
+              "label": "HL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-057f1f5c355c",
+              "kind": "sweep",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-05-18",
+              "confirmed_at": "2026-06-08",
+              "level": 241.75,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-06-08",
+              "invalidation": "a complete bar closes below 241.75",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-de3e26b90ea5"
+              ],
+              "basis": "same_bar",
+              "reached": 230.605,
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-ac933bb75f01",
+              "kind": "bos",
+              "direction": "up",
+              "timeframe": "W",
+              "anchor_time": "2026-05-18",
+              "confirmed_at": "2026-06-15",
+              "level": 322.83,
+              "zone": null,
+              "status": "invalidated",
+              "status_at": "2026-06-22",
+              "invalidation": "a complete bar closes back below 322.83 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-c3cbf6b9a43d"
+              ],
+              "trend_before": "up",
+              "trend_after": "up",
+              "broke_label": "HH",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-41ee25b913d7",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-06-08",
+              "confirmed_at": "2026-06-15",
+              "level": 230.605,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-06-15",
+              "invalidation": "a complete bar closes below 230.605",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-de3e26b90ea5"
+              ],
+              "label": "LL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-bab9528b49db",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "W",
+              "anchor_time": "2026-05-18",
+              "confirmed_at": "2026-06-22",
+              "level": 322.83,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-06-22",
+              "invalidation": "a complete bar closes above 322.83 again",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-ac933bb75f01"
+              ],
+              "basis": "cross_bar_reclaim",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-3e20dd6b73ec",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-06-22",
+              "confirmed_at": "2026-06-29",
+              "level": 247.74,
+              "zone": null,
+              "status": "invalidated",
+              "status_at": "2026-07-06",
+              "invalidation": "a complete bar closes below 247.74",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-41ee25b913d7"
+              ],
+              "label": "HL",
+              "zone_ref": {
+                "pivots": "low",
+                "lower": 230.605,
+                "upper": 247.74
+              }
+            },
+            {
+              "event_id": "st-9d230d06a092",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "W",
+              "anchor_time": "2026-06-22",
+              "confirmed_at": "2026-06-29",
+              "level": 351.28,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-06-29",
+              "invalidation": "a complete bar closes above 351.28",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-c3cbf6b9a43d"
+              ],
+              "label": "HH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 322.83,
+                "upper": 351.28
+              }
+            },
+            {
+              "event_id": "st-9c7126cda963",
+              "kind": "choch",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-06-22",
+              "confirmed_at": "2026-07-06",
+              "level": 247.74,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-07-06",
+              "invalidation": "a complete bar closes back above 247.74 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-3e20dd6b73ec"
+              ],
+              "trend_before": "up",
+              "trend_after": "down",
+              "broke_label": "HL",
+              "zone_ref": {
+                "pivots": "low",
+                "lower": 230.605,
+                "upper": 247.74
+              }
+            },
+            {
+              "event_id": "st-25af89098cc9",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-07-27",
+              "confirmed_at": "2026-08-03",
+              "level": 157.334,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-03",
+              "invalidation": "a complete bar closes below 157.334",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-3e20dd6b73ec"
+              ],
+              "label": "LL",
+              "zone_ref": {
+                "pivots": "low",
+                "lower": 157.334,
+                "upper": 157.334
+              }
+            },
+            {
+              "event_id": "st-a40b8fb66dbd",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "W",
+              "anchor_time": "2026-08-10",
+              "confirmed_at": "2026-08-17",
+              "level": 253.31,
+              "zone": null,
+              "status": "invalidated",
+              "status_at": "2026-09-07",
+              "invalidation": "a complete bar closes above 253.31",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-9d230d06a092"
+              ],
+              "label": "LH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 253.31,
+                "upper": 253.31
+              }
+            },
+            {
+              "event_id": "st-c0bbba5d98df",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "W",
+              "anchor_time": "2026-08-24",
+              "confirmed_at": "2026-08-31",
+              "level": 185.93,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-31",
+              "invalidation": "a complete bar closes below 185.93",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-25af89098cc9"
+              ],
+              "label": "HL",
+              "zone_ref": {
+                "pivots": "low",
+                "lower": 185.93,
+                "upper": 185.93
+              }
+            },
+            {
+              "event_id": "st-b443c486cdc5",
+              "kind": "choch",
+              "direction": "up",
+              "timeframe": "W",
+              "anchor_time": "2026-08-10",
+              "confirmed_at": "2026-09-07",
+              "level": 253.31,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-07",
+              "invalidation": "a complete bar closes back below 253.31 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-a40b8fb66dbd"
+              ],
+              "trend_before": "down",
+              "trend_after": "up",
+              "broke_label": "LH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 253.31,
+                "upper": 253.31
+              }
+            }
+          ]
+        },
+        "overlay_endpoints": {
+          "sma200": {
+            "first_drawn": null,
+            "last_drawn": 198.83915000000002
+          }
+        },
+        "artifact_id": "cha-e871acc210b78f0b1371cce97ac8ea6e1f8ec2438868dc067a8e20d830ce61e0",
+        "file": "weekly-e871acc210b7.png"
+      },
+      "D": {
+        "rule": "D",
+        "label": "daily",
+        "purpose": "the whole daily history",
+        "bars_count": 1001,
+        "complete_bars": 1001,
+        "first_bar": "2022-09-22",
+        "last_bar": "2026-09-18",
+        "last_bar_complete": true,
+        "last_close": 265.63,
+        "drawn_bars": 1001,
+        "drawn_from": "2022-09-22",
+        "pivot_width": 2,
+        "atr": {
+          "value": 18.960073178020558,
+          "period": 14,
+          "bars": "D",
+          "method": "Wilder: mean of the first 14 true ranges, then ((13*prev)+tr)/14"
+        },
+        "volume": {
+          "last": 73471747,
+          "bars_compared": 20,
+          "average": 13217115.55,
+          "ratio": 5.558833674568276,
+          "method": "last bar volume / mean of the previous 20 bars (target 20)"
+        },
+        "overlays": [
+          "sma200",
+          "sma50"
+        ],
+        "levels": {
+          "last_close": 265.63,
+          "tolerance_pct": 0.01784443886046433,
+          "tolerance": 4.7400182945051395,
+          "tolerance_method": "share of price: max(0.25 x ATR14 / last close, 0.004); a band takes pivots within twice that of its own floor",
+          "zones_found": 93,
+          "zones": [
+            {
+              "pivots": "low",
+              "lower": 268.13,
+              "upper": 268.13,
+              "anchors": [
+                {
+                  "price": 268.13,
+                  "formed_at": "2026-05-29T04:00:00+00:00",
+                  "confirmed_at": "2026-06-02T04:00:00+00:00"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-06-02T04:00:00+00:00"
+            },
+            {
+              "pivots": "low",
+              "lower": 257.51,
+              "upper": 257.51,
+              "anchors": [
+                {
+                  "price": 257.51,
+                  "formed_at": "2026-07-02T04:00:00+00:00",
+                  "confirmed_at": "2026-07-07T04:00:00+00:00"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-07-07T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 252,
+              "upper": 253.31,
+              "anchors": [
+                {
+                  "price": 252,
+                  "formed_at": "2026-07-14T04:00:00+00:00",
+                  "confirmed_at": "2026-07-16T04:00:00+00:00"
+                },
+                {
+                  "price": 253.31,
+                  "formed_at": "2026-08-13T04:00:00+00:00",
+                  "confirmed_at": "2026-08-17T04:00:00+00:00"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-08-17T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 280.74,
+              "upper": 283.83,
+              "anchors": [
+                {
+                  "price": 280.74,
+                  "formed_at": "2026-06-09T04:00:00+00:00",
+                  "confirmed_at": "2026-06-11T04:00:00+00:00"
+                },
+                {
+                  "price": 283.83,
+                  "formed_at": "2026-09-08T04:00:00+00:00",
+                  "confirmed_at": "2026-09-10T04:00:00+00:00"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-09-10T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 242.203,
+              "upper": 249.45,
+              "anchors": [
+                {
+                  "price": 242.203,
+                  "formed_at": "2026-04-24T04:00:00+00:00",
+                  "confirmed_at": "2026-04-28T04:00:00+00:00"
+                },
+                {
+                  "price": 249.45,
+                  "formed_at": "2026-08-06T04:00:00+00:00",
+                  "confirmed_at": "2026-08-10T04:00:00+00:00"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-08-10T04:00:00+00:00"
+            },
+            {
+              "pivots": "low",
+              "lower": 241.75,
+              "upper": 249.1,
+              "anchors": [
+                {
+                  "price": 249.1,
+                  "formed_at": "2026-05-08T04:00:00+00:00",
+                  "confirmed_at": "2026-05-12T04:00:00+00:00"
+                },
+                {
+                  "price": 241.75,
+                  "formed_at": "2026-05-19T04:00:00+00:00",
+                  "confirmed_at": "2026-05-21T04:00:00+00:00"
+                },
+                {
+                  "price": 247.74,
+                  "formed_at": "2026-06-26T04:00:00+00:00",
+                  "confirmed_at": "2026-06-30T04:00:00+00:00"
+                },
+                {
+                  "price": 249.05,
+                  "formed_at": "2026-09-14T04:00:00+00:00",
+                  "confirmed_at": "2026-09-16T04:00:00+00:00"
+                }
+              ],
+              "touches": 4,
+              "last_confirmed_at": "2026-09-16T04:00:00+00:00"
+            },
+            {
+              "pivots": "low",
+              "lower": 230.605,
+              "upper": 230.605,
+              "anchors": [
+                {
+                  "price": 230.605,
+                  "formed_at": "2026-06-10T04:00:00+00:00",
+                  "confirmed_at": "2026-06-12T04:00:00+00:00"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-06-12T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 227.99,
+              "upper": 229.9,
+              "anchors": [
+                {
+                  "price": 229.55,
+                  "formed_at": "2026-04-15T04:00:00+00:00",
+                  "confirmed_at": "2026-04-17T04:00:00+00:00"
+                },
+                {
+                  "price": 229.9,
+                  "formed_at": "2026-07-21T04:00:00+00:00",
+                  "confirmed_at": "2026-07-23T04:00:00+00:00"
+                },
+                {
+                  "price": 227.99,
+                  "formed_at": "2026-08-27T04:00:00+00:00",
+                  "confirmed_at": "2026-08-31T04:00:00+00:00"
+                }
+              ],
+              "touches": 3,
+              "last_confirmed_at": "2026-08-31T04:00:00+00:00"
+            }
+          ],
+          "resistance": {
+            "pivots": "low",
+            "lower": 268.13,
+            "upper": 268.13,
+            "anchors": [
+              {
+                "price": 268.13,
+                "formed_at": "2026-05-29T04:00:00+00:00",
+                "confirmed_at": "2026-06-02T04:00:00+00:00"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-06-02T04:00:00+00:00"
+          },
+          "support": {
+            "pivots": "low",
+            "lower": 257.51,
+            "upper": 257.51,
+            "anchors": [
+              {
+                "price": 257.51,
+                "formed_at": "2026-07-02T04:00:00+00:00",
+                "confirmed_at": "2026-07-07T04:00:00+00:00"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-07-07T04:00:00+00:00"
+          },
+          "containing": null
+        },
+        "scale": "log",
+        "structure": {
+          "state": {
+            "timeframe": "D",
+            "definition": "karst.structure/1",
+            "parameters": {
+              "definition": "karst.structure/1",
+              "pivot_width": 2,
+              "pivot_rule": "symmetric confirmed pivot, strict, right-bar close (karst.calculations.confirmed_pivots); not LuxAlgo leg(size)",
+              "break_rule": "close of a complete bar beyond the most recent confirmed swing level",
+              "atr_multiple": 0.25,
+              "atr_period": 14,
+              "reclaim_window": 2
+            },
+            "trend": "up",
+            "trend_since": "2026-09-03T04:00:00+00:00",
+            "swing_high": {
+              "price": 283.83,
+              "formed_at": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-10T04:00:00+00:00",
+              "label": "HH",
+              "status": "touched",
+              "event_id": "st-932a7c7348d9"
+            },
+            "swing_low": {
+              "price": 249.05,
+              "formed_at": "2026-09-14T04:00:00+00:00",
+              "confirmed_at": "2026-09-16T04:00:00+00:00",
+              "label": "HL",
+              "status": "confirmed",
+              "event_id": "st-a54aa4043cfa"
+            },
+            "prior_high": {
+              "price": 227.99,
+              "formed_at": "2026-08-27T04:00:00+00:00",
+              "broken_at": "2026-09-03T04:00:00+00:00",
+              "retested_at": null,
+              "event_id": "st-5286d82b9944"
+            },
+            "prior_low": {
+              "price": 210.02,
+              "formed_at": "2026-08-10T04:00:00+00:00",
+              "broken_at": "2026-08-18T04:00:00+00:00",
+              "retested_at": "2026-08-19T04:00:00+00:00",
+              "event_id": "st-f3f5c4979a1b"
+            },
+            "atr": 18.960073178020558,
+            "last_bar": "2026-09-18T04:00:00+00:00",
+            "last_bar_complete": true,
+            "swings_count": 268,
+            "events_count": 248
+          },
+          "events": [
+            {
+              "event_id": "st-323b81d3e53e",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-06T04:00:00+00:00",
+              "confirmed_at": "2026-08-13T04:00:00+00:00",
+              "level": 249.45,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-13T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 249.45",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-2805b300513c"
+              ],
+              "basis": "same_bar",
+              "reached": 253.31,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 242.203,
+                "upper": 249.45
+              }
+            },
+            {
+              "event_id": "st-7ec8cf8ab4c5",
+              "kind": "equal_levels",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-06T04:00:00+00:00",
+              "confirmed_at": "2026-08-17T04:00:00+00:00",
+              "level": 251.38,
+              "zone": {
+                "lower": 249.45,
+                "upper": 253.31
+              },
+              "status": "confirmed",
+              "status_at": "2026-08-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 253.31",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-2805b300513c",
+                "st-b36530be3454"
+              ],
+              "tolerance": 6.31583353350302,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 252,
+                "upper": 253.31
+              }
+            },
+            {
+              "event_id": "st-b36530be3454",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-13T04:00:00+00:00",
+              "confirmed_at": "2026-08-17T04:00:00+00:00",
+              "level": 253.31,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 253.31",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-2805b300513c"
+              ],
+              "label": "HH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 252,
+                "upper": 253.31
+              }
+            },
+            {
+              "event_id": "st-334ea7caf6fa",
+              "kind": "choch",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-08-10T04:00:00+00:00",
+              "confirmed_at": "2026-08-18T04:00:00+00:00",
+              "level": 210.02,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-18T04:00:00+00:00",
+              "invalidation": "a complete bar closes back above 210.02 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-f3f5c4979a1b"
+              ],
+              "trend_before": "up",
+              "trend_after": "down",
+              "broke_label": "HL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-59e7c0ecc2a7",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-08-24T04:00:00+00:00",
+              "confirmed_at": "2026-08-26T04:00:00+00:00",
+              "level": 185.93,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-26T04:00:00+00:00",
+              "invalidation": "a complete bar closes below 185.93",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-f3f5c4979a1b"
+              ],
+              "label": "LL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-5286d82b9944",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-27T04:00:00+00:00",
+              "confirmed_at": "2026-08-31T04:00:00+00:00",
+              "level": 227.99,
+              "zone": null,
+              "status": "invalidated",
+              "status_at": "2026-09-03T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 227.99",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-b36530be3454"
+              ],
+              "label": "LH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 227.99,
+                "upper": 229.9
+              }
+            },
+            {
+              "event_id": "st-0698072cd77a",
+              "kind": "choch",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-27T04:00:00+00:00",
+              "confirmed_at": "2026-09-03T04:00:00+00:00",
+              "level": 227.99,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-03T04:00:00+00:00",
+              "invalidation": "a complete bar closes back below 227.99 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-5286d82b9944"
+              ],
+              "trend_before": "down",
+              "trend_after": "up",
+              "broke_label": "LH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 227.99,
+                "upper": 229.9
+              }
+            },
+            {
+              "event_id": "st-b8031cd31acb",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-09-01T04:00:00+00:00",
+              "confirmed_at": "2026-09-03T04:00:00+00:00",
+              "level": 197.5,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-03T04:00:00+00:00",
+              "invalidation": "a complete bar closes below 197.5",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-59e7c0ecc2a7"
+              ],
+              "label": "HL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-932a7c7348d9",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-10T04:00:00+00:00",
+              "level": 283.83,
+              "zone": null,
+              "status": "touched",
+              "status_at": "2026-09-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 283.83",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-5286d82b9944"
+              ],
+              "label": "HH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 280.74,
+                "upper": 283.83
+              }
+            },
+            {
+              "event_id": "st-a54aa4043cfa",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-09-14T04:00:00+00:00",
+              "confirmed_at": "2026-09-16T04:00:00+00:00",
+              "level": 249.05,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-16T04:00:00+00:00",
+              "invalidation": "a complete bar closes below 249.05",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-b8031cd31acb"
+              ],
+              "label": "HL",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 242.203,
+                "upper": 249.45
+              }
+            },
+            {
+              "event_id": "st-93437fccba03",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-17T04:00:00+00:00",
+              "level": 283.83,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 283.83",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-932a7c7348d9"
+              ],
+              "basis": "same_bar",
+              "reached": 288,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 280.74,
+                "upper": 283.83
+              }
+            },
+            {
+              "event_id": "st-3b4a420e8c5b",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-18T04:00:00+00:00",
+              "level": 283.83,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-18T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 283.83",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-932a7c7348d9"
+              ],
+              "basis": "same_bar",
+              "reached": 285.1,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 280.74,
+                "upper": 283.83
+              }
+            }
+          ]
+        },
+        "overlay_endpoints": {
+          "sma200": {
+            "first_drawn": null,
+            "last_drawn": 198.83915000000002
+          },
+          "sma50": {
+            "first_drawn": null,
+            "last_drawn": 225.4282
+          }
+        },
+        "artifact_id": "cha-cdbe8e81faa406b8d1c7da1422e6cb191b55c83f75bfffa2909b0546e1ed87d5",
+        "file": "daily-cdbe8e81faa4.png"
+      },
+      "DR": {
+        "rule": "D",
+        "label": "daily_recent",
+        "purpose": "the last 90 daily bars, close enough to read candle bodies and wicks",
+        "bars_count": 1001,
+        "complete_bars": 1001,
+        "first_bar": "2022-09-22",
+        "last_bar": "2026-09-18",
+        "last_bar_complete": true,
+        "last_close": 265.63,
+        "drawn_bars": 90,
+        "drawn_from": "2026-05-12",
+        "pivot_width": 2,
+        "atr": {
+          "value": 18.960073178020558,
+          "period": 14,
+          "bars": "D",
+          "method": "Wilder: mean of the first 14 true ranges, then ((13*prev)+tr)/14"
+        },
+        "volume": {
+          "last": 73471747,
+          "bars_compared": 20,
+          "average": 13217115.55,
+          "ratio": 5.558833674568276,
+          "method": "last bar volume / mean of the previous 20 bars (target 20)"
+        },
+        "overlays": [
+          "sma200",
+          "sma50",
+          "ema20"
+        ],
+        "levels": {
+          "last_close": 265.63,
+          "tolerance_pct": 0.01784443886046433,
+          "tolerance": 4.7400182945051395,
+          "tolerance_method": "share of price: max(0.25 x ATR14 / last close, 0.004); a band takes pivots within twice that of its own floor",
+          "zones_found": 93,
+          "zones": [
+            {
+              "pivots": "low",
+              "lower": 268.13,
+              "upper": 268.13,
+              "anchors": [
+                {
+                  "price": 268.13,
+                  "formed_at": "2026-05-29T04:00:00+00:00",
+                  "confirmed_at": "2026-06-02T04:00:00+00:00"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-06-02T04:00:00+00:00"
+            },
+            {
+              "pivots": "low",
+              "lower": 257.51,
+              "upper": 257.51,
+              "anchors": [
+                {
+                  "price": 257.51,
+                  "formed_at": "2026-07-02T04:00:00+00:00",
+                  "confirmed_at": "2026-07-07T04:00:00+00:00"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-07-07T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 252,
+              "upper": 253.31,
+              "anchors": [
+                {
+                  "price": 252,
+                  "formed_at": "2026-07-14T04:00:00+00:00",
+                  "confirmed_at": "2026-07-16T04:00:00+00:00"
+                },
+                {
+                  "price": 253.31,
+                  "formed_at": "2026-08-13T04:00:00+00:00",
+                  "confirmed_at": "2026-08-17T04:00:00+00:00"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-08-17T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 280.74,
+              "upper": 283.83,
+              "anchors": [
+                {
+                  "price": 280.74,
+                  "formed_at": "2026-06-09T04:00:00+00:00",
+                  "confirmed_at": "2026-06-11T04:00:00+00:00"
+                },
+                {
+                  "price": 283.83,
+                  "formed_at": "2026-09-08T04:00:00+00:00",
+                  "confirmed_at": "2026-09-10T04:00:00+00:00"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-09-10T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 242.203,
+              "upper": 249.45,
+              "anchors": [
+                {
+                  "price": 242.203,
+                  "formed_at": "2026-04-24T04:00:00+00:00",
+                  "confirmed_at": "2026-04-28T04:00:00+00:00"
+                },
+                {
+                  "price": 249.45,
+                  "formed_at": "2026-08-06T04:00:00+00:00",
+                  "confirmed_at": "2026-08-10T04:00:00+00:00"
+                }
+              ],
+              "touches": 2,
+              "last_confirmed_at": "2026-08-10T04:00:00+00:00"
+            },
+            {
+              "pivots": "low",
+              "lower": 241.75,
+              "upper": 249.1,
+              "anchors": [
+                {
+                  "price": 249.1,
+                  "formed_at": "2026-05-08T04:00:00+00:00",
+                  "confirmed_at": "2026-05-12T04:00:00+00:00"
+                },
+                {
+                  "price": 241.75,
+                  "formed_at": "2026-05-19T04:00:00+00:00",
+                  "confirmed_at": "2026-05-21T04:00:00+00:00"
+                },
+                {
+                  "price": 247.74,
+                  "formed_at": "2026-06-26T04:00:00+00:00",
+                  "confirmed_at": "2026-06-30T04:00:00+00:00"
+                },
+                {
+                  "price": 249.05,
+                  "formed_at": "2026-09-14T04:00:00+00:00",
+                  "confirmed_at": "2026-09-16T04:00:00+00:00"
+                }
+              ],
+              "touches": 4,
+              "last_confirmed_at": "2026-09-16T04:00:00+00:00"
+            },
+            {
+              "pivots": "low",
+              "lower": 230.605,
+              "upper": 230.605,
+              "anchors": [
+                {
+                  "price": 230.605,
+                  "formed_at": "2026-06-10T04:00:00+00:00",
+                  "confirmed_at": "2026-06-12T04:00:00+00:00"
+                }
+              ],
+              "touches": 1,
+              "last_confirmed_at": "2026-06-12T04:00:00+00:00"
+            },
+            {
+              "pivots": "high",
+              "lower": 227.99,
+              "upper": 229.9,
+              "anchors": [
+                {
+                  "price": 229.55,
+                  "formed_at": "2026-04-15T04:00:00+00:00",
+                  "confirmed_at": "2026-04-17T04:00:00+00:00"
+                },
+                {
+                  "price": 229.9,
+                  "formed_at": "2026-07-21T04:00:00+00:00",
+                  "confirmed_at": "2026-07-23T04:00:00+00:00"
+                },
+                {
+                  "price": 227.99,
+                  "formed_at": "2026-08-27T04:00:00+00:00",
+                  "confirmed_at": "2026-08-31T04:00:00+00:00"
+                }
+              ],
+              "touches": 3,
+              "last_confirmed_at": "2026-08-31T04:00:00+00:00"
+            }
+          ],
+          "resistance": {
+            "pivots": "low",
+            "lower": 268.13,
+            "upper": 268.13,
+            "anchors": [
+              {
+                "price": 268.13,
+                "formed_at": "2026-05-29T04:00:00+00:00",
+                "confirmed_at": "2026-06-02T04:00:00+00:00"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-06-02T04:00:00+00:00"
+          },
+          "support": {
+            "pivots": "low",
+            "lower": 257.51,
+            "upper": 257.51,
+            "anchors": [
+              {
+                "price": 257.51,
+                "formed_at": "2026-07-02T04:00:00+00:00",
+                "confirmed_at": "2026-07-07T04:00:00+00:00"
+              }
+            ],
+            "touches": 1,
+            "last_confirmed_at": "2026-07-07T04:00:00+00:00"
+          },
+          "containing": null
+        },
+        "scale": "linear",
+        "structure": {
+          "state": {
+            "timeframe": "D",
+            "definition": "karst.structure/1",
+            "parameters": {
+              "definition": "karst.structure/1",
+              "pivot_width": 2,
+              "pivot_rule": "symmetric confirmed pivot, strict, right-bar close (karst.calculations.confirmed_pivots); not LuxAlgo leg(size)",
+              "break_rule": "close of a complete bar beyond the most recent confirmed swing level",
+              "atr_multiple": 0.25,
+              "atr_period": 14,
+              "reclaim_window": 2
+            },
+            "trend": "up",
+            "trend_since": "2026-09-03T04:00:00+00:00",
+            "swing_high": {
+              "price": 283.83,
+              "formed_at": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-10T04:00:00+00:00",
+              "label": "HH",
+              "status": "touched",
+              "event_id": "st-932a7c7348d9"
+            },
+            "swing_low": {
+              "price": 249.05,
+              "formed_at": "2026-09-14T04:00:00+00:00",
+              "confirmed_at": "2026-09-16T04:00:00+00:00",
+              "label": "HL",
+              "status": "confirmed",
+              "event_id": "st-a54aa4043cfa"
+            },
+            "prior_high": {
+              "price": 227.99,
+              "formed_at": "2026-08-27T04:00:00+00:00",
+              "broken_at": "2026-09-03T04:00:00+00:00",
+              "retested_at": null,
+              "event_id": "st-5286d82b9944"
+            },
+            "prior_low": {
+              "price": 210.02,
+              "formed_at": "2026-08-10T04:00:00+00:00",
+              "broken_at": "2026-08-18T04:00:00+00:00",
+              "retested_at": "2026-08-19T04:00:00+00:00",
+              "event_id": "st-f3f5c4979a1b"
+            },
+            "atr": 18.960073178020558,
+            "last_bar": "2026-09-18T04:00:00+00:00",
+            "last_bar_complete": true,
+            "swings_count": 268,
+            "events_count": 248
+          },
+          "events": [
+            {
+              "event_id": "st-323b81d3e53e",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-06T04:00:00+00:00",
+              "confirmed_at": "2026-08-13T04:00:00+00:00",
+              "level": 249.45,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-13T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 249.45",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-2805b300513c"
+              ],
+              "basis": "same_bar",
+              "reached": 253.31,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 242.203,
+                "upper": 249.45
+              }
+            },
+            {
+              "event_id": "st-7ec8cf8ab4c5",
+              "kind": "equal_levels",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-06T04:00:00+00:00",
+              "confirmed_at": "2026-08-17T04:00:00+00:00",
+              "level": 251.38,
+              "zone": {
+                "lower": 249.45,
+                "upper": 253.31
+              },
+              "status": "confirmed",
+              "status_at": "2026-08-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 253.31",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-2805b300513c",
+                "st-b36530be3454"
+              ],
+              "tolerance": 6.31583353350302,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 252,
+                "upper": 253.31
+              }
+            },
+            {
+              "event_id": "st-b36530be3454",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-13T04:00:00+00:00",
+              "confirmed_at": "2026-08-17T04:00:00+00:00",
+              "level": 253.31,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 253.31",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-2805b300513c"
+              ],
+              "label": "HH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 252,
+                "upper": 253.31
+              }
+            },
+            {
+              "event_id": "st-334ea7caf6fa",
+              "kind": "choch",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-08-10T04:00:00+00:00",
+              "confirmed_at": "2026-08-18T04:00:00+00:00",
+              "level": 210.02,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-18T04:00:00+00:00",
+              "invalidation": "a complete bar closes back above 210.02 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-f3f5c4979a1b"
+              ],
+              "trend_before": "up",
+              "trend_after": "down",
+              "broke_label": "HL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-59e7c0ecc2a7",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-08-24T04:00:00+00:00",
+              "confirmed_at": "2026-08-26T04:00:00+00:00",
+              "level": 185.93,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-08-26T04:00:00+00:00",
+              "invalidation": "a complete bar closes below 185.93",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-f3f5c4979a1b"
+              ],
+              "label": "LL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-5286d82b9944",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-27T04:00:00+00:00",
+              "confirmed_at": "2026-08-31T04:00:00+00:00",
+              "level": 227.99,
+              "zone": null,
+              "status": "invalidated",
+              "status_at": "2026-09-03T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 227.99",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-b36530be3454"
+              ],
+              "label": "LH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 227.99,
+                "upper": 229.9
+              }
+            },
+            {
+              "event_id": "st-0698072cd77a",
+              "kind": "choch",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-08-27T04:00:00+00:00",
+              "confirmed_at": "2026-09-03T04:00:00+00:00",
+              "level": 227.99,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-03T04:00:00+00:00",
+              "invalidation": "a complete bar closes back below 227.99 within 2 bars",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-5286d82b9944"
+              ],
+              "trend_before": "down",
+              "trend_after": "up",
+              "broke_label": "LH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 227.99,
+                "upper": 229.9
+              }
+            },
+            {
+              "event_id": "st-b8031cd31acb",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-09-01T04:00:00+00:00",
+              "confirmed_at": "2026-09-03T04:00:00+00:00",
+              "level": 197.5,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-03T04:00:00+00:00",
+              "invalidation": "a complete bar closes below 197.5",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-59e7c0ecc2a7"
+              ],
+              "label": "HL",
+              "zone_ref": null
+            },
+            {
+              "event_id": "st-932a7c7348d9",
+              "kind": "swing",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-10T04:00:00+00:00",
+              "level": 283.83,
+              "zone": null,
+              "status": "touched",
+              "status_at": "2026-09-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 283.83",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-5286d82b9944"
+              ],
+              "label": "HH",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 280.74,
+                "upper": 283.83
+              }
+            },
+            {
+              "event_id": "st-a54aa4043cfa",
+              "kind": "swing",
+              "direction": "down",
+              "timeframe": "D",
+              "anchor_time": "2026-09-14T04:00:00+00:00",
+              "confirmed_at": "2026-09-16T04:00:00+00:00",
+              "level": 249.05,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-16T04:00:00+00:00",
+              "invalidation": "a complete bar closes below 249.05",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-b8031cd31acb"
+              ],
+              "label": "HL",
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 242.203,
+                "upper": 249.45
+              }
+            },
+            {
+              "event_id": "st-93437fccba03",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-17T04:00:00+00:00",
+              "level": 283.83,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-17T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 283.83",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-932a7c7348d9"
+              ],
+              "basis": "same_bar",
+              "reached": 288,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 280.74,
+                "upper": 283.83
+              }
+            },
+            {
+              "event_id": "st-3b4a420e8c5b",
+              "kind": "sweep",
+              "direction": "up",
+              "timeframe": "D",
+              "anchor_time": "2026-09-08T04:00:00+00:00",
+              "confirmed_at": "2026-09-18T04:00:00+00:00",
+              "level": 283.83,
+              "zone": null,
+              "status": "confirmed",
+              "status_at": "2026-09-18T04:00:00+00:00",
+              "invalidation": "a complete bar closes above 283.83",
+              "definition": "karst.structure/1",
+              "refs": [
+                "st-932a7c7348d9"
+              ],
+              "basis": "same_bar",
+              "reached": 285.1,
+              "zone_ref": {
+                "pivots": "high",
+                "lower": 280.74,
+                "upper": 283.83
+              }
+            }
+          ]
+        },
+        "overlay_endpoints": {
+          "sma200": {
+            "first_drawn": 123.17614999999999,
+            "last_drawn": 198.83915000000002
+          },
+          "sma50": {
+            "first_drawn": 191.7954,
+            "last_drawn": 225.4282
+          },
+          "ema20": {
+            "first_drawn": 250.55817727108553,
+            "last_drawn": 248.86942957098154
+          }
+        },
+        "artifact_id": "cha-af13eac3bdb11d89aecb665917d971e339a494e05483c0e86ee7584de43999d2",
+        "file": "daily_recent-af13eac3bdb1.png"
+      }
+    },
+    "files": {
+      "M": "monthly-ca9cb674ba07.png",
+      "W": "weekly-e871acc210b7.png",
+      "D": "daily-cdbe8e81faa4.png",
+      "DR": "daily_recent-af13eac3bdb1.png"
+    },
+    "artifacts": [
+      {
+        "artifact_id": "cha-ca9cb674ba073f9ee3b4c64185530ffa182b390963a2b75ecbd183c07dcb137a",
+        "view": "M",
+        "label": "monthly",
+        "file": "monthly-ca9cb674ba07.png",
+        "media_type": "image/png",
+        "sha256": "ca9cb674ba073f9ee3b4c64185530ffa182b390963a2b75ecbd183c07dcb137a",
+        "bytes": 106862,
+        "bars_as_of": "2026-09-19T15:38:48Z",
+        "period": "M",
+        "drawn_from": "2022-09-01",
+        "drawn_to": "2026-09-01",
+        "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      },
+      {
+        "artifact_id": "cha-e871acc210b78f0b1371cce97ac8ea6e1f8ec2438868dc067a8e20d830ce61e0",
+        "view": "W",
+        "label": "weekly",
+        "file": "weekly-e871acc210b7.png",
+        "media_type": "image/png",
+        "sha256": "e871acc210b78f0b1371cce97ac8ea6e1f8ec2438868dc067a8e20d830ce61e0",
+        "bytes": 131422,
+        "bars_as_of": "2026-09-19T15:38:48Z",
+        "period": "W",
+        "drawn_from": "2022-09-19",
+        "drawn_to": "2026-09-14",
+        "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      },
+      {
+        "artifact_id": "cha-cdbe8e81faa406b8d1c7da1422e6cb191b55c83f75bfffa2909b0546e1ed87d5",
+        "view": "D",
+        "label": "daily",
+        "file": "daily-cdbe8e81faa4.png",
+        "media_type": "image/png",
+        "sha256": "cdbe8e81faa406b8d1c7da1422e6cb191b55c83f75bfffa2909b0546e1ed87d5",
+        "bytes": 170973,
+        "bars_as_of": "2026-09-19T15:38:48Z",
+        "period": "D",
+        "drawn_from": "2022-09-22",
+        "drawn_to": "2026-09-18",
+        "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      },
+      {
+        "artifact_id": "cha-af13eac3bdb11d89aecb665917d971e339a494e05483c0e86ee7584de43999d2",
+        "view": "DR",
+        "label": "daily_recent",
+        "file": "daily_recent-af13eac3bdb1.png",
+        "media_type": "image/png",
+        "sha256": "af13eac3bdb11d89aecb665917d971e339a494e05483c0e86ee7584de43999d2",
+        "bytes": 161300,
+        "bars_as_of": "2026-09-19T15:38:48Z",
+        "period": "D",
+        "drawn_from": "2026-05-12",
+        "drawn_to": "2026-09-18",
+        "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      }
+    ]
+  },
+  "note": "圖只作參考，數字以衍生 JSON（derived.json）為準。圖不保存價格陣列；本次陣列只存在於記憶體，發布只保存衍生數字與圖檔。"
+}

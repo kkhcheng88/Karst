@@ -1,0 +1,1585 @@
+{
+  "contract_version": "0.4.0",
+  "coverage": "partial",
+  "created_at": "2026-09-19T15:48:37Z",
+  "execution_state": "wait_confirmation",
+  "headline": {
+    "change_conditions": {
+      "citations": [
+        {
+          "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+          "locator": "L219-L235"
+        },
+        {
+          "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "locator": "L14-L10014"
+        }
+      ],
+      "text": "上調條件：除一次性因素後盈利及收款繼續上修，或回踩守住後出現更好的風報比。下調條件：指引下修、項目融資／轉收入惡化，或日線失守 249 附近。"
+    },
+    "change_since_last": {
+      "citations": [
+        {
+          "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+          "locator": "L10-L41"
+        },
+        {
+          "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+          "locator": "L111-L280"
+        }
+      ],
+      "text": "第一份正式雲端主研究；承接 9/18 公開獨立重評，不稱盲分析。相對該閱讀版，收市由 280.76 變 265.63、兩次掃前高未突破，行動仍等確認；重核 Q2 一次性項目及現金流。沒有獨立第二模型覆核。 保存後逐項核對引用，補正關稅回收的附註行號及價格序列定位；數值與建議不变。"
+    },
+    "key_assumption": {
+      "citations": [
+        {
+          "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+          "locator": "L219-L235"
+        },
+        {
+          "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+          "locator": "L1-L441"
+        }
+      ],
+      "text": "2027 年收入可升至約 67–68 億美元，時間價值與服務改善可支持利潤率；這是本研究假設，不是公司指引。"
+    },
+    "main_reason": {
+      "citations": [
+        {
+          "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+          "locator": "L9-L28"
+        },
+        {
+          "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+          "locator": "L10-L41"
+        },
+        {
+          "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "locator": "L14-L10014"
+        }
+      ],
+      "text": "Q2 收入同比增長 165.5%，盈利及現金流改善；現價仍要求持續高增長及市場給予高倍數。9/18 收市 265.63，突破前高後未能守住。"
+    },
+    "recommendation": {
+      "citations": [],
+      "text": "中性／等確認。基本面改善值得追蹤，但目前不追價、不因 DCF 低於現價而沽空。"
+    },
+    "strongest_counter": {
+      "citations": [
+        {
+          "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+          "locator": "L111-L280"
+        },
+        {
+          "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+          "locator": "L410-L510"
+        },
+        {
+          "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+          "locator": "L1-L441"
+        },
+        {
+          "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+          "locator": "L797-L800"
+        }
+      ],
+      "text": "看淡的反證是快速增長、融資渠道及營運槓桿真的成立；看好的反證是一次性利潤、預收款、客戶項目延誤與高倍數回落。"
+    }
+  },
+  "layers": {
+    "L1": {
+      "assessed_at": "2026-09-19T15:47:13Z",
+      "assumptions": [
+        {
+          "citations": [],
+          "text": "建模把設備、安裝、服務及電力分開；氫能／碳捕集未給額外期權價值。"
+        },
+        {
+          "citations": [
+            {
+              "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+              "locator": "L433-L441"
+            }
+          ],
+          "text": "服務收入用歷史設備銷售形成的收費池近似，年度流失 7%、新增費用為前期設備收入 4%，均待實際機隊資料核驗。"
+        }
+      ],
+      "conclusion": {
+        "citations": [
+          {
+            "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+            "locator": "L196-L313"
+          },
+          {
+            "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+            "locator": "L1-L441"
+          }
+        ],
+        "text": "生意以現場燃料電池設備銷售為主，附帶服務；終端用電戶及設備融資購買方是不同角色。AI 缺電對交付速度有價值，不代表所有收入都是高續約軟件收入。"
+      },
+      "gaps": [
+        "缺獨立核驗的裝機成本、服務續約及電堆更換成本曲線。"
+      ],
+      "read_evidence_ids": [
+        "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+        "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f"
+      ],
+      "strongest_counter": {
+        "citations": [
+          {
+            "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+            "locator": "L196-L313"
+          },
+          {
+            "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+            "locator": "L553-L619"
+          }
+        ],
+        "text": "時間優勢若成為長期客戶黏性與服務利潤，成熟製造業視角可能低估價值；但設備仍有競爭、燃氣供應及維修成本。"
+      }
+    },
+    "L2": {
+      "assessed_at": "2026-09-19T15:47:13Z",
+      "assumptions": [
+        {
+          "citations": [],
+          "text": "可及市場必須按可落地項目與交付速度估計，不把所有 AI 資本支出乘同一倍數。"
+        },
+        {
+          "citations": [],
+          "text": "同業產能加快會同時改變 BE 增長、毛利及市場願付倍數；目前未取得可比且同日期的同業成本／交期序列。"
+        }
+      ],
+      "conclusion": {
+        "citations": [
+          {
+            "evidence_id": "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+            "locator": "L1-L7"
+          },
+          {
+            "evidence_id": "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+            "locator": "L1-L7"
+          },
+          {
+            "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+            "locator": "L1-L441"
+          }
+        ],
+        "text": "敘事沿 AI 算力需求→用電／併網延誤→現場發電→項目融資及設備收入傳導。Brookfield 融資框架擴至 250 億美元支持可成交性；框架金額不等於 BE 訂單。S&P 500 納入是 9/21 生效的市場事件，沒有直接新增公司現金流。"
+      },
+      "gaps": [
+        "GE Vernova／往復式引擎與 BE 的項目同口徑成本、交期和融資條件待補。"
+      ],
+      "read_evidence_ids": [
+        "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+        "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+        "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+        "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723"
+      ],
+      "strongest_counter": {
+        "citations": [
+          {
+            "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+            "locator": "L1-L441"
+          },
+          {
+            "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+            "locator": "L553-L619"
+          }
+        ],
+        "text": "管理層指出各種發電技術目前均有需求，短缺可能比預期長；反面是電網、燃機及其他方案供給回來後，時間溢價可能收窄。"
+      }
+    },
+    "L3": {
+      "assessed_at": "2026-09-19T15:48:37Z",
+      "assumptions": [
+        {
+          "citations": [
+            {
+              "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+              "locator": "L219-L235"
+            },
+            {
+              "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+              "locator": "L1-L441"
+            }
+          ],
+          "text": "2026 收入指引 39–42 億、非 GAAP EPS 2.55–2.85；CFO 在問答提到 CFOA 3.75 億以上是基線說法，不是正式 FCFF 指引。"
+        },
+        {
+          "citations": [
+            {
+              "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+              "locator": "L650-L680"
+            }
+          ],
+          "text": "Oracle 認股權證已行使，沒有虛構未來現金流入；已發行股數計稀釋，客戶代價資產的既有非現金攤銷不能與同一稀釋重複扣減。"
+        },
+        {
+          "citations": [
+            {
+              "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+              "locator": "L1-L441"
+            }
+          ],
+          "text": "不以本次變更假設作證據；本輪重讀全部 82 段逐字稿，讀 Q2 主要報表／相關附註及 10-K 生意／風險／backlog 節。未聲稱逐行讀完所有年度附註。"
+        }
+      ],
+      "conclusion": {
+        "citations": [
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L111-L280"
+          },
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L410-L510"
+          },
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L9-L28"
+          },
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L520-L750"
+          },
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L797-L800"
+          }
+        ],
+        "text": "Q2 收入 10.654 億、GAAP EBIT 1.822 億、稀釋 EPS 0.62，非 GAAP EPS 0.78。扣除 0.374 億關稅回收後，EBIT 約 1.448 億、率約 13.6%，改善仍在。上半年 CFO 3.000 億、資本支出 0.778 億，但預收款／遞延收入增加 3.012 億，不能把現金改善全部當盈利能力。"
+      },
+      "gaps": [
+        "最新現金餘額仍是 6/30；沒有用它冒充 9 月資產負債表。",
+        "新項目預收款能否持續、原始短報爭議及非中國鈧供應未独立完整核驗。"
+      ],
+      "read_evidence_ids": [
+        "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+        "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+        "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+        "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f"
+      ],
+      "strongest_counter": {
+        "citations": [
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L9-L28"
+          },
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L111-L280"
+          },
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L410-L510"
+          }
+        ],
+        "text": "Q2 較 Q1 增長 42%，營運槓桿及服務改善提供正面證據；但融資買方集中、預收款與客戶考慮代價令收入品質及現金時點更重要。"
+      }
+    },
+    "L4": {
+      "assessed_at": "2026-09-19T15:47:13Z",
+      "assumptions": [
+        {
+          "citations": [],
+          "text": "15 年明示期避免過早成熟化；基準 2031 年收入 203.59 億，已是很進取的經營推論，並非保守清算價。"
+        },
+        {
+          "citations": [],
+          "text": "基準 WACC 11%、g 3%、穩態 ROIC 20%；正常化終值由 NOPAT × (1−g/ROIC)，未沿用擴張期 FCFF 當穩態。"
+        },
+        {
+          "citations": [
+            {
+              "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+              "locator": "L111-L280"
+            },
+            {
+              "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+              "locator": "L940-L1190"
+            },
+            {
+              "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+              "locator": "L1620-L1665"
+            }
+          ],
+          "text": "現金、債務、融资負債、少數權益逐項橋接；估值扣未來 SBC，現有股數加獎勵稀釋為近似。兩種大額轉債處理取對普通股較低者，非期權定價。"
+        }
+      ],
+      "conclusion": {
+        "citations": [],
+        "text": "日期化 FCFF 基準 156.92；同一路徑折現／終值敏感度 134.47–188.39。廣義營運悲觀／樂觀情境約 22.78／322.71。2027-03-18 的市場定價基準則是 FY2027 調整 EPS 4.87 × 60 = 292.26。兩者分開，不相加，也不是股價地板或天花板。"
+      },
+      "gaps": [
+        "尚無可驗證的同業倍數中位数，因此 40／60／65 倍均標作市場情境假設。",
+        "尚未逐項估算稅務 NOL 消耗、最低營运現金與全部轉債選擇權。"
+      ],
+      "read_evidence_ids": [
+        "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+        "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+        "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f"
+      ],
+      "strongest_counter": {
+        "citations": [],
+        "text": "長期規模和毛利的錯誤可遠大於折現率差異。若服務經濟與競爭優勢更強，基準可能低估；若融資需求／AI 投資落空，連悲觀情境也不構成底價。"
+      }
+    },
+    "L5": {
+      "assessed_at": "2026-09-19T15:48:37Z",
+      "assumptions": [
+        {
+          "citations": [],
+          "text": "249–253 為日線 HL、週線前高及 EMA20 附近的綜合區域，不冒稱程式輸出同一支撐帶。"
+        },
+        {
+          "citations": [
+            {
+              "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+              "locator": "L10-L41"
+            },
+            {
+              "evidence_id": "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+              "locator": "L1-L7"
+            }
+          ],
+          "text": "9/18 成交量約前 20 日均量 5.56 倍，接近指數調整生效；沒有收市竞价拆分，不能直接說是主力出貨。"
+        }
+      ],
+      "conclusion": {
+        "citations": [
+          {
+            "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "locator": "L14-L10014"
+          },
+          {
+            "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+            "locator": "L10-L41"
+          }
+        ],
+        "text": "實讀月、週、全日線及近期日線。月線長升後修復，9 月未收線；週線已收，9 月上破 253.31 後仍在修復段。日線 249.05 HL 未破，但 9/17 與 9/18 均升越 283.83 後收回其下，屬 sweep，並無新向上 BOS。"
+      },
+      "gaps": [
+        "沒有新增 RS 引擎或本次最新 SPY 相對序列；不沿用舊 RS 分數作當日證據。",
+        "全歷史圖部分文字密集，近期圖與衍生數字交叉核對。"
+      ],
+      "read_evidence_ids": [
+        "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+        "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723"
+      ],
+      "strongest_counter": {
+        "citations": [
+          {
+            "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "locator": "L14-L10014"
+          }
+        ],
+        "text": "200 日均線向上、價格仍在其上，過早把掃高視作跌勢已定也可能錯；須看其後能否收復 280–284／288。"
+      }
+    },
+    "L6": {
+      "assessed_at": "2026-09-19T15:48:37Z",
+      "assumptions": [
+        {
+          "citations": [],
+          "text": "條件例：守住 249–253 後收回約 260，才考慮新回踩交易；244 為該新交易的退出參考。成本假設每股 0.50，止損不保證成交價。"
+        },
+        {
+          "citations": [],
+          "text": "目標期限保持 2027-03-18，不因這次更新自動延長。沒有讀私人持倉、帳戶或模型帳本；不設定用戶倉位。"
+        }
+      ],
+      "conclusion": {
+        "citations": [],
+        "text": "維持中性與等待確認。當前至市場基準約 10% 空間，倍數下修風險不對稱；不追 9/18 回落，也不以 DCF 與市價差距單獨建立空倉。"
+      },
+      "gaps": [
+        "獨立覆核待 Claude 額度恢復；本研究是同一互動上下文內的主研究，非盲測。"
+      ],
+      "read_evidence_ids": [
+        "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8"
+      ],
+      "strongest_counter": {
+        "citations": [
+          {
+            "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "locator": "L14-L10014"
+          }
+        ],
+        "text": "若直接放量收穩 288 並回測 280–284 成功，原回踩計劃可能錯過行情；屆時重算入場風報比，不能無條件追價。"
+      }
+    }
+  },
+  "mandate_version": "v1.3",
+  "market": {
+    "at": "2026-09-18T20:00:00Z",
+    "citations": [
+      {
+        "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+        "locator": "L10-L41"
+      }
+    ],
+    "currency": "USD",
+    "price": 265.63
+  },
+  "method_version": "research-protocol-v1+d1cb2b0cd9b0",
+  "mode": "interactive_research",
+  "models": [
+    {
+      "execution": "interactive",
+      "model_id": "ChatGPT interactive (runtime model identifier not exposed)",
+      "prompt_version": "update-protocol-v1",
+      "provider": "openai",
+      "role": "researcher"
+    }
+  ],
+  "modules": [
+    {
+      "activation_reason": {
+        "citations": [
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L9-L28"
+          },
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L219-L235"
+          }
+        ],
+        "text": "盈利、收入指引和服務經濟持續改善，有實際申報支持。"
+      },
+      "name": "improvement_trend",
+      "questions": [
+        "除一次性因素後改善能否延續？",
+        "增長能否轉為扣除再投資與稀釋後的股東現金流？"
+      ]
+    },
+    {
+      "activation_reason": {
+        "citations": [
+          {
+            "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+            "locator": "L1-L441"
+          },
+          {
+            "evidence_id": "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "AI 缺電、時間價值與指數納入正在影響預期與定價。"
+      },
+      "name": "narrative_expectations",
+      "questions": [
+        "敘事怎樣落到設備訂單、收入和現金？",
+        "市場願付倍數若回落，盈利上修能否抵銷？"
+      ]
+    }
+  ],
+  "open_questions": [
+    "現場燃料電池與燃機／引擎的實際成本、交期及服務經濟可比性。",
+    "融資購買方、終端客戶與公司之間的現金風險、取消條款和預收款可持續性。",
+    "既有獎勵股數、轉債選擇權及下一個資產負債表時點。",
+    "9/21 納入指數後價格是否仍守住關鍵支撐。"
+  ],
+  "packet_id": "packet-ac0413319cdd3396f06f35f46ffe7768f1c14322c7a71fde55c3a832d917b344",
+  "phases": [
+    {
+      "basis": {
+        "citations": [
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L9-L28"
+          },
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L219-L235"
+          }
+        ],
+        "text": "Q2 收入與盈利改善、指引上調。"
+      },
+      "confirmed_at": "2026-07-28T21:27:03Z",
+      "dimension": "business",
+      "state": "商業規模與盈利改善",
+      "status": "confirmed",
+      "timeframe": "2–4 quarters"
+    },
+    {
+      "basis": {
+        "citations": [
+          {
+            "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+            "locator": "L1-L441"
+          },
+          {
+            "evidence_id": "ev-45f0c41e80e664337b6d3b4b7b19ded651ad0f9b0a5dc7275eb682b3f0600579",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "公司與融資伙伴公告支持需求，缺跨供應商獨立驗證。"
+      },
+      "confirmed_at": null,
+      "dimension": "industry",
+      "state": "供電瓶頸支持現場發電；持續期未證實",
+      "status": "candidate",
+      "timeframe": "1–3 years"
+    },
+    {
+      "basis": {
+        "citations": [
+          {
+            "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "locator": "L14-L10014"
+          }
+        ],
+        "text": "日週已收定；兩次掃高、HL 未破。"
+      },
+      "confirmed_at": "2026-09-18T20:00:00Z",
+      "dimension": "price",
+      "state": "長期升勢內的修復，近期突破未成立",
+      "status": "confirmed",
+      "timeframe": "D/W"
+    },
+    {
+      "basis": {
+        "citations": [
+          {
+            "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+            "locator": "L10-L41"
+          }
+        ],
+        "text": "現價／本研究 2027 EPS 約 54.5 倍；不是已核實的市場共識 P/E。"
+      },
+      "confirmed_at": null,
+      "dimension": "expectations",
+      "state": "高增長與高倍數均被定價",
+      "status": "candidate",
+      "timeframe": "6 months"
+    }
+  ],
+  "plan": {
+    "entry_price": 260,
+    "execution_rule": {
+      "citations": [
+        {
+          "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "locator": "L14-L10014"
+        }
+      ],
+      "text": "這是尚未啟動的條件例，不是現价買入：先見 249–253 守住、日線收回約 260，且沒有新指引／融資惡化，再按當時價格重算。244 為該新交易退出參考，292 為期限基準、290–300 為首段觀察。ATR 18.96 已大於 16 元計劃風險，宜等更清楚結構；不設無條件買單。不沽空。若直接收穩 288，等回測 280–284 再另評。"
+    },
+    "exit_price": 244,
+    "invalidators": [
+      {
+        "citations": [
+          {
+            "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "locator": "L14-L10014"
+          }
+        ],
+        "text": "日線失守 249.05 且不能迅速收回，回踩做多假設暫撤；244 不是公司價值底線。"
+      },
+      {
+        "citations": [
+          {
+            "evidence_id": "ev-99e4c042e8df4521e3773c0f8b9ff42ca2b9c4c41155e9557c923d9ee9baae3a",
+            "locator": "L219-L235"
+          },
+          {
+            "evidence_id": "ev-5eda61dfe6244c6c1da64f3c64769bc71e3432f9615bd2bb05bd0ca4aea485d8",
+            "locator": "L410-L510"
+          }
+        ],
+        "text": "收入指引下修、正常化毛利明顯惡化、訂單融資／收款惡化，重做盈利和倍數情境。"
+      },
+      {
+        "citations": [
+          {
+            "evidence_id": "ev-4e5b559475da774100d33721c171014103f5b695a5fec0b6fc75410c78902723",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "高位放量不足單獨判定派貨；待納入指數後觀察持續價格反應。"
+      }
+    ],
+    "next_review_at": "2026-09-25T20:30:00Z",
+    "round_trip_cost_per_share": 0.5,
+    "stress_price": 225,
+    "target_price": 292.26268656716417
+  },
+  "previous_research_id": "res-fbf4d65ff68bcd251c11779728b7cf842384de6e60be6e0a817e873ce7528a96",
+  "rating": "neutral",
+  "research_id": "res-34b2ada82b43e9242ee6ba12067f92557e42859ec8f855d962ff732f918e8aca",
+  "strategy_version": "v1.1",
+  "target_date": "2027-03-18",
+  "technical": {
+    "citations": [
+      {
+        "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "locator": "L14-L10014"
+      },
+      {
+        "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+        "locator": "L10-L41"
+      }
+    ],
+    "derived": {
+      "bars_count": {
+        "D": 1001,
+        "M": 49,
+        "W": 209
+      },
+      "data_as_of": "2026-09-19T15:38:48Z",
+      "sma200": 198.83915000000002
+    },
+    "gaps": [
+      "沒有將未完成月線當確認訊號。",
+      "指數換馬成交量的競價／主動交易比例未知。",
+      "本輪未更新相對 SPY 的 RS 序列。"
+    ],
+    "key_levels": [
+      {
+        "confirmed_at": "2026-09-16T20:00:00Z",
+        "kind": "support",
+        "lower": 249.05,
+        "rationale": {
+          "citations": [
+            {
+              "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+              "locator": "L14-L10014"
+            }
+          ],
+          "text": "分析者綜合已確認日線 HL 249.05 與週線前高 253.31；不是引擎輸出同一區域。"
+        },
+        "timeframe": "D",
+        "upper": 253.31
+      },
+      {
+        "confirmed_at": "2026-07-07T20:00:00Z",
+        "kind": "support",
+        "lower": 257.51,
+        "rationale": {
+          "citations": [
+            {
+              "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+              "locator": "L14-L10014"
+            }
+          ],
+          "text": "前日線低點，現價下方的第一個歷史參考。"
+        },
+        "timeframe": "D",
+        "upper": 257.51
+      },
+      {
+        "confirmed_at": "2026-06-02T20:00:00Z",
+        "kind": "resistance",
+        "lower": 268.13,
+        "rationale": {
+          "citations": [
+            {
+              "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+              "locator": "L14-L10014"
+            }
+          ],
+          "text": "歷史低點轉阻力的近期第一關，強度待價格反應。"
+        },
+        "timeframe": "D",
+        "upper": 268.13
+      },
+      {
+        "confirmed_at": "2026-09-10T20:00:00Z",
+        "kind": "resistance",
+        "lower": 280.74,
+        "rationale": {
+          "citations": [
+            {
+              "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+              "locator": "L14-L10014"
+            }
+          ],
+          "text": "已確認前高群；9/17 的 288 是掃高極值，尚不冒稱已確認 swing。"
+        },
+        "timeframe": "D",
+        "upper": 283.83
+      }
+    ],
+    "price_basis": "raw",
+    "quote_to_bar_factor": 1,
+    "reading": {
+      "citations": [
+        {
+          "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "locator": "L14-L10014"
+        },
+        {
+          "evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+          "locator": "L10-L41"
+        }
+      ],
+      "text": "月線：上升後的大幅回調修復，9 月未完成。週線：收回 253.31、最新週已收線。日線：200SMA 198.84 向上、50SMA 225.43 仍較 20 根前向下，EMA20 248.87 向上；不能說所有均線向上。9/17、9/18 掃過 283.83 都未收穩，9/18 收近當日低位；ATR14 18.96，成交量約 5.56 倍。SMC 只描述價格結構，不能證明主力意圖。"
+    }
+  },
+  "valuation": {
+    "alternative_view": {
+      "calculation": {
+        "currency": "USD",
+        "equity": {
+          "diluted_shares": 335,
+          "sbc_treatment": {
+            "basis": "in_diluted_share_count",
+            "note": "Adjusted earnings exclude SBC; forecast diluted shares 335-340m incorporate dilution. Market pricing scenario, not owner cash-flow value."
+          }
+        },
+        "method": "forward_pe",
+        "model": {
+          "applies_at": "2027-03-18",
+          "comparable_basis": "Analyst risk-on/risk-off scenario assumption, not a measured peer median. No separate narrative premium is added to cash-flow valuation.",
+          "discount_rate": null,
+          "eps": 4.871044776119403,
+          "eps_basis": "adjusted_diluted",
+          "multiple": 60,
+          "multiple_basis": "equity",
+          "period": {
+            "end": "2027-12-31",
+            "start": "2027-01-01"
+          },
+          "valuation_date": "2026-09-19"
+        },
+        "scale": "millions"
+      },
+      "citations": [],
+      "text": "另一個問題是市場至 2027-03-18 願付多少：本研究 FY2027 調整 EPS 4.87 × 60 倍＝292.26；這是未折現的期限定價，並非另一個當日內在價值。40–65 倍反映自定風險情境，沒有聲稱同業中位數。"
+    },
+    "change_attribution": {
+      "citations": [],
+      "text": "相對 9/18 獨立重評，經營路徑及市場期限不變；基準由 156.845 到 156.923，只是估值日推進及 stub 由 106 日比例調到 103 日。相對更舊約 44 的模型，主要差異是成長期、服務收入及經營／再投資假設，不把巨大差異歸功於算術修正。沒有可直接讀回的旧雲端版本，故不虚構其完整同口徑歸因。"
+    },
+    "expected_distributions": 0,
+    "gap_reason": null,
+    "implied": {
+      "bounds": {
+        "lower": 0.031,
+        "upper": 0.2
+      },
+      "fixed_assumptions": {
+        "citations": [],
+        "text": "固定 15 年 FCFF、g 3%、正常化終值與所選債務／股數橋接；只解 WACC，不調整轉債行使選擇，故為條件性近似。"
+      },
+      "outcome": "solved",
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "inputs_digest": "c8ed00373669c69b0c852f5a8fa0db28fda389f9b93e210cfdf2a45a534f519b",
+        "method": "fcff_dcf_dated",
+        "outputs": {
+          "bounds": {
+            "lower": 0.031,
+            "upper": 0.2
+          },
+          "brackets": [
+            [
+              0.07853125,
+              0.081171875
+            ]
+          ],
+          "outcome": "solved",
+          "solve_for": "model.discount_rate",
+          "target_price": 265.63,
+          "undefined_samples": 0,
+          "value": 0.08116470581258535
+        }
+      },
+      "scenario": "base",
+      "solve_for": "model.discount_rate",
+      "target_price": 265.63,
+      "value": 0.08116470581258535
+    },
+    "implied_requirements": {
+      "citations": [],
+      "text": "固定基準全部現金流、终值增長及股權橋接，265.63 隱含 WACC 約 8.12%，低於採用的 11%；這不是預測股票回報，也不是唯一可行路徑。更高現金流同樣可支持現價。固定基準 EPS 4.87，現價相當於約 54.5 倍市場 P/E。"
+    },
+    "method_rationale": {
+      "citations": [
+        {
+          "evidence_id": "ev-032e40438498bb5897cf60da2145f017ad36aa21bbd715f5c7331b0117856a73",
+          "locator": "L196-L313"
+        },
+        {
+          "evidence_id": "ev-a0b0e35c3d883f36040a53083863f30d7a812968a72468495e89e322a75b6b2f",
+          "locator": "L1-L441"
+        }
+      ],
+      "text": "設備銷售＋服務的規模擴張適合日期化 FCFF；用延長明示成長期、SBC及再投資表達經濟，而非把當期盈利直接套成熟倍數。市場 P/E 另作有期限價格情境。"
+    },
+    "scenarios": [
+      {
+        "calculation": {
+          "bridge": {
+            "cash": 2666.859,
+            "convertibles_dilution": 0,
+            "debt": 2709.063,
+            "diluted_shares": 313.8357996994,
+            "minority_interest": 28.673,
+            "nonoperating_assets": 28.09,
+            "redeemable_claims": 0,
+            "sbc_treatment": {
+              "basis": "both_documented",
+              "note": "Future SBC is charged to earnings and never added back; current award dilution uses the disclosed Q2 reconciliation proxy. Small notes convert. Large note tested as debt and as shares, taking the lower common-equity value; not an option-pricing model. Current award proxy 312.5m basic plus awards is approximate, not reported period-end fully diluted shares; June cash held constant, no September balance sheet claim. Operating leases remain in operating costs. Oracle issued shares already counted; existing noncash customer consideration amortization excluded from economic FCFF. Small-note July redemption settlement uncertainty immaterial but open."
+            },
+            "unsupported_claims": []
+          },
+          "currency": "USD",
+          "method": "fcff_dcf_dated",
+          "model": {
+            "day_count": "act/365",
+            "discount_rate": 0.11,
+            "flows": [
+              {
+                "amount": 126.32075471698113,
+                "date": "2026-12-31",
+                "is_stub": true,
+                "label": "Remaining 103 days; normalized analyst FCFF assumption, not CFOA guidance"
+              },
+              {
+                "amount": 256.90200000000004,
+                "date": "2027-12-31",
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "amount": 350.26707,
+                "date": "2028-12-31",
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "amount": 412.6355713230554,
+                "date": "2029-12-31",
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "amount": 482.180876584717,
+                "date": "2030-12-31",
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "amount": 576.4883656389901,
+                "date": "2031-12-31",
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "amount": 653.1893408831778,
+                "date": "2032-12-31",
+                "is_stub": false,
+                "label": "FY2032"
+              },
+              {
+                "amount": 724.2976088932144,
+                "date": "2033-12-31",
+                "is_stub": false,
+                "label": "FY2033"
+              },
+              {
+                "amount": 787.3925972500107,
+                "date": "2034-12-31",
+                "is_stub": false,
+                "label": "FY2034"
+              },
+              {
+                "amount": 851.8040936977234,
+                "date": "2035-12-31",
+                "is_stub": false,
+                "label": "FY2035"
+              },
+              {
+                "amount": 917.5405343870639,
+                "date": "2036-12-31",
+                "is_stub": false,
+                "label": "FY2036"
+              },
+              {
+                "amount": 954.1573091907011,
+                "date": "2037-12-31",
+                "is_stub": false,
+                "label": "FY2037"
+              },
+              {
+                "amount": 990.8832064156776,
+                "date": "2038-12-31",
+                "is_stub": false,
+                "label": "FY2038"
+              },
+              {
+                "amount": 1027.6743957387037,
+                "date": "2039-12-31",
+                "is_stub": false,
+                "label": "FY2039"
+              },
+              {
+                "amount": 1064.4835624818543,
+                "date": "2040-12-31",
+                "is_stub": false,
+                "label": "FY2040"
+              },
+              {
+                "amount": 1101.2600996120077,
+                "date": "2041-12-31",
+                "is_stub": false,
+                "label": "FY2041"
+              }
+            ],
+            "terminal": {
+              "basis": "Final-year normalized NOPAT less sustainable reinvestment g/ROIC",
+              "date": "2041-12-31",
+              "final_expansion_fcff": 1101.2600996120077,
+              "growth": 0.03,
+              "normalized_fcff": 944.4542617030361
+            },
+            "timing": "mid_period",
+            "valuation_date": "2026-09-19"
+          },
+          "scale": "millions"
+        },
+        "drivers": [
+          {
+            "citations": [],
+            "input_path": "model.flows.5.amount",
+            "name": "2031 FCFF（收入、毛利、SBC及再投資共同推導）",
+            "period": {
+              "end": "2031-12-31",
+              "start": "2031-01-01"
+            },
+            "unit": "USD millions",
+            "value": 576.4883656389901
+          }
+        ],
+        "name": "bear",
+        "rationale": {
+          "citations": [],
+          "text": "短缺溢價消退、增長及毛利受競爭壓力；不是價格底線。"
+        }
+      },
+      {
+        "calculation": {
+          "bridge": {
+            "cash": 2666.859,
+            "convertibles_dilution": 0,
+            "debt": 2709.063,
+            "diluted_shares": 313.8357996994,
+            "minority_interest": 28.673,
+            "nonoperating_assets": 28.09,
+            "redeemable_claims": 0,
+            "sbc_treatment": {
+              "basis": "both_documented",
+              "note": "Future SBC is charged to earnings and never added back; current award dilution uses the disclosed Q2 reconciliation proxy. Small notes convert. Large note tested as debt and as shares, taking the lower common-equity value; not an option-pricing model. Current award proxy 312.5m basic plus awards is approximate, not reported period-end fully diluted shares; June cash held constant, no September balance sheet claim. Operating leases remain in operating costs. Oracle issued shares already counted; existing noncash customer consideration amortization excluded from economic FCFF. Small-note July redemption settlement uncertainty immaterial but open."
+            },
+            "unsupported_claims": []
+          },
+          "currency": "USD",
+          "method": "fcff_dcf_dated",
+          "model": {
+            "day_count": "act/365",
+            "discount_rate": 0.11,
+            "flows": [
+              {
+                "amount": 126.32075471698113,
+                "date": "2026-12-31",
+                "is_stub": true,
+                "label": "Remaining 103 days; normalized analyst FCFF assumption, not CFOA guidance"
+              },
+              {
+                "amount": 763.0359999999997,
+                "date": "2027-12-31",
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "amount": 1374.3909819444439,
+                "date": "2028-12-31",
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "amount": 2007.3136087544449,
+                "date": "2029-12-31",
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "amount": 2678.928865625191,
+                "date": "2030-12-31",
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "amount": 3476.2954478628353,
+                "date": "2031-12-31",
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "amount": 4176.301440436888,
+                "date": "2032-12-31",
+                "is_stub": false,
+                "label": "FY2032"
+              },
+              {
+                "amount": 4857.645646859767,
+                "date": "2033-12-31",
+                "is_stub": false,
+                "label": "FY2033"
+              },
+              {
+                "amount": 5494.812186366974,
+                "date": "2034-12-31",
+                "is_stub": false,
+                "label": "FY2034"
+              },
+              {
+                "amount": 6047.192794006889,
+                "date": "2035-12-31",
+                "is_stub": false,
+                "label": "FY2035"
+              },
+              {
+                "amount": 6360.839068136269,
+                "date": "2036-12-31",
+                "is_stub": false,
+                "label": "FY2036"
+              },
+              {
+                "amount": 6836.909534599587,
+                "date": "2037-12-31",
+                "is_stub": false,
+                "label": "FY2037"
+              },
+              {
+                "amount": 7292.067171301384,
+                "date": "2038-12-31",
+                "is_stub": false,
+                "label": "FY2038"
+              },
+              {
+                "amount": 7718.5956676889455,
+                "date": "2039-12-31",
+                "is_stub": false,
+                "label": "FY2039"
+              },
+              {
+                "amount": 8108.905461467441,
+                "date": "2040-12-31",
+                "is_stub": false,
+                "label": "FY2040"
+              },
+              {
+                "amount": 8455.774078949578,
+                "date": "2041-12-31",
+                "is_stub": false,
+                "label": "FY2041"
+              }
+            ],
+            "terminal": {
+              "basis": "Final-year normalized NOPAT less sustainable reinvestment g/ROIC",
+              "date": "2041-12-31",
+              "final_expansion_fcff": 8455.774078949578,
+              "growth": 0.03,
+              "normalized_fcff": 7655.176571531146
+            },
+            "timing": "mid_period",
+            "valuation_date": "2026-09-19"
+          },
+          "scale": "millions"
+        },
+        "drivers": [
+          {
+            "citations": [],
+            "input_path": "model.flows.5.amount",
+            "name": "2031 FCFF（收入、毛利、SBC及再投資共同推導）",
+            "period": {
+              "end": "2031-12-31",
+              "start": "2031-01-01"
+            },
+            "unit": "USD millions",
+            "value": 3476.2954478628353
+          }
+        ],
+        "name": "base",
+        "rationale": {
+          "citations": [],
+          "text": "持續快速擴張並有營運槓桿，2031 規模已相當進取。"
+        }
+      },
+      {
+        "calculation": {
+          "bridge": {
+            "cash": 2666.859,
+            "convertibles_dilution": 0,
+            "debt": 209.0630000000001,
+            "diluted_shares": 326.6582996994,
+            "minority_interest": 28.673,
+            "nonoperating_assets": 28.09,
+            "redeemable_claims": 0,
+            "sbc_treatment": {
+              "basis": "both_documented",
+              "note": "Future SBC is charged to earnings and never added back; current award dilution uses the disclosed Q2 reconciliation proxy. Small notes convert. Large note tested as debt and as shares, taking the lower common-equity value; not an option-pricing model. Current award proxy 312.5m basic plus awards is approximate, not reported period-end fully diluted shares; June cash held constant, no September balance sheet claim. Operating leases remain in operating costs. Oracle issued shares already counted; existing noncash customer consideration amortization excluded from economic FCFF. Small-note July redemption settlement uncertainty immaterial but open."
+            },
+            "unsupported_claims": []
+          },
+          "currency": "USD",
+          "method": "fcff_dcf_dated",
+          "model": {
+            "day_count": "act/365",
+            "discount_rate": 0.11,
+            "flows": [
+              {
+                "amount": 126.32075471698113,
+                "date": "2026-12-31",
+                "is_stub": true,
+                "label": "Remaining 103 days; normalized analyst FCFF assumption, not CFOA guidance"
+              },
+              {
+                "amount": 694.4899999999999,
+                "date": "2027-12-31",
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "amount": 1568.7707308333333,
+                "date": "2028-12-31",
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "amount": 2600.813603428889,
+                "date": "2029-12-31",
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "amount": 3894.543178312725,
+                "date": "2030-12-31",
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "amount": 5457.760687567457,
+                "date": "2031-12-31",
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "amount": 7203.5162719124655,
+                "date": "2032-12-31",
+                "is_stub": false,
+                "label": "FY2032"
+              },
+              {
+                "amount": 8972.362628913426,
+                "date": "2033-12-31",
+                "is_stub": false,
+                "label": "FY2033"
+              },
+              {
+                "amount": 10800.275779879044,
+                "date": "2034-12-31",
+                "is_stub": false,
+                "label": "FY2034"
+              },
+              {
+                "amount": 12420.383397385101,
+                "date": "2035-12-31",
+                "is_stub": false,
+                "label": "FY2035"
+              },
+              {
+                "amount": 13844.383640324155,
+                "date": "2036-12-31",
+                "is_stub": false,
+                "label": "FY2036"
+              },
+              {
+                "amount": 15142.932448766323,
+                "date": "2037-12-31",
+                "is_stub": false,
+                "label": "FY2037"
+              },
+              {
+                "amount": 16376.460343100898,
+                "date": "2038-12-31",
+                "is_stub": false,
+                "label": "FY2038"
+              },
+              {
+                "amount": 17513.080815110374,
+                "date": "2039-12-31",
+                "is_stub": false,
+                "label": "FY2039"
+              },
+              {
+                "amount": 18521.61036862326,
+                "date": "2040-12-31",
+                "is_stub": false,
+                "label": "FY2040"
+              },
+              {
+                "amount": 19373.069012164004,
+                "date": "2041-12-31",
+                "is_stub": false,
+                "label": "FY2041"
+              }
+            ],
+            "terminal": {
+              "basis": "Final-year normalized NOPAT less sustainable reinvestment g/ROIC",
+              "date": "2041-12-31",
+              "final_expansion_fcff": 19373.069012164004,
+              "growth": 0.03,
+              "normalized_fcff": 18038.984488561113
+            },
+            "timing": "mid_period",
+            "valuation_date": "2026-09-19"
+          },
+          "scale": "millions"
+        },
+        "drivers": [
+          {
+            "citations": [],
+            "input_path": "model.flows.5.amount",
+            "name": "2031 FCFF（收入、毛利、SBC及再投資共同推導）",
+            "period": {
+              "end": "2031-12-31",
+              "start": "2031-01-01"
+            },
+            "unit": "USD millions",
+            "value": 5457.760687567457
+          }
+        ],
+        "name": "bull",
+        "rationale": {
+          "citations": [],
+          "text": "成為大規模現場發電平台，2031 收入約 311 億、2041 約 998 億；屬高要求營運情境，未賦予概率。"
+        }
+      }
+    ],
+    "sensitivities": [
+      {
+        "changes": [
+          {
+            "input_path": "model.discount_rate",
+            "value": 0.12
+          },
+          {
+            "input_path": "model.terminal.growth",
+            "value": 0.025
+          },
+          {
+            "input_path": "model.terminal.normalized_fcff",
+            "value": 7880.328823635004
+          }
+        ],
+        "label": "保守折現與終值",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "inputs_digest": "c8ed00373669c69b0c852f5a8fa0db28fda389f9b93e210cfdf2a45a534f519b",
+          "method": "fcff_dcf_dated",
+          "outputs": {
+            "base_fair_value_per_share": 156.92345479060208,
+            "changed_inputs_digest": "33f739d120e51eaf7c4c0c5a601804e744b076f5539d5c54885b1ce6b8152078",
+            "changed_outputs": {
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "present_value": 124316922.64459303,
+                  "years": 0.1410958904109589
+                },
+                {
+                  "date": "2027-12-31",
+                  "present_value": 698308125.6871263,
+                  "years": 0.7821917808219179
+                },
+                {
+                  "date": "2028-12-31",
+                  "present_value": 1122863382.7393923,
+                  "years": 1.7835616438356166
+                },
+                {
+                  "date": "2029-12-31",
+                  "present_value": 1464017968.0793452,
+                  "years": 2.7849315068493152
+                },
+                {
+                  "date": "2030-12-31",
+                  "present_value": 1744513510.0396922,
+                  "years": 3.784931506849315
+                },
+                {
+                  "date": "2031-12-31",
+                  "present_value": 2021211741.0000324,
+                  "years": 4.784931506849315
+                },
+                {
+                  "date": "2032-12-31",
+                  "present_value": 2167711721.506207,
+                  "years": 5.786301369863013
+                },
+                {
+                  "date": "2033-12-31",
+                  "present_value": 2250868245.376952,
+                  "years": 6.787671232876712
+                },
+                {
+                  "date": "2034-12-31",
+                  "present_value": 2273312151.998817,
+                  "years": 7.787671232876713
+                },
+                {
+                  "date": "2035-12-31",
+                  "present_value": 2233788305.001324,
+                  "years": 8.787671232876713
+                },
+                {
+                  "date": "2036-12-31",
+                  "present_value": 2097573372.7346025,
+                  "years": 9.789041095890411
+                },
+                {
+                  "date": "2037-12-31",
+                  "present_value": 2012691174.239865,
+                  "years": 10.79041095890411
+                },
+                {
+                  "date": "2038-12-31",
+                  "present_value": 1916681480.7824929,
+                  "years": 11.79041095890411
+                },
+                {
+                  "date": "2039-12-31",
+                  "present_value": 1811421653.0458546,
+                  "years": 12.79041095890411
+                },
+                {
+                  "date": "2040-12-31",
+                  "present_value": 1698861819.3988967,
+                  "years": 13.791780821917808
+                },
+                {
+                  "date": "2041-12-31",
+                  "present_value": 1581480149.9710014,
+                  "years": 14.793150684931506
+                }
+              ],
+              "enterprise_value": 42245710927.66225,
+              "equity_value": 42202923927.66224,
+              "fair_value_per_share": 134.47453722005355,
+              "normalization_step": 0.9319464723227255,
+              "pv_explicit_fcff": 27219621724.246193,
+              "pv_terminal": 15026089203.416048,
+              "stub_years": 0.2821917808219178,
+              "terminal_share_of_enterprise_value": 0.35568318945195104,
+              "terminal_value_at_terminal_date": 85024600465.53557,
+              "years_to_terminal": 15.293150684931506
+            },
+            "changes": [
+              {
+                "input_path": "model.discount_rate",
+                "value": 0.12
+              },
+              {
+                "input_path": "model.terminal.growth",
+                "value": 0.025
+              },
+              {
+                "input_path": "model.terminal.normalized_fcff",
+                "value": 7880.328823635004
+              }
+            ],
+            "delta_per_share": -22.44891757054853,
+            "fair_value_per_share": 134.47453722005355
+          }
+        },
+        "scenario": "base"
+      },
+      {
+        "changes": [
+          {
+            "input_path": "model.discount_rate",
+            "value": 0.1
+          },
+          {
+            "input_path": "model.terminal.growth",
+            "value": 0.035
+          },
+          {
+            "input_path": "model.terminal.normalized_fcff",
+            "value": 7430.024319427289
+          }
+        ],
+        "label": "較低折現與較高终值",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "inputs_digest": "c8ed00373669c69b0c852f5a8fa0db28fda389f9b93e210cfdf2a45a534f519b",
+          "method": "fcff_dcf_dated",
+          "outputs": {
+            "base_fair_value_per_share": 156.92345479060208,
+            "changed_inputs_digest": "624cce5f5a0b89660373a86b35e91d22ffd2ff6400b24c5a9d96631e83950be9",
+            "changed_outputs": {
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "present_value": 124633380.26694934,
+                  "years": 0.1410958904109589
+                },
+                {
+                  "date": "2027-12-31",
+                  "present_value": 708219711.8865247,
+                  "years": 0.7821917808219179
+                },
+                {
+                  "date": "2028-12-31",
+                  "present_value": 1159535077.8379524,
+                  "years": 1.7835616438356166
+                },
+                {
+                  "date": "2029-12-31",
+                  "present_value": 1539357301.1840591,
+                  "years": 2.7849315068493152
+                },
+                {
+                  "date": "2030-12-31",
+                  "present_value": 1867638007.999493,
+                  "years": 3.784931506849315
+                },
+                {
+                  "date": "2031-12-31",
+                  "present_value": 2203208083.6393547,
+                  "years": 4.784931506849315
+                },
+                {
+                  "date": "2032-12-31",
+                  "present_value": 2405920580.3857656,
+                  "years": 5.786301369863013
+                },
+                {
+                  "date": "2033-12-31",
+                  "present_value": 2543700015.464129,
+                  "years": 6.787671232876712
+                },
+                {
+                  "date": "2034-12-31",
+                  "present_value": 2615774063.767947,
+                  "years": 7.787671232876713
+                },
+                {
+                  "date": "2035-12-31",
+                  "present_value": 2617028825.250755,
+                  "years": 8.787671232876713
+                },
+                {
+                  "date": "2036-12-31",
+                  "present_value": 2502186702.69399,
+                  "years": 9.789041095890411
+                },
+                {
+                  "date": "2037-12-31",
+                  "present_value": 2444644707.469354,
+                  "years": 10.79041095890411
+                },
+                {
+                  "date": "2038-12-31",
+                  "present_value": 2370357718.7933464,
+                  "years": 11.79041095890411
+                },
+                {
+                  "date": "2039-12-31",
+                  "present_value": 2280913614.673857,
+                  "years": 12.79041095890411
+                },
+                {
+                  "date": "2040-12-31",
+                  "present_value": 2178127989.4763575,
+                  "years": 13.791780821917808
+                },
+                {
+                  "date": "2041-12-31",
+                  "present_value": 2064548749.5429661,
+                  "years": 14.793150684931506
+                }
+              ],
+              "enterprise_value": 59167615888.19447,
+              "equity_value": 59124828888.194466,
+              "fair_value_per_share": 188.39415052338117,
+              "normalization_step": 0.8786923881899984,
+              "pv_explicit_fcff": 31625794530.3328,
+              "pv_terminal": 27541821357.861675,
+              "stub_years": 0.2821917808219178,
+              "terminal_share_of_enterprise_value": 0.4654881043357538,
+              "terminal_value_at_terminal_date": 118308848778.57297,
+              "years_to_terminal": 15.293150684931506
+            },
+            "changes": [
+              {
+                "input_path": "model.discount_rate",
+                "value": 0.1
+              },
+              {
+                "input_path": "model.terminal.growth",
+                "value": 0.035
+              },
+              {
+                "input_path": "model.terminal.normalized_fcff",
+                "value": 7430.024319427289
+              }
+            ],
+            "delta_per_share": 31.47069573277909,
+            "fair_value_per_share": 188.39415052338117
+          }
+        },
+        "scenario": "base"
+      }
+    ],
+    "status": "calculated",
+    "target_prices": [
+      {
+        "name": "bear",
+        "price": 119.58208955223881,
+        "rationale": {
+          "citations": [],
+          "text": "期限固定 2027-03-18；FY2027 收入 5500 百萬、毛利率 33.0%、不含 SBC 營運費用 700 百萬、淨利息收入 20 百萬、稅率 10%、少數權益 20 百萬、稀釋股數 335 百萬；調整 EPS 2.9896 × 40 倍。自定市場情境，不是概率加權目標。"
+        }
+      },
+      {
+        "name": "base",
+        "price": 292.26268656716417,
+        "rationale": {
+          "citations": [],
+          "text": "期限固定 2027-03-18；FY2027 收入 6800 百萬、毛利率 35.5%、不含 SBC 營運費用 710 百萬、淨利息收入 40 百萬、稅率 5%、少數權益 25 百萬、稀釋股數 335 百萬；調整 EPS 4.8710 × 60 倍。自定市場情境，不是概率加權目標。"
+        }
+      },
+      {
+        "name": "bull",
+        "price": 385.4117647058823,
+        "rationale": {
+          "citations": [],
+          "text": "期限固定 2027-03-18；FY2027 收入 8000 百萬、毛利率 37.0%、不含 SBC 營運費用 800 百萬、淨利息收入 40 百萬、稅率 7.000000000000001%、少數權益 30 百萬、稀釋股數 340 百萬；調整 EPS 5.9294 × 65 倍。自定市場情境，不是概率加權目標。"
+        }
+      }
+    ],
+    "top_assumptions": [
+      {
+        "citations": [],
+        "text": "產品收入基準由 2027 年 61 億升至 2031 年 180 億；服務、安裝與電力後總收入約 67.14／203.59 億。按執行／競爭假設展開，不是公司指引。"
+      },
+      {
+        "citations": [],
+        "text": "基準產品毛利 36% 漸至 38% 再淡出至 35%；服務毛利 21% 漸至 25%；服務收入＝前期服務×93%＋前期設備×4%。服務流失和費率未有獨立機隊驗證。"
+      },
+      {
+        "citations": [],
+        "text": "WACC 11%、長期增長 3%；SBC 4% 漸至 2.5% 已從盈利扣；CapEx 3.5% 漸至 2.5%、增量營運資金 10%、正常化現金稅 23%，終值 ROIC 20%。初期稅率較低是 NOL 近似。"
+      }
+    ],
+    "valuation_date": "2026-09-19"
+  }
+}

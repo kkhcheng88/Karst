@@ -1,0 +1,90 @@
+{
+  "date": "2026-09-19",
+  "authorization": "User accepted BE W3 priority and explicitly asked GPT to take development lead while Claude quota is unavailable.",
+  "code": {
+    "commit": "1549b1e5c6fa5027c6eee9168cb2adebeffe1798",
+    "service_version": "0.2.3",
+    "charts_version": "0.3.2",
+    "deployed": true,
+    "verified_by": [
+      "public healthz version 0.2.3",
+      "authenticated remote SEC refresh without local submissions",
+      "automatic packet creation",
+      "save/readback/publish real BE research"
+    ]
+  },
+  "tests": {
+    "core_targeted": 44,
+    "http": 3,
+    "reader": 8,
+    "total_targeted": 55,
+    "full_suite_rerun": false,
+    "frozen_related_packets": 84,
+    "frozen_findings": 0,
+    "frozen_bytes_unchanged": true,
+    "frozen_scope": "Static cutoff, row alignment and citation/filing consistency of committed frozen packets; not a refetch of deleted original sources."
+  },
+  "research": {
+    "subject": "NYSE:BE",
+    "initial_version": "rv-cfd14390f42aa80e199904c7ebbf7b4229f4d6675c88f8997d6fc660be23c308",
+    "version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+    "publication": {
+      "version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+      "publication_dir": "/data/companies/NYSE_BE/releases/pub-9483a6037c7e446a6137aacbcb555d987fb08b0ac7bcbd639f95bd3493b6e997",
+      "index_html": "/data/companies/NYSE_BE/releases/pub-9483a6037c7e446a6137aacbcb555d987fb08b0ac7bcbd639f95bd3493b6e997/index.html",
+      "company_index": "/data/companies/NYSE_BE/releases/index.html",
+      "publication_id": "pub-9483a6037c7e446a6137aacbcb555d987fb08b0ac7bcbd639f95bd3493b6e997",
+      "inputs_from": "version_snapshot"
+    },
+    "coverage": "partial",
+    "rating": "neutral",
+    "execution_state": "wait_confirmation",
+    "target_date": "2027-03-18",
+    "read_evidence_count": 8,
+    "charts_actually_opened": [
+      "M",
+      "W",
+      "D",
+      "DR"
+    ],
+    "price": 265.63,
+    "price_at": "2026-09-18T20:00:00Z",
+    "source_cutoff": "2026-09-19T15:38:48Z"
+  },
+  "incremental_verification": {
+    "kind": "citation-correction append on real primary research",
+    "prior_payload_readback_unchanged": true,
+    "untouched_assessment_dates_preserved": [
+      "L1",
+      "L2",
+      "L4"
+    ],
+    "changed_layers_new_dates": [
+      "L3",
+      "L5",
+      "L6"
+    ],
+    "target_date_preserved": true,
+    "full_event_router_tested": false
+  },
+  "review": {
+    "job_id": "job-a963355816ba4166fd81c5f5",
+    "status": "pending",
+    "independent_review_complete": false
+  },
+  "reader": {
+    "report": "cards/reader/reports/stocks/be/2026-09-19-r2.json",
+    "provenance": "cards/reader/provenance/be/2026-09-19-r2/",
+    "pages_generated": 11,
+    "reports": 5,
+    "assets": 4,
+    "old_reports_preserved": true,
+    "automatic_db_to_github": false,
+    "github_pages_deployment": "verify after content commit"
+  },
+  "remaining": [
+    "Independent cross-model review and any resulting corrections",
+    "W4 event-driven layer routing, material-change decisions and notifications",
+    "Independent peer economics / cash quality / share bridge supplement requests"
+  ]
+}

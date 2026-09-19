@@ -1,0 +1,87 @@
+{
+  "method": "sensitivity",
+  "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+  "result": {
+    "changes": [
+      {
+        "input_path": "model.multiple",
+        "value": 40
+      }
+    ],
+    "base_fair_value_per_share": 292.26268656716417,
+    "fair_value_per_share": 194.84179104477613,
+    "delta_per_share": -97.42089552238804,
+    "changed_inputs_digest": "9b66bda6e828378f66603633531bfcd3bb292cfc351d5ce629c375413839c087",
+    "changed_outputs": {
+      "eps": 4.871044776119403,
+      "multiple": 40,
+      "value_per_share_at_horizon": 194.84179104477613,
+      "years_to_horizon": 0.4931506849315068,
+      "discounted": false,
+      "fair_value_per_share": 194.84179104477613,
+      "equity_value": 65272000000
+    }
+  },
+  "unit": "per share",
+  "inputs": {
+    "calculation": {
+      "method": "forward_pe",
+      "currency": "USD",
+      "scale": "millions",
+      "model": {
+        "valuation_date": "2026-09-19",
+        "applies_at": "2027-03-18",
+        "eps": 4.871044776119403,
+        "multiple": 60,
+        "multiple_basis": "equity",
+        "discount_rate": null,
+        "eps_basis": "adjusted_diluted",
+        "period": {
+          "start": "2027-01-01",
+          "end": "2027-12-31"
+        },
+        "comparable_basis": "Analyst risk-on/risk-off scenario assumption, not a measured peer median. No separate narrative premium is added to cash-flow valuation."
+      },
+      "equity": {
+        "diluted_shares": 335,
+        "sbc_treatment": {
+          "basis": "in_diluted_share_count",
+          "note": "Adjusted earnings exclude SBC; forecast diluted shares 335-340m incorporate dilution. Market pricing scenario, not owner cash-flow value."
+        }
+      }
+    },
+    "changes": [
+      {
+        "input_path": "model.multiple",
+        "value": 40
+      }
+    ]
+  },
+  "calculator_version": "0.3.0",
+  "receipt": {
+    "calculator_version": "0.3.0",
+    "method": "forward_pe",
+    "inputs_digest": "2142d2e89a8c5ab6ab45a862036b57ee1a652d89a4d4d5459357fa0b21228790",
+    "outputs": {
+      "changes": [
+        {
+          "input_path": "model.multiple",
+          "value": 40
+        }
+      ],
+      "base_fair_value_per_share": 292.26268656716417,
+      "fair_value_per_share": 194.84179104477613,
+      "delta_per_share": -97.42089552238804,
+      "changed_inputs_digest": "9b66bda6e828378f66603633531bfcd3bb292cfc351d5ce629c375413839c087",
+      "changed_outputs": {
+        "eps": 4.871044776119403,
+        "multiple": 40,
+        "value_per_share_at_horizon": 194.84179104477613,
+        "years_to_horizon": 0.4931506849315068,
+        "discounted": false,
+        "fair_value_per_share": 194.84179104477613,
+        "equity_value": 65272000000
+      }
+    }
+  }
+}
