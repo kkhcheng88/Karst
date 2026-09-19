@@ -80,7 +80,18 @@
     "assets": 4,
     "old_reports_preserved": true,
     "automatic_db_to_github": false,
-    "github_pages_deployment": "verify after content commit"
+    "github_pages_deployment": "success",
+    "workflow_run": 35453421566,
+    "content_commit": "37302af64be272642bd950b7b7a973dde0720f0d",
+    "public_page": "https://kkhcheng88.github.io/Karst/stocks/be/",
+    "http_status": 200,
+    "new_primary_summary_readback": true,
+    "five_sections_present": true,
+    "browser_visual_check": "Not repeated: local browser absent and download unavailable; no layout/CSS changes in this release. Chart images themselves were actually opened.",
+    "primary_filings_local_and_cloud_sha_match": true,
+    "public_chart_http_status": 200,
+    "public_chart_sha256_matches_cloud": true,
+    "public_chart_sha256": "af13eac3bdb11d89aecb665917d971e339a494e05483c0e86ee7584de43999d2"
   },
   "remaining": [
     "Independent cross-model review and any resulting corrections",
