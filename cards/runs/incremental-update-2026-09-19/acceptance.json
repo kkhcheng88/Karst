@@ -137,5 +137,23 @@
     "Manual check provenance and public check note are appended in GitHub; primary cloud research is unchanged.",
     "No scheduler, notifications, unattended research/review, complete relation graph, or automatic DB-to-Pages publisher.",
     "Cloud event-driven changed-advice publication still needs a real material event; the actual run here is a no-new-source check with existing coverage gaps."
-  ]
+  ],
+  "reader": {
+    "merge_commit": "d0c52821fe5372c5ded6fe678e20840ef2c06fd1",
+    "pull_request": "https://github.com/kkhcheng88/Karst/pull/8",
+    "workflow_run": 35468199732,
+    "build_job": 105964282413,
+    "deploy_job": 105964309080,
+    "build": "success",
+    "deploy": "success",
+    "live_url": "https://kkhcheng88.github.io/Karst/stocks/be/",
+    "http_status": 200,
+    "human_check_visible": true,
+    "scope_visible": true,
+    "existing_archive_pages_byte_identical": 5,
+    "research_report_count": 5,
+    "site_pages": 11,
+    "assets": 4,
+    "checked_at": "2026-09-19T20:43:11.491840+00:00"
+  }
 }
