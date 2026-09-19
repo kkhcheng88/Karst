@@ -51,3 +51,9 @@ Official setup: https://docs.github.com/en/pages/getting-started-with-github-pag
 BE edition `2026-09-19-r2` is now tied to a stored cloud primary research version and its immutable calculation/input records. The initial saved version received a citation-only correction before publication; both remain in the cloud. Provenance under the matching edition records the version, publication, source cutoff and pending Claude review job. Independent review has **not** run. The human summary explicitly says so. Earlier standalone notes and engineering samples remain in history; they are not retrospectively relabelled as reviewed cloud research.
 
 The reading summary is still deliberately authored by the agent, then committed through the existing Pages workflow. This delivery does not add an unattended DB-to-GitHub publisher, an event router, or a scheduler.
+
+## Incremental check notes (2026-09-19)
+
+The optional `checks/<kind>/<slug>/*.json` records a human-authored check against an existing `report_edition` without creating another research edition. Fields: schema_version=1, public=true, kind, slug, report_edition, checked_at (timezone required), summary. The latest matching check appears above the current report; archives keep their original content, and a new research edition does not inherit a stale check. Checks and agent provenance JSON are not exported to the site. State the actual source scope and outstanding gaps; never label a price-only refresh as a complete fundamental reassessment.
+
+BE’s first check refreshes prices successfully and keeps the cloud primary research unchanged. Its provenance records the existing coverage diagnostics and pending independent review. Core incremental routing is deployed, while scheduling and automated DB-to-Pages publication remain separate.

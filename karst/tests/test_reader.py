@@ -112,6 +112,35 @@ class ReaderTests(unittest.TestCase):
         files = lambda p: {str(f.relative_to(p)): f.read_bytes() for f in p.rglob('*') if f.is_file()}
         self.assertEqual(files(self.output), files(second))
 
+    def test_check_is_not_a_new_report_or_a_rewrite_of_its_archive(self):
+        check = {'schema_version': 1, 'public': True, 'kind': 'stocks', 'slug': 'sample',
+                 'report_edition': '2026-01-02-r1', 'checked_at': '2026-01-03T12:00:00Z',
+                 'summary': '行情沒有新增；基本面資料本次未重抓。原判斷及期限保留。'}
+        path = self.content / 'checks/stocks/sample/check.json'
+        path.parent.mkdir(parents=True)
+        path.write_text(json.dumps(check))
+        result = build(self.content, self.output)
+        self.assertEqual(result['reports'], 1)
+        self.assertIn(check['summary'], (self.output/'stocks/sample/index.html').read_text())
+        archive = (self.output/'stocks/sample/history/2026-01-02-r1/index.html').read_text()
+        self.assertNotIn(check['summary'], archive)
+        self.assertFalse(list(self.output.rglob('*.json')))
+        newer = sample() | {'published_at': '2026-01-04T12:00:00Z', 'change': '新業績改變判斷'}
+        self.add(newer)
+        second = self.root/'second'
+        build(self.content, second)
+        self.assertNotIn(check['summary'], (second/'stocks/sample/index.html').read_text())
+
+    def test_check_with_missing_report_or_internal_ids_is_refused(self):
+        check = {'schema_version': 1, 'public': True, 'kind': 'stocks', 'slug': 'sample',
+                 'report_edition': '2026-01-02-r1', 'checked_at': '2026-01-03T12:00:00Z', 'summary': '未變'}
+        path = self.content / 'checks/stocks/sample/check.json'
+        path.parent.mkdir(parents=True)
+        for extra in ({'report_edition': 'missing'}, {'summary': 'rv-' + 'a'*64}, {'public': False}):
+            path.write_text(json.dumps(check | extra))
+            with self.subTest(extra=extra), self.assertRaises(ValueError):
+                build(self.content, self.output)
+
 
 if __name__ == '__main__':
     unittest.main()

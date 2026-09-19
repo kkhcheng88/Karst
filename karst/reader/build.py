@@ -167,14 +167,43 @@ def history_items(reports, prefix):
     return ''.join(f'<li><time>{r["published_at"][:10]}</time><div><a href="{prefix}{page_path(r, True)}">{text(r.get("symbol", r["name"]))} · {text(r["verdict"])}</a><p>{text(r["change"])}</p><small>目前行動：{text(r["action"])}</small></div></li>' for r in reports)
 
 
-def report_page(r, versions, archive=False):
+def load_checks(content, reports):
+    """Human check notes have their own history; they never create research editions."""
+    editions = {(r['kind'], r['slug'], stamp(r)): r for r in reports}
+    checks = {}
+    for path in sorted((content / 'checks').glob('*/*/*.json')):
+        if path.is_symlink() or not path.resolve().is_relative_to(content):
+            raise ValueError("Unsafe check path")
+        check = json.loads(path.read_text(encoding='utf-8'))
+        keys(check, {'schema_version', 'public', 'kind', 'slug', 'report_edition', 'checked_at', 'summary'})
+        if check['schema_version'] != 1 or check['public'] is not True:
+            raise ValueError("Only approved check notes are publishable")
+        safe_slug(check['slug'])
+        text(check['summary'])
+        key = (check['kind'], check['slug'], check['report_edition'])
+        if key not in editions:
+            raise ValueError("Check must refer to an existing report edition")
+        at = datetime.fromisoformat(check['checked_at'])
+        if at.tzinfo is None or at < datetime.fromisoformat(editions[key]['published_at']):
+            raise ValueError("Check cannot precede its research edition")
+        if path.parent != content / 'checks' / check['kind'] / check['slug']:
+            raise ValueError("Check path must match its subject")
+        if key not in checks or at > datetime.fromisoformat(checks[key]['checked_at']):
+            checks[key] = check
+    return checks
+
+
+def report_page(r, versions, archive=False, check=None):
     path = page_path(r, archive)
     prefix = '../' * (len(PurePosixPath(path).parts) - 1)
     title = f'{r.get("symbol", "")} {r["name"]}'.strip()
     archive_note = f'<aside class="archive-note">這是當時的分析快照。<a href="{prefix}{page_path(r)}">查看最新分析 →</a></aside>' if archive else ''
     body = archive_note + f'''<div class="eyebrow">{KINDS[r['kind']]} / 資料截至 {r['as_of']}</div><h1>{text(title)}</h1>
 <p class="deck">{text(r['verdict'])}</p><p class="meta">更新於 {r['published_at'][:10]} · {text(r['review_status'])}</p>
-<div class="change"><span>這次更新</span><p>{text(r['change'])}</p></div>{metrics(r['metrics'])}
+'''
+    if check and not archive:
+        body += f'<aside class="change"><span>最近追蹤 · {text(check["checked_at"][:10])}</span><p>{text(check["summary"])}</p></aside>'
+    body += f'''<div class="change"><span>這次更新</span><p>{text(r['change'])}</p></div>{metrics(r['metrics'])}
 <nav class="contents" aria-label="本頁內容">''' + ''.join(f'<a href="#{s["key"]}">{text(s.get("title", SECTIONS.get(s["key"],s["key"])))}</a>' for s in r['sections']) + '</nav><div class="report-body">'
     for s in r['sections']:
         body += f'<section id="{s["key"]}"><h2>{text(s.get("title", SECTIONS.get(s["key"],s["key"])))}</h2>'
@@ -249,6 +278,7 @@ def build(content, output):
     if output.exists() and any(output.iterdir()):
         raise ValueError("Output must be empty; never publish an existing directory wholesale")
     reports = load_reports(content)
+    checks = load_checks(content, reports)
     groups = defaultdict(list)
     for r in reports:
         groups[(r['kind'], r['slug'])].append(r)
@@ -271,7 +301,8 @@ def build(content, output):
         shutil.copyfile(content / 'assets' / name, output / 'assets' / name)
     pages = {}
     for r in latest:
-        p, html = report_page(r, groups[(r['kind'], r['slug'])])
+        p, html = report_page(r, groups[(r['kind'], r['slug'])],
+                              check=checks.get((r['kind'], r['slug'], stamp(r))))
         pages[p] = html
     for r in reports:
         p, html = report_page(r, groups[(r['kind'], r['slug'])], archive=True)

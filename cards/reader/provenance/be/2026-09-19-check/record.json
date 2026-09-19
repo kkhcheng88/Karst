@@ -1,0 +1,11 @@
+{
+  "subject": "NYSE:BE",
+  "based_on_version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+  "check_plan_id": "upd-9d13d312b841ffa6c0af77411657cac4fa950bc6ed193dae04d8c4e14afc60cf",
+  "checked_at": "2026-09-19T20:37:06.981744Z",
+  "agent": "ChatGPT interactive",
+  "review_status": "pending",
+  "acceptance_path": "cards/runs/incremental-update-2026-09-19/acceptance.json",
+  "research_version_created": false,
+  "reading_scope": "Longbridge prices refresh (quote, daily candles, derived price indexes and static profile). Existing registered inputs and immutable research checked; filings, transcripts and industry news were not refreshed in this check."
+}
