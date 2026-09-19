@@ -1,0 +1,141 @@
+{
+  "core_version": "0.2.4",
+  "core_commit": "597af5f2c9acb0376c1094851090098fff5b4629",
+  "pull_request": "https://github.com/kkhcheng88/Karst/pull/7",
+  "checked_at": "2026-09-19T20:37:06.981744Z",
+  "validation": {
+    "focused_tests": 80,
+    "final_routing_http_tests": 16,
+    "reader_tests": 10,
+    "fetch_or_extraction_changed": false,
+    "frozen_regression_modified": false
+  },
+  "cloud": {
+    "subject": "NYSE:BE",
+    "health": {
+      "checked_at": "2026-09-19T20:35:53.608552+00:00",
+      "health": {
+        "status": "ok",
+        "version": "0.2.4",
+        "data_dir": "/data"
+      }
+    },
+    "baseline_version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+    "version_count_before": 2,
+    "version_count_after": 2,
+    "source_refresh": {
+      "added": [],
+      "changed": [],
+      "unchanged": [
+        "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+        "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "ev-f4faad140c10d0763c0260a3d556a26b4f50f07b7c25fd6dbc2ce559dfcb0af5",
+        "ev-f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822"
+      ],
+      "failed": [],
+      "uncovered": [],
+      "adapter_errors": {}
+    },
+    "update_plan": {
+      "routing_version": "incremental-v1",
+      "subject": "NYSE:BE",
+      "base_version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+      "watch_version": null,
+      "status": "incomplete",
+      "source_changes": [],
+      "diagnostics": [
+        {
+          "source_id": "src-1a6d26f36250ad98fc0c132293fdbddafe497825157c9466b2f88a8a3eab358e",
+          "evidence_id": "ev-427d033fa1ecf6996700b4dab33d5dd8da69b2c2e545a5529fc810e81e80168c",
+          "status": "empty",
+          "reason": "adapter reported empty; see known gaps and the preserved envelope"
+        },
+        {
+          "source_id": "src-5a4437db9cecf1d96c94993ae16825fd8626311b15a0628e1e6ef30c71047506",
+          "evidence_id": "ev-2064929ac065274e22ad0434cf5996b5c8fee87142beb46bd850474377d59b13",
+          "status": "empty",
+          "reason": "adapter reported empty; see known gaps and the preserved envelope"
+        },
+        {
+          "source_id": "src-93aa7883f16cf95c40ad0d259aa267b79fa758c2da036beb0b913e2a7575cba7",
+          "evidence_id": "ev-02f45f148da5b950bcff0595a9e3eb2f0afc1eb0f7e1309db2c98b4b3902d899",
+          "status": "error",
+          "reason": "OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301600, trace_id=) invalid symbol"
+        },
+        {
+          "source_id": "src-9cc1192cd1343a36cbb29899186c7593c038a67bba498ed9bbd4822544729fad",
+          "evidence_id": "ev-7fc230a2a882ffc2fd7aac593b86122685c2985b76c5f1d4aa25776ed2b1461f",
+          "status": "empty",
+          "reason": "adapter reported empty; see known gaps and the preserved envelope"
+        },
+        {
+          "source_id": "src-ffd2cc90f0ac3a23d90842800dd588af6126dc7387cceea93aed392e75e80d5f",
+          "evidence_id": "ev-e5ff324a95ce29bd6ec20dab09e42bd03a2e8960cad8f5cb3f0f1f209b7ac03c",
+          "status": "empty",
+          "reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different"
+        }
+      ],
+      "reasons": [],
+      "affected_layers": [],
+      "reuse_candidates": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6"
+      ],
+      "price_only": false,
+      "conditions": [],
+      "refresh_status": [
+        {
+          "adapter": "longbridge",
+          "checked_at": "2026-09-19T20:37:06Z",
+          "error": null,
+          "kinds": [
+            "prices"
+          ],
+          "packet_error": null,
+          "status": "ok"
+        }
+      ],
+      "preserve": {
+        "target_date": "2027-03-18",
+        "valuation_date": "2026-09-19",
+        "assessed_at": {
+          "L1": "2026-09-19T15:47:13Z",
+          "L2": "2026-09-19T15:47:13Z",
+          "L3": "2026-09-19T15:48:37Z",
+          "L4": "2026-09-19T15:47:13Z",
+          "L5": "2026-09-19T15:48:37Z",
+          "L6": "2026-09-19T15:48:37Z"
+        }
+      },
+      "note": "Routing is triage, not a conclusion. Inspect relevance and dependencies; reuse candidates need agent judgment. A price threshold is not an executed trade.",
+      "plan_id": "upd-9d13d312b841ffa6c0af77411657cac4fa950bc6ed193dae04d8c4e14afc60cf",
+      "checked_at": "2026-09-19T20:37:06.981744Z"
+    },
+    "refresh_status_persists": true,
+    "frozen_research_equal": true,
+    "frozen_calculations_equal": true,
+    "review_status": "pending",
+    "new_research_saved": false,
+    "new_review_executed": false
+  },
+  "manual_assessment": {
+    "scope": "Longbridge prices refresh (quote, daily candles, derived price indexes and static profile). Existing registered inputs and immutable research checked; filings, transcripts and industry news were not refreshed in this check.",
+    "decision": "Keep the existing primary research and its dates. No changed evidence found in this refresh. Legacy diagnostics remain disclosed; this is not a claim of complete source coverage.",
+    "rating": "neutral",
+    "execution_state": "wait_confirmation",
+    "valuation_date": "2026-09-19",
+    "target_date": "2027-03-18",
+    "market_price": 265.63,
+    "market_at": "2026-09-18T20:00:00Z"
+  },
+  "limitations": [
+    "New set_watch/get_watchlist/record_update_check tools were exercised over local authenticated HTTP; this ChatGPT connector session has not refreshed its tool catalog, so no cloud watch or cloud manual-check DB row was written.",
+    "Manual check provenance and public check note are appended in GitHub; primary cloud research is unchanged.",
+    "No scheduler, notifications, unattended research/review, complete relation graph, or automatic DB-to-Pages publisher.",
+    "Cloud event-driven changed-advice publication still needs a real material event; the actual run here is a no-new-source check with existing coverage gaps."
+  ]
+}
