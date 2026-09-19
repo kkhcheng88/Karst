@@ -65,7 +65,52 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
         in the result says which question was answered.
         """
         return service.get_research_context(state, one(subject), subject, as_of,
-                                            as_of_version=as_of_version)
+                                            as_of_version=as_of_version, data_dir=root)
+
+    @server.tool
+    def get_watchlist() -> dict:
+        """Saved thesis watches with their adopted research versions; no account data."""
+        return {"watches": state.list_watches()}
+
+    @server.tool
+    def set_watch(subject: str, watch: dict, based_on_version_id: str,
+                  expected_version: str | None = None) -> dict:
+        """Save what this thesis is waiting for, thresholds, deadline and subscriptions.
+
+        watch: {waiting_for, conditions, validation_deadline, subscriptions,
+        dependencies}. Price conditions: {kind:'price', description, operator:
+        'gte'|'lte', value, currency}; evaluated on the latest daily bar only when complete and unadjusted,
+        never an automatic entry/exit. Event: {kind:'event', description}.
+        subscriptions: [{entity_id, kinds:[...]}]. dependencies: [{input_kind:
+        'source'|'entity'|'relation'|'assumption', input_id, input_version,
+        assumption_id, assumption_version, layers:['L2',...], exposure}].
+        The economic exposure is supplied by the researcher, never inferred from
+        a ticker or citation. Deadline is null or a timezone-aware ISO timestamp.
+        """
+        return state.save_watch(subject, watch, based_on_version_id, expected_version)
+
+    @server.tool
+    def plan_update(subject: str, input_changes: list[dict] | None = None) -> dict:
+        """Source changes and affected layers; no model, fetch or new research version.
+
+        Optional relation/assumption revisions: [{kind, id, version, reason}].
+        Existing source/entity subscriptions discover new uncited evidence across
+        company bundles. Reuse candidates still need the researcher's judgment.
+        """
+        return service.plan_update(state, one(subject), subject, data_dir=root,
+                                   input_changes=input_changes or ())
+
+    @server.tool
+    def record_update_check(subject: str, plan_id: str, outcome: str, reason: str,
+                            input_changes: list[dict] | None = None) -> dict:
+        """Record a manual check without manufacturing a new research version.
+
+        outcome: unchanged, needs_reassessment or incomplete. The plan is checked
+        again first; stale inputs are rejected. Repeating the same check is safe.
+        To change advice, use save_research with the complete updated analysis.
+        """
+        return service.record_update_check(state, one(subject), subject, plan_id, outcome,
+                                           reason, data_dir=root, input_changes=input_changes or ())
 
     @server.tool
     def refresh_sources(security: dict, kinds: list[str], since: str | None = None) -> dict:

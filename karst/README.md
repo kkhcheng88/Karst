@@ -8,6 +8,21 @@
 
 `python -m karst.reader --content cards/reader --output <新目錄>` 生成總覽、個股／主題、固定最新頁、歷史版與更新紀錄；僅 Python 標準庫，無服務或模型呼叫。Agent 程序、公開邊界與部署狀態見 [`cards/reader/README.md`](../cards/reader/README.md)。此模組不替代現有研究資料室或正式研究版本。
 
+## 手動增量更新（核心 0.2.4）
+
+1. `get_research_context(subject)` 同時回目前版本、觀察項目及 `update_plan`。這個讀取不取新資料、不執行模型；`refresh_status` 列實際取得範圍和時間，不能把目錄沒有新增說成全市場沒有新聞。
+2. 按觀察項目用 `refresh_sources` 取需要的來源；刷新結果也回更新計劃。`plan_update(subject)` 可單獨重查。逐份來源對照原版本，包括新發現而未被引用的文件；只改取得時間不視為新研究。來源恢復舊內容時查看 observations，不只比 manifest 的首次取得時間。
+3. 讀計劃及必要原文，判斷實際影響。`affected_layers` 是分流範圍，`reuse_candidates` 是待研究者核可的沿用候選，均不是投資結論。價格日檢查 L4 的現價要求、L5 與 L6；舊經營假設、估值日及目標日不自動滾動。任何舊分析錯誤均可修訂，不以「沒有新文件」拒絕重評。
+4. 無需修改分析時，以 `record_update_check(subject, plan_id, outcome, reason)` 留查核紀錄，不新建研究。outcome 為 `unchanged`／`needs_reassessment`／`incomplete`；取數失敗或空白覆蓋不能登記為 unchanged。紀錄會再核資料與版本；重試不重複新增。
+5. 需要改建議時，讀指定 `as_of_version` 的完整研究，準備新 packet，交完整更新分析到 `save_research`。API 任務亦帶上一版實際假設／日期，清楚標為 previous analysis，不冒充新閱讀。完全未變的層保留 assessed_at；`headline.change_since_last` 寫變化理由。相同分析、輸入及前版的保存重試取回同一研究版本；並發的不同更新仍須核前版。
+6. 指定版本的 context 回 `changes_since_previous`：數字／欄位的前後差異、各層沿用狀態及研究者理由。Agent 據此整理既有五段閱讀頁，前面先說改了甚麼、為甚麼、現在怎樣做；完整識別碼和原始差異只留 Agent 紀錄。新資料在研究期間到達時，context 仍列待重評，舊快照不冒稱最新。
+
+`set_watch` 需基於最新研究版本；修改用 expected_version 防覆蓋。觀察內容為 waiting_for、conditions、validation_deadline、subscriptions、dependencies；`get_watchlist` 讀全部，版本附加保存。價格條件明列 gte／lte、value、currency，只比較未復權的最近日線，並標完成狀態與日期；未完成只報未知，達價不等於執行交易。事件條件由 Agent 判讀；到期即使沒有新文件仍須檢查事件缺席。
+
+依賴明列 input_kind（source／entity／relation／assumption）、input_id、input_version、assumption_id、assumption_version、layers、exposure。來源／實體訂閱可發現其他公司資料倉的新報告，各公司保留自己的暴露說明。明示關係或假設修訂可用 `plan_update` 的 input_changes（kind、id、version、reason）分流，記錄查核時傳回相同 input_changes。這是依賴查詢，**不是完整關係圖資料庫或自動判斷傳導**；外部資料要用於正式研究引用仍需登記入本次取證包。
+
+首版保留缺口：未接排程／通知、未自動執行研究或覆核、未把 DB 自動同步到 Pages；舊六角色跨 packet runner 不在此改造。Claude 不可用時獨立覆核繼續待辦，主研究沿用或自查不視為獨立覆核。來源與股票頁不因本功能而擴充指標。
+
 ## 現在可跑
 
 Python 3.11+，在倉根目錄建立虛擬環境後：

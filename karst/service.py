@@ -454,6 +454,18 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
             result["research_input"] = prepare_research(bundle, security)
         except ContractError as exc:
             result["packet_error"] = str(exc)
+    if store is not None:
+        for adapter in sorted(adapters):
+            statuses = [r["status"] for r in registered
+                        if KIND_ADAPTERS.get(r["kind"]) == adapter]
+            status = ("error" if adapter in adapter_errors or "error" in statuses else
+                      "empty" if not statuses or "empty" in statuses else "ok")
+            store.record_refresh(security["security_id"], adapter, {
+                "adapter": adapter, "status": status, "checked_at": utc_now(),
+                "kinds": sorted(k for k in kinds if KIND_ADAPTERS[k] == adapter),
+                "error": adapter_errors.get(adapter),
+                "packet_error": result.get("packet_error")})
+        result["update_plan"] = plan_update(store, bundle, security["security_id"], data_dir=data_root(data_dir))
     return result
 
 
@@ -517,7 +529,71 @@ def _headline(payload):
             if payload.get(key) is not None or summary.get(key) is not None}
 
 
-def get_research_context(store, bundle, subject, as_of=None, as_of_version=None):
+def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_changes=()):
+    """Compare registered evidence with the latest immutable research, without fetching.
+
+    External sources enter only through explicit subscriptions/dependencies. The
+    full registered source set is checked, so a new transcript need not have been
+    cited by the old report to be noticed.
+    """
+    from . import updates
+    from .store import now as state_now
+    as_of = as_of or state_now()
+    if updates.timestamp(as_of) > updates.timestamp(state_now()):
+        raise ContractError("Update cutoff cannot be in the future")
+    baseline = store.latest_research(subject)
+    if baseline and updates.timestamp(baseline["created_at"]) > updates.timestamp(as_of):
+        raise ContractError("Latest research did not exist at the requested cutoff; use frozen-version context")
+    records = _records(bundle)
+    if not records and (Path(bundle) / "evidence.json").exists():
+        records = read_json(Path(bundle) / "evidence.json")
+    def observations_at(root):
+        import json
+        path = Path(root) / "evidence" / "observations.jsonl"
+        return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()] if path.exists() else []
+    observations = observations_at(bundle)
+    watch = store.get_watch(subject)
+    if data_dir is not None and watch:
+        seen = {r["evidence_id"] for r in records}
+        for other in company_bundles(data_dir):
+            if Path(other).resolve() == Path(bundle).resolve():
+                continue
+            observations.extend(observations_at(other))
+            for record in _records(other):
+                if record["evidence_id"] not in seen and updates.subscribed(record, watch["payload"]):
+                    records.append(record)
+                    seen.add(record["evidence_id"])
+    market = None
+    if watch and any(c["kind"] == "price" for c in watch["payload"]["conditions"]):
+        packet_path = Path(bundle) / "packet.json"
+        security = read_json(packet_path).get("security", {}) if packet_path.exists() else {}
+        session = bars_module.Session.for_exchange(security.get("exchange"))
+        # A supplier's bars never become this company's threshold price.
+        found = bars_module.series_from_evidence(bundle, _records(bundle), as_of, session=session)
+        if found and found["bars"]["D"]:
+            bar = found["bars"]["D"][-1]
+            source_record = next(r for r in records if r["evidence_id"] == found["source"]["evidence_id"])
+            market = {"price": bar["close"], "at": bar["at"], "complete": bar["complete"],
+                      "currency": security.get("currency"), "basis": found["source"]["price_basis"],
+                      "adjustment": bars_module._basis(source_record)["adjust"],
+                      "evidence_id": found["source"]["evidence_id"]}
+    methods = []
+    for mode in ("research", "update"):
+        version = get_research_protocol(mode)["version"]
+        methods.append(version["declared"] + "+" + version["digest"][:12])
+    return updates.plan(subject, baseline, records, as_of=as_of, watch=watch,
+                        refresh_status=store.refresh_status(subject), market=market,
+                        method_versions=methods, input_changes=input_changes, observations=observations)
+
+
+def record_update_check(store, bundle, subject, plan_id, outcome, reason, *, data_dir=None, input_changes=()):
+    current = plan_update(store, bundle, subject, data_dir=data_dir, input_changes=input_changes)
+    if current["plan_id"] != plan_id:
+        raise ContractError("Inputs or conditions changed; read the new update plan before recording the check")
+    return store.record_update_check(current, outcome, reason)
+
+
+def get_research_context(store, bundle, subject, as_of=None, as_of_version=None, *, data_dir=None):
     """Directory, not content: existing versions, the sources, what is still open.
 
     Two questions that must not be merged into "always read the latest":
@@ -564,6 +640,8 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None)
                 "model": job["model"]}
                for job in store.list_jobs(kind="review")
                if (job["input_ref"] or {}).get("subject") == subject]
+    from .updates import research_changes
+    previous = store.get_research(frozen["previous_version_id"]) if as_of_version and frozen["previous_version_id"] else None
     return {"subject": subject, "as_of": as_of, "as_of_version": as_of_version,
             "sources_view": view, "packet_id": (packet or {}).get("packet_id"),
             "versions": versions,
@@ -573,6 +651,10 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None)
             "latest_review": _review_summary(reviews),
             "research": frozen["payload"] if as_of_version is not None else None,
             "calculation_receipt": frozen["calc_receipt"] if as_of_version is not None else None,
+            "changes_since_previous": research_changes(previous["payload"] if previous else None, frozen["payload"]) if as_of_version else None,
+            "watch": store.get_watch(subject) if as_of_version is None else None,
+            "update_plan": plan_update(store, bundle, subject, data_dir=data_dir) if as_of_version is None and as_of is None else None,
+            "last_update_check": store.latest_update_check(subject) if as_of_version is None else None,
             "note": VIEW_NOTES[view] + " Source text is not inlined; read it with read_evidence."}
 
 
@@ -833,6 +915,16 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
     version later must not silently pick up whatever arrived in the meantime.
     """
     bundle = Path(bundle)
+    # Retry identity uses the submitted analysis and frozen inputs, not the new
+    # intake clock. An identical request after a lost response returns its version.
+    snapshot = read_json(bundle / "packet.json") if (bundle / "packet.json").exists() else {}
+    request_key = digest(canonical({"subject": subject, "previous": expected_previous_version_id,
+                                   "payload": payload, "inputs": snapshot.get("evidence_ids"),
+                                   "as_of": snapshot.get("as_of"), "role_meta": role_meta,
+                                   "method": get_research_protocol("update" if expected_previous_version_id else "research")["version"]}))
+    existing = store.get_research_request(request_key)
+    if existing:
+        return existing | {"idempotent_replay": True}
     if (bundle / "packet.json").exists():
         _register_requests(bundle, payload)
     # Callers may pass one role record or the full model list; intake wants the list,
@@ -866,7 +958,7 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
         as_of=packet["as_of"], calc_receipt=receipt, role=role_meta.get("role"),
         execution=role_meta.get("execution"), provider=role_meta.get("provider"),
         model=role_meta.get("model") or role_meta.get("model_id"),
-        packet=packet, evidence=selected)
+        packet=packet, evidence=selected, request_key=request_key)
 
 
 BARS_SHORTFALL = 0.9  # a rebuilt daily series under this share of the recorded one is a loss

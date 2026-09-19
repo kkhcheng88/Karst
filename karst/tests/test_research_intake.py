@@ -109,7 +109,9 @@ class IntakeTests(unittest.TestCase):
                               self.root / 'update-task', get_research_protocol('update'), previous)
         self.assertEqual(context['previous_research']['research_id'], previous['research_id'])
         self.assertEqual(context['previous_research']['rating'], previous['rating'])
-        self.assertNotIn('layers', context['previous_research'])
+        self.assertEqual(context['previous_research']['layers'], previous['layers'])
+        self.assertEqual(context['previous_research']['valuation'], previous['valuation'])
+        self.assertEqual(context['previous_research']['target_date'], previous['target_date'])
 
     def test_update_preserves_only_identical_layers_and_links_previous_research(self):
         import copy

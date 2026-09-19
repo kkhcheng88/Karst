@@ -64,6 +64,33 @@ CREATE TABLE IF NOT EXISTS research_versions (
     created_at TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS research_by_subject ON research_versions(subject, status);
+CREATE TABLE IF NOT EXISTS watches (
+    subject TEXT PRIMARY KEY,
+    version TEXT NOT NULL,
+    based_on_version_id TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS watch_versions (
+    version TEXT PRIMARY KEY,
+    subject TEXT NOT NULL,
+    based_on_version_id TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS refresh_state (
+    subject TEXT NOT NULL,
+    adapter TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    PRIMARY KEY(subject, adapter)
+);
+CREATE TABLE IF NOT EXISTS update_checks (
+    check_id TEXT PRIMARY KEY,
+    subject TEXT NOT NULL,
+    base_version_id TEXT,
+    payload TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
 CREATE TABLE IF NOT EXISTS jobs (
     job_id TEXT PRIMARY KEY,
     kind TEXT NOT NULL,
@@ -177,9 +204,10 @@ class Store:
         """
         existing = {row["name"] for row in
                     self.connection.execute("PRAGMA table_info(research_versions)")}
-        for column in ("packet", "evidence"):
+        for column in ("packet", "evidence", "request_key"):
             if column not in existing:
                 self.connection.execute(f"ALTER TABLE research_versions ADD COLUMN {column} TEXT")
+        self.connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS research_request ON research_versions(request_key)")
 
     def close(self):
         self.connection.close()
@@ -269,7 +297,7 @@ class Store:
     def save_research_version(self, subject, payload, *, expected_previous_version_id=None,
                               as_of=None, calc_receipt=None, publication_path=None,
                               role=None, execution=None, provider=None, model=None,
-                              packet=None, evidence=None):
+                              packet=None, evidence=None, request_key=None):
         """Append a version. Returns ``{'conflict': ...}`` instead of overwriting a newer one.
 
         ``expected_previous_version_id`` must name the version that is currently
@@ -285,6 +313,12 @@ class Store:
         cursor = self.connection.cursor()
         cursor.execute("BEGIN IMMEDIATE")
         try:
+            if request_key:
+                stored = cursor.execute("SELECT version_id FROM research_versions WHERE request_key=?",
+                                        (request_key,)).fetchone()
+                if stored:
+                    cursor.execute("ROLLBACK")
+                    return self.get_research(stored["version_id"]) | {"idempotent_replay": True}
             current = cursor.execute(
                 "SELECT version_id FROM research_versions WHERE subject=? AND status='latest'",
                 (subject,)).fetchone()
@@ -309,6 +343,9 @@ class Store:
                 (version_id, subject, current_id, as_of, _dump(payload), _dump(packet),
                  _dump(evidence), _dump(calc_receipt), publication_path, role, execution,
                  provider, model, now()))
+            if request_key:
+                cursor.execute("UPDATE research_versions SET request_key=? WHERE version_id=?",
+                               (request_key, version_id))
             cursor.execute("COMMIT")
         except Exception:
             cursor.execute("ROLLBACK")
@@ -344,6 +381,92 @@ class Store:
         self.connection.execute("UPDATE research_versions SET publication_path=? WHERE version_id=?",
                                 (str(path), version_id))
         return self.get_research(version_id)
+
+    def get_research_request(self, request_key):
+        row = self.connection.execute("SELECT version_id FROM research_versions WHERE request_key=?",
+                                      (request_key,)).fetchone()
+        return self.get_research(row["version_id"]) if row else None
+
+    # --- incremental research ---------------------------------------------
+
+    def save_watch(self, subject, payload, based_on_version_id, expected_version=None):
+        from .updates import validate_watch
+        payload = validate_watch(payload)
+        version = "watch-" + digest(canonical({"subject": subject, "payload": payload,
+                                               "based_on_version_id": based_on_version_id}))
+        cursor = self.connection.cursor()
+        cursor.execute("BEGIN IMMEDIATE")
+        try:
+            baseline = self.latest_research(subject)
+            if not baseline or baseline["version_id"] != based_on_version_id:
+                raise ContractError("Watch must be based on the latest research of this subject")
+            current = self.get_watch(subject)
+            if current and current["version"] == version:
+                cursor.execute("ROLLBACK")
+                return current
+            if (current or {}).get("version") != expected_version:
+                raise ContractError("Watch changed; re-read it before saving")
+            cursor.execute("INSERT OR REPLACE INTO watches VALUES(?,?,?,?,?)",
+                           (subject, version, based_on_version_id, _dump(payload), now()))
+            cursor.execute("INSERT OR IGNORE INTO watch_versions VALUES(?,?,?,?,?)",
+                           (version, subject, based_on_version_id, _dump(payload), now()))
+            cursor.execute("COMMIT")
+        except Exception:
+            if self.connection.in_transaction:
+                cursor.execute("ROLLBACK")
+            raise
+        return self.get_watch(subject)
+
+    def get_watch(self, subject):
+        return _row(self.connection.execute("SELECT * FROM watches WHERE subject=?",
+                                           (subject,)).fetchone(), ("payload",))
+
+    def list_watches(self):
+        return [_row(r, ("payload",)) for r in self.connection.execute("SELECT * FROM watches ORDER BY subject")]
+
+    def record_refresh(self, subject, adapter, payload):
+        self.connection.execute("INSERT OR REPLACE INTO refresh_state VALUES(?,?,?)",
+                                (subject, adapter, _dump(payload)))
+
+    def refresh_status(self, subject):
+        return [_load(r["payload"]) for r in self.connection.execute(
+            "SELECT payload FROM refresh_state WHERE subject=? ORDER BY adapter", (subject,))]
+
+    def record_update_check(self, plan, outcome, reason):
+        from .updates import _text
+        if outcome not in ("unchanged", "needs_reassessment", "incomplete"):
+            raise ContractError("Invalid update check outcome")
+        _text(reason, "reason")
+        if outcome == "unchanged" and (not plan["base_version_id"] or any(
+                r["kind"] == "missing_baseline_inputs" for r in plan["reasons"])):
+            raise ContractError("A prior research snapshot is required for an unchanged check")
+        # Incomplete retrieval must stay disclosed even if the material that did
+        # arrive did not change the analyst's view.
+        if outcome == "unchanged" and (plan["diagnostics"] or any(
+                s["status"] != "ok" for s in plan["refresh_status"])):
+            raise ContractError("Incomplete sources cannot be recorded as an unchanged check")
+        payload = {"plan": plan, "outcome": outcome, "reason": reason}
+        check_id = "check-" + digest(canonical({"plan_id": plan["plan_id"], "outcome": outcome, "reason": reason}))
+        cursor = self.connection.cursor()
+        cursor.execute("BEGIN IMMEDIATE")
+        try:
+            baseline = self.latest_research(plan["subject"])
+            watch = self.get_watch(plan["subject"])
+            if ((baseline or {}).get("version_id") != plan["base_version_id"] or
+                    (watch or {}).get("version") != plan["watch_version"]):
+                raise ContractError("Research or watch changed during update check; re-plan")
+            cursor.execute("INSERT OR IGNORE INTO update_checks VALUES(?,?,?,?,?)",
+                           (check_id, plan["subject"], plan["base_version_id"], _dump(payload), now()))
+            cursor.execute("COMMIT")
+        except Exception:
+            cursor.execute("ROLLBACK")
+            raise
+        return _row(self.connection.execute("SELECT * FROM update_checks WHERE check_id=?",
+                                           (check_id,)).fetchone(), ("payload",))
+
+    def latest_update_check(self, subject):
+        return _row(self.connection.execute("SELECT * FROM update_checks WHERE subject=? ORDER BY created_at DESC LIMIT 1",
+                                           (subject,)).fetchone(), ("payload",))
 
     # --- chart artifacts ----------------------------------------------------
 
