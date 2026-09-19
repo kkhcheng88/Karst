@@ -1,0 +1,570 @@
+{
+  "record_type": "engineering_acceptance",
+  "client": "ChatGPT/GPT",
+  "date": "2026-09-19",
+  "scope": "Karst MCP connection and charts 0.3.1 image readback; no investment recommendation",
+  "outcomes": {
+    "mcp_connection": "passed",
+    "protocol_read": "passed",
+    "research_context_read": "passed",
+    "registered_evidence_read": "passed",
+    "price_refresh_BE": "passed",
+    "render_two_subjects": "passed",
+    "read_and_visually_inspect_eight_images": "passed",
+    "full_TA_semantics": "pending_findings",
+    "formal_research_and_cross_review": "not_performed"
+  },
+  "distinction": "Earlier MCP connectivity and earlier image success do not certify a later charts release. This run now independently verifies GPT-side image transport for 0.3.1.",
+  "protocol_version": {
+    "declared": "research-protocol-v1",
+    "digest": "719138f566ed0eadf86f016db0a3747cc14a20d6debae30c201a0fb2b5fb4903",
+    "mandate": "v1.3",
+    "strategy": "v1.1"
+  },
+  "inspected_github_head": "83b0c4880393d67aa78271150c19b4f93d8c5c87",
+  "cases": {
+    "BE": {
+      "subject": "NYSE:BE",
+      "fresh_price_refresh_in_this_session": true,
+      "render_data_as_of": "2026-09-19T03:42:18Z",
+      "source": {
+        "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+        "source": "longbridge",
+        "kind": "prices",
+        "fetched_at": "2026-09-19T03:41:58Z",
+        "source_url": null,
+        "sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+        "price_basis": "adjust=NoAdjust period=Day session=unknown",
+        "segments": [
+          {
+            "evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "source": "longbridge",
+            "fetched_at": "2026-09-19T03:41:58Z",
+            "sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+            "first_bar": "2022-09-23",
+            "last_bar": "2026-09-18",
+            "bars": 1000
+          },
+          {
+            "evidence_id": "ev-e77ef6a6db7ad19389ef3c912f1f6e69fd2f6c1e8be8cbd7c1d23d4fdc9fad71",
+            "source": "longbridge",
+            "fetched_at": "2026-09-18T13:15:45Z",
+            "sha256": "9477e383d6187823a57c7ab0dc197558b9e8be3a7d4de6c493e816ba51669fc8",
+            "first_bar": "2022-09-22",
+            "last_bar": "2022-09-22",
+            "bars": 1
+          }
+        ],
+        "gaps": [
+          "ev-75f8f940cc9f4e722b1f569b29bd0b20531502db0c9a7d2d9575b1bf56cba1eb covers BE.US on a different basis (adjust=NoAdjust period=Day session=unknown) and was not merged into the charted series"
+        ]
+      },
+      "daily": {
+        "bars_count": 1001,
+        "last_close": 265.63,
+        "last_bar": "2026-09-18T04:00:00+00:00",
+        "last_bar_complete": true,
+        "moving_averages": {
+          "sma200": {
+            "basis": "200-day SMA on complete daily closes",
+            "value": 198.83915000000002,
+            "at": "2026-09-18T04:00:00+00:00",
+            "distance_from_close": 66.79084999999998,
+            "distance_pct": 0.33590392032957284,
+            "direction": {
+              "bars": 20,
+              "value_now": 198.83915000000002,
+              "value_before": 186.2791,
+              "change": 12.560050000000018,
+              "change_pct": 0.06742597532412395,
+              "label": "rising"
+            }
+          },
+          "sma50": {
+            "basis": "50-day SMA on complete daily closes",
+            "value": 225.4282,
+            "at": "2026-09-18T04:00:00+00:00",
+            "distance_from_close": 40.20179999999999,
+            "distance_pct": 0.17833527482364664,
+            "direction": {
+              "bars": 20,
+              "value_now": 225.4282,
+              "value_before": 242.8872,
+              "change": -17.459000000000003,
+              "change_pct": -0.07188110365634748,
+              "label": "falling"
+            }
+          },
+          "ema20": {
+            "basis": "20-day EMA on complete daily closes",
+            "value": 248.86942957098154,
+            "at": "2026-09-18T04:00:00+00:00",
+            "distance_from_close": 16.760570429018458,
+            "distance_pct": 0.0673468431133204,
+            "direction": {
+              "bars": 20,
+              "value_now": 248.86942957098154,
+              "value_before": 219.30677925722551,
+              "change": 29.562650313756023,
+              "change_pct": 0.13480043988554458,
+              "label": "rising"
+            }
+          }
+        },
+        "atr": 18.960073178020558,
+        "volume": {
+          "last": 73471747,
+          "bars_compared": 20,
+          "average": 13217115.55,
+          "ratio": 5.558833674568276,
+          "method": "last bar volume / mean of the previous 20 bars (target 20)"
+        }
+      },
+      "view_completeness": {
+        "M": {
+          "last_bar_complete": false,
+          "last_bar": "2026-09-01",
+          "last_close": 265.63
+        },
+        "W": {
+          "last_bar_complete": false,
+          "last_bar": "2026-09-14",
+          "last_close": 265.63
+        },
+        "D": {
+          "last_bar_complete": true,
+          "last_bar": "2026-09-18",
+          "last_close": 265.63
+        },
+        "DR": {
+          "last_bar_complete": true,
+          "last_bar": "2026-09-18",
+          "last_close": 265.63
+        }
+      },
+      "daily_structure_state": {
+        "timeframe": "D",
+        "definition": "karst.structure/1",
+        "parameters": {
+          "definition": "karst.structure/1",
+          "pivot_width": 2,
+          "pivot_rule": "symmetric confirmed pivot, strict, right-bar close (karst.calculations.confirmed_pivots); not LuxAlgo leg(size)",
+          "break_rule": "close of a complete bar beyond the most recent confirmed swing level",
+          "atr_multiple": 0.25,
+          "atr_period": 14,
+          "reclaim_window": 2
+        },
+        "trend": "up",
+        "trend_since": "2026-09-03T04:00:00+00:00",
+        "swing_high": {
+          "price": 283.83,
+          "formed_at": "2026-09-08T04:00:00+00:00",
+          "confirmed_at": "2026-09-10T04:00:00+00:00",
+          "label": "HH",
+          "status": "touched",
+          "event_id": "st-932a7c7348d9"
+        },
+        "swing_low": {
+          "price": 249.05,
+          "formed_at": "2026-09-14T04:00:00+00:00",
+          "confirmed_at": "2026-09-16T04:00:00+00:00",
+          "label": "HL",
+          "status": "confirmed",
+          "event_id": "st-a54aa4043cfa"
+        },
+        "prior_high": {
+          "price": 227.99,
+          "formed_at": "2026-08-27T04:00:00+00:00",
+          "broken_at": "2026-09-03T04:00:00+00:00",
+          "retested_at": null,
+          "event_id": "st-5286d82b9944"
+        },
+        "prior_low": {
+          "price": 210.02,
+          "formed_at": "2026-08-10T04:00:00+00:00",
+          "broken_at": "2026-08-18T04:00:00+00:00",
+          "retested_at": "2026-08-19T04:00:00+00:00",
+          "event_id": "st-f3f5c4979a1b"
+        },
+        "atr": 18.960073178020558,
+        "last_bar": "2026-09-18T04:00:00+00:00",
+        "last_bar_complete": true,
+        "swings_count": 268,
+        "events_count": 248
+      },
+      "artifacts": [
+        {
+          "artifact_id": "cha-85bab084f694d6d9c57c3f4ef527a6b273cd1c6f875258e6df8b0d2ede53a20a",
+          "view": "M",
+          "label": "monthly",
+          "file": "monthly-85bab084f694.png",
+          "media_type": "image/png",
+          "sha256": "85bab084f694d6d9c57c3f4ef527a6b273cd1c6f875258e6df8b0d2ede53a20a",
+          "bytes": 107445,
+          "bars_as_of": "2026-09-19T03:42:18Z",
+          "period": "M",
+          "drawn_from": "2022-09-01",
+          "drawn_to": "2026-09-01",
+          "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        },
+        {
+          "artifact_id": "cha-aa6990aa321bba32c85c45b1c7f5aa5a3df00ad0efc0022144040d78ce21c8ba",
+          "view": "W",
+          "label": "weekly",
+          "file": "weekly-aa6990aa321b.png",
+          "media_type": "image/png",
+          "sha256": "aa6990aa321bba32c85c45b1c7f5aa5a3df00ad0efc0022144040d78ce21c8ba",
+          "bytes": 137796,
+          "bars_as_of": "2026-09-19T03:42:18Z",
+          "period": "W",
+          "drawn_from": "2022-09-19",
+          "drawn_to": "2026-09-14",
+          "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        },
+        {
+          "artifact_id": "cha-fb76d40de67a7c883b5f64aee889e412e2fae847452a7e4aa6fd6f4ac5cccdcc",
+          "view": "D",
+          "label": "daily",
+          "file": "daily-fb76d40de67a.png",
+          "media_type": "image/png",
+          "sha256": "fb76d40de67a7c883b5f64aee889e412e2fae847452a7e4aa6fd6f4ac5cccdcc",
+          "bytes": 171545,
+          "bars_as_of": "2026-09-19T03:42:18Z",
+          "period": "D",
+          "drawn_from": "2022-09-22",
+          "drawn_to": "2026-09-18",
+          "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        },
+        {
+          "artifact_id": "cha-f1bcc00258e417a5addcc2290c04167ffe096b27848849b4204a93190786885e",
+          "view": "DR",
+          "label": "daily_recent",
+          "file": "daily_recent-f1bcc00258e4.png",
+          "media_type": "image/png",
+          "sha256": "f1bcc00258e417a5addcc2290c04167ffe096b27848849b4204a93190786885e",
+          "bytes": 160243,
+          "bars_as_of": "2026-09-19T03:42:18Z",
+          "period": "D",
+          "drawn_from": "2026-05-12",
+          "drawn_to": "2026-09-18",
+          "source_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+          "source_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        }
+      ],
+      "cloud_versions_before_test": []
+    },
+    "AXTI": {
+      "subject": "NASDAQ:AXTI",
+      "fresh_price_refresh_in_this_session": false,
+      "render_data_as_of": "2026-09-19T03:43:40Z",
+      "source": {
+        "evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+        "source": "longbridge",
+        "kind": "prices",
+        "fetched_at": "2026-09-18T18:54:06Z",
+        "source_url": null,
+        "sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+        "price_basis": "adjust=NoAdjust period=Day session=unknown",
+        "segments": [
+          {
+            "evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+            "source": "longbridge",
+            "fetched_at": "2026-09-18T18:54:06Z",
+            "sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+            "first_bar": "2022-09-23",
+            "last_bar": "2026-09-18",
+            "bars": 1000
+          }
+        ],
+        "gaps": []
+      },
+      "daily": {
+        "bars_count": 1000,
+        "last_close": 69.38,
+        "last_bar": "2026-09-18T04:00:00+00:00",
+        "last_bar_complete": false,
+        "moving_averages": {
+          "sma200": {
+            "basis": "200-day SMA on complete daily closes",
+            "value": 56.802175,
+            "at": "2026-09-17T04:00:00+00:00",
+            "distance_from_close": 12.577824999999997,
+            "distance_pct": 0.22143210185173356,
+            "direction": {
+              "bars": 20,
+              "value_now": 56.802175,
+              "value_before": 51.72752499999999,
+              "change": 5.074650000000005,
+              "change_pct": 0.09810347585738939,
+              "label": "rising"
+            }
+          },
+          "sma50": {
+            "basis": "50-day SMA on complete daily closes",
+            "value": 62.8592,
+            "at": "2026-09-17T04:00:00+00:00",
+            "distance_from_close": 6.520799999999994,
+            "distance_pct": 0.10373660498383686,
+            "direction": {
+              "bars": 20,
+              "value_now": 62.8592,
+              "value_before": 68.4066,
+              "change": -5.547399999999996,
+              "change_pct": -0.08109451427201464,
+              "label": "falling"
+            }
+          },
+          "ema20": {
+            "basis": "20-day EMA on complete daily closes",
+            "value": 64.39424584523792,
+            "at": "2026-09-17T04:00:00+00:00",
+            "distance_from_close": 4.985754154762077,
+            "distance_pct": 0.07742546075847523,
+            "direction": {
+              "bars": 20,
+              "value_now": 64.39424584523792,
+              "value_before": 72.22866470512177,
+              "change": -7.834418859883854,
+              "change_pct": -0.10846689319079038,
+              "label": "falling"
+            }
+          }
+        },
+        "atr": 7.041754924130004,
+        "volume": {
+          "last": 5527241,
+          "bars_compared": 20,
+          "average": 8060829.65,
+          "ratio": 0.6856913295519153,
+          "method": "last bar volume / mean of the previous 20 bars (target 20)"
+        }
+      },
+      "view_completeness": {
+        "M": {
+          "last_bar_complete": false,
+          "last_bar": "2026-09-01",
+          "last_close": 69.38
+        },
+        "W": {
+          "last_bar_complete": false,
+          "last_bar": "2026-09-14",
+          "last_close": 69.38
+        },
+        "D": {
+          "last_bar_complete": false,
+          "last_bar": "2026-09-18",
+          "last_close": 69.38
+        },
+        "DR": {
+          "last_bar_complete": false,
+          "last_bar": "2026-09-18",
+          "last_close": 69.38
+        }
+      },
+      "daily_structure_state": {
+        "timeframe": "D",
+        "definition": "karst.structure/1",
+        "parameters": {
+          "definition": "karst.structure/1",
+          "pivot_width": 2,
+          "pivot_rule": "symmetric confirmed pivot, strict, right-bar close (karst.calculations.confirmed_pivots); not LuxAlgo leg(size)",
+          "break_rule": "close of a complete bar beyond the most recent confirmed swing level",
+          "atr_multiple": 0.25,
+          "atr_period": 14,
+          "reclaim_window": 2
+        },
+        "trend": "down",
+        "trend_since": "2026-08-28T04:00:00+00:00",
+        "swing_high": {
+          "price": 73.94,
+          "formed_at": "2026-09-09T04:00:00+00:00",
+          "confirmed_at": "2026-09-11T04:00:00+00:00",
+          "label": "LH",
+          "status": "confirmed",
+          "event_id": "st-a1d126a9747f"
+        },
+        "swing_low": {
+          "price": 56.9,
+          "formed_at": "2026-09-14T04:00:00+00:00",
+          "confirmed_at": "2026-09-16T04:00:00+00:00",
+          "label": "HL",
+          "status": "confirmed",
+          "event_id": "st-f13d1a39d20e"
+        },
+        "prior_high": {
+          "price": 90.39,
+          "formed_at": "2026-08-10T04:00:00+00:00",
+          "broken_at": "2026-08-17T04:00:00+00:00",
+          "retested_at": "2026-08-18T04:00:00+00:00",
+          "event_id": "st-c33bd1042dd8"
+        },
+        "prior_low": {
+          "price": 61.86,
+          "formed_at": "2026-08-24T04:00:00+00:00",
+          "broken_at": "2026-08-28T04:00:00+00:00",
+          "retested_at": "2026-08-31T04:00:00+00:00",
+          "event_id": "st-c47d068f0d8f"
+        },
+        "atr": 7.041754924130004,
+        "last_bar": "2026-09-18T04:00:00+00:00",
+        "last_bar_complete": false,
+        "swings_count": 253,
+        "events_count": 233
+      },
+      "artifacts": [
+        {
+          "artifact_id": "cha-039962dc9f9403b3c126c14d263c098ed29ed38c2561f69e413aa3ed6e36ca25",
+          "view": "M",
+          "label": "monthly",
+          "file": "monthly-039962dc9f94.png",
+          "media_type": "image/png",
+          "sha256": "039962dc9f9403b3c126c14d263c098ed29ed38c2561f69e413aa3ed6e36ca25",
+          "bytes": 106451,
+          "bars_as_of": "2026-09-19T03:43:40Z",
+          "period": "M",
+          "drawn_from": "2022-09-01",
+          "drawn_to": "2026-09-01",
+          "source_evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+          "source_sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        },
+        {
+          "artifact_id": "cha-26a4aecded25ad010a2509d051c6367460c4b0e5affd7f926b67574e885083f6",
+          "view": "W",
+          "label": "weekly",
+          "file": "weekly-26a4aecded25.png",
+          "media_type": "image/png",
+          "sha256": "26a4aecded25ad010a2509d051c6367460c4b0e5affd7f926b67574e885083f6",
+          "bytes": 133048,
+          "bars_as_of": "2026-09-19T03:43:40Z",
+          "period": "W",
+          "drawn_from": "2022-09-19",
+          "drawn_to": "2026-09-14",
+          "source_evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+          "source_sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        },
+        {
+          "artifact_id": "cha-366a304a4800941e664a9109415a440023de39e5dd4331ed7f12f763648a7fb5",
+          "view": "D",
+          "label": "daily",
+          "file": "daily-366a304a4800.png",
+          "media_type": "image/png",
+          "sha256": "366a304a4800941e664a9109415a440023de39e5dd4331ed7f12f763648a7fb5",
+          "bytes": 165109,
+          "bars_as_of": "2026-09-19T03:43:40Z",
+          "period": "D",
+          "drawn_from": "2022-09-23",
+          "drawn_to": "2026-09-18",
+          "source_evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+          "source_sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        },
+        {
+          "artifact_id": "cha-86f48673d3cb64da1b6455862f2626e4c59da0c35402f0c0ef35539f1d91004c",
+          "view": "DR",
+          "label": "daily_recent",
+          "file": "daily_recent-86f48673d3cb.png",
+          "media_type": "image/png",
+          "sha256": "86f48673d3cb64da1b6455862f2626e4c59da0c35402f0c0ef35539f1d91004c",
+          "bytes": 168097,
+          "bars_as_of": "2026-09-19T03:43:40Z",
+          "period": "D",
+          "drawn_from": "2026-05-12",
+          "drawn_to": "2026-09-18",
+          "source_evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+          "source_sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b",
+          "charts_version": "0.3.1",
+          "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd",
+          "actual_image_received_and_viewed": true,
+          "receipt_metadata_matches": true
+        }
+      ],
+      "cloud_versions_before_test": []
+    }
+  },
+  "spot_checks": [
+    {
+      "subject": "NYSE:BE",
+      "view": "DR",
+      "checks": [
+        "Visible resistance 280.74–283.83 matches derived level band",
+        "Visible swing high 283.83 and swing low 249.05 match structure state",
+        "CHoCH up 227.99 on 2026-09-03 matches event",
+        "Chart says all bars closed; derived daily.last_bar_complete=true",
+        "New source fetched 2026-09-19T03:41:58Z; last_close=265.63, not the earlier intraday snapshot"
+      ]
+    },
+    {
+      "subject": "NASDAQ:AXTI",
+      "view": "DR",
+      "checks": [
+        "Visible resistance 70.88–73.94 matches derived level band",
+        "Visible swing high 73.94 and swing low 56.90 match numeric structure state",
+        "BOS down 61.86 on 2026-08-28 matches event",
+        "Reused 2026-09-18T18:54:06Z intraday snapshot; last_close=69.38 remains incomplete when rendered the next day",
+        "This run did not refresh AXTI; 69.38 is not represented as the latest close"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "key": "completed_period_stays_unconfirmed",
+      "priority": "material_for_weekly_TA",
+      "status": "confirmed_code_rule_requires_follow_up",
+      "observation": "BE snapshot was obtained after the Friday 2026-09-18 session; every daily bar is complete, but W last_bar_complete remains false at 2026-09-19T03:42:18Z.",
+      "code": "karst/charts.py resample: complete = index < len(keys)-1 and all(b['complete'] for b in group)",
+      "impact": "Last weekly/monthly group is always incomplete until a later group arrives. This delays recognition of closed-period structure; it is not an MCP failure.",
+      "request": "Use exchange-calendar period closure plus evidence availability and coverage to determine completion. Test Friday close, holiday-shortened week and month end. Do not simply mark every aggregate containing complete observed days as complete."
+    },
+    {
+      "key": "displaced_captions_without_connectors",
+      "priority": "material_for_visual_interpretation",
+      "status": "observed_in_images_and_code",
+      "observation": "AXTI DR displays 'swing low 56.9' text near the 90 area and 'prior low 61.86' near 110 after label displacement; no leader lines link captions to their actual levels. BE has the same class of displacement.",
+      "code": "karst/charts.py caption add() uses axis.annotate(xy=price, xytext=offset points) without arrowprops.",
+      "impact": "Numeric labels match JSON, but their placement can mislead visual support/resistance interpretation.",
+      "request": "Keep text close to the actual level, add leader lines, or move displaced labels to an explicitly separate legend. Preserve correct price coordinates and verify the two recent daily charts."
+    }
+  ],
+  "limitations": [
+    "Image identity checked by matching read_chart metadata with render_charts artifacts; no independent byte-hash computation.",
+    "Did not rerun local tests or independently prove all prefix-replay and state-transition semantics.",
+    "No research versions saved/published, no valuation or recommendation updated, no trade actions.",
+    "Both queried cloud subjects returned versions=[] before testing; this is storage state, not a connection failure.",
+    "Full-history labels remain crowded; recent daily views provide clearer candle detail. Successful image transfer is distinct from complete chart-quality acceptance."
+  ],
+  "next_steps": [
+    "Claude correct/clarify the two targeted chart issues; no indicator expansion.",
+    "GPT then proceeds with formal research; save an actual cloud research version and obtain independent review.",
+    "Keep connection, image transport, TA semantics and formal research statuses separate in progress records."
+  ]
+}
