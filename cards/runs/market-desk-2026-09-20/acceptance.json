@@ -1,0 +1,38 @@
+{
+  "feature_commit": "85451639667e53be078c3dc8ea9c383d65b868e6",
+  "cache_fix_commit": "10d19f101f9063aeea8dae0589b3f1a79b4f99cb",
+  "pages_runs": [
+    35512436490,
+    35512639904
+  ],
+  "pages": "build and deploy success",
+  "runtime_health_version": "0.2.7",
+  "mcp_readback": {
+    "NYSEARCA:SPY": "11 momentum metrics",
+    "NASDAQ:IREN": "11 momentum metrics"
+  },
+  "browser": {
+    "home": "https://kkhcheng88.github.io/Karst/index.html?edition=market-2026-09-20-v2",
+    "market": "https://kkhcheng88.github.io/Karst/market/index.html",
+    "weekly_excess_pp": [
+      -2.3,
+      -0.57
+    ],
+    "daily_excess_pp": [
+      -1.74,
+      4.04
+    ],
+    "monthly_excess_pp": [
+      13.55,
+      0.87
+    ],
+    "switches": "1, 5, 20 verified",
+    "asset_cache_bug": "reproduced stale CSS and JS, fixed with content-hash asset URLs, browser verified",
+    "horizontal_overflow_desktop": false,
+    "mobile_visual": "not run this iteration; responsive CSS retained"
+  },
+  "targeted_tests": 32,
+  "archives_unchanged": 13,
+  "full_stock_research_created": false,
+  "scheduler_created": false
+}
