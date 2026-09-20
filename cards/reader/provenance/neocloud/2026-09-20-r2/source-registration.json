@@ -1,0 +1,89 @@
+[
+  {
+    "subject": "NASDAQ:CRWV",
+    "result": {
+      "evidence_id": "ev-3f2d1d7271fef437acf2648823819f4992dc79f703504fab49637c776e783f06",
+      "source_id": "src-9b34bc4be08108647de6aa127af55b02dacd08b725494674c6e5abf1a6a12236",
+      "source": "user_document",
+      "kind": "industry_report",
+      "status": "ok",
+      "published_at": "2026-08-11",
+      "fetched_at": "2026-09-20T08:48:29Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+      "title": "ingest_source",
+      "status_reason": null,
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "source_type": "other",
+      "entity_ids": [
+        "NASDAQ:CRWV"
+      ]
+    }
+  },
+  {
+    "subject": "NASDAQ:NBIS",
+    "result": {
+      "evidence_id": "ev-91337cdce95308b8d475cb968a778b5feaa044c52ec1074ab60e9f23a27dd4c0",
+      "source_id": "src-245ac2611c0e7888cf0dcf6ff98ff69ff5eb36a4fd7078c61de4a652fa5a4aaf",
+      "source": "user_document",
+      "kind": "industry_report",
+      "status": "ok",
+      "published_at": "2026-08-12",
+      "fetched_at": "2026-09-20T08:48:41Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf",
+      "title": "ingest_source",
+      "status_reason": null,
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "source_type": "other",
+      "entity_ids": [
+        "NASDAQ:NBIS"
+      ]
+    }
+  },
+  {
+    "subject": "NASDAQ:IREN",
+    "result": {
+      "evidence_id": "ev-025994e305f1d6099a049057d4fad40133406aafec8bba79dc0e995782ef3386",
+      "source_id": "src-d9256990afa29bc17b87995ed9fa1fa0ca343ed627a8c88d59bd54b97ac894df",
+      "source": "user_document",
+      "kind": "industry_report",
+      "status": "ok",
+      "published_at": "2026-08-27",
+      "fetched_at": "2026-09-20T08:48:52Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+      "title": "ingest_source",
+      "status_reason": null,
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "source_type": "other",
+      "entity_ids": [
+        "NASDAQ:IREN"
+      ]
+    }
+  }
+]

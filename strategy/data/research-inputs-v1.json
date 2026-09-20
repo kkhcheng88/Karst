@@ -182,43 +182,45 @@
   {
     "kind": "relation",
     "object_id": "neocloud-crwv-nbis",
+    "expected_version": "kv-d368906f010325b609489cbbdc9c0e5b7b15d274437a3b6366e7a55351adb263",
     "payload": {
-      "from_entity": "NASDAQ:CRWV",
-      "to_entity": "NASDAQ:NBIS",
-      "relation_type": "competes",
-      "mechanism": "均提供 AI 算力，合約定價、GPU 利用率與客戶取得可交叉檢查；不能假定相同融資風險。",
-      "status": "active",
-      "valid_from": null,
-      "valid_to": null,
       "basis": "inference",
+      "from_entity": "NASDAQ:CRWV",
+      "mechanism": "同層比較組，不足以建立這兩家公司之間的具體商業關係；保留 universe 的 neocloud comparison_groups。",
+      "relation_type": "competes",
       "sources": [
         {
+          "evidence_id": "ev-7427ac1829678e43515d76eda2986c0cd08a22a7cfb2817c22fc36ddd61fabe2",
           "title": "CoreWeave 第二季業績",
-          "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
-          "evidence_id": "ev-7427ac1829678e43515d76eda2986c0cd08a22a7cfb2817c22fc36ddd61fabe2"
+          "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
         }
-      ]
+      ],
+      "status": "withdrawn",
+      "to_entity": "NASDAQ:NBIS",
+      "valid_from": null,
+      "valid_to": null
     }
   },
   {
     "kind": "relation",
     "object_id": "neocloud-nbis-iren",
+    "expected_version": "kv-87a72397df006ca35f048de51e61adb088073afee1f207eafeef88e06da18890",
     "payload": {
-      "from_entity": "NASDAQ:NBIS",
-      "to_entity": "NASDAQ:IREN",
-      "relation_type": "competes",
-      "mechanism": "AI Cloud 容量、客戶及交付時點有競爭；公司 ARR 定義不同。",
-      "status": "active",
-      "valid_from": null,
-      "valid_to": null,
       "basis": "inference",
+      "from_entity": "NASDAQ:NBIS",
+      "mechanism": "同層比較組，不足以建立這兩家公司之間的具體商業關係；保留 universe 的 neocloud comparison_groups。",
+      "relation_type": "competes",
       "sources": [
         {
+          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae",
           "title": "IREN FY26 業績",
-          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
-          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae"
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
         }
-      ]
+      ],
+      "status": "withdrawn",
+      "to_entity": "NASDAQ:IREN",
+      "valid_from": null,
+      "valid_to": null
     }
   },
   {
@@ -649,6 +651,465 @@
           "title": "GE Vernova 第二季業績",
           "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf",
           "evidence_id": "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "crwv-screen-2026-09-20",
+    "payload": {
+      "subject": "NASDAQ:CRWV",
+      "as_of": "2026-09-20",
+      "metrics": [
+        {
+          "key": "revenue_qoq_pct",
+          "value": 23.917228103946098,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "adjusted_ebitda_margin_pct",
+          "value": 58.64077669902913,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "operating_margin_pct",
+          "value": -1.9029126213592233,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "annualized_quarter_revenue",
+          "value": 10300,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "ps_annualized_quarter",
+          "value": 4.356603683370874,
+          "unit": "x",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "net_debt",
+          "value": 29765,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "enterprise_value_proxy",
+          "value": 74638.01793872,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "ev_annualized_quarter_sales_proxy",
+          "value": 7.246409508613593,
+          "unit": "x",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "close",
+          "value": 81.36,
+          "unit": "USD",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "atr14",
+          "value": 5.792652367332644,
+          "unit": "USD",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "distance_sma50_pct",
+          "value": -4.360889528363765,
+          "unit": "%",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "distance_sma200_pct",
+          "value": -11.639627389869233,
+          "unit": "%",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "price_return_21d_pct",
+          "value": -10.465500165070985,
+          "unit": "%",
+          "period": "2026-08-19/2026-09-18",
+          "basis": "Completed same-source NoAdjust closes; excludes dividends",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "price_return_63d_pct",
+          "value": -31.02161933022467,
+          "unit": "%",
+          "period": "2026-06-18/2026-09-18",
+          "basis": "Completed same-source NoAdjust closes; excludes dividends",
+          "status": "calculated",
+          "source_index": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+          "title": "CRWV June financial statement comparison inputs",
+          "evidence_id": "ev-3f2d1d7271fef437acf2648823819f4992dc79f703504fab49637c776e783f06"
+        },
+        {
+          "url": "https://open.longbridge.com/docs/quote/overview",
+          "title": "Longbridge daily bars",
+          "evidence_id": "ev-e3a69a7ba8be9fd06c024868381699bc5febd29c158b455aeb281045b0e4f655"
+        },
+        {
+          "url": "https://open.longbridge.com/docs/quote/overview",
+          "title": "Longbridge market-cap snapshot",
+          "evidence_id": "ev-f6b23bd086b578f9f180020e229f59edc8792a2f9426d66044df2bec44c13f1d"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "nbis-screen-2026-09-20",
+    "payload": {
+      "subject": "NASDAQ:NBIS",
+      "as_of": "2026-09-20",
+      "metrics": [
+        {
+          "key": "revenue_qoq_pct",
+          "value": 45.939849624060145,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "adjusted_ebitda_margin_pct",
+          "value": 40.56328353082604,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "operating_margin_pct",
+          "value": -30.207796668383995,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "annualized_quarter_revenue",
+          "value": 2329.2,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "ps_annualized_quarter",
+          "value": 26.30605120644857,
+          "unit": "x",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "net_debt",
+          "value": 503.60000000000036,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "enterprise_value_proxy",
+          "value": 61776.65447006,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "ev_annualized_quarter_sales_proxy",
+          "value": 26.522692113197667,
+          "unit": "x",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "close",
+          "value": 223.54,
+          "unit": "USD",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "atr14",
+          "value": 17.28200537624487,
+          "unit": "USD",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "distance_sma50_pct",
+          "value": 5.463892039396323,
+          "unit": "%",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "distance_sma200_pct",
+          "value": 39.09952750403185,
+          "unit": "%",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "price_return_21d_pct",
+          "value": -0.16078606520768535,
+          "unit": "%",
+          "period": "2026-08-19/2026-09-18",
+          "basis": "Completed same-source NoAdjust closes; excludes dividends",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "price_return_63d_pct",
+          "value": -22.027276849558763,
+          "unit": "%",
+          "period": "2026-06-18/2026-09-18",
+          "basis": "Completed same-source NoAdjust closes; excludes dividends",
+          "status": "calculated",
+          "source_index": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf",
+          "title": "NBIS June financial statement comparison inputs",
+          "evidence_id": "ev-91337cdce95308b8d475cb968a778b5feaa044c52ec1074ab60e9f23a27dd4c0"
+        },
+        {
+          "url": "https://open.longbridge.com/docs/quote/overview",
+          "title": "Longbridge daily bars",
+          "evidence_id": "ev-c75c6ecb2b6aa61b1bc675e59cbb32d4462f8535eb04196fec091f7403f5ad1a"
+        },
+        {
+          "url": "https://open.longbridge.com/docs/quote/overview",
+          "title": "Longbridge market-cap snapshot",
+          "evidence_id": "ev-af1ca9ea8d4190f4e49c67c578b2a5130e99cce93459eb69ab45831bbd827b96"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "iren-screen-2026-09-20",
+    "payload": {
+      "subject": "NASDAQ:IREN",
+      "as_of": "2026-09-20",
+      "metrics": [
+        {
+          "key": "revenue_qoq_pct",
+          "value": -5.248618784530401,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "adjusted_ebitda_margin_pct",
+          "value": 13.994169096209912,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "operating_margin_pct",
+          "value": -452.1865889212828,
+          "unit": "%",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "annualized_quarter_revenue",
+          "value": 548.8,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "ps_annualized_quarter",
+          "value": 33.51796243075802,
+          "unit": "x",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "net_debt",
+          "value": 1941.1999999999998,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "enterprise_value_proxy",
+          "value": 20335.857782,
+          "unit": "USD million",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "ev_annualized_quarter_sales_proxy",
+          "value": 37.05513444241983,
+          "unit": "x",
+          "period": "2026-04-01/2026-06-30",
+          "basis": "Calculated from actual quarter; market cap 2026-09-18, balance sheet 2026-06-30; quarter x4 is NOT forecast. EV proxy excludes operating leases and investment SOTP; NBIS assumes zero separately disclosed finance leases.",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "close",
+          "value": 46.68,
+          "unit": "USD",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "atr14",
+          "value": 3.1588244627786537,
+          "unit": "USD",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "distance_sma50_pct",
+          "value": 15.599206555574519,
+          "unit": "%",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "distance_sma200_pct",
+          "value": 2.501099284764985,
+          "unit": "%",
+          "period": "2026-09-18",
+          "basis": "Longbridge completed daily bars, NoAdjust; mathematical comparison, not rating",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "price_return_21d_pct",
+          "value": 8.963585434173659,
+          "unit": "%",
+          "period": "2026-08-19/2026-09-18",
+          "basis": "Completed same-source NoAdjust closes; excludes dividends",
+          "status": "calculated",
+          "source_index": 1
+        },
+        {
+          "key": "price_return_63d_pct",
+          "value": -22.14809873248833,
+          "unit": "%",
+          "period": "2026-06-18/2026-09-18",
+          "basis": "Completed same-source NoAdjust closes; excludes dividends",
+          "status": "calculated",
+          "source_index": 1
+        }
+      ],
+      "sources": [
+        {
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "title": "IREN June financial statement comparison inputs",
+          "evidence_id": "ev-025994e305f1d6099a049057d4fad40133406aafec8bba79dc0e995782ef3386"
+        },
+        {
+          "url": "https://open.longbridge.com/docs/quote/overview",
+          "title": "Longbridge daily bars",
+          "evidence_id": "ev-d6ddadc955244f5684c3e01fed0536f29b6df881c5ae897a11c57b35a76c27e6"
+        },
+        {
+          "url": "https://open.longbridge.com/docs/quote/overview",
+          "title": "Longbridge market-cap snapshot",
+          "evidence_id": "ev-067a7f6edd8140cff559237a0d6a02bfd4a755c9223d03fe1f9c4b58530c0109"
         }
       ]
     }

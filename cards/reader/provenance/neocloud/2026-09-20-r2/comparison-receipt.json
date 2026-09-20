@@ -1,0 +1,429 @@
+{
+  "CRWV": {
+    "financial_inputs_usdm": {
+      "revenue": 2575,
+      "previous_quarter_revenue": 2078,
+      "adjusted_ebitda": 1510,
+      "operating_income": -49,
+      "debt": 35068,
+      "finance_leases": 221,
+      "cash": 5524,
+      "market_cap": 44873.017938720004
+    },
+    "financial_period": "2026-04-01/2026-06-30",
+    "balance_sheet_date": "2026-06-30",
+    "price_date": "2026-09-18",
+    "financial_ratios": {
+      "revenue_qoq_pct": 23.917228103946098,
+      "adjusted_ebitda_margin_pct": 58.64077669902913,
+      "operating_margin_pct": -1.9029126213592233,
+      "annualized_quarter_revenue": 10300,
+      "ps_annualized_quarter": 4.356603683370874,
+      "net_debt": 29765,
+      "enterprise_value_proxy": 74638.01793872,
+      "ev_annualized_quarter_sales_proxy": 7.246409508613593
+    },
+    "price_returns": {
+      "21": {
+        "from": "2026-08-19",
+        "to": "2026-09-18",
+        "value_pct": -10.465500165070985
+      },
+      "63": {
+        "from": "2026-06-18",
+        "to": "2026-09-18",
+        "value_pct": -31.02161933022467
+      }
+    },
+    "technical": {
+      "bars_count": 371,
+      "last_close": 81.36,
+      "last_bar": "2026-09-18T04:00:00+00:00",
+      "last_bar_complete": true,
+      "moving_averages": {
+        "sma200": {
+          "basis": "200-day SMA on complete daily closes",
+          "value": 92.07747499999999,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": -10.717474999999993,
+          "distance_pct": -0.11639627389869234,
+          "direction": {
+            "bars": 20,
+            "value_now": 92.07747499999999,
+            "value_before": 92.146425,
+            "change": -0.06895000000000095,
+            "change_pct": -0.0007482656001033243,
+            "label": "flat"
+          }
+        },
+        "sma50": {
+          "basis": "50-day SMA on complete daily closes",
+          "value": 85.0698,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": -3.7098000000000013,
+          "distance_pct": -0.04360889528363765,
+          "direction": {
+            "bars": 20,
+            "value_now": 85.0698,
+            "value_before": 90.071,
+            "change": -5.001199999999997,
+            "change_pct": -0.055525085765673714,
+            "label": "falling"
+          }
+        },
+        "ema20": {
+          "basis": "20-day EMA on complete daily closes",
+          "value": 86.16156945044962,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": -4.80156945044962,
+          "distance_pct": -0.055727506834830076,
+          "direction": {
+            "bars": 20,
+            "value_now": 86.16156945044962,
+            "value_before": 91.09064007967976,
+            "change": -4.929070629230139,
+            "change_pct": -0.054111713617541066,
+            "label": "falling"
+          }
+        }
+      },
+      "atr": 5.792652367332644,
+      "volume": {
+        "last": 66370228,
+        "bars_compared": 20,
+        "average": 23423609.45,
+        "ratio": 2.8334756921931175,
+        "method": "last bar volume / mean of the previous 20 bars (target 20)"
+      }
+    },
+    "source_evidence": {
+      "index": "ev-f6b23bd086b578f9f180020e229f59edc8792a2f9426d66044df2bec44c13f1d",
+      "static": "ev-e03fcb8769e89a77f7b95a6359cd87112aa6a8f239fbf8d0721e8b077b75518a"
+    },
+    "price_source": {
+      "evidence_id": "ev-e3a69a7ba8be9fd06c024868381699bc5febd29c158b455aeb281045b0e4f655",
+      "source": "longbridge",
+      "kind": "prices",
+      "fetched_at": "2026-09-20T08:33:43Z",
+      "source_url": null,
+      "sha256": "f8ac8563627950a307bf32f5df7af99c44e652f2e3ae9ec3865b65f63d596771",
+      "price_basis": "adjust=NoAdjust period=Day session=unknown",
+      "segments": [
+        {
+          "evidence_id": "ev-e3a69a7ba8be9fd06c024868381699bc5febd29c158b455aeb281045b0e4f655",
+          "source": "longbridge",
+          "fetched_at": "2026-09-20T08:33:43Z",
+          "sha256": "f8ac8563627950a307bf32f5df7af99c44e652f2e3ae9ec3865b65f63d596771",
+          "first_bar": "2025-03-28",
+          "last_bar": "2026-09-18",
+          "bars": 371
+        }
+      ],
+      "gaps": []
+    },
+    "charts_opened": [
+      {
+        "artifact_id": "cha-a887b00929a19d02699afcc64d03aba5b93f33541a217e773ce8c1258fed897b",
+        "view": "DR",
+        "label": "daily_recent",
+        "file": "daily_recent-a887b00929a1.png",
+        "media_type": "image/png",
+        "sha256": "a887b00929a19d02699afcc64d03aba5b93f33541a217e773ce8c1258fed897b",
+        "bytes": 170829,
+        "bars_as_of": "2026-09-20T08:33:44Z",
+        "period": "D",
+        "drawn_from": "2026-05-12",
+        "drawn_to": "2026-09-18",
+        "source_evidence_id": "ev-e3a69a7ba8be9fd06c024868381699bc5febd29c158b455aeb281045b0e4f655",
+        "source_sha256": "f8ac8563627950a307bf32f5df7af99c44e652f2e3ae9ec3865b65f63d596771",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      }
+    ]
+  },
+  "NBIS": {
+    "financial_inputs_usdm": {
+      "revenue": 582.3,
+      "previous_quarter_revenue": 399,
+      "adjusted_ebitda": 236.2,
+      "operating_income": -175.9,
+      "debt": 8545.7,
+      "finance_leases": 0,
+      "cash": 8042.1,
+      "noncontrolling_interest": 1,
+      "market_cap": 61272.05447006
+    },
+    "financial_period": "2026-04-01/2026-06-30",
+    "balance_sheet_date": "2026-06-30",
+    "price_date": "2026-09-18",
+    "financial_ratios": {
+      "revenue_qoq_pct": 45.939849624060145,
+      "adjusted_ebitda_margin_pct": 40.56328353082604,
+      "operating_margin_pct": -30.207796668383995,
+      "annualized_quarter_revenue": 2329.2,
+      "ps_annualized_quarter": 26.30605120644857,
+      "net_debt": 503.60000000000036,
+      "enterprise_value_proxy": 61776.65447006,
+      "ev_annualized_quarter_sales_proxy": 26.522692113197667
+    },
+    "price_returns": {
+      "21": {
+        "from": "2026-08-19",
+        "to": "2026-09-18",
+        "value_pct": -0.16078606520768535
+      },
+      "63": {
+        "from": "2026-06-18",
+        "to": "2026-09-18",
+        "value_pct": -22.027276849558763
+      }
+    },
+    "technical": {
+      "bars_count": 1000,
+      "last_close": 223.54,
+      "last_bar": "2026-09-18T04:00:00+00:00",
+      "last_bar_complete": true,
+      "moving_averages": {
+        "sma200": {
+          "basis": "200-day SMA on complete daily closes",
+          "value": 160.705075,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 62.834925,
+          "distance_pct": 0.3909952750403185,
+          "direction": {
+            "bars": 20,
+            "value_now": 160.705075,
+            "value_before": 148.752525,
+            "change": 11.952550000000002,
+            "change_pct": 0.08035191335407586,
+            "label": "rising"
+          }
+        },
+        "sma50": {
+          "basis": "50-day SMA on complete daily closes",
+          "value": 211.9588,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 11.581199999999995,
+          "distance_pct": 0.05463892039396323,
+          "direction": {
+            "bars": 20,
+            "value_now": 211.9588,
+            "value_before": 222.95080000000002,
+            "change": -10.992000000000019,
+            "change_pct": -0.049302357291384546,
+            "label": "falling"
+          }
+        },
+        "ema20": {
+          "basis": "20-day EMA on complete daily closes",
+          "value": 219.00205824600673,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 4.537941753993266,
+          "distance_pct": 0.02072100047980263,
+          "direction": {
+            "bars": 20,
+            "value_now": 219.00205824600673,
+            "value_before": 223.2270743308673,
+            "change": -4.225016084860584,
+            "change_pct": -0.018926987676227226,
+            "label": "falling"
+          }
+        }
+      },
+      "atr": 17.28200537624487,
+      "volume": {
+        "last": 21347716,
+        "bars_compared": 20,
+        "average": 15405239.6,
+        "ratio": 1.3857438478269433,
+        "method": "last bar volume / mean of the previous 20 bars (target 20)"
+      }
+    },
+    "source_evidence": {
+      "index": "ev-af1ca9ea8d4190f4e49c67c578b2a5130e99cce93459eb69ab45831bbd827b96",
+      "static": "ev-192434949b679106410b6c06c1c464776b6f5bbe1e4de5cc9a5db4286b3d15b8"
+    },
+    "price_source": {
+      "evidence_id": "ev-c75c6ecb2b6aa61b1bc675e59cbb32d4462f8535eb04196fec091f7403f5ad1a",
+      "source": "longbridge",
+      "kind": "prices",
+      "fetched_at": "2026-09-20T08:34:07Z",
+      "source_url": null,
+      "sha256": "ef5be248a7e99026eecfdd71265c0508da2c2c6c3096453fca926332cabb271b",
+      "price_basis": "adjust=NoAdjust period=Day session=unknown",
+      "segments": [
+        {
+          "evidence_id": "ev-c75c6ecb2b6aa61b1bc675e59cbb32d4462f8535eb04196fec091f7403f5ad1a",
+          "source": "longbridge",
+          "fetched_at": "2026-09-20T08:34:07Z",
+          "sha256": "ef5be248a7e99026eecfdd71265c0508da2c2c6c3096453fca926332cabb271b",
+          "first_bar": "2020-02-06",
+          "last_bar": "2026-09-18",
+          "bars": 1000
+        }
+      ],
+      "gaps": []
+    },
+    "charts_opened": [
+      {
+        "artifact_id": "cha-d48953d57172dbd704ffa2b97bb326ad12f4df85302eea3536ee04a5731bffd3",
+        "view": "DR",
+        "label": "daily_recent",
+        "file": "daily_recent-d48953d57172.png",
+        "media_type": "image/png",
+        "sha256": "d48953d57172dbd704ffa2b97bb326ad12f4df85302eea3536ee04a5731bffd3",
+        "bytes": 166709,
+        "bars_as_of": "2026-09-20T08:34:07Z",
+        "period": "D",
+        "drawn_from": "2026-05-12",
+        "drawn_to": "2026-09-18",
+        "source_evidence_id": "ev-c75c6ecb2b6aa61b1bc675e59cbb32d4462f8535eb04196fec091f7403f5ad1a",
+        "source_sha256": "ef5be248a7e99026eecfdd71265c0508da2c2c6c3096453fca926332cabb271b",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      }
+    ]
+  },
+  "IREN": {
+    "financial_inputs_usdm": {
+      "revenue": 137.2,
+      "previous_quarter_revenue": 144.8,
+      "adjusted_ebitda": 19.2,
+      "operating_income": -620.4,
+      "debt": 7593.0,
+      "finance_leases": 243.8,
+      "cash": 5895.6,
+      "market_cap": 18394.657782
+    },
+    "financial_period": "2026-04-01/2026-06-30",
+    "balance_sheet_date": "2026-06-30",
+    "price_date": "2026-09-18",
+    "financial_ratios": {
+      "revenue_qoq_pct": -5.248618784530401,
+      "adjusted_ebitda_margin_pct": 13.994169096209912,
+      "operating_margin_pct": -452.1865889212828,
+      "annualized_quarter_revenue": 548.8,
+      "ps_annualized_quarter": 33.51796243075802,
+      "net_debt": 1941.1999999999998,
+      "enterprise_value_proxy": 20335.857782,
+      "ev_annualized_quarter_sales_proxy": 37.05513444241983
+    },
+    "price_returns": {
+      "21": {
+        "from": "2026-08-19",
+        "to": "2026-09-18",
+        "value_pct": 8.963585434173659
+      },
+      "63": {
+        "from": "2026-06-18",
+        "to": "2026-09-18",
+        "value_pct": -22.14809873248833
+      }
+    },
+    "technical": {
+      "bars_count": 1000,
+      "last_close": 46.68,
+      "last_bar": "2026-09-18T04:00:00+00:00",
+      "last_bar_complete": true,
+      "moving_averages": {
+        "sma200": {
+          "basis": "200-day SMA on complete daily closes",
+          "value": 45.540974999999996,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 1.1390250000000037,
+          "distance_pct": 0.02501099284764985,
+          "direction": {
+            "bars": 20,
+            "value_now": 45.540974999999996,
+            "value_before": 46.7425,
+            "change": -1.2015250000000037,
+            "change_pct": -0.02570519334652626,
+            "label": "falling"
+          }
+        },
+        "sma50": {
+          "basis": "50-day SMA on complete daily closes",
+          "value": 40.380900000000004,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 6.299099999999996,
+          "distance_pct": 0.15599206555574519,
+          "direction": {
+            "bars": 20,
+            "value_now": 40.380900000000004,
+            "value_before": 43.7518,
+            "change": -3.370899999999999,
+            "change_pct": -0.07704597296568366,
+            "label": "falling"
+          }
+        },
+        "ema20": {
+          "basis": "20-day EMA on complete daily closes",
+          "value": 42.626487092197586,
+          "at": "2026-09-18T04:00:00+00:00",
+          "distance_from_close": 4.053512907802414,
+          "distance_pct": 0.09509375940445186,
+          "direction": {
+            "bars": 20,
+            "value_now": 42.626487092197586,
+            "value_before": 41.421786280756514,
+            "change": 1.2047008114410716,
+            "change_pct": 0.029083748423489507,
+            "label": "rising"
+          }
+        }
+      },
+      "atr": 3.1588244627786537,
+      "volume": {
+        "last": 45496275,
+        "bars_compared": 20,
+        "average": 41265691.9,
+        "ratio": 1.102520590476274,
+        "method": "last bar volume / mean of the previous 20 bars (target 20)"
+      }
+    },
+    "source_evidence": {
+      "index": "ev-067a7f6edd8140cff559237a0d6a02bfd4a755c9223d03fe1f9c4b58530c0109",
+      "static": "ev-e0867e6fac3963e8e71210e2e9bc47700b04bad19386286c220db3dac7f95c3a"
+    },
+    "price_source": {
+      "evidence_id": "ev-d6ddadc955244f5684c3e01fed0536f29b6df881c5ae897a11c57b35a76c27e6",
+      "source": "longbridge",
+      "kind": "prices",
+      "fetched_at": "2026-09-20T08:34:51Z",
+      "source_url": null,
+      "sha256": "6215ac1f48f97f42af35caac9ddfd79a30cad46bc1ce8fabd6ab316da9822d06",
+      "price_basis": "adjust=NoAdjust period=Day session=unknown",
+      "segments": [
+        {
+          "evidence_id": "ev-d6ddadc955244f5684c3e01fed0536f29b6df881c5ae897a11c57b35a76c27e6",
+          "source": "longbridge",
+          "fetched_at": "2026-09-20T08:34:51Z",
+          "sha256": "6215ac1f48f97f42af35caac9ddfd79a30cad46bc1ce8fabd6ab316da9822d06",
+          "first_bar": "2022-09-23",
+          "last_bar": "2026-09-18",
+          "bars": 1000
+        }
+      ],
+      "gaps": []
+    },
+    "charts_opened": [
+      {
+        "artifact_id": "cha-650ea62d178711073aad7f15d9c73841a8dce7309536a349c918bf1c9ea8a48a",
+        "view": "DR",
+        "label": "daily_recent",
+        "file": "daily_recent-650ea62d1787.png",
+        "media_type": "image/png",
+        "sha256": "650ea62d178711073aad7f15d9c73841a8dce7309536a349c918bf1c9ea8a48a",
+        "bytes": 161771,
+        "bars_as_of": "2026-09-20T08:34:51Z",
+        "period": "D",
+        "drawn_from": "2026-05-12",
+        "drawn_to": "2026-09-18",
+        "source_evidence_id": "ev-d6ddadc955244f5684c3e01fed0536f29b6df881c5ae897a11c57b35a76c27e6",
+        "source_sha256": "6215ac1f48f97f42af35caac9ddfd79a30cad46bc1ce8fabd6ab316da9822d06",
+        "charts_version": "0.3.2",
+        "params_digest": "9b260ced886c6a9e568285b746d1c4952657217f3c9a39c25b9a6bd19c84badd"
+      }
+    ]
+  }
+}

@@ -9,6 +9,7 @@ from __future__ import annotations
 import copy
 import json
 import math
+import logging
 from datetime import date
 from urllib.parse import urlsplit
 
@@ -104,7 +105,7 @@ def validate(kind, payload):
             if metric["key"] in seen:
                 raise ContractError("Duplicate comparison metric")
             seen.add(metric["key"])
-            if metric["status"] not in ("reported", "guidance", "estimate", "missing", "not_applicable"):
+            if metric["status"] not in ("reported", "calculated", "guidance", "estimate", "missing", "not_applicable"):
                 raise ContractError("Unknown metric status")
             if metric["status"] in ("missing", "not_applicable"):
                 if metric["value"] is not None:
@@ -187,21 +188,33 @@ def latest(store, kind, *, as_of=None):
 
 
 def bootstrap(store, manifest):
-    """Explicit deployment configuration; seed absent objects, never reset revisions.
+    """Seed absent objects; optional pinned revisions use the same CAS as MCP writes.
 
     Acquired time is this import, not a document's earlier publication date.
-    Revisions require the authenticated compare-and-swap tool.
+    An explicit expected_version permits a reviewed deployment migration. A newer
+    live revision is never overwritten; conflicts are logged for operator review.
     """
     if not isinstance(manifest, list):
         raise ContractError("Knowledge seed must be a list")
     for item in manifest:
-        fields(item, {"kind", "object_id", "payload"})
+        fields(item, {"kind", "object_id", "payload"}, {"expected_version"})
         _text(item["object_id"], "object_id")
+        if "expected_version" in item:
+            _text(item["expected_version"], "expected_version")
         validate(item["kind"], item["payload"])
     imported = []
     for item in sorted(manifest, key=lambda i: i["kind"] != "universe"):
-        if get(store, item["kind"], item["object_id"]) is None:
-            imported.append(save(store, **item)["version"])
+        current = get(store, item["kind"], item["object_id"])
+        if current is None:
+            # Fresh installations take the corrected payload directly.
+            imported.append(save(store, item["kind"], item["object_id"], item["payload"])["version"])
+        elif "expected_version" in item and current["payload"] != item["payload"]:
+            if current["version"] == item["expected_version"]:
+                imported.append(save(store, **item)["version"])
+            else:
+                logging.getLogger(__name__).warning(
+                    "Knowledge migration conflict; retained live %s/%s at %s",
+                    item["kind"], item["object_id"], current["version"])
     return imported
 
 

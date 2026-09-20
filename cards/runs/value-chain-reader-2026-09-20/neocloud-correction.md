@@ -1,0 +1,12 @@
+# Neocloud comparison and deployment correction
+
+2026-09-20. User requests same-layer peers to be compared, not chained as economic transactions. The reader should show current status, narrative and evidence, player comparisons, then investment plan.
+
+- Before changing code, live `/healthz` returned 0.2.5 and authenticated `get_research_context(NASDAQ:NBIS)` returned universe, relations, assumptions and comparisons. The earlier 0.2.4 observation was real but no longer current. Lack of an authenticated Zeabur dashboard did not establish a deployment blocker. No manual redeploy was needed to observe 0.2.5; the GitHub-connected service updated.
+- The two generic Neocloud competition edges are withdrawn through explicit expected-version deployment migrations. Existing knowledge payloads are immutable; history stays queryable. Newer live work is retained with a logged conflict. Fresh installs seed corrected payloads; restarts are idempotent.
+- `karst.comparison` computes screening ratios and same-cutoff daily price returns. June actual group revenue is annualized only for a common scale, not a forecast. Market caps reconcile to vendor total shares times price. EV is a dated proxy: June debt carrying values plus finance leases and NCI minus unrestricted cash; operating leases, investment SOTP and subsequent financing/cash consumption remain outside it. NBIS has no separately listed finance lease line, assumed zero in this proxy pending note review.
+- Latest Longbridge prices and four chart views rendered for each of CRWV, NBIS and IREN. GPT opened the three recent daily PNGs and compared chart numbers. All daily cutoffs were completed 2026-09-18 bars; no monthly completion claim. Price returns use identical 2026-08-19 and 2026-06-18 starts. A chart engine's stale `trend=up` after an invalidated break is not adopted as the analyst's trend conclusion.
+- Three targeted official financial statement excerpts were registered in cloud evidence. These are not complete transcripts or full company research. Added new dated comparison snapshots and appended Neocloud / AI-power reader editions; old editions remain untouched.
+- Full company valuation, common-period forward consensus, current EV bridge, SPY-relative strength and independent review remain pending. The page separates research priority from an executable investment ranking.
+
+Validation and deployed readback are appended after publication. Numeric receipts and source identifiers live in `cards/reader/provenance/neocloud/2026-09-20-r2/`, not the human page.

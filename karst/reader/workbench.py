@@ -65,7 +65,9 @@ def network(graph):
     labels = {n["key"]: n["label"] for n in graph["nodes"]}
     for edge in graph["edges"]:
         basis = "文件關係" if edge["basis"] == "documented" else "研究推論"
-        body += f'<li data-from="{text(edge["from"])}" data-to="{text(edge["to"])}"><strong>{text(labels[edge["from"]])} → {text(labels[edge["to"]])}</strong><span>{text(edge["label"])}</span><a href="{source_url(edge["source"])}">{basis}</a></li>'
+        # Competition and complementarity have no supplier-to-customer direction.
+        connector = " · " if edge.get("relation_type") in ("competes", "complements") else " → "
+        body += f'<li data-from="{text(edge["from"])}" data-to="{text(edge["to"])}"><strong>{text(labels[edge["from"]])}{connector}{text(labels[edge["to"]])}</strong><span>{text(edge["label"])}</span><a href="{source_url(edge["source"])}">{basis}</a></li>'
     return body + '</ul>'
 
 
@@ -89,6 +91,8 @@ def report(r, versions, *, archive=False, check=None):
             body += table(s.get("row_headers", ["觀察", "目前狀態", "對判斷的影響"]), [[v["label"],v["value"],v["note"]] for v in s["rows"]])
         for t in s.get("tables", []):
             rendered = table(t["columns"],t["rows"])
+            if t.get("note"):
+                rendered += f'<p class="table-note">{text(t["note"])}</p>'
             body += f'<details><summary>{text(t["title"])}</summary>{rendered}</details>' if t.get("collapsed",False) else f'<h3>{text(t["title"])}</h3>{rendered}'
         if s.get("network"):
             body += network(s["network"])

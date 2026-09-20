@@ -93,7 +93,9 @@ def validate(r):
             for value in s['row_headers']:
                 text(value)
         for table in s.get('tables', []):
-            keys(table, {'title', 'columns', 'rows'}, {'collapsed'})
+            keys(table, {'title', 'columns', 'rows'}, {'collapsed', 'note'})
+            if 'note' in table:
+                text(table['note'])
             text(table['title'])
             if not isinstance(table['columns'], list) or not 2 <= len(table['columns']) <= 8 or not isinstance(table['rows'], list):
                 raise ValueError('Invalid table shape')
@@ -121,7 +123,9 @@ def validate(r):
                 node_ids.add(node['key'])
                 text(node['label']); text(node['role'])
             for edge in graph['edges']:
-                keys(edge, {'from', 'to', 'label', 'basis', 'source'})
+                keys(edge, {'from', 'to', 'label', 'basis', 'source'}, {'relation_type'})
+                if edge.get('relation_type', 'supplies') not in ('supplies', 'customer', 'finances', 'competes', 'complements', 'exposed_to'):
+                    raise ValueError('Unknown economic relationship type')
                 if edge['from'] not in node_ids or edge['to'] not in node_ids or edge['basis'] not in ('documented', 'inference'):
                     raise ValueError('Invalid graph relationship')
                 text(edge['label']); source_url(edge['source'])

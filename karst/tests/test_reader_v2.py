@@ -11,6 +11,16 @@ from karst.tests.test_reader import sample
 
 
 class ReaderV2Tests(unittest.TestCase):
+    def test_competition_is_not_rendered_as_a_supply_arrow(self):
+        from karst.reader.workbench import network
+        graph={'nodes':[{'key':key,'label':key.upper(),'role':'Cloud'} for key in ('a','b')],
+               'edges':[{'from':'a','to':'b','label':'Alternative providers','basis':'inference',
+                         'relation_type':'competes','source':'https://example.com'}]}
+        self.assertIn('A · B', network(graph))
+        self.assertNotIn('A → B', network(graph))
+        graph['edges'][0]['relation_type']='supplies'
+        self.assertIn('A → B', network(graph))
+
     def test_chart_cutoff_unknown_fields_and_ohlc_are_checked(self):
         bars = [{"at":"2026-01-01T21:00:00Z", "open":10,"high":12,"low":9,"close":11,"volume":50,"complete":True}]
         data = project({"D":bars},name="Example",currency="USD",price_basis="raw",as_of="2026-01-01")

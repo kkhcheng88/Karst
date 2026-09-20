@@ -23,6 +23,20 @@ def relation(a="A", b="B"):
 
 
 class KnowledgeTests(unittest.TestCase):
+    def test_pinned_deployment_revision_preserves_later_live_work(self):
+        first = k.save(self.store, 'universe', 'compute', universe())
+        item = {'kind':'universe', 'object_id':'compute', 'expected_version':first['version'],
+                'payload':universe() | {'summary':'Corrected grouping'}}
+        self.assertEqual(len(k.bootstrap(self.store, [item])), 1)
+        corrected = k.get(self.store, 'universe', 'compute')
+        self.assertEqual(k.bootstrap(self.store, [item]), [])
+        self.assertEqual(k.get(self.store, 'universe', 'compute', version=first['version']), first)
+        latest = k.save(self.store, 'universe', 'compute', universe() | {'summary':'Later research'},
+                        expected_version=corrected['version'])
+        with self.assertLogs('karst.knowledge', level='WARNING'):
+            self.assertEqual(k.bootstrap(self.store, [item]), [])
+        self.assertEqual(k.get(self.store, 'universe', 'compute'), latest)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.store = Store(Path(self.tmp.name)/"state.sqlite")

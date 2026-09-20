@@ -1,0 +1,15 @@
+{
+  "scope": "screening_comparison_not_full_company_research",
+  "calculation_module": "karst.comparison",
+  "chart_review": "GPT opened all three DR PNGs; numeric comparisons use derived daily values",
+  "not_done": [
+    "full transcripts",
+    "forward common-period consensus",
+    "current EV bridge after June",
+    "SPY-relative RS",
+    "independent review"
+  ],
+  "reader_revision": "2026-09-20-r2",
+  "source_dates": "Financials June 30; quote and closed bars September 18, fetched September 20",
+  "quote_includes_all_share_classes": true
+}
