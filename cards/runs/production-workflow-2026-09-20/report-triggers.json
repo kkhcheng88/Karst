@@ -14,7 +14,7 @@
     "combined_run": 89
   },
   "protocol_digest": "64da191a7bca9491463c4d342c8c1db195dc6be38c08746ba5197fb31cb09ff1",
-  "published": false,
+  "published": true,
   "did_not_change": [
     "fetchers",
     "extraction",
@@ -26,5 +26,15 @@
     "watch_requires_formal_research",
     "no_automatic_web_RSS_discovery_or_scheduler",
     "no_user_specific_monitor_without_named_source"
-  ]
+  ],
+  "commit": "101cc922ef0350411af6d19c34640b2a08e37a16",
+  "deployment": {
+    "zeabur_check": "success",
+    "health_version": "0.2.9",
+    "protocol_matches_local": true,
+    "metadata_subject": "NASDAQ:NBIS",
+    "sources_with_version": 9,
+    "document_metadata_read_back": true
+  },
+  "cloud_trigger_execution": "Local authenticated HTTP and real ingest/revision fixtures passed; no production monitor configured without a specified user source"
 }
