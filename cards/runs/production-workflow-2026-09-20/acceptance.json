@@ -83,6 +83,12 @@
     "fix": "Freeze every generated new edition in stage",
     "reader_tests_after_fix": 20,
     "public_export_unchanged": true,
-    "retained_editions": 14
+    "retained_editions": 14,
+    "fix_commit": "f166f79e3b349378fc5e35f2a7cc9004e07212a3",
+    "pages_run": 35517074394,
+    "pages_build": "success",
+    "pages_deploy": "success",
+    "public_history_matches_saved_bytes": true,
+    "public_history_sha256": "557c2c44aecc63dda194b90792817081d1bd02b82121a5c205d237ee1c26af5e"
   }
 }
