@@ -1,7 +1,7 @@
 """Build an allowlisted static reader, without importing the research service.
 
 Inputs are explicitly authored public summaries, not arbitrary research payloads.
-Only escaped HTML, bundled CSS, and explicitly referenced PNGs leave the builder.
+Only explicit reader HTML, bundled scripts/styles and selected public chart data leave the builder.
 """
 from __future__ import annotations
 
@@ -59,9 +59,15 @@ def page_path(r, archive=False):
 
 
 def validate(r):
-    keys(r, {"schema_version", "public", "kind", "slug", "name", "published_at", "as_of", "revision", "review_status", "verdict", "summary", "change", "action", "metrics", "sections", "related", "sources"}, {"symbol", "review_by"})
-    if r['schema_version'] != 1 or r['public'] is not True or r['kind'] not in KINDS:
-        raise ValueError("Only approved reader schema 1 reports are publishable")
+    keys(r, {"schema_version", "public", "kind", "slug", "name", "published_at", "as_of", "revision", "review_status", "verdict", "summary", "change", "action", "metrics", "sections", "related", "sources"}, {"symbol", "review_by", "overview"})
+    if r['schema_version'] not in (1, 2) or r['public'] is not True or r['kind'] not in KINDS:
+        raise ValueError("Only approved reader schema 1/2 reports are publishable")
+    if 'overview' in r:
+        keys(r['overview'], {'chain', 'change', 'next_event', 'action_state', 'coverage'})
+        for value in r['overview'].values():
+            text(value)
+        if r['overview']['action_state'] not in ('ready', 'watch', 'avoid', 'radar') or r['overview']['coverage'] not in ('research', 'radar', 'engineering'):
+            raise ValueError('Unknown overview state')
     safe_slug(r['slug'])
     if type(r['revision']) is not int or r['revision'] < 1:
         raise ValueError("Positive revision required")
@@ -80,7 +86,45 @@ def validate(r):
             text(v)
     seen = []
     for s in r['sections']:
-        keys(s, {'key', 'paragraphs'}, {'rows', 'figure', 'title'})
+        keys(s, {'key', 'paragraphs'}, {'rows', 'figure', 'title', 'tables', 'row_headers', 'chart', 'network'} if r['schema_version'] == 2 else {'rows', 'figure', 'title'})
+        if 'row_headers' in s:
+            if not isinstance(s['row_headers'], list) or len(s['row_headers']) != 3:
+                raise ValueError('Three row headers required')
+            for value in s['row_headers']:
+                text(value)
+        for table in s.get('tables', []):
+            keys(table, {'title', 'columns', 'rows'}, {'collapsed'})
+            text(table['title'])
+            if not isinstance(table['columns'], list) or not 2 <= len(table['columns']) <= 8 or not isinstance(table['rows'], list):
+                raise ValueError('Invalid table shape')
+            if 'collapsed' in table and type(table['collapsed']) is not bool:
+                raise ValueError('collapsed must be boolean')
+            for value in table['columns']:
+                text(value)
+            for row in table['rows']:
+                if not isinstance(row, list) or len(row) != len(table['columns']):
+                    raise ValueError('Table row width mismatch')
+                for value in row:
+                    text(value)
+        if 'chart' in s:
+            if not isinstance(s['chart'], str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]*\.json', s['chart']) or not s.get('figure'):
+                raise ValueError('Interactive chart requires a named JSON asset and static fallback')
+        if 'network' in s:
+            graph = s['network']
+            keys(graph, {'nodes', 'edges'})
+            node_ids = set()
+            for node in graph['nodes']:
+                keys(node, {'key', 'label', 'role'})
+                safe_slug(node['key'])
+                if node['key'] in node_ids:
+                    raise ValueError('Duplicate graph node')
+                node_ids.add(node['key'])
+                text(node['label']); text(node['role'])
+            for edge in graph['edges']:
+                keys(edge, {'from', 'to', 'label', 'basis', 'source'})
+                if edge['from'] not in node_ids or edge['to'] not in node_ids or edge['basis'] not in ('documented', 'inference'):
+                    raise ValueError('Invalid graph relationship')
+                text(edge['label']); source_url(edge['source'])
         safe_slug(s['key'])
         if s['key'] in seen:
             raise ValueError("Duplicate section")
@@ -194,6 +238,9 @@ def load_checks(content, reports):
 
 
 def report_page(r, versions, archive=False, check=None):
+    if r['schema_version'] == 2:
+        from .workbench import report
+        return report(r, versions, archive=archive, check=check)
     path = page_path(r, archive)
     prefix = '../' * (len(PurePosixPath(path).parts) - 1)
     title = f'{r.get("symbol", "")} {r["name"]}'.strip()
@@ -245,8 +292,11 @@ def check_output(output):
             raise ValueError("Symlinks cannot be published")
         if not p.is_file():
             continue
-        if p.suffix not in {'.html', '.css', '.png'}:
+        if p.suffix not in {'.html', '.css', '.png', '.js', '.json'}:
             raise ValueError(f"Unexpected public file: {p.name}")
+        if p.suffix == '.json':
+            from .interactive import validate as validate_chart
+            validate_chart(json.loads(p.read_text(encoding='utf-8')))
         if p.suffix == '.html':
             html = p.read_text(encoding='utf-8')
             if MACHINE.search(html):
@@ -286,7 +336,10 @@ def build(content, output):
     output.mkdir(parents=True, exist_ok=True)
     (output / 'assets').mkdir()
     shutil.copyfile(Path(__file__).with_name('reader.css'), output / 'assets/reader.css')
+    for name in ('workbench.css', 'workbench.js'):
+        shutil.copyfile(Path(__file__).with_name(name), output / 'assets' / name)
     assets = set()
+    chart_assets = set()
     for r in reports:
         for s in r['sections']:
             if s.get('figure'):
@@ -297,33 +350,54 @@ def build(content, output):
                 if not asset.read_bytes().startswith(b'\x89PNG\r\n\x1a\n'):
                     raise ValueError("Expected PNG image")
                 assets.add(name)
+            if s.get('chart'):
+                from .interactive import validate as validate_chart
+                name = s['chart']
+                asset = content / 'assets' / name
+                if asset.is_symlink() or not asset.resolve().is_relative_to(content):
+                    raise ValueError('Unsafe chart path')
+                chart = validate_chart(json.loads(asset.read_text(encoding='utf-8')))
+                if chart['as_of'] > r['as_of']:
+                    raise ValueError('Chart cutoff is later than its research')
+                chart_assets.add(name)
     for name in sorted(assets):
         shutil.copyfile(content / 'assets' / name, output / 'assets' / name)
+    for name in sorted(chart_assets):
+        shutil.copyfile(content / 'assets' / name, output / 'assets' / name)
+    if chart_assets:
+        package = Path(__file__).parent
+        shutil.copyfile(package / 'chart.js', output / 'assets/chart.js')
+        shutil.copyfile(package / 'vendor/lightweight-charts-5.2.1.js', output / 'assets/lightweight-charts-5.2.1.js')
+        license_text = (package / 'vendor/LICENSE').read_text() + '\n' + (package / 'vendor/NOTICE').read_text()
+        (output / 'assets/chart-license.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Lightweight Charts license</title><pre>' + escape(license_text) + '</pre></html>',encoding='utf-8')
     pages = {}
     for r in latest:
         p, html = report_page(r, groups[(r['kind'], r['slug'])],
                               check=checks.get((r['kind'], r['slug'], stamp(r))))
         pages[p] = html
     for r in reports:
-        p, html = report_page(r, groups[(r['kind'], r['slug'])], archive=True)
+        # Freeze history as it stood at publication, not a list of future editions.
+        known = [v for v in groups[(r['kind'], r['slug'])]
+                 if (v['published_at'], v['revision']) <= (r['published_at'], r['revision'])]
+        p, html = report_page(r, known, archive=True)
+        saved = content / 'archives' / r['kind'] / r['slug'] / (stamp(r) + '.html')
+        if saved.exists():
+            if saved.is_symlink() or not saved.resolve().is_relative_to(content):
+                raise ValueError('Unsafe retained archive')
+            html = saved.read_text(encoding='utf-8')
         pages[p] = html
-    home = '<div class="eyebrow">投資研究 · 持續更新</div><h1>先看判斷，再看機會。</h1><p class="deck">個股、主題與價值鏈，一處追蹤。</p><p class="intro">每份分析保留基本面、估值與技術走勢的分野，最後落到可執行的交易計劃。</p>'
-    for kind in KINDS:
-        selected = [r for r in latest if r['kind'] == kind]
-        if selected:
-            home += f'<section class="listing"><div class="section-head"><h2>{KINDS[kind]}</h2><span>{len(selected)} 份最新分析</span></div><div class="cards">' + ''.join(card(r) for r in selected) + '</div></section>'
-    home += '<section class="listing"><div class="section-head"><h2>最近更新</h2><a href="updates/index.html">查看全部 →</a></div><ol class="timeline">' + history_items(reports[:5], '') + '</ol></section>'
-    pages['index.html'] = wrap('研究總覽', home, 'index.html', 'home')
-    themes = '<div class="eyebrow">由產業看公司</div><h1>主題與價值鏈</h1><p class="deck">同一個故事，不同公司的受惠程度可以很不同。</p><div class="cards">' + ''.join(card(r, '../') for r in latest if r['kind'] == 'themes') + '</div>'
-    pages['themes/index.html'] = wrap('主題與價值鏈', themes, 'themes/index.html', 'themes')
-    updates = '<div class="eyebrow">判斷如何演變</div><h1>更新紀錄</h1><p class="deck">改了甚麼、為甚麼改、現在怎樣做。</p><ol class="timeline">' + history_items(reports, '../') + '</ol>'
+    from . import workbench
+    pages['index.html'] = workbench.home(latest)
+    themes = '<div class="eyebrow">KARST RESEARCH</div><h1>價值鏈追蹤</h1>' + workbench.listing([r for r in latest if r['kind'] == 'themes' and workbench.is_research(r)], '../')
+    pages['themes/index.html'] = workbench.wrap('主題與價值鏈', themes, 'themes/index.html', 'themes')
+    updates = '<div class="eyebrow">判斷如何演變</div><h1>更新紀錄</h1><ol class="timeline">' + history_items([r for r in reports if workbench.is_research(r)], '../') + '</ol>'
     pages['updates/index.html'] = wrap('更新紀錄', updates, 'updates/index.html', 'updates')
     for path, html in pages.items():
         target = output / path
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html, encoding='utf-8')
     check_output(output)
-    return {'pages': len(pages), 'reports': len(reports), 'assets': len(assets)}
+    return {'pages': len(pages), 'reports': len(reports), 'assets': len(assets), 'interactive_charts': len(chart_assets)}
 
 
 def main():

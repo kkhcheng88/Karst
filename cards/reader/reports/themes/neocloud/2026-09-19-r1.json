@@ -1,0 +1,234 @@
+{
+  "schema_version": 2,
+  "public": true,
+  "kind": "themes",
+  "slug": "neocloud",
+  "name": "Neocloud 價值鏈",
+  "published_at": "2026-09-19T22:41:00Z",
+  "as_of": "2026-09-19",
+  "revision": 1,
+  "review_status": "首輪來源比較與研究判斷；尚未完成全成員估值及獨立覆核",
+  "verdict": "需求強勁，投資分歧在交付與融資",
+  "summary": "CRWV 看收入規模與利息負擔；NBIS 看高增長的資本效率；IREN 看轉型容量能否如期驗收。",
+  "change": "首輪對齊三家六月季度；新增 BE→NBIS、IREN→Microsoft 商業關係。",
+  "action": "先比較營運兌現，暫不按 ARR 排名買入",
+  "overview": {
+    "chain": "Neocloud 價值鏈",
+    "change": "首輪對齊三家六月季度；新增 BE→NBIS、IREN→Microsoft 商業關係。",
+    "next_event": "NBIS 項目投運；IREN Horizon 2–4；CRWV Q3 指引",
+    "action_state": "radar",
+    "coverage": "radar"
+  },
+  "metrics": [],
+  "sections": [
+    {
+      "key": "judgment",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "需求已有合約與收入支持，但三家公司處於不同階段。CRWV 的規模最成熟，NBIS 正擴大交付，IREN 仍在把機房從挖礦轉成 AI Cloud。投資優先度應取決於每股回報，而非單看最大 ARR 或電力儲備。"
+        },
+        {
+          "text": "首個深讀候選選 NBIS：它與 BE 有直接供電合作，可以同時檢驗供應商交付與客戶收入啟動。這是研究優先次序；股價、稀釋與完整現金流尚未核齊，暫不給買入評級。"
+        }
+      ]
+    },
+    {
+      "key": "comparison",
+      "title": "📊 已實現營運：同一六月季度",
+      "paragraphs": [
+        {
+          "text": "金額為百萬美元。IREN 是 FY2026 第四季，CRWV／NBIS 是 CY2026 第二季，均截至 6 月 30 日。調整 EBITDA 仍按各公司定義，需配合折舊、利息及現金流閱讀。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "季度比較",
+          "columns": [
+            "指標",
+            "CRWV",
+            "NBIS",
+            "IREN"
+          ],
+          "rows": [
+            [
+              "集團收入",
+              "2,575",
+              "582.3",
+              "137.2"
+            ],
+            [
+              "AI Cloud 收入",
+              "未另拆同口徑分部",
+              "575",
+              "70.5"
+            ],
+            [
+              "調整 EBITDA",
+              "1,510",
+              "236.2",
+              "19.2"
+            ],
+            [
+              "GAAP 營業損益",
+              "−49",
+              "−175.9",
+              "−620.4"
+            ],
+            [
+              "主要判讀",
+              "規模已形成，利息負擔重",
+              "高速增長，建設現金需求大",
+              "仍在轉型；含挖礦硬件減值"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "key": "drivers",
+      "title": "🧭 下一步檢驗",
+      "paragraphs": [
+        {
+          "text": "CRWV 第三季收入指引為 $34.5–36 億，但季度利息支出指引亦達 $8.6–9.4 億。高 EBITDA 尚未等於股東有高回報；深讀應先拆折舊、利息與到期融資。"
+        },
+        {
+          "text": "NBIS 第二季經營現金流約 $22.46 億，資本開支及無形資產投入約 $56.57 億。客戶預付款有助融資，但容量上線、使用率與其後履約成本仍決定回報。"
+        },
+        {
+          "text": "IREN 六月季度 AI Cloud 收入 $7,050 萬；8 月 26 日 operating ARR 為 $10 億，年底 $40 億 contracted ARR 仍要經調試及驗收。當季經營現金流 $18.11 億，其中遞延收入增加 $17.22 億，不能視作成熟盈利。"
+        }
+      ]
+    },
+    {
+      "key": "network",
+      "title": "🔗 公司與商業關係",
+      "paragraphs": [
+        {
+          "text": "點公司可查看相關連接。BE→NBIS 是供電合作；IREN→Microsoft 是已接收的算力部署。競爭連接屬研究判斷，不表示已核實同場投標。"
+        }
+      ],
+      "network": {
+        "nodes": [
+          {
+            "key": "be",
+            "label": "BE · Bloom",
+            "role": "供電設備"
+          },
+          {
+            "key": "gev",
+            "label": "GEV · GE Vernova",
+            "role": "供電設備"
+          },
+          {
+            "key": "crwv",
+            "label": "CRWV · CoreWeave",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "nbis",
+            "label": "NBIS · Nebius",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "iren",
+            "label": "IREN",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "msft",
+            "label": "MSFT · Microsoft",
+            "role": "算力客戶"
+          }
+        ],
+        "edges": [
+          {
+            "from": "be",
+            "to": "nbis",
+            "label": "2026-05-20 公告首個 328MW 項目預計於 2026 年運行；交付完成仍須核實。",
+            "basis": "documented",
+            "source": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+          },
+          {
+            "from": "iren",
+            "to": "msft",
+            "label": "Horizon 1 的 50MW IT 負載部署已交付並獲 Microsoft 接收；Horizon 2–4 仍須追蹤。",
+            "basis": "documented",
+            "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+          },
+          {
+            "from": "gev",
+            "to": "be",
+            "label": "大型燃氣發電與現場燃料電池可競逐新增供電預算；規模、交期及接網條件不同。不是已確認同場投標。",
+            "basis": "inference",
+            "source": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf"
+          },
+          {
+            "from": "crwv",
+            "to": "nbis",
+            "label": "均提供 AI 算力，合約定價、GPU 利用率與客戶取得可交叉檢查；不能假定相同融資風險。",
+            "basis": "inference",
+            "source": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+          },
+          {
+            "from": "nbis",
+            "to": "iren",
+            "label": "AI Cloud 容量、客戶及交付時點有競爭；公司 ARR 定義不同。",
+            "basis": "inference",
+            "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+          }
+        ]
+      }
+    },
+    {
+      "key": "valuation",
+      "title": "💰 估值研究入口",
+      "paragraphs": [
+        {
+          "text": "先以交付容量×利用率×單價推導收入，再扣運營成本、GPU 折舊與更新、利息及稀釋。EV／收入和 EV／EBITDA 可作市場比較，但必須對齊年度、租賃與債務口徑；目前沒有足夠一致的即期 EV 與前瞻盈利數據，不刊登倍數排名。"
+        },
+        {
+          "text": "GPU 供給放鬆、租價下跌或融資成本上升，可能同時壓低現金流與市場倍數。這些變數會逐項跟蹤，不因同屬 AI 價值鏈就同步升降評級。"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Nebius／Bloom 供電合作",
+      "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+    },
+    {
+      "label": "Nebius 第二季財務",
+      "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf"
+    },
+    {
+      "label": "Nebius 第二季股東信",
+      "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf"
+    },
+    {
+      "label": "IREN FY26 業績",
+      "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+    },
+    {
+      "label": "CoreWeave 第二季業績",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+      "label": "CoreWeave 第三季及全年指引",
+      "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf"
+    }
+  ],
+  "related": [
+    {
+      "kind": "stocks",
+      "slug": "be",
+      "label": "Bloom Energy：供電端研究"
+    },
+    {
+      "kind": "themes",
+      "slug": "ai-power",
+      "label": "AI 電力：設備與供電瓶頸"
+    }
+  ]
+}

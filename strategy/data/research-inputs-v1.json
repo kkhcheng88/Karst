@@ -1,0 +1,656 @@
+[
+  {
+    "kind": "universe",
+    "object_id": "ai-infrastructure",
+    "payload": {
+      "name": "AI 電力與算力",
+      "summary": "供電、AI Cloud 和已核實客戶關係；鏈位不等於直接估值可比。",
+      "members": [
+        {
+          "entity_id": "NYSE:BE",
+          "name": "Bloom Energy",
+          "kind": "security",
+          "roles": [
+            "現場供電"
+          ],
+          "comparison_groups": [
+            "power-solutions"
+          ]
+        },
+        {
+          "entity_id": "NYSE:GEV",
+          "name": "GE Vernova",
+          "kind": "security",
+          "roles": [
+            "發電與電網"
+          ],
+          "comparison_groups": [
+            "power-solutions"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:CRWV",
+          "name": "CoreWeave",
+          "kind": "security",
+          "roles": [
+            "AI Cloud"
+          ],
+          "comparison_groups": [
+            "neocloud"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:NBIS",
+          "name": "Nebius",
+          "kind": "security",
+          "roles": [
+            "AI Cloud"
+          ],
+          "comparison_groups": [
+            "neocloud"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:IREN",
+          "name": "IREN",
+          "kind": "security",
+          "roles": [
+            "AI Cloud／自建機房"
+          ],
+          "comparison_groups": [
+            "neocloud"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:MSFT",
+          "name": "Microsoft",
+          "kind": "security",
+          "roles": [
+            "算力客戶"
+          ],
+          "comparison_groups": [
+            "hyperscalers"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "Nebius／Bloom 供電合作",
+          "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+          "evidence_id": "ev-1019e0928f644dde80b1b57133651ba3c8319aabc1419fd28f0a1fb27b709e50"
+        },
+        {
+          "title": "Nebius 第二季財務",
+          "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf",
+          "evidence_id": "ev-2084076033c63c5b9bd80b4c778588523871d39c1e8c34c4e7ec74e9e9bdb0e3"
+        },
+        {
+          "title": "Nebius 第二季股東信",
+          "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf",
+          "evidence_id": "ev-442865670812e9db7684bb3311616e2ad2910b4640e6ae705ed61a6ebc6a3303"
+        },
+        {
+          "title": "IREN FY26 業績",
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae"
+        },
+        {
+          "title": "CoreWeave 第二季業績",
+          "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+          "evidence_id": "ev-7427ac1829678e43515d76eda2986c0cd08a22a7cfb2817c22fc36ddd61fabe2"
+        },
+        {
+          "title": "CoreWeave 第三季及全年指引",
+          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf",
+          "evidence_id": "ev-6a9e664f551b5622c723594ed383e9aac3ef595f6962376cffecd3627c5843fc"
+        },
+        {
+          "title": "GE Vernova 第二季業績",
+          "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf",
+          "evidence_id": "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452"
+        },
+        {
+          "title": "Bloom 第二季業績",
+          "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "relation",
+    "object_id": "bloom-nebius-power",
+    "payload": {
+      "from_entity": "NYSE:BE",
+      "to_entity": "NASDAQ:NBIS",
+      "relation_type": "supplies",
+      "mechanism": "2026-05-20 公告首個 328MW 項目預計於 2026 年運行；交付完成仍須核實。",
+      "status": "active",
+      "valid_from": "2026-05-20",
+      "valid_to": null,
+      "basis": "documented",
+      "sources": [
+        {
+          "title": "Nebius／Bloom 供電合作",
+          "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+          "evidence_id": "ev-1019e0928f644dde80b1b57133651ba3c8319aabc1419fd28f0a1fb27b709e50"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "relation",
+    "object_id": "iren-microsoft-horizon",
+    "payload": {
+      "from_entity": "NASDAQ:IREN",
+      "to_entity": "NASDAQ:MSFT",
+      "relation_type": "supplies",
+      "mechanism": "Horizon 1 的 50MW IT 負載部署已交付並獲 Microsoft 接收；Horizon 2–4 仍須追蹤。",
+      "status": "active",
+      "valid_from": "2026-08-13",
+      "valid_to": null,
+      "basis": "documented",
+      "sources": [
+        {
+          "title": "IREN FY26 業績",
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "relation",
+    "object_id": "power-alternatives",
+    "payload": {
+      "from_entity": "NYSE:GEV",
+      "to_entity": "NYSE:BE",
+      "relation_type": "competes",
+      "mechanism": "大型燃氣發電與現場燃料電池可競逐新增供電預算；規模、交期及接網條件不同。不是已確認同場投標。",
+      "status": "active",
+      "valid_from": null,
+      "valid_to": null,
+      "basis": "inference",
+      "sources": [
+        {
+          "title": "GE Vernova 第二季業績",
+          "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf",
+          "evidence_id": "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "relation",
+    "object_id": "neocloud-crwv-nbis",
+    "payload": {
+      "from_entity": "NASDAQ:CRWV",
+      "to_entity": "NASDAQ:NBIS",
+      "relation_type": "competes",
+      "mechanism": "均提供 AI 算力，合約定價、GPU 利用率與客戶取得可交叉檢查；不能假定相同融資風險。",
+      "status": "active",
+      "valid_from": null,
+      "valid_to": null,
+      "basis": "inference",
+      "sources": [
+        {
+          "title": "CoreWeave 第二季業績",
+          "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+          "evidence_id": "ev-7427ac1829678e43515d76eda2986c0cd08a22a7cfb2817c22fc36ddd61fabe2"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "relation",
+    "object_id": "neocloud-nbis-iren",
+    "payload": {
+      "from_entity": "NASDAQ:NBIS",
+      "to_entity": "NASDAQ:IREN",
+      "relation_type": "competes",
+      "mechanism": "AI Cloud 容量、客戶及交付時點有競爭；公司 ARR 定義不同。",
+      "status": "active",
+      "valid_from": null,
+      "valid_to": null,
+      "basis": "inference",
+      "sources": [
+        {
+          "title": "IREN FY26 業績",
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "assumption",
+    "object_id": "bloom-delivery-driver",
+    "payload": {
+      "subject": "NYSE:BE",
+      "driver": "delivery",
+      "statement": "全年指引中值支持近期規模，2027 年增長必須由交付與新增訂單驗證。",
+      "expected": 4050,
+      "unit": "USD million",
+      "period": "CY2026",
+      "next_check": "下一季業績：全年收入指引、產品交付與客戶驗收",
+      "change_effect": "若只是收入跨季，調整時點；若需求或可交付產能降低，重算多年收入及現金流。",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "status": "active",
+      "sources": [
+        {
+          "title": "Bloom 第二季業績",
+          "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "assumption",
+    "object_id": "bloom-nebius-commissioning",
+    "payload": {
+      "subject": "NYSE:BE",
+      "driver": "customer_commissioning",
+      "statement": "Nebius 首個燃料電池項目預計 2026 年運行；尚未核實完工。",
+      "expected": 328,
+      "unit": "MW",
+      "period": "CY2026",
+      "next_check": "Nebius／Bloom 項目投運與付款公告",
+      "change_effect": "延誤須分清電源交付、機房驗收與收款；不得將所有延誤直接當永久取消需求。",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "status": "active",
+      "sources": [
+        {
+          "title": "Nebius／Bloom 供電合作",
+          "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+          "evidence_id": "ev-1019e0928f644dde80b1b57133651ba3c8319aabc1419fd28f0a1fb27b709e50"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "assumption",
+    "object_id": "nbis-power-availability",
+    "payload": {
+      "subject": "NASDAQ:NBIS",
+      "driver": "power_availability",
+      "statement": "Bloom 電源預計可支持首個項目；發電 MW 不直接等於 GPU IT 負載。",
+      "expected": 328,
+      "unit": "MW generation",
+      "period": "CY2026",
+      "next_check": "首個項目運行、IT 容量上線與客戶啟用",
+      "change_effect": "電源延誤可能使算力收入遞延及增加融資期；分開檢查需求、GPU 供應和電源。",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "status": "active",
+      "sources": [
+        {
+          "title": "Nebius／Bloom 供電合作",
+          "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+          "evidence_id": "ev-1019e0928f644dde80b1b57133651ba3c8319aabc1419fd28f0a1fb27b709e50"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "assumption",
+    "object_id": "iren-horizon-delivery",
+    "payload": {
+      "subject": "NASDAQ:IREN",
+      "driver": "accepted_capacity",
+      "statement": "Horizon 1 已接收；後續三座各 50MW IT 部署仍需驗收。",
+      "expected": 200,
+      "unit": "MW IT cumulative",
+      "period": "Q4 CY2026",
+      "next_check": "Horizon 2–4 驗收與 AI Cloud 季度收入",
+      "change_effect": "驗收延誤先調整收入啟動、利息及現金需求；不以年底 ARR 直接代替全年收入。",
+      "layers": [
+        "L2",
+        "L3",
+        "L4",
+        "L6"
+      ],
+      "status": "active",
+      "sources": [
+        {
+          "title": "IREN FY26 業績",
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "crwv-2026-06",
+    "payload": {
+      "subject": "NASDAQ:CRWV",
+      "as_of": "2026-09-19",
+      "metrics": [
+        {
+          "key": "revenue",
+          "value": 2575,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "adjusted_ebitda",
+          "value": 1510,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "Company adjusted",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "operating_income",
+          "value": -49,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "net_interest_expense",
+          "value": 640,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "fy_revenue_low",
+          "value": 12400,
+          "unit": "USD million",
+          "period": "CY2026",
+          "basis": "Company guidance",
+          "status": "guidance",
+          "source_index": 1
+        },
+        {
+          "key": "fy_revenue_high",
+          "value": 13200,
+          "unit": "USD million",
+          "period": "CY2026",
+          "basis": "Company guidance",
+          "status": "guidance",
+          "source_index": 1
+        },
+        {
+          "key": "forward_pe",
+          "value": null,
+          "unit": "x",
+          "period": "CY2027",
+          "basis": "Common-period EPS and price snapshot not yet sourced",
+          "status": "missing",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "CoreWeave 第二季業績",
+          "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+          "evidence_id": "ev-7427ac1829678e43515d76eda2986c0cd08a22a7cfb2817c22fc36ddd61fabe2"
+        },
+        {
+          "title": "CoreWeave 第三季及全年指引",
+          "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf",
+          "evidence_id": "ev-6a9e664f551b5622c723594ed383e9aac3ef595f6962376cffecd3627c5843fc"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "nbis-2026-06",
+    "payload": {
+      "subject": "NASDAQ:NBIS",
+      "as_of": "2026-09-19",
+      "metrics": [
+        {
+          "key": "revenue",
+          "value": 582.3,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "ai_cloud_revenue",
+          "value": 575,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "AI cloud segment",
+          "status": "reported",
+          "source_index": 1
+        },
+        {
+          "key": "adjusted_ebitda",
+          "value": 236.2,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "Company adjusted",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "operating_income",
+          "value": -175.9,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "operating_cash_flow",
+          "value": 2246.1,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "capex_and_intangibles",
+          "value": 5657.4,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "forward_pe",
+          "value": null,
+          "unit": "x",
+          "period": "CY2027",
+          "basis": "Common-period EPS and price snapshot not yet sourced",
+          "status": "missing",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Nebius 第二季財務",
+          "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf",
+          "evidence_id": "ev-2084076033c63c5b9bd80b4c778588523871d39c1e8c34c4e7ec74e9e9bdb0e3"
+        },
+        {
+          "title": "Nebius 第二季股東信",
+          "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf",
+          "evidence_id": "ev-442865670812e9db7684bb3311616e2ad2910b4640e6ae705ed61a6ebc6a3303"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "iren-2026-06",
+    "payload": {
+      "subject": "NASDAQ:IREN",
+      "as_of": "2026-09-19",
+      "metrics": [
+        {
+          "key": "revenue",
+          "value": 137.2,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "ai_cloud_revenue",
+          "value": 70.5,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "AI cloud segment",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "adjusted_ebitda",
+          "value": 19.2,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "Company adjusted",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "operating_income",
+          "value": -620.4,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "operating_cash_flow",
+          "value": 1811.1,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "deferred_revenue_change",
+          "value": 1722.2,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "ppe_and_hardware_cash_out",
+          "value": 1978.2,
+          "unit": "USD million",
+          "period": "Q4 FY2026 / quarter ended 2026-06-30",
+          "basis": "1328.9 + 649.3; excludes other investing payments",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "forward_pe",
+          "value": null,
+          "unit": "x",
+          "period": "CY2027",
+          "basis": "Common-period EPS and price snapshot not yet sourced",
+          "status": "missing",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "IREN FY26 業績",
+          "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+          "evidence_id": "ev-27e29fe1f8fc2b61780c4123d1b5991c668fd85f8832e16466c0d06c236350ae"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "gev-2026-06",
+    "payload": {
+      "subject": "NYSE:GEV",
+      "as_of": "2026-09-19",
+      "metrics": [
+        {
+          "key": "revenue",
+          "value": 11104,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "GAAP",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "adjusted_ebitda",
+          "value": 1250,
+          "unit": "USD million",
+          "period": "Q2 CY2026",
+          "basis": "Company adjusted",
+          "status": "reported",
+          "source_index": 0
+        },
+        {
+          "key": "fy_revenue_low",
+          "value": 45500,
+          "unit": "USD million",
+          "period": "CY2026",
+          "basis": "Company guidance",
+          "status": "guidance",
+          "source_index": 0
+        },
+        {
+          "key": "fy_revenue_high",
+          "value": 46500,
+          "unit": "USD million",
+          "period": "CY2026",
+          "basis": "Company guidance",
+          "status": "guidance",
+          "source_index": 0
+        },
+        {
+          "key": "forward_pe",
+          "value": null,
+          "unit": "x",
+          "period": "CY2027",
+          "basis": "Common-period EPS and price snapshot not yet sourced",
+          "status": "missing",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "GE Vernova 第二季業績",
+          "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf",
+          "evidence_id": "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452"
+        }
+      ]
+    }
+  }
+]

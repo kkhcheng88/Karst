@@ -1,0 +1,217 @@
+{
+  "schema_version": 2,
+  "public": true,
+  "kind": "themes",
+  "slug": "ai-power",
+  "name": "AI 電力價值鏈",
+  "published_at": "2026-09-19T22:41:00Z",
+  "as_of": "2026-09-19",
+  "revision": 2,
+  "review_status": "首輪來源比較與研究判斷；尚未完成全成員估值及獨立覆核",
+  "verdict": "交期仍有價值，新增供給會改變溢價",
+  "summary": "Bloom 的快速現場供電與 GE Vernova 的大型設備擴產，對同一需求提供不同解法。",
+  "change": "加入 Nebius 328MW 合作、GEV 產能及订单數據；由 BE 延伸至算力客戶。",
+  "action": "追蹤投運與供給擴張",
+  "overview": {
+    "chain": "AI 電力價值鏈",
+    "change": "加入 Nebius 328MW 合作、GEV 產能及订单數據；由 BE 延伸至算力客戶。",
+    "next_event": "Nebius 項目投運；GEV 產能擴張及預留轉訂單",
+    "action_state": "radar",
+    "coverage": "radar"
+  },
+  "metrics": [],
+  "sections": [
+    {
+      "key": "judgment",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "AI 機房需求仍支持新增供電，但投資焦點已從「缺不缺電」轉到誰能按期交付、成本多少、能保留多少利潤。供電設備商可能受惠於交期溢價，算力商則希望縮短等待及降低供電成本；同一事件對兩端的估值影響可以不同。"
+        }
+      ]
+    },
+    {
+      "key": "changes",
+      "title": "📌 已有商業證據",
+      "paragraphs": [
+        {
+          "text": "Nebius 5 月宣布與 Bloom 合作，首個 328MW 項目預計於 2026 年運行，取代原擬採用的往復式發動機。這支持「交付速度有商業價值」，下一步要核實投運及收入確認。"
+        },
+        {
+          "text": "GE Vernova 第二季燃氣設備積壓與產能預留合計增至 116GW，當中實際積壓 53GW、預留 63GW；公司計劃把年產能由 2026 年 20GW 提高至 2028 年 24GW。新增供給有利整條鏈落地，也可能逐步降低替代供電方案的稀缺溢價。"
+        }
+      ]
+    },
+    {
+      "key": "comparison",
+      "title": "📊 供電端：不同經濟結構",
+      "paragraphs": [
+        {
+          "text": "BE 與 GEV 可交叉檢查需求、交期與成本，不能直接互套 P/E。GEV 另有電網、風電和服務業務，集團倍數不能全歸因於燃氣設備。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "近期可驗證因素",
+          "columns": [
+            "公司",
+            "收入／指引",
+            "估值要看甚麼"
+          ],
+          "rows": [
+            [
+              "BE",
+              "Q2 $10.65 億；全年 $39–42 億",
+              "產能交付、正常化毛利、預收款履約"
+            ],
+            [
+              "GEV",
+              "Q2 $111.04 億；全年 $455–465 億",
+              "預留轉正式訂單、擴產成本、各分部利潤"
+            ],
+            [
+              "NBIS／IREN／CRWV",
+              "六月季度收入已列入 Neocloud 比較",
+              "供電到位後，容量能否變成有回報的算力收入"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "key": "network",
+      "title": "🔗 價值鏈關係",
+      "paragraphs": [
+        {
+          "text": "按公司查看已核文件關係及研究推論；供電 MW 與機房 IT 負載 MW 不混為同一指標。"
+        }
+      ],
+      "network": {
+        "nodes": [
+          {
+            "key": "be",
+            "label": "BE · Bloom",
+            "role": "供電設備"
+          },
+          {
+            "key": "gev",
+            "label": "GEV · GE Vernova",
+            "role": "供電設備"
+          },
+          {
+            "key": "crwv",
+            "label": "CRWV · CoreWeave",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "nbis",
+            "label": "NBIS · Nebius",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "iren",
+            "label": "IREN",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "msft",
+            "label": "MSFT · Microsoft",
+            "role": "算力客戶"
+          }
+        ],
+        "edges": [
+          {
+            "from": "be",
+            "to": "nbis",
+            "label": "2026-05-20 公告首個 328MW 項目預計於 2026 年運行；交付完成仍須核實。",
+            "basis": "documented",
+            "source": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+          },
+          {
+            "from": "iren",
+            "to": "msft",
+            "label": "Horizon 1 的 50MW IT 負載部署已交付並獲 Microsoft 接收；Horizon 2–4 仍須追蹤。",
+            "basis": "documented",
+            "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+          },
+          {
+            "from": "gev",
+            "to": "be",
+            "label": "大型燃氣發電與現場燃料電池可競逐新增供電預算；規模、交期及接網條件不同。不是已確認同場投標。",
+            "basis": "inference",
+            "source": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf"
+          },
+          {
+            "from": "crwv",
+            "to": "nbis",
+            "label": "均提供 AI 算力，合約定價、GPU 利用率與客戶取得可交叉檢查；不能假定相同融資風險。",
+            "basis": "inference",
+            "source": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+          },
+          {
+            "from": "nbis",
+            "to": "iren",
+            "label": "AI Cloud 容量、客戶及交付時點有競爭；公司 ARR 定義不同。",
+            "basis": "inference",
+            "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+          }
+        ]
+      }
+    },
+    {
+      "key": "watch",
+      "title": "🧭 會改變判斷的事",
+      "paragraphs": [
+        {
+          "text": "項目延誤：先拆電源、GPU 或客戶驗收原因，再調整各公司收入時點。競爭供给加快：重估設備毛利與市場溢價，但算力客戶可能因成本下降受惠。AI 客戶資本支出轉弱：同時檢查新訂單、取消條款與客戶預付款。"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Nebius／Bloom 供電合作",
+      "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+    },
+    {
+      "label": "Nebius 第二季財務",
+      "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf"
+    },
+    {
+      "label": "Nebius 第二季股東信",
+      "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf"
+    },
+    {
+      "label": "IREN FY26 業績",
+      "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+    },
+    {
+      "label": "CoreWeave 第二季業績",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+      "label": "CoreWeave 第三季及全年指引",
+      "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf"
+    },
+    {
+      "label": "GE Vernova 第二季業績",
+      "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf"
+    },
+    {
+      "label": "Bloom 第二季業績",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    }
+  ],
+  "related": [
+    {
+      "kind": "stocks",
+      "slug": "be",
+      "label": "BE：目前判斷與交易計劃"
+    },
+    {
+      "kind": "themes",
+      "slug": "neocloud",
+      "label": "CRWV／NBIS／IREN：首輪比較"
+    }
+  ]
+}

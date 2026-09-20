@@ -26,9 +26,12 @@ from .auth import AuthConfigError, TOKEN_VARIABLE, build_auth, token_auth as bea
 from .fetch.common import load_env_file
 
 
-def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=None):
+def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=None, knowledge_seed=None):
     root = service.data_root(data_dir)
     state = store_module.init(store_path or root / service.DB_NAME)
+    if knowledge_seed:
+        from .knowledge import bootstrap
+        bootstrap(state, json.loads(Path(knowledge_seed).read_text(encoding="utf-8")))
     bundle = Path(bundle) if bundle else None
     staging = Path(staging) if staging else None
     server = FastMCP("karst", auth=auth)
@@ -71,6 +74,74 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
     def get_watchlist() -> dict:
         """Saved thesis watches with their adopted research versions; no account data."""
         return {"watches": state.list_watches()}
+
+    @server.tool
+    def save_knowledge(kind: str, object_id: str, payload: dict,
+                       expected_version: str | None = None) -> dict:
+        """Append a universe, economic relation, testable assumption or comparison.
+
+        Read get_knowledge first when revising. Source references are required;
+        documented relationships and analyst inference are separate. Register
+        endpoints in a universe before adding relations. No ratings propagate.
+        Payload field definitions are returned by get_knowledge(kind='schema').
+        """
+        from . import knowledge
+        row = knowledge.save(state, kind, object_id, payload, expected_version=expected_version)
+        return {"record": row, "affected_research": knowledge.affected_research(state, kind, object_id)
+                if kind in ("relation", "assumption") else []}
+
+    @server.tool
+    def get_knowledge(kind: str, object_id: str | None = None,
+                      version: str | None = None, as_of: str | None = None) -> dict:
+        """Read versioned research inputs; as_of never includes later discoveries.
+
+        kind='schema' describes write payloads. Otherwise kind is universe,
+        relation, assumption or comparison. Omit object_id to list latest objects.
+        """
+        from . import knowledge
+        if kind == "schema":
+            return {"universe": {"name": "text", "summary": "text", "members":
+                    [{"entity_id": "text", "name": "text", "kind": "company|security|fund|index|theme",
+                      "roles": ["text"], "comparison_groups": ["text"]}], "sources": [{"url": "https://...", "title": "text"}]},
+                    "relation": {"from_entity": "registered entity", "to_entity": "registered entity",
+                    "relation_type": list(knowledge.RELATIONS), "mechanism": "text", "status": "active|withdrawn",
+                    "valid_from": "YYYY-MM-DD|null", "valid_to": "YYYY-MM-DD|null", "basis": "documented|inference",
+                    "sources": [{"url": "https://...", "title": "text", "evidence_id": "optional", "locator": "optional"}]},
+                    "assumption": {"subject": "entity", "driver": "text", "statement": "text", "expected": "number or text",
+                    "unit": "text", "period": "text", "next_check": "event to verify", "change_effect": "causal effect",
+                    "layers": ["L2", "L3", "L4", "L6"], "status": "active|revised|rejected",
+                    "sources": [{"url": "https://...", "title": "text"}]},
+                    "comparison": {"subject": "entity", "as_of": "YYYY-MM-DD", "metrics": [
+                    {"key": "metric name", "value": "number|null", "unit": "USD million|percent|...",
+                     "period": "explicit fiscal/calendar period", "basis": "GAAP|adjusted|company definition",
+                     "status": "reported|guidance|estimate|missing|not_applicable", "source_index": 0}],
+                    "sources": [{"url": "https://...", "title": "text"}]}}
+        if object_id is None:
+            return {"records": knowledge.latest(state, kind, as_of=as_of)}
+        return {"record": knowledge.get(state, kind, object_id, version=version, as_of=as_of)}
+
+    @server.tool
+    def get_value_chain(universe_id: str, focus: str | None = None,
+                        depth: int = 1, as_of: str | None = None) -> dict:
+        """Universe roles, comparison groups, directed relations and assumptions.
+
+        Optional focus traverses 0–3 hops within the selected universe. Edges retain
+        their direction and evidence/inference basis; connected is not comparable.
+        """
+        from . import knowledge
+        return knowledge.value_chain(state, universe_id, focus=focus, depth=depth, as_of=as_of)
+
+    @server.tool
+    def valuation_matrix(eps_scenarios: list[dict], multiples: list[float], period: str,
+                         earnings_basis: str, currency: str) -> dict:
+        """EPS × P/E cross-sensitivity with a calculation receipt, not a target rating.
+
+        eps_scenarios=[{label,eps}]; nonpositive EPS yields null, never negative P/E.
+        Multiples are supplied assumptions; this tool does not invent peer data.
+        """
+        from . import knowledge
+        return knowledge.valuation_matrix(eps_scenarios, multiples, period=period,
+                                          earnings_basis=earnings_basis, currency=currency)
 
     @server.tool
     def set_watch(subject: str, watch: dict, based_on_version_id: str,
@@ -273,6 +344,7 @@ def main(argv=None) -> int:
     parser.add_argument("--data-dir", default=None,
                         help=f"persistent root; default ${{KARST_DATA_DIR}} or {service.DEFAULT_DATA_DIR}")
     parser.add_argument("--store", default=None, help="SQLite state file; default <data-dir>/karst.sqlite")
+    parser.add_argument("--knowledge-seed", default=None, help="Explicit versioned input manifest; create absent objects only")
     parser.add_argument("--bundle", default=None, help="compatibility: one fixed evidence bundle")
     parser.add_argument("--staging", default=None, help="compatibility: one fixed landing directory")
     parser.add_argument("--env-file", default=None, help="credentials file; default: <repo root>/.env")
@@ -288,7 +360,7 @@ def main(argv=None) -> int:
         except AuthConfigError as problem:
             parser.error(str(problem))
     server = build(args.data_dir, store_path=args.store, bundle=args.bundle,
-                   staging=args.staging, auth=auth)
+                   staging=args.staging, auth=auth, knowledge_seed=args.knowledge_seed)
     if args.http:
         server.run(transport="http", host=args.host, port=args.port)
     else:

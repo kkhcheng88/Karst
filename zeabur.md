@@ -125,3 +125,11 @@ curl -i https://karst.zeabur.app/mcp                                       # 無
 - 允許清單是唯一那道人手閘:清單上多一個名,等於多一個人可以寫研究版本。
 - `/healthz` 只證明程序活着,不證明來源憑證有效或某家公司已有資料。
 - 接通一端不代表另一端已驗;哪一端未實測就照實列明。**本頁的 OAuth 流程是按本機測試與 fastmcp 2.14.7 的實際行為寫的,兩端未在真域名上實測。**
+
+## Versioned research input seed (0.2.5)
+
+The Docker command explicitly passes `--knowledge-seed /app/strategy/data/research-inputs-v1.json`. This is reviewed research configuration, not hardcoded symbols in the engine. Startup validates the manifest and inserts only absent objects into the mounted SQLite store; it assigns acquisition time at import, never the source publication date. Restart/redeploy does not overwrite live revisions. To revise an existing object, read `get_knowledge`, then `save_knowledge` with expected_version. The manifest is not a substitute for cloud backup.
+
+Four MCP methods expose knowledge read/write, bounded value-chain lookup and an independent EPS×P/E matrix. Existing get_research_context also returns the subject's knowledge, so older client tool catalogs can read the deployed inputs. Frozen research context only includes knowledge known at that version's creation time. No auth change; all data tools still require the existing OAuth/token access.
+
+Comparison snapshots distinguish reported/guidance/estimate/missing/not_applicable and carry explicit period, unit, basis and source. They do not make unavailable consensus data appear. Relationship and assumption revisions route only through explicit thesis dependencies; they never auto-change a rating.

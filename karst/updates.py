@@ -146,6 +146,19 @@ def subscribed(record, watch):
                    _matches(record, dep) for dep in watch.get("dependencies", []))
 
 
+def validate_input_changes(events):
+    if not isinstance(events, (list, tuple)):
+        raise ContractError("input_changes must be a list")
+    for event in events:
+        if not isinstance(event, dict) or set(event) != {"kind", "id", "version", "reason"}:
+            raise ContractError("input change requires kind, id, version and reason")
+        if event["kind"] not in ("relation", "assumption"):
+            raise ContractError("Explicit input changes are relation or assumption revisions")
+        for key in event:
+            _text(event[key], key)
+    return events
+
+
 def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
          market=None, method_versions=None, input_changes=(), observations=()):
     """A reproducible plan; only checked_at is excluded from its content identity.
@@ -185,13 +198,7 @@ def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
                         "kind": record["kind"], "change": "changed" if before else "discovered",
                         "layers": sorted(layers), "dependencies": deps,
                         "published_at": record.get("published_at"), "period": record.get("period")})
-    for event in input_changes:
-        if not isinstance(event, dict) or set(event) != {"kind", "id", "version", "reason"}:
-            raise ContractError("input change requires kind, id, version and reason")
-        if event["kind"] not in ("relation", "assumption"):
-            raise ContractError("Explicit input changes are relation or assumption revisions")
-        for key in event:
-            _text(event[key], key)
+    for event in validate_input_changes(input_changes):
         mapped = False
         for dep in watch.get("dependencies", []):
             if (dep["input_kind"], dep["input_id"]) == (event["kind"], event["id"]):
