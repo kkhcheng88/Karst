@@ -22,6 +22,9 @@
 
 ## 二、下一步
 
+**本輪發布讀回完成**：58b8fe4 已推master；Pages Actions 35500787470 build／deploy成功，Zeabur check成功且healthz實測0.2.6。MCP確認兩條同層關係已withdrawn、三股新比較快照均入庫。公開Neocloud新版四段、比較表和僅兩條供應／客戶方向已讀回，NBIS點選只顯示BE供電關係；目錄網址有CDN舊快取，帶edition網址讀到新版。24項定向測試、17頁生成、五份舊HTML逐bytes一致。回執 `cards/runs/value-chain-reader-2026-09-20/neocloud-deployment.json`。
+
+
 **2026-09-20 Neocloud 比較與部署更正（最新）**：重新實測 healthz 已0.2.5，MCP context已返回知識層；GitHub連動部署已更新，不需以Zeabur管理登入作前置。上次0.2.4只代表當時觀察，不能據此判未來仍未部署。本輪撤回兩條僅由同層推導的Neocloud關係，保留同業組；程式0.2.6加入釘住expected_version的配置修訂，拒絕覆寫較新雲端研究。CRWV／NBIS／IREN最新行情、市值及日線已核；交六月季度營運比率、同季度年化P/S、日期化EV估算、21／63日回報、均線距離、ATR及支阻比較。Neocloud按現況→敘事／證據→公司比較→投資計劃四段追加新版；AI電力圖同步修正，舊版不動。完整前瞻估值、六月後資本橋接、SPY相對RS與獨立覆核仍待補。本輪提交／部署讀回見 cards/runs/value-chain-reader-2026-09-20/neocloud-correction.md。
 
 **2026-09-20 部署與實際讀回（本段優先）**：PR #9 已合併（9773f83）；Pages 首輪因測試環境缺 matplotlib 失敗，已修7fc027e，Actions 35496672341 的 build／deploy 全成功。公開首頁、Neocloud 和 BE 互動圖已讀回；瀏覽器確認圖真正載入、日線已收／月線未收。86項本地定向與版本收件測試通過，CI閱讀13項通過。**資料服務仍實測0.2.4，新0.2.5知識層未上線**；此session無已登入Zeabur管理連線，不能代稱已部署或已種入雲端。現有0.2.4已保存BE watch及NBIS／GEV來源訂閱，路由實際發現5份新登記來源；兩個價格閾值未成立，查核記needs_reassessment，原研究和目標日不動。新增來源原件仍為摘錄，並非完整逐字稿。回執 `cards/runs/value-chain-reader-2026-09-20/deployment-acceptance.json`。下一步先部署master到既有Zeabur服務（保留/data與原憑證），驗0.2.5和context的knowledge，再補BE倍數／完整研究；NBIS深讀及SPY設計按整體計劃，不以閱讀站完成當研究完成。

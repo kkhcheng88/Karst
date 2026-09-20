@@ -10,3 +10,6 @@
 - Full company valuation, common-period forward consensus, current EV bridge, SPY-relative strength and independent review remain pending. The page separates research priority from an executable investment ranking.
 
 Validation and deployed readback are appended after publication. Numeric receipts and source identifiers live in `cards/reader/provenance/neocloud/2026-09-20-r2/`, not the human page.
+
+
+**本輪發布讀回完成**：58b8fe4 已推master；Pages Actions 35500787470 build／deploy成功，Zeabur check成功且healthz實測0.2.6。MCP確認兩條同層關係已withdrawn、三股新比較快照均入庫。公開Neocloud新版四段、比較表和僅兩條供應／客戶方向已讀回，NBIS點選只顯示BE供電關係；目錄網址有CDN舊快取，帶edition網址讀到新版。24項定向測試、17頁生成、五份舊HTML逐bytes一致。回執 `cards/runs/value-chain-reader-2026-09-20/neocloud-deployment.json`。

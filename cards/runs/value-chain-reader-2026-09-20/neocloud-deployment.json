@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-20",
+  "commit": "58b8fe4f339e6e1326c6cf758ce58df9d97704bb",
+  "core_version": "0.2.6",
+  "zeabur_check": "success",
+  "pages_action": 35500787470,
+  "pages_build_and_deploy": "success",
+  "reader_url": "https://kkhcheng88.github.io/Karst/themes/neocloud/index.html?edition=2026-09-20-r2",
+  "reader_verified_sections": 4,
+  "reader_verified_economic_edges": 2,
+  "NBIS_relation_filter": "only Bloom supply relation shown",
+  "withdrawn_relations": [
+    {
+      "object_id": "neocloud-crwv-nbis",
+      "version": "kv-57abd444a48beea2d8c042809f9a74c4a572d649d11bc583da7cf0c26a89bf1f",
+      "previous_version": "kv-d368906f010325b609489cbbdc9c0e5b7b15d274437a3b6366e7a55351adb263"
+    },
+    {
+      "object_id": "neocloud-nbis-iren",
+      "version": "kv-5a7d8e45b999e03f32541bd2759ff784a9d5d179fba6053b68d754fbc569a34e",
+      "previous_version": "kv-87a72397df006ca35f048de51e61adb088073afee1f207eafeef88e06da18890"
+    }
+  ],
+  "comparisons": [
+    {
+      "subject": "CRWV",
+      "id": "crwv-screen-2026-09-20",
+      "metrics": 14,
+      "ps": 4.356603683370874,
+      "known_at": "2026-09-20T08:55:56.101038Z"
+    },
+    {
+      "subject": "IREN",
+      "id": "iren-screen-2026-09-20",
+      "metrics": 14,
+      "ps": 33.51796243075802,
+      "known_at": "2026-09-20T08:55:56.107436Z"
+    }
+  ],
+  "NBIS_comparison": "kv-d0ff21d028fcf8bfb8399a57dcd0c5849d04ff50f926bd9a3927e67940d2039b",
+  "targeted_tests": 24,
+  "prior_html_archives_byte_identical": 5,
+  "limitations": [
+    "EV proxy uses June balances, not current capital bridge",
+    "full forward valuation and independent review pending",
+    "canonical directory URL was still serving cached old page; edition URL read back new content"
+  ]
+}
