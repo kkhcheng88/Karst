@@ -15,7 +15,7 @@ from ..fetch.common import repo_root
 from ..schema import ContractError, canonical, digest
 
 DECLARED = "research-protocol-v1"
-MODES = ("research", "update", "review")
+MODES = ("research", "update", "review", "workflow")
 # The strategy sources this method is assembled from. The CLI takes these as its
 # defaults; the method itself owns where its own content comes from.
 MANDATE_FILE = repo_root() / "strategy" / "投資委託.md"
@@ -127,7 +127,9 @@ def get_research_protocol(mode, version=None):
     ])
     from .research import ANALYSIS_SCHEMA  # local import: research.py pins this protocol
     from .review import REVIEW_RESULT_SCHEMA
-    output_schema = REVIEW_RESULT_SCHEMA if mode == "review" else ANALYSIS_SCHEMA
+    from ..workflow import RESULT_SCHEMA
+    output_schema = (RESULT_SCHEMA if mode == "workflow" else
+                     REVIEW_RESULT_SCHEMA if mode == "review" else ANALYSIS_SCHEMA)
     steps = _steps(template)
     content = {"mode": mode, "text": text, "output_schema": output_schema, "steps": steps}
     protocol = {

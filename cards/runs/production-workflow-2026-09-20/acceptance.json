@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-20",
+  "version": "0.2.8",
+  "scope": [
+    "production_protocol",
+    "read_only_intake",
+    "registered_momentum",
+    "staged_reader_release",
+    "market_reference_comparison"
+  ],
+  "tests": {
+    "targeted": 80,
+    "http": 4,
+    "seed_first_insert": 26,
+    "seed_retry_insert": 0
+  },
+  "reader": {
+    "pages": 23,
+    "reports": 14,
+    "assets": 5,
+    "interactive_charts": 1
+  },
+  "historical_html": {
+    "stocks/be/history/2026-09-18-r1/index.html": "565afdeb63a645c676e9c86d684e8eb5dcec4a6cfda21e9344bfe8a67f26a930",
+    "stocks/be/history/2026-09-19-r2/index.html": "141f4a1ac126b7c6cd3b76437fce4cf335c6da1870f8f8e7f5f3889e884ab058",
+    "stocks/be/history/2026-09-19-r1/index.html": "f554d6396318b9e67bab86223fa769a25d81b452ee5a8e7a47eafc66508f843a",
+    "stocks/be/history/2026-09-19-r3/index.html": "2057394b87b12c3c89088438ef50097470faa4ff623cc1354fa342f65d098750",
+    "stocks/axti/history/2026-09-19-r1/index.html": "f7aa3ac976beb0e379faf4362b3410f9776caa757baf099aad2dc2a9af73eca6",
+    "themes/ai-power/history/2026-09-18-r1/index.html": "829b9fe978e4b70ab7ee68b1e8c9b61071e1ed0e90c6f9d34fe38d704c383e3e",
+    "themes/ai-power/history/2026-09-19-r2/index.html": "2e7630628e7b8ab477ef3e47b28427f7252b44f4948412d7d937a97f62a79f30",
+    "themes/ai-power/history/2026-09-20-r3/index.html": "01353f853c72d92fab6bdeb17daffa965e2717453260e5b9be260ac13778cf3a",
+    "themes/ai-power/history/2026-09-20-r4/index.html": "24003ec500aadebd6af1a58373c92de9a2713c806e79ff9f24b96d310b028499",
+    "themes/neocloud/history/2026-09-20-r2/index.html": "eb06c5ad0755d99ab735c5b3a1bd4ad0ba94588c0dc289d85d21f61b61b6f386",
+    "themes/neocloud/history/2026-09-20-r3/index.html": "2bc21dfa3885c4241a07a3259ed9a7f0262af07e33943dfba8f9b79ed9fde29f",
+    "themes/neocloud/history/2026-09-19-r1/index.html": "4334563b3486702a64b61a2a7fc685614174cdc2a86906bfde33bf2e49014b88",
+    "market/spy/history/2026-09-20-r1/index.html": "ad1d32e06b3add799199c8ef515924e00816adcf87c309c9343dab0957344918"
+  },
+  "cloud_fetch": {
+    "IWM": "success",
+    "RSP": "success"
+  },
+  "published": false,
+  "remaining": [
+    "total_return_sources",
+    "non_company_formal_intake",
+    "SPY_earnings_valuation",
+    "Neocloud_full_forward_research",
+    "BE_peer_calibration_and_independent_review",
+    "scheduler_and_unattended_publishing"
+  ]
+}

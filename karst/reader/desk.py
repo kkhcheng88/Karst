@@ -13,7 +13,7 @@ def load(content, reports):
     if path.is_symlink():
         raise ValueError('Unsafe desk path')
     d = json.loads(path.read_text(encoding='utf-8'))
-    keys(d, {'schema_version','as_of','price_as_of','summary','method','market','groups','events'})
+    keys(d, {'schema_version','as_of','price_as_of','summary','method','market','groups','events'}, {'participation'})
     if d['schema_version'] != 1 or date.fromisoformat(d['price_as_of']) > date.fromisoformat(d['as_of']):
         raise ValueError('Invalid desk date or version')
     text(d['summary']); text(d['method'])
@@ -24,6 +24,21 @@ def load(content, reports):
             raise ValueError('Desk link has no research page')
     keys(d['market'], {'kind','slug','title','summary'})
     link(d['market']); text(d['market']['title']); text(d['market']['summary'])
+    if 'participation' in d:
+        p = d['participation']
+        keys(p, {'summary', 'rows'})
+        text(p['summary'])
+        if not isinstance(p['rows'], list) or not p['rows']:
+            raise ValueError('Market comparison rows required')
+        for row in p['rows']:
+            keys(row, {'name','role','return1','return5','excess5','excess20','rsi14'})
+            text(row['name']); text(row['role'])
+            for key in ('return1','return5','excess5','excess20','rsi14'):
+                v = row[key]
+                if v is not None and (type(v) not in (int,float) or not math.isfinite(v)):
+                    raise ValueError('Market comparison values must be finite or null')
+            if row['rsi14'] is not None and not 0 <= row['rsi14'] <= 100:
+                raise ValueError('RSI must be between zero and 100')
     seen = set()
     for g in d['groups']:
         keys(g, {'kind','slug','name','members','state','assessment','windows','breadth','rsi','beta','spark'})
@@ -114,12 +129,26 @@ def events(d, prefix=''):
     return body+'</tbody></table></div></section>'
 
 
+def participation(d):
+    if not d.get('participation'):
+        return ''
+    p = d['participation']
+    body = '<section><h2>升勢有沒有擴散？</h2><p>'+text(p['summary'])+'</p>'
+    body += '<div class="table-wrap"><table><thead><tr><th>市場參照</th><th>最近一日</th><th>近5日</th><th>5日相對SPY</th><th>20日相對SPY</th><th>RSI14</th></tr></thead><tbody>'
+    for r in p['rows']:
+        body += '<tr><th>'+text(r['name'])+'<small>'+text(r['role'])+'</small></th>'
+        for key, suffix in (('return1','%'),('return5','%'),('excess5',' pp'),('excess20',' pp')):
+            body += '<td>'+number(r[key], suffix)+'</td>'
+        body += '<td>'+('—' if r['rsi14'] is None else f'{r["rsi14"]:.1f}')+'</td></tr>'
+    return body+'</tbody></table></div><p class="table-note">同一收市日的價格比較，不含股息；相對表現以百分點差表示。這是風格與參與度的代理，並非全市場上漲家數。</p></section>'
+
+
 def market(d, latest):
     from .workbench import wrap, listing
     body='<div class="eyebrow">MARKET → VALUE CHAIN → STOCK</div><h1>市場與輪動</h1>'
     if d:
         m=d['market']
         body+=f'<section class="market-brief"><h2><a href="{m["slug"]}/index.html">{text(m["title"])}</a></h2><p>{text(m["summary"])}</p></section>'
-        body+=rotation(d,'../')+events(d,'../')
+        body+=participation(d)+rotation(d,'../')+events(d,'../')
     body+='<section><h2>市場研究</h2>'+listing([r for r in latest if r['kind']=='market'],'../')+'</section>'
     return wrap('市場與輪動',body,'market/index.html','market')

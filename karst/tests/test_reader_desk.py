@@ -21,6 +21,15 @@ def projection():
 
 
 class DeskTests(unittest.TestCase):
+    def test_market_reference_table_validates_and_keeps_rsi_separate(self):
+        d=projection()
+        d['participation']={'summary':'Participation is weakening', 'rows':[
+            dict(name='Equal weight',role='Participation proxy',return1=-.2,return5=-1,
+                 excess5=-.6,excess20=-2,rsi14=36)]}
+        self.assertIn('36.0', desk.participation(self.load(d)))
+        d['participation']['rows'][0]['rsi14']=101
+        with self.assertRaises(ValueError):self.load(d)
+
     def load(self,d):
         with tempfile.TemporaryDirectory() as t:
             p=Path(t);(p/'desk.json').write_text(json.dumps(d))

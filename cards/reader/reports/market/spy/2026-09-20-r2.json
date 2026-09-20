@@ -1,0 +1,216 @@
+{
+  "schema_version": 2,
+  "public": true,
+  "kind": "market",
+  "slug": "spy",
+  "name": "美股大盤與 SPY",
+  "symbol": "SPY",
+  "published_at": "2026-09-20T14:24:15.704902Z",
+  "as_of": "2026-09-20",
+  "revision": 2,
+  "review_status": "市場價格及參與度初評；指數盈利與前瞻估值待完成",
+  "verdict": "大盤橫行，市場參與轉弱；先選股，未見全面轉強",
+  "summary": "等權大盤與小型股的近週、近月表現均落後 SPY，市場參與暫未擴散。指數橫行掩蓋了部分股票的弱勢，選股仍需看個別盈利與相對強弱。",
+  "change": "加入等權大盤 RSP 與小型股 IWM：兩者近週及近月均落後 SPY，將市場判斷由橫行細化為參與偏弱。",
+  "action": "保持觀察；先核盈利與估值，未形成新的入場方案",
+  "overview": {
+    "chain": "美股市場 · 基準與投資工具",
+    "change": "RSP／IWM 近週落後 SPY 0.86／1.32 個百分點；升勢尚未擴散",
+    "next_event": "10/27–28 FOMC；下一輪業績與盈利預期修訂",
+    "action_state": "watch",
+    "coverage": "radar"
+  },
+  "metrics": [],
+  "sections": [
+    {
+      "key": "judgment",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "SPY 收於 $761.69，近 5 個交易日 -0.34%、近 20 日 -0.12%。價格位於 20 日均線 $764.30 下方、50 日均線 $759.73 上方，短線以整理看待，還未形成清楚的方向。"
+        },
+        {
+          "text": "等權大盤與小型股的近週、近月表現均落後 SPY，市場參與暫未擴散。指數橫行掩蓋了部分股票的弱勢，選股仍需看個別盈利與相對強弱。"
+        }
+      ]
+    },
+    {
+      "key": "plan",
+      "title": "🧭 投資計劃",
+      "paragraphs": [
+        {
+          "text": "目前沒有新的 SPY 入場方案。接下來同時檢驗價格能否重新站穩短期均線，以及指數盈利預期是否上修；若股價上升只來自倍數擴張，回报空間仍需重新評估。"
+        },
+        {
+          "text": "要提高對廣泛反彈的信心，先看 RSP、IWM 的5日相對差能否改善，並站回20日線；目前兩者均在20及50日線下方。這是市場背景的檢驗，個別公司若有盈利上修與合理入場位置，仍可獨立研究。"
+        }
+      ]
+    },
+    {
+      "key": "drivers",
+      "title": "🌐 哪些因素會改變市場判斷",
+      "paragraphs": [
+        {
+          "text": "大型權重股相對抗跌，尚未帶動等權大盤及小型股。RSP 近20日落後 SPY 3.51 個百分點，IWM 落後4.44個百分點；兩者RSI均低於40，弱勢延續，不能僅以接近超賣推論反轉。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "市場參與與風格比較 · 9月18日收市",
+          "columns": [
+            "參照",
+            "近1日",
+            "近5日",
+            "5日相對SPY",
+            "20日相對SPY",
+            "RSI14"
+          ],
+          "rows": [
+            [
+              "SPY",
+              "-0.12%",
+              "-0.34%",
+              "+0.00 pp",
+              "+0.00 pp",
+              "49.2"
+            ],
+            [
+              "RSP",
+              "-0.48%",
+              "-1.20%",
+              "-0.86 pp",
+              "-3.51 pp",
+              "36.3"
+            ],
+            [
+              "IWM",
+              "-0.47%",
+              "-1.66%",
+              "-1.32 pp",
+              "-4.44 pp",
+              "34.4"
+            ]
+          ],
+          "note": "SPY為市值加權大型股，RSP為標普500等權，IWM為小型股；角色及行業權重不同。以200根日線計算、不含股息，相對差不是资金流入／流出。"
+        },
+        {
+          "title": "下一次更新要回答的問題",
+          "columns": [
+            "市場因素",
+            "影響甚麼",
+            "可驗證的變化"
+          ],
+          "rows": [
+            [
+              "盈利與指引",
+              "SPY 的盈利基礎、各鏈需求",
+              "成分股預期修訂，增長是否由少數龍頭擴散"
+            ],
+            [
+              "利率與融資",
+              "折現率、Neocloud 利息與再融資",
+              "10/27–28 FOMC 及後續利率路徑"
+            ],
+            [
+              "領漲集中度",
+              "行情能否延續、機會是否擴散",
+              "等權與小型股的相對走勢能否止跌，以及盈利上修是否擴散"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "key": "pricing",
+      "title": "💰 SPY 作為投資工具",
+      "paragraphs": [
+        {
+          "text": "SPY 跟蹤 S&P 500，提供美國大型股的組合曝險。它的投資價值取決於成分企業的盈利、組合估值及持有成本。NAV 則是基金資產淨值，用來檢查交易價格是否偏離持有資產，並不是大盤便宜與否的判定。"
+        },
+        {
+          "text": "State Street 列示年費率 0.0945%，按季分派。前瞻估值將採同一日期的指數盈利及 P/E 口徑；本版先呈現價格位置，尚未形成有盈利依據的合理價格區間。"
+        }
+      ]
+    },
+    {
+      "key": "technicals",
+      "title": "📈 價格與動能",
+      "paragraphs": [
+        {
+          "text": "RSI14 約 49.2，較一週前 -1.1，動能接近中性。200 日均線約 $716.28，價格仍在其上；長期位置與近期橫行可以同時成立。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "同日收市比較",
+          "columns": [
+            "窗口",
+            "SPY 價格變動",
+            "起點"
+          ],
+          "rows": [
+            [
+              "最近一日",
+              "-0.12%",
+              "2026-09-17"
+            ],
+            [
+              "近一週",
+              "-0.34%",
+              "2026-09-11"
+            ],
+            [
+              "近一月",
+              "-0.12%",
+              "2026-08-20"
+            ],
+            [
+              "近三月",
+              "+2.00%",
+              "2026-06-18"
+            ]
+          ],
+          "note": "使用截至 9/18 的未復權價格，不含股息；每日／每週窗口以完整交易日計算。"
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "kind": "themes",
+      "slug": "ai-power",
+      "label": "AI 供電：估值與交付假設"
+    },
+    {
+      "kind": "themes",
+      "slug": "neocloud",
+      "label": "Neocloud：三家公司比較"
+    }
+  ],
+  "sources": [
+    {
+      "label": "Longbridge 行情接口",
+      "url": "https://open.longbridge.com/docs/quote/overview"
+    },
+    {
+      "label": "State Street：SPY 基金資料",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy"
+    },
+    {
+      "label": "Federal Reserve：FOMC 日曆",
+      "url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+    },
+    {
+      "label": "Fidelity：RSI 定義與強趨勢限制",
+      "url": "https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/RSI"
+    },
+    {
+      "label": "iShares：IWM基金與小型股範圍",
+      "url": "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf"
+    },
+    {
+      "label": "Invesco：RSP等權標普500",
+      "url": "https://www.invesco.com/us/en/financial-products/etfs/invesco-sp-500-equal-weight-etf.html"
+    }
+  ]
+}

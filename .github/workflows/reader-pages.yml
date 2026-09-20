@@ -9,6 +9,7 @@ on:
       - 'karst/tests/test_reader.py'
       - 'karst/tests/test_reader_v2.py'
       - 'karst/tests/test_reader_desk.py'
+      - 'karst/tests/test_reader_release.py'
       - 'karst/tests/test_momentum.py'
       - 'karst/momentum.py'
       - '.github/workflows/reader-pages.yml'
@@ -34,7 +35,7 @@ jobs:
       - name: Check public export and history
         run: |
           python -m pip install . matplotlib==3.10.9
-          python -m unittest karst.tests.test_reader karst.tests.test_reader_v2 karst.tests.test_reader_desk karst.tests.test_momentum -v
+          python -m unittest karst.tests.test_reader karst.tests.test_reader_v2 karst.tests.test_reader_desk karst.tests.test_reader_release karst.tests.test_momentum -v
       - name: Build human-facing pages only
         run: python -m karst.reader --content cards/reader --output _reader_site
       - name: Upload allowlisted output

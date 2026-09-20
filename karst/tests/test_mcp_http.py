@@ -31,6 +31,11 @@ class HttpTransportTests(unittest.TestCase):
         cls.port = free_port()
         cls.url = f"http://127.0.0.1:{cls.port}/mcp"
         def serve():
+            from karst.store import Store
+            from karst.tests.test_workflow import seed
+            with Store(cls.data / 'karst.sqlite') as state:
+                for subject in ('NYSE:DEMO', 'NYSE:INDEX'):
+                    seed(cls.data, state, subject)
             # Like production, create and use the SQLite connection on the server
             # thread. Earlier transport tests called only the stateless calculator.
             server = mcp_server.build(cls.data, auth=mcp_server.bearer_auth(TOKEN))
@@ -78,6 +83,16 @@ class HttpTransportTests(unittest.TestCase):
                     "calculate", {"method": "sma", "params": {"bars": [], "window": 3}})
                 watches = await client.call_tool("get_watchlist", {})
                 update = await client.call_tool("plan_update", {"subject": "FIXTURE:NEW"})
+                workflow = await client.call_tool('plan_workflow', {'subject': 'FIXTURE:NEW',
+                    'kind': 'stock', 'intent': 'analyze', 'question': 'Can growth support the valuation?'})
+                self.assertEqual(workflow.data['completion']['deliverable'], 'investment_analysis')
+                self.assertIn('compare_registered_momentum', names)
+                comparison = await client.call_tool('compare_registered_momentum', {
+                    'weights': {'NYSE:DEMO': 1.0}, 'benchmark': 'NYSE:INDEX', 'cutoff': '2026-04-10',
+                    'selected_on': '2026-04-11', 'as_of': '2099-01-01T00:00:00Z', 'currency': 'USD'})
+                self.assertAlmostEqual(comparison.data['output']['members']['NYSE:DEMO']['beta63'], 1)
+                protocol = await client.call_tool('get_research_protocol', {'mode': 'workflow'})
+                self.assertIn('沿用證據不等於沿用立場', protocol.data['text'])
                 return names, result.data, watches.data, update.data
         names, result, watches, update = asyncio.run(call())
         self.assertIn("search_evidence", names)

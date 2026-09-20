@@ -12,6 +12,19 @@ Scope: D12 / P1 human-facing delivery. The user approved public investment analy
 
 ## Agent publication procedure
 
+Production entry is `get_research_protocol(mode="workflow")`; `plan_workflow` reads current state and distinguishes add/compare/analyze/update. An add request starts a radar; an analyze request must continue to the requested investment judgment. The protocol is agent-facing; do not paste it into the investment page.
+
+For routine publication, use the staged release tool instead of editing an old edition:
+
+```sh
+python -m karst.reader.release stage --content cards/reader --manifest /path/to/release.json --out /path/to/new-stage
+python -m karst.reader.release apply --content cards/reader --staged /path/to/new-stage
+```
+
+Manifest: `{"editions":[{"report": <reader schema object>, "provenance": <agent object>}], "desk": <optional desk projection>, "assets": {"optional-new-name.json": "/path/to/asset"}}`. Omit unused optional keys. `stage` leaves the source untouched, creates `content/`, `site/` and an agent receipt, preserves prior historical HTML, validates public links and rejects edition/asset rewrites. Inspect `site/` before `apply`. Apply refuses a stale base or changed candidate; exact retries are idempotent. It updates only the local content tree, not GitHub or the cloud DB. Commit/push the reviewed tree, check Actions/health and read the public pages back before claiming deployed. Author a new revision for changes; do not relabel an unreviewed radar as a saved formal analysis.
+
+The stage directory is a local working artifact, not a second source of truth. Git retains the approved reader inputs; Karst retains evidence/research versions; progress stays in `strategy/四類注地圖.md`.
+
 1. Read the applicable research state and relevant changes. Reuse unchanged evidence where reasonable; challenge inherited assumptions and correct previous errors, including when no new external evidence exists. Do not treat the previous recommendation as the default answer.
 2. Save the substantive research through the established Karst research/review/publication workflow. If an independent note is intentionally being shared before formal intake, label that status explicitly and retain its agent record; it must not silently supersede the formal version.
 3. Write a new public summary edition. Stock keys remain fixed; schema 2 displays `judgment`, `plan`, `fundamentals`, `valuation`, `technicals`. Explain changes briefly in `change`; give the current action in `action`. Date the market price, valuation horizon and plan review date. Preserve the distinction between DCF value, conditional market multiples and technical support.

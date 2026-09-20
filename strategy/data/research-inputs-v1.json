@@ -1803,5 +1803,304 @@
         }
       ]
     }
+  },
+  {
+    "kind": "universe",
+    "object_id": "us-market-references",
+    "payload": {
+      "name": "美股市場參照",
+      "summary": "市值加權、等權與小型股作不同市場參照；不推導經濟交易關係。",
+      "members": [
+        {
+          "entity_id": "NYSEARCA:SPY",
+          "name": "SPY",
+          "kind": "fund",
+          "roles": [
+            "美國大型股 · 市值加權"
+          ],
+          "comparison_groups": [
+            "us-equity-proxies"
+          ]
+        },
+        {
+          "entity_id": "NYSEARCA:RSP",
+          "name": "RSP",
+          "kind": "fund",
+          "roles": [
+            "標普500等權 · 參與度代理"
+          ],
+          "comparison_groups": [
+            "us-equity-proxies"
+          ]
+        },
+        {
+          "entity_id": "NYSEARCA:IWM",
+          "name": "IWM",
+          "kind": "fund",
+          "roles": [
+            "美國小型股 · 風格參照"
+          ],
+          "comparison_groups": [
+            "us-equity-proxies"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "State Street：SPY 基金資料",
+          "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy"
+        },
+        {
+          "title": "iShares：IWM基金與小型股範圍",
+          "url": "https://www.ishares.com/us/products/239710/ishares-russell-2000-etf"
+        },
+        {
+          "title": "Invesco：RSP等權標普500",
+          "url": "https://www.invesco.com/us/en/financial-products/etfs/invesco-sp-500-equal-weight-etf.html"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "iwm-momentum-2026-09-20",
+    "payload": {
+      "subject": "NYSEARCA:IWM",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": -0.4659636338156359,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": -0.34663502117467937,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -1.6580705458825062,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": -1.3178855375741483,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": -4.558739543790102,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": -4.439410931149146,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": -3.887140972292691,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -5.8891764866618175,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 34.3623263520042,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": -4.32282101841659,
+          "unit": "index_points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 0.8213436042307318,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge daily prices",
+          "url": "https://open.longbridge.com/docs/quote/pull/history-candlestick",
+          "evidence_id": "ev-3ba5677ed1149b9d5719a81f76e2f57310a878ad7059864aec180ecc4d3bb150"
+        },
+        {
+          "title": "SPY benchmark daily prices",
+          "url": "https://open.longbridge.com/docs/quote/pull/history-candlestick",
+          "evidence_id": "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "rsp-momentum-2026-09-20",
+    "payload": {
+      "subject": "NYSEARCA:RSP",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": -0.4781773006422574,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": -0.3588486880013009,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -1.2007260203844239,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": -0.8605410120760659,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": -3.627201743235886,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": -3.5078731305949296,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": 1.1097351876547812,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -0.8923003267143459,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 36.30070247212499,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": -4.199729035097995,
+          "unit": "index_points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 0.5561115356028842,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge daily prices",
+          "url": "https://open.longbridge.com/docs/quote/pull/history-candlestick",
+          "evidence_id": "ev-4f13cbf2dcc143177b7915af04ab06f56f398a3a9aa33a3c31ac304afcf222bb"
+        },
+        {
+          "title": "SPY benchmark daily prices",
+          "url": "https://open.longbridge.com/docs/quote/pull/history-candlestick",
+          "evidence_id": "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a"
+        }
+      ]
+    }
   }
 ]

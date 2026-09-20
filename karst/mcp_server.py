@@ -55,8 +55,39 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
 
     @server.tool
     def get_research_protocol(mode: str, version: str | None = None) -> dict:
-        """Versioned research / update / review method: rules, steps and output format."""
+        """Versioned research / update / review / workflow method and output format."""
         return service.get_research_protocol(mode, version)
+
+    @server.tool
+    def plan_workflow(subject: str, kind: str, intent: str, question: str,
+                      universe_id: str | None = None, benchmark: str | None = None) -> dict:
+        """Read-only production plan with current state and concrete next tools.
+
+        kind=stock|fund|value_chain|market; intent=add|compare|analyze|update.
+        Resolve identity first. Add means radar/comparison; analyze continues to
+        an investment judgment. Does not register a task or claim research done.
+        """
+        from .workflow import plan
+        return plan(state, root, subject=subject, kind=kind, intent=intent,
+                    question=question, universe_id=universe_id, benchmark=benchmark)
+
+    @server.tool
+    def compare_registered_momentum(weights: dict[str, float], benchmark: str,
+                                     cutoff: str, selected_on: str, as_of: str,
+                                     currency: str, history_sessions: int = 200) -> dict:
+        """Compare registered daily candles without copying raw bars into prompts.
+
+        Keys are security IDs; positive weights sum to one. cutoff is the exact
+        completed price date; as_of is a zoned evidence-availability timestamp.
+        Price returns only (explicit NoAdjust), not total returns. Missing dates,
+        members, currencies or basis agreement fail; short history stays null.
+        Returns calculation and replayable source/input receipt; no rating.
+        Default warmup is 200 completed daily sessions; record it for RSI replay.
+        """
+        from .workflow import compare_registered
+        return compare_registered(state, root, weights=weights, benchmark=benchmark,
+                                  cutoff=cutoff, selected_on=selected_on,
+                                  as_of=as_of, currency=currency, history_sessions=history_sessions)
 
     @server.tool
     def get_research_context(subject: str, as_of: str | None = None,
@@ -114,7 +145,7 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
                     "comparison": {"subject": "entity", "as_of": "YYYY-MM-DD", "metrics": [
                     {"key": "metric name", "value": "number|null", "unit": "USD million|percent|...",
                      "period": "explicit fiscal/calendar period", "basis": "GAAP|adjusted|company definition",
-                     "status": "reported|guidance|estimate|missing|not_applicable", "source_index": 0}],
+                     "status": "reported|calculated|guidance|estimate|missing|not_applicable", "source_index": 0}],
                     "sources": [{"url": "https://...", "title": "text"}]}}
         if object_id is None:
             return {"records": knowledge.latest(state, kind, as_of=as_of)}

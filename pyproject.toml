@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "karst-workbench"
-version = "0.2.7"
+version = "0.2.8"
 description = "File-based investment research contracts and offline publication core"
 requires-python = ">=3.11"
 dependencies = ["jsonschema==4.26.0", "referencing==0.37.0", "rfc3339-validator==0.1.4", "tzdata>=2025.2"]
