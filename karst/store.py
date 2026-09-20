@@ -36,6 +36,17 @@ JOB_FIELDS = {"claimed_by": False, "error": False, "finished_at": False,
 RESEARCH_STATUSES = ("latest", "superseded")
 
 SCHEMA = """
+CREATE TABLE IF NOT EXISTS knowledge_versions (
+    version TEXT PRIMARY KEY,
+    kind TEXT NOT NULL,
+    object_id TEXT NOT NULL,
+    previous_version TEXT,
+    payload TEXT NOT NULL,
+    known_at TEXT NOT NULL,
+    known_epoch REAL NOT NULL,
+    schema_version INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS knowledge_by_object ON knowledge_versions(kind, object_id, known_epoch);
 CREATE TABLE IF NOT EXISTS entities (
     entity_id TEXT PRIMARY KEY,
     kind TEXT NOT NULL,

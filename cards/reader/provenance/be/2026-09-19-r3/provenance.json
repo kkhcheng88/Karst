@@ -1,0 +1,98 @@
+{
+  "scope": "Editorial clarification of existing primary research; no new target date or independent review. Trade example removed because it was not a qualified setup. Multiples remain uncalibrated assumptions.",
+  "cloud_version": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+  "market_date": "2026-09-18",
+  "price_evidence": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+  "price_snapshot_sha256": "db6e6fa72749f0e0f049e60f7396a2393e1250bdaf615f31fc6eba82e1b2a437",
+  "public_chart_sha256": "8820b869ec89b26ce0e485f010bb9a0e55164f99803872095537a3f12a2dea00",
+  "matrix": {
+    "result": {
+      "period": "CY2027",
+      "earnings_basis": "adjusted diluted, existing research scenarios",
+      "currency": "USD",
+      "multiples": [
+        40,
+        60,
+        65
+      ],
+      "rows": [
+        {
+          "label": "downside",
+          "eps": 2.9895522388059703,
+          "prices": [
+            119.58208955223881,
+            179.37313432835822,
+            194.32089552238807
+          ],
+          "status": "ok"
+        },
+        {
+          "label": "base",
+          "eps": 4.871044776119403,
+          "prices": [
+            194.84179104477613,
+            292.26268656716417,
+            316.6179104477612
+          ],
+          "status": "ok"
+        },
+        {
+          "label": "upside",
+          "eps": 5.929411764705882,
+          "prices": [
+            237.17647058823528,
+            355.7647058823529,
+            385.4117647058823
+          ],
+          "status": "ok"
+        }
+      ]
+    },
+    "receipt": {
+      "calculator_version": "valuation-matrix-v1",
+      "inputs_digest": "5b4c377c3f69b684942ff1203adc61780032f65f9810ae5b23d19a8c7f5339df",
+      "outputs": {
+        "period": "CY2027",
+        "earnings_basis": "adjusted diluted, existing research scenarios",
+        "currency": "USD",
+        "multiples": [
+          40,
+          60,
+          65
+        ],
+        "rows": [
+          {
+            "label": "downside",
+            "eps": 2.9895522388059703,
+            "prices": [
+              119.58208955223881,
+              179.37313432835822,
+              194.32089552238807
+            ],
+            "status": "ok"
+          },
+          {
+            "label": "base",
+            "eps": 4.871044776119403,
+            "prices": [
+              194.84179104477613,
+              292.26268656716417,
+              316.6179104477612
+            ],
+            "status": "ok"
+          },
+          {
+            "label": "upside",
+            "eps": 5.929411764705882,
+            "prices": [
+              237.17647058823528,
+              355.7647058823529,
+              385.4117647058823
+            ],
+            "status": "ok"
+          }
+        ]
+      }
+    }
+  }
+}

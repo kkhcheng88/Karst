@@ -7,16 +7,16 @@ Scope: D12 / P1 human-facing delivery. The user approved public investment analy
 - Karst research versions, evidence and calculation receipts remain the agent-facing research record. The static site is a public reading projection, not a research engine or another database.
 - `reports/<kind>/<slug>/<publication-date>-r<N>.json` contains explicitly authored public prose. `kind` is `stocks`, `themes` or `market`. Each subject has a stable URL; dated editions remain available under `history/`.
 - `provenance/` is agent-facing material excluded from the reading-site export. Because the repository is now public, this material is also publicly readable through GitHub; exclusion from Pages is a presentation boundary, not access control. Record the originating research version, source cutoff, review status and any limitations there. The initial BE independent reassessment has **no formal saved cloud research version**; do not imply otherwise. Its original calculations and cloud receipts are retained here for continuity.
-- `assets/` contains public chart PNGs. Only files explicitly referenced by a validated report are copied. Do not place raw market data, screenshots with private account information, or engineering-marked images here.
+- `assets/` contains selected PNGs and allowlisted public OHLC projections. Only referenced, validated assets are copied; raw vendor envelopes, private fields and evidence IDs are excluded.
 - Public HTML contains no research IDs, receipts, JSON payloads, credentials, internal paths, or developer appendices. Ordinary human-readable source links remain available in a collapsed section.
 
 ## Agent publication procedure
 
 1. Read the applicable research state and relevant changes. Reuse unchanged evidence where reasonable; challenge inherited assumptions and correct previous errors, including when no new external evidence exists. Do not treat the previous recommendation as the default answer.
 2. Save the substantive research through the established Karst research/review/publication workflow. If an independent note is intentionally being shared before formal intake, label that status explicitly and retain its agent record; it must not silently supersede the formal version.
-3. Write a new public summary edition. Stock sections are fixed: `judgment`, `fundamentals`, `valuation`, `technicals`, `plan`. Explain changes briefly in `change`; give the current action in `action`. Date the market price, valuation horizon and plan review date. Preserve the distinction between DCF value, conditional market multiples and technical support.
+3. Write a new public summary edition. Stock keys remain fixed; schema 2 displays `judgment`, `plan`, `fundamentals`, `valuation`, `technicals`. Explain changes briefly in `change`; give the current action in `action`. Date the market price, valuation horizon and plan review date. Preserve the distinction between DCF value, conditional market multiples and technical support.
 4. Use the initial reports as schema examples. Text is plain text, not raw HTML or Markdown. Each paragraph is `{text, lead?}`; optional comparison rows are `{label, value, note}`. Unknown fields fail validation. A chart uses `{file, alt, caption}` and a public HTTPS source uses `{label, url}`. Related pages must exist.
-5. Add a new edition rather than editing or deleting a published one. Corrections explain what was wrong, its effect on the advice and the replacement conclusion. New chart versions get new filenames. Existing source editions are the content snapshot; navigation to latest and history may evolve when rebuilt.
+5. Add a new edition rather than editing or deleting a published one. Corrections explain what was wrong, its effect on the advice and the replacement conclusion. New chart versions get new filenames. Existing source editions remain unchanged. Five pre-v2 published HTML archives are explicitly retained under `archives/`; later archives list only versions known at their publication.
 6. Build and inspect the output, then commit the new public summary, selected chart and agent provenance. The Pages workflow publishes **only** the generated directory. A successful local build is not proof of a successful deployment; check Actions and the public URL.
 
 ```bash
@@ -24,7 +24,7 @@ python -m unittest karst.tests.test_reader -v
 python -m karst.reader --content cards/reader --output /tmp/karst-reader-preview
 ```
 
-The output directory must be new or empty. The builder refuses to package an existing directory or copy the repo wholesale. It uses only the Python standard library and does not call a model, fetch new data or recalculate advice. There is no website server, login system, tracking script, external frontend dependency, scheduler or live quote feed.
+The output directory must be new or empty. The builder refuses to package an existing directory or copy the repo wholesale. It uses only the Python standard library and does not call a model, fetch new data or recalculate advice. There is no website server, login system, tracking script, scheduler or live quote feed. Lightweight Charts 5.2.1 is vendored locally under Apache 2.0 with attribution; no chart library CDN is required.
 
 Optional chart generation uses `python -m karst.reader.chart --source <registered-snapshot.json> --config <chart-config.json> --output <public.png>` and requires matplotlib in the research environment. Explicitly select the correct registered daily snapshot and check the market-close timestamp before rendering. The renderer checks cutoff, close, OHLC consistency and sufficient moving-average history; it does not independently certify session completeness. Calculate averages before trimming the visible window. The initial chart configuration is retained with BE's agent provenance.
 
@@ -57,3 +57,13 @@ The reading summary is still deliberately authored by the agent, then committed 
 The optional `checks/<kind>/<slug>/*.json` records a human-authored check against an existing `report_edition` without creating another research edition. Fields: schema_version=1, public=true, kind, slug, report_edition, checked_at (timezone required), summary. The latest matching check appears above the current report; archives keep their original content, and a new research edition does not inherit a stale check. Checks and agent provenance JSON are not exported to the site. State the actual source scope and outstanding gaps; never label a price-only refresh as a complete fundamental reassessment.
 
 BE’s first check refreshes prices successfully and keeps the cloud primary research unchanged. Its provenance records the existing coverage diagnostics and pending independent review. Core incremental routing is deployed, while scheduling and automated DB-to-Pages publication remain separate.
+
+## Reader v2 / G1–G2 (2026-09-20)
+
+Homepage is a searchable/filterable/sortable list, 15 entries per page. Engineering samples remain in history but do not occupy the investment listing. `overview` holds chain, substantive change, next event, action_state and coverage. No-change check runs do not bump research dates. Schema 2 supports generic tables, expandable calculation detail, directed company relations and optional chart JSON with a required static PNG fallback.
+
+Public chart JSON carries only date/OHLC/volume/completion and selected overlays. `karst.reader.interactive.project` uses the same normalized bars and MA/resample functions as the MCP chart engine. It never fetches, guesses fundamentals, or projects today's fair value into historical candles. D/W/M, zoom/crosshair and MA/level controls were exercised in a local browser. SMC visualization controls remain a later, optional improvement; existing MCP SMC calculations are unchanged.
+
+BE r3 is an editorial correction of the stored primary research, not a newly recalibrated valuation. Its EPS/P/E matrix exposes the existing assumptions; peer multiple calibration and full research update remain open. AI power and Neocloud pages are sourced preliminary comparisons, not full individual-company research ratings. Their input universe, relationship and comparison manifests are versioned under strategy/data and seeded explicitly by the deployment configuration.
+
+Repository provenance is Agent-native; only the selected reading data and vendor library are exported. Source financial excerpts have also been ingested into cloud evidence with their limitations. No unattended DB-to-Pages writer has been added.

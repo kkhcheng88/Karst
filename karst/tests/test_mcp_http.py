@@ -89,6 +89,19 @@ class HttpTransportTests(unittest.TestCase):
         self.assertEqual(names & {"submit_order", "account_balance", "stock_positions"}, set())
         self.assertEqual(result["method"], "sma")
 
+    def test_versioned_inputs_cross_authenticated_transport(self):
+        from karst.tests.test_knowledge import universe, relation
+        async def call():
+            async with Client(StreamableHttpTransport(self.url, headers={"Authorization": f"Bearer {TOKEN}"})) as client:
+                await client.call_tool("save_knowledge", {"kind":"universe", "object_id":"compute", "payload":universe()})
+                edge = await client.call_tool("save_knowledge", {"kind":"relation", "object_id":"ab", "payload":relation()})
+                graph = await client.call_tool("get_value_chain", {"universe_id":"compute", "focus":"A"})
+                context = await client.call_tool("get_research_context", {"subject":"A"})
+                return edge.data, graph.data, context.data
+        edge, graph, context = asyncio.run(call())
+        self.assertEqual(graph["relations"][0]["version"], edge["record"]["version"])
+        self.assertEqual(context["knowledge"]["relation"][0]["version"], edge["record"]["version"])
+
 
 if __name__ == "__main__":
     unittest.main()

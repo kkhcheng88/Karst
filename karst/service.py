@@ -581,9 +581,13 @@ def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_chan
     for mode in ("research", "update"):
         version = get_research_protocol(mode)["version"]
         methods.append(version["declared"] + "+" + version["digest"][:12])
+    from .knowledge import dependency_changes
+    explicit = {(e["kind"], e["id"]): e for e in updates.validate_input_changes(input_changes)}
+    # Stored revisions are authoritative; callers cannot hide one with a stale event.
+    explicit.update({(e["kind"], e["id"]): e for e in dependency_changes(store, watch, as_of=as_of)})
     return updates.plan(subject, baseline, records, as_of=as_of, watch=watch,
                         refresh_status=store.refresh_status(subject), market=market,
-                        method_versions=methods, input_changes=input_changes, observations=observations)
+                        method_versions=methods, input_changes=list(explicit.values()), observations=observations)
 
 
 def record_update_check(store, bundle, subject, plan_id, outcome, reason, *, data_dir=None, input_changes=()):
@@ -641,8 +645,10 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None,
                for job in store.list_jobs(kind="review")
                if (job["input_ref"] or {}).get("subject") == subject]
     from .updates import research_changes
+    from .knowledge import subject_inputs
     previous = store.get_research(frozen["previous_version_id"]) if as_of_version and frozen["previous_version_id"] else None
     return {"subject": subject, "as_of": as_of, "as_of_version": as_of_version,
+            "knowledge": subject_inputs(store, subject, as_of=frozen["created_at"] if as_of_version else as_of),
             "sources_view": view, "packet_id": (packet or {}).get("packet_id"),
             "versions": versions,
             "latest_version_id": next((v["version_id"] for v in versions

@@ -1,0 +1,41 @@
+{
+  "core_version": "0.2.5",
+  "tests": {
+    "targeted_unittest": 69,
+    "result": "passed",
+    "browser": [
+      "desktop search and filtering",
+      "daily/weekly/monthly chart",
+      "MA and level toggles",
+      "company relationship filter",
+      "mobile no overflow",
+      "network-failure PNG fallback",
+      "no-JS PNG fallback"
+    ]
+  },
+  "seed": {
+    "objects": 14,
+    "members": 6,
+    "relations": 5,
+    "assumptions": 4,
+    "comparisons": 4,
+    "restart_preserves_versions": true
+  },
+  "reader": {
+    "pages": 15,
+    "reports": 8,
+    "public_pngs": 5,
+    "interactive_charts": 1,
+    "prior_archives_byte_identical": 5
+  },
+  "review": "GPT self-review only; Claude independent review pending",
+  "remaining": [
+    "BE peer/own-history multiple calibration",
+    "BE updated full research version",
+    "Neocloud transcript and full valuation/price research",
+    "SPY implementation deferred; design only",
+    "scheduled execution/notifications",
+    "automatic DB-to-Pages publishing"
+  ],
+  "deployment": "pending at this checkpoint"
+}

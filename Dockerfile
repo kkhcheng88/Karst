@@ -1,5 +1,5 @@
 # Karst research data service. Deployment notes: zeabur.md
-# Nothing here bakes in a ticker, a data set or a credential; /data is a mounted volume.
+# Research inputs are explicit strategy configuration; credentials and state stay on /data.
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 PYTHONUTF8=1 PYTHONPATH=/app KARST_DATA_DIR=/data
@@ -19,4 +19,4 @@ EXPOSE 8080
 VOLUME ["/data"]
 
 # Auth must be configured (github: KARST_GITHUB_CLIENT_ID/SECRET + KARST_BASE_URL + KARST_ALLOWED_GITHUB_USERS; or token: KARST_MCP_TOKEN), or the server refuses to serve HTTP.
-CMD ["python", "-m", "karst.mcp_server", "--http", "--host", "0.0.0.0", "--port", "8080", "--data-dir", "/data"]
+CMD ["python", "-m", "karst.mcp_server", "--http", "--host", "0.0.0.0", "--port", "8080", "--data-dir", "/data", "--knowledge-seed", "/app/strategy/data/research-inputs-v1.json"]
