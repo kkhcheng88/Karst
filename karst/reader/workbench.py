@@ -42,10 +42,15 @@ def listing(reports, prefix=""):
         '</tbody></table></div><p class="no-results" hidden>沒有符合條件的研究。</p><div class="pagination"><button data-prev>上一頁</button><span data-count aria-live="polite"></span><button data-next>下一頁</button></div>'
 
 
-def home(latest):
+def home(latest, dashboard=None):
     selected = [r for r in latest if is_research(r)]
     body = '<div class="eyebrow">KARST RESEARCH</div><h1>投資追蹤</h1>'
-    body += listing(selected)
+    if dashboard:
+        from .desk import rotation, events
+        m = dashboard['market']
+        body += f'<section class="market-brief"><div class="eyebrow">市場 · {dashboard["price_as_of"]} 收市</div><h2><a href="{m["kind"]}/{m["slug"]}/index.html">{text(m["title"])}</a></h2><p>{text(m["summary"])}</p></section>'
+        body += rotation(dashboard) + events(dashboard)
+    body += '<section><h2>研究最新變化</h2>' + listing(selected) + '</section>'
     return wrap("研究總覽", body, "index.html", "home")
 
 

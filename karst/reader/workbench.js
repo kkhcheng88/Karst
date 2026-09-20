@@ -40,3 +40,12 @@ document.querySelectorAll('.chain-map').forEach(map => {
   }));
   scope.querySelector('.chain-reset').addEventListener('click',reset);
 });
+
+// Numeric horizon changes do not alter the authored weekly state or RSI period.
+document.querySelectorAll('[data-rotation-window]').forEach(select => {
+  select.addEventListener('change', () => {
+    select.closest('.rotation').querySelectorAll('[data-window]').forEach(cell => {
+      cell.hidden = cell.dataset.window !== select.value;
+    });
+  });
+});

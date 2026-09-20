@@ -1113,5 +1113,695 @@
         }
       ]
     }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "crwv-momentum-2026-09-20",
+    "payload": {
+      "subject": "NASDAQ:CRWV",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": 1.852779168753127,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": 1.9721077813940835,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -8.573997078323403,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": -8.233812070015045,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": -9.35828877005348,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": -9.238960157412524,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": -31.02161933022467,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -33.0236548445938,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 44.164578672446275,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": -5.853682752577093,
+          "unit": "points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 4.270413761797208,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge registered daily closes and SPY benchmark; calculation receipt in market reader provenance",
+          "url": "https://open.longbridge.com/docs/quote/overview"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "nbis-momentum-2026-09-20",
+    "payload": {
+      "subject": "NASDAQ:NBIS",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": 2.5459883480893453,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": 2.6653169607303018,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -0.4497884658205331,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": -0.10960345751217515,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": 1.558311753214281,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": 1.6776403658552375,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": -22.027276849558763,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -24.02931236392789,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 51.981954816167004,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": 0.537457606061821,
+          "unit": "points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 5.159568608072415,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge registered daily closes and SPY benchmark; calculation receipt in market reader provenance",
+          "url": "https://open.longbridge.com/docs/quote/overview"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "iren-momentum-2026-09-20",
+    "payload": {
+      "subject": "NASDAQ:IREN",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": 7.359705611775547,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": 7.479034224416504,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": 6.50239561943875,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": 6.8425806277471075,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": 9.577464788732382,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": 9.696793401373338,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": -22.14809873248833,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -24.150134246857455,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 59.18708887961947,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": 5.1131279312827616,
+          "unit": "points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 4.405515776678216,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge registered daily closes and SPY benchmark; calculation receipt in market reader provenance",
+          "url": "https://open.longbridge.com/docs/quote/overview"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "be-momentum-2026-09-20",
+    "payload": {
+      "subject": "NYSE:BE",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": -5.388944294058984,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": -5.269615681418028,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -3.669990933816869,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": -3.329805925508511,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": 31.18826550770446,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": 31.307594120345417,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": -19.239305585114476,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -21.241341099483602,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 57.52698971917113,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": -7.512485689846102,
+          "unit": "points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 5.101054351601254,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge registered daily closes and SPY benchmark; calculation receipt in market reader provenance",
+          "url": "https://open.longbridge.com/docs/quote/overview"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "gev-momentum-2026-09-20",
+    "payload": {
+      "subject": "NYSE:GEV",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": 1.66499086417351,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": 1.7843194768144666,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -1.7696156779174022,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": -1.4294306696090442,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": -2.6583575739381526,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": -2.539028961297196,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": -15.264974363133376,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": -17.267009877502502,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 48.70948097242958,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": -0.023704972645290923,
+          "unit": "points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 2.3348605476224495,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge registered daily closes and SPY benchmark; calculation receipt in market reader provenance",
+          "url": "https://open.longbridge.com/docs/quote/overview"
+        }
+      ]
+    }
+  },
+  {
+    "kind": "comparison",
+    "object_id": "spy-momentum-2026-09-20",
+    "payload": {
+      "subject": "NYSEARCA:SPY",
+      "as_of": "2026-09-18",
+      "metrics": [
+        {
+          "key": "absolute_pct_1d",
+          "value": -0.11932861264095651,
+          "unit": "percent",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_1d",
+          "value": 0.0,
+          "unit": "percentage_points",
+          "period": "2026-09-17 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_5d",
+          "value": -0.34018500830835796,
+          "unit": "percent",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_5d",
+          "value": 0.0,
+          "unit": "percentage_points",
+          "period": "2026-09-11 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_20d",
+          "value": -0.11932861264095651,
+          "unit": "percent",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_20d",
+          "value": 0.0,
+          "unit": "percentage_points",
+          "period": "2026-08-20 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "absolute_pct_63d",
+          "value": 2.002035514369127,
+          "unit": "percent",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "excess_pp_63d",
+          "value": 0.0,
+          "unit": "percentage_points",
+          "period": "2026-06-18 / 2026-09-18",
+          "basis": "NoAdjust close; price-only; excess vs SPY; completed aligned sessions",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi14",
+          "value": 49.18378027562698,
+          "unit": "index",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "rsi_change5",
+          "value": -1.123525696807036,
+          "unit": "points",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        },
+        {
+          "key": "beta63",
+          "value": 1.0,
+          "unit": "ratio",
+          "period": "2026-09-18",
+          "basis": "200 daily bars; Wilder RSI14; 63 aligned daily-return beta vs SPY; NoAdjust price-only",
+          "status": "calculated",
+          "source_index": 0
+        }
+      ],
+      "sources": [
+        {
+          "title": "Longbridge registered daily closes and SPY benchmark; calculation receipt in market reader provenance",
+          "url": "https://open.longbridge.com/docs/quote/overview"
+        }
+      ]
+    }
   }
 ]

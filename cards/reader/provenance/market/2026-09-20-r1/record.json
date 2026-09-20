@@ -1,0 +1,621 @@
+{
+  "computed_at": "2026-09-20T12:59:41Z",
+  "price_cutoff": "2026-09-18",
+  "source": "Longbridge MCP",
+  "basis": "NoAdjust",
+  "completion": "US sessions ending 2026-09-18; snapshots obtained after close on 2026-09-19/20",
+  "membership": "current constituents retrospective; daily equal weighted; not portfolio performance",
+  "scope": "market price/rotation screening, not a completed fundamental rating",
+  "input_records": {
+    "SPY": {
+      "added": [
+        "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a"
+      ],
+      "changed": [
+        "ev-2369da25c2eb71c3064da871ed7dce1634067d372467fa006790f8f576c4636a",
+        "ev-70b2efefd5a4c0cca58b94dcab3a4e1a15ea418bf826ac248175c60db032e0c0",
+        "ev-df3cb8845bf24d6157a567ee796220406a07efb5da1144da827775018612b318"
+      ],
+      "unchanged": [],
+      "failed": [],
+      "uncovered": [],
+      "adapter_errors": {},
+      "records": [
+        {
+          "evidence_id": "ev-df3cb8845bf24d6157a567ee796220406a07efb5da1144da827775018612b318",
+          "source_id": "src-02e6f049896578d0fe94a9896407b9b58dc27d1f7af95dc86adfcee33a965a90",
+          "source": "longbridge",
+          "kind": "prices",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:45:25Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "calc_indexes",
+          "status_reason": null,
+          "known_gaps": []
+        },
+        {
+          "evidence_id": "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a",
+          "source_id": "src-515890b3135f2a40ac18f98afa9010b937bf97086d4f9b22d3e2462f16f5cb0e",
+          "source": "longbridge",
+          "kind": "prices",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:45:25Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "history_candlesticks_by_date",
+          "status_reason": null,
+          "known_gaps": []
+        },
+        {
+          "evidence_id": "ev-70b2efefd5a4c0cca58b94dcab3a4e1a15ea418bf826ac248175c60db032e0c0",
+          "source_id": "src-0a6ec059d6511baf15e703e93f35d1557a6736f22eac77f81142743538e84075",
+          "source": "longbridge",
+          "kind": "prices",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:45:24Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "quote",
+          "status_reason": null,
+          "known_gaps": []
+        },
+        {
+          "evidence_id": "ev-2369da25c2eb71c3064da871ed7dce1634067d372467fa006790f8f576c4636a",
+          "source_id": "src-ab28f499e5f5f3e63a37ab6978121e9469d904a46515ce6bb2068f6744d0faf9",
+          "source": "longbridge",
+          "kind": "profile",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:45:25Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "static_info",
+          "status_reason": null,
+          "known_gaps": []
+        }
+      ],
+      "bundle": "/data/companies/NYSEARCA_SPY/bundle",
+      "staging": "/data/tmp/refresh-2026-09-20T124524Z-NYSEARCA_SPY-76766122",
+      "research_input": {
+        "packet_id": "packet-4555b1957cf0a08dc7690dedede1f3e23d57658b15b72805cdf0119ded89495b",
+        "as_of": "2026-09-20T12:45:25Z",
+        "security": {
+          "security_id": "NYSEARCA:SPY",
+          "issuer_id": "SPDR-SP500",
+          "ticker": "SPY",
+          "name": "SPDR S&P 500 ETF Trust",
+          "currency": "USD",
+          "exchange": "NYSEARCA"
+        },
+        "evidence_ids": [
+          "ev-0e1a16bfae8259372046434ca46b104903b45ebccfa8c7ca4ecc4272440ccbef",
+          "ev-13556df94101266b21838d2de204a0d76e67c307e18c13e948be985556eba41b",
+          "ev-2369da25c2eb71c3064da871ed7dce1634067d372467fa006790f8f576c4636a",
+          "ev-70b2efefd5a4c0cca58b94dcab3a4e1a15ea418bf826ac248175c60db032e0c0",
+          "ev-a2309922194c8b4a82f75cc82ab9cc7325bc30eb28aa1e6c2e10a6de87b5deee",
+          "ev-d5333e3884284c3326391e4d6f2d6549ba06546d50e71ea6fbf2a142412e4391",
+          "ev-df3cb8845bf24d6157a567ee796220406a07efb5da1144da827775018612b318",
+          "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a"
+        ],
+        "diagnostic_ids": [],
+        "requirements": [
+          {
+            "kind": "filing",
+            "status": "missing",
+            "evidence_ids": [],
+            "reason": "No usable source supplied; inspect diagnostics or request a supplement."
+          },
+          {
+            "kind": "financials",
+            "status": "missing",
+            "evidence_ids": [],
+            "reason": "No usable source supplied; inspect diagnostics or request a supplement."
+          },
+          {
+            "kind": "prices",
+            "status": "available",
+            "evidence_ids": [
+              "ev-0e1a16bfae8259372046434ca46b104903b45ebccfa8c7ca4ecc4272440ccbef",
+              "ev-70b2efefd5a4c0cca58b94dcab3a4e1a15ea418bf826ac248175c60db032e0c0",
+              "ev-a2309922194c8b4a82f75cc82ab9cc7325bc30eb28aa1e6c2e10a6de87b5deee",
+              "ev-d5333e3884284c3326391e4d6f2d6549ba06546d50e71ea6fbf2a142412e4391",
+              "ev-df3cb8845bf24d6157a567ee796220406a07efb5da1144da827775018612b318",
+              "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a"
+            ],
+            "reason": "Supplied source is not truncated; recency and required sections still need review."
+          },
+          {
+            "kind": "profile",
+            "status": "available",
+            "evidence_ids": [
+              "ev-13556df94101266b21838d2de204a0d76e67c307e18c13e948be985556eba41b",
+              "ev-2369da25c2eb71c3064da871ed7dce1634067d372467fa006790f8f576c4636a"
+            ],
+            "reason": "Supplied source is not truncated; recency and required sections still need review."
+          },
+          {
+            "kind": "transcript",
+            "status": "missing",
+            "evidence_ids": [],
+            "reason": "No usable source supplied; inspect diagnostics or request a supplement."
+          }
+        ]
+      },
+      "update_plan": {
+        "routing_version": "incremental-v1",
+        "subject": "NYSEARCA:SPY",
+        "base_version_id": null,
+        "watch_version": null,
+        "status": "needs_reassessment",
+        "source_changes": [
+          {
+            "source_id": "src-02e6f049896578d0fe94a9896407b9b58dc27d1f7af95dc86adfcee33a965a90",
+            "evidence_id": "ev-df3cb8845bf24d6157a567ee796220406a07efb5da1144da827775018612b318",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-0a6ec059d6511baf15e703e93f35d1557a6736f22eac77f81142743538e84075",
+            "evidence_id": "ev-70b2efefd5a4c0cca58b94dcab3a4e1a15ea418bf826ac248175c60db032e0c0",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-515890b3135f2a40ac18f98afa9010b937bf97086d4f9b22d3e2462f16f5cb0e",
+            "evidence_id": "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-5bfd90c627d7e8a954e9f9b594164a3b6ee206596b0695ebf73ca12d102b934a",
+            "evidence_id": "ev-a2309922194c8b4a82f75cc82ab9cc7325bc30eb28aa1e6c2e10a6de87b5deee",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": "2026-01-01"
+            }
+          },
+          {
+            "source_id": "src-ab28f499e5f5f3e63a37ab6978121e9469d904a46515ce6bb2068f6744d0faf9",
+            "evidence_id": "ev-2369da25c2eb71c3064da871ed7dce1634067d372467fa006790f8f576c4636a",
+            "previous_evidence_id": null,
+            "kind": "profile",
+            "change": "discovered",
+            "layers": [
+              "L2",
+              "L3",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          }
+        ],
+        "diagnostics": [],
+        "reasons": [
+          {
+            "kind": "initial_research"
+          }
+        ],
+        "affected_layers": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6"
+        ],
+        "reuse_candidates": [],
+        "price_only": false,
+        "conditions": [],
+        "refresh_status": [
+          {
+            "adapter": "longbridge",
+            "checked_at": "2026-09-20T12:45:25Z",
+            "error": null,
+            "kinds": [
+              "prices"
+            ],
+            "packet_error": null,
+            "status": "ok"
+          }
+        ],
+        "preserve": {
+          "target_date": null,
+          "valuation_date": null,
+          "assessed_at": {}
+        },
+        "note": "Routing is triage, not a conclusion. Inspect relevance and dependencies; reuse candidates need agent judgment. A price threshold is not an executed trade.",
+        "plan_id": "upd-af70ddc307f20fb576e5c384a66dc86c4f63064aa08a67dc66208a7888b46fad",
+        "checked_at": "2026-09-20T12:45:25.718292Z"
+      }
+    },
+    "GEV": {
+      "added": [
+        "ev-365d8c74a4c32c8b085b5cb583b8dd0db56c9799db2980e72d4ffa141692eb9a"
+      ],
+      "changed": [
+        "ev-33e2c34f1866643a087d46af3400277772027d0c0ba25aa2f5992695cbd30de8",
+        "ev-73d00a534ae5f39cfac74a7c8a819f67fe092117642d051e3111a3cc566623ba",
+        "ev-d0fc0da898f035c9849c459b233e89273d77fdc7a9cb57a1277494f867ba94cb"
+      ],
+      "unchanged": [],
+      "failed": [],
+      "uncovered": [],
+      "adapter_errors": {},
+      "records": [
+        {
+          "evidence_id": "ev-33e2c34f1866643a087d46af3400277772027d0c0ba25aa2f5992695cbd30de8",
+          "source_id": "src-ecfdf6a853565e3ee05a1878ba66b5627776832920694e277ea180ef5957e4dd",
+          "source": "longbridge",
+          "kind": "prices",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:47:19Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "calc_indexes",
+          "status_reason": null,
+          "known_gaps": []
+        },
+        {
+          "evidence_id": "ev-365d8c74a4c32c8b085b5cb583b8dd0db56c9799db2980e72d4ffa141692eb9a",
+          "source_id": "src-aef6ba02d7fdd6e987d84be078a6ed6fa99ab41789d8103d5398952df4dcfdd3",
+          "source": "longbridge",
+          "kind": "prices",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:47:19Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "history_candlesticks_by_date",
+          "status_reason": null,
+          "known_gaps": []
+        },
+        {
+          "evidence_id": "ev-73d00a534ae5f39cfac74a7c8a819f67fe092117642d051e3111a3cc566623ba",
+          "source_id": "src-ac2c21517b0fb45ff7ec639a7fd0fce42f2d5f9b504c2035fe85dd1358ecd461",
+          "source": "longbridge",
+          "kind": "prices",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:47:18Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "quote",
+          "status_reason": null,
+          "known_gaps": []
+        },
+        {
+          "evidence_id": "ev-d0fc0da898f035c9849c459b233e89273d77fdc7a9cb57a1277494f867ba94cb",
+          "source_id": "src-2643fa3ab2413f94f59a8ca302dc06307dd68ea7accaf129c94a262b3ce80548",
+          "source": "longbridge",
+          "kind": "profile",
+          "status": "ok",
+          "published_at": null,
+          "fetched_at": "2026-09-20T12:47:18Z",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "truncated": false,
+          "source_url": null,
+          "title": "static_info",
+          "status_reason": null,
+          "known_gaps": []
+        }
+      ],
+      "bundle": "/data/companies/NYSE_GEV/bundle",
+      "staging": "/data/tmp/refresh-2026-09-20T124718Z-NYSE_GEV-5d47ddfe",
+      "research_input": {
+        "packet_id": "packet-6ef9f7f4b22010b9e7301b34530afed8ded4516da5df48cf1d1f6b66efb72ad5",
+        "as_of": "2026-09-20T12:47:19Z",
+        "security": {
+          "security_id": "NYSE:GEV",
+          "issuer_id": "GE-Vernova",
+          "ticker": "GEV",
+          "name": "GE Vernova",
+          "currency": "USD",
+          "exchange": "NYSE"
+        },
+        "evidence_ids": [
+          "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452",
+          "ev-1eb2c5618c3e95e3102751da97b53fa7b3d8c07cf68576abc16d1aa387579891",
+          "ev-33e2c34f1866643a087d46af3400277772027d0c0ba25aa2f5992695cbd30de8",
+          "ev-365d8c74a4c32c8b085b5cb583b8dd0db56c9799db2980e72d4ffa141692eb9a",
+          "ev-62f19d97ec8c217f827b027f53a410d995c3414d220b4c57cd95b490f6d963a0",
+          "ev-73d00a534ae5f39cfac74a7c8a819f67fe092117642d051e3111a3cc566623ba",
+          "ev-b13ffa36c7061537afce31e68e9b297c0beae9c926a1f688161d9289b8ec39c4",
+          "ev-d0fc0da898f035c9849c459b233e89273d77fdc7a9cb57a1277494f867ba94cb",
+          "ev-fdc90b45e61870d4880cc711b966065de41187c6156d13957f4c04e9286793f1"
+        ],
+        "diagnostic_ids": [],
+        "requirements": [
+          {
+            "kind": "filing",
+            "status": "missing",
+            "evidence_ids": [],
+            "reason": "No usable source supplied; inspect diagnostics or request a supplement."
+          },
+          {
+            "kind": "financials",
+            "status": "missing",
+            "evidence_ids": [],
+            "reason": "No usable source supplied; inspect diagnostics or request a supplement."
+          },
+          {
+            "kind": "industry_report",
+            "status": "partial",
+            "evidence_ids": [
+              "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452"
+            ],
+            "reason": "At least one supplied source is truncated; full coverage is not established."
+          },
+          {
+            "kind": "prices",
+            "status": "available",
+            "evidence_ids": [
+              "ev-1eb2c5618c3e95e3102751da97b53fa7b3d8c07cf68576abc16d1aa387579891",
+              "ev-33e2c34f1866643a087d46af3400277772027d0c0ba25aa2f5992695cbd30de8",
+              "ev-365d8c74a4c32c8b085b5cb583b8dd0db56c9799db2980e72d4ffa141692eb9a",
+              "ev-62f19d97ec8c217f827b027f53a410d995c3414d220b4c57cd95b490f6d963a0",
+              "ev-73d00a534ae5f39cfac74a7c8a819f67fe092117642d051e3111a3cc566623ba",
+              "ev-fdc90b45e61870d4880cc711b966065de41187c6156d13957f4c04e9286793f1"
+            ],
+            "reason": "Supplied source is not truncated; recency and required sections still need review."
+          },
+          {
+            "kind": "profile",
+            "status": "available",
+            "evidence_ids": [
+              "ev-b13ffa36c7061537afce31e68e9b297c0beae9c926a1f688161d9289b8ec39c4",
+              "ev-d0fc0da898f035c9849c459b233e89273d77fdc7a9cb57a1277494f867ba94cb"
+            ],
+            "reason": "Supplied source is not truncated; recency and required sections still need review."
+          },
+          {
+            "kind": "transcript",
+            "status": "missing",
+            "evidence_ids": [],
+            "reason": "No usable source supplied; inspect diagnostics or request a supplement."
+          }
+        ]
+      },
+      "update_plan": {
+        "routing_version": "incremental-v1",
+        "subject": "NYSE:GEV",
+        "base_version_id": null,
+        "watch_version": null,
+        "status": "needs_reassessment",
+        "source_changes": [
+          {
+            "source_id": "src-2643fa3ab2413f94f59a8ca302dc06307dd68ea7accaf129c94a262b3ce80548",
+            "evidence_id": "ev-d0fc0da898f035c9849c459b233e89273d77fdc7a9cb57a1277494f867ba94cb",
+            "previous_evidence_id": null,
+            "kind": "profile",
+            "change": "discovered",
+            "layers": [
+              "L2",
+              "L3",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-2df451b98c23673c8a946a28724a12268e23e22bdc8ecf12ee017328b455ec19",
+            "evidence_id": "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452",
+            "previous_evidence_id": null,
+            "kind": "industry_report",
+            "change": "discovered",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": "2026-07-22",
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-7221958fafcccf86e346761613726f8a1602de2cbd9e4bbe02f3efdb47bd30f3",
+            "evidence_id": "ev-62f19d97ec8c217f827b027f53a410d995c3414d220b4c57cd95b490f6d963a0",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": "2026-01-01"
+            }
+          },
+          {
+            "source_id": "src-ac2c21517b0fb45ff7ec639a7fd0fce42f2d5f9b504c2035fe85dd1358ecd461",
+            "evidence_id": "ev-73d00a534ae5f39cfac74a7c8a819f67fe092117642d051e3111a3cc566623ba",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-aef6ba02d7fdd6e987d84be078a6ed6fa99ab41789d8103d5398952df4dcfdd3",
+            "evidence_id": "ev-365d8c74a4c32c8b085b5cb583b8dd0db56c9799db2980e72d4ffa141692eb9a",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          },
+          {
+            "source_id": "src-ecfdf6a853565e3ee05a1878ba66b5627776832920694e277ea180ef5957e4dd",
+            "evidence_id": "ev-33e2c34f1866643a087d46af3400277772027d0c0ba25aa2f5992695cbd30de8",
+            "previous_evidence_id": null,
+            "kind": "prices",
+            "change": "discovered",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "dependencies": [],
+            "published_at": null,
+            "period": {
+              "end": null,
+              "start": null
+            }
+          }
+        ],
+        "diagnostics": [],
+        "reasons": [
+          {
+            "kind": "initial_research"
+          }
+        ],
+        "affected_layers": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6"
+        ],
+        "reuse_candidates": [],
+        "price_only": false,
+        "conditions": [],
+        "refresh_status": [
+          {
+            "adapter": "longbridge",
+            "checked_at": "2026-09-20T12:47:19Z",
+            "error": null,
+            "kinds": [
+              "prices"
+            ],
+            "packet_error": null,
+            "status": "ok"
+          }
+        ],
+        "preserve": {
+          "target_date": null,
+          "valuation_date": null,
+          "assessed_at": {}
+        },
+        "note": "Routing is triage, not a conclusion. Inspect relevance and dependencies; reuse candidates need agent judgment. A price threshold is not an executed trade.",
+        "plan_id": "upd-aafcda5be5139bf80f72cea309c70a2d71f308fcdd1ee260d016100a732365f6",
+        "checked_at": "2026-09-20T12:47:19.309759Z"
+      }
+    }
+  }
+}

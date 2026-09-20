@@ -69,3 +69,9 @@ BE r3 is an editorial correction of the stored primary research, not a newly rec
 Repository provenance is Agent-native; only the selected reading data and vendor library are exported. Source financial excerpts have also been ingested into cloud evidence with their limitations. No unattended DB-to-Pages writer has been added.
 
 Deployment confirmed: PR #9 and CI dependency correction 7fc027e are live on Pages; Actions run 35496672341 build and deploy succeeded. Live BE chart loaded and period status was checked. The data service still reports 0.2.4; knowledge bootstrap/API deployment is pending authenticated Zeabur access. Existing cloud source subscriptions and BE watch/check were saved successfully. See the deployment acceptance receipt for exact scope.
+
+## 市場與近期輪動（2026-09-20）
+
+首頁及 `/market/` 使用 `desk.json` 的公開投影；由 `karst.reader.desk` 驗證日期、數值、事件確定性及內部頁連結，原始行情／計算回執不導出。默认5個交易日，前端可切1／20日；無JS仍顯示5日與事件。SPY獨立閱讀版在 `reports/market/spy`。
+
+計算以 `python -m karst.momentum --input <input.json> --output <receipt.json>` 執行；輸入契約见函數 `compare`。成員、權重、選定日、幣別、價格口徑、截止日和已收線日序列必填。缺日不前填，不用單股替代整組。計算結果按既有 comparison 知識快照保存；Agent收據放 provenance，當前列表為人類投影。預設窗口是滾動交易日，不是盤中、即時或自動排程。

@@ -1,0 +1,18 @@
+{
+  "scope": "M1-R3 market and rotation workbench",
+  "status": "implemented and locally tested; cloud acceptance pending",
+  "version": "0.2.7",
+  "tests": 31,
+  "pages": 22,
+  "reader_editions": 13,
+  "prior_archives_unchanged": 10,
+  "sources": "Longbridge MCP prices completed through 2026-09-18; official State Street and FOMC calendar",
+  "financial_scope": "price/momentum screening; no new full SPY or stock rating",
+  "limitations": [
+    "NoAdjust price-only; dividends and splits affect comparison",
+    "two deliberately small representative baskets, not all sectors",
+    "current membership retrospective, no historical index or backtest",
+    "no automatic scheduler or notifications",
+    "SPY index earnings/valuation and Neocloud forward EV capital bridge pending"
+  ]
+}

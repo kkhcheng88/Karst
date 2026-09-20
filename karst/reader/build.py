@@ -192,7 +192,7 @@ def load_reports(content):
 
 def wrap(title, body, path, active=''):
     prefix = '../' * (len(PurePosixPath(path).parts) - 1)
-    nav = ''.join(f'<a href="{prefix}{dest}"'+(' aria-current="page"' if name == active else '')+f'>{label}</a>' for name, dest, label in [('home','index.html','研究總覽'),('themes','themes/index.html','主題與價值鏈'),('updates','updates/index.html','更新紀錄')])
+    nav = ''.join(f'<a href="{prefix}{dest}"'+(' aria-current="page"' if name == active else '')+f'>{label}</a>' for name, dest, label in [('home','index.html','研究總覽'),('market','market/index.html','市場與輪動'),('themes','themes/index.html','主題與價值鏈'),('updates','updates/index.html','更新紀錄')])
     return f'''<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{text(title)} · Karst</title><meta name="description" content="Karst 投資研究：最新判斷、基本面、估值、技術走勢與交易計劃。">
@@ -391,7 +391,10 @@ def build(content, output):
             html = saved.read_text(encoding='utf-8')
         pages[p] = html
     from . import workbench
-    pages['index.html'] = workbench.home(latest)
+    from . import desk
+    dashboard = desk.load(content, reports)
+    pages['index.html'] = workbench.home(latest, dashboard)
+    pages['market/index.html'] = desk.market(dashboard, latest)
     themes = '<div class="eyebrow">KARST RESEARCH</div><h1>價值鏈追蹤</h1>' + workbench.listing([r for r in latest if r['kind'] == 'themes' and workbench.is_research(r)], '../')
     pages['themes/index.html'] = workbench.wrap('主題與價值鏈', themes, 'themes/index.html', 'themes')
     updates = '<div class="eyebrow">判斷如何演變</div><h1>更新紀錄</h1><ol class="timeline">' + history_items([r for r in reports if workbench.is_research(r)], '../') + '</ol>'

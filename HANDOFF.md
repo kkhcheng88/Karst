@@ -22,6 +22,8 @@
 
 ## 二、下一步
 
+**2026-09-20 市場／輪動 M1–R3（本輪，部署讀回待補）**：用戶確認市場→價值鏈→個股流程並要求開工，另要求每日／每週冷暖。0.2.7 新增通用等權籃子動能 CLI：1／5／20／63 日價格回報、相對 SPY 百分點差、每日 RS 曲線、Wilder RSI14、63 日 Beta、20／50 日廣度及近期變化。精確對齊收線日，缺日／缺成員拒絕，短歷史留空；當前名單回溯不稱歷史指數。首版價格口徑為 NoAdjust／不含息。首頁接市場摘要、兩組輪動、事件檢驗與研究更新；新增市場入口／SPY 價格初評，Neocloud r3／AI 電力 r4 追加近期比較；尚未完成 SPY 盈利估值／正式買入評級。已有 Lightweight Charts 保留，未擴指標。23 項 knowledge seed、六股各11個動能指標；31 定向測試通過、22頁／13閱讀版、10份舊HTML逐bytes不變。M2 補含息公司行動、SPY盈利估值與IWM／等權廣度；G2／N補前瞻估值和NBIS深讀；W3 BE倍數／獨立覆核、W4排程／自動發布仍保留。詳見交付計劃第9節與 cards/runs/market-desk-2026-09-20/。
+
 **本輪發布讀回完成**：58b8fe4 已推master；Pages Actions 35500787470 build／deploy成功，Zeabur check成功且healthz實測0.2.6。MCP確認兩條同層關係已withdrawn、三股新比較快照均入庫。公開Neocloud新版四段、比較表和僅兩條供應／客戶方向已讀回，NBIS點選只顯示BE供電關係；目錄網址有CDN舊快取，帶edition網址讀到新版。24項定向測試、17頁生成、五份舊HTML逐bytes一致。回執 `cards/runs/value-chain-reader-2026-09-20/neocloud-deployment.json`。
 
 
