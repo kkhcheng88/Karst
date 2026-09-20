@@ -36,6 +36,39 @@ def watch(exposure="Supplier pricing power"):
 
 
 class RoutingTests(unittest.TestCase):
+    def test_report_filters_distinguish_author_source_and_real_url_boundary(self):
+        w=watch();w['dependencies']=[]
+        w['subscriptions'][0].update(authors=['Analyst A'], source_types=['broker_report'],
+                                     url_prefixes=['https://example.com/research/power'])
+        updates.validate_watch(w)
+        report=evidence('industry_report', params={'author':' analyst a ', 'source_type':'broker_report'},
+                        source_url='https://example.com/research/power/new-note')
+        self.assertTrue(updates.subscribed(report,w))
+        for url in ('https://example.com.evil.test/research/power/new-note',
+                    'https://example.com/research/powerful', 'http://example.com/research/power/new-note'):
+            self.assertFalse(updates.subscribed(report | {'source_url':url},w))
+        self.assertFalse(updates.subscribed(report | {'params':{'author':'Other','source_type':'broker_report'}},w))
+        self.assertFalse(updates.subscribed(report | {'params':{}},w))
+        w['subscriptions'][0]['source_ids']=['different-report']
+        self.assertFalse(updates.subscribed(report,w))
+        for bad in ([], ['https://user:password@example.com/research'], ['https://example.com/research?token=secret']):
+            w['subscriptions'][0]['url_prefixes']=bad
+            with self.assertRaises(ContractError):updates.validate_watch(w)
+
+    def test_reviewed_report_revision_does_not_repeat_alert_or_mask_next_revision(self):
+        old=evidence('industry_report', 'one')
+        new=evidence('industry_report', 'two', fetched_at=DAY)
+        w=watch();w['dependencies'][0].update(input_kind='source', input_id='source',input_version='two')
+        w['dependencies'].append(w['dependencies'][0] | {'input_kind':'entity','input_id':'industry:power'})
+        row={'payload':w,'version':'watch-one','based_on_version_id':'rv-one'}
+        self.assertEqual(updates.plan('X:A',baseline([old]),[old,new],as_of=DAY,watch=row)['status'],'no_change')
+        stale=updates.plan('X:A',baseline([old]),[old,new],as_of=DAY,watch=row | {'based_on_version_id':'older-research'})
+        self.assertIn('L2',stale['affected_layers'])
+        revised=evidence('industry_report','three',fetched_at=DAY,supersedes='ev-two')
+        result=updates.plan('X:A',baseline([old]),[old,new,revised],as_of=DAY,watch=row)
+        self.assertEqual(result['affected_layers'],['L2','L3','L4','L6'])
+        self.assertNotIn('rating',result)
+
     def test_acquisition_clock_is_not_news_and_source_period_correction_is(self):
         old = evidence()
         r = updates.plan("X:A", baseline([old]), [dict(old, fetched_at=DAY)], as_of=DAY)
@@ -127,6 +160,32 @@ class RoutingTests(unittest.TestCase):
 
 
 class PersistenceTests(unittest.TestCase):
+    def test_ingested_author_report_revision_routes_but_unselected_author_does_not(self):
+        source_bundle=service.company_paths(self.root,'industry:power')['bundle']
+        def ingest(author,excerpt):
+            return service.ingest_source(source_bundle,url='https://example.com/research/power/note',
+                excerpt=excerpt,author=author,published_at='2026-09-19',kind='industry_report',
+                entity_ids=['industry:power'],title='Capacity outlook',source_type='broker_report',store=self.store)
+        rejected=ingest('Other Analyst','Higher capacity forecast')
+        selected=ingest('Selected Analyst','Margin forecast 20 percent')
+        self.assertEqual(selected['document']['author'],'Selected Analyst')
+        self.assertTrue(selected['source_version'])
+        protocol=service.get_research_protocol('research')['version']
+        prior=baseline([])['payload'] | {'method_version':protocol['declared']+'+'+protocol['digest'][:12]}
+        first=self.store.save_research_version('reader',prior,evidence=[],as_of=EARLY)
+        w=watch();w['dependencies']=[]
+        w['subscriptions'][0].update(authors=['Selected Analyst'],source_types=['broker_report'])
+        self.store.save_watch('reader',w,first['version_id'])
+        first_plan=service.plan_update(self.store,self.root/'empty','reader',data_dir=self.root)
+        self.assertEqual([x['evidence_id'] for x in first_plan['source_changes']],[selected['evidence_id']])
+        retry=ingest('Selected Analyst','Margin forecast 20 percent')
+        self.assertEqual(retry['evidence_id'],selected['evidence_id'])
+        revised=ingest('Selected Analyst','Margin forecast 15 percent')
+        latest=service.plan_update(self.store,self.root/'empty','reader',data_dir=self.root)
+        self.assertEqual([x['evidence_id'] for x in latest['source_changes']],[revised['evidence_id']])
+        self.assertEqual(latest['source_changes'][0]['source_version'],revised['source_version'])
+        self.assertEqual(latest['affected_layers'],['L2','L3','L4','L6'])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

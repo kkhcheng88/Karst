@@ -29,12 +29,15 @@ def sources(values):
     if not isinstance(values, list) or not values:
         raise ContractError("Research inputs need source references")
     for value in values:
-        fields(value, {"url", "title"}, {"evidence_id", "locator"})
+        fields(value, {"title"}, {"url", "evidence_id", "locator"})
+        if not value.get('url') and not value.get('evidence_id'):
+            raise ContractError('Source needs a public URL or a registered evidence reference')
         for key, text in value.items():
             _text(text, key)
-        url = urlsplit(value["url"])
-        if url.scheme != "https" or not url.hostname or url.username or url.password:
-            raise ContractError("Source must be a public HTTPS reference")
+        if 'url' in value:
+            url = urlsplit(value["url"])
+            if url.scheme != "https" or not url.hostname or url.username or url.password:
+                raise ContractError("Source URL must be a public HTTPS reference")
 
 
 def validate(kind, payload):

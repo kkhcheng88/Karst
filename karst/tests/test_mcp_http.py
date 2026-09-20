@@ -86,7 +86,12 @@ class HttpTransportTests(unittest.TestCase):
                 workflow = await client.call_tool('plan_workflow', {'subject': 'FIXTURE:NEW',
                     'kind': 'stock', 'intent': 'analyze', 'question': 'Can growth support the valuation?'})
                 self.assertEqual(workflow.data['completion']['deliverable'], 'investment_analysis')
+                report_plan = await client.call_tool('plan_workflow', {'subject': 'industry:fixture',
+                    'kind': 'report', 'intent': 'add', 'question': 'What does the analyst report change?'})
+                self.assertEqual(report_plan.data['completion']['deliverable'], 'report_impact_assessment')
                 self.assertIn('compare_registered_momentum', names)
+                source_schema = await client.call_tool('get_knowledge', {'kind':'schema'})
+                self.assertIn('evidence_id', source_schema.data['source_reference'])
                 comparison = await client.call_tool('compare_registered_momentum', {
                     'weights': {'NYSE:DEMO': 1.0}, 'benchmark': 'NYSE:INDEX', 'cutoff': '2026-04-10',
                     'selected_on': '2026-04-11', 'as_of': '2099-01-01T00:00:00Z', 'currency': 'USD'})

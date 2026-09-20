@@ -25,6 +25,14 @@ def seed(root, store, subject):
 
 
 class WorkflowTests(unittest.TestCase):
+    def test_report_is_an_impact_entry_without_forced_price_benchmark_or_company_dcf(self):
+        result=workflow.plan(self.store,self.root,subject='industry:compute',kind='report',intent='add',
+                             question='Does this report change the margin thesis?')
+        self.assertEqual(result['completion']['deliverable'],'report_impact_assessment')
+        self.assertEqual(result['completion']['blockers'],[])
+        self.assertIn('report_trigger',[s['key'] for s in result['steps']])
+        self.assertNotIn('comparison',[s['key'] for s in result['steps']])
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)

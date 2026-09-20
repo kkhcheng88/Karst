@@ -9,7 +9,7 @@ from . import knowledge, service
 from .schema import ContractError, canonical, digest
 
 INTENTS = ("add", "compare", "analyze", "update")
-KINDS = ("stock", "fund", "value_chain", "market")
+KINDS = ("stock", "fund", "value_chain", "market", "report")
 RESULT_SCHEMA = {
     "type": "object", "required": ["request", "existing", "steps", "completion"],
     "properties": {key: {"type": kind} for key, kind in
@@ -37,7 +37,7 @@ def plan(store, data_dir, *, subject, kind, intent, question, universe_id=None,
                 "members": universe["payload"]["members"] if universe else [],
                 "research_version": None, "watch": store.get_watch(subject),
                 "sources": [], "update_plan": None}
-    if kind in ("stock", "fund"):
+    if kind in ("stock", "fund", "report"):
         bundle = service.company_paths(data_dir, subject)["bundle"]
         # Do not create a bundle or packet just to answer an intake request.
         if bundle.exists():
@@ -56,10 +56,16 @@ def plan(store, data_dir, *, subject, kind, intent, question, universe_id=None,
         step("universe", "save_knowledge", "讀取後以 expected_version 追加名單；來源支持角色及每條有方向關係。相同請求不重建名單。")
     step("evidence", "refresh_sources / ingest_source / read_evidence",
          "取最新適用來源，分開資料期、公布日與取得日；失敗另列，沿用仍有效的舊證據。")
-    step("comparison", "compare_registered_momentum / save_knowledge",
-         "同收線日計算日／週／月相對表現、廣度及風險；盈利比率需同期間、同口徑，無意義倍數留空。")
+    if kind == 'report':
+        step('report_impact', 'read_evidence / get_research_context / calculate / save_knowledge',
+             '拆出作者事實、預測、估值及可驗證論點；核原始依據，與我們假設比較，按各公司暴露決定重評。追蹤報告新版，也追蹤論點是否被業績證實或推翻。')
+        step('report_trigger', 'set_watch / plan_update',
+             '有正式研究時按券商／作者、報告source_id或URL範圍訂閱；把關鍵論點綁入assumption與事件檢驗。未有正式研究則先存假設及下一檢驗，不能假稱watch已啟用。')
+    else:
+        step("comparison", "compare_registered_momentum / save_knowledge",
+             "同收線日計算日／週／月相對表現、廣度及風險；盈利比率需同期間、同口徑，無意義倍數留空。")
     full = intent == "analyze" or (intent == "update" and existing["research_version"] is not None)
-    if full:
+    if full and kind != 'report':
         if kind == "stock":
             step("analysis", "get_research_protocol / read_evidence / calculate / render_charts / read_chart",
                  "首次分析讀完整業績及逐字稿；更新依受影響層重讀，同時挑戰舊假設及倍數。形成有期限的估值、實讀圖及可執行計劃。")
@@ -73,23 +79,23 @@ def plan(store, data_dir, *, subject, kind, intent, question, universe_id=None,
         else:
             step("analysis", "get_value_chain / get_research_context / read_evidence",
                  "比較現況與資金方向、敘事假設與風險、主要公司及機會排序；區分已深讀公司與僅機械比較。")
-    elif intent == "update" and existing["research_version"] is None:
+    elif intent == "update" and existing["research_version"] is None and kind != 'report':
         step("radar_update", "get_knowledge / save_knowledge",
              "尚無正式研究，只更新比較與雷達；不稱評級維持或完成完整重評。")
     step("reader", "python -m karst.reader.release",
-         "追加人類摘要及獨立 provenance，先預覽驗證再推送；保留既有歷史，讀回 Pages 與雲端版本。")
+         "有實質判斷變化才追加人類摘要及獨立 provenance，先預覽驗證再推送；第三方研報全文只存證據庫，不複製到公開repo。保留既有歷史，讀回 Pages 與雲端版本。")
     step("follow_up", "set_watch / plan_update / record_update_check",
          "有正式研究才綁定 watch；記下一事件、假設與倍數失效條件。無變只記查核，未完成資料不當無變。")
     gaps = []
-    if not benchmark:
+    if not benchmark and kind != 'report':
         gaps.append("comparison_benchmark_required")
     if full and kind in ("fund", "market", "value_chain"):
         gaps.append("non_company_formal_research_contract_not_yet_supported")
     completion = {
-        "deliverable": "investment_analysis" if full else "comparison_and_radar",
+        "deliverable": "report_impact_assessment" if kind == 'report' else "investment_analysis" if full else "comparison_and_radar",
         "status": "planned", "blockers": gaps,
         "done_when": ["requested_scope_answered", "inputs_and_calculations_saved",
-                      "human_summary_published_and_read_back", "next_checks_recorded"],
+                      "human_summary_delivered_and_changes_published", "next_checks_recorded"],
         "independent_review": "report_actual_status_separately",
         "schedule": "manual_on_request; no scheduler created by this plan",
     }

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import copy
 import math
+from urllib.parse import urlsplit
 
 from .packet import _private_selectors, instant
 from .schema import ContractError, canonical, digest
@@ -81,13 +82,25 @@ def validate_watch(item):
         elif set(condition) != {"kind", "description"}:
             raise ContractError("Event conditions are questions for the researcher, not automatic event claims")
     for sub in item["subscriptions"]:
-        if not isinstance(sub, dict) or set(sub) != {"entity_id", "kinds"}:
-            raise ContractError("subscription requires entity_id and kinds")
+        optional = {"source_ids", "authors", "source_types", "url_prefixes"}
+        if (not isinstance(sub, dict) or not {"entity_id", "kinds"} <= set(sub)
+                or set(sub) - {"entity_id", "kinds"} - optional):
+            raise ContractError("subscription requires entity_id/kinds and optional source_ids/authors/source_types/url_prefixes")
         _text(sub["entity_id"], "subscription.entity_id")
         if not isinstance(sub["kinds"], list) or not sub["kinds"]:
             raise ContractError("subscription.kinds must be nonempty")
         for kind in sub["kinds"]:
             _text(kind, "subscription.kind")
+        for key in optional & set(sub):
+            if not isinstance(sub[key], list) or not sub[key]:
+                raise ContractError(f'subscription.{key} must be a nonempty list')
+            for value in sub[key]:
+                _text(value, f'subscription.{key}')
+                if key == 'url_prefixes':
+                    parsed = urlsplit(value)
+                    if (parsed.scheme != 'https' or not parsed.hostname or parsed.username
+                            or parsed.password or parsed.query or parsed.fragment):
+                        raise ContractError('Report URL prefixes require public HTTPS host/path without query or credentials')
     for dep in item["dependencies"]:
         keys = {"input_kind", "input_id", "input_version", "assumption_id",
                 "assumption_version", "layers", "exposure"}
@@ -141,9 +154,37 @@ def _matches(record, dependency):
 
 
 def subscribed(record, watch):
-    return any(s["entity_id"] in record.get("entity_ids", []) and record["kind"] in s["kinds"]
-               for s in watch.get("subscriptions", [])) or any(
+    return any(subscription_matches(record, s) for s in watch.get("subscriptions", [])) or any(
                    _matches(record, dep) for dep in watch.get("dependencies", []))
+
+
+def subscription_matches(record, subscription):
+    """AND between filters, OR within each list. Filters select, never fetch a URL."""
+    if (subscription['entity_id'] not in record.get('entity_ids', [])
+            or record['kind'] not in subscription['kinds']):
+        return False
+    params = record.get('params') or {}
+    for key, actual in (('source_ids', record.get('source_id')),
+                        ('authors', params.get('author')), ('source_types', params.get('source_type'))):
+        if key in subscription:
+            normalized = str(actual or '').strip().casefold() if key == 'authors' else actual
+            allowed = [x.strip().casefold() for x in subscription[key]] if key == 'authors' else subscription[key]
+            if normalized not in allowed:
+                return False
+    if 'url_prefixes' in subscription:
+        try:
+            target = urlsplit(record.get('source_url') or params.get('url') or '')
+            def contains(prefix):
+                base = urlsplit(prefix)
+                root = base.path.rstrip('/')
+                return (target.scheme == base.scheme and target.hostname == base.hostname
+                        and (target.port or 443) == (base.port or 443) and not target.username and not target.password
+                        and (target.path == root or target.path.startswith(root + '/')))
+            if not any(contains(prefix) for prefix in subscription['url_prefixes']):
+                return False
+        except ValueError:
+            return False
+    return True
 
 
 def validate_input_changes(events):
@@ -183,10 +224,12 @@ def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
         if same:
             continue
         deps = [d for d in watch.get("dependencies", []) if _matches(record, d)]
-        # A shared source explicitly adopted by this watch need not be copied into
-        # every company bundle merely to avoid repeated external update alerts.
-        if before is None and deps and all(d["input_kind"] == "source" and
-                d["input_version"] == record["source_version"] for d in deps):
+        # A specifically reviewed source version need not cause a new research
+        # edition if its impact was judged immaterial. Broader entity subscriptions
+        # do not undo that explicit adoption. Conflicting adopted versions still alert.
+        source_deps = [d for d in deps if d['input_kind'] == 'source']
+        if (source_deps and watch_row.get('based_on_version_id') == (baseline or {}).get('version_id')
+                and all(d["input_version"] == record["source_version"] for d in source_deps)):
             continue
         layers = set(KIND_LAYERS.get(record["kind"], LAYERS))
         for dep in deps:
@@ -194,6 +237,7 @@ def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
                 layers.update(DOWNSTREAM[layer])
         affected.update(layers)
         changed.append({"source_id": sid, "evidence_id": record["evidence_id"],
+                        "source_version": record['source_version'],
                         "previous_evidence_id": (before or {}).get("evidence_id"),
                         "kind": record["kind"], "change": "changed" if before else "discovered",
                         "layers": sorted(layers), "dependencies": deps,

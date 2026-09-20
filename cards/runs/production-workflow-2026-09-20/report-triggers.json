@@ -1,0 +1,30 @@
+{
+  "version": "0.2.9",
+  "date": "2026-09-20T14:52:06.257559+00:00",
+  "scope": [
+    "report_workflow",
+    "narrow_report_subscriptions",
+    "reviewed_source_version_acknowledgement",
+    "agent_metadata_projection",
+    "uploaded_report_evidence_only_references"
+  ],
+  "tests": {
+    "targeted": 85,
+    "authenticated_HTTP": 4,
+    "combined_run": 89
+  },
+  "protocol_digest": "64da191a7bca9491463c4d342c8c1db195dc6be38c08746ba5197fb31cb09ff1",
+  "published": false,
+  "did_not_change": [
+    "fetchers",
+    "extraction",
+    "frozen_84_bundles",
+    "published_reader_editions"
+  ],
+  "limits": [
+    "registered_evidence_only",
+    "watch_requires_formal_research",
+    "no_automatic_web_RSS_discovery_or_scheduler",
+    "no_user_specific_monitor_without_named_source"
+  ]
+}

@@ -165,7 +165,11 @@ def _registry(bundle):
 
 
 def _summary(record):
+    params = record.get('params') or {}
+    document = {key: params.get(key) for key in ('author', 'title', 'source_type')}
     return {"evidence_id": record["evidence_id"], "source_id": record["source_id"],
+            "source_version": record.get('source_version'),
+            **({'document': document} if any(document.values()) else {}),
             "source": record["source"], "kind": record["kind"], "status": record["status"],
             "published_at": record["published_at"], "fetched_at": record["fetched_at"],
             "period": record["period"], "truncated": record["truncated"],

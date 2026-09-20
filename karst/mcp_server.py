@@ -63,7 +63,8 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
                       universe_id: str | None = None, benchmark: str | None = None) -> dict:
         """Read-only production plan with current state and concrete next tools.
 
-        kind=stock|fund|value_chain|market; intent=add|compare|analyze|update.
+        kind=stock|fund|value_chain|market|report; intent=add|compare|analyze|update.
+        For a report, subject is the affected company or industry evidence scope.
         Resolve identity first. Add means radar/comparison; analyze continues to
         an investment judgment. Does not register a task or claim research done.
         """
@@ -128,10 +129,14 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
 
         kind='schema' describes write payloads. Otherwise kind is universe,
         relation, assumption or comparison. Omit object_id to list latest objects.
+        Each source needs title plus url or evidence_id; uploaded documents may
+        cite registered evidence without inventing a public URL.
         """
         from . import knowledge
         if kind == "schema":
-            return {"universe": {"name": "text", "summary": "text", "members":
+            return {"source_reference": {"title": "required", "url": "public HTTPS; optional with evidence_id",
+                    "evidence_id": "registered document; required if no url", "locator": "optional"},
+                    "universe": {"name": "text", "summary": "text", "members":
                     [{"entity_id": "text", "name": "text", "kind": "company|security|fund|index|theme",
                       "roles": ["text"], "comparison_groups": ["text"]}], "sources": [{"url": "https://...", "title": "text"}]},
                     "relation": {"from_entity": "registered entity", "to_entity": "registered entity",
@@ -178,6 +183,11 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
     def set_watch(subject: str, watch: dict, based_on_version_id: str,
                   expected_version: str | None = None) -> dict:
         """Save what this thesis is waiting for, thresholds, deadline and subscriptions.
+
+        Each subscription requires entity_id/kinds; optional source_ids, authors,
+        source_types, url_prefixes narrow the report source (lists, AND across
+        filters). Prefixes match an HTTPS host/path boundary. These monitor already
+        ingested evidence; they do not crawl a site or create a recurring schedule.
 
         watch: {waiting_for, conditions, validation_deadline, subscriptions,
         dependencies}. Price conditions: {kind:'price', description, operator:

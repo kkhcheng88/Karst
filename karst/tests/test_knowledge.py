@@ -23,6 +23,16 @@ def relation(a="A", b="B"):
 
 
 class KnowledgeTests(unittest.TestCase):
+    def test_uploaded_report_can_support_assumption_without_invented_public_url(self):
+        source={'title':'Uploaded analyst report','evidence_id':'ev-registered-report','locator':'p3'}
+        payload={'subject':'A','driver':'margin','statement':'Margin improves','expected':20,
+                 'unit':'percent','period':'FY2027','next_check':'Next results','change_effect':'Revalue earnings',
+                 'layers':['L3','L4'],'status':'active','sources':[source]}
+        saved=k.save(self.store,'assumption','margin',payload)
+        self.assertNotIn('url',saved['payload']['sources'][0])
+        for bad in ({'title':'No reference'}, source | {'url':'file:///private/report.pdf'}):
+            with self.assertRaises(ContractError): k.validate('assumption',payload | {'sources':[bad]})
+
     def test_pinned_deployment_revision_preserves_later_live_work(self):
         first = k.save(self.store, 'universe', 'compute', universe())
         item = {'kind':'universe', 'object_id':'compute', 'expected_version':first['version'],
