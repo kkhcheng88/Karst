@@ -89,6 +89,11 @@ def stage(content, manifest, output):
     if 'desk' in manifest:
         (candidate / 'desk.json').write_bytes(_json(manifest['desk']))
     summary = build(candidate, output / 'site')
+    # Freeze the new editions as well. Waiting until the next release would let
+    # a later renderer change their historical HTML before it was retained.
+    for report in reports:
+        archive = candidate / 'archives' / report['kind'] / report['slug'] / (stamp(report) + '.html')
+        _write(archive, (output / 'site' / page_path(report, archive=True)).read_bytes())
     preserved = {}
     for path in before.glob('*/*/history/*/index.html'):
         rel = path.relative_to(before)

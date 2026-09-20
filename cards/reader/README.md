@@ -81,7 +81,7 @@ BE r3 is an editorial correction of the stored primary research, not a newly rec
 
 Repository provenance is Agent-native; only the selected reading data and vendor library are exported. Source financial excerpts have also been ingested into cloud evidence with their limitations. No unattended DB-to-Pages writer has been added.
 
-Deployment confirmed: PR #9 and CI dependency correction 7fc027e are live on Pages; Actions run 35496672341 build and deploy succeeded. Live BE chart loaded and period status was checked. The data service still reports 0.2.4; knowledge bootstrap/API deployment is pending authenticated Zeabur access. Existing cloud source subscriptions and BE watch/check were saved successfully. See the deployment acceptance receipt for exact scope.
+Deployment follows master automatically: GitHub Actions publishes Pages and Zeabur redeploys the data service. An early 0.2.4 probe was superseded by later successful releases; a Zeabur management login is not required to trigger this integration. Confirm the current runtime through healthz and MCP read-back, and use the latest map/acceptance receipt for deployment status.
 
 ## 市場與近期輪動（2026-09-20）
 

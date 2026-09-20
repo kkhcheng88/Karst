@@ -39,7 +39,7 @@
     "IWM": "success",
     "RSP": "success"
   },
-  "published": false,
+  "published": true,
   "remaining": [
     "total_return_sources",
     "non_company_formal_intake",
@@ -47,5 +47,42 @@
     "Neocloud_full_forward_research",
     "BE_peer_calibration_and_independent_review",
     "scheduler_and_unattended_publishing"
-  ]
+  ],
+  "commit": "7b952cd30364c377fe80749a2850aaad69111ba7",
+  "pages": {
+    "run": 35516675175,
+    "build": "success",
+    "deploy": "success"
+  },
+  "zeabur": {
+    "version": "0.2.8",
+    "check": "success"
+  },
+  "cloud_protocol": {
+    "mode": "workflow",
+    "digest": "a605ee7398e0554672ced6e083cf41987ffcdf43850462d113424d96ff2eab3b",
+    "matches_local": true
+  },
+  "cloud_knowledge": {
+    "universe": "us-market-references",
+    "IWM_metrics": 11,
+    "RSP_metrics": 11
+  },
+  "browser": {
+    "homepage": "passed",
+    "market_participation": "passed",
+    "SPY_new_edition": "passed",
+    "daily_weekly_toggle": "passed"
+  },
+  "new_tool_transport": {
+    "authenticated_local_HTTP": "passed",
+    "cloud_direct_call": "client_tool_catalog_refresh_pending"
+  },
+  "self_review": {
+    "issue": "New edition HTML must be retained at its own publication, not at the next release",
+    "fix": "Freeze every generated new edition in stage",
+    "reader_tests_after_fix": 20,
+    "public_export_unchanged": true,
+    "retained_editions": 14
+  }
 }

@@ -33,6 +33,19 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(len(receipt['historical_html']), 1)
         self.assertEqual(apply(self.content, self.output)['status'], 'applied_not_deployed')
         self.assertEqual(apply(self.content, self.output)['status'], 'already_applied')
+        saved = self.content / 'archives/stocks/sample/2026-01-03-r2.html'
+        self.assertEqual(saved.read_bytes(), (self.output / 'site/stocks/sample/history/2026-01-03-r2/index.html').read_bytes())
+        # A later renderer revision cannot rewrite this just-published edition.
+        from unittest.mock import patch
+        import importlib
+        module = importlib.import_module('karst.reader.build')
+        original = module.report_page
+        def changed(*args, **kwargs):
+            path, html = original(*args, **kwargs)
+            return path, html.replace('A changed assessment', 'A later renderer changed this')
+        with patch.object(module, 'report_page', side_effect=changed):
+            stage(self.content, {'editions': []}, self.root / 'future')
+        self.assertEqual(saved.read_bytes(), (self.root / 'future/site/stocks/sample/history/2026-01-03-r2/index.html').read_bytes())
         retry = stage(self.content, self.manifest, self.root / 'retry')
         self.assertEqual(retry['build']['reports'], 2)
 
