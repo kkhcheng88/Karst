@@ -36,6 +36,15 @@ class DeskTests(unittest.TestCase):
             if edit=='nan':d['groups'][0]['windows']['1']['return_pct']=float('nan')
             with self.subTest(edit=edit),self.assertRaises(ValueError):self.load(d)
 
+    def test_changed_assets_have_content_addressed_urls(self):
+        from karst.reader.workbench import wrap
+        from hashlib import sha256
+        import karst.reader.workbench as module
+        html=wrap('Test','Body','index.html')
+        for asset in ('workbench.css','workbench.js'):
+            digest=sha256(Path(module.__file__).with_name(asset).read_bytes()).hexdigest()[:12]
+            self.assertIn(f'{asset}?v={digest}',html)
+
     def test_no_js_default_is_weekly_and_expired_events_are_not_upcoming(self):
         d=self.load(projection())
         html=desk.rotation(d)

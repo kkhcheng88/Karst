@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 import json
-from pathlib import PurePosixPath
+from hashlib import sha256
+from pathlib import Path, PurePosixPath
 
 from .build import text, source_url, page_path, SECTIONS, KINDS, history_items
 
@@ -11,8 +12,10 @@ def wrap(title, body, path, active=""):
     from .build import wrap as legacy
     html = legacy(title, body, path, active)
     prefix = "../" * (len(PurePosixPath(path).parts) - 1)
-    return html.replace("</head>", f'<link rel="stylesheet" href="{prefix}assets/workbench.css">'
-                        f'<script defer src="{prefix}assets/workbench.js"></script></head>')
+    css = sha256(Path(__file__).with_name("workbench.css").read_bytes()).hexdigest()[:12]
+    js = sha256(Path(__file__).with_name("workbench.js").read_bytes()).hexdigest()[:12]
+    return html.replace("</head>", f'<link rel="stylesheet" href="{prefix}assets/workbench.css?v={css}">'
+                        f'<script defer src="{prefix}assets/workbench.js?v={js}"></script></head>')
 
 
 def table(columns, rows):
