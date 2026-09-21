@@ -166,6 +166,34 @@ class RenderTests(unittest.TestCase):
         self.assertEqual(derived["daily"]["moving_averages"]["sma200"]["at"],
                          bars[-2]["at"], "an open bar cannot be the average's last point")
 
+    def test_average_direction_ignores_unfinished_session_points(self):
+        for count in (219, 220, 300):
+            for unfinished in (0, 1, 2):
+                with self.subTest(complete_sessions=count, unfinished=unfinished):
+                    bars = series(count + unfinished, drift=0.04, swing=1.0)
+                    for bar in bars[count:]:
+                        bar["complete"] = False
+                    curves = {"sma200": charts.sma_series(bars, 200),
+                              "sma50": charts.sma_series(bars, 50),
+                              "ema20": charts.ema_series(bars, 20)}
+                    averages = charts._averages(bars, curves)
+                    closed_curves = {"sma200": charts.sma_series(bars[:count], 200),
+                                     "sma50": charts.sma_series(bars[:count], 50),
+                                     "ema20": charts.ema_series(bars[:count], 20)}
+                    baseline = charts._averages(bars[:count], closed_curves)
+                    for name in curves:
+                        self.assertEqual(averages[name]["direction"],
+                                         baseline[name]["direction"])
+                    direction = averages["sma200"]["direction"]
+                    if count < 220:
+                        self.assertIsNone(direction,
+                                          "unfinished bars cannot supply direction warmup")
+                    else:
+                        closes = [bar["close"] for bar in bars[:count]]
+                        self.assertAlmostEqual(direction["value_now"], fmean(closes[-200:]))
+                        self.assertAlmostEqual(direction["value_before"],
+                                               fmean(closes[-220:-20]))
+
     def test_a_false_breakout_leaves_anchors_whose_confirmation_comes_later(self):
         # Up to a high, back down, one bar poking above it, then failure back inside.
         bars = series(60, swing=3.0, period=12, wick=0.3)

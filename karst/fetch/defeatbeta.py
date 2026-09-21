@@ -227,7 +227,9 @@ def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
     ``since`` is not a filter: the vendor returns whole tables, and the newest N
     transcripts are selected by fiscal quarter, not by date.
     """
-    fetch_company(ticker_for(security), out_dir, **options_for(client, "ticker_factory"))
+    options = options_for(client, "ticker_factory")
+    options.setdefault('transcripts', 2)
+    fetch_company(ticker_for(security), out_dir, **options)
     return scan(Path(out_dir) / SOURCE, kind_for)
 
 

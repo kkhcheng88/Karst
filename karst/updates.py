@@ -25,6 +25,7 @@ KIND_LAYERS = {
     "filing": ("L2", "L3", "L4", "L5", "L6"),
     "financials": ("L3", "L4", "L6"), "transcript": ("L2", "L3", "L4", "L6"),
     "industry_report": ("L2", "L3", "L4", "L6"),
+    "news": ("L2", "L3", "L4", "L6"),
     "consensus": ("L4", "L6"), "ratings": ("L4", "L6"),
     "valuation": ("L4", "L6"), "calendar": ("L3", "L6"),
     "filing_index": ("L3", "L6"), "profile": ("L2", "L3", "L6"),
@@ -201,7 +202,7 @@ def validate_input_changes(events):
 
 
 def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
-         market=None, method_versions=None, input_changes=(), observations=()):
+         market=None, method_versions=None, input_changes=(), observations=(), equivalent=None):
     """A reproducible plan; only checked_at is excluded from its content identity.
 
     input_changes handles explicit relation/assumption revisions. It does not infer
@@ -216,7 +217,8 @@ def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
     changed, diagnostics, affected, reasons = [], [], set(), []
     for sid, record in sorted(current.items()):
         before = old.get(sid)
-        same = before and before["source_version"] == record["source_version"]
+        same = before and (before["source_version"] == record["source_version"]
+                           or (equivalent is not None and equivalent(before, record)))
         if record["status"] != "ok":
             diagnostics.append({"source_id": sid, "evidence_id": record["evidence_id"],
                                 "status": record["status"], "reason": record.get("status_reason")})

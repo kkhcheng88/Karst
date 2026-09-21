@@ -54,9 +54,20 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
         return RedirectResponse("/.well-known/oauth-protected-resource/mcp", status_code=307)
 
     @server.tool
-    def get_research_protocol(mode: str, version: str | None = None) -> dict:
+    def get_research_protocol(mode: str, version: str | None = None,
+                              include_schema: bool = True) -> dict:
         """Versioned research / update / review / workflow method and output format."""
-        return service.get_research_protocol(mode, version)
+        return service.get_research_protocol(mode, version, include_schema=include_schema)
+
+    @server.tool
+    def refresh_daily(subject: str, since: str | None = None) -> dict:
+        """Small daily prices + dated RSS-news intake; does not re-fetch financial statements.
+
+        Reuses registered security identity and latest research. News excerpts are
+        leads to read, not verified facts. Does not save a rating or publish a page.
+        """
+        from .daily import refresh
+        return refresh(state, root, subject, since=since)
 
     @server.tool
     def plan_workflow(subject: str, kind: str, intent: str, question: str,

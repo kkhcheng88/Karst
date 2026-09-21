@@ -36,7 +36,8 @@ from .structure import (ATR_MULTIPLE, ATR_PERIOD, EVENTS_KEPT, RECLAIM_WINDOW,  
 from .structure import events as structure_events  # noqa: E402
 from .structure import recent as structure_recent  # noqa: E402
 
-VERSION = "0.3.2"  # 0.3.1: zone tolerance is a share of price; captions do not overlap and
+VERSION = "0.3.3"  # 0.3.3: average direction compares complete daily sessions only
+                   # 0.3.1: zone tolerance is a share of price; captions do not overlap and
                    # name the provider, not the evidence id
                    # 0.3: derived.json views carry `structure` (KARST-251); bars completion per Session (KARST-250)
 SMA_WINDOWS = (200, 50)
@@ -542,7 +543,10 @@ def _averages(daily, series):
                         if v is not None and bar["complete"]), None),
             "distance_from_close": None if value is None else close - value,
             "distance_pct": None if not value else close / value - 1,
-            "direction": direction(values),
+            # Plotted curves carry the previous value across unfinished bars.
+            # Those repeated points are not additional completed sessions.
+            "direction": direction([v for bar, v in zip(daily, values)
+                                    if bar["complete"]]),
         }
     return out
 

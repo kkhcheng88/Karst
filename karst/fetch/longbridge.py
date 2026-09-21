@@ -274,7 +274,7 @@ def fetch(security, out_dir, *, since=None, client=None) -> list[LandedRecord]:
     given = options.get("client")
     options["client"] = given() if callable(given) else (client_factory() if given is None else given)
     # The client is already resolved here, so an injected "no client" stays no client.
-    options.setdefault("start", since)
+    options.setdefault("start", since[:10] if since else None)
     fetch_company(symbol_for(security), out_dir, factory=lambda: None, **options)
     return scan(Path(out_dir) / SOURCE, kind_for)
 

@@ -108,7 +108,7 @@ class AdapterPortTests(unittest.TestCase):
             security_for(ticker, "0000000001"), self.root,
             client=lambda _t: FakeTicker(FIXTURES / "defeatbeta", pd)))
         kinds = [record.kind for record in records]
-        self.assertEqual(kinds.count("transcript"), 1)
+        self.assertEqual(kinds.count("transcript"), 2)  # latest two for the research mandate
         self.assertIn("filing_index", kinds)  # the catalogue is an index, not transcript text
         self.assertTrue([r for r in records if r.status == "empty" and r.status_reason])
 

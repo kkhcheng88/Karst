@@ -13,17 +13,18 @@ from pathlib import Path
 from uuid import uuid4
 
 from . import bars as bars_module, calculations, charts, publish as publish_module
-from .fetch import broker, defeatbeta, edgar, longbridge, prices
+from .fetch import broker, defeatbeta, edgar, longbridge, prices, news
 from .fetch.common import utc_now, write_json, write_meta
 from .fetch.registry import EvidenceRegistry
 from .packet import build_packet, check_packet, check_research, confined, read_json
 from .schema import ContractError, canonical, digest
+from .identity import security_record
 
 # The source port: one entry per adapter module, each exposing KINDS and
 # fetch(security, out_dir, *, since, client). Adding a source is adding a module
 # and one row here — no if/elif anywhere downstream.
 ADAPTERS = {"edgar": edgar, "defeatbeta": defeatbeta, "longbridge": longbridge,
-            "prices": prices, "broker": broker}
+            "prices": prices, "broker": broker, "news_rss": news}
 # kind -> adapter name, composed from what each adapter says it covers. Kinds are
 # evidence kinds (packet vocabulary), not tool names; two adapters must not claim one.
 KIND_ADAPTERS = {}
@@ -147,7 +148,7 @@ def bundles_for(data_dir, subject=None, fixed=None):
 
 # --- research method (delegated) --------------------------------------------
 
-def get_research_protocol(mode, version=None):
+def get_research_protocol(mode, version=None, *, include_schema=True):
     """Delegate to ``karst.agents.protocol``; this module never authors research rules."""
     try:
         from .agents.protocol import get_research_protocol as protocol  # noqa: PLC0415
@@ -155,7 +156,8 @@ def get_research_protocol(mode, version=None):
         raise ContractError(
             "karst.agents.protocol is not available; the research method has one versioned "
             f"owner and the service does not substitute its own rules ({exc})") from exc
-    return protocol(mode, version)
+    result = protocol(mode, version)
+    return result if include_schema else {k: v for k, v in result.items() if k != 'output_schema'}
 
 
 # --- evidence ---------------------------------------------------------------
@@ -404,6 +406,7 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     Every research of one company registers into the same bundle; the raw landing
     goes to ``<data>/tmp/<run>/`` and is scratch.
     """
+    security = security_record(security)
     clients = clients or {}
     unknown = sorted(set(kinds) - set(KIND_ADAPTERS))
     if unknown:
@@ -419,12 +422,18 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     registry = _registry(bundle)
     known_ids = {record["evidence_id"] for record in registry.records()}
     known_sources = {record["source_id"] for record in registry.records()}
+    from .updates import latest_sources
+    from .evidence_changes import equivalent
+    known_records = latest_sources(registry.records(), utc_now())
     adapters = {KIND_ADAPTERS[kind] for kind in kinds}
     landed, adapter_errors = _run_adapters(staging, security, adapters, since, clients)
 
     result = {"added": [], "changed": [], "unchanged": [], "failed": [], "uncovered": [],
               "adapter_errors": adapter_errors, "records": [], "bundle": str(bundle),
               "staging": str(staging)}
+    coverage_path = Path(staging) / news.SOURCE / 'coverage.json'
+    if 'news_rss' in adapters and coverage_path.exists():
+        result['news_coverage'] = read_json(coverage_path)
     entity_ids = _entity_ids(security)
     registered = []
     # Only what the adapters reported: the registry registers their records, it
@@ -438,7 +447,7 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
             bucket = "failed"
         elif record["status"] == "empty":
             bucket = "uncovered"
-        elif evidence_id in known_ids:
+        elif evidence_id in known_ids or equivalent(known_records.get(record['source_id']), record, bundle):
             bucket = "unchanged"
         elif record["source_id"] in known_sources:
             bucket = "changed"
@@ -464,11 +473,15 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
                         if KIND_ADAPTERS.get(r["kind"]) == adapter]
             status = ("error" if adapter in adapter_errors or "error" in statuses else
                       "empty" if not statuses or "empty" in statuses else "ok")
+            coverage = result.get('news_coverage') if adapter == 'news_rss' else None
+            if coverage:
+                status = 'ok' if coverage['status'] == 'ok' else 'error'
             store.record_refresh(security["security_id"], adapter, {
                 "adapter": adapter, "status": status, "checked_at": utc_now(),
                 "kinds": sorted(k for k in kinds if KIND_ADAPTERS[k] == adapter),
                 "error": adapter_errors.get(adapter),
-                "packet_error": result.get("packet_error")})
+                "packet_error": result.get("packet_error"),
+                **({'coverage': coverage} if coverage else {})})
         result["update_plan"] = plan_update(store, bundle, security["security_id"], data_dir=data_root(data_dir))
     return result
 
@@ -483,6 +496,7 @@ def prepare_research(bundle, security, *, as_of=None, evidence_ids=None):
     from .agents.research import CONTRACT
     from .schema import schemas
 
+    security = security_record(security)
     bundle = Path(bundle)
     records = _registry(bundle).records(contract_version=CONTRACT)
     if evidence_ids is not None:
@@ -586,12 +600,14 @@ def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_chan
         version = get_research_protocol(mode)["version"]
         methods.append(version["declared"] + "+" + version["digest"][:12])
     from .knowledge import dependency_changes
+    from .evidence_changes import equivalent
     explicit = {(e["kind"], e["id"]): e for e in updates.validate_input_changes(input_changes)}
     # Stored revisions are authoritative; callers cannot hide one with a stale event.
     explicit.update({(e["kind"], e["id"]): e for e in dependency_changes(store, watch, as_of=as_of)})
     return updates.plan(subject, baseline, records, as_of=as_of, watch=watch,
                         refresh_status=store.refresh_status(subject), market=market,
-                        method_versions=methods, input_changes=list(explicit.values()), observations=observations)
+                        method_versions=methods, input_changes=list(explicit.values()), observations=observations,
+                        equivalent=lambda before, after: equivalent(before, after, bundle))
 
 
 def record_update_check(store, bundle, subject, plan_id, outcome, reason, *, data_dir=None, input_changes=()):
@@ -654,6 +670,7 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None,
     return {"subject": subject, "as_of": as_of, "as_of_version": as_of_version,
             "knowledge": subject_inputs(store, subject, as_of=frozen["created_at"] if as_of_version else as_of),
             "sources_view": view, "packet_id": (packet or {}).get("packet_id"),
+            "security": security_record((packet or {}).get("security") or {}),
             "versions": versions,
             "latest_version_id": next((v["version_id"] for v in versions
                                        if v["status"] == "latest"), None),
@@ -799,6 +816,9 @@ def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store
                             f"{as_of}; refresh the prices kind first. A snapshot fetched after "
                             "that cutoff is not read back into it (KARST-250): re-render at a "
                             "cutoff the evidence existed at.")
+    if len(series['D']) < 2:
+        raise ContractError('Insufficient history for an analytical chart: fewer than two daily bars. '
+                            'Refresh full prices without since; do not infer trend or support from one candle.')
     # A company store that has never carried a packet still knows what it is: the
     # caller's subject names the chart rather than a bare "price".
     title = " ".join(str(security[key]) for key in ("exchange", "ticker") if security.get(key)) or title

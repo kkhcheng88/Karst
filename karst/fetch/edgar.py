@@ -217,8 +217,7 @@ def _land_document(out_dir: Path, base: str, filename: str, raw: bytes, meta: di
     raw_rec = {"name": raw_path.name, "bytes": len(raw), "sha256": sha256_bytes(raw), "note": "verbatim EDGAR bytes, not truncated"}
     if len(raw) > GZIP_OVER_BYTES:
         raw_path = raw_path.with_name(raw_path.name + ".gz")
-        with gzip.open(raw_path, "wb") as handle:
-            handle.write(raw)
+        raw_path.write_bytes(gzip.compress(raw, mtime=0))
         raw_rec.update({"name": raw_path.name, "compressed": "gzip (sha256/bytes refer to the decompressed verbatim EDGAR bytes)",
                         "gz_bytes": raw_path.stat().st_size})
     else:

@@ -25,6 +25,7 @@ from zoneinfo import ZoneInfo
 
 from .packet import confined, instant, read_json
 from .schema import ContractError
+from .identity import entity_ids
 
 OHLC = ("open", "high", "low", "close")
 TIME_KEYS = ("timestamp", "at", "time", "datetime")
@@ -145,7 +146,7 @@ def _identity(record):
     symbol = next((params[key] for key in SYMBOL_KEYS if params.get(key)), None)
     if isinstance(symbol, (list, tuple)):
         symbol = ",".join(str(item) for item in symbol)
-    return tuple(record.get("entity_ids") or ()), str(symbol or UNKNOWN).upper()
+    return entity_ids(record.get("entity_ids") or ()), str(symbol or UNKNOWN).upper()
 
 
 def _basis(record):
@@ -269,7 +270,7 @@ def series_from_evidence(bundle, records, as_of, *, session=None):
         if key != winner:
             newest = max(group, key=_rank)
             gaps.append(f"{newest['record'].get('evidence_id')} covers "
-                        f"{key[0][1]} on a different basis ({_display(newest['basis'])}) and was "
+                        f"{key[0][1]} with different basis ({_display(newest['basis'])}) or identity {key[0][0]} and was "
                         "not merged into the charted series")
     group = groups[winner]
     chosen = max(group, key=_rank)

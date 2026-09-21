@@ -90,6 +90,9 @@ class HttpTransportTests(unittest.TestCase):
                     'kind': 'report', 'intent': 'add', 'question': 'What does the analyst report change?'})
                 self.assertEqual(report_plan.data['completion']['deliverable'], 'report_impact_assessment')
                 self.assertIn('compare_registered_momentum', names)
+                self.assertIn('refresh_daily', names)
+                compact = await client.call_tool('get_research_protocol', {'mode': 'workflow', 'include_schema': False})
+                self.assertNotIn('output_schema', compact.data)
                 source_schema = await client.call_tool('get_knowledge', {'kind':'schema'})
                 self.assertIn('evidence_id', source_schema.data['source_reference'])
                 comparison = await client.call_tool('compare_registered_momentum', {
