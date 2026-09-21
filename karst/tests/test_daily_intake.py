@@ -37,6 +37,7 @@ class NewsTests(ServiceCase):
         records = [registry.register(item, entity_ids=['XNAS:DEMO']) for item in landed]
         self.assertEqual(len(records), 2)  # neither old nor future; duplicate feed URL merged
         self.assertTrue(all(r['truncated'] and r['kind'] == 'news' for r in records))
+        self.assertEqual({service._summary(r)['title'] for r in records}, {'Demo wins contract', 'Undated'})
         self.assertEqual(sum(r['published_at'] is None for r in records), 1)
         self.assertEqual([registry.register(item, entity_ids=['XNAS:DEMO'])['evidence_id']
                           for item in self.fetch()], [r['evidence_id'] for r in records])
@@ -83,6 +84,21 @@ class IdentityHistoryTests(ReliabilityCase):
 
 
 class ObservationTests(unittest.TestCase):
+    def test_edgar_external_delivery_script_is_not_an_amended_filing(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            def record(name, body):
+                raw = body.encode()
+                (root / name).write_bytes(raw)
+                return {'source_id': 'filing', 'source': 'edgar', 'kind': 'filing', 'status': 'ok',
+                        'media_type': 'text/html', 'artifact': {'path': name, 'sha256': digest(raw), 'bytes': len(raw)}}
+            before = record('a.htm', '<p unit="USD">100</p><script type="text/javascript"  src="/random/A"></script>')
+            after = record('b.htm', '<p unit="USD">100</p><script type="text/javascript"  src="/random/BB"></script>')
+            self.assertTrue(equivalent(before, after, root))
+            for body in ('<p unit="USD">101</p>', '<p unit="EUR">100</p>',
+                         '<p unit="USD">100</p><script type="text/javascript" src="/x">newFact=1</script>'):
+                self.assertFalse(equivalent(before, record('b.htm', body), root))
+
     def test_gzip_clock_and_cik_spelling_are_not_a_new_filing(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
@@ -142,6 +158,16 @@ class DailyTests(ServiceCase):
         self.assertEqual(result['news_coverage']['status'], 'partial')
         self.assertEqual(result['adapter_errors'], {'longbridge': 'unavailable'})
         state.record_update_check.assert_not_called()
+        state.latest_update_check.return_value['payload']['outcome'] = 'unchanged'
+        with patch.object(service, 'bundle_for', return_value=self.bundle), \
+             patch.object(service, '_records', return_value=[]), \
+             patch.object(service, 'refresh_sources', return_value=intake) as fetch, \
+             patch.object(service, 'plan_update', return_value=plan), \
+             patch.object(bars, 'series_from_evidence', return_value={'bars': {'D': [{'complete': True}] * 200}}):
+            result = daily.refresh(state, self.root, SECURITY['security_id'])
+        self.assertEqual(fetch.call_count, 1)
+        self.assertEqual(fetch.call_args.kwargs['since'], '2026-09-20T12:00:00+00:00')
+        self.assertTrue(result['history_ready'])
 
 
 if __name__ == '__main__':

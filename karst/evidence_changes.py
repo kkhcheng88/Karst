@@ -1,5 +1,6 @@
 """Compare preserved evidence without treating encoding/CIK spelling as news."""
 import gzip
+import re
 
 from .identity import entity_ids
 from .packet import confined
@@ -21,8 +22,10 @@ def equivalent(before, after, root):
     left, right = before['artifact'], after['artifact']
     if left['sha256'] == right['sha256'] and left['bytes'] == right['bytes']:
         return True
-    # Only a lossless container distinction may be ignored, never arbitrary HTML edits.
-    if not (left['path'].endswith('.gz') and right['path'].endswith('.gz')):
+    edgar_html = (before.get('source') == after.get('source') == 'edgar'
+                  and before.get('kind') == after.get('kind') == 'filing'
+                  and before.get('media_type') == after.get('media_type') == 'text/html')
+    if not (left['path'].endswith('.gz') or right['path'].endswith('.gz') or edgar_html):
         return False
     try:
         bodies = []
@@ -30,7 +33,14 @@ def equivalent(before, after, root):
             raw = confined(root, asset['path']).read_bytes()
             if digest(raw) != asset['sha256'] or len(raw) != asset['bytes']:
                 return False
-            bodies.append(gzip.decompress(raw))
+            bodies.append(gzip.decompress(raw) if asset['path'].endswith('.gz') else raw)
+        if edgar_html:
+            # SEC delivery injects an empty external JavaScript loader with a
+            # changing relative URL. Preserve exact source bytes, but do not call
+            # that loader an amended filing. No inline code, XBRL attributes,
+            # visible text or other markup is normalized.
+            loader = br'<script\s+type="text/javascript"\s+src="/[^"<>\s]+"\s*>\s*</script>'
+            bodies = [re.sub(loader, b'', body) for body in bodies]
         return bodies[0] == bodies[1]
     except (OSError, ValueError, EOFError):
         return False

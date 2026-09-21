@@ -4,7 +4,7 @@ from pathlib import Path
 
 from . import service, bars
 from .identity import security_record
-from .packet import read_json
+from .packet import read_json, instant
 from .schema import ContractError
 
 
@@ -21,9 +21,13 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
     last = store.latest_update_check(subject)
     if since is None:
         # An incomplete check must never advance the news window past unread news.
-        since = (last['created_at'] if last and last['payload']['outcome'] == 'unchanged'
-                 else baseline['as_of'] if baseline else
-                 (datetime.now(timezone.utc) - timedelta(days=3)).isoformat())
+        if last and last['payload']['outcome'] == 'unchanged':
+            # Overlap catches publication during the prior read/check and modest
+            # provider indexing delay. Stable article identity deduplicates it.
+            since = (instant(last['created_at']) - timedelta(days=1)).isoformat()
+        else:
+            since = (baseline['as_of'] if baseline else
+                     (datetime.now(timezone.utc) - timedelta(days=3)).isoformat())
     result = service.refresh_sources(data_dir, security, ['prices', 'news'], since=since,
                                      clients=clients, store=store)
     cutoff = result.get('research_input', {}).get('as_of') or service.utc_now()

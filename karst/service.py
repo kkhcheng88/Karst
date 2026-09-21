@@ -175,7 +175,7 @@ def _summary(record):
             "source": record["source"], "kind": record["kind"], "status": record["status"],
             "published_at": record["published_at"], "fetched_at": record["fetched_at"],
             "period": record["period"], "truncated": record["truncated"],
-            "source_url": record["source_url"], "title": record["tool"],
+            "source_url": record["source_url"], "title": document.get("title") or record["tool"],
             # A failed or empty fetch must say why through the same interface the
             # researcher reads; otherwise "no data" and "fetch broke" look identical.
             "status_reason": record.get("status_reason"),

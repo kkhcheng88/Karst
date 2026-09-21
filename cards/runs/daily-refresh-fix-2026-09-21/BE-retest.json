@@ -1,0 +1,1181 @@
+{
+  "started_at": "2026-09-21T15:57:24.299Z",
+  "elapsed_seconds": 318.888,
+  "scope": "Price/news triage, chart read, selected primary verification and saved check; not completed research or exhaustive article review",
+  "under_five_minutes": false,
+  "check": {
+    "check_id": "check-40e652488d19b4bd0141a01ebb610d4e293542c787f86426517cfe85a0b0cb52",
+    "subject": "NYSE:BE",
+    "base_version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+    "payload": {
+      "outcome": "needs_reassessment",
+      "plan": {
+        "affected_layers": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6"
+        ],
+        "base_version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+        "checked_at": "2026-09-21T16:02:42.568406Z",
+        "conditions": [
+          {
+            "condition": {
+              "currency": "USD",
+              "description": "收市高於前高阻力區，重新評估結構；不是自動買入",
+              "kind": "price",
+              "operator": "gte",
+              "value": 284
+            },
+            "market": {
+              "adjustment": "NoAdjust",
+              "at": "2026-09-21T04:00:00+00:00",
+              "basis": "adjust=NoAdjust period=Day session=unknown",
+              "complete": false,
+              "currency": "USD",
+              "evidence_id": "ev-d570e4d91c05dbcf799ed52b7152ba2fef132a42785c1ac6937837cf3d395d51",
+              "price": 278.52
+            },
+            "status": "unknown"
+          },
+          {
+            "condition": {
+              "currency": "USD",
+              "description": "收市跌穿主要承接，檢查反彈修復假設",
+              "kind": "price",
+              "operator": "lte",
+              "value": 249
+            },
+            "market": {
+              "adjustment": "NoAdjust",
+              "at": "2026-09-21T04:00:00+00:00",
+              "basis": "adjust=NoAdjust period=Day session=unknown",
+              "complete": false,
+              "currency": "USD",
+              "evidence_id": "ev-d570e4d91c05dbcf799ed52b7152ba2fef132a42785c1ac6937837cf3d395d51",
+              "price": 278.52
+            },
+            "status": "unknown"
+          },
+          {
+            "condition": {
+              "description": "季度業績／指引、項目投運、收款或同業估值變化",
+              "kind": "event"
+            },
+            "market": {
+              "adjustment": "NoAdjust",
+              "at": "2026-09-21T04:00:00+00:00",
+              "basis": "adjust=NoAdjust period=Day session=unknown",
+              "complete": false,
+              "currency": "USD",
+              "evidence_id": "ev-d570e4d91c05dbcf799ed52b7152ba2fef132a42785c1ac6937837cf3d395d51",
+              "price": 278.52
+            },
+            "status": "requires_reading"
+          }
+        ],
+        "diagnostics": [
+          {
+            "evidence_id": "ev-427d033fa1ecf6996700b4dab33d5dd8da69b2c2e545a5529fc810e81e80168c",
+            "reason": "adapter reported empty; see known gaps and the preserved envelope",
+            "source_id": "src-1a6d26f36250ad98fc0c132293fdbddafe497825157c9466b2f88a8a3eab358e",
+            "status": "empty"
+          },
+          {
+            "evidence_id": "ev-2064929ac065274e22ad0434cf5996b5c8fee87142beb46bd850474377d59b13",
+            "reason": "adapter reported empty; see known gaps and the preserved envelope",
+            "source_id": "src-5a4437db9cecf1d96c94993ae16825fd8626311b15a0628e1e6ef30c71047506",
+            "status": "empty"
+          },
+          {
+            "evidence_id": "ev-02f45f148da5b950bcff0595a9e3eb2f0afc1eb0f7e1309db2c98b4b3902d899",
+            "reason": "OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301600, trace_id=) invalid symbol",
+            "source_id": "src-93aa7883f16cf95c40ad0d259aa267b79fa758c2da036beb0b913e2a7575cba7",
+            "status": "error"
+          },
+          {
+            "evidence_id": "ev-7fc230a2a882ffc2fd7aac593b86122685c2985b76c5f1d4aa25776ed2b1461f",
+            "reason": "adapter reported empty; see known gaps and the preserved envelope",
+            "source_id": "src-9cc1192cd1343a36cbb29899186c7593c038a67bba498ed9bbd4822544729fad",
+            "status": "empty"
+          },
+          {
+            "evidence_id": "ev-e5ff324a95ce29bd6ec20dab09e42bd03a2e8960cad8f5cb3f0f1f209b7ac03c",
+            "reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different",
+            "source_id": "src-ffd2cc90f0ac3a23d90842800dd588af6126dc7387cceea93aed392e75e80d5f",
+            "status": "empty"
+          }
+        ],
+        "note": "Routing is triage, not a conclusion. Inspect relevance and dependencies; reuse candidates need agent judgment. A price threshold is not an executed trade.",
+        "plan_id": "upd-b60829caf66f7c7175c00852da691715ab4fd1a2522daf52784d0e8a2627f081",
+        "preserve": {
+          "assessed_at": {
+            "L1": "2026-09-19T15:47:13Z",
+            "L2": "2026-09-19T15:47:13Z",
+            "L3": "2026-09-19T15:48:37Z",
+            "L4": "2026-09-19T15:47:13Z",
+            "L5": "2026-09-19T15:48:37Z",
+            "L6": "2026-09-19T15:48:37Z"
+          },
+          "target_date": "2027-03-18",
+          "valuation_date": "2026-09-19"
+        },
+        "price_only": false,
+        "reasons": [
+          {
+            "kind": "method_changed",
+            "previous": "research-protocol-v1+d1cb2b0cd9b0"
+          }
+        ],
+        "refresh_status": [
+          {
+            "adapter": "edgar",
+            "checked_at": "2026-09-21T15:19:13Z",
+            "error": null,
+            "kinds": [
+              "filing",
+              "filing_index"
+            ],
+            "packet_error": null,
+            "status": "ok"
+          },
+          {
+            "adapter": "longbridge",
+            "checked_at": "2026-09-21T15:58:07Z",
+            "error": null,
+            "kinds": [
+              "prices"
+            ],
+            "packet_error": null,
+            "status": "ok"
+          },
+          {
+            "adapter": "news_rss",
+            "checked_at": "2026-09-21T15:58:07Z",
+            "coverage": {
+              "candidate_articles": 31,
+              "checked_at": "2026-09-21T15:58:01Z",
+              "providers": [
+                {
+                  "error": null,
+                  "in_window": 6,
+                  "items_returned": 20,
+                  "newest_published_at": "2026-09-21T14:16:46+00:00",
+                  "provider": "yahoo",
+                  "status": "ok",
+                  "undated": 0,
+                  "url": "https://finance.yahoo.com/rss/headline?s=BE"
+                },
+                {
+                  "error": null,
+                  "in_window": 25,
+                  "items_returned": 100,
+                  "newest_published_at": "2026-09-21T14:29:04+00:00",
+                  "provider": "google",
+                  "status": "ok",
+                  "undated": 0,
+                  "url": "https://news.google.com/rss/search?q=%22Bloom+Energy%22&hl=en-US&gl=US&ceid=US%3Aen"
+                }
+              ],
+              "scope": "configured public RSS feeds; not exhaustive news coverage",
+              "since": "2026-09-19T15:48:37+00:00",
+              "status": "ok",
+              "successful_feeds": 2,
+              "undated_articles": 0
+            },
+            "error": null,
+            "kinds": [
+              "news"
+            ],
+            "packet_error": null,
+            "status": "ok"
+          }
+        ],
+        "reuse_candidates": [],
+        "routing_version": "incremental-v1",
+        "source_changes": [
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-961df00968968908711642fc1e7576dadc7091ca5a253fd1d74625e9c52ac3c4",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2026-07-28",
+              "start": null
+            },
+            "previous_evidence_id": "ev-c2da0949ba1c48b39e20d4bc0a9741102e297c7b4785f09af56603adb3c2cbff",
+            "published_at": "2026-07-28T20:07:21+00:00",
+            "source_id": "src-07f87841ab94e2b0ebbcb12ba9bab37de371b25dd8e309dc331978c0e4a43933",
+            "source_version": "961df00968968908711642fc1e7576dadc7091ca5a253fd1d74625e9c52ac3c4"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-fe04a02f3ac723d868223e5514689ab382f4fd3701519c089c5692d73d95b8aa",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2026-04-28",
+              "start": null
+            },
+            "previous_evidence_id": "ev-1b4c3a1d7cd723c325bf6420d911e865db89be1abd4e1ec401d2d92c37f450c5",
+            "published_at": "2026-04-28T20:07:03+00:00",
+            "source_id": "src-0f7047762439f7032249851a4be7daa489c143d9b1df3e5ddb0c379bf7f571a9",
+            "source_version": "fe04a02f3ac723d868223e5514689ab382f4fd3701519c089c5692d73d95b8aa"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-d570e4d91c05dbcf799ed52b7152ba2fef132a42785c1ac6937837cf3d395d51",
+            "kind": "prices",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": "2026-09-19"
+            },
+            "previous_evidence_id": null,
+            "published_at": null,
+            "source_id": "src-1304d3421d3bb6fe16d57f4cd26f2fadece81071b59950130dc5149a0c266a3c",
+            "source_version": "d570e4d91c05dbcf799ed52b7152ba2fef132a42785c1ac6937837cf3d395d51"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-91337cdce95308b8d475cb968a778b5feaa044c52ec1074ab60e9f23a27dd4c0",
+            "kind": "industry_report",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-08-12",
+            "source_id": "src-245ac2611c0e7888cf0dcf6ff98ff69ff5eb36a4fd7078c61de4a652fa5a4aaf",
+            "source_version": "91337cdce95308b8d475cb968a778b5feaa044c52ec1074ab60e9f23a27dd4c0"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-b9c3fdd9c89bdc9a5bed60ed7216db0a35adc4b14992eb33b47daaf3e5ddba0a",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2026-06-30",
+              "start": null
+            },
+            "previous_evidence_id": "ev-9446439710d2a6f2762741a7d1e0a473f28a11f6b36dca97134ed8440717f7ef",
+            "published_at": "2026-07-28T21:27:03+00:00",
+            "source_id": "src-2cb8126494c8dc50969fa65eb94691006c3fd323706c9f8ffd4cfa2a54f864d9",
+            "source_version": "b9c3fdd9c89bdc9a5bed60ed7216db0a35adc4b14992eb33b47daaf3e5ddba0a"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452",
+            "kind": "industry_report",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-07-22",
+            "source_id": "src-2df451b98c23673c8a946a28724a12268e23e22bdc8ecf12ee017328b455ec19",
+            "source_version": "10c679f6eb608145f59a525df03004303ebe150e722580ab7d867f1007785452"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-970cfebfe2732801f8de1a09df267a665ee7fae692122b7759c95a1ff50dbc92",
+            "kind": "prices",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": "ev-f97b35e25225f539348fa085341cd68ceacd8963c62b7f69927bbb045e795822",
+            "published_at": null,
+            "source_id": "src-36511926fcdcd0c58d2b6df7fe3fb14f80d7f88eb1cb35fe4408c63f16cf29b2",
+            "source_version": "970cfebfe2732801f8de1a09df267a665ee7fae692122b7759c95a1ff50dbc92"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-0c59c1e1beba760ec237a73e3033f52fed255a5617f510680a1f95ba9c22a868",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2025-12-31",
+              "start": null
+            },
+            "previous_evidence_id": "ev-74a9da5d3ea76c9b39e48fa796ad9ceeb705d1dd9a365ceb5ed960368aa22179",
+            "published_at": "2026-02-09T22:16:15+00:00",
+            "source_id": "src-3f8445918bf196902462a7498a92c0ddad546837623a61eb724e4d07aa6fa55d",
+            "source_version": "0c59c1e1beba760ec237a73e3033f52fed255a5617f510680a1f95ba9c22a868"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-486d1e59996b94dcd340d8fa1a4c1cc295ecb0a3784bf7d742ccddb101c1f72c",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2026-03-31",
+              "start": null
+            },
+            "previous_evidence_id": "ev-e77c5fdd378a2731c309d02f820f9ee8158e8d0ebafa0e61b8b657a967c10ca8",
+            "published_at": "2026-04-28T21:33:30+00:00",
+            "source_id": "src-48a626214205ae901db44ca4ca42dae125064521c2f2b31838ed9300ead8ff92",
+            "source_version": "486d1e59996b94dcd340d8fa1a4c1cc295ecb0a3784bf7d742ccddb101c1f72c"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-0c34389d90b0fb31b68899bd9bfd4ba4ea29ef78119c0e72f9e8e596c26f5810",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2026-07-28",
+              "start": null
+            },
+            "previous_evidence_id": "ev-e2ab7f5dacb5dbad5c524ecde89271a139770a23d2bbf4eb750a34190fd9de18",
+            "published_at": "2026-07-28T20:07:21+00:00",
+            "source_id": "src-4b2b8615964aae26ab08e4a19956b943380898908050ca883471f3c5bdb6907c",
+            "source_version": "0c34389d90b0fb31b68899bd9bfd4ba4ea29ef78119c0e72f9e8e596c26f5810"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-61d196b5ae766c7cadf9e3a3ac165ef9175f68ba3231ee0ab0a184c582489915",
+            "kind": "filing",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": "2026-04-28",
+              "start": null
+            },
+            "previous_evidence_id": "ev-6dfb77af81e7a1cde4d6cdfdadb913245a4b96389d8323802ea54240d406047c",
+            "published_at": "2026-04-28T20:07:03+00:00",
+            "source_id": "src-4f7477bc574eb5da8eefee7c9302e58959367d1c03d61f6e98d8b7948996c1d9",
+            "source_version": "61d196b5ae766c7cadf9e3a3ac165ef9175f68ba3231ee0ab0a184c582489915"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-1019e0928f644dde80b1b57133651ba3c8319aabc1419fd28f0a1fb27b709e50",
+            "kind": "industry_report",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-05-20",
+            "source_id": "src-72db80ad40ff2a06938fd476eb3c39ae1004a771afefa0f0d40cc024491b34ec",
+            "source_version": "1019e0928f644dde80b1b57133651ba3c8319aabc1419fd28f0a1fb27b709e50"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-2084076033c63c5b9bd80b4c778588523871d39c1e8c34c4e7ec74e9e9bdb0e3",
+            "kind": "industry_report",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-08-12",
+            "source_id": "src-756df4cd70aa75db10bc88e2baea1005045f0423ad7cae6e99b00add96edaeb5",
+            "source_version": "2084076033c63c5b9bd80b4c778588523871d39c1e8c34c4e7ec74e9e9bdb0e3"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-7d83fae68603231903a8ed977b40172069fac4ca80875262727f6c63a4e87775",
+            "kind": "industry_report",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-05-20",
+            "source_id": "src-8947126840163167db84e6b8e5081291caf3d933df287d8fa702f9476bf9bf7a",
+            "source_version": "7d83fae68603231903a8ed977b40172069fac4ca80875262727f6c63a4e87775"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-be2794a05c4ec1c0b82e7d679ebda675071888aa1d6866e2d29c207ac6ec4f6f",
+            "kind": "prices",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": "ev-0b566d9ed638525c29e392779ac22bbe9925682561140264475c6b29c16e4ac8",
+            "published_at": null,
+            "source_id": "src-ba77bbeda836d1117bd1719a58a46225f24b4437a24654b1ed563135945ee37b",
+            "source_version": "be2794a05c4ec1c0b82e7d679ebda675071888aa1d6866e2d29c207ac6ec4f6f"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-442865670812e9db7684bb3311616e2ad2910b4640e6ae705ed61a6ebc6a3303",
+            "kind": "industry_report",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-08-12",
+            "source_id": "src-e7f47bf7a74e762354618383bd051dd429a8ca435cee5a8103dd15576732b6eb",
+            "source_version": "442865670812e9db7684bb3311616e2ad2910b4640e6ae705ed61a6ebc6a3303"
+          },
+          {
+            "change": "changed",
+            "dependencies": [],
+            "evidence_id": "ev-f700c3dbe810c62ad9da27e89e6ecefe6115a0b7287f637120f83fb531edfb8e",
+            "kind": "prices",
+            "layers": [
+              "L4",
+              "L5",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": "ev-df33900d4e158336da5aac44c782fa312b727b1bce438dbd7cccc75b65abe95d",
+            "published_at": null,
+            "source_id": "src-ea9a35bec7cfb88abdaec8a78de5c58c3ae660a74b77b11e8f2a39773f33a0e7",
+            "source_version": "f700c3dbe810c62ad9da27e89e6ecefe6115a0b7287f637120f83fb531edfb8e"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-0a8611ddfcec4e52eba61698b05aab3e86c3fd55cb18c756abb3119894854e4e",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T01:12:39+00:00",
+            "source_id": "src-rss-0be688d7e8002936854df3f7576c396cfd5caa8e8a7a01f74a0086a3f31d805b",
+            "source_version": "0a8611ddfcec4e52eba61698b05aab3e86c3fd55cb18c756abb3119894854e4e"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-8ee1ca82c8fc775656e1b30411adc11cfffcdefeac81868d71a14a64b2a53167",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T19:15:00+00:00",
+            "source_id": "src-rss-13ebadf0345b32280e1cc2a917c612ab7d756e9a4d3b4d1862afe361f7f58d6a",
+            "source_version": "8ee1ca82c8fc775656e1b30411adc11cfffcdefeac81868d71a14a64b2a53167"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-10a2bbbe32abe22687faee926ad134f2e2c4dbaa3d2bc2297310b805b0047aba",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T06:25:00+00:00",
+            "source_id": "src-rss-146725d4b32166ea7fe647f4665a7f05df54cbed16efd132d949ace488d78d25",
+            "source_version": "10a2bbbe32abe22687faee926ad134f2e2c4dbaa3d2bc2297310b805b0047aba"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-fd16c2779344427feff8b996f552a6f314cb1252ad4de3e22789d46216660211",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T06:45:20+00:00",
+            "source_id": "src-rss-14a4ffa5eb4cf95cdbda393f8757910875a7bc015b45d671b9076466e0eb78a8",
+            "source_version": "fd16c2779344427feff8b996f552a6f314cb1252ad4de3e22789d46216660211"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-0cb6b132ae0a0a9a18cd76b5512de3f91bc0e417133b90622535f043ad6aea63",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T01:16:39+00:00",
+            "source_id": "src-rss-3d4207845a49dac3b1ca55df3298bc1c87fc94aafc976d7248c8e615e20af5cc",
+            "source_version": "0cb6b132ae0a0a9a18cd76b5512de3f91bc0e417133b90622535f043ad6aea63"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-28aa353ff62ff754f9c0d6fa0513d28aec5ac802aa298d34f6465214ac239d08",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T14:16:46+00:00",
+            "source_id": "src-rss-40c07860049476e2e70abf028048ae831e05a06ba839bb3ba447d8bc7659e104",
+            "source_version": "28aa353ff62ff754f9c0d6fa0513d28aec5ac802aa298d34f6465214ac239d08"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-a9e09ff95caa467d2d94f3be2479514c06165001b6844665c8355439168dfa94",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T06:05:46+00:00",
+            "source_id": "src-rss-4ab0b6dfc29e7ce0a58fb01068bd019c7f09549acb4517380f440ac8dc0aceb6",
+            "source_version": "a9e09ff95caa467d2d94f3be2479514c06165001b6844665c8355439168dfa94"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-1c35cddbe5124ebf49db408ee828a581999f5cfeb7da4f0735529de7af083824",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T01:11:09+00:00",
+            "source_id": "src-rss-4e1059bff17ef67da90722b5b0b7eaf28f0ee743fd9ab196fa257385301f2255",
+            "source_version": "1c35cddbe5124ebf49db408ee828a581999f5cfeb7da4f0735529de7af083824"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-888f7ca49d9f4d9626f8928191f8fb90c8d91e1f0640acabc3b4276c212202f8",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T06:25:00+00:00",
+            "source_id": "src-rss-4e263958a2269f6053e84b17c6736e48436efcdb1c43206831d50f72d41121d2",
+            "source_version": "888f7ca49d9f4d9626f8928191f8fb90c8d91e1f0640acabc3b4276c212202f8"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-8c08de4d9eac69010a5fcf22d60ec3bf136d1dd9f335ee9a007f5a2f18a24b20",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T08:36:04+00:00",
+            "source_id": "src-rss-5f3974b692d8938db24eda211895994336fe2e2d649ccf092fbcd7cc777e39ef",
+            "source_version": "8c08de4d9eac69010a5fcf22d60ec3bf136d1dd9f335ee9a007f5a2f18a24b20"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-6741317ed19a4d76ccf323af35dad89a78c6e02fc950af58edae392ac5029fe2",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T16:45:10+00:00",
+            "source_id": "src-rss-641d20616b72179168963d71c491d18ba3d6d8dc3219c9208ad788e848732391",
+            "source_version": "6741317ed19a4d76ccf323af35dad89a78c6e02fc950af58edae392ac5029fe2"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-0265d4167d6aee9905afc8eab104c5745831932824fb508e0fcc1bccc5412e54",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T08:36:04+00:00",
+            "source_id": "src-rss-64735d771de30eeafdfb35651f0be8f1cd23ca78059763e8c2a2150807486743",
+            "source_version": "0265d4167d6aee9905afc8eab104c5745831932824fb508e0fcc1bccc5412e54"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-4850615cb5a1c7d1d7ae57251a1e7a58c035703517414de6cb0f2c27104e2ef1",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T17:33:41+00:00",
+            "source_id": "src-rss-69db0d7b8d36e48e615e45620fe706a89543f86d74afaaf3b05f2d3c2982a192",
+            "source_version": "4850615cb5a1c7d1d7ae57251a1e7a58c035703517414de6cb0f2c27104e2ef1"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-088d65a8657e0592be002d39f2dec9ecee751b3467eb6003b2a3605f1e2e7671",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T23:21:00+00:00",
+            "source_id": "src-rss-70779ee0ae98373bb37f1fc5cbc52297002d0e21ff8c0ba156fe4092db402519",
+            "source_version": "088d65a8657e0592be002d39f2dec9ecee751b3467eb6003b2a3605f1e2e7671"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-5a7940a0213714f9ab3cd6841180fe10bd3c6467cca8976ec2f38ecb2bb26bda",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-19T22:25:00+00:00",
+            "source_id": "src-rss-71ad9c5ddd6817238e4257f04e2d6a072a62cbf480ef8fd5dfca9e2d87b7d1e9",
+            "source_version": "5a7940a0213714f9ab3cd6841180fe10bd3c6467cca8976ec2f38ecb2bb26bda"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-bd75ff33114f0dd9762bde4d0d96c936df7072373827b3569a26961902c1c2b6",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-19T22:37:39+00:00",
+            "source_id": "src-rss-7fc1c94e3716fd2ab8aaaa78006f20a313f9ddfcc586c356900dba72049ba58e",
+            "source_version": "bd75ff33114f0dd9762bde4d0d96c936df7072373827b3569a26961902c1c2b6"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-34e4f8f2d690ea072f717e8abbcf566104d38efafea51124032c94ce01566d31",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-19T23:05:00+00:00",
+            "source_id": "src-rss-86b6f30b23068305624283e6adfc35a0498597652bb9fa68dbc20a96d6823cea",
+            "source_version": "34e4f8f2d690ea072f717e8abbcf566104d38efafea51124032c94ce01566d31"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-9c654176c7ac9de8a1cef15f59b7f8ced045f29fcc9e662b9bdb33c1c0d01633",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T16:45:10+00:00",
+            "source_id": "src-rss-875b1313260cee676e3d6a207a94fe26246f9e6583b85dc705bc79296696b43e",
+            "source_version": "9c654176c7ac9de8a1cef15f59b7f8ced045f29fcc9e662b9bdb33c1c0d01633"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-0041d1be242b3d659da214065f644a39f5a7c46bb549bdccc04cc45d0955f7a8",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T23:21:00+00:00",
+            "source_id": "src-rss-8a49581406809a288cbfdfa22b1c267ad3bf13570a2fee0df5a998a2a9ea777a",
+            "source_version": "0041d1be242b3d659da214065f644a39f5a7c46bb549bdccc04cc45d0955f7a8"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-905c414df1e497ceff7346b52f58e357dc029772c1931a4ec29e02b6ef39c681",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T14:29:04+00:00",
+            "source_id": "src-rss-930dcc5b7e990e1c6bce3e52baf2ad2992dd4bcc5b2bd1abe0f73b5ac4c1651a",
+            "source_version": "905c414df1e497ceff7346b52f58e357dc029772c1931a4ec29e02b6ef39c681"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-5bc8dc4310e041126302a593ebeb87bca3efb00ee1fdd585ebd30b0ce036acd1",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T08:36:04+00:00",
+            "source_id": "src-rss-94a56f7426083d7d68ea44de20ffd342141278d1ee0fa2346e883b3376811661",
+            "source_version": "5bc8dc4310e041126302a593ebeb87bca3efb00ee1fdd585ebd30b0ce036acd1"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-3c64b41733a0c86dbbf5a55d641bd65c3c7199658836086cea829a5ca27f77a0",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-19T22:25:00+00:00",
+            "source_id": "src-rss-ab773f5f7545000a0d44db3291bb207cd9b2d34a097f6c2d2a2c0636975d9a68",
+            "source_version": "3c64b41733a0c86dbbf5a55d641bd65c3c7199658836086cea829a5ca27f77a0"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-31b38da2ad3784448c3a581ab552fbca564af36005eecd310f01d9fdd4f466dc",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-19T23:10:26+00:00",
+            "source_id": "src-rss-b5418a20307f817af42b17f2444061a5e67ad97831920a4c3a44bffd4782c5b4",
+            "source_version": "31b38da2ad3784448c3a581ab552fbca564af36005eecd310f01d9fdd4f466dc"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-013f45f04be4ef670bc8054dbb6d401859f6e2edebf792c3e42659631014e63f",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T14:16:46+00:00",
+            "source_id": "src-rss-b5b664d859a5e2a5ed13c62920007a1efa1cc24f9dd186e78523dedbe69626f3",
+            "source_version": "013f45f04be4ef670bc8054dbb6d401859f6e2edebf792c3e42659631014e63f"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-975793cd64721302b7b123d7d3f3ce0128a897bd8afe2d996752e40d9144210b",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T07:05:00+00:00",
+            "source_id": "src-rss-c22f76625bd85da01fdd0205e7d827d4d18367096693404871012f1656acc4c3",
+            "source_version": "975793cd64721302b7b123d7d3f3ce0128a897bd8afe2d996752e40d9144210b"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-f22c4e296ad8b38b9a7b0b309dc8b5fb55e7edc920a353261ca51229b8b9eadc",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T13:07:30+00:00",
+            "source_id": "src-rss-c480e67bd175922e5138f6428c57041b8ccf2e58265aa2543c56d0f7b3c65259",
+            "source_version": "f22c4e296ad8b38b9a7b0b309dc8b5fb55e7edc920a353261ca51229b8b9eadc"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-ccaedbc8abaca542c5eabce0615daac5bea7d06a3bf03bdc624c8b1ebb41ff9d",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-19T22:25:00+00:00",
+            "source_id": "src-rss-c8420a69748fbae07124f68bba6ed40a5e6fb6c210d21fce472deb6179921a4f",
+            "source_version": "ccaedbc8abaca542c5eabce0615daac5bea7d06a3bf03bdc624c8b1ebb41ff9d"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-246289b2dbb743dc7bdf047c343101b65091b8ccde903378373a9bd2dd745016",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T01:10:33+00:00",
+            "source_id": "src-rss-cb6f4188df133d0ac5148cd2c4a5c4c6f39028e4640368f7c982d9ae6bd79e4c",
+            "source_version": "246289b2dbb743dc7bdf047c343101b65091b8ccde903378373a9bd2dd745016"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-c00a12e442d4c6490089754312a8d02c695e09c2810fdfbc55b89ab7bfd69434",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-21T13:57:05+00:00",
+            "source_id": "src-rss-dbd2fa2bbda48ac98dc5854858c577d25ce7909851f3533647faf4899281c733",
+            "source_version": "c00a12e442d4c6490089754312a8d02c695e09c2810fdfbc55b89ab7bfd69434"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-765540a0f293414f917173155987e9e1e188f3ee4ab77c97fa9a43cf9fc2113a",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T19:26:46+00:00",
+            "source_id": "src-rss-e8a40e9e4997eaa23c02ac3e642ec2c6404ded69902c84cb50c46aee789393b2",
+            "source_version": "765540a0f293414f917173155987e9e1e188f3ee4ab77c97fa9a43cf9fc2113a"
+          },
+          {
+            "change": "discovered",
+            "dependencies": [],
+            "evidence_id": "ev-2552c86024704d4909739814ec3fe5a2949a672cb2b8a0adaa22e0a0ad5afd52",
+            "kind": "news",
+            "layers": [
+              "L2",
+              "L3",
+              "L4",
+              "L6"
+            ],
+            "period": {
+              "end": null,
+              "start": null
+            },
+            "previous_evidence_id": null,
+            "published_at": "2026-09-20T18:44:51+00:00",
+            "source_id": "src-rss-ea3248944c38e64dcf44348693a81e864fa8bb5861b2ad7833d34d798fecb2e4",
+            "source_version": "2552c86024704d4909739814ec3fe5a2949a672cb2b8a0adaa22e0a0ad5afd52"
+          }
+        ],
+        "status": "needs_reassessment",
+        "subject": "NYSE:BE",
+        "watch_version": "watch-8393a592b15b340422253ae9504dba389da43887562a52a8e45e53767249a743"
+      },
+      "reason": "日常價格＋新聞分流：2026-09-21 15:58Z盤中278.52，較9/18收265.63升4.85%，仍未收市、未確認收穩280.74–283.83；近期K線已實讀，維持觀望，未改估值或原目標日。新增1根已自動接回1002根歷史，無須全量取價。Yahoo與Google RSS均成功、窗口9/19基準後31篇線索，含同事件轉載。已核Army官方9/18公告：Indelible-Bloom获三基地有條件長租開發資格，正式租約仍初期、最快2027開發／2030或更早初始運行；屬新納入研究的事件，未披露BE合約金額或收入，不能加進訂單。800V成本優勢為公司9/16模型公告，今日文章是再報道，不能當新盈利。Stocktwits9/21另引BMO所述Oracle許可進展／Brookfield64億融資，尚需原始文件核實，列局部補查而不整份基本面重跑。新聞清單缺標題造成多餘逐檔讀取，批次讀取逾時已中止，未稱31篇全文皆讀或新聞完整覆蓋。此次完成可核對的初步分流，needs_reassessment指向上述事件／融資補查；既有同業倍數及獨立覆核另列，不以舊申報重抓當新事件。官方來源：https://www.army.mil/article/295486/army_announces_conditional_lease_solicitation_awards_for_commercial_power_generation_securing_installation_power_resilience"
+    },
+    "created_at": "2026-09-21T16:02:43.137911Z"
+  },
+  "correction": "document.title was already present in the refresh metadata; root selected generic title instead and made unnecessary bulk calls. Flattened display title and workflow instruction correct this. Cancelled unfinished 31-read batch; no claim that all full articles were read.",
+  "chart": {
+    "artifact_id": "cha-2e65cc8f3a67a4781e1c158e6a308dfe539dc00d352777d21983e2ab01cd94f3",
+    "read_at": "2026-09-21T16:02:06.723Z",
+    "daily_bars": 1002,
+    "new_segment_bars": 1,
+    "last_close": 278.52,
+    "last_bar_complete": false,
+    "charts_version": "0.3.3"
+  }
+}
