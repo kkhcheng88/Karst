@@ -1,0 +1,252 @@
+{
+  "method": "matched-completed-daily-price-returns/v1; NoAdjust price returns, no dividends; exclude Sep21; SMA200 exactly 200 completed closes; prior20 completed bars volume",
+  "axti_citation": {
+    "evidence_id": "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+    "locator": "L7501-L10015"
+  },
+  "spy_citation": {
+    "evidence_id": "ev-ff2dc21e1d27356ece88543a0abb26170049b436c2fbea240bfac36b80a9f17a",
+    "locator": "L8701-L10015"
+  },
+  "matched_sessions": 131,
+  "returns": [
+    {
+      "sessions": 20,
+      "start": "2026-08-20",
+      "end": "2026-09-18",
+      "axti_start": 73.12,
+      "axti_end": 70.03,
+      "spy_start": 762.6,
+      "spy_end": 761.69,
+      "axti_return": -0.0422592997811817,
+      "spy_return": -0.001193286126409565,
+      "excess_pp": -4.106601365477214,
+      "ratio_return": -0.04111507570419626
+    },
+    {
+      "sessions": 60,
+      "start": "2026-06-24",
+      "end": "2026-09-18",
+      "axti_start": 70.14,
+      "axti_end": 70.03,
+      "spy_start": 733.24,
+      "spy_end": 761.69,
+      "axti_return": -0.0015682919874536738,
+      "spy_return": 0.03880039277726266,
+      "excess_pp": -4.036868476471634,
+      "ratio_return": -0.038860867829275114
+    },
+    {
+      "sessions": 120,
+      "start": "2026-03-27",
+      "end": "2026-09-18",
+      "axti_start": 60.63,
+      "axti_end": 70.03,
+      "spy_start": 634.09,
+      "spy_end": 761.69,
+      "axti_return": 0.15503875968992253,
+      "spy_return": 0.2012332634168652,
+      "excess_pp": -4.619450372694267,
+      "ratio_return": -0.03845589789575432
+    }
+  ],
+  "sma200": {
+    "value": 57.09839999999999,
+    "twenty_completed_sessions_before": 51.727524999999986,
+    "change_pct": 0.10383011752447091,
+    "distance_completed_close": 0.2264792008182368,
+    "distance_intraday": 0.3816499236405926
+  },
+  "completed_events": [
+    {
+      "date": "2026-09-14",
+      "open": 59.68,
+      "high": 62.65,
+      "low": 56.9,
+      "close": 57.06,
+      "volume": 10223946,
+      "prior20_average": 9141091.3,
+      "volume_ratio": 1.1184601120874922,
+      "return": -0.11903659101435837
+    },
+    {
+      "date": "2026-09-16",
+      "open": 59.49,
+      "high": 66.58,
+      "low": 59.3,
+      "close": 64.3,
+      "volume": 12071699,
+      "prior20_average": 8639619.1,
+      "volume_ratio": 1.3972489828862942,
+      "return": 0.11438474870017323
+    },
+    {
+      "date": "2026-09-18",
+      "open": 69.72,
+      "high": 71.31,
+      "low": 67.67,
+      "close": 70.03,
+      "volume": 16819914,
+      "prior20_average": 8060829.65,
+      "volume_ratio": 2.0866231802826896,
+      "return": 0.03365313653136526
+    }
+  ],
+  "level_distances_from_intraday": [
+    {
+      "level": 52.76,
+      "pct": -0.331220687032577
+    },
+    {
+      "level": 56.9,
+      "pct": -0.27874255292178984
+    },
+    {
+      "level": 61.86,
+      "pct": -0.21587019901128157
+    },
+    {
+      "level": 70.88,
+      "pct": -0.1015337812143492
+    },
+    {
+      "level": 73.94,
+      "pct": -0.06274559513246292
+    },
+    {
+      "level": 76,
+      "pct": -0.03663328685511469
+    },
+    {
+      "level": 83.25,
+      "pct": 0.05526682722778542
+    },
+    {
+      "level": 90.1,
+      "pct": 0.14209659018887044
+    },
+    {
+      "level": 90.39,
+      "pct": 0.14577259475218662
+    },
+    {
+      "level": 97.79,
+      "pct": 0.2395740905057675
+    },
+    {
+      "level": 143.16,
+      "pct": 0.8146786664976549
+    }
+  ],
+  "rr": {
+    "entry": 78.89,
+    "structural_invalidation": 56.9,
+    "first_obstacle": 83.25,
+    "first_obstacle_R": 0.19827194179172347,
+    "resistance_90_1_R": 0.509777171441564,
+    "resistance_97_79_R": 0.8594815825375173,
+    "note": "Observation scenario, not executable trade; excludes costs and gap risk"
+  },
+  "last_completed_week": {
+    "at": "2026-09-14",
+    "end": "2026-09-18",
+    "open": 59.68,
+    "close": 70.03,
+    "low": 56.9,
+    "high": 71.31,
+    "volume": 51567077,
+    "return": 0.08121043693067787,
+    "prior20_average": 48846706.1,
+    "volume_ratio": 1.0556920029455168
+  },
+  "quote_citation": {
+    "evidence_id": "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927",
+    "locator": "L1-L43"
+  },
+  "ma_direction_discrepancy": {
+    "karst_value_before": 52.038925,
+    "karst_reported_change": 0.09722481776862223,
+    "correct_twenty_complete_prior": 51.727524999999986,
+    "reason": "direction() compares last 20 positions of plotted daily series, including repeated SMA on Sep21 incomplete bar; this equals 19 completed-session comparison here."
+  },
+  "short_returns": [
+    {
+      "sessions": 1,
+      "start": "2026-09-17",
+      "end": "2026-09-18",
+      "axti_start": 67.75,
+      "axti_end": 70.03,
+      "spy_start": 762.6,
+      "spy_end": 761.69,
+      "axti_return": 0.03365313653136526,
+      "spy_return": -0.001193286126409565,
+      "excess_pp": 3.4846422657774823,
+      "ratio_return": 0.03488805408869622
+    },
+    {
+      "sessions": 5,
+      "start": "2026-09-11",
+      "end": "2026-09-18",
+      "axti_start": 64.77,
+      "axti_end": 70.03,
+      "spy_start": 764.29,
+      "spy_end": 761.69,
+      "axti_return": 0.08121043693067787,
+      "spy_return": -0.0034018500830835796,
+      "excess_pp": 8.461228701376145,
+      "ratio_return": 0.0849011078545705
+    },
+    {
+      "sessions": 10,
+      "start": "2026-09-03",
+      "end": "2026-09-18",
+      "axti_start": 56.2,
+      "axti_end": 70.03,
+      "spy_start": 773.17,
+      "spy_end": 761.69,
+      "axti_return": 0.24608540925266897,
+      "spy_return": -0.014847963578514256,
+      "excess_pp": 26.093337283118323,
+      "ratio_return": 0.2648660949623678
+    }
+  ],
+  "rsi14_wilder": {
+    "method": "First 14 close-to-close gains/losses arithmetic means; thereafter (13*previous+current)/14; RSI=100-100/(1+avgGain/avgLoss). Raw completed closes only, Sep21 excluded.",
+    "bars_used": 250,
+    "seed_first_close_date": "2025-09-22",
+    "seed_completed_at": "2025-10-10",
+    "latest": {
+      "date": "2026-09-18",
+      "rsi": 54.32117977722167
+    },
+    "recent": [
+      {
+        "date": "2026-09-11",
+        "rsi": 48.93411884546959
+      },
+      {
+        "date": "2026-09-14",
+        "rsi": 42.96967132542708
+      },
+      {
+        "date": "2026-09-15",
+        "rsi": 43.5843782527685
+      },
+      {
+        "date": "2026-09-16",
+        "rsi": 49.615620745740614
+      },
+      {
+        "date": "2026-09-17",
+        "rsi": 52.47573053178786
+      },
+      {
+        "date": "2026-09-18",
+        "rsi": 54.32117977722167
+      }
+    ],
+    "final_average_gain": 2.2781868943097723,
+    "final_average_loss": 1.9157332371249964,
+    "note": "Calculated from already-read 250-completed-session tail; source seed convention may yield immaterial differences versus full-history RSI."
+  }
+}

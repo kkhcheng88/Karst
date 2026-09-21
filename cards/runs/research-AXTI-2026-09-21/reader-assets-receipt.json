@@ -1,0 +1,39 @@
+{
+  "source_evidence_id": "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+  "source_locator": "L1-L10015",
+  "source_fetched_at": "2026-09-21T15:37:21Z",
+  "cutoff": "2026-09-21T15:37:22Z",
+  "quote_at": "2026-09-21T15:37:20Z",
+  "quote": 78.89,
+  "chart_version": "0.3.3",
+  "validation": "karst.reader.interactive.validate passed",
+  "views": {
+    "D": {
+      "bars": 1000,
+      "complete_bars": 999,
+      "last_complete": false
+    },
+    "W": {
+      "bars": 209,
+      "complete_bars": 208,
+      "last_complete": false
+    },
+    "M": {
+      "bars": 49,
+      "complete_bars": 48,
+      "last_complete": false
+    }
+  },
+  "assets": [
+    {
+      "path": "/workspace/scratch/5ace4bd337a2/axti-ta/axti-chart-2026-09-21.json",
+      "bytes": 175658,
+      "sha256": "bfd66a0ded90126edbd7483a4e96d3f2dfb19eefcd25bb35338ae346b2edd7b3"
+    },
+    {
+      "path": "/workspace/scratch/5ace4bd337a2/axti-ta/axti-chart-2026-09-21.png",
+      "bytes": 129111,
+      "sha256": "734ad4d8b26ecc9aa5c37ef1e2bad8ef86cf40f307de55bfbc4cd0e813d419b1"
+    }
+  ]
+}

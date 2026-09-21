@@ -1,0 +1,827 @@
+{
+  "bear": {
+    "eps": 1.2444794117647058,
+    "cells": [
+      {
+        "multiple": 20,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 20
+              }
+            ],
+            "base_fair_value_per_share": 28.239462663750697,
+            "fair_value_per_share": 22.59157013100056,
+            "delta_per_share": -5.647892532750138,
+            "changed_inputs_digest": "7cba31aff2e18c2e4e6d142dc1e6f3d9546486b117a873e37d893b769c4e39ae",
+            "changed_outputs": {
+              "eps": 1.2444794117647058,
+              "multiple": 20,
+              "value_per_share_at_horizon": 24.889588235294116,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 22.59157013100056,
+              "equity_value": 1536226768.908038
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 1.2444794117647058,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 20
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "af4570c3ea65969a574d34eaa571f7f8433e5a1eb2ad28279b9eb492c20f6074",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 20
+                }
+              ],
+              "base_fair_value_per_share": 28.239462663750697,
+              "fair_value_per_share": 22.59157013100056,
+              "delta_per_share": -5.647892532750138,
+              "changed_inputs_digest": "7cba31aff2e18c2e4e6d142dc1e6f3d9546486b117a873e37d893b769c4e39ae",
+              "changed_outputs": {
+                "eps": 1.2444794117647058,
+                "multiple": 20,
+                "value_per_share_at_horizon": 24.889588235294116,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 22.59157013100056,
+                "equity_value": 1536226768.908038
+              }
+            }
+          }
+        }
+      },
+      {
+        "multiple": 25,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 25
+              }
+            ],
+            "base_fair_value_per_share": 28.239462663750697,
+            "fair_value_per_share": 28.239462663750697,
+            "delta_per_share": 0,
+            "changed_inputs_digest": "af4570c3ea65969a574d34eaa571f7f8433e5a1eb2ad28279b9eb492c20f6074",
+            "changed_outputs": {
+              "eps": 1.2444794117647058,
+              "multiple": 25,
+              "value_per_share_at_horizon": 31.111985294117645,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 28.239462663750697,
+              "equity_value": 1920283461.1350474
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 1.2444794117647058,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 25
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "af4570c3ea65969a574d34eaa571f7f8433e5a1eb2ad28279b9eb492c20f6074",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 25
+                }
+              ],
+              "base_fair_value_per_share": 28.239462663750697,
+              "fair_value_per_share": 28.239462663750697,
+              "delta_per_share": 0,
+              "changed_inputs_digest": "af4570c3ea65969a574d34eaa571f7f8433e5a1eb2ad28279b9eb492c20f6074",
+              "changed_outputs": {
+                "eps": 1.2444794117647058,
+                "multiple": 25,
+                "value_per_share_at_horizon": 31.111985294117645,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 28.239462663750697,
+                "equity_value": 1920283461.1350474
+              }
+            }
+          }
+        }
+      },
+      {
+        "multiple": 30,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 30
+              }
+            ],
+            "base_fair_value_per_share": 28.239462663750697,
+            "fair_value_per_share": 33.88735519650084,
+            "delta_per_share": 5.647892532750145,
+            "changed_inputs_digest": "94a88aad1284407ee76553f545f656e28b17f5298fe1bb5212c3cbfb461f74b3",
+            "changed_outputs": {
+              "eps": 1.2444794117647058,
+              "multiple": 30,
+              "value_per_share_at_horizon": 37.33438235294118,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 33.88735519650084,
+              "equity_value": 2304340153.362057
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 1.2444794117647058,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 30
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "af4570c3ea65969a574d34eaa571f7f8433e5a1eb2ad28279b9eb492c20f6074",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 30
+                }
+              ],
+              "base_fair_value_per_share": 28.239462663750697,
+              "fair_value_per_share": 33.88735519650084,
+              "delta_per_share": 5.647892532750145,
+              "changed_inputs_digest": "94a88aad1284407ee76553f545f656e28b17f5298fe1bb5212c3cbfb461f74b3",
+              "changed_outputs": {
+                "eps": 1.2444794117647058,
+                "multiple": 30,
+                "value_per_share_at_horizon": 37.33438235294118,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 33.88735519650084,
+                "equity_value": 2304340153.362057
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "base": {
+    "eps": 2.64163705882353,
+    "cells": [
+      {
+        "multiple": 20,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 20
+              }
+            ],
+            "base_fair_value_per_share": 59.943467435949536,
+            "fair_value_per_share": 47.95477394875963,
+            "delta_per_share": -11.988693487189906,
+            "changed_inputs_digest": "0dd7fe17c8c009830927e3375fab7ebb083088aa56a1c2f29a2c4c42a97d4fc8",
+            "changed_outputs": {
+              "eps": 2.64163705882353,
+              "multiple": 20,
+              "value_per_share_at_horizon": 52.8327411764706,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 47.95477394875963,
+              "equity_value": 3260924628.515655
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 2.64163705882353,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 20
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 20
+                }
+              ],
+              "base_fair_value_per_share": 59.943467435949536,
+              "fair_value_per_share": 47.95477394875963,
+              "delta_per_share": -11.988693487189906,
+              "changed_inputs_digest": "0dd7fe17c8c009830927e3375fab7ebb083088aa56a1c2f29a2c4c42a97d4fc8",
+              "changed_outputs": {
+                "eps": 2.64163705882353,
+                "multiple": 20,
+                "value_per_share_at_horizon": 52.8327411764706,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 47.95477394875963,
+                "equity_value": 3260924628.515655
+              }
+            }
+          }
+        }
+      },
+      {
+        "multiple": 25,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 25
+              }
+            ],
+            "base_fair_value_per_share": 59.943467435949536,
+            "fair_value_per_share": 59.943467435949536,
+            "delta_per_share": 0,
+            "changed_inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+            "changed_outputs": {
+              "eps": 2.64163705882353,
+              "multiple": 25,
+              "value_per_share_at_horizon": 66.04092647058825,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 59.943467435949536,
+              "equity_value": 4076155785.6445684
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 2.64163705882353,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 25
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 25
+                }
+              ],
+              "base_fair_value_per_share": 59.943467435949536,
+              "fair_value_per_share": 59.943467435949536,
+              "delta_per_share": 0,
+              "changed_inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+              "changed_outputs": {
+                "eps": 2.64163705882353,
+                "multiple": 25,
+                "value_per_share_at_horizon": 66.04092647058825,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 59.943467435949536,
+                "equity_value": 4076155785.6445684
+              }
+            }
+          }
+        }
+      },
+      {
+        "multiple": 30,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 30
+              }
+            ],
+            "base_fair_value_per_share": 59.943467435949536,
+            "fair_value_per_share": 71.93216092313945,
+            "delta_per_share": 11.988693487189913,
+            "changed_inputs_digest": "dc6b715a0a964f498577c4b873312b611bfebac32d8839749cd3322cec36dc3b",
+            "changed_outputs": {
+              "eps": 2.64163705882353,
+              "multiple": 30,
+              "value_per_share_at_horizon": 79.2491117647059,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 71.93216092313945,
+              "equity_value": 4891386942.773482
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 2.64163705882353,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 30
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 30
+                }
+              ],
+              "base_fair_value_per_share": 59.943467435949536,
+              "fair_value_per_share": 71.93216092313945,
+              "delta_per_share": 11.988693487189913,
+              "changed_inputs_digest": "dc6b715a0a964f498577c4b873312b611bfebac32d8839749cd3322cec36dc3b",
+              "changed_outputs": {
+                "eps": 2.64163705882353,
+                "multiple": 30,
+                "value_per_share_at_horizon": 79.2491117647059,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 71.93216092313945,
+                "equity_value": 4891386942.773482
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "bull": {
+    "eps": 3.875065294117647,
+    "cells": [
+      {
+        "multiple": 20,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 20
+              }
+            ],
+            "base_fair_value_per_share": 87.93215914890631,
+            "fair_value_per_share": 70.34572731912505,
+            "delta_per_share": -17.58643182978126,
+            "changed_inputs_digest": "1bdd568c3f1a46356502434b6d5b3e1dccdddd3e8d681566f194ab3b9d93535c",
+            "changed_outputs": {
+              "eps": 3.875065294117647,
+              "multiple": 20,
+              "value_per_share_at_horizon": 77.50130588235294,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 70.34572731912505,
+              "equity_value": 4783509457.700503
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 3.875065294117647,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 20
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "4883281aed5c907642d6a79cc6e05c70266b7e5592a5ae81403518caefb264a4",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 20
+                }
+              ],
+              "base_fair_value_per_share": 87.93215914890631,
+              "fair_value_per_share": 70.34572731912505,
+              "delta_per_share": -17.58643182978126,
+              "changed_inputs_digest": "1bdd568c3f1a46356502434b6d5b3e1dccdddd3e8d681566f194ab3b9d93535c",
+              "changed_outputs": {
+                "eps": 3.875065294117647,
+                "multiple": 20,
+                "value_per_share_at_horizon": 77.50130588235294,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 70.34572731912505,
+                "equity_value": 4783509457.700503
+              }
+            }
+          }
+        }
+      },
+      {
+        "multiple": 25,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 25
+              }
+            ],
+            "base_fair_value_per_share": 87.93215914890631,
+            "fair_value_per_share": 87.93215914890631,
+            "delta_per_share": 0,
+            "changed_inputs_digest": "4883281aed5c907642d6a79cc6e05c70266b7e5592a5ae81403518caefb264a4",
+            "changed_outputs": {
+              "eps": 3.875065294117647,
+              "multiple": 25,
+              "value_per_share_at_horizon": 96.87663235294117,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 87.93215914890631,
+              "equity_value": 5979386822.125628
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 3.875065294117647,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 25
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "4883281aed5c907642d6a79cc6e05c70266b7e5592a5ae81403518caefb264a4",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 25
+                }
+              ],
+              "base_fair_value_per_share": 87.93215914890631,
+              "fair_value_per_share": 87.93215914890631,
+              "delta_per_share": 0,
+              "changed_inputs_digest": "4883281aed5c907642d6a79cc6e05c70266b7e5592a5ae81403518caefb264a4",
+              "changed_outputs": {
+                "eps": 3.875065294117647,
+                "multiple": 25,
+                "value_per_share_at_horizon": 96.87663235294117,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 87.93215914890631,
+                "equity_value": 5979386822.125628
+              }
+            }
+          }
+        }
+      },
+      {
+        "multiple": 30,
+        "result": {
+          "method": "sensitivity",
+          "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+          "result": {
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 30
+              }
+            ],
+            "base_fair_value_per_share": 87.93215914890631,
+            "fair_value_per_share": 105.51859097868756,
+            "delta_per_share": 17.586431829781247,
+            "changed_inputs_digest": "1881138e86bcd5fb8798b2b9164cafea9c44a998fce2688f7ab495f4240ae73c",
+            "changed_outputs": {
+              "eps": 3.875065294117647,
+              "multiple": 30,
+              "value_per_share_at_horizon": 116.2519588235294,
+              "years_to_horizon": 0.8547945205479452,
+              "discounted": true,
+              "fair_value_per_share": 105.51859097868756,
+              "equity_value": 7175264186.550754
+            }
+          },
+          "unit": "per share",
+          "inputs": {
+            "calculation": {
+              "method": "forward_pe",
+              "currency": "USD",
+              "scale": "millions",
+              "model": {
+                "eps_basis": "gaap_diluted",
+                "multiple_basis": "equity",
+                "eps": 3.875065294117647,
+                "period": {
+                  "start": "2028-01-01",
+                  "end": "2028-12-31"
+                },
+                "applies_at": "2027-07-30",
+                "valuation_date": "2026-09-21",
+                "multiple": 25,
+                "discount_rate": 0.12,
+                "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+              },
+              "equity": {
+                "diluted_shares": 68,
+                "sbc_treatment": {
+                  "basis": "both_documented",
+                  "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+                }
+              }
+            },
+            "changes": [
+              {
+                "input_path": "model.multiple",
+                "value": 30
+              }
+            ]
+          },
+          "calculator_version": "0.3.0",
+          "receipt": {
+            "calculator_version": "0.3.0",
+            "method": "forward_pe",
+            "inputs_digest": "4883281aed5c907642d6a79cc6e05c70266b7e5592a5ae81403518caefb264a4",
+            "outputs": {
+              "changes": [
+                {
+                  "input_path": "model.multiple",
+                  "value": 30
+                }
+              ],
+              "base_fair_value_per_share": 87.93215914890631,
+              "fair_value_per_share": 105.51859097868756,
+              "delta_per_share": 17.586431829781247,
+              "changed_inputs_digest": "1881138e86bcd5fb8798b2b9164cafea9c44a998fce2688f7ab495f4240ae73c",
+              "changed_outputs": {
+                "eps": 3.875065294117647,
+                "multiple": 30,
+                "value_per_share_at_horizon": 116.2519588235294,
+                "years_to_horizon": 0.8547945205479452,
+                "discounted": true,
+                "fair_value_per_share": 105.51859097868756,
+                "equity_value": 7175264186.550754
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

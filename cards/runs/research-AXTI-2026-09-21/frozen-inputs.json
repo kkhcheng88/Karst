@@ -1,0 +1,3210 @@
+{
+  "packet": {
+    "as_of": "2026-09-21T16:05:08Z",
+    "contract_version": "0.4.0",
+    "created_at": "2026-09-21T16:05:08Z",
+    "dependencies": [
+      {
+        "id": "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+        "kind": "evidence",
+        "version": "068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce"
+      },
+      {
+        "id": "ev-113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+        "kind": "evidence",
+        "version": "113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466"
+      },
+      {
+        "id": "ev-1809d760be7b5934ec016134fa2751480181ad7a3e7fa639b9ab5cdc84c8ceea",
+        "kind": "evidence",
+        "version": "1809d760be7b5934ec016134fa2751480181ad7a3e7fa639b9ab5cdc84c8ceea"
+      },
+      {
+        "id": "ev-195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+        "kind": "evidence",
+        "version": "195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2"
+      },
+      {
+        "id": "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+        "kind": "evidence",
+        "version": "1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d"
+      },
+      {
+        "id": "ev-2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78",
+        "kind": "evidence",
+        "version": "2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78"
+      },
+      {
+        "id": "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+        "kind": "evidence",
+        "version": "22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b"
+      },
+      {
+        "id": "ev-23738a988895323cc8a4ce0173e725e023bc1c7fd4fd8a660a8a87d052848664",
+        "kind": "evidence",
+        "version": "23738a988895323cc8a4ce0173e725e023bc1c7fd4fd8a660a8a87d052848664"
+      },
+      {
+        "id": "ev-3053fbb5225296fd77c5b1e8c6e8a2ed7452b155ff2a7524dd05ed2c6b25d4d9",
+        "kind": "evidence",
+        "version": "3053fbb5225296fd77c5b1e8c6e8a2ed7452b155ff2a7524dd05ed2c6b25d4d9"
+      },
+      {
+        "id": "ev-33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+        "kind": "evidence",
+        "version": "33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1"
+      },
+      {
+        "id": "ev-41590d9ead0b2f303264f22ac6f46df6c82e47e5b252bef2ba6aac9abb51af53",
+        "kind": "evidence",
+        "version": "41590d9ead0b2f303264f22ac6f46df6c82e47e5b252bef2ba6aac9abb51af53"
+      },
+      {
+        "id": "ev-41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+        "kind": "evidence",
+        "version": "41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f"
+      },
+      {
+        "id": "ev-4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+        "kind": "evidence",
+        "version": "4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6"
+      },
+      {
+        "id": "ev-59d1631a76ffbf035ac70e348dd2d89b5214f5352851e8e9b9d897b49de9d3a6",
+        "kind": "evidence",
+        "version": "59d1631a76ffbf035ac70e348dd2d89b5214f5352851e8e9b9d897b49de9d3a6"
+      },
+      {
+        "id": "ev-5a68289a54f5cddff2768c9c36e501653362c793a2b64ec8759247c251a3afae",
+        "kind": "evidence",
+        "version": "5a68289a54f5cddff2768c9c36e501653362c793a2b64ec8759247c251a3afae"
+      },
+      {
+        "id": "ev-5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+        "kind": "evidence",
+        "version": "5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7"
+      },
+      {
+        "id": "ev-5def3bd67e6430bcfc3dbb0bfa7c7bbe07f99599efaf8823a37c151f55f8e9d7",
+        "kind": "evidence",
+        "version": "5def3bd67e6430bcfc3dbb0bfa7c7bbe07f99599efaf8823a37c151f55f8e9d7"
+      },
+      {
+        "id": "ev-607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+        "kind": "evidence",
+        "version": "607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7"
+      },
+      {
+        "id": "ev-646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+        "kind": "evidence",
+        "version": "646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09"
+      },
+      {
+        "id": "ev-6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+        "kind": "evidence",
+        "version": "6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119"
+      },
+      {
+        "id": "ev-69f2597488510eb5f38e7302734c178689835a614a14aaa69b18b58c48d38491",
+        "kind": "evidence",
+        "version": "69f2597488510eb5f38e7302734c178689835a614a14aaa69b18b58c48d38491"
+      },
+      {
+        "id": "ev-6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+        "kind": "evidence",
+        "version": "6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6"
+      },
+      {
+        "id": "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+        "kind": "evidence",
+        "version": "6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b"
+      },
+      {
+        "id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+        "kind": "evidence",
+        "version": "81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f"
+      },
+      {
+        "id": "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+        "kind": "evidence",
+        "version": "8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101"
+      },
+      {
+        "id": "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+        "kind": "evidence",
+        "version": "86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c"
+      },
+      {
+        "id": "ev-8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+        "kind": "evidence",
+        "version": "8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19"
+      },
+      {
+        "id": "ev-91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5",
+        "kind": "evidence",
+        "version": "91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5"
+      },
+      {
+        "id": "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+        "kind": "evidence",
+        "version": "9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8"
+      },
+      {
+        "id": "ev-9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+        "kind": "evidence",
+        "version": "9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad"
+      },
+      {
+        "id": "ev-aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+        "kind": "evidence",
+        "version": "aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933"
+      },
+      {
+        "id": "ev-b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+        "kind": "evidence",
+        "version": "b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4"
+      },
+      {
+        "id": "ev-c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+        "kind": "evidence",
+        "version": "c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0"
+      },
+      {
+        "id": "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+        "kind": "evidence",
+        "version": "c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e"
+      },
+      {
+        "id": "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+        "kind": "evidence",
+        "version": "c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d"
+      },
+      {
+        "id": "ev-c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+        "kind": "evidence",
+        "version": "c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21"
+      },
+      {
+        "id": "ev-d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+        "kind": "evidence",
+        "version": "d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a"
+      },
+      {
+        "id": "ev-db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+        "kind": "evidence",
+        "version": "db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5"
+      },
+      {
+        "id": "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+        "kind": "evidence",
+        "version": "dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117"
+      },
+      {
+        "id": "ev-df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997",
+        "kind": "evidence",
+        "version": "df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997"
+      },
+      {
+        "id": "ev-e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+        "kind": "evidence",
+        "version": "e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337"
+      },
+      {
+        "id": "ev-e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c",
+        "kind": "evidence",
+        "version": "e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c"
+      },
+      {
+        "id": "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+        "kind": "evidence",
+        "version": "e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4"
+      },
+      {
+        "id": "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815",
+        "kind": "evidence",
+        "version": "ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815"
+      },
+      {
+        "id": "ev-f2f72c706f8b93eb5b99b0babb2c1fb252c3d186fd5cfa866a637a8ba1116354",
+        "kind": "evidence",
+        "version": "f2f72c706f8b93eb5b99b0babb2c1fb252c3d186fd5cfa866a637a8ba1116354"
+      },
+      {
+        "id": "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6",
+        "kind": "evidence",
+        "version": "f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6"
+      },
+      {
+        "id": "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927",
+        "kind": "evidence",
+        "version": "f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927"
+      },
+      {
+        "id": "ev-f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+        "kind": "evidence",
+        "version": "f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4"
+      },
+      {
+        "id": "ev-f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a",
+        "kind": "evidence",
+        "version": "f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a"
+      }
+    ],
+    "diagnostic_ids": [
+      "ev-4d1a7f56bfb60c00c93321c2203e50280487949af6a4e924967fe000edb6c4e9",
+      "ev-7e23c0b32d73b3fc741815600a103540a0acf3d441fd5c07908b3d1b4195c162",
+      "ev-c3d8acc47dafcf526fdb27da90aff19a246dd2e8cda2405fe7f2ff280b594fce",
+      "ev-d950df23cf37f2117d93e08ea873b392efcaf007b57107fada5e439200b84ce2"
+    ],
+    "evidence_ids": [
+      "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+      "ev-113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+      "ev-1809d760be7b5934ec016134fa2751480181ad7a3e7fa639b9ab5cdc84c8ceea",
+      "ev-195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+      "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+      "ev-2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78",
+      "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+      "ev-23738a988895323cc8a4ce0173e725e023bc1c7fd4fd8a660a8a87d052848664",
+      "ev-3053fbb5225296fd77c5b1e8c6e8a2ed7452b155ff2a7524dd05ed2c6b25d4d9",
+      "ev-33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+      "ev-41590d9ead0b2f303264f22ac6f46df6c82e47e5b252bef2ba6aac9abb51af53",
+      "ev-41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+      "ev-4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+      "ev-59d1631a76ffbf035ac70e348dd2d89b5214f5352851e8e9b9d897b49de9d3a6",
+      "ev-5a68289a54f5cddff2768c9c36e501653362c793a2b64ec8759247c251a3afae",
+      "ev-5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+      "ev-5def3bd67e6430bcfc3dbb0bfa7c7bbe07f99599efaf8823a37c151f55f8e9d7",
+      "ev-607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+      "ev-646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+      "ev-6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+      "ev-69f2597488510eb5f38e7302734c178689835a614a14aaa69b18b58c48d38491",
+      "ev-6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+      "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+      "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+      "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+      "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+      "ev-8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+      "ev-91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5",
+      "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+      "ev-9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+      "ev-aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+      "ev-b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+      "ev-c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+      "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+      "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+      "ev-c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+      "ev-d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+      "ev-db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+      "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+      "ev-df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997",
+      "ev-e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+      "ev-e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c",
+      "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+      "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815",
+      "ev-f2f72c706f8b93eb5b99b0babb2c1fb252c3d186fd5cfa866a637a8ba1116354",
+      "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6",
+      "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927",
+      "ev-f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+      "ev-f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a"
+    ],
+    "knowledge_basis": "system_observed",
+    "packet_id": "packet-7c8f1236a728f4f259d14f0764529aacdb1a848de42653882ec2196058353a8d",
+    "pending_updates": [],
+    "previous_packet_id": "packet-db40078b51249ad9f183d1ddbcc7b15cd9d980e7714e414075eead2735433047",
+    "requirements": [
+      {
+        "evidence_ids": [
+          "ev-59d1631a76ffbf035ac70e348dd2d89b5214f5352851e8e9b9d897b49de9d3a6",
+          "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815"
+        ],
+        "kind": "calendar",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+          "ev-4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+          "ev-607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+          "ev-6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+          "ev-6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+          "ev-9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+          "ev-aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+          "ev-b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+          "ev-c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+          "ev-c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+          "ev-d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+          "ev-db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+          "ev-e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+          "ev-e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c"
+        ],
+        "kind": "filing",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+          "ev-3053fbb5225296fd77c5b1e8c6e8a2ed7452b155ff2a7524dd05ed2c6b25d4d9",
+          "ev-91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5"
+        ],
+        "kind": "filing_index",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-23738a988895323cc8a4ce0173e725e023bc1c7fd4fd8a660a8a87d052848664",
+          "ev-5a68289a54f5cddff2768c9c36e501653362c793a2b64ec8759247c251a3afae",
+          "ev-5def3bd67e6430bcfc3dbb0bfa7c7bbe07f99599efaf8823a37c151f55f8e9d7",
+          "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+          "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+          "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+          "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+          "ev-f2f72c706f8b93eb5b99b0babb2c1fb252c3d186fd5cfa866a637a8ba1116354"
+        ],
+        "kind": "financials",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78"
+        ],
+        "kind": "industry_report",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+          "ev-5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+          "ev-646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+          "ev-8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+          "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+          "ev-f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+          "ev-f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a"
+        ],
+        "kind": "news",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+          "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+          "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+          "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+          "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+          "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927"
+        ],
+        "kind": "prices",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      },
+      {
+        "evidence_ids": [
+          "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+          "ev-1809d760be7b5934ec016134fa2751480181ad7a3e7fa639b9ab5cdc84c8ceea",
+          "ev-195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+          "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+          "ev-df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997"
+        ],
+        "kind": "profile",
+        "reason": "At least one supplied source is truncated; full coverage is not established.",
+        "status": "partial"
+      },
+      {
+        "evidence_ids": [
+          "ev-41590d9ead0b2f303264f22ac6f46df6c82e47e5b252bef2ba6aac9abb51af53",
+          "ev-69f2597488510eb5f38e7302734c178689835a614a14aaa69b18b58c48d38491",
+          "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6"
+        ],
+        "kind": "transcript",
+        "reason": "Supplied source is not truncated; recency and required sections still need review.",
+        "status": "available"
+      }
+    ],
+    "security": {
+      "currency": "USD",
+      "exchange": "NASDAQ",
+      "issuer_id": "cik:0001051627",
+      "name": "AXT Inc.",
+      "security_id": "NASDAQ:AXTI",
+      "ticker": "AXTI"
+    },
+    "supplement_requests": []
+  },
+  "evidence": [
+    {
+      "artifact": {
+        "bytes": 603,
+        "path": "evidence/objects/9c/9c05e19728615e673c493ec661dc5cc060d50d9daad0e36bda174d16f55bded5.json",
+        "sha256": "9c05e19728615e673c493ec661dc5cc060d50d9daad0e36bda174d16f55bded5"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+      "fetched_at": "2026-09-18T18:54:06Z",
+      "kind": "profile",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "AXTI.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-625a2bd9d588bbcc0d0651f162c89d5bce2382f953ed2a7dbf2292af9694dbdf",
+      "source_url": null,
+      "source_version": "068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "static_info",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1346,
+        "path": "evidence/objects/de/de5976e2b1c823eac81c0f3d3e914feb3de69b7690d6e2a214596c67a1374c26.json",
+        "sha256": "de5976e2b1c823eac81c0f3d3e914feb3de69b7690d6e2a214596c67a1374c26"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+      "fetched_at": "2026-09-21T15:37:20Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "AXTI.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-bcf987546f009c97631d12fc1fd743e453944f6b33c5780d58cdb1b113d6a8ff",
+      "source_url": null,
+      "source_version": "113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 2583,
+        "path": "evidence/objects/87/873b7c7e26d281d664f8396febc88b58e726224121e0dcde8da5e19e6ef69c00.json",
+        "sha256": "873b7c7e26d281d664f8396febc88b58e726224121e0dcde8da5e19e6ef69c00"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-1809d760be7b5934ec016134fa2751480181ad7a3e7fa639b9ab5cdc84c8ceea",
+      "fetched_at": "2026-09-21T15:59:43Z",
+      "kind": "profile",
+      "known_gaps": [
+        "snapshot of current metadata; no as-of history"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-9e468ea58d6deeccb737e0d0bd37f79fb968a59d054f40c55bd73c45be93f042",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "1809d760be7b5934ec016134fa2751480181ad7a3e7fa639b9ab5cdc84c8ceea",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+      "tool": "Ticker.info()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 603,
+        "path": "evidence/objects/67/671db1254fff5f4a64d4f5c9186b7ee181eea2bee9c4ad20ddf3ac64951279a6.json",
+        "sha256": "671db1254fff5f4a64d4f5c9186b7ee181eea2bee9c4ad20ddf3ac64951279a6"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+      "fetched_at": "2026-09-21T15:37:20Z",
+      "kind": "profile",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "AXTI.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-625a2bd9d588bbcc0d0651f162c89d5bce2382f953ed2a7dbf2292af9694dbdf",
+      "source_url": null,
+      "source_version": "195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+      "tool": "static_info",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 908,
+        "path": "evidence/objects/5b/5b43d9237b10fdae2597154f700a0653610f3f179a9db0f118eef14adf7f0e9b.json",
+        "sha256": "5b43d9237b10fdae2597154f700a0653610f3f179a9db0f118eef14adf7f0e9b"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+      "fetched_at": "2026-09-18T18:54:06Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "AXTI.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-1e3f2f5b72f417caefc68e67d796514948ad4bd7ac80d29c94a169aacc231661",
+      "source_url": null,
+      "source_version": "1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 815,
+        "path": "evidence/objects/0e/0e189da4773dc548b8f4a46d8a66fa2f196f04096610b6699d241e2fd72fad76.json",
+        "sha256": "0e189da4773dc548b8f4a46d8a66fa2f196f04096610b6699d241e2fd72fad76"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "TSE:5016"
+      ],
+      "evidence_id": "ev-2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78",
+      "fetched_at": "2026-09-21T15:45:21Z",
+      "kind": "industry_report",
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "JX Advanced Metals Corporation",
+        "source_type": "other",
+        "title": "JX InP expansion capacity investment policy",
+        "url": "https://www.jx-nmm.com/english/newsrelease/fy2026/20260616_02.html"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-06-16",
+      "published_at_basis": "Supplied by the person who ingested it; not independently verified",
+      "published_at_precision": "date",
+      "published_at_timezone": null,
+      "source": "user_document",
+      "source_id": "src-687697458363f4b53e62140edccf96eb6e3b338bbc6074df413e3f35ec588f41",
+      "source_url": "https://www.jx-nmm.com/english/newsrelease/fy2026/20260616_02.html",
+      "source_version": "2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "ingest_source",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 6821,
+        "path": "evidence/objects/04/045384e5c5ce3f83366f4aab9e7280473e3784b137b65a4f1a9f55b2a8a4fba9.json",
+        "sha256": "045384e5c5ce3f83366f4aab9e7280473e3784b137b65a4f1a9f55b2a8a4fba9"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 61,
+        "from": "2008-02-27",
+        "to": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+      "fetched_at": "2026-09-21T15:36:41Z",
+      "kind": "filing_index",
+      "known_gaps": [
+        "list may not be contiguous by quarter (source coverage gaps kept as-is)",
+        "no availability timestamp for transcript text"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": "2008-02-27"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date only (date precision); transcript text availability time not provided by source (資料來源 §四 4)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-ce9960bad1c8d28b8cc982431b2701c68e0076d906d18944c56606eff9b9feef",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.earning_call_transcripts().get_transcripts_list()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 47332,
+        "path": "evidence/objects/e7/e70d22a656c0a6d03c653727ae8e14f725660cb1a5f1b8e35075d276d981d1f6.json",
+        "sha256": "e70d22a656c0a6d03c653727ae8e14f725660cb1a5f1b8e35075d276d981d1f6"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": false,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-23738a988895323cc8a4ce0173e725e023bc1c7fd4fd8a660a8a87d052848664",
+      "fetched_at": "2026-09-21T15:59:20Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-e9c80c754503ff6b2fb6813a1403fe4bba4fa0a26eb102208175ad11faa5db60",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "23738a988895323cc8a4ce0173e725e023bc1c7fd4fd8a660a8a87d052848664",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+      "tool": "Ticker.quarterly_balance_sheet().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 6821,
+        "path": "evidence/objects/04/045384e5c5ce3f83366f4aab9e7280473e3784b137b65a4f1a9f55b2a8a4fba9.json",
+        "sha256": "045384e5c5ce3f83366f4aab9e7280473e3784b137b65a4f1a9f55b2a8a4fba9"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 61,
+        "from": "2008-02-27",
+        "to": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-3053fbb5225296fd77c5b1e8c6e8a2ed7452b155ff2a7524dd05ed2c6b25d4d9",
+      "fetched_at": "2026-09-21T15:59:10Z",
+      "kind": "filing_index",
+      "known_gaps": [
+        "list may not be contiguous by quarter (source coverage gaps kept as-is)",
+        "no availability timestamp for transcript text"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": "2008-02-27"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date only (date precision); transcript text availability time not provided by source (資料來源 §四 4)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-ce9960bad1c8d28b8cc982431b2701c68e0076d906d18944c56606eff9b9feef",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "3053fbb5225296fd77c5b1e8c6e8a2ed7452b155ff2a7524dd05ed2c6b25d4d9",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+      "tool": "Ticker.earning_call_transcripts().get_transcripts_list()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 669,
+        "path": "evidence/objects/c8/c877ca390800393c67b28719f6637769877fe97df6a3bc0a52098c30dc220daf.json",
+        "sha256": "c877ca390800393c67b28719f6637769877fe97df6a3bc0a52098c30dc220daf"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "kind": "news",
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "marketscreener.com",
+        "source_type": "news",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P 600 Information Technology - marketscreener.com",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPODVzSzEwWUtyb25iNjFKSllBV2o5OVpFN0hPUEZNTkQyZU5KYnVwV3FGVjhFdEJjYXFvY3JXREhKTVBkVUh5SFQ2SUx5aE5fVGlacnU4V1JERElDeHlLdFlCZGx5dDJKMGNrN1Z3czZYYnRGTDNDSjhrby1WMzNzRVlpcmtoeVFfY2lpYjl4NHh0eDBveG5tU1dPNXJFc3czUnpWdUV0UVg4ZlNJUDhFR1NqNXo?oc=5"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-21T01:15:45+00:00",
+      "published_at_basis": "RSS pubDate, publisher supplied",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "news_rss",
+      "source_id": "src-rss-9d863078aa782d1c6f0d105de747d0162e0c50f89896796db923c2ac8386961a",
+      "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPODVzSzEwWUtyb25iNjFKSllBV2o5OVpFN0hPUEZNTkQyZU5KYnVwV3FGVjhFdEJjYXFvY3JXREhKTVBkVUh5SFQ2SUx5aE5fVGlacnU4V1JERElDeHlLdFlCZGx5dDJKMGNrN1Z3czZYYnRGTDNDSjhrby1WMzNzRVlpcmtoeVFfY2lpYjl4NHh0eDBveG5tU1dPNXJFc3czUnpWdUV0UVg4ZlNJUDhFR1NqNXo?oc=5",
+      "source_version": "33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "rss_article",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 47320,
+        "path": "evidence/objects/68/68e7cb1988b2f7bc4cdd880bb28c9e5c3ad599656ab563217e12f578cb80da1e.json",
+        "sha256": "68e7cb1988b2f7bc4cdd880bb28c9e5c3ad599656ab563217e12f578cb80da1e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "fiscal_quarter": 2,
+        "fiscal_year": 2026,
+        "report_date": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-41590d9ead0b2f303264f22ac6f46df6c82e47e5b252bef2ba6aac9abb51af53",
+      "fetched_at": "2026-09-21T15:59:13Z",
+      "kind": "transcript",
+      "known_gaps": [
+        "source has no prepared-remarks vs Q&A section marker; only paragraph_number/speaker/content (split must be inferred, e.g. from Operator paragraphs)",
+        "speaker names as given by source (may lack titles/roles)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "fiscal_quarter": 2,
+        "fiscal_year": 2026,
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: report_date from transcripts list (date precision, call date); time the text became readable is unknown",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-312cac952bd5251b8e2e91fb8e2eb67e04d8cd1017071d33c6747ccf69a837c2",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "41590d9ead0b2f303264f22ac6f46df6c82e47e5b252bef2ba6aac9abb51af53",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6",
+      "tool": "Ticker.earning_call_transcripts().get_transcript",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 215969,
+        "path": "evidence/objects/07/07328874054d1275acf45b605787a4b62ba934dd3750885a0b64e24366479cdf.htm",
+        "sha256": "07328874054d1275acf45b605787a4b62ba934dd3750885a0b64e24366479cdf"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-30",
+        "reportDate": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+      "fetched_at": "2026-09-21T15:37:19Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-025061",
+        "cik": "0001051627",
+        "document": "ex_974537.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/ex_974537.htm"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-30T20:15:25+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-d6b781a6fd88be55b7df1461e71a727292101699cebb41da63b44f9cdbe87b00",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/ex_974537.htm",
+      "source_version": "41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 15654,
+        "path": "evidence/objects/84/841414c7d19fbebcd614443720d508f78d2b8a587ba881960a3b2fd337aa06c9.txt",
+        "sha256": "841414c7d19fbebcd614443720d508f78d2b8a587ba881960a3b2fd337aa06c9"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-30",
+        "reportDate": "2026-04-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+      "fetched_at": "2026-09-21T15:37:19Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-014204",
+        "cik": "0001051627",
+        "document": "ex_906119.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/ex_906119.htm"
+      },
+      "period": {
+        "end": "2026-04-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-30T20:12:06+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-eb8e57f03cfd5f006b1a26592be7eb6138925a8f3d3806b61810d5415b0528ef",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/ex_906119.htm",
+      "source_version": "4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 2496,
+        "path": "evidence/objects/90/90036385ba8fff6c503aa516f6f8ecf301ecf6666e411a67eb78d61c290755a6.json",
+        "sha256": "90036385ba8fff6c503aa516f6f8ecf301ecf6666e411a67eb78d61c290755a6"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 15,
+        "from": "2023-02-16",
+        "to": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-59d1631a76ffbf035ac70e348dd2d89b5214f5352851e8e9b9d897b49de9d3a6",
+      "fetched_at": "2026-09-21T15:59:37Z",
+      "kind": "calendar",
+      "known_gaps": [
+        "'time' may be 'time-not-supplied'; future rows are scheduled not confirmed"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": "2023-02-16"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-97458a2b4a3f85ee85a0c0d22bd36099bcca5a7e342e89115137c1b75079b905",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "59d1631a76ffbf035ac70e348dd2d89b5214f5352851e8e9b9d897b49de9d3a6",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815",
+      "tool": "Ticker.calendar()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 33596,
+        "path": "evidence/objects/93/935cdb89d5fefda9c17548090ee5d6288b0940bec595cf72722892c7297d300e.json",
+        "sha256": "935cdb89d5fefda9c17548090ee5d6288b0940bec595cf72722892c7297d300e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": true,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-5a68289a54f5cddff2768c9c36e501653362c793a2b64ec8759247c251a3afae",
+      "fetched_at": "2026-09-21T15:59:20Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-89ab15c577399fb0a58e64ea7eaf427ef5f3e27674d2c5b35993bf58728d9a20",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "5a68289a54f5cddff2768c9c36e501653362c793a2b64ec8759247c251a3afae",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+      "tool": "Ticker.quarterly_cash_flow().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 554,
+        "path": "evidence/objects/71/710cdd50712bb4218749c3d2495bed646b0f34dc0676512af0450a72aa5334dc.json",
+        "sha256": "710cdd50712bb4218749c3d2495bed646b0f34dc0676512af0450a72aa5334dc"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "kind": "news",
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "Binance",
+        "source_type": "news",
+        "title": "AXT Tokenized bStocks Price (AXTIB/USD) Today | Live Price, Market Cap & Chart - Binance",
+        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA5d1pGRTFaQnJCNk5zcDdtN0Q2OUZKdlhRZk9ab0RmZnJTLTkyUFBvcFMwWFFSaU93aGplUmg0bVh0MHdiR2JpdVl0NjU4Tzk3cU9mRGxCWlZ2bHNfeDVQWGFlblA?oc=5"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-20T17:49:00+00:00",
+      "published_at_basis": "RSS pubDate, publisher supplied",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "news_rss",
+      "source_id": "src-rss-484432c9be6d1f420705e592427dd6c243e2777582edb403cc54a3a0eb3f4780",
+      "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA5d1pGRTFaQnJCNk5zcDdtN0Q2OUZKdlhRZk9ab0RmZnJTLTkyUFBvcFMwWFFSaU93aGplUmg0bVh0MHdiR2JpdVl0NjU4Tzk3cU9mRGxCWlZ2bHNfeDVQWGFlblA?oc=5",
+      "source_version": "5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "rss_article",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 21430,
+        "path": "evidence/objects/c8/c8c6155420e795330cb58f085f863ab4081f55b92e7ea6f5be9c84ec4dc98a1d.json",
+        "sha256": "c8c6155420e795330cb58f085f863ab4081f55b92e7ea6f5be9c84ec4dc98a1d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 222,
+        "from": "1998-03-31",
+        "to": "2026-05-04"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-5def3bd67e6430bcfc3dbb0bfa7c7bbe07f99599efaf8823a37c151f55f8e9d7",
+      "fetched_at": "2026-09-21T15:59:31Z",
+      "kind": "financials",
+      "known_gaps": [
+        "shares_outstanding dates are source report dates, not filing cover dates"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-05-04",
+        "start": "1998-03-31"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-1dacf7052a7034d1ca6f8c50e5eaba84217ecc128fb127c9ecdc6a45a39b4e3f",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "5def3bd67e6430bcfc3dbb0bfa7c7bbe07f99599efaf8823a37c151f55f8e9d7",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+      "tool": "Ticker.shares()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 14937,
+        "path": "evidence/objects/5f/5f4056196b0dc5a6a4e362ae39a5994e19ae337490b43b0798872ae7c20a8820.txt",
+        "sha256": "5f4056196b0dc5a6a4e362ae39a5994e19ae337490b43b0798872ae7c20a8820"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-30",
+        "reportDate": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+      "fetched_at": "2026-09-21T15:37:19Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-025061",
+        "cik": "0001051627",
+        "document": "ex_974537.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/ex_974537.htm"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-30T20:15:25+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-770fc4b41f017c1fa553de3d3609ae857a8eaa7327ffc098dd3e563ea7435436",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/ex_974537.htm",
+      "source_version": "607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 518,
+        "path": "evidence/objects/d5/d5c04504062204825ea343bc4cb70308d35cb5553b2dcf04c7d7fe8f5f608853.json",
+        "sha256": "d5c04504062204825ea343bc4cb70308d35cb5553b2dcf04c7d7fe8f5f608853"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+      "fetched_at": "2026-09-21T15:49:05Z",
+      "kind": "news",
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "TheFly",
+        "source_type": "news",
+        "title": "S&P600 scheduled addition AXTI September21",
+        "url": "https://www.tipranks.com/news/the-fly/sp-600-adding-ten-companies-at-open-on-9-21-thefly-news?mod=mw_quote_news"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-04",
+      "published_at_basis": "Supplied by the person who ingested it; not independently verified",
+      "published_at_precision": "date",
+      "published_at_timezone": null,
+      "source": "user_document",
+      "source_id": "src-7f8bb586753f8626afceb8d3c990399938bd996da2bc9ce772db28a3f5ba704b",
+      "source_url": "https://www.tipranks.com/news/the-fly/sp-600-adding-ten-companies-at-open-on-9-21-thefly-news?mod=mw_quote_news",
+      "source_version": "646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "ingest_source",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 380428,
+        "path": "evidence/objects/1a/1ad6d43d6b228f007cc26672b66e434715d14a066b1a66e04c43fffd1f9c05a0.txt",
+        "sha256": "1ad6d43d6b228f007cc26672b66e434715d14a066b1a66e04c43fffd1f9c05a0"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-08-13",
+        "reportDate": "2026-06-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+      "fetched_at": "2026-09-21T15:37:18Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-027677",
+        "cik": "0001051627",
+        "document": "axti20260630_10q.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926027677/axti20260630_10q.htm"
+      },
+      "period": {
+        "end": "2026-06-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-08-13T20:16:33+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-f05b8b647383df25e464dcafa9c4d83a5d1dbf244737a78e8aa496c3919e80db",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926027677/axti20260630_10q.htm",
+      "source_version": "6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 45117,
+        "path": "evidence/objects/62/62cc764b9c659e0a315a820216814b5c15acb8dd32537ec39950c9caea01280f.json",
+        "sha256": "62cc764b9c659e0a315a820216814b5c15acb8dd32537ec39950c9caea01280f"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "fiscal_quarter": 1,
+        "fiscal_year": 2026,
+        "report_date": "2026-04-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-69f2597488510eb5f38e7302734c178689835a614a14aaa69b18b58c48d38491",
+      "fetched_at": "2026-09-21T15:59:13Z",
+      "kind": "transcript",
+      "known_gaps": [
+        "source has no prepared-remarks vs Q&A section marker; only paragraph_number/speaker/content (split must be inferred, e.g. from Operator paragraphs)",
+        "speaker names as given by source (may lack titles/roles)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "fiscal_quarter": 1,
+        "fiscal_year": 2026,
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: report_date from transcripts list (date precision, call date); time the text became readable is unknown",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-e8313f1340d9f41641e2e0fcbd054806e4d075ddc5f7e7c73af2a4d32a5579f6",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "69f2597488510eb5f38e7302734c178689835a614a14aaa69b18b58c48d38491",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.earning_call_transcripts().get_transcript",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 159566,
+        "path": "evidence/objects/31/31d90f5283a919bb6e50aa30f8f638e1f0aa632464fac4ee5721d0247cb942b8.htm.gz",
+        "sha256": "31d90f5283a919bb6e50aa30f8f638e1f0aa632464fac4ee5721d0247cb942b8"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-05-14",
+        "reportDate": "2026-03-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+      "fetched_at": "2026-09-21T15:37:18Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-017054",
+        "cik": "0001051627",
+        "document": "axti20260331_10q.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926017054/axti20260331_10q.htm"
+      },
+      "period": {
+        "end": "2026-03-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-05-14T20:11:11+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-acffab08eddba3b5efca4c3427489ec70b796ccf833aa771209d87acf53742d7",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926017054/axti20260331_10q.htm",
+      "source_version": "6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 2583,
+        "path": "evidence/objects/87/873b7c7e26d281d664f8396febc88b58e726224121e0dcde8da5e19e6ef69c00.json",
+        "sha256": "873b7c7e26d281d664f8396febc88b58e726224121e0dcde8da5e19e6ef69c00"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+      "fetched_at": "2026-09-21T15:37:17Z",
+      "kind": "profile",
+      "known_gaps": [
+        "snapshot of current metadata; no as-of history"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-9e468ea58d6deeccb737e0d0bd37f79fb968a59d054f40c55bd73c45be93f042",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.info()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 217493,
+        "path": "evidence/objects/93/93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b.json",
+        "sha256": "93c82b61dcfcf921b8037014205ea0abbb273413ca2e8fd8256db512ece2bb0b"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+      "fetched_at": "2026-09-18T18:54:06Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "AXTI.US",
+        "trade_session": "unknown"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ae35766cd92c59e1e5fabc1ad75b8e3626963b9e906efa31d604e842159564ad",
+      "source_url": null,
+      "source_version": "81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 47332,
+        "path": "evidence/objects/e7/e70d22a656c0a6d03c653727ae8e14f725660cb1a5f1b8e35075d276d981d1f6.json",
+        "sha256": "e70d22a656c0a6d03c653727ae8e14f725660cb1a5f1b8e35075d276d981d1f6"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": false,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+      "fetched_at": "2026-09-21T15:36:50Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-e9c80c754503ff6b2fb6813a1403fe4bba4fa0a26eb102208175ad11faa5db60",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_balance_sheet().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 27204,
+        "path": "evidence/objects/1b/1b8d42d91b2de70f594ad9f9cd77b7181b74af371c9c5e7461bab68893e5567c.json",
+        "sha256": "1b8d42d91b2de70f594ad9f9cd77b7181b74af371c9c5e7461bab68893e5567c"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": true,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+      "fetched_at": "2026-09-21T15:36:50Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-9378d917cd6a7ddb7ebe3d537e4cee083c345dd2c43ef950e228d5c0f9d62d2d",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_income_statement().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 624,
+        "path": "evidence/objects/41/41d6844be24b31bcce73a79e1ddf50073c63a68f3a035b693e75c72215bb8e2d.json",
+        "sha256": "41d6844be24b31bcce73a79e1ddf50073c63a68f3a035b693e75c72215bb8e2d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "kind": "news",
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "marketscreener.com",
+        "source_type": "news",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P Composite 1500 - marketscreener.com",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOcjlub3YyMGphNWZreTlLZzJtcjQzS3pJRVhSZ25hVEZGUzBrd1NuZXltMlNlcWhVeVBhLWI5a3Q3aDFUWkhIY0l1bWpKX00yVUtmenFYS0dEay1nUGFkSUJvY3NTQVA4a1E3YmctR0JOX2tKRVY0aXl4dVVoX0hLSTQ5Q3RRaUtVVHBCalBqZTduaTJnaHViRHlPZVo3anZ6dVN2Rw?oc=5"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-21T01:08:39+00:00",
+      "published_at_basis": "RSS pubDate, publisher supplied",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "news_rss",
+      "source_id": "src-rss-e5655dccb971d35e37ec18c31dda775e058292d99e451814bc41a258add7621e",
+      "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOcjlub3YyMGphNWZreTlLZzJtcjQzS3pJRVhSZ25hVEZGUzBrd1NuZXltMlNlcWhVeVBhLWI5a3Q3aDFUWkhIY0l1bWpKX00yVUtmenFYS0dEay1nUGFkSUJvY3NTQVA4a1E3YmctR0JOX2tKRVY0aXl4dVVoX0hLSTQ5Q3RRaUtVVHBCalBqZTduaTJnaHViRHlPZVo3anZ6dVN2Rw?oc=5",
+      "source_version": "8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "rss_article",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 14351,
+        "path": "evidence/objects/2a/2aeff911e24952cba91e76d19217e3e8129bbb8774ba722b8dd91fb6f4924c90.json",
+        "sha256": "2aeff911e24952cba91e76d19217e3e8129bbb8774ba722b8dd91fb6f4924c90"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "from": "2026-05-06",
+        "to": "2026-08-19"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5",
+      "fetched_at": "2026-09-21T15:37:17Z",
+      "kind": "filing_index",
+      "known_gaps": [
+        "items empty string for non-8-K forms as in source",
+        "reportDate empty for some forms as in source",
+        "paged index file CIK0001051627-submissions-001.json not held locally"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "cik": "0001051627",
+        "paged_files": [
+          {
+            "found_locally": false,
+            "name": "CIK0001051627-submissions-001.json"
+          }
+        ],
+        "slice": 40,
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-08-19",
+        "start": "2026-05-06"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "per-row filingDate (date precision) and acceptanceDateTime (EDGAR UTC); no single publish time for the index",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-9560ff209338dd9471001a2b3a325049ff20c99a285e149c5524048676469065",
+      "source_url": "https://data.sec.gov/submissions/CIK0001051627.json",
+      "source_version": "91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR submissions API live snapshot",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 33596,
+        "path": "evidence/objects/93/935cdb89d5fefda9c17548090ee5d6288b0940bec595cf72722892c7297d300e.json",
+        "sha256": "935cdb89d5fefda9c17548090ee5d6288b0940bec595cf72722892c7297d300e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": true,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+      "fetched_at": "2026-09-21T15:36:50Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-89ab15c577399fb0a58e64ea7eaf427ef5f3e27674d2c5b35993bf58728d9a20",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.quarterly_cash_flow().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 4134,
+        "path": "evidence/objects/58/5823d60eddc468fc98a062a35e951fe48db984f2f68ba7d3508ee1dcb4aa62e7.txt",
+        "sha256": "5823d60eddc468fc98a062a35e951fe48db984f2f68ba7d3508ee1dcb4aa62e7"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-30",
+        "reportDate": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+      "fetched_at": "2026-09-21T15:37:18Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-025061",
+        "cik": "0001051627",
+        "document": "axti20260609_8k.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k.htm"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-30T20:15:25+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-e663b3b7374ba53c0920be380655d69597a0efd1c764cd7c8141c564728df1c7",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k.htm",
+      "source_version": "9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 27051,
+        "path": "evidence/objects/2c/2c21c10fda7ac565f5941f657007a53183f4b7a8b1fa23496b7bc132e8aeae4d.htm",
+        "sha256": "2c21c10fda7ac565f5941f657007a53183f4b7a8b1fa23496b7bc132e8aeae4d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-30",
+        "reportDate": "2026-04-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+      "fetched_at": "2026-09-21T15:37:19Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-014204",
+        "cik": "0001051627",
+        "document": "axti20260109_8k.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/axti20260109_8k.htm"
+      },
+      "period": {
+        "end": "2026-04-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-30T20:12:06+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-73439e240c68cdc812f69848dfa749c293c14217965116ab783be5e64d395f97",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/axti20260109_8k.htm",
+      "source_version": "aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 236827,
+        "path": "evidence/objects/d1/d147d69ade60adbf3707e3ffeb345ba25d49a25fdb8047f70057c9e87514777e.htm.gz",
+        "sha256": "d147d69ade60adbf3707e3ffeb345ba25d49a25fdb8047f70057c9e87514777e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-03-17",
+        "reportDate": "2025-12-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+      "fetched_at": "2026-09-21T15:37:17Z",
+      "kind": "filing",
+      "known_gaps": [
+        "local 10k_text manifest has no entry for this accession; fetched from EDGAR online instead"
+      ],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-008612",
+        "cik": "0001051627",
+        "document": "axti20251231_10k.htm",
+        "form": "10-K",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926008612/axti20251231_10k.htm"
+      },
+      "period": {
+        "end": "2025-12-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-03-17T20:32:12+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-0f761a79c1bb264993cf77368bd62ff1ea77d7ded10f845dfe56a73a54febda8",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926008612/axti20251231_10k.htm",
+      "source_version": "b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 4143,
+        "path": "evidence/objects/c7/c76c836321fe4e7a620e5ccd7f35b33863d951cadec9f04549e7776e9ccb4d0e.txt",
+        "sha256": "c76c836321fe4e7a620e5ccd7f35b33863d951cadec9f04549e7776e9ccb4d0e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-30",
+        "reportDate": "2026-04-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+      "fetched_at": "2026-09-21T15:37:19Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-014204",
+        "cik": "0001051627",
+        "document": "axti20260109_8k.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/axti20260109_8k.htm"
+      },
+      "period": {
+        "end": "2026-04-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-30T20:12:06+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-0e3ac3c24f2bed07503845174fae521eaab0f9413efd68a731c38877b1dbcf99",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/axti20260109_8k.htm",
+      "source_version": "c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 1345,
+        "path": "evidence/objects/80/80310d2d3047003945886cbd1d8b9dec11885918f7a5135c6702611acec00f4d.json",
+        "sha256": "80310d2d3047003945886cbd1d8b9dec11885918f7a5135c6702611acec00f4d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+      "fetched_at": "2026-09-18T18:54:06Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "indexes": [
+          "LastDone",
+          "Volume",
+          "Turnover",
+          "TotalMarketValue",
+          "TurnoverRate"
+        ],
+        "symbols": [
+          "AXTI.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-bcf987546f009c97631d12fc1fd743e453944f6b33c5780d58cdb1b113d6a8ff",
+      "source_url": null,
+      "source_version": "c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "calc_indexes",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 21430,
+        "path": "evidence/objects/c8/c8c6155420e795330cb58f085f863ab4081f55b92e7ea6f5be9c84ec4dc98a1d.json",
+        "sha256": "c8c6155420e795330cb58f085f863ab4081f55b92e7ea6f5be9c84ec4dc98a1d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 222,
+        "from": "1998-03-31",
+        "to": "2026-05-04"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+      "fetched_at": "2026-09-21T15:37:03Z",
+      "kind": "financials",
+      "known_gaps": [
+        "shares_outstanding dates are source report dates, not filing cover dates"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-05-04",
+        "start": "1998-03-31"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-1dacf7052a7034d1ca6f8c50e5eaba84217ecc128fb127c9ecdc6a45a39b4e3f",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.shares()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 175005,
+        "path": "evidence/objects/ae/ae7d8359be5bec5d26897d4fa752a27792929a105f56b0068b1e2f1eff4e3dca.htm.gz",
+        "sha256": "ae7d8359be5bec5d26897d4fa752a27792929a105f56b0068b1e2f1eff4e3dca"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-08-13",
+        "reportDate": "2026-06-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+      "fetched_at": "2026-09-21T15:37:18Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-027677",
+        "cik": "0001051627",
+        "document": "axti20260630_10q.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926027677/axti20260630_10q.htm"
+      },
+      "period": {
+        "end": "2026-06-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-08-13T20:16:33+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-f778474ac60a24078a17c6a10ea0897a30ab8d9327488de5fae7634f37306ab3",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926027677/axti20260630_10q.htm",
+      "source_version": "c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 161980,
+        "path": "evidence/objects/51/510a892b59059f234766d6694ea00d3b374785f9ee5fda363d1e6ea48795d18b.htm",
+        "sha256": "510a892b59059f234766d6694ea00d3b374785f9ee5fda363d1e6ea48795d18b"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-04-30",
+        "reportDate": "2026-04-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+      "fetched_at": "2026-09-21T15:37:19Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-014204",
+        "cik": "0001051627",
+        "document": "ex_906119.htm",
+        "form": "8-K",
+        "kind": "exhibit",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/ex_906119.htm"
+      },
+      "period": {
+        "end": "2026-04-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-04-30T20:12:06+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-2f6f95a54deb88924243cab97c77d5c73c887ab0537b57c4f0798bae45c639e0",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926014204/ex_906119.htm",
+      "source_version": "d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 27152,
+        "path": "evidence/objects/a9/a9a834a475fa5ca77a071a9e5d38e20b80b5d3c072b8e0e5dd216b9bda152399.htm",
+        "sha256": "a9a834a475fa5ca77a071a9e5d38e20b80b5d3c072b8e0e5dd216b9bda152399"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-07-30",
+        "reportDate": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+      "fetched_at": "2026-09-21T15:37:18Z",
+      "kind": "filing",
+      "known_gaps": [],
+      "media_type": "text/html",
+      "params": {
+        "accession": "0001437749-26-025061",
+        "cik": "0001051627",
+        "document": "axti20260609_8k.htm",
+        "form": "8-K",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k.htm"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-07-30T20:15:25+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-ebdc614e0bdb87bd9d020e9431857835f684165696181c64693b33f3b198b840",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926025061/axti20260609_8k.htm",
+      "source_version": "db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 217502,
+        "path": "evidence/objects/ef/ef18d17fad60a9b75ad2de4cfbbbb28cba6e85682b77b7f60b9a4414938adfd9.json",
+        "sha256": "ef18d17fad60a9b75ad2de4cfbbbb28cba6e85682b77b7f60b9a4414938adfd9"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "end": null,
+        "start": null
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+      "fetched_at": "2026-09-21T15:37:21Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "adjust_type": "NoAdjust",
+        "end": null,
+        "period": "Day",
+        "start": null,
+        "symbol": "AXTI.US",
+        "trade_session": "unknown"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-ae35766cd92c59e1e5fabc1ad75b8e3626963b9e906efa31d604e842159564ad",
+      "source_url": null,
+      "source_version": "dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+      "tool": "history_candlesticks_by_date",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 170,
+        "path": "evidence/objects/61/61094f2fcdd782a2851cd07b26253b40ed3a7721b418e7bfa1eda0ea4da8bdb2.json",
+        "sha256": "61094f2fcdd782a2851cd07b26253b40ed3a7721b418e7bfa1eda0ea4da8bdb2"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997",
+      "fetched_at": "2026-09-21T15:35:21Z",
+      "kind": "profile",
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": null,
+        "source_type": null,
+        "title": "SEC issuer identity verification AXT Inc",
+        "url": "https://data.sec.gov/submissions/CIK0001051627.json"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: No publication time was supplied",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "user_document",
+      "source_id": "src-4fb2af9d584f60cc87b1934eb4031614ee37ad816ce9e79980f8ff4775624d49",
+      "source_url": "https://data.sec.gov/submissions/CIK0001051627.json",
+      "source_version": "df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "ingest_source",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 517304,
+        "path": "evidence/objects/66/66852493bbcc0e13dc568c1c8d2bf34cf6f3d470e2171d2cbf9eb203b2a4df3a.txt",
+        "sha256": "66852493bbcc0e13dc568c1c8d2bf34cf6f3d470e2171d2cbf9eb203b2a4df3a"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-03-17",
+        "reportDate": "2025-12-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+      "fetched_at": "2026-09-21T15:37:17Z",
+      "kind": "filing",
+      "known_gaps": [
+        "local 10k_text manifest has no entry for this accession; fetched from EDGAR online instead",
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-008612",
+        "cik": "0001051627",
+        "document": "axti20251231_10k.htm",
+        "form": "10-K",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926008612/axti20251231_10k.htm"
+      },
+      "period": {
+        "end": "2025-12-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-03-17T20:32:12+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-f7dd0a1c6ebe478cb7f08bdf97c5c437a2e834f7831a5329d59554b02ef0afaa",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926008612/axti20251231_10k.htm",
+      "source_version": "e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 350130,
+        "path": "evidence/objects/80/80284a3fc44887e5bbc016f9f305e0d3aca530681426aa0f97c1059c964fe054.txt",
+        "sha256": "80284a3fc44887e5bbc016f9f305e0d3aca530681426aa0f97c1059c964fe054"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "filingDate": "2026-05-14",
+        "reportDate": "2026-03-31"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c",
+      "fetched_at": "2026-09-21T15:37:18Z",
+      "kind": "filing",
+      "known_gaps": [
+        "Derived text representation: regex strip script/style/comments/tags, html.unescape, whitespace collapse"
+      ],
+      "media_type": "text/plain",
+      "params": {
+        "accession": "0001437749-26-017054",
+        "cik": "0001051627",
+        "document": "axti20260331_10q.htm",
+        "form": "10-Q",
+        "kind": "primary",
+        "ticker": "AXTI",
+        "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926017054/axti20260331_10q.htm"
+      },
+      "period": {
+        "end": "2026-03-31",
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-05-14T20:11:11+00:00",
+      "published_at_basis": "EDGAR acceptanceDateTime of the accession (UTC). Not necessarily first public release time; 8-K press release may have been issued earlier (資料來源 §四 4)",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "edgar",
+      "source_id": "src-afe8e0ce7bb7aaee4227fd9de87d8e750d4185e618ccdb9763d3ce35c633fb70",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926017054/axti20260331_10q.htm",
+      "source_version": "e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "EDGAR Archives HTTP GET (User-Agent set; <=4 req/s; retry once)",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 583,
+        "path": "evidence/objects/52/524816096542589c144090c9adad8a16fc5120c2844f77667fb9342af9099c75.json",
+        "sha256": "524816096542589c144090c9adad8a16fc5120c2844f77667fb9342af9099c75"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "kind": "news",
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "marketscreener.com",
+        "source_type": "news",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P 600 - marketscreener.com",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxON2NaNnRHU3dyMnpVVmdyQWRDQ3I4VFgwTTBpVHdHX1k5OVBBRUw3X2FNNFhIalBKTWJ5SXFYbmZVbGpWYnJRckNvU2pidmpyVUxFM01CR0xaUGthakRSRFZqWnN2VkprZFVvcF96ZFFvLXBqblB3LWVaTWZISG5MQ2VfV2NTM0JQamQxYXE5Q25kNVJETkE?oc=5"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-21T01:05:56+00:00",
+      "published_at_basis": "RSS pubDate, publisher supplied",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "news_rss",
+      "source_id": "src-rss-705b012769930a3e9f375ffc79dc6bf0a8be85f6365204b9a1ff80b227fd9551",
+      "source_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxON2NaNnRHU3dyMnpVVmdyQWRDQ3I4VFgwTTBpVHdHX1k5OVBBRUw3X2FNNFhIalBKTWJ5SXFYbmZVbGpWYnJRckNvU2pidmpyVUxFM01CR0xaUGthakRSRFZqWnN2VkprZFVvcF96ZFFvLXBqblB3LWVaTWZISG5MQ2VfV2NTM0JQamQxYXE5Q25kNVJETkE?oc=5",
+      "source_version": "e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "rss_article",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 2496,
+        "path": "evidence/objects/90/90036385ba8fff6c503aa516f6f8ecf301ecf6666e411a67eb78d61c290755a6.json",
+        "sha256": "90036385ba8fff6c503aa516f6f8ecf301ecf6666e411a67eb78d61c290755a6"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 15,
+        "from": "2023-02-16",
+        "to": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815",
+      "fetched_at": "2026-09-21T15:37:08Z",
+      "kind": "calendar",
+      "known_gaps": [
+        "'time' may be 'time-not-supplied'; future rows are scheduled not confirmed"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": "2026-07-30",
+        "start": "2023-02-16"
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: per-row report_date (date precision)",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-97458a2b4a3f85ee85a0c0d22bd36099bcca5a7e342e89115137c1b75079b905",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.calendar()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 27204,
+        "path": "evidence/objects/1b/1b8d42d91b2de70f594ad9f9cd77b7181b74af371c9c5e7461bab68893e5567c.json",
+        "sha256": "1b8d42d91b2de70f594ad9f9cd77b7181b74af371c9c5e7461bab68893e5567c"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "has_TTM": true,
+        "period_end_columns": [
+          "2026-06-30",
+          "2026-03-31",
+          "2025-12-31",
+          "2025-09-30",
+          "2025-06-30",
+          "2025-03-31",
+          "2024-12-31",
+          "2024-09-30",
+          "2024-06-30",
+          "2024-03-31",
+          "2023-12-31",
+          "2023-09-30",
+          "2023-06-30",
+          "2023-03-31",
+          "2022-12-31",
+          "2022-09-30",
+          "2022-06-30"
+        ]
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-f2f72c706f8b93eb5b99b0babb2c1fb252c3d186fd5cfa866a637a8ba1116354",
+      "fetched_at": "2026-09-21T15:59:19Z",
+      "kind": "financials",
+      "known_gaps": [
+        "'*' string means value not available in source (kept verbatim)",
+        "values are strings/objects mixed with floats as returned",
+        "some period columns may be entirely '*' (source gap)",
+        "currency/unit not embedded in table; see 'currency' field if available"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: column headers are period-end dates; filing/publication dates not provided by this interface",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-9378d917cd6a7ddb7ebe3d537e4cee083c345dd2c43ef950e228d5c0f9d62d2d",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "f2f72c706f8b93eb5b99b0babb2c1fb252c3d186fd5cfa866a637a8ba1116354",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+      "tool": "Ticker.quarterly_income_statement().data",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 47320,
+        "path": "evidence/objects/68/68e7cb1988b2f7bc4cdd880bb28c9e5c3ad599656ab563217e12f578cb80da1e.json",
+        "sha256": "68e7cb1988b2f7bc4cdd880bb28c9e5c3ad599656ab563217e12f578cb80da1e"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "fiscal_quarter": 2,
+        "fiscal_year": 2026,
+        "report_date": "2026-07-30"
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6",
+      "fetched_at": "2026-09-21T15:36:44Z",
+      "kind": "transcript",
+      "known_gaps": [
+        "source has no prepared-remarks vs Q&A section marker; only paragraph_number/speaker/content (split must be inferred, e.g. from Operator paragraphs)",
+        "speaker names as given by source (may lack titles/roles)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "fiscal_quarter": 2,
+        "fiscal_year": 2026,
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: report_date from transcripts list (date precision, call date); time the text became readable is unknown",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-312cac952bd5251b8e2e91fb8e2eb67e04d8cd1017071d33c6747ccf69a837c2",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "Ticker.earning_call_transcripts().get_transcript",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 910,
+        "path": "evidence/objects/ab/ab0d4989bce4a0a27b89134b74f71a35c343c085a88511d40ed4b4a486e1e448.json",
+        "sha256": "ab0d4989bce4a0a27b89134b74f71a35c343c085a88511d40ed4b4a486e1e448"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927",
+      "fetched_at": "2026-09-21T15:37:20Z",
+      "kind": "prices",
+      "known_gaps": [],
+      "media_type": "application/json",
+      "params": {
+        "symbols": [
+          "AXTI.US"
+        ]
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: 現時快照 (snapshot at fetch time); the SDK return carries no publication time for this version",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "longbridge",
+      "source_id": "src-1e3f2f5b72f417caefc68e67d796514948ad4bd7ac80d29c94a169aacc231661",
+      "source_url": null,
+      "source_version": "f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+      "tool": "quote",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 350,
+        "path": "evidence/objects/c9/c97b1cd1b01b603223b2f7f44adf5ffab801108693fb1678382ba7a425c438c9.json",
+        "sha256": "c97b1cd1b01b603223b2f7f44adf5ffab801108693fb1678382ba7a425c438c9"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "kind": "news",
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": null,
+        "source_type": "news",
+        "title": "Bear of the Day: Qualcomm (QCOM)",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/bear-day-qualcomm-qcom-110000513.html?.tsrc=rss"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-21T11:00:00+00:00",
+      "published_at_basis": "RSS pubDate, publisher supplied",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "news_rss",
+      "source_id": "src-rss-97c671fdefce1dc89b0df9fbd9b9307e6497a3f7801ea814e545d3cd2ed9c8d1",
+      "source_url": "https://finance.yahoo.com/markets/stocks/articles/bear-day-qualcomm-qcom-110000513.html?.tsrc=rss",
+      "source_version": "f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "rss_article",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 586,
+        "path": "evidence/objects/3d/3d9ae07d261af396daa226ea8309ab2902b0e00b4204aa17179566b2b930a37d.json",
+        "sha256": "3d9ae07d261af396daa226ea8309ab2902b0e00b4204aa17179566b2b930a37d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": null,
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "kind": "news",
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ],
+      "media_type": "application/json",
+      "params": {
+        "author": "marketscreener.com",
+        "source_type": "news",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P 1000 - marketscreener.com",
+        "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQZUdMemxzY0JyZG0yZHR5ZnduMFZWWENIbURKRTBEQWlnOW92cTVldGMwVWt3VlVkY3dOMVdiOGl6NnF1RzJlVS1SZXlmX0VaYURSSnNTNjBpNnVPNi1NTWJIYnFDbWVfMW4tZHN2czZRaV9HMXhqT0dTbVhaWkJnTTNxdDVhUjRYSVdJNkZwbWhyZHp4Ty13?oc=5"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": "2026-09-21T04:42:12+00:00",
+      "published_at_basis": "RSS pubDate, publisher supplied",
+      "published_at_precision": "datetime",
+      "published_at_timezone": null,
+      "source": "news_rss",
+      "source_id": "src-rss-61c6cffd8935cda689340b1df021480e00929da5063ad8afabe10cf4115b3204",
+      "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQZUdMemxzY0JyZG0yZHR5ZnduMFZWWENIbURKRTBEQWlnOW92cTVldGMwVWt3VlVkY3dOMVdiOGl6NnF1RzJlVS1SZXlmX0VaYURSSnNTNjBpNnVPNi1NTWJIYnFDbWVfMW4tZHN2czZRaV9HMXhqT0dTbVhaWkJnTTNxdDVhUjRYSVdJNkZwbWhyZHp4Ty13?oc=5",
+      "source_version": "f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a",
+      "status": "ok",
+      "status_reason": null,
+      "supersedes": null,
+      "tool": "rss_article",
+      "truncated": true
+    },
+    {
+      "artifact": {
+        "bytes": 227,
+        "path": "evidence/objects/00/0071110b221bb30b471f58ed1b38cf1f46408200d459b1f7748a7ab238e4039d.json",
+        "sha256": "0071110b221bb30b471f58ed1b38cf1f46408200d459b1f7748a7ab238e4039d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 0
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-4d1a7f56bfb60c00c93321c2203e50280487949af6a4e924967fe000edb6c4e9",
+      "fetched_at": "2026-09-21T15:59:25Z",
+      "kind": "financials",
+      "known_gaps": [
+        "segment/geography breakdown may be absent for this ticker",
+        "empty DataFrame returned by source (kept as empty records)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-e4859dffb7448298ccba4f6de1be1db0fc6bdbb759745e2d4292568066a79bcd",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "4d1a7f56bfb60c00c93321c2203e50280487949af6a4e924967fe000edb6c4e9",
+      "status": "empty",
+      "status_reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different",
+      "supersedes": "ev-d950df23cf37f2117d93e08ea873b392efcaf007b57107fada5e439200b84ce2",
+      "tool": "Ticker.quarterly_revenue_by_breakdown()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 111,
+        "path": "evidence/objects/dd/dd0c157bd782d03a6ade420be39145fff1600d3ec45a381ff273a4eedf9c3dda.json",
+        "sha256": "dd0c157bd782d03a6ade420be39145fff1600d3ec45a381ff273a4eedf9c3dda"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 0
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-7e23c0b32d73b3fc741815600a103540a0acf3d441fd5c07908b3d1b4195c162",
+      "fetched_at": "2026-09-21T15:37:05Z",
+      "kind": "prices",
+      "known_gaps": [
+        "empty DataFrame returned by source (kept as empty records)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-a80506e9b630dc46b5bf4abea769a23da79e4d5329c04cca1bc84cfeeaeff1cd",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "7e23c0b32d73b3fc741815600a103540a0acf3d441fd5c07908b3d1b4195c162",
+      "status": "empty",
+      "status_reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different",
+      "supersedes": null,
+      "tool": "Ticker.splits()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 111,
+        "path": "evidence/objects/dd/dd0c157bd782d03a6ade420be39145fff1600d3ec45a381ff273a4eedf9c3dda.json",
+        "sha256": "dd0c157bd782d03a6ade420be39145fff1600d3ec45a381ff273a4eedf9c3dda"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 0
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "cik:0001051627"
+      ],
+      "evidence_id": "ev-c3d8acc47dafcf526fdb27da90aff19a246dd2e8cda2405fe7f2ff280b594fce",
+      "fetched_at": "2026-09-21T15:59:33Z",
+      "kind": "prices",
+      "known_gaps": [
+        "empty DataFrame returned by source (kept as empty records)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-a80506e9b630dc46b5bf4abea769a23da79e4d5329c04cca1bc84cfeeaeff1cd",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "c3d8acc47dafcf526fdb27da90aff19a246dd2e8cda2405fe7f2ff280b594fce",
+      "status": "empty",
+      "status_reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different",
+      "supersedes": "ev-7e23c0b32d73b3fc741815600a103540a0acf3d441fd5c07908b3d1b4195c162",
+      "tool": "Ticker.splits()",
+      "truncated": false
+    },
+    {
+      "artifact": {
+        "bytes": 227,
+        "path": "evidence/objects/00/0071110b221bb30b471f58ed1b38cf1f46408200d459b1f7748a7ab238e4039d.json",
+        "sha256": "0071110b221bb30b471f58ed1b38cf1f46408200d459b1f7748a7ab238e4039d"
+      },
+      "contract_version": "0.4.0",
+      "coverage": {
+        "count": 0
+      },
+      "data_as_of": null,
+      "data_as_of_basis": "Source does not establish a dataset snapshot time",
+      "data_as_of_precision": "unknown",
+      "data_as_of_timezone": null,
+      "entity_ids": [
+        "CIK:0001051627",
+        "NASDAQ:AXTI"
+      ],
+      "evidence_id": "ev-d950df23cf37f2117d93e08ea873b392efcaf007b57107fada5e439200b84ce2",
+      "fetched_at": "2026-09-21T15:36:56Z",
+      "kind": "financials",
+      "known_gaps": [
+        "segment/geography breakdown may be absent for this ticker",
+        "empty DataFrame returned by source (kept as empty records)"
+      ],
+      "media_type": "application/json",
+      "params": {
+        "ticker": "AXTI"
+      },
+      "period": {
+        "end": null,
+        "start": null
+      },
+      "provenance": "public_market",
+      "published_at": null,
+      "published_at_basis": "Legacy sidecar date is not proof of version publication; original basis: Source does not establish publication time",
+      "published_at_precision": "unknown",
+      "published_at_timezone": null,
+      "source": "defeatbeta",
+      "source_id": "src-e4859dffb7448298ccba4f6de1be1db0fc6bdbb759745e2d4292568066a79bcd",
+      "source_url": "https://huggingface.co/datasets/defeatbeta/yahoo-finance-data",
+      "source_version": "d950df23cf37f2117d93e08ea873b392efcaf007b57107fada5e439200b84ce2",
+      "status": "empty",
+      "status_reason": "empty DataFrame returned by source (kept as empty records); 'nothing to report' and 'not covered' are different",
+      "supersedes": null,
+      "tool": "Ticker.quarterly_revenue_by_breakdown()",
+      "truncated": false
+    }
+  ]
+}

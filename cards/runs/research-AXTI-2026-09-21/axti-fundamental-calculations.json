@@ -1,0 +1,4607 @@
+{
+  "security": {
+    "security_id": "NASDAQ:AXTI",
+    "issuer_id": "CIK:0001051627",
+    "ticker": "AXTI",
+    "name": "AXT Inc.",
+    "currency": "USD",
+    "exchange": "NASDAQ"
+  },
+  "research_input": {
+    "packet_id": "packet-8ca9a4465aed400fd1102d7a43cd08c68891781d24d57899b2fce177b37aca2a",
+    "as_of": "2026-09-21T15:37:22Z",
+    "security": {
+      "security_id": "NASDAQ:AXTI",
+      "issuer_id": "CIK:0001051627",
+      "ticker": "AXTI",
+      "name": "AXT Inc.",
+      "currency": "USD",
+      "exchange": "NASDAQ"
+    },
+    "evidence_ids": [
+      "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+      "ev-113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+      "ev-195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+      "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+      "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+      "ev-41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+      "ev-4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+      "ev-607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+      "ev-6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+      "ev-6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+      "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+      "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+      "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+      "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+      "ev-91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5",
+      "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+      "ev-9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+      "ev-aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+      "ev-b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+      "ev-c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+      "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+      "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d",
+      "ev-c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+      "ev-d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+      "ev-db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+      "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+      "ev-df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997",
+      "ev-e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+      "ev-e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c",
+      "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815",
+      "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6",
+      "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927"
+    ],
+    "diagnostic_ids": [
+      "ev-7e23c0b32d73b3fc741815600a103540a0acf3d441fd5c07908b3d1b4195c162",
+      "ev-d950df23cf37f2117d93e08ea873b392efcaf007b57107fada5e439200b84ce2"
+    ],
+    "requirements": [
+      {
+        "kind": "calendar",
+        "status": "available",
+        "evidence_ids": [
+          "ev-ef4c81c5edf40ca97ac80367b0cd632c7089fbf100475bff950c1c49d9e17815"
+        ],
+        "reason": "Supplied source is not truncated; recency and required sections still need review."
+      },
+      {
+        "kind": "filing",
+        "status": "available",
+        "evidence_ids": [
+          "ev-41e9374f831e59d3eec4d201ed1411648fcd2c9c1534f7cd022a091f7e14e68f",
+          "ev-4f3f2b08ee3647f52ed10e1d6d98b1dab4e6a318fa767b0245afb9701c3986a6",
+          "ev-607a8dfc961c9e0041610455cc2adaaeee654ccb248c537c6a88e1c6ba2199a7",
+          "ev-6839c58fe180eb0169b1996eb48440a142b5dc94bdd89c9bd54d678e3e0b2119",
+          "ev-6e9d451ec3a3b4da8ffe7edb84ec5992dd5b0edaa2138326075836777d39f3b6",
+          "ev-9950753341d0bd9068b0ea72d9c06b9597f5e32d35cacba09a850631c1509bad",
+          "ev-aa4ca0e7db1b1783addce605ac200ba7589c6c209488d4d4abbbdda4b825d933",
+          "ev-b095fb540f603031065b56fb2688f28e51786bdd460486db02af06397faf9ff4",
+          "ev-c29ee67f2db799fc78111ea94575f82b368d6a967f8b6eae738e68ddfd1ef5c0",
+          "ev-c65967e38ed30246e0652df7df3f93154f6622c10d019f3d321d9e4221093a21",
+          "ev-d3eaf04935b64af5b1ccc00e38ae9b8bf93025e7d3142ee61d49c9b8ce8afd5a",
+          "ev-db96e992e3ecee01046e35939535fc04a3a32e3d1f878d310d12aa87ff2379c5",
+          "ev-e20e1bbb3766da58fe6784d540752d6f8d8596fc61c19c007a22f0191c1d3337",
+          "ev-e8acfc1322aca4660e446d07f4d4daa296fc1b305620cdf82f5c5e676415429c"
+        ],
+        "reason": "Supplied source is not truncated; recency and required sections still need review."
+      },
+      {
+        "kind": "filing_index",
+        "status": "partial",
+        "evidence_ids": [
+          "ev-22032f78a3cf8fecb6147a75e18ad6d59c8f1de664a84b46313c7c503a1f034b",
+          "ev-91027035f868c85b241f285af11f4e477b60125eddfcd8f0eee4dd9415eda1a5"
+        ],
+        "reason": "At least one supplied source is truncated; full coverage is not established."
+      },
+      {
+        "kind": "financials",
+        "status": "available",
+        "evidence_ids": [
+          "ev-8572329a266d1823bfd2097ec17524f2ad19bfe696dca6ca768fd49b031ab101",
+          "ev-86d4f9a018f9df8a1f4155b0aa46c8649346ceed864efabf878a1f0da587740c",
+          "ev-9316f7951c79e5d5d357c9166b241e5b62b9cc98f5748d10334c7ead7975a3b8",
+          "ev-c5d159de2cafa6700874456ee573647037deb4d8e04b84109ff676d07db0cb5d"
+        ],
+        "reason": "Supplied source is not truncated; recency and required sections still need review."
+      },
+      {
+        "kind": "prices",
+        "status": "available",
+        "evidence_ids": [
+          "ev-113fd67baf12492dd9f7628c771e748581076c7aa41552e1985aad50e962a466",
+          "ev-1de2a60011b4fb136c2a5a04ff5dad14ef3f97af6cade065d6f127e93d2ba21d",
+          "ev-81033c6b52942df0e95a95bcefde3b9c0f7440a1651c41d562593fdf45e39c4f",
+          "ev-c2da691886f8bdca8db04f5e9b491666ad204a25a5974f91ac64f02c0ccf208e",
+          "ev-dc9e2b03892993ef08c8adedd433f1cad841164a8d0c142d7007e7a0de08d117",
+          "ev-f3a90ecfb876347244dc499ea7568856fffffbc523937e22eeb3f442c1fcd927"
+        ],
+        "reason": "Supplied source is not truncated; recency and required sections still need review."
+      },
+      {
+        "kind": "profile",
+        "status": "partial",
+        "evidence_ids": [
+          "ev-068599fdd773ce8cddbfc48a11ec0f2d02b6e0c4207c4fc595602028d80fd9ce",
+          "ev-195d9c7295c8bbed52dfa3668aaf2320af74652a2e113593f885abeee56be8d2",
+          "ev-6f6876d8b4f0946138bd864d92f85e208424eeccd7f2b1a80c34a44a7072052b",
+          "ev-df21e6d4f3ca9675dccd74cbad51a2bfc9417a285f8dcf1167bcc5bf1014a997"
+        ],
+        "reason": "At least one supplied source is truncated; full coverage is not established."
+      },
+      {
+        "kind": "transcript",
+        "status": "available",
+        "evidence_ids": [
+          "ev-f32444cd9ff93213b78fe329457c0d4a26c997b23a367b9690b320d495d2e5b6"
+        ],
+        "reason": "Supplied source is not truncated; recency and required sections still need review."
+      }
+    ]
+  },
+  "valuations": {
+    "base": {
+      "drivers": {
+        "revenues": [
+          78,
+          455,
+          600,
+          720,
+          790,
+          850,
+          895
+        ],
+        "gms": [
+          0.46,
+          0.48,
+          0.48,
+          0.47,
+          0.46,
+          0.45,
+          0.44
+        ],
+        "opex": [
+          12,
+          55,
+          70,
+          85,
+          95,
+          105,
+          115
+        ],
+        "da": [
+          3,
+          18,
+          28,
+          35,
+          40,
+          43,
+          45
+        ],
+        "capex": [
+          16,
+          100,
+          85,
+          85,
+          80,
+          75,
+          75
+        ],
+        "nwc": [
+          8,
+          40,
+          35,
+          25,
+          18,
+          15,
+          12
+        ],
+        "wacc": 0.12,
+        "g": 0.03
+      },
+      "ebit": [
+        23.880000000000003,
+        163.4,
+        218,
+        253.39999999999998,
+        268.40000000000003,
+        277.5,
+        278.8
+      ],
+      "flows": [
+        -1.8959999999999972,
+        8.719999999999999,
+        82.4,
+        127.72,
+        156.72000000000003,
+        175,
+        181.04000000000002
+      ],
+      "normalized": 178.43200000000002,
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-21",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.12,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": -1.8959999999999972,
+              "is_stub": true,
+              "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 8.719999999999999,
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 82.4,
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 127.72,
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 156.72000000000003,
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 175,
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "date": "2032-12-31",
+              "amount": 181.04000000000002,
+              "is_stub": false,
+              "label": "FY2032"
+            }
+          ],
+          "terminal": {
+            "date": "2032-12-31",
+            "final_expansion_fcff": 181.04000000000002,
+            "normalized_fcff": 178.43200000000002,
+            "growth": 0.03,
+            "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+          }
+        },
+        "bridge": {
+          "cash": 715.798,
+          "nonoperating_assets": 14.055,
+          "debt": 99.733,
+          "minority_interest": 104.88350488150121,
+          "redeemable_claims": 57.317,
+          "convertibles_dilution": 0,
+          "unsupported_claims": [],
+          "diluted_shares": 66.5,
+          "sbc_treatment": {
+            "basis": "expensed_in_fcff",
+            "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+          }
+        }
+      },
+      "result": {
+        "method": "fcff_dcf_dated",
+        "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+        "result": {
+          "pv_explicit_fcff": 438954862.9512565,
+          "pv_terminal": 1002006182.4988985,
+          "terminal_value_at_terminal_date": 2042055111.1111112,
+          "enterprise_value": 1440961045.450155,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9855943437914273,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1837465.1012461844
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 7545347.198456689
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 63641013.72044596
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 88074617.20240287
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 96493543.40941526
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 96204161.29224816
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 88833645.22953378
+            }
+          ],
+          "equity_value": 2013764045.450155,
+          "fair_value_per_share": 30.28216609699481,
+          "terminal_share_of_enterprise_value": 0.6953735395295663
+        },
+        "unit": "absolute currency units; fair_value_per_share per share",
+        "inputs": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "remaining 101-day stub, 78m base sales, not full Q3/H2"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 0,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "37f7620dd380617872213b73a41f69df50fbe056d764005537142702296a4318",
+          "outputs": {
+            "pv_explicit_fcff": 438954862.9512565,
+            "pv_terminal": 1002006182.4988985,
+            "terminal_value_at_terminal_date": 2042055111.1111112,
+            "enterprise_value": 1440961045.450155,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7545347.198456689
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 2013764045.450155,
+            "fair_value_per_share": 30.28216609699481,
+            "terminal_share_of_enterprise_value": 0.6953735395295663
+          }
+        }
+      },
+      "final": {
+        "method": "fcff_dcf_dated",
+        "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+        "result": {
+          "pv_explicit_fcff": 438954862.9512565,
+          "pv_terminal": 1002006182.4988985,
+          "terminal_value_at_terminal_date": 2042055111.1111112,
+          "enterprise_value": 1440961045.450155,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9855943437914273,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1837465.1012461844
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 7545347.198456689
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 63641013.72044596
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 88074617.20240287
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 96493543.40941526
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 96204161.29224816
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 88833645.22953378
+            }
+          ],
+          "equity_value": 1908880540.5686538,
+          "fair_value_per_share": 28.704970534866973,
+          "terminal_share_of_enterprise_value": 0.6953735395295663
+        },
+        "unit": "absolute currency units; fair_value_per_share per share",
+        "inputs": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 104.88350488150121,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+          "outputs": {
+            "pv_explicit_fcff": 438954862.9512565,
+            "pv_terminal": 1002006182.4988985,
+            "terminal_value_at_terminal_date": 2042055111.1111112,
+            "enterprise_value": 1440961045.450155,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7545347.198456689
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 1908880540.5686538,
+            "fair_value_per_share": 28.704970534866973,
+            "terminal_share_of_enterprise_value": 0.6953735395295663
+          }
+        }
+      }
+    },
+    "bear": {
+      "drivers": {
+        "revenues": [
+          65,
+          320,
+          370,
+          400,
+          420,
+          440,
+          455
+        ],
+        "gms": [
+          0.42,
+          0.42,
+          0.4,
+          0.39,
+          0.38,
+          0.38,
+          0.38
+        ],
+        "opex": [
+          12,
+          52,
+          58,
+          62,
+          66,
+          70,
+          74
+        ],
+        "da": [
+          3,
+          17,
+          24,
+          28,
+          30,
+          32,
+          34
+        ],
+        "capex": [
+          16,
+          100,
+          60,
+          50,
+          45,
+          43,
+          42
+        ],
+        "nwc": [
+          8,
+          25,
+          12,
+          8,
+          6,
+          5,
+          4
+        ],
+        "wacc": 0.12,
+        "g": 0.025
+      },
+      "ebit": [
+        15.3,
+        82.4,
+        90,
+        94,
+        93.6,
+        97.19999999999999,
+        98.9
+      ],
+      "flows": [
+        -8.759999999999998,
+        -42.08,
+        24,
+        45.2,
+        53.879999999999995,
+        61.75999999999999,
+        67.12
+      ],
+      "normalized": 65.93333333333334,
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-21",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.12,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": -8.759999999999998,
+              "is_stub": true,
+              "label": "Remaining101-day stub revenue 65m; excludes elapsed Q3 cashflows"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": -42.08,
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 24,
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 45.2,
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 53.879999999999995,
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 61.75999999999999,
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "date": "2032-12-31",
+              "amount": 67.12,
+              "is_stub": false,
+              "label": "FY2032"
+            }
+          ],
+          "terminal": {
+            "date": "2032-12-31",
+            "final_expansion_fcff": 67.12,
+            "normalized_fcff": 65.93333333333334,
+            "growth": 0.025,
+            "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+          }
+        },
+        "bridge": {
+          "cash": 715.798,
+          "nonoperating_assets": 14.055,
+          "debt": 99.733,
+          "minority_interest": 33.62001797908724,
+          "redeemable_claims": 57.317,
+          "convertibles_dilution": 0,
+          "unsupported_claims": [],
+          "diluted_shares": 66.5,
+          "sbc_treatment": {
+            "basis": "expensed_in_fcff",
+            "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+          }
+        }
+      },
+      "result": {
+        "method": "fcff_dcf_dated",
+        "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+        "result": {
+          "pv_explicit_fcff": 104865589.78989552,
+          "pv_terminal": 349066551.1946923,
+          "terminal_value_at_terminal_date": 711385964.9122807,
+          "enterprise_value": 453932140.9845878,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9823202224870878,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -8489553.948795673
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": -36411491.98521301
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 18536217.588479403
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 31169532.55205614
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 33174273.34672851
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 33951822.865195684
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 32934789.371444467
+            }
+          ],
+          "equity_value": 1026735140.9845878,
+          "fair_value_per_share": 15.439626180219365,
+          "terminal_share_of_enterprise_value": 0.7689839949150991
+        },
+        "unit": "absolute currency units; fair_value_per_share per share",
+        "inputs": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -8.759999999999998,
+                "is_stub": true,
+                "label": "remaining 101-day stub, 78m base sales, not full Q3/H2"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": -42.08,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 24,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 45.2,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 53.879999999999995,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 61.75999999999999,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 67.12,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 67.12,
+              "normalized_fcff": 65.93333333333334,
+              "growth": 0.025,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 0,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "fb8fe28b1745d3e6bf09921306c923e1bc02b4c132aca596aa96cb2439b38e7b",
+          "outputs": {
+            "pv_explicit_fcff": 104865589.78989552,
+            "pv_terminal": 349066551.1946923,
+            "terminal_value_at_terminal_date": 711385964.9122807,
+            "enterprise_value": 453932140.9845878,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9823202224870878,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -8489553.948795673
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": -36411491.98521301
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 18536217.588479403
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 31169532.55205614
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 33174273.34672851
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 33951822.865195684
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 32934789.371444467
+              }
+            ],
+            "equity_value": 1026735140.9845878,
+            "fair_value_per_share": 15.439626180219365,
+            "terminal_share_of_enterprise_value": 0.7689839949150991
+          }
+        }
+      },
+      "final": {
+        "method": "fcff_dcf_dated",
+        "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+        "result": {
+          "pv_explicit_fcff": 104865589.78989552,
+          "pv_terminal": 349066551.1946923,
+          "terminal_value_at_terminal_date": 711385964.9122807,
+          "enterprise_value": 453932140.9845878,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9823202224870878,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -8489553.948795673
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": -36411491.98521301
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 18536217.588479403
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 31169532.55205614
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 33174273.34672851
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 33951822.865195684
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 32934789.371444467
+            }
+          ],
+          "equity_value": 993115123.0055006,
+          "fair_value_per_share": 14.934062000082715,
+          "terminal_share_of_enterprise_value": 0.7689839949150991
+        },
+        "unit": "absolute currency units; fair_value_per_share per share",
+        "inputs": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -8.759999999999998,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 65m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": -42.08,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 24,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 45.2,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 53.879999999999995,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 61.75999999999999,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 67.12,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 67.12,
+              "normalized_fcff": 65.93333333333334,
+              "growth": 0.025,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 33.62001797908724,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "435105b6d7ccd4467fd5f3fed2eb67be60c898145c7b31a856cb281ef25f05ab",
+          "outputs": {
+            "pv_explicit_fcff": 104865589.78989552,
+            "pv_terminal": 349066551.1946923,
+            "terminal_value_at_terminal_date": 711385964.9122807,
+            "enterprise_value": 453932140.9845878,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9823202224870878,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -8489553.948795673
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": -36411491.98521301
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 18536217.588479403
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 31169532.55205614
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 33174273.34672851
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 33951822.865195684
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 32934789.371444467
+              }
+            ],
+            "equity_value": 993115123.0055006,
+            "fair_value_per_share": 14.934062000082715,
+            "terminal_share_of_enterprise_value": 0.7689839949150991
+          }
+        }
+      }
+    },
+    "bull": {
+      "drivers": {
+        "revenues": [
+          88,
+          520,
+          800,
+          1120,
+          1400,
+          1640,
+          1800
+        ],
+        "gms": [
+          0.49,
+          0.52,
+          0.52,
+          0.51,
+          0.5,
+          0.49,
+          0.48
+        ],
+        "opex": [
+          12,
+          58,
+          85,
+          120,
+          155,
+          185,
+          210
+        ],
+        "da": [
+          3,
+          20,
+          35,
+          50,
+          65,
+          78,
+          90
+        ],
+        "capex": [
+          16,
+          110,
+          140,
+          155,
+          160,
+          155,
+          150
+        ],
+        "nwc": [
+          8,
+          52,
+          65,
+          70,
+          65,
+          55,
+          40
+        ],
+        "wacc": 0.12,
+        "g": 0.035
+      },
+      "ebit": [
+        31.119999999999997,
+        212.40000000000003,
+        331,
+        451.20000000000005,
+        545,
+        618.6,
+        654
+      ],
+      "flows": [
+        3.896000000000001,
+        27.920000000000044,
+        94.80000000000001,
+        185.96000000000004,
+        276,
+        362.8800000000001,
+        423.20000000000005
+      ],
+      "normalized": 401.12,
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-21",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.12,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": 3.896000000000001,
+              "is_stub": true,
+              "label": "Remaining101-day stub revenue 88m; excludes elapsed Q3 cashflows"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 27.920000000000044,
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 94.80000000000001,
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 185.96000000000004,
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 276,
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 362.8800000000001,
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "date": "2032-12-31",
+              "amount": 423.20000000000005,
+              "is_stub": false,
+              "label": "FY2032"
+            }
+          ],
+          "terminal": {
+            "date": "2032-12-31",
+            "final_expansion_fcff": 423.20000000000005,
+            "normalized_fcff": 401.12,
+            "growth": 0.035,
+            "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+          }
+        },
+        "bridge": {
+          "cash": 715.798,
+          "nonoperating_assets": 14.055,
+          "debt": 99.733,
+          "minority_interest": 232.10909753160752,
+          "redeemable_claims": 57.317,
+          "convertibles_dilution": 0,
+          "unsupported_claims": [],
+          "diluted_shares": 66.5,
+          "sbc_treatment": {
+            "basis": "expensed_in_fcff",
+            "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+          }
+        }
+      },
+      "result": {
+        "method": "fcff_dcf_dated",
+        "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+        "result": {
+          "pv_explicit_fcff": 806471104.6929241,
+          "pv_terminal": 2396617262.7808647,
+          "terminal_value_at_terminal_date": 4884225882.3529415,
+          "enterprise_value": 3203088367.4737887,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9478260869565216,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": 3775719.427455246
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 24158955.708820082
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 73218059.47449365
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 128236421.97744161
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 169935030.50662717
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 199488948.85560584
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 207657968.7424806
+            }
+          ],
+          "equity_value": 3775891367.4737883,
+          "fair_value_per_share": 56.78032131539531,
+          "terminal_share_of_enterprise_value": 0.7482207756481687
+        },
+        "unit": "absolute currency units; fair_value_per_share per share",
+        "inputs": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": 3.896000000000001,
+                "is_stub": true,
+                "label": "remaining 101-day stub, 78m base sales, not full Q3/H2"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 27.920000000000044,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 94.80000000000001,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 185.96000000000004,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 276,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 362.8800000000001,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 423.20000000000005,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 423.20000000000005,
+              "normalized_fcff": 401.12,
+              "growth": 0.035,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 0,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "cd2cfe057a83d6879eb3dd489af82460ef8f136536d23676e0ccd039dffa0ef0",
+          "outputs": {
+            "pv_explicit_fcff": 806471104.6929241,
+            "pv_terminal": 2396617262.7808647,
+            "terminal_value_at_terminal_date": 4884225882.3529415,
+            "enterprise_value": 3203088367.4737887,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9478260869565216,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": 3775719.427455246
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 24158955.708820082
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 73218059.47449365
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 128236421.97744161
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 169935030.50662717
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 199488948.85560584
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 207657968.7424806
+              }
+            ],
+            "equity_value": 3775891367.4737883,
+            "fair_value_per_share": 56.78032131539531,
+            "terminal_share_of_enterprise_value": 0.7482207756481687
+          }
+        }
+      },
+      "final": {
+        "method": "fcff_dcf_dated",
+        "description": "dated multi-stage FCFF DCF: stub, mid/end period discounting and a terminal normalized apart from the last expansion year",
+        "result": {
+          "pv_explicit_fcff": 806471104.6929241,
+          "pv_terminal": 2396617262.7808647,
+          "terminal_value_at_terminal_date": 4884225882.3529415,
+          "enterprise_value": 3203088367.4737887,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9478260869565216,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": 3775719.427455246
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 24158955.708820082
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 73218059.47449365
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 128236421.97744161
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 169935030.50662717
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 199488948.85560584
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 207657968.7424806
+            }
+          ],
+          "equity_value": 3543782269.9421806,
+          "fair_value_per_share": 53.28995894649896,
+          "terminal_share_of_enterprise_value": 0.7482207756481687
+        },
+        "unit": "absolute currency units; fair_value_per_share per share",
+        "inputs": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": 3.896000000000001,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 88m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 27.920000000000044,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 94.80000000000001,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 185.96000000000004,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 276,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 362.8800000000001,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 423.20000000000005,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 423.20000000000005,
+              "normalized_fcff": 401.12,
+              "growth": 0.035,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 232.10909753160752,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "898e91d6cc63371b6f13fbcf6f6c990923499497f7925a182299d76022180188",
+          "outputs": {
+            "pv_explicit_fcff": 806471104.6929241,
+            "pv_terminal": 2396617262.7808647,
+            "terminal_value_at_terminal_date": 4884225882.3529415,
+            "enterprise_value": 3203088367.4737887,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9478260869565216,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": 3775719.427455246
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 24158955.708820082
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 73218059.47449365
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 128236421.97744161
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 169935030.50662717
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 199488948.85560584
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 207657968.7424806
+              }
+            ],
+            "equity_value": 3543782269.9421806,
+            "fair_value_per_share": 53.28995894649896,
+            "terminal_share_of_enterprise_value": 0.7482207756481687
+          }
+        }
+      }
+    }
+  },
+  "alternative": {
+    "base": {
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "eps_basis": "gaap_diluted",
+          "multiple_basis": "equity",
+          "eps": 2.64163705882353,
+          "period": {
+            "start": "2028-01-01",
+            "end": "2028-12-31"
+          },
+          "applies_at": "2027-07-30",
+          "valuation_date": "2026-09-21",
+          "multiple": 25,
+          "discount_rate": 0.12,
+          "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+        },
+        "equity": {
+          "diluted_shares": 68,
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+          }
+        }
+      },
+      "result": {
+        "method": "forward_pe",
+        "description": "forward P/E on per-share earnings; an equity multiple, so no enterprise bridge",
+        "result": {
+          "eps": 2.64163705882353,
+          "multiple": 25,
+          "value_per_share_at_horizon": 66.04092647058825,
+          "years_to_horizon": 0.8547945205479452,
+          "discounted": true,
+          "fair_value_per_share": 59.943467435949536,
+          "equity_value": 4076155785.6445684
+        },
+        "unit": "per share; equity_value in absolute currency units",
+        "inputs": {
+          "method": "forward_pe",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "eps_basis": "gaap_diluted",
+            "multiple_basis": "equity",
+            "eps": 2.64163705882353,
+            "period": {
+              "start": "2028-01-01",
+              "end": "2028-12-31"
+            },
+            "applies_at": "2027-07-30",
+            "valuation_date": "2026-09-21",
+            "multiple": 25,
+            "discount_rate": 0.12,
+            "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+          },
+          "equity": {
+            "diluted_shares": 68,
+            "sbc_treatment": {
+              "basis": "both_documented",
+              "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "forward_pe",
+          "inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+          "outputs": {
+            "eps": 2.64163705882353,
+            "multiple": 25,
+            "value_per_share_at_horizon": 66.04092647058825,
+            "years_to_horizon": 0.8547945205479452,
+            "discounted": true,
+            "fair_value_per_share": 59.943467435949536,
+            "equity_value": 4076155785.6445684
+          }
+        }
+      }
+    },
+    "bear": {
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "eps_basis": "gaap_diluted",
+          "multiple_basis": "equity",
+          "eps": 1.2444794117647058,
+          "period": {
+            "start": "2028-01-01",
+            "end": "2028-12-31"
+          },
+          "applies_at": "2027-07-30",
+          "valuation_date": "2026-09-21",
+          "multiple": 25,
+          "discount_rate": 0.12,
+          "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+        },
+        "equity": {
+          "diluted_shares": 68,
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+          }
+        }
+      },
+      "result": {
+        "method": "forward_pe",
+        "description": "forward P/E on per-share earnings; an equity multiple, so no enterprise bridge",
+        "result": {
+          "eps": 1.2444794117647058,
+          "multiple": 25,
+          "value_per_share_at_horizon": 31.111985294117645,
+          "years_to_horizon": 0.8547945205479452,
+          "discounted": true,
+          "fair_value_per_share": 28.239462663750697,
+          "equity_value": 1920283461.1350474
+        },
+        "unit": "per share; equity_value in absolute currency units",
+        "inputs": {
+          "method": "forward_pe",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "eps_basis": "gaap_diluted",
+            "multiple_basis": "equity",
+            "eps": 1.2444794117647058,
+            "period": {
+              "start": "2028-01-01",
+              "end": "2028-12-31"
+            },
+            "applies_at": "2027-07-30",
+            "valuation_date": "2026-09-21",
+            "multiple": 25,
+            "discount_rate": 0.12,
+            "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+          },
+          "equity": {
+            "diluted_shares": 68,
+            "sbc_treatment": {
+              "basis": "both_documented",
+              "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "forward_pe",
+          "inputs_digest": "af4570c3ea65969a574d34eaa571f7f8433e5a1eb2ad28279b9eb492c20f6074",
+          "outputs": {
+            "eps": 1.2444794117647058,
+            "multiple": 25,
+            "value_per_share_at_horizon": 31.111985294117645,
+            "years_to_horizon": 0.8547945205479452,
+            "discounted": true,
+            "fair_value_per_share": 28.239462663750697,
+            "equity_value": 1920283461.1350474
+          }
+        }
+      }
+    },
+    "bull": {
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "eps_basis": "gaap_diluted",
+          "multiple_basis": "equity",
+          "eps": 3.875065294117647,
+          "period": {
+            "start": "2028-01-01",
+            "end": "2028-12-31"
+          },
+          "applies_at": "2027-07-30",
+          "valuation_date": "2026-09-21",
+          "multiple": 25,
+          "discount_rate": 0.12,
+          "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+        },
+        "equity": {
+          "diluted_shares": 68,
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+          }
+        }
+      },
+      "result": {
+        "method": "forward_pe",
+        "description": "forward P/E on per-share earnings; an equity multiple, so no enterprise bridge",
+        "result": {
+          "eps": 3.875065294117647,
+          "multiple": 25,
+          "value_per_share_at_horizon": 96.87663235294117,
+          "years_to_horizon": 0.8547945205479452,
+          "discounted": true,
+          "fair_value_per_share": 87.93215914890631,
+          "equity_value": 5979386822.125628
+        },
+        "unit": "per share; equity_value in absolute currency units",
+        "inputs": {
+          "method": "forward_pe",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "eps_basis": "gaap_diluted",
+            "multiple_basis": "equity",
+            "eps": 3.875065294117647,
+            "period": {
+              "start": "2028-01-01",
+              "end": "2028-12-31"
+            },
+            "applies_at": "2027-07-30",
+            "valuation_date": "2026-09-21",
+            "multiple": 25,
+            "discount_rate": 0.12,
+            "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+          },
+          "equity": {
+            "diluted_shares": 68,
+            "sbc_treatment": {
+              "basis": "both_documented",
+              "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+            }
+          }
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "forward_pe",
+          "inputs_digest": "4883281aed5c907642d6a79cc6e05c70266b7e5592a5ae81403518caefb264a4",
+          "outputs": {
+            "eps": 3.875065294117647,
+            "multiple": 25,
+            "value_per_share_at_horizon": 96.87663235294117,
+            "years_to_horizon": 0.8547945205479452,
+            "discounted": true,
+            "fair_value_per_share": 87.93215914890631,
+            "equity_value": 5979386822.125628
+          }
+        }
+      }
+    }
+  },
+  "sensitivities": {
+    "wacc10": {
+      "method": "sensitivity",
+      "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+      "result": {
+        "changes": [
+          {
+            "input_path": "model.discount_rate",
+            "value": 0.1
+          }
+        ],
+        "base_fair_value_per_share": 28.704970534866973,
+        "fair_value_per_share": 35.8759431617255,
+        "delta_per_share": 7.1709726268585285,
+        "changed_inputs_digest": "dd6773fa00252e7e1435cfafcd7e37ee9b5ccec2588afd86f5a4d414317c42ad",
+        "changed_outputs": {
+          "pv_explicit_fcff": 475133682.256822,
+          "pv_terminal": 1442697042.879425,
+          "terminal_value_at_terminal_date": 2625499428.5714283,
+          "enterprise_value": 1917830725.1362472,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9855943437914273,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1846649.4741560798
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 7720935.661028497
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 66309319.41998889
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 93435859.18271162
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 104228481.70084107
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 105805282.71408874
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 99480453.05231929
+            }
+          ],
+          "equity_value": 2385750220.254746,
+          "fair_value_per_share": 35.8759431617255,
+          "terminal_share_of_enterprise_value": 0.7522546301769842
+        }
+      },
+      "unit": "per share",
+      "inputs": {
+        "calculation": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 104.88350488150121,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "changes": [
+          {
+            "input_path": "model.discount_rate",
+            "value": 0.1
+          }
+        ]
+      },
+      "calculator_version": "0.3.0",
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+        "outputs": {
+          "changes": [
+            {
+              "input_path": "model.discount_rate",
+              "value": 0.1
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 35.8759431617255,
+          "delta_per_share": 7.1709726268585285,
+          "changed_inputs_digest": "dd6773fa00252e7e1435cfafcd7e37ee9b5ccec2588afd86f5a4d414317c42ad",
+          "changed_outputs": {
+            "pv_explicit_fcff": 475133682.256822,
+            "pv_terminal": 1442697042.879425,
+            "terminal_value_at_terminal_date": 2625499428.5714283,
+            "enterprise_value": 1917830725.1362472,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1846649.4741560798
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7720935.661028497
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 66309319.41998889
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 93435859.18271162
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 104228481.70084107
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 105805282.71408874
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 99480453.05231929
+              }
+            ],
+            "equity_value": 2385750220.254746,
+            "fair_value_per_share": 35.8759431617255,
+            "terminal_share_of_enterprise_value": 0.7522546301769842
+          }
+        }
+      },
+      "final": {
+        "method": "sensitivity",
+        "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+        "result": {
+          "changes": [
+            {
+              "input_path": "model.discount_rate",
+              "value": 0.1
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 139.31349575483705
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 35.358198938066316,
+          "delta_per_share": 6.653228403199343,
+          "changed_inputs_digest": "4cdc2ed12487ce83eed19817b68752810dbb67228fc86df1cd068f68927abc5d",
+          "changed_outputs": {
+            "pv_explicit_fcff": 475133682.256822,
+            "pv_terminal": 1442697042.879425,
+            "terminal_value_at_terminal_date": 2625499428.5714283,
+            "enterprise_value": 1917830725.1362472,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1846649.4741560798
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7720935.661028497
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 66309319.41998889
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 93435859.18271162
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 104228481.70084107
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 105805282.71408874
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 99480453.05231929
+              }
+            ],
+            "equity_value": 2351320229.38141,
+            "fair_value_per_share": 35.358198938066316,
+            "terminal_share_of_enterprise_value": 0.7522546301769842
+          }
+        },
+        "unit": "per share",
+        "inputs": {
+          "calculation": {
+            "method": "fcff_dcf_dated",
+            "currency": "USD",
+            "scale": "millions",
+            "model": {
+              "valuation_date": "2026-09-21",
+              "day_count": "act/365",
+              "timing": "end_of_period",
+              "discount_rate": 0.12,
+              "flows": [
+                {
+                  "date": "2026-12-31",
+                  "amount": -1.8959999999999972,
+                  "is_stub": true,
+                  "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+                },
+                {
+                  "date": "2027-12-31",
+                  "amount": 8.719999999999999,
+                  "is_stub": false,
+                  "label": "FY2027"
+                },
+                {
+                  "date": "2028-12-31",
+                  "amount": 82.4,
+                  "is_stub": false,
+                  "label": "FY2028"
+                },
+                {
+                  "date": "2029-12-31",
+                  "amount": 127.72,
+                  "is_stub": false,
+                  "label": "FY2029"
+                },
+                {
+                  "date": "2030-12-31",
+                  "amount": 156.72000000000003,
+                  "is_stub": false,
+                  "label": "FY2030"
+                },
+                {
+                  "date": "2031-12-31",
+                  "amount": 175,
+                  "is_stub": false,
+                  "label": "FY2031"
+                },
+                {
+                  "date": "2032-12-31",
+                  "amount": 181.04000000000002,
+                  "is_stub": false,
+                  "label": "FY2032"
+                }
+              ],
+              "terminal": {
+                "date": "2032-12-31",
+                "final_expansion_fcff": 181.04000000000002,
+                "normalized_fcff": 178.43200000000002,
+                "growth": 0.03,
+                "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+              }
+            },
+            "bridge": {
+              "cash": 715.798,
+              "nonoperating_assets": 14.055,
+              "debt": 99.733,
+              "minority_interest": 104.88350488150121,
+              "redeemable_claims": 57.317,
+              "convertibles_dilution": 0,
+              "unsupported_claims": [],
+              "diluted_shares": 66.5,
+              "sbc_treatment": {
+                "basis": "expensed_in_fcff",
+                "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+              }
+            }
+          },
+          "changes": [
+            {
+              "input_path": "model.discount_rate",
+              "value": 0.1
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 139.31349575483705
+            }
+          ]
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+          "outputs": {
+            "changes": [
+              {
+                "input_path": "model.discount_rate",
+                "value": 0.1
+              },
+              {
+                "input_path": "bridge.minority_interest",
+                "value": 139.31349575483705
+              }
+            ],
+            "base_fair_value_per_share": 28.704970534866973,
+            "fair_value_per_share": 35.358198938066316,
+            "delta_per_share": 6.653228403199343,
+            "changed_inputs_digest": "4cdc2ed12487ce83eed19817b68752810dbb67228fc86df1cd068f68927abc5d",
+            "changed_outputs": {
+              "pv_explicit_fcff": 475133682.256822,
+              "pv_terminal": 1442697042.879425,
+              "terminal_value_at_terminal_date": 2625499428.5714283,
+              "enterprise_value": 1917830725.1362472,
+              "stub_years": 0.27671232876712326,
+              "years_to_terminal": 6.282191780821917,
+              "normalization_step": 0.9855943437914273,
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "years": 0.27671232876712326,
+                  "present_value": -1846649.4741560798
+                },
+                {
+                  "date": "2027-12-31",
+                  "years": 1.2767123287671234,
+                  "present_value": 7720935.661028497
+                },
+                {
+                  "date": "2028-12-31",
+                  "years": 2.2794520547945205,
+                  "present_value": 66309319.41998889
+                },
+                {
+                  "date": "2029-12-31",
+                  "years": 3.2794520547945205,
+                  "present_value": 93435859.18271162
+                },
+                {
+                  "date": "2030-12-31",
+                  "years": 4.279452054794521,
+                  "present_value": 104228481.70084107
+                },
+                {
+                  "date": "2031-12-31",
+                  "years": 5.279452054794521,
+                  "present_value": 105805282.71408874
+                },
+                {
+                  "date": "2032-12-31",
+                  "years": 6.282191780821917,
+                  "present_value": 99480453.05231929
+                }
+              ],
+              "equity_value": 2351320229.38141,
+              "fair_value_per_share": 35.358198938066316,
+              "terminal_share_of_enterprise_value": 0.7522546301769842
+            }
+          }
+        }
+      }
+    },
+    "wacc14": {
+      "method": "sensitivity",
+      "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+      "result": {
+        "changes": [
+          {
+            "input_path": "model.discount_rate",
+            "value": 0.14
+          }
+        ],
+        "base_fair_value_per_share": 28.704970534866973,
+        "fair_value_per_share": 24.177631376508177,
+        "delta_per_share": -4.527339158358796,
+        "changed_inputs_digest": "6dc4baa2132de9e56c20eff57c6c7e7be074c28d16d28db9d7ecc509fa30d497",
+        "changed_outputs": {
+          "pv_explicit_fcff": 406342362.7969921,
+          "pv_terminal": 733550628.6223029,
+          "terminal_value_at_terminal_date": 1670772363.6363635,
+          "enterprise_value": 1139892991.419295,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9855943437914273,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1828487.7666458832
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 7376754.99905254
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 61124501.65858354
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 83107875.06210919
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 89454633.35183427
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 87621687.78249617
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 79485397.70956226
+            }
+          ],
+          "equity_value": 1607812486.5377939,
+          "fair_value_per_share": 24.177631376508177,
+          "terminal_share_of_enterprise_value": 0.643525869659879
+        }
+      },
+      "unit": "per share",
+      "inputs": {
+        "calculation": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 104.88350488150121,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "changes": [
+          {
+            "input_path": "model.discount_rate",
+            "value": 0.14
+          }
+        ]
+      },
+      "calculator_version": "0.3.0",
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+        "outputs": {
+          "changes": [
+            {
+              "input_path": "model.discount_rate",
+              "value": 0.14
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 24.177631376508177,
+          "delta_per_share": -4.527339158358796,
+          "changed_inputs_digest": "6dc4baa2132de9e56c20eff57c6c7e7be074c28d16d28db9d7ecc509fa30d497",
+          "changed_outputs": {
+            "pv_explicit_fcff": 406342362.7969921,
+            "pv_terminal": 733550628.6223029,
+            "terminal_value_at_terminal_date": 1670772363.6363635,
+            "enterprise_value": 1139892991.419295,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1828487.7666458832
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7376754.99905254
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 61124501.65858354
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 83107875.06210919
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 89454633.35183427
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 87621687.78249617
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 79485397.70956226
+              }
+            ],
+            "equity_value": 1607812486.5377939,
+            "fair_value_per_share": 24.177631376508177,
+            "terminal_share_of_enterprise_value": 0.643525869659879
+          }
+        }
+      },
+      "final": {
+        "method": "sensitivity",
+        "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+        "result": {
+          "changes": [
+            {
+              "input_path": "model.discount_rate",
+              "value": 0.14
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 83.14639138047312
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 24.50450526374168,
+          "delta_per_share": -4.200465271125292,
+          "changed_inputs_digest": "30bdec59bd0bd7db9fc5a1b6b8b9f6a1d97c90b417ae58c53b157efb3a393d48",
+          "changed_outputs": {
+            "pv_explicit_fcff": 406342362.7969921,
+            "pv_terminal": 733550628.6223029,
+            "terminal_value_at_terminal_date": 1670772363.6363635,
+            "enterprise_value": 1139892991.419295,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1828487.7666458832
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7376754.99905254
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 61124501.65858354
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 83107875.06210919
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 89454633.35183427
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 87621687.78249617
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 79485397.70956226
+              }
+            ],
+            "equity_value": 1629549600.038822,
+            "fair_value_per_share": 24.50450526374168,
+            "terminal_share_of_enterprise_value": 0.643525869659879
+          }
+        },
+        "unit": "per share",
+        "inputs": {
+          "calculation": {
+            "method": "fcff_dcf_dated",
+            "currency": "USD",
+            "scale": "millions",
+            "model": {
+              "valuation_date": "2026-09-21",
+              "day_count": "act/365",
+              "timing": "end_of_period",
+              "discount_rate": 0.12,
+              "flows": [
+                {
+                  "date": "2026-12-31",
+                  "amount": -1.8959999999999972,
+                  "is_stub": true,
+                  "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+                },
+                {
+                  "date": "2027-12-31",
+                  "amount": 8.719999999999999,
+                  "is_stub": false,
+                  "label": "FY2027"
+                },
+                {
+                  "date": "2028-12-31",
+                  "amount": 82.4,
+                  "is_stub": false,
+                  "label": "FY2028"
+                },
+                {
+                  "date": "2029-12-31",
+                  "amount": 127.72,
+                  "is_stub": false,
+                  "label": "FY2029"
+                },
+                {
+                  "date": "2030-12-31",
+                  "amount": 156.72000000000003,
+                  "is_stub": false,
+                  "label": "FY2030"
+                },
+                {
+                  "date": "2031-12-31",
+                  "amount": 175,
+                  "is_stub": false,
+                  "label": "FY2031"
+                },
+                {
+                  "date": "2032-12-31",
+                  "amount": 181.04000000000002,
+                  "is_stub": false,
+                  "label": "FY2032"
+                }
+              ],
+              "terminal": {
+                "date": "2032-12-31",
+                "final_expansion_fcff": 181.04000000000002,
+                "normalized_fcff": 178.43200000000002,
+                "growth": 0.03,
+                "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+              }
+            },
+            "bridge": {
+              "cash": 715.798,
+              "nonoperating_assets": 14.055,
+              "debt": 99.733,
+              "minority_interest": 104.88350488150121,
+              "redeemable_claims": 57.317,
+              "convertibles_dilution": 0,
+              "unsupported_claims": [],
+              "diluted_shares": 66.5,
+              "sbc_treatment": {
+                "basis": "expensed_in_fcff",
+                "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+              }
+            }
+          },
+          "changes": [
+            {
+              "input_path": "model.discount_rate",
+              "value": 0.14
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 83.14639138047312
+            }
+          ]
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+          "outputs": {
+            "changes": [
+              {
+                "input_path": "model.discount_rate",
+                "value": 0.14
+              },
+              {
+                "input_path": "bridge.minority_interest",
+                "value": 83.14639138047312
+              }
+            ],
+            "base_fair_value_per_share": 28.704970534866973,
+            "fair_value_per_share": 24.50450526374168,
+            "delta_per_share": -4.200465271125292,
+            "changed_inputs_digest": "30bdec59bd0bd7db9fc5a1b6b8b9f6a1d97c90b417ae58c53b157efb3a393d48",
+            "changed_outputs": {
+              "pv_explicit_fcff": 406342362.7969921,
+              "pv_terminal": 733550628.6223029,
+              "terminal_value_at_terminal_date": 1670772363.6363635,
+              "enterprise_value": 1139892991.419295,
+              "stub_years": 0.27671232876712326,
+              "years_to_terminal": 6.282191780821917,
+              "normalization_step": 0.9855943437914273,
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "years": 0.27671232876712326,
+                  "present_value": -1828487.7666458832
+                },
+                {
+                  "date": "2027-12-31",
+                  "years": 1.2767123287671234,
+                  "present_value": 7376754.99905254
+                },
+                {
+                  "date": "2028-12-31",
+                  "years": 2.2794520547945205,
+                  "present_value": 61124501.65858354
+                },
+                {
+                  "date": "2029-12-31",
+                  "years": 3.2794520547945205,
+                  "present_value": 83107875.06210919
+                },
+                {
+                  "date": "2030-12-31",
+                  "years": 4.279452054794521,
+                  "present_value": 89454633.35183427
+                },
+                {
+                  "date": "2031-12-31",
+                  "years": 5.279452054794521,
+                  "present_value": 87621687.78249617
+                },
+                {
+                  "date": "2032-12-31",
+                  "years": 6.282191780821917,
+                  "present_value": 79485397.70956226
+                }
+              ],
+              "equity_value": 1629549600.038822,
+              "fair_value_per_share": 24.50450526374168,
+              "terminal_share_of_enterprise_value": 0.643525869659879
+            }
+          }
+        }
+      }
+    },
+    "terminal_minus25": {
+      "method": "sensitivity",
+      "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+      "result": {
+        "changes": [
+          {
+            "input_path": "model.terminal.normalized_fcff",
+            "value": 133.824
+          }
+        ],
+        "base_fair_value_per_share": 28.704970534866973,
+        "fair_value_per_share": 24.938029999156832,
+        "delta_per_share": -3.766940535710141,
+        "changed_inputs_digest": "89f1256e3daa010f05d7e9d0d643dd3070f255b6363b4343ef9b1a65c34132ba",
+        "changed_outputs": {
+          "pv_explicit_fcff": 438954862.9512565,
+          "pv_terminal": 751504636.874174,
+          "terminal_value_at_terminal_date": 1531541333.3333335,
+          "enterprise_value": 1190459499.8254306,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.7391957578435705,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1837465.1012461844
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 7545347.198456689
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 63641013.72044596
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 88074617.20240287
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 96493543.40941526
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 96204161.29224816
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 88833645.22953378
+            }
+          ],
+          "equity_value": 1658378994.9439294,
+          "fair_value_per_share": 24.938029999156832,
+          "terminal_share_of_enterprise_value": 0.631272745510767
+        }
+      },
+      "unit": "per share",
+      "inputs": {
+        "calculation": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 104.88350488150121,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "changes": [
+          {
+            "input_path": "model.terminal.normalized_fcff",
+            "value": 133.824
+          }
+        ]
+      },
+      "calculator_version": "0.3.0",
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+        "outputs": {
+          "changes": [
+            {
+              "input_path": "model.terminal.normalized_fcff",
+              "value": 133.824
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 24.938029999156832,
+          "delta_per_share": -3.766940535710141,
+          "changed_inputs_digest": "89f1256e3daa010f05d7e9d0d643dd3070f255b6363b4343ef9b1a65c34132ba",
+          "changed_outputs": {
+            "pv_explicit_fcff": 438954862.9512565,
+            "pv_terminal": 751504636.874174,
+            "terminal_value_at_terminal_date": 1531541333.3333335,
+            "enterprise_value": 1190459499.8254306,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.7391957578435705,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7545347.198456689
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 1658378994.9439294,
+            "fair_value_per_share": 24.938029999156832,
+            "terminal_share_of_enterprise_value": 0.631272745510767
+          }
+        }
+      },
+      "final": {
+        "method": "sensitivity",
+        "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+        "result": {
+          "changes": [
+            {
+              "input_path": "model.terminal.normalized_fcff",
+              "value": 133.824
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 86.7972932873961
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 25.210003105835106,
+          "delta_per_share": -3.494967429031867,
+          "changed_inputs_digest": "99b1ec0814455311385dd59e81c287126292ef85d5a25980eed2cb6955cd0408",
+          "changed_outputs": {
+            "pv_explicit_fcff": 438954862.9512565,
+            "pv_terminal": 751504636.874174,
+            "terminal_value_at_terminal_date": 1531541333.3333335,
+            "enterprise_value": 1190459499.8254306,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.7391957578435705,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7545347.198456689
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 1676465206.5380347,
+            "fair_value_per_share": 25.210003105835106,
+            "terminal_share_of_enterprise_value": 0.631272745510767
+          }
+        },
+        "unit": "per share",
+        "inputs": {
+          "calculation": {
+            "method": "fcff_dcf_dated",
+            "currency": "USD",
+            "scale": "millions",
+            "model": {
+              "valuation_date": "2026-09-21",
+              "day_count": "act/365",
+              "timing": "end_of_period",
+              "discount_rate": 0.12,
+              "flows": [
+                {
+                  "date": "2026-12-31",
+                  "amount": -1.8959999999999972,
+                  "is_stub": true,
+                  "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+                },
+                {
+                  "date": "2027-12-31",
+                  "amount": 8.719999999999999,
+                  "is_stub": false,
+                  "label": "FY2027"
+                },
+                {
+                  "date": "2028-12-31",
+                  "amount": 82.4,
+                  "is_stub": false,
+                  "label": "FY2028"
+                },
+                {
+                  "date": "2029-12-31",
+                  "amount": 127.72,
+                  "is_stub": false,
+                  "label": "FY2029"
+                },
+                {
+                  "date": "2030-12-31",
+                  "amount": 156.72000000000003,
+                  "is_stub": false,
+                  "label": "FY2030"
+                },
+                {
+                  "date": "2031-12-31",
+                  "amount": 175,
+                  "is_stub": false,
+                  "label": "FY2031"
+                },
+                {
+                  "date": "2032-12-31",
+                  "amount": 181.04000000000002,
+                  "is_stub": false,
+                  "label": "FY2032"
+                }
+              ],
+              "terminal": {
+                "date": "2032-12-31",
+                "final_expansion_fcff": 181.04000000000002,
+                "normalized_fcff": 178.43200000000002,
+                "growth": 0.03,
+                "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+              }
+            },
+            "bridge": {
+              "cash": 715.798,
+              "nonoperating_assets": 14.055,
+              "debt": 99.733,
+              "minority_interest": 104.88350488150121,
+              "redeemable_claims": 57.317,
+              "convertibles_dilution": 0,
+              "unsupported_claims": [],
+              "diluted_shares": 66.5,
+              "sbc_treatment": {
+                "basis": "expensed_in_fcff",
+                "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+              }
+            }
+          },
+          "changes": [
+            {
+              "input_path": "model.terminal.normalized_fcff",
+              "value": 133.824
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 86.7972932873961
+            }
+          ]
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+          "outputs": {
+            "changes": [
+              {
+                "input_path": "model.terminal.normalized_fcff",
+                "value": 133.824
+              },
+              {
+                "input_path": "bridge.minority_interest",
+                "value": 86.7972932873961
+              }
+            ],
+            "base_fair_value_per_share": 28.704970534866973,
+            "fair_value_per_share": 25.210003105835106,
+            "delta_per_share": -3.494967429031867,
+            "changed_inputs_digest": "99b1ec0814455311385dd59e81c287126292ef85d5a25980eed2cb6955cd0408",
+            "changed_outputs": {
+              "pv_explicit_fcff": 438954862.9512565,
+              "pv_terminal": 751504636.874174,
+              "terminal_value_at_terminal_date": 1531541333.3333335,
+              "enterprise_value": 1190459499.8254306,
+              "stub_years": 0.27671232876712326,
+              "years_to_terminal": 6.282191780821917,
+              "normalization_step": 0.7391957578435705,
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "years": 0.27671232876712326,
+                  "present_value": -1837465.1012461844
+                },
+                {
+                  "date": "2027-12-31",
+                  "years": 1.2767123287671234,
+                  "present_value": 7545347.198456689
+                },
+                {
+                  "date": "2028-12-31",
+                  "years": 2.2794520547945205,
+                  "present_value": 63641013.72044596
+                },
+                {
+                  "date": "2029-12-31",
+                  "years": 3.2794520547945205,
+                  "present_value": 88074617.20240287
+                },
+                {
+                  "date": "2030-12-31",
+                  "years": 4.279452054794521,
+                  "present_value": 96493543.40941526
+                },
+                {
+                  "date": "2031-12-31",
+                  "years": 5.279452054794521,
+                  "present_value": 96204161.29224816
+                },
+                {
+                  "date": "2032-12-31",
+                  "years": 6.282191780821917,
+                  "present_value": 88833645.22953378
+                }
+              ],
+              "equity_value": 1676465206.5380347,
+              "fair_value_per_share": 25.210003105835106,
+              "terminal_share_of_enterprise_value": 0.631272745510767
+            }
+          }
+        }
+      }
+    },
+    "terminal_plus25": {
+      "method": "sensitivity",
+      "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+      "result": {
+        "changes": [
+          {
+            "input_path": "model.terminal.normalized_fcff",
+            "value": 223.04
+          }
+        ],
+        "base_fair_value_per_share": 28.704970534866973,
+        "fair_value_per_share": 32.471911070577114,
+        "delta_per_share": 3.766940535710141,
+        "changed_inputs_digest": "fc0274fe2837d7d39580516a693a4d94cc44722aa58f885070fe8d0553594ba5",
+        "changed_outputs": {
+          "pv_explicit_fcff": 438954862.9512565,
+          "pv_terminal": 1252507728.1236231,
+          "terminal_value_at_terminal_date": 2552568888.888889,
+          "enterprise_value": 1691462591.0748796,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 1.231992929739284,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1837465.1012461844
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": 7545347.198456689
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 63641013.72044596
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 88074617.20240287
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 96493543.40941526
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 96204161.29224816
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 88833645.22953378
+            }
+          ],
+          "equity_value": 2159382086.193378,
+          "fair_value_per_share": 32.471911070577114,
+          "terminal_share_of_enterprise_value": 0.7404879863927039
+        }
+      },
+      "unit": "per share",
+      "inputs": {
+        "calculation": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 104.88350488150121,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "changes": [
+          {
+            "input_path": "model.terminal.normalized_fcff",
+            "value": 223.04
+          }
+        ]
+      },
+      "calculator_version": "0.3.0",
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+        "outputs": {
+          "changes": [
+            {
+              "input_path": "model.terminal.normalized_fcff",
+              "value": 223.04
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 32.471911070577114,
+          "delta_per_share": 3.766940535710141,
+          "changed_inputs_digest": "fc0274fe2837d7d39580516a693a4d94cc44722aa58f885070fe8d0553594ba5",
+          "changed_outputs": {
+            "pv_explicit_fcff": 438954862.9512565,
+            "pv_terminal": 1252507728.1236231,
+            "terminal_value_at_terminal_date": 2552568888.888889,
+            "enterprise_value": 1691462591.0748796,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 1.231992929739284,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7545347.198456689
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 2159382086.193378,
+            "fair_value_per_share": 32.471911070577114,
+            "terminal_share_of_enterprise_value": 0.7404879863927039
+          }
+        }
+      },
+      "final": {
+        "method": "sensitivity",
+        "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+        "result": {
+          "changes": [
+            {
+              "input_path": "model.terminal.normalized_fcff",
+              "value": 223.04
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 122.96971647560632
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 32.19993796389885,
+          "delta_per_share": 3.494967429031874,
+          "changed_inputs_digest": "4896fea0246b5fffe95fa0ccef53fb250fe5c6bbc6060c13d27f3e9e937aac0b",
+          "changed_outputs": {
+            "pv_explicit_fcff": 438954862.9512565,
+            "pv_terminal": 1252507728.1236231,
+            "terminal_value_at_terminal_date": 2552568888.888889,
+            "enterprise_value": 1691462591.0748796,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 1.231992929739284,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": 7545347.198456689
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 2141295874.5992732,
+            "fair_value_per_share": 32.19993796389885,
+            "terminal_share_of_enterprise_value": 0.7404879863927039
+          }
+        },
+        "unit": "per share",
+        "inputs": {
+          "calculation": {
+            "method": "fcff_dcf_dated",
+            "currency": "USD",
+            "scale": "millions",
+            "model": {
+              "valuation_date": "2026-09-21",
+              "day_count": "act/365",
+              "timing": "end_of_period",
+              "discount_rate": 0.12,
+              "flows": [
+                {
+                  "date": "2026-12-31",
+                  "amount": -1.8959999999999972,
+                  "is_stub": true,
+                  "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+                },
+                {
+                  "date": "2027-12-31",
+                  "amount": 8.719999999999999,
+                  "is_stub": false,
+                  "label": "FY2027"
+                },
+                {
+                  "date": "2028-12-31",
+                  "amount": 82.4,
+                  "is_stub": false,
+                  "label": "FY2028"
+                },
+                {
+                  "date": "2029-12-31",
+                  "amount": 127.72,
+                  "is_stub": false,
+                  "label": "FY2029"
+                },
+                {
+                  "date": "2030-12-31",
+                  "amount": 156.72000000000003,
+                  "is_stub": false,
+                  "label": "FY2030"
+                },
+                {
+                  "date": "2031-12-31",
+                  "amount": 175,
+                  "is_stub": false,
+                  "label": "FY2031"
+                },
+                {
+                  "date": "2032-12-31",
+                  "amount": 181.04000000000002,
+                  "is_stub": false,
+                  "label": "FY2032"
+                }
+              ],
+              "terminal": {
+                "date": "2032-12-31",
+                "final_expansion_fcff": 181.04000000000002,
+                "normalized_fcff": 178.43200000000002,
+                "growth": 0.03,
+                "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+              }
+            },
+            "bridge": {
+              "cash": 715.798,
+              "nonoperating_assets": 14.055,
+              "debt": 99.733,
+              "minority_interest": 104.88350488150121,
+              "redeemable_claims": 57.317,
+              "convertibles_dilution": 0,
+              "unsupported_claims": [],
+              "diluted_shares": 66.5,
+              "sbc_treatment": {
+                "basis": "expensed_in_fcff",
+                "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+              }
+            }
+          },
+          "changes": [
+            {
+              "input_path": "model.terminal.normalized_fcff",
+              "value": 223.04
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 122.96971647560632
+            }
+          ]
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+          "outputs": {
+            "changes": [
+              {
+                "input_path": "model.terminal.normalized_fcff",
+                "value": 223.04
+              },
+              {
+                "input_path": "bridge.minority_interest",
+                "value": 122.96971647560632
+              }
+            ],
+            "base_fair_value_per_share": 28.704970534866973,
+            "fair_value_per_share": 32.19993796389885,
+            "delta_per_share": 3.494967429031874,
+            "changed_inputs_digest": "4896fea0246b5fffe95fa0ccef53fb250fe5c6bbc6060c13d27f3e9e937aac0b",
+            "changed_outputs": {
+              "pv_explicit_fcff": 438954862.9512565,
+              "pv_terminal": 1252507728.1236231,
+              "terminal_value_at_terminal_date": 2552568888.888889,
+              "enterprise_value": 1691462591.0748796,
+              "stub_years": 0.27671232876712326,
+              "years_to_terminal": 6.282191780821917,
+              "normalization_step": 1.231992929739284,
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "years": 0.27671232876712326,
+                  "present_value": -1837465.1012461844
+                },
+                {
+                  "date": "2027-12-31",
+                  "years": 1.2767123287671234,
+                  "present_value": 7545347.198456689
+                },
+                {
+                  "date": "2028-12-31",
+                  "years": 2.2794520547945205,
+                  "present_value": 63641013.72044596
+                },
+                {
+                  "date": "2029-12-31",
+                  "years": 3.2794520547945205,
+                  "present_value": 88074617.20240287
+                },
+                {
+                  "date": "2030-12-31",
+                  "years": 4.279452054794521,
+                  "present_value": 96493543.40941526
+                },
+                {
+                  "date": "2031-12-31",
+                  "years": 5.279452054794521,
+                  "present_value": 96204161.29224816
+                },
+                {
+                  "date": "2032-12-31",
+                  "years": 6.282191780821917,
+                  "present_value": 88833645.22953378
+                }
+              ],
+              "equity_value": 2141295874.5992732,
+              "fair_value_per_share": 32.19993796389885,
+              "terminal_share_of_enterprise_value": 0.7404879863927039
+            }
+          }
+        }
+      }
+    },
+    "capex2027_plus50": {
+      "method": "sensitivity",
+      "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+      "result": {
+        "changes": [
+          {
+            "input_path": "model.flows.1.amount",
+            "value": -41.28
+          }
+        ],
+        "base_fair_value_per_share": 28.704970534866973,
+        "fair_value_per_share": 28.054374963502497,
+        "delta_per_share": -0.6505955713644767,
+        "changed_inputs_digest": "4868537d347580aa31425a9748495cd19836281d3939ebd05644ed143833f309",
+        "changed_outputs": {
+          "pv_explicit_fcff": 395690257.45551866,
+          "pv_terminal": 1002006182.4988985,
+          "terminal_value_at_terminal_date": 2042055111.1111112,
+          "enterprise_value": 1397696439.9544172,
+          "stub_years": 0.27671232876712326,
+          "years_to_terminal": 6.282191780821917,
+          "normalization_step": 0.9855943437914273,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.27671232876712326,
+              "present_value": -1837465.1012461844
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.2767123287671234,
+              "present_value": -35719258.297281206
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.2794520547945205,
+              "present_value": 63641013.72044596
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.2794520547945205,
+              "present_value": 88074617.20240287
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.279452054794521,
+              "present_value": 96493543.40941526
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.279452054794521,
+              "present_value": 96204161.29224816
+            },
+            {
+              "date": "2032-12-31",
+              "years": 6.282191780821917,
+              "present_value": 88833645.22953378
+            }
+          ],
+          "equity_value": 1865615935.072916,
+          "fair_value_per_share": 28.054374963502497,
+          "terminal_share_of_enterprise_value": 0.7168982862484623
+        }
+      },
+      "unit": "per share",
+      "inputs": {
+        "calculation": {
+          "method": "fcff_dcf_dated",
+          "currency": "USD",
+          "scale": "millions",
+          "model": {
+            "valuation_date": "2026-09-21",
+            "day_count": "act/365",
+            "timing": "end_of_period",
+            "discount_rate": 0.12,
+            "flows": [
+              {
+                "date": "2026-12-31",
+                "amount": -1.8959999999999972,
+                "is_stub": true,
+                "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+              },
+              {
+                "date": "2027-12-31",
+                "amount": 8.719999999999999,
+                "is_stub": false,
+                "label": "FY2027"
+              },
+              {
+                "date": "2028-12-31",
+                "amount": 82.4,
+                "is_stub": false,
+                "label": "FY2028"
+              },
+              {
+                "date": "2029-12-31",
+                "amount": 127.72,
+                "is_stub": false,
+                "label": "FY2029"
+              },
+              {
+                "date": "2030-12-31",
+                "amount": 156.72000000000003,
+                "is_stub": false,
+                "label": "FY2030"
+              },
+              {
+                "date": "2031-12-31",
+                "amount": 175,
+                "is_stub": false,
+                "label": "FY2031"
+              },
+              {
+                "date": "2032-12-31",
+                "amount": 181.04000000000002,
+                "is_stub": false,
+                "label": "FY2032"
+              }
+            ],
+            "terminal": {
+              "date": "2032-12-31",
+              "final_expansion_fcff": 181.04000000000002,
+              "normalized_fcff": 178.43200000000002,
+              "growth": 0.03,
+              "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+            }
+          },
+          "bridge": {
+            "cash": 715.798,
+            "nonoperating_assets": 14.055,
+            "debt": 99.733,
+            "minority_interest": 104.88350488150121,
+            "redeemable_claims": 57.317,
+            "convertibles_dilution": 0,
+            "unsupported_claims": [],
+            "diluted_shares": 66.5,
+            "sbc_treatment": {
+              "basis": "expensed_in_fcff",
+              "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+            }
+          }
+        },
+        "changes": [
+          {
+            "input_path": "model.flows.1.amount",
+            "value": -41.28
+          }
+        ]
+      },
+      "calculator_version": "0.3.0",
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+        "outputs": {
+          "changes": [
+            {
+              "input_path": "model.flows.1.amount",
+              "value": -41.28
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 28.054374963502497,
+          "delta_per_share": -0.6505955713644767,
+          "changed_inputs_digest": "4868537d347580aa31425a9748495cd19836281d3939ebd05644ed143833f309",
+          "changed_outputs": {
+            "pv_explicit_fcff": 395690257.45551866,
+            "pv_terminal": 1002006182.4988985,
+            "terminal_value_at_terminal_date": 2042055111.1111112,
+            "enterprise_value": 1397696439.9544172,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": -35719258.297281206
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 1865615935.072916,
+            "fair_value_per_share": 28.054374963502497,
+            "terminal_share_of_enterprise_value": 0.7168982862484623
+          }
+        }
+      },
+      "final": {
+        "method": "sensitivity",
+        "description": "re-run one calculation with named inputs changed, both sides in one receipt",
+        "result": {
+          "changes": [
+            {
+              "input_path": "model.flows.1.amount",
+              "value": -41.28
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 101.75980036470892
+            }
+          ],
+          "base_fair_value_per_share": 28.704970534866973,
+          "fair_value_per_share": 28.10134796375501,
+          "delta_per_share": -0.6036225711119627,
+          "changed_inputs_digest": "f7478a55e2b200f58e43e8cd4e556809a19062c8edf8959f853c1fb43a7c0415",
+          "changed_outputs": {
+            "pv_explicit_fcff": 395690257.45551866,
+            "pv_terminal": 1002006182.4988985,
+            "terminal_value_at_terminal_date": 2042055111.1111112,
+            "enterprise_value": 1397696439.9544172,
+            "stub_years": 0.27671232876712326,
+            "years_to_terminal": 6.282191780821917,
+            "normalization_step": 0.9855943437914273,
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "years": 0.27671232876712326,
+                "present_value": -1837465.1012461844
+              },
+              {
+                "date": "2027-12-31",
+                "years": 1.2767123287671234,
+                "present_value": -35719258.297281206
+              },
+              {
+                "date": "2028-12-31",
+                "years": 2.2794520547945205,
+                "present_value": 63641013.72044596
+              },
+              {
+                "date": "2029-12-31",
+                "years": 3.2794520547945205,
+                "present_value": 88074617.20240287
+              },
+              {
+                "date": "2030-12-31",
+                "years": 4.279452054794521,
+                "present_value": 96493543.40941526
+              },
+              {
+                "date": "2031-12-31",
+                "years": 5.279452054794521,
+                "present_value": 96204161.29224816
+              },
+              {
+                "date": "2032-12-31",
+                "years": 6.282191780821917,
+                "present_value": 88833645.22953378
+              }
+            ],
+            "equity_value": 1868739639.5897083,
+            "fair_value_per_share": 28.10134796375501,
+            "terminal_share_of_enterprise_value": 0.7168982862484623
+          }
+        },
+        "unit": "per share",
+        "inputs": {
+          "calculation": {
+            "method": "fcff_dcf_dated",
+            "currency": "USD",
+            "scale": "millions",
+            "model": {
+              "valuation_date": "2026-09-21",
+              "day_count": "act/365",
+              "timing": "end_of_period",
+              "discount_rate": 0.12,
+              "flows": [
+                {
+                  "date": "2026-12-31",
+                  "amount": -1.8959999999999972,
+                  "is_stub": true,
+                  "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+                },
+                {
+                  "date": "2027-12-31",
+                  "amount": 8.719999999999999,
+                  "is_stub": false,
+                  "label": "FY2027"
+                },
+                {
+                  "date": "2028-12-31",
+                  "amount": 82.4,
+                  "is_stub": false,
+                  "label": "FY2028"
+                },
+                {
+                  "date": "2029-12-31",
+                  "amount": 127.72,
+                  "is_stub": false,
+                  "label": "FY2029"
+                },
+                {
+                  "date": "2030-12-31",
+                  "amount": 156.72000000000003,
+                  "is_stub": false,
+                  "label": "FY2030"
+                },
+                {
+                  "date": "2031-12-31",
+                  "amount": 175,
+                  "is_stub": false,
+                  "label": "FY2031"
+                },
+                {
+                  "date": "2032-12-31",
+                  "amount": 181.04000000000002,
+                  "is_stub": false,
+                  "label": "FY2032"
+                }
+              ],
+              "terminal": {
+                "date": "2032-12-31",
+                "final_expansion_fcff": 181.04000000000002,
+                "normalized_fcff": 178.43200000000002,
+                "growth": 0.03,
+                "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+              }
+            },
+            "bridge": {
+              "cash": 715.798,
+              "nonoperating_assets": 14.055,
+              "debt": 99.733,
+              "minority_interest": 104.88350488150121,
+              "redeemable_claims": 57.317,
+              "convertibles_dilution": 0,
+              "unsupported_claims": [],
+              "diluted_shares": 66.5,
+              "sbc_treatment": {
+                "basis": "expensed_in_fcff",
+                "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+              }
+            }
+          },
+          "changes": [
+            {
+              "input_path": "model.flows.1.amount",
+              "value": -41.28
+            },
+            {
+              "input_path": "bridge.minority_interest",
+              "value": 101.75980036470892
+            }
+          ]
+        },
+        "calculator_version": "0.3.0",
+        "receipt": {
+          "calculator_version": "0.3.0",
+          "method": "fcff_dcf_dated",
+          "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+          "outputs": {
+            "changes": [
+              {
+                "input_path": "model.flows.1.amount",
+                "value": -41.28
+              },
+              {
+                "input_path": "bridge.minority_interest",
+                "value": 101.75980036470892
+              }
+            ],
+            "base_fair_value_per_share": 28.704970534866973,
+            "fair_value_per_share": 28.10134796375501,
+            "delta_per_share": -0.6036225711119627,
+            "changed_inputs_digest": "f7478a55e2b200f58e43e8cd4e556809a19062c8edf8959f853c1fb43a7c0415",
+            "changed_outputs": {
+              "pv_explicit_fcff": 395690257.45551866,
+              "pv_terminal": 1002006182.4988985,
+              "terminal_value_at_terminal_date": 2042055111.1111112,
+              "enterprise_value": 1397696439.9544172,
+              "stub_years": 0.27671232876712326,
+              "years_to_terminal": 6.282191780821917,
+              "normalization_step": 0.9855943437914273,
+              "discounted_flows": [
+                {
+                  "date": "2026-12-31",
+                  "years": 0.27671232876712326,
+                  "present_value": -1837465.1012461844
+                },
+                {
+                  "date": "2027-12-31",
+                  "years": 1.2767123287671234,
+                  "present_value": -35719258.297281206
+                },
+                {
+                  "date": "2028-12-31",
+                  "years": 2.2794520547945205,
+                  "present_value": 63641013.72044596
+                },
+                {
+                  "date": "2029-12-31",
+                  "years": 3.2794520547945205,
+                  "present_value": 88074617.20240287
+                },
+                {
+                  "date": "2030-12-31",
+                  "years": 4.279452054794521,
+                  "present_value": 96493543.40941526
+                },
+                {
+                  "date": "2031-12-31",
+                  "years": 5.279452054794521,
+                  "present_value": 96204161.29224816
+                },
+                {
+                  "date": "2032-12-31",
+                  "years": 6.282191780821917,
+                  "present_value": 88833645.22953378
+                }
+              ],
+              "equity_value": 1868739639.5897083,
+              "fair_value_per_share": 28.10134796375501,
+              "terminal_share_of_enterprise_value": 0.7168982862484623
+            }
+          }
+        }
+      }
+    }
+  },
+  "implied": {
+    "method": "solve_implied",
+    "description": "what one input must be for this model to produce a target price; reports no solution and multiple solutions",
+    "result": {
+      "outcome": "solved",
+      "value": 772.7216557985145,
+      "solve_for": "model.terminal.normalized_fcff",
+      "target_price": 78.89,
+      "bounds": {
+        "lower": 100,
+        "upper": 2000
+      },
+      "brackets": [
+        [
+          753.125,
+          782.8125
+        ]
+      ],
+      "undefined_samples": 0
+    },
+    "unit": "the unit of the solved input",
+    "inputs": {
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-21",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.12,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": -1.8959999999999972,
+              "is_stub": true,
+              "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 8.719999999999999,
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 82.4,
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 127.72,
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 156.72000000000003,
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 175,
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "date": "2032-12-31",
+              "amount": 181.04000000000002,
+              "is_stub": false,
+              "label": "FY2032"
+            }
+          ],
+          "terminal": {
+            "date": "2032-12-31",
+            "final_expansion_fcff": 181.04000000000002,
+            "normalized_fcff": 178.43200000000002,
+            "growth": 0.03,
+            "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated"
+          }
+        },
+        "bridge": {
+          "cash": 715.798,
+          "nonoperating_assets": 14.055,
+          "debt": 99.733,
+          "minority_interest": 104.88350488150121,
+          "redeemable_claims": 57.317,
+          "convertibles_dilution": 0,
+          "unsupported_claims": [],
+          "diluted_shares": 66.5,
+          "sbc_treatment": {
+            "basis": "expensed_in_fcff",
+            "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+          }
+        }
+      },
+      "target_price": 78.89,
+      "solve_for": "model.terminal.normalized_fcff",
+      "bounds": {
+        "lower": 100,
+        "upper": 2000
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "fcff_dcf_dated",
+      "inputs_digest": "a3d2aec1acd002676bd321aac6d9f96e3dbd86b914c6d5b2a9441912997fc0fc",
+      "outputs": {
+        "outcome": "solved",
+        "value": 772.7216557985145,
+        "solve_for": "model.terminal.normalized_fcff",
+        "target_price": 78.89,
+        "bounds": {
+          "lower": 100,
+          "upper": 2000
+        },
+        "brackets": [
+          [
+            753.125,
+            782.8125
+          ]
+        ],
+        "undefined_samples": 0
+      }
+    }
+  },
+  "implied_economic": {
+    "method": "solve_implied",
+    "description": "what one input must be for this model to produce a target price; reports no solution and multiple solutions",
+    "result": {
+      "outcome": "solved",
+      "value": 759.8388653985146,
+      "solve_for": "model.terminal.normalized_fcff",
+      "target_price": 78.89,
+      "bounds": {
+        "lower": 100,
+        "upper": 2000
+      },
+      "brackets": [
+        [
+          753.125,
+          782.8125
+        ]
+      ],
+      "undefined_samples": 0
+    },
+    "unit": "the unit of the solved input",
+    "inputs": {
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-21",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.12,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": -1.7591087999999973,
+              "is_stub": true,
+              "label": "Remaining101-day stub revenue 78m; excludes elapsed Q3 cashflows"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 8.090416,
+              "is_stub": false,
+              "label": "FY2027"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 76.45072,
+              "is_stub": false,
+              "label": "FY2028"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 118.498616,
+              "is_stub": false,
+              "label": "FY2029"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 145.404816,
+              "is_stub": false,
+              "label": "FY2030"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 162.36499999999998,
+              "is_stub": false,
+              "label": "FY2031"
+            },
+            {
+              "date": "2032-12-31",
+              "amount": 167.96891200000002,
+              "is_stub": false,
+              "label": "FY2032"
+            }
+          ],
+          "terminal": {
+            "date": "2032-12-31",
+            "final_expansion_fcff": 167.96891200000002,
+            "normalized_fcff": 165.5492096,
+            "growth": 0.03,
+            "basis": "Normalised NOPAT after reinvestment g/15% terminal ROIC; no peak capex perpetuated; model flows scaled92.78% for remaining Tongmei ownership after assumed RNCI redemption"
+          }
+        },
+        "bridge": {
+          "cash": 715.798,
+          "nonoperating_assets": 14.055,
+          "debt": 99.733,
+          "minority_interest": 0.8461173999999998,
+          "redeemable_claims": 57.317,
+          "convertibles_dilution": 0,
+          "unsupported_claims": [],
+          "diluted_shares": 66.5,
+          "sbc_treatment": {
+            "basis": "expensed_in_fcff",
+            "note": "GAAP operating margins include recurring SBC; current fully diluted 66.5m shares capture existing awards, no future SBC addback."
+          }
+        }
+      },
+      "target_price": 78.89,
+      "solve_for": "model.terminal.normalized_fcff",
+      "bounds": {
+        "lower": 100,
+        "upper": 2000
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "fcff_dcf_dated",
+      "inputs_digest": "79f412b8a5dffd7aef301708717b62728ba7da65aba1cf65b47cf5b4694c4199",
+      "outputs": {
+        "outcome": "solved",
+        "value": 759.8388653985146,
+        "solve_for": "model.terminal.normalized_fcff",
+        "target_price": 78.89,
+        "bounds": {
+          "lower": 100,
+          "upper": 2000
+        },
+        "brackets": [
+          [
+            753.125,
+            782.8125
+          ]
+        ],
+        "undefined_samples": 0
+      }
+    }
+  },
+  "implied_eps": {
+    "method": "solve_implied",
+    "description": "what one input must be for this model to produce a target price; reports no solution and multiple solutions",
+    "result": {
+      "outcome": "solved",
+      "value": 3.476588133532071,
+      "solve_for": "model.eps",
+      "target_price": 78.89,
+      "bounds": {
+        "lower": 1,
+        "upper": 10
+      },
+      "brackets": [
+        [
+          3.390625,
+          3.53125
+        ]
+      ],
+      "undefined_samples": 0
+    },
+    "unit": "the unit of the solved input",
+    "inputs": {
+      "calculation": {
+        "method": "forward_pe",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "eps_basis": "gaap_diluted",
+          "multiple_basis": "equity",
+          "eps": 2.64163705882353,
+          "period": {
+            "start": "2028-01-01",
+            "end": "2028-12-31"
+          },
+          "applies_at": "2027-07-30",
+          "valuation_date": "2026-09-21",
+          "multiple": 25,
+          "discount_rate": 0.12,
+          "comparable_basis": "Scenario multiple, not peer median: direct merchant peers JX/Sumitomo are conglomerates; COHR/LITE customers integrate lasers. 25x requires durable growth beyond2028, tested independently 20x/30x."
+        },
+        "equity": {
+          "diluted_shares": 68,
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "GAAP EPS contains SBC; 68m future diluted shares versus66.5m current allows modest new dilution; no cash added to P/E."
+          }
+        }
+      },
+      "target_price": 78.89,
+      "solve_for": "model.eps",
+      "bounds": {
+        "lower": 1,
+        "upper": 10
+      }
+    },
+    "calculator_version": "0.3.0",
+    "receipt": {
+      "calculator_version": "0.3.0",
+      "method": "forward_pe",
+      "inputs_digest": "371710974758a5ecf0d24509765ef64b8eef6fd55d293044be23762c5ceabc2f",
+      "outputs": {
+        "outcome": "solved",
+        "value": 3.476588133532071,
+        "solve_for": "model.eps",
+        "target_price": 78.89,
+        "bounds": {
+          "lower": 1,
+          "upper": 10
+        },
+        "brackets": [
+          [
+            3.390625,
+            3.53125
+          ]
+        ],
+        "undefined_samples": 0
+      }
+    }
+  },
+  "sources": {
+    "jx": {
+      "evidence_id": "ev-2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78",
+      "source_id": "src-687697458363f4b53e62140edccf96eb6e3b338bbc6074df413e3f35ec588f41",
+      "source_version": "2056e4c94ffffb9d75654247b9bf2771fd941ee0f52ccf406e533f5afb785c78",
+      "document": {
+        "author": "JX Advanced Metals Corporation",
+        "title": "JX InP expansion capacity investment policy",
+        "source_type": "other"
+      },
+      "source": "user_document",
+      "kind": "industry_report",
+      "status": "ok",
+      "published_at": "2026-06-16",
+      "fetched_at": "2026-09-21T15:45:21Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://www.jx-nmm.com/english/newsrelease/fy2026/20260616_02.html",
+      "title": "ingest_source",
+      "status_reason": null,
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "source_type": "other",
+      "entity_ids": [
+        "NASDAQ:AXTI",
+        "TSE:5016"
+      ]
+    },
+    "indexnews": {
+      "evidence_id": "ev-646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+      "source_id": "src-7f8bb586753f8626afceb8d3c990399938bd996da2bc9ce772db28a3f5ba704b",
+      "source_version": "646a64abd34752d044799922a73ec941c19397b72f9f1b3a5f0fa521c33b6c09",
+      "document": {
+        "author": "TheFly",
+        "title": "S&P600 scheduled addition AXTI September21",
+        "source_type": "news"
+      },
+      "source": "user_document",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-04",
+      "fetched_at": "2026-09-21T15:49:05Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://www.tipranks.com/news/the-fly/sp-600-adding-ten-companies-at-open-on-9-21-thefly-news?mod=mw_quote_news",
+      "title": "ingest_source",
+      "status_reason": null,
+      "known_gaps": [
+        "Excerpt only: the full document was not captured.",
+        "URL recorded without a fetched body; the page was not archived here.",
+        "Author statements and forecasts are the author's, not this system's judgement."
+      ],
+      "source_type": "news",
+      "entity_ids": [
+        "NASDAQ:AXTI"
+      ]
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "at": "2026-09-21T16:05:07Z",
+  "added": [
+    "ev-33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+    "ev-5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+    "ev-8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+    "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+    "ev-f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+    "ev-f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a"
+  ],
+  "failed": [],
+  "records": [
+    {
+      "evidence_id": "ev-5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+      "source_id": "src-rss-484432c9be6d1f420705e592427dd6c243e2777582edb403cc54a3a0eb3f4780",
+      "source_version": "5c88e805a8a066c99223c04c16b743a85fb5d09b2bef7e85ed0c5cd81c5f6bb7",
+      "document": {
+        "author": "Binance",
+        "title": "AXT Tokenized bStocks Price (AXTIB/USD) Today | Live Price, Market Cap & Chart - Binance",
+        "source_type": "news"
+      },
+      "source": "news_rss",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-20T17:49:00+00:00",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFA5d1pGRTFaQnJCNk5zcDdtN0Q2OUZKdlhRZk9ab0RmZnJTLTkyUFBvcFMwWFFSaU93aGplUmg0bVh0MHdiR2JpdVl0NjU4Tzk3cU9mRGxCWlZ2bHNfeDVQWGFlblA?oc=5",
+      "title": "rss_article",
+      "status_reason": null,
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ]
+    },
+    {
+      "evidence_id": "ev-f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a",
+      "source_id": "src-rss-61c6cffd8935cda689340b1df021480e00929da5063ad8afabe10cf4115b3204",
+      "source_version": "f4eed9ef348a4a5c10241e2be6610fc5ea9b2e0d5213f5ee7b77837f49ab4e5a",
+      "document": {
+        "author": "marketscreener.com",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P 1000 - marketscreener.com",
+        "source_type": "news"
+      },
+      "source": "news_rss",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-21T04:42:12+00:00",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQZUdMemxzY0JyZG0yZHR5ZnduMFZWWENIbURKRTBEQWlnOW92cTVldGMwVWt3VlVkY3dOMVdiOGl6NnF1RzJlVS1SZXlmX0VaYURSSnNTNjBpNnVPNi1NTWJIYnFDbWVfMW4tZHN2czZRaV9HMXhqT0dTbVhaWkJnTTNxdDVhUjRYSVdJNkZwbWhyZHp4Ty13?oc=5",
+      "title": "rss_article",
+      "status_reason": null,
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ]
+    },
+    {
+      "evidence_id": "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+      "source_id": "src-rss-705b012769930a3e9f375ffc79dc6bf0a8be85f6365204b9a1ff80b227fd9551",
+      "source_version": "e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+      "document": {
+        "author": "marketscreener.com",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P 600 - marketscreener.com",
+        "source_type": "news"
+      },
+      "source": "news_rss",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-21T01:05:56+00:00",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxON2NaNnRHU3dyMnpVVmdyQWRDQ3I4VFgwTTBpVHdHX1k5OVBBRUw3X2FNNFhIalBKTWJ5SXFYbmZVbGpWYnJRckNvU2pidmpyVUxFM01CR0xaUGthakRSRFZqWnN2VkprZFVvcF96ZFFvLXBqblB3LWVaTWZISG5MQ2VfV2NTM0JQamQxYXE5Q25kNVJETkE?oc=5",
+      "title": "rss_article",
+      "status_reason": null,
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ]
+    },
+    {
+      "evidence_id": "ev-f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+      "source_id": "src-rss-97c671fdefce1dc89b0df9fbd9b9307e6497a3f7801ea814e545d3cd2ed9c8d1",
+      "source_version": "f4218206dcfdd0df47065c16345d6669af7d2395309415c47776d1772289f4c4",
+      "document": {
+        "author": null,
+        "title": "Bear of the Day: Qualcomm (QCOM)",
+        "source_type": "news"
+      },
+      "source": "news_rss",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-21T11:00:00+00:00",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://finance.yahoo.com/markets/stocks/articles/bear-day-qualcomm-qcom-110000513.html?.tsrc=rss",
+      "title": "rss_article",
+      "status_reason": null,
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ]
+    },
+    {
+      "evidence_id": "ev-33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+      "source_id": "src-rss-9d863078aa782d1c6f0d105de747d0162e0c50f89896796db923c2ac8386961a",
+      "source_version": "33324931187cf5cc210db33860b02d49fe42bb4c9a5e8d2232099bce74b2c3f1",
+      "document": {
+        "author": "marketscreener.com",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P 600 Information Technology - marketscreener.com",
+        "source_type": "news"
+      },
+      "source": "news_rss",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-21T01:15:45+00:00",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPODVzSzEwWUtyb25iNjFKSllBV2o5OVpFN0hPUEZNTkQyZU5KYnVwV3FGVjhFdEJjYXFvY3JXREhKTVBkVUh5SFQ2SUx5aE5fVGlacnU4V1JERElDeHlLdFlCZGx5dDJKMGNrN1Z3czZYYnRGTDNDSjhrby1WMzNzRVlpcmtoeVFfY2lpYjl4NHh0eDBveG5tU1dPNXJFc3czUnpWdUV0UVg4ZlNJUDhFR1NqNXo?oc=5",
+      "title": "rss_article",
+      "status_reason": null,
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ]
+    },
+    {
+      "evidence_id": "ev-8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+      "source_id": "src-rss-e5655dccb971d35e37ec18c31dda775e058292d99e451814bc41a258add7621e",
+      "source_version": "8926211ccc14a3aaad0dcd3dd5b3535771ec367afc5b2ac097199878b5092d19",
+      "document": {
+        "author": "marketscreener.com",
+        "title": "AXT, Inc.(NasdaqGS: AXTI) added to S&P Composite 1500 - marketscreener.com",
+        "source_type": "news"
+      },
+      "source": "news_rss",
+      "kind": "news",
+      "status": "ok",
+      "published_at": "2026-09-21T01:08:39+00:00",
+      "fetched_at": "2026-09-21T16:05:07Z",
+      "period": {
+        "start": null,
+        "end": null
+      },
+      "truncated": true,
+      "source_url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOcjlub3YyMGphNWZreTlLZzJtcjQzS3pJRVhSZ25hVEZGUzBrd1NuZXltMlNlcWhVeVBhLWI5a3Q3aDFUWkhIY0l1bWpKX00yVUtmenFYS0dEay1nUGFkSUJvY3NTQVA4a1E3YmctR0JOX2tKRVY0aXl4dVVoX0hLSTQ5Q3RRaUtVVHBCalBqZTduaTJnaHViRHlPZVo3anZ6dVN2Rw?oc=5",
+      "title": "rss_article",
+      "status_reason": null,
+      "known_gaps": [
+        "RSS excerpt only; read and verify the linked article before adopting its claims."
+      ]
+    }
+  ],
+  "read": {
+    "evidence_id": "ev-e8db572ba79d32fa543a56946489087d2ea82ba28c37b4091e84144cc055feb4",
+    "media_type": "application/json",
+    "total_lines": 8,
+    "first_line": 1,
+    "last_line": 8,
+    "locator": "L1-L8",
+    "has_more": false,
+    "text": "{\n \"title\": \"AXT, Inc.(NasdaqGS: AXTI) added to S&P 600 - marketscreener.com\",\n \"url\": \"https://news.google.com/rss/articles/CBMilgFBVV95cUxON2NaNnRHU3dyMnpVVmdyQWRDQ3I4VFgwTTBpVHdHX1k5OVBBRUw3X2FNNFhIalBKTWJ5SXFYbmZVbGpWYnJRckNvU2pidmpyVUxFM01CR0xaUGthakRSRFZqWnN2VkprZFVvcF96ZFFvLXBqblB3LWVaTWZISG5MQ2VfV2NTM0JQamQxYXE5Q25kNVJETkE?oc=5\",\n \"published_at\": \"2026-09-21T01:05:56+00:00\",\n \"publisher\": \"marketscreener.com\",\n \"summary\": \"AXT, Inc.(NasdaqGS: AXTI) added to S&P 600 marketscreener.com\",\n \"content_scope\": \"RSS headline and supplied excerpt; full article not retrieved\"\n}"
+  },
+  "assessment": "Six RSS records, four duplicate index-inclusion variants, tokenized-security price page excluded, QCOM unrelated excluded. One relevant index headline fully read as registered excerpt, not article. Already verified Sep4 TheFly index-inclusion evidence retained. No new independently verified operating information; source coverage remains incomplete."
+}

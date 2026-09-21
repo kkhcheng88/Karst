@@ -1,0 +1,24 @@
+{
+  "core_version": "0.2.11",
+  "charts_version": "0.3.3",
+  "tests": {
+    "service_updates_bars_registry_and_first_intake_suite": 69,
+    "daily_fetch_port_protocol_longbridge": 66,
+    "final_daily_service_updates": 44,
+    "authenticated_http": 4,
+    "chart_module_tests": 18
+  },
+  "note": "Overlapping suites; counts are not additive. Final correction tests include SEC-loader identity and meaningful text/XBRL-change rejection.",
+  "frozen_packets": 84,
+  "frozen_unchanged": 84,
+  "cloud": {
+    "healthz": "0.2.11",
+    "zeabur_commit": "4ad198144b35438c6d0458c65fe5abdd34282cb9",
+    "BE_latest_new_bar": 1,
+    "BE_merged_history": 1002,
+    "BE_filing_changes_after_fix": 0
+  },
+  "timed_retest_seconds": 318.888,
+  "five_minute_complete_acceptance": false,
+  "remaining": "BE material event primary followups; no autonomous scheduler/notification; new refresh_daily current-session tool catalogue needs reconnect for direct cloud invocation."
+}
