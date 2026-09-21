@@ -1,0 +1,50 @@
+{
+  "subject": "NYSE:BE",
+  "kind": "timed_incremental_acceptance",
+  "started_at": "2026-09-21T15:18:18.491Z",
+  "finished_at": "2026-09-21T15:23:25.581Z",
+  "elapsed_seconds": 307,
+  "five_minute_complete_acceptance": false,
+  "outcome": "incomplete",
+  "check_id": "check-5a53ffb580099df6b58753f57c389f6bea6ad85f9d7a3a087d74830ce1c88228",
+  "base_version_id": "rv-41421105f35aac80b325165a7c295ac51bae7469d2d4bbd31fe1ecd6b4e6e825",
+  "quote": {
+    "at": "2026-09-21T15:21:37Z",
+    "last": 277.29,
+    "previous_close": 265.63,
+    "change_pct": 4.389564431728354,
+    "bar_complete": false
+  },
+  "chart": {
+    "artifact_id": "cha-6ff83823766e0f706955a24e4f07021bb4ed479759549ddd6c43838f76397e4e",
+    "read": true,
+    "bars_available": 1000,
+    "resistance": [
+      280.74,
+      283.83
+    ],
+    "confirmed_swing_low": 249.05
+  },
+  "news_coverage": {
+    "complete": false,
+    "findings": [
+      "S&P500 inclusion effective today was already announced September 4",
+      "Project Phoenix September 16 media coverage links Bloom through analysts; not confirmed contract evidence"
+    ],
+    "gaps": [
+      "Company newsroom fetch timeout",
+      "IR press release page did not supply usable release list",
+      "Broad search produced many irrelevant or older results"
+    ]
+  },
+  "research_changed": false,
+  "pages_updated": false,
+  "usage": null,
+  "reason": "2026-09-21 手動限時增量檢查：Longbridge 15:21:37Z 報277.29，較9/18收265.63升4.39%，今日未收市；最新1000根日線確認主要阻力280.74–283.83，已確認HL249.05，SMA200約198.84。上升修復延續但未有收市突破確認，暫無足夠新證據修改既有中性／等確認或估值。S&P500於今日開市前生效是9/4已公布事件，不是新增盈利資訊；9/16 Project Phoenix媒體報道是舊聞、分析員關聯，未核成BE已簽訂單。最新EDGAR清單首項仍9/18 Form4，所回申報財務文件為既有期別。新聞搜索未確認今天新增重大公司公告，但公司newsroom讀取失敗、IR列表未提供可核對的新報清單，不能宣稱新聞覆蓋完整或無重大變化。首次since增量只得1根bar且舊序列因身份/口徑分組未合併，已重取完整1000根恢復數值，原因待查；舊文件重取顯示changed不能當新事件。既有NBIS/GEV補查與獨立覆核仍未完成。此次是incomplete日常檢查，非新完整研究／非GitHub Pages更新。",
+  "next_fixes": [
+    "Verify canonical security identity and incremental series grouping; do not silently render a one-bar analytical chart",
+    "Distinguish old-document re-registration from material new evidence",
+    "Reliable timestamped news discovery with fallback and explicit coverage",
+    "Return compact update-specific context/protocol instead of complete historical index and output schema"
+  ]
+}
