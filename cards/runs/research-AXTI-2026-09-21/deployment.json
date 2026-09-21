@@ -1,0 +1,44 @@
+{
+  "commit": "a0a73f68faa74d867325bcf2ceed3c8822568db0",
+  "pages_run": 35630044731,
+  "pages_status": "success",
+  "checked_at": "2026-09-21T17:09:43.944637+00:00",
+  "checks": [
+    {
+      "path": "stocks/axti/index.html",
+      "http": 200,
+      "bytes": 12998,
+      "matches_build": true,
+      "sha256": "c9ce70b5706b4d84214c4d351cb07527c9a0f945a248e8f0c2e350b77f5be5b9"
+    },
+    {
+      "path": "stocks/be/index.html",
+      "http": 200,
+      "bytes": 14673,
+      "matches_build": true,
+      "sha256": "d833ca5669923f2289eb65dabd310c9d997e1b6266093844cce7d9b6ac1e00ff"
+    },
+    {
+      "path": "assets/axti-chart-2026-09-21.json",
+      "http": 200,
+      "bytes": 175658,
+      "matches_build": true,
+      "sha256": "bfd66a0ded90126edbd7483a4e96d3f2dfb19eefcd25bb35338ae346b2edd7b3"
+    },
+    {
+      "path": "assets/axti-chart-2026-09-21.png",
+      "http": 200,
+      "bytes": 129111,
+      "matches_build": true,
+      "sha256": "734ad4d8b26ecc9aa5c37ef1e2bad8ef86cf40f307de55bfbc4cd0e813d419b1"
+    },
+    {
+      "path": "index.html",
+      "http": 200,
+      "bytes": 15976,
+      "matches_build": true,
+      "sha256": "b1ae0016408492ee70d56d1473d94b8f949ceb9ee226c850062ad59f2cfd0810"
+    }
+  ],
+  "scope": "Public bytes, links and validated chart assets; no new browser interaction run in this publication step."
+}
