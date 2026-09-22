@@ -1,0 +1,48 @@
+{
+  "run_id": "daily-f700b8207514439a8b60da9ba9da9b3c",
+  "parent_run_id": null,
+  "universe_id": "daily-monitoring",
+  "universe_version": "kv-bdcd3957aff7ddf66b2c18370447b4104f7e65c9f60cc8d2beabd41f34d07fc2",
+  "started_at": "2026-09-22T14:35:05Z",
+  "intake_finished_at": "2026-09-22T14:36:18Z",
+  "operator": "Claude Code (Fable 5.1), interactive, following karst/agents/prompts/daily-operations.md v1",
+  "trigger": "GPT relayed instruction item 2 (完整跑一次無人日更); user order 'Please pull the latest and follow instruction from GPT'",
+  "source_cutoffs": {
+    "prices": "2026-09-21 completed daily close (NoAdjust, Longbridge); 2026-09-22 session open and not treated as a bar",
+    "news_rss": "per-member windows since last check; newest 2026-09-22T14:32:56Z; headlines plus excerpts only",
+    "news_originals": "Longbridge news_detail read for AXTI 9/21 move, Redburn initiations, Nscale IPO filing, S&P quarterly rebalance article, MSFT ratings; SPY pre-market articles not read"
+  },
+  "members": [
+    {"subject": "NYSE:BE", "intake_status": "ok", "evidence_ids": ["ev-7522cb86cab9f139ac8950ed2131f2ebbc24f9dafca835d9dfd2d7c330a24c3a"], "news_window": {"since": "2026-09-22T13:42:56Z", "candidates": 1, "originals_read": 0}, "review_status": "needs_reassessment", "check_id": "check-9cafa045153552eaa4c005db793fdf418edeabf1fa6f5ca9f0791f6647914495", "changed_layers": [], "failure": "longbridge prices adapter returned empty for the 9/22 intraday bar; 9/21 close 272.89 retained", "retry_count": 0, "independent_review_done": true, "independent_review": {"job_id": "job-9f81a9da2afa4bc895b39073", "research_id": "rv-702ba51c73e51c5f89440363c14cd3084160bcc8dac0b04315b43f3faccce7a0", "verdict": "challenges_research", "challenges": 11, "evidence_requests": 5, "reviewer": "claude-fable-5-1 interactive, review-protocol 修訂 3 / contract 0.4.0"}},
+    {"subject": "NYSE:GEV", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:35:11Z", "candidates": 28, "originals_read": 0}, "review_status": "radar_no_research", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false},
+    {"subject": "NASDAQ:CRWV", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:35:15Z", "candidates": 58, "originals_read": 2}, "review_status": "radar_no_research", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false, "shared_event": "redburn-initiation-2026-09-21"},
+    {"subject": "NASDAQ:NBIS", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:35:25Z", "candidates": 50, "originals_read": 2}, "review_status": "radar_no_research", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false, "shared_event": "redburn-initiation-2026-09-21"},
+    {"subject": "NASDAQ:IREN", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:35:33Z", "candidates": 28, "originals_read": 1}, "review_status": "radar_no_research", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false, "shared_event": "redburn-initiation-2026-09-21"},
+    {"subject": "NASDAQ:MSFT", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:35:38Z", "candidates": 106, "originals_read": 1}, "review_status": "radar_no_research", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false},
+    {"subject": "NYSEARCA:SPY", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:36:03Z", "candidates": 64, "originals_read": 0}, "review_status": "six_factors_unchanged", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false},
+    {"subject": "NYSEARCA:RSP", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:36:10Z", "candidates": 15, "originals_read": 0}, "review_status": "participation_reference", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false},
+    {"subject": "NYSEARCA:IWM", "intake_status": "ok", "evidence_ids": [], "news_window": {"since": "2026-09-19T14:36:12Z", "candidates": 10, "originals_read": 0}, "review_status": "participation_reference", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false},
+    {"subject": "NASDAQ:AXTI", "intake_status": "ok", "evidence_ids": ["ev-d2e5470fae4bbafe53678e84be7b05c4a2598af3a45c02c5375a023ead2b2b11"], "news_window": {"since": "2026-09-21T16:05:08Z", "candidates": 3, "originals_read": 1}, "review_status": "needs_reassessment", "check_id": "check-8e12db9dd35503f2aef37d2cdadb4bbaf17c0f9a7a26a213a7c4d87ef621be18", "changed_layers": [], "failure": null, "retry_count": 0, "independent_review_done": false, "note": "9/21 complete close 79.93 first close above 73.94 watch level; move attributed to ECOC 2026 optical-sector rally; S&P 600 addition headline not verified and not used"}
+  ],
+  "shared_events": [
+    {"id": "redburn-initiation-2026-09-21", "verified": true, "source": "Longbridge news 299637316 (TipRanks), 299661963 (GuruFocus)", "summary": "Rothschild & Co Redburn initiated CRWV Sell $54, NBIS Sell $84, IREN Neutral $40 (five other AI-pivot miners Neutral); thesis: credit markets pricing hyperscaler off-balance-sheet leverage, GPU pricing and financing cost risk. Same day MSFT rated Hold. Sell-side view, not a Karst judgment."},
+    {"id": "nscale-ipo-filing-2026-09-21", "verified": "partial", "source": "Longbridge news 299645049", "summary": "Nscale filed for NYSE IPO; deal size in RSS headline (35B) not confirmed by the original read."},
+    {"id": "ecoc-2026-optical-rally-2026-09-21", "verified": true, "source": "Longbridge news 299671575", "summary": "ECOC 2026 (Malaga, 9/21) lifted optical interconnect names; AXTI +13% intraday, POET, GLW also up."},
+    {"id": "spy-premarket-2026-09-22", "verified": false, "summary": "Futures up / oil lower on possible US-Iran diplomacy per RSS headlines; originals not read; six factors unchanged."}
+  ],
+  "momentum_9_21": {"basis": "compare_registered_momentum, NoAdjust, vs NYSEARCA:SPY, cutoff 2026-09-21", "SPY": {"1d": 1.55, "5d": 1.66, "20d": 1.02, "rsi14": 58.43}, "states": {"BE": "leading", "GEV": "warming", "CRWV": "warming", "NBIS": "leading", "IREN": "leading", "MSFT": "cooling", "RSP": "lagging", "IWM": "lagging", "AXTI": "leading"}, "receipts": ["receipt-95abb8cd", "receipt-906b634c", "receipt-35bb961b", "receipt-3e5934db", "receipt-7b22a7de", "receipt-f0d76773", "receipt-6e8ec730", "receipt-1d560d46", "receipt-36057852"]},
+  "research_versions": {"saved": [], "note": "No research version created or advanced; two cloud update checks recorded (BE, AXTI) with outcome needs_reassessment."},
+  "reader_editions": {"new_editions": [], "checks": ["checks/stocks/be/2026-09-22T145000Z.json", "checks/stocks/axti/2026-09-22T145000Z.json", "checks/themes/neocloud/2026-09-22T145000Z.json", "checks/market/spy/2026-09-22T145000Z.json"], "desk_changed": false, "historical_html_preserved": 28},
+  "code_change": "karst/reader/build.py: write pages with newline='\\n' so archive and public bytes match across platforms (Windows build wrote CRLF and stage refused to change the frozen SPY r4 archive). karst.tests.test_reader: 9/10 pass; the symlink test fails on this Windows account before and after the change (WinError 1314), unrelated.",
+  "publication": {"status": "committed_pending_deploy", "commit": null, "pages_run": null, "stage_fingerprint": "candidate sha256 digest d9f9f0cb202b5ae6", "readback_receipt": null},
+  "stages": {"intake_ready": true, "reviewed": true, "analysis_saved": false, "reader_staged": true, "committed": "pending", "deployed": "pending", "verified": "pending"},
+  "gaps": [
+    "BE 9/22 intraday bar not returned by Longbridge adapter; 9/21 close retained (not a failure of the run).",
+    "BE primary research must resolve 11 review challenges and 5 evidence requests before the 194.84 horizon price is reused; not done in this run.",
+    "AXTI independent review not started.",
+    "SPY pre-market originals not read; no factor changed.",
+    "GEV/CRWV/NBIS/IREN/MSFT remain radar members without formal research; Redburn initiations recorded as sell-side view only.",
+    "Kira ticket CLI path not found in this session; no tickets opened for the review or the daily run.",
+    "This run was interactive, not the scheduled unattended trigger; the schedule's own first receipt is still outstanding."
+  ]
+}

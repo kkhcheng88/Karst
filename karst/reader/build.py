@@ -373,7 +373,7 @@ def build(content, output):
         shutil.copyfile(package / 'chart.js', output / 'assets/chart.js')
         shutil.copyfile(package / 'vendor/lightweight-charts-5.2.1.js', output / 'assets/lightweight-charts-5.2.1.js')
         license_text = (package / 'vendor/LICENSE').read_text() + '\n' + (package / 'vendor/NOTICE').read_text()
-        (output / 'assets/chart-license.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Lightweight Charts license</title><pre>' + escape(license_text) + '</pre></html>',encoding='utf-8')
+        (output / 'assets/chart-license.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Lightweight Charts license</title><pre>' + escape(license_text) + '</pre></html>', encoding='utf-8', newline='\n')
     pages = {}
     for r in latest:
         p, html = report_page(r, groups[(r['kind'], r['slug'])],
@@ -402,7 +402,8 @@ def build(content, output):
     for path, html in pages.items():
         target = output / path
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(html, encoding='utf-8')
+        # Bytes must match across platforms: archives and public read-back compare exact bytes.
+        target.write_text(html, encoding='utf-8', newline='\n')
     check_output(output)
     return {'pages': len(pages), 'reports': len(reports), 'assets': len(assets), 'interactive_charts': len(chart_assets)}
 

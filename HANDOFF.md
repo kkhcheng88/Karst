@@ -14,11 +14,13 @@
 
 ## 一、目前可用與剩餘範圍
 
-已上線取證登記、公司研究保存／覆核任務／版本發布、估值與TA計算及實讀圖、知識名單／關係／假設／比較、手動增量路由、GitHub Pages閱讀站、Lightweight Charts、近期動能與市場入口。BE已有正式主研究，獨立覆核待完成；Neocloud與市場現為比較／雷達，不能視作完整公司／指數評級。
+已上線取證登記、公司研究保存／覆核任務／版本發布、估值與TA計算及實讀圖、知識名單／關係／假設／比較、手動增量路由、GitHub Pages閱讀站、Lightweight Charts、近期動能與市場入口。BE已有正式主研究，獨立覆核已完成並提出爭議（主研究待處理）；AXTI 主研究待獨立覆核；Neocloud與市場現為比較／雷達，不能視作完整公司／指數評級。
 
-未完成的主線：BE獨立覆核、Neocloud完整每股現金流及最新資本核對、含息價格與公司行動、非公司研究收件契約、排程首次無人執行驗收、模型組合與評估、WeKnora試用。最新實測版本及本輪狀態見下方首段；其後各段為歷次紀錄，不能當成目前能力清單。
+未完成的主線：BE 主研究處理覆核爭議、AXTI 獨立覆核、Neocloud完整每股現金流及最新資本核對、含息價格與公司行動、非公司研究收件契約、排程首次無人執行驗收、模型組合與評估、WeKnora試用。最新實測版本及本輪狀態見下方首段；其後各段為歷次紀錄，不能當成目前能力清單。
 
 ## 二、下一步
+
+**2026-09-22 BE 獨立覆核完成＋首次無人日更（主 agent）**：Claude Code 經 MCP 完成 job-9f81a9da，verdict `challenges_research`：194.84 算式可重現、舊交易例已撤，但 2027 收入 68 億無公司錨、稅率 5% 對 DCF 23%、可換股稀釋與 SBC 跨方法不一、上半年經營現金流靠客戶按金、客戶集中度高；按 DCF 口徑重算 40 倍期限價約 132–164。**評級不改；主研究須逐項處理 11 項爭議並回應 5 項補證（2025 10-K NOL／稅、O&M 機隊、backlog 與產能、可換股條款、賣方共識快照）後才更新閱讀版。** 日更全程實跑：run `daily-f700b820…` 十證券全取零失敗；原文核實 AXTI 9/21 升幅為 ECOC 板塊行情、Redburn 首覆 CRWV／NBIS 沽售與 IREN 中性、Nscale 遞表；雲端記 BE／AXTI `needs_reassessment`；閱讀站發四份查核記錄（不開新版）；修 `build.py` 寫入固定 `\n`（Windows 建站 CRLF 令存檔 bytes 不符）。部署與讀回、缺口見 `cards/runs/daily/2026-09-22/status.json` 與地圖 §二 首段。
 
 **2026-09-22 決策修訂正式驗收完成**：fc33e39a已上master；Pages Actions35737396990 build／deploy成功，首頁、四最新頁、四歷史入口及12份圖表共21檔HTTP讀回與stage逐bytes一致；24份舊歷史HTML保持。Zeabur成功，healthz實測0.2.13，雲端protocol讀回daily-operations及resume規則。14項定向／認證HTTP測試通過。BE新版本及watch已讀回，L3沿用9/19、L4為9/22，194.84基準及空入場計劃一致。每日排程已建立且讀回enabled，尚無首次無人執行回執，不能稱已驗證每日自動成功。外部Anthropic覆核被自動審核拒絕，須明確披露授權；未傳送。接手規則完整見karst/agents/prompts/daily-operations.md，獨立接手實跑未驗。研究數據限制見各頁及cards/runs/decision-completion-2026-09-22/status.json。
 
