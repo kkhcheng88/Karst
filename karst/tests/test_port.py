@@ -221,15 +221,44 @@ class AdapterTableTests(unittest.TestCase):
         service.ADAPTERS.update({"good": good, "bad": bad})
         self.addCleanup(lambda: (service.ADAPTERS.clear(), service.ADAPTERS.update(original)))
         security = security_for("DEMO", "0000000001")
-        landed, failures = service._run_adapters("staging", security, {"good", "bad"},
+        landed, coverage = service._run_adapters("staging", security, {"good", "bad"},
                                                  "2026-01-01", {"good": "client-object"})
         self.assertEqual(landed, [])
-        self.assertEqual(list(failures), ["bad"])
-        self.assertIn("source is down", failures["bad"])
+        self.assertEqual(sorted(coverage), ["bad", "good"])
+        broken = coverage["bad"]["feeds"][0]
+        self.assertEqual((coverage["bad"]["status"], broken["cause"]), ("failed", "error"))
+        self.assertIn("source is down", broken["reason"])
+        # Landing nothing is not coverage either, but it is told apart from a crash.
+        self.assertEqual(coverage["good"]["feeds"][0]["cause"], "empty")
         self.assertEqual(good.calls[0]["since"], "2026-01-01")
         self.assertEqual(good.calls[0]["client"], "client-object")
         self.assertEqual(good.calls[0]["security"], security)
         self.assertEqual(len(bad.calls), 1, "one broken source must not hide the others")
+
+
+class CoverageTests(unittest.TestCase):
+    def record(self, name, status="ok"):
+        return LandedRecord(kind="prices", path=Path(name) if status == "ok" else None,
+                            meta_path=Path(name + ".meta.json"), status=status,
+                            status_reason=None if status == "ok" else "vendor said no")
+
+    def test_single_feed_adapter_is_derived_from_its_records(self):
+        records, report = port.cover("vendor", lambda: [self.record("a"), self.record("b", "empty")])
+        self.assertEqual(len(records), 2)
+        self.assertEqual(report["status"], "partial")
+        self.assertEqual([(f["feed"], f["status"], f["cause"]) for f in report["feeds"]],
+                         [("b", "failed", "empty"), ("vendor", "ok", None)])
+        self.assertEqual(port.cover("vendor", lambda: [self.record("a")])[1]["status"], "ok")
+
+    def test_timeout_is_a_cause_and_no_report_is_not_complete(self):
+        def slow():
+            raise TimeoutError("read timed out")
+        _, report = port.cover("vendor", slow)
+        self.assertEqual((report["status"], report["feeds"][0]["cause"]), ("failed", "timeout"))
+        self.assertFalse(port.complete({"vendor": report}))
+        self.assertFalse(port.complete({}))
+        with self.assertRaises(ValueError):
+            port.FeedOutcome("x", "failed")  # a failure must say why
 
 
 class FailureIsVisibleTests(unittest.TestCase):

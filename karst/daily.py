@@ -3,6 +3,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 from . import service, bars
+from .fetch import port
 from .identity import security_record
 from .packet import read_json, instant
 from .schema import ContractError
@@ -114,9 +115,7 @@ def refresh_scope(store, data_dir, universe_id, *, since=None, clients=None, res
             continue
         try:
             result = refresh(store, data_dir, subject, since=since, clients=clients)
-            coverage = result.get('news_coverage') or {}
-            okay = (coverage.get('status') == 'ok' and result['history_ready']
-                    and not result['failed'] and not result['adapter_errors'])
+            okay = result['sources_complete'] and result['history_ready']
             result['intake_status'] = 'ready_for_review' if okay else 'incomplete'
             results[subject] = result
         except Exception as exc:
@@ -159,7 +158,8 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
         recovery = service.refresh_sources(data_dir, security, ['prices'], clients=clients, store=store)
         history_recovered = True
         result['failed'].extend(recovery['failed'])
-        result['adapter_errors'].update(recovery['adapter_errors'])
+        # The later full price fetch is the price source's coverage now, as in the store.
+        result['coverage'].update(recovery['coverage'])
         series = read_series(recovery)
     plan = service.plan_update(store, bundle, subject, data_dir=data_dir)
     all_bars = series.daily
@@ -174,8 +174,8 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
             'last_complete_bar': series.last_complete,
             'bars_available': len(all_bars), 'history_recovered': history_recovered,
             'history_ready': series.enough('daily_check'),
-            'news_candidates': candidates, 'news_coverage': result.get('news_coverage'),
-            'failed': result['failed'], 'adapter_errors': result['adapter_errors'],
+            'news_candidates': candidates, 'coverage': result['coverage'],
+            'sources_complete': port.complete(result['coverage']), 'failed': result['failed'],
             'plan_id': plan['plan_id'], 'conditions': plan['conditions'],
             'outstanding_source_changes': len(plan['source_changes']),
             'fundamental_model_refreshed': False,

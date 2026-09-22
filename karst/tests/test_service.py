@@ -78,7 +78,7 @@ class RefreshTests(ServiceCase):
         moved = self.refresh(FakeClient(last_done="11.50"))
         self.assertEqual(moved["added"], [])
         self.assertTrue(moved["changed"], "a new price must register as a changed source version")
-        self.assertNotIn("longbridge", moved["adapter_errors"])
+        self.assertEqual(moved["coverage"]["longbridge"]["status"], "ok")
 
     def test_missing_credentials_lands_as_failed_not_silence(self):
         # A zero-argument factory is how "no client at all" is injected: a bare None
@@ -88,6 +88,8 @@ class RefreshTests(ServiceCase):
                                          store=self.store)
         self.assertEqual(result["added"] + result["changed"] + result["unchanged"], [])
         self.assertEqual(len(result["failed"]), 4)
+        self.assertEqual(result["coverage"]["longbridge"]["status"], "failed")
+        self.assertEqual(self.store.refresh_status("XNAS:DEMO")[0]["status"], "failed")
 
 
 class EvidenceTests(ServiceCase):

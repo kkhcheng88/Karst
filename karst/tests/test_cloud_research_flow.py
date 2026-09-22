@@ -31,7 +31,7 @@ class CloudInputsTests(unittest.TestCase):
             bundle=self.bundle, staging=self.root / 'fresh',
             clients={'edgar': {'http_get': h.http_get, 'submissions_dir': h.submissions_dir,
                                'tenk_cache_dir': h.tenk_miss}})
-        self.assertFalse(result['adapter_errors'])
+        self.assertNotEqual(result['coverage']['edgar']['status'], 'failed')
         self.assertNotIn('packet_error', result)
         packet = json.loads((self.bundle / 'packet.json').read_text())
         self.assertEqual(packet['packet_id'], result['research_input']['packet_id'])

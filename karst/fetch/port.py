@@ -12,11 +12,17 @@ and why. Vendor symbol conversion stays inside the adapter.
 
 This is a shape, not a plugin framework: adding a source is adding one module
 with ``KINDS`` and ``fetch``, and naming it in ``service.ADAPTERS``.
+
+Source coverage (取源覆蓋) travels through the same port. An adapter that reads
+several feeds returns a ``Landing`` — its records plus one ``FeedOutcome`` per
+feed; a single-feed adapter returns a plain list and ``cover`` derives the
+outcomes from its records. ``cover`` is the one place that decides ok / partial
+/ failed; service and daily only read its report.
 """
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from .common import STATUSES
@@ -73,6 +79,92 @@ class LandedRecord:
             raise ValueError('A landed record with status ok must name a landed file')
         if self.status != 'ok' and not self.status_reason:
             raise ValueError('empty/error must say why: "no data" and "fetch broke" differ')
+
+
+# Why a feed was not covered. timeout / rate_limited are kept apart from error so a
+# scheduler can back off or retry that source alone.
+FAILURE_CAUSES = ('error', 'timeout', 'rate_limited', 'empty')
+
+
+@dataclass(frozen=True)
+class FeedOutcome:
+    """How one feed inside an adapter fared: an RSS URL, a vendor tool, or the adapter itself.
+
+    ``ok`` means the feed answered, even with zero items: checked-and-nothing is
+    coverage. ``failed`` carries a cause and a reason; it is never "no news".
+    """
+    feed: str
+    status: str = 'ok'
+    cause: str | None = None
+    reason: str | None = None
+    detail: dict | None = None
+
+    def __post_init__(self):
+        if self.status not in ('ok', 'failed'):
+            raise ValueError(f'feed status must be ok or failed: {self.status!r}')
+        if self.status == 'failed' and (self.cause not in FAILURE_CAUSES or not self.reason):
+            raise ValueError(f'a failed feed needs a cause in {FAILURE_CAUSES} and a reason')
+
+
+class Landing(list):
+    """A multi-feed adapter's return: the LandedRecords, plus one FeedOutcome per feed.
+
+    Still a list of records, so callers that only land evidence need not care.
+    ``scope`` says what the feeds cover, e.g. that configured RSS is not all news.
+    """
+    def __init__(self, records=(), feeds=(), scope=None):
+        super().__init__(records)
+        self.feeds = tuple(feeds)
+        self.scope = scope
+
+
+def failure_cause(exc):
+    """error / timeout / rate_limited for an exception an adapter or a feed raised."""
+    if isinstance(exc, TimeoutError) or 'timed out' in str(exc).lower():
+        return 'timeout'
+    if 429 in (getattr(exc, 'code', None), getattr(exc, 'status', None)):
+        return 'rate_limited'
+    return 'error'
+
+
+def failed_feed(feed, exc, detail=None):
+    return FeedOutcome(feed, 'failed', failure_cause(exc), f'{type(exc).__name__}: {exc}', detail)
+
+
+def _derived_feeds(adapter, records):
+    """A single-feed adapter's outcome, read off its records: every non-ok record is a gap."""
+    if not records:
+        return (FeedOutcome(adapter, 'failed', 'empty',
+                            "adapter landed nothing: 'not covered' is not 'no data'"),)
+    gaps = tuple(FeedOutcome(r.meta_path.name[: -len('.meta.json')], 'failed',
+                             'empty' if r.status == 'empty' else 'error', r.status_reason)
+                 for r in records if r.status != 'ok')
+    good = sum(r.status == 'ok' for r in records)
+    return gaps + ((FeedOutcome(adapter, detail={'records': good}),) if good else ())
+
+
+def cover(adapter, fetch):
+    """Run ``fetch()`` for one adapter -> (records, coverage report).
+
+    The report is ``{'adapter', 'status': ok|partial|failed, 'scope', 'feeds': [...]}``:
+    ok when every feed answered, failed when none did, partial otherwise. An adapter
+    that raises is one failed feed, so one broken source never hides the others.
+    """
+    try:
+        landed = fetch()
+    except Exception as exc:  # noqa: BLE001 - the failure is the report
+        landed = Landing(feeds=[failed_feed(adapter, exc)])
+    feeds = getattr(landed, 'feeds', None) or _derived_feeds(adapter, landed)
+    good = sum(f.status == 'ok' for f in feeds)
+    status = 'ok' if good == len(feeds) else 'failed' if good == 0 else 'partial'
+    return list(landed), {'adapter': adapter, 'status': status,
+                          'scope': getattr(landed, 'scope', None),
+                          'feeds': [asdict(f) for f in feeds]}
+
+
+def complete(coverage):
+    """Did every source in a coverage report (adapter -> report) come back ok?"""
+    return bool(coverage) and all(report['status'] == 'ok' for report in coverage.values())
 
 
 def response_status(response):

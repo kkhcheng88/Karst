@@ -13,7 +13,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from . import bars as bars_module, calculations, charts, publish as publish_module
-from .fetch import broker, defeatbeta, edgar, longbridge, prices, news
+from .fetch import broker, defeatbeta, edgar, longbridge, prices, news, port
 from .fetch.common import utc_now, write_json, write_meta
 from .fetch.registry import EvidenceRegistry
 from .packet import build_packet, check_packet, check_research, confined, read_json
@@ -381,20 +381,19 @@ def _entity_ids(security):
 
 
 def _run_adapters(staging, security, adapters, since, clients):
-    """Land raw returns through the source port; each failure stays a per-source diagnostic.
+    """Land raw returns through the source port, with each adapter's coverage report.
 
-    Returns ``(landed, failures)``: the adapters' own LandedRecords (kind declared
-    by the adapter) and one message per adapter that raised. ``clients[<adapter>]``
-    is that adapter's injected client, if any.
+    Returns ``(landed, coverage)``: the adapters' own LandedRecords (kind declared
+    by the adapter) and ``{adapter: report}`` from ``port.cover``, where a broken
+    source is a failed report, not a hidden one. ``clients[<adapter>]`` is that
+    adapter's injected client, if any.
     """
-    landed, failures = [], {}
+    landed, coverage = [], {}
     for name in sorted(adapters):
-        try:
-            landed += ADAPTERS[name].fetch(security, staging, since=since,
-                                           client=clients.get(name))
-        except Exception as exc:  # noqa: BLE001 - one broken source must not hide the others
-            failures[name] = f"{type(exc).__name__}: {exc}"
-    return landed, failures
+        records, coverage[name] = port.cover(name, lambda: ADAPTERS[name].fetch(
+            security, staging, since=since, client=clients.get(name)))
+        landed += records
+    return landed, coverage
 
 
 def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=None,
@@ -426,14 +425,11 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     from .evidence_changes import equivalent
     known_records = latest_sources(registry.records(), utc_now())
     adapters = {KIND_ADAPTERS[kind] for kind in kinds}
-    landed, adapter_errors = _run_adapters(staging, security, adapters, since, clients)
+    landed, coverage = _run_adapters(staging, security, adapters, since, clients)
 
     result = {"added": [], "changed": [], "unchanged": [], "failed": [], "uncovered": [],
-              "adapter_errors": adapter_errors, "records": [], "bundle": str(bundle),
+              "coverage": coverage, "records": [], "bundle": str(bundle),
               "staging": str(staging)}
-    coverage_path = Path(staging) / news.SOURCE / 'coverage.json'
-    if 'news_rss' in adapters and coverage_path.exists():
-        result['news_coverage'] = read_json(coverage_path)
     entity_ids = _entity_ids(security)
     registered = []
     # Only what the adapters reported: the registry registers their records, it
@@ -468,20 +464,11 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
         except ContractError as exc:
             result["packet_error"] = str(exc)
     if store is not None:
-        for adapter in sorted(adapters):
-            statuses = [r["status"] for r in registered
-                        if KIND_ADAPTERS.get(r["kind"]) == adapter]
-            status = ("error" if adapter in adapter_errors or "error" in statuses else
-                      "empty" if not statuses or "empty" in statuses else "ok")
-            coverage = result.get('news_coverage') if adapter == 'news_rss' else None
-            if coverage:
-                status = 'ok' if coverage['status'] == 'ok' else 'error'
+        for adapter, report in sorted(coverage.items()):
             store.record_refresh(security["security_id"], adapter, {
-                "adapter": adapter, "status": status, "checked_at": utc_now(),
+                **report, "checked_at": utc_now(),
                 "kinds": sorted(k for k in kinds if KIND_ADAPTERS[k] == adapter),
-                "error": adapter_errors.get(adapter),
-                "packet_error": result.get("packet_error"),
-                **({'coverage': coverage} if coverage else {})})
+                "packet_error": result.get("packet_error")})
         result["update_plan"] = plan_update(store, bundle, security["security_id"], data_dir=data_root(data_dir))
     return result
 

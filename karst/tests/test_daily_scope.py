@@ -24,8 +24,8 @@ class ScopeTests(unittest.TestCase):
         def run(state, root, subject, **kwargs):
             if subject == 'EX:A':
                 raise TimeoutError('unavailable')
-            return dict(subject=subject, news_coverage={'status':'ok'}, history_ready=True,
-                        failed=[], adapter_errors={}, news_candidates=[])
+            return dict(subject=subject, sources_complete=True, history_ready=True,
+                        failed=[], news_candidates=[])
         with patch.object(daily, 'refresh', side_effect=run) as mocked:
             result = daily.refresh_scope(self.state, self.root, 'monitor')
         self.assertEqual(mocked.call_count, 2)
@@ -38,8 +38,8 @@ class ScopeTests(unittest.TestCase):
 
     def test_partial_news_not_complete_and_shared_url_keeps_both_subjects(self):
         def run(state, root, subject, **kwargs):
-            return dict(subject=subject, news_coverage={'status':'partial'}, history_ready=True,
-                        failed=[], adapter_errors={}, news_candidates=[{'title':'Shared event',
+            return dict(subject=subject, sources_complete=False, history_ready=True,
+                        failed=[], news_candidates=[{'title':'Shared event',
                         'source_url':'https://example.com/event', 'evidence_id':subject,'source_id':'news'}])
         with patch.object(daily, 'refresh', side_effect=run):
             result = daily.refresh_scope(self.state, self.root, 'monitor')
@@ -58,8 +58,8 @@ class ScopeTests(unittest.TestCase):
         def run(state, root, subject, **kwargs):
             if subject == 'EX:B':
                 raise KeyboardInterrupt('worker interrupted')
-            return dict(subject=subject, news_coverage={'status':'ok'}, history_ready=True,
-                        failed=[], adapter_errors={}, news_candidates=[], observed_at='original-time')
+            return dict(subject=subject, sources_complete=True, history_ready=True,
+                        failed=[], news_candidates=[], observed_at='original-time')
         with patch.object(daily, 'refresh', side_effect=run), self.assertRaises(KeyboardInterrupt):
             daily.refresh_scope(self.state, self.root, 'monitor', since='2026-09-21')
         first = daily.recent_runs(self.root)[0]
@@ -67,8 +67,8 @@ class ScopeTests(unittest.TestCase):
         def good(state, root, subject, **kwargs):
             self.assertEqual(subject, 'EX:B')
             self.assertEqual(kwargs['since'], '2026-09-21')
-            return dict(subject=subject, news_coverage={'status':'ok'}, history_ready=True,
-                        failed=[], adapter_errors={}, news_candidates=[])
+            return dict(subject=subject, sources_complete=True, history_ready=True,
+                        failed=[], news_candidates=[])
         with patch.object(daily, 'refresh', side_effect=good) as call:
             done = daily.refresh_scope(self.state, self.root, 'monitor', resume_run_id=first['run_id'])
         self.assertEqual(call.call_count, 1)

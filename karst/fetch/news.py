@@ -9,13 +9,14 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 from .common import html_to_text, utc_now, write_json, write_meta
-from .port import scan
+from .port import FeedOutcome, Landing, failed_feed, scan
 from ..packet import instant
 from pathlib import Path
 
 SOURCE = 'news_rss'
 KINDS = ('news',)
 MAX_BYTES = 2_000_000
+SCOPE = 'configured public RSS feeds; not exhaustive news coverage'
 
 
 def feed_urls(security):
@@ -79,17 +80,20 @@ def fetch(security, out_dir, *, since=None, client=None):
         try:
             return provider, url, parse_feed(getter(url)), None
         except Exception as exc:
-            return provider, url, [], f'{type(exc).__name__}: {exc}'
+            return provider, url, [], exc
     with ThreadPoolExecutor(max_workers=len(urls)) as pool:
         results = list(pool.map(retrieve, urls))
-    coverage, articles = [], {}
+    feeds, articles = [], {}
     for provider, url, items, error in results:
+        if error is not None:
+            feeds.append(failed_feed(provider, error, {'url': url}))
+            continue
         selected = [item for item in items if item['published_at'] is None or
                     start <= instant(item['published_at']) <= cutoff]
-        coverage.append({'provider': provider, 'url': url, 'status': 'error' if error else 'ok',
-                         'error': error, 'items_returned': len(items), 'in_window': len(selected),
-                         'undated': sum(a['published_at'] is None for a in selected),
-                         'newest_published_at': max((a['published_at'] for a in items if a['published_at']), default=None)})
+        feeds.append(FeedOutcome(provider, detail={
+            'url': url, 'since': start.isoformat(), 'items_returned': len(items),
+            'in_window': len(selected), 'undated': sum(a['published_at'] is None for a in selected),
+            'newest_published_at': max((a['published_at'] for a in items if a['published_at']), default=None)}))
         for item in selected:
             # URL identity is conservative: syndicated near-duplicates remain visible
             # for the analyst to consolidate, instead of suppressing differing claims.
@@ -104,12 +108,5 @@ def fetch(security, out_dir, *, since=None, client=None):
                    published_at_precision='datetime' if published else 'unknown',
                    published_at_timezone=None, published_at_basis='RSS pubDate, publisher supplied' if published else 'RSS date missing or invalid',
                    truncated=True, known_gaps=['RSS excerpt only; read and verify the linked article before adopting its claims.'])
-    write_json(destination / 'coverage.json', {
-        'checked_at': now, 'since': start.isoformat(), 'scope': 'configured public RSS feeds; not exhaustive news coverage',
-        'providers': coverage, 'successful_feeds': sum(r['status'] == 'ok' for r in coverage),
-        'candidate_articles': len(articles), 'undated_articles': sum(a['published_at'] is None for a in articles.values()),
-        'status': 'ok' if all(r['status'] == 'ok' for r in coverage) else
-                  'partial' if any(r['status'] == 'ok' for r in coverage) else 'error'})
-    if not any(r['status'] == 'ok' for r in coverage):
-        raise RuntimeError('All configured news feeds failed; see coverage.json')
-    return scan(destination, lambda meta: 'news')
+    # Every feed failing is reported as failed coverage by the port, never as "no news".
+    return Landing(scan(destination, lambda meta: 'news'), feeds, scope=SCOPE)

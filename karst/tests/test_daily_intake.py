@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from karst import bars, service, daily
 from karst.evidence_changes import equivalent
-from karst.fetch import news, edgar
+from karst.fetch import news, edgar, port
 from karst.fetch.registry import EvidenceRegistry
 from karst.identity import entity_ids
 from karst.schema import digest
@@ -42,22 +42,61 @@ class NewsTests(ServiceCase):
         self.assertEqual([registry.register(item, entity_ids=['XNAS:DEMO'])['evidence_id']
                           for item in self.fetch()], [r['evidence_id'] for r in records])
 
-    def test_one_feed_failure_does_not_hide_other_feed(self):
+    def cover(self, getter):
+        return port.cover(news.SOURCE, lambda: self.fetch(getter))
+
+    def test_one_feed_failure_is_partial_and_names_the_feed(self):
         def get(url):
             if 'yahoo' in url:
                 raise TimeoutError('provider unavailable')
             return FEED
-        self.assertEqual(len(self.fetch(get)), 2)
-        coverage = service.read_json(self.staging / news.SOURCE / 'coverage.json')
-        self.assertEqual((coverage['status'], coverage['successful_feeds']), ('partial', 1))
+        records, report = self.cover(get)
+        self.assertEqual(len(records), 2)
+        self.assertEqual(report['status'], 'partial')
+        failed = [f for f in report['feeds'] if f['status'] == 'failed']
+        self.assertEqual([(f['feed'], f['cause']) for f in failed], [('yahoo', 'timeout')])
+        self.assertFalse(port.complete({news.SOURCE: report}))
+        self.assertFalse((self.staging / news.SOURCE / 'coverage.json').exists())
+
+    def test_rate_limited_feed_is_its_own_cause(self):
+        import urllib.error
+        def get(url):
+            if 'google' in url:
+                raise urllib.error.HTTPError(url, 429, 'Too Many Requests', {}, None)
+            return FEED
+        _, report = self.cover(get)
+        self.assertEqual({f['feed']: f['cause'] for f in report['feeds']},
+                         {'yahoo': None, 'google': 'rate_limited'})
 
     def test_all_failed_is_not_no_news(self):
-        with self.assertRaisesRegex(RuntimeError, 'All configured'):
-            self.fetch(lambda url: b'<html>Error</html>')
+        records, report = self.cover(lambda url: b'<html>Error</html>')
+        self.assertEqual(records, [])
+        self.assertEqual(report['status'], 'failed')
+        self.assertEqual({f['feed'] for f in report['feeds']}, {'yahoo', 'google'})
+        self.assertFalse(port.complete({news.SOURCE: report}))
 
     def test_empty_valid_feed_is_successful_scoped_check(self):
-        self.assertEqual(self.fetch(lambda url: b'<rss><channel/></rss>'), [])
-        self.assertEqual(service.read_json(self.staging / news.SOURCE / 'coverage.json')['status'], 'ok')
+        records, report = self.cover(lambda url: b'<rss><channel/></rss>')
+        self.assertEqual(records, [])
+        self.assertEqual(report['status'], 'ok')
+        self.assertEqual(report['scope'], news.SCOPE)
+        self.assertTrue(port.complete({news.SOURCE: report}))
+
+    def test_partial_news_is_stored_and_routed_as_incomplete_refresh(self):
+        def get(url):
+            if 'yahoo' in url:
+                raise TimeoutError('provider unavailable')
+            return FEED
+        security = {**SECURITY, 'name': 'Demo Corporation'}
+        with patch('karst.fetch.news.utc_now', return_value='2026-09-21T15:00:00Z'):
+            result = service.refresh_sources(self.root, security, ['news'], since='2026-09-20',
+                                             clients={'news_rss': get}, store=self.store,
+                                             bundle=self.bundle, staging=self.staging)
+        self.assertEqual(result['coverage']['news_rss']['status'], 'partial')
+        stored = self.store.refresh_status(SECURITY['security_id'])
+        self.assertEqual([(s['adapter'], s['status']) for s in stored], [('news_rss', 'partial')])
+        reasons = [r for r in result['update_plan']['reasons'] if r['kind'] == 'refresh_incomplete']
+        self.assertEqual([s['adapter'] for s in reasons[0]['sources']], ['news_rss'])
 
     def test_xml_entities_refused(self):
         with self.assertRaises(ValueError):
@@ -145,9 +184,9 @@ class DailyTests(ServiceCase):
         state.latest_research.return_value = {'as_of': '2026-09-18T21:00:00Z', 'version_id': 'base'}
         state.latest_update_check.return_value = {'created_at': '2026-09-21T12:00:00Z',
                                                  'payload': {'outcome': 'incomplete'}}
-        intake = {'records': [], 'added': [], 'changed': [], 'failed': [], 'adapter_errors': {},
-                  'news_coverage': {'status': 'partial'}}
-        recovery = {'failed': ['failed-price'], 'adapter_errors': {'longbridge': 'unavailable'}}
+        intake = {'records': [], 'added': [], 'changed': [], 'failed': [],
+                  'coverage': {'news_rss': {'status': 'partial'}, 'longbridge': {'status': 'ok'}}}
+        recovery = {'failed': ['failed-price'], 'coverage': {'longbridge': {'status': 'failed'}}}
         plan = {'plan_id': 'p', 'conditions': [], 'source_changes': []}
         with patch.object(service, 'bundle_for', return_value=self.bundle), \
              patch.object(service, '_records', return_value=[]), \
@@ -161,8 +200,9 @@ class DailyTests(ServiceCase):
         self.assertNotIn('since', fetch.call_args_list[1].kwargs)
         self.assertFalse(result['history_ready'])
         self.assertFalse(result['fundamental_model_refreshed'])
-        self.assertEqual(result['news_coverage']['status'], 'partial')
-        self.assertEqual(result['adapter_errors'], {'longbridge': 'unavailable'})
+        self.assertEqual(result['coverage'], {'news_rss': {'status': 'partial'},
+                                              'longbridge': {'status': 'failed'}})
+        self.assertFalse(result['sources_complete'])
         state.record_update_check.assert_not_called()
         state.latest_update_check.return_value['payload']['outcome'] = 'unchanged'
         with patch.object(service, 'bundle_for', return_value=self.bundle), \

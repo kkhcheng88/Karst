@@ -262,7 +262,9 @@ class PersistenceTests(unittest.TestCase):
 
     def test_refresh_failure_survives_context_and_other_adapter_success(self):
         self.save()
-        with patch("karst.service._run_adapters", return_value=([], {"longbridge": "connection failed"})):
+        broken = {"longbridge": {"adapter": "longbridge", "status": "failed", "scope": None, "feeds": [
+            {"feed": "longbridge", "status": "failed", "cause": "error", "reason": "connection failed"}]}}
+        with patch("karst.service._run_adapters", return_value=([], broken)):
             result = service.refresh_sources(self.root, SECURITY, ["prices"], store=self.store,
                                              bundle=self.bundle, staging=self.root / "new-stage")
         self.assertEqual(result["update_plan"]["status"], "incomplete")
