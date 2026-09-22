@@ -575,6 +575,47 @@ def _view(rule, bars, window, overlays, width, purpose, label):
     }
 
 
+def _measured_view(rule, series, window, overlays, width, purpose, label, events_kept):
+    """One view's numbers and, where a plan is made, its structure run."""
+    measured = _view(rule, series, window, overlays, width, purpose, label)
+    # Structure is read where a plan is made — the daily and weekly bars. The
+    # monthly view stays background: a break on it is a decision nobody takes
+    # inside this horizon.
+    found = (structure_events(series, width=width, timeframe=rule,
+                              zones=measured["levels"]["zones"])
+             if rule in STRUCTURE_RULES else None)
+    if found is not None:
+        measured["structure"] = {"state": found["state"],
+                                 "events": structure_recent(found, events_kept)}
+    return measured, found
+
+
+def measure(bars, *, events_kept=EVENTS_KEPT):
+    """The numbers :func:`render` derives, without drawing: daily averages, ATR, volume,
+    and the daily / weekly views' levels and structure (``views["D"]``, ``views["W"]``).
+
+    Same functions, same parameters, so a number here equals the one in derived.json.
+    """
+    bars = list(bars or [])
+    if not bars:
+        raise ContractError("No bars to measure")
+    daily = resample(bars, "D")
+    daily_series = {f"sma{window}": sma_series(daily, window) for window in SMA_WINDOWS}
+    daily_series["ema20"] = ema_series(daily, EMA_SPAN)
+    views = {}
+    for key, rule, name, limit, purpose, width, overlays in VIEWS:
+        if key in STRUCTURE_RULES:
+            series = daily if rule == "D" else resample(bars, rule)
+            views[key] = _measured_view(rule, series, series, overlays, width, purpose, name,
+                                        events_kept)[0]
+    return {"charts_version": VERSION,
+            "daily": {"bars_count": len(daily), "last_close": daily[-1]["close"],
+                      "last_bar": daily[-1]["at"], "last_bar_complete": daily[-1]["complete"],
+                      "moving_averages": _averages(daily, daily_series),
+                      "atr": atr(daily), "volume": _volume(daily)},
+            "views": views}
+
+
 def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, scale="auto",
            events_kept=EVENTS_KEPT):
     """Write four PNGs + ``derived.json`` into ``out_dir``; return both, plus artifacts.
@@ -616,17 +657,9 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
                   for name_ in overlays}
         window = series[-limit:] if limit else series
         cut = {name_: values[-limit:] if limit else values for name_, values in mapped.items()}
-        measured = _view(rule, series, window, overlays, width, purpose, name)
+        measured, found = _measured_view(rule, series, window, overlays, width, purpose, name,
+                                         events_kept)
         measured["scale"] = _scale(window, scale)
-        # Structure is read where a plan is made — the daily and weekly bars. The
-        # monthly view stays background: a break on it is a decision nobody takes
-        # inside this horizon.
-        found = (structure_events(series, width=width, timeframe=rule,
-                                  zones=measured["levels"]["zones"])
-                 if rule in STRUCTURE_RULES else None)
-        if found is not None:
-            measured["structure"] = {"state": found["state"],
-                                     "events": structure_recent(found, events_kept)}
         path = out / f"{name}.png"
         subtitle = (f"{measured['drawn_bars']} {rule} bars from {measured['drawn_from']} to "
                     f"{measured['last_bar']} | {measured['scale']} price scale | "

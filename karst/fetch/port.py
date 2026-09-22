@@ -127,6 +127,16 @@ def failure_cause(exc):
     return 'error'
 
 
+def reason_cause(reason):
+    """The cause a landed error record's reason names (the adapter wrote the exception)."""
+    text = str(reason or '').lower()
+    if 'timed out' in text or text.startswith('timeouterror'):
+        return 'timeout'
+    if 'rate limited' in text or '429' in text:
+        return 'rate_limited'
+    return 'error'
+
+
 def failed_feed(feed, exc, detail=None):
     return FeedOutcome(feed, 'failed', failure_cause(exc), f'{type(exc).__name__}: {exc}', detail)
 
@@ -137,7 +147,8 @@ def _derived_feeds(adapter, records):
         return (FeedOutcome(adapter, 'failed', 'empty',
                             "adapter landed nothing: 'not covered' is not 'no data'"),)
     gaps = tuple(FeedOutcome(r.meta_path.name[: -len('.meta.json')], 'failed',
-                             'empty' if r.status == 'empty' else 'error', r.status_reason)
+                             'empty' if r.status == 'empty' else reason_cause(r.status_reason),
+                            r.status_reason)
                  for r in records if r.status != 'ok')
     good = sum(r.status == 'ok' for r in records)
     return gaps + ((FeedOutcome(adapter, detail={'records': good}),) if good else ())

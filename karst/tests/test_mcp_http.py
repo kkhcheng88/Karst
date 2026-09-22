@@ -122,7 +122,14 @@ class HttpTransportTests(unittest.TestCase):
                 intake = await client.call_tool('refresh_daily_scope', {'universe_id':'compute'})
                 self.assertFalse(intake.data['analysis_complete'])
                 self.assertEqual(intake.data['intake_status'], 'incomplete')
-                self.assertEqual(len(intake.data['results']), len(scope.data['members']))
+                # The tool answers with a summary, not every member's detail (KARST-256).
+                self.assertNotIn('results', intake.data)
+                self.assertEqual(intake.data['state'], 'finished')
+                self.assertEqual(intake.data['counts']['done'], len(scope.data['members']))
+                member = await client.call_tool('get_daily_runs', {
+                    'run_id': intake.data['run_id'],
+                    'subject': scope.data['members'][0]['entity_id']})
+                self.assertEqual(member.data['result']['intake_status'], 'incomplete')
                 edge = await client.call_tool("save_knowledge", {"kind":"relation", "object_id":"ab", "payload":relation()})
                 graph = await client.call_tool("get_value_chain", {"universe_id":"compute", "focus":"A"})
                 context = await client.call_tool("get_research_context", {"subject":"A"})

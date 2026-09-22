@@ -186,10 +186,12 @@ def _artifact_text(root, record, max_bytes=TEXT_MAX_BYTES):
 class Store:
     """Thin SQLite wrapper. Every method opens its own short transaction."""
 
-    def __init__(self, path):
+    def __init__(self, path, *, check_same_thread=True):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.connection = sqlite3.connect(str(self.path), isolation_level=None)
+        # A worker's connection is used by that worker only; its owner may close it.
+        self.connection = sqlite3.connect(str(self.path), isolation_level=None,
+                                          check_same_thread=check_same_thread)
         self.connection.row_factory = sqlite3.Row
         self.connection.execute("PRAGMA journal_mode=WAL")
         self.connection.execute("PRAGMA foreign_keys=ON")
@@ -203,6 +205,15 @@ class Store:
         else:
             self.fts5 = True
             self.fts5_reason = None
+            # Which evidence has text indexed, as an ordinary keyed table: the FTS5 table
+            # cannot index evidence_id, so asking it scans every indexed text (KARST-256).
+            fresh = not self.connection.execute(
+                "SELECT 1 FROM sqlite_master WHERE name='evidence_text_ids'").fetchone()
+            self.connection.execute(
+                "CREATE TABLE IF NOT EXISTS evidence_text_ids(evidence_id TEXT PRIMARY KEY)")
+            if fresh:  # a database indexed before this table existed: backfill once
+                self.connection.execute(
+                    "INSERT OR IGNORE INTO evidence_text_ids SELECT evidence_id FROM evidence_text")
 
     def _migrate(self):
         """Additive only: a database written before a column existed keeps its rows.
@@ -262,20 +273,32 @@ class Store:
         """
         if root is None:
             return 0
-        return sum(self.index_text(record["evidence_id"],
-                                   _artifact_text(root, record, max_bytes))
-                   for record in records)
+        return self._index_texts((record["evidence_id"], _artifact_text(root, record, max_bytes))
+                                 for record in records)
 
     def index_text(self, evidence_id, text):
         """Index one artifact's text; ``None`` text and a missing FTS5 build are both no-ops."""
-        if not text or not self.fts5:
-            return False
-        if self.connection.execute("SELECT 1 FROM evidence_text WHERE evidence_id=?",
-                                   (evidence_id,)).fetchone():
-            return False
-        self.connection.execute("INSERT INTO evidence_text(evidence_id, text) VALUES(?,?)",
-                                (evidence_id, text))
-        return True
+        return bool(self._index_texts([(evidence_id, text)]))
+
+    def _index_texts(self, pairs):
+        """Index (evidence_id, text) pairs not indexed yet, in one transaction; returns how many."""
+        pairs = [(evidence_id, text) for evidence_id, text in pairs if text]
+        if not pairs or not self.fts5:
+            return 0
+        cursor, added = self.connection.cursor(), 0
+        cursor.execute("BEGIN IMMEDIATE")
+        try:
+            for evidence_id, text in pairs:
+                if cursor.execute("INSERT OR IGNORE INTO evidence_text_ids VALUES(?)",
+                                  (evidence_id,)).rowcount:
+                    cursor.execute("INSERT INTO evidence_text(evidence_id, text) VALUES(?,?)",
+                                   (evidence_id, text))
+                    added += 1
+            cursor.execute("COMMIT")
+        except Exception:
+            cursor.execute("ROLLBACK")
+            raise
+        return added
 
     def search_text(self, query, *, limit=20):
         """FTS5 match -> evidence_id, snippet and the line the snippet starts on (1-based)."""
@@ -582,9 +605,9 @@ class Store:
         return [_row(row, ("input_ref", "result_ref", "usage")) for row in rows]
 
 
-def init(path) -> Store:
+def init(path, **options) -> Store:
     """Open (creating if needed) the SQLite state file at ``path``."""
-    return Store(path)
+    return Store(path, **options)
 
 
 def backup(data_dir, out, db_name="karst.sqlite"):

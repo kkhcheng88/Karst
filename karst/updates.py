@@ -31,6 +31,10 @@ KIND_LAYERS = {
     "filing_index": ("L3", "L6"), "profile": ("L2", "L3", "L6"),
     "ownership": ("L3", "L5", "L6"), "short_interest": ("L5", "L6"),
 }
+# A price event in the daily snapshot (trigger change, key level, structure break, gap,
+# R&R crossing) sends only the price-reading layers back to the agent: the L4 share of a
+# price move — current price against the fair-value range — is recomputed mechanically.
+PRICE_EVENT_LAYERS = ("L5", "L6")
 
 
 def identifier(value):

@@ -25,6 +25,10 @@ from . import __version__, service, store as store_module
 from .auth import AuthConfigError, TOKEN_VARIABLE, build_auth, token_auth as bearer_auth  # noqa: F401
 from .fetch.common import load_env_file
 
+# A daily-run tool waits at most this long before answering with the run's progress:
+# under the 60 s a remote MCP client allows one call, with room for the reply itself.
+DAILY_WAIT_MAX = 40
+
 
 def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=None, knowledge_seed=None):
     root = service.data_root(data_dir)
@@ -65,29 +69,56 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
         from .daily import scope
         return scope(state, universe_id)
 
-    @server.tool
-    def refresh_daily_scope(universe_id: str, since: str | None = None) -> dict:
-        """Prices/news intake for every monitored member; failures persist per subject.
+    async def waited(run_id, wait_seconds):
+        """The run's summary once it finishes or ``wait_seconds`` pass, whichever first."""
+        import asyncio  # noqa: PLC0415
+        from . import daily  # noqa: PLC0415
+        deadline = asyncio.get_running_loop().time() + max(0, min(int(wait_seconds), DAILY_WAIT_MAX))
+        while asyncio.get_running_loop().time() < deadline:
+            summary = daily.run_summary(daily.get_run(root, run_id))
+            if summary['state'] != 'running':
+                return summary
+            await asyncio.sleep(0.5)
+        return daily.run_summary(daily.get_run(root, run_id))
 
-        Requires registered securities; returns missing registrations explicitly.
+    @server.tool
+    async def refresh_daily_scope(universe_id: str, since: str | None = None,
+                                  wait_seconds: int = DAILY_WAIT_MAX) -> dict:
+        """Start prices/news intake for every monitored member, in the background.
+
+        Returns a summary and run_id within ``wait_seconds`` (at most 40): state
+        running / finished / interrupted, counts, incomplete and pending members and
+        the reassessment queue. Poll with get_daily_runs(run_id); after a restart the
+        run reads interrupted and resume_daily_scope(run_id) finishes it. Each member
+        gets a daily snapshot (plan distances, triggers, R&R) without touching research.
         Shared macro/chain review and investment judgment remain agent work.
         No scheduler, review completion, rating or automatic publication is implied.
         """
-        from .daily import refresh_scope
-        return refresh_scope(state, root, universe_id, since=since)
+        from .daily import start
+        header = start(state, root, universe_id, since=since)
+        return await waited(header['run_id'], wait_seconds)
 
     @server.tool
-    def get_daily_runs(run_id: str | None = None, limit: int = 10) -> dict:
-        """Read an intake checkpoint, or recent run headers for recovery."""
+    async def get_daily_runs(run_id: str | None = None, limit: int = 10,
+                             subject: str | None = None, wait_seconds: int = 0) -> dict:
+        """A run's summary (waits up to wait_seconds while it runs), one member's full
+        result with ``subject``, or recent run headers without run_id."""
         from .daily import get_run, recent_runs
-        return {'run': get_run(root, run_id)} if run_id else {'runs': recent_runs(root, limit)}
+        if not run_id:
+            return {'runs': recent_runs(root, limit)}
+        if subject:
+            found = [r for r in get_run(root, run_id)['results'] if r['subject'] == subject]
+            return {'run_id': run_id, 'result': found[0] if found else None}
+        return {'run': await waited(run_id, wait_seconds)}
 
     @server.tool
-    def resume_daily_scope(run_id: str) -> dict:
-        """Retry failed/unattempted members of the same run; retain successful evidence dates."""
-        from .daily import get_run, refresh_scope
+    async def resume_daily_scope(run_id: str, wait_seconds: int = DAILY_WAIT_MAX) -> dict:
+        """Retry failed/unattempted members of the run in a new background run; successful
+        members keep their results and evidence dates. Returns like refresh_daily_scope."""
+        from .daily import get_run, start
         previous = get_run(root, run_id)
-        return refresh_scope(state, root, previous['universe_id'], resume_run_id=run_id)
+        header = start(state, root, previous['universe_id'], resume_run_id=run_id)
+        return await waited(header['run_id'], wait_seconds)
 
     @server.tool
     def refresh_daily(subject: str, since: str | None = None) -> dict:

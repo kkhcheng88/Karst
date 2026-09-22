@@ -205,15 +205,24 @@ class DailyTests(ServiceCase):
         self.assertFalse(result['sources_complete'])
         state.record_update_check.assert_not_called()
         state.latest_update_check.return_value['payload']['outcome'] = 'unchanged'
+        from karst.company_bundle import CompanyBundle
+        days = weekdays('2025-12-01', 200)
+        stored = [{'at': f'{day}T20:00:00+00:00', 'open': 10.0, 'high': 11.0, 'low': 9.0,
+                   'close': 10.5, 'volume': 1.0, 'complete': True} for day in days]
+        CompanyBundle(self.bundle).save_daily_series({'bars': stored, 'basis': None, 'source': None,
+                                                      'records_seen': 0})
         with patch.object(service, 'bundle_for', return_value=self.bundle), \
              patch.object(service, '_records', return_value=[]), \
              patch.object(service, 'refresh_sources', return_value=intake) as fetch, \
-             patch.object(service, 'plan_update', return_value=plan), \
-             patch.object(bars, 'series_for', return_value=series([{'complete': True}] * 200)):
+             patch.object(service, 'plan_update', return_value=plan):
             result = daily.refresh(state, self.root, SECURITY['security_id'])
         self.assertEqual(fetch.call_count, 1)
         self.assertEqual(fetch.call_args.kwargs['since'], '2026-09-20T12:00:00+00:00')
+        # Enough stored history: the candles start at the last complete bar, not the news window.
+        self.assertEqual(fetch.call_args.kwargs['clients']['longbridge']['start'], days[-1])
         self.assertTrue(result['history_ready'])
+        self.assertFalse(result['history_recovered'])
+        self.assertEqual(result['snapshot']['date'], result['checked_at'][:10])
 
 
 if __name__ == '__main__':

@@ -12,10 +12,10 @@ import json
 import os
 import re
 import sys
-import time
 import urllib.request
 from pathlib import Path
 
+from . import limits
 from .common import (RateLimiter, html_to_text, repo_root, sha256_bytes, ticker_to_cik, to_utc_z,
                      write_json, write_meta)
 from .port import LandedRecord, cik_for, options_for, scan
@@ -44,7 +44,7 @@ TEXT_DERIVATION = "regex strip script/style/comments/tags, html.unescape, whites
 
 
 class HttpGet:
-    """GET bytes with a User-Agent, gzip transport, ``rate`` req/s and one retry. Raises the last error."""
+    """GET bytes with a User-Agent, gzip transport and ``rate`` req/s, under the shared EDGAR limits."""
 
     def __init__(self, user_agent: str, rate: float = 4, retries: int = 1, timeout: int = 60):
         if not user_agent:
@@ -53,19 +53,16 @@ class HttpGet:
         self.limiter = RateLimiter(rate)
 
     def __call__(self, url: str) -> bytes:
-        error = None
-        for attempt in range(self.retries + 1):
-            self.limiter.wait()
-            try:
-                request = urllib.request.Request(url, headers={"User-Agent": self.user_agent, "Accept-Encoding": "gzip"})
-                with urllib.request.urlopen(request, timeout=self.timeout) as response:
-                    data = response.read()
-                    return gzip.decompress(data) if response.headers.get("Content-Encoding") == "gzip" else data
-            except Exception as exc:  # noqa: BLE001 - recorded in meta, never silently swallowed
-                error = exc
-                if attempt < self.retries:
-                    time.sleep(1.5)
-        raise error
+        # Retry, backoff and the process-wide SEC budget live in karst.fetch.limits;
+        # this instance's own rate still applies inside it. Raises the last error.
+        return limits.call("edgar", self._once, url)
+
+    def _once(self, url: str) -> bytes:
+        self.limiter.wait()
+        request = urllib.request.Request(url, headers={"User-Agent": self.user_agent, "Accept-Encoding": "gzip"})
+        with urllib.request.urlopen(request, timeout=self.timeout) as response:
+            data = response.read()
+            return gzip.decompress(data) if response.headers.get("Content-Encoding") == "gzip" else data
 
 
 def accession_nodash(accession: str) -> str:

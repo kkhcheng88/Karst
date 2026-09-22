@@ -433,8 +433,7 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     registered = []
     # Only what the adapters reported: the registry registers their records, it
     # does not go looking through the directory for files nobody claimed.
-    for item in landed:
-        record = company.register(item, entity_ids=entity_ids)
+    for record in company.register_many(landed, entity_ids=entity_ids):
         registered.append(record)
         result["records"].append(_summary(record))
         evidence_id = record["evidence_id"]

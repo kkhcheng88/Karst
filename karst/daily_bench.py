@@ -1,12 +1,17 @@
 """Offline benchmark of the daily intake (``daily.refresh_scope``), phase by phase.
 
 Synthetic members only: a fake Longbridge client and a fake RSS getter, each with an
-injected per-call delay and failure rate, write into a throwaway data directory. No
-network, no real security, no cloud state. Phases are measured by wrapping the
-functions the daily path already calls (exclusive time, so nested calls are not
-counted twice); the daily path itself is not modified.
+injected per-call delay, per-article delay and failure rate, write into a throwaway
+data directory. No network, no real security, no cloud state. Phases are measured by
+wrapping the functions the daily path already calls (exclusive time per thread, so
+nested calls are not counted twice; with several workers the phase seconds are summed
+over the workers and exceed the wall time); the daily path itself is not modified.
 
-    python -m karst.daily_bench --members 50 --price-delay 0.05 --news-delay 0.3
+By default one unmeasured refresh runs first as "the previous day", so the measured
+run is the steady state: stored series, prior snapshot, prices from the last complete
+bar. ``--no-previous-day`` measures the first run after an upgrade instead.
+
+    python -m karst.daily_bench --members 200 --price-delay 0.5 --article-delay 0.455
 """
 import argparse
 import datetime as dt
@@ -15,26 +20,28 @@ import random
 import statistics
 import sys
 import tempfile
+import threading
 import time
 from pathlib import Path
 
-from . import bars, daily, knowledge, service, store as store_module
+from . import bars, daily, daily_snapshot, knowledge, service, store as store_module
 from .company_bundle import CompanyBundle
-from .fetch import longbridge, news
+from .fetch import limits, longbridge, news
 
 UNIVERSE = 'bench-monitoring'
 # (owner, attribute, phase). Exclusive time: a phase excludes the phases it calls.
 PHASES = (
     (longbridge, 'fetch', 'fetch_prices'),
     (news, 'fetch', 'fetch_news'),
-    (CompanyBundle, 'register', 'register_evidence'),
+    (CompanyBundle, 'register_many', 'register_evidence'),
     (CompanyBundle, 'records', 'read_registry'),
     (service, '_index', 'index_store'),
     (service, 'prepare_research', 'packet'),
     (bars, 'series_for', 'series_rebuild'),
     (service, 'plan_update', 'plan_update'),
     (service, 'get_research_protocol', 'protocol_load'),
-    (daily, '_save_run', 'checkpoint'),
+    (daily_snapshot, 'build', 'snapshot'),
+    (daily._Members, 'append', 'checkpoint'),
 )
 
 
@@ -80,10 +87,15 @@ class FakeLongbridge:
                 for i, d in enumerate(reversed(days))]
 
 
-def fake_feed(faults, items, tag, shared=True):
-    """RSS getter: ``items`` dated articles per feed, unique per ticker and ``tag``."""
+def fake_feed(faults, items, tag, shared=True, article_delay=0.0):
+    """RSS getter: ``items`` dated articles per feed, unique per ticker and ``tag``.
+
+    ``article_delay`` is paid per article the feed returns, on top of the per-call delay.
+    """
     def get(url):
         faults.call('rss')
+        if article_delay:
+            time.sleep(article_delay * items)
         ticker = url.rsplit('=', 1)[-1] if 'yahoo' in url else url.split('%22')[1].split('+')[0]
         stamp = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=1)
         pub = stamp.strftime('%a, %d %b %Y %H:%M:%S GMT')
@@ -104,7 +116,8 @@ def tickers(count):
 
 class Profiler:
     def __init__(self):
-        self.totals, self.calls, self.stack = {}, {}, []
+        self.totals, self.calls, self.local = {}, {}, threading.local()
+        self.lock = threading.Lock()
         self.checkpoint_bytes = []
         self._saved = []
 
@@ -121,19 +134,21 @@ class Profiler:
 
     def _wrap(self, function, phase):
         def timed(*args, **kwargs):
-            self.stack.append(0.0)
+            stack = self.local.__dict__.setdefault('stack', [])
+            stack.append(0.0)
             start = time.perf_counter()
             try:
                 return function(*args, **kwargs)
             finally:
                 spent = time.perf_counter() - start
-                children = self.stack.pop()
-                if self.stack:
-                    self.stack[-1] += spent
-                self.totals[phase] = self.totals.get(phase, 0.0) + spent - children
-                self.calls[phase] = self.calls.get(phase, 0) + 1
-                if phase == 'checkpoint':
-                    self.checkpoint_bytes.append(len(json.dumps(args[1], ensure_ascii=False)))
+                children = stack.pop()
+                if stack:
+                    stack[-1] += spent
+                with self.lock:
+                    self.totals[phase] = self.totals.get(phase, 0.0) + spent - children
+                    self.calls[phase] = self.calls.get(phase, 0) + 1
+                    if phase == 'checkpoint':
+                        self.checkpoint_bytes.append(len(json.dumps(args[1], ensure_ascii=False)))
         return timed
 
 
@@ -152,9 +167,14 @@ def peak_rss():
 
 
 def run(members, *, price_delay=0.0, news_delay=0.0, failure_rate=0.0, include_news=True,
-        news_items=5, prior_news=20, history_bars=1000, seed=0):
-    """Seed ``members`` synthetic securities, then time one ``refresh_scope``."""
+        news_items=5, prior_news=20, history_bars=1000, seed=0, workers=daily.WORKERS,
+        article_delay=0.0, previous_day=True, backoff=None):
+    """Seed ``members`` synthetic securities, then time one ``refresh_scope``.
+
+    ``backoff`` overrides every source's retry backoff (seconds) for the run.
+    """
     rng = random.Random(seed)
+    saved_limits = limits.configure(backoff=backoff) if backoff is not None else None
     with tempfile.TemporaryDirectory(prefix='karst-bench-') as folder:
         root = Path(folder)
         state = store_module.init(root / service.DB_NAME)
@@ -174,21 +194,31 @@ def run(members, *, price_delay=0.0, news_delay=0.0, failure_rate=0.0, include_n
                 'members': [dict(entity_id=s['security_id'], name=s['name'], kind='security',
                                  roles=['bench'], comparison_groups=[]) for s in securities],
                 'sources': [{'title': 'Synthetic', 'url': 'https://example.invalid/bench'}]})
+            previous_seconds = None
+            if previous_day:
+                started = time.perf_counter()
+                daily.refresh_scope(state, root, UNIVERSE, workers=workers, clients={
+                    'longbridge': FakeLongbridge(clean, history_bars),
+                    'news_rss': fake_feed(clean, news_items if include_news else 0, 'yesterday')})
+                previous_seconds = time.perf_counter() - started
             rss_before = peak_rss()
             clients = {'longbridge': FakeLongbridge(Faults(price_delay, failure_rate, rng), history_bars),
                        'news_rss': fake_feed(Faults(news_delay if include_news else 0.0,
                                                     failure_rate if include_news else 0.0, rng),
-                                             news_items if include_news else 0, 'today')}
+                                             news_items if include_news else 0, 'today',
+                                             article_delay=article_delay if include_news else 0.0)}
             profiler = Profiler()
             profiler.install()
             started = time.perf_counter()
             try:
-                receipt = daily.refresh_scope(state, root, UNIVERSE, clients=clients)
+                receipt = daily.refresh_scope(state, root, UNIVERSE, clients=clients, workers=workers)
             finally:
                 wall = time.perf_counter() - started
                 profiler.uninstall()
         finally:
             state.connection.close()
+            if saved_limits is not None:
+                limits.LIMITS.update(saved_limits)
     stamps = [dt.datetime.fromisoformat(r['checked_at'].replace('Z', '+00:00'))
               for r in receipt['results'] if 'checked_at' in r]
     measured = sum(profiler.totals.values())
@@ -196,8 +226,11 @@ def run(members, *, price_delay=0.0, news_delay=0.0, failure_rate=0.0, include_n
                       'calls': profiler.calls.get(phase, 0),
                       'share': round(profiler.totals.get(phase, 0.0) / wall, 4) if wall else None}
               for _, _, phase in PHASES}
-    phases['other'] = {'seconds': round(wall - measured, 4), 'calls': None,
-                       'share': round((wall - measured) / wall, 4) if wall else None}
+    # With several workers the phases overlap in time, so "the rest of the wall time" has
+    # no meaning; it is reported for a single worker only.
+    phases['other'] = ({'seconds': round(wall - measured, 4), 'calls': None,
+                        'share': round((wall - measured) / wall, 4) if wall else None}
+                       if workers == 1 else None)
     statuses = {}
     for result in receipt['results']:
         statuses[result['intake_status']] = statuses.get(result['intake_status'], 0) + 1
@@ -205,8 +238,14 @@ def run(members, *, price_delay=0.0, news_delay=0.0, failure_rate=0.0, include_n
                            'news_delay_per_feed': news_delay if include_news else 0.0,
                            'failure_rate': failure_rate, 'include_news': include_news,
                            'news_items_per_feed': news_items if include_news else 0,
-                           'prior_news_per_feed': prior_news, 'history_bars': history_bars, 'seed': seed},
-            'seed_seconds': round(seed_seconds, 3), 'refresh_seconds': round(wall, 3),
+                           'prior_news_per_feed': prior_news, 'history_bars': history_bars, 'seed': seed,
+                           'workers': workers, 'article_delay_per_new_article':
+                               article_delay if include_news else 0.0,
+                           'previous_day': previous_day,
+                           'limits': {name: vars(limit) for name, limit in limits.LIMITS.items()}},
+            'seed_seconds': round(seed_seconds, 3),
+            'previous_day_seconds': None if previous_seconds is None else round(previous_seconds, 3),
+            'refresh_seconds': round(wall, 3),
             'per_member_seconds': round(wall / members, 4),
             'phases': phases,
             'checkpoint': {'writes': len(profiler.checkpoint_bytes),
@@ -216,6 +255,8 @@ def run(members, *, price_delay=0.0, news_delay=0.0, failure_rate=0.0, include_n
             'shared_articles': len(receipt['news_candidates']),
             'bars_available_median': statistics.median(r.get('bars_available', 0) for r in receipt['results']),
             'history_recovered': sum(bool(r.get('history_recovered')) for r in receipt['results']),
+            'prices_from_last_complete_bar': sum(bool(r.get('prices_from')) for r in receipt['results']),
+            'reassessment_queue': len(receipt['reassessment_queue']),
             'span_seconds': (max(stamps) - min(stamps)).total_seconds() if stamps else None,
             'peak_rss_bytes': {'before_refresh': rss_before, 'after_refresh': peak_rss()}}
 
@@ -232,14 +273,22 @@ def main(argv=None):
     parser.add_argument('--prior-news', type=int, default=20, help='articles per feed already registered')
     parser.add_argument('--history-bars', type=int, default=1000)
     parser.add_argument('--seed', type=int, default=0)
+    parser.add_argument('--workers', type=int, default=daily.WORKERS, help='members refreshed at once')
+    parser.add_argument('--article-delay', type=float, default=0.0,
+                        help='seconds per new article a feed returns (on top of --news-delay)')
+    parser.add_argument('--no-previous-day', action='store_true',
+                        help='measure the first run after an upgrade instead of the steady state')
+    parser.add_argument('--backoff', type=float, default=None, help='override retry backoff seconds')
     parser.add_argument('--output', type=Path, help='write JSON here instead of stdout')
     args = parser.parse_args(argv)
-    if not 0 <= args.failure_rate <= 1 or min(args.members) < 1:
+    if not 0 <= args.failure_rate <= 1 or min(args.members) < 1 or args.workers < 1:
         parser.error('failure rate must be 0..1 and members >= 1')
     results = [run(n, price_delay=args.price_delay, news_delay=args.news_delay,
                    failure_rate=args.failure_rate, include_news=not args.no_news,
                    news_items=args.news_items, prior_news=args.prior_news,
-                   history_bars=args.history_bars, seed=args.seed) for n in args.members]
+                   history_bars=args.history_bars, seed=args.seed, workers=args.workers,
+                   article_delay=args.article_delay, previous_day=not args.no_previous_day,
+                   backoff=args.backoff) for n in args.members]
     text = json.dumps(results, ensure_ascii=False, indent=2) + '\n'
     if args.output:
         args.output.write_text(text, encoding='utf-8')

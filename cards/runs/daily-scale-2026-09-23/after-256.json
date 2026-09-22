@@ -1,0 +1,477 @@
+{
+  "ticket": "KARST-256",
+  "measured_at": "2026-09-23 HKT (local)",
+  "kind": "FAKE-CLIENT MEASUREMENT. No network, fake Longbridge and fake RSS with injected delays. This is not a cloud run; the cloud run of the same path is KARST-261.",
+  "code_base": "branch daily-scale, KARST-256 change on top of 804bacf",
+  "command": "python -m karst.daily_bench --members 200 [--no-news] --price-delay 0.5 [--news-delay 0.8 --article-delay 0.455 --failure-rate 0.02] --seed 7",
+  "environment": "Windows 11, Python 3.12.10, local SSD; same fake clients as baseline.json (4 Longbridge calls per member, 2 RSS feeds per member, 5 new articles per feed + 1 shared market article, 1000 bars of history). Default limits (karst/fetch/limits.py) and 8 workers.",
+  "calibration": {
+    "price": "0.5 s per Longbridge call x 4 calls = 2.0 s network per stock (cloud fixed cost was about 2.8 s/member of which about 2 s waiting, baseline.json)",
+    "news": "0.8 s per RSS feed plus 0.455 s per new article (the cloud per-article cost in baseline.json; most of that cost was registration, which is now batched, so charging it again as a network wait is conservative)",
+    "failures": "2% of news calls raise a transient error; the limiter retries them with backoff"
+  },
+  "what_is_measured": "refresh_seconds = the daily run for all 200 members on the day after a seeded day, with a stored series so prices are fetched from the last complete bar only; it includes evidence registration, the reassessment plan, the daily snapshot and the per-member checkpoint.",
+  "results_N200": {
+    "price_and_technical": {
+      "refresh_seconds": 102.883,
+      "minutes": 1.71,
+      "member_status": {
+        "ready_for_review": 200
+      },
+      "history_recovered": 0,
+      "prices_from_last_complete_bar": 200,
+      "checkpoint_bytes_total": 409400,
+      "target_seconds": 300,
+      "met": true,
+      "note": "news feeds return empty but are still called, so this run sits on the RSS rate floor (200 calls per RSS source at 2/s, about 100 s; the two sources run side by side). Prices alone are bounded by Longbridge 10/s: 800 calls, about 80 s."
+    },
+    "with_news": {
+      "refresh_seconds": 166.394,
+      "minutes": 2.77,
+      "member_status": {
+        "ready_for_review": 200
+      },
+      "history_recovered": 0,
+      "prices_from_last_complete_bar": 200,
+      "checkpoint_bytes_total": 1305000,
+      "target_seconds": 600,
+      "met": true,
+      "note": "2,000 new member articles + 1 shared; all 200 members ready_for_review after retries"
+    },
+    "cpu_only_zero_delay": {
+      "refresh_seconds": 102.075,
+      "minutes": 1.7,
+      "member_status": {
+        "ready_for_review": 200
+      },
+      "history_recovered": 0,
+      "prices_from_last_complete_bar": 200,
+      "checkpoint_bytes_total": 1305000,
+      "note": "zero injected delay; still on the RSS rate floor, so the floor, not CPU, sets the time"
+    }
+  },
+  "against_baseline_N200": {
+    "columns": [
+      "baseline (KARST-253)",
+      "after KARST-256"
+    ],
+    "price_only_minutes": [
+      "about 10 (cloud-fit projection, members sequential)",
+      1.71
+    ],
+    "news_day_minutes": [
+      "about 32 (cloud-fit projection)",
+      2.77
+    ],
+    "cpu_only_seconds": [
+      222.706,
+      102.075
+    ],
+    "register_evidence_plus_read_registry_seconds": [
+      111.927,
+      41.6
+    ],
+    "index_store_seconds": [
+      47.115,
+      2.4
+    ],
+    "checkpoint_bytes_serialized": [
+      156305579,
+      1305000
+    ],
+    "mcp_call": [
+      "one call for 10 members took 95 s and returned 246 KB",
+      "start / progress / resume calls wait at most 40 s and return a summary plus run_id"
+    ]
+  },
+  "rate_floors": "With default limits the wall time for N members is about max(N / 2 per s for each RSS source, N x 4 / 10 per s for Longbridge). Raising the RSS rate is the lever if 200 grows; it is set low on purpose because the RSS hosts publish no quota.",
+  "limits": [
+    "Fake clients: real SDK latency, response sizes and vendor throttling are not in these numbers.",
+    "Windows file-system costs; the cloud is Linux.",
+    "The fake members have no formal research, so the reassessment queue is empty here; queue routing is covered by karst/tests/test_daily_scale.py.",
+    "Phase seconds are summed across worker threads, so with 8 workers they exceed the wall time."
+  ],
+  "raw": {
+    "cpu": {
+      "parameters": {
+        "members": 200,
+        "price_delay_per_call": 0.0,
+        "news_delay_per_feed": 0.0,
+        "failure_rate": 0.0,
+        "include_news": true,
+        "news_items_per_feed": 5,
+        "prior_news_per_feed": 20,
+        "history_bars": 1000,
+        "seed": 0,
+        "workers": 8,
+        "article_delay_per_new_article": 0.0,
+        "previous_day": true,
+        "limits": {
+          "longbridge": {
+            "rate": 10,
+            "concurrency": 5,
+            "timeout": 20,
+            "retries": 2,
+            "backoff": 1.0
+          },
+          "yahoo_rss": {
+            "rate": 2,
+            "concurrency": 4,
+            "timeout": 12,
+            "retries": 2,
+            "backoff": 2.0
+          },
+          "google_news_rss": {
+            "rate": 2,
+            "concurrency": 4,
+            "timeout": 12,
+            "retries": 2,
+            "backoff": 2.0
+          },
+          "edgar": {
+            "rate": 8,
+            "concurrency": 4,
+            "timeout": 60,
+            "retries": 1,
+            "backoff": 1.5
+          }
+        }
+      },
+      "seed_seconds": 281.957,
+      "previous_day_seconds": 102.184,
+      "refresh_seconds": 102.075,
+      "per_member_seconds": 0.5104,
+      "phases": {
+        "fetch_prices": {
+          "seconds": 100.6713,
+          "calls": 200,
+          "share": 0.9862
+        },
+        "fetch_news": {
+          "seconds": 610.8866,
+          "calls": 200,
+          "share": 5.9847
+        },
+        "register_evidence": {
+          "seconds": 35.5338,
+          "calls": 200,
+          "share": 0.3481
+        },
+        "read_registry": {
+          "seconds": 6.0322,
+          "calls": 1000,
+          "share": 0.0591
+        },
+        "index_store": {
+          "seconds": 2.3661,
+          "calls": 200,
+          "share": 0.0232
+        },
+        "packet": {
+          "seconds": 25.017,
+          "calls": 200,
+          "share": 0.2451
+        },
+        "series_rebuild": {
+          "seconds": 0.009,
+          "calls": 200,
+          "share": 0.0001
+        },
+        "plan_update": {
+          "seconds": 2.3723,
+          "calls": 200,
+          "share": 0.0232
+        },
+        "protocol_load": {
+          "seconds": 1.1373,
+          "calls": 400,
+          "share": 0.0111
+        },
+        "snapshot": {
+          "seconds": 4.8505,
+          "calls": 200,
+          "share": 0.0475
+        },
+        "checkpoint": {
+          "seconds": 0.7025,
+          "calls": 200,
+          "share": 0.0069
+        },
+        "other": null
+      },
+      "checkpoint": {
+        "writes": 200,
+        "final_bytes": 6525,
+        "total_bytes_serialized": 1305000
+      },
+      "intake_status": "ready_for_review",
+      "member_status": {
+        "ready_for_review": 200
+      },
+      "shared_articles": 1001,
+      "bars_available_median": 1000.0,
+      "history_recovered": 0,
+      "prices_from_last_complete_bar": 200,
+      "reassessment_queue": 0,
+      "span_seconds": 100.0,
+      "peak_rss_bytes": {
+        "before_refresh": 102817792,
+        "after_refresh": 103731200
+      }
+    },
+    "prices": {
+      "parameters": {
+        "members": 200,
+        "price_delay_per_call": 0.5,
+        "news_delay_per_feed": 0.0,
+        "failure_rate": 0.0,
+        "include_news": false,
+        "news_items_per_feed": 0,
+        "prior_news_per_feed": 20,
+        "history_bars": 1000,
+        "seed": 7,
+        "workers": 8,
+        "article_delay_per_new_article": 0.0,
+        "previous_day": true,
+        "limits": {
+          "longbridge": {
+            "rate": 10,
+            "concurrency": 5,
+            "timeout": 20,
+            "retries": 2,
+            "backoff": 1.0
+          },
+          "yahoo_rss": {
+            "rate": 2,
+            "concurrency": 4,
+            "timeout": 12,
+            "retries": 2,
+            "backoff": 2.0
+          },
+          "google_news_rss": {
+            "rate": 2,
+            "concurrency": 4,
+            "timeout": 12,
+            "retries": 2,
+            "backoff": 2.0
+          },
+          "edgar": {
+            "rate": 8,
+            "concurrency": 4,
+            "timeout": 60,
+            "retries": 1,
+            "backoff": 1.5
+          }
+        }
+      },
+      "seed_seconds": 278.449,
+      "previous_day_seconds": 101.97,
+      "refresh_seconds": 102.883,
+      "per_member_seconds": 0.5144,
+      "phases": {
+        "fetch_prices": {
+          "seconds": 479.6564,
+          "calls": 200,
+          "share": 4.6621
+        },
+        "fetch_news": {
+          "seconds": 271.1579,
+          "calls": 200,
+          "share": 2.6356
+        },
+        "register_evidence": {
+          "seconds": 15.1404,
+          "calls": 200,
+          "share": 0.1472
+        },
+        "read_registry": {
+          "seconds": 3.1694,
+          "calls": 1000,
+          "share": 0.0308
+        },
+        "index_store": {
+          "seconds": 0.3204,
+          "calls": 200,
+          "share": 0.0031
+        },
+        "packet": {
+          "seconds": 18.0734,
+          "calls": 200,
+          "share": 0.1757
+        },
+        "series_rebuild": {
+          "seconds": 0.0,
+          "calls": 0,
+          "share": 0.0
+        },
+        "plan_update": {
+          "seconds": 2.2528,
+          "calls": 200,
+          "share": 0.0219
+        },
+        "protocol_load": {
+          "seconds": 1.0779,
+          "calls": 400,
+          "share": 0.0105
+        },
+        "snapshot": {
+          "seconds": 4.9229,
+          "calls": 200,
+          "share": 0.0478
+        },
+        "checkpoint": {
+          "seconds": 0.6988,
+          "calls": 200,
+          "share": 0.0068
+        },
+        "other": null
+      },
+      "checkpoint": {
+        "writes": 200,
+        "final_bytes": 2047,
+        "total_bytes_serialized": 409400
+      },
+      "intake_status": "ready_for_review",
+      "member_status": {
+        "ready_for_review": 200
+      },
+      "shared_articles": 0,
+      "bars_available_median": 1000.0,
+      "history_recovered": 0,
+      "prices_from_last_complete_bar": 200,
+      "reassessment_queue": 0,
+      "span_seconds": 100.0,
+      "peak_rss_bytes": {
+        "before_refresh": 96841728,
+        "after_refresh": 96841728
+      }
+    },
+    "news": {
+      "parameters": {
+        "members": 200,
+        "price_delay_per_call": 0.5,
+        "news_delay_per_feed": 0.8,
+        "failure_rate": 0.02,
+        "include_news": true,
+        "news_items_per_feed": 5,
+        "prior_news_per_feed": 20,
+        "history_bars": 1000,
+        "seed": 7,
+        "workers": 8,
+        "article_delay_per_new_article": 0.455,
+        "previous_day": true,
+        "limits": {
+          "longbridge": {
+            "rate": 10,
+            "concurrency": 5,
+            "timeout": 20,
+            "retries": 2,
+            "backoff": 1.0
+          },
+          "yahoo_rss": {
+            "rate": 2,
+            "concurrency": 4,
+            "timeout": 12,
+            "retries": 2,
+            "backoff": 2.0
+          },
+          "google_news_rss": {
+            "rate": 2,
+            "concurrency": 4,
+            "timeout": 12,
+            "retries": 2,
+            "backoff": 2.0
+          },
+          "edgar": {
+            "rate": 8,
+            "concurrency": 4,
+            "timeout": 60,
+            "retries": 1,
+            "backoff": 1.5
+          }
+        }
+      },
+      "seed_seconds": 280.321,
+      "previous_day_seconds": 102.329,
+      "refresh_seconds": 166.394,
+      "per_member_seconds": 0.832,
+      "phases": {
+        "fetch_prices": {
+          "seconds": 468.0549,
+          "calls": 200,
+          "share": 2.8129
+        },
+        "fetch_news": {
+          "seconds": 752.5413,
+          "calls": 200,
+          "share": 4.5226
+        },
+        "register_evidence": {
+          "seconds": 35.1257,
+          "calls": 200,
+          "share": 0.2111
+        },
+        "read_registry": {
+          "seconds": 5.6761,
+          "calls": 1000,
+          "share": 0.0341
+        },
+        "index_store": {
+          "seconds": 2.3159,
+          "calls": 200,
+          "share": 0.0139
+        },
+        "packet": {
+          "seconds": 24.3408,
+          "calls": 200,
+          "share": 0.1463
+        },
+        "series_rebuild": {
+          "seconds": 0.0095,
+          "calls": 200,
+          "share": 0.0001
+        },
+        "plan_update": {
+          "seconds": 2.3531,
+          "calls": 200,
+          "share": 0.0141
+        },
+        "protocol_load": {
+          "seconds": 1.0871,
+          "calls": 400,
+          "share": 0.0065
+        },
+        "snapshot": {
+          "seconds": 5.0047,
+          "calls": 200,
+          "share": 0.0301
+        },
+        "checkpoint": {
+          "seconds": 0.7185,
+          "calls": 200,
+          "share": 0.0043
+        },
+        "other": null
+      },
+      "checkpoint": {
+        "writes": 200,
+        "final_bytes": 6525,
+        "total_bytes_serialized": 1305000
+      },
+      "intake_status": "ready_for_review",
+      "member_status": {
+        "ready_for_review": 200
+      },
+      "shared_articles": 1001,
+      "bars_available_median": 1000.0,
+      "history_recovered": 0,
+      "prices_from_last_complete_bar": 200,
+      "reassessment_queue": 0,
+      "span_seconds": 159.0,
+      "peak_rss_bytes": {
+        "before_refresh": 103407616,
+        "after_refresh": 105517056
+      }
+    }
+  }
+}

@@ -104,6 +104,13 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 
 **證券價格序列**(`karst/bars.py`,KARST-254):讀已登記 K 線只經 `bars.series_for(bundle, security, as_of, records=None)`,回 `Series`(`daily`、`views`、`source`、`basis`、`gaps`、`last_complete`)。身份核對、交易時段、口徑與選源規則都在裏面;歷史夠不夠問 `series.enough("chart" | "daily_check" | "publication")`,門檻只在 bars 模組定義一次。呼叫方不再自己推 `Session` 或讀 `_basis`。
 
+**日更規模化**(KARST-256):
+- `karst/fetch/limits.py` 是每個外部來源的呼叫上限(速率、並行、逾時、重試退避),adapter 的每次網路呼叫都經 `limits.call(來源, 函式)`;逾時／429 在覆蓋回報記 timeout／rate_limited。
+- `daily.refresh_scope` 以 `WORKERS`(預設 8)個成員並行,每條工作線程自開 SQLite 連線;檢查點只追加(`<run_id>.json` 表頭加 `<run_id>.members.jsonl` 每股一行)。`daily.start` 在背景跑並回表頭,`daily.wait`／`run_summary` 回摘要,重啟後以 `resume_run_id` 續跑。
+- 每股的價格序列存在公司證據倉(`CompanyBundle.daily_series`),K 線只由最後一根已收市起取,新快照接駁等同全量重建(有測試),口徑或身份不同就全量重建。
+- `karst/daily_snapshot.py` 產生日更快照(`CompanyBundle.save_daily_snapshot`):計劃價距離、觸發狀態、收市 R&R、公允價值位置、價格事件與重評排隊;事件門檻集中在該檔頂部。它不改研究版本、不寫查核、不發布。
+- 量度:`python -m karst.daily_bench --members 200 --workers 8 --price-delay 0.5 --article-delay 0.455`(假 client,預設先跑一次「前一日」再量穩態)。
+
 **模型可讀的標準圖**(`karst/charts.py` 0.3.1,matplotlib Agg):
 `service.render_charts(bundle, out_dir, store=…)` 由**已登記的日線證據**組本次陣列,畫
 **四張 PNG**——月(長期位置)、週(主要趨勢)、日線全貌、近期放大(最後 90 根,足以看

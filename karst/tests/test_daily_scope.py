@@ -1,4 +1,3 @@
-import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -33,8 +32,7 @@ class ScopeTests(unittest.TestCase):
         self.assertEqual(result['results'][1]['intake_status'], 'ready_for_review')
         self.assertFalse(result['analysis_complete'])
         self.assertIsNone(self.state.latest_update_check('EX:B'))
-        saved = json.loads((self.root/'daily_runs'/(result['run_id']+'.json')).read_text())
-        self.assertEqual(saved, result)
+        self.assertEqual(daily.get_run(self.root, result['run_id']), result)
 
     def test_partial_news_not_complete_and_shared_url_keeps_both_subjects(self):
         def run(state, root, subject, **kwargs):

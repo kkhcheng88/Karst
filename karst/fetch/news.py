@@ -8,6 +8,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
+from . import limits
 from .common import html_to_text, utc_now, write_json, write_meta
 from .port import FeedOutcome, Landing, failed_feed, scan
 from ..packet import instant
@@ -17,6 +18,8 @@ SOURCE = 'news_rss'
 KINDS = ('news',)
 MAX_BYTES = 2_000_000
 SCOPE = 'configured public RSS feeds; not exhaustive news coverage'
+# feed provider -> the source whose call limits it shares (karst.fetch.limits)
+LIMITED = {'yahoo': 'yahoo_rss', 'google': 'google_news_rss'}
 
 
 def feed_urls(security):
@@ -78,7 +81,7 @@ def fetch(security, out_dir, *, since=None, client=None):
     def retrieve(entry):
         provider, url = entry
         try:
-            return provider, url, parse_feed(getter(url)), None
+            return provider, url, parse_feed(limits.call(LIMITED[provider], getter, url)), None
         except Exception as exc:
             return provider, url, [], exc
     with ThreadPoolExecutor(max_workers=len(urls)) as pool:

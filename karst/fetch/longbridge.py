@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 from .broker import refuse_private
+from . import limits
 from .common import clean_value, load_env_file, utc_now, write_json, write_meta
 from .port import LandedRecord, options_for, response_status, scan
 
@@ -198,7 +199,7 @@ def _call(out_dir, client, tool, symbol, params, produce, *, period=None):
                     status_reason=MISSING_CREDENTIALS,
                     known_gaps=[f"no call attempted: set {', '.join(ENV_KEYS)}"])
     try:
-        response = _plain(produce(client))
+        response = _plain(limits.call(SOURCE, produce, client))
     except Exception as exc:  # noqa: BLE001 - the adapter records failures, never invents a body
         return land(out_dir, tool, symbol, params, None, status="error",
                     status_reason=f"{type(exc).__name__}: {exc}",

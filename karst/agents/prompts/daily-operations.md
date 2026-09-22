@@ -10,6 +10,9 @@
 
 1. `get_daily_scope(universe_id="daily-monitoring")` 讀版本化名單；公司、雷達、價值鏈及市场參照全部納入，不用正式研究清單替代。比對上次回執，新增／移除要記錄。
 2. `get_daily_runs(limit=10)` 查中斷。相同觀察窗口未完成才 `resume_daily_scope(run_id)`；只補失敗及未執行成員，成功來源日期保留。新一天必須 `refresh_daily_scope(universe_id="daily-monitoring")`，不能沿用昨日成功結果冒充今天。名單版本變動拒續跑，重新開本日批次並保留舊回執。
+   - **背景分段（0.2.14 起）**：`refresh_daily_scope` 與 `resume_daily_scope` 在背景執行，每次呼叫最多等 40 秒，只回摘要與 `run_id`（`state`＝running／finished／interrupted、`counts`、`incomplete_subjects`、`pending_subjects`、`reassessment_queue`），不回每股全文。`state=running` 就用 `get_daily_runs(run_id=..., wait_seconds=40)` 再查，直至 finished；要某股詳情用 `get_daily_runs(run_id=..., subject=...)`。同一名單有批次仍在跑時，新開批次會被拒，應改為查該批次。
+   - 容器重啟後，未完成批次讀作 `interrupted`：以同一 `run_id` 呼叫 `resume_daily_scope`，已完成成員不重做。`finished` 但有 `incomplete_subjects` 時同樣可續跑，只重試那些成員。
+   - 每股每日有日更快照：機械更新計劃價距離、觸發狀態、現價 R&R 及對公允價值範圍的位置，不改研究版本、不寫查核、不發布。`reassessment_queue` 列出需要 Agent 重評的層：價格事件→L5／L6；新新聞→L2／L3／L4／L6。來源覆蓋不完整不排隊，新聞窗口亦不推進。重評完成並 `record_update_check` 後，該股的排隊才清除。
 3. 若 session 尚未列新工具，依名單逐股 `refresh_sources(subject, kinds=["prices","news"])`，保存每股結果與失敗、新聞窗口及來源日期。先核工具現有參數，不猜未暴露介面；可用 `refresh_daily` 時優先該入口。成功取源不等於研究完成。失敗成員本輪補跑一次，持續失敗保留incomplete及錯誤，不寫無新聞。
 4. 宏觀與共同產業事件只取一次。讀新聞標題去重，原文核對新事件、舊聞轉載與事件日期；受影響股票各自評估。正常日更新位置、RS／動能與行動；業績、訂單、融資、監管、競爭變化才重評相關經營與倍數。休市仍掃新聞，價格保留最近完整收市，不能製造新K線。
 5. SPY六因素各保留證據期別、上次判斷及缺口；只改受影響項，合成一句市場立場。不能用升跌倒推宏觀原因。比較先對齊期間、幣別、會計和資本口徑；ARR不是全年收入，融資額不是現金，新增債務與所得現金雙邊處理。研究假設明示，不能標成公司指引。

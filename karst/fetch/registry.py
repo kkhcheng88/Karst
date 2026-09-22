@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 import gzip
+import hashlib
 import json
 import mimetypes
 import os
@@ -310,9 +311,7 @@ class EvidenceRegistry:
         path = confined(self.root, 'evidence/manifest.jsonl')
         if not path.exists():
             return []
-        records = [validate('evidence', decode(line)) for line in path.read_bytes().splitlines()]
-        if len({r['evidence_id'] for r in records}) != len(records):
-            raise ContractError('Duplicate evidence IDs in manifest')
+        records = _validated(path, path.read_bytes())
         if contract_version is not None:
             records = [{**record, 'contract_version': contract_version} for record in records]
         return records
@@ -327,6 +326,71 @@ class EvidenceRegistry:
         the sidecar itself is the preserved failure envelope, no source body is
         invented, and status=ok is never accepted without a landed raw file.
         """
+        return self.register_many([(raw_path, meta_path)], entity_ids=entity_ids,
+                                  contract_version=contract_version)[0]
+
+    def register_many(self, items, *, entity_ids=None, contract_version='0.2.0'):
+        """Register several landed representations under one lock, in order.
+
+        ``items`` are LandedRecords or ``(raw_path, meta_path)`` pairs. The result is
+        the same as registering them one by one — same records, same supersession
+        chain, same receipts — but the manifest and the observation journal are each
+        read once and replaced once, however many sources one refresh landed.
+        """
+        prepared = [self._prepare(*(item if isinstance(item, tuple) else (item, None)),
+                                  entity_ids=entity_ids, contract_version=contract_version)
+                    for item in items]
+        if not prepared:
+            return []
+        lock = confined(self.root, 'evidence/registry.lock')
+        try:
+            handle = lock.open('x')
+        except FileExistsError as exc:
+            raise ContractError('Registry is busy; retry after the single writer finishes') from exc
+        try:
+            manifest = confined(self.root, 'evidence/manifest.jsonl')
+            records = self.records()
+            index = {r['evidence_id']: r for r in records}
+            latest = {r['source_id']: r['evidence_id'] for r in records}
+            journal_path = confined(self.root, 'evidence/observations.jsonl')
+            journal = journal_path.read_bytes() if journal_path.exists() else b''
+            seen = {canonical(decode(line)) for line in journal.splitlines()}
+            added, appended, results = [], [], []
+            for record, meta, raw, suffix, sidecar in prepared:
+                artifact = self._object(raw, suffix)
+                metadata = self._object(sidecar, '.meta.json')
+                existing = index.get(record['evidence_id'])
+                if existing:
+                    saved = confined(self.root, existing['artifact']['path']).read_bytes()
+                    if digest(saved) != existing['artifact']['sha256'] or len(saved) != existing['artifact']['bytes']:
+                        raise ContractError('Existing evidence artifact is corrupt')
+                    if instant(meta['fetched_at']) < instant(existing['fetched_at']):
+                        raise ContractError('Cannot backdate an existing immutable observation')
+                    record = existing
+                else:
+                    record['supersedes'] = latest.get(record['source_id'])
+                    index[record['evidence_id']] = record
+                    latest[record['source_id']] = record['evidence_id']
+                    added.append(record)
+                receipt = canonical({'evidence_id': record['evidence_id'], 'fetched_at': meta['fetched_at'],
+                                     'metadata': metadata, 'artifact': artifact})
+                if receipt not in seen:
+                    seen.add(receipt)
+                    appended.append(receipt)
+                results.append(copy.deepcopy(record))
+            if added:
+                body = b''.join(canonical(r) for r in records + added)
+                atomic_write(manifest, body)
+                _remember(manifest, body)
+            if appended:
+                atomic_write(journal_path, journal + b''.join(appended))
+            return results
+        finally:
+            handle.close()
+            lock.unlink()
+
+    def _prepare(self, raw_path, meta_path=None, *, entity_ids=None, contract_version='0.2.0'):
+        """Map one landed representation to its record, outside the writer lock."""
         kind = None
         if isinstance(raw_path, LandedRecord):
             landed, raw_path = raw_path, raw_path.path
@@ -351,36 +415,31 @@ class EvidenceRegistry:
                             contract_version=contract_version, kind=kind)
         if record['artifact']['sha256'] != digest(raw):
             raise ContractError('Raw file changed while registering; retry a stable landed file')
-        lock = confined(self.root, 'evidence/registry.lock')
-        try:
-            handle = lock.open('x')
-        except FileExistsError as exc:
-            raise ContractError('Registry is busy; retry after the single writer finishes') from exc
-        try:
-            records = self.records()
-            artifact = self._object(raw, suffix)
-            metadata = self._object(sidecar, '.meta.json')
-            existing = next((r for r in records if r['evidence_id'] == record['evidence_id']), None)
-            if existing:
-                saved = confined(self.root, existing['artifact']['path']).read_bytes()
-                if digest(saved) != existing['artifact']['sha256'] or len(saved) != existing['artifact']['bytes']:
-                    raise ContractError('Existing evidence artifact is corrupt')
-                if instant(meta['fetched_at']) < instant(existing['fetched_at']):
-                    raise ContractError('Cannot backdate an existing immutable observation')
-                record = existing
-            else:
-                prior = [r for r in records if r['source_id'] == record['source_id']]
-                record['supersedes'] = prior[-1]['evidence_id'] if prior else None
-                records.append(record)
-                atomic_write(confined(self.root, 'evidence/manifest.jsonl'),
-                             b''.join(canonical(r) for r in records))
-            receipt = {'evidence_id': record['evidence_id'], 'fetched_at': meta['fetched_at'],
-                       'metadata': metadata, 'artifact': artifact}
-            path = confined(self.root, 'evidence/observations.jsonl')
-            journal = path.read_bytes() if path.exists() else b''
-            if receipt not in [decode(line) for line in journal.splitlines()]:
-                atomic_write(path, journal + canonical(receipt))
-            return copy.deepcopy(record)
-        finally:
-            handle.close()
-            lock.unlink()
+        return record, meta, raw, suffix, sidecar
+
+
+# Validated manifest prefix per path: (bytes, blake2b of them). The manifest is
+# append-only, so a later read schema-validates only the lines past what was already
+# validated; every line is still decoded, and a rewritten prefix is validated in full.
+_prefixes = {}
+
+
+def _fingerprint(data):
+    return hashlib.blake2b(data, digest_size=16).digest()
+
+
+def _validated(path, data):
+    known = _prefixes.get(path)
+    trusted = known[0] if known and len(data) >= known[0] and \
+        _fingerprint(data[:known[0]]) == known[1] else 0
+    records = [decode(line) for line in data[:trusted].splitlines()]
+    records += [validate('evidence', decode(line)) for line in data[trusted:].splitlines()]
+    if len({r['evidence_id'] for r in records}) != len(records):
+        raise ContractError('Duplicate evidence IDs in manifest')
+    if trusted < len(data):
+        _remember(path, data)
+    return records
+
+
+def _remember(path, data):
+    _prefixes[path] = (len(data), _fingerprint(data))

@@ -40,7 +40,7 @@ class CompanyBundle:
         return read_json(path) if path.exists() else None
 
     def _write(self, name, value):
-        self.root.mkdir(parents=True, exist_ok=True)
+        self._path(name).parent.mkdir(parents=True, exist_ok=True)
         atomic_write(self._path(name), canonical(value))
 
     # --- identity -----------------------------------------------------------
@@ -84,6 +84,10 @@ class CompanyBundle:
     def register(self, landed, meta_path=None, *, entity_ids=None):
         """Register one landed representation (see ``EvidenceRegistry.register``)."""
         return EvidenceRegistry(self.root).register(landed, meta_path, entity_ids=entity_ids)
+
+    def register_many(self, landed, *, entity_ids=None):
+        """Register a refresh's landed representations at once: one manifest write."""
+        return EvidenceRegistry(self.root).register_many(landed, entity_ids=entity_ids)
 
     def observations(self):
         """Every acquisition receipt, oldest first."""
@@ -139,6 +143,32 @@ class CompanyBundle:
             raise ContractError("No research.json in this bundle")
         check_research(packet, research, selected, self.root)
         return packet, list(selected.values()), research
+
+    # --- daily incremental build (日更快照) --------------------------------------
+
+    def daily_series(self):
+        """The daily bars as last built, with the manifest length they were built from."""
+        return self._read("daily/series.json")
+
+    def save_daily_series(self, series):
+        self._write("daily/series.json", series)
+
+    def daily_snapshot(self, date=None):
+        """The snapshot of ``date`` (ISO day), or the latest one when no date is given."""
+        if date is None:
+            latest = self._read("daily/latest.json")
+            return None if latest is None else self._read(f"daily/{latest['date']}.json")
+        return self._read(f"daily/{date}.json")
+
+    def save_daily_snapshot(self, snapshot):
+        """Save one day's snapshot; the pointer to the latest moves after it lands."""
+        day = snapshot["date"]
+        if len(day) != 10 or not day.replace("-", "").isdigit():
+            raise ContractError("Daily snapshot date must be an ISO day")
+        self._write(f"daily/{day}.json", snapshot)
+        latest = self._read("daily/latest.json")
+        if latest is None or latest["date"] <= day:
+            self._write("daily/latest.json", {"date": day})
 
     def artifact(self, record):
         """The bytes of one registered artifact, confined to this bundle."""
