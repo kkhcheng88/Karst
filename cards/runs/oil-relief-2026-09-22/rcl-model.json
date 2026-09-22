@@ -1,0 +1,522 @@
+{
+  "units": "USD millions except per share",
+  "status": "Analyst scenarios, not company guidance or consensus. Long-term intrinsic cross-check does not set the short event trade target.",
+  "models": [
+    {
+      "name": "bear",
+      "operating_forecast": [
+        {
+          "year": 2027,
+          "ebit": 4930.0,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2050,
+          "capex": 5390.0,
+          "change_working_capital": 0,
+          "fcff": 1343.5
+        },
+        {
+          "year": 2028,
+          "ebit": 5355.0,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2200,
+          "capex": 5830.000000000001,
+          "change_working_capital": 0,
+          "fcff": 1457.249999999999
+        },
+        {
+          "year": 2029,
+          "ebit": 5822.5,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2350,
+          "capex": 6270.000000000001,
+          "change_working_capital": 0,
+          "fcff": 1611.374999999999
+        },
+        {
+          "year": 2030,
+          "ebit": 6205.0,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2500,
+          "capex": 5280.0,
+          "change_working_capital": 0,
+          "fcff": 3114.75
+        },
+        {
+          "year": 2031,
+          "ebit": 6545.0,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2600,
+          "capex": 5390.0,
+          "change_working_capital": 0,
+          "fcff": 3427.75
+        }
+      ],
+      "wacc": 0.105,
+      "terminal_growth": 0.025,
+      "terminal_roic": 0.1,
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-22",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.105,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": 450,
+              "is_stub": true,
+              "label": "Remaining 100 days: analyst normalized FCFF, not company guidance"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 1343.5,
+              "is_stub": false,
+              "label": "FY2027: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 1457.249999999999,
+              "is_stub": false,
+              "label": "FY2028: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 1611.374999999999,
+              "is_stub": false,
+              "label": "FY2029: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 3114.75,
+              "is_stub": false,
+              "label": "FY2030: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 3427.75,
+              "is_stub": false,
+              "label": "FY2031: EBIT*(1-5%)+D&A-capex; no deposit release"
+            }
+          ],
+          "terminal": {
+            "date": "2031-12-31",
+            "final_expansion_fcff": 3427.75,
+            "normalized_fcff": 4663.3125,
+            "growth": 0.025,
+            "basis": "NOPAT*(1-g/ROIC); steady-state ROIC 10%; replacement and growth capex covered by economic reinvestment; terminal normalization is a material assumption"
+          }
+        },
+        "bridge": {
+          "cash": 875,
+          "nonoperating_assets": 1275,
+          "debt": 23407,
+          "minority_interest": 225,
+          "redeemable_claims": 0,
+          "convertibles_dilution": 0,
+          "diluted_shares": 268,
+          "unsupported_claims": [],
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "Forecast operating EBIT includes SBC expense; no SBC cash addback. 268m diluted share proxy from Q2; no assumed buyback benefit. Cash and debt from June 30, not September. Face debt includes finance leases; operating rent stays in EBIT. TUIC book equity 1100m + affiliate loan 175m added once; equity income excluded from EBIT. Other unconsolidated investments not separately valued; no invented residual asset premium."
+          }
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "90b75ddefb9154a5c99b30e88f8685e97ccc7b6e7386aaf43898b89f0a60bb9e",
+        "outputs": {
+          "pv_explicit_fcff": 7999760248.376891,
+          "pv_terminal": 35279151465.451675,
+          "terminal_value_at_terminal_date": 59748691406.25001,
+          "enterprise_value": 43278911713.82857,
+          "stub_years": 0.273972602739726,
+          "years_to_terminal": 5.276712328767124,
+          "normalization_step": 1.3604587557435635,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.273972602739726,
+              "present_value": 437857141.61200595
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.273972602739726,
+              "present_value": 1183028797.8999095
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.276712328767123,
+              "present_value": 1160942288.2780693
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.276712328767123,
+              "present_value": 1161745263.2447526
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.276712328767124,
+              "present_value": 2032240983.9782822
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.276712328767124,
+              "present_value": 2023945773.3638716
+            }
+          ],
+          "equity_value": 21796911713.828564,
+          "fair_value_per_share": 81.33176012622599,
+          "terminal_share_of_enterprise_value": 0.8151580081016503
+        }
+      }
+    },
+    {
+      "name": "base",
+      "operating_forecast": [
+        {
+          "year": 2027,
+          "ebit": 5800,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2050,
+          "capex": 4900,
+          "change_working_capital": 0,
+          "fcff": 2660.0
+        },
+        {
+          "year": 2028,
+          "ebit": 6300,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2200,
+          "capex": 5300,
+          "change_working_capital": 0,
+          "fcff": 2885.0
+        },
+        {
+          "year": 2029,
+          "ebit": 6850,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2350,
+          "capex": 5700,
+          "change_working_capital": 0,
+          "fcff": 3157.5
+        },
+        {
+          "year": 2030,
+          "ebit": 7300,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2500,
+          "capex": 4800,
+          "change_working_capital": 0,
+          "fcff": 4635.0
+        },
+        {
+          "year": 2031,
+          "ebit": 7700,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2600,
+          "capex": 4900,
+          "change_working_capital": 0,
+          "fcff": 5015.0
+        }
+      ],
+      "wacc": 0.095,
+      "terminal_growth": 0.025,
+      "terminal_roic": 0.12,
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-22",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.095,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": 650,
+              "is_stub": true,
+              "label": "Remaining 100 days: analyst normalized FCFF, not company guidance"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 2660.0,
+              "is_stub": false,
+              "label": "FY2027: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 2885.0,
+              "is_stub": false,
+              "label": "FY2028: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 3157.5,
+              "is_stub": false,
+              "label": "FY2029: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 4635.0,
+              "is_stub": false,
+              "label": "FY2030: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 5015.0,
+              "is_stub": false,
+              "label": "FY2031: EBIT*(1-5%)+D&A-capex; no deposit release"
+            }
+          ],
+          "terminal": {
+            "date": "2031-12-31",
+            "final_expansion_fcff": 5015.0,
+            "normalized_fcff": 5791.041666666666,
+            "growth": 0.025,
+            "basis": "NOPAT*(1-g/ROIC); steady-state ROIC 12%; replacement and growth capex covered by economic reinvestment; terminal normalization is a material assumption"
+          }
+        },
+        "bridge": {
+          "cash": 875,
+          "nonoperating_assets": 1275,
+          "debt": 23407,
+          "minority_interest": 225,
+          "redeemable_claims": 0,
+          "convertibles_dilution": 0,
+          "diluted_shares": 268,
+          "unsupported_claims": [],
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "Forecast operating EBIT includes SBC expense; no SBC cash addback. 268m diluted share proxy from Q2; no assumed buyback benefit. Cash and debt from June 30, not September. Face debt includes finance leases; operating rent stays in EBIT. TUIC book equity 1100m + affiliate loan 175m added once; equity income excluded from EBIT. Other unconsolidated investments not separately valued; no invented residual asset premium."
+          }
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "a417f0ab231f85c7c2de0213ba9fb6bb6f691c72707396fe2a1e79bcdebb6b82",
+        "outputs": {
+          "pv_explicit_fcff": 13946027603.67627,
+          "pv_terminal": 52529775713.12453,
+          "terminal_value_at_terminal_date": 84797395833.33331,
+          "enterprise_value": 66475803316.8008,
+          "stub_years": 0.273972602739726,
+          "years_to_terminal": 5.276712328767124,
+          "normalization_step": 1.1547441010302424,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.273972602739726,
+              "present_value": 634037533.491139
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.273972602739726,
+              "present_value": 2369567740.198707
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.276712328767123,
+              "present_value": 2346449470.9309344
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.276712328767123,
+              "present_value": 2345279616.490404
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.276712328767124,
+              "present_value": 3144031503.5761123
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.276712328767124,
+              "present_value": 3106661738.988972
+            }
+          ],
+          "equity_value": 44993803316.8008,
+          "fair_value_per_share": 167.8873258089582,
+          "terminal_share_of_enterprise_value": 0.7902089646481697
+        }
+      }
+    },
+    {
+      "name": "bull",
+      "operating_forecast": [
+        {
+          "year": 2027,
+          "ebit": 6669.999999999999,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2050,
+          "capex": 4655.0,
+          "change_working_capital": 0,
+          "fcff": 3731.5
+        },
+        {
+          "year": 2028,
+          "ebit": 7244.999999999999,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2200,
+          "capex": 5035.0,
+          "change_working_capital": 0,
+          "fcff": 4047.75
+        },
+        {
+          "year": 2029,
+          "ebit": 7877.499999999999,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2350,
+          "capex": 5415.0,
+          "change_working_capital": 0,
+          "fcff": 4418.625
+        },
+        {
+          "year": 2030,
+          "ebit": 8395.0,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2500,
+          "capex": 4560.0,
+          "change_working_capital": 0,
+          "fcff": 5915.25
+        },
+        {
+          "year": 2031,
+          "ebit": 8855.0,
+          "cash_tax_rate": 0.05,
+          "depreciation": 2600,
+          "capex": 4655.0,
+          "change_working_capital": 0,
+          "fcff": 6357.25
+        }
+      ],
+      "wacc": 0.085,
+      "terminal_growth": 0.025,
+      "terminal_roic": 0.14,
+      "calculation": {
+        "method": "fcff_dcf_dated",
+        "currency": "USD",
+        "scale": "millions",
+        "model": {
+          "valuation_date": "2026-09-22",
+          "day_count": "act/365",
+          "timing": "end_of_period",
+          "discount_rate": 0.085,
+          "flows": [
+            {
+              "date": "2026-12-31",
+              "amount": 850,
+              "is_stub": true,
+              "label": "Remaining 100 days: analyst normalized FCFF, not company guidance"
+            },
+            {
+              "date": "2027-12-31",
+              "amount": 3731.5,
+              "is_stub": false,
+              "label": "FY2027: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2028-12-31",
+              "amount": 4047.75,
+              "is_stub": false,
+              "label": "FY2028: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2029-12-31",
+              "amount": 4418.625,
+              "is_stub": false,
+              "label": "FY2029: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2030-12-31",
+              "amount": 5915.25,
+              "is_stub": false,
+              "label": "FY2030: EBIT*(1-5%)+D&A-capex; no deposit release"
+            },
+            {
+              "date": "2031-12-31",
+              "amount": 6357.25,
+              "is_stub": false,
+              "label": "FY2031: EBIT*(1-5%)+D&A-capex; no deposit release"
+            }
+          ],
+          "terminal": {
+            "date": "2031-12-31",
+            "final_expansion_fcff": 6357.25,
+            "normalized_fcff": 6910.0625,
+            "growth": 0.025,
+            "basis": "NOPAT*(1-g/ROIC); steady-state ROIC 14%; replacement and growth capex covered by economic reinvestment; terminal normalization is a material assumption"
+          }
+        },
+        "bridge": {
+          "cash": 875,
+          "nonoperating_assets": 1275,
+          "debt": 23407,
+          "minority_interest": 225,
+          "redeemable_claims": 0,
+          "convertibles_dilution": 0,
+          "diluted_shares": 268,
+          "unsupported_claims": [],
+          "sbc_treatment": {
+            "basis": "both_documented",
+            "note": "Forecast operating EBIT includes SBC expense; no SBC cash addback. 268m diluted share proxy from Q2; no assumed buyback benefit. Cash and debt from June 30, not September. Face debt includes finance leases; operating rent stays in EBIT. TUIC book equity 1100m + affiliate loan 175m added once; equity income excluded from EBIT. Other unconsolidated investments not separately valued; no invented residual asset premium."
+          }
+        }
+      },
+      "receipt": {
+        "calculator_version": "0.3.0",
+        "method": "fcff_dcf_dated",
+        "inputs_digest": "9e659c18c5bd51e477883d586b714a587cf87e1b5c046a8cf1d2148f47165f35",
+        "outputs": {
+          "pv_explicit_fcff": 19244668158.168053,
+          "pv_terminal": 76754183168.64502,
+          "terminal_value_at_terminal_date": 118046901041.66666,
+          "enterprise_value": 95998851326.81308,
+          "stub_years": 0.273972602739726,
+          "years_to_terminal": 5.276712328767124,
+          "normalization_step": 1.0869578040819536,
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "years": 0.273972602739726,
+              "present_value": 831212657.8855696
+            },
+            {
+              "date": "2027-12-31",
+              "years": 1.273972602739726,
+              "present_value": 3363155362.320415
+            },
+            {
+              "date": "2028-12-31",
+              "years": 2.276712328767123,
+              "present_value": 3361633474.676304
+            },
+            {
+              "date": "2029-12-31",
+              "years": 3.276712328767123,
+              "present_value": 3382159505.9305763
+            },
+            {
+              "date": "2030-12-31",
+              "years": 4.276712328767124,
+              "present_value": 4173018462.24205
+            },
+            {
+              "date": "2031-12-31",
+              "years": 5.276712328767124,
+              "present_value": 4133488695.113139
+            }
+          ],
+          "equity_value": 74516851326.81308,
+          "fair_value_per_share": 278.04795271198907,
+          "terminal_share_of_enterprise_value": 0.7995323080205138
+        }
+      }
+    }
+  ]
+}

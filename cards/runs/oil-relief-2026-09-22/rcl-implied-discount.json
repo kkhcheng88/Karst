@@ -1,0 +1,22 @@
+{
+  "calculator_version": "0.3.0",
+  "method": "fcff_dcf_dated",
+  "inputs_digest": "a417f0ab231f85c7c2de0213ba9fb6bb6f691c72707396fe2a1e79bcdebb6b82",
+  "outputs": {
+    "outcome": "solved",
+    "value": 0.0788249338319659,
+    "solve_for": "model.discount_rate",
+    "target_price": 250.25,
+    "bounds": {
+      "lower": 0.04,
+      "upper": 0.15
+    },
+    "brackets": [
+      [
+        0.0778125,
+        0.07953125
+      ]
+    ],
+    "undefined_samples": 0
+  }
+}

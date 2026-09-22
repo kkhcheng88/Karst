@@ -1,0 +1,482 @@
+{
+  "rcl": {
+    "version_id": "rv-0fa77627447976f1a8ced2acf19f9acc36033e8e9634dda5509cd296e46d9e03",
+    "as_of": "2026-09-22T17:40:07Z",
+    "execution_state": "wait_confirmation",
+    "valuation_status": "calculated",
+    "calculation_receipt": {
+      "alternative_view": {
+        "calculator_version": "0.3.0",
+        "inputs_digest": "7bde4ba6cf8f21385f646f256a7a47df963e8e54d24669f15908731a01a4b440",
+        "method": "forward_pe",
+        "outputs": {
+          "discounted": true,
+          "eps": 17.8,
+          "equity_value": 74026471392.16924,
+          "fair_value_per_share": 276.21817683645236,
+          "multiple": 15.6,
+          "value_per_share_at_horizon": 277.68,
+          "years_to_horizon": 0.04657534246575343
+        }
+      },
+      "calculator_version": "0.3.0",
+      "confirmed_pivots": [],
+      "current_price_risk_reward": {
+        "available": true,
+        "planned_loss_per_share": 7.75,
+        "planned_loss_return": 0.030969030969030968,
+        "ratio": 3.096774193548387,
+        "reference_price": 250.25,
+        "reward_per_share": 24,
+        "reward_return": 0.0959040959040959,
+        "stress_loss_per_share": 18.75
+      },
+      "implied": null,
+      "ma200": 287.538,
+      "ma200_quote_basis": 287.538,
+      "price_to_value_gap": -0.4905830371302935,
+      "risk_reward": {
+        "available": true,
+        "planned_loss_per_share": 9.5,
+        "planned_loss_return": 0.037698412698412696,
+        "ratio": 2.3421052631578947,
+        "reference_price": 252,
+        "reward_per_share": 22.25,
+        "reward_return": 0.0882936507936508,
+        "stress_loss_per_share": 20.5
+      },
+      "sensitivities": [],
+      "valuation": {
+        "base": {
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "present_value": 634037533.491139,
+              "years": 0.273972602739726
+            },
+            {
+              "date": "2027-12-31",
+              "present_value": 2369567740.198707,
+              "years": 1.273972602739726
+            },
+            {
+              "date": "2028-12-31",
+              "present_value": 2346449470.9309344,
+              "years": 2.276712328767123
+            },
+            {
+              "date": "2029-12-31",
+              "present_value": 2345279616.490404,
+              "years": 3.276712328767123
+            },
+            {
+              "date": "2030-12-31",
+              "present_value": 3144031503.5761123,
+              "years": 4.276712328767124
+            },
+            {
+              "date": "2031-12-31",
+              "present_value": 3106661738.988972,
+              "years": 5.276712328767124
+            }
+          ],
+          "enterprise_value": 66475803316.8008,
+          "equity_value": 44993803316.8008,
+          "fair_value_per_share": 167.8873258089582,
+          "normalization_step": 1.1547441010302424,
+          "pv_explicit_fcff": 13946027603.67627,
+          "pv_terminal": 52529775713.12453,
+          "stub_years": 0.273972602739726,
+          "terminal_share_of_enterprise_value": 0.7902089646481697,
+          "terminal_value_at_terminal_date": 84797395833.33331,
+          "years_to_terminal": 5.276712328767124
+        },
+        "bear": {
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "present_value": 437857141.61200595,
+              "years": 0.273972602739726
+            },
+            {
+              "date": "2027-12-31",
+              "present_value": 1183028797.8999095,
+              "years": 1.273972602739726
+            },
+            {
+              "date": "2028-12-31",
+              "present_value": 1160942288.2780693,
+              "years": 2.276712328767123
+            },
+            {
+              "date": "2029-12-31",
+              "present_value": 1161745263.2447526,
+              "years": 3.276712328767123
+            },
+            {
+              "date": "2030-12-31",
+              "present_value": 2032240983.9782822,
+              "years": 4.276712328767124
+            },
+            {
+              "date": "2031-12-31",
+              "present_value": 2023945773.3638716,
+              "years": 5.276712328767124
+            }
+          ],
+          "enterprise_value": 43278911713.82857,
+          "equity_value": 21796911713.828564,
+          "fair_value_per_share": 81.33176012622599,
+          "normalization_step": 1.3604587557435635,
+          "pv_explicit_fcff": 7999760248.376891,
+          "pv_terminal": 35279151465.451675,
+          "stub_years": 0.273972602739726,
+          "terminal_share_of_enterprise_value": 0.8151580081016503,
+          "terminal_value_at_terminal_date": 59748691406.25001,
+          "years_to_terminal": 5.276712328767124
+        },
+        "bull": {
+          "discounted_flows": [
+            {
+              "date": "2026-12-31",
+              "present_value": 831212657.8855696,
+              "years": 0.273972602739726
+            },
+            {
+              "date": "2027-12-31",
+              "present_value": 3363155362.320415,
+              "years": 1.273972602739726
+            },
+            {
+              "date": "2028-12-31",
+              "present_value": 3361633474.676304,
+              "years": 2.276712328767123
+            },
+            {
+              "date": "2029-12-31",
+              "present_value": 3382159505.9305763,
+              "years": 3.276712328767123
+            },
+            {
+              "date": "2030-12-31",
+              "present_value": 4173018462.24205,
+              "years": 4.276712328767124
+            },
+            {
+              "date": "2031-12-31",
+              "present_value": 4133488695.113139,
+              "years": 5.276712328767124
+            }
+          ],
+          "enterprise_value": 95998851326.81308,
+          "equity_value": 74516851326.81308,
+          "fair_value_per_share": 278.04795271198907,
+          "normalization_step": 1.0869578040819536,
+          "pv_explicit_fcff": 19244668158.168053,
+          "pv_terminal": 76754183168.64502,
+          "stub_years": 0.273972602739726,
+          "terminal_share_of_enterprise_value": 0.7995323080205138,
+          "terminal_value_at_terminal_date": 118046901041.66666,
+          "years_to_terminal": 5.276712328767124
+        }
+      },
+      "valuation_receipts": {
+        "base": {
+          "calculator_version": "0.3.0",
+          "inputs_digest": "529117fd7e6c7749691f80ae26973b2b7748e53794562eb94bc034948b0e09bf",
+          "method": "fcff_dcf_dated",
+          "outputs": {
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "present_value": 634037533.491139,
+                "years": 0.273972602739726
+              },
+              {
+                "date": "2027-12-31",
+                "present_value": 2369567740.198707,
+                "years": 1.273972602739726
+              },
+              {
+                "date": "2028-12-31",
+                "present_value": 2346449470.9309344,
+                "years": 2.276712328767123
+              },
+              {
+                "date": "2029-12-31",
+                "present_value": 2345279616.490404,
+                "years": 3.276712328767123
+              },
+              {
+                "date": "2030-12-31",
+                "present_value": 3144031503.5761123,
+                "years": 4.276712328767124
+              },
+              {
+                "date": "2031-12-31",
+                "present_value": 3106661738.988972,
+                "years": 5.276712328767124
+              }
+            ],
+            "enterprise_value": 66475803316.8008,
+            "equity_value": 44993803316.8008,
+            "fair_value_per_share": 167.8873258089582,
+            "normalization_step": 1.1547441010302424,
+            "pv_explicit_fcff": 13946027603.67627,
+            "pv_terminal": 52529775713.12453,
+            "stub_years": 0.273972602739726,
+            "terminal_share_of_enterprise_value": 0.7902089646481697,
+            "terminal_value_at_terminal_date": 84797395833.33331,
+            "years_to_terminal": 5.276712328767124
+          }
+        },
+        "bear": {
+          "calculator_version": "0.3.0",
+          "inputs_digest": "90b75ddefb9154a5c99b30e88f8685e97ccc7b6e7386aaf43898b89f0a60bb9e",
+          "method": "fcff_dcf_dated",
+          "outputs": {
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "present_value": 437857141.61200595,
+                "years": 0.273972602739726
+              },
+              {
+                "date": "2027-12-31",
+                "present_value": 1183028797.8999095,
+                "years": 1.273972602739726
+              },
+              {
+                "date": "2028-12-31",
+                "present_value": 1160942288.2780693,
+                "years": 2.276712328767123
+              },
+              {
+                "date": "2029-12-31",
+                "present_value": 1161745263.2447526,
+                "years": 3.276712328767123
+              },
+              {
+                "date": "2030-12-31",
+                "present_value": 2032240983.9782822,
+                "years": 4.276712328767124
+              },
+              {
+                "date": "2031-12-31",
+                "present_value": 2023945773.3638716,
+                "years": 5.276712328767124
+              }
+            ],
+            "enterprise_value": 43278911713.82857,
+            "equity_value": 21796911713.828564,
+            "fair_value_per_share": 81.33176012622599,
+            "normalization_step": 1.3604587557435635,
+            "pv_explicit_fcff": 7999760248.376891,
+            "pv_terminal": 35279151465.451675,
+            "stub_years": 0.273972602739726,
+            "terminal_share_of_enterprise_value": 0.8151580081016503,
+            "terminal_value_at_terminal_date": 59748691406.25001,
+            "years_to_terminal": 5.276712328767124
+          }
+        },
+        "bull": {
+          "calculator_version": "0.3.0",
+          "inputs_digest": "9e659c18c5bd51e477883d586b714a587cf87e1b5c046a8cf1d2148f47165f35",
+          "method": "fcff_dcf_dated",
+          "outputs": {
+            "discounted_flows": [
+              {
+                "date": "2026-12-31",
+                "present_value": 831212657.8855696,
+                "years": 0.273972602739726
+              },
+              {
+                "date": "2027-12-31",
+                "present_value": 3363155362.320415,
+                "years": 1.273972602739726
+              },
+              {
+                "date": "2028-12-31",
+                "present_value": 3361633474.676304,
+                "years": 2.276712328767123
+              },
+              {
+                "date": "2029-12-31",
+                "present_value": 3382159505.9305763,
+                "years": 3.276712328767123
+              },
+              {
+                "date": "2030-12-31",
+                "present_value": 4173018462.24205,
+                "years": 4.276712328767124
+              },
+              {
+                "date": "2031-12-31",
+                "present_value": 4133488695.113139,
+                "years": 5.276712328767124
+              }
+            ],
+            "enterprise_value": 95998851326.81308,
+            "equity_value": 74516851326.81308,
+            "fair_value_per_share": 278.04795271198907,
+            "normalization_step": 1.0869578040819536,
+            "pv_explicit_fcff": 19244668158.168053,
+            "pv_terminal": 76754183168.64502,
+            "stub_years": 0.273972602739726,
+            "terminal_share_of_enterprise_value": 0.7995323080205138,
+            "terminal_value_at_terminal_date": 118046901041.66666,
+            "years_to_terminal": 5.276712328767124
+          }
+        }
+      }
+    },
+    "publication": {
+      "version_id": "rv-0fa77627447976f1a8ced2acf19f9acc36033e8e9634dda5509cd296e46d9e03",
+      "publication_dir": "/data/companies/NYSE_RCL/releases/pub-b8113e29f3ccd2f332b037f0d38796e63079d2d8c61475c788c280d914ba04fc",
+      "index_html": "/data/companies/NYSE_RCL/releases/pub-b8113e29f3ccd2f332b037f0d38796e63079d2d8c61475c788c280d914ba04fc/index.html",
+      "company_index": "/data/companies/NYSE_RCL/releases/index.html",
+      "publication_id": "pub-b8113e29f3ccd2f332b037f0d38796e63079d2d8c61475c788c280d914ba04fc",
+      "inputs_from": "version_snapshot"
+    },
+    "watch": {
+      "subject": "NYSE:RCL",
+      "version": "watch-f47761202ed14d092e34ae437ff3c54da33114550982757b6a95d06912aadcd8",
+      "based_on_version_id": "rv-0fa77627447976f1a8ced2acf19f9acc36033e8e9634dda5509cd296e46d9e03",
+      "payload": {
+        "conditions": [
+          {
+            "currency": "USD",
+            "description": "重新收復首道阻力；須再等回測承接，不自動買入",
+            "kind": "price",
+            "operator": "gte",
+            "value": 255.8
+          },
+          {
+            "currency": "USD",
+            "description": "條件方案失效；消息跳空可穿越此位",
+            "kind": "price",
+            "operator": "lte",
+            "value": 243
+          },
+          {
+            "description": "油價供應風險／航線改變、預訂或收益率指引、提前盈利預警、業績日期公布",
+            "kind": "event"
+          }
+        ],
+        "dependencies": [],
+        "subscriptions": [
+          {
+            "entity_id": "NYSE:RCL",
+            "kinds": [
+              "filing",
+              "transcript",
+              "news"
+            ]
+          },
+          {
+            "entity_id": "NYSE:DAL",
+            "kinds": [
+              "filing",
+              "news"
+            ]
+          },
+          {
+            "entity_id": "NYSE:CCL",
+            "kinds": [
+              "filing",
+              "news"
+            ]
+          },
+          {
+            "entity_id": "NYSEARCA:USO",
+            "kinds": [
+              "prices"
+            ]
+          }
+        ],
+        "validation_deadline": "2026-10-09T20:00:00Z",
+        "waiting_for": "供應／地緣緩和且無需求下修；日收255.8以上後回測251–253承接。先核業績日；尚未觸發。"
+      },
+      "updated_at": "2026-09-22T17:41:43.761346Z"
+    }
+  },
+  "be": {
+    "version_id": "rv-4c2c0314d43e71d8f83522366b166f48d2962d396ccf882afca62d2393ab9520",
+    "as_of": "2026-09-22T17:40:16Z",
+    "execution_state": "wait_evidence",
+    "valuation_status": "unavailable",
+    "calculation_receipt": {
+      "alternative_view": null,
+      "calculator_version": "0.3.0",
+      "confirmed_pivots": [],
+      "current_price_risk_reward": {
+        "available": false,
+        "reason": "入場、退出或目標價格未定。"
+      },
+      "implied": null,
+      "ma200": 199.67860000000002,
+      "ma200_quote_basis": 199.67860000000002,
+      "price_to_value_gap": null,
+      "risk_reward": {
+        "available": false,
+        "reason": "入場、退出或目標價格未定。"
+      },
+      "sensitivities": [],
+      "valuation": {},
+      "valuation_receipts": {}
+    },
+    "publication": {
+      "version_id": "rv-4c2c0314d43e71d8f83522366b166f48d2962d396ccf882afca62d2393ab9520",
+      "publication_dir": "/data/companies/NYSE_BE/releases/pub-61abfda1c5ca0f7b5f52718a3599ef79234ddebe0f85b8b073b3847d17e68c02",
+      "index_html": "/data/companies/NYSE_BE/releases/pub-61abfda1c5ca0f7b5f52718a3599ef79234ddebe0f85b8b073b3847d17e68c02/index.html",
+      "company_index": "/data/companies/NYSE_BE/releases/index.html",
+      "publication_id": "pub-61abfda1c5ca0f7b5f52718a3599ef79234ddebe0f85b8b073b3847d17e68c02",
+      "inputs_from": "version_snapshot"
+    },
+    "watch": {
+      "subject": "NYSE:BE",
+      "version": "watch-53f5d244417133fec49b13af480fe089421486c5e3915fa398880fa77e5d114c",
+      "based_on_version_id": "rv-4c2c0314d43e71d8f83522366b166f48d2962d396ccf882afca62d2393ab9520",
+      "payload": {
+        "conditions": [
+          {
+            "currency": "USD",
+            "description": "收市高於前高阻力區，重新評估結構；不是自動買入",
+            "kind": "price",
+            "operator": "gte",
+            "value": 288
+          },
+          {
+            "currency": "USD",
+            "description": "收市跌穿主要承接，檢查反彈修復假設",
+            "kind": "price",
+            "operator": "lte",
+            "value": 249
+          },
+          {
+            "description": "季度業績／指引、項目投運、收款或同業估值變化",
+            "kind": "event"
+          }
+        ],
+        "dependencies": [],
+        "subscriptions": [
+          {
+            "entity_id": "NASDAQ:NBIS",
+            "kinds": [
+              "industry_report"
+            ]
+          },
+          {
+            "entity_id": "NYSE:GEV",
+            "kinds": [
+              "industry_report"
+            ]
+          }
+        ],
+        "validation_deadline": "2026-09-25T20:00:00Z",
+        "waiting_for": "先核實2027交付、NOL稅率、服務經濟及稀釋後每股盈利；40倍是条件情境，非已校準上限。獨立覆核已完成並回應，194.84／157不再作現行價格錨。"
+      },
+      "updated_at": "2026-09-22T17:41:34.991265Z"
+    }
+  }
+}
