@@ -1,0 +1,60 @@
+{
+  "unit": "USD billions",
+  "price_date": "2026-09-21",
+  "balance_date": "2026-06-30",
+  "share_basis": "9/18 market cap repriced; subsequent issuance not assumed completed",
+  "forecasts": "analyst scenarios, not guidance",
+  "companies": {
+    "CRWV": {
+      "mcap": 47.117753,
+      "debt": 35.288999999999994,
+      "cash": 5.524,
+      "revenue": [
+        18,
+        23,
+        28
+      ],
+      "netdebt": 29.764999999999993,
+      "ev": 76.882753,
+      "ev_revenue": [
+        4.271264055555555,
+        3.3427283913043477,
+        2.745812607142857
+      ]
+    },
+    "NBIS": {
+      "mcap": 63.810257,
+      "debt": 8.5457,
+      "cash": 8.0421,
+      "revenue": [
+        6,
+        9,
+        12
+      ],
+      "netdebt": 0.5036000000000005,
+      "ev": 64.313857,
+      "ev_revenue": [
+        10.718976166666666,
+        7.145984111111111,
+        5.359488083333333
+      ]
+    },
+    "IREN": {
+      "mcap": 18.61143275492716,
+      "debt": 7.8368,
+      "cash": 5.8956,
+      "revenue": [
+        2.8,
+        4,
+        5.5
+      ],
+      "netdebt": 1.9412000000000003,
+      "ev": 20.55263275492716,
+      "ev_revenue": [
+        7.340225983902558,
+        5.13815818873179,
+        3.7368423190776654
+      ]
+    }
+  }
+}

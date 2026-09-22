@@ -88,3 +88,9 @@ Deployment follows master automatically: GitHub Actions publishes Pages and Zeab
 首頁及 `/market/` 使用 `desk.json` 的公開投影；由 `karst.reader.desk` 驗證日期、數值、事件確定性及內部頁連結，原始行情／計算回執不導出。默认5個交易日，前端可切1／20日；無JS仍顯示5日與事件。SPY獨立閱讀版在 `reports/market/spy`。
 
 計算以 `python -m karst.momentum --input <input.json> --output <receipt.json>` 執行；輸入契約见函數 `compare`。成員、權重、選定日、幣別、價格口徑、截止日和已收線日序列必填。缺日不前填，不用單股替代整組。計算結果按既有 comparison 知識快照保存；Agent收據放 provenance，當前列表為人類投影。預設窗口是滾動交易日，不是盤中、即時或自動排程。
+
+## 2026-09-22 更新：日更與部署讀回
+
+Agent 日更、補跑及發布使用 `karst/agents/prompts/daily-operations.md`。0.2.13的daily checkpoint保存逐股完成狀態，`get_daily_runs`及`resume_daily_scope`恢復同窗口未完成取數。研究與公開repo發布仍由Agent完成，不是資料庫自動推送。
+
+發布後：`python -m karst.reader.release verify --staged STAGE --base-url https://kkhcheng88.github.io/Karst --edition COMMIT --receipt RECEIPT.json`。這會重建已驗證stage並核對公開bytes；讀回失敗不標完成。排程狀態以最新地圖與執行回執為準，早期「沒有排程」段落僅描述當時狀態。

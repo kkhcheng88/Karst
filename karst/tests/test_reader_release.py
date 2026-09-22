@@ -63,3 +63,15 @@ class ReleaseTests(unittest.TestCase):
         (self.output / 'content' / 'tampered.txt').write_text('changed')
         with self.assertRaises(ValueError):
             apply(self.content, self.output)
+
+    def test_public_readback_rejects_stale_deployment(self):
+        from karst.reader.release import verify_public
+        from urllib.parse import urlsplit
+        stage(self.content, self.manifest, self.output)
+        def fetch(url):
+            path = urlsplit(url).path.removeprefix('/Karst/')
+            return (self.output / 'site' / path).read_bytes()
+        good = verify_public(self.output, 'https://example.com/Karst', 'commit1', fetch=fetch)
+        self.assertEqual(good['status'], 'verified')
+        self.assertEqual(verify_public(self.output, 'https://example.com/Karst', 'commit1',
+                         fetch=lambda url: b'old')['status'], 'verification_failed')

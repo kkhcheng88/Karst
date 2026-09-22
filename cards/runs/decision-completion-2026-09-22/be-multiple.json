@@ -1,0 +1,70 @@
+{
+  "method": "multiple_growth",
+  "inputs": {
+    "terminal_pe": 25,
+    "years": 5,
+    "required_return": 0.14,
+    "entry_multiples": [
+      35,
+      40,
+      45,
+      56,
+      60,
+      65
+    ],
+    "growth_rates": [
+      0.2,
+      0.25,
+      0.3,
+      0.35
+    ]
+  },
+  "inputs_sha256": "6e23d1603315e192777eee5a2a8d374b966885b7c1bfd3bf0db3f2f55bfc73af",
+  "outputs": {
+    "implied_growth": [
+      {
+        "multiple": 35,
+        "annual_eps_growth": 0.21935582832657863
+      },
+      {
+        "multiple": 40,
+        "annual_eps_growth": 0.2523590193689744
+      },
+      {
+        "multiple": 45,
+        "annual_eps_growth": 0.28221056898198826
+      },
+      {
+        "multiple": 56,
+        "annual_eps_growth": 0.33953620124992745
+      },
+      {
+        "multiple": 60,
+        "annual_eps_growth": 0.3581480039104845
+      },
+      {
+        "multiple": 65,
+        "annual_eps_growth": 0.38006493362265803
+      }
+    ],
+    "supported_multiples": [
+      {
+        "annual_eps_growth": 0.2,
+        "multiple": 32.308885872495395
+      },
+      {
+        "annual_eps_growth": 0.25,
+        "multiple": 39.62468447569391
+      },
+      {
+        "annual_eps_growth": 0.3,
+        "multiple": 48.209487374037245
+      },
+      {
+        "annual_eps_growth": 0.35,
+        "multiple": 58.221661434478165
+      }
+    ],
+    "note": "No dividends; assumes diluted EPS after reinvestment. Terminal PE and return are judgments."
+  }
+}

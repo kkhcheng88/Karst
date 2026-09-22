@@ -20,6 +20,8 @@
 
 ## 二、下一步
 
+**2026-09-22 決策內容與日更接手（發布驗收中）**：SPY補FactSet整體盈利與修訂廣度、同日指數／ETF換算及2027-02-28情境；BE正式新版本rv-702ba51c校準40倍／194.84、撤回舊交易例，經營模型與原期限保留、watch已同步；Neocloud加入2027同年收入自估及六月淨債務／資金橋接，AI電力补GEV全年尺度。0.2.13加入逐股checkpoint、同窗口resume及公開bytes核對；daily-operations.md提供工具、回執、衝突及發布恢復步驟。每日排程已成功建立並啟用，首次無人執行尚未驗證。Anthropic獨立覆核被自動審核拒絕，理由是外部披露未明確授權；未傳送，保留未完成。頁面37頁／28版，部署及讀回另記。回執cards/runs/decision-completion-2026-09-22/。
+
 **2026-09-22 正式發布與讀回完成**：用戶授權後5921028已上master；Pages Actions 35731916567 build／deploy成功，首頁、SPY r3、BE r2、AI電力r2、Neocloud r2與兩份互動圖JSON共七項HTTP200、逐bytes與驗收build一致。Zeabur check成功，healthz實測0.2.12；雲端workflow讀回六因素及全範圍日更規則，NYSE:BE context已含daily-monitoring名單、原兩版研究保留。定向功能／閱讀34項與認證HTTP4項通過；23份歷史HTML保持。沒有啟用自動排程；SPY完整盈利估值、BE倍數校準／独立覆核與Neocloud資本橋接仍待。回執cards/runs/reader-review-2026-09-22/publication-status.json。
 
 **2026-09-22 已獲正式發布授權**：用戶明確回覆「yes please, I will review in the production」，授權四頁、必要圖表、全範圍日更程式及對應紀錄提交既有公開倉庫並發布；開始重試，部署與正式站讀回待驗。

@@ -1,0 +1,37 @@
+{
+  "research_version": "rv-702ba51c73e51c5f89440363c14cd3084160bcc8dac0b04315b43f3faccce7a0",
+  "BE_saved_published_watch_updated": true,
+  "reader_stage": "37 pages / 28 editions; 24 historical editions preserved",
+  "price_cutoff": "2026-09-21",
+  "news_scan_cutoff": "2026-09-22T12:20:00Z",
+  "automation": {
+    "created": true,
+    "enabled": true,
+    "cadence": "daily",
+    "timing_mode": "flexible_schedule",
+    "first_unattended_run_verified": false
+  },
+  "independent_review": {
+    "done": false,
+    "status": "blocked_by_automatic_approval_review",
+    "reason": "External Anthropic disclosure not explicitly authorized; no transfer performed."
+  },
+  "deployment": {
+    "status": "pending"
+  },
+  "limits": [
+    "CME policy-implied path unavailable",
+    "Neocloud CY2027 revenue is analyst scenario; latest post-June cash spending and issuance not fully disclosed",
+    "NBIS Q2 guidance reaffirmation not verified"
+  ],
+  "tests": {
+    "passed": 14,
+    "suites": [
+      "daily_scope",
+      "reader_release",
+      "research_math",
+      "mcp_http"
+    ],
+    "scope": "targeted recovery, valuation bridge, publication and authenticated transport"
+  }
+}

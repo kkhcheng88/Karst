@@ -137,6 +137,47 @@ def apply(content, staged):
     return {'status': 'applied_not_deployed', 'build': receipt['build']}
 
 
+def verify_public(staged, base_url, edition, *, fetch=None):
+    """Compare deployed bytes with the staged build, without advancing any state."""
+    from urllib.parse import urlsplit, quote
+    from urllib.request import urlopen
+    parts = urlsplit(base_url)
+    if parts.scheme != 'https' or not parts.netloc or parts.query or parts.fragment:
+        raise ValueError('Expected an HTTPS site base URL without query or fragment')
+    if not isinstance(edition, str) or not edition:
+        raise ValueError('A release edition or commit is required')
+    staged = Path(staged)
+    receipt = json.loads((staged / 'receipt.json').read_text(encoding='utf-8'))
+    if fingerprint(staged / 'content') != receipt['candidate']:
+        raise ValueError('Staged content changed')
+    # Rebuild rather than trusting potentially changed site bytes.
+    with tempfile.TemporaryDirectory() as temp:
+        site = Path(temp) / 'site'
+        build(staged / 'content', site)
+        paths = ['index.html']
+        for relative in receipt['editions']:
+            report = json.loads((staged / 'content' / relative).read_text(encoding='utf-8'))
+            paths += [page_path(report), page_path(report, archive=True)]
+        paths += [p.relative_to(site).as_posix() for p in (site / 'assets').glob('*')
+                  if p.suffix in ('.json', '.png')]
+        results = []
+        for relative in sorted(set(paths)):
+            url = base_url.rstrip('/') + '/' + relative + '?edition=' + quote(edition, safe='')
+            try:
+                if fetch:
+                    actual = fetch(url)
+                else:
+                    with urlopen(url, timeout=25) as response:
+                        actual = response.read()
+                expected = (site / relative).read_bytes()
+                results.append({'path': relative, 'matches_build': actual == expected,
+                                'sha256': hashlib.sha256(actual).hexdigest()})
+            except Exception as exc:
+                results.append({'path': relative, 'matches_build': False, 'error': str(exc)})
+    return {'status': 'verified' if all(r['matches_build'] for r in results) else 'verification_failed',
+            'edition': edition, 'base_url': base_url, 'files': results}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='action', required=True)
@@ -147,7 +188,17 @@ def main():
     promote = sub.add_parser('apply')
     promote.add_argument('--content', required=True)
     promote.add_argument('--staged', required=True)
+    verify = sub.add_parser('verify')
+    verify.add_argument('--staged', required=True)
+    verify.add_argument('--base-url', required=True)
+    verify.add_argument('--edition', required=True)
+    verify.add_argument('--receipt', required=True)
     args = parser.parse_args()
+    if args.action == 'verify':
+        result = verify_public(args.staged, args.base_url, args.edition)
+        Path(args.receipt).write_bytes(_json(result))
+        print(json.dumps(result, ensure_ascii=False))
+        raise SystemExit(0 if result['status'] == 'verified' else 1)
     result = (stage(args.content, json.loads(Path(args.manifest).read_text(encoding='utf-8')), args.out)
               if args.action == 'stage' else apply(args.content, args.staged))
     print(json.dumps({k: v for k, v in result.items() if k not in ('base', 'candidate', 'historical_html')}, ensure_ascii=False))

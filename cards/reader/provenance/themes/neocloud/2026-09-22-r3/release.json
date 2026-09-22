@@ -1,0 +1,27 @@
+{
+  "task": "decision-completion-2026-09-22",
+  "price_cutoff": "2026-09-21",
+  "news_scan_cutoff": "2026-09-22T12:20:00Z",
+  "targeted_research_at": "2026-09-22T13:55:00Z",
+  "evidence": {
+    "sources": [
+      "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx",
+      "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf",
+      "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf",
+      "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+      "https://www.reuters.com/legal/transactional/coreweave-launches-3-billion-convertible-debt-sale-2026-09-17/"
+    ],
+    "capital_bridge": "neocloud-capital.json",
+    "limits": [
+      "Latest post-June cash spending and ATM executions not disclosed in reviewed sources",
+      "Revenue is explicit analyst scenario, not consensus"
+    ]
+  },
+  "independent_review_done": false,
+  "new_full_scope_scan": false,
+  "registered_evidence": [
+    "ev-dc5be50eff47260c702f4a1455f18f472f1a4e4e705064e124f015ef986d47f5",
+    "ev-d310c13177b36fc04bc398836847b9bb7d67e997bbc616e96f60c504b018beb1",
+    "ev-1c05411af61c89158d28e32f56722e106dc9569b52e6cd23e4da89ba0d242ae7"
+  ]
+}

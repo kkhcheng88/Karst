@@ -77,6 +77,19 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
         return refresh_scope(state, root, universe_id, since=since)
 
     @server.tool
+    def get_daily_runs(run_id: str | None = None, limit: int = 10) -> dict:
+        """Read an intake checkpoint, or recent run headers for recovery."""
+        from .daily import get_run, recent_runs
+        return {'run': get_run(root, run_id)} if run_id else {'runs': recent_runs(root, limit)}
+
+    @server.tool
+    def resume_daily_scope(run_id: str) -> dict:
+        """Retry failed/unattempted members of the same run; retain successful evidence dates."""
+        from .daily import get_run, refresh_scope
+        previous = get_run(root, run_id)
+        return refresh_scope(state, root, previous['universe_id'], resume_run_id=run_id)
+
+    @server.tool
     def refresh_daily(subject: str, since: str | None = None) -> dict:
         """Small daily prices + dated RSS-news intake; does not re-fetch financial statements.
 

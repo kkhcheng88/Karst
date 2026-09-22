@@ -63,3 +63,7 @@ Agent 回執區分 comparison_ready、analysis_saved、reader_published、indepe
 - 公司前瞻比較先對齊預測期間、會計口徑與資本結構；季度年化只是規模尺。PEG、同層位置或同一敘事均不能單獨證明倍數合理。
 
 - 每次頁面更新分清最新完整收市／當前行動、最近一次經營模型日期、此次改變；正文、頂部摘要與圖表口徑一致。ETF費用、NAV、追蹤範圍只放可展開產品資料，不佔市場判斷主文。
+
+## 日更接手入口
+
+完整可執行的取數、補跑、研究、發布與故障恢復指引在同目錄 `daily-operations.md`；GitHub路徑 `karst/agents/prompts/daily-operations.md`。讀取後按最新工具契約執行。0.2.13新增get_daily_runs／resume_daily_scope及逐股checkpoint；resume僅同一觀察窗口，不能替代次日日更。公開讀回用reader.release verify，不以Actions成功代稱網站已核。排程存在、首次執行及長期可靠性分開驗收。

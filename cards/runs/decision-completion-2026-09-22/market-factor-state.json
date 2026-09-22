@@ -1,0 +1,44 @@
+{
+  "assessed_at": "2026-09-22T13:55:00Z",
+  "price_cutoff": "2026-09-21",
+  "news_scan_cutoff": "2026-09-22T12:20:00Z",
+  "market_stance": "盈利支持偏多，估值接近基準；等待更好的風報比",
+  "factors": [
+    {
+      "factor": "通脹",
+      "basis": "8月CPI同比3.4%、月增0.4%；核心同比2.4%、月增0.3%；7月核心PCE同比3.3%",
+      "judgment": "核心CPI同比放緩、月度壓力回升；仍限制寬鬆。未核公布前共識，不能稱超預期。",
+      "evidence_date_retained": true
+    },
+    {
+      "factor": "Fed與市場利率",
+      "basis": "9/16加息25bp至3.75–4.00%；政策利率預測中位數年底及2027年均4.1%。9/22盤前10年債息約4.9%",
+      "judgment": "政策與長債均顯示折現率壓力；市場隱含加減息路徑未核齊，暫不能判市場與Fed預期差有多大。",
+      "evidence_date_retained": true
+    },
+    {
+      "factor": "經濟與盈利",
+      "basis": "8月就業+16.2萬；FactSet預期Q3盈利增28.9%，上修4個行業、下修6個、持平1個",
+      "judgment": "需求與盈利仍有支持，但上修集中；正面／負面EPS指引72／43，不能據此說所有公司均轉強。",
+      "evidence_date_retained": true
+    },
+    {
+      "factor": "指數估值",
+      "basis": "9/18 FactSet：NTM P/E19.1；五／十年均值19.8／19.0；CY2027 EPS417.35",
+      "judgment": "大致接近歷史中樞，高利率不支持無條件擴張。9/21價格上升而盈利不變，定價更緊。",
+      "evidence_date_retained": true
+    },
+    {
+      "factor": "今日事件與市場反應",
+      "basis": "9/21 SPY反彈1.55%；9/22盤前油價約100美元，市場關注中東局勢",
+      "judgment": "能源／債息回落可紓緩成長股壓力，但同日價格變化不是因果證明；局勢反覆可逆轉支持。",
+      "evidence_date_retained": true
+    },
+    {
+      "factor": "技術與參與度",
+      "basis": "SPY貼近774–779阻力；等權RSP、小型股IWM的9/21升幅均落後",
+      "judgment": "長期偏多、短線不追。升勢集中，未確認全面擴散；收穩阻力並回測才重評。",
+      "evidence_date_retained": true
+    }
+  ]
+}

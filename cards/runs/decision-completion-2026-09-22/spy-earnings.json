@@ -1,0 +1,46 @@
+{
+  "method": "index_earnings",
+  "inputs": {
+    "index_reference": 7637.76,
+    "fund_reference": 762.6,
+    "scenarios": [
+      {
+        "name": "bear",
+        "eps": 375.615,
+        "pe": 17
+      },
+      {
+        "name": "base",
+        "eps": 417.35,
+        "pe": 19
+      },
+      {
+        "name": "bull",
+        "eps": 438.21750000000003,
+        "pe": 21
+      }
+    ]
+  },
+  "inputs_sha256": "bb222526b900438d977b6191799714516ee294e08985fe8196b1dcd16bd18c26",
+  "outputs": {
+    "scenarios": [
+      {
+        "name": "bear",
+        "index_value": 6385.455,
+        "fund_equivalent": 637.5623197115384
+      },
+      {
+        "name": "base",
+        "index_value": 7929.650000000001,
+        "fund_equivalent": 791.7440571581197
+      },
+      {
+        "name": "bull",
+        "index_value": 9202.567500000001,
+        "fund_equivalent": 918.8398137019232
+      }
+    ],
+    "conversion": 0.09984602815485169,
+    "note": "Fixed-date price-ratio approximation; excludes distributions and tracking changes."
+  }
+}

@@ -54,5 +54,42 @@ class ScopeTests(unittest.TestCase):
         knowledge.save(self.state, 'universe', 'monitor', payload, expected_version=self.universe['version'])
         self.assertEqual([m['entity_id'] for m in daily.scope(self.state,'monitor')['members']], ['EX:B'])
 
+    def test_interrupted_run_can_resume_without_refetching_success(self):
+        def run(state, root, subject, **kwargs):
+            if subject == 'EX:B':
+                raise KeyboardInterrupt('worker interrupted')
+            return dict(subject=subject, news_coverage={'status':'ok'}, history_ready=True,
+                        failed=[], adapter_errors={}, news_candidates=[], observed_at='original-time')
+        with patch.object(daily, 'refresh', side_effect=run), self.assertRaises(KeyboardInterrupt):
+            daily.refresh_scope(self.state, self.root, 'monitor', since='2026-09-21')
+        first = daily.recent_runs(self.root)[0]
+        self.assertEqual(first['pending_subjects'], ['EX:B'])
+        def good(state, root, subject, **kwargs):
+            self.assertEqual(subject, 'EX:B')
+            self.assertEqual(kwargs['since'], '2026-09-21')
+            return dict(subject=subject, news_coverage={'status':'ok'}, history_ready=True,
+                        failed=[], adapter_errors={}, news_candidates=[])
+        with patch.object(daily, 'refresh', side_effect=good) as call:
+            done = daily.refresh_scope(self.state, self.root, 'monitor', resume_run_id=first['run_id'])
+        self.assertEqual(call.call_count, 1)
+        self.assertEqual(done['results'][0]['observed_at'], 'original-time')
+        self.assertEqual(done['intake_status'], 'ready_for_review')
+        self.assertNotEqual(done['run_id'], first['run_id'])
+        self.assertEqual(daily.get_run(self.root, first['run_id'])['intake_status'], 'in_progress')
+        self.assertIsNone(self.state.latest_update_check('EX:B'))
+
+    def test_resume_rejects_membership_drift_and_path_traversal(self):
+        def run(state, root, subject, **kwargs):
+            raise TimeoutError('down')
+        with patch.object(daily, 'refresh', side_effect=run):
+            first = daily.refresh_scope(self.state, self.root, 'monitor')
+        payload = self.universe['payload']; payload['members'] = payload['members'][1:]
+        knowledge.save(self.state, 'universe', 'monitor', payload, expected_version=self.universe['version'])
+        from karst.schema import ContractError
+        with self.assertRaises(ContractError):
+            daily.refresh_scope(self.state, self.root, 'monitor', resume_run_id=first['run_id'])
+        with self.assertRaises(ContractError):
+            daily.get_run(self.root, '../state.db')
+
 if __name__ == '__main__':
     unittest.main()
