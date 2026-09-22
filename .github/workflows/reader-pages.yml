@@ -58,3 +58,62 @@ jobs:
       - name: Publish reading site
         id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Verify deployed public bytes
+        env:
+          READER_PUBLIC_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python -m karst.reader --content cards/reader --output _reader_verify
+          python - <<'PY'
+          import concurrent.futures
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import time
+          from urllib.parse import quote
+          from urllib.request import urlopen
+
+          root = Path('_reader_verify')
+          base = os.environ['READER_PUBLIC_URL'].rstrip('/')
+          edition = os.environ['GITHUB_SHA']
+          def verify(path):
+              relative = path.relative_to(root).as_posix()
+              expected = path.read_bytes()
+              url = base + '/' + relative + '?edition=' + quote(edition, safe='')
+              result = {'path': relative, 'matches_build': False}
+              for attempt in range(5):
+                  try:
+                      with urlopen(url, timeout=15) as response:
+                          actual = response.read()
+                      result.update(matches_build=actual == expected,
+                                    sha256=hashlib.sha256(actual).hexdigest())
+                      if result['matches_build']:
+                          result.pop('error', None)
+                          return result
+                  except Exception as error:
+                      result['error'] = str(error)
+                  if attempt < 4:
+                      time.sleep(3)
+              return result
+          paths = sorted(p for p in root.rglob('*') if p.is_file())
+          with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
+              files = list(pool.map(verify, paths))
+          ok = all(item['matches_build'] for item in files)
+          receipt = {'status': 'verified' if ok else 'verification_failed',
+                     'edition': edition, 'base_url': base, 'files': files}
+          Path('public-readback.json').write_text(json.dumps(receipt, indent=2) + '\n')
+          print(json.dumps({'status': receipt['status'], 'files': len(files),
+                            'failed': [item for item in files if not item['matches_build']]}))
+          if not ok:
+              raise SystemExit('Deployed bytes differ from the checked-out reader build')
+          PY
+      - name: Preserve public readback receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-reader-readback
+          path: public-readback.json
+          if-no-files-found: warn
