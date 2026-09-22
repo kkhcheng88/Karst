@@ -579,7 +579,7 @@ def render(bars, out_dir, *, as_of=None, note=NOTE, source=None, title=None, sca
            events_kept=EVENTS_KEPT):
     """Write four PNGs + ``derived.json`` into ``out_dir``; return both, plus artifacts.
 
-    ``bars`` is the transient daily array (``karst.bars.from_evidence``). ``source``
+    ``bars`` is the transient daily array (``karst.bars.series_for(...).daily``). ``source``
     is the evidence record the array came from — it is stamped on every artifact, so
     a chart can be traced back to the exact registered series and version that drew
     it. ``title`` is the subject line drawn on the figure (identity is a parameter,

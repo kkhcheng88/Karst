@@ -73,11 +73,13 @@ class IdentityHistoryTests(ReliabilityCase):
         records.sort(key=lambda r: r['fetched_at'])
         records[0]['entity_ids'] = ['cik:0000000001', 'XNAS:DEMO']
         records[1]['entity_ids'] = ['XNAS:DEMO', 'CIK:1']
-        found = bars.series_from_evidence(bundle, records, '2026-09-18T00:00:00Z')
-        self.assertEqual(len(found['bars']['D']), 15)
-        self.assertEqual(found['bars']['D'][-1]['close'], 80)
+        security = {'security_id': 'XNAS:DEMO'}
+        found = bars.series_for(bundle, security, '2026-09-18T00:00:00Z', records=records)
+        self.assertEqual(len(found.daily), 15)
+        self.assertEqual(found.daily[-1]['close'], 80)
         records[1]['entity_ids'] = ['XNAS:DEMO', 'cik:2']
-        self.assertEqual(len(bars.series_from_evidence(bundle, records, '2026-09-18T00:00:00Z')['bars']['D']), 1)
+        self.assertEqual(len(bars.series_for(bundle, security, '2026-09-18T00:00:00Z',
+                                             records=records).daily), 1)
 
     def test_unrecognized_ids_not_guessed(self):
         self.assertNotEqual(entity_ids(['issuer:ABC']), entity_ids(['issuer:abc']))
@@ -130,6 +132,10 @@ class ObservationTests(unittest.TestCase):
             self.assertEqual(first, (root / 'document.raw.htm.gz').read_bytes())
 
 
+def series(daily):
+    return bars.Series(daily, None, None, [], bars.Session())
+
+
 class DailyTests(ServiceCase):
     def test_daily_only_fetches_prices_and_news_and_recovers_history(self):
         import json
@@ -147,7 +153,7 @@ class DailyTests(ServiceCase):
              patch.object(service, '_records', return_value=[]), \
              patch.object(service, 'refresh_sources', side_effect=[intake, recovery]) as fetch, \
              patch.object(service, 'plan_update', return_value=plan), \
-             patch.object(bars, 'series_from_evidence', return_value={'bars': {'D': []}}):
+             patch.object(bars, 'series_for', return_value=series([])):
             result = daily.refresh(state, self.root, SECURITY['security_id'])
         self.assertEqual(fetch.call_args_list[0].args[2], ['prices', 'news'])
         self.assertEqual(fetch.call_args_list[0].kwargs['since'], '2026-09-18T21:00:00Z')
@@ -163,7 +169,7 @@ class DailyTests(ServiceCase):
              patch.object(service, '_records', return_value=[]), \
              patch.object(service, 'refresh_sources', return_value=intake) as fetch, \
              patch.object(service, 'plan_update', return_value=plan), \
-             patch.object(bars, 'series_from_evidence', return_value={'bars': {'D': [{'complete': True}] * 200}}):
+             patch.object(bars, 'series_for', return_value=series([{'complete': True}] * 200)):
             result = daily.refresh(state, self.root, SECURITY['security_id'])
         self.assertEqual(fetch.call_count, 1)
         self.assertEqual(fetch.call_args.kwargs['since'], '2026-09-20T12:00:00+00:00')

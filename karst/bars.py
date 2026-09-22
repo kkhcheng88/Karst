@@ -6,6 +6,10 @@ anything: the arrays live for the length of one ``publish`` call (0.3 keeps deri
 numbers in research.json, not the series). No ticker or provider name is hard-coded —
 any registered ``prices`` source whose rows carry OHLC and a timestamp is read.
 
+Callers go through one door, :func:`series_for` (KARST-254): give it the security and a
+cutoff, get back a :class:`Series` and ask it whether it is ``enough`` for a named use.
+Identity, basis, exchange session and the history thresholds all live here.
+
 Three rules decide which prices are read and which bars may be trusted (KARST-250):
 
 * **Which snapshot.** The series is chosen by security identity, comparable basis and
@@ -20,12 +24,13 @@ Three rules decide which prices are read and which bars may be trusted (KARST-25
 from __future__ import annotations
 
 import datetime as dt
+from dataclasses import dataclass
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .packet import confined, instant, read_json
 from .schema import ContractError
-from .identity import entity_ids
+from .identity import entity_id, entity_ids
 
 OHLC = ("open", "high", "low", "close")
 TIME_KEYS = ("timestamp", "at", "time", "datetime")
@@ -215,30 +220,14 @@ def _after_cutoff(record, cutoff, as_of):
             "truncated into one that did")
 
 
-def refused_prices(records, as_of):
-    """Every registered prices snapshot the replay guard keeps out of ``as_of``'s series.
-
-    :func:`series_from_evidence` reports these in its ``gaps`` — but only when it found a
-    series at all. A caller that got nothing back needs the same list to say why.
-    """
-    cutoff = instant(as_of)
-    reasons = []
-    for record in records:
-        if record.get("kind") != "prices" or record.get("status", "ok") != "ok":
-            continue
-        reason = _after_cutoff(record, cutoff, as_of)
-        if reason:
-            reasons.append(reason)
-    return reasons
-
-
-def series_from_evidence(bundle, records, as_of, *, session=None):
+def _select(bundle, records, as_of, session, gaps):
     """The candlestick series that was current at ``as_of`` **and the records it came from**.
 
-    Returns ``{"bars": {"D": [...]}, "source": {...}}`` or None. The source is what a
+    Returns ``(chosen candidate, {"bars": {"D": [...]}, "source": {...}})`` or None, and
+    appends to ``gaps`` every snapshot that was refused and why. The source is what a
     chart is stamped with: a picture nobody can trace back to registered versions of one
     series is a picture nobody can check. It carries ``segments`` — one entry per version
-    that supplied days — and ``gaps``, which name every series that was refused and why.
+    that supplied days — and ``gaps``.
 
     Candidates are grouped by security identity and comparable basis (adjustment, bar
     length, sessions). The newest snapshot in the winning group is the series; older
@@ -246,8 +235,7 @@ def series_from_evidence(bundle, records, as_of, *, session=None):
     basis is never merged — a mixed adjusted / unadjusted line is a fabricated one.
     """
     bundle, cutoff = Path(bundle), instant(as_of)
-    session = session or Session()
-    groups, gaps = {}, []
+    groups = {}
     for record in records:
         if record.get("kind") != "prices" or record.get("status", "ok") != "ok":
             continue
@@ -286,21 +274,113 @@ def series_from_evidence(bundle, records, as_of, *, session=None):
         segments.append(_segment(older, extension))
         earliest = min(taken)
     record = chosen["record"]
-    return {"bars": {"D": [taken[day] for day in sorted(taken)]},
-            "source": {key: record.get(key) for key in
-                       ("evidence_id", "source", "kind", "fetched_at", "source_url")}
-            | {"sha256": (record.get("artifact") or {}).get("sha256"),
-               "price_basis": _display(chosen["basis"]), "segments": segments, "gaps": gaps}}
+    return chosen, {"bars": {"D": [taken[day] for day in sorted(taken)]},
+                    "source": {key: record.get(key) for key in
+                               ("evidence_id", "source", "kind", "fetched_at", "source_url")}
+                    | {"sha256": (record.get("artifact") or {}).get("sha256"),
+                       "price_basis": _display(chosen["basis"]), "segments": segments,
+                       "gaps": gaps}}
 
 
-def from_evidence(bundle, records, as_of, *, session=None):
-    """Daily bars from the registered candlesticks current at ``as_of``, or None.
+# How much history each use needs before it may stand on a series (KARST-254). This is
+# the one definition: callers name the use, never the number.
+CHART_MIN_BARS = 2                # one candle shows no trend and no level
+DAILY_CHECK_MIN_COMPLETE = 200    # a 200-day average needs 200 confirmed closes
+PUBLICATION_MIN_SHARE = 0.9       # a rebuild under this share of what the version measured on
+USES = ("chart", "daily_check", "publication")
 
-    ``records`` are evidence records (the bundle's evidence.json). Rows that are not
-    complete OHLC candles, and rows after ``as_of``, are dropped rather than repaired.
+
+def enough(daily, use, *, recorded=None):
+    """Whether ``daily`` bars are enough history for ``use``.
+
+    ``chart`` counts every bar; ``daily_check`` counts confirmed bars only, since an
+    unfinished day is no close; ``publication`` compares against ``recorded`` — the daily
+    bar count the version's technical reading stood on — and passes when none was recorded.
     """
-    found = series_from_evidence(bundle, records, as_of, session=session)
-    return None if found is None else found["bars"]
+    daily = daily or []
+    if use == "chart":
+        return len(daily) >= CHART_MIN_BARS
+    if use == "daily_check":
+        return sum(1 for bar in daily if bar.get("complete")) >= DAILY_CHECK_MIN_COMPLETE
+    if use == "publication":
+        return not recorded or len(daily) >= PUBLICATION_MIN_SHARE * recorded
+    raise ValueError(f"Unknown history use {use!r}; expected one of {USES}")
+
+
+@dataclass
+class Series:
+    """One security's daily candles as of a cutoff, and what they stand on.
+
+    ``daily`` is oldest first and empty when nothing qualified. ``source`` is the chart
+    stamp (evidence id, readable ``price_basis``, segments, gaps) or None; ``basis`` the
+    same basis as fields (``adjust`` / ``period`` / ``session``); ``gaps`` names every
+    snapshot that was not read and why, whether or not a series was found.
+    """
+    daily: list
+    source: dict | None
+    basis: dict | None
+    gaps: list
+    session: Session
+
+    @property
+    def views(self):
+        """The ``{"D": [...]}`` shape the chart renderer takes, or None when empty."""
+        return {"D": self.daily} if self.daily else None
+
+    @property
+    def last_complete(self):
+        """The newest confirmed bar, or None."""
+        return next((bar for bar in reversed(self.daily) if bar["complete"]), None)
+
+    def enough(self, use, *, recorded=None):
+        return enough(self.daily, use, recorded=recorded)
+
+
+def _records_in(bundle):
+    """The bundle's registered evidence, else its evidence.json snapshot."""
+    from .fetch.registry import EvidenceRegistry  # noqa: PLC0415 - registry is heavier than bars
+    records = EvidenceRegistry(bundle).records()
+    path = Path(bundle) / "evidence.json"
+    return records if records or not path.exists() else read_json(path)
+
+
+def series_for(bundle, security, as_of, *, records=None, session=None):
+    """The daily candlestick series of ``security`` as it could be read at ``as_of``.
+
+    The single entry point to registered prices (KARST-254). Behind it:
+
+    * **identity** — only prices registered under this security (its ``security_id``,
+      else ``issuer_id``) are read; another security's snapshot is named in ``gaps``.
+      A security with neither id cannot be checked and is read as before.
+    * **session** — which exchange clock confirms a bar comes from ``security.exchange``;
+      ``session`` overrides it only to configure half days or holidays.
+    * **selection, replay and completion** — the KARST-250 rules in :func:`_select`.
+
+    ``records`` defaults to the bundle's registry, falling back to its evidence.json;
+    pass a version's own evidence to rebuild what that version saw. Ask the result
+    whether it is :meth:`Series.enough` for a named use.
+    """
+    security = security or {}
+    session = session or Session.for_exchange(security.get("exchange"))
+    records = _records_in(bundle) if records is None else records
+    wanted = security.get("security_id") or security.get("issuer_id")
+    gaps = []
+    if wanted:
+        wanted, kept = entity_id(wanted), []
+        for record in records:
+            if record.get("kind") == "prices" and wanted not in entity_ids(record.get("entity_ids") or ()):
+                if record.get("status", "ok") == "ok":
+                    gaps.append(f"{record.get('evidence_id')} is registered to "
+                                f"{list(record.get('entity_ids') or [])}, not {wanted}: "
+                                "another security's prices are never read")
+                continue
+            kept.append(record)
+        records = kept
+    found = _select(bundle, records, as_of, session, gaps)
+    if found is None:
+        return Series([], None, None, gaps, session)
+    chosen, series = found
+    return Series(series["bars"]["D"], series["source"], dict(chosen["basis"]), gaps, session)
 
 
 def views(bars):

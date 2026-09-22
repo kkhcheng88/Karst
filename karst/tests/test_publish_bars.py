@@ -82,8 +82,8 @@ class PublicationBarTests(unittest.TestCase):
     def test_bars_read_from_evidence_carry_the_prices_and_completeness(self):
         rows = candles(days=4)
         self.build(stage_prices(rows))
-        found = bars_module.from_evidence(self.bundle, read_json(self.bundle / 'evidence.json'),
-                                          self.packet['as_of'])
+        found = bars_module.series_for(self.bundle, self.packet['security'], self.packet['as_of'],
+                                       records=read_json(self.bundle / 'evidence.json')).views
         self.assertEqual(len(found['D']), 4)
         self.assertEqual(found['D'][0]['close'], float(rows[0]['close']))
         self.assertTrue(all(bar['complete'] for bar in found['D']))  # all days are past
@@ -96,8 +96,9 @@ class PublicationBarTests(unittest.TestCase):
         html = Path(released['index_html']).read_text(encoding='utf-8')
         self.assertNotIn('<svg', html)
         self.assertIn('價格資料截止', html)
-        self.assertIsNone(bars_module.from_evidence(
-            self.bundle, read_json(self.bundle / 'evidence.json'), self.packet['as_of']))
+        self.assertIsNone(bars_module.series_for(
+            self.bundle, self.packet['security'], self.packet['as_of'],
+            records=read_json(self.bundle / 'evidence.json')).views)
 
     def test_a_provider_supplies_bars_when_nothing_is_registered(self):
         self.build()

@@ -102,6 +102,8 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 `output.schema.json` / 提示詞、中途失敗整個刪掉)住在一處。`extra_files` 讓呼叫者多帶
 幾個檔(例如 `charts/`),提示詞檔名由呼叫者給(主研究 `prompt.md`、覆核 `review.md`)。
 
+**證券價格序列**(`karst/bars.py`,KARST-254):讀已登記 K 線只經 `bars.series_for(bundle, security, as_of, records=None)`,回 `Series`(`daily`、`views`、`source`、`basis`、`gaps`、`last_complete`)。身份核對、交易時段、口徑與選源規則都在裏面;歷史夠不夠問 `series.enough("chart" | "daily_check" | "publication")`,門檻只在 bars 模組定義一次。呼叫方不再自己推 `Session` 或讀 `_basis`。
+
 **模型可讀的標準圖**(`karst/charts.py` 0.3.1,matplotlib Agg):
 `service.render_charts(bundle, out_dir, store=…)` 由**已登記的日線證據**組本次陣列,畫
 **四張 PNG**——月(長期位置)、週(主要趨勢)、日線全貌、近期放大(最後 90 根,足以看

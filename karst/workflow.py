@@ -110,7 +110,7 @@ def compare_registered(store, data_dir, *, weights, benchmark, cutoff, selected_
 Only explicit NoAdjust daily prices currently qualify. Adjusted prices are not
 silently relabelled total returns. Evidence acquisition cutoff != price cutoff.
 """
-    from .bars import series_from_evidence, _basis, Session
+    from .bars import series_for
     from .momentum import compare
     from .packet import read_json, instant
 
@@ -131,23 +131,17 @@ silently relabelled total returns. Evidence acquisition cutoff != price cutoff.
         security = read_json(packet_path)["security"]
         if security["security_id"] != subject or security.get("currency") != currency:
             raise ContractError(f"Identity or currency mismatch: {subject}")
-        records = service._registry(bundle).records()
-        if not records and (bundle / "evidence.json").exists():
-            records = read_json(bundle / "evidence.json")
-        # Filter identity before source selection; never choose another security.
-        records = [r for r in records if subject in r.get("entity_ids", [])]
-        result = series_from_evidence(bundle, records, as_of,
-                    session=Session.for_exchange(security.get("exchange")))
-        if not result:
+        # The series entry reads only this security's prices; never another's.
+        result = series_for(bundle, security, as_of)
+        if not result.daily:
             raise ContractError(f"No eligible candles: {subject}")
-        record = next(r for r in records if r["evidence_id"] == result["source"]["evidence_id"])
-        basis = _basis(record)
+        basis = result.basis
         if basis["adjust"].lower() != "noadjust" or basis["period"].lower() != "day":
             raise ContractError(f"Explicit NoAdjust daily prices required: {subject}")
         session_bases.add(basis["session"].lower())
         series[subject] = [{"date": b["at"][:10], "close": b["close"], "complete": b["complete"]}
-                           for b in result["bars"]["D"] if b["at"][:10] <= cutoff][-history_sessions:]
-        sources[subject] = result["source"]
+                           for b in result.daily if b["at"][:10] <= cutoff][-history_sessions:]
+        sources[subject] = result.source
     if len(session_bases) != 1:
         raise ContractError("Trading-session bases differ")
     inputs = dict(series=series, weights=weights, benchmark=benchmark, cutoff=cutoff,

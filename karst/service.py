@@ -585,16 +585,16 @@ def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_chan
     if watch and any(c["kind"] == "price" for c in watch["payload"]["conditions"]):
         packet_path = Path(bundle) / "packet.json"
         security = read_json(packet_path).get("security", {}) if packet_path.exists() else {}
-        session = bars_module.Session.for_exchange(security.get("exchange"))
-        # A supplier's bars never become this company's threshold price.
-        found = bars_module.series_from_evidence(bundle, _records(bundle), as_of, session=session)
-        if found and found["bars"]["D"]:
-            bar = found["bars"]["D"][-1]
-            source_record = next(r for r in records if r["evidence_id"] == found["source"]["evidence_id"])
+        # A supplier's bars never become this company's threshold price: only this
+        # bundle's own records, and only those registered to this security.
+        found = bars_module.series_for(bundle, security or {"security_id": subject}, as_of,
+                                       records=_records(bundle))
+        if found.daily:
+            bar = found.daily[-1]
             market = {"price": bar["close"], "at": bar["at"], "complete": bar["complete"],
-                      "currency": security.get("currency"), "basis": found["source"]["price_basis"],
-                      "adjustment": bars_module._basis(source_record)["adjust"],
-                      "evidence_id": found["source"]["evidence_id"]}
+                      "currency": security.get("currency"), "basis": found.source["price_basis"],
+                      "adjustment": found.basis["adjust"],
+                      "evidence_id": found.source["evidence_id"]}
     methods = []
     for mode in ("research", "update"):
         version = get_research_protocol(mode)["version"]
@@ -807,16 +807,15 @@ def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store
     if bars is not None:
         series = bars_module.views(bars)
     else:
-        found = bars_module.series_from_evidence(
-            bundle, records, as_of, session=bars_module.Session.for_exchange(exchange))
-        series = found["bars"] if found else None
-        source = found["source"] if found else None
+        found = bars_module.series_for(bundle, security | {"exchange": exchange}, as_of,
+                                       records=records)
+        series, source = found.views, found.source
     if not series or not series.get("D"):
         raise ContractError("No registered daily candlesticks to chart for this subject as of "
                             f"{as_of}; refresh the prices kind first. A snapshot fetched after "
                             "that cutoff is not read back into it (KARST-250): re-render at a "
                             "cutoff the evidence existed at.")
-    if len(series['D']) < 2:
+    if not bars_module.enough(series["D"], "chart"):
         raise ContractError('Insufficient history for an analytical chart: fewer than two daily bars. '
                             'Refresh full prices without since; do not infer trend or support from one candle.')
     # A company store that has never carried a packet still knows what it is: the
@@ -991,9 +990,6 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
         packet=packet, evidence=selected, request_key=request_key)
 
 
-BARS_SHORTFALL = 0.9  # a rebuilt daily series under this share of the recorded one is a loss
-
-
 def _check_technical_basis(research, rebuilt, gaps, as_of):
     """Refuse to publish a chart materially thinner than the one the version measured.
 
@@ -1006,9 +1002,10 @@ def _check_technical_basis(research, rebuilt, gaps, as_of):
     """
     recorded = (((research.get("technical") or {}).get("derived") or {})
                 .get("bars_count") or {}).get("D") or 0
-    found = len((rebuilt or {}).get("D") or [])
-    if not recorded or found >= BARS_SHORTFALL * recorded:
+    daily = (rebuilt or {}).get("D") or []
+    if bars_module.enough(daily, "publication", recorded=recorded):
         return
+    found = len(daily)
     cause = ("; ".join(gaps) if gaps else
              f"no prices evidence in this version holds a daily series as of {as_of}")
     raise ContractError(
@@ -1026,8 +1023,6 @@ def _publication_bars(bundle, packet, records, research, bars, bars_provider):
     its derived numbers; it does not fail the publication. ``records`` are the version's
     own evidence index, so republishing an old version does not chart newer prices.
     """
-    from . import bars as bars_module  # noqa: PLC0415 - avoid an import cycle at load
-
     if (research.get("technical") or {}).get("views"):
         # An older saved research already carries its arrays; a second set would be
         # two sources of truth for the same chart.
@@ -1035,14 +1030,11 @@ def _publication_bars(bundle, packet, records, research, bars, bars_provider):
     if bars is not None:  # the caller vouched for these; nothing was rebuilt to compare
         return bars_module.views(bars)
     as_of = packet["as_of"]
-    session = bars_module.Session.for_exchange((packet.get("security") or {}).get("exchange"))
-    found = bars_module.series_from_evidence(bundle, records, as_of, session=session)
-    rebuilt = found["bars"] if found else None
+    found = bars_module.series_for(bundle, packet.get("security"), as_of, records=records)
+    rebuilt = found.views
     if not rebuilt and callable(bars_provider):
         rebuilt = bars_module.views(bars_provider(packet["security"], as_of))
-    _check_technical_basis(research, rebuilt,
-                           (found or {}).get("source", {}).get("gaps")
-                           or bars_module.refused_prices(records, as_of), as_of)
+    _check_technical_basis(research, rebuilt, found.gaps, as_of)
     return rebuilt
 
 

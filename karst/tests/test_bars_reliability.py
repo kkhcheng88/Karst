@@ -83,8 +83,8 @@ class ReliabilityCase(unittest.TestCase):
 
     def series(self, snapshots, as_of, **kwargs):
         bundle, records = self.bundle_with(*snapshots)
-        found = bars_module.series_from_evidence(bundle, records, as_of, **kwargs)
-        self.assertIsNotNone(found, 'the bundle holds a registered candlestick series')
+        found = bars_module.series_for(bundle, SECURITY, as_of, records=records, **kwargs)
+        self.assertTrue(found.daily, 'the bundle holds a registered candlestick series')
         return found
 
 
@@ -96,9 +96,9 @@ class SelectionTests(ReliabilityCase):
                              {'rows': rows(days, last=(305.5, 9_100_000.0)),
                               'fetched_at': '2026-09-17T21:05:00Z'}],
                             '2026-09-18T12:00:00Z')
-        self.assertEqual(found['bars']['D'][-1]['close'], 305.5)
-        self.assertEqual(found['source']['fetched_at'], '2026-09-17T21:05:00Z')
-        self.assertEqual(len(found['source']['segments']), 1,
+        self.assertEqual(found.daily[-1]['close'], 305.5)
+        self.assertEqual(found.source['fetched_at'], '2026-09-17T21:05:00Z')
+        self.assertEqual(len(found.source['segments']), 1,
                          'an older snapshot that adds no earlier day adds no segment')
 
     def test_a_longer_older_snapshot_only_extends_the_earlier_history(self):
@@ -108,20 +108,20 @@ class SelectionTests(ReliabilityCase):
                              {'rows': rows(new_days, close=70.0, last=(74.25, 9_900_000.0)),
                               'fetched_at': '2026-09-17T21:05:00Z'}],
                             '2026-09-18T12:00:00Z')
-        daily = found['bars']['D']
+        daily = found.daily
         overlap = {bar['at'][:10]: bar['close'] for bar in daily if bar['at'][:10] in new_days}
         self.assertEqual(daily[0]['at'][:10], old_days[0], 'the older snapshot extends the start')
         self.assertEqual(len(daily), len(set(old_days) | set(new_days)))
         self.assertEqual(overlap, {day: 70.0 + 0.5 * index for index, day in enumerate(new_days[:-1])}
                          | {new_days[-1]: 74.25},
                          'every day the newer snapshot covers comes from the newer snapshot')
-        segments = found['source']['segments']
+        segments = found.source['segments']
         self.assertEqual([segment['fetched_at'] for segment in segments],
                          ['2026-09-17T21:05:00Z', '2026-09-16T21:05:00Z'])
         self.assertEqual(segments[0]['first_bar'], new_days[0])
         self.assertEqual(segments[1]['last_bar'], old_days[old_days.index(new_days[0]) - 1],
                          'the older segment stops where the newer one starts')
-        self.assertEqual(found['source']['evidence_id'], segments[0]['evidence_id'])
+        self.assertEqual(found.source['evidence_id'], segments[0]['evidence_id'])
         self.assertEqual(len({segment['evidence_id'] for segment in segments}), 2)
 
     def test_the_recorded_be_intraday_reading_does_not_override_the_close(self):
@@ -131,10 +131,10 @@ class SelectionTests(ReliabilityCase):
                              {'rows': rows(days, close=250.0, last=BE_CONFIRMED),
                               'fetched_at': '2026-09-17T21:05:00Z'}],
                             '2026-09-18T12:00:00Z')
-        last = found['bars']['D'][-1]
+        last = found.daily[-1]
         self.assertEqual((last['close'], last['volume']), BE_CONFIRMED)
         self.assertTrue(last['complete'], 'the snapshot was taken after that session closed')
-        self.assertNotIn(BE_INTRADAY[0], [bar['close'] for bar in found['bars']['D']])
+        self.assertNotIn(BE_INTRADAY[0], [bar['close'] for bar in found.daily])
 
     def test_an_incompatible_basis_is_reported_instead_of_merged(self):
         days = weekdays('2026-09-01', 13)
@@ -143,12 +143,12 @@ class SelectionTests(ReliabilityCase):
                              {'rows': rows(weekdays('2026-08-03', 30), close=100.0),
                               'fetched_at': '2026-09-17T21:06:00Z', 'adjust': 'ForwardAdjust'}],
                             '2026-09-18T12:00:00Z')
-        self.assertEqual(found['source']['price_basis'],
+        self.assertEqual(found.source['price_basis'],
                          'adjust=ForwardAdjust period=day session=unknown')
-        self.assertEqual(len(found['source']['segments']), 1)
-        self.assertEqual(len(found['source']['gaps']), 1)
-        self.assertIn('different basis', found['source']['gaps'][0])
-        self.assertNotIn(BE_CONFIRMED[0], [bar['close'] for bar in found['bars']['D']],
+        self.assertEqual(len(found.source['segments']), 1)
+        self.assertEqual(len(found.source['gaps']), 1)
+        self.assertIn('different basis', found.source['gaps'][0])
+        self.assertNotIn(BE_CONFIRMED[0], [bar['close'] for bar in found.daily],
                          'an adjusted and an unadjusted series are never spliced together')
 
     def test_a_quote_snapshot_does_not_displace_the_candlestick_series(self):
@@ -167,10 +167,10 @@ class SelectionTests(ReliabilityCase):
         for meta_path, raws in pair_staging(staging):
             for raw in raws:
                 registry.register(raw, meta_path, entity_ids=ENTITY_IDS)
-        found = bars_module.series_from_evidence(bundle, registry.records(),
-                                                 '2026-09-18T14:00:00Z')
-        self.assertEqual(found['source']['fetched_at'], '2026-09-17T21:05:00Z')
-        self.assertEqual(len(found['bars']['D']), len(days))
+        found = bars_module.series_for(bundle, SECURITY, '2026-09-18T14:00:00Z',
+                                       records=registry.records())
+        self.assertEqual(found.source['fetched_at'], '2026-09-17T21:05:00Z')
+        self.assertEqual(len(found.daily), len(days))
 
 
 class ReplayTests(ReliabilityCase):
@@ -182,18 +182,19 @@ class ReplayTests(ReliabilityCase):
                              {'rows': rows(later, close=40.0, last=(58.0, 3_000_000.0)),
                               'fetched_at': '2026-09-17T21:05:00Z'}],
                             '2026-09-10T20:00:00Z')
-        self.assertEqual(found['source']['fetched_at'], '2026-09-09T21:05:00Z')
-        self.assertEqual(found['bars']['D'][-1]['at'][:10], days[-1])
-        self.assertEqual(found['bars']['D'][-1]['close'], 44.5)
-        self.assertEqual(len(found['source']['gaps']), 1)
-        self.assertIn('after the cutoff', found['source']['gaps'][0],
+        self.assertEqual(found.source['fetched_at'], '2026-09-09T21:05:00Z')
+        self.assertEqual(found.daily[-1]['at'][:10], days[-1])
+        self.assertEqual(found.daily[-1]['close'], 44.5)
+        self.assertEqual(len(found.source['gaps']), 1)
+        self.assertIn('after the cutoff', found.source['gaps'][0],
                       'the excluded snapshot is named, not silently dropped')
 
     def test_a_cutoff_before_every_snapshot_leaves_nothing_to_chart(self):
         bundle, records = self.bundle_with({'rows': rows(weekdays('2026-09-01', 7)),
                                             'fetched_at': '2026-09-17T21:05:00Z'})
-        self.assertIsNone(bars_module.series_from_evidence(bundle, records,
-                                                           '2026-09-10T20:00:00Z'))
+        found = bars_module.series_for(bundle, SECURITY, '2026-09-10T20:00:00Z', records=records)
+        self.assertEqual(found.daily, [])
+        self.assertIn('after the cutoff', found.gaps[0], 'an empty series still says why')
 
 
 class CompletionTests(ReliabilityCase):
@@ -206,7 +207,7 @@ class CompletionTests(ReliabilityCase):
             with self.subTest(fetched_at=fetched_at):
                 found = self.series([{'rows': rows(days), 'fetched_at': fetched_at}],
                                     '2026-09-18T12:00:00Z')
-                daily = found['bars']['D']
+                daily = found.daily
                 self.assertEqual(daily[-1]['complete'], expected)
                 self.assertTrue(all(bar['complete'] for bar in daily[:-1]),
                                 'the days before it closed long ago either way')
@@ -215,7 +216,7 @@ class CompletionTests(ReliabilityCase):
         days = weekdays('2026-09-07', 9)
         found = self.series([{'rows': rows(days), 'fetched_at': '2026-09-17T16:00:00Z'}],
                             '2026-09-17T17:00:00Z')  # the research cutoff is itself intraday
-        self.assertFalse(found['bars']['D'][-1]['complete'])
+        self.assertFalse(found.daily[-1]['complete'])
         # Even a snapshot taken after the close cannot confirm a bar for a reader who
         # stands before it: the cutoff is the second half of the same rule.
         row = {'timestamp': '2026-09-17' + DAY_MARKER, 'open': '1', 'high': '2',
@@ -245,7 +246,7 @@ class CompletionTests(ReliabilityCase):
             with self.subTest(session=label):
                 found = self.series([{'rows': rows(days), 'fetched_at': fetched_at}],
                                     '2026-09-18T12:00:00Z', session=session)
-                self.assertEqual(found['bars']['D'][-1]['complete'], expected)
+                self.assertEqual(found.daily[-1]['complete'], expected)
 
     def test_a_week_or_month_holding_an_unconfirmed_day_stays_unconfirmed(self):
         # The older snapshot was taken mid-session on Friday 2026-09-11, so the day it
@@ -256,7 +257,7 @@ class CompletionTests(ReliabilityCase):
                              {'rows': rows(weekdays('2026-09-14', 5), close=70.0),
                               'fetched_at': '2026-09-18T21:05:00Z'}],
                             '2026-09-18T22:00:00Z')
-        daily = found['bars']['D']
+        daily = found.daily
         self.assertEqual([bar['at'][:10] for bar in daily if not bar['complete']],
                          ['2026-09-11'])
         weekly = {week['at']: week['complete'] for week in charts.resample(daily, 'W')}
@@ -300,3 +301,62 @@ class ExchangeSessionTests(unittest.TestCase):
         # 16:00 Hong Kong is 08:00Z; 16:00 New York in September is 20:00Z.
         self.assertEqual(hk.close_instant("2026-09-17").isoformat(), "2026-09-17T16:00:00+08:00")
         self.assertEqual(ny.close_instant("2026-09-17").utcoffset().total_seconds(), -4 * 3600)
+
+
+class SeriesEntryTests(ReliabilityCase):
+    """KARST-254: one door — identity, history sufficiency and incremental splicing."""
+
+    AS_OF = '2026-09-18T12:00:00Z'
+
+    def test_another_securitys_prices_are_never_read_and_are_named(self):
+        days = weekdays('2026-09-07', 9)
+        bundle, records = self.bundle_with({'rows': rows(days), 'fetched_at': '2026-09-17T21:05:00Z'})
+        found = bars_module.series_for(bundle, SECURITY, self.AS_OF, records=records)
+        self.assertEqual(len(found.daily), len(days))
+        records[0]['entity_ids'] = ['OTHER:OTHER', 'cik:0000000009']
+        found = bars_module.series_for(bundle, SECURITY, self.AS_OF, records=records)
+        self.assertEqual(found.daily, [])
+        self.assertIsNone(found.views)
+        self.assertIn('not FIXTURE:FIXTURE', found.gaps[0])
+        # A cik spelled differently is the same issuer, not another security.
+        only_issuer = {'issuer_id': 'CIK:0', 'exchange': 'FIXTURE'}
+        records[0]['entity_ids'] = ['cik:0000000000']
+        self.assertEqual(len(bars_module.series_for(bundle, only_issuer, self.AS_OF,
+                                                    records=records).daily), len(days))
+
+    def test_history_is_judged_per_named_use(self):
+        days = weekdays('2025-11-03', 205)
+        # Fetched mid-session on the last day: that one bar is not a close yet.
+        bundle, records = self.bundle_with({'rows': rows(days), 'fetched_at': days[-1] + 'T18:30:00Z'})
+        found = bars_module.series_for(bundle, SECURITY, days[-1] + 'T23:00:00Z', records=records)
+        daily = found.daily
+        self.assertEqual(sum(bar['complete'] for bar in daily), len(daily) - 1)
+        self.assertTrue(found.enough('chart'))
+        self.assertTrue(found.enough('daily_check'), '204 confirmed closes cover a 200-day average')
+        self.assertFalse(bars_module.enough(daily[-200:], 'daily_check'),
+                         'the unconfirmed last day does not count toward the 200')
+        self.assertFalse(bars_module.enough(daily[:1], 'chart'))
+        self.assertTrue(found.enough('publication', recorded=None))
+        self.assertTrue(found.enough('publication', recorded=int(len(daily) / 0.9)))
+        self.assertFalse(found.enough('publication', recorded=int(len(daily) / 0.9) + 1))
+        with self.assertRaises(ValueError):
+            found.enough('backtest')
+
+    def test_an_incremental_snapshot_splices_onto_the_stored_history(self):
+        days = weekdays('2025-11-03', 212)
+        stored, increment = days[:-1], days[-3:]
+        as_of, fetched = days[-1] + 'T23:00:00Z', days[-1] + 'T21:05:00Z'
+        bundle, records = self.bundle_with(
+            {'rows': rows(stored, close=50.0), 'fetched_at': days[-2] + 'T21:05:00Z'},
+            {'rows': rows(increment, close=90.0, last=(95.5, 7_000_000.0)), 'fetched_at': fetched})
+        alone = [r for r in records if r['fetched_at'] == fetched]
+        self.assertFalse(bars_module.series_for(bundle, SECURITY, as_of,
+                                                records=alone).enough('daily_check'))
+        found = bars_module.series_for(bundle, SECURITY, as_of, records=records)
+        self.assertEqual([bar['at'][:10] for bar in found.daily], days)
+        self.assertEqual([bar['close'] for bar in found.daily[-3:]], [90.0, 90.5, 95.5],
+                         'the increment owns every day it covers')
+        self.assertEqual(found.last_complete['close'], 95.5)
+        self.assertEqual([s['bars'] for s in found.source['segments']], [3, len(days) - 3])
+        self.assertEqual(found.basis, {'adjust': 'NoAdjust', 'period': 'day', 'session': 'unknown'})
+        self.assertTrue(found.enough('daily_check'))

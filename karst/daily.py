@@ -149,21 +149,20 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
                      (datetime.now(timezone.utc) - timedelta(days=3)).isoformat())
     result = service.refresh_sources(data_dir, security, ['prices', 'news'], since=since,
                                      clients=clients, store=store)
-    cutoff = result.get('research_input', {}).get('as_of') or service.utc_now()
-    series = bars.series_from_evidence(bundle, service._records(bundle), cutoff,
-                                      session=bars.Session.for_exchange(security.get('exchange')))
+    def read_series(fetched):
+        cutoff = fetched.get('research_input', {}).get('as_of') or service.utc_now()
+        return bars.series_for(bundle, security, cutoff, records=service._records(bundle))
+
+    series = read_series(result)
     history_recovered = False
-    if not series or len(series['bars']['D']) < 200:
+    if not series.enough('daily_check'):
         recovery = service.refresh_sources(data_dir, security, ['prices'], clients=clients, store=store)
         history_recovered = True
         result['failed'].extend(recovery['failed'])
         result['adapter_errors'].update(recovery['adapter_errors'])
-        cutoff = recovery.get('research_input', {}).get('as_of') or service.utc_now()
-        series = bars.series_from_evidence(bundle, service._records(bundle), cutoff,
-                                          session=bars.Session.for_exchange(security.get('exchange')))
+        series = read_series(recovery)
     plan = service.plan_update(store, bundle, subject, data_dir=data_dir)
-    all_bars = series['bars']['D'] if series else []
-    complete = [bar for bar in all_bars if bar['complete']]
+    all_bars = series.daily
     headline = (baseline or {}).get('payload', {}).get('headline', {})
     candidates = [r for r in result['records'] if r['kind'] == 'news' and
                   r['evidence_id'] in result['added'] + result['changed']]
@@ -172,9 +171,9 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
             'current_judgment': headline.get('recommendation'),
             'target_date': (baseline or {}).get('payload', {}).get('target_date'),
             'latest_bar': all_bars[-1] if all_bars else None,
-            'last_complete_bar': complete[-1] if complete else None,
+            'last_complete_bar': series.last_complete,
             'bars_available': len(all_bars), 'history_recovered': history_recovered,
-            'history_ready': len(complete) >= 200,
+            'history_ready': series.enough('daily_check'),
             'news_candidates': candidates, 'news_coverage': result.get('news_coverage'),
             'failed': result['failed'], 'adapter_errors': result['adapter_errors'],
             'plan_id': plan['plan_id'], 'conditions': plan['conditions'],
