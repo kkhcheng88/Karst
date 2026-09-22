@@ -1,0 +1,63 @@
+{
+  "assessed_at": "2026-09-22T12:48:05+00:00",
+  "price_cutoff": "2026-09-21",
+  "news_review_cutoff": "2026-09-22T12:20:00Z",
+  "market_stance": "反彈轉強，升勢仍集中；高利率限制追價空間",
+  "factors": [
+    {
+      "factor": "通脹",
+      "basis": "8月CPI同比3.4%、月增0.4%；核心同比2.4%、月增0.3%；7月核心PCE同比3.3%",
+      "judgment": "核心CPI同比放緩、月度壓力回升；仍限制寬鬆。未核公布前共識，不能稱超預期。",
+      "assessed_at": "2026-09-22T12:59:00Z",
+      "evidence_dates_preserved_in_basis": true,
+      "reassess_when": "新CPI／PCE、能源向核心傳導",
+      "status": "assessed"
+    },
+    {
+      "factor": "Fed與市場利率",
+      "basis": "9/16加息25bp至3.75–4.00%；政策利率預測中位數年底及2027年均4.1%。9/22盤前10年債息約4.9%",
+      "judgment": "政策與長債均顯示折現率壓力；市場隱含加減息路徑未核齊，暫不能判市場與Fed預期差有多大。",
+      "assessed_at": "2026-09-22T12:59:00Z",
+      "evidence_dates_preserved_in_basis": true,
+      "reassess_when": "Fed決議／講話、債息及市場隱含政策路徑變化",
+      "status": "incomplete"
+    },
+    {
+      "factor": "經濟與盈利",
+      "basis": "8月新增職位16.2萬、失業率4.1%；7月實質消費近乎持平。整體盈利上修廣度未核齊",
+      "judgment": "就業支持需求韌性，但消費未明顯加速；不能由AI權重股反彈推論整體企業盈利同步轉強。",
+      "assessed_at": "2026-09-22T12:59:00Z",
+      "evidence_dates_preserved_in_basis": true,
+      "reassess_when": "就業／消費、盈利指引及上修廣度變化",
+      "status": "incomplete"
+    },
+    {
+      "factor": "指數估值",
+      "basis": "9/21 FY1 P/E 21.48倍；完整整體盈利預測及修訂尚未核齊",
+      "judgment": "現價需要盈利兌現；暫無足夠依據判便宜。下表把盈利與倍數分開變動，不把敏感度當公允價值。",
+      "assessed_at": "2026-09-22T12:59:00Z",
+      "evidence_dates_preserved_in_basis": true,
+      "reassess_when": "同口徑盈利修訂、利率或風險溢價變化",
+      "status": "incomplete"
+    },
+    {
+      "factor": "今日事件與市場反應",
+      "basis": "9/21 SPY反彈1.55%；9/22盤前油價約100美元，市場關注中東局勢",
+      "judgment": "能源／債息回落可紓緩成長股壓力，但同日價格變化不是因果證明；局勢反覆可逆轉支持。",
+      "assessed_at": "2026-09-22T12:59:00Z",
+      "evidence_dates_preserved_in_basis": true,
+      "reassess_when": "新的可核事件；按受益／受損公司暴露重評",
+      "status": "assessed"
+    },
+    {
+      "factor": "技術與參與度",
+      "basis": "SPY貼近774–779阻力；等權RSP、小型股IWM的9/21升幅均落後",
+      "judgment": "長期偏多、短線不追。升勢集中，未確認全面擴散；收穩阻力並回測才重評。",
+      "assessed_at": "2026-09-22T12:59:00Z",
+      "evidence_dates_preserved_in_basis": true,
+      "reassess_when": "日收市突破／回踩／失效，以及等權與小型股參與改變",
+      "status": "assessed"
+    }
+  ],
+  "policy": "Reassess changed evidence only; check coverage daily. Price movement alone cannot identify macro causation."
+}

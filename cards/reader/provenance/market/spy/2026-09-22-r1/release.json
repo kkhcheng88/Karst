@@ -1,0 +1,61 @@
+{
+  "task": "reader-review-2026-09-22",
+  "scope": "incremental assessment; not a new full company research",
+  "price_cutoff": "2026-09-21",
+  "sources": [
+    {
+      "label": "BLS：8月 CPI",
+      "url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm"
+    },
+    {
+      "label": "Fed：9/16 決議",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+    },
+    {
+      "label": "Fed：9月經濟預測",
+      "url": "https://www.federalreserve.gov/monetarypolicy/files/fomcprojtabl20260916.pdf"
+    },
+    {
+      "label": "BEA：7月個人收入及支出",
+      "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026"
+    },
+    {
+      "label": "BLS：8月就業",
+      "url": "https://www.bls.gov/news.release/archives/empsit_09042026.htm"
+    },
+    {
+      "label": "State Street：9/21 SPY 估值與持倉",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy"
+    },
+    {
+      "label": "Reuters：9/21 市場收市",
+      "url": "https://www.reuters.com/business/wall-st-futures-rise-ai-stocks-gain-oil-prices-slide-2026-09-21/"
+    },
+    {
+      "label": "Reuters：9/22 盤前",
+      "url": "https://www.reuters.com/business/wall-st-futures-pause-after-ai-rally-focus-mideast-tensions-2026-09-22/"
+    },
+    {
+      "label": "Longbridge：行情",
+      "url": "https://open.longbridge.com/docs/quote/overview"
+    }
+  ],
+  "source_evidence": {
+    "SPY": "ev-3dab6c8cd5681e4e15163873979922b1111cfcc7524e2850f10edc56f1017d10",
+    "NYSE:BE": "ev-2460cdc021ba375d61eb59f396b5357fc9fd40f87527994e5f6d3bde289f16e2",
+    "NYSE:GEV": "ev-2e98ab8207e8c0c10dfdaa55013b773d49ead785042f324b5e3973c290fd61c7",
+    "NASDAQ:CRWV": "ev-8e914c323be41f7cd42fec1e4b207aadbd4dfd09583fbea24069f406fe8784af",
+    "NASDAQ:NBIS": "ev-7dfcbf4394636b5b281921a9fe3a1524a105d5dc0c940641e39cce23eddee86f",
+    "NASDAQ:IREN": "ev-c71f0569bb28586f1ef7864b14bd3c5af0b86ac24a075c11e01dae4d5d5ff260",
+    "NASDAQ:MSFT": "ev-a0df0ad47164d26cf0ed594c57883797b3782a9aede82f08206481d1f53ade87",
+    "NASDAQ:AXTI": "ev-f9255a2b79efc38de06158edf2698d471b91630373cb2b6f67e341270cdc9f67",
+    "NYSEARCA:RSP": "ev-7019c403c8d45c58e07d5bb243c6cb57434c781eca32c1939af60033b0df0b4e",
+    "NYSEARCA:IWM": "ev-aea9a70ae03d4926a762f180ae6fbc83120b0a67a0df554b1899b5dcccca32bf"
+  },
+  "limitations": [
+    "No autonomous scheduler",
+    "BE model and legacy target date preserved",
+    "Chain forward valuation incomplete",
+    "SPY valuation is fixed-basket sensitivity, not bottom-up EPS model"
+  ]
+}

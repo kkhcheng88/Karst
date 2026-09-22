@@ -117,6 +117,12 @@ class HttpTransportTests(unittest.TestCase):
         async def call():
             async with Client(StreamableHttpTransport(self.url, headers={"Authorization": f"Bearer {TOKEN}"})) as client:
                 await client.call_tool("save_knowledge", {"kind":"universe", "object_id":"compute", "payload":universe()})
+                scope = await client.call_tool('get_daily_scope', {'universe_id':'compute'})
+                self.assertTrue(scope.data['members'])
+                intake = await client.call_tool('refresh_daily_scope', {'universe_id':'compute'})
+                self.assertFalse(intake.data['analysis_complete'])
+                self.assertEqual(intake.data['intake_status'], 'incomplete')
+                self.assertEqual(len(intake.data['results']), len(scope.data['members']))
                 edge = await client.call_tool("save_knowledge", {"kind":"relation", "object_id":"ab", "payload":relation()})
                 graph = await client.call_tool("get_value_chain", {"universe_id":"compute", "focus":"A"})
                 context = await client.call_tool("get_research_context", {"subject":"A"})

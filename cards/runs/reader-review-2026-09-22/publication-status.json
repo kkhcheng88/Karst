@@ -1,0 +1,25 @@
+{
+  "status": "authorized_publication_pending_verification",
+  "repository": "kkhcheng88/Karst",
+  "verified_connected_login": "kkhcheng88",
+  "remote_master_unchanged": "3c7730c5d148b6cce6e6e2bd4a352434c8556ad6",
+  "attempts": [
+    "full implementation/research tree: rejected",
+    "reader pages and necessary assets only: rejected"
+  ],
+  "reason": "User explicitly authorized publication of the four pages, necessary charts, daily update implementation and corresponding records to the existing public repository.",
+  "local_validation": {
+    "functional_and_reader_tests": 34,
+    "authenticated_http_tests": 4,
+    "build_pages": 33,
+    "reading_editions": 24,
+    "historical_pages_preserved_in_last_stage": 23
+  },
+  "remaining_research": [
+    "SPY aggregate earnings and consensus/rate-expectation gap",
+    "BE target multiple calibration and independent review",
+    "Neocloud full forward capital/earnings comparisons"
+  ],
+  "schedule_active": false,
+  "user_authorization": "yes please, I will review in the production"
+}

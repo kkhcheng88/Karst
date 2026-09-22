@@ -60,6 +60,23 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
         return service.get_research_protocol(mode, version, include_schema=include_schema)
 
     @server.tool
+    def get_daily_scope(universe_id: str) -> dict:
+        """Read explicit daily monitoring membership, including names without research."""
+        from .daily import scope
+        return scope(state, universe_id)
+
+    @server.tool
+    def refresh_daily_scope(universe_id: str, since: str | None = None) -> dict:
+        """Prices/news intake for every monitored member; failures persist per subject.
+
+        Requires registered securities; returns missing registrations explicitly.
+        Shared macro/chain review and investment judgment remain agent work.
+        No scheduler, review completion, rating or automatic publication is implied.
+        """
+        from .daily import refresh_scope
+        return refresh_scope(state, root, universe_id, since=since)
+
+    @server.tool
     def refresh_daily(subject: str, since: str | None = None) -> dict:
         """Small daily prices + dated RSS-news intake; does not re-fetch financial statements.
 

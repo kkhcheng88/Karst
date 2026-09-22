@@ -2102,5 +2102,131 @@
         }
       ]
     }
+  },
+  {
+    "kind": "universe",
+    "object_id": "daily-monitoring",
+    "payload": {
+      "name": "每日監察範圍",
+      "summary": "主動監察股票與市場參照；不要求已有正式研究。加入新股時同步維護本名單。",
+      "members": [
+        {
+          "entity_id": "NYSE:BE",
+          "name": "Bloom Energy",
+          "kind": "security",
+          "roles": [
+            "現場供電"
+          ],
+          "comparison_groups": [
+            "power-solutions"
+          ]
+        },
+        {
+          "entity_id": "NYSE:GEV",
+          "name": "GE Vernova",
+          "kind": "security",
+          "roles": [
+            "發電與電網"
+          ],
+          "comparison_groups": [
+            "power-solutions"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:CRWV",
+          "name": "CoreWeave",
+          "kind": "security",
+          "roles": [
+            "AI Cloud"
+          ],
+          "comparison_groups": [
+            "neocloud"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:NBIS",
+          "name": "Nebius",
+          "kind": "security",
+          "roles": [
+            "AI Cloud"
+          ],
+          "comparison_groups": [
+            "neocloud"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:IREN",
+          "name": "IREN",
+          "kind": "security",
+          "roles": [
+            "AI Cloud／自建機房"
+          ],
+          "comparison_groups": [
+            "neocloud"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:MSFT",
+          "name": "Microsoft",
+          "kind": "security",
+          "roles": [
+            "算力客戶"
+          ],
+          "comparison_groups": [
+            "hyperscalers"
+          ]
+        },
+        {
+          "entity_id": "NYSEARCA:SPY",
+          "name": "SPY",
+          "kind": "fund",
+          "roles": [
+            "美國大型股 · 市值加權"
+          ],
+          "comparison_groups": [
+            "us-equity-proxies"
+          ]
+        },
+        {
+          "entity_id": "NYSEARCA:RSP",
+          "name": "RSP",
+          "kind": "fund",
+          "roles": [
+            "標普500等權 · 參與度代理"
+          ],
+          "comparison_groups": [
+            "us-equity-proxies"
+          ]
+        },
+        {
+          "entity_id": "NYSEARCA:IWM",
+          "name": "IWM",
+          "kind": "fund",
+          "roles": [
+            "美國小型股 · 風格參照"
+          ],
+          "comparison_groups": [
+            "us-equity-proxies"
+          ]
+        },
+        {
+          "entity_id": "NASDAQ:AXTI",
+          "name": "AXT",
+          "kind": "company",
+          "roles": [
+            "InP基板"
+          ],
+          "comparison_groups": [
+            "ai-optics"
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "title": "已發布研究與價值鏈覆蓋範圍",
+          "url": "https://kkhcheng88.github.io/Karst/"
+        }
+      ]
+    }
   }
 ]

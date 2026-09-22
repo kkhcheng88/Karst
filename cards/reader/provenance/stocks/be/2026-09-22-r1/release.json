@@ -1,0 +1,53 @@
+{
+  "task": "reader-review-2026-09-22",
+  "scope": "incremental assessment; not a new full company research",
+  "price_cutoff": "2026-09-21",
+  "sources": [
+    {
+      "label": "Bloom Energy 第二季業績及指引",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    },
+    {
+      "label": "Bloom Energy 第二季 10-Q",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050247/be-20260630.htm"
+    },
+    {
+      "label": "Bloom Energy 年報：生意、競爭與服務合約",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026006516/be-20251231.htm"
+    },
+    {
+      "label": "Brookfield 融資合作公告",
+      "url": "https://investor.bloomenergy.com/press-releases/press-release-details/2026/Brookfield-and-Bloom-Energy-Expand-AI-Infrastructure-Partnership-to-25-Billion-Fivefold-Increase-to-Build-and-Finance-Rapid-Power-for-AI-Infrastructure/default.aspx"
+    },
+    {
+      "label": "S&P 指數調整公告",
+      "url": "https://press.spglobal.com/2026-09-04-Bloom-Energy,-Illumina,-and-Everpure-Set-to-Join-S-P-500-Others-to-Join-S-P-100,-S-P-MidCap-400,-and-S-P-SmallCap-600"
+    },
+    {
+      "label": "Eaton：2026年指引",
+      "url": "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html"
+    },
+    {
+      "label": "Eaton：9/21收市",
+      "url": "https://www.marketwatch.com/data-news/eaton-corp-plc-stock-outperforms-competitors-on-strong-trading-day-ab1770c6-5e855f9ac9a7"
+    }
+  ],
+  "source_evidence": {
+    "SPY": "ev-3dab6c8cd5681e4e15163873979922b1111cfcc7524e2850f10edc56f1017d10",
+    "NYSE:BE": "ev-2460cdc021ba375d61eb59f396b5357fc9fd40f87527994e5f6d3bde289f16e2",
+    "NYSE:GEV": "ev-2e98ab8207e8c0c10dfdaa55013b773d49ead785042f324b5e3973c290fd61c7",
+    "NASDAQ:CRWV": "ev-8e914c323be41f7cd42fec1e4b207aadbd4dfd09583fbea24069f406fe8784af",
+    "NASDAQ:NBIS": "ev-7dfcbf4394636b5b281921a9fe3a1524a105d5dc0c940641e39cce23eddee86f",
+    "NASDAQ:IREN": "ev-c71f0569bb28586f1ef7864b14bd3c5af0b86ac24a075c11e01dae4d5d5ff260",
+    "NASDAQ:MSFT": "ev-a0df0ad47164d26cf0ed594c57883797b3782a9aede82f08206481d1f53ade87",
+    "NASDAQ:AXTI": "ev-f9255a2b79efc38de06158edf2698d471b91630373cb2b6f67e341270cdc9f67",
+    "NYSEARCA:RSP": "ev-7019c403c8d45c58e07d5bb243c6cb57434c781eca32c1939af60033b0df0b4e",
+    "NYSEARCA:IWM": "ev-aea9a70ae03d4926a762f180ae6fbc83120b0a67a0df554b1899b5dcccca32bf"
+  },
+  "limitations": [
+    "No autonomous scheduler",
+    "BE model and legacy target date preserved",
+    "Chain forward valuation incomplete",
+    "SPY valuation is fixed-basket sensitivity, not bottom-up EPS model"
+  ]
+}

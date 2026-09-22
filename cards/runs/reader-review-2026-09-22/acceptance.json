@@ -1,0 +1,401 @@
+{
+  "date": "2026-09-22",
+  "mode": "cloud components invoked individually; new scope wrapper tested via authenticated local HTTP",
+  "analysis_complete": false,
+  "news_review_cutoff": "2026-09-22T12:20:00Z",
+  "price_cutoff": "2026-09-21",
+  "members": {
+    "SPY": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:08:04Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=SPY",
+            "status": "ok",
+            "error": null,
+            "items_returned": 20,
+            "in_window": 20,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T11:34:21+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22SPDR+S%26P+500+ETF+Trust%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 29,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T09:36:56+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 49,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 53
+    },
+    "NYSE:BE": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:12:29Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=BE",
+            "status": "ok",
+            "error": null,
+            "items_returned": 20,
+            "in_window": 16,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T07:25:46+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22Bloom+Energy%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 36,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T12:02:17+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 52,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 56
+    },
+    "NYSE:GEV": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:12:48Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=GEV",
+            "status": "ok",
+            "error": null,
+            "items_returned": 19,
+            "in_window": 18,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T11:37:02+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22GE+Vernova%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 25,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T06:51:27+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 43,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 47
+    },
+    "NASDAQ:CRWV": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:13:01Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=CRWV",
+            "status": "ok",
+            "error": null,
+            "items_returned": 20,
+            "in_window": 20,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T04:34:01+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22CoreWeave%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 102,
+            "in_window": 56,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T12:03:28+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 76,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 80
+    },
+    "NASDAQ:NBIS": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:13:17Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=NBIS",
+            "status": "ok",
+            "error": null,
+            "items_returned": 20,
+            "in_window": 16,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T10:35:00+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22Nebius+Group%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 102,
+            "in_window": 38,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T10:35:00+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 54,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 58
+    },
+    "NASDAQ:IREN": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:13:32Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=IREN",
+            "status": "ok",
+            "error": null,
+            "items_returned": 20,
+            "in_window": 16,
+            "undated": 0,
+            "newest_published_at": "2026-09-21T16:43:48+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22IREN%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 102,
+            "in_window": 31,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T12:01:38+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 47,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 51
+    },
+    "NASDAQ:MSFT": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:13:44Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=MSFT",
+            "status": "ok",
+            "error": null,
+            "items_returned": 20,
+            "in_window": 20,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T10:50:00+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22Microsoft%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 91,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T12:11:15+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 111,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 115
+    },
+    "NASDAQ:AXTI": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:14:03Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=AXTI",
+            "status": "ok",
+            "error": null,
+            "items_returned": 19,
+            "in_window": 3,
+            "undated": 0,
+            "newest_published_at": "2026-09-21T20:00:25+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22AXT%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 9,
+            "undated": 0,
+            "newest_published_at": "2026-09-21T20:00:25+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 12,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 16
+    },
+    "NYSEARCA:RSP": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:14:13Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=RSP",
+            "status": "ok",
+            "error": null,
+            "items_returned": 19,
+            "in_window": 2,
+            "undated": 0,
+            "newest_published_at": "2026-09-18T21:05:57+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22Invesco+S%26P+500+Equal+Weight+ETF%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 7,
+            "undated": 0,
+            "newest_published_at": "2026-09-21T18:01:10+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 9,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 13
+    },
+    "NYSEARCA:IWM": {
+      "failed": [],
+      "adapter_errors": {},
+      "news_coverage": {
+        "checked_at": "2026-09-22T12:14:22Z",
+        "since": "2026-09-18T00:00:00+00:00",
+        "scope": "configured public RSS feeds; not exhaustive news coverage",
+        "providers": [
+          {
+            "provider": "yahoo",
+            "url": "https://finance.yahoo.com/rss/headline?s=IWM",
+            "status": "ok",
+            "error": null,
+            "items_returned": 14,
+            "in_window": 1,
+            "undated": 0,
+            "newest_published_at": "2026-09-18T15:00:53+00:00"
+          },
+          {
+            "provider": "google",
+            "url": "https://news.google.com/rss/search?q=%22iShares+Russell+2000+ETF%22&hl=en-US&gl=US&ceid=US%3Aen",
+            "status": "ok",
+            "error": null,
+            "items_returned": 100,
+            "in_window": 3,
+            "undated": 0,
+            "newest_published_at": "2026-09-22T03:54:41+00:00"
+          }
+        ],
+        "successful_feeds": 2,
+        "candidate_articles": 4,
+        "undated_articles": 0,
+        "status": "ok"
+      },
+      "records_count": 8
+    }
+  },
+  "MSFT_history_recovery": [
+    {
+      "kind": "prices",
+      "evidence_id": "ev-f8b7ff974bfda0f61d1a2ce084125f2c4c24ae48da84cdcc412b6ec5598d3418"
+    },
+    {
+      "kind": "prices",
+      "evidence_id": "ev-8e67aac598ffc259bb6599e3abd1cf7299fcf05fc12577513049d2c64605ee9e"
+    },
+    {
+      "kind": "prices",
+      "evidence_id": "ev-85089cf2b9ab6624d54778f9f37ed1eb5ea11c7c4a93bf2f5cb54cb085ee92f7"
+    },
+    {
+      "kind": "profile",
+      "evidence_id": "ev-ea8eeb217a0e81fcc8705648fe7e2246a6164127f6e035562033f7329bd4154c"
+    }
+  ],
+  "limitations": [
+    "All RSS intake success is not full original-article review",
+    "BE legal/financing followups pending",
+    "NBIS and IREN forward guide coverage incomplete",
+    "No scheduler or autonomous publication"
+  ],
+  "tests": {
+    "targeted": 28,
+    "status": "passed"
+  },
+  "reader": {
+    "editions": 4,
+    "old_html_preserved": 15
+  }
+}

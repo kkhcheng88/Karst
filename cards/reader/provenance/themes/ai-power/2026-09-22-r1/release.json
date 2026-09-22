@@ -1,0 +1,65 @@
+{
+  "task": "reader-review-2026-09-22",
+  "scope": "incremental assessment; not a new full company research",
+  "price_cutoff": "2026-09-21",
+  "sources": [
+    {
+      "label": "Nebius／Bloom 供電合作",
+      "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+    },
+    {
+      "label": "Nebius 第二季財務",
+      "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf"
+    },
+    {
+      "label": "Nebius 第二季股東信",
+      "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf"
+    },
+    {
+      "label": "IREN FY26 業績",
+      "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+    },
+    {
+      "label": "CoreWeave 第二季業績",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+      "label": "CoreWeave 第三季及全年指引",
+      "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf"
+    },
+    {
+      "label": "GE Vernova 第二季業績",
+      "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf"
+    },
+    {
+      "label": "Bloom 第二季業績",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    },
+    {
+      "label": "Eaton：2026年指引",
+      "url": "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html"
+    },
+    {
+      "label": "Eaton：9/21收市",
+      "url": "https://www.marketwatch.com/data-news/eaton-corp-plc-stock-outperforms-competitors-on-strong-trading-day-ab1770c6-5e855f9ac9a7"
+    }
+  ],
+  "source_evidence": {
+    "SPY": "ev-3dab6c8cd5681e4e15163873979922b1111cfcc7524e2850f10edc56f1017d10",
+    "NYSE:BE": "ev-2460cdc021ba375d61eb59f396b5357fc9fd40f87527994e5f6d3bde289f16e2",
+    "NYSE:GEV": "ev-2e98ab8207e8c0c10dfdaa55013b773d49ead785042f324b5e3973c290fd61c7",
+    "NASDAQ:CRWV": "ev-8e914c323be41f7cd42fec1e4b207aadbd4dfd09583fbea24069f406fe8784af",
+    "NASDAQ:NBIS": "ev-7dfcbf4394636b5b281921a9fe3a1524a105d5dc0c940641e39cce23eddee86f",
+    "NASDAQ:IREN": "ev-c71f0569bb28586f1ef7864b14bd3c5af0b86ac24a075c11e01dae4d5d5ff260",
+    "NASDAQ:MSFT": "ev-a0df0ad47164d26cf0ed594c57883797b3782a9aede82f08206481d1f53ade87",
+    "NASDAQ:AXTI": "ev-f9255a2b79efc38de06158edf2698d471b91630373cb2b6f67e341270cdc9f67",
+    "NYSEARCA:RSP": "ev-7019c403c8d45c58e07d5bb243c6cb57434c781eca32c1939af60033b0df0b4e",
+    "NYSEARCA:IWM": "ev-aea9a70ae03d4926a762f180ae6fbc83120b0a67a0df554b1899b5dcccca32bf"
+  },
+  "limitations": [
+    "No autonomous scheduler",
+    "BE model and legacy target date preserved",
+    "Chain forward valuation incomplete",
+    "SPY valuation is fixed-basket sensitivity, not bottom-up EPS model"
+  ]
+}
