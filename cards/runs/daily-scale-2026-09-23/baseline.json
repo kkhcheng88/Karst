@@ -1,0 +1,97 @@
+{
+  "ticket": "KARST-253",
+  "measured_at": "2026-09-22T18:26Z (cloud) / 2026-09-23 HKT (local)",
+  "code_base": "daily-scale 13320c6 + karst/daily_bench.py (daily path unchanged; phases measured by wrapping existing functions, exclusive time)",
+  "command": "python -m karst.daily_bench --members 10 --members 50 --members 200 [--price-delay S] [--news-delay S] [--failure-rate P] [--no-news] [--news-items K] [--prior-news K] [--history-bars B]",
+  "local_benchmark": {
+    "environment": "Windows 11, Python 3.12.10, local SSD; fake Longbridge (4 calls/member, 1000 bars at registration, only bars since the window on the daily run) and fake RSS (2 feeds/member, 5 new articles/feed + 1 shared market article, 20 prior articles/feed registered first). No network.",
+    "note": "N=10/50 from a clean rerun; N=200 from a run that did not overlap the test suite. Seconds are totals over the run; 'other' = wall minus measured phases (registry lock, record_refresh, JSON of results, loop).",
+    "runs": [
+      {"members": 10, "delays": "none", "refresh_seconds": 7.972, "per_member_seconds": 0.797, "registration_seconds": 16.326,
+       "phase_seconds": {"fetch_prices": 0.599, "fetch_news": 0.951, "register_evidence": 2.520, "read_registry": 2.583, "index_store": 0.308, "packet": 0.457, "series_rebuild": 0.087, "plan_update": 0.114, "protocol_load": 0.055, "checkpoint": 0.031, "other": 0.268},
+       "phase_calls": {"register_evidence": 100, "read_registry": 170, "plan_update": 20, "protocol_load": 40, "checkpoint": 12},
+       "checkpoint_bytes": {"final": 76549, "total_serialized": 509533}, "peak_rss_bytes": 81051648, "member_status": {"ready_for_review": 10}},
+      {"members": 50, "delays": "none", "refresh_seconds": 44.334, "per_member_seconds": 0.887, "registration_seconds": 83.759,
+       "phase_seconds": {"fetch_prices": 2.977, "fetch_news": 4.941, "register_evidence": 13.700, "read_registry": 13.318, "index_store": 3.715, "packet": 2.465, "series_rebuild": 0.400, "plan_update": 0.536, "protocol_load": 0.293, "checkpoint": 0.467, "other": 1.525},
+       "checkpoint_bytes": {"final": 378989, "total_serialized": 10232660}, "peak_rss_bytes": 83316736, "member_status": {"ready_for_review": 50}},
+      {"members": 200, "delays": "none", "refresh_seconds": 222.706, "per_member_seconds": 1.114, "registration_seconds": 489.160,
+       "phase_seconds": {"fetch_prices": 12.758, "fetch_news": 21.416, "register_evidence": 56.915, "read_registry": 55.012, "index_store": 47.115, "packet": 10.312, "series_rebuild": 1.668, "plan_update": 2.256, "protocol_load": 1.200, "checkpoint": 6.355, "other": 7.699},
+       "checkpoint_bytes": {"final": 1513139, "total_serialized": 156305579}, "peak_rss_bytes": 85839872, "member_status": {"ready_for_review": 200}},
+      {"members": 50, "delays": "price 0.25 s/call (x4), news 0.8 s/feed (2 feeds in parallel), failure rate 0.02, seed 7", "refresh_seconds": 135.614, "per_member_seconds": 2.712,
+       "phase_seconds": {"fetch_prices": 53.346, "fetch_news": 45.100, "register_evidence": 13.765, "read_registry": 13.849, "index_store": 3.853, "packet": 2.499, "series_rebuild": 0.389, "plan_update": 0.544, "protocol_load": 0.303, "checkpoint": 0.463, "other": 1.505},
+       "member_status": {"ready_for_review": 41, "incomplete": 9},
+       "reading": "Injected waits add one-for-one to wall time (50 x (1.0 + 0.8) s = 90 s of 99 s fetch): members are strictly sequential."}
+    ],
+    "per_member_ms_by_N": {
+      "columns": ["N=10", "N=50", "N=200"],
+      "fetch_prices": [59.9, 59.5, 63.8],
+      "fetch_news": [95.1, 98.8, 107.1],
+      "register_evidence": [252.0, 274.0, 284.6],
+      "read_registry": [258.3, 266.4, 275.1],
+      "index_store": [30.8, 74.3, 235.6],
+      "packet": [45.7, 49.3, 51.6],
+      "series_rebuild": [8.7, 8.0, 8.3],
+      "plan_update": [11.4, 10.7, 11.3],
+      "protocol_load": [5.5, 5.9, 6.0],
+      "checkpoint": [3.1, 9.3, 31.8],
+      "other": [26.8, 30.5, 38.5]
+    },
+    "growth_with_members": {
+      "linear_total (flat per member)": ["fetch_prices", "fetch_news", "register_evidence", "read_registry", "packet", "series_rebuild", "plan_update", "protocol_load"],
+      "quadratic_total (per-member cost grows with N)": {
+        "index_store": "31 -> 74 -> 236 ms/member. store.index_text checks 'SELECT 1 FROM evidence_text WHERE evidence_id=?' on the FTS5 virtual table; that column is not indexed, so every new record scans all indexed text rows of every company. It also grows day by day as evidence accumulates, not only with N.",
+        "checkpoint": "3 -> 9 -> 32 ms/member. daily._save_run rewrites the whole receipt (all results so far) after every member: 156 MB serialized for N=200. The same full receipt is returned by the MCP call."
+      },
+      "per_company_history (grows with days kept, not with N)": "register_evidence / read_registry: every register re-reads and schema-validates the company's whole manifest, rewrites it with fsync and rewrites observations.jsonl. Cost per article rises with each company's accumulated evidence."
+    },
+    "peak_memory": "Peak RSS 81-86 MB for N=10..200; the refresh adds < 3 MB. Memory is not a constraint."
+  },
+  "cloud_measurement": {
+    "tool": "mcp__karst__refresh_daily_scope(universe_id='daily-monitoring'), no since; no record_update_check / save / publish called",
+    "run_id": "daily-152d8a057c8a43f5a2a5d177668dddb9",
+    "started_at": "2026-09-22T18:26:36Z",
+    "finished_at": "2026-09-22T18:28:10Z",
+    "elapsed_seconds": 94.665,
+    "client_wall_seconds": 104.4,
+    "intake_status": "ready_for_review (10/10, no failure, no history recovery)",
+    "mcp_response_bytes": 246025,
+    "mcp_response_note": "The call returned but its 246 KB result exceeded the Claude Code tool-result limit and was spilled to a file; the full receipt is returned inline.",
+    "shared_articles": 139,
+    "per_member": [
+      {"subject": "NYSE:BE", "seconds": 6, "new_articles": 0, "outstanding_source_changes": 99, "bars": 1002, "since": "2026-09-22T17:40:16Z"},
+      {"subject": "NYSE:GEV", "seconds": 6, "new_articles": 9, "outstanding_source_changes": 61, "bars": 621, "since": "now-3d"},
+      {"subject": "NASDAQ:CRWV", "seconds": 11, "new_articles": 14, "outstanding_source_changes": 105, "bars": 373, "since": "now-3d"},
+      {"subject": "NASDAQ:NBIS", "seconds": 10, "new_articles": 16, "outstanding_source_changes": 89, "bars": 1002, "since": "now-3d"},
+      {"subject": "NASDAQ:IREN", "seconds": 6, "new_articles": 8, "outstanding_source_changes": 68, "bars": 1002, "since": "now-3d"},
+      {"subject": "NASDAQ:MSFT", "seconds": 37, "new_articles": 73, "outstanding_source_changes": 224, "bars": 1001, "since": "now-3d"},
+      {"subject": "NYSEARCA:SPY", "seconds": 9, "new_articles": 22, "outstanding_source_changes": 85, "bars": 1002, "since": "now-3d"},
+      {"subject": "NYSEARCA:RSP", "seconds": 2, "new_articles": 0, "outstanding_source_changes": 15, "bars": 1002, "since": "now-3d"},
+      {"subject": "NYSEARCA:IWM", "seconds": 2, "new_articles": 1, "outstanding_source_changes": 11, "bars": 1001, "since": "now-3d"},
+      {"subject": "NASDAQ:AXTI", "seconds": 5, "new_articles": 2, "outstanding_source_changes": 14, "bars": 1002, "since": "2026-09-21T16:05:08Z"}
+    ],
+    "per_member_method": "Difference between consecutive checked_at stamps (1 s resolution); the cloud receipt has no phase timings.",
+    "fit": "seconds = 2.80 + 0.455 x new_articles (10 members). Residuals within +/-4 s; BE +3.2 s (largest evidence store, research history).",
+    "phase_split_inferred": "Cloud does not record phases, so the split is inferred: about 2.8 s fixed per member (4 Longbridge calls + 2 RSS feeds in sequence with local work; local work alone is 0.40 s/member without news on the benchmark (--no-news, N=10, registers 4 price records/member), so about 2 s is network wait) plus about 0.46 s per newly registered article (registration, manifest rewrite, text index). Per-phase cloud timing needs the phase fields added to the receipt (KARST-256).",
+    "window_note": "8 of 10 members used a 3-day news window because they have no research baseline and no 'unchanged' check; BE and AXTI used their last check / research time."
+  },
+  "projection_200": {
+    "method": "Cloud fit per member x 200, plus the two quadratic terms from the local benchmark (index_store, checkpoint), members sequential as today.",
+    "news_day_like_2026_09_22": {"seconds": 1930, "minutes": 32, "basis": "200 x (2.80 + 0.455 x 14.5 mean articles) = 1,880 s; + about 45 s index_store growth and 6 s checkpoint at N=200; index_store grows further with accumulated evidence"},
+    "prices_only_floor": {"seconds": 610, "minutes": 10, "basis": "200 x 2.8 s fixed cost + quadratic terms; even with zero new articles"},
+    "local_cpu_only": {"seconds": 223, "basis": "benchmark N=200 with zero injected delay"},
+    "against_targets": "Targets are <= 5 min prices+technicals and <= 10 min with news for 200, and <= 60 s per MCP call. Today: about 10 min price-only floor and about 32 min on a news day; one MCP call for 10 members already takes 95 s. None met."
+  },
+  "bottlenecks_ranked": [
+    {"rank": 1, "what": "Members run strictly one after another, so every network wait adds up", "evidence": "Cloud fixed cost about 2.8 s/member of which about 2 s is waiting; delayed benchmark: 90 s of 136 s is injected wait, added one-for-one. At 200 members this alone is about 9-10 min.", "lever": "bounded parallelism with per-source rate limits; fetch only new bars"},
+    {"rank": 2, "what": "Evidence registration re-reads, re-validates and rewrites each company's whole manifest (with fsync) for every single record", "evidence": "Local: register_evidence + read_registry = 56% of time at N=10, 50% at N=200; 3,400 manifest reads for 2,000 records. Cloud: 0.455 s per new article (MSFT 73 articles = 37 s of the 95 s run).", "lever": "register one refresh's records in one batch (one manifest read and one write per company per run)"},
+    {"rank": 3, "what": "Full-text index duplicate check scans the whole FTS table", "evidence": "index_store per member 31 -> 74 -> 236 ms as N goes 10 -> 50 -> 200 (quadratic total); grows further with every day of stored evidence.", "lever": "keep evidence_id existence in an indexed ordinary table (or rowid map) instead of querying the FTS5 column"},
+    {"rank": 4, "what": "Checkpoint and MCP response carry the entire receipt every time", "evidence": "156 MB serialized for one N=200 run (1.5 MB final); cloud 10-member response 246 KB already overflowed the client tool-result limit; 200 real members would be several MB.", "lever": "append per-member results (or per-subject files) and return a summary plus run_id"},
+    {"rank": 5, "what": "Repeated per-member bookkeeping", "evidence": "plan_update runs twice per member (inside refresh_sources and again in daily.refresh) and loads the research protocol 4 times; packet rewrite 50 ms/member. Together about 70 ms/member locally: small, linear.", "lever": "run plan_update once per member, cache the protocol digest"}
+  ],
+  "not_bottlenecks": "Series rebuild from all price evidence is 8 ms/member locally with 1000 bars and flat in N; peak memory under 90 MB.",
+  "limits": [
+    "Local timings are Windows file-system costs (fsync heavy); Linux cloud per-record cost differs, which is why the cloud fit, not the local numbers, drives the 200 projection.",
+    "Cloud per-member times have 1-second resolution and one day's news mix; a quieter day lowers the news term, not the 2.8 s fixed cost.",
+    "The fake Longbridge returns small JSON bodies; real candle responses and SDK latency are inside the cloud fixed cost."
+  ]
+}
