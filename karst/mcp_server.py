@@ -21,7 +21,7 @@ from fastmcp.utilities.types import Image
 from mcp.types import TextContent
 from starlette.responses import JSONResponse
 
-from . import __version__, service, store as store_module
+from . import __version__, calculations, service, store as store_module
 from .auth import AuthConfigError, TOKEN_VARIABLE, build_auth, token_auth as bearer_auth  # noqa: F401
 from .fetch.common import load_env_file
 
@@ -339,23 +339,9 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
                                      kind=kind, entity_ids=entity_ids or (), title=title,
                                      source_type=source_type, store=state)
 
-    @server.tool
+    @server.tool(description=calculations.TOOL["description"])
     def calculate(method: str, params: dict) -> dict:
-        """Deterministic calculation with an input receipt and the calculator version.
-
-        method: fcff_dcf（年度期末,0.2/0.3 原意)、fcff_dcf_dated（估值日、各期日期、
-        期中/期末、stub、正常化終值)、forward_pe（股權倍數,不接企業橋接)、
-        ev_multiple（EV/EBIT 或 EBITDA,必須完整橋接)、sotp（分部組合,一次橋接)、
-        sensitivity（改指定輸入重算)、solve_implied（反推,回無解/多解)、
-        risk_reward、sma、confirmed_pivots。
-
-        params: 估值方法的 params 就是契約 0.4 的 calculation 物件（method 可省)；
-        sensitivity 要 {calculation, changes:[{input_path, value}]}；solve_implied 要
-        {calculation, target_price, solve_for, bounds:{lower, upper}}。金額與股數同用
-        params.scale（absolute／thousands／millions)宣告的尺度。回傳含 receipt:
-        {calculator_version, method, inputs_digest, outputs}；引用數字時引 receipt。
-        """
-        return service.calculate(method, params)
+        return calculations.run(method, params)
 
     @server.tool
     def render_charts(subject: str, output_dir: str | None = None,

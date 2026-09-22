@@ -288,33 +288,53 @@ class ServiceCalculateTests(unittest.TestCase):
                                ("forward_pe", forward_pe("2026-01-01", "2026-12-31",
                                                          "2026-01-01", "2026-12-31"))):
             with self.subTest(method=method):
-                answer = service.calculate(method, {k: v for k, v in params.items()
+                answer = calculations.run(method, {k: v for k, v in params.items()
                                                     if k != "method"})
                 self.assertEqual(answer["receipt"]["method"], method)
                 self.assertEqual(answer["receipt"]["inputs_digest"],
                                  digest(canonical(params)))
                 self.assertEqual(answer["result"], answer["receipt"]["outputs"])
                 self.assertEqual(answer["calculator_version"], calculations.VERSION)
-        self.assertIn("sensitivity", service.CALCULATION_METHODS)
-        self.assertIn("solve_implied", service.CALCULATION_METHODS)
+        self.assertIn("sensitivity", calculations.CATALOG)
+        self.assertIn("solve_implied", calculations.CATALOG)
 
     def test_the_tool_facade_takes_one_dict_and_reuses_the_same_function(self):
-        answer = service.calculate_tool({"method": "sensitivity", "params": {
+        answer = calculations.run_tool({"method": "sensitivity", "params": {
             "calculation": STUB_MODEL,
             "changes": [{"input_path": "model.discount_rate", "value": 0.12}]}})
         self.assertEqual(answer["receipt"]["inputs_digest"], digest(canonical(STUB_MODEL)))
         self.assertLess(answer["result"]["delta_per_share"], 0)
-        self.assertEqual(sorted(service.CALCULATE_TOOL["schema"]["properties"]),
+        self.assertEqual(sorted(calculations.TOOL["schema"]["properties"]),
                          ["method", "params"])
-        self.assertEqual(service.CALCULATE_TOOL["schema"]["properties"]["method"]["enum"],
-                         sorted(service.CALCULATION_METHODS))
+        self.assertEqual(calculations.TOOL["schema"]["properties"]["method"]["enum"],
+                         sorted(calculations.CATALOG))
         for bad in ({"method": "fcff_dcf"}, {"method": "fcff_dcf", "params": {}, "extra": 1}):
             with self.subTest(bad=bad), self.assertRaises(ContractError):
-                service.calculate_tool(bad)
+                calculations.run_tool(bad)
 
     def test_missing_required_params_are_named(self):
         with self.assertRaisesRegex(ContractError, "bridge"):
-            service.calculate("ev_multiple", {"model": {}})
+            calculations.run("ev_multiple", {"model": {}})
+
+    def test_every_client_reads_the_one_catalog(self):
+        """MCP and the API adapters offer the calculator's own tool; no second list."""
+        import asyncio  # noqa: PLC0415
+        from karst import mcp_server  # noqa: PLC0415
+        from karst.agents import adapters  # noqa: PLC0415
+
+        offered = next(tool for tool in adapters.TOOLS if tool["name"] == "calculate")
+        self.assertEqual(offered, {"name": "calculate", **{key: calculations.TOOL[key]
+                                                           for key in ("description", "schema")}})
+        self.assertLessEqual(set(calculations.METHODS), set(calculations.CATALOG))
+        for method in calculations.CATALOG:
+            self.assertIn(method, calculations.TOOL["description"])
+        adapter_source = Path(adapters.__file__).read_text(encoding="utf-8")
+        self.assertNotIn("service", adapter_source.replace("services", ""))
+        # The server keeps its SQLite handle open; Windows cannot delete it under the test.
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
+            server = mcp_server.build(tmp)
+            tool = asyncio.run(server.get_tool("calculate"))
+        self.assertEqual(tool.description, calculations.TOOL["description"])
 
 
 class ResearchIntegrationTests(unittest.TestCase):

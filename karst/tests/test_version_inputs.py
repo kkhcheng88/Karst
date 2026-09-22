@@ -3,19 +3,25 @@
 Covers the four promises of KARST-245 — an old version republishes byte-identically
 after new evidence arrives, the second release points back at the first, "what is
 available now" and "what did that version use" are different questions with different
-answers, and verification is reused only behind a fingerprint. Identity comes from the
-shared fixture; nothing here is written for one stock.
+answers — and the research intake of KARST-259: one save reads the packet once, checks
+it once, and stores exactly what the old path stored. Identity comes from the shared
+fixture; nothing here is written for one stock.
 """
+import functools
+import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
-from karst import publish as publish_module, service, store as store_module
-from karst.agents.research import Verified, intake
+from karst import company_bundle, publish as publish_module, service, store as store_module
+from karst.agents import research as research_module
+from karst.agents.research import intake
 from karst.fetch.common import utc_now
 from karst.fetch.registry import EvidenceRegistry
 from karst.packet import build_packet, check_packet, confined, read_json
-from karst.schema import ContractError, canonical
+from karst.schema import ContractError, canonical, digest
+from karst.tests import v03_fixture
 from karst.tests.v03_fixture import ROLE_META, SECURITY, build_bundle, citable, payload
 
 SUBJECT = SECURITY['security_id']
@@ -132,15 +138,12 @@ class VersionInputTests(unittest.TestCase):
         with self.assertRaises(ContractError):
             service.search_evidence(self.bundle, store=self.store, as_of_version='rv-nonexistent')
 
-    def test_an_edited_conclusion_is_verified_again_and_refused(self):
+    def test_a_finished_research_object_is_not_a_payload(self):
+        """Intake takes analysis only: a complete research (with its IDs) is refused."""
         research = intake(payload(self.packet, self.evidence_id), bundle=self.bundle,
                           clock=utc_now, role_meta=ROLE_META)
-        tampered = Verified(research)
-        tampered.verified = research.verified  # a credential for the text before the edit
-        tampered['packet_id'] = 'packet-not-this-one'
-        with self.assertRaises(ContractError):
-            self.save(tampered, previous=self.first['version_id'],
-                      intake=lambda analysis, **_: analysis)
+        with self.assertRaisesRegex(ContractError, 'engineering fields'):
+            self.save(research, previous=self.first['version_id'])
         self.assertEqual(self.store.latest_research(SUBJECT)['version_id'],
                          self.first['version_id'])
 
@@ -157,40 +160,112 @@ class VersionInputTests(unittest.TestCase):
         cited.write_bytes(original)
         self.assertTrue(self.publish(self.first)['publication_dir'])
 
-    def test_verification_is_reused_once_and_only_behind_the_fingerprint(self):
-        """The credential removes the second identical check, not the checking."""
-        calls = []
-        real = service.check_packet
+    def test_one_save_reads_the_packet_once_and_checks_it_once(self):
+        """KARST-259: one read, one check, and the stored index is the checked one."""
+        reads, checks = [], []
 
-        def counted(packet, records, root):
-            calls.append(packet['packet_id'])
-            return real(packet, records, root)
+        def read(path):
+            if Path(path).name == 'packet.json':
+                reads.append(path)
+            return read_json(path)
 
-        service.check_packet = counted
-        self.addCleanup(setattr, service, 'check_packet', real)
+        def check(packet, records, root):
+            checks.append(packet['packet_id'])
+            return check_packet(packet, records, root)
+
         grown, _ = grow(self.bundle, '第二版的新摘錄。')
-        second = self.save(payload(grown, self.evidence_id), previous=self.first['version_id'])
-        self.assertEqual(calls, [])  # intake already checked exactly this content
-
         analysis = payload(grown, self.evidence_id)
-        analysis['open_questions'] = ['第三版:同一批證據,另一個問題。']
-        # A research that arrives without a credential (an injected intake cannot make
-        # one) is checked in full, however well-formed it looks.
-        plain = dict(intake(analysis, bundle=self.bundle, clock=utc_now, role_meta=ROLE_META))
-        self.save(plain, previous=second['version_id'], intake=lambda given, **_: given)
-        self.assertEqual(calls, [grown['packet_id']])
+        analysis['supplement_requests'] = [{
+            'request_id': 'req-once', 'layer': 'L3', 'question': '最新逐字稿全文？',
+            'reason': '核實指引語氣。', 'status': 'pending', 'evidence_ids': [],
+            'resolution': None}]
+        with patch.object(company_bundle, 'read_json', read), \
+                patch.object(research_module, 'check_packet', check):
+            second = self.save(analysis, previous=self.first['version_id'])
+        self.assertEqual(len(reads), 1)
+        stored = self.store.get_research(second['version_id'])
+        # The one check ran on the packet with the request registered, and that packet
+        # is what the version froze and what the bundle now holds.
+        self.assertEqual(checks, [stored['packet']['packet_id']])
+        self.assertEqual(read_json(self.bundle / 'packet.json')['packet_id'],
+                         stored['packet']['packet_id'])
+        self.assertEqual([record['evidence_id'] for record in stored['evidence']],
+                         stored['packet']['evidence_ids'] + stored['packet']['diagnostic_ids'])
+
+    def test_a_conflicting_save_leaves_the_working_packet_as_it_was(self):
+        analysis = payload(self.packet, self.evidence_id)
+        analysis['supplement_requests'] = [{
+            'request_id': 'req-late', 'layer': 'L3', 'question': '最新逐字稿全文？',
+            'reason': '核實指引語氣。', 'status': 'pending', 'evidence_ids': [],
+            'resolution': None}]
+        stale = self.save(analysis, previous=None)  # first already exists: stale
+        self.assertTrue(stale['conflict'])
+        self.assertEqual(read_json(self.bundle / 'packet.json')['packet_id'],
+                         self.packet['packet_id'])
 
 
-class SelectionTests(unittest.TestCase):
-    """The cheap selection must name the same records as the verifying one."""
+CLOCK, LATER = '2031-01-02T03:04:05Z', '2031-02-03T04:05:06Z'
+# Captured from the pre-KARST-259 save path (fingerprint credential, packet read four
+# times) with the clocks above: the refactor must store exactly the same versions.
+BEFORE = {
+    '0.3.0': {'first': ('rv-24df85e143f45e7cb18474de824b3aa61b6a2d04513f54989f07740b56e3b15f',
+                        '5c54cb61ef9312f64815caf41841ba08de21ba7b8770560e14412661b588247a'),
+              'second': ('rv-057d7e194e47f295e601aeb07987b981eeacc82528ea875c6046f16314624b25',
+                         '5c54cb61ef9312f64815caf41841ba08de21ba7b8770560e14412661b588247a')},
+    '0.4.0': {'first': ('rv-e1a7e6b04cb07332e9cb44bbec82b0b719fd19f42c822dc88e65dac73aa73258',
+                        'ce482d23d2f604e087f2f6f70a39437c72710d680f381d989a9983078e958aec'),
+              'second': ('rv-d3afd4495424d1302b3ef4064d2f572c779b62c7ae77ae0434fd8fb4afd6e919',
+                         'ce482d23d2f604e087f2f6f70a39437c72710d680f381d989a9983078e958aec')},
+}
 
-    def test_selected_matches_check_packet_order_and_membership(self):
-        with tempfile.TemporaryDirectory() as directory:
-            bundle, packet, records = build_bundle(Path(directory))
-            self.assertEqual([record['evidence_id'] for record in service._selected(packet, records)],
-                             list(check_packet(packet, records, bundle)))
-            with self.assertRaises(ContractError):
-                service._selected({**packet, 'evidence_ids': ['ev-missing']}, records)
+
+class SameVersionsTests(unittest.TestCase):
+    """The same analysis, the same inputs and clock give the same version and receipt."""
+
+    def run_contract(self, contract):
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(v03_fixture, 'utc_now', lambda: CLOCK), \
+                patch.object(service, 'utc_now', lambda: CLOCK):
+            root = Path(directory)
+            bundle, packet, records = build_bundle(root, contract_version=contract)
+            store = store_module.init(root / 'karst.sqlite3')
+            try:
+                self.check_saves(store, bundle, packet, records, contract)
+            finally:
+                store.close()  # before the directory goes: Windows keeps an open file
+
+    def check_saves(self, store, bundle, packet, records, contract):
+        evidence_id = citable(bundle, records)
+        cite = [{'evidence_id': evidence_id, 'locator': 'L1-L3'}]
+        valuation = (v03_fixture.calculated_valuation(packet['as_of'], cite)
+                     if contract >= '0.4.0' else None)
+        first_payload = payload(packet, evidence_id, valuation=valuation)
+        first_payload['supplement_requests'] = [{
+            'request_id': 'req-x', 'layer': 'L3', 'question': 'q?', 'reason': 'r.',
+            'status': 'pending', 'evidence_ids': [], 'resolution': None}]
+        save = functools.partial(service.save_research, store, bundle,
+                                 subject=SUBJECT, role_meta=ROLE_META)
+        first = save(first_payload)
+        second_payload = json.loads(canonical(first_payload))
+        second_payload['layers']['L5']['conclusion']['text'] = 'updated technical view'
+        with patch.object(service, 'utc_now', lambda: LATER):
+            second = save(second_payload, expected_previous_version_id=first['version_id'])
+            replay = save(second_payload, expected_previous_version_id=first['version_id'])
+        got = {name: (version['version_id'],
+                      digest(canonical(store.get_research(version['version_id'])['calc_receipt'])))
+               for name, version in (('first', first), ('second', second))}
+        self.assertEqual(got, BEFORE[contract])
+        self.assertTrue(replay['idempotent_replay'])
+        self.assertEqual(replay['version_id'], second['version_id'])
+        layers = store.get_research(second['version_id'])['payload']['layers']
+        self.assertEqual({name: layer['assessed_at'] for name, layer in layers.items()},
+                         {**{name: CLOCK for name in layers}, 'L5': LATER})
+
+    def test_contract_0_3(self):
+        self.run_contract('0.3.0')
+
+    def test_contract_0_4(self):
+        self.run_contract('0.4.0')
 
 
 if __name__ == '__main__':

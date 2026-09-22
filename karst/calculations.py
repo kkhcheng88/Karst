@@ -261,8 +261,47 @@ def sotp(inputs):
     return _finite(_money(result, ("enterprise_value", "equity_value"), unit), "sotp")
 
 
-METHODS = {"fcff_dcf": fcff_dcf, "fcff_dcf_dated": fcff_dcf_dated,
-           "forward_pe": forward_pe, "ev_multiple": ev_multiple, "sotp": sotp}
+# The method catalog: the one place a calculation method is named. Each row says what
+# it answers, the params it needs and the unit of its result; the valuation family also
+# carries its function. METHODS, the MCP ``calculate`` tool and the API adapter tool are
+# all read from here, so adding a method is adding one row (plus its branch in ``run``
+# when it is not a valuation). For the valuation family `params` IS the calculation
+# object of contract 0.4 (its `method` key may be omitted).
+_ENTERPRISE_UNIT = "absolute currency units; fair_value_per_share per share"
+CATALOG = {
+    "fcff_dcf": {"answers": "annual end-of-year FCFF DCF, fair value per share (0.2/0.3 meaning)",
+                 "needs": ("cashflows", "discount_rate", "terminal_growth", "cash",
+                           "nonoperating_assets", "debt", "other_claims", "diluted_shares"),
+                 "unit": _ENTERPRISE_UNIT, "valuation": fcff_dcf},
+    "fcff_dcf_dated": {"answers": "dated multi-stage FCFF DCF: stub, mid/end period discounting "
+                                  "and a terminal normalized apart from the last expansion year",
+                       "needs": ("model", "bridge"), "unit": _ENTERPRISE_UNIT,
+                       "valuation": fcff_dcf_dated},
+    "forward_pe": {"answers": "forward P/E on per-share earnings; an equity multiple, so no "
+                              "enterprise bridge",
+                   "needs": ("model", "equity"),
+                   "unit": "per share; equity_value in absolute currency units",
+                   "valuation": forward_pe},
+    "ev_multiple": {"answers": "EV/EBIT or EV/EBITDA with the full equity bridge",
+                    "needs": ("model", "bridge"), "unit": _ENTERPRISE_UNIT,
+                    "valuation": ev_multiple},
+    "sotp": {"answers": "sum of the parts: enterprise value per part, one consolidated bridge",
+             "needs": ("parts", "bridge"), "unit": _ENTERPRISE_UNIT, "valuation": sotp},
+    "sensitivity": {"answers": "re-run one calculation with named inputs changed, both sides "
+                               "in one receipt",
+                    "needs": ("calculation", "changes"), "unit": "per share"},
+    "solve_implied": {"answers": "what one input must be for this model to produce a target "
+                                 "price; reports no solution and multiple solutions",
+                      "needs": ("calculation", "target_price", "solve_for", "bounds"),
+                      "unit": "the unit of the solved input"},
+    "risk_reward": {"answers": "per-share and percentage risk/reward", "needs": ("plan",),
+                    "unit": "per share and ratio"},
+    "sma": {"answers": "simple moving average of complete bars", "needs": ("bars",),
+            "unit": "price"},
+    "confirmed_pivots": {"answers": "confirmed local turning points", "needs": ("bars",),
+                         "unit": "price with confirmation timestamps"},
+}
+METHODS = {name: row["valuation"] for name, row in CATALOG.items() if "valuation" in row}
 
 
 def calculate_valuation(calculation):
@@ -527,3 +566,71 @@ def calculate(research, bars=None):
              research["plan"]["exit_price"] < quote else
              {"available": False, "reason": "現價已觸及／低於計劃退出位，需重評計劃。"},
     }
+
+
+def run(method, params):
+    """One catalog method by name. Arithmetic only: whether the inputs describe the right
+    economics is the caller's problem.
+
+    The valuation family, its sensitivities and its reverse solve all return the same
+    ``receipt`` the saved research carries, so a number quoted by a model can be matched
+    against the scenario it claims to come from.
+    """
+    if method not in CATALOG:
+        raise ContractError(f"Unknown calculation method {method!r}; available: "
+                            + ", ".join(sorted(CATALOG)))
+    row = CATALOG[method]
+    if not isinstance(params, dict):
+        raise ContractError(f"{method} params must be an object")
+    missing = [key for key in row["needs"] if key not in params]
+    if missing:
+        raise ContractError(f"{method} needs: {missing}")
+    receipt = None
+    if method in METHODS:
+        receipt = calculate_valuation({**params, "method": method})
+    elif method == "sensitivity":
+        receipt = sensitivity(params["calculation"], params["changes"])
+    elif method == "solve_implied":
+        receipt = solve_implied(params["calculation"], params["target_price"],
+                                params["solve_for"], params["bounds"])
+    elif method == "risk_reward":
+        result = risk_reward(params["plan"], params.get("distributions", 0))
+    elif method == "sma":
+        result = {"sma": sma(params["bars"], params.get("window", 200)),
+                  "window": params.get("window", 200)}
+    else:
+        result = {"pivots": confirmed_pivots(params["bars"], params.get("width", 2))}
+    if receipt is not None:
+        result = receipt["outputs"]
+    answer = {"method": method, "description": row["answers"], "result": result,
+              "unit": row["unit"], "inputs": params, "calculator_version": VERSION}
+    return answer if receipt is None else {**answer, "receipt": receipt}
+
+
+# The one tool every client mounts — the MCP server and both API adapters — with its
+# description and method enum read from CATALOG: a single dict in, a single dict out.
+TOOL = {
+    "name": "calculate",
+    "description": "用同一個計算器算數:估值方法分派、敏感度、反推、R&R、SMA 與轉折。"
+                   "回傳 receipt(calculator_version、method、inputs_digest、outputs),"
+                   "引用數字時引 receipt,不要自己心算。可用 method:"
+                   + "、".join(f"{name}（{row['answers']}）" for name, row in sorted(CATALOG.items()))
+                   + "。params:估值方法的 params 就是契約 0.4 的 calculation 物件（method 可省);"
+                   "sensitivity 要 {calculation, changes:[{input_path, value}]};solve_implied 要 "
+                   "{calculation, target_price, solve_for, bounds:{lower, upper}}。金額與股數同用 "
+                   "params.scale（absolute／thousands／millions)宣告的尺度。",
+    "schema": {"type": "object", "additionalProperties": False,
+               "properties": {"method": {"type": "string", "enum": sorted(CATALOG)},
+                              "params": {"type": "object"}},
+               "required": ["method", "params"]},
+}
+
+
+def run_tool(arguments):
+    """``{"method": ..., "params": {...}}`` -> the ``run`` result. For tool wiring."""
+    if not isinstance(arguments, dict):
+        raise ContractError("calculate arguments must be an object")
+    unknown = set(arguments) - {"method", "params"}
+    if unknown:
+        raise ContractError("Unknown calculate arguments: " + ", ".join(sorted(unknown)))
+    return run(arguments.get("method"), arguments.get("params"))

@@ -12,11 +12,12 @@ import tempfile
 from pathlib import Path
 from uuid import uuid4
 
-from . import bars as bars_module, calculations, charts, publish as publish_module
+from . import bars as bars_module, charts, publish as publish_module
 from .fetch import broker, defeatbeta, edgar, longbridge, prices, news, port
 from .fetch.common import utc_now, write_json, write_meta
 from .company_bundle import CompanyBundle
-from .packet import build_packet, check_packet, check_research, read_json
+from .agents import research as research_intake
+from .packet import build_packet, read_json
 from .schema import ContractError, canonical, digest
 from .identity import security_record
 
@@ -33,43 +34,6 @@ for _name, _module in ADAPTERS.items():
         if KIND_ADAPTERS.setdefault(_kind, _name) != _name:
             raise ContractError(f"Two adapters claim kind {_kind!r}: "
                                 f"{KIND_ADAPTERS[_kind]} and {_name}")
-# method -> (what it answers, the params it needs). For the valuation family `params`
-# IS the calculation object of contract 0.4 (its `method` key may be omitted); the
-# receipt it returns is the same one a saved scenario carries.
-CALCULATION_METHODS = {
-    "fcff_dcf": ("annual end-of-year FCFF DCF, fair value per share (0.2/0.3 meaning)",
-                 ("cashflows", "discount_rate", "terminal_growth", "cash",
-                  "nonoperating_assets", "debt", "other_claims", "diluted_shares")),
-    "fcff_dcf_dated": ("dated multi-stage FCFF DCF: stub, mid/end period discounting and a "
-                       "terminal normalized apart from the last expansion year",
-                       ("model", "bridge")),
-    "forward_pe": ("forward P/E on per-share earnings; an equity multiple, so no "
-                   "enterprise bridge", ("model", "equity")),
-    "ev_multiple": ("EV/EBIT or EV/EBITDA with the full equity bridge",
-                    ("model", "bridge")),
-    "sotp": ("sum of the parts: enterprise value per part, one consolidated bridge",
-             ("parts", "bridge")),
-    "sensitivity": ("re-run one calculation with named inputs changed, both sides in "
-                    "one receipt", ("calculation", "changes")),
-    "solve_implied": ("what one input must be for this model to produce a target price; "
-                      "reports no solution and multiple solutions",
-                      ("calculation", "target_price", "solve_for", "bounds")),
-    "risk_reward": ("per-share and percentage risk/reward", ("plan",)),
-    "sma": ("simple moving average of complete bars", ("bars",)),
-    "confirmed_pivots": ("confirmed local turning points", ("bars",)),
-}
-CALCULATION_UNITS = {
-    "fcff_dcf": "absolute currency units; fair_value_per_share per share",
-    "fcff_dcf_dated": "absolute currency units; fair_value_per_share per share",
-    "forward_pe": "per share; equity_value in absolute currency units",
-    "ev_multiple": "absolute currency units; fair_value_per_share per share",
-    "sotp": "absolute currency units; fair_value_per_share per share",
-    "sensitivity": "per share",
-    "solve_implied": "the unit of the solved input",
-    "risk_reward": "per share and ratio",
-    "sma": "price",
-    "confirmed_pivots": "price with confirmation timestamps",
-}
 DEFAULT_DATA_DIR = "./karst-data"
 DB_NAME = "karst.sqlite"
 # Ingested reports need a stated origin: who wrote it decides how much it can carry.
@@ -681,73 +645,6 @@ def _review_summary(reviews):
             "new_evidence_requests": len(result.get("new_evidence_requests") or [])}
 
 
-# --- calculation ------------------------------------------------------------
-
-def calculate(method, params):
-    """Arithmetic only. Whether the inputs describe the right economics is the caller's problem.
-
-    The valuation family, its sensitivities and its reverse solve all return the same
-    ``receipt`` the saved research carries, so a number quoted by a model can be matched
-    against the scenario it claims to come from.
-    """
-    if method not in CALCULATION_METHODS:
-        raise ContractError(f"Unknown calculation method {method!r}; available: "
-                            + ", ".join(sorted(CALCULATION_METHODS)))
-    description, required = CALCULATION_METHODS[method]
-    if not isinstance(params, dict):
-        raise ContractError(f"{method} params must be an object")
-    missing = [key for key in required if key not in params]
-    if missing:
-        raise ContractError(f"{method} needs: {missing}")
-    receipt = None
-    if method in calculations.METHODS:
-        receipt = calculations.calculate_valuation({**params, "method": method})
-    elif method == "sensitivity":
-        receipt = calculations.sensitivity(params["calculation"], params["changes"])
-    elif method == "solve_implied":
-        receipt = calculations.solve_implied(params["calculation"], params["target_price"],
-                                             params["solve_for"], params["bounds"])
-    elif method == "risk_reward":
-        result = calculations.risk_reward(params["plan"], params.get("distributions", 0))
-    elif method == "sma":
-        result = {"sma": calculations.sma(params["bars"], params.get("window", 200)),
-                  "window": params.get("window", 200)}
-    else:
-        result = {"pivots": calculations.confirmed_pivots(params["bars"], params.get("width", 2))}
-    if receipt is not None:
-        result = receipt["outputs"]
-    answer = {"method": method, "description": description, "result": result,
-              "unit": CALCULATION_UNITS[method], "inputs": params,
-              "calculator_version": calculations.VERSION}
-    return answer if receipt is None else {**answer, "receipt": receipt}
-
-
-# The one tool facade an API adapter mounts: a single dict in, a single dict out.
-# It reuses `calculate` above — there is no second copy of any formula.
-CALCULATE_TOOL = {
-    "name": "calculate",
-    "description": "用同一個計算器算數:估值方法分派、敏感度、反推、R&R、SMA 與轉折。"
-                   "回傳 receipt(calculator_version、method、inputs_digest、outputs),"
-                   "引用數字時引 receipt,不要自己心算。可用 method:"
-                   + "、".join(f"{name}（{text}）" for name, (text, _) in
-                               sorted(CALCULATION_METHODS.items())),
-    "schema": {"type": "object", "additionalProperties": False,
-               "properties": {"method": {"enum": sorted(CALCULATION_METHODS)},
-                              "params": {"type": "object"}},
-               "required": ["method", "params"]},
-}
-
-
-def calculate_tool(arguments):
-    """``{"method": ..., "params": {...}}`` -> the calculate result. For tool wiring."""
-    if not isinstance(arguments, dict):
-        raise ContractError("calculate arguments must be an object")
-    unknown = set(arguments) - {"method", "params"}
-    if unknown:
-        raise ContractError("Unknown calculate arguments: " + ", ".join(sorted(unknown)))
-    return calculate(arguments.get("method"), arguments.get("params"))
-
-
 def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store=None, title=None):
     """Month / week / day / recent charts + derived numbers for registered prices.
 
@@ -819,140 +716,16 @@ def chart_artifact(store, artifact_id):
 
 # --- save / publish ---------------------------------------------------------
 
-def _intake(payload, *, bundle, role_meta, previous_research=None):
-    """Default intake: contract validation only. ``karst.agents.research`` owns the real one."""
-    from .agents.research import intake as research_intake  # noqa: PLC0415
-    return research_intake(payload, bundle=bundle, clock=utc_now, role_meta=role_meta,
-                           previous_research=previous_research,
-                           previous_version_id=(previous_research or {}).get("research_id"))
-
-
-def _register_requests(bundle, payload):
-    """Put the payload's new supplement requests into the packet before intake.
-
-    A researcher who could not read something asks for it; intake requires those
-    requests to be registered, so the packet is rebuilt here instead of by hand in
-    every runner. Same cutoff, same creation time, same previous packet: only the
-    request list grows, so the rebuild is additive and the packet_id follows content.
-    """
-    from .packet import build_packet  # noqa: PLC0415 - avoid an import cycle at load
-
-    company = CompanyBundle(bundle)
-    packet, records = company.working()
-    known = {request["request_id"]: request for request in packet["supplement_requests"]}
-    incoming = [request for request in (payload.get("supplement_requests") or [])
-                if isinstance(request, dict) and request.get("request_id")]
-    # A researcher may reword a request it raised earlier; while it is still pending the
-    # owner's latest wording replaces the registered one. Resolved requests never change.
-    changed = False
-    merged = []
-    for request in packet["supplement_requests"]:
-        update = next((r for r in incoming if r["request_id"] == request["request_id"]), None)
-        if update is not None and update != request and request.get("status") == "pending":
-            merged.append(update)
-            changed = True
-        else:
-            merged.append(request)
-    fresh = [request for request in incoming if request["request_id"] not in known]
-    if not fresh and not changed:
-        return packet
-    rebuilt = build_packet(
-        records, packet["as_of"], packet["security"],
-        created_at=packet["created_at"], knowledge_basis=packet["knowledge_basis"],
-        previous_packet_id=packet["previous_packet_id"],
-        dependencies=[dep for dep in packet["dependencies"] if dep["kind"] != "evidence"],
-        supplement_requests=merged + fresh,
-        pending_updates=packet["pending_updates"], root=bundle,
-        contract_version=packet["contract_version"])
-    company.save_working(rebuilt)
-    return rebuilt
-
-
-def _selected(packet, records):
-    """The exact records this packet selected, in packet order. No bytes are read."""
-    index = {record["evidence_id"]: record for record in records}
-    chosen = []
-    for evidence_id in list(packet["evidence_ids"]) + list(packet.get("diagnostic_ids", [])):
-        if evidence_id not in index:
-            raise ContractError(f"Unregistered evidence: {evidence_id}")
-        chosen.append(index[evidence_id])
-    return chosen
-
-
-def _verify(bundle, packet, records, research):
-    """Run the contract checks, unless this exact research already passed them.
-
-    Reuse is fingerprint-gated: the same research bytes, the same packet and the same
-    evidence versions that ``intake`` verified a moment ago. A reworded packet, a
-    re-registered source, an edited conclusion or an injected intake (which cannot
-    produce a credential) all fall through to the full check. The byte-level guarantee
-    is not weakened: publication re-hashes every file it copies, every time.
-    """
-    credential = getattr(research, "verified", None)
-    selected = _selected(packet, records)
-    if credential is not None:
-        from .agents.research import fingerprint  # noqa: PLC0415 - only when one exists
-
-        if credential == fingerprint(research, packet, selected):
-            return selected
-    chosen = check_packet(packet, records, bundle)
-    check_research(packet, research, chosen, bundle)
-    return list(chosen.values())
-
-
 def save_research(store, bundle, payload, *, subject, expected_previous_version_id=None,
-                  role_meta, intake=None):
-    """Validate first, store second: a rejected payload leaves no half version behind.
+                  role_meta):
+    """Research intake (``agents.research.save``): check once, then append a version.
 
     The stored version freezes the packet and the evidence index it was validated
-    against. The company's evidence store keeps growing after it; publishing this
-    version later must not silently pick up whatever arrived in the meantime.
+    against, so publishing it later never picks up evidence that arrived since.
     """
-    bundle = Path(bundle)
-    company = CompanyBundle(bundle)
-    # Retry identity uses the submitted analysis and frozen inputs, not the new
-    # intake clock. An identical request after a lost response returns its version.
-    snapshot = company.packet() or {}
-    request_key = digest(canonical({"subject": subject, "previous": expected_previous_version_id,
-                                   "payload": payload, "inputs": snapshot.get("evidence_ids"),
-                                   "as_of": snapshot.get("as_of"), "role_meta": role_meta,
-                                   "method": get_research_protocol("update" if expected_previous_version_id else "research")["version"]}))
-    existing = store.get_research_request(request_key)
-    if existing:
-        return existing | {"idempotent_replay": True}
-    if snapshot:
-        _register_requests(bundle, payload)
-    # Callers may pass one role record or the full model list; intake wants the list,
-    # the store keeps the researcher's own fields.
-    roles = list(role_meta) if isinstance(role_meta, (list, tuple)) else [dict(role_meta)]
-    researcher = next((r for r in roles if r.get("role") == "researcher"), roles[0])
-    previous = (store.get_research(expected_previous_version_id)
-                if expected_previous_version_id else None)
-    if previous and previous["subject"] != subject:
-        raise ContractError("Previous research belongs to a different subject")
-    if intake is None:
-        try:
-            research = _intake(payload, bundle=bundle, role_meta=roles,
-                               previous_research=previous["payload"] if previous else None)
-        except ImportError:
-            research = payload
-    else:
-        research = intake(payload, bundle=bundle, clock=utc_now, role_meta=roles)
-    role_meta = researcher
-    packet, records = company.working()
-    selected = _verify(bundle, packet, records, research)
-    try:
-        receipt = calculations.calculate(research)
-    except (ContractError, KeyError, TypeError) as exc:
-        # An unavailable receipt is a stated gap, never a silently empty field.
-        receipt = {"calculator_version": calculations.VERSION, "status": "unavailable",
-                   "reason": f"{type(exc).__name__}: {exc}"}
-    return store.save_research_version(
-        subject, research, expected_previous_version_id=expected_previous_version_id,
-        as_of=packet["as_of"], calc_receipt=receipt, role=role_meta.get("role"),
-        execution=role_meta.get("execution"), provider=role_meta.get("provider"),
-        model=role_meta.get("model") or role_meta.get("model_id"),
-        packet=packet, evidence=selected, request_key=request_key)
+    return research_intake.save(store, bundle, payload, subject=subject, role_meta=role_meta,
+                                previous_version_id=expected_previous_version_id,
+                                clock=utc_now)
 
 
 def _check_technical_basis(research, rebuilt, gaps, as_of):
