@@ -12,7 +12,7 @@ import tempfile
 from pathlib import Path
 from uuid import uuid4
 
-from . import bars as bars_module, calculations, charts, publish as publish_module
+from . import bars as bars_module, charts, publish as publish_module
 from .fetch import broker, defeatbeta, edgar, longbridge, prices, news, port
 from .fetch.common import utc_now, write_json, write_meta
 from .company_bundle import CompanyBundle
@@ -34,43 +34,6 @@ for _name, _module in ADAPTERS.items():
         if KIND_ADAPTERS.setdefault(_kind, _name) != _name:
             raise ContractError(f"Two adapters claim kind {_kind!r}: "
                                 f"{KIND_ADAPTERS[_kind]} and {_name}")
-# method -> (what it answers, the params it needs). For the valuation family `params`
-# IS the calculation object of contract 0.4 (its `method` key may be omitted); the
-# receipt it returns is the same one a saved scenario carries.
-CALCULATION_METHODS = {
-    "fcff_dcf": ("annual end-of-year FCFF DCF, fair value per share (0.2/0.3 meaning)",
-                 ("cashflows", "discount_rate", "terminal_growth", "cash",
-                  "nonoperating_assets", "debt", "other_claims", "diluted_shares")),
-    "fcff_dcf_dated": ("dated multi-stage FCFF DCF: stub, mid/end period discounting and a "
-                       "terminal normalized apart from the last expansion year",
-                       ("model", "bridge")),
-    "forward_pe": ("forward P/E on per-share earnings; an equity multiple, so no "
-                   "enterprise bridge", ("model", "equity")),
-    "ev_multiple": ("EV/EBIT or EV/EBITDA with the full equity bridge",
-                    ("model", "bridge")),
-    "sotp": ("sum of the parts: enterprise value per part, one consolidated bridge",
-             ("parts", "bridge")),
-    "sensitivity": ("re-run one calculation with named inputs changed, both sides in "
-                    "one receipt", ("calculation", "changes")),
-    "solve_implied": ("what one input must be for this model to produce a target price; "
-                      "reports no solution and multiple solutions",
-                      ("calculation", "target_price", "solve_for", "bounds")),
-    "risk_reward": ("per-share and percentage risk/reward", ("plan",)),
-    "sma": ("simple moving average of complete bars", ("bars",)),
-    "confirmed_pivots": ("confirmed local turning points", ("bars",)),
-}
-CALCULATION_UNITS = {
-    "fcff_dcf": "absolute currency units; fair_value_per_share per share",
-    "fcff_dcf_dated": "absolute currency units; fair_value_per_share per share",
-    "forward_pe": "per share; equity_value in absolute currency units",
-    "ev_multiple": "absolute currency units; fair_value_per_share per share",
-    "sotp": "absolute currency units; fair_value_per_share per share",
-    "sensitivity": "per share",
-    "solve_implied": "the unit of the solved input",
-    "risk_reward": "per share and ratio",
-    "sma": "price",
-    "confirmed_pivots": "price with confirmation timestamps",
-}
 DEFAULT_DATA_DIR = "./karst-data"
 DB_NAME = "karst.sqlite"
 # Ingested reports need a stated origin: who wrote it decides how much it can carry.
@@ -681,73 +644,6 @@ def _review_summary(reviews):
             {key: strongest.get(key) for key in ("target_layer", "claim", "severity")},
             "challenges": len(challenges),
             "new_evidence_requests": len(result.get("new_evidence_requests") or [])}
-
-
-# --- calculation ------------------------------------------------------------
-
-def calculate(method, params):
-    """Arithmetic only. Whether the inputs describe the right economics is the caller's problem.
-
-    The valuation family, its sensitivities and its reverse solve all return the same
-    ``receipt`` the saved research carries, so a number quoted by a model can be matched
-    against the scenario it claims to come from.
-    """
-    if method not in CALCULATION_METHODS:
-        raise ContractError(f"Unknown calculation method {method!r}; available: "
-                            + ", ".join(sorted(CALCULATION_METHODS)))
-    description, required = CALCULATION_METHODS[method]
-    if not isinstance(params, dict):
-        raise ContractError(f"{method} params must be an object")
-    missing = [key for key in required if key not in params]
-    if missing:
-        raise ContractError(f"{method} needs: {missing}")
-    receipt = None
-    if method in calculations.METHODS:
-        receipt = calculations.calculate_valuation({**params, "method": method})
-    elif method == "sensitivity":
-        receipt = calculations.sensitivity(params["calculation"], params["changes"])
-    elif method == "solve_implied":
-        receipt = calculations.solve_implied(params["calculation"], params["target_price"],
-                                             params["solve_for"], params["bounds"])
-    elif method == "risk_reward":
-        result = calculations.risk_reward(params["plan"], params.get("distributions", 0))
-    elif method == "sma":
-        result = {"sma": calculations.sma(params["bars"], params.get("window", 200)),
-                  "window": params.get("window", 200)}
-    else:
-        result = {"pivots": calculations.confirmed_pivots(params["bars"], params.get("width", 2))}
-    if receipt is not None:
-        result = receipt["outputs"]
-    answer = {"method": method, "description": description, "result": result,
-              "unit": CALCULATION_UNITS[method], "inputs": params,
-              "calculator_version": calculations.VERSION}
-    return answer if receipt is None else {**answer, "receipt": receipt}
-
-
-# The one tool facade an API adapter mounts: a single dict in, a single dict out.
-# It reuses `calculate` above — there is no second copy of any formula.
-CALCULATE_TOOL = {
-    "name": "calculate",
-    "description": "用同一個計算器算數:估值方法分派、敏感度、反推、R&R、SMA 與轉折。"
-                   "回傳 receipt(calculator_version、method、inputs_digest、outputs),"
-                   "引用數字時引 receipt,不要自己心算。可用 method:"
-                   + "、".join(f"{name}（{text}）" for name, (text, _) in
-                               sorted(CALCULATION_METHODS.items())),
-    "schema": {"type": "object", "additionalProperties": False,
-               "properties": {"method": {"enum": sorted(CALCULATION_METHODS)},
-                              "params": {"type": "object"}},
-               "required": ["method", "params"]},
-}
-
-
-def calculate_tool(arguments):
-    """``{"method": ..., "params": {...}}`` -> the calculate result. For tool wiring."""
-    if not isinstance(arguments, dict):
-        raise ContractError("calculate arguments must be an object")
-    unknown = set(arguments) - {"method", "params"}
-    if unknown:
-        raise ContractError("Unknown calculate arguments: " + ", ".join(sorted(unknown)))
-    return calculate(arguments.get("method"), arguments.get("params"))
 
 
 def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store=None, title=None):

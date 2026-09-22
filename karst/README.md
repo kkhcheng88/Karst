@@ -181,7 +181,6 @@ CLI、MCP 與日後的排程共用同一組函式:`service.py` 是操作入口,`
 | `service.refresh_sources` | 按 `KIND_ADAPTERS` 經**來源接口**呼叫對應 adapter(`clients[<adapter 名>]` 可注入 client)**落入該公司的證據倉**,暫存去 `<data>/tmp/<run>/`;只登記 adapter 報回的 LandedRecord;回新增／變更／無變／失敗／未覆蓋,變與不變按內容指紋,不按取得時間;`coverage` 是逐 adapter 的**取源覆蓋回報**(`port.cover` 唯一判定 ok／partial／failed,`feeds` 逐來源列 cause:error／timeout／rate_limited／empty 與原因),同一份寫入 `refresh_status`;某個來源爆掉只成為該 adapter 的 failed 回報,不拖垮其餘。`daily` 的取源是否完整只看 `port.complete(coverage)`;舊版新聞 `coverage.json` 側檔已不再寫也不再讀 |
 | `service.search_evidence`／`read_evidence` | 索引查詢與按行分頁讀原文(回 `L<起>-L<迄>` 定位);`text=` 走 SQLite FTS5 全文(回 snippet 與行號估計),無 FTS5 明確報錯不靜默退化;`as_of_version=` 改問某版當時用了什麼,回傳的 `scope` 明寫答了哪一條;查不到只代表本地未登記 |
 | `service.ingest_source` | 登記用戶提供的報告、連結或實際讀到的摘錄;摘錄標 truncated,作者立場與本系統判斷分開記。**`kind=industry_report` 必須帶 `entity_ids`(`NASDAQ:XXX`／`cik:…`／`industry:<slug>`)、`author`、`published_at`、`source_type`**(broker_report／independent_research／news／user_note／other),缺哪一項就報哪一項 |
-| `service.calculate` | 包 `calculations`,回結果、單位、輸入回執與計算器版本;未知方法拒絕。方法見〈估值計算〉。`service.calculate_tool({"method":…,"params":…})` 是給 API adapter 掛的同一個函式,不是第二份算式 |
 | `service.render_charts` | 由已登記日線組本次陣列,出月／週／日／近期四張蠟燭圖、`derived.json` 與 artifact 清單(見上);`store=` 登記 artifact,陣列不保存,沒有已登記日線就明報,不畫空圖 |
 | `service.chart_artifact`／`without_local_paths` | 按 `artifact_id` 取回已登記的圖(先核 hash 才交,未登記或檔案不符一律拒);回遠端時去掉本機路徑,只留 artifact |
 | `service.bundle_for`／`bundles_for` | 「這個 subject 該寫哪個證據倉、該搜哪幾個」的單一規則;MCP 只把它的 `--bundle` 傳進來問 |
@@ -339,8 +338,11 @@ input、cached、output 與起訖時間;**`cost_usd` 留 null**——沒有價�
   回 `solved`／`no_solution`／`multiple_solutions`／`undefined`，不會把多解硬報成一個答案。
 - 研究可在 `valuation.sensitivities[]` 與 `valuation.implied` 保存模型當時的回執；發布時程式
   一律重算，回執對不上原情境的會在頁上標明並只採用重算值。
-- `service.calculate(method, params)` 與 `service.calculate_tool({"method", "params"})`
-  都只是上面這些函式的薄包裝；MCP 的 `calculate` 工具同樣。不准另寫第二份算式。
+- **方法目錄只有一處**：`calculations.CATALOG`（每個方法答什麼、必填參數、單位；估值類連函式），
+  `METHODS` 由它導出。`calculations.run(method, params)` 按目錄執行，`calculations.TOOL`
+  （名稱、描述、method enum）與 `run_tool({"method", "params"})` 是 MCP `calculate` 工具與兩個
+  API adapter 共用的同一個工具；adapter 不 import service。加方法只加一列目錄（非估值類另在
+  `run` 加一個分支）。不准另寫第二份算式或第二份名單。
 - 首屏以依據與缺口幫助閱讀；沒有「已量度／未量度」格。只有合成／歷史重播的來源狀態提示，避免把舊包當即時分析。
 - 目前沒有部位配置或百分之一風險預算。R&R 是條件價格下的算術，退出參考不是最大可保證損失，壓力情境另列。
 - 本地 adapter 保留原始回傳和 `.meta.json`，再正規化成四份契約；未知時間、單位、缺頁不可補成已知。補查登記新來源版本後，用 `resolve_request` 產生新 packet，再重新產生對應的 research。

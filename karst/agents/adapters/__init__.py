@@ -21,6 +21,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from ... import calculations
 from ...fetch.common import utc_now
 from ...packet import confined, read_json
 from ...schema import ContractError, digest
@@ -50,12 +51,8 @@ TOOLS = (
      "schema": {"type": "object", "additionalProperties": False,
                 "properties": {"artifact_id": {"type": "string"}},
                 "required": ["artifact_id"]}},
-    {"name": "calculate",
-     "description": "確定性計算(估值、敏感度、反推、SMA、關鍵位、R&R),回輸入回執與計算器版本;"
-                    "方法與 params 形狀見任務提示詞,算式不由你重寫。",
-     "schema": {"type": "object", "additionalProperties": False,
-                "properties": {"method": {"type": "string"}, "params": {"type": "object"}},
-                "required": ["method", "params"]}},
+    {"name": calculations.TOOL["name"], "description": calculations.TOOL["description"],
+     "schema": calculations.TOOL["schema"]},
 )
 # A tool that cannot do anything for this task is not offered: a task with no charts
 # staged would otherwise advertise a reading the worker can never actually make.
@@ -186,9 +183,7 @@ class TaskEvidence:
         if name == "read_chart":
             return self.chart(arguments.get("artifact_id"))
         if name == "calculate":
-            from ...service import calculate_tool  # noqa: PLC0415 - one calculator, on use
-
-            return calculate_tool(arguments)
+            return calculations.run_tool(arguments)
         raise ContractError(f"Unknown tool: {name}")
 
 

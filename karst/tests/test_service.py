@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from karst import service, store as store_module
+from karst import calculations, service, store as store_module
 from karst.schema import ContractError
 from karst.tests.test_longbridge import FakeClient
 from karst.tests.v03_fixture import (ROLE_META, SECURITY as SECURITY_V03, build_bundle,
@@ -136,19 +136,19 @@ class EvidenceTests(ServiceCase):
 class CalculateTests(ServiceCase):
     def test_unknown_method_is_refused(self):
         with self.assertRaises(ContractError) as caught:
-            service.calculate("vibes", {})
+            calculations.run("vibes", {})
         self.assertIn("fcff_dcf", str(caught.exception))
 
     def test_receipt_carries_inputs_and_version(self):
         params = {"cashflows": [100.0, 110.0, 120.0], "discount_rate": 0.1,
                   "terminal_growth": 0.02, "cash": 50.0, "nonoperating_assets": 0.0,
                   "debt": 20.0, "other_claims": 0.0, "diluted_shares": 100.0}
-        receipt = service.calculate("fcff_dcf", params)
+        receipt = calculations.run("fcff_dcf", params)
         self.assertEqual(receipt["inputs"], params)
         self.assertTrue(receipt["calculator_version"])
         self.assertGreater(receipt["result"]["fair_value_per_share"], 0)
         with self.assertRaises(ContractError):
-            service.calculate("fcff_dcf", {"cashflows": [1.0]})
+            calculations.run("fcff_dcf", {"cashflows": [1.0]})
 
 
 class ResearchTests(ServiceCase):
