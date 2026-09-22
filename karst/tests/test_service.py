@@ -1,19 +1,17 @@
-"""Service layer, offline: fake clients, the packaged synthetic bundle, no model and no network."""
+"""Service layer, offline: fake clients, the shared fixture bundle, no model and no network."""
 import importlib.util
-import shutil
 import tempfile
 import unittest
 from pathlib import Path
 
 from karst import service, store as store_module
-from karst.packet import read_json
 from karst.schema import ContractError
 from karst.tests.test_longbridge import FakeClient
+from karst.tests.v03_fixture import (ROLE_META, SECURITY as SECURITY_V03, build_bundle,
+                                     citable, payload)
 
-EXAMPLE = Path(__file__).resolve().parents[1] / "examples" / "synthetic"
 SECURITY = {"ticker": "DEMO", "issuer_id": "cik:0000000001", "security_id": "XNAS:DEMO",
             "currency": "USD", "exchange": "XNAS", "symbols": {"longbridge": "DEMO.US"}}
-ROLE = {"role": "researcher", "execution": "interactive", "provider": "test", "model": "fake-1"}
 # Shape owned by karst.agents.review; the service only stores what that module accepts.
 REVIEW_RESULT = {
     "research_id": "res-demo-1", "challenges": [], "new_evidence_requests": [],
@@ -22,11 +20,6 @@ REVIEW_RESULT = {
     "reviewer": {"role": "reviewer", "execution": "api", "provider": "anthropic",
                  "model_id": "some-model", "prompt_version": "test"},
 }
-
-
-def passthrough_intake(payload, *, bundle, clock, role_meta):
-    """Stands in for karst.agents.research.intake, which another work package owns."""
-    return payload
 
 
 class ServiceCase(unittest.TestCase):
@@ -39,10 +32,6 @@ class ServiceCase(unittest.TestCase):
         self.bundle.mkdir()
         self.store = store_module.init(self.root / "karst.sqlite3")
         self.addCleanup(self.store.close)
-
-    def copy_example(self):
-        shutil.rmtree(self.bundle)
-        shutil.copytree(EXAMPLE, self.bundle)
 
 
 class ProtocolTests(ServiceCase):
@@ -163,22 +152,26 @@ class CalculateTests(ServiceCase):
 
 
 class ResearchTests(ServiceCase):
+    """Through the one research intake: the model's analysis payload, never a finished research."""
+
     def setUp(self):
         super().setUp()
-        self.copy_example()
-        self.payload = read_json(self.bundle / "research.json")
-        self.subject = "XNAS:DEMO"
+        self.bundle, packet, records = build_bundle(self.root / "fixture")
+        self.payload = payload(packet, citable(self.bundle, records))
+        self.subject = SECURITY_V03["security_id"]
 
     def save(self, payload, previous=None):
         return service.save_research(self.store, self.bundle, payload, subject=self.subject,
-                                     expected_previous_version_id=previous, role_meta=ROLE,
-                                     intake=passthrough_intake)
+                                     expected_previous_version_id=previous, role_meta=ROLE_META)
+
+    def variant(self, question):
+        return {**self.payload, "open_questions": [question]}
 
     def test_save_validates_then_stores_with_a_receipt(self):
         saved = self.save(self.payload)
         self.assertEqual(saved["status"], "latest")
         self.assertEqual(saved["role"], "researcher")
-        self.assertEqual(saved["model"], "fake-1")
+        self.assertEqual(saved["model"], ROLE_META[0]["model_id"])
         self.assertIn("valuation", saved["calc_receipt"])
         self.assertEqual(self.store.latest_research(self.subject)["version_id"],
                          saved["version_id"])
@@ -191,13 +184,13 @@ class ResearchTests(ServiceCase):
 
     def test_stale_save_returns_a_conflict(self):
         first = self.save(self.payload)
-        second = self.save({**self.payload, "research_id": "demo-research-2"}, first["version_id"])
-        stale = self.save({**self.payload, "research_id": "demo-research-3"}, first["version_id"])
+        second = self.save(self.variant("second question"), first["version_id"])
+        stale = self.save(self.variant("third question"), first["version_id"])
         self.assertTrue(stale["conflict"])
         self.assertEqual(stale["current_version_id"], second["version_id"])
 
     def test_context_lists_versions_sources_and_open_reviews(self):
-        saved = self.save(self.payload)
+        saved = self.save({**self.payload, "rating": None})
         job = service.request_review(self.store, subject=self.subject,
                                      version_id=saved["version_id"], dispute="terminal growth",
                                      evidence_ids=[], reviewer={"execution": "interactive"})

@@ -1,5 +1,8 @@
 """Single main researcher: export one task, take back one analysis payload.
 
+``save`` is the research intake: the one way an analysis payload becomes a stored
+research version. ``intake`` is the same rules without storing.
+
 No six fragments, no sealed counter-first pass — that path stays in assemble.py for
 existing 0.2 bundles. The model returns analysis only; every ID, clock, version and
 model record is written here by the program under contract 0.4.0 (0.3 bundles still
@@ -13,8 +16,10 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from .. import calculations
 from ..company_bundle import CompanyBundle
-from ..packet import (_citations, _private_selectors, check_packet, check_research)
+from ..packet import (_citations, _private_selectors, build_packet, check_packet,
+                      check_research)
 from ..schema import ContractError, canonical, digest, embed_evidence_defs, schemas, validate
 from .protocol import get_research_protocol
 from .staging import stage_task
@@ -38,29 +43,6 @@ CHARTS_NOTE = ("charts/ 內的月／週／日／近期放大圖只作參考，�
                "視覺判讀前用 read_chart(artifact_id) 實際開啟該圖（artifact_id 見 "
                "charts.artifacts）；只看檔名或 derived 數字不算看過圖，圖像不可用就按 L5 "
                "記「視覺未完成」及影響。圖與 JSON 都不含價格陣列。")
-
-
-class Verified(dict):
-    """A research object that already passed check_packet / check_research.
-
-    It is an ordinary dict everywhere it matters (canonical JSON, the schema, the
-    store), and carries one extra attribute: what exactly was verified. The saver
-    re-runs the checks unless that fingerprint still matches the bundle, so the
-    rule lives in one place and an injected intake — which cannot set it — is
-    always verified the long way.
-    """
-
-    verified = None
-
-
-def fingerprint(research, packet, records):
-    """What a verification covered: this research, this packet, these exact bytes."""
-    evidence = sorted((record["evidence_id"], record["artifact"]["sha256"])
-                      for record in records)
-    return {"research_digest": digest(canonical(research)),
-            "packet_id": packet["packet_id"],
-            "evidence_digest": digest(canonical(evidence)),
-            "contract_version": packet["contract_version"]}
 
 
 @lru_cache(maxsize=None)
@@ -186,12 +168,25 @@ def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, proto
     """Validate one analysis payload and return a complete research.json.
 
     Raises ContractError without writing anything when the payload does not hold up.
-    The result carries a ``verified`` fingerprint of what these checks covered, so
-    the caller does not have to hash the same evidence a second time.
+    ``save`` is the same check followed by storing the version; use it to keep one.
     """
-    protocol = protocol or get_research_protocol("update" if previous_research else "research")
     bundle = Path(bundle)
     packet, records = CompanyBundle(bundle).working()
+    research, _ = _build(payload, packet, records, bundle, clock=clock, role_meta=role_meta,
+                         previous_version_id=previous_version_id, protocol=protocol,
+                         previous_research=previous_research)
+    return research
+
+
+def _build(payload, packet, records, bundle, *, clock, role_meta, previous_version_id=None,
+           protocol=None, previous_research=None):
+    """The intake rules, once: payload + this packet -> ``(research, selected records)``.
+
+    Nothing is read from disk but the evidence bytes the checks hash; nothing is written.
+    Every rule about what an update may carry over from the previous version (today the
+    unchanged layers' ``assessed_at``) belongs here, next to the one place layers are built.
+    """
+    protocol = protocol or get_research_protocol("update" if previous_research else "research")
     contract = packet["contract_version"]
     if contract not in SUPPORTED:
         raise ContractError(f"Single-researcher intake requires contract {SUPPORTED}")
@@ -232,6 +227,88 @@ def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, proto
     research["research_id"] = "res-" + digest(canonical(research))
     validate("research", research)
     check_research(packet, research, selected, bundle)
-    result = Verified(research)
-    result.verified = fingerprint(research, packet, list(selected.values()))
+    return research, list(selected.values())
+
+
+def _with_requests(packet, records, payload, bundle):
+    """This packet with the payload's new or reworded supplement requests registered.
+
+    A researcher who could not read something asks for it; intake requires those
+    requests to be registered. Same cutoff, same creation time, same previous packet:
+    only the request list grows, so the rebuild is additive and the packet_id follows
+    content. Returns the packet unchanged (same object) when there is nothing to add.
+    Resolved requests never change; a pending one takes its owner's latest wording.
+    """
+    known = {request["request_id"] for request in packet["supplement_requests"]}
+    incoming = [request for request in (payload.get("supplement_requests") or [])
+                if isinstance(request, dict) and request.get("request_id")]
+    merged = []
+    for request in packet["supplement_requests"]:
+        update = next((r for r in incoming if r["request_id"] == request["request_id"]), None)
+        pending = update is not None and request.get("status") == "pending"
+        merged.append(update if pending else request)
+    fresh = [request for request in incoming if request["request_id"] not in known]
+    if not fresh and merged == packet["supplement_requests"]:
+        return packet
+    return build_packet(
+        records, packet["as_of"], packet["security"],
+        created_at=packet["created_at"], knowledge_basis=packet["knowledge_basis"],
+        previous_packet_id=packet["previous_packet_id"],
+        dependencies=[dep for dep in packet["dependencies"] if dep["kind"] != "evidence"],
+        supplement_requests=merged + fresh,
+        pending_updates=packet["pending_updates"], root=bundle,
+        contract_version=packet["contract_version"])
+
+
+def save(store, bundle, payload, *, subject, role_meta, previous_version_id=None, clock):
+    """Research intake: take one analysis payload and append it as a research version.
+
+    The caller hands over the payload and the version it builds on — nothing else. Inside:
+    the working packet is read once, the payload's supplement requests are registered on
+    that copy, the payload is checked once against it, the calculator runs, and the store
+    appends the version with the packet and evidence index it was checked against. The
+    packet is written back only when requests were added and the version was stored.
+
+    Rejected payloads leave nothing behind; a stale ``previous_version_id`` returns the
+    store's conflict. Retry identity is the submitted analysis plus its frozen inputs,
+    not the intake clock: an identical request after a lost response returns its version.
+    """
+    bundle = Path(bundle)
+    company = CompanyBundle(bundle)
+    packet, records = company.working()
+    request_key = digest(canonical({
+        "subject": subject, "previous": previous_version_id, "payload": payload,
+        "inputs": packet.get("evidence_ids"), "as_of": packet.get("as_of"),
+        "role_meta": role_meta,
+        "method": get_research_protocol("update" if previous_version_id else "research")["version"]}))
+    existing = store.get_research_request(request_key)
+    if existing:
+        return existing | {"idempotent_replay": True}
+    registered = _with_requests(packet, records, payload, bundle)
+    # Callers may pass one role record or the full model list; the research records the
+    # list, the store keeps the researcher's own fields.
+    roles = list(role_meta) if isinstance(role_meta, (list, tuple)) else [dict(role_meta)]
+    researcher = next((r for r in roles if r.get("role") == "researcher"), roles[0])
+    previous = store.get_research(previous_version_id) if previous_version_id else None
+    if previous and previous["subject"] != subject:
+        raise ContractError("Previous research belongs to a different subject")
+    previous_research = previous["payload"] if previous else None
+    research, selected = _build(
+        payload, registered, records, bundle, clock=clock, role_meta=roles,
+        previous_research=previous_research,
+        previous_version_id=(previous_research or {}).get("research_id"))
+    try:
+        receipt = calculations.calculate(research)
+    except (ContractError, KeyError, TypeError) as exc:
+        # An unavailable receipt is a stated gap, never a silently empty field.
+        receipt = {"calculator_version": calculations.VERSION, "status": "unavailable",
+                   "reason": f"{type(exc).__name__}: {exc}"}
+    result = store.save_research_version(
+        subject, research, expected_previous_version_id=previous_version_id,
+        as_of=registered["as_of"], calc_receipt=receipt, role=researcher.get("role"),
+        execution=researcher.get("execution"), provider=researcher.get("provider"),
+        model=researcher.get("model") or researcher.get("model_id"),
+        packet=registered, evidence=selected, request_key=request_key)
+    if registered is not packet and not result.get("conflict"):
+        company.save_working(registered)
     return result

@@ -16,7 +16,8 @@ from . import bars as bars_module, calculations, charts, publish as publish_modu
 from .fetch import broker, defeatbeta, edgar, longbridge, prices, news, port
 from .fetch.common import utc_now, write_json, write_meta
 from .company_bundle import CompanyBundle
-from .packet import build_packet, check_packet, check_research, read_json
+from .agents import research as research_intake
+from .packet import build_packet, read_json
 from .schema import ContractError, canonical, digest
 from .identity import security_record
 
@@ -820,140 +821,16 @@ def chart_artifact(store, artifact_id):
 
 # --- save / publish ---------------------------------------------------------
 
-def _intake(payload, *, bundle, role_meta, previous_research=None):
-    """Default intake: contract validation only. ``karst.agents.research`` owns the real one."""
-    from .agents.research import intake as research_intake  # noqa: PLC0415
-    return research_intake(payload, bundle=bundle, clock=utc_now, role_meta=role_meta,
-                           previous_research=previous_research,
-                           previous_version_id=(previous_research or {}).get("research_id"))
-
-
-def _register_requests(bundle, payload):
-    """Put the payload's new supplement requests into the packet before intake.
-
-    A researcher who could not read something asks for it; intake requires those
-    requests to be registered, so the packet is rebuilt here instead of by hand in
-    every runner. Same cutoff, same creation time, same previous packet: only the
-    request list grows, so the rebuild is additive and the packet_id follows content.
-    """
-    from .packet import build_packet  # noqa: PLC0415 - avoid an import cycle at load
-
-    company = CompanyBundle(bundle)
-    packet, records = company.working()
-    known = {request["request_id"]: request for request in packet["supplement_requests"]}
-    incoming = [request for request in (payload.get("supplement_requests") or [])
-                if isinstance(request, dict) and request.get("request_id")]
-    # A researcher may reword a request it raised earlier; while it is still pending the
-    # owner's latest wording replaces the registered one. Resolved requests never change.
-    changed = False
-    merged = []
-    for request in packet["supplement_requests"]:
-        update = next((r for r in incoming if r["request_id"] == request["request_id"]), None)
-        if update is not None and update != request and request.get("status") == "pending":
-            merged.append(update)
-            changed = True
-        else:
-            merged.append(request)
-    fresh = [request for request in incoming if request["request_id"] not in known]
-    if not fresh and not changed:
-        return packet
-    rebuilt = build_packet(
-        records, packet["as_of"], packet["security"],
-        created_at=packet["created_at"], knowledge_basis=packet["knowledge_basis"],
-        previous_packet_id=packet["previous_packet_id"],
-        dependencies=[dep for dep in packet["dependencies"] if dep["kind"] != "evidence"],
-        supplement_requests=merged + fresh,
-        pending_updates=packet["pending_updates"], root=bundle,
-        contract_version=packet["contract_version"])
-    company.save_working(rebuilt)
-    return rebuilt
-
-
-def _selected(packet, records):
-    """The exact records this packet selected, in packet order. No bytes are read."""
-    index = {record["evidence_id"]: record for record in records}
-    chosen = []
-    for evidence_id in list(packet["evidence_ids"]) + list(packet.get("diagnostic_ids", [])):
-        if evidence_id not in index:
-            raise ContractError(f"Unregistered evidence: {evidence_id}")
-        chosen.append(index[evidence_id])
-    return chosen
-
-
-def _verify(bundle, packet, records, research):
-    """Run the contract checks, unless this exact research already passed them.
-
-    Reuse is fingerprint-gated: the same research bytes, the same packet and the same
-    evidence versions that ``intake`` verified a moment ago. A reworded packet, a
-    re-registered source, an edited conclusion or an injected intake (which cannot
-    produce a credential) all fall through to the full check. The byte-level guarantee
-    is not weakened: publication re-hashes every file it copies, every time.
-    """
-    credential = getattr(research, "verified", None)
-    selected = _selected(packet, records)
-    if credential is not None:
-        from .agents.research import fingerprint  # noqa: PLC0415 - only when one exists
-
-        if credential == fingerprint(research, packet, selected):
-            return selected
-    chosen = check_packet(packet, records, bundle)
-    check_research(packet, research, chosen, bundle)
-    return list(chosen.values())
-
-
 def save_research(store, bundle, payload, *, subject, expected_previous_version_id=None,
-                  role_meta, intake=None):
-    """Validate first, store second: a rejected payload leaves no half version behind.
+                  role_meta):
+    """Research intake (``agents.research.save``): check once, then append a version.
 
     The stored version freezes the packet and the evidence index it was validated
-    against. The company's evidence store keeps growing after it; publishing this
-    version later must not silently pick up whatever arrived in the meantime.
+    against, so publishing it later never picks up evidence that arrived since.
     """
-    bundle = Path(bundle)
-    company = CompanyBundle(bundle)
-    # Retry identity uses the submitted analysis and frozen inputs, not the new
-    # intake clock. An identical request after a lost response returns its version.
-    snapshot = company.packet() or {}
-    request_key = digest(canonical({"subject": subject, "previous": expected_previous_version_id,
-                                   "payload": payload, "inputs": snapshot.get("evidence_ids"),
-                                   "as_of": snapshot.get("as_of"), "role_meta": role_meta,
-                                   "method": get_research_protocol("update" if expected_previous_version_id else "research")["version"]}))
-    existing = store.get_research_request(request_key)
-    if existing:
-        return existing | {"idempotent_replay": True}
-    if snapshot:
-        _register_requests(bundle, payload)
-    # Callers may pass one role record or the full model list; intake wants the list,
-    # the store keeps the researcher's own fields.
-    roles = list(role_meta) if isinstance(role_meta, (list, tuple)) else [dict(role_meta)]
-    researcher = next((r for r in roles if r.get("role") == "researcher"), roles[0])
-    previous = (store.get_research(expected_previous_version_id)
-                if expected_previous_version_id else None)
-    if previous and previous["subject"] != subject:
-        raise ContractError("Previous research belongs to a different subject")
-    if intake is None:
-        try:
-            research = _intake(payload, bundle=bundle, role_meta=roles,
-                               previous_research=previous["payload"] if previous else None)
-        except ImportError:
-            research = payload
-    else:
-        research = intake(payload, bundle=bundle, clock=utc_now, role_meta=roles)
-    role_meta = researcher
-    packet, records = company.working()
-    selected = _verify(bundle, packet, records, research)
-    try:
-        receipt = calculations.calculate(research)
-    except (ContractError, KeyError, TypeError) as exc:
-        # An unavailable receipt is a stated gap, never a silently empty field.
-        receipt = {"calculator_version": calculations.VERSION, "status": "unavailable",
-                   "reason": f"{type(exc).__name__}: {exc}"}
-    return store.save_research_version(
-        subject, research, expected_previous_version_id=expected_previous_version_id,
-        as_of=packet["as_of"], calc_receipt=receipt, role=role_meta.get("role"),
-        execution=role_meta.get("execution"), provider=role_meta.get("provider"),
-        model=role_meta.get("model") or role_meta.get("model_id"),
-        packet=packet, evidence=selected, request_key=request_key)
+    return research_intake.save(store, bundle, payload, subject=subject, role_meta=role_meta,
+                                previous_version_id=expected_previous_version_id,
+                                clock=utc_now)
 
 
 def _check_technical_basis(research, rebuilt, gaps, as_of):
