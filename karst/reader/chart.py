@@ -77,7 +77,7 @@ def main():
     p.add_argument('--config',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     a=p.parse_args()
-    render(json.loads(a.source.read_text()),json.loads(a.config.read_text()),a.output)
+    render(json.loads(a.source.read_text(encoding='utf-8')),json.loads(a.config.read_text(encoding='utf-8')),a.output)
 
 
 if __name__ == '__main__':

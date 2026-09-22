@@ -41,16 +41,16 @@ class ReaderTests(unittest.TestCase):
         newer.update(published_at='2026-01-03T12:00:00Z', verdict='新判斷', change='修正舊假設')
         self.add(newer)
         build(self.content, self.output)
-        self.assertIn('新判斷', (self.output/'stocks/sample/index.html').read_text())
-        old = (self.output/'stocks/sample/history/2026-01-02-r1/index.html').read_text()
+        self.assertIn('新判斷', (self.output/'stocks/sample/index.html').read_text(encoding='utf-8'))
+        old = (self.output/'stocks/sample/history/2026-01-02-r1/index.html').read_text(encoding='utf-8')
         self.assertIn('<p class="deck">等待</p>', old)
         self.assertIn('這是當時的分析快照', old)
 
     def test_private_inputs_and_unreferenced_assets_never_leave_content(self):
         (self.content/'provenance').mkdir()
-        (self.content/'provenance/secret.json').write_text('{"secret":"private"}')
+        (self.content/'provenance/secret.json').write_text('{"secret":"private"}', encoding='utf-8')
         (self.content/'assets').mkdir()
-        (self.content/'assets/private.txt').write_text('not public')
+        (self.content/'assets/private.txt').write_text('not public', encoding='utf-8')
         build(self.content, self.output)
         self.assertFalse(list(self.output.rglob('*.json')))
         self.assertFalse(list(self.output.rglob('*.txt')))
@@ -69,7 +69,7 @@ class ReaderTests(unittest.TestCase):
         r['summary'] = '<script>alert(1)</script>'
         self.add(r)
         build(self.content, self.output)
-        home = (self.output/'index.html').read_text()
+        home = (self.output/'index.html').read_text(encoding='utf-8')
         self.assertNotIn('<script>', home)
         self.assertIn('&lt;script&gt;', home)
         for url in ('javascript:alert(1)', 'https://user:password@example.com/', 'https://example.com/?token=secret'):
@@ -79,7 +79,7 @@ class ReaderTests(unittest.TestCase):
 
     def test_refuses_dirty_output_and_overlapping_directories(self):
         self.output.mkdir()
-        (self.output/'private.json').write_text('{}')
+        (self.output/'private.json').write_text('{}', encoding='utf-8')
         for output in (self.output, self.content/'site', self.content.parent):
             with self.subTest(output=output), self.assertRaises(ValueError):
                 build(self.content, output)
@@ -121,15 +121,15 @@ class ReaderTests(unittest.TestCase):
         path.write_text(json.dumps(check))
         result = build(self.content, self.output)
         self.assertEqual(result['reports'], 1)
-        self.assertIn(check['summary'], (self.output/'stocks/sample/index.html').read_text())
-        archive = (self.output/'stocks/sample/history/2026-01-02-r1/index.html').read_text()
+        self.assertIn(check['summary'], (self.output/'stocks/sample/index.html').read_text(encoding='utf-8'))
+        archive = (self.output/'stocks/sample/history/2026-01-02-r1/index.html').read_text(encoding='utf-8')
         self.assertNotIn(check['summary'], archive)
         self.assertFalse(list(self.output.rglob('*.json')))
         newer = sample() | {'published_at': '2026-01-04T12:00:00Z', 'change': '新業績改變判斷'}
         self.add(newer)
         second = self.root/'second'
         build(self.content, second)
-        self.assertNotIn(check['summary'], (second/'stocks/sample/index.html').read_text())
+        self.assertNotIn(check['summary'], (second/'stocks/sample/index.html').read_text(encoding='utf-8'))
 
     def test_check_with_missing_report_or_internal_ids_is_refused(self):
         check = {'schema_version': 1, 'public': True, 'kind': 'stocks', 'slug': 'sample',

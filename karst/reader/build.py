@@ -372,7 +372,7 @@ def build(content, output):
         package = Path(__file__).parent
         shutil.copyfile(package / 'chart.js', output / 'assets/chart.js')
         shutil.copyfile(package / 'vendor/lightweight-charts-5.2.1.js', output / 'assets/lightweight-charts-5.2.1.js')
-        license_text = (package / 'vendor/LICENSE').read_text() + '\n' + (package / 'vendor/NOTICE').read_text()
+        license_text = (package / 'vendor/LICENSE').read_text(encoding='utf-8') + '\n' + (package / 'vendor/NOTICE').read_text(encoding='utf-8')
         (output / 'assets/chart-license.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Lightweight Charts license</title><pre>' + escape(license_text) + '</pre></html>', encoding='utf-8', newline='\n')
     pages = {}
     for r in latest:
