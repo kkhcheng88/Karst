@@ -1,5 +1,5 @@
 {
-  "status": "authorized_publication_pending_verification",
+  "status": "deployed_and_verified",
   "repository": "kkhcheng88/Karst",
   "verified_connected_login": "kkhcheng88",
   "remote_master_unchanged": "3c7730c5d148b6cce6e6e2bd4a352434c8556ad6",
@@ -21,5 +21,68 @@
     "Neocloud full forward capital/earnings comparisons"
   ],
   "schedule_active": false,
-  "user_authorization": "yes please, I will review in the production"
+  "user_authorization": "yes please, I will review in the production",
+  "release_commit": "5921028da55e5a46d1124fba01a3b19f455e6f52",
+  "pages_workflow": {
+    "id": 35731916567,
+    "conclusion": "success"
+  },
+  "public_readback": [
+    {
+      "path": "index.html",
+      "http": 200,
+      "bytes": 16340,
+      "matches_build": true,
+      "sha256": "4927b01c3ee507408dac73613fa575151e6a804895fb7e14ab2fa72b54ff9586"
+    },
+    {
+      "path": "market/spy/index.html",
+      "http": 200,
+      "bytes": 14270,
+      "matches_build": true,
+      "sha256": "7d33916e6e1593e4464e80d20754c0ee232b627a9596374bd8008d754bb017fa"
+    },
+    {
+      "path": "stocks/be/index.html",
+      "http": 200,
+      "bytes": 16734,
+      "matches_build": true,
+      "sha256": "35026656d15f980d08b7f4e1cfcc3419ff7ecf577c806c8ff20bb40e72d866ab"
+    },
+    {
+      "path": "themes/ai-power/index.html",
+      "http": 200,
+      "bytes": 12814,
+      "matches_build": true,
+      "sha256": "cb389a5182d56ac745b2654906373d9961e3a88b247c47aff0418f8c69919329"
+    },
+    {
+      "path": "themes/neocloud/index.html",
+      "http": 200,
+      "bytes": 18948,
+      "matches_build": true,
+      "sha256": "089c8ed8c1a077fef4e1a963999a2c5c4129cb793ce70e178c9710bf2fe1b26c"
+    },
+    {
+      "path": "assets/be-chart-2026-09-21.json",
+      "http": 200,
+      "bytes": 322242,
+      "matches_build": true,
+      "sha256": "07f45fced6010f166993315f7ba579d272aa295b62d22b97fc8d204e903aa041"
+    },
+    {
+      "path": "assets/spy-chart-2026-09-21.json",
+      "http": 200,
+      "bytes": 327456,
+      "matches_build": true,
+      "sha256": "c64cba35e18aba5816723a4b63bdd5bceeaea3214e3e38ed5095cedc4377dcc8"
+    }
+  ],
+  "service": {
+    "version": "0.2.12",
+    "zeabur_check": "success",
+    "workflow_six_factors_readback": true,
+    "workflow_daily_scope_readback": true,
+    "daily_monitoring_membership_readback": true
+  }
 }

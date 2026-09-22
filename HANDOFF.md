@@ -20,6 +20,8 @@
 
 ## 二、下一步
 
+**2026-09-22 正式發布與讀回完成**：用戶授權後5921028已上master；Pages Actions 35731916567 build／deploy成功，首頁、SPY r3、BE r2、AI電力r2、Neocloud r2與兩份互動圖JSON共七項HTTP200、逐bytes與驗收build一致。Zeabur check成功，healthz實測0.2.12；雲端workflow讀回六因素及全範圍日更規則，NYSE:BE context已含daily-monitoring名單、原兩版研究保留。定向功能／閱讀34項與認證HTTP4項通過；23份歷史HTML保持。沒有啟用自動排程；SPY完整盈利估值、BE倍數校準／独立覆核與Neocloud資本橋接仍待。回執cards/runs/reader-review-2026-09-22/publication-status.json。
+
 **2026-09-22 已獲正式發布授權**：用戶明確回覆「yes please, I will review in the production」，授權四頁、必要圖表、全範圍日更程式及對應紀錄提交既有公開倉庫並發布；開始重試，部署與正式站讀回待驗。
 
 **2026-09-22 發布被自動審核阻擋**：確認連接帳戶為kkhcheng88、repo公開且具push/admin權限；完整提交及收窄為僅閱讀頁／必要圖表的提交均被拒，理由為本次確切公開發布未獲明示授權。沒有建立遠端commit或更新master，Pages／Zeabur未因本輪更新。修改保存在本地git；待用戶確認公開發布後才重試，不能稱已部署。定向功能／閱讀34項、認證HTTP4項通過；最終33頁／24版，既有23份歷史HTML保持。
