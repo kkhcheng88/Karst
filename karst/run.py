@@ -2,7 +2,7 @@
 import argparse
 import sys
 
-from .packet import load_bundle
+from .company_bundle import CompanyBundle
 from .calculations import calculate
 from .publish import publish
 from .schema import ContractError
@@ -19,7 +19,7 @@ def main(argv=None):
         parser.error("--output is required unless --validate-only")
     try:
         if args.validate_only:
-            _, _, research = load_bundle(args.bundle)
+            _, _, research = CompanyBundle(args.bundle).checked()
             calculate(research)
             print("Bundle contracts, references and calculation inputs validated.")
         else:

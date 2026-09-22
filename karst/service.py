@@ -15,8 +15,8 @@ from uuid import uuid4
 from . import bars as bars_module, calculations, charts, publish as publish_module
 from .fetch import broker, defeatbeta, edgar, longbridge, prices, news, port
 from .fetch.common import utc_now, write_json, write_meta
-from .fetch.registry import EvidenceRegistry
-from .packet import build_packet, check_packet, check_research, confined, read_json
+from .company_bundle import CompanyBundle
+from .packet import build_packet, check_packet, check_research, read_json
 from .schema import ContractError, canonical, digest
 from .identity import security_record
 
@@ -109,6 +109,8 @@ def ensure_company(store, data_dir, security):
     paths = company_paths(data_dir, security_id)
     for key in ("bundle", "releases", "tmp"):
         paths[key].mkdir(parents=True, exist_ok=True)
+    # The bundle holds the identity; the entity rows below only index it.
+    security = CompanyBundle(paths["bundle"]).claim(security)
     if store is not None:
         if security.get("security_id"):
             store.upsert_entity(security["security_id"], "security", name=security.get("name"),
@@ -162,10 +164,6 @@ def get_research_protocol(mode, version=None, *, include_schema=True):
 
 # --- evidence ---------------------------------------------------------------
 
-def _registry(bundle):
-    return EvidenceRegistry(bundle)
-
-
 def _summary(record):
     params = record.get('params') or {}
     document = {key: params.get(key) for key in ('author', 'title', 'source_type')}
@@ -185,7 +183,7 @@ def _summary(record):
 def _records(bundle):
     """``bundle`` may be one root or several (search across every company store)."""
     roots = [bundle] if isinstance(bundle, (str, Path)) else list(bundle)
-    return [record for root in roots for record in _registry(root).records()]
+    return [record for root in roots for record in CompanyBundle(root).records()]
 
 
 def _frozen_version(store, version_id):
@@ -270,14 +268,14 @@ def read_evidence(bundle, evidence_id, offset=0, limit_lines=200):
     roots = [bundle] if isinstance(bundle, (str, Path)) else list(bundle)
     record = root = None
     for candidate in roots:
-        record = next((r for r in _registry(candidate).records()
+        record = next((r for r in CompanyBundle(candidate).records()
                        if r["evidence_id"] == evidence_id), None)
         if record is not None:
             root = candidate
             break
     if record is None:
         raise ContractError(f"Unregistered evidence: {evidence_id}")
-    data = confined(Path(root), record["artifact"]["path"]).read_bytes()
+    data = CompanyBundle(root).artifact(record)
     try:
         lines = data.decode("utf-8").splitlines()
     except UnicodeDecodeError:
@@ -349,7 +347,7 @@ def ingest_source(bundle, *, url=None, file_path=None, excerpt=None, author=None
                    **precision, period=None,
                    truncated={"is_truncated": truncated}, known_gaps=gaps, status="ok",
                    source_url=url, kind=kind, note=note)
-        record = _registry(bundle).register(landing, entity_ids=list(entity_ids) or None)
+        record = CompanyBundle(bundle).register(landing, entity_ids=list(entity_ids) or None)
     if store is not None:
         _index(store, bundle, [record], entity_kinds=True)
     summary = _summary(record)
@@ -418,12 +416,13 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
              safe_name(security.get("security_id") or security.get("issuer_id")),
              uuid4().hex[:8]])  # one landing per run: stale files must not be re-registered
     Path(staging).mkdir(parents=True, exist_ok=True)
-    registry = _registry(bundle)
-    known_ids = {record["evidence_id"] for record in registry.records()}
-    known_sources = {record["source_id"] for record in registry.records()}
+    company = CompanyBundle(bundle)
+    current = company.records()
+    known_ids = {record["evidence_id"] for record in current}
+    known_sources = {record["source_id"] for record in current}
     from .updates import latest_sources
     from .evidence_changes import equivalent
-    known_records = latest_sources(registry.records(), utc_now())
+    known_records = latest_sources(current, utc_now())
     adapters = {KIND_ADAPTERS[kind] for kind in kinds}
     landed, coverage = _run_adapters(staging, security, adapters, since, clients)
 
@@ -435,7 +434,7 @@ def refresh_sources(data_dir, security, kinds, since=None, clients=None, store=N
     # Only what the adapters reported: the registry registers their records, it
     # does not go looking through the directory for files nobody claimed.
     for item in landed:
-        record = registry.register(item, entity_ids=entity_ids)
+        record = company.register(item, entity_ids=entity_ids)
         registered.append(record)
         result["records"].append(_summary(record))
         evidence_id = record["evidence_id"]
@@ -485,7 +484,8 @@ def prepare_research(bundle, security, *, as_of=None, evidence_ids=None):
 
     security = security_record(security)
     bundle = Path(bundle)
-    records = _registry(bundle).records(contract_version=CONTRACT)
+    company = CompanyBundle(bundle)
+    records = company.records(contract_version=CONTRACT)
     if evidence_ids is not None:
         ids = list(evidence_ids)
         index = {r["evidence_id"]: r for r in records}
@@ -496,10 +496,8 @@ def prepare_research(bundle, security, *, as_of=None, evidence_ids=None):
         raise ContractError("No registered sources; refresh or ingest evidence first")
     fields = schemas(CONTRACT)["evidence"]["$defs"]["security"]["properties"]
     identity = {key: security[key] for key in fields if key in security}
-    previous_path = bundle / "packet.json"
-    previous = read_json(previous_path) if previous_path.exists() else None
-    if previous and previous["security"]["security_id"] != identity.get("security_id"):
-        raise ContractError("Research security differs from this bundle")
+    company.claim(security)  # refuses a different security
+    previous = company.packet()
     now = utc_now()
     # Keep pending requests; resolved ones belong to the immutable prior snapshot.
     requests = [r for r in (previous or {}).get("supplement_requests", [])
@@ -511,12 +509,9 @@ def prepare_research(bundle, security, *, as_of=None, evidence_ids=None):
         dependencies=[d for d in (previous or {}).get("dependencies", [])
                       if d["kind"] != "evidence"],
         supplement_requests=requests)
-    # Validate completely before updating the working files. Each replacement is
-    # atomic; the stored research transaction independently checks the snapshot.
-    for name, value in (("evidence.json", records), ("packet.json", packet)):
-        temporary = bundle / (name + "." + uuid4().hex + ".tmp")
-        temporary.write_bytes(canonical(value))
-        temporary.replace(bundle / name)
+    # Validated completely before the working snapshot is replaced (atomically);
+    # the stored research transaction independently checks the snapshot.
+    company.save_working(packet, records)
     return {"packet_id": packet["packet_id"], "as_of": packet["as_of"],
             "security": identity, "evidence_ids": packet["evidence_ids"],
             "diagnostic_ids": packet["diagnostic_ids"],
@@ -549,33 +544,27 @@ def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_chan
     baseline = store.latest_research(subject)
     if baseline and updates.timestamp(baseline["created_at"]) > updates.timestamp(as_of):
         raise ContractError("Latest research did not exist at the requested cutoff; use frozen-version context")
-    records = _records(bundle)
-    if not records and (Path(bundle) / "evidence.json").exists():
-        records = read_json(Path(bundle) / "evidence.json")
-    def observations_at(root):
-        import json
-        path = Path(root) / "evidence" / "observations.jsonl"
-        return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()] if path.exists() else []
-    observations = observations_at(bundle)
+    own = _records(bundle)
+    records = list(own)
+    observations = CompanyBundle(bundle).observations()
     watch = store.get_watch(subject)
     if data_dir is not None and watch:
         seen = {r["evidence_id"] for r in records}
         for other in company_bundles(data_dir):
             if Path(other).resolve() == Path(bundle).resolve():
                 continue
-            observations.extend(observations_at(other))
+            observations.extend(CompanyBundle(other).observations())
             for record in _records(other):
                 if record["evidence_id"] not in seen and updates.subscribed(record, watch["payload"]):
                     records.append(record)
                     seen.add(record["evidence_id"])
     market = None
     if watch and any(c["kind"] == "price" for c in watch["payload"]["conditions"]):
-        packet_path = Path(bundle) / "packet.json"
-        security = read_json(packet_path).get("security", {}) if packet_path.exists() else {}
+        security = CompanyBundle(bundle).security() or {}
         # A supplier's bars never become this company's threshold price: only this
         # bundle's own records, and only those registered to this security.
         found = bars_module.series_for(bundle, security or {"security_id": subject}, as_of,
-                                       records=_records(bundle))
+                                       records=own)
         if found.daily:
             bar = found.daily[-1]
             market = {"price": bar["close"], "at": bar["at"], "complete": bar["complete"],
@@ -631,18 +620,15 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None,
                          "provider": row["provider"], "model": row["model"],
                          **_headline(row["payload"])})
     if as_of_version is None:
-        records = _registry(bundle).records()
-        evidence_path = Path(bundle) / "evidence.json"
-        if not records and evidence_path.exists():  # a replayed bundle carries no manifest
-            records = read_json(evidence_path)
-        packet_path = Path(bundle) / "packet.json"
-        packet = read_json(packet_path) if packet_path.exists() else None
-        view = "current"
+        company = CompanyBundle(bundle)
+        records, packet, view = company.records(), company.packet(), "current"
+        security = company.security() or {}
     else:
         frozen = _frozen_version(store, as_of_version)
         if frozen["subject"] != subject:
             raise ContractError("Research version belongs to a different subject")
         records, packet, view = frozen["evidence"], frozen["packet"], "as_of_research"
+        security = security_record(packet.get("security") or {})
     sources = [_summary(record) for record in records]
     pending = [request for request in (packet or {}).get("supplement_requests", [])
                if request["status"] == "pending"]
@@ -657,7 +643,7 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None,
     return {"subject": subject, "as_of": as_of, "as_of_version": as_of_version,
             "knowledge": subject_inputs(store, subject, as_of=frozen["created_at"] if as_of_version else as_of),
             "sources_view": view, "packet_id": (packet or {}).get("packet_id"),
-            "security": security_record((packet or {}).get("security") or {}),
+            "security": security,
             "versions": versions,
             "latest_version_id": next((v["version_id"] for v in versions
                                        if v["status"] == "latest"), None),
@@ -776,26 +762,18 @@ def render_charts(bundle, out_dir, *, as_of=None, bars=None, records=None, store
     artifacts are registered there, which is what lets a remote client ask for the
     image itself (``read_chart``) instead of a path it cannot open.
     """
-    bundle = Path(bundle)
-    if records is None:
-        records = _registry(bundle).records()
-        evidence_path = bundle / "evidence.json"
-        if not records and evidence_path.exists():
-            records = read_json(evidence_path)
-    packet_path = bundle / "packet.json"
-    packet = read_json(packet_path) if packet_path.exists() else {}
+    company = CompanyBundle(bundle)
+    records = company.records() if records is None else records
     if as_of is None:
-        as_of = packet.get("as_of") or utc_now()
+        as_of = (company.packet() or {}).get("as_of") or utc_now()
     source = None
-    security = packet.get("security") or {}
-    # Which exchange's clock decides whether the last bar has closed: the packet's
-    # security, else the "EXCHANGE:TICKER" subject a company store was asked about.
-    exchange = security.get("exchange") or (str(title).split(":", 1)[0] if title and ":" in str(title) else None)
+    # Which exchange's clock decides whether the last bar has closed: the store's own
+    # security, never a guess from the subject string.
+    security = company.security() or {}
     if bars is not None:
         series = bars_module.views(bars)
     else:
-        found = bars_module.series_for(bundle, security | {"exchange": exchange}, as_of,
-                                       records=records)
+        found = bars_module.series_for(bundle, security, as_of, records=records)
         series, source = found.views, found.source
     if not series or not series.get("D"):
         raise ContractError("No registered daily candlesticks to chart for this subject as of "
@@ -860,7 +838,8 @@ def _register_requests(bundle, payload):
     """
     from .packet import build_packet  # noqa: PLC0415 - avoid an import cycle at load
 
-    packet = read_json(bundle / "packet.json")
+    company = CompanyBundle(bundle)
+    packet, records = company.working()
     known = {request["request_id"]: request for request in packet["supplement_requests"]}
     incoming = [request for request in (payload.get("supplement_requests") or [])
                 if isinstance(request, dict) and request.get("request_id")]
@@ -879,14 +858,14 @@ def _register_requests(bundle, payload):
     if not fresh and not changed:
         return packet
     rebuilt = build_packet(
-        read_json(bundle / "evidence.json"), packet["as_of"], packet["security"],
+        records, packet["as_of"], packet["security"],
         created_at=packet["created_at"], knowledge_basis=packet["knowledge_basis"],
         previous_packet_id=packet["previous_packet_id"],
         dependencies=[dep for dep in packet["dependencies"] if dep["kind"] != "evidence"],
         supplement_requests=merged + fresh,
         pending_updates=packet["pending_updates"], root=bundle,
         contract_version=packet["contract_version"])
-    (bundle / "packet.json").write_bytes(canonical(rebuilt))
+    company.save_working(rebuilt)
     return rebuilt
 
 
@@ -931,9 +910,10 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
     version later must not silently pick up whatever arrived in the meantime.
     """
     bundle = Path(bundle)
+    company = CompanyBundle(bundle)
     # Retry identity uses the submitted analysis and frozen inputs, not the new
     # intake clock. An identical request after a lost response returns its version.
-    snapshot = read_json(bundle / "packet.json") if (bundle / "packet.json").exists() else {}
+    snapshot = company.packet() or {}
     request_key = digest(canonical({"subject": subject, "previous": expected_previous_version_id,
                                    "payload": payload, "inputs": snapshot.get("evidence_ids"),
                                    "as_of": snapshot.get("as_of"), "role_meta": role_meta,
@@ -941,7 +921,7 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
     existing = store.get_research_request(request_key)
     if existing:
         return existing | {"idempotent_replay": True}
-    if (bundle / "packet.json").exists():
+    if snapshot:
         _register_requests(bundle, payload)
     # Callers may pass one role record or the full model list; intake wants the list,
     # the store keeps the researcher's own fields.
@@ -960,8 +940,7 @@ def save_research(store, bundle, payload, *, subject, expected_previous_version_
     else:
         research = intake(payload, bundle=bundle, clock=utc_now, role_meta=roles)
     role_meta = researcher
-    packet = read_json(bundle / "packet.json")
-    records = read_json(bundle / "evidence.json")
+    packet, records = company.working()
     selected = _verify(bundle, packet, records, research)
     try:
         receipt = calculations.calculate(research)
@@ -1075,12 +1054,10 @@ def publish_research(store, bundle, version_id, output_dir, bars=None, bars_prov
         # Saved before versions carried their inputs: fall back to the bundle as it
         # stands, and say so rather than pretending the version was pinned.
         inputs_from, snapshot = "bundle", None
-        packet = read_json(bundle / "packet.json")
-        records = read_json(bundle / "evidence.json")
-        on_disk = (read_json(bundle / "research.json")
-                   if (bundle / "research.json").exists() else None)
-        if on_disk != stored:
-            (bundle / "research.json").write_bytes(canonical(stored))
+        company = CompanyBundle(bundle)
+        packet, records = company.working()
+        if company.research() != stored:
+            company.save_research(stored)
     from .page.company import render_company_index  # noqa: PLC0415 - it reads this module
 
     release = publish_module.publish(

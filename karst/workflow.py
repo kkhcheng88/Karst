@@ -111,8 +111,9 @@ Only explicit NoAdjust daily prices currently qualify. Adjusted prices are not
 silently relabelled total returns. Evidence acquisition cutoff != price cutoff.
 """
     from .bars import series_for
+    from .company_bundle import CompanyBundle
     from .momentum import compare
-    from .packet import read_json, instant
+    from .packet import instant
 
     if not isinstance(weights, dict) or not weights or benchmark in weights:
         raise ContractError("Distinct benchmark and a nonempty member-weight mapping required")
@@ -124,11 +125,10 @@ silently relabelled total returns. Evidence acquisition cutoff != price cutoff.
     series, sources = {}, {}
     session_bases = set()
     for subject in [benchmark, *weights]:
-        bundle = service.company_paths(data_dir, subject)["bundle"]
-        packet_path = bundle / "packet.json"
-        if not packet_path.exists():
+        bundle = service.bundle_for(data_dir, subject)
+        security = CompanyBundle(bundle).security()
+        if security is None:
             raise ContractError(f"No registered price packet: {subject}")
-        security = read_json(packet_path)["security"]
         if security["security_id"] != subject or security.get("currency") != currency:
             raise ContractError(f"Identity or currency mismatch: {subject}")
         # The series entry reads only this security's prices; never another's.

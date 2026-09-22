@@ -10,7 +10,12 @@ from unittest.mock import patch
 from urllib.parse import unquote
 
 from karst.calculations import calculate, confirmed_pivots, fcff_dcf, risk_reward, sma
-from karst.packet import add_request, check_packet, check_research, confined, load_bundle, read_json, resolve_request
+from karst.company_bundle import CompanyBundle
+from karst.packet import add_request, check_packet, check_research, confined, read_json, resolve_request
+
+
+def load_bundle(root):
+    return CompanyBundle(root).checked()
 from karst.publish import publish, verify_release
 from karst.page.render import render
 from karst.schema import ContractError, canonical, decode, digest, validate

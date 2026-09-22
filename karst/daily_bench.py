@@ -19,19 +19,19 @@ import time
 from pathlib import Path
 
 from . import bars, daily, knowledge, service, store as store_module
+from .company_bundle import CompanyBundle
 from .fetch import longbridge, news
-from .fetch.registry import EvidenceRegistry
 
 UNIVERSE = 'bench-monitoring'
 # (owner, attribute, phase). Exclusive time: a phase excludes the phases it calls.
 PHASES = (
     (longbridge, 'fetch', 'fetch_prices'),
     (news, 'fetch', 'fetch_news'),
-    (EvidenceRegistry, 'register', 'register_evidence'),
-    (EvidenceRegistry, 'records', 'read_registry'),
+    (CompanyBundle, 'register', 'register_evidence'),
+    (CompanyBundle, 'records', 'read_registry'),
     (service, '_index', 'index_store'),
     (service, 'prepare_research', 'packet'),
-    (bars, 'series_from_evidence', 'series_rebuild'),
+    (bars, 'series_for', 'series_rebuild'),
     (service, 'plan_update', 'plan_update'),
     (service, 'get_research_protocol', 'protocol_load'),
     (daily, '_save_run', 'checkpoint'),

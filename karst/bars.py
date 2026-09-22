@@ -336,14 +336,6 @@ class Series:
         return enough(self.daily, use, recorded=recorded)
 
 
-def _records_in(bundle):
-    """The bundle's registered evidence, else its evidence.json snapshot."""
-    from .fetch.registry import EvidenceRegistry  # noqa: PLC0415 - registry is heavier than bars
-    records = EvidenceRegistry(bundle).records()
-    path = Path(bundle) / "evidence.json"
-    return records if records or not path.exists() else read_json(path)
-
-
 def series_for(bundle, security, as_of, *, records=None, session=None):
     """The daily candlestick series of ``security`` as it could be read at ``as_of``.
 
@@ -356,13 +348,15 @@ def series_for(bundle, security, as_of, *, records=None, session=None):
       ``session`` overrides it only to configure half days or holidays.
     * **selection, replay and completion** — the KARST-250 rules in :func:`_select`.
 
-    ``records`` defaults to the bundle's registry, falling back to its evidence.json;
+    ``records`` defaults to what the company bundle holds now;
     pass a version's own evidence to rebuild what that version saw. Ask the result
     whether it is :meth:`Series.enough` for a named use.
     """
     security = security or {}
     session = session or Session.for_exchange(security.get("exchange"))
-    records = _records_in(bundle) if records is None else records
+    if records is None:
+        from .company_bundle import CompanyBundle  # noqa: PLC0415 - heavier than bars
+        records = CompanyBundle(bundle).records()
     wanted = security.get("security_id") or security.get("issuer_id")
     gaps = []
     if wanted:

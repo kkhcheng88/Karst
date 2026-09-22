@@ -8,6 +8,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from ..company_bundle import CompanyBundle
 from ..packet import (_citations, _private_selectors, check_packet, check_research,
                       confined, instant, read_json)
 from ..schema import ContractError, canonical, digest, embed_evidence_defs, schemas
@@ -182,14 +183,15 @@ def main(argv=None):
     parser.add_argument('--run', type=Path, required=True)
     args = parser.parse_args(argv)
     try:
-        assemble(read_json(args.bundle / 'packet.json'), read_json(args.bundle / 'evidence.json'),
-                 {role: read_json(args.fragments / f'{role}.json') for role in ROLES},
-                 bundle_root=args.bundle, run=read_json(args.run),
-                 counter_initial=read_json(args.fragments / 'counter_initial.json'),
-                 output=args.bundle / 'research.json')
+        company = CompanyBundle(args.bundle)
+        research = assemble(*company.working(),
+                            {role: read_json(args.fragments / f'{role}.json') for role in ROLES},
+                            bundle_root=args.bundle, run=read_json(args.run),
+                            counter_initial=read_json(args.fragments / 'counter_initial.json'))
+        company.save_research(research, overwrite=False)
     except (ContractError, OSError, ValueError) as exc:
         parser.exit(2, f'Assembly failed: {exc}\n')
-    print(args.bundle / 'research.json')
+    print(f"research {research['research_id']} saved in {args.bundle}")
 
 
 if __name__ == '__main__':

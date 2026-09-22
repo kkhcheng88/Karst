@@ -16,11 +16,11 @@ from .agents.assemble import LAYERS, ROLES, UPSTREAM, assemble
 from .agents.inputs import prepare_inputs
 from .agents.protocol import (COUNTER_PREFIX, DISCIPLINE_FILE, MANDATE_FILE, MODEL_FILE,
                               questions_from_model, sections_from_markdown)
+from .company_bundle import CompanyBundle
 from .fetch.port import pair_staging
-from .fetch.registry import EvidenceRegistry
 from .packet import build_packet, check_packet, instant, read_json
 from .publish import publish
-from .schema import ContractError, canonical
+from .schema import ContractError
 
 
 # --- command helpers --------------------------------------------------------
@@ -59,19 +59,15 @@ def _latest_versions(records):
     return sorted(newest.values(), key=lambda r: r['evidence_id'])
 
 
-def _bundle_inputs(bundle):
-    return read_json(bundle / 'packet.json'), read_json(bundle / 'evidence.json')
-
-
 # --- subcommands ------------------------------------------------------------
 
 def cmd_register(args):
-    registry = EvidenceRegistry(args.bundle)
+    company = CompanyBundle(args.bundle)
     entity_ids = _entity_ids(args)
     registered = diagnostics = 0
     for meta_path, raws in pair_staging(args.staging):
         for raw in raws or [None]:
-            record = registry.register(raw, meta_path, entity_ids=entity_ids)
+            record = company.register(raw, meta_path, entity_ids=entity_ids)
             registered += 1
             diagnostics += record['status'] != 'ok'
     print(f'registered {registered} representations, {diagnostics} diagnostics')
@@ -79,8 +75,8 @@ def cmd_register(args):
 
 
 def cmd_packet(args):
-    registry = EvidenceRegistry(args.bundle)
-    records = registry.records()
+    company = CompanyBundle(args.bundle)
+    records = company.records()
     if not records:
         raise ContractError('Register sources before building a packet')
     if args.select:
@@ -92,9 +88,9 @@ def cmd_packet(args):
         selected = _latest_versions(records)
     as_of = args.as_of or max(r['fetched_at'] for r in selected)
     created_at = max(_now(), as_of)
+    company.claim(_security(args))  # refuses a different security
     packet = build_packet(selected, as_of, _security(args), created_at=created_at, root=args.bundle)
-    (args.bundle / 'evidence.json').write_bytes(canonical(selected))
-    (args.bundle / 'packet.json').write_bytes(canonical(packet))
+    company.save_working(packet, selected)
     print(f"{packet['packet_id']} as_of={as_of} evidence={len(packet['evidence_ids'])} "
           f"diagnostics={len(packet['diagnostic_ids'])}")
     return 0
@@ -117,7 +113,7 @@ def _discipline(path, role):
 
 
 def cmd_prepare(args):
-    packet, records = _bundle_inputs(args.bundle)
+    packet, records = CompanyBundle(args.bundle).working()
     questions = ([q.strip() for q in args.questions.split(',') if q.strip()] if args.questions
                  else questions_from_model(Path(args.questions_file).read_text(encoding='utf-8')))
     if not questions:
@@ -136,7 +132,7 @@ def cmd_prepare(args):
 
 
 def cmd_assemble(args):
-    packet, records = _bundle_inputs(args.bundle)
+    packet, records = CompanyBundle(args.bundle).working()
     fragments = Path(args.fragments)
     assemble(packet, records, {role: read_json(fragments / f'{role}.json') for role in ROLES},
              bundle_root=args.bundle, run=read_json(args.run),
@@ -151,13 +147,12 @@ def cmd_publish(args):
 
 
 def cmd_status(args):
-    registry = EvidenceRegistry(args.bundle)
-    print(f'manifest records: {len(registry.records())}')
-    packet_path = args.bundle / 'packet.json'
-    if not packet_path.exists():
+    company = CompanyBundle(args.bundle)
+    print(f'manifest records: {len(company.records())}')
+    if company.packet() is None:
         print('packet: not built')
     else:
-        packet, records = _bundle_inputs(args.bundle)
+        packet, records = company.working()
         check_packet(packet, records, args.bundle)
         print(f"packet: {packet['packet_id']} as_of={packet['as_of']}")
         for requirement in packet['requirements']:

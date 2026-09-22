@@ -77,8 +77,14 @@ class WorkflowTests(unittest.TestCase):
                 workflow.compare_registered(self.store, self.root, **(args | changes))
         from karst.packet import read_json
         import json
-        p = service.company_paths(self.root, 'NYSE:DEMO')['bundle'] / 'packet.json'
-        packet = read_json(p); packet['security']['security_id'] = 'NYSE:WRONG'
-        p.write_text(json.dumps(packet))
-        with self.assertRaises(ContractError):
-            workflow.compare_registered(self.store, self.root, **args)
+        bundle = service.company_paths(self.root, 'NYSE:DEMO')['bundle']
+        # The store's identity lives in security.json; a bundle written before it
+        # existed answers from its packet. A wrong identity is refused either way.
+        for name in ('security.json', 'packet.json'):
+            p = bundle / name
+            value = read_json(p)
+            (value if name == 'security.json' else value['security'])['security_id'] = 'NYSE:WRONG'
+            p.write_text(json.dumps(value))
+            with self.subTest(identity=name), self.assertRaises(ContractError):
+                workflow.compare_registered(self.store, self.root, **args)
+            (bundle / 'security.json').unlink(missing_ok=True)

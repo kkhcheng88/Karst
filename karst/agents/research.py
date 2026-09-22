@@ -13,8 +13,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from ..packet import (_citations, _private_selectors, check_packet, check_research,
-                      read_json)
+from ..company_bundle import CompanyBundle
+from ..packet import (_citations, _private_selectors, check_packet, check_research)
 from ..schema import ContractError, canonical, digest, embed_evidence_defs, schemas, validate
 from .protocol import get_research_protocol
 from .staging import stage_task
@@ -124,7 +124,7 @@ def export_task(bundle, subject, destination, protocol, previous_research=None,
     month picture and then quote the figure rather than the pixel.
     """
     bundle = Path(bundle)
-    packet, records = read_json(bundle / "packet.json"), read_json(bundle / "evidence.json")
+    packet, records = CompanyBundle(bundle).working()
     selected = check_packet(packet, records, bundle)
     allowed = list(allowed_evidence_ids if allowed_evidence_ids is not None else packet["evidence_ids"])
     if len(set(allowed)) != len(allowed) or not set(allowed) <= set(packet["evidence_ids"]):
@@ -191,7 +191,7 @@ def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, proto
     """
     protocol = protocol or get_research_protocol("update" if previous_research else "research")
     bundle = Path(bundle)
-    packet, records = read_json(bundle / "packet.json"), read_json(bundle / "evidence.json")
+    packet, records = CompanyBundle(bundle).working()
     contract = packet["contract_version"]
     if contract not in SUPPORTED:
         raise ContractError(f"Single-researcher intake requires contract {SUPPORTED}")

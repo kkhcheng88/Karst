@@ -1,10 +1,9 @@
 """Small daily intake: prices + dated news leads, preserving the research model."""
 from datetime import datetime, timezone, timedelta
-from pathlib import Path
 
 from . import service, bars
+from .company_bundle import CompanyBundle
 from .fetch import port
-from .identity import security_record
 from .packet import read_json, instant
 from .schema import ContractError
 
@@ -128,11 +127,9 @@ def refresh_scope(store, data_dir, universe_id, *, since=None, clients=None, res
 
 def refresh(store, data_dir, subject, *, since=None, clients=None):
     bundle = service.bundle_for(data_dir, subject)
-    packet_path = Path(bundle) / 'packet.json'
-    if not packet_path.exists():
+    security = CompanyBundle(bundle).security()
+    if security is None:
         raise ContractError('Register this security with refresh_sources before its first daily check')
-    packet = read_json(packet_path)
-    security = security_record(packet['security'])
     if security['security_id'] != subject:
         raise ContractError('Daily security does not match the subject')
     baseline = store.latest_research(subject)
@@ -150,7 +147,7 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
                                      clients=clients, store=store)
     def read_series(fetched):
         cutoff = fetched.get('research_input', {}).get('as_of') or service.utc_now()
-        return bars.series_for(bundle, security, cutoff, records=service._records(bundle))
+        return bars.series_for(bundle, security, cutoff)
 
     series = read_series(result)
     history_recovered = False

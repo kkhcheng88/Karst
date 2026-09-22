@@ -203,7 +203,7 @@ KARST_AUTH_MODE=token KARST_MCP_TOKEN=<token> python -m karst.mcp_server --http 
 
 ```
 <data>/karst.sqlite                       研究版本(連當時的 packet 與證據索引)、任務、FTS5 全文索引
-<data>/companies/<證券ID 安全化>/bundle/   該公司唯一證據倉(evidence/objects、manifest.jsonl、evidence.json、packet.json)
+<data>/companies/<證券ID 安全化>/bundle/   該公司唯一證據倉(evidence/objects、manifest.jsonl、evidence.json、packet.json、security.json);只經 karst/company_bundle.py 讀寫
 <data>/companies/<證券ID 安全化>/releases/ 發布頁
 <data>/tmp/                               取數暫存與任務目錄,可清
 <data>/oauth-proxy/                       github 模式的授權狀態(客戶端註冊、加密後的上游 token)

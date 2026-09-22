@@ -11,7 +11,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from ..packet import _private_selectors, check_packet, read_json
+from ..company_bundle import CompanyBundle
+from ..packet import _private_selectors, check_packet
 from ..schema import ContractError, canonical, embed_evidence_defs, schemas, validate
 from .research import CONTRACT
 from .staging import stage_task
@@ -92,7 +93,7 @@ def build_review_task(research_json, dispute, evidence_ids, protocol, *, bundle,
         raise ContractError("A review task needs a specific dispute")
     validate("research", research_json)
     bundle = Path(bundle)
-    packet, records = read_json(bundle / "packet.json"), read_json(bundle / "evidence.json")
+    packet, records = CompanyBundle(bundle).working()
     selected = check_packet(packet, records, bundle)
     if research_json["packet_id"] != packet["packet_id"]:
         raise ContractError("Review must name the packet version the research used")

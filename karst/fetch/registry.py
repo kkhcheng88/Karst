@@ -267,6 +267,20 @@ def map_record(raw_path, meta, *, entity_ids, artifact_path, contract_version='0
     return record
 
 
+def atomic_write(path, data):
+    """Replace ``path`` with ``data`` in one step: a reader sees the old bytes or the new."""
+    path = Path(path)
+    temporary = path.with_name(path.name + '.' + uuid4().hex + '.tmp')
+    try:
+        with temporary.open('xb') as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 class EvidenceRegistry:
     """Single-writer, append-only logical journals; atomic file replacement on disk."""
     def __init__(self, bundle_root):
@@ -283,20 +297,8 @@ class EvidenceRegistry:
             if path.read_bytes() != data:
                 raise ContractError('Existing content-addressed object is corrupt')
         else:
-            self._atomic(path, data)
+            atomic_write(path, data)
         return {'path': relative, 'sha256': sha, 'bytes': len(data)}
-
-    @staticmethod
-    def _atomic(path, data):
-        temporary = path.with_name(path.name + '.' + uuid4().hex + '.tmp')
-        try:
-            with temporary.open('xb') as handle:
-                handle.write(data)
-                handle.flush()
-                os.fsync(handle.fileno())
-            os.replace(temporary, path)
-        finally:
-            temporary.unlink(missing_ok=True)
 
     def records(self, contract_version=None):
         """Manifest records; ``contract_version`` restates the declared version only.
@@ -370,14 +372,14 @@ class EvidenceRegistry:
                 prior = [r for r in records if r['source_id'] == record['source_id']]
                 record['supersedes'] = prior[-1]['evidence_id'] if prior else None
                 records.append(record)
-                self._atomic(confined(self.root, 'evidence/manifest.jsonl'),
+                atomic_write(confined(self.root, 'evidence/manifest.jsonl'),
                              b''.join(canonical(r) for r in records))
             receipt = {'evidence_id': record['evidence_id'], 'fetched_at': meta['fetched_at'],
                        'metadata': metadata, 'artifact': artifact}
             path = confined(self.root, 'evidence/observations.jsonl')
             journal = path.read_bytes() if path.exists() else b''
             if receipt not in [decode(line) for line in journal.splitlines()]:
-                self._atomic(path, journal + canonical(receipt))
+                atomic_write(path, journal + canonical(receipt))
             return copy.deepcopy(record)
         finally:
             handle.close()

@@ -374,14 +374,3 @@ def check_research(packet, research, selected, root):
         raise ContractError("Raw bars require quote_to_bar_factor=1")
     return research
 
-
-def load_bundle(root):
-    root = Path(root)
-    packet = read_json(root / "packet.json")
-    records = read_json(root / "evidence.json")
-    if not isinstance(records, list):
-        raise ContractError("evidence.json must contain a list of evidence records")
-    selected = check_packet(packet, records, root)
-    research = read_json(root / "research.json")
-    check_research(packet, research, selected, root)
-    return packet, list(selected.values()), research

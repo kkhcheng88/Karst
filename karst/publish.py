@@ -7,8 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import calculations
-from .packet import (_citations, check_packet, check_research, confined, instant,
-                     load_bundle, read_json)
+from .company_bundle import RESERVED, CompanyBundle
+from .packet import _citations, check_packet, check_research, confined, instant, read_json
 from .page.render import VERSION as RENDERER_VERSION, render
 from .schema import ContractError, canonical, digest, schema_hashes, validate
 
@@ -53,7 +53,7 @@ def publish(bundle, output, *, previous_publication_id=None, bars=None, snapshot
     """
     bundle, output = Path(bundle), Path(output)
     if snapshot is None:
-        packet, records, research = load_bundle(bundle)
+        packet, records, research = CompanyBundle(bundle).checked()
     else:
         packet, records, research = snapshot
         selected = check_packet(packet, records, bundle)
@@ -98,12 +98,11 @@ def publish(bundle, output, *, previous_publication_id=None, bars=None, snapshot
         staging = Path(tempfile.mkdtemp(prefix=".staging-", dir=output))
         inputs = staging / "inputs"
         inputs.mkdir()
-        reserved = {"packet.json", "research.json", "evidence.json"}
         for record in records:
             relative = record["artifact"]["path"]
             if record["evidence_id"] not in referenced:
                 continue
-            if relative.split("/")[0] in reserved:
+            if relative.split("/")[0] in RESERVED:
                 raise ContractError("Source path collides with bundle metadata")
             destination = confined(inputs, relative)
             destination.parent.mkdir(parents=True, exist_ok=True)
@@ -112,8 +111,7 @@ def publish(bundle, output, *, previous_publication_id=None, bars=None, snapshot
             if digest(data) != record["artifact"]["sha256"] or len(data) != record["artifact"]["bytes"]:
                 raise ContractError("Source changed during publication")
             destination.write_bytes(data)
-        for name, value in (("packet", packet), ("evidence", records), ("research", research)):
-            (inputs / f"{name}.json").write_bytes(canonical(value))
+        CompanyBundle(inputs).save_frozen(packet, records, research)
         (staging / "calculations.json").write_bytes(canonical(calculated))
         (staging / "index.html").write_text(
             render(packet, records, research, calculated, inputs, bars), encoding="utf-8")
