@@ -9,7 +9,8 @@
     "enabled": true,
     "cadence": "daily",
     "timing_mode": "flexible_schedule",
-    "first_unattended_run_verified": false
+    "first_unattended_run_verified": false,
+    "readback_enabled": true
   },
   "independent_review": {
     "done": false,
@@ -17,7 +18,13 @@
     "reason": "External Anthropic disclosure not explicitly authorized; no transfer performed."
   },
   "deployment": {
-    "status": "pending"
+    "status": "public_reader_verified",
+    "commit": "fc33e39a1e461d78cb668e804f86ee3e34c99547",
+    "pages_run": 35737396990,
+    "files_matched": 21,
+    "readback_receipt": "public-readback.json",
+    "service_version": "0.2.13",
+    "cloud_protocol_readback": true
   },
   "limits": [
     "CME policy-implied path unavailable",
@@ -33,5 +40,11 @@
       "mcp_http"
     ],
     "scope": "targeted recovery, valuation bridge, publication and authenticated transport"
+  },
+  "formal_readback": {
+    "L3_assessed_at": "2026-09-19T15:48:37Z",
+    "L4_assessed_at": "2026-09-22T13:49:18Z",
+    "base_target": 194.84179104477613,
+    "entry_price": null
   }
 }
