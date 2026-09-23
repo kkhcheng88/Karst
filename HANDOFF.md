@@ -20,6 +20,8 @@
 
 ## 二、下一步
 
+**2026-09-23 日更（發布驗收中，本段優先）**：16標的本日新聞／價格實取，ETN歷史K線重試一次仍失敗但報價成功。RCL9/23已簽Sandals 50%／約30億美元，正式rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b、watch-0fa00f12撤回原入場／243失效／265及278目標；等待融資與現金流，獨立覆核pending。SPY保留六因素及原日期；兩鏈同口徑前瞻比较／CRWV融資橋已更新。7頁stage/apply，bulk chart上傳長時間未完成，先發布已核價格文字，舊歷史圖日期不改；新圖另待。逐股checkpoint／共享事件／正式研究cards/runs/daily/2026-09-23/；完整本地回執8942469及雲端取證已保存，不重做研究。16項daily-monitoring seed CAS待部署讀回；Pages與真正公開bytes回執未完成前不能稱已發布。DataOne原命令、資本橋、滾動動能及獨立覆核缺口保留。9/22回執已由git物件讀回，先前工作目錄缺少是sparse checkout，不是master缺檔。
+
 **2026-09-22 油價敘事／RCL／BE正式站驗收完成（本段優先）**：265aa401已發布三新閱讀版；7d00e813補可重用部署後公開bytes驗證。Actions35765285687 build、deploy及Verify deployed public bytes全部成功，62個公開檔（含首頁、全部歷史、圖表與CSS／JS）與該commit重建輸出一致；28個既有歷史HTML保持。回執artifact10711044515／public-reader-readback；摘要cards/runs/oil-relief-2026-09-22/publication-status.json。當前環境直讀站點逾時，已停止；驗收由GitHub runner真正HTTP執行，沒有冒稱本地成功。RCL及BE雲端新版本已指定版本讀回；watch已保存。下面列出的研究限制與新股daily-monitoring待加入仍保留，不把發布等同這些工作完成。
 
 **2026-09-22 油價敘事／RCL／BE修訂（發布驗收中）**：新增油價與危機緩和敘事及RCL六層主研究；實測RCL／DAL／CCL／UAL對USO回報，控制SPY、三窗口、HC3，不以相關性證明錯殺。RCL正式rv-0fa77627：中性／wait_confirmation、DCF中央167.89（81.33–278.05）、財報前條件方案251–253／243／分段265及278，10/9或更早業績前退出。BE已回應11覆核爭議＋5補證項，rv-4c2c0314：wait_evidence、撤下194.84／157現行價值錨，40倍改條件反推，新增PEG／稅／轉債說明；未稱尚欠資料已補齊。兩版本已雲端保存、發布並同步watch。三閱讀版stage/apply：42頁／31版，28歷史HTML不變。價格截至9/21；RCL兩季全文與四圖實讀，並非盲分析或獨立第二覆核。後續流程、輸入／計算、覆核處理见cards/runs/oil-relief-2026-09-22/。統一日更名單尚未加入本次四股及USO；watch不等於daily-monitoring，下一代理須透過knowledge入口補名單後核版本。GitHub Pages公開讀回待下段紀錄。

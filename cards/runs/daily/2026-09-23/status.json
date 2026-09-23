@@ -1,0 +1,567 @@
+{
+  "run_id": "daily-2026-09-23",
+  "parent_run_id": null,
+  "universe_id": "daily-monitoring",
+  "universe_version": "cloud kv-bdcd3957 + CAS proposed scope 16 (pending deployment readback)",
+  "started_at": "2026-09-23T14:54:26Z",
+  "stage": "reader_applied_lean_publication_pending",
+  "source_cutoffs": {
+    "news_since": "2026-09-21T00:00:00Z",
+    "new_intake_date": "2026-09-23",
+    "complete_price_date": "2026-09-22",
+    "intraday_range": "14:59–15:14 UTC",
+    "not_synchronized": true
+  },
+  "members": [
+    {
+      "subject": "NYSE:BE",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-256d1881b1ad229693a909f5a52061b098df986ff7665b119e68bb6ba7339f70"
+      ],
+      "price_evidence_id": "ev-256d1881b1ad229693a909f5a52061b098df986ff7665b119e68bb6ba7339f70",
+      "news_window": {
+        "checked_at": "2026-09-23T14:59:14Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 58,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "DataOne許可事件共用已去重，官方命令重試未能讀取；營運模型不變、既有價值錨不恢復，價格及倍數刷新；待核交付風險。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSE:GEV",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-727b97715fa469a23284cb3fb69e8657572b07c66da6425da6876538e5d9115a"
+      ],
+      "price_evidence_id": "ev-727b97715fa469a23284cb3fb69e8657572b07c66da6425da6876538e5d9115a",
+      "news_window": {
+        "checked_at": "2026-09-23T14:59:39Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 42,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "官方SMR MoU已讀，非已訂單；埃及服務索引已讀，細節重試失敗。未上修模型。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NASDAQ:CRWV",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-0bc4da80270b4209cd1eb0d1a708fd5a2033c9b2f393fbe3d472bcb2cc879ca3"
+      ],
+      "price_evidence_id": "ev-0bc4da80270b4209cd1eb0d1a708fd5a2033c9b2f393fbe3d472bcb2cc879ca3",
+      "news_window": {
+        "checked_at": "2026-09-23T14:59:54Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 71,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "capital bridge",
+        "L5 snapshot"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "8-K原文經鏡像已核42億可轉債完成，更新資金橋；Harell原文已核但無金額。完整June-to-date資本消耗仍待。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NASDAQ:NBIS",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-87661edc56ca34161d9a8096cdae6c7f7e4e5de64a53923aa66f353997f28b7a"
+      ],
+      "price_evidence_id": "ev-87661edc56ca34161d9a8096cdae6c7f7e4e5de64a53923aa66f353997f28b7a",
+      "news_window": {
+        "checked_at": "2026-09-23T15:00:18Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 70,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "DataOne共用事件增加許可／驗收待核；GPU加價無官方歷史基準，不上修模型。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NASDAQ:IREN",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-0e2f190ee93b4e4070a30e676e446c6bf7f00e8670fdb88922179d4ec36ead11"
+      ],
+      "price_evidence_id": "ev-0e2f190ee93b4e4070a30e676e446c6bf7f00e8670fdb88922179d4ec36ead11",
+      "news_window": {
+        "checked_at": "2026-09-23T15:00:39Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 31,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "已篩新聞，未核得新重大經營變更；容量驗收及收入模型缺口保留。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NASDAQ:MSFT",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-c5b28868ea4dd375c93104a288555e484f1dc8e575f78d0a729e2f7695f823e2"
+      ],
+      "price_evidence_id": "ev-c5b28868ea4dd375c93104a288555e484f1dc8e575f78d0a729e2f7695f823e2",
+      "news_window": {
+        "checked_at": "2026-09-23T15:00:53Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 113,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "券商評級不是公司指引；DataOne客戶關係風險共用，未作新公司估值。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSEARCA:SPY",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-90fcc2cf50f0bdd7682ed2c47bce13a69a1e3357783b404009636f2e5666796e"
+      ],
+      "price_evidence_id": "ev-90fcc2cf50f0bdd7682ed2c47bce13a69a1e3357783b404009636f2e5666796e",
+      "news_window": {
+        "checked_at": "2026-09-23T15:01:51Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 45,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "沿用六因素及原公布日期；更新單日市場參與、價格與技術；不追價。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSEARCA:RSP",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-474d2be6b330af7ee2514b973f72f4a85eda7128e16fe16152c02bedb667df6d"
+      ],
+      "price_evidence_id": "ev-474d2be6b330af7ee2514b973f72f4a85eda7128e16fe16152c02bedb667df6d",
+      "news_window": {
+        "checked_at": "2026-09-23T15:02:07Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 5,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "本日價格／新聞更新；參與度代理，不等於市場漲跌家數。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSEARCA:IWM",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-4515c7ba11e320d7209577eea3deb695cd1d295539cfa073c9cd8a6793cb3fb7"
+      ],
+      "price_evidence_id": "ev-4515c7ba11e320d7209577eea3deb695cd1d295539cfa073c9cd8a6793cb3fb7",
+      "news_window": {
+        "checked_at": "2026-09-23T15:02:17Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 3,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "本日價格／新聞更新；小型股單日相對較強，不宣稱持續擴散。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NASDAQ:AXTI",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-e2fee8ba83a3c3766d1b92c644e78ebaa007ca9b3ea66bd70489615b87ea9401"
+      ],
+      "price_evidence_id": "ev-e2fee8ba83a3c3766d1b92c644e78ebaa007ca9b3ea66bd70489615b87ea9401",
+      "news_window": {
+        "checked_at": "2026-09-23T15:02:25Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 12,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "剔除汽車同名新聞，未核得改寫InP模型的新原文；更新價格／倍數，原模型不變。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSE:RCL",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c"
+      ],
+      "price_evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+      "news_window": {
+        "checked_at": "2026-09-23T15:02:37Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 60,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "L2",
+        "L3 capital allocation supplement",
+        "L4",
+        "L5",
+        "L6"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "正式保存兩次（第二次修正舊phase殘留）；最終新版本撤回全部交易價位，更新watch。原公告核實、獨立覆核pending。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSE:DAL",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-da68519267eea5044e08408ddb749c327009404e50e2972613c29167e762a758"
+      ],
+      "price_evidence_id": "ev-da68519267eea5044e08408ddb749c327009404e50e2972613c29167e762a758",
+      "news_window": {
+        "checked_at": "2026-09-23T15:02:54Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 39,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "航空航線零散消息未足以改盈利，完成日更篩選；公司完整重估不足，不列交易。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSE:CCL",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-9de1a7a471cea0ba1814c86e0fb33a95b8bc6c0c73ea5c5cbdecdde64c438f1d"
+      ],
+      "price_evidence_id": "ev-9de1a7a471cea0ba1814c86e0fb33a95b8bc6c0c73ea5c5cbdecdde64c438f1d",
+      "news_window": {
+        "checked_at": "2026-09-23T15:03:05Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 73,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "剔除節慶Carnival同名雜訊；RCL事件不自動下修CCL需求，業績日曆待原文核實。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NASDAQ:UAL",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-fbcac9be11e2e7268ad665ed624d0af84457b7c5f42bfef51e68a2b716d057b3"
+      ],
+      "price_evidence_id": "ev-fbcac9be11e2e7268ad665ed624d0af84457b7c5f42bfef51e68a2b716d057b3",
+      "news_window": {
+        "checked_at": "2026-09-23T15:03:23Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 17,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "燃油修復與價格刷新，持倉新聞去噪；公司重估不足，不列交易。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSEARCA:USO",
+      "intake_status": "success",
+      "evidence_ids": [
+        "ev-beb6ae2c7e0b7dc945ca635cdcc214100e2003629bf25e8b875f19ffa62d670e"
+      ],
+      "price_evidence_id": "ev-beb6ae2c7e0b7dc945ca635cdcc214100e2003629bf25e8b875f19ffa62d670e",
+      "news_window": {
+        "checked_at": "2026-09-23T15:03:32Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 9,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_and_material_findings_reviewed",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": null,
+      "retry_count": 0,
+      "judgment": "共同油價代理刷新；與航空/郵輪燃油成本不等同，盤中反彈不當收市。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    },
+    {
+      "subject": "NYSE:ETN",
+      "intake_status": "partial_quote_ok_history_failed_after_retry",
+      "evidence_ids": [
+        "ev-f6f85b195880cc988515cf7cd79bc4f7cd9b2dcb778579a58fc34ac60ea0453e"
+      ],
+      "price_evidence_id": "ev-f6f85b195880cc988515cf7cd79bc4f7cd9b2dcb778579a58fc34ac60ea0453e",
+      "news_window": {
+        "checked_at": "2026-09-23T15:14:17Z",
+        "since": "2026-09-21T00:00:00+00:00",
+        "status": "ok",
+        "candidate_articles": 79,
+        "successful_feeds": 2
+      },
+      "review_status": "screened_material_review_partial",
+      "changed_layers": [
+        "price snapshot",
+        "news triage"
+      ],
+      "failure": [
+        "ev-3e1622e3d49042550ea22172d65c4b9bc26f9d1a396ee8cd4236a29571bb4c0e"
+      ],
+      "retry_count": 1,
+      "judgment": "新增估值參照；新聞剔除Eaton人名／山火／Eaton Vance，航太擴張金額未核；歷史K線失敗重試一次仍失敗，報價含prev_close成功。",
+      "research_reuse_date": null,
+      "news_cursor_advanced": false
+    }
+  ],
+  "shared_events": [
+    {
+      "id": "rcl-sandals-20260923",
+      "subjects": [
+        "NYSE:RCL",
+        "NYSE:CCL"
+      ],
+      "status": "primary_read",
+      "date": "2026-09-23",
+      "url": "https://www.sec.gov/Archives/edgar/data/884887/000110465926109755/tm2625963d1_ex99-1.htm",
+      "summary": "RCL簽50%股權約30億美元，承諾債務融資、early2027交割。修復方案撤回；同業只受情緒參照，不自動下修盈利。"
+    },
+    {
+      "id": "crwv-convert-20260922",
+      "subjects": [
+        "NASDAQ:CRWV"
+      ],
+      "status": "issuer_filing_text_on_mirror_read",
+      "date": "2026-09-22",
+      "url": "https://www.stocktitan.net/sec-filings/CRWV/8-k-core-weave-inc-reports-material-event-801052126158.html",
+      "summary": "已讀8-K原文L298–340，非AI摘要。42億美元完成，利率2.875%，淨籌41.37億，capped call耗5.662億，餘35.708億（未扣其他發行費）；增額淨債約6.292億，不含其他現金消耗。初始轉換97.85，非即時稀釋；年票息1.2075億。SEC直連未補。",
+      "evidence_id": "ev-8e5d6d03ad37fc63cbbe01226a804b71cedfbdf1b3eb62cd81185aa7ee9a6436"
+    },
+    {
+      "id": "dataone-permits-20260922",
+      "subjects": [
+        "NYSE:BE",
+        "NASDAQ:NBIS",
+        "NASDAQ:MSFT"
+      ],
+      "status": "secondary_read_primary_retry_failed",
+      "date": "2026-09-22",
+      "url": "https://newjerseymonitor.com/2026/09/22/nj-vineland-data-center-fined/",
+      "summary": "DataOne 62台天然氣發電機無許可、罰107萬美元報道；官方命令PDF讀取兩次失敗。不是Bloom燃料電池被罰。對BE交付与NBIS/MSFT驗收時點有待核風險，尚無合同取消或盈利下修證據；不量化收入下修。",
+      "evidence_id": "ev-0face655f650fd13d14422e5bdfe1fe96353a1982b6ecefe86b574ff5fc4f134"
+    },
+    {
+      "id": "crwv-harell-20260923",
+      "subjects": [
+        "NASDAQ:CRWV"
+      ],
+      "status": "primary_read",
+      "date": "2026-09-23",
+      "url": "https://www.coreweave.com/news/harell-data-selects-coreweave-to-power-its-secure-platform-for-ai-model-training",
+      "summary": "多年合作提供AI生技訓練推論；未披露金額，支持客戶範圍但不增收入預測。",
+      "evidence_id": "ev-2153a5fa3c97b3069142ce8f2b9594b81975434834cfca5f32828549417d0215"
+    },
+    {
+      "id": "gev-smr-20260922",
+      "subjects": [
+        "NYSE:GEV"
+      ],
+      "status": "primary_read",
+      "date": "2026-09-22",
+      "url": "https://www.gevernova.com/news/press-releases/sge-ge-vernova-hitachi-samsung-ct-sign-mou-advance-bwrx-300-fleet-deployment-europe",
+      "summary": "歐洲BWRX300框架MoU，非已落袋訂單，不加近期盈利。",
+      "evidence_id": "ev-23ecf947d5484e0aa6b82346b401aaa232878848cb42c0cca048474d92bfbdd4"
+    },
+    {
+      "id": "gev-egypt-20260923",
+      "subjects": [
+        "NYSE:GEV"
+      ],
+      "status": "primary_index_read_body_retry_failed",
+      "date": "2026-09-23",
+      "url": "https://www.gevernova.com/news/media-hub?type%5Bpress_release%5D=press_release",
+      "summary": "官方索引公告埃及五台9F轉子延壽服務，金額未核；不作盈利上修。"
+    },
+    {
+      "id": "market-20260922",
+      "subjects": [
+        "NYSEARCA:SPY",
+        "NYSEARCA:RSP",
+        "NYSEARCA:IWM",
+        "NYSEARCA:USO",
+        "NYSE:DAL",
+        "NASDAQ:UAL",
+        "NYSE:CCL"
+      ],
+      "status": "prices_read_event_causality_unproven",
+      "date": "2026-09-22",
+      "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026",
+      "summary": "SPY-0.02%，RSP+0.06%，IWM+0.57%，USO-2.75%；本日盤中方向反轉。沿用既有六因素及原日期；PCE官方下次9/30。"
+    }
+  ],
+  "research_versions": {
+    "RCL": "rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b",
+    "BE": "rv-4c2c0314d43e71d8f83522366b166f48d2962d396ccf882afca62d2393ab9520",
+    "AXTI": "rv-fb340f7ae6dceb7c82a0ab99618ac6ed591694738c2e2d0467b540efa08ea39e"
+  },
+  "reader_editions": [
+    {
+      "kind": "stocks",
+      "slug": "rcl",
+      "edition": "2026-09-23-r1"
+    },
+    {
+      "kind": "stocks",
+      "slug": "be",
+      "edition": "2026-09-23-r1"
+    },
+    {
+      "kind": "stocks",
+      "slug": "axti",
+      "edition": "2026-09-23-r1"
+    },
+    {
+      "kind": "market",
+      "slug": "spy",
+      "edition": "2026-09-23-r1"
+    },
+    {
+      "kind": "themes",
+      "slug": "ai-power",
+      "edition": "2026-09-23-r1"
+    },
+    {
+      "kind": "themes",
+      "slug": "neocloud",
+      "edition": "2026-09-23-r1"
+    },
+    {
+      "kind": "themes",
+      "slug": "oil-relief",
+      "edition": "2026-09-23-r1"
+    }
+  ],
+  "publication": {
+    "status": "pending",
+    "url": "https://kkhcheng88.github.io/Karst/"
+  },
+  "gaps": [
+    "DataOne original regulatory order unavailable after one retry; no numeric operating model cut",
+    "ETN daily history unavailable after one retry, fresh quote and previous close obtained",
+    "full 5/20-day momentum, RSI and beta not recalculated, explicitly blank",
+    "NBIS full current guidance and GPU price baseline, IREN realized capacity, full capital bridges incomplete",
+    "independent reviews pending; no external model used",
+    "September22 receipts are present in master and verified through git objects; sparse checkout omitted their working files. Prior intake not reused.",
+    "New chart and bulky raw receipt uploads stalled; lean reader publishes verified text only. Full local checkpoint 8942469 retained; cloud evidence preserved."
+  ],
+  "resume": {
+    "reuse_saved_research": true,
+    "next_stage": "reader stage/apply -> latest master nonforce -> Pages -> public bytes",
+    "no_prior_day_intake_reuse": true
+  }
+}

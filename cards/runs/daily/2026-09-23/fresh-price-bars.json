@@ -1,0 +1,677 @@
+{
+  "NYSE:BE": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "BE.US",
+    "fetched_at": "2026-09-23T14:59:14Z",
+    "params": {
+      "symbol": "BE.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "272.890",
+        "high": "282.000",
+        "low": "265.360",
+        "open": "270.000",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "3977470004.000",
+        "volume": 14545026
+      },
+      {
+        "close": "276.530",
+        "high": "284.250",
+        "low": "268.970",
+        "open": "274.160",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "2937527299.000",
+        "volume": 10586061
+      },
+      {
+        "close": "274.695",
+        "high": "282.635",
+        "low": "271.680",
+        "open": "277.630",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "915665543.524",
+        "volume": 3304853
+      }
+    ]
+  },
+  "NYSE:GEV": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "GEV.US",
+    "fetched_at": "2026-09-23T14:59:39Z",
+    "params": {
+      "symbol": "GEV.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "946.220",
+        "high": "962.850",
+        "low": "945.420",
+        "open": "955.000",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "2475024248.000",
+        "volume": 2596003
+      },
+      {
+        "close": "950.280",
+        "high": "958.990",
+        "low": "932.190",
+        "open": "935.000",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "2027098628.000",
+        "volume": 2134904
+      },
+      {
+        "close": "947.925",
+        "high": "954.770",
+        "low": "940.000",
+        "open": "949.980",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "511430044.481",
+        "volume": 540434
+      }
+    ]
+  },
+  "NASDAQ:CRWV": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "CRWV.US",
+    "fetched_at": "2026-09-23T14:59:54Z",
+    "params": {
+      "symbol": "CRWV.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "85.430",
+        "high": "87.250",
+        "low": "80.920",
+        "open": "81.560",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "3389571693.000",
+        "volume": 39845075
+      },
+      {
+        "close": "86.760",
+        "high": "89.230",
+        "low": "84.600",
+        "open": "85.710",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "2311760818.000",
+        "volume": 26584453
+      },
+      {
+        "close": "90.095",
+        "high": "90.234",
+        "low": "86.550",
+        "open": "89.160",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1142085518.112",
+        "volume": 12925175
+      }
+    ]
+  },
+  "NASDAQ:NBIS": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "NBIS.US",
+    "fetched_at": "2026-09-23T15:00:18Z",
+    "params": {
+      "symbol": "NBIS.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "232.800",
+        "high": "237.960",
+        "low": "221.300",
+        "open": "225.960",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "4049487931.000",
+        "volume": 17531104
+      },
+      {
+        "close": "236.120",
+        "high": "246.610",
+        "low": "231.660",
+        "open": "233.240",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "3665386139.000",
+        "volume": 15388959
+      },
+      {
+        "close": "235.270",
+        "high": "236.569",
+        "low": "228.501",
+        "open": "235.170",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1059189832.474",
+        "volume": 4546881
+      }
+    ]
+  },
+  "NASDAQ:IREN": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "IREN.US",
+    "fetched_at": "2026-09-23T15:00:39Z",
+    "params": {
+      "symbol": "IREN.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "47.230",
+        "high": "48.769",
+        "low": "46.400",
+        "open": "47.850",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1953907903.000",
+        "volume": 41082301
+      },
+      {
+        "close": "48.550",
+        "high": "49.350",
+        "low": "46.830",
+        "open": "46.980",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1630828353.000",
+        "volume": 33761756
+      },
+      {
+        "close": "49.230",
+        "high": "49.340",
+        "low": "47.830",
+        "open": "48.200",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "539829153.003",
+        "volume": 11124677
+      }
+    ]
+  },
+  "NASDAQ:MSFT": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "MSFT.US",
+    "fetched_at": "2026-09-23T15:00:53Z",
+    "params": {
+      "symbol": "MSFT.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "501.610",
+        "high": "501.870",
+        "low": "491.330",
+        "open": "494.945",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "13932148872.000",
+        "volume": 27959944
+      },
+      {
+        "close": "498.000",
+        "high": "508.500",
+        "low": "493.650",
+        "open": "507.320",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "10781872149.000",
+        "volume": 21652838
+      },
+      {
+        "close": "499.845",
+        "high": "509.440",
+        "low": "495.900",
+        "open": "501.100",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "3764854558.597",
+        "volume": 7493595
+      }
+    ]
+  },
+  "NYSEARCA:SPY": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "SPY.US",
+    "fetched_at": "2026-09-23T15:01:51Z",
+    "params": {
+      "symbol": "SPY.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "773.500",
+        "high": "774.890",
+        "low": "766.030",
+        "open": "766.251",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "38936637906.000",
+        "volume": 50484685
+      },
+      {
+        "close": "773.380",
+        "high": "775.140",
+        "low": "772.570",
+        "open": "774.030",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "26929025073.000",
+        "volume": 34802336
+      },
+      {
+        "close": "770.000",
+        "high": "773.020",
+        "low": "768.370",
+        "open": "772.750",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "8713166578.530",
+        "volume": 11310765
+      }
+    ]
+  },
+  "NYSEARCA:RSP": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "RSP.US",
+    "fetched_at": "2026-09-23T15:02:07Z",
+    "params": {
+      "symbol": "RSP.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "212.680",
+        "high": "213.195",
+        "low": "211.610",
+        "open": "212.600",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1202258631.000",
+        "volume": 5654089
+      },
+      {
+        "close": "212.800",
+        "high": "213.870",
+        "low": "212.310",
+        "open": "213.560",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1392987925.000",
+        "volume": 6543359
+      },
+      {
+        "close": "212.134",
+        "high": "212.535",
+        "low": "211.630",
+        "open": "212.250",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "523032571.041",
+        "volume": 2466163
+      }
+    ]
+  },
+  "NYSEARCA:IWM": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "IWM.US",
+    "fetched_at": "2026-09-23T15:02:17Z",
+    "params": {
+      "symbol": "IWM.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "285.580",
+        "high": "286.450",
+        "low": "284.900",
+        "open": "286.270",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "5418008356.000",
+        "volume": 18968202
+      },
+      {
+        "close": "287.210",
+        "high": "288.940",
+        "low": "286.050",
+        "open": "287.680",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "7375336933.000",
+        "volume": 25684272
+      },
+      {
+        "close": "283.350",
+        "high": "286.170",
+        "low": "282.605",
+        "open": "285.930",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "2168039549.812",
+        "volume": 7629487
+      }
+    ]
+  },
+  "NASDAQ:AXTI": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "AXTI.US",
+    "fetched_at": "2026-09-23T15:02:25Z",
+    "params": {
+      "symbol": "AXTI.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "79.930",
+        "high": "81.500",
+        "low": "72.770",
+        "open": "73.450",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "987697055.000",
+        "volume": 12591458
+      },
+      {
+        "close": "77.790",
+        "high": "79.390",
+        "low": "74.900",
+        "open": "76.635",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "589008208.000",
+        "volume": 7665593
+      },
+      {
+        "close": "76.700",
+        "high": "78.755",
+        "low": "74.840",
+        "open": "78.480",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "170870650.690",
+        "volume": 2240498
+      }
+    ]
+  },
+  "NYSE:RCL": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "RCL.US",
+    "fetched_at": "2026-09-23T15:02:37Z",
+    "params": {
+      "symbol": "RCL.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "250.250",
+        "high": "252.150",
+        "low": "246.300",
+        "open": "250.500",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "554367612.000",
+        "volume": 2217065
+      },
+      {
+        "close": "234.890",
+        "high": "261.660",
+        "low": "231.030",
+        "open": "259.000",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "2021923508.000",
+        "volume": 8400149
+      },
+      {
+        "close": "227.650",
+        "high": "237.000",
+        "low": "222.220",
+        "open": "235.280",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "737657537.083",
+        "volume": 3259185
+      }
+    ]
+  },
+  "NYSE:DAL": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "DAL.US",
+    "fetched_at": "2026-09-23T15:02:54Z",
+    "params": {
+      "symbol": "DAL.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "82.500",
+        "high": "82.770",
+        "low": "79.850",
+        "open": "81.000",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "753150809.000",
+        "volume": 9200270
+      },
+      {
+        "close": "83.920",
+        "high": "84.880",
+        "low": "82.460",
+        "open": "84.880",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "722160390.000",
+        "volume": 8642231
+      },
+      {
+        "close": "82.760",
+        "high": "83.095",
+        "low": "82.210",
+        "open": "82.760",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "191701942.370",
+        "volume": 2318519
+      }
+    ]
+  },
+  "NYSE:CCL": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "CCL.US",
+    "fetched_at": "2026-09-23T15:03:05Z",
+    "params": {
+      "symbol": "CCL.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "22.310",
+        "high": "22.450",
+        "low": "22.040",
+        "open": "22.340",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "407434830.000",
+        "volume": 18274473
+      },
+      {
+        "close": "22.280",
+        "high": "23.350",
+        "low": "22.130",
+        "open": "23.190",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "916142169.000",
+        "volume": 40626431
+      },
+      {
+        "close": "21.885",
+        "high": "22.160",
+        "low": "21.520",
+        "open": "22.040",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "200407131.331",
+        "volume": 9222343
+      }
+    ]
+  },
+  "NASDAQ:UAL": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "UAL.US",
+    "fetched_at": "2026-09-23T15:03:23Z",
+    "params": {
+      "symbol": "UAL.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "114.390",
+        "high": "114.650",
+        "low": "110.585",
+        "open": "111.800",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "541164291.000",
+        "volume": 4782817
+      },
+      {
+        "close": "115.210",
+        "high": "118.260",
+        "low": "114.145",
+        "open": "116.600",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "583748067.000",
+        "volume": 5046688
+      },
+      {
+        "close": "113.140",
+        "high": "114.298",
+        "low": "112.360",
+        "open": "113.910",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "98542186.506",
+        "volume": 871675
+      }
+    ]
+  },
+  "NYSEARCA:USO": {
+    "tool": "history_candlesticks_by_date",
+    "symbol": "USO.US",
+    "fetched_at": "2026-09-23T15:03:32Z",
+    "params": {
+      "symbol": "USO.US",
+      "period": "Day",
+      "adjust_type": "NoAdjust",
+      "trade_session": "unknown",
+      "start": "2026-09-21",
+      "end": null
+    },
+    "response": [
+      {
+        "close": "148.160",
+        "high": "149.710",
+        "low": "146.640",
+        "open": "148.880",
+        "timestamp": "2026-09-21T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "823629154.000",
+        "volume": 5549843
+      },
+      {
+        "close": "144.080",
+        "high": "148.020",
+        "low": "142.670",
+        "open": "145.410",
+        "timestamp": "2026-09-22T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "1226310419.000",
+        "volume": 8434607
+      },
+      {
+        "close": "146.670",
+        "high": "148.360",
+        "low": "146.450",
+        "open": "146.850",
+        "timestamp": "2026-09-23T04:00:00+00:00",
+        "trade_session": "Intraday",
+        "turnover": "340242470.125",
+        "volume": 2309781
+      }
+    ]
+  }
+}

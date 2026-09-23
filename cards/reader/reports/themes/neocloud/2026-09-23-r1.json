@@ -1,0 +1,453 @@
+{
+  "schema_version": 2,
+  "public": true,
+  "kind": "themes",
+  "slug": "neocloud",
+  "name": "Neocloud 價值鏈",
+  "published_at": "2026-09-23T15:21:00Z",
+  "as_of": "2026-09-23",
+  "revision": 1,
+  "review_status": "主研究日更；獨立覆核 pending；資料／模型原日期分開保留",
+  "verdict": "股價回暖；CRWV融資已完成，仍先驗每股回報",
+  "summary": "9/22等權代表組+1.93%、高於SPY約1.94個百分點。CRWV42億美元可轉債完成，流動性增加但有票息與capped call成本；NBIS場址許可風險待補證。",
+  "change": "把CRWV『計劃30億』更新為已完成42億；Harell合作未披露金額，不提高收入情境。",
+  "action": "尚無合格新交易；CRWV先核資金消耗，NBIS補許可／指引，IREN補驗收",
+  "overview": {
+    "chain": "Neocloud 價值鏈",
+    "change": "融资完成≠免費現金；許可可能影響交付",
+    "next_event": "10/1 NBIS部分按量計價調整；下一季交付及融資",
+    "action_state": "radar",
+    "coverage": "radar"
+  },
+  "metrics": [],
+  "sections": [
+    {
+      "key": "status",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "9/22等權代表組+1.93%、高於SPY約1.94個百分點。CRWV42億美元可轉債完成，流動性增加但有票息與capped call成本；NBIS場址許可風險待補證。"
+        },
+        {
+          "text": "研究不足與機會不合適分开：NBIS、IREN的前瞻交付及資金橋仍不足，不能因低表面收入倍數便買；CRWV有較完整指引，但高利息／設備更新負擔未解除。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "近期強弱 · 9月21日收市",
+          "columns": [
+            "標的",
+            "收市",
+            "1日",
+            "5日",
+            "5日相對 SPY",
+            "RSI14"
+          ],
+          "rows": [
+            [
+              "CRWV",
+              "$85.43",
+              "+5.00%",
+              "+2.95%",
+              "+1.29 pp",
+              "48.7"
+            ],
+            [
+              "NBIS",
+              "$232.80",
+              "+4.14%",
+              "+9.71%",
+              "+8.05 pp",
+              "55.4"
+            ],
+            [
+              "IREN",
+              "$47.23",
+              "+1.18%",
+              "+9.40%",
+              "+7.75 pp",
+              "60.1"
+            ]
+          ],
+          "note": "未復權價格、不含股息；5日為滾動交易日，不是本週至今。RSI 描述動能，不單獨決定買賣。"
+        }
+      ]
+    },
+    {
+      "key": "latest",
+      "title": "📰 最新變化",
+      "paragraphs": [
+        {
+          "text": "9/22 8-K原文（透過公開鏡像逐段閱讀）確認42億美元2033年到期可轉債，票息2.875%，淨籌41.37億，capped call支出5.662億，餘35.708億未扣其他發行費。單筆交易的借款減新增現金約增加淨債6.292億；不可只把42億加現金。年票息約1.2075億。初始轉換價97.85不是已發股，轉換仍有條件。"
+        },
+        {
+          "text": "9/23 Harell Data多年合作原文已核，未披露合約金額，支持客戶多元化但不改收入模型。"
+        },
+        {
+          "text": "DataOne天然氣發電機許可事件跨BE／NBIS／MSFT只研究一次；官方命令讀取重試失敗。先標記供電、驗收時點風險，不等同NBIS訂單取消。GPU加價報道尚缺官方歷史價目對照，不上調收入。"
+        }
+      ]
+    },
+    {
+      "key": "narrative",
+      "title": "🔗 產業敘事、假設與風險",
+      "paragraphs": [
+        {
+          "text": "核心機會在可交付的 AI 算力。電源、GPU、機房與軟件共同決定收入啟動；容量儲備只有在上電、驗收及被客戶使用後，才開始轉成收入。短缺可支持租價與預付款，但持續投資仍取決於資產更新後的回報。"
+        },
+        {
+          "text": "三家並列在 AI Cloud 層，作營運與估值比較。下方箭頭只表示已找到文件的供應／客戶方向；未畫出的連接不代表不存在。"
+        }
+      ],
+      "network": {
+        "nodes": [
+          {
+            "key": "be",
+            "label": "BE · Bloom",
+            "role": "供電設備"
+          },
+          {
+            "key": "crwv",
+            "label": "CRWV · CoreWeave",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "nbis",
+            "label": "NBIS · Nebius",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "iren",
+            "label": "IREN",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "msft",
+            "label": "MSFT · Microsoft",
+            "role": "算力客戶"
+          }
+        ],
+        "edges": [
+          {
+            "from": "be",
+            "to": "nbis",
+            "label": "2026-05-20 公告首個 328MW 項目預計於 2026 年運行；交付完成仍須核實。",
+            "basis": "documented",
+            "source": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+            "relation_type": "supplies"
+          },
+          {
+            "from": "iren",
+            "to": "msft",
+            "label": "Horizon 1 的 50MW IT 負載部署已交付並獲 Microsoft 接收；Horizon 2–4 仍須追蹤。",
+            "basis": "documented",
+            "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+            "relation_type": "supplies"
+          }
+        ]
+      },
+      "tables": [
+        {
+          "title": "哪些證據會改變整條鏈的判斷",
+          "columns": [
+            "核心假設",
+            "目前依據",
+            "下次要驗證／失效訊號"
+          ],
+          "rows": [
+            [
+              "需求足以吸收新增容量",
+              "CRWV 已有收入與 backlog；NBIS 有新客戶預付款",
+              "收入／使用率能否跟上投運；取消或遞延合約將削弱增長假設"
+            ],
+            [
+              "供電與交付仍是瓶頸",
+              "BE→NBIS 首個 328MW 合作；IREN Horizon 1 已驗收",
+              "其餘項目投運、客戶驗收與開始收費；延誤會推遲收入"
+            ],
+            [
+              "稀缺性可支持價格與倍數",
+              "NBIS 管理層披露新合約定價改善",
+              "同代 GPU 租價、續約與折扣；價格轉弱會同時壓低盈利預測與估值倍數"
+            ],
+            [
+              "擴張能增加每股價值",
+              "預付款及融資支撐建設",
+              "利息、GPU 更新支出與股數增長；收入增長若被利息／稀釋抵消，須下調投資評價"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "key": "comparison",
+      "title": "📊 主要公司：基本面、估值與技術比較",
+      "paragraphs": [
+        {
+          "text": "统一CY2027曆年、美元及既有低／中／高收入情境；9/22價格與固定9/18近似股數重算。營運模型沿用，不把年底ARR直接當全年收入。"
+        },
+        {
+          "text": "CRWV使用六月淨債29.765十億加已核單筆融資淨債增量0.6292十億；NBIS0.5036及IREN1.9412仍是六月資料。這不是完整9/22資產負債表，未核的後續CapEx、ATM及其他借款不偽裝成已橋接。"
+        },
+        {
+          "text": "CRWV 2027收入18／23／28、NBIS6／9／12、IREN2.8／4／5.5十億維持原研究情境；NBIS最新指引及IREN容量驗收仍有缺口，置信度不相同。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "CY2027收入同口徑前瞻比較 · 自估（沿用原資料日期，非本日重估）",
+          "columns": [
+            "公司",
+            "低／中／高收入（十億美元）",
+            "橋接淨債（十億）",
+            "近似EV／中值收入",
+            "收入低值的壓力倍數"
+          ],
+          "rows": [
+            [
+              "CRWV",
+              "18／23／28",
+              "30.394",
+              "3.40×",
+              "4.35×"
+            ],
+            [
+              "NBIS",
+              "6／9／12",
+              "0.504",
+              "7.25×",
+              "10.87×"
+            ],
+            [
+              "IREN",
+              "2.8／4／5.5",
+              "1.941",
+              "5.27×",
+              "7.53×"
+            ]
+          ],
+          "note": "固定股數近似由9/18公開市值／價格倒算，非新增股數核實。CRWV只補9/22已知融資一筆；其他資金消耗缺口保留。EV/S低不等於股東價值便宜。"
+        },
+        {
+          "title": "沿用6月底季度營運質素（未重標為本日）",
+          "columns": [
+            "觀察項目",
+            "CRWV",
+            "NBIS",
+            "IREN"
+          ],
+          "rows": [
+            [
+              "六月季度收入（百萬美元）",
+              "2,575.0",
+              "582.3",
+              "137.2"
+            ],
+            [
+              "收入按季增長",
+              "+23.9%",
+              "+45.9%",
+              "-5.2%"
+            ],
+            [
+              "調整 EBITDA 利潤率",
+              "58.6%",
+              "40.6%",
+              "14.0%"
+            ],
+            [
+              "GAAP 營業利潤率",
+              "-1.9%",
+              "-30.2%",
+              "-452.2%"
+            ],
+            [
+              "AI Cloud 在集團的角色",
+              "主營算力雲",
+              "約 98.7% 季度收入",
+              "約 51.4% 季度收入；其餘挖礦"
+            ],
+            [
+              "生意位置",
+              "已具規模的平台與 GPU 服務",
+              "全棧 AI Cloud，擴容與軟件並進",
+              "自建機房、電力資產向 AI 服務轉型"
+            ],
+            [
+              "最重要的經營差異",
+              "收入規模大，但折舊／利息吞噬回報",
+              "收入增長最快；需把新容量轉成持續盈利",
+              "AI 收入季增約 110%；挖礦縮減令總收入下跌"
+            ]
+          ],
+          "note": "CRWV 的 EBITDA 利潤率最高，但當季淨利息支出 $6.4 億；NBIS 的 GAAP 營業虧損包含併購相關支出；IREN 的大額營業虧損含 $4.504 億資產減值。比較 EBITDA 時仍須看折舊、融資及更新設備的成本。"
+        },
+        {
+          "title": "9/22完整收市與逐股下一步",
+          "columns": [
+            "公司",
+            "收市／單日",
+            "本輪判断",
+            "等待"
+          ],
+          "rows": [
+            [
+              "CRWV",
+              "86.76 / +1.56%",
+              "融資落地，合作未量化",
+              "扣利息、CapEx、capped call後每股回報"
+            ],
+            [
+              "NBIS",
+              "236.12 / +1.43%",
+              "場址許可風險待核",
+              "官方命令、驗收與最新指引"
+            ],
+            [
+              "IREN",
+              "48.55 / +2.79%",
+              "未核得新模型變更披露",
+              "Horizon調試與實際收入、維持研究不足"
+            ],
+            [
+              "MSFT",
+              "498.00 / -0.72%",
+              "客戶端參照，不把券商升級當盈利上修",
+              "合同驗收／CapEx與回報；未完成獨立公司估值"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "key": "plan",
+      "title": "🧭 投資選擇與下一步",
+      "paragraphs": [
+        {
+          "text": "沒有新合格交易，不列入場、目標及失效位。研究順序：CRWV重建完整資金橋，NBIS補許可及官方指引，IREN驗證容量轉收入；條件補足後再與價格結構一起評估。"
+        },
+        {
+          "text": "需求存在與投資價格合適是兩個問題。獨立覆核pending；未把本比較頁冒充三家已保存的完整公司研究。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "什麼情況值得提高優先度",
+          "columns": [
+            "觀察項目",
+            "CRWV",
+            "NBIS",
+            "IREN"
+          ],
+          "rows": [
+            [
+              "經營檢驗",
+              "Q3 收入 $34.5–36 億能否兌現；利息占收入是否下降",
+              "新容量變成收入，預付款後仍有可持續的項目回報",
+              "Horizon 2–4 驗收；AI 收入能否抵消挖礦縮減"
+            ],
+            [
+              "價格檢驗",
+              "收回 85–87，再看能否站穩約 92 的 200 日線",
+              "收回 227–234 阻力；或在 200–204 形成守住後的上升結構",
+              "突破並守住 49–50，且後續回測不破"
+            ],
+            [
+              "降低優先度的訊號",
+              "跌失約 78–79，或收入增長被融資成本抵消",
+              "跌失約 200–204，或交付／定價低於假設",
+              "跌失約 41，或驗收延誤、稀釋超出收入增長"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Nebius／Bloom 供電合作",
+      "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+    },
+    {
+      "label": "Nebius 第二季財務",
+      "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf"
+    },
+    {
+      "label": "Nebius 第二季股東信",
+      "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf"
+    },
+    {
+      "label": "IREN FY26 業績",
+      "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+    },
+    {
+      "label": "CoreWeave 第二季業績",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+      "label": "CoreWeave 第三季及全年指引",
+      "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf"
+    },
+    {
+      "label": "Longbridge：三股同日行情與市值",
+      "url": "https://open.longbridge.com/docs/quote/overview"
+    },
+    {
+      "label": "Reuters：Neocloud 定價變化",
+      "url": "https://www.reuters.com/technology/nebius-hikes-ai-cloud-prices-again-demand-computing-power-soars-2026-09-17/"
+    },
+    {
+      "label": "Nebius Q1股東信：2026收入與ARR指引（Q1歷史指引）",
+      "url": "https://assets.nebius.com/assets/aa1bc2e6-df83-40cd-a6a2-95e7cda3d16c/Nebius%20SHL_Q1%202026.pdf"
+    },
+    {
+      "label": "CoreWeave Q2財務報表",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+      "label": "Nebius Q2財務報表",
+      "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf"
+    },
+    {
+      "label": "Nebius Q2股東信",
+      "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf"
+    },
+    {
+      "label": "IREN FY26結果",
+      "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+    },
+    {
+      "label": "Reuters：CoreWeave融資公告9/17",
+      "url": "https://www.reuters.com/legal/transactional/coreweave-launches-3-billion-convertible-debt-sale-2026-09-17/"
+    },
+    {
+      "label": "2026-09-22 crwv-convert-20260922",
+      "url": "https://www.stocktitan.net/sec-filings/CRWV/8-k-core-weave-inc-reports-material-event-801052126158.html"
+    },
+    {
+      "label": "2026-09-22 dataone-permits-20260922",
+      "url": "https://newjerseymonitor.com/2026/09/22/nj-vineland-data-center-fined/"
+    },
+    {
+      "label": "2026-09-23 crwv-harell-20260923",
+      "url": "https://www.coreweave.com/news/harell-data-selects-coreweave-to-power-its-secure-platform-for-ai-model-training"
+    }
+  ],
+  "related": [
+    {
+      "kind": "stocks",
+      "slug": "be",
+      "label": "Bloom Energy：供電端研究"
+    },
+    {
+      "kind": "themes",
+      "slug": "ai-power",
+      "label": "AI 電力：設備與供電瓶頸"
+    },
+    {
+      "kind": "market",
+      "slug": "spy",
+      "label": "市場與 SPY：大盤位置"
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "schema_version": 2,
+  "public": true,
+  "kind": "market",
+  "slug": "spy",
+  "name": "美股大盤與 SPY",
+  "symbol": "SPY",
+  "published_at": "2026-09-23T15:21:00Z",
+  "as_of": "2026-09-23",
+  "revision": 1,
+  "review_status": "主研究日更；獨立覆核 pending；資料／模型原日期分開保留",
+  "verdict": "偏多背景未改；短線擴散略改善，仍不追價",
+  "summary": "9/22 SPY 773.38（−0.02%），RSP+0.06%、IWM+0.57%；相對參與改善僅一天，未突破774–779。六因素原判斷及數據日期保留。",
+  "change": "變化集中在價格／參與度；本日盤中SPY與小型股回落，油價代理反彈，不能宣稱壓力持續紓緩。",
+  "action": "機會尚不合適；等待760–766承接或收穩779後回測",
+  "overview": {
+    "chain": "美股市場 · 基準與投資工具",
+    "change": "RSP、IWM單日跑贏；SPY仍在阻力下",
+    "next_event": "9/30 PCE；10/14 CPI；下一輪大型股業績",
+    "action_state": "watch",
+    "coverage": "radar"
+  },
+  "metrics": [],
+  "sections": [
+    {
+      "key": "judgment",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "9/22 SPY 773.38（−0.02%），RSP+0.06%、IWM+0.57%；相對參與改善僅一天，未突破774–779。六因素原判斷及數據日期保留。"
+        },
+        {
+          "text": "9/23 15:01–15:03 UTC非同步盤中快照：SPY約770、IWM283.35、USO146.67。它們不是完整收市，不能與昨日收市混成新的確認訊號。宏觀與盈利模型不因一天行情翻寫。"
+        }
+      ]
+    },
+    {
+      "key": "plan",
+      "title": "🧭 投資計劃",
+      "paragraphs": [
+        {
+          "text": "暫無合格新交易。現價接近774–779阻力，期限定價基準亦僅約792；不把樂觀情境919當成追價理由。"
+        },
+        {
+          "text": "關鍵等待條件：回到760–766附近並形成可辨識的承接，或收穩779後建立突破回測。屆時須重核盈利修訂、政策利率及失效位置，按入場區保守端計算成本後風報比；未達標仍然等待。"
+        },
+        {
+          "text": "749.60失守且不能收回，近期修復判斷失效；這是結構重評位，不是未開倉交易的止損單。9/30 PCE、第三季企業指引及其後第四季業績，是檢驗盈利與倍數的催化劑。"
+        }
+      ]
+    },
+    {
+      "key": "drivers",
+      "title": "🌐 市場驅動因素",
+      "paragraphs": [
+        {
+          "text": "六因素維持既有判斷；以下前四列是原資料時點，並非本日重新公布。今日新增的是最後兩列的價格與參與度。"
+        },
+        {
+          "text": "7月核心PCE3.3%同比的官方原文已再核；下次PCE發布9/30。未核齊市場隱含政策路徑的缺口不抹除。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "數據與投資含義（沿用原資料日期，非本日重估）",
+          "columns": [
+            "因素",
+            "最新證據／缺口",
+            "既有判斷"
+          ],
+          "rows": [
+            [
+              "通脹",
+              "8月CPI同比3.4%、月增0.4%；核心同比2.4%、月增0.3%；7月核心PCE同比3.3%",
+              "核心CPI同比放緩、月度壓力回升；仍限制寬鬆。未核公布前共識，不能稱超預期。"
+            ],
+            [
+              "Fed與市場利率",
+              "9/16加息25bp至3.75–4.00%；政策利率預測中位數年底及2027年均4.1%。9/22盤前10年債息約4.9%",
+              "政策與長債均顯示折現率壓力；市場隱含加減息路徑未核齊，暫不能判市場與Fed預期差有多大。"
+            ],
+            [
+              "經濟與盈利",
+              "8月就業+16.2萬；FactSet預期Q3盈利增28.9%，上修4個行業、下修6個、持平1個",
+              "需求與盈利仍有支持，但上修集中；正面／負面EPS指引72／43，不能據此說所有公司均轉強。"
+            ],
+            [
+              "指數估值",
+              "9/18 FactSet：NTM P/E19.1；五／十年均值19.8／19.0；CY2027 EPS417.35",
+              "大致接近歷史中樞，高利率不支持無條件擴張。9/21價格上升而盈利不變，定價更緊。"
+            ],
+            [
+              "今日事件與市場反應",
+              "9/22 USO−2.75%、SPY−0.02%；9/23盤中USO反彈",
+              "油價下降不是永久趨勢；供應／地緣消息不以同日相關性當因果。"
+            ],
+            [
+              "技術與參與度",
+              "9/22 SPY773.38；RSP+0.06%、IWM+0.57%",
+              "單日擴散改善，但774–779尚未收復，長期偏多、短線不追。"
+            ]
+          ]
+        },
+        {
+          "title": "最新完整收市 · 9/22",
+          "columns": [
+            "參照",
+            "收市",
+            "單日",
+            "相對SPY"
+          ],
+          "rows": [
+            [
+              "SPY",
+              "$773.38",
+              "-0.02%",
+              "0.00 pp"
+            ],
+            [
+              "RSP",
+              "$212.80",
+              "+0.06%",
+              "0.07 pp"
+            ],
+            [
+              "IWM",
+              "$287.21",
+              "+0.57%",
+              "0.59 pp"
+            ]
+          ],
+          "note": "未復權價格、不含分派；單日不是整體市場廣度。"
+        }
+      ]
+    },
+    {
+      "key": "pricing",
+      "title": "💰 估值與盈利要求",
+      "paragraphs": [
+        {
+          "text": "採用FactSet 9/18報告的整體盈利預測：2026年EPS362.41、2027年417.35。這比用基金FY1調和P/E倒算盈利更直接；兩套口徑分開，不串成同一時間序列。"
+        },
+        {
+          "text": "以下是本研究在2027-02-28、第四季業績陸續驗證後的定價情境，並非FactSet目標價。基準採CY2027 EPS417.35及19倍；以歷史中樞作參照，高利率和上修集中限制進一步溢價。"
+        },
+        {
+          "text": "原2027-02-28期限定價基準約792，較9/22收773.38仍僅約2.4%；盈利與倍數假設未改。現價折讓不足屬機會不合適，政策隱含路徑缺口另列，兩者不混為一談。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "2027-02-28期限定價情境",
+          "columns": [
+            "情境",
+            "CY2027 EPS",
+            "P/E",
+            "指數點位",
+            "SPY近似價"
+          ],
+          "rows": [
+            [
+              "bear",
+              "375.62",
+              "17",
+              "6385",
+              "$638"
+            ],
+            [
+              "base",
+              "417.35",
+              "19",
+              "7930",
+              "$792"
+            ],
+            [
+              "bull",
+              "438.22",
+              "21",
+              "9203",
+              "$919"
+            ]
+          ],
+          "note": "悲觀／基準／樂觀依次排列；未賦予機率。以9/17指數7637.76與SPY762.60的同日比例換算，不含未來分派與追蹤誤差。"
+        },
+        {
+          "title": "SPY產品資料",
+          "collapsed": true,
+          "columns": [
+            "項目",
+            "內容"
+          ],
+          "rows": [
+            [
+              "追蹤範圍",
+              "S&P 500，美國大型股"
+            ],
+            [
+              "總費用率",
+              "0.0945%"
+            ],
+            [
+              "分派",
+              "每季"
+            ],
+            [
+              "9/21 NAV折溢價",
+              "+0.01%；只檢查交易價格相對基金資產，不代表大盤便宜。"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "key": "chains",
+      "title": "🔎 價值鏈機會比較",
+      "paragraphs": [
+        {
+          "text": "近期相對強弱以 AI 供電及 Neocloud 代表組較好；投資取捨仍取決於誰能把需求變成股東現金流。高 Beta 代表對市場敏感，不代表較高的預期回報。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "同日等權價格比較 · 9/22",
+          "columns": [
+            "代表組",
+            "單日",
+            "相對SPY",
+            "取捨"
+          ],
+          "rows": [
+            [
+              "BE／GEV",
+              "+0.88%",
+              "0.90 pp",
+              "需求未改，許可／交付及高估值限制追價"
+            ],
+            [
+              "CRWV／NBIS／IREN",
+              "+1.93%",
+              "1.94 pp",
+              "融資已落地不等於每股回報改善"
+            ]
+          ],
+          "note": "本輪只確認新單日；舊5／20日窗口不冒充今日新算。"
+        }
+      ]
+    },
+    {
+      "key": "technicals",
+      "title": "📈 技術走勢",
+      "paragraphs": [
+        {
+          "text": "9/22高775.14、低772.57、收773.38，仍在774–779壓力下。沿用760–766承接與749.60結構重評位，尚無新合格交易。"
+        },
+        {
+          "text": "新日K已核對，圖表發布待補；月線與當週仍未完成。舊均線數字不重標為今日數值。"
+        }
+      ]
+    }
+  ],
+  "related": [
+    {
+      "kind": "themes",
+      "slug": "ai-power",
+      "label": "AI 供電：估值與交付假設"
+    },
+    {
+      "kind": "themes",
+      "slug": "neocloud",
+      "label": "Neocloud：三家公司比較"
+    }
+  ],
+  "sources": [
+    {
+      "label": "BLS：8月 CPI",
+      "url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm"
+    },
+    {
+      "label": "Fed：9/16 決議",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm"
+    },
+    {
+      "label": "Fed：9月經濟預測",
+      "url": "https://www.federalreserve.gov/monetarypolicy/files/fomcprojtabl20260916.pdf"
+    },
+    {
+      "label": "BEA：7月個人收入及支出",
+      "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026"
+    },
+    {
+      "label": "BLS：8月就業",
+      "url": "https://www.bls.gov/news.release/archives/empsit_09042026.htm"
+    },
+    {
+      "label": "State Street：9/21 SPY 估值與持倉",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy"
+    },
+    {
+      "label": "Reuters：9/21 市場收市",
+      "url": "https://www.reuters.com/business/wall-st-futures-rise-ai-stocks-gain-oil-prices-slide-2026-09-21/"
+    },
+    {
+      "label": "Reuters：9/22 盤前",
+      "url": "https://www.reuters.com/business/wall-st-futures-pause-after-ai-rally-focus-mideast-tensions-2026-09-22/"
+    },
+    {
+      "label": "Longbridge：行情",
+      "url": "https://open.longbridge.com/docs/quote/overview"
+    },
+    {
+      "label": "FactSet Earnings Insight 9/18：盈利、修訂廣度與歷史估值",
+      "url": "https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_091826.pdf"
+    }
+  ]
+}

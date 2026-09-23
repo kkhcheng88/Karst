@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-09-23T15:21:00Z",
+  "run_id": "daily-2026-09-23",
+  "price_cutoff": "2026-09-22",
+  "intraday_cutoffs": "2026-09-23T14:59:14Z/2026-09-23T15:14:51Z, explicitly non-synchronous",
+  "news_window_start": "2026-09-21T00:00:00Z",
+  "new_daily_intake": true,
+  "independent_review": "pending_not_performed",
+  "formal_version": "rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b",
+  "scope": "saved formal changed research",
+  "sources": [
+    {
+      "id": "rcl-sandals-20260923",
+      "url": "https://www.sec.gov/Archives/edgar/data/884887/000110465926109755/tm2625963d1_ex99-1.htm",
+      "status": "primary_read"
+    },
+    {
+      "id": "crwv-convert-20260922",
+      "url": "https://www.stocktitan.net/sec-filings/CRWV/8-k-core-weave-inc-reports-material-event-801052126158.html",
+      "status": "issuer_filing_text_on_mirror_read",
+      "evidence_id": "ev-8e5d6d03ad37fc63cbbe01226a804b71cedfbdf1b3eb62cd81185aa7ee9a6436"
+    },
+    {
+      "id": "dataone-permits-20260922",
+      "url": "https://newjerseymonitor.com/2026/09/22/nj-vineland-data-center-fined/",
+      "status": "secondary_read_primary_retry_failed",
+      "evidence_id": "ev-0face655f650fd13d14422e5bdfe1fe96353a1982b6ecefe86b574ff5fc4f134"
+    },
+    {
+      "id": "crwv-harell-20260923",
+      "url": "https://www.coreweave.com/news/harell-data-selects-coreweave-to-power-its-secure-platform-for-ai-model-training",
+      "status": "primary_read",
+      "evidence_id": "ev-2153a5fa3c97b3069142ce8f2b9594b81975434834cfca5f32828549417d0215"
+    },
+    {
+      "id": "gev-smr-20260922",
+      "url": "https://www.gevernova.com/news/press-releases/sge-ge-vernova-hitachi-samsung-ct-sign-mou-advance-bwrx-300-fleet-deployment-europe",
+      "status": "primary_read",
+      "evidence_id": "ev-23ecf947d5484e0aa6b82346b401aaa232878848cb42c0cca048474d92bfbdd4"
+    },
+    {
+      "id": "gev-egypt-20260923",
+      "url": "https://www.gevernova.com/news/media-hub?type%5Bpress_release%5D=press_release",
+      "status": "primary_index_read_body_retry_failed"
+    },
+    {
+      "id": "market-20260922",
+      "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026",
+      "status": "prices_read_event_causality_unproven"
+    }
+  ],
+  "gaps": [
+    "primary DataOne order unavailable after retry",
+    "full rolling 5/20-day momentum not recalculated",
+    "ETN history failed after retry; current quote succeeded",
+    "independent review pending",
+    "New chart asset upload blocked; current edition uses verified price text, prior archived charts retain original cutoff."
+  ]
+}
