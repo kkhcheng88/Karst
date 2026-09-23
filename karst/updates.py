@@ -41,7 +41,7 @@ def identifier(value):
     return digest(canonical(value))
 
 
-def _text(value, name):
+def require_text(value, name):
     if not isinstance(value, str) or not value.strip():
         raise ContractError(f"{name} must be nonempty text")
 
@@ -66,7 +66,7 @@ def validate_watch(item):
     if not isinstance(item, dict) or set(item) != required:
         raise ContractError(f"watch must contain exactly {sorted(required)}")
     _private_selectors(item)
-    _text(item["waiting_for"], "waiting_for")
+    require_text(item["waiting_for"], "waiting_for")
     if item["validation_deadline"] is not None:
         timestamp(item["validation_deadline"])
     for name in ("conditions", "subscriptions", "dependencies"):
@@ -75,7 +75,7 @@ def validate_watch(item):
     for condition in item["conditions"]:
         if not isinstance(condition, dict) or condition.get("kind") not in ("price", "event"):
             raise ContractError("condition kind must be price or event")
-        _text(condition.get("description"), "condition.description")
+        require_text(condition.get("description"), "condition.description")
         if condition["kind"] == "price":
             if set(condition) != {"kind", "description", "operator", "value", "currency"}:
                 raise ContractError("price condition needs operator, value, currency and description")
@@ -83,7 +83,7 @@ def validate_watch(item):
             if (condition["operator"] not in ("gte", "lte") or isinstance(value, bool)
                     or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0):
                 raise ContractError("Invalid price threshold")
-            _text(condition["currency"], "condition.currency")
+            require_text(condition["currency"], "condition.currency")
         elif set(condition) != {"kind", "description"}:
             raise ContractError("Event conditions are questions for the researcher, not automatic event claims")
     for sub in item["subscriptions"]:
@@ -91,16 +91,16 @@ def validate_watch(item):
         if (not isinstance(sub, dict) or not {"entity_id", "kinds"} <= set(sub)
                 or set(sub) - {"entity_id", "kinds"} - optional):
             raise ContractError("subscription requires entity_id/kinds and optional source_ids/authors/source_types/url_prefixes")
-        _text(sub["entity_id"], "subscription.entity_id")
+        require_text(sub["entity_id"], "subscription.entity_id")
         if not isinstance(sub["kinds"], list) or not sub["kinds"]:
             raise ContractError("subscription.kinds must be nonempty")
         for kind in sub["kinds"]:
-            _text(kind, "subscription.kind")
+            require_text(kind, "subscription.kind")
         for key in optional & set(sub):
             if not isinstance(sub[key], list) or not sub[key]:
                 raise ContractError(f'subscription.{key} must be a nonempty list')
             for value in sub[key]:
-                _text(value, f'subscription.{key}')
+                require_text(value, f'subscription.{key}')
                 if key == 'url_prefixes':
                     parsed = urlsplit(value)
                     if (parsed.scheme != 'https' or not parsed.hostname or parsed.username
@@ -114,7 +114,7 @@ def validate_watch(item):
         if dep["input_kind"] not in ("source", "entity", "relation", "assumption"):
             raise ContractError("Unknown dependency kind")
         for key in keys - {"layers"}:
-            _text(dep[key], key)
+            require_text(dep[key], key)
         if not isinstance(dep["layers"], list) or not dep["layers"] or not set(dep["layers"]) <= set(LAYERS):
             raise ContractError("dependency layers must name L1–L6")
     return copy.deepcopy(item)
@@ -201,7 +201,7 @@ def validate_input_changes(events):
         if event["kind"] not in ("relation", "assumption"):
             raise ContractError("Explicit input changes are relation or assumption revisions")
         for key in event:
-            _text(event[key], key)
+            require_text(event[key], key)
     return events
 
 

@@ -277,7 +277,7 @@ class PersistenceTests(unittest.TestCase):
         protocol = service.get_research_protocol("research")["version"]
         sources = {"supplier": [], "buyer": [], "industry": [report]}
         with patch("karst.service.company_bundles", return_value=list(sources)), patch(
-                "karst.service._records", side_effect=lambda p: sources[str(p)]):
+                "karst.triage._records", side_effect=lambda p: sources[str(p)]):
             for subject, exposure in (("supplier", "Pricing power rises"), ("buyer", "Input costs rise")):
                 p = baseline([])["payload"] | {"method_version": protocol["declared"] + "+" + protocol["digest"][:12]}
                 first = self.store.save_research_version(subject, p, evidence=[], as_of=EARLY)

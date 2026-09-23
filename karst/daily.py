@@ -21,12 +21,11 @@ import threading
 import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timedelta, timezone
 
-from . import bars, daily_snapshot, service, store as store_module
+from . import bars, daily_snapshot, service, store as store_module, triage
 from .company_bundle import CompanyBundle
 from .fetch import longbridge, port
-from .packet import instant, read_json
+from .packet import read_json
 from .schema import ContractError
 
 # Members refreshed at once. Provider load is capped per source in fetch.limits, so
@@ -405,14 +404,7 @@ def refresh(store, data_dir, subject, *, since=None, clients=None):
     baseline = store.latest_research(subject)
     last = store.latest_update_check(subject)
     if since is None:
-        # An incomplete check must never advance the news window past unread news.
-        if last and last['payload']['outcome'] == 'unchanged':
-            # Overlap catches publication during the prior read/check and modest
-            # provider indexing delay. Stable article identity deduplicates it.
-            since = (instant(last['created_at']) - timedelta(days=1)).isoformat()
-        else:
-            since = (baseline['as_of'] if baseline else
-                     (datetime.now(timezone.utc) - timedelta(days=3)).isoformat())
+        since = triage.news_since(baseline, last)
     now = service.utc_now()
     records = company.records()
     stored, _ = _stored_series(company, security, now, records)

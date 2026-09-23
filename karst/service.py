@@ -499,61 +499,15 @@ def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_chan
     full registered source set is checked, so a new transcript need not have been
     cited by the old report to be noticed.
     """
-    from . import updates
-    from .store import now as state_now
-    as_of = as_of or state_now()
-    if updates.timestamp(as_of) > updates.timestamp(state_now()):
-        raise ContractError("Update cutoff cannot be in the future")
-    baseline = store.latest_research(subject)
-    if baseline and updates.timestamp(baseline["created_at"]) > updates.timestamp(as_of):
-        raise ContractError("Latest research did not exist at the requested cutoff; use frozen-version context")
-    own = _records(bundle)
-    records = list(own)
-    observations = CompanyBundle(bundle).observations()
-    watch = store.get_watch(subject)
-    if data_dir is not None and watch:
-        seen = {r["evidence_id"] for r in records}
-        for other in company_bundles(data_dir):
-            if Path(other).resolve() == Path(bundle).resolve():
-                continue
-            observations.extend(CompanyBundle(other).observations())
-            for record in _records(other):
-                if record["evidence_id"] not in seen and updates.subscribed(record, watch["payload"]):
-                    records.append(record)
-                    seen.add(record["evidence_id"])
-    market = None
-    if watch and any(c["kind"] == "price" for c in watch["payload"]["conditions"]):
-        security = CompanyBundle(bundle).security() or {}
-        # A supplier's bars never become this company's threshold price: only this
-        # bundle's own records, and only those registered to this security.
-        found = bars_module.series_for(bundle, security or {"security_id": subject}, as_of,
-                                       records=own)
-        if found.daily:
-            bar = found.daily[-1]
-            market = {"price": bar["close"], "at": bar["at"], "complete": bar["complete"],
-                      "currency": security.get("currency"), "basis": found.source["price_basis"],
-                      "adjustment": found.basis["adjust"],
-                      "evidence_id": found.source["evidence_id"]}
-    methods = []
-    for mode in ("research", "update"):
-        version = get_research_protocol(mode)["version"]
-        methods.append(version["declared"] + "+" + version["digest"][:12])
-    from .knowledge import dependency_changes
-    from .evidence_changes import equivalent
-    explicit = {(e["kind"], e["id"]): e for e in updates.validate_input_changes(input_changes)}
-    # Stored revisions are authoritative; callers cannot hide one with a stale event.
-    explicit.update({(e["kind"], e["id"]): e for e in dependency_changes(store, watch, as_of=as_of)})
-    return updates.plan(subject, baseline, records, as_of=as_of, watch=watch,
-                        refresh_status=store.refresh_status(subject), market=market,
-                        method_versions=methods, input_changes=list(explicit.values()), observations=observations,
-                        equivalent=lambda before, after: equivalent(before, after, bundle))
+    from . import triage
+    return triage.plan(store, bundle, subject, data_dir=data_dir, as_of=as_of,
+                       input_changes=input_changes)
 
 
 def record_update_check(store, bundle, subject, plan_id, outcome, reason, *, data_dir=None, input_changes=()):
-    current = plan_update(store, bundle, subject, data_dir=data_dir, input_changes=input_changes)
-    if current["plan_id"] != plan_id:
-        raise ContractError("Inputs or conditions changed; read the new update plan before recording the check")
-    return store.record_update_check(current, outcome, reason)
+    from . import triage
+    return triage.record_check(store, bundle, subject, plan_id, outcome, reason,
+                               data_dir=data_dir, input_changes=input_changes)
 
 
 def get_research_context(store, bundle, subject, as_of=None, as_of_version=None, *, data_dir=None):

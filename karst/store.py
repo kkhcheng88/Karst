@@ -467,18 +467,8 @@ class Store:
             "SELECT payload FROM refresh_state WHERE subject=? ORDER BY adapter", (subject,))]
 
     def record_update_check(self, plan, outcome, reason):
-        from .updates import _text
-        if outcome not in ("unchanged", "needs_reassessment", "incomplete"):
-            raise ContractError("Invalid update check outcome")
-        _text(reason, "reason")
-        if outcome == "unchanged" and (not plan["base_version_id"] or any(
-                r["kind"] == "missing_baseline_inputs" for r in plan["reasons"])):
-            raise ContractError("A prior research snapshot is required for an unchanged check")
-        # Incomplete retrieval must stay disclosed even if the material that did
-        # arrive did not change the analyst's view.
-        if outcome == "unchanged" and (plan["diagnostics"] or any(
-                s["status"] != "ok" for s in plan["refresh_status"])):
-            raise ContractError("Incomplete sources cannot be recorded as an unchanged check")
+        from .triage import check_outcome
+        check_outcome(plan, outcome, reason)
         payload = {"plan": plan, "outcome": outcome, "reason": reason}
         check_id = "check-" + digest(canonical({"plan_id": plan["plan_id"], "outcome": outcome, "reason": reason}))
         cursor = self.connection.cursor()

@@ -16,12 +16,14 @@ What changed decides which layers go to the agent queue (``karst.updates`` routi
 * new news candidates queue the news layers (``updates.KIND_LAYERS['news']``);
 * incomplete source coverage queues nothing but holds the news window where it is.
 
+When the window moves and when a queue counts as read is ``karst.triage``'s rule.
+
 A radar member without formal research gets the technical part only: there is no plan
 to update and nothing to reassess. No ticker, date or security lives here.
 """
 from __future__ import annotations
 
-from . import charts, updates
+from . import charts, triage, updates
 from .calculations import calculate_valuation, risk_reward
 from .schema import ContractError
 
@@ -223,8 +225,7 @@ def build(*, subject, checked_at, bars, new_bars, research, previous, news_candi
         reasons.append({"kind": "news", "evidence_ids": [c["evidence_id"] for c in news_candidates]})
         layers.update(updates.KIND_LAYERS["news"])
     queued = (previous or {}).get("queue") or {}
-    if queued.get("layers") and not (reviewed_at and reviewed_at > queued["since"]) \
-            and queued.get("base_version_id") == snapshot["base_version_id"]:
+    if triage.unread_queue(queued, reviewed_at, snapshot["base_version_id"]):
         layers.update(queued["layers"])
         reasons = queued["reasons"] + reasons
         since = queued["since"]
@@ -235,5 +236,5 @@ def build(*, subject, checked_at, bars, new_bars, research, previous, news_candi
                           "base_version_id": snapshot["base_version_id"],
                           "reasons": reasons[-QUEUE_REASONS_KEPT:]} if layers else None)
     snapshot["news"] = {"candidates": len(news_candidates), "coverage_complete": coverage_complete,
-                        "pending_review": bool(snapshot["queue"] and "L2" in snapshot["queue"]["layers"])}
+                        "pending_review": triage.news_pending(snapshot["queue"])}
     return snapshot

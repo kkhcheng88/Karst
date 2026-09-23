@@ -109,6 +109,7 @@ research = intake(payload, bundle=bundle, clock=now,  # 模型只交分析 paylo
 - `daily.refresh_scope` 以 `WORKERS`(預設 8)個成員並行,每條工作線程自開 SQLite 連線;檢查點只追加(`<run_id>.json` 表頭加 `<run_id>.members.jsonl` 每股一行)。`daily.start` 在背景跑並回表頭,`daily.wait`／`run_summary` 回摘要,重啟後以 `resume_run_id` 續跑。
 - 每股的價格序列存在公司證據倉(`CompanyBundle.daily_series`),K 線只由最後一根已收市起取,新快照接駁等同全量重建(有測試),口徑或身份不同就全量重建。
 - `karst/daily_snapshot.py` 產生日更快照(`CompanyBundle.save_daily_snapshot`):計劃價距離、觸發狀態、收市 R&R、公允價值位置、價格事件與重評排隊;事件門檻集中在該檔頂部。它不改研究版本、不寫查核、不發布。
+- **增量分流**(`karst/triage.py`,KARST-257):`updates.plan` 仍是純函式;`triage.inputs(store, bundle, subject, data_dir=…)` 收集它讀的一切(本公司證據、觀察項訂閱／依賴帶進的他公司來源、只取本證券自己的收市價、取源狀態、方法版本、已存關係／假設修訂),`triage.plan`／`triage.record_check` 是 `service.plan_update`／`record_update_check` 的實作。新聞窗口規則只在此處:`news_since` 定日更由何時讀新聞(只有 `unchanged` 查核才推進,重疊一日),`check_outcome` 擋覆蓋不完整或無研究基準的 `unchanged`(store 收件時呼叫),`unread_queue`／`news_pending` 定重評排隊何時算已讀。
 - 量度:`python -m karst.daily_bench --members 200 --workers 8 --price-delay 0.5 --article-delay 0.455`(假 client,預設先跑一次「前一日」再量穩態)。
 
 **模型可讀的標準圖**(`karst/charts.py` 0.3.1,matplotlib Agg):

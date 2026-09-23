@@ -14,7 +14,7 @@ from datetime import date
 from urllib.parse import urlsplit
 
 from .schema import ContractError, canonical, digest
-from .updates import LAYERS, timestamp, _text
+from .updates import LAYERS, timestamp, require_text as _text
 
 KINDS = ("universe", "relation", "assumption", "comparison")
 RELATIONS = ("supplies", "customer", "competes", "finances", "exposed_to", "complements")
