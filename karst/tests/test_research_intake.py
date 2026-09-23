@@ -123,7 +123,8 @@ class IntakeTests(unittest.TestCase):
         later = (datetime.fromisoformat(self.clock.replace('Z', '+00:00')) +
                  timedelta(hours=1)).isoformat()
         result = intake(update, bundle=self.bundle, clock=later, role_meta=ROLE_META,
-                        previous_version_id=previous['research_id'], previous_research=previous)
+                        previous_version_id=previous['research_id'], previous_research=previous,
+                        update_scope={'full_reason': '測試：整份重評。'})
         self.assertEqual(result['previous_research_id'], previous['research_id'])
         self.assertEqual(result['target_date'], previous['target_date'])
         self.assertEqual(result['layers']['L3']['assessed_at'], previous['layers']['L3']['assessed_at'])

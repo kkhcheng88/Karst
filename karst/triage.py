@@ -8,6 +8,7 @@ two impure edges around it and the one rule that ties them to the daily run:
   complete own-security price for price conditions, refresh status, method versions
   and stored relation/assumption revisions;
 * :func:`record_check` re-plans and records the researcher's outcome;
+* :func:`issue_scope` records the update scope (``karst.scope``) the next save is held to;
 * the news window: :func:`news_since` is where a daily refresh starts reading news,
   :func:`check_outcome` refuses an ``unchanged`` check the window may not advance
   past, and :func:`unread_queue` / :func:`news_pending` keep unread news queued.
@@ -22,7 +23,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import bars, updates
+from . import bars, scope, updates
 from .company_bundle import CompanyBundle
 from .packet import instant
 from .schema import ContractError
@@ -102,6 +103,25 @@ def plan(store, bundle, subject, *, data_dir=None, as_of=None, input_changes=())
     """Compare registered evidence with the latest immutable research."""
     return updates.plan(**inputs(store, bundle, subject, data_dir=data_dir, as_of=as_of,
                                  input_changes=input_changes))
+
+
+def issue_scope(store, bundle, subject, plan):
+    """Issue and record the scope of the next update of ``subject``'s latest research.
+
+    What changed (the plan), an unread daily-snapshot queue of the same version, and
+    carried layers that expired decide the layers; ``karst.scope`` owns the rules.
+    Returns None when there is no research to update.
+    """
+    baseline = store.latest_research(subject)
+    if not baseline or plan["base_version_id"] != baseline["version_id"]:
+        return None
+    snapshot = CompanyBundle(bundle).daily_snapshot()
+    last = store.latest_update_check(subject)
+    unread = unread_queue((snapshot or {}).get("queue") or {}, (last or {}).get("created_at"),
+                          baseline["version_id"])
+    issued = scope.issue(plan, baseline, snapshot=snapshot, snapshot_unread=unread,
+                         watch=store.get_watch(subject), as_of=plan["checked_at"])
+    return store.save_update_scope(issued)
 
 
 def record_check(store, bundle, subject, plan_id, outcome, reason, *, data_dir=None, input_changes=()):

@@ -498,10 +498,17 @@ def plan_update(store, bundle, subject, *, data_dir=None, as_of=None, input_chan
     External sources enter only through explicit subscriptions/dependencies. The
     full registered source set is checked, so a new transcript need not have been
     cited by the old report to be noticed.
+
+    ``scope`` is the update scope the system issues and records for the next update of
+    the latest research (None without one): the layers that update may rewrite, what
+    triggered each, and carried layers that expired. ``save_research`` names it by
+    ``scope_id``; it is not part of the plan's identity.
     """
     from . import triage
-    return triage.plan(store, bundle, subject, data_dir=data_dir, as_of=as_of,
+    plan = triage.plan(store, bundle, subject, data_dir=data_dir, as_of=as_of,
                        input_changes=input_changes)
+    plan["scope"] = triage.issue_scope(store, bundle, subject, plan)
+    return plan
 
 
 def record_update_check(store, bundle, subject, plan_id, outcome, reason, *, data_dir=None, input_changes=()):
@@ -535,6 +542,7 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None,
                                             if row["publication_path"] else None),
                          "role": row["role"], "execution": row["execution"],
                          "provider": row["provider"], "model": row["model"],
+                         "layers": _layer_dates(row["payload"], row.get("provenance")),
                          **_headline(row["payload"])})
     if as_of_version is None:
         company = CompanyBundle(bundle)
@@ -568,11 +576,24 @@ def get_research_context(store, bundle, subject, as_of=None, as_of_version=None,
             "latest_review": _review_summary(reviews),
             "research": frozen["payload"] if as_of_version is not None else None,
             "calculation_receipt": frozen["calc_receipt"] if as_of_version is not None else None,
+            "layer_provenance": frozen.get("provenance") if as_of_version is not None else None,
             "changes_since_previous": research_changes(previous["payload"] if previous else None, frozen["payload"]) if as_of_version else None,
             "watch": store.get_watch(subject) if as_of_version is None else None,
             "update_plan": plan_update(store, bundle, subject, data_dir=data_dir) if as_of_version is None and as_of is None else None,
             "last_update_check": store.latest_update_check(subject) if as_of_version is None else None,
             "note": VIEW_NOTES[view] + " Source text is not inlined; read it with read_evidence."}
+
+
+def _layer_dates(payload, provenance):
+    """Each layer's assessed date and whether this version carried it (None: not recorded,
+    a version saved before layer provenance existed)."""
+    rows = (provenance or {}).get("layers") or {}
+    layers = (payload or {}).get("layers") if isinstance(payload, dict) else None
+    if not isinstance(layers, dict):
+        return None
+    return {name: {"assessed_at": layer.get("assessed_at") if isinstance(layer, dict) else None,
+                   "status": (rows.get(name) or {}).get("status")}
+            for name, layer in layers.items()}
 
 
 def _review_summary(reviews):
@@ -671,15 +692,17 @@ def chart_artifact(store, artifact_id):
 # --- save / publish ---------------------------------------------------------
 
 def save_research(store, bundle, payload, *, subject, expected_previous_version_id=None,
-                  role_meta):
+                  role_meta, update_scope=None):
     """Research intake (``agents.research.save``): check once, then append a version.
 
     The stored version freezes the packet and the evidence index it was validated
-    against, so publishing it later never picks up evidence that arrived since.
+    against, so publishing it later never picks up evidence that arrived since. An
+    update names its ``update_scope`` (``plan_update``'s ``scope.scope_id``, or a
+    declared ``full_reason``); see ``karst.scope``.
     """
     return research_intake.save(store, bundle, payload, subject=subject, role_meta=role_meta,
                                 previous_version_id=expected_previous_version_id,
-                                clock=utc_now)
+                                clock=utc_now, update_scope=update_scope)
 
 
 def _check_technical_basis(research, rebuilt, gaps, as_of):

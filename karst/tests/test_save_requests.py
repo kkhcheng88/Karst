@@ -6,7 +6,7 @@ from pathlib import Path
 from karst import service, store as store_module
 from karst.packet import read_json
 from karst.schema import ContractError
-from karst.tests.v03_fixture import ROLE_META, build_bundle, citable, payload
+from karst.tests.v03_fixture import FULL_SCOPE, ROLE_META, build_bundle, citable, payload
 
 SUBJECT = 'FIXTURE:FIXTURE'
 
@@ -29,7 +29,8 @@ class SaveRequestTests(unittest.TestCase):
 
     def save(self, analysis, previous=None):
         return service.save_research(self.store, self.bundle, analysis, subject=SUBJECT,
-                                     expected_previous_version_id=previous, role_meta=ROLE_META)
+                                     expected_previous_version_id=previous, role_meta=ROLE_META,
+                                     update_scope=FULL_SCOPE if previous else None)
 
     def test_a_payload_request_is_registered_and_then_accepted(self):
         analysis = payload(self.packet, self.evidence_id)

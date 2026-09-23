@@ -228,5 +228,9 @@ def payload(packet, evidence_id, *, bars_count=(0, 0, 0), valuation=None):
     }
 
 
+# An update save declared as a full reassessment (KARST-262): the fixture's updates are
+# not about scope, so they declare it rather than borrow a plan.
+FULL_SCOPE = {'full_reason': 'Test fixture: full reassessment of the previous version.'}
+
 ROLE_META = [{'role': 'researcher', 'execution': 'interactive', 'provider': 'fixture',
               'model_id': 'handwritten-test-fixture', 'prompt_version': 'research-protocol-v1'}]

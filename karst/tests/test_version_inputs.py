@@ -22,7 +22,8 @@ from karst.fetch.registry import EvidenceRegistry
 from karst.packet import build_packet, check_packet, confined, read_json
 from karst.schema import ContractError, canonical, digest
 from karst.tests import v03_fixture
-from karst.tests.v03_fixture import ROLE_META, SECURITY, build_bundle, citable, payload
+from karst.tests.v03_fixture import (FULL_SCOPE, ROLE_META, SECURITY, build_bundle, citable,
+                                     payload)
 
 SUBJECT = SECURITY['security_id']
 
@@ -54,7 +55,8 @@ class VersionInputTests(unittest.TestCase):
     def save(self, analysis, previous=None, **kwargs):
         return service.save_research(self.store, self.bundle, analysis, subject=SUBJECT,
                                      expected_previous_version_id=previous,
-                                     role_meta=ROLE_META, **kwargs)
+                                     role_meta=ROLE_META,
+                                     update_scope=FULL_SCOPE if previous else None, **kwargs)
 
     def publish(self, version):
         return service.publish_research(self.store, self.bundle, version['version_id'],
@@ -207,14 +209,17 @@ class VersionInputTests(unittest.TestCase):
 CLOCK, LATER = '2031-01-02T03:04:05Z', '2031-02-03T04:05:06Z'
 # Captured from the pre-KARST-259 save path (fingerprint credential, packet read four
 # times) with the clocks above: the refactor must store exactly the same versions.
+# The 'second' (update-mode) IDs were re-pinned when KARST-262 revised prompts/update.md:
+# an update version records the update protocol digest. With the previous prompt the
+# KARST-262 intake still produced the old IDs, so the intake itself stores the same versions.
 BEFORE = {
     '0.3.0': {'first': ('rv-24df85e143f45e7cb18474de824b3aa61b6a2d04513f54989f07740b56e3b15f',
                         '5c54cb61ef9312f64815caf41841ba08de21ba7b8770560e14412661b588247a'),
-              'second': ('rv-057d7e194e47f295e601aeb07987b981eeacc82528ea875c6046f16314624b25',
+              'second': ('rv-3dd66fca58ed1932801a5903e0e22085e15f5a578ebdad35bbb4c1970510dd26',
                          '5c54cb61ef9312f64815caf41841ba08de21ba7b8770560e14412661b588247a')},
     '0.4.0': {'first': ('rv-e1a7e6b04cb07332e9cb44bbec82b0b719fd19f42c822dc88e65dac73aa73258',
                         'ce482d23d2f604e087f2f6f70a39437c72710d680f381d989a9983078e958aec'),
-              'second': ('rv-d3afd4495424d1302b3ef4064d2f572c779b62c7ae77ae0434fd8fb4afd6e919',
+              'second': ('rv-dd80770f77806153e18220c437fcc8a0dbeac2865f329dc48f6456302d8a30d3',
                          'ce482d23d2f604e087f2f6f70a39437c72710d680f381d989a9983078e958aec')},
 }
 
@@ -249,8 +254,10 @@ class SameVersionsTests(unittest.TestCase):
         second_payload = json.loads(canonical(first_payload))
         second_payload['layers']['L5']['conclusion']['text'] = 'updated technical view'
         with patch.object(service, 'utc_now', lambda: LATER):
-            second = save(second_payload, expected_previous_version_id=first['version_id'])
-            replay = save(second_payload, expected_previous_version_id=first['version_id'])
+            second = save(second_payload, expected_previous_version_id=first['version_id'],
+                          update_scope=FULL_SCOPE)
+            replay = save(second_payload, expected_previous_version_id=first['version_id'],
+                          update_scope=FULL_SCOPE)
         got = {name: (version['version_id'],
                       digest(canonical(store.get_research(version['version_id'])['calc_receipt'])))
                for name, version in (('first', first), ('second', second))}

@@ -16,7 +16,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from .. import calculations
+from .. import calculations, scope as scope_module
 from ..company_bundle import CompanyBundle
 from ..packet import (_citations, _private_selectors, build_packet, check_packet,
                       check_research)
@@ -164,44 +164,62 @@ def _models(role_meta):
 
 
 def intake(payload, *, bundle, clock, role_meta, previous_version_id=None, protocol=None,
-           previous_research=None):
+           previous_research=None, update_scope=None, scope=None):
     """Validate one analysis payload and return a complete research.json.
 
     Raises ContractError without writing anything when the payload does not hold up.
     ``save`` is the same check followed by storing the version; use it to keep one.
+    An update (``previous_research`` given) needs ``update_scope`` — see ``save``.
     """
     bundle = Path(bundle)
     packet, records = CompanyBundle(bundle).working()
-    research, _ = _build(payload, packet, records, bundle, clock=clock, role_meta=role_meta,
-                         previous_version_id=previous_version_id, protocol=protocol,
-                         previous_research=previous_research)
+    research, _, _ = _build(payload, packet, records, bundle, clock=clock, role_meta=role_meta,
+                            previous_version_id=previous_version_id, protocol=protocol,
+                            previous_research=previous_research, update_scope=update_scope,
+                            scope=scope, base_version_id=previous_version_id)
     return research
 
 
 def _build(payload, packet, records, bundle, *, clock, role_meta, previous_version_id=None,
-           protocol=None, previous_research=None):
-    """The intake rules, once: payload + this packet -> ``(research, selected records)``.
+           protocol=None, previous_research=None, update_scope=None, scope=None,
+           base_version_id=None):
+    """The intake rules, once: payload + this packet -> ``(research, selected, provenance)``.
 
     Nothing is read from disk but the evidence bytes the checks hash; nothing is written.
-    Every rule about what an update may carry over from the previous version (today the
-    unchanged layers' ``assessed_at``) belongs here, next to the one place layers are built.
+    Every rule about what an update may carry over from the previous version belongs
+    here, next to the one place layers are built: the scope gate (``karst.scope``)
+    decides which units are carried, and a carried layer keeps its ``assessed_at``.
     """
     protocol = protocol or get_research_protocol("update" if previous_research else "research")
     contract = packet["contract_version"]
     if contract not in SUPPORTED:
         raise ContractError(f"Single-researcher intake requires contract {SUPPORTED}")
+    provenance, carried_ids = None, set()
+    if previous_research:
+        payload = scope_module.merge(previous_research, payload)
     _validate_payload(payload, contract)
+    if previous_research:
+        provenance, carried_ids = scope_module.gate(
+            previous_research, payload, update_scope, scope, base_version_id=base_version_id)
+        missing = sorted(carried_ids - set(packet["evidence_ids"]))
+        if missing:
+            raise ContractError(
+                "Carried analysis cites evidence absent from this packet (" + ", ".join(missing)
+                + "); prepare the packet with those sources or expand that layer with a reason")
+    else:
+        provenance = scope_module.initial()
+    carried = {name for name, row in provenance["layers"].items() if row["status"] == "carried"}
     selected = check_packet(packet, records, bundle)
     read_ids = set(payload["read_evidence_ids"])
     if not read_ids <= set(packet["evidence_ids"]):
         raise ContractError("Read log references evidence outside packet")
     for name, layer in payload["layers"].items():
-        if not set(layer["read_evidence_ids"]) <= read_ids:
+        if name not in carried and not set(layer["read_evidence_ids"]) <= read_ids:
             raise ContractError(f"{name} read log exceeds the research read log")
         if any(c["evidence_id"] not in layer["read_evidence_ids"] for c in _citations(layer)):
             raise ContractError(f"{name} cited evidence absent from its read log")
     for citation in _citations({k: v for k, v in payload.items() if k != "layers"}):
-        if citation["evidence_id"] not in read_ids:
+        if citation["evidence_id"] not in read_ids | carried_ids:
             raise ContractError("Cited evidence absent from the research read log")
     registered = {r["request_id"]: r for r in packet["supplement_requests"]}
     for request in payload["supplement_requests"]:
@@ -214,8 +232,8 @@ def _build(payload, packet, records, bundle, *, clock, role_meta, previous_versi
         raise ContractError("Previous research identity does not match update reference")
     for name, layer in research["layers"].items():
         old = (previous_research or {}).get("layers", {}).get(name)
-        unchanged = old is not None and layer == {k: v for k, v in old.items() if k != "assessed_at"}
-        layer["assessed_at"] = old["assessed_at"] if unchanged else now
+        layer["assessed_at"] = old["assessed_at"] if name in carried and old else now
+        provenance["layers"][name]["assessed_at"] = layer["assessed_at"]
     research.update({
         "contract_version": contract, "packet_id": packet["packet_id"],
         "previous_research_id": previous_version_id, "created_at": now, "mode": mode,
@@ -227,7 +245,7 @@ def _build(payload, packet, records, bundle, *, clock, role_meta, previous_versi
     research["research_id"] = "res-" + digest(canonical(research))
     validate("research", research)
     check_research(packet, research, selected, bundle)
-    return research, list(selected.values())
+    return research, list(selected.values()), provenance
 
 
 def _with_requests(packet, records, payload, bundle):
@@ -260,10 +278,15 @@ def _with_requests(packet, records, payload, bundle):
         contract_version=packet["contract_version"])
 
 
-def save(store, bundle, payload, *, subject, role_meta, previous_version_id=None, clock):
+def save(store, bundle, payload, *, subject, role_meta, previous_version_id=None, clock,
+         update_scope=None):
     """Research intake: take one analysis payload and append it as a research version.
 
-    The caller hands over the payload and the version it builds on — nothing else. Inside:
+    The caller hands over the payload and the version it builds on, and for an update
+    its ``update_scope``: ``{scope_id}`` of a scope the system issued (``plan_update``),
+    or ``{full_reason}`` for a declared full reassessment, plus optional ``reviewed``
+    (layer -> evidence IDs read this time) and ``expansions`` (layer -> reason). The
+    version records a layer provenance table beside it (``karst.scope``). Inside:
     the working packet is read once, the payload's supplement requests are registered on
     that copy, the payload is checked once against it, the calculator runs, and the store
     appends the version with the packet and evidence index it was checked against. The
@@ -276,11 +299,14 @@ def save(store, bundle, payload, *, subject, role_meta, previous_version_id=None
     bundle = Path(bundle)
     company = CompanyBundle(bundle)
     packet, records = company.working()
-    request_key = digest(canonical({
+    request = {
         "subject": subject, "previous": previous_version_id, "payload": payload,
         "inputs": packet.get("evidence_ids"), "as_of": packet.get("as_of"),
         "role_meta": role_meta,
-        "method": get_research_protocol("update" if previous_version_id else "research")["version"]}))
+        "method": get_research_protocol("update" if previous_version_id else "research")["version"]}
+    if update_scope is not None:
+        request["update_scope"] = update_scope
+    request_key = digest(canonical(request))
     existing = store.get_research_request(request_key)
     if existing:
         return existing | {"idempotent_replay": True}
@@ -293,10 +319,15 @@ def save(store, bundle, payload, *, subject, role_meta, previous_version_id=None
     if previous and previous["subject"] != subject:
         raise ContractError("Previous research belongs to a different subject")
     previous_research = previous["payload"] if previous else None
-    research, selected = _build(
+    scope_id = (update_scope or {}).get("scope_id") if isinstance(update_scope, dict) else None
+    issued = store.get_update_scope(scope_id) if scope_id else None
+    if issued and issued["subject"] != subject:
+        raise ContractError("Update scope belongs to a different subject")
+    research, selected, provenance = _build(
         payload, registered, records, bundle, clock=clock, role_meta=roles,
         previous_research=previous_research,
-        previous_version_id=(previous_research or {}).get("research_id"))
+        previous_version_id=(previous_research or {}).get("research_id"),
+        update_scope=update_scope, scope=issued, base_version_id=previous_version_id)
     try:
         receipt = calculations.calculate(research)
     except (ContractError, KeyError, TypeError) as exc:
@@ -308,7 +339,7 @@ def save(store, bundle, payload, *, subject, role_meta, previous_version_id=None
         as_of=registered["as_of"], calc_receipt=receipt, role=researcher.get("role"),
         execution=researcher.get("execution"), provider=researcher.get("provider"),
         model=researcher.get("model") or researcher.get("model_id"),
-        packet=registered, evidence=selected, request_key=request_key)
+        packet=registered, evidence=selected, request_key=request_key, provenance=provenance)
     if registered is not packet and not result.get("conflict"):
         company.save_working(registered)
     return result

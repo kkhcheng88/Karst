@@ -254,39 +254,43 @@ def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
             if (dep["input_kind"], dep["input_id"]) == (event["kind"], event["id"]):
                 mapped = True
             if (dep["input_kind"], dep["input_id"]) == (event["kind"], event["id"]) and dep["input_version"] != event["version"]:
-                affected.update(l for layer in dep["layers"] for l in DOWNSTREAM[layer])
-                reasons.append({"kind": "dependency_changed", "event": event, "dependency": dep})
+                layers = sorted({l for layer in dep["layers"] for l in DOWNSTREAM[layer]})
+                affected.update(layers)
+                reasons.append({"kind": "dependency_changed", "event": event, "dependency": dep,
+                                "layers": layers})
         if not mapped:
-            reasons.append({"kind": "unmapped_input_change", "event": event})
+            reasons.append({"kind": "unmapped_input_change", "event": event, "layers": ["L2", "L6"]})
             affected.update(("L2", "L6"))
     missing = sorted(set(old) - set(current))
     if missing:
-        reasons.append({"kind": "missing_sources", "source_ids": missing})
+        reasons.append({"kind": "missing_sources", "source_ids": missing, "layers": list(LAYERS)})
         affected.update(LAYERS)
     if baseline and old_records is None:
-        reasons.append({"kind": "missing_baseline_inputs"})
+        reasons.append({"kind": "missing_baseline_inputs", "layers": list(LAYERS)})
         affected.update(LAYERS)
     if baseline is None:
-        reasons.append({"kind": "initial_research"})
+        reasons.append({"kind": "initial_research", "layers": list(LAYERS)})
         affected.update(LAYERS)
     research = (baseline or {}).get("payload", {})
     if method_versions and research and research.get("method_version") not in method_versions:
-        reasons.append({"kind": "method_changed", "previous": research.get("method_version")})
+        reasons.append({"kind": "method_changed", "previous": research.get("method_version"),
+                        "layers": list(LAYERS)})
         affected.update(LAYERS)
     if watch_row and watch_row.get("based_on_version_id") != (baseline or {}).get("version_id"):
-        reasons.append({"kind": "watch_needs_revalidation"})
+        reasons.append({"kind": "watch_needs_revalidation", "layers": ["L6"]})
         affected.add("L6")
     deadline = watch.get("validation_deadline")
     if deadline and timestamp(deadline) <= timestamp(as_of):
-        reasons.append({"kind": "validation_due", "deadline": deadline, "waiting_for": watch["waiting_for"]})
+        reasons.append({"kind": "validation_due", "deadline": deadline, "waiting_for": watch["waiting_for"],
+                        "layers": ["L3", "L4", "L6"]})
         affected.update(("L3", "L4", "L6"))
     target = research.get("target_date")
     if target and target <= as_of[:10]:
-        reasons.append({"kind": "target_due", "target_date": target})
+        reasons.append({"kind": "target_due", "target_date": target, "layers": ["L4", "L6"]})
         affected.update(("L4", "L6"))
     review_at = research.get("plan", {}).get("next_review_at")
     if review_at and timestamp(review_at) <= timestamp(as_of):
-        reasons.append({"kind": "plan_review_due", "next_review_at": review_at})
+        reasons.append({"kind": "plan_review_due", "next_review_at": review_at, "layers": ["L6"]})
         affected.add("L6")
     conditions = []
     for condition in watch.get("conditions", []):
@@ -299,11 +303,12 @@ def plan(subject, baseline, records, *, as_of, watch=None, refresh_status=(),
             status = "threshold_met" if hit else "threshold_not_met"
             if hit:
                 affected.update(("L4", "L5", "L6"))
-                reasons.append({"kind": "price_condition", "condition": condition, "market": market})
+                reasons.append({"kind": "price_condition", "condition": condition, "market": market,
+                                "layers": ["L4", "L5", "L6"]})
         conditions.append({"condition": condition, "status": status, "market": market})
     problems = [s for s in refresh_status if s["status"] != "ok"]
     if problems:
-        reasons.append({"kind": "refresh_incomplete", "sources": problems})
+        reasons.append({"kind": "refresh_incomplete", "sources": problems, "layers": []})
     needs = bool(affected)
     status = "needs_reassessment" if needs else "incomplete" if problems or diagnostics else "no_change"
     result = {"routing_version": VERSION, "subject": subject,

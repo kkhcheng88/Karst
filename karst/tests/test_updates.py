@@ -8,7 +8,7 @@ from unittest.mock import patch
 from karst import service, updates
 from karst.schema import ContractError, canonical
 from karst.store import Store
-from karst.tests.v03_fixture import ROLE_META, SECURITY, build_bundle, citable, payload
+from karst.tests.v03_fixture import FULL_SCOPE, ROLE_META, SECURITY, build_bundle, citable, payload
 
 DAY = "2026-09-19T20:00:00Z"
 EARLY = "2026-09-18T20:00:00Z"
@@ -200,7 +200,8 @@ class PersistenceTests(unittest.TestCase):
     def save(self, analysis=None, previous=None):
         return service.save_research(self.store, self.bundle, analysis or self.analysis,
                                      subject=self.subject, role_meta=ROLE_META,
-                                     expected_previous_version_id=previous)
+                                     expected_previous_version_id=previous,
+                                     update_scope=FULL_SCOPE if previous else None)
 
     def test_lost_save_response_retry_returns_exact_version_after_restart(self):
         first = self.save()

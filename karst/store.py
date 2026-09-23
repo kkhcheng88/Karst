@@ -102,6 +102,13 @@ CREATE TABLE IF NOT EXISTS update_checks (
     payload TEXT NOT NULL,
     created_at TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS update_scopes (
+    scope_id TEXT PRIMARY KEY,
+    subject TEXT NOT NULL,
+    base_version_id TEXT NOT NULL,
+    payload TEXT NOT NULL,
+    created_at TEXT NOT NULL
+);
 CREATE TABLE IF NOT EXISTS jobs (
     job_id TEXT PRIMARY KEY,
     kind TEXT NOT NULL,
@@ -144,6 +151,11 @@ CREATE TABLE IF NOT EXISTS chart_artifacts (
 FTS_SCHEMA = "CREATE VIRTUAL TABLE IF NOT EXISTS evidence_text USING fts5(evidence_id UNINDEXED, text)"
 TEXT_SUFFIXES = (".txt", ".json", ".jsonl", ".csv", ".md", ".htm", ".html", ".xml")
 TEXT_MAX_BYTES = 2_000_000  # per artifact; raise per deployment if transcripts get bigger
+
+
+# A version's layer provenance (KARST-262) sits beside its payload, never inside it:
+# the research contract and every version ID stay what they were.
+VERSION_JSON = ("payload", "packet", "evidence", "calc_receipt", "provenance")
 
 
 def now() -> str:
@@ -226,7 +238,7 @@ class Store:
         """
         existing = {row["name"] for row in
                     self.connection.execute("PRAGMA table_info(research_versions)")}
-        for column in ("packet", "evidence", "request_key"):
+        for column in ("packet", "evidence", "request_key", "provenance"):
             if column not in existing:
                 self.connection.execute(f"ALTER TABLE research_versions ADD COLUMN {column} TEXT")
         self.connection.execute("CREATE UNIQUE INDEX IF NOT EXISTS research_request ON research_versions(request_key)")
@@ -331,7 +343,7 @@ class Store:
     def save_research_version(self, subject, payload, *, expected_previous_version_id=None,
                               as_of=None, calc_receipt=None, publication_path=None,
                               role=None, execution=None, provider=None, model=None,
-                              packet=None, evidence=None, request_key=None):
+                              packet=None, evidence=None, request_key=None, provenance=None):
         """Append a version. Returns ``{'conflict': ...}`` instead of overwriting a newer one.
 
         ``expected_previous_version_id`` must name the version that is currently
@@ -377,9 +389,9 @@ class Store:
                 (version_id, subject, current_id, as_of, _dump(payload), _dump(packet),
                  _dump(evidence), _dump(calc_receipt), publication_path, role, execution,
                  provider, model, now()))
-            if request_key:
-                cursor.execute("UPDATE research_versions SET request_key=? WHERE version_id=?",
-                               (request_key, version_id))
+            if request_key or provenance is not None:
+                cursor.execute("UPDATE research_versions SET request_key=?, provenance=?"
+                               " WHERE version_id=?", (request_key, _dump(provenance), version_id))
             cursor.execute("COMMIT")
         except Exception:
             cursor.execute("ROLLBACK")
@@ -390,18 +402,19 @@ class Store:
         """One version with its frozen packet and evidence index (None on pre-snapshot rows)."""
         row = self.connection.execute(
             "SELECT * FROM research_versions WHERE version_id=?", (version_id,)).fetchone()
-        return _row(row, ("payload", "packet", "evidence", "calc_receipt"))
+        return _row(row, VERSION_JSON)
 
     def latest_research(self, subject):
         row = self.connection.execute(
             "SELECT * FROM research_versions WHERE subject=? AND status='latest'",
             (subject,)).fetchone()
-        return _row(row, ("payload", "packet", "evidence", "calc_receipt"))
+        return _row(row, VERSION_JSON)
 
     def list_research(self, subject=None, *, limit=50):
         """Directory rows: the frozen snapshots are left out, one version can be megabytes."""
         sql = ("SELECT version_id, subject, previous_version_id, as_of, status, payload,"
-               " calc_receipt, publication_path, role, execution, provider, model, created_at"
+               " calc_receipt, publication_path, role, execution, provider, model, created_at,"
+               " provenance"
                " FROM research_versions")
         params = []
         if subject:
@@ -409,7 +422,7 @@ class Store:
             params.append(subject)
         rows = self.connection.execute(
             sql + " ORDER BY created_at DESC, version_id LIMIT ?", params + [limit]).fetchall()
-        return [_row(row, ("payload", "calc_receipt")) for row in rows]
+        return [_row(row, ("payload", "calc_receipt", "provenance")) for row in rows]
 
     def set_publication_path(self, version_id, path):
         self.connection.execute("UPDATE research_versions SET publication_path=? WHERE version_id=?",
@@ -487,6 +500,18 @@ class Store:
             raise
         return _row(self.connection.execute("SELECT * FROM update_checks WHERE check_id=?",
                                            (check_id,)).fetchone(), ("payload",))
+
+    def save_update_scope(self, scope):
+        """Record a scope the system issued; the same content keeps its first issue time."""
+        self.connection.execute("INSERT OR IGNORE INTO update_scopes VALUES(?,?,?,?,?)",
+                                (scope["scope_id"], scope["subject"], scope["base_version_id"],
+                                 _dump(scope), now()))
+        return self.get_update_scope(scope["scope_id"])
+
+    def get_update_scope(self, scope_id):
+        row = self.connection.execute("SELECT payload FROM update_scopes WHERE scope_id=?",
+                                      (scope_id,)).fetchone()
+        return None if row is None else _load(row["payload"])
 
     def latest_update_check(self, subject):
         return _row(self.connection.execute("SELECT * FROM update_checks WHERE subject=? ORDER BY created_at DESC LIMIT 1",

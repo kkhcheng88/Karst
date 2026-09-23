@@ -279,7 +279,8 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
 
         Optional relation/assumption revisions: [{kind, id, version, reason}].
         Existing source/entity subscriptions discover new uncited evidence across
-        company bundles. Reuse candidates still need the researcher's judgment.
+        company bundles. ``scope`` is the system-issued update scope: the layers the
+        next save_research may rewrite and why; pass its scope_id as update_scope.
         """
         return service.plan_update(state, one(subject), subject, data_dir=root,
                                    input_changes=input_changes or ())
@@ -398,11 +399,18 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
 
     @server.tool
     def save_research(payload: dict, subject: str, role_meta: dict,
-                      expected_previous_version_id: str | None = None) -> dict:
-        """Validate and append a research version; a conflict is returned, never overwritten."""
+                      expected_previous_version_id: str | None = None,
+                      update_scope: dict | None = None) -> dict:
+        """Validate and append a research version; a conflict is returned, never overwritten.
+
+        An update (with ``expected_previous_version_id``) needs ``update_scope``:
+        {scope_id: plan_update's scope.scope_id, reviewed: {layer: [evidence IDs read
+        this time]}, expansions: {layer: reason}} — or {full_reason} for a declared full
+        reassessment. Layers outside the scope may be omitted; they are carried.
+        """
         return service.save_research(state, one(subject), payload, subject=subject,
                                      expected_previous_version_id=expected_previous_version_id,
-                                     role_meta=role_meta)
+                                     role_meta=role_meta, update_scope=update_scope)
 
     @server.tool
     def publish_research(version_id: str, output_dir: str | None = None,

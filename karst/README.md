@@ -264,8 +264,17 @@ role_meta, previous_version_id=None, clock)` 是保存研究版本的唯一入�
 衝突或拒收一律不留痕。舊的「驗證指紋憑證」(`Verified`/`fingerprint`)、`ImportError` 退路與
 注入 `intake=` 參數均已移除——驗證不再跨 seam 重複,憑證就沒有存在理由。`intake(...)` 保留為
 只驗證不保存的同一套規則。更新時哪些層沿用前版(今日:與前版逐字相同的層保留 `assessed_at`)
-只寫在 `_build`,增量範圍控制(KARST-262)亦落在這裏。同一 payload、同一輸入與時鐘所得版本
+只寫在 `_build`。同一 payload、同一輸入與時鐘所得版本
 編號與計算回執與重構前逐字相同(`test_version_inputs.SameVersionsTests`)。
+
+**增量範圍控制(`karst/scope.py`,KARST-262)。** `plan_update` 回傳並在 SQLite `update_scopes`
+保存一個系統發出的 `scope`(`scope_id`、`base_version_id`、`layers`、`triggers`)。更新保存必須帶
+`update_scope`:`{scope_id, reviewed?, expansions?}` 或 `{full_reason}`。收件先把 payload 缺的欄位
+由前版補齊,再由 `scope.gate` 逐部分(L1–L6 及 `L4_price`)判定:範圍外未改＝沿用(原
+`assessed_at`、原證據,證據須仍在本次 packet);範圍外有改須 `expansions` 理由;範圍內須有改動或
+`reviewed` 列出本次讀過的證據,否則拒收。結果寫入版本旁的 `provenance` 欄(不入 payload,版本
+編號不變),`get_research`／`get_research_context` 可讀回。欄位歸屬(`OWNERS`,含 L4 現價部分的
+切分)、各層最長沿用日數與「驗證日已過即失效」的層都只住在 `scope.py`;失效層自動入下一次範圍。
 
 ## 覆核入口(W2)
 

@@ -17,7 +17,7 @@
 4. 宏觀與共同產業事件只取一次。讀新聞標題去重，原文核對新事件、舊聞轉載與事件日期；受影響股票各自評估。正常日更新位置、RS／動能與行動；業績、訂單、融資、監管、競爭變化才重評相關經營與倍數。休市仍掃新聞，價格保留最近完整收市，不能製造新K線。
 5. SPY六因素各保留證據期別、上次判斷及缺口；只改受影響項，合成一句市場立場。不能用升跌倒推宏觀原因。比較先對齊期間、幣別、會計和資本口徑；ARR不是全年收入，融資額不是現金，新增債務與所得現金雙邊處理。研究假設明示，不能標成公司指引。
 6. 兩種觀望分開：研究足夠但機會不合適／缺關鍵研究無法建議。有合格方案才列方向、觸發、入場區、失效、目標、保守端成本後風報比、催化劑。否則列最關鍵等待條件及成立後重評甚麼。機會比較回答偏好、溢價依據、不值得追者。
-7. 新來源 `ingest_source` 後 `read_evidence`；主研究按update protocol沿用未變層，`save_research(expected_previous_version_id=...)`，讀回計算與目標，再 `publish_research` 和 `set_watch`。衝突重讀合併判斷，禁止強蓋。無公司契約的指數／價值鏈存來源、計算及閱讀provenance，不假稱正式公司研究。完成原文判斷才 `record_update_check` 推進已審查窗口；不完整不得推進。
+7. 新來源 `ingest_source` 後 `read_evidence`；主研究按update protocol及 `plan_update` 發出的 `scope` 重評範圍內各層，`save_research(expected_previous_version_id=..., update_scope={"scope_id": ...})`（範圍外由系統沿用，要改須聲明理由），讀回計算與目標，再 `publish_research` 和 `set_watch`。衝突重讀合併判斷，禁止強蓋。無公司契約的指數／價值鏈存來源、計算及閱讀provenance，不假稱正式公司研究。完成原文判斷才 `record_update_check` 推進已審查窗口；不完整不得推進。
 8. 閱讀版新增revision，價格／圖表／正文日期一致，經營模型日期單列；檢查過時目標在最新摘要與計劃全部撤回。生成 manifest：`editions:[{report,provenance}]`，必要時 `desk`；格式參照 cards/reader/README.md。暫存manifest及stage於scratch。
 9. 執行 `python -m karst.reader.release stage --content cards/reader --manifest MANIFEST --out STAGE`；閱讀四類頁、計算與stage回執，歷史HTML不得變；通過後 `python -m karst.reader.release apply --content cards/reader --staged STAGE`。純編輯無需重跑整套抽取回歸；程式變更跑對應功能測試。
 10. GitHub取最新master及tree，以其為base提交已審核差異；不可推本機不同歷史或force。若遠端改動，重讀、重做stage。已有相同研究／閱讀版則沿用，避免重複。公開repo不放憑證、帳戶資料或第三方全文。

@@ -7,7 +7,7 @@ from pathlib import Path
 from karst import calculations, service, store as store_module
 from karst.schema import ContractError
 from karst.tests.test_longbridge import FakeClient
-from karst.tests.v03_fixture import (ROLE_META, SECURITY as SECURITY_V03, build_bundle,
+from karst.tests.v03_fixture import (FULL_SCOPE, ROLE_META, SECURITY as SECURITY_V03, build_bundle,
                                      citable, payload)
 
 SECURITY = {"ticker": "DEMO", "issuer_id": "cik:0000000001", "security_id": "XNAS:DEMO",
@@ -162,7 +162,8 @@ class ResearchTests(ServiceCase):
 
     def save(self, payload, previous=None):
         return service.save_research(self.store, self.bundle, payload, subject=self.subject,
-                                     expected_previous_version_id=previous, role_meta=ROLE_META)
+                                     expected_previous_version_id=previous, role_meta=ROLE_META,
+                                     update_scope=FULL_SCOPE if previous else None)
 
     def variant(self, question):
         return {**self.payload, "open_questions": [question]}
