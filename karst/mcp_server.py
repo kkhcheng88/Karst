@@ -21,7 +21,7 @@ from fastmcp.utilities.types import Image
 from mcp.types import TextContent
 from starlette.responses import JSONResponse
 
-from . import __version__, calculations, service, store as store_module
+from . import __version__, calculations, consensus, service, store as store_module
 from .auth import AuthConfigError, TOKEN_VARIABLE, build_auth, token_auth as bearer_auth  # noqa: F401
 from .fetch.common import load_env_file
 
@@ -48,7 +48,8 @@ def build(data_dir=None, *, store_path=None, bundle=None, staging=None, auth=Non
 
     @server.custom_route("/healthz", methods=["GET"])
     async def healthz(_request):  # unauthenticated on purpose: a probe, not a data route
-        return JSONResponse({"status": "ok", "version": __version__, "data_dir": str(root)})
+        return JSONResponse({"status": "ok", "version": __version__, "data_dir": str(root),
+                             "consensus_week": consensus.last_week(root)})
 
     @server.custom_route("/.well-known/oauth-protected-resource", methods=["GET"])
     async def protected_resource_alias(_request):
@@ -469,6 +470,7 @@ def main(argv=None) -> int:
     server = build(args.data_dir, store_path=args.store, bundle=args.bundle,
                    staging=args.staging, auth=auth, knowledge_seed=args.knowledge_seed)
     if args.http:
+        consensus.run_weekly(service.data_root(args.data_dir))
         server.run(transport="http", host=args.host, port=args.port)
     else:
         server.run()

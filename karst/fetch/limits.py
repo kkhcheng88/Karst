@@ -31,6 +31,9 @@ class Limit:
 LIMITS = {
     # Longbridge OpenAPI quote API: 10 calls/s and 5 concurrent per account (vendor docs).
     'longbridge': Limit(rate=10, concurrency=5, timeout=20, retries=2, backoff=1.0),
+    # Longbridge financial-consensus-detail: measured 2026-09-24, 2/s already draws 429002
+    # ("1S 区间调用上限"); 1.5/s one at a time is the rate that held.
+    'longbridge_consensus': Limit(rate=1.5, concurrency=1, timeout=20, retries=3, backoff=1.0),
     # Public RSS has no published quota; 2/s per host keeps 200 members inside two minutes
     # of feed time while staying far below anything a public endpoint would throttle.
     'yahoo_rss': Limit(rate=2, concurrency=4, timeout=12, retries=2, backoff=2.0),
@@ -93,15 +96,17 @@ def transient(exc):
     """Worth retrying: out of time, throttled, or the connection itself failed."""
     if quota(exc):
         return False
-    if isinstance(exc, (TimeoutError, RateLimited, ConnectionError)):
+    if isinstance(exc, (TimeoutError, RateLimited, ConnectionError)) or _throttled(exc):
         return True
     if isinstance(exc, urllib.error.HTTPError):
-        return exc.code == 429 or exc.code >= 500
+        return exc.code >= 500
     return isinstance(exc, urllib.error.URLError)
 
 
 def _throttled(exc):
-    return 429 in (getattr(exc, 'code', None), getattr(exc, 'status', None))
+    # HTTP 429, or a vendor code in the 429 family (Longbridge OpenAPI 429002: per-second cap).
+    return 429 in (getattr(exc, 'code', None), getattr(exc, 'status', None)) or \
+        str(getattr(exc, 'code', '')).startswith('429')
 
 
 def call(source, function, *args, **kwargs):
