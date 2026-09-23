@@ -2106,10 +2106,17 @@
   {
     "kind": "universe",
     "object_id": "daily-monitoring",
+    "expected_version": "kv-bdcd3957aff7ddf66b2c18370447b4104f7e65c9f60cc8d2beabd41f34d07fc2",
     "payload": {
       "name": "每日監察範圍",
       "summary": "主動監察股票與市場參照；不要求已有正式研究。加入新股時同步維護本名單。",
       "members": [
+        {"entity_id":"NYSE:RCL","name":"Royal Caribbean Group","kind":"security","roles":["郵輪／度假"],"comparison_groups":["oil-relief-travel"]},
+        {"entity_id":"NYSE:DAL","name":"Delta Air Lines","kind":"security","roles":["航空"],"comparison_groups":["oil-relief-travel"]},
+        {"entity_id":"NYSE:CCL","name":"Carnival Corporation","kind":"security","roles":["郵輪"],"comparison_groups":["oil-relief-travel"]},
+        {"entity_id":"NASDAQ:UAL","name":"United Airlines Holdings","kind":"security","roles":["航空"],"comparison_groups":["oil-relief-travel"]},
+        {"entity_id":"NYSEARCA:USO","name":"United States Oil Fund","kind":"fund","roles":["原油價格代理，非船用燃油"],"comparison_groups":["commodity-proxies"]},
+        {"entity_id":"NYSE:ETN","name":"Eaton","kind":"security","roles":["配電設備估值參照"],"comparison_groups":["power-solutions-reference"]},
         {
           "entity_id": "NYSE:BE",
           "name": "Bloom Energy",

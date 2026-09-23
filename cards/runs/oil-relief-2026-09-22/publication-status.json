@@ -1,0 +1,19 @@
+{
+  "status": "verified",
+  "reader_commit": "265aa401ed7647c9ac4bbb59a2b83c046074a3b0",
+  "verification_commit": "7d00e8136668642004ded384658fed4a15d26d89",
+  "pages_run": 35765285687,
+  "verification_job": 106873324298,
+  "verification_step": "Verify deployed public bytes",
+  "verification_step_conclusion": "success",
+  "verification_executor": "GitHub Actions after deploy; local network requests timed out and were stopped",
+  "verification_scope": "All 62 files in the rebuilt allowlisted site, including HTML, historical pages, chart JSON/PNG, CSS and JavaScript",
+  "receipt_artifact_id": 10711044515,
+  "receipt_artifact_name": "public-reader-readback",
+  "receipt_location": "https://github.com/kkhcheng88/Karst/actions/runs/35765285687",
+  "historical_html_preserved": 28,
+  "build": {"pages": 42, "reports": 31, "assets": 9, "interactive_charts": 5},
+  "public_pages": ["https://kkhcheng88.github.io/Karst/themes/oil-relief/", "https://kkhcheng88.github.io/Karst/stocks/rcl/", "https://kkhcheng88.github.io/Karst/stocks/be/"],
+  "cloud_readback": {"RCL": "rv-0fa77627447976f1a8ced2acf19f9acc36033e8e9634dda5509cd296e46d9e03", "BE": "rv-4c2c0314d43e71d8f83522366b166f48d2962d396ccf882afca62d2393ab9520"},
+  "limitations": ["RCL independent second review not completed", "BE NOL utilization, service economics, share bridge and comparable consensus remain open; no current single value anchor", "RCL/DAL/CCL/UAL/USO are not yet added to the unified daily-monitoring universe; saved watch is not equivalent"]
+}

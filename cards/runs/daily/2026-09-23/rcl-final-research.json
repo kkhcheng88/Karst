@@ -1,0 +1,484 @@
+{
+  "version_id": "rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b",
+  "payload": {
+    "contract_version": "0.4.0",
+    "coverage": "partial",
+    "created_at": "2026-09-23T15:15:46Z",
+    "execution_state": "wait_evidence",
+    "headline": {
+      "change_conditions": {
+        "citations": [
+          {
+            "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+            "locator": "L1-L45"
+          }
+        ],
+        "text": "撤回原255.8收復／251–253入場、243失效及265／278退出方案。9/22完整收市234.89已跌破243；9/23 15:02 UTC快照227.65，盤中K線未完成。232不再是買點。等待融資利率、淨債務與合營現金流、每股增益量化及價格重新建立承接；缺項未解前不制定新的入場、止損或目標。原10/9是已撤銷交易期限，不順延為新交易。"
+      },
+      "change_since_last": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          },
+          {
+            "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+            "locator": "L1-L45"
+          }
+        ],
+        "text": "9/23公司已簽協議，以約30億美元收購Sandals 50%股權，Morgan Stanley提供承諾債務融資，預計2027年初交割；不是昨日傳聞中的未確認多數股權。公司稱約10倍前瞻EBITDA及明年增益，但未量化每股增益、利率、維修資本開支及可分派現金。 9/22收市確認原243失效，撤去所有有效交易價位。"
+      },
+      "key_assumption": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "既有郵輪經營假設暫沿用9/22版本；收購改變資本配置及融資，不能沿用原股東價值結論。"
+      },
+      "main_reason": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "9/23公司已簽協議，以約30億美元收購Sandals 50%股權，Morgan Stanley提供承諾債務融資，預計2027年初交割；不是昨日傳聞中的未確認多數股權。公司稱約10倍前瞻EBITDA及明年增益，但未量化每股增益、利率、維修資本開支及可分派現金。 資本配置風險已獨立於燃油修復，未能證明跌幅過度。"
+      },
+      "recommendation": {
+        "citations": [],
+        "text": "中性／等待證據；原油價修復買入方案已撤回。"
+      },
+      "strongest_counter": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "公司預期明年盈利增益；若投資回報及分派現金超過融資成本，收購折價可能過度，但目前未獲量化證據。"
+      }
+    },
+    "layers": {
+      "L1": {
+        "assessed_at": "2026-09-22T17:40:37Z",
+        "assumptions": [
+          {
+            "citations": [],
+            "text": "數字與判斷分開；研究假設不是公司指引。"
+          }
+        ],
+        "conclusion": {
+          "citations": [
+            {
+              "evidence_id": "ev-c1408b74d070459901c220907a8df10bf3e21c4becf7297ca423bc44b5dffba7",
+              "locator": "L1-L469"
+            },
+            {
+              "evidence_id": "ev-9c4153bbc8b99d2b9caefd148bd9dd3da8d49405714f9f7e0be06e151622aef0",
+              "locator": "L1-L471"
+            },
+            {
+              "evidence_id": "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+              "locator": "L86-L305"
+            },
+            {
+              "evidence_id": "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+              "locator": "L478-L625"
+            }
+          ],
+          "text": "Royal Caribbean、Celebrity與Silversea覆蓋不同旅遊客群，另持有TUI Cruises一半權益。大型新船、私人目的地、忠誠計劃與數碼預訂共同支持定價與船上消費；真正的品質檢驗是收益率、回頭客、投入資本回報及每股現金流，而不是船隊越大越好。"
+        },
+        "gaps": [],
+        "read_evidence_ids": [
+          "ev-9c4153bbc8b99d2b9caefd148bd9dd3da8d49405714f9f7e0be06e151622aef0",
+          "ev-c1408b74d070459901c220907a8df10bf3e21c4becf7297ca423bc44b5dffba7",
+          "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469"
+        ],
+        "strongest_counter": {
+          "citations": [],
+          "text": "危機降溫未必恢復已流失收益；公司及需求風險可獨立延續。"
+        }
+      },
+      "L2": {
+        "assessed_at": "2026-09-23T15:13:25Z",
+        "assumptions": [
+          {
+            "citations": [],
+            "text": "數字與判斷分開；研究假設不是公司指引。"
+          }
+        ],
+        "conclusion": {
+          "citations": [
+            {
+              "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+              "locator": "L1-L7"
+            }
+          ],
+          "text": "9/23公司已簽協議，以約30億美元收購Sandals 50%股權，Morgan Stanley提供承諾債務融資，預計2027年初交割；不是昨日傳聞中的未確認多數股權。公司稱約10倍前瞻EBITDA及明年增益，但未量化每股增益、利率、維修資本開支及可分派現金。 資本配置風險已獨立於燃油修復，未能證明跌幅過度。"
+        },
+        "gaps": [
+          "未把相關性當因果；其他雷達股票未完成公司研究。"
+        ],
+        "read_evidence_ids": [
+          "ev-9c4153bbc8b99d2b9caefd148bd9dd3da8d49405714f9f7e0be06e151622aef0",
+          "ev-c1408b74d070459901c220907a8df10bf3e21c4becf7297ca423bc44b5dffba7",
+          "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+          "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e"
+        ],
+        "strongest_counter": {
+          "citations": [],
+          "text": "危機降溫未必恢復已流失收益；公司及需求風險可獨立延續。"
+        }
+      },
+      "L3": {
+        "assessed_at": "2026-09-23T15:13:25Z",
+        "assumptions": [
+          {
+            "citations": [],
+            "text": "數字與判斷分開；研究假設不是公司指引。"
+          }
+        ],
+        "conclusion": {
+          "citations": [
+            {
+              "evidence_id": "ev-c1408b74d070459901c220907a8df10bf3e21c4becf7297ca423bc44b5dffba7",
+              "locator": "L1-L469"
+            },
+            {
+              "evidence_id": "ev-9c4153bbc8b99d2b9caefd148bd9dd3da8d49405714f9f7e0be06e151622aef0",
+              "locator": "L1-L471"
+            },
+            {
+              "evidence_id": "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+              "locator": "L86-L305"
+            },
+            {
+              "evidence_id": "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+              "locator": "L478-L625"
+            },
+            {
+              "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+              "locator": "L1-L7"
+            }
+          ],
+          "text": "Royal Caribbean、Celebrity與Silversea覆蓋不同旅遊客群，另持有TUI Cruises一半權益。大型新船、私人目的地、忠誠計劃與數碼預訂共同支持定價與船上消費；真正的品質檢驗是收益率、回頭客、投入資本回報及每股現金流，而不是船隊越大越好。 第二季收入48.32億美元，同比增加約6%；調整EPS4.21高於原指引，但低於去年4.38。公司把全年EPS指引提高至17.73–17.87，不能把「超預期」寫成每個季度盈利都在同比上升。下半年成本時點與合營表現也有幫助，不能全歸功需求。 全年運力預計增6.6%，固定匯率淨收益率增1.75–2.25%；第三季淨收益率約持平。7月電話會議確認2027預訂價格較去年同期高，但尚在早期。全年歐洲約14%運力、第三季約28%，故局部地緣壓力確實存在；第四季約兩個百分點的收益率比較有利因素包含部署與乾塢時點，不能當作全是需求重新加速。 燃油保護有實際作用：7月公布的剩餘2026消耗約58%已對沖，2027約53%，後者對沖組合均價405美元／噸。這是對沖合約部分的價格，並非全公司2027到泵燃油成本；未對沖部分、基差、需求及重新部署仍有暴露。 上半年經營現金流36.94億，扣購置船舶等資本支出32.37億後剩4.57億；其中客戶按金增加9.96億。同期現金回購及股息合計17.09億，高於上述自由現金流。這反映新船交付與資金時點，但也說明不能把會計EPS全部當股東可花的現金。 6月底現金8.75億，債務帳面額228.36億，合約本金含融資租賃234.07億。DCF用本金扣債，避免把未攤銷發債費用當負債減免；營運租賃租金留在費用，不另重扣。2027／2028到期債務約27.04／34.45億。管理層稱槓桿低於3倍，但流動性很大部分是未動用授信，不全是現金。 本輪郵輪模型不重建；新增资本配置附註：9/23公司已簽協議，以約30億美元收購Sandals 50%股權，Morgan Stanley提供承諾債務融資，預計2027年初交割；不是昨日傳聞中的未確認多數股權。公司稱約10倍前瞻EBITDA及明年增益，但未量化每股增益、利率、維修資本開支及可分派現金。"
+        },
+        "gaps": [
+          "2027預訂是7月管理層訊息，尚缺同日獨立預訂序列。",
+          "Sandals實際權益現金流、利率、收購會計、少數股東治理與維修資本支出尚不足。"
+        ],
+        "read_evidence_ids": [
+          "ev-9c4153bbc8b99d2b9caefd148bd9dd3da8d49405714f9f7e0be06e151622aef0",
+          "ev-c1408b74d070459901c220907a8df10bf3e21c4becf7297ca423bc44b5dffba7",
+          "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+          "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e"
+        ],
+        "strongest_counter": {
+          "citations": [],
+          "text": "危機降溫未必恢復已流失收益；公司及需求風險可獨立延續。"
+        }
+      },
+      "L4": {
+        "assessed_at": "2026-09-23T15:13:25Z",
+        "assumptions": [
+          {
+            "citations": [],
+            "text": "數字與判斷分開；研究假設不是公司指引。"
+          }
+        ],
+        "conclusion": {
+          "citations": [
+            {
+              "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+              "locator": "L1-L7"
+            }
+          ],
+          "text": "收購後股權公允價暫不可可靠計算。舊DCF中央167.89及81.33–278.05範圍只屬9/22獨立郵輪情境，非新交易後價值或底線。234.89／17.80=13.20倍僅為2026既有指引參照；不能與2027收購盈利混用。公司約10倍前瞻EBITDA口徑未有完整EV／淨債橋，不能由30億／50%直接倒推合併EBITDA。若假設全額30億借款、利率5%／6%／7%，年化稅前利息1.5／1.8／2.1億美元；這是敏感度，不是已披露條款。"
+        },
+        "gaps": [
+          "交易融資及可分派現金流不足，暫停收購後估值。"
+        ],
+        "read_evidence_ids": [
+          "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e"
+        ],
+        "strongest_counter": {
+          "citations": [],
+          "text": "危機降溫未必恢復已流失收益；公司及需求風險可獨立延續。"
+        }
+      },
+      "L5": {
+        "assessed_at": "2026-09-23T15:13:25Z",
+        "assumptions": [
+          {
+            "citations": [],
+            "text": "數字與判斷分開；研究假設不是公司指引。"
+          }
+        ],
+        "conclusion": {
+          "citations": [
+            {
+              "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+              "locator": "L1-L45"
+            }
+          ],
+          "text": "9/22收234.89、跌6.14%，高261.66低231.03，成交840萬股；上日成交222萬股。日內沖高後反轉，原243失效經收市確認。9/23快照227.65再弱，尚非收市；不新判月週底部。"
+        },
+        "gaps": [
+          "本週及9月未收線；未聲稱每個價格區域都是已確認pivot。"
+        ],
+        "read_evidence_ids": [
+          "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c"
+        ],
+        "strongest_counter": {
+          "citations": [],
+          "text": "危機降溫未必恢復已流失收益；公司及需求風險可獨立延續。"
+        }
+      },
+      "L6": {
+        "assessed_at": "2026-09-23T15:13:25Z",
+        "assumptions": [
+          {
+            "citations": [],
+            "text": "數字與判斷分開；研究假設不是公司指引。"
+          }
+        ],
+        "conclusion": {
+          "citations": [
+            {
+              "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+              "locator": "L1-L7"
+            },
+            {
+              "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+              "locator": "L1-L45"
+            }
+          ],
+          "text": "撤回原255.8收復／251–253入場、243失效及265／278退出方案。9/22完整收市234.89已跌破243；9/23 15:02 UTC快照227.65，盤中K線未完成。232不再是買點。等待融資利率、淨債務與合營現金流、每股增益量化及價格重新建立承接；缺項未解前不制定新的入場、止損或目標。原10/9是已撤銷交易期限，不順延為新交易。"
+        },
+        "gaps": [
+          "沒有合格新交易；不是因價格跌更多便買入。"
+        ],
+        "read_evidence_ids": [
+          "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+          "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c"
+        ],
+        "strongest_counter": {
+          "citations": [],
+          "text": "危機降溫未必恢復已流失收益；公司及需求風險可獨立延續。"
+        }
+      }
+    },
+    "mandate_version": "v1.4",
+    "market": {
+      "at": "2026-09-22T20:00:00Z",
+      "citations": [
+        {
+          "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+          "locator": "L1-L45"
+        }
+      ],
+      "currency": "USD",
+      "price": 234.89
+    },
+    "method_version": "research-protocol-v1+652c7872e6ff",
+    "mode": "interactive_research",
+    "models": [
+      {
+        "execution": "interactive",
+        "model_id": "runtime model identifier not exposed",
+        "prompt_version": "research-protocol-v1",
+        "provider": "openai",
+        "role": "researcher"
+      }
+    ],
+    "modules": [
+      {
+        "activation_reason": {
+          "citations": [
+            {
+              "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+              "locator": "L1-L7"
+            }
+          ],
+          "text": "收購已簽協議、價格跌破原失效位；需重評資本配置，未證明錯價。"
+        },
+        "name": "potential_mispricing",
+        "questions": [
+          "跌幅是否超過可合理預期的盈利損傷？",
+          "危機緩和時是否出現相對強勢？"
+        ]
+      },
+      {
+        "activation_reason": {
+          "citations": [],
+          "text": "燃油、航線／需求及風險溢價共用地緣催化劑。"
+        },
+        "name": "narrative_expectations",
+        "questions": [
+          "油跌是供應改善還是需求轉弱？"
+        ]
+      }
+    ],
+    "open_questions": [
+      "Sandals可分派現金流、維修支出、承接債務和淨債橋？",
+      "融資利率、期限、費用、稀釋與治理？",
+      "明年EPS增益量化及ROIC是否高於資本成本？",
+      "新日週承接建立前不重開交易；獨立覆核pending。"
+    ],
+    "packet_id": "packet-078dc9e7d0633d939835920736b3a230f35c119fa6a19ef7e0190016b0baf04b",
+    "phases": [
+      {
+        "basis": {
+          "citations": [
+            {
+              "evidence_id": "ev-c1408b74d070459901c220907a8df10bf3e21c4becf7297ca423bc44b5dffba7",
+              "locator": "L1-L469"
+            },
+            {
+              "evidence_id": "ev-9c4153bbc8b99d2b9caefd148bd9dd3da8d49405714f9f7e0be06e151622aef0",
+              "locator": "L1-L471"
+            },
+            {
+              "evidence_id": "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+              "locator": "L86-L305"
+            },
+            {
+              "evidence_id": "ev-d23f350f179e40e6406c1b0e1bb450594dbc28b78db4aae7da443a262ff9d469",
+              "locator": "L478-L625"
+            }
+          ],
+          "text": "Q2及預訂管理層表述，未有9月全量需求證據。"
+        },
+        "confirmed_at": null,
+        "dimension": "business",
+        "state": "品牌需求有韌性，歐洲局部受壓",
+        "status": "candidate",
+        "timeframe": "2–4 quarters"
+      },
+      {
+        "basis": {
+          "citations": [
+            {
+              "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+              "locator": "L1-L45"
+            }
+          ],
+          "text": "9/22收234.89、跌6.14%，高261.66低231.03，成交840萬股；上日成交222萬股。日內沖高後反轉，原243失效經收市確認。9/23快照227.65再弱，尚非收市；不新判月週底部。"
+        },
+        "confirmed_at": "2026-09-22T20:00:00Z",
+        "dimension": "price",
+        "state": "原修復方案失效；尚無新承接",
+        "status": "confirmed",
+        "timeframe": "D"
+      }
+    ],
+    "plan": {
+      "entry_price": null,
+      "execution_rule": {
+        "citations": [],
+        "text": "撤回原255.8收復／251–253入場、243失效及265／278退出方案。9/22完整收市234.89已跌破243；9/23 15:02 UTC快照227.65，盤中K線未完成。232不再是買點。等待融資利率、淨債務與合營現金流、每股增益量化及價格重新建立承接；缺項未解前不制定新的入場、止損或目標。原10/9是已撤銷交易期限，不順延為新交易。"
+      },
+      "exit_price": null,
+      "invalidators": [
+        {
+          "citations": [],
+          "text": "無有效進場方案；新資料推翻融資或现金流假設即重評。"
+        }
+      ],
+      "next_review_at": "2026-09-24T14:00:00Z",
+      "round_trip_cost_per_share": 0.5,
+      "stress_price": null,
+      "target_price": null
+    },
+    "previous_research_id": "res-903a86f1f5029c475aed6ea7456743f39f2cb268f7247598867d83c2ee33bbcf",
+    "rating": "neutral",
+    "research_id": "res-28741e4bda3fdd86776cddbbcd893895dcb52fd742cecdcea58a8b62255db877",
+    "strategy_version": "v1.1",
+    "target_date": "2026-10-09",
+    "technical": {
+      "citations": [
+        {
+          "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+          "locator": "L1-L45"
+        }
+      ],
+      "derived": {
+        "bars_count": {
+          "D": 2,
+          "M": 0,
+          "W": 0
+        },
+        "data_as_of": "2026-09-22T20:00:00Z",
+        "sma200": null
+      },
+      "gaps": [
+        "只更新新日K及原失效位；未重判月週圖，新完整多周期技術評估待補。"
+      ],
+      "key_levels": [],
+      "price_basis": "raw",
+      "quote_to_bar_factor": 1,
+      "reading": {
+        "citations": [
+          {
+            "evidence_id": "ev-c5c9ee4f033b137475e1a0323c3f238169ee420da8f70bedb4c2f997fa97f45c",
+            "locator": "L1-L45"
+          }
+        ],
+        "text": "9/22收234.89、跌6.14%，高261.66低231.03，成交840萬股；上日成交222萬股。日內沖高後反轉，原243失效經收市確認。9/23快照227.65再弱，尚非收市；不新判月週底部。"
+      }
+    },
+    "valuation": {
+      "alternative_view": {
+        "calculation": null,
+        "citations": [],
+        "text": "只有舊2026公司指引的13.20倍價格參照；未證明低估，不提供新目標。"
+      },
+      "change_attribution": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "新增收購融資與合營現金流未量化；停止沿用舊DCF與事件目標。"
+      },
+      "expected_distributions": 0,
+      "gap_reason": "收購後每股現金流、融資成本及合營權益估值待補。",
+      "implied": null,
+      "implied_requirements": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "先補融資及Sandals現金流，再求新估值；EPS accretion不等同創造價值。"
+      },
+      "method_rationale": {
+        "citations": [
+          {
+            "evidence_id": "ev-066267be9fef79cbf5039bbfb724f2f034caf384c1ef03cabc67ec2e748e768e",
+            "locator": "L1-L7"
+          }
+        ],
+        "text": "收購後股權公允價暫不可可靠計算。舊DCF中央167.89及81.33–278.05範圍只屬9/22獨立郵輪情境，非新交易後價值或底線。234.89／17.80=13.20倍僅為2026既有指引參照；不能與2027收購盈利混用。公司約10倍前瞻EBITDA口徑未有完整EV／淨債橋，不能由30億／50%直接倒推合併EBITDA。若假設全額30億借款、利率5%／6%／7%，年化稅前利息1.5／1.8／2.1億美元；這是敏感度，不是已披露條款。"
+      },
+      "scenarios": [],
+      "sensitivities": [],
+      "status": "unavailable",
+      "target_prices": [],
+      "top_assumptions": [],
+      "valuation_date": "2026-09-23"
+    }
+  },
+  "publication": {
+    "version_id": "rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b",
+    "publication_dir": "/data/companies/NYSE_RCL/releases/pub-386f8a2e1a7ea92d7e8f19705fa427b4d094deed1c7ccee70995c1c931b3d32d",
+    "index_html": "/data/companies/NYSE_RCL/releases/pub-386f8a2e1a7ea92d7e8f19705fa427b4d094deed1c7ccee70995c1c931b3d32d/index.html",
+    "company_index": "/data/companies/NYSE_RCL/releases/index.html",
+    "publication_id": "pub-386f8a2e1a7ea92d7e8f19705fa427b4d094deed1c7ccee70995c1c931b3d32d",
+    "inputs_from": "version_snapshot"
+  }
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "id": "rcl-sandals-20260923",
+    "subjects": [
+      "NYSE:RCL",
+      "NYSE:CCL"
+    ],
+    "status": "primary_read",
+    "date": "2026-09-23",
+    "url": "https://www.sec.gov/Archives/edgar/data/884887/000110465926109755/tm2625963d1_ex99-1.htm",
+    "summary": "RCL簽50%股權約30億美元，承諾債務融資、early2027交割。修復方案撤回；同業只受情緒參照，不自動下修盈利。"
+  },
+  {
+    "id": "crwv-convert-20260922",
+    "subjects": [
+      "NASDAQ:CRWV"
+    ],
+    "status": "issuer_filing_text_on_mirror_read",
+    "date": "2026-09-22",
+    "url": "https://www.stocktitan.net/sec-filings/CRWV/8-k-core-weave-inc-reports-material-event-801052126158.html",
+    "summary": "已讀8-K原文L298–340，非AI摘要。42億美元完成，利率2.875%，淨籌41.37億，capped call耗5.662億，餘35.708億（未扣其他發行費）；增額淨債約6.292億，不含其他現金消耗。初始轉換97.85，非即時稀釋；年票息1.2075億。SEC直連未補。",
+    "evidence_id": "ev-8e5d6d03ad37fc63cbbe01226a804b71cedfbdf1b3eb62cd81185aa7ee9a6436"
+  },
+  {
+    "id": "dataone-permits-20260922",
+    "subjects": [
+      "NYSE:BE",
+      "NASDAQ:NBIS",
+      "NASDAQ:MSFT"
+    ],
+    "status": "secondary_read_primary_retry_failed",
+    "date": "2026-09-22",
+    "url": "https://newjerseymonitor.com/2026/09/22/nj-vineland-data-center-fined/",
+    "summary": "DataOne 62台天然氣發電機無許可、罰107萬美元報道；官方命令PDF讀取兩次失敗。不是Bloom燃料電池被罰。對BE交付与NBIS/MSFT驗收時點有待核風險，尚無合同取消或盈利下修證據；不量化收入下修。",
+    "evidence_id": "ev-0face655f650fd13d14422e5bdfe1fe96353a1982b6ecefe86b574ff5fc4f134"
+  },
+  {
+    "id": "crwv-harell-20260923",
+    "subjects": [
+      "NASDAQ:CRWV"
+    ],
+    "status": "primary_read",
+    "date": "2026-09-23",
+    "url": "https://www.coreweave.com/news/harell-data-selects-coreweave-to-power-its-secure-platform-for-ai-model-training",
+    "summary": "多年合作提供AI生技訓練推論；未披露金額，支持客戶範圍但不增收入預測。",
+    "evidence_id": "ev-2153a5fa3c97b3069142ce8f2b9594b81975434834cfca5f32828549417d0215"
+  },
+  {
+    "id": "gev-smr-20260922",
+    "subjects": [
+      "NYSE:GEV"
+    ],
+    "status": "primary_read",
+    "date": "2026-09-22",
+    "url": "https://www.gevernova.com/news/press-releases/sge-ge-vernova-hitachi-samsung-ct-sign-mou-advance-bwrx-300-fleet-deployment-europe",
+    "summary": "歐洲BWRX300框架MoU，非已落袋訂單，不加近期盈利。",
+    "evidence_id": "ev-23ecf947d5484e0aa6b82346b401aaa232878848cb42c0cca048474d92bfbdd4"
+  },
+  {
+    "id": "gev-egypt-20260923",
+    "subjects": [
+      "NYSE:GEV"
+    ],
+    "status": "primary_index_read_body_retry_failed",
+    "date": "2026-09-23",
+    "url": "https://www.gevernova.com/news/media-hub?type%5Bpress_release%5D=press_release",
+    "summary": "官方索引公告埃及五台9F轉子延壽服務，金額未核；不作盈利上修。"
+  },
+  {
+    "id": "market-20260922",
+    "subjects": [
+      "NYSEARCA:SPY",
+      "NYSEARCA:RSP",
+      "NYSEARCA:IWM",
+      "NYSEARCA:USO",
+      "NYSE:DAL",
+      "NASDAQ:UAL",
+      "NYSE:CCL"
+    ],
+    "status": "prices_read_event_causality_unproven",
+    "date": "2026-09-22",
+    "url": "https://www.bea.gov/news/2026/personal-income-and-outlays-july-2026",
+    "summary": "SPY-0.02%，RSP+0.06%，IWM+0.57%，USO-2.75%；本日盤中方向反轉。沿用既有六因素及原日期；PCE官方下次9/30。"
+  }
+]

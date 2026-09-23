@@ -1,0 +1,320 @@
+{
+  "schema_version": 2,
+  "public": true,
+  "kind": "themes",
+  "slug": "ai-power",
+  "name": "AI 電力價值鏈",
+  "published_at": "2026-09-23T15:21:00Z",
+  "as_of": "2026-09-23",
+  "revision": 1,
+  "review_status": "主研究日更；獨立覆核 pending；資料／模型原日期分開保留",
+  "verdict": "供電需求仍暖，交付許可與高估值限制追價",
+  "summary": "9/22 BE／GEV等權+0.88%，跑贏SPY約0.90個百分點。BE以2027自估EPS仍約56.8倍；GEV新增MoU不當作已訂單。",
+  "change": "新增DataOne許可風險、GEV框架MoU與埃及服務公告線索；已把Eaton納入每日取數，歷史K線重試失敗另列。",
+  "action": "不追BE；GEV／ETN為比較參照，尚無合格完整交易",
+  "overview": {
+    "chain": "AI 電力價值鏈",
+    "change": "價格偏暖；需求不能跳過許可／估值",
+    "next_event": "交付、收款及燃氣／電網產能擴張",
+    "action_state": "radar",
+    "coverage": "radar"
+  },
+  "metrics": [],
+  "sections": [
+    {
+      "key": "judgment",
+      "title": "🎯 目前判斷",
+      "paragraphs": [
+        {
+          "text": "9/22 BE／GEV等權+0.88%，跑贏SPY約0.90個百分點。BE以2027自估EPS仍約56.8倍；GEV新增MoU不當作已訂單。"
+        },
+        {
+          "text": "BE營運模型沿用；新增場址許可驗收風險列為待核假設，不以罰款直接下修收入。GEV框架協議反映機會，與已入帳订单和可分派現金不同。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "近期強弱 · 9月21日收市（沿用原資料日期，非本日重估）",
+          "columns": [
+            "標的",
+            "收市",
+            "1日",
+            "5日",
+            "5日相對 SPY",
+            "RSI14"
+          ],
+          "rows": [
+            [
+              "BE",
+              "$272.89",
+              "+2.73%",
+              "+6.16%",
+              "+4.50 pp",
+              "59.6"
+            ],
+            [
+              "GEV",
+              "$946.22",
+              "+0.63%",
+              "+8.17%",
+              "+6.51 pp",
+              "49.7"
+            ]
+          ],
+          "note": "未復權價格、不含股息；5日為滾動交易日，不是本週至今。RSI 描述動能，不單獨決定買賣。"
+        }
+      ]
+    },
+    {
+      "key": "changes",
+      "title": "📌 已有商業證據",
+      "paragraphs": [
+        {
+          "text": "本輪新增：9/22 GEV／Hitachi／Samsung C&T／SGE歐洲BWRX300框架MoU原文已讀，非已入帳訂單；9/23埃及五台9F服務項目僅官方索引可讀，金額未核，不增近期EPS。"
+        },
+        {
+          "text": "Nebius 5 月宣布與 Bloom 合作，首個 328MW 項目預計於 2026 年運行，取代原擬採用的往復式發動機。這支持「交付速度有商業價值」，下一步要核實投運及收入確認。"
+        },
+        {
+          "text": "GE Vernova 第二季燃氣設備積壓與產能預留合計增至 116GW，當中實際積壓 53GW、預留 63GW；公司計劃把年產能由 2026 年 20GW 提高至 2028 年 24GW。新增供給有利整條鏈落地，也可能逐步降低替代供電方案的稀缺溢價。"
+        }
+      ]
+    },
+    {
+      "key": "comparison",
+      "title": "📊 供電端：不同經濟結構",
+      "paragraphs": [
+        {
+          "text": "BE 與 GEV 可交叉檢查需求、交期與成本，不能直接互套 P/E。GEV 另有電網、風電和服務業務，集團倍數不能全歸因於燃氣設備。"
+        }
+      ],
+      "tables": [
+        {
+          "title": "同年調整盈利參照 · 9/22價格",
+          "columns": [
+            "公司／盈利期間",
+            "EPS",
+            "價格",
+            "P/E",
+            "判讀"
+          ],
+          "rows": [
+            [
+              "BE／2026指引中值",
+              "2.70",
+              "276.53",
+              "102.42×",
+              "高增長要求"
+            ],
+            [
+              "Eaton／2026指引中值",
+              "13.50",
+              "442.49",
+              "32.78×",
+              "業務組合不同，不機械套倍數"
+            ],
+            [
+              "BE／2027既有自估",
+              "4.87",
+              "276.53",
+              "56.78×",
+              "研究預測，非公司指引"
+            ]
+          ],
+          "note": "EPS沿用既有已核口徑；ETN9/22收市由9/23報價prev_close重核，歷史K線缺口保留。"
+        },
+        {
+          "title": "GEV同年收入與現金流尺度",
+          "columns": [
+            "項目",
+            "沿用2026公司指引中值",
+            "9/22近似倍數",
+            "限制"
+          ],
+          "rows": [
+            [
+              "收入",
+              "460億美元",
+              "P/S約5.50×",
+              "固定原股數近似，不代表燃機單品"
+            ],
+            [
+              "調整EBITDA",
+              "59.8億美元",
+              "不與EPS互比",
+              "尚須扣折舊、利息及稅"
+            ],
+            [
+              "FCF",
+              "120億美元",
+              "市值／FCF約21.09×",
+              "預付款支撐不等同永久自由現金"
+            ]
+          ],
+          "note": "市值沿用9/21約2520億按950.28／946.22更新，約2531億；不是完整估值。"
+        }
+      ]
+    },
+    {
+      "key": "network",
+      "title": "🔗 價值鏈關係",
+      "paragraphs": [
+        {
+          "text": "公司按產業位置並列。供應／客戶關係才用方向箭頭；同業比較不代表彼此有直接交易。發電方案的競爭比較另列，並非已核實同場投標。"
+        }
+      ],
+      "network": {
+        "nodes": [
+          {
+            "key": "be",
+            "label": "BE · Bloom",
+            "role": "供電設備"
+          },
+          {
+            "key": "gev",
+            "label": "GEV · GE Vernova",
+            "role": "供電設備"
+          },
+          {
+            "key": "crwv",
+            "label": "CRWV · CoreWeave",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "nbis",
+            "label": "NBIS · Nebius",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "iren",
+            "label": "IREN",
+            "role": "AI Cloud"
+          },
+          {
+            "key": "msft",
+            "label": "MSFT · Microsoft",
+            "role": "算力客戶"
+          }
+        ],
+        "edges": [
+          {
+            "from": "be",
+            "to": "nbis",
+            "label": "2026-05-20 公告首個 328MW 項目預計於 2026 年運行；交付完成仍須核實。",
+            "basis": "documented",
+            "source": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out",
+            "relation_type": "supplies"
+          },
+          {
+            "from": "iren",
+            "to": "msft",
+            "label": "Horizon 1 的 50MW IT 負載部署已交付並獲 Microsoft 接收；Horizon 2–4 仍須追蹤。",
+            "basis": "documented",
+            "source": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results",
+            "relation_type": "supplies"
+          },
+          {
+            "from": "gev",
+            "to": "be",
+            "label": "大型燃氣發電與現場燃料電池可競逐新增供電預算；規模、交期及接網條件不同。不是已確認同場投標。",
+            "basis": "inference",
+            "source": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf",
+            "relation_type": "competes"
+          }
+        ]
+      }
+    },
+    {
+      "key": "watch",
+      "title": "🧭 會改變判斷的事",
+      "paragraphs": [
+        {
+          "text": "項目延誤：先拆電源、GPU 或客戶驗收原因，再調整各公司收入時點。競爭供给加快：重估設備毛利與市場溢價，但算力客戶可能因成本下降受惠。AI 客戶資本支出轉弱：同時檢查新訂單、取消條款與客戶預付款。"
+        }
+      ]
+    },
+    {
+      "key": "guidance",
+      "title": "💰 指引與投資取捨",
+      "paragraphs": [
+        {
+          "text": "需求與訂單原模型沿用；GEV指引未因新MoU上調。BE舊194.84及約157價值錨維持撤回；成長要求、維修CapEx、SBC／稀釋與現金稅證據未補齊。"
+        },
+        {
+          "text": "ETN的32.78倍2026調整盈利只是當年參照，沒有可比2027共識時不假裝已完成跨公司同口徑2027排名。ETN新聞同名污染已剔除；航太售後擴張線索未核金額，不更新EPS。"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Nebius／Bloom 供電合作",
+      "url": "https://nebius.com/newsroom/nebius-and-bloom-energy-partner-to-power-ai-infrastructure-build-out"
+    },
+    {
+      "label": "Nebius 第二季財務",
+      "url": "https://assets.nebius.com/assets/72a8c258-bbb7-4df7-ab9d-8698f6cb88fc/PR.pdf"
+    },
+    {
+      "label": "Nebius 第二季股東信",
+      "url": "https://assets.nebius.com/assets/a6ecfd85-a6cb-4967-8ef7-9a25bd261f9c/SHLQ226.pdf"
+    },
+    {
+      "label": "IREN FY26 業績",
+      "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-fy26-results"
+    },
+    {
+      "label": "CoreWeave 第二季業績",
+      "url": "https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx"
+    },
+    {
+      "label": "CoreWeave 第三季及全年指引",
+      "url": "https://s205.q4cdn.com/133937190/files/doc_financials/2026/q2/CoreWeave-Q2-26-Earnings-Outlook-Presentation.pdf"
+    },
+    {
+      "label": "GE Vernova 第二季業績",
+      "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf"
+    },
+    {
+      "label": "Bloom 第二季業績",
+      "url": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026050150/ex991_q226financialresults.htm"
+    },
+    {
+      "label": "Eaton：2026年指引",
+      "url": "https://www.eaton.com/us/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html"
+    },
+    {
+      "label": "Eaton：9/21收市",
+      "url": "https://www.marketwatch.com/data-news/eaton-corp-plc-stock-outperforms-competitors-on-strong-trading-day-ab1770c6-5e855f9ac9a7"
+    },
+    {
+      "label": "GE Vernova Q2指引與報表",
+      "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_07222026.pdf"
+    },
+    {
+      "label": "GEV 9/22 BWRX300 MoU原文",
+      "url": "https://www.gevernova.com/news/press-releases/sge-ge-vernova-hitachi-samsung-ct-sign-mou-advance-bwrx-300-fleet-deployment-europe"
+    },
+    {
+      "label": "DataOne許可事件，原命令待核",
+      "url": "https://newjerseymonitor.com/2026/09/22/nj-vineland-data-center-fined/"
+    }
+  ],
+  "related": [
+    {
+      "kind": "stocks",
+      "slug": "be",
+      "label": "BE：目前判斷與交易計劃"
+    },
+    {
+      "kind": "themes",
+      "slug": "neocloud",
+      "label": "CRWV／NBIS／IREN：首輪比較"
+    },
+    {
+      "kind": "market",
+      "slug": "spy",
+      "label": "市場與 SPY：大盤位置"
+    }
+  ]
+}
