@@ -1,0 +1,597 @@
+{
+ "ticket_context": "KARST-256 pre-deployment live-network scale check (local machine, not cloud)",
+ "measured_at": "2026-09-23T08:12Z-08:45Z (US market closed; last complete bar 2026-09-22)",
+ "code_base": "daily-scale 69c844a (core 0.2.15); the symbol_for share-class fix is committed with this receipt",
+ "path": "in-process fastmcp Client against karst.mcp_server.build(): refresh_daily_scope -> get_daily_runs(wait_seconds=40) -> resume_daily_scope; refresh_daily for single members. Fresh scratch KARST_DATA_DIR; no cloud, no production list, no reader site, no account tools.",
+ "prices_only_method": "Runs A and C and the resume replaced karst.fetch.news.http_get in the driver process with an empty RSS feed (news coverage reads ok with zero items); the daily path always requests prices+news and has no prices-only switch.",
+ "registration": "service.ensure_company (identity only, no fetch) per member + knowledge.save universe live200-scale, so Run A is the true first-run history backfill (windowed fetch, then full recovery).",
+ "universe": {
+  "method": "median(close*volume) over the last 60 trading days to 2026-09-02 (local yfinance parquet, series_role=primary); entities.parquet NYSE/NASDAQ, not etp_suspect, not foreign filer; ticker == primary_ticker; class-suffixed tickers excluded; top 200",
+  "window": [
+   "2026-06-09",
+   "2026-09-02"
+  ],
+  "size": 200,
+  "members": [
+   "NASDAQ:MU",
+   "NASDAQ:NVDA",
+   "NASDAQ:SNDK",
+   "NASDAQ:AAPL",
+   "NASDAQ:AMD",
+   "NASDAQ:MSFT",
+   "NASDAQ:TSLA",
+   "NASDAQ:INTC",
+   "NASDAQ:AMZN",
+   "NASDAQ:META",
+   "NASDAQ:AVGO",
+   "NASDAQ:GOOG",
+   "NASDAQ:MRVL",
+   "NASDAQ:PLTR",
+   "NYSE:ORCL",
+   "NASDAQ:AMAT",
+   "NASDAQ:WDC",
+   "NASDAQ:STX",
+   "NASDAQ:LITE",
+   "NASDAQ:LRCX",
+   "NYSE:BE",
+   "NYSE:LLY",
+   "NASDAQ:NFLX",
+   "NYSE:GEV",
+   "NYSE:DELL",
+   "NYSE:JPM",
+   "NYSE:CAT",
+   "NYSE:V",
+   "NASDAQ:KLAC",
+   "NASDAQ:WMT",
+   "NASDAQ:CSCO",
+   "NASDAQ:APP",
+   "NASDAQ:QCOM",
+   "NYSE:NOW",
+   "NYSE:CRM",
+   "NASDAQ:TXN",
+   "NASDAQ:HOOD",
+   "NASDAQ:CRWV",
+   "NASDAQ:PANW",
+   "NYSE:UNH",
+   "NASDAQ:MSTR",
+   "NYSE:GS",
+   "NYSE:JNJ",
+   "NASDAQ:COST",
+   "NYSE:IBM",
+   "NYSE:BAC",
+   "NYSE:GLW",
+   "NYSE:MA",
+   "NYSE:COHR",
+   "NASDAQ:CRWD",
+   "NYSE:CVX",
+   "NASDAQ:ALAB",
+   "NASDAQ:ADI",
+   "NYSE:VRT",
+   "NYSE:GE",
+   "NASDAQ:RKLB",
+   "NYSE:C",
+   "NASDAQ:SMCI",
+   "NASDAQ:CRDO",
+   "NASDAQ:AAL",
+   "NYSE:HD",
+   "NYSE:KO",
+   "NYSE:SNOW",
+   "NYSE:ANET",
+   "NYSE:UBER",
+   "NASDAQ:INTU",
+   "NASDAQ:SOFI",
+   "NYSE:ABBV",
+   "NASDAQ:TER",
+   "NASDAQ:ADBE",
+   "NYSE:PG",
+   "NASDAQ:AAOI",
+   "NYSE:MRK",
+   "NYSE:T",
+   "NYSE:MCD",
+   "NASDAQ:PEP",
+   "NYSE:WFC",
+   "NASDAQ:COIN",
+   "NASDAQ:MPWR",
+   "NYSE:BA",
+   "NASDAQ:BKNG",
+   "NASDAQ:LIN",
+   "NYSE:VZ",
+   "NYSE:ABT",
+   "NYSE:MS",
+   "NYSE:TMO",
+   "NYSE:APH",
+   "NYSE:PFE",
+   "NYSE:ACN",
+   "NASDAQ:DDOG",
+   "NYSE:DIS",
+   "NASDAQ:AMGN",
+   "NASDAQ:ISRG",
+   "NYSE:FCX",
+   "NYSE:NKE",
+   "NYSE:AXP",
+   "NYSE:NEE",
+   "NASDAQ:GILD",
+   "NYSE:HPE",
+   "NYSE:PM",
+   "NASDAQ:MCHP",
+   "NYSE:RTX",
+   "NASDAQ:HON",
+   "NASDAQ:ASTS",
+   "NYSE:BSX",
+   "NASDAQ:ON",
+   "NYSE:TJX",
+   "NYSE:PATH",
+   "NASDAQ:TMUS",
+   "NYSE:NET",
+   "NYSE:MCK",
+   "NYSE:SCHW",
+   "NYSE:CIEN",
+   "NYSE:IONQ",
+   "NYSE:COF",
+   "NYSE:NEM",
+   "NYSE:ETN",
+   "NYSE:CRCL",
+   "NYSE:SPGI",
+   "NASDAQ:DASH",
+   "NYSE:COP",
+   "NASDAQ:FTNT",
+   "NYSE:VLO",
+   "NYSE:FIX",
+   "NYSE:UNP",
+   "NYSE:DHR",
+   "NYSE:CVS",
+   "NYSE:SYK",
+   "NASDAQ:CEG",
+   "NYSE:PWR",
+   "NYSE:BLK",
+   "NASDAQ:MELI",
+   "NYSE:RDDT",
+   "NASDAQ:CDNS",
+   "NASDAQ:SNPS",
+   "NASDAQ:CME",
+   "NASDAQ:SBUX",
+   "NYSE:F",
+   "NYSE:MPC",
+   "NYSE:WELL",
+   "NYSE:SHW",
+   "NYSE:MDT",
+   "NASDAQ:WULF",
+   "NASDAQ:PYPL",
+   "NYSE:DE",
+   "NYSE:HWM",
+   "NYSE:AZO",
+   "NASDAQ:VRTX",
+   "NASDAQ:WDAY",
+   "NYSE:BMY",
+   "NYSE:LOW",
+   "NYSE:VST",
+   "NYSE:RCL",
+   "NYSE:TGT",
+   "NYSE:CVNA",
+   "NYSE:HLT",
+   "NYSE:MO",
+   "NYSE:TRV",
+   "NASDAQ:ONDS",
+   "NASDAQ:AXTI",
+   "NASDAQ:EQIX",
+   "NYSE:SLB",
+   "NYSE:LMT",
+   "NYSE:ICE",
+   "NASDAQ:ROST",
+   "NYSE:CDE",
+   "NYSE:PH",
+   "NYSE:CMI",
+   "NASDAQ:ADP",
+   "NASDAQ:MAR",
+   "NYSE:CMG",
+   "NYSE:CB",
+   "NASDAQ:CIFR",
+   "NASDAQ:ABNB",
+   "NYSE:HL",
+   "NASDAQ:REGN",
+   "NASDAQ:ORLY",
+   "NASDAQ:APLD",
+   "NYSE:HCA",
+   "NYSE:BX",
+   "NYSE:PGR",
+   "NASDAQ:FLEX",
+   "NASDAQ:WBD",
+   "NASDAQ:CSX",
+   "NYSE:PSX",
+   "NASDAQ:MARA",
+   "NYSE:DAL",
+   "NYSE:TT",
+   "NASDAQ:UAL",
+   "NASDAQ:MDB",
+   "NYSE:CCL",
+   "NYSE:JCI",
+   "NYSE:PLD",
+   "NYSE:FDX",
+   "NYSE:MMM",
+   "NASDAQ:MDLZ",
+   "NASDAQ:TTWO",
+   "NYSE:DVN",
+   "NYSE:APO",
+   "NYSE:HUM"
+  ]
+ },
+ "runs": [
+  {
+   "run": "A prices only, first run (history backfill)",
+   "run_id": "daily-89cb20bbdbb042949a37d0abf500a980",
+   "state": "finished",
+   "intake_status": "incomplete",
+   "wall_seconds": 175.4,
+   "mcp_calls": 5,
+   "max_call_seconds": 40.51,
+   "call_seconds": [
+    40.41,
+    40.51,
+    40.05,
+    40.41,
+    14.06
+   ],
+   "members": 200,
+   "done": 200,
+   "ready": 94,
+   "incomplete": 106,
+   "pending": 0,
+   "failure_causes": {
+    "longbridge/history_candlesticks_by_date error: OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301607, trace_id=) history candles": 106,
+    "history not ready": 106
+   },
+   "full_history_fetches": 200,
+   "incremental_price_fetches": 0,
+   "history_ready": 94,
+   "snapshots": 94,
+   "snapshot_events": {},
+   "reassessment_queue_members": 0,
+   "reassessment_layers": {},
+   "news_articles_shared": 0,
+   "members_with_news": 0,
+   "news_candidates_total": 0,
+   "attempt_durations": {
+    "longbridge": {
+     "n": 1600,
+     "max": 1.0,
+     "p50": 0.08
+    },
+    "yahoo_rss": {
+     "n": 200,
+     "max": 0.0,
+     "p50": 0.0
+    },
+    "google_news_rss": {
+     "n": 200,
+     "max": 0.0,
+     "p50": 0.0
+    }
+   },
+   "sqlite_locked_members": [],
+   "thread_exceptions": [],
+   "quote_symbol_mismatches": [],
+   "threads_alive_after": {
+    "MainThread": 1,
+    "karst-source": 64
+   },
+   "vendor_calls_still_in_flight": [],
+   "source_attempts": {
+    "longbridge": 1600,
+    "yahoo_rss": 200,
+    "google_news_rss": 200
+   },
+   "retries_timeouts_429": {
+    "longbridge": {},
+    "yahoo_rss": {},
+    "google_news_rss": {}
+   },
+   "vendor_quota_failures_301607": 212
+  },
+  {
+   "run": "B prices + news (3-day first lookback)",
+   "run_id": "daily-60a9d6776cf94dbe8281caed49002033",
+   "state": "finished",
+   "intake_status": "incomplete",
+   "wall_seconds": 213.7,
+   "mcp_calls": 6,
+   "max_call_seconds": 41.06,
+   "call_seconds": [
+    40.45,
+    40.08,
+    40.72,
+    40.64,
+    41.06,
+    10.69
+   ],
+   "members": 200,
+   "done": 200,
+   "ready": 94,
+   "incomplete": 106,
+   "pending": 0,
+   "failure_causes": {
+    "longbridge/history_candlesticks_by_date error: OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301607, trace_id=) history candles": 106,
+    "history not ready": 106
+   },
+   "full_history_fetches": 106,
+   "incremental_price_fetches": 94,
+   "history_ready": 94,
+   "snapshots": 94,
+   "snapshot_events": {},
+   "reassessment_queue_members": 0,
+   "reassessment_layers": {},
+   "news_articles_shared": 6972,
+   "members_with_news": 199,
+   "news_candidates_total": 7738,
+   "attempt_durations": {
+    "longbridge": {
+     "n": 1224,
+     "max": 1.97,
+     "p50": 0.06
+    },
+    "google_news_rss": {
+     "n": 200,
+     "max": 2.89,
+     "p50": 0.92
+    },
+    "yahoo_rss": {
+     "n": 200,
+     "max": 3.47,
+     "p50": 1.02
+    }
+   },
+   "sqlite_locked_members": [],
+   "thread_exceptions": [],
+   "quote_symbol_mismatches": [],
+   "threads_alive_after": {
+    "MainThread": 1,
+    "karst-source": 17
+   },
+   "vendor_calls_still_in_flight": [],
+   "source_attempts": {
+    "longbridge": 1224,
+    "yahoo_rss": 200,
+    "google_news_rss": 200
+   },
+   "retries_timeouts_429": {
+    "longbridge": {},
+    "yahoo_rss": {},
+    "google_news_rss": {}
+   },
+   "vendor_quota_failures_301607": 212
+  },
+  {
+   "run": "C prices only, immediately after B (incremental)",
+   "run_id": "daily-590bf6fb98b54a9aa4c7b107beb1d110",
+   "state": "finished",
+   "intake_status": "incomplete",
+   "wall_seconds": 167.1,
+   "mcp_calls": 5,
+   "max_call_seconds": 41.06,
+   "call_seconds": [
+    40.47,
+    40.52,
+    41.06,
+    40.22,
+    4.88
+   ],
+   "members": 200,
+   "done": 200,
+   "ready": 94,
+   "incomplete": 106,
+   "pending": 0,
+   "failure_causes": {
+    "longbridge/history_candlesticks_by_date error: OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301607, trace_id=) history candles": 106,
+    "history not ready": 106
+   },
+   "full_history_fetches": 106,
+   "incremental_price_fetches": 94,
+   "history_ready": 94,
+   "snapshots": 94,
+   "snapshot_events": {},
+   "reassessment_queue_members": 0,
+   "reassessment_layers": {},
+   "news_articles_shared": 0,
+   "members_with_news": 0,
+   "news_candidates_total": 0,
+   "attempt_durations": {
+    "longbridge": {
+     "n": 1224,
+     "max": 1.22,
+     "p50": 0.06
+    },
+    "yahoo_rss": {
+     "n": 200,
+     "max": 0.0,
+     "p50": 0.0
+    },
+    "google_news_rss": {
+     "n": 200,
+     "max": 0.0,
+     "p50": 0.0
+    }
+   },
+   "sqlite_locked_members": [],
+   "thread_exceptions": [],
+   "quote_symbol_mismatches": [],
+   "threads_alive_after": {
+    "MainThread": 1,
+    "karst-source": 64
+   },
+   "vendor_calls_still_in_flight": [],
+   "source_attempts": {
+    "longbridge": 1224,
+    "yahoo_rss": 200,
+    "google_news_rss": 200
+   },
+   "retries_timeouts_429": {
+    "longbridge": {},
+    "yahoo_rss": {},
+    "google_news_rss": {}
+   },
+   "vendor_quota_failures_301607": 212
+  },
+  {
+   "run": "resume of run C: retries only incomplete members",
+   "run_id": "daily-e5b00897064d497198d71b86ec3d3277",
+   "state": "finished",
+   "intake_status": "incomplete",
+   "wall_seconds": 120.4,
+   "mcp_calls": 3,
+   "max_call_seconds": 41.12,
+   "call_seconds": [
+    41.12,
+    41.11,
+    38.2
+   ],
+   "members": 200,
+   "done": 200,
+   "ready": 94,
+   "incomplete": 106,
+   "pending": 0,
+   "failure_causes": {
+    "longbridge/history_candlesticks_by_date error: OpenApiException: OpenApiException: (kind=ErrorKind.OpenApi, code=301607, trace_id=) history candles": 106,
+    "history not ready": 106
+   },
+   "full_history_fetches": 106,
+   "incremental_price_fetches": 94,
+   "history_ready": 94,
+   "snapshots": 94,
+   "snapshot_events": {},
+   "reassessment_queue_members": 0,
+   "reassessment_layers": {},
+   "news_articles_shared": 0,
+   "members_with_news": 0,
+   "news_candidates_total": 0,
+   "attempt_durations": {
+    "longbridge": {
+     "n": 848,
+     "max": 2.12,
+     "p50": 0.06
+    },
+    "yahoo_rss": {
+     "n": 106,
+     "max": 0.0,
+     "p50": 0.0
+    },
+    "google_news_rss": {
+     "n": 106,
+     "max": 0.0,
+     "p50": 0.0
+    }
+   },
+   "sqlite_locked_members": [],
+   "thread_exceptions": [],
+   "quote_symbol_mismatches": [],
+   "threads_alive_after": {
+    "MainThread": 1,
+    "karst-source": 64
+   },
+   "vendor_calls_still_in_flight": [],
+   "source_attempts": {
+    "longbridge": 848,
+    "yahoo_rss": 106,
+    "google_news_rss": 106
+   },
+   "retries_timeouts_429": {
+    "longbridge": {},
+    "yahoo_rss": {},
+    "google_news_rss": {}
+   },
+   "vendor_quota_failures_301607": 212
+  }
+ ],
+ "single_refresh": [
+  {
+   "subject": "NASDAQ:MU",
+   "seconds": 7.8,
+   "sources_complete": true,
+   "history_recovered": false,
+   "prices_from": "2026-09-22"
+  },
+  {
+   "subject": "NASDAQ:DDOG",
+   "seconds": 7.1,
+   "sources_complete": false,
+   "history_recovered": true,
+   "note": "quota-blocked member fails alone and returns in 7 s"
+  }
+ ],
+ "cross_check": {
+  "what": "stored Longbridge closes vs local yfinance parquet, 2026-07-01..09-02, per member (detects a cross-thread response mix-up)",
+  "members_checked": 94,
+  "median_diff": 0.0,
+  "outliers": [
+   {
+    "member": "NYSE:APH",
+    "reason": "2:1 split effective 2026-09-03: yfinance history is split-adjusted, Longbridge NoAdjust is raw (160.08 on 9/02, 82.07 on 9/03). Not a mix-up."
+   }
+  ],
+  "quote_symbol_mismatches": 0
+ },
+ "findings": [
+  {
+   "severity": "blocker for the 200 target",
+   "what": "Longbridge account quota: \"history candlestick symbol count out of limit, requested:100/limit:100\" (OpenAPI code 301607). Distinct symbols with history candles are capped at 100 for this account; 94 of the 200 new members got history, 106 failed in every run. quote/static_info/calc_indexes are unaffected.",
+   "consequence": "200 securities cannot be served by this account through history_candlesticks regardless of code. Options: a higher Longbridge quote package, a second daily-bar source for members over quota, or a daily list kept within the quota.",
+   "side_effect": "This test used up the remaining quota slots. The 10 production daily-monitoring symbols were re-checked afterwards and still return candles (already counted). A symbol newly added to production will fail history until the vendor quota window frees slots (window length not verified)."
+  },
+  {
+   "severity": "minor",
+   "what": "The quota failure is classified cause=error, not a distinct quota cause, and a quota-blocked member repeats a windowed fetch plus a full recovery fetch (8 vendor calls) on every run and every resume; resume cannot fix it."
+  },
+  {
+   "severity": "fixed",
+   "what": "karst.fetch.longbridge.symbol_for passed any dotted ticker through as if it carried a market suffix, so a share-class ticker such as BRK.B was sent as BRK.B (the vendor returns nothing) instead of BRK.B.US (verified live). Now only US/HK/SH/SZ/SG suffixes pass through; test added. Class-suffixed tickers were excluded from this universe because of it."
+  },
+  {
+   "severity": "note",
+   "what": "NoAdjust daily series cross splits unadjusted (APH 2026-09-03); technicals over such a series see a false 50% drop. Existing design choice, not changed here."
+  },
+  {
+   "severity": "note",
+   "what": "No snapshot events, L5/L6 price queue or news queue entries: none of these members has research or a plan, so triage has nothing to compare against. Queue behaviour at scale is not measured here."
+  },
+  {
+   "severity": "note",
+   "what": "The karst-source attempt pool grows to its 64-thread cap and keeps idle threads after a run (ThreadPoolExecutor behaviour); no vendor call was left in flight after any run, no karst-daily thread survived a run."
+  }
+ ],
+ "targets": {
+  "prices_plus_technicals_le_300s": {
+   "result": "met locally",
+   "evidence": "A 175 s (backfill), C 167 s (incremental) with 106 quota-failing members each spending 8 calls; about 80-90 s projected for 200 healthy incremental members (4 calls each at the 10/s gate)"
+  },
+  "with_news_le_600s": {
+   "result": "met locally",
+   "evidence": "B 214 s; RSS attempt p50 about 1 s, max 3.5 s"
+  },
+  "each_call_le_60s": {
+   "result": "met",
+   "evidence": "max MCP call 41.1 s (40 s wait plus reply)"
+  },
+  "zero_full_refetch_when_history_sufficient": {
+   "result": "met",
+   "evidence": "B and C: 94/94 members with history fetched from the last complete bar, 0 full re-fetches; the 106 full fetches were members without history (quota)"
+  },
+  "failure_isolation_and_rerun": {
+   "result": "met",
+   "evidence": "106 failures never blocked the 94; resume retried only the 106 (848 calls = 106 x 8) and kept the 94 successes; a single refresh of one member works alone"
+  },
+  "serve_200_securities": {
+   "result": "missed",
+   "cause": "Longbridge history-candle symbol quota of 100 on this account"
+  }
+ },
+ "open_questions_answered": {
+  "longbridge_client_thread_safety": "Safe in practice: one shared SdkClient across 8 workers (5 in flight) for 4,896 calls in four runs; no SDK exception besides the quota code, no quote symbol mismatch, stored closes match an independent source for 93/94 members (the outlier is a real split). Empirical, not a proof of SDK internals.",
+  "sqlite_busy_timeout": "No \"database is locked\" error in any run (8 worker connections plus the MCP connection).",
+  "hung_threads_after_vendor_timeout": "Not exercised: zero timeouts live (slowest attempt 3.5 s), still unproven."
+ },
+ "does_not_prove": [
+  "cloud CPU, disk and network (Zeabur container) timings",
+  "a true next-day new bar: C ran minutes after B with no new bar, so merging a genuinely new bar is not shown live",
+  "200 members with history on this account (quota)",
+  "triage queue volume with researched members",
+  "behaviour under vendor timeouts or HTTP 429 (none occurred)"
+ ]
+}

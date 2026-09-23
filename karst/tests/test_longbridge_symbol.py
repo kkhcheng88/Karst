@@ -12,6 +12,9 @@ class SymbolForTests(unittest.TestCase):
             ({"ticker": "DEMO", "exchange": "NYSEARCA"}, "DEMO.US"),
             ({"ticker": "700", "exchange": "HKEX"}, "00700.HK"),
             ({"ticker": "DEMO.US", "exchange": "NYSE"}, "DEMO.US"),
+            # a share-class dot is not a market suffix (the vendor answers bare "BRK.B" with nothing)
+            ({"ticker": "BRK.B", "exchange": "NYSE"}, "BRK.B.US"),
+            ({"ticker": "BRK.B.US", "exchange": "NYSE"}, "BRK.B.US"),
             ({"ticker": "DEMO", "exchange": "NYSE", "symbols": {"longbridge": "OTHER.US"}}, "OTHER.US"),
         ]
         for security, expected in cases:

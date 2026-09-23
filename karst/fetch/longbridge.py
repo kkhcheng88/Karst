@@ -41,6 +41,7 @@ DEFAULT_INDEXES = ("LastDone", "Volume", "Turnover", "TotalMarketValue", "Turnov
 US_EXCHANGES = {"NASDAQ", "NYSE", "NYSEARCA", "NYSEAMERICAN", "AMEX", "BATS", "CBOE",
                 "XNAS", "XNYS", "XASE", "ARCX", "BATS", "US"}
 HK_EXCHANGES = {"HKEX", "SEHK", "XHKG", "HK"}
+MARKET_SUFFIXES = {"US", "HK", "SH", "SZ", "SG"}
 
 
 def symbol_for(security):
@@ -58,7 +59,8 @@ def symbol_for(security):
     ticker = str(security.get("ticker") or "").strip().upper()
     if not ticker:
         raise ValueError("security has no ticker; cannot derive a Longbridge symbol")
-    if "." in ticker:
+    # A market suffix passes through; a share-class dot (BRK.B) is part of the ticker.
+    if ticker.rsplit(".", 1)[-1] in MARKET_SUFFIXES:
         return ticker
     exchange = str(security.get("exchange") or "").strip().upper()
     if exchange in US_EXCHANGES or exchange.startswith(("NYSE", "NASDAQ")):
