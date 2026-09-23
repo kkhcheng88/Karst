@@ -593,5 +593,34 @@
   "200 members with history on this account (quota)",
   "triage queue volume with researched members",
   "behaviour under vendor timeouts or HTTP 429 (none occurred)"
- ]
+ ],
+ "rerun_latest_candles_endpoint": {
+  "measured_at": "2026-09-23T08:42Z-09:05Z (US market closed; last complete bar 2026-09-22)",
+  "code_base": "daily-scale 4596108: daily bars from QuoteContext.candlesticks (latest <=1000 bars, no per-account symbol cap) whenever 1000 bars reach the requested start; history_candlesticks_by_date only for an older explicit start; 301607 is cause=quota and never retried",
+  "path": "same in-process fastmcp driver and the same 200 members; fresh scratch KARST_DATA_DIR (data2) registered identity-only, so Run A is again the true first-run backfill. A and C prices only (empty RSS in the driver), B prices + news.",
+  "runs": [
+   {"run": "A prices only, first run (history backfill)", "run_id": "daily-91e25ed0c41341ea8c8555fc59fdccd7", "wall_seconds": 278.4, "mcp_calls": 7, "max_call_seconds": 40.97, "ok": 200, "failed": 0, "full_history_fetches": 200, "incremental_price_fetches": 0, "history_ready": 200, "bars_available_min": 326, "longbridge_attempts": 1600, "longbridge_calls_per_member": 8, "rss_calls_per_member": 2, "longest_vendor_attempt_seconds": 3.06, "failure_causes": {}},
+   {"run": "B prices + news", "run_id": "daily-c5f43ff82ebe42589b6c7a574460303e", "wall_seconds": 218.0, "mcp_calls": 6, "max_call_seconds": 40.83, "ok": 200, "failed": 0, "full_history_fetches": 0, "incremental_price_fetches": 200, "history_ready": 200, "longbridge_attempts": 800, "longbridge_calls_per_member": 4, "rss_calls_per_member": 2, "longest_vendor_attempt_seconds": 3.45, "members_with_news": 199, "news_candidates_total": 7737, "failure_causes": {}},
+   {"run": "C prices only, incremental", "run_id": "daily-eef12d4498ab48cba12e15aa1a5af593", "wall_seconds": 121.0, "mcp_calls": 3, "max_call_seconds": 40.53, "ok": 200, "failed": 0, "full_history_fetches": 0, "incremental_price_fetches": 200, "history_ready": 200, "longbridge_attempts": 800, "longbridge_calls_per_member": 4, "rss_calls_per_member": 2, "longest_vendor_attempt_seconds": 0.95, "failure_causes": {}}
+  ],
+  "endpoint_used": "600 landed candle records, all tool=candlesticks, all ok; zero history_candlesticks_by_date calls. count=1000 for the full backfill, 8 for the windowed first fetch, 7 for the incremental fetch from the last complete bar (2026-09-22).",
+  "overlap_check": {
+   "direct": "MU.US, NVDA.US, JPM.US (symbols already holding history quota): both endpoints, no start -> 1000 bars each, 2022-09-27..2026-09-22, 1000/1000 overlapping bars with identical open/high/low/close/volume/turnover/timestamp/trade_session, identical basis (NoAdjust, Day, trade_session unknown = SDK default; rows carry trade_session Intraday). Windowed start 2026-09-15 on MU.US and JPM.US: 6 rows each, byte-identical responses.",
+   "stored_series": "The 94 members that got history in the first run (data, history endpoint) vs the same members in this re-run (data2, latest endpoint): 92,012 overlapping stored daily bars, 0 differences in open/high/low/close/volume/complete.",
+   "quota_blocked_symbol": "DDOG.US: latest endpoint ok (1000 bars); history endpoint still refused with 301607."
+  },
+  "targets": {
+   "serve_200_securities": {"result": "met", "evidence": "200/200 ok in all three runs"},
+   "prices_le_300s": {"result": "met locally", "evidence": "A 278 s (first-run backfill, 8 calls per member at the 10/s gate), C 121 s (incremental)"},
+   "with_news_le_600s": {"result": "met locally", "evidence": "B 218 s"},
+   "each_call_le_60s": {"result": "met", "evidence": "max MCP call 41.0 s (40 s wait plus reply); max vendor attempt 3.45 s"}
+  },
+  "notes_for_cloud_deploy": [
+   "Landed candle evidence changes tool name from history_candlesticks_by_date to candlesticks and params gain count; series selection groups by symbol and basis, not tool, so existing history snapshots still extend the new series (verified: 0 differences on 92,012 bars).",
+   "Depth is 1000 bars (back to 2022-09-27 today); an explicit start older than that still goes to the history endpoint and is subject to the 100-symbol cap.",
+   "Trading sessions: neither call passes trade_sessions; the SDK default returns regular-session (Intraday) bars on both.",
+   "A forming bar for today was not observed live (market closed during the test); completion is decided downstream by exchange close vs fetch time, unit-tested for rows from this endpoint.",
+   "First-run backfill still spends 8 Longbridge calls per member (windowed fetch, then full recovery); 278 s for 200 is close to the 300 s target. Fetching full history directly when stored history is known insufficient would halve it; not changed here."
+  ]
+ }
 }
