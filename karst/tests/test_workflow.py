@@ -11,6 +11,9 @@ from karst.tests.test_longbridge import FakeClient
 
 
 class Candles(FakeClient):
+    def candlesticks(self, symbol, period, count, adjust, sessions=None):
+        return self.history_candlesticks_by_date(symbol, period, adjust, None, None)
+
     def history_candlesticks_by_date(self, symbol, period, adjust, start, end, sessions=None):
         days = [date(2026, 1, 1) + timedelta(days=i) for i in range(100)]
         return [{'timestamp': f'{day}T20:00:00Z', 'open': 100+i, 'high': 102+i,

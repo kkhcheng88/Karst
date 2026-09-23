@@ -260,6 +260,23 @@ class CoverageTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             port.FeedOutcome("x", "failed")  # a failure must say why
 
+    def test_a_vendor_quota_is_its_own_cause_and_is_not_retried(self):
+        from karst.fetch import limits
+        text = ("OpenApiException: (kind=ErrorKind.OpenApi, code=301607, trace_id=) history "
+                "candlestick symbol count out of limit, requested:100/limit:100")
+        calls = []
+
+        def refused():
+            calls.append(1)
+            raise RuntimeError(text)
+        with self.assertRaises(RuntimeError):
+            limits.call("longbridge", refused)
+        self.assertEqual(len(calls), 1)  # no backoff retry can free an account allowance
+        self.assertEqual(port.failure_cause(RuntimeError(text)), "quota")
+        self.assertEqual(port.reason_cause(f"RuntimeError: {text}"), "quota")
+        self.assertEqual(port.cover("vendor", refused)[1]["feeds"][0]["cause"], "quota")
+        self.assertEqual(port.failure_cause(RuntimeError("code=301600 bad request")), "error")
+
 
 class FailureIsVisibleTests(unittest.TestCase):
     """A broken source must read differently from a source with nothing to report."""

@@ -11,6 +11,7 @@ The numbers below are defaults, each with its reason; they are the one place to 
 """
 from __future__ import annotations
 
+import re
 import threading
 import time
 import urllib.error
@@ -75,8 +76,23 @@ def _gate(source):
         return gate
 
 
+# Account allowances a provider refuses outright: Longbridge OpenAPI 301607 ("history
+# candlestick symbol count out of limit"). Retrying cannot free them, so they are never
+# backed off and are reported as their own cause.
+QUOTA_CODES = frozenset({'301607'})
+
+
+def quota(exc):
+    """Is this exception (or its recorded text) an account quota refusal?"""
+    text = str(exc)
+    codes = set(re.findall(r'code=(\d+)', text)) | {str(getattr(exc, 'code', ''))}
+    return bool(codes & QUOTA_CODES) or 'out of limit' in text.lower()
+
+
 def transient(exc):
     """Worth retrying: out of time, throttled, or the connection itself failed."""
+    if quota(exc):
+        return False
     if isinstance(exc, (TimeoutError, RateLimited, ConnectionError)):
         return True
     if isinstance(exc, urllib.error.HTTPError):

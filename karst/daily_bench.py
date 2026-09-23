@@ -76,9 +76,15 @@ class FakeLongbridge:
 
     def history_candlesticks_by_date(self, symbol, period, adjust, start, end, sessions=None):
         self.faults.call('history_candlesticks_by_date')
+        return self._bars(dt.date.fromisoformat(start) if start else None, self.history_bars)
+
+    def candlesticks(self, symbol, period, count, adjust, sessions=None):
+        self.faults.call('candlesticks')
+        return self._bars(None, min(count, self.history_bars))
+
+    def _bars(self, first, limit):
         day, days = dt.date.today() - dt.timedelta(days=1), []
-        first = dt.date.fromisoformat(start) if start else None
-        while len(days) < self.history_bars and (first is None or day >= first):
+        while len(days) < limit and (first is None or day >= first):
             if day.weekday() < 5:
                 days.append(day)
             day -= dt.timedelta(days=1)

@@ -32,7 +32,7 @@ SOURCE = "longbridge"
 KINDS = ("prices", "quote")
 # tool -> evidence kind, declared here rather than inferred at registration.
 TOOL_KINDS = {"quote": "prices", "static_info": "profile", "calc_indexes": "prices",
-              "history_candlesticks_by_date": "prices"}
+              "history_candlesticks_by_date": "prices", "candlesticks": "prices"}
 ENV_KEYS = ("LONGPORT_APP_KEY", "LONGPORT_APP_SECRET", "LONGPORT_ACCESS_TOKEN")
 MISSING_CREDENTIALS = "credentials missing"
 SNAPSHOT_BASIS = ("現時快照 (snapshot at fetch time); the SDK return carries no publication "
@@ -42,6 +42,11 @@ US_EXCHANGES = {"NASDAQ", "NYSE", "NYSEARCA", "NYSEAMERICAN", "AMEX", "BATS", "C
                 "XNAS", "XNYS", "XASE", "ARCX", "BATS", "US"}
 HK_EXCHANGES = {"HKEX", "SEHK", "XHKG", "HK"}
 MARKET_SUFFIXES = {"US", "HK", "SH", "SZ", "SG"}
+# QuoteContext.candlesticks returns at most this many of the latest bars. Unlike the
+# history endpoint (capped per account at 100 distinct symbols, OpenAPI 301607), it
+# has no symbol quota, so every window it can reach is fetched through it.
+LATEST_MAX = 1000
+LATEST_MARGIN = 5  # extra bars past the weekday count: today's bar, host-zone date edges
 
 
 def symbol_for(security):
@@ -152,6 +157,13 @@ class SdkClient:
         return self.context.calc_indexes(
             list(symbols), [self._enum("CalcIndex", name) for name in indexes])
 
+    def candlesticks(self, symbol, period, count, adjust, sessions=None):
+        extra = {} if sessions is None else {
+            "trade_sessions": self._enum("TradeSessions", sessions)}
+        return self.context.candlesticks(
+            symbol, self._enum("Period", period), count, self._enum("AdjustType", adjust),
+            **extra)
+
     def history_candlesticks_by_date(self, symbol, period, adjust, start, end, sessions=None):
         parse = lambda value: dt.date.fromisoformat(value) if value else None  # noqa: E731
         extra = {} if sessions is None else {
@@ -195,13 +207,15 @@ def land(out_dir, tool, symbol, params, response, *, fetched_at=None, period=Non
             "meta": str(meta_path), "status": status, "status_reason": status_reason}
 
 
-def _call(out_dir, client, tool, symbol, params, produce, *, period=None):
+def _call(out_dir, client, tool, symbol, params, produce, *, period=None, keep=None):
     if client is None:
         return land(out_dir, tool, symbol, params, None, status="error",
                     status_reason=MISSING_CREDENTIALS,
                     known_gaps=[f"no call attempted: set {', '.join(ENV_KEYS)}"])
     try:
         response = _plain(limits.call(SOURCE, produce, client))
+        if keep is not None and isinstance(response, list):
+            response = [row for row in response if keep(row)]
     except Exception as exc:  # noqa: BLE001 - the adapter records failures, never invents a body
         return land(out_dir, tool, symbol, params, None, status="error",
                     status_reason=f"{type(exc).__name__}: {exc}",
@@ -228,9 +242,29 @@ def calc_indexes(out_dir, symbols, *, indexes=DEFAULT_INDEXES, client=None):
                  lambda c: c.calc_indexes(symbols, indexes))
 
 
+def latest_count(start, today=None):
+    """How many latest daily bars reach back to ``start``, or None when 1000 cannot.
+
+    Weekdays over-count trading days (holidays), so the count always reaches ``start``.
+    No start asks for the whole reachable depth.
+    """
+    if not start:
+        return LATEST_MAX
+    first = dt.date.fromisoformat(start[:10])
+    today = today or dt.datetime.now(dt.timezone.utc).date()
+    span = (today - first).days + 1
+    weekdays = sum(1 for n in range(max(span, 0)) if (first + dt.timedelta(n)).weekday() < 5)
+    needed = weekdays + LATEST_MARGIN
+    return needed if needed <= LATEST_MAX else None
+
+
 def history_candlesticks(out_dir, symbol, start, end, *, period="Day", adjust="NoAdjust",
-                         sessions=None, client=None):
+                         sessions=None, client=None, today=None):
     """``start``/``end`` are ISO dates (or None); ``period``/``adjust`` are SDK enum names.
+
+    A daily window the latest 1000 bars can reach goes to ``candlesticks`` (no symbol
+    quota), trimmed to ``start``..``end`` so it lands the same rows the history call
+    would; only an older ``start`` uses ``history_candlesticks_by_date``.
 
     ``sessions`` is the SDK ``TradeSessions`` name (Intraday / All). The landed params
     always declare the bar length, the adjustment and the trading sessions, because a
@@ -240,6 +274,14 @@ def history_candlesticks(out_dir, symbol, start, end, *, period="Day", adjust="N
     """
     params = {"symbol": symbol, "period": period, "adjust_type": adjust,
               "trade_session": sessions or "unknown", "start": start, "end": end}
+    count = latest_count(start, today) if period == "Day" else None
+    if count is not None:
+        def keep(row):
+            day = str(row.get("timestamp") or "")[:10] if isinstance(row, dict) else ""
+            return (not start or day >= start[:10]) and (not end or day <= end[:10])
+        return _call(out_dir, client, "candlesticks", symbol, {**params, "count": count},
+                     lambda c: c.candlesticks(symbol, period, count, adjust, sessions),
+                     period={"start": start, "end": end}, keep=keep)
     return _call(out_dir, client, "history_candlesticks_by_date", symbol, params,
                  lambda c: c.history_candlesticks_by_date(symbol, period, adjust, start, end,
                                                           sessions),

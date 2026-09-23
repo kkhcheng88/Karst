@@ -1,4 +1,5 @@
 """Longbridge quote adapter, offline: every client is a fake, no SDK or network is touched."""
+import datetime
 import json
 import tempfile
 import unittest
@@ -50,6 +51,38 @@ class FakeClient:
         return [{"symbol": symbol, "period": period, "adjust": adjust,
                  "close": Decimal(self.last_done), "timestamp": f"{start}T20:00:00Z"}
                 for _ in range(self.candles)]
+
+    def candlesticks(self, symbol, period, count, adjust, sessions=None):
+        self._check("candlesticks")
+        today = datetime.datetime.now(datetime.timezone.utc).date()
+        return [{"symbol": symbol, "period": period, "adjust": adjust,
+                 "close": Decimal(self.last_done), "timestamp": f"{today}T20:00:00Z"}
+                for _ in range(self.candles)]
+
+
+class SeriesClient:
+    """One fixed weekday series served by both endpoints, the way the vendor does."""
+
+    def __init__(self, today, bars=1200):
+        days, day = [], today
+        while len(days) < bars:
+            if day.weekday() < 5:
+                days.append(day)
+            day -= datetime.timedelta(days=1)
+        self.rows = [{"timestamp": datetime.datetime(d.year, d.month, d.day, 4, tzinfo=datetime.timezone.utc),
+                      "open": Decimal("10") + i, "high": Decimal("12") + i, "low": Decimal("9") + i,
+                      "close": Decimal("11") + i, "volume": 100 + i}
+                     for i, d in enumerate(reversed(days))]
+        self.calls = []
+
+    def candlesticks(self, symbol, period, count, adjust, sessions=None):
+        self.calls.append(("candlesticks", count, sessions))
+        return self.rows[-count:]
+
+    def history_candlesticks_by_date(self, symbol, period, adjust, start, end, sessions=None):
+        self.calls.append(("history_candlesticks_by_date", start, sessions))
+        return [row for row in self.rows if (not start or str(row["timestamp"].date()) >= start)
+                and (not end or str(row["timestamp"].date()) <= end)]
 
 
 def read(path):
@@ -146,11 +179,11 @@ class LandingTests(unittest.TestCase):
 
     def test_fake_client_lands_envelope_and_meta(self):
         client = FakeClient()
-        statuses = longbridge.fetch_company(SYMBOL, self.out, start="2026-01-01",
-                                            end="2026-02-01", client=client)
+        start = str(datetime.date.today() - datetime.timedelta(days=30))
+        statuses = longbridge.fetch_company(SYMBOL, self.out, start=start, client=client)
         self.assertEqual(set(statuses.values()), {"ok"})
         self.assertEqual(sorted(client.calls),
-                         ["calc_indexes", "history_candlesticks_by_date", "quote", "static_info"])
+                         ["calc_indexes", "candlesticks", "quote", "static_info"])
         envelope = read(self.out / "longbridge" / "quote.json")
         self.assertEqual(envelope["tool"], "quote")
         self.assertEqual(envelope["params"], {"symbols": [SYMBOL]})
@@ -161,8 +194,8 @@ class LandingTests(unittest.TestCase):
         self.assertEqual(meta["status"], "ok")
         self.assertIsNone(meta["published_at"])
         self.assertTrue(meta["fetched_at"].endswith("Z"))
-        candles = read(self.out / "longbridge" / "history_candlesticks_by_date.meta.json")
-        self.assertEqual(candles["period"], {"start": "2026-01-01", "end": "2026-02-01"})
+        candles = read(self.out / "longbridge" / "candlesticks.meta.json")
+        self.assertEqual(candles["period"], {"start": start, "end": None})
 
     def test_empty_return_is_not_an_error(self):
         result = longbridge.history_candlesticks(self.out, SYMBOL, "2026-01-01", "2026-02-01",
@@ -185,13 +218,67 @@ class LandingTests(unittest.TestCase):
             longbridge.land(self.out, "stock_positions", SYMBOL, {}, [])
 
 
+class DailyEndpointTests(unittest.TestCase):
+    """Daily bars come from the latest-candles endpoint (no per-account symbol quota)
+    whenever 1000 bars reach the start; the rows landed equal the history endpoint's."""
+
+    TODAY = datetime.date(2026, 9, 23)
+
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.out = Path(self.directory.name)
+        self.addCleanup(self.directory.cleanup)
+
+    def test_count_reaches_the_start_and_an_older_start_uses_history(self):
+        self.assertEqual(longbridge.latest_count(None), longbridge.LATEST_MAX)
+        # Mon 2026-09-21 .. Wed 2026-09-23 is three weekdays, plus the margin.
+        self.assertEqual(longbridge.latest_count("2026-09-21", self.TODAY), 3 + longbridge.LATEST_MARGIN)
+        self.assertIsNone(longbridge.latest_count("2021-01-04", self.TODAY))
+        client = SeriesClient(self.TODAY)
+        longbridge.history_candlesticks(self.out, SYMBOL, "2021-01-04", None, client=client,
+                                        today=self.TODAY)
+        self.assertEqual(client.calls[-1][0], "history_candlesticks_by_date")
+
+    def test_latest_rows_equal_history_rows_for_the_same_window(self):
+        from unittest import mock
+        from karst import bars
+        client = SeriesClient(self.TODAY)
+        start, end = "2026-03-02", "2026-09-18"
+        latest = longbridge.history_candlesticks(self.out / "a", SYMBOL, start, end,
+                                                 client=client, today=self.TODAY)
+        with mock.patch.object(longbridge, "LATEST_MAX", 10):  # force the history path
+            history = longbridge.history_candlesticks(self.out / "b", SYMBOL, start, end,
+                                                      client=client, today=self.TODAY)
+        self.assertEqual([call[0] for call in client.calls],
+                         ["candlesticks", "history_candlesticks_by_date"])
+        self.assertIsNone(client.calls[0][2])  # same SDK-default sessions as the history call
+        new, old = read(latest["path"]), read(history["path"])
+        self.assertEqual(new["response"], old["response"])
+        self.assertEqual(new["response"][0]["timestamp"][:10], start)
+        self.assertEqual(new["response"][-1]["timestamp"][:10], end)
+        self.assertEqual(bars._basis(new), bars._basis(old))
+        self.assertEqual(new["params"]["count"], longbridge.latest_count(start, self.TODAY))
+        self.assertEqual(read(latest["meta"])["period"], {"start": start, "end": end})
+
+    def test_the_bar_forming_today_stays_incomplete(self):
+        from karst import bars
+        client = SeriesClient(self.TODAY)
+        result = longbridge.history_candlesticks(self.out, SYMBOL, "2026-09-21", None,
+                                                 client=client, today=self.TODAY)
+        rows = read(result["path"])["response"]
+        self.assertEqual(rows[-1]["timestamp"][:10], str(self.TODAY))
+        before_close = datetime.datetime(2026, 9, 23, 18, tzinfo=datetime.timezone.utc)  # 14:00 NY
+        cutoff = datetime.datetime(2026, 9, 24, tzinfo=datetime.timezone.utc)
+        self.assertFalse(bars._bar(rows[-1], cutoff, fetched_at=before_close)["complete"])
+        self.assertTrue(bars._bar(rows[-2], cutoff, fetched_at=before_close)["complete"])
+
+
 class RegistryTests(unittest.TestCase):
     def test_landed_output_registers_as_public_evidence(self):
         from karst.fetch.registry import EvidenceRegistry  # local: keeps the adapter test standalone
 
         with tempfile.TemporaryDirectory() as staging, tempfile.TemporaryDirectory() as bundle:
-            longbridge.fetch_company(SYMBOL, staging, start="2026-01-01", end="2026-02-01",
-                                     client=FakeClient())
+            longbridge.fetch_company(SYMBOL, staging, client=FakeClient())
             registry = EvidenceRegistry(bundle)
             kinds = set()
             for meta in sorted((Path(staging) / "longbridge").glob("*.meta.json")):

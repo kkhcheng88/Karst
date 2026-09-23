@@ -26,6 +26,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from .common import STATUSES
+from .limits import quota
 
 # Public tool method -> evidence kind. These are public tool names, NOT
 # symbol-specific mappings; a broker tool that is not here cannot be registered
@@ -44,7 +45,7 @@ PUBLIC_KINDS = {
     'forecast_eps': 'consensus', 'filings': 'filing_index',
     'finance_calendar': 'calendar', 'fund_holder': 'ownership',
     'shareholder': 'ownership', 'short_positions': 'short_interest',
-    'quote': 'prices', 'history_candlesticks_by_date': 'prices',
+    'quote': 'prices', 'history_candlesticks_by_date': 'prices', 'candlesticks': 'prices',
     'static_info': 'profile', 'calc_indexes': 'prices',
     'industry_valuation': 'valuation', 'valuation': 'valuation',
     'valuation_history': 'valuation', 'security_facts': 'other_public',
@@ -82,8 +83,9 @@ class LandedRecord:
 
 
 # Why a feed was not covered. timeout / rate_limited are kept apart from error so a
-# scheduler can back off or retry that source alone.
-FAILURE_CAUSES = ('error', 'timeout', 'rate_limited', 'empty')
+# scheduler can back off or retry that source alone; quota is an account allowance
+# that retrying cannot fix (limits.quota).
+FAILURE_CAUSES = ('error', 'timeout', 'rate_limited', 'quota', 'empty')
 
 
 @dataclass(frozen=True)
@@ -119,7 +121,9 @@ class Landing(list):
 
 
 def failure_cause(exc):
-    """error / timeout / rate_limited for an exception an adapter or a feed raised."""
+    """error / timeout / rate_limited / quota for an exception an adapter or a feed raised."""
+    if quota(exc):
+        return 'quota'
     if isinstance(exc, TimeoutError) or 'timed out' in str(exc).lower():
         return 'timeout'
     if 429 in (getattr(exc, 'code', None), getattr(exc, 'status', None)):
@@ -130,6 +134,8 @@ def failure_cause(exc):
 def reason_cause(reason):
     """The cause a landed error record's reason names (the adapter wrote the exception)."""
     text = str(reason or '').lower()
+    if quota(text):
+        return 'quota'
     if 'timed out' in text or text.startswith('timeouterror'):
         return 'timeout'
     if 'rate limited' in text or '429' in text:
