@@ -20,6 +20,10 @@
 
 ## 二、下一步
 
+**18:41:21Z補記：16项日更名單已讀回**：Zeabur成功，daily-monitoring版本kv-8a858b7ce9fa124ea4b3786ca822ff5bbc8beb968678165f38ca411d6ce958d0，RCL／DAL／CCL／UAL／USO／ETN及原10項全部在雲端。下段「名單待讀回」狀態已解除；新圖及研究缺口未解除。
+
+**2026-09-23 正式站發布／公開bytes驗收完成（本段優先）**：bb0622ff以最新master為父提交且非force更新。7新閱讀版stage/apply；Pages35903753244 build／deploy／Verify deployed public bytes全成功，18:38:16Z實際HTTP讀回69公開檔與commit重建bytes一致；31舊版保留。artifact10769599289／public-reader-readback及cards/runs/daily/2026-09-23/publication-status.json保存回執。大圖blob上傳長時間無完成回執，本版發布已核價格文字，新圖仍待；不能稱TA新圖已發布。16項名單repo seed已提交，Zeabur部署與雲端名單讀回待續；本轮实际已逐項取16股，不等同雲端名單已遷移。RCL最終正式研究／watch已讀回，其他研究缺口及獨立覆核pending保留。下輪只續未完成圖表／名單及研究缺口；新一天另取新新聞與價格。
+
 **2026-09-23 日更（發布驗收中，本段優先）**：16標的本日新聞／價格實取，ETN歷史K線重試一次仍失敗但報價成功。RCL9/23已簽Sandals 50%／約30億美元，正式rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b、watch-0fa00f12撤回原入場／243失效／265及278目標；等待融資與現金流，獨立覆核pending。SPY保留六因素及原日期；兩鏈同口徑前瞻比较／CRWV融資橋已更新。7頁stage/apply，bulk chart上傳長時間未完成，先發布已核價格文字，舊歷史圖日期不改；新圖另待。逐股checkpoint／共享事件／正式研究cards/runs/daily/2026-09-23/；完整本地回執8942469及雲端取證已保存，不重做研究。16項daily-monitoring seed CAS待部署讀回；Pages與真正公開bytes回執未完成前不能稱已發布。DataOne原命令、資本橋、滾動動能及獨立覆核缺口保留。9/22回執已由git物件讀回，先前工作目錄缺少是sparse checkout，不是master缺檔。
 
 **2026-09-22 油價敘事／RCL／BE正式站驗收完成（本段優先）**：265aa401已發布三新閱讀版；7d00e813補可重用部署後公開bytes驗證。Actions35765285687 build、deploy及Verify deployed public bytes全部成功，62個公開檔（含首頁、全部歷史、圖表與CSS／JS）與該commit重建輸出一致；28個既有歷史HTML保持。回執artifact10711044515／public-reader-readback；摘要cards/runs/oil-relief-2026-09-22/publication-status.json。當前環境直讀站點逾時，已停止；驗收由GitHub runner真正HTTP執行，沒有冒稱本地成功。RCL及BE雲端新版本已指定版本讀回；watch已保存。下面列出的研究限制與新股daily-monitoring待加入仍保留，不把發布等同這些工作完成。

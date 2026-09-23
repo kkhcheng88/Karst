@@ -2,9 +2,9 @@
   "run_id": "daily-2026-09-23",
   "parent_run_id": null,
   "universe_id": "daily-monitoring",
-  "universe_version": "cloud kv-bdcd3957 + CAS proposed scope 16 (pending deployment readback)",
+  "universe_version": "kv-8a858b7ce9fa124ea4b3786ca822ff5bbc8beb968678165f38ca411d6ce958d0",
   "started_at": "2026-09-23T14:54:26Z",
-  "stage": "reader_applied_lean_publication_pending",
+  "stage": "published_verified_with_gaps",
   "source_cutoffs": {
     "news_since": "2026-09-21T00:00:00Z",
     "new_intake_date": "2026-09-23",
@@ -547,8 +547,43 @@
     }
   ],
   "publication": {
-    "status": "pending",
-    "url": "https://kkhcheng88.github.io/Karst/"
+    "status": "verified",
+    "reader_commit": "bb0622ffb1d268abb751ed74116c7ecfc91e5e2f",
+    "reader_tree": "3d8df2f4ab4a35ef1a3a97f980e7398316d4b601",
+    "pages_run": 35903753244,
+    "verification_job": 107326306277,
+    "verification_step": "Verify deployed public bytes",
+    "verification_step_conclusion": "success",
+    "verified_at": "2026-09-23T18:38:16Z",
+    "executor": "GitHub Actions actual HTTP reads after deploy; each complete public file compared to rebuilt bytes",
+    "files_matching_build": 69,
+    "failed_files": [],
+    "artifact": {
+      "id": 10769599289,
+      "name": "public-reader-readback",
+      "digest": "sha256:3ada3d77d0cf38b82601dc381a956e7fc0852bb188edea03a977d320c60c585c",
+      "url": "https://github.com/kkhcheng88/Karst/actions/runs/35903753244"
+    },
+    "new_reader_editions": 7,
+    "historical_editions_preserved": 31,
+    "build": {
+      "pages": 49,
+      "reports": 38,
+      "assets": 9,
+      "interactive_charts": 5
+    },
+    "cloud": {
+      "RCL": "rv-f371fecff3382cedbcb995a61ba2a074e07691f7a99f71561fa5b3929372008b",
+      "watch": "watch-0fa00f12367627a09b35d4a894e2e69d1e0f8fd8ec26bbb3187e0fa88d273d76",
+      "daily_monitoring": "16-member live scope verified 2026-09-23T18:41:21Z; Zeabur successful"
+    },
+    "limits": [
+      "New charts not published because large blob uploads stalled; current reports use dated price text",
+      "ETN history failed twice, fresh quote succeeded",
+      "DataOne primary order unavailable after retry",
+      "Full rolling momentum and independent reviews remain open"
+    ],
+    "public_url": "https://kkhcheng88.github.io/Karst/"
   },
   "gaps": [
     "DataOne original regulatory order unavailable after one retry; no numeric operating model cut",
@@ -561,7 +596,7 @@
   ],
   "resume": {
     "reuse_saved_research": true,
-    "next_stage": "reader stage/apply -> latest master nonforce -> Pages -> public bytes",
+    "next_stage": "charts and outstanding research gaps; next day requires new intake",
     "no_prior_day_intake_reuse": true
   }
 }
